@@ -1,0 +1,213 @@
+---
+title: "ITN-based Vector Control"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ITN-based Vector Control}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+In this vignette we demonstrate how to set up a model incorporating the Le Menach model of ITN based vector control (see [this paper](https://malariajournal.biomedcentral.com/articles/10.1186/1475-2875-6-10)). We use the Ross-Macdonald model of adult mosquito dynamics, the SIS model of human population dynamics, and the basic competition model of aquatic mosquito dynamics to fill the dynamical components $\mathcal{M}, \mathcal{X}, \mathcal{L}$.
+
+```{r, message=FALSE, warning=FALSE}
+library(exDE)
+library(MASS)
+library(expm)
+library(deSolve)
+library(data.table)
+library(ggplot2)
+```
+
+
+```{r, echo=FALSE} 
+#devtools::load_all()
+```
+
+## Parameters
+
+This case study will use a simple model with 3 patches, 3 population strata, and 3 aquatic habitats. As usual, we set up parameter values and compute the values of state variables at equilibrium. As part of the equilibrium calculation we must compute $\Upsilon(0) = \exp\left(-\int_{-\tau}^{0} \Omega(s) ds \right)$; the value of the integrated mosquito demography matrix at the initial time point. To simplify things, we simply assume that conditions were constant prior to $t=0$ so that $\Upsilon(0) = e^{-\Omega\tau}$.
+
+```{r}
+nPatches <- 3
+nVectors <- 1
+nStrata <- 3
+nHabitats <- 3
+
+# human parameters
+b <- 0.55
+c <- 0.15
+r <- 1/200
+
+wf <- rep(1, nStrata)
+
+pfpr <- runif(n = nStrata, min = 0.25, max = 0.35)
+Hpop <- rpois(n = nStrata, lambda = 1000)
+X <- rbinom(n = nStrata, size = Hpop, prob = pfpr)
+
+residence = c(1:3)
+searchWtsH = rep(1,3) 
+
+TaR <- matrix(
+  data = c(
+    0.9, 0.05, 0.05,
+    0.05, 0.9, 0.05,
+    0.05, 0.05, 0.9
+  ), nrow = nStrata, ncol = nPatches, byrow = T
+)
+TaR <- t(TaR)
+
+f <- 0.3 
+q <- 0.9 
+g <- 1/10 
+sigma <- 1/100 
+nu <- 1/2 
+eggsPerBatch <- 30
+eip <- 11
+
+``` 
+
+
+```{r}
+calK = make_calK(nPatches, "herethere")
+``` 
+
+## Equilibrium
+
+Now we compute the equilibrium conditions for the adult mosquitoes and human populations, such that the PfPR in the human population would be maintained at the input levels if conditions were unchanging.
+
+```{r}
+# derived EIR to sustain equilibrium pfpr
+EIR <- diag(1/b, nStrata) %*% ((r*X) / (Hpop - X))
+
+# ambient pop
+W <- TaR %*% Hpop
+
+# biting distribution matrix
+beta <- diag(wf) %*% t(TaR) %*% diag(1/as.vector(W), nPatches)
+
+# kappa
+kappa <- t(beta) %*% (X*c)
+
+Omega <- make_Omega(g = g, sigma = sigma, K = calK, nPatches = nPatches)
+Omega_inv <- solve(Omega)
+Upsilon <- expm::expm(-Omega * eip)
+Upsilon_inv <- expm::expm(Omega * eip)
+
+# equilibrium solutions
+Z <- diag(1/(f*q), nPatches) %*% ginv(beta) %*% EIR
+MY <- diag(1/as.vector(f*q*kappa), nPatches) %*% Upsilon_inv %*% Omega %*% Z
+Y <- Omega_inv %*% (diag(as.vector(f*q*kappa), nPatches) %*% MY)
+M <- MY + Y
+P <- solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M
+Lambda <- Omega %*% M
+```
+
+Given the equilibrium value of $\Lambda$ required to sustain mosquito populations at such a level sufficient to maintain transmission at that level of PfPR, as well as values for $\psi$ (maturation rate) and $\phi$ (density independent mortality), we compute equilibrium values of $L$ (aquatic mosquito density) and $\theta$ (density dependent mortality).
+
+```{r}
+# aquatic habitat membership matrix (assume 1 habitat per patch)
+calN <- matrix(0, nPatches, nHabitats)
+diag(calN) <- 1
+
+# egg dispersal matrix (assume 1 habitat per patch)
+calU <- matrix(0, nHabitats, nPatches)
+diag(calU) <- 1
+
+psi <- 1/10
+phi <- 1/12
+eta <- as.vector(calU %*% (M * nu * eggsPerBatch))
+
+alpha <- as.vector(solve(calN) %*% Lambda)
+L <- alpha/psi
+theta <- (eta - psi*L - phi*L)/(L^2)
+
+```
+
+## Setup
+
+Now that all state variables have been solved at equilibrium, we can set up the parameters and components of the system. 
+
+
+We use the null model of human demographic dynamics, which assumes $H$ is constant for all time.
+
+```{r}
+# adult mosquito parameters
+Xo = list(b=b, c=c, r=r, X0=X)
+
+Lo = list(psi=psi, phi=phi, theta=theta, L0=L)
+
+MYZo = list(f=f, q=q, g=g, sigma=sigma, 
+            nu=nu, eggsPerBatch=eggsPerBatch, eip=eip, 
+            M0=M, P0=P, Y0=Y, Z0=Z)
+```
+
+```{r}
+xde_setup(MYZname="RM", Xname="SIS", Lname="basic", 
+          nPatches=3, HPop=Hpop, membership=c(1:3), MYZopts=MYZo, calK=calK, 
+          Xopts=Xo, residence=1:3, searchB=rep(1,3), 
+          TimeSpent =TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
+```
+
+```{r}
+itn_mod <- setup_control_forced(itn_mod)
+```
+
+```{r}
+itn_mod <- setup_vc_control(itn_mod)
+```
+
+
+If we ran the model at this point, we would get the baseline. Instead, we set up a time-varying function to compute the coverage of ITNs at any time point. We use a sine curve with a period of 365 days which goes from 0 to 1 over that period, with the phase shifted so that at 0 it returns 0. The function also returns 0 for any $t<0$. This must be a function that takes a single argument `t` (time) and returns a scalar value.
+
+```{r}
+# ITN coverage
+ITN_cov <- function(t, pars){ifelse(t < 0, 0, (sin(2*pi*(t-365/4) / 365) + 1) / 2)}
+```
+
+We use the null model of human demographic dynamics, which assumes $H$ is constant for all time.
+
+```{r}
+itn_mod = setup_itn_lemenach(itn_mod, F_phi=ITN_cov)
+```
+
+```{r}
+xde_solve(itn_mod, 5*365) -> itn_mod
+itn_mod$outputs$orbits$deout -> out
+```
+
+## Plot 
+
+We can plot the output to study the effects of the seasonal ITN coverage on the state variables. We see that total and parous mosquito densities $M$ and $G$ now vary in a sinusoidal manner as coverage changes, as does $L$, larval density, as the number of ovipositing mosquitoes changes. Because in addition to increasing mosquito mortality, ITNs also decrease the feeding rate and proportion of bloodmeals taken on humans due to the repellency effect, we see the densities of infected and infectious mosquitoes ($Y$ and $Z$) steadily decrease over time as there are no longer sufficient bloodmeals being taken to sustain prevalence. A similar pattern appears in human prevalence $X$, with slower dynamics due to the slow recovery rate of untreated infection.
+
+```{r, out.width = "100%"}
+
+colnames(out)[itn_mod$ix$L[[1]]$L_ix+1] <- paste0('L_', 1:itn_mod$nHabitats)
+colnames(out)[itn_mod$ix$MYZ[[1]]$M_ix+1] <- paste0('M_', 1:itn_mod$nPatches)
+colnames(out)[itn_mod$ix$MYZ[[1]]$P_ix+1] <- paste0('P_', 1:itn_mod$nPatches)
+colnames(out)[itn_mod$ix$MYZ[[1]]$Y_ix+1] <- paste0('Y_', 1:itn_mod$nPatches)
+colnames(out)[itn_mod$ix$MYZ[[1]]$Z_ix+1] <- paste0('Z_', 1:itn_mod$nPatches)
+colnames(out)[itn_mod$ix$X[[1]]$X_ix+1] <- paste0('X_', 1:itn_mod$Hpar[[1]]$nStrata)
+
+out <- out[, -c(itn_mod$ix$MYZ[[1]]$sigma_ix+1)]
+out <- out[, -c(itn_mod$ix$MYZ[[1]]$g_ix+1)]
+out <- out[, -c(itn_mod$ix$MYZ[[1]]$fqkappa_ix+1)]
+out <- out[, -c(itn_mod$ix$MYZ[[1]]$Upsilon_ix+1)]
+
+out <- as.data.table(out)
+out <- melt(out, id.vars = 'time')
+out[, c("Component", "Stratification") := tstrsplit(variable, '_', fixed = TRUE)]
+out[, variable := NULL]
+
+ggplot(data = out, mapping = aes(x = time, y = value, color = Stratification)) +
+  geom_line() +
+  facet_wrap(. ~ Component, scales = 'free') +
+  theme_bw()
+```

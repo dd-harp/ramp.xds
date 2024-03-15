@@ -1,0 +1,289 @@
+---
+title: "A Ross-Macdonald Adult Mosquito Model"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{A Ross-Macdonald Adult Mosquito Model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The Ross-Macdonald adult mosquito model fulfills the generic interface of the adult mosquito component. 
+
+Here, we use a Ross-Macdonald model based on a model first published in 1982 by Joan Aron and Robert May^[The population dynamics of malaria. In *The Population Dynamics of Infectious Diseases: Theory and Applications,* R. M. Anderson, ed. (Springer US), pp. 139–179. [online](https://link.springer.com/chapter/10.1007/978-1-4899-2901-3_5){target="_blank"}]. It includes state variables for total mosquito density $M$, infected mosquito density $Y$, and infectious mosquito density $Z$. Because of the interest in parity, the model has been extended to include a variable that tracks parous mosquitoes, $P$.
+
+# Differential Equations 
+
+## Delay Differential Equations
+
+These equations are naturally implemented by `exDE::dMYZdt.RM_dde,` but they can also be implemented in a closely related set of odes using `exDE::dMYZdt.RM_ode` (see below). 
+
+$$
+\dot{M} = \Lambda - \Omega\cdot M 
+$$
+$$
+\dot{P} = \mbox{diag}(f) \cdot (M-P) -  \Omega \cdot P
+$$
+
+$$
+\dot{Y} = \mbox{diag}(fq\kappa) \cdot (M-Y) - \Omega \cdot Y
+$$
+
+$$
+\dot{Z} = e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa_{t-\tau}) \cdot (M_{t-\tau}-Y_{t-\tau}) - \Omega \cdot Z
+$$
+
+Recall that the mosquito demography matrix describing mortality and dispersal is given by:
+
+$$
+\Omega =  \mbox{diag(g)} + \left(I- {\cal K}\right) \cdot \mbox{diag}(\sigma)
+$$
+
+## Ordinary Differential Equations
+
+In the following, the equation are solved by `exDE::dMYZdt.RM_ode`.
+
+The system of ODEs is the same as above except for the equation giving the rate of change in infectious mosquito density, which becomes:
+
+$$
+\dot{Z} = e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa) \cdot (M-Y) - \Omega \cdot Z
+$$
+The resulting set of equations is similar in spirit to the simple model presented in  Smith & McKenzie (2004)^[Smith, D.L., Ellis McKenzie, F. Statics and dynamics of malaria infection in Anopheles mosquitoes. Malar J 3, 13 (2004). [online](https://doi.org/10.1186/1475-2875-3-13){target="_blank"}]. in that mortality and dispersal over the EIP is accounted for, but the time lag is not. While
+transient dynamics of the ODE model will not equal the DDE model, they have the same
+equilibrium values, and so for numerical work requiring finding equilibrium points, the faster
+ODE model can be safely substituted.
+
+# Equilibrium solutions 
+
+There are two logical ways to begin solving the non-trivial equilibrium. The first
+assumes $\Lambda$ is known, which implies good knowledge of mosquito ecology. The
+second assumes $Z$ is known, which implies knowledge of the biting rate on the
+human population. We show both below.
+
+## Starting with $\Lambda$
+
+Piven $\Lambda$ we can solve:
+
+$$
+M = \Omega^{-1} \cdot \Lambda
+$$
+Then given $M$ we set $\dot{Y}$ to zero and factor out $Y$ to get:
+
+$$
+Y = (\mbox{diag}(fq\kappa) + \Omega)^{-1} \cdot \mbox{diag}(fq\kappa) \cdot M
+$$
+We set $\dot{Z}$ to zero to get:
+
+$$
+Z = \Omega^{-1} \cdot e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa) \cdot (M-Y)
+$$
+
+Because the dynamics of $P$ are independent of the infection dynamics, we can solve it given $M$ as:
+
+$$
+P = (\Omega + \mbox{diag}(f))^{-1} \cdot \mbox{diag}(f) \cdot M
+$$
+
+## Starting with $Z$
+
+It is more common that we start from an estimate of $Z$, perhaps derived from an estimated EIR (entomological inoculation rate). Piven $Z$, we can calculate the other state variables and $\Lambda$. For numerical implementation, note that $(e^{-\Omega\tau})^{-1} = e^{\Omega\tau}$.
+
+$$
+M-Y = \mbox{diag}(1/fq\kappa) \cdot (e^{-\Omega\tau})^{-1} \cdot \Omega \cdot Z
+$$
+
+$$
+Y = \Omega^{-1} \cdot \mbox{diag}(fq\kappa) \cdot (M-Y)
+$$
+
+$$
+M = (M - Y) + Y
+$$
+
+$$
+\Lambda = \Omega \cdot M
+$$
+We can use the same equation for $P$ as above.
+
+# Example
+
+
+```{r, message=FALSE, warning=FALSE}
+library(exDE)
+library(expm)
+library(deSolve)
+library(data.table)
+library(ggplot2)
+```
+
+```{r, echo=F}
+#devtools::load_all()
+``` 
+
+Here we show an example of starting and solving a model at equilibrium. Please note that this only
+runs this adult mosquito model and that most users should read [our fully worked example](ex_534.html)
+to run a full simulation.
+
+## The long way 
+
+Here we set up some parameters for a simulation with 3 patches.
+
+```{r}
+nPatches <- 3
+f <- 0.3
+q <- 0.9
+g <- 1/20
+sigma <- 1/10
+eip <- 11
+nu <- 1/2
+eggsPerBatch <- 30
+
+calK <- matrix(0, nPatches, nPatches)
+calK[1, 2:3] <- c(0.2, 0.8)
+calK[2, c(1,3)] <- c(0.5, 0.5)
+calK[3, 1:2] <- c(0.7, 0.3)
+calK <- t(calK)
+
+Omega <- make_Omega(g, sigma, calK, nPatches)
+Upsilon <- expm::expm(-Omega * eip)
+``` 
+
+Now we set up the parameter environment with the correct class using `exDE::make_parameters_MYZ_RM,` noting that we will be solving as an `ode.`  
+
+```{r}
+params <- list(nPatches = nPatches)
+
+params = make_parameters_MYZ_RM(params, 
+                                g = g, sigma = sigma, calK = calK, 
+                                f = f, q = q, 
+                                nu = nu, eggsPerBatch = eggsPerBatch, 
+                                eip = eip, solve_as = 'ode') 
+```
+
+Now we set the values of $\kappa$ and $\Lambda$ and solve for the equilibrium values.
+
+```{r kappa & lambda}
+kappa <- c(0.1, 0.075, 0.025)
+Lambda <- c(5, 10, 8)
+
+Omega_inv <- solve(Omega)
+
+M_eq <- as.vector(Omega_inv %*% Lambda)
+P_eq <- as.vector(solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
+Y_eq <- as.vector(solve(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
+Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
+```
+
+We use `exDE::make_inits_MYZ_RM` to store the initial values. These equations have been implemented to compute $\Upsilon$ dynamically, so we attach `Upsilon` as initial values:
+
+```{r}
+params = make_inits_MYZ_RM_ode(pars = params, 
+                             M0 = M_eq, P0 = P_eq, Y0 = Y_eq, Z0 = Z_eq)
+
+```
+
+We and set the indices with `exDE::make_indices`. 
+
+```{r}
+params$max_ix = 0 
+params = make_indices(params)
+params$nHosts = 0 
+```
+
+Then we can set up the initial conditions vector and use `deSolve::ode` to solve the model.  Normally these values would be computed within `exDE::xDE_diffeqn`. Here, we set up a local version: 
+
+```{r solve, out.width = "100%"}
+y0 = get_inits_MYZ(params, 1) 
+
+
+dMYZdt_local = func=function(t, y, pars, Lambda, kappa, s) {
+  pars$Lambda[[s]] = Lambda
+  pars$kappa[[s]] = kappa 
+  list(dMYZdt(t, y, pars, s))
+}
+
+out <- deSolve::ode(y = y0, times = 0:50, dMYZdt_local, parms=params, 
+                    method = 'lsoda', Lambda = Lambda, kappa = kappa, s=1) 
+out1 <- out
+```
+
+The output is plotted below. The flat lines shown here is a verification that the steady state solutions that we computed above match the steady states computed by solving the equations: 
+
+```{r, out.width = "100%"}
+colnames(out)[params$MYZpar$M_ix+1] <- paste0('M_', 1:params$nPatches)
+colnames(out)[params$MYZpar$P_ix+1] <- paste0('P_', 1:params$nPatches)
+colnames(out)[params$MYZpar$Y_ix+1] <- paste0('Y_', 1:params$nPatches)
+colnames(out)[params$MYZpar$Z_ix+1] <- paste0('Z_', 1:params$nPatches)
+
+out <- as.data.table(out)
+out <- melt(out, id.vars = 'time')
+out[, c("Component", "Patch") := tstrsplit(variable, '_', fixed = TRUE)]
+out[, variable := NULL]
+
+ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
+  geom_line() +
+  facet_wrap(. ~ Component, scales = 'free') +
+  theme_bw()
+```
+
+## Setup Utilities
+
+In the vignette above, we set up a function to solve the differential equation. We hope this helps the end user to understand how `exDE` works under the hood, but the point of `exDE` is to lower the costs of building, analyzing, and using models. The functionality in `exDE` can handle this case -- we can set up and solve the same model using built-in setup utilities. Learning to use these utilities makes it very easy to set up other models without having to learn some internals. 
+
+To set up a model with the parameters above, we make three list with the named parameters and their values. We also attach to the list the initial values we want to use, if applicable. For the Ross-Macdonald adult mosquito model, we attach the parameter values:  
+
+```{r}
+MYZo = list(
+  f = 0.3, q = 0.9, g = 1/20, sigma = 1/10,
+  eip = 11, nu = 1/2, eggsPerBatch = 30,
+  solve_as = "ode", 
+  M0 = M_eq, P0 = P_eq, Y0 = Y_eq, Z0 = Z_eq
+)
+```
+
+Each one of the dynamical components has a configurable *trace* algorithm that computes no derivatives, but passes its output as a parameter (see `human-trace.R`. To configure `Xpar,` we attach the values of `kappa` to a list: 
+
+```{r}
+Xo = list(kappa =  c(0.1, 0.075, 0.025))
+```
+
+Similarly, we configure the *trace* algorithm for aquatic mosquitoes (see `aquatic-trace.R`).
+
+```{r}
+Lo = list(Lambda = c(5, 10, 8))
+```
+
+To set up the model, we call `xde_setup` with
+
++ `nPatches` is set to 3 
+
++ `MYZname` is set to "RM" to run the Ross-Macdonald model for adult mosquitoes; to pass our options, we write `MYZopts = MYZo`; and finally, the dispersal matrix `calK` is passed as `calK=calK` 
+
++ `Xname` is set to "trace" to run the trace module for human infection dynamics 
+
++ `Lname` is set to "trace" to run the trace module aquatic mosquitoes
+
+Otherwise, setup takes care of all the internals: 
+
+```{r using setup}
+xde_setup(MYZname = "RM", Xname = "trace", Lname = "trace",  
+    nPatches=3, calK=calK, membership = c(1:3), 
+    residence = c(1:3), HPop = rep(1, 3),
+    MYZopts = MYZo, Xopts = Xo, Lopts = Lo) -> MYZeg
+```
+  
+Now, we can solve the equations using `xde_solve` and compare the output to what we got above. If they are identical, the two objects should be identical, so can simply add the absolute value of their differences:  
+
+```{r xde_solve}
+xde_solve(MYZeg, Tmax=50, dt=1) -> MYZeg 
+out2 <- MYZeg$outputs$orbits$deout
+sum(abs(out1-out2))==0 
+```
+
+
