@@ -10,8 +10,8 @@ vignette: >
 ## Introduction
 
 
-**Modular forms** for disease dynamics are stylized ways of writing the dynamical systems that emphasize their modular structure. A mathematical framework for building models of malaria dynamics and control (and other mosquito-borne pathogens) was described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}, and the framework was implemented in `exDE.` The forms we describe here rewrite models so that they closely resemble their implementation in `exDE`, which makes it possible to relate written equations and computed code. (Also, see the closely related vignette 
-[Understanding exDE](Understanding_exDE.html){target="_blank"}.)
+**Modular forms** for disease dynamics are stylized ways of writing the dynamical systems that emphasize their modular structure. A mathematical framework for building models of malaria dynamics and control (and other mosquito-borne pathogens) was described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}, and the framework was implemented in `ramp.xde.` The forms we describe here rewrite models so that they closely resemble their implementation in `ramp.xde`, which makes it possible to relate written equations and computed code. (Also, see the closely related vignette 
+[Understanding ramp.xde](Understanding_ramp.xde.html){target="_blank"}.)
 
 ## The Modular Form
 
@@ -117,7 +117,7 @@ RMv1 <- function(t, y, pars) {
 }
 ```
 
-In `exDE,` the equations are solved by computing the terms and the derivatives separately. 
+In `ramp.xde,` the equations are solved by computing the terms and the derivatives separately. 
 
 + `Transmission(t,y,pars)` computes three terms required to compute parasite transmission during blood feeding. These are stored in the main model object `pars`:
 
@@ -145,7 +145,7 @@ RMv2 <- function(t, y, pars) {
 
 ## Full Modularity
 
-The full structure of computation in `exDE` is diagrammed in *Figure 2* and easily examined in the corresponding code. One advantage of the modular notation is that it is possible to set up and describe reasonably complex models with fairly simple scripts. The vignette [5-3-4 Example](ex_534.html) shows how this works. 
+The full structure of computation in `ramp.xde` is diagrammed in *Figure 2* and easily examined in the corresponding code. One advantage of the modular notation is that it is possible to set up and describe reasonably complex models with fairly simple scripts. The vignette [5-3-4 Example](ex_534.html) shows how this works. 
 
 ***
 

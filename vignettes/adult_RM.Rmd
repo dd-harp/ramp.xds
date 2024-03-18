@@ -22,7 +22,7 @@ Here, we use a Ross-Macdonald model based on a model first published in 1982 by 
 
 ## Delay Differential Equations
 
-These equations are naturally implemented by `exDE::dMYZdt.RM_dde,` but they can also be implemented in a closely related set of odes using `exDE::dMYZdt.RM_ode` (see below). 
+These equations are naturally implemented by `ramp.xde::dMYZdt.RM_dde,` but they can also be implemented in a closely related set of odes using `ramp.xde::dMYZdt.RM_ode` (see below). 
 
 $$
 \dot{M} = \Lambda - \Omega\cdot M 
@@ -47,7 +47,7 @@ $$
 
 ## Ordinary Differential Equations
 
-In the following, the equation are solved by `exDE::dMYZdt.RM_ode`.
+In the following, the equation are solved by `ramp.xde::dMYZdt.RM_ode`.
 
 The system of ODEs is the same as above except for the equation giving the rate of change in infectious mosquito density, which becomes:
 
@@ -115,7 +115,7 @@ We can use the same equation for $P$ as above.
 
 
 ```{r, message=FALSE, warning=FALSE}
-library(exDE)
+library(ramp.xde)
 library(expm)
 library(deSolve)
 library(data.table)
@@ -154,7 +154,7 @@ Omega <- make_Omega(g, sigma, calK, nPatches)
 Upsilon <- expm::expm(-Omega * eip)
 ``` 
 
-Now we set up the parameter environment with the correct class using `exDE::make_parameters_MYZ_RM,` noting that we will be solving as an `ode.`  
+Now we set up the parameter environment with the correct class using `ramp.xde::make_parameters_MYZ_RM,` noting that we will be solving as an `ode.`  
 
 ```{r}
 params <- list(nPatches = nPatches)
@@ -180,7 +180,7 @@ Y_eq <- as.vector(solve(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
 Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
 ```
 
-We use `exDE::make_inits_MYZ_RM` to store the initial values. These equations have been implemented to compute $\Upsilon$ dynamically, so we attach `Upsilon` as initial values:
+We use `ramp.xde::make_inits_MYZ_RM` to store the initial values. These equations have been implemented to compute $\Upsilon$ dynamically, so we attach `Upsilon` as initial values:
 
 ```{r}
 params = make_inits_MYZ_RM_ode(pars = params, 
@@ -188,7 +188,7 @@ params = make_inits_MYZ_RM_ode(pars = params,
 
 ```
 
-We and set the indices with `exDE::make_indices`. 
+We and set the indices with `ramp.xde::make_indices`. 
 
 ```{r}
 params$max_ix = 0 
@@ -196,7 +196,7 @@ params = make_indices(params)
 params$nHosts = 0 
 ```
 
-Then we can set up the initial conditions vector and use `deSolve::ode` to solve the model.  Normally these values would be computed within `exDE::xDE_diffeqn`. Here, we set up a local version: 
+Then we can set up the initial conditions vector and use `deSolve::ode` to solve the model.  Normally these values would be computed within `ramp.xde::xDE_diffeqn`. Here, we set up a local version: 
 
 ```{r solve, out.width = "100%"}
 y0 = get_inits_MYZ(params, 1) 
@@ -234,7 +234,7 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
 
 ## Setup Utilities
 
-In the vignette above, we set up a function to solve the differential equation. We hope this helps the end user to understand how `exDE` works under the hood, but the point of `exDE` is to lower the costs of building, analyzing, and using models. The functionality in `exDE` can handle this case -- we can set up and solve the same model using built-in setup utilities. Learning to use these utilities makes it very easy to set up other models without having to learn some internals. 
+In the vignette above, we set up a function to solve the differential equation. We hope this helps the end user to understand how `ramp.xde` works under the hood, but the point of `ramp.xde` is to lower the costs of building, analyzing, and using models. The functionality in `ramp.xde` can handle this case -- we can set up and solve the same model using built-in setup utilities. Learning to use these utilities makes it very easy to set up other models without having to learn some internals. 
 
 To set up a model with the parameters above, we make three list with the named parameters and their values. We also attach to the list the initial values we want to use, if applicable. For the Ross-Macdonald adult mosquito model, we attach the parameter values:  
 

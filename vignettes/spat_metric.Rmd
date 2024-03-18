@@ -136,7 +136,7 @@ In the 1 patch 1 strata case this becomes the same equation as $\mathcal{R}$.
 # Example
 
 ```{r, message=FALSE, warning=FALSE}
-library(exDE)
+library(ramp.xde)
 library(ggplot2)
 ```
 

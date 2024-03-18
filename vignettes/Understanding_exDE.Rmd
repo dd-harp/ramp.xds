@@ -1,8 +1,8 @@
 ---
-title: "Understanding exDE"
+title: "Understanding ramp.xde"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Understanding exDE}
+  %\VignetteIndexEntry{Understanding ramp.xde}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,11 +14,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-The purpose of this vignette is to explain how `exDE` implements a mathematical framework described in  [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}. 
+The purpose of this vignette is to explain how `ramp.xde`` implements a mathematical framework described in  [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}. 
 
 ## Introduction 
 
-The goal of developing `exDE` was to lower the costs of developing models (*e.g.* time spent formulating, coding, verifying, debugging, & *etc.*) that are realistic enough to support decisions affecting malaria policies. The operating assumption for developing the framework and software has been that robust decision support for malaria policies would put demands on model-building that differ from what is expected from a scientific publication. For models to work in a policy setting, they must be *realistic* enough to be relevant to the policy discussions. In some ways, it was the need for realism and the associated *computational complexity* drove the development of several comprehensive *individual-based models* (IBMs), such as OpenMalaria, eMod, and MalariaTools. While models developed as systems of differential equations can not replicate some advantages that come from being *individual-based,* we wanted software that could handle computational complexity just as well as IBMs. An advantage of using systems of differential equations is that the resulting models would be much easier to analyze. 
+The goal of developing `ramp.xde` was to lower the costs of developing models (*e.g.* time spent formulating, coding, verifying, debugging, & *etc.*) that are realistic enough to support decisions affecting malaria policies. The operating assumption for developing the framework and software has been that robust decision support for malaria policies would put demands on model-building that differ from what is expected from a scientific publication. For models to work in a policy setting, they must be *realistic* enough to be relevant to the policy discussions. In some ways, it was the need for realism and the associated *computational complexity* drove the development of several comprehensive *individual-based models* (IBMs), such as OpenMalaria, eMod, and MalariaTools. While models developed as systems of differential equations can not replicate some advantages that come from being *individual-based,* we wanted software that could handle computational complexity just as well as IBMs. An advantage of using systems of differential equations is that the resulting models would be much easier to analyze. 
 
 We wanted a framework that could *scale complexity,* to start with a simple model, and then progressively modifying the models to add realism including:
 
@@ -36,7 +36,7 @@ If we think of a model as defining a *skill set,* or output variables that natur
 
 To support decisions affecting malaria policy, model building must be *nimble.*  As malaria programs integrate sophisticated analytics into their decision-making, the conversation in a room can shift. Over time, programmatic priorities and needs can change. To keep up, the model builders *ought* to have the capability of building new models that could address the new concerns. While this might not be possible to do in real time, it should be possible to have a new model developed with preliminary results within a week or so.  
 
-With these goals in mind, we developed a mathematical framework that could make computation for dynamical systems **modular.** The mathematical basis for modularity was described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}. We have also developed a *vignette* that describes the [modular forms](modularity.html){target="_blank"} that we use to describe models implemented in `exDE`.
+With these goals in mind, we developed a mathematical framework that could make computation for dynamical systems **modular.** The mathematical basis for modularity was described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}. We have also developed a *vignette* that describes the [modular forms](modularity.html){target="_blank"} that we use to describe models implemented in `ramp.xde`.
 
 ## Structural Elements
 
@@ -56,11 +56,11 @@ Each model has several parameters that describe the structure of a model:
 
     - a `searchQ` vector is required: the $i^{th}$ element gives the habitat *search weight* to compute egg laying.
 
-+ `MYZname` -- a string, corresponding to a model from the `exDE` library, that specifies the model family for adult mosquitoes
++ `MYZname` -- a string, corresponding to a model from the `ramp.xde` library, that specifies the model family for adult mosquitoes
 
-+ `Lname` -- a string, corresponding to a model from the `exDE` library, that specifies the model family for aquatic mosquito population dynamics that should be used  
++ `Lname` -- a string, corresponding to a model from the `ramp.xde` library, that specifies the model family for aquatic mosquito population dynamics that should be used  
 
-+ `Xname` -- a string, corresponding to a model from the `exDE` library, that specifies the model family for human infection dynamics that should be used  
++ `Xname` -- a string, corresponding to a model from the `ramp.xde` library, that specifies the model family for human infection dynamics that should be used  
 
 
 ## Dynamical Components
@@ -123,7 +123,7 @@ A description of the locations of aquatic habitats and a *model* for **egg layin
 
 ### Human Demography 
 
-`exDE` provides built-in support for human demography: 
+`ramp.xde` provides built-in support for human demography: 
 
 + births are handled through an object  
 

@@ -93,7 +93,7 @@ xDE_diffeqn_human <- function(t, y, pars) {
 
 
 #' @title Generalized spatial differential equation model (mosquito only)
-#' @description Mirrors [exDE::xDE_diffeqn] but only includes the adult and aquatic
+#' @description Mirrors [ramp.xde::xDE_diffeqn] but only includes the adult and aquatic
 #' mosquito components.
 #' @param t current simulation time
 #' @param y state vector

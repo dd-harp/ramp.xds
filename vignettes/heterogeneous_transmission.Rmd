@@ -14,13 +14,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-Blood feeding is an interaction among humans and mosquitoes. Parasite transmission is heterogeneous because mosquito populations are spatially heterogeneous and because human behaviors are heterogeneous. Heterogeneous blood feeding and transmission is an important aspect of malaria transmission dynamics and control, and it has been implemented in `exDE` through several related concepts and constructs. 
+Blood feeding is an interaction among humans and mosquitoes. Parasite transmission is heterogeneous because mosquito populations are spatially heterogeneous and because human behaviors are heterogeneous. Heterogeneous blood feeding and transmission is an important aspect of malaria transmission dynamics and control, and it has been implemented in `ramp.xde` through several related concepts and constructs. 
 
-+ *Mosquito populations* are heterogeneous over space and time. Spatial dynamics in `exDE` are organized around the concept of a *patch.* The adult mosquito populations in each *state* are assumed to be homogeneously distributed within each patch.
++ *Mosquito populations* are heterogeneous over space and time. Spatial dynamics in `ramp.xde` are organized around the concept of a *patch.* The adult mosquito populations in each *state* are assumed to be homogeneously distributed within each patch.
 
-+ *Human populations:* and human behaviors are heterogeneous in ways that affect exposure and transmission. The design of `exDE` makes it possible to *sub-divide* the human population into an arbitrary number of homogeneous strata. 
++ *Human populations:* and human behaviors are heterogeneous in ways that affect exposure and transmission. The design of `ramp.xde` makes it possible to *sub-divide* the human population into an arbitrary number of homogeneous strata. 
 
-+ *Blood feeding* is an interaction between mosquitoes and humans that gives rise to parasite transmission. The design of `exDE` has a new model for blood feeding that incorporates various kinds of heterogeneous transmission. 
++ *Blood feeding* is an interaction between mosquitoes and humans that gives rise to parasite transmission. The design of `ramp.xde` has a new model for blood feeding that incorporates various kinds of heterogeneous transmission. 
 
 Heterogeneous transmission includes several concepts:
 
@@ -28,7 +28,7 @@ Heterogeneous transmission includes several concepts:
 
 + **[Environmental Heterogeneity](environmental_heterogeneity.html)** describes the distribution of the expected number of bites in a homogenous populations stratum. For example, if the expected number of bites is *Gamma* distributed, then the number of bites, per person, would have a negative binomial distribution. Environmental heterogeneity is implemented through a function `F_foi` that converts the daily entomological inoculation rate into a daily force of infection (in `Exposure`) under some probabilistic model for the distribution of the expectation. 
 
-+ **[Heterogeneous Mixing](heterogeneous_mixing.html)** describes departures in a model from the idealized *mass-action* assumption for two-species mixing. The algorithms in `exDE` compute the mixing matrix, $\beta$ integrates information about time spent, mosquito daily activity patterns, the sizes of various population strata, search weights, other vertebrate hosts, and visitors. 
++ **[Heterogeneous Mixing](heterogeneous_mixing.html)** describes departures in a model from the idealized *mass-action* assumption for two-species mixing. The algorithms in `ramp.xde` compute the mixing matrix, $\beta$ integrates information about time spent, mosquito daily activity patterns, the sizes of various population strata, search weights, other vertebrate hosts, and visitors. 
 
 + Temporal variability in mosquito populations driven by exogenous factors, such as weather and vector control,  that modify *potential transmission* by mosquito populations, including **seasonality** and long-term trends. 
 

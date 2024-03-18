@@ -1,4 +1,4 @@
-url: https://dd-harp.github.io/exDE/
+url:
 template:
   bootstrap: 5
 navbar:
@@ -7,8 +7,8 @@ navbar:
     href: reference/index.html
   - text: Articles
     menu:
-    - text: Understanding exDE
-      href: articles/Understanding_exDE.html
+    - text: Understanding ramp.xde
+      href: articles/Understanding_ramp.xde.html
     - text: Modular Forms for Disease Dynamics
       href: articles/modularity.html
     - text: 5-3-4 Spatial Example
@@ -51,7 +51,7 @@ navbar:
       href: articles/human_hmoi.html
   right:
   - icon: fa-github
-    href: https://github.com/dd-harp/exDE/
+    href: https://github.com/dd-harp/ramp.xde/
 home:
   sidebar:
     structure:
