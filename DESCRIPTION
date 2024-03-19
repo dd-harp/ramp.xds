@@ -1,6 +1,6 @@
-Package: ramp.xde 
+Package: ramp.xde
 Type: Package
-Title: Extensible Differential Equations for and Mosquito-Borne Pathogen Transmission Dynamics & Control
+Title: Extensible Differential Equations for Mosquito-Borne Pathogen Modeling
 Version: 1.0.0
 Authors@R: c(
       person("Sean L.", "Wu", email = "slwood89@gmail.com", role = c("aut","cre"), comment = c(ORCID = "0000-0002-5781-9493")),
@@ -12,10 +12,12 @@ Description: Provides tools to set up modular ordinary and delay differential eq
   the full set of differential equations which may be solved using
   any of the packages for numerical simulation of differential equations in R. The
   methods implemented by this package are described in Wu et al. (2022) <doi:10.1101/2022.11.07.22282044>.
-License: GPL-3 
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.1
+URL: https://dd-harp.github.io/ramp.xde/
+BugReports: https://github.com/dd-harp/ramp.xde/issues
 Roxygen: list(markdown = TRUE)
 Imports: 
   deSolve,
