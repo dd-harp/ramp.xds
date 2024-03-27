@@ -92,6 +92,17 @@ make_indices_X <- function(pars, i) {
   UseMethod("make_indices_X", pars$Xpar[[i]])
 }
 
+#' @title Return the variables as a list
+#' @description This method dispatches on the type of `pars$Xpar`.
+#' @param y the variables
+#' @param pars a [list]
+#' @param i the host species index
+#' @return a [list]
+#' @export
+list_Xvars <- function(y, pars, i) {
+  UseMethod("list_Xvars", pars$Xpar[[i]])
+}
+
 #' @title Parse the output of deSolve and return the variables by name in a list
 #' @description This method dispatches on the type of `pars$Xpar`. Adds the variables
 #' from the X model to a list and returns it

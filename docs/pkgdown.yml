@@ -19,5 +19,8 @@ articles:
   modularity: modularity.html
   spat_metric: spat_metric.html
   vc_lemenach: vc_lemenach.html
-last_built: 2024-03-19T05:04Z
+last_built: 2024-03-27T20:24Z
+urls:
+  reference: https://dd-harp.github.io/ramp.xde/reference
+  article: https://dd-harp.github.io/ramp.xde/articles
 
