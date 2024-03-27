@@ -47,7 +47,7 @@ vector life stage, host population strata, and by the spatial locations (patches
 which transmission occurs (see figure below).
 
 <p align="center">
-  <img src="man/figures/modularity.png"/>
+  <img src="vignettes/modularity.png"/>
 </p>
 
 Models in the ramp.xde framework are constructed from 3 dynamical components:
@@ -66,14 +66,14 @@ There are also functions which handle the exchange of information (flows) betwee
 The function `ramp.xde::xDE_diffeqn` compute the necessary quantities and returns a vector of derivatives of all state variables which can be used to solve trajectories from a model in ramp.xde. The program flow within this function is summarized by this diagram:
 
 <p align="center">
-  <img src="man/figures/xDEdiffeqn.png"/>
+  <img src="vignettes/xDEdiffeqn.png"/>
 </p>
 
 For more information, please read our [research article](https://www.medrxiv.org/content/10.1101/2022.11.07.22282044v1) describing the theory behind the model.
 
 ## Acknowledgements
 
-Version 1.0 of this software was designed by Sean L. Wu and Professor David L. Smith. Most of the code was written by Sean L. Wu. We anticipate active development of ramp.xde and MicroMoB to add new models to fill important needs. 
+Version 1.0 of this software was designed by Sean L. Wu and Professor David L. Smith. It was originally published as exDE. Most of the code was written by Sean L. Wu. We anticipate active development of ramp.xde and MicroMoB to add new models to fill important needs. 
 
 The idea of developing modular software to simulate the dynamics and control of mosquito-borne pathogens originated sometime around 2009 at the Emerging Pathogens Institute, University of Florida. It took much longer than anticipated to finish. Some concepts have appeared in various publications. Some of the algorithms trace back to other software packages that were never launched, but that someday might yet be completed (*e.g.*, MASH). In retrospect, a key challenge was blood feeding, but it was not the only one. 
 
