@@ -107,7 +107,6 @@ inst/doc
 ^CRAN-SUBMISSION$
 CRAN-SUBMISSION
 cran-comments.md
-docs
 .Rproj.user
 .Rdata
 .quarto
