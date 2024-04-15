@@ -1,7 +1,7 @@
 # generic methods for human component
 
 #' @title Size of effective infectious human population
-#' @description This method dispatches on the type of `pars$Xpar`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars a list
@@ -13,7 +13,7 @@ F_X <- function(t, y, pars, i) {
 }
 
 #' @title Size of human population denominators
-#' @description This method dispatches on the type of `pars$Xpar`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars a list
@@ -25,7 +25,7 @@ F_H <- function(t, y, pars, i) {
 }
 
 #' @title Compute the "true" prevalence of infection / parasite rate
-#' @description This method dispatches on the type of `pars$Xpar`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param varslist a list with variables attached by name
 #' @param pars a list
 #' @param i the host species index
@@ -36,7 +36,7 @@ F_pr <- function(varslist, pars, i) {
 }
 
 #' @title Infection blocking pre-erythrocytic immunity
-#' @description This method dispatches on the type of `pars$Xpar`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param y state vector
 #' @param pars a list
 #' @param i the host species index
@@ -47,7 +47,7 @@ F_b <- function(y, pars, i) {
 }
 
 #' @title Derivatives for human population
-#' @description This method dispatches on the type of `pars$Xpar`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars a list
@@ -72,7 +72,7 @@ setup_Xpar = function(Xname, pars, i, Xopts=list()){
 }
 
 #' @title A function to set up Xpar
-#' @description This method dispatches on `Xname`.
+#' @description This method dispatches on `pars$Xpar[[i]]`.
 #' @param pars a [list]
 #' @param i the host species index
 #' @param Xopts a [list]
@@ -83,7 +83,7 @@ setup_Xinits = function(pars, i, Xopts=list()){
 }
 
 #' @title Add indices for human population to parameter list
-#' @description This method dispatches on the type of `pars$Xpar`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param pars a [list]
 #' @param i the host species index
 #' @return a [list]
@@ -93,7 +93,7 @@ make_indices_X <- function(pars, i) {
 }
 
 #' @title Return the variables as a list
-#' @description This method dispatches on the type of `pars$Xpar`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param y the variables
 #' @param pars a [list]
 #' @param i the host species index
@@ -104,7 +104,7 @@ list_Xvars <- function(y, pars, i) {
 }
 
 #' @title Parse the output of deSolve and return the variables by name in a list
-#' @description This method dispatches on the type of `pars$Xpar`. Adds the variables
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`. Adds the variables
 #' from the X model to a list and returns it
 #' @param deout a [matrix] of outputs from deSolve
 #' @param pars a [list] that defines a model
@@ -115,7 +115,7 @@ parse_deout_X <- function(deout, pars, i) {
 }
 
 #' @title Return initial values as a vector
-#' @description This method dispatches on the type of `pars$Xpar`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param pars a [list]
 #' @param i the host species index
 #' @return none
@@ -125,7 +125,7 @@ get_inits_X <- function(pars, i) {
 }
 
 #' @title Set the initial values from a vector of states
-#' @description This method dispatches on the type of `pars$Xpar`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param pars a [list]
 #' @param y0 a vector of initial values
 #' @param i the host species index
@@ -136,7 +136,7 @@ update_inits_X <- function(pars, y0, i) {
 }
 
 #' @title Compute the human transmitting capacity
-#' @description This method dispatches on the type of `pars$Xpar`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param pars a [list]
 #' @param i the host species index
 #' @return none

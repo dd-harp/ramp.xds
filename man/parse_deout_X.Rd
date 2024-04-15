@@ -14,6 +14,6 @@ parse_deout_X(deout, pars, i)
 \item{i}{the host species index}
 }
 \description{
-This method dispatches on the type of \code{pars$Xpar}. Adds the variables
+This method dispatches on the type of \code{pars$Xpar[[i]]}. Adds the variables
 from the X model to a list and returns it
 }

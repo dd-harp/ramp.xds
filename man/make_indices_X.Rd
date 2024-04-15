@@ -15,5 +15,5 @@ make_indices_X(pars, i)
 a \link{list}
 }
 \description{
-This method dispatches on the type of \code{pars$Xpar}.
+This method dispatches on the type of \code{pars$Xpar[[i]]}.
 }
