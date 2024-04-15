@@ -17,5 +17,5 @@ F_b(y, pars, i)
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-This method dispatches on the type of \code{pars$Xpar}.
+This method dispatches on the type of \code{pars$Xpar[[i]]}.
 }

@@ -17,5 +17,5 @@ setup_Xinits(pars, i, Xopts = list())
 a \link{list}
 }
 \description{
-This method dispatches on \code{Xname}.
+This method dispatches on \code{pars$Xpar[[i]]}.
 }

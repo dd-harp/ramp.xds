@@ -19,5 +19,5 @@ dXdt(t, y, pars, i)
 a \link{numeric} vector
 }
 \description{
-This method dispatches on the type of \code{pars$Xpar}.
+This method dispatches on the type of \code{pars$Xpar[[i]]}.
 }
