@@ -1,8 +1,8 @@
 ---
-title: "SIP (Susceptible-Infected-Prophylaxis) Human Model"
+title: "SIP_xde (Susceptible-Infected-Prophylaxis) Human Model"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{SIP (Susceptible-Infected-Prophylaxis) Human Model}
+  %\VignetteIndexEntry{SIP_xde (Susceptible-Infected-Prophylaxis) Human Model}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The basic SIP (Susceptible-Infected-Prophylaxis) human model model fulfills the generic interface of the human population component. It is a reasonable first complication of the [SIS human model](human_sis.html). This requires two new parameters, $\rho$, the probability a new infection is treated, and $\eta$ the duration of chemoprophylaxis following treatment. $X$ remains a column vector giving the number of infectious individuals in each strata, and $P$ the number of treated and protected individuals.
+The basic SIP_xde (Susceptible-Infected-Prophylaxis) human model model fulfills the generic interface of the human population component. It is a reasonable first complication of the [SIS human model](human_sis.html). This requires two new parameters, $\rho$, the probability a new infection is treated, and $\eta$ the duration of chemoprophylaxis following treatment. $X$ remains a column vector giving the number of infectious individuals in each strata, and $P$ the number of treated and protected individuals.
 
 # Differential Equations
 
@@ -46,6 +46,7 @@ Given $EIR$ we can solve for the mosquito population which would have given rise
 
 ```{r, message=FALSE, warning=FALSE}
 library(ramp.xde)
+#devtools::load_all()
 library(deSolve)
 library(data.table)
 library(ggplot2)
@@ -56,7 +57,7 @@ library(ggplot2)
 #devtools::load_all()
 ```
 
-Here we run a simple example with 3 population strata at equilibrium. We use `ramp.xde::make_parameters_X_SIP` to
+Here we run a simple example with 3 population strata at equilibrium. We use `ramp.xde::make_parameters_X_SIP_xde` to
 set up parameters. Please note that this only runs the human population component and that most users should read [our fully worked example](ex_534.html) to run a full simulation.
 
 We use the null (constant) model of human demography ($H$ constant for all time).
@@ -102,8 +103,8 @@ params = make_parameters_demography_null(pars = params, H=H)
 params = setup_BloodFeeding(params, 1, 1, residence=residence, searchWts =searchWtsH) 
 params$BFpar$TaR[[1]][[1]]=TaR
 
-params = make_parameters_X_SIP(pars = params, b = b, c = c, r = r, rho = rho, eta = eta, xi=xi)
-params = make_inits_X_SIP(pars = params, H-I-P, I, as.vector(P))
+params = make_parameters_X_SIP_xde(pars = params, b = b, c = c, r = r, rho = rho, eta = eta, xi=xi)
+params = make_inits_X_SIP_xde(pars = params, H-I-P, I, as.vector(P))
 params = make_indices(params)
 ```
 
@@ -142,11 +143,11 @@ Hpop = c(100, 500, 250)
 
 
 ```{r}
-xde_setup_cohort(F_eir, Xname="SIP", HPop=Hpop, Xopts = Xo) -> test_SIP
+xde_setup_cohort(F_eir, Xname="SIP_xde", HPop=Hpop, Xopts = Xo) -> test_SIP_xde
 ```
 
 ```{r}
-xde_solve(test_SIP, 365, 365)$outputs$orbits$deout -> out2
+xde_solve(test_SIP_xde, 365, 365)$outputs$orbits$deout -> out2
 approx_equal(out2,out1) 
 ```
 

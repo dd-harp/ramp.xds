@@ -43,7 +43,7 @@ navbar:
     menu:
     - text: SIS model
       href: articles/human_sis.html
-    - text: SIP model
+    - text: SIP xde model
       href: articles/human_sip.html
     - text: MoI hybrid model
       href: articles/human_hmoi.html
@@ -227,50 +227,50 @@ reference:
   - get_inits_MYZ.Gtrace
   - update_inits_MYZ.Gtrace
   - make_parameters_MYZ_Gtrace
-- subtitle: basicM
+- subtitle: basicM_xde
   desc: |
-    Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.
+    Specialized methods for basicM_xde, a model of adult mosquito dynamics with no parasite infection dynamics.
   contents:
-  - MBionomics.basicM
-  - F_fqZ.basicM
-  - F_fqM.basicM
-  - F_eggs.basicM
-  - dMYZdt.basicM
-  - setup_MYZpar.basicM
-  - setup_MYZinits.basicM
-  - make_MYZpar_basicM
-  - make_MYZinits_basicM
-  - make_indices_MYZ.basicM
-  - parse_deout_MYZ.basicM
-  - make_inits_MYZ_basicM
-  - get_inits_MYZ.basicM
-  - update_inits_MYZ.basicM
-  - make_parameters_MYZ_basicM
-- subtitle: RM
+  - MBionomics.basicM_xde
+  - F_fqZ.basicM_xde
+  - F_fqM.basicM_xde
+  - F_eggs.basicM_xde
+  - dMYZdt.basicM_xde
+  - setup_MYZpar.basicM_xde
+  - setup_MYZinits.basicM_xde
+  - make_MYZpar_basicM_xde
+  - make_MYZinits_basicM_xde
+  - make_indices_MYZ.basicM_xde
+  - parse_deout_MYZ.basicM_xde
+  - make_inits_MYZ_basicM_xde
+  - get_inits_MYZ.basicM_xde
+  - update_inits_MYZ.basicM_xde
+  - make_parameters_MYZ_basicM_xde
+- subtitle: RM_xde
   desc: |
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
   contents:
-  - MBionomics.RM
-  - F_fqZ.RM
-  - F_fqM.RM
-  - F_eggs.RM
+  - MBionomics.RM_xde
+  - F_fqZ.RM_xde
+  - F_fqM.RM_xde
+  - F_eggs.RM_xde
   - dMYZdt.RM_ode
   - dMYZdt.RM_dde
-  - setup_MYZpar.RM
-  - setup_MYZinits.RM
-  - make_MYZpar_RM
+  - setup_MYZpar.RM_xde
+  - setup_MYZinits.RM_xde
+  - make_MYZpar_RM_xde
   - make_MYZinits_RM_ode
   - make_MYZinits_RM_dde
   - make_indices_MYZ.RM_ode
   - make_indices_MYZ.RM_dde
-  - parse_deout_MYZ.RM
+  - parse_deout_MYZ.RM_xde
   - make_inits_MYZ_RM_ode
   - make_inits_MYZ_RM_dde
   - get_inits_MYZ.RM_ode
   - get_inits_MYZ.RM_dde
   - update_inits_MYZ.RM_ode
   - update_inits_MYZ.RM_dde
-  - make_parameters_MYZ_RM
+  - make_parameters_MYZ_RM_xde
 - subtitle: GeRM
   desc: |
     Specialized methods for a generalized Ross-Macdonald model for adult mosquito ecology and parasite infection dynamics, first published by Sean L Wu, et al.(2023).
@@ -325,23 +325,23 @@ reference:
   - get_inits_L.trace
   - update_inits_L.trace
   - make_parameters_L_trace
-- subtitle: basic
+- subtitle: basicL_xde
   desc: |
-    Specialized methods for a basic competition model of aquatic mosquito dynamics.
+    Specialized methods for a basicL_xde competition model of aquatic mosquito dynamics.
   contents:
-  - LBionomics.basic
-  - F_alpha.basic
-  - dLdt.basic
-  - setup_Lpar.basic
-  - setup_Linits.basic
-  - make_Lpar_basic
-  - make_Linits_basic
-  - make_indices_L.basic
-  - parse_deout_L.basic
-  - make_inits_L_basic
-  - get_inits_L.basic
-  - update_inits_L.basic
-  - make_parameters_L_basic
+  - LBionomics.basicL_xde
+  - F_alpha.basicL_xde
+  - dLdt.basicL_xde
+  - setup_Lpar.basicL_xde
+  - setup_Linits.basicL_xde
+  - make_Lpar_basicL_xde
+  - make_Linits_basicL_xde
+  - make_indices_L.basicL_xde
+  - parse_deout_L.basicL_xde
+  - make_inits_L_basicL_xde
+  - get_inits_L.basicL_xde
+  - update_inits_L.basicL_xde
+  - make_parameters_L_basicL_xde
 - title: Mosquito Bionomics
   desc: |
     Methods to compute or update mosquito bionomic parameters
@@ -416,72 +416,72 @@ reference:
   - get_inits_X.trace
   - update_inits_X.trace
   - make_parameters_X_trace
-- subtitle: hMoI
+- subtitle: hMoI_xde
   desc: |
     Specialized methods for a hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
   contents:
-  - dXdt.hMoI
-  - make_Xinits_hMoI
-  - setup_Xinits.hMoI
-  - make_indices_X.hMoI
-  - make_Xpar_hMoI
-  - setup_Xpar.hMoI
-  - F_X.hMoI
-  - F_H.hMoI
-  - F_b.hMoI
-  - F_pr.hMoI
-  - parse_deout_X.hMoI
-  - make_inits_X_hMoI
-  - get_inits_X.hMoI
-  - update_inits_X.hMoI
-  - make_parameters_X_hMoI
-  - HTC.hMoI
-- subtitle: SIS
+  - dXdt.hMoI_xde
+  - make_Xinits_hMoI_xde
+  - setup_Xinits.hMoI_xde
+  - make_indices_X.hMoI_xde
+  - make_Xpar_hMoI_xde
+  - setup_Xpar.hMoI_xde
+  - F_X.hMoI_xde
+  - F_H.hMoI_xde
+  - F_b.hMoI_xde
+  - F_pr.hMoI_xde
+  - parse_deout_X.hMoI_xde
+  - make_inits_X_hMoI_xde
+  - get_inits_X.hMoI_xde
+  - update_inits_X.hMoI_xde
+  - make_parameters_X_hMoI_xde
+  - HTC.hMoI_xde
+- subtitle: SIS_xde
   desc: |
-    Specialized methods for the SIS (Susceptible-Infected-Susceptible) model of human dynamics.
+    Specialized methods for the SIS_xde (Susceptible-Infected-Susceptible) model of human dynamics.
   contents:
-  - dXdt.SIS
-  - make_Xinits_SIS
-  - setup_Xinits.SIS
-  - make_indices_X.SIS
-  - list_Xvars.SIS
-  - make_Xpar_SIS
-  - setup_Xpar.SIS
-  - F_X.SIS
-  - F_H.SIS
-  - F_pr.SIS
-  - F_b.SIS
-  - parse_deout_X.SIS
-  - make_inits_X_SIS
-  - get_inits_X.SIS
-  - update_inits_X.SIS
-  - make_parameters_X_SIS
-  - HTC.SIS
-  - xde_plot_X.SIS
-  - xde_lines_X_SIS
-- subtitle: SIP
+  - dXdt.SIS_xde
+  - make_Xinits_SIS_xde
+  - setup_Xinits.SIS_xde
+  - make_indices_X.SIS_xde
+  - list_Xvars.SIS_xde
+  - make_Xpar_SIS_xde
+  - setup_Xpar.SIS_xde
+  - F_X.SIS_xde
+  - F_H.SIS_xde
+  - F_pr.SIS_xde
+  - F_b.SIS_xde
+  - parse_deout_X.SIS_xde
+  - make_inits_X_SIS_xde
+  - get_inits_X.SIS_xde
+  - update_inits_X.SIS_xde
+  - make_parameters_X_SIS_xde
+  - HTC.SIS_xde
+  - xde_plot_X.SIS_xde
+  - xde_lines_X_SIS_xde
+- subtitle: SIP_xde
   desc: |
-    Specialized methods for the SIP (Susceptible-Infected-Prophylaxis) model of human dynamics.
+    Specialized methods for the SIP_xde (Susceptible-Infected-Prophylaxis) model of human dynamics.
   contents:
-  - dXdt.SIP
-  - make_Xinits_SIP
-  - setup_Xinits.SIP
-  - make_indices_X.SIP
-  - list_Xvars.SIP
-  - make_Xpar_SIP
-  - setup_Xpar.SIP
-  - F_X.SIP
-  - F_H.SIP
-  - F_pr.SIP
-  - F_b.SIP
-  - parse_deout_X.SIP
-  - make_inits_X_SIP
-  - get_inits_X.SIP
-  - update_inits_X.SIP
-  - make_parameters_X_SIP
-  - HTC.SIP
-  - xde_plot_X.SIP
-  - xde_lines_X_SIP
+  - dXdt.SIP_xde
+  - make_Xinits_SIP_xde
+  - setup_Xinits.SIP_xde
+  - make_indices_X.SIP_xde
+  - list_Xvars.SIP_xde
+  - make_Xpar_SIP_xde
+  - setup_Xpar.SIP_xde
+  - F_X.SIP_xde
+  - F_H.SIP_xde
+  - F_pr.SIP_xde
+  - F_b.SIP_xde
+  - parse_deout_X.SIP_xde
+  - make_inits_X_SIP_xde
+  - get_inits_X.SIP_xde
+  - update_inits_X.SIP_xde
+  - make_parameters_X_SIP_xde
+  - HTC.SIP_xde
+  - xde_plot_X.SIP_xde
+  - xde_lines_X_SIP_xde
 - title: Human Population Dynamics
   desc: |
     Generic methods for the human demography and aging

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>5-3-4 Example • ramp.xde</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -131,7 +131,7 @@
       <a href="../articles/human_sis.html">SIS model</a>
     </li>
     <li>
-      <a href="../articles/human_sip.html">SIP model</a>
+      <a href="../articles/human_sip.html">SIP xde model</a>
     </li>
     <li>
       <a href="../articles/human_hmoi.html">MoI hybrid model</a>
@@ -171,6 +171,7 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xde/">ramp.xde</a></span><span class="op">)</span></span>
+<span><span class="co">#devtools::load_all()</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://R-Forge.R-project.org/projects/expm/" class="external-link">expm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
@@ -274,7 +275,7 @@ dynamics (see more <a href="aqua_basic.html">here</a>). It requires
 specification of three parameters, <span class="math inline">\(\psi\)</span> (maturation rates), <span class="math inline">\(\phi\)</span> (density-independent mortality
 rates), and <span class="math inline">\(\theta\)</span>
 (density-dependent mortality terms), and initial conditions. The
-function <code><a href="../reference/make_parameters_L_basic.html">ramp.xde::make_parameters_L_basic</a></code> does basic
+function <code>ramp.xde::make_parameters_L_basic</code> does basic
 checking of the input parameters and returns a list with the correct
 class for method dispatch. The returned list is attached to the main
 parameter list with name <code>Lpar</code>.</p>
@@ -284,8 +285,8 @@ parameter list with name <code>Lpar</code>.</p>
 <span><span class="va">phi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span>, <span class="va">params</span><span class="op">$</span><span class="va">nHabitats</span><span class="op">)</span></span>
 <span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">40</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">10</span><span class="op">)</span> </span>
 <span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_L_basic.html">make_parameters_L_basic</a></span><span class="op">(</span><span class="va">params</span>, psi <span class="op">=</span> <span class="va">psi</span>, phi <span class="op">=</span> <span class="va">phi</span>, theta <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_inits_L_basic.html">make_inits_L_basic</a></span><span class="op">(</span><span class="va">params</span>, L0<span class="op">=</span><span class="va">L0</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_L_basicL_xde.html">make_parameters_L_basicL_xde</a></span><span class="op">(</span><span class="va">params</span>, psi <span class="op">=</span> <span class="va">psi</span>, phi <span class="op">=</span> <span class="va">phi</span>, theta <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_inits_L_basicL_xde.html">make_inits_L_basicL_xde</a></span><span class="op">(</span><span class="va">params</span>, L0<span class="op">=</span><span class="va">L0</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="adult-mosquito-parameters">Adult Mosquito Parameters<a class="anchor" aria-label="anchor" href="#adult-mosquito-parameters"></a>
@@ -322,7 +323,7 @@ attach the returned list to the main parameter list with name
 <span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega.html">make_Omega</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">calK</span>, <span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="va">Upsilon</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="op">-</span><span class="va">Omega</span><span class="op">*</span><span class="va">eip</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_MYZ_RM.html">make_parameters_MYZ_RM</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, g <span class="op">=</span> <span class="va">g</span>, </span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_MYZ_RM_xde.html">make_parameters_MYZ_RM_xde</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, g <span class="op">=</span> <span class="va">g</span>, </span>
 <span>                sigma <span class="op">=</span> <span class="va">sigma</span>, calK<span class="op">=</span><span class="va">calK</span>, </span>
 <span>                eip<span class="op">=</span><span class="va">eip</span>, f<span class="op">=</span><span class="va">f</span>, q<span class="op">=</span><span class="va">q</span>, nu<span class="op">=</span><span class="va">nu</span>, </span>
 <span>                eggsPerBatch<span class="op">=</span><span class="va">eggsPerBatch</span>, </span>
@@ -389,7 +390,7 @@ time across patches.</p>
 <p>We use the basic SIS (Susceptible-Infected-Susceptible) model for the
 human component (see more <a href="human_sis.html">here</a>). We set it
 up like the rest of the components, using
-<code><a href="../reference/make_parameters_X_SIS.html">ramp.xde::make_parameters_X_SIS</a></code> to make the correct return
+<code>ramp.xde::make_parameters_X_SIS</code> to make the correct return
 type, which is attached to the parameter list with name
 <code>Xpar</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -398,8 +399,8 @@ type, which is attached to the parameter list with name
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">0.55</span></span>
 <span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">.02</span>, <span class="fl">.1</span>, <span class="fl">.02</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_X_SIS.html">make_parameters_X_SIS</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, b <span class="op">=</span> <span class="va">b</span>, c <span class="op">=</span> <span class="va">c</span>, r <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_inits_X_SIS.html">make_inits_X_SIS</a></span><span class="op">(</span><span class="va">params</span>, S0 <span class="op">=</span> <span class="va">H</span><span class="op">-</span><span class="va">I0</span>, I0<span class="op">=</span><span class="va">I0</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_X_SIS_xde.html">make_parameters_X_SIS_xde</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, b <span class="op">=</span> <span class="va">b</span>, c <span class="op">=</span> <span class="va">c</span>, r <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_inits_X_SIS_xde.html">make_inits_X_SIS_xde</a></span><span class="op">(</span><span class="va">params</span>, S0 <span class="op">=</span> <span class="va">H</span><span class="op">-</span><span class="va">I0</span>, I0<span class="op">=</span><span class="va">I0</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -489,7 +490,7 @@ in <code>params</code> will ensure that the right methods are invoked
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">EIPo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>eip<span class="op">=</span><span class="fl">12</span><span class="op">)</span> </span></code></pre></div>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_setup.html">xde_setup</a></span><span class="op">(</span><span class="st">"mod534"</span>, <span class="st">"RM"</span>, <span class="st">"SIS"</span>, <span class="st">"basic"</span>, </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_setup.html">xde_setup</a></span><span class="op">(</span><span class="st">"mod534"</span>, <span class="st">"RM_xde"</span>, <span class="st">"SIS_xde"</span>, <span class="st">"basicL_xde"</span>, </span>
 <span>                  nPatches <span class="op">=</span> <span class="fl">3</span>, HPop<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">90</span>, <span class="fl">100</span>, <span class="fl">900</span><span class="op">)</span>, </span>
 <span>                  membership<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>, EIPopts <span class="op">=</span> <span class="va">EIPo</span>,</span>
 <span>                  MYZopts<span class="op">=</span><span class="va">MYZo</span>, calK<span class="op">=</span><span class="va">calK</span>, Xopts<span class="op">=</span><span class="va">Xo</span>, </span>
@@ -526,7 +527,7 @@ in <code>params</code> will ensure that the right methods are invoked
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>

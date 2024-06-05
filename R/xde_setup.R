@@ -29,8 +29,8 @@
 xde_setup = function(modelName = "unnamed",
 
                      # Dynamical Components
-                     MYZname = "RM",
-                     Xname = "SIS",
+                     MYZname = "RM_xde",
+                     Xname = "SIS_xde",
                      Lname = "trace",
 
                      # Model Structure

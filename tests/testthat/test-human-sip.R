@@ -2,7 +2,7 @@ library(deSolve)
 
 numeric_tol <- 1e-5
 
-test_that("human SIP model remains at equilibrium", {
+test_that("human SIP_xde model remains at equilibrium", {
   nStrata <- 3
   H <- c(100, 500, 250)
   residence = 1:nStrata
@@ -28,8 +28,8 @@ test_that("human SIP model remains at equilibrium", {
   params = make_parameters_demography_null(pars = params, H=H)
   params = setup_BloodFeeding(params, 1, 1, residence=residence, searchWts=searchWtsH)
   params$BFpar$TaR[[1]][[1]]=TaR
-  params = make_parameters_X_SIP(pars = params, b = b, c = c, r = r, eta=eta, rho=rho, xi=xi)
-  params = make_inits_X_SIP(pars = params, H-I-P, I, P)
+  params = make_parameters_X_SIP_xde(pars = params, b = b, c = c, r = r, eta=eta, rho=rho, xi=xi)
+  params = make_inits_X_SIP_xde(pars = params, H-I-P, I, P)
 
   params = make_indices(params)
   params$FoI[[1]] <- foi

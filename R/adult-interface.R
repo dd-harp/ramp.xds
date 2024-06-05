@@ -178,7 +178,7 @@ dde2ode_MYZ.ode = function(pars){pars}
 dde2ode_MYZ.dde = function(pars){
   pars$MYZpar$xde <- "ode"
   pars$MYZpar$solve_as <- "ode"
-  pars <- make_MYZpar_RM(pars, MYZopts<- pars$MYZpar,
+  pars <- make_MYZpar_RM_xde(pars, MYZopts<- pars$MYZpar,
                          calK=pars$MYZpar$calK)
   pars <- make_indices(pars)
   return(pars)

@@ -1,8 +1,8 @@
 ---
-title: "Basic Competition Aquatic Mosquito Model"
+title: "basicL_xde Competition Aquatic Mosquito Model"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Basic Competition Aquatic Mosquito Model}
+  %\VignetteIndexEntry{basicL_xde Competition Aquatic Mosquito Model}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The basic competition aquatic mosquito model fulfills the generic interface of the aquatic mosquito component. It has a single compartment "larvae" for each aquatic habitat, and mosquitoes in that aquatic habitat suffer density-independent and dependent mortality, and mature at some rate $\psi$.
+The basicL_xde competition aquatic mosquito model fulfills the generic interface of the aquatic mosquito component. It has a single compartment "larvae" for each aquatic habitat, and mosquitoes in that aquatic habitat suffer density-independent and dependent mortality, and mature at some rate $\psi$.
 
 # Differential Equations
 
@@ -50,6 +50,7 @@ $$
 
 ```{r, message=FALSE, warning=FALSE}
 library(ramp.xde)
+#devtools::load_all()
 library(deSolve)
 library(data.table)
 library(ggplot2)
@@ -62,7 +63,7 @@ library(ggplot2)
 
 ## The long way 
 
-Here we run a simple example with 3 aquatic habitats at equilibrium. We use `ramp.xde::make_parameters_L_basic` to
+Here we run a simple example with 3 aquatic habitats at equilibrium. We use `ramp.xde::make_parameters_L_basicL_xde` to
 set up parameters. Please note that this only runs the aquatic mosquito component and that most users should read [our fully worked example](ex_534.html) to run a full simulation.
 
 ```{r}
@@ -84,8 +85,8 @@ F_eta = function(t, pars){
   pars$eggs_laid[[1]]
 }
 
-params = make_parameters_L_basic(pars = params, psi = psi, phi = phi, theta = theta)
-params = make_inits_L_basic(params, L0=L)
+params = make_parameters_L_basicL_xde(pars = params, psi = psi, phi = phi, theta = theta)
+params = make_inits_L_basicL_xde(params, L0=L)
 
 params = make_indices(params)
 ```
@@ -142,8 +143,8 @@ Mo = list(Gm = c(250, 500, 170))
 
 
 ```{r}
-xde_setup_aquatic(nHabitats = 3, Lname = "basic", Lopts = Lo, MYZopts = Mo) -> aqbasic
-xde_solve(aqbasic, Tmax=50, dt=1)$output$orbits$deout -> out2
+xde_setup_aquatic(nHabitats = 3, Lname = "basicL_xde", Lopts = Lo, MYZopts = Mo) -> aqbasicL_xde
+xde_solve(aqbasicL_xde, Tmax=50, dt=1)$output$orbits$deout -> out2
 sum(abs(out1-out2)) == 0
 ``` 
 
