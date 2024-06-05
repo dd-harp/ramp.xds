@@ -98,10 +98,10 @@ test_that("test equilibrium with RM adults (ODE), basic competition", {
   params$calU[[1]] = calU
   params$calN <- calN
 
-  params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
+  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
   params = make_inits_MYZ_RM_ode(pars = params, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z))
-  params = make_parameters_L_basic(pars = params, psi = psi, phi = phi, theta = theta)
-  params = make_inits_L_basic(pars = params,  L0 = L)
+  params = make_parameters_L_basicL_xde(pars = params, psi = psi, phi = phi, theta = theta)
+  params = make_inits_L_basicL_xde(pars = params,  L0 = L)
 
   params = make_indices(params)
   params$kappa[[1]] = as.vector(kappa)
@@ -216,10 +216,10 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
   params$calN <- calN
 
   # parameters for exDE
-  params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch)
+  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch)
   params = make_inits_MYZ_RM_dde(pars = params, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z), Upsilon0=as.vector(OmegaEIP))
-  params = make_parameters_L_basic(pars = params, psi = psi, phi = phi, theta = theta)
-  params = make_inits_L_basic(pars = params,  L0 = L)
+  params = make_parameters_L_basicL_xde(pars = params, psi = psi, phi = phi, theta = theta)
+  params = make_inits_L_basicL_xde(pars = params,  L0 = L)
 
   params = make_indices(params)
 

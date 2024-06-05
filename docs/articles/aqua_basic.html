@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Basic Competition Aquatic Mosquito Model • ramp.xde</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<title>basicL_xde Competition Aquatic Mosquito Model • ramp.xde</title>
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Basic Competition Aquatic Mosquito Model">
+<script src="../pkgdown.js"></script><meta property="og:title" content="basicL_xde Competition Aquatic Mosquito Model">
 <meta property="og:description" content="ramp.xde">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -131,7 +131,7 @@
       <a href="../articles/human_sis.html">SIS model</a>
     </li>
     <li>
-      <a href="../articles/human_sip.html">SIP model</a>
+      <a href="../articles/human_sip.html">SIP xde model</a>
     </li>
     <li>
       <a href="../articles/human_hmoi.html">MoI hybrid model</a>
@@ -159,7 +159,8 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Basic Competition Aquatic Mosquito Model</h1>
+      <h1 data-toc-skip>basicL_xde Competition Aquatic Mosquito
+Model</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xde/blob/HEAD/vignettes/aqua_basic.Rmd" class="external-link"><code>vignettes/aqua_basic.Rmd</code></a></small>
@@ -169,11 +170,11 @@
 
     
     
-<p>The basic competition aquatic mosquito model fulfills the generic
-interface of the aquatic mosquito component. It has a single compartment
-“larvae” for each aquatic habitat, and mosquitoes in that aquatic
-habitat suffer density-independent and dependent mortality, and mature
-at some rate <span class="math inline">\(\psi\)</span>.</p>
+<p>The basicL_xde competition aquatic mosquito model fulfills the
+generic interface of the aquatic mosquito component. It has a single
+compartment “larvae” for each aquatic habitat, and mosquitoes in that
+aquatic habitat suffer density-independent and dependent mortality, and
+mature at some rate <span class="math inline">\(\psi\)</span>.</p>
 <div class="section level2">
 <h2 id="differential-equations">Differential Equations<a class="anchor" aria-label="anchor" href="#differential-equations"></a>
 </h2>
@@ -214,6 +215,7 @@ dependence to be unknown and solve such that:</p>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xde/">ramp.xde</a></span><span class="op">)</span></span>
+<span><span class="co">#devtools::load_all()</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://desolve.r-forge.r-project.org/" class="external-link">deSolve</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
@@ -221,7 +223,7 @@ dependence to be unknown and solve such that:</p>
 <h3 id="the-long-way">The long way<a class="anchor" aria-label="anchor" href="#the-long-way"></a>
 </h3>
 <p>Here we run a simple example with 3 aquatic habitats at equilibrium.
-We use <code><a href="../reference/make_parameters_L_basic.html">ramp.xde::make_parameters_L_basic</a></code> to set up
+We use <code><a href="../reference/make_parameters_L_basicL_xde.html">ramp.xde::make_parameters_L_basicL_xde</a></code> to set up
 parameters. Please note that this only runs the aquatic mosquito
 component and that most users should read <a href="ex_534.html">our
 fully worked example</a> to run a full simulation.</p>
@@ -242,8 +244,8 @@ fully worked example</a> to run a full simulation.</p>
 <span>  <span class="va">pars</span><span class="op">$</span><span class="va">eggs_laid</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_L_basic.html">make_parameters_L_basic</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, psi <span class="op">=</span> <span class="va">psi</span>, phi <span class="op">=</span> <span class="va">phi</span>, theta <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_inits_L_basic.html">make_inits_L_basic</a></span><span class="op">(</span><span class="va">params</span>, L0<span class="op">=</span><span class="va">L</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_L_basicL_xde.html">make_parameters_L_basicL_xde</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, psi <span class="op">=</span> <span class="va">psi</span>, phi <span class="op">=</span> <span class="va">phi</span>, theta <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_inits_L_basicL_xde.html">make_inits_L_basicL_xde</a></span><span class="op">(</span><span class="va">params</span>, L0<span class="op">=</span><span class="va">L</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -293,8 +295,8 @@ parameter values attached.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Mo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Gm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">250</span>, <span class="fl">500</span>, <span class="fl">170</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_setup_aquatic.html">xde_setup_aquatic</a></span><span class="op">(</span>nHabitats <span class="op">=</span> <span class="fl">3</span>, Lname <span class="op">=</span> <span class="st">"basic"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span>, MYZopts <span class="op">=</span> <span class="va">Mo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">aqbasic</span></span>
-<span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">aqbasic</span>, Tmax<span class="op">=</span><span class="fl">50</span>, dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">output</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out2</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_setup_aquatic.html">xde_setup_aquatic</a></span><span class="op">(</span>nHabitats <span class="op">=</span> <span class="fl">3</span>, Lname <span class="op">=</span> <span class="st">"basicL_xde"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span>, MYZopts <span class="op">=</span> <span class="va">Mo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">aqbasicL_xde</span></span>
+<span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">aqbasicL_xde</span>, Tmax<span class="op">=</span><span class="fl">50</span>, dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">output</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out2</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">out1</span><span class="op">-</span><span class="va">out2</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
@@ -318,7 +320,7 @@ parameter values attached.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>

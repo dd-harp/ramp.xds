@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 
 ```{r, message=FALSE, warning=FALSE}
 library(ramp.xde)
+#devtools::load_all()
 library(MASS)
 library(expm)
 library(deSolve)
@@ -116,8 +117,8 @@ params$calN = calN
 # ODE
 params$beta = beta
 params = make_parameters_L_trace(pars = params, Lambda = alpha)
-params = make_parameters_MYZ_basicM(pars = params, g = g, sigma = sigma, calK = calK, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch)
-params = make_inits_MYZ_basicM(params, M0=M_eq, P0=P_eq)
+params = make_parameters_MYZ_basicM_xde(pars = params, g = g, sigma = sigma, calK = calK, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch)
+params = make_inits_MYZ_basicM_xde(params, M0=M_eq, P0=P_eq)
 
 params = make_indices(params)
 ```
@@ -169,7 +170,7 @@ MYZo = list(
 ```
 
 ```{r}
-xde_setup_mosy(MYZname = "basicM", Lname = "trace", 
+xde_setup_mosy(MYZname = "basicM_xde", Lname = "trace", 
                nPatches = 3, membership = c(1,2,3,3), 
                MYZopts = MYZo, calK = calK, Lopts = Lo, 
                kappa = c(0.1, 0.075, 0.025))->mosy1

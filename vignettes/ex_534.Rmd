@@ -108,8 +108,8 @@ psi <- rep(1/8, params$nHabitats)
 phi <- rep(1/8, params$nHabitats)
 theta <- c(1/10, 1/20, 1/40, 1/100, 1/10) 
 
-params = make_parameters_L_basic(params, psi = psi, phi = phi, theta = theta)
-params = make_inits_L_basic(params, L0=L0)
+params = make_parameters_L_basicL_xde(params, psi = psi, phi = phi, theta = theta)
+params = make_inits_L_basicL_xde(params, L0=L0)
 ```
 
 ## Adult Mosquito Parameters
@@ -138,7 +138,7 @@ Z0 <- rep(0, params$nPatches)
 Omega <- make_Omega(g, sigma, calK, params$nPatches)
 Upsilon <- expm::expm(-Omega*eip)
 
-params = make_parameters_MYZ_RM(pars = params, g = g, 
+params = make_parameters_MYZ_RM_xde(pars = params, g = g, 
                 sigma = sigma, calK=calK, 
                 eip=eip, f=f, q=q, nu=nu, 
                 eggsPerBatch=eggsPerBatch, 
@@ -216,8 +216,8 @@ r <- 1/200
 b <- 0.55
 c <- c(0.1, .02, .1, .02)
 
-params = make_parameters_X_SIS(pars = params, b = b, c = c, r = r)
-params = make_inits_X_SIS(params, S0 = H-I0, I0=I0)
+params = make_parameters_X_SIS_xde(pars = params, b = b, c = c, r = r)
+params = make_inits_X_SIS_xde(params, S0 = H-I0, I0=I0)
 ```
 
 
@@ -314,7 +314,7 @@ EIPo <- list(eip=12)
 
 
 ```{r}
-xde_setup("mod534", "RM", "SIS", "basic", 
+xde_setup("mod534", "RM_xde", "SIS_xde", "basicL_xde", 
                   nPatches = 3, HPop=c(10, 90, 100, 900), 
                   membership=c(1,1,1,2,2), EIPopts = EIPo,
                   MYZopts=MYZo, calK=calK, Xopts=Xo, 

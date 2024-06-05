@@ -18,8 +18,8 @@ test_that("basic competition stays at equilibrium", {
   params$nHabitats = nHabitats
 
   # ODE
-  params = make_parameters_L_basic(pars = params, psi = psi, phi = phi, theta=theta)
-  params = make_inits_L_basic(pars = params, L0 = L)
+  params = make_parameters_L_basicL_xde(pars = params, psi = psi, phi = phi, theta=theta)
+  params = make_inits_L_basicL_xde(pars = params, L0 = L)
   params = make_indices(params)
   params$eggs_laid = list()
   params$eggs_laid[[1]] = eggs_laid

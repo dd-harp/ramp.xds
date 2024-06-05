@@ -58,6 +58,7 @@ We can use this to calculate the net infectious probability, and then $\kappa = 
 
 ```{r, message=FALSE, warning=FALSE}
 library(ramp.xde)
+#devtools::load_all()
 library(deSolve)
 library(data.table)
 library(ggplot2)
@@ -67,7 +68,7 @@ library(ggplot2)
 #devtools::load_all()
 ```
 
-Here we run a simple example with 3 population strata at equilibrium. We use `ramp.xde::make_parameters_X_hMoI` to
+Here we run a simple example with 3 population strata at equilibrium. We use `ramp.xde::make_parameters_X_hMoI_xde` to
 set up parameters. Please note that this only runs the human population component and that most users should read [our fully worked example](ex_534.html) to run a full simulation.
 
 We use the null (constant) model of human demography ($H$ constant for all time). While $H$ does not appear in the equations above, it must be specified as the model of bloodfeeding ($\beta$) relies on $H$ to compute consistent values.
@@ -113,8 +114,8 @@ params = make_parameters_demography_null(pars = params, H=H)
 
 params = setup_BloodFeeding(params, 1, 1, residence=residence, searchWts=searchWtsH) 
 params$BFpar$TaR[[1]][[1]]=TaR
-params = make_parameters_X_hMoI(pars = params, b = b, c1 = c1, c2 = c2, r1 = r1, r2 = r2)
-params = make_inits_X_hMoI(pars = params, rep(m10, nStrata), rep(m20, nStrata)) 
+params = make_parameters_X_hMoI_xde(pars = params, b = b, c1 = c1, c2 = c2, r1 = r1, r2 = r2)
+params = make_inits_X_hMoI_xde(pars = params, rep(m10, nStrata), rep(m20, nStrata)) 
 params = make_indices(params)
 ```
 
@@ -153,11 +154,11 @@ Hpop = c(100, 500, 250)
 ```
 
 ```{r}
-xde_setup_cohort(F_eir, Xname="hMoI", HPop=Hpop, Xopts = Xo) ->test_hMoI
+xde_setup_cohort(F_eir, Xname="hMoI_xde", HPop=Hpop, Xopts = Xo) ->test_hMoI_xde
 ```
 
 ```{r}
-xde_solve(test_hMoI, 365, 365)$outputs$orbits$deout -> out2
+xde_solve(test_hMoI_xde, 365, 365)$outputs$orbits$deout -> out2
 approx_equal(out2, out1)
 ```
 
