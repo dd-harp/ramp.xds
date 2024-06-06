@@ -52,7 +52,7 @@ dMYZdt.Gtrace <- function(t, y, pars, s){
 #' @inheritParams setup_MYZpar
 #' @return a [list] vector
 #' @export
-setup_MYZpar.Gtrace = function(MYZname, pars, s, MYZopts=NULL, EIPmod=NULL, calK=NULL){
+setup_MYZpar.Gtrace = function(MYZname, pars, s, EIPopts=list(), MYZopts=NULL, calK=NULL){
   pars$MYZpar[[s]] = make_MYZpar_Gtrace(pars$nPatches, MYZopts)
   return(pars)
 }
@@ -96,11 +96,11 @@ make_indices_MYZ.Gtrace <- function(pars, s) {
 }
 
 #' @title Parse the output of deSolve and return variables for the Gtrace model
-#' @description Implements [parse_deout_MYZ] for Gtrace
-#' @inheritParams parse_deout_MYZ
+#' @description Implements [parse_outputs_MYZ] for Gtrace
+#' @inheritParams parse_outputs_MYZ
 #' @return [list]
 #' @export
-parse_deout_MYZ.Gtrace <- function(deout, pars, s) {
+parse_outputs_MYZ.Gtrace <- function(outputs, pars, s) {
   return(list())
 }
 

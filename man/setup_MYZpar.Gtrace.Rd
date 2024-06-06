@@ -4,7 +4,7 @@
 \alias{setup_MYZpar.Gtrace}
 \title{Setup the Gtrace}
 \usage{
-\method{setup_MYZpar}{Gtrace}(MYZname, pars, s, MYZopts = NULL, EIPmod = NULL, calK = NULL)
+\method{setup_MYZpar}{Gtrace}(MYZname, pars, s, EIPopts = list(), MYZopts = NULL, calK = NULL)
 }
 \arguments{
 \item{MYZname}{the name of the model}
@@ -13,9 +13,9 @@
 
 \item{s}{the species index}
 
-\item{MYZopts}{a \link{list}}
+\item{EIPopts}{is a \link{list}}
 
-\item{EIPmod}{is a \link{list}}
+\item{MYZopts}{a \link{list}}
 
 \item{calK}{is a \link{matrix}}
 }

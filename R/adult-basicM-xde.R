@@ -76,7 +76,7 @@ dMYZdt.basicM_xde <- function(t, y, pars, s){
 #' @inheritParams setup_MYZpar
 #' @return a [list] vector
 #' @export
-setup_MYZpar.basicM_xde = function(MYZname, pars, s, MYZopts=list(), EIPmod=NULL, calK){
+setup_MYZpar.basicM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
   pars$MYZpar[[s]] = make_MYZpar_basicM_xde(pars$nPatches, MYZopts, calK)
   return(pars)
 }
@@ -189,15 +189,15 @@ make_indices_MYZ.basicM_xde <- function(pars, s) {with(pars,{
 })}
 
 #' @title Parse the output of deSolve and return variables for the basicM_xde model
-#' @description Implements [parse_deout_MYZ] for the basicM_xde model.
-#' @inheritParams parse_deout_MYZ
+#' @description Implements [parse_outputs_MYZ] for the basicM_xde model.
+#' @inheritParams parse_outputs_MYZ
 #' @return [list]
 #' @export
-parse_deout_MYZ.basicM_xde <- function(deout, pars, s) {
-  time = deout[,1]
+parse_outputs_MYZ.basicM_xde <- function(outputs, pars, s) {
+  time = outputs[,1]
   with(pars$ix$MYZ[[s]],{
-    M = deout[,M_ix+1]
-    P = deout[,P_ix+1]
+    M = outputs[,M_ix+1]
+    P = outputs[,P_ix+1]
     parous = P/M
   return(list(time=time, M=M, P=P, parous=parous))
 })}

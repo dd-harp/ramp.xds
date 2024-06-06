@@ -72,17 +72,28 @@ dMYZdt <- function(t, y, pars, s) {
   UseMethod("dMYZdt", pars$MYZpar[[s]])
 }
 
+#' @title Return the variables as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @param y the variables
+#' @param pars a [list]
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+list_MYZvars <- function(y, pars, s) {
+  UseMethod("list_MYZvars", pars$MYZpar[[s]])
+}
+
 #' @title A function to set up adult mosquito models
 #' @description This method dispatches on `MYZname`.
 #' @param MYZname the name of the model
 #' @param pars a [list]
 #' @param s the species index
+#' @param EIPopts is a [list]
 #' @param MYZopts a [list]
-#' @param EIPmod is a [list]
 #' @param calK is a [matrix]
 #' @return [list]
 #' @export
-setup_MYZpar = function(MYZname, pars, s, MYZopts=list(), EIPmod=setup_eip_static(), calK=diag(1)){
+setup_MYZpar = function(MYZname, pars, s, EIPopts, MYZopts=list(),  calK=diag(1)){
   class(MYZname) <- MYZname
   UseMethod("setup_MYZpar", MYZname)
 }
@@ -109,16 +120,16 @@ make_indices_MYZ <- function(pars, s) {
   UseMethod("make_indices_MYZ", pars$MYZpar[[s]])
 }
 
-#' @title Parse the output of deSolve and return the variables by name in a list
+#' @title Parse the outputs and return the variables by name in a list
 #' @description This method dispatches on the type of `pars$MYZpar`.
 #' It computes the variables by name and returns a named list.
-#' @param deout a [matrix] of outputs from deSolve
+#' @param outputs a [matrix] of outputs from deSolve
 #' @param pars a [list] that defines a model
 #' @param s the species index
 #' @return [list]
 #' @export
-parse_deout_MYZ <- function(deout, pars, s) {
-  UseMethod("parse_deout_MYZ", pars$MYZpar[[s]])
+parse_outputs_MYZ <- function(outputs, pars, s) {
+  UseMethod("parse_outputs_MYZ", pars$MYZpar[[s]])
 }
 
 #' @title Return initial values as a vector

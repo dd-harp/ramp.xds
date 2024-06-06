@@ -146,13 +146,15 @@ Xo = list(b=b, c=c, r=r, X0=X)
 Lo = list(psi=psi, phi=phi, theta=theta, L0=L)
 
 MYZo = list(f=f, q=q, g=g, sigma=sigma, 
-            nu=nu, eggsPerBatch=eggsPerBatch, eip=eip, 
+            nu=nu, eggsPerBatch=eggsPerBatch, 
             M0=M, P0=P, Y0=Y, Z0=Z)
+EIPo = list(eip=eip, EIPname = "static_xde")
 ```
 
 ```{r}
 xde_setup(MYZname="RM_xde", Xname="SIS_xde", Lname="basicL_xde", 
-          nPatches=3, HPop=Hpop, membership=c(1:3), MYZopts=MYZo, calK=calK, 
+          nPatches=3, HPop=Hpop, membership=c(1:3), 
+          MYZopts=MYZo, EIPopts=EIPo, calK=calK, 
           Xopts=Xo, residence=1:3, searchB=rep(1,3), 
           TimeSpent =TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
 ```

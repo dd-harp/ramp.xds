@@ -106,12 +106,12 @@ list_Xvars <- function(y, pars, i) {
 #' @title Parse the output of deSolve and return the variables by name in a list
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`. Adds the variables
 #' from the X model to a list and returns it
-#' @param deout a [matrix] of outputs from deSolve
+#' @param outputs a [matrix] of outputs from deSolve
 #' @param pars a [list] that defines a model
 #' @param i the host species index
 #' @export
-parse_deout_X <- function(deout, pars, i) {
-  UseMethod("parse_deout_X", pars$Xpar[[i]])
+parse_outputs_X <- function(outputs, pars, i) {
+  UseMethod("parse_outputs_X", pars$Xpar[[i]])
 }
 
 #' @title Return initial values as a vector
@@ -155,6 +155,6 @@ HTC <- function(pars, i) {
 #' @param add_axes a logical: plot axes only if TRUE
 #'
 #' @export
-xde_plot_X = function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
-  UseMethod("xde_plot_X", pars$Xpar[[i]])
+xds_plot_X = function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
+  UseMethod("xds_plot_X", pars$Xpar[[i]])
 }

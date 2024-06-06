@@ -163,15 +163,15 @@ update_inits_X.SIS_xde <- function(pars, y0, i) {
 
 
 #' @title Parse the output of deSolve and return variables for the SIS_xde model
-#' @description Implements [parse_deout_X] for the SIS_xde model
-#' @inheritParams parse_deout_X
+#' @description Implements [parse_outputs_X] for the SIS_xde model
+#' @inheritParams parse_outputs_X
 #' @return none
 #' @export
-parse_deout_X.SIS_xde <- function(deout, pars, i) {
-  time = deout[,1]
+parse_outputs_X.SIS_xde <- function(outputs, pars, i) {
+  time = outputs[,1]
   with(pars$ix$X[[i]],{
-    S = deout[,S_ix+1]
-    I = deout[,I_ix+1]
+    S = outputs[,S_ix+1]
+    I = outputs[,I_ix+1]
     H = S+I
     return(list(time=time, S=S, I=I, H=H))
 })}
@@ -199,9 +199,9 @@ F_pr.SIS_xde <- function(varslist, pars, i) {
 
 #' Plot the density of infected individuals for the SIS_xde model
 #'
-#' @inheritParams xde_plot_X
+#' @inheritParams xds_plot_X
 #' @export
-xde_plot_X.SIS_xde = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, stable=FALSE, add_axes=TRUE){
+xds_plot_X.SIS_xde = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, stable=FALSE, add_axes=TRUE){
   vars=with(pars$outputs,if(stable==TRUE){stable_orbits}else{orbits})
 
   if(add_axes==TRUE)
@@ -210,19 +210,19 @@ xde_plot_X.SIS_xde = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, s
               ylab = "# Infected", xlab = "Time"))
 
 
-  xde_lines_X_SIS_xde(vars$XH[[i]], pars$Hpar[[i]]$nStrata, clrs, llty)
+  add_lines_X_SIS_xde(vars$XH[[i]], pars$Hpar[[i]]$nStrata, clrs, llty)
 }
 
 
 #' Add lines for the density of infected individuals for the SIS_xde model
 #'
-#' @param XH a list with the outputs of parse_deout_X_SIS_xde
+#' @param XH a list with the outputs of parse_outputs_X_SIS_xde
 #' @param nStrata the number of population strata
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
 #' @export
-xde_lines_X_SIS_xde = function(XH, nStrata, clrs=c("darkblue","darkred"), llty=1){
+add_lines_X_SIS_xde = function(XH, nStrata, clrs=c("darkblue","darkred"), llty=1){
   with(XH,{
     if(nStrata==1) {
       lines(time, S, col=clrs[1], lty = llty[1])

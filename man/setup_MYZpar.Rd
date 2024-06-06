@@ -4,14 +4,7 @@
 \alias{setup_MYZpar}
 \title{A function to set up adult mosquito models}
 \usage{
-setup_MYZpar(
-  MYZname,
-  pars,
-  s,
-  MYZopts = list(),
-  EIPmod = setup_eip_static(),
-  calK = diag(1)
-)
+setup_MYZpar(MYZname, pars, s, EIPopts, MYZopts = list(), calK = diag(1))
 }
 \arguments{
 \item{MYZname}{the name of the model}
@@ -20,9 +13,9 @@ setup_MYZpar(
 
 \item{s}{the species index}
 
-\item{MYZopts}{a \link{list}}
+\item{EIPopts}{is a \link{list}}
 
-\item{EIPmod}{is a \link{list}}
+\item{MYZopts}{a \link{list}}
 
 \item{calK}{is a \link{matrix}}
 }

@@ -110,11 +110,11 @@ make_inits_L_trace<- function(pars, L0=NULL) {
 }
 
 #' @title Parse the variable names for the trace model
-#' @description Implements [parse_deout_L] for the trace model.
-#' @inheritParams parse_deout_L
+#' @description Implements [parse_outputs_L] for the trace model.
+#' @inheritParams parse_outputs_L
 #' @return [list]
 #' @export
-parse_deout_L.trace <- function(deout, pars, s) {
+parse_outputs_L.trace <- function(outputs, pars, s) {
   return(NULL)
 }
 

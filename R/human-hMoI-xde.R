@@ -210,16 +210,16 @@ update_inits_X.hMoI_xde <- function(pars, y0,i) {
 })}
 
 #' @title Parse the output of deSolve and return variables for the hMoI_xde model
-#' @description Implements [parse_deout_X] for the hMoI_xde model
-#' @inheritParams parse_deout_X
+#' @description Implements [parse_outputs_X] for the hMoI_xde model
+#' @inheritParams parse_outputs_X
 #' @return none
 #' @export
-parse_deout_X.hMoI_xde <- function(deout, pars, i){
+parse_outputs_X.hMoI_xde <- function(outputs, pars, i){
   H = pars$Hpar[[i]]$H
   with(pars$ix$X[[i]], {
-    time = deout[,1]
-    m1 = deout[,m1_ix+1]
-    m2 = deout[,m2_ix+1]
+    time = outputs[,1]
+    m1 = outputs[,m1_ix+1]
+    m2 = outputs[,m2_ix+1]
   return(list(time=time, H=H,m1=m1,m2=m2))
 })}
 

@@ -19,7 +19,7 @@ xde_stable_orbit = function(pars, Ymax=10){
   pars <- xde_solve(pars, Tmax = Ymax*365, dt=1)
   deout = tail(pars$outputs$orbits$deout, 365)
   deout[,1] = c(1:365)
-  pars$outputs$stable_orbits <- parse_deout(deout, pars)
+  pars$outputs$stable_orbits <- parse_outputs(deout, pars)
   return(pars)
 }
 
@@ -33,7 +33,7 @@ xde_steady = function(pars){
   pars1 <- make_indices(pars1)
   y0 = get_inits(pars1)
   rootSolve::steady(y=y0, func = xDE_diffeqn, parms = pars1)$y -> y_eq
-  pars$outputs$steady = parse_deout_vec(y_eq, pars1)
+  pars$outputs$steady = parse_outputs_vec(y_eq, pars1)
   return(pars)
 }
 
@@ -46,7 +46,7 @@ xde_solve.ode = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
   y0 = get_inits(pars)
   deSolve::ode(y = y0, times = tt, func = xDE_diffeqn, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_deout(out, pars)
+  pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
 }
 
@@ -59,7 +59,7 @@ xde_solve.dde = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
   y0 = get_inits(pars)
   deSolve::dede(y = y0, times = tt, func = xDE_diffeqn, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_deout(out, pars)
+  pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
 }
 
@@ -72,7 +72,7 @@ xde_solve.aqua = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
   y0 = get_inits(pars)
   deSolve::ode(y = y0, times = tt, func = xDE_diffeqn_aquatic, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_deout(out, pars)
+  pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
 }
 
@@ -85,7 +85,7 @@ xde_solve.aqua_dde = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
   y0 = get_inits(pars)
   deSolve::dede(y = y0, times = tt, func = xDE_diffeqn_aquatic, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_deout(out, pars)
+  pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
 }
 
@@ -98,7 +98,7 @@ xde_solve.mosy = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
   y0 = get_inits(pars)
   deSolve::ode(y = y0, times = tt, func = xDE_diffeqn_mosy, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_deout(out, pars)
+  pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
 }
 
@@ -111,7 +111,7 @@ xde_solve.mosy_dde = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
   y0 = get_inits(pars)
   deSolve::dede(y = y0, times = tt, func = xDE_diffeqn_mosy, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_deout(out, pars)
+  pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
 }
 
@@ -124,7 +124,7 @@ xde_solve.human = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
   y0 = get_inits(pars)
   deSolve::ode(y = y0, times = tt, func = xDE_diffeqn_human, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_deout(out, pars)
+  pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
 }
 
@@ -138,6 +138,6 @@ xde_solve.cohort = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
   y0 = get_inits(pars)
   deSolve::ode(y = y0, times = tt, func = xDE_diffeqn_cohort, parms=pars, F_eir = pars$F_eir, method = "lsoda") -> out
-  pars$outputs$orbits = parse_deout(out, pars)
+  pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
 }

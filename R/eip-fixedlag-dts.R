@@ -1,0 +1,34 @@
+
+#' @title Modify parameters due to exogenous forcing by all kinds of control
+#' @description Implements [EIP] for the fixedlag_dts model (the EIP is constant)
+#' @inheritParams EIP
+#' @return the EIP maturation vector G [numeric]
+#' @export
+EIP.fixedlag_dts <- function(t, MYZpar){
+  return(MYZpar)
+}
+
+#' @title Set up a fixedlag_dts model for the EIP
+#' @inheritParams setup_EIP
+#' @return [list]
+#' @export
+setup_EIP.fixedlag_dts <- function(EIPopts, MYZpar){
+  setup_eip_fixedlag_dts(EIPopts, MYZpar)
+}
+
+#' @title Set up a fixedlag_dts model for the EIP
+#' @param EIPopts a [list]
+#' @param MYZpar the MYZ parameters
+#' @param eip a default value for the eip
+#' @return [list]
+#' @export
+setup_eip_fixedlag_dts = function(EIPopts, MYZpar, eip=12){
+  EIPmod <- list()
+  class(EIPmod) <- 'fixedlag_dts'
+  MYZpar$EIPmod <- EIPmod
+  MYZpar$eip <- eip
+  MYZpar$max_eip <- eip
+  MYZpar$G <- rep(0, MYZpar$max_eip)
+  MYZpar$G[eip] <- 1
+  return(MYZpar)
+}
