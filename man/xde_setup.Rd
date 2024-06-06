@@ -17,8 +17,7 @@ xde_setup(
   MYZopts = list(),
   calK = "herethere",
   calKopts = list(),
-  EIPname = "static",
-  EIPopts = list(),
+  EIPopts = list(EIPname = "static_xde", eip = 12),
   Xopts = list(),
   BFopts = list(),
   residence = 1,
@@ -55,9 +54,7 @@ xde_setup(
 
 \item{calKopts}{are the options to setup calK}
 
-\item{EIPname}{are the options to setup EIPmod}
-
-\item{EIPopts}{are the options to setup EIPmod}
+\item{EIPopts}{a list with options to setup EIPmod; must include EIPname}
 
 \item{Xopts}{a list to configure the X model}
 

@@ -4,7 +4,7 @@
 \alias{setup_MYZpar.RM_xde}
 \title{Setup MYZpar for the RM_xde model}
 \usage{
-\method{setup_MYZpar}{RM_xde}(MYZname, pars, s, MYZopts = list(), EIPmod, calK)
+\method{setup_MYZpar}{RM_xde}(MYZname, pars, s, EIPopts, MYZopts = list(), calK)
 }
 \arguments{
 \item{MYZname}{the name of the model}
@@ -13,9 +13,9 @@
 
 \item{s}{the species index}
 
-\item{MYZopts}{a \link{list}}
+\item{EIPopts}{is a \link{list}}
 
-\item{EIPmod}{is a \link{list}}
+\item{MYZopts}{a \link{list}}
 
 \item{calK}{is a \link{matrix}}
 }

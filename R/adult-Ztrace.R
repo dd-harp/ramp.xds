@@ -54,7 +54,7 @@ dMYZdt.Ztrace <- function(t, y, pars, s){
 #' @inheritParams setup_MYZpar
 #' @return a [list] vector
 #' @export
-setup_MYZpar.Ztrace = function(MYZname, pars, s, MYZopts=NULL, EIPmod=NULL, calK=NULL){
+setup_MYZpar.Ztrace = function(MYZname, pars, s, EIPopts, MYZopts=NULL, calK=NULL){
   pars$MYZpar[[s]] = make_MYZpar_Ztrace(pars, MYZopts)
   return(pars)
 }
@@ -100,11 +100,11 @@ setup_MYZinits.Ztrace = function(pars, s, MYZopts=NULL){
 }
 
 #' @title Parse the output of deSolve and return variables for the Ztrace model
-#' @description Implements [parse_deout_MYZ] for Ztrace
-#' @inheritParams parse_deout_MYZ
+#' @description Implements [parse_outputs_MYZ] for Ztrace
+#' @inheritParams parse_outputs_MYZ
 #' @return a [list]
 #' @export
-parse_deout_MYZ.Ztrace <- function(deout, pars, s) {
+parse_outputs_MYZ.Ztrace <- function(outputs, pars, s) {
   return(list())
 }
 

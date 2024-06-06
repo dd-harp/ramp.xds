@@ -6,14 +6,13 @@
 #' @return the model as a [list]
 #' @export
 MBionomics.RM_xde <- function(t, y, pars, s) {
+  pars$MYZpar[[s]] <- EIP(t, pars$MYZpar[[s]])
   with(pars$MYZpar[[s]],{
-    pars$MYZpar[[s]]$f <- f0
-    pars$MYZpar[[s]]$q <- q0
-    pars$MYZpar[[s]]$g <- g0
+    pars$MYZpar[[s]]$f     <- f0
+    pars$MYZpar[[s]]$q     <- q0
+    pars$MYZpar[[s]]$g     <- g0
     pars$MYZpar[[s]]$sigma <- sigma0
-    pars$MYZpar[[s]]$nu <- nu0
-    pars$MYZpar[[s]]$eip<- EIP(t, EIPmod)
-
+    pars$MYZpar[[s]]$nu    <- nu0
     return(pars)
 })}
 
@@ -131,15 +130,15 @@ dMYZdt.RM_dde <- function(t, y, pars, s){
 #' @inheritParams setup_MYZpar
 #' @return a [list] vector
 #' @export
-setup_MYZpar.RM_xde = function(MYZname, pars, s, MYZopts=list(), EIPmod, calK){
-  pars$MYZpar[[s]] = make_MYZpar_RM_xde(pars$nPatches, MYZopts, EIPmod, calK)
+setup_MYZpar.RM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
+  pars$MYZpar[[s]] = make_MYZpar_RM_xde(pars$nPatches, MYZopts, EIPopts, calK)
   return(pars)
 }
 
 #' @title Make parameters for RM_xde ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer
 #' @param MYZopts a [list] of values that overwrites the defaults
-#' @param EIPmod a [list] that defines the EIP model
+#' @param EIPopts a [list] that defines the EIP model
 #' @param calK a mosquito dispersal matrix of dimensions `nPatches` by `nPatches`
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
@@ -149,7 +148,7 @@ setup_MYZpar.RM_xde = function(MYZname, pars, s, MYZopts=list(), EIPmod, calK){
 #' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
 #' @export
-make_MYZpar_RM_xde = function(nPatches, MYZopts=list(), EIPmod, calK,
+make_MYZpar_RM_xde = function(nPatches, MYZopts=list(), EIPopts, calK,
                           g=1/12, sigma=1/8, f=0.3, q=0.95,
                           nu=1, eggsPerBatch=60){
 
@@ -182,13 +181,13 @@ make_MYZpar_RM_xde = function(nPatches, MYZopts=list(), EIPmod, calK,
     MYZpar$nu0     <- MYZpar$nu
 
     # The EIP model and the eip
-    MYZpar$EIPmod <- EIPmod
-    MYZpar$eip <- EIP(0, EIPmod)
+    MYZpar <- setup_EIP(EIPopts, MYZpar)
+    MYZpar <- EIP(0, MYZpar)
 
     MYZpar$calK <- calK
 
     MYZpar$Omega <- make_Omega(g, sigma, calK, nPatches)
-    MYZpar$Upsilon <- with(MYZpar, expm::expm(-Omega*eip))
+    MYZpar$Upsilon <- with(MYZpar, expm::expm(-Omega*MYZpar$eip))
 
     return(MYZpar)
 })}
@@ -354,8 +353,7 @@ make_parameters_MYZ_RM_xde <- function(pars, g, sigma, f, q, nu, eggsPerBatch, e
   Omega   <- make_Omega(g, sigma, calK, pars$nPatches)
   MYZpar$Omega <- Omega
   MYZpar$Upsilon <- expm::expm(-Omega*eip)
-  MYZpar$EIPmod <- setup_eip_static(eip=eip)
-  MYZpar$eip <- eip
+  MYZpar <- setup_EIP(list(EIPname = "static_xde", eip=eip), MYZpar)
   MYZpar$calK <- calK
   MYZpar$nPatches <- pars$nPatches
 
@@ -396,16 +394,16 @@ make_inits_MYZ_RM_dde <- function(pars, M0, P0, Y0, Z0, Upsilon0) {
 }
 
 #' @title Parse the output of deSolve and return variables for the RM_xde model
-#' @description Implements [parse_deout_MYZ] for the RM_xde model
-#' @inheritParams parse_deout_MYZ
+#' @description Implements [parse_outputs_MYZ] for the RM_xde model
+#' @inheritParams parse_outputs_MYZ
 #' @return a [list]
 #' @export
-parse_deout_MYZ.RM_xde <- function(deout, pars, s) {with(pars$ix$MYZ[[s]],{
-  time = deout[,1]
-  M = deout[,M_ix+1]
-  P = deout[,P_ix+1]
-  Y = deout[,Y_ix+1]
-  Z = deout[,Z_ix+1]
+parse_outputs_MYZ.RM_xde <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
+  time = outputs[,1]
+  M = outputs[,M_ix+1]
+  P = outputs[,P_ix+1]
+  Y = outputs[,Y_ix+1]
+  Z = outputs[,Z_ix+1]
   y = Y/M
   z = Z/M
   parous = P/M

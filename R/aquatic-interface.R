@@ -39,6 +39,16 @@ dLdt <- function(t, y, pars, s) {
   UseMethod("dLdt", pars$Lpar[[s]])
 }
 
+#' @title Return the variables as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @param y the variables
+#' @param pars a [list]
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+list_Lvars <- function(y, pars, s) {
+  UseMethod("list_Lvars", pars$Lpar[[s]])
+}
 
 #' @title A function to set up adult mosquito models
 #' @description This method dispatches on `Lname`.
@@ -75,15 +85,15 @@ make_indices_L <- function(pars, s) {
   UseMethod("make_indices_L", pars$Lpar[[s]])
 }
 
-#' @title Parse the output of deSolve and return the variables by name in a list
+#' @title Parse the outputs of solving a dynamical system and return the variables by name in a list
 #' @description This method dispatches on the type of `pars$Lpar`. Attaches the
 #' state variables for the aquatic ecology model to a list and returns it
-#' @param deout a [matrix] of outputs from deSolve
+#' @param outputs a [matrix] with the solutions to a dynamical system
 #' @param pars a [list] that defines the model
 #' @param s the species index
 #' @export
-parse_deout_L <- function(deout, pars, s) {
-  UseMethod("parse_deout_L", pars$Lpar[[s]])
+parse_outputs_L <- function(outputs, pars, s) {
+  UseMethod("parse_outputs_L", pars$Lpar[[s]])
 }
 
 #' @title Return initial values as a vector

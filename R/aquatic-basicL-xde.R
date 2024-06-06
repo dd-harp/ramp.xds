@@ -108,13 +108,13 @@ make_indices_L.basicL_xde <- function(pars, s) {with(pars,{
 })}
 
 #' @title Parse the variable names for the basicL_xde model
-#' @description Implements [parse_deout_L] for basicL_xde competition model.
-#' @inheritParams parse_deout_L
+#' @description Implements [parse_outputs_L] for basicL_xde competition model.
+#' @inheritParams parse_outputs_L
 #' @return [list]
 #' @export
-parse_deout_L.basicL_xde <- function(deout, pars, s) {
-  time = deout[,1]
-  L = deout[,pars$ix$L[[s]]$L_ix+1]
+parse_outputs_L.basicL_xde <- function(outputs, pars, s) {
+  time = outputs[,1]
+  L = outputs[,pars$ix$L[[s]]$L_ix+1]
   return(list(time=time, L=L))
 }
 

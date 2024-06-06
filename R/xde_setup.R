@@ -1,5 +1,56 @@
 # functions to set up models
 
+#' @title Make base parameters, assuming nVectors = nHosts = 1
+#' @param solve_as, either "ode" or "dde"
+#' @return a [list]
+#' @export
+make_parameters_xde = function(solve_as='dde'){
+  pars = list()
+
+  xde <- solve_as
+  class(xde) <- xde
+  pars$xde = xde
+
+  pars$MYZpar = list()
+  pars$Lpar = list()
+  pars$Xpar = list()
+  pars$Hpar = list()
+  pars$vars = list()
+
+  pars$Lambda = list()
+  pars <- setup_EGGpar_static(pars)
+  pars <- setup_BFpar_static(pars)
+
+  pars$Linits = list()
+  pars$MYZinits = list()
+  pars$Xinits = list()
+
+  pars$ix = list()
+  pars$ix$X = list()
+  pars$ix$MYZ = list()
+  pars$ix$L = list()
+
+  pars$outputs = list()
+  pars$compute = list()
+
+  pars$HostAvailability = list()
+
+  pars <- setup_abiotic_null(pars)
+  pars <- setup_shock_null(pars)
+  pars <- setup_control_null(pars)
+  pars <- setup_vc_null(pars)
+  pars <- setup_behavior_null(pars)
+  pars <- setup_habitat_dynamics_static(pars)
+  pars <- setup_bionomics_static(pars)
+  pars <- setup_visitors_static(pars)
+  pars <- setup_resources_null(pars)
+  pars <- setup_travel_static(pars)
+  pars <- setup_exposure_pois(pars)
+
+  return(pars)
+}
+
+
 #' @title Set up a model for xde_diffeqn
 #' @param modelName is a name for the model (arbitrary)
 #' @param MYZname is a character string defining a MYZ model
@@ -13,8 +64,7 @@
 #' @param MYZopts a list to configure the MYZ model
 #' @param calK is either a calK matrix or a string that defines how to set it up
 #' @param calKopts are the options to setup calK
-#' @param EIPname are the options to setup EIPmod
-#' @param EIPopts are the options to setup EIPmod
+#' @param EIPopts a list with options to setup EIPmod; must include EIPname
 #' @param Xopts a list to configure the X model
 #' @param BFopts a list to configure the blood feeding model
 #' @param residence is a vector that describes the patch where each human stratum lives
@@ -44,8 +94,7 @@ xde_setup = function(modelName = "unnamed",
                      MYZopts = list(),
                      calK ="herethere",
                      calKopts = list(),
-                     EIPname = "static",
-                     EIPopts = list(),
+                     EIPopts = list(EIPname="static_xde", eip=12),
 
                      # Human Strata / Options
                      Xopts = list(),
@@ -81,9 +130,8 @@ xde_setup = function(modelName = "unnamed",
   pars$calN = make_calN(pars$nPatches, pars$membership)
 
   # Adult Mosquito Dynamics
-  EIPmod = setup_EIP(EIPname, EIPopts)
   calK = make_calK(nPatches, calK, calKopts)
-  pars = setup_MYZpar(MYZname, pars, 1, MYZopts, EIPmod, calK)
+  pars = setup_MYZpar(MYZname, pars, 1, EIPopts, MYZopts, calK)
   pars = setup_MYZinits(pars, 1, MYZopts)
 
   # Human Demography
@@ -169,7 +217,7 @@ xde_setup_mosy = function(modelName = "unnamed",
 
   # Dynamics
   calK = make_calK(nPatches, calK, calKopts)
-  pars = setup_MYZpar(MYZname, pars, 1, MYZopts, NULL, calK)
+  pars = setup_MYZpar(MYZname, pars, 1, EIPopts=list(), MYZopts, calK)
   pars = setup_MYZinits(pars, 1, MYZopts)
 
   # Aquatic Mosquito Dynamics
@@ -213,7 +261,7 @@ xde_setup_aquatic = function(modelName = "unnamed",
   pars$Lname = Lname
 
   pars$nVectors = nVectors
-  pars = setup_MYZpar("Gtrace", pars, 1, MYZopts, EIPmod=NULL, calK=NULL)
+  pars = setup_MYZpar("Gtrace", pars, 1, EIPopts=list(), MYZopts, calK=NULL)
 
   pars$nHabitats = nHabitats
   membership = 1:nHabitats
@@ -288,7 +336,7 @@ xde_setup_human = function(modelName = "unnamed",
   pars = make_TimeSpent(pars, 1, TimeSpent, TimeSpentOpts)
 
   # Dynamics
-  pars = setup_MYZpar("Ztrace", pars, 1, MYZopts, EIPmod=NULL, calK=NULL)
+  pars = setup_MYZpar("Ztrace", pars, 1, EIPopts=list(), MYZopts, calK=NULL)
 
   pars = setup_Xpar(Xname, pars, 1, Xopts)
   pars = setup_Xinits(pars, 1, Xopts)

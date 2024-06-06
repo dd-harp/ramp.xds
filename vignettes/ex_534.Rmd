@@ -139,8 +139,8 @@ Omega <- make_Omega(g, sigma, calK, params$nPatches)
 Upsilon <- expm::expm(-Omega*eip)
 
 params = make_parameters_MYZ_RM_xde(pars = params, g = g, 
-                sigma = sigma, calK=calK, 
-                eip=eip, f=f, q=q, nu=nu, 
+                sigma = sigma, calK=calK, eip=eip, 
+                 f=f, q=q, nu=nu, 
                 eggsPerBatch=eggsPerBatch, 
                 solve_as = "ode") 
 
@@ -308,16 +308,14 @@ Xo = list(
 ```
 
 ```{r}
-EIPo <- list(eip=12) 
+EIPo <- list(EIPname = "static_xde", eip=12) 
 ```
-
 
 
 ```{r}
 xde_setup("mod534", "RM_xde", "SIS_xde", "basicL_xde", 
-                  nPatches = 3, HPop=c(10, 90, 100, 900), 
-                  membership=c(1,1,1,2,2), EIPopts = EIPo,
-                  MYZopts=MYZo, calK=calK, Xopts=Xo, 
+                  nPatches = 3, HPop=c(10, 90, 100, 900), membership=c(1,1,1,2,2), 
+                  MYZopts=MYZo, calK=calK, Xopts=Xo, EIPopts = EIPo,
                   residence=c(2,2,3,3), searchB=searchWtsH, 
                   TimeSpent=TaR, searchQ = c(7,2,1,8,2), Lopts = Lo) -> mod534
 ```

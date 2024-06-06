@@ -4,7 +4,7 @@
 \alias{setup_MYZpar.Ztrace}
 \title{Setup the Ztrace model}
 \usage{
-\method{setup_MYZpar}{Ztrace}(MYZname, pars, s, MYZopts = NULL, EIPmod = NULL, calK = NULL)
+\method{setup_MYZpar}{Ztrace}(MYZname, pars, s, EIPopts, MYZopts = NULL, calK = NULL)
 }
 \arguments{
 \item{MYZname}{the name of the model}
@@ -13,9 +13,9 @@
 
 \item{s}{the species index}
 
-\item{MYZopts}{a \link{list}}
+\item{EIPopts}{is a \link{list}}
 
-\item{EIPmod}{is a \link{list}}
+\item{MYZopts}{a \link{list}}
 
 \item{calK}{is a \link{matrix}}
 }
