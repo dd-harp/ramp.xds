@@ -131,6 +131,7 @@ xde_setup = function(modelName = "unnamed",
 
   # Adult Mosquito Dynamics
   calK = make_calK(nPatches, calK, calKopts)
+
   pars = setup_MYZpar(MYZname, pars, 1, EIPopts, MYZopts, calK)
   pars = setup_MYZinits(pars, 1, MYZopts)
 

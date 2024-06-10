@@ -146,11 +146,12 @@ setup_MYZpar.RM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
 #' @param q human blood fraction
 #' @param nu oviposition rate, per mosquito
 #' @param eggsPerBatch eggs laid per oviposition
+#' @param solve_as a text string: solve as ode or dde
 #' @return a [list]
 #' @export
 make_MYZpar_RM_xde = function(nPatches, MYZopts=list(), EIPopts, calK,
                           g=1/12, sigma=1/8, f=0.3, q=0.95,
-                          nu=1, eggsPerBatch=60){
+                          nu=1, eggsPerBatch=60, solve_as = "ode"){
 
   stopifnot(is.matrix(calK))
   stopifnot(dim(calK) == c(nPatches, nPatches))

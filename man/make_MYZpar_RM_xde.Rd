@@ -14,7 +14,8 @@ make_MYZpar_RM_xde(
   f = 0.3,
   q = 0.95,
   nu = 1,
-  eggsPerBatch = 60
+  eggsPerBatch = 60,
+  solve_as = "ode"
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ make_MYZpar_RM_xde(
 \item{nu}{oviposition rate, per mosquito}
 
 \item{eggsPerBatch}{eggs laid per oviposition}
+
+\item{solve_as}{a text string: solve as ode or dde}
 }
 \value{
 a \link{list}
