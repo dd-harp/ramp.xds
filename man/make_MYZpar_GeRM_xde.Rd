@@ -13,6 +13,8 @@ make_MYZpar_GeRM_xde(
   g_par = list(),
   sigma = 1/8,
   sigma_par = list(),
+  mu = 0,
+  mu_par = list(),
   f = 0.3,
   f_par = list(),
   q = 0.95,
@@ -38,6 +40,10 @@ make_MYZpar_GeRM_xde(
 \item{sigma}{emigration rate}
 
 \item{sigma_par}{parameters to configure F_sigma}
+
+\item{mu}{emigration loss}
+
+\item{mu_par}{parameters to configure F_mu}
 
 \item{f}{feeding rate}
 

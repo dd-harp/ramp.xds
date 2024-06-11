@@ -31,6 +31,8 @@ navbar:
     menu:
     - text: Ross-Macdonald model
       href: articles/adult_RM.html
+    - text: Ross-Macdonald, discrete time
+      href: articles/RM-dts-Mosquito.html
     - text: Generalized Ross-Macdonald model
       href: articles/adult_GeRM.html
   - text: Aquatic Mosquito Dynamics
@@ -168,6 +170,11 @@ reference:
   - get_inits_MYZ
   - update_inits_MYZ
   - make_Omega
+  - make_Omega.static
+  - make_Omega_xde
+  - make_Omega_dts
+  - make_Upsilon
+  - make_Upsilon.static
   - dde2ode_MYZ
   - dde2ode_MYZ.dde
   - dde2ode_MYZ.ode
@@ -987,6 +994,7 @@ reference:
   - parse_outputs_vec
   - compute_terms
   - compute_terms.xde
+  - compute_terms.dts
   - compute_terms.cohort
   - compute_terms.human
   - compute_terms.na

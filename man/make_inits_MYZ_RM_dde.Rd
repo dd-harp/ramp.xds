@@ -4,7 +4,7 @@
 \alias{make_inits_MYZ_RM_dde}
 \title{Make inits for RM_xde adult mosquito model}
 \usage{
-make_inits_MYZ_RM_dde(pars, M0, P0, Y0, Z0, Upsilon0)
+make_inits_MYZ_RM_dde(pars, M0, P0, Y0, Z0, U0)
 }
 \arguments{
 \item{pars}{a \link{list}}
@@ -17,7 +17,7 @@ make_inits_MYZ_RM_dde(pars, M0, P0, Y0, Z0, Upsilon0)
 
 \item{Z0}{infectious mosquito density at each patch}
 
-\item{Upsilon0}{the initial values of Upsilon}
+\item{U0}{the initial values of Upsilon}
 }
 \value{
 none

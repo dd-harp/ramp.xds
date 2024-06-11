@@ -13,6 +13,9 @@
     <loc>https://dd-harp.github.io/ramp.xde/articles/Contributing.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xde/articles/RM-dts-Mosquito.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xde/articles/Understanding_exDE.html</loc>
   </url>
   <url>
@@ -967,6 +970,9 @@
     <loc>https://dd-harp.github.io/ramp.xde/reference/compute_terms.cohort.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/compute_terms.dts.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/compute_terms.html</loc>
   </url>
   <url>
@@ -1372,6 +1378,15 @@
     <loc>https://dd-harp.github.io/ramp.xde/reference/make_Omega.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/make_Omega.static.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/make_Omega_dts.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/make_Omega_xde.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/make_TaR.html</loc>
   </url>
   <url>
@@ -1391,6 +1406,12 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/make_TimeSpent_xy.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/make_Upsilon.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/make_Upsilon.static.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/make_Xinits_SIP.html</loc>

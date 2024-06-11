@@ -153,18 +153,6 @@ update_inits_MYZ <- function(pars, y0, s) {
   UseMethod("update_inits_MYZ", pars$MYZpar[[s]])
 }
 
-#' @title Make the mosquito demography matrix
-#' @param g mortality rate
-#' @param sigma emigration  rate
-#' @param K mosquito dispersal matrix
-#' @param nPatches number of patches
-#' @return a [matrix] of dimensions `nPatches` by `nPatches`
-#' @export
-make_Omega <- function(g, sigma, K, nPatches) {
-  diag(g, nPatches) + ((diag(nPatches) - K) %*% diag(sigma, nPatches))
-}
-
-
 #' @title Convert a model from dde to the corresponding ode
 #' @description This method dispatches on the type of `pars$MYZpar$xde`
 #' @param pars a [list]

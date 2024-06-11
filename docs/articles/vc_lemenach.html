@@ -101,6 +101,9 @@
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
+      <a href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a>
+    </li>
+    <li>
       <a href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
     </li>
   </ul>
@@ -177,8 +180,8 @@ model of aquatic mosquito dynamics to fill the dynamical components
 <span class="math inline">\(\mathcal{M}, \mathcal{X},
 \mathcal{L}\)</span>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#library(ramp.xde)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/load_all.html" class="external-link">load_all</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xde/">ramp.xde</a></span><span class="op">)</span></span>
+<span><span class="co">#devtools::load_all()</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://R-Forge.R-project.org/projects/expm/" class="external-link">expm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://desolve.r-forge.r-project.org/" class="external-link">deSolve</a></span><span class="op">)</span></span>
@@ -223,11 +226,12 @@ simply assume that conditions were constant prior to <span class="math inline">\
 <span><span class="op">)</span></span>
 <span><span class="va">TaR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">TaR</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fl">0.3</span> </span>
-<span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fl">0.9</span> </span>
-<span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10</span> </span>
-<span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">100</span> </span>
-<span><span class="va">nu</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> </span>
+<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="va">nPatches</span><span class="op">)</span> </span>
+<span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>, <span class="va">nPatches</span><span class="op">)</span>  </span>
+<span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">nPatches</span><span class="op">)</span>  </span>
+<span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">100</span>, <span class="va">nPatches</span><span class="op">)</span>  </span>
+<span><span class="va">nu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span>, <span class="va">nPatches</span><span class="op">)</span>  </span>
 <span><span class="va">eggsPerBatch</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
 <span><span class="va">eip</span> <span class="op">&lt;-</span> <span class="fl">11</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -252,7 +256,7 @@ be maintained at the input levels if conditions were unchanging.</p>
 <span><span class="co"># kappa</span></span>
 <span><span class="va">kappa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">beta</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="op">(</span><span class="va">X</span><span class="op">*</span><span class="va">c</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega.html">make_Omega</a></span><span class="op">(</span>g <span class="op">=</span> <span class="va">g</span>, sigma <span class="op">=</span> <span class="va">sigma</span>, K <span class="op">=</span> <span class="va">calK</span>, nPatches <span class="op">=</span> <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega_xde.html">make_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">calK</span><span class="op">)</span></span>
 <span><span class="va">Omega_inv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">Omega</span><span class="op">)</span></span>
 <span><span class="va">Upsilon</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="op">-</span><span class="va">Omega</span> <span class="op">*</span> <span class="va">eip</span><span class="op">)</span></span>
 <span><span class="va">Upsilon_inv</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="va">Omega</span> <span class="op">*</span> <span class="va">eip</span><span class="op">)</span></span>
@@ -302,6 +306,7 @@ set up the parameters and components of the system.</p>
 <span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>f<span class="op">=</span><span class="va">f</span>, q<span class="op">=</span><span class="va">q</span>, g<span class="op">=</span><span class="va">g</span>, sigma<span class="op">=</span><span class="va">sigma</span>, </span>
 <span>            nu<span class="op">=</span><span class="va">nu</span>, eggsPerBatch<span class="op">=</span><span class="va">eggsPerBatch</span>, </span>
 <span>            M0<span class="op">=</span><span class="va">M</span>, P0<span class="op">=</span><span class="va">P</span>, Y0<span class="op">=</span><span class="va">Y</span>, Z0<span class="op">=</span><span class="va">Z</span>, solve_as <span class="op">=</span> <span class="st">"dde"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">EIPo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>eip<span class="op">=</span><span class="va">eip</span>, EIPname <span class="op">=</span> <span class="st">"static_xde"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_setup.html">xde_setup</a></span><span class="op">(</span>MYZname<span class="op">=</span><span class="st">"RM_xde"</span>, Xname<span class="op">=</span><span class="st">"SIS_xde"</span>, Lname<span class="op">=</span><span class="st">"basicL_xde"</span>, </span>
@@ -329,6 +334,16 @@ value.</p>
 <code class="sourceCode R"><span><span class="va">itn_mod</span> <span class="op">=</span> <span class="fu"><a href="../reference/setup_itn_lemenach.html">setup_itn_lemenach</a></span><span class="op">(</span><span class="va">itn_mod</span>, F_phi<span class="op">=</span><span class="va">ITN_cov</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">itn_mod</span>, <span class="fl">5</span><span class="op">*</span><span class="fl">365</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">itn_mod</span></span>
+<span><span class="co">#&gt; DLSODA-  At T (=R1) and step size H (=R2), the    </span></span>
+<span><span class="co">#&gt;       corrector convergence failed repeatedly     </span></span>
+<span><span class="co">#&gt;       or with ABS(H) = HMIN   </span></span>
+<span><span class="co">#&gt; In above message, R1 = 849.141, R2 = 3.06923e-09</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Warning in lsoda(y, times, func, parms, lags = control, ...): repeated</span></span>
+<span><span class="co">#&gt; convergence test failures on a step, but integration was successful -</span></span>
+<span><span class="co">#&gt; inaccurate Jacobian matrix?</span></span>
+<span><span class="co">#&gt; Warning in lsoda(y, times, func, parms, lags = control, ...): Returning early.</span></span>
+<span><span class="co">#&gt; Results are accurate, as far as they go</span></span>
 <span><span class="va">itn_mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -357,7 +372,7 @@ recovery rate of untreated infection.</p>
 <span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">out</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">ix</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">sigma_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">out</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">ix</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">g_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">out</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">ix</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">fqkappa_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">out</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">ix</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">Upsilon_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">out</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">ix</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">U_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
 <span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/melt.data.table.html" class="external-link">melt</a></span><span class="op">(</span><span class="va">out</span>, id.vars <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
@@ -369,7 +384,7 @@ recovery rate of untreated infection.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">Component</span>, scales <span class="op">=</span> <span class="st">'free'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-15-1.png" width="100%"></p>
+<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-14-1.png" width="100%"></p>
 </div>
   </div>
 

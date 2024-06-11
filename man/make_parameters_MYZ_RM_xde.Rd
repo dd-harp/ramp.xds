@@ -8,6 +8,7 @@ make_parameters_MYZ_RM_xde(
   pars,
   g,
   sigma,
+  mu,
   f,
   q,
   nu,
@@ -23,6 +24,8 @@ make_parameters_MYZ_RM_xde(
 \item{g}{mosquito mortality rate}
 
 \item{sigma}{emigration rate}
+
+\item{mu}{emigration loss}
 
 \item{f}{feeding rate}
 

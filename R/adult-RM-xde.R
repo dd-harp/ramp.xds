@@ -8,11 +8,13 @@
 MBionomics.RM_xde <- function(t, y, pars, s) {
   pars$MYZpar[[s]] <- EIP(t, pars$MYZpar[[s]])
   with(pars$MYZpar[[s]],{
-    pars$MYZpar[[s]]$f     <- f0
-    pars$MYZpar[[s]]$q     <- q0
-    pars$MYZpar[[s]]$g     <- g0
-    pars$MYZpar[[s]]$sigma <- sigma0
-    pars$MYZpar[[s]]$nu    <- nu0
+    pars$MYZpar[[s]]$f       <- f0
+    pars$MYZpar[[s]]$q       <- q0
+    pars$MYZpar[[s]]$g       <- g0
+    pars$MYZpar[[s]]$sigma   <- sigma0
+    pars$MYZpar[[s]]$nu      <- nu0
+    pars$MYZpar[[s]]$Omega   <- make_Omega(t, pars, s)
+    pars$MYZpar[[s]]$Upsilon <- make_Upsilon(t, pars, s)
     return(pars)
 })}
 
@@ -62,8 +64,6 @@ dMYZdt.RM_ode <- function(t, y, pars, s) {
     Z <- y[Z_ix]
 
     with(pars$MYZpar[[s]],{
-      Omega <- make_Omega(g, sigma, calK, nPatches)
-      Upsilon <- expm::expm(-Omega*eip)
 
       dM <- Lambda - (Omega %*% M)
       dP <- f*(M - P) - (Omega %*% P)
@@ -92,7 +92,7 @@ dMYZdt.RM_dde <- function(t, y, pars, s){
     P <- y[P_ix]
     Y <- y[Y_ix]
     Z <- y[Z_ix]
-    Upsilon <- y[Upsilon_ix]
+    U <- matrix(y[U_ix], pars$nPatches, pars$nPatches)
 
     with(pars$MYZpar[[s]],{
 
@@ -110,16 +110,15 @@ dMYZdt.RM_dde <- function(t, y, pars, s){
         sigma_eip <- lagderiv(t = t-eip, nr = sigma_ix)
       }
 
-      Omega <- make_Omega(g, sigma, calK, nPatches)
-      Omega_eip <- make_Omega(g_eip, sigma_eip, calK, nPatches)
+      Omega_eip <- make_Omega_xde(g_eip, sigma_eip, mu, calK)
 
       dMdt <- Lambda - (Omega %*% M)
       dPdt <- f*(M - P) - (Omega %*% P)
       dYdt <- f*q*kappa*(M - Y) - (Omega %*% Y)
-      dZdt <- Upsilon %*% (fqkappa_eip * (M_eip - Y_eip)) - (Omega %*% Z)
-      dUdt <- as.vector(((1-dEIPdt(t,EIPmod))*Omega_eip - Omega) %*% Upsilon)
+      dZdt <- U %*% (fqkappa_eip * (M_eip - Y_eip)) - (Omega %*% Z)
+      dUdt <- ((1-dEIPdt(t,EIPmod))*Omega_eip - Omega) %*% U
 
-      return(c(dMdt, dPdt, dYdt, dZdt, dUdt, f*q*kappa, g, sigma))
+      return(c(dMdt, dPdt, dYdt, dZdt, as.vector(dUdt), f*q*kappa, g, sigma))
     })
   })
 }
@@ -187,8 +186,11 @@ make_MYZpar_RM_xde = function(nPatches, MYZopts=list(), EIPopts, calK,
 
     MYZpar$calK <- calK
 
-    MYZpar$Omega <- make_Omega(g, sigma, calK, nPatches)
-    MYZpar$Upsilon <- with(MYZpar, expm::expm(-Omega*MYZpar$eip))
+    Omega_par <- list()
+    class(Omega_par) <- "static"
+    MYZpar$Omega_par <- Omega_par
+    MYZpar$Omega <- with(MYZpar, make_Omega_xde(g, sigma, mu, calK))
+    MYZpar$Upsilon <- with(MYZpar, expm::expm(-Omega*eip))
 
     return(MYZpar)
 })}
@@ -221,9 +223,9 @@ make_MYZinits_RM_dde = function(nPatches, Upsilon, MYZopts = list(),
     P = checkIt(P0, nPatches)
     Y = checkIt(Y0, nPatches)
     Z = checkIt(Z0, nPatches)
-    Upsilon = checkIt(as.vector(Upsilon), nPatches^2)
+    U = checkIt(as.vector(Upsilon), nPatches^2)
     dd = rep(0, nPatches)
-    return(list(M=M, P=P, Y=Y, Z=Z, Upsilon=as.vector(Upsilon), d1=dd, d2=dd, d3=dd))
+    return(list(M=M, P=P, Y=Y, Z=Z, U=as.vector(U), d1=dd, d2=dd, d3=dd))
   })
 }
 
@@ -268,8 +270,8 @@ make_indices_MYZ.RM_dde <- function(pars, s) {with(pars,{
   Z_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(Z_ix, 1)
 
-  Upsilon_ix <- seq(from = max_ix+1, length.out = nPatches^2)
-  max_ix <- tail(Upsilon_ix, 1)
+  U_ix <- seq(from = max_ix+1, length.out = nPatches^2)
+  max_ix <- tail(U_ix, 1)
 
   fqkappa_ix <- seq(from = max_ix+1, length.out = nPatches)
   max_ix <- tail(fqkappa_ix, 1)
@@ -282,7 +284,7 @@ make_indices_MYZ.RM_dde <- function(pars, s) {with(pars,{
 
   pars$max_ix = max_ix
   pars$ix$MYZ[[s]] = list(M_ix=M_ix, P_ix=P_ix, Y_ix=Y_ix, Z_ix=Z_ix,
-              Upsilon_ix = Upsilon_ix, fqkappa_ix=fqkappa_ix,
+              U_ix = U_ix, fqkappa_ix=fqkappa_ix,
               g_ix=g_ix, sigma_ix=sigma_ix)
   return(pars)
 })}
@@ -317,6 +319,7 @@ make_indices_MYZ.RM_ode <- function(pars, s) {with(pars,{
 #' @param pars a [list]
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
+#' @param mu emigration loss
 #' @param calK mosquito dispersal matrix of dimensions `nPatches` by `nPatches`
 #' @param f feeding rate
 #' @param q human blood fraction
@@ -326,7 +329,7 @@ make_indices_MYZ.RM_ode <- function(pars, s) {with(pars,{
 #' @param solve_as is either `ode` to solve as an ode or `dde` to solve as a dde
 #' @return a [list]
 #' @export
-make_parameters_MYZ_RM_xde <- function(pars, g, sigma, f, q, nu, eggsPerBatch, eip, calK, solve_as = "dde") {
+make_parameters_MYZ_RM_xde <- function(pars, g, sigma, mu, f, q, nu, eggsPerBatch, eip, calK, solve_as = "dde") {
   stopifnot(is.numeric(g), is.numeric(sigma), is.numeric(f),
             is.numeric(q), is.numeric(nu), is.numeric(eggsPerBatch))
 
@@ -339,6 +342,7 @@ make_parameters_MYZ_RM_xde <- function(pars, g, sigma, f, q, nu, eggsPerBatch, e
 
   MYZpar$g      <- checkIt(g, pars$nPatches)
   MYZpar$sigma  <- checkIt(sigma, pars$nPatches)
+  MYZpar$mu     <- checkIt(mu, pars$nPatches)
   MYZpar$f      <- checkIt(f, pars$nPatches)
   MYZpar$q      <- checkIt(q, pars$nPatches)
   MYZpar$nu     <- checkIt(nu, pars$nPatches)
@@ -347,16 +351,21 @@ make_parameters_MYZ_RM_xde <- function(pars, g, sigma, f, q, nu, eggsPerBatch, e
   # Store as baseline values
   MYZpar$g0      <- MYZpar$g
   MYZpar$sigma0  <- MYZpar$sigma
+  MYZpar$mu0     <- MYZpar$mu
   MYZpar$f0      <- MYZpar$f
   MYZpar$q0      <- MYZpar$q
   MYZpar$nu0     <- MYZpar$nu
 
-  Omega   <- make_Omega(g, sigma, calK, pars$nPatches)
-  MYZpar$Omega <- Omega
-  MYZpar$Upsilon <- expm::expm(-Omega*eip)
   MYZpar <- setup_EIP(list(EIPname = "static_xde", eip=eip), MYZpar)
-  MYZpar$calK <- calK
   MYZpar$nPatches <- pars$nPatches
+  MYZpar$calK <- calK
+
+  Omega_par <- list()
+  class(Omega_par) <- "static"
+  MYZpar$Omega_par <- Omega_par
+  MYZpar$Omega <- with(MYZpar, make_Omega_xde(g, sigma, mu, calK))
+  MYZpar$Upsilon <- with(MYZpar, expm::expm(-Omega*eip))
+
 
   pars$MYZpar = list()
   pars$MYZpar[[1]] = MYZpar
@@ -384,13 +393,13 @@ make_inits_MYZ_RM_ode <- function(pars, M0, P0, Y0, Z0) {
 #' @param P0 total parous mosquito density at each patch
 #' @param Y0 infected mosquito density at each patch
 #' @param Z0 infectious mosquito density at each patch
-#' @param Upsilon0 the initial values of Upsilon
+#' @param U0 the initial values of Upsilon
 #' @return none
 #' @export
-make_inits_MYZ_RM_dde <- function(pars, M0, P0, Y0, Z0, Upsilon0) {
+make_inits_MYZ_RM_dde <- function(pars, M0, P0, Y0, Z0, U0) {
   pars$MYZinits = list()
   dmy = rep(0, pars$nPatches)
-  pars$MYZinits[[1]] = list(M=M0, P=P0, Y=Y0, Z=Z0, Upsilon=Upsilon0, d1=dmy, d2=dmy, d3=dmy)
+  pars$MYZinits[[1]] = list(M=M0, P=P0, Y=Y0, Z=Z0, U=U0, d1=dmy, d2=dmy, d3=dmy)
   return(pars)
 }
 
@@ -417,7 +426,7 @@ parse_outputs_MYZ.RM_xde <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
 #' @return [numeric]
 #' @export
 get_inits_MYZ.RM_dde <- function(pars, s) {with(pars$MYZinits[[s]],{
-  c(M, P, Y, Z, as.vector(Upsilon), d1, d2, d3)
+  c(M, P, Y, Z, as.vector(U), d1, d2, d3)
 })}
 
 #' @title Return initial values as a vector
@@ -438,7 +447,7 @@ update_inits_MYZ.RM_dde <- function(pars, y0, s) {with(pars$ix$MYZ[[s]],{
   P = y0[P_ix]
   Y = y0[Y_ix]
   Z = y0[Z_ix]
-  Upsilon = y0[Upsilon_ix]
+  Upsilon = y0[U_ix]
   pars$MYZinits[[s]]= make_MYZinits_RM_dde(pars$nPatches, Upsilon, list(), M0=M, P0=P, Y0=Y, Z0=Z)
   return(pars)
 })}

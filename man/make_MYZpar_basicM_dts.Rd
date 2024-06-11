@@ -10,12 +10,14 @@ make_MYZpar_basicM_dts(
   calK,
   p = 11/12,
   sigma = 1/8,
+  mu = 1,
   f = 0.3,
   q = 0.95,
   nu = 1,
   eggsPerBatch = 60,
   p_mod = "static",
   sigma_mod = "static",
+  mu_mod = "static",
   f_mod = "static",
   q_mod = "static",
   nu_mod = "static"
@@ -32,6 +34,8 @@ make_MYZpar_basicM_dts(
 
 \item{sigma}{emigration rate}
 
+\item{mu}{emigration survival}
+
 \item{f}{feeding rate}
 
 \item{q}{human blood fraction}
@@ -43,6 +47,8 @@ make_MYZpar_basicM_dts(
 \item{p_mod}{a name to dispatch F_p}
 
 \item{sigma_mod}{a name to dispatch F_sigma}
+
+\item{mu_mod}{a name to dispatch F_sigma}
 
 \item{f_mod}{a name to dispatch F_f}
 

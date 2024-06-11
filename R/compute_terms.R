@@ -17,6 +17,16 @@ compute_terms <- function(varslist, deout, pars, s, i) {
 #' @inheritParams compute_terms
 #' @return [list]
 #' @export
+compute_terms.dts<- function(varslist, deout, pars, s, i) {
+  numeric(0)
+}
+
+#' @title Compute dynamical terms
+#' @description Using the output of deSolve
+#' compute the dynamical terms for the output of `xde_solve.ode` or `xde_solve.dde`
+#' @inheritParams compute_terms
+#' @return [list]
+#' @export
 compute_terms.xde <- function(varslist, deout, pars, s, i) {
   time = deout[,1]
 

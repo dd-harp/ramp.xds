@@ -101,6 +101,9 @@
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
+      <a href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a>
+    </li>
+    <li>
       <a href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
     </li>
   </ul>
@@ -195,10 +198,11 @@ when using unequal numbers of aquatic habitats per patch.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nPatches</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
 <span><span class="va">nHabitats</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
-<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fl">0.3</span></span>
-<span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fl">0.9</span></span>
-<span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">20</span></span>
-<span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10</span></span>
+<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">20</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">nPatches</span><span class="op">)</span> </span>
 <span><span class="va">eip</span> <span class="op">&lt;-</span> <span class="fl">11</span></span>
 <span><span class="va">nu</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span></span>
 <span><span class="va">eggsPerBatch</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
@@ -220,7 +224,7 @@ when using unequal numbers of aquatic habitats per patch.</p>
 <span><span class="va">calK</span><span class="op">[</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.3</span><span class="op">)</span></span>
 <span><span class="va">calK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">calK</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega.html">make_Omega</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">calK</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega_xde.html">make_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">calK</span><span class="op">)</span></span>
 <span><span class="va">Upsilon</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="op">-</span><span class="va">Omega</span> <span class="op">*</span> <span class="va">eip</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">kappa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.075</span>, <span class="fl">0.025</span><span class="op">)</span></span>
@@ -262,7 +266,7 @@ of those bionomic parameters to
 <span><span class="co"># ODE</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">beta</span> <span class="op">=</span> <span class="va">beta</span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_L_trace.html">make_parameters_L_trace</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, Lambda <span class="op">=</span> <span class="va">alpha</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_MYZ_basicM_xde.html">make_parameters_MYZ_basicM_xde</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, g <span class="op">=</span> <span class="va">g</span>, sigma <span class="op">=</span> <span class="va">sigma</span>, calK <span class="op">=</span> <span class="va">calK</span>, f <span class="op">=</span> <span class="va">f</span>, q <span class="op">=</span> <span class="va">q</span>, nu <span class="op">=</span> <span class="va">nu</span>, eggsPerBatch <span class="op">=</span> <span class="va">eggsPerBatch</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_MYZ_basicM_xde.html">make_parameters_MYZ_basicM_xde</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, g <span class="op">=</span> <span class="va">g</span>, sigma <span class="op">=</span> <span class="va">sigma</span>, mu<span class="op">=</span><span class="va">mu</span>, calK <span class="op">=</span> <span class="va">calK</span>, f <span class="op">=</span> <span class="va">f</span>, q <span class="op">=</span> <span class="va">q</span>, nu <span class="op">=</span> <span class="va">nu</span>, eggsPerBatch <span class="op">=</span> <span class="va">eggsPerBatch</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_inits_MYZ_basicM_xde.html">make_inits_MYZ_basicM_xde</a></span><span class="op">(</span><span class="va">params</span>, M0<span class="op">=</span><span class="va">M_eq</span>, P0<span class="op">=</span><span class="va">P_eq</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>

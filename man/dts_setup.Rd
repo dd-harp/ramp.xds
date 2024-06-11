@@ -15,7 +15,7 @@ dts_setup(
   HPop = 1000,
   membership = 1,
   MYZopts = list(),
-  EIPopts = list(EIPname = "fixedlag", eip = 12),
+  EIPopts = list(EIPname = "fixedlag_dts", eip = 12),
   calK = "herethere",
   calKopts = list(),
   Xopts = list(),

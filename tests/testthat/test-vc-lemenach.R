@@ -22,6 +22,7 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
   q <- rep(0.9, pars$nPatches)
   g <- rep(1/10, pars$nPatches)
   sigma <- rep(1/100, pars$nPatches)
+  mu <- rep(0, pars$nPatches)
   nu <- rep(1/2, pars$nPatches)
   eggsPerBatch <- 30
 
@@ -34,7 +35,7 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
   calK <- calK/rowSums(calK)
   calK <- t(calK)
 
-  Omega <- make_Omega(g = g, sigma = sigma, K = calK, nPatches = pars$nPatches)
+  Omega <- make_Omega_xde(g, sigma, mu, calK)
   Omega_inv <- solve(Omega)
   Upsilon <- expm::expm(-Omega * eip)
   Upsilon_inv <- expm::expm(Omega * eip)
@@ -79,8 +80,8 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
   pars = make_parameters_demography_null(pars = pars, H=H)
   pars = setup_BloodFeeding(pars, 1, 1, residence=residence, searchWts=searchWtsH)
   pars$BFpar$TaR[[1]][[1]]=TaR
-  pars = make_parameters_MYZ_RM_xde(pars = pars, g = g, sigma = sigma, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
-  pars = make_inits_MYZ_RM_dde(pars = pars, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z), Upsilon0=Upsilon)
+  pars = make_parameters_MYZ_RM_xde(pars = pars, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
+  pars = make_inits_MYZ_RM_dde(pars = pars, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z), U0=Upsilon)
   pars = make_parameters_L_trace(pars = pars,  Lambda = as.vector(Lambda))
   pars = make_inits_L_trace(pars = pars)
   pars = make_parameters_X_SIS_xde(pars = pars, b = b, c = c, r = r)

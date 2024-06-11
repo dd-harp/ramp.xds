@@ -79,6 +79,9 @@
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
+      <a href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a>
+    </li>
+    <li>
       <a href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
     </li>
   </ul></li>
@@ -143,12 +146,14 @@
 <span>  <span class="va">calK</span>,</span>
 <span>  p <span class="op">=</span> <span class="fl">11</span><span class="op">/</span><span class="fl">12</span>,</span>
 <span>  sigma <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">8</span>,</span>
+<span>  mu <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  f <span class="op">=</span> <span class="fl">0.3</span>,</span>
 <span>  q <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  nu <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  eggsPerBatch <span class="op">=</span> <span class="fl">60</span>,</span>
 <span>  p_mod <span class="op">=</span> <span class="st">"static"</span>,</span>
 <span>  sigma_mod <span class="op">=</span> <span class="st">"static"</span>,</span>
+<span>  mu_mod <span class="op">=</span> <span class="st">"static"</span>,</span>
 <span>  f_mod <span class="op">=</span> <span class="st">"static"</span>,</span>
 <span>  q_mod <span class="op">=</span> <span class="st">"static"</span>,</span>
 <span>  nu_mod <span class="op">=</span> <span class="st">"static"</span></span>
@@ -181,6 +186,10 @@
 <dd><p>emigration rate</p></dd>
 
 
+<dt>mu</dt>
+<dd><p>emigration loss</p></dd>
+
+
 <dt>f</dt>
 <dd><p>feeding rate</p></dd>
 
@@ -202,6 +211,10 @@
 
 
 <dt>sigma_mod</dt>
+<dd><p>a name to dispatch F_sigma</p></dd>
+
+
+<dt>mu_mod</dt>
 <dd><p>a name to dispatch F_sigma</p></dd>
 
 

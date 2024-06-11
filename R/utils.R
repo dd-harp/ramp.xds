@@ -47,8 +47,8 @@ get_inits <- function(pars){
   if(i>0)
     for(ix in 1:i)
       Xi = c(Xi, get_inits_X(pars, ix))
-
   y = c(L=Li, MYZ=MYZi, X=Xi)
+
   return(y)
 }
 

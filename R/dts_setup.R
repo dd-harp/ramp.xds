@@ -89,7 +89,7 @@ dts_setup = function(modelName = "unnamed",
 
                      # Adult Mosquito Options
                      MYZopts = list(),
-                     EIPopts = list(EIPname = "fixedlag", eip=12),
+                     EIPopts = list(EIPname = "fixedlag_dts", eip=12),
                      calK ="herethere",
                      calKopts = list(),
 

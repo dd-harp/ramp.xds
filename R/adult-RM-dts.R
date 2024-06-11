@@ -12,7 +12,7 @@ MBionomics.RM_dts <- function(t, y, pars, s) {
   pars$MYZpar[[s]]$p     <- F_p(t, pars$MYZpar[[s]])
   pars$MYZpar[[s]]$sigma <- F_sigma(t, pars$MYZpar[[s]])
   pars$MYZpar[[s]]$nu    <- F_nu(t, pars$MYZpar[[s]])
-  pars$MYZpar[[s]]$Omega <- make_Omega(t, pars$MYZpar[[s]])
+  pars$MYZpar[[s]]$Omega <- make_Omega(t, pars, s)
   return(pars)
 }
 
@@ -55,6 +55,7 @@ dMYZdt.RM_dts <- function(t, y, pars, s) {
   Lambda = pars$Lambda[[s]]
   kappa = pars$kappa[[s]]
 
+
   with(list_MYZvars(y, pars, s),{
     with(pars$MYZpar[[s]],{
 
@@ -68,7 +69,6 @@ dMYZdt.RM_dts <- function(t, y, pars, s) {
         Ut <- Lambda + Omega %*% (exp(-f*q*kappa)*U)
         Yt <- Omega %*% (Y %*% diag(1-Gt))
         Zt <- Omega %*% (Y%*%Gt)  + (Omega %*% Z)
-
 
         Yt[,eip_yday_ix]  <- Yt[,eip_yday_ix] + Yt[,eip_day_ix]
         Yt[,eip_day_ix] <- Omega %*% ((1-exp(-f*q*kappa))*U)
@@ -96,29 +96,25 @@ setup_MYZpar.RM_dts = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
 #' @param calK a mosquito dispersal matrix of dimensions `nPatches` by `nPatches`
 #' @param p daily mosquito survival
 #' @param sigma emigration rate
+#' @param mu emigration loss
 #' @param f feeding rate
 #' @param q human blood fraction
 #' @param nu oviposition rate, per mosquito
 #' @param eggsPerBatch eggs laid per oviposition
 #' @param p_mod a name to dispatch F_p
 #' @param sigma_mod a name to dispatch F_sigma
+#' @param mu_mod a name to dispatch F_sigma
 #' @param f_mod a name to dispatch F_f
 #' @param q_mod a name to dispatch F_q
 #' @param nu_mod a name to dispatch F_nu
 #' @return a [list]
 #' @export
 make_MYZpar_RM_dts = function(nPatches, MYZopts=list(), EIPopts, calK,
-                          p=11/12,
-                          sigma=1/8,
-                          f=0.3,
-                          q=0.95,
-                          nu=1,
+                          p=11/12, sigma=1/8, mu=0,
+                          f=0.3, q=0.95, nu=1,
                           eggsPerBatch=60,
-                          p_mod = "static",
-                          sigma_mod = "static",
-                          f_mod = "static",
-                          q_mod = "static",
-                          nu_mod = "static"
+                          p_mod = "static", sigma_mod = "static", mu_mod = "static",
+                          f_mod = "static", q_mod = "static", nu_mod = "static"
                           ){
 
   stopifnot(is.matrix(calK))
@@ -136,6 +132,7 @@ make_MYZpar_RM_dts = function(nPatches, MYZopts=list(), EIPopts, calK,
 
     MYZpar$p       <- checkIt(p, nPatches)
     MYZpar$sigma   <- checkIt(sigma, nPatches)
+    MYZpar$mu      <- checkIt(mu, nPatches)
     MYZpar$f       <- checkIt(f, nPatches)
     MYZpar$q       <- checkIt(q, nPatches)
     MYZpar$nu      <- checkIt(nu, nPatches)
@@ -144,6 +141,7 @@ make_MYZpar_RM_dts = function(nPatches, MYZopts=list(), EIPopts, calK,
     # Store as baseline values
     MYZpar$p0      <- MYZpar$p
     MYZpar$sigma0  <- MYZpar$sigma
+    MYZpar$mu0     <- MYZpar$mu
     MYZpar$f0      <- MYZpar$f
     MYZpar$q0      <- MYZpar$q
     MYZpar$nu0     <- MYZpar$nu
@@ -156,6 +154,8 @@ make_MYZpar_RM_dts = function(nPatches, MYZopts=list(), EIPopts, calK,
     class(MYZpar$q_par) <-  "static"
     MYZpar$sigma_par   <- list()
     class(MYZpar$sigma_par) <- "static"
+    MYZpar$mu_par   <- list()
+    class(MYZpar$mu_par) <- "static"
     MYZpar$nu_par   <- list()
     class(MYZpar$nu_par) <- "static"
 
@@ -164,7 +164,11 @@ make_MYZpar_RM_dts = function(nPatches, MYZopts=list(), EIPopts, calK,
     MYZpar <- EIP(0, MYZpar)
 
     MYZpar$calK <- calK
-    MYZpar$Omega <- make_Omega(0, MYZpar)
+
+    Omega_par <- list()
+    class(Omega_par) = "static"
+    MYZpar$Omega_par <- Omega_par
+    MYZpar$Omega <- with(MYZpar, make_Omega_dts(p, sigma, mu, calK))
 
     return(MYZpar)
 })}
@@ -307,7 +311,10 @@ make_parameters_MYZ_RM_dts <- function(pars, EIPopts, p, sigma, f, q, nu, eggsPe
   MYZparG <- EIP(0, MYZpar)
 
   MYZpar$calK <- calK
-  Omega   <- make_Omega(0, MYZpar)
+  Omega_par <- list()
+  class(Omega_par) <- "static"
+  MYZpar$Omega_par <- Omega_par
+  MYZpar$Omega <- with(MYZpar, make_Omega_dts(p, sigma, mu, calK))
 
   pars$MYZpar = list()
   pars$MYZpar[[1]] = MYZpar

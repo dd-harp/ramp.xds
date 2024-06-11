@@ -18,8 +18,8 @@ knitr::opts_chunk$set(
 In this vignette we demonstrate how to set up a model incorporating the Le Menach model of ITN based vector control (see [this paper](https://malariajournal.biomedcentral.com/articles/10.1186/1475-2875-6-10)). We use the Ross-Macdonald model of adult mosquito dynamics, the SIS model of human population dynamics, and the basic competition model of aquatic mosquito dynamics to fill the dynamical components $\mathcal{M}, \mathcal{X}, \mathcal{L}$.
 
 ```{r, message=FALSE, warning=FALSE}
-#library(ramp.xde)
-devtools::load_all()
+library(ramp.xde)
+#devtools::load_all()
 library(MASS)
 library(expm)
 library(deSolve)
@@ -65,11 +65,12 @@ TaR <- matrix(
 )
 TaR <- t(TaR)
 
-f <- 0.3 
-q <- 0.9 
-g <- 1/10 
-sigma <- 1/100 
-nu <- 1/2 
+f <- rep(0.3, nPatches)
+q <- rep(0.9, nPatches) 
+g <- rep(1/10, nPatches)  
+mu <- rep(0, nPatches)  
+sigma <- rep(1/100, nPatches)  
+nu <- rep(1/2, nPatches)  
 eggsPerBatch <- 30
 eip <- 11
 
@@ -97,7 +98,7 @@ beta <- diag(wf) %*% t(TaR) %*% diag(1/as.vector(W), nPatches)
 # kappa
 kappa <- t(beta) %*% (X*c)
 
-Omega <- make_Omega(g = g, sigma = sigma, K = calK, nPatches = nPatches)
+Omega <- make_Omega_xde(g, sigma, mu, calK)
 Omega_inv <- solve(Omega)
 Upsilon <- expm::expm(-Omega * eip)
 Upsilon_inv <- expm::expm(Omega * eip)
@@ -148,6 +149,7 @@ Lo = list(psi=psi, phi=phi, theta=theta, L0=L)
 MYZo = list(f=f, q=q, g=g, sigma=sigma, 
             nu=nu, eggsPerBatch=eggsPerBatch, 
             M0=M, P0=P, Y0=Y, Z0=Z, solve_as = "dde")
+
 EIPo = list(eip=eip, EIPname = "static_xde")
 ```
 
@@ -181,7 +183,7 @@ We use the null model of human demographic dynamics, which assumes $H$ is consta
 itn_mod = setup_itn_lemenach(itn_mod, F_phi=ITN_cov)
 ```
 
-```{r}
+```{r solve}
 xde_solve(itn_mod, 5*365) -> itn_mod
 itn_mod$outputs$orbits$deout -> out
 ```
@@ -201,7 +203,7 @@ colnames(out)[itn_mod$ix$X[[1]]$X_ix+1] <- paste0('X_', 1:itn_mod$Hpar[[1]]$nStr
 out <- out[, -c(itn_mod$ix$MYZ[[1]]$sigma_ix+1)]
 out <- out[, -c(itn_mod$ix$MYZ[[1]]$g_ix+1)]
 out <- out[, -c(itn_mod$ix$MYZ[[1]]$fqkappa_ix+1)]
-out <- out[, -c(itn_mod$ix$MYZ[[1]]$Upsilon_ix+1)]
+out <- out[, -c(itn_mod$ix$MYZ[[1]]$U_ix+1)]
 
 out <- as.data.table(out)
 out <- melt(out, id.vars = 'time')

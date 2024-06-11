@@ -101,6 +101,9 @@
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
+      <a href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a>
+    </li>
+    <li>
       <a href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
     </li>
   </ul>
@@ -291,6 +294,7 @@ M = (M - Y) + Y
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xde/">ramp.xde</a></span><span class="op">)</span></span>
+<span><span class="co">#devtools::load_all()</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://R-Forge.R-project.org/projects/expm/" class="external-link">expm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://desolve.r-forge.r-project.org/" class="external-link">deSolve</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
@@ -310,10 +314,11 @@ example</a> to run a full simulation.</p>
 <p>As with the RM model, we can set up the parameters for a simulation
 with 3 patches.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fl">0.3</span></span>
-<span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fl">0.9</span></span>
-<span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">20</span></span>
-<span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10</span></span>
+<code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">20</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="va">eip</span> <span class="op">&lt;-</span> <span class="fl">11</span></span>
 <span><span class="va">nu</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span></span>
 <span><span class="va">eggsPerBatch</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
@@ -324,10 +329,10 @@ with 3 patches.</p>
 <span><span class="va">calK</span><span class="op">[</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.3</span><span class="op">)</span></span>
 <span><span class="va">calK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">calK</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega.html">make_Omega</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">calK</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega_xde.html">make_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">calK</span><span class="op">)</span></span>
 <span><span class="va">Upsilon</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="op">-</span><span class="va">Omega</span> <span class="op">*</span> <span class="va">eip</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_MYZ_GeRM_xde.html">make_parameters_MYZ_GeRM_xde</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">g</span>, <span class="va">sigma</span>, <span class="va">f</span>, <span class="va">q</span>, <span class="va">nu</span>, <span class="va">eggsPerBatch</span>, <span class="va">eip</span>, <span class="va">calK</span>, solve_as <span class="op">=</span> <span class="st">"ode"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_MYZ_GeRM_xde.html">make_parameters_MYZ_GeRM_xde</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">f</span>, <span class="va">q</span>, <span class="va">nu</span>, <span class="va">eggsPerBatch</span>, <span class="va">eip</span>, <span class="va">calK</span>, solve_as <span class="op">=</span> <span class="st">"ode"</span><span class="op">)</span></span></code></pre></div>
 <p>Now we set the values of <span class="math inline">\(\kappa\)</span>
 and <span class="math inline">\(\Lambda\)</span> and solve for the
 equilibrium values.</p>
