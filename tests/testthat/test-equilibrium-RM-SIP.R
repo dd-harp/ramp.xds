@@ -20,11 +20,12 @@ test_that("test equilibrium with RM adults (ODE), SIP_xde humans, trace", {
   rho <- c(0.05, 0.1)
   wf <- rep(1, nStrata)
 
-  f <- 0.3
-  q <- 0.9
-  g <- 1/10
-  sigma <- 1/100
-  nu <- 1/2
+  f <- rep(0.3, nPatches)
+  q <- rep(0.9, nPatches)
+  g <- rep(1/10, nPatches)
+  sigma <- rep(1/100, nPatches)
+  mu <- rep(0, nPatches)
+  nu <- rep(1/2, nPatches)
   eggsPerBatch <- 30
 
   eip <- 11
@@ -37,7 +38,7 @@ test_that("test equilibrium with RM adults (ODE), SIP_xde humans, trace", {
   calK <- t(calK)
 
   # omega matrix
-  Omega <- make_Omega(g, sigma, calK, nPatches)
+  Omega <- make_Omega_xde(g, sigma, mu, calK)
   Omega_inv <- solve(Omega)
   OmegaEIP <- expm::expm(-Omega * eip)
   OmegaEIP_inv <- expm::expm(Omega * eip)
@@ -92,7 +93,7 @@ test_that("test equilibrium with RM adults (ODE), SIP_xde humans, trace", {
   params$calU[[1]] <- calU
   params$calN <- calN
 
-  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
+  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
   params = make_inits_MYZ_RM_ode(pars = params, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z))
   params = make_parameters_demography_null(pars = params, H=H)
   params = setup_BloodFeeding(params, 1, 1, residence=residence, searchWts=searchWtsH)
@@ -137,6 +138,7 @@ test_that("test equilibrium with RM adults (DDE), SIP_xde humans, trace", {
   q <- rep(0.9, nPatches)
   g <- rep(1/10, nPatches)
   sigma <- rep(1/100, nPatches)
+  mu <- rep(0, nPatches)
   nu <- rep(1/2, nPatches)
   eggsPerBatch <- 30
 
@@ -150,7 +152,7 @@ test_that("test equilibrium with RM adults (DDE), SIP_xde humans, trace", {
   calK <- t(calK)
 
   # omega matrix
-  Omega <- make_Omega(g, sigma, calK, nPatches)
+  Omega <- make_Omega_xde(g, sigma, mu, calK)
   Omega_inv <- solve(Omega)
   OmegaEIP <- expm::expm(-Omega * eip)
   OmegaEIP_inv <- expm::expm(Omega * eip)
@@ -205,8 +207,8 @@ test_that("test equilibrium with RM adults (DDE), SIP_xde humans, trace", {
   params$calU[[1]] <- calU
   params$calN <- calN
 
-  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
-  params = make_inits_MYZ_RM_dde(pars = params, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z), Upsilon0=OmegaEIP)
+  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
+  params = make_inits_MYZ_RM_dde(pars = params, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z), U0=OmegaEIP)
   params = make_parameters_demography_null(pars = params, H=H)
   params = setup_BloodFeeding(params, 1, 1, residence=residence, searchWts=searchWtsH)
   params$BFpar$TaR[[1]][[1]]=TaR

@@ -11,6 +11,7 @@ make_parameters_MYZ_GeRM_xde(
   f,
   q,
   nu,
+  mu,
   eggsPerBatch,
   eip,
   calK,
@@ -29,6 +30,8 @@ make_parameters_MYZ_GeRM_xde(
 \item{q}{human blood fraction}
 
 \item{nu}{oviposition rate, per mosquito}
+
+\item{mu}{emigration loss}
 
 \item{eggsPerBatch}{eggs laid per oviposition}
 

@@ -1,6 +1,5 @@
 # generalized spatial differential equations
 
-
 #' @title Generalized spatial differential equation model
 #' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
 #' generic methods for each model component.

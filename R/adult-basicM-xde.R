@@ -12,7 +12,9 @@ MBionomics.basicM_xde <- function(t, y, pars, s) {
     pars$MYZpar[[s]]$q <- q0
     pars$MYZpar[[s]]$g <- g0
     pars$MYZpar[[s]]$sigma <- sigma0
+    pars$MYZpar[[s]]$mu <- mu0
     pars$MYZpar[[s]]$nu <- nu0
+    pars$MYZpar[[s]]$Omega <- make_Omega(t, pars, s)
 
     return(pars)
 })}
@@ -61,7 +63,6 @@ dMYZdt.basicM_xde <- function(t, y, pars, s){
     P <- y[P_ix]
 
     with(pars$MYZpar[[s]],{
-      Omega <- make_Omega(g, sigma, calK, nPatches)
 
       dMdt <- Lambda - (Omega %*% M)
       dPdt <- f*(M - P) - (Omega %*% P)
@@ -87,6 +88,7 @@ setup_MYZpar.basicM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), ca
 #' @param calK mosquito dispersal matrix of dimensions `nPatches` by `nPatches`
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
+#' @param mu emigration loss
 #' @param f blood feeding rate
 #' @param q human blood feeding fraction
 #' @param nu oviposition rate, per mosquito
@@ -94,7 +96,7 @@ setup_MYZpar.basicM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), ca
 #' @return a [list] with a configured MYZpar
 #' @export
 make_MYZpar_basicM_xde = function(nPatches, MYZopts=list(), calK,
-                              g=1/12, sigma=1/8,
+                              g=1/12, sigma=1/8, mu=0,
                               f=0.3, q=0.95,
                               nu=1, eggsPerBatch=60){
   stopifnot(is.matrix(calK))
@@ -110,6 +112,7 @@ make_MYZpar_basicM_xde = function(nPatches, MYZopts=list(), calK,
 
     MYZpar$g      <- checkIt(g, nPatches)
     MYZpar$sigma  <- checkIt(sigma, nPatches)
+    MYZpar$mu     <- checkIt(mu, nPatches)
     MYZpar$f      <- checkIt(f, nPatches)
     MYZpar$q      <- checkIt(q, nPatches)
     MYZpar$nu     <- checkIt(nu, nPatches)
@@ -118,13 +121,17 @@ make_MYZpar_basicM_xde = function(nPatches, MYZopts=list(), calK,
     # Store as baseline values
     MYZpar$g0      <- MYZpar$g
     MYZpar$sigma0  <- MYZpar$sigma
+    MYZpar$mu0     <- MYZpar$mu
     MYZpar$f0      <- MYZpar$f
     MYZpar$q0      <- MYZpar$q
     MYZpar$nu0     <- MYZpar$nu
 
     MYZpar$calK <- calK
 
-    MYZpar$Omega <- make_Omega(g, sigma, calK, nPatches)
+    Omega_par <- list()
+    class(Omega_par) <- "static"
+    MYZpar$Omega_par <- Omega_par
+    MYZpar$Omega <- with(MYZpar, make_Omega_xde(g, sigma, mu, calK))
 
     return(MYZpar)
 })}
@@ -206,14 +213,15 @@ parse_outputs_MYZ.basicM_xde <- function(outputs, pars, s) {
 #' @param pars a [list]
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
-#' @param calK mosquito dispersal matrix of dimensions `nPatches` by `nPatches`
+#' @param mu emigration loss
 #' @param f feeding rate
 #' @param q human blood fraction
 #' @param nu oviposition rate, per mosquito
 #' @param eggsPerBatch eggs laid per oviposition
+#' @param calK mosquito dispersal matrix of dimensions `nPatches` by `nPatches`
 #' @return none
 #' @export
-make_parameters_MYZ_basicM_xde <- function(pars, g, sigma, f, q, nu, eggsPerBatch, calK) {
+make_parameters_MYZ_basicM_xde <- function(pars, g, sigma, mu, f, q, nu, eggsPerBatch, calK) {
   stopifnot(is.numeric(g), is.numeric(sigma), is.numeric(f), is.numeric(q), is.numeric(nu), is.numeric(eggsPerBatch))
 
   MYZpar <- list()
@@ -221,6 +229,7 @@ make_parameters_MYZ_basicM_xde <- function(pars, g, sigma, f, q, nu, eggsPerBatc
 
   MYZpar$g0 <- g
   MYZpar$sigma0 <- sigma
+  MYZpar$mu0<- mu
   MYZpar$f0 <- f
   MYZpar$q0 <- q
   MYZpar$nu0 <- nu
@@ -229,9 +238,15 @@ make_parameters_MYZ_basicM_xde <- function(pars, g, sigma, f, q, nu, eggsPerBatc
 
   MYZpar$g <- g
   MYZpar$sigma <- sigma
+  MYZpar$mu <- mu
   MYZpar$f <- f
   MYZpar$q <- q
   MYZpar$nu <- nu
+
+  Omega_par <- list()
+  class(Omega_par) <- "static"
+  MYZpar$Omega_par <- Omega_par
+  MYZpar$Omega <- with(MYZpar, make_Omega_xde(g, sigma, mu, calK))
 
   pars$MYZpar[[1]] <- MYZpar
 

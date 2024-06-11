@@ -4,7 +4,17 @@
 \alias{make_parameters_MYZ_basicM_xde}
 \title{Make parameters for a basic adult mosquito model}
 \usage{
-make_parameters_MYZ_basicM_xde(pars, g, sigma, f, q, nu, eggsPerBatch, calK)
+make_parameters_MYZ_basicM_xde(
+  pars,
+  g,
+  sigma,
+  mu,
+  f,
+  q,
+  nu,
+  eggsPerBatch,
+  calK
+)
 }
 \arguments{
 \item{pars}{a \link{list}}
@@ -12,6 +22,8 @@ make_parameters_MYZ_basicM_xde(pars, g, sigma, f, q, nu, eggsPerBatch, calK)
 \item{g}{mosquito mortality rate}
 
 \item{sigma}{emigration rate}
+
+\item{mu}{emigration loss}
 
 \item{f}{feeding rate}
 

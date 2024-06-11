@@ -46,10 +46,11 @@ First, we set the parameter values.
 ```{r}
 nPatches <- 3
 nHabitats <- 4
-f <- 0.3
-q <- 0.9
-g <- 1/20
-sigma <- 1/10
+f <- rep(0.3, nPatches)
+q <- rep(0.9, nPatches)
+g <- rep(1/20, nPatches)
+sigma <- rep(1/10, nPatches)
+mu <- rep(0, nPatches) 
 eip <- 11
 nu <- 1/2
 eggsPerBatch <- 30
@@ -71,7 +72,7 @@ calK[2, c(1,3)] <- c(0.5, 0.5)
 calK[3, 1:2] <- c(0.7, 0.3)
 calK <- t(calK)
 
-Omega <- make_Omega(g, sigma, calK, nPatches)
+Omega <- make_Omega_xde(g, sigma, mu, calK)
 Upsilon <- expm::expm(-Omega * eip)
 
 kappa <- c(0.1, 0.075, 0.025)
@@ -117,7 +118,7 @@ params$calN = calN
 # ODE
 params$beta = beta
 params = make_parameters_L_trace(pars = params, Lambda = alpha)
-params = make_parameters_MYZ_basicM_xde(pars = params, g = g, sigma = sigma, calK = calK, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch)
+params = make_parameters_MYZ_basicM_xde(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch)
 params = make_inits_MYZ_basicM_xde(params, M0=M_eq, P0=P_eq)
 
 params = make_indices(params)

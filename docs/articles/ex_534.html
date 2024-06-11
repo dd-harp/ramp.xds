@@ -101,6 +101,9 @@
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
+      <a href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a>
+    </li>
+    <li>
       <a href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
     </li>
   </ul>
@@ -216,11 +219,12 @@ expects all parameters to be contained in a list object, containing
 which correspond to <code>l</code>, <code>p</code> and
 <code>n</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_xde.html">make_parameters_xde</a></span><span class="op">(</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">nPatches</span> <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_xde.html">make_parameters_xde</a></span><span class="op">(</span><span class="op">)</span> </span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nVectors</span> <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nHosts</span> <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nHabitats</span> <span class="op">=</span> <span class="fl">5</span></span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span> <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span> <span class="op">=</span> <span class="va">nPatches</span> </span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nStrata</span> <span class="op">=</span> <span class="fl">4</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="aquatic-habitat-membership-matrix">Aquatic Habitat Membership Matrix<a class="anchor" aria-label="anchor" href="#aquatic-habitat-membership-matrix"></a>
@@ -302,10 +306,11 @@ types and return a list with the correct class for method dispatch. We
 attach the returned list to the main parameter list with name
 <code>MYZpar</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">12</span></span>
-<span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">12</span><span class="op">/</span><span class="fl">2</span></span>
-<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span></span>
-<span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fl">0.9</span></span>
+<code class="sourceCode R"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">12</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">12</span><span class="op">/</span><span class="fl">2</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="va">nu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">3</span>,<span class="fl">0</span><span class="op">)</span>  </span>
 <span><span class="va">eggsPerBatch</span> <span class="op">&lt;-</span> <span class="fl">30</span> </span>
 <span><span class="va">eip</span> <span class="op">&lt;-</span> <span class="fl">12</span> </span>
@@ -320,11 +325,11 @@ attach the returned list to the main parameter list with name
 <span><span class="va">Y0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="va">Z0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega.html">make_Omega</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">calK</span>, <span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega_xde.html">make_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">calK</span><span class="op">)</span></span>
 <span><span class="va">Upsilon</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="op">-</span><span class="va">Omega</span><span class="op">*</span><span class="va">eip</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_MYZ_RM_xde.html">make_parameters_MYZ_RM_xde</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, g <span class="op">=</span> <span class="va">g</span>, </span>
-<span>                sigma <span class="op">=</span> <span class="va">sigma</span>, calK<span class="op">=</span><span class="va">calK</span>, eip<span class="op">=</span><span class="va">eip</span>, </span>
+<span>                sigma<span class="op">=</span><span class="va">sigma</span>, mu<span class="op">=</span><span class="va">mu</span>, calK<span class="op">=</span><span class="va">calK</span>, eip<span class="op">=</span><span class="va">eip</span>, </span>
 <span>                 f<span class="op">=</span><span class="va">f</span>, q<span class="op">=</span><span class="va">q</span>, nu<span class="op">=</span><span class="va">nu</span>, </span>
 <span>                eggsPerBatch<span class="op">=</span><span class="va">eggsPerBatch</span>, </span>
 <span>                solve_as <span class="op">=</span> <span class="st">"ode"</span><span class="op">)</span> </span>
@@ -431,8 +436,7 @@ classes of <code>Xpar</code>, <code>MYZpar</code>, and <code>Lpar</code>
 in <code>params</code> will ensure that the right methods are invoked
 (dispatched) to solve your model.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">deSolve</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/deSolve/man/ode.html" class="external-link">ode</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">y0</span>, times <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">365</span>, </span>
+<code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">deSolve</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/deSolve/man/ode.html" class="external-link">ode</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">y0</span>, times <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">365</span>, </span>
 <span>                    func <span class="op">=</span> <span class="va">xDE_diffeqn</span>, parms <span class="op">=</span> <span class="va">params</span>, method <span class="op">=</span> <span class="st">"lsoda"</span><span class="op">)</span></span>
 <span><span class="va">out1</span> <span class="op">&lt;-</span> <span class="va">out</span></span></code></pre></div>
 </div>

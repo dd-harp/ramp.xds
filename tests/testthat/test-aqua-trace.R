@@ -8,10 +8,11 @@ test_that("forced emergence works with equilibrium", {
   nPatches <- 3
   nVectors <- 1
   nHabitats <- 4
-  f <- 0.3
-  q <- 0.9
-  g <- 1/20
-  sigma <- 1/10
+  f <- rep(0.3, nPatches)
+  q <- rep(0.9, nPatches)
+  g <- rep(1/20, nPatches)
+  sigma <- rep(1/10, nPatches)
+  mu <- rep(0, nPatches)
   eip <- 11
   nu <- 1/2
   eggsPerBatch <- 30
@@ -33,7 +34,7 @@ test_that("forced emergence works with equilibrium", {
   calK[3, 1:2] <- c(0.7, 0.3)
   calK <- t(calK)
 
-  Omega <- make_Omega(g, sigma, calK, nPatches)
+  Omega <- make_Omega_xde(g, sigma, mu, calK)
   OmegaEIP <- expm::expm(-Omega * eip)
 
   kappa <- c(0.1, 0.075, 0.025)
@@ -64,7 +65,7 @@ test_that("forced emergence works with equilibrium", {
 
 
   # ODE
-  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
+  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
   params = make_inits_MYZ_RM_ode(pars = params, M0 = rep(0, nPatches), P0 = rep(0, nPatches), Y0 = rep(0, nPatches), Z0 = rep(0, nPatches))
   params = make_parameters_L_trace(pars = params, Lambda = alpha)
 

@@ -12,7 +12,10 @@ MBionomics.GeRM_xde <- function(t, y, pars, s) {
     pars$MYZpar[[s]]$q     <- F_q(t, MYZpar[[s]])
     pars$MYZpar[[s]]$g     <- F_g(t, MYZpar[[s]])
     pars$MYZpar[[s]]$sigma <- F_sigma(t, MYZpar[[s]])
+    pars$MYZpar[[s]]$mu    <- F_mu(t, MYZpar[[s]])
     pars$MYZpar[[s]]$nu    <- F_nu(t, MYZpar[[s]])
+    pars$MYZpar[[s]]$Omega   <- make_Omega(t, pars, s)
+    pars$MYZpar[[s]]$Upsilon <- make_Upsilon(t, pars, s)
     return(pars)
   })
 }
@@ -66,9 +69,6 @@ dMYZdt.GeRM_ode <- function(t, y, pars, s) {
 
     with(pars$MYZpar[[s]],{
 
-      Omega <- make_Omega(g, sigma, calK, nPatches)
-      Upsilon <- expm::expm(-Omega*eip)
-
       dMdt <- Lambda - (Omega %*% M)
       dGdt <-  f*(M - G) - nu*G  - (Omega %*% G)
       dYdt <- f*q*kappa*(M - Y) - (Omega %*% Y)
@@ -114,8 +114,7 @@ dMYZdt.GeRM_dde <- function(t, y, pars, s){
         sigma_eip <- lagderiv(t = t-eip, nr = sigma_ix)
       }
 
-      Omega <- make_Omega(g, sigma, calK, nPatches)
-      Omega_eip <- make_Omega(g_eip, sigma_eip, calK, nPatches)
+      Omega_eip <- make_Omega_xde(g_eip, sigma_eip, mu, calK)
 
       dMdt <- Lambda - (Omega %*% M)
       dGdt <-  f*(M - G) - nu*G  - (Omega %*% G)
@@ -147,6 +146,8 @@ setup_MYZpar.GeRM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK
 #' @param g_par parameters to configure F_g
 #' @param sigma emigration rate
 #' @param sigma_par parameters to configure F_sigma
+#' @param mu emigration loss
+#' @param mu_par parameters to configure F_mu
 #' @param f feeding rate
 #' @param f_par parameters to configure F_f
 #' @param q human blood fraction
@@ -159,6 +160,7 @@ setup_MYZpar.GeRM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK
 make_MYZpar_GeRM_xde = function(nPatches, MYZopts=list(), EIPopts, calK,
                             g=1/12, g_par = list(),
                             sigma=1/8, sigma_par = list(),
+                            mu=0, mu_par = list(),
                             f=0.3, f_par = list(),
                             q=0.95, q_par = list(),
                             nu=1, nu_par = list(),
@@ -198,6 +200,13 @@ make_MYZpar_GeRM_xde = function(nPatches, MYZopts=list(), EIPopts, calK,
         class(MYZpar$sigma_par) <- "static"
       } else MYZpar$sigma_par <- sigma_par
 
+      MYZpar$mu <- checkIt(mu, pars$nPatches)
+      MYZpar$mu0 <- MYZpar$mu
+      if(length(mu_par) == 0){
+        MYZpar$mu_par <- list()
+        class(MYZpar$mu_par) <- "static"
+      } else MYZpar$mu_par <- mu_par
+
       MYZpar$f <- checkIt(f, pars$nPatches)
       MYZpar$f0 <- MYZpar$f
       if(length(f_par) == 0){
@@ -226,7 +235,11 @@ make_MYZpar_GeRM_xde = function(nPatches, MYZopts=list(), EIPopts, calK,
 
     MYZpar$calK <- calK
 
-    MYZpar$Omega <- make_Omega(g, sigma, calK, nPatches)
+    Omega_par <- list()
+    class(Omega_par) <- "static"
+    MYZpar$Omega_par <- Omega_par
+
+    MYZpar$Omega <- with(MYZpar, make_Omega_xde(g, sigma, mu, calK))
     MYZpar$Upsilon <- with(MYZpar, expm::expm(-Omega*eip))
 
     return(MYZpar)
@@ -354,6 +367,7 @@ make_indices_MYZ.GeRM_ode <- function(pars, s) {with(pars,{
 #' @param pars a [list]
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
+#' @param mu emigration loss
 #' @param calK mosquito dispersal matrix of dimensions `nPatches` by `nPatches`
 #' @param f feeding rate
 #' @param q human blood fraction
@@ -363,7 +377,7 @@ make_indices_MYZ.GeRM_ode <- function(pars, s) {with(pars,{
 #' @param solve_as is either `ode` to solve as an ode or `dde` to solve as a dde
 #' @return none
 #' @export
-make_parameters_MYZ_GeRM_xde <- function(pars, g, sigma, f, q, nu, eggsPerBatch, eip, calK, solve_as = 'dde') {
+make_parameters_MYZ_GeRM_xde <- function(pars, g, sigma, f, q, nu, mu, eggsPerBatch, eip, calK, solve_as = 'dde') {
   stopifnot(is.numeric(g), is.numeric(sigma), is.numeric(f), is.numeric(q), is.numeric(nu), is.numeric(eggsPerBatch))
 
   MYZpar <- list()
@@ -375,6 +389,7 @@ make_parameters_MYZ_GeRM_xde <- function(pars, g, sigma, f, q, nu, eggsPerBatch,
 
   MYZpar$g      <- checkIt(g, pars$nPatches)
   MYZpar$sigma  <- checkIt(sigma, pars$nPatches)
+  MYZpar$mu     <- checkIt(mu, pars$nPatches)
   MYZpar$f      <- checkIt(f, pars$nPatches)
   MYZpar$q      <- checkIt(q, pars$nPatches)
   MYZpar$nu     <- checkIt(nu, pars$nPatches)
@@ -383,6 +398,7 @@ make_parameters_MYZ_GeRM_xde <- function(pars, g, sigma, f, q, nu, eggsPerBatch,
   # Store as baseline values
   MYZpar$g0      <- MYZpar$g
   MYZpar$sigma0  <- MYZpar$sigma
+  MYZpar$mu0     <- MYZpar$mu
   MYZpar$f0      <- MYZpar$f
   MYZpar$q0      <- MYZpar$q
   MYZpar$nu0     <- MYZpar$nu

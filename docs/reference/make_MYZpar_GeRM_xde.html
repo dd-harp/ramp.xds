@@ -79,6 +79,9 @@
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
+      <a href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a>
+    </li>
+    <li>
       <a href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
     </li>
   </ul></li>
@@ -145,6 +148,8 @@
 <span>  g_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  sigma <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">8</span>,</span>
 <span>  sigma_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  mu <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  mu_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  f <span class="op">=</span> <span class="fl">0.3</span>,</span>
 <span>  f_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  q <span class="op">=</span> <span class="fl">0.95</span>,</span>
@@ -187,6 +192,14 @@
 
 <dt>sigma_par</dt>
 <dd><p>parameters to configure F_sigma</p></dd>
+
+
+<dt>mu</dt>
+<dd><p>emigration loss</p></dd>
+
+
+<dt>mu_par</dt>
+<dd><p>parameters to configure F_mu</p></dd>
 
 
 <dt>f</dt>
