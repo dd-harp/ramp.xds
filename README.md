@@ -1,4 +1,5 @@
-# ramp.xds (Extensible Dynamical Systems for mosquito-borne pathogens)
+# ramp.xds  
+## Extensible Dynamical Systems for RAMP  
 
 <!-- badges: start -->
 [![medRxiv](https://img.shields.io/badge/medRxiv-2022.11.07.22282044-brightgreen)](https://www.medrxiv.org/content/10.1101/2022.11.07.22282044v1)
