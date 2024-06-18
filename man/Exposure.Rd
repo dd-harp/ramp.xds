@@ -17,10 +17,7 @@ Exposure(t, y, pars)
 the function modifies \strong{pars} and returns it: the computed FoI are stored as \code{pars$FoI}
 }
 \description{
-This function translates the local daily entomological
-inoculation rate (dEIR), computed as one of the transmission terms
-into a measure of the daily force of infection (dFoI). The daily FoI
-is the sum of two terms: 1) a function \link{F_foi} computes the local dFoI;
-2) a function \link{travel_malaria} that computes the FoI resulting from
+Function that model the FoI or AR as a function of
+the local daily entomological inoculation rate (dEIR).
 exposure while traveling.
 }

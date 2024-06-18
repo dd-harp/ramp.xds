@@ -7,13 +7,13 @@
 #' @export
 dXdt.SIS_dts <- function(t, y, pars, i) {
 
-  ar <- 1-exp(-pars$FoI[[i]])
+  attack <- pars$AR[[i]]
 
   with(list_Xvars(y, pars, i),{
     H <- F_H(t, y, pars, i)
     with(pars$Xpar[[i]], {
 
-      St <- (1-ar)*S + r*I + dHdt(t, S, pars, i) + Births(t, H, pars, i)
+      St <- (1-attack)*S + r*I + dHdt(t, S, pars, i) + Births(t, H, pars, i)
       It <- (1-r)*I + ar*S + dHdt(t, I, pars, i)
 
 

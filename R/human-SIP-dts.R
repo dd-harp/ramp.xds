@@ -50,19 +50,15 @@ F_b.SIP_dts <- function(y, pars,i) {
 #' @export
 dXdt.SIP_dts <- function(t, y, pars, i){
 
-  ar <- 1-exp(-pars$FoI[[i]])
+  attack <- pars$AR[[i]]
 
   with(list_Xvars(y, pars, i),{
     H <- F_H(t, y, pars, i)
     with(pars$Xpar[[i]], {
 
-      St <- (1-ar)*S + eta*P + r*I
-      It <- (1-r)*I + ar*S*(1-rho)
-      Pt <- rho*ar*S + (1-eta)*P
-
-      St <- St - xi*St
-      It <- It - xi*It
-      Pt <- Pt + xi*It + xi*St
+      St <- (1-attack)*(S+r*I) + eta*P - xi*S
+      It <- (1-r)*I + attack*(1-rho)*(S+r*I) - xi*I
+      Pt <- xi*(S+I) + attack*rho*(S+r*I) + (1-eta)*P
 
       St <- dHdt(t, St, i) + Births(t, H, pars, i)
       It <- dHdt(t, It, i)

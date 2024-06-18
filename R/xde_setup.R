@@ -11,10 +11,12 @@ make_parameters_xde = function(solve_as='dde'){
   class(xde) <- xde
   pars$xde = xde
 
-  pars$MYZpar = list()
-  pars$Lpar = list()
-  pars$Xpar = list()
-  pars$Hpar = list()
+  xde_list = list()
+  class(xde_list) = "xde"
+  pars$MYZpar = xde_list
+  pars$Lpar = xde_list
+  pars$Xpar = xde_list
+  pars$Hpar = xde_list
   pars$vars = list()
 
   pars$Lambda = list()

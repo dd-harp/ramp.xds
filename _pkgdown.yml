@@ -5,8 +5,8 @@ navbar:
     href: reference/index.html
   - text: Articles
     menu:
-    - text: Understanding ramp.xde
-      href: articles/Understanding_ramp.xde.html
+    - text: Understanding ramp.xds
+      href: articles/Understanding_ramp.xds.html
     - text: Modular Forms for Disease Dynamics
       href: articles/modularity.html
     - text: 5-3-4 Spatial Example
@@ -113,18 +113,23 @@ reference:
     Methods to model the force of infection
   contents:
   - Exposure
+  - Exposure.xde
+  - Exposure.dts
   - F_foi
+  - F_ar
 - subtitle: Poisson Exposure
   desc: |
     Specialized methods the Poisson exposure model
   contents:
   - F_foi.pois
+  - F_ar.pois
   - setup_exposure_pois
 - subtitle: Negative Binomial Exposure
   desc: |
     Specialized methods the Negative Binomial exposure model
   contents:
   - F_foi.nb
+  - F_ar.nb
   - setup_exposure_nb
 - subtitle: Local Fraction
   desc: |
@@ -277,26 +282,6 @@ reference:
   - get_inits_MYZ.basicM_dts
   - update_inits_MYZ.basicM_dts
   - make_parameters_MYZ_basicM_dts
-- subtitle: ENBRQ_dts
-  desc: |
-    Specialized methods for ENBRQ_dts, a model of adult mosquito dynamics with no parasite infection dynamics.
-  contents:
-  - MBionomics.ENBRQ_dts
-  - F_fqZ.ENBRQ_dts
-  - F_fqM.ENBRQ_dts
-  - F_eggs.ENBRQ_dts
-  - dMYZdt.ENBRQ_dts
-  - setup_MYZpar.ENBRQ_dts
-  - setup_MYZinits.ENBRQ_dts
-  - make_MYZpar_ENBRQ_dts
-  - make_MYZinits_ENBRQ_dts
-  - list_MYZvars.ENBRQ_dts
-  - make_indices_MYZ.ENBRQ_dts
-  - parse_outputs_MYZ.ENBRQ_dts
-  - make_inits_MYZ_ENBRQ_dts
-  - get_inits_MYZ.ENBRQ_dts
-  - update_inits_MYZ.ENBRQ_dts
-  - make_parameters_MYZ_ENBRQ_dts
 - subtitle: RM_xde
   desc: |
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
@@ -432,24 +417,6 @@ reference:
   - get_inits_L.basicL_dts
   - update_inits_L.basicL_dts
   - make_parameters_L_basicL_dts
-- subtitle: stages_dts
-  desc: |
-    Specialized methods for a stages_dts competition model of aquatic mosquito dynamics.
-  contents:
-  - LBionomics.stages_dts
-  - F_alpha.stages_dts
-  - dLdt.stages_dts
-  - setup_Lpar.stages_dts
-  - setup_Linits.stages_dts
-  - make_Lpar_stages_dts
-  - make_Linits_stages_dts
-  - make_indices_L.stages_dts
-  - list_Lvars.stages_dts
-  - parse_outputs_L.stages_dts
-  - make_inits_L_stages_dts
-  - get_inits_L.stages_dts
-  - update_inits_L.stages_dts
-  - make_parameters_L_stages_dts
 - title: Mosquito Bionomics
   desc: |
     Methods to compute or update mosquito bionomic parameters
@@ -477,11 +444,6 @@ reference:
   - F_g.static
   - F_p.static
   - F_nu.static
-  - F_sigma.dddn
-  - F_f.dddn
-  - F_q.dddn
-  - F_p.dddn
-  - F_nu.dddn
   - F_sigma.BQS
   - F_nu.type2
   - F_f.type2
@@ -690,6 +652,8 @@ reference:
   - setup_travel_static
   - travel_malaria.foi
   - setup_travel_foi
+  - travel_malaria.ar
+  - setup_travel_ar
   - travel_malaria.eir
   - setup_travel_eir
 - subtitle: Visitors
