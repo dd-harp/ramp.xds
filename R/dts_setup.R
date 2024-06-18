@@ -8,10 +8,13 @@ make_parameters_dts = function(){
   pars = list()
   class(pars) <- "dts"
 
-  pars$MYZpar = list()
-  pars$Lpar = list()
-  pars$Xpar = list()
-  pars$Hpar = list()
+  dts_list = list()
+  class(dts_list) <- "dts"
+
+  pars$MYZpar = dts_list
+  pars$Lpar = dts_list
+  pars$Xpar = dts_list
+  pars$Hpar = dts_list
   pars$vars = list()
 
   pars$Lambda = list()

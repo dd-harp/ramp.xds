@@ -18,9 +18,9 @@ articles:
   modularity: modularity.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
   spat_metric: spat_metric.html
-  Understanding_exDE: Understanding_exDE.html
+  Understanding_ramp.xds: Understanding_ramp.xds.html
   vc_lemenach: vc_lemenach.html
-last_built: 2024-06-12T02:46Z
+last_built: 2024-06-18T23:12Z
 urls:
   reference: https://dd-harp.github.io/ramp.xde/reference
   article: https://dd-harp.github.io/ramp.xde/articles

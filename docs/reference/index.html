@@ -32,7 +32,7 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/Understanding_ramp.xde.html">Understanding ramp.xde</a>
+      <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
       <a href="../articles/modularity.html">Modular Forms for Disease Dynamics</a>
@@ -265,7 +265,19 @@
         </td>
         <td><p>Exposure and Infection</p></td>
       </tr><tr><td>
+          <p><code><a href="Exposure.xde.html">Exposure(<i>&lt;xde&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Exposure and Infection</p></td>
+      </tr><tr><td>
+          <p><code><a href="Exposure.dts.html">Exposure(<i>&lt;dts&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Exposure and Infection</p></td>
+      </tr><tr><td>
           <p><code><a href="F_foi.html">F_foi()</a></code> </p>
+        </td>
+        <td><p>A model for daily FoI as a function of the daily EIR.</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_ar.html">F_ar()</a></code> </p>
         </td>
         <td><p>A model for daily FoI as a function of the daily EIR.</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
@@ -274,6 +286,10 @@
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="F_foi.pois.html">F_foi(<i>&lt;pois&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>A Poisson model for the daily local FoI as a function of the daily EIR.</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_ar.pois.html">F_ar(<i>&lt;pois&gt;</i>)</a></code> </p>
         </td>
         <td><p>A Poisson model for the daily local FoI as a function of the daily EIR.</p></td>
       </tr><tr><td>
@@ -286,6 +302,10 @@
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="F_foi.nb.html">F_foi(<i>&lt;nb&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>The daily FoI as a function of the daily EIR under a negative binomial model of exposure.</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_ar.nb.html">F_ar(<i>&lt;nb&gt;</i>)</a></code> </p>
         </td>
         <td><p>The daily FoI as a function of the daily EIR under a negative binomial model of exposure.</p></td>
       </tr><tr><td>
@@ -793,74 +813,6 @@
         </td>
         <td><p>Make parameters for basicM_dts adult mosquito model</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="enbrq-dts">ENBRQ_dts <a href="#enbrq-dts" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Specialized methods for ENBRQ_dts, a model of adult mosquito dynamics with no parasite infection dynamics.</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="MBionomics.ENBRQ_dts.html">MBionomics(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Reset bloodfeeding and mortality rates to baseline</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_fqZ.ENBRQ_dts.html">F_fqZ(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>The net blood feeding rate of the infective mosquito population in a patch</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_fqM.ENBRQ_dts.html">F_fqM(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>The net blood feeding rate of the infective mosquito population in a patch</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_eggs.ENBRQ_dts.html">F_eggs(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Number of eggs laid by adult mosquitoes</p></td>
-      </tr><tr><td>
-          <p><code><a href="dMYZdt.ENBRQ_dts.html">dMYZdt(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Derivatives for adult mosquitoes</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_MYZpar.ENBRQ_dts.html">setup_MYZpar(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup MYZpar for the ENBRQ_dts model</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_MYZinits.ENBRQ_dts.html">setup_MYZinits(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup initial values for the ENBRQ_dts model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_MYZpar_ENBRQ_dts.html">make_MYZpar_ENBRQ_dts()</a></code> </p>
-        </td>
-        <td><p>Make parameters for ENBRQ_dts adult mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_MYZinits_ENBRQ_dts.html">make_MYZinits_ENBRQ_dts()</a></code> </p>
-        </td>
-        <td><p>Make inits for ENBRQ_dts adult mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="list_MYZvars.ENBRQ_dts.html">list_MYZvars(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Return the variables as a list</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.ENBRQ_dts.html">make_indices_MYZ(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Add indices for adult mosquitoes to parameter list</p></td>
-      </tr><tr><td>
-          <p><code><a href="parse_outputs_MYZ.ENBRQ_dts.html">parse_outputs_MYZ(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Parse the output of deSolve and return variables for the ENBRQ_dts model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_inits_MYZ_ENBRQ_dts.html">make_inits_MYZ_ENBRQ_dts()</a></code> </p>
-        </td>
-        <td><p>Make inits for ENBRQ_dts adult mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_inits_MYZ.ENBRQ_dts.html">get_inits_MYZ(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Return initial values as a vector</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_inits_MYZ.ENBRQ_dts.html">update_inits_MYZ(<i>&lt;ENBRQ_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Make inits for ENBRQ_dts adult mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_parameters_MYZ_ENBRQ_dts.html">make_parameters_MYZ_ENBRQ_dts()</a></code> </p>
-        </td>
-        <td><p>Make parameters for ENBRQ_dts adult mosquito model</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="rm-xde">RM_xde <a href="#rm-xde" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron &amp; Robert May (1982).</p>
         </th>
@@ -1317,66 +1269,6 @@
         </td>
         <td><p>Make parameters for basicL_dts competition aquatic mosquito model</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="stages-dts">stages_dts <a href="#stages-dts" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Specialized methods for a stages_dts competition model of aquatic mosquito dynamics.</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="LBionomics.stages_dts.html">LBionomics(<i>&lt;stages_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Reset aquatic parameters to baseline</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_alpha.stages_dts.html">F_alpha(<i>&lt;stages_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Number of newly emerging adults from each larval habitat</p></td>
-      </tr><tr><td>
-          <p><code><a href="dLdt.stages_dts.html">dLdt(<i>&lt;stages_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Derivatives for aquatic stage mosquitoes</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_Lpar.stages_dts.html">setup_Lpar(<i>&lt;stages_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup Lpar for the stages_dts model</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_Linits.stages_dts.html">setup_Linits(<i>&lt;stages_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup the stages_dts model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_Lpar_stages_dts.html">make_Lpar_stages_dts()</a></code> </p>
-        </td>
-        <td><p>Make parameters for stages_dts competition aquatic mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_Linits_stages_dts.html">make_Linits_stages_dts()</a></code> </p>
-        </td>
-        <td><p>Make inits for stages_dts competition aquatic mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_indices_L.stages_dts.html">make_indices_L(<i>&lt;stages_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Add indices for aquatic stage mosquitoes to parameter list</p></td>
-      </tr><tr><td>
-          <p><code><a href="list_Lvars.stages_dts.html">list_Lvars(<i>&lt;stages_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Return the variables as a list</p></td>
-      </tr><tr><td>
-          <p><code><a href="parse_outputs_L.stages_dts.html">parse_outputs_L(<i>&lt;stages_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Parse the variable names for the stages_dts model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_inits_L_stages_dts.html">make_inits_L_stages_dts()</a></code> </p>
-        </td>
-        <td><p>Make inits for stages_dts competition aquatic mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_inits_L.stages_dts.html">get_inits_L(<i>&lt;stages_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Return initial values as a vector</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_inits_L.stages_dts.html">update_inits_L(<i>&lt;stages_dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Update inits for the stages_dts aquatic mosquito competition model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_parameters_L_stages_dts.html">make_parameters_L_stages_dts()</a></code> </p>
-        </td>
-        <td><p>Make parameters for stages_dts competition aquatic mosquito model</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="mosquito-bionomics">Mosquito Bionomics <a href="#mosquito-bionomics" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Methods to compute or update mosquito bionomic parameters</p>
         </th>
@@ -1460,26 +1352,6 @@
           <p><code><a href="F_nu.static.html">F_nu(<i>&lt;static&gt;</i>)</a></code> </p>
         </td>
         <td><p>Static model for the egg laying rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_sigma.dddn.html">F_sigma(<i>&lt;dddn&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Dawn, day, dusk, night model for the human fraction</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_f.dddn.html">F_f(<i>&lt;dddn&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Dawn, day, dusk, night model for the blood feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_q.dddn.html">F_q(<i>&lt;dddn&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Dawn, day, dusk, night model for the human fraction</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_p.dddn.html">F_p(<i>&lt;dddn&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Dawn, day, dusk, night model for the human fraction</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_nu.dddn.html">F_nu(<i>&lt;dddn&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Dawn, day, dusk, night model for the human fraction</p></td>
       </tr><tr><td>
           <p><code><a href="F_sigma.BQS.html">F_sigma(<i>&lt;BQS&gt;</i>)</a></code> </p>
         </td>
@@ -2144,6 +2016,14 @@
           <p><code><a href="setup_travel_foi.html">setup_travel_foi()</a></code> </p>
         </td>
         <td><p>Set up parameters and function for the FoI-based travel_malaria model</p></td>
+      </tr><tr><td>
+          <p><code><a href="travel_malaria.ar.html">travel_malaria(<i>&lt;ar&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>A model for the travel Attack Rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_travel_ar.html">setup_travel_ar()</a></code> </p>
+        </td>
+        <td><p>Set up parameters and functions to compute the Attack-Rate for a travel_malaria model</p></td>
       </tr><tr><td>
           <p><code><a href="travel_malaria.eir.html">travel_malaria(<i>&lt;eir&gt;</i>)</a></code> </p>
         </td>
