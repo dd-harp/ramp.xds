@@ -30,7 +30,6 @@ make_parameters_dts = function(){
   pars$ix$MYZ = list()
   pars$ix$L = list()
 
-  pars$AR = list()
 
   pars$outputs = list()
   pars$compute = list()
@@ -47,7 +46,9 @@ make_parameters_dts = function(){
   pars <- setup_visitors_static(pars)
   pars <- setup_resources_null(pars)
   pars <- setup_travel_static(pars)
+
   pars <- setup_exposure_pois(pars)
+  pars$AR = list()
 
   return(pars)
 }
