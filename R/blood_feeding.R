@@ -46,8 +46,6 @@ setup_BFpar_static <- function(pars){
   pars$eir = list()
   pars$eir[[1]] = list()
   pars$EIR = list()
-  pars$FoI = list()
-  pars$AR = list()
 
   pars$ni = list()
   pars$ni[[1]] = list()

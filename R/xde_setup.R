@@ -32,6 +32,8 @@ make_parameters_xde = function(solve_as='dde'){
   pars$ix$MYZ = list()
   pars$ix$L = list()
 
+  pars$FoI = list()
+
   pars$outputs = list()
   pars$compute = list()
 
