@@ -9,6 +9,7 @@ dts_setup(
   MYZname = "RM_dts",
   Xname = "SIS_dts",
   Lname = "trace",
+  Dday = list(Xlump = 1, Xsub = 1, MYZlump = 1, MYZsub = 1, Llump = 1, Lsub = 1),
   nPatches = 1,
   nVectors = 1,
   nHosts = 1,
@@ -37,6 +38,8 @@ dts_setup(
 \item{Xname}{is a character string defining a X model}
 
 \item{Lname}{is a character string defining a L model}
+
+\item{Dday}{is a list of six integer values to set up mis-matched runtime time steps}
 
 \item{nPatches}{is the number of patches}
 

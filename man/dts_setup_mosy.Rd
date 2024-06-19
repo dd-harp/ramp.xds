@@ -8,6 +8,7 @@ dts_setup_mosy(
   modelName = "unnamed",
   MYZname = "basicM",
   Lname = "basic",
+  Dday = list(MYZlump = 1, MYZsub = 1, Llump = 1, Lsub = 1),
   nPatches = 1,
   nVectors = 1,
   membership = 1,
@@ -25,6 +26,8 @@ dts_setup_mosy(
 \item{MYZname}{is a character string defining a MYZ model}
 
 \item{Lname}{is a character string defining a L model}
+
+\item{Dday}{is a list of four integer values to set up mis-matched runtime time steps}
 
 \item{nPatches}{is the number of patches}
 

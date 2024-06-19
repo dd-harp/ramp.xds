@@ -45,3 +45,37 @@ Exposure.dts <- function(t, y, pars){
   return(pars)
 }
 
+#' @title A model for daily FoI as a function of the daily EIR.
+#' @description This function compute the daily local FoI as a function
+#' of the daily EIR and effects of partial immunity.
+#' It is computed based on a probabilistic model of exposure and
+#' possibly including environmental heterogeneity. If a model of human / host
+#' infection has terms that describe partial immunity, *e.g.* affecting
+#' pre-erythrocytic immunity to malaria called by [F_b], those effects are implemented here.
+#' The method dispatches on the type of `pars$FOIpar`.
+#' @param eir the daily eir for each stratum
+#' @param b the probability of infection, per bite
+#' @param pars the model object as a [list]
+#' @return the daily, local force of infection as a [numeric] vector
+#' @export
+F_foi <- function(eir, b, pars){
+  UseMethod("F_foi", pars$FOIpar)
+}
+
+
+#' @title A model for daily FoI as a function of the daily EIR.
+#' @description This function compute the daily local FoI as a function
+#' of the daily EIR and effects of partial immunity.
+#' It is computed based on a probabilistic model of exposure and
+#' possibly including environmental heterogeneity. If a model of human / host
+#' infection has terms that describe partial immunity, *e.g.* affecting
+#' pre-erythrocytic immunity to malaria called by [F_b], those effects are implemented here.
+#' The method dispatches on the type of `pars$FOIpar`.
+#' @param eir the daily eir for each stratum
+#' @param b the probability of infection, per bite
+#' @param pars the model object as a [list]
+#' @return the daily, local force of infection as a [numeric] vector
+#' @export
+F_ar <- function(eir, b, pars){
+  UseMethod("F_ar", pars$FOIpar)
+}

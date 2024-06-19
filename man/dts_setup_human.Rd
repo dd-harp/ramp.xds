@@ -7,6 +7,7 @@
 dts_setup_human(
   modelName = "unnamed",
   Xname = "SIS",
+  Dday = list(Xlump = 1, Xsub = 1),
   HPop = 1000,
   MYZopts = list(),
   Xopts = list(),
@@ -22,6 +23,8 @@ dts_setup_human(
 \item{modelName}{is a name for the model (arbitrary)}
 
 \item{Xname}{is a character string defining a X model}
+
+\item{Dday}{is a list of two integer values to set up mis-matched runtime time steps}
 
 \item{HPop}{is the number of humans in each patch}
 

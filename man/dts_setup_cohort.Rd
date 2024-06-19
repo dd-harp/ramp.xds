@@ -10,6 +10,7 @@ dts_setup_cohort(
   scale = 1,
   modelName = "unnamed",
   Xname = "SIS",
+  Dday = c(Xlump = 1, Xsub = 1),
   HPop = 1000,
   searchB = 1,
   Xopts = list()
@@ -25,6 +26,8 @@ dts_setup_cohort(
 \item{modelName}{is a name for the model (arbitrary)}
 
 \item{Xname}{is a character string defining a X model}
+
+\item{Dday}{is a list of two integer values to set up mis-matched runtime time steps}
 
 \item{HPop}{is the number of humans in each patch}
 
