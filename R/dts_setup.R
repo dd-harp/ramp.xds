@@ -58,6 +58,7 @@ make_parameters_dts = function(){
 #' @param MYZname is a character string defining a MYZ model
 #' @param Xname is a character string defining a X model
 #' @param Lname is a character string defining a L model
+#' @param Dday is a list of six integer values to set up mis-matched runtime time steps
 #' @param nPatches is the number of patches
 #' @param nVectors is the number of vector species
 #' @param nHosts is the number of vertebrate host species
@@ -84,6 +85,7 @@ dts_setup = function(modelName = "unnamed",
                      MYZname = "RM_dts",
                      Xname = "SIS_dts",
                      Lname = "trace",
+                     Dday = list(Xlump=1, Xsub=1, MYZlump=1, MYZsub=1, Llump=1, Lsub=1),
 
                      # Model Structure
                      nPatches = 1,
@@ -122,6 +124,7 @@ dts_setup = function(modelName = "unnamed",
   pars$Xname = Xname
   pars$MYZname = MYZname
   pars$Lname = Lname
+  pars$Dday = Dday
 
   # Fixed Structural Elements
   pars$nPatches = nPatches
@@ -167,6 +170,7 @@ dts_setup = function(modelName = "unnamed",
 #' @param modelName is a name for the model (arbitrary)
 #' @param MYZname is a character string defining a MYZ model
 #' @param Lname is a character string defining a L model
+#' @param Dday is a list of four integer values to set up mis-matched runtime time steps
 #' @param nPatches is the number of patches
 #' @param nVectors is the number of vector species
 #' @param membership is a vector that describes the patch where each aquatic habitat is found
@@ -183,6 +187,7 @@ dts_setup_mosy = function(modelName = "unnamed",
                      # Dynamical Components
                      MYZname = "basicM",
                      Lname = "basic",
+                     Dday = list(MYZlump=1, MYZsub=1, Llump=1, Lsub=1),
 
                      # Model Structure
                      nPatches = 1,
@@ -209,6 +214,7 @@ dts_setup_mosy = function(modelName = "unnamed",
   pars$modelName = modelName
   pars$MYZname = MYZname
   pars$Lname = Lname
+  pars$Dday = Dday
 
   # Structure
   pars$nPatches = nPatches
@@ -241,6 +247,7 @@ dts_setup_mosy = function(modelName = "unnamed",
 #' @param nHabitats is the number of habitats
 #' @param nVectors is the number of vector species
 #' @param Lname is a character string defining a L model
+#' @param Dday is a list of two integer values to set up mis-matched runtime time steps
 #' @param Lopts a list to configure the L model
 #' @param MYZopts a list to configure F_eggs from the Gtrace model
 #' @param LSMname is a character string defining a LSM model
@@ -250,6 +257,7 @@ dts_setup_aquatic = function(modelName = "unnamed",
                      nHabitats = 1,
                      nVectors = 1,
                      Lname = "basic",
+                     Dday = list(Llump=1, Lsub=1),
                      Lopts = list(),
                      MYZopts = list(),
                      LSMname = "null"){
@@ -285,6 +293,7 @@ dts_setup_aquatic = function(modelName = "unnamed",
 #' @title Set up a model for dts_diffeqn_human
 #' @param modelName is a name for the model (arbitrary)
 #' @param Xname is a character string defining a X model
+#' @param Dday is a list of two integer values to set up mis-matched runtime time steps
 #' @param HPop is the number of humans in each patch
 #' @param MYZopts a list to configure the MYZ model
 #' @param Xopts a list to configure the X model
@@ -300,6 +309,7 @@ dts_setup_human = function(modelName = "unnamed",
 
                      # Dynamical Components
                      Xname = "SIS",
+                     Dday = list(Xlump=1, Xsub=1),
 
                      # Model Structure
                      HPop=1000,
@@ -327,6 +337,7 @@ dts_setup_human = function(modelName = "unnamed",
   pars$modelName = modelName
   pars$Xname = Xname
   pars$MYZname = "Ztrace"
+  pars$Dday = Dday
 
   # Structure
   nStrata = length(HPop)
@@ -354,6 +365,7 @@ dts_setup_human = function(modelName = "unnamed",
 #' @param scale the birthday of a cohort
 #' @param modelName is a name for the model (arbitrary)
 #' @param Xname is a character string defining a X model
+#' @param Dday is a list of two integer values to set up mis-matched runtime time steps
 #' @param HPop is the number of humans in each patch
 #' @param searchB is a vector of search weights for blood feeding
 #' @param Xopts a list to configure the X model
@@ -364,6 +376,7 @@ dts_setup_cohort = function(F_eir, bday=0, scale=1,
 
                            # Dynamical Components
                            Xname = "SIS",
+                           Dday = c(Xlump=1, Xsub=1),
 
                            # Model Structure
                            HPop=1000,
@@ -384,6 +397,7 @@ dts_setup_cohort = function(F_eir, bday=0, scale=1,
 
   pars$modelName = modelName
   pars$Xname = Xname
+  pars$Dday = Dday
 
   pars$F_eir = F_eir
   pars$EIRpar = list()
