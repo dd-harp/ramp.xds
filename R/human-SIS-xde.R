@@ -8,12 +8,12 @@
 dXdt.SIS_xde <- function(t, y, pars, i) {
 
   foi <- pars$FoI[[i]]
-
+  Hpar <- pars$Hpar[[i]]
   with(list_Xvars(y, pars, i),{
     H <- F_H(t, y, pars, i)
     with(pars$Xpar[[i]], {
-      dS <- Births(t, H, pars, i) - foi*S + r*I + dHdt(t, S, pars, i)
-      dI <- foi*S - r*I + dHdt(t, I, pars, i)
+      dS <- Births(t, H, Hpar) - foi*S + r*I + dHdt(t, S, Hpar)
+      dI <- foi*S - r*I + dHdt(t, I, Hpar)
       return(c(dS, dI))
     })
   })

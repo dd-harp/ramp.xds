@@ -4,16 +4,14 @@
 \alias{dHdt}
 \title{Derivatives of demographic changes in human populations}
 \usage{
-dHdt(t, y, pars, i)
+dHdt(t, y, Hpar)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
-
-\item{i}{the index of the host species}
+\item{Hpar}{a \link{list}}
 }
 \value{
 see help pages for specific methods

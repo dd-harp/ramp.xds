@@ -54,12 +54,12 @@ dXdt.SIP_xde <- function(t, y, pars, i){
 
   with(list_Xvars(y, pars, i),{
     H <- F_H(t, y, pars, i)
+    Hpar <- pars$Hpar[[i]]
+    with(pars$Xpar[[i]], {
 
-   with(pars$Xpar[[i]], {
-
-      dS <- Births(t, H, pars, i)-foi*S -xi*S + r*I + eta*P + dHdt(t, S, pars, i)
-      dI <- (1-rho)*foi*S - (r+xi)*I + dHdt(t, I, pars, i)
-      dP <- rho*foi*S + xi*(S+I) - eta*P + dHdt(t, P, pars, i)
+      dS <- Births(t, H, Hpar) - foi*S -xi*S + r*I + eta*P + dHdt(t, S, Hpar)
+      dI <- (1-rho)*foi*S - (r+xi)*I + dHdt(t, I, Hpar)
+      dP <- rho*foi*S + xi*(S+I) - eta*P + dHdt(t, P, Hpar)
 
       return(c(dS, dI, dP))
     })
