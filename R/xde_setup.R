@@ -137,7 +137,7 @@ xde_setup = function(modelName = "unnamed",
   # Adult Mosquito Dynamics
   calK = make_calK(nPatches, calK, calKopts)
 
-  pars = setup_MYZpar(MYZname, pars, 1, EIPopts, MYZopts, calK)
+  pars = xde_setup_MYZpar(MYZname, pars, 1, EIPopts, MYZopts, calK)
   pars = setup_MYZinits(pars, 1, MYZopts)
 
   # Human Demography
@@ -150,7 +150,7 @@ xde_setup = function(modelName = "unnamed",
   pars = setup_Xinits(pars, 1, Xopts)
 
   # Aquatic Mosquito Dynamics
-  pars = setup_Lpar(Lname, pars, 1, Lopts)
+  pars = xde_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
   # Egg Laying
   pars = setup_EggLaying_static(pars, 1, searchQ)
@@ -223,11 +223,11 @@ xde_setup_mosy = function(modelName = "unnamed",
 
   # Dynamics
   calK = make_calK(nPatches, calK, calKopts)
-  pars = setup_MYZpar(MYZname, pars, 1, EIPopts=list(), MYZopts, calK)
+  pars = xde_setup_MYZpar(MYZname, pars, 1, EIPopts=list(), MYZopts, calK)
   pars = setup_MYZinits(pars, 1, MYZopts)
 
   # Aquatic Mosquito Dynamics
-  pars = setup_Lpar(Lname, pars, 1, Lopts)
+  pars = xde_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
   pars = setup_EggLaying_simple(pars, 1, searchQ)
 
@@ -267,14 +267,14 @@ xde_setup_aquatic = function(modelName = "unnamed",
   pars$Lname = Lname
 
   pars$nVectors = nVectors
-  pars = setup_MYZpar("Gtrace", pars, 1, EIPopts=list(), MYZopts, calK=NULL)
+  pars = xde_setup_MYZpar("Gtrace", pars, 1, EIPopts=list(), MYZopts, calK=NULL)
 
   pars$nHabitats = nHabitats
   membership = 1:nHabitats
   pars$membership = membership
   pars$calN = make_calN(pars$nHabitats, pars$membership)
   searchQ = rep(1, nHabitats)
-  pars = setup_Lpar(Lname, pars, 1, Lopts)
+  pars = xde_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
 
   pars <- setup_lsm_null(pars)
@@ -342,7 +342,7 @@ xde_setup_human = function(modelName = "unnamed",
   pars = make_TimeSpent(pars, 1, TimeSpent, TimeSpentOpts)
 
   # Dynamics
-  pars = setup_MYZpar("Ztrace", pars, 1, EIPopts=list(), MYZopts, calK=NULL)
+  pars = xde_setup_MYZpar("Ztrace", pars, 1, EIPopts=list(), MYZopts, calK=NULL)
 
   pars = xde_setup_Xpar(Xname, pars, 1, Xopts)
   pars = setup_Xinits(pars, 1, Xopts)

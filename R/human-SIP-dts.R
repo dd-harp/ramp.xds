@@ -44,11 +44,11 @@ F_b.SIP_dts <- function(y, pars,i) {
 }
 
 #' @title Derivatives for human population
-#' @description Implements [dXdt] for the SIP_dts model.
-#' @inheritParams dXdt
+#' @description Implements [DT_Xt] for the SIP_dts model.
+#' @inheritParams DT_Xt
 #' @return a [numeric] vector
 #' @export
-dXdt.SIP_dts <- function(t, y, pars, i){
+DT_Xt.SIP_dts <- function(t, y, pars, i){
 
   attack <- pars$AR[[i]]
 

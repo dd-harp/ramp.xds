@@ -16,8 +16,8 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
-library(ramp.xde)
-#devtools::load_all()
+#library(ramp.xde)
+devtools::load_all()
 ```
 
 In this vignette, we present a model for the dynamics of malaria infection in adult mosquito populations. We call it a *Ross-Macdonald* model because it makes the same basic assumptions as the model that Macdonald analyzed in 1952. While that model was developed using differential equations, the equations we describe herein are difference equations.  

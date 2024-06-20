@@ -72,6 +72,18 @@ dMYZdt <- function(t, y, pars, s) {
   UseMethod("dMYZdt", pars$MYZpar[[s]])
 }
 
+#' @title Derivatives for adult mosquitoes
+#' @description This method dispatches on the type of `pars$MYZpar`.
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars a [list]
+#' @param s the species index
+#' @return the derivatives a [vector]
+#' @export
+DT_MYZt <- function(t, y, pars, s) {
+  UseMethod("DT_MYZt", pars$MYZpar[[s]])
+}
+
 #' @title Return the variables as a list
 #' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
 #' @param y the variables
@@ -93,9 +105,24 @@ list_MYZvars <- function(y, pars, s) {
 #' @param calK is a [matrix]
 #' @return [list]
 #' @export
-setup_MYZpar = function(MYZname, pars, s, EIPopts, MYZopts=list(),  calK=diag(1)){
+xde_setup_MYZpar = function(MYZname, pars, s, EIPopts, MYZopts=list(),  calK=diag(1)){
   class(MYZname) <- MYZname
-  UseMethod("setup_MYZpar", MYZname)
+  UseMethod("xde_setup_MYZpar", MYZname)
+}
+
+#' @title A function to set up adult mosquito models
+#' @description This method dispatches on `MYZname`.
+#' @param MYZname the name of the model
+#' @param pars a [list]
+#' @param s the species index
+#' @param EIPopts is a [list]
+#' @param MYZopts a [list]
+#' @param calK is a [matrix]
+#' @return [list]
+#' @export
+dts_setup_MYZpar = function(MYZname, pars, s, EIPopts, MYZopts=list(),  calK=diag(1)){
+  class(MYZname) <- MYZname
+  UseMethod("dts_setup_MYZpar", MYZname)
 }
 
 #' @title A function to set up adult mosquito models

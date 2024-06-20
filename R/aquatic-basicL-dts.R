@@ -28,11 +28,11 @@ F_alpha.basicL_dts <- function(t, y, pars, s) {
 }
 
 #' @title Derivatives for aquatic stage mosquitoes
-#' @description Implements [dLdt] for the basicL_dts competition model.
-#' @inheritParams dLdt
+#' @description Implements [DT_Lt] for the basicL_dts competition model.
+#' @inheritParams DT_Lt
 #' @return a [numeric] vector
 #' @export
-dLdt.basicL_dts <- function(t, y, pars, s) {
+DT_Lt.basicL_dts <- function(t, y, pars, s) {
   eta <- pars$eggs_laid[[s]]
   with(list_Lvars(y, pars, s),{
     L <- y[L_ix]
@@ -44,11 +44,11 @@ dLdt.basicL_dts <- function(t, y, pars, s) {
 }
 
 #' @title Setup Lpar for the basicL_dts model
-#' @description Implements [setup_Lpar] for the basicL_dts model
-#' @inheritParams setup_Lpar
+#' @description Implements [dts_setup_Lpar] for the basicL_dts model
+#' @inheritParams dts_setup_Lpar
 #' @return a [list] vector
 #' @export
-setup_Lpar.basicL_dts = function(Lname, pars, s, Lopts=list()){
+dts_setup_Lpar.basicL_dts = function(Lname, pars, s, Lopts=list()){
   pars$Lpar[[s]] = make_Lpar_basicL_dts(pars$nHabitats, Lopts)
   return(pars)
 }

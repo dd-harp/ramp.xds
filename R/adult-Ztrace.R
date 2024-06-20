@@ -49,12 +49,32 @@ dMYZdt.Ztrace <- function(t, y, pars, s){
   numeric(0)
 }
 
-#' @title Setup the Ztrace model
-#' @description Implements [setup_MYZpar] for the Ztrace model
-#' @inheritParams setup_MYZpar
+#' @title Derivatives for aquatic stage mosquitoes
+#' @description Implements [DT_MYZt] for the Ztrace (forced emergence) model.
+#' @inheritParams DT_MYZt
+#' @return a [numeric] vector
+#' @export
+DT_MYZt.Ztrace <- function(t, y, pars, s){
+  numeric(0)
+}
+
+#' @title xde_setup the Ztrace model
+#' @description Implements [xde_setup_MYZpar] for the Ztrace model
+#' @inheritParams xde_setup_MYZpar
 #' @return a [list] vector
 #' @export
-setup_MYZpar.Ztrace = function(MYZname, pars, s, EIPopts, MYZopts=NULL, calK=NULL){
+xde_setup_MYZpar.Ztrace = function(MYZname, pars, s, EIPopts, MYZopts=NULL, calK=NULL){
+  pars$MYZpar[[s]] = make_MYZpar_Ztrace(pars, MYZopts)
+  return(pars)
+}
+
+
+#' @title dts_setup the Ztrace model
+#' @description Implements [dts_setup_MYZpar] for the Ztrace model
+#' @inheritParams dts_setup_MYZpar
+#' @return a [list] vector
+#' @export
+dts_setup_MYZpar.Ztrace = function(MYZname, pars, s, EIPopts, MYZopts=NULL, calK=NULL){
   pars$MYZpar[[s]] = make_MYZpar_Ztrace(pars, MYZopts)
   return(pars)
 }

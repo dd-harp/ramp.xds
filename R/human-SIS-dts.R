@@ -1,11 +1,11 @@
 
 
 #' @title Derivatives for human population
-#' @description Implements [dXdt] for the SIS_dts model, no demography.
-#' @inheritParams dXdt
+#' @description Implements [DT_Xt] for the SIS_dts model, no demography.
+#' @inheritParams DT_Xt
 #' @return a [numeric] vector
 #' @export
-dXdt.SIS_dts <- function(t, y, pars, i) {
+DT_Xt.SIS_dts <- function(t, y, pars, i) {
 
   attack <- pars$AR[[i]]
 

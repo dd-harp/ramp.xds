@@ -167,7 +167,9 @@ reference:
   - F_tau
   - F_eggs
   - dMYZdt
-  - setup_MYZpar
+  - DT_MYZt
+  - xde_setup_MYZpar
+  - dts_setup_MYZpar
   - setup_MYZinits
   - list_MYZvars
   - make_indices_MYZ
@@ -214,7 +216,9 @@ reference:
   - F_fqM.Ztrace
   - F_eggs.Ztrace
   - dMYZdt.Ztrace
-  - setup_MYZpar.Ztrace
+  - DT_MYZt.Ztrace
+  - xde_setup_MYZpar.Ztrace
+  - dts_setup_MYZpar.Ztrace
   - setup_MYZinits.Ztrace
   - make_MYZpar_Ztrace
   - make_indices_MYZ.Ztrace
@@ -232,9 +236,9 @@ reference:
   - F_fqM.Gtrace
   - F_eggs.Gtrace
   - dMYZdt.Gtrace
-  - setup_MYZpar.Gtrace
-  - setup_MYZinits.Gtrace
-  - setup_MYZpar.Gtrace
+  - DT_MYZt.Gtrace
+  - xde_setup_MYZpar.Gtrace
+  - dts_setup_MYZpar.Gtrace
   - setup_MYZinits.Gtrace
   - make_MYZpar_Gtrace
   - make_indices_MYZ.Gtrace
@@ -252,7 +256,7 @@ reference:
   - F_fqM.basicM_xde
   - F_eggs.basicM_xde
   - dMYZdt.basicM_xde
-  - setup_MYZpar.basicM_xde
+  - xde_setup_MYZpar.basicM_xde
   - setup_MYZinits.basicM_xde
   - make_MYZpar_basicM_xde
   - make_MYZinits_basicM_xde
@@ -270,8 +274,8 @@ reference:
   - F_fqZ.basicM_dts
   - F_fqM.basicM_dts
   - F_eggs.basicM_dts
-  - dMYZdt.basicM_dts
-  - setup_MYZpar.basicM_dts
+  - DT_MYZt.basicM_dts
+  - dts_setup_MYZpar.basicM_dts
   - setup_MYZinits.basicM_dts
   - make_MYZpar_basicM_dts
   - make_MYZinits_basicM_dts
@@ -292,7 +296,7 @@ reference:
   - F_eggs.RM_xde
   - dMYZdt.RM_ode
   - dMYZdt.RM_dde
-  - setup_MYZpar.RM_xde
+  - xde_setup_MYZpar.RM_xde
   - setup_MYZinits.RM_xde
   - make_MYZpar_RM_xde
   - make_MYZinits_RM_ode
@@ -317,7 +321,7 @@ reference:
   - F_eggs.GeRM_xde
   - dMYZdt.GeRM_ode
   - dMYZdt.GeRM_dde
-  - setup_MYZpar.GeRM_xde
+  - xde_setup_MYZpar.GeRM_xde
   - setup_MYZinits.GeRM_xde
   - make_MYZpar_GeRM_xde
   - make_MYZinits_GeRM_ode
@@ -340,8 +344,8 @@ reference:
   - F_fqZ.RM_dts
   - F_fqM.RM_dts
   - F_eggs.RM_dts
-  - dMYZdt.RM_dts
-  - setup_MYZpar.RM_dts
+  - DT_MYZt.RM_dts
+  - dts_setup_MYZpar.RM_dts
   - setup_MYZinits.RM_dts
   - list_MYZvars.RM_dts
   - make_MYZpar_RM_dts
@@ -359,7 +363,9 @@ reference:
   - LBionomics
   - F_alpha
   - dLdt
-  - setup_Lpar
+  - DT_Lt
+  - xde_setup_Lpar
+  - dts_setup_Lpar
   - setup_Linits
   - list_Lvars
   - make_indices_L
@@ -373,7 +379,9 @@ reference:
   - LBionomics.trace
   - F_alpha.trace
   - dLdt.trace
-  - setup_Lpar.trace
+  - DT_Lt.trace
+  - xde_setup_Lpar.trace
+  - dts_setup_Lpar.trace
   - setup_Linits.trace
   - make_Lpar_trace
   - make_indices_L.trace
@@ -389,7 +397,7 @@ reference:
   - LBionomics.basicL_xde
   - F_alpha.basicL_xde
   - dLdt.basicL_xde
-  - setup_Lpar.basicL_xde
+  - xde_setup_Lpar.basicL_xde
   - setup_Linits.basicL_xde
   - make_Lpar_basicL_xde
   - make_Linits_basicL_xde
@@ -405,8 +413,8 @@ reference:
   contents:
   - LBionomics.basicL_dts
   - F_alpha.basicL_dts
-  - dLdt.basicL_dts
-  - setup_Lpar.basicL_dts
+  - DT_Lt.basicL_dts
+  - dts_setup_Lpar.basicL_dts
   - setup_Linits.basicL_dts
   - make_Lpar_basicL_dts
   - make_Linits_basicL_dts
@@ -462,10 +470,12 @@ reference:
     Generic methods for the dynamical component that handles human infection dynamics, immunity, disease and transmission
   contents:
   - dXdt
+  - DT_Xt
   - setup_Xinits
   - make_indices_X
   - list_Xvars
-  - setup_Xpar
+  - dts_setup_Xpar
+  - xde_setup_Xpar
   - F_X
   - F_H
   - F_b
@@ -484,7 +494,9 @@ reference:
   - F_pr.trace
   - F_b.trace
   - dXdt.trace
-  - setup_Xpar.trace
+  - DT_Xt.trace
+  - dts_setup_Xpar.trace
+  - xde_setup_Xpar.trace
   - setup_Xinits.trace
   - make_Xpar_trace
   - make_indices_X.trace
@@ -502,7 +514,7 @@ reference:
   - setup_Xinits.hMoI_xde
   - make_indices_X.hMoI_xde
   - make_Xpar_hMoI_xde
-  - setup_Xpar.hMoI_xde
+  - xde_setup_Xpar.hMoI_xde
   - F_X.hMoI_xde
   - F_H.hMoI_xde
   - F_b.hMoI_xde
@@ -523,7 +535,7 @@ reference:
   - make_indices_X.SIS_xde
   - list_Xvars.SIS_xde
   - make_Xpar_SIS_xde
-  - setup_Xpar.SIS_xde
+  - xde_setup_Xpar.SIS_xde
   - F_X.SIS_xde
   - F_H.SIS_xde
   - F_pr.SIS_xde
@@ -540,13 +552,13 @@ reference:
   desc: |
     Specialized methods for the SIS_dts (Susceptible-Infected-Susceptible) model of human dynamics.
   contents:
-  - dXdt.SIS_dts
+  - DT_Xt.SIS_dts
   - make_Xinits_SIS_dts
   - setup_Xinits.SIS_dts
   - make_indices_X.SIS_dts
   - list_Xvars.SIS_dts
   - make_Xpar_SIS_dts
-  - setup_Xpar.SIS_dts
+  - dts_setup_Xpar.SIS_dts
   - F_X.SIS_dts
   - F_H.SIS_dts
   - F_pr.SIS_dts
@@ -569,7 +581,7 @@ reference:
   - make_indices_X.SIP_xde
   - list_Xvars.SIP_xde
   - make_Xpar_SIP_xde
-  - setup_Xpar.SIP_xde
+  - xde_setup_Xpar.SIP_xde
   - F_X.SIP_xde
   - F_H.SIP_xde
   - F_pr.SIP_xde
@@ -586,13 +598,13 @@ reference:
   desc: |
     Specialized methods for the SIP_dts (Susceptible-Infected-Prophylaxis) model of human dynamics.
   contents:
-  - dXdt.SIP_dts
+  - DT_Xt.SIP_dts
   - make_Xinits_SIP_dts
   - setup_Xinits.SIP_dts
   - make_indices_X.SIP_dts
   - list_Xvars.SIP_dts
   - make_Xpar_SIP_dts
-  - setup_Xpar.SIP_dts
+  - dts_setup_Xpar.SIP_dts
   - F_X.SIP_dts
   - F_H.SIP_dts
   - F_pr.SIP_dts

@@ -128,14 +128,15 @@ dMYZdt.GeRM_dde <- function(t, y, pars, s){
 }
 
 #' @title Setup MYZpar for the GeRM_xde model
-#' @description Implements [setup_MYZpar] for the GeRM_xde model
-#' @inheritParams setup_MYZpar
+#' @description Implements [xde_setup_MYZpar] for the GeRM_xde model
+#' @inheritParams xde_setup_MYZpar
 #' @return a [list] vector
 #' @export
-setup_MYZpar.GeRM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
+xde_setup_MYZpar.GeRM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
   pars$MYZpar[[s]] = make_MYZpar_GeRM_xde(pars$nPatches, MYZopts, EIPopts, calK)
   return(pars)
 }
+
 
 #' @title Make parameters for GeRM_xde ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer

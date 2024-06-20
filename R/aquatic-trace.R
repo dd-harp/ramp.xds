@@ -27,12 +27,31 @@ dLdt.trace <- function(t, y, pars, s) {
   numeric(0)
 }
 
-#' @title Setup Lpar for the trace model
-#' @description Implements [setup_Lpar] for the trace model
-#' @inheritParams setup_Lpar
+#' @title Derivatives for aquatic stage mosquitoes
+#' @description Implements [DT_Lt] for the trace (forced emergence) model.
+#' @inheritParams DT_Lt
+#' @return a [numeric] vector
+#' @export
+DT_Lt.trace <- function(t, y, pars, s) {
+  numeric(0)
+}
+
+#' @title xde_setup Lpar for the trace model
+#' @description Implements [xde_setup_Lpar] for the trace model
+#' @inheritParams xde_setup_Lpar
 #' @return a [list] vector
 #' @export
-setup_Lpar.trace = function(Lname, pars, s, Lopts=list()){
+xde_setup_Lpar.trace = function(Lname, pars, s, Lopts=list()){
+  pars$Lpar[[s]] = make_Lpar_trace(pars$nHabitats, Lopts)
+  return(pars)
+}
+
+#' @title dts_setup Lpar for the trace model
+#' @description Implements [dts_setup_Lpar] for the trace model
+#' @inheritParams dts_setup_Lpar
+#' @return a [list] vector
+#' @export
+dts_setup_Lpar.trace = function(Lname, pars, s, Lopts=list()){
   pars$Lpar[[s]] = make_Lpar_trace(pars$nHabitats, Lopts)
   return(pars)
 }

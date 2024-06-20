@@ -45,6 +45,14 @@ dXdt.trace <- function(t, y, pars, i) {
   numeric(0)
 }
 
+#' @title Derivatives for human population
+#' @description Implements [DT_Xt] for the trace model.
+#' @inheritParams DT_Xt
+#' @return a [numeric] vector
+#' @export
+DT_Xt.trace <- function(t, y, pars, i) {
+  numeric(0)
+}
 
 #' @title xde_setup Xpar.trace
 #' @description Implements [xde_setup_Xpar] for the trace model
