@@ -4,16 +4,14 @@
 \alias{Births.zero}
 \title{Derivatives of demographic changes in human populations}
 \usage{
-\method{Births}{zero}(t, y, pars, i)
+\method{Births}{zero}(t, y, Hpar)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
-
-\item{i}{the index of the host species}
+\item{Hpar}{a \link{list}}
 }
 \value{
 a \link{numeric} vector of zeros

@@ -4,6 +4,6 @@
 #' @inheritParams Births
 #' @return a [numeric] vector of zeros
 #' @export
-Births.zero <- function(t, y, pars, i){
+Births.zero <- function(t, y, Hpar){
   0*y
 }

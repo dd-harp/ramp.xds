@@ -4,16 +4,14 @@
 \alias{Births}
 \title{A function that computes the birth rate for human populations}
 \usage{
-Births(t, y, pars, i)
+Births(t, y, Hpar)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
-
-\item{i}{the index of the host species}
+\item{Hpar}{a \link{list}}
 }
 \value{
 see help pages for specific methods

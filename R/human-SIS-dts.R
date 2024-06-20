@@ -8,13 +8,13 @@
 DT_Xt.SIS_dts <- function(t, y, pars, i) {
 
   attack <- pars$AR[[i]]
-
+  Hpar <- pars$Hpar[[i]]
   with(list_Xvars(y, pars, i),{
     H <- F_H(t, y, pars, i)
     with(pars$Xpar[[i]], {
 
-      St <- (1-attack)*S + r*I + dHdt(t, S, pars, i) + Births(t, H, pars, i)
-      It <- (1-r)*I + ar*S + dHdt(t, I, pars, i)
+      St <- (1-attack)*S + r*I + dHdt(t, S, Hpar) + Births(t, H, Hpar)
+      It <- (1-r)*I + ar*S + dHdt(t, I, Hpar)
 
 
       return(c(St, It))

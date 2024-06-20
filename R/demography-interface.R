@@ -31,24 +31,22 @@ setup_Hpar_static = function(pars, i, HPop=1000){
 #' @description This method dispatches on the type of pars$Hpar$dH
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
-#' @param i the index of the host species
+#' @param Hpar a [list]
 #' @return see help pages for specific methods
 #' @export
-dHdt <- function(t, y, pars, i){
-  UseMethod("dHdt", pars$Hpar[[i]]$dH)
+dHdt <- function(t, y, Hpar){
+  UseMethod("dHdt", Hpar$dH)
 }
 
 #' @title A function that computes the birth rate for human populations
 #' @description This method dispatches on the type of pars$Hpar$Births
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
-#' @param i the index of the host species
+#' @param Hpar a [list]
 #' @return see help pages for specific methods
 #' @export
-Births <- function(t, y, pars, i){
-  UseMethod("Births", pars$Hpar[[i]]$Bf)
+Births <- function(t, y, Hpar){
+  UseMethod("Births", Hpar$Bf)
 }
 
 #' @title Make parameters for null human demography model

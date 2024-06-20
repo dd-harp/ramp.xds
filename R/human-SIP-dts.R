@@ -60,9 +60,9 @@ DT_Xt.SIP_dts <- function(t, y, pars, i){
       It <- (1-r)*I + attack*(1-rho)*(S+r*I) - xi*I
       Pt <- xi*(S+I) + attack*rho*(S+r*I) + (1-eta)*P
 
-      St <- dHdt(t, St, i) + Births(t, H, pars, i)
-      It <- dHdt(t, It, i)
-      Pt <- dHdt(t, Pt, i)
+      St <- dHdt(t, St, pars$Hpar[[i]]) + Births(t, H, pars$Hpar[[i]])
+      It <- dHdt(t, It, pars$Hpar[[i]])
+      Pt <- dHdt(t, Pt, pars$Hpar[[i]])
 
       return(c(St, It, Pt))
     })
