@@ -145,7 +145,7 @@ dts_setup = function(modelName = "unnamed",
   pars = setup_BloodFeeding(pars, 1, 1, BFopts, residence, searchB, F_circadian)
   pars = make_TimeSpent(pars, 1, TimeSpent, TimeSpentOpts)
   # Vertebrate Host Dynamics
-  pars = setup_Xpar(Xname, pars, 1, Xopts)
+  pars = dts_setup_Xpar(Xname, pars, 1, Xopts)
   pars = setup_Xinits(pars, 1, Xopts)
 
   # Aquatic Mosquito Dynamics
@@ -351,7 +351,7 @@ dts_setup_human = function(modelName = "unnamed",
   # Dynamics
   pars = setup_MYZpar("Ztrace", pars, 1, MYZopts, "null", calK=NULL)
 
-  pars = setup_Xpar(Xname, pars, 1, Xopts)
+  pars = dts_setup_Xpar(Xname, pars, 1, Xopts)
   pars = setup_Xinits(pars, 1, Xopts)
 
   pars = make_indices(pars)
@@ -414,7 +414,7 @@ dts_setup_cohort = function(F_eir, bday=0, scale=1,
   pars = make_TaR(0, pars, 1, 1)
 
   # Dynamics
-  pars = setup_Xpar(Xname, pars, 1, Xopts)
+  pars = dts_setup_Xpar(Xname, pars, 1, Xopts)
   pars = setup_Xinits(pars, 1, Xopts)
 
   pars = make_indices(pars)

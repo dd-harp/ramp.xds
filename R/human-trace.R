@@ -45,12 +45,31 @@ dXdt.trace <- function(t, y, pars, i) {
   numeric(0)
 }
 
-#' @title Setup Xpar.trace
-#' @description Implements [setup_Xpar] for the trace model
-#' @inheritParams setup_Xpar
+
+#' @title xde_setup Xpar.trace
+#' @description Implements [xde_setup_Xpar] for the trace model
+#' @inheritParams xde_setup_Xpar
+#' @return a [list] vectord
+#' @export
+xde_setup_Xpar.trace = function(Xname, pars, i, Xopts=list()){
+  nStrata= pars$nPatches
+
+  pars$Hpar[[i]]$nStrata = nStrata
+  pars$Hpar[[i]]$H = checkIt(pars$Hpar[[i]]$H, nStrata)
+  pars$BFpar$TimeSpent[[i]] = diag(1, nStrata)
+  pars = make_TaR(0, pars, i, 1)
+  pars$BFpar$searchWts[[i]][[1]] = checkIt(pars$BFpar$searchWts[[i]][[1]], nStrata)
+  pars$BFpar$residence[[i]] = checkIt(pars$BFpar$residence[[i]], nStrata)
+  pars$Xpar[[i]] = make_Xpar_trace(nStrata, Xopts)
+  return(pars)
+}
+
+#' @title dts_setup Xpar.trace
+#' @description Implements [dts_setup_Xpar] for the trace model
+#' @inheritParams dts_setup_Xpar
 #' @return a [list] vector
 #' @export
-setup_Xpar.trace = function(Xname, pars, i, Xopts=list()){
+dts_setup_Xpar.trace = function(Xname, pars, i, Xopts=list()){
   nStrata= pars$nPatches
 
   pars$Hpar[[i]]$nStrata = nStrata

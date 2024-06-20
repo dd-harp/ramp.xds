@@ -44,11 +44,11 @@ make_Xpar_SIS_dts = function(nStrata, Xopts=list(),
 })}
 
 #' @title Setup Xpar.SIS_dts
-#' @description Implements [setup_Xpar] for the SIS_dts model
-#' @inheritParams setup_Xpar
+#' @description Implements [dts_setup_Xpar] for the SIS_dts model
+#' @inheritParams dts_setup_Xpar
 #' @return a [list] vector
 #' @export
-setup_Xpar.SIS_dts = function(Xname, pars, i, Xopts=list()){
+dts_setup_Xpar.SIS_dts = function(Xname, pars, i, Xopts=list()){
   pars$Xpar[[i]] = make_Xpar_SIS_dts(pars$Hpar[[i]]$nStrata, Xopts)
   return(pars)
 }

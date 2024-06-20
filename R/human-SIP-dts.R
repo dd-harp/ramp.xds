@@ -96,11 +96,11 @@ HTC.SIP_dts <- function(pars, i) {
 }
 
 #' @title Setup Xpar.SIP_dts
-#' @description Implements [setup_Xpar] for the SIP_dts model
-#' @inheritParams setup_Xpar
+#' @description Implements [dts_setup_Xpar] for the SIP_dts model
+#' @inheritParams dts_setup_Xpar
 #' @return a [list] vector
 #' @export
-setup_Xpar.SIP_dts = function(Xname, pars, i, Xopts=list()){
+dts_setup_Xpar.SIP_dts = function(Xname, pars, i, Xopts=list()){
   pars$Xpar[[i]] = make_Xpar_SIP_dts(pars$Hpar[[i]]$nStrata, Xopts)
   return(pars)
 }

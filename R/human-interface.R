@@ -66,9 +66,22 @@ dXdt <- function(t, y, pars, i) {
 #' @param Xopts a [list]
 #' @return a [list]
 #' @export
-setup_Xpar = function(Xname, pars, i, Xopts=list()){
+xde_setup_Xpar = function(Xname, pars, i, Xopts=list()){
   class(Xname) <- Xname
-  UseMethod("setup_Xpar", Xname)
+  UseMethod("xde_setup_Xpar", Xname)
+}
+
+#' @title A function to set up Xpar
+#' @description This method dispatches on `Xname`.
+#' @param Xname a [character] string
+#' @param pars a [list]
+#' @param i the host species index
+#' @param Xopts a [list]
+#' @return a [list]
+#' @export
+dts_setup_Xpar = function(Xname, pars, i, Xopts=list()){
+  class(Xname) <- Xname
+  UseMethod("dts_setup_Xpar", Xname)
 }
 
 #' @title A function to set up Xpar
