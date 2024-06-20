@@ -47,11 +47,11 @@ F_eggs.RM_dts <- function(t, y, pars, s) {
 }
 
 #' @title Derivatives for adult mosquitoes
-#' @description Implements [dMYZdt] for the RM_dts model.
-#' @inheritParams dMYZdt
+#' @description Implements [DT_MYZt] for the RM_dts model.
+#' @inheritParams DT_MYZt
 #' @return a [numeric] vector
 #' @export
-dMYZdt.RM_dts <- function(t, y, pars, s) {
+DT_MYZt.RM_dts <- function(t, y, pars, s) {
   Lambda = pars$Lambda[[s]]
   kappa = pars$kappa[[s]]
 
@@ -79,11 +79,11 @@ dMYZdt.RM_dts <- function(t, y, pars, s) {
 }
 
 #' @title Setup MYZpar for the RM_dts model
-#' @description Implements [setup_MYZpar] for the RM_dts model
-#' @inheritParams setup_MYZpar
+#' @description Implements [dts_setup_MYZpar] for the RM_dts model
+#' @inheritParams dts_setup_MYZpar
 #' @return a [list] vector
 #' @export
-setup_MYZpar.RM_dts = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
+dts_setup_MYZpar.RM_dts = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
   pars$MYZpar[[s]] = make_MYZpar_RM_dts(pars$nPatches, MYZopts, EIPopts, calK)
   return(pars)
 }

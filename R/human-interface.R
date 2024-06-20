@@ -58,6 +58,19 @@ dXdt <- function(t, y, pars, i) {
   UseMethod("dXdt", pars$Xpar[[i]])
 }
 
+#' @title Update X states for a discrete time system
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars a list
+#' @param i the host species index
+#' @return a [numeric] vector
+#' @export
+DT_Xt <- function(t, y, pars, i) {
+  UseMethod("DT_Xt", pars$Xpar[[i]])
+}
+
+
 #' @title A function to set up Xpar
 #' @description This method dispatches on `Xname`.
 #' @param Xname a [character] string
@@ -66,9 +79,22 @@ dXdt <- function(t, y, pars, i) {
 #' @param Xopts a [list]
 #' @return a [list]
 #' @export
-setup_Xpar = function(Xname, pars, i, Xopts=list()){
+xde_setup_Xpar = function(Xname, pars, i, Xopts=list()){
   class(Xname) <- Xname
-  UseMethod("setup_Xpar", Xname)
+  UseMethod("xde_setup_Xpar", Xname)
+}
+
+#' @title A function to set up Xpar
+#' @description This method dispatches on `Xname`.
+#' @param Xname a [character] string
+#' @param pars a [list]
+#' @param i the host species index
+#' @param Xopts a [list]
+#' @return a [list]
+#' @export
+dts_setup_Xpar = function(Xname, pars, i, Xopts=list()){
+  class(Xname) <- Xname
+  UseMethod("dts_setup_Xpar", Xname)
 }
 
 #' @title A function to set up Xpar

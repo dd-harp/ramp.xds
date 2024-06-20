@@ -70,11 +70,11 @@ dXdt.hMoI_xde <- function(t, y, pars, i) {
 }
 
 #' @title Setup Xpar.hMoI_xde
-#' @description Implements [setup_Xpar] for the hMoI_xde model
-#' @inheritParams setup_Xpar
+#' @description Implements [xde_setup_Xpar] for the hMoI_xde model
+#' @inheritParams xde_setup_Xpar
 #' @return a [list] vector
 #' @export
-setup_Xpar.hMoI_xde = function(Xname, pars, i, Xopts=list()){
+xde_setup_Xpar.hMoI_xde = function(Xname, pars, i, Xopts=list()){
   pars$Xpar[[i]] = make_Xpar_hMoI_xde(pars$Hpar[[i]]$nStrata, Xopts)
   return(pars)
 }

@@ -48,11 +48,11 @@ F_eggs.basicM_dts <- function(t, y, pars, s) {
 }
 
 #' @title Derivatives for adult mosquitoes
-#' @description Implements [dMYZdt] for the basicM_dts model.
-#' @inheritParams dMYZdt
+#' @description Implements [DT_MYZt] for the basicM_dts model.
+#' @inheritParams DT_MYZt
 #' @return a [numeric] vector
 #' @export
-dMYZdt.basicM_dts <- function(t, y, pars, s) {
+DT_MYZt.basicM_dts <- function(t, y, pars, s) {
   Lambda = pars$Lambda[[s]]
 
   with(list_MYZvars(y, pars, s),{
@@ -67,11 +67,11 @@ dMYZdt.basicM_dts <- function(t, y, pars, s) {
 }
 
 #' @title Setup MYZpar for the basicM_dts model
-#' @description Implements [setup_MYZpar] for the basicM_dts model
-#' @inheritParams setup_MYZpar
+#' @description Implements [dts_setup_MYZpar] for the basicM_dts model
+#' @inheritParams dts_setup_MYZpar
 #' @return a [list] vector
 #' @export
-setup_MYZpar.basicM_dts = function(MYZname, pars, s, EIPopts=list(), MYZopts=list(), calK){
+dts_setup_MYZpar.basicM_dts = function(MYZname, pars, s, EIPopts=list(), MYZopts=list(), calK){
   pars$MYZpar[[s]] = make_MYZpar_basicM_dts(pars$nPatches, MYZopts, calK)
   return(pars)
 }

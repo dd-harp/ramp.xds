@@ -42,12 +42,12 @@ dLdt.basicL_xde <- function(t, y, pars, s) {
   })
 }
 
-#' @title Setup Lpar for the basicL_xde model
-#' @description Implements [setup_Lpar] for the basicL_xde model
-#' @inheritParams setup_Lpar
+#' @title xde_setup Lpar for the basicL_xde model
+#' @description Implements [xde_setup_Lpar] for the basicL_xde model
+#' @inheritParams xde_setup_Lpar
 #' @return a [list] vector
 #' @export
-setup_Lpar.basicL_xde = function(Lname, pars, s, Lopts=list()){
+xde_setup_Lpar.basicL_xde = function(Lname, pars, s, Lopts=list()){
   pars$Lpar[[s]] = make_Lpar_basicL_xde(pars$nHabitats, Lopts)
   return(pars)
 }

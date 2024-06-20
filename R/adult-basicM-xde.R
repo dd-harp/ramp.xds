@@ -73,11 +73,11 @@ dMYZdt.basicM_xde <- function(t, y, pars, s){
  }
 
 #' @title Setup MYZpar for the basicM xde model
-#' @description Implements [setup_MYZpar] for the basicM xde model
-#' @inheritParams setup_MYZpar
+#' @description Implements [xde_setup_MYZpar] for the basicM xde model
+#' @inheritParams xde_setup_MYZpar
 #' @return a [list] vector
 #' @export
-setup_MYZpar.basicM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
+xde_setup_MYZpar.basicM_xde = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
   pars$MYZpar[[s]] = make_MYZpar_basicM_xde(pars$nPatches, MYZopts, calK)
   return(pars)
 }

@@ -39,6 +39,18 @@ dLdt <- function(t, y, pars, s) {
   UseMethod("dLdt", pars$Lpar[[s]])
 }
 
+#' @title Derivatives for aquatic stage mosquitoes
+#' @description This method dispatches on the type of `pars$Lpar`.
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars a [list]
+#' @param s the species index
+#' @return a [numeric] vector of length `pars$L_ix`
+#' @export
+DT_Lt <- function(t, y, pars, s) {
+  UseMethod("DT_Lt", pars$Lpar[[s]])
+}
+
 #' @title Return the variables as a list
 #' @description This method dispatches on the type of `pars$Lpar[[s]]`.
 #' @param y the variables
@@ -58,10 +70,24 @@ list_Lvars <- function(y, pars, s) {
 #' @param Lopts a [list]
 #' @return [list]
 #' @export
-setup_Lpar = function(Lname, pars, s, Lopts=list()){
+xde_setup_Lpar = function(Lname, pars, s, Lopts=list()){
   class(Lopts) <- Lname
-  UseMethod("setup_Lpar", Lopts)
+  UseMethod("xde_setup_Lpar", Lopts)
 }
+
+#' @title A function to set up adult mosquito models
+#' @description This method dispatches on `Lname`.
+#' @param Lname the class name of the aquatic model
+#' @param pars a [list]
+#' @param s the species index
+#' @param Lopts a [list]
+#' @return [list]
+#' @export
+dts_setup_Lpar = function(Lname, pars, s, Lopts=list()){
+  class(Lopts) <- Lname
+  UseMethod("dts_setup_Lpar", Lopts)
+}
+
 
 #' @title A function to set up adult mosquito models
 #' @description This method dispatches on `Lname`.

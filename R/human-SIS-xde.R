@@ -41,11 +41,11 @@ make_Xpar_SIS_xde = function(nStrata, Xopts=list(),
 })}
 
 #' @title Setup Xpar.SIS_xde
-#' @description Implements [setup_Xpar] for the SIS_xde model
-#' @inheritParams setup_Xpar
+#' @description Implements [xde_setup_Xpar] for the SIS_xde model
+#' @inheritParams xde_setup_Xpar
 #' @return a [list] vector
 #' @export
-setup_Xpar.SIS_xde = function(Xname, pars, i, Xopts=list()){
+xde_setup_Xpar.SIS_xde = function(Xname, pars, i, Xopts=list()){
   pars$Xpar[[i]] = make_Xpar_SIS_xde(pars$Hpar[[i]]$nStrata, Xopts)
   return(pars)
 }

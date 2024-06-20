@@ -46,17 +46,35 @@ dMYZdt.Gtrace <- function(t, y, pars, s){
   numeric(0)
 }
 
+#' @title Derivatives for aquatic stage mosquitoes
+#' @description Implements [DT_MYZt] for the Gtrace (forced emergence) model.
+#' @inheritParams DT_MYZt
+#' @return a [numeric] vector
+#' @export
+DT_MYZt.Gtrace <- function(t, y, pars, s){
+  numeric(0)
+}
+
 
 #' @title Setup the Gtrace
-#' @description Implements [setup_MYZpar] for the Gtrace model
-#' @inheritParams setup_MYZpar
+#' @description Implements [xde_setup_MYZpar] for the Gtrace model
+#' @inheritParams xde_setup_MYZpar
 #' @return a [list] vector
 #' @export
-setup_MYZpar.Gtrace = function(MYZname, pars, s, EIPopts=list(), MYZopts=NULL, calK=NULL){
+xde_setup_MYZpar.Gtrace = function(MYZname, pars, s, EIPopts=list(), MYZopts=NULL, calK=NULL){
   pars$MYZpar[[s]] = make_MYZpar_Gtrace(pars$nPatches, MYZopts)
   return(pars)
 }
 
+#' @title Setup the Gtrace
+#' @description Implements [dts_setup_MYZpar] for the Gtrace model
+#' @inheritParams dts_setup_MYZpar
+#' @return a [list] vector
+#' @export
+dts_setup_MYZpar.Gtrace = function(MYZname, pars, s, EIPopts=list(), MYZopts=NULL, calK=NULL){
+  pars$MYZpar[[s]] = make_MYZpar_Gtrace(pars$nPatches, MYZopts)
+  return(pars)
+}
 
 #' @title Make parameters for Gtrace aquatic mosquito model
 #' @param nPatches the number of patches in the model
