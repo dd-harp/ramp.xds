@@ -37,20 +37,26 @@ DTS_step <- function(t, y, pars) {
   pars <- Exposure(t, y, pars)
 
   # compute derivatives
-  Lt <- DT_Lt(t, y, pars, 1)
-  MYZt <- DT_MYZt(t, y, pars, 1)
+  if((t%%pars$Lday +1) == 1){
+    Lt <- DT_Lt(t, y, pars, 1)
+    if(pars$nVectors > 1)
+      for(s in 2:pars$nVectors)
+        Lt <- c(Lt, DT_Lt(t, y, pars, s))
+  }
 
-  if(pars$nVectors > 1)
-    for(s in 2:pars$nVectors){
-      Lt <- c(Lt, DT_Lt(t, y, pars, s))
-      MYZt <- c(MYZt, DT_MYZt(t, y, pars, s))
-    }
+  if((t%%pars$MYZday+1) == 1){
+    MYZt <- DT_MYZt(t, y, pars, 1)
+    if(pars$nVectors > 1)
+      for(s in 2:pars$nVectors)
+        MYZt <- c(MYZt, DT_MYZt(t, y, pars, s))
+  }
 
-  Xt <- DT_Xt(t, y, pars, 1)
-  if(pars$nHosts > 1)
-    for(i in 2:pars$nHosts)
-      Xt <- c(Xt, DT_Xt(t, y, pars, i))
-
+  if((t%%pars$Xday+1) == 1){
+    Xt <- DT_Xt(t, y, pars, 1)
+    if(pars$nHosts > 1)
+      for(i in 2:pars$nHosts)
+        Xt <- c(Xt, DT_Xt(t, y, pars, i))
+  }
 
   return(c(Lt, MYZt, Xt))
 }
@@ -83,10 +89,12 @@ DTS_step_human <- function(t, y, pars) {
   pars <- Exposure(t, y, pars)
 
   # state derivatives
-  Xt <- DT_Xt(t, y, pars, 1)
-  if(pars$nHosts > 1)
-    for(i in 2:pars$nHosts)
-      Xt <- c(Xt, DT_Xt(t, y, pars, i))
+  if((t%%pars$Xday+1) == 1){
+    Xt <- DT_Xt(t, y, pars, 1)
+    if(pars$nHosts > 1)
+      for(i in 2:pars$nHosts)
+        Xt <- c(Xt, DT_Xt(t, y, pars, i))
+  }
 
   return(c(Xt))
 }
@@ -121,14 +129,20 @@ DTS_step_mosy <- function(t, y, pars) {
   # emergence: compute Lambda
   pars <- Emergence(t, y, pars)
 
-  # state derivatives
-  Lt <- DT_Lt(t, y, pars, 1)
-  Mt <- DT_MYZt(t, y, pars, 1)
-  if (pars$nVectors > 1)
-    for(s in 2:pars$nVectors){
-      Lt <- c(Lt, DT_Lt(t, y, pars, s))
-      Mt <- c(Mt, DT_MYZt(t, y, pars, s))
-    }
+  # compute derivatives
+  if((t%%pars$Lday +1) == 1){
+    Lt <- DT_Lt(t, y, pars, 1)
+    if(pars$nVectors > 1)
+      for(s in 2:pars$nVectors)
+        Lt <- c(Lt, DT_Lt(t, y, pars, s))
+  }
+
+  if((t%%pars$MYZday+1) == 1){
+    MYZt <- DT_MYZt(t, y, pars, 1)
+    if(pars$nVectors > 1)
+      for(s in 2:pars$nVectors)
+        MYZt <- c(MYZt, DT_MYZt(t, y, pars, s))
+  }
 
   return(c(Lt, Mt))
 }
@@ -151,10 +165,12 @@ DTS_step_cohort <- function(a, y, pars, F_eir) {
   pars <- Exposure(a, y, pars)
 
   # state derivatives
-  Xt <- DT_Xt(t, y, pars, 1)
-  if(pars$nHosts > 1)
-    for(i in 2:pars$nHosts)
-      Xt <- c(Xt, DT_Xt(t, y, pars, i))
+  if((t%%pars$Xday+1) == 1){
+    Xt <- DT_Xt(t, y, pars, 1)
+    if(pars$nHosts > 1)
+      for(i in 2:pars$nHosts)
+        Xt <- c(Xt, DT_Xt(t, y, pars, i))
+  }
 
   return(c(Xt))
 }
@@ -183,11 +199,13 @@ DTS_step_aquatic <- function(t, y, pars) {
 
   pars$eggs_laid[[1]] = F_eggs(t, y, pars, 1)
 
-  # state derivatives
-  Lt <- DT_Lt(t, y, pars, 1)
-  if(pars$nVectors > 1)
-    for(s in 1:pars$nVectors)
-      Lt <- c(Lt, DT_Lt(t, y, pars, s))
+  # compute derivatives
+  if((t%%pars$Lday +1) == 1){
+    Lt <- DT_Lt(t, y, pars, 1)
+    if(pars$nVectors > 1)
+      for(s in 2:pars$nVectors)
+        Lt <- c(Lt, DT_Lt(t, y, pars, s))
+  }
 
   return(c(Lt))
 }
