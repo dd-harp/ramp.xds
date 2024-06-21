@@ -7,7 +7,7 @@
 dts_setup_human(
   modelName = "unnamed",
   Xname = "SIS",
-  Dday = list(Xlump = 1, Xsub = 1),
+  Xday = 1,
   HPop = 1000,
   MYZopts = list(),
   Xopts = list(),
@@ -24,7 +24,7 @@ dts_setup_human(
 
 \item{Xname}{is a character string defining a X model}
 
-\item{Dday}{is a list of two integer values to set up mis-matched runtime time steps}
+\item{Xday}{is an integer: positive > 1 for lumping; negative < -1 for splitting}
 
 \item{HPop}{is the number of humans in each patch}
 

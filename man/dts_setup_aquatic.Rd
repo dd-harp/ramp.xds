@@ -9,7 +9,7 @@ dts_setup_aquatic(
   nHabitats = 1,
   nVectors = 1,
   Lname = "basic",
-  Dday = list(Llump = 1, Lsub = 1),
+  Lday = 1,
   Lopts = list(),
   MYZopts = list(),
   LSMname = "null"
@@ -24,7 +24,7 @@ dts_setup_aquatic(
 
 \item{Lname}{is a character string defining a L model}
 
-\item{Dday}{is a list of two integer values to set up mis-matched runtime time steps}
+\item{Lday}{is an integer: positive > 1 for lumping; negative < -1 for splitting'}
 
 \item{Lopts}{a list to configure the L model}
 

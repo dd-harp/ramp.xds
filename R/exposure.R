@@ -37,7 +37,6 @@ Exposure.xde <- function(t, y, pars){
 #' @return the function modifies **pars** and returns it: the computed FoI are stored as `pars$FoI`
 #' @export
 Exposure.dts <- function(t, y, pars){
-
   for(i in 1:pars$nHosts){
     b = F_b(y, pars, i)
     pars$AR[[i]] = F_ar(pars$EIR[[i]], b, pars) + travel_malaria(t, pars)

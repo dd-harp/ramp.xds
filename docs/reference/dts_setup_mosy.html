@@ -143,7 +143,8 @@
 <span>  modelName <span class="op">=</span> <span class="st">"unnamed"</span>,</span>
 <span>  MYZname <span class="op">=</span> <span class="st">"basicM"</span>,</span>
 <span>  Lname <span class="op">=</span> <span class="st">"basic"</span>,</span>
-<span>  Dday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>MYZlump <span class="op">=</span> <span class="fl">1</span>, MYZsub <span class="op">=</span> <span class="fl">1</span>, Llump <span class="op">=</span> <span class="fl">1</span>, Lsub <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  MYZday <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  Lday <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  nPatches <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  nVectors <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  membership <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -170,8 +171,12 @@
 <dd><p>is a character string defining a L model</p></dd>
 
 
-<dt>Dday</dt>
-<dd><p>is a list of four integer values to set up mis-matched runtime time steps</p></dd>
+<dt>MYZday</dt>
+<dd><p>is an integer: positive &gt; 1 for lumping; negative &lt; -1 for splitting</p></dd>
+
+
+<dt>Lday</dt>
+<dd><p>is an integer: positive &gt; 1 for lumping; negative &lt; -1 for splitting'</p></dd>
 
 
 <dt>nPatches</dt>
