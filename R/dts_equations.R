@@ -36,29 +36,79 @@ DTS_step <- function(t, y, pars) {
   # compute the FoI
   pars <- Exposure(t, y, pars)
 
-  # compute derivatives
-  if((t%%pars$Lday +1) == 1){
-    Lt <- DT_Lt(t, y, pars, 1)
-    if(pars$nVectors > 1)
-      for(s in 2:pars$nVectors)
-        Lt <- c(Lt, DT_Lt(t, y, pars, s))
-  }
+  # Update Variables
+  Lt <- Update_Lt(t, y, pars, 1)
+  if(pars$nVectors > 1)
+    for(s in 2:pars$nVectors)
+      Lt <- c(Lt, Update_Lt(t, y, pars, s))
 
-  if((t%%pars$MYZday+1) == 1){
-    MYZt <- DT_MYZt(t, y, pars, 1)
-    if(pars$nVectors > 1)
-      for(s in 2:pars$nVectors)
-        MYZt <- c(MYZt, DT_MYZt(t, y, pars, s))
-  }
+  MYZt <- Update_MYZt(t, y, pars, 1)
+  if(pars$nVectors > 1)
+    for(s in 2:pars$nVectors)
+      MYZt <- c(MYZt, Update_MYZt(t, y, pars, s))
 
-  if((t%%pars$Xday+1) == 1){
-    Xt <- DT_Xt(t, y, pars, 1)
-    if(pars$nHosts > 1)
-      for(i in 2:pars$nHosts)
-        Xt <- c(Xt, DT_Xt(t, y, pars, i))
-  }
+  Xt <- Update_Xt(t, y, pars, 1)
+  if(pars$nHosts > 1)
+    for(i in 2:pars$nHosts)
+      Xt <- c(Xt, Update_Xt(t, y, pars, i))
 
-  return(c(Lt, MYZt, Xt))
+  return(unlist(c(Lt, MYZt, Xt)))
+}
+
+
+#' @title A runtime switch function for mismatched dynamical component runtimes
+#' @description Determine whether to update the variables at time t
+#' @param t current simulation time
+#' @param Dday the runtime time step for the simulation
+#' @param xday the runtime time step for a component
+#' @return [logical] TRUE or FALSE
+#' @export
+runt = function(t, Dday, xday){
+  t1 = round(t/Dday)
+  t2 = round(xday/Dday)
+  t1 %% t2 < 1e-2
+}
+
+#' @title Difference equations isolating the humans, forced with Ztrace
+#' @description Compute and update the state variables for
+#' a model with only humans
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars a [list]
+#' @param s the vector species index
+#' @return a [vector] containing the vector of all state derivatives
+#' @export
+Update_Lt = function(t, y, pars, s){
+  if(runt(t,pars$Dday,pars$Lday)) return(DT_Lt(t, y, pars, s))
+  else return(list_Lvars(y, pars,s))
+}
+
+#' @title Difference equations isolating the humans, forced with Ztrace
+#' @description Compute and update the state variables for
+#' a model with only humans
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars a [list]
+#' @param s the vector species index
+#' @return a [vector] containing the vector of all state derivatives
+#' @export
+Update_MYZt = function(t, y, pars, s){
+  if(runt(t, pars$Dday, pars$MYZday)) return(DT_MYZt(t, y, pars, s))
+  else return(list_MYZvars(y, pars, s))
+}
+
+#' @title Difference equations isolating the humans, forced with Ztrace
+#' @description Compute and update the state variables for
+#' a model with only humans
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars a [list]
+#' @param i the host species index
+#' @return a [vector] containing the vector of all state derivatives
+#' @export
+Update_Xt = function(t, y, pars, i){
+  if(runt(t, pars$Dday, pars$Xday)) return(DT_Xt(t, y, pars, i))
+  else return(list_Xvars(y, pars, i))
 }
 
 #' @title Difference equations isolating the humans, forced with Ztrace
@@ -89,12 +139,10 @@ DTS_step_human <- function(t, y, pars) {
   pars <- Exposure(t, y, pars)
 
   # state derivatives
-  if((t%%pars$Xday+1) == 1){
-    Xt <- DT_Xt(t, y, pars, 1)
-    if(pars$nHosts > 1)
-      for(i in 2:pars$nHosts)
-        Xt <- c(Xt, DT_Xt(t, y, pars, i))
-  }
+  Xt <- Update_Xt(t, y, pars, 1)
+  if(pars$nHosts > 1)
+    for(i in 2:pars$nHosts)
+      Xt <- c(Xt, Update_Xt(t, y, pars, i))
 
   return(c(Xt))
 }
@@ -130,19 +178,15 @@ DTS_step_mosy <- function(t, y, pars) {
   pars <- Emergence(t, y, pars)
 
   # compute derivatives
-  if((t%%pars$Lday +1) == 1){
-    Lt <- DT_Lt(t, y, pars, 1)
-    if(pars$nVectors > 1)
-      for(s in 2:pars$nVectors)
-        Lt <- c(Lt, DT_Lt(t, y, pars, s))
-  }
+  Lt <- Update_Lt(t, y, pars, 1)
+  if(pars$nVectors > 1)
+    for(s in 2:pars$nVectors)
+      Lt <- c(Lt, Update_Lt(t, y, pars, s))
 
-  if((t%%pars$MYZday+1) == 1){
-    MYZt <- DT_MYZt(t, y, pars, 1)
-    if(pars$nVectors > 1)
-      for(s in 2:pars$nVectors)
-        MYZt <- c(MYZt, DT_MYZt(t, y, pars, s))
-  }
+  Mt <- Update_MYZt(t, y, pars, 1)
+  if(pars$nVectors > 1)
+    for(s in 2:pars$nVectors)
+      Mt <- c(Mt, Update_MYZt(t, y, pars, s))
 
   return(c(Lt, Mt))
 }
@@ -165,12 +209,10 @@ DTS_step_cohort <- function(a, y, pars, F_eir) {
   pars <- Exposure(a, y, pars)
 
   # state derivatives
-  if((t%%pars$Xday+1) == 1){
-    Xt <- DT_Xt(t, y, pars, 1)
-    if(pars$nHosts > 1)
-      for(i in 2:pars$nHosts)
-        Xt <- c(Xt, DT_Xt(t, y, pars, i))
-  }
+  Xt <- Update_Xt(t, y, pars, 1)
+  if(pars$nHosts > 1)
+    for(i in 2:pars$nHosts)
+      Xt <- c(Xt, Update_Xt(t, y, pars, i))
 
   return(c(Xt))
 }
@@ -200,12 +242,10 @@ DTS_step_aquatic <- function(t, y, pars) {
   pars$eggs_laid[[1]] = F_eggs(t, y, pars, 1)
 
   # compute derivatives
-  if((t%%pars$Lday +1) == 1){
-    Lt <- DT_Lt(t, y, pars, 1)
-    if(pars$nVectors > 1)
-      for(s in 2:pars$nVectors)
-        Lt <- c(Lt, DT_Lt(t, y, pars, s))
-  }
+  Lt <- Update_Lt(t, y, pars, 1)
+  if(pars$nVectors > 1)
+    for(s in 2:pars$nVectors)
+      Lt <- c(Lt, Update_Lt(t, y, pars, s))
 
   return(c(Lt))
 }

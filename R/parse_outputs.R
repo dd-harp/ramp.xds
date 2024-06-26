@@ -21,7 +21,6 @@ parse_outputs <- function(deout, pars){
   if(s>0)
     for(ix in 1:s)
       varslist$XH[[ix]]= parse_outputs_X(deout, pars, ix)
-
   varslist$terms = compute_terms(varslist, deout, pars, 1, 1)
   varslist$deout = deout
   return(varslist)

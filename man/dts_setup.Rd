@@ -7,7 +7,7 @@
 dts_setup(
   modelName = "unnamed",
   MYZname = "RM_dts",
-  Xname = "SIS_dts",
+  Xname = "SIS",
   Lname = "trace",
   Xday = 1,
   MYZday = 1,
@@ -41,11 +41,11 @@ dts_setup(
 
 \item{Lname}{is a character string defining a L model}
 
-\item{Xday}{is an integer: positive > 1 for lumping; negative < -1 for splitting}
+\item{Xday}{is the run-time time step for X component (in days): integer or 1/integer}
 
-\item{MYZday}{is an integer: positive > 1 for lumping; negative < -1 for splitting}
+\item{MYZday}{is the run-time time step for MYZ component (in days): integer or 1/integer}
 
-\item{Lday}{is an integer: positive > 1 for lumping; negative < -1 for splitting}
+\item{Lday}{is the run-time time step for L component (in days): integer or 1/integer}
 
 \item{nPatches}{is the number of patches}
 

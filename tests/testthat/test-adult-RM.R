@@ -33,7 +33,7 @@ test_that("RM models reach equilibrium", {
   params$nPatches = nPatches
 
   # ODE
-  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
+  params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
   params = make_inits_MYZ_RM_ode(pars = params, M0 = rep(0, nPatches), P0 = rep(0, nPatches), Y0 = rep(0, nPatches), Z0 =rep(0, nPatches))
   params$Lambda = list()
   params$kappa = list()
@@ -87,7 +87,7 @@ test_that("RM models reach equilibrium", {
   expect_equal(Lambda_eq, Lambda, tolerance = numeric_tol)
 
   # DDE
-  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "dde")
+  params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "dde")
   params = make_inits_MYZ_RM_dde(pars = params, M0 = rep(0, nPatches), P0 = rep(0, nPatches), Y0 = rep(0, nPatches), Z0 =rep(0, nPatches), U0=as.vector(OmegaEIP))
   params$Lambda = list()
   params$kappa = list()

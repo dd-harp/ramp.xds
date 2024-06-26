@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-RM-xde.R
 \name{make_MYZinits_RM_dde}
 \alias{make_MYZinits_RM_dde}
-\title{Make inits for RM_xde adult mosquito model}
+\title{Make inits for RM adult mosquito model}
 \usage{
 make_MYZinits_RM_dde(
   nPatches,
@@ -33,5 +33,5 @@ make_MYZinits_RM_dde(
 a \link{list}
 }
 \description{
-Make inits for RM_xde adult mosquito model
+Make inits for RM adult mosquito model
 }

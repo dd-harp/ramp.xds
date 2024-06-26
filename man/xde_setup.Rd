@@ -6,8 +6,8 @@
 \usage{
 xde_setup(
   modelName = "unnamed",
-  MYZname = "RM_xde",
-  Xname = "SIS_xde",
+  MYZname = "RM",
+  Xname = "SIS",
   Lname = "trace",
   nPatches = 1,
   nVectors = 1,
@@ -26,7 +26,8 @@ xde_setup(
   TimeSpent = "athome",
   TimeSpentOpts = list(),
   searchQ = 1,
-  Lopts = list()
+  Lopts = list(),
+  xde = "dde"
 )
 }
 \arguments{
@@ -73,6 +74,8 @@ xde_setup(
 \item{searchQ}{is a vector of search weights for egg laying}
 
 \item{Lopts}{a list to configure the L model}
+
+\item{xde}{is either "ode" or "dde"}
 }
 \value{
 a \link{list}

@@ -17,11 +17,13 @@ dts_solve = function(pars, Tmax=365){
 #' @export
 dts_stable_orbit = function(pars, Tburn=10, yr=365){
   yt = get_inits(pars)
-  for(t in 1:(Tburn*yr)){
+  tt = seq(0, Tburn*yr, by=pars$Dday)
+  for(t in tt){
     yt =  DTS_step(t, yt, pars)
   }
   orbit = yt
-  for(t in 2:yr){
+  tt = seq(0, yr, by=pars$Dday)
+  for(t in tt[-1]){
     yt =  DTS_step(t, yt, pars)
     orbit = rbind(orbit, yt)
   }
@@ -32,12 +34,13 @@ dts_stable_orbit = function(pars, Tburn=10, yr=365){
 #' @title Solve for the steady state of a system of equations
 #' @description This method dispatches on the type of `pars$dts`
 #' @param pars a [list] that defines a model
-#' @param Teq the number of steps to equilibrium
+#' @param Tx the number of steps to equilibrium
 #' @return a [list]
 #' @export
-dts_steady = function(pars, Teq=1000){
+dts_steady = function(pars, Tx=1000){
+  tt = seq(0, Tx, by=pars$Dday)
   yt = get_inits(pars)
-  for(t in 1:Teq){
+  for(t in tt[-1]){
     yt =  DTS_step(t, yt, pars)
   }
   pars$outputs$steady = parse_outputs_vec(yt, pars)
@@ -50,11 +53,10 @@ dts_steady = function(pars, Teq=1000){
 #' @return a [list]
 #' @export
 dts_solve.dts = function(pars, Tmax=365){
+  tt = seq(0, Tmax, by=pars$Dday)
   yt = get_inits(pars)
   dts_out = c(0, yt)
-  for(t in 1:Tmax){
-    #print(c(t=t))
-    #browser()
+  for(t in tt[-1]){
     yt =  DTS_step(t, yt, pars)
     dts_out = rbind(dts_out, c(t,yt))
   }
@@ -68,9 +70,10 @@ dts_solve.dts = function(pars, Tmax=365){
 #' @return a [list]
 #' @export
 dts_solve.aqua = function(pars, Tmax=365){
+  tt = seq(0, Tmax, by=pars$Dday)
   yt = get_inits(pars)
   dts_out = c(0, yt)
-  for(t in 1:Tmax){
+  for(t in tt[-1]){
     yt = DTS_step_aquatic(t, yt, pars)
     dts_out = rbind(dts_out, c(t, yt))
   }
@@ -84,9 +87,10 @@ dts_solve.aqua = function(pars, Tmax=365){
 #' @return a [list]
 #' @export
 dts_solve.mosy = function(pars, Tmax=365){
+  tt = seq(0, Tmax, by=pars$Dday)
   yt = get_inits(pars)
   dts_out = c(0, yt)
-  for(t in 1:Tmax){
+  for(t in tt[-1]){
     yt =  DTS_step_mosy(t, yt, pars)
     dts_out = rbind(dts_out, c(t, yt))
   }
@@ -100,9 +104,10 @@ dts_solve.mosy = function(pars, Tmax=365){
 #' @return a [list]
 #' @export
 dts_solve.human = function(pars, Tmax=365){
+  tt = seq(0, Tmax, by=pars$Dday)
   yt = get_inits(pars)
   dts_out = c(0, yt)
-  for(t in 1:Tmax){
+  for(t in tt[-1]){
     yt =  DTS_step_human(t, yt, pars)
     dts_out = rbind(dts_out, c(t, yt))
   }
@@ -116,9 +121,10 @@ dts_solve.human = function(pars, Tmax=365){
 #' @return a [list]
 #' @export
 dts_solve.cohort = function(pars, Tmax=365){
+  tt = seq(0, Tmax, by=pars$Dday)
   yt = get_inits(pars)
   dts_out = c(0, yt)
-  for(t in 1:Tmax){
+  for(t in tt[-1]){
     yt =  DTS_step_cohort(t, yt, pars)
     dts_out = rbind(yt, c(t, yt))
   }

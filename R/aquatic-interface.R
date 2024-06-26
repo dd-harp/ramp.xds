@@ -62,6 +62,18 @@ list_Lvars <- function(y, pars, s) {
   UseMethod("list_Lvars", pars$Lpar[[s]])
 }
 
+#' @title Put Lvars in place of the L variables in y
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @param Lvars the L variables to insert into y
+#' @param y the variables
+#' @param pars a [list]
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+put_Lvars <- function(Lvars, y, pars, s) {
+  UseMethod("put_Lvars", pars$Lpar[[s]])
+}
+
 #' @title A function to set up adult mosquito models
 #' @description This method dispatches on `Lname`.
 #' @param Lname the class name of the aquatic model

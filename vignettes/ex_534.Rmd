@@ -44,12 +44,11 @@ The model `5-3-4` is designed to illustrate some important features of the frame
 We already know three important parameters, $l$, $p$ and $n$ because they are determined in the early stages of model building. The `ramp.xde` package expects all parameters to be contained in a list object, containing `nHabitats`, `nPatches`, and `nStrata` which correspond to `l`, `p` and `n`.
 
 ```{r}
-nPatches = 3
 params = make_parameters_xde() 
 params$nVectors = 1
 params$nHosts = 1
 params$nHabitats = 5
-params$nPatches = nPatches 
+params$nPatches = 3
 params$nStrata = 4
 ```
 
@@ -109,8 +108,8 @@ psi <- rep(1/8, params$nHabitats)
 phi <- rep(1/8, params$nHabitats)
 theta <- c(1/10, 1/20, 1/40, 1/100, 1/10) 
 
-params = make_parameters_L_basicL_xde(params, psi = psi, phi = phi, theta = theta)
-params = make_inits_L_basicL_xde(params, L0=L0)
+params = make_parameters_L_basicL(params, psi = psi, phi = phi, theta = theta)
+params = make_inits_L_basicL(params, L0=L0)
 ```
 
 ## Adult Mosquito Parameters
@@ -118,11 +117,11 @@ params = make_inits_L_basicL_xde(params, L0=L0)
 We use the ODE version of the generalized Ross-Macdonald model (see more [here](adult_RM.html)). Part of the specification of parameters includes the construction of the mosquito dispersal matrix $\mathcal{K}$, and the mosquito demography matrix $\Omega$. Like for the aquatic parameters, we use `ramp.xde::make_parameters_MYZ_RM_ode` to check parameter types and return a list with the correct class for method dispatch. We attach the returned list to the main parameter list with name `MYZpar`.
 
 ```{r}
-g <- rep(1/12, nPatches)
-sigma <- rep(1/12/2, nPatches)
-mu <- rep(0, nPatches)
-f <- rep(1/3, nPatches)
-q <- rep(0.9, nPatches)
+g <- rep(1/12, params$nPatches)
+sigma <- rep(1/12/2, params$nPatches)
+mu <- rep(0, params$nPatches)
+f <- rep(1/3, params$nPatches)
+q <- rep(0.9, params$nPatches)
 nu <- c(1/3,1/3,0)  
 eggsPerBatch <- 30 
 eip <- 12 
@@ -140,9 +139,9 @@ Z0 <- rep(0, params$nPatches)
 Omega <- make_Omega_xde(g, sigma, mu, calK)
 Upsilon <- expm::expm(-Omega*eip)
 
-params = make_parameters_MYZ_RM_xde(pars = params, g = g, 
-                sigma=sigma, mu=mu, calK=calK, eip=eip, 
-                 f=f, q=q, nu=nu, 
+params = make_parameters_MYZ_RM(pars = params, g = g, 
+                sigma = sigma, mu=mu, calK=calK, 
+                eip=eip, f=f, q=q, nu=nu, 
                 eggsPerBatch=eggsPerBatch, 
                 solve_as = "ode") 
 
@@ -218,8 +217,8 @@ r <- 1/200
 b <- 0.55
 c <- c(0.1, .02, .1, .02)
 
-params = make_parameters_X_SIS_xde(pars = params, b = b, c = c, r = r)
-params = make_inits_X_SIS_xde(params, S0 = H-I0, I0=I0)
+params = make_parameters_X_SIS(pars = params, b = b, c = c, r = r)
+params = make_inits_X_SIS(params, S0 = H-I0, I0=I0)
 ```
 
 
@@ -248,6 +247,7 @@ params <- EggLaying(0, y0, params)
 Now we can pass the vector of initial conditions, `y`, our parameter list `params`, and the function `ramp.xde::xDE_diffeqn` to the differential equation solvers in `deSolve::ode` to generate a numerical trajectory. The classes of `Xpar`, `MYZpar`, and `Lpar` in `params` will ensure that the right methods are invoked (dispatched) to solve your model.
 
 ```{r}
+
 out <- deSolve::ode(y = y0, times = 0:365, 
                     func = xDE_diffeqn, parms = params, method = "lsoda")
 out1 <- out
@@ -313,10 +313,12 @@ EIPo <- list(EIPname = "static_xde", eip=12)
 ```
 
 
+
 ```{r}
-xde_setup("mod534", "RM_xde", "SIS_xde", "basicL_xde", 
-                  nPatches = 3, HPop=c(10, 90, 100, 900), membership=c(1,1,1,2,2), 
-                  MYZopts=MYZo, calK=calK, Xopts=Xo, EIPopts = EIPo,
+xde_setup("mod534", "RM", "SIS", "basicL", 
+                  nPatches = 3, HPop=c(10, 90, 100, 900), 
+                  membership=c(1,1,1,2,2), EIPopts = EIPo,
+                  MYZopts=MYZo, calK=calK, Xopts=Xo, 
                   residence=c(2,2,3,3), searchB=searchWtsH, 
                   TimeSpent=TaR, searchQ = c(7,2,1,8,2), Lopts = Lo) -> mod534
 ```

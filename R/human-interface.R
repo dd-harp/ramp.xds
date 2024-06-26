@@ -119,7 +119,7 @@ make_indices_X <- function(pars, i) {
 }
 
 #' @title Return the variables as a list
-#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @description This method dispatches on the type of `pars$Xpar[[s]]`.
 #' @param y the variables
 #' @param pars a [list]
 #' @param i the host species index
@@ -127,6 +127,18 @@ make_indices_X <- function(pars, i) {
 #' @export
 list_Xvars <- function(y, pars, i) {
   UseMethod("list_Xvars", pars$Xpar[[i]])
+}
+
+#' @title Put Xvars in place of the X variables in y
+#' @description This method dispatches on the type of `pars$Xpar[[s]]`.
+#' @param Xvars the X variables to insert into y
+#' @param y the variables
+#' @param pars a [list]
+#' @param i the host species index
+#' @return a [list]
+#' @export
+put_Xvars <- function(Xvars, y, pars, i) {
+  UseMethod("put_Xvars", pars$Xpar[[i]])
 }
 
 #' @title Parse the output of deSolve and return the variables by name in a list

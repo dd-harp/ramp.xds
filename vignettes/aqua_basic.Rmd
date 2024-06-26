@@ -85,8 +85,8 @@ F_eta = function(t, pars){
   pars$eggs_laid[[1]]
 }
 
-params = make_parameters_L_basicL_xde(pars = params, psi = psi, phi = phi, theta = theta)
-params = make_inits_L_basicL_xde(params, L0=L)
+params = make_parameters_L_basicL(pars = params, psi = psi, phi = phi, theta = theta)
+params = make_inits_L_basicL(params, L0=L)
 
 params = make_indices(params)
 ```
@@ -143,7 +143,7 @@ Mo = list(Gm = c(250, 500, 170))
 
 
 ```{r}
-xde_setup_aquatic(nHabitats = 3, Lname = "basicL_xde", Lopts = Lo, MYZopts = Mo) -> aqbasicL_xde
+xde_setup_aquatic(nHabitats = 3, Lname = "basicL", Lopts = Lo, MYZopts = Mo) -> aqbasicL_xde
 xde_solve(aqbasicL_xde, Tmax=50, dt=1)$output$orbits$deout -> out2
 sum(abs(out1-out2)) == 0
 ``` 

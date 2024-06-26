@@ -154,7 +154,7 @@ EIPo = list(eip=eip, EIPname = "static_xde")
 ```
 
 ```{r}
-xde_setup(MYZname="RM_xde", Xname="SIS_xde", Lname="basicL_xde", 
+xde_setup(MYZname="RM", Xname="SIS", Lname="basicL", 
           nPatches=3, HPop=Hpop, membership=c(1:3), 
           MYZopts=MYZo, EIPopts=EIPo, calK=calK, 
           Xopts=Xo, residence=1:3, searchB=rep(1,3), 

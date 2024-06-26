@@ -20,15 +20,17 @@ setup_EIP.fixedlag_dts <- function(EIPopts, MYZpar){
 #' @param EIPopts a [list]
 #' @param MYZpar the MYZ parameters
 #' @param eip a default value for the eip
+#' @param Dday the simulation runtime interval
+#' @param MYZday the MYZ component runtime interval
 #' @return [list]
 #' @export
-setup_eip_fixedlag_dts = function(EIPopts, MYZpar, eip=12){
+setup_eip_fixedlag_dts = function(EIPopts, MYZpar, eip=12, Dday=1, MYZday=1){with(EIPopts,{
   EIPmod <- list()
   class(EIPmod) <- 'fixedlag_dts'
   MYZpar$EIPmod <- EIPmod
-  MYZpar$eip <- eip
-  MYZpar$max_eip <- eip
+  MYZpar$eip <- eip*MYZday*Dday
+  MYZpar$max_eip <- eip*MYZday*Dday
   MYZpar$G <- rep(0, MYZpar$max_eip)
   MYZpar$G[eip] <- 1
   return(MYZpar)
-}
+})}

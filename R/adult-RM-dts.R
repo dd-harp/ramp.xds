@@ -1,5 +1,137 @@
 # specialized methods for the adult mosquito RM_dts model
 
+
+#' @title Derivatives for adult mosquitoes
+#' @description Implements [DT_MYZt] for the RM_dts model.
+#' @inheritParams DT_MYZt
+#' @return a [numeric] vector
+#' @export
+DT_MYZt.RM_dts <- function(t, y, pars, s) {
+  Lambda = pars$Lambda[[s]]*pars$MYZday
+  kappa = pars$kappa[[s]]
+
+
+  with(list_MYZvars(y, pars, s),{
+    with(pars$MYZpar[[s]],{
+
+      eip_day_ix = (t %% max_eip) + 1
+      eip_yday_ix = ((t-1) %% max_eip) + 1
+      Gix = c(t-1:max_eip) %% max_eip + 1
+      Gt <- G[Gix]
+
+      Mt <- Lambda + Omega %*% M
+      Pt <- f*(M-P) + Omega %*% P
+      Ut <- Lambda + Omega %*% (exp(-f*q*kappa)*U)
+      Yt <- Omega %*% (Y %*% diag(1-Gt))
+      Zt <- Omega %*% (Y%*%Gt)  + (Omega %*% Z)
+
+      Yt[,eip_yday_ix]  <- Yt[,eip_yday_ix] + Yt[,eip_day_ix]
+      Yt[,eip_day_ix] <- Omega %*% ((1-exp(-f*q*kappa))*U)
+
+      return(list(M=unname(Mt), P=unname(Pt), U=unname(Ut), Y=unname(as.vector(Yt)), Z=unname(Zt)))
+    })
+  })
+}
+
+
+#' @title Setup MYZpar for the RM_dts model
+#' @description Implements [dts_setup_MYZpar] for the RM_dts model
+#' @inheritParams dts_setup_MYZpar
+#' @return a [list] vector
+#' @export
+dts_setup_MYZpar.RM_dts = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
+  pars$MYZpar[[s]] = dts_make_MYZpar_RM(pars$nPatches, pars$Dday, pars$MYZday, EIPopts, calK, MYZopts)
+  return(pars)
+}
+
+
+#' @title Make parameters for RM_dts adult mosquito model
+#' @param nPatches is the number of patches, an integer
+#' @param Dday is the runtime step for the simulation
+#' @param MYZday is the runtime time step for the MYZ model
+#' @param EIPopts a string: the class name for the EIP model
+#' @param calK a mosquito dispersal matrix of dimensions `nPatches` by `nPatches`
+#' @param MYZopts a [list] of values that overwrites the defaults
+#' @param g daily mosquito survival
+#' @param sigma emigration rate
+#' @param mu emigration loss
+#' @param f feeding rate
+#' @param q human blood fraction
+#' @param nu oviposition rate, per mosquito
+#' @param eggsPerBatch eggs laid per oviposition
+#' @param r_mod a name to dispatch F_p
+#' @param sigma_mod a name to dispatch F_sigma
+#' @param mu_mod a name to dispatch F_sigma
+#' @param f_mod a name to dispatch F_f
+#' @param q_mod a name to dispatch F_q
+#' @param nu_mod a name to dispatch F_nu
+#' @return a [list]
+#' @export
+dts_make_MYZpar_RM = function(nPatches, Dday, MYZday, EIPopts, calK, MYZopts=list(),
+                              g=1/12, sigma=1/8, mu=0,
+                              f=0.3, q=0.95, nu=1,
+                              eggsPerBatch=60,
+                              r_mod = "static", sigma_mod = "static", mu_mod = "static",
+                              f_mod = "static", q_mod = "static", nu_mod = "static"
+){
+
+  stopifnot(is.matrix(calK))
+  stopifnot(dim(calK) == c(nPatches, nPatches))
+
+  with(MYZopts,{
+    MYZpar <- list()
+    class(MYZpar) <- "RM_dts"
+
+    MYZpar$nPatches <- nPatches
+    if(nPatches == 1){
+      sigma = 0
+      calK = 1
+    }
+
+    MYZpar$p       <- exp(-checkIt(g, nPatches)*MYZday*Dday)
+    MYZpar$sigma   <- 1-exp(-checkIt(sigma, nPatches)*MYZday*Dday)
+    MYZpar$mu      <- 1-exp(-checkIt(mu, nPatches)*MYZday*Dday)
+    MYZpar$f       <- checkIt(f, nPatches)*MYZday
+    MYZpar$q       <- checkIt(q, nPatches)
+    MYZpar$nu      <- 1-exp(-checkIt(nu, nPatches)*MYZday*Dday)
+    MYZpar$eggsPerBatch <- eggsPerBatch
+
+    # Store as baseline values
+    MYZpar$p0      <- MYZpar$p
+    MYZpar$sigma0  <- MYZpar$sigma
+    MYZpar$mu0     <- MYZpar$mu
+    MYZpar$f0      <- MYZpar$f
+    MYZpar$q0      <- MYZpar$q
+    MYZpar$nu0     <- MYZpar$nu
+
+    MYZpar$p_par   <- list()
+    class(MYZpar$p_par) <- "static"
+    MYZpar$f_par   <- list()
+    class(MYZpar$f_par) <- "static"
+    MYZpar$q_par   <- list()
+    class(MYZpar$q_par) <-  "static"
+    MYZpar$sigma_par   <- list()
+    class(MYZpar$sigma_par) <- "static"
+    MYZpar$mu_par   <- list()
+    class(MYZpar$mu_par) <- "static"
+    MYZpar$nu_par   <- list()
+    class(MYZpar$nu_par) <- "static"
+
+    # The EIP model and the eip
+    MYZpar <- setup_EIP(EIPopts, MYZpar)
+    MYZpar <- EIP(0, MYZpar)
+
+    MYZpar$calK <- calK
+
+    Omega_par <- list()
+    class(Omega_par) = "static"
+    MYZpar$Omega_par <- Omega_par
+    MYZpar$Omega <- with(MYZpar, make_Omega_dts(p, sigma, mu, calK))
+
+    return(MYZpar)
+})}
+
+
 #' @title Reset bloodfeeding and mortality rates to baseline
 #' @description Implements [MBionomics] for the RM_dts model
 #' @inheritParams MBionomics
@@ -46,132 +178,6 @@ F_eggs.RM_dts <- function(t, y, pars, s) {
   })
 }
 
-#' @title Derivatives for adult mosquitoes
-#' @description Implements [DT_MYZt] for the RM_dts model.
-#' @inheritParams DT_MYZt
-#' @return a [numeric] vector
-#' @export
-DT_MYZt.RM_dts <- function(t, y, pars, s) {
-  Lambda = pars$Lambda[[s]]
-  kappa = pars$kappa[[s]]
-
-
-  with(list_MYZvars(y, pars, s),{
-    with(pars$MYZpar[[s]],{
-
-        eip_day_ix = (t %% max_eip) + 1
-        eip_yday_ix = ((t-1) %% max_eip) + 1
-        Gix = c(t-1:max_eip) %% max_eip + 1
-        Gt <- G[Gix]
-
-        Mt <- Lambda + Omega %*% M
-        Pt <- f*(M-P) + Omega %*% P
-        Ut <- Lambda + Omega %*% (exp(-f*q*kappa)*U)
-        Yt <- Omega %*% (Y %*% diag(1-Gt))
-        Zt <- Omega %*% (Y%*%Gt)  + (Omega %*% Z)
-
-        Yt[,eip_yday_ix]  <- Yt[,eip_yday_ix] + Yt[,eip_day_ix]
-        Yt[,eip_day_ix] <- Omega %*% ((1-exp(-f*q*kappa))*U)
-
-        return(c(Mt, Pt, Ut, Yt, Zt))
-      })
-  })
-}
-
-#' @title Setup MYZpar for the RM_dts model
-#' @description Implements [dts_setup_MYZpar] for the RM_dts model
-#' @inheritParams dts_setup_MYZpar
-#' @return a [list] vector
-#' @export
-dts_setup_MYZpar.RM_dts = function(MYZname, pars, s, EIPopts, MYZopts=list(), calK){
-  pars$MYZpar[[s]] = make_MYZpar_RM_dts(pars$nPatches, MYZopts, EIPopts, calK)
-  return(pars)
-}
-
-
-#' @title Make parameters for RM_dts adult mosquito model
-#' @param nPatches is the number of patches, an integer
-#' @param MYZopts a [list] of values that overwrites the defaults
-#' @param EIPopts a string: the class name for the EIP model
-#' @param calK a mosquito dispersal matrix of dimensions `nPatches` by `nPatches`
-#' @param p daily mosquito survival
-#' @param sigma emigration rate
-#' @param mu emigration loss
-#' @param f feeding rate
-#' @param q human blood fraction
-#' @param nu oviposition rate, per mosquito
-#' @param eggsPerBatch eggs laid per oviposition
-#' @param p_mod a name to dispatch F_p
-#' @param sigma_mod a name to dispatch F_sigma
-#' @param mu_mod a name to dispatch F_sigma
-#' @param f_mod a name to dispatch F_f
-#' @param q_mod a name to dispatch F_q
-#' @param nu_mod a name to dispatch F_nu
-#' @return a [list]
-#' @export
-make_MYZpar_RM_dts = function(nPatches, MYZopts=list(), EIPopts, calK,
-                          p=11/12, sigma=1/8, mu=0,
-                          f=0.3, q=0.95, nu=1,
-                          eggsPerBatch=60,
-                          p_mod = "static", sigma_mod = "static", mu_mod = "static",
-                          f_mod = "static", q_mod = "static", nu_mod = "static"
-                          ){
-
-  stopifnot(is.matrix(calK))
-  stopifnot(dim(calK) == c(nPatches, nPatches))
-
-  with(MYZopts,{
-    MYZpar <- list()
-    class(MYZpar) <- "RM_dts"
-
-    MYZpar$nPatches <- nPatches
-    if(nPatches == 1){
-      sigma = 0
-      calK = 1
-    }
-
-    MYZpar$p       <- checkIt(p, nPatches)
-    MYZpar$sigma   <- checkIt(sigma, nPatches)
-    MYZpar$mu      <- checkIt(mu, nPatches)
-    MYZpar$f       <- checkIt(f, nPatches)
-    MYZpar$q       <- checkIt(q, nPatches)
-    MYZpar$nu      <- checkIt(nu, nPatches)
-    MYZpar$eggsPerBatch <- eggsPerBatch
-
-    # Store as baseline values
-    MYZpar$p0      <- MYZpar$p
-    MYZpar$sigma0  <- MYZpar$sigma
-    MYZpar$mu0     <- MYZpar$mu
-    MYZpar$f0      <- MYZpar$f
-    MYZpar$q0      <- MYZpar$q
-    MYZpar$nu0     <- MYZpar$nu
-
-    MYZpar$p_par   <- list()
-    class(MYZpar$p_par) <- "static"
-    MYZpar$f_par   <- list()
-    class(MYZpar$f_par) <- "static"
-    MYZpar$q_par   <- list()
-    class(MYZpar$q_par) <-  "static"
-    MYZpar$sigma_par   <- list()
-    class(MYZpar$sigma_par) <- "static"
-    MYZpar$mu_par   <- list()
-    class(MYZpar$mu_par) <- "static"
-    MYZpar$nu_par   <- list()
-    class(MYZpar$nu_par) <- "static"
-
-    # The EIP model and the eip
-    MYZpar <- setup_EIP(EIPopts, MYZpar)
-    MYZpar <- EIP(0, MYZpar)
-
-    MYZpar$calK <- calK
-
-    Omega_par <- list()
-    class(Omega_par) = "static"
-    MYZpar$Omega_par <- Omega_par
-    MYZpar$Omega <- with(MYZpar, make_Omega_dts(p, sigma, mu, calK))
-
-    return(MYZpar)
-})}
 
 #' @title Setup initial values for the RM_dts model
 #' @description Implements [setup_MYZinits] for the RM_dts model
@@ -250,6 +256,23 @@ list_MYZvars.RM_dts <- function(y, pars, s){
          Y = matrix(y[Y_ix], pars$nPatches, pars$MYZpar[[s]]$max_eip),
          Z = y[Z_ix]
   )))
+}
+
+#' @title Return the variables as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`
+#' @inheritParams put_MYZvars
+#' @return a [list]
+#' @export
+put_MYZvars.RM_dts <- function(MYZvars, y, pars, s){
+  with(pars$ix$MYZ[[s]],
+    with(MYZvars,{
+      y[M_ix] = M
+      y[P_ix] = P
+      y[U_ix] = U
+      y[Y_ix] = Y
+      y[Z_ix] = Z
+      return(y)
+  }))
 }
 
 #' @title Make parameters for RM_dts adult mosquito model

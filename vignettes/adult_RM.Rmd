@@ -161,7 +161,7 @@ Now we set up the parameter environment with the correct class using `ramp.xde::
 ```{r}
 params <- list(nPatches = nPatches)
 
-params = make_parameters_MYZ_RM_xde(params, 
+params = make_parameters_MYZ_RM(params, 
                                 g = g, sigma = sigma, mu=mu, calK = calK, 
                                 f = f, q = q, 
                                 nu = nu, eggsPerBatch = eggsPerBatch, 
@@ -275,7 +275,7 @@ To set up the model, we call `xde_setup` with
 Otherwise, setup takes care of all the internals: 
 
 ```{r using setup}
-xde_setup(MYZname = "RM_xde", Xname = "trace", Lname = "trace",  
+xde_setup(MYZname = "RM", Xname = "trace", Lname = "trace",  
     nPatches=3, calK=calK, membership = c(1:3), EIPopts = EIPo,
     residence = c(1:3), HPop = rep(1, 3),
     MYZopts = MYZo, Xopts = Xo, Lopts = Lo) -> MYZeg

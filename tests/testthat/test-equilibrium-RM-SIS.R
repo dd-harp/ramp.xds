@@ -89,13 +89,13 @@ test_that("test equilibrium with RM adults (ODE), SIS_xde humans, trace", {
   params$calU[[1]] = calU
   params$calN <- calN
 
-  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
+  params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
   params = make_inits_MYZ_RM_ode(pars = params, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z))
   params = make_parameters_demography_null(pars = params, H=H)
   params = setup_BloodFeeding(params, 1, 1, residence=residence, searchWts=searchWtsH)
   params$BFpar$TaR[[1]][[1]]=TaR
-  params = make_parameters_X_SIS_xde(pars = params, b = b, c = c, r = r)
-  params = make_inits_X_SIS_xde(pars = params, H-I, I)
+  params = make_parameters_X_SIS(pars = params, b = b, c = c, r = r)
+  params = make_inits_X_SIS(pars = params, H-I, I)
   params = make_parameters_L_trace(pars = params, Lambda = as.vector(Lambda))
 
   params = make_indices(params)
@@ -199,13 +199,13 @@ test_that("test equilibrium with RM adults (DDE), SIS_xde humans, trace", {
   params$calU[[1]] = calU
   params$calN <- calN
 
-  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch)
+  params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch)
   params = make_inits_MYZ_RM_dde(pars = params, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z), U0=OmegaEIP)
   params = make_parameters_demography_null(pars = params, H=H)
   params = setup_BloodFeeding(params, 1, 1, residence=residence, searchWts=searchWtsH)
   params$BFpar$TaR[[1]][[1]]=TaR
-  params = make_parameters_X_SIS_xde(pars = params, b = b, c = c, r = r)
-  params = make_inits_X_SIS_xde(pars = params, H-I, I)
+  params = make_parameters_X_SIS(pars = params, b = b, c = c, r = r)
+  params = make_inits_X_SIS(pars = params, H-I, I)
   params = make_parameters_L_trace(pars = params, Lambda = as.vector(Lambda))
 
   params = make_indices(params)
