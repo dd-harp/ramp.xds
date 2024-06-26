@@ -17,5 +17,5 @@ list_Xvars(y, pars, i)
 a \link{list}
 }
 \description{
-This method dispatches on the type of \code{pars$Xpar[[i]]}.
+This method dispatches on the type of \code{pars$Xpar[[s]]}.
 }

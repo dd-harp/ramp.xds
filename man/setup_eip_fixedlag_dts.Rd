@@ -4,7 +4,7 @@
 \alias{setup_eip_fixedlag_dts}
 \title{Set up a fixedlag_dts model for the EIP}
 \usage{
-setup_eip_fixedlag_dts(EIPopts, MYZpar, eip = 12)
+setup_eip_fixedlag_dts(EIPopts, MYZpar, eip = 12, Dday = 1, MYZday = 1)
 }
 \arguments{
 \item{EIPopts}{a \link{list}}
@@ -12,6 +12,10 @@ setup_eip_fixedlag_dts(EIPopts, MYZpar, eip = 12)
 \item{MYZpar}{the MYZ parameters}
 
 \item{eip}{a default value for the eip}
+
+\item{Dday}{the simulation runtime interval}
+
+\item{MYZday}{the MYZ component runtime interval}
 }
 \value{
 \link{list}

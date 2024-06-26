@@ -53,7 +53,7 @@ library(ggplot2)
 ```
 
 
-```{r, echo=FALSE} 
+```{r, echo=FALSE, eval=F} 
 #devtools::load_all()
 ```
 
@@ -103,8 +103,8 @@ params = make_parameters_demography_null(pars = params, H=H)
 params = setup_BloodFeeding(params, 1, 1, residence=residence, searchWts =searchWtsH) 
 params$BFpar$TaR[[1]][[1]]=TaR
 
-params = make_parameters_X_SIP_xde(pars = params, b = b, c = c, r = r, rho = rho, eta = eta, xi=xi)
-params = make_inits_X_SIP_xde(pars = params, H-I-P, I, as.vector(P))
+params = make_parameters_X_SIP(pars = params, b = b, c = c, r = r, rho = rho, eta = eta, xi=xi)
+params = make_inits_X_SIP(pars = params, H-I-P, I, as.vector(P))
 params = make_indices(params)
 ```
 
@@ -143,7 +143,7 @@ Hpop = c(100, 500, 250)
 
 
 ```{r}
-xde_setup_cohort(F_eir, Xname="SIP_xde", HPop=Hpop, Xopts = Xo) -> test_SIP_xde
+xde_setup_cohort(F_eir, Xname="SIP", HPop=Hpop, Xopts = Xo) -> test_SIP_xde
 ```
 
 ```{r}

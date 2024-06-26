@@ -8,7 +8,7 @@ make_parameters_xde = function(solve_as='dde'){
   pars = list()
 
   xde <- solve_as
-  class(xde) <- xde
+  class(xde) <- c(solve_as, "xde")
   pars$xde = xde
 
   xde_list = list()
@@ -79,13 +79,14 @@ make_parameters_xde = function(solve_as='dde'){
 #' @param TimeSpentOpts are the options to setup TimeSpent
 #' @param searchQ is a vector of search weights for egg laying
 #' @param Lopts a list to configure the L model
+#' @param xde is either "ode" or "dde"
 #' @return a [list]
 #' @export
 xde_setup = function(modelName = "unnamed",
 
                      # Dynamical Components
-                     MYZname = "RM_xde",
-                     Xname = "SIS_xde",
+                     MYZname = "RM",
+                     Xname = "SIS",
                      Lname = "trace",
 
                      # Model Structure
@@ -114,17 +115,21 @@ xde_setup = function(modelName = "unnamed",
 
                      # Aquatic Mosquito Options
                      searchQ = 1,
-                     Lopts = list()
+                     Lopts = list(),
+
+                     xde = "dde"
 
 ){
 
-  pars = make_parameters_xde()
+  pars = make_parameters_xde(xde)
+  class(pars$xde) <- xde
   class(pars$compute) = "xde"
 
   pars$modelName = modelName
   pars$Xname = Xname
   pars$MYZname = MYZname
   pars$Lname = Lname
+
 
   # Fixed Structural Elements
   pars$nPatches = nPatches

@@ -95,6 +95,18 @@ list_MYZvars <- function(y, pars, s) {
   UseMethod("list_MYZvars", pars$MYZpar[[s]])
 }
 
+#' @title Put MYZvars in place of the MYZ variables in y
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @param MYZvars the variables
+#' @param y the variables
+#' @param pars a [list]
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+put_MYZvars <- function(MYZvars, y, pars, s) {
+  UseMethod("put_MYZvars", pars$MYZpar[[s]])
+}
+
 #' @title A function to set up adult mosquito models
 #' @description This method dispatches on `MYZname`.
 #' @param MYZname the name of the model
@@ -204,8 +216,8 @@ dde2ode_MYZ.ode = function(pars){pars}
 dde2ode_MYZ.dde = function(pars){
   pars$MYZpar$xde <- "ode"
   pars$MYZpar$solve_as <- "ode"
-  pars <- make_MYZpar_RM_xde(pars, MYZopts<- pars$MYZpar,
-                         calK=pars$MYZpar$calK)
+  pars <- xde_make_MYZpar_RM(pars, MYZopts<- pars$MYZpar,
+                             calK=pars$MYZpar$calK)
   pars <- make_indices(pars)
   return(pars)
 }

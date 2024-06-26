@@ -32,7 +32,7 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/Understanding_ramp.xde.html">Understanding ramp.xde</a>
+      <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
       <a href="../articles/modularity.html">Modular Forms for Disease Dynamics</a>
@@ -79,6 +79,9 @@
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
+      <a href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a>
+    </li>
+    <li>
       <a href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
     </li>
   </ul></li>
@@ -105,7 +108,7 @@
       <a href="../articles/human_sis.html">SIS model</a>
     </li>
     <li>
-      <a href="../articles/human_sip.html">SIP model</a>
+      <a href="../articles/human_sip.html">SIP xde model</a>
     </li>
     <li>
       <a href="../articles/human_hmoi.html">MoI hybrid model</a>
@@ -136,7 +139,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_parameters_MYZ_basicM</span><span class="op">(</span><span class="va">pars</span>, <span class="va">g</span>, <span class="va">sigma</span>, <span class="va">f</span>, <span class="va">q</span>, <span class="va">nu</span>, <span class="va">eggsPerBatch</span>, <span class="va">calK</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_parameters_MYZ_basicM</span><span class="op">(</span><span class="va">pars</span>, <span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">f</span>, <span class="va">q</span>, <span class="va">nu</span>, <span class="va">eggsPerBatch</span>, <span class="va">calK</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -151,6 +154,10 @@
 
 <dt>sigma</dt>
 <dd><p>emigration rate</p></dd>
+
+
+<dt>mu</dt>
+<dd><p>emigration loss</p></dd>
 
 
 <dt>f</dt>

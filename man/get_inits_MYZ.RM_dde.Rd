@@ -15,5 +15,5 @@
 \link{numeric}
 }
 \description{
-Implements \link{get_inits_MYZ} for the RM_xde model.
+Implements \link{get_inits_MYZ} for the RM model.
 }

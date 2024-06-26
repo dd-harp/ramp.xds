@@ -8,6 +8,9 @@ make_parameters_dts = function(){
   pars = list()
   class(pars) <- "dts"
 
+  pars$xde = "dts"
+  class(pars$xde) = "dts"
+
   dts_list = list()
   class(dts_list) <- "dts"
 
@@ -54,13 +57,37 @@ make_parameters_dts = function(){
 }
 
 #' @title Set up a model for dts_diffeqn
+#' @param Xday is the run-time time step for X component (in days): integer or 1/integer
+#' @param MYZday is the run-time time step for MYZ component (in days): integer or 1/integer
+#' @param Lday is the run-time time step for L component (in days): integer or 1/integer
+#' @param Lname is the S3 class of the L model
+#' @return a [list]
+#' @export
+set_Dday = function(Xday, MYZday, Lday, Lname="trace"){
+  if(Lname == "trace") Lday = min(Xday, MYZday)
+  mnn = min(Xday, MYZday, Lday)
+  mxx = max(Xday, MYZday, Lday)
+
+  if(mnn<1){
+    Xm = ifelse(Xday <=1, 1/Xday, 1)
+    Lm = ifelse(Lday <=1, 1/Lday, 1)
+    MYZm = ifelse(MYZday <=1, 1/MYZday, 1)
+    return(1/DescTools::LCM(Xm, Lm, MYZm))
+  } else if(mnn==1){
+    return(1)
+  } else {
+    return(DescTools::LCM(Xday, Lday, MYZday))
+  }
+}
+
+#' @title Set up a model for dts_diffeqn
 #' @param modelName is a name for the model (arbitrary)
 #' @param MYZname is a character string defining a MYZ model
 #' @param Xname is a character string defining a X model
 #' @param Lname is a character string defining a L model
-#' @param Xday is an integer: positive > 1 for lumping; negative < -1 for splitting
-#' @param MYZday is an integer: positive > 1 for lumping; negative < -1 for splitting
-#' @param Lday is an integer: positive > 1 for lumping; negative < -1 for splitting
+#' @param Xday is the run-time time step for X component (in days): integer or 1/integer
+#' @param MYZday is the run-time time step for MYZ component (in days): integer or 1/integer
+#' @param Lday is the run-time time step for L component (in days): integer or 1/integer
 #' @param nPatches is the number of patches
 #' @param nVectors is the number of vector species
 #' @param nHosts is the number of vertebrate host species
@@ -85,7 +112,7 @@ dts_setup = function(modelName = "unnamed",
 
                      # Dynamical Components
                      MYZname = "RM_dts",
-                     Xname = "SIS_dts",
+                     Xname = "SIS",
                      Lname = "trace",
 
                      # Runtime Time parameters
@@ -130,9 +157,11 @@ dts_setup = function(modelName = "unnamed",
   pars$Xname = Xname
   pars$MYZname = MYZname
   pars$Lname = Lname
-  pars$Xday = Xday
+
+  pars$Dday = set_Dday(Xday, MYZday, Lday, Lname)
   pars$Lday = Lday
   pars$MYZday = MYZday
+  pars$Xday = Xday
 
   # Fixed Structural Elements
   pars$nPatches = nPatches
@@ -193,29 +222,29 @@ dts_setup = function(modelName = "unnamed",
 #' @export
 dts_setup_mosy = function(modelName = "unnamed",
 
-                     # Dynamical Components
-                     MYZname = "basicM",
-                     Lname = "basic",
-                     MYZday = 1,
-                     Lday = 1,
+                          # Dynamical Components
+                          MYZname = "basicM",
+                          Lname = "basic",
+                          MYZday = 1,
+                          Lday = 1,
 
 
-                     # Model Structure
-                     nPatches = 1,
-                     nVectors = 1,
-                     membership=1,
+                          # Model Structure
+                          nPatches = 1,
+                          nVectors = 1,
+                          membership=1,
 
-                     # Adult Mosquito Options
-                     MYZopts = list(),
-                     calK ="herethere",
-                     calKopts = list(),
+                          # Adult Mosquito Options
+                          MYZopts = list(),
+                          calK ="herethere",
+                          calKopts = list(),
 
-                     # Aquatic Mosquito Options
-                     searchQ = 1,
-                     Lopts = list(),
+                          # Aquatic Mosquito Options
+                          searchQ = 1,
+                          Lopts = list(),
 
-                     # forcing
-                     kappa=NULL
+                          # forcing
+                          kappa=NULL
 ){
 
   pars = make_parameters_dts()
@@ -225,8 +254,11 @@ dts_setup_mosy = function(modelName = "unnamed",
   pars$modelName = modelName
   pars$MYZname = MYZname
   pars$Lname = Lname
-  pars$MYZday = MYZday
+
   pars$Lday = Lday
+  pars$Lsplit = ifelse(Lday<1, as.integer(1/Lday), 1)
+  pars$MYZday = MYZday
+  pars$MYZsplit = ifelse(MYZday<1, as.integer(1/MYZday), 1)
 
   # Structure
   pars$nPatches = nPatches
@@ -266,13 +298,13 @@ dts_setup_mosy = function(modelName = "unnamed",
 #' @return a [list]
 #' @export
 dts_setup_aquatic = function(modelName = "unnamed",
-                     nHabitats = 1,
-                     nVectors = 1,
-                     Lname = "basic",
-                     Lday = 1,
-                     Lopts = list(),
-                     MYZopts = list(),
-                     LSMname = "null"){
+                             nHabitats = 1,
+                             nVectors = 1,
+                             Lname = "basic",
+                             Lday = 1,
+                             Lopts = list(),
+                             MYZopts = list(),
+                             LSMname = "null"){
 
   pars = make_parameters_dts()
   class(pars$dts) <- "aqua"
@@ -282,6 +314,7 @@ dts_setup_aquatic = function(modelName = "unnamed",
   pars$MYZname = "Gtrace"
   pars$Lname = Lname
   pars$Lday = Lday
+  pars$Lsplit = ifelse(Lday<1, as.integer(1/Lday), 1)
 
   pars$nVectors = nVectors
   pars = dts_setup_MYZpar("Gtrace", pars, 1, MYZopts, "null", calK=NULL)
@@ -320,26 +353,26 @@ dts_setup_aquatic = function(modelName = "unnamed",
 #' @export
 dts_setup_human = function(modelName = "unnamed",
 
-                     # Dynamical Components
-                     Xname = "SIS",
-                     Xday = 1,
+                           # Dynamical Components
+                           Xname = "SIS",
+                           Xday = 1,
 
-                     # Model Structure
-                     HPop=1000,
+                           # Model Structure
+                           HPop=1000,
 
-                     # Adult Mosquito Options
-                     MYZopts = list(),
+                           # Adult Mosquito Options
+                           MYZopts = list(),
 
-                     # Human Strata / Options
-                     Xopts = list(),
+                           # Human Strata / Options
+                           Xopts = list(),
 
-                     # Blood Feeding
-                     BFopts = list(),
-                     residence=1,
-                     searchB = 1,
-                     F_circadian = NULL,
-                     TimeSpent = "athome",
-                     TimeSpentOpts=list()
+                           # Blood Feeding
+                           BFopts = list(),
+                           residence=1,
+                           searchB = 1,
+                           F_circadian = NULL,
+                           TimeSpent = "athome",
+                           TimeSpentOpts=list()
 
 ){
 
@@ -385,18 +418,18 @@ dts_setup_human = function(modelName = "unnamed",
 #' @return a [list]
 #' @export
 dts_setup_cohort = function(F_eir, bday=0, scale=1,
-                           modelName = "unnamed",
+                            modelName = "unnamed",
 
-                           # Dynamical Components
-                           Xname = "SIS",
-                           Xday = 1,
+                            # Dynamical Components
+                            Xname = "SIS",
+                            Xday = 1,
 
-                           # Model Structure
-                           HPop=1000,
-                           searchB = 1,
+                            # Model Structure
+                            HPop=1000,
+                            searchB = 1,
 
-                           # Human Strata / Options
-                           Xopts = list()
+                            # Human Strata / Options
+                            Xopts = list()
 
 ){
 
@@ -411,7 +444,6 @@ dts_setup_cohort = function(F_eir, bday=0, scale=1,
   pars$modelName = modelName
   pars$Xname = Xname
   pars$Xday = Xday
-
   pars$F_eir = F_eir
   pars$EIRpar = list()
   pars$EIRpar$bday = bday

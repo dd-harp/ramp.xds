@@ -65,7 +65,7 @@ test_that("forced emergence works with equilibrium", {
 
 
   # ODE
-  params = make_parameters_MYZ_RM_xde(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
+  params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
   params = make_inits_MYZ_RM_ode(pars = params, M0 = rep(0, nPatches), P0 = rep(0, nPatches), Y0 = rep(0, nPatches), Z0 = rep(0, nPatches))
   params = make_parameters_L_trace(pars = params, Lambda = alpha)
 

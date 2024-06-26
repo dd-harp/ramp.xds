@@ -16,7 +16,7 @@
 \item{s}{the species index}
 }
 \value{
-a \link{numeric} vector
+an empty \link{list}
 }
 \description{
 Implements \link{dLdt} for the trace (forced emergence) model.

@@ -15,5 +15,5 @@
 a \link{list}
 }
 \description{
-Implements \link{make_indices_MYZ} for the RM_xde model.
+Implements \link{make_indices_MYZ} for the RM model.
 }

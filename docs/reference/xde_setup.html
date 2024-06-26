@@ -141,8 +141,8 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xde_setup</span><span class="op">(</span></span>
 <span>  modelName <span class="op">=</span> <span class="st">"unnamed"</span>,</span>
-<span>  MYZname <span class="op">=</span> <span class="st">"RM_xde"</span>,</span>
-<span>  Xname <span class="op">=</span> <span class="st">"SIS_xde"</span>,</span>
+<span>  MYZname <span class="op">=</span> <span class="st">"RM"</span>,</span>
+<span>  Xname <span class="op">=</span> <span class="st">"SIS"</span>,</span>
 <span>  Lname <span class="op">=</span> <span class="st">"trace"</span>,</span>
 <span>  nPatches <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  nVectors <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -161,7 +161,8 @@
 <span>  TimeSpent <span class="op">=</span> <span class="st">"athome"</span>,</span>
 <span>  TimeSpentOpts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  searchQ <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  Lopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  Lopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  xde <span class="op">=</span> <span class="st">"dde"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -253,6 +254,10 @@
 
 <dt>Lopts</dt>
 <dd><p>a list to configure the L model</p></dd>
+
+
+<dt>xde</dt>
+<dd><p>is either "ode" or "dde"</p></dd>
 
 </dl></div>
     <div id="value">

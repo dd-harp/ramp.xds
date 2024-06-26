@@ -21,10 +21,28 @@ F_alpha.trace <- function(t, y, pars, s) {
 #' @title Derivatives for aquatic stage mosquitoes
 #' @description Implements [dLdt] for the trace (forced emergence) model.
 #' @inheritParams dLdt
-#' @return a [numeric] vector
+#' @return an empty [list]
 #' @export
 dLdt.trace <- function(t, y, pars, s) {
-  numeric(0)
+  return(numeric(0))
+}
+
+#' @title Return the variables as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`
+#' @inheritParams list_Lvars
+#' @return an empty [list]
+#' @export
+list_Lvars.trace <- function(y, pars, s){
+  return(list())
+}
+
+#' @title Return the variables as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`
+#' @inheritParams put_Lvars
+#' @return a [list]
+#' @export
+put_Lvars.trace <- function(Lvars, y, pars, s){
+  return(y)
 }
 
 #' @title Derivatives for aquatic stage mosquitoes
@@ -33,7 +51,7 @@ dLdt.trace <- function(t, y, pars, s) {
 #' @return a [numeric] vector
 #' @export
 DT_Lt.trace <- function(t, y, pars, s) {
-  numeric(0)
+  return(list())
 }
 
 #' @title xde_setup Lpar for the trace model

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-RM-xde.R
 \name{make_inits_MYZ_RM_dde}
 \alias{make_inits_MYZ_RM_dde}
-\title{Make inits for RM_xde adult mosquito model}
+\title{Make inits for RM adult mosquito model}
 \usage{
 make_inits_MYZ_RM_dde(pars, M0, P0, Y0, Z0, U0)
 }
@@ -23,5 +23,5 @@ make_inits_MYZ_RM_dde(pars, M0, P0, Y0, Z0, U0)
 none
 }
 \description{
-Make inits for RM_xde adult mosquito model
+Make inits for RM adult mosquito model
 }

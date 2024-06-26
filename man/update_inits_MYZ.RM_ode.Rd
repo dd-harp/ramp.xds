@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-RM-xde.R
 \name{update_inits_MYZ.RM_ode}
 \alias{update_inits_MYZ.RM_ode}
-\title{Make inits for RM_xde adult mosquito model}
+\title{Make inits for RM adult mosquito model}
 \usage{
 \method{update_inits_MYZ}{RM_ode}(pars, y0, s)
 }
@@ -17,5 +17,5 @@
 a \link{list}
 }
 \description{
-Make inits for RM_xde adult mosquito model
+Make inits for RM adult mosquito model
 }

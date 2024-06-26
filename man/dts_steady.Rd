@@ -4,12 +4,12 @@
 \alias{dts_steady}
 \title{Solve for the steady state of a system of equations}
 \usage{
-dts_steady(pars, Teq = 1000)
+dts_steady(pars, Tx = 1000)
 }
 \arguments{
 \item{pars}{a \link{list} that defines a model}
 
-\item{Teq}{the number of steps to equilibrium}
+\item{Tx}{the number of steps to equilibrium}
 }
 \value{
 a \link{list}

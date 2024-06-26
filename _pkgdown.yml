@@ -115,6 +115,8 @@ reference:
   - Exposure
   - Exposure.xde
   - Exposure.dts
+  - Exposure.multiday
+  - setup_exposure_multiday
   - F_foi
   - F_ar
 - subtitle: Poisson Exposure
@@ -170,8 +172,11 @@ reference:
   - DT_MYZt
   - xde_setup_MYZpar
   - dts_setup_MYZpar
+  - runt
+  - set_Dday
   - setup_MYZinits
   - list_MYZvars
+  - put_MYZvars
   - make_indices_MYZ
   - parse_outputs_MYZ
   - get_inits_MYZ
@@ -247,95 +252,103 @@ reference:
   - get_inits_MYZ.Gtrace
   - update_inits_MYZ.Gtrace
   - make_parameters_MYZ_Gtrace
-- subtitle: basicM_xde
+- subtitle: basicM
   desc: |
-    Specialized methods for basicM_xde, a model of adult mosquito dynamics with no parasite infection dynamics.
+    Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.
   contents:
-  - MBionomics.basicM_xde
-  - F_fqZ.basicM_xde
-  - F_fqM.basicM_xde
-  - F_eggs.basicM_xde
-  - dMYZdt.basicM_xde
-  - xde_setup_MYZpar.basicM_xde
-  - setup_MYZinits.basicM_xde
-  - make_MYZpar_basicM_xde
-  - make_MYZinits_basicM_xde
-  - make_indices_MYZ.basicM_xde
-  - parse_outputs_MYZ.basicM_xde
-  - make_inits_MYZ_basicM_xde
-  - get_inits_MYZ.basicM_xde
-  - update_inits_MYZ.basicM_xde
-  - make_parameters_MYZ_basicM_xde
-- subtitle: basicM_dts
+  - dMYZdt.basicM
+  - DT_MYZt.basicM
+  - xde_setup_MYZpar.basicM
+  - xde_make_MYZpar_basicM
+  - dts_setup_MYZpar.basicM
+  - dts_make_MYZpar_basicM
+  - MBionomics.basicM
+  - F_fqZ.basicM
+  - F_fqM.basicM
+  - F_eggs.basicM
+  - setup_MYZinits.basicM
+  - make_MYZinits_basicM
+  - make_indices_MYZ.basicM
+  - list_MYZvars.basicM
+  - parse_outputs_MYZ.basicM
+  - make_inits_MYZ_basicM
+  - get_inits_MYZ.basicM
+  - update_inits_MYZ.basicM
+  - make_parameters_MYZ_basicM
+- subtitle: The "mz" model for infection
   desc: |
-    Specialized methods for basicM_dts, a model of adult mosquito dynamics with no parasite infection dynamics.
+    Specialized methods for simple infection dynamics for an adult mosquito population
   contents:
-  - MBionomics.basicM_dts
-  - F_fqZ.basicM_dts
-  - F_fqM.basicM_dts
-  - F_eggs.basicM_dts
-  - DT_MYZt.basicM_dts
-  - dts_setup_MYZpar.basicM_dts
-  - setup_MYZinits.basicM_dts
-  - make_MYZpar_basicM_dts
-  - make_MYZinits_basicM_dts
-  - list_MYZvars.basicM_dts
-  - make_indices_MYZ.basicM_dts
-  - parse_outputs_MYZ.basicM_dts
-  - make_inits_MYZ_basicM_dts
-  - get_inits_MYZ.basicM_dts
-  - update_inits_MYZ.basicM_dts
-  - make_parameters_MYZ_basicM_dts
-- subtitle: RM_xde
+  - dMYZdt.mz
+  - DT_MYZt.mz
+  - xde_setup_MYZpar.mz
+  - xde_make_MYZpar_mz
+  - dts_setup_MYZpar.mz
+  - dts_make_MYZpar_mz
+  - MBionomics.mz
+  - F_fqZ.mz
+  - F_fqM.mz
+  - F_eggs.mz
+  - list_MYZvars.mz
+  - put_MYZvars.mz
+  - setup_MYZinits.mz
+  - make_MYZinits_mz
+  - make_indices_MYZ.mz
+  - parse_outputs_MYZ.mz
+  - get_inits_MYZ.mz
+  - update_inits_MYZ.mz
+  - make_inits_MYZ_mz
+  - make_parameters_MYZ_mz
+- subtitle: RM
   desc: |
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
   contents:
-  - MBionomics.RM_xde
-  - F_fqZ.RM_xde
-  - F_fqM.RM_xde
-  - F_eggs.RM_xde
   - dMYZdt.RM_ode
   - dMYZdt.RM_dde
-  - xde_setup_MYZpar.RM_xde
-  - setup_MYZinits.RM_xde
-  - make_MYZpar_RM_xde
+  - xde_setup_MYZpar.RM
+  - xde_make_MYZpar_RM
+  - MBionomics.RM
+  - F_fqZ.RM
+  - F_fqM.RM
+  - F_eggs.RM
+  - setup_MYZinits.RM
   - make_MYZinits_RM_ode
   - make_MYZinits_RM_dde
   - make_indices_MYZ.RM_ode
   - make_indices_MYZ.RM_dde
-  - parse_outputs_MYZ.RM_xde
+  - parse_outputs_MYZ.RM
   - make_inits_MYZ_RM_ode
   - make_inits_MYZ_RM_dde
   - get_inits_MYZ.RM_ode
   - get_inits_MYZ.RM_dde
   - update_inits_MYZ.RM_ode
   - update_inits_MYZ.RM_dde
-  - make_parameters_MYZ_RM_xde
+  - make_parameters_MYZ_RM
 - subtitle: GeRM
   desc: |
     Specialized methods for a generalized Ross-Macdonald model for adult mosquito ecology and parasite infection dynamics, first published by Sean L Wu, et al.(2023).
   contents:
-  - MBionomics.GeRM_xde
-  - F_fqZ.GeRM_xde
-  - F_fqM.GeRM_xde
-  - F_eggs.GeRM_xde
+  - MBionomics.GeRM
+  - F_fqZ.GeRM
+  - F_fqM.GeRM
+  - F_eggs.GeRM
   - dMYZdt.GeRM_ode
   - dMYZdt.GeRM_dde
-  - xde_setup_MYZpar.GeRM_xde
-  - setup_MYZinits.GeRM_xde
-  - make_MYZpar_GeRM_xde
+  - xde_setup_MYZpar.GeRM
+  - setup_MYZinits.GeRM
+  - make_MYZpar_GeRM
   - make_MYZinits_GeRM_ode
   - make_MYZinits_GeRM_dde
   - make_indices_MYZ.GeRM_ode
   - make_indices_MYZ.GeRM_dde
-  - parse_outputs_MYZ.GeRM_xde
+  - parse_outputs_MYZ.GeRM
   - make_inits_MYZ_GeRM_ode
   - make_inits_MYZ_GeRM_dde
   - get_inits_MYZ.GeRM_ode
   - get_inits_MYZ.GeRM_dde
   - update_inits_MYZ.GeRM_ode
   - update_inits_MYZ.GeRM_dde
-  - make_parameters_MYZ_GeRM_xde
+  - make_parameters_MYZ_GeRM
 - subtitle: RM-Mosquito in discrete-time
   desc: |
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, in discrete time.
@@ -346,9 +359,10 @@ reference:
   - F_eggs.RM_dts
   - DT_MYZt.RM_dts
   - dts_setup_MYZpar.RM_dts
+  - dts_make_MYZpar_RM
   - setup_MYZinits.RM_dts
   - list_MYZvars.RM_dts
-  - make_MYZpar_RM_dts
+  - put_MYZvars.RM_dts
   - make_MYZinits_RM_dts
   - make_indices_MYZ.RM_dts
   - parse_outputs_MYZ.RM_dts
@@ -368,6 +382,7 @@ reference:
   - dts_setup_Lpar
   - setup_Linits
   - list_Lvars
+  - put_Lvars
   - make_indices_L
   - parse_outputs_L
   - get_inits_L
@@ -384,47 +399,35 @@ reference:
   - dts_setup_Lpar.trace
   - setup_Linits.trace
   - make_Lpar_trace
+  - list_Lvars.trace
+  - put_Lvars.trace
   - make_indices_L.trace
   - parse_outputs_L.trace
   - make_inits_L_trace
   - get_inits_L.trace
   - update_inits_L.trace
   - make_parameters_L_trace
-- subtitle: basicL_xde
+- subtitle: basicL
   desc: |
-    Specialized methods for a basicL_xde competition model of aquatic mosquito dynamics.
+    Specialized methods for a basicL competition model of aquatic mosquito dynamics.
   contents:
-  - LBionomics.basicL_xde
-  - F_alpha.basicL_xde
-  - dLdt.basicL_xde
-  - xde_setup_Lpar.basicL_xde
-  - setup_Linits.basicL_xde
-  - make_Lpar_basicL_xde
-  - make_Linits_basicL_xde
-  - make_indices_L.basicL_xde
-  - parse_outputs_L.basicL_xde
-  - make_inits_L_basicL_xde
-  - get_inits_L.basicL_xde
-  - update_inits_L.basicL_xde
-  - make_parameters_L_basicL_xde
-- subtitle: basicL_dts
-  desc: |
-    Specialized methods for a basicL_dts competition model of aquatic mosquito dynamics.
-  contents:
-  - LBionomics.basicL_dts
-  - F_alpha.basicL_dts
-  - DT_Lt.basicL_dts
-  - dts_setup_Lpar.basicL_dts
-  - setup_Linits.basicL_dts
-  - make_Lpar_basicL_dts
-  - make_Linits_basicL_dts
-  - make_indices_L.basicL_dts
-  - list_Lvars.basicL_dts
-  - parse_outputs_L.basicL_dts
-  - make_inits_L_basicL_dts
-  - get_inits_L.basicL_dts
-  - update_inits_L.basicL_dts
-  - make_parameters_L_basicL_dts
+  - dLdt.basicL
+  - DT_Lt.basicL
+  - xde_setup_Lpar.basicL
+  - xde_make_Lpar_basicL
+  - dts_setup_Lpar.basicL
+  - dts_make_Lpar_basicL
+  - LBionomics.basicL
+  - F_alpha.basicL
+  - setup_Linits.basicL
+  - make_Linits_basicL
+  - list_Lvars.basicL
+  - make_indices_L.basicL
+  - parse_outputs_L.basicL
+  - make_inits_L_basicL
+  - get_inits_L.basicL
+  - update_inits_L.basicL
+  - make_parameters_L_basicL
 - title: Mosquito Bionomics
   desc: |
     Methods to compute or update mosquito bionomic parameters
@@ -474,6 +477,7 @@ reference:
   - setup_Xinits
   - make_indices_X
   - list_Xvars
+  - put_Xvars
   - dts_setup_Xpar
   - xde_setup_Xpar
   - F_X
@@ -505,118 +509,79 @@ reference:
   - get_inits_X.trace
   - update_inits_X.trace
   - make_parameters_X_trace
-- subtitle: hMoI_xde
+- subtitle: hMoI
   desc: |
     Specialized methods for a hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
   contents:
-  - dXdt.hMoI_xde
-  - make_Xinits_hMoI_xde
-  - setup_Xinits.hMoI_xde
-  - make_indices_X.hMoI_xde
-  - make_Xpar_hMoI_xde
-  - xde_setup_Xpar.hMoI_xde
-  - F_X.hMoI_xde
-  - F_H.hMoI_xde
-  - F_b.hMoI_xde
-  - F_pr.hMoI_xde
-  - parse_outputs_X.hMoI_xde
-  - make_inits_X_hMoI_xde
-  - get_inits_X.hMoI_xde
-  - update_inits_X.hMoI_xde
-  - make_parameters_X_hMoI_xde
-  - HTC.hMoI_xde
-- subtitle: SIS_xde
+  - dXdt.hMoI
+  - xde_setup_Xpar.hMoI
+  - xde_make_Xpar_hMoI
+  - make_Xinits_hMoI
+  - setup_Xinits.hMoI
+  - make_indices_X.hMoI
+  - F_X.hMoI
+  - F_H.hMoI
+  - F_b.hMoI
+  - F_pr.hMoI
+  - parse_outputs_X.hMoI
+  - make_inits_X_hMoI
+  - get_inits_X.hMoI
+  - update_inits_X.hMoI
+  - make_parameters_X_hMoI
+  - HTC.hMoI
+- subtitle: SIS
   desc: |
-    Specialized methods for the SIS_xde (Susceptible-Infected-Susceptible) model of human dynamics.
+    Specialized methods for the SIS (Susceptible-Infected-Susceptible) model of human dynamics.
   contents:
-  - dXdt.SIS_xde
-  - make_Xinits_SIS_xde
-  - setup_Xinits.SIS_xde
-  - make_indices_X.SIS_xde
-  - list_Xvars.SIS_xde
-  - make_Xpar_SIS_xde
-  - xde_setup_Xpar.SIS_xde
-  - F_X.SIS_xde
-  - F_H.SIS_xde
-  - F_pr.SIS_xde
-  - F_b.SIS_xde
-  - parse_outputs_X.SIS_xde
-  - make_inits_X_SIS_xde
-  - get_inits_X.SIS_xde
-  - update_inits_X.SIS_xde
-  - make_parameters_X_SIS_xde
-  - HTC.SIS_xde
-  - xds_plot_X.SIS_xde
-  - add_lines_X_SIS_xde
-- subtitle: SIS_dts
-  desc: |
-    Specialized methods for the SIS_dts (Susceptible-Infected-Susceptible) model of human dynamics.
-  contents:
-  - DT_Xt.SIS_dts
-  - make_Xinits_SIS_dts
-  - setup_Xinits.SIS_dts
-  - make_indices_X.SIS_dts
-  - list_Xvars.SIS_dts
-  - make_Xpar_SIS_dts
-  - dts_setup_Xpar.SIS_dts
-  - F_X.SIS_dts
-  - F_H.SIS_dts
-  - F_pr.SIS_dts
-  - F_b.SIS_dts
-  - parse_outputs_X.SIS_dts
-  - make_inits_X_SIS_dts
-  - get_inits_X.SIS_dts
-  - update_inits_X.SIS_dts
-  - make_parameters_X_SIS_dts
-  - HTC.SIS_dts
-  - xds_plot_X.SIS_dts
-  - add_lines_X_SIS_dts
+  - dXdt.SIS
+  - DT_Xt.SIS
+  - xde_setup_Xpar.SIS
+  - xde_make_Xpar_SIS
+  - dts_setup_Xpar.SIS
+  - dts_make_Xpar_SIS
+  - setup_Xinits.SIS
+  - make_Xinits_SIS
+  - make_indices_X.SIS
+  - list_Xvars.SIS
+  - put_Xvars.SIS
+  - F_X.SIS
+  - F_H.SIS
+  - F_pr.SIS
+  - F_b.SIS
+  - parse_outputs_X.SIS
+  - make_inits_X_SIS
+  - get_inits_X.SIS
+  - update_inits_X.SIS
+  - make_parameters_X_SIS
+  - HTC.SIS
+  - xds_plot_X.SIS
+  - add_lines_X_SIS
 - subtitle: SIP xde
   desc: |
-    Specialized methods for the SIP_xde (Susceptible-Infected-Prophylaxis) model of human dynamics.
+    Specialized methods for the SIP (Susceptible-Infected-Prophylaxis) model of human dynamics.
   contents:
-  - dXdt.SIP_xde
-  - make_Xinits_SIP_xde
-  - setup_Xinits.SIP_xde
-  - make_indices_X.SIP_xde
-  - list_Xvars.SIP_xde
-  - make_Xpar_SIP_xde
-  - xde_setup_Xpar.SIP_xde
-  - F_X.SIP_xde
-  - F_H.SIP_xde
-  - F_pr.SIP_xde
-  - F_b.SIP_xde
-  - parse_outputs_X.SIP_xde
-  - make_inits_X_SIP_xde
-  - get_inits_X.SIP_xde
-  - update_inits_X.SIP_xde
-  - make_parameters_X_SIP_xde
-  - HTC.SIP_xde
-  - xds_plot_X.SIP_xde
-  - add_lines_X_SIP_xde
-- subtitle: SIP_dts
-  desc: |
-    Specialized methods for the SIP_dts (Susceptible-Infected-Prophylaxis) model of human dynamics.
-  contents:
-  - DT_Xt.SIP_dts
-  - make_Xinits_SIP_dts
-  - setup_Xinits.SIP_dts
-  - make_indices_X.SIP_dts
-  - list_Xvars.SIP_dts
-  - make_Xpar_SIP_dts
-  - dts_setup_Xpar.SIP_dts
-  - F_X.SIP_dts
-  - F_H.SIP_dts
-  - F_pr.SIP_dts
-  - F_b.SIP_dts
-  - parse_outputs_X.SIP_dts
-  - make_inits_X_SIP_dts
-  - get_inits_X.SIP_dts
-  - update_inits_X.SIP_dts
-  - make_parameters_X_SIP_dts
-  - HTC.SIP_dts
-  - xds_plot_X.SIP_dts
-  - add_lines_X_SIP_dts
+  - dXdt.SIP
+  - DT_Xt.SIP
+  - xde_setup_Xpar.SIP
+  - xde_make_Xpar_SIP
+  - dts_setup_Xpar.SIP
+  - dts_make_Xpar_SIP
+  - make_Xinits_SIP
+  - setup_Xinits.SIP
+  - make_indices_X.SIP
+  - list_Xvars.SIP
+  - F_X.SIP
+  - F_H.SIP
+  - F_pr.SIP
+  - F_b.SIP
+  - parse_outputs_X.SIP
+  - make_inits_X_SIP
+  - get_inits_X.SIP
+  - update_inits_X.SIP
+  - make_parameters_X_SIP
+  - HTC.SIP
+  - xds_plot_X.SIP
+  - add_lines_X_SIP
 - title: Human Population Dynamics
   desc: |
     Generic methods for the human demography and aging
@@ -668,6 +633,8 @@ reference:
   - setup_travel_ar
   - travel_malaria.eir
   - setup_travel_eir
+  - travel_malaria.multiday
+  - setup_travel_multiday
 - subtitle: Visitors
   desc: |
     Methods for the availability and infectiousness of a visitor population
@@ -930,6 +897,9 @@ reference:
   - DTS_step_mosy
   - DTS_step_human
   - DTS_step_cohort
+  - Update_Xt
+  - Update_MYZt
+  - Update_Lt
 - subtitle: Solving
   desc: |
     Wrappers around the derivatives functions that handle time and parse outputs
@@ -998,3 +968,5 @@ reference:
   - approx_equal
   - checkIt
   - shapeIt
+  - list_vars
+  - put_Lvars

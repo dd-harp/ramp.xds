@@ -32,7 +32,7 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/Understanding_ramp.xde.html">Understanding ramp.xde</a>
+      <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
       <a href="../articles/modularity.html">Modular Forms for Disease Dynamics</a>
@@ -77,6 +77,9 @@
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
+    </li>
+    <li>
+      <a href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a>
     </li>
     <li>
       <a href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
@@ -139,12 +142,14 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_MYZpar_GeRM</span><span class="op">(</span></span>
 <span>  <span class="va">nPatches</span>,</span>
 <span>  MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  <span class="va">EIPmod</span>,</span>
+<span>  <span class="va">EIPopts</span>,</span>
 <span>  <span class="va">calK</span>,</span>
 <span>  g <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">12</span>,</span>
 <span>  g_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  sigma <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">8</span>,</span>
 <span>  sigma_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  mu <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  mu_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  f <span class="op">=</span> <span class="fl">0.3</span>,</span>
 <span>  f_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  q <span class="op">=</span> <span class="fl">0.95</span>,</span>
@@ -165,7 +170,7 @@
 <dd><p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> of values that overwrites the defaults</p></dd>
 
 
-<dt>EIPmod</dt>
+<dt>EIPopts</dt>
 <dd><p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> that defines the EIP model</p></dd>
 
 
@@ -187,6 +192,14 @@
 
 <dt>sigma_par</dt>
 <dd><p>parameters to configure F_sigma</p></dd>
+
+
+<dt>mu</dt>
+<dd><p>emigration loss</p></dd>
+
+
+<dt>mu_par</dt>
+<dd><p>parameters to configure F_mu</p></dd>
 
 
 <dt>f</dt>
