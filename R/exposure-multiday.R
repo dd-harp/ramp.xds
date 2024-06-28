@@ -10,8 +10,8 @@
 #' @export
 Exposure.multiday <- function(t, y, pars){
   dd = t%%pars$Xday + 1
-  pars$EIR_D[[i]] = pars$EIR_D[[i]] + pars$EIR[[i]]
   for(i in 1:pars$nHosts){
+    pars$EIR_D[[i]][dd] = pars$EIR[[i]]
     b = F_b(y, pars, i)
     pars$AR[[i]] = F_ar(pars$EIR_D[[i]], b, pars) + travel_malaria(t, pars)
     pars$EIR_D[[i]] = 0*pars$EIR[[i]]

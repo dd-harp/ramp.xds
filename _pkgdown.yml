@@ -275,30 +275,30 @@ reference:
   - get_inits_MYZ.basicM
   - update_inits_MYZ.basicM
   - make_parameters_MYZ_basicM
-- subtitle: The "mz" model for infection
+- subtitle: The "SI" model for infection
   desc: |
     Specialized methods for simple infection dynamics for an adult mosquito population
   contents:
-  - dMYZdt.mz
-  - DT_MYZt.mz
-  - xde_setup_MYZpar.mz
-  - xde_make_MYZpar_mz
-  - dts_setup_MYZpar.mz
-  - dts_make_MYZpar_mz
-  - MBionomics.mz
-  - F_fqZ.mz
-  - F_fqM.mz
-  - F_eggs.mz
-  - list_MYZvars.mz
-  - put_MYZvars.mz
-  - setup_MYZinits.mz
-  - make_MYZinits_mz
-  - make_indices_MYZ.mz
-  - parse_outputs_MYZ.mz
-  - get_inits_MYZ.mz
-  - update_inits_MYZ.mz
-  - make_inits_MYZ_mz
-  - make_parameters_MYZ_mz
+  - dMYZdt.si
+  - DT_MYZt.si
+  - xde_setup_MYZpar.si
+  - xde_make_MYZpar_si
+  - dts_setup_MYZpar.si
+  - dts_make_MYZpar_si
+  - MBionomics.si
+  - F_fqZ.si
+  - F_fqM.si
+  - F_eggs.si
+  - list_MYZvars.si
+  - put_MYZvars.si
+  - setup_MYZinits.si
+  - make_MYZinits_si
+  - make_indices_MYZ.si
+  - parse_outputs_MYZ.si
+  - get_inits_MYZ.si
+  - update_inits_MYZ.si
+  - make_inits_MYZ_si
+  - make_parameters_MYZ_si
 - subtitle: RM
   desc: |
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
@@ -556,6 +556,57 @@ reference:
   - HTC.SIS
   - xds_plot_X.SIS
   - add_lines_X_SIS
+- subtitle: SEIS
+  desc: |
+    Specialized methods for the SEIS (Susceptible-Infected-Susceptible) model of human dynamics.
+  contents:
+  - dXdt.SEIS
+  - DT_Xt.SEIS
+  - xde_setup_Xpar.SEIS
+  - xde_make_Xpar_SEIS
+  - dts_setup_Xpar.SEIS
+  - dts_make_Xpar_SEIS
+  - setup_Xinits.SEIS
+  - make_Xinits_SEIS
+  - make_indices_X.SEIS
+  - list_Xvars.SEIS
+  - put_Xvars.SEIS
+  - F_X.SEIS
+  - F_H.SEIS
+  - F_pr.SEIS
+  - F_b.SEIS
+  - parse_outputs_X.SEIS
+  - get_inits_X.SEIS
+  - update_inits_X.SEIS
+  - HTC.SEIS
+  - xds_plot_X.SEIS
+  - add_lines_X_SEIS
+- subtitle: SEISd
+  desc: |
+    Specialized methods for the SEISd (Susceptible-Infected-Susceptible) model of human dynamics.
+  contents:
+  - dXdt.SEISd
+  - DT_Xt.SEISd
+  - xde_setup_Xpar.SEISd
+  - xde_make_Xpar_SEISd
+  - dts_setup_Xpar.SEISd
+  - dts_make_Xpar_SEISd
+  - setup_Xinits.SEISd
+  - make_Xinits_SEISd
+  - make_indices_X.SEISd
+  - list_Xvars.SEISd
+  - put_Xvars.SEISd
+  - F_X.SEISd
+  - F_H.SEISd
+  - F_pr.SEISd
+  - F_b.SEISd
+  - parse_outputs_X.SEISd
+  - get_inits_X.SEISd
+  - update_inits_X.SEISd
+  - HTC.SEISd
+  - xds_plot_X.SEISd
+  - add_lines_X_SEISd
+
 - subtitle: SIP xde
   desc: |
     Specialized methods for the SIP (Susceptible-Infected-Prophylaxis) model of human dynamics.

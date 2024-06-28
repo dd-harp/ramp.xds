@@ -23,7 +23,6 @@ dXdt.SIP <- function(t, y, pars, i){
   })
 }
 
-
 #' @title Setup Xpar.SIP
 #' @description Implements [xde_setup_Xpar] for the SIP model
 #' @inheritParams xde_setup_Xpar

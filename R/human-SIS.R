@@ -102,7 +102,7 @@ dts_make_Xpar_SIS = function(nStrata, Xday, Xopts=list(),
     Xpar$nr = exp(-checkIt(r, nStrata)*Xday)
 
     return(Xpar)
-})}
+  })}
 
 
 
