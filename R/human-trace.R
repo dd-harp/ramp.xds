@@ -27,6 +27,35 @@ F_pr.trace <- function(varslist, pars, i) {
   return(numeric(0))
 }
 
+#' @title Compute the prevalence of infection by light microscopy
+#' @description Implements [F_pr] for the trace model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector numeric(0)
+#' @export
+F_pr_by_lm.trace <- function(varslist, pars, i) {
+  return(numeric(0))
+}
+
+
+#' @title Compute the prevalence of infection by RDT
+#' @description Implements [F_pr] for the trace model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector numeric(0)
+#' @export
+F_pr_by_rdt.trace <- function(varslist, pars, i) {
+  return(numeric(0))
+}
+
+
+#' @title Compute the prevalence of infection by PCR
+#' @description Implements [F_pr] for the trace model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector numeric(0)
+#' @export
+F_pr_by_pcr.trace <- function(varslist, pars, i) {
+  return(numeric(0))
+}
+
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description Implements [F_b] for the trace model.
 #' @inheritParams F_b
