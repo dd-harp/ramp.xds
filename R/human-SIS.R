@@ -269,6 +269,36 @@ F_pr.SIS <- function(varslist, pars, i) {
   return(pr)
 }
 
+#' @title Compute the prevalence of infection by light microscopy
+#' @description Implements [F_pr] for the SIS model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_lm.SIS <- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], I/H)
+  return(pr)
+}
+
+#' @title Compute the prevalence of infection by RDT
+#' @description Implements [F_pr] for the SIS model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_rdt.SIS <- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], I/H)
+  return(pr)
+}
+
+#' @title Compute the prevalence of infection by PCR
+#' @description Implements [F_pr] for the SIS model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_pcr.SIS <- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], I/H)
+  return(pr)
+}
+
 #' Plot the density of infected individuals for the SIS model
 #'
 #' @inheritParams xds_plot_X

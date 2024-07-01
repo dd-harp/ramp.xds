@@ -483,11 +483,14 @@ reference:
   - F_X
   - F_H
   - F_b
-  - F_pr
   - parse_outputs_X
   - get_inits_X
   - update_inits_X
   - HTC
+  - F_pr
+  - F_pr_by_lm
+  - F_pr_by_rdt
+  - F_pr_by_pcr
   - xds_plot_X
 - subtitle: trace
   desc: |
@@ -496,6 +499,9 @@ reference:
   - F_X.trace
   - F_H.trace
   - F_pr.trace
+  - F_pr_by_lm.trace
+  - F_pr_by_rdt.trace
+  - F_pr_by_pcr.trace
   - F_b.trace
   - dXdt.trace
   - DT_Xt.trace
@@ -523,6 +529,9 @@ reference:
   - F_H.hMoI
   - F_b.hMoI
   - F_pr.hMoI
+  - F_pr_by_lm.hMoI
+  - F_pr_by_rdt.hMoI
+  - F_pr_by_pcr.hMoI
   - parse_outputs_X.hMoI
   - make_inits_X_hMoI
   - get_inits_X.hMoI
@@ -546,7 +555,6 @@ reference:
   - put_Xvars.SIS
   - F_X.SIS
   - F_H.SIS
-  - F_pr.SIS
   - F_b.SIS
   - parse_outputs_X.SIS
   - make_inits_X_SIS
@@ -554,6 +562,10 @@ reference:
   - update_inits_X.SIS
   - make_parameters_X_SIS
   - HTC.SIS
+  - F_pr.SIS
+  - F_pr_by_lm.SIS
+  - F_pr_by_rdt.SIS
+  - F_pr_by_pcr.SIS
   - xds_plot_X.SIS
   - add_lines_X_SIS
 - subtitle: SEIS
@@ -574,6 +586,9 @@ reference:
   - F_X.SEIS
   - F_H.SEIS
   - F_pr.SEIS
+  - F_pr_by_lm.SEIS
+  - F_pr_by_rdt.SEIS
+  - F_pr_by_pcr.SEIS
   - F_b.SEIS
   - parse_outputs_X.SEIS
   - get_inits_X.SEIS
@@ -598,12 +613,15 @@ reference:
   - put_Xvars.SEISd
   - F_X.SEISd
   - F_H.SEISd
-  - F_pr.SEISd
   - F_b.SEISd
   - parse_outputs_X.SEISd
   - get_inits_X.SEISd
   - update_inits_X.SEISd
   - HTC.SEISd
+  - F_pr.SEISd
+  - F_pr_by_lm.SEISd
+  - F_pr_by_rdt.SEISd
+  - F_pr_by_pcr.SEISd
   - xds_plot_X.SEISd
   - add_lines_X_SEISd
 
@@ -623,7 +641,6 @@ reference:
   - list_Xvars.SIP
   - F_X.SIP
   - F_H.SIP
-  - F_pr.SIP
   - F_b.SIP
   - parse_outputs_X.SIP
   - make_inits_X_SIP
@@ -631,6 +648,10 @@ reference:
   - update_inits_X.SIP
   - make_parameters_X_SIP
   - HTC.SIP
+  - F_pr.SIP
+  - F_pr_by_lm.SIP
+  - F_pr_by_rdt.SIP
+  - F_pr_by_pcr.SIP
   - xds_plot_X.SIP
   - add_lines_X_SIP
 - title: Human Population Dynamics

@@ -297,6 +297,36 @@ F_pr.SEISd <- function(varslist, pars, i) {
   return(pr)
 }
 
+#' @title Compute the prevalence of infection by light microscopy
+#' @description Implements [F_pr] for the SEISd model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_lm.SEISd <- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], I/H)
+  return(pr)
+}
+
+#' @title Compute the prevalence of infection by RDT
+#' @description Implements [F_pr] for the SEISd model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_rdt.SEISd <- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], I/H)
+  return(pr)
+}
+
+#' @title Compute the prevalence of infection by pcr
+#' @description Implements [F_pr] for the SEISd model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_pcr.SEISd <- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], I/H)
+  return(pr)
+}
+
 #' Plot the density of infected individuals for the SEISd model
 #'
 #' @inheritParams xds_plot_X

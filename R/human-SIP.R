@@ -151,15 +151,6 @@ F_H.SIP <- function(t, y, pars, i){
     return(S+I+P)
 })}
 
-#' @title Compute the "true" prevalence of infection / parasite rate
-#' @description Implements [F_pr] for the SIP model.
-#' @inheritParams F_pr
-#' @return a [numeric] vector of length `nStrata`
-#' @export
-F_pr.SIP <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
-  return(pr)
-}
 
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description Implements [F_b] for the SIP model.
@@ -321,6 +312,46 @@ get_inits_X.SIP <- function(pars, i){with(pars$Xinits[[i]],{
   c(S, I, P)
 })}
 
+
+#' @title Compute the "true" prevalence of infection / parasite rate
+#' @description Implements [F_pr] for the SIP model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr.SIP <- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], I/H)
+  return(pr)
+}
+
+#' @title Compute the prevalence of infection by light microscopy
+#' @description Implements [F_pr] for the SIP model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_lm.SIP <- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], I/H)
+  return(pr)
+}
+
+#' @title Compute the prevalence of infection by RDT
+#' @description Implements [F_pr] for the SIP model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_rdt.SIP <- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], I/H)
+  return(pr)
+}
+
+#' @title Compute the prevalence of infection by pcr
+#' @description Implements [F_pr] for the SIP model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_pcr.SIP <- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], I/H)
+  return(pr)
+}
 
 #' Plot the density of infected individuals for the SIP model
 #'

@@ -35,6 +35,34 @@ F_pr <- function(varslist, pars, i) {
   UseMethod("F_pr", pars$Xpar[[i]])
 }
 
+#' @title Compute the prevalence of infection by light microscopy
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_lm <- function(varslist, pars, i) {
+  UseMethod("F_pr", pars$Xpar[[i]])
+}
+
+#' @title Compute the prevalence of infection by RDT
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_rdt <- function(varslist, pars, i) {
+  UseMethod("F_pr", pars$Xpar[[i]])
+}
+
+#' @title Compute the prevalence of infection by PCR
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_pcr <- function(varslist, pars, i) {
+  UseMethod("F_pr", pars$Xpar[[i]])
+}
+
+
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param y state vector

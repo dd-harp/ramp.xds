@@ -88,15 +88,6 @@ F_H.hMoI <- function(t, y, pars, i) {
   pars$Hpar[[i]]$H
 }
 
-#' @title Compute the "true" prevalence of infection / parasite rate
-#' @description Implements [F_pr] for the hMoI model.
-#' @inheritParams F_pr
-#' @return a [numeric] vector of length `nStrata`
-#' @export
-F_pr.hMoI<- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], 1-exp(-m1))
-  return(pr)
-}
 
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description Implements [F_b] for the hMoI model.
@@ -236,3 +227,43 @@ parse_outputs_X.hMoI <- function(outputs, pars, i){
 get_inits_X.hMoI <- function(pars, i){with(pars$Xinits[[i]],{
   c(m1, m2)
 })}
+
+#' @title Compute the "true" prevalence of infection / parasite rate
+#' @description Implements [F_pr] for the hMoI model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr.hMoI<- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], 1-exp(-m1))
+  return(pr)
+}
+
+#' @title Compute the prevalence of infection by light microscopy
+#' @description Implements [F_pr] for the hMoI model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_lm.hMoI<- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], 1-exp(-m1))
+  return(pr)
+}
+
+#' @title Compute the prevalence of infection by RDT
+#' @description Implements [F_pr] for the hMoI model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_rdt.hMoI<- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], 1-exp(-m1))
+  return(pr)
+}
+
+#' @title Compute the prevalence of infection by PCR
+#' @description Implements [F_pr] for the hMoI model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr_by_pcr.hMoI<- function(varslist, pars, i) {
+  pr = with(varslist$XH[[i]], 1-exp(-m1))
+  return(pr)
+}
