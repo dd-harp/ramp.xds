@@ -226,7 +226,7 @@ dependence to be unknown and solve such that:</p>
 <h3 id="the-long-way">The long way<a class="anchor" aria-label="anchor" href="#the-long-way"></a>
 </h3>
 <p>Here we run a simple example with 3 aquatic habitats at equilibrium.
-We use <code><a href="../reference/make_parameters_L_basicL_xde.html">ramp.xde::make_parameters_L_basicL_xde</a></code> to set up
+We use <code>ramp.xde::make_parameters_L_basicL_xde</code> to set up
 parameters. Please note that this only runs the aquatic mosquito
 component and that most users should read <a href="ex_534.html">our
 fully worked example</a> to run a full simulation.</p>
@@ -247,8 +247,8 @@ fully worked example</a> to run a full simulation.</p>
 <span>  <span class="va">pars</span><span class="op">$</span><span class="va">eggs_laid</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_L_basicL_xde.html">make_parameters_L_basicL_xde</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, psi <span class="op">=</span> <span class="va">psi</span>, phi <span class="op">=</span> <span class="va">phi</span>, theta <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_inits_L_basicL_xde.html">make_inits_L_basicL_xde</a></span><span class="op">(</span><span class="va">params</span>, L0<span class="op">=</span><span class="va">L</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_L_basicL.html">make_parameters_L_basicL</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, psi <span class="op">=</span> <span class="va">psi</span>, phi <span class="op">=</span> <span class="va">phi</span>, theta <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_inits_L_basicL.html">make_inits_L_basicL</a></span><span class="op">(</span><span class="va">params</span>, L0<span class="op">=</span><span class="va">L</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -298,7 +298,7 @@ parameter values attached.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Mo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Gm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">250</span>, <span class="fl">500</span>, <span class="fl">170</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_setup_aquatic.html">xde_setup_aquatic</a></span><span class="op">(</span>nHabitats <span class="op">=</span> <span class="fl">3</span>, Lname <span class="op">=</span> <span class="st">"basicL_xde"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span>, MYZopts <span class="op">=</span> <span class="va">Mo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">aqbasicL_xde</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_setup_aquatic.html">xde_setup_aquatic</a></span><span class="op">(</span>nHabitats <span class="op">=</span> <span class="fl">3</span>, Lname <span class="op">=</span> <span class="st">"basicL"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span>, MYZopts <span class="op">=</span> <span class="va">Mo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">aqbasicL_xde</span></span>
 <span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">aqbasicL_xde</span>, Tmax<span class="op">=</span><span class="fl">50</span>, dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">output</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out2</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">out1</span><span class="op">-</span><span class="va">out2</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
