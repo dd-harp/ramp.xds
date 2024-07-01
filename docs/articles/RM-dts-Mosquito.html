@@ -368,8 +368,8 @@ we get:</p>
 <span><span class="op">}</span><span class="op">)</span><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">compute_MYZ_equil</span><span class="op">(</span><span class="va">rm1</span>, <span class="fl">1000</span>, <span class="fl">.1</span><span class="op">)</span> </span>
-<span><span class="co">#&gt;          M          P          U          Y          Z </span></span>
-<span><span class="co">#&gt; 12000.0000  9391.3043  9166.7797  1835.9391   997.2812</span></span></code></pre></div>
+<span><span class="co">#&gt;         M         P         U         Y         Z </span></span>
+<span><span class="co">#&gt; 12506.944  9875.057  9451.195  1931.601  1124.147</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>M <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">rm1</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">M</span>, <span class="fl">1</span><span class="op">)</span>, </span>
@@ -378,8 +378,8 @@ we get:</p>
 <span>Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">rm1</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">Y</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>Z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">rm1</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">Z</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt;          M          P          U          Y          Z </span></span>
-<span><span class="co">#&gt; 11999.9997  9391.3040  9166.7797  1835.9391   997.2808</span></span></code></pre></div>
+<span><span class="co">#&gt;         M         P         U         Y         Z </span></span>
+<span><span class="co">#&gt; 12506.943  9875.056  9451.195  1931.601  1124.146</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rm10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dts_setup.html">dts_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trace"</span>, nPatches <span class="op">=</span> <span class="fl">10</span>, membership <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">rm10</span><span class="op">$</span><span class="va">Lpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">scale</span> <span class="op">=</span> <span class="fl">1.5</span><span class="op">^</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> </span></code></pre></div>

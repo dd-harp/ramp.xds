@@ -65,7 +65,7 @@ DTS_step <- function(t, y, pars) {
 #' @export
 runt = function(t, Dday, xday){
   t1 = round(t/Dday)
-  t2 = round(xday/Dday)
+  t2 = max(round(xday/Dday), 1)
   t1 %% t2 < 1e-2
 }
 
