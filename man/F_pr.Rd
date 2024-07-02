@@ -7,7 +7,7 @@
 F_pr(varslist, pars, i)
 }
 \arguments{
-\item{varslist}{a list with variables attached by name}
+\item{varslist}{a parsed list of outputs with variables attached by name}
 
 \item{pars}{a list}
 
