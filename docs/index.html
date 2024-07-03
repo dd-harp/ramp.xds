@@ -178,6 +178,7 @@
 <h2 id="what-is-rampxds">What is ramp.xds?<a class="anchor" aria-label="anchor" href="#what-is-rampxds"></a>
 </h2>
 <p><strong>ramp.xds</strong> is software for setting up, analyzing, and solving dynamical systems describing the epidemiology, dynamics and control of malaria and other mosquito-borne pathogens. It is based on a rigorous mathematical framework, partly described in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" class="external-link">Spatial Dynamics of Malaria Transmission</a> published in PLoS Computational Biology<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The software was designed to support robust analytics for malaria policy (RAMP) and adaptive malaria control.</p>
+<p>The software is under active development, and <em>ramp.xds</em> replaces two deprecated software packages: <a href="https://dd-harp.github.io/exDE/" class="external-link"><em>exDE</em></a> and <a href="https://dd-harp.github.io/MicroMoB/" class="external-link"><em>MicroMoB</em></a>. A library of stable, verifiable, reusable code implementing a large set of previously published models for <em>ramp.xds</em> is maintained in <a href="https://dd-harp.github.io/ramp.library/" class="external-link"><strong>ramp.library</strong></a>. Algorithms to apply these models, include code to fit models to data, is found in <a href="https://dd-harp.github.io/ramp.work/" class="external-link"><strong>ramp.work</strong></a>.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -189,8 +190,7 @@
 <div class="section level2">
 <h2 id="modular-computation">Modular Computation<a class="anchor" aria-label="anchor" href="#modular-computation"></a>
 </h2>
-<p>This software supports development, solving, and analysis of dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission that have been formulated as ordinary or delay differential or difference equations. A library of stable and reusable code with new dynamical components for <em>ramp.xds</em> is maintained in <a href="https://dd-harp.github.io/ramp.library/" class="external-link"><strong>ramp.library</strong></a> and algorithms to apply these models is found in <a href="https://dd-harp.github.io/ramp.work/" class="external-link"><strong>ramp.work</strong></a>. The software is under active development, and <em>ramp.xds</em> replaces two deprecated software packages: <a href="https://dd-harp.github.io/exDE/" class="external-link"><em>exDE</em></a> and <a href="https://dd-harp.github.io/MicroMoB/" class="external-link"><em>MicroMoB</em></a>.</p>
-<p>The mathematical framework and software have a modular design developed around an algorithm describing mosquito blood feeding on vertebrate hosts in spatial patches that are nested within a defined spatial domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen infection dynamics in mosquito and host populations. The computational interface guarantees mathematical consistency in allocating bites and blood meals when the availability of host populations or other vertebrate animals is dynamically changing.</p>
+<p>This software supports building, solving, and analyzing dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission formulated as ordinary or delay differential or difference equations. The mathematical framework and software have a modular design that was developed around an algorithm describing mosquito blood feeding on vertebrate hosts in spatial patches that are nested within a defined spatial domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen infection dynamics in mosquito and host populations. The computational interface guarantees mathematical consistency in allocating bites and blood meals when the availability of host populations or other vertebrate animals is dynamically changing.</p>
 <p>The framework and software also support spatial models of mosquito ecology through an algorithm that describes egg laying by adult mosquitoes in aquatic habitats and emergence of adult mosquitoes from those habitats. The egg laying algorithm provides a rigorous interface linking dynamical components describing adult mosquito populations in a set of spatial patches and immature aquatic mosquito populations in a structured set of aquatic habitats.</p>
 <p>The framework and software were also designed to support:</p>
 <ul>
@@ -199,27 +199,14 @@
 <li><p>exogenous forcing by weather and vector control;</p></li>
 <li><p>mass vaccination, mass drug administration, and other health interventions.</p></li>
 <li><p>environmental heterogeneity in exposure;</p></li>
-<li><p>malaria importation through travel and visitors.</p></li>
-<li><p>multiple host species (or types) and multiple mosquito vector species (or types)</p></li>
+<li><p>malaria importation through travel and visitors;</p></li>
+<li><p>multiple host species (or types) and multiple mosquito vector species (or types);</p></li>
+<li><p>observational processes.</p></li>
 </ul>
 <p>The software aims to be fully modular: it implements plug-and-play computation for a broad class of simulation models describing the dynamics and control of mosquito-transmitted pathogens. Modularity has been achieved through a combination of methods: the functions that compute derivatives (for differential equations) or update state variables (for difference equations) use a method that dispatches on parameter lists for each component which is used to compute the full set of differential equations; the interfaces for blood feeding and egg laying are biologically realistic but rigidly defined to guarantee mathematical consistency; and a large set of additional features have been implemented with careful attention to detail to guarantee consistency and avoid conflicts. Each dynamical component also includes a null model, but where its outputs can be computed by any function. The function <code><a href="reference/xDE_diffeqn.html">ramp.xde::xDE_diffeqn</a></code> computes the gradient of all state variables from those modular components and can be used with the excellent solvers in <a href="http://desolve.r-forge.r-project.org/" class="external-link">deSolve</a>. The functions <code><a href="reference/DTS_step.html">ramp.xde::DTS_step</a></code> updates the state variables in discrete-time systems.</p>
 <p>To get started, please consider reading some of the articles in the drop down panels above, at our <a href="https://dd-harp.github.io/ramp.xde/">website</a>. The 3 sections ending in “Component” describe particular models implementing the interface for each of those components (adult mosquitoes, aquatic mosquitoes, and humans), and show a simulation at their equilibrium values.</p>
 <p>The section “Articles” has more in-depth examples, including an extended walk through of how to set up and run a model in <code><a href="articles/ex_534.html">vignette("ex_534")</a></code>, a guide on how to contribute, and an example of running a model in ramp.xde with external forcing under a model of ITN (insecticide treated nets) based vector control in <code><a href="articles/vc_lemenach.html">vignette("vc_lemenach")</a></code>.</p>
 <p>The section “Functions” documents each function exported by the package.</p>
-</div>
-<div class="section level2">
-<h2 id="installation-1">Installation<a class="anchor" aria-label="anchor" href="#installation-1"></a>
-</h2>
-<p>To install the latest version from GitHub, run the following lines of code in an R session.</p>
-<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dd-harp/ramp.xde"</span><span class="op">)</span></span></code></pre>
-</div>
-<div class="section level2">
-<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
-</h2>
-<p>For information about how to contribute to the development of ramp.xde, please read our article on how to contribute at <code><a href="articles/Contributing.html">vignette("Contributing")</a></code>!</p>
-<p>If you have any questions, comments, bug reports, or suggestions, the first point of contact with the development team is through <a href="https://github.com/dd-harp/ramp.xde/issues" class="external-link">GitHub Issues</a>. If you are specifically submitting a bug report, please check out our <a href="https://dd-harp.github.io/ramp.xde/articles/Contributing.html#sec8">bug reporting guide</a>. If you are interested in collaborating in extensive model development (e.g. new mosquito model), please do not hesitate to contact the authors, whose email addresses can be found in the <code>DESCRIPTION</code> file.</p>
-<p>We welcome issues and encourage contribution regardless of experience; the length of the contributing guide is not intended to be intimidating, merely complete. It is the responsibility of the package maintainers to help new contributors understand our conventions and guide contributions to a successful conclusion.</p>
 </div>
 <div class="section level2">
 <h2 id="model-building-in-rampxde">Model building in ramp.xde<a class="anchor" aria-label="anchor" href="#model-building-in-rampxde"></a>
@@ -249,6 +236,14 @@
 <p align="center">
 <img src="articles/xDEdiffeqn.png"></p>
 <p>For more information, please read our <a href="https://www.medrxiv.org/content/10.1101/2022.11.07.22282044v1" class="external-link">research article</a> describing the theory behind the model.</p>
+</div>
+<div class="section level2">
+<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h2>
+<p><strong>ramp.xds</strong> aims to provide stable, reliable, reusable code for the study of mosquito-borne pathogen dynamics and control using dynamical systems.</p>
+<p>For information about how to contribute to the development of ramp.xde, please read our article on how to contribute at <a href="Contributing.html">Contributing</a>.!</p>
+<p>If you have any questions, comments, bug reports, or suggestions, the first point of contact with the development team is through <a href="https://github.com/dd-harp/ramp.xde/issues" class="external-link">GitHub Issues</a>. If you are specifically submitting a bug report, please check out our <a href="https://dd-harp.github.io/ramp.xde/articles/Contributing.html#sec8">bug reporting guide</a>. If you are interested in collaborating in extensive model development (e.g. new mosquito model), please do not hesitate to contact the authors, whose email addresses can be found in the <code>DESCRIPTION</code> file.</p>
+<p>We welcome issues and encourage contribution regardless of experience; the length of the contributing guide is not intended to be intimidating, merely complete. It is the responsibility of the package maintainers to help new contributors understand our conventions and guide contributions to a successful conclusion.</p>
 </div>
 <div class="section level2">
 <h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>

@@ -13,6 +13,8 @@
 
 **ramp.xds** is software for setting up, analyzing, and solving dynamical systems describing the epidemiology, dynamics and control of malaria and other mosquito-borne pathogens. It is based on a rigorous mathematical framework, partly described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) published in PLoS Computational Biology^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. The software was designed to support robust analytics for malaria policy (RAMP) and adaptive malaria control.  
 
+The software is under active development, and *ramp.xds* replaces two deprecated software packages: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/). A library of stable, verifiable, reusable code implementing a large set of previously published models for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/). Algorithms to apply these models, include code to fit models to data, is found in [**ramp.work**](https://dd-harp.github.io/ramp.work/). 
+
 ## Installation
 
 To install the latest version from GitHub, run the following lines of code in an R session.
@@ -24,9 +26,7 @@ devtools::install_github("dd-harp/ramp.xde")
 
 ## Modular Computation 
 
-This software supports development, solving, and analysis of dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission that have been formulated as ordinary or delay differential or difference equations. A library of stable and reusable code with new dynamical components for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/) and algorithms to apply these models is found in [**ramp.work**](https://dd-harp.github.io/ramp.work/). The software is under active development, and *ramp.xds* replaces two deprecated software packages: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/).
-
-The mathematical framework and software have a modular design developed around an algorithm describing mosquito blood feeding on vertebrate hosts in spatial patches that are nested within a defined spatial domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen infection dynamics in mosquito and host populations. The computational interface guarantees mathematical consistency in allocating bites and blood meals when the availability of host populations or other vertebrate animals is dynamically changing. 
+This software supports building, solving, and analyzing dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission formulated as ordinary or delay differential or difference equations. The mathematical framework and software have a modular design that was developed around an algorithm describing mosquito blood feeding on vertebrate hosts in spatial patches that are nested within a defined spatial domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen infection dynamics in mosquito and host populations. The computational interface guarantees mathematical consistency in allocating bites and blood meals when the availability of host populations or other vertebrate animals is dynamically changing. 
 
 
 The framework and software also support spatial models of mosquito ecology through an algorithm that describes egg laying by adult mosquitoes in aquatic habitats and emergence of adult mosquitoes from those habitats. The egg laying algorithm provides a rigorous interface linking dynamical components describing adult mosquito populations in a set of spatial patches and immature aquatic mosquito populations in a structured set of aquatic habitats. 
@@ -43,9 +43,11 @@ The framework and software were also designed to support:
 
 + environmental heterogeneity in exposure;  
 
-+ malaria importation through travel and visitors. 
++ malaria importation through travel and visitors; 
 
-+ multiple host species (or types) and multiple mosquito vector species (or types) 
++ multiple host species (or types) and multiple mosquito vector species (or types);
+
++ observational processes.  
 
 The software aims to be fully modular: it implements plug-and-play computation for a broad class of simulation models describing the dynamics and control of mosquito-transmitted pathogens. Modularity has been achieved through a combination of methods: the functions that compute derivatives (for differential equations) or update state variables (for difference equations) use a method that dispatches on parameter lists for each component which is used to compute the full set of differential equations; the interfaces for blood feeding and egg laying are biologically realistic but rigidly defined to guarantee mathematical consistency; and a large set of additional features have been implemented with careful attention to detail to guarantee consistency and avoid conflicts. Each dynamical component also includes a null model, but where its outputs can be computed by any function. The function `ramp.xde::xDE_diffeqn` computes the gradient of all state variables from those modular components and can be used with the excellent solvers in [deSolve](http://desolve.r-forge.r-project.org/). The functions `ramp.xde::DTS_step` updates the state variables in discrete-time systems. 
 
@@ -56,22 +58,7 @@ The section "Articles" has more in-depth examples, including an extended walk th
 
 The section "Functions" documents each function exported by the package.
 
-## Installation
 
-To install the latest version from GitHub, run the following lines of code in an R session.
-
-```
-library(devtools)
-devtools::install_github("dd-harp/ramp.xde")
-```
-
-## Contributing
-
-For information about how to contribute to the development of ramp.xde, please read our article on how to contribute at `vignette("Contributing")`! 
-
-If you have any questions, comments, bug reports, or suggestions, the first point of contact with the development team is through [GitHub Issues](https://github.com/dd-harp/ramp.xde/issues). If you are specifically submitting a bug report, please check out our [bug reporting guide](https://dd-harp.github.io/ramp.xde/articles/Contributing.html#sec8). If you are interested in collaborating in extensive model development (e.g. new mosquito model), please do not hesitate to contact the authors, whose email addresses can be found in the `DESCRIPTION` file.
-
-We welcome issues and encourage contribution regardless of experience; the length of the contributing guide is not intended to be intimidating, merely complete. It is the responsibility of the package maintainers to help new contributors understand our conventions and guide contributions to a successful conclusion.
 
 ## Model building in ramp.xde
 
@@ -103,6 +90,16 @@ The function `ramp.xde::xDE_diffeqn` compute the necessary quantities and return
 </p>
 
 For more information, please read our [research article](https://www.medrxiv.org/content/10.1101/2022.11.07.22282044v1) describing the theory behind the model.
+
+## Contributing
+
+**ramp.xds** aims to provide stable, reliable, reusable code for the study of mosquito-borne pathogen dynamics and control using dynamical systems.   
+
+For information about how to contribute to the development of ramp.xde, please read our article on how to contribute at [Contributing](Contributing.html).! 
+
+If you have any questions, comments, bug reports, or suggestions, the first point of contact with the development team is through [GitHub Issues](https://github.com/dd-harp/ramp.xde/issues). If you are specifically submitting a bug report, please check out our [bug reporting guide](https://dd-harp.github.io/ramp.xde/articles/Contributing.html#sec8). If you are interested in collaborating in extensive model development (e.g. new mosquito model), please do not hesitate to contact the authors, whose email addresses can be found in the `DESCRIPTION` file.
+
+We welcome issues and encourage contribution regardless of experience; the length of the contributing guide is not intended to be intimidating, merely complete. It is the responsibility of the package maintainers to help new contributors understand our conventions and guide contributions to a successful conclusion.
 
 ## Acknowledgements
 
