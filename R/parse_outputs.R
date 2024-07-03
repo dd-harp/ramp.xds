@@ -23,6 +23,7 @@ parse_outputs <- function(deout, pars){
       varslist$XH[[ix]]= parse_outputs_X(deout, pars, ix)
   varslist$terms = compute_terms(varslist, deout, pars, 1, 1)
   varslist$deout = deout
+  varslist$y_last = tail(deout, 1)[-1]
   return(varslist)
 }
 

@@ -1,15 +1,42 @@
-# ramp.xds  
-## Extensible Dynamical Systems for RAMP  
+# **ramp.xds**
+
+## Extensible dynamical systems to support robust analytics for malaria policy (RAMP)
 
 <!-- badges: start -->
-[![medRxiv](https://img.shields.io/badge/medRxiv-2022.11.07.22282044-brightgreen)](https://www.medrxiv.org/content/10.1101/2022.11.07.22282044v1)
+[![PLoS Computational Biology](https://img.shields.io/badge/doi%3A10.1371%2Fjournal.pcbi.1010684-cornflowerblue?style=for-the-badge&logoColor=cornflowerblue&label=PLoS%20Comp%20Bio&labelColor=slategrey&link=https%3A%2F%2Fjournals.plos.org%2Fploscompbiol%2Farticle%3Fid%3D10.1371%2Fjournal.pcbi.1010684)](https://doi.org/10.1371/journal.pcbi.1010684)
+
 <!-- badges: end -->
+
+**NOTE:** A name change is planned from `ramp.xde` to `ramp.xds`
 
 ## What is ramp.xds?
 
-ramp.xds is software that implements a mathematical framework for setting up, analyzing, and solving models of mosquito-borne pathogen dynamics and control as systems of ordinary or delay differential equations. The framework is designed to model spatial transmission dynamics of a pathogen within a defined spatial domain; spatial ecology and population dynamics of mosquitoes within the domain; exogenous forcing by weather and vector control; and malaria and mosquito importation. The software also supports population dynamic models of stratified human populations, including aging and demographic changes. The main focus of software development has been malaria, but the framework has all the capabilities to model other mosquito-transmitted pathogens. 
+**ramp.xds** is software for setting up, analyzing, and solving dynamical systems describing the epidemiology, dynamics and control of malaria and other mosquito-borne pathogens. It is based on a rigorous mathematical framework, partly described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) published in PLoS Computational Biology^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. 
 
-The software aims to be fully modular: it implements plug-and-play computation for a broad class of simulation models describing the dynamics and control of mosquito-transmitted pathogens. Modularity has been achieved through a combination of methods: the functions that compute derivatives use a method that dispatches on parameter lists for each component which is used to compute the full set of differential equations; the interfaces for blood feeding and egg laying are biologically realistic but rigidly defined to guarantee mathematical consistency; and a large set of additional features have been implemented with careful attention to detail to guarantee consistency and avoid conflicts. The function `ramp.xde::xDE_diffeqn` computes the gradient of all state variables from those modular components and can be used with the excellent solvers in [deSolve](http://desolve.r-forge.r-project.org/), or other differential equation solvers in R. ramp.xde can be regarded as the continuous-time companion to the discrete stochastic [Micro-MoB](https://github.com/dd-harp/MicroMoB) framework.
+This software supports development, solving, and analysis of systems models for mosquito ecology and mosquito-borne pathogen transmission, formulated as ordinary or delay differential or difference equations. A library of stable and reusable code with new dynamical components for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/) and algorithms to apply these models is found in [**ramp.work**](https://dd-harp.github.io/ramp.work/). The software is under active development, and *ramp.xds* replaces two deprecated software packages: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/).
+
+The mathematical framework and software have a modular design developed around an algorithm describing mosquito blood feeding on vertebrate hosts in spatial patches that are nested within a defined spatial domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen infection dynamics in mosquito and host populations. The computational interface guarantees mathematical consistency in allocating bites and blood meals when the availability of host populations or other vertebrate animals is dynamically changing. 
+
+
+The framework and software also support spatial models of mosquito ecology through an algorithm that describes egg laying by adult mosquitoes in aquatic habitats and emergence of adult mosquitoes from those habitats. The egg laying algorithm provides a rigorous interface linking dynamical components describing adult mosquito populations in a set of spatial patches and immature aquatic mosquito populations in a structured set of aquatic habitats. 
+
+The framework and software were also designed to support: 
+
++ structural flexibility in host population structure to accommodate arbitrary strata to handle heterogeneity in various epidemiological traits; 
+
++ dynamic demographic changes, cohort dynamics and aging to model infection, immunity, disease, and infectiousness in host populations over by age and time; 
+
++ exogenous forcing by weather and vector control; 
+
++ mass vaccination, mass drug administration, and other health interventions.  
+
++ environmental heterogeneity in exposure;  
+
++ malaria importation through travel and visitors. 
+
++ multiple host species (or types) and multiple mosquito vector species (or types) 
+
+The software aims to be fully modular: it implements plug-and-play computation for a broad class of simulation models describing the dynamics and control of mosquito-transmitted pathogens. Modularity has been achieved through a combination of methods: the functions that compute derivatives (for differential equations) or update state variables (for difference equations) use a method that dispatches on parameter lists for each component which is used to compute the full set of differential equations; the interfaces for blood feeding and egg laying are biologically realistic but rigidly defined to guarantee mathematical consistency; and a large set of additional features have been implemented with careful attention to detail to guarantee consistency and avoid conflicts. Each dynamical component also includes a null model, but where its outputs can be computed by any function. The function `ramp.xde::xDE_diffeqn` computes the gradient of all state variables from those modular components and can be used with the excellent solvers in [deSolve](http://desolve.r-forge.r-project.org/). The functions `ramp.xde::DTS_step` updates the state variables in discrete-time systems. 
 
 To get started, please consider reading some of the articles in the drop down panels above, at our [website](https://dd-harp.github.io/ramp.xde/). The 3 sections ending in "Component" describe particular models implementing
 the interface for each of those components (adult mosquitoes, aquatic mosquitoes, and humans), and show a simulation at their equilibrium values. 
@@ -25,12 +52,6 @@ To install the latest version from GitHub, run the following lines of code in an
 ```
 library(devtools)
 devtools::install_github("dd-harp/ramp.xde")
-```
-
-Alternatively, you can install directly from [CRAN](https://cran.r-project.org/package=ramp.xde) (please be aware that the version on CRAN may not be the latest version on GitHub):
-
-```
-install.packages("ramp.xde")
 ```
 
 ## Contributing
@@ -74,7 +95,7 @@ For more information, please read our [research article](https://www.medrxiv.org
 
 ## Acknowledgements
 
-Version 1.0 of this software was designed by Sean L. Wu and Professor David L. Smith. It was originally published as exDE. Most of the code was written by Sean L. Wu. We anticipate active development of ramp.xde and MicroMoB to add new models to fill important needs. 
+This software was designed to replace exDE and MicroMoB, which were originally designed by Sean L. Wu and Professor David L. Smith. David L Smith developed the prototypes. Sean L. Wu wrote the first versions of the R-packages. Development of exDE continued, eventually changing its name to ramp.xde. Functionality for discrete time systems was added to ramp.xde in the spring of 2024.  
 
 The idea of developing modular software to simulate the dynamics and control of mosquito-borne pathogens originated sometime around 2009 at the Emerging Pathogens Institute, University of Florida. It took much longer than anticipated to finish. Some concepts have appeared in various publications. Some of the algorithms trace back to other software packages that were never launched, but that someday might yet be completed (*e.g.*, MASH). In retrospect, a key challenge was blood feeding, but it was not the only one. 
 

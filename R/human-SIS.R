@@ -191,7 +191,7 @@ list_Xvars.SIS <- function(y, pars, i) {
 #' @return a [list] vector
 #' @export
 setup_Xinits.SIS = function(pars, i, Xopts=list()){
-  pars$Xinits[[i]] = with(pars,make_Xinits_SIS(pars$Hpar[[i]]$nStrata, Xopts, H0=Hpar[[i]]$H))
+  pars$Xinits[[i]] = with(pars,make_Xinits_SIS(pars$Hpar[[i]]$nStrata, Xopts, H0=pars$Hpar[[i]]$H))
   return(pars)
 }
 
@@ -229,7 +229,7 @@ get_inits_X.SIS <- function(pars, i){
 #' @export
 update_inits_X.SIS <- function(pars, y0, i) {
   with(list_Xvars(y0, pars, i),{
-    pars$Xinits[[i]] = make_Xinits_SIS(pars, list(), S0=S, I0=I)
+    pars$Xinits[[i]] = make_Xinits_SIS(pars$Hpar[[i]]$nStrata, Xopts=list(), S0=S, I0=I)
     return(pars)
   })}
 

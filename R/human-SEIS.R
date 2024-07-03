@@ -242,7 +242,7 @@ get_inits_X.SEIS <- function(pars, i){
 #' @export
 update_inits_X.SEIS <- function(pars, y0, i) {
   with(list_Xvars(y0, pars, i),{
-    pars$Xinits[[i]] = make_Xinits_SEIS(pars, list(), S0=S, E0=E, I0=I)
+    pars$Xinits[[i]] = make_Xinits_SEIS(pars$Hpar[[i]]$nStrata, list(), S0=S, E0=E, I0=I)
     return(pars)
   })}
 

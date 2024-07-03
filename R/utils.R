@@ -132,17 +132,17 @@ update_inits <- function(y0, pars){
   s = length(pars$Lpar)
   if(s>0)
     for(ix in 1:s)
-      pars = update_inits_L(pars, y0)
+      pars = update_inits_L(pars, y0, ix)
 
   s = length(pars$MYZpar)
   if(s>0)
     for(ix in 1:s)
-      pars = update_inits_MYZ(pars, y0)
+      pars = update_inits_MYZ(pars, y0, ix)
 
-  s = length(pars$Xpar)
-  if(s>0)
-    for(ix in 1:s)
-      pars = update_inits_X(pars, y0)
+  ii = length(pars$Xpar)
+  if(ii>0)
+    for(ix in 1:ii)
+      pars = update_inits_X(pars, y0, ix)
 
   return(pars)
 }
@@ -152,7 +152,6 @@ update_inits <- function(y0, pars){
 #' @return y a [numeric] vector
 #' @export
 last_to_inits <- function(pars){
-  y0 <- tail(pars$orbits$deout, 1)[-1]
-  pars <- update_inits(y0, pars)
+  pars <- update_inits(pars$outputs$orbits$y_last, pars)
   return(pars)
 }
