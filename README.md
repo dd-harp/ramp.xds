@@ -11,9 +11,20 @@
 
 ## What is ramp.xds?
 
-**ramp.xds** is software for setting up, analyzing, and solving dynamical systems describing the epidemiology, dynamics and control of malaria and other mosquito-borne pathogens. It is based on a rigorous mathematical framework, partly described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) published in PLoS Computational Biology^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. 
+**ramp.xds** is software for setting up, analyzing, and solving dynamical systems describing the epidemiology, dynamics and control of malaria and other mosquito-borne pathogens. It is based on a rigorous mathematical framework, partly described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) published in PLoS Computational Biology^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. The software was designed to support robust analytics for malaria policy (RAMP) and adaptive malaria control.  
 
-This software supports development, solving, and analysis of systems models for mosquito ecology and mosquito-borne pathogen transmission, formulated as ordinary or delay differential or difference equations. A library of stable and reusable code with new dynamical components for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/) and algorithms to apply these models is found in [**ramp.work**](https://dd-harp.github.io/ramp.work/). The software is under active development, and *ramp.xds* replaces two deprecated software packages: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/).
+## Installation
+
+To install the latest version from GitHub, run the following lines of code in an R session.
+
+```
+library(devtools)
+devtools::install_github("dd-harp/ramp.xde")
+```
+
+## Modular Computation 
+
+This software supports development, solving, and analysis of dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission that have been formulated as ordinary or delay differential or difference equations. A library of stable and reusable code with new dynamical components for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/) and algorithms to apply these models is found in [**ramp.work**](https://dd-harp.github.io/ramp.work/). The software is under active development, and *ramp.xds* replaces two deprecated software packages: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/).
 
 The mathematical framework and software have a modular design developed around an algorithm describing mosquito blood feeding on vertebrate hosts in spatial patches that are nested within a defined spatial domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen infection dynamics in mosquito and host populations. The computational interface guarantees mathematical consistency in allocating bites and blood meals when the availability of host populations or other vertebrate animals is dynamically changing. 
 
