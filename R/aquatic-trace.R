@@ -152,7 +152,7 @@ make_inits_L_trace<- function(pars, L0=NULL) {
 #' @return [list]
 #' @export
 parse_outputs_L.trace <- function(outputs, pars, s) {
-  return(NULL)
+  return(numeric(0))
 }
 
 #' @title Return initial values as a vector
