@@ -95,7 +95,7 @@ For more information, please read our [research article](https://www.medrxiv.org
 
 **ramp.xds** aims to provide stable, reliable, reusable code for the study of mosquito-borne pathogen dynamics and control using dynamical systems.   
 
-For information about how to contribute to the development of ramp.xde, please read our article on how to contribute at [Contributing](vignettes/Contributing.html). 
+For information about how to contribute to the development of ramp.xde, please read our article on how to contribute at [Contributing](articles/Contributing.html). 
 
 If you have any questions, comments, bug reports, or suggestions, the first point of contact with the development team is through [GitHub Issues](https://github.com/dd-harp/ramp.xde/issues). If you are specifically submitting a bug report, please check out our [bug reporting guide](https://dd-harp.github.io/ramp.xde/articles/Contributing.html#sec8). If you are interested in collaborating in extensive model development (e.g. new mosquito model), please do not hesitate to contact the authors, whose email addresses can be found in the `DESCRIPTION` file.
 
