@@ -11,9 +11,18 @@
 
 ## What is ramp.xds?
 
-**ramp.xds** is software for setting up, analyzing, and solving dynamical systems describing the epidemiology, dynamics and control of malaria and other mosquito-borne pathogens. It is based on a rigorous mathematical framework, partly described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) published in PLoS Computational Biology^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. The software was designed to support robust analytics for malaria policy (RAMP) and adaptive malaria control.  
+**ramp.xds** is an R software package to set up, analyze, and solve dynamical systems describing the epidemiology, dynamics and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) published in PLoS Computational Biology^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. 
 
-The software is under active development, and *ramp.xds* replaces two deprecated software packages: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/). A library of stable, verifiable, reusable code implementing a large set of previously published models for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/). Algorithms to apply these models, include code to fit models to data, is found in [**ramp.work**](https://dd-harp.github.io/ramp.work/). 
++ *ramp.xds* handles core computation. It is being actively developed, and it is a continuation of two deprecated software packages: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/).
+
++ Several examples illustrating capabilities are found in [**ramp.malaria**](https://dd-harp.github.io/ramp.malaria/). 
+
++ A library of stable, verifiable, reusable code implementing a large set of previously published models for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/). 
+
++ Algorithms to apply these models, include code to fit models to data, is found in [**ramp.work**](https://dd-harp.github.io/ramp.work/). 
+
+This software is part of a suite of R packages that support robust analytics for malaria policy (RAMP) and adaptive malaria control. 
+
 
 ## Installation
 
@@ -89,7 +98,7 @@ The function `ramp.xde::xDE_diffeqn` compute the necessary quantities and return
   <img src="vignettes/xDEdiffeqn.png"/>
 </p>
 
-For more information, please read our [research article](https://www.medrxiv.org/content/10.1101/2022.11.07.22282044v1) describing the theory behind the model.
+For more information, please read our [research article](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) describing the theory behind the model.
 
 ## Contributing
 
@@ -101,9 +110,11 @@ If you have any questions, comments, bug reports, or suggestions, the first poin
 
 We welcome issues and encourage contribution regardless of experience; the length of the contributing guide is not intended to be intimidating, merely complete. It is the responsibility of the package maintainers to help new contributors understand our conventions and guide contributions to a successful conclusion.
 
-## Acknowledgements
+## History
 
-This software was designed to replace exDE and MicroMoB, which were originally designed by Sean L. Wu and Professor David L. Smith. David L Smith developed the prototypes. Sean L. Wu wrote the first versions of the R-packages. Development of exDE continued, eventually changing its name to ramp.xde. Functionality for discrete time systems was added to ramp.xde in the spring of 2024.  
+This software was designed to replace exDE and MicroMoB, which were originally designed by Sean L. Wu and Professor David L. Smith. David L Smith developed the prototypes. Sean L. Wu wrote the first versions of the R-packages. Development of exDE continued. The name exDE was changed to ramp.xde where development continued. A stable version of exDE was restored. Functionality for discrete time systems was added to ramp.xde in the spring of 2024. A name change to ramp.xds is planned. 
+
+## Acknowledgements
 
 The idea of developing modular software to simulate the dynamics and control of mosquito-borne pathogens originated sometime around 2009 at the Emerging Pathogens Institute, University of Florida. It took much longer than anticipated to finish. Some concepts have appeared in various publications. Some of the algorithms trace back to other software packages that were never launched, but that someday might yet be completed (*e.g.*, MASH). In retrospect, a key challenge was blood feeding, but it was not the only one. 
 

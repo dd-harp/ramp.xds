@@ -1,10 +1,10 @@
 Package: ramp.xde
 Type: Package
-Title: Extensible Differential Equations for Mosquito-Borne Pathogen Modeling
+Title: Extensible Dynamical Systems for Mosquito-Borne Pathogen Modeling
 Version: 1.0.0
 Authors@R: c(
-      person("Sean L.", "Wu", email = "slwood89@gmail.com", role = c("aut","cre"), comment = c(ORCID = "0000-0002-5781-9493")),
-      person("David L.", "Smith", email = "smitdave@uw.edu", role = "aut", comment = c(ORCID = "0000-0003-4367-3849"))
+      person("Sean L.", "Wu", email = "slwood89@gmail.com", role = "aut", comment = c(ORCID = "0000-0002-5781-9493")),
+      person("David L.", "Smith", email = "smitdave@uw.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4367-3849"))
     )
 Description: Provides tools to set up modular ordinary and delay differential equation
   models for mosquito-borne pathogens, focusing on malaria. Modular design is achieved
