@@ -10,7 +10,6 @@ dXdt.SEIS <- function(t, y, pars, i) {
   foi <- pars$FoI[[i]]
   Hpar <- pars$Hpar[[i]]
   with(list_Xvars(y, pars, i),{
-    H <- F_H(t, y, pars, i)
     with(pars$Xpar[[i]], {
       dS <- Births(t, H, Hpar) - foi*S + r*I + dHdt(t, S, Hpar)
       dE <- foi*S - nu*E + dHdt(t, E, Hpar)
@@ -30,7 +29,6 @@ DT_Xt.SEIS <- function(t, y, pars, i) {
   ar <- pars$AR[[i]]
   Hpar <- pars$Hpar[[i]]
   with(list_Xvars(y, pars, i),{
-    H <- F_H(t, y, pars, i)
     with(pars$Xpar[[i]], {
 
       St <- (1-ar)*S + (1-nr)*(1-ar)*I + dHdt(t, S, Hpar) + Births(t, H, Hpar)
@@ -120,7 +118,7 @@ dts_make_Xpar_SEIS = function(nStrata, Xday, Xopts=list(),
 #' @inheritParams F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X.SEIS <- function(t, y, pars, i) {
+F_X.SEIS <- function(y, pars, i) {
   I = y[pars$ix$X[[i]]$I_ix]
   X = with(pars$Xpar[[i]], c*I)
   return(X)
@@ -131,8 +129,8 @@ F_X.SEIS <- function(t, y, pars, i) {
 #' @inheritParams F_H
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_H.SEIS <- function(t, y, pars, i){
-  with(list_Xvars(y, pars, i), return(S+E+I))
+F_H.SEIS <- function(y, pars, i){
+  with(list_Xvars(y, pars, i), return(H))
 }
 
 
@@ -186,14 +184,14 @@ put_Xvars.SEIS <- function(Xvars, y, pars, i) {
 #' @return a [list]
 #' @export
 list_Xvars.SEIS <- function(y, pars, i) {
-  with(pars$ix$X[[i]],
-       return(list(
-         S = y[S_ix],
-         E = y[E_ix],
-         I = y[I_ix]
-       )
-       ))
+  with(pars$ix$X[[i]],{
+    S = y[S_ix]
+    E = y[E_ix]
+    I = y[I_ix]
+    H = S+E+I
+    return(list(S=S,E=E,I=I,H=H))})
 }
+
 
 #' @title Setup Xinits.SEIS
 #' @description Implements [setup_Xinits] for the SEIS model

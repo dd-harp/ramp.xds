@@ -11,16 +11,16 @@
 
 ## What is ramp.xds?
 
-**ramp.xds** is an R software package to set up, analyze, and solve dynamical systems describing the epidemiology, transmission dynamics, and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) published in PLoS Computational Biology^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. This software is part of a set designed to support robust analytics for malaria policy (RAMP) and adaptive malaria control:
+**ramp.xds** is an R software package to set up, analyze, and solve dynamical systems describing the epidemiology, transmission dynamics, and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) published in PLoS Computational Biology^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. This software is designed to support robust analytics for malaria policy (RAMP) and adaptive malaria control, along with several other R packages:
 
-+ *ramp.xds* handles core computation. It is being actively developed, and it is a continuation of two deprecated software packages: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/).
-
-+ Several examples illustrating capabilities are found in [**ramp.malaria**](https://dd-harp.github.io/ramp.malaria/). 
 
 + A library of stable, verifiable, reusable code implementing a large set of previously published models for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/). 
 
 + Algorithms to apply these models, include code to fit models to data, is found in [**ramp.work**](https://dd-harp.github.io/ramp.work/). 
 
++ A set of models illustrating capabilities are found in [**ramp.malaria**](https://dd-harp.github.io/ramp.malaria/). 
+
+*ramp.xds* is being actively developed, and it is a continuation of two deprecated software packages: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/).
 
 ## Installation
 

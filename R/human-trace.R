@@ -5,7 +5,7 @@
 #' @inheritParams F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X.trace <- function(t, y, pars, i) {
+F_X.trace <- function(y, pars, i) {
   with(pars$Xpar[[i]],  pars$Hpar[[i]]$H*Kf(t))
 }
 
@@ -14,7 +14,7 @@ F_X.trace <- function(t, y, pars, i) {
 #' @inheritParams F_H
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_H.trace <- function(t, y, pars, i) {
+F_H.trace <- function(y, pars, i) {
   with(pars$Hpar[[i]], H)
 }
 

@@ -4,11 +4,9 @@
 \alias{F_X.SEIS}
 \title{Size of effective infectious human population}
 \usage{
-\method{F_X}{SEIS}(t, y, pars, i)
+\method{F_X}{SEIS}(y, pars, i)
 }
 \arguments{
-\item{t}{current simulation time}
-
 \item{y}{state vector}
 
 \item{pars}{a list}

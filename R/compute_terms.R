@@ -155,7 +155,7 @@ compute_terms_steady<- function(varslist, y_eq, pars, s, i) {
   pars = Transmission(0, y_eq, pars)
   eir = pars$EIR[[1]]
   fqZ <- F_fqZ(0, y_eq, pars, s)
-  ni <- F_X(0, y_eq, pars, i)/varslist$XH[[i]]$H
+  ni <- F_X(y_eq, pars, i)/varslist$XH[[i]]$H
   pr <- F_pr(varslist$XH[[i]], pars$Xpar[[i]])
   return(list(eir=eir,pr=pr,kappa=kappa,fqZ=fqZ,ni=ni))
 }
@@ -187,8 +187,8 @@ compute_NI <- function(deout, pars, i) {
 compute_NI_ix <- function(ix, deout, pars, i) {
   t = deout[ix,1]
   y = deout[ix,-1]
-  X <- F_X(t, y, pars, i)
-  H = F_H(t, y, pars, i)
+  X <- F_X(y, pars, i)
+  H = F_H(y, pars, i)
   NI = X/H
   return(NI)
 }

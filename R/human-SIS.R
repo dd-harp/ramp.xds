@@ -1,4 +1,4 @@
-# The SIS
+# specialized methods for the human SIS model
 
 #' @title Derivatives for the SIS model for human / vertebrate host infections
 #' @description Implements [dXdt] for the SIS model
@@ -10,7 +10,6 @@ dXdt.SIS <- function(t, y, pars, i) {
   foi <- pars$FoI[[i]]
   Hpar <- pars$Hpar[[i]]
   with(list_Xvars(y, pars, i),{
-    H <- F_H(t, y, pars, i)
     with(pars$Xpar[[i]], {
       dS <- Births(t, H, Hpar) - foi*S + r*I + dHdt(t, S, Hpar)
       dI <- foi*S - r*I + dHdt(t, I, Hpar)
@@ -29,7 +28,6 @@ DT_Xt.SIS <- function(t, y, pars, i) {
   ar <- pars$AR[[i]]
   Hpar <- pars$Hpar[[i]]
   with(list_Xvars(y, pars, i),{
-    H <- F_H(t, y, pars, i)
     with(pars$Xpar[[i]], {
 
       St <- (1-ar)*S + (1-nr)*(1-ar)*I + dHdt(t, S, Hpar) + Births(t, H, Hpar)
@@ -107,14 +105,13 @@ dts_make_Xpar_SIS = function(nStrata, Xday, Xopts=list(),
 
 
 
-# specialized methods for the human SIS model
 
 #' @title Size of effective infectious human population
 #' @description Implements [F_X] for the SIS model.
 #' @inheritParams F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X.SIS <- function(t, y, pars, i) {
+F_X.SIS <- function(y, pars, i) {
   I = y[pars$ix$X[[i]]$I_ix]
   X = with(pars$Xpar[[i]], c*I)
   return(X)
@@ -125,8 +122,8 @@ F_X.SIS <- function(t, y, pars, i) {
 #' @inheritParams F_H
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_H.SIS <- function(t, y, pars, i){
-  with(list_Xvars(y, pars, i), return(S+I))
+F_H.SIS <- function(y, pars, i){
+  with(list_Xvars(y, pars, i), return(H))
 }
 
 
@@ -177,13 +174,11 @@ put_Xvars.SIS <- function(Xvars, y, pars, i) {
 #' @return a [list]
 #' @export
 list_Xvars.SIS <- function(y, pars, i) {
-  with(pars$ix$X[[i]],
-       return(list(
-         S = y[S_ix],
-         I = y[I_ix],
-         H <- F_H(t, y, pars, i)
-       )
-       ))
+  with(pars$ix$X[[i]],{
+       S = y[S_ix]
+       I = y[I_ix]
+       H = S+I
+       return(list(S=S,I=I,H=H))})
 }
 
 #' @title Setup Xinits.SIS

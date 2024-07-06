@@ -67,7 +67,7 @@ Transmission.setup <- function(t, y, pars){
 compute_beta <- function(t, y, pars){
 
   for(i in 1:pars$nHosts){
-    H = F_H(t, y, pars, i)
+    H = F_H(y, pars, i)
     for(s in 1:pars$nVectors){
       W = pars$vars$W[[s]]
       wts = pars$BFpar$searchWts[[i]][[s]]
@@ -188,7 +188,7 @@ F_kappa <- function(t, y, pars, i, s) {
   beta = pars$beta[[i]][[s]]
   Wi = pars$vars$Wi[[i]][[s]]
   W = pars$vars$W[[s]]
-  kappa = Wi/W*(as.vector(t(beta) %*% F_X(t, y, pars, i)))
+  kappa = Wi/W*(as.vector(t(beta) %*% F_X(y, pars, i)))
 
   return(as.vector(kappa))
 }

@@ -10,7 +10,6 @@ dXdt.SIP <- function(t, y, pars, i){
   foi <- pars$FoI[[i]]
 
   with(list_Xvars(y, pars, i),{
-    H <- F_H(t, y, pars, i)
     Hpar <- pars$Hpar[[i]]
     with(pars$Xpar[[i]], {
 
@@ -71,7 +70,6 @@ DT_Xt.SIP <- function(t, y, pars, i){
   attack <- pars$AR[[i]]
 
   with(list_Xvars(y, pars, i),{
-    H <- F_H(t, y, pars, i)
     with(pars$Xpar[[i]], {
 
       St <- (1-attack)*(S+r*I) + eta*P - xi*S
@@ -132,7 +130,7 @@ dts_make_Xpar_SIP = function(nStrata, Xopts=list(),
 #' @inheritParams F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X.SIP <- function(t, y, pars, i) {
+F_X.SIP <- function(y, pars, i) {
   I = y[pars$ix$X[[i]]$I_ix]
   X = with(pars$Xpar[[i]], c*I)
   return(X)
@@ -143,13 +141,9 @@ F_X.SIP <- function(t, y, pars, i) {
 #' @inheritParams F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_H.SIP <- function(t, y, pars, i){
-  with(pars$ix$X[[i]],{
-    S = y[S_ix]
-    I = y[I_ix]
-    P = y[P_ix]
-    return(S+I+P)
-})}
+F_H.SIP <- function(y, pars, i){
+  with(list_Xvars(y, pars, i), return(H))
+}
 
 
 #' @title Infection blocking pre-erythrocytic immunity
@@ -169,14 +163,14 @@ F_b.SIP <- function(y, pars,i) {
 #' @return a [list]
 #' @export
 list_Xvars.SIP <- function(y, pars, i) {
-  with(pars$ix$X[[i]],
-      return(list(
-        S = y[S_ix],
-        I = y[I_ix],
-        P = y[P_ix]
-      )
-  ))
+  with(pars$ix$X[[i]],{
+    S = y[S_ix]
+    I = y[I_ix]
+    P = y[P_ix]
+    H = S+I+P
+    return(list(S=S,I=I,P=P,H=H))})
 }
+
 
 #' @title Compute the HTC for the SIP model
 #' @description Implements [HTC] for the SIP model with demography.

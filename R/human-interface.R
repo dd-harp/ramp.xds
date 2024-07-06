@@ -1,42 +1,5 @@
 # generic methods for human component
 
-#' @title Size of effective infectious human population
-#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
-#' @param t current simulation time
-#' @param y state vector
-#' @param pars a list
-#' @param i the host species index
-#' @return a [numeric] vector of length `nStrata`
-#' @export
-F_X <- function(t, y, pars, i) {
-  UseMethod("F_X", pars$Xpar[[i]])
-}
-
-#' @title Size of human population denominators
-#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
-#' @param t current simulation time
-#' @param y state vector
-#' @param pars a list
-#' @param i the host species index
-#' @return a [numeric] vector of length `nStrata`
-#' @export
-F_H <- function(t, y, pars, i) {
-  UseMethod("F_H", pars$Xpar[[i]])
-}
-
-
-
-#' @title Infection blocking pre-erythrocytic immunity
-#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
-#' @param y state vector
-#' @param pars a list
-#' @param i the host species index
-#' @return a [numeric] vector of length `nStrata`
-#' @export
-F_b <- function(y, pars, i) {
-  UseMethod("F_b", pars$Xpar[[i]])
-}
-
 #' @title Derivatives for human population
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param t current simulation time
@@ -87,6 +50,41 @@ dts_setup_Xpar = function(Xname, pars, i, Xopts=list()){
   class(Xname) <- Xname
   UseMethod("dts_setup_Xpar", Xname)
 }
+
+
+#' @title Size of effective infectious human population
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @param y state vector
+#' @param pars a list
+#' @param i the host species index
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_X <- function(y, pars, i) {
+  UseMethod("F_X", pars$Xpar[[i]])
+}
+
+#' @title Size of human population denominators
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @param y state vector
+#' @param pars a list
+#' @param i the host species index
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_H <- function(y, pars, i) {
+  UseMethod("F_H", pars$Xpar[[i]])
+}
+
+#' @title Infection blocking pre-erythrocytic immunity
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @param y state vector
+#' @param pars a list
+#' @param i the host species index
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_b <- function(y, pars, i) {
+  UseMethod("F_b", pars$Xpar[[i]])
+}
+
 
 #' @title A function to set up Xpar
 #' @description This method dispatches on `pars$Xpar[[i]]`.
