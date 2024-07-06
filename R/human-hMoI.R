@@ -233,8 +233,8 @@ get_inits_X.hMoI <- function(pars, i){with(pars$Xinits[[i]],{
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr.hMoI<- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], 1-exp(-m1))
+F_pr.hMoI<- function(vars, Xpar) {
+  pr = with(vars, 1-exp(-m1))
   return(pr)
 }
 
@@ -243,8 +243,8 @@ F_pr.hMoI<- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_lm.hMoI<- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], 1-exp(-m1))
+F_pr_by_lm.hMoI<- function(vars, Xpar) {
+  pr = with(vars, 1-exp(-m1))
   return(pr)
 }
 
@@ -253,8 +253,8 @@ F_pr_by_lm.hMoI<- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_rdt.hMoI<- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], 1-exp(-m1))
+F_pr_by_rdt.hMoI<- function(vars, Xpar) {
+  pr = with(vars, 1-exp(-m1))
   return(pr)
 }
 
@@ -263,7 +263,7 @@ F_pr_by_rdt.hMoI<- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_pcr.hMoI<- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], 1-exp(-m1))
+F_pr_by_pcr.hMoI<- function(vars, Xpar) {
+  pr = with(vars, 1-exp(-m1))
   return(pr)
 }

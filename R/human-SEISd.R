@@ -292,8 +292,8 @@ HTC.SEISd <- function(pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr.SEISd <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr.SEISd <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 
@@ -302,8 +302,8 @@ F_pr.SEISd <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_lm.SEISd <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr_by_lm.SEISd <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 
@@ -312,8 +312,8 @@ F_pr_by_lm.SEISd <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_rdt.SEISd <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr_by_rdt.SEISd <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 
@@ -322,8 +322,8 @@ F_pr_by_rdt.SEISd <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_pcr.SEISd <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr_by_pcr.SEISd <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 

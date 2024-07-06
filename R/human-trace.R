@@ -23,7 +23,7 @@ F_H.trace <- function(t, y, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector numeric(0)
 #' @export
-F_pr.trace <- function(varslist, pars, i) {
+F_pr.trace <- function(vars, Xpar) {
   return(numeric(0))
 }
 
@@ -32,7 +32,7 @@ F_pr.trace <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector numeric(0)
 #' @export
-F_pr_by_lm.trace <- function(varslist, pars, i) {
+F_pr_by_lm.trace <- function(vars, Xpar) {
   return(numeric(0))
 }
 
@@ -42,7 +42,7 @@ F_pr_by_lm.trace <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector numeric(0)
 #' @export
-F_pr_by_rdt.trace <- function(varslist, pars, i) {
+F_pr_by_rdt.trace <- function(vars, Xpar) {
   return(numeric(0))
 }
 
@@ -52,7 +52,7 @@ F_pr_by_rdt.trace <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector numeric(0)
 #' @export
-F_pr_by_pcr.trace <- function(varslist, pars, i) {
+F_pr_by_pcr.trace <- function(vars, Xpar) {
   return(numeric(0))
 }
 

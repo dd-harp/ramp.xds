@@ -180,7 +180,8 @@ list_Xvars.SIS <- function(y, pars, i) {
   with(pars$ix$X[[i]],
        return(list(
          S = y[S_ix],
-         I = y[I_ix]
+         I = y[I_ix],
+         H <- F_H(t, y, pars, i)
        )
        ))
 }
@@ -254,8 +255,8 @@ parse_outputs_X.SIS <- function(outputs, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr.SIS <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr.SIS <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 
@@ -264,8 +265,8 @@ F_pr.SIS <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_lm.SIS <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr_by_lm.SIS <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 
@@ -274,8 +275,8 @@ F_pr_by_lm.SIS <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_rdt.SIS <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr_by_rdt.SIS <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 
@@ -284,8 +285,8 @@ F_pr_by_rdt.SIS <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_pcr.SIS <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr_by_pcr.SIS <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 
