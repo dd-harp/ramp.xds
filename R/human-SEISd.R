@@ -10,7 +10,6 @@ dXdt.SEISd <- function(t, y, pars, i) {
   foi <- pars$FoI[[i]]
   Hpar <- pars$Hpar[[i]]
   with(list_Xvars(y, pars, i),{
-    H <- F_H(t, y, pars, i)
     with(pars$Xpar[[i]], {
 
       if (t <= nu) {
@@ -38,7 +37,7 @@ DT_Xt.SEISd <- function(t, y, pars, i) {
   ar <- pars$AR[[i]]
   Hpar <- pars$Hpar[[i]]
   with(list_Xvars(y, pars, i),{
-    H <- F_H(t, y, pars, i)
+    H <- F_H(y, pars, i)
     with(pars$Xpar[[i]], {
 
       St <- (1-ar)*S + (1-nr)*(1-ar)*I + dHdt(t, S, Hpar) + Births(t, H, Hpar)
@@ -127,7 +126,7 @@ dts_make_Xpar_SEISd = function(nStrata, Xday, Xopts=list(),
 #' @inheritParams F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X.SEISd <- function(t, y, pars, i) {
+F_X.SEISd <- function(y, pars, i) {
   I = y[pars$ix$X[[i]]$I_ix]
   X = with(pars$Xpar[[i]], c*I)
   return(X)
@@ -138,8 +137,8 @@ F_X.SEISd <- function(t, y, pars, i) {
 #' @inheritParams F_H
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_H.SEISd <- function(t, y, pars, i){
-  with(list_Xvars(y, pars, i), return(S+E+I))
+F_H.SEISd <- function(y, pars, i){
+  with(list_Xvars(y, pars, i), return(H))
 }
 
 
@@ -196,14 +195,13 @@ put_Xvars.SEISd <- function(Xvars, y, pars, i) {
 #' @return a [list]
 #' @export
 list_Xvars.SEISd <- function(y, pars, i) {
-  with(pars$ix$X[[i]],
-       return(list(
-         S = y[S_ix],
-         E = y[E_ix],
-         I = y[I_ix],
-         cfoi = y[cfoi_ix]
-       )
-       ))
+  with(pars$ix$X[[i]],{
+    S = y[S_ix]
+    E = y[E_ix]
+    I = y[I_ix]
+    cfoi = y[cfoi_ix]
+    H = S+E+I
+    return(list(S=S,E=E,I=I,H=H,cfoi=cfoi))})
 }
 
 #' @title Setup Xinits.SEISd

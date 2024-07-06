@@ -59,13 +59,13 @@ AvailableBlood.forced <- function(t, y, pars){
 #' @export
 compute_AvailableHosts <- function(t, y, pars, s){
 
-  H = F_H(t, y, pars, 1)
+  H = F_H(y, pars, 1)
 
   pars$vars$Wi[[1]][[s]] = as.vector(with(pars$BFpar, TaR[[1]][[s]] %*% (searchWts[[1]][[s]]*H)))
   pars$vars$W[[s]] = pars$vars$Wi[[1]][[s]]
   if(pars$nHosts > 1){
     for(i in 2:pars$nHosts){
-      H = F_H(t, y, pars, i)
+      H = F_H(y, pars, i)
       pars$vars$Wi[[i]][[s]] = as.vector(with(pars$BFpar, TaR[[i]][[s]] %*% (searchWts[[i]][[s]]*H)))
       pars$vars$W[[s]] =  pars$vars$W[[s]] + pars$vars$Wi[[i]][[s]]
     }

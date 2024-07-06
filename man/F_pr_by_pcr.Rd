@@ -9,7 +9,7 @@ F_pr_by_pcr(vars, Xpar)
 \arguments{
 \item{vars}{a list with the variables attached by name}
 
-\item{Xpar}{a list defining a model for human infections}
+\item{Xpar}{a list defining a model for human}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}
