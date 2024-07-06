@@ -61,7 +61,7 @@ compute_terms.xde <- function(varslist, deout, pars, s, i) {
   ni = list()
   for(i in 1:pars$nHosts){
     ni[[i]] = compute_NI(deout, pars, i)
-    pr[[i]] = F_pr(varslist, pars, i)
+    pr[[i]] = F_pr(varslist$XH[[i]], pars$Xpar[[i]])
   }
 
   return(list(time=time,eir=eir,pr=pr,ni=ni,kappa=kappa,fqZ=fqZ))
@@ -83,7 +83,7 @@ compute_terms.cohort <- function(varslist, deout, pars, s, i) {
   ni = list()
   for(i in 1:pars$nHosts){
     ni[[i]] = compute_NI(deout, pars, i)
-    pr[[i]] = F_pr(varslist, pars, i)
+    pr[[i]] = F_pr(varslist$XH[[i]], pars$Xpar[[i]])
   }
 
   return(list(time=time,eir=eir,pr=pr,ni=ni))
@@ -124,7 +124,7 @@ compute_terms.human<- function(varslist, deout, pars, s, i) {
   ni = list()
   for(i in 1:pars$nHosts){
     ni[[i]] = compute_NI(deout, pars, i)
-    pr[[i]] = F_pr(varslist, pars, i)
+    pr[[i]] = F_pr(varslist$XH[[i]], pars$Xpar[[i]])
   }
 
   return(list(time=time,eir=eir,pr=pr,ni=ni,fqZ=fqZ))
@@ -156,7 +156,7 @@ compute_terms_steady<- function(varslist, y_eq, pars, s, i) {
   eir = pars$EIR[[1]]
   fqZ <- F_fqZ(0, y_eq, pars, s)
   ni <- F_X(0, y_eq, pars, i)/varslist$XH[[i]]$H
-  pr <- F_pr(varslist, pars, i)
+  pr <- F_pr(varslist$XH[[i]], pars$Xpar[[i]])
   return(list(eir=eir,pr=pr,kappa=kappa,fqZ=fqZ,ni=ni))
 }
 

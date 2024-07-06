@@ -4,14 +4,12 @@
 \alias{F_pr_by_pcr}
 \title{Compute the prevalence of infection by PCR}
 \usage{
-F_pr_by_pcr(varslist, pars, i)
+F_pr_by_pcr(vars, Xpar)
 }
 \arguments{
-\item{varslist}{a parsed list of outputs with variables attached by name}
+\item{vars}{a list with the variables attached by name}
 
-\item{pars}{a list}
-
-\item{i}{the host species index}
+\item{Xpar}{a list defining a model for human infections}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}

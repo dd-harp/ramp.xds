@@ -318,8 +318,8 @@ get_inits_X.SIP <- function(pars, i){with(pars$Xinits[[i]],{
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr.SIP <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr.SIP <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 
@@ -328,8 +328,8 @@ F_pr.SIP <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_lm.SIP <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr_by_lm.SIP <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 
@@ -338,8 +338,8 @@ F_pr_by_lm.SIP <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_rdt.SIP <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr_by_rdt.SIP <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 
@@ -348,8 +348,8 @@ F_pr_by_rdt.SIP <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_pcr.SIP <- function(varslist, pars, i) {
-  pr = with(varslist$XH[[i]], I/H)
+F_pr_by_pcr.SIP <- function(vars, Xpar) {
+  pr = with(vars, I/H)
   return(pr)
 }
 

@@ -4,14 +4,12 @@
 \alias{F_pr_by_lm.trace}
 \title{Compute the prevalence of infection by light microscopy}
 \usage{
-\method{F_pr_by_lm}{trace}(varslist, pars, i)
+\method{F_pr_by_lm}{trace}(vars, Xpar)
 }
 \arguments{
-\item{varslist}{a parsed list of outputs with variables attached by name}
+\item{vars}{a list with the variables attached by name}
 
-\item{pars}{a list}
-
-\item{i}{the host species index}
+\item{Xpar}{a list defining a model for human infections}
 }
 \value{
 a \link{numeric} vector numeric(0)

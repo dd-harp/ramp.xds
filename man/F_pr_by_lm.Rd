@@ -4,14 +4,12 @@
 \alias{F_pr_by_lm}
 \title{Compute the prevalence of infection by light microscopy}
 \usage{
-F_pr_by_lm(varslist, pars, i)
+F_pr_by_lm(vars, Xpar)
 }
 \arguments{
-\item{varslist}{a parsed list of outputs with variables attached by name}
+\item{vars}{a list with the variables attached by name}
 
-\item{pars}{a list}
-
-\item{i}{the host species index}
+\item{Xpar}{a list defining a model for human infections}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}

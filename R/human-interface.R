@@ -164,16 +164,14 @@ update_inits_X <- function(pars, y0, i) {
   UseMethod("update_inits_X", pars$Xpar[[i]])
 }
 
-
 #' @title Compute the "true" prevalence of infection / parasite rate
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`.
-#' @param varslist a parsed list of outputs with variables attached by name
-#' @param pars a list
-#' @param i the host species index
+#' @param vars a list with the variables attached by name
+#' @param Xpar a list defining a model for human
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr <- function(varslist, pars, i) {
-  UseMethod("F_pr", pars$Xpar[[i]])
+F_pr <- function(vars, Xpar) {
+  UseMethod("F_pr", Xpar)
 }
 
 #' @title Compute the prevalence of infection by light microscopy
@@ -181,8 +179,8 @@ F_pr <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_lm <- function(varslist, pars, i) {
-  UseMethod("F_pr", pars$Xpar[[i]])
+F_pr_by_lm <- function(vars, Xpar) {
+  UseMethod("F_pr", Xpar)
 }
 
 #' @title Compute the prevalence of infection by RDT
@@ -190,8 +188,8 @@ F_pr_by_lm <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_rdt <- function(varslist, pars, i) {
-  UseMethod("F_pr", pars$Xpar[[i]])
+F_pr_by_rdt <- function(vars, Xpar) {
+  UseMethod("F_pr", Xpar)
 }
 
 #' @title Compute the prevalence of infection by PCR
@@ -199,8 +197,8 @@ F_pr_by_rdt <- function(varslist, pars, i) {
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_pcr <- function(varslist, pars, i) {
-  UseMethod("F_pr", pars$Xpar[[i]])
+F_pr_by_pcr <- function(vars, Xpar) {
+  UseMethod("F_pr", Xpar)
 }
 
 
