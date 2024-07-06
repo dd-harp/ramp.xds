@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-interface.R
 \name{F_pr}
 \alias{F_pr}
-\title{Compute the "true" prevalence of infection / parasite rate}
+\title{Compute the \emph{true} prevalence of infection / parasite rate}
 \usage{
 F_pr(vars, Xpar)
 }

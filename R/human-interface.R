@@ -162,7 +162,7 @@ update_inits_X <- function(pars, y0, i) {
   UseMethod("update_inits_X", pars$Xpar[[i]])
 }
 
-#' @title Compute the "true" prevalence of infection / parasite rate
+#' @title Compute the *true* prevalence of infection / parasite rate
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param vars a list with the variables attached by name
 #' @param Xpar a list defining a model for human
@@ -182,7 +182,7 @@ F_pr_by_lm <- function(vars, Xpar) {
 }
 
 #' @title Compute the prevalence of infection by RDT
-#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @description This method dispatches on the type of `Xpar`
 #' @inheritParams F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
