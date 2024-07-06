@@ -1,26 +1,27 @@
-# **ramp.xds**
+# **ramp.xds**  
 
-## Extensible dynamical systems to support robust analytics for malaria policy (RAMP)
+## RAMP - eXtensible Dynamical Systems
 
 <!-- badges: start -->
 [![PLoS Computational Biology](https://img.shields.io/badge/doi%3A10.1371%2Fjournal.pcbi.1010684-cornflowerblue?style=for-the-badge&logoColor=cornflowerblue&label=PLoS%20Comp%20Bio&labelColor=slategrey&link=https%3A%2F%2Fjournals.plos.org%2Fploscompbiol%2Farticle%3Fid%3D10.1371%2Fjournal.pcbi.1010684)](https://doi.org/10.1371/journal.pcbi.1010684)
 
 <!-- badges: end -->
 
-**NOTE:** A name change is planned from `ramp.xde` to `ramp.xds`
-
 ## What is ramp.xds?
 
-**ramp.xds** is an R software package to set up, analyze, and solve dynamical systems describing the epidemiology, transmission dynamics, and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) published in PLoS Computational Biology^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. This software is designed to support robust analytics for malaria policy (RAMP) and adaptive malaria control, along with several other R packages:
+Robust analytics for malaria policy (RAMP) is a bespoke inferential system for malaria decision support and adaptive malaria control. A goal for RAMP is to characterize, quantify, and propagate uncertainty using conventional and simulation-based analytics.  
 
+**ramp.xds** is an R software package to set up, analyze, and solve dynamical systems describing the epidemiology, transmission dynamics, and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) (Wu SL, *et al.* 2023. PLoS Computational Biology)^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. A suite of R packages support RAMP: 
 
-+ A library of stable, verifiable, reusable code implementing a large set of previously published models for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/). 
++ *ramp.xds* includes all the core computational functions and a minimal set of models. 
+
++ An extended library of stable, verifiable, reusable code implementing previously published models for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/).
 
 + Algorithms to apply these models, include code to fit models to data, is found in [**ramp.work**](https://dd-harp.github.io/ramp.work/). 
 
 + A set of models illustrating capabilities are found in [**ramp.malaria**](https://dd-harp.github.io/ramp.malaria/). 
 
-*ramp.xds* is being actively developed, and it is a continuation of two deprecated software packages: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/).
+*ramp.xds* is being active developed. It is the continuation of two other software packages, now deprecated: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/). The repository retains `ramp.xde` as a legacy: a name change is planned from `ramp.xde` to `ramp.xds.`
 
 ## Installation
 
@@ -33,16 +34,17 @@ devtools::install_github("dd-harp/ramp.xde")
 
 ## Modular Computation 
 
-This software supports building, solving, and analyzing dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission formulated as ordinary or delay differential or difference equations. The mathematical framework and software have a modular design that was developed around an algorithm describing mosquito blood feeding on vertebrate hosts in spatial patches that are nested within a defined spatial domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen infection dynamics in mosquito and host populations. The computational interface guarantees mathematical consistency in allocating bites and blood meals when the availability of host populations or other vertebrate animals is dynamically changing. 
+This software supports nimble model building with functions to set up, solve, and analyze dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission formulated as dynamical systems in continuous or discrete time. The mathematical framework and software have a modular design developed around an algorithm to model mosquito blood feeding on vertebrate hosts and parasite / pathogen transmission, including patch-based spatial dynamics within a defined spatial domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen linking infection dynamics in mosquito and vertebrate host populations. It guarantees mathematical consistency in computing blood feeding rates and habits and in allocating bites and blood meals with heterogeneous vertebrate host population densities, including models with dynamically changing availability of host populations or other vertebrate animals. 
 
-
-The framework and software also support spatial models of mosquito ecology through an algorithm that describes egg laying by adult mosquitoes in aquatic habitats and emergence of adult mosquitoes from those habitats. The egg laying algorithm provides a rigorous interface linking dynamical components describing adult mosquito populations in a set of spatial patches and immature aquatic mosquito populations in a structured set of aquatic habitats. 
+The framework and software also support spatial models of mosquito ecology through an algorithm that describes egg laying by adult mosquitoes in aquatic habitats and emergence of adult mosquitoes. The egg laying algorithm provides a rigorous interface linking dynamical components describing adult mosquito populations in a set of spatial patches and immature aquatic mosquito populations in a structured set of aquatic habitats. 
 
 The framework and software were also designed to support: 
 
-+ structural flexibility in host population structure to accommodate arbitrary strata to handle heterogeneity in various epidemiological traits; 
++ systems of autonomous and non-autonomous, ordinary and delay, differential and difference equations; 
 
-+ dynamic demographic changes, cohort dynamics and aging to model infection, immunity, disease, and infectiousness in host populations over by age and time; 
++ structural flexibility in stratifying host population to handle heterogeneity in epidemiological traits including vaccination, drug taking, and host demography;
+
++ realistic demography with cohort dynamics and aging to model infection, immunity, disease, and infectiousness in host populations over by age and time; 
 
 + exogenous forcing by weather and vector control; 
 
@@ -54,9 +56,10 @@ The framework and software were also designed to support:
 
 + multiple host species (or types) and multiple mosquito vector species (or types);
 
+
 + observational processes.  
 
-The software aims to be fully modular: it implements plug-and-play computation for a broad class of simulation models describing the dynamics and control of mosquito-transmitted pathogens. Modularity has been achieved through a combination of methods: the functions that compute derivatives (for differential equations) or update state variables (for difference equations) use a method that dispatches on parameter lists for each component which is used to compute the full set of differential equations; the interfaces for blood feeding and egg laying are biologically realistic but rigidly defined to guarantee mathematical consistency; and a large set of additional features have been implemented with careful attention to detail to guarantee consistency and avoid conflicts. Each dynamical component also includes a null model, but where its outputs can be computed by any function. The function `ramp.xde::xDE_diffeqn` computes the gradient of all state variables from those modular components and can be used with the excellent solvers in [deSolve](http://desolve.r-forge.r-project.org/). The functions `ramp.xde::DTS_step` updates the state variables in discrete-time systems. 
+The software aims to be fully modular: it implements plug-and-play computation for a broad class of simulation models describing the dynamics and control of mosquito-transmitted pathogens. Modularity has been achieved through a combination of methods: the functions that compute derivatives (for differential equations) or that update state variables (for difference equations) use a method that dispatches on parameter lists for each component which is used to compute the full set of differential equations; the interfaces for blood feeding and egg laying are biologically realistic but rigidly defined to guarantee mathematical consistency; and a large set of additional features have been implemented with careful attention to detail to guarantee consistency and avoid conflicts. Each dynamical component also includes a null model, but where its outputs can be computed by any function. The function `ramp.xde::xDE_diffeqn` computes the gradient of all state variables from those modular components and can be used with the excellent solvers in [deSolve](http://desolve.r-forge.r-project.org/). The functions `ramp.xde::DTS_step` updates the state variables in discrete-time systems. 
 
 To get started, please consider reading some of the articles in the drop down panels above, at our [website](https://dd-harp.github.io/ramp.xde/). The 3 sections ending in "Component" describe particular models implementing
 the interface for each of those components (adult mosquitoes, aquatic mosquitoes, and humans), and show a simulation at their equilibrium values. 

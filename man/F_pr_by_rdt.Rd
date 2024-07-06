@@ -15,5 +15,5 @@ F_pr_by_rdt(vars, Xpar)
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-This method dispatches on the type of \code{pars$Xpar[[i]]}.
+This method dispatches on the type of \code{Xpar}
 }
