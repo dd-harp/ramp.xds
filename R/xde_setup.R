@@ -49,7 +49,7 @@ make_parameters_xde = function(solve_as='dde'){
   pars <- setup_resources_null(pars)
   pars <- setup_travel_static(pars)
 
-  pars <- setup_exposure_pois(pars)
+  pars <- xde_setup_exposure_pois(pars)
   pars$FoI = list()
 
   return(pars)

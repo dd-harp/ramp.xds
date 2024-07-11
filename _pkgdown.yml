@@ -118,21 +118,29 @@ reference:
   - Exposure.multiday
   - setup_exposure_multiday
   - F_foi
+  - foi2eir
   - F_ar
+  - ar2eir
 - subtitle: Poisson Exposure
   desc: |
     Specialized methods the Poisson exposure model
   contents:
   - F_foi.pois
+  - foi2eir.pois
   - F_ar.pois
-  - setup_exposure_pois
+  - ar2eir.pois
+  - xde_setup_exposure_pois
+  - dts_setup_exposure_pois
 - subtitle: Negative Binomial Exposure
   desc: |
     Specialized methods the Negative Binomial exposure model
   contents:
   - F_foi.nb
+  - foi2eir.nb
   - F_ar.nb
-  - setup_exposure_nb
+  - ar2eir.nb
+  - xde_setup_exposure_nb
+  - dts_setup_exposure_nb
 - subtitle: Local Fraction
   desc: |
     Specialized methods for  NULL dynamics: a funtion generates values of Z to force human infection dynamics
@@ -1006,6 +1014,10 @@ reference:
   - metric_calD
   - metric_calR
   - metric_calZ
+- subtitle: Metric Conversions
+  contents:
+  - fqZ2eir
+  - eir2fqZ
 - subtitle: Compute terms
   desc: |
     Methods to compute and transmission terms

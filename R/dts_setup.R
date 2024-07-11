@@ -50,7 +50,7 @@ make_parameters_dts = function(){
   pars <- setup_resources_null(pars)
   pars <- setup_travel_static(pars)
 
-  pars <- setup_exposure_pois(pars)
+  pars <- dts_setup_exposure_pois(pars)
   pars$AR = list()
 
   return(pars)
