@@ -1,0 +1,161 @@
+---
+title: "Modular Forms for Disease Dynamics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Modular Forms for Disease Dynamics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+
+A **Modular Form** for disease dynamics is a stylized way of writing the dynamical systems that emphasizes the modular structure of the process. A mathematical framework for building models of malaria dynamics and control (and other mosquito-borne pathogens) was described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}, and the framework was implemented in `ramp.xds.` The forms we describe here rewrite models so that they closely resemble their implementation in `ramp.xde`, which makes it possible to relate written equations and computed code. (Also, see the closely related vignette 
+[Understanding ramp.xde](Understanding_ramp.xde.html){target="_blank"}.)
+
+## A Standard Form
+
+There is no *standard form* for writing down systems of differential equations: here, *a standard form* 
+is any way of writing down a system of equations that does not emphasize the modularity, or *not a modular form.* 
+
+To illustrate the modular form, we start with the *Ross-Macdonald*-style model in Box 1.  
+
+*** 
+
+**Box 1: A Ross-Macdonald Model** 
+
++ Let the dependent variable $X(t)$ denote the density of infected humans, and the parameter $H$ the density of all humans
+
++ Let the dependent variable $Y(t)$ denote the density of infected mosquitoes, and the parameter $M$ the density of all mosquitoes 
+
++ Let $b$ denote the fraction of bites by infective mosquitoes that infect a human, and let $r$ denote the rate that infections clear 
+
++ Let $c$ denote the fraction of blood meals on infectious humans infect a mosquito, and let $g$ denote the mosquito death rate 
+
++ Let $f$ denote the overall blood feeding rate, and $q$ the human fraction 
+
++ Let $\tau$ denote the EIP. 
+
+In this set of equations, we ignore the delay for sporogony, but we count the mortality, so the daily FoI is $b e^{-g \tau} fqY/H.$ We assume that the daily FoI is linearly proportional to the daily EIR, consistent with a Poisson model for exposure, so $h = bE.$
+
+$$ \begin{array}{rl}
+dX/dt &= b e^{-gn}fq \frac YH (H-X) - r X \\
+dY/dt &= fq c \frac XH (M-Y) - g Y
+\end{array}$$
+
+*** 
+
+## A Modular Form
+
+We illustrate by writing a Ross-Macdonald model in its modular form (Figure 1). In the modular form, we identify the terms in one equation that depend on the other variable and that make 
+
+$$ 
+dX/dt = h H (H-X) - r X
+$$
+which generates a term: 
+
+$$\kappa = c \frac XH$$ 
+For mosquitoes: 
+
+$$
+dY/dt = fq\kappa (M-Y) - g Y
+$$
+
+
+that generates a term:
+
+$$ E = f q e^{-g\tau} \frac YH $$
+
+We assume that exposure is Poisson distributed: 
+
+$$ h = b E$$  
+
+We emphasize that this is the same set
+*** 
+
+![**Figure 1** - Diagram of a Ross-Macdonald model in Box 1, rewritten in a modular form.](RossMacdonald3b.png)
+
+*** 
+
+### Blood Feeding 
+
+There are two **terms,** the FoI ($h$) and the NI ($\kappa$), in the equations above that rely on information that comes from the other equation. To compute them, we need a construct to deal with the concept of *mixing,* which we will denote $\beta$. In the generic form, the computation of these terms defines the blood feeding model, which is the interface between $\cal YZ$ and $\cal X.$
+
+#### Force of Infection (FoI)
+
+The FoI $h$ must be related to the density of infected mosquitoes. We compute this in several steps. First, in this Ross-Macdonald model, the density of blood feeding mosquitoes is given by a formula: 
+$$Z = F_Z(Y) = e^{-gn} Y$$ 
+where $n$ is the extrinsic incubation period (EIP) 
+
+Next, we need to compute the EIR, which is computed by distributing the infective bites among the humans. In this model, mixing is uniform so $\beta = 1/H$, and we write: 
+
+$$ E = \beta \cdot fqZ = \frac {fqZ}H$$
+and finally, we must compute the FoI, which could draws information from many different sources,  
+
+$$ h = F_h(E, ...) = b E.$$ 
+
+where $b$ is the fraction of infective bites that cause an infection; 
+
+#### Net Infectiousness (NI) 
+
+The NI $\kappa$ must be related to the density of infected humans. In the Ross-Macdonald model, the effective density of infected humans is: 
+
+$$X = F_X(I) = cI$$ 
+where $c$ is the probability a mosquito would become infected after blood feeding on an infected human. 
+
+The net infectiousness is computed as the infective density averaged over biting among the humans. For reasons that will become clear later, we call this $\beta^T = 1/H$: 
+
+$$\kappa =  \beta^T \cdot X = \frac XH$$
+
+
+## Computation
+
+To solve these equations, we need to write functions that compute the derivatives. We are using the R package `deSolve`, so the derivative function would have a constrained form:  
+
+```{r}
+RMv1 <- function(t, y, pars) {
+  with(pars,{
+      foi = b*exp(-g*n)*Y/H
+      kappa = c*I/H
+      dX = foi*(H-I) - r*I
+      dY = a*kappa*(M-Y) - g*Y 
+      return(list(dX, dY))
+  })
+}
+```
+
+In `ramp.xde,` the equations are solved by computing the terms and the derivatives separately. 
+
++ `Transmission(t,y,pars)` computes three terms required to compute parasite transmission during blood feeding. These are stored in the main model object `pars`:
+
+    - `pars$beta`
+    
+    - `pars$EIR`
+    
+    - `pars$NI`
+
++ `Exposure(t, y, pars)` computes the FoI from the EIR under a model of exposure and stores it as `pars$FoI` 
+
+So instead of developing models like `RMv1`, we have implemented the code in the syle of `RMv2`:
+
+```{r}
+RMv2 <- function(t, y, pars) {
+  with(pars,{
+      pars = Transmission(t, y, pars)
+      pars = Exposure(t, y, pars)
+      dX = dXdt(t, y, pars) 
+      dY = dMYZdt(t, y, pars) 
+      return(list(dX, dY))
+  })
+}
+```
+
+## Full Modularity
+
+The full structure of computation in `ramp.xde` is diagrammed in *Figure 2* and easily examined in the corresponding code. One advantage of the modular notation is that it is possible to set up and describe reasonably complex models with fairly simple scripts. The vignette [5-3-4 Example](ex_534.html) shows how this works. 
+
+***
+
+![Figure 2](RossMacdonald4.png)
+
+***

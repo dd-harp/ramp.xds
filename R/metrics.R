@@ -115,3 +115,4 @@ metric_calZ <- function(Omega, tau, f, q, M, W, calD) {
   fqMW <- diag(fqMW_diag, nrow = nrow(Omega))
   return(OmegaEIP %*% fqMW %*% calD %*% fq %*% Omega_inv)
 }
+

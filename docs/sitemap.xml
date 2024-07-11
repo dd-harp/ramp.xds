@@ -1138,6 +1138,15 @@
     <loc>https://dd-harp.github.io/ramp.xde/reference/approx_equal.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/ar2eir.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/ar2eir.nb.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/ar2eir.pois.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/checkIt.html</loc>
   </url>
   <url>
@@ -1450,6 +1459,12 @@
     <loc>https://dd-harp.github.io/ramp.xde/reference/dts_setup_cohort.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/dts_setup_exposure_nb.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/dts_setup_exposure_pois.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/dts_setup_human.html</loc>
   </url>
   <url>
@@ -1478,6 +1493,21 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/dts_steady.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/eir2fqZ.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/foi2eir.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/foi2eir.nb.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/foi2eir.pois.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/fqZ2eir.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/get_inits.html</loc>
@@ -3074,6 +3104,12 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/xde_setup_cohort.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/xde_setup_exposure_nb.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/xde_setup_exposure_pois.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/xde_setup_human.html</loc>

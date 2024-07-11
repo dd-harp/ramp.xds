@@ -14,7 +14,7 @@
 \item{pars}{the model object as a \link{list}}
 }
 \value{
-the function modifies \strong{pars} and returns it: the computed FoI are stored as \code{pars$FoI}
+the function modifies \strong{pars} and returns it: the computed FoI are stored as \code{pars$AR}
 }
 \description{
 For xde models, compute the daily force of infection (dFoI) for
