@@ -9,21 +9,35 @@
 
 ## What is ramp.xds?
 
-Robust analytics for malaria policy (RAMP) is a bespoke inferential system for malaria decision support and adaptive malaria control. A goal for RAMP is to characterize, quantify, and propagate uncertainty using conventional and simulation-based analytics.  
+RAMP, or **R**obust **A**nalytics for **M**alaria **P**olicy, is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty using conventional and simulation-based analytics.  
 
-**ramp.xds** is an R software package that supports RAMP. It's function is to set up, analyze, and solve dynamical systems describing the epidemiology, transmission dynamics, and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) (Wu SL, *et al.* 2023. PLoS Computational Biology)^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. A suite of R packages support RAMP: 
+***ramp.xds*** is an R software package that supports RAMP. It's function is to set up, analyze, and solve dynamical systems describing the epidemiology, transmission dynamics, and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework for modular model building, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) (Wu SL, *et al.* 2023. PLoS Computational Biology)^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. 
 
-+ *ramp.xds* includes all the core computational functions and a minimal set of models. 
+*ramp.xds* is part of a suite of R packages to support RAMP simulation-based analytics: 
 
-+ An extended library of stable, verifiable, reusable code implementing previously published model families for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/).
++ *ramp.xds* implements core computation. The software includes a basic set of model families for code development and testing, and to demonstrate the capbilities of the software.  
+
++ An extended library of stable, tested, and reusable code implementing previously published model families for *ramp.xds* is maintained in [**ramp.library**](https://dd-harp.github.io/ramp.library/).
 
 + Algorithms to apply the framework, include code to fit models to data, is found in [**ramp.work**](https://dd-harp.github.io/ramp.work/). 
 
-+ A set of models illustrating capabilities are found in [**ramp.malaria**](https://dd-harp.github.io/ramp.malaria/). 
++ A large set of models illustrating capabilities are found in [**ramp.malaria**](https://dd-harp.github.io/ramp.malaria/). 
 
-*ramp.xds* is being active developed. It is the continuation of two other software packages, now deprecated: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/). The repository retains `ramp.xde` as a legacy: a name change is planned from `ramp.xde` to `ramp.xds.`
+*ramp.xds* is under active development. It is the continuation of two other software packages, now deprecated: [*exDE*](https://dd-harp.github.io/exDE/) and [*MicroMoB*](https://dd-harp.github.io/MicroMoB/). 
+
+**NOTE:** The repository retains the name `ramp.xde` as a legacy from the past: a name change is planned from `ramp.xde` to `ramp.xds.`
 
 ## Installation
+
+Why use *ramp.xds*?
+
++ *ramp.xds* makes it easy to set up, solve, and apply dynamical systems models for malaria & other mosquito-borne pathogens.
+
++ *ramp.library* includes a large set of published models. The code has been verified and tested. If you're publishing a model family that is not already in *ramp.library,* you can write us and we'll help you add it to the growing collection. 
+
++ Any model family from one domain can be combined with models from other domains and take advantage of the other features of `ramp.xds,`  including spatial dynamics. 
+
++ If you use ramp.xds it’s easy for others to replicate your study.
 
 To install the latest version from GitHub, run the following lines of code in an R session.
 
