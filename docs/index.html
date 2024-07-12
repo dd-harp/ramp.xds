@@ -176,7 +176,7 @@
 <div class="section level2">
 <h2 id="what-is-rampxds">What is ramp.xds?<a class="anchor" aria-label="anchor" href="#what-is-rampxds"></a>
 </h2>
-<p>RAMP, or <strong>R</strong>obust <strong>A</strong>nalytics for <strong>M</strong>alaria <strong>P</strong>olicy, is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty using conventional and simulation-based analytics.</p>
+<p>RAMP, or <strong>R</strong>obust <strong>A</strong>nalytics for <strong>M</strong>alaria <strong>P</strong>olicy, is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty in analysis using conventional and simulation-based analytics.</p>
 <p><strong><em>ramp.xds</em></strong> is an R software package that supports RAMP. It’s function is to set up, analyze, and solve dynamical systems describing the epidemiology, transmission dynamics, and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework for modular model building, described in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" class="external-link">Spatial Dynamics of Malaria Transmission</a> (Wu SL, <em>et al.</em> 2023. PLoS Computational Biology)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p><em>ramp.xds</em> is part of a suite of R packages to support RAMP simulation-based analytics:</p>
 <ul>
@@ -191,19 +191,38 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Why use <em>ramp.xds</em>?</p>
-<ul>
-<li><p><em>ramp.xds</em> makes it easy to set up, solve, and apply dynamical systems models for malaria &amp; other mosquito-borne pathogens.</p></li>
-<li><p><em>ramp.library</em> includes a large set of published models. The code has been verified and tested. If you’re publishing a model family that is not already in <em>ramp.library,</em> you can write us and we’ll help you add it to the growing collection.</p></li>
-<li><p>Any model family from one domain can be combined with models from other domains and take advantage of the other features of <code>ramp.xds,</code> including spatial dynamics.</p></li>
-<li><p>If you use ramp.xds it’s easy for others to replicate your study.</p></li>
-</ul>
 <p>To install the latest version from GitHub, run the following lines of code in an R session.</p>
 <pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dd-harp/ramp.xde"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
-<h2 id="modular-computation">Modular Computation<a class="anchor" aria-label="anchor" href="#modular-computation"></a>
+<h2 id="why-use-rampxds">Why use <em>ramp.xds</em>?<a class="anchor" aria-label="anchor" href="#why-use-rampxds"></a>
+</h2>
+<p>There are several advantages to using <em>ramp.xds</em>:</p>
+<ul>
+<li><p><em>ramp.xds</em> makes it easy to set up, solve, and apply dynamical systems models for malaria &amp; other mosquito-borne pathogens.</p></li>
+<li><p><em>ramp.library</em> includes a large set of published models.</p></li>
+<li><p>All the code has been verified and tested. If you’re publishing a model family that is not already in <em>ramp.library,</em> you can write us and we’ll help you add it to the growing collection.</p></li>
+<li><p>It should be comparatively easy to replicate your study in <em>ramp.xds.</em> It’s also easy for others to replicate your study.</p></li>
+<li>
+<p>Any model family from one domain can be combined with models from other domains and take advantage of the other features of <em>ramp.xds.</em> Software capabilities include:</p>
+<ul>
+<li><p>support for systems of ordinary and delay, differential and difference equations;</p></li>
+<li><p>support for autonomous and non-autonomous, including exogenous forcing by weather and vector control;</p></li>
+<li><p>structural flexibility in stratifying host population to handle heterogeneity in epidemiological traits, such as vaccination, drug taking, net ownership, travel and mobility, and host demograpy;</p></li>
+<li><p>support for modeling realistic human / host demography with cohort dynamics and aging to model infection, immunity, disease, and infectiousness in host populations over by age and time;</p></li>
+<li><p>support for modeling mass vaccination, mass drug administration, and other health interventions.</p></li>
+<li><p>environmental heterogeneity in exposure;</p></li>
+<li><p>malaria importation through travel and visitors;</p></li>
+<li><p>multiple host species (or types) and multiple mosquito vector species (or types);</p></li>
+<li><p>support for modeling observational processes (in <em>ramp.xde</em>) and (through <em>ramp.work</em>) model fitting.</p></li>
+<li><p>support for analysis, including computation of reproductive numbers</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="modularity">Modularity<a class="anchor" aria-label="anchor" href="#modularity"></a>
 </h2>
 <p>This software supports nimble model building with functions to set up, solve, and analyze dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission formulated as dynamical systems in continuous or discrete time.</p>
 <p>The mathematical framework and software have a modular design developed around an algorithm to model mosquito blood feeding on vertebrate hosts and parasite / pathogen transmission, including patch-based spatial dynamics within a defined spatial domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen linking infection dynamics in mosquito and vertebrate host populations. It guarantees mathematical consistency in computing blood feeding rates and habits and in allocating bites and blood meals with heterogeneous vertebrate host population densities, including models with dynamically changing availability of host populations or other vertebrate animals.</p>
