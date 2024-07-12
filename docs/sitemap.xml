@@ -61,6 +61,9 @@
     <loc>https://dd-harp.github.io/ramp.xde/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xde/articles/modular_forms.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xde/articles/modularity.html</loc>
   </url>
   <url>
@@ -1493,6 +1496,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/dts_steady.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/dts_steady_state_X.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/eir2fqZ.html</loc>
@@ -3149,6 +3155,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/xde_steady.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xde/reference/xde_steady_state_X.SEIS.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xde/reference/xde_steady_state_X.SIS.html</loc>

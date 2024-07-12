@@ -501,6 +501,7 @@ reference:
   - F_pr_by_pcr
   - xds_plot_X
   - xde_steady_state_X
+  - dts_steady_state_X
 - subtitle: trace
   desc: |
     Specialized methods for a human trace model to pass kappa as a parameter
@@ -606,6 +607,7 @@ reference:
   - HTC.SEIS
   - xds_plot_X.SEIS
   - add_lines_X_SEIS
+  - xde_steady_state_X.SEIS
 - subtitle: SEISd
   desc: |
     Specialized methods for the SEISd (Susceptible-Infected-Susceptible) model of human dynamics.

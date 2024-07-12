@@ -15,12 +15,13 @@ articles:
   human_hmoi: human_hmoi.html
   human_sip: human_sip.html
   human_sis: human_sis.html
+  modular_forms: modular_forms.html
   modularity: modularity.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
   spat_metric: spat_metric.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   vc_lemenach: vc_lemenach.html
-last_built: 2024-07-08T20:39Z
+last_built: 2024-07-12T00:29Z
 urls:
   reference: https://dd-harp.github.io/ramp.xde/reference
   article: https://dd-harp.github.io/ramp.xde/articles

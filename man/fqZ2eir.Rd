@@ -2,7 +2,7 @@
 % Please edit documentation in R/mectric-conversion.R
 \name{fqZ2eir}
 \alias{fqZ2eir}
-\title{Convert a vector describing infective biting density into the EIR}
+\title{Convert a vector describing infective biting density into the EIR, \eqn{E}}
 \usage{
 fqZ2eir(fqZ, beta)
 }
@@ -17,5 +17,5 @@ a numeric \link{vector}
 \description{
 Computes a vector of length \code{nPatches} describing infective biting density, per patch, from
 a vector of length \code{n} describing the daily EIR per stratum:
-\deqn{eir = \beta \cdot fqZ}
+\deqn{E = \beta \cdot fqZ}
 }

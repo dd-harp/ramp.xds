@@ -1,12 +1,71 @@
 ---
-title: "Generalized Modularity and Extensibility"
-output: rmarkdown::html_vignette
+title: "Nimble Model Building"
+subtitle: "Modular Dynamical Systems & Computatation 
+for Malaria & Other Mosquito-Transmitted Pathogens"
+header-includes:
+   - \usepackage{mathtools,unicode-math}
+output: 
+  rmarkdown::html_vignette:
 vignette: >
-  %\VignetteIndexEntry{Modularity and Extensibility}
+  %\VignetteIndexEntry{Nimble Model Building}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-## Modularity 
+## Modularity
 
-[Ross](RossMacdonald3b.png)
+Dynamical systems models for malaria and other mosquito-borne pathogens (MBPs) are naturally modular. Transmission dynamics involve infection dynamics in populations of two different species of hosts: a mosquito host, and a human or other vertebrate animal host. Parasite / pathogen transmission occurs through blood feeding. The modular nature of these systems can be emphasized by rewriting the equations using [modular forms](modular_forms.html)
+
+Mosquito population density is a parameter in the Ross-Macdonald model. Many dynamical systems describing transmission dynamics and control for malaria and other MBPs include equations describing mosquito ecology and population dynamics: volant adult and aquatic immature mosquito sub-populations connected through egg-laying and emergence. The equations describing these dynamics can be organized around blood feeding (for transmission) or egg-laying and emergence (for mosquito ecology). 
+
+In simple models, the assumptions about 
+
+
+***
+
+![**Figure 1** A diagram of the core components in dynamical systems models of malaria: $\cal L$ ](modularity.png)
+
+***
+
+Dynamical systems for malaria and other MBPs have a broad set of other features: spatial dynamics; human/host demography; heterogeneous transmission; various forms of vector control; health interventions; mosquito resource dynamics; malaria importation; and exogenous forcing by weather. 
+
+***
+
+![Modularity](ModularGeneralized.png)
+
+
+
+
+
+![Ross](RossMacdonald3b.png)
+
+
+In `ramp.xds,` the equations are solved by computing the terms and the derivatives separately. 
+
++ `Transmission(t,y,pars)` computes three terms required to compute parasite transmission during blood feeding. These are stored in the main model object `pars`:
+
+    - `pars$beta` - a function that allocates infective bites to human strata. In this case, $\beta = 1/H$ 
+    
+    - `pars$NI` - a function $F_X$ computes the effective density. In this case, $F_X$ returns $cI$
+    
+    - `pars$fqZ` - a function $F_fqZ$ computes infective biting density 
+    
+    - `pars$EIR` - the daily EIR is $\beta \cdot fqZ$ 
+    
+    - `pars$FoI` - the daily FoI is $F_h(EIR, b, pars$Xpar)$
+
++ `Exposure(t, y, pars)` computes the FoI from the EIR under a model of exposure and stores it as `pars$FoI` 
+
+So instead of developing models like `RMv1`, we have implemented the code in the syle of `RMv2`:
+
+```{r}
+RMv2 <- function(t, y, pars) {
+  with(pars,{
+      pars = Transmission(t, y, pars)
+      pars = Exposure(t, y, pars)
+      dX = dXdt(t, y, pars) 
+      dY = dMYZdt(t, y, pars) 
+      return(list(dX, dY))
+  })
+}
+```
