@@ -171,17 +171,17 @@ reference:
   desc: |
     Generic methods for the adult mosquito dynamics component.
   contents:
+  - dMYZdt
+  - xde_steady_state_MYZ
+  - xde_setup_MYZpar
+  - DT_MYZt
+  - dts_steady_state_MYZ
+  - dts_setup_MYZpar
   - MBionomics
   - F_fqZ
   - F_fqM
   - F_tau
   - F_eggs
-  - dMYZdt
-  - DT_MYZt
-  - xde_setup_MYZpar
-  - dts_setup_MYZpar
-  - runt
-  - set_Dday
   - setup_MYZinits
   - list_MYZvars
   - put_MYZvars
@@ -382,12 +382,14 @@ reference:
   desc: |
     Generic methods for the aquatic (immature) mosquito component.
   contents:
+  - dLdt
+  - xde_steady_state_L
+  - xde_setup_Lpar
+  - DT_Lt
+  - dts_steady_state_L
+  - dts_setup_Lpar
   - LBionomics
   - F_alpha
-  - dLdt
-  - DT_Lt
-  - xde_setup_Lpar
-  - dts_setup_Lpar
   - setup_Linits
   - list_Lvars
   - put_Lvars
@@ -1052,6 +1054,8 @@ reference:
   - xds_lines_PR
 - title: Utilities
   contents:
+  - runt
+  - set_Dday
   - diag_inverse
   - approx_equal
   - checkIt
