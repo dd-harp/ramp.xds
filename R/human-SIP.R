@@ -389,3 +389,20 @@ add_lines_X_SIP = function(XH, pars, clrs=c("darkblue", "darkred", "darkgreen"),
     }
   })}
 
+#' @title Compute the steady states for the SIP model as a function of the daily foi
+#' @description Compute the steady state of the SIS model as a function of the daily eir.
+#' @inheritParams xde_steady_state_X
+#' @return the steady states as a named vector
+#' @export
+xde_steady_state_X.SIP = function(foi, H, Xpar){
+  b = Xpar$b
+  xi = Xpar$xi
+  rho = Xpar$rho
+  r = Xpar$r
+  eta = Xpar$eta
+  Ieq = (foi*H*eta*(1-rho))/(foi*eta*(1-rho) +r*eta + foi*r*rho)
+  Peq  = (foi*H*r*rho)/(foi*eta*(1-rho) +r*eta + foi*r*rho)
+  Seq = H -Ieq - Peq
+  return(c(S=Seq, I=Ieq, P = Peq))
+}
+
