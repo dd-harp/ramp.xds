@@ -400,8 +400,8 @@ xde_steady_state_X.SIP = function(foi, H, Xpar){
   rho = Xpar$rho
   r = Xpar$r
   eta = Xpar$eta
-  Ieq = (foi*H*eta*(1-rho))/(foi*eta*(1-rho) +r*eta + foi*r*rho)
-  Peq  = (foi*H*r*rho)/(foi*eta*(1-rho) +r*eta + foi*r*rho)
+  Ieq = (foi*H*eta*(1-rho))/((foi+r+xi)*(eta+xi) +foi*(r-eta)*rho)
+  Peq  = (H*xi*(foi+r+xi) + (foi*H*r*rho))/((foi+r+xi)*(eta+xi) +foi*(r-eta)*rho)
   Seq = H -Ieq - Peq
   return(c(S=Seq, I=Ieq, P = Peq))
 }
