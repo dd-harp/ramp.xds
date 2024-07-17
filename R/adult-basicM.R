@@ -23,6 +23,18 @@ dMYZdt.basicM <- function(t, y, pars, s){
   })
 }
 
+#' @title Compute the steady states as a function of the daily EIR
+#' @description This method dispatches on the type of `MYZpar`
+#' @inheritParams xde_steady_state_M
+#' @return none
+#' @export
+xde_steady_state_M.basicM = function(Lambda, MYZpar){with(MYZpar,{
+  Omega_inv <- solve(Omega)
+  M_eq  <- as.vector(Omega_inv %*% Lambda)
+  P_eq <- as.vector(solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
+  return(c(M=M_eq, P=P_eq))
+})}
+
 # specialized methods for the adult mosquito basicM model
 
 #' @title Derivatives for adult mosquitoes

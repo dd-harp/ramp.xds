@@ -75,6 +75,20 @@ dMYZdt.RM_dde <- function(t, y, pars, s){
   })
 }
 
+#' @title Compute the steady states as a function of the daily EIR
+#' @description This method dispatches on the type of `MYZpar`.
+#' @inheritParams xde_steady_state_MYZ
+#' @return none
+#' @export
+xde_steady_state_MYZ.RM = function(Lambda, kappa, MYZpar){with(MYZpar,{
+  Omega_inv <- solve(Omega)
+  M_eq  <- as.vector(Omega_inv %*% Lambda)
+  P_eq <- as.vector(solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
+  Y_eq <- as.vector(solve(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
+  Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
+  return(c(M=M_eq, P=P_eq, Y=Y_eq, Z=Z_eq))
+})}
+
 #' @title Setup MYZpar for the RM model
 #' @description Implements [xde_setup_MYZpar] for the RM model
 #' @inheritParams xde_setup_MYZpar

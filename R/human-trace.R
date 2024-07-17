@@ -36,6 +36,15 @@ F_pr_by_lm.trace <- function(vars, Xpar) {
   return(numeric(0))
 }
 
+#' @title Compute the steady states for the trace model as a function of the daily EIR
+#' @description Compute the steady state of the trace model as a function of the daily eir.
+#' @inheritParams xde_steady_state_X
+#' @return the steady states as a named vector
+#' @export
+xde_steady_state_X.trace = function(foi, H, Xpar){with(Xpar,{
+  return(numeric(0))
+})}
+
 
 #' @title Compute the prevalence of infection by RDT
 #' @description Implements [F_pr] for the trace model.

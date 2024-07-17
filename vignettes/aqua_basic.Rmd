@@ -121,7 +121,7 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
 
 ## Using Setup
 
-The function `xde_setup_aquatic` sets up a model that includes only aquatic dynamics, and it is solved using `xde_solve.aqua.`  The setup functions are simpler than `xde_setup` and come with constrained choices. The user can configure any aquatic model (`trace` wouldn't make much sense), and it uses `Gtrace` to force egg laying.  
+The function `xde_setup_aquatic` sets up a model that includes only aquatic dynamics, and it is solved using `xde_solve.aqua.`  The setup functions are simpler than `xde_setup` and come with constrained choices. The user can configure any aquatic model (`trace` wouldn't make much sense), and it uses `trace` to force egg laying.  
 
 We configure the aquatic model: `Lo` is a list with the parameter values attached.  
 
@@ -135,10 +135,10 @@ Lo$L0 = with(Lo, alpha/psi)
 Lo$theta = with(Lo, (eta - psi*L0 - phi*L0)/(L0^2))
 ```
 
-We use the MYZ model `Gtrace` to configure egg laying.
+We use the MYZ model `trace` to configure egg laying.
 
 ```{r}
-Mo = list(Gm = c(250, 500, 170))
+Mo = list(MYZm = c(250, 500, 170))
 ```
 
 

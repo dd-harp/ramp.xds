@@ -16,11 +16,14 @@ knitr::opts_chunk$set(
 
 ```{r, warning=FALSE, message=FALSE}
 library(ramp.xde)
-#devtools::load_all()
 library(expm)
 library(data.table)
 library(ggplot2)
 library(deSolve)
+```
+
+```{r, echo=FALSE, eval=FALSE}
+devtools::load_all()
 ```
 
 # Introduction

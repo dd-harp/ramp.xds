@@ -445,6 +445,10 @@
         </td>
         <td><p>Compute the steady states as a function of the daily EIR</p></td>
       </tr><tr><td>
+          <p><code><a href="xde_steady_state_M.html">xde_steady_state_M()</a></code> </p>
+        </td>
+        <td><p>Compute the steady states as a function of the daily EIR</p></td>
+      </tr><tr><td>
           <p><code><a href="xde_setup_MYZpar.html">xde_setup_MYZpar()</a></code> </p>
         </td>
         <td><p>A function to set up adult mosquito models</p></td>
@@ -621,141 +625,77 @@
         </td>
         <td><p>Set up a fixedlag_dts model for the EIP</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="ztrace">Ztrace <a href="#ztrace" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Specialized methods for NULL dynamics: a funtion generates values of Z to force human infection dynamics</p>
+          <h3 id="trace">trace <a href="#trace" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Specialized methods for NULL dynamics: a funtion generates values for F_eggs or F_fqZ or F_fqM</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="MBionomics.Ztrace.html">MBionomics(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="MBionomics.trace.html">MBionomics(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute bloodfeeding and mortality rates</p></td>
       </tr><tr><td>
-          <p><code><a href="F_fqZ.Ztrace.html">F_fqZ(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_fqZ.trace.html">F_fqZ(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Blood feeding rate of the infective mosquito population</p></td>
       </tr><tr><td>
-          <p><code><a href="F_fqM.Ztrace.html">F_fqM(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_fqM.trace.html">F_fqM(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Blood feeding rate of the infective mosquito population</p></td>
       </tr><tr><td>
-          <p><code><a href="F_eggs.Ztrace.html">F_eggs(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_eggs.trace.html">F_eggs(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Number of eggs laid by adult mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="dMYZdt.Ztrace.html">dMYZdt(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="dMYZdt.trace.html">dMYZdt(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="DT_MYZt.Ztrace.html">DT_MYZt(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="DT_MYZt.trace.html">DT_MYZt(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_setup_MYZpar.Ztrace.html">xde_setup_MYZpar(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="xde_setup_MYZpar.trace.html">xde_setup_MYZpar(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
-        <td><p>xde_setup the Ztrace model</p></td>
+        <td><p>Setup the trace</p></td>
       </tr><tr><td>
-          <p><code><a href="dts_setup_MYZpar.Ztrace.html">dts_setup_MYZpar(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="xde_steady_state_MYZ.trace.html">xde_steady_state_MYZ(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
-        <td><p>dts_setup the Ztrace model</p></td>
+        <td><p>Steady States: MYZ-trace</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_MYZinits.Ztrace.html">setup_MYZinits(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="dts_setup_MYZpar.trace.html">dts_setup_MYZpar(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Setup the Ztrace model</p></td>
+        <td><p>Setup the trace</p></td>
       </tr><tr><td>
-          <p><code><a href="make_MYZpar_Ztrace.html">make_MYZpar_Ztrace()</a></code> </p>
+          <p><code><a href="setup_MYZinits.trace.html">setup_MYZinits(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Make parameters for Ztrace aquatic mosquito model</p></td>
+        <td><p>Setup the trace model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.Ztrace.html">make_indices_MYZ(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="make_MYZpar_trace.html">make_MYZpar_trace()</a></code> </p>
+        </td>
+        <td><p>Make parameters for trace aquatic mosquito model</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_indices_MYZ.trace.html">make_indices_MYZ(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for aquatic stage mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_MYZ.Ztrace.html">parse_outputs_MYZ(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_outputs_MYZ.trace.html">parse_outputs_MYZ(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Parse the output of deSolve and return variables for the Ztrace model</p></td>
+        <td><p>Parse the output of deSolve and return variables for the trace model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_inits_MYZ_Ztrace.html">make_inits_MYZ_Ztrace()</a></code> </p>
+          <p><code><a href="make_inits_MYZ_trace.html">make_inits_MYZ_trace()</a></code> </p>
         </td>
-        <td><p>Make parameters for Ztrace aquatic mosquito model</p></td>
+        <td><p>Make parameters for trace aquatic mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="get_inits_MYZ.Ztrace.html">get_inits_MYZ(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="get_inits_MYZ.trace.html">get_inits_MYZ(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Return initial values as a vector</p></td>
       </tr><tr><td>
-          <p><code><a href="update_inits_MYZ.Ztrace.html">update_inits_MYZ(<i>&lt;Ztrace&gt;</i>)</a></code> </p>
+          <p><code><a href="update_inits_MYZ.trace.html">update_inits_MYZ(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Update inits for Ztrace</p></td>
+        <td><p>Update inits for trace</p></td>
       </tr><tr><td>
-          <p><code><a href="make_parameters_MYZ_Ztrace.html">make_parameters_MYZ_Ztrace()</a></code> </p>
+          <p><code><a href="make_parameters_MYZ_trace.html">make_parameters_MYZ_trace()</a></code> </p>
         </td>
-        <td><p>Make parameters for Ztrace aquatic mosquito model</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="gtrace">Gtrace <a href="#gtrace" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Specialized methods for NULL dynamics: a funtion generates values for eggs laid to aquatic ecology</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="MBionomics.Gtrace.html">MBionomics(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute bloodfeeding and mortality rates</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_fqZ.Gtrace.html">F_fqZ(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Blood feeding rate of the infective mosquito population</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_fqM.Gtrace.html">F_fqM(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Blood feeding rate of the infective mosquito population</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_eggs.Gtrace.html">F_eggs(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Number of eggs laid by adult mosquitoes</p></td>
-      </tr><tr><td>
-          <p><code><a href="dMYZdt.Gtrace.html">dMYZdt(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Derivatives for aquatic stage mosquitoes</p></td>
-      </tr><tr><td>
-          <p><code><a href="DT_MYZt.Gtrace.html">DT_MYZt(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Derivatives for aquatic stage mosquitoes</p></td>
-      </tr><tr><td>
-          <p><code><a href="xde_setup_MYZpar.Gtrace.html">xde_setup_MYZpar(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup the Gtrace</p></td>
-      </tr><tr><td>
-          <p><code><a href="dts_setup_MYZpar.Gtrace.html">dts_setup_MYZpar(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup the Gtrace</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_MYZinits.Gtrace.html">setup_MYZinits(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup the Gtrace model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_MYZpar_Gtrace.html">make_MYZpar_Gtrace()</a></code> </p>
-        </td>
-        <td><p>Make parameters for Gtrace aquatic mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.Gtrace.html">make_indices_MYZ(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Add indices for aquatic stage mosquitoes to parameter list</p></td>
-      </tr><tr><td>
-          <p><code><a href="parse_outputs_MYZ.Gtrace.html">parse_outputs_MYZ(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Parse the output of deSolve and return variables for the Gtrace model</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_inits_MYZ_Gtrace.html">make_inits_MYZ_Gtrace()</a></code> </p>
-        </td>
-        <td><p>Make parameters for Gtrace aquatic mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_inits_MYZ.Gtrace.html">get_inits_MYZ(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Return initial values as a vector</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_inits_MYZ.Gtrace.html">update_inits_MYZ(<i>&lt;Gtrace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Update inits for Gtrace</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_parameters_MYZ_Gtrace.html">make_parameters_MYZ_Gtrace()</a></code> </p>
-        </td>
-        <td><p>Make parameters for Gtrace aquatic mosquito model</p></td>
+        <td><p>Make parameters for trace aquatic mosquito model</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="basicm">basicM <a href="#basicm" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.</p>
@@ -764,6 +704,10 @@
           <p><code><a href="dMYZdt.basicM.html">dMYZdt(<i>&lt;basicM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_M.basicM.html">xde_steady_state_M(<i>&lt;basicM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the steady states as a function of the daily EIR</p></td>
       </tr><tr><td>
           <p><code><a href="DT_MYZt.basicM.html">DT_MYZt(<i>&lt;basicM&gt;</i>)</a></code> </p>
         </td>
@@ -844,6 +788,10 @@
           <p><code><a href="dMYZdt.si.html">dMYZdt(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for a simple model for adult mosquito infection dynamics</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_MYZ.si.html">xde_steady_state_MYZ(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Steady States: MYZ-si</p></td>
       </tr><tr><td>
           <p><code><a href="DT_MYZt.si.html">DT_MYZt(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
@@ -928,6 +876,10 @@
           <p><code><a href="dMYZdt.RM_ode.html">dMYZdt(<i>&lt;RM_ode&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_MYZ.RM.html">xde_steady_state_MYZ(<i>&lt;RM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the steady states as a function of the daily EIR</p></td>
       </tr><tr><td>
           <p><code><a href="dMYZdt.RM_dde.html">dMYZdt(<i>&lt;RM_dde&gt;</i>)</a></code> </p>
         </td>
@@ -1036,6 +988,10 @@
           <p><code><a href="dMYZdt.GeRM_dde.html">dMYZdt(<i>&lt;GeRM_dde&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_MYZ.GeRM.html">xde_steady_state_MYZ(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the steady states as a function of the daily EIR</p></td>
       </tr><tr><td>
           <p><code><a href="xde_setup_MYZpar.GeRM.html">xde_setup_MYZpar(<i>&lt;GeRM&gt;</i>)</a></code> </p>
         </td>
@@ -1241,6 +1197,10 @@
         </td>
         <td><p>Reset aquatic parameters to baseline</p></td>
       </tr><tr><td>
+          <p><code><a href="xde_steady_state_L.trace.html">xde_steady_state_L(<i>&lt;trace&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the steady state as a function of the egg deposition rate eta</p></td>
+      </tr><tr><td>
           <p><code><a href="F_alpha.trace.html">F_alpha(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Number of newly emerging adults from each larval habitat</p></td>
@@ -1312,6 +1272,10 @@
           <p><code><a href="DT_Lt.basicL.html">DT_Lt(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_L.basicL.html">xde_steady_state_L(<i>&lt;basicL&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the steady state as a function of the egg deposition rate eta</p></td>
       </tr><tr><td>
           <p><code><a href="xde_setup_Lpar.basicL.html">xde_setup_Lpar(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
@@ -1605,6 +1569,10 @@
         </td>
         <td><p>Compute the "true" prevalence of infection / parasite rate</p></td>
       </tr><tr><td>
+          <p><code><a href="xde_steady_state_X.trace.html">xde_steady_state_X(<i>&lt;trace&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the steady states for the trace model as a function of the daily EIR</p></td>
+      </tr><tr><td>
           <p><code><a href="F_pr_by_lm.trace.html">F_pr_by_lm(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute the prevalence of infection by light microscopy</p></td>
@@ -1684,6 +1652,10 @@
           <p><code><a href="xde_make_Xpar_hMoI.html">xde_make_Xpar_hMoI()</a></code> </p>
         </td>
         <td><p>Make parameters for hybrid MoI human model</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_X.hMoI.html">xde_steady_state_X(<i>&lt;hMoI&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Steady States: hMoI</p></td>
       </tr><tr><td>
           <p><code><a href="make_Xinits_hMoI.html">make_Xinits_hMoI()</a></code> </p>
         </td>
