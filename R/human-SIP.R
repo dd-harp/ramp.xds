@@ -390,7 +390,7 @@ add_lines_X_SIP = function(XH, pars, clrs=c("darkblue", "darkred", "darkgreen"),
   })}
 
 #' @title Compute the steady states for the SIP model as a function of the daily foi
-#' @description Compute the steady state of the SIS model as a function of the daily eir.
+#' @description Compute the steady state of the SIP model as a function of the daily eir.
 #' @inheritParams xde_steady_state_X
 #' @return the steady states as a named vector
 #' @export
