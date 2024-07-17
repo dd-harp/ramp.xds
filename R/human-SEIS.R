@@ -357,13 +357,10 @@ add_lines_X_SEIS = function(XH, nStrata, clrs=c("darkblue","darkred"), llty=1){
 #' @inheritParams xde_steady_state_X
 #' @return the steady states as a named vector
 #' @export
-xde_steady_state_X.SEIS = function(foi, H, Xpar){
-  b =  Xpar$b
-  r =  Xpar$r
-  nu = Xpar$nu
+xde_steady_state_X.SEIS = function(foi, H, Xpar){with(Xpar,{
   Ieq = (foi*H*nu)/(foi*(r+nu) +r*nu)
   Eeq = (foi*H*r)/(foi*(r+nu) +r*nu)
   Seq = H- Ieq-Eeq
   return(c(S=Seq, I=Ieq, E = Eeq))
-}
+})}
 

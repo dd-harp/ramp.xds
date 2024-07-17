@@ -24,13 +24,11 @@ dXdt.SIS <- function(t, y, pars, i) {
 #' @inheritParams xde_steady_state_X
 #' @return the steady states as a named vector
 #' @export
-xde_steady_state_X.SIS = function(foi, H, Xpar){
-  b = Xpar$b
-  r = Xpar$r
+xde_steady_state_X.SIS = function(foi, H, Xpar){with(Xpar,{
   Ieq = foi/(foi+r)*H
-  Seq = r/(foi+r)*H
+  Seq = H-Ieq
   return(c(S=Seq, I=Ieq))
-}
+})}
 
 #' @title DTS updating for the SIS model for human / vertebrate host infections
 #' @description Implements [DT_Xt] for the SIS model

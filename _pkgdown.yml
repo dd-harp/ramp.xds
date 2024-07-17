@@ -173,6 +173,7 @@ reference:
   contents:
   - dMYZdt
   - xde_steady_state_MYZ
+  - xde_steady_state_M
   - xde_setup_MYZpar
   - DT_MYZt
   - dts_steady_state_MYZ
@@ -220,51 +221,33 @@ reference:
   - EIP.fixedlag_dts
   - setup_EIP.fixedlag_dts
   - setup_eip_fixedlag_dts
-- subtitle: Ztrace
+- subtitle: trace
   desc: |
-    Specialized methods for  NULL dynamics: a funtion generates values of Z to force human infection dynamics
+    Specialized methods for NULL dynamics: a funtion generates values for F_eggs or F_fqZ or F_fqM
   contents:
-  - MBionomics.Ztrace
-  - F_fqZ.Ztrace
-  - F_fqM.Ztrace
-  - F_eggs.Ztrace
-  - dMYZdt.Ztrace
-  - DT_MYZt.Ztrace
-  - xde_setup_MYZpar.Ztrace
-  - dts_setup_MYZpar.Ztrace
-  - setup_MYZinits.Ztrace
-  - make_MYZpar_Ztrace
-  - make_indices_MYZ.Ztrace
-  - parse_outputs_MYZ.Ztrace
-  - make_inits_MYZ_Ztrace
-  - get_inits_MYZ.Ztrace
-  - update_inits_MYZ.Ztrace
-  - make_parameters_MYZ_Ztrace
-- subtitle: Gtrace
-  desc: |
-    Specialized methods for NULL dynamics: a funtion generates values for eggs laid to aquatic ecology
-  contents:
-  - MBionomics.Gtrace
-  - F_fqZ.Gtrace
-  - F_fqM.Gtrace
-  - F_eggs.Gtrace
-  - dMYZdt.Gtrace
-  - DT_MYZt.Gtrace
-  - xde_setup_MYZpar.Gtrace
-  - dts_setup_MYZpar.Gtrace
-  - setup_MYZinits.Gtrace
-  - make_MYZpar_Gtrace
-  - make_indices_MYZ.Gtrace
-  - parse_outputs_MYZ.Gtrace
-  - make_inits_MYZ_Gtrace
-  - get_inits_MYZ.Gtrace
-  - update_inits_MYZ.Gtrace
-  - make_parameters_MYZ_Gtrace
+  - MBionomics.trace
+  - F_fqZ.trace
+  - F_fqM.trace
+  - F_eggs.trace
+  - dMYZdt.trace
+  - DT_MYZt.trace
+  - xde_setup_MYZpar.trace
+  - xde_steady_state_MYZ.trace
+  - dts_setup_MYZpar.trace
+  - setup_MYZinits.trace
+  - make_MYZpar_trace
+  - make_indices_MYZ.trace
+  - parse_outputs_MYZ.trace
+  - make_inits_MYZ_trace
+  - get_inits_MYZ.trace
+  - update_inits_MYZ.trace
+  - make_parameters_MYZ_trace
 - subtitle: basicM
   desc: |
     Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.
   contents:
   - dMYZdt.basicM
+  - xde_steady_state_M.basicM
   - DT_MYZt.basicM
   - xde_setup_MYZpar.basicM
   - xde_make_MYZpar_basicM
@@ -288,6 +271,7 @@ reference:
     Specialized methods for simple infection dynamics for an adult mosquito population
   contents:
   - dMYZdt.si
+  - xde_steady_state_MYZ.si
   - DT_MYZt.si
   - xde_setup_MYZpar.si
   - xde_make_MYZpar_si
@@ -312,6 +296,7 @@ reference:
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
   contents:
   - dMYZdt.RM_ode
+  - xde_steady_state_MYZ.RM
   - dMYZdt.RM_dde
   - xde_setup_MYZpar.RM
   - xde_make_MYZpar_RM
@@ -342,6 +327,7 @@ reference:
   - F_eggs.GeRM
   - dMYZdt.GeRM_ode
   - dMYZdt.GeRM_dde
+  - xde_steady_state_MYZ.GeRM
   - xde_setup_MYZpar.GeRM
   - setup_MYZinits.GeRM
   - make_MYZpar_GeRM
@@ -402,6 +388,7 @@ reference:
     Specialized methods for the exogeneously forced trace model of aquatic mosquito dynamics.
   contents:
   - LBionomics.trace
+  - xde_steady_state_L.trace
   - F_alpha.trace
   - dLdt.trace
   - DT_Lt.trace
@@ -423,6 +410,7 @@ reference:
   contents:
   - dLdt.basicL
   - DT_Lt.basicL
+  - xde_steady_state_L.basicL
   - xde_setup_Lpar.basicL
   - xde_make_Lpar_basicL
   - dts_setup_Lpar.basicL
@@ -511,6 +499,7 @@ reference:
   - F_X.trace
   - F_H.trace
   - F_pr.trace
+  - xde_steady_state_X.trace
   - F_pr_by_lm.trace
   - F_pr_by_rdt.trace
   - F_pr_by_pcr.trace
@@ -534,6 +523,7 @@ reference:
   - dXdt.hMoI
   - xde_setup_Xpar.hMoI
   - xde_make_Xpar_hMoI
+  - xde_steady_state_X.hMoI
   - make_Xinits_hMoI
   - setup_Xinits.hMoI
   - make_indices_X.hMoI

@@ -9,6 +9,15 @@ LBionomics.trace <- function(t, y, pars, s) {
   return(pars)
 }
 
+#' @title Compute the steady state as a function of the egg deposition rate eta
+#' @description This method dispatches on the type of `Lpar`.
+#' @inheritParams xde_steady_state_L
+#' @return none
+#' @export
+xde_steady_state_L.trace = function(eta, Lpar){
+  return(numeric(0))
+}
+
 #' @title Number of newly emerging adults from each larval habitat
 #' @description Implements [F_alpha] for the trace (forced emergence) model.
 #' @inheritParams F_alpha

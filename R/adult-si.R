@@ -23,6 +23,17 @@ dMYZdt.si <- function(t, y, pars, s) {
   })
 }
 
+#' @title Steady States: MYZ-si
+#' @description This method dispatches on the type of `MYZpar`.
+#' @inheritParams xde_steady_state_MYZ
+#' @return none
+#' @export
+xde_steady_state_MYZ.si = function(Lambda, kappa, MYZpar){with(MYZpar,{
+  Omega_inv <- solve(Omega)
+  Z_eq <- as.vector(solve(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
+  return(c(M=M_eq, Z=Z_eq))
+})}
+
 #' @title Derivatives for adult mosquitoes
 #' @description Implements [DT_MYZt] for the si model.
 #' @inheritParams DT_MYZt

@@ -22,6 +22,17 @@ dXdt.hMoI <- function(t, y, pars, i) {
   })
 }
 
+#' @title Steady States: hMoI
+#' @description Compute the steady state of the hMoI model as a function of the daily foi
+#' @inheritParams xde_steady_state_X
+#' @return the steady states as a named vector
+#' @export
+xde_steady_state_X.hMoI = function(foi, H, Xpar){with(Xpar,{
+  m1 = foi/r1
+  m2 = foi/r2
+  return(c(m1=m1, m2=m2))
+})}
+
 #' @title Setup Xpar.hMoI
 #' @description Implements [xde_setup_Xpar] for the hMoI model
 #' @inheritParams xde_setup_Xpar

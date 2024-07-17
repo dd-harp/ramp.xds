@@ -251,7 +251,7 @@ xde_setup_mosy = function(modelName = "unnamed",
 #' @param nVectors is the number of vector species
 #' @param Lname is a character string defining a L model
 #' @param Lopts a list to configure the L model
-#' @param MYZopts a list to configure F_eggs from the Gtrace model
+#' @param MYZopts a list to configure F_eggs from the trace model
 #' @param LSMname is a character string defining a LSM model
 #' @return a [list]
 #' @export
@@ -268,11 +268,8 @@ xde_setup_aquatic = function(modelName = "unnamed",
   class(pars$compute) = "na"
 
   pars$modelName = modelName
-  pars$MYZname = "Gtrace"
+  pars$MYZname = "trace"
   pars$Lname = Lname
-
-  pars$nVectors = nVectors
-  pars = xde_setup_MYZpar("Gtrace", pars, 1, EIPopts=list(), MYZopts, calK=NULL)
 
   pars$nHabitats = nHabitats
   membership = 1:nHabitats
@@ -281,6 +278,10 @@ xde_setup_aquatic = function(modelName = "unnamed",
   searchQ = rep(1, nHabitats)
   pars = xde_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
+  pars$nPatches = nHabitats
+
+  pars$nVectors = nVectors
+  pars = xde_setup_MYZpar("trace", pars, 1, EIPopts=list(), MYZopts, calK=NULL)
 
   pars <- setup_lsm_null(pars)
 
@@ -335,7 +336,7 @@ xde_setup_human = function(modelName = "unnamed",
 
   pars$modelName = modelName
   pars$Xname = Xname
-  pars$MYZname = "Ztrace"
+  pars$MYZname = "trace"
 
   # Structure
   nStrata = length(HPop)
@@ -347,7 +348,7 @@ xde_setup_human = function(modelName = "unnamed",
   pars = make_TimeSpent(pars, 1, TimeSpent, TimeSpentOpts)
 
   # Dynamics
-  pars = xde_setup_MYZpar("Ztrace", pars, 1, EIPopts=list(), MYZopts, calK=NULL)
+  pars = xde_setup_MYZpar("trace", pars, 1, EIPopts=list(), MYZopts, calK=NULL)
 
   pars = xde_setup_Xpar(Xname, pars, 1, Xopts)
   pars = setup_Xinits(pars, 1, Xopts)
