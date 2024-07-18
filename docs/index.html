@@ -164,28 +164,32 @@
 
 <div class="section level1">
 <div class="page-header"><h1 id="rampxds">
-<strong>ramp.xds</strong><a class="anchor" aria-label="anchor" href="#rampxds"></a>
+<strong><code>ramp.xds</code></strong><a class="anchor" aria-label="anchor" href="#rampxds"></a>
 </h1></div>
 <div class="section level2">
-<h2 id="ramp---extensible-dynamical-systems">RAMP - eXtensible Dynamical Systems<a class="anchor" aria-label="anchor" href="#ramp---extensible-dynamical-systems"></a>
+<h2 id="ramp---extensible-dynamical-systems">
+<strong>RAMP</strong> - e<strong>X</strong>tensible <strong>D</strong>ynamical <strong>S</strong>ystems<a class="anchor" aria-label="anchor" href="#ramp---extensible-dynamical-systems"></a>
 </h2>
 <!-- badges: start -->
 
 <!-- badges: end -->
 </div>
 <div class="section level2">
-<h2 id="what-is-rampxds">What is ramp.xds?<a class="anchor" aria-label="anchor" href="#what-is-rampxds"></a>
+<h2 id="what-is-ramp">What is RAMP?<a class="anchor" aria-label="anchor" href="#what-is-ramp"></a>
 </h2>
 <p>RAMP, or <strong>R</strong>obust <strong>A</strong>nalytics for <strong>M</strong>alaria <strong>P</strong>olicy, is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty in analysis using conventional and simulation-based analytics.</p>
-<p><strong><em>ramp.xds</em></strong> is an R software package that supports RAMP. It’s function is to set up, analyze, and solve dynamical systems describing the epidemiology, transmission dynamics, and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework for modular model building, described in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" class="external-link">Spatial Dynamics of Malaria Transmission</a> (Wu SL, <em>et al.</em> 2023. PLoS Computational Biology)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
-<p><em>ramp.xds</em> is part of a suite of R packages to support RAMP simulation-based analytics:</p>
+</div>
+<div class="section level2">
+<h2 id="what-is-rampxds">What is <strong><code>ramp.xds</code></strong>?<a class="anchor" aria-label="anchor" href="#what-is-rampxds"></a>
+</h2>
+<p><strong><code>ramp.xds</code></strong> is an R software package that supports RAMP. It’s function is to set up, analyze, and solve dynamical systems describing the epidemiology, transmission dynamics, and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework for modular model building, described in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" class="external-link">Spatial Dynamics of Malaria Transmission</a> (Wu SL, <em>et al.</em> 2023. PLoS Computational Biology)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p><strong><code>ramp.xds</code></strong> is part of a suite of R packages to support RAMP simulation-based analytics. Supporting packages include:</p>
 <ul>
-<li><p><em>ramp.xds</em> implements core computation. The software includes a basic set of model families for code development and testing, and to demonstrate the capbilities of the software.</p></li>
-<li><p>An extended library of stable, tested, and reusable code implementing previously published model families for <em>ramp.xds</em> is maintained in <a href="https://dd-harp.github.io/ramp.library/" class="external-link"><strong>ramp.library</strong></a>.</p></li>
-<li><p>Algorithms to apply the framework, include code to fit models to data, is found in <a href="https://dd-harp.github.io/ramp.work/" class="external-link"><strong>ramp.work</strong></a>.</p></li>
-<li><p>A large set of models illustrating capabilities are found in <a href="https://dd-harp.github.io/ramp.malaria/" class="external-link"><strong>ramp.malaria</strong></a>.</p></li>
+<li><p>An extended library of stable, tested, and reusable code implementing previously published model families for <em>ramp.xds</em> is maintained in <a href="https://dd-harp.github.io/ramp.library/" class="external-link"><strong><code>ramp.library</code></strong></a>.</p></li>
+<li><p>Algorithms to apply the framework, include code to fit models to data, is found in <a href="https://dd-harp.github.io/ramp.work/" class="external-link"><strong><code>ramp.work</code></strong></a>.</p></li>
+<li><p>A large set of models illustrating capabilities are found in <a href="https://dd-harp.github.io/ramp.malaria/" class="external-link"><strong><code>ramp.malaria</code></strong></a>.</p></li>
 </ul>
-<p><em>ramp.xds</em> is under active development. It is the continuation of two other software packages, now deprecated: <a href="https://dd-harp.github.io/exDE/" class="external-link"><em>exDE</em></a> and <a href="https://dd-harp.github.io/MicroMoB/" class="external-link"><em>MicroMoB</em></a>.</p>
+<p><strong><code>ramp.xds</code></strong> is under active development. It is the continuation of two other software packages, now deprecated: <a href="https://dd-harp.github.io/exDE/" class="external-link"><strong><code>exDE</code></strong></a> and <a href="https://dd-harp.github.io/MicroMoB/" class="external-link"><strong><code>MicroMoB</code></strong></a>.</p>
 <p><strong>NOTE:</strong> The repository retains the name <code>ramp.xde</code> as a legacy from the past: a name change is planned from <code>ramp.xde</code> to <code>ramp.xds.</code></p>
 </div>
 <div class="section level2">
@@ -196,12 +200,12 @@
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dd-harp/ramp.xde"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
-<h2 id="why-use-rampxds">Why use <em>ramp.xds</em>?<a class="anchor" aria-label="anchor" href="#why-use-rampxds"></a>
+<h2 id="why-use-rampxds">Why use <strong><code>ramp.xds</code></strong>?<a class="anchor" aria-label="anchor" href="#why-use-rampxds"></a>
 </h2>
-<p>There are several advantages to using <em>ramp.xds</em>:</p>
+<p>There are several advantages to using <strong><code>ramp.xds</code></strong>:</p>
 <ul>
-<li><p><em>ramp.xds</em> makes it easy to set up, solve, and apply dynamical systems models for malaria &amp; other mosquito-borne pathogens.</p></li>
-<li><p><em>ramp.library</em> includes a large set of published models.</p></li>
+<li><p><strong><code>ramp.xds</code></strong> makes it easy to set up, solve, and apply dynamical systems models for malaria &amp; other mosquito-borne pathogens.</p></li>
+<li><p><strong><code>ramp.library</code></strong> includes a large set of published models.</p></li>
 <li><p>All the code has been verified and tested. If you’re publishing a model family that is not already in <em>ramp.library,</em> you can write us and we’ll help you add it to the growing collection.</p></li>
 <li><p>It should be comparatively easy to replicate your study in <em>ramp.xds.</em> It’s also easy for others to replicate your study.</p></li>
 <li>

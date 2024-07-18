@@ -394,15 +394,10 @@ add_lines_X_SIP = function(XH, pars, clrs=c("darkblue", "darkred", "darkgreen"),
 #' @inheritParams xde_steady_state_X
 #' @return the steady states as a named vector
 #' @export
-xde_steady_state_X.SIP = function(foi, H, Xpar){
-  b = Xpar$b
-  xi = Xpar$xi
-  rho = Xpar$rho
-  r = Xpar$r
-  eta = Xpar$eta
+xde_steady_state_X.SIP = function(foi, H, Xpar){with(Xpar,{
   Ieq = (foi*H*eta*(1-rho))/((foi+r+xi)*(eta+xi) +foi*(r-eta)*rho)
   Peq  = (H*xi*(foi+r+xi) + (foi*H*r*rho))/((foi+r+xi)*(eta+xi) +foi*(r-eta)*rho)
   Seq = H -Ieq - Peq
   return(c(S=Seq, I=Ieq, P = Peq))
-}
+})}
 

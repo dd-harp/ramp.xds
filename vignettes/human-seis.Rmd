@@ -1,0 +1,46 @@
+---
+title: "SEIS and SEISd (Susceptible-Exposed-Infected-Susceptible) Human Models"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{SEIS (Susceptible-Exposed-Infected-Susceptible) Human Models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## xde 
+
+**`ramp.xds`** includes the standard SEIS model and the delay SEIS model. The standard model, without demography, is:
+
+$$
+\frac{dS}{dt} = - h S + r I \\
+\frac{dE}{dt} = h S - \nu E \\
+\frac{dI}{dt} = \nu E - r I\\
+$$
+
+$$
+\bar E = h S/ \nu \\ 
+\bar I = \nu E / r \\ 
+\bar S =  
+$$
+
+$$
+\frac{dS}{dt} = - h S + r I \\
+\frac{dE}{dt} = h S - h_\nu S \\
+\frac{dI}{dt} = h_\nu S - r I\\
+$$
+and $H = S+E+I,$  so 
+
+$$
+\bar E = h S \nu \\ 
+\bar I = h S / r \\ 
+\bar S =  
+$$
+
+
