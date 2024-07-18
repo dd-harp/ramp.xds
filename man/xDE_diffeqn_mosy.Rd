@@ -18,6 +18,6 @@ the appropriate adult mosquito model}
 a \link{list} containing the vector of all state derivatives
 }
 \description{
-Mirrors \link{xDE_diffeqn} but only includes the adult and aquatic
+Mirrors \link[ramp.xde:xDE_diffeqn]{ramp.xde::xDE_diffeqn} but only includes the adult and aquatic
 mosquito components.
 }

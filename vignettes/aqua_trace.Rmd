@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 # A forced model 
 
 ```{r, message=FALSE, warning=FALSE}
-library(ramp.xde)
+library(ramp.xds)
 #devtools::load_all()
 library(MASS)
 library(expm)
@@ -99,9 +99,9 @@ alpha <- as.vector(ginv(calN) %*% Lambda)
 
 Now we set up the model. Please see the [Ross-Macdonald vignette](adult_RM.html) for details
 on the adult model. We use `alpha` as the `Lambda` parameter of our forced emergence model, in
-`ramp.xde::make_parameters_L_trace`. Again, because we are not running the full transmission model,
-we must use `ramp.xde::MosquitoBehavior` to pass the equilibrium values of those bionomic parameters 
-to `ramp.xde::xDE_diffeqn_mosy`.
+`ramp.xds::make_parameters_L_trace`. Again, because we are not running the full transmission model,
+we must use `ramp.xds::MosquitoBehavior` to pass the equilibrium values of those bionomic parameters 
+to `ramp.xds::xDE_diffeqn_mosy`.
 
 ```{r}
 params = make_parameters_xde()

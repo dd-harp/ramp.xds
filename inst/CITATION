@@ -1,4 +1,4 @@
-citHeader("To cite ramp.xde in publications use:")
+citHeader("To cite ramp.xds in publications use:")
 
 bibentry(
   bibtype    = "Article",

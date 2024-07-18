@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
-library(ramp.xde)
+library(ramp.xds)
 #devtools::load_all()
 ```
 

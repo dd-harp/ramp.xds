@@ -22,7 +22,7 @@ In many ways, GeRM is similar to RM. A key difference is that in GeRM, it is pos
 
 ## Delay Differential Equations
 
-These equations are naturally implemented by `ramp.xde::dMYZdt.RM_dde,` but they can also be implemented in a closely related set of odes using `ramp.xde::dMYZdt.RM_ode` (see below). 
+These equations are naturally implemented by `ramp.xds::dMYZdt.RM_dde,` but they can also be implemented in a closely related set of odes using `ramp.xds::dMYZdt.RM_ode` (see below). 
 
 $$
 \dot{M} = \Lambda - \Omega\cdot M 
@@ -47,7 +47,7 @@ $$
 
 ## Ordinary Differential Equations
 
-In the following, the equation are solved by `ramp.xde::dMYZdt.RM_ode`.
+In the following, the equation are solved by `ramp.xds::dMYZdt.RM_ode`.
 
 The system of ODEs is the same as above except for the equation giving the rate of change in infectious mosquito density, which becomes:
 
@@ -116,7 +116,7 @@ We can use the same equation for $G$ as above.
 # Example
 
 ```{r, message=FALSE, warning=FALSE}
-library(ramp.xde)
+library(ramp.xds)
 #devtools::load_all()
 library(expm)
 library(deSolve)
@@ -180,7 +180,7 @@ Y_eq <- as.vector(solve(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
 Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
 ```
 
-We use `ramp.xde::make_inits_MYZ_RM` to store the initial values. These equations have been implemented to compute $\Upsilon$ dynamically, so we attach `Upsilon` as initial values:
+We use `ramp.xds::make_inits_MYZ_RM` to store the initial values. These equations have been implemented to compute $\Upsilon$ dynamically, so we attach `Upsilon` as initial values:
 
 ```{r}
 params = make_inits_MYZ_GeRM_ode(pars = params, 
@@ -189,13 +189,13 @@ params$Lambda[[1]] = Lambda
 params$kappa[[1]] = kappa 
 ```
 
-We and set the indices with `ramp.xde::make_indices`. 
+We and set the indices with `ramp.xds::make_indices`. 
 
 ```{r}
 params = make_indices(params)
 ```
 
-Then we can set up the initial conditions vector and use `deSolve::ode` to solve the model.  Normally these values would be computed within `ramp.xde::xDE_diffeqn`. Here, we set up a local version: 
+Then we can set up the initial conditions vector and use `deSolve::ode` to solve the model.  Normally these values would be computed within `ramp.xds::xDE_diffeqn`. Here, we set up a local version: 
 
 ```{r, out.width = "100%"}
 y0 = get_inits_MYZ(params, 1) 

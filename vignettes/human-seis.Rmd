@@ -2,7 +2,7 @@
 title: "SEIS and SEISd (Susceptible-Exposed-Infected-Susceptible) Human Models"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{SEIS (Susceptible-Exposed-Infected-Susceptible) Human Models}
+  %\VignetteIndexEntry{SEIS and SEISd (Susceptible-Exposed-Infected-Susceptible) Human Models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

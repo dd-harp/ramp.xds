@@ -1,4 +1,4 @@
 library(testthat)
-library(ramp.xde)
+library(ramp.xds)
 
-test_check("ramp.xde")
+test_check("ramp.xds")

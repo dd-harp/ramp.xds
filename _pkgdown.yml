@@ -1,4 +1,4 @@
-url: https://dd-harp.github.io/ramp.xde
+url: https://dd-harp.github.io/ramp.xds
 navbar:
   left:
   - text: Functions
@@ -51,7 +51,7 @@ navbar:
       href: articles/human_hmoi.html
   right:
   - icon: fa-github
-    href: https://github.com/dd-harp/ramp.xde/
+    href: https://github.com/dd-harp/ramp.xds/
 home:
   sidebar:
     structure:
@@ -608,6 +608,7 @@ reference:
   - DT_Xt.SEISd
   - xde_setup_Xpar.SEISd
   - xde_make_Xpar_SEISd
+  - xde_steady_state_X.SEISd
   - dts_setup_Xpar.SEISd
   - dts_make_Xpar_SEISd
   - setup_Xinits.SEISd
@@ -628,7 +629,6 @@ reference:
   - F_pr_by_pcr.SEISd
   - xds_plot_X.SEISd
   - add_lines_X_SEISd
-
 - subtitle: SIP xde
   desc: |
     Specialized methods for the SIP (Susceptible-Infected-Prophylaxis) model of human dynamics.
@@ -637,6 +637,7 @@ reference:
   - DT_Xt.SIP
   - xde_setup_Xpar.SIP
   - xde_make_Xpar_SIP
+  - xde_steady_state_X.SIP
   - dts_setup_Xpar.SIP
   - dts_make_Xpar_SIP
   - make_Xinits_SIP

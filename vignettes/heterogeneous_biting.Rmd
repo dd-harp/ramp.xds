@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-In `ramp.xde,` the term **heterogeneous biting** is used to describe differences among population strata in the expected rate of exposure to infective mosquitoes. 
+In `ramp.xds,` the term **heterogeneous biting** is used to describe differences among population strata in the expected rate of exposure to infective mosquitoes. 
 To be more rigorous, let $E$ denote the *average* daily entomological inoculation rate (dEIR) for a population with multiple strata, and $\xi_i$ the frailty term, then the dEIR for the $i^{th}$ stratum is: 
 $$E_i = \xi_i E.$$ 
 The implementation is part of a coherent model for blood feeding that serves at the interface between models of parasite/pathogen infections in humans (*i.e.* $\cal X$), and models of parasite infections in mosquitoes (*i.e.* $\cal YZ$). In this vignette, we introduce the *concept* of heterogeneous biting and its implementation in the blood feeding model using **blood feeding search weights.**
@@ -25,7 +25,7 @@ Heterogeneous blood feeding is a basic feature of malaria transmission, and an i
 
 ## Definitions 
 
-**Heterogeneous Biting** is defined throughout the `ramp.xde` implementation and documentation as a difference in the relative biting rates for two strata that are otherwise identical. The implementation relies on two concepts:
+**Heterogeneous Biting** is defined throughout the `ramp.xds` implementation and documentation as a difference in the relative biting rates for two strata that are otherwise identical. The implementation relies on two concepts:
 
 + **blood feeding search weights** or $\left\{\omega\right\}$
 
@@ -86,7 +86,7 @@ sum(xi*Hi)/H
 
 ## Implementation
 
-In `ramp.xde,` the concept of human *availability* for blood feeding is also modified by time spent, and the algorithms were designed to deal with both changing denominators and search weights. In a patch, the available human population is a measure of the search weighted ambient population density.
+In `ramp.xds,` the concept of human *availability* for blood feeding is also modified by time spent, and the algorithms were designed to deal with both changing denominators and search weights. In a patch, the available human population is a measure of the search weighted ambient population density.
 The infective bites in each patch are allocated among human population strata by taking a stratum's availability divided by the total availability of all blood hosts. The blood feeding model outputs a vector of dEIR values for each stratum. 
 
 Relative biting rates are an important concept, and they are sometimes useful to compute, but they are not computed as part of the blood feeding model.  
