@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 The SIS (Susceptible-Infected-Susceptible) human xde model model fulfills the generic interface of the human population component. It is the simplest model of endemic diseases in humans.
 
-# Differential Equations
+# 
 
 We subdivide a population into susceptible ($S$) and infected and infectious ($I$) individuals, where the total population is $H = S+I.$ We assume the force of infection ($h$, FoI) is linearly proportional to the EIR: $h = b \times EIR.$ In its general form, with births ($B(H)$) and deaths (at the per-capita rate $\mu$), the generalized SIS_xde dynamics are:
 

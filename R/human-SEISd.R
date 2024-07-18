@@ -365,3 +365,16 @@ add_lines_X_SEISd = function(XH, nStrata, clrs=c("darkblue","darkred"), llty=1){
       }
     }
   })}
+
+
+#' @title Compute the steady states for the SEISd model as a function of the daily EIR
+#' @description Compute the steady state of the SEISd model as a function of the daily eir.
+#' @inheritParams xde_steady_state_X
+#' @return the steady states as a named vector
+#' @export
+xde_steady_state_X.SEISd = function(foi, H, Xpar){with(Xpar,{
+  Seq = H/(1+foi*nu + foi/r)
+  Eeq = foi*Seq*nu
+  Ieq = foi*Seq/r
+  return(c(S=Seq, I=Ieq, E = Eeq))
+})}
