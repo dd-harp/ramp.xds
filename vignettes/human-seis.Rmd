@@ -1,8 +1,9 @@
 ---
-title: "SEIS and SEISd (Susceptible-Exposed-Infected-Susceptible) Human Models"
+title: "SEIS and SEISd" 
+subtitle: "Susceptible-Exposed-Infected-Susceptible  Models"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{SEIS and SEISd (Susceptible-Exposed-Infected-Susceptible) Human Models}
+  %\VignetteIndexEntry{SEIS and SEISd}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,9 +15,36 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r}
+library(ramp.xds)
+```
+
 ## xde 
 
-**`ramp.xds`** includes the standard SEIS model and the delay SEIS model. The standard model, without demography, is:
+**`ramp.xds`** includes the standard SEIS model and the delay SEIS model.   The dependent state variables for both models are:
+
++ $S$ the density of infected hosts
+
++ $E$ the density of exposed hosts who are infected but not yet infectious
+
++ $I$ the density of infectious hosts
+
+In the basic versions of the model -- without demographic changes -- population density is constant, so $$H = S+E+I.$$
+
+
+### Compartment Model as an ODE
+
+The model has three parameters: 
+
++ $b$ is the fraction of infective bites that cause an infection;  
+
++ $\nu$ is the transition rate from exposed to infectious: the duration of the latent period is $1/\nu$ 
+
++ $r$ is the clearance rate for infections: the average duration of infection in this model is $1/r$ 
+
+These are coupled systems of ordinary differential equations forced by the force of infection, denoted $h(t)$, where $h = F_h(E);$ here, we assume that exposure is Poisson, so we let:  
+
+$$h = bE$$
 
 $$
 \frac{dS}{dt} = - h S + r I \\
@@ -24,11 +52,32 @@ $$
 \frac{dI}{dt} = \nu E - r I\\
 $$
 
+
+```{r}
+MYZo = list(MYZm = 2/365, b=0.5)
+seis = xde_setup(Xname = "SEIS", MYZname = "trace")
+seis = xde_stable_orbit(seis)
+```
+
+```{r}
+unlist(list_Xvars(seis$outputs$orbits$y_last, seis, 1))
+```
+
+This model has the steady state... 
+
 $$
 \bar E = h S/ \nu \\ 
 \bar I = \nu E / r \\ 
 \bar S =  
 $$
+```{r}
+xde_steady_state_X(1/365, 1000, seis$Xpar[[1]])
+```
+
+
+### Compartment Model as an DDE
+
+In the delay differential equation model, we let $\nu$ denote the duration of the incubation period, and we let $h_\nu = h(t-\nu).$ 
 
 $$
 \frac{dS}{dt} = - h S + r I \\
