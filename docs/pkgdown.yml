@@ -13,16 +13,16 @@ articles:
   heterogeneous_mixing: heterogeneous_mixing.html
   heterogeneous_transmission: heterogeneous_transmission.html
   human_hmoi: human_hmoi.html
+  human_seis: human_seis.html
   human_sip: human_sip.html
   human_sis: human_sis.html
-  human-seis: human-seis.html
   modular_forms: modular_forms.html
   modularity: modularity.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
   spat_metric: spat_metric.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   vc_lemenach: vc_lemenach.html
-last_built: 2024-07-21T19:01Z
+last_built: 2024-07-21T19:18Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles
