@@ -81,8 +81,8 @@ In the delay differential equation model, we let $\nu$ denote the duration of th
 
 $$
 \frac{dS}{dt} = - h S + r I \\
-\frac{dE}{dt} = h S - h_\nu S \\
-\frac{dI}{dt} = h_\nu S - r I\\
+\frac{dE}{dt} = h S - h_\nu S_\nu \\
+\frac{dI}{dt} = h_\nu S_\nu - r I\\
 $$
 and $H = S+E+I,$  so 
 
@@ -91,5 +91,22 @@ $$
 \bar I = h S / r \\ 
 \bar S =  
 $$
+```{r}
+devtools::load_all()
+```
 
+```{r}
+MYZo = list(MYZm = 2/365, b=0.5)
+SEISd = xde_setup(Xname = "SEISd", MYZname = "trace")
+SEISd$dlay = "dde" 
+class(SEISd$dlay) = "dde" 
+SEISd = xde_solve(SEISd, Tmax = 3650)
+```
 
+```{r}
+unlist(list_Xvars(SEISd$outputs$orbits$y_last, SEISd, 1))
+```
+
+```{r}
+xde_steady_state_X(1/365, 1000, SEISd$Xpar[[1]])
+```
