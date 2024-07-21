@@ -10,7 +10,7 @@ dts_make_Xpar_SEISd(
   Xopts = list(),
   b = 0.55,
   r = 1/180,
-  nu = 1/14,
+  nu = 14,
   c = 0.15
 )
 }

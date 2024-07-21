@@ -13,15 +13,19 @@ dXdt.SEISd <- function(t, y, pars, i) {
     with(pars$Xpar[[i]], {
 
       if (t <= nu) {
-        foi_nu <- pars$Xinits[[s]]$cfoi
+        S_nu = 0
+        foi_nu = 0
       } else {
-        foi_nu <- lagderiv(t = t-eip, nr = cfoi_ix)
+        S_nu   = lagvalue(t=t-nu, nr=pars$ix$X[[i]]$S_ix)
+        foi_nu = lagderiv(t=t-nu, nr=pars$ix$X[[i]]$cfoi_ix)
       }
 
       dS <- Births(t, H, Hpar) - foi*S + r*I + dHdt(t, S, Hpar)
-      dE <- foi*S - foi_nu*S + dHdt(t, E, Hpar)
-      dI <- foi_nu*S - r*I + dHdt(t, I, Hpar)
+      dE <- foi*S - foi_nu*S_nu + dHdt(t, E, Hpar)
+      dI <- foi_nu*S_nu - r*I + dHdt(t, I, Hpar)
       dcfoi <- foi
+
+#      if (t > 20) browser()
       return(c(dS, dE, dI, dcfoi))
     })
   })
@@ -69,7 +73,7 @@ xde_setup_Xpar.SEISd = function(Xname, pars, i, Xopts=list()){
 #' @return a [list]
 #' @export
 xde_make_Xpar_SEISd = function(nStrata, Xopts=list(),
-                             b=0.55, r=1/180, nu=1/14, c=0.15){
+                             b=0.55, r=1/180, nu=14, c=0.15){
   with(Xopts,{
     Xpar = list()
     class(Xpar) <- "SEISd"
@@ -104,7 +108,7 @@ dts_setup_Xpar.SEISd = function(Xname, pars, i, Xopts=list()){
 #' @return a [list]
 #' @export
 dts_make_Xpar_SEISd = function(nStrata, Xday, Xopts=list(),
-                             b=0.55, r=1/180, nu=1/14, c=0.15){
+                             b=0.55, r=1/180, nu=14, c=0.15){
   with(Xopts,{
     Xpar = list()
     class(Xpar) <- "SEISd"
@@ -245,7 +249,7 @@ make_indices_X.SEISd <- function(pars, i) {with(pars,{
 #' @return a [numeric] vector
 #' @export
 get_inits_X.SEISd <- function(pars, i){
-  with(pars$Xinits[[i]], return(c(S,E,I)))
+  with(pars$Xinits[[i]], return(c(S,E,I,cfoi)))
 }
 
 #' @title Update inits for the SEISd xde human model from a vector of states
@@ -376,5 +380,5 @@ xde_steady_state_X.SEISd = function(foi, H, Xpar){with(Xpar,{
   Seq = H/(1+foi*nu + foi/r)
   Eeq = foi*Seq*nu
   Ieq = foi*Seq/r
-  return(c(S=Seq, I=Ieq, E = Eeq))
+  return(c(S=Seq, E = Eeq, I=Ieq, H=H))
 })}

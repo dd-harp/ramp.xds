@@ -361,6 +361,6 @@ xde_steady_state_X.SEIS = function(foi, H, Xpar){with(Xpar,{
   Ieq = (foi*H*nu)/(foi*(r+nu) +r*nu)
   Eeq = (foi*H*r)/(foi*(r+nu) +r*nu)
   Seq = H- Ieq-Eeq
-  return(c(S=Seq, I=Ieq, E = Eeq))
+  return(c(S=Seq, E=Eeq, I=Ieq, H=H))
 })}
 

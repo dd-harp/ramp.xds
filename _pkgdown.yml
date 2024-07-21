@@ -49,6 +49,8 @@ navbar:
       href: articles/human_sip.html
     - text: MoI hybrid model
       href: articles/human_hmoi.html
+    - text: SEIS model
+      href: articles/human_seis.html
   right:
   - icon: fa-github
     href: https://github.com/dd-harp/ramp.xds/
