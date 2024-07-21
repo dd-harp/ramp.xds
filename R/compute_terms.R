@@ -76,7 +76,7 @@ compute_terms.xde <- function(varslist, deout, pars, s, i) {
 compute_terms.cohort <- function(varslist, deout, pars, s, i) {
   time = deout[,1]
   d1 = length(time)
-  eir = as.matrix(with(pars$EIRpar, sapply(time, pars$F_eir, bday=bday, scale=scale)))
+  eir = as.matrix(with(pars$EIRpar, sapply(time, F_eir, bday=bday, scale=scale)))
   eir = shapeIt(eir, d1, pars$Hpar[[i]]$nStrata)
 
   pr = list()

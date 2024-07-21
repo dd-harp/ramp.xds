@@ -176,8 +176,7 @@ Dynamics</h3>
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
-<span><span class="co">#devtools::load_all()</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
 <p>In this vignette, we present a model for the dynamics of malaria
 infection in adult mosquito populations. We call it a
 <em>Ross-Macdonald</em> model because it makes the same basic
@@ -332,7 +331,7 @@ we get:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Om</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">rm1</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="fu"><a href="../reference/make_Omega_dts.html">make_Omega_dts</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">calK</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/dts_solve.html">dts_solve</a></span><span class="op">(</span><span class="va">rm1</span>, Tmax<span class="op">=</span><span class="fl">200</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">rm1</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/dts_solve.html">dts_solve</a></span><span class="op">(</span><span class="va">rm1</span>, <span class="fl">200</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">rm1</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#dts_steady(rm1) -&gt; rm1</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -342,10 +341,10 @@ we get:</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">Y</span>, col <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">Z</span>, col <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span> </span>
 <span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
-<p><img src="RM-dts-Mosquito_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="RM-dts-Mosquito_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_YZ.html">xds_plot_YZ</a></span><span class="op">(</span><span class="va">rm1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="RM-dts-Mosquito_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
+<p><img src="RM-dts-Mosquito_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">compute_MYZ_equil</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">pars</span>, <span class="va">Lambda</span>, <span class="va">kappa</span>, <span class="va">i</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">pars</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>,<span class="op">{</span></span>
@@ -384,7 +383,7 @@ we get:</p>
 <code class="sourceCode R"><span><span class="va">rm10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dts_setup.html">dts_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trace"</span>, nPatches <span class="op">=</span> <span class="fl">10</span>, membership <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">rm10</span><span class="op">$</span><span class="va">Lpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">scale</span> <span class="op">=</span> <span class="fl">1.5</span><span class="op">^</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> </span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/dts_solve.html">dts_solve</a></span><span class="op">(</span><span class="va">rm10</span>, Tmax<span class="op">=</span><span class="fl">200</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">rm10</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/dts_solve.html">dts_solve</a></span><span class="op">(</span><span class="va">rm10</span>, <span class="fl">200</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">rm10</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">rm10</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">M</span><span class="op">[</span>,<span class="fl">10</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
@@ -394,7 +393,7 @@ we get:</p>
 <span><span class="co">#  lines(time, Y, col = "purple") </span></span>
 <span><span class="co">#  lines(time, Z, col = "darkred") </span></span>
 <span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
-<p><img src="RM-dts-Mosquito_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
+<p><img src="RM-dts-Mosquito_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 </div>
   </div>
 

@@ -355,7 +355,7 @@ initial values. These equations have been implemented to compute <span class="ma
 <span><span class="va">params</span><span class="op">$</span><span class="va">nHosts</span> <span class="op">=</span> <span class="fl">0</span> </span></code></pre></div>
 <p>Then we can set up the initial conditions vector and use
 <code><a href="https://rdrr.io/pkg/deSolve/man/ode.html" class="external-link">deSolve::ode</a></code> to solve the model. Normally these values
-would be computed within <code><a href="../reference/xDE_diffeqn.html">ramp.xds::xDE_diffeqn</a></code>. Here, we
+would be computed within <code>ramp.xds::xDE_diffeqn</code>. Here, we
 set up a local version:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y0</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_inits_MYZ.html">get_inits_MYZ</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span> </span>

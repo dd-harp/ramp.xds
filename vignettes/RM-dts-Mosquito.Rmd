@@ -17,6 +17,9 @@ knitr::opts_chunk$set(
 
 ```{r}
 library(ramp.xds)
+```
+
+```{r, echo=FALSE}
 #devtools::load_all()
 ```
 
@@ -148,7 +151,7 @@ Om <- with(rm1$MYZpar[[1]], make_Omega_dts(p, sigma, mu, calK))
 ```
 
 ```{r}
-dts_solve(rm1, Tmax=200) -> rm1
+dts_solve(rm1, 200) -> rm1
 ```
 
 ```{r}
@@ -211,7 +214,7 @@ rm10$Lpar[[1]]$scale = 1.5^c(1:10)
 ```
 
 ```{r}
-dts_solve(rm10, Tmax=200) -> rm10
+dts_solve(rm10, 200) -> rm10
 ```
 
 

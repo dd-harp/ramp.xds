@@ -6,6 +6,10 @@ numeric_tol <- 1e-5
 
 test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
   pars <- make_parameters_xde()
+  pars$frame <- "full"
+  class(pars$frame) <- "full"
+  pars$dlay<- "dde"
+  class(pars$dlay) <- "dde"
   pars$nPatches <- 3
   pars$nStrata <- 3
   pars$nHabitats <- 3
@@ -99,7 +103,7 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
   y0 <- get_inits(pars)
 
   # solve the model
-  out = ode(y = y0, times = c(0, 365), func = xDE_diffeqn, parms = pars)
+  out = ode(y = y0, times = c(0, 365), func = xde_derivatives, parms = pars)
 
   # check it stays at equilibrium with phi = 0 for all time
   expect_equal(out[1, -1], out[2, -1], tolerance = numeric_tol)

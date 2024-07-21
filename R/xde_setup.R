@@ -125,6 +125,12 @@ xde_setup = function(modelName = "unnamed",
   class(pars$xde) <- xde
   class(pars$compute) = "xde"
 
+  pars$frame <- "full"
+  class(pars$frame) <- "full"
+
+  pars$dlay <- "ode"
+  class(pars$dlay) <- "ode"
+
   pars$modelName = modelName
   pars$Xname = Xname
   pars$MYZname = MYZname
@@ -215,6 +221,12 @@ xde_setup_mosy = function(modelName = "unnamed",
   class(pars$xde) <- "mosy"
   class(pars$compute) = "na"
 
+  pars$frame <- "mosy"
+  class(pars$frame) <- "mosy"
+
+  pars$dlay <- "ode"
+  class(pars$dlay) <- "ode"
+
   pars$modelName = modelName
   pars$MYZname = MYZname
   pars$Lname = Lname
@@ -266,6 +278,12 @@ xde_setup_aquatic = function(modelName = "unnamed",
   pars = make_parameters_xde()
   class(pars$xde) <- "aqua"
   class(pars$compute) = "na"
+
+  pars$frame <- "aquatic"
+  class(pars$frame) <- "aquatic"
+
+  pars$dlay <- "ode"
+  class(pars$dlay) <- "ode"
 
   pars$modelName = modelName
   pars$MYZname = "trace"
@@ -334,6 +352,12 @@ xde_setup_human = function(modelName = "unnamed",
   class(pars$xde) <- "human"
   class(pars$compute) = "human"
 
+  pars$frame <- "human"
+  class(pars$frame) <- "human"
+
+  pars$dlay <- "ode"
+  class(pars$dlay) <- "ode"
+
   pars$modelName = modelName
   pars$Xname = Xname
   pars$MYZname = "trace"
@@ -388,6 +412,12 @@ xde_setup_cohort = function(F_eir, bday=0, scale=1,
   class(pars$xde) <- "cohort"
   class(pars$compute) = "cohort"
 
+  pars$frame <- "cohort"
+  class(pars$frame) <- "cohort"
+
+  pars$dlay <- "ode"
+  class(pars$dlay) <- "ode"
+
   pars$nVectors = 1
   pars$nHosts = 1
   pars$nPatches = 1
@@ -395,10 +425,10 @@ xde_setup_cohort = function(F_eir, bday=0, scale=1,
   pars$modelName = modelName
   pars$Xname = Xname
 
-  pars$F_eir = F_eir
   pars$EIRpar = list()
   pars$EIRpar$bday = bday
   pars$EIRpar$scale = scale
+  pars$F_eir = F_eir
 
   # Structure
   nStrata = length(HPop)

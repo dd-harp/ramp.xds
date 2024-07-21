@@ -53,6 +53,11 @@ test_that("forced emergence works with equilibrium", {
   alpha <- as.vector(ginv(calN) %*% Lambda)
 
   params <- make_parameters_xde()
+  params$frame <- "mosy"
+  class(params$frame) <- "mosy"
+  params$dlay<- "ode"
+  class(params$dlay) <- "ode"
+
   params$nPatches = nPatches
   params$nHabitats = nHabitats
   params$nVectors = nVectors
@@ -74,7 +79,7 @@ test_that("forced emergence works with equilibrium", {
   y0 <- get_inits(params)
 
 
-  out <- deSolve::ode(y = y0, times = c(0, 365), func = xDE_diffeqn_mosy, parms=params, method = 'lsoda')
+  out <- deSolve::ode(y = y0, times = c(0, 365), func = xde_derivatives, parms=params, method = 'lsoda')
 
   M_sim <- as.vector(out[2, params$ix$MYZ[[1]]$M_ix+1])
   P_sim <- as.vector(out[2, params$ix$MYZ[[1]]$P_ix+1])

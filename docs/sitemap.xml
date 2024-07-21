@@ -361,21 +361,6 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_X.SEISd.html</loc>
   </url>
   <url>
-    <loc>https://dd-harp.github.io/ramp.xds/reference/F_X.SIP.html</loc>
-  </url>
-  <url>
-    <loc>https://dd-harp.github.io/ramp.xds/reference/F_X.SIS.html</loc>
-  </url>
-  <url>
-    <loc>https://dd-harp.github.io/ramp.xds/reference/F_X.hMoI.html</loc>
-  </url>
-  <url>
-    <loc>https://dd-harp.github.io/ramp.xds/reference/F_X.html</loc>
-  </url>
-  <url>
-    <loc>https://dd-harp.github.io/ramp.xds/reference/F_X.trace.html</loc>
-  </url>
-  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_alpha.basicL.html</loc>
   </url>
   <url>
@@ -626,6 +611,21 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_tau.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_x.SIP.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_x.SIS.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_x.hMoI.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_x.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_x.trace.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/HTC.SEIS.html</loc>
@@ -1202,6 +1202,24 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dts_steady_state_X.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.aquatic.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.cohort.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.full.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.human.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.mosy.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/eir2fqZ.html</loc>
@@ -2021,6 +2039,24 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xDE_diffeqn_mosy.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.aquatic.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.cohort.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.full.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.human.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.mosy.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_make_Lpar_basicL.html</loc>

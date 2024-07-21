@@ -89,6 +89,11 @@ test_that("test equilibrium with RM adults (ODE), basic competition", {
 
   # parameters for exDE
   params <- make_parameters_xde()
+  params$frame <- "mosy"
+  class(params$frame) <- "mosy"
+  params$dlay<- "ode"
+  class(params$dlay) <- "ode"
+
   params$nStrata <- nStrata
   params$nPatches <- nPatches
   params$nHabitats <- nHabitats
@@ -113,7 +118,7 @@ test_that("test equilibrium with RM adults (ODE), basic competition", {
 
 
   # run simulation
-  out <- deSolve::ode(y = y0, times = c(0,190), func = xDE_diffeqn_mosy, parms = params, method = "lsoda")
+  out <- deSolve::ode(y = y0, times = c(0,190), func = xde_derivatives, parms = params, method = "lsoda")
 
   expect_equal(as.vector(out[2, params$ix$L[[1]]$L_ix+1]), as.vector(L), tolerance = numeric_tol)
   expect_equal(as.vector(out[2, params$ix$MYZ[[1]]$M_ix+1]), as.vector(M), tolerance = numeric_tol)
@@ -207,6 +212,10 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
   theta <- (eta - psi*L - phi*L)/(L^2)
 
   params <- make_parameters_xde()
+  params$frame <- "mosy"
+  class(params$frame) <- "mosy"
+  params$dlay<- "ode"
+  class(params$dlay) <- "ode"
   params$nStrata <- nStrata
   params$nPatches <- nPatches
   params$nHabitats <- nHabitats
@@ -232,7 +241,7 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
 
 
   # run simulation
-  out <- deSolve::dede(y = y0, times = c(0,90), func = xDE_diffeqn_mosy, parms = params, method = "lsoda")
+  out <- deSolve::dede(y = y0, times = c(0,90), func = xde_derivatives, parms = params, method = "lsoda")
 
   expect_equal(as.vector(out[2, params$ix$L[[1]]$L_ix+1]), as.vector(L), tolerance = numeric_tol)
   expect_equal(as.vector(out[2, params$ix$MYZ[[1]]$M_ix+1]), as.vector(M), tolerance = numeric_tol)

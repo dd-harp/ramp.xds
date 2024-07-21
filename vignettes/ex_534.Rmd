@@ -22,8 +22,8 @@ library(ggplot2)
 library(deSolve)
 ```
 
-```{r, echo=FALSE, eval=FALSE}
-devtools::load_all()
+```{r, echo=FALSE}
+#devtools::load_all()
 ```
 
 # Introduction
@@ -48,6 +48,10 @@ We already know three important parameters, $l$, $p$ and $n$ because they are de
 
 ```{r}
 params = make_parameters_xde() 
+params$frame <- "full"
+class(params$frame) <- "full"
+params$dlay<- "ode"
+class(params$dlay) <- "ode"
 params$nVectors = 1
 params$nHosts = 1
 params$nHabitats = 5
@@ -247,12 +251,12 @@ params <- EggLaying(0, y0, params)
 
 ## Numerical Solution
 
-Now we can pass the vector of initial conditions, `y`, our parameter list `params`, and the function `ramp.xds::xDE_diffeqn` to the differential equation solvers in `deSolve::ode` to generate a numerical trajectory. The classes of `Xpar`, `MYZpar`, and `Lpar` in `params` will ensure that the right methods are invoked (dispatched) to solve your model.
+Now we can pass the vector of initial conditions, `y`, our parameter list `params`, and the function `ramp.xds::xde_derivatives` to the differential equation solvers in `deSolve::ode` to generate a numerical trajectory. The classes of `Xpar`, `MYZpar`, and `Lpar` in `params` will ensure that the right methods are invoked (dispatched) to solve your model.
 
 ```{r}
 
 out <- deSolve::ode(y = y0, times = 0:365, 
-                    func = xDE_diffeqn, parms = params, method = "lsoda")
+                    func = xde_derivatives, parms = params, method = "lsoda")
 out1 <- out
 ```
 
