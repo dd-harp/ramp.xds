@@ -77,7 +77,7 @@ xde_make_Xpar_SEISd = function(nStrata, Xopts=list(),
     Xpar$b = checkIt(b, nStrata)
     Xpar$c = checkIt(c, nStrata)
     Xpar$r = checkIt(r, nStrata)
-    Xpanu$nu = checkIt(nu, nStrata)
+    Xpar$nu = checkIt(nu, nStrata)
 
     return(Xpar)
   })}

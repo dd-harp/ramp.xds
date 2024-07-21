@@ -60,7 +60,6 @@ Note that in the final line, $EIR$ is a column vector of dimension $n$ due to th
 
 ```{r, message=FALSE, warning=FALSE}
 library(ramp.xds)
-#devtools::load_all()
 library(deSolve)
 library(data.table)
 library(ggplot2)
@@ -97,6 +96,10 @@ EIR <- diag(1/b, nStrata) %*% ((r*I)/(H-I))
 
 ```{r} 
 params <- make_parameters_xde()
+params$frame <- "cohort"
+class(params$frame) <- "cohort"
+params$dlay<- "ode"
+class(params$dlay) <- "ode"
 params$nStrata = nStrata
 params$nPatches = 1
 params$nHosts = 1 
@@ -108,6 +111,8 @@ fF_eir = function(EIR){
   return(function(t, bday=0, scale=1){EIR})
 } 
 F_eir = fF_eir(EIR)
+params$EIRpar <- list() 
+params$EIRpar$F_eir <- F_eir 
 
 params = make_parameters_demography_null(pars = params, H=H) 
 
@@ -124,8 +129,8 @@ params = make_indices(params)
 ```{r}
 y0 <- get_inits(params)
 
-out <- deSolve::ode(y = y0, times = c(0, 365), xDE_diffeqn_cohort, 
-                    parms = params, method = 'lsoda', F_eir = F_eir) 
+out <- deSolve::ode(y = y0, times = c(0, 365), xde_derivatives, 
+                    parms = params, method = 'lsoda') 
 out1 <- out
 ```
 

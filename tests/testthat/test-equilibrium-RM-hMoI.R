@@ -89,6 +89,10 @@ test_that("test equilibrium with RM adults (ODE), hMoI humans, trace", {
 
   # parameters for exDE
   params <- make_parameters_xde()
+  params$frame <- "full"
+  class(params$frame) <- "full"
+  params$dlay<- "ode"
+  class(params$dlay) <- "ode"
   params$nStrata <- nStrata
   params$nPatches <- nPatches
   params$nHabitats <- nHabitats
@@ -113,7 +117,7 @@ test_that("test equilibrium with RM adults (ODE), hMoI humans, trace", {
   y0 <- get_inits(params)
 
   # run simulation
-  out <- deSolve::ode(y = y0, times = c(0,50), func = xDE_diffeqn, parms = params, method = "lsoda")
+  out <- deSolve::ode(y = y0, times = c(0,50), func = xde_derivatives, parms = params, method = "lsoda")
 
   expect_equal(as.vector(out[2, params$ix$MYZ[[1]]$M_ix+1]), as.vector(M), tolerance = numeric_tol)
   expect_equal(as.vector(out[2, params$ix$MYZ[[1]]$P_ix+1]), as.vector(P), tolerance = numeric_tol)
@@ -208,6 +212,10 @@ test_that("test equilibrium with RM adults (DDE), hMoI humans, trace", {
 
   # parameters for exDE
   params <- make_parameters_xde()
+  params$frame <- "full"
+  class(params$frame) <- "full"
+  params$dlay<- "dde"
+  class(params$dlay) <- "dde"
   params$nStrata <- nStrata
   params$nPatches <- nPatches
   params$nHabitats <- nHabitats
@@ -232,7 +240,7 @@ test_that("test equilibrium with RM adults (DDE), hMoI humans, trace", {
   y0 <- get_inits(params)
 
   # run simulation
-  out <- deSolve::dede(y = y0, times = c(0,50), func = xDE_diffeqn, parms = params, method = "lsoda")
+  out <- deSolve::dede(y = y0, times = c(0,50), func = xde_derivatives, parms = params, method = "lsoda")
 
   expect_equal(as.vector(out[2, params$ix$MYZ[[1]]$M_ix+1]), as.vector(M), tolerance = numeric_tol)
   expect_equal(as.vector(out[2, params$ix$MYZ[[1]]$P_ix+1]), as.vector(P), tolerance = numeric_tol)

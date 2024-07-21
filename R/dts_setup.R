@@ -57,30 +57,6 @@ make_parameters_dts = function(){
 }
 
 #' @title Set up a model for dts_diffeqn
-#' @param Xday is the run-time time step for X component (in days): integer or 1/integer
-#' @param MYZday is the run-time time step for MYZ component (in days): integer or 1/integer
-#' @param Lday is the run-time time step for L component (in days): integer or 1/integer
-#' @param Lname is the S3 class of the L model
-#' @return a [list]
-#' @export
-set_Dday = function(Xday, MYZday, Lday, Lname="trace"){
-  if(Lname == "trace") Lday = min(Xday, MYZday)
-  mnn = min(Xday, MYZday, Lday)
-  mxx = max(Xday, MYZday, Lday)
-
-  if(mnn<1){
-    Xm = ifelse(Xday <=1, 1/Xday, 1)
-    Lm = ifelse(Lday <=1, 1/Lday, 1)
-    MYZm = ifelse(MYZday <=1, 1/MYZday, 1)
-    return(1/DescTools::LCM(Xm, Lm, MYZm))
-  } else if(mnn==1){
-    return(1)
-  } else {
-    return(DescTools::LCM(Xday, Lday, MYZday))
-  }
-}
-
-#' @title Set up a model for dts_diffeqn
 #' @param modelName is a name for the model (arbitrary)
 #' @param MYZname is a character string defining a MYZ model
 #' @param Xname is a character string defining a X model
@@ -152,6 +128,9 @@ dts_setup = function(modelName = "unnamed",
 
   pars = make_parameters_dts()
   class(pars$compute) = "dts"
+
+  pars$frame <- "full"
+  class(pars$frame) <- "full"
 
   pars$modelName = modelName
   pars$Xname = Xname
@@ -251,6 +230,9 @@ dts_setup_mosy = function(modelName = "unnamed",
   class(pars$dts) <- "mosy"
   class(pars$compute) = "na"
 
+  pars$frame <- "mosy"
+  class(pars$frame) <- "mosy"
+
   pars$modelName = modelName
   pars$MYZname = MYZname
   pars$Lname = Lname
@@ -309,6 +291,9 @@ dts_setup_aquatic = function(modelName = "unnamed",
   pars = make_parameters_dts()
   class(pars$dts) <- "aqua"
   class(pars$compute) = "na"
+
+  pars$frame <- "aquatic"
+  class(pars$frame) <- "aquatic"
 
   pars$modelName = modelName
   pars$MYZname = "Gtrace"
@@ -380,6 +365,9 @@ dts_setup_human = function(modelName = "unnamed",
   class(pars$dts) <- "human"
   class(pars$compute) = "human"
 
+  pars$frame <- "human"
+  class(pars$frame) <- "human"
+
   pars$modelName = modelName
   pars$Xname = Xname
   pars$MYZname = "Ztrace"
@@ -436,6 +424,9 @@ dts_setup_cohort = function(F_eir, bday=0, scale=1,
   pars = make_parameters_dts()
   class(pars$dts) <- "cohort"
   class(pars$compute) = "cohort"
+
+  pars$frame <- "cohort"
+  class(pars$frame) <- "cohort"
 
   pars$nVectors = 1
   pars$nHosts = 1

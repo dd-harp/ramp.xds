@@ -6,7 +6,7 @@
 #' @return a [list]
 #' @export
 xde_solve = function(pars, Tmax=365, dt=1){
-  UseMethod("xde_solve", pars$xde)
+  UseMethod("xde_solve", pars$dlay)
 }
 
 #' @title Solve for the steady state or stable orbit of a system of equations
@@ -32,7 +32,7 @@ xde_steady = function(pars){
   pars1 <- dde2ode_MYZ(pars)
   pars1 <- make_indices(pars1)
   y0 = get_inits(pars1)
-  rootSolve::steady(y=y0, func = xDE_diffeqn, parms = pars1)$y -> y_eq
+  rootSolve::steady(y=y0, func = xde_derivatives, parms = pars1)$y -> y_eq
   pars$outputs$steady = parse_outputs_vec(y_eq, pars1)
   return(pars)
 }
@@ -45,7 +45,7 @@ xde_steady = function(pars){
 xde_solve.ode = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
   y0 = get_inits(pars)
-  deSolve::ode(y = y0, times = tt, func = xDE_diffeqn, parms = pars, method = "lsoda") -> out
+  deSolve::ode(y = y0, times = tt, func = xde_derivatives, parms = pars, method = "lsoda") -> out
   pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
 }
@@ -58,86 +58,8 @@ xde_solve.ode = function(pars, Tmax=365, dt=1){
 xde_solve.dde = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
   y0 = get_inits(pars)
-  deSolve::dede(y = y0, times = tt, func = xDE_diffeqn, parms = pars, method = "lsoda") -> out
+  deSolve::dede(y = y0, times = tt, func = xde_derivatives, parms = pars, method = "lsoda") -> out
   pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
 }
 
-#' @title Solve a system of equations for aquatic dynamics, forced by egg deposition, using xDE_diffeqn_aquatic
-#' @description Implements [xde_solve] for aquatic dynaamic
-#' @inheritParams xde_solve
-#' @return a [list]
-#' @export
-xde_solve.aqua = function(pars, Tmax=365, dt=1){
-  tt = seq(0, Tmax, by=dt)
-  y0 = get_inits(pars)
-  deSolve::ode(y = y0, times = tt, func = xDE_diffeqn_aquatic, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_outputs(out, pars)
-  return(pars)
-}
-
-#' @title Solve a system of delay equations for aquatic dynamics, forced by egg deposition, using xDE_diffeqn_aquatic
-#' @description Implements [xde_solve] for aquatic dynaamic
-#' @inheritParams xde_solve
-#' @return a [list]
-#' @export
-xde_solve.aqua_dde = function(pars, Tmax=365, dt=1){
-  tt = seq(0, Tmax, by=dt)
-  y0 = get_inits(pars)
-  deSolve::dede(y = y0, times = tt, func = xDE_diffeqn_aquatic, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_outputs(out, pars)
-  return(pars)
-}
-
-#' @title Solve a system of equations for mosquito ecology using xDE_diffeqn_mosy
-#' @description Implements [xde_solve] for mosquito dynamics (no transmission)
-#' @inheritParams xde_solve
-#' @return a [list]
-#' @export
-xde_solve.mosy = function(pars, Tmax=365, dt=1){
-  tt = seq(0, Tmax, by=dt)
-  y0 = get_inits(pars)
-  deSolve::ode(y = y0, times = tt, func = xDE_diffeqn_mosy, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_outputs(out, pars)
-  return(pars)
-}
-
-#' @title Solve a system of delay differential equations for mosquito ecology using xDE_diffeqn_mosy
-#' @description Implements [xde_solve] for mosquito dynamics (no transmission)
-#' @inheritParams xde_solve
-#' @return a [list]
-#' @export
-xde_solve.mosy_dde = function(pars, Tmax=365, dt=1){
-  tt = seq(0, Tmax, by=dt)
-  y0 = get_inits(pars)
-  deSolve::dede(y = y0, times = tt, func = xDE_diffeqn_mosy, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_outputs(out, pars)
-  return(pars)
-}
-
-#' @title Solve a system of equations with xDE_diffeqn_human
-#' @description Implements [xde_solve] for mosquito dynamics (no transmission)
-#' @inheritParams xde_solve
-#' @return a [list]
-#' @export
-xde_solve.human = function(pars, Tmax=365, dt=1){
-  tt = seq(0, Tmax, by=dt)
-  y0 = get_inits(pars)
-  deSolve::ode(y = y0, times = tt, func = xDE_diffeqn_human, parms = pars, method = "lsoda") -> out
-  pars$outputs$orbits = parse_outputs(out, pars)
-  return(pars)
-}
-
-
-#' @title Solve a system of equations with xDE_diffeqn_cohort
-#' @description Implements [xde_solve] for mosquito dynamics (no transmission)
-#' @inheritParams xde_solve
-#' @return a [list]
-#' @export
-xde_solve.cohort = function(pars, Tmax=365, dt=1){
-  tt = seq(0, Tmax, by=dt)
-  y0 = get_inits(pars)
-  deSolve::ode(y = y0, times = tt, func = xDE_diffeqn_cohort, parms=pars, F_eir = pars$F_eir, method = "lsoda") -> out
-  pars$outputs$orbits = parse_outputs(out, pars)
-  return(pars)
-}

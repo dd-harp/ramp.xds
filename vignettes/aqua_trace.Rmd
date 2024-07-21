@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
 
 ```{r, message=FALSE, warning=FALSE}
 library(ramp.xds)
-#devtools::load_all()
 library(MASS)
 library(expm)
 library(deSolve)
@@ -105,6 +104,10 @@ to `ramp.xds::xDE_diffeqn_mosy`.
 
 ```{r}
 params = make_parameters_xde()
+params$frame <- "mosy"
+class(params$frame) <- "mosy"
+params$dlay<- "ode"
+class(params$dlay) <- "ode"
 class(params$BFpar) <- "static"
 class(params$EGGpar) <- "simple"
 params$nVectors = 1 
@@ -129,7 +132,7 @@ y0 <- rep(0, params$max_ix)
 y0[params$ix$MYZ[[1]]$M_ix] <- M_eq
 y0[params$ix$MYZ[[1]]$P_ix] <- P_eq
 
-out <- deSolve::ode(y = y0, times = 0:50, func = xDE_diffeqn_mosy, parms = params, method = 'lsoda')
+out <- deSolve::ode(y = y0, times = 0:50, func = xde_derivatives, parms = params, method = 'lsoda')
 out1 <- out
 ```
 

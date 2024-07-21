@@ -962,18 +962,20 @@ reference:
     Methods to compute the derivatives and solve the equat
 - subtitle: Derivatives
   contents:
-  - xDE_diffeqn
-  - xDE_diffeqn_aquatic
-  - xDE_diffeqn_mosy
-  - xDE_diffeqn_human
-  - xDE_diffeqn_cohort
+  - xde_derivatives
+  - xde_derivatives.full
+  - xde_derivatives.aquatic
+  - xde_derivatives.mosy
+  - xde_derivatives.human
+  - xde_derivatives.cohort
 - subtitle: Update
   contents:
-  - DTS_step
-  - DTS_step_aquatic
-  - DTS_step_mosy
-  - DTS_step_human
-  - DTS_step_cohort
+  - dts_update
+  - dts_update.full
+  - dts_update.aquatic
+  - dts_update.mosy
+  - dts_update.human
+  - dts_update.cohort
   - Update_Xt
   - Update_MYZt
   - Update_Lt
@@ -984,20 +986,9 @@ reference:
   - xde_solve
   - xde_solve.dde
   - xde_solve.ode
-  - xde_solve.aqua
-  - xde_solve.aqua_dde
-  - xde_solve.mosy
-  - xde_solve.mosy_dde
-  - xde_solve.human
-  - xde_solve.cohort
   - xde_stable_orbit
   - xde_steady
   - dts_solve
-  - dts_solve.dts
-  - dts_solve.aqua
-  - dts_solve.mosy
-  - dts_solve.human
-  - dts_solve.cohort
   - dts_stable_orbit
   - dts_steady
 - title: Analysis and Visualization

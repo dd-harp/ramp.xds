@@ -158,6 +158,8 @@ xde_setup(MYZname="RM", Xname="SIS", Lname="basicL",
           MYZopts=MYZo, EIPopts=EIPo, calK=calK, 
           Xopts=Xo, residence=1:3, searchB=rep(1,3), 
           TimeSpent =TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
+itn_mod$dlay <- "dde"
+class(itn_mod$dlay) <- "dde"
 ```
 
 ```{r}
