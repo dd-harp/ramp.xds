@@ -961,10 +961,16 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/compute_NI_ix.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/compute_Q.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/compute_beta.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/compute_calU.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/compute_eggs_laid.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/compute_kappa.html</loc>
@@ -1007,6 +1013,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/compute_vars_mosy.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/create_membership_matrix.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dEIPdt.html</loc>
@@ -1390,6 +1399,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_Omega_xde.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_Q.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_TaR.html</loc>
   </url>
   <url>
@@ -1457,6 +1469,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_calU_s.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_eggs_laid.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_indices.html</loc>
@@ -1714,6 +1729,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/setup_BloodFeeding.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/setup_EGG_LAYING.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/setup_EGGpar_static.html</loc>
   </url>
   <url>
@@ -1844,6 +1862,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/setup_development_null.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying_static.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/setup_eip_fixedlag_dts.html</loc>
@@ -2027,6 +2048,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_inits_X.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/view_membership_matrix.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xDE_diffeqn.html</loc>

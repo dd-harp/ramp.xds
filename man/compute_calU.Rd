@@ -2,20 +2,45 @@
 % Please edit documentation in R/egg_laying.R
 \name{compute_calU}
 \alias{compute_calU}
-\title{Compute calU}
+\title{Compute the egg distribution matrix - \eqn{\cal U}}
 \usage{
-compute_calU(t, y, pars)
+compute_calU(search_weights, membership_matrix, Q)
 }
 \arguments{
-\item{t}{the time}
+\item{search_weights}{the habitat search weights}
 
-\item{y}{the state variables}
+\item{membership_matrix}{the habitat membership matrix}
 
-\item{pars}{the model object}
+\item{Q}{the total availability of egg-laying habitats}
 }
 \value{
-a \link{list}
+a \code{nHabitats} \eqn{\times} \code{nPatches} \link{matrix} describing egg deposition, \eqn{\cal U}
 }
 \description{
-Computes the egg laying matrices
+The egg distribution matrix, \eqn{\cal U}, allocates a portion of eggs laid
+by adult mosquitoes in each patch to each one of the aquatic habitats in the patch.
+}
+\details{
+The algorithm is motivated by
+the notion of mosquito \emph{searching} for aquatic habitat
+and a quantity we call \emph{habitat availability}, \eqn{Q}.
+Each habitat is assigned a \emph{search weight,} \eqn{\omega}.
+In the simplest case, habitat availability is the sum of \eqn{\omega} by patch, which uses
+the habitat membership matrix, \eqn{\cal N}. If the habitats in the model got
+all the eggs, then \deqn{Q = \cal N \cdot \omega.}
+The fraction of eggs in the \eqn{j^{th}} patch laid
+in the \eqn{i^{th}} habitat is \eqn{\omega_i / Q_j.}
+To make the model extensible, habitat availability sums all the places where
+mosquitoes might lay eggs, including ovitraps and unsuitable habitats.
+If every element in \eqn{Q} were positive, the egg
+deposition matrix  would be:
+\deqn{{\cal U} = \mbox{diag}\left(\omega \right) \cdot {\cal N}^T \cdot \mbox{diag} \left(\frac{1}{Q}\right).}
+To avoid dividing by zero, the zero elements in \eqn{Q} are set to an arbitrary positive value.
+}
+\seealso{
+The membership matrix \eqn{\cal N} is computed by \link{create_membership_matrix}
+
+Total habitat availability, \eqn{\cal Q}, is computed by \link{compute_Q}
+
+The availability of ovitraps and bad habitats is setup in \link{setup_EGG_LAYING}
 }

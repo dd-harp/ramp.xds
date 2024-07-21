@@ -99,7 +99,9 @@ test_that("test equilibrium with RM adults (ODE), hMoI humans, trace", {
   params$nVectors <- 1
   params$nHosts <- 1
   params$calU[[1]] = calU
-  params$calN <- calN
+  params$membership_matrix <- calN
+  params <- setup_egg_laying_static(params, searchQ=1)
+
 
   params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
   params = make_inits_MYZ_RM_ode(pars = params, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z))
@@ -222,7 +224,8 @@ test_that("test equilibrium with RM adults (DDE), hMoI humans, trace", {
   params$nVectors <- 1
   params$nHosts <- 1
   params$calU[[1]] = calU
-  params$calN <- calN
+  params$membership_matrix <- calN
+  params <- setup_egg_laying_static(params, searchQ=1)
 
   params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
   params = make_inits_MYZ_RM_dde(pars = params, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z), U0=OmegaEIP)

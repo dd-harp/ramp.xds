@@ -80,7 +80,7 @@ calN <- matrix(
       0,0,0,0,0), 
  nrow = params$nPatches, ncol = params$nHabitats, byrow = TRUE
 )
-params$calN <- calN
+params$membership_matrix <- calN
 ```
 
 ## Egg Dispersal Matrix
@@ -99,8 +99,8 @@ The egg dispersal matrix $\mathcal{U}$ is a $l \times p$ matrix describing how e
 \end{equation}
 
 ```{r}
-xi <- matrix(c(.7, .2, .1, .8, .2), 5, 1) 
-params$EGGpar$searchWts[[1]] <- as.vector(xi)
+xi <- 2*matrix(c(.7, .2, .1, .8, .2), 5, 1) 
+params$EGGpar$search_weights[[1]] <- as.vector(xi)
 params$calU[[1]]<- t(calN %*% diag(as.vector(xi)))
 ```
 

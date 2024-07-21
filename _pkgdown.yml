@@ -155,20 +155,21 @@ reference:
   desc: |
     Generic methods for the aquatic (immature) mosquito component.
   contents:
+  - create_membership_matrix
+  - setup_EGG_LAYING
+  - setup_egg_laying_static
+  - compute_Q
+  - compute_calU
+  - compute_eggs_laid
   - Emergence
-  - make_calN
   - EggLaying
+  - EggLaying.setup
   - EggLaying.static
   - EggLaying.dynamic
-  - EggLaying.simple
-  - EggLaying.setup
-  - compute_calU
-  - compute_EggsLaid
   - make_calU
-  - make_calU_s
-  - setup_EggLaying_static
-  - setup_EggLaying_simple
-  - setup_EGGpar_static
+  - make_Q
+  - make_eggs_laid
+  - view_membership_matrix
 - title: Adult Mosquito Dynamics
   desc: |
     Generic methods for the adult mosquito dynamics component.

@@ -137,11 +137,6 @@ $$\bar Z = \Omega \cdot G \cdot Y \left( 1- \Omega\right)^{-1}$$
 
 ## Demo
 
-```{r, eval=F}
-#devtools::load_all()
-```
-
-
 ```{r}
 rm1 <- dts_setup(MYZname = "RM_dts", Xname = "trace")
 ```

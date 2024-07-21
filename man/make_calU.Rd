@@ -2,18 +2,17 @@
 % Please edit documentation in R/egg_laying.R
 \name{make_calU}
 \alias{make_calU}
-\title{Make the egg distribution matrix, calU}
+\title{Compute and store \eqn{\cal U}}
 \usage{
-make_calU(calN, searchWts = 1)
+make_calU(pars)
 }
 \arguments{
-\item{calN}{the habitat membership matrix}
-
-\item{searchWts}{the habitat search weights}
+\item{pars}{the model object}
 }
 \value{
-a \link{matrix} of dimensions \code{nHabitats} by \code{nPatches}
+a \link{list}
 }
 \description{
-Make the egg distribution matrix, calU
+Compute and store the egg deposition matrices
+for all the vector species
 }
