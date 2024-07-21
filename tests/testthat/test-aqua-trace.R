@@ -17,11 +17,11 @@ test_that("forced emergence works with equilibrium", {
   nu <- 1/2
   eggsPerBatch <- 30
 
-  calN <- matrix(0, nPatches, nHabitats)
-  calN[1,1] <- 1
-  calN[2,2] <- 1
-  calN[3,3] <- 1
-  calN[3,4] <- 1
+  membership_matrix <- matrix(0, nPatches, nHabitats)
+  membership_matrix[1,1] <- 1
+  membership_matrix[2,2] <- 1
+  membership_matrix[3,3] <- 1
+  membership_matrix[3,4] <- 1
 
   calU <- matrix(0, nHabitats, nPatches)
   calU[1,1] <- 1
@@ -50,7 +50,7 @@ test_that("forced emergence works with equilibrium", {
   Z_eq <- as.vector(Omega_inv %*% OmegaEIP %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
 
   # the "Lambda" for the dLdt model
-  alpha <- as.vector(ginv(calN) %*% Lambda)
+  alpha <- as.vector(ginv(membership_matrix) %*% Lambda)
 
   params <- make_parameters_xde()
   params$frame <- "mosy"
@@ -64,9 +64,10 @@ test_that("forced emergence works with equilibrium", {
   params$calU=list()
   class(params$calU) <- "static"
   params$calU[[1]] = calU
-  params$calN = calN
+  params$membership_matrix = membership_matrix
   params$kappa[[1]] = kappa
   params$Lambda[[1]] = Lambda
+  params <- setup_egg_laying_static(params, searchQ=1)
 
 
   # ODE

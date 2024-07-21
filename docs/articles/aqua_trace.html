@@ -260,13 +260,13 @@ of those bionomic parameters to
 <span><span class="va">params</span><span class="op">$</span><span class="va">dlay</span><span class="op">&lt;-</span> <span class="st">"ode"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">params</span><span class="op">$</span><span class="va">dlay</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"ode"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">params</span><span class="op">$</span><span class="va">BFpar</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"static"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">params</span><span class="op">$</span><span class="va">EGGpar</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"simple"</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nVectors</span> <span class="op">=</span> <span class="fl">1</span> </span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nHosts</span> <span class="op">=</span> <span class="fl">1</span> </span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span> <span class="op">=</span> <span class="va">nPatches</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nHabitats</span> <span class="op">=</span> <span class="va">nHabitats</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">calU</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">calU</span></span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">calN</span> <span class="op">=</span> <span class="va">calN</span></span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">membership_matrix</span> <span class="op">=</span> <span class="va">calN</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_egg_laying_static.html">setup_egg_laying_static</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># ODE</span></span>
@@ -323,8 +323,9 @@ of those bionomic parameters to
 <span>               MYZopts <span class="op">=</span> <span class="va">MYZo</span>, calK <span class="op">=</span> <span class="va">calK</span>, Lopts <span class="op">=</span> <span class="va">Lo</span>, </span>
 <span>               kappa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.075</span>, <span class="fl">0.025</span><span class="op">)</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">mosy1</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">mosy1</span>,Tmax<span class="op">=</span><span class="fl">50</span>,dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out2</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">out2</span><span class="op">-</span><span class="va">out1</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">mosy1</span>,Tmax<span class="op">=</span><span class="fl">50</span>,dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out2</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">out2</span><span class="op">-</span><span class="va">out1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
 </div>
 </div>

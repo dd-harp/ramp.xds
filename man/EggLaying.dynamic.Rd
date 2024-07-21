@@ -17,5 +17,6 @@
 a \link{list}
 }
 \description{
-Computes eggs laid for the s^th species
+Computes eggs laid with exogenous forcing
+on parameter affecting host availability.
 }

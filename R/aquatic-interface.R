@@ -176,16 +176,5 @@ update_inits_L <- function(pars, y0, s) {
   UseMethod("update_inits_L", pars$Lpar[[s]])
 }
 
-#' @title Make the habitat membership matrix, calN
-#' @param nPatches is the number of patches
-#' @param membership is a vector describing the patch where each habitat is found
-#' @return a [matrix] of dimensions `nPatches` by `nHabitats`
-#' @export
-make_calN = function(nPatches, membership){
-  nHabitats = length(membership)
-  calN = matrix(0, nPatches, nHabitats)
-  calN[cbind(membership, 1:nHabitats)]=1
-  return(calN)
-}
 
 

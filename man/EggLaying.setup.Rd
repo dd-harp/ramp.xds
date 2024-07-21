@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{EggLaying.setup}
 \alias{EggLaying.setup}
-\title{Compute eggs laid}
+\title{Compute eggs laid, the first time}
 \usage{
 \method{EggLaying}{setup}(t, y, pars)
 }
@@ -17,5 +17,20 @@
 a \link{list}
 }
 \description{
-Computes eggs laid for the s^th species
+In autonomous models, this function gets called once to set up a variable describing host availability (\eqn{Q}) and
+the egg deposition matrix (\eqn{\cal U}).
+}
+\details{
+If conditions are time, invariant,
+then \link{EggLaying.static} computes eggs laid. The functions that
+compute \eqn{Q} and \eqn{\cal U} are called \emph{once} after setup.
+The class of \code{EGGpar} is set to \code{static} and the function
+is never called again. If any parameters are changed that would
+affect egg laying, then the class of \code{EGGpar} should get reset to \code{setup}
+to reconfigure \eqn{Q} and \eqn{\cal U}.
+}
+\seealso{
+For \eqn{Q}, see \link{compute_Q}
+
+For \eqn{\cal U}, see \link{compute_calU}
 }

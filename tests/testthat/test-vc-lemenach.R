@@ -95,7 +95,8 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
   pars = setup_itn_lemenach(pars = pars, F_phi=function(t, pars){0})
 
   pars$calU[[1]] <- diag(pars$nPatches)
-  pars$calN <- diag(pars$nHabitats)
+  pars$membership_matrix <- diag(pars$nHabitats)
+  pars <- setup_egg_laying_static(pars, searchQ=1)
 
   pars= make_indices(pars)
 

@@ -109,13 +109,13 @@ class(params$frame) <- "mosy"
 params$dlay<- "ode"
 class(params$dlay) <- "ode"
 class(params$BFpar) <- "static"
-class(params$EGGpar) <- "simple"
 params$nVectors = 1 
 params$nHosts = 1 
 params$nPatches = nPatches
 params$nHabitats = nHabitats
 params$calU[[1]] = calU
-params$calN = calN
+params$membership_matrix = calN
+params <- setup_egg_laying_static(params, 1)
 
 
 # ODE
@@ -182,7 +182,9 @@ xde_setup_mosy(MYZname = "basicM", Lname = "trace",
 
 ```{r}
 xde_solve(mosy1,Tmax=50,dt=1)$outputs$orbits$deout -> out2
-sum(out2-out1)
 ```
 
+```{r}
+sum(abs(out2-out1))
+```
 

@@ -20,7 +20,7 @@ make_parameters_xde = function(solve_as='dde'){
   pars$vars = list()
 
   pars$Lambda = list()
-  pars <- setup_EGGpar_static(pars)
+  pars <- setup_EGG_LAYING(pars)
   pars <- setup_BFpar_static(pars)
 
   pars$Linits = list()
@@ -143,7 +143,7 @@ xde_setup = function(modelName = "unnamed",
   pars$nHosts = nHosts
   pars$nHabitats = length(membership)
   pars$membership = membership
-  pars$calN = make_calN(pars$nPatches, pars$membership)
+  pars$membership_matrix = create_membership_matrix(pars$nPatches, pars$membership)
 
   # Adult Mosquito Dynamics
   calK = make_calK(nPatches, calK, calKopts)
@@ -164,13 +164,11 @@ xde_setup = function(modelName = "unnamed",
   pars = xde_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
   # Egg Laying
-  pars = setup_EggLaying_static(pars, 1, searchQ)
-
+  pars = setup_egg_laying_static(pars, searchQ, 1, Lopts)
 
   pars = make_indices(pars)
 
   y0 <- get_inits(pars)
-  pars <- EggLaying(0, y0, pars)
   pars <- Resources(0, y0, pars)
   pars <- Bionomics(0, y0, pars)
   pars <- Transmission(0, y0, pars)
@@ -235,7 +233,7 @@ xde_setup_mosy = function(modelName = "unnamed",
   pars$nPatches = nPatches
   pars$nHabitats = length(membership)
   pars$membership = membership
-  pars$calN = make_calN(pars$nPatches, pars$membership)
+  pars$membership_matrix = create_membership_matrix(pars$nPatches, pars$membership)
   pars$nVectors = 1
 
   # Dynamics
@@ -246,7 +244,7 @@ xde_setup_mosy = function(modelName = "unnamed",
   # Aquatic Mosquito Dynamics
   pars = xde_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
-  pars = setup_EggLaying_simple(pars, 1, searchQ)
+  pars = setup_egg_laying_static(pars, searchQ, 1, Lopts)
 
   if(is.null(kappa))  kappa = rep(0, nPatches)
   pars$kappa[[1]] = checkIt(kappa, nPatches)
@@ -292,7 +290,7 @@ xde_setup_aquatic = function(modelName = "unnamed",
   pars$nHabitats = nHabitats
   membership = 1:nHabitats
   pars$membership = membership
-  pars$calN = make_calN(pars$nHabitats, pars$membership)
+  pars$membership_matrix = create_membership_matrix(pars$nHabitats, pars$membership)
   searchQ = rep(1, nHabitats)
   pars = xde_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)

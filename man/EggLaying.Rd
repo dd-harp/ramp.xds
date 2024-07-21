@@ -17,5 +17,5 @@ EggLaying(t, y, pars)
 a \link{list}
 }
 \description{
-Computes eggs laid for the s^th species
+Compute eggs laid at time \eqn{t}
 }

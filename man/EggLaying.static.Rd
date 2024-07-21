@@ -17,5 +17,5 @@
 a \link{list}
 }
 \description{
-Computes eggs laid for the s^th species
+Computes eggs laid for an autonomous model
 }
