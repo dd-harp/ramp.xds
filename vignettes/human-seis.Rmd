@@ -19,6 +19,10 @@ knitr::opts_chunk$set(
 library(ramp.xds)
 ```
 
+```{r, echo=F}
+#devtools::load_all()
+```
+
 ## xde 
 
 **`ramp.xds`** includes the standard SEIS model and the delay SEIS model.   The dependent state variables for both models are:
@@ -52,15 +56,16 @@ $$
 \frac{dI}{dt} = \nu E - r I\\
 $$
 
-
 ```{r}
-MYZo = list(MYZm = 2/365, b=0.5)
-seis = xde_setup(Xname = "SEIS", MYZname = "trace")
+MYZo = list(MYZm = 2000/365, f=1, q=1)
+Xo = list(b= 0.5)
+seis = xde_setup(Xname = "SEIS", MYZname = "trace", MYZopts = MYZo, Xopts=Xo)
 seis = xde_stable_orbit(seis)
 ```
 
 ```{r}
-unlist(list_Xvars(seis$outputs$orbits$y_last, seis, 1))
+unlist(list_Xvars(seis$outputs$orbits$y_last, seis, 1)) -> seis_inf
+seis_inf
 ```
 
 This model has the steady state... 
@@ -71,9 +76,13 @@ $$
 \bar S =  
 $$
 ```{r}
-xde_steady_state_X(1/365, 1000, seis$Xpar[[1]])
+xde_steady_state_X(1/365, 1000, seis$Xpar[[1]]) -> seis_ss
+seis_ss
 ```
 
+```{r}
+sum((seis_inf-seis_ss)^2) < 1e-9
+```
 
 ### Compartment Model as an DDE
 
@@ -91,22 +100,25 @@ $$
 \bar I = h S / r \\ 
 \bar S =  
 $$
-```{r}
-devtools::load_all()
-```
 
 ```{r}
-MYZo = list(MYZm = 2/365, b=0.5)
-SEISd = xde_setup(Xname = "SEISd", MYZname = "trace")
+SEISd = xde_setup(Xname = "SEISd", MYZname = "trace", MYZopts = MYZo, Xopts=Xo)
 SEISd$dlay = "dde" 
 class(SEISd$dlay) = "dde" 
 SEISd = xde_solve(SEISd, Tmax = 3650)
 ```
 
 ```{r}
-unlist(list_Xvars(SEISd$outputs$orbits$y_last, SEISd, 1))
+unlist(list_Xvars(SEISd$outputs$orbits$y_last, SEISd, 1))[1:4] -> seisd_inf
+seisd_inf
 ```
 
 ```{r}
-xde_steady_state_X(1/365, 1000, SEISd$Xpar[[1]])
+xde_steady_state_X(1/365, 1000, SEISd$Xpar[[1]]) -> seisd_ss
+seisd_ss
 ```
+
+```{r}
+sum((seisd_inf-seisd_ss)^2) < 1e-9
+```
+
