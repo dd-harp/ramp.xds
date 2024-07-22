@@ -1,61 +1,5 @@
 # functions to set up models
 
-
-#' @title Make base parameters, assuming nVectors = nHosts = 1
-#' @return a [list]
-#' @export
-make_parameters_dts = function(){
-  pars = list()
-  class(pars) <- "dts"
-
-  pars$xde = "dts"
-  class(pars$xde) = "dts"
-
-  dts_list = list()
-  class(dts_list) <- "dts"
-
-  pars$MYZpar = dts_list
-  pars$Lpar = dts_list
-  pars$Xpar = dts_list
-  pars$Hpar = dts_list
-  pars$vars = list()
-
-  pars$Lambda = list()
-  pars <- setup_EGG_LAYING(pars)
-  pars <- setup_BFpar_static(pars)
-
-  pars$Linits = list()
-  pars$MYZinits = list()
-  pars$Xinits = list()
-
-  pars$ix = list()
-  pars$ix$X = list()
-  pars$ix$MYZ = list()
-  pars$ix$L = list()
-
-
-  pars$outputs = list()
-  pars$compute = list()
-
-  pars$HostAvailability = list()
-
-  pars <- setup_abiotic_null(pars)
-  pars <- setup_shock_null(pars)
-  pars <- setup_control_null(pars)
-  pars <- setup_vc_null(pars)
-  pars <- setup_behavior_null(pars)
-  pars <- setup_habitat_dynamics_static(pars)
-  pars <- setup_bionomics_static(pars)
-  pars <- setup_visitors_static(pars)
-  pars <- setup_resources_null(pars)
-  pars <- setup_travel_static(pars)
-
-  pars <- dts_setup_exposure_pois(pars)
-  pars$AR = list()
-
-  return(pars)
-}
-
 #' @title Set up a model for dts_diffeqn
 #' @param modelName is a name for the model (arbitrary)
 #' @param MYZname is a character string defining a MYZ model
@@ -125,12 +69,11 @@ dts_setup = function(modelName = "unnamed",
                      Lopts = list()
 
 ){
-
-  pars = make_parameters_dts()
+  pars <- make_xds_object('dts', 'full')
   class(pars$compute) = "dts"
 
-  pars$frame <- "full"
-  class(pars$frame) <- "full"
+#  pars$frame <- "full"
+#  class(pars$frame) <- "full"
 
   pars$modelName = modelName
   pars$Xname = Xname
@@ -168,7 +111,7 @@ dts_setup = function(modelName = "unnamed",
   pars = dts_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
   # Egg Laying
-  pars = setup_egg_laying_static(pars, searchQ, 1, Lopts)
+  pars = set_habitat_wts_static(pars, searchQ, 1, Lopts)
 
 
   pars = make_indices(pars)
@@ -225,8 +168,7 @@ dts_setup_mosy = function(modelName = "unnamed",
                           kappa=NULL
 ){
 
-  pars = make_parameters_dts()
-  class(pars$dts) <- "mosy"
+  pars <- make_xds_object("dts", "mosy")
   class(pars$compute) = "na"
 
   pars$frame <- "mosy"
@@ -256,7 +198,7 @@ dts_setup_mosy = function(modelName = "unnamed",
   # Aquatic Mosquito Dynamics
   pars = dts_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
-  pars = setup_egg_laying_static(pars, searchQ, 1, Lopts)
+  pars = set_habitat_wts_static(pars, searchQ, 1, Lopts)
 
   if(is.null(kappa))  kappa = rep(0, nPatches)
   pars$kappa[[1]] = checkIt(kappa, nPatches)
@@ -287,12 +229,8 @@ dts_setup_aquatic = function(modelName = "unnamed",
                              MYZopts = list(),
                              LSMname = "null"){
 
-  pars = make_parameters_dts()
-  class(pars$dts) <- "aqua"
+  pars <- make_xds_object("dts", "aquatic")
   class(pars$compute) = "na"
-
-  pars$frame <- "aquatic"
-  class(pars$frame) <- "aquatic"
 
   pars$modelName = modelName
   pars$MYZname = "Gtrace"
@@ -360,12 +298,9 @@ dts_setup_human = function(modelName = "unnamed",
 
 ){
 
-  pars = make_parameters_dts()
-  class(pars$dts) <- "human"
-  class(pars$compute) = "human"
+  pars <- make_xds_object('dts', 'human')
+  class(pars$compute) = "na"
 
-  pars$frame <- "human"
-  class(pars$frame) <- "human"
 
   pars$modelName = modelName
   pars$Xname = Xname
@@ -419,13 +354,8 @@ dts_setup_cohort = function(F_eir, bday=0, scale=1,
                             Xopts = list()
 
 ){
-
-  pars = make_parameters_dts()
-  class(pars$dts) <- "cohort"
+  pars <- make_xds_object('dts', 'cohort')
   class(pars$compute) = "cohort"
-
-  pars$frame <- "cohort"
-  class(pars$frame) <- "cohort"
 
   pars$nVectors = 1
   pars$nHosts = 1

@@ -12,7 +12,8 @@ xde_setup_cohort(
   Xname = "SIS",
   HPop = 1000,
   searchB = 1,
-  Xopts = list()
+  Xopts = list(),
+  dlay = "ode"
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ xde_setup_cohort(
 \item{searchB}{is a vector of search weights for blood feeding}
 
 \item{Xopts}{a list to configure the X model}
+
+\item{dlay}{is either "ode" or "dde"}
 }
 \value{
 a \link{list}

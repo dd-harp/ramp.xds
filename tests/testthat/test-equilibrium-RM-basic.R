@@ -88,11 +88,7 @@ test_that("test equilibrium with RM adults (ODE), basic competition", {
   theta <- (eta - psi*L - phi*L)/(L^2)
 
   # parameters for exDE
-  params <- make_parameters_xde()
-  params$frame <- "mosy"
-  class(params$frame) <- "mosy"
-  params$dlay<- "ode"
-  class(params$dlay) <- "ode"
+  params <- make_xds_object("xde", "mosy")
 
   params$nStrata <- nStrata
   params$nPatches <- nPatches
@@ -103,7 +99,7 @@ test_that("test equilibrium with RM adults (ODE), basic competition", {
   class(params$calU) <- "static"
   params$calU[[1]] = calU
   params$habitat_matrix <- calN
-  params <- setup_egg_laying_static(params, searchQ=1)
+  params <- set_habitat_wts_static(params, searchQ=1)
 
   params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
   params = make_inits_MYZ_RM_ode(pars = params, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z))
@@ -212,11 +208,7 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
   L <- alpha/psi
   theta <- (eta - psi*L - phi*L)/(L^2)
 
-  params <- make_parameters_xde()
-  params$frame <- "mosy"
-  class(params$frame) <- "mosy"
-  params$dlay<- "ode"
-  class(params$dlay) <- "ode"
+  params <- make_xds_object("xde", "mosy", "dde")
   params$nStrata <- nStrata
   params$nPatches <- nPatches
   params$nHabitats <- nHabitats
@@ -226,7 +218,7 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
   class(params$calU) <- "static"
   params$calU[[1]] = calU
   params$habitat_matrix <- calN
-  params <- setup_egg_laying_static(params, searchQ=1)
+  params <- set_habitat_wts_static(params, searchQ=1)
 
   # parameters for exDE
   params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch)

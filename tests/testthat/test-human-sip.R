@@ -20,7 +20,7 @@ test_that("human SIP_xde model remains at equilibrium", {
   EIR <- diag(1/b, nStrata) %*% diag(1/(1-rho)) %*% ((r*I)/(H-I-P))
   foi <- b*EIR
 
-  params <- make_parameters_xde()
+  params <- make_xds_object("xde", "full")
   params$nStrata <- nStrata
   params$nHosts <- 1
   params$nPatches <- 1

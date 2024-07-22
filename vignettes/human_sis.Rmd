@@ -95,11 +95,7 @@ EIR <- diag(1/b, nStrata) %*% ((r*I)/(H-I))
 
 
 ```{r} 
-params <- make_parameters_xde()
-params$frame <- "cohort"
-class(params$frame) <- "cohort"
-params$dlay<- "ode"
-class(params$dlay) <- "ode"
+params <- make_xds_object("xde", "cohort") 
 params$nStrata = nStrata
 params$nPatches = 1
 params$nHosts = 1 

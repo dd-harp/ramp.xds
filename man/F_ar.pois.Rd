@@ -11,7 +11,7 @@
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{the model object as a \link{list}}
+\item{pars}{an \code{xds} object}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}

@@ -4,7 +4,7 @@
 #' @description This method dispatches on the type of `pars$MYZpar`.
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
+#' @param pars an `xds` object
 #' @param s the species index
 #' @return the derivatives a [vector]
 #' @export

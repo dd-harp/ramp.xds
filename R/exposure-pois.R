@@ -35,24 +35,34 @@ foi2eir.pois <- function(foi, b, pars){
    foi/b
 }
 
-#' @title Make parameters for the null model of exposure
-#' @param pars a [list]
-#' @return none
+#' @title Set up the Poisson model of exposure
+#' @param pars an `xds` object
+#' @return the modified `xds` object
 #' @export
-xde_setup_exposure_pois <- function(pars) {
-  FOIpar <- list()
-  class(FOIpar) <- 'pois'
-  pars$FOIpar <- FOIpar
+setup_exposure_pois <- function(pars) {
+  UseMethod("setup_exposure_pois", pars$xds)
+}
+
+#' @title Set up the Poisson model of exposure for continuous time models
+#' @param pars an `xds` object
+#' @return the modified `xds` object
+#' @export
+setup_exposure_pois.xde <- function(pars) {
+  FoIpar <- list()
+  class(FoIpar) <- 'pois'
+  pars$FoIpar <- FoIpar
+  pars$FoI    <- list()
   return(pars)
 }
 
-#' @title Make parameters for the null model of exposure
-#' @param pars a [list]
-#' @return none
+#' @title Set up the Poisson model of exposure for discrete time models
+#' @param pars an `xds` object
+#' @return the modified `xds` object
 #' @export
-dts_setup_exposure_pois <- function(pars) {
+setup_exposure_pois.dts <- function(pars) {
   ARpar <- list()
   class(ARpar) <- 'pois'
   pars$ARpar <- ARpar
+  pars$AR = list()
   return(pars)
 }

@@ -307,7 +307,8 @@ and that most users should read <a href="ex_534.html">our fully worked
 example</a> to run a full simulation.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nPatches</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
-<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_parameters_xde.html">make_parameters_xde</a></span><span class="op">(</span><span class="st">"ode"</span><span class="op">)</span></span>
+<span><span class="co">#params &lt;- make_parameters_xde("ode")</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_xds_object.html">make_xds_object</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"full"</span><span class="op">)</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span> <span class="op">&lt;-</span> <span class="va">nPatches</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nVectors</span> <span class="op">=</span><span class="fl">1</span></span></code></pre></div>
 <div class="section level3">

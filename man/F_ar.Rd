@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure.R
 \name{F_ar}
 \alias{F_ar}
-\title{A model for daily attack rate as a function of the daily EIR.}
+\title{Daily attack rates as a function of the daily EIR}
 \usage{
 F_ar(eir, b, pars)
 }
@@ -11,16 +11,17 @@ F_ar(eir, b, pars)
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{the model object as a \link{list}}
+\item{pars}{an \code{xds} object}
 }
 \value{
 the daily, local force of infection as a \link{numeric} vector
 }
 \description{
-This function computes the daily local AR as a function
-of the daily EIR and effects of partial immunity.
-It is computed based on a probabilistic model of exposure and
-possibly including environmental heterogeneity. If a model of human / host
+This function implements a model for environmental heterogeneity.
+It computes the daily local AR as a function
+of the daily local EIR and effects of partial immunity.
+It is computed based on a probabilistic model of exposure, the distribution of the number of
+bites per person. If a model of human / host
 infection has terms that describe partial immunity, \emph{e.g.} affecting
 pre-erythrocytic immunity to malaria called by \link{F_b}, those effects are implemented here.
 The method dispatches on the type of \code{pars$ARpar}.

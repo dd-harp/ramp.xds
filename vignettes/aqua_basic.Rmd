@@ -76,7 +76,8 @@ theta <- (eta - psi*L - phi*L)/(L^2)
 ``` 
 
 ```{r}
-params <- make_parameters_xde() 
+params <- make_xds_object("xde", "aquatic")
+
 params$nHabitats = nHabitats
 params$eggs_laid = list() 
 params$eggs_laid[[1]] = eta 

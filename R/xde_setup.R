@@ -1,60 +1,5 @@
 # functions to set up models
 
-#' @title Make base parameters, assuming nVectors = nHosts = 1
-#' @param solve_as, either "ode" or "dde"
-#' @return a [list]
-#' @export
-make_parameters_xde = function(solve_as='dde'){
-  pars = list()
-
-  xde <- solve_as
-  class(xde) <- c(solve_as, "xde")
-  pars$xde = xde
-
-  xde_list = list()
-  class(xde_list) = "xde"
-  pars$MYZpar = xde_list
-  pars$Lpar = xde_list
-  pars$Xpar = xde_list
-  pars$Hpar = xde_list
-  pars$vars = list()
-
-  pars$Lambda = list()
-  pars <- setup_EGG_LAYING(pars)
-  pars <- setup_BFpar_static(pars)
-
-  pars$Linits = list()
-  pars$MYZinits = list()
-  pars$Xinits = list()
-
-  pars$ix = list()
-  pars$ix$X = list()
-  pars$ix$MYZ = list()
-  pars$ix$L = list()
-
-
-  pars$outputs = list()
-  pars$compute = list()
-
-  pars$HostAvailability = list()
-
-  pars <- setup_abiotic_null(pars)
-  pars <- setup_shock_null(pars)
-  pars <- setup_control_null(pars)
-  pars <- setup_vc_null(pars)
-  pars <- setup_behavior_null(pars)
-  pars <- setup_habitat_dynamics_static(pars)
-  pars <- setup_bionomics_static(pars)
-  pars <- setup_visitors_static(pars)
-  pars <- setup_resources_null(pars)
-  pars <- setup_travel_static(pars)
-
-  pars <- xde_setup_exposure_pois(pars)
-  pars$FoI = list()
-
-  return(pars)
-}
-
 
 #' @title Set up a model for xde_diffeqn
 #' @param modelName is a name for the model (arbitrary)
@@ -79,7 +24,7 @@ make_parameters_xde = function(solve_as='dde'){
 #' @param TimeSpentOpts are the options to setup TimeSpent
 #' @param searchQ is a vector of search weights for egg laying
 #' @param Lopts a list to configure the L model
-#' @param xde is either "ode" or "dde"
+#' @param dlay is either "ode" or "dde"
 #' @return a [list]
 #' @export
 xde_setup = function(modelName = "unnamed",
@@ -116,20 +61,12 @@ xde_setup = function(modelName = "unnamed",
                      # Aquatic Mosquito Options
                      searchQ = 1,
                      Lopts = list(),
-
-                     xde = "dde"
+                     dlay = 'ode'
 
 ){
 
-  pars = make_parameters_xde(xde)
-  class(pars$xde) <- xde
-  class(pars$compute) = "xde"
-
-  pars$frame <- "full"
-  class(pars$frame) <- "full"
-
-  pars$dlay <- "ode"
-  class(pars$dlay) <- "ode"
+  pars <- make_xds_object('xde', 'full', dlay)
+  class(pars$compute) <- 'xde'
 
   pars$modelName = modelName
   pars$Xname = Xname
@@ -164,7 +101,7 @@ xde_setup = function(modelName = "unnamed",
   pars = xde_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
   # Egg Laying
-  pars = setup_egg_laying_static(pars, searchQ, 1, Lopts)
+  pars = set_habitat_wts_static(pars, searchQ, 1, Lopts)
 
   pars = make_indices(pars)
 
@@ -189,6 +126,7 @@ xde_setup = function(modelName = "unnamed",
 #' @param searchQ is a vector of search weights for egg laying
 #' @param Lopts a list to configure the L model
 #' @param kappa values -- net infectivity to force adult infection dynamics
+#' @param dlay is either "ode" or "dde"
 #' @return a [list]
 #' @export
 xde_setup_mosy = function(modelName = "unnamed",
@@ -212,18 +150,11 @@ xde_setup_mosy = function(modelName = "unnamed",
                      Lopts = list(),
 
                      # forcing
-                     kappa=NULL
+                     kappa=NULL,
+                     dlay = 'ode'
 ){
-
-  pars = make_parameters_xde()
-  class(pars$xde) <- "mosy"
+  pars <- make_xds_object('xde', 'mosy', dlay)
   class(pars$compute) = "na"
-
-  pars$frame <- "mosy"
-  class(pars$frame) <- "mosy"
-
-  pars$dlay <- "ode"
-  class(pars$dlay) <- "ode"
 
   pars$modelName = modelName
   pars$MYZname = MYZname
@@ -244,7 +175,7 @@ xde_setup_mosy = function(modelName = "unnamed",
   # Aquatic Mosquito Dynamics
   pars = xde_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
-  pars = setup_egg_laying_static(pars, searchQ, 1, Lopts)
+  pars = set_habitat_wts_static(pars, searchQ, 1, Lopts)
 
   if(is.null(kappa))  kappa = rep(0, nPatches)
   pars$kappa[[1]] = checkIt(kappa, nPatches)
@@ -263,6 +194,7 @@ xde_setup_mosy = function(modelName = "unnamed",
 #' @param Lopts a list to configure the L model
 #' @param MYZopts a list to configure F_eggs from the trace model
 #' @param LSMname is a character string defining a LSM model
+#' @param dlay is either "ode" or "dde"
 #' @return a [list]
 #' @export
 xde_setup_aquatic = function(modelName = "unnamed",
@@ -271,17 +203,11 @@ xde_setup_aquatic = function(modelName = "unnamed",
                      Lname = "basic",
                      Lopts = list(),
                      MYZopts = list(),
-                     LSMname = "null"){
+                     LSMname = "null",
+                     dlay = 'ode'){
 
-  pars = make_parameters_xde()
-  class(pars$xde) <- "aqua"
+  pars <- make_xds_object('xde', 'aquatic', dlay)
   class(pars$compute) = "na"
-
-  pars$frame <- "aquatic"
-  class(pars$frame) <- "aquatic"
-
-  pars$dlay <- "ode"
-  class(pars$dlay) <- "ode"
 
   pars$modelName = modelName
   pars$MYZname = "trace"
@@ -320,6 +246,7 @@ xde_setup_aquatic = function(modelName = "unnamed",
 #' @param F_circadian is a function describing mosquito daily activity
 #' @param TimeSpent is either a TimeSpent matrix or a string to call a function that sets it up
 #' @param TimeSpentOpts are the options to setup TimeSpent
+#' @param dlay is either "ode" or "dde"
 #' @return a [list]
 #' @export
 xde_setup_human = function(modelName = "unnamed",
@@ -342,19 +269,13 @@ xde_setup_human = function(modelName = "unnamed",
                      searchB = 1,
                      F_circadian = NULL,
                      TimeSpent = "athome",
-                     TimeSpentOpts=list()
+                     TimeSpentOpts=list(),
+                     dlay = 'ode'
 
 ){
 
-  pars = make_parameters_xde()
-  class(pars$xde) <- "human"
-  class(pars$compute) = "human"
-
-  pars$frame <- "human"
-  class(pars$frame) <- "human"
-
-  pars$dlay <- "ode"
-  class(pars$dlay) <- "ode"
+  pars <- make_xds_object('xde', 'human', dlay)
+  pars$compute = "na"
 
   pars$modelName = modelName
   pars$Xname = Xname
@@ -389,6 +310,7 @@ xde_setup_human = function(modelName = "unnamed",
 #' @param HPop is the number of humans in each patch
 #' @param searchB is a vector of search weights for blood feeding
 #' @param Xopts a list to configure the X model
+#' @param dlay is either "ode" or "dde"
 #' @return a [list]
 #' @export
 xde_setup_cohort = function(F_eir, bday=0, scale=1,
@@ -402,19 +324,13 @@ xde_setup_cohort = function(F_eir, bday=0, scale=1,
                            searchB = 1,
 
                            # Human Strata / Options
-                           Xopts = list()
+                           Xopts = list(),
+                           dlay = 'ode'
 
 ){
 
-  pars = make_parameters_xde()
-  class(pars$xde) <- "cohort"
-  class(pars$compute) = "cohort"
-
-  pars$frame <- "cohort"
-  class(pars$frame) <- "cohort"
-
-  pars$dlay <- "ode"
-  class(pars$dlay) <- "ode"
+  pars <- make_xds_object('xde', 'cohort', dlay)
+  class(pars$compute) <- "na"
 
   pars$nVectors = 1
   pars$nHosts = 1

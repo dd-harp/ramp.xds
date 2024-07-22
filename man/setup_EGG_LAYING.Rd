@@ -10,7 +10,7 @@ setup_EGG_LAYING(pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-a \link{list}  -- the modified \code{xds} object
+the modified \code{xds} object
 }
 \description{
 Sets up the object that defines the egg laying interface for an \code{xds} object.

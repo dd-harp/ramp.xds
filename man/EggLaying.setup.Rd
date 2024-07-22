@@ -14,7 +14,7 @@
 \item{pars}{an \code{xds} object}
 }
 \value{
-a \link{list}  -- the modified \code{xds} object
+the modified \code{xds} object
 }
 \description{
 In autonomous models, this function gets called once to set up a variable describing host availability (\eqn{Q}) and

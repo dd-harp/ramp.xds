@@ -5,7 +5,7 @@
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_foi.nb <- function(eir, b, pars){
-  log(1 + b*eir/pars$FOIpar$sz)*pars$FOIpar$sz
+  log(1 + b*eir/pars$FoIpar$sz)*pars$FoIpar$sz
 }
 
 #' @title A negative binomial model for the daily FoI as a function of the daily EIR.
@@ -35,30 +35,37 @@ ar2eir.nb <- function(ar, b, pars){
  ((1-ar)^(-1/pars$ARpar$sz)-1)*pars$ARpar$sz/b
 }
 
-
-#' @title Make parameters for the null model of exposure
-#' @param pars a [list]
+#' @title Set up the negative binomial model of exposure
+#' @param pars an `xds` object
 #' @param sz the size parameter, as in dnbinom(mu=mu, size=size)
-#' @return none
+#' @return the modified `xds` object
 #' @export
-xde_setup_exposure_nb <- function(pars, sz) {
-  FOIpar <- list()
-  class(FOIpar) <- 'nb'
-  FOIpar$sz = sz
-  pars$FOIpar <- FOIpar
+setup_exposure_nb <- function(pars, sz) {
+  UseMethod("setup_exposure_nb", pars$xds)
+}
+
+#' @title Set up the negative binomial model of exposure for continuous time models
+#' @inheritParams setup_exposure_nb
+#' @return the modified `xds` object
+#' @export
+setup_exposure_nb.xde <- function(pars, sz) {
+  FoIpar <- list()
+  class(FoIpar) <- 'nb'
+  FoIpar$sz = sz
+  pars$FoIpar <- FoIpar
+  pars$FoI    <- list()
   return(pars)
 }
 
-
-#' @title Make parameters for the null model of exposure
-#' @param pars a [list]
-#' @param sz the size parameter, as in dnbinom(mu=mu, size=size)
-#' @return none
+#' @title Set up the negative binomial model of exposure for discrete time models
+#' @inheritParams setup_exposure_nb
+#' @return the modified `xds` object
 #' @export
-dts_setup_exposure_nb <- function(pars, sz) {
+setup_exposure_nb.dts <- function(pars, sz) {
   ARpar <- list()
   class(ARpar) <- 'nb'
   ARpar$sz = sz
   pars$ARpar <- ARpar
+  pars$AR    <- list()
   return(pars)
 }

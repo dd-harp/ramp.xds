@@ -16,7 +16,8 @@ xde_setup_mosy(
   calKopts = list(),
   searchQ = 1,
   Lopts = list(),
-  kappa = NULL
+  kappa = NULL,
+  dlay = "ode"
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ xde_setup_mosy(
 \item{Lopts}{a list to configure the L model}
 
 \item{kappa}{values -- net infectivity to force adult infection dynamics}
+
+\item{dlay}{is either "ode" or "dde"}
 }
 \value{
 a \link{list}

@@ -1,23 +1,22 @@
-#' @title Exposure and Infection
+#' @title Compute local exposure and travel
 #' @description Function that model the FoI or AR as a function of
-#' the local daily entomological inoculation rate (dEIR).
-#' exposure while traveling.
+#' the local daily entomological inoculation rate (dEIR),
+#' and a model for exposure to malaria while traveling.
 #' @param t the time
 #' @param y the state variables
-#' @param pars the model object as a [list]
-#' @return the function modifies **pars** and returns it: the computed FoI are stored as `pars$FoI`
+#' @param pars an `xds` object
+#' @return the modified `xds` object; FoI are stored as `pars$FoI`
 #' @export
 Exposure <- function(t, y, pars){
   UseMethod("Exposure", pars$Xpar)
 }
 
-#' @title Exposure and Infection
-#' @description For xde models, compute the daily force of infection (dFoI) for
-#' a population. The dFoI is a function of the local daily entomological
-#' inoculation rate (dEIR), and a function [travel_malaria] that accounts for
-#' exposure while traveling.
+#' @title Compute the force of infection (FoI) given the local EIR and a travel model
+#' @description For xde models, compute the force of infection (FoI) for
+#' all the population strata. The FoI is a function of the daily entomological
+#' inoculation rates (dEIR), and a model for exposure to malaria while traveling.
 #' @inheritParams Exposure
-#' @return the function modifies **pars** and returns it: the computed FoI are stored as `pars$FoI`
+#' @return the modified `xds` object; FoIs are stored as `pars$FoI`
 #' @export
 Exposure.xde <- function(t, y, pars){
   for(i in 1:pars$nHosts){
@@ -27,13 +26,12 @@ Exposure.xde <- function(t, y, pars){
   return(pars)
 }
 
-#' @title Exposure and Infection
-#' @description For xde models, compute the daily force of infection (dFoI) for
-#' a population. The dFoI is a function of the local daily entomological
-#' inoculation rate (dEIR), and a function [travel_malaria] that accounts for
-#' exposure while traveling.
+#' @title Compute the attack rate (AR) given the local EIR and a travel model
+#' @description For dts models, compute the attack rate (AR) for
+#' all the population strata. The AR is a function of local daily entomological
+#' inoculation rates (dEIR), and a model for exposure to malaria while traveling.
 #' @inheritParams Exposure
-#' @return the function modifies **pars** and returns it: the computed FoI are stored as `pars$AR`
+#' @return the modified `xds` object; ARs are stored as `pars$AR`
 #' @export
 Exposure.dts <- function(t, y, pars){
   for(i in 1:pars$nHosts){
@@ -43,21 +41,21 @@ Exposure.dts <- function(t, y, pars){
   return(pars)
 }
 
-#' @title A model for daily FoI as a function of the daily EIR.
+#' @title Compute the local daily FoI as a function of the local daily EIR.
 #' @description This function compute the daily local FoI as a function
 #' of the daily EIR and effects of partial immunity.
 #' It is computed based on a probabilistic model of exposure and
 #' possibly including environmental heterogeneity. If a model of human / host
 #' infection has terms that describe partial immunity, *e.g.* affecting
 #' pre-erythrocytic immunity to malaria called by [F_b], those effects are implemented here.
-#' The method dispatches on the type of `pars$FOIpar`.
+#' The method dispatches on the type of `pars$FoIpar`.
 #' @param eir the daily eir for each stratum
 #' @param b the probability of infection, per bite
-#' @param pars the model object as a [list]
+#' @param pars an `xds` object
 #' @return the daily, local force of infection as a [numeric] vector
 #' @export
 F_foi <- function(eir, b, pars){
-  UseMethod("F_foi", pars$FOIpar)
+  UseMethod("F_foi", pars$FoIpar)
 }
 
 #' @title Convert the daily FoI into a daily EIR under a model
@@ -69,24 +67,25 @@ F_foi <- function(eir, b, pars){
 #' The method dispatches on the type of `pars$FOIpar`.
 #' @param foi the attack rate
 #' @param b the probability of infection, per bite
-#' @param pars the model object as a [list]
+#' @param pars an `xds` object
 #' @return the daily, local force of infection as a [numeric] vector
 #' @export
 foi2eir <- function(foi, b, pars){
-  UseMethod("foi2eir", pars$FOIpar)
+  UseMethod("foi2eir", pars$FoIpar)
 }
 
-#' @title A model for daily attack rate as a function of the daily EIR.
-#' @description This function computes the daily local AR as a function
-#' of the daily EIR and effects of partial immunity.
-#' It is computed based on a probabilistic model of exposure and
-#' possibly including environmental heterogeneity. If a model of human / host
+#' @title Daily attack rates as a function of the daily EIR
+#' @description This function implements a model for environmental heterogeneity.
+#' It computes the daily local AR as a function
+#' of the daily local EIR and effects of partial immunity.
+#' It is computed based on a probabilistic model of exposure, the distribution of the number of
+#' bites per person. If a model of human / host
 #' infection has terms that describe partial immunity, *e.g.* affecting
 #' pre-erythrocytic immunity to malaria called by [F_b], those effects are implemented here.
 #' The method dispatches on the type of `pars$ARpar`.
 #' @param eir the daily eir for each stratum
 #' @param b the probability of infection, per bite
-#' @param pars the model object as a [list]
+#' @param pars an `xds` object
 #' @return the daily, local force of infection as a [numeric] vector
 #' @export
 F_ar <- function(eir, b, pars){
@@ -102,7 +101,7 @@ F_ar <- function(eir, b, pars){
 #' The method dispatches on the type of `pars$FOIpar`.
 #' @param ar the attack rate
 #' @param b the probability of infection, per bite
-#' @param pars the model object as a [list]
+#' @param pars an `xds` object
 #' @return the daily, local force of infection as a [numeric] vector
 #' @export
 ar2eir <- function(ar, b, pars){

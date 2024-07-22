@@ -15,7 +15,8 @@ xde_setup_human(
   searchB = 1,
   F_circadian = NULL,
   TimeSpent = "athome",
-  TimeSpentOpts = list()
+  TimeSpentOpts = list(),
+  dlay = "ode"
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ xde_setup_human(
 \item{TimeSpent}{is either a TimeSpent matrix or a string to call a function that sets it up}
 
 \item{TimeSpentOpts}{are the options to setup TimeSpent}
+
+\item{dlay}{is either "ode" or "dde"}
 }
 \value{
 a \link{list}

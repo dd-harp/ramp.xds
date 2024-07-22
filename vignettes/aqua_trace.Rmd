@@ -103,11 +103,7 @@ we must use `ramp.xds::MosquitoBehavior` to pass the equilibrium values of those
 to `ramp.xds::xDE_diffeqn_mosy`.
 
 ```{r}
-params = make_parameters_xde()
-params$frame <- "mosy"
-class(params$frame) <- "mosy"
-params$dlay<- "ode"
-class(params$dlay) <- "ode"
+params <- make_xds_object("xde", "mosy")
 class(params$BFpar) <- "static"
 params$nVectors = 1 
 params$nHosts = 1 
@@ -115,7 +111,7 @@ params$nPatches = nPatches
 params$nHabitats = nHabitats
 params$calU[[1]] = calU
 params$habitat_matrix = calN
-params <- setup_egg_laying_static(params, 1)
+params <- set_habitat_wts_static(params, rep(1, nHabitats))
 
 
 # ODE
