@@ -80,7 +80,7 @@ calN <- matrix(
       0,0,0,0,0), 
  nrow = params$nPatches, ncol = params$nHabitats, byrow = TRUE
 )
-params$membership_matrix <- calN
+params$habitat_matrix <- calN
 ```
 
 ## Egg Dispersal Matrix

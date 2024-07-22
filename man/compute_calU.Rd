@@ -4,12 +4,12 @@
 \alias{compute_calU}
 \title{Compute the egg distribution matrix - \eqn{\cal U}}
 \usage{
-compute_calU(search_weights, membership_matrix, Q)
+compute_calU(search_weights, habitat_matrix, Q)
 }
 \arguments{
 \item{search_weights}{the habitat search weights}
 
-\item{membership_matrix}{the habitat membership matrix}
+\item{habitat_matrix}{the habitat membership matrix}
 
 \item{Q}{the total availability of egg-laying habitats}
 }
@@ -38,7 +38,7 @@ distribution matrix  would be:
 To avoid dividing by zero, the zero elements in \eqn{Q} are set to an arbitrary positive value.
 }
 \seealso{
-The membership matrix \eqn{\cal N} is computed by \link{create_membership_matrix}
+The membership matrix \eqn{\cal N} is computed by \link{create_habitat_matrix}
 
 Total habitat availability, \eqn{\cal Q}, is computed by \link{compute_Q}
 

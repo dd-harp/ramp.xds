@@ -143,7 +143,7 @@ xde_setup = function(modelName = "unnamed",
   pars$nHosts = nHosts
   pars$nHabitats = length(membership)
   pars$membership = membership
-  pars$membership_matrix = create_membership_matrix(pars$nPatches, pars$membership)
+  pars$habitat_matrix = create_habitat_matrix(pars$nPatches, pars$membership)
 
   # Adult Mosquito Dynamics
   calK = make_calK(nPatches, calK, calKopts)
@@ -233,7 +233,7 @@ xde_setup_mosy = function(modelName = "unnamed",
   pars$nPatches = nPatches
   pars$nHabitats = length(membership)
   pars$membership = membership
-  pars$membership_matrix = create_membership_matrix(pars$nPatches, pars$membership)
+  pars$habitat_matrix = create_habitat_matrix(pars$nPatches, pars$membership)
   pars$nVectors = 1
 
   # Dynamics
@@ -290,7 +290,7 @@ xde_setup_aquatic = function(modelName = "unnamed",
   pars$nHabitats = nHabitats
   membership = 1:nHabitats
   pars$membership = membership
-  pars$membership_matrix = create_membership_matrix(pars$nHabitats, pars$membership)
+  pars$habitat_matrix = create_habitat_matrix(pars$nHabitats, pars$membership)
   searchQ = rep(1, nHabitats)
   pars = xde_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)

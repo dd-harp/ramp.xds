@@ -7,7 +7,7 @@
 setup_EGG_LAYING(pars)
 }
 \arguments{
-\item{pars}{a \code{xds} object}
+\item{pars}{an \code{xds} object}
 }
 \value{
 a \link{list}  -- the modified \code{xds} object
@@ -27,5 +27,5 @@ This function is called by \code{make_xds_object} to set up \code{EGGpar} and th
 the variables it might depend on.
 }
 \references{
-{Test text. \insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
+{This implements the egg laying model in Equations 14-15 from \insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 }

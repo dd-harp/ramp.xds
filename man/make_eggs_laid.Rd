@@ -10,11 +10,11 @@ make_eggs_laid(t, y, pars)
 \item{t}{the time}
 
 \item{y}{the state variables}
+
+\item{pars}{an \code{xds} object}
 }
 \value{
 a \link{list}  -- the modified \code{xds} object
-
-a \link{list}
 }
 \description{
 Computes eggs laid in aquatic habitats

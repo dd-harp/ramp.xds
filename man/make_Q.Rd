@@ -6,6 +6,9 @@
 \usage{
 make_Q(pars)
 }
+\arguments{
+\item{pars}{an \code{xds} object}
+}
 \value{
 a \link{list}  -- the modified \code{xds} object
 }
