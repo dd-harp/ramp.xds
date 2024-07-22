@@ -16,7 +16,7 @@ compute_Q(membership_matrix, search_weights, Q_ovitraps, Q_bad_habitats)
 \item{Q_bad_habitats}{the availability of unsuitable habitats}
 }
 \value{
-a \link{vector} of length \code{nPatches}
+a \link{vector} of describing habitat availability, \eqn{Q}, of length \code{nPatches}
 }
 \description{
 The sum of all available aquatic habitats and any other place

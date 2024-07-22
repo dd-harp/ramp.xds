@@ -2,12 +2,12 @@
 % Please edit documentation in R/egg_laying.R
 \name{setup_egg_laying_static}
 \alias{setup_egg_laying_static}
-\title{Setup egg laying for most models}
+\title{Setup egg laying for an static (autonomous) model of egg laying}
 \usage{
 setup_egg_laying_static(pars, searchQ = 1, s = 1, Lopts = list())
 }
 \arguments{
-\item{pars}{the model object}
+\item{pars}{a \code{xds} object}
 
 \item{searchQ}{the membership matrix}
 
@@ -16,8 +16,8 @@ setup_egg_laying_static(pars, searchQ = 1, s = 1, Lopts = list())
 \item{Lopts}{a \link{list} of options to override defaults}
 }
 \value{
-a \link{list} vector
+a \link{list}  -- the modified \code{xds} object
 }
 \description{
-Sets up the egg-deposition matrix calU for the s^th species
+Sets the search weights, \eqn{\omega} for the habitats
 }

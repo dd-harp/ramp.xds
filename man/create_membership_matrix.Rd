@@ -12,13 +12,16 @@ create_membership_matrix(nPatches, membership)
 \item{membership}{a vector describing the patch index for each habitat}
 }
 \value{
-the membership \link{matrix}, denoted \eqn{\cal N} where \eqn{\left|\cal N\right|=}\code{nPatches} \eqn{\times} \code{nHabitats}
+the habitat membership \link{matrix}, denoted \eqn{\cal N} where \eqn{\left|\cal N\right|= N_p \times N_q}
 }
 \description{
 The habitat membership matrix, \eqn{\cal N}, holds
 information about the patch location for each habitats.
-If \eqn{w} is any vector describing a quantity in habitats (\emph{i.e.}, \eqn{\left|w\right|=} \code{nHabitats}), then
-\eqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|=} \code{nPatches}.
+Let \eqn{N_q} denote the number of habitats, \code{nHabitats},
+and \eqn{N_p} the number of patches, \code{nPatches}.
+If \eqn{w} is any vector describing a quantity in
+habitats (\emph{i.e.}, \eqn{\left|w\right|= N_q}), then
+\eqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
 }
 \details{
 Information about the patch location of each habitat

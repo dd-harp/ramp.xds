@@ -6,13 +6,13 @@
 \usage{
 make_Q(pars)
 }
-\arguments{
-\item{pars}{the model object}
-}
 \value{
-a \link{list}
+a \link{list}  -- the modified \code{xds} object
 }
 \description{
 Set the value of a variable, \eqn{Q}, that describes the availability of any habitat
 or device that would attract mosquitoes and induce them to lay eggs.
+}
+\seealso{
+\link{compute_Q}
 }

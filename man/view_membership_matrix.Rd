@@ -7,7 +7,7 @@
 view_membership_matrix(pars)
 }
 \arguments{
-\item{pars}{an xds model object}
+\item{pars}{a \code{xds} object}
 }
 \value{
 a \code{nHabitats} \eqn{\times 2} \link{matrix}: col 1 is the habitat index, and col 2 is the patch index

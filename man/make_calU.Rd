@@ -7,12 +7,12 @@
 make_calU(pars)
 }
 \arguments{
-\item{pars}{the model object}
+\item{pars}{a \code{xds} object}
 }
 \value{
 a \link{list}
 }
 \description{
-Compute and store the egg deposition matrices
+Compute and store the egg distribution matrices
 for all the vector species
 }

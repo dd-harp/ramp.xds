@@ -11,10 +11,10 @@ EggLaying(t, y, pars)
 
 \item{y}{the state variables}
 
-\item{pars}{the model object}
+\item{pars}{a \code{xds} object}
 }
 \value{
-a \link{list}
+a \link{list}  -- the modified \code{xds} object
 }
 \description{
 Compute eggs laid at time \eqn{t}
