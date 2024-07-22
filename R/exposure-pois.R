@@ -39,10 +39,19 @@ foi2eir.pois <- function(foi, b, pars){
 #' @param pars a [list]
 #' @return none
 #' @export
-xde_setup_exposure_pois <- function(pars) {
+setup_exposure_pois <- function(pars) {
+  UseMethod("setup_exposure_pois", pars$xds)
+}
+
+#' @title Make parameters for the null model of exposure
+#' @param pars a [list]
+#' @return none
+#' @export
+setup_exposure_pois.xde <- function(pars) {
   FOIpar <- list()
   class(FOIpar) <- 'pois'
   pars$FOIpar <- FOIpar
+  pars$FoI    <- list()
   return(pars)
 }
 
@@ -50,9 +59,10 @@ xde_setup_exposure_pois <- function(pars) {
 #' @param pars a [list]
 #' @return none
 #' @export
-dts_setup_exposure_pois <- function(pars) {
+setup_exposure_pois.dts <- function(pars) {
   ARpar <- list()
   class(ARpar) <- 'pois'
   pars$ARpar <- ARpar
+  pars$AR = list()
   return(pars)
 }

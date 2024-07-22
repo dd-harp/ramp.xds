@@ -28,7 +28,7 @@ library(ggplot2)
 
 
 ```{r, echo=FALSE} 
-#devtools::load_all()
+devtools::load_all()
 ```
 
 ## Parameters

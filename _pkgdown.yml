@@ -131,8 +131,12 @@ reference:
   - foi2eir.pois
   - F_ar.pois
   - ar2eir.pois
-  - xde_setup_exposure_pois
-  - dts_setup_exposure_pois
+  - setup_exposure_pois
+  - setup_exposure_pois.xde
+  - setup_exposure_pois.dts
+  - setup_exposure_nb
+  - setup_exposure_nb.xde
+  - setup_exposure_nb.dts
 - subtitle: Negative Binomial Exposure
   desc: |
     Specialized methods the Negative Binomial exposure model
@@ -936,6 +940,7 @@ reference:
   desc: |
     Basic setup for models
   contents:
+  - make_xds_object
   - make_parameters_xde
   - make_parameters_dts
   - make_indices

@@ -11,7 +11,7 @@
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \code{xds} object}
 
 \item{s}{the species index}
 }
@@ -20,4 +20,7 @@ a \link{numeric} vector
 }
 \description{
 Implements \link{dMYZdt} for the basicM xde ODE model.
+}
+\details{
+\deqn{\begin{array}{rl}\frac{dM}{dt} &= \Lambda(t) - \Omega \cdot M \\ \frac{dP}{dt} &= f(M-P) - \Omega\cdot P\end{array}}
 }

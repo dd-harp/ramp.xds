@@ -26,8 +26,7 @@ xde_setup(
   TimeSpent = "athome",
   TimeSpentOpts = list(),
   searchQ = 1,
-  Lopts = list(),
-  xde = "dde"
+  Lopts = list()
 )
 }
 \arguments{

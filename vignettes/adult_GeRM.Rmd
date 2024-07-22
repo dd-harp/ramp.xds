@@ -124,7 +124,7 @@ library(ggplot2)
 ```
 
 ```{r, echo=FALSE}
-#devtools::load_all()
+devtools::load_all()
 ```
 
 Here we show an example of starting and solving a model at equilibrium. Please note that this only
@@ -133,7 +133,8 @@ to run a full simulation.
 
 ```{r}
 nPatches <- 3
-params <- make_parameters_xde("ode")
+#params <- make_parameters_xde("ode")
+params <- make_xds_object("xde", "full")
 params$nPatches <- nPatches
 params$nVectors =1
 ```

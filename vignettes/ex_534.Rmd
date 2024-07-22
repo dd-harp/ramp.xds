@@ -23,7 +23,7 @@ library(deSolve)
 ```
 
 ```{r, echo=FALSE}
-#devtools::load_all()
+devtools::load_all()
 ```
 
 # Introduction
@@ -47,11 +47,8 @@ The model `5-3-4` is designed to illustrate some important features of the frame
 We already know three important parameters, $l$, $p$ and $n$ because they are determined in the early stages of model building. The `ramp.xds` package expects all parameters to be contained in a list object, containing `nHabitats`, `nPatches`, and `nStrata` which correspond to `l`, `p` and `n`.
 
 ```{r}
-params = make_parameters_xde() 
-params$frame <- "full"
-class(params$frame) <- "full"
-params$dlay<- "ode"
-class(params$dlay) <- "ode"
+params = make_xds_object("xde", "full") 
+
 params$nVectors = 1
 params$nHosts = 1
 params$nHabitats = 5

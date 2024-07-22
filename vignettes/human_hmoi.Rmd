@@ -64,7 +64,7 @@ library(ggplot2)
 ```
 
 ```{r, echo=FALSE} 
-#devtools::load_all()
+devtools::load_all()
 ```
 
 Here we run a simple example with 3 population strata at equilibrium. We use `ramp.xds::make_parameters_X_hMoI_xde` to
@@ -96,9 +96,8 @@ EIR <- rep(h/b, 3)
 ```
 
 ```{r}
-params <- make_parameters_xde()
-params$frame <- "cohort" 
-class(params$frame) <- "cohort" 
+params <- make_xds_object("xde", "cohort") 
+
 params$nStrata = nStrata
 params$nVectors = 1 
 params$nHosts = 1

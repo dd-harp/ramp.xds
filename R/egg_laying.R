@@ -20,10 +20,9 @@ setup_EGG_LAYING = function(pars){
 
   up <- list()
   class(up) <- "setup"
-  pars$EGGpar <- up
 
-  pars$EGGpar$search_weights = list()
-  pars$EGGpar$search_weights[[1]] <- 1
+  up$search_weights = list()
+  up$search_weights[[1]] <- 1
 
   pars$calU = list()
   pars$calU[[1]] <- diag(1)
@@ -32,15 +31,17 @@ setup_EGG_LAYING = function(pars){
   pars$vars$Q[[1]] <- 1
 
   pars$vars$ovitraps <- 0
-  pars$EGGpar$ovitrap_weights <- list()
-  pars$EGGpar$ovitrap_weights[[1]] = 1
+  up$ovitrap_weights <- list()
+  up$ovitrap_weights[[1]] = 1
 
   pars$vars$unsuitable_habitats <- 0
-  pars$EGGpar$bad_habitat_weights = list()
-  pars$EGGpar$bad_habitat_weights[[1]] = 1
+  up$bad_habitat_weights = list()
+  up$bad_habitat_weights[[1]] = 1
 
   pars$eggs_laid = list()
   pars$eggs_laid[[1]] = 0
+
+  pars$EGGpar <- up
 
   return(pars)
 }
@@ -211,7 +212,7 @@ EggLaying.dynamic = function(t, y, pars){
 #' @description Compute and store the egg distribution matrices
 #' for all the vector species
 #' @param pars an `xds` object
-#' @return a [list]
+#' @return a [list]  -- the modified `xds` object
 make_calU = function(pars){
   for(s in 1:pars$nVectors)
     pars$calU[[s]] = compute_calU(pars$EGGpar$search_weights[[s]], pars$habitat_matrix, pars$vars$Q[[s]])

@@ -125,12 +125,11 @@ dts_setup = function(modelName = "unnamed",
                      Lopts = list()
 
 ){
-
-  pars = make_parameters_dts()
+  pars <- make_xds_object('dts', 'full')
   class(pars$compute) = "dts"
 
-  pars$frame <- "full"
-  class(pars$frame) <- "full"
+#  pars$frame <- "full"
+#  class(pars$frame) <- "full"
 
   pars$modelName = modelName
   pars$Xname = Xname
@@ -225,8 +224,7 @@ dts_setup_mosy = function(modelName = "unnamed",
                           kappa=NULL
 ){
 
-  pars = make_parameters_dts()
-  class(pars$dts) <- "mosy"
+  pars <- make_xds_object("dts", "mosy")
   class(pars$compute) = "na"
 
   pars$frame <- "mosy"
@@ -287,12 +285,8 @@ dts_setup_aquatic = function(modelName = "unnamed",
                              MYZopts = list(),
                              LSMname = "null"){
 
-  pars = make_parameters_dts()
-  class(pars$dts) <- "aqua"
+  pars <- make_xds_object("dts", "aquatic")
   class(pars$compute) = "na"
-
-  pars$frame <- "aquatic"
-  class(pars$frame) <- "aquatic"
 
   pars$modelName = modelName
   pars$MYZname = "Gtrace"
@@ -360,12 +354,9 @@ dts_setup_human = function(modelName = "unnamed",
 
 ){
 
-  pars = make_parameters_dts()
-  class(pars$dts) <- "human"
-  class(pars$compute) = "human"
+  pars <- make_xds_object('dts', 'human')
+  class(pars$compute) = "na"
 
-  pars$frame <- "human"
-  class(pars$frame) <- "human"
 
   pars$modelName = modelName
   pars$Xname = Xname
@@ -419,13 +410,8 @@ dts_setup_cohort = function(F_eir, bday=0, scale=1,
                             Xopts = list()
 
 ){
-
-  pars = make_parameters_dts()
-  class(pars$dts) <- "cohort"
+  pars <- make_xds_object('dts', 'cohort')
   class(pars$compute) = "cohort"
-
-  pars$frame <- "cohort"
-  class(pars$frame) <- "cohort"
 
   pars$nVectors = 1
   pars$nHosts = 1

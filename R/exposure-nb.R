@@ -35,30 +35,38 @@ ar2eir.nb <- function(ar, b, pars){
  ((1-ar)^(-1/pars$ARpar$sz)-1)*pars$ARpar$sz/b
 }
 
+#' @title Set up a negative binomial model for environmental heterogeneity
+#' @param pars a [list]
+#' @return none
+#' @export
+setup_exposure_nb <- function(pars) {
+  UseMethod("setup_exposure_nb", pars$xds)
+}
 
 #' @title Make parameters for the null model of exposure
 #' @param pars a [list]
 #' @param sz the size parameter, as in dnbinom(mu=mu, size=size)
 #' @return none
 #' @export
-xde_setup_exposure_nb <- function(pars, sz) {
+setup_exposure_nb.xde <- function(pars, sz) {
   FOIpar <- list()
   class(FOIpar) <- 'nb'
   FOIpar$sz = sz
   pars$FOIpar <- FOIpar
+  pars$FoI    <- list()
   return(pars)
 }
-
 
 #' @title Make parameters for the null model of exposure
 #' @param pars a [list]
 #' @param sz the size parameter, as in dnbinom(mu=mu, size=size)
 #' @return none
 #' @export
-dts_setup_exposure_nb <- function(pars, sz) {
+setup_exposure_nb.dts <- function(pars, sz) {
   ARpar <- list()
   class(ARpar) <- 'nb'
   ARpar$sz = sz
   pars$ARpar <- ARpar
+  pars$AR    <- list()
   return(pars)
 }
