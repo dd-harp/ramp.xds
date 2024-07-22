@@ -159,7 +159,7 @@ reference:
   contents:
   - create_habitat_matrix
   - setup_EGG_LAYING
-  - setup_egg_laying_static
+  - set_habitat_wts_static
   - compute_Q
   - compute_calU
   - compute_eggs_laid

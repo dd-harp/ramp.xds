@@ -179,7 +179,6 @@ Models</h3>
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Loading <span style="color: #0000BB;">ramp.xds</span></span></span></code></pre>
 <div class="section level2">
 <h2 id="xde">xde<a class="anchor" aria-label="anchor" href="#xde"></a>
 </h2>
@@ -219,12 +218,12 @@ let:</p>
 \frac{dE}{dt} = h S - \nu E \\
 \frac{dI}{dt} = \nu E - r I\\
 \]</span></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>MYZm <span class="op">=</span> <span class="fl">2000</span><span class="op">/</span><span class="fl">365</span>, f<span class="op">=</span><span class="fl">1</span>, q<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b<span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
 <span><span class="va">seis</span> <span class="op">=</span> <span class="fu"><a href="../reference/xde_setup.html">xde_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SEIS"</span>, MYZname <span class="op">=</span> <span class="st">"trace"</span>, MYZopts <span class="op">=</span> <span class="va">MYZo</span>, Xopts<span class="op">=</span><span class="va">Xo</span><span class="op">)</span></span>
 <span><span class="va">seis</span> <span class="op">=</span> <span class="fu"><a href="../reference/xde_stable_orbit.html">xde_stable_orbit</a></span><span class="op">(</span><span class="va">seis</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="../reference/list_Xvars.html">list_Xvars</a></span><span class="op">(</span><span class="va">seis</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">y_last</span>, <span class="va">seis</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">seis_inf</span></span>
 <span><span class="va">seis_inf</span></span>
 <span><span class="co">#&gt;          S          E          I          H </span></span>
@@ -235,12 +234,12 @@ let:</p>
 \bar I = \nu E / r \\
 \bar S =  
 \]</span></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_steady_state_X.html">xde_steady_state_X</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">365</span>, <span class="fl">1000</span>, <span class="va">seis</span><span class="op">$</span><span class="va">Xpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">seis_ss</span></span>
 <span><span class="va">seis_ss</span></span>
 <span><span class="co">#&gt;          S          E          I          H </span></span>
 <span><span class="co">#&gt;  652.95170   25.04472  322.00358 1000.00000</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">seis_inf</span><span class="op">-</span><span class="va">seis_ss</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-9</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
@@ -260,22 +259,22 @@ h(t-\nu).\)</span></p>
 \bar I = h S / r \\
 \bar S =  
 \]</span></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SEISd</span> <span class="op">=</span> <span class="fu"><a href="../reference/xde_setup.html">xde_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SEISd"</span>, MYZname <span class="op">=</span> <span class="st">"trace"</span>, MYZopts <span class="op">=</span> <span class="va">MYZo</span>, Xopts<span class="op">=</span><span class="va">Xo</span><span class="op">)</span></span>
 <span><span class="va">SEISd</span><span class="op">$</span><span class="va">dlay</span> <span class="op">=</span> <span class="st">"dde"</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">SEISd</span><span class="op">$</span><span class="va">dlay</span><span class="op">)</span> <span class="op">=</span> <span class="st">"dde"</span> </span>
 <span><span class="va">SEISd</span> <span class="op">=</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">SEISd</span>, Tmax <span class="op">=</span> <span class="fl">3650</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="../reference/list_Xvars.html">list_Xvars</a></span><span class="op">(</span><span class="va">SEISd</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">y_last</span>, <span class="va">SEISd</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="va">seisd_inf</span></span>
 <span><span class="va">seisd_inf</span></span>
 <span><span class="co">#&gt;          S          E          I          H </span></span>
 <span><span class="co">#&gt;  652.95170   25.04472  322.00358 1000.00000</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_steady_state_X.html">xde_steady_state_X</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">365</span>, <span class="fl">1000</span>, <span class="va">SEISd</span><span class="op">$</span><span class="va">Xpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">seisd_ss</span></span>
 <span><span class="va">seisd_ss</span></span>
 <span><span class="co">#&gt;          S          E          I          H </span></span>
 <span><span class="co">#&gt;  652.95170   25.04472  322.00358 1000.00000</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">seisd_inf</span><span class="op">-</span><span class="va">seisd_ss</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-9</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>

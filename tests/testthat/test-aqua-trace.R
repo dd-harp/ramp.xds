@@ -63,7 +63,7 @@ test_that("forced emergence works with equilibrium", {
   params$habitat_matrix = habitat_matrix
   params$kappa[[1]] = kappa
   params$Lambda[[1]] = Lambda
-  params <- setup_egg_laying_static(params, searchQ=1)
+  params <- set_habitat_wts_static(params, searchQ=1)
 
 
   # ODE

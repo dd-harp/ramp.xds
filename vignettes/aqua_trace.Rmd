@@ -111,7 +111,7 @@ params$nPatches = nPatches
 params$nHabitats = nHabitats
 params$calU[[1]] = calU
 params$habitat_matrix = calN
-params <- setup_egg_laying_static(params, 1)
+params <- set_habitat_wts_static(params, rep(1, nHabitats))
 
 
 # ODE

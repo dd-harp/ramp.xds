@@ -111,7 +111,7 @@ dts_setup = function(modelName = "unnamed",
   pars = dts_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
   # Egg Laying
-  pars = setup_egg_laying_static(pars, searchQ, 1, Lopts)
+  pars = set_habitat_wts_static(pars, searchQ, 1, Lopts)
 
 
   pars = make_indices(pars)
@@ -198,7 +198,7 @@ dts_setup_mosy = function(modelName = "unnamed",
   # Aquatic Mosquito Dynamics
   pars = dts_setup_Lpar(Lname, pars, 1, Lopts)
   pars = setup_Linits(pars, 1, Lopts)
-  pars = setup_egg_laying_static(pars, searchQ, 1, Lopts)
+  pars = set_habitat_wts_static(pars, searchQ, 1, Lopts)
 
   if(is.null(kappa))  kappa = rep(0, nPatches)
   pars$kappa[[1]] = checkIt(kappa, nPatches)

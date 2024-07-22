@@ -92,7 +92,7 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
 
   pars$calU[[1]] <- diag(pars$nPatches)
   pars$habitat_matrix <- diag(pars$nHabitats)
-  pars <- setup_egg_laying_static(pars, searchQ=1)
+  pars <- set_habitat_wts_static(pars, searchQ=1)
 
   pars= make_indices(pars)
 

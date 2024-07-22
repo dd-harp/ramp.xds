@@ -13,7 +13,7 @@
 #' the variables it might depend on.
 #' @references{This implements the egg laying model in Equations 14-15 from \insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @param pars an `xds` object
-#' @return a [list]  -- the modified `xds` object
+#' @return the modified `xds` object
 #' @importFrom Rdpack reprompt
 #' @export
 setup_EGG_LAYING = function(pars){
@@ -46,18 +46,19 @@ setup_EGG_LAYING = function(pars){
   return(pars)
 }
 
-#' @title Setup egg laying for an static (autonomous) model of egg laying
-#' @description Sets the search weights, \eqn{\omega} for the habitats
+#' @title Set static habitat search weights
+#' @description Set the search weights, \eqn{\omega}, for a set of aquatic habitats
 #' @param pars an `xds` object
-#' @param searchQ the membership matrix
+#' @param searchQ the habitat search weights
 #' @param s the vector species index
 #' @param Lopts a [list] of options to override defaults
-#' @return a [list]  -- the modified `xds` object
+#' @return the modified `xds` object
 #' @export
-setup_egg_laying_static = function(pars, searchQ=1, s=1, Lopts=list()){with(Lopts,{
+set_habitat_wts_static = function(pars, searchQ=1, s=1, Lopts=list()){with(Lopts,{
   # Habitat search weights
   searchQ = checkIt(searchQ, pars$nHabitats)
   pars$EGGpar$search_weights[[s]] = checkIt(searchQ, pars$nHabitats, F)
+  class(pars$EGGpar) <- 'setup'
   return(pars)
 })}
 
@@ -157,7 +158,7 @@ compute_eggs_laid = function(eggs_laid, calU){
 #' @param t the time
 #' @param y the state variables
 #' @param pars an `xds` object
-#' @return a [list]  -- the modified `xds` object
+#' @return the modified `xds` object
 #' @export
 EggLaying = function(t, y, pars){
   UseMethod("EggLaying", pars$EGGpar)
@@ -174,7 +175,7 @@ EggLaying = function(t, y, pars){
 #' affect egg laying, then the class of `EGGpar` should get reset to `setup`
 #' to reconfigure \eqn{Q} and \eqn{\cal U}.
 #' @inheritParams EggLaying
-#' @return a [list]  -- the modified `xds` object
+#' @return the modified `xds` object
 #' @seealso For \eqn{Q}, see [compute_Q]
 #' @seealso For \eqn{\cal U}, see [compute_calU]
 #' @export
@@ -188,7 +189,7 @@ EggLaying.setup = function(t, y, pars){
 #' @title Compute eggs laid
 #' @description Computes eggs laid for an autonomous model
 #' @inheritParams EggLaying
-#' @return a [list] -- the modified `xds` object
+#' @return the modified `xds` object
 #' @export
 EggLaying.static = function(t, y, pars){
   pars = make_eggs_laid(t, y, pars)
@@ -199,7 +200,7 @@ EggLaying.static = function(t, y, pars){
 #' @description Computes eggs laid with exogenous forcing
 #' on parameter affecting host availability.
 #' @inheritParams EggLaying
-#' @return a [list]
+#' @return the modified `xds` object
 #' @export
 EggLaying.dynamic = function(t, y, pars){
   pars = make_Q(pars)
@@ -212,7 +213,7 @@ EggLaying.dynamic = function(t, y, pars){
 #' @description Compute and store the egg distribution matrices
 #' for all the vector species
 #' @param pars an `xds` object
-#' @return a [list]  -- the modified `xds` object
+#' @return the modified `xds` object
 make_calU = function(pars){
   for(s in 1:pars$nVectors)
     pars$calU[[s]] = compute_calU(pars$EGGpar$search_weights[[s]], pars$habitat_matrix, pars$vars$Q[[s]])
@@ -223,7 +224,7 @@ make_calU = function(pars){
 #' @description Set the value of a variable, \eqn{Q}, that describes the availability of any habitat
 #' or device that would attract mosquitoes and induce them to lay eggs.
 #' @param pars an `xds` object
-#' @return a [list]  -- the modified `xds` object
+#' @return the modified `xds` object
 #' @seealso [compute_Q]
 make_Q = function(pars){with(pars,{
   for(s in 1:nVectors){
@@ -241,7 +242,7 @@ make_Q = function(pars){with(pars,{
 #' @param t the time
 #' @param y the state variables
 #' @param pars an `xds` object
-#' @return a [list]  -- the modified `xds` object
+#' @return the modified `xds` object
 #' @seealso [compute_eggs_laid]
 make_eggs_laid = function(t, y, pars){
   for(s in 1:pars$nVectors)
