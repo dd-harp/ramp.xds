@@ -114,7 +114,7 @@ params$nHosts = 1
 params$nPatches = nPatches
 params$nHabitats = nHabitats
 params$calU[[1]] = calU
-params$membership_matrix = calN
+params$habitat_matrix = calN
 params <- setup_egg_laying_static(params, 1)
 
 

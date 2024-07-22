@@ -144,12 +144,12 @@ where a mosquito might lay eggs, including ovitraps and unsuitable habitats.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_Q</span><span class="op">(</span><span class="va">membership_matrix</span>, <span class="va">search_weights</span>, <span class="va">Q_ovitraps</span>, <span class="va">Q_bad_habitats</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_Q</span><span class="op">(</span><span class="va">habitat_matrix</span>, <span class="va">search_weights</span>, <span class="va">Q_ovitraps</span>, <span class="va">Q_bad_habitats</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>membership_matrix</dt>
+    <dl><dt>habitat_matrix</dt>
 <dd><p>the membership matrix</p></dd>
 
 
@@ -169,7 +169,7 @@ where a mosquito might lay eggs, including ovitraps and unsuitable habitats.</p>
     <h2>Value</h2>
     
 
-<p>a <a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a> of length <code>nPatches</code></p>
+<p>a <a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a> of describing habitat availability, \(Q\), of length <code>nPatches</code></p>
 
 
     </div>
@@ -185,7 +185,7 @@ The availability of habitats, ovitraps and bad_habitats are computed elsewhere a
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>This function is called by <a href="make_Q.html">make_Q</a></p>
-<p><a href="create_membership_matrix.html">create_membership_matrix</a> discusses \(\cal N\)</p>
+<p><a href="create_habitat_matrix.html">create_habitat_matrix</a> discusses \(\cal N\)</p>
 <p>The availability of ovitraps and bad habitats is setup in <a href="setup_EGG_LAYING.html">setup_EGG_LAYING</a></p></div>
     </div>
 

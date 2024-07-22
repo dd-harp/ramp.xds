@@ -7,7 +7,7 @@
 make_calU(pars)
 }
 \arguments{
-\item{pars}{a \code{xds} object}
+\item{pars}{an \code{xds} object}
 }
 \value{
 a \link{list}

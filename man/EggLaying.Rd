@@ -11,7 +11,7 @@ EggLaying(t, y, pars)
 
 \item{y}{the state variables}
 
-\item{pars}{a \code{xds} object}
+\item{pars}{an \code{xds} object}
 }
 \value{
 a \link{list}  -- the modified \code{xds} object

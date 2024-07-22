@@ -4,10 +4,10 @@
 \alias{compute_Q}
 \title{Compute the total availability of egg-laying habitats, \eqn{Q}}
 \usage{
-compute_Q(membership_matrix, search_weights, Q_ovitraps, Q_bad_habitats)
+compute_Q(habitat_matrix, search_weights, Q_ovitraps, Q_bad_habitats)
 }
 \arguments{
-\item{membership_matrix}{the membership matrix}
+\item{habitat_matrix}{the membership matrix}
 
 \item{search_weights}{the habitat search weights}
 
@@ -33,7 +33,7 @@ The availability of habitats, ovitraps and bad_habitats are computed elsewhere a
 \seealso{
 This function is called by \link{make_Q}
 
-\link{create_membership_matrix} discusses \eqn{\cal N}
+\link{create_habitat_matrix} discusses \eqn{\cal N}
 
 The availability of ovitraps and bad habitats is setup in \link{setup_EGG_LAYING}
 }

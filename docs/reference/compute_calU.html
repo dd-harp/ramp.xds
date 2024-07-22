@@ -144,7 +144,7 @@ by adult mosquitoes in each patch to each one of the aquatic habitats in the pat
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_calU</span><span class="op">(</span><span class="va">search_weights</span>, <span class="va">membership_matrix</span>, <span class="va">Q</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_calU</span><span class="op">(</span><span class="va">search_weights</span>, <span class="va">habitat_matrix</span>, <span class="va">Q</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -153,7 +153,7 @@ by adult mosquitoes in each patch to each one of the aquatic habitats in the pat
 <dd><p>the habitat search weights</p></dd>
 
 
-<dt>membership_matrix</dt>
+<dt>habitat_matrix</dt>
 <dd><p>the habitat membership matrix</p></dd>
 
 
@@ -171,7 +171,7 @@ by adult mosquitoes in each patch to each one of the aquatic habitats in the pat
 <p></p>
 <p><code>nPatches</code></p>
 <p></p>
-<p><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a> describing egg deposition, \(\cal U\)</p>
+<p><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a> describing egg distribution, \(\cal U\)</p>
 
 
     </div>
@@ -189,13 +189,13 @@ in the \(i^{th}\) habitat is \(\omega_i / Q_j.\)
 To make the model extensible, habitat availability sums all the places where
 mosquitoes might lay eggs, including ovitraps and unsuitable habitats.
 If every element in \(Q\) were positive, the egg
-deposition matrix  would be:
+distribution matrix  would be:
 $${\cal U} = \mbox{diag}\left(\omega \right) \cdot {\cal N}^T \cdot \mbox{diag} \left(\frac{1}{Q}\right).$$
 To avoid dividing by zero, the zero elements in \(Q\) are set to an arbitrary positive value.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p>The membership matrix \(\cal N\) is computed by <a href="create_membership_matrix.html">create_membership_matrix</a></p>
+    <div class="dont-index"><p>The membership matrix \(\cal N\) is computed by <a href="create_habitat_matrix.html">create_habitat_matrix</a></p>
 <p>Total habitat availability, \(\cal Q\), is computed by <a href="compute_Q.html">compute_Q</a></p>
 <p>The availability of ovitraps and bad habitats is setup in <a href="setup_EGG_LAYING.html">setup_EGG_LAYING</a></p></div>
     </div>

@@ -102,7 +102,7 @@ test_that("test equilibrium with RM adults (ODE), basic competition", {
   params$calU=list()
   class(params$calU) <- "static"
   params$calU[[1]] = calU
-  params$membership_matrix <- calN
+  params$habitat_matrix <- calN
   params <- setup_egg_laying_static(params, searchQ=1)
 
   params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
@@ -225,7 +225,7 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
   params$calU=list()
   class(params$calU) <- "static"
   params$calU[[1]] = calU
-  params$membership_matrix <- calN
+  params$habitat_matrix <- calN
   params <- setup_egg_laying_static(params, searchQ=1)
 
   # parameters for exDE

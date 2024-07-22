@@ -7,7 +7,7 @@
 setup_egg_laying_static(pars, searchQ = 1, s = 1, Lopts = list())
 }
 \arguments{
-\item{pars}{a \code{xds} object}
+\item{pars}{an \code{xds} object}
 
 \item{searchQ}{the membership matrix}
 
