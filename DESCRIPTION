@@ -25,6 +25,7 @@ Imports:
   expm,
   graphics,
   DescTools,
+  Rdpack,
   MASS
 Suggests:
     ggplot2,
@@ -33,4 +34,5 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
+RdMacros: Rdpack
 Config/testthat/edition: 3

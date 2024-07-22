@@ -11,7 +11,7 @@
 
 \item{y}{the state variables}
 
-\item{pars}{the model object}
+\item{pars}{a \code{xds} object}
 }
 \value{
 a \link{list}

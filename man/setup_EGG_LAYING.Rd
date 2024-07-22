@@ -7,22 +7,25 @@
 setup_EGG_LAYING(pars)
 }
 \arguments{
-\item{pars}{the model object}
+\item{pars}{a \code{xds} object}
 }
 \value{
-the modified xds model object, as a compound \link{list}
+a \link{list}  -- the modified \code{xds} object
 }
 \description{
-Sets up the object that defines the egg laying interface for an \code{xds} model object.
+Sets up the object that defines the egg laying interface for an \code{xds} object.
 }
 \details{
 Modular computation \code{ramp.xds} defines a rigid interface
-to compute egg laying and emergence for models of mosquito ecology.
+to compute egg laying and emergence for models of mosquito ecology, as described by
 Implementation is defined by an object called \code{EGGpar} found
-attached to the \code{xds} model object \code{pars} as \code{pars$EGGpar}.
+attached to the \code{xds} object \code{pars} as \code{pars$EGGpar}.
 The interface was developed around a habitat
 membership matrix, \eqn{\cal N}, a quantity called
-habitat availability \eqn{Q}, and an egg deposition matrix \eqn{\cal U}.
+habitat availability \eqn{Q}, and the egg distribution matrix \eqn{\cal U}.
 This function is called by \code{make_xds_object} to set up \code{EGGpar} and the variables and parameters with all
 the variables it might depend on.
+}
+\references{
+{Test text. \insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 }

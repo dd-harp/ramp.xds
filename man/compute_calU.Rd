@@ -14,7 +14,7 @@ compute_calU(search_weights, membership_matrix, Q)
 \item{Q}{the total availability of egg-laying habitats}
 }
 \value{
-a \code{nHabitats} \eqn{\times} \code{nPatches} \link{matrix} describing egg deposition, \eqn{\cal U}
+a \code{nHabitats} \eqn{\times} \code{nPatches} \link{matrix} describing egg distribution, \eqn{\cal U}
 }
 \description{
 The egg distribution matrix, \eqn{\cal U}, allocates a portion of eggs laid
@@ -33,7 +33,7 @@ in the \eqn{i^{th}} habitat is \eqn{\omega_i / Q_j.}
 To make the model extensible, habitat availability sums all the places where
 mosquitoes might lay eggs, including ovitraps and unsuitable habitats.
 If every element in \eqn{Q} were positive, the egg
-deposition matrix  would be:
+distribution matrix  would be:
 \deqn{{\cal U} = \mbox{diag}\left(\omega \right) \cdot {\cal N}^T \cdot \mbox{diag} \left(\frac{1}{Q}\right).}
 To avoid dividing by zero, the zero elements in \eqn{Q} are set to an arbitrary positive value.
 }

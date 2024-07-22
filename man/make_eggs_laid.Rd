@@ -10,12 +10,15 @@ make_eggs_laid(t, y, pars)
 \item{t}{the time}
 
 \item{y}{the state variables}
-
-\item{pars}{the model object}
 }
 \value{
+a \link{list}  -- the modified \code{xds} object
+
 a \link{list}
 }
 \description{
-Computes eggs laid for the s^th species
+Computes eggs laid in aquatic habitats
+}
+\seealso{
+\link{compute_eggs_laid}
 }

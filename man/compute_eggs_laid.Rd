@@ -9,14 +9,14 @@ compute_eggs_laid(eggs_laid, calU)
 \arguments{
 \item{eggs_laid}{the number of eggs laid in each patch, a vector of length \code{nPatches}}
 
-\item{calU}{the egg deposition matrix}
+\item{calU}{the egg distribution matrix}
 }
 \value{
 a \link{vector}, \eqn{\eta} where \eqn{\left|\eta\right|=}\code{nHabitats}
 }
 \description{
-Computes egg deposition for the aquatic habitats
+Computes egg distribution for the aquatic habitats
 }
 \seealso{
-The egg deposition matrix \link{compute_calU}
+The egg distribution matrix \link{compute_calU}
 }

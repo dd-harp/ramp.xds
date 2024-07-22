@@ -1,9 +1,10 @@
 #' @title Compute emerging adults
-#' @description Computes eggs laid for the s^th species
+#' @description
+#' Sums up adults emerging from all aquatic habitats using the habitat membership matrix
 #' @param t the time
 #' @param y the state variables
-#' @param pars the model object
-#' @return a [list]
+#' @param pars a `xds` object
+#' @return a [list] -- the modified `xds` object
 #' @export
 Emergence = function(t, y, pars){
   for(s in 1:pars$nVectors)

@@ -11,14 +11,14 @@
 
 \item{y}{the state variables}
 
-\item{pars}{the model object}
+\item{pars}{a \code{xds} object}
 }
 \value{
-a \link{list}
+a \link{list}  -- the modified \code{xds} object
 }
 \description{
 In autonomous models, this function gets called once to set up a variable describing host availability (\eqn{Q}) and
-the egg deposition matrix (\eqn{\cal U}).
+the egg distribution matrix (\eqn{\cal U}).
 }
 \details{
 If conditions are time, invariant,
