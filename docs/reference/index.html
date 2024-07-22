@@ -266,15 +266,15 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="Exposure.html">Exposure()</a></code> </p>
         </td>
-        <td><p>Exposure and Infection</p></td>
+        <td><p>Compute local exposure and travel</p></td>
       </tr><tr><td>
           <p><code><a href="Exposure.xde.html">Exposure(<i>&lt;xde&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Exposure and Infection</p></td>
+        <td><p>Compute the force of infection (FoI) given the local EIR and a travel model</p></td>
       </tr><tr><td>
           <p><code><a href="Exposure.dts.html">Exposure(<i>&lt;dts&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Exposure and Infection</p></td>
+        <td><p>Compute the attack rate (AR) given the local EIR and a travel model</p></td>
       </tr><tr><td>
           <p><code><a href="Exposure.multiday.html">Exposure(<i>&lt;multiday&gt;</i>)</a></code> </p>
         </td>
@@ -286,7 +286,7 @@
       </tr><tr><td>
           <p><code><a href="F_foi.html">F_foi()</a></code> </p>
         </td>
-        <td><p>A model for daily FoI as a function of the daily EIR.</p></td>
+        <td><p>Compute the local daily FoI as a function of the local daily EIR.</p></td>
       </tr><tr><td>
           <p><code><a href="foi2eir.html">foi2eir()</a></code> </p>
         </td>
@@ -294,7 +294,7 @@
       </tr><tr><td>
           <p><code><a href="F_ar.html">F_ar()</a></code> </p>
         </td>
-        <td><p>A model for daily attack rate as a function of the daily EIR.</p></td>
+        <td><p>Daily attack rates as a function of the daily EIR</p></td>
       </tr><tr><td>
           <p><code><a href="ar2eir.html">ar2eir()</a></code> </p>
         </td>
@@ -320,13 +320,17 @@
         </td>
         <td><p>A Poisson model for the daily attack rate as a function of the daily EIR.</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_setup_exposure_pois.html">xde_setup_exposure_pois()</a></code> </p>
+          <p><code><a href="setup_exposure_pois.html">setup_exposure_pois()</a></code> </p>
         </td>
-        <td><p>Make parameters for the null model of exposure</p></td>
+        <td><p>Set up the Poisson model of exposure</p></td>
       </tr><tr><td>
-          <p><code><a href="dts_setup_exposure_pois.html">dts_setup_exposure_pois()</a></code> </p>
+          <p><code><a href="setup_exposure_pois.xde.html">setup_exposure_pois(<i>&lt;xde&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Make parameters for the null model of exposure</p></td>
+        <td><p>Set up the Poisson model of exposure for continuous time models</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_exposure_pois.dts.html">setup_exposure_pois(<i>&lt;dts&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up the Poisson model of exposure for discrete time models</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="negative-binomial-exposure">Negative Binomial Exposure <a href="#negative-binomial-exposure" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods the Negative Binomial exposure model</p>
@@ -348,13 +352,17 @@
         </td>
         <td><p>A negative binomial model for the daily EIR. as a function of the daily attack rate</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_setup_exposure_nb.html">xde_setup_exposure_nb()</a></code> </p>
+          <p><code><a href="setup_exposure_nb.html">setup_exposure_nb()</a></code> </p>
         </td>
-        <td><p>Make parameters for the null model of exposure</p></td>
+        <td><p>Set up the negative binomial model of exposure</p></td>
       </tr><tr><td>
-          <p><code><a href="dts_setup_exposure_nb.html">dts_setup_exposure_nb()</a></code> </p>
+          <p><code><a href="setup_exposure_nb.xde.html">setup_exposure_nb(<i>&lt;xde&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Make parameters for the null model of exposure</p></td>
+        <td><p>Set up the negative binomial model of exposure for continuous time models</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_exposure_nb.dts.html">setup_exposure_nb(<i>&lt;dts&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up the negative binomial model of exposure for discrete time models</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="local-fraction">Local Fraction <a href="#local-fraction" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for NULL dynamics: a funtion generates values of Z to force human infection dynamics</p>
@@ -2940,13 +2948,9 @@
           <p class="section-desc"></p><p>Basic setup for models</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="make_parameters_xde.html">make_parameters_xde()</a></code> </p>
+          <p><code><a href="make_xds_object.html">make_xds_object()</a></code> </p>
         </td>
-        <td><p>Make base parameters, assuming nVectors = nHosts = 1</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_parameters_dts.html">make_parameters_dts()</a></code> </p>
-        </td>
-        <td><p>Make base parameters, assuming nVectors = nHosts = 1</p></td>
+        <td><p>Make an <code>xds</code> object</p></td>
       </tr><tr><td>
           <p><code><a href="make_indices.html">make_indices()</a></code> </p>
         </td>

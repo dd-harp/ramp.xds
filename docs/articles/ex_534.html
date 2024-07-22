@@ -221,11 +221,8 @@ expects all parameters to be contained in a list object, containing
 which correspond to <code>l</code>, <code>p</code> and
 <code>n</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_xde.html">make_parameters_xde</a></span><span class="op">(</span><span class="op">)</span> </span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">frame</span> <span class="op">&lt;-</span> <span class="st">"full"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">params</span><span class="op">$</span><span class="va">frame</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"full"</span></span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">dlay</span><span class="op">&lt;-</span> <span class="st">"ode"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">params</span><span class="op">$</span><span class="va">dlay</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"ode"</span></span>
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_xds_object.html">make_xds_object</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"full"</span><span class="op">)</span> </span>
+<span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nVectors</span> <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nHosts</span> <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">nHabitats</span> <span class="op">=</span> <span class="fl">5</span></span>

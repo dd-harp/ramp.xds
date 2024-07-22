@@ -11,7 +11,8 @@ xde_setup_aquatic(
   Lname = "basic",
   Lopts = list(),
   MYZopts = list(),
-  LSMname = "null"
+  LSMname = "null",
+  dlay = "ode"
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ xde_setup_aquatic(
 \item{MYZopts}{a list to configure F_eggs from the trace model}
 
 \item{LSMname}{is a character string defining a LSM model}
+
+\item{dlay}{is either "ode" or "dde"}
 }
 \value{
 a \link{list}

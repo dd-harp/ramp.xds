@@ -88,11 +88,7 @@ test_that("test equilibrium with RM adults (ODE), basic competition", {
   theta <- (eta - psi*L - phi*L)/(L^2)
 
   # parameters for exDE
-  params <- make_parameters_xde()
-  params$frame <- "mosy"
-  class(params$frame) <- "mosy"
-  params$dlay<- "ode"
-  class(params$dlay) <- "ode"
+  params <- make_xds_object("xde", "mosy")
 
   params$nStrata <- nStrata
   params$nPatches <- nPatches
@@ -212,11 +208,7 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
   L <- alpha/psi
   theta <- (eta - psi*L - phi*L)/(L^2)
 
-  params <- make_parameters_xde()
-  params$frame <- "mosy"
-  class(params$frame) <- "mosy"
-  params$dlay<- "ode"
-  class(params$dlay) <- "ode"
+  params <- make_xds_object("xde", "mosy", "dde")
   params$nStrata <- nStrata
   params$nPatches <- nPatches
   params$nHabitats <- nHabitats

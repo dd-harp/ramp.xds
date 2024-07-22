@@ -18,7 +18,7 @@ test_that("human hybrid MoI model remains at equilibrium", {
   foi <- r2*m20
   m10 <- foi/r1
 
-  params <- make_parameters_xde()
+  params <- make_xds_object("xde", "full")
   params$nStrata = nStrata
   params$nHosts <- 1
   params$nPatches = 1

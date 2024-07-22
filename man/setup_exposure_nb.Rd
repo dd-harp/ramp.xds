@@ -2,16 +2,18 @@
 % Please edit documentation in R/exposure-nb.R
 \name{setup_exposure_nb}
 \alias{setup_exposure_nb}
-\title{Set up a negative binomial model for environmental heterogeneity}
+\title{Set up the negative binomial model of exposure}
 \usage{
-setup_exposure_nb(pars)
+setup_exposure_nb(pars, sz)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \code{xds} object}
+
+\item{sz}{the size parameter, as in dnbinom(mu=mu, size=size)}
 }
 \value{
-none
+the modified \code{xds} object
 }
 \description{
-Set up a negative binomial model for environmental heterogeneity
+Set up the negative binomial model of exposure
 }

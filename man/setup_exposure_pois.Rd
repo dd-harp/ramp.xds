@@ -2,16 +2,16 @@
 % Please edit documentation in R/exposure-pois.R
 \name{setup_exposure_pois}
 \alias{setup_exposure_pois}
-\title{Make parameters for the null model of exposure}
+\title{Set up the Poisson model of exposure}
 \usage{
 setup_exposure_pois(pars)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \code{xds} object}
 }
 \value{
-none
+the modified \code{xds} object
 }
 \description{
-Make parameters for the null model of exposure
+Set up the Poisson model of exposure
 }

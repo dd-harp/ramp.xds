@@ -134,9 +134,6 @@ reference:
   - setup_exposure_pois
   - setup_exposure_pois.xde
   - setup_exposure_pois.dts
-  - setup_exposure_nb
-  - setup_exposure_nb.xde
-  - setup_exposure_nb.dts
 - subtitle: Negative Binomial Exposure
   desc: |
     Specialized methods the Negative Binomial exposure model
@@ -145,8 +142,9 @@ reference:
   - foi2eir.nb
   - F_ar.nb
   - ar2eir.nb
-  - xde_setup_exposure_nb
-  - dts_setup_exposure_nb
+  - setup_exposure_nb
+  - setup_exposure_nb.xde
+  - setup_exposure_nb.dts
 - subtitle: Local Fraction
   desc: |
     Specialized methods for  NULL dynamics: a funtion generates values of Z to force human infection dynamics
@@ -941,8 +939,6 @@ reference:
     Basic setup for models
   contents:
   - make_xds_object
-  - make_parameters_xde
-  - make_parameters_dts
   - make_indices
 - subtitle: Setting Up
   desc: |

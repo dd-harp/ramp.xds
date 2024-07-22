@@ -80,11 +80,7 @@ test_that("test equilibrium with RM adults (ODE), SIS_xde humans, trace", {
   diag(calU) <- 1
 
   # parameters for exDE
-  params <- make_parameters_xde()
-  params$frame <- "full"
-  class(params$frame) <- "full"
-  params$dlay<- "ode"
-  class(params$dlay) <- "ode"
+  params <- make_xds_object("xde", "full")
   params$nStrata <- nStrata
   params$nPatches <- nPatches
   params$nHabitats <- nHabitats
@@ -195,11 +191,7 @@ test_that("test equilibrium with RM adults (DDE), SIS_xde humans, trace", {
   diag(calU) <- 1
 
   # parameters for exDE
-  params <- make_parameters_xde()
-  params$frame <- "full"
-  class(params$frame) <- "full"
-  params$dlay<- "dde"
-  class(params$dlay) <- "dde"
+  params <- make_xds_object("xde", "full", "dde")
   params$nStrata <- nStrata
   params$nPatches <- nPatches
   params$nHabitats <- nHabitats

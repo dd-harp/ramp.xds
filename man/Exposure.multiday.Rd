@@ -11,7 +11,7 @@
 
 \item{y}{the state variables}
 
-\item{pars}{the model object as a \link{list}}
+\item{pars}{an \code{xds} object}
 }
 \value{
 the function modifies \strong{pars} and returns it: the computed FoI are stored as \code{pars$FoI}

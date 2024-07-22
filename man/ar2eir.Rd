@@ -11,7 +11,7 @@ ar2eir(ar, b, pars)
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{the model object as a \link{list}}
+\item{pars}{an \code{xds} object}
 }
 \value{
 the daily, local force of infection as a \link{numeric} vector

@@ -2,18 +2,18 @@
 % Please edit documentation in R/exposure-nb.R
 \name{setup_exposure_nb.xde}
 \alias{setup_exposure_nb.xde}
-\title{Make parameters for the null model of exposure}
+\title{Set up the negative binomial model of exposure for continuous time models}
 \usage{
 \method{setup_exposure_nb}{xde}(pars, sz)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \code{xds} object}
 
 \item{sz}{the size parameter, as in dnbinom(mu=mu, size=size)}
 }
 \value{
-none
+the modified \code{xds} object
 }
 \description{
-Make parameters for the null model of exposure
+Set up the negative binomial model of exposure for continuous time models
 }

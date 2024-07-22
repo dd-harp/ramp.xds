@@ -4,12 +4,14 @@
 \alias{make_xds_object}
 \title{Make an \code{xds} object}
 \usage{
-make_xds_object(xds = "xde", frame = "full")
+make_xds_object(xds = "xde", frame = "full", dlay = "ode")
 }
 \arguments{
 \item{xds}{is \code{xde} for differential equations; or \code{dts} for discrete-time systems}
 
 \item{frame}{the equation frame / subset of dynamical components in the model}
+
+\item{dlay}{is \code{ode} for ordinary and \code{dde} for delay}
 }
 \value{
 an unspecified \code{xds} object as a compound \link{list}

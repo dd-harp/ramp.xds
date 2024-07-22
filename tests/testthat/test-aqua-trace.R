@@ -52,11 +52,7 @@ test_that("forced emergence works with equilibrium", {
   # the "Lambda" for the dLdt model
   alpha <- as.vector(ginv(habitat_matrix) %*% Lambda)
 
-  params <- make_parameters_xde()
-  params$frame <- "mosy"
-  class(params$frame) <- "mosy"
-  params$dlay<- "ode"
-  class(params$dlay) <- "ode"
+  params <- make_xds_object("xde", "mosy")
 
   params$nPatches = nPatches
   params$nHabitats = nHabitats

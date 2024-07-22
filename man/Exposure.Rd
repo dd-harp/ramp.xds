@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure.R
 \name{Exposure}
 \alias{Exposure}
-\title{Exposure and Infection}
+\title{Compute local exposure and travel}
 \usage{
 Exposure(t, y, pars)
 }
@@ -11,13 +11,13 @@ Exposure(t, y, pars)
 
 \item{y}{the state variables}
 
-\item{pars}{the model object as a \link{list}}
+\item{pars}{an \code{xds} object}
 }
 \value{
-the function modifies \strong{pars} and returns it: the computed FoI are stored as \code{pars$FoI}
+the modified \code{xds} object; FoI are stored as \code{pars$FoI}
 }
 \description{
 Function that model the FoI or AR as a function of
-the local daily entomological inoculation rate (dEIR).
-exposure while traveling.
+the local daily entomological inoculation rate (dEIR),
+and a model for exposure to malaria while traveling.
 }

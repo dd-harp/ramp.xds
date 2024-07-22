@@ -5,11 +5,7 @@ library(deSolve)
 numeric_tol <- 1e-5
 
 test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
-  pars <- make_parameters_xde()
-  pars$frame <- "full"
-  class(pars$frame) <- "full"
-  pars$dlay<- "dde"
-  class(pars$dlay) <- "dde"
+  pars <- make_xds_object("xde", "full", "dde")
   pars$nPatches <- 3
   pars$nStrata <- 3
   pars$nHabitats <- 3

@@ -26,7 +26,8 @@ xde_setup(
   TimeSpent = "athome",
   TimeSpentOpts = list(),
   searchQ = 1,
-  Lopts = list()
+  Lopts = list(),
+  dlay = "ode"
 )
 }
 \arguments{
@@ -74,7 +75,7 @@ xde_setup(
 
 \item{Lopts}{a list to configure the L model}
 
-\item{xde}{is either "ode" or "dde"}
+\item{dlay}{is either "ode" or "dde"}
 }
 \value{
 a \link{list}

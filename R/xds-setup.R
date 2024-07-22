@@ -2,9 +2,10 @@
 #' @title Make an `xds` object
 #' @param xds is `xde` for differential equations; or `dts` for discrete-time systems
 #' @param frame the equation frame / subset of dynamical components in the model
+#' @param dlay is `ode` for ordinary and `dde` for delay
 #' @return an unspecified `xds` object as a compound [list]
 #' @export
-make_xds_object = function(xds='xde', frame='full'){
+make_xds_object = function(xds='xde', frame='full', dlay = 'ode'){
   pars = list()
 
   xds <- xds
@@ -15,8 +16,8 @@ make_xds_object = function(xds='xde', frame='full'){
   class(frame) <- frame
   pars$frame <- frame
 
-  dlay <- 'ode'
-  class(dlay) <- 'ode'
+  dlay <- dlay
+  class(dlay) <- dlay
   pars$dlay <- dlay
 
   forcing <- 'static'

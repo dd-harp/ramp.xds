@@ -16,7 +16,7 @@ test_that("human SIS_xde model remains at equilibrium", {
   EIR <- diag(1/b, nStrata) %*% ((r*I)/(H-I))
   foi <- b*EIR
 
-  params <- make_parameters_xde()
+  params <- make_xds_object("xde", "full")
   params$nStrata <- nStrata
   params$nHosts <- 1
   params$nPatches <- 1

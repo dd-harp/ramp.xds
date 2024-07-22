@@ -14,7 +14,7 @@ test_that("basic competition stays at equilibrium", {
   L <- alpha/psi
   theta <- (eggs_laid - psi*L - phi*L)/(L^2)
 
-  params <- make_parameters_xde()
+  params <- make_xds_object("xde", "full")
   params$nHabitats = nHabitats
 
   # ODE
