@@ -50,6 +50,20 @@ DT_Xt.SIS <- function(t, y, pars, i) {
   })
 }
 
+
+#' @title Compute the steady states for the  dts SIS model as a function of the daily EIR
+#' @description Compute the steady state of the  dts SIS model as a function of the daily eir.
+#' @inheritParams dts_steady_state_X
+#' @return the steady states as a named vector
+#' @export
+dts_steady_state_X.SIS = function(ar, H, Xpar){with(Xpar,{
+  dIeq = ar*H/(1-(1-ar)*nr)
+  dSeq = ((1-ar)*(1-nr)*H)/(1-(1-ar)*nr)
+  return(c(S=dSeq, I=dIeq))
+})}
+
+
+
 #' @title Setup Xpar.SIS
 #' @description Implements [xde_setup_Xpar] for the SIS model
 #' @inheritParams xde_setup_Xpar
