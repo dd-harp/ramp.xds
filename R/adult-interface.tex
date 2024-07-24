@@ -1,0 +1,419 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={adult-interface.R},
+  pdfauthor={doree},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{adult-interface.R}
+\author{doree}
+\date{2024-07-24}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# generic methods for adult component}
+\end{Highlighting}
+\end{Shaded}
+
+@title Derivatives for adult mosquitoes @description This method
+dispatches on the type of \texttt{pars\$MYZpar}. @param t current
+simulation time @param y state vector @param pars an \texttt{xds} object
+@param s the species index @return the derivatives a {[}vector{]}
+@export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dMYZdt }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, y, pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"dMYZdt"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Compute the steady states as a function of the daily EIR
+@description This method dispatches on the type of \texttt{MYZpar}.
+@param Lambda the daily emergence rate of adult mosquitoes @param kappa
+net infectiousness @param MYZpar a list that defines an adult model
+@return none @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xde\_steady\_state\_MYZ }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(Lambda, kappa, MYZpar)\{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"xde\_steady\_state\_MYZ"}\NormalTok{, MYZpar)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Compute the steady states as a function of the daily EIR
+@description This method dispatches on the type of \texttt{MYZpar}.
+@param Lambda the daily emergence rate of adult mosquitoes @param MYZpar
+a list that defines an adult model @return none @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xde\_steady\_state\_M }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(Lambda, MYZpar)\{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"xde\_steady\_state\_M"}\NormalTok{, MYZpar)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title A function to set up adult mosquito models @description This
+method dispatches on \texttt{MYZname}. @param MYZname the name of the
+model @param pars a {[}list{]} @param s the species index @param EIPopts
+is a {[}list{]} @param MYZopts a {[}list{]} @param calK is a
+{[}matrix{]} @return {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xde\_setup\_MYZpar }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(MYZname, pars, s, EIPopts, }\AttributeTok{MYZopts=}\FunctionTok{list}\NormalTok{(),  }\AttributeTok{calK=}\FunctionTok{diag}\NormalTok{(}\DecValTok{1}\NormalTok{))\{}
+  \FunctionTok{class}\NormalTok{(MYZname) }\OtherTok{\textless{}{-}}\NormalTok{ MYZname}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"xde\_setup\_MYZpar"}\NormalTok{, MYZname)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Derivatives for adult mosquitoes @description This method
+dispatches on the type of \texttt{pars\$MYZpar}. @param t current
+simulation time @param y state vector @param pars a {[}list{]} @param s
+the species index @return the derivatives a {[}vector{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DT\_MYZt }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, y, pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"DT\_MYZt"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Compute the steady states as a function of the daily EIR
+@description This method dispatches on the type of \texttt{MYZpar}.
+@inheritParams xde\_steady\_state\_MYZ @return none @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dts\_steady\_state\_MYZ }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(Lambda, kappa, MYZpar)\{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"dts\_steady\_state\_MYZ"}\NormalTok{, MYZpar)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title A function to set up adult mosquito models @description This
+method dispatches on \texttt{MYZname}. @param MYZname the name of the
+model @param pars a {[}list{]} @param s the species index @param EIPopts
+is a {[}list{]} @param MYZopts a {[}list{]} @param calK is a
+{[}matrix{]} @return {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dts\_setup\_MYZpar }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(MYZname, pars, s, EIPopts, }\AttributeTok{MYZopts=}\FunctionTok{list}\NormalTok{(),  }\AttributeTok{calK=}\FunctionTok{diag}\NormalTok{(}\DecValTok{1}\NormalTok{))\{}
+  \FunctionTok{class}\NormalTok{(MYZname) }\OtherTok{\textless{}{-}}\NormalTok{ MYZname}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"dts\_setup\_MYZpar"}\NormalTok{, MYZname)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Set bloodfeeding and mortality rates to baseline @description
+This method dispatches on the type of \texttt{pars\$MYZpar}. It should
+set the values of the bionomic parameters to baseline values. @param t
+current simulation time @param y state vector @param pars a {[}list{]}
+@param s the species index @return a {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MBionomics }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, y, pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"MBionomics"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Time spent host seeking/feeding and resting/ovipositing
+@description This method dispatches on the type of
+\texttt{pars\$MYZpar}. @param t current simulation time @param pars a
+{[}list{]} @return either a {[}numeric{]} vector if the model supports
+this feature, or {[}NULL{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F\_tau }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, pars) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"F\_tau"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Blood feeding rate of the infective mosquito population
+@description This method dispatches on the type of
+\texttt{pars\$MYZpar}. @param t current simulation time @param y state
+vector @param pars a {[}list{]} @param s the species index @return a
+{[}numeric{]} vector of length \texttt{nPatches} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F\_fqZ }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, y, pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"F\_fqZ"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Blood feeding rate of the mosquito population @description This
+method dispatches on the type of \texttt{pars\$MYZpar}. @param t current
+simulation time @param y state vector @param pars a {[}list{]} @param s
+the species index @return a {[}numeric{]} vector of length
+\texttt{nPatches} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F\_fqM }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, y, pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"F\_fqM"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Number of eggs laid by adult mosquitoes @description This method
+dispatches on the type of \texttt{pars\$MYZpar}. @param t current
+simulation time @param y state vector @param pars a {[}list{]} @param s
+the species index @return a {[}numeric{]} vector of length
+\texttt{nPatches} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F\_eggs }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, y, pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"F\_eggs"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Return the variables as a list @description This method
+dispatches on the type of \texttt{pars\$MYZpar{[}{[}s{]}{]}}. @param y
+the variables @param pars a {[}list{]} @param s the vector species index
+@return a {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{list\_MYZvars }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(y, pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"list\_MYZvars"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Put MYZvars in place of the MYZ variables in y @description This
+method dispatches on the type of \texttt{pars\$MYZpar{[}{[}s{]}{]}}.
+@param MYZvars the variables @param y the variables @param pars a
+{[}list{]} @param s the vector species index @return a {[}list{]}
+@export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{put\_MYZvars }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(MYZvars, y, pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"put\_MYZvars"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title A function to set up adult mosquito models @description This
+method dispatches on \texttt{MYZname}. @param pars a {[}list{]} @param s
+the species index @param MYZopts a {[}list{]} @return {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{setup\_MYZinits }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(pars, s, }\AttributeTok{MYZopts=}\FunctionTok{list}\NormalTok{())\{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"setup\_MYZinits"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Add indices for adult mosquitoes to parameter list @description
+This method dispatches on the type of \texttt{pars\$MYZpar}. @param pars
+a {[}list{]} @param s the species index @return {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{make\_indices\_MYZ }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"make\_indices\_MYZ"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Parse the outputs and return the variables by name in a list
+@description This method dispatches on the type of
+\texttt{pars\$MYZpar}. It computes the variables by name and returns a
+named list. @param outputs a {[}matrix{]} of outputs from deSolve @param
+pars a {[}list{]} that defines a model @param s the species index
+@return {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parse\_outputs\_MYZ }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(outputs, pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"parse\_outputs\_MYZ"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Return initial values as a vector @description This method
+dispatches on the type of \texttt{pars\$MYZpar}. @param pars a
+{[}list{]} @param s the species index @return {[}numeric{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{get\_inits\_MYZ }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(pars, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"get\_inits\_MYZ"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Set the initial values as a vector @description This method
+dispatches on the type of \texttt{pars\$MYZpar}. @param pars a
+{[}list{]} @param y0 a vector of variable values from a simulation
+@param s the species index @return a {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{update\_inits\_MYZ }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(pars, y0, s) \{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"update\_inits\_MYZ"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar[[s]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Convert a model from dde to the corresponding ode @description
+This method dispatches on the type of \texttt{pars\$MYZpar\$xde} @param
+pars a {[}list{]} @return a {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dde2ode\_MYZ }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(pars)\{}
+  \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"dde2ode\_MYZ"}\NormalTok{, pars}\SpecialCharTok{$}\NormalTok{MYZpar}\SpecialCharTok{$}\NormalTok{xde)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Convert a model from dde to the corresponding ode @description If
+it is already an ode, return pars unchanged. @param pars a {[}list{]}
+@return a {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dde2ode\_MYZ.ode }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(pars)\{pars\}}
+\end{Highlighting}
+\end{Shaded}
+
+@title Convert a model from dde to the corresponding ode @description If
+it is a dde, return the corresponding ode @param pars a {[}list{]}
+@return a {[}list{]} @export
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dde2ode\_MYZ.dde }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(pars)\{}
+\NormalTok{  pars}\SpecialCharTok{$}\NormalTok{MYZpar}\SpecialCharTok{$}\NormalTok{xde }\OtherTok{\textless{}{-}} \StringTok{"ode"}
+\NormalTok{  pars}\SpecialCharTok{$}\NormalTok{MYZpar}\SpecialCharTok{$}\NormalTok{solve\_as }\OtherTok{\textless{}{-}} \StringTok{"ode"}
+\NormalTok{  pars }\OtherTok{\textless{}{-}} \FunctionTok{xde\_make\_MYZpar\_RM}\NormalTok{(pars, MYZopts}\OtherTok{\textless{}{-}}\NormalTok{ pars}\SpecialCharTok{$}\NormalTok{MYZpar,}
+                             \AttributeTok{calK=}\NormalTok{pars}\SpecialCharTok{$}\NormalTok{MYZpar}\SpecialCharTok{$}\NormalTok{calK)}
+\NormalTok{  pars }\OtherTok{\textless{}{-}} \FunctionTok{make\_indices}\NormalTok{(pars)}
+  \FunctionTok{return}\NormalTok{(pars)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
