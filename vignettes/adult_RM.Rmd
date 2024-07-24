@@ -68,7 +68,7 @@ human population. We show both below.
 
 ## Starting with $\Lambda$
 
-Piven $\Lambda$ we can solve:
+Given $\Lambda$ we can solve:
 
 $$
 M = \Omega^{-1} \cdot \Lambda
@@ -92,7 +92,7 @@ $$
 
 ## Starting with $Z$
 
-It is more common that we start from an estimate of $Z$, perhaps derived from an estimated EIR (entomological inoculation rate). Piven $Z$, we can calculate the other state variables and $\Lambda$. For numerical implementation, note that $(e^{-\Omega\tau})^{-1} = e^{\Omega\tau}$.
+It is more common that we start from an estimate of $Z$, perhaps derived from an estimated EIR (entomological inoculation rate). Given $Z$, we can calculate the other state variables and $\Lambda$. For numerical implementation, note that $(e^{-\Omega\tau})^{-1} = e^{\Omega\tau}$.
 
 $$
 M-Y = \mbox{diag}(1/fq\kappa) \cdot (e^{-\Omega\tau})^{-1} \cdot \Omega \cdot Z
