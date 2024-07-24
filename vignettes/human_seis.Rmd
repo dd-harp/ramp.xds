@@ -27,7 +27,7 @@ library(ramp.xds)
 
 **`ramp.xds`** includes the standard SEIS model and the delay SEIS model.   The dependent state variables for both models are:
 
-+ $S$ the density of infected hosts
++ $S$ the density of susceptible hosts
 
 + $E$ the density of exposed hosts who are infected but not yet infectious
 
