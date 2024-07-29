@@ -25,7 +25,7 @@ library(ramp.xds)
 
 ## xde 
 
-**`ramp.xds`** includes the standard SEIS model and the delay SEIS model.   The dependent state variables for both models are:
+**`ramp.xds`** includes the standard SEIS model and the delay SEIS model. Note that the time step is per day.  The dependent state variables for both models are:
 
 + $S$ the density of susceptible hosts
 
@@ -71,9 +71,9 @@ seis_inf
 This model has the steady state... 
 
 $$
-\bar E = h S/ \nu \\ 
-\bar I = \nu E / r \\ 
-\bar S =  
+\bar E = \frac{h}{\nu}S \\ 
+\bar I = \frac{\nu}{r}E \\ 
+\bar S = H -E - I 
 $$
 ```{r}
 xde_steady_state_X(1/365, 1000, seis$Xpar[[1]]) -> seis_ss
@@ -93,10 +93,10 @@ $$
 \frac{dE}{dt} = h S - h_\nu S_\nu \\
 \frac{dI}{dt} = h_\nu S_\nu - r I\\
 $$
-and $H = S+E+I,$  so 
+and $H = S+E+I.$ \ At steady state, $h=h_{v}$, so 
 
 $$
-\bar E = h S \nu \\ 
+\bar E = h S/ \nu \\ 
 \bar I = h S / r \\ 
 \bar S =  
 $$
