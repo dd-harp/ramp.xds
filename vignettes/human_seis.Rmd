@@ -1,6 +1,6 @@
 ---
 title: "SEIS and SEISd" 
-subtitle: "Susceptible-Exposed-Infected-Susceptible  Models"
+subtitle:  "Susceptible-Exposed-Infected-Susceptible  Models"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{SEIS and SEISd}
@@ -15,92 +15,94 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r}
-library(ramp.xds)
-```
 
 ```{r, echo=F}
 #devtools::load_all()
 ```
 
-## xde 
+## 
+**`ramp.xds`** includes the standard SEIS model and the delay SEIS (SEISd) model.   
+The SEIS model is a human model modified from the SIS model to include the Exposed group of individuals ($E$). It is Incorporated within the **'ramp.xds'** with the fulfillment of the generic interface of the human component.
 
-**`ramp.xds`** includes the standard SEIS model and the delay SEIS model. Note that the time step is per day.  The dependent state variables for both models are:
+## Compartment Model as an ODE
 
-+ $S$ the density of susceptible hosts
-
-+ $E$ the density of exposed hosts who are infected but not yet infectious
-
-+ $I$ the density of infectious hosts
-
-In the basic versions of the model -- without demographic changes -- population density is constant, so $$H = S+E+I.$$
-
-
-### Compartment Model as an ODE
-
-The model has three parameters: 
-
-+ $b$ is the fraction of infective bites that cause an infection;  
-
-+ $\nu$ is the transition rate from exposed to infectious: the duration of the latent period is $1/\nu$ 
-
-+ $r$ is the clearance rate for infections: the average duration of infection in this model is $1/r$ 
-
-These are coupled systems of ordinary differential equations forced by the force of infection, denoted $h(t)$, where $h = F_h(E);$ here, we assume that exposure is Poisson, so we let:  
-
-$$h = bE$$
+### Differential Equations
+Without deaths and births, the constant population density $H$, is subdivided into Susceptible ($S$), Exposed ($E$),the density of hosts who are infected but not infectious, and Infectious ($I$), such that $H = S+E+I$.  We assume that the force of infection $h$ is linearly proportional to the entomological  inoculation rate $EIR$, thus $h=b*EIR$. The generalized dynamics are given as:
 
 $$
 \frac{dS}{dt} = - h S + r I \\
 \frac{dE}{dt} = h S - \nu E \\
 \frac{dI}{dt} = \nu E - r I\\
 $$
+The individuals in $S,E,I$ can be stratified such that the parameters are a vector of length **`nStrata`**.
+
+### Equilbrium Solutions
+Assuming that $H$ and other parameters are known for each stratum, then the coupled system above is equated to zero leading to the following equilibrium points.
+
+$$
+E^* = \frac{h H r}{h(r+\nu)+r\nu}\\
+I^* = \frac{h H \nu}{h(r+\nu)+r\nu}\\
+S^*= H - E^* - I^*
+$$
+
+### Example
+Using the **`xde_setup`**, **`xde_solve`** and **`xde_steady_state_X`** in **'ramp.xds'**, we demonstrate that at equilibrium, the numerical simulation and the analytic steady states for the $SEIS$ are consistent See below:
+
+load library:
+```{r}
+library(ramp.xds)
+```
+
+Set up parameters:
 
 ```{r}
 MYZo = list(MYZm = 2000/365, f=1, q=1)
 Xo = list(b= 0.5)
+```
+
+Use  **`xde_setup`** to setup the $SEIS$ model and obtain stable orbits
+```{r}
 seis = xde_setup(Xname = "SEIS", MYZname = "trace", MYZopts = MYZo, Xopts=Xo)
 seis = xde_stable_orbit(seis)
 ```
-
+Extract the last term  for the $SEIS$ variables
 ```{r}
 unlist(list_Xvars(seis$outputs$orbits$y_last, seis, 1)) -> seis_inf
 seis_inf
 ```
+Use **`xde_steady_state_X`** to obtain the analytical steady states.
 
-This model has the steady state... 
-
-$$
-\bar E = \frac{h}{\nu}S \\ 
-\bar I = \frac{\nu}{r}E \\ 
-\bar S = H -E - I 
-$$
 ```{r}
 xde_steady_state_X(1/365, 1000, seis$Xpar[[1]]) -> seis_ss
 seis_ss
 ```
-
+Then compare the analytic and numerical result
 ```{r}
 sum((seis_inf-seis_ss)^2) < 1e-9
 ```
 
 ### Compartment Model as an DDE
 
-In the delay differential equation model, we let $\nu$ denote the duration of the incubation period, and we let $h_\nu = h(t-\nu).$ 
+In the delay differential equation model, we let $\nu$ denote the duration of the incubation period, and we let $h_\nu = h(t-\nu)$ as the force of infection $1/\nu$ days since infection. Then the SEISd delay differential model with the same variables is given by 
 
 $$
 \frac{dS}{dt} = - h S + r I \\
 \frac{dE}{dt} = h S - h_\nu S_\nu \\
 \frac{dI}{dt} = h_\nu S_\nu - r I\\
 $$
-and $H = S+E+I.$ \ At steady state, $h=h_{v}$, so 
+and $H = S+E+I.$ \ At steady state, $h=h_{\nu}$, so that 
 
 $$
-\bar E = h S/ \nu \\ 
-\bar I = h S / r \\ 
-\bar S =  
+\bar{S} = \frac{H}{(1+h\nu + \frac{h}{r})}\\
+\bar{E} = h\bar{S}\nu\\
+\bar{I} = \frac{h\bar{S}}{r}
 $$
 
+### Example
+
+Again using the  **`xde_setup`**, **`xde_solve`** and **`xde_steady_state_X`** in **'ramp.xds'**, we verify that the simulated and the analyticla steady states are equal. The following steps are taken.
+
+Setup the SEISd model using the **`xde_setup`** and solve it numerically;
 ```{r}
 SEISd = xde_setup(Xname = "SEISd", MYZname = "trace", MYZopts = MYZo, Xopts=Xo)
 SEISd$dlay = "dde" 
@@ -108,15 +110,21 @@ class(SEISd$dlay) = "dde"
 SEISd = xde_solve(SEISd, Tmax = 3650)
 ```
 
+Obtain the population density at steady state;
+
 ```{r}
 unlist(list_Xvars(SEISd$outputs$orbits$y_last, SEISd, 1))[1:4] -> seisd_inf
 seisd_inf
 ```
 
+Use the  **`xde_steady_state_X`** to obtain the analytical steady state;
+
 ```{r}
 xde_steady_state_X(1/365, 1000, SEISd$Xpar[[1]]) -> seisd_ss
 seisd_ss
 ```
+
+Check for equivalence;
 
 ```{r}
 sum((seisd_inf-seisd_ss)^2) < 1e-9
