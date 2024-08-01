@@ -31,40 +31,53 @@ compute_terms.xde <- function(varslist, deout, pars, s, i) {
   time = deout[,1]
 
   eir = list()
-  if(pars$nHosts>0) for(i in 1:pars$nHosts)
-     eir[[i]] = matrix(0, nrow = length(time), ncol = pars$Hpar[[i]]$nStrata)
+  if(pars$nHosts>0) for(i in 1:pars$nHosts){
+     eir[[i]] = matrix(0, nrow = length(time), ncol = pars$nStrata[i])
+     varslist[[i]]$eir = matrix(0, nrow = length(time), ncol = pars$nStrata[i])
+  }
 
   kappa = list()
   fqZ = list()
   fqM = list()
   for(s in 1:pars$nVectors){
      kappa[[s]] = matrix(0, nrow = length(time), ncol = pars$nPatches)
+     varslist[[s]]$kappa = matrix(0, nrow = length(time), ncol = pars$nPatches)
      fqZ[[s]] = matrix(0, nrow = length(time), ncol = pars$nPatches)
+     varslist[[s]]$fqZ = matrix(0, nrow = length(time), ncol = pars$nPatches)
      fqM[[s]] = matrix(0, nrow = length(time), ncol = pars$nPatches)
+     varslist[[s]]$fqM = matrix(0, nrow = length(time), ncol = pars$nPatches)
   }
 
   for (ix in 1:length(time)){
     yt = deout[ix,-1]
     pars = compute_vars_full(time[ix], yt, pars)
 
-    for(i in 1:pars$nHosts)
+    for(i in 1:pars$nHosts){
       eir[[i]][ix,] = pars$EIR[[i]]
-
+      varslist[[i]]$eir[ix,] = pars$EIR[[i]]
+    }
 
     for(s in 1:pars$nVectors){
       kappa[[s]][ix,] = pars$kappa[[i]]
       fqZ[[s]][ix,] = F_fqZ(time[ix], yt, pars, s)
       fqM[[s]][ix,] = F_fqM(time[ix], yt, pars, s)
+      varslist[[s]]$kappa[ix,] = pars$kappa[[i]]
+      varslist[[s]]$fqZ[ix,] = F_fqZ(time[ix], yt, pars, s)
+      varslist[[s]]$fqM[ix,] = F_fqM(time[ix], yt, pars, s)
     }
   }
   pr = list()
   ni = list()
+
   for(i in 1:pars$nHosts){
     ni[[i]] = compute_NI(deout, pars, i)
-    pr[[i]] = F_pr(varslist$XH[[i]], pars$Xpar[[i]])
+    pr[[i]] = F_pr(varslist[[i]]$XH, pars$Xpar[[i]])
+    varslist[[i]]$ni = compute_NI(deout, pars, i)
+    varslist[[i]]$pr = F_pr(varslist[[i]]$XH, pars$Xpar[[i]])
   }
-
-  return(list(time=time,eir=eir,pr=pr,ni=ni,kappa=kappa,fqZ=fqZ))
+  varslist[[i]]$time = time
+  #return(list(time=time,eir=eir,pr=pr,ni=ni,kappa=kappa,fqZ=fqZ))
+  return(varslist)
 }
 
 #' @title Compute dynamical terms
@@ -77,13 +90,13 @@ compute_terms.cohort <- function(varslist, deout, pars, s, i) {
   time = deout[,1]
   d1 = length(time)
   eir = as.matrix(with(pars$EIRpar, sapply(time, F_eir, bday=bday, scale=scale)))
-  eir = shapeIt(eir, d1, pars$Hpar[[i]]$nStrata)
+  eir = shapeIt(eir, d1, pars$nStrata[i])
 
   pr = list()
   ni = list()
   for(i in 1:pars$nHosts){
     ni[[i]] = compute_NI(deout, pars, i)
-    pr[[i]] = F_pr(varslist$XH[[i]], pars$Xpar[[i]])
+    pr[[i]] = F_pr(varslist[[i]]$XH, pars$Xpar[[i]])
   }
 
   return(list(time=time,eir=eir,pr=pr,ni=ni))
@@ -101,7 +114,7 @@ compute_terms.human<- function(varslist, deout, pars, s, i) {
 
   eir = list()
   if(pars$nHosts>0) for(i in 1:pars$nHosts)
-    eir[[i]] = matrix(0, nrow = length(time), ncol = pars$Hpar[[i]]$nStrata)
+    eir[[i]] = matrix(0, nrow = length(time), ncol = pars$nStrata[i])
 
   fqZ = list()
   for(s in 1:pars$nVectors)
@@ -124,7 +137,7 @@ compute_terms.human<- function(varslist, deout, pars, s, i) {
   ni = list()
   for(i in 1:pars$nHosts){
     ni[[i]] = compute_NI(deout, pars, i)
-    pr[[i]] = F_pr(varslist$XH[[i]], pars$Xpar[[i]])
+    pr[[i]] = F_pr(varslist[[i]]$XH, pars$Xpar[[i]])
   }
 
   return(list(time=time,eir=eir,pr=pr,ni=ni,fqZ=fqZ))
@@ -138,7 +151,7 @@ compute_terms.human<- function(varslist, deout, pars, s, i) {
 #' @return [matrix]
 #' @export
 compute_terms.na <- function(varslist,deout, pars, s, i) {
- return(list())
+  return(list())
 }
 
 #' @title Compute dynamical terms
@@ -155,8 +168,8 @@ compute_terms_steady<- function(varslist, y_eq, pars, s, i) {
   pars = Transmission(0, y_eq, pars)
   eir = pars$EIR[[1]]
   fqZ <- F_fqZ(0, y_eq, pars, s)
-  ni <- F_X(y_eq, pars, i)/varslist$XH[[i]]$H
-  pr <- F_pr(varslist$XH[[i]], pars$Xpar[[i]])
+  ni <- F_X(y_eq, pars, i)/varslist[[i]]$XH$H
+  pr <- F_pr(varslist[[i]]$XH, pars$Xpar[[i]])
   return(list(eir=eir,pr=pr,kappa=kappa,fqZ=fqZ,ni=ni))
 }
 
@@ -171,7 +184,7 @@ compute_terms_steady<- function(varslist, y_eq, pars, s, i) {
 compute_NI <- function(deout, pars, i) {
   d1 = length(deout[,1])
   NI = sapply(1:d1, compute_NI_ix, deout=deout, pars=pars, i=i)
-  NI = shapeIt(NI, d1, pars$Hpar[[i]]$nStrata)
+  NI = shapeIt(NI, d1, pars$nStrata[i])
   return(NI)
 }
 

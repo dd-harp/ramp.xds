@@ -6,8 +6,13 @@ numeric_tol <- 1e-5
 
 test_that("forced emergence works with equilibrium", {
   nPatches <- 3
-  nVectors <- 1
+  membership = c(1,2,3,3)
   nHabitats <- 4
+  residence <- c(1:3)
+
+  kappa <- c(0.1, 0.075, 0.025)
+  Lambda <- c(5, 10, 8)
+
   f <- rep(0.3, nPatches)
   q <- rep(0.9, nPatches)
   g <- rep(1/20, nPatches)
@@ -17,75 +22,40 @@ test_that("forced emergence works with equilibrium", {
   nu <- 1/2
   eggsPerBatch <- 30
 
-  habitat_matrix <- matrix(0, nPatches, nHabitats)
-  habitat_matrix[1,1] <- 1
-  habitat_matrix[2,2] <- 1
-  habitat_matrix[3,3] <- 1
-  habitat_matrix[3,4] <- 1
-
-  calU <- matrix(0, nHabitats, nPatches)
-  calU[1,1] <- 1
-  calU[2,2] <- 1
-  calU[3:4,3] <- 0.5
-
   calK <- matrix(0, nPatches, nPatches)
   calK[1, 2:3] <- c(0.2, 0.8)
   calK[2, c(1,3)] <- c(0.5, 0.5)
   calK[3, 1:2] <- c(0.7, 0.3)
   calK <- t(calK)
+  Omega <- compute_Omega_xde(g, sigma, mu, calK)
+  Upsilon <- expm(-Omega*eip)
 
-  Omega <- make_Omega_xde(g, sigma, mu, calK)
-  OmegaEIP <- expm::expm(-Omega * eip)
+  MYZo <- list(nPatches=nPatches, f=f, q=q, g=g, sigma=sigma, mu=mu, eip=eip, nu=nu, eggsPerBatch=eggsPerBatch, calK=calK, Omega=Omega, Upsilon=Upsilon)
+  xde_steady_state_MYZ.RM(Lambda, kappa, MYZo) -> ss
 
-  kappa <- c(0.1, 0.075, 0.025)
-  Lambda <- c(5, 10, 8)
+  MYZo$M <- M_eq <- ss$M
+  MYZo$P <- P_eq <- ss$P
+  MYZo$Y <- Y_eq <- ss$Y
+  MYZo$Z <- Z_eq <- ss$Z
 
-  # equilibrium solutions (forward)
-  Omega_inv <- solve(Omega)
-  OmegaEIP_inv <- expm::expm(Omega * eip)
+  Xo = list(kappa = kappa)
 
-  M_eq <- as.vector(Omega_inv %*% Lambda)
-  P_eq <- as.vector(solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
-  Y_eq <- as.vector(solve(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
-  Z_eq <- as.vector(Omega_inv %*% OmegaEIP %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
+  Lo = list(Lambda=c(5, 10, 4, 4))
 
-  # the "Lambda" for the dLdt model
-  alpha <- as.vector(ginv(habitat_matrix) %*% Lambda)
+  params <- xds_setup(MYZname = "RM", Lname="trace", Xname="trace", calK=calK,
+                      MYZopts = MYZo, Lopts = Lo, Xopts = Xo, residence=residence,
+                      nPatches=nPatches, membership=membership, HPop = rep(1000, nPatches))
 
-  params <- make_xds_object("xde", "mosy")
+  params <- xde_solve(params)
+  out <- params$outputs$orbits$y_last
 
-  params$nPatches = nPatches
-  params$nHabitats = nHabitats
-  params$nVectors = nVectors
-  params$calU=list()
-  class(params$calU) <- "static"
-  params$calU[[1]] = calU
-  params$habitat_matrix = habitat_matrix
-  params$kappa[[1]] = kappa
-  params$Lambda[[1]] = Lambda
-  params <- set_habitat_wts_static(params, searchQ=1)
-
-
-  # ODE
-  params = make_parameters_MYZ_RM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as = "ode")
-  params = make_inits_MYZ_RM_ode(pars = params, M0 = rep(0, nPatches), P0 = rep(0, nPatches), Y0 = rep(0, nPatches), Z0 = rep(0, nPatches))
-  params = make_parameters_L_trace(pars = params, Lambda = alpha)
-
-  params = make_indices(params)
-
-  y0 <- get_inits(params)
-
-
-  out <- deSolve::ode(y = y0, times = c(0, 365), func = xde_derivatives, parms=params, method = 'lsoda')
-
-  M_sim <- as.vector(out[2, params$ix$MYZ[[1]]$M_ix+1])
-  P_sim <- as.vector(out[2, params$ix$MYZ[[1]]$P_ix+1])
-  Y_sim <- as.vector(out[2, params$ix$MYZ[[1]]$Y_ix+1])
-  Z_sim <- as.vector(out[2, params$ix$MYZ[[1]]$Z_ix+1])
+  M_sim <- out[params$ix$MYZ[[1]]$M_ix]
+  P_sim <- out[params$ix$MYZ[[1]]$P_ix]
+  Y_sim <- out[params$ix$MYZ[[1]]$Y_ix]
+  Z_sim <- out[params$ix$MYZ[[1]]$Z_ix]
 
   expect_equal(M_eq, M_sim, tolerance = numeric_tol)
   expect_equal(P_eq, P_sim, tolerance = numeric_tol)
   expect_equal(Y_eq, Y_sim, tolerance = numeric_tol)
   expect_equal(Z_eq, Z_sim, tolerance = numeric_tol)
-
 })

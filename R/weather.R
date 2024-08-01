@@ -11,21 +11,21 @@ Weather <- function(t, pars) {
 }
 
 #' @title Methods for exogenous variables describing weather
-#' @description Implements [Weather] for the null model (no variables)
+#' @description Implements [Weather] for the no_forcing model (no variables)
 #' @inheritParams Weather
 #' @return [list]
 #' @export
-Weather.null <- function(t, pars) {
+Weather.no_forcing <- function(t, pars) {
   return(pars)
 }
 
-#' @title Set up the null model for weather
+#' @title Set up the no_forcing model for weather
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_weather_null <- function(pars) {
+setup_weather_no_forcing <- function(pars) {
   WEATHER <- list()
-  class(WEATHER) <- 'null'
+  class(WEATHER) <- 'no_forcing'
   pars$WEATHER <- WEATHER
   return(pars)
 }
@@ -51,9 +51,9 @@ setup_weather_forced <- function(pars) {
   WEATHER <- list()
   class(WEATHER) <- 'forced'
   pars$WEATHER <- WEATHER
-  pars = setup_temperature_null(pars)
-  pars = setup_rainfall_null(pars)
-  pars = setup_relative_humidity_null(pars)
+  pars = setup_temperature_no_forcing(pars)
+  pars = setup_rainfall_no_forcing(pars)
+  pars = setup_relative_humidity_no_forcing(pars)
   return(pars)
 }
 
@@ -68,32 +68,32 @@ Temperature <- function(t, pars) {
 }
 
 #' @title Methods for exogenous variables describing temperature
-#' @description Implements [Temperature] for the null model (no variables)
+#' @description Implements [Temperature] for the no_forcing model (no variables)
 #' @inheritParams Temperature
 #' @return [list]
 #' @export
-Temperature.null <- function(t, pars) {
+Temperature.no_forcing <- function(t, pars) {
   return(pars)
 }
 
-#' @title Set up the null model for temperature
+#' @title Set up the no_forcing model for temperature
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_temperature_null <- function(pars) {
+setup_temperature_no_forcing <- function(pars) {
   TEMPERATURE <- list()
-  class(TEMPERATURE) <- 'null'
+  class(TEMPERATURE) <- 'no_forcing'
   pars$TEMPERATURE <- TEMPERATURE
   return(pars)
 }
 
-#' @title Set up the null model for RAINFALL
+#' @title Set up the no_forcing model for RAINFALL
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_rainfall_null <- function(pars) {
+setup_rainfall_no_forcing <- function(pars) {
   RAINFALL <- list()
-  class(RAINFALL) <- 'null'
+  class(RAINFALL) <- 'no_forcing'
   pars$RAINFALL <- RAINFALL
   return(pars)
 }
@@ -109,21 +109,21 @@ Rainfall <- function(t, pars) {
 }
 
 #' @title Methods for exogenous variables describing rainfall
-#' @description Implements [Rainfall] for the null model (no variables)
+#' @description Implements [Rainfall] for the no_forcing model (no variables)
 #' @inheritParams Rainfall
 #' @return [list]
 #' @export
-Rainfall.null <- function(t, pars) {
+Rainfall.no_forcing <- function(t, pars) {
   return(pars)
 }
 
-#' @title Set up the null model for HUMIDITY
+#' @title Set up the no_forcing model for HUMIDITY
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_relative_humidity_null <- function(pars) {
+setup_relative_humidity_no_forcing <- function(pars) {
   HUMIDITY <- list()
-  class(HUMIDITY) <- 'null'
+  class(HUMIDITY) <- 'no_forcing'
   pars$HUMIDITY <- HUMIDITY
   return(pars)
 }
@@ -139,10 +139,10 @@ Relative_Humidity <- function(t, pars) {
 }
 
 #' @title Methods for exogenous variables describing relative humidity
-#' @description Implements [Relative_Humidity] for the null model (no variables)
+#' @description Implements [Relative_Humidity] for the no_forcing model (no variables)
 #' @inheritParams Relative_Humidity
 #' @return [list]
 #' @export
-Relative_Humidity.null <- function(t, pars) {
+Relative_Humidity.no_forcing <- function(t, pars) {
   return(pars)
 }

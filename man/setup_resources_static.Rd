@@ -2,7 +2,7 @@
 % Please edit documentation in R/resources.R
 \name{setup_resources_static}
 \alias{setup_resources_static}
-\title{Set up parameters for the null model for resource availability}
+\title{Set up parameters for the static model for resource availability}
 \usage{
 setup_resources_static(pars)
 }
@@ -13,5 +13,5 @@ setup_resources_static(pars)
 none
 }
 \description{
-Set up parameters for the null model for resource availability
+Set up parameters for the static model for resource availability
 }

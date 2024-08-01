@@ -133,7 +133,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Develop a mosquito dispersal matrix from a kernel and xy-coordinates</h1>
-    <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/mosquito-dispersal.R" class="external-link"><code>R/mosquito-dispersal.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/adult_mosquito-dispersal.R" class="external-link"><code>R/adult_mosquito-dispersal.R</code></a></small>
     <div class="hidden name"><code>make_calK.xy.Rd</code></div>
     </div>
 
@@ -143,17 +143,21 @@
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for xy</span></span>
-<span><span class="fu"><a href="make_calK.html">make_calK</a></span><span class="op">(</span><span class="va">nPatches</span>, calK <span class="op">=</span> <span class="st">"xy"</span>, opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="make_calK.html">make_calK</a></span><span class="op">(</span>calK <span class="op">=</span> <span class="st">"xy"</span>, <span class="va">s</span>, <span class="va">pars</span>, opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>nPatches</dt>
-<dd><p>is the number of patches</p></dd>
-
-
-<dt>calK</dt>
+    <dl><dt>calK</dt>
 <dd><p>a matrix or a string</p></dd>
+
+
+<dt>s</dt>
+<dd><p>the vector species index</p></dd>
+
+
+<dt>pars</dt>
+<dd><p>an <code>xds</code> object</p></dd>
 
 
 <dt>opts</dt>

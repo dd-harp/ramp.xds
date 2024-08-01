@@ -6,25 +6,34 @@
 #' @export
 parse_outputs <- function(deout, pars){
   varslist = list()
+  varslist[[1]] = list()
+#  varslist$vars[[1]] = list()
+
+  if(length(pars$Lpar)>0)
+    varslist[[1]]$L = parse_outputs_L(deout, pars, 1)
+  if(length(pars$MYZpar)>0)
+    varslist[[1]]$MYZ = parse_outputs_MYZ(deout, pars, 1)
+  if(length(pars$Xpar)>0)
+      varslist[[1]]$XH = parse_outputs_X(deout, pars, 1)
 
   s = length(pars$Lpar)
-  if(s>0)
-    for(ix in 1:s)
-      varslist$L[[ix]]= parse_outputs_L(deout, pars, ix)
+  if(s>1)
+    for(ix in 2:s)
+      varslist[[ix]]$L = parse_outputs_L(deout, pars, ix)
 
   s = length(pars$MYZpar)
-  if(s>0)
-    for(ix in 1:s)
-      varslist$MYZ[[ix]]= parse_outputs_MYZ(deout, pars, ix)
+  if(s>1)
+    for(ix in 2:s)
+      varslist[[ix]]$MYZ= parse_outputs_MYZ(deout, pars, ix)
 
   s = length(pars$Xpar)
-  if(s>0)
-    for(ix in 1:s)
-      varslist$XH[[ix]]= parse_outputs_X(deout, pars, ix)
-  varslist$terms = compute_terms(varslist, deout, pars, 1, 1)
-  varslist$deout = deout
-  varslist$y_last = tail(deout, 1)[-1]
-  return(varslist)
+  if(s>1)
+    for(ix in 2:s)
+      varslist[[ix]]$XH = parse_outputs_X(deout, pars, ix)
+
+  varslist = compute_terms(varslist, deout, pars, 1, 1)
+  y_last = tail(deout, 1)[-1]
+  return(list(vars=varslist, deout=deout, y_last=y_last))
 }
 
 #' @title Parse the output of an object returned by deSolve

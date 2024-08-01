@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SEISd.R
 \name{put_Xvars.SEISd}
 \alias{put_Xvars.SEISd}
-\title{Return the SEISd model variables as a list, returned from DT_Xt.SISd}
+\title{Return the SEISd model variables as a list, returned from Update_Xt.SISd}
 \usage{
 \method{put_Xvars}{SEISd}(Xvars, y, pars, i)
 }

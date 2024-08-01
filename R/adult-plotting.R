@@ -29,15 +29,15 @@ xds_plot_M = function(pars, s=1, clrs="darkblue", llty=1, stable=FALSE, add_axes
 #' @export
 xds_lines_M = function(MYZ, pars, clrs="darkblue", llty=1){
   with(MYZ,{
-   if(pars$nPatches==1) lines(time, M, col=clrs[1], lty = llty[1])
-   if(pars$nPatches>1){
+    if(pars$nPatches==1) lines(time, M, col=clrs[1], lty = llty[1])
+    if(pars$nPatches>1){
       if (length(clrs)==1) clrs=rep(clrs, pars$nPatches)
       if (length(llty)==1) llty=rep(llty, pars$nPatches)
       for(i in 1:pars$nPatches){
         lines(time, M[,i], col=clrs[i], lty = llty[i])
       }
     }
-})}
+  })}
 
 #' Plot the density of infected and infective mosquitoes
 #'
@@ -86,7 +86,7 @@ xds_lines_YZ = function(MYZ, pars, Yclrs="purple", Zclrs = "darkred", llty=1){
         lines(time, Z[,i], col=Zclrs[i], lty = llty[i])
       }
     }
-})}
+  })}
 
 #' Plot the fraction of infected and infective mosquitoes
 #'
@@ -135,7 +135,7 @@ xds_lines_YZ_fracs = function(MYZ, pars, Yclrs="purple", Zclrs="darkred", llty=1
         lines(time, z[,i], col=Zclrs[i], lty = llty[i])
       }
     }
-})}
+  })}
 
 
 #' Plot the fraction of infected and infective mosquitoes

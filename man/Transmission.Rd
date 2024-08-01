@@ -11,11 +11,11 @@ Transmission(t, y, pars)
 
 \item{y}{state vector}
 
-\item{pars, }{a \link{list}}
+\item{pars}{an \code{xds} object}
 }
 \value{
-\link{list}
+the modified \code{xds} object
 }
 \description{
-This method dispatches on the type of \code{pars$BFpar}
+This method dispatches on the type of \code{pars$beta}
 }

@@ -22,9 +22,9 @@ setup_visitors_basic(
 
 \item{xt}{a function to change the pattern for x_visitors over time}
 
-\item{V_scale}{a non-negative numeric value to set the mean availability of Visitors}
+\item{V_scale}{a non-negative numeric value to set the mean availability of Visiting}
 
-\item{Vt}{a function to set the temporal pattern for availability of Visitors}
+\item{Vt}{a function to set the temporal pattern for availability of Visiting}
 }
 \value{
 \link{list}

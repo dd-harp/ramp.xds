@@ -3,15 +3,11 @@
 #' @title A utility to set up Hpar
 #' @param pars a [list]
 #' @param i the host species index
-#' @param HPop a [numeric] vector of population densities
 #' @return a [list]
 #' @export
-setup_Hpar_static = function(pars, i, HPop=1000){
-
+setup_Hpar_static = function(pars, i){
   Hpar = list()
   class(Hpar) <- "static"
-  Hpar$H = HPop
-  Hpar$nStrata = length(HPop)
 
   Bf <- "zero"
   class(Bf) <- "zero"
@@ -22,7 +18,6 @@ setup_Hpar_static = function(pars, i, HPop=1000){
   Hpar$dH <- dH
 
   pars$Hpar[[i]] <- Hpar
-
   return(pars)
 }
 

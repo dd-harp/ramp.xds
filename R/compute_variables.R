@@ -10,15 +10,10 @@
 compute_vars_full <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- Behavior(t, y, pars)
-  pars <- Visitors(t, pars)
-  pars <- VectorControlEffects(t, y, pars)
-  pars <- Resources(t, y, pars)
+  pars <- Forcing(t, y, pars)
 
   # set and modify the baseline bionomic parameters
+  pars <- BloodFeeding(t, y, pars)
   pars <- Bionomics(t, y, pars)
   pars <- VectorControlEffectSizes(t, y, pars)
 
@@ -48,13 +43,10 @@ compute_vars_full <- function(t, y, pars) {
 compute_vars_human <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t,  pars)
-  pars <- Control(t, y, pars)
-  pars <- Behavior(t, y, pars)
-  pars <- Resources(t, y, pars)
+  pars <- Forcing(t, y, pars)
 
   # set and modify the baseline mosquito bionomic parameters
+  pars <- BloodFeeding(t, y, pars)
   pars <- MBionomics(t, y, pars, 1)
   pars <- VectorControlEffectSizes(t, y, pars)
 
@@ -79,13 +71,10 @@ compute_vars_human <- function(t, y, pars) {
 compute_vars_mosy <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- Behavior(t, y, pars)
-  #pars <- Resources(t, y, pars)
+  pars <- Forcing(t, y, pars)
 
-  # set baseline mosquito bionomic parameters
+  # set and modify the baseline mosquito bionomic parameters
+  pars <- BloodFeeding(t, y, pars)
   pars <- Bionomics(t, y, pars)
   pars <- VectorControlEffectSizes(t, y, pars)
 
@@ -129,12 +118,10 @@ compute_vars_cohort <- function(a, y, pars, F_eir) {
 compute_vars_aqua <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- HabitatDynamics(t, pars)
+  pars <- Forcing(t, y, pars)
 
-  # modify baseline mosquito bionomic parameters
+  # set and modify the baseline mosquito bionomic parameters
+  pars <- BloodFeeding(t, y, pars)
   pars <- LBionomics(t, y, pars, 1)
   pars <- VectorControlEffectSizes(t, y, pars)
 

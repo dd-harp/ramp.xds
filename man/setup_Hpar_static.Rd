@@ -4,14 +4,12 @@
 \alias{setup_Hpar_static}
 \title{A utility to set up Hpar}
 \usage{
-setup_Hpar_static(pars, i, HPop = 1000)
+setup_Hpar_static(pars, i)
 }
 \arguments{
 \item{pars}{a \link{list}}
 
 \item{i}{the host species index}
-
-\item{HPop}{a \link{numeric} vector of population densities}
 }
 \value{
 a \link{list}

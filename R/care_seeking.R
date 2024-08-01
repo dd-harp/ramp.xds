@@ -12,21 +12,21 @@ CareSeeking <- function(t, y, pars) {
 }
 
 #' @title Set the values of exogenous variables describing care seeking
-#' @description Implements [CareSeeking] for the null model of care seeking (do nothing)
+#' @description Implements [CareSeeking] for the no_behavior model of care seeking (do nothing)
 #' @inheritParams CareSeeking
 #' @return [list]
 #' @export
-CareSeeking.null <- function(t, y, pars) {
+CareSeeking.no_behavior <- function(t, y, pars) {
   return(pars)
 }
 
-#' @title Make parameters for the null model for care seeking (do nothing)
+#' @title Make parameters for the no_behavior model for care seeking (do nothing)
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_care_seeking_null <- function(pars) {
+setup_care_seeking_no_behavior <- function(pars) {
   CARE_SEEKING <- list()
-  class(CARE_SEEKING) <- 'null'
+  class(CARE_SEEKING) <- 'no_behavior'
   pars$CARE_SEEKING <- CARE_SEEKING
   return(pars)
 }

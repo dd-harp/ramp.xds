@@ -1,23 +1,25 @@
 # generic methods to compute the extrinsic incubation period (EIP)
 
 #' @title Compute the EIP
-#' @description This method dispatches on the type of `EIPmod`.
+#' @description This method ...
 #' @param t current simulation time
-#' @param MYZpar a [list]
-#' @return [numeric] the eip
+#' @param vars exogenous variables
+#' @param eip_par a [list]
+#' @return a [numeric] vector of length `nPatches`
 #' @export
-EIP <- function(t, MYZpar) {
-  UseMethod("EIP", MYZpar$EIPmod)
+F_eip <- function(t, vars, eip_par) {
+  UseMethod("F_eip", eip_par)
 }
 
 #' @title Compute the derivative of the EIP as a function of time
-#' @description This method dispatches on the type of `EIPmod`.
+#' @description This method ...
 #' @param t current simulation time
-#' @param EIPmod a [list]
+#' @param vars exogenous variables
+#' @param eip_par a [list]
 #' @return [numeric]
 #' @export
-dEIPdt <- function(t, EIPmod) {
-  UseMethod("dEIPdt", EIPmod)
+d_F_eip_dt <- function(t, vars, eip_par) {
+  UseMethod("d_F_eip_dt", eip_par)
 }
 
 #' @title Set up the fixed model for control forcing (do nothing)

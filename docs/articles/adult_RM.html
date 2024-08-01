@@ -193,7 +193,7 @@ that tracks parous mosquitoes, <span class="math inline">\(P\)</span>.</p>
 <p>These equations are naturally implemented by
 <code>ramp.xds::dMYZdt.RM_dde,</code> but they can also be implemented
 in a closely related set of odes using
-<code><a href="../reference/dMYZdt.RM_ode.html">ramp.xds::dMYZdt.RM_ode</a></code> (see below).</p>
+<code>ramp.xds::dMYZdt.RM_ode</code> (see below).</p>
 <p><span class="math display">\[
 \dot{M} = \Lambda - \Omega\cdot M
 \]</span> <span class="math display">\[
@@ -217,7 +217,7 @@ dispersal is given by:</p>
 <h3 id="ordinary-differential-equations">Ordinary Differential Equations<a class="anchor" aria-label="anchor" href="#ordinary-differential-equations"></a>
 </h3>
 <p>In the following, the equation are solved by
-<code><a href="../reference/dMYZdt.RM_ode.html">ramp.xds::dMYZdt.RM_ode</a></code>.</p>
+<code>ramp.xds::dMYZdt.RM_ode</code>.</p>
 <p>The system of ODEs is the same as above except for the equation
 giving the rate of change in infectious mosquito density, which
 becomes:</p>
@@ -243,7 +243,7 @@ the biting rate on the human population. We show both below.</p>
 <div class="section level3">
 <h3 id="starting-with-lambda">Starting with <span class="math inline">\(\Lambda\)</span><a class="anchor" aria-label="anchor" href="#starting-with-lambda"></a>
 </h3>
-<p>Piven <span class="math inline">\(\Lambda\)</span> we can solve:</p>
+<p>Given <span class="math inline">\(\Lambda\)</span> we can solve:</p>
 <p><span class="math display">\[
 M = \Omega^{-1} \cdot \Lambda
 \]</span> Then given <span class="math inline">\(M\)</span> we set <span class="math inline">\(\dot{Y}\)</span> to zero and factor out <span class="math inline">\(Y\)</span> to get:</p>
@@ -266,7 +266,7 @@ P = (\Omega + \mbox{diag}(f))^{-1} \cdot \mbox{diag}(f) \cdot M
 <h3 id="starting-with-z">Starting with <span class="math inline">\(Z\)</span><a class="anchor" aria-label="anchor" href="#starting-with-z"></a>
 </h3>
 <p>It is more common that we start from an estimate of <span class="math inline">\(Z\)</span>, perhaps derived from an estimated EIR
-(entomological inoculation rate). Piven <span class="math inline">\(Z\)</span>, we can calculate the other state
+(entomological inoculation rate). Given <span class="math inline">\(Z\)</span>, we can calculate the other state
 variables and <span class="math inline">\(\Lambda\)</span>. For
 numerical implementation, note that <span class="math inline">\((e^{-\Omega\tau})^{-1} =
 e^{\Omega\tau}\)</span>.</p>
@@ -299,85 +299,106 @@ equilibrium. Please note that this only runs this adult mosquito model
 and that most users should read <a href="ex_534.html">our fully worked
 example</a> to run a full simulation.</p>
 <div class="section level3">
+<h3 id="ross-macdonald">Ross-Macdonald<a class="anchor" aria-label="anchor" href="#ross-macdonald"></a>
+</h3>
+<p><span class="math display">\[
+\begin{array}{rl}
+\frac{\textstyle{dy}}{\textstyle{dt}} &amp; = a \kappa \left(1
+-y  \right) - g y \\
+\frac{\textstyle{dz}}{\textstyle{dt}} &amp; = e^{-g\tau} q \kappa_\tau
+\left[1 - y_\tau \right] - g z
+\end{array}
+\]</span></p>
+</div>
+<div class="section level3">
 <h3 id="the-long-way">The long way<a class="anchor" aria-label="anchor" href="#the-long-way"></a>
 </h3>
 <p>Here we set up some parameters for a simulation with 3 patches.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">nPatches</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<code class="sourceCode R"><span><span class="va">HPop</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">nPatches</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
 <span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">20</span>, <span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>, <span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">nPatches</span><span class="op">)</span></span>
-<span><span class="va">eip</span> <span class="op">&lt;-</span> <span class="fl">11</span></span>
+<span><span class="va">eip</span> <span class="op">&lt;-</span> <span class="fl">12</span></span>
 <span><span class="va">nu</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span></span>
-<span><span class="va">eggsPerBatch</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
-<span></span>
-<span><span class="va">calK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">nPatches</span>, <span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">eggsPerBatch</span> <span class="op">&lt;-</span> <span class="fl">30</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>f<span class="op">=</span><span class="va">f</span>,q<span class="op">=</span><span class="va">q</span>,g<span class="op">=</span><span class="va">g</span>,sigma<span class="op">=</span><span class="va">sigma</span>,mu<span class="op">=</span><span class="va">mu</span>,eip<span class="op">=</span><span class="va">eip</span>,nu<span class="op">=</span><span class="va">nu</span>,eggsPerBatch<span class="op">=</span><span class="va">eggsPerBatch</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">calK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">nPatches</span>, <span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="va">calK</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.8</span><span class="op">)</span></span>
 <span><span class="va">calK</span><span class="op">[</span><span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span></span>
 <span><span class="va">calK</span><span class="op">[</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.3</span><span class="op">)</span></span>
 <span><span class="va">calK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">calK</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega_xde.html">make_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">calK</span><span class="op">)</span></span>
+<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_Omega_xde.html">compute_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">calK</span><span class="op">)</span></span>
 <span><span class="va">Upsilon</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="op">-</span><span class="va">Omega</span> <span class="op">*</span> <span class="va">eip</span><span class="op">)</span></span></code></pre></div>
 <p>Now we set up the parameter environment with the correct class using
 <code>ramp.xds::make_parameters_MYZ_RM_xde,</code> noting that we will
 be solving as an <code>ode.</code></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nPatches <span class="op">=</span> <span class="va">nPatches</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_parameters_MYZ_RM.html">make_parameters_MYZ_RM</a></span><span class="op">(</span><span class="va">params</span>, </span>
-<span>                                g <span class="op">=</span> <span class="va">g</span>, sigma <span class="op">=</span> <span class="va">sigma</span>, mu<span class="op">=</span><span class="va">mu</span>, calK <span class="op">=</span> <span class="va">calK</span>, </span>
-<span>                                f <span class="op">=</span> <span class="va">f</span>, q <span class="op">=</span> <span class="va">q</span>, </span>
-<span>                                nu <span class="op">=</span> <span class="va">nu</span>, eggsPerBatch <span class="op">=</span> <span class="va">eggsPerBatch</span>, </span>
-<span>                                eip <span class="op">=</span> <span class="va">eip</span>, solve_as <span class="op">=</span> <span class="st">'ode'</span><span class="op">)</span> </span></code></pre></div>
 <p>Now we set the values of <span class="math inline">\(\kappa\)</span>
 and <span class="math inline">\(\Lambda\)</span> and solve for the
 equilibrium values.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">kappa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.075</span>, <span class="fl">0.025</span><span class="op">)</span></span>
+<span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa<span class="op">=</span><span class="va">kappa</span><span class="op">)</span></span>
 <span><span class="va">Lambda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">8</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Omega_inv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">Omega</span><span class="op">)</span></span>
-<span></span>
+<span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda<span class="op">=</span><span class="va">Lambda</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Omega_inv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">Omega</span><span class="op">)</span></span>
 <span><span class="va">M_eq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">Omega_inv</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">Lambda</span><span class="op">)</span></span>
 <span><span class="va">P_eq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">f</span>, <span class="va">nPatches</span><span class="op">)</span> <span class="op">+</span> <span class="va">Omega</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">f</span>, <span class="va">nPatches</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">M_eq</span><span class="op">)</span></span>
 <span><span class="va">Y_eq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">f</span><span class="op">*</span><span class="va">q</span><span class="op">*</span><span class="va">kappa</span><span class="op">)</span> <span class="op">+</span> <span class="va">Omega</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">f</span><span class="op">*</span><span class="va">q</span><span class="op">*</span><span class="va">kappa</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">M_eq</span><span class="op">)</span></span>
 <span><span class="va">Z_eq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">Omega_inv</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">Upsilon</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">f</span><span class="op">*</span><span class="va">q</span><span class="op">*</span><span class="va">kappa</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="op">(</span><span class="va">M_eq</span> <span class="op">-</span> <span class="va">Y_eq</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">MYZo</span><span class="op">$</span><span class="va">M</span><span class="op">=</span><span class="va">M_eq</span></span>
+<span><span class="va">MYZo</span><span class="op">$</span><span class="va">P</span><span class="op">=</span><span class="va">P_eq</span></span>
+<span><span class="va">MYZo</span><span class="op">$</span><span class="va">Y</span><span class="op">=</span><span class="va">Y_eq</span></span>
+<span><span class="va">MYZo</span><span class="op">$</span><span class="va">Z</span><span class="op">=</span><span class="va">Z_eq</span></span></code></pre></div>
 <p>We use <code>ramp.xds::make_inits_MYZ_RM_xde</code> to store the
 initial values. These equations have been implemented to compute <span class="math inline">\(\Upsilon\)</span> dynamically, so we attach
 <code>Upsilon</code> as initial values:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_inits_MYZ_RM_ode.html">make_inits_MYZ_RM_ode</a></span><span class="op">(</span>pars <span class="op">=</span> <span class="va">params</span>, </span>
-<span>                             M0 <span class="op">=</span> <span class="va">M_eq</span>, P0 <span class="op">=</span> <span class="va">P_eq</span>, Y0 <span class="op">=</span> <span class="va">Y_eq</span>, Z0 <span class="op">=</span> <span class="va">Z_eq</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_xds_object.html">make_xds_object</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"mosy"</span>, <span class="st">"ode"</span>, <span class="va">nPatches</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="va">HPop</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_MYZpar.html">make_MYZpar</a></span><span class="op">(</span><span class="st">"RM"</span>, <span class="va">params</span>, <span class="fl">1</span>,  <span class="va">MYZo</span><span class="op">)</span>  </span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_MYZinits.html">make_MYZinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZo</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Xpar.html">make_Xpar</a></span><span class="op">(</span><span class="st">"trace"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Xo</span><span class="op">)</span> </span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Xinits.html">make_Xinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">HPop</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"trace"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Lo</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Hpar_static.html">setup_Hpar_static</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p>We set the indices with <code><a href="../reference/make_indices.html">ramp.xds::make_indices</a></code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">max_ix</span> <span class="op">=</span> <span class="fl">0</span> </span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">nHosts</span> <span class="op">=</span> <span class="fl">0</span> </span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_calK.html">change_calK</a></span><span class="op">(</span><span class="va">calK</span>, <span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">Lambda</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">Lambda</span></span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">kappa</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">kappa</span> </span></code></pre></div>
 <p>Then we can set up the initial conditions vector and use
 <code><a href="https://rdrr.io/pkg/deSolve/man/ode.html" class="external-link">deSolve::ode</a></code> to solve the model. Normally these values
 would be computed within <code>ramp.xds::xDE_diffeqn</code>. Here, we
 set up a local version:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">y0</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_inits_MYZ.html">get_inits_MYZ</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">y0</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_MYZinits.html">get_MYZinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span><span class="va">y0</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">y0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MBionomics.html">MBionomics</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">y0</span>,<span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
-<span></span>
-<span><span class="va">dMYZdt_local</span> <span class="op">=</span> <span class="va">func</span><span class="op">=</span><span class="kw">function</span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span>, <span class="va">Lambda</span>, <span class="va">kappa</span>, <span class="va">s</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">pars</span><span class="op">$</span><span class="va">Lambda</span><span class="op">[[</span><span class="va">s</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">Lambda</span></span>
-<span>  <span class="va">pars</span><span class="op">$</span><span class="va">kappa</span><span class="op">[[</span><span class="va">s</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">kappa</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="../reference/dMYZdt.html">dMYZdt</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span>, <span class="va">s</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dMYZdt_local</span> <span class="op">=</span> <span class="va">func</span><span class="op">=</span><span class="kw">function</span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="../reference/dMYZdt.html">dMYZdt</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">deSolve</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/deSolve/man/ode.html" class="external-link">ode</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">y0</span>, times <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">50</span>, <span class="va">dMYZdt_local</span>, parms<span class="op">=</span><span class="va">params</span>, </span>
-<span>                    method <span class="op">=</span> <span class="st">'lsoda'</span>, Lambda <span class="op">=</span> <span class="va">Lambda</span>, kappa <span class="op">=</span> <span class="va">kappa</span>, s<span class="op">=</span><span class="fl">1</span><span class="op">)</span> </span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">deSolve</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/deSolve/man/dede.html" class="external-link">dede</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">y0</span>, times <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">50</span>, <span class="va">dMYZdt_local</span>, parms<span class="op">=</span><span class="va">params</span>, </span>
+<span>                    method <span class="op">=</span> <span class="st">'lsoda'</span><span class="op">)</span> </span>
 <span><span class="va">out1</span> <span class="op">&lt;-</span> <span class="va">out</span></span></code></pre></div>
 <p>The output is plotted below. The flat lines shown here is a
 verification that the steady state solutions that we computed above
 match the steady states computed by solving the equations:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">params</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">$</span><span class="va">M_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'M_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">out</span> <span class="op">=</span> <span class="va">out</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">params</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">$</span><span class="va">M_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'M_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">params</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">$</span><span class="va">P_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'P_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">params</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">$</span><span class="va">Y_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'Y_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">params</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">$</span><span class="va">Z_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'Z_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
@@ -391,7 +412,7 @@ match the steady states computed by solving the equations:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">Component</span>, scales <span class="op">=</span> <span class="st">'free'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="adult_RM_files/figure-html/unnamed-chunk-8-1.png" width="100%"></p>
+<p><img src="adult_RM_files/figure-html/unnamed-chunk-12-1.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="setup-utilities">Setup Utilities<a class="anchor" aria-label="anchor" href="#setup-utilities"></a>
@@ -408,26 +429,18 @@ other models without having to learn some internals.</p>
 the named parameters and their values. We also attach to the list the
 initial values we want to use, if applicable. For the Ross-Macdonald
 adult mosquito model, we attach the parameter values:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  f <span class="op">=</span> <span class="fl">0.3</span>, q <span class="op">=</span> <span class="fl">0.9</span>, g <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">20</span>, sigma <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10</span>,</span>
-<span>  nu <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span>, eggsPerBatch <span class="op">=</span> <span class="fl">30</span>,</span>
-<span>  solve_as <span class="op">=</span> <span class="st">"ode"</span>, </span>
-<span>  M0 <span class="op">=</span> <span class="va">M_eq</span>, P0 <span class="op">=</span> <span class="va">P_eq</span>, Y0 <span class="op">=</span> <span class="va">Y_eq</span>, Z0 <span class="op">=</span> <span class="va">Z_eq</span></span>
-<span><span class="op">)</span></span>
-<span><span class="va">EIPo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>eip<span class="op">=</span><span class="fl">11</span>, EIPname <span class="op">=</span> <span class="st">"static_xde"</span><span class="op">)</span></span></code></pre></div>
 <p>Each one of the dynamical components has a configurable
 <em>trace</em> algorithm that computes no derivatives, but passes its
 output as a parameter (see <code>human-trace.R</code>. To configure
 <code>Xpar,</code> we attach the values of <code>kappa</code> to a
 list:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.075</span>, <span class="fl">0.025</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Similarly, we configure the <em>trace</em> algorithm for aquatic
 mosquitoes (see <code>aquatic-trace.R</code>).</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>To set up the model, we call <code>xde_setup</code> with</p>
+<p>To set up the model, we call <code>xds_setup</code> with</p>
 <ul>
 <li><p><code>nPatches</code> is set to 3</p></li>
 <li><p><code>MYZname</code> is set to “RM” to run the Ross-Macdonald
@@ -440,20 +453,32 @@ human infection dynamics</p></li>
 aquatic mosquitoes</p></li>
 </ul>
 <p>Otherwise, setup takes care of all the internals:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_setup.html">xde_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"RM"</span>, Xname <span class="op">=</span> <span class="st">"trace"</span>, Lname <span class="op">=</span> <span class="st">"trace"</span>,  </span>
-<span>    nPatches<span class="op">=</span><span class="fl">3</span>, calK<span class="op">=</span><span class="va">calK</span>, membership <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, EIPopts <span class="op">=</span> <span class="va">EIPo</span>,</span>
-<span>    residence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, HPop <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"RM"</span>, Xname <span class="op">=</span> <span class="st">"trace"</span>, Lname <span class="op">=</span> <span class="st">"trace"</span>,  </span>
+<span>    nPatches<span class="op">=</span><span class="fl">3</span>, calK<span class="op">=</span><span class="va">calK</span>, membership <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, </span>
+<span>    residence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, HPop <span class="op">=</span> <span class="va">HPop</span>,</span>
 <span>    MYZopts <span class="op">=</span> <span class="va">MYZo</span>, Xopts <span class="op">=</span> <span class="va">Xo</span>, Lopts <span class="op">=</span> <span class="va">Lo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">MYZeg</span></span></code></pre></div>
 <p>Now, we can solve the equations using <code>xde_solve</code> and
 compare the output to what we got above. If they are identical, the two
 objects should be identical, so can simply add the absolute value of
 their differences:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">MYZeg</span>, Tmax<span class="op">=</span><span class="fl">50</span>, dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">MYZeg</span> </span>
 <span><span class="va">out2</span> <span class="op">&lt;-</span> <span class="va">MYZeg</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">out1</span><span class="op">-</span><span class="va">out2</span><span class="op">)</span><span class="op">)</span><span class="op">==</span><span class="fl">0</span> </span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">out2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span>,</span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">M_eq</span>, <span class="va">P_eq</span>, <span class="va">Y_eq</span>, <span class="va">Z_eq</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]</span></span>
+<span><span class="co">#&gt; [1,] 157.868 123.4518 178.6802 140.3517 98.87622 155.0578 48.09598 27.56429</span></span>
+<span><span class="co">#&gt; [2,] 157.868 123.4518 178.6802 140.3517 98.87622 155.0578 48.09598 27.56429</span></span>
+<span><span class="co">#&gt;          [,9]    [,10]    [,11]    [,12]</span></span>
+<span><span class="co">#&gt; [1,] 41.03339 24.96933 13.31699 25.75651</span></span>
+<span><span class="co">#&gt; [2,] 41.03339 24.96933 13.31699 25.75651</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/F_X.html">F_X</a></span><span class="op">(</span><span class="va">y0</span>, <span class="va">MYZeg</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.100 0.075 0.025</span></span></code></pre></div>
 </div>
 </div>
 <div class="footnotes footnotes-end-of-document">

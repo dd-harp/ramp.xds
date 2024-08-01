@@ -2,7 +2,7 @@
 % Please edit documentation in R/transmission.R
 \name{Transmission.static}
 \alias{Transmission.static}
-\title{Compute transmission terms dynamically, no update required}
+\title{Compute transmission terms with a static mixing matrix}
 \usage{
 \method{Transmission}{static}(t, y, pars)
 }
@@ -11,11 +11,11 @@
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \code{xds} object}
 }
 \value{
-\link{list}
+the modified \code{xds} object
 }
 \description{
-This method dispatches on the type of \code{pars$BFpar}
+In the static case, \eqn{\beta} is not updated
 }

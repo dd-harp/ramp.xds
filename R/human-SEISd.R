@@ -32,11 +32,11 @@ dXdt.SEISd <- function(t, y, pars, i) {
 }
 
 #' @title DTS updating for the SEISd model for human / vertebrate host infections
-#' @description Implements [DT_Xt] for the SEISd model
-#' @inheritParams DT_Xt
+#' @description Implements [Update_Xt] for the SEISd model
+#' @inheritParams Update_Xt
 #' @return a [numeric] vector
 #' @export
-DT_Xt.SEISd <- function(t, y, pars, i) {
+Update_Xt.SEISd <- function(t, y, pars, i) {
 
   ar <- pars$AR[[i]]
   Hpar <- pars$Hpar[[i]]
@@ -54,12 +54,13 @@ DT_Xt.SEISd <- function(t, y, pars, i) {
 }
 
 #' @title Setup Xpar.SEISd
-#' @description Implements [xde_setup_Xpar] for the SEISd model
-#' @inheritParams xde_setup_Xpar
+#' @description Implements [make_Xpar] for the SEISd model
+#' @inheritParams make_Xpar
 #' @return a [list] vector
 #' @export
-xde_setup_Xpar.SEISd = function(Xname, pars, i, Xopts=list()){
-  pars$Xpar[[i]] = xde_make_Xpar_SEISd(pars$Hpar[[i]]$nStrata, Xopts)
+make_Xpar.SEISd = function(Xname, pars, i, Xopts=list()){
+  pars$dlay = 'dde'
+  pars$Xpar[[i]] = create_Xpar_SEISd(pars$nStrata[i], Xopts)
   return(pars)
 }
 
@@ -72,7 +73,7 @@ xde_setup_Xpar.SEISd = function(Xname, pars, i, Xopts=list()){
 #' @param c transmission probability (efficiency) from human to mosquito
 #' @return a [list]
 #' @export
-xde_make_Xpar_SEISd = function(nStrata, Xopts=list(),
+create_Xpar_SEISd = function(nStrata, Xopts=list(),
                              b=0.55, r=1/180, nu=14, c=0.15){
   with(Xopts,{
     Xpar = list()
@@ -85,41 +86,6 @@ xde_make_Xpar_SEISd = function(nStrata, Xopts=list(),
 
     return(Xpar)
   })}
-
-
-#' @title Setup Xpar for the discrete time SEISd model
-#' @description Implements [dts_setup_Xpar] for the SEISd model
-#' @inheritParams dts_setup_Xpar
-#' @return a [list] vector
-#' @export
-dts_setup_Xpar.SEISd = function(Xname, pars, i, Xopts=list()){
-  pars$Xpar[[i]] = dts_make_Xpar_SEISd(pars$Hpar[[i]]$nStrata, pars$Xday, Xopts)
-  return(pars)
-}
-
-#' @title Make parameters for SEISd human model, with defaults
-#' @param nStrata is the number of population strata
-#' @param Xday the X component runtime time step
-#' @param Xopts a [list] that could overwrite defaults
-#' @param b transmission probability (efficiency) from mosquito to human
-#' @param r recovery rate
-#' @param nu 1/latent period
-#' @param c transmission probability (efficiency) from human to mosquito
-#' @return a [list]
-#' @export
-dts_make_Xpar_SEISd = function(nStrata, Xday, Xopts=list(),
-                             b=0.55, r=1/180, nu=14, c=0.15){
-  with(Xopts,{
-    Xpar = list()
-    class(Xpar) <- "SEISd"
-    Xpar$b = checkIt(b, nStrata)
-    Xpar$c = checkIt(c, nStrata)
-    Xpar$nr = exp(-checkIt(r, nStrata)*Xday)
-    Xpar$nu = exp(-checkIt(nu, nStrata)*Xday)
-
-    return(Xpar)
-  })}
-
 
 
 
@@ -157,21 +123,17 @@ F_b.SEISd <- function(y, pars, i) {
 
 #' @title Make initial values for the SEISd xde human model, with defaults
 #' @param nStrata the number of strata in the model
+#' @param H the initial human population density
 #' @param Xopts a [list] to overwrite defaults
-#' @param H0 the initial human population density
-#' @param S0 the initial values of the parameter S
-#' @param E0 the initial values of the parameter E
-#' @param I0 the initial values of the parameter I
+#' @param E the initial values of the parameter E
+#' @param I the initial values of the parameter I
 #' @return a [list]
 #' @export
-#' @importFrom deSolve lagvalue
-#' @importFrom deSolve lagderiv
-make_Xinits_SEISd = function(nStrata, Xopts = list(), H0=NULL, S0=NULL, E0=0, I0=1){with(Xopts,{
-  if(is.null(S0)) S0 = H0 - I0
-  stopifnot(is.numeric(S0))
-  S = checkIt(S0, nStrata)
-  E = checkIt(E0, nStrata)
-  I = checkIt(I0, nStrata)
+create_Xinits_SEISd = function(nStrata, H, Xopts = list(), E=0, I=1){with(Xopts,{
+  stopifnot(length(H-E-I) == nStrata)
+  S = H-E-I
+  E = checkIt(E, nStrata)
+  I = checkIt(I, nStrata)
   cfoi = rep(0, nStrata)
   return(list(S=S, E=E, I=I, cfoi=cfoi))
 })}
@@ -179,7 +141,7 @@ make_Xinits_SEISd = function(nStrata, Xopts = list(), H0=NULL, S0=NULL, E0=0, I0
 
 
 
-#' @title Return the SEISd model variables as a list, returned from DT_Xt.SISd
+#' @title Return the SEISd model variables as a list, returned from Update_Xt.SISd
 #' @description This method dispatches on the type of `pars$Xpar`
 #' @inheritParams put_Xvars
 #' @return a [list]
@@ -209,33 +171,33 @@ list_Xvars.SEISd <- function(y, pars, i) {
 }
 
 #' @title Setup Xinits.SEISd
-#' @description Implements [setup_Xinits] for the SEISd model
-#' @inheritParams setup_Xinits
+#' @description Implements [make_Xinits] for the SEISd model
+#' @inheritParams make_Xinits
 #' @return a [list] vector
 #' @export
-setup_Xinits.SEISd = function(pars, i, Xopts=list()){
-  pars$Xinits[[i]] = with(pars,make_Xinits_SEISd(pars$Hpar[[i]]$nStrata, Xopts, H0=Hpar[[i]]$H))
+make_Xinits.SEISd = function(pars, H, i, Xopts=list()){
+  pars$Xinits[[i]] = with(pars, create_Xinits_SEISd(pars$nStrata[i], H, Xopts))
   return(pars)
 }
 
 #' @title Add indices for human population to parameter list
-#' @description Implements [make_indices_X] for the SEISd model.
-#' @inheritParams make_indices_X
+#' @description Implements [make_X_indices] for the SEISd model.
+#' @inheritParams make_X_indices
 #' @return none
 #' @importFrom utils tail
 #' @export
-make_indices_X.SEISd <- function(pars, i) {with(pars,{
+make_X_indices.SEISd <- function(pars, i) {with(pars,{
 
-  S_ix <- seq(from = max_ix+1, length.out=Hpar[[i]]$nStrata)
+  S_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(S_ix, 1)
 
-  E_ix <- seq(from = max_ix+1, length.out=Hpar[[i]]$nStrata)
+  E_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(E_ix, 1)
 
-  I_ix <- seq(from = max_ix+1, length.out=Hpar[[i]]$nStrata)
+  I_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(I_ix, 1)
 
-  cfoi_ix <- seq(from = max_ix+1, length.out=Hpar[[i]]$nStrata)
+  cfoi_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(cfoi_ix, 1)
 
   pars$max_ix = max_ix
@@ -245,20 +207,19 @@ make_indices_X.SEISd <- function(pars, i) {with(pars,{
 
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Xpar`.
-#' @inheritParams get_inits_X
+#' @inheritParams get_Xinits
 #' @return a [numeric] vector
 #' @export
-get_inits_X.SEISd <- function(pars, i){
-  with(pars$Xinits[[i]], return(c(S,E,I,cfoi)))
+get_Xinits.SEISd <- function(pars, i){pars$Xinits[[i]]
 }
 
 #' @title Update inits for the SEISd xde human model from a vector of states
-#' @inheritParams update_inits_X
+#' @inheritParams update_Xinits
 #' @return none
 #' @export
-update_inits_X.SEISd <- function(pars, y0, i) {
+update_Xinits.SEISd <- function(pars, y0, i) {
   with(list_Xvars(y0, pars, i),{
-    pars$Xinits[[i]] = make_Xinits_SEISd(pars$Hpar[[i]]$nStrata, list(), S0=S, E0=E, I0=I)
+    pars$Xinits[[i]] = create_Xinits_SEISd(pars$nStrata[1], H, list(), E=E, I=I)
     return(pars)
   })}
 
@@ -342,7 +303,7 @@ xds_plot_X.SEISd = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, sta
               ylab = "# Infected", xlab = "Time"))
 
 
-  add_lines_X_SEISd(vars$XH[[i]], pars$Hpar[[i]]$nStrata, clrs, llty)
+  add_lines_X_SEISd(vars$XH[[i]], pars$nStrata[i], clrs, llty)
 }
 
 #' Add lines for the density of infected individuals for the SEISd model

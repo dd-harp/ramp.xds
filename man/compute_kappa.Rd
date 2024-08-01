@@ -2,20 +2,22 @@
 % Please edit documentation in R/transmission.R
 \name{compute_kappa}
 \alias{compute_kappa}
-\title{Compute kappa}
+\title{Net infectiousness of human population to mosquitoes}
 \usage{
-compute_kappa(t, y, pars)
+compute_kappa(Wi, W, beta, X)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{Wi}{availability of this host}
 
-\item{y}{state vector}
+\item{W}{availability of all hosts}
 
-\item{pars}{a \link{list}}
+\item{beta}{the mixing matrix}
+
+\item{X}{the infectious density of the strata}
 }
 \value{
-\link{list}
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This function computes kappa for each vector species in each patch
+Compute the net infectiousness of humans in each patch at time \code{t}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SIS.R
 \name{put_Xvars.SIS}
 \alias{put_Xvars.SIS}
-\title{Return the SIS model variables as a list, returned from DT_Xt.SIS}
+\title{Return the SIS model variables as a list, returned from Update_Xt.SIS}
 \usage{
 \method{put_Xvars}{SIS}(Xvars, y, pars, i)
 }

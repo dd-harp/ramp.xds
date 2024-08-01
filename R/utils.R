@@ -19,7 +19,7 @@ make_indices <- function(pars) {
   i = length(pars$Xinits)
   if(i>0)
     for(ix in 1:i)
-      pars = make_indices_X(pars, ix)
+      pars = make_X_indices(pars, ix)
 
   return(pars)
 }
@@ -34,22 +34,32 @@ get_inits <- function(pars){
   s = length(pars$Lpar)
   if(s>0)
     for(ix in 1:s)
-      Li = c(Li, get_inits_L(pars, ix))
+      Li = c(Li, get_Linits(pars, ix))
 
   MYZi = c()
   s = length(pars$MYZpar)
   if(s>0)
     for(ix in 1:s)
-      MYZi = c(MYZi, get_inits_MYZ(pars, ix))
+      MYZi = c(MYZi, get_MYZinits(pars, ix))
 
   Xi = c()
   i = length(pars$Xpar)
   if(i>0)
     for(ix in 1:i)
-      Xi = c(Xi, get_inits_X(pars, ix))
+      Xi = c(Xi, get_Xinits(pars, ix))
   y = c(L=Li, MYZ=MYZi, X=Xi)
 
   return(y)
+}
+
+#' @title Get the initial values as a vector
+#' @param pars a [list]
+#' @param i the human species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_H = function(pars, i=1){
+  y=get_inits(pars)
+  F_H(as.vector(unlist(y)), pars, i)
 }
 
 #' @title Invert a diagonal matrix
@@ -132,17 +142,17 @@ update_inits <- function(y0, pars){
   s = length(pars$Lpar)
   if(s>0)
     for(ix in 1:s)
-      pars = update_inits_L(pars, y0, ix)
+      pars = update_Linits(pars, y0, ix)
 
   s = length(pars$MYZpar)
   if(s>0)
     for(ix in 1:s)
-      pars = update_inits_MYZ(pars, y0, ix)
+      pars = update_MYZinits(pars, y0, ix)
 
   ii = length(pars$Xpar)
   if(ii>0)
     for(ix in 1:ii)
-      pars = update_inits_X(pars, y0, ix)
+      pars = update_Xinits(pars, y0, ii)
 
   return(pars)
 }

@@ -38,14 +38,22 @@ xde_steady_state_M = function(Lambda, MYZpar){
 #' @param MYZname the name of the model
 #' @param pars a [list]
 #' @param s the species index
-#' @param EIPopts is a [list]
 #' @param MYZopts a [list]
-#' @param calK is a [matrix]
 #' @return [list]
 #' @export
-xde_setup_MYZpar = function(MYZname, pars, s, EIPopts, MYZopts=list(),  calK=diag(1)){
+make_MYZpar = function(MYZname, pars, s, MYZopts=list()){
   class(MYZname) <- MYZname
-  UseMethod("xde_setup_MYZpar", MYZname)
+  UseMethod("make_MYZpar", MYZname)
+}
+
+#' @title Compute probabilities from rates
+#' @description This method dispatches on `MYZname`.
+#' @param MYZpar the `MYZ` model object
+#' @param runtime the model `runtime` parameters
+#' @return a [list] with baseline values
+#' @export
+MYZ_rates2probs = function(MYZpar, runtime){
+  UseMethod("MYZ_rates2probs", MYZpar)
 }
 
 #' @title Derivatives for adult mosquitoes
@@ -56,8 +64,8 @@ xde_setup_MYZpar = function(MYZname, pars, s, EIPopts, MYZopts=list(),  calK=dia
 #' @param s the species index
 #' @return the derivatives a [vector]
 #' @export
-DT_MYZt <- function(t, y, pars, s) {
-  UseMethod("DT_MYZt", pars$MYZpar[[s]])
+Update_MYZt <- function(t, y, pars, s) {
+  UseMethod("Update_MYZt", pars$MYZpar[[s]])
 }
 
 #' @title Compute the steady states as a function of the daily EIR
@@ -67,44 +75,6 @@ DT_MYZt <- function(t, y, pars, s) {
 #' @export
 dts_steady_state_MYZ = function(Lambda, kappa, MYZpar){
   UseMethod("dts_steady_state_MYZ", MYZpar)
-}
-
-#' @title A function to set up adult mosquito models
-#' @description This method dispatches on `MYZname`.
-#' @param MYZname the name of the model
-#' @param pars a [list]
-#' @param s the species index
-#' @param EIPopts is a [list]
-#' @param MYZopts a [list]
-#' @param calK is a [matrix]
-#' @return [list]
-#' @export
-dts_setup_MYZpar = function(MYZname, pars, s, EIPopts, MYZopts=list(),  calK=diag(1)){
-  class(MYZname) <- MYZname
-  UseMethod("dts_setup_MYZpar", MYZname)
-}
-
-#' @title Set bloodfeeding and mortality rates to baseline
-#' @description This method dispatches on the type of `pars$MYZpar`. It should
-#' set the values of the bionomic parameters to baseline values.
-#' @param t current simulation time
-#' @param y state vector
-#' @param pars a [list]
-#' @param s the species index
-#' @return a [list]
-#' @export
-MBionomics <- function(t, y, pars, s) {
-  UseMethod("MBionomics", pars$MYZpar[[s]])
-}
-
-#' @title Time spent host seeking/feeding and resting/ovipositing
-#' @description This method dispatches on the type of `pars$MYZpar`.
-#' @param t current simulation time
-#' @param pars a [list]
-#' @return either a [numeric] vector if the model supports this feature, or [NULL]
-#' @export
-F_tau <- function(t, pars) {
-  UseMethod("F_tau", pars$MYZpar)
 }
 
 #' @title Blood feeding rate of the infective mosquito population
@@ -176,8 +146,8 @@ put_MYZvars <- function(MYZvars, y, pars, s) {
 #' @param MYZopts a [list]
 #' @return [list]
 #' @export
-setup_MYZinits = function(pars, s, MYZopts=list()){
-  UseMethod("setup_MYZinits", pars$MYZpar[[s]])
+make_MYZinits = function(pars, s, MYZopts=list()){
+  UseMethod("make_MYZinits", pars$MYZpar[[s]])
 }
 
 
@@ -209,8 +179,8 @@ parse_outputs_MYZ <- function(outputs, pars, s) {
 #' @param s the species index
 #' @return [numeric]
 #' @export
-get_inits_MYZ <- function(pars, s) {
-  UseMethod("get_inits_MYZ", pars$MYZpar[[s]])
+get_MYZinits <- function(pars, s=1) {
+  UseMethod("get_MYZinits", pars$MYZpar[[s]])
 }
 
 #' @title Set the initial values as a vector
@@ -220,37 +190,7 @@ get_inits_MYZ <- function(pars, s) {
 #' @param s the species index
 #' @return a [list]
 #' @export
-update_inits_MYZ <- function(pars, y0, s) {
-  UseMethod("update_inits_MYZ", pars$MYZpar[[s]])
-}
-
-#' @title Convert a model from dde to the corresponding ode
-#' @description This method dispatches on the type of `pars$MYZpar$xde`
-#' @param pars a [list]
-#' @return a [list]
-#' @export
-dde2ode_MYZ = function(pars){
-  UseMethod("dde2ode_MYZ", pars$MYZpar$xde)
-}
-
-#' @title Convert a model from dde to the corresponding ode
-#' @description If it is already an ode, return pars unchanged.
-#' @param pars a [list]
-#' @return a [list]
-#' @export
-dde2ode_MYZ.ode = function(pars){pars}
-
-#' @title Convert a model from dde to the corresponding ode
-#' @description If it is a dde, return the corresponding ode
-#' @param pars a [list]
-#' @return a [list]
-#' @export
-dde2ode_MYZ.dde = function(pars){
-  pars$MYZpar$xde <- "ode"
-  pars$MYZpar$solve_as <- "ode"
-  pars <- xde_make_MYZpar_RM(pars, MYZopts<- pars$MYZpar,
-                             calK=pars$MYZpar$calK)
-  pars <- make_indices(pars)
-  return(pars)
+update_MYZinits <- function(pars, y0, s) {
+  UseMethod("update_MYZinits", pars$MYZpar[[s]])
 }
 

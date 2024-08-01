@@ -2,7 +2,7 @@
 % Please edit documentation in R/abiotic.R
 \name{setup_abiotic_forced}
 \alias{setup_abiotic_forced}
-\title{Make parameters for the null model of abiotic forcing (do nothing)}
+\title{Make parameters for the no_forcing model of abiotic forcing (do nothing)}
 \usage{
 setup_abiotic_forced(pars)
 }
@@ -13,5 +13,5 @@ setup_abiotic_forced(pars)
 \link{list}
 }
 \description{
-Make parameters for the null model of abiotic forcing (do nothing)
+Make parameters for the no_forcing model of abiotic forcing (do nothing)
 }

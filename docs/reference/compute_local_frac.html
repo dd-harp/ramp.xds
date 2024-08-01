@@ -133,7 +133,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute the local fraction</h1>
-    <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/local_fraction.R" class="external-link"><code>R/local_fraction.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/transmission.R" class="external-link"><code>R/transmission.R</code></a></small>
     <div class="hidden name"><code>compute_local_frac.Rd</code></div>
     </div>
 
@@ -142,22 +142,24 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_local_frac</span><span class="op">(</span><span class="va">pars</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_local_frac</span><span class="op">(</span><span class="va">W</span>, <span class="va">Visitors</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>pars</dt>
-<dd><p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p></dd>
+    <dl><dt>W</dt>
+<dd><p>availability of blood hosts</p></dd>
+
+
+<dt>Visitors</dt>
+<dd><p>availability of visitors</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
-<p>pars a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
-
-
+<p>the fraction of bites</p>
     </div>
 
   </div>

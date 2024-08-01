@@ -5,103 +5,355 @@ library(deSolve)
 numeric_tol <- 1e-5
 
 test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
-  pars <- make_xds_object("xde", "full", "dde")
-  pars$nPatches <- 3
-  pars$nStrata <- 3
-  pars$nHabitats <- 3
-  pars$nVectors <- 1
-  pars$nHosts <- 1
+  nPatches <- 3
+  nStrata <- nPatches
+  nHabitats <- nPatches
+  residence <- c(1:nStrata)
+  membership <- c(1:3)
+  HPop <- rpois(n = nPatches, lambda = 1000)
 
-  # parameters
+  # human parameters
   b <- 0.55
   c <- 0.15
   r <- 1/200
-  wf <- rep(1, pars$nStrata)
+  Xo = list(b=b,c=c,r=r)
+  class(Xo) <- "SIS"
 
-  f <- rep(0.3, pars$nPatches)
-  q <- rep(0.9, pars$nPatches)
-  g <- rep(1/10, pars$nPatches)
-  sigma <- rep(1/100, pars$nPatches)
-  mu <- rep(0, pars$nPatches)
-  nu <- rep(1/2, pars$nPatches)
-  eggsPerBatch <- 30
+  foi <- rlnorm(nStrata, 3/365, .5)/365
+  xde_steady_state_X(foi, HPop, Xo) -> ssI
+  I <- ssI$I
 
-  eip <- 11
+  eir <- foi/b
+  Xo$I=I
 
-  # mosquito movement calK
-  calK <- matrix(0, pars$nPatches, pars$nPatches)
-  calK[upper.tri(calK)] <- 1/(pars$nPatches-1)
-  calK[lower.tri(calK)] <- 1/(pars$nPatches-1)
-  calK <- calK/rowSums(calK)
-  calK <- t(calK)
-
-  Omega <- make_Omega_xde(g, sigma, mu, calK)
-  Omega_inv <- solve(Omega)
-  Upsilon <- expm::expm(-Omega * eip)
-  Upsilon_inv <- expm::expm(Omega * eip)
-
-  # human PfPR and H
-  pfpr <- runif(n = pars$nStrata, min = 0.25, max = 0.35)
-  H <- rpois(n = pars$nStrata, lambda = 1000)
-  I <- rbinom(n = pars$nStrata, size = H, prob = pfpr)
-  residence = 1:pars$nStrata
-  searchWtsH = rep(1, pars$nStrata)
+  searchWtsH = rep(1,3)
 
   TaR <- matrix(
     data = c(
       0.9, 0.05, 0.05,
       0.05, 0.9, 0.05,
       0.05, 0.05, 0.9
-    ), nrow = pars$nStrata, ncol = pars$nPatches, byrow = T
+    ), nrow = nStrata, ncol = nPatches, byrow = T
   )
   TaR <- t(TaR)
 
-  # derived EIR to sustain equilibrium pfpr
-  EIR <- diag(1/b, pars$nStrata) %*% ((r*I) / (H - I))
+  f <- rep(0.3, nPatches)
+  q <- rep(0.9, nPatches)
+  g <- rep(1/10, nPatches)
+  mu <- rep(0, nPatches)
+  sigma <- rep(1/100, nPatches)
+  nu <- rep(1/2, nPatches)
+  eggsPerBatch <- 30
+  eip <- 11
+  MYZo = list(f=f, q=q, g=g, sigma=sigma, mu=mu,
+              nu=nu, eggsPerBatch=eggsPerBatch, eip=eip)
 
-  # ambient pop
-  W <- TaR %*% H
+  calK = create_calK_herethere(nPatches)
+  calK
 
-  # biting distribution matrix
-  beta <- diag(wf) %*% t(TaR) %*% diag(1/as.vector(W), pars$nPatches)
+  W <- compute_W(searchWtsH, HPop, TaR)
+  beta <- compute_beta(HPop, W, searchWtsH, TaR)
+  kappa <- compute_kappa(W, W, beta, c*I)
 
-  # kappa
-  kappa <- t(beta) %*% (I*c)
+  Omega <- compute_Omega_xde(g, sigma, mu, calK)
+  Omega_inv <- solve(Omega)
+  Upsilon <- expm::expm(-Omega * eip)
+  Upsilon_inv <- expm::expm(Omega * eip)
+
+  fqZ <- eir2fqZ(eir, beta)
 
   # equilibrium solutions
-  Z <- diag(1/(f*q), pars$nPatches) %*% ginv(beta) %*% EIR
-  MY <- diag(1/as.vector(f*q*kappa), pars$nPatches) %*% Upsilon_inv %*% Omega %*% Z
-  Y <- Omega_inv %*% (diag(as.vector(f*q*kappa), pars$nPatches) %*% MY)
-  M <- MY + Y
-  P <- solve(diag(f, pars$nPatches) + Omega) %*% diag(f, pars$nPatches) %*% M
-  Lambda <- Omega %*% M
+  Z <-  Upsilon_inv %*% diag(1/as.vector(f*q), nPatches) %*% fqZ
+  M <- diag(1/as.vector(f*q*kappa), nPatches) %*% (diag(as.vector(f*q*kappa)) + Omega) %*% Z
+  Lambda <- as.vector(Omega %*% M)
 
-  # set parameters
-  pars = make_parameters_demography_null(pars = pars, H=H)
-  pars = setup_BloodFeeding(pars, 1, 1, residence=residence, searchWts=searchWtsH)
-  pars$BFpar$TaR[[1]][[1]]=TaR
-  pars = make_parameters_MYZ_RM(pars = pars, g = g, sigma = sigma, mu=mu, calK = calK, eip = eip, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch, solve_as="ode")
-  pars = make_inits_MYZ_RM_dde(pars = pars, M0 = as.vector(M), P0 = as.vector(P), Y0 = as.vector(Y), Z0 = as.vector(Z), U0=Upsilon)
-  pars = make_parameters_L_trace(pars = pars,  Lambda = as.vector(Lambda))
-  pars = make_inits_L_trace(pars = pars)
-  pars = make_parameters_X_SIS(pars = pars, b = b, c = c, r = r)
-  pars = make_inits_X_SIS(pars = pars, H-I, I)
-  pars = setup_control_forced(pars)
-  pars = setup_vc_control(pars)
-  pars = setup_itn_lemenach(pars = pars, F_phi=function(t, pars){0})
+  MYZo$M=M
+  MYZo$Z=Z
 
-  pars$calU[[1]] <- diag(pars$nPatches)
-  pars$habitat_matrix <- diag(pars$nHabitats)
-  pars <- set_habitat_wts_static(pars, searchQ=1)
+  psi <- 1/10
+  phi <- 1/12
+  eta <- M * nu * eggsPerBatch
 
-  pars= make_indices(pars)
+  alpha <- Lambda
+  L <- alpha/psi
+  theta <- (eta - psi*L - phi*L)/(L^2)
 
-  # ICs
-  y0 <- get_inits(pars)
+  # adult mosquito parameters
 
-  # solve the model
-  out = ode(y = y0, times = c(0, 365), func = xde_derivatives, parms = pars)
+  Lo = list(psi=psi, phi=phi, theta=theta, L=L)
 
-  # check it stays at equilibrium with phi = 0 for all time
-  expect_equal(out[1, -1], out[2, -1], tolerance = numeric_tol)
+
+
+  xds_setup(MYZname="si", Xname="SIS", Lname="basicL",
+            nPatches=3, HPop=HPop, membership=membership,
+            MYZopts=MYZo, calK=calK,
+            Xopts=Xo, residence=1:3, searchB=searchWtsH,
+            TimeSpent=TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
+
+  itn_mod <- xde_solve(itn_mod, 730, 1)
+  out <- itn_mod$outputs$orbits$y_last
+
+  M_sim <- out[itn_mod$ix$MYZ[[1]]$M_ix]
+  Z_sim <- out[itn_mod$ix$MYZ[[1]]$Z_ix]
+  I_sim <- out[itn_mod$ix$X[[1]]$I_ix]
+
+  expect_equal(as.vector(M_sim), as.vector(M), tolerance = numeric_tol)
+  expect_equal(as.vector(Z_sim), as.vector(Z), tolerance = numeric_tol)
+  expect_equal(as.vector(I_sim), as.vector(I), tolerance = numeric_tol)
 })
+
+test_that("Le Menach VC model under control reaches the enw predicted equilibrium", {
+  set.seed(23)
+  nPatches <- 3
+  nStrata <- nPatches
+  nHabitats <- nPatches
+  residence <- c(1:nStrata)
+  membership <- c(1:3)
+  HPop <- rpois(n = nPatches, lambda = 1000)
+
+  # human parameters
+  b <- 0.55
+  c <- 0.15
+  r <- 1/200
+  Xo = list(b=b,c=c,r=r)
+  class(Xo) <- "SIS"
+
+  foi <- rlnorm(nStrata, 3/365, .5)/365
+  xde_steady_state_X(foi, HPop, Xo) -> ssI
+  I <- ssI$I
+
+  eir <- foi/b
+  Xo$I=I
+
+  searchWtsH = rep(1,3)
+
+  TaR <- matrix(
+    data = c(
+      0.9, 0.05, 0.05,
+      0.05, 0.9, 0.05,
+      0.05, 0.05, 0.9
+    ), nrow = nStrata, ncol = nPatches, byrow = T
+  )
+  TaR <- t(TaR)
+
+  f <- rep(0.3, nPatches)
+  q <- rep(0.9, nPatches)
+  g <- rep(1/10, nPatches)
+  mu <- rep(0, nPatches)
+  sigma <- rep(1/100, nPatches)
+  nu <- rep(1/2, nPatches)
+  eggsPerBatch <- 30
+  eip <- 11
+  MYZo = list(f=f, q=q, g=g, sigma=sigma, mu=mu,
+              nu=nu, eggsPerBatch=eggsPerBatch, eip=eip)
+
+  calK = create_calK_herethere(nPatches)
+  calK
+
+  W <- compute_W(searchWtsH, HPop, TaR)
+  beta <- compute_beta(HPop, W, searchWtsH, TaR)
+  kappa <- compute_kappa(W, W, beta, c*I)
+
+  Omega <- compute_Omega_xde(g, sigma, mu, calK)
+  Omega_inv <- solve(Omega)
+  Upsilon <- expm::expm(-Omega * eip)
+  Upsilon_inv <- expm::expm(Omega * eip)
+
+  fqZ <- eir2fqZ(eir, beta)
+
+  # equilibrium solutions
+  Z <-  Upsilon_inv %*% diag(1/as.vector(f*q), nPatches) %*% fqZ
+  M <- diag(1/as.vector(f*q*kappa), nPatches) %*% (diag(as.vector(f*q*kappa)) + Omega) %*% Z
+  Lambda <- as.vector(Omega %*% M)
+
+  MYZo$M=M
+  MYZo$Z=Z
+
+  psi <- 1/10
+  phi <- 1/12
+  eta <- M * nu * eggsPerBatch
+
+  alpha <- Lambda
+  L <- alpha/psi
+  theta <- (eta - psi*L - phi*L)/(L^2)
+
+  # adult mosquito parameters
+
+  Lo = list(psi=psi, phi=phi, theta=theta, L=L)
+
+
+
+  xds_setup(MYZname="si", Xname="SIS", Lname="basicL",
+            nPatches=3, HPop=HPop, membership=membership,
+            MYZopts=MYZo, calK=calK,
+            Xopts=Xo, residence=1:3, searchB=searchWtsH,
+            TimeSpent=TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
+
+  itn_mod <- xde_solve(itn_mod, 730)
+
+  out0 <- itn_mod$outputs$orbits$y_last
+
+
+  M_sim0 <- out0[itn_mod$ix$MYZ[[1]]$M_ix]
+  Z_sim0 <- out0[itn_mod$ix$MYZ[[1]]$Z_ix]
+  I_sim0 <- out0[itn_mod$ix$X[[1]]$I_ix]
+
+  as.vector(M_sim0) - as.vector(M) +1
+  as.vector(Z_sim0) - as.vector(Z) +1
+
+  set.seed(23)
+nPatches <- 3
+nStrata <- nPatches
+nHabitats <- nPatches
+residence <- c(1:nStrata)
+membership <- c(1:3)
+HPop <- rpois(n = nPatches, lambda = 1000)
+
+# human parameters
+b <- 0.55
+c <- 0.15
+r <- 1/200
+Xo = list(b=b,c=c,r=r)
+class(Xo) <- "SIS"
+
+foi <- rlnorm(nStrata, 3/365, .5)/365
+xde_steady_state_X(foi, HPop, Xo) -> ssI
+I <- ssI$I
+
+eir <- foi/b
+Xo$I=I
+
+searchWtsH = rep(1,3)
+
+TaR <- matrix(
+  data = c(
+    0.9, 0.05, 0.05,
+    0.05, 0.9, 0.05,
+    0.05, 0.05, 0.9
+  ), nrow = nStrata, ncol = nPatches, byrow = T
+)
+TaR <- t(TaR)
+
+f <- rep(0.3, nPatches)
+q <- rep(0.9, nPatches)
+g <- rep(1/10, nPatches)
+mu <- rep(0, nPatches)
+sigma <- rep(1/100, nPatches)
+nu <- rep(1/2, nPatches)
+eggsPerBatch <- 30
+eip <- 11
+MYZo = list(f=f, q=q, g=g, sigma=sigma, mu=mu,
+            nu=nu, eggsPerBatch=eggsPerBatch, eip=eip)
+
+calK = create_calK_herethere(nPatches)
+calK
+
+W <- compute_W(searchWtsH, HPop, TaR)
+beta <- compute_beta(HPop, W, searchWtsH, TaR)
+kappa <- compute_kappa(W, W, beta, c*I)
+
+Omega <- compute_Omega_xde(g, sigma, mu, calK)
+Omega_inv <- solve(Omega)
+Upsilon <- expm::expm(-Omega * eip)
+Upsilon_inv <- expm::expm(Omega * eip)
+
+fqZ <- eir2fqZ(eir, beta)
+
+# equilibrium solutions
+Z <-  Upsilon_inv %*% diag(1/as.vector(f*q), nPatches) %*% fqZ
+M <- diag(1/as.vector(f*q*kappa), nPatches) %*% (diag(as.vector(f*q*kappa)) + Omega) %*% Z
+Lambda <- as.vector(Omega %*% M)
+
+MYZo$M=M
+MYZo$Z=Z
+
+psi <- 1/10
+phi <- 1/12
+eta <- M * nu * eggsPerBatch
+
+alpha <- Lambda
+L <- alpha/psi
+theta <- (eta - psi*L - phi*L)/(L^2)
+
+# adult mosquito parameters
+
+Lo = list(psi=psi, phi=phi, theta=theta, L=L)
+
+
+
+xds_setup(MYZname="si", Xname="SIS", Lname="basicL",
+          nPatches=3, HPop=HPop, membership=membership,
+          MYZopts=MYZo, calK=calK,
+          Xopts=Xo, residence=1:3, searchB=searchWtsH,
+          TimeSpent=TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
+
+itn_mod <- xde_solve(itn_mod, 730)
+
+out0 <- itn_mod$outputs$orbits$y_last
+
+
+M_sim0 <- out0[itn_mod$ix$MYZ[[1]]$M_ix]
+Z_sim0 <- out0[itn_mod$ix$MYZ[[1]]$Z_ix]
+I_sim0 <- out0[itn_mod$ix$X[[1]]$I_ix]
+
+
+make_kappa(5*365, out0, itn_mod) -> itn_mod
+kappa <- itn_mod$kappa[[1]]
+Emergence(5*365, out0, itn_mod) -> itn_mod
+Lambda <- itn_mod$Lambda[[1]]
+Ln = list(Lambda=Lambda)
+
+itn_mod_trace <- itn_mod
+ITN_cov <- function(t, pars){0.7}
+itn_mod_trace = setup_itn_lemenach(itn_mod_trace, F_phi=ITN_cov)
+
+es <- with(itn_mod_trace$ITNefsz,
+           with(MYZo,
+                sapply(1:nPatches, compute_bednet_effect_sizes_lemenach, phi=0.7, f=f,q=q, g=g, tau0_frac=tau0_frac, r=r,ss=ss)))
+
+# Turn the X component into a trace function
+Xn = list(kappa=kappa, H=HPop)
+
+# The parameter values to the values they should reach under control
+MYZn <- MYZo
+class(MYZn) <- "si"
+MYZn$f <- MYZo$f*es[1,]
+MYZn$q <- MYZo$q*es[2,]
+MYZn$g <- MYZo$g*es[3,]
+MYZn$calK <- calK
+MYZn$Omega <- with(MYZn, compute_Omega_xde(g, sigma, mu, calK))
+
+# Compute the steady state the model is expected to reach
+ss <- xde_steady_state_MYZ(Lambda, kappa, MYZn)
+
+# The model will be calibrated with the original values,
+# but steady states under control
+MYZo$M <- ss$M
+MYZo$Z <- ss$Z
+
+
+xds_setup(MYZname="si", Xname="trace", Lname="trace",
+          nPatches=3, HPop=HPop, membership=membership,
+          MYZopts=MYZo, calK=calK,
+          Xopts=Xn, residence=1:3, searchB=searchWtsH,
+          searchQ=rep(1,3), Lopts=Ln) -> itn_mod_trace
+
+class(itn_mod_trace$forcing) <- "dynamic"
+itn_mod_trace <- setup_forcing(itn_mod_trace)
+itn_mod_trace <- setup_control_forced(itn_mod_trace)
+itn_mod_trace <- setup_vc_control(itn_mod_trace)
+itn_mod_trace = setup_itn_lemenach(itn_mod_trace, F_phi=ITN_cov)
+
+itn_mod_trace <- xde_solve(itn_mod_trace, 1000, 1)
+
+out <- itn_mod_trace$outputs$orbits$y_last
+M_sim <- out[itn_mod_trace$ix$MYZ[[1]]$M_ix]
+Z_sim <- out[itn_mod_trace$ix$MYZ[[1]]$Z_ix]
+
+expect_equal(as.vector(M_sim0), as.vector(M), tolerance = numeric_tol)
+expect_equal(as.vector(Z_sim0), as.vector(Z), tolerance = numeric_tol)
+expect_equal(as.vector(M_sim), as.vector(ss$M), tolerance = numeric_tol)
+expect_equal(as.vector(Z_sim), as.vector(ss$Z), tolerance = numeric_tol)
+
+})
+

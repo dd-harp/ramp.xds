@@ -23,7 +23,7 @@ dts_update.full <- function(t, y, pars) {
   pars <- Shock(t, pars)
   pars <- Control(t, y, pars)
   pars <- Behavior(t, y, pars)
-  pars <- Visitors(t, pars)
+  pars <- Visiting(t, pars)
   pars <- VectorControlEffects(t, y, pars)
   pars <- Resources(t, y, pars)
 

@@ -42,18 +42,15 @@ of aquatic habitats per patch.
 
 First, we set the parameter values. 
 
-```{r}
+```{r model structure}
 nPatches <- 3
 nHabitats <- 4
-f <- rep(0.3, nPatches)
-q <- rep(0.9, nPatches)
-g <- rep(1/20, nPatches)
-sigma <- rep(1/10, nPatches)
-mu <- rep(0, nPatches) 
-eip <- 11
-nu <- 1/2
-eggsPerBatch <- 30
+membership = c(1,2,3,3)
+HPop = 1000
+```
 
+
+```{r}
 calN <- matrix(0, nPatches, nHabitats)
 calN[1,1] <- 1
 calN[2,2] <- 1
@@ -64,19 +61,40 @@ calU <- matrix(0, nHabitats, nPatches)
 calU[1,1] <- 1
 calU[2,2] <- 1
 calU[3:4,3] <- 0.5
+```
 
+
+```{r mosquito bionomics}
+f <- rep(0.3, nPatches)
+q <- rep(0.9, nPatches)
+g <- rep(1/20, nPatches)
+sigma <- rep(1/10, nPatches)
+mu <- rep(0, nPatches) 
+eip <- 11
+nu <- 1/2
+eggsPerBatch <- 30
+```
+
+```{r}
+MYZo = list(
+  g=g, sigma=sigma, mu=mu, f=f, q=q, nu=nu, eggsPerBatch = eggsPerBatch
+)
+```
+
+
+```{r}
 calK <- matrix(0, nPatches, nPatches)
 calK[1, 2:3] <- c(0.2, 0.8)
 calK[2, c(1,3)] <- c(0.5, 0.5)
 calK[3, 1:2] <- c(0.7, 0.3)
 calK <- t(calK)
 
-Omega <- make_Omega_xde(g, sigma, mu, calK)
+Omega <- compute_Omega_xde(g, sigma, mu, calK)
 Upsilon <- expm::expm(-Omega * eip)
 
 kappa <- c(0.1, 0.075, 0.025)
 Lambda <- c(5, 10, 8)
-``` 
+```
 
 Next, we calculate equilibrium values following the [Ross-Macdonald vignette](adult_RM.html).
 We use $\mathcal{N}$ and $\mathcal{U}$ to describe how aquatic habitats are dispersed amongst
@@ -103,32 +121,43 @@ we must use `ramp.xds::MosquitoBehavior` to pass the equilibrium values of those
 to `ramp.xds::xDE_diffeqn_mosy`.
 
 ```{r}
-params <- make_xds_object("xde", "mosy")
-class(params$BFpar) <- "static"
-params$nVectors = 1 
-params$nHosts = 1 
-params$nPatches = nPatches
-params$nHabitats = nHabitats
-params$calU[[1]] = calU
-params$habitat_matrix = calN
-params <- set_habitat_wts_static(params, rep(1, nHabitats))
+params <- make_xds_object("xde", "mosy", "ode", nPatches, membership)
+
+params = make_Lpar("trace", params, 1, Lopts = list(Lambda=alpha))
+
+params = make_MYZpar("basicM", params, 1, MYZopts=MYZo)
+
+params = make_MYZinits(params, 1, list(M=M_eq, P=P_eq))
+```
 
 
-# ODE
-params$beta = beta
-params = make_parameters_L_trace(pars = params, Lambda = alpha)
-params = make_parameters_MYZ_basicM(pars = params, g = g, sigma = sigma, mu=mu, calK = calK, f = f, q = q, nu = nu, eggsPerBatch = eggsPerBatch)
-params = make_inits_MYZ_basicM(params, M0=M_eq, P0=P_eq)
+```{r}
+params = make_Xpar("trace", params, 1, list(HPop=HPop))
+```
 
+
+```{r}
 params = make_indices(params)
 ```
 
 ```{r}
-y0 <- rep(0, params$max_ix)
-y0[params$ix$MYZ[[1]]$M_ix] <- M_eq
-y0[params$ix$MYZ[[1]]$P_ix] <- P_eq
+params$kappa = list()
+params$kappa[[1]] = kappa
+```
 
-out <- deSolve::ode(y = y0, times = 0:50, func = xde_derivatives, parms = params, method = 'lsoda')
+
+```{r}
+params <- change_calK(calK, params)
+```
+
+```{r}
+y0 <- get_inits(params)
+y0
+```
+
+
+```{r}
+out <- deSolve::ode(y = as.vector(unlist(y0)), times = 0:50, func = xde_derivatives, parms = params, method = 'lsoda')
 out1 <- out
 ```
 
@@ -164,15 +193,16 @@ MYZo = list(
   eip = 11,
   nu = 1/2,
   eggsPerBatch = 30,
-  M0=M_eq,
-  P0=P_eq
+  M=M_eq,
+  P=P_eq
 )
 ```
 
+
 ```{r}
-xde_setup_mosy(MYZname = "basicM", Lname = "trace", 
+xds_setup_mosy(MYZname = "basicM", Lname = "trace", 
                nPatches = 3, membership = c(1,2,3,3), 
-               MYZopts = MYZo, calK = calK, Lopts = Lo, 
+               MYZopts = MYZo, calK = calK, HPop=HPop, Lopts = Lo, 
                kappa = c(0.1, 0.075, 0.025))->mosy1
 ```
 

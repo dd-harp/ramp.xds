@@ -11,21 +11,21 @@ Shock <- function(t, pars) {
 }
 
 #' @title Set up shocks
-#' @description Implements [Shock] for the null model (do nothing)
+#' @description Implements [Shock] for the no_shock model (do nothing)
 #' @inheritParams Shock
 #' @return [list]
 #' @export
-Shock.null <- function(t, pars) {
+Shock.no_shock <- function(t, pars) {
   return(pars)
 }
 
-#' @title Set up the null model for shocks (do nothing)
+#' @title Set up the no_shock model for shocks (do nothing)
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_shock_null <- function(pars) {
+setup_no_shock <- function(pars) {
   SHOCK <- list()
-  class(SHOCK) <- 'null'
+  class(SHOCK) <- 'no_shock'
   pars$SHOCK <- SHOCK
   return(pars)
 }

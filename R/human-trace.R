@@ -1,12 +1,48 @@
 # specialized methods for a human trace model
 
+#' @title Derivatives for human population
+#' @description Implements [dXdt] for the trace model.
+#' @inheritParams dXdt
+#' @return a [numeric] vector
+#' @export
+dXdt.trace <- function(t, y, pars, i) {
+  numeric(0)
+}
+
+#' @title Derivatives for human population
+#' @description Implements [Update_Xt] for the trace model.
+#' @inheritParams Update_Xt
+#' @return a [numeric] vector
+#' @export
+Update_Xt.trace <- function(t, y, pars, i) {
+  numeric(0)
+}
+
+#' @title Make parameters for trace human model
+#' @param nPatches the number of patches
+#' @param Xopts a [list]
+#' @param kappa net infectiousness
+#' @param HPop initial human population density
+#' @return a [list]
+#' @export
+create_Xpar_trace <- function(nPatches, Xopts, kappa=.1, HPop=1){with(Xopts,{
+  Xpar <- list()
+  class(Xpar) <- c('trace')
+  Xpar$H = checkIt(HPop, nPatches)
+  Xpar$kappa= checkIt(kappa, nPatches)
+  Xpar$Kf = function(t){return(0*t + kappa)}
+  return(Xpar)
+})}
+
 #' @title Size of effective infectious human population
 #' @description Implements [F_X] for the trace model.
 #' @inheritParams F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_X.trace <- function(y, pars, i) {
-  with(pars$Xpar[[i]],  pars$Hpar[[i]]$H*Kf(t))
+  H = F_H(y, pars, i)
+  X = with(pars$Xpar[[i]],  H*kappa)
+  return(X)
 }
 
 #' @title Size of the human population
@@ -15,7 +51,7 @@ F_X.trace <- function(y, pars, i) {
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_H.trace <- function(y, pars, i) {
-  with(pars$Hpar[[i]], H)
+  pars$Xpar[[i]]$H
 }
 
 #' @title Compute the "true" prevalence of infection / parasite rate
@@ -74,96 +110,35 @@ F_b.trace <- function(y, pars, i) {
   return(1)
 }
 
-#' @title Derivatives for human population
-#' @description Implements [dXdt] for the trace model.
-#' @inheritParams dXdt
-#' @return a [numeric] vector
-#' @export
-dXdt.trace <- function(t, y, pars, i) {
-  numeric(0)
-}
-
-#' @title Derivatives for human population
-#' @description Implements [DT_Xt] for the trace model.
-#' @inheritParams DT_Xt
-#' @return a [numeric] vector
-#' @export
-DT_Xt.trace <- function(t, y, pars, i) {
-  numeric(0)
-}
 
 #' @title xde_setup Xpar.trace
-#' @description Implements [xde_setup_Xpar] for the trace model
-#' @inheritParams xde_setup_Xpar
+#' @description Implements [make_Xpar] for the trace model
+#' @inheritParams make_Xpar
 #' @return a [list] vectord
 #' @export
-xde_setup_Xpar.trace = function(Xname, pars, i, Xopts=list()){
-  nStrata= pars$nPatches
-
-  pars$Hpar[[i]]$nStrata = nStrata
-  pars$Hpar[[i]]$H = checkIt(pars$Hpar[[i]]$H, nStrata)
-  pars$BFpar$TimeSpent[[i]] = diag(1, nStrata)
-  pars = make_TaR(0, pars, i, 1)
-  pars$BFpar$searchWts[[i]][[1]] = checkIt(pars$BFpar$searchWts[[i]][[1]], nStrata)
-  pars$BFpar$residence[[i]] = checkIt(pars$BFpar$residence[[i]], nStrata)
-  pars$Xpar[[i]] = make_Xpar_trace(nStrata, Xopts)
+make_Xpar.trace = function(Xname, pars, i, Xopts=list()){
+  pars$Xpar[[i]] = create_Xpar_trace(pars$nPatches, Xopts)
   return(pars)
 }
 
-#' @title dts_setup Xpar.trace
-#' @description Implements [dts_setup_Xpar] for the trace model
-#' @inheritParams dts_setup_Xpar
-#' @return a [list] vector
-#' @export
-dts_setup_Xpar.trace = function(Xname, pars, i, Xopts=list()){
-  nStrata= pars$nPatches
-
-  pars$Hpar[[i]]$nStrata = nStrata
-  pars$Hpar[[i]]$H = checkIt(pars$Hpar[[i]]$H, nStrata)
-  pars$BFpar$TimeSpent[[i]] = diag(1, nStrata)
-  pars = make_TaR(0, pars, i, 1)
-  pars$BFpar$searchWts[[i]][[1]] = checkIt(pars$BFpar$searchWts[[i]][[1]], nStrata)
-  pars$BFpar$residence[[i]] = checkIt(pars$BFpar$residence[[i]], nStrata)
-  pars$Xpar[[i]] = make_Xpar_trace(nStrata, Xopts)
-  return(pars)
-}
 
 #' @title Setup Xinits.trace
-#' @description Implements [setup_Xinits] for the trace model
-#' @inheritParams setup_Xinits
+#' @description Implements [make_Xinits] for the trace model
+#' @inheritParams make_Xinits
 #' @return a [list] vector
 #' @export
-setup_Xinits.trace = function(pars, i, Xopts=list()){
-  pars$Xinits[[i]] = list()
+make_Xinits.trace = function(pars, H, i, Xopts=list()){
+  pars$Xpar[[i]]$H = H
   return(pars)
 }
 
-#' @title Make parameters for human null model
-#' @param nStrata the number of population strata in the model
-#' @param Xopts a [list] that could overwrite defaults
-#' @param kappa value
-#' @param Kf a function
-#' @return a [list]
-#' @export
-make_Xpar_trace = function(nStrata, Xopts=list(),
-                         kappa = 0.1,
-                         Kf = NULL){
-  with(Xopts,{
-    Xpar = list()
-    class(Xpar) <- "trace"
-    kappa = checkIt(kappa, nStrata)
-    if(is.null(Kf)) Kf = function(t){return(kappa)}
-    Xpar$Kf = Kf
-    return(Xpar)
-})}
-
 #' @title Add indices for human population to parameter list
-#' @description Implements [make_indices_X] for the trace model.
-#' @inheritParams make_indices_X
+#' @description Implements [make_X_indices] for the trace model.
+#' @inheritParams make_X_indices
 #' @return none
 #' @importFrom utils tail
 #' @export
-make_indices_X.trace <- function(pars, i) {
+make_X_indices.trace <- function(pars, i) {
   return(pars)
 }
 
@@ -176,42 +151,21 @@ parse_outputs_X.trace <- function(outputs, pars,i) {
   return(list())
 }
 
-#' @title Make parameters for trace human model
-#' @param pars a [list]
-#' @param kappa net infectiousness
-#' @return a [list]
-#' @export
-make_parameters_X_trace <- function(pars, kappa) {
-  Xpar <- list()
-  class(Xpar) <- c('trace')
-  Xpar$scale = checkIt(kappa, pars$nPatches)
-  Xpar$Kf = function(t){return(1)}
-  pars$Xpar[[1]] <- Xpar
-  return(pars)
-}
 
-#' @title Make inits for trace human model
-#' @param pars a [list]
-#' @return none
-#' @export
-make_inits_X_trace <- function(pars) {
-  pars$Xinits[[1]] <- numeric(0)
-  return(pars)
-}
 
 #' @title Update inits for the trace human model from a vector of states
-#' @inheritParams update_inits_X
+#' @inheritParams update_Xinits
 #' @return none
 #' @export
-update_inits_X.trace <- function(pars, y0, i) {
+update_Xinits.trace <- function(pars, y0, i) {
   return(pars)
 }
 
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Xpar`.
-#' @inheritParams get_inits_X
+#' @inheritParams get_Xinits
 #' @return none
 #' @export
-get_inits_X.trace <- function(pars, i){
+get_Xinits.trace <- function(pars, i){
   numeric(0)
 }

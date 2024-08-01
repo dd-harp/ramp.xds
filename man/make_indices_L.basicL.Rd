@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL-xde.R
 \name{make_indices_L.basicL}
 \alias{make_indices_L.basicL}
-\title{Add indices for aquatic stage mosquitoes to parameter list}
+\title{Add indices for aquatic mosquitoes to parameter list}
 \usage{
 \method{make_indices_L}{basicL}(pars, s)
 }
@@ -15,5 +15,5 @@
 none
 }
 \description{
-Implements \link{make_indices_L} for basicL competition model.
+Implements \link{make_indices_L} for the basic M model.
 }

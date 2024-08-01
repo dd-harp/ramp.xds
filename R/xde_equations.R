@@ -21,15 +21,10 @@ xde_derivatives <- function(t, y, pars) {
 xde_derivatives.full <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- Behavior(t, y, pars)
-  pars <- Visitors(t, pars)
-  pars <- VectorControlEffects(t, y, pars)
-  pars <- Resources(t, y, pars)
+  pars <- Forcing(t, y, pars)
 
-  # set and modify the baseline bionomic parameters
+  # set & modify the baseline bionomic parameters
+  pars <- BloodFeeding(t, y, pars)
   pars <- Bionomics(t, y, pars)
   pars <- VectorControlEffectSizes(t, y, pars)
 
@@ -44,7 +39,7 @@ xde_derivatives.full <- function(t, y, pars) {
 
   # compute the FoI
   pars <- Exposure(t, y, pars)
-
+#  if(t > 179) browser()
   # compute derivatives
   dL <- dLdt(t, y, pars, 1)
   dMYZ <- dMYZdt(t, y, pars, 1)
@@ -59,7 +54,6 @@ xde_derivatives.full <- function(t, y, pars) {
     for(i in 2:pars$nHosts)
       dX <- c(dX, dXdt(t, y, pars, i))
 
-
   return(list(c(dL, dMYZ, dX)))
 }
 
@@ -72,11 +66,7 @@ xde_derivatives.full <- function(t, y, pars) {
 xde_derivatives.human <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t,  pars)
-  pars <- Control(t, y, pars)
-  pars <- Behavior(t, y, pars)
-  pars <- Resources(t, y, pars)
+  pars <- Forcing(t, y, pars)
 
   # set and modify the baseline mosquito bionomic parameters
   pars <- MBionomics(t, y, pars, 1)
@@ -108,13 +98,10 @@ xde_derivatives.human <- function(t, y, pars) {
 xde_derivatives.mosy <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- Behavior(t, y, pars)
-  #pars <- Resources(t, y, pars)
+  pars <- Forcing(t, y, pars)
 
-  # set baseline mosquito bionomic parameters
+  # set & modify the baseline bionomic parameters
+  pars <- BloodFeeding(t, y, pars)
   pars <- Bionomics(t, y, pars)
   pars <- VectorControlEffectSizes(t, y, pars)
 
@@ -146,7 +133,7 @@ xde_derivatives.cohort <- function(t, y, pars) {
 
   F_eir <- pars$F_eir
   # EIR: entomological inoculation rate trace
-  pars$EIR[[1]] <- with(pars$EIRpar, F_eir(t, bday, scale))*pars$BFpar$relativeBitingRate[[1]][[1]]
+  pars$EIR[[1]] <- with(pars$EIRpar, F_eir(t, bday, scale))*pars$rbr[[1]]
 
   # FoI: force of infection
   pars <- Exposure(t, y, pars)
@@ -169,10 +156,7 @@ xde_derivatives.cohort <- function(t, y, pars) {
 xde_derivatives.aquatic <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- HabitatDynamics(t, pars)
+  pars <- Forcing(t, y, pars)
 
   # modify baseline mosquito bionomic parameters
   pars <- LBionomics(t, y, pars, 1)

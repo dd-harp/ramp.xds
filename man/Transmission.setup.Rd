@@ -2,7 +2,7 @@
 % Please edit documentation in R/transmission.R
 \name{Transmission.setup}
 \alias{Transmission.setup}
-\title{Compute transmission terms, the dynamic case}
+\title{Compute transmission, the static case}
 \usage{
 \method{Transmission}{setup}(t, y, pars)
 }
@@ -11,11 +11,15 @@
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \code{xds} object}
 }
 \value{
-\link{list}
+the modified \code{xds} object
 }
 \description{
-This method dispatches on the type of \code{pars$BFpar}
+Set up and compute transmission terms with a static mixing matrix
+}
+\details{
+The \code{setup} case is called whenever any parameter affecting the mixing matrix
+in a static model is changed
 }

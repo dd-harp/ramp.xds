@@ -2,7 +2,7 @@
 % Please edit documentation in R/civil.R
 \name{setup_civil_forced}
 \alias{setup_civil_forced}
-\title{Make parameters for the null model of civil forcing (do nothing)}
+\title{Make parameters for the no_forcing model of civil forcing (do nothing)}
 \usage{
 setup_civil_forced(pars)
 }
@@ -13,5 +13,5 @@ setup_civil_forced(pars)
 \link{list}
 }
 \description{
-Make parameters for the null model of civil forcing (do nothing)
+Make parameters for the no_forcing model of civil forcing (do nothing)
 }

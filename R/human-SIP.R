@@ -23,12 +23,12 @@ dXdt.SIP <- function(t, y, pars, i){
 }
 
 #' @title Setup Xpar.SIP
-#' @description Implements [xde_setup_Xpar] for the SIP model
-#' @inheritParams xde_setup_Xpar
+#' @description Implements [make_Xpar] for the SIP model
+#' @inheritParams make_Xpar
 #' @return a [list] vector
 #' @export
-xde_setup_Xpar.SIP = function(Xname, pars, i, Xopts=list()){
-  pars$Xpar[[i]] = xde_make_Xpar_SIP(pars$Hpar[[i]]$nStrata, Xopts)
+make_Xpar.SIP = function(Xname, pars, i, Xopts=list()){
+  pars$Xpar[[i]] = create_Xpar_SIP(pars$nStrata[i], Xopts)
   return(pars)
 }
 
@@ -44,7 +44,7 @@ xde_setup_Xpar.SIP = function(Xname, pars, i, Xopts=list()){
 #' @param xi background treatment rate
 #' @return a [list]
 #' @export
-xde_make_Xpar_SIP = function(nStrata, Xopts=list(),
+create_Xpar_SIP = function(nStrata, Xopts=list(),
                              b=0.55, r=1/180, c=0.15,
                              rho=.1, eta=1/25, xi=1/365){
   with(Xopts,{
@@ -60,12 +60,13 @@ xde_make_Xpar_SIP = function(nStrata, Xopts=list(),
 
     return(Xpar)
   })}
+
 #' @title Derivatives for human population
-#' @description Implements [DT_Xt] for the SIP model.
-#' @inheritParams DT_Xt
+#' @description Implements [Update_Xt] for the SIP model.
+#' @inheritParams Update_Xt
 #' @return a [numeric] vector
 #' @export
-DT_Xt.SIP <- function(t, y, pars, i){
+Update_Xt.SIP <- function(t, y, pars, i){
 
   attack <- pars$AR[[i]]
 
@@ -84,46 +85,6 @@ DT_Xt.SIP <- function(t, y, pars, i){
     })
   })
 }
-
-#' @title Setup Xpar.SIP
-#' @description Implements [dts_setup_Xpar] for the SIP model
-#' @inheritParams dts_setup_Xpar
-#' @return a [list] vector
-#' @export
-dts_setup_Xpar.SIP = function(Xname, pars, i, Xopts=list()){
-  pars$Xpar[[i]] = dts_make_Xpar_SIP(pars$Hpar[[i]]$nStrata, Xopts)
-  return(pars)
-}
-
-#' @title Make parameters for SIP human model, with defaults
-#' @param nStrata the number of population strata
-#' @param Xopts a [list] that could overwrite defaults
-#' @param b transmission probability (efficiency) from mosquito to human
-#' @param c transmission probability (efficiency) from human to mosquito
-#' @param r recovery rate
-#' @param rho probability of successful treatment upon infection
-#' @param eta prophylaxis waning rate
-#' @param xi background treatment rate
-#' @return a [list]
-#' @export
-dts_make_Xpar_SIP = function(nStrata, Xopts=list(),
-                             b=0.55, r=1/180, c=0.15,
-                             rho=.1, eta=1/25, xi=1/365){
-  with(Xopts,{
-    Xpar = list()
-    class(Xpar) <- c("SIP")
-
-    Xpar$b = checkIt(b, nStrata)
-    Xpar$c = checkIt(c, nStrata)
-    Xpar$r = checkIt(r, nStrata)
-    Xpar$rho = checkIt(rho, nStrata)
-    Xpar$eta = checkIt(eta, nStrata)
-    Xpar$xi = checkIt(xi, nStrata)
-
-    return(Xpar)
-  })}
-
-
 
 #' @title Size of effective infectious human population
 #' @description Implements [F_X] for the SIP model.
@@ -185,30 +146,28 @@ HTC.SIP <- function(pars, i) {
 
 
 #' @title Setup Xinits.SIP
-#' @description Implements [setup_Xinits] for the SIP model
-#' @inheritParams setup_Xinits
+#' @description Implements [make_Xinits] for the SIP model
+#' @inheritParams make_Xinits
 #' @return a [list] vector
 #' @export
-setup_Xinits.SIP = function(pars, i, Xopts=list()){
-  pars$Xinits[[i]] = make_Xinits_SIP(pars$Hpar[[i]]$nStrata, Xopts, H0=pars$Hpar[[i]]$H)
+make_Xinits.SIP = function(pars, H, i, Xopts=list()){
+  pars$Xinits[[i]] = create_Xinits_SIP(pars$nStrata[i], H, Xopts)
   return(pars)
 }
 
 #' @title Make initial values for the SIP human model, with defaults
 #' @param nStrata the number of population strata
+#' @param H the initial human population density
 #' @param Xopts a [list] that could overwrite defaults
-#' @param H0 the initial human population density
-#' @param S0 the initial values of the parameter S
-#' @param I0 the initial values of the parameter I
-#' @param P0 the initial values of the parameter P
+#' @param I the initial values of the parameter I
+#' @param P the initial values of the parameter P
 #' @return a [list]
 #' @export
-make_Xinits_SIP = function(nStrata, Xopts = list(), H0=NULL, S0=NULL,
-                           I0=1, P0=0){with(Xopts,{
-  if(is.null(S0)) S0=H0-I0-P0
-  S = checkIt(S0, nStrata)
-  I = checkIt(I0, nStrata)
-  P = checkIt(P0, nStrata)
+create_Xinits_SIP = function(nStrata, H, Xopts = list(),
+                           I=1, P=0){with(Xopts,{
+  S = checkIt(H-I-P, nStrata)
+  I = checkIt(I, nStrata)
+  P = checkIt(P, nStrata)
   return(list(S=S, I=I, P=P))
 })}
 
@@ -228,20 +187,20 @@ parse_outputs_X.SIP <- function(outputs, pars, i) {
 })}
 
 #' @title Add indices for human population to parameter list
-#' @description Implements [make_indices_X] for the SIP model.
-#' @inheritParams make_indices_X
+#' @description Implements [make_X_indices] for the SIP model.
+#' @inheritParams make_X_indices
 #' @return none
 #' @importFrom utils tail
 #' @export
-make_indices_X.SIP <- function(pars, i) {with(pars,{
+make_X_indices.SIP <- function(pars, i) {with(pars,{
 
-  S_ix <- seq(from = max_ix+1, length.out=Hpar[[i]]$nStrata)
+  S_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(S_ix, 1)
 
-  I_ix <- seq(from = max_ix+1, length.out=Hpar[[i]]$nStrata)
+  I_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(I_ix, 1)
 
-  P_ix <- seq(from = max_ix+1, length.out=Hpar[[i]]$nStrata)
+  P_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(P_ix, 1)
 
   pars$max_ix = max_ix
@@ -249,62 +208,26 @@ make_indices_X.SIP <- function(pars, i) {with(pars,{
   return(pars)
 })}
 
-#' @title Make parameters for SIP human model
-#' @param pars a [list]
-#' @param b transmission probability (efficiency) from mosquito to human
-#' @param c transmission probability (efficiency) from human to mosquito
-#' @param r recovery rate
-#' @param rho probability of successful treatment upon infection
-#' @param eta prophylaxis waning rate
-#' @param xi background treatment rate
-#' @return none
-#' @export
-make_parameters_X_SIP <- function(pars, b, c, r, rho, eta, xi){
-  stopifnot(is.numeric(b), is.numeric(c), is.numeric(r), is.numeric(rho), is.numeric(eta), is.numeric(xi))
-  Xpar <- list()
-  class(Xpar) <- c('SIP')
-  Xpar$b <- b
-  Xpar$c <- c
-  Xpar$r <- r
-  Xpar$rho <- rho
-  Xpar$eta <- eta
-  Xpar$xi <- xi
-  pars$Xpar[[1]] <- Xpar
-  return(pars)
-}
-
-#' @title Make inits for SIP human model
-#' @param pars a [list]
-#' @param S0 size of infected population in each strata
-#' @param I0 size of infected population in each strata
-#' @param P0 size of population protected by prophylaxis in each strata
-#' @return none
-#' @export
-make_inits_X_SIP <- function(pars, S0, I0, P0) {
-  stopifnot(is.numeric(I0), is.numeric(P0), is.numeric(S0))
-  pars$Xinits[[1]] = list(S=S0, I=I0, P=P0)
-  return(pars)
-}
 
 #' @title Update inits for the SIP human model from a vector of states
-#' @inheritParams update_inits_X
+#' @inheritParams update_Xinits
 #' @return none
 #' @export
-update_inits_X.SIP <- function(pars, y0, i) {
+update_Xinits.SIP <- function(pars, y0, i) {
   with(list_Xvars(y0, pars, i),{
-  pars$Xinits[[i]] = make_Xinits_SIP(pars$Hpar[[i]]$nStrata, list(), S0=S, I0=I, P0=P)
+  pars$Xinits[[i]] = create_Xinits_SIP(pars$nStrata[i], pars$H0, list(), I=I, P=P)
   return(pars)
 })}
 
 
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Xpar`.
-#' @inheritParams get_inits_X
-#' @return none
+#' @inheritParams get_Xinits
+#' @return a named [vector]
 #' @export
-get_inits_X.SIP <- function(pars, i){with(pars$Xinits[[i]],{
-  c(S, I, P)
-})}
+get_Xinits.SIP <- function(pars, i){
+  pars$Xinits[[i]]
+}
 
 
 #' @title Compute the "true" prevalence of infection / parasite rate
@@ -373,15 +296,15 @@ xds_plot_X.SIP = function(pars, i=1, clrs=c("darkblue", "darkred", "darkgreen"),
 #' @export
 add_lines_X_SIP = function(XH, pars, clrs=c("darkblue", "darkred", "darkgreen"), llty=1){
   with(XH,{
-    if(pars$Hpar[[1]]$nStrata==1) {
+    if(pars$nStrata[1] ==1) {
       lines(time, S, col=clrs[1], lty = llty[1])
       lines(time, I, col=clrs[2], lty = llty[1])
       lines(time, P, col=clrs[3], lty = llty[1])
     }
-    if(pars$Hpar[[1]]$nStrata>1){
-      if (length(clrs)==1) clrs=matrix(clrs, 3, pars$Hpar[[i]]$nStrata)
-      if (length(llty)==1) llty=rep(llty, pars$Hpar[[i]]$nStrata)
-      for(i in 1:pars$Hpar[[1]]$nStrata){
+    if(pars$nStrata[1]>1){
+      if (length(clrs)==1) clrs=matrix(clrs, 3, pars$nStrata[i])
+      if (length(llty)==1) llty=rep(llty, pars$nStrata[i])
+      for(i in 1:pars$nStrata[1]){
         lines(time, S[,i], col=clrs[1,i], lty = llty[i])
         lines(time, I[,i], col=clrs[2,i], lty = llty[i])
         lines(time, P[,i], col=clrs[3,i], lty = llty[i])
@@ -398,6 +321,6 @@ xde_steady_state_X.SIP = function(foi, H, Xpar){with(Xpar,{
   Ieq = (foi*H*eta*(1-rho))/((foi+r+xi)*(eta+xi) +foi*(r-eta)*rho)
   Peq  = (H*xi*(foi+r+xi) + (foi*H*r*rho))/((foi+r+xi)*(eta+xi) +foi*(r-eta)*rho)
   Seq = H -Ieq - Peq
-  return(c(S=Seq, I=Ieq, P = Peq))
+  return(list(S=as.vector(Seq), I=as.vector(Ieq), P = as.vector(Peq)))
 })}
 
