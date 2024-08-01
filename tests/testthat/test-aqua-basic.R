@@ -14,21 +14,19 @@ test_that("basic competition stays at equilibrium", {
   L <- alpha/psi
   theta <- (eggs_laid - psi*L - phi*L)/(L^2)
 
-  params <- make_xds_object("xde", "full")
-  params$nHabitats = nHabitats
+  Lo = list(psi=psi, phi=phi, theta=theta, L=L)
+  xde_steady_state_L.basicL(eggs_laid, Lo)
 
-  # ODE
-  params = make_parameters_L_basicL(pars = params, psi = psi, phi = phi, theta=theta)
-  params = make_inits_L_basicL(pars = params, L0 = L)
-  params = make_indices(params)
-  params$eggs_laid = list()
+  params <- xds_setup_aquatic(Lname = "basicL", nHabitats=nHabitats, Lopts=Lo)
+
   params$eggs_laid[[1]] = eggs_laid
 
-  y0 <- rep(0, 3)
+  y0 <- L
 
   out <- deSolve::ode(y = y0, times = c(0, 365), func = function(t, y, pars, s) {
     list(dLdt(t, y, pars, s))
   }, parms = params, method = 'lsoda', s=1)
 
-  expect_equal(as.vector(out[2L, 2:4]), L, tolerance = numeric_tol)
+  Lout <- tail(out, 1)[-1]
+  expect_equal(Lout, L, tolerance = numeric_tol)
 })

@@ -1,4 +1,18 @@
 
+#' @title Change the time spent matrix
+#' @param TiSp a time spent [matrix]
+#' @param pars a [list]
+#' @param i the host species index
+#' @return a [list]
+#' @export
+change_TimeSpent = function(TiSp, pars, i=1){
+  stopifnot(dim(TiSp) == dim(pars$TimeSpent[[i]]))
+  pars$TimeSpent[[i]] <- TiSp
+  class(pars$BFpar) <- 'setup'
+  class(pars$beta) <- 'setup'
+  return(pars)
+}
+
 #' @title Make a time spent matrix, called TimeSpent
 #' @param pars an [list]
 #' @param i the host species index
@@ -18,13 +32,9 @@ make_TimeSpent = function(pars, i, TimeSpent, opts = list()){
 #' @return a [list]
 #' @export
 make_TimeSpent.athome = function(pars, i, TimeSpent = "athome", opts = list()){
-
-  residence = pars$BFpar$residence[[i]]
-  TiSp = make_TimeSpent_athome(pars$nPatches, residence, opts)
-  pars$BFpar$TimeSpent[[i]] = TiSp
-  for(s in 1:pars$nVectors) pars = make_TaR(t, pars, i, s)
-
-  return(pars)
+  residence = pars$residence[[i]]
+  TiSp = create_TimeSpent_athome(pars$nPatches, residence, opts)
+  change_TimeSpent(TiSp, pars, i)
 }
 
 #' @title Make a mosquito dispersal matrix, called TimeSpent
@@ -35,7 +45,7 @@ make_TimeSpent.athome = function(pars, i, TimeSpent = "athome", opts = list()){
 #' @param travel is the fraction of time spent traveling
 #' @return a [matrix]
 #' @export
-make_TimeSpent_athome = function(nPatches, residence, opts=list(), atHome=1, travel=0) {with(opts,{
+create_TimeSpent_athome = function(nPatches, residence, opts=list(), atHome=1, travel=0) {with(opts,{
   nStrata = length(residence)
   away = ifelse(nPatches == 1, 0, (1-atHome-travel)/(nPatches-1))
   atHome = ifelse(nPatches == 1, 1-travel, atHome)
@@ -50,9 +60,7 @@ make_TimeSpent_athome = function(nPatches, residence, opts=list(), atHome=1, tra
 #' @return a [list]
 #' @export
 make_TimeSpent.as_matrix = function(pars, i, TimeSpent, opts=list()){
-  pars$BFpar$TimeSpent[[i]] = TimeSpent
-  for(s in 1:pars$nVectors) pars = make_TaR(t, pars, i, s)
-  return(pars)
+  change_TimeSpent(TimeSpent, pars, i)
 }
 
 #' @title Develop a mosquito dispersal matrix from a kernel and xy-coordinates
@@ -62,10 +70,8 @@ make_TimeSpent.as_matrix = function(pars, i, TimeSpent, opts=list()){
 #' @export
 make_TimeSpent.xy = function(pars, i, TimeSpent = "xy", opts=list()) {
   residence = pars$BFpar[[i]]$residence
-  TiSp = with(opts, make_TimeSpent_xy(xy, residence, kern, stay, travel))
-  pars$BFpar$TimeSpent[[i]] = TiSp
-  for(s in 1:pars$nVectors) pars = make_TaR(t, pars, i, s)
-  return(pars)
+  TiSp = with(opts, create_TimeSpent_xy(xy, residence, kern, stay, travel))
+  change_TimeSpent(TimeSpent, pars, i)
 }
 
 #' @title Make a mosquito dispersal matrix, called TimeSpent
@@ -76,7 +82,7 @@ make_TimeSpent.xy = function(pars, i, TimeSpent = "xy", opts=list()) {
 #' @param travel is the fraction of time spent traveling
 #' @return a [matrix]
 #' @export
-make_TimeSpent_xy = function(xy, residence, kern, stay, travel) {
+create_TimeSpent_xy = function(xy, residence, kern, stay, travel) {
   nPatches = dim(xy)[1]
   nStrata = length(residence)
   stopifnot(length(stay)==nStrata)

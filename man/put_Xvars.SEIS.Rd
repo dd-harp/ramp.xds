@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SEIS.R
 \name{put_Xvars.SEIS}
 \alias{put_Xvars.SEIS}
-\title{Return the SEIS model variables as a list, returned from DT_Xt.SISd}
+\title{Return the SEIS model variables as a list, returned from Update_Xt.SISd}
 \usage{
 \method{put_Xvars}{SEIS}(Xvars, y, pars, i)
 }

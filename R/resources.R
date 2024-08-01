@@ -12,7 +12,7 @@ Resources <- function(t, y, pars) {
 }
 
 #' @title Modify resources and resource availability
-#' @description Implements [Resources] for the null model of resources
+#' @description Implements [Resources] for the static model of resources
 #' @inheritParams Resources
 #' @return none
 #' @export
@@ -21,18 +21,14 @@ Resources.static <- function(t, y, pars) {
 }
 
 #' @title Modify resources and resource availability
-#' @description Implements [Resources] for the null model of resources
+#' @description Implements [Resources] for the static model of resources
 #' @inheritParams Resources
 #' @return none
 #' @export
 Resources.setup <- function(t, y, pars) {
 
   pars = OtherBloodHosts(t, pars)
-  pars = AvailableBlood(t, y, pars)
-
   pars = HabitatDynamics(t, pars)
-  pars = AvailableHabitat(pars)
-
   pars = SugarDynamics(t, pars)
   pars = AvailableSugar(pars)
 
@@ -49,30 +45,13 @@ Resources.setup <- function(t, y, pars) {
 Resources.forced <- function(t, y, pars) {
 
   pars = OtherBloodHosts(t, pars)
-  pars = AvailableBlood(t, y, pars)
-
-  pars = HabitatDynamics(t, pars)
-  pars = AvailableHabitat(pars)
-
   pars = SugarDynamics(t, pars)
   pars = AvailableSugar(pars)
 
   return(pars)
 }
 
-#' @title Set up parameters for the null model for resource availability
-#' @param pars a [list]
-#' @return none
-#' @export
-setup_resources_null <- function(pars){
-  RESOURCES <- list()
-  class(RESOURCES) <- 'static'
-  pars$RESOURCES <- RESOURCES
-  pars <- setup_other_blood_hosts_static(pars)
-  return(pars)
-}
-
-#' @title Set up parameters for the null model for resource availability
+#' @title Set up parameters for the static model for resource availability
 #' @param pars a [list]
 #' @return none
 #' @export
@@ -80,10 +59,6 @@ setup_resources_static <- function(pars){
   RESOURCES <- list()
   class(RESOURCES) <- 'setup'
   pars$RESOURCES <- RESOURCES
-
-  pars$vars$Q = list()
-  pars$vars$non_habitats = 0
-  pars$vars$ovitraps = 0
 
   pars = setup_sugar_static(pars)
   pars = setup_other_blood_hosts_static(pars)

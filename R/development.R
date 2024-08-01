@@ -11,21 +11,21 @@ Development <- function(t, pars) {
 }
 
 #' @title Set up developments
-#' @description Implements [Development] for the null model (do nothing)
+#' @description Implements [Development] for the no_dev model (do nothing)
 #' @inheritParams Development
 #' @return [list]
 #' @export
-Development.null <- function(t, pars) {
+Development.no_dev <- function(t, pars) {
   return(pars)
 }
 
-#' @title Set up the null model for developments (do nothing)
+#' @title Set up the no_dev model for developments (do nothing)
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_development_null <- function(pars) {
+setup_no_development <- function(pars) {
   DEVELOPMENT <- list()
-  class(DEVELOPMENT) <- 'null'
+  class(DEVELOPMENT) <- 'no_dev'
   pars$DEVELOPMENT <- DEVELOPMENT
   return(pars)
 }

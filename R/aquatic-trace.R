@@ -19,11 +19,11 @@ xde_steady_state_L.trace = function(eta, Lpar){
 }
 
 #' @title Number of newly emerging adults from each larval habitat
-#' @description Implements [F_alpha] for the trace (forced emergence) model.
-#' @inheritParams F_alpha
+#' @description Implements [F_emerge] for the trace (forced emergence) model.
+#' @inheritParams F_emerge
 #' @return a [numeric] vector of length `nHabitats`
 #' @export
-F_alpha.trace <- function(t, y, pars, s) {
+F_emerge.trace <- function(t, y, pars, s) {
   with(pars$Lpar[[s]], scale*Lt(t))
 }
 
@@ -55,41 +55,21 @@ put_Lvars.trace <- function(Lvars, y, pars, s){
 }
 
 #' @title Derivatives for aquatic stage mosquitoes
-#' @description Implements [DT_Lt] for the trace (forced emergence) model.
-#' @inheritParams DT_Lt
+#' @description Implements [Update_Lt] for the trace (forced emergence) model.
+#' @inheritParams Update_Lt
 #' @return a [numeric] vector
 #' @export
-DT_Lt.trace <- function(t, y, pars, s) {
+Update_Lt.trace <- function(t, y, pars, s) {
   return(list())
 }
 
 #' @title xde_setup Lpar for the trace model
-#' @description Implements [xde_setup_Lpar] for the trace model
-#' @inheritParams xde_setup_Lpar
+#' @description Implements [make_Lpar] for the trace model
+#' @inheritParams make_Lpar
 #' @return a [list] vector
 #' @export
-xde_setup_Lpar.trace = function(Lname, pars, s, Lopts=list()){
-  pars$Lpar[[s]] = make_Lpar_trace(pars$nHabitats, Lopts)
-  return(pars)
-}
-
-#' @title dts_setup Lpar for the trace model
-#' @description Implements [dts_setup_Lpar] for the trace model
-#' @inheritParams dts_setup_Lpar
-#' @return a [list] vector
-#' @export
-dts_setup_Lpar.trace = function(Lname, pars, s, Lopts=list()){
-  pars$Lpar[[s]] = make_Lpar_trace(pars$nHabitats, Lopts)
-  return(pars)
-}
-
-#' @title Setup the trace model
-#' @description Implements [setup_Linits] for the trace model
-#' @inheritParams setup_Linits
-#' @return a [list]
-#' @export
-setup_Linits.trace = function(pars, s, Lopts=list()){
-  pars$Linits[[s]] = list()
+make_Lpar.trace = function(Lname, pars, s, Lopts=list()){
+  pars$Lpar[[s]] = create_Lpar_trace(pars$nHabitats, Lopts)
   return(pars)
 }
 
@@ -100,7 +80,7 @@ setup_Linits.trace = function(pars, s, Lopts=list()){
 #' @param Lt is a [function] of the form Lt(t,pars) that computes temporal fluctuations
 #' @return none
 #' @export
-make_Lpar_trace = function(nHabitats, Lopts=list(), Lambda=1000, Lt = NULL){
+create_Lpar_trace = function(nHabitats, Lopts=list(), Lambda=1000, Lt = NULL){
   with(Lopts,{
     Lpar = list()
     class(Lpar) <- "trace"
@@ -108,7 +88,19 @@ make_Lpar_trace = function(nHabitats, Lopts=list(), Lambda=1000, Lt = NULL){
     if(is.null(Lt)) Lt = function(t){1}
     Lpar$Lt = Lt
     return(Lpar)
-})}
+  })}
+
+#' @title Setup the trace model
+#' @description Implements [make_Linits] for the trace model
+#' @inheritParams make_Linits
+#' @return a [list]
+#' @export
+make_Linits.trace = function(pars, s, Lopts=list()){
+  pars$Linits[[s]] = list()
+  return(pars)
+}
+
+
 
 #' @title Add indices for aquatic stage mosquitoes to parameter list
 #' @description Implements [make_indices_L] for trace (forced emergence) model.
@@ -120,38 +112,22 @@ make_indices_L.trace <- function(pars, s) {
 }
 
 
+
+
+#' @title Return initial values as a vector
+#' @description Implements [get_Linits] for the GeRM model.
+#' @inheritParams get_Linits
+#' @return none
+#' @export
+get_Linits.trace <- function(pars, s=1){
+  numeric(0)
+}
+
 #' @title Update inits for the basic aquatic mosquito competition model
-#' @inheritParams update_inits_L
+#' @inheritParams update_Linits
 #' @return none
 #' @export
-update_inits_L.trace<- function(pars, y0, s) {
-  return(pars)
-}
-
-#' @title Make parameters for trace aquatic mosquito model
-#' @param pars a [list]
-#' @param Lambda vector of mean emergence rates from each aquatic habitat
-#' @param Lt is a [function] of the form Lt(t,pars) that computes temporal fluctuations
-#' @return none
-#' @export
-make_parameters_L_trace <- function(pars, Lambda, Lt=NULL) {
-  stopifnot(is.numeric(Lambda))
-  Lpar <- list()
-  class(Lpar) <- 'trace'
-  Lpar$scale = checkIt(Lambda, pars$nHabitats)
-  if(is.null(Lt)) Lt = function(t){return(1)}
-  Lpar$Lt = Lt
-  pars$Lpar[[1]] <- Lpar
-  return(pars)
-}
-
-#' @title Make parameters for trace aquatic mosquito model
-#' @param pars a [list]
-#' @param L0 is set to NULL for the trace model
-#' @return none
-#' @export
-make_inits_L_trace<- function(pars, L0=NULL) {
-  pars$Linits = numeric(0)
+update_Linits.trace<- function(pars, y0, s) {
   return(pars)
 }
 
@@ -163,13 +139,3 @@ make_inits_L_trace<- function(pars, L0=NULL) {
 parse_outputs_L.trace <- function(outputs, pars, s) {
   return(numeric(0))
 }
-
-#' @title Return initial values as a vector
-#' @description Implements [get_inits_L] for the GeRM model.
-#' @inheritParams get_inits_L
-#' @return none
-#' @export
-get_inits_L.trace <- function(pars, s){
-  numeric(0)
-}
-

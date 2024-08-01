@@ -59,7 +59,7 @@ $$
 ```{r}
 MYZo = list(MYZm = 2000/365, f=1, q=1)
 Xo = list(b= 0.5)
-seis = xde_setup(Xname = "SEIS", MYZname = "trace", MYZopts = MYZo, Xopts=Xo)
+seis = xds_setup(Xname = "SEIS", MYZname = "trace", MYZopts = MYZo, Xopts=Xo)
 seis = xde_stable_orbit(seis)
 ```
 
@@ -102,7 +102,7 @@ $$
 $$
 
 ```{r}
-SEISd = xde_setup(Xname = "SEISd", MYZname = "trace", MYZopts = MYZo, Xopts=Xo)
+SEISd = xds_setup(Xname = "SEISd", MYZname = "trace", MYZopts = MYZo, Xopts=Xo)
 SEISd$dlay = "dde" 
 class(SEISd$dlay) = "dde" 
 SEISd = xde_solve(SEISd, Tmax = 3650)

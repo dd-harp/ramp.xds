@@ -23,12 +23,14 @@ library(deSolve)
 ```
 
 ```{r, echo=FALSE}
-#devtools::load_all()
+devtools::load_all()
 ```
 
 # Introduction
 
-We show how to setup, solve, and analyze models of mosquito-borne pathogen transmission dynamics and control using modular software. This vignette is designed to explain modular notation by constructing a model with five aquatic habitats ($l=5$), three patches ($p=3$), and four human population strata ($n=4$). We call it `5-3-4`.
+This vignette illustrates how to setup, solve, and analyze models of mosquito-borne pathogen transmission dynamics and control using modular software. It serves several purposes: 
+
++ Modular notation is illustrated by constructing a model with five aquatic habitats ($N_q=5$), three patches ($N_p=3$), and four human population strata ($N_h=4$). We call it `5-3-4`.
 
 ## Diagram 
 
@@ -42,23 +44,50 @@ The model `5-3-4` is designed to illustrate some important features of the frame
 
 ![](534.png)
 
-# Parameters
 
-We already know three important parameters, $l$, $p$ and $n$ because they are determined in the early stages of model building. The `ramp.xds` package expects all parameters to be contained in a list object, containing `nHabitats`, `nPatches`, and `nStrata` which correspond to `l`, `p` and `n`.
 
-```{r}
-params = make_xds_object("xde", "full") 
+## Encoding Structural Information
 
-params$nVectors = 1
-params$nHosts = 1
-params$nHabitats = 5
-params$nPatches = 3
-params$nStrata = 4
+Basic location information can be encoded in vectors. One vector, called the habitat membership vector or `membership`, holds information about the location of habitats. Another vector, called  
+the strata residency vector or `residence`, encodes the information about where people live.  
+
+For the aquatic habitats, the habitat membership vector is an ordered list of the index of patches where the habitats are found:
+
+```{r habitat membership vector}
+membership = c(1,1,1,2,2)
+membership
+```
+
+The number of habitats, $N_q$ or `nHabitats`, is the length of the membership matrix:
+
+```{r nHabitats}
+nHabitats = length(membership)
+nHabitats
+```
+
+For the human population strata, the residence vector is an ordered list of the index of patches where people live:
+
+```{r residence vector}
+residence = c(2,2,3,3)
+residence
+```
+
+The number of strata, $N_h$ or `nStrata`, is the length of the residence matrix: 
+
+```{r nStrata}
+nStrata = length(residence)
+nStrata
+```
+
+The number of patches, $N_p$ or `nPatches`, is just a number:
+
+```{r nPatches}
+nPatches = 3
 ```
 
 ## Aquatic Habitat Membership Matrix
 
-The aquatic habitat membership matrix $\mathcal{N}$ is a $p \times l$ matrix mapping aquatic habitats to the patches which contain them. It should be attached directly to the parameters list.
+For computation, `ramp.xds` uses an $N_p \times N_q$ matrix called $\cal{N}.$ It is specified by the habitat vector. In the matrix, ${\cal N}_{i,j}$ is $1$ if the $i^{th}$ patch contains the $j^{th}$ habitat:  
 
 \begin{equation}
 {\cal N} = \left[
@@ -69,110 +98,23 @@ The aquatic habitat membership matrix $\mathcal{N}$ is a $p \times l$ matrix map
  \end{array} \right]
 \end{equation}
 
+The matrix is created by a function `create_habitat_matrix`:
 
-```{r}
-calN <- matrix(
- data = c(1,1,1,0,0,
-      0,0,0,1,1,
-      0,0,0,0,0), 
- nrow = params$nPatches, ncol = params$nHabitats, byrow = TRUE
-)
-params$habitat_matrix <- calN
+```{r create_habitat_matrix}
+habitat_matrix = create_habitat_matrix(nPatches, membership)
+habitat_matrix
 ```
-
-## Egg Dispersal Matrix
-
-The egg dispersal matrix $\mathcal{U}$ is a $l \times p$ matrix describing how eggs laid by adult mosquitoes in a patch are allocated among the aquatic habitats in that patch. It is also attached directly to the parameters list.
-
-\begin{equation}
-{\cal U} = \left[
- \begin{array}{ccccc} 
- .7 & 0 & 0\\ 
- .2 & 0 & 0\\ 
- .1 & 0 & 0\\ 
- 0 & .8 & 0\\ 
- 0 & .2 & 0\\ 
- \end{array} \right]
-\end{equation}
+The habitat matrix is used to sum quantities in habitats up to patches. For example, the number of habitats per patch is ${\cal N} \cdot 1$, where $1$ is a vector of 1's:
 
 ```{r}
-xi <- 2*matrix(c(.7, .2, .1, .8, .2), 5, 1) 
-params$EGGpar$search_weights[[1]] <- as.vector(xi)
-params$calU[[1]]<- t(calN %*% diag(as.vector(xi)))
+as.vector(habitat_matrix %*% rep(1,5)) 
 ```
 
 
-## Aquatic Mosquito Parameters
+## The Residence Matrix 
 
-For this simulation, we use the basic competition model of larval dynamics (see more [here](aqua_basic.html)). It requires specification of three parameters, $\psi$ (maturation rates), $\phi$ (density-independent mortality rates), and $\theta$ (density-dependent mortality terms), and initial conditions. The function `ramp.xds::make_parameters_L_basic` does basic checking of the input parameters and returns a list with the correct class for method dispatch. The returned list is attached to the main parameter list with name `Lpar`.
-
-```{r}
-L0 <- rep(1, params$nHabitats)
-psi <- rep(1/8, params$nHabitats)
-phi <- rep(1/8, params$nHabitats)
-theta <- c(1/10, 1/20, 1/40, 1/100, 1/10) 
-
-params = make_parameters_L_basicL(params, psi = psi, phi = phi, theta = theta)
-params = make_inits_L_basicL(params, L0=L0)
-```
-
-## Adult Mosquito Parameters
-
-We use the ODE version of the generalized Ross-Macdonald model (see more [here](adult_RM.html)). Part of the specification of parameters includes the construction of the mosquito dispersal matrix $\mathcal{K}$, and the mosquito demography matrix $\Omega$. Like for the aquatic parameters, we use `ramp.xds::make_parameters_MYZ_RM_ode` to check parameter types and return a list with the correct class for method dispatch. We attach the returned list to the main parameter list with name `MYZpar`.
-
-```{r}
-g <- rep(1/12, params$nPatches)
-sigma <- rep(1/12/2, params$nPatches)
-mu <- rep(0, params$nPatches)
-f <- rep(1/3, params$nPatches)
-q <- rep(0.9, params$nPatches)
-nu <- c(1/3,1/3,0)  
-eggsPerBatch <- 30 
-eip <- 12 
-
-calK <- t(matrix(
- c(c(0, .6, .3), 
-  c(.4, 0, .7), 
-  c(.6, .4, 0)), 3, 3))
-
-M0 <- rep(100, params$nPatches)
-P0 <- rep(10, params$nPatches)
-Y0 <- rep(1, params$nPatches)
-Z0 <- rep(0, params$nPatches)
-
-Omega <- make_Omega_xde(g, sigma, mu, calK)
-Upsilon <- expm::expm(-Omega*eip)
-
-params = make_parameters_MYZ_RM(pars = params, g = g, 
-                sigma = sigma, mu=mu, calK=calK, 
-                eip=eip, f=f, q=q, nu=nu, 
-                eggsPerBatch=eggsPerBatch, 
-                solve_as = "ode") 
-
-params = make_inits_MYZ_RM_ode(params, M0=M0, P0=P0, 
-             Y0=Y0, Z0=Z0)
-```
-
-## Human Parameters
-
-## Mixing
-
-We use the static demographic model, which assumes a constant population size (constant $H$).
-
-```{r}
-H <- matrix(c(10,90, 100, 900), 4, 1)
-params = setup_Hpar_static(params, 1, HPop=H) 
-```
-
-In this model, we define four population strata. We can describe their residency with a vector describing residence: 
-
-```{r}
-residence = c(2,2,3,3)
-searchWtsH = c(1,1,1,1)
-params = setup_BloodFeeding(params, 1, 1, residence=residence, searchWts=searchWtsH)
-``` 
-
-Although not directly used in this example, we create the residency membership matrix $\mathcal{J}$, a $p \times n$ matrix indicating which patch each human population strata resides in.
+For computation, `ramp.xds` also creates a $N_p \times N_h$ matrix called $\cal J.$ It is specified by 
+residence vector. The element ${\cal J}_{i,j}$ is $1$ if the $j^{th}$ stratum resides in the $i^{th}$ patch:   
 
 \begin{equation}
 {\cal J} = \left[
@@ -183,18 +125,78 @@ Although not directly used in this example, we create the residency membership m
  \end{array} \right]
 \end{equation}
 
+The matrix is created by a function `create_residence_matrix`:
+
+```{r create_residence_matrix}
+residence_matrix = create_residence_matrix(nPatches, residence)
+residence_matrix
+```
+The number of strata per patch is: 
+
 ```{r}
-calJ <- t(matrix(
- c(c(0,0,0,0),
-  c(1,1,0,0),
-  c(0,0,1,1)), 4, 3
-))
+as.vector(residence_matrix %*% rep(1,4)) 
 ```
 
-We then create the time at risk matrix $\Psi$, a $p \times n$ matrix describing how each human strata spends their time across patches.
+## Egg Laying 
+
+It is plausible that these habitats are not all found with the same propensity. Habitats are found after a search, and that search begins after mosquitoes have blood fed. To compute egg distribution, we create a vector describing habitat *search weights,* denoted $\omega.$ The proportion of eggs laid in each patch is it's search weight as a proportion of summed search weights of all habitats in a patch, a quantity that we have called *availability,* $Q$. 
+
+For now, we generate arbitary weights for each one of the habitats:
+
+```{r searchWtsQ}
+searchWtsQ = c(7,2,1,8,2)
+searchWtsQ
+```
+
+And we can compute availability as $\cal N \cdot w$. In `ramp.xds`, the function that computes habitat availability is called `compute_Q`:
+
+```{r compute_Q}
+Q <- compute_Q(habitat_matrix, searchWtsQ)
+Q
+```
+
+Eggs are distributed among habitats in proportion to the relative values of the habitat search weights. These habitat search weights and availability can be used to compute the values of some adult mosquito bionomic parameters using *functional responses,* that make use of their absolute values. The absolute values only have a meaning through their effects. 
+
+The egg dispersal matrix $\mathcal{U}$ is a $N_q \times N_p$ matrix describing how eggs laid by adult mosquitoes in a patch are allocated among the aquatic habitats in that patch. It is a matrix of search weights normalized by availability: 
 
 \begin{equation}
-\Psi= \left[
+{\cal U} = \left[
+ \begin{array}{ccccc} 
+ .7 & 0 & 0\\ 
+ .2 & 0 & 0\\ 
+ .1 & 0 & 0\\ 
+ 0 & .8 & 0\\ 
+ 0 & .2 & 0\\ d
+ \end{array} \right]
+\end{equation}
+
+It is computed using the function `compute_calU` that takes care of a problem that could arise from having empty patches, like patch 3 in this model.  
+
+```{r compute_calU}
+calU = compute_calU(searchWtsQ, habitat_matrix, Q)
+calU
+```
+
+## Blood Feeding 
+
+Blood feeding is an activity that involves mosquitoes and humans: mosquitoes are searching for vertebrate hosts to feed on, and they find and feed on humans and other vertebrate hosts. The blood feeding constructs in `ramp.xds` translate this into a set of algorithms. The host population can be subdivided into a set of strata, and those humans spend time in the patches around home. Both humans and mosquitoes have daily activity patterns, so that human time spent and relative mosquito activity rates can change during the day. Time spent is thus translated into **time at risk.**  Like the habitats, the availability of those hosts to blood feeding mosquitoes is affected by a set of *search weights.* 
+
+This model has four population strata with even search weights:  
+
+```{r searchWtsH}
+searchWtsH = c(1,1,1,1)
+``` 
+
+This size of each population stratum differs: 
+
+```{r human population density}
+HPop <- matrix(c(10,90, 100, 900), 4, 1)
+```
+
+The time spent matrix, $\Theta$ is a $N_p \times N_h$ matrix. Each column describes how a human stratum allocates time among patches.
+
+\begin{equation}
+\Theta = \left[
  \begin{array}{cccc}
  0.01 & .01 & .001 & .001 \\ 
  0.95 & .92 & .04 & .02 \\ 
@@ -203,32 +205,234 @@ We then create the time at risk matrix $\Psi$, a $p \times n$ matrix describing 
  \right] 
 \end{equation}
 
-```{r}
+This model does not consider daily patterns in human or mosquito activity, so time spent and time at risk are identical. 
+
+```{r TaR}
 TaR <- t(matrix(
  c(c(0.01,0.01,0.001,0.001),
   c(.95,.92,.04,.02),
   c(.04,.02,.959,.929)), 4, 3
 ))
-params$BFpar$TaR[[1]][[1]] <- TaR
 ```
 
-We use the basic SIS (Susceptible-Infected-Susceptible) model for the human component (see more [here](human_sis.html)). We set it up like the rest of the components, using `ramp.xds::make_parameters_X_SIS` to make the correct return type, which is attached to the parameter list with name `Xpar`.
+The availability of hosts is of time at risk and the population density weighed by their search weights: 
 
+```{r compute_W}
+W <- compute_W(searchWtsH, HPop, TaR)
+W
+```
+
+## Transmission  
+
+A mixing matrix, $\beta$, describes the expected proportion of each infective bite that would be received be each population stratum. 
+
+```{r beta}
+compute_beta(HPop, W, searchWtsH, TaR)
+```
+
+## Aquatic Mosquito Dynamics 
+
+For this simulation, we use the basic competition model of larval dynamics called `basicL` (see more [here](aqua_basic.html)). It requires specification of three parameters, $\psi$ (maturation rates), $\phi$ (density-independent mortality rates), and $\theta$ (density-dependent mortality terms), and initial conditions. The function `ramp.xds::xde_make_Lpar_basicL` does basic checking of the input parameters and returns a list with the correct class for method dispatch. The returned list is attached to the main parameter list with name `Lpar`.
+
+```{r Lpar}
+psi <- rep(1/8, nHabitats)
+phi <- rep(1/8, nHabitats)
+theta <- c(1/10, 1/20, 1/40, 1/100, 1/10) 
+
+Lpar = create_Lpar_basicL(nHabitats, psi=psi, phi=phi, theta = theta)
+```
+
+
+## Adult Mosquito Dynamics 
+
+It also uses the Ross-Macdonald model (see more [here](adult_RM.html)). Part of the specification of parameters includes the construction of the mosquito dispersal matrix $\mathcal{K}$, and the mosquito demography matrix $\Omega$. Like for the aquatic parameters, we use `ramp.xds::make_parameters_MYZ_RM_ode` to check parameter types and return a list with the correct class for method dispatch. 
+
+The parameter values are: 
+
+```{r MYZ parameters}
+g <- 1/12 
+sigma <- 1/12/2 
+mu <- 0 
+f <- 1/3 
+q <- 0.9 
+nu <- c(1/3,1/3,0)  
+eip <- 12 
+eggsPerBatch <- 30 
+```
+
+We create a named list:
 
 ```{r}
-I0 <- as.vector(0.2*H)
+MYZo = list(g=g, sigma=sigma, mu=mu, f=f, q=q, nu=nu, eip=eip, eggsPerBatch=eggsPerBatch)
+```
+
+Mosquito dispersal among the patches is described by a matrix, $\cal K.$  Each column in $\cal K$ describes the proportion of emigrating mosquitoes that go to every other patch. The diagonal elements are all $0$: 
+
+```{r calK}
+calK <- t(matrix(
+ c(c(0, .6, .3), 
+  c(.4, 0, .7), 
+  c(.6, .4, 0)), 3, 3))
+```
+
+We construct the demographic matrix $\Omega$ given by the formula 
+$$\Omega = \mbox{diag}\left(g\right) - \left[\mbox{diag}\left(1-\mu\right) - {\cal K} \right] \cdot \mbox{diag}\left(\sigma\right)$$
+It is computed by `compute_Omega_xde`:
+
+```{r Omega}
+Omega <- compute_Omega_xde(g, sigma, mu, calK)
+```
+
+Survival and dispersal through the EIP in this model, denoted $\Upsilon,$  is computed using matrix exponentiation: 
+
+```{r Upsilon}
+Upsilon <- expm::expm(-Omega*eip)
+```
+
+The function `xde_make_MYZpar_RM` can be used to construct the adult mosquito model object, called `MYZpar.`  
+                              
+```{r MYZpar}
+MYZpar = create_MYZpar_RM_static(nPatches, MYZo) 
+class(MYZpar) <- "RM"
+```
+
+The parameters are assigned to a list called `baseline` so that it can be stored and used to compute the values of bionomic parameters that have been modified by control. 
+
+```{r}
+names(MYZpar)
+```
+
+## Human Infection Dynamics 
+
+We use a static demographic model, which assumes a constant population size (constant $H$).
+
+The 5-3-4 model uses the basic SIS (Susceptible-Infected-Susceptible) model for the human component (see more [here](human_sis.html)). It can be configured using `ramp.xds::xde_make_Xpar_SIS.` 
+
+
+```{r X parameters}
 r <- 1/200
 b <- 0.55
 c <- c(0.1, .02, .1, .02)
-
-params = make_parameters_X_SIS(pars = params, b = b, c = c, r = r)
-params = make_inits_X_SIS(params, S0 = H-I0, I0=I0)
 ```
 
+The model is configured and assigned the name `Xpar`:
 
-# Simulation, the Long Way 
+```{r Xpar}
+Xpar <- create_Xpar_SIS(nStrata, list(), b, r, c)
+```
 
 ## Initial Conditions
+
+To solve the model, each variable needs an initial value. For the aquatic model: 
+
+```{r L0}
+Linits <- list(
+  L = rep(1, nHabitats)
+)
+```
+
+For the adult mosquito model:
+
+```{r MYZ0}
+MYZinits = list(
+  M = rep(100, nPatches),
+  P = rep(10, nPatches),
+  Y = rep(1, nPatches),
+  Z = rep(0, nPatches)
+)
+```
+
+For the human model:
+
+```{r I0}
+Xinits = list(I = as.vector(0.2*HPop))
+```
+
+## The `xds` Object 
+
+To build a model, `ramp.xds` must create an object that stores the information about the patches, habitats, and strata in a rigid form. The functions that solve and analyze the systems of differential equations are, like most computer programs, unforgiving. An object describing a model that can be solved by `ramp.xds` is called an `xds` object. `ramp.xds` supports nimble model building for e**x**tensible **d**ynamical **s**ystems, including e**x**tensible systems of **d**ifferential equations (`xde`), and **d**iscrete-**t**ime **s**ystems using difference equations (`dts`).
+
+Since the software is designed to solve very complex systems, we will need to create an object that *could* accommodate added realism (*e.g.* vector control). The function `make_xds_object` sets up a compound list in `R` that is like a building that we anticipate modifying, with *ports* and *junctions* ready. These capabilities that are not needed by simple models. The software's requires that some objects are present to handle all that complexity. Since most users won't want to learn about the details, the software includes a function, called `make_xds_object` that sets up the scaffolding for a model, including many that are set to their `null` values (turned off). 
+
+A user only needs to know how to encode the information and what information to encode. The rest is handled by functions. It is helpful for users to understand some of the notation and terms. The following are set up in order by `make_xds_object`: 
+
++ the first required argument sets the value and class of `xds` 
+    
+    - `xde` is for e**x**tensible systems of **d**ifferential **e**quations 
+    
+    - `dts` is for not a **d**iscrete-**t**ime **s**ystems
+    
++ the second required arugment sets the value and class of `frame` that dispatches *both* a setup function and a class of `xde_derivatives` (for `xde` models) or a class of `dts_update` (for `dts` models) 
+
+    - `full` tells us the model should configure and compute all three dynamical components 
+    
+    - Other options -- `mosy`, `aquatic`, `human`, and `cohort` -- work on subsets of the components, and while they could be configured using `full` 
+
++ the third required term sets the value of`dlay` that dispatches `xde_solve` 
+
+    - `ode` uses `deSolve::ode` for ordinary differential equations, 
+    
+    - `dde` uses `deSolve:dde` for delay differential equations 
+
++ the next three arguments are `nPatches` and `membership` and `residence`, as explained above. 
+
++ the last argument `HPop` is the initial size of the human population strata. 
+
+```{r}
+params = make_xds_object("xde", "full", "dde", nPatches, membership, residence, HPop) 
+```
+
+After being set up:
+
+```{r}
+c(params$nHabitats, params$nPatches, params$nStrata)
+```
+
+This was created by `make_xds_object` and stored as `params$habitat_matrix` 
+
+```{r}
+params$habitat_matrix
+```
+If we want to retrieve the membership matrix, we can call `view_habitat_matrix`
+
+```{r}
+view_habitat_matrix(params)
+```
+
+The function `make_xds_object` was designed to create a scaffolding. So `Q` and `calU` get created with default values: Iall patches are assumed to have the same biting weights. 
+
+```{r}
+params$vars$Q
+```
+A little detail to note is that an `xds` object is designed to handle multiple vector and multiple host species. The function `make_xds_object` only sets up the first species. Similarly, we can view the egg distribution matrix for the first species: 
+
+```{r}
+params$calU[[1]]
+```
+While this is a reasonable way to start, we don't want to get stuck using the default values. 
+
+To make a modular system that works as expected, we need to adopt some conventions for setting the values of parameters. This can create challenges because after changing the *search weights,* we will also need to update *habitat availability* and the *egg distribution matrix.* Updating all of that by hand would be cumbersome, so `ramp.xds` has adopted some conventions for changing parameter values and then updating the objects that depend on them. 
+
+### Building the Object 
+
+```{r}
+params$Lpar = list() 
+params$Lpar[[1]] = Lpar 
+params$MYZpar = list() 
+params$MYZpar[[1]] = MYZpar 
+params$Xpar = list() 
+params$Xpar[[1]] = Xpar 
+```
+
+```{r}
+params <- make_Linits(params, 1, Linits)
+params <- make_MYZinits(params, 1, MYZinits)
+params <- make_Xinits(params, HPop, 1, Xinits)
+```
+
+```{r}
+params <- setup_Hpar_static(params, 1)
+```
 
 After the parameters for `5-3-4` have been specified, we can generate the indices for the model and attach them to the parameter list.
 
@@ -236,24 +440,84 @@ After the parameters for `5-3-4` have been specified, we can generate the indice
 params = make_indices(params)
 ```
 
-Now we can set the initial conditions of the model.
+### Setting Parameter Values 
+
+To assign new values for the habitat search weights, we use a function called `set_habitat_wts_static.` After setting the values of the habitat search weights, we need to update habitat availability and the egg distribution matrix. The functions `makeQ` and `make_calU` do this.  
+
+```{r change_habitat_weights}
+params <- change_habitat_weights(params, searchWtsQ)
+params <- make_Q(params)
+params <- make_calU(params)
+```
+
+We can check to see
 
 ```{r}
-y0 = get_inits(params)
+params$vars$Q[[1]]
 ```
 
 ```{r}
-params <- EggLaying(0, y0, params)
+params$calU[[1]]
+```
+
+```{r change_TimeSpent}
+params <- change_TimeSpent(TaR, params)
+params <- make_TaR(params)
+```
+
+```{r}
+params$TimeSpent
+```
+
+```{r}
+params$TaR
+```
+
+```{r change_blood_weights}
+params <- change_blood_weights(params, searchWtsH)
+y0 <- get_inits(params)
+params <- make_WB(params, y0)
+```
+
+```{r}
+params$vars$W[[1]]
+```
+
+
+```{r change_cal_K}
+params <- change_calK(calK, params)
+params$MYZpar[[1]]$baseline$calK
+```
+```{r}
+get_Omega(params, 1) 
+```
+```{r}
+get_Upsilon(params, 1) 
+```
+
+Functions like `set_habitat_wts_static` are designed to modify parameters to guarantee that all the internal objects that rely on those parameters get updated. If we use `set_habitat_wts_static` the updating gets done automatically.  
+
+The software was designed to handled more complex situations than the one we've illustrated here. In some models, we might want to make the habitat search weights change dynamically. For example, we might want to simulate habitat dynamics with some ephemeral habitats that dry up and can't be found. That would be called a *non-autonomous* system, and we would need to recompute the $Q$ and $\cal U$ each time step. The egg laying object is assigned a class `dynamic` for dispatching by R's S3 object system. If none of the values affecting egg laying are time dependent -- we would call the resulting system *autonomous* -- then we assign the objects a class `static` so they don't get updated. To guarantee that we are recomputing things correctly, whenever the software updates the values of static parameters, it assigns the class `setup.` Whenever `EggLaying.setup` gets called, it runs `EggLaying.dynamic` once and then changes the class to `static.` 
+
+
+
+## Solving 
+
+Now we can get the initial conditions of the model.
+
+```{r}
+y0 = get_inits(params)
+y0
 ```
 
 ## Numerical Solution
 
 Now we can pass the vector of initial conditions, `y`, our parameter list `params`, and the function `ramp.xds::xde_derivatives` to the differential equation solvers in `deSolve::ode` to generate a numerical trajectory. The classes of `Xpar`, `MYZpar`, and `Lpar` in `params` will ensure that the right methods are invoked (dispatched) to solve your model.
 
-```{r}
 
-out <- deSolve::ode(y = y0, times = 0:365, 
-                    func = xde_derivatives, parms = params, method = "lsoda")
+```{r}
+out <- deSolve::dede(y = as.vector(unlist(y0)), times = 0:730,
+                    func = xde_derivatives, parms = params)
 out1 <- out
 ```
 
@@ -268,6 +532,7 @@ colnames(out)[params$ix$MYZ[[1]]$P_ix+1] <- paste0('P_', 1:params$nPatches)
 colnames(out)[params$ix$MYZ[[1]]$Y_ix+1] <- paste0('Y_', 1:params$nPatches)
 colnames(out)[params$ix$MYZ[[1]]$Z_ix+1] <- paste0('Z_', 1:params$nPatches)
 colnames(out)[params$ix$X[[1]]$X_ix+1] <- paste0('X_', 1:params$nStrata)
+out = out[,-params$ix$MYZ[[1]]$U_ix+1]
 
 out <- as.data.table(out)
 out <- melt(out, id.vars = 'time')
@@ -280,7 +545,7 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Stratification)) +
  theme_bw()
 ```
 
-# Using Setup 
+# Using `xde_setup` 
 
 We create lists with all our parameters values: 
 
@@ -291,13 +556,13 @@ MYZo = list(
  f = 1/3, q=0.9, nu=c(1/3,1/3,0),
  eggsPerBatch = 30, 
  eip = 12, 
- M0 = 100,  P0 = 10,  Y0 = 1, Z0 = 0 
+ M = 100,  P = 10,  Y = 1, Z = 0 
 )
 ```
 
 ```{r}
 Lo = list(
- L0 = 1,
+ L = 1,  
  psi = 1/8, phi = 1/8, 
  theta = c(1/10, 1/20, 1/40, 1/100, 1/10) 
 ) 
@@ -305,37 +570,49 @@ Lo = list(
 
 ```{r}
 Xo = list(
- I0 = as.vector(0.2*H),
+ I = as.vector(0.2*HPop),
  r = 1/200,
  b = 0.55,
  c = c(0.1, .02, .1, .02)
 )
 ```
 
-```{r}
-EIPo <- list(EIPname = "static_xde", eip=12) 
-```
-
 
 
 ```{r}
-xde_setup("mod534", "RM", "SIS", "basicL", 
-                  nPatches = 3, HPop=c(10, 90, 100, 900), 
-                  membership=c(1,1,1,2,2), EIPopts = EIPo,
-                  MYZopts=MYZo, calK=calK, Xopts=Xo, 
-                  residence=c(2,2,3,3), searchB=searchWtsH, 
-                  TimeSpent=TaR, searchQ = c(7,2,1,8,2), Lopts = Lo) -> mod534
+xds_setup(dlay='dde',
+  MYZname="RM", Xname="SIS", Lname="basicL", 
+  nPatches = 3, HPop=c(10, 90, 100, 900), 
+  membership=c(1,1,1,2,2), 
+  MYZopts=MYZo, calK=calK, Xopts=Xo, Lopts = Lo,
+  residence=c(2,2,3,3), searchB=searchWtsH, 
+  TimeSpent=TaR, searchQ = c(7,2,1,8,2)) -> mod534
 ```
 
 We solve and take the differences to check: 
 
 ```{r}
-mod534 <- xde_solve(mod534,Tmax=365,dt=1)
+mod534 <- xde_solve(mod534, Tmax=730, dt=1)
 mod534$outputs$orbits$deout -> out2
 ```
 
 Interestingly, the differences are small: 
 
 ```{r}
+sum((tail(out2,1) - tail(out1, 1))^2)
+```
+
+```{r}
 approx_equal(tail(out2, 1), tail(out1,1), tol = 1e-5)
 ```
+
+```{r, eval=F, echo=F}
+rbind(head(out2, 1), head(out1,1))
+```
+
+```{r, eval=F, echo=F}
+rbind(tail(out2, 1), tail(out1,1))
+```
+
+
+

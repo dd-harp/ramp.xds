@@ -133,7 +133,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Make an <code>xds</code> object</h1>
-    <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/xds-setup.R" class="external-link"><code>R/xds-setup.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/xds-object.R" class="external-link"><code>R/xds-object.R</code></a></small>
     <div class="hidden name"><code>make_xds_object.Rd</code></div>
     </div>
 
@@ -142,21 +142,45 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_xds_object</span><span class="op">(</span>xds <span class="op">=</span> <span class="st">"xde"</span>, frame <span class="op">=</span> <span class="st">"full"</span>, dlay <span class="op">=</span> <span class="st">"ode"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_xds_object</span><span class="op">(</span></span>
+<span>  xds <span class="op">=</span> <span class="st">"xde"</span>,</span>
+<span>  frame <span class="op">=</span> <span class="st">"full"</span>,</span>
+<span>  dlay <span class="op">=</span> <span class="st">"ode"</span>,</span>
+<span>  nPatches <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  membership <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  residence <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  HPop <span class="op">=</span> <span class="fl">1000</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>xds</dt>
-<dd><p>is <code>xde</code> for differential equations; or <code>dts</code> for discrete-time systems</p></dd>
+<dd><p>is <code>xde</code>/<code>dts</code> for differential / difference equations</p></dd>
 
 
 <dt>frame</dt>
-<dd><p>the equation frame / subset of dynamical components in the model</p></dd>
+<dd><p>model component subset</p></dd>
 
 
 <dt>dlay</dt>
 <dd><p>is <code>ode</code> for ordinary and <code>dde</code> for delay</p></dd>
+
+
+<dt>nPatches</dt>
+<dd><p>is the number of patches</p></dd>
+
+
+<dt>membership</dt>
+<dd><p>is the habitat membership vector</p></dd>
+
+
+<dt>residence</dt>
+<dd><p>is the strata residence vector</p></dd>
+
+
+<dt>HPop</dt>
+<dd><p>is the initial human population density</p></dd>
 
 </dl></div>
     <div id="value">

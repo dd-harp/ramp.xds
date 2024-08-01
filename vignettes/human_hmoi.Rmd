@@ -80,51 +80,67 @@ Here, we build a model step-by-step.
 nStrata <- 3
 H <- c(100, 500, 250)
 residence = rep(1,3) 
-searchWtsH = rep(1,3) 
+params <- make_xds_object("xde", "cohort", "ode", 1, 1, residence, H)
+```
+
+
+```{r}
 b <- 0.55
 c1 <- 0.05
 c2 <- 0.25
 r1 <- 1/250
-r2 <- 1/50
-TaR <- matrix(data = 1, nrow = 1, ncol = nStrata)
+r2 <- 1/5
+```
 
-m20 <- 1.5
-h <- r2*m20
-m10 <- h/r1
 
-EIR <- rep(h/b, 3) 
+
+
+```{r}
+m2 <- 1.5
+h <- r2*m2
+m1 <- h/r1
+Xo = list(b = b, c1 = c1, c2 = c2, r1 = r1, r2 = r2, m1=m1, m2=m2)
 ```
 
 ```{r}
-params <- make_xds_object("xde", "cohort") 
+eir <- rep(h/b, 3) 
+```
 
-params$nStrata = nStrata
-params$nVectors = 1 
-params$nHosts = 1
-params$nPatches = 1 
-params$EIR = list()
+```{r}
+params = make_Xpar("hMoI", params, 1, Xo)
+params = make_Xinits(params, H, 1, Xo) 
+```
 
-fF_eir = function(EIR){
-  EIR = as.vector(EIR) 
-  return(function(t, bday=0, scale=1){EIR})
+
+```{r}
+fF_eir = function(eir){
+  EIR = as.vector(eir) 
+  return(function(t, bday=0, scale=1){scale*EIR})
 } 
-F_eir = fF_eir(EIR)
+F_eir = fF_eir(eir)
+```
+
+
+```{r}
 params$EIRpar = list() 
-params$EIRpar$F_eir = F_eir 
+params$EIRpar$bday=0 
+params$EIRpar$scale=1 
+params$F_eir = F_eir
+```
 
-params = make_parameters_demography_null(pars = params, H=H) 
-
-params = setup_BloodFeeding(params, 1, 1, residence=residence, searchWts=searchWtsH) 
-params$BFpar$TaR[[1]][[1]]=TaR
-params = make_parameters_X_hMoI(pars = params, b = b, c1 = c1, c2 = c2, r1 = r1, r2 = r2)
-params = make_inits_X_hMoI(pars = params, rep(m10, nStrata), rep(m20, nStrata)) 
+```{r}
 params = make_indices(params)
 ```
 
 ```{r}
 y0 <- get_inits(params)
+y0
+```
 
-out <- deSolve::ode(y = y0, times = c(0, 365), func = xde_derivatives, 
+
+
+```{r}
+out <- deSolve::ode(y = as.vector(unlist(y0)), times = c(0, 365), func = xde_derivatives, 
                     parms = params, method = 'lsoda') 
 out1 <- out
 ```
@@ -148,15 +164,10 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Strata)) +
 
 # Using Setup
 
-```{r}
-Xo = list(b=0.55, c1=0.05, c2=0.25, r1=1/250, r2=1/50, m20=1.5)
-h = with(Xo, r2*m20) 
-Xo$m10 = with(Xo, h/r1)  
-Hpop = c(100, 500, 250)
-```
+
 
 ```{r}
-xde_setup_cohort(F_eir, Xname="hMoI", HPop=Hpop, Xopts = Xo) ->test_hMoI_xde
+xds_setup_cohort(F_eir, 'xde', Xname="hMoI", HPop=H, Xopts = Xo) ->test_hMoI_xde
 ```
 
 ```{r}

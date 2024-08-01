@@ -20,11 +20,11 @@ dXdt.SEIS <- function(t, y, pars, i) {
 }
 
 #' @title DTS updating for the SEIS model for human / vertebrate host infections
-#' @description Implements [DT_Xt] for the SEIS model
-#' @inheritParams DT_Xt
+#' @description Implements [Update_Xt] for the SEIS model
+#' @inheritParams Update_Xt
 #' @return a [numeric] vector
 #' @export
-DT_Xt.SEIS <- function(t, y, pars, i) {
+Update_Xt.SEIS <- function(t, y, pars, i) {
 
   ar <- pars$AR[[i]]
   Hpar <- pars$Hpar[[i]]
@@ -41,12 +41,12 @@ DT_Xt.SEIS <- function(t, y, pars, i) {
 }
 
 #' @title Setup Xpar.SEIS
-#' @description Implements [xde_setup_Xpar] for the SEIS model
-#' @inheritParams xde_setup_Xpar
+#' @description Implements [make_Xpar] for the SEIS model
+#' @inheritParams make_Xpar
 #' @return a [list] vector
 #' @export
-xde_setup_Xpar.SEIS = function(Xname, pars, i, Xopts=list()){
-  pars$Xpar[[i]] = xde_make_Xpar_SEIS(pars$Hpar[[i]]$nStrata, Xopts)
+make_Xpar.SEIS = function(Xname, pars, i, Xopts=list()){
+  pars$Xpar[[i]] = create_Xpar_SEIS(pars$nStrata[i], Xopts)
   return(pars)
 }
 
@@ -59,7 +59,7 @@ xde_setup_Xpar.SEIS = function(Xname, pars, i, Xopts=list()){
 #' @param c transmission probability (efficiency) from human to mosquito
 #' @return a [list]
 #' @export
-xde_make_Xpar_SEIS = function(nStrata, Xopts=list(),
+create_Xpar_SEIS = function(nStrata, Xopts=list(),
                              b=0.55, r=1/180, nu=1/14, c=0.15){
   with(Xopts,{
     Xpar = list()
@@ -69,41 +69,6 @@ xde_make_Xpar_SEIS = function(nStrata, Xopts=list(),
     Xpar$c = checkIt(c, nStrata)
     Xpar$r = checkIt(r, nStrata)
     Xpar$nu = checkIt(nu, nStrata)
-
-    return(Xpar)
-  })}
-
-
-
-#' @title Setup Xpar for the discrete time SEIS model
-#' @description Implements [dts_setup_Xpar] for the SEIS model
-#' @inheritParams dts_setup_Xpar
-#' @return a [list] vector
-#' @export
-dts_setup_Xpar.SEIS = function(Xname, pars, i, Xopts=list()){
-  pars$Xpar[[i]] = dts_make_Xpar_SEIS(pars$Hpar[[i]]$nStrata, pars$Xday, Xopts)
-  return(pars)
-}
-
-#' @title Make parameters for SEIS human model, with defaults
-#' @param nStrata is the number of population strata
-#' @param Xday the X component runtime time step
-#' @param Xopts a [list] that could overwrite defaults
-#' @param b transmission probability (efficiency) from mosquito to human
-#' @param r recovery rate
-#' @param nu 1/latent period
-#' @param c transmission probability (efficiency) from human to mosquito
-#' @return a [list]
-#' @export
-dts_make_Xpar_SEIS = function(nStrata, Xday, Xopts=list(),
-                             b=0.55, r=1/180, nu=1/14, c=0.15){
-  with(Xopts,{
-    Xpar = list()
-    class(Xpar) <- "SEIS"
-    Xpar$b = checkIt(b, nStrata)
-    Xpar$c = checkIt(c, nStrata)
-    Xpar$nr = exp(-checkIt(r, nStrata)*Xday)
-    Xpar$nu = exp(-checkIt(nu, nStrata)*Xday)
 
     return(Xpar)
   })}
@@ -145,26 +110,23 @@ F_b.SEIS <- function(y, pars, i) {
 
 #' @title Make initial values for the SEIS xde human model, with defaults
 #' @param nStrata the number of strata in the model
-#' @param Xopts a [list] to overwrite defaults
 #' @param H0 the initial human population density
-#' @param S0 the initial values of the parameter S
-#' @param E0 the initial values of the parameter E
-#' @param I0 the initial values of the parameter I
+#' @param Xopts a [list] to overwrite defaults
+#' @param E the initial values of the parameter E
+#' @param I the initial values of the parameter I
 #' @return a [list]
 #' @export
-make_Xinits_SEIS = function(nStrata, Xopts = list(), H0=NULL, S0=NULL, E0=0, I0=1){with(Xopts,{
-  if(is.null(S0)) S0 = H0 - I0
-  stopifnot(is.numeric(S0))
-  S = checkIt(S0, nStrata)
-  E = checkIt(E0, nStrata)
-  I = checkIt(I0, nStrata)
+create_Xinits_SEIS = function(nStrata, H0, Xopts = list(), E=0, I=1){with(Xopts,{
+  S = checkIt(H0-E-I, nStrata)
+  E = checkIt(E, nStrata)
+  I = checkIt(I, nStrata)
   return(list(S=S, E=E, I=I))
 })}
 
 
 
 
-#' @title Return the SEIS model variables as a list, returned from DT_Xt.SISd
+#' @title Return the SEIS model variables as a list, returned from Update_Xt.SISd
 #' @description This method dispatches on the type of `pars$Xpar`
 #' @inheritParams put_Xvars
 #' @return a [list]
@@ -194,30 +156,30 @@ list_Xvars.SEIS <- function(y, pars, i) {
 
 
 #' @title Setup Xinits.SEIS
-#' @description Implements [setup_Xinits] for the SEIS model
-#' @inheritParams setup_Xinits
+#' @description Implements [make_Xinits] for the SEIS model
+#' @inheritParams make_Xinits
 #' @return a [list] vector
 #' @export
-setup_Xinits.SEIS = function(pars, i, Xopts=list()){
-  pars$Xinits[[i]] = with(pars,make_Xinits_SEIS(pars$Hpar[[i]]$nStrata, Xopts, H0=Hpar[[i]]$H))
+make_Xinits.SEIS = function(pars, H, i, Xopts=list()){
+  pars$Xinits[[i]] = with(pars, create_Xinits_SEIS(pars$nStrata[i], H, Xopts))
   return(pars)
 }
 
 #' @title Add indices for human population to parameter list
-#' @description Implements [make_indices_X] for the SEIS model.
-#' @inheritParams make_indices_X
+#' @description Implements [make_X_indices] for the SEIS model.
+#' @inheritParams make_X_indices
 #' @return none
 #' @importFrom utils tail
 #' @export
-make_indices_X.SEIS <- function(pars, i) {with(pars,{
+make_X_indices.SEIS <- function(pars, i) {with(pars,{
 
-  S_ix <- seq(from = max_ix+1, length.out=Hpar[[i]]$nStrata)
+  S_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(S_ix, 1)
 
-  E_ix <- seq(from = max_ix+1, length.out=Hpar[[i]]$nStrata)
+  E_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(E_ix, 1)
 
-  I_ix <- seq(from = max_ix+1, length.out=Hpar[[i]]$nStrata)
+  I_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(I_ix, 1)
 
   pars$max_ix = max_ix
@@ -227,20 +189,20 @@ make_indices_X.SEIS <- function(pars, i) {with(pars,{
 
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Xpar`.
-#' @inheritParams get_inits_X
+#' @inheritParams get_Xinits
 #' @return a [numeric] vector
 #' @export
-get_inits_X.SEIS <- function(pars, i){
-  with(pars$Xinits[[i]], return(c(S,E,I)))
+get_Xinits.SEIS <- function(pars, i){
+  with(pars$Xinits[[i]], return(c(S=S,E=E,I=I)))
 }
 
 #' @title Update inits for the SEIS xde human model from a vector of states
-#' @inheritParams update_inits_X
+#' @inheritParams update_Xinits
 #' @return none
 #' @export
-update_inits_X.SEIS <- function(pars, y0, i) {
+update_Xinits.SEIS <- function(pars, y0, i) {
   with(list_Xvars(y0, pars, i),{
-    pars$Xinits[[i]] = make_Xinits_SEIS(pars$Hpar[[i]]$nStrata, list(), S0=S, E0=E, I0=I)
+    pars$Xinits[[i]] = create_Xinits_SEIS(pars$nStrata[i], H, list(), E=E, I=I)
     return(pars)
   })}
 
@@ -324,7 +286,7 @@ xds_plot_X.SEIS = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, stab
               ylab = "# Infected", xlab = "Time"))
 
 
-  add_lines_X_SEIS(vars$XH[[i]], pars$Hpar[[i]]$nStrata, clrs, llty)
+  add_lines_X_SEIS(vars$XH[[i]], pars$nStrata[i], clrs, llty)
 }
 
 #' Add lines for the density of infected individuals for the SEIS model

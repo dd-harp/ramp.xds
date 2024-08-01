@@ -11,19 +11,19 @@ Abiotic <- function(t, pars) {
 }
 
 #' @title Set up exogenous variables for abiotic forcing
-#' @description Implements [Abiotic] for the null model of exogenous forcing (do nothing)
+#' @description Implements [Abiotic] for the no_forcing model of exogenous forcing (do nothing)
 #' @inheritParams Abiotic
 #' @return [list]
 #' @export
-Abiotic.null <- function(t, pars) {pars}
+Abiotic.no_forcing <- function(t, pars) {pars}
 
-#' @title Set up the null model for exogenous forcing (do nothing)
+#' @title Set up the no_forcing model for exogenous forcing (do nothing)
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_abiotic_null <- function(pars) {
+setup_abiotic_no_forcing <- function(pars) {
   ABIOTIC <- list()
-  class(ABIOTIC) <- 'null'
+  class(ABIOTIC) <- 'no_forcing'
   pars$ABIOTIC <- ABIOTIC
   return(pars)
 }
@@ -40,7 +40,7 @@ Abiotic.forced <- function(t, pars) {
   return(pars)
 }
 
-#' @title Make parameters for the null model of abiotic forcing (do nothing)
+#' @title Make parameters for the no_forcing model of abiotic forcing (do nothing)
 #' @param pars a [list]
 #' @return [list]
 #' @export
@@ -48,8 +48,8 @@ setup_abiotic_forced <- function(pars) {
   ABIOTIC <- list()
   class(ABIOTIC) <- 'forced'
   pars$ABIOTIC <- ABIOTIC
-  pars = setup_weather_null(pars)
-  pars = setup_hydrology_null(pars)
+  pars = setup_weather_no_forcing(pars)
+  pars = setup_hydrology_no_forcing(pars)
   return(pars)
 }
 
@@ -65,7 +65,7 @@ check_abiotic <- function(pars) {
 #' @param pars a [list]
 #' @return [list]
 #' @export
-check_abiotic.null <- function(pars) {
+check_abiotic.no_forcing <- function(pars) {
   setup_abiotic_forced(pars)
 }
 

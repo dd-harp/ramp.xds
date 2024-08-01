@@ -4,19 +4,15 @@
 \alias{make_TaR}
 \title{Make TaR}
 \usage{
-make_TaR(t, pars, i, s)
+make_TaR(pars, t = 0)
 }
 \arguments{
+\item{pars}{an \code{xds} object}
+
 \item{t}{the time}
-
-\item{pars}{a \link{list}}
-
-\item{i}{the host species index}
-
-\item{s}{the vector species index}
 }
 \value{
-none
+the modified \code{xds} object
 }
 \description{
 Make a time at risk matrix (TaR) from a time spent matrix and a circadian function

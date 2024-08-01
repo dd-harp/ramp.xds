@@ -4,31 +4,23 @@
 \alias{compute_Q}
 \title{Compute the total availability of egg-laying habitats, \eqn{Q}}
 \usage{
-compute_Q(habitat_matrix, search_weights, Q_ovitraps, Q_bad_habitats)
+compute_Q(habitat_matrix, search_weights)
 }
 \arguments{
 \item{habitat_matrix}{the membership matrix}
 
 \item{search_weights}{the habitat search weights}
-
-\item{Q_ovitraps}{the availability of ovitraps}
-
-\item{Q_bad_habitats}{the availability of unsuitable habitats}
 }
 \value{
 a \link{vector} of describing habitat availability, \eqn{Q}, of length \code{nPatches}
 }
 \description{
-The sum of all available aquatic habitats and any other place
-where a mosquito might lay eggs, including ovitraps and unsuitable habitats.
+Compute the availability of aquatic habitats.
 }
 \details{
 The availability of the habitats that we have defined in the model, denoted \eqn{Q_h}, sums search weights, \eqn{\omega}, by patch
 using the habitat membership matrix, \eqn{\cal N}, and we can compute
 \deqn{Q_h = {\cal N} \cdot \omega.}
-If some ovitraps and bad_habitats are also available, with values \eqn{Q_o} and \eqn{Q_b} respectively, then
-\deqn{Q = Q_h + Q_o + Q_b.}
-The availability of habitats, ovitraps and bad_habitats are computed elsewhere and stored on \code{pars$vars}.
 }
 \seealso{
 This function is called by \link{make_Q}

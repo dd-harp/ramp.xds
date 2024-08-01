@@ -31,9 +31,9 @@ xde_steady_state_X = function(foi, H, Xpar){
 #' @param Xopts a [list]
 #' @return a [list]
 #' @export
-xde_setup_Xpar = function(Xname, pars, i, Xopts=list()){
+make_Xpar = function(Xname, pars, i, Xopts=list()){
   class(Xname) <- Xname
-  UseMethod("xde_setup_Xpar", Xname)
+  UseMethod("make_Xpar", Xname)
 }
 
 #' @title Update X states for a discrete time system
@@ -44,8 +44,8 @@ xde_setup_Xpar = function(Xname, pars, i, Xopts=list()){
 #' @param i the host species index
 #' @return a [numeric] vector
 #' @export
-DT_Xt <- function(t, y, pars, i) {
-  UseMethod("DT_Xt", pars$Xpar[[i]])
+Update_Xt <- function(t, y, pars, i) {
+  UseMethod("Update_Xt", pars$Xpar[[i]])
 }
 
 
@@ -59,20 +59,6 @@ DT_Xt <- function(t, y, pars, i) {
 dts_steady_state_X = function(ar, H, Xpar){
   UseMethod("dts_steady_state_X", Xpar)
 }
-
-#' @title A function to set up Xpar
-#' @description This method dispatches on `Xname`.
-#' @param Xname a [character] string
-#' @param pars a [list]
-#' @param i the host species index
-#' @param Xopts a [list]
-#' @return a [list]
-#' @export
-dts_setup_Xpar = function(Xname, pars, i, Xopts=list()){
-  class(Xname) <- Xname
-  UseMethod("dts_setup_Xpar", Xname)
-}
-
 
 #' @title Size of effective infectious human population
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`.
@@ -111,12 +97,13 @@ F_b <- function(y, pars, i) {
 #' @title A function to set up Xpar
 #' @description This method dispatches on `pars$Xpar[[i]]`.
 #' @param pars a [list]
+#' @param H initial host population density
 #' @param i the host species index
 #' @param Xopts a [list]
 #' @return a [list]
 #' @export
-setup_Xinits = function(pars, i, Xopts=list()){
-  UseMethod("setup_Xinits", pars$Xpar[[i]])
+make_Xinits = function(pars, H, i, Xopts=list()){
+  UseMethod("make_Xinits", pars$Xpar[[i]])
 }
 
 #' @title Add indices for human population to parameter list
@@ -125,8 +112,8 @@ setup_Xinits = function(pars, i, Xopts=list()){
 #' @param i the host species index
 #' @return a [list]
 #' @export
-make_indices_X <- function(pars, i) {
-  UseMethod("make_indices_X", pars$Xpar[[i]])
+make_X_indices <- function(pars, i) {
+  UseMethod("make_X_indices", pars$Xpar[[i]])
 }
 
 #' @title Return the variables as a list
@@ -169,8 +156,8 @@ parse_outputs_X <- function(outputs, pars, i) {
 #' @param i the host species index
 #' @return none
 #' @export
-get_inits_X <- function(pars, i) {
-  UseMethod("get_inits_X", pars$Xpar[[i]])
+get_Xinits <- function(pars, i) {
+  UseMethod("get_Xinits", pars$Xpar[[i]])
 }
 
 #' @title Set the initial values from a vector of states
@@ -180,8 +167,8 @@ get_inits_X <- function(pars, i) {
 #' @param i the host species index
 #' @return none
 #' @export
-update_inits_X <- function(pars, y0, i) {
-  UseMethod("update_inits_X", pars$Xpar[[i]])
+update_Xinits <- function(pars, y0, i) {
+  UseMethod("update_Xinits", pars$Xpar[[i]])
 }
 
 #' @title Compute the *true* prevalence of infection / parasite rate
@@ -243,5 +230,5 @@ xds_plot_X = function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=TR
 #' @return none
 #' @export
 HTC <- function(pars, i) {
-  UseMethod("get_inits_X", pars$Xpar[[i]])
+  UseMethod("HTC", pars$Xpar[[i]])
 }

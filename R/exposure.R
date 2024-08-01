@@ -8,7 +8,7 @@
 #' @return the modified `xds` object; FoI are stored as `pars$FoI`
 #' @export
 Exposure <- function(t, y, pars){
-  UseMethod("Exposure", pars$Xpar)
+  UseMethod("Exposure", pars$xds)
 }
 
 #' @title Compute the force of infection (FoI) given the local EIR and a travel model

@@ -12,11 +12,11 @@ Control <- function(t, y, pars) {
 }
 
 #' @title Modify parameters due to exogenous forcing by all kinds of control
-#' @description Implements [Control] for the null model (do nothing)
+#' @description Implements [Control] for the no_control model (do nothing)
 #' @inheritParams Control
 #' @return [list]
 #' @export
-Control.null <- function(t, y, pars) {pars}
+Control.no_control <- function(t, y, pars) {pars}
 
 #' @title Modify parameters due to exogenous forcing by all kinds of control
 #' @description Implements [Control] for the static model; after setting up, do nothing
@@ -25,13 +25,13 @@ Control.null <- function(t, y, pars) {pars}
 #' @export
 Control.static <- function(t, y, pars) {pars}
 
-#' @title Set up the null model for control forcing (do nothing)
+#' @title Set up the no_control model for control forcing (do nothing)
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_control_null <- function(pars) {
+setup_control_no_control <- function(pars) {
   CONTROL <- list()
-  class(CONTROL) <- 'null'
+  class(CONTROL) <- 'no_control'
   pars$CONTROL <- CONTROL
   return(pars)
 }
@@ -48,7 +48,7 @@ setup_control <- function(pars){
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_control.null <- function(pars) {
+setup_control.no_control <- function(pars) {
   setup_control_forced(pars)
 }
 
@@ -80,9 +80,9 @@ setup_control_forced <- function(pars) {
   CONTROL <- list()
   class(CONTROL) <- 'forced'
   pars$CONTROL <- CONTROL
-  pars = setup_mass_medical_null(pars)
-  pars = setup_clinic_null(pars)
-  pars = setup_vc_null(pars)
+  pars = setup_mass_medical_no_control(pars)
+  pars = setup_clinic_no_control(pars)
+  pars = setup_vc_no_control(pars)
   return(pars)
 }
 

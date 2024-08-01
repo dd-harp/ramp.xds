@@ -73,13 +73,13 @@ xds_plot_aEIR <- function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axe
 #'
 #' @export
 xds_lines_aEIR <- function(tm, EIR, nStrata, clrs="black", llty=1){
- aeir = 365*EIR
- if(nStrata==1) graphics::lines(tm, aeir, col=clrs)
- if(nStrata>1){
-   if (length(clrs)==1) clrs=rep(clrs, nStrata)
-   for(i in 1:nStrata)
-     graphics::lines(tm, aeir[,i], col=clrs[i])
- }
+  aeir = 365*EIR
+  if(nStrata==1) graphics::lines(tm, aeir, col=clrs)
+  if(nStrata>1){
+    if (length(clrs)==1) clrs=rep(clrs, nStrata)
+    for(i in 1:nStrata)
+      graphics::lines(tm, aeir[,i], col=clrs[i])
+  }
 }
 
 #' Plot the prevalence / parasite rate (PR) from a model of human infection and immunity
@@ -98,7 +98,7 @@ xds_plot_PR = function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=T
   tm = vars$terms$time
   if(add_axes==TRUE){
     plot(tm, 0*tm + 1, type = "n", ylim = c(0,1),
-              ylab = "Prevalence", xlab = "Time")
+         ylab = "Prevalence", xlab = "Time")
   }
 
   xds_lines_PR(tm, vars$terms$pr[[i]], pars$Hpar[[i]]$nStrata, clrs, llty)

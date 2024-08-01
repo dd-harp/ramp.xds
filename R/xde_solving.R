@@ -29,11 +29,30 @@ xde_stable_orbit = function(pars, Ymax=10){
 #' @return a [list]
 #' @export
 xde_steady = function(pars){
-  pars1 <- dde2ode_MYZ(pars)
-  pars1 <- make_indices(pars1)
-  y0 = get_inits(pars1)
-  rootSolve::steady(y=y0, func = xde_derivatives, parms = pars1)$y -> y_eq
-  pars$outputs$steady = parse_outputs_vec(y_eq, pars1)
+  UseMethod("xde_steady", pars$dlay)
+}
+
+#' @title Solve for the steady state of a system of equations using [rootSolve::steady]
+#' @description This method dispatches on the type of `pars$xde`
+#' @param pars a [list] that defines a model
+#' @return a [list]
+#' @export
+xde_steady.ode = function(pars){
+  y0 = as.vector(unlist(get_inits(pars)))
+  rootSolve::steady(y=y0, func = xde_derivatives, parms = pars)$y -> y_eq
+  pars$outputs$steady = parse_outputs_vec(y_eq, pars)
+  return(pars)
+}
+
+#' @title Solve for the steady state of a system of equations using [rootSolve::steady]
+#' @description This method dispatches on the type of `pars$xde`
+#' @param pars a [list] that defines a model
+#' @return a [list]
+#' @export
+xde_steady.dde = function(pars){
+  y0 = as.vector(unlist(get_inits(pars)))
+  rootSolve::runsteady(y=y0, func = xde_derivatives, parms = pars)$y -> y_eq
+  pars$outputs$steady = parse_outputs_vec(y_eq, pars)
   return(pars)
 }
 
@@ -44,7 +63,7 @@ xde_steady = function(pars){
 #' @export
 xde_solve.ode = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
-  y0 = get_inits(pars)
+  y0 = as.vector(unlist(get_inits(pars)))
   deSolve::ode(y = y0, times = tt, func = xde_derivatives, parms = pars, method = "lsoda") -> out
   pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)
@@ -57,7 +76,7 @@ xde_solve.ode = function(pars, Tmax=365, dt=1){
 #' @export
 xde_solve.dde = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
-  y0 = get_inits(pars)
+  y0 = as.vector(unlist(get_inits(pars)))
   deSolve::dede(y = y0, times = tt, func = xde_derivatives, parms = pars, method = "lsoda") -> out
   pars$outputs$orbits = parse_outputs(out, pars)
   return(pars)

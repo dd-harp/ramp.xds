@@ -67,26 +67,36 @@ set up parameters. Please note that this only runs the aquatic mosquito componen
 
 ```{r}
 nHabitats <- 3
+nPatches=nHabitats
+membership=1:nPatches
+params <- make_xds_object("xde", "aquatic", "ode", nPatches, membership)
+```
+
+
+```{r}
 alpha <- c(10, 50, 20)
 eta <- c(250, 500, 170)
 psi <- 1/10
 phi <- 1/12
 L <- alpha/psi
 theta <- (eta - psi*L - phi*L)/(L^2)
-``` 
+Lo = list(eta=eta, psi=psi, phi=phi, theta=theta, L=L)
+MYZo = list(MYZm <- eta) 
+```
 
 ```{r}
-params <- make_xds_object("xde", "aquatic")
+class(params$Xpar[[1]]) <- "trace"
+params$MYZpar[[1]]=list() 
 
-params$nHabitats = nHabitats
 params$eggs_laid = list() 
 params$eggs_laid[[1]] = eta 
 F_eta = function(t, pars){
   pars$eggs_laid[[1]]
 }
 
-params = make_parameters_L_basicL(pars = params, psi = psi, phi = phi, theta = theta)
-params = make_inits_L_basicL(params, L0=L)
+params = make_Lpar("basicL", params, 1, Lo)
+params = make_Linits(params, 1, Lo)
+params = make_MYZpar("trace", params, 1, MYZo)
 
 params = make_indices(params)
 ```
@@ -102,7 +112,7 @@ xDE_aquatic = function(t, y, pars, F_eta) {
 ```{r}
 y0 <- get_inits(params) 
 
-out <- deSolve::ode(y = y0, times = 0:50, xDE_aquatic, parms = params, method = 'lsoda', F_eta = F_eta) 
+out <- deSolve::ode(y = as.vector(unlist(y0)), times = 0:50, xDE_aquatic, parms = params, method = 'lsoda', F_eta = F_eta) 
 out1 <- out
 ``` 
 
@@ -121,7 +131,7 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
 
 ## Using Setup
 
-The function `xde_setup_aquatic` sets up a model that includes only aquatic dynamics, and it is solved using `xde_solve.aqua.`  The setup functions are simpler than `xde_setup` and come with constrained choices. The user can configure any aquatic model (`trace` wouldn't make much sense), and it uses `trace` to force egg laying.  
+The function `xds_setup_aquatic` sets up a model that includes only aquatic dynamics, and it is solved using `xde_solve.aqua.`  The setup functions are simpler than `xds_setup` and come with constrained choices. The user can configure any aquatic model (`trace` wouldn't make much sense), and it uses `trace` to force egg laying.  
 
 We configure the aquatic model: `Lo` is a list with the parameter values attached.  
 
@@ -131,8 +141,8 @@ Lo = list(
   phi = 1/12
 )
 alpha = c(10, 50, 20)
-Lo$L0 = with(Lo, alpha/psi) 
-Lo$theta = with(Lo, (eta - psi*L0 - phi*L0)/(L0^2))
+Lo$L = with(Lo, alpha/psi) 
+Lo$theta = with(Lo, (eta - psi*L - phi*L)/(L^2))
 ```
 
 We use the MYZ model `trace` to configure egg laying.
@@ -143,7 +153,7 @@ Mo = list(MYZm = c(250, 500, 170))
 
 
 ```{r}
-xde_setup_aquatic(nHabitats = 3, Lname = "basicL", Lopts = Lo, MYZopts = Mo) -> aqbasicL_xde
+xds_setup_aquatic(nHabitats=3, Lname = "basicL", Lopts = Lo, MYZopts = Mo) -> aqbasicL_xde
 xde_solve(aqbasicL_xde, Tmax=50, dt=1)$output$orbits$deout -> out2
 sum(abs(out1-out2)) == 0
 ``` 

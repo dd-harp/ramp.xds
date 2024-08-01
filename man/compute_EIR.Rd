@@ -2,20 +2,21 @@
 % Please edit documentation in R/transmission.R
 \name{compute_EIR}
 \alias{compute_EIR}
-\title{Compute EIR}
+\title{Entomological inoculation rate on human strata}
 \usage{
-compute_EIR(t, y, pars)
+compute_EIR(fqZ, beta, local_frac)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{fqZ}{the infective biting density}
 
-\item{y}{state vector}
+\item{beta}{the mixing matrix}
 
-\item{pars, }{a \link{list}}
+\item{local_frac}{is the fraction of bites occurring on residents}
 }
 \value{
-\link{list}
+\link{numeric} vector of length \code{nStrata}
 }
 \description{
-This function computes the EIR for each stratum of each host species
+Compute the daily EIR for a set of human population
+strata given the biting density of infective mosquitoes in each patch
 }

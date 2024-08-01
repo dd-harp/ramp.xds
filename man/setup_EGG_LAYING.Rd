@@ -4,10 +4,12 @@
 \alias{setup_EGG_LAYING}
 \title{Setup the interface for egg laying}
 \usage{
-setup_EGG_LAYING(pars)
+setup_EGG_LAYING(pars, membership)
 }
 \arguments{
 \item{pars}{an \code{xds} object}
+
+\item{membership}{is the habitat membership vector}
 }
 \value{
 the modified \code{xds} object
@@ -27,5 +29,5 @@ This function is called by \code{make_xds_object} to set up \code{EGGpar} and th
 the variables it might depend on.
 }
 \references{
-{This implements the egg laying model in Equations 14-15 from \insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
+{ This implements an enhanced version of the egg laying model in Equations 14-15 from \insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 }

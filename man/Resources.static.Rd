@@ -17,5 +17,5 @@
 none
 }
 \description{
-Implements \link{Resources} for the null model of resources
+Implements \link{Resources} for the static model of resources
 }

@@ -1,68 +1,112 @@
 
-#' @title Compute the blood feeding rate, f
-#' @description This method dispatches on the type of `MYZpar$f_par`. It should
+#' @title Set bloodfeeding and mortality rates to baseline
+#' @description This method dispatches on the type of `pars$MYZpar`. It should
 #' set the values of the bionomic parameters to baseline values.
 #' @param t current simulation time
-#' @param MYZpar a [list]
-#' @return a [numeric] vector of length `nPatches`
+#' @param y state vector
+#' @param pars a [list]
+#' @param s the species index
+#' @return a [list]
 #' @export
-F_f <- function(t, MYZpar) {
-  UseMethod("F_f", MYZpar$f_par)
+MBionomics <- function(t, y, pars, s) {
+  UseMethod("MBionomics", pars$MYZpar[[s]]$baseline)
 }
 
-#' @title Compute the human blood fraction
-#' @description This method dispatches on the type of `MYZpar$q_par`. It should
-#' set the values of the bionomic parameters to baseline values.
+#' @title Set mosquito bionomics to baseline
+#' @description Implements [MBionomics] for models with no forcing on the baseline
+#' @inheritParams MBionomics
+#' @return the model as a [list]
+#' @export
+MBionomics.setup <- function(t, y, pars, s) {
+  pars$MYZpar[[s]]$now <- pars$MYZpar[[s]]$baseline
+  pars$MYZpar[[s]]$now <- pars$MYZpar[[s]]$baseline
+  return(pars)
+}
+
+#' @title Set mosquito bionomics to baseline
+#' @description Implements [MBionomics] for models with no forcing on the baseline
+#' @inheritParams MBionomics
+#' @return the model as a [list]
+#' @export
+MBionomics.static <- function(t, y, pars, s) {
+  pars$MYZpar[[s]]$now <- pars$MYZpar[[s]]$baseline
+  return(pars)
+}
+
+#' @title Set mosquito bionomics to baseline
+#' @description Implements [MBionomics] for models with no forcing on the baseline
+#' @inheritParams MBionomics
+#' @return the model as a [list]
+#' @export
+MBionomics.dynamic <- function(t, y, pars, s) {
+  for(s in 1:pars$nVectors){
+     pars$MYZpar[[s]]$baseline <- dynamic_MYZpar(t, pars$vars, pars$MYZpar[[s]])
+     pars <- make_MYZprobs(pars, s)
+     pars <- make_Omega(pars, s)
+     pars$MYZpar[[s]]$now <- pars$MYZpar[[s]]$baseline
+  }
+  return(pars)
+}
+
+#' @title Call a function to set baseline bionomic parameters
+#' @description This method dispatches on the type of `baseline`.
 #' @param t current simulation time
-#' @param MYZpar a [list]
-#' @return a [numeric] vector of length `nPatches`
+#' @param vars current simulation time
+#' @param MYZpar the mosquito model
+#' @return baseline bionomics as a named [list]
 #' @export
-F_q <- function(t, MYZpar) {
-  UseMethod("F_q", MYZpar$q_par)
+dynamic_MYZpar <- function(t, vars, MYZpar) {
+  UseMethod("dynamic_MYZpar", MYZpar$baseline)
 }
 
-#' @title Compute mosguito survival
-#' @description This method dispatches on the type of `MYZpar$g_par`. It should
-#' set the values of g to (possibly changing) baseline values.
-#' @param t current simulation time
-#' @param MYZpar a [list]
-#' @return a [numeric] vector of length `nPatches`
+#' @title Update adult bionomic parameters
+#' @description This method dispatches on the type of `baseline`.
+#' @inheritParams dynamic_MYZpar
+#' @return baseline bionomics as a named [list]
 #' @export
-F_g <- function(t, MYZpar) {
-  UseMethod("F_g", MYZpar$g_par)
+dynamic_MYZpar.RMfunc <- function(t, vars, MYZpar){with(MYZpar,{
+  baseline$f      <- func$F_f(t, vars, f_par)
+  baseline$q      <- func$F_q(t, vars, q_par)
+  baseline$g      <- func$F_g(t, vars, g_par)
+  baseline$sigma  <- func$F_sigma(t, vars, sigma_par)
+  baseline$mu     <- func$F_mu(t, vars, mu_par)
+  baseline$nu     <- func$F_nu(t, vars, nu_par)
+  baseline$eip    <- func$F_eip(t, vars, eip_par)
+  baseline$calK   <- func$F_calK(t, vars, calK_par)
+  return(baseline)
+})}
+
+#' @title Adult bionomics: Compute probabilities from rates
+#' @description Where homologous `xde` and `dts` models exist,
+#' the rates can be translated into probabilities with runtime
+#' support.
+#' @param pars an `xds` object
+#' @param s the species index
+#' @return a [list]
+#' @seealso [dynamic_MYZpar]
+#' @export
+make_MYZprobs <- function(pars, s) {
+  UseMethod("MBionomics", pars$xds)
 }
 
-#' @title Compute mosguito survival
-#' @description This method dispatches on the type of `MYZpar$p_par`. It should
-#' set the values of g to (possibly changing) baseline values.
-#' @param t current simulation time
-#' @param MYZpar a [list]
-#' @return a [numeric] vector of length `nPatches`
+#' @title Adult bionomics: Compute probabilities from rates
+#' @description The `xde` case returns the unmodified `xds` object.
+#' @inheritParams make_MYZprobs
+#' @return unmodified `xds` object
 #' @export
-F_p <- function(t, MYZpar) {
-  UseMethod("F_p", MYZpar$p_par)
+make_MYZprobs.xde <- function(pars, s) {
+  return(pars)
+}
+
+#' @title Compute probabilities from rates for `dts` models with runtime support
+#' @description The `dts` case calls `MYZ_rates2probs` to compute
+#' @inheritParams make_MYZprobs
+#' @return a [list]
+#' @export
+make_MYZprobs.dts <- function(pars, s) {
+  pars$MYZpar[[s]]$baseline <- MYZ_rates2probs(pars$MYZpar[[s]], pars$runtime)
+  return(pars)
 }
 
 
-#' @title Compute mosquito emigration rates
-#' @description This method dispatches on the type of `MYZpar$sigma_par`. It should
-#' set the values of sigma to (possibly changing) baseline value(s).
-#' @param t current simulation time
-#' @param MYZpar a [list]
-#' @return a [numeric] vector of length `nPatches`
-#' @export
-F_sigma <- function(t, MYZpar) {
-  UseMethod("F_sigma", MYZpar$sigma_par)
-}
-
-#' @title Compute the egg laying rate
-#' @description This method dispatches on the type of `MYZpar$nu_par`. It should
-#' set the values of nu to (possibly changing) baseline value(s).
-#' @param t current simulation time
-#' @param MYZpar a [list]
-#' @return a [numeric] vector of length `nPatches`
-#' @export
-F_nu <- function(t, MYZpar) {
-  UseMethod("F_nu", MYZpar$nu_par)
-}
 

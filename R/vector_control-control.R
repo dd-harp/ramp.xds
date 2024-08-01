@@ -44,6 +44,7 @@ VectorControlEffectSizes.control <- function(t, y, pars) {
   pars = LSM_EffectSizes(t, pars)
   for(s in 1:pars$nVectors){
     pars = BedNetEffectSizes(t, pars, s)
+    pars = update_Omega(pars, s)
   }
   return(pars)
 }
@@ -54,7 +55,7 @@ VectorControlEffectSizes.control <- function(t, y, pars) {
 #' @export
 setup_vc_control <- function(pars) {
   class(pars$VECTOR_CONTROL) <- 'control'
-  pars <- setup_itn_null(pars)
+  pars <- setup_no_nets(pars)
   pars <- setup_area_spray_null(pars)
   pars <- setup_irs_null(pars)
   pars <- setup_sugar_baits_null(pars)

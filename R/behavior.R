@@ -12,21 +12,21 @@ Behavior <- function(t, y, pars) {
 }
 
 #' @title Methods for dynamic human and mosquito behaviors
-#' @description Implements [Behavior] for the null model (no changes)
+#' @description Implements [Behavior] for the no_behavior model (no changes)
 #' @inheritParams Behavior
 #' @return [list]
 #' @export
-Behavior.null <- function(t, y, pars) {
+Behavior.no_behavior <- function(t, y, pars) {
  return(pars)
 }
 
-#' @title Make parameters for the null model for resource availability (do nothing)
+#' @title Make parameters for the no_behavior model for resource availability (do nothing)
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_behavior_null<- function(pars) {
+setup_behavior_no_behavior<- function(pars) {
   BEHAVIOR <- list()
-  class(BEHAVIOR) <- 'null'
+  class(BEHAVIOR) <- 'no_behavior'
   pars$BEHAVIOR <- BEHAVIOR
   return(pars)
 }
@@ -43,7 +43,7 @@ setup_behavior <- function(pars) {
 #' @param pars a [list]
 #' @return [list]
 #' @export
-setup_behavior.null <- function(pars) {
+setup_behavior.no_behavior <- function(pars) {
   setup_behavior_forced(pars)
 }
 
@@ -75,9 +75,9 @@ setup_behavior_forced<- function(pars) {
   BEHAVIOR <- list()
   class(BEHAVIOR) <- 'forced'
   pars$BEHAVIOR <- BEHAVIOR
-  pars = setup_care_seeking_null(pars)
-#  pars = setup_protect_null(t, y, pars)
-#  pars = setup_mobility_null(t, y, pars)
-#  pars = setup_mozy_search_null(t, y, pars)
+  pars = setup_care_seeking_no_behavior(pars)
+#  pars = setup_protect_no_behavior(t, y, pars)
+#  pars = setup_mobility_no_behavior(t, y, pars)
+#  pars = setup_mozy_search_no_behavior(t, y, pars)
   return(pars)
 }

@@ -4,16 +4,10 @@
 \alias{setup_visitors_static}
 \title{Make parameters for the static model visitors (no visitors)}
 \usage{
-setup_visitors_static(pars, local_frac = 1, Visitors = 0, x_visitors = 0)
+setup_visitors_static(pars)
 }
 \arguments{
 \item{pars}{a \link{list}}
-
-\item{local_frac}{is the fraction of humans / hosts that are not visitors}
-
-\item{Visitors}{is the availability of visitors}
-
-\item{x_visitors}{is the net infectiousness of the visitors}
 }
 \value{
 \link{list}
