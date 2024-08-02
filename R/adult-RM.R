@@ -8,10 +8,10 @@
 #' @importFrom deSolve lagderiv
 #' @export
 dMYZdt.RM <- function(t, y, pars, s){
-
   Lambda = pars$Lambda[[s]]
   kappa = pars$kappa[[s]]
   deip_dt = d_F_eip_dt(t, pars$vars, pars$MYZpar[[s]]$eip_par)
+  MYZpar = update_MYZpar_RM(pars$MYZpar[[s]])
 
   with(pars$ix$MYZ[[s]],{
     M <- y[M_ix]
@@ -20,7 +20,7 @@ dMYZdt.RM <- function(t, y, pars, s){
     Z <- y[Z_ix]
     U <- matrix(y[U_ix], pars$nPatches, pars$nPatches)
 
-    with(pars$MYZpar[[s]]$now,{
+    with(MYZpar,{
 
       if (t <= eip) {
         M_eip <- pars$MYZinits[[s]]$M
@@ -41,11 +41,47 @@ dMYZdt.RM <- function(t, y, pars, s){
       dYdt <- f*q*kappa*(M - Y) - (Omega %*% Y)
       dZdt <- U %*% (fqkappa_eip * (M_eip - Y_eip)) - (Omega %*% Z)
       dUdt <- ((1-deip_dt)*Omega_eip - Omega) %*% U
+
       return(c(dMdt, dPdt, dYdt, dZdt, as.vector(dUdt), f*q*kappa, g, sigma))
     })
   })
 }
 
+
+
+
+#' @title Derivatives for adult mosquitoes
+#' @description Implements [Update_MYZt] for the RM_dts model.
+#' @inheritParams Update_MYZt
+#' @return a [numeric] vector
+#' @export
+Update_MYZt.RM <- function(t, y, pars, s) {
+  Lambda = pars$Lambda[[s]]*pars$MYZday
+  kappa = pars$kappa[[s]]
+  MYZpar <- MYZ_rates2probs(pars$MYZpar[[s]], pars$runtime)
+  pars <- update_Omega(pars, s)
+
+  with(list_MYZvars(y, pars, s),{
+    with(MYZpar,{
+
+      eip_day_ix = (t %% max_eip) + 1
+      eip_yday_ix = ((t-1) %% max_eip) + 1
+      Gix = c(t-1:max_eip) %% max_eip + 1
+      Gt <- G[Gix]
+
+      Mt <- Lambda + Omega %*% M
+      Pt <- f*(M-P) + Omega %*% P
+      Ut <- Lambda + Omega %*% (exp(-f*q*kappa)*U)
+      Yt <- Omega %*% (Y %*% diag(1-Gt))
+      Zt <- Omega %*% (Y%*%Gt)  + (Omega %*% Z)
+
+      Yt[,eip_yday_ix]  <- Yt[,eip_yday_ix] + Yt[,eip_day_ix]
+      Yt[,eip_day_ix] <- Omega %*% ((1-exp(-f*q*kappa))*U)
+
+      return(list(M=unname(Mt), P=unname(Pt), U=unname(Ut), Y=unname(as.vector(Yt)), Z=unname(Zt)))
+    })
+  })
+}
 
 #' @title Make inits for RM adult mosquito model
 #' @param nPatches the number of patches in the model
@@ -79,6 +115,7 @@ create_MYZinits_RM = function(nPatches, Upsilon, MYZopts = list(),
 Update_MYZt.RM <- function(t, y, pars, s) {
   Lambda = pars$Lambda[[s]]*pars$MYZday
   kappa = pars$kappa[[s]]
+  MYZ_rates2probs_RM(pars$MYZpar[[s]], pars$runtime)
 
   with(list_MYZvars(y, pars, s),{
     with(pars$MYZpar[[s]],{
@@ -102,32 +139,13 @@ Update_MYZt.RM <- function(t, y, pars, s) {
   })
 }
 
-
-#' @title Compute probabilities from rates
-#' @description This method dispatches on `MYZname`.
-#' @param MYZpar the `MYZ` model object
-#' @param runtime the model `runtime` parameters
-#' @return a [list] with baseline values
-#' @export
-MYZ_rates2probs.RM = function(MYZpar, runtime){
-  with(runtime,{
-    with(MYZpar$baseline,{
-      MYZpar$baseline$p <- exp(-g*MYZday*Dday)
-      MYZpar$baseline$ff <- exp(-f*MYZday*Dday)
-      MYZpar$baseline$ssigma <- exp(-sigma*MYZday*Dday)
-      MYZpar$baseline$nnu <- exp(-nu*MYZday*Dday)
-      return(MYZpar)
-})})}
-
-
-
 #' @title The net blood feeding rate of the infective mosquito population in a patch
 #' @description Implements [F_fqZ] for the RM model.
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqZ.RM <- function(t, y, pars, s) {
-  with(pars$MYZpar[[s]]$now, f*q)*y[pars$ix$MYZ[[s]]$Z_ix]
+  with(pars$MYZpar[[s]], f*q)*y[pars$ix$MYZ[[s]]$Z_ix]
 }
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
@@ -136,7 +154,7 @@ F_fqZ.RM <- function(t, y, pars, s) {
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqM.RM <- function(t, y, pars, s) {
-  with(pars$MYZpar[[s]]$now, f*q)*y[pars$ix$MYZ[[s]]$M_ix]
+  with(pars$MYZpar[[s]], f*q)*y[pars$ix$MYZ[[s]]$M_ix]
 }
 
 #' @title Number of eggs laid by adult mosquitoes
@@ -146,7 +164,7 @@ F_fqM.RM <- function(t, y, pars, s) {
 #' @export
 F_eggs.RM <- function(t, y, pars, s) {
   M <- y[pars$ix$MYZ[[s]]$M_ix]
-  with(pars$MYZpar[[s]]$now,{
+  with(pars$MYZpar[[s]],{
     return(M*nu*eggsPerBatch)
   })
 }
@@ -163,7 +181,6 @@ make_MYZpar.RM = function(MYZname, pars, s, MYZopts=list()){
   MYZpar <- create_MYZpar_RM_static(pars$nPatches, MYZopts)
   class(MYZpar) <- 'RM'
   pars$MYZpar[[s]] = MYZpar
-
   return(pars)
 }
 
@@ -172,7 +189,7 @@ make_MYZpar.RM = function(MYZname, pars, s, MYZopts=list()){
 #' @inheritParams make_MYZinits
 #' @return a [list]
 #' @export
-make_MYZinits.RM = function(pars, s, MYZopts=list()){with(pars$MYZpar[[s]]$baseline, {
+make_MYZinits.RM = function(pars, s, MYZopts=list()){with(pars$MYZpar[[s]], {
   pars$MYZinits[[s]] = create_MYZinits_RM(nPatches, Upsilon, MYZopts)
   return(pars)
 })}
@@ -221,19 +238,18 @@ parse_outputs_MYZ.RM <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
   return(list(time=time, M=M, P=P, Y=Y, Z=Z, y=y, z=z, parous))
 })}
 
-
-
 #' @title Compute the steady states as a function of the daily EIR
 #' @description This method dispatches on the type of `MYZpar`.
 #' @inheritParams xde_steady_state_MYZ
 #' @return none
+#' @importFrom MASS ginv
 #' @export
 xde_steady_state_MYZ.RM = function(Lambda, kappa, MYZpar){with(MYZpar,{
   kappa = as.vector(kappa); Lambda = as.vector(Lambda)
-  Omega_inv <- solve(Omega)
+  Omega_inv <- ginv(Omega)
   M_eq <- as.vector(Omega_inv %*% Lambda)
-  P_eq <- as.vector(solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
-  Y_eq <- as.vector(solve(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
+  P_eq <- as.vector(ginv(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
+  Y_eq <- as.vector(ginv(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
   Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
   return(list(M=M_eq, P=P_eq, Y=Y_eq, Z=Z_eq))
 })}

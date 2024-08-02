@@ -1,7 +1,7 @@
 # generalized spatial differential equations
 
-#' @title Update States for Discrete-Time Systems
-#' @description Updates the state variables
+#' @title dts_update_ States for Discrete-Time Systems
+#' @description dts_update_s the state variables
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars a [list]
@@ -11,53 +11,106 @@ dts_update <- function(t, y, pars) {
   UseMethod("dts_update", pars$frame)
 }
 
+
+#' @title Difference equations isolating the humans, forced with Ztrace
+#' @description Compute and update the state variables for
+#' a model with only humans
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars a [list]
+#' @param s the vector species index
+#' @return a [vector] containing the vector of all state derivatives
+#' @export
+dts_update_Lt = function(t, y, pars, s){
+  tt = with(pars$runtime,runt(t,Dday,Lday))
+  if(tt) return(Update_Lt(t, y, pars, s))
+  else return(list_Lvars(y, pars,s))
+}
+
+#' @title Difference equations isolating the humans, forced with Ztrace
+#' @description Compute and update the state variables for
+#' a model with only humans
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars a [list]
+#' @param s the vector species index
+#' @return a [vector] containing the vector of all state derivatives
+#' @export
+dts_update_MYZt = function(t, y, pars, s){
+  tt = with(pars$runtime,runt(t,Dday,MYZday))
+  if(tt) return(Update_MYZt(t, y, pars, s))
+  else return(list_MYZvars(y, pars, s))
+}
+
+#' @title Difference equations isolating the humans, forced with Ztrace
+#' @description Compute and update the state variables for
+#' a model with only humans
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars a [list]
+#' @param i the host species index
+#' @return a [vector] containing the vector of all state derivatives
+#' @export
+dts_update_Xt = function(t, y, pars, i){
+  tt = with(pars$runtime,runt(t,Dday,Xday))
+  if(tt) return(Update_Xt(t, y, pars, i))
+  else return(list_Xvars(y, pars, i))
+}
+
 #' @title Generalized spatial differential equation model
-#' @description Update the state variables
+#' @description dts_update_ the state variables
 #' @inheritParams dts_update
 #' @return a [list] containing the vector of all state derivatives
 #' @export
 dts_update.full <- function(t, y, pars) {
-
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- Behavior(t, y, pars)
-  pars <- Visiting(t, pars)
-  pars <- VectorControlEffects(t, y, pars)
-  pars <- Resources(t, y, pars)
+  # including malaria control coverage
+  pars <- Forcing(t, y, pars)
 
-  # set and modify the baseline bionomic parameters
-  pars <- Bionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
+  # blood feeding: available blood hosts, TaR, relative biting rates
+  pars <- BloodFeeding(t, y, pars)
 
-  # egg laying: compute eta
+  # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
 
-  # emergence: compute Lambda
+  # update adult bionomic parameters to baseline
+  # or with integrated effect sizes
+  pars <- MBionomics(t, y, pars, 1)
+  pars <- LBionomics(t, y, pars, 1)
+
+  if(pars$nVectors > 1) for(s in 2:pars$nVectors){
+    pars <- MBionomics(t, y, pars, s)
+    pars <- LBionomics(t, y, pars, s)
+  }
+
+  # modify mosquito bionomic parameters
+  # by computing independent effect sizes
+  pars <- VectorControlEffectSizes(t, y, pars)
+
+  # emergence: Lambda
   pars <- Emergence(t, y, pars)
 
-  # compute beta, EIR, and kappa
+  # transmission: beta, EIR, and kappa
   pars <- Transmission(t, y, pars)
 
   # compute the FoI
   pars <- Exposure(t, y, pars)
 
-  # Update Variables
-  Lt <- Update_Lt(t, y, pars, 1)
+  # dts_update_ Variables
+  Lt <- dts_update_Lt(t, y, pars, 1)
   if(pars$nVectors > 1)
     for(s in 2:pars$nVectors)
-      Lt <- c(Lt, Update_Lt(t, y, pars, s))
+      Lt <- c(Lt, dts_update_Lt(t, y, pars, s))
 
-  MYZt <- Update_MYZt(t, y, pars, 1)
+  MYZt <- dts_update_MYZt(t, y, pars, 1)
   if(pars$nVectors > 1)
     for(s in 2:pars$nVectors)
-      MYZt <- c(MYZt, Update_MYZt(t, y, pars, s))
+      MYZt <- c(MYZt, dts_update_MYZt(t, y, pars, s))
 
-  Xt <- Update_Xt(t, y, pars, 1)
+  Xt <- dts_update_Xt(t, y, pars, 1)
   if(pars$nHosts > 1)
     for(i in 2:pars$nHosts)
-      Xt <- c(Xt, Update_Xt(t, y, pars, i))
+      Xt <- c(Xt, dts_update_Xt(t, y, pars, i))
 
   return(unlist(c(Lt, MYZt, Xt)))
 }
@@ -72,14 +125,17 @@ dts_update.full <- function(t, y, pars) {
 dts_update.human <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t,  pars)
-  pars <- Control(t, y, pars)
-  pars <- Behavior(t, y, pars)
-  pars <- Resources(t, y, pars)
+  pars <- Forcing(t, y, pars)
+
+  # blood feeding: available blood hosts, TaR, relative biting rates
+  pars <- BloodFeeding(t, y, pars)
 
   # set and modify the baseline mosquito bionomic parameters
   pars <- MBionomics(t, y, pars, 1)
+  if(pars$nVectors > 1)
+    for(s in 2:pars$nVectors)
+      pars <- MBionomics(t, y, pars, s)
+
   pars <- VectorControlEffectSizes(t, y, pars)
 
   # compute beta, EIR, and kappa
@@ -89,10 +145,10 @@ dts_update.human <- function(t, y, pars) {
   pars <- Exposure(t, y, pars)
 
   # state derivatives
-  Xt <- Update_Xt(t, y, pars, 1)
+  Xt <- dts_update_Xt(t, y, pars, 1)
   if(pars$nHosts > 1)
     for(i in 2:pars$nHosts)
-      Xt <- c(Xt, Update_Xt(t, y, pars, i))
+      Xt <- c(Xt, dts_update_Xt(t, y, pars, i))
 
   return(c(Xt))
 }
@@ -106,32 +162,37 @@ dts_update.human <- function(t, y, pars) {
 dts_update.mosy <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- Behavior(t, y, pars)
-  #pars <- Resources(t, y, pars)
+  pars <- Forcing(t, y, pars)
 
-  # set baseline mosquito bionomic parameters
-  pars <- Bionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
+  # blood feeding: available blood hosts, TaR, relative biting rates
+  pars <- BloodFeeding(t, y, pars)
 
-  # egg laying: compute eta
+  # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
+
+  # update adult bionomic parameters to baseline
+  # or with integrated effect sizes
+  pars <- MBionomics(t, y, pars, 1)
+  pars <- LBionomics(t, y, pars, 1)
+
+  if(pars$nVectors > 1) for(s in 2:pars$nVectors){
+    pars <- MBionomics(t, y, pars, s)
+    pars <- LBionomics(t, y, pars, s)
+  }
+  pars <- VectorControlEffectSizes(t, y, pars)
 
   # emergence: compute Lambda
   pars <- Emergence(t, y, pars)
-
   # compute derivatives
-  Lt <- Update_Lt(t, y, pars, 1)
+  Lt <- dts_update_Lt(t, y, pars, 1)
   if(pars$nVectors > 1)
     for(s in 2:pars$nVectors)
-      Lt <- c(Lt, Update_Lt(t, y, pars, s))
+      Lt <- c(Lt, dts_update_Lt(t, y, pars, s))
 
-  Mt <- Update_MYZt(t, y, pars, 1)
+  Mt <- dts_update_MYZt(t, y, pars, 1)
   if(pars$nVectors > 1)
     for(s in 2:pars$nVectors)
-      Mt <- c(Mt, Update_MYZt(t, y, pars, s))
+      Mt <- c(Mt, dts_update_MYZt(t, y, pars, s))
 
   return(c(Lt, Mt))
 }
@@ -151,10 +212,10 @@ dts_update.cohort <- function(t, y, pars) {
   pars <- Exposure(t, y, pars)
 
   # state derivatives
-  Xt <- Update_Xt(t, y, pars, 1)
+  Xt <- dts_update_Xt(t, y, pars, 1)
   if(pars$nHosts > 1)
     for(i in 2:pars$nHosts)
-      Xt <- c(Xt, Update_Xt(t, y, pars, i))
+      Xt <- c(Xt, dts_update_Xt(t, y, pars, i))
 
   return(c(Xt))
 }
@@ -167,11 +228,9 @@ dts_update.cohort <- function(t, y, pars) {
 #' @export
 dts_update.aquatic <- function(t, y, pars) {
 
+
   # set the values of exogenous forcing variables
-  pars <- Abiotic(t, pars)
-  pars <- Shock(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- HabitatDynamics(t, pars)
+  pars <- Forcing(t, y, pars)
 
   # modify baseline mosquito bionomic parameters
   pars <- LBionomics(t, y, pars, 1)
@@ -182,10 +241,10 @@ dts_update.aquatic <- function(t, y, pars) {
   pars$eggs_laid[[1]] = F_eggs(t, y, pars, 1)
 
   # compute derivatives
-  Lt <- Update_Lt(t, y, pars, 1)
+  Lt <- dts_update_Lt(t, y, pars, 1)
   if(pars$nVectors > 1)
     for(s in 2:pars$nVectors)
-      Lt <- c(Lt, Update_Lt(t, y, pars, s))
+      Lt <- c(Lt, dts_update_Lt(t, y, pars, s))
 
   return(c(Lt))
 }

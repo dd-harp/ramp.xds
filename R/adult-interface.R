@@ -1,6 +1,7 @@
 # generic methods for adult component
 
 #' @title Derivatives for adult mosquitoes
+
 #' @description This method dispatches on the type of `pars$MYZpar`.
 #' @param t current simulation time
 #' @param y state vector

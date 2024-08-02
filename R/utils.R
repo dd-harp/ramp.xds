@@ -30,7 +30,7 @@ make_indices <- function(pars) {
 #' @export
 get_inits <- function(pars){
 
-  Li = c()
+  Li = list()
   s = length(pars$Lpar)
   if(s>0)
     for(ix in 1:s)

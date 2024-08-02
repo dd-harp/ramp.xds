@@ -6,11 +6,11 @@
 #' @return a [list]
 #' @export
 change_calK = function(calK, pars, s=1){
-  stopifnot(dim(calK) == dim(pars$MYZpar[[s]]$baseline$calK))
-  pars$MYZpar[[s]]$baseline$calK <- calK
+  stopifnot(dim(calK) == dim(pars$MYZpar[[s]]$calK))
+  pars$MYZpar[[s]]$calK <- calK
   pars <- make_Omega(pars, s)
-  y0 = as.vector(unlist(get_inits(pars)))
-  pars <- update_MYZinits(pars, y0, 1)
+  y <- as.vector(unlist(get_inits(pars)))
+  pars <- update_MYZinits(pars, y, 1)
   return(pars)
 }
 

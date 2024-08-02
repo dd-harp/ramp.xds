@@ -9,11 +9,11 @@
 
 ## What is RAMP?
 
-RAMP, or **R**obust **A**nalytics for **M**alaria **P**olicy, is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty in analysis using conventional and simulation-based analytics.  
+RAMP, or **R**obust **A**nalytics for **M**alaria **P**olicy, is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty using conventional and simulation-based analytics.  
 
 ## What is **`ramp.xds`**?
 
-**`ramp.xds`** is an R software package that supports RAMP. It's function is to set up, analyze, and solve dynamical systems describing the epidemiology, transmission dynamics, and control of malaria and other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework for modular model building, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) (Wu SL, *et al.* 2023. PLoS Computational Biology)^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. 
+**`ramp.xds`** is an R software package that supports simulation-based analytics for RAMP. It's function is to set up, analyze, and solve dynamical systems describing malaria epidemiology, transmission dynamics, and control. The structure can also support analytics for other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework for modular model building, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) (Wu SL, *et al.* 2023. PLoS Computational Biology)^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. 
 
 **`ramp.xds`** is part of a suite of R packages to support RAMP simulation-based analytics. Supporting packages include: 
 

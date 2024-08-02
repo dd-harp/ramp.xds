@@ -135,6 +135,7 @@ compute_Qtot = function(Q, Q_ovitraps, Q_bad_habitats){
 #' @param pars an `xds` object
 #' @return the modified `xds` object
 #' @seealso [compute_Q]
+#' @export
 make_Q = function(pars){with(pars,{
   for(s in 1:nVectors){
     # Q describes available habitats
@@ -187,6 +188,7 @@ compute_calU = function(search_weights, habitat_matrix, Q){
 #' for all the vector species
 #' @param pars an `xds` object
 #' @return the modified `xds` object
+#' @export
 make_calU = function(pars){
   for(s in 1:pars$nVectors)
     pars$calU[[s]] = compute_calU(pars$EGGpar$search_weights[[s]], pars$habitat_matrix, pars$vars$Q[[s]])
@@ -199,6 +201,7 @@ make_calU = function(pars){
 #' @param calU the egg distribution matrix
 #' @return a [vector], \eqn{\eta} where \eqn{\left|\eta\right|=}`nHabitats`
 #' @seealso The egg distribution matrix [compute_calU]
+#' @export
 compute_eggs_laid = function(eggs_laid, calU){
   return(calU %*% eggs_laid)
 }
@@ -210,6 +213,7 @@ compute_eggs_laid = function(eggs_laid, calU){
 #' @param pars an `xds` object
 #' @return the modified `xds` object
 #' @seealso [compute_eggs_laid]
+#' @export
 make_eggs_laid = function(t, y, pars){
   for(s in 1:pars$nVectors)
     pars$eggs_laid[[s]] = compute_eggs_laid(F_eggs(t, y, pars, s), pars$calU[[s]])
@@ -275,12 +279,12 @@ EggLaying.dynamic = function(t, y, pars){
 #' @title View habitat membership
 #' @description Shows the habitat membership information from \eqn{\cal N}
 #' @param pars an `xds` object
-#' @return a `nHabitats` \eqn{\times 2} [matrix]: col 1 is the habitat index, and col 2 is the patch index
+#' @return a named [list]
 #' @seealso [create_habitat_matrix]
+#' @export
 view_habitat_matrix = function(pars){
   which(t(pars$habitat_matrix)==1, arr.ind=TRUE) -> membership
-  membership <- t(membership)
-  rownames(membership) <- c("habitat index", "patch index")
-  return(membership)
+  hab <- list(habitat_index = membership[,1], patch_membership = membership[,2])
+  return(hab)
 }
 

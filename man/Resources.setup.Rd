@@ -4,12 +4,10 @@
 \alias{Resources.setup}
 \title{Modify resources and resource availability}
 \usage{
-\method{Resources}{setup}(t, y, pars)
+\method{Resources}{setup}(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
-
-\item{y}{vector of state variables}
 
 \item{pars}{a \link{list}}
 }

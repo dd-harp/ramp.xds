@@ -4,13 +4,15 @@
 \alias{view_residence_matrix}
 \title{View residence membership}
 \usage{
-view_residence_matrix(pars)
+view_residence_matrix(pars, i = 1)
 }
 \arguments{
 \item{pars}{an \code{xds} object}
+
+\item{i}{the host species index}
 }
 \value{
-a \code{nStrata} \eqn{\times 2} \link{matrix}: col 1 is the residence index, and col 2 is the patch index
+a named \link{list}
 }
 \description{
 Shows the residence membership information from \eqn{\cal J}

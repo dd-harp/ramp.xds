@@ -221,16 +221,14 @@ reference:
     Basic Plotting
   contents:
   - MBionomics
-  - MBionomics.setup
   - MBionomics.static
-  - MBionomics.dynamic
-  - dynamic_MYZpar
-  - dynamic_MYZpar.RMfunc
+  - MBionomics.RM_static
+  - MBionomics.RM_func
   - create_MYZpar_RM_static
   - create_MYZpar_RMfunc
-  - make_MYZprobs
-  - make_MYZprobs.xde
-  - make_MYZprobs.dts
+  - update_MYZpar_RM
+  - update_MYZpar_RM.modified
+  - update_MYZpar_RM.unmodified
 - subtitle: Visualization for Adult Mosquito
   desc: |
     Basic Plotting
@@ -388,6 +386,7 @@ reference:
   - Update_Lt
   - dts_steady_state_L
   - LBionomics
+  - LBionomics.static
   - F_emerge
   - make_Linits
   - list_Lvars
@@ -565,6 +564,7 @@ reference:
   - xds_plot_X.SIS
   - add_lines_X_SIS
   - xde_steady_state_X.SIS
+  - dts_steady_state_X.SIS
 - subtitle: SEIS
   desc: |
     Specialized methods for the SEIS (Susceptible-Infected-Susceptible) model of human dynamics.
@@ -592,6 +592,7 @@ reference:
   - xds_plot_X.SEIS
   - add_lines_X_SEIS
   - xde_steady_state_X.SEIS
+  - dts_steady_state_X.SEIS
 - subtitle: SEISd
   desc: |
     Specialized methods for the SEISd (Susceptible-Infected-Susceptible) model of human dynamics.
@@ -628,6 +629,7 @@ reference:
   - make_Xpar.SIP
   - create_Xpar_SIP
   - xde_steady_state_X.SIP
+  - dts_steady_state_X.SIP
   - make_Xinits.SIP
   - create_Xinits_SIP
   - make_X_indices.SIP
@@ -929,6 +931,9 @@ reference:
   - dts_update.mosy
   - dts_update.human
   - dts_update.cohort
+  - dts_update_Lt
+  - dts_update_MYZt
+  - dts_update_Xt
   - Update_Xt
   - Update_MYZt
   - Update_Lt
@@ -1002,7 +1007,9 @@ reference:
   - make_runtime.dts
   - make_runtime.xde
   - MYZ_rates2probs
-  - MYZ_rates2probs.RM
+  - MYZ_rates2probs_RM
+  - MYZ_rates2probs_RM.unmodified
+  - MYZ_rates2probs_RM.modified
 - subtitle: Utilities
   desc: |
     Basic visualization of the transmission terms

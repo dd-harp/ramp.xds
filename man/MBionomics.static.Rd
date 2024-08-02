@@ -11,13 +11,13 @@
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \code{xds} object}
 
 \item{s}{the species index}
 }
 \value{
-the model as a \link{list}
+the unmodified \code{xds} object
 }
 \description{
-Implements \link{MBionomics} for models with no forcing on the baseline
+Implements \link{MBionomics} for models with no forcing
 }

@@ -40,6 +40,19 @@ Update_Xt.SEIS <- function(t, y, pars, i) {
   })
 }
 
+#' @title Compute the steady states for the  dts SEIS model as a function of the daily EIR
+#' @description Compute the steady state of the  dts SIS model as a function of the daily eir.
+#' @inheritParams dts_steady_state_X
+#' @return the steady states as a named vector
+#' @export
+dts_steady_state_X.SEIS = function(ar, H, Xpar){with(Xpar,{
+  Iteq = (ar*H*(1-nu))/((1-nr)+ar-nu+ (nr*nu*(1-ar)))
+  Eteq = (ar*H*(1-nr))/((1-nr)+ar-nu+ (nr*nu*(1-ar)))
+  Steq = H-Iteq-Eteq
+
+  return(c(S=Steq, E=Eteq, I=Iteq))
+})}
+
 #' @title Setup Xpar.SEIS
 #' @description Implements [make_Xpar] for the SEIS model
 #' @inheritParams make_Xpar

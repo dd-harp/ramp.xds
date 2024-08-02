@@ -77,48 +77,4 @@ runt = function(t, Dday, xday){
   t1 %% t2 < 1e-2
 }
 
-#' @title Difference equations isolating the humans, forced with Ztrace
-#' @description Compute and update the state variables for
-#' a model with only humans
-#' @param t current simulation time
-#' @param y state vector
-#' @param pars a [list]
-#' @param s the vector species index
-#' @return a [vector] containing the vector of all state derivatives
-#' @export
-Update_Lt = function(t, y, pars, s){
-  tt = with(pars$runtime,runt(t,Dday,Lday))
-  if(tt) return(DT_Lt(t, y, pars, s))
-  else return(list_Lvars(y, pars,s))
-}
-
-#' @title Difference equations isolating the humans, forced with Ztrace
-#' @description Compute and update the state variables for
-#' a model with only humans
-#' @param t current simulation time
-#' @param y state vector
-#' @param pars a [list]
-#' @param s the vector species index
-#' @return a [vector] containing the vector of all state derivatives
-#' @export
-Update_MYZt = function(t, y, pars, s){
-  tt = with(pars$runtime,runt(t,Dday,MYZday))
-  if(tt) return(DT_MYZt(t, y, pars, s))
-  else return(list_MYZvars(y, pars, s))
-}
-
-#' @title Difference equations isolating the humans, forced with Ztrace
-#' @description Compute and update the state variables for
-#' a model with only humans
-#' @param t current simulation time
-#' @param y state vector
-#' @param pars a [list]
-#' @param i the host species index
-#' @return a [vector] containing the vector of all state derivatives
-#' @export
-Update_Xt = function(t, y, pars, i){
-  tt = with(pars$runtime,runt(t,Dday,Xday))
-  if(tt) return(DT_Xt(t, y, pars, i))
-  else return(list_Xvars(y, pars, i))
-}
 

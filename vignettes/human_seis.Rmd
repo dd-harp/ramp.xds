@@ -27,7 +27,7 @@ library(ramp.xds)
 
 **`ramp.xds`** includes the standard SEIS model and the delay SEIS model.   The dependent state variables for both models are:
 
-+ $S$ the density of infected hosts
++ $S$ the density of susceptible hosts
 
 + $E$ the density of exposed hosts who are infected but not yet infectious
 
@@ -35,8 +35,11 @@ library(ramp.xds)
 
 In the basic versions of the model -- without demographic changes -- population density is constant, so $$H = S+E+I.$$
 
+**`ramp.xds`** includes the standard SEIS model and the delay SEIS (SEISd) model.   
 
 ### Compartment Model as an ODE
+
+The SEIS model is a human model modified from the SIS model to include the Exposed group of individuals ($E$). It is incorporated within the **'ramp.xds'** with the fulfillment of the generic interface of the human component.
 
 The model has three parameters: 
 
@@ -57,10 +60,11 @@ $$
 $$
 
 ```{r}
+HPop = 1000
 MYZo = list(MYZm = 2000/365, f=1, q=1)
-Xo = list(b= 0.5)
-seis = xds_setup(Xname = "SEIS", MYZname = "trace", MYZopts = MYZo, Xopts=Xo)
-seis = xde_stable_orbit(seis)
+Xo = list(b= 0.5, H=HPop)
+seis = xds_setup(Xname = "SEIS", MYZname = "trace", MYZopts = MYZo, Xopts=Xo, HPop=HPop)
+seis = xde_solve(seis, 3650, 15)
 ```
 
 ```{r}
@@ -69,11 +73,11 @@ seis_inf
 ```
 
 This model has the steady state... 
-
+  
 $$
-\bar E = h S/ \nu \\ 
-\bar I = \nu E / r \\ 
-\bar S =  
+\bar E = H \frac {hr}{h(r+\nu) + r \nu} \\
+\bar I = H \frac {h\nu}{h(r+\nu) + r \nu} \\
+\bar S = H - \bar E - \bar I 
 $$
 ```{r}
 xde_steady_state_X(1/365, 1000, seis$Xpar[[1]]) -> seis_ss
@@ -93,19 +97,19 @@ $$
 \frac{dE}{dt} = h S - h_\nu S_\nu \\
 \frac{dI}{dt} = h_\nu S_\nu - r I\\
 $$
-and $H = S+E+I,$  so 
+and $H = S+E+I.$  At steady state, $h=h_{v}$, so 
 
 $$
-\bar E = h S \nu \\ 
-\bar I = h S / r \\ 
-\bar S =  
+\bar S = \frac{H}{1+h \nu + h/r} \\
+\bar E = h \bar S \nu \\ 
+\bar I = \frac hr \bar S \\ 
 $$
 
 ```{r}
-SEISd = xds_setup(Xname = "SEISd", MYZname = "trace", MYZopts = MYZo, Xopts=Xo)
+SEISd = xds_setup(Xname = "SEISd", MYZname = "trace", MYZopts = MYZo, Xopts=Xo, HPop=HPop)
 SEISd$dlay = "dde" 
 class(SEISd$dlay) = "dde" 
-SEISd = xde_solve(SEISd, Tmax = 3650)
+SEISd = xde_solve(SEISd, Tmax = 3650, dt=15)
 ```
 
 ```{r}
@@ -119,6 +123,6 @@ seisd_ss
 ```
 
 ```{r}
-sum((seisd_inf-seisd_ss)^2) < 1e-9
+sum((seisd_inf-seisd_ss)^2) < 1e-5
 ```
 

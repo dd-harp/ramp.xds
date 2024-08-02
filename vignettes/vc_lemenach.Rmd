@@ -169,11 +169,15 @@ xds_setup(MYZname="si", Xname="SIS", Lname="basicL",
 ```
 
 ```{r}
+class(itn_mod$MYZpar[[1]]$effect_sizes) <- "modified"
+```
+
+```{r}
 itn_mod <- VectorControlEffectSizes(0, 0, itn_mod)
 ```
 
 ```{r}
-itn_mod <- xde_solve(itn_mod, 5*365)
+itn_mod <- xde_solve(itn_mod, 1830, dt=15)
 ```
 
 
@@ -200,23 +204,21 @@ ITN_cov <- function(t, pars){ifelse(t < 0, 0, (sin(2*pi*(t-365/4) / 365) + 1) / 
 ```
 
 ```{r}
-tt = 0:(5*365)
+tt = seq(0, 1830, by = 15) 
 plot(tt, ITN_cov(tt, itn_mod), type ="l")
 ```
 
 
 We use the null model of human demographic dynamics, which assumes $H$ is constant for all time.
-```{r}
-
-```
 
 ```{r}
 class(itn_mod$forcing) <- "dynamic"
 itn_mod = setup_itn_lemenach(itn_mod, F_phi=ITN_cov)
 ```
 
+
 ```{r solve}
-xde_solve(itn_mod, 5*365) -> itn_mod
+xde_solve(itn_mod, 1830, dt=15) -> itn_mod
 itn_mod$outputs$orbits$vars[[1]] -> out
 ```
 

@@ -4,12 +4,10 @@
 \alias{Resources}
 \title{Set the values of exogenous variables describing available mosquito resources}
 \usage{
-Resources(t, y, pars)
+Resources(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
-
-\item{y}{vector of state variables}
 
 \item{pars}{a \link{list}}
 }

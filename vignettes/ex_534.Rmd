@@ -23,7 +23,7 @@ library(deSolve)
 ```
 
 ```{r, echo=FALSE}
-devtools::load_all()
+#devtools::load_all()
 ```
 
 # Introduction
@@ -190,7 +190,7 @@ searchWtsH = c(1,1,1,1)
 This size of each population stratum differs: 
 
 ```{r human population density}
-HPop <- matrix(c(10,90, 100, 900), 4, 1)
+HPop <- c(10,90, 100, 900)
 ```
 
 The time spent matrix, $\Theta$ is a $N_p \times N_h$ matrix. Each column describes how a human stratum allocates time among patches.
@@ -486,11 +486,13 @@ params$vars$W[[1]]
 
 ```{r change_cal_K}
 params <- change_calK(calK, params)
-params$MYZpar[[1]]$baseline$calK
+params$MYZpar[[1]]$calK
 ```
+
 ```{r}
 get_Omega(params, 1) 
 ```
+
 ```{r}
 get_Upsilon(params, 1) 
 ```
@@ -506,6 +508,7 @@ The software was designed to handled more complex situations than the one we've 
 Now we can get the initial conditions of the model.
 
 ```{r}
+params <- make_indices(params)
 y0 = get_inits(params)
 y0
 ```
@@ -516,7 +519,7 @@ Now we can pass the vector of initial conditions, `y`, our parameter list `param
 
 
 ```{r}
-out <- deSolve::dede(y = as.vector(unlist(y0)), times = 0:730,
+out <- deSolve::dede(y = as.vector(unlist(y0)), times = seq(0, 735, by =15),
                     func = xde_derivatives, parms = params)
 out1 <- out
 ```
@@ -592,7 +595,7 @@ xds_setup(dlay='dde',
 We solve and take the differences to check: 
 
 ```{r}
-mod534 <- xde_solve(mod534, Tmax=730, dt=1)
+mod534 <- xde_solve(mod534, Tmax=735, dt=15)
 mod534$outputs$orbits$deout -> out2
 ```
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dts_equations.R
 \name{dts_update}
 \alias{dts_update}
-\title{Update States for Discrete-Time Systems}
+\title{dts_update_ States for Discrete-Time Systems}
 \usage{
 dts_update(t, y, pars)
 }
@@ -17,5 +17,5 @@ dts_update(t, y, pars)
 a \link{list} containing the vector of all state derivatives
 }
 \description{
-Updates the state variables
+dts_update_s the state variables
 }

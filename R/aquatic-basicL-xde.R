@@ -25,7 +25,7 @@ create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, phi=1/8, theta=1
 #' @return a [numeric] vector
 #' @export
 dLdt.basicL <- function(t, y, pars, s) {
-  eta <- pars$eggs_laid[[s]]
+  eta <- as.vector(pars$eggs_laid[[s]])
   with(pars$ix$L[[s]],{
     L <- y[L_ix]
     with(pars$Lpar[[s]], {
@@ -174,7 +174,7 @@ parse_outputs_L.basicL <- function(outputs, pars, s) {
 #' @export
 make_indices_L.basicL <- function(pars, s) {with(pars,{
 
-  L_ix <- seq(from = max_ix+1, length.out = nPatches)
+  L_ix <- seq(from = max_ix+1, length.out = nHabitats)
   max_ix <- tail(L_ix, 1)
 
   pars$max_ix = max_ix

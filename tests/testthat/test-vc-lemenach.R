@@ -338,6 +338,7 @@ xds_setup(MYZname="si", Xname="trace", Lname="trace",
           Xopts=Xn, residence=1:3, searchB=searchWtsH,
           searchQ=rep(1,3), Lopts=Ln) -> itn_mod_trace
 
+class(itn_mod_trace$MYZpar[[1]]$effect_sizes) <- "modified"
 class(itn_mod_trace$forcing) <- "dynamic"
 itn_mod_trace <- setup_forcing(itn_mod_trace)
 itn_mod_trace <- setup_control_forced(itn_mod_trace)

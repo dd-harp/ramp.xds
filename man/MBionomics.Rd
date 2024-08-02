@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-bionomics.R
 \name{MBionomics}
 \alias{MBionomics}
-\title{Set bloodfeeding and mortality rates to baseline}
+\title{Adult Mosquito Bionomics}
 \usage{
 MBionomics(t, y, pars, s)
 }
@@ -11,14 +11,13 @@ MBionomics(t, y, pars, s)
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \code{xds} object}
 
 \item{s}{the species index}
 }
 \value{
-a \link{list}
+the modified \code{xds} object
 }
 \description{
-This method dispatches on the type of \code{pars$MYZpar}. It should
-set the values of the bionomic parameters to baseline values.
+Handle adult mosquito bionomics as a baseline modified by control
 }

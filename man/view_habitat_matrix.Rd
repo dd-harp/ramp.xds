@@ -10,7 +10,7 @@ view_habitat_matrix(pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-a \code{nHabitats} \eqn{\times 2} \link{matrix}: col 1 is the habitat index, and col 2 is the patch index
+a named \link{list}
 }
 \description{
 Shows the habitat membership information from \eqn{\cal N}

@@ -314,13 +314,14 @@ BloodFeeding.dynamic = function(t, y, pars){
 #' @title View residence membership
 #' @description Shows the residence membership information from \eqn{\cal J}
 #' @param pars an `xds` object
-#' @return a `nStrata` \eqn{\times 2} [matrix]: col 1 is the residence index, and col 2 is the patch index
+#' @param i the host species index
+#' @return a named [list]
 #' @seealso [create_residence_matrix]
-view_residence_matrix = function(pars){
-  which(t(pars$residence_matrix)==1, arr.ind=TRUE) -> membership
-  membership <- t(membership)
-  rownames(membership) <- c("residence index", "patch index")
-  return(membership)
+#' @export
+view_residence_matrix = function(pars, i=1){
+  which(t(pars$residence_matrix[[i]])==1, arr.ind=TRUE) -> residence
+  res <- list(stratum = residence[,1], residence_patch = residence[,2])
+  return(res)
 }
 
 

@@ -13,11 +13,11 @@ make_Omega <- function(pars, s){
 #' @inheritParams make_Omega
 #' @return the derivatives a [vector]
 #' @export
-make_Omega.xde <- function(pars, s){with(pars$MYZpar[[s]]$baseline,{
+make_Omega.xde <- function(pars, s){with(pars$MYZpar[[s]],{
   Omega = compute_Omega_xde(g, sigma, mu, calK)
-  pars$MYZpar[[s]]$baseline$Omega = Omega
-  pars$MYZpar[[s]]$baseline$Omega_eip = Omega
-  pars$MYZpar[[s]]$baseline$Upsilon = expm::expm(-Omega*eip)
+  pars$MYZpar[[s]]$Omega = Omega
+  pars$MYZpar[[s]]$Omega_eip = Omega
+  pars$MYZpar[[s]]$Upsilon = expm::expm(-Omega*eip)
   return(pars)
 })}
 
@@ -46,11 +46,11 @@ update_Omega <- function(pars, s){
 #' @inheritParams update_Omega
 #' @return the derivatives a [vector]
 #' @export
-update_Omega.xde <- function(pars, s){with(pars$MYZpar[[s]]$now,{
+update_Omega.xde <- function(pars, s){with(pars$MYZpar[[s]],{
   Omega = compute_Omega_xde(g, sigma, mu, calK)
-  pars$MYZpar[[s]]$now$Omega = Omega
-  pars$MYZpar[[s]]$now$Omega_eip = Omega
-  pars$MYZpar[[s]]$now$Upsilon = expm::expm(-Omega*eip)
+  pars$MYZpar[[s]]$Omega = Omega
+  pars$MYZpar[[s]]$Omega_eip = Omega
+  pars$MYZpar[[s]]$Upsilon = expm::expm(-Omega*eip)
   return(pars)
 })}
 
@@ -71,7 +71,7 @@ update_Omega.dts <- function(pars, s){with(pars$MYZpar[[s]],{
 #' @return the derivatives a [vector]
 #' @export
 get_Omega <- function(pars, s){
-  pars$MYZpar[[s]]$baseline$Omega
+  pars$MYZpar[[s]]$Omega
 }
 
 #' @title Make the mosquito demography matrix
@@ -81,7 +81,7 @@ get_Omega <- function(pars, s){
 #' @return the derivatives a [vector]
 #' @export
 get_Upsilon <- function(pars, s){
-  pars$MYZpar[[s]]$baseline$Upsilon
+  pars$MYZpar[[s]]$Upsilon
 }
 
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
