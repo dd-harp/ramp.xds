@@ -4,12 +4,10 @@
 \alias{Resources.forced}
 \title{Methods for resources}
 \usage{
-\method{Resources}{forced}(t, y, pars)
+\method{Resources}{forced}(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
-
-\item{y}{vector of state variables}
 
 \item{pars}{a \link{list}}
 }

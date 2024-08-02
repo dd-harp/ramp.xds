@@ -203,6 +203,9 @@ MYZo$Z=Z_eq
 
 We use `ramp.xds::make_inits_MYZ_RM_xde` to store the initial values. These equations have been implemented to compute $\Upsilon$ dynamically, so we attach `Upsilon` as initial values:
 
+
+
+
 ```{r}
 params <- make_xds_object("xde", "mosy", "ode", nPatches, 1:3, 1:3, HPop)
 params <- make_MYZpar("RM", params, 1,  MYZo)  
@@ -272,6 +275,8 @@ To set up a model with the parameters above, we make three list with the named p
 
 Each one of the dynamical components has a configurable *trace* algorithm that computes no derivatives, but passes its output as a parameter (see `human-trace.R`. To configure `Xpar,` we attach the values of `kappa` to a list: 
 
+
+
 ```{r}
 Xo = list(kappa =  c(0.1, 0.075, 0.025))
 ```
@@ -294,6 +299,7 @@ To set up the model, we call `xds_setup` with
 
 Otherwise, setup takes care of all the internals: 
 
+
 ```{r using setup}
 xds_setup(MYZname = "RM", Xname = "trace", Lname = "trace",  
     nPatches=3, calK=calK, membership = c(1:3), 
@@ -312,10 +318,5 @@ sum(abs(out1-out2))==0
 rbind(tail(out2,1)[1 + 1:12],
 c(M_eq, P_eq, Y_eq, Z_eq))
 
-```
-
-
-```{r}
-F_X(y0, MYZeg, 1)
 ```
 

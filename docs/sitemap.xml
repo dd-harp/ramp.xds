@@ -604,6 +604,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.static.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.trace.html</loc>
   </url>
   <url>
@@ -617,6 +620,12 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/LSM_Effects.null.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.RM_func.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.RM_static.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.dynamic.html</loc>
@@ -635,6 +644,15 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/MYZ_rates2probs.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/MYZ_rates2probs_RM.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/MYZ_rates2probs_RM.modified.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/MYZ_rates2probs_RM.unmodified.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/MassMedical.forced.html</loc>
@@ -1165,6 +1183,15 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/dts_steady_state_MYZ.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_steady_state_X.SEIS.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_steady_state_X.SIP.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_steady_state_X.SIS.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dts_steady_state_X.html</loc>
   </url>
   <url>
@@ -1184,6 +1211,15 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.mosy.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_update_Lt.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_update_MYZt.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dts_update_Xt.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dynamic_MYZpar.RMfunc.html</loc>
@@ -1889,6 +1925,15 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_MYZinits.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/update_MYZpar_RM.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/update_MYZpar_RM.modified.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/update_MYZpar_RM.unmodified.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_Omega.dts.html</loc>

@@ -86,6 +86,18 @@ Update_Xt.SIP <- function(t, y, pars, i){
   })
 }
 
+#' @title Compute the steady states for the  dts SIP model as a function of the daily EIR
+#' @description Compute the steady state of the  dts SIP model as a function of the daily eir.
+#' @inheritParams dts_steady_state_X
+#' @return the steady states as a named vector
+#' @export
+dts_steady_state_X.SIP = function(ar, H, Xpar){with(Xpar,{
+  Iteq =(ar*H*eta*(1-rho))/((eta+xi)*(ar*(1-r)+(r+xi)+ar*(eta*(r-1)+r+xi)))
+  Pteq = (H*(xi*(ar+r*(1-ar)+xi)+ar*(1+xi)*rho))/((eta+xi)*(ar*(1-r)+(r+xi)+ar*(eta*(r-1)+r+xi)))
+  Steq = H-Iteq-Pteq
+  return(c(S=Steq, I=Iteq,P =Pteq))
+})}
+
 #' @title Size of effective infectious human population
 #' @description Implements [F_X] for the SIP model.
 #' @inheritParams F_X

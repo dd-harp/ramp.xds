@@ -4,14 +4,14 @@
 \alias{Update_Xt.SIP}
 \title{Derivatives for human population}
 \usage{
-Update_Xt.SIP(t, y, pars, i)
+\method{Update_Xt}{SIP}(t, y, pars, i)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{a list}
 
 \item{i}{the host species index}
 }

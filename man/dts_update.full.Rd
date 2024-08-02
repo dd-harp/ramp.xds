@@ -17,5 +17,5 @@
 a \link{list} containing the vector of all state derivatives
 }
 \description{
-Update the state variables
+dts_update_ the state variables
 }

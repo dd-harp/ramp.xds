@@ -21,11 +21,11 @@ BedNetEffects.lemenach <- function(t, pars, s){
 #' @export
 BedNetEffectSizes.lemenach <- function(t, pars, s){
   with(pars$ITNefsz,
-    with(pars$MYZpar[[s]]$baseline,{
+    with(pars$MYZpar[[s]],{
       es <- sapply(1:pars$nPatches, compute_bednet_effect_sizes_lemenach, phi=phi, f=f,q=q, g=g, tau0_frac=tau0_frac, r=r,ss=ss)
-      pars$MYZpar[[s]]$now$f <- pars$MYZpar[[s]]$now$f*es[1,]
-      pars$MYZpar[[s]]$now$q <- pars$MYZpar[[s]]$now$q*es[2,]
-      pars$MYZpar[[s]]$now$g <- pars$MYZpar[[s]]$now$g*es[3,]
+      pars$MYZpar[[s]]$es_f <- pars$MYZpar[[s]]$es_f*es[1,]
+      pars$MYZpar[[s]]$es_q <- pars$MYZpar[[s]]$es_q*es[2,]
+      pars$MYZpar[[s]]$es_g <- pars$MYZpar[[s]]$es_g*es[3,]
       return(pars)
 }))}
 

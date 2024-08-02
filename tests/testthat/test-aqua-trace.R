@@ -30,13 +30,20 @@ test_that("forced emergence works with equilibrium", {
   Omega <- compute_Omega_xde(g, sigma, mu, calK)
   Upsilon <- expm(-Omega*eip)
 
-  MYZo <- list(nPatches=nPatches, f=f, q=q, g=g, sigma=sigma, mu=mu, eip=eip, nu=nu, eggsPerBatch=eggsPerBatch, calK=calK, Omega=Omega, Upsilon=Upsilon)
-  xde_steady_state_MYZ.RM(Lambda, kappa, MYZo) -> ss
+  MYZo <- list(nPatches=nPatches, f=f, q=q, g=g, sigma=sigma,
+               mu=mu, eip=eip, nu=nu, eggsPerBatch=eggsPerBatch,
+               calK=calK, Omega=Omega, Upsilon=Upsilon)
 
-  MYZo$M <- M_eq <- ss$M
-  MYZo$P <- P_eq <- ss$P
-  MYZo$Y <- Y_eq <- ss$Y
-  MYZo$Z <- Z_eq <- ss$Z
+  Omega_inv <- ginv(Omega)
+  M_eq <- as.vector(Omega_inv %*% Lambda)
+  P_eq <- as.vector(ginv(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
+  Y_eq <- as.vector(ginv(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
+  Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
+
+  MYZo$M <- M_eq
+  MYZo$P <- P_eq
+  MYZo$Y <- Y_eq
+  MYZo$Z <- Z_eq
 
   Xo = list(kappa = kappa)
 

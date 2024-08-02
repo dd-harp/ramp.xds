@@ -8,12 +8,13 @@
 dMYZdt.si <- function(t, y, pars, s) {
   Lambda = pars$Lambda[[s]]
   kappa = pars$kappa[[s]]
+  MYZpar = update_MYZpar_RM(pars$MYZpar[[s]])
 
   with(pars$ix$MYZ[[s]],{
     M <- y[M_ix]
     Z <- y[Z_ix]
 
-    with(pars$MYZpar[[s]]$now,{
+    with(MYZpar,{
       dM <- Lambda - (Omega %*% M)
       dZ <- f*q*kappa*(M-Z) - (Omega %*% Z)
 
@@ -73,10 +74,7 @@ make_MYZpar.si = function(MYZname, pars, s, MYZopts=list()){
 #' @export
 F_fqZ.si <- function(t, y, pars, s) {
   Z = y[pars$ix$MYZ[[s]]$Z_ix]
-  Upsilon = pars$MYZpar[[s]]$now$Upsilon
-  f= pars$MYZpar[[s]]$now$f
-  q= pars$MYZpar[[s]]$now$q
-  with(pars$MYZpar[[s]]$now, f*q*(Upsilon %*% Z))
+  with(pars$MYZpar[[s]], f*q*(Upsilon %*% Z))
 }
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
@@ -86,7 +84,7 @@ F_fqZ.si <- function(t, y, pars, s) {
 #' @export
 F_fqM.si <- function(t, y, pars, s) {
   M = y[pars$ix$MYZ[[s]]$M_ix]
-  with(pars$MYZpar[[s]]$now, f*q*M)
+  with(pars$MYZpar[[s]], f*q*M)
 }
 
 #' @title Number of eggs laid by adult mosquitoes
@@ -96,7 +94,7 @@ F_fqM.si <- function(t, y, pars, s) {
 #' @export
 F_eggs.si <- function(t, y, pars, s) {
   M <- y[pars$ix$MYZ[[s]]$M_ix]
-  with(pars$MYZpar[[s]]$now,{
+  with(pars$MYZpar[[s]],{
     return(M*nu*eggsPerBatch)
   })
 }
@@ -190,7 +188,7 @@ parse_outputs_MYZ.si <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
   time = outputs[,1]
   M = outputs[,M_ix+1]
   Y = outputs[,Z_ix+1]
-  Z = t(with(pars$MYZpar[[1]]$now, Upsilon %*% t(Y)))
+  Z = t(with(pars$MYZpar[[1]], Upsilon %*% t(Y)))
   y = Y/M
   z = Z/M
   return(list(time=time, M=M, Z=Z, Y=Y, y=y, z=z))

@@ -3,11 +3,10 @@
 #' @title Set the values of exogenous variables describing available mosquito resources
 #' @description This method dispatches on the type of `pars$RESOURCES`.
 #' @param t current simulation time
-#' @param y vector of state variables
 #' @param pars a [list]
 #' @return none
 #' @export
-Resources <- function(t, y, pars) {
+Resources <- function(t, pars) {
   UseMethod("Resources", pars$RESOURCES)
 }
 
@@ -16,7 +15,7 @@ Resources <- function(t, y, pars) {
 #' @inheritParams Resources
 #' @return none
 #' @export
-Resources.static <- function(t, y, pars) {
+Resources.static <- function(t, pars) {
   return(pars)
 }
 
@@ -25,7 +24,7 @@ Resources.static <- function(t, y, pars) {
 #' @inheritParams Resources
 #' @return none
 #' @export
-Resources.setup <- function(t, y, pars) {
+Resources.setup <- function(t, pars) {
 
   pars = OtherBloodHosts(t, pars)
   pars = HabitatDynamics(t, pars)
@@ -42,7 +41,7 @@ Resources.setup <- function(t, y, pars) {
 #' @inheritParams Resources
 #' @return [list]
 #' @export
-Resources.forced <- function(t, y, pars) {
+Resources.forced <- function(t, pars) {
 
   pars = OtherBloodHosts(t, pars)
   pars = SugarDynamics(t, pars)

@@ -142,7 +142,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">view_residence_matrix</span><span class="op">(</span><span class="va">pars</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">view_residence_matrix</span><span class="op">(</span><span class="va">pars</span>, i <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -150,16 +150,18 @@
     <dl><dt>pars</dt>
 <dd><p>an <code>xds</code> object</p></dd>
 
+
+<dt>i</dt>
+<dd><p>the host species index</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
-<p>a <code>nStrata</code></p>
-<p></p>
-<p>\(\times 2\)</p>
-<p></p>
-<p><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a>: col 1 is the residence index, and col 2 is the patch index</p>
+<p>a named <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
+
+
     </div>
     <div id="see-also">
     <h2>See also</h2>

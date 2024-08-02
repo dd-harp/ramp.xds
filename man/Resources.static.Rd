@@ -4,12 +4,10 @@
 \alias{Resources.static}
 \title{Modify resources and resource availability}
 \usage{
-\method{Resources}{static}(t, y, pars)
+\method{Resources}{static}(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
-
-\item{y}{vector of state variables}
 
 \item{pars}{a \link{list}}
 }

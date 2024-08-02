@@ -157,7 +157,7 @@ y0
 
 
 ```{r}
-out <- deSolve::ode(y = as.vector(unlist(y0)), times = 0:50, func = xde_derivatives, parms = params, method = 'lsoda')
+out <- deSolve::ode(y = as.vector(unlist(y0)), times = seq(0,50, by=10), func = xde_derivatives, parms = params, method = 'lsoda')
 out1 <- out
 ```
 
@@ -207,7 +207,7 @@ xds_setup_mosy(MYZname = "basicM", Lname = "trace",
 ```
 
 ```{r}
-xde_solve(mosy1,Tmax=50,dt=1)$outputs$orbits$deout -> out2
+xde_solve(mosy1,Tmax=50,dt=10)$outputs$orbits$deout -> out2
 ```
 
 ```{r}

@@ -4,14 +4,14 @@
 \alias{Update_Xt.SEISd}
 \title{DTS updating for the SEISd model for human / vertebrate host infections}
 \usage{
-Update_Xt.SEISd(t, y, pars, i)
+\method{Update_Xt}{SEISd}(t, y, pars, i)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{a list}
 
 \item{i}{the host species index}
 }

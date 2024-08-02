@@ -606,27 +606,19 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="MBionomics.html">MBionomics()</a></code> </p>
         </td>
-        <td><p>Set bloodfeeding and mortality rates to baseline</p></td>
-      </tr><tr><td>
-          <p><code><a href="MBionomics.setup.html">MBionomics(<i>&lt;setup&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Set mosquito bionomics to baseline</p></td>
+        <td><p>Adult Mosquito Bionomics</p></td>
       </tr><tr><td>
           <p><code><a href="MBionomics.static.html">MBionomics(<i>&lt;static&gt;</i>)</a></code> </p>
         </td>
         <td><p>Set mosquito bionomics to baseline</p></td>
       </tr><tr><td>
-          <p><code><a href="MBionomics.dynamic.html">MBionomics(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+          <p><code><a href="MBionomics.RM_static.html">MBionomics(<i>&lt;RM_static&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Macdonald-style adult mosquito bionomics</p></td>
+      </tr><tr><td>
+          <p><code><a href="MBionomics.RM_func.html">MBionomics(<i>&lt;RM_func&gt;</i>)</a></code> </p>
         </td>
         <td><p>Set mosquito bionomics to baseline</p></td>
-      </tr><tr><td>
-          <p><code><a href="dynamic_MYZpar.html">dynamic_MYZpar()</a></code> </p>
-        </td>
-        <td><p>Call a function to set baseline bionomic parameters</p></td>
-      </tr><tr><td>
-          <p><code><a href="dynamic_MYZpar.RMfunc.html">dynamic_MYZpar(<i>&lt;RMfunc&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Update adult bionomic parameters</p></td>
       </tr><tr><td>
           <p><code><a href="create_MYZpar_RM_static.html">create_MYZpar_RM_static()</a></code> </p>
         </td>
@@ -636,17 +628,17 @@
         </td>
         <td><p>Make parameters for GeRM ODE adult mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_MYZprobs.html">make_MYZprobs()</a></code> </p>
+          <p><code><a href="update_MYZpar_RM.html">update_MYZpar_RM()</a></code> </p>
         </td>
-        <td><p>Adult bionomics: Compute probabilities from rates</p></td>
+        <td><p>Update Ross-Macdonald Bionomic Parameters</p></td>
       </tr><tr><td>
-          <p><code><a href="make_MYZprobs.xde.html">make_MYZprobs(<i>&lt;xde&gt;</i>)</a></code> </p>
+          <p><code><a href="update_MYZpar_RM.modified.html">update_MYZpar_RM(<i>&lt;modified&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Adult bionomics: Compute probabilities from rates</p></td>
+        <td><p>Update Ross-Macdonald Bionomic Parameters</p></td>
       </tr><tr><td>
-          <p><code><a href="make_MYZprobs.dts.html">make_MYZprobs(<i>&lt;dts&gt;</i>)</a></code> </p>
+          <p><code><a href="update_MYZpar_RM.unmodified.html">update_MYZpar_RM(<i>&lt;unmodified&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Compute probabilities from rates for <code>dts</code> models with runtime support</p></td>
+        <td><p>Update Ross-Macdonald Bionomic Parameters</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="visualization-for-adult-mosquito">Visualization for Adult Mosquito <a href="#visualization-for-adult-mosquito" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Basic Plotting</p>
@@ -796,7 +788,7 @@
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_MYZt.trace.html">Update_MYZt.trace()</a></code> </p>
+          <p><code><a href="Update_MYZt.trace.html">Update_MYZt(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
@@ -844,7 +836,7 @@
         </td>
         <td><p>Compute the steady states as a function of the daily EIR</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_MYZt.basicM.html">Update_MYZt.basicM()</a></code> </p>
+          <p><code><a href="Update_MYZt.basicM.html">Update_MYZt(<i>&lt;basicM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
       </tr><tr><td>
@@ -904,7 +896,7 @@
         </td>
         <td><p>Steady States: MYZ-si</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_MYZt.si.html">Update_MYZt.si()</a></code> </p>
+          <p><code><a href="Update_MYZt.si.html">Update_MYZt(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
       </tr><tr><td>
@@ -968,7 +960,7 @@
         </td>
         <td><p>Steady States: MYZ-sei</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_MYZt.sei.html">Update_MYZt.sei()</a></code> </p>
+          <p><code><a href="Update_MYZt.sei.html">Update_MYZt(<i>&lt;sei&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
       </tr><tr><td>
@@ -1028,7 +1020,7 @@
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_MYZt.RM.html">Update_MYZt.RM()</a></code> </p>
+          <p><code><a href="Update_MYZt.RM.html">Update_MYZt(<i>&lt;RM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
       </tr><tr><td>
@@ -1092,7 +1084,7 @@
         </td>
         <td><p>Number of eggs laid by adult mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_MYZt.RM_dts.html">Update_MYZt.RM_dts()</a></code> </p>
+          <p><code><a href="Update_MYZt.RM_dts.html">Update_MYZt(<i>&lt;RM_dts&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
       </tr><tr><td>
@@ -1154,7 +1146,11 @@
       </tr><tr><td>
           <p><code><a href="LBionomics.html">LBionomics()</a></code> </p>
         </td>
-        <td><p>Set aquatic bionomic parameter rates relative to baseline</p></td>
+        <td><p>Larval and Aquatic Stage Bionomics</p></td>
+      </tr><tr><td>
+          <p><code><a href="LBionomics.static.html">LBionomics(<i>&lt;static&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set mosquito bionomics to baseline</p></td>
       </tr><tr><td>
           <p><code><a href="F_emerge.html">F_emerge()</a></code> </p>
         </td>
@@ -1208,7 +1204,7 @@
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_Lt.trace.html">Update_Lt.trace()</a></code> </p>
+          <p><code><a href="Update_Lt.trace.html">Update_Lt(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
@@ -1256,7 +1252,7 @@
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_Lt.basicL.html">Update_Lt.basicL()</a></code> </p>
+          <p><code><a href="Update_Lt.basicL.html">Update_Lt(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
@@ -1552,7 +1548,7 @@
         </td>
         <td><p>Derivatives for human population</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_Xt.trace.html">Update_Xt.trace()</a></code> </p>
+          <p><code><a href="Update_Xt.trace.html">Update_Xt(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for human population</p></td>
       </tr><tr><td>
@@ -1668,7 +1664,7 @@
         </td>
         <td><p>Derivatives for the SIS model for human / vertebrate host infections</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_Xt.SIS.html">Update_Xt.SIS()</a></code> </p>
+          <p><code><a href="Update_Xt.SIS.html">Update_Xt(<i>&lt;SIS&gt;</i>)</a></code> </p>
         </td>
         <td><p>DTS updating for the SIS model for human / vertebrate host infections</p></td>
       </tr><tr><td>
@@ -1755,6 +1751,10 @@
           <p><code><a href="xde_steady_state_X.SIS.html">xde_steady_state_X(<i>&lt;SIS&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute the steady states for the SIS model as a function of the daily EIR</p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_steady_state_X.SIS.html">dts_steady_state_X(<i>&lt;SIS&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the steady states for the dts SIS model as a function of the daily EIR</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="seis">SEIS <a href="#seis" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for the SEIS (Susceptible-Infected-Susceptible) model of human dynamics.</p>
@@ -1764,7 +1764,7 @@
         </td>
         <td><p>Derivatives for the SEIS model for human / vertebrate host infections</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_Xt.SEIS.html">Update_Xt.SEIS()</a></code> </p>
+          <p><code><a href="Update_Xt.SEIS.html">Update_Xt(<i>&lt;SEIS&gt;</i>)</a></code> </p>
         </td>
         <td><p>DTS updating for the SEIS model for human / vertebrate host infections</p></td>
       </tr><tr><td>
@@ -1851,6 +1851,10 @@
           <p><code><a href="xde_steady_state_X.SEIS.html">xde_steady_state_X(<i>&lt;SEIS&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute the steady states for the SEIS model as a function of the daily EIR</p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_steady_state_X.SEIS.html">dts_steady_state_X(<i>&lt;SEIS&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the steady states for the dts SEIS model as a function of the daily EIR</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="seisd">SEISd <a href="#seisd" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for the SEISd (Susceptible-Infected-Susceptible) model of human dynamics.</p>
@@ -1860,7 +1864,7 @@
         </td>
         <td><p>Derivatives for the SEISd model for human / vertebrate host infections</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_Xt.SEISd.html">Update_Xt.SEISd()</a></code> </p>
+          <p><code><a href="Update_Xt.SEISd.html">Update_Xt(<i>&lt;SEISd&gt;</i>)</a></code> </p>
         </td>
         <td><p>DTS updating for the SEISd model for human / vertebrate host infections</p></td>
       </tr><tr><td>
@@ -1956,7 +1960,7 @@
         </td>
         <td><p>Derivatives for human population</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_Xt.SIP.html">Update_Xt.SIP()</a></code> </p>
+          <p><code><a href="Update_Xt.SIP.html">Update_Xt(<i>&lt;SIP&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for human population</p></td>
       </tr><tr><td>
@@ -1971,6 +1975,10 @@
           <p><code><a href="xde_steady_state_X.SIP.html">xde_steady_state_X(<i>&lt;SIP&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute the steady states for the SIP model as a function of the daily foi</p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_steady_state_X.SIP.html">dts_steady_state_X(<i>&lt;SIP&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the steady states for the dts SIP model as a function of the daily EIR</p></td>
       </tr><tr><td>
           <p><code><a href="make_Xinits.SIP.html">make_Xinits(<i>&lt;SIP&gt;</i>)</a></code> </p>
         </td>
@@ -2838,7 +2846,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dts_update.html">dts_update()</a></code> </p>
         </td>
-        <td><p>Update States for Discrete-Time Systems</p></td>
+        <td><p>dts_update_ States for Discrete-Time Systems</p></td>
       </tr><tr><td>
           <p><code><a href="dts_update.full.html">dts_update(<i>&lt;full&gt;</i>)</a></code> </p>
         </td>
@@ -2859,6 +2867,18 @@
           <p><code><a href="dts_update.cohort.html">dts_update(<i>&lt;cohort&gt;</i>)</a></code> </p>
         </td>
         <td><p>Difference equation models for human cohorts</p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_update_Lt.html">dts_update_Lt()</a></code> </p>
+        </td>
+        <td><p>Difference equations isolating the humans, forced with Ztrace</p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_update_MYZt.html">dts_update_MYZt()</a></code> </p>
+        </td>
+        <td><p>Difference equations isolating the humans, forced with Ztrace</p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_update_Xt.html">dts_update_Xt()</a></code> </p>
+        </td>
+        <td><p>Difference equations isolating the humans, forced with Ztrace</p></td>
       </tr><tr><td>
           <p><code><a href="Update_Xt.html">Update_Xt()</a></code> </p>
         </td>
@@ -3080,7 +3100,15 @@
         </td>
         <td><p>Compute probabilities from rates</p></td>
       </tr><tr><td>
-          <p><code><a href="MYZ_rates2probs.RM.html">MYZ_rates2probs(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="MYZ_rates2probs_RM.html">MYZ_rates2probs_RM()</a></code> </p>
+        </td>
+        <td><p>Compute probabilities from rates</p></td>
+      </tr><tr><td>
+          <p><code><a href="MYZ_rates2probs_RM.unmodified.html">MYZ_rates2probs_RM(<i>&lt;unmodified&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute probabilities from rates</p></td>
+      </tr><tr><td>
+          <p><code><a href="MYZ_rates2probs_RM.modified.html">MYZ_rates2probs_RM(<i>&lt;modified&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute probabilities from rates</p></td>
       </tr></tbody><tbody><tr><th colspan="2">

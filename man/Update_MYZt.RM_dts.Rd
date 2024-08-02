@@ -4,7 +4,7 @@
 \alias{Update_MYZt.RM_dts}
 \title{Derivatives for adult mosquitoes}
 \usage{
-Update_MYZt.RM_dts(t, y, pars, s)
+\method{Update_MYZt}{RM_dts}(t, y, pars, s)
 }
 \arguments{
 \item{t}{current simulation time}
@@ -13,7 +13,7 @@ Update_MYZt.RM_dts(t, y, pars, s)
 
 \item{pars}{a \link{list}}
 
-\item{s}{the vector species index}
+\item{s}{the species index}
 }
 \value{
 a \link{numeric} vector

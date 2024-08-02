@@ -45,11 +45,12 @@ Forcing.setup = function(t, y, pars){
 Forcing.dynamic = function(t, y, pars){
   pars <- Abiotic(t, pars)
   pars <- Shock(t, pars)
+  pars <- Visiting(t, pars)
+  pars <- Resources(t, pars)
+  # Control
   pars <- Control(t, y, pars)
   pars <- Behavior(t, y, pars)
-  pars <- Visiting(t, pars)
   pars <- VectorControlEffects(t, y, pars)
-  pars <- Resources(t, y, pars)
   return(pars)
 }
 

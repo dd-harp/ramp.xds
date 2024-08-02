@@ -21,20 +21,33 @@ xde_derivatives <- function(t, y, pars) {
 xde_derivatives.full <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
+  # including malaria control coverage
   pars <- Forcing(t, y, pars)
 
-  # set & modify the baseline bionomic parameters
+  # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
-  pars <- Bionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
 
-  # egg laying: compute eta
+  # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
 
-  # emergence: compute Lambda
+  # update adult bionomic parameters to baseline
+  # or with integrated effect sizes
+  pars <- MBionomics(t, y, pars, 1)
+  pars <- LBionomics(t, y, pars, 1)
+
+  if(pars$nVectors > 1) for(s in 2:pars$nVectors){
+      pars <- MBionomics(t, y, pars, s)
+      pars <- LBionomics(t, y, pars, s)
+    }
+
+  # modify mosquito bionomic parameters
+  # by computing independent effect sizes
+  pars <- VectorControlEffectSizes(t, y, pars)
+
+  # emergence: Lambda
   pars <- Emergence(t, y, pars)
 
-  # compute beta, EIR, and kappa
+  # transmission: beta, EIR, and kappa
   pars <- Transmission(t, y, pars)
 
   # compute the FoI
@@ -68,8 +81,14 @@ xde_derivatives.human <- function(t, y, pars) {
   # set the values of exogenous forcing variables
   pars <- Forcing(t, y, pars)
 
+  # blood feeding: available blood hosts, TaR, relative biting rates
+  pars <- BloodFeeding(t, y, pars)
+
   # set and modify the baseline mosquito bionomic parameters
   pars <- MBionomics(t, y, pars, 1)
+  if(pars$nVectors > 1) for(s in 2:pars$nVectors)
+    pars <- MBionomics(t, y, pars, s)
+
   pars <- VectorControlEffectSizes(t, y, pars)
 
   # compute beta, EIR, and kappa
@@ -100,13 +119,22 @@ xde_derivatives.mosy <- function(t, y, pars) {
   # set the values of exogenous forcing variables
   pars <- Forcing(t, y, pars)
 
-  # set & modify the baseline bionomic parameters
+  # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
-  pars <- Bionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
 
-  # egg laying: compute eta
+  # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
+
+  # update adult bionomic parameters to baseline
+  # or with integrated effect sizes
+  pars <- MBionomics(t, y, pars, 1)
+  pars <- LBionomics(t, y, pars, 1)
+
+  if(pars$nVectors > 1) for(s in 2:pars$nVectors){
+    pars <- MBionomics(t, y, pars, s)
+    pars <- LBionomics(t, y, pars, s)
+  }
+  pars <- VectorControlEffectSizes(t, y, pars)
 
   # emergence: compute Lambda
   pars <- Emergence(t, y, pars)

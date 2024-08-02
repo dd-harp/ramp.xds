@@ -44,7 +44,6 @@ VectorControlEffectSizes.control <- function(t, y, pars) {
   pars = LSM_EffectSizes(t, pars)
   for(s in 1:pars$nVectors){
     pars = BedNetEffectSizes(t, pars, s)
-    pars = update_Omega(pars, s)
   }
   return(pars)
 }

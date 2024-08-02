@@ -4,14 +4,14 @@
 \alias{Update_Xt.trace}
 \title{Derivatives for human population}
 \usage{
-Update_Xt.trace(t, y, pars, i)
+\method{Update_Xt}{trace}(t, y, pars, i)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{a list}
 
 \item{i}{the host species index}
 }
