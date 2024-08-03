@@ -120,7 +120,7 @@ change_blood_weights = function(pars, search_weights=1, s=1, i=1){
   return(pars)
 }
 
-#' @title Compute blood feeding availability for hosts
+#' @title Compute availability of humans / hosts for blood feeding
 #' @description
 #' Computes availability of the parasite's / pathogen's hosts to blood feeding
 #' mosquitoes using the concept of search weights and time-at-risk
@@ -318,9 +318,9 @@ BloodFeeding.dynamic = function(t, y, pars){
 #' @return a named [list]
 #' @seealso [create_residence_matrix]
 #' @export
-view_residence_matrix = function(pars, i=1){
-  which(t(pars$residence_matrix[[i]])==1, arr.ind=TRUE) -> residence
-  res <- list(stratum = residence[,1], residence_patch = residence[,2])
+view_residence_matrix = function(pars){
+  which(t(pars$residence_matrix)==1, arr.ind=TRUE) -> residence
+  res <- list(stratum = as.vector(residence[1,]), residence_patch = as.vector(residence[2,]))
   return(res)
 }
 

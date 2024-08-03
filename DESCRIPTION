@@ -1,6 +1,6 @@
 Package: ramp.xds
 Type: Package
-Title: Extensible Dynamical Systems for Mosquito-Borne Pathogen Modeling
+Title: Extensible Dynamical Systems Modeling for Malaria and other Mosquito-Borne Pathogens 
 Version: 1.0.0
 Authors@R: c(
       person("Sean L.", "Wu", email = "slwood89@gmail.com", role = "aut", comment = c(ORCID = "0000-0002-5781-9493")),

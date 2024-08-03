@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Extensible Dynamical Systems for Mosquito-Borne Pathogen Modeling • ramp.xds</title>
+<title>Extensible Dynamical Systems Modeling for Malaria and other Mosquito-Borne Pathogens • ramp.xds</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Extensible Dynamical Systems for Mosquito-Borne Pathogen Modeling">
+<script src="pkgdown.js"></script><meta property="og:title" content="Extensible Dynamical Systems Modeling for Malaria and other Mosquito-Borne Pathogens">
 <meta property="og:description" content="Provides tools to set up modular ordinary and delay differential equation models for mosquito-borne pathogens, focusing on malaria. Modular design is achieved by S3 dispatch on parameter lists for each component which is used to compute the full set of differential equations which may be solved using any of the packages for numerical simulation of differential equations in R. The methods implemented by this package are described in Wu et al. (2022) &lt;doi:10.1101/2022.11.07.22282044&gt;.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -170,8 +170,8 @@
 <strong><code>ramp.xds</code></strong><a class="anchor" aria-label="anchor" href="#rampxds"></a>
 </h1></div>
 <div class="section level2">
-<h2 id="ramp---extensible-dynamical-systems">
-<strong>RAMP</strong> - e<strong>X</strong>tensible <strong>D</strong>ynamical <strong>S</strong>ystems<a class="anchor" aria-label="anchor" href="#ramp---extensible-dynamical-systems"></a>
+<h2 id="ramp---extensible-dynamical-systems-a-computational-framework-for-malaria-and-other-mosquito-borne-pathogens">
+<strong>RAMP</strong> - e<strong>X</strong>tensible <strong>D</strong>ynamical <strong>S</strong>ystems: a computational framework for malaria and other mosquito-borne pathogens<a class="anchor" aria-label="anchor" href="#ramp---extensible-dynamical-systems-a-computational-framework-for-malaria-and-other-mosquito-borne-pathogens"></a>
 </h2>
 <!-- badges: start -->
 
@@ -180,7 +180,7 @@
 <div class="section level2">
 <h2 id="what-is-ramp">What is RAMP?<a class="anchor" aria-label="anchor" href="#what-is-ramp"></a>
 </h2>
-<p>RAMP, or <strong>R</strong>obust <strong>A</strong>nalytics for <strong>M</strong>alaria <strong>P</strong>olicy, is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty using conventional and simulation-based analytics.</p>
+<p>RAMP – <strong>R</strong>obust <strong>A</strong>nalytics for <strong>M</strong>alaria <strong>P</strong>olicy – is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty in analysis using conventional and simulation-based analytics.</p>
 </div>
 <div class="section level2">
 <h2 id="what-is-rampxds">What is <strong><code>ramp.xds</code></strong>?<a class="anchor" aria-label="anchor" href="#what-is-rampxds"></a>
@@ -192,7 +192,7 @@
 <li><p>Algorithms to apply the framework, include code to fit models to data, is found in <a href="https://dd-harp.github.io/ramp.work/" class="external-link"><strong><code>ramp.work</code></strong></a>.</p></li>
 <li><p>A large set of models illustrating capabilities are found in <a href="https://dd-harp.github.io/ramp.malaria/" class="external-link"><strong><code>ramp.malaria</code></strong></a>.</p></li>
 </ul>
-<p><strong><code>ramp.xds</code></strong> is under active development. It is the continuation of two other software packages, now deprecated: <a href="https://dd-harp.github.io/exDE/" class="external-link"><strong><code>exDE</code></strong></a> and <a href="https://dd-harp.github.io/MicroMoB/" class="external-link"><strong><code>MicroMoB</code></strong></a>.</p>
+<p><strong><code>ramp.xds</code></strong> is under active development. It supersedes two other software packages, no longer under active development: <a href="https://dd-harp.github.io/exDE/" class="external-link"><strong><code>exDE</code></strong></a> and <a href="https://dd-harp.github.io/MicroMoB/" class="external-link"><strong><code>MicroMoB</code></strong></a>.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -208,7 +208,7 @@
 <ul>
 <li><p><strong><code>ramp.xds</code></strong> makes it easy to set up, solve, and apply dynamical systems models for malaria &amp; other mosquito-borne pathogens.</p></li>
 <li><p><strong><code>ramp.library</code></strong> includes a large set of published models.</p></li>
-<li><p>All the code has been verified and tested. If you’re publishing a model family that is not already in <em>ramp.library,</em> you can write us and we’ll help you add it to the growing collection.</p></li>
+<li><p>All the code has been verified and tested. If you’re working on a model family that is not already in <em>ramp.library,</em> you can write us and we’ll help you add it to the growing collection.</p></li>
 <li><p>It should be comparatively easy to replicate your study in <em>ramp.xds.</em> It’s also easy for others to replicate your study.</p></li>
 <li>
 <p>Any model family from one domain can be combined with models from other domains and take advantage of the other features of <em>ramp.xds.</em> Software capabilities include:</p>

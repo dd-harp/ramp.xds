@@ -7,7 +7,7 @@
 create_habitat_matrix(nPatches, membership)
 }
 \arguments{
-\item{nPatches}{the number of patches}
+\item{nPatches}{the number of patches, \eqn{N_p}}
 
 \item{membership}{a vector describing the patch index for each habitat}
 }
@@ -16,19 +16,29 @@ the habitat membership \link{matrix}, denoted \eqn{\cal N} where \eqn{\left|\cal
 }
 \description{
 The habitat membership matrix, \eqn{\cal N}, holds
-information about the patch location for each habitats.
-Let \eqn{N_q} denote the number of habitats, \code{nHabitats},
-and \eqn{N_p} the number of patches, \code{nPatches}.
-If \eqn{w} is any vector describing a quantity in
-habitats (\emph{i.e.}, \eqn{\left|w\right|= N_q}), then
-\eqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
+information about the patch location of each habitat. It is part of
+the egg-laying and emergence interface, making it possible
+to compute egg laying from patches to habitats; and emergence from habitats to patches.
 }
 \details{
 Information about the patch location of each habitat
 is passed as the membership vector, an ordered list of patch locations. If
 the \eqn{i^{th}} habitat is in the \eqn{j^{th}} patch, then
-\eqn{{\cal N}[j,i]=1.} Otherwise, \eqn{{\cal N}[j,i]=0.}
+\eqn{{\cal N}_{j,i}=1.} Otherwise, \eqn{{\cal N}_{j,i}=0.}
+
+Since \eqn{\cal N} is a matrix, it is readily used for computation. Let:
+\itemize{
+\item \eqn{n_q = } \code{nHabitats}, the number of habitats;
+\item \eqn{n_p = } \code{nPatches}, the number of patches.
+}
+
+If \eqn{w} is any vector describing a quantity in
+habitats (\emph{i.e.}, \eqn{\left|w\right|= n_q}), then
+\eqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
+}
+\examples{
+create_habitat_matrix(3, c(1,1,2,2,2))
 }
 \seealso{
-to extract habitat membership information, see \link{view_habitat_matrix}
+to extract habitat membership information, see \code{\link[=view_habitat_matrix]{view_habitat_matrix()}}
 }

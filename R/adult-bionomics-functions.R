@@ -23,6 +23,19 @@ F_q <- function(t, vars, q_par) {
   UseMethod("F_q", q_par)
 }
 
+#' @title Compute the human blood fraction
+#' @description This method dispatches on the type of `p_par`. It should
+#' set the values of the bionomic parameters to baseline values.
+#' @param t current simulation time
+#' @param vars exogenous variables
+#' @param p_par a [list]
+#' @return a [numeric] vector of length `nPatches`
+#' @export
+F_p <- function(t, vars, p_par) {
+  UseMethod("F_p", p_par)
+}
+
+
 #' @title Compute mosguito survival
 #' @description This method dispatches on the type of `q_par$g_par`. It should
 #' set the values of g to (possibly changing) baseline values.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{view_habitat_matrix}
 \alias{view_habitat_matrix}
-\title{View habitat membership}
+\title{View habitat membership, \eqn{\cal N}}
 \usage{
 view_habitat_matrix(pars)
 }
@@ -10,11 +10,11 @@ view_habitat_matrix(pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-a named \link{list}
+a \link{list}
 }
 \description{
-Shows the habitat membership information from \eqn{\cal N}
+Output the habitat membership information as a list
 }
 \seealso{
-\link{create_habitat_matrix}
+\code{\link[=create_habitat_matrix]{create_habitat_matrix()}}
 }
