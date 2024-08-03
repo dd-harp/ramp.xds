@@ -242,7 +242,7 @@
       </tr><tr><td>
           <p><code><a href="compute_W.html">compute_W()</a></code> </p>
         </td>
-        <td><p>Compute blood feeding availability for hosts</p></td>
+        <td><p>Compute availability of humans / hosts for blood feeding</p></td>
       </tr><tr><td>
           <p><code><a href="compute_B.html">compute_B()</a></code> </p>
         </td>
@@ -370,11 +370,11 @@
       </tr><tr><td>
           <p><code><a href="Exposure.xde.html">Exposure(<i>&lt;xde&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Compute the force of infection (FoI) given the local EIR and a travel model</p></td>
+        <td><p>Compute the FoI</p></td>
       </tr><tr><td>
           <p><code><a href="Exposure.dts.html">Exposure(<i>&lt;dts&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Compute the attack rate (AR) given the local EIR and a travel model</p></td>
+        <td><p>Compute the Attack Rates</p></td>
       </tr><tr><td>
           <p><code><a href="Exposure.multiday.html">Exposure(<i>&lt;multiday&gt;</i>)</a></code> </p>
         </td>
@@ -386,19 +386,19 @@
       </tr><tr><td>
           <p><code><a href="F_foi.html">F_foi()</a></code> </p>
         </td>
-        <td><p>Compute the local daily FoI as a function of the local daily EIR.</p></td>
+        <td><p>Compute the FoI from local exposure</p></td>
       </tr><tr><td>
           <p><code><a href="foi2eir.html">foi2eir()</a></code> </p>
         </td>
-        <td><p>Convert the daily FoI into a daily EIR under a model</p></td>
+        <td><p>Convert FoI to EIR</p></td>
       </tr><tr><td>
           <p><code><a href="F_ar.html">F_ar()</a></code> </p>
         </td>
-        <td><p>Daily attack rates as a function of the daily EIR</p></td>
+        <td><p>Convert the AR from local exposure</p></td>
       </tr><tr><td>
           <p><code><a href="ar2eir.html">ar2eir()</a></code> </p>
         </td>
-        <td><p>Convert the attack rate into an eir under a model</p></td>
+        <td><p>Convert AR to EIR</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="poisson-exposure">Poisson Exposure <a href="#poisson-exposure" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods the Poisson exposure model</p>
@@ -406,19 +406,19 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="F_foi.pois.html">F_foi(<i>&lt;pois&gt;</i>)</a></code> </p>
         </td>
-        <td><p>A Poisson model for the daily local FoI as a function of the daily EIR.</p></td>
+        <td><p>A Poisson model for Exposure</p></td>
       </tr><tr><td>
           <p><code><a href="F_ar.pois.html">F_ar(<i>&lt;pois&gt;</i>)</a></code> </p>
         </td>
-        <td><p>A Poisson model for the daily attack rate as a function of the daily EIR.</p></td>
+        <td><p>A Poisson model for Exposure</p></td>
       </tr><tr><td>
           <p><code><a href="foi2eir.pois.html">foi2eir(<i>&lt;pois&gt;</i>)</a></code> </p>
         </td>
-        <td><p>A Poisson model for the daily attack rate as a function of the daily EIR.</p></td>
+        <td><p>Convert FoI to EIR under a Poisson model for Exposure</p></td>
       </tr><tr><td>
           <p><code><a href="ar2eir.pois.html">ar2eir(<i>&lt;pois&gt;</i>)</a></code> </p>
         </td>
-        <td><p>A Poisson model for the daily attack rate as a function of the daily EIR.</p></td>
+        <td><p>Convert AR to EIR under a Poisson model for Exposure</p></td>
       </tr><tr><td>
           <p><code><a href="setup_exposure_pois.html">setup_exposure_pois()</a></code> </p>
         </td>
@@ -426,11 +426,11 @@
       </tr><tr><td>
           <p><code><a href="setup_exposure_pois.xde.html">setup_exposure_pois(<i>&lt;xde&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set up the Poisson model of exposure for continuous time models</p></td>
+        <td><p>Set up Poisson Exposure for <code>xde</code></p></td>
       </tr><tr><td>
           <p><code><a href="setup_exposure_pois.dts.html">setup_exposure_pois(<i>&lt;dts&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set up the Poisson model of exposure for discrete time models</p></td>
+        <td><p>Set up Poisson Exposure for <code>dts</code></p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="negative-binomial-exposure">Negative Binomial Exposure <a href="#negative-binomial-exposure" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods the Negative Binomial exposure model</p>
@@ -438,7 +438,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="F_foi.nb.html">F_foi(<i>&lt;nb&gt;</i>)</a></code> </p>
         </td>
-        <td><p>The daily FoI as a function of the daily EIR under a negative binomial model of exposure.</p></td>
+        <td><p>A negative binomial model for Exposure</p></td>
       </tr><tr><td>
           <p><code><a href="F_ar.nb.html">F_ar(<i>&lt;nb&gt;</i>)</a></code> </p>
         </td>
@@ -474,7 +474,7 @@
       </tr><tr><td>
           <p><code><a href="setup_EGG_LAYING.html">setup_EGG_LAYING()</a></code> </p>
         </td>
-        <td><p>Setup the interface for egg laying</p></td>
+        <td><p>Setup Egg Laying</p></td>
       </tr><tr><td>
           <p><code><a href="Emergence.html">Emergence()</a></code> </p>
         </td>
@@ -530,7 +530,7 @@
       </tr><tr><td>
           <p><code><a href="view_habitat_matrix.html">view_habitat_matrix()</a></code> </p>
         </td>
-        <td><p>View habitat membership</p></td>
+        <td><p>View habitat membership, \(\cal N\)</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="adult-mosquito-dynamics">Adult Mosquito Dynamics <a href="#adult-mosquito-dynamics" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Generic methods for the adult mosquito dynamics component.</p>
@@ -1327,6 +1327,10 @@
           <p><code><a href="F_g.html">F_g()</a></code> </p>
         </td>
         <td><p>Compute mosguito survival</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_p.html">F_p()</a></code> </p>
+        </td>
+        <td><p>Compute the human blood fraction</p></td>
       </tr><tr><td>
           <p><code><a href="F_sigma.html">F_sigma()</a></code> </p>
         </td>
