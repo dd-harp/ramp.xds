@@ -2,16 +2,17 @@
 % Please edit documentation in R/exposure-pois.R
 \name{setup_exposure_pois.dts}
 \alias{setup_exposure_pois.dts}
-\title{Set up the Poisson model of exposure for discrete time models}
+\title{Set up Poisson Exposure for \code{dts}}
 \usage{
 \method{setup_exposure_pois}{dts}(pars)
 }
 \arguments{
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the modified \code{xds} object
+the modified \strong{\code{xds}} object
 }
 \description{
-Set up the Poisson model of exposure for discrete time models
+Set up the Poisson model for
+exposure for discrete time systems
 }

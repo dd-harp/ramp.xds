@@ -2,20 +2,20 @@
 % Please edit documentation in R/exposure-pois.R
 \name{foi2eir.pois}
 \alias{foi2eir.pois}
-\title{A Poisson model for the daily attack rate as a function of the daily EIR.}
+\title{Convert FoI to EIR under a Poisson model for Exposure}
 \usage{
 \method{foi2eir}{pois}(foi, b, pars)
 }
 \arguments{
-\item{foi}{the attack rate}
+\item{foi}{the daily FoI for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-a \link{numeric} vector of length \code{nStrata}
+dEIR as a \link{numeric} vector of length \eqn{n_h=}\code{nStrata}
 }
 \description{
-Implements \link{foi2eir} for a Poisson model
+The inverse of \link{F_foi.pois} is \eqn{E=h/b}
 }

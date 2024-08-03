@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure.R
 \name{F_foi}
 \alias{F_foi}
-\title{Compute the local daily FoI as a function of the local daily EIR.}
+\title{Compute the FoI from local exposure}
 \usage{
 F_foi(eir, b, pars)
 }
@@ -11,17 +11,18 @@ F_foi(eir, b, pars)
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the daily, local force of infection as a \link{numeric} vector
+the local FoI as a \link{numeric} vector of length \eqn{n_h =} \code{nStrata}
 }
 \description{
 This function compute the daily local FoI as a function
 of the daily EIR and effects of partial immunity.
-It is computed based on a probabilistic model of exposure and
-possibly including environmental heterogeneity. If a model of human / host
-infection has terms that describe partial immunity, \emph{e.g.} affecting
-pre-erythrocytic immunity to malaria called by \link{F_b}, those effects are implemented here.
-The method dispatches on the type of \code{pars$FoIpar}.
+It is computed based on a probabilistic model of
+environmentally heterogeneous exposure.
+If a model of human / host infection (\eqn{\cal X}) has terms
+that describe partial immunity, \emph{e.g.} affecting
+pre-erythrocytic immunity to malaria called
+by \link{F_b}, those effects are implemented here.
 }

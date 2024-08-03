@@ -2,25 +2,21 @@
 % Please edit documentation in R/exposure.R
 \name{foi2eir}
 \alias{foi2eir}
-\title{Convert the daily FoI into a daily EIR under a model}
+\title{Convert FoI to EIR}
 \usage{
 foi2eir(foi, b, pars)
 }
 \arguments{
-\item{foi}{the attack rate}
+\item{foi}{the daily FoI for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the daily, local force of infection as a \link{numeric} vector
+the daily EIR as a \link{numeric} vector
 }
 \description{
-This function is the inverse of \link{F_foi}: compute the
-daily EIR given an estimated FoI under a probabilistic model
-of exposure. If a model of human / host
-infection has terms that describe partial immunity, \emph{e.g.} affecting
-pre-erythrocytic immunity to malaria called by \link{F_b}, those effects are implemented here.
-The method dispatches on the type of \code{pars$FOIpar}.
+This function computes the inverse of \link{F_foi}
+under a model for environmentally heterogeneous exposure.
 }

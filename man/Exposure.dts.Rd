@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure.R
 \name{Exposure.dts}
 \alias{Exposure.dts}
-\title{Compute the attack rate (AR) given the local EIR and a travel model}
+\title{Compute the Attack Rates}
 \usage{
 \method{Exposure}{dts}(t, y, pars)
 }
@@ -11,13 +11,23 @@
 
 \item{y}{the state variables}
 
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the modified \code{xds} object; ARs are stored as \code{pars$AR}
+the modified \strong{\code{xds}} object
 }
 \description{
-For dts models, compute the attack rate (AR) for
-all the population strata. The AR is a function of local daily entomological
-inoculation rates (dEIR), and a model for exposure to malaria while traveling.
+For dts models, compute
+the attack rates (AR) as a function
+of local daily entomological inoculation
+rates (dEIR), and a model for exposure
+to malaria while traveling.
+}
+\details{
+Local attack rates are computed
+under a model for immunity that
+computes the probability of infection
+per infectious bite, \eqn{b}, returned
+from \eqn{F_b}, as defiend by the
+\eqn{\cal X} model.
 }

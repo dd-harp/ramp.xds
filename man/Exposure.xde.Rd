@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure.R
 \name{Exposure.xde}
 \alias{Exposure.xde}
-\title{Compute the force of infection (FoI) given the local EIR and a travel model}
+\title{Compute the FoI}
 \usage{
 \method{Exposure}{xde}(t, y, pars)
 }
@@ -11,13 +11,15 @@
 
 \item{y}{the state variables}
 
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the modified \code{xds} object; FoIs are stored as \code{pars$FoI}
+the modified \strong{\code{xds}} object
 }
 \description{
-For xde models, compute the force of infection (FoI) for
-all the population strata. The FoI is a function of the daily entomological
-inoculation rates (dEIR), and a model for exposure to malaria while traveling.
+For xde models, compute
+the force of infection (FoI) for
+as a function of the daily entomological
+inoculation rates (dEIR), and
+exposure to malaria while traveling.
 }

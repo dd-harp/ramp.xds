@@ -2,27 +2,28 @@
 % Please edit documentation in R/exposure.R
 \name{F_ar}
 \alias{F_ar}
-\title{Daily attack rates as a function of the daily EIR}
+\title{Convert the AR from local exposure}
 \usage{
 F_ar(eir, b, pars)
 }
 \arguments{
-\item{eir}{the daily eir for each stratum}
-
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
+
+\item{foi}{the attack rate}
 }
 \value{
-the daily, local force of infection as a \link{numeric} vector
+the local ARs as a \link{numeric} vector of length \eqn{n_h =} \code{nStrata}
 }
 \description{
-This function implements a model for environmental heterogeneity.
-It computes the daily local AR as a function
-of the daily local EIR and effects of partial immunity.
-It is computed based on a probabilistic model of exposure, the distribution of the number of
-bites per person. If a model of human / host
-infection has terms that describe partial immunity, \emph{e.g.} affecting
-pre-erythrocytic immunity to malaria called by \link{F_b}, those effects are implemented here.
-The method dispatches on the type of \code{pars$ARpar}.
+This function compute the daily
+local attack rates (ARs) as a function
+of the daily EIR and effects of partial immunity.
+It is computed based on a probabilistic model
+environmentally heterogeneous exposure.
+If a model of human / host infection (\eqn{\cal X}) has terms
+that describe partial immunity, \emph{e.g.} affecting
+pre-erythrocytic immunity to malaria called
+by \link{F_b}, those effects are implemented here.
 }

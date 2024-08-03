@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-pois.R
 \name{ar2eir.pois}
 \alias{ar2eir.pois}
-\title{A Poisson model for the daily attack rate as a function of the daily EIR.}
+\title{Convert AR to EIR under a Poisson model for Exposure}
 \usage{
 \method{ar2eir}{pois}(ar, b, pars)
 }
@@ -17,5 +17,6 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{ar2eir} for a Poisson model
+The inverse of \link{F_ar.pois}
+is \deqn{E = -\frac{\log(1-ar)}{b}}
 }

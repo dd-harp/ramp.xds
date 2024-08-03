@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure.R
 \name{ar2eir}
 \alias{ar2eir}
-\title{Convert the attack rate into an eir under a model}
+\title{Convert AR to EIR}
 \usage{
 ar2eir(ar, b, pars)
 }
@@ -14,13 +14,9 @@ ar2eir(ar, b, pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-the daily, local force of infection as a \link{numeric} vector
+the daily EIR as a \link{numeric} vector
 }
 \description{
-This function is the inverse of \link{F_ar}: compute the
-daily EIR given an estimated attack rate under a probabilistic model
-of exposure. If a model of human / host
-infection has terms that describe partial immunity, \emph{e.g.} affecting
-pre-erythrocytic immunity to malaria called by \link{F_b}, those effects are implemented here.
-The method dispatches on the type of \code{pars$FOIpar}.
+This function computes the inverse of \link{F_ar}
+under a model for environmentally heterogeneous exposure.
 }

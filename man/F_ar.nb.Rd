@@ -7,15 +7,23 @@
 \method{F_ar}{nb}(eir, b, pars)
 }
 \arguments{
-\item{eir}{the daily eir for each stratum}
-
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
 Implements \link{F_ar} for a negative binomial model
+}
+\details{
+Compute the daily AR, \eqn{h},
+given the daily EIR, \eqn{E},
+under a negative binomial model for the distribution
+of bites per person, and \eqn{b}, the probability of
+infection per infective bite:
+\deqn{\alpha = 1-(1 + b E/\phi)^{-\phi} }
+The model is parameterized using the \strong{mu} \eqn{= E} and \strong{sz} \eqn{=\phi}
+parameterization. The expression is the complement of the zero term.
 }

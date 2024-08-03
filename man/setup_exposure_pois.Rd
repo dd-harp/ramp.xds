@@ -7,10 +7,10 @@
 setup_exposure_pois(pars)
 }
 \arguments{
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the modified \code{xds} object
+the modified \strong{\code{xds}} object
 }
 \description{
 Set up the Poisson model of exposure

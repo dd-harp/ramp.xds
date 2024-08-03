@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-pois.R
 \name{F_foi.pois}
 \alias{F_foi.pois}
-\title{A Poisson model for the daily local FoI as a function of the daily EIR.}
+\title{A Poisson model for Exposure}
 \usage{
 \method{F_foi}{pois}(eir, b, pars)
 }
@@ -11,11 +11,16 @@
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_foi} for a Poisson model
+Compute the daily FoI, \eqn{h},
+given the daily EIR, \eqn{E},
+under a Poisson model for the distribution
+of bites per person, and \eqn{b}, the probability of
+infection per infective bite:
+\deqn{h = b E}
 }
