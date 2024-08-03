@@ -17,7 +17,7 @@
 #'
 #' If \eqn{w} is any vector describing a quantity in
 #' habitats (*i.e.*, \eqn{\left|w\right|= n_q}), then
-#' \eqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
+#' \deqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
 #'
 #' @param nPatches the number of patches, \eqn{N_p}
 #' @param membership a vector describing the patch index for each habitat
