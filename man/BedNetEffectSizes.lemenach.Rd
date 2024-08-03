@@ -19,3 +19,6 @@ a named \link{list}
 \description{
 Implements \link{BedNetEffectSizes} for the Le Menach ITN model of vector control
 }
+\seealso{
+\code{\link[=compute_bednet_effect_sizes_lemenach]{compute_bednet_effect_sizes_lemenach()}}
+}
