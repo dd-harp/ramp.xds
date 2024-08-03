@@ -19,3 +19,6 @@ the modified \code{xds} object
 \description{
 Compute eggs laid at time \eqn{t}
 }
+\seealso{
+\code{\link[=setup_EGG_LAYING]{setup_EGG_LAYING()}}
+}

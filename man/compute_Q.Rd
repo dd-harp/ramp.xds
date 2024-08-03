@@ -7,9 +7,9 @@
 compute_Q(habitat_matrix, search_weights)
 }
 \arguments{
-\item{habitat_matrix}{the membership matrix}
+\item{habitat_matrix}{the membership matrix, \eqn{\cal N}}
 
-\item{search_weights}{the habitat search weights}
+\item{search_weights}{the habitat search weights, \eqn{\omega_q}}
 }
 \value{
 a \link{vector} of describing habitat availability, \eqn{Q}, of length \code{nPatches}
@@ -18,9 +18,9 @@ a \link{vector} of describing habitat availability, \eqn{Q}, of length \code{nPa
 Compute the availability of aquatic habitats.
 }
 \details{
-The availability of the habitats that we have defined in the model, denoted \eqn{Q_h}, sums search weights, \eqn{\omega}, by patch
+The availability of the habitats that we have defined in the model, denoted \eqn{Q}, sums search weights, \eqn{\omega_q}, by patch
 using the habitat membership matrix, \eqn{\cal N}, and we can compute
-\deqn{Q_h = {\cal N} \cdot \omega.}
+\deqn{Q = {\cal N} \cdot \omega_q.}
 }
 \seealso{
 This function is called by \link{make_Q}

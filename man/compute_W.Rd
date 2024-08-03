@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{compute_W}
 \alias{compute_W}
-\title{Compute blood feeding availability for hosts}
+\title{Compute availability of humans / hosts for blood feeding}
 \usage{
 compute_W(search_weights, H, TaR)
 }

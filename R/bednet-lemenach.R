@@ -12,12 +12,12 @@ BedNetEffects.lemenach <- function(t, pars, s){
   return(pars)
 }
 
-# https://malariajournal.biomedcentral.com/articles/10.1186/1475-2875-6-10
 #' @title Modify baseline values due to vector control
 #' @description Implements [BedNetEffectSizes] for the Le Menach ITN model of vector control
 #' @inheritParams BedNetEffectSizes
 #' @return a named [list]
 #' @importFrom stats pexp
+#' @seealso [compute_bednet_effect_sizes_lemenach()]
 #' @export
 BedNetEffectSizes.lemenach <- function(t, pars, s){
   with(pars$ITNefsz,

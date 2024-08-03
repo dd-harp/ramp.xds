@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{setup_EGG_LAYING}
 \alias{setup_EGG_LAYING}
-\title{Setup the interface for egg laying}
+\title{Setup Egg Laying}
 \usage{
 setup_EGG_LAYING(pars, membership)
 }
@@ -15,19 +15,29 @@ setup_EGG_LAYING(pars, membership)
 the modified \code{xds} object
 }
 \description{
-Sets up the object that defines the egg laying interface for an \code{xds} object.
+Set up a part of the \code{xds} object that defines the interface for egg laying
 }
 \details{
-Modular computation \code{ramp.xds} defines a rigid interface
-to compute egg laying and emergence for models of mosquito ecology, as described by
-Implementation is defined by an object called \code{EGGpar} found
+Modular computation in \strong{\code{ramp.xds}} requires a rigid interface
+to guarantee mathematical consistency for egg laying and emergence.
+The interface is defined by an object called \code{EGGpar} that is
 attached to the \code{xds} object \code{pars} as \code{pars$EGGpar}.
-The interface was developed around a habitat
-membership matrix, \eqn{\cal N}, a quantity called
-habitat availability \eqn{Q}, and the egg distribution matrix \eqn{\cal U}.
+The interface includes
+\itemize{
+\item a habitat membership matrix, \eqn{\cal N} made by \link{create_habitat_matrix}
+\item a quantity that is motivated by mosquito searching for resources, called
+habitat availability \eqn{Q} made by \link{compute_Q};
+\item the egg distribution matrix \eqn{\cal U}, made by \link{compute_calU}.
+}
+
 This function is called by \code{make_xds_object} to set up \code{EGGpar} and the variables and parameters with all
 the variables it might depend on.
 }
 \references{
 { This implements an enhanced version of the egg laying model in Equations 14-15 from \insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
+}
+\seealso{
+For a discussion of habitat availability, see \code{\link[=compute_Q]{compute_Q()}}
+
+The habitat membership matrix is created by \code{\link[=create_habitat_matrix]{create_habitat_matrix()}}
 }

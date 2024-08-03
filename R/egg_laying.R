@@ -2,20 +2,29 @@
 
 #' @title Create the habitat membership matrix, \eqn{\cal N}
 #' @description The habitat membership matrix, \eqn{\cal N}, holds
-#' information about the patch location for each habitats.
-#' Let \eqn{N_q} denote the number of habitats, `nHabitats`,
-#' and \eqn{N_p} the number of patches, `nPatches`.
-#' If \eqn{w} is any vector describing a quantity in
-#' habitats (*i.e.*, \eqn{\left|w\right|= N_q}), then
-#' \eqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
-#' @details Information about the patch location of each habitat
+#' information about the patch location of each habitat. It is part of
+#' the egg-laying and emergence interface, making it possible
+#' to compute egg laying from patches to habitats; and emergence from habitats to patches.
+#' @details
+#' Information about the patch location of each habitat
 #' is passed as the membership vector, an ordered list of patch locations. If
 #' the \eqn{i^{th}} habitat is in the \eqn{j^{th}} patch, then
-#' \eqn{{\cal N}[j,i]=1.} Otherwise, \eqn{{\cal N}[j,i]=0.}
-#' @param nPatches the number of patches
+#' \eqn{{\cal N}_{j,i}=1.} Otherwise, \eqn{{\cal N}_{j,i}=0.}
+#'
+#' Since \eqn{\cal N} is a matrix, it is readily used for computation. Let:
+#' - \eqn{n_q = } `nHabitats`, the number of habitats;
+#' - \eqn{n_p = } `nPatches`, the number of patches.
+#'
+#' If \eqn{w} is any vector describing a quantity in
+#' habitats (*i.e.*, \eqn{\left|w\right|= n_q}), then
+#' \eqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
+#'
+#' @param nPatches the number of patches, \eqn{N_p}
 #' @param membership a vector describing the patch index for each habitat
 #' @return the habitat membership [matrix], denoted \eqn{\cal N} where \eqn{\left|\cal N\right|= N_p \times N_q}
-#' @seealso to extract habitat membership information, see [view_habitat_matrix]
+#' @seealso to extract habitat membership information, see [view_habitat_matrix()]
+#' @examples
+#' create_habitat_matrix(3, c(1,1,2,2,2))
 #' @export
 create_habitat_matrix = function(nPatches, membership){
   nHabitats = length(membership)
@@ -24,15 +33,18 @@ create_habitat_matrix = function(nPatches, membership){
   return(habitat_matrix)
 }
 
-#' @title Setup the interface for egg laying
-#' @description Sets up the object that defines the egg laying interface for an `xds` object.
-#' @details Modular computation `ramp.xds` defines a rigid interface
-#' to compute egg laying and emergence for models of mosquito ecology, as described by
-#' Implementation is defined by an object called `EGGpar` found
+#' @title Setup Egg Laying
+#' @description Set up a part of the `xds` object that defines the interface for egg laying
+#' @details Modular computation in **`ramp.xds`** requires a rigid interface
+#' to guarantee mathematical consistency for egg laying and emergence.
+#' The interface is defined by an object called `EGGpar` that is
 #' attached to the `xds` object `pars` as `pars$EGGpar`.
-#' The interface was developed around a habitat
-#' membership matrix, \eqn{\cal N}, a quantity called
-#' habitat availability \eqn{Q}, and the egg distribution matrix \eqn{\cal U}.
+#' The interface includes
+#' - a habitat membership matrix, \eqn{\cal N} made by [create_habitat_matrix]
+#' - a quantity that is motivated by mosquito searching for resources, called
+#' habitat availability \eqn{Q} made by [compute_Q];
+#' - the egg distribution matrix \eqn{\cal U}, made by [compute_calU].
+#'
 #' This function is called by `make_xds_object` to set up `EGGpar` and the variables and parameters with all
 #' the variables it might depend on.
 #' @references{ This implements an enhanced version of the egg laying model in Equations 14-15 from \insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
@@ -40,6 +52,8 @@ create_habitat_matrix = function(nPatches, membership){
 #' @param membership is the habitat membership vector
 #' @return the modified `xds` object
 #' @importFrom Rdpack reprompt
+#' @seealso For a discussion of habitat availability, see [compute_Q()]
+#' @seealso The habitat membership matrix is created by [create_habitat_matrix()]
 #' @export
 setup_EGG_LAYING = function(pars, membership){
   up <- list()
@@ -92,11 +106,11 @@ change_habitat_weights = function(pars, searchQ=1, s=1){
 
 #' @title Compute the total availability of egg-laying habitats, \eqn{Q}
 #' @description Compute the availability of aquatic habitats.
-#' @details The availability of the habitats that we have defined in the model, denoted \eqn{Q_h}, sums search weights, \eqn{\omega}, by patch
+#' @details The availability of the habitats that we have defined in the model, denoted \eqn{Q}, sums search weights, \eqn{\omega_q}, by patch
 #' using the habitat membership matrix, \eqn{\cal N}, and we can compute
-#' \deqn{Q_h = {\cal N} \cdot \omega.}
-#' @param habitat_matrix the membership matrix
-#' @param search_weights the habitat search weights
+#' \deqn{Q = {\cal N} \cdot \omega_q.}
+#' @param habitat_matrix the membership matrix, \eqn{\cal N}
+#' @param search_weights the habitat search weights, \eqn{\omega_q}
 #' @return a [vector] of describing habitat availability, \eqn{Q}, of length `nPatches`
 #' @seealso This function is called by [make_Q]
 #' @seealso [create_habitat_matrix] discusses \eqn{\cal N}
@@ -110,9 +124,10 @@ compute_Q = function(habitat_matrix, search_weights){
 #' @title Compute the total availability of egg-laying habitats, \eqn{Q}
 #' @description The sum of aquatic habitats and any other place
 #' a mosquito might lay eggs, including ovitraps and unsuitable habitats.
-#' @details The availability of the habitats that we have defined in the model, denoted \eqn{Q_h}, sums search weights, \eqn{\omega}, by patch
+#' @details The availability of the habitats that we have defined in the model, denoted \eqn{Q},
+#' sums search weights, \eqn{\omega_h}, by patch
 #' using the habitat membership matrix, \eqn{\cal N}, and we can compute
-#' \deqn{Q_h = {\cal N} \cdot \omega.}
+#' \deqn{Q = {\cal N} \cdot \omega_h.}
 #' If some ovitraps and bad_habitats are also available, with values \eqn{Q_o} and \eqn{Q_b} respectively, then
 #' \deqn{Q = Q_h + Q_o + Q_b.}
 #' The availability of habitats, ovitraps and bad_habitats are computed elsewhere and stored on `pars$vars`.
@@ -226,6 +241,7 @@ make_eggs_laid = function(t, y, pars){
 #' @param y the state variables
 #' @param pars an `xds` object
 #' @return the modified `xds` object
+#' @seealso [setup_EGG_LAYING()]
 #' @export
 EggLaying = function(t, y, pars){
   UseMethod("EggLaying", pars$EGGpar)
@@ -276,15 +292,15 @@ EggLaying.dynamic = function(t, y, pars){
   return(pars)
 }
 
-#' @title View habitat membership
-#' @description Shows the habitat membership information from \eqn{\cal N}
+#' @title View habitat membership, \eqn{\cal N}
+#' @description Output the habitat membership information as a list
 #' @param pars an `xds` object
-#' @return a named [list]
-#' @seealso [create_habitat_matrix]
+#' @return a [list]
+#' @seealso [create_habitat_matrix()]
 #' @export
 view_habitat_matrix = function(pars){
   which(t(pars$habitat_matrix)==1, arr.ind=TRUE) -> membership
-  hab <- list(habitat_index = membership[,1], patch_membership = membership[,2])
-  return(hab)
+  member <- list(habitat_index = as.vector(membership[,1]), patch_membership = as.vector(membership[,2]))
+  return(member)
 }
 

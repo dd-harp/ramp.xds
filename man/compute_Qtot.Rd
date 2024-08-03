@@ -21,9 +21,10 @@ The sum of aquatic habitats and any other place
 a mosquito might lay eggs, including ovitraps and unsuitable habitats.
 }
 \details{
-The availability of the habitats that we have defined in the model, denoted \eqn{Q_h}, sums search weights, \eqn{\omega}, by patch
+The availability of the habitats that we have defined in the model, denoted \eqn{Q},
+sums search weights, \eqn{\omega_h}, by patch
 using the habitat membership matrix, \eqn{\cal N}, and we can compute
-\deqn{Q_h = {\cal N} \cdot \omega.}
+\deqn{Q = {\cal N} \cdot \omega_h.}
 If some ovitraps and bad_habitats are also available, with values \eqn{Q_o} and \eqn{Q_b} respectively, then
 \deqn{Q = Q_h + Q_o + Q_b.}
 The availability of habitats, ovitraps and bad_habitats are computed elsewhere and stored on \code{pars$vars}.

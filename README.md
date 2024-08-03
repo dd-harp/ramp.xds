@@ -1,6 +1,6 @@
-# **`ramp.xds`**  
+# **`ramp.xds`**   
 
-## **RAMP** - e**X**tensible **D**ynamical **S**ystems
+## **RAMP** - e**X**tensible **D**ynamical **S**ystems: a computational framework for malaria and other mosquito-borne pathogens
 
 <!-- badges: start -->
 [![PLoS Computational Biology](https://img.shields.io/badge/doi%3A10.1371%2Fjournal.pcbi.1010684-cornflowerblue?style=for-the-badge&logoColor=cornflowerblue&label=PLoS%20Comp%20Bio&labelColor=slategrey&link=https%3A%2F%2Fjournals.plos.org%2Fploscompbiol%2Farticle%3Fid%3D10.1371%2Fjournal.pcbi.1010684)](https://doi.org/10.1371/journal.pcbi.1010684)
@@ -9,7 +9,7 @@
 
 ## What is RAMP?
 
-RAMP, or **R**obust **A**nalytics for **M**alaria **P**olicy, is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty using conventional and simulation-based analytics.  
+RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty in analysis using conventional and simulation-based analytics.  
 
 ## What is **`ramp.xds`**?
 
@@ -23,7 +23,7 @@ RAMP, or **R**obust **A**nalytics for **M**alaria **P**olicy, is a bespoke infer
 
 + A large set of models illustrating capabilities are found in [**`ramp.malaria`**](https://dd-harp.github.io/ramp.malaria/). 
 
-**`ramp.xds`**  is under active development. It is the continuation of two other software packages, now deprecated: [**`exDE`**](https://dd-harp.github.io/exDE/) and [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB/). 
+**`ramp.xds`**  is under active development. It supersedes two other software packages, no longer under active development: [**`exDE`**](https://dd-harp.github.io/exDE/) and [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB/). 
 
 
 ## Installation
@@ -43,7 +43,7 @@ There are several advantages to using **`ramp.xds`**:
 
 + **`ramp.library`** includes a large set of published models. 
 
-+ All the code has been verified and tested. If you're publishing a model family that is not already in *ramp.library,* you can write us and we'll help you add it to the growing collection. 
++ All the code has been verified and tested. If you're working on a model family that is not already in *ramp.library,* you can write us and we'll help you add it to the growing collection. 
 
 + It should be comparatively easy to replicate your study in *ramp.xds.* It’s also easy for others to replicate your study.
 
