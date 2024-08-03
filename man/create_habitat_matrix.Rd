@@ -34,7 +34,7 @@ Since \eqn{\cal N} is a matrix, it is readily used for computation. Let:
 
 If \eqn{w} is any vector describing a quantity in
 habitats (\emph{i.e.}, \eqn{\left|w\right|= n_q}), then
-\eqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
+\deqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
 }
 \examples{
 create_habitat_matrix(3, c(1,1,2,2,2))

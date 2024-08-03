@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-nb.R
 \name{F_foi.nb}
 \alias{F_foi.nb}
-\title{The daily FoI as a function of the daily EIR under a negative binomial model of exposure.}
+\title{A negative binomial model for Exposure}
 \usage{
 \method{F_foi}{nb}(eir, b, pars)
 }
@@ -11,11 +11,18 @@
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_foi} for a negative binomial model
+Compute the daily FoI, \eqn{h},
+given the daily EIR, \eqn{E},
+under a negative binomial model for the distribution
+of bites per person, and \eqn{b}, the probability of
+infection per infective bite:
+\deqn{h = \log{1 + b E}/\phi}
+The model is parameterized using the \strong{mu} \eqn{= E} and \strong{sz} \eqn{= 1/\phi}
+parameterization.
 }

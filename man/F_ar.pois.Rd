@@ -2,20 +2,23 @@
 % Please edit documentation in R/exposure-pois.R
 \name{F_ar.pois}
 \alias{F_ar.pois}
-\title{A Poisson model for the daily attack rate as a function of the daily EIR.}
+\title{A Poisson model for Exposure}
 \usage{
 \method{F_ar}{pois}(eir, b, pars)
 }
 \arguments{
-\item{eir}{the daily eir for each stratum}
-
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-a \link{numeric} vector of length \code{nStrata}
+dEIR as a \link{numeric} vector of length \eqn{n_h=}\code{nStrata}
 }
 \description{
-Implements \link{F_ar} for a Poisson model
+Compute the daily AR, \eqn{\alpha},
+given the daily EIR, \eqn{E},
+under a Poisson modelfor the distribution
+of bites per person, and \eqn{b}, the probability of
+infection per infective bite:
+\deqn{\alpha = 1 - e^{- b E}}
 }

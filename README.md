@@ -13,18 +13,17 @@ RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- is a bespoke infe
 
 ## What is **`ramp.xds`**?
 
-**`ramp.xds`** is an R software package that supports simulation-based analytics for RAMP. It's function is to set up, analyze, and solve dynamical systems describing malaria epidemiology, transmission dynamics, and control. The structure can also support analytics for other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework for modular model building, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) (Wu SL, *et al.* 2023. PLoS Computational Biology)^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. 
+**`ramp.xds`** is an R software package that supports simulation-based analytics for RAMP. It's function is to set up, analyze, and solve dynamical systems describing malaria epidemiology, transmission dynamics, and control. **`ramp.xds`** also supports analytics for other mosquito-borne pathogens. The software was designed around a rigorous mathematical framework for modular model building, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) (Wu SL, *et al.* 2023. PLoS Computational Biology)^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. The framework has been extended to cover *exogenous forcing* by weather and vector control.
 
-**`ramp.xds`** is part of a suite of R packages to support RAMP simulation-based analytics. Supporting packages include: 
+**`ramp.xds`** does core computation for simulation-based analytics as part of a suite of R packages. Other packages include: 
 
-+ An extended library of stable, tested, and reusable code implementing previously published model families for *ramp.xds* is maintained in [**`ramp.library`**](https://dd-harp.github.io/ramp.library/).
++ An extended library of stable, tested, and reusable code implementing previously published model families for **`ramp.xds'** is maintained in [**`ramp.library`**](https://dd-harp.github.io/ramp.library/).
 
-+ Algorithms to apply the framework, include code to fit models to data, is found in [**`ramp.work`**](https://dd-harp.github.io/ramp.work/). 
++ Algorithms to apply the framework, include code to fit models to data, are found in [**`ramp.work`**](https://dd-harp.github.io/ramp.work/). 
 
 + A large set of models illustrating capabilities are found in [**`ramp.malaria`**](https://dd-harp.github.io/ramp.malaria/). 
 
-**`ramp.xds`**  is under active development. It supersedes two other software packages, no longer under active development: [**`exDE`**](https://dd-harp.github.io/exDE/) and [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB/). 
-
+**`ramp.xds`**  is under active development. It supersedes two other software packages, no longer under active development: [**`exDE`**](https://dd-harp.github.io/exDE/) and [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB/). (for more, please read about the [history of RAMP software](https://dd-harp.github.io/ramp.xds/articles/History.html)).
 
 ## Installation
 

@@ -9,7 +9,7 @@ setup_exposure_nb(pars, sz)
 \arguments{
 \item{pars}{an \code{xds} object}
 
-\item{sz}{the size parameter, as in dnbinom(mu=mu, size=size)}
+\item{sz}{the size parameter, as in \link{dnbinom}(mu=mu, size=sz)}
 }
 \value{
 the modified \code{xds} object
