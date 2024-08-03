@@ -148,16 +148,12 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>eir</dt>
-<dd><p>the daily eir for each stratum</p></dd>
-
-
-<dt>b</dt>
+    <dl><dt>b</dt>
 <dd><p>the probability of infection, per bite</p></dd>
 
 
 <dt>pars</dt>
-<dd><p>an <code>xds</code> object</p></dd>
+<dd><p>an <strong><code>xds</code></strong> object</p></dd>
 
 </dl></div>
     <div id="value">
@@ -167,6 +163,17 @@
 <p>a <a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector of length <code>nStrata</code></p>
 
 
+    </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>Compute the daily AR, \(h\),
+given the daily EIR, \(E\),
+under a negative binomial model for the distribution
+of bites per person, and \(b\), the probability of
+infection per infective bite:
+$$\alpha = 1-(1 + b E/\phi)^{-\phi} $$
+The model is parameterized using the <strong>mu</strong> \(= E\) and <strong>sz</strong> \(=\phi\)
+parameterization. The expression is the complement of the zero term.</p>
     </div>
 
   </div>

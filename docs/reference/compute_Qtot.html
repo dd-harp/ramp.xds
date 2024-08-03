@@ -171,9 +171,10 @@ a mosquito might lay eggs, including ovitraps and unsuitable habitats.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>The availability of the habitats that we have defined in the model, denoted \(Q_h\), sums search weights, \(\omega\), by patch
+    <p>The availability of the habitats that we have defined in the model, denoted \(Q\),
+sums search weights, \(\omega_h\), by patch
 using the habitat membership matrix, \(\cal N\), and we can compute
-$$Q_h = {\cal N} \cdot \omega.$$
+$$Q = {\cal N} \cdot \omega_h.$$
 If some ovitraps and bad_habitats are also available, with values \(Q_o\) and \(Q_b\) respectively, then
 $$Q = Q_h + Q_o + Q_b.$$
 The availability of habitats, ovitraps and bad_habitats are computed elsewhere and stored on <code>pars$vars</code>.</p>
