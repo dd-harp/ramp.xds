@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-nb.R
 \name{F_foi.nb}
 \alias{F_foi.nb}
-\title{A negative binomial model for Exposure}
+\title{Negative Binomial Force of Infection}
 \usage{
 \method{F_foi}{nb}(eir, b, pars)
 }
@@ -17,12 +17,20 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Compute the daily FoI, \eqn{h},
-given the daily EIR, \eqn{E},
+Compute the daily FoI from the daily EIR
+under a negative binomial model for exposure
+}
+\details{
+The daily FoI, \eqn{h} is computed as a function of
+the daily EIR, \eqn{E},
 under a negative binomial model for the distribution
 of bites per person, and \eqn{b}, the probability of
 infection per infective bite:
-\deqn{h = \log{1 + b E}/\phi}
-The model is parameterized using the \strong{mu} \eqn{= E} and \strong{sz} \eqn{= 1/\phi}
-parameterization.
+\deqn{h = \phi \log{\frac{1 + b E}\phi}}
+The expression is derived by solving the expression in \link{F_ar.nb} for \eqn{E}
+This negative binomial model uses the \strong{mu} \eqn{= E} and \strong{size} \eqn{=\phi}
+parameterization (see \link{pnbinom}).
+}
+\seealso{
+\code{\link[=F_ar.nb]{F_ar.nb()}}
 }

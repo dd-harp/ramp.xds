@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-pois.R
 \name{setup_exposure_pois}
 \alias{setup_exposure_pois}
-\title{Set up the Poisson model of exposure}
+\title{Set up a Poisson model for Exposure and Infection}
 \usage{
 setup_exposure_pois(pars)
 }
@@ -13,5 +13,5 @@ setup_exposure_pois(pars)
 the modified \strong{\code{xds}} object
 }
 \description{
-Set up the Poisson model of exposure
+Set up a Poisson model for Exposure and Infection
 }

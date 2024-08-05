@@ -81,7 +81,7 @@ F_foi <- function(eir, b, pars){
 #' that describe partial immunity, *e.g.* affecting
 #' pre-erythrocytic immunity to malaria called
 #' by [F_b], those effects are implemented here.
-#' @param foi the attack rate
+#' @param eir the daily eir for each stratum
 #' @param b the probability of infection, per bite
 #' @param pars an **`xds`** object
 #' @return the local ARs as a [numeric] vector of length \eqn{n_h =} `nStrata`

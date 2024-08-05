@@ -1,7 +1,8 @@
 
-#' @title A Poisson model for Exposure
-#' @description Compute the daily FoI, \eqn{h},
-#' given the daily EIR, \eqn{E},
+#' @title Poisson Force of Infection
+#' @description A Poisson model for the force of infection as a function of the daily EIR.
+#' @details Compute the daily FoI, \eqn{h},
+#' as a given the daily EIR, \eqn{E},
 #' under a Poisson model for the distribution
 #' of bites per person, and \eqn{b}, the probability of
 #' infection per infective bite:
@@ -13,13 +14,15 @@ F_foi.pois <- function(eir, b, pars){
   b*eir
 }
 
-#' @title A Poisson model for Exposure
+#' @title Poisson Attack Rates
+#' @description A Poisson model for attack rates as a function of the daily EIR.
 #' @description Compute the daily AR, \eqn{\alpha},
 #' given the daily EIR, \eqn{E},
 #' under a Poisson modelfor the distribution
 #' of bites per person, and \eqn{b}, the probability of
 #' infection per infective bite:
 #' \deqn{\alpha = 1 - e^{- b E}}
+#' The expression is equivalent to `ppois(0, b*eir, lower.tail=FALSE)`
 #' @inheritParams F_ar
 #' @return dEIR as a [numeric] vector of length \eqn{n_h=}`nStrata`
 #' @export
@@ -46,7 +49,7 @@ foi2eir.pois <- function(foi, b, pars){
    foi/b
 }
 
-#' @title Set up the Poisson model of exposure
+#' @title Set up a Poisson model for Exposure and Infection
 #' @param pars an **`xds`** object
 #' @return the modified **`xds`** object
 #' @export
@@ -54,7 +57,7 @@ setup_exposure_pois <- function(pars) {
   UseMethod("setup_exposure_pois", pars$xds)
 }
 
-#' @title Set up Poisson Exposure for `xde`
+#' @title Set up Poisson Exposure and Infection for `xde`
 #' @description Set up the Poisson model for
 #' exposure for continuous time models
 #' @param pars an **`xds`** object
@@ -68,7 +71,7 @@ setup_exposure_pois.xde <- function(pars) {
   return(pars)
 }
 
-#' @title Set up Poisson Exposure for `dts`
+#' @title Set up Poisson Exposure and Infection for `dts`
 #' @description Set up the Poisson model for
 #' exposure for discrete time systems
 #' @param pars an **`xds`** object

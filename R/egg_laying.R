@@ -17,12 +17,13 @@
 #'
 #' If \eqn{w} is any vector describing a quantity in
 #' habitats (*i.e.*, \eqn{\left|w\right|= n_q}), then
-#' \deqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
+#' \deqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= n_p}.
 #'
-#' @param nPatches the number of patches, \eqn{N_p}
+#' @param nPatches the number of patches, \eqn{n_p}
 #' @param membership a vector describing the patch index for each habitat
-#' @return the habitat membership [matrix], denoted \eqn{\cal N} where \eqn{\left|\cal N\right|= N_p \times N_q}
-#' @seealso to extract habitat membership information, see [view_habitat_matrix()]
+#' @return the habitat membership [matrix], denoted \eqn{\cal N} where \eqn{\left|\cal N\right|= n_p \times n_q}
+#' @seealso create_habitat matrix is called by [make_xds_object()] and [setup_EGG_LAYING()]
+#' @seealso see [view_habitat_matrix()]
 #' @examples
 #' create_habitat_matrix(3, c(1,1,2,2,2))
 #' @export

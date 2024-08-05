@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-pois.R
 \name{setup_exposure_pois.xde}
 \alias{setup_exposure_pois.xde}
-\title{Set up Poisson Exposure for \code{xde}}
+\title{Set up Poisson Exposure and Infection for \code{xde}}
 \usage{
 \method{setup_exposure_pois}{xde}(pars)
 }

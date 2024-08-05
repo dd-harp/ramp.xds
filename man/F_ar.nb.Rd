@@ -2,11 +2,13 @@
 % Please edit documentation in R/exposure-nb.R
 \name{F_ar.nb}
 \alias{F_ar.nb}
-\title{A negative binomial model for the attack rate as a function of the daily EIR.}
+\title{Negative Binomial Attack Rates}
 \usage{
 \method{F_ar}{nb}(eir, b, pars)
 }
 \arguments{
+\item{eir}{the daily eir for each stratum}
+
 \item{b}{the probability of infection, per bite}
 
 \item{pars}{an \strong{\code{xds}} object}
@@ -15,15 +17,17 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_ar} for a negative binomial model
+A negative binomial model for the attack rate as a function of the daily EIR.
 }
 \details{
-Compute the daily AR, \eqn{h},
-given the daily EIR, \eqn{E},
+Compute the daily AR, \eqn{h} or \code{foi}, as a function
+of the daily EIR, \eqn{E} or \code{eir},
 under a negative binomial model for the distribution
 of bites per person, and \eqn{b}, the probability of
 infection per infective bite:
 \deqn{\alpha = 1-(1 + b E/\phi)^{-\phi} }
-The model is parameterized using the \strong{mu} \eqn{= E} and \strong{sz} \eqn{=\phi}
-parameterization. The expression is the complement of the zero term.
+This negative binomial model uses the \strong{mu} \eqn{= E} and \strong{size} \eqn{=\phi}
+parameterization (see \link{pnbinom}).
+The formula is equivalent to
+\code{pnbinom(0, mu=b*eir, size=phi, lower.tail=FALSE)}
 }

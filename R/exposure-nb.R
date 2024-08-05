@@ -1,15 +1,20 @@
 
-#' @title A negative binomial model for Exposure
-#' @description Compute the daily FoI, \eqn{h},
-#' given the daily EIR, \eqn{E},
+#' @title Negative Binomial Force of Infection
+#' @description Compute the daily FoI from the daily EIR
+#' under a negative binomial model for exposure
+#' @details
+#' The daily FoI, \eqn{h} is computed as a function of
+#' the daily EIR, \eqn{E},
 #' under a negative binomial model for the distribution
 #' of bites per person, and \eqn{b}, the probability of
 #' infection per infective bite:
-#' \deqn{h = \log{1 + b E}/\phi}
-#' The model is parameterized using the **mu** \eqn{= E} and **sz** \eqn{= 1/\phi}
-#' parameterization.
+#' \deqn{h = \phi \log{\frac{1 + b E}\phi}}
+#' The expression is derived by solving the expression in [F_ar.nb] for \eqn{E}
+#' This negative binomial model uses the **mu** \eqn{= E} and **size** \eqn{=\phi}
+#' parameterization (see [pnbinom]).
 #' @inheritParams F_foi
 #' @return a [numeric] vector of length `nStrata`
+#' @seealso [F_ar.nb()]
 #' @export
 F_foi.nb <- function(eir, b, pars){
   log(1 + b*eir/pars$FoIpar$sz)*pars$FoIpar$sz
@@ -23,8 +28,6 @@ F_foi.nb <- function(eir, b, pars){
 #' of bites per person, and \eqn{b}, the probability of
 #' infection per infective bite:
 #' \deqn{\alpha = \left(e^{h/\phi} -1\right) \frac \phi b }
-#' The model is parameterized using the **mu** \eqn{= E} and **sz** \eqn{= 1/\phi}
-#' parameterization. The expression is the complement of the zero term.
 #' @inheritParams foi2eir
 #' @return a [numeric] vector of length `nStrata`
 #' @export
@@ -32,16 +35,18 @@ foi2eir.nb <- function(foi, b, pars){
   (exp(foi/pars$ARpar$sz) - 1)*pars$ARpar$sz/b
 }
 
-#' @title A negative binomial model for the attack rate as a function of the daily EIR.
-#' @description Implements [F_ar] for a negative binomial model
-#' @details Compute the daily AR, \eqn{h},
-#' given the daily EIR, \eqn{E},
+#' @title Negative Binomial Attack Rates
+#' @description A negative binomial model for the attack rate as a function of the daily EIR.
+#' @details Compute the daily AR, \eqn{h} or `foi`, as a function
+#' of the daily EIR, \eqn{E} or `eir`,
 #' under a negative binomial model for the distribution
 #' of bites per person, and \eqn{b}, the probability of
 #' infection per infective bite:
 #' \deqn{\alpha = 1-(1 + b E/\phi)^{-\phi} }
-#' The model is parameterized using the **mu** \eqn{= E} and **sz** \eqn{=\phi}
-#' parameterization. The expression is the complement of the zero term.
+#' This negative binomial model uses the **mu** \eqn{= E} and **size** \eqn{=\phi}
+#' parameterization (see [pnbinom]).
+#' The formula is equivalent to
+#' `pnbinom(0, mu=b*eir, size=phi, lower.tail=FALSE)`
 #' @inheritParams F_ar
 #' @return a [numeric] vector of length `nStrata`
 #' @export

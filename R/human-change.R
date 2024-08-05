@@ -9,7 +9,7 @@ change_H = function(H, pars, i=1){
   stopifnot(length(H) == pars$nStrata[i])
   vars = as.list(get_Xinits(pars,i))
   make_Xinits(pars, H, i, vars)
-  class(pars$BFpar) <- 'setup'
+  class(pars$BFpar) <- setup_setup(pars$BFpar)
   class(pars$beta) <- 'setup'
   return(pars)
 }

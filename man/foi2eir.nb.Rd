@@ -26,6 +26,4 @@ under a negative binomial model for the distribution
 of bites per person, and \eqn{b}, the probability of
 infection per infective bite:
 \deqn{\alpha = \left(e^{h/\phi} -1\right) \frac \phi b }
-The model is parameterized using the \strong{mu} \eqn{= E} and \strong{sz} \eqn{= 1/\phi}
-parameterization. The expression is the complement of the zero term.
 }
