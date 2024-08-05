@@ -22,3 +22,8 @@ total blood host availability, \eqn{B},
 the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi}
 for static models.
 }
+\details{
+The mixing matrix, \eqn{\beta}, depends on
+blood feeding terms, so the class of \code{pars$beta} must also
+be updated, if they are not dynamic, so \link{setup_setup} is called.
+}

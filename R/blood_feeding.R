@@ -2,16 +2,26 @@
 #' @title Create the residence matrix, \eqn{\cal J}
 #' @description The residence matrix, \eqn{\cal J}, holds
 #' information about the location of home for each human population stratum.
-#' If \eqn{w} is any vector describing a quantity in strata (*i.e.*, \eqn{\left|w\right|=} `nStrata`), then
-#' \eqn{W={\cal J}\cdot w} is a vector that has summed \eqn{w} by residency for the strata, and \eqn{\left|W\right|=} `nPatches`.
+#' It is part of the blood feeding and transmission interface. The residence matrix
+#' is the template for the time spent matrix and time at risk matrix, making it possible
+#' to compute mosquito parameters describing blood feeding, the mixing matrix,
+#' and terms describing transmission.
 #' @details Information about residence in a patch location for each stratum
 #' is passed as the residence vector, an ordered list of patch locations. If
 #' the \eqn{i^{th}} stratum lives in the \eqn{j^{th}} patch, then
-#' \eqn{{\cal J}[j,i]=1.} other_bloodwise, \eqn{{\cal J}[j,i]=0.}
+#' \eqn{{\cal J}_{j,i}=1.} Otherwise, \eqn{{\cal J}_{j,i}=0.}
+#'
+#' Since \eqn{\cal J} is a matrix, it is readily used for computation. Let:
+#' - \eqn{n_h = } `nStrata`, the number of population strata;
+#' - \eqn{n_p = } `nPatches`, the number of patches.
+#'
+#' If \eqn{w} is any vector describing a quantity in strata (*i.e.*, \eqn{\left|w\right|=n_h}), then
+#' \deqn{W={\cal J}\cdot w} is a vector that has summed \eqn{w} by residency for the strata, and \eqn{\left|W\right|= n_p}.
 #' @param nPatches the number of patches
 #' @param residence a vector describing the patch index for each habitat
-#' @return the residence [matrix], denoted \eqn{\cal J} where \eqn{\left|\cal J\right|=}`nPatches` \eqn{\times} `nStrata`
-#' @seealso to extract habitat residence information, see [view_residence_matrix]
+#' @return the residence [matrix], denoted \eqn{\cal J} where \eqn{\left|\cal J\right|= n_p \times n_h}
+#' @seealso see [setup_BLOOD_FEEDING]
+#' @seealso see [view_residence_matrix]
 #' @export
 create_residence_matrix = function(nPatches, residence){
   nStrata = length(residence)
@@ -277,6 +287,9 @@ BloodFeeding = function(t, y, pars){
 #' total blood host availability, \eqn{B},
 #' the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi}
 #' for static models.
+#' @details The mixing matrix, \eqn{\beta}, depends on
+#' blood feeding terms, so the class of `pars$beta` must also
+#' be updated, if they are not dynamic, so [setup_setup] is called.
 #' @inheritParams BloodFeeding
 #' @return the modified `xds` object
 #' @export
@@ -284,6 +297,7 @@ BloodFeeding.setup = function(t, y, pars){
   class(pars$BFpar) <- 'dynamic'
   pars <- BloodFeeding(t,y,pars)
   class(pars$BFpar) <- 'static'
+  pars$beta <- setup_setup(pars$beta)
   return(return(pars))
 }
 
@@ -318,8 +332,8 @@ BloodFeeding.dynamic = function(t, y, pars){
 #' @return a named [list]
 #' @seealso [create_residence_matrix]
 #' @export
-view_residence_matrix = function(pars){
-  which(t(pars$residence_matrix)==1, arr.ind=TRUE) -> residence
+view_residence_matrix = function(pars, i=1){
+  which(t(pars$residence_matrix[[i]])==1, arr.ind=TRUE) -> residence
   res <- list(stratum = as.vector(residence[1,]), residence_patch = as.vector(residence[2,]))
   return(res)
 }

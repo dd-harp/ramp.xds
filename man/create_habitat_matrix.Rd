@@ -7,12 +7,12 @@
 create_habitat_matrix(nPatches, membership)
 }
 \arguments{
-\item{nPatches}{the number of patches, \eqn{N_p}}
+\item{nPatches}{the number of patches, \eqn{n_p}}
 
 \item{membership}{a vector describing the patch index for each habitat}
 }
 \value{
-the habitat membership \link{matrix}, denoted \eqn{\cal N} where \eqn{\left|\cal N\right|= N_p \times N_q}
+the habitat membership \link{matrix}, denoted \eqn{\cal N} where \eqn{\left|\cal N\right|= n_p \times n_q}
 }
 \description{
 The habitat membership matrix, \eqn{\cal N}, holds
@@ -34,11 +34,13 @@ Since \eqn{\cal N} is a matrix, it is readily used for computation. Let:
 
 If \eqn{w} is any vector describing a quantity in
 habitats (\emph{i.e.}, \eqn{\left|w\right|= n_q}), then
-\deqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= N_p}.
+\deqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= n_p}.
 }
 \examples{
 create_habitat_matrix(3, c(1,1,2,2,2))
 }
 \seealso{
-to extract habitat membership information, see \code{\link[=view_habitat_matrix]{view_habitat_matrix()}}
+create_habitat matrix is called by \code{\link[=make_xds_object]{make_xds_object()}} and \code{\link[=setup_EGG_LAYING]{setup_EGG_LAYING()}}
+
+see \code{\link[=view_habitat_matrix]{view_habitat_matrix()}}
 }

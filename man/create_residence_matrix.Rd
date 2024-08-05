@@ -12,20 +12,33 @@ create_residence_matrix(nPatches, residence)
 \item{residence}{a vector describing the patch index for each habitat}
 }
 \value{
-the residence \link{matrix}, denoted \eqn{\cal J} where \eqn{\left|\cal J\right|=}\code{nPatches} \eqn{\times} \code{nStrata}
+the residence \link{matrix}, denoted \eqn{\cal J} where \eqn{\left|\cal J\right|= n_p \times n_h}
 }
 \description{
 The residence matrix, \eqn{\cal J}, holds
 information about the location of home for each human population stratum.
-If \eqn{w} is any vector describing a quantity in strata (\emph{i.e.}, \eqn{\left|w\right|=} \code{nStrata}), then
-\eqn{W={\cal J}\cdot w} is a vector that has summed \eqn{w} by residency for the strata, and \eqn{\left|W\right|=} \code{nPatches}.
+It is part of the blood feeding and transmission interface. The residence matrix
+is the template for the time spent matrix and time at risk matrix, making it possible
+to compute mosquito parameters describing blood feeding, the mixing matrix,
+and terms describing transmission.
 }
 \details{
 Information about residence in a patch location for each stratum
 is passed as the residence vector, an ordered list of patch locations. If
 the \eqn{i^{th}} stratum lives in the \eqn{j^{th}} patch, then
-\eqn{{\cal J}[j,i]=1.} other_bloodwise, \eqn{{\cal J}[j,i]=0.}
+\eqn{{\cal J}_{j,i}=1.} Otherwise, \eqn{{\cal J}_{j,i}=0.}
+
+Since \eqn{\cal J} is a matrix, it is readily used for computation. Let:
+\itemize{
+\item \eqn{n_h = } \code{nStrata}, the number of population strata;
+\item \eqn{n_p = } \code{nPatches}, the number of patches.
+}
+
+If \eqn{w} is any vector describing a quantity in strata (\emph{i.e.}, \eqn{\left|w\right|=n_h}), then
+\deqn{W={\cal J}\cdot w} is a vector that has summed \eqn{w} by residency for the strata, and \eqn{\left|W\right|= n_p}.
 }
 \seealso{
-to extract habitat residence information, see \link{view_residence_matrix}
+see \link{setup_BLOOD_FEEDING}
+
+see \link{view_residence_matrix}
 }

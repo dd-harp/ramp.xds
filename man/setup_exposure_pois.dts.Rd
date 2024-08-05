@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure-pois.R
 \name{setup_exposure_pois.dts}
 \alias{setup_exposure_pois.dts}
-\title{Set up Poisson Exposure for \code{dts}}
+\title{Set up Poisson Exposure and Infection for \code{dts}}
 \usage{
 \method{setup_exposure_pois}{dts}(pars)
 }

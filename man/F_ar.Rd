@@ -7,11 +7,11 @@
 F_ar(eir, b, pars)
 }
 \arguments{
+\item{eir}{the daily eir for each stratum}
+
 \item{b}{the probability of infection, per bite}
 
 \item{pars}{an \strong{\code{xds}} object}
-
-\item{foi}{the attack rate}
 }
 \value{
 the local ARs as a \link{numeric} vector of length \eqn{n_h =} \code{nStrata}

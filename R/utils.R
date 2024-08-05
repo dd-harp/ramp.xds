@@ -165,3 +165,42 @@ last_to_inits <- function(pars){
   pars <- update_inits(pars$outputs$orbits$y_last, pars)
   return(pars)
 }
+
+#' @title Setup setup
+#' @param obj an object
+#' @return the modified object
+#' @export
+setup_setup = function(obj){
+  UseMethod("setup_setup", obj)
+}
+
+#' @title Setup setup
+#' @description Change the class of an object from
+#' `static` to `setup`
+#' @param obj an object
+#' @return the modified object
+#' @export
+setup_setup.static = function(obj){
+  class(obj) <- 'obj'
+  return(obj)
+}
+
+#' @title Setup setup
+#' @description Don't change the class of an object if it is
+#' already `setup`
+#' @param obj an object
+#' @return the modified object
+#' @export
+setup_setup.setup = function(obj){
+  return(obj)
+}
+
+#' @title Setup setup
+#' @description Don't change the class of an object to
+#' `setup` if it is `dynamic`
+#' @param obj an object
+#' @return the modified object
+#' @export
+setup_setup.dynamic = function(obj){
+  return(obj)
+}

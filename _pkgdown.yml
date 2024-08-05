@@ -1020,6 +1020,10 @@ reference:
   - checkIt
   - shapeIt
   - list_vars
+  - setup_setup
+  - setup_setup.static
+  - setup_setup.setup
+  - setup_setup.dynamic
 - subtitle: Functions
   desc: |
     Basic visualization of the transmission terms

@@ -4,7 +4,7 @@
 \alias{view_residence_matrix}
 \title{View residence membership}
 \usage{
-view_residence_matrix(pars)
+view_residence_matrix(pars, i = 1)
 }
 \arguments{
 \item{pars}{an \code{xds} object}
