@@ -80,9 +80,6 @@ and malaria importation through travel:
 }
 }
 }
-\note{
-setup requires that \code{length(residence) == length(HPop)}
-}
 \seealso{
 \code{\link[=xds_setup]{xds_setup()}}
 }

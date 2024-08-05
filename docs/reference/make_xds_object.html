@@ -207,7 +207,7 @@ in some form (possible the trace case) (see <code><a href="xds_setup.html">xds_s
 <li><p><em><code>nHabitats</code></em> or \(n_q\) is the number of aquatic habitats is <code>length(membership)</code></p></li>
 <li><p><em><code>nStrata</code></em> or \(n_q\) is the number of human population strata is <code>length(HPop)</code></p></li>
 </ul><p>Next, the function sets up egg laying, blood feeding, and transmission:</p><ul><li><p><strong>Egg Laying</strong> is set up by calling <code><a href="create_habitat_matrix.html">create_habitat_matrix()</a></code> and then <code><a href="setup_EGG_LAYING.html">setup_EGG_LAYING()</a></code></p></li>
-<li><p><strong>Blood Feeding</strong> is set up by calling <code><a href="create_residence_matrix.html">create_residence_matrix()</a></code>and then calls <code>setup_BLOOD_FEEING()</code>:</p></li>
+<li><p><strong>Blood Feeding</strong> is set up by calling <code><a href="create_residence_matrix.html">create_residence_matrix()</a></code>and then calls <code><a href="setup_BLOOD_FEEDING.html">setup_BLOOD_FEEDING()</a></code>:</p></li>
 <li><p><strong>Transmission</strong>  is set up by calling <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code> and
 <code><a href="setup_visitors_static.html">setup_visitors_static()</a></code> sets up a static model for the availability of visitors, with no visitors</p></li>
 </ul><p>Finally, the function sets up a few other miscellaneous options:</p><ul><li><p><a href="Exposure.html">Exposure</a> is called <em>after</em> <a href="Transmission.html">Transmission</a> to compute environmentally heterogeneous exposure
@@ -215,10 +215,6 @@ and malaria importation through travel:</p><ul><li><p><code><a href="setup_expos
 <li><p><code><a href="setup_travel_static.html">setup_travel_static()</a></code> sets up a model with no exposure through travel</p></li>
 </ul></li>
 </ul></div>
-    <div id="note">
-    <h2>Note</h2>
-    <p>setup requires that <code>length(residence) == length(HPop)</code></p>
-    </div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p><code><a href="xds_setup.html">xds_setup()</a></code></p></div>

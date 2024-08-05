@@ -1,9 +1,8 @@
 
 #' @title Create the residence matrix, \eqn{\cal J}
 #' @description The residence matrix, \eqn{\cal J}, holds
-#' information about the location of home for each human population stratum.
-#' It is part of the blood feeding and transmission interface. The residence matrix
-#' is the template for the time spent matrix and time at risk matrix, making it possible
+#' information about residency for each human population stratum.
+#' It is the template for the time spent and time at risk matrices, making it possible
 #' to compute mosquito parameters describing blood feeding, the mixing matrix,
 #' and terms describing transmission.
 #' @details Information about residence in a patch location for each stratum
@@ -30,18 +29,34 @@ create_residence_matrix = function(nPatches, residence){
   return(calJ)
 }
 
-#' @title Set up the interface for blood feeding
-#' @description Sets up the object that defines the blood feeding interface
-#' for an `xds` model object.
-#' @details Blood feeding is modeled as an interaction among humans and mosquitoes.
-#' `ramp.xds` uses the concept of host availability for blood feeding that is based
-#' on a notion of *searching* for hosts. Each hosts is assigned search weights, \eqn{\omega}
-#' and availability is the sum of those search weights. The total availability of all
-#' vertebrate hosts for blood feeding is \eqn{B} and the availability of humans
-#' (or a pathogen's host species) is \eqn{W}.
-#' These can be used to compute mosquito bionomic parameters. For mosquitoes, blood feeding rates (\eqn{f})
-#' can be computed using *functional responses.* The human fraction is \eqn{W/B}. Availability can
-#' also be used to model mosquito movement.
+#' @title Set up Blood Feeding
+#' @description
+#' Set up a part of the **`xds`** object that defines the interface for blood feeding
+#' @details
+#' This implements a blood feeding model described by Wu SL, *et al.*, (2023).
+#'
+#' Modular computation in ramp.xds requires a rigid interface to
+#' guarantee mathematical consistency for blood feeding and transmission.
+#' The interface is for blood feeding is defined by an object called `BFpar` that
+#' is attached to the **`xds`** object pars as `pars$BFpar`. The blood feeding interface
+#' - the residency matrix \eqn{\cal J}
+#' - a time spent (TiSp) matrix \eqn{\Theta}
+#' - a circadian function `F_circadian` for each vector species
+#' - a time at risk (TaR) matrix \eqn{\Psi} that is the product the TiSp matrix and the circadian function
+#' - blood feeding search weights
+#' - a vector describing \eqn{W}, the availability the population strata for blood feeding: the availability of the parasite/pathogen's hosts
+#' - a vector describing the availability of visitors
+#' - a vector describing the availability of other blood hosts
+#' - a vector describing \eqn{B}, the total availability of all vertebrate blood hosts for blood feeding (see [compute_B()])
+#'
+#' These quantities are used to model transmission (see [setup_TRANSMISSION()]).
+#' Mosquito bionomic parameters *ought* to be consistent. If bionomic parameters are
+#' assigned, there's no guarantee they are internally mathematically consistent or sensible.
+#' These structures make it possible to use the concept of resource availability to
+#' compute the blood feeding rates (\eqn{f})
+#' using *functional responses.* The human fraction ought to be \eqn{q=W/B}.
+#'
+#' Availability can also be used to model mosquito movement.
 #' In models with multiple host species, with availability \eqn{W_i}, the fraction on
 #' each host species would be \eqn{W_i/B}.
 #' In models with multiple vector species, each species could have different search habits and preferences,
@@ -51,9 +66,10 @@ create_residence_matrix = function(nPatches, residence){
 #' For hosts, availability is based on *time spent* in each patch, and *time at risk,* or
 #' time spent by time of day weighted by mosquito species-specific *search weights* reflecting different preferences
 #' and a circadian function describing relative mosquito blood feeding rates by time of day.
-#' @param pars an `xds` object
+#' @param pars an **`xds`** object
 #' @return a [list]
 #' @seealso [setup_TRANSMISSION]
+#' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @export
 setup_BLOOD_FEEDING <- function(pars){
 
@@ -130,39 +146,37 @@ change_blood_weights = function(pars, search_weights=1, s=1, i=1){
   return(pars)
 }
 
-#' @title Compute availability of humans / hosts for blood feeding
+#' @title Compute Host Availability for Blood Feeding
 #' @description
-#' Computes availability of the parasite's / pathogen's hosts to blood feeding
-#' mosquitoes using the concept of search weights and time-at-risk
+#' Compute the availability of the population strata defined
+#' in the model as hosts for blood feeding by mosquitoes
 #' @details
 #' Host availability to blood searching mosquitoes in patches is
 #' the sum of search weights of the human strata, a vector \eqn{\omega},
 #' weighted by time at risk, defined by a matrix \eqn{\Psi}
-#' that is \eqn{N_p \times \N_h}. The search weight is a *per-capita* measure
+#' that is \eqn{n_p \times n_h}. The search weight is a *per-capita* measure
 #' so we weight it by human population density, \eqn{H}. Availability, \eqn{W}
 #' is computed as \deqn{\Psi \cdot (\omega H).}
-#' @references{This function implements equation 3
-#' from \insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
+#' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 #' @param search_weights blood feeding search weights for the host strata
 #' @param H host density
 #' @param TaR the host species index
 #' @return host availability, a [vector]
+#' @seealso Availability of all vertebrate hosts for blood feeding is computed by [compute_B()]
 #' @export
 compute_W = function(search_weights, H, TaR){
   W=TaR %*% (search_weights*H)
   return(as.vector(W))
 }
 
-#' @title Compute blood feeding availability of all vertebrate hosts
+#' @title Compute Vertebrate Host Availability for Blood Feeding
 #' @description
-#' Computes availability all vertebrate hosts to blood feeding
-#' mosquitoes
+#' Compute the availability all vertebrate hosts for blood feeding by mosquitoes
 #' @details
 #' The availability of other vertebrate hosts is a sum of available local
 #' hosts \eqn{W}, and visitors \eqn{W_\delta}, and other available vertebrate hosts, \eqn{O}.
 #' Total availability is a simple sum: \deqn{B = W + W_\delta + O}
-#' @references{This function implements equation 3
-#' from \insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
+#' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 #' @param W availability of the parasite's / pathogen' local hosts
 #' @param visitors availability of *visitors,* or non-resident host populations
 #' @param other_blood availability of other vertebrate hosts

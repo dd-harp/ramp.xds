@@ -18,6 +18,8 @@ the modified \code{xds} object
 Set up a part of the \code{xds} object that defines the interface for egg laying
 }
 \details{
+This implements a model for egg laying described by Wu SL, \emph{et al.}, (2023).
+
 Modular computation in \strong{\code{ramp.xds}} requires a rigid interface
 to guarantee mathematical consistency for egg laying and emergence.
 The interface is defined by an object called \code{EGGpar} that is
@@ -25,16 +27,21 @@ attached to the \code{xds} object \code{pars} as \code{pars$EGGpar}.
 The interface includes
 \itemize{
 \item a habitat membership matrix, \eqn{\cal N} made by \link{create_habitat_matrix}
+\item the habitat search weights
 \item a quantity that is motivated by mosquito searching for resources, called
 habitat availability \eqn{Q} made by \link{compute_Q};
-\item the egg distribution matrix \eqn{\cal U}, made by \link{compute_calU}.
+\item the availability of ovitraps
+\item the availability of unsuitable habitats
+\item the availability of anything that is like a habitat, but that is an aquatic habitat in the model, including ovitraps and unsuitable habitats, \eqn{Q_{tot}} made by \link{compute_Qtot};
+\item the egg distribution matrix \eqn{\cal U}, made by \link{compute_calU}
+\item a vector that stores eggs laid
 }
 
 This function is called by \code{make_xds_object} to set up \code{EGGpar} and the variables and parameters with all
 the variables it might depend on.
 }
 \references{
-{ This implements an enhanced version of the egg laying model in Equations 14-15 from \insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
+{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 }
 \seealso{
 For a discussion of habitat availability, see \code{\link[=compute_Q]{compute_Q()}}

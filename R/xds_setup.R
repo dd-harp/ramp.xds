@@ -217,7 +217,8 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
   pars           <- make_MYZpar("trace", pars, 1, MYZopts)
 
   # Human Dynamics
-  class(pars$Xpar[[1]]) <- "trace"
+  pars$Xname <- "trace"
+  pars <- make_Xpar("trace", pars, 1, list())
 
   pars = make_indices(pars)
   pars$model_name <- model_name

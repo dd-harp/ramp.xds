@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{compute_B}
 \alias{compute_B}
-\title{Compute blood feeding availability of all vertebrate hosts}
+\title{Compute Vertebrate Host Availability for Blood Feeding}
 \usage{
 compute_B(W, visitors, other_blood)
 }
@@ -17,8 +17,7 @@ compute_B(W, visitors, other_blood)
 host availability, a \link{vector}
 }
 \description{
-Computes availability all vertebrate hosts to blood feeding
-mosquitoes
+Compute the availability all vertebrate hosts for blood feeding by mosquitoes
 }
 \details{
 The availability of other vertebrate hosts is a sum of available local
@@ -26,6 +25,5 @@ hosts \eqn{W}, and visitors \eqn{W_\delta}, and other available vertebrate hosts
 Total availability is a simple sum: \deqn{B = W + W_\delta + O}
 }
 \references{
-{This function implements equation 3
-from \insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
+{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 }

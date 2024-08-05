@@ -16,7 +16,10 @@ the modified \code{xds} object
 Sets up the object that defines the transmission interface for an \code{xds} model object.
 }
 \details{
-Transmission
+This implements a model for egg laying described by Wu SL, \emph{et al.}, (2023).
+}
+\references{
+{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 }
 \seealso{
 \link{make_xds_object}

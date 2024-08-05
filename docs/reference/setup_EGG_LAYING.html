@@ -163,20 +163,26 @@
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Modular computation in <strong><code>ramp.xds</code></strong> requires a rigid interface
+    <p>This implements a model for egg laying described by Wu SL, <em>et al.</em>, (2023).</p>
+<p>Modular computation in <strong><code>ramp.xds</code></strong> requires a rigid interface
 to guarantee mathematical consistency for egg laying and emergence.
 The interface is defined by an object called <code>EGGpar</code> that is
 attached to the <code>xds</code> object <code>pars</code> as <code>pars$EGGpar</code>.
 The interface includes</p><ul><li><p>a habitat membership matrix, \(\cal N\) made by <a href="create_habitat_matrix.html">create_habitat_matrix</a></p></li>
+<li><p>the habitat search weights</p></li>
 <li><p>a quantity that is motivated by mosquito searching for resources, called
 habitat availability \(Q\) made by <a href="compute_Q.html">compute_Q</a>;</p></li>
-<li><p>the egg distribution matrix \(\cal U\), made by <a href="compute_calU.html">compute_calU</a>.</p></li>
+<li><p>the availability of ovitraps</p></li>
+<li><p>the availability of unsuitable habitats</p></li>
+<li><p>the availability of anything that is like a habitat, but that is an aquatic habitat in the model, including ovitraps and unsuitable habitats, \(Q_{tot}\) made by <a href="compute_Qtot.html">compute_Qtot</a>;</p></li>
+<li><p>the egg distribution matrix \(\cal U\), made by <a href="compute_calU.html">compute_calU</a></p></li>
+<li><p>a vector that stores eggs laid</p></li>
 </ul><p>This function is called by <code>make_xds_object</code> to set up <code>EGGpar</code> and the variables and parameters with all
 the variables it might depend on.</p>
     </div>
     <div id="references">
     <h2>References</h2>
-    <p>This implements an enhanced version of the egg laying model in Equations 14-15 from Wu SL, Henry JM, Citron DT, Ssebuliba DM, Nsumba JN, C HMS, Brady OJ, Guerra CA, García GA, Carter AR, Ferguson HM, Afolabi BE, Hay SI, Jr RCR, Kiware S, Smith DL (2023).
+    <p>Wu SL, Henry JM, Citron DT, Ssebuliba DM, Nsumba JN, C HMS, Brady OJ, Guerra CA, García GA, Carter AR, Ferguson HM, Afolabi BE, Hay SI, Jr RCR, Kiware S, Smith DL (2023).
 “Spatial dynamics of malaria transmission.”
 <em>PLOS Computational Biology</em>, <b>19</b>(6), e1010684.
 <a href="https://doi.org/10.1371/journal.pcbi.1010684" class="external-link">doi:10.1371/journal.pcbi.1010684</a>

@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{compute_W}
 \alias{compute_W}
-\title{Compute availability of humans / hosts for blood feeding}
+\title{Compute Host Availability for Blood Feeding}
 \usage{
 compute_W(search_weights, H, TaR)
 }
@@ -17,18 +17,20 @@ compute_W(search_weights, H, TaR)
 host availability, a \link{vector}
 }
 \description{
-Computes availability of the parasite's / pathogen's hosts to blood feeding
-mosquitoes using the concept of search weights and time-at-risk
+Compute the availability of the population strata defined
+in the model as hosts for blood feeding by mosquitoes
 }
 \details{
 Host availability to blood searching mosquitoes in patches is
 the sum of search weights of the human strata, a vector \eqn{\omega},
 weighted by time at risk, defined by a matrix \eqn{\Psi}
-that is \eqn{N_p \times \N_h}. The search weight is a \emph{per-capita} measure
+that is \eqn{n_p \times n_h}. The search weight is a \emph{per-capita} measure
 so we weight it by human population density, \eqn{H}. Availability, \eqn{W}
 is computed as \deqn{\Psi \cdot (\omega H).}
 }
 \references{
-{This function implements equation 3
-from \insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
+{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
+}
+\seealso{
+Availability of all vertebrate hosts for blood feeding is computed by \code{\link[=compute_B]{compute_B()}}
 }

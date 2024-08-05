@@ -604,11 +604,9 @@ differential equations</p></li>
 <li><p>the next three arguments are <code>nPatches</code> and
 <code>membership</code> and <code>residence</code>, as explained
 above.</p></li>
-<li><p>the last argument <code>HPop</code> is the initial size of the
-human population strata.</p></li>
 </ul>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_xds_object.html">make_xds_object</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"full"</span>, <span class="st">"dde"</span>, <span class="va">nPatches</span>, <span class="va">membership</span>, <span class="va">residence</span>, <span class="va">HPop</span><span class="op">)</span> </span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_xds_object.html">make_xds_object</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"full"</span>, <span class="st">"dde"</span>, <span class="va">nPatches</span>, <span class="va">membership</span>, <span class="va">residence</span><span class="op">)</span> </span></code></pre></div>
 <p>After being set up:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">params</span><span class="op">$</span><span class="va">nHabitats</span>, <span class="va">params</span><span class="op">$</span><span class="va">nPatches</span>, <span class="va">params</span><span class="op">$</span><span class="va">nStrata</span><span class="op">)</span></span>

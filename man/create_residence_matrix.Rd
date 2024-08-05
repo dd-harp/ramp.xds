@@ -16,9 +16,8 @@ the residence \link{matrix}, denoted \eqn{\cal J} where \eqn{\left|\cal J\right|
 }
 \description{
 The residence matrix, \eqn{\cal J}, holds
-information about the location of home for each human population stratum.
-It is part of the blood feeding and transmission interface. The residence matrix
-is the template for the time spent matrix and time at risk matrix, making it possible
+information about residency for each human population stratum.
+It is the template for the time spent and time at risk matrices, making it possible
 to compute mosquito parameters describing blood feeding, the mixing matrix,
 and terms describing transmission.
 }
