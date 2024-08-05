@@ -376,10 +376,8 @@ A user only needs to know how to encode the information and what information to 
 
 + the next three arguments are `nPatches` and `membership` and `residence`, as explained above. 
 
-+ the last argument `HPop` is the initial size of the human population strata. 
-
 ```{r}
-params = make_xds_object("xde", "full", "dde", nPatches, membership, residence, HPop) 
+params = make_xds_object("xde", "full", "dde", nPatches, membership, residence) 
 ```
 
 After being set up:

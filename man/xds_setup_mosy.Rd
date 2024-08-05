@@ -10,8 +10,8 @@ xds_setup_mosy(
   MYZname = "basicM",
   Lname = "basicL",
   nPatches = 1,
-  HPop = 1000,
   membership = 1,
+  HPop = 1000,
   MYZday = 1,
   Lday = 1,
   calK = list(),
@@ -33,9 +33,9 @@ xds_setup_mosy(
 
 \item{nPatches}{is the number of patches}
 
-\item{HPop}{is the human population density}
-
 \item{membership}{is a vector that describes the patch where each aquatic habitat is found}
+
+\item{HPop}{is the human population density}
 
 \item{MYZday}{is the run-time time step for MYZ component (in days): integer or 1/integer}
 

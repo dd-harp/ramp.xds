@@ -11,9 +11,9 @@ xds_setup(
   Xname = "SIS",
   Lname = "trace",
   nPatches = 1,
-  HPop = 1000,
-  residence = 1,
   membership = 1,
+  residence = 1,
+  HPop = 1000,
   Xday = 1,
   MYZday = 1,
   Lday = 1,
@@ -41,11 +41,11 @@ xds_setup(
 
 \item{nPatches}{is the number of patches}
 
-\item{HPop}{is the number of humans in each patch}
+\item{membership}{is a vector that describes the patch where each aquatic habitat is found}
 
 \item{residence}{is a vector that describes the patch where each human stratum lives}
 
-\item{membership}{is a vector that describes the patch where each aquatic habitat is found}
+\item{HPop}{is the number of humans in each patch}
 
 \item{Xday}{is the run-time time step for X component (in days): integer or 1/integer}
 

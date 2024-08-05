@@ -9,9 +9,9 @@
 #' @param Xname is a character string defining a X model
 #' @param Lname is a character string defining a L model
 #' @param nPatches is the number of patches
-#' @param HPop is the number of humans in each patch
-#' @param residence is a vector that describes the patch where each human stratum lives
 #' @param membership is a vector that describes the patch where each aquatic habitat is found
+#' @param residence is a vector that describes the patch where each human stratum lives
+#' @param HPop is the number of humans in each patch
 #' @param Xday is the run-time time step for X component (in days): integer or 1/integer
 #' @param MYZday is the run-time time step for MYZ component (in days): integer or 1/integer
 #' @param Lday is the run-time time step for L component (in days): integer or 1/integer
@@ -33,9 +33,9 @@ xds_setup = function(xds = 'xde', dlay = 'ode',
                      Lname = "trace",
                  ### Model Structure
                      nPatches = 1,
-                     HPop=1000,
-                     residence=1,
                      membership=1,
+                     residence=1,
+                     HPop=1000,
                  ### Runtime Time parameters
                      Xday = 1,
                      MYZday = 1,
@@ -53,7 +53,8 @@ xds_setup = function(xds = 'xde', dlay = 'ode',
                  ### Name
                      model_name = "unnamed"
 ){
-  pars <- make_xds_object('xde', 'full', dlay, nPatches, membership, residence, HPop)
+  stopifnot(length(HPop) == length(residence))
+  pars <- make_xds_object('xde', 'full', dlay, nPatches, membership, residence)
   pars <- make_runtime(pars, Xday, MYZday, Lday, Lname)
   class(pars$compute) <- 'xde'
 
@@ -106,8 +107,8 @@ xds_setup = function(xds = 'xde', dlay = 'ode',
 #' @param MYZname is a character string defining a MYZ model
 #' @param Lname is a character string defining a L model
 #' @param nPatches is the number of patches
-#' @param HPop is the human population density
 #' @param membership is a vector that describes the patch where each aquatic habitat is found
+#' @param HPop is the human population density
 #' @param MYZday is the run-time time step for MYZ component (in days): integer or 1/integer
 #' @param Lday is the run-time time step for L component (in days): integer or 1/integer
 #' @param calK is either a calK matrix or a string that defines how to set it up
@@ -124,8 +125,8 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
                           Lname = "basicL",
                           ### Model Structure
                           nPatches = 1,
-                          HPop = 1000,
                           membership=1,
+                          HPop = 1000,
                           ### Runtime Time parameters
                           MYZday = 1,
                           Lday = 1,
@@ -142,7 +143,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 ){
   residence = 1:nPatches
   HPop = checkIt(HPop, nPatches)
-  pars <- make_xds_object('xde', 'mosy', dlay, nPatches, membership, residence, HPop)
+  pars <- make_xds_object('xde', 'mosy', dlay, nPatches, membership, residence)
   pars <- make_runtime(pars, 1, MYZday, Lday, Lname)
   class(pars$compute) = "na"
 
@@ -224,7 +225,7 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 }
 
 
-#' @title Set up an `xds` model object for forced human infection dynamics
+#' @title Set up an **`xds`** model object for forced human infection dynamics
 #' @description
 #' Set up a model to explore human dynamics forced by infective mosquitoes
 #' @details
@@ -233,8 +234,8 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 #' @param dlay  either "ode" or "dde"
 #' @param Xname a character string defining a X model
 #' @param nPatches the number of patches
-#' @param HPop the number of humans in each patch
 #' @param residence a vector that describes the patch where each human stratum lives
+#' @param HPop the number of humans in each patch
 #' @param Xday is the run-time time step for X component (in days): integer or 1/integer
 #' @param searchB  a vector of search weights for blood feeding
 #' @param TimeSpent  either a TimeSpent matrix or a string to call a function that sets it up
@@ -249,8 +250,8 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
                            Xname = "SIS",
                            ### Model Structure
                            nPatches=1,
-                           HPop=1000,
                            residence=1,
+                           HPop=1000,
                            Xday = 1,
                            ### Setup Parameters
                            searchB = 1,
@@ -262,8 +263,9 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
                            ### Name
                            model_name = "unnamed"
 ){
+  stopifnot(length(HPop) == length(residence))
   membership=1
-  pars <- make_xds_object('xde', 'human', dlay, nPatches, membership, residence, HPop)
+  pars <- make_xds_object('xde', 'human', dlay, nPatches, membership, residence)
   pars <- make_runtime(pars, Xday, 1, 1, "trace")
   pars$compute = 'na'
   class(pars$compute) <- 'na'
@@ -293,8 +295,6 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
   pars <- BloodFeeding(0, y0, pars)
   pars <- Transmission(0, y0, pars)
 
-
-
   pars$model_name <- model_name
 
   return(pars)
@@ -314,7 +314,7 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
 #' @param scale the birthday of a cohort
 #' @param model_name is a name for the model (arbitrary)
 #' @param Xname is a character string defining a X model
-#' @param HPop is the number of humans in each patch
+#' @param HPop is the number of humans in each stratum
 #' @param Xday is the run-time time step for X component (in days): integer or 1/integer
 #' @param searchB is a vector of search weights for blood feeding
 #' @param Xopts a list to configure the X model
@@ -338,9 +338,9 @@ xds_setup_cohort = function(F_eir,
 
 ){
   nPatches = length(HPop)
-  membership = 1
   residence = rep(1, length(HPop))
-  pars <- make_xds_object('xde', 'cohort', dlay, nPatches, membership, residence, HPop)
+  membership = 1
+  pars <- make_xds_object('xde', 'cohort', dlay, nPatches, membership, residence)
   pars <- make_runtime(pars, Xday, 1, 1, "trace")
   class(pars$compute) <- "na"
 

@@ -60,7 +60,7 @@ setup_BLOOD_FEEDING <- function(pars){
   up = list()
   class(up) <- "setup"
 
-  H = F_H(0,pars,1)
+  H = rep(1, pars$nStrata)
   wts = rep(1, pars$nStrata)
   calJ = pars$residence_matrix[[1]]
   W = compute_W(wts, H, calJ)

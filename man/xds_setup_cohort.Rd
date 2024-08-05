@@ -35,7 +35,7 @@ xds_setup_cohort(
 
 \item{Xday}{is the run-time time step for X component (in days): integer or 1/integer}
 
-\item{HPop}{is the number of humans in each patch}
+\item{HPop}{is the number of humans in each stratum}
 
 \item{searchB}{is a vector of search weights for blood feeding}
 

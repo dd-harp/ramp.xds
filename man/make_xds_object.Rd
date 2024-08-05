@@ -10,8 +10,7 @@ make_xds_object(
   dlay = "ode",
   nPatches = 1,
   membership = 1,
-  residence = 1,
-  HPop = 1000
+  residence = 1
 )
 }
 \arguments{
@@ -26,8 +25,6 @@ make_xds_object(
 \item{membership}{is the habitat membership vector}
 
 \item{residence}{is the strata residence vector}
-
-\item{HPop}{is the initial human population density}
 }
 \value{
 an \code{xds} template as a compound \link{list}
@@ -65,22 +62,22 @@ Next, the function sets the basic \strong{structural parameters}:
 \item \emph{\code{nStrata}} or \eqn{n_q} is the number of human population strata is \code{length(HPop)}
 }
 
-Next, the model sets up egg laying, blood feeding, and transmission:
+Next, the function sets up egg laying, blood feeding, and transmission:
 \itemize{
 \item \strong{Egg Laying} is set up by calling \code{\link[=create_habitat_matrix]{create_habitat_matrix()}} and then \code{\link[=setup_EGG_LAYING]{setup_EGG_LAYING()}}
-\item \strong{Blood Feeding} is set up by calling \code{\link[=create_residence_matrix]{create_residence_matrix()}}and then calls \code{\link[=setup_BLOOD_FEEING]{setup_BLOOD_FEEING()}}:
-\item \strong{Transmission}  is set up by calling \code{\link[=setup_TRANSMISSION]{setup_TRANSMISSION()}}
+\item \strong{Blood Feeding} is set up by calling \code{\link[=create_residence_matrix]{create_residence_matrix()}}and then calls \code{\link[=setup_BLOOD_FEEDING]{setup_BLOOD_FEEDING()}}:
+\item \strong{Transmission}  is set up by calling \code{\link[=setup_TRANSMISSION]{setup_TRANSMISSION()}} and
+\code{\link[=setup_visitors_static]{setup_visitors_static()}} sets up a static model for the availability of visitors, with no visitors
 }
 
-Finally, the function sets up the default cases for other options:
+Finally, the function sets up a few other miscellaneous options:
 \itemize{
-\item \link{Exposure} is called \emph{after} \link{Transmission} to implement some model of environmental exposure, including malaria importation throught travel:
+\item \link{Exposure} is called \emph{after} \link{Transmission} to compute environmentally heterogeneous exposure
+and malaria importation through travel:
 \itemize{
-\item \strong{Poisson} exposure is set up by \code{\link[=setup_exposure_pois]{setup_exposure_pois()}}
-\item \strong{Travel Malaria} is set up as a static model with no malaria importation by \code{\link[=setup_travel_static]{setup_travel_static()}}
+\item \code{\link[=setup_exposure_pois]{setup_exposure_pois()}} sets up a Poisson model for environmental heterogeneity
+\item \code{\link[=setup_travel_static]{setup_travel_static()}} sets up a model with no exposure through travel
 }
-\item \link{Transmission} calls \code{\link[=compute_local_frac]{compute_local_frac()}}. The basic static model is set up by
-\code{\link[=setup_visitors_static]{setup_visitors_static()}} and the availabity of visitors is set to zero.
 }
 }
 \note{
