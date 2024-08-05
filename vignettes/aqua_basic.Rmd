@@ -85,8 +85,9 @@ MYZo = list(MYZm <- eta)
 ```
 
 ```{r}
-class(params$Xpar[[1]]) <- "trace"
-params$MYZpar[[1]]=list() 
+#params$Xpar[[1]]=list() 
+#class(params$Xpar[[1]]) <- "trace"
+#params$MYZpar[[1]]=list() 
 
 params$eggs_laid = list() 
 params$eggs_laid[[1]] = eta 

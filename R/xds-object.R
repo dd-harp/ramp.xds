@@ -37,7 +37,6 @@
 #'      - [setup_exposure_pois()] sets up a Poisson model for environmental heterogeneity
 #'      - [setup_travel_static()] sets up a model with no exposure through travel
 #'
-#' @note setup requires that `length(residence) == length(HPop)`
 #' @param xds is either "xde" or "dts" for differential / difference equations
 #' @param frame model component subset
 #' @param dlay is either "ode" for ordinary and "dde" for delay differential equations

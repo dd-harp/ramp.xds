@@ -2,30 +2,46 @@
 % Please edit documentation in R/blood_feeding.R
 \name{setup_BLOOD_FEEDING}
 \alias{setup_BLOOD_FEEDING}
-\title{Set up the interface for blood feeding}
+\title{Set up Blood Feeding}
 \usage{
 setup_BLOOD_FEEDING(pars)
 }
 \arguments{
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
 a \link{list}
 }
 \description{
-Sets up the object that defines the blood feeding interface
-for an \code{xds} model object.
+Set up a part of the \strong{\code{xds}} object that defines the interface for blood feeding
 }
 \details{
-Blood feeding is modeled as an interaction among humans and mosquitoes.
-\code{ramp.xds} uses the concept of host availability for blood feeding that is based
-on a notion of \emph{searching} for hosts. Each hosts is assigned search weights, \eqn{\omega}
-and availability is the sum of those search weights. The total availability of all
-vertebrate hosts for blood feeding is \eqn{B} and the availability of humans
-(or a pathogen's host species) is \eqn{W}.
-These can be used to compute mosquito bionomic parameters. For mosquitoes, blood feeding rates (\eqn{f})
-can be computed using \emph{functional responses.} The human fraction is \eqn{W/B}. Availability can
-also be used to model mosquito movement.
+This implements a blood feeding model described by Wu SL, \emph{et al.}, (2023).
+
+Modular computation in ramp.xds requires a rigid interface to
+guarantee mathematical consistency for blood feeding and transmission.
+The interface is for blood feeding is defined by an object called \code{BFpar} that
+is attached to the \strong{\code{xds}} object pars as \code{pars$BFpar}. The blood feeding interface
+\itemize{
+\item the residency matrix \eqn{\cal J}
+\item a time spent (TiSp) matrix \eqn{\Theta}
+\item a circadian function \code{F_circadian} for each vector species
+\item a time at risk (TaR) matrix \eqn{\Psi} that is the product the TiSp matrix and the circadian function
+\item blood feeding search weights
+\item a vector describing \eqn{W}, the availability the population strata for blood feeding: the availability of the parasite/pathogen's hosts
+\item a vector describing the availability of visitors
+\item a vector describing the availability of other blood hosts
+\item a vector describing \eqn{B}, the total availability of all vertebrate blood hosts for blood feeding (see \code{\link[=compute_B]{compute_B()}})
+}
+
+These quantities are used to model transmission (see \code{\link[=setup_TRANSMISSION]{setup_TRANSMISSION()}}).
+Mosquito bionomic parameters \emph{ought} to be consistent. If bionomic parameters are
+assigned, there's no guarantee they are internally mathematically consistent or sensible.
+These structures make it possible to use the concept of resource availability to
+compute the blood feeding rates (\eqn{f})
+using \emph{functional responses.} The human fraction ought to be \eqn{q=W/B}.
+
+Availability can also be used to model mosquito movement.
 In models with multiple host species, with availability \eqn{W_i}, the fraction on
 each host species would be \eqn{W_i/B}.
 In models with multiple vector species, each species could have different search habits and preferences,
@@ -35,6 +51,9 @@ In models with multiple host species, \eqn{W_{i,s}} is the availability of the
 For hosts, availability is based on \emph{time spent} in each patch, and \emph{time at risk,} or
 time spent by time of day weighted by mosquito species-specific \emph{search weights} reflecting different preferences
 and a circadian function describing relative mosquito blood feeding rates by time of day.
+}
+\references{
+{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 }
 \seealso{
 \link{setup_TRANSMISSION}

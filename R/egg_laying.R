@@ -36,19 +36,27 @@ create_habitat_matrix = function(nPatches, membership){
 
 #' @title Setup Egg Laying
 #' @description Set up a part of the `xds` object that defines the interface for egg laying
-#' @details Modular computation in **`ramp.xds`** requires a rigid interface
+#' @details
+#' This implements a model for egg laying described by Wu SL, *et al.*, (2023).
+#'
+#' Modular computation in **`ramp.xds`** requires a rigid interface
 #' to guarantee mathematical consistency for egg laying and emergence.
 #' The interface is defined by an object called `EGGpar` that is
 #' attached to the `xds` object `pars` as `pars$EGGpar`.
 #' The interface includes
 #' - a habitat membership matrix, \eqn{\cal N} made by [create_habitat_matrix]
+#' - the habitat search weights
 #' - a quantity that is motivated by mosquito searching for resources, called
 #' habitat availability \eqn{Q} made by [compute_Q];
-#' - the egg distribution matrix \eqn{\cal U}, made by [compute_calU].
+#' - the availability of ovitraps
+#' - the availability of unsuitable habitats
+#' - the availability of anything that is like a habitat, but that is an aquatic habitat in the model, including ovitraps and unsuitable habitats, \eqn{Q_{tot}} made by [compute_Qtot];
+#' - the egg distribution matrix \eqn{\cal U}, made by [compute_calU]
+#' - a vector that stores eggs laid
 #'
 #' This function is called by `make_xds_object` to set up `EGGpar` and the variables and parameters with all
 #' the variables it might depend on.
-#' @references{ This implements an enhanced version of the egg laying model in Equations 14-15 from \insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
+#' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 #' @param pars an `xds` object
 #' @param membership is the habitat membership vector
 #' @return the modified `xds` object

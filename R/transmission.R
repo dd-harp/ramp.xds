@@ -2,9 +2,11 @@
 
 #' @title Setup the interface for parasite / pathogen transmission
 #' @description Sets up the object that defines the transmission interface for an `xds` model object.
-#' @details Transmission
+#' @details
+#' This implements a model for egg laying described by Wu SL, *et al.*, (2023).
 #' @param pars an `xds` object
 #' @return the modified `xds` object
+#' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @seealso [make_xds_object]
 #' @seealso [setup_BLOOD_FEEDING]
 #' @export
