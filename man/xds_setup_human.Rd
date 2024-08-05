@@ -2,15 +2,15 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_human}
 \alias{xds_setup_human}
-\title{Set up an \code{xds} model object for forced human infection dynamics}
+\title{Set up an \strong{\code{xds}} model object for forced human infection dynamics}
 \usage{
 xds_setup_human(
   xds = "xde",
   dlay = "ode",
   Xname = "SIS",
   nPatches = 1,
-  HPop = 1000,
   residence = 1,
+  HPop = 1000,
   Xday = 1,
   searchB = 1,
   TimeSpent = list(),
@@ -29,9 +29,9 @@ xds_setup_human(
 
 \item{nPatches}{the number of patches}
 
-\item{HPop}{the number of humans in each patch}
-
 \item{residence}{a vector that describes the patch where each human stratum lives}
+
+\item{HPop}{the number of humans in each patch}
 
 \item{Xday}{is the run-time time step for X component (in days): integer or 1/integer}
 

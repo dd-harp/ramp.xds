@@ -140,6 +140,10 @@
           <p class="section-desc"></p><p>Methods to set up basic models</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="make_xds_object.html">make_xds_object()</a></code> </p>
+        </td>
+        <td><p>Make <strong><code>xds</code></strong> Object</p></td>
+      </tr><tr><td>
           <p><code><a href="xds_setup.html">xds_setup()</a></code> </p>
         </td>
         <td><p>Set up an <code>xds</code> model object</p></td>
@@ -159,14 +163,6 @@
           <p><code><a href="xds_setup_cohort.html">xds_setup_cohort()</a></code> </p>
         </td>
         <td><p>Set up an <code>xds</code> model object for forced human infection dynamics in cohorts</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_xds_object.html">make_xds_object()</a></code> </p>
-        </td>
-        <td><p>Make an <code>xds</code> object</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_H.xds_obj.html">F_H(<i>&lt;xds_obj&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the human population size</p></td>
       </tr><tr><td>
           <p><code><a href="make_indices.html">make_indices()</a></code> </p>
         </td>
@@ -406,11 +402,11 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="F_foi.pois.html">F_foi(<i>&lt;pois&gt;</i>)</a></code> </p>
         </td>
-        <td><p>A Poisson model for Exposure</p></td>
+        <td><p>Poisson Force of Infection</p></td>
       </tr><tr><td>
           <p><code><a href="F_ar.pois.html">F_ar(<i>&lt;pois&gt;</i>)</a></code> </p>
         </td>
-        <td><p>A Poisson model for Exposure</p></td>
+        <td><p>Poisson Attack Rates</p></td>
       </tr><tr><td>
           <p><code><a href="foi2eir.pois.html">foi2eir(<i>&lt;pois&gt;</i>)</a></code> </p>
         </td>
@@ -422,15 +418,15 @@
       </tr><tr><td>
           <p><code><a href="setup_exposure_pois.html">setup_exposure_pois()</a></code> </p>
         </td>
-        <td><p>Set up the Poisson model of exposure</p></td>
+        <td><p>Set up a Poisson model for Exposure and Infection</p></td>
       </tr><tr><td>
           <p><code><a href="setup_exposure_pois.xde.html">setup_exposure_pois(<i>&lt;xde&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set up Poisson Exposure for <code>xde</code></p></td>
+        <td><p>Set up Poisson Exposure and Infection for <code>xde</code></p></td>
       </tr><tr><td>
           <p><code><a href="setup_exposure_pois.dts.html">setup_exposure_pois(<i>&lt;dts&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set up Poisson Exposure for <code>dts</code></p></td>
+        <td><p>Set up Poisson Exposure and Infection for <code>dts</code></p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="negative-binomial-exposure">Negative Binomial Exposure <a href="#negative-binomial-exposure" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods the Negative Binomial exposure model</p>
@@ -438,11 +434,11 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="F_foi.nb.html">F_foi(<i>&lt;nb&gt;</i>)</a></code> </p>
         </td>
-        <td><p>A negative binomial model for Exposure</p></td>
+        <td><p>Negative Binomial Force of Infection</p></td>
       </tr><tr><td>
           <p><code><a href="F_ar.nb.html">F_ar(<i>&lt;nb&gt;</i>)</a></code> </p>
         </td>
-        <td><p>A negative binomial model for the attack rate as a function of the daily EIR.</p></td>
+        <td><p>Negative Binomial Attack Rates</p></td>
       </tr><tr><td>
           <p><code><a href="foi2eir.nb.html">foi2eir(<i>&lt;nb&gt;</i>)</a></code> </p>
         </td>
@@ -3139,6 +3135,22 @@
           <p><code><a href="list_vars.html">list_vars()</a></code> </p>
         </td>
         <td><p>Set the initial values to the last values of the last simulation</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_setup.html">setup_setup()</a></code> </p>
+        </td>
+        <td><p>Setup setup</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_setup.static.html">setup_setup(<i>&lt;static&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Setup setup</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_setup.setup.html">setup_setup(<i>&lt;setup&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Setup setup</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_setup.dynamic.html">setup_setup(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Setup setup</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="functions">Functions <a href="#functions" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Basic visualization of the transmission terms</p>

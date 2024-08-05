@@ -27,7 +27,7 @@
 #'
 #' Next, the function sets up egg laying, blood feeding, and transmission:
 #' - **Egg Laying** is set up by calling [create_habitat_matrix()] and then [setup_EGG_LAYING()]
-#' - **Blood Feeding** is set up by calling [create_residence_matrix()]and then calls [setup_BLOOD_FEEING()]:
+#' - **Blood Feeding** is set up by calling [create_residence_matrix()]and then calls [setup_BLOOD_FEEDING()]:
 #' - **Transmission**  is set up by calling [setup_TRANSMISSION()] and
 #' [setup_visitors_static()] sets up a static model for the availability of visitors, with no visitors
 #'
@@ -44,12 +44,11 @@
 #' @param nPatches is the number of patches
 #' @param membership is the habitat membership vector
 #' @param residence is the strata residence vector
-#' @param HPop is the initial human population density
 #' @return an `xds` template as a compound [list]
 #' @seealso [xds_setup()]
 #' @export
 make_xds_object = function(xds='xde', frame='full', dlay = 'ode',
-                           nPatches=1, membership=1, residence=1, HPop=1000){
+                           nPatches=1, membership=1, residence=1){
   pars = list()
   class(pars) <- 'xds_obj'
   xds <- xds
@@ -95,11 +94,6 @@ make_xds_object = function(xds='xde', frame='full', dlay = 'ode',
   pars$residence_matrix = list()
   pars$residence_matrix[[1]] = create_residence_matrix(nPatches, residence)
 
-  stopifnot(length(HPop) == length(residence))
-  pars$Xpar[[1]] <- list()
-  class(pars$Xpar[[1]]) <- 'xds_obj'
-  pars$Xpar[[1]]$H0 = HPop
-
   pars$Lambda = list()
   pars <- setup_EGG_LAYING(pars)
   pars <- setup_BLOOD_FEEDING(pars)
@@ -123,18 +117,5 @@ make_xds_object = function(xds='xde', frame='full', dlay = 'ode',
 
   pars <- setup_vc_no_control(pars)
 
-  pars$Xpar[[1]] <- list()
-
   return(pars)
-}
-
-#' @title Get the human population size
-#' @description This makes the initial human population sizes available
-#' during [make_xds_object]
-#' @note This method dispatches on the type of `pars$Xpar[[i]]`
-#' @inheritParams F_H
-#' @return a [numeric] vector of length `nStrata`
-#' @export
-F_H.xds_obj <- function(y, pars, i) {
-  return(pars$Xpar[[1]]$H0)
 }

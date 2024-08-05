@@ -10,6 +10,6 @@ change_H = function(H, pars, i=1){
   vars = as.list(get_Xinits(pars,i))
   make_Xinits(pars, H, i, vars)
   class(pars$BFpar) <- setup_setup(pars$BFpar)
-  class(pars$beta) <- 'setup'
+  class(pars$beta) <- setup_setup(pars$beta)
   return(pars)
 }

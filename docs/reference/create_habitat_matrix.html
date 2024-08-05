@@ -154,7 +154,7 @@ to compute egg laying from patches to habitats; and emergence from habitats to p
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>nPatches</dt>
-<dd><p>the number of patches, \(N_p\)</p></dd>
+<dd><p>the number of patches, \(n_p\)</p></dd>
 
 
 <dt>membership</dt>
@@ -165,7 +165,7 @@ to compute egg laying from patches to habitats; and emergence from habitats to p
     <h2>Value</h2>
     
 
-<p>the habitat membership <a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a>, denoted \(\cal N\) where \(\left|\cal N\right|= N_p \times N_q\)</p>
+<p>the habitat membership <a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a>, denoted \(\cal N\) where \(\left|\cal N\right|= n_p \times n_q\)</p>
 
 
     </div>
@@ -179,11 +179,12 @@ the \(i^{th}\) habitat is in the \(j^{th}\) patch, then
 <li><p>\(n_p = \) <code>nPatches</code>, the number of patches.</p></li>
 </ul><p>If \(w\) is any vector describing a quantity in
 habitats (<em>i.e.</em>, \(\left|w\right|= n_q\)), then
-$$W={\cal N}\cdot w$$ is a vector that has summed \(w\) by patch, and \(\left|W\right|= N_p\).</p>
+$$W={\cal N}\cdot w$$ is a vector that has summed \(w\) by patch, and \(\left|W\right|= n_p\).</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p>to extract habitat membership information, see <code><a href="view_habitat_matrix.html">view_habitat_matrix()</a></code></p></div>
+    <div class="dont-index"><p>create_habitat matrix is called by <code><a href="make_xds_object.html">make_xds_object()</a></code> and <code><a href="setup_EGG_LAYING.html">setup_EGG_LAYING()</a></code></p>
+<p>see <code><a href="view_habitat_matrix.html">view_habitat_matrix()</a></code></p></div>
     </div>
 
     <div id="ref-examples">
