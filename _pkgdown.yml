@@ -711,8 +711,6 @@ reference:
   - Forcing.dynamic
   - Forcing.setup
   - setup_forcing
-  - Abiotic
-  - Civil
   - Shock
   - Control
   - Clinic
@@ -722,10 +720,6 @@ reference:
   desc: |
     Specialized methods the null model (no exogenous forcing)
   contents:
-  - Abiotic.no_forcing
-  - setup_abiotic_no_forcing
-  - Civil.no_forcing
-  - setup_civil_no_forcing
   - Shock.no_shock
   - setup_no_shock
   - Control.no_control
@@ -745,16 +739,6 @@ reference:
   desc: |
     Specialized methods to call forcing
   contents:
-  - Abiotic.forced
-  - setup_abiotic_forced
-  - check_abiotic
-  - check_abiotic.no_forcing
-  - check_abiotic.forced
-  - Civil.forced
-  - setup_civil_forced
-  - check_civil
-  - check_civil.no_forcing
-  - check_civil.forced
   - Control.forced
   - setup_control_forced
   - MassMedical.forced
