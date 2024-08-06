@@ -13,7 +13,7 @@
 
 \item{s}{the species index}
 
-\item{Lopts}{a \link{list}}
+\item{Lopts}{a named \link{list} to configure \strong{\code{Lpar}}}
 }
 \value{
 a \link{list} vector

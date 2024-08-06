@@ -19,5 +19,5 @@ put_Lvars(Lvars, y, pars, s)
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar[[s]]}.
+This method dispatches on the class of \code{pars$Lpar[[s]]}.
 }

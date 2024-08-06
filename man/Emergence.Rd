@@ -14,7 +14,7 @@ Emergence(t, y, pars)
 \item{pars}{a \code{xds} object}
 }
 \value{
-a \link{list} -- the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Sums up adults emerging from all aquatic habitats using the habitat membership matrix

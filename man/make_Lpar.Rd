@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{make_Lpar}
 \alias{make_Lpar}
-\title{A function to set up adult mosquito models}
+\title{Create and configure \strong{\code{Lpar}} for \eqn{\cal L}-Models}
 \usage{
 make_Lpar(Lname, pars, s, Lopts = list())
 }
@@ -13,11 +13,17 @@ make_Lpar(Lname, pars, s, Lopts = list())
 
 \item{s}{the species index}
 
-\item{Lopts}{a \link{list}}
+\item{Lopts}{a named \link{list} to configure \strong{\code{Lpar}}}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on \code{Lname}.
+Each instance of \code{make_Lpar} calls a function (usually \verb{create_Lpar_*}) that
+creates an object \strong{\code{Lpar}.}
+It is attached the \strong{\code{xds}} object as \verb{pars$Lpar[[s]].} Each instance of \verb{create_Lpar_*}
+should assign default parameter values. These will be over-written by \code{Lopts}
+}
+\note{
+This method assigns \code{Lname} to class(\code{Lname}) and dispatches on \code{Lname}.
 }

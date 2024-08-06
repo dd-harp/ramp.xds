@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trace.R
 \name{make_Linits.trace}
 \alias{make_Linits.trace}
-\title{Setup the trace model}
+\title{Setup \eqn{\cal L}-trace}
 \usage{
 \method{make_Linits}{trace}(pars, s, Lopts = list())
 }

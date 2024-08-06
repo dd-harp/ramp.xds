@@ -4,7 +4,7 @@
 #' @param t the time
 #' @param y the state variables
 #' @param pars a `xds` object
-#' @return a [list] -- the modified `xds` object
+#' @return an `xds` object
 #' @export
 Emergence = function(t, y, pars){
   for(s in 1:pars$nVectors)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{dLdt}
 \alias{dLdt}
-\title{Derivatives for aquatic stage mosquitoes}
+\title{Compute Derivatives for \eqn{\cal L}}
 \usage{
 dLdt(t, y, pars, s)
 }
@@ -16,8 +16,13 @@ dLdt(t, y, pars, s)
 \item{s}{the species index}
 }
 \value{
-a \link{numeric} vector of length \code{pars$L_ix}
+the derivatives, a \link{numeric} vector of length \eqn{n_q=}\code{nHabitats}
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar}.
+This method computes and returns the derivatives
+for the \eqn{\cal L} dynamical component -- a model family
+describing immature mosquitoes in aquatic habitats
+}
+\note{
+Dispatches on the class of \code{pars$Lpar[[s]]}
 }

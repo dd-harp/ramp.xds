@@ -16,7 +16,7 @@
 \item{s}{the species index}
 }
 \value{
-a named \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 Implements \link{LBionomics} for the RM model

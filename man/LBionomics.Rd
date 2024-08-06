@@ -25,7 +25,10 @@ an \strong{\code{xds}} object
 \description{
 Handle immature mosquito bionomic parameters as a baseline modified by control
 
-This method dispatches on the type of \code{pars$Lpar}. It should
-compute the values of parameters as a function of exogenous variables
+It should compute the values of parameters
+as a function of exogenous variables
 or reset the values of the bionomic parameters to baseline values.
+}
+\note{
+This method dispatches on the class of \code{pars$Lpar[[s]]}
 }

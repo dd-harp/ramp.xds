@@ -15,6 +15,6 @@ make_indices_L(pars, s)
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar}. Adds field \code{L_ix}
+This method dispatches on the class of \code{pars$Lpar}. Adds field \code{L_ix}
 to parameter list.
 }
