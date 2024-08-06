@@ -12,7 +12,7 @@
 \item{Lpar}{a list that defines an xde model}
 }
 \value{
-none
+a named \link{list}
 }
 \description{
 This method dispatches on the type of \code{Lpar}.

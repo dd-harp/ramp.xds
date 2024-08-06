@@ -11,12 +11,12 @@ put_Lvars(Lvars, y, pars, s)
 
 \item{y}{the variables}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on the type of \code{pars$Lpar[[s]]}.

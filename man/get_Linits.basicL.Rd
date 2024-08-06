@@ -7,7 +7,7 @@
 \method{get_Linits}{basicL}(pars, s = 1)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the species index}
 }

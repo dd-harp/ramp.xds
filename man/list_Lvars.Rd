@@ -9,7 +9,7 @@ list_Lvars(y, pars, s)
 \arguments{
 \item{y}{the variables}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the vector species index}
 }

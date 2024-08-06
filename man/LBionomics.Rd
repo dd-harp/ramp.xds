@@ -13,14 +13,14 @@ LBionomics(t, y, pars, s)
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the species index}
 }
 \value{
 the unmodified \code{xds} object
 
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 Handle immature mosquito bionomic parameters as a baseline modified by control

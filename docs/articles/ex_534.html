@@ -189,9 +189,9 @@ mosquito-borne pathogen transmission dynamics and control using modular
 software. It serves several purposes:</p>
 <ul>
 <li>Modular notation is illustrated by constructing a model with five
-aquatic habitats (<span class="math inline">\(N_q=5\)</span>), three
-patches (<span class="math inline">\(N_p=3\)</span>), and four human
-population strata (<span class="math inline">\(N_h=4\)</span>). We call
+aquatic habitats (<span class="math inline">\(n_q=5\)</span>), three
+patches (<span class="math inline">\(n_p=3\)</span>), and four human
+population strata (<span class="math inline">\(n_h=4\)</span>). We call
 it <code>5-3-4</code>.</li>
 </ul>
 <div class="section level3">
@@ -226,7 +226,7 @@ list of the index of patches where the habitats are found:</p>
 <code class="sourceCode R"><span><span class="va">membership</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">membership</span></span>
 <span><span class="co">#&gt; [1] 1 1 1 2 2</span></span></code></pre></div>
-<p>The number of habitats, <span class="math inline">\(N_q\)</span> or
+<p>The number of habitats, <span class="math inline">\(n_q\)</span> or
 <code>nHabitats</code>, is the length of the membership matrix:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nHabitats</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">membership</span><span class="op">)</span></span>
@@ -238,13 +238,13 @@ list of the index of patches where people live:</p>
 <code class="sourceCode R"><span><span class="va">residence</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">residence</span></span>
 <span><span class="co">#&gt; [1] 2 2 3 3</span></span></code></pre></div>
-<p>The number of strata, <span class="math inline">\(N_h\)</span> or
+<p>The number of strata, <span class="math inline">\(n_h\)</span> or
 <code>nStrata</code>, is the length of the residence matrix:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nStrata</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">residence</span><span class="op">)</span></span>
 <span><span class="va">nStrata</span></span>
 <span><span class="co">#&gt; [1] 4</span></span></code></pre></div>
-<p>The number of patches, <span class="math inline">\(N_p\)</span> or
+<p>The number of patches, <span class="math inline">\(n_p\)</span> or
 <code>nPatches</code>, is just a number:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nPatches</span> <span class="op">=</span> <span class="fl">3</span></span></code></pre></div>
@@ -252,7 +252,7 @@ list of the index of patches where people live:</p>
 <div class="section level3">
 <h3 id="aquatic-habitat-membership-matrix">Aquatic Habitat Membership Matrix<a class="anchor" aria-label="anchor" href="#aquatic-habitat-membership-matrix"></a>
 </h3>
-<p>For computation, <code>ramp.xds</code> uses an <span class="math inline">\(N_p \times N_q\)</span> matrix called <span class="math inline">\(\cal{N}.\)</span> It is specified by the habitat
+<p>For computation, <code>ramp.xds</code> uses an <span class="math inline">\(n_p \times n_q\)</span> matrix called <span class="math inline">\(\cal{N}.\)</span> It is specified by the habitat
 vector. In the matrix, <span class="math inline">\({\cal
 N}_{i,j}\)</span> is <span class="math inline">\(1\)</span> if the <span class="math inline">\(i^{th}\)</span> patch contains the <span class="math inline">\(j^{th}\)</span> habitat:</p>
 <p><span class="math display">\[\begin{equation}
@@ -281,7 +281,7 @@ patches. For example, the number of habitats per patch is <span class="math inli
 <div class="section level3">
 <h3 id="the-residence-matrix">The Residence Matrix<a class="anchor" aria-label="anchor" href="#the-residence-matrix"></a>
 </h3>
-<p>For computation, <code>ramp.xds</code> also creates a <span class="math inline">\(N_p \times N_h\)</span> matrix called <span class="math inline">\(\cal J.\)</span> It is specified by residence
+<p>For computation, <code>ramp.xds</code> also creates a <span class="math inline">\(n_p \times n_h\)</span> matrix called <span class="math inline">\(\cal J.\)</span> It is specified by residence
 vector. The element <span class="math inline">\({\cal J}_{i,j}\)</span>
 is <span class="math inline">\(1\)</span> if the <span class="math inline">\(j^{th}\)</span> stratum resides in the <span class="math inline">\(i^{th}\)</span> patch:</p>
 <p><span class="math display">\[\begin{equation}
@@ -335,7 +335,7 @@ availability can be used to compute the values of some adult mosquito
 bionomic parameters using <em>functional responses,</em> that make use
 of their absolute values. The absolute values only have a meaning
 through their effects.</p>
-<p>The egg dispersal matrix <span class="math inline">\(\mathcal{U}\)</span> is a <span class="math inline">\(N_q \times N_p\)</span> matrix describing how eggs
+<p>The egg dispersal matrix <span class="math inline">\(\mathcal{U}\)</span> is a <span class="math inline">\(n_q \times n_p\)</span> matrix describing how eggs
 laid by adult mosquitoes in a patch are allocated among the aquatic
 habitats in that patch. It is a matrix of search weights normalized by
 availability:</p>
@@ -383,7 +383,7 @@ affected by a set of <em>search weights.</em></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HPop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">90</span>, <span class="fl">100</span>, <span class="fl">900</span><span class="op">)</span></span></code></pre></div>
 <p>The time spent matrix, <span class="math inline">\(\Theta\)</span> is
-a <span class="math inline">\(N_p \times N_h\)</span> matrix. Each
+a <span class="math inline">\(n_p \times n_h\)</span> matrix. Each
 column describes how a human stratum allocates time among patches.</p>
 <p><span class="math display">\[\begin{equation}
 \Theta = \left[

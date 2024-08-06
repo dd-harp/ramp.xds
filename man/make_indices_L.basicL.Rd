@@ -7,7 +7,7 @@
 \method{make_indices_L}{basicL}(pars, s)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the species index}
 }

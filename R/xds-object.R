@@ -1,8 +1,9 @@
 # function make_xds_object and supporting function F_H.setup
 
 #' @title Make an **`xds`** Object
-#' @description Create a structured template for an
-#' **`xds`** object with generic features
+#' @description Creates and returns structured template, called an
+#' **`xds`** object, with generic features that can be configured
+#' to set up and solve systems of differential equations using **`ramp.xds`**
 #' @details This function sets up the basic structures required
 #' to configure and run a basic model. The returned object is a list
 #' with various required elements attached and configured, but without
@@ -10,30 +11,30 @@
 #'
 #' First, the function sets up some short text strings (assigned to the same `S3` class)
 #' to dispatch various **cases** of of various `S3` functions:
-#' - *`xds`* is either "xde" for differential equations or "dts" for difference equations;
-#' - *`frame`* is one of several cases:
+#' - **`xds`** is either "xde" for differential equations or "dts" for difference equations;
+#' - **`frame`** is one of several cases:
 #'      - "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}.
 #' in some form (possible the trace case) (see [xds_setup()])
 #'      - "mozy" is for mosquito ecology models (see [xds_setup_mosy()]), including models without pathogen infection dynamics in mosquitoes
 #'      - "aquatic" is for aquatic mosquito ecology models (see [xds_setup_mosy()]), forced by a function describing egg laying
 #'      - "human" is for human/host infection dynamics(see [xds_setup_human()]), forced by the infective density of adult mosquitoes, \eqn{fqZ}
 #'      - "cohort" is for human/host cohort infection dynamics (see [xds_setup_cohort()]), forced by a function `F_eir`
-#' - *`dlay`* is either "ode" or "dde" and it only affects dispatching for differential equations
-#' - *`forcing`* is set to "static"
-#' - *`compute`* dispatches various cases of [compute_terms()] linked to `frame`
+#' - **`dlay`** is either "ode" or "dde" and it only affects dispatching for differential equations
+#' - **`forcing`** is set to "static"
+#' - **`compute`** dispatches various cases of [compute_terms()] linked to `frame`
 #'
-#' Next, the function sets the basic **structural parameters**:
-#' - *`nVectors`* or \eqn{n_s}, the number of vector species is set to 1;
-#' - *`nHosts`* or \eqn{n_i}, the number of host species is set to 1;
-#' - *`nPatches`* or \eqn{n_p} is the number of patches
-#' - *`nHabitats`* or \eqn{n_q} is the number of aquatic habitats is `length(membership)`
-#' - *`nStrata`* or \eqn{n_q} is the number of human population strata is `length(HPop)`
+#' Second, the function sets the values of the **structural parameters**:
+#' - **`nVectors`** or \eqn{n_s}, the number of vector species is set to 1;
+#' - **`nHosts`** or \eqn{n_i}, the number of host species is set to 1;
+#' - **`nPatches`** or \eqn{n_p} is the number of patches
+#' - **`nHabitats`** or \eqn{n_q}, the number of aquatic habitats, is set to `length(membership)`
+#' - **`nStrata`** or \eqn{n_h}, the number of human/ host population strata, is set to `length(HPop)`
 #'
 #' Next, the function sets up egg laying, blood feeding, and transmission:
-#' - **Egg Laying** is set up by calling [create_habitat_matrix()] and then [setup_EGG_LAYING()]
-#' - **Blood Feeding** is set up by calling [create_residence_matrix()]and then calls [setup_BLOOD_FEEDING()]:
-#' - **Transmission**  is set up by calling [setup_TRANSMISSION()] and
-#' [setup_visitors_static()] sets up a static model for the availability of visitors, with no visitors
+#' - **Egg Laying** calls [create_habitat_matrix()], then [setup_EGG_LAYING()]
+#' - **Blood Feeding** calls [create_residence_matrix()], then [setup_BLOOD_FEEDING()]
+#' - **Transmission**  calls [setup_TRANSMISSION()] and [setup_visitors_static()] sets up a static
+#' model for the availability of visitors; by default, there are no visitors
 #'
 #' Finally, the function sets up a few other miscellaneous options:
 #' - [Exposure] is called *after* [Transmission] to compute environmentally heterogeneous exposure
@@ -41,14 +42,15 @@
 #'      - [setup_exposure_pois()] sets up a Poisson model for environmental heterogeneity
 #'      - [setup_travel_static()] sets up a model with no exposure through travel
 #'
-#' @param xds is "xde" for ordinary or delay differential equations; "dts" for "discrete time systems"
+#' @param xds is used to dispatch various functions to set up and solve systems of differential equations. "xde" for ordinary or delay differential equations; "dts" for "discrete time systems"
 #' @param frame model component subset
-#' @param dlay is "ode" for ordinary / "dde" for delay differential equations
+#' @param dlay is "ode"/"dde" for ordinary/delay differential equations
 #' @param nPatches is the number of patches
 #' @param membership is the habitat membership vector
 #' @param residence is the strata residence vector
-#' @return an `xds` template as a compound [list]
-#' @seealso [xds_setup()]
+#' @return an `xds` object
+#' @seealso Related: [xds_setup()]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
+#'
 #' @export
 make_xds_object = function(xds='xde', frame='full', dlay = 'ode',
                            nPatches=1, membership=1, residence=1){

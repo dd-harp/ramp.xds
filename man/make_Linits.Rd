@@ -7,14 +7,14 @@
 make_Linits(pars, s, Lopts = list())
 }
 \arguments{
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the species index}
 
 \item{Lopts}{a \link{list}}
 }
 \value{
-a modified \code{xds} object
+an \code{xds} object
 }
 \description{
 This method dispatches on \code{Lname}.

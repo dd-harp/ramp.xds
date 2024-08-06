@@ -19,10 +19,23 @@ create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, phi=1/8, theta=1
   })
 }
 
-#' @title Derivatives for aquatic stage mosquitoes
-#' @description Implements [dLdt] for the basicL competition model.
+#' @title Derivatives for `basicL`
+#' @description Implements [dLdt] for the `basicL` competition model.
+#' @details This implements differential equation model for aquatic mosquito ecology.
+#' It has been modified slightly from a version published by Smith DL, *et al.* (2013):
+#' \deqn{\frac{dL}{dt} = \eta - (\psi + \phi + \theta L)L}
+#'
+#' **Parameters:**
+#' - \eqn{\eta}: egg deposition rate
+#' - \eqn{\psi}: maturation rate
+#' - \eqn{\phi}: density-independent death rate
+#' - \eqn{\theta}: density dependence in mortality: the slope of the response to mean crowding
+#'
+#' To put it another way, per-capita mortality is \eqn{\phi + \theta L}
+#'
 #' @inheritParams dLdt
 #' @return a [numeric] vector
+#' @references{\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
 #' @export
 dLdt.basicL <- function(t, y, pars, s) {
   eta <- as.vector(pars$eggs_laid[[s]])
@@ -39,12 +52,12 @@ dLdt.basicL <- function(t, y, pars, s) {
 #' @title Compute the steady state as a function of the egg deposition rate eta
 #' @description This method dispatches on the type of `Lpar`.
 #' @inheritParams xde_steady_state_L
-#' @return none
+#' @return a named [list]
 #' @export
 xde_steady_state_L.basicL = function(eta, Lpar){with(Lpar,{
  t1 = (psi+phi)/theta
  t2 = 4*eta/theta
- return((-t1 + sqrt(t1^2 + t2))/2)
+ return(list(L=(-t1 + sqrt(t1^2 + t2))/2))
 })}
 
 # specialized methods for the aquatic mosquito basicL competition model
@@ -60,7 +73,7 @@ Update_Lt.basicL <- function(t, y, pars, s) {
     L <- y[L_ix]
     with(pars$Lpar[[s]], {
       Lt = eta + (1-exp(-psi*exp(-xi*L)))*exp(-(phi+theta*L))*L
-      return(dL)
+      return(Lt)
     })
   })
 }
@@ -80,7 +93,7 @@ F_emerge.basicL <- function(t, y, pars, s) {
 #' @title xde_setup Lpar for the basicL model
 #' @description Implements [make_Lpar] for the basicL model
 #' @inheritParams make_Lpar
-#' @return a [list] vector
+#' @return an **`xds`** object
 #' @export
 make_Lpar.basicL = function(Lname, pars, s, Lopts=list()){
   pars$Lpar[[s]] = create_Lpar_basicL(pars$nHabitats, Lopts)

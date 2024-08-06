@@ -9,14 +9,14 @@ make_Lpar(Lname, pars, s, Lopts = list())
 \arguments{
 \item{Lname}{the class name of the aquatic model}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the species index}
 
 \item{Lopts}{a \link{list}}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on \code{Lname}.

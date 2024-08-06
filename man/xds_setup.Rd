@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup}
 \alias{xds_setup}
-\title{Set up an \code{xds} model object}
+\title{Set up and configure an \strong{\code{xds}} model object}
 \usage{
 xds_setup(
   xds = "xde",
@@ -75,5 +75,22 @@ xds_setup(
 a \link{list}
 }
 \description{
-Streamlines setup for \code{xds} model objects
+This sets up an \strong{\code{xds}} model object with \code{pars$frame = 'full'} each
+dynamical component fully configured for a single host and vector species:
+\itemize{
+\item \strong{\code{Xpar}} defines the human / host infection dynamics, \eqn{\cal XH}, of class \code{Xname}
+\item \strong{\code{MYZpar}} defines the adult mosquito ecology & infection dynamics, \eqn{\cal MYZ}, of class \code{MYZname}
+\item \strong{\code{Lpar}} defines the aquatic mosquito ecology, \eqn{\cal L}, of class \code{Lname}
+\item Parameter values for the models are passed as named lists: \code{Xopts}, \code{MYZopts}, and \code{Lopts}
+\item Search weights, the mosquito dispersal matrix, and the time spent matrix can also be
+configured using parameters passed at the command line.
+\item Runtime parameters for \code{dts} models can be configured by passing values: \code{Xday}, \code{MYZday}, and \code{Lday}
+}
+
+Advanced features must be configured later, including:
+\itemize{
+\item multiple-host species or multiple-vector species
+\item exogenous forcing by weather, resources, or other factors
+\item vector control, vaccines, or other mass
+}
 }

@@ -7,12 +7,12 @@
 make_indices_L(pars, s)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the species index}
 }
 \value{
-none
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on the type of \code{pars$Lpar}. Adds field \code{L_ix}

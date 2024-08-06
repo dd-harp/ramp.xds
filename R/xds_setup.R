@@ -1,8 +1,21 @@
 # functions to set up models
 
-#' @title Set up an `xds` model object
-#' @description
-#' Streamlines setup for `xds` model objects
+#' @title Set up and configure an **`xds`** model object
+#' @description This sets up an **`xds`** model object with `pars$frame = 'full'` each
+#' dynamical component fully configured for a single host and vector species:
+#' - **`Xpar`** defines the human / host infection dynamics, \eqn{\cal XH}, of class `Xname`
+#' - **`MYZpar`** defines the adult mosquito ecology & infection dynamics, \eqn{\cal MYZ}, of class `MYZname`
+#' - **`Lpar`** defines the aquatic mosquito ecology, \eqn{\cal L}, of class `Lname`
+#' - Parameter values for the models are passed as named lists: `Xopts`, `MYZopts`, and `Lopts`
+#' - Search weights, the mosquito dispersal matrix, and the time spent matrix can also be
+#' configured using parameters passed at the command line.
+#' - Runtime parameters for `dts` models can be configured by passing values: `Xday`, `MYZday`, and `Lday`
+#'
+#' Advanced features must be configured later, including:
+#' - multiple-host species or multiple-vector species
+#' - exogenous forcing by weather, resources, or other factors
+#' - vector control, vaccines, or other mass
+#'
 #' @param xds is `xde`/`dts` for differential / difference equations
 #' @param dlay is either "ode" or "dde"
 #' @param MYZname is a character string defining a MYZ model
