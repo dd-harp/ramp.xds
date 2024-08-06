@@ -10,6 +10,7 @@
 #' @return a [list]
 #' @export
 Bionomics <- function(t, y, pars){
+  pars <- AvailableSugar(pars)
   for(s in 1:pars$nVectors){
     pars <- MBionomics(t, y, pars, s)
     pars <- LBionomics(t, y, pars, s)

@@ -29,7 +29,7 @@ OwnBedNet <- function(t, y, pars) {
 #' @return a [list]
 #' @export
 UseBedNet <- function(t, y, pars) {
-  UseMethod("UseBedNets", pars$ITNuse)
+  UseMethod("UseBedNet", pars$ITNuse)
 }
 
 #' @title Modify variables or parameters, called from VectorControlEffects

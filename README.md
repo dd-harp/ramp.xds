@@ -17,11 +17,11 @@ RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- is a bespoke infe
 
 **`ramp.xds`** does core computation for simulation-based analytics as part of a suite of R packages. Other packages include: 
 
-+ An extended library of stable, tested, and reusable code implementing previously published model families for **`ramp.xds`** is maintained in [**`ramp.library`**](https://dd-harp.github.io/ramp.library/).
++  [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an extended library of stable, tested, and reusable code implementing published model families that are not included in **`ramp.xds`** 
 
-+ Algorithms to apply the framework, include code to fit models to data, are found in [**`ramp.work`**](https://dd-harp.github.io/ramp.work/). 
++ [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) includes algorithms to apply the framework, include code to fit models to data 
 
-+ A large set of models illustrating capabilities are found in [**`ramp.malaria`**](https://dd-harp.github.io/ramp.malaria/). 
++ [**`ramp.malaria`**](https://dd-harp.github.io/ramp.malaria/) includes a large set of models illustrating capabilities of **`ramp.xds`** 
 
 **`ramp.xds`**  is under active development. It supersedes two other software packages, no longer under active development: [**`exDE`**](https://dd-harp.github.io/exDE/) and [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB/). (for more, please read about the [history of RAMP software](https://dd-harp.github.io/ramp.xds/articles/History.html)).
 
