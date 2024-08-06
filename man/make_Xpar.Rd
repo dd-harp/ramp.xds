@@ -2,22 +2,22 @@
 % Please edit documentation in R/human-interface.R
 \name{make_Xpar}
 \alias{make_Xpar}
-\title{A function to set up Xpar}
+\title{Make a \eqn{cal X} Model}
 \usage{
 make_Xpar(Xname, pars, i, Xopts = list())
 }
 \arguments{
 \item{Xname}{a \link{character} string}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{i}{the host species index}
 
 \item{Xopts}{a \link{list}}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on \code{Xname}.
+Make a model
 }

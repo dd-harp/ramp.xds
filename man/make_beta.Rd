@@ -14,7 +14,7 @@ make_beta(t, y, pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 This function computes the mixing matrix, beta

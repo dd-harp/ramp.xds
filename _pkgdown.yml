@@ -493,6 +493,7 @@ reference:
   - F_pr_by_pcr
   - xds_plot_X
   - xde_steady_state_X
+  - xde_steady_state_XH
   - dts_steady_state_X
 - subtitle: trace
   desc: |

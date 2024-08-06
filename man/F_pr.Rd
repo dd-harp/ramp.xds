@@ -15,5 +15,6 @@ F_pr(vars, Xpar)
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-This method dispatches on the type of \code{pars$Xpar[[i]]}.
+A function that translates the state variables into
+the "true" \emph{Pf}PR
 }

@@ -16,7 +16,7 @@ change_blood_weights(pars, search_weights = 1, s = 1, i = 1)
 \item{i}{the host species index}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Set the blood feeding search weights, \eqn{\omega}, for a set of host strata

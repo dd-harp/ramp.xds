@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure.R
 \name{F_ar}
 \alias{F_ar}
-\title{Convert the AR from local exposure}
+\title{Compute Local Attack Rates}
 \usage{
 F_ar(eir, b, pars)
 }
@@ -14,16 +14,24 @@ F_ar(eir, b, pars)
 \item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the local ARs as a \link{numeric} vector of length \eqn{n_h =} \code{nStrata}
+a \link{numeric} vector: local attack rates for the strata
 }
 \description{
-This function compute the daily
-local attack rates (ARs) as a function
-of the daily EIR and effects of partial immunity.
-It is computed based on a probabilistic model
-environmentally heterogeneous exposure.
-If a model of human / host infection (\eqn{\cal X}) has terms
-that describe partial immunity, \emph{e.g.} affecting
-pre-erythrocytic immunity to malaria called
-by \link{F_b}, those effects are implemented here.
+Compute the local attack rates as a function of the daily EIR and immunity.
+}
+\details{
+This function computes the daily
+local attack rates (ARs)
+as a function of the daily EIR under
+a probabilistic model for environmentally
+heterogeneous exposure --
+the distribution of bites per person.
+
+The model for human / host infection (\eqn{\cal X}) provide
+a term \eqn{b}, from \link{F_b} that describe the probability of infection
+per infectious bite, possibly affected by
+pre-erythrocytic immunity.
+}
+\seealso{
+Cases: \link{F_ar.nb} and \link{F_ar.pois}. Related: \link{ar2eir} & \link{Exposure.dts}
 }

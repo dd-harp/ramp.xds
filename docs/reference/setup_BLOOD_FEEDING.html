@@ -155,9 +155,7 @@
     <h2>Value</h2>
     
 
-<p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
-
-
+<p>a modified <strong><code>xds</code></strong> object</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -174,14 +172,14 @@ is attached to the <strong><code>xds</code></strong> object pars as <code>pars$B
 <li><p>a vector describing the availability of visitors</p></li>
 <li><p>a vector describing the availability of other blood hosts</p></li>
 <li><p>a vector describing \(B\), the total availability of all vertebrate blood hosts for blood feeding (see <code><a href="compute_B.html">compute_B()</a></code>)</p></li>
-</ul><p>These quantities are used to model transmission (see <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code>).
-Mosquito bionomic parameters <em>ought</em> to be consistent. If bionomic parameters are
+</ul><p>These quantities are used to model transmission (see <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code>).</p>
+<p>Mosquito bionomic parameters <em>ought</em> to be constrained. If bionomic parameters are
 assigned, there's no guarantee they are internally mathematically consistent or sensible.
-These structures make it possible to use the concept of resource availability to
-compute the blood feeding rates (\(f\))
-using <em>functional responses.</em> The human fraction ought to be \(q=W/B\).</p>
-<p>Availability can also be used to model mosquito movement.
-In models with multiple host species, with availability \(W_i\), the fraction on
+To guarantee internal consistency, the the concept of resource availability should be
+used to compute the blood feeding rates (\(f\))
+using <em>functional responses.</em> The human fraction ought to be \(q=W/B\).
+Availability can also be used to model mosquito movement.</p>
+<p><strong>Mulit-Host Models</strong> - In models with multiple host species, with availability \(W_i\), the fraction on
 each host species would be \(W_i/B\).
 In models with multiple vector species, each species could have different search habits and preferences,
 so blood feeding availability is indexed for each species: \(B_s\) and \(W_{s}\).

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SIS.R
 \name{dXdt.SIS}
 \alias{dXdt.SIS}
-\title{Derivatives for the SIS model for human / vertebrate host infections}
+\title{Derivatives for the SIS \eqn{\cal X} Compartment Model}
 \usage{
 \method{dXdt}{SIS}(t, y, pars, i)
 }
@@ -11,7 +11,7 @@
 
 \item{y}{state vector}
 
-\item{pars}{a list}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{i}{the host species index}
 }
@@ -19,5 +19,9 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{dXdt} for the SIS model
+Implements \link{dXdt} for the SIS model for human / vertebrate host infections
+}
+\details{
+The core dynamics of infection
+\deqn{\frac{dS}{dt} = -h S + r I}
 }

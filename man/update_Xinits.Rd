@@ -7,14 +7,14 @@
 update_Xinits(pars, y0, i)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{y0}{a vector of initial values}
 
 \item{i}{the host species index}
 }
 \value{
-none
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on the type of \code{pars$Xpar[[i]]}.

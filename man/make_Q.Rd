@@ -10,7 +10,7 @@ make_Q(pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Set the value of a variable, \eqn{Q}, that describes the availability of any habitat

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-interface.R
 \name{dXdt}
 \alias{dXdt}
-\title{Derivatives for human population}
+\title{Derivatives for \eqn{\cal X} Models}
 \usage{
 dXdt(t, y, pars, i)
 }
@@ -11,7 +11,7 @@ dXdt(t, y, pars, i)
 
 \item{y}{state vector}
 
-\item{pars}{a list}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{i}{the host species index}
 }
@@ -19,5 +19,7 @@ dXdt(t, y, pars, i)
 a \link{numeric} vector
 }
 \description{
-This method dispatches on the type of \code{pars$Xpar[[i]]}.
+Compute and return the derivatives
+for a model of class \eqn{\cal X} - dynamics of infection and
+immunity in humans or other vertebrate host
 }

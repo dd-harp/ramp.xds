@@ -2,20 +2,21 @@
 % Please edit documentation in R/human-interface.R
 \name{xde_steady_state_X}
 \alias{xde_steady_state_X}
-\title{Compute the steady states as a function of the daily EIR}
+\title{Steady States for \eqn{\cal X}-Models}
 \usage{
 xde_steady_state_X(foi, H, Xpar)
 }
 \arguments{
 \item{foi}{the daily FoI}
 
-\item{H}{host density}
+\item{H}{human / host population density}
 
-\item{Xpar}{a list that defines a X-class model}
+\item{Xpar}{a list that defines an \eqn{\cal X} model}
 }
 \value{
 none
 }
 \description{
-This method dispatches on the type of \code{Xpar}.
+Compute the steady states as a function of the daily FoI for a
+static value of human population density
 }

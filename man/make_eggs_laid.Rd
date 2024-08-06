@@ -14,7 +14,7 @@ make_eggs_laid(t, y, pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Computes eggs laid in aquatic habitats

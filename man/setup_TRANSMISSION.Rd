@@ -10,7 +10,7 @@ setup_TRANSMISSION(pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Sets up the object that defines the transmission interface for an \code{xds} model object.

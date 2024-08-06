@@ -9,7 +9,7 @@ parse_outputs_X(outputs, pars, i)
 \arguments{
 \item{outputs}{a \link{matrix} of outputs from deSolve}
 
-\item{pars}{a \link{list} that defines a model}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{i}{the host species index}
 }

@@ -9,11 +9,14 @@
 \arguments{
 \item{pars}{an \code{xds} object}
 
-\item{sz}{the size parameter, as in \link{dnbinom}(mu=mu, size=sz)}
+\item{sz}{the negative binomial size parameter (see \link{pnbinom})}
 }
 \value{
-the modified \strong{\code{xds}} object
+an \strong{\code{xds}} object
 }
 \description{
 Set up the negative binomial model of exposure for continuous time models
+}
+\seealso{
+Also, see \link{F_foi.nb}
 }

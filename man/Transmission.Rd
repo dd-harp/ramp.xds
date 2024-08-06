@@ -14,7 +14,7 @@ Transmission(t, y, pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 This method dispatches on the type of \code{pars$beta}

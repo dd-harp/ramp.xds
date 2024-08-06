@@ -14,16 +14,23 @@
 \item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-dEIR as a \link{numeric} vector of length \eqn{n_h=}\code{nStrata}
+a \link{numeric} vector: attack rates for the population strata
 }
 \description{
 A Poisson model for attack rates as a function of the daily EIR.
-
-Compute the daily AR, \eqn{\alpha},
-given the daily EIR, \eqn{E},
-under a Poisson modelfor the distribution
-of bites per person, and \eqn{b}, the probability of
-infection per infective bite:
+}
+\details{
+This function computes the daily attack rates (\eqn{\alpha}), the fraction
+of a cohort that gets infected in a day,
+as a function of the daily EIR (\eqn{E})
+under a Poisson model for the distribution
+of bites per person, and the probability of
+infection per infective bite (\eqn{b}):
 \deqn{\alpha = 1 - e^{- b E}}
-The expression is equivalent to \code{ppois(0, b*eir, lower.tail=FALSE)}
+The expression is equivalent to
+
+\code{ppois(0, b*eir, lower.tail=FALSE)}
+}
+\seealso{
+Related: \link{F_foi} & \link{F_foi.pois} & \link{ar2eir.pois}. Called from \link{Exposure.dts}
 }

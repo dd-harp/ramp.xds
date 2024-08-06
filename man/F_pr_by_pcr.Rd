@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-interface.R
 \name{F_pr_by_pcr}
 \alias{F_pr_by_pcr}
-\title{Compute the prevalence of infection by PCR}
+\title{Compute infection prevalence by PCR}
 \usage{
 F_pr_by_pcr(vars, Xpar)
 }
@@ -15,5 +15,9 @@ F_pr_by_pcr(vars, Xpar)
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
+A function that translates the state variables into
+the predicted \emph{Pf}PR by PCR
+}
+\note{
 This method dispatches on the type of \code{pars$Xpar[[i]]}.
 }

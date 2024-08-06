@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure.R
 \name{Exposure.dts}
 \alias{Exposure.dts}
-\title{Compute the Attack Rates}
+\title{Compute Attack Rates}
 \usage{
 \method{Exposure}{dts}(t, y, pars)
 }
@@ -14,20 +14,24 @@
 \item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the modified \strong{\code{xds}} object
+an \strong{\code{xds}} object
 }
 \description{
-For dts models, compute
-the attack rates (AR) as a function
-of local daily entomological inoculation
-rates (dEIR), and a model for exposure
-to malaria while traveling.
+For \code{dts} models, compute
+the attack rates, the expected probability of infection
+over one time step, is a weighted sum of local and travel exposure.
 }
 \details{
-Local attack rates are computed
-under a model for immunity that
-computes the probability of infection
-per infectious bite, \eqn{b}, returned
-from \eqn{F_b}, as defiend by the
-\eqn{\cal X} model.
+Local attack rates (AR or \eqn{\alpha}) are
+a function of local daily entomological inoculation
+rates (dEIR or \eqn{E}), and
+a model for the probability of infection
+per infectious bite, \eqn{b} (from \eqn{F_b},
+as defined by an \eqn{\cal X} model).
+The total attack rates also consider
+exposure to malaria while traveling, (\eqn{T_\delta}):
+\deqn{\alpha = (1-\delta) \; F_\alpha(E, b) + \delta\; T_\alpha(b)}
+}
+\seealso{
+Related: \link{Exposure} & \link{F_ar.pois} & \link{F_ar.nb} & \link{travel_malaria}
 }

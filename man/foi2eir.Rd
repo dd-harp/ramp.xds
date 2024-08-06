@@ -20,3 +20,6 @@ the daily EIR as a \link{numeric} vector
 This function computes the inverse of \link{F_foi}
 under a model for environmentally heterogeneous exposure.
 }
+\seealso{
+Cases: \link{foi2eir.pois} & \link{foi2eir.nb}
+}

@@ -1,14 +1,18 @@
 # function make_xds_object and supporting function F_H.setup
 
-#' @title Make **`xds`** Object
-#' @description Create the template for a fully defined **`xds`** object
-#' @details This function sets up everything that is required to configure and run a basic model.
+#' @title Make an **`xds`** Object
+#' @description Create a structured template for an
+#' **`xds`** object with generic features
+#' @details This function sets up the basic structures required
+#' to configure and run a basic model. The returned object is a list
+#' with various required elements attached and configured, but without
+#' specifying the dynamical components or any advanced features.
 #'
 #' First, the function sets up some short text strings (assigned to the same `S3` class)
 #' to dispatch various **cases** of of various `S3` functions:
 #' - *`xds`* is either "xde" for differential equations or "dts" for difference equations;
 #' - *`frame`* is one of several cases:
-#'      - "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, and \eqn{\cal L}.
+#'      - "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}.
 #' in some form (possible the trace case) (see [xds_setup()])
 #'      - "mozy" is for mosquito ecology models (see [xds_setup_mosy()]), including models without pathogen infection dynamics in mosquitoes
 #'      - "aquatic" is for aquatic mosquito ecology models (see [xds_setup_mosy()]), forced by a function describing egg laying
@@ -37,9 +41,9 @@
 #'      - [setup_exposure_pois()] sets up a Poisson model for environmental heterogeneity
 #'      - [setup_travel_static()] sets up a model with no exposure through travel
 #'
-#' @param xds is either "xde" or "dts" for differential / difference equations
+#' @param xds is "xde" for ordinary or delay differential equations; "dts" for "discrete time systems"
 #' @param frame model component subset
-#' @param dlay is either "ode" for ordinary and "dde" for delay differential equations
+#' @param dlay is "ode" for ordinary / "dde" for delay differential equations
 #' @param nPatches is the number of patches
 #' @param membership is the habitat membership vector
 #' @param residence is the strata residence vector

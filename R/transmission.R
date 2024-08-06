@@ -5,7 +5,7 @@
 #' @details
 #' This implements a model for egg laying described by Wu SL, *et al.*, (2023).
 #' @param pars an `xds` object
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @seealso [make_xds_object]
 #' @seealso [setup_BLOOD_FEEDING]
@@ -64,7 +64,7 @@ compute_beta = function(H, W, wts_f, TaR){
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 make_beta <- function(t, y, pars){
   for(i in 1:pars$nHosts){
@@ -99,7 +99,7 @@ compute_EIR <- function(fqZ, beta, local_frac) {
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 make_EIR <- function(t, y, pars){
 
@@ -127,7 +127,7 @@ make_EIR <- function(t, y, pars){
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 make_EIR_full <- function(t, y, pars){
 
@@ -173,7 +173,7 @@ compute_kappa <- function(Wi, W, beta, X) {
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 make_kappa <- function(t, y, pars){
   for(s in 1:pars$nVectors){
@@ -216,7 +216,7 @@ compute_local_frac <- function(W, Visitors){
 #' @title Compute the local fraction
 #' @description Compute the availability for the pathogen's hosts for blood feeding
 #' @param pars an `xds` object
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 make_local_frac <- function(pars){with(pars$vars,{
   for(s in 1:pars$nVectors){
@@ -230,7 +230,7 @@ make_local_frac <- function(pars){with(pars$vars,{
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 Transmission <- function(t, y, pars){
   UseMethod('Transmission', pars$beta)
@@ -239,7 +239,7 @@ Transmission <- function(t, y, pars){
 #' @title Compute transmission terms with a static mixing matrix
 #' @description In the static case, \eqn{\beta} is not updated
 #' @inheritParams Transmission
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 Transmission.static <- function(t, y, pars){
   pars = make_EIR(t, y, pars)
@@ -250,7 +250,7 @@ Transmission.static <- function(t, y, pars){
 #' @title Compute transmission, the dynamic case
 #' @description Compute transmission terms with a dynamic mixing matrix
 #' @inheritParams Transmission
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 Transmission.dynamic <- function(t, y, pars){
   pars = make_local_frac(pars)
@@ -265,7 +265,7 @@ Transmission.dynamic <- function(t, y, pars){
 #' @details The `setup` case is called whenever any parameter affecting the mixing matrix
 #' in a static model is changed
 #' @inheritParams Transmission
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 Transmission.setup <- function(t, y, pars){
   class(pars$beta) <- 'dynamic'

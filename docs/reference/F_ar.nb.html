@@ -170,16 +170,20 @@
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Compute the daily AR, \(h\) or <code>foi</code>, as a function
+    <p>This function computes the daily AR, \(\alpha\), as a function
 of the daily EIR, \(E\) or <code>eir</code>,
 under a negative binomial model for the distribution
 of bites per person, and \(b\), the probability of
 infection per infective bite:
 $$\alpha = 1-(1 + b E/\phi)^{-\phi} $$
-This negative binomial model uses the <strong>mu</strong> \(= E\) and <strong>size</strong> \(=\phi\)
+This negative binomial model uses the <strong>mu</strong> \(= bE\) and <strong>size</strong> \(=\phi\)
 parameterization (see <a href="https://rdrr.io/r/stats/NegBinomial.html" class="external-link">pnbinom</a>).
-The formula is equivalent to
-<code>pnbinom(0, mu=b*eir, size=phi, lower.tail=FALSE)</code></p>
+The formula is equivalent to:</p>
+<p><code>pnbinom(0, mu=b*eir, size=phi, lower.tail=FALSE)</code></p>
+    </div>
+    <div id="see-also">
+    <h2>See also</h2>
+    <div class="dont-index"><p>Related topics: <a href="Exposure.dts.html">Exposure.dts</a>, <a href="setup_exposure_nb.html">setup_exposure_nb</a> &amp; <a href="F_foi.nb.html">F_foi.nb</a></p></div>
     </div>
 
   </div>

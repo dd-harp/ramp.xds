@@ -50,14 +50,15 @@ create_residence_matrix = function(nPatches, residence){
 #' - a vector describing \eqn{B}, the total availability of all vertebrate blood hosts for blood feeding (see [compute_B()])
 #'
 #' These quantities are used to model transmission (see [setup_TRANSMISSION()]).
-#' Mosquito bionomic parameters *ought* to be consistent. If bionomic parameters are
-#' assigned, there's no guarantee they are internally mathematically consistent or sensible.
-#' These structures make it possible to use the concept of resource availability to
-#' compute the blood feeding rates (\eqn{f})
-#' using *functional responses.* The human fraction ought to be \eqn{q=W/B}.
 #'
+#' Mosquito bionomic parameters *ought* to be constrained. If bionomic parameters are
+#' assigned, there's no guarantee they are internally mathematically consistent or sensible.
+#' To guarantee internal consistency, the the concept of resource availability should be
+#' used to compute the blood feeding rates (\eqn{f})
+#' using *functional responses.* The human fraction ought to be \eqn{q=W/B}.
 #' Availability can also be used to model mosquito movement.
-#' In models with multiple host species, with availability \eqn{W_i}, the fraction on
+#'
+#' **Mulit-Host Models** - In models with multiple host species, with availability \eqn{W_i}, the fraction on
 #' each host species would be \eqn{W_i/B}.
 #' In models with multiple vector species, each species could have different search habits and preferences,
 #' so blood feeding availability is indexed for each species: \eqn{B_s} and \eqn{W_{s}}.
@@ -67,7 +68,7 @@ create_residence_matrix = function(nPatches, residence){
 #' time spent by time of day weighted by mosquito species-specific *search weights* reflecting different preferences
 #' and a circadian function describing relative mosquito blood feeding rates by time of day.
 #' @param pars an **`xds`** object
-#' @return a [list]
+#' @return a modified **`xds`** object
 #' @seealso [setup_TRANSMISSION]
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @export
@@ -137,7 +138,7 @@ setup_BLOOD_FEEDING <- function(pars){
 #' @param search_weights the blood feeding search weights
 #' @param s the vector species index
 #' @param i the host species index
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 change_blood_weights = function(pars, search_weights=1, s=1, i=1){
   search_weights = checkIt(search_weights, pars$nStrata)
@@ -191,7 +192,7 @@ compute_B = function(W, visitors, other_blood){
 #' @description Compute the availability for the pathogen's hosts for blood feeding
 #' @param pars an `xds` object
 #' @param y state vector
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 make_WB <- function(pars, y=0){
   y = as.vector(unlist(y))
@@ -237,7 +238,7 @@ compute_RBR = function(search_weights, H){
 #' @description Compute the availability for the pathogen's hosts for blood feeding
 #' @param pars an `xds` object
 #' @param y state vector
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 make_RBR = function(pars, y){
   y = as.vector(unlist(y))
@@ -274,7 +275,7 @@ compute_TaR = function(t, TiSp, F_circadian){
 #' @description Make a time at risk matrix (TaR) from a time spent matrix and a circadian function
 #' @param pars an `xds` object
 #' @param t the time
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 make_TaR <- function(pars, t=0){
   for(s in 1:pars$nVectors)
@@ -290,7 +291,7 @@ make_TaR <- function(pars, t=0){
 #' @param t the time
 #' @param y the state variables
 #' @param pars an `xds` object
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 BloodFeeding = function(t, y, pars){
   UseMethod("BloodFeeding", pars$BFpar)
@@ -305,7 +306,7 @@ BloodFeeding = function(t, y, pars){
 #' blood feeding terms, so the class of `pars$beta` must also
 #' be updated, if they are not dynamic, so [setup_setup] is called.
 #' @inheritParams BloodFeeding
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 BloodFeeding.setup = function(t, y, pars){
   class(pars$BFpar) <- 'dynamic'
@@ -330,7 +331,7 @@ BloodFeeding.static = function(t, y, pars){
 #' the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi}
 #' for static models.
 #' @inheritParams BloodFeeding
-#' @return the modified `xds` object
+#' @return an `xds` object
 #' @export
 BloodFeeding.dynamic = function(t, y, pars){
   pars <- make_TaR(pars)

@@ -19,3 +19,6 @@ a \link{numeric} vector of length \code{nStrata}
 \description{
 Implements \link{ar2eir} for a negative binomial model
 }
+\seealso{
+\link{F_ar.nb}
+}

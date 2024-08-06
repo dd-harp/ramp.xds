@@ -14,7 +14,7 @@
 \item{pars}{an \code{xds} object}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Computes eggs laid for an autonomous model

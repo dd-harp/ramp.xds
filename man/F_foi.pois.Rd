@@ -20,10 +20,13 @@ a \link{numeric} vector of length \code{nStrata}
 A Poisson model for the force of infection as a function of the daily EIR.
 }
 \details{
-Compute the daily FoI, \eqn{h},
-as a given the daily EIR, \eqn{E},
+This function computes the daily FoI (\eqn{h})
+as function of the local daily EIR (\eqn{E})
 under a Poisson model for the distribution
-of bites per person, and \eqn{b}, the probability of
-infection per infective bite:
+of bites per person, and the probability of
+infection per infective bite (\eqn{b}):
 \deqn{h = b E}
+}
+\seealso{
+Related: \link{F_foi} & \link{F_ar.pois} & \link{foi2eir.pois}. Called from \link{Exposure.xde}
 }

@@ -12,7 +12,7 @@ make_WB(pars, y = 0)
 \item{y}{state vector}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Compute the availability for the pathogen's hosts for blood feeding
