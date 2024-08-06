@@ -2,7 +2,7 @@
 % Please edit documentation in R/runtime.R
 \name{make_runtime.xde}
 \alias{make_runtime.xde}
-\title{Set up runtime time step support for \code{xde} models}
+\title{Set up run-time time step support for \code{xde} models}
 \usage{
 \method{make_runtime}{xde}(pars, Xday, MYZday, Lday, Lname)
 }
@@ -21,6 +21,6 @@
 the unmodified \code{xds} object
 }
 \description{
-Continuous time models don't use runtime support,
+Continuous time models don't use run-time support,
 so this returns the \code{xds} object without modification
 }

@@ -148,15 +148,6 @@ update_Linits.basicL <- function(pars, y0, s) {
   return(pars)
 }
 
-#' @title Return initial values as a vector
-#' @description Implements [get_Linits] for the GeRM model.
-#' @inheritParams get_Linits
-#' @return none
-#' @export
-get_Linits.basicL <- function(pars, s=1){
-  pars$Linits[[s]]
-}
-
 #' @title Make inits for basicL competition aquatic mosquito model
 #' @param nHabitats the number of habitats in the model
 #' @param Lopts a [list] that overwrites default values

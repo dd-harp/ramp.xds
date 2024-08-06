@@ -286,6 +286,7 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
 
   # Aquatic Mosquito Dynamics
   pars       <- make_Lpar("trace", pars, 1, list())
+  pars       <- make_Linits(pars, 1)
 
   # Mosquito Dynamics
   pars           <- make_MYZpar("trace", pars, 1, MYZopts)
@@ -364,6 +365,7 @@ xds_setup_cohort = function(F_eir,
 
   # Aquatic Mosquito Dynamics
   pars       <- make_Lpar("trace", pars, 1, list())
+  pars       <- make_Linits(pars, 1)
 
   # Adult Mosquito Dynamics
   pars           <- make_MYZpar("trace", pars, 1, list())

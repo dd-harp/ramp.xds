@@ -1122,23 +1122,23 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dLdt.html">dLdt()</a></code> </p>
         </td>
-        <td><p>Derivatives for aquatic stage mosquitoes</p></td>
+        <td><p>Compute Derivatives for \(\cal L\)</p></td>
       </tr><tr><td>
           <p><code><a href="xde_steady_state_L.html">xde_steady_state_L()</a></code> </p>
         </td>
-        <td><p>Compute the steady states as a function of the daily EIR</p></td>
+        <td><p>Steady States for \(\cal L\)</p></td>
       </tr><tr><td>
           <p><code><a href="make_Lpar.html">make_Lpar()</a></code> </p>
         </td>
-        <td><p>A function to set up adult mosquito models</p></td>
+        <td><p>Create and configure <strong><code>Lpar</code></strong> for \(\cal L\)-Models</p></td>
       </tr><tr><td>
           <p><code><a href="Update_Lt.html">Update_Lt()</a></code> </p>
         </td>
-        <td><p>Derivatives for aquatic stage mosquitoes</p></td>
+        <td><p>Update States for \(\cal L\)</p></td>
       </tr><tr><td>
           <p><code><a href="dts_steady_state_L.html">dts_steady_state_L()</a></code> </p>
         </td>
-        <td><p>Compute the steady states as a function of the daily EIR</p></td>
+        <td><p>Steady States for \(\cal L\)</p></td>
       </tr><tr><td>
           <p><code><a href="LBionomics.html">LBionomics()</a></code> </p>
         </td>
@@ -1150,7 +1150,7 @@
       </tr><tr><td>
           <p><code><a href="F_emerge.html">F_emerge()</a></code> </p>
         </td>
-        <td><p>Number of newly emerging adults from each larval habitat</p></td>
+        <td><p>Emerging adults</p></td>
       </tr><tr><td>
           <p><code><a href="make_Linits.html">make_Linits()</a></code> </p>
         </td>
@@ -1158,7 +1158,7 @@
       </tr><tr><td>
           <p><code><a href="list_Lvars.html">list_Lvars()</a></code> </p>
         </td>
-        <td><p>Return the variables as a list</p></td>
+        <td><p>Return \(\cal L\) variables as a list</p></td>
       </tr><tr><td>
           <p><code><a href="put_Lvars.html">put_Lvars()</a></code> </p>
         </td>
@@ -1170,11 +1170,11 @@
       </tr><tr><td>
           <p><code><a href="parse_outputs_L.html">parse_outputs_L()</a></code> </p>
         </td>
-        <td><p>Parse the outputs of solving a dynamical system and return the variables by name in a list</p></td>
+        <td><p>Parse \(\cal L\) Outputs</p></td>
       </tr><tr><td>
           <p><code><a href="get_Linits.html">get_Linits()</a></code> </p>
         </td>
-        <td><p>Return initial values as a vector</p></td>
+        <td><p>Get the stored initial values</p></td>
       </tr><tr><td>
           <p><code><a href="update_Linits.html">update_Linits()</a></code> </p>
         </td>
@@ -1214,7 +1214,7 @@
       </tr><tr><td>
           <p><code><a href="make_Linits.trace.html">make_Linits(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Setup the trace model</p></td>
+        <td><p>Setup \(\cal L\)-trace</p></td>
       </tr><tr><td>
           <p><code><a href="list_Lvars.trace.html">list_Lvars(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
@@ -1231,10 +1231,6 @@
           <p><code><a href="parse_outputs_L.trace.html">parse_outputs_L(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the variable names for the trace model</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_Linits.trace.html">get_Linits(<i>&lt;trace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Return initial values as a vector</p></td>
       </tr><tr><td>
           <p><code><a href="update_Linits.trace.html">update_Linits(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
@@ -1291,10 +1287,6 @@
           <p><code><a href="parse_outputs_L.basicL.html">parse_outputs_L(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the variable names for the basicL model</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_Linits.basicL.html">get_Linits(<i>&lt;basicL&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Return initial values as a vector</p></td>
       </tr><tr><td>
           <p><code><a href="update_Linits.basicL.html">update_Linits(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
@@ -2894,7 +2886,7 @@
       </tr><tr><td>
           <p><code><a href="Update_Lt.html">Update_Lt()</a></code> </p>
         </td>
-        <td><p>Derivatives for aquatic stage mosquitoes</p></td>
+        <td><p>Update States for \(\cal L\)</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="solving">Solving <a href="#solving" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Wrappers around the derivatives functions that handle time and parse outputs</p>
@@ -3082,7 +3074,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="runt.html">runt()</a></code> </p>
         </td>
-        <td><p>A runtime switch function for mismatched dynamical component runtimes</p></td>
+        <td><p>A run-time switch function for mismatched dynamical component run-times</p></td>
       </tr><tr><td>
           <p><code><a href="set_Dday.html">set_Dday()</a></code> </p>
         </td>
@@ -3090,15 +3082,15 @@
       </tr><tr><td>
           <p><code><a href="make_runtime.html">make_runtime()</a></code> </p>
         </td>
-        <td><p>Set up runtime time step support for <code>dts</code> models</p></td>
+        <td><p>Set up run-time time step support for <code>dts</code> models</p></td>
       </tr><tr><td>
           <p><code><a href="make_runtime.dts.html">make_runtime(<i>&lt;dts&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set up runtime time step support for <code>dts</code> models</p></td>
+        <td><p>Set up run-time time step support for <code>dts</code> models</p></td>
       </tr><tr><td>
           <p><code><a href="make_runtime.xde.html">make_runtime(<i>&lt;xde&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set up runtime time step support for <code>xde</code> models</p></td>
+        <td><p>Set up run-time time step support for <code>xde</code> models</p></td>
       </tr><tr><td>
           <p><code><a href="MYZ_rates2probs.html">MYZ_rates2probs()</a></code> </p>
         </td>

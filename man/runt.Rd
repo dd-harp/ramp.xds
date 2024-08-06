@@ -2,16 +2,16 @@
 % Please edit documentation in R/runtime.R
 \name{runt}
 \alias{runt}
-\title{A runtime switch function for mismatched dynamical component runtimes}
+\title{A run-time switch function for mismatched dynamical component run-times}
 \usage{
 runt(t, Dday, xday)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{Dday}{the runtime time step for the simulation}
+\item{Dday}{the run-time time step for the simulation}
 
-\item{xday}{the runtime time step for a component}
+\item{xday}{the run-time time step for a component}
 }
 \value{
 \link{logical} TRUE or FALSE

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{dts_steady_state_L}
 \alias{dts_steady_state_L}
-\title{Compute the steady states as a function of the daily EIR}
+\title{Steady States for \eqn{\cal L}}
 \usage{
 dts_steady_state_L(eta, Lpar)
 }
@@ -12,8 +12,12 @@ dts_steady_state_L(eta, Lpar)
 \item{Lpar}{a list that defines an xde model}
 }
 \value{
-none
+a named \link{list}: values of the state variables at the steady state
 }
 \description{
-This method dispatches on the type of \code{Lpar}.
+For discrete time systems, compute
+steady states as a function of daily eggs laid, \eqn{\eta}
+}
+\note{
+This method dispatches on the class of \code{Lpar}.
 }

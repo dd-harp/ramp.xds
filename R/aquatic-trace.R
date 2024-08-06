@@ -3,7 +3,7 @@
 #' @title Reset aquatic parameters to baseline
 #' @description Implements [LBionomics] for the RM model
 #' @inheritParams LBionomics
-#' @return a named [list]
+#' @return an **`xds`** object
 #' @export
 LBionomics.trace <- function(t, y, pars, s) {
   return(pars)
@@ -90,7 +90,7 @@ create_Lpar_trace = function(nHabitats, Lopts=list(), Lambda=1000, Lt = NULL){
     return(Lpar)
   })}
 
-#' @title Setup the trace model
+#' @title Setup \eqn{\cal L}-trace
 #' @description Implements [make_Linits] for the trace model
 #' @inheritParams make_Linits
 #' @return a [list]
@@ -100,8 +100,6 @@ make_Linits.trace = function(pars, s, Lopts=list()){
   return(pars)
 }
 
-
-
 #' @title Add indices for aquatic stage mosquitoes to parameter list
 #' @description Implements [make_indices_L] for trace (forced emergence) model.
 #' @inheritParams make_indices_L
@@ -109,18 +107,6 @@ make_Linits.trace = function(pars, s, Lopts=list()){
 #' @export
 make_indices_L.trace <- function(pars, s) {
   return(pars)
-}
-
-
-
-
-#' @title Return initial values as a vector
-#' @description Implements [get_Linits] for the GeRM model.
-#' @inheritParams get_Linits
-#' @return none
-#' @export
-get_Linits.trace <- function(pars, s=1){
-  numeric(0)
 }
 
 #' @title Update inits for the basic aquatic mosquito competition model

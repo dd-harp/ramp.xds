@@ -130,6 +130,7 @@ params <- make_Xinits(params, H, 1, Xo)
 params <- setup_Hpar_static(params, 1)
 params <- make_MYZpar("trace", params, 1)
 params <- make_Lpar("trace", params, 1)
+params <- make_Linits(params, 1)
 params <- make_indices(params)
 ```
 

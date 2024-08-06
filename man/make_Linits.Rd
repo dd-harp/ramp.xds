@@ -14,7 +14,7 @@ make_Linits(pars, s, Lopts = list())
 \item{Lopts}{a \link{list}}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on \code{Lname}.

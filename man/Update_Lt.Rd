@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{Update_Lt}
 \alias{Update_Lt}
-\title{Derivatives for aquatic stage mosquitoes}
+\title{Update States for \eqn{\cal L}}
 \usage{
 Update_Lt(t, y, pars, s)
 }
@@ -16,8 +16,13 @@ Update_Lt(t, y, pars, s)
 \item{s}{the species index}
 }
 \value{
-a \link{numeric} vector of length \code{pars$L_ix}
+the states, a \link{numeric} vector of length \eqn{n_q=}\code{nHabitats}
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar}.
+This method updates the state variables
+for the \eqn{\cal L} component -- immature mosquitoes
+in aquatic habitats
+}
+\note{
+Dispatches on the class of \code{pars$Lpar[[s]]}
 }

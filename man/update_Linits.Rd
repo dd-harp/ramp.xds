@@ -17,5 +17,5 @@ update_Linits(pars, y0, s)
 an \code{xds} object
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar}.
+This method dispatches on the class of \code{pars$Lpar}.
 }

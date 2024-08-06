@@ -2,7 +2,7 @@
 % Please edit documentation in R/runtime.R
 \name{make_runtime.dts}
 \alias{make_runtime.dts}
-\title{Set up runtime time step support for \code{dts} models}
+\title{Set up run-time time step support for \code{dts} models}
 \usage{
 \method{make_runtime}{dts}(pars, Xday, MYZday, Lday, Lname)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{get_Linits}
 \alias{get_Linits}
-\title{Return initial values as a vector}
+\title{Get the stored initial values}
 \usage{
 get_Linits(pars, s = 1)
 }
@@ -12,8 +12,11 @@ get_Linits(pars, s = 1)
 \item{s}{the species index}
 }
 \value{
-\link{list}
+a named \link{list}
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar}.
+Get the stored initial values
+}
+\note{
+This method dispatches on the class of \code{pars$Lpar}.
 }

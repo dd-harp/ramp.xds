@@ -125,6 +125,8 @@ params <- make_xds_object("xde", "mosy", "ode", nPatches, membership)
 
 params = make_Lpar("trace", params, 1, Lopts = list(Lambda=alpha))
 
+params = make_Linits(params, 1)
+
 params = make_MYZpar("basicM", params, 1, MYZopts=MYZo)
 
 params = make_MYZinits(params, 1, list(M=M_eq, P=P_eq))

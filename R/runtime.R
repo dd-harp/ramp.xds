@@ -1,5 +1,5 @@
 
-#' @title Set up runtime time step support for `dts` models
+#' @title Set up run-time time step support for `dts` models
 #' @description Set the time steps for various discrete time models
 #' @param pars an `xds` object
 #' @param Xday is the run-time time step for X component (in days): integer or 1/integer
@@ -12,8 +12,8 @@ make_runtime = function(pars, Xday, MYZday, Lday, Lname){
   UseMethod("make_runtime", pars$xds)
 }
 
-#' @title Set up runtime time step support for `xde` models
-#' @description Continuous time models don't use runtime support,
+#' @title Set up run-time time step support for `xde` models
+#' @description Continuous time models don't use run-time support,
 #' so this returns the `xds` object without modification
 #' @inheritParams make_runtime
 #' @return the unmodified `xds` object
@@ -23,7 +23,7 @@ make_runtime.xde= function(pars, Xday, MYZday, Lday, Lname){
   return(pars)
 }
 
-#' @title Set up runtime time step support for `dts` models
+#' @title Set up run-time time step support for `dts` models
 #' @description Set the time steps for various discrete time models
 #' @inheritParams make_runtime
 #' @return the unmodified `xds` object
@@ -64,11 +64,11 @@ set_Dday = function(Xday, MYZday, Lday, Lname="trace"){
 }
 
 
-#' @title A runtime switch function for mismatched dynamical component runtimes
+#' @title A run-time switch function for mismatched dynamical component run-times
 #' @description Determine whether to update the variables at time t
 #' @param t current simulation time
-#' @param Dday the runtime time step for the simulation
-#' @param xday the runtime time step for a component
+#' @param Dday the run-time time step for the simulation
+#' @param xday the run-time time step for a component
 #' @return [logical] TRUE or FALSE
 #' @export
 runt = function(t, Dday, xday){

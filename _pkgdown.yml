@@ -410,7 +410,6 @@ reference:
   - put_Lvars.trace
   - make_indices_L.trace
   - parse_outputs_L.trace
-  - get_Linits.trace
   - update_Linits.trace
 - subtitle: basicL
   desc: |
@@ -428,7 +427,6 @@ reference:
   - list_Lvars.basicL
   - make_indices_L.basicL
   - parse_outputs_L.basicL
-  - get_Linits.basicL
   - update_Linits.basicL
 - title: Mosquito Bionomics
   desc: |

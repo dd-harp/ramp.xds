@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{F_emerge}
 \alias{F_emerge}
-\title{Number of newly emerging adults from each larval habitat}
+\title{Emerging adults}
 \usage{
 F_emerge(t, y, pars, s)
 }
@@ -19,5 +19,9 @@ F_emerge(t, y, pars, s)
 a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar}.
+This function computes the rate or number of emerging adults: a
+rate for differential equations, or a number for difference equations.
+}
+\note{
+This method dispatches on the class of \code{pars$Lpar[[s]]}
 }

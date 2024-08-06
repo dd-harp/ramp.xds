@@ -213,6 +213,7 @@ params <- make_MYZinits(params, 1, MYZo)
 params <- make_Xpar("trace", params, 1, Xo) 
 params <- make_Xinits(params, HPop, 1)
 params <- make_Lpar("trace", params, 1, Lo)
+params <- make_Linits(params, 1, Lo)
 params <- setup_Hpar_static(params, 1)
 ```
 

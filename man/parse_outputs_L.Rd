@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{parse_outputs_L}
 \alias{parse_outputs_L}
-\title{Parse the outputs of solving a dynamical system and return the variables by name in a list}
+\title{Parse \eqn{\cal L} Outputs}
 \usage{
 parse_outputs_L(outputs, pars, s)
 }
@@ -13,7 +13,13 @@ parse_outputs_L(outputs, pars, s)
 
 \item{s}{the species index}
 }
+\value{
+a \link{list}
+}
 \description{
-This method dispatches on the type of \code{pars$Lpar}. Attaches the
-state variables for the aquatic ecology model to a list and returns it
+After solving a dynamical system, parse the outputs and
+return the variables by name in a list.
+}
+\note{
+This method dispatches on the class of \code{pars$Lpar[[s]]}
 }
