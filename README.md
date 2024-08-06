@@ -17,7 +17,7 @@ RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- is a bespoke infe
 
 **`ramp.xds`** does core computation for simulation-based analytics as part of a suite of R packages. Other packages include: 
 
-+ An extended library of stable, tested, and reusable code implementing previously published model families for **`ramp.xds'** is maintained in [**`ramp.library`**](https://dd-harp.github.io/ramp.library/).
++ An extended library of stable, tested, and reusable code implementing previously published model families for **`ramp.xds`** is maintained in [**`ramp.library`**](https://dd-harp.github.io/ramp.library/).
 
 + Algorithms to apply the framework, include code to fit models to data, are found in [**`ramp.work`**](https://dd-harp.github.io/ramp.work/). 
 
