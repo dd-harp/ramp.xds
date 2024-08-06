@@ -114,7 +114,7 @@ xds_setup = function(xds = 'xde', dlay = 'ode',
   return(pars)
 }
 
-#' @title Set up an `xds` model object for mosquito ecology
+#' @title Set up an **`xds`** model object for mosquito ecology
 #' @param xds is `xde`/`dts` for differential / difference equations
 #' @param dlay is either "ode" or "dde"
 #' @param MYZname is a character string defining a MYZ model
@@ -195,7 +195,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 }
 
 
-#' @title Set up an `xds` model object for aquatic mosquito population dynamics
+#' @title Set up an **`xds`** model object for aquatic mosquito population dynamics
 #' @param xds is `xde`/`dts` for differential / difference equations
 #' @param dlay is either "ode" or "dde"
 #' @param nHabitats is the number of habitats
@@ -315,7 +315,7 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
   return(pars)
 }
 
-#' @title Set up an `xds` model object for forced human infection dynamics in cohorts
+#' @title Set up an **`xds`** model object for forced human infection dynamics in cohorts
 #' @description
 #' The user supplies a function `F_eir(time, birthday, ...)` and specifies a model, and
 #' the `xds` is set up to simulate dynamics for cohorts of different

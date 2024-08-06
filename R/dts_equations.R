@@ -63,9 +63,12 @@ dts_update_Xt = function(t, y, pars, i){
 #' @return a [list] containing the vector of all state derivatives
 #' @export
 dts_update.full <- function(t, y, pars) {
+
   # set the values of exogenous forcing variables
-  # including malaria control coverage
-  pars <- Forcing(t, y, pars)
+  pars <- Forcing(t, pars)
+  pars <- Visiting(t, pars)
+  # vector control
+  pars <- Control(t, y, pars)
 
   # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
@@ -75,13 +78,7 @@ dts_update.full <- function(t, y, pars) {
 
   # update adult bionomic parameters to baseline
   # or with integrated effect sizes
-  pars <- MBionomics(t, y, pars, 1)
-  pars <- LBionomics(t, y, pars, 1)
-
-  if(pars$nVectors > 1) for(s in 2:pars$nVectors){
-    pars <- MBionomics(t, y, pars, s)
-    pars <- LBionomics(t, y, pars, s)
-  }
+  pars <- Bionomics(t, y, pars)
 
   # modify mosquito bionomic parameters
   # by computing independent effect sizes
@@ -125,16 +122,17 @@ dts_update.full <- function(t, y, pars) {
 dts_update.human <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Forcing(t, y, pars)
+  pars <- Forcing(t, pars)
+  pars <- Visiting(t, pars)
+
+  # vector control
+  pars <- Control(t, y, pars)
 
   # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
 
   # set and modify the baseline mosquito bionomic parameters
-  pars <- MBionomics(t, y, pars, 1)
-  if(pars$nVectors > 1)
-    for(s in 2:pars$nVectors)
-      pars <- MBionomics(t, y, pars, s)
+  pars <- Bionomics(t, y, pars)
 
   pars <- VectorControlEffectSizes(t, y, pars)
 
@@ -162,7 +160,10 @@ dts_update.human <- function(t, y, pars) {
 dts_update.mosy <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Forcing(t, y, pars)
+  pars <- Forcing(t, pars)
+
+  # vector control
+  pars <- Control(t, y, pars)
 
   # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
@@ -170,15 +171,8 @@ dts_update.mosy <- function(t, y, pars) {
   # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
 
-  # update adult bionomic parameters to baseline
-  # or with integrated effect sizes
-  pars <- MBionomics(t, y, pars, 1)
-  pars <- LBionomics(t, y, pars, 1)
-
-  if(pars$nVectors > 1) for(s in 2:pars$nVectors){
-    pars <- MBionomics(t, y, pars, s)
-    pars <- LBionomics(t, y, pars, s)
-  }
+  # adult bionomic parameters
+  pars <- Bionomics(t, y, pars)
   pars <- VectorControlEffectSizes(t, y, pars)
 
   # emergence: compute Lambda
@@ -228,12 +222,14 @@ dts_update.cohort <- function(t, y, pars) {
 #' @export
 dts_update.aquatic <- function(t, y, pars) {
 
-
   # set the values of exogenous forcing variables
-  pars <- Forcing(t, y, pars)
+  pars <- Forcing(t, pars)
+
+  # vector control
+  pars <- Control(t, y, pars)
 
   # modify baseline mosquito bionomic parameters
-  pars <- LBionomics(t, y, pars, 1)
+  pars <- Bionomics(t, y, pars)
   pars <- VectorControlEffectSizes(t, y, pars)
 
   # egg laying: compute eta

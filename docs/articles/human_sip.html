@@ -265,7 +265,10 @@ fully worked example</a> to run a full simulation.</p>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_MYZpar.html">make_MYZpar</a></span><span class="op">(</span><span class="st">"trace"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZo</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Hpar_static.html">setup_Hpar_static</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_MYZinits.html">make_MYZinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Hpar_static.html">setup_Hpar_static</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"trace"</span>, <span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Linits.html">make_Linits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">

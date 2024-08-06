@@ -4,17 +4,15 @@
 \alias{Forcing}
 \title{Set the values of exogenous variables}
 \usage{
-Forcing(t, y, pars)
+Forcing(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{y}{vector of state variables}
-
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-none
+an \strong{\code{xds}} object
 }
 \description{
 This method...

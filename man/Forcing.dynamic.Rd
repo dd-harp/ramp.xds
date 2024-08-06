@@ -4,17 +4,15 @@
 \alias{Forcing.dynamic}
 \title{Set the values of exogenous variables}
 \usage{
-\method{Forcing}{dynamic}(t, y, pars)
+\method{Forcing}{dynamic}(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{y}{vector of state variables}
-
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-none
+an \strong{\code{xds}} object
 }
 \description{
 This method...

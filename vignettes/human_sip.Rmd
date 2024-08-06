@@ -110,7 +110,10 @@ MYZo = list(
 
 ```{r}
 params = make_MYZpar("trace", params, 1, MYZo)
+params = make_MYZinits(params, 1)
 params <- setup_Hpar_static(params, 1)
+params = make_Lpar("trace", params, 1)
+params = make_Linits(params, 1)
 ```
 
 

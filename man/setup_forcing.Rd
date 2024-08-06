@@ -7,10 +7,10 @@
 setup_forcing(pars)
 }
 \arguments{
-\item{pars}{an \code{xds} object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the modified \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 This method...

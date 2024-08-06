@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_mosy}
 \alias{xds_setup_mosy}
-\title{Set up an \code{xds} model object for mosquito ecology}
+\title{Set up an \strong{\code{xds}} model object for mosquito ecology}
 \usage{
 xds_setup_mosy(
   xds = "xde",
@@ -57,5 +57,5 @@ xds_setup_mosy(
 a \link{list}
 }
 \description{
-Set up an \code{xds} model object for mosquito ecology
+Set up an \strong{\code{xds}} model object for mosquito ecology
 }

@@ -129,9 +129,9 @@ reference:
   - make_kappa
   - compute_local_frac
   - make_local_frac
-- subtitle: Time Spent and Time at Risk
+- subtitle: Time Spent
   desc: |
-    Method to set up time spent and time at risk (TaR) matrices
+    Method to set up Time Spent Matrices
   contents:
   - change_TimeSpent
   - make_TimeSpent
@@ -660,18 +660,6 @@ reference:
   contents:
   - Births.zero
   - dHdt.zero
-- title: Human and Mosquito Behaviors
-  desc: |
-    Methods to implement human and Mosquito Behaviorsbehaviors
-  contents:
-  - Behavior
-  - Behavior.no_behavior
-  - Behavior.forced
-  - setup_behavior_no_behavior
-  - setup_behavior_forced
-  - setup_behavior
-  - setup_behavior.no_behavior
-  - setup_behavior.forced
 - subtitle: Care Seeking
   desc: |
     Methods to implement care seeking
