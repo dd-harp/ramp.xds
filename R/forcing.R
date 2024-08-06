@@ -43,8 +43,10 @@ Forcing.setup = function(t, y, pars){
 #' @return none
 #' @export
 Forcing.dynamic = function(t, y, pars){
-  pars <- Abiotic(t, pars)
+  pars <- Weather(t, pars)
+  pars <- Hydrology(t, pars)
   pars <- Shock(t, pars)
+  pars <- Development(t, pars)
   pars <- Visiting(t, pars)
   pars <- Resources(t, pars)
   # Control
@@ -60,8 +62,10 @@ Forcing.dynamic = function(t, y, pars){
 #' @return the modified `xds` object
 #' @export
 setup_forcing = function(pars){
-  pars <- setup_abiotic_no_forcing(pars)
+  pars <- setup_weather_no_forcing(pars)
+  pars <- setup_hydrology_no_forcing(pars)
   pars <- setup_no_shock(pars)
+  pars <- setup_no_development(pars)
   pars <- setup_control_no_control(pars)
   pars <- setup_behavior_no_behavior(pars)
   pars <- setup_habitat_dynamics_static(pars)
