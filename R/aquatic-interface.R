@@ -5,7 +5,7 @@
 #' @description This method dispatches on the type of `pars$Lpar`.
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param s the species index
 #' @return a [numeric] vector of length `pars$L_ix`
 #' @export
@@ -26,10 +26,10 @@ xde_steady_state_L = function(eta, Lpar){
 #' @title A function to set up adult mosquito models
 #' @description This method dispatches on `Lname`.
 #' @param Lname the class name of the aquatic model
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param s the species index
 #' @param Lopts a [list]
-#' @return [list]
+#' @return an **`xds`** object
 #' @export
 make_Lpar = function(Lname, pars, s, Lopts=list()){
   class(Lname) <- Lname
@@ -41,7 +41,7 @@ make_Lpar = function(Lname, pars, s, Lopts=list()){
 #' @description This method dispatches on the type of `pars$Lpar`.
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param s the species index
 #' @return a [numeric] vector of length `pars$L_ix`
 #' @export
@@ -64,9 +64,9 @@ dts_steady_state_L = function(eta, Lpar){
 #' or reset the values of the bionomic parameters to baseline values.
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param s the species index
-#' @return a [list]
+#' @return an **`xds`** object
 #' @export
 LBionomics <- function(t, y, pars, s) {
   UseMethod("LBionomics", pars$Lpar[[s]])
@@ -76,7 +76,7 @@ LBionomics <- function(t, y, pars, s) {
 #' @description This method dispatches on the type of `pars$Lpar`.
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param s the species index
 #' @return a [numeric] vector of length `nHabitats`
 #' @export
@@ -87,7 +87,7 @@ F_emerge <- function(t, y, pars, s) {
 #' @title Return the variables as a list
 #' @description This method dispatches on the type of `pars$Lpar[[s]]`.
 #' @param y the variables
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param s the vector species index
 #' @return a [list]
 #' @export
@@ -99,9 +99,9 @@ list_Lvars <- function(y, pars, s) {
 #' @description This method dispatches on the type of `pars$Lpar[[s]]`.
 #' @param Lvars the L variables to insert into y
 #' @param y the variables
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param s the vector species index
-#' @return a [list]
+#' @return an **`xds`** object
 #' @export
 put_Lvars <- function(Lvars, y, pars, s) {
   UseMethod("put_Lvars", pars$Lpar[[s]])
@@ -109,10 +109,10 @@ put_Lvars <- function(Lvars, y, pars, s) {
 
 #' @title A function to set up adult mosquito models
 #' @description This method dispatches on `Lname`.
-#' @param pars an `xds` object
+#' @param pars an **`xds`** object
 #' @param s the species index
 #' @param Lopts a [list]
-#' @return a modified `xds` object
+#' @return an `xds` object
 #' @export
 make_Linits = function(pars, s, Lopts=list()){
   UseMethod("make_Linits", pars$Lpar[[s]])
@@ -120,7 +120,7 @@ make_Linits = function(pars, s, Lopts=list()){
 
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Lpar`.
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param s the species index
 #' @return [list]
 #' @export
@@ -130,10 +130,10 @@ get_Linits <- function(pars, s=1) {
 
 #' @title Set the initial values from a vector of model states
 #' @description This method dispatches on the type of `pars$Lpar`.
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param y0 a vector of variable values from a simulation
 #' @param s the species index
-#' @return none
+#' @return an `xds` object
 #' @export
 update_Linits <- function(pars, y0, s) {
   UseMethod("update_Linits", pars$Lpar[[s]])
@@ -143,9 +143,9 @@ update_Linits <- function(pars, y0, s) {
 #' @title Add indices for aquatic stage mosquitoes to parameter list
 #' @description This method dispatches on the type of `pars$Lpar`. Adds field `L_ix`
 #' to parameter list.
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param s the species index
-#' @return none
+#' @return an **`xds`** object
 #' @export
 make_indices_L <- function(pars, s) {
   UseMethod("make_indices_L", pars$Lpar[[s]])
@@ -155,7 +155,7 @@ make_indices_L <- function(pars, s) {
 #' @description This method dispatches on the type of `pars$Lpar`. Attaches the
 #' state variables for the aquatic ecology model to a list and returns it
 #' @param outputs a [matrix] with the solutions to a dynamical system
-#' @param pars a [list] that defines the model
+#' @param pars an **`xds`** object
 #' @param s the species index
 #' @export
 parse_outputs_L <- function(outputs, pars, s) {

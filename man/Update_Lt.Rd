@@ -11,7 +11,7 @@ Update_Lt(t, y, pars, s)
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the species index}
 }

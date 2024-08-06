@@ -30,7 +30,7 @@ library(deSolve)
 
 This vignette illustrates how to setup, solve, and analyze models of mosquito-borne pathogen transmission dynamics and control using modular software. It serves several purposes: 
 
-+ Modular notation is illustrated by constructing a model with five aquatic habitats ($N_q=5$), three patches ($N_p=3$), and four human population strata ($N_h=4$). We call it `5-3-4`.
++ Modular notation is illustrated by constructing a model with five aquatic habitats ($n_q=5$), three patches ($n_p=3$), and four human population strata ($n_h=4$). We call it `5-3-4`.
 
 ## Diagram 
 
@@ -58,7 +58,7 @@ membership = c(1,1,1,2,2)
 membership
 ```
 
-The number of habitats, $N_q$ or `nHabitats`, is the length of the membership matrix:
+The number of habitats, $n_q$ or `nHabitats`, is the length of the membership matrix:
 
 ```{r nHabitats}
 nHabitats = length(membership)
@@ -72,14 +72,14 @@ residence = c(2,2,3,3)
 residence
 ```
 
-The number of strata, $N_h$ or `nStrata`, is the length of the residence matrix: 
+The number of strata, $n_h$ or `nStrata`, is the length of the residence matrix: 
 
 ```{r nStrata}
 nStrata = length(residence)
 nStrata
 ```
 
-The number of patches, $N_p$ or `nPatches`, is just a number:
+The number of patches, $n_p$ or `nPatches`, is just a number:
 
 ```{r nPatches}
 nPatches = 3
@@ -87,7 +87,7 @@ nPatches = 3
 
 ## Aquatic Habitat Membership Matrix
 
-For computation, `ramp.xds` uses an $N_p \times N_q$ matrix called $\cal{N}.$ It is specified by the habitat vector. In the matrix, ${\cal N}_{i,j}$ is $1$ if the $i^{th}$ patch contains the $j^{th}$ habitat:  
+For computation, `ramp.xds` uses an $n_p \times n_q$ matrix called $\cal{N}.$ It is specified by the habitat vector. In the matrix, ${\cal N}_{i,j}$ is $1$ if the $i^{th}$ patch contains the $j^{th}$ habitat:  
 
 \begin{equation}
 {\cal N} = \left[
@@ -113,7 +113,7 @@ as.vector(habitat_matrix %*% rep(1,5))
 
 ## The Residence Matrix 
 
-For computation, `ramp.xds` also creates a $N_p \times N_h$ matrix called $\cal J.$ It is specified by 
+For computation, `ramp.xds` also creates a $n_p \times n_h$ matrix called $\cal J.$ It is specified by 
 residence vector. The element ${\cal J}_{i,j}$ is $1$ if the $j^{th}$ stratum resides in the $i^{th}$ patch:   
 
 \begin{equation}
@@ -157,7 +157,7 @@ Q
 
 Eggs are distributed among habitats in proportion to the relative values of the habitat search weights. These habitat search weights and availability can be used to compute the values of some adult mosquito bionomic parameters using *functional responses,* that make use of their absolute values. The absolute values only have a meaning through their effects. 
 
-The egg dispersal matrix $\mathcal{U}$ is a $N_q \times N_p$ matrix describing how eggs laid by adult mosquitoes in a patch are allocated among the aquatic habitats in that patch. It is a matrix of search weights normalized by availability: 
+The egg dispersal matrix $\mathcal{U}$ is a $n_q \times n_p$ matrix describing how eggs laid by adult mosquitoes in a patch are allocated among the aquatic habitats in that patch. It is a matrix of search weights normalized by availability: 
 
 \begin{equation}
 {\cal U} = \left[
@@ -193,7 +193,7 @@ This size of each population stratum differs:
 HPop <- c(10,90, 100, 900)
 ```
 
-The time spent matrix, $\Theta$ is a $N_p \times N_h$ matrix. Each column describes how a human stratum allocates time among patches.
+The time spent matrix, $\Theta$ is a $n_p \times n_h$ matrix. Each column describes how a human stratum allocates time among patches.
 
 \begin{equation}
 \Theta = \left[
@@ -375,6 +375,7 @@ A user only needs to know how to encode the information and what information to 
     - `dde` uses `deSolve:dde` for delay differential equations 
 
 + the next three arguments are `nPatches` and `membership` and `residence`, as explained above. 
+
 
 ```{r}
 params = make_xds_object("xde", "full", "dde", nPatches, membership, residence) 

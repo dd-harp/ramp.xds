@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL-xde.R
 \name{dLdt.basicL}
 \alias{dLdt.basicL}
-\title{Derivatives for aquatic stage mosquitoes}
+\title{Derivatives for \code{basicL}}
 \usage{
 \method{dLdt}{basicL}(t, y, pars, s)
 }
@@ -11,7 +11,7 @@
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the species index}
 }
@@ -19,5 +19,23 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{dLdt} for the basicL competition model.
+Implements \link{dLdt} for the \code{basicL} competition model.
+}
+\details{
+This implements differential equation model for aquatic mosquito ecology.
+It has been modified slightly from a version published by Smith DL, \emph{et al.} (2013):
+\deqn{\frac{dL}{dt} = \eta - (\psi + \phi + \theta L)L}
+
+\strong{Parameters:}
+\itemize{
+\item \eqn{\eta}: egg deposition rate
+\item \eqn{\psi}: maturation rate
+\item \eqn{\phi}: density-independent death rate
+\item \eqn{\theta}: density dependence in mortality: the slope of the response to mean crowding
+}
+
+To put it another way, per-capita mortality is \eqn{\phi + \theta L}
+}
+\references{
+{\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
 }

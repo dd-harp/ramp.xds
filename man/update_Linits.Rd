@@ -7,14 +7,14 @@
 update_Linits(pars, y0, s)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{y0}{a vector of variable values from a simulation}
 
 \item{s}{the species index}
 }
 \value{
-none
+an \code{xds} object
 }
 \description{
 This method dispatches on the type of \code{pars$Lpar}.

@@ -16,4 +16,14 @@ knitr::opts_chunk$set(
 
 ## History
 
+### `MicroMoB` 
+
+### `exDE` 
+
+### `ramp.xde` 
+
+### `ramp.dts` 
+
+### `ramp.xds` 
+
 **`ramp.xds`** was designed to replace exDE and MicroMoB, which were originally designed by Sean L. Wu and Professor David L. Smith. David L Smith developed the prototypes. Sean L. Wu wrote the first versions of the R-packages. Development of exDE continued. The name exDE was changed to ramp.xds where development continued. A stable version of exDE was restored. Functionality for discrete time systems was added to ramp.xds in the spring of 2024. A name change to ramp.xds is planned. 

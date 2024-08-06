@@ -9,7 +9,7 @@ parse_outputs_L(outputs, pars, s)
 \arguments{
 \item{outputs}{a \link{matrix} with the solutions to a dynamical system}
 
-\item{pars}{a \link{list} that defines the model}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the species index}
 }

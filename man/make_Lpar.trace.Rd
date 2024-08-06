@@ -9,7 +9,7 @@
 \arguments{
 \item{Lname}{the class name of the aquatic model}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{s}{the species index}
 
