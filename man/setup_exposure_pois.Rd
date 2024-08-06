@@ -10,8 +10,11 @@ setup_exposure_pois(pars)
 \item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the modified \strong{\code{xds}} object
+an  \strong{\code{xds}} object
 }
 \description{
 Set up a Poisson model for Exposure and Infection
+}
+\seealso{
+Also, see \link{F_foi.pois} and \link{F_ar.pois}
 }

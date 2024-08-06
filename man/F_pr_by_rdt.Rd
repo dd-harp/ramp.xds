@@ -15,5 +15,6 @@ F_pr_by_rdt(vars, Xpar)
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-This method dispatches on the type of \code{Xpar}
+A function that translates the state variables into
+the predicted \emph{Pf}PR by rapid diagnostic test (RDT)
 }

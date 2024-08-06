@@ -7,7 +7,7 @@
 \method{get_Xinits}{SIS}(pars, i = 1)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{i}{the host species index}
 }

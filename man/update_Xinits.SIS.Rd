@@ -7,14 +7,14 @@
 \method{update_Xinits}{SIS}(pars, y0, i)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{y0}{a vector of initial values}
 
 \item{i}{the host species index}
 }
 \value{
-none
+an \code{xds} object
 }
 \description{
 Update inits for the SIS xde human model from a vector of states

@@ -14,7 +14,7 @@ make_EIR_full(t, y, pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 This function computes the EIR from each vector species for each stratum of each host species

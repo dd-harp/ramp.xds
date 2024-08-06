@@ -362,7 +362,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="Exposure.html">Exposure()</a></code> </p>
         </td>
-        <td><p>Compute local exposure and travel</p></td>
+        <td><p>Compute Infection Rates</p></td>
       </tr><tr><td>
           <p><code><a href="Exposure.xde.html">Exposure(<i>&lt;xde&gt;</i>)</a></code> </p>
         </td>
@@ -370,7 +370,7 @@
       </tr><tr><td>
           <p><code><a href="Exposure.dts.html">Exposure(<i>&lt;dts&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Compute the Attack Rates</p></td>
+        <td><p>Compute Attack Rates</p></td>
       </tr><tr><td>
           <p><code><a href="Exposure.multiday.html">Exposure(<i>&lt;multiday&gt;</i>)</a></code> </p>
         </td>
@@ -382,7 +382,7 @@
       </tr><tr><td>
           <p><code><a href="F_foi.html">F_foi()</a></code> </p>
         </td>
-        <td><p>Compute the FoI from local exposure</p></td>
+        <td><p>Compute the Local FoI</p></td>
       </tr><tr><td>
           <p><code><a href="foi2eir.html">foi2eir()</a></code> </p>
         </td>
@@ -390,7 +390,7 @@
       </tr><tr><td>
           <p><code><a href="F_ar.html">F_ar()</a></code> </p>
         </td>
-        <td><p>Convert the AR from local exposure</p></td>
+        <td><p>Compute Local Attack Rates</p></td>
       </tr><tr><td>
           <p><code><a href="ar2eir.html">ar2eir()</a></code> </p>
         </td>
@@ -458,7 +458,7 @@
       </tr><tr><td>
           <p><code><a href="setup_exposure_nb.dts.html">setup_exposure_nb(<i>&lt;dts&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set up the negative binomial model of exposure for discrete time models</p></td>
+        <td><p>Set up the negative binomial model for exposure for discrete time models</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="egg-laying-emergence">Egg Laying &amp; Emergence <a href="#egg-laying-emergence" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Generic methods for the aquatic (immature) mosquito component.</p>
@@ -1426,7 +1426,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dXdt.html">dXdt()</a></code> </p>
         </td>
-        <td><p>Derivatives for human population</p></td>
+        <td><p>Derivatives for \(\cal X\) Models</p></td>
       </tr><tr><td>
           <p><code><a href="Update_Xt.html">Update_Xt()</a></code> </p>
         </td>
@@ -1450,7 +1450,7 @@
       </tr><tr><td>
           <p><code><a href="make_Xpar.html">make_Xpar()</a></code> </p>
         </td>
-        <td><p>A function to set up Xpar</p></td>
+        <td><p>Make a \(cal X\) Model</p></td>
       </tr><tr><td>
           <p><code><a href="F_X.html">F_X()</a></code> </p>
         </td>
@@ -1494,7 +1494,7 @@
       </tr><tr><td>
           <p><code><a href="F_pr_by_pcr.html">F_pr_by_pcr()</a></code> </p>
         </td>
-        <td><p>Compute the prevalence of infection by PCR</p></td>
+        <td><p>Compute infection prevalence by PCR</p></td>
       </tr><tr><td>
           <p><code><a href="xds_plot_X.html">xds_plot_X()</a></code> </p>
         </td>
@@ -1502,7 +1502,11 @@
       </tr><tr><td>
           <p><code><a href="xde_steady_state_X.html">xde_steady_state_X()</a></code> </p>
         </td>
-        <td><p>Compute the steady states as a function of the daily EIR</p></td>
+        <td><p>Steady States for \(\cal X\)-Models</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_XH.html">xde_steady_state_XH()</a></code> </p>
+        </td>
+        <td><p>Steady States for \(\cal XH\)-Models</p></td>
       </tr><tr><td>
           <p><code><a href="dts_steady_state_X.html">dts_steady_state_X()</a></code> </p>
         </td>
@@ -1662,7 +1666,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dXdt.SIS.html">dXdt(<i>&lt;SIS&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for the SIS model for human / vertebrate host infections</p></td>
+        <td><p>Derivatives for the SIS \(\cal X\) Compartment Model</p></td>
       </tr><tr><td>
           <p><code><a href="Update_Xt.SIS.html">Update_Xt(<i>&lt;SIS&gt;</i>)</a></code> </p>
         </td>

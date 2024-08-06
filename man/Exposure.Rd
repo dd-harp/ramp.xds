@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure.R
 \name{Exposure}
 \alias{Exposure}
-\title{Compute local exposure and travel}
+\title{Compute Infection Rates}
 \usage{
 Exposure(t, y, pars)
 }
@@ -14,11 +14,14 @@ Exposure(t, y, pars)
 \item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the modified \strong{\code{xds}} object
+an \strong{\code{xds}} object
 }
 \description{
 Compute the force of infection (FoI) or
 attack rates (AR) as a function of the local
 daily entomological inoculation rate (dEIR),
-and exposure to malaria while traveling.
+immunity, and exposure to malaria while traveling.
+}
+\seealso{
+Cases: \link{Exposure.xde} & \link{Exposure.dts}. Related: \link{travel_malaria} & \link{F_ar} & \link{F_foi}
 }

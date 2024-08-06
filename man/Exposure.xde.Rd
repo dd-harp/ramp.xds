@@ -14,12 +14,22 @@
 \item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the modified \strong{\code{xds}} object
+an \strong{\code{xds}} object
 }
 \description{
-For xde models, compute
-the force of infection (FoI) for
-as a function of the daily entomological
-inoculation rates (dEIR), and
-exposure to malaria while traveling.
+For \strong{\code{xde}} models, compute the FoI
+}
+\details{
+The local force of infection (FoI or \eqn{h}) is
+a function of local daily entomological inoculation
+rate (dEIR or \eqn{E}) under
+a model for the probability of infection
+per infectious bite, \eqn{b} (called from \eqn{F_b},
+as defined by an \eqn{\cal X} model).
+The total FoI is a weighted sum of the local FoI and
+exposure to malaria while traveling, (\eqn{T_h}):
+\deqn{h = (1-\delta) \; F_h(E, b) + \delta\; T_h(b,t)}
+}
+\seealso{
+Related: \link{Exposure} & \link{F_foi.pois} & \link{F_foi.nb} & \link{travel_malaria}
 }

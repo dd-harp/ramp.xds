@@ -10,9 +10,12 @@
 \item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-the modified \strong{\code{xds}} object
+an  \strong{\code{xds}} object
 }
 \description{
 Set up the Poisson model for
 exposure for continuous time models
+}
+\seealso{
+Also, see \link{F_foi.pois}
 }

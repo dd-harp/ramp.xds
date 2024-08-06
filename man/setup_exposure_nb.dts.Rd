@@ -2,18 +2,21 @@
 % Please edit documentation in R/exposure-nb.R
 \name{setup_exposure_nb.dts}
 \alias{setup_exposure_nb.dts}
-\title{Set up the negative binomial model of exposure for discrete time models}
+\title{Set up the negative binomial model for exposure for discrete time models}
 \usage{
 \method{setup_exposure_nb}{dts}(pars, sz)
 }
 \arguments{
 \item{pars}{an \code{xds} object}
 
-\item{sz}{the size parameter, as in \link{dnbinom}(mu=mu, size=sz)}
+\item{sz}{the negative binomial size parameter (see \link{pnbinom})}
 }
 \value{
-the modified \strong{\code{xds}} object
+an \strong{\code{xds}} object
 }
 \description{
-Set up the negative binomial model of exposure for discrete time models
+Set up the negative binomial model for exposure for discrete time models
+}
+\seealso{
+Also, see \link{F_ar.nb}
 }

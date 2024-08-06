@@ -14,7 +14,7 @@
 \item{pars}{an \code{xds} object}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 In the static case, \eqn{\beta} is not updated

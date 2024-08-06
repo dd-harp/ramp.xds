@@ -27,3 +27,6 @@ of bites per person, and \eqn{b}, the probability of
 infection per infective bite:
 \deqn{\alpha = \left(e^{h/\phi} -1\right) \frac \phi b }
 }
+\seealso{
+\link{F_foi.nb}
+}

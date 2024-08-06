@@ -1,7 +1,10 @@
 # specialized methods for the human SIS model
 
-#' @title Derivatives for the SIS model for human / vertebrate host infections
-#' @description Implements [dXdt] for the SIS model
+#' @title Derivatives for the SIS \eqn{\cal X} Compartment Model
+#' @description Implements [dXdt] for the SIS model for human / vertebrate host infections
+#' @details
+#' The core dynamics of infection
+#' \deqn{\frac{dS}{dt} = -h S + r I}
 #' @inheritParams dXdt
 #' @return a [numeric] vector
 #' @export
@@ -207,7 +210,7 @@ make_X_indices.SIS <- function(pars, i) {with(pars,{
 
 #' @title Update inits for the SIS xde human model from a vector of states
 #' @inheritParams update_Xinits
-#' @return none
+#' @return an `xds` object
 #' @export
 update_Xinits.SIS <- function(pars, y0, i) {
   with(list_Xvars(y0, pars, i),{

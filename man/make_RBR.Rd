@@ -12,7 +12,7 @@ make_RBR(pars, y)
 \item{y}{state vector}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Compute the availability for the pathogen's hosts for blood feeding

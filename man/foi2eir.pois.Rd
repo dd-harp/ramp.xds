@@ -19,3 +19,6 @@ dEIR as a \link{numeric} vector of length \eqn{n_h=}\code{nStrata}
 \description{
 The inverse of \link{F_foi.pois} is \eqn{E=h/b}
 }
+\seealso{
+Also, see \link{F_foi.pois}
+}

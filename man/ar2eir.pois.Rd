@@ -20,3 +20,6 @@ a \link{numeric} vector of length \code{nStrata}
 The inverse of \link{F_ar.pois}
 is \deqn{E = -\frac{\log(1-ar)}{b}}
 }
+\seealso{
+Also, see \link{F_ar.pois}
+}

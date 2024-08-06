@@ -10,7 +10,7 @@ setup_BLOOD_FEEDING(pars)
 \item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-a \link{list}
+a modified \strong{\code{xds}} object
 }
 \description{
 Set up a part of the \strong{\code{xds}} object that defines the interface for blood feeding
@@ -35,14 +35,15 @@ is attached to the \strong{\code{xds}} object pars as \code{pars$BFpar}. The blo
 }
 
 These quantities are used to model transmission (see \code{\link[=setup_TRANSMISSION]{setup_TRANSMISSION()}}).
-Mosquito bionomic parameters \emph{ought} to be consistent. If bionomic parameters are
-assigned, there's no guarantee they are internally mathematically consistent or sensible.
-These structures make it possible to use the concept of resource availability to
-compute the blood feeding rates (\eqn{f})
-using \emph{functional responses.} The human fraction ought to be \eqn{q=W/B}.
 
+Mosquito bionomic parameters \emph{ought} to be constrained. If bionomic parameters are
+assigned, there's no guarantee they are internally mathematically consistent or sensible.
+To guarantee internal consistency, the the concept of resource availability should be
+used to compute the blood feeding rates (\eqn{f})
+using \emph{functional responses.} The human fraction ought to be \eqn{q=W/B}.
 Availability can also be used to model mosquito movement.
-In models with multiple host species, with availability \eqn{W_i}, the fraction on
+
+\strong{Mulit-Host Models} - In models with multiple host species, with availability \eqn{W_i}, the fraction on
 each host species would be \eqn{W_i/B}.
 In models with multiple vector species, each species could have different search habits and preferences,
 so blood feeding availability is indexed for each species: \eqn{B_s} and \eqn{W_{s}}.

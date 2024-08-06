@@ -12,7 +12,7 @@ setup_EGG_LAYING(pars, membership)
 \item{membership}{is the habitat membership vector}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Set up a part of the \code{xds} object that defines the interface for egg laying

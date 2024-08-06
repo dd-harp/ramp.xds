@@ -7,7 +7,7 @@
 make_Xinits(pars, H, i, Xopts = list())
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{H}{initial host population density}
 
@@ -16,7 +16,7 @@ make_Xinits(pars, H, i, Xopts = list())
 \item{Xopts}{a \link{list}}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on \code{pars$Xpar[[i]]}.

@@ -172,19 +172,19 @@ under a negative binomial model for exposure</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>The daily FoI, \(h\) is computed as a function of
-the daily EIR, \(E\),
+    <p>This function computes the local daily FoI, \(h\) as a function of
+the local daily EIR, \(E\),
 under a negative binomial model for the distribution
 of bites per person, and \(b\), the probability of
 infection per infective bite:
 $$h = \phi \log{\frac{1 + b E}\phi}$$
 The expression is derived by solving the expression in <a href="F_ar.nb.html">F_ar.nb</a> for \(E\)
-This negative binomial model uses the <strong>mu</strong> \(= E\) and <strong>size</strong> \(=\phi\)
+This negative binomial model uses the <strong>mu</strong> \(= bE\) and <strong>size</strong> \(=\phi\)
 parameterization (see <a href="https://rdrr.io/r/stats/NegBinomial.html" class="external-link">pnbinom</a>).</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="F_ar.nb.html">F_ar.nb()</a></code></p></div>
+    <div class="dont-index"><p>Related topics: <a href="Exposure.xde.html">Exposure.xde</a> and <a href="F_ar.nb.html">F_ar.nb</a> and <a href="setup_exposure_nb.html">setup_exposure_nb</a></p></div>
     </div>
 
   </div>

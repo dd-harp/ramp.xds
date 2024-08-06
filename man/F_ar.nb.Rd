@@ -20,14 +20,18 @@ a \link{numeric} vector of length \code{nStrata}
 A negative binomial model for the attack rate as a function of the daily EIR.
 }
 \details{
-Compute the daily AR, \eqn{h} or \code{foi}, as a function
+This function computes the daily AR, \eqn{\alpha}, as a function
 of the daily EIR, \eqn{E} or \code{eir},
 under a negative binomial model for the distribution
 of bites per person, and \eqn{b}, the probability of
 infection per infective bite:
 \deqn{\alpha = 1-(1 + b E/\phi)^{-\phi} }
-This negative binomial model uses the \strong{mu} \eqn{= E} and \strong{size} \eqn{=\phi}
+This negative binomial model uses the \strong{mu} \eqn{= bE} and \strong{size} \eqn{=\phi}
 parameterization (see \link{pnbinom}).
-The formula is equivalent to
+The formula is equivalent to:
+
 \code{pnbinom(0, mu=b*eir, size=phi, lower.tail=FALSE)}
+}
+\seealso{
+Related topics: \link{Exposure.dts}, \link{setup_exposure_nb} & \link{F_foi.nb}
 }

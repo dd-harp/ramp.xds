@@ -9,11 +9,14 @@ setup_exposure_nb(pars, sz)
 \arguments{
 \item{pars}{an \code{xds} object}
 
-\item{sz}{the size parameter, as in \link{dnbinom}(mu=mu, size=sz)}
+\item{sz}{the negative binomial size parameter (see \link{pnbinom})}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Set up the negative binomial model of exposure
+}
+\seealso{
+\link{F_foi.nb} and \link{F_ar.nb}
 }

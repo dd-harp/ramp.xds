@@ -7,12 +7,12 @@
 make_X_indices(pars, i)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{i}{the host species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on the type of \code{pars$Xpar[[i]]}.

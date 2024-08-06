@@ -10,7 +10,7 @@ make_local_frac(pars)
 \item{pars}{an \code{xds} object}
 }
 \value{
-the modified \code{xds} object
+an \code{xds} object
 }
 \description{
 Compute the availability for the pathogen's hosts for blood feeding
