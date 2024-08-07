@@ -39,3 +39,6 @@ To put it another way, per-capita mortality is \eqn{\phi + \theta L}
 \references{
 {\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
 }
+\seealso{
+\link{create_Lpar_basicL}
+}
