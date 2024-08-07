@@ -1,8 +1,8 @@
 # function make_xds_object and supporting function F_H.setup
 
-#' @title Make an **`xds`** Object
+#' @title Make an **`xds`** object template
 #' @description Creates and returns structured template, called an
-#' **`xds`** object, with generic features that can be configured
+#' **`xds`** object, with generic features and options that can be configured
 #' to set up and solve systems of differential equations using **`ramp.xds`**
 #' @details This function sets up the basic structures required
 #' to configure and run a basic model. The returned object is a list

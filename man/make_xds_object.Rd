@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds-object.R
 \name{make_xds_object}
 \alias{make_xds_object}
-\title{Make an \strong{\code{xds}} Object}
+\title{Make an \strong{\code{xds}} object template}
 \usage{
 make_xds_object(
   xds = "xde",
@@ -31,7 +31,7 @@ an \code{xds} object
 }
 \description{
 Creates and returns structured template, called an
-\strong{\code{xds}} object, with generic features that can be configured
+\strong{\code{xds}} object, with generic features and options that can be configured
 to set up and solve systems of differential equations using \strong{\code{ramp.xds}}
 }
 \details{

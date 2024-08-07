@@ -16,7 +16,11 @@ knitr::opts_chunk$set(
 
 ## History
 
-### `MicroMoB` 
+The idea of developing modular software to simulate the dynamics and control of mosquito-borne pathogens originated sometime around 2009 at the Emerging Pathogens Institute, University of Florida. It took much longer than anticipated to finish. Some concepts have appeared in various publications. Some of the algorithms trace back to other software packages that were never launched, but that someday might yet be completed (e.g., MASH). In retrospect, a key challenge was blood feeding, but it was not the only one.
+
+### `MBITES`
+
+### `MicroMoB`
 
 ### `exDE` 
 
@@ -27,3 +31,17 @@ knitr::opts_chunk$set(
 ### `ramp.xds` 
 
 **`ramp.xds`** was designed to replace exDE and MicroMoB, which were originally designed by Sean L. Wu and Professor David L. Smith. David L Smith developed the prototypes. Sean L. Wu wrote the first versions of the R-packages. Development of exDE continued. The name exDE was changed to ramp.xds where development continued. A stable version of exDE was restored. Functionality for discrete time systems was added to ramp.xds in the spring of 2024. A name change to ramp.xds is planned. 
+
+### Acknowledgements
+
++ From its inception, this project has been supported by a grants from the Bill and Melinda Gates Foundation, "Modeling for Adaptive Malaria Control" (INV 030600, PI = David L Smith, University of Washington). 
+
++ Development of **`ramp.xds`** benefited from the mosquito working groups of RAPIDD (Research and Policy for Infectious Disease Dynamics) led by Professor Thomas Scott. RAPIDD was led by F. Ellis McKenzie and funded by the Fogarty International Center and the Department of homeland security. 
+
++ Adaptive Vector Control is funded by grant Spatial Targeting and Adaptive Vector Control for Residual Transmission and Malaria Elimination in Urban African Settings (R01 AI163398, PI = David L Smith), from US National Institute of Allergies and Infectious Diseases (NIAID).  
+
++ Development of the software was supported through a collaboration with the [Bioko Island Malaria Elimination Program](https://www.mcd.org/focus-areas/featured-projects/bioko-island-malaria-elimination-project) 
+
++ Development of this software benefited from funding and collaboration with the NIAID grant Program for Resistance, Immunology, Surveillance & Modeling of Malaria in Uganda (PRISM) (2U19AI089674, PIs = Grant Dorsey, University of California San Francisco; and Moses Kamya, Infectious Diseases Research Collaboration), which was part of the International Centers of Excellence in Malaria Research (ICEMR) program.
+
++ Funding to develop models of West Nile Virus to support Harris County Public Health was funded by the NSF as part of a project, Computing the Biome (PI= Janos Sztipanovits). The project was part of the Convergence Accelerator program of the National Science Foundation, Directorate for Technology, Innovation, and Partnerships (TIP) (NSF 2040688 and NSF 2040688, PI=Janos Sztipanovits, Vanderbilt University).
