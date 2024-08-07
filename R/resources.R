@@ -45,7 +45,6 @@ Resources.forced <- function(t, pars) {
 
   pars = OtherBloodHosts(t, pars)
   pars = SugarDynamics(t, pars)
-  pars = AvailableSugar(pars)
 
   return(pars)
 }

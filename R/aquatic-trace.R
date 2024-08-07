@@ -87,6 +87,8 @@ create_Lpar_trace = function(nHabitats, Lopts=list(), Lambda=1000, Lt = NULL){
     Lpar$scale = checkIt(Lambda, nHabitats)
     if(is.null(Lt)) Lt = function(t){1}
     Lpar$Lt = Lt
+    Lpar$baseline = "trace"
+    class(Lpar$baseline) = "trace"
     return(Lpar)
   })}
 

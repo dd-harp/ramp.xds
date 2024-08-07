@@ -120,6 +120,7 @@ make_xds_object = function(xds='xde', frame='full', dlay = 'ode',
   pars$outputs = list()
   pars$compute = list()
 
+  pars <- setup_sugar_static(pars)
   pars <- setup_vc_no_control(pars)
 
   return(pars)

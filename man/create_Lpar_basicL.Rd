@@ -15,7 +15,7 @@ create_Lpar_basicL(
 \arguments{
 \item{nHabitats}{the number of habitats in the model}
 
-\item{Lopts}{a \link{list} that overwrites default values}
+\item{Lopts}{a named \link{list}}
 
 \item{psi}{maturation rates for each aquatic habitat}
 
@@ -24,8 +24,11 @@ create_Lpar_basicL(
 \item{theta}{density-dependent mortality terms for each aquatic habitat}
 }
 \value{
-a \link{list} with Lpar added
+\strong{\code{Lpar}} an \strong{\code{xds}} \eqn{\cal L} object
 }
 \description{
 Make parameters for basicL competition aquatic mosquito model
+}
+\seealso{
+Related: \link{dLdt.basicL} & \link{Update_Lt.basicL}
 }

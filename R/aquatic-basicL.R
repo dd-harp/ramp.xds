@@ -2,11 +2,12 @@
 
 #' @title Make parameters for basicL competition aquatic mosquito model
 #' @param nHabitats the number of habitats in the model
-#' @param Lopts a [list] that overwrites default values
+#' @param Lopts a named [list]
 #' @param psi maturation rates for each aquatic habitat
 #' @param phi density-independent mortality rates for each aquatic habitat
 #' @param theta density-dependent mortality terms for each aquatic habitat
-#' @return a [list] with Lpar added
+#' @seealso Related: [dLdt.basicL] & [Update_Lt.basicL]
+#' @return **`Lpar`** an **`xds`** \eqn{\cal L} object
 #' @export
 create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, phi=1/8, theta=1/100){
   with(Lopts,{
@@ -15,6 +16,7 @@ create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, phi=1/8, theta=1
     Lpar$psi = checkIt(psi, nHabitats)
     Lpar$phi = checkIt(phi, nHabitats)
     Lpar$theta = checkIt(theta, nHabitats)
+    Lpar$baseline <- Lpar
     return(Lpar)
   })
 }
@@ -36,6 +38,7 @@ create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, phi=1/8, theta=1
 #' @inheritParams dLdt
 #' @return a [numeric] vector
 #' @references{\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
+#' @seealso [create_Lpar_basicL]
 #' @export
 dLdt.basicL <- function(t, y, pars, s) {
   eta <- as.vector(pars$eggs_laid[[s]])
@@ -106,7 +109,7 @@ make_Lpar.basicL = function(Lname, pars, s, Lopts=list()){
 #' @inheritParams LBionomics
 #' @return a named [list]
 #' @export
-LBionomics.basicL <- function(t, y, pars, s) {with(pars$Lpar[[s]],{
+LBionomics.basicL <- function(t, y, pars, s) {with(pars$Lpar[[s]]$baseline,{
   pars$Lpar[[s]]$psi <- psi
   pars$Lpar[[s]]$phi <- phi
   pars$Lpar[[s]]$theta <- theta
