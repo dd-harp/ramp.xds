@@ -47,7 +47,6 @@ Weather.forced <- function(t, pars) {
 #' @return [list]
 #' @export
 setup_weather_forced <- function(pars) {
-  pars = check_abiotic(pars)
   WEATHER <- list()
   class(WEATHER) <- 'forced'
   pars$WEATHER <- WEATHER

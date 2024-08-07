@@ -2,35 +2,32 @@
 #' @title Set the values of exogenous variables
 #' @description This method...
 #' @param t current simulation time
-#' @param y vector of state variables
-#' @param pars a [list]
-#' @return none
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
 #' @export
-Forcing = function(t, y, pars){
+Forcing = function(t, pars){
   UseMethod("Forcing", pars$forcing)
 }
 
 #' @title Set the values of exogenous variables
 #' @description This method...
 #' @param t current simulation time
-#' @param y vector of state variables
-#' @param pars a [list]
-#' @return none
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
 #' @export
-Forcing.static = function(t, y, pars){
+Forcing.static = function(t, pars){
   return(pars)
 }
 
 #' @title Set the values of exogenous variables
 #' @description This method...
 #' @param t current simulation time
-#' @param y vector of state variables
-#' @param pars a [list]
-#' @return none
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
 #' @export
-Forcing.setup = function(t, y, pars){
+Forcing.setup = function(t, pars){
   class(pars$forcing) <- 'dynamic'
-  pars <- Forcing(t, y, pars)
+  pars <- Forcing(t, pars)
   class(pars$forcing) <- 'static'
   return(pars)
 }
@@ -38,33 +35,28 @@ Forcing.setup = function(t, y, pars){
 #' @title Set the values of exogenous variables
 #' @description This method...
 #' @param t current simulation time
-#' @param y vector of state variables
-#' @param pars a [list]
-#' @return none
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
 #' @export
-Forcing.dynamic = function(t, y, pars){
-  pars <- Abiotic(t, pars)
+Forcing.dynamic = function(t, pars){
+  pars <- Weather(t, pars)
+  pars <- Hydrology(t, pars)
   pars <- Shock(t, pars)
-  pars <- Visiting(t, pars)
+  pars <- Development(t, pars)
   pars <- Resources(t, pars)
-  # Control
-  pars <- Control(t, y, pars)
-  pars <- Behavior(t, y, pars)
-  pars <- VectorControlEffects(t, y, pars)
   return(pars)
 }
 
 #' @title Set up exogenous forcing
 #' @description This method...
-#' @param pars an `xds` object
-#' @return the modified `xds` object
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
 #' @export
 setup_forcing = function(pars){
-  pars <- setup_abiotic_no_forcing(pars)
+  pars <- setup_weather_no_forcing(pars)
+  pars <- setup_hydrology_no_forcing(pars)
   pars <- setup_no_shock(pars)
-  pars <- setup_control_no_control(pars)
-  pars <- setup_behavior_no_behavior(pars)
-  pars <- setup_habitat_dynamics_static(pars)
+  pars <- setup_no_development(pars)
   pars <- setup_resources_static(pars)
   return(pars)
 }

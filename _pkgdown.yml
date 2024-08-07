@@ -129,9 +129,9 @@ reference:
   - make_kappa
   - compute_local_frac
   - make_local_frac
-- subtitle: Time Spent and Time at Risk
+- subtitle: Time Spent
   desc: |
-    Method to set up time spent and time at risk (TaR) matrices
+    Method to set up Time Spent Matrices
   contents:
   - change_TimeSpent
   - make_TimeSpent
@@ -660,18 +660,6 @@ reference:
   contents:
   - Births.zero
   - dHdt.zero
-- title: Human and Mosquito Behaviors
-  desc: |
-    Methods to implement human and Mosquito Behaviorsbehaviors
-  contents:
-  - Behavior
-  - Behavior.no_behavior
-  - Behavior.forced
-  - setup_behavior_no_behavior
-  - setup_behavior_forced
-  - setup_behavior
-  - setup_behavior.no_behavior
-  - setup_behavior.forced
 - subtitle: Care Seeking
   desc: |
     Methods to implement care seeking
@@ -711,8 +699,6 @@ reference:
   - Forcing.dynamic
   - Forcing.setup
   - setup_forcing
-  - Abiotic
-  - Civil
   - Shock
   - Control
   - Clinic
@@ -722,10 +708,6 @@ reference:
   desc: |
     Specialized methods the null model (no exogenous forcing)
   contents:
-  - Abiotic.no_forcing
-  - setup_abiotic_no_forcing
-  - Civil.no_forcing
-  - setup_civil_no_forcing
   - Shock.no_shock
   - setup_no_shock
   - Control.no_control
@@ -745,16 +727,6 @@ reference:
   desc: |
     Specialized methods to call forcing
   contents:
-  - Abiotic.forced
-  - setup_abiotic_forced
-  - check_abiotic
-  - check_abiotic.no_forcing
-  - check_abiotic.forced
-  - Civil.forced
-  - setup_civil_forced
-  - check_civil
-  - check_civil.no_forcing
-  - check_civil.forced
   - Control.forced
   - setup_control_forced
   - MassMedical.forced

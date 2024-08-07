@@ -10,24 +10,31 @@
 compute_vars_full <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Forcing(t, y, pars)
+  pars <- Forcing(t, pars)
+  pars <- Visiting(t, pars)
 
-  # set and modify the baseline bionomic parameters
+  # vector control
+  pars <- Control(t, y, pars)
+
+  # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
-  pars <- Bionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
 
-  # egg laying: compute eta
+  # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
+
+  # update adult bionomic parameters to baseline
+  # or with integrated effect sizes
+  pars <- MBionomics(t, y, pars, 1)
+  pars <- LBionomics(t, y, pars, 1)
+
+  if(pars$nVectors > 1) for(s in 2:pars$nVectors){
+    pars <- MBionomics(t, y, pars, s)
+    pars <- LBionomics(t, y, pars, s)
+  }
+  pars <- VectorControlEffectSizes(t, y, pars)
 
   # emergence: compute Lambda
   pars <- Emergence(t, y, pars)
-
-  # compute beta, EIR, and kappa
-  pars <- Transmission(t, y, pars)
-
-  # compute the FoI
-  pars <- Exposure(t, y, pars)
 
   return(pars)
 }
@@ -43,18 +50,26 @@ compute_vars_full <- function(t, y, pars) {
 compute_vars_human <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Forcing(t, y, pars)
+  pars <- Forcing(t, pars)
+  pars <- Visiting(t, pars)
 
-  # set and modify the baseline mosquito bionomic parameters
+  # vector control
+  pars <- Control(t, y, pars)
+
+  # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
+
+  # update adult bionomic parameters to baseline
+  # or with integrated effect sizes
   pars <- MBionomics(t, y, pars, 1)
+
+  if(pars$nVectors > 1) for(s in 2:pars$nVectors){
+    pars <- MBionomics(t, y, pars, s)
+  }
   pars <- VectorControlEffectSizes(t, y, pars)
 
-  # compute beta, EIR, and kappa
-  pars <- Transmission(t, y, pars)
-
-  # compute the FoI
-  pars <- Exposure(t, y, pars)
+  # emergence: compute Lambda
+  pars <- Emergence(t, y, pars)
 
   return(pars)
 }
@@ -71,19 +86,31 @@ compute_vars_human <- function(t, y, pars) {
 compute_vars_mosy <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Forcing(t, y, pars)
+  pars <- Forcing(t, pars)
+  pars <- Visiting(t, pars)
 
-  # set and modify the baseline mosquito bionomic parameters
+  # vector control
+  pars <- Control(t, y, pars)
+
+  # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
-  pars <- Bionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
 
-  # egg laying: compute eta
+  # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
+
+  # update adult bionomic parameters to baseline
+  # or with integrated effect sizes
+  pars <- MBionomics(t, y, pars, 1)
+  pars <- LBionomics(t, y, pars, 1)
+
+  if(pars$nVectors > 1) for(s in 2:pars$nVectors){
+    pars <- MBionomics(t, y, pars, s)
+    pars <- LBionomics(t, y, pars, s)
+  }
+  pars <- VectorControlEffectSizes(t, y, pars)
 
   # emergence: compute Lambda
   pars <- Emergence(t, y, pars)
-
   return(pars)
 }
 
@@ -118,14 +145,19 @@ compute_vars_cohort <- function(a, y, pars, F_eir) {
 compute_vars_aqua <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
-  pars <- Forcing(t, y, pars)
+  pars <- Forcing(t, pars)
 
-  # set and modify the baseline mosquito bionomic parameters
-  pars <- BloodFeeding(t, y, pars)
+  # vector control
+  pars <- Control(t, y, pars)
+
+  # update adult bionomic parameters to baseline
+  # or with integrated effect sizes
   pars <- LBionomics(t, y, pars, 1)
-  pars <- VectorControlEffectSizes(t, y, pars)
 
-  # egg laying: compute eta
+  if(pars$nVectors > 1) for(s in 2:pars$nVectors){
+    pars <- LBionomics(t, y, pars, s)
+  }
+  pars <- VectorControlEffectSizes(t, y, pars)
 
   pars$eggs_laid[[1]] = F_eggs(t, y, pars, 1)
 
