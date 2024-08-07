@@ -68,13 +68,13 @@ reference:
   desc: |
     Methods to set up basic models
   contents:
-  - make_xds_object
   - xds_setup
+  - make_xds_object
+  - make_indices
   - xds_setup_aquatic
   - xds_setup_mosy
   - xds_setup_human
   - xds_setup_cohort
-  - make_indices
 - subtitle: Initial Values
   desc: |
     Methods to set up basic models
