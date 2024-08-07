@@ -17,13 +17,15 @@ devtools::install_github("dd-harp/ramp.xds")
 
 ## What is RAMP?
 
-RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty in analysis using conventional and simulation-based analytics.
+RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty in conventional analysis and through simulation-based analytics.
 
 ## What is **`ramp.xds`**?
 
 **`ramp.xds`** is an R software package that supports nimble model building for simulation-based analytics and malaria research. It was designed to set up, analyze, and solve dynamical systems describing  malaria epidemiology, spatial transmission dynamics, and control including mosquito spatial ecology. 
 
-The software has been designed to serve the needs of malaria programs, where mathematical models are developed for decision support and adaptive malaria control. In this context, models describe malaria in a defined geographical area. Mechanistic model of malaria in a place, fitted to available data, are a synthesis of malaria intelligence in a form that can facilitate complex analysis, extending our innate mental capabilities. As the needs of a malaria program changes, the models can be modified -- simplified or extended -- to address the tasks at hand. The software was also developed to apply malaria theory: it outputs standard, observable malaria metrics, and it easily solves equations, computes steady states and stable orbits, and computes spatio-temporal vectorial capacity and the basic and adjusted reproductive numbers for malaria parasites. 
+The software has been designed to serve the needs of malaria programs, where mathematical models are developed for decision support and adaptive malaria control. In this context, models describe malaria in a defined geographical area. Mechanistic models of malaria in a place, fitted to available data, are a synthesis of malaria intelligence in a form that can facilitate complex analysis, extending our innate mental capabilities. As the needs of a malaria program changes, the models can be modified -- simplified or extended -- to address the tasks at hand. 
+
+The software was also developed to apply malaria theory: it outputs standard, observable malaria metrics, and it easily solves equations, computes steady states and stable orbits, and computes the spatio-temporal vectorial capacity and the basic and adjusted reproductive numbers for malaria parasites. 
 
 The software was designed around a rigorous mathematical framework for modular model building, described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) (Wu SL, *et al.* 2023. PLoS Computational Biology)^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]. The mathematical framework has now been extended to cover *exogenous forcing* by weather and vector control. 
 
@@ -37,48 +39,78 @@ The software was designed around a rigorous mathematical framework for modular m
 
 **`ramp.xds`**  is under active development. It supersedes two other software packages, no longer under active development: [**`exDE`**](https://dd-harp.github.io/exDE/) and [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB/). If you're interested, we've written a short [history of development of RAMP simulation software](https://dd-harp.github.io/ramp.xds/articles/History.html).
 
-## Why use **`ramp.xds`**?
+## **`ramp.xds`** Capabilities
 
-**`ramp.xds`** makes it easy to set up, solve, and apply dynamical systems models for malaria & other mosquito-borne pathogens. A large code library, in [**`ramp.library`**](https://dd-harp.github.io/ramp.library/), includes a large set of published models with code that has been verified and tested. If you're working on a model family that is not already in *ramp.library,* you can write us and we'll help you add it to the growing collection. 
+**`ramp.xds`** has developed algorithms that make it easy to set up, solve, and apply dynamical systems models for malaria & other mosquito-borne pathogens. A large code library, in [**`ramp.library`**](https://dd-harp.github.io/ramp.library/), includes a large set of published models with code that has been verified and tested. It should be comparatively easy to replicate your study, or any study, using **`ramp.xds.`** If you're working on a model family that is not already in **`ramp.library,`** you can write us and we'll help you add it to the growing collection. After your model has been added to the **`ramp.library`**, it should be easy for others to replicate your study.
 
-It should be comparatively easy to replicate your study, or any study, using *ramp.xds.* It’s also easy for others to replicate your study.
+**`ramp.xds`** makes it easy to extend the capability of your models. Any model family from one dynamical component can be combined with any model from another dynamical component, and the rigid interface developed around blood feeding and egg laying make it possible to add structure and spatial dynamics. 
 
-Any model family from one domain can be combined with models from other domains and take advantage of the other features of *ramp.xds.*  Software capabilities include: 
+Some built in features that make **`ramp.xds`** easy to use: 
 
-+ support for systems of ordinary and delay, differential and difference equations; 
++ after solving, the outputs are parsed to make it easy to examine, plot, and visualize;
 
-+ support for autonomous and non-autonomous, including exogenous forcing by weather and vector control; 
++ the software automatically computes dynamical terms.  
+
+Some capabilities of **`ramp.xds`** include support for: 
+
++ systems of ordinary and delay, differential and difference equations; 
+
++ autonomous and non-autonomous systems, including exogenous forcing by weather; 
+
++ mosquito spatial ecology and spatial transmission dynamics with algorithms to model mosquito dispersal and human mobility and travel;
 
 + structural flexibility in stratifying host population to handle heterogeneity in epidemiological traits, such as vaccination, drug taking, net ownership, travel and mobility, and host demography;
 
-+ support for modeling realistic human / host demography with cohort dynamics and aging to model infection, immunity, disease, and infectiousness in host populations over by age and time; 
++ modeling realistic human / host demography with aging and cohort dynamics to model infection, immunity, disease, and infectiousness in host populations over by age and time; 
 
-+ support for modeling mass vaccination, mass drug administration, and other health interventions.  
++ modeling vector control;  
 
-+ environmental heterogeneity in exposure;  
++ modeling mass vaccination, mass drug administration, and other health interventions;  
 
-+ malaria importation through travel and visitors; 
++ modeling heterogeneous biting and environmental heterogeneity in exposure;  
 
-+ multiple host species (or types) and multiple mosquito vector species (or types);
++ modeling malaria connectivity, including importation through travel and visitors; 
 
-+ support for modeling observational processes (in *ramp.xds*) and (through *ramp.work*) model fitting.  
++ modeling multiple host species (or types) and multiple mosquito vector species (or types);
+
++ modeling observational processes (in **`ramp.xds`**) and (through **`ramp.work`**) model fitting.  
     
 + support for analysis, including computation of reproductive numbers 
 
-
 ## Modularity 
 
-This software supports nimble model building with functions to set up, solve, and analyze dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission formulated as dynamical systems in continuous or discrete time. 
+This software supports nimble model building with functions to set up, solve, and analyze dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission formulated as dynamical systems in continuous or discrete time. The systems are naturally modular: an intermediate step in developing a model for **`ramp.xds`** is to rewrite the equations using [Modular Forms](https://dd-harp.github.io/ramp.xds/articles/modularity.html). 
+
 
 The mathematical framework and software have a modular design developed around an algorithm to model mosquito blood feeding on vertebrate hosts and parasite / pathogen transmission, including patch-based spatial dynamics within a defined spatial domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen linking infection dynamics in mosquito and vertebrate host populations. It guarantees mathematical consistency in computing blood feeding rates and habits and in allocating bites and blood meals with heterogeneous vertebrate host population densities, including models with dynamically changing availability of host populations or other vertebrate animals. 
 
 The framework and software also support spatial models of mosquito ecology through an algorithm that describes egg laying by adult mosquitoes in aquatic habitats and emergence of adult mosquitoes. The egg laying algorithm provides a rigorous interface linking dynamical components describing adult mosquito populations in a set of spatial patches and immature aquatic mosquito populations in a structured set of aquatic habitats. 
 
+The software documentation and vignettes tend to follow a standard notation developed in Wu SL, *et al.* (2023), a short way of referring to the various parts of the model. There are five core dynamical components in three chunks connected by two rigid interfaces:
+
+***
+<center>
+![**Caligraphic Roman Letters Describe Major Components**](vignettes/notation1.png)
+</center> 
+***
+
+Mosquito ecology and parasite infection dynamics are inextricably linked, as are the models describing human demography and parasite infection dynamics and immunity. 
+
+A good place to start is the vignette that illustrates the model structure using a simple system with 5 habitats, 3 patches, and 4 population strata [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
+
 The software aims to be fully modular: it implements plug-and-play computation for a broad class of dynamical systems models for describing the dynamics and control of malaria and other mosquito-transmitted pathogens. Modularity has been achieved through a combination of methods: the functions that compute derivatives (for differential equations) or that update state variables (for difference equations) use a generic method (using R's `S3` system) that dispatches on parameter lists for each component which is used to compute the full set of differential equations; the interfaces for blood feeding and egg laying are biologically realistic but rigidly defined to guarantee mathematical consistency; and a large set of additional features have been implemented with careful attention to detail to guarantee consistency and avoid conflicts. Each dynamical component also includes a null model, but where its outputs can be computed by any function. The function `ramp.xds::xde_derivatives` computes the derivatives of all state variables from those modular components and can be used with the excellent solvers in [deSolve](http://desolve.r-forge.r-project.org/). The functions `ramp.xds::dts_update` updates the state variables in discrete-time systems with support for mismatched run-time time steps. 
 
-To get started, please consider reading some of the articles in the drop down panels above, at our [website](https://dd-harp.github.io/ramp.xds/). The 3 sections ending in "Component" describe particular models implementing
-the interface for each of those components (adult mosquitoes, aquatic mosquitoes, and humans), and show a simulation at their equilibrium values. 
+Extensibility has been implemented through a system for adding exogenous forcing by weather and mosquito resource dynamics, vector control and health systems.
 
+***
+
+<center>
+![Modularity, as implemented in **`ramp.xds`**](vignettes/ModularGeneralized.png)
+</center> 
+
+***
+
+These topics are also covered in other 
 The section "Articles" has more in-depth examples, including an extended walk through of how to set up and run a model in `vignette("ex_534")`, a guide on how to contribute, and an example of running a model in ramp.xds with external forcing under a model of ITN (insecticide treated nets) based vector control in `vignette("vc_lemenach")`. 
 
 The section "Functions" documents each function exported by the package.
