@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup}
 \alias{xds_setup}
-\title{Set up and configure an \strong{\code{xds}} model object}
+\title{Build an \strong{\code{xds}} object}
 \usage{
 xds_setup(
   xds = "xde",
@@ -75,7 +75,10 @@ xds_setup(
 a \link{list}
 }
 \description{
-This sets up an \strong{\code{xds}} model object with \code{pars$frame = 'full'} each
+Set up an \strong{\code{xds}} object
+}
+\details{
+This sets up an \strong{\code{xds}} object with \code{pars$frame = 'full'} each
 dynamical component fully configured for a single host and vector species:
 \itemize{
 \item \strong{\code{Xpar}} defines the human / host infection dynamics, \eqn{\cal XH}, of class \code{Xname}

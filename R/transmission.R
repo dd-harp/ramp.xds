@@ -80,7 +80,7 @@ make_beta <- function(t, y, pars){
   return(pars)
 }
 
-#' @title Entomological inoculation rate on human strata
+#' @title Compute the daily Entomological Inoculation Rate (EIR)
 #' @description Compute the daily EIR for a set of human population
 #' strata given the biting density of infective mosquitoes in each patch
 #' @param fqZ the infective biting density

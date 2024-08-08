@@ -67,11 +67,11 @@ reference:
     Methods to support nimble model building
 - subtitle: Build / Setup
   desc: |
-    Methods to set up an **`xds`** model object
+    Methods to set up an **`xds`** object
   contents:
   - xds_setup
-  - xds_setup_aquatic
   - xds_setup_mosy
+  - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_cohort
 - subtitle: Set Up Utilities

@@ -1,11 +1,21 @@
 # functions to set up models
 
-#' @title Set up and configure an **`xds`** model object
-#' @description This sets up an **`xds`** model object with `pars$frame = 'full'` each
-#' dynamical component fully configured for a single host and vector species:
-#' - **`Xpar`** defines the human / host infection dynamics, \eqn{\cal XH}, of class `Xname`
-#' - **`MYZpar`** defines the adult mosquito ecology & infection dynamics, \eqn{\cal MYZ}, of class `MYZname`
-#' - **`Lpar`** defines the aquatic mosquito ecology, \eqn{\cal L}, of class `Lname`
+#' @title Build an **`xds`** object
+#' @description Set up an **`xds`** object and set `pars$frame <- 'full'`.
+#'
+#' Each dynamical component is fully configured for a single host and vector species:
+#'
+#' - **`Xpar`** defines a model for human / host infection dynamics of class `Xname` (the \eqn{\cal XH} dynamical component)
+#' - **`MYZpar`** defines a model for adult mosquito ecology & infection dynamics of class `MYZname` (the \eqn{\cal MYZ} dynamical component)
+#' - **`Lpar`** defines the aquatic mosquito ecology of class `Lname` (The \eqn{\cal L} dynamical component)
+#'
+#' The model sets the basic structural parameters:
+#' - `nPatches` - the number of patches in the model
+#' - `nStrata` - the number of human / host population strata
+#' - `nHabitats` - the number of habitats
+#'
+#'
+#' @details This sets up an **`xds`** object with `pars$frame = 'full'`
 #' - Parameter values for the models are passed as named lists: `Xopts`, `MYZopts`, and `Lopts`
 #' - Search weights, the mosquito dispersal matrix, and the time spent matrix can also be
 #' configured using parameters passed at the command line.
@@ -114,7 +124,7 @@ xds_setup = function(xds = 'xde', dlay = 'ode',
   return(pars)
 }
 
-#' @title Set up an **`xds`** model object for mosquito ecology
+#' @title Set up an **`xds`** object to model mosquito ecology
 #' @param xds is `xde`/`dts` for differential / difference equations
 #' @param dlay is either "ode" or "dde"
 #' @param MYZname is a character string defining a MYZ model
@@ -195,7 +205,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 }
 
 
-#' @title Set up an **`xds`** model object for aquatic mosquito population dynamics
+#' @title Set up an **`xds`** object to model aquatic mosquito ecology
 #' @param xds is `xde`/`dts` for differential / difference equations
 #' @param dlay is either "ode" or "dde"
 #' @param nHabitats is the number of habitats
@@ -239,7 +249,7 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 }
 
 
-#' @title Set up an **`xds`** model object for forced human infection dynamics
+#' @title Set up an **`xds`** object to model human / host infection dynamics
 #' @description
 #' Set up a model to explore human dynamics forced by infective mosquitoes
 #' @details
@@ -315,7 +325,7 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
   return(pars)
 }
 
-#' @title Set up an **`xds`** model object for forced human infection dynamics in cohorts
+#' @title Set up an **`xds`** object to model human cohort dynamics
 #' @description
 #' The user supplies a function `F_eir(time, birthday, ...)` and specifies a model, and
 #' the `xds` is set up to simulate dynamics for cohorts of different
