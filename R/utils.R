@@ -24,7 +24,7 @@ make_indices <- function(pars) {
   return(pars)
 }
 
-#' @title Get the initial values as a vector
+#' @title Get the stored initial values, \eqn{y_0}
 #' @param pars a [list]
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export

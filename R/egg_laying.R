@@ -22,7 +22,7 @@
 #' @param nPatches the number of patches, \eqn{n_p}
 #' @param membership a vector describing the patch index for each habitat
 #' @return the habitat membership [matrix], denoted \eqn{\cal N} where \eqn{\left|\cal N\right|= n_p \times n_q}
-#' @seealso create_habitat matrix is called by [make_xds_object()] and [setup_EGG_LAYING()]
+#' @seealso create_habitat matrix is called by [make_xds_template()] and [setup_EGG_LAYING()]
 #' @seealso see [view_habitat_matrix()]
 #' @examples
 #' create_habitat_matrix(3, c(1,1,2,2,2))
@@ -54,7 +54,7 @@ create_habitat_matrix = function(nPatches, membership){
 #' - the egg distribution matrix \eqn{\cal U}, made by [compute_calU]
 #' - a vector that stores eggs laid
 #'
-#' This function is called by `make_xds_object` to set up `EGGpar` and the variables and parameters with all
+#' This function is called by `make_xds_template` to set up `EGGpar` and the variables and parameters with all
 #' the variables it might depend on.
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 #' @param pars an `xds` object

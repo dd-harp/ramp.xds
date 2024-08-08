@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_inits}
 \alias{get_inits}
-\title{Get the initial values as a vector}
+\title{Get the stored initial values, \eqn{y_0}}
 \usage{
 get_inits(pars)
 }
@@ -13,5 +13,5 @@ get_inits(pars)
 y a \link{numeric} vector assigned the class "dynamic"
 }
 \description{
-Get the initial values as a vector
+Get the stored initial values, \eqn{y_0}
 }

@@ -7,7 +7,7 @@
 #' @param pars an `xds` object
 #' @return an `xds` object
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
-#' @seealso [make_xds_object]
+#' @seealso [make_xds_template]
 #' @seealso [setup_BLOOD_FEEDING]
 #' @export
 setup_TRANSMISSION <- function(pars){

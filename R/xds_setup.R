@@ -67,7 +67,7 @@ xds_setup = function(xds = 'xde', dlay = 'ode',
                      model_name = "unnamed"
 ){
   stopifnot(length(HPop) == length(residence))
-  pars <- make_xds_object('xde', 'full', dlay, nPatches, membership, residence)
+  pars <- make_xds_template('xde', 'full', dlay, nPatches, membership, residence)
   pars <- make_runtime(pars, Xday, MYZday, Lday, Lname)
   class(pars$compute) <- 'xde'
 
@@ -156,7 +156,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 ){
   residence = 1:nPatches
   HPop = checkIt(HPop, nPatches)
-  pars <- make_xds_object('xde', 'mosy', dlay, nPatches, membership, residence)
+  pars <- make_xds_template('xde', 'mosy', dlay, nPatches, membership, residence)
   pars <- make_runtime(pars, 1, MYZday, Lday, Lname)
   class(pars$compute) = "na"
 
@@ -216,7 +216,7 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 
   nPatches= nHabitats
   membership = 1:nHabitats
-  pars <- make_xds_object('xde', 'aquatic', dlay, nPatches, membership)
+  pars <- make_xds_template('xde', 'aquatic', dlay, nPatches, membership)
   pars <- make_runtime(pars, 1, 1, Lday, Lname)
   class(pars$compute) = "na"
 
@@ -279,7 +279,7 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
 ){
   stopifnot(length(HPop) == length(residence))
   membership=1
-  pars <- make_xds_object('xde', 'human', dlay, nPatches, membership, residence)
+  pars <- make_xds_template('xde', 'human', dlay, nPatches, membership, residence)
   pars <- make_runtime(pars, Xday, 1, 1, "trace")
   pars$compute = 'na'
   class(pars$compute) <- 'na'
@@ -355,7 +355,7 @@ xds_setup_cohort = function(F_eir,
   nPatches = length(HPop)
   residence = rep(1, length(HPop))
   membership = 1
-  pars <- make_xds_object('xde', 'cohort', dlay, nPatches, membership, residence)
+  pars <- make_xds_template('xde', 'cohort', dlay, nPatches, membership, residence)
   pars <- make_runtime(pars, Xday, 1, 1, "trace")
   class(pars$compute) <- "na"
 

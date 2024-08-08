@@ -67,16 +67,7 @@
     <li>
       <a href="../articles/Contributing.html">Contributing</a>
     </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Concepts
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
+    <li>
       <a href="../articles/heterogeneous_transmission.html">Heterogeneous Transmission</a>
     </li>
     <li>
@@ -92,7 +83,7 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Adult Mosquito Dynamics
+    Mosquito - Adult
      
     <span class="caret"></span>
   </a>
@@ -110,22 +101,22 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Aquatic Mosquito Dynamics
+    Mosquito - Aquatic
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trace.html">Trace (forced) model</a>
+      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
-      <a href="../articles/aqua_basic.html">Basic competition model</a>
+      <a href="../articles/aqua_basic.html">Basic Competition</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Human Infection Dynamics
+    Human / Host
      
     <span class="caret"></span>
   </a>
@@ -260,7 +251,8 @@ modular, structured by vector life stage, host population strata, and by
 the spatial locations (patches) at which transmission occurs (see figure
 below).</p>
 <p align="center">
-<img src="articles/modularity.png"></p>
+<img src="modularity.png">&gt;
+</p>
 <p>Models in the ramp.xds framework are constructed from 3 dynamical
 components:</p>
 <ul>
@@ -297,12 +289,13 @@ and feed on blood hosts, and results in the quantities <span class="math inline"
 humans to mosquitoes, which couple the dynamics of <span class="math inline">\(\mathcal{M}\)</span> and <span class="math inline">\(\mathcal{X}\)</span>. Likewise emergence of new
 adults from aquatic habitats and egg laying by adults into habitats
 couples <span class="math inline">\(\mathcal{M}\)</span> and <span class="math inline">\(\mathcal{L}\)</span>.</p>
-<p>The function <code>ramp.xds::xDE_diffeqn</code> compute the necessary
-quantities and returns a vector of derivatives of all state variables
-which can be used to solve trajectories from a model in ramp.xds. The
-program flow within this function is summarized by this diagram:</p>
+<p>The function <code><a href="../reference/xde_derivatives.html">ramp.xds::xde_derivatives</a></code> compute the
+necessary quantities and returns a vector of derivatives of all state
+variables which can be used to solve trajectories from a model in
+ramp.xds. The program flow within this function is summarized by this
+diagram:</p>
 <p align="center">
-<img src="articles/xDEdiffeqn.png"></p>
+<img src="xDEdiffeqn.png"></p>
 <p>For more information, please read our <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" class="external-link">research
 article</a> describing the theory behind the model.</p>
 </div>

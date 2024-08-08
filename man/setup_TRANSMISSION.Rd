@@ -22,7 +22,7 @@ This implements a model for egg laying described by Wu SL, \emph{et al.}, (2023)
 {\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 }
 \seealso{
-\link{make_xds_object}
+\link{make_xds_template}
 
 \link{setup_BLOOD_FEEDING}
 }
