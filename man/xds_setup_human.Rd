@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_human}
 \alias{xds_setup_human}
-\title{Set up an \strong{\code{xds}} model object for forced human infection dynamics}
+\title{Set up an \strong{\code{xds}} object to model human / host infection dynamics}
 \usage{
 xds_setup_human(
   xds = "xde",

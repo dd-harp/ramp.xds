@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_cohort}
 \alias{xds_setup_cohort}
-\title{Set up an \strong{\code{xds}} model object for forced human infection dynamics in cohorts}
+\title{Set up an \strong{\code{xds}} object to model human cohort dynamics}
 \usage{
 xds_setup_cohort(
   F_eir,

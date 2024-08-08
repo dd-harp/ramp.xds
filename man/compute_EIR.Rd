@@ -2,7 +2,7 @@
 % Please edit documentation in R/transmission.R
 \name{compute_EIR}
 \alias{compute_EIR}
-\title{Entomological inoculation rate on human strata}
+\title{Compute the daily Entomological Inoculation Rate (EIR)}
 \usage{
 compute_EIR(fqZ, beta, local_frac)
 }

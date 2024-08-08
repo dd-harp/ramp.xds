@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_aquatic}
 \alias{xds_setup_aquatic}
-\title{Set up an \strong{\code{xds}} model object for aquatic mosquito population dynamics}
+\title{Set up an \strong{\code{xds}} object to model aquatic mosquito ecology}
 \usage{
 xds_setup_aquatic(
   xds = "xde",
@@ -36,5 +36,5 @@ xds_setup_aquatic(
 a \link{list}
 }
 \description{
-Set up an \strong{\code{xds}} model object for aquatic mosquito population dynamics
+Set up an \strong{\code{xds}} object to model aquatic mosquito ecology
 }
