@@ -1,4 +1,4 @@
-# function make_xds_object and supporting function F_H.setup
+# function make_xds_template and supporting function F_H.setup
 
 #' @title Make an **`xds`** object template
 #' @description Creates and returns structured template, called an
@@ -52,7 +52,7 @@
 #' @seealso Related: [xds_setup()]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
 #'
 #' @export
-make_xds_object = function(xds='xde', frame='full', dlay = 'ode',
+make_xds_template = function(xds='xde', frame='full', dlay = 'ode',
                            nPatches=1, membership=1, residence=1){
   pars = list()
   class(pars) <- 'xds_obj'

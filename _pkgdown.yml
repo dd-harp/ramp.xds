@@ -17,8 +17,6 @@ navbar:
       href: articles/vc_lemenach.html
     - text: Contributing
       href: articles/Contributing.html
-  - text: Concepts
-    menu:
     - text: Heterogeneous Transmission
       href: articles/heterogeneous_transmission.html
     - text: Heterogeneous Biting
@@ -27,7 +25,7 @@ navbar:
       href: articles/heterogeneous_mixing.html
     - text: Environmental Heterogeneity
       href: articles/environmental_heterogeneity.html
-  - text: Adult Mosquito Dynamics
+  - text: Mosquito - Adult
     menu:
     - text: Ross-Macdonald model
       href: articles/adult_RM.html
@@ -35,13 +33,13 @@ navbar:
       href: articles/RM-dts-Mosquito.html
     - text: Generalized Ross-Macdonald model
       href: articles/adult_GeRM.html
-  - text: Aquatic Mosquito Dynamics
+  - text: Mosquito - Aquatic
     menu:
-    - text: Trace (forced) model
+    - text: Aquatic - Trivial (forced) model
       href: articles/aqua_trace.html
-    - text: Basic competition model
+    - text: Basic Competition
       href: articles/aqua_basic.html
-  - text: Human Infection Dynamics
+  - text: Human / Host
     menu:
     - text: SIS model
       href: articles/human_sis.html
@@ -64,30 +62,33 @@ home:
     - authors
     - dev
 reference:
-- title: Build & Modify Models
+- title: Model Building
   desc: |
-    Methods to set up basic models
+    Methods to support nimble model building
+- subtitle: Build / Setup
+  desc: |
+    Methods to set up an **`xds`** model object
   contents:
   - xds_setup
-  - make_xds_object
-  - make_indices
   - xds_setup_aquatic
   - xds_setup_mosy
   - xds_setup_human
   - xds_setup_cohort
-- subtitle: Initial Values
+- subtitle: Set Up Utilities
   desc: |
-    Methods to set up basic models
+    Utilities for basic models
   contents:
+  - make_xds_template
+  - make_indices
   - get_inits
   - get_H
-  - update_inits
-  - last_to_inits
-- subtitle: Change Parameters
+- subtitle: Change Parameters & Initial Values
   desc: |
     Methods to set up basic models
   contents:
   - change_H
+  - update_inits
+  - last_to_inits
 - title: Blood Feeding and Transmission
   desc: |
     Methods to compute terms describing blood feeding and transmission
@@ -219,8 +220,6 @@ reference:
   desc: |
     Basic Plotting
   contents:
-  - MBionomics
-  - MBionomics.static
   - MBionomics.RM_static
   - MBionomics.RM_func
   - create_MYZpar_RM_static
@@ -433,6 +432,8 @@ reference:
     Methods to compute or update mosquito bionomic parameters
   contents:
   - Bionomics
+  - MBionomics
+  - MBionomics.static
 - subtitle:  Functional Responses
   desc: |
     Compute bionomic parameters as functional responses to resource availability

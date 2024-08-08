@@ -67,16 +67,7 @@
     <li>
       <a href="../articles/Contributing.html">Contributing</a>
     </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Concepts
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
+    <li>
       <a href="../articles/heterogeneous_transmission.html">Heterogeneous Transmission</a>
     </li>
     <li>
@@ -92,7 +83,7 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Adult Mosquito Dynamics
+    Mosquito - Adult
      
     <span class="caret"></span>
   </a>
@@ -110,22 +101,22 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Aquatic Mosquito Dynamics
+    Mosquito - Aquatic
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trace.html">Trace (forced) model</a>
+      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
-      <a href="../articles/aqua_basic.html">Basic competition model</a>
+      <a href="../articles/aqua_basic.html">Basic Competition</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Human Infection Dynamics
+    Human / Host
      
     <span class="caret"></span>
   </a>
@@ -362,7 +353,7 @@ equilibrium values.</p>
 initial values. These equations have been implemented to compute <span class="math inline">\(\Upsilon\)</span> dynamically, so we attach
 <code>Upsilon</code> as initial values:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_xds_object.html">make_xds_object</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"mosy"</span>, <span class="st">"ode"</span>, <span class="va">nPatches</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_xds_template.html">make_xds_template</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"mosy"</span>, <span class="st">"ode"</span>, <span class="va">nPatches</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_MYZpar.html">make_MYZpar</a></span><span class="op">(</span><span class="st">"RM"</span>, <span class="va">params</span>, <span class="fl">1</span>,  <span class="va">MYZo</span><span class="op">)</span>  </span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_MYZinits.html">make_MYZinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZo</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Xpar.html">make_Xpar</a></span><span class="op">(</span><span class="st">"trace"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Xo</span><span class="op">)</span> </span>

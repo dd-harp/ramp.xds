@@ -78,8 +78,9 @@ Models for mosquito borne pathogen transmission systems are naturally modular, s
 vector life stage, host population strata, and by the spatial locations (patches) at
 which transmission occurs (see figure below).
 
+
 <p align="center">
-  <img src="vignettes/modularity.png"/>
+  ![](modularity.png)>
 </p>
 
 Models in the ramp.xds framework are constructed from 3 dynamical components:
@@ -95,10 +96,10 @@ The combined state from these 3 components is the entire state of the dynamical 
 
 There are also functions which handle the exchange of information (flows) between the dynamical components and which couple their dynamics. Bloodfeeding is the process by which adult mosquitoes seek out and feed on blood hosts, and results in the quantities $EIR$ (entomological inoculation rate) and $\kappa$, the net infectiousness of humans to mosquitoes, which couple the dynamics of $\mathcal{M}$ and $\mathcal{X}$. Likewise emergence of new adults from aquatic habitats and egg laying by adults into habitats couples $\mathcal{M}$ and $\mathcal{L}$. 
 
-The function `ramp.xds::xDE_diffeqn` compute the necessary quantities and returns a vector of derivatives of all state variables which can be used to solve trajectories from a model in ramp.xds. The program flow within this function is summarized by this diagram:
+The function `ramp.xds::xde_derivatives` compute the necessary quantities and returns a vector of derivatives of all state variables which can be used to solve trajectories from a model in ramp.xds. The program flow within this function is summarized by this diagram:
 
 <p align="center">
-  <img src="vignettes/xDEdiffeqn.png"/>
+  ![](xDEdiffeqn.png)
 </p>
 
 For more information, please read our [research article](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684) describing the theory behind the model.

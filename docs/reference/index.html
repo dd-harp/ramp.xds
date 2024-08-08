@@ -49,14 +49,7 @@
     <li>
       <a href="../articles/Contributing.html">Contributing</a>
     </li>
-  </ul></li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Concepts
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu"><li>
+    <li>
       <a href="../articles/heterogeneous_transmission.html">Heterogeneous Transmission</a>
     </li>
     <li>
@@ -71,7 +64,7 @@
   </ul></li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Adult Mosquito Dynamics
+    Mosquito - Adult
      
     <span class="caret"></span>
   </a>
@@ -87,20 +80,20 @@
   </ul></li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Aquatic Mosquito Dynamics
+    Mosquito - Aquatic
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/aqua_trace.html">Trace (forced) model</a>
+      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
-      <a href="../articles/aqua_basic.html">Basic competition model</a>
+      <a href="../articles/aqua_basic.html">Basic Competition</a>
     </li>
   </ul></li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Human Infection Dynamics
+    Human / Host
      
     <span class="caret"></span>
   </a>
@@ -136,21 +129,17 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="build-modify-models">Build &amp; Modify Models <a href="#build-modify-models" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p><p>Methods to set up basic models</p>
+          <h2 id="model-building">Model Building <a href="#model-building" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Methods to support nimble model building</p>
+        </th>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="build-setup">Build / Setup <a href="#build-setup" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to set up an <strong><code>xds</code></strong> model object</p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="xds_setup.html">xds_setup()</a></code> </p>
         </td>
         <td><p>Set up and configure an <strong><code>xds</code></strong> model object</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_xds_object.html">make_xds_object()</a></code> </p>
-        </td>
-        <td><p>Make an <strong><code>xds</code></strong> object template</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_indices.html">make_indices()</a></code> </p>
-        </td>
-        <td><p>Set indices for generalized spatial model</p></td>
       </tr><tr><td>
           <p><code><a href="xds_setup_aquatic.html">xds_setup_aquatic()</a></code> </p>
         </td>
@@ -168,17 +157,33 @@
         </td>
         <td><p>Set up an <strong><code>xds</code></strong> model object for forced human infection dynamics in cohorts</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="initial-values">Initial Values <a href="#initial-values" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Methods to set up basic models</p>
+          <h3 id="set-up-utilities">Set Up Utilities <a href="#set-up-utilities" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Utilities for basic models</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="make_xds_template.html">make_xds_template()</a></code> </p>
+        </td>
+        <td><p>Make an <strong><code>xds</code></strong> object template</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_indices.html">make_indices()</a></code> </p>
+        </td>
+        <td><p>Set indices for generalized spatial model</p></td>
+      </tr><tr><td>
           <p><code><a href="get_inits.html">get_inits()</a></code> </p>
         </td>
-        <td><p>Get the initial values as a vector</p></td>
+        <td><p>Get the stored initial values, \(y_0\)</p></td>
       </tr><tr><td>
           <p><code><a href="get_H.html">get_H()</a></code> </p>
         </td>
         <td><p>Get the initial values as a vector</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="change-parameters-initial-values">Change Parameters &amp; Initial Values <a href="#change-parameters-initial-values" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to set up basic models</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="change_H.html">change_H()</a></code> </p>
+        </td>
+        <td><p>Change human population density</p></td>
       </tr><tr><td>
           <p><code><a href="update_inits.html">update_inits()</a></code> </p>
         </td>
@@ -187,14 +192,6 @@
           <p><code><a href="last_to_inits.html">last_to_inits()</a></code> </p>
         </td>
         <td><p>Set the initial values to the last values of the last simulation</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="change-parameters">Change Parameters <a href="#change-parameters" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Methods to set up basic models</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="change_H.html">change_H()</a></code> </p>
-        </td>
-        <td><p>Change human population density</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="blood-feeding-and-transmission">Blood Feeding and Transmission <a href="#blood-feeding-and-transmission" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Methods to compute terms describing blood feeding and transmission</p>
@@ -600,14 +597,6 @@
           <p class="section-desc"></p><p>Basic Plotting</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="MBionomics.html">MBionomics()</a></code> </p>
-        </td>
-        <td><p>Adult Mosquito Bionomics</p></td>
-      </tr><tr><td>
-          <p><code><a href="MBionomics.static.html">MBionomics(<i>&lt;static&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Set mosquito bionomics to baseline</p></td>
-      </tr><tr><td>
           <p><code><a href="MBionomics.RM_static.html">MBionomics(<i>&lt;RM_static&gt;</i>)</a></code> </p>
         </td>
         <td><p>Macdonald-style adult mosquito bionomics</p></td>
@@ -1299,6 +1288,14 @@
           <p><code><a href="Bionomics.html">Bionomics()</a></code> </p>
         </td>
         <td><p>Set bionomic parameter rates relative to baseline</p></td>
+      </tr><tr><td>
+          <p><code><a href="MBionomics.html">MBionomics()</a></code> </p>
+        </td>
+        <td><p>Adult Mosquito Bionomics</p></td>
+      </tr><tr><td>
+          <p><code><a href="MBionomics.static.html">MBionomics(<i>&lt;static&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set mosquito bionomics to baseline</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="functional-responses">Functional Responses <a href="#functional-responses" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Compute bionomic parameters as functional responses to resource availability</p>
