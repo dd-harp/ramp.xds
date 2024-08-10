@@ -1,7 +1,7 @@
 
-#' @title Set indices for generalized spatial model
-#' @param pars a [list]
-#' @return none
+#' @title Make indices for all the model variables
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
 #' @export
 make_indices <- function(pars) {
   pars$max_ix <- 0
@@ -25,10 +25,11 @@ make_indices <- function(pars) {
 }
 
 #' @title Get the stored initial values, \eqn{y_0}
-#' @param pars a [list]
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @param pars an **`xds`** object
+#' @param flatten a [logical]: if true, results are returned as an unnamed vector
+#' @return a named [list] or `if(flatten==TRUE)` a [vector]
 #' @export
-get_inits <- function(pars){
+get_inits <- function(pars, flatten=FALSE){
 
   Li = list()
   s = length(pars$Lpar)
@@ -47,19 +48,10 @@ get_inits <- function(pars){
   if(i>0)
     for(ix in 1:i)
       Xi = c(Xi, get_Xinits(pars, ix))
-  y = c(L=Li, MYZ=MYZi, X=Xi)
+  y = list(L=Li, MYZ=MYZi, X=Xi)
+  if(flatten) y <- xds_flatten(y)
 
   return(y)
-}
-
-#' @title Get the initial values as a vector
-#' @param pars a [list]
-#' @param i the human species index
-#' @return y a [numeric] vector assigned the class "dynamic"
-#' @export
-get_H = function(pars, i=1){
-  y=get_inits(pars)
-  F_H(as.vector(unlist(y)), pars, i)
 }
 
 #' @title Invert a diagonal matrix
@@ -120,7 +112,7 @@ shapeIt = function(obj, d1, d2){
 
 #' @title Set the initial values to the last values of the last simulation
 #' @param y0 a [vector] of initial values
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param s the vector species index
 #' @param i the host species index
 #' @export
@@ -134,11 +126,12 @@ list_vars <- function(pars, y0=NULL, s=1, i=1){
 }
 
 #' @title Set the initial values to the last values of the last simulation
+#' @param pars an **`xds`** object
 #' @param y0 a [vector] of initial values
-#' @param pars a [list]
 #' @return y a [numeric] vector
 #' @export
-update_inits <- function(y0, pars){
+update_inits <- function(pars, y0=NULL){
+  if(is.null(y0)) y0 = get_last(pars)
   s = length(pars$Lpar)
   if(s>0)
     for(ix in 1:s)
@@ -159,48 +152,20 @@ update_inits <- function(y0, pars){
 
 #' @title Set the initial values to the last values of the last simulation
 #' @param pars a [list]
-#' @return y a [numeric] vector
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
 #' @export
 last_to_inits <- function(pars){
-  pars <- update_inits(pars$outputs$orbits$y_last, pars)
+  pars <- update_inits(pars, pars$outputs$last_y)
   return(pars)
 }
 
-#' @title Setup setup
-#' @param obj an object
-#' @return the modified object
+#' @title Set the initial values to the last values of the last simulation
+#' @param vars a [list]
+#' @return `vars` as an unnamed [vector]
 #' @export
-setup_setup = function(obj){
-  UseMethod("setup_setup", obj)
+xds_flatten <- function(vars){
+  return(unname(as.vector(unlist(vars))))
 }
 
-#' @title Setup setup
-#' @description Change the class of an object from
-#' `static` to `setup`
-#' @param obj an object
-#' @return the modified object
-#' @export
-setup_setup.static = function(obj){
-  class(obj) <- 'obj'
-  return(obj)
-}
 
-#' @title Setup setup
-#' @description Don't change the class of an object if it is
-#' already `setup`
-#' @param obj an object
-#' @return the modified object
-#' @export
-setup_setup.setup = function(obj){
-  return(obj)
-}
-
-#' @title Setup setup
-#' @description Don't change the class of an object to
-#' `setup` if it is `dynamic`
-#' @param obj an object
-#' @return the modified object
-#' @export
-setup_setup.dynamic = function(obj){
-  return(obj)
-}

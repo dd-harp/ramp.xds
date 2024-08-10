@@ -62,26 +62,18 @@ home:
     - authors
     - dev
 reference:
-- title: Model Building
+- title: Model Building & Analysis
   desc: |
-    Methods to support nimble model building
+    Methods to support nimble model building and analysis
 - subtitle: Build / Setup
   desc: |
-    Methods to set up an **`xds`** object
+    Methods to set up an **`xds`** object with basic features
   contents:
   - xds_setup
   - xds_setup_mosy
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_cohort
-- subtitle: Set Up Utilities
-  desc: |
-    Utilities for basic models
-  contents:
-  - make_xds_template
-  - make_indices
-  - get_inits
-  - get_H
 - subtitle: Change Parameters & Initial Values
   desc: |
     Methods to set up basic models
@@ -89,6 +81,73 @@ reference:
   - change_H
   - update_inits
   - last_to_inits
+  - parse_orbits
+  - parse_y
+  - get_inits
+  - get_H
+- subtitle: Examine
+  desc: |
+    Methods to
+  contents:
+  - get_inits
+  - get_last
+  - parse_orbits
+  - parse_y
+- subtitle: Solve
+  desc: |
+    Methods to solve equations
+  contents:
+  - xde_solve
+  - xde_stable_orbit
+  - xde_steady
+  - dts_solve
+  - dts_steady
+- subtitle: Analyze
+  desc: |
+    Built-in methods to analyze dynamical systems
+  contents:
+  - xde_steady_state_X
+  - xde_steady_state_MYZ
+  - xde_steady_state_L
+- subtitle: Models -- Human / Host
+  desc: |
+    Models available in **`ramp.xds`** for human/host infection and immunity
+  contents:
+  - dXdt.trace
+  - dXdt.SIS
+  - dXdt.SIP
+  - dXdt.SEIS
+  - dXdt.SEISd
+- subtitle: Models -- Adult Mosquito
+  desc: |
+    Models available in **`ramp.xds`** for adult mosquito ecology and infection dynamics
+  contents:
+  - dMYZdt.trace
+  - dMYZdt.si
+  - dMYZdt.sei
+  - dMYZdt.RM
+  - dMYZdt.basicM
+- subtitle: Models -- Aquatic Mosquito
+  desc: |
+    Models available in **`ramp.xds`** for the ecology of immature mosquitoes in aquatic habitats
+  contents:
+  - dLdt.trace
+  - dLdt.basicL
+- subtitle: Internals
+  desc: |
+    Some internal functions and utilities that are useful to know about
+  contents:
+  - Forcing
+  - Control
+  - BloodFeeding
+  - EggLaying
+  - Bionomics
+  - Transmission
+  - Exposure
+  - Visiting
+  - make_xds_template
+  - make_indices
+  - trigger_setup
 - title: Blood Feeding and Transmission
   desc: |
     Methods to compute terms describing blood feeding and transmission
@@ -141,9 +200,29 @@ reference:
   - make_TimeSpent.as_matrix
   - make_TimeSpent.xy
   - create_TimeSpent_xy
+- title: Egg Laying & Emergence
+  desc: |
+    Generic methods for the aquatic (immature) mosquito component.
+  contents:
+  - create_habitat_matrix
+  - setup_EGG_LAYING
+  - Emergence
+  - EggLaying
+  - EggLaying.setup
+  - EggLaying.static
+  - EggLaying.dynamic
+  - change_habitat_weights
+  - compute_Q
+  - compute_Qtot
+  - make_Q
+  - compute_calU
+  - make_calU
+  - compute_eggs_laid
+  - make_eggs_laid
+  - view_habitat_matrix
 - title: Exposure
   desc: |
-    Methods to model the force of infection
+    Methods for environmental heterogeneity
   contents:
   - Exposure
   - Exposure.xde
@@ -176,26 +255,6 @@ reference:
   - setup_exposure_nb
   - setup_exposure_nb.xde
   - setup_exposure_nb.dts
-- title: Egg Laying & Emergence
-  desc: |
-    Generic methods for the aquatic (immature) mosquito component.
-  contents:
-  - create_habitat_matrix
-  - setup_EGG_LAYING
-  - Emergence
-  - EggLaying
-  - EggLaying.setup
-  - EggLaying.static
-  - EggLaying.dynamic
-  - change_habitat_weights
-  - compute_Q
-  - compute_Qtot
-  - make_Q
-  - compute_calU
-  - make_calU
-  - compute_eggs_laid
-  - make_eggs_laid
-  - view_habitat_matrix
 - title: Adult Mosquito Dynamics
   desc: |
     Generic methods for the adult mosquito dynamics component.
@@ -215,7 +274,7 @@ reference:
   - get_MYZinits
   - update_MYZinits
   - make_indices_MYZ
-  - parse_outputs_MYZ
+  - parse_MYZorbits
 - subtitle: Adult Mosquito Bionomics
   desc: |
     Basic Plotting
@@ -282,7 +341,7 @@ reference:
   - xde_steady_state_MYZ.trace
   - make_MYZinits.trace
   - make_indices_MYZ.trace
-  - parse_outputs_MYZ.trace
+  - parse_MYZorbits.trace
   - get_MYZinits.trace
   - update_MYZinits.trace
 - subtitle: basicM
@@ -300,7 +359,7 @@ reference:
   - create_MYZinits_basicM
   - make_indices_MYZ.basicM
   - list_MYZvars.basicM
-  - parse_outputs_MYZ.basicM
+  - parse_MYZorbits.basicM
   - get_MYZinits.basicM
   - update_MYZinits.basicM
 - subtitle: The "SI" model for infection
@@ -319,7 +378,7 @@ reference:
   - make_MYZinits.si
   - create_MYZinits_si
   - make_indices_MYZ.si
-  - parse_outputs_MYZ.si
+  - parse_MYZorbits.si
   - get_MYZinits.si
   - update_MYZinits.si
 - subtitle: The "SEI" compartment model for infection
@@ -338,7 +397,7 @@ reference:
   - make_MYZinits.sei
   - create_MYZinits_sei
   - make_indices_MYZ.sei
-  - parse_outputs_MYZ.sei
+  - parse_MYZorbits.sei
   - get_MYZinits.sei
   - update_MYZinits.sei
 - subtitle: RM
@@ -349,6 +408,7 @@ reference:
   - Update_MYZt.RM
   - xde_steady_state_MYZ.RM
   - make_MYZpar.RM
+  - list_MYZvars.RM
   - F_fqZ.RM
   - F_fqM.RM
   - F_eggs.RM
@@ -357,7 +417,7 @@ reference:
   - get_MYZinits.RM
   - update_MYZinits.RM
   - make_indices_MYZ.RM
-  - parse_outputs_MYZ.RM
+  - parse_MYZorbits.RM
 - subtitle: RM-Mosquito in discrete-time
   desc: |
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, in discrete time.
@@ -371,7 +431,7 @@ reference:
   - put_MYZvars.RM_dts
   - create_MYZinits_RM_dts
   - make_indices_MYZ.RM_dts
-  - parse_outputs_MYZ.RM_dts
+  - parse_MYZorbits.RM_dts
   - get_MYZinits.RM_dts
   - update_MYZinits.RM_dts
 - title: Aquatic Mosquito Dynamics
@@ -390,7 +450,7 @@ reference:
   - list_Lvars
   - put_Lvars
   - make_indices_L
-  - parse_outputs_L
+  - parse_Lorbits
   - get_Linits
   - update_Linits
 - subtitle: trace
@@ -408,7 +468,7 @@ reference:
   - list_Lvars.trace
   - put_Lvars.trace
   - make_indices_L.trace
-  - parse_outputs_L.trace
+  - parse_Lorbits.trace
   - update_Linits.trace
 - subtitle: basicL
   desc: |
@@ -425,7 +485,7 @@ reference:
   - create_Linits_basicL
   - list_Lvars.basicL
   - make_indices_L.basicL
-  - parse_outputs_L.basicL
+  - parse_Lorbits.basicL
   - update_Linits.basicL
 - title: Mosquito Bionomics
   desc: |
@@ -482,7 +542,7 @@ reference:
   - F_X
   - F_H
   - F_b
-  - parse_outputs_X
+  - parse_Xorbits
   - get_Xinits
   - update_Xinits
   - HTC
@@ -512,7 +572,7 @@ reference:
   - create_Xpar_trace
   - make_Xinits.trace
   - make_X_indices.trace
-  - parse_outputs_X.trace
+  - parse_Xorbits.trace
   - get_Xinits.trace
   - update_Xinits.trace
 - subtitle: hMoI
@@ -533,7 +593,7 @@ reference:
   - F_pr_by_lm.hMoI
   - F_pr_by_rdt.hMoI
   - F_pr_by_pcr.hMoI
-  - parse_outputs_X.hMoI
+  - parse_Xorbits.hMoI
   - get_Xinits.hMoI
   - update_Xinits.hMoI
   - HTC.hMoI
@@ -553,7 +613,7 @@ reference:
   - F_X.SIS
   - F_H.SIS
   - F_b.SIS
-  - parse_outputs_X.SIS
+  - parse_Xorbits.SIS
   - get_Xinits.SIS
   - update_Xinits.SIS
   - HTC.SIS
@@ -585,7 +645,7 @@ reference:
   - F_pr_by_rdt.SEIS
   - F_pr_by_pcr.SEIS
   - F_b.SEIS
-  - parse_outputs_X.SEIS
+  - parse_Xorbits.SEIS
   - get_Xinits.SEIS
   - update_Xinits.SEIS
   - HTC.SEIS
@@ -610,7 +670,7 @@ reference:
   - F_X.SEISd
   - F_H.SEISd
   - F_b.SEISd
-  - parse_outputs_X.SEISd
+  - parse_Xorbits.SEISd
   - get_Xinits.SEISd
   - update_Xinits.SEISd
   - HTC.SEISd
@@ -620,7 +680,7 @@ reference:
   - F_pr_by_pcr.SEISd
   - xds_plot_X.SEISd
   - add_lines_X_SEISd
-- subtitle: SIP xde
+- subtitle: SIP
   desc: |
     Specialized methods for the SIP (Susceptible-Infected-Prophylaxis) model of human dynamics.
   contents:
@@ -637,7 +697,7 @@ reference:
   - F_X.SIP
   - F_H.SIP
   - F_b.SIP
-  - parse_outputs_X.SIP
+  - parse_Xorbits.SIP
   - get_Xinits.SIP
   - update_Xinits.SIP
   - HTC.SIP
@@ -940,22 +1000,15 @@ reference:
   desc: |
     Methods to compute and transmission terms
   contents:
-  - parse_outputs
-  - parse_outputs_vec
-  - compute_terms
-  - compute_terms.xde
-  - compute_terms.dts
-  - compute_terms.cohort
-  - compute_terms.human
-  - compute_terms.na
-  - compute_terms_steady
-  - compute_NI
-  - compute_NI_ix
-  - compute_vars_full
-  - compute_vars_human
-  - compute_vars_aqua
-  - compute_vars_mosy
-  - compute_vars_cohort
+  - parse_orbits
+  - parse_y
+  - reset_state_i
+  - reset_state
+  - reset_state.full
+  - reset_state.aquatic
+  - reset_state.mosy
+  - reset_state.cohort
+  - reset_state.human
 - subtitle: Plot terms
   desc: |
     Basic visualization of the transmission terms
@@ -984,19 +1037,65 @@ reference:
   - MYZ_rates2probs_RM.modified
 - subtitle: Utilities
   desc: |
-    Basic visualization of the transmission terms
+    Utilities
   contents:
+  - trigger_setup
+  - trigger_setup.static
+  - trigger_setup.setup
+  - trigger_setup.dynamic
   - diag_inverse
   - approx_equal
   - checkIt
   - shapeIt
   - list_vars
-  - setup_setup
-  - setup_setup.static
-  - setup_setup.setup
-  - setup_setup.dynamic
+  - xds_flatten
 - subtitle: Functions
   desc: |
     Basic visualization of the transmission terms
   contents:
   - F_1
+- subtitle: New
+  desc: |
+    Basic visualization of the transmission terms
+  contents:
+  - F_ni
+  - F_ni.SEIS
+  - F_ni.SEISd
+  - F_ni.SIP
+  - F_ni.SIS
+  - F_ni.hMoI
+  - get_bionomics
+  - get_bionomics_s
+  - get_ft
+  - get_qt
+  - get_f
+  - get_f.RM
+  - get_f.basicM
+  - get_f.si
+  - get_f.sei
+  - get_f.trace
+  - get_q
+  - get_q.RM
+  - get_q.basicM
+  - get_q.si
+  - get_q.sei
+  - get_q.trace
+  - get_g
+  - get_g.RM
+  - get_g.basicM
+  - get_g.si
+  - get_g.sei
+  - get_g.trace
+  - get_sigma
+  - get_sigma.RM
+  - get_sigma.basicM
+  - get_sigma.si
+  - get_sigma.sei
+  - get_sigma.trace
+  - make_outputs
+  - make_outputs.full
+  - make_outputs.mosy
+  - make_outputs.aquatic
+  - make_outputs.cohort
+  - make_outputs.human
+  - get_terms

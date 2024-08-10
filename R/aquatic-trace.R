@@ -120,10 +120,10 @@ update_Linits.trace<- function(pars, y0, s) {
 }
 
 #' @title Parse the variable names for the trace model
-#' @description Implements [parse_outputs_L] for the trace model.
-#' @inheritParams parse_outputs_L
+#' @description Implements [parse_Lorbits] for the trace model.
+#' @inheritParams parse_Lorbits
 #' @return [list]
 #' @export
-parse_outputs_L.trace <- function(outputs, pars, s) {
+parse_Lorbits.trace <- function(outputs, pars, s) {
   return(numeric(0))
 }

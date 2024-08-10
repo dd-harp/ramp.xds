@@ -137,8 +137,8 @@ put_Xvars <- function(Xvars, y, pars, i) {
 #' @param pars an **`xds`** object
 #' @param i the host species index
 #' @export
-parse_outputs_X <- function(outputs, pars, i) {
-  UseMethod("parse_outputs_X", pars$Xpar[[i]])
+parse_Xorbits <- function(outputs, pars, i) {
+  UseMethod("parse_Xorbits", pars$Xpar[[i]])
 }
 
 #' @title Return initial values as a vector
@@ -160,6 +160,16 @@ get_Xinits <- function(pars, i) {
 #' @export
 update_Xinits <- function(pars, y0, i) {
   UseMethod("update_Xinits", pars$Xpar[[i]])
+}
+
+#' @title Compute Net Infectiousness (NI)
+#' @description A function to compute NI as an output
+#' @param vars a list with the variables attached by name
+#' @param Xpar a list defining a model for human
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_ni <- function(vars, Xpar) {
+  UseMethod("F_ni", Xpar)
 }
 
 #' @title Compute the *true* prevalence of infection / parasite rate

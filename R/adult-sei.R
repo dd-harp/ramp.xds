@@ -187,18 +187,19 @@ make_indices_MYZ.sei <- function(pars, s) {with(pars,{
 
 
 #' @title Parse the output of deSolve and return variables for the sei model
-#' @description Implements [parse_outputs_MYZ] for the sei model
-#' @inheritParams parse_outputs_MYZ
+#' @description Implements [parse_MYZorbits] for the sei model
+#' @inheritParams parse_MYZorbits
 #' @return a [list]
 #' @export
-parse_outputs_MYZ.sei <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
-  time = outputs[,1]
-  M = outputs[,M_ix+1]
-  Y = outputs[,Y_ix+1]
-  Z = outputs[,Z_ix+1]
+parse_MYZorbits.sei <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
+  M = outputs[,M_ix]
+  Y = outputs[,Y_ix]
+  Z = outputs[,Z_ix]
+  f = get_ft(pars,s)
+  q = get_ft(pars,s)
   y = Y/M
   z = Z/M
-  return(list(time=time, M=M, Z=Z, Y=Y, y=y, z=z))
+  return(list(M=M, Z=Z, Y=Y, y=y, z=z, fqZ=f*q*Z, fqM=f*q*M))
 })}
 
 #' @title Return initial values as a vector

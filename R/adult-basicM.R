@@ -185,16 +185,15 @@ make_indices_MYZ.basicM <- function(pars, s) {with(pars,{
   return(pars)
 })}
 
-#' @title Parse the output of deSolve and return variables for the basicM model
-#' @description Implements [parse_outputs_MYZ] for the basicM model.
-#' @inheritParams parse_outputs_MYZ
+#' @title Parse outputs for basicM
+#' @description Implements [parse_MYZorbits] for the basicM model.
+#' @inheritParams parse_MYZorbits
 #' @return [list]
 #' @export
-parse_outputs_MYZ.basicM <- function(outputs, pars, s) {
-  time = outputs[,1]
+parse_MYZorbits.basicM <- function(outputs, pars, s) {
   with(pars$ix$MYZ[[s]],{
-    M = outputs[,M_ix+1]
-    P = outputs[,P_ix+1]
+    M = outputs[,M_ix]
+    P = outputs[,P_ix]
     parous = P/M
-    return(list(time=time, M=M, P=P, parous=parous))
+    return(list(M=M, P=P, parous=parous))
 })}

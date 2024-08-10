@@ -2,16 +2,16 @@
 % Please edit documentation in R/utils.R
 \name{make_indices}
 \alias{make_indices}
-\title{Set indices for generalized spatial model}
+\title{Make indices for all the model variables}
 \usage{
 make_indices(pars)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-none
+an \strong{\code{xds}} object
 }
 \description{
-Set indices for generalized spatial model
+Make indices for all the model variables
 }

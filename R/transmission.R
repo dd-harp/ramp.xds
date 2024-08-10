@@ -138,6 +138,7 @@ make_EIR_full <- function(t, y, pars){
     eir <- compute_EIR(fqZ, beta, lf)
     pars$eir[[1]][[i]] <- eir
     pars$EIR[[i]] <- eir
+    s = length(pars$MYZpar)
     if(s>1)
       for(s in 2:pars$nVectors){
         fqZ <- F_fqZ(t, y, pars, s)

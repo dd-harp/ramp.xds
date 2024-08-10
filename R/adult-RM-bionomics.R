@@ -30,8 +30,14 @@ create_MYZpar_RM_static = function(nPatches, MYZopts=list(), eip=12,
     MYZpar$f      <- checkIt(f, nPatches)
     MYZpar$q      <- checkIt(q, nPatches)
     MYZpar$nu     <- checkIt(nu, nPatches)
+
     MYZpar$eggsPerBatch <- eggsPerBatch
     MYZpar$calK <- diag(nPatches)
+
+    MYZpar$es_f       <- rep(1, nPatches)
+    MYZpar$es_q       <- rep(1, nPatches)
+    MYZpar$es_g       <- rep(1, nPatches)
+    MYZpar$es_sigma   <- rep(1, nPatches)
 
     Omega <- diag(g, nPatches)
     MYZpar$Omega <- Omega

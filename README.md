@@ -21,7 +21,7 @@ RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- is a bespoke infe
 
 ## What is **`ramp.xds`**?
 
-**`ramp.xds`** is an R software package that supports nimble model building for simulation-based analytics and malaria research. It was designed to set up, analyze, and solve dynamical systems describing malaria epidemiology, spatial transmission dynamics, and control. The software also supports nimble model building for mosquito ecology, and the capability to handle exogenous forcing by weather, spatial transmission dynamics for malaria and other mosquito-transmitted pathogens, and spatial aspects of vector control.
+**`ramp.xds`** is an R software package that supports nimble model building for simulation-based analytics and malaria research. It was designed to set up, analyze, and solve dynamical systems describing malaria epidemiology, spatial transmission dynamics, and control. The software also supports nimble model building and analysis for mosquito ecology, with the capability to handle exogenous forcing by weather, spatial transmission dynamics for malaria and other mosquito-transmitted pathogens, and spatial aspects of vector control.
 
 The software has been designed to serve the needs of malaria programs, where mathematical models are developed for decision support and adaptive malaria control. In this context, models describe malaria in a defined geographical area. Mechanistic models of malaria in a place, fitted to available data, are a synthesis of malaria intelligence in a form that can facilitate complex analysis, extending our innate mental capabilities. As the needs of a malaria program changes, the models can be modified -- simplified or extended -- to serve the tasks at hand. 
 

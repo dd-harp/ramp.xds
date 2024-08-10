@@ -170,8 +170,8 @@ make_indices_MYZ <- function(pars, s) {
 #' @param s the species index
 #' @return [list]
 #' @export
-parse_outputs_MYZ <- function(outputs, pars, s) {
-  UseMethod("parse_outputs_MYZ", pars$MYZpar[[s]])
+parse_MYZorbits <- function(outputs, pars, s) {
+  UseMethod("parse_MYZorbits", pars$MYZpar[[s]])
 }
 
 #' @title Return initial values as a vector

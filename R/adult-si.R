@@ -180,18 +180,19 @@ make_indices_MYZ.si <- function(pars, s) {with(pars,{
 
 
 #' @title Parse the output of deSolve and return variables for the si model
-#' @description Implements [parse_outputs_MYZ] for the si model
-#' @inheritParams parse_outputs_MYZ
+#' @description Implements [parse_MYZorbits] for the si model
+#' @inheritParams parse_MYZorbits
 #' @return a [list]
 #' @export
-parse_outputs_MYZ.si <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
-  time = outputs[,1]
-  M = outputs[,M_ix+1]
-  Y = outputs[,Z_ix+1]
+parse_MYZorbits.si <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
+  M = outputs[,M_ix]
+  Y = outputs[,Z_ix]
   Z = t(with(pars$MYZpar[[1]], Upsilon %*% t(Y)))
+  ff = get_ft(pars,s)
+  qq = get_qt(pars,s)
   y = Y/M
   z = Z/M
-  return(list(time=time, M=M, Z=Z, Y=Y, y=y, z=z))
+  return(list(M=M, Z=Z, Y=Y, y=y, z=z, fqZ=ff*qq*Z, fqM=ff*qq*M))
 })}
 
 #' @title Return initial values as a vector

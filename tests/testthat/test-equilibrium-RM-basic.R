@@ -104,7 +104,7 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
 
   params <- xde_solve(params, 730, 1)
 
-  out <- params$outputs$orbits$y_last
+  out <- params$outputs$last_y
 
   M_sim <- out[params$ix$MYZ[[1]]$M_ix]
   P_sim <- out[params$ix$MYZ[[1]]$P_ix]

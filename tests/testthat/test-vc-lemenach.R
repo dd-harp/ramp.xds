@@ -91,7 +91,7 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
             TimeSpent=TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
 
   itn_mod <- xde_solve(itn_mod, 730, 1)
-  out <- itn_mod$outputs$orbits$y_last
+  out <- itn_mod$outputs$last_y
 
   M_sim <- out[itn_mod$ix$MYZ[[1]]$M_ix]
   Z_sim <- out[itn_mod$ix$MYZ[[1]]$Z_ix]
@@ -191,7 +191,7 @@ test_that("Le Menach VC model under control reaches the enw predicted equilibriu
 
   itn_mod <- xde_solve(itn_mod, 730)
 
-  out0 <- itn_mod$outputs$orbits$y_last
+  out0 <- itn_mod$outputs$last_y
 
 
   M_sim0 <- out0[itn_mod$ix$MYZ[[1]]$M_ix]
@@ -289,7 +289,7 @@ xds_setup(MYZname="si", Xname="SIS", Lname="basicL",
 
 itn_mod <- xde_solve(itn_mod, 730)
 
-out0 <- itn_mod$outputs$orbits$y_last
+out0 <- itn_mod$outputs$last_y
 
 
 M_sim0 <- out0[itn_mod$ix$MYZ[[1]]$M_ix]
@@ -347,7 +347,7 @@ itn_mod_trace = setup_itn_lemenach(itn_mod_trace, F_phi=ITN_cov)
 
 itn_mod_trace <- xde_solve(itn_mod_trace, 1000, 1)
 
-out <- itn_mod_trace$outputs$orbits$y_last
+out <- itn_mod_trace$outputs$last_y
 M_sim <- out[itn_mod_trace$ix$MYZ[[1]]$M_ix]
 Z_sim <- out[itn_mod_trace$ix$MYZ[[1]]$Z_ix]
 

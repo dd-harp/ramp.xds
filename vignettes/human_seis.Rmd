@@ -68,7 +68,7 @@ seis = xde_solve(seis, 3650, 15)
 ```
 
 ```{r}
-unlist(list_Xvars(seis$outputs$orbits$y_last, seis, 1)) -> seis_inf
+unlist(list_Xvars(seis$outputs$last_y, seis, 1)) -> seis_inf
 seis_inf
 ```
 
@@ -113,7 +113,7 @@ SEISd = xde_solve(SEISd, Tmax = 3650, dt=15)
 ```
 
 ```{r}
-unlist(list_Xvars(SEISd$outputs$orbits$y_last, SEISd, 1))[1:4] -> seisd_inf
+unlist(list_Xvars(SEISd$outputs$last_y, SEISd, 1))[1:4] -> seisd_inf
 seisd_inf
 ```
 

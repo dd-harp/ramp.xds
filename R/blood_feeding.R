@@ -304,7 +304,7 @@ BloodFeeding = function(t, y, pars){
 #' for static models.
 #' @details The mixing matrix, \eqn{\beta}, depends on
 #' blood feeding terms, so the class of `pars$beta` must also
-#' be updated, if they are not dynamic, so [setup_setup] is called.
+#' be updated, if they are not dynamic, so [trigger_setup] is called.
 #' @inheritParams BloodFeeding
 #' @return an `xds` object
 #' @export
@@ -312,7 +312,7 @@ BloodFeeding.setup = function(t, y, pars){
   class(pars$BFpar) <- 'dynamic'
   pars <- BloodFeeding(t,y,pars)
   class(pars$BFpar) <- 'static'
-  pars$beta <- setup_setup(pars$beta)
+  pars$beta <- trigger_setup(pars$beta)
   return(return(pars))
 }
 
