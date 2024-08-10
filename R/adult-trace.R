@@ -117,11 +117,11 @@ make_indices_MYZ.trace <- function(pars, s) {
 }
 
 #' @title Parse the output of deSolve and return variables for the trace model
-#' @description Implements [parse_outputs_MYZ] for trace
-#' @inheritParams parse_outputs_MYZ
+#' @description Implements [parse_MYZorbits] for trace
+#' @inheritParams parse_MYZorbits
 #' @return [list]
 #' @export
-parse_outputs_MYZ.trace <- function(outputs, pars, s) {
+parse_MYZorbits.trace <- function(outputs, pars, s) {
   return(list())
 }
 

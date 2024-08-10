@@ -54,7 +54,7 @@ test_that("forced emergence works with equilibrium", {
                       nPatches=nPatches, membership=membership, HPop = rep(1000, nPatches))
 
   params <- xde_solve(params)
-  out <- params$outputs$orbits$y_last
+  out <- params$outputs$last_y
 
   M_sim <- out[params$ix$MYZ[[1]]$M_ix]
   P_sim <- out[params$ix$MYZ[[1]]$P_ix]

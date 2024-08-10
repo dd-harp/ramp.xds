@@ -135,20 +135,26 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_inits</span><span class="op">(</span><span class="va">pars</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_inits</span><span class="op">(</span><span class="va">pars</span>, flatten <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>pars</dt>
-<dd><p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p></dd>
+<dd><p>an <strong><code>xds</code></strong> object</p></dd>
+
+
+<dt>flatten</dt>
+<dd><p>a <a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a>: if true, results are returned as an unnamed vector</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
-<p>y a <a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector assigned the class "dynamic"</p>
+<p>a named <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> or <code>if(flatten==TRUE)</code> a <a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></p>
+
+
     </div>
 
   </div>

@@ -218,24 +218,38 @@ update_MYZinits.RM <- function(pars, y0, s) {
     return(pars)
   })}
 
-
+#' @title Return the variables as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`
+#' @inheritParams list_MYZvars
+#' @return a [list]
+#' @export
+list_MYZvars.RM <- function(y, pars, s){
+  with(pars$ix$MYZ[[s]],
+       return(list(
+         M = y[M_ix],
+         P = y[P_ix],
+         Y = y[Y_ix],
+         Z = y[Z_ix]
+       )))
+}
 
 
 #' @title Parse the output of deSolve and return variables for the RM model
-#' @description Implements [parse_outputs_MYZ] for the RM model
-#' @inheritParams parse_outputs_MYZ
+#' @description Implements [parse_MYZorbits] for the RM model
+#' @inheritParams parse_MYZorbits
 #' @return a [list]
 #' @export
-parse_outputs_MYZ.RM <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
-  time = outputs[,1]
-  M = outputs[,M_ix+1]
-  P = outputs[,P_ix+1]
-  Y = outputs[,Y_ix+1]
-  Z = outputs[,Z_ix+1]
+parse_MYZorbits.RM <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
+  M = outputs[,M_ix]
+  P = outputs[,P_ix]
+  Y = outputs[,Y_ix]
+  Z = outputs[,Z_ix]
+  f = get_ft(pars, s)
+  q = get_qt(pars, s)
   y = Y/M
   z = Z/M
   parous = P/M
-  return(list(time=time, M=M, P=P, Y=Y, Z=Z, y=y, z=z, parous))
+  return(list(M=M, P=P, Y=Y, Z=Z, y=y, z=z, parous=parous, fqZ=f*q*Z, fqM=f*q*M))
 })}
 
 #' @title Compute the steady states as a function of the daily EIR

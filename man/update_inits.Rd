@@ -4,12 +4,12 @@
 \alias{update_inits}
 \title{Set the initial values to the last values of the last simulation}
 \usage{
-update_inits(y0, pars)
+update_inits(pars, y0 = NULL)
 }
 \arguments{
-\item{y0}{a \link{vector} of initial values}
+\item{pars}{an \strong{\code{xds}} object}
 
-\item{pars}{a \link{list}}
+\item{y0}{a \link{vector} of initial values}
 }
 \value{
 y a \link{numeric} vector

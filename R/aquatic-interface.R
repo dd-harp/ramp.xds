@@ -154,8 +154,8 @@ make_indices_L <- function(pars, s) {
 #' @param s the species index
 #' @return a [list]
 #' @export
-parse_outputs_L <- function(outputs, pars, s) {
-  UseMethod("parse_outputs_L", pars$Lpar[[s]])
+parse_Lorbits <- function(outputs, pars, s) {
+  UseMethod("parse_Lorbits", pars$Lpar[[s]])
 }
 
 #' @title Steady States for \eqn{\cal L}

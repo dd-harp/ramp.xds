@@ -219,18 +219,25 @@ itn_mod = setup_itn_lemenach(itn_mod, F_phi=ITN_cov)
 
 ```{r solve}
 xde_solve(itn_mod, 1830, dt=15) -> itn_mod
-itn_mod$outputs$orbits$vars[[1]] -> out
 ```
 
 ```{r, fig.height=8, fig.width=8}
 par(mfrow = c(3,3))
-with(out$MYZ, plot(time, Z[,1], type="l"))
-with(out$MYZ, plot(time, Z[,2], type="l"))
-with(out$MYZ, plot(time, Z[,3], type="l"))
-with(out, plot(time, eir[,1], type="l"))
-with(out, plot(time, eir[,2], type="l"))
-with(out, plot(time, eir[,3], type="l"))
-with(out$XH, plot(time, I[,1], type="l"))
-with(out$XH, plot(time, I[,2], type="l"))
-with(out$XH, plot(time, I[,3], type="l"))
+with(itn_mod$outputs,{
+  with(itn_mod$outputs$orbits$MYZ[[1]],{
+    plot(time, Z[,1], type = "l")
+    plot(time, Z[,2], type = "l")
+    plot(time, Z[,3], type = "l")
+  })
+  with(itn_mod$outputs$orbits$X[[1]],{
+    plot(time, I[,1], type = "l")
+    plot(time, I[,2], type = "l")
+    plot(time, I[,3], type = "l")
+  })
+  with(itn_mod$outputs$terms,{
+    plot(time, EIR[,1], type = "l")
+    plot(time, EIR[,2], type = "l")
+    plot(time, EIR[,3], type = "l")
+  })
+})
 ```

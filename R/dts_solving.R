@@ -13,7 +13,8 @@ dts_solve = function(pars, ts=365){
     yt =  dts_update(t, yt, pars)
     dts_out = rbind(dts_out, c(t,yt))
   }
-  pars$outputs$orbits = parse_outputs(dts_out, pars)
+  pars <- make_outputs(pars, dts_out, tt[-1])
+  pars$outputs$deout <- dts_out
   return(pars)
 }
 
@@ -36,7 +37,8 @@ dts_stable_orbit = function(pars, Tburn=10, yr=365){
     yt =  dts_update(t, yt, pars)
     orbit = rbind(orbit, yt)
   }
-  pars$outputs$stable_orbits <- orbit
+  pars <- make_outputs(pars, orbit, tt[-1])
+  pars$outputs$deout <- orbit
   return(pars)
 }
 
@@ -52,7 +54,7 @@ dts_steady = function(pars, Tx=1000){
   for(t in tt[-1]){
     yt =  dts_update(t, yt, pars)
   }
-  pars$outputs$steady = parse_outputs_vec(yt, pars)
+  pars$outputs$steady = parse_y(yt, pars)
   return(pars)
 }
 

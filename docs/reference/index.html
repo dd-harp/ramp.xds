@@ -129,17 +129,17 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="model-building">Model Building <a href="#model-building" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p><p>Methods to support nimble model building</p>
+          <h2 id="model-building-analysis">Model Building &amp; Analysis <a href="#model-building-analysis" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Methods to support nimble model building and analysis</p>
         </th>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="build-setup">Build / Setup <a href="#build-setup" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Set up methods to build an <strong><code>xds</code></strong> model object</p>
+          <p class="section-desc"></p><p>Methods to set up an <strong><code>xds</code></strong> object with basic features</p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="xds_setup.html">xds_setup()</a></code> </p>
         </td>
-        <td><p>Set up and configure an <strong><code>xds</code></strong> object</p></td>
+        <td><p>Build an <strong><code>xds</code></strong> object</p></td>
       </tr><tr><td>
           <p><code><a href="xds_setup_mosy.html">xds_setup_mosy()</a></code> </p>
         </td>
@@ -157,26 +157,6 @@
         </td>
         <td><p>Set up an <strong><code>xds</code></strong> object to model human cohort dynamics</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="set-up-utilities">Set Up Utilities <a href="#set-up-utilities" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Utilities for basic models</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="make_xds_template.html">make_xds_template()</a></code> </p>
-        </td>
-        <td><p>Make an <strong><code>xds</code></strong> template</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_indices.html">make_indices()</a></code> </p>
-        </td>
-        <td><p>Set indices for generalized spatial model</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_inits.html">get_inits()</a></code> </p>
-        </td>
-        <td><p>Get the stored initial values, \(y_0\)</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_H.html">get_H()</a></code> </p>
-        </td>
-        <td><p>Get the initial values as a vector</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="change-parameters-initial-values">Change Parameters &amp; Initial Values <a href="#change-parameters-initial-values" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Methods to set up basic models</p>
         </th>
@@ -192,6 +172,190 @@
           <p><code><a href="last_to_inits.html">last_to_inits()</a></code> </p>
         </td>
         <td><p>Set the initial values to the last values of the last simulation</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_orbits.html">parse_orbits()</a></code> </p>
+        </td>
+        <td><p>Parse the outputs of an object created by xde_solve or dts_solve</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_y.html">parse_y()</a></code> </p>
+        </td>
+        <td><p>Parse the output of an object returned by deSolve</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_inits.html">get_inits()</a></code> </p>
+        </td>
+        <td><p>Get the stored initial values, \(y_0\)</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_H.html">get_H()</a></code> </p>
+        </td>
+        <td><p>Get the initial values as a vector</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="examine">Examine <a href="#examine" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="get_inits.html">get_inits()</a></code> </p>
+        </td>
+        <td><p>Get the stored initial values, \(y_0\)</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_last.html">get_last()</a></code> </p>
+        </td>
+        <td><p>Get the last state</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_orbits.html">parse_orbits()</a></code> </p>
+        </td>
+        <td><p>Parse the outputs of an object created by xde_solve or dts_solve</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_y.html">parse_y()</a></code> </p>
+        </td>
+        <td><p>Parse the output of an object returned by deSolve</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="solve">Solve <a href="#solve" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to solve equations</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="xde_solve.html">xde_solve()</a></code> </p>
+        </td>
+        <td><p>Solve a system of equations</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_stable_orbit.html">xde_stable_orbit()</a></code> </p>
+        </td>
+        <td><p>Solve for the steady state or stable orbit of a system of equations</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady.html">xde_steady()</a></code> </p>
+        </td>
+        <td><p>Solve for the steady state of a system of equations using <a href="https://rdrr.io/pkg/rootSolve/man/steady.html" class="external-link">rootSolve::steady</a></p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_solve.html">dts_solve()</a></code> </p>
+        </td>
+        <td><p>Solve a discrete-time system</p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_steady.html">dts_steady()</a></code> </p>
+        </td>
+        <td><p>Solve for the steady state of a system of equations</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="analyze">Analyze <a href="#analyze" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Built-in methods to analyze dynamical systems</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="xde_steady_state_X.html">xde_steady_state_X()</a></code> </p>
+        </td>
+        <td><p>Steady States for \(\cal X\)-Models</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_MYZ.html">xde_steady_state_MYZ()</a></code> </p>
+        </td>
+        <td><p>Compute the steady states as a function of the daily EIR</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_L.html">xde_steady_state_L()</a></code> </p>
+        </td>
+        <td><p>Steady States for \(\cal L\)</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="models-human-host">Models – Human / Host <a href="#models-human-host" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Models available in <strong><code>ramp.xds</code></strong> for human/host infection and immunity</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="dXdt.trace.html">dXdt(<i>&lt;trace&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for human population</p></td>
+      </tr><tr><td>
+          <p><code><a href="dXdt.SIS.html">dXdt(<i>&lt;SIS&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for the SIS \(\cal X\) Compartment Model</p></td>
+      </tr><tr><td>
+          <p><code><a href="dXdt.SIP.html">dXdt(<i>&lt;SIP&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for human population</p></td>
+      </tr><tr><td>
+          <p><code><a href="dXdt.SEIS.html">dXdt(<i>&lt;SEIS&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for the SEIS model for human / vertebrate host infections</p></td>
+      </tr><tr><td>
+          <p><code><a href="dXdt.SEISd.html">dXdt(<i>&lt;SEISd&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for the SEISd model for human / vertebrate host infections</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="models-adult-mosquito">Models – Adult Mosquito <a href="#models-adult-mosquito" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Models available in <strong><code>ramp.xds</code></strong> for adult mosquito ecology and infection dynamics</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="dMYZdt.trace.html">dMYZdt(<i>&lt;trace&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for aquatic stage mosquitoes</p></td>
+      </tr><tr><td>
+          <p><code><a href="dMYZdt.si.html">dMYZdt(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for a simple model for adult mosquito infection dynamics</p></td>
+      </tr><tr><td>
+          <p><code><a href="dMYZdt.sei.html">dMYZdt(<i>&lt;sei&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for a oviposition model for adult mosquito infection dynamics</p></td>
+      </tr><tr><td>
+          <p><code><a href="dMYZdt.RM.html">dMYZdt(<i>&lt;RM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for adult mosquitoes</p></td>
+      </tr><tr><td>
+          <p><code><a href="dMYZdt.basicM.html">dMYZdt(<i>&lt;basicM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for adult mosquitoes</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="models-aquatic-mosquito">Models – Aquatic Mosquito <a href="#models-aquatic-mosquito" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Models available in <strong><code>ramp.xds</code></strong> for the ecology of immature mosquitoes in aquatic habitats</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="dLdt.trace.html">dLdt(<i>&lt;trace&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for aquatic stage mosquitoes</p></td>
+      </tr><tr><td>
+          <p><code><a href="dLdt.basicL.html">dLdt(<i>&lt;basicL&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for <code>basicL</code></p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="internals">Internals <a href="#internals" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Some internal functions and utilities that are useful to know about</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="Forcing.html">Forcing()</a></code> </p>
+        </td>
+        <td><p>Set the values of exogenous variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="Control.html">Control()</a></code> </p>
+        </td>
+        <td><p>Modify parameters due to exogenous forcing by all kinds of control</p></td>
+      </tr><tr><td>
+          <p><code><a href="BloodFeeding.html">BloodFeeding()</a></code> </p>
+        </td>
+        <td><p>Blood feeding</p></td>
+      </tr><tr><td>
+          <p><code><a href="EggLaying.html">EggLaying()</a></code> </p>
+        </td>
+        <td><p>Compute eggs laid</p></td>
+      </tr><tr><td>
+          <p><code><a href="Bionomics.html">Bionomics()</a></code> </p>
+        </td>
+        <td><p>Set bionomic parameter rates relative to baseline</p></td>
+      </tr><tr><td>
+          <p><code><a href="Transmission.html">Transmission()</a></code> </p>
+        </td>
+        <td><p>Compute the mixing matrix and transmission terms</p></td>
+      </tr><tr><td>
+          <p><code><a href="Exposure.html">Exposure()</a></code> </p>
+        </td>
+        <td><p>Compute Infection Rates</p></td>
+      </tr><tr><td>
+          <p><code><a href="Visiting.html">Visiting()</a></code> </p>
+        </td>
+        <td><p>Visiting</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_xds_template.html">make_xds_template()</a></code> </p>
+        </td>
+        <td><p>Make an <strong><code>xds</code></strong> object template</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_indices.html">make_indices()</a></code> </p>
+        </td>
+        <td><p>Make indices for all the model variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="trigger_setup.html">trigger_setup()</a></code> </p>
+        </td>
+        <td><p>Trigger <code>setup</code></p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="blood-feeding-and-transmission">Blood Feeding and Transmission <a href="#blood-feeding-and-transmission" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Methods to compute terms describing blood feeding and transmission</p>
@@ -353,8 +517,76 @@
         </td>
         <td><p>Make a mosquito dispersal matrix, called TimeSpent</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="egg-laying-emergence">Egg Laying &amp; Emergence <a href="#egg-laying-emergence" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Generic methods for the aquatic (immature) mosquito component.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="create_habitat_matrix.html">create_habitat_matrix()</a></code> </p>
+        </td>
+        <td><p>Create the habitat membership matrix, \(\cal N\)</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_EGG_LAYING.html">setup_EGG_LAYING()</a></code> </p>
+        </td>
+        <td><p>Setup Egg Laying</p></td>
+      </tr><tr><td>
+          <p><code><a href="Emergence.html">Emergence()</a></code> </p>
+        </td>
+        <td><p>Compute emerging adults</p></td>
+      </tr><tr><td>
+          <p><code><a href="EggLaying.html">EggLaying()</a></code> </p>
+        </td>
+        <td><p>Compute eggs laid</p></td>
+      </tr><tr><td>
+          <p><code><a href="EggLaying.setup.html">EggLaying(<i>&lt;setup&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute eggs laid, the first time</p></td>
+      </tr><tr><td>
+          <p><code><a href="EggLaying.static.html">EggLaying(<i>&lt;static&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute eggs laid</p></td>
+      </tr><tr><td>
+          <p><code><a href="EggLaying.dynamic.html">EggLaying(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute eggs laid</p></td>
+      </tr><tr><td>
+          <p><code><a href="change_habitat_weights.html">change_habitat_weights()</a></code> </p>
+        </td>
+        <td><p>Change the habitat search weights</p></td>
+      </tr><tr><td>
+          <p><code><a href="compute_Q.html">compute_Q()</a></code> </p>
+        </td>
+        <td><p>Compute the total availability of egg-laying habitats, \(Q\)</p></td>
+      </tr><tr><td>
+          <p><code><a href="compute_Qtot.html">compute_Qtot()</a></code> </p>
+        </td>
+        <td><p>Compute the total availability of egg-laying habitats, \(Q\)</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_Q.html">make_Q()</a></code> </p>
+        </td>
+        <td><p>Compute and store availability of egg-laying habitats</p></td>
+      </tr><tr><td>
+          <p><code><a href="compute_calU.html">compute_calU()</a></code> </p>
+        </td>
+        <td><p>Compute the egg distribution matrix - \(\cal U\)</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_calU.html">make_calU()</a></code> </p>
+        </td>
+        <td><p>Compute and store \(\cal U\)</p></td>
+      </tr><tr><td>
+          <p><code><a href="compute_eggs_laid.html">compute_eggs_laid()</a></code> </p>
+        </td>
+        <td><p>Compute eggs laid</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_eggs_laid.html">make_eggs_laid()</a></code> </p>
+        </td>
+        <td><p>Compute eggs laid</p></td>
+      </tr><tr><td>
+          <p><code><a href="view_habitat_matrix.html">view_habitat_matrix()</a></code> </p>
+        </td>
+        <td><p>View habitat membership, \(\cal N\)</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="exposure">Exposure <a href="#exposure" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p><p>Methods to model the force of infection</p>
+          <p class="section-desc"></p><p>Methods for environmental heterogeneity</p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="Exposure.html">Exposure()</a></code> </p>
@@ -457,74 +689,6 @@
         </td>
         <td><p>Set up the negative binomial model for exposure for discrete time models</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h2 id="egg-laying-emergence">Egg Laying &amp; Emergence <a href="#egg-laying-emergence" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p><p>Generic methods for the aquatic (immature) mosquito component.</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="create_habitat_matrix.html">create_habitat_matrix()</a></code> </p>
-        </td>
-        <td><p>Create the habitat membership matrix, \(\cal N\)</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_EGG_LAYING.html">setup_EGG_LAYING()</a></code> </p>
-        </td>
-        <td><p>Setup Egg Laying</p></td>
-      </tr><tr><td>
-          <p><code><a href="Emergence.html">Emergence()</a></code> </p>
-        </td>
-        <td><p>Compute emerging adults</p></td>
-      </tr><tr><td>
-          <p><code><a href="EggLaying.html">EggLaying()</a></code> </p>
-        </td>
-        <td><p>Compute eggs laid</p></td>
-      </tr><tr><td>
-          <p><code><a href="EggLaying.setup.html">EggLaying(<i>&lt;setup&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute eggs laid, the first time</p></td>
-      </tr><tr><td>
-          <p><code><a href="EggLaying.static.html">EggLaying(<i>&lt;static&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute eggs laid</p></td>
-      </tr><tr><td>
-          <p><code><a href="EggLaying.dynamic.html">EggLaying(<i>&lt;dynamic&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute eggs laid</p></td>
-      </tr><tr><td>
-          <p><code><a href="change_habitat_weights.html">change_habitat_weights()</a></code> </p>
-        </td>
-        <td><p>Change the habitat search weights</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_Q.html">compute_Q()</a></code> </p>
-        </td>
-        <td><p>Compute the total availability of egg-laying habitats, \(Q\)</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_Qtot.html">compute_Qtot()</a></code> </p>
-        </td>
-        <td><p>Compute the total availability of egg-laying habitats, \(Q\)</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_Q.html">make_Q()</a></code> </p>
-        </td>
-        <td><p>Compute and store availability of egg-laying habitats</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_calU.html">compute_calU()</a></code> </p>
-        </td>
-        <td><p>Compute the egg distribution matrix - \(\cal U\)</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_calU.html">make_calU()</a></code> </p>
-        </td>
-        <td><p>Compute and store \(\cal U\)</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_eggs_laid.html">compute_eggs_laid()</a></code> </p>
-        </td>
-        <td><p>Compute eggs laid</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_eggs_laid.html">make_eggs_laid()</a></code> </p>
-        </td>
-        <td><p>Compute eggs laid</p></td>
-      </tr><tr><td>
-          <p><code><a href="view_habitat_matrix.html">view_habitat_matrix()</a></code> </p>
-        </td>
-        <td><p>View habitat membership, \(\cal N\)</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="adult-mosquito-dynamics">Adult Mosquito Dynamics <a href="#adult-mosquito-dynamics" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Generic methods for the adult mosquito dynamics component.</p>
         </th>
@@ -589,7 +753,7 @@
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_MYZ.html">parse_outputs_MYZ()</a></code> </p>
+          <p><code><a href="parse_MYZorbits.html">parse_MYZorbits()</a></code> </p>
         </td>
         <td><p>Parse the outputs and return the variables by name in a list</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
@@ -797,7 +961,7 @@
         </td>
         <td><p>Add indices for aquatic stage mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_MYZ.trace.html">parse_outputs_MYZ(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_MYZorbits.trace.html">parse_MYZorbits(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the trace model</p></td>
       </tr><tr><td>
@@ -857,9 +1021,9 @@
         </td>
         <td><p>Return the variables as a list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_MYZ.basicM.html">parse_outputs_MYZ(<i>&lt;basicM&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_MYZorbits.basicM.html">parse_MYZorbits(<i>&lt;basicM&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Parse the output of deSolve and return variables for the basicM model</p></td>
+        <td><p>Parse outputs for basicM</p></td>
       </tr><tr><td>
           <p><code><a href="get_MYZinits.basicM.html">get_MYZinits(<i>&lt;basicM&gt;</i>)</a></code> </p>
         </td>
@@ -921,7 +1085,7 @@
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_MYZ.si.html">parse_outputs_MYZ(<i>&lt;si&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_MYZorbits.si.html">parse_MYZorbits(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the si model</p></td>
       </tr><tr><td>
@@ -985,7 +1149,7 @@
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_MYZ.sei.html">parse_outputs_MYZ(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_MYZorbits.sei.html">parse_MYZorbits(<i>&lt;sei&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the sei model</p></td>
       </tr><tr><td>
@@ -1016,6 +1180,10 @@
           <p><code><a href="make_MYZpar.RM.html">make_MYZpar(<i>&lt;RM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Setup MYZpar for the RM model</p></td>
+      </tr><tr><td>
+          <p><code><a href="list_MYZvars.RM.html">list_MYZvars(<i>&lt;RM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Return the variables as a list</p></td>
       </tr><tr><td>
           <p><code><a href="F_fqZ.RM.html">F_fqZ(<i>&lt;RM&gt;</i>)</a></code> </p>
         </td>
@@ -1049,7 +1217,7 @@
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_MYZ.RM.html">parse_outputs_MYZ(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_MYZorbits.RM.html">parse_MYZorbits(<i>&lt;RM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the RM model</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
@@ -1093,7 +1261,7 @@
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_MYZ.RM_dts.html">parse_outputs_MYZ(<i>&lt;RM_dts&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_MYZorbits.RM_dts.html">parse_MYZorbits(<i>&lt;RM_dts&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the RM_dts model</p></td>
       </tr><tr><td>
@@ -1157,7 +1325,7 @@
         </td>
         <td><p>Add indices for aquatic stage mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_L.html">parse_outputs_L()</a></code> </p>
+          <p><code><a href="parse_Lorbits.html">parse_Lorbits()</a></code> </p>
         </td>
         <td><p>Parse \(\cal L\) Outputs</p></td>
       </tr><tr><td>
@@ -1217,7 +1385,7 @@
         </td>
         <td><p>Add indices for aquatic stage mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_L.trace.html">parse_outputs_L(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_Lorbits.trace.html">parse_Lorbits(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the variable names for the trace model</p></td>
       </tr><tr><td>
@@ -1273,7 +1441,7 @@
         </td>
         <td><p>Add indices for aquatic mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_L.basicL.html">parse_outputs_L(<i>&lt;basicL&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_Lorbits.basicL.html">parse_Lorbits(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the variable names for the basicL model</p></td>
       </tr><tr><td>
@@ -1453,7 +1621,7 @@
         </td>
         <td><p>Infection blocking pre-erythrocytic immunity</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_X.html">parse_outputs_X()</a></code> </p>
+          <p><code><a href="parse_Xorbits.html">parse_Xorbits()</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return the variables by name in a list</p></td>
       </tr><tr><td>
@@ -1561,7 +1729,7 @@
         </td>
         <td><p>Add indices for human population to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_X.trace.html">parse_outputs_X(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_Xorbits.trace.html">parse_Xorbits(<i>&lt;trace&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the trace model</p></td>
       </tr><tr><td>
@@ -1633,7 +1801,7 @@
         </td>
         <td><p>Compute the prevalence of infection by PCR</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_X.hMoI.html">parse_outputs_X(<i>&lt;hMoI&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_Xorbits.hMoI.html">parse_Xorbits(<i>&lt;hMoI&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the hMoI model</p></td>
       </tr><tr><td>
@@ -1701,7 +1869,7 @@
         </td>
         <td><p>Infection blocking pre-erythrocytic immunity</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_X.SIS.html">parse_outputs_X(<i>&lt;SIS&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_Xorbits.SIS.html">parse_Xorbits(<i>&lt;SIS&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the SIS model</p></td>
       </tr><tr><td>
@@ -1817,7 +1985,7 @@
         </td>
         <td><p>Infection blocking pre-erythrocytic immunity</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_X.SEIS.html">parse_outputs_X(<i>&lt;SEIS&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_Xorbits.SEIS.html">parse_Xorbits(<i>&lt;SEIS&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the SEIS model</p></td>
       </tr><tr><td>
@@ -1905,7 +2073,7 @@
         </td>
         <td><p>Infection blocking pre-erythrocytic immunity</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_X.SEISd.html">parse_outputs_X(<i>&lt;SEISd&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_Xorbits.SEISd.html">parse_Xorbits(<i>&lt;SEISd&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the SEISd model</p></td>
       </tr><tr><td>
@@ -1945,7 +2113,7 @@
         </td>
         <td><p>Add lines for the density of infected individuals for the SEISd model</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="sip-xde">SIP xde <a href="#sip-xde" class="anchor" aria-hidden="true"></a></h3>
+          <h3 id="sip">SIP <a href="#sip" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for the SIP (Susceptible-Infected-Prophylaxis) model of human dynamics.</p>
         </th>
       </tr></tbody><tbody><tr><td>
@@ -2001,7 +2169,7 @@
         </td>
         <td><p>Infection blocking pre-erythrocytic immunity</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_X.SIP.html">parse_outputs_X(<i>&lt;SIP&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_Xorbits.SIP.html">parse_Xorbits(<i>&lt;SIP&gt;</i>)</a></code> </p>
         </td>
         <td><p>Parse the output of deSolve and return variables for the SIP model</p></td>
       </tr><tr><td>
@@ -2869,69 +3037,41 @@
           <p class="section-desc"></p><p>Methods to compute and transmission terms</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="parse_outputs.html">parse_outputs()</a></code> </p>
+          <p><code><a href="parse_orbits.html">parse_orbits()</a></code> </p>
         </td>
         <td><p>Parse the outputs of an object created by xde_solve or dts_solve</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_outputs_vec.html">parse_outputs_vec()</a></code> </p>
+          <p><code><a href="parse_y.html">parse_y()</a></code> </p>
         </td>
         <td><p>Parse the output of an object returned by deSolve</p></td>
       </tr><tr><td>
-          <p><code><a href="compute_terms.html">compute_terms()</a></code> </p>
-        </td>
-        <td><p>Compute dynamical terms</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_terms.xde.html">compute_terms(<i>&lt;xde&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute dynamical terms</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_terms.dts.html">compute_terms(<i>&lt;dts&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute dynamical terms</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_terms.cohort.html">compute_terms(<i>&lt;cohort&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute dynamical terms</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_terms.human.html">compute_terms(<i>&lt;human&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute dynamical terms</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_terms.na.html">compute_terms(<i>&lt;na&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute dynamical terms</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_terms_steady.html">compute_terms_steady()</a></code> </p>
-        </td>
-        <td><p>Compute dynamical terms</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_NI.html">compute_NI()</a></code> </p>
-        </td>
-        <td><p>Compute the NI</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_NI_ix.html">compute_NI_ix()</a></code> </p>
-        </td>
-        <td><p>Compute NI once</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_vars_full.html">compute_vars_full()</a></code> </p>
+          <p><code><a href="reset_state_i.html">reset_state_i()</a></code> </p>
         </td>
         <td><p>Compute other variables at time t</p></td>
       </tr><tr><td>
-          <p><code><a href="compute_vars_human.html">compute_vars_human()</a></code> </p>
+          <p><code><a href="reset_state.html">reset_state()</a></code> </p>
         </td>
         <td><p>Compute other variables at time t</p></td>
       </tr><tr><td>
-          <p><code><a href="compute_vars_aqua.html">compute_vars_aqua()</a></code> </p>
-        </td>
-        <td><p>Differential equation models for aquatic mosquito populations</p></td>
-      </tr><tr><td>
-          <p><code><a href="compute_vars_mosy.html">compute_vars_mosy()</a></code> </p>
+          <p><code><a href="reset_state.full.html">reset_state(<i>&lt;full&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute other variables at time t</p></td>
       </tr><tr><td>
-          <p><code><a href="compute_vars_cohort.html">compute_vars_cohort()</a></code> </p>
+          <p><code><a href="reset_state.aquatic.html">reset_state(<i>&lt;aquatic&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Differential equation models for human cohorts</p></td>
+        <td><p>Compute other variables at time t</p></td>
+      </tr><tr><td>
+          <p><code><a href="reset_state.mosy.html">reset_state(<i>&lt;mosy&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute other variables at time t</p></td>
+      </tr><tr><td>
+          <p><code><a href="reset_state.cohort.html">reset_state(<i>&lt;cohort&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute other variables at time t</p></td>
+      </tr><tr><td>
+          <p><code><a href="reset_state.human.html">reset_state(<i>&lt;human&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute other variables at time t</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="plot-terms">Plot terms <a href="#plot-terms" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Basic visualization of the transmission terms</p>
@@ -3006,9 +3146,25 @@
         <td><p>Compute probabilities from rates</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="utilities">Utilities <a href="#utilities" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Basic visualization of the transmission terms</p>
+          <p class="section-desc"></p><p>Utilities</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="trigger_setup.html">trigger_setup()</a></code> </p>
+        </td>
+        <td><p>Trigger <code>setup</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="trigger_setup.static.html">trigger_setup(<i>&lt;static&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Trigger <code>setup</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="trigger_setup.setup.html">trigger_setup(<i>&lt;setup&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Trigger <code>setup</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="trigger_setup.dynamic.html">trigger_setup(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Trigger <code>setup</code></p></td>
+      </tr><tr><td>
           <p><code><a href="diag_inverse.html">diag_inverse()</a></code> </p>
         </td>
         <td><p>Invert a diagonal matrix</p></td>
@@ -3029,21 +3185,9 @@
         </td>
         <td><p>Set the initial values to the last values of the last simulation</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_setup.html">setup_setup()</a></code> </p>
+          <p><code><a href="xds_flatten.html">xds_flatten()</a></code> </p>
         </td>
-        <td><p>Setup setup</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_setup.static.html">setup_setup(<i>&lt;static&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup setup</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_setup.setup.html">setup_setup(<i>&lt;setup&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup setup</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_setup.dynamic.html">setup_setup(<i>&lt;dynamic&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup setup</p></td>
+        <td><p>Set the initial values to the last values of the last simulation</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="functions">Functions <a href="#functions" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Basic visualization of the transmission terms</p>
@@ -3052,6 +3196,174 @@
           <p><code><a href="F_1.html">F_1()</a></code> </p>
         </td>
         <td><p>The trivial function F_1</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="new">New <a href="#new" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Basic visualization of the transmission terms</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="F_ni.html">F_ni()</a></code> </p>
+        </td>
+        <td><p>Compute Net Infectiousness (NI)</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_ni.SEIS.html">F_ni(<i>&lt;SEIS&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the NI</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_ni.SEISd.html">F_ni(<i>&lt;SEISd&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the NI</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_ni.SIP.html">F_ni(<i>&lt;SIP&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the "true" prevalence of infection / parasite rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_ni.SIS.html">F_ni(<i>&lt;SIS&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the net infectiousness</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_ni.hMoI.html">F_ni(<i>&lt;hMoI&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the "true" nievalence of infection / parasite rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_bionomics.html">get_bionomics()</a></code> </p>
+        </td>
+        <td><p>Compute dynamical terms</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_bionomics_s.html">get_bionomics_s()</a></code> </p>
+        </td>
+        <td><p>Compute dynamical terms</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_ft.html">get_ft()</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_qt.html">get_qt()</a></code> </p>
+        </td>
+        <td><p>Get the human fraction</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_f.html">get_f()</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_f.RM.html">get_f(<i>&lt;RM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_f.basicM.html">get_f(<i>&lt;basicM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_f.si.html">get_f(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_f.sei.html">get_f(<i>&lt;sei&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_f.trace.html">get_f(<i>&lt;trace&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_q.html">get_q()</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_q.RM.html">get_q(<i>&lt;RM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_q.basicM.html">get_q(<i>&lt;basicM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_q.si.html">get_q(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_q.sei.html">get_q(<i>&lt;sei&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_q.trace.html">get_q(<i>&lt;trace&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_g.html">get_g()</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_g.RM.html">get_g(<i>&lt;RM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_g.basicM.html">get_g(<i>&lt;basicM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_g.si.html">get_g(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_g.sei.html">get_g(<i>&lt;sei&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_g.trace.html">get_g(<i>&lt;trace&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigma.html">get_sigma()</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigma.RM.html">get_sigma(<i>&lt;RM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigma.basicM.html">get_sigma(<i>&lt;basicM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigma.si.html">get_sigma(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigma.sei.html">get_sigma(<i>&lt;sei&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigma.trace.html">get_sigma(<i>&lt;trace&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_outputs.html">make_outputs()</a></code> </p>
+        </td>
+        <td><p>Compute</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_outputs.full.html">make_outputs(<i>&lt;full&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_outputs.mosy.html">make_outputs(<i>&lt;mosy&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_outputs.aquatic.html">make_outputs(<i>&lt;aquatic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_outputs.cohort.html">make_outputs(<i>&lt;cohort&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_outputs.human.html">make_outputs(<i>&lt;human&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_terms.html">get_terms()</a></code> </p>
+        </td>
+        <td><p>Compute dynamical terms</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

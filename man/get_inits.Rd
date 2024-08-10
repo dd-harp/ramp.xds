@@ -4,13 +4,15 @@
 \alias{get_inits}
 \title{Get the stored initial values, \eqn{y_0}}
 \usage{
-get_inits(pars)
+get_inits(pars, flatten = FALSE)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
+
+\item{flatten}{a \link{logical}: if true, results are returned as an unnamed vector}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+a named \link{list} or \verb{if(flatten==TRUE)} a \link{vector}
 }
 \description{
 Get the stored initial values, \eqn{y_0}

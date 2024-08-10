@@ -162,21 +162,20 @@ put_MYZvars.RM_dts <- function(MYZvars, y, pars, s){
 
 
 #' @title Parse the output of deSolve and return variables for the RM_dts model
-#' @description Implements [parse_outputs_MYZ] for the RM_dts model
-#' @inheritParams parse_outputs_MYZ
+#' @description Implements [parse_MYZorbits] for the RM_dts model
+#' @inheritParams parse_MYZorbits
 #' @return a [list]
 #' @export
-parse_outputs_MYZ.RM_dts <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
-  time = outputs[,1]
-  M = outputs[,M_ix+1]
-  P = outputs[,P_ix+1]
-  U = outputs[,U_ix+1]
-  Y = rowSums(outputs[,Y_ix+1])
-  Z = outputs[,Z_ix+1]
+parse_MYZorbits.RM_dts <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
+  M = outputs[,M_ix]
+  P = outputs[,P_ix]
+  U = outputs[,U_ix]
+  Y = rowSums(outputs[,Y_ix])
+  Z = outputs[,Z_ix]
   y = Y/M
   z = Z/M
   parous = P/M
-  return(list(time=time, M=M, P=P, U=U, Y=Y, Z=Z, y=y, z=z, parous=parous))
+  return(list(M=M, P=P, U=U, Y=Y, Z=Z, y=y, z=z, parous=parous))
 })}
 
 #' @title Return initial values as a vector

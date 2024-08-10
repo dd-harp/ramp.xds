@@ -75,15 +75,25 @@ xds_setup(
 a \link{list}
 }
 \description{
-Set up an \strong{\code{xds}} object
+Set up an \strong{\code{xds}} object and set \code{pars$frame <- 'full'}.
+
+Each dynamical component is fully configured for a single host and vector species:
+\itemize{
+\item \strong{\code{Xpar}} defines a model for human / host infection dynamics of class \code{Xname} (the \eqn{\cal XH} dynamical component)
+\item \strong{\code{MYZpar}} defines a model for adult mosquito ecology & infection dynamics of class \code{MYZname} (the \eqn{\cal MYZ} dynamical component)
+\item \strong{\code{Lpar}} defines the aquatic mosquito ecology of class \code{Lname} (The \eqn{\cal L} dynamical component)
+}
+
+The model sets the basic structural parameters:
+\itemize{
+\item \code{nPatches} - the number of patches in the model
+\item \code{nStrata} - the number of human / host population strata
+\item \code{nHabitats} - the number of habitats
+}
 }
 \details{
-This sets up an \strong{\code{xds}} object with \code{pars$frame = 'full'} each
-dynamical component fully configured for a single host and vector species:
+This sets up an \strong{\code{xds}} object with \code{pars$frame = 'full'}
 \itemize{
-\item \strong{\code{Xpar}} defines the human / host infection dynamics, \eqn{\cal XH}, of class \code{Xname}
-\item \strong{\code{MYZpar}} defines the adult mosquito ecology & infection dynamics, \eqn{\cal MYZ}, of class \code{MYZname}
-\item \strong{\code{Lpar}} defines the aquatic mosquito ecology, \eqn{\cal L}, of class \code{Lname}
 \item Parameter values for the models are passed as named lists: \code{Xopts}, \code{MYZopts}, and \code{Lopts}
 \item Search weights, the mosquito dispersal matrix, and the time spent matrix can also be
 configured using parameters passed at the command line.

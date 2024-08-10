@@ -21,7 +21,6 @@
 #'      - "cohort" is for human/host cohort infection dynamics (see [xds_setup_cohort()]), forced by a function `F_eir`
 #' - **`dlay`** is either "ode" or "dde" and it only affects dispatching for differential equations
 #' - **`forcing`** is set to "static"
-#' - **`compute`** dispatches various cases of [compute_terms()] linked to `frame`
 #'
 #' Second, the function sets the values of the **structural parameters**:
 #' - **`nVectors`** or \eqn{n_s}, the number of vector species is set to 1;
@@ -42,7 +41,7 @@
 #'      - [setup_exposure_pois()] sets up a Poisson model for environmental heterogeneity
 #'      - [setup_travel_static()] sets up a model with no exposure through travel
 #'
-#' @param xds is used to dispatch various functions to set up and solve systems of differential equations. "xde" for ordinary or delay differential equations; "dts" for "discrete time systems"
+#' @param xds is used to dispatch various functions to set up and solve systems of differential equations. 'xde' for ordinary or delay differential equations; 'dts' for "discrete time systems"
 #' @param frame model component subset
 #' @param dlay is "ode"/"dde" for ordinary/delay differential equations
 #' @param nPatches is the number of patches

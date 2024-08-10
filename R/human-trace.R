@@ -143,11 +143,11 @@ make_X_indices.trace <- function(pars, i) {
 }
 
 #' @title Parse the output of deSolve and return variables for the trace model
-#' @description Implements [parse_outputs_X] for the trace model
-#' @inheritParams parse_outputs_X
+#' @description Implements [parse_Xorbits] for the trace model
+#' @inheritParams parse_Xorbits
 #' @return none
 #' @export
-parse_outputs_X.trace <- function(outputs, pars,i) {
+parse_Xorbits.trace <- function(outputs, pars,i) {
   return(list())
 }
 

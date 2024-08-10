@@ -7,10 +7,10 @@
 last_to_inits(pars)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-y a \link{numeric} vector
+an \strong{\code{xds}} object
 }
 \description{
 Set the initial values to the last values of the last simulation

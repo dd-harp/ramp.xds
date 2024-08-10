@@ -183,17 +183,16 @@ update_Xinits.hMoI <- function(pars, y0, i) {
 })}
 
 #' @title Parse the output of deSolve and return variables for the hMoI model
-#' @description Implements [parse_outputs_X] for the hMoI model
-#' @inheritParams parse_outputs_X
+#' @description Implements [parse_Xorbits] for the hMoI model
+#' @inheritParams parse_Xorbits
 #' @return none
 #' @export
-parse_outputs_X.hMoI <- function(outputs, pars, i){
+parse_Xorbits.hMoI <- function(outputs, pars, i){
   H = pars$Xpar[[i]]$H
   with(pars$ix$X[[i]], {
-    time = outputs[,1]
-    m1 = outputs[,m1_ix+1]
-    m2 = outputs[,m2_ix+1]
-  return(list(time=time, H=H,m1=m1,m2=m2))
+    m1 = outputs[,m1_ix]
+    m2 = outputs[,m2_ix]
+  return(list(H=H, m1=m1, m2=m2))
 })}
 
 #' @title Return initial values as a vector
@@ -202,6 +201,18 @@ parse_outputs_X.hMoI <- function(outputs, pars, i){
 #' @return none
 #' @export
 get_Xinits.hMoI <- function(pars, i){pars$Xinits[[i]]}
+
+#' @title Compute the "true" nievalence of infection / parasite rate
+#' @description Implements [F_ni] for the hMoI model.
+#' @inheritParams F_ni
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_ni.hMoI<- function(vars, Xpar) {with(Xpar,{
+  x1 <- pexp(q = m1)
+  x2 <- pexp(q = m2)
+  ni <- (c2 * x2) + (c1 * (x1 - x2))
+  return(ni)
+})}
 
 #' @title Compute the "true" prevalence of infection / parasite rate
 #' @description Implements [F_pr] for the hMoI model.

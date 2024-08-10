@@ -172,6 +172,6 @@ xds_setup_cohort(F_eir, Xname="SIS", HPop=H, Xopts = Xo) -> test_SIS_xde
 ```
 
 ```{r}
-xde_solve(test_SIS_xde, 365, 365)$outputs$orbits$deout -> out2
+xde_solve(test_SIS_xde, 365, 365)$outputs$deout -> out2
 approx_equal(out2,out1)
 ```

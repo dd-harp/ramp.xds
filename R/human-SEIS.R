@@ -221,18 +221,20 @@ update_Xinits.SEIS <- function(pars, y0, i) {
 
 
 #' @title Parse the output of deSolve and return variables for the SEIS model
-#' @description Implements [parse_outputs_X] for the SEIS model
-#' @inheritParams parse_outputs_X
+#' @description Implements [parse_Xorbits] for the SEIS model
+#' @inheritParams parse_Xorbits
 #' @return none
 #' @export
-parse_outputs_X.SEIS <- function(outputs, pars, i) {
-  time = outputs[,1]
+parse_Xorbits.SEIS <- function(outputs, pars, i) {
   with(pars$ix$X[[i]],{
-    S = outputs[,S_ix+1]
-    E = outputs[,E_ix+1]
-    I = outputs[,I_ix+1]
-    H = S+I
-    return(list(time=time, S=S, E=E, I=I, H=H))
+    S = outputs[,S_ix]
+    E = outputs[,E_ix]
+    I = outputs[,I_ix]
+    H = S+E+I
+    vars <- list(S=S, E=E, I=I, H=H)
+    vars$ni <- F_ni(vars, pars$Xpar[[i]])
+    vars$pr <- F_pr(vars, pars$Xpar[[i]])
+    return(vars)
   })}
 
 #' @title Compute the HTC for the SEIS model
@@ -244,6 +246,16 @@ HTC.SEIS <- function(pars, i) {
   with(pars$Xpar[[i]],
        return(c/r)
   )
+}
+
+#' @title Compute the NI
+#' @description Implements [F_ni] for the SEIS model.
+#' @inheritParams F_ni
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_ni.SEIS <- function(vars, Xpar) {
+  ni = with(vars, Xpar$c*I/H)
+  return(ni)
 }
 
 #' @title Compute the "true" prevalence of infection / parasite rate
@@ -304,7 +316,7 @@ xds_plot_X.SEIS = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, stab
 
 #' Add lines for the density of infected individuals for the SEIS model
 #'
-#' @param XH a list with the outputs of parse_outputs_X_SEIS
+#' @param XH a list with the outputs of parse_Xorbits_SEIS
 #' @param nStrata the number of population strata
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting

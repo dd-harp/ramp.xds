@@ -163,14 +163,13 @@ create_Linits_basicL = function(nHabitats, Lopts=list(), L=1){with(Lopts,{
 })}
 
 #' @title Parse the variable names for the basicL model
-#' @description Implements [parse_outputs_L] for basicL competition model.
-#' @inheritParams parse_outputs_L
+#' @description Implements [parse_Lorbits] for basicL competition model.
+#' @inheritParams parse_Lorbits
 #' @return [list]
 #' @export
-parse_outputs_L.basicL <- function(outputs, pars, s) {
-  time = outputs[,1]
-  L = outputs[,pars$ix$L[[s]]$L_ix+1]
-  return(list(time=time, L=L))
+parse_Lorbits.basicL <- function(outputs, pars, s) {
+  L = outputs[,pars$ix$L[[s]]$L_ix]
+  return(list(L=L))
 }
 
 #' @title Add indices for aquatic mosquitoes to parameter list

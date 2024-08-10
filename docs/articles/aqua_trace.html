@@ -273,11 +273,19 @@ of those bionomic parameters to
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span>
 <span><span class="va">y0</span></span>
-<span><span class="co">#&gt; $MYZ.M</span></span>
+<span><span class="co">#&gt; $L</span></span>
+<span><span class="co">#&gt; list()</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $MYZ</span></span>
+<span><span class="co">#&gt; $MYZ$M</span></span>
 <span><span class="co">#&gt; [1] 157.8680 123.4518 178.6802</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $MYZ.P</span></span>
-<span><span class="co">#&gt; [1] 140.35170  98.87622 155.05779</span></span></code></pre></div>
+<span><span class="co">#&gt; $MYZ$P</span></span>
+<span><span class="co">#&gt; [1] 140.35170  98.87622 155.05779</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $X</span></span>
+<span><span class="co">#&gt; numeric(0)</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">deSolve</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/deSolve/man/ode.html" class="external-link">ode</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">y0</span><span class="op">)</span><span class="op">)</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">50</span>, by<span class="op">=</span><span class="fl">10</span><span class="op">)</span>, func <span class="op">=</span> <span class="va">xde_derivatives</span>, parms <span class="op">=</span> <span class="va">params</span>, method <span class="op">=</span> <span class="st">'lsoda'</span><span class="op">)</span></span>
 <span><span class="va">out1</span> <span class="op">&lt;-</span> <span class="va">out</span></span></code></pre></div>

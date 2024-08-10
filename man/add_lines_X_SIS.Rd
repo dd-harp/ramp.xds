@@ -7,7 +7,7 @@
 add_lines_X_SIS(XH, nStrata, clrs = c("darkblue", "darkred"), llty = 1)
 }
 \arguments{
-\item{XH}{a list with the outputs of parse_outputs_X_SIS}
+\item{XH}{a list with the outputs of parse_Xorbits_SIS}
 
 \item{nStrata}{the number of population strata}
 

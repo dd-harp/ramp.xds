@@ -7,7 +7,7 @@
 list_vars(pars, y0 = NULL, s = 1, i = 1)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{y0}{a \link{vector} of initial values}
 

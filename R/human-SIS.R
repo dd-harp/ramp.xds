@@ -118,7 +118,6 @@ F_H.SIS <- function(y, pars, i){
   with(list_Xvars(y, pars, i), return(H))
 }
 
-
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description Implements [F_b] for the SIS model.
 #' @inheritParams F_b
@@ -127,10 +126,6 @@ F_H.SIS <- function(y, pars, i){
 F_b.SIS <- function(y, pars, i) {
   with(pars$Xpar[[i]], b)
 }
-
-
-
-
 
 #' @title Return the SIS model variables as a list, returned from Update_Xt.SIS
 #' @description This method dispatches on the type of `pars$Xpar`
@@ -221,19 +216,29 @@ update_Xinits.SIS <- function(pars, y0, i) {
 
 
 #' @title Parse the output of deSolve and return variables for the SIS model
-#' @description Implements [parse_outputs_X] for the SIS model
-#' @inheritParams parse_outputs_X
+#' @description Implements [parse_Xorbits] for the SIS model
+#' @inheritParams parse_Xorbits
 #' @return none
 #' @export
-parse_outputs_X.SIS <- function(outputs, pars, i) {
-  time = outputs[,1]
-  with(pars$ix$X[[i]],{
-    S = outputs[,S_ix+1]
-    I = outputs[,I_ix+1]
-    H = S+I
-    return(list(time=time, S=S, I=I, H=H))
-  })}
+parse_Xorbits.SIS <- function(outputs, pars, i) {with(pars$ix$X[[i]],{
+  S <- outputs[,S_ix]
+  I <- outputs[,I_ix]
+  H <- S+I
+  ni <- pars$Xpar[[i]]$c*I/H
+  true_pr <- I/H
+  vars <- list(S=S, I=I, H=H, ni=ni, true_pr=true_pr)
+  return(vars)
+})}
 
+#' @title Compute the net infectiousness
+#' @description Implements [F_ni] for the SIS model.
+#' @inheritParams F_ni
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_ni.SIS <- function(vars, Xpar) {
+  pr = with(vars, Xpar$c*I/H)
+  return(pr)
+}
 
 #' @title Compute the "true" prevalence of infection / parasite rate
 #' @description Implements [F_pr] for the SIS model.
@@ -293,7 +298,7 @@ xds_plot_X.SIS = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, stabl
 
 #' Add lines for the density of infected individuals for the SIS model
 #'
-#' @param XH a list with the outputs of parse_outputs_X_SIS
+#' @param XH a list with the outputs of parse_Xorbits_SIS
 #' @param nStrata the number of population strata
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting

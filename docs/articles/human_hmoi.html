@@ -269,10 +269,17 @@ it must be specified as the model of bloodfeeding (<span class="math inline">\(\
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span>
 <span><span class="va">y0</span></span>
-<span><span class="co">#&gt; $X.m1</span></span>
+<span><span class="co">#&gt; $L</span></span>
+<span><span class="co">#&gt; list()</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $MYZ</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $X</span></span>
+<span><span class="co">#&gt; $X$m1</span></span>
 <span><span class="co">#&gt; [1] 75 75 75</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $X.m2</span></span>
+<span><span class="co">#&gt; $X$m2</span></span>
 <span><span class="co">#&gt; [1] 1.5 1.5 1.5</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">deSolve</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/deSolve/man/ode.html" class="external-link">ode</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">y0</span><span class="op">)</span><span class="op">)</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">365</span><span class="op">)</span>, func <span class="op">=</span> <span class="va">xde_derivatives</span>, </span>
@@ -302,9 +309,7 @@ it must be specified as the model of bloodfeeding (<span class="math inline">\(\
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">test_hMoI_xde</span>, <span class="fl">365</span>, <span class="fl">365</span><span class="op">)</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out2</span></span>
 <span><span class="fu"><a href="../reference/approx_equal.html">approx_equal</a></span><span class="op">(</span><span class="va">out2</span>, <span class="va">out1</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      time    1    2    3    4    5    6</span></span>
-<span><span class="co">#&gt; [1,] TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>
-<span><span class="co">#&gt; [2,] TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; logical(0)</span></span></code></pre></div>
 </div>
   </div>
 
