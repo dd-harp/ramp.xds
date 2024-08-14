@@ -34,7 +34,7 @@ This is the null model of aquatic mosquito dynamics; there are no endogenous dyn
 and the model is simply specified by `Lambda`, the rate at which adult mosquitoes
 spontaneously emerge from aquatic habitats.
 
-Below we show an example, taken from the package tests, of using the trace-based
+Below we show an example, taken from the package tests, of using the trivial-based
 aquatic model to keep an adult mosquito model at equilibrium when using unequal numbers
 of aquatic habitats per patch.
 
@@ -116,14 +116,14 @@ alpha <- as.vector(ginv(calN) %*% Lambda)
 
 Now we set up the model. Please see the [Ross-Macdonald vignette](adult_RM.html) for details
 on the adult model. We use `alpha` as the `Lambda` parameter of our forced emergence model, in
-`ramp.xds::make_parameters_L_trace`. Again, because we are not running the full transmission model,
+`ramp.xds::make_parameters_L_trivial`. Again, because we are not running the full transmission model,
 we must use `ramp.xds::MosquitoBehavior` to pass the equilibrium values of those bionomic parameters 
 to `ramp.xds::xDE_diffeqn_mosy`.
 
 ```{r}
 params <- make_xds_template("xde", "mosy", "ode", nPatches, membership)
 
-params = make_Lpar("trace", params, 1, Lopts = list(Lambda=alpha))
+params = make_Lpar("trivial", params, 1, Lopts = list(Lambda=alpha))
 
 params = make_Linits(params, 1)
 
@@ -134,7 +134,7 @@ params = make_MYZinits(params, 1, list(M=M_eq, P=P_eq))
 
 
 ```{r}
-params = make_Xpar("trace", params, 1, list(HPop=HPop))
+params = make_Xpar("trivial", params, 1, list(HPop=HPop))
 ```
 
 
@@ -202,7 +202,7 @@ MYZo = list(
 
 
 ```{r}
-xds_setup_mosy(MYZname = "basicM", Lname = "trace", 
+xds_setup_mosy(MYZname = "basicM", Lname = "trivial", 
                nPatches = 3, membership = c(1,2,3,3), 
                MYZopts = MYZo, calK = calK, HPop=HPop, Lopts = Lo, 
                kappa = c(0.1, 0.075, 0.025))->mosy1

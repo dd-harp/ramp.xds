@@ -50,6 +50,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/GettingStarted.html">Getting Started with **`ramp.xds`**</a>
+    </li>
+    <li>
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
@@ -107,7 +110,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -182,8 +185,9 @@ endogenous dynamics and the model is simply specified by
 <code>Lambda</code>, the rate at which adult mosquitoes spontaneously
 emerge from aquatic habitats.</p>
 <p>Below we show an example, taken from the package tests, of using the
-trace-based aquatic model to keep an adult mosquito model at equilibrium
-when using unequal numbers of aquatic habitats per patch.</p>
+trivial-based aquatic model to keep an adult mosquito model at
+equilibrium when using unequal numbers of aquatic habitats per
+patch.</p>
 <div class="section level3">
 <h3 id="the-long-way">The Long Way<a class="anchor" aria-label="anchor" href="#the-long-way"></a>
 </h3>
@@ -246,7 +250,7 @@ unequal numbers of aquatic habitats and patches, we use
 <p>Now we set up the model. Please see the <a href="adult_RM.html">Ross-Macdonald vignette</a> for details on the
 adult model. We use <code>alpha</code> as the <code>Lambda</code>
 parameter of our forced emergence model, in
-<code>ramp.xds::make_parameters_L_trace</code>. Again, because we are
+<code>ramp.xds::make_parameters_L_trivial</code>. Again, because we are
 not running the full transmission model, we must use
 <code>ramp.xds::MosquitoBehavior</code> to pass the equilibrium values
 of those bionomic parameters to
@@ -254,7 +258,7 @@ of those bionomic parameters to
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_xds_template.html">make_xds_template</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"mosy"</span>, <span class="st">"ode"</span>, <span class="va">nPatches</span>, <span class="va">membership</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"trace"</span>, <span class="va">params</span>, <span class="fl">1</span>, Lopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda<span class="op">=</span><span class="va">alpha</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">params</span>, <span class="fl">1</span>, Lopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda<span class="op">=</span><span class="va">alpha</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Linits.html">make_Linits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
@@ -262,7 +266,7 @@ of those bionomic parameters to
 <span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_MYZinits.html">make_MYZinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>M<span class="op">=</span><span class="va">M_eq</span>, P<span class="op">=</span><span class="va">P_eq</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Xpar.html">make_Xpar</a></span><span class="op">(</span><span class="st">"trace"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>HPop<span class="op">=</span><span class="va">HPop</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Xpar.html">make_Xpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>HPop<span class="op">=</span><span class="va">HPop</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -293,9 +297,9 @@ of those bionomic parameters to
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">params</span><span class="op">$</span><span class="va">ix</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">M_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'M_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">params</span><span class="op">$</span><span class="va">ix</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">P_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'P_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/melt.data.table.html" class="external-link">melt</a></span><span class="op">(</span><span class="va">out</span>, id.vars <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
-<span><span class="va">out</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Component"</span>, <span class="st">"Patch"</span><span class="op">)</span> <span class="op">:=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/tstrsplit.html" class="external-link">tstrsplit</a></span><span class="op">(</span><span class="va">variable</span>, <span class="st">'_'</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/melt.data.table.html" class="external-link">melt</a></span><span class="op">(</span><span class="va">out</span>, id.vars <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
+<span><span class="va">out</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Component"</span>, <span class="st">"Patch"</span><span class="op">)</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/tstrsplit.html" class="external-link">tstrsplit</a></span><span class="op">(</span><span class="va">variable</span>, <span class="st">'_'</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">out</span><span class="op">[</span>, <span class="va">variable</span> <span class="op">:=</span> <span class="cn">NULL</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">out</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">value</span>, color <span class="op">=</span> <span class="va">Patch</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -324,7 +328,7 @@ of those bionomic parameters to
 <span>  P<span class="op">=</span><span class="va">P_eq</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup_mosy.html">xds_setup_mosy</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"basicM"</span>, Lname <span class="op">=</span> <span class="st">"trace"</span>, </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup_mosy.html">xds_setup_mosy</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"basicM"</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span>, </span>
 <span>               nPatches <span class="op">=</span> <span class="fl">3</span>, membership <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>, </span>
 <span>               MYZopts <span class="op">=</span> <span class="va">MYZo</span>, calK <span class="op">=</span> <span class="va">calK</span>, HPop<span class="op">=</span><span class="va">HPop</span>, Lopts <span class="op">=</span> <span class="va">Lo</span>, </span>
 <span>               kappa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.075</span>, <span class="fl">0.025</span><span class="op">)</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">mosy1</span></span></code></pre></div>

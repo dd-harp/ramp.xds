@@ -50,6 +50,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/GettingStarted.html">Getting Started with **`ramp.xds`**</a>
+    </li>
+    <li>
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
@@ -107,7 +110,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -356,9 +359,9 @@ initial values. These equations have been implemented to compute <span class="ma
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_xds_template.html">make_xds_template</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"mosy"</span>, <span class="st">"ode"</span>, <span class="va">nPatches</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_MYZpar.html">make_MYZpar</a></span><span class="op">(</span><span class="st">"RM"</span>, <span class="va">params</span>, <span class="fl">1</span>,  <span class="va">MYZo</span><span class="op">)</span>  </span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_MYZinits.html">make_MYZinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZo</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Xpar.html">make_Xpar</a></span><span class="op">(</span><span class="st">"trace"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Xo</span><span class="op">)</span> </span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Xpar.html">make_Xpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Xo</span><span class="op">)</span> </span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Xinits.html">make_Xinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">HPop</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"trace"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Lo</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Lo</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Linits.html">make_Linits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">Lo</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Hpar_static.html">setup_Hpar_static</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p>We set the indices with <code><a href="../reference/make_indices.html">ramp.xds::make_indices</a></code>.</p>
@@ -395,9 +398,9 @@ match the steady states computed by solving the equations:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">params</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">$</span><span class="va">Y_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'Y_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">params</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">$</span><span class="va">Z_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'Z_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">params</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/melt.data.table.html" class="external-link">melt</a></span><span class="op">(</span><span class="va">out</span>, id.vars <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
-<span><span class="va">out</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Component"</span>, <span class="st">"Patch"</span><span class="op">)</span> <span class="op">:=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/tstrsplit.html" class="external-link">tstrsplit</a></span><span class="op">(</span><span class="va">variable</span>, <span class="st">'_'</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/melt.data.table.html" class="external-link">melt</a></span><span class="op">(</span><span class="va">out</span>, id.vars <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
+<span><span class="va">out</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Component"</span>, <span class="st">"Patch"</span><span class="op">)</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/tstrsplit.html" class="external-link">tstrsplit</a></span><span class="op">(</span><span class="va">variable</span>, <span class="st">'_'</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">out</span><span class="op">[</span>, <span class="va">variable</span> <span class="op">:=</span> <span class="cn">NULL</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">out</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">value</span>, color <span class="op">=</span> <span class="va">Patch</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -422,14 +425,14 @@ the named parameters and their values. We also attach to the list the
 initial values we want to use, if applicable. For the Ross-Macdonald
 adult mosquito model, we attach the parameter values:</p>
 <p>Each one of the dynamical components has a configurable
-<em>trace</em> algorithm that computes no derivatives, but passes its
-output as a parameter (see <code>human-trace.R</code>. To configure
+<em>trivial</em> algorithm that computes no derivatives, but passes its
+output as a parameter (see <code>human-trivial.R</code>. To configure
 <code>Xpar,</code> we attach the values of <code>kappa</code> to a
 list:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.075</span>, <span class="fl">0.025</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Similarly, we configure the <em>trace</em> algorithm for aquatic
-mosquitoes (see <code>aquatic-trace.R</code>).</p>
+<p>Similarly, we configure the <em>trivial</em> algorithm for aquatic
+mosquitoes (see <code>aquatic-trivial.R</code>).</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>To set up the model, we call <code>xds_setup</code> with</p>
@@ -439,14 +442,14 @@ mosquitoes (see <code>aquatic-trace.R</code>).</p>
 model for adult mosquitoes; to pass our options, we write
 <code>MYZopts = MYZo</code>; and finally, the dispersal matrix
 <code>calK</code> is passed as <code>calK=calK</code></p></li>
-<li><p><code>Xname</code> is set to “trace” to run the trace module for
-human infection dynamics</p></li>
-<li><p><code>Lname</code> is set to “trace” to run the trace module
+<li><p><code>Xname</code> is set to “trivial” to run the trivial module
+for human infection dynamics</p></li>
+<li><p><code>Lname</code> is set to “trivial” to run the trivial module
 aquatic mosquitoes</p></li>
 </ul>
 <p>Otherwise, setup takes care of all the internals:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"RM"</span>, Xname <span class="op">=</span> <span class="st">"trace"</span>, Lname <span class="op">=</span> <span class="st">"trace"</span>,  </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"RM"</span>, Xname <span class="op">=</span> <span class="st">"trivial"</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span>,  </span>
 <span>    nPatches<span class="op">=</span><span class="fl">3</span>, calK<span class="op">=</span><span class="va">calK</span>, membership <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, </span>
 <span>    residence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, HPop <span class="op">=</span> <span class="va">HPop</span>,</span>
 <span>    MYZopts <span class="op">=</span> <span class="va">MYZo</span>, Xopts <span class="op">=</span> <span class="va">Xo</span>, Lopts <span class="op">=</span> <span class="va">Lo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">MYZeg</span></span></code></pre></div>

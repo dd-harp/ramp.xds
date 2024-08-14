@@ -1,0 +1,60 @@
+---
+title: "Getting Started with `ramp.xds`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with `ramp.xds`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# 
+
+This vignette is a very brief introduction to using **`ramp.xds`**
+
+## Installation 
+
+```{r, eval=F}
+library(devtools)
+devtools::install_github("dd-harp/ramp.xds")
+```
+
+```{r}
+library(ramp.xds)
+```
+
+```{r}
+#devtools::load_all()
+```
+
+## Demo
+
+The software is designed to make it easy to set up models. The function `xds_setup()` returns a fully configured model: 
+
+```{r}
+model <- xds_setup()
+```
+
+```{r}
+model <- xde_solve(model) 
+```
+
+```{r}
+xds_plot_PR(model)
+```
+```{r}
+xds_plot_EIR(model)
+```
+
+## Setup  
+
+**`ramp.xds`** includes setup functions, called `xds_setup` with default options. Each dynamical component is configured by specifying a model name (as a string) and options, passed as a named list, to override the defaults for the model: 
+
++ `Xname` dispatches a model family for human parasitic infections and immunity, $\cal X.$ The setup default model is `Xname="SIS"` with default parameters defined in `create_Xpar_SIS.`
+
++ `MYZname` dispatches a model family for adult mosquito ecology and parasite infection dynamics, $\cal MYZ.$ The setup default model is `MYZname="RM"` with default parameters defined in `create_MYZpar_RM.` 
+
++ `Lname` specifies a model family for aquatic mosquito ecology, $\cal L.$  The setup default model is the trivial model `Lname = "trivial"`.
+
+
+
+

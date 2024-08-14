@@ -28,7 +28,7 @@ xds_setup_aquatic(
 
 \item{Lopts}{a list to configure the L model}
 
-\item{MYZopts}{a list to configure F_eggs from the trace model}
+\item{MYZopts}{a list to configure F_eggs from the trivial model}
 
 \item{model_name}{is a name for the model (arbitrary)}
 }

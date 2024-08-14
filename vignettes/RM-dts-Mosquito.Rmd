@@ -138,7 +138,7 @@ $$\bar Z = \Omega \cdot G \cdot Y \left( 1- \Omega\right)^{-1}$$
 ## Demo
 
 ```{r, eval=F}
-rm1 <- xds_setup(MYZname = "RM", Xname = "trace", xds = 'dts')
+rm1 <- xds_setup(MYZname = "RM", Xname = "trivial", xds = 'dts')
 ```
 
 ```{r, eval=F}
@@ -204,7 +204,7 @@ Z = tail(rm1$outputs$orbits$MYZ[[1]]$Z, 1)
 ```
 
 ```{r, eval=F}
-rm10 <- dts_setup(Xname = "trace", nPatches = 10, membership = 1:10)
+rm10 <- dts_setup(Xname = "trivial", nPatches = 10, membership = 1:10)
 rm10$Lpar[[1]]$scale = 1.5^c(1:10) 
 ```
 

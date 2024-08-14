@@ -22,7 +22,7 @@ get_f = function(pars, s=1){
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
-get_f.trace = function(pars, s=1){
+get_f.trivial = function(pars, s=1){
   numeric(0)
 }
 
@@ -77,7 +77,7 @@ get_q = function(pars, s=1){
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
-get_q.trace = function(pars, s=1){
+get_q.trivial = function(pars, s=1){
   numeric(0)
 }
 
@@ -131,7 +131,7 @@ get_g = function(pars, s=1){
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
-get_g.trace = function(pars, s=1){
+get_g.trivial = function(pars, s=1){
   numeric(0)
 }
 
@@ -186,7 +186,7 @@ get_sigma = function(pars, s=1){
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
-get_sigma.trace = function(pars, s=1){
+get_sigma.trivial = function(pars, s=1){
   numeric(0)
 }
 
@@ -317,4 +317,12 @@ get_terms <- function(tm, de_vars, pars) {
     terms$kappa <- rbind(terms$kappa, as.vector(pars$kappa[[1]]))
   }
   return(terms)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param i the host species index
+#' @export
+get_EIR = function(pars, i){
+  pars$outputs$terms$EIR
 }

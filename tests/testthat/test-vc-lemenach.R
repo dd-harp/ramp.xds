@@ -303,15 +303,15 @@ Emergence(5*365, out0, itn_mod) -> itn_mod
 Lambda <- itn_mod$Lambda[[1]]
 Ln = list(Lambda=Lambda)
 
-itn_mod_trace <- itn_mod
+itn_mod_trivial <- itn_mod
 ITN_cov <- function(t, pars){0.7}
-itn_mod_trace = setup_itn_lemenach(itn_mod_trace, F_phi=ITN_cov)
+itn_mod_trivial = setup_itn_lemenach(itn_mod_trivial, F_phi=ITN_cov)
 
-es <- with(itn_mod_trace$ITNefsz,
+es <- with(itn_mod_trivial$ITNefsz,
            with(MYZo,
                 sapply(1:nPatches, compute_bednet_effect_sizes_lemenach, phi=0.7, f=f,q=q, g=g, tau0_frac=tau0_frac, r=r,ss=ss)))
 
-# Turn the X component into a trace function
+# Turn the X component into a trivial function
 Xn = list(kappa=kappa, H=HPop)
 
 # The parameter values to the values they should reach under control
@@ -332,24 +332,24 @@ MYZo$M <- ss$M
 MYZo$Z <- ss$Z
 
 
-xds_setup(MYZname="si", Xname="trace", Lname="trace",
+xds_setup(MYZname="si", Xname="trivial", Lname="trivial",
           nPatches=3, HPop=HPop, membership=membership,
           MYZopts=MYZo, calK=calK,
           Xopts=Xn, residence=1:3, searchB=searchWtsH,
-          searchQ=rep(1,3), Lopts=Ln) -> itn_mod_trace
+          searchQ=rep(1,3), Lopts=Ln) -> itn_mod_trivial
 
-class(itn_mod_trace$MYZpar[[1]]$effect_sizes) <- "modified"
-class(itn_mod_trace$forcing) <- "dynamic"
-itn_mod_trace <- setup_forcing(itn_mod_trace)
-itn_mod_trace <- setup_control_forced(itn_mod_trace)
-itn_mod_trace <- setup_vc_control(itn_mod_trace)
-itn_mod_trace = setup_itn_lemenach(itn_mod_trace, F_phi=ITN_cov)
+class(itn_mod_trivial$MYZpar[[1]]$effect_sizes) <- "modified"
+class(itn_mod_trivial$forcing) <- "dynamic"
+itn_mod_trivial <- setup_forcing(itn_mod_trivial)
+itn_mod_trivial <- setup_control_forced(itn_mod_trivial)
+itn_mod_trivial <- setup_vc_control(itn_mod_trivial)
+itn_mod_trivial = setup_itn_lemenach(itn_mod_trivial, F_phi=ITN_cov)
 
-itn_mod_trace <- xde_solve(itn_mod_trace, 1000, 1)
+itn_mod_trivial <- xde_solve(itn_mod_trivial, 1000, 1)
 
-out <- itn_mod_trace$outputs$last_y
-M_sim <- out[itn_mod_trace$ix$MYZ[[1]]$M_ix]
-Z_sim <- out[itn_mod_trace$ix$MYZ[[1]]$Z_ix]
+out <- itn_mod_trivial$outputs$last_y
+M_sim <- out[itn_mod_trivial$ix$MYZ[[1]]$M_ix]
+Z_sim <- out[itn_mod_trivial$ix$MYZ[[1]]$Z_ix]
 
 expect_equal(as.vector(M_sim0), as.vector(M), tolerance = numeric_tol)
 expect_equal(as.vector(Z_sim0), as.vector(Z), tolerance = numeric_tol)

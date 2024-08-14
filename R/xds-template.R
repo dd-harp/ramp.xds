@@ -14,7 +14,7 @@
 #' - **`xds`** is either "xde" for differential equations or "dts" for difference equations;
 #' - **`frame`** is one of several cases:
 #'      - "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}.
-#' in some form (possible the trace case) (see [xds_setup()])
+#' in some form (possibly the trivial case) (see [xds_setup()])
 #'      - "mozy" is for mosquito ecology models (see [xds_setup_mosy()]), including models without pathogen infection dynamics in mosquitoes
 #'      - "aquatic" is for aquatic mosquito ecology models (see [xds_setup_mosy()]), forced by a function describing egg laying
 #'      - "human" is for human/host infection dynamics(see [xds_setup_human()]), forced by the infective density of adult mosquitoes, \eqn{fqZ}

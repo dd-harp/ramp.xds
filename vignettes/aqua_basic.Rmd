@@ -18,7 +18,7 @@ The basicL_xde competition aquatic mosquito model fulfills the generic interface
 
 # Differential Equations
 
-Given $\Lambda$ and some egg laying rate from the adult mosquito population we could formulate and solve a dynamical model of aquatic mosquitoes to give that emergence rate. However, in the example here we will simply use a trace-based (forced) emergence model, so that $\Lambda$ completely specifies the aquatic mosquitoes.
+Given $\Lambda$ and some egg laying rate from the adult mosquito population we could formulate and solve a dynamical model of aquatic mosquitoes to give that emergence rate. However, in the example here we will simply use a trivial-based (forced) emergence model, so that $\Lambda$ completely specifies the aquatic mosquitoes.
 
 The simplest model of aquatic (immature) mosquito dynamics with negative feedback (density dependence) is:
 
@@ -86,7 +86,7 @@ MYZo = list(MYZm <- eta)
 
 ```{r}
 #params$Xpar[[1]]=list() 
-#class(params$Xpar[[1]]) <- "trace"
+#class(params$Xpar[[1]]) <- "trivial"
 #params$MYZpar[[1]]=list() 
 
 params$eggs_laid = list() 
@@ -97,7 +97,7 @@ F_eta = function(t, pars){
 
 params = make_Lpar("basicL", params, 1, Lo)
 params = make_Linits(params, 1, Lo)
-params = make_MYZpar("trace", params, 1, MYZo)
+params = make_MYZpar("trivial", params, 1, MYZo)
 
 params = make_indices(params)
 ```
@@ -132,7 +132,7 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
 
 ## Using Setup
 
-The function `xds_setup_aquatic` sets up a model that includes only aquatic dynamics, and it is solved using `xde_solve.aqua.`  The setup functions are simpler than `xds_setup` and come with constrained choices. The user can configure any aquatic model (`trace` wouldn't make much sense), and it uses `trace` to force egg laying.  
+The function `xds_setup_aquatic` sets up a model that includes only aquatic dynamics, and it is solved using `xde_solve.aqua.`  The setup functions are simpler than `xds_setup` and come with constrained choices. The user can configure any aquatic model (`trivial` wouldn't make much sense), and it uses `trivial` to force egg laying.  
 
 We configure the aquatic model: `Lo` is a list with the parameter values attached.  
 
@@ -146,7 +146,7 @@ Lo$L = with(Lo, alpha/psi)
 Lo$theta = with(Lo, (eta - psi*L - phi*L)/(L^2))
 ```
 
-We use the MYZ model `trace` to configure egg laying.
+We use the MYZ model `trivial` to configure egg laying.
 
 ```{r}
 Mo = list(MYZm = c(250, 500, 170))

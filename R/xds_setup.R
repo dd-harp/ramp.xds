@@ -53,7 +53,7 @@ xds_setup = function(xds = 'xde', dlay = 'ode',
                  ### Dynamical Components
                      MYZname = "RM",
                      Xname = "SIS",
-                     Lname = "trace",
+                     Lname = "trivial",
                  ### Model Structure
                      nPatches = 1,
                      membership=1,
@@ -181,7 +181,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
   pars       <- make_Linits(pars, 1, Lopts)
 
   Xo <- list(kappa=kappa, HPop=HPop)
-  pars <- make_Xpar("trace", pars, 1, Xo)
+  pars <- make_Xpar("trivial", pars, 1, Xo)
 
   pars = make_indices(pars)
 
@@ -212,7 +212,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 #' @param Lname is a character string defining a L model
 #' @param Lday is the run-time time step for L component (in days): integer or 1/integer
 #' @param Lopts a list to configure the L model
-#' @param MYZopts a list to configure F_eggs from the trace model
+#' @param MYZopts a list to configure F_eggs from the trivial model
 #' @param model_name is a name for the model (arbitrary)
 #' @return a [list]
 #' @export
@@ -236,12 +236,12 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
   pars       <- make_Linits(pars, 1, Lopts)
 
   # Adult Mosquito Dynamics
-  pars$MYZname   <- "trace"
-  pars           <- make_MYZpar("trace", pars, 1, MYZopts)
+  pars$MYZname   <- "trivial"
+  pars           <- make_MYZpar("trivial", pars, 1, MYZopts)
 
   # Human Dynamics
-  pars$Xname <- "trace"
-  pars <- make_Xpar("trace", pars, 1, list())
+  pars$Xname <- "trivial"
+  pars <- make_Xpar("trivial", pars, 1, list())
 
   pars = make_indices(pars)
   pars$model_name <- model_name
@@ -290,16 +290,16 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
   stopifnot(length(HPop) == length(residence))
   membership=1
   pars <- make_xds_template('xde', 'human', dlay, nPatches, membership, residence)
-  pars <- make_runtime(pars, Xday, 1, 1, "trace")
+  pars <- make_runtime(pars, Xday, 1, 1, "trivial")
   pars$compute = 'na'
   class(pars$compute) <- 'na'
 
   # Aquatic Mosquito Dynamics
-  pars       <- make_Lpar("trace", pars, 1, list())
+  pars       <- make_Lpar("trivial", pars, 1, list())
   pars       <- make_Linits(pars, 1)
 
   # Mosquito Dynamics
-  pars           <- make_MYZpar("trace", pars, 1, MYZopts)
+  pars           <- make_MYZpar("trivial", pars, 1, MYZopts)
 
   # Human Dynamics
   pars$Xname <- Xname
@@ -366,7 +366,7 @@ xds_setup_cohort = function(F_eir,
   residence = rep(1, length(HPop))
   membership = 1
   pars <- make_xds_template('xde', 'cohort', dlay, nPatches, membership, residence)
-  pars <- make_runtime(pars, Xday, 1, 1, "trace")
+  pars <- make_runtime(pars, Xday, 1, 1, "trivial")
   class(pars$compute) <- "na"
 
   pars$EIRpar$bday = bday
@@ -374,11 +374,11 @@ xds_setup_cohort = function(F_eir,
   pars$F_eir = F_eir
 
   # Aquatic Mosquito Dynamics
-  pars       <- make_Lpar("trace", pars, 1, list())
+  pars       <- make_Lpar("trivial", pars, 1, list())
   pars       <- make_Linits(pars, 1)
 
   # Adult Mosquito Dynamics
-  pars           <- make_MYZpar("trace", pars, 1, list())
+  pars           <- make_MYZpar("trivial", pars, 1, list())
 
   # Human Dynamics
   pars$Xname <- Xname

@@ -210,9 +210,9 @@ We use `ramp.xds::make_inits_MYZ_RM_xde` to store the initial values. These equa
 params <- make_xds_template("xde", "mosy", "ode", nPatches, 1:3, 1:3)
 params <- make_MYZpar("RM", params, 1,  MYZo)  
 params <- make_MYZinits(params, 1, MYZo)
-params <- make_Xpar("trace", params, 1, Xo) 
+params <- make_Xpar("trivial", params, 1, Xo) 
 params <- make_Xinits(params, HPop, 1)
-params <- make_Lpar("trace", params, 1, Lo)
+params <- make_Lpar("trivial", params, 1, Lo)
 params <- make_Linits(params, 1, Lo)
 params <- setup_Hpar_static(params, 1)
 ```
@@ -274,7 +274,7 @@ In the vignette above, we set up a function to solve the differential equation. 
 
 To set up a model with the parameters above, we make three list with the named parameters and their values. We also attach to the list the initial values we want to use, if applicable. For the Ross-Macdonald adult mosquito model, we attach the parameter values:  
 
-Each one of the dynamical components has a configurable *trace* algorithm that computes no derivatives, but passes its output as a parameter (see `human-trace.R`. To configure `Xpar,` we attach the values of `kappa` to a list: 
+Each one of the dynamical components has a configurable *trivial* algorithm that computes no derivatives, but passes its output as a parameter (see `human-trivial.R`. To configure `Xpar,` we attach the values of `kappa` to a list: 
 
 
 
@@ -282,7 +282,7 @@ Each one of the dynamical components has a configurable *trace* algorithm that c
 Xo = list(kappa =  c(0.1, 0.075, 0.025))
 ```
 
-Similarly, we configure the *trace* algorithm for aquatic mosquitoes (see `aquatic-trace.R`).
+Similarly, we configure the *trivial* algorithm for aquatic mosquitoes (see `aquatic-trivial.R`).
 
 ```{r}
 Lo = list(Lambda = c(5, 10, 8))
@@ -294,15 +294,15 @@ To set up the model, we call `xds_setup` with
 
 + `MYZname` is set to "RM" to run the Ross-Macdonald model for adult mosquitoes; to pass our options, we write `MYZopts = MYZo`; and finally, the dispersal matrix `calK` is passed as `calK=calK` 
 
-+ `Xname` is set to "trace" to run the trace module for human infection dynamics 
++ `Xname` is set to "trivial" to run the trivial module for human infection dynamics 
 
-+ `Lname` is set to "trace" to run the trace module aquatic mosquitoes
++ `Lname` is set to "trivial" to run the trivial module aquatic mosquitoes
 
 Otherwise, setup takes care of all the internals: 
 
 
 ```{r using setup}
-xds_setup(MYZname = "RM", Xname = "trace", Lname = "trace",  
+xds_setup(MYZname = "RM", Xname = "trivial", Lname = "trivial",  
     nPatches=3, calK=calK, membership = c(1:3), 
     residence = c(1:3), HPop = HPop,
     MYZopts = MYZo, Xopts = Xo, Lopts = Lo) -> MYZeg

@@ -9,7 +9,6 @@
   i = 1,
   clrs = c("darkblue", "darkred", "darkgreen"),
   llty = 1,
-  stable = FALSE,
   add_axes = TRUE
 )
 }
@@ -21,8 +20,6 @@
 \item{clrs}{a vector of colors}
 
 \item{llty}{an integer (or integers) to set the \code{lty} for plotting}
-
-\item{stable}{a logical: set to FALSE for \code{orbits} and TRUE for \code{stable_orbits}}
 
 \item{add_axes}{a logical: plot axes only if TRUE}
 }

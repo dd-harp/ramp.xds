@@ -5,6 +5,8 @@ navbar:
     href: reference/index.html
   - text: Articles
     menu:
+    - text: Getting Started with ramp.xds
+      href: articles/GettingStarted.html
     - text: Understanding ramp.xds
       href: articles/Understanding_ramp.xds.html
     - text: Modular Forms for Disease Dynamics
@@ -36,7 +38,7 @@ navbar:
   - text: Mosquito - Aquatic
     menu:
     - text: Aquatic - Trivial (forced) model
-      href: articles/aqua_trace.html
+      href: articles/aqua_trivial.html
     - text: Basic Competition
       href: articles/aqua_basic.html
   - text: Human / Host
@@ -113,7 +115,7 @@ reference:
   desc: |
     Models available in **`ramp.xds`** for human/host infection and immunity
   contents:
-  - dXdt.trace
+  - dXdt.trivial
   - dXdt.SIS
   - dXdt.SIP
   - dXdt.SEIS
@@ -122,7 +124,7 @@ reference:
   desc: |
     Models available in **`ramp.xds`** for adult mosquito ecology and infection dynamics
   contents:
-  - dMYZdt.trace
+  - dMYZdt.trivial
   - dMYZdt.si
   - dMYZdt.sei
   - dMYZdt.RM
@@ -131,7 +133,7 @@ reference:
   desc: |
     Models available in **`ramp.xds`** for the ecology of immature mosquitoes in aquatic habitats
   contents:
-  - dLdt.trace
+  - dLdt.trivial
   - dLdt.basicL
 - subtitle: Internals
   desc: |
@@ -327,23 +329,23 @@ reference:
   - F_eip.fixedlag_dts
   - setup_EIP.fixedlag_dts
   - setup_eip_fixedlag_dts
-- subtitle: trace
+- subtitle: trivial
   desc: |
     Specialized methods for NULL dynamics: a funtion generates values for F_eggs or F_fqZ or F_fqM
   contents:
-  - F_fqZ.trace
-  - F_fqM.trace
-  - F_eggs.trace
-  - dMYZdt.trace
-  - Update_MYZt.trace
-  - make_MYZpar.trace
-  - create_MYZpar_trace
-  - xde_steady_state_MYZ.trace
-  - make_MYZinits.trace
-  - make_indices_MYZ.trace
-  - parse_MYZorbits.trace
-  - get_MYZinits.trace
-  - update_MYZinits.trace
+  - F_fqZ.trivial
+  - F_fqM.trivial
+  - F_eggs.trivial
+  - dMYZdt.trivial
+  - Update_MYZt.trivial
+  - make_MYZpar.trivial
+  - create_MYZpar_trivial
+  - xde_steady_state_MYZ.trivial
+  - make_MYZinits.trivial
+  - make_indices_MYZ.trivial
+  - parse_MYZorbits.trivial
+  - get_MYZinits.trivial
+  - update_MYZinits.trivial
 - subtitle: basicM
   desc: |
     Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.
@@ -453,23 +455,23 @@ reference:
   - parse_Lorbits
   - get_Linits
   - update_Linits
-- subtitle: trace
+- subtitle: trivial
   desc: |
-    Specialized methods for the exogeneously forced trace model of aquatic mosquito dynamics.
+    Specialized methods for the exogeneously forced trivial model of aquatic mosquito dynamics.
   contents:
-  - LBionomics.trace
-  - xde_steady_state_L.trace
-  - F_emerge.trace
-  - dLdt.trace
-  - Update_Lt.trace
-  - make_Lpar.trace
-  - create_Lpar_trace
-  - make_Linits.trace
-  - list_Lvars.trace
-  - put_Lvars.trace
-  - make_indices_L.trace
-  - parse_Lorbits.trace
-  - update_Linits.trace
+  - LBionomics.trivial
+  - xde_steady_state_L.trivial
+  - F_emerge.trivial
+  - dLdt.trivial
+  - Update_Lt.trivial
+  - make_Lpar.trivial
+  - create_Lpar_trivial
+  - make_Linits.trivial
+  - list_Lvars.trivial
+  - put_Lvars.trivial
+  - make_indices_L.trivial
+  - parse_Lorbits.trivial
+  - update_Linits.trivial
 - subtitle: basicL
   desc: |
     Specialized methods for a basicL competition model of aquatic mosquito dynamics.
@@ -554,27 +556,27 @@ reference:
   - xde_steady_state_X
   - xde_steady_state_XH
   - dts_steady_state_X
-- subtitle: trace
+- subtitle: trivial
   desc: |
-    Specialized methods for a human trace model to pass kappa as a parameter
+    Specialized methods for a human trivial model to pass kappa as a parameter
   contents:
-  - F_X.trace
-  - F_H.trace
-  - F_pr.trace
-  - xde_steady_state_X.trace
-  - F_pr_by_lm.trace
-  - F_pr_by_rdt.trace
-  - F_pr_by_pcr.trace
-  - F_b.trace
-  - dXdt.trace
-  - Update_Xt.trace
-  - make_Xpar.trace
-  - create_Xpar_trace
-  - make_Xinits.trace
-  - make_X_indices.trace
-  - parse_Xorbits.trace
-  - get_Xinits.trace
-  - update_Xinits.trace
+  - F_X.trivial
+  - F_H.trivial
+  - F_pr.trivial
+  - xde_steady_state_X.trivial
+  - F_pr_by_lm.trivial
+  - F_pr_by_rdt.trivial
+  - F_pr_by_pcr.trivial
+  - F_b.trivial
+  - dXdt.trivial
+  - Update_Xt.trivial
+  - make_Xpar.trivial
+  - create_Xpar_trivial
+  - make_Xinits.trivial
+  - make_X_indices.trivial
+  - parse_Xorbits.trivial
+  - get_Xinits.trivial
+  - update_Xinits.trivial
 - subtitle: hMoI
   desc: |
     Specialized methods for a hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
@@ -1073,25 +1075,25 @@ reference:
   - get_f.basicM
   - get_f.si
   - get_f.sei
-  - get_f.trace
+  - get_f.trivial
   - get_q
   - get_q.RM
   - get_q.basicM
   - get_q.si
   - get_q.sei
-  - get_q.trace
+  - get_q.trivial
   - get_g
   - get_g.RM
   - get_g.basicM
   - get_g.si
   - get_g.sei
-  - get_g.trace
+  - get_g.trivial
   - get_sigma
   - get_sigma.RM
   - get_sigma.basicM
   - get_sigma.si
   - get_sigma.sei
-  - get_sigma.trace
+  - get_sigma.trivial
   - make_outputs
   - make_outputs.full
   - make_outputs.mosy
@@ -1099,3 +1101,4 @@ reference:
   - make_outputs.cohort
   - make_outputs.human
   - get_terms
+  - get_EIR

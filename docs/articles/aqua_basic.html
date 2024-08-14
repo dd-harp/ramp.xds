@@ -50,6 +50,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/GettingStarted.html">Getting Started with **`ramp.xds`**</a>
+    </li>
+    <li>
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
@@ -107,7 +110,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -178,7 +181,7 @@ mature at some rate <span class="math inline">\(\psi\)</span>.</p>
 <p>Given <span class="math inline">\(\Lambda\)</span> and some egg
 laying rate from the adult mosquito population we could formulate and
 solve a dynamical model of aquatic mosquitoes to give that emergence
-rate. However, in the example here we will simply use a trace-based
+rate. However, in the example here we will simply use a trivial-based
 (forced) emergence model, so that <span class="math inline">\(\Lambda\)</span> completely specifies the aquatic
 mosquitoes.</p>
 <p>The simplest model of aquatic (immature) mosquito dynamics with
@@ -239,7 +242,7 @@ fully worked example</a> to run a full simulation.</p>
 <span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">MYZm</span> <span class="op">&lt;-</span> <span class="va">eta</span><span class="op">)</span> </span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#params$Xpar[[1]]=list() </span></span>
-<span><span class="co">#class(params$Xpar[[1]]) &lt;- "trace"</span></span>
+<span><span class="co">#class(params$Xpar[[1]]) &lt;- "trivial"</span></span>
 <span><span class="co">#params$MYZpar[[1]]=list() </span></span>
 <span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">eggs_laid</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span> </span>
@@ -250,7 +253,7 @@ fully worked example</a> to run a full simulation.</p>
 <span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"basicL"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Lo</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Linits.html">make_Linits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">Lo</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_MYZpar.html">make_MYZpar</a></span><span class="op">(</span><span class="st">"trace"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZo</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_MYZpar.html">make_MYZpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZo</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -267,9 +270,9 @@ fully worked example</a> to run a full simulation.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">params</span><span class="op">$</span><span class="va">L_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'L_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">params</span><span class="op">$</span><span class="va">nHabitats</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/melt.data.table.html" class="external-link">melt</a></span><span class="op">(</span><span class="va">out</span>, id.vars <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
-<span><span class="va">out</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Component"</span>, <span class="st">"Patch"</span><span class="op">)</span> <span class="op">:=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/tstrsplit.html" class="external-link">tstrsplit</a></span><span class="op">(</span><span class="va">variable</span>, <span class="st">'_'</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/melt.data.table.html" class="external-link">melt</a></span><span class="op">(</span><span class="va">out</span>, id.vars <span class="op">=</span> <span class="st">'time'</span><span class="op">)</span></span>
+<span><span class="va">out</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Component"</span>, <span class="st">"Patch"</span><span class="op">)</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/tstrsplit.html" class="external-link">tstrsplit</a></span><span class="op">(</span><span class="va">variable</span>, <span class="st">'_'</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">out</span><span class="op">[</span>, <span class="va">variable</span> <span class="op">:=</span> <span class="cn">NULL</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">out</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">value</span>, color <span class="op">=</span> <span class="va">Patch</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -284,8 +287,8 @@ fully worked example</a> to run a full simulation.</p>
 includes only aquatic dynamics, and it is solved using
 <code>xde_solve.aqua.</code> The setup functions are simpler than
 <code>xds_setup</code> and come with constrained choices. The user can
-configure any aquatic model (<code>trace</code> wouldn’t make much
-sense), and it uses <code>trace</code> to force egg laying.</p>
+configure any aquatic model (<code>trivial</code> wouldn’t make much
+sense), and it uses <code>trivial</code> to force egg laying.</p>
 <p>We configure the aquatic model: <code>Lo</code> is a list with the
 parameter values attached.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -296,7 +299,8 @@ parameter values attached.</p>
 <span><span class="va">alpha</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="va">Lo</span><span class="op">$</span><span class="va">L</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Lo</span>, <span class="va">alpha</span><span class="op">/</span><span class="va">psi</span><span class="op">)</span> </span>
 <span><span class="va">Lo</span><span class="op">$</span><span class="va">theta</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Lo</span>, <span class="op">(</span><span class="va">eta</span> <span class="op">-</span> <span class="va">psi</span><span class="op">*</span><span class="va">L</span> <span class="op">-</span> <span class="va">phi</span><span class="op">*</span><span class="va">L</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">L</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>We use the MYZ model <code>trace</code> to configure egg laying.</p>
+<p>We use the MYZ model <code>trivial</code> to configure egg
+laying.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Mo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>MYZm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">250</span>, <span class="fl">500</span>, <span class="fl">170</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">

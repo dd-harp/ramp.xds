@@ -95,7 +95,7 @@ Each model component will have a "base" file ending in `-interface` that defines
     - `adult-GeRM.R`: the generalized Ross-Macdonald model of adult mosquito dynamics.
   * **Aquatic mosquito component**: base file `aquatic-interface.R`
     - `aquatic-basic.R`: the basic competition model of aquatic mosquito dynamics.
-    - `aquatic-trace.R`: the trace (exogenously forced) model of aquatic mosquito dynamics.
+    - `aquatic-trivial.R`: the trivial (exogenously forced) model of aquatic mosquito dynamics.
   * **Human disease component**: base file `human-interface.R`
     - `human-SIS.R`: the SIS model of human disease dynamics.
     - `human-SIP.R`: the SIP model of human disease dynamics.

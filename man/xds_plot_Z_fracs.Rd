@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-plotting.R
 \name{xds_plot_Z_fracs}
 \alias{xds_plot_Z_fracs}
-\title{Plot the fraction of infected and infective mosquitoes}
+\title{Plot the fraction infective}
 \usage{
 xds_plot_Z_fracs(
   pars,
@@ -22,10 +22,10 @@ xds_plot_Z_fracs(
 
 \item{llty}{an integer (or integers) to set the \code{lty} for plotting}
 
-\item{stable}{a logical, set to FALSE for \code{orbits} and TRUE for \code{stable_orbits}}
+\item{stable}{a logical: set to FALSE for \code{orbits} and TRUE for \code{stable_orbits}}
 
-\item{add_axes}{a logical to plot axes only if TRUE}
+\item{add_axes}{a logical: plot axes only if TRUE}
 }
 \description{
-Plot the fraction of infected and infective mosquitoes
+Plot the fraction infective
 }

@@ -9,15 +9,14 @@
 #'
 #' @export
 xds_plot_EIR <- function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
-  vars=with(pars$outputs,if(stable==TRUE){stable_orbits}else{orbits})
 
-  tm = vars$terms$time
-  EIR = vars$terms$eir[[i]]
+  tm = pars$outputs$time
+  EIR = get_EIR(pars, i)
   if(add_axes==TRUE){
       plot(tm, EIR, type = "n",
            xlab = "Time", ylab = "dEIR", ylim = range(0, EIR))
   }
-  xds_lines_EIR(tm, EIR, pars$Hpar[[i]]$nStrata, clrs, llty)
+  xds_lines_EIR(tm, EIR, pars$nStrata[i], clrs, llty)
 }
 
 #' Add lines for the EIR *vs.* time
@@ -93,15 +92,14 @@ xds_lines_aEIR <- function(tm, EIR, nStrata, clrs="black", llty=1){
 #'
 #' @export
 xds_plot_PR = function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
-  vars=with(pars$outputs,if(stable==TRUE){stable_orbits}else{orbits})
 
-  tm = vars$terms$time
+  tm = pars$outputs$time
   if(add_axes==TRUE){
     plot(tm, 0*tm + 1, type = "n", ylim = c(0,1),
          ylab = "Prevalence", xlab = "Time")
   }
 
-  xds_lines_PR(tm, vars$terms$pr[[i]], pars$Hpar[[i]]$nStrata, clrs, llty)
+  xds_lines_PR(tm, pars$outputs$orbits$XH[[1]]$true_pr, pars$nStrata[i], clrs, llty)
 }
 
 #' Add lines for the prevalence / parasite rate (PR) from a model of human infection and immunity

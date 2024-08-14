@@ -1,4 +1,4 @@
-pandoc: 3.1.11
+pandoc: 3.1.1
 pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
@@ -8,6 +8,7 @@ articles:
   Contributing: Contributing.html
   environmental_heterogeneity: environmental_heterogeneity.html
   ex_534: ex_534.html
+  GettingStarted: GettingStarted.html
   heterogeneous_biting: heterogeneous_biting.html
   heterogeneous_mixing: heterogeneous_mixing.html
   heterogeneous_transmission: heterogeneous_transmission.html
@@ -22,7 +23,7 @@ articles:
   spat_metric: spat_metric.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   vc_lemenach: vc_lemenach.html
-last_built: 2024-08-10T00:08Z
+last_built: 2024-08-13T23:56Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

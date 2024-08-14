@@ -297,8 +297,9 @@ F_pr_by_pcr.SIP <- function(vars, Xpar) {
 #'
 #' @inheritParams xds_plot_X
 #' @export
-xds_plot_X.SIP = function(pars, i=1, clrs=c("darkblue", "darkred", "darkgreen"), llty=1, stable=FALSE, add_axes=TRUE){
-  vars=with(pars$outputs,if(stable==TRUE){stable_orbits}else{orbits})
+xds_plot_X.SIP = function(pars, i=1, clrs=c("darkblue", "darkred", "darkgreen"), llty=1, add_axes=TRUE){
+  vars = pars$outputs$orbits
+  time = pars$outputs$time
 
   if(add_axes==TRUE)
     with(vars$XH[[i]],

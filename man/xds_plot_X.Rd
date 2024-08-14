@@ -4,14 +4,7 @@
 \alias{xds_plot_X}
 \title{Basic plotting for epidemiological models}
 \usage{
-xds_plot_X(
-  pars,
-  i = 1,
-  clrs = "black",
-  llty = 1,
-  stable = FALSE,
-  add_axes = TRUE
-)
+xds_plot_X(pars, i = 1, clrs = "black", llty = 1, add_axes = TRUE)
 }
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}
@@ -21,8 +14,6 @@ xds_plot_X(
 \item{clrs}{a vector of colors}
 
 \item{llty}{an integer (or integers) to set the \code{lty} for plotting}
-
-\item{stable}{a logical: set to FALSE for \code{orbits} and TRUE for \code{stable_orbits}}
 
 \item{add_axes}{a logical: plot axes only if TRUE}
 }

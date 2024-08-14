@@ -4,7 +4,7 @@ library(deSolve)
 
 numeric_tol <- 1e-5
 
-test_that("test equilibrium with RM adults (DDE), hMoI humans, trace", {
+test_that("test equilibrium with RM adults (DDE), hMoI humans, trivial", {
 
   # set number of patches and strata
   nPatches <- 2
@@ -94,7 +94,7 @@ test_that("test equilibrium with RM adults (DDE), hMoI humans, trace", {
   Lo = list(Lambda=Lambda)
 
   # parameters for exDE
-  params <- xds_setup(MYZname = "RM", MYZopts=MYZo, Lname = "trace", Lopts=Lo, TimeSpent = TaR, calK=calK,
+  params <- xds_setup(MYZname = "RM", MYZopts=MYZo, Lname = "trivial", Lopts=Lo, TimeSpent = TaR, calK=calK,
                       Xname = "hMoI", Xopts=Xo, HPop=H, membership=membership, nPatches=nPatches, residence=residence)
 
 

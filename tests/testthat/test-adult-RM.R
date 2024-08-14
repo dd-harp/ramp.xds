@@ -45,7 +45,7 @@ test_that("RM models reach equilibrium", {
   MYZo$Y=Y_eq
   MYZo$Z=Z_eq
 
-  params <- xds_setup(MYZname= "RM", Xname = "trace", Lname = "trace", nPatches=nPatches, membership = c(1:nPatches), Xopts=Xo, MYZopts=MYZo, Lopts=Lo, calK = calK)
+  params <- xds_setup(MYZname= "RM", Xname = "trivial", Lname = "trivial", nPatches=nPatches, membership = c(1:nPatches), Xopts=Xo, MYZopts=MYZo, Lopts=Lo, calK = calK)
 
   params$Lambda[[1]] = Lambda
   params$kappa[[1]] = kappa

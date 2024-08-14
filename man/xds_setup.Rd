@@ -9,7 +9,7 @@ xds_setup(
   dlay = "ode",
   MYZname = "RM",
   Xname = "SIS",
-  Lname = "trace",
+  Lname = "trivial",
   nPatches = 1,
   membership = 1,
   residence = 1,

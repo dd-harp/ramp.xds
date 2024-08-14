@@ -50,6 +50,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/GettingStarted.html">Getting Started with **`ramp.xds`**</a>
+    </li>
+    <li>
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
@@ -107,7 +110,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -377,7 +380,7 @@ additional authors, or to add additional packages to
 running <a href="https://roxygen2.r-lib.org/" class="external-link">roxygen2</a> to build
 documentation for the package, it tells R what functions are exported by
 this package into a user’s R session when the load <strong>exDE</strong>
-with <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(exDE)</a></code>. It should never be modified by
+with <code><a href="https://dd-harp.github.io/exDE/" class="external-link">library(exDE)</a></code>. It should never be modified by
 hand.</li>
 <li>
 <code>NEWS.md</code>: the NEWS page on the package’s <a href="https://cran.r-project.org/package=exDE" class="external-link">CRAN page</a> as well as
@@ -460,8 +463,8 @@ adult mosquito dynamics.</li>
 <code>aquatic-basic.R</code>: the basic competition model of aquatic
 mosquito dynamics.</li>
 <li>
-<code>aquatic-trace.R</code>: the trace (exogenously forced) model
-of aquatic mosquito dynamics.</li>
+<code>aquatic-trivial.R</code>: the trivial (exogenously forced)
+model of aquatic mosquito dynamics.</li>
 </ul>
 </li>
 <li>
@@ -578,7 +581,7 @@ RStudio, Build -&gt; Document (control/command + shift + D) re-documents
 the package and Build -&gt; Install Package (control/command + shift +
 B) re-installs the package. Without doing this your package
 <code>NAMESPACE</code> file may not include your changes, and
-<code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(exDE)</a></code> will not be using the most recent version of
+<code><a href="https://dd-harp.github.io/exDE/" class="external-link">library(exDE)</a></code> will not be using the most recent version of
 your code.</p>
 <div class="section level3">
 <h3 id="testthat">testthat<a class="anchor" aria-label="anchor" href="#testthat"></a>

@@ -32,6 +32,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/GettingStarted.html">Getting Started with **`ramp.xds`**</a>
+    </li>
+    <li>
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
@@ -85,7 +88,7 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -253,7 +256,7 @@
           <p class="section-desc"></p><p>Models available in <strong><code>ramp.xds</code></strong> for human/host infection and immunity</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="dXdt.trace.html">dXdt(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="dXdt.trivial.html">dXdt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for human population</p></td>
       </tr><tr><td>
@@ -277,7 +280,7 @@
           <p class="section-desc"></p><p>Models available in <strong><code>ramp.xds</code></strong> for adult mosquito ecology and infection dynamics</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="dMYZdt.trace.html">dMYZdt(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="dMYZdt.trivial.html">dMYZdt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
@@ -301,7 +304,7 @@
           <p class="section-desc"></p><p>Models available in <strong><code>ramp.xds</code></strong> for the ecology of immature mosquitoes in aquatic habitats</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="dLdt.trace.html">dLdt(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="dLdt.trivial.html">dLdt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
@@ -819,7 +822,7 @@
       </tr><tr><td>
           <p><code><a href="xds_plot_Z_fracs.html">xds_plot_Z_fracs()</a></code> </p>
         </td>
-        <td><p>Plot the fraction of infected and infective mosquitoes</p></td>
+        <td><p>Plot the fraction infective</p></td>
       </tr><tr><td>
           <p><code><a href="xds_lines_Z_fracs.html">xds_lines_Z_fracs()</a></code> </p>
         </td>
@@ -917,61 +920,61 @@
         </td>
         <td><p>Set up a fixedlag_dts model for the EIP</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="trace">trace <a href="#trace" class="anchor" aria-hidden="true"></a></h3>
+          <h3 id="trivial">trivial <a href="#trivial" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for NULL dynamics: a funtion generates values for F_eggs or F_fqZ or F_fqM</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="F_fqZ.trace.html">F_fqZ(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_fqZ.trivial.html">F_fqZ(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Blood feeding rate of the infective mosquito population</p></td>
       </tr><tr><td>
-          <p><code><a href="F_fqM.trace.html">F_fqM(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_fqM.trivial.html">F_fqM(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Blood feeding rate of the infective mosquito population</p></td>
       </tr><tr><td>
-          <p><code><a href="F_eggs.trace.html">F_eggs(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_eggs.trivial.html">F_eggs(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Number of eggs laid by adult mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="dMYZdt.trace.html">dMYZdt(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="dMYZdt.trivial.html">dMYZdt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_MYZt.trace.html">Update_MYZt(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="Update_MYZt.trivial.html">Update_MYZt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="make_MYZpar.trace.html">make_MYZpar(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="make_MYZpar.trivial.html">make_MYZpar(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Setup the trace</p></td>
+        <td><p>Setup the trivial</p></td>
       </tr><tr><td>
-          <p><code><a href="create_MYZpar_trace.html">create_MYZpar_trace()</a></code> </p>
+          <p><code><a href="create_MYZpar_trivial.html">create_MYZpar_trivial()</a></code> </p>
         </td>
-        <td><p>Make parameters for trace aquatic mosquito model</p></td>
+        <td><p>Make parameters for trivial aquatic mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_steady_state_MYZ.trace.html">xde_steady_state_MYZ(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="xde_steady_state_MYZ.trivial.html">xde_steady_state_MYZ(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Steady States: MYZ-trace</p></td>
+        <td><p>Steady States: MYZ-trivial</p></td>
       </tr><tr><td>
-          <p><code><a href="make_MYZinits.trace.html">make_MYZinits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="make_MYZinits.trivial.html">make_MYZinits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Setup the trace model</p></td>
+        <td><p>Setup the trivial model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.trace.html">make_indices_MYZ(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="make_indices_MYZ.trivial.html">make_indices_MYZ(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for aquatic stage mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_MYZorbits.trace.html">parse_MYZorbits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_MYZorbits.trivial.html">parse_MYZorbits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Parse the output of deSolve and return variables for the trace model</p></td>
+        <td><p>Parse the output of deSolve and return variables for the trivial model</p></td>
       </tr><tr><td>
-          <p><code><a href="get_MYZinits.trace.html">get_MYZinits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="get_MYZinits.trivial.html">get_MYZinits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Return initial values as a vector</p></td>
       </tr><tr><td>
-          <p><code><a href="update_MYZinits.trace.html">update_MYZinits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="update_MYZinits.trivial.html">update_MYZinits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Update inits for trace</p></td>
+        <td><p>Update inits for trivial</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="basicm">basicM <a href="#basicm" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.</p>
@@ -1337,59 +1340,59 @@
         </td>
         <td><p>Set the initial values from a vector of model states</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="trace">trace <a href="#trace" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Specialized methods for the exogeneously forced trace model of aquatic mosquito dynamics.</p>
+          <h3 id="trivial">trivial <a href="#trivial" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Specialized methods for the exogeneously forced trivial model of aquatic mosquito dynamics.</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="LBionomics.trace.html">LBionomics(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="LBionomics.trivial.html">LBionomics(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Reset aquatic parameters to baseline</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_steady_state_L.trace.html">xde_steady_state_L(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="xde_steady_state_L.trivial.html">xde_steady_state_L(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute the steady state as a function of the egg deposition rate eta</p></td>
       </tr><tr><td>
-          <p><code><a href="F_emerge.trace.html">F_emerge(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_emerge.trivial.html">F_emerge(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Number of newly emerging adults from each larval habitat</p></td>
       </tr><tr><td>
-          <p><code><a href="dLdt.trace.html">dLdt(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="dLdt.trivial.html">dLdt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_Lt.trace.html">Update_Lt(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="Update_Lt.trivial.html">Update_Lt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="make_Lpar.trace.html">make_Lpar(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="make_Lpar.trivial.html">make_Lpar(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>xde_setup Lpar for the trace model</p></td>
+        <td><p>xde_setup Lpar for the trivial model</p></td>
       </tr><tr><td>
-          <p><code><a href="create_Lpar_trace.html">create_Lpar_trace()</a></code> </p>
+          <p><code><a href="create_Lpar_trivial.html">create_Lpar_trivial()</a></code> </p>
         </td>
-        <td><p>Make parameters for trace aquatic mosquito model</p></td>
+        <td><p>Make parameters for trivial aquatic mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_Linits.trace.html">make_Linits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="make_Linits.trivial.html">make_Linits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Setup \(\cal L\)-trace</p></td>
+        <td><p>Setup \(\cal L\)-trivial</p></td>
       </tr><tr><td>
-          <p><code><a href="list_Lvars.trace.html">list_Lvars(<i>&lt;trace&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Return the variables as a list</p></td>
-      </tr><tr><td>
-          <p><code><a href="put_Lvars.trace.html">put_Lvars(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="list_Lvars.trivial.html">list_Lvars(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Return the variables as a list</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_L.trace.html">make_indices_L(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="put_Lvars.trivial.html">put_Lvars(<i>&lt;trivial&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Return the variables as a list</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_indices_L.trivial.html">make_indices_L(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for aquatic stage mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_Lorbits.trace.html">parse_Lorbits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_Lorbits.trivial.html">parse_Lorbits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Parse the variable names for the trace model</p></td>
+        <td><p>Parse the variable names for the trivial model</p></td>
       </tr><tr><td>
-          <p><code><a href="update_Linits.trace.html">update_Linits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="update_Linits.trivial.html">update_Linits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Update inits for the basic aquatic mosquito competition model</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
@@ -1669,77 +1672,77 @@
         </td>
         <td><p>Compute the steady states as a function of the daily EIR</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="trace">trace <a href="#trace" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Specialized methods for a human trace model to pass kappa as a parameter</p>
+          <h3 id="trivial">trivial <a href="#trivial" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Specialized methods for a human trivial model to pass kappa as a parameter</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="F_X.trace.html">F_X(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_X.trivial.html">F_X(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Size of effective infectious human population</p></td>
       </tr><tr><td>
-          <p><code><a href="F_H.trace.html">F_H(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_H.trivial.html">F_H(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Size of the human population</p></td>
       </tr><tr><td>
-          <p><code><a href="F_pr.trace.html">F_pr(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_pr.trivial.html">F_pr(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute the "true" prevalence of infection / parasite rate</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_steady_state_X.trace.html">xde_steady_state_X(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="xde_steady_state_X.trivial.html">xde_steady_state_X(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Compute the steady states for the trace model as a function of the daily EIR</p></td>
+        <td><p>Compute the steady states for the trivial model as a function of the daily EIR</p></td>
       </tr><tr><td>
-          <p><code><a href="F_pr_by_lm.trace.html">F_pr_by_lm(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_pr_by_lm.trivial.html">F_pr_by_lm(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute the prevalence of infection by light microscopy</p></td>
       </tr><tr><td>
-          <p><code><a href="F_pr_by_rdt.trace.html">F_pr_by_rdt(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_pr_by_rdt.trivial.html">F_pr_by_rdt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute the prevalence of infection by RDT</p></td>
       </tr><tr><td>
-          <p><code><a href="F_pr_by_pcr.trace.html">F_pr_by_pcr(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_pr_by_pcr.trivial.html">F_pr_by_pcr(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute the prevalence of infection by PCR</p></td>
       </tr><tr><td>
-          <p><code><a href="F_b.trace.html">F_b(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="F_b.trivial.html">F_b(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Infection blocking pre-erythrocytic immunity</p></td>
       </tr><tr><td>
-          <p><code><a href="dXdt.trace.html">dXdt(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="dXdt.trivial.html">dXdt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for human population</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_Xt.trace.html">Update_Xt(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="Update_Xt.trivial.html">Update_Xt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for human population</p></td>
       </tr><tr><td>
-          <p><code><a href="make_Xpar.trace.html">make_Xpar(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="make_Xpar.trivial.html">make_Xpar(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>xde_setup Xpar.trace</p></td>
+        <td><p>xde_setup Xpar.trivial</p></td>
       </tr><tr><td>
-          <p><code><a href="create_Xpar_trace.html">create_Xpar_trace()</a></code> </p>
+          <p><code><a href="create_Xpar_trivial.html">create_Xpar_trivial()</a></code> </p>
         </td>
-        <td><p>Make parameters for trace human model</p></td>
+        <td><p>Make parameters for trivial human model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_Xinits.trace.html">make_Xinits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="make_Xinits.trivial.html">make_Xinits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Setup Xinits.trace</p></td>
+        <td><p>Setup Xinits.trivial</p></td>
       </tr><tr><td>
-          <p><code><a href="make_X_indices.trace.html">make_X_indices(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="make_X_indices.trivial.html">make_X_indices(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for human population to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_Xorbits.trace.html">parse_Xorbits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_Xorbits.trivial.html">parse_Xorbits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Parse the output of deSolve and return variables for the trace model</p></td>
+        <td><p>Parse the output of deSolve and return variables for the trivial model</p></td>
       </tr><tr><td>
-          <p><code><a href="get_Xinits.trace.html">get_Xinits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="get_Xinits.trivial.html">get_Xinits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Return initial values as a vector</p></td>
       </tr><tr><td>
-          <p><code><a href="update_Xinits.trace.html">update_Xinits(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="update_Xinits.trivial.html">update_Xinits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Update inits for the trace human model from a vector of states</p></td>
+        <td><p>Update inits for the trivial human model from a vector of states</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="hmoi">hMoI <a href="#hmoi" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for a hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.</p>
@@ -3261,7 +3264,7 @@
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
-          <p><code><a href="get_f.trace.html">get_f(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="get_f.trivial.html">get_f(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
@@ -3285,7 +3288,7 @@
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
-          <p><code><a href="get_q.trace.html">get_q(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="get_q.trivial.html">get_q(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
@@ -3309,7 +3312,7 @@
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
-          <p><code><a href="get_g.trace.html">get_g(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="get_g.trivial.html">get_g(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
@@ -3333,7 +3336,7 @@
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
-          <p><code><a href="get_sigma.trace.html">get_sigma(<i>&lt;trace&gt;</i>)</a></code> </p>
+          <p><code><a href="get_sigma.trivial.html">get_sigma(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
@@ -3364,6 +3367,10 @@
           <p><code><a href="get_terms.html">get_terms()</a></code> </p>
         </td>
         <td><p>Compute dynamical terms</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_EIR.html">get_EIR()</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

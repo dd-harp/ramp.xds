@@ -13,6 +13,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/articles/Contributing.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/articles/History.html</loc>
   </url>
   <url>
@@ -265,6 +268,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_H.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_H.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_H.xds_obj.html</loc>
   </url>
   <url>
@@ -272,6 +278,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_X.SEISd.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_X.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_ar.html</loc>
@@ -304,6 +313,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_b.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_b.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_calK.html</loc>
   </url>
   <url>
@@ -331,6 +343,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_eggs.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_eggs.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_eip.fixedlag_dts.html</loc>
   </url>
   <url>
@@ -347,6 +362,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_emerge.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_emerge.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_f.html</loc>
@@ -388,6 +406,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_fqM.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_fqM.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_fqZ.RM.html</loc>
   </url>
   <url>
@@ -407,6 +428,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_fqZ.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_fqZ.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_g.html</loc>
@@ -472,6 +496,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr_by_lm.SEIS.html</loc>
   </url>
   <url>
@@ -491,6 +518,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr_by_lm.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr_by_lm.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr_by_pcr.SEIS.html</loc>
@@ -514,6 +544,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr_by_pcr.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr_by_pcr.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr_by_rdt.SEIS.html</loc>
   </url>
   <url>
@@ -533,6 +566,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr_by_rdt.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/F_pr_by_rdt.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/F_q.dynamic.html</loc>
@@ -632,6 +668,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/LSM_EffectSizes.html</loc>
@@ -799,6 +838,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/Update_Lt.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/Update_Lt.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/Update_MYZt.RM.html</loc>
   </url>
   <url>
@@ -820,6 +862,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/Update_MYZt.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/Update_MYZt.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/Update_Xt.SEIS.html</loc>
   </url>
   <url>
@@ -836,6 +881,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/Update_Xt.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/Update_Xt.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/UseBedNet.html</loc>
@@ -1054,6 +1102,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/create_Lpar_trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/create_Lpar_trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/create_MYZinits_RM.html</loc>
   </url>
   <url>
@@ -1076,6 +1127,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/create_MYZpar_trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/create_MYZpar_trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/create_TimeSpent_athome.html</loc>
@@ -1117,6 +1171,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/create_Xpar_trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/create_Xpar_trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/create_calK_herethere.html</loc>
   </url>
   <url>
@@ -1144,6 +1201,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/dLdt.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dLdt.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dMYZdt.RM.html</loc>
   </url>
   <url>
@@ -1160,6 +1220,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dMYZdt.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dMYZdt.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dXdt.SEIS.html</loc>
@@ -1181,6 +1244,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dXdt.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/dXdt.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/d_F_eip_dt.html</loc>
@@ -1267,6 +1333,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/fqZ2eir.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_EIR.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_H.html</loc>
   </url>
   <url>
@@ -1300,6 +1369,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_MYZinits.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_MYZinits.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_Omega.html</loc>
   </url>
   <url>
@@ -1327,6 +1399,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_Xinits.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_Xinits.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_bionomics.html</loc>
   </url>
   <url>
@@ -1351,6 +1426,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_f.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_f.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_ft.html</loc>
   </url>
   <url>
@@ -1370,6 +1448,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_g.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_g.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_inits.html</loc>
@@ -1396,6 +1477,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_q.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_q.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_qt.html</loc>
   </url>
   <url>
@@ -1417,6 +1501,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/get_terms.html</loc>
   </url>
   <url>
@@ -1433,6 +1520,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/list_Lvars.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/list_Lvars.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/list_MYZvars.RM.html</loc>
@@ -1486,6 +1576,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_Linits.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_Linits.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_Lpar.basicL.html</loc>
   </url>
   <url>
@@ -1493,6 +1586,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_Lpar.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_Lpar.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_MYZinits.RM.html</loc>
@@ -1516,6 +1612,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_MYZinits.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_MYZinits.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_MYZpar.RM.html</loc>
   </url>
   <url>
@@ -1532,6 +1631,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_MYZpar.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_MYZpar.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_MYZprobs.dts.html</loc>
@@ -1597,6 +1699,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_X_indices.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_X_indices.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_Xinits.SEIS.html</loc>
   </url>
   <url>
@@ -1618,6 +1723,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_Xinits.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_Xinits.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_Xpar.SEIS.html</loc>
   </url>
   <url>
@@ -1637,6 +1745,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_Xpar.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_Xpar.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_beta.html</loc>
@@ -1672,6 +1783,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_L.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_L.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_MYZ.RM.html</loc>
   </url>
   <url>
@@ -1691,6 +1805,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_MYZ.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_MYZ.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/make_kappa.html</loc>
@@ -1756,6 +1873,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/parse_Lorbits.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/parse_Lorbits.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/parse_MYZorbits.RM.html</loc>
   </url>
   <url>
@@ -1777,6 +1897,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/parse_MYZorbits.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/parse_MYZorbits.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/parse_Xorbits.SEIS.html</loc>
   </url>
   <url>
@@ -1796,6 +1919,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/parse_Xorbits.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/parse_Xorbits.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/parse_orbits.html</loc>
@@ -1865,6 +1991,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/put_Lvars.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/put_Lvars.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/put_MYZvars.RM_dts.html</loc>
@@ -2146,6 +2275,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_Linits.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/update_Linits.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_MYZinits.RM.html</loc>
   </url>
   <url>
@@ -2165,6 +2297,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_MYZinits.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/update_MYZinits.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_MYZpar_RM.html</loc>
@@ -2204,6 +2339,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_Xinits.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/update_Xinits.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_inits.html</loc>
@@ -2263,6 +2401,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_steady_state_L.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_steady_state_L.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_steady_state_M.basicM.html</loc>
   </url>
   <url>
@@ -2284,6 +2425,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_steady_state_MYZ.trace.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_steady_state_MYZ.trivial.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_steady_state_X.SEIS.html</loc>
   </url>
   <url>
@@ -2303,6 +2447,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_steady_state_X.trace.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_steady_state_X.trivial.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_steady_state_XH.html</loc>

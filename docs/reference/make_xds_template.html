@@ -34,6 +34,9 @@ to set up and solve systems of differential equations using ramp.xds"><!-- mathj
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/GettingStarted.html">Getting Started with **`ramp.xds`**</a>
+    </li>
+    <li>
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
@@ -87,7 +90,7 @@ to set up and solve systems of differential equations using ramp.xds"><!-- mathj
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -190,7 +193,7 @@ specifying the dynamical components or any advanced features.</p>
 <p>First, the function sets up some short text strings (assigned to the same <code>S3</code> class)
 to dispatch various <strong>cases</strong> of of various <code>S3</code> functions:</p><ul><li><p><strong><code>xds</code></strong> is either "xde" for differential equations or "dts" for difference equations;</p></li>
 <li><p><strong><code>frame</code></strong> is one of several cases:</p><ul><li><p>"full" includes all three dynamical components: a human/host dynamical component, \(\cal XH\); and adult mosquito dynamical component, \(\cal MYZ\); and an aquatic mosquito dynamical component, \(\cal L\).
-in some form (possible the trace case) (see <code><a href="xds_setup.html">xds_setup()</a></code>)</p></li>
+in some form (possibly the trivial case) (see <code><a href="xds_setup.html">xds_setup()</a></code>)</p></li>
 <li><p>"mozy" is for mosquito ecology models (see <code><a href="xds_setup_mosy.html">xds_setup_mosy()</a></code>), including models without pathogen infection dynamics in mosquitoes</p></li>
 <li><p>"aquatic" is for aquatic mosquito ecology models (see <code><a href="xds_setup_mosy.html">xds_setup_mosy()</a></code>), forced by a function describing egg laying</p></li>
 <li><p>"human" is for human/host infection dynamics(see <code><a href="xds_setup_human.html">xds_setup_human()</a></code>), forced by the infective density of adult mosquitoes, \(fqZ\)</p></li>
