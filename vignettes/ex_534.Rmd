@@ -508,17 +508,28 @@ Now we can get the initial conditions of the model.
 
 ```{r}
 params <- make_indices(params)
-y0 = get_inits(params)
-y0
 ```
 
 ## Numerical Solution
 
 Now we can pass the vector of initial conditions, `y`, our parameter list `params`, and the function `ramp.xds::xde_derivatives` to the differential equation solvers in `deSolve::ode` to generate a numerical trajectory. The classes of `Xpar`, `MYZpar`, and `Lpar` in `params` will ensure that the right methods are invoked (dispatched) to solve your model.
 
+We need to get the stored initial values, but by default these are returned as a named list, to make it easy to examine. 
 
 ```{r}
-out <- deSolve::dede(y = as.vector(unlist(y0)), times = seq(0, 735, by =15),
+y0 <- get_inits(params)
+names(y0)
+```
+
+We want to pass an unnamed vector to the solver so: 
+
+```{r}
+y0 = get_inits(params, flatten=TRUE)
+```
+
+
+```{r}
+out <- deSolve::dede(y = y0, times = seq(0, 735, by =15),
                     func = xde_derivatives, parms = params)
 out1 <- out
 ```
@@ -590,6 +601,8 @@ xds_setup(dlay='dde',
   residence=c(2,2,3,3), searchB=searchWtsH, 
   TimeSpent=TaR, searchQ = c(7,2,1,8,2)) -> mod534
 ```
+
+
 
 We solve and take the differences to check: 
 

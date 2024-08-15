@@ -4,7 +4,7 @@
 \alias{update_Xinits.SIS}
 \title{Update inits for the SIS xde human model from a vector of states}
 \usage{
-\method{update_Xinits}{SIS}(pars, y0, i)
+\method{update_Xinits}{SIS}(pars, y0, i = 1)
 }
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}

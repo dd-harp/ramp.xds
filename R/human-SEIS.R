@@ -298,47 +298,37 @@ F_pr_by_pcr.SEIS <- function(vars, Xpar) {
   return(pr)
 }
 
+
 #' Plot the density of infected individuals for the SEIS model
 #'
 #' @inheritParams xds_plot_X
 #' @export
 xds_plot_X.SEIS = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, add_axes=TRUE){
-  vars = pars$outputs$orbits
+  XH = pars$outputs$orbits$XH[[i]]
   time = pars$outputs$time
 
   if(add_axes==TRUE)
-    with(vars$XH[[i]],
-         plot(time, 0*time, type = "n", ylim = c(0, max(H)),
-              ylab = "# Infected", xlab = "Time"))
+    plot(time, 0*time, type = "n", ylim = c(0, max(XH$H)),
+         ylab = "# Infected", xlab = "Time")
 
-
-  add_lines_X_SEIS(vars$XH[[i]], pars$nStrata[i], clrs, llty)
+  add_lines_X_SIS(time, XH, pars$nStrata[i], clrs, llty)
 }
 
 #' Add lines for the density of infected individuals for the SEIS model
 #'
+#' @param time time points for the observations
 #' @param XH a list with the outputs of parse_Xorbits_SEIS
 #' @param nStrata the number of population strata
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
 #' @export
-add_lines_X_SEIS = function(XH, nStrata, clrs=c("darkblue","darkred"), llty=1){
+add_lines_X_SEIS = function(time, XH, nStrata, clrs=c("darkblue","darkred"), llty=1){
   with(XH,{
-    if(nStrata==1) {
-      lines(time, S+E, col=clrs[1], lty = llty[1])
-      lines(time, I, col=clrs[2], lty = llty[1])
-    }
-    if(nStrata>1){
-      if (length(clrs)==2) clrs=matrix(clrs, 2, nStrata)
-      if (length(llty)==1) llty=rep(llty, nStrata)
-
-      for(i in 1:nStrata){
-        lines(time, S[,i]+E[,i], col=clrs[1,i], lty = llty[i])
-        lines(time, I[,i], col=clrs[2,i], lty = llty[i])
-      }
-    }
-  })}
+    lines(time, S+E, col=clrs[1], lty = llty)
+    lines(time, I, col=clrs[2], lty = llty)
+  })
+}
 
 #' @title Compute the steady states for the SEIS model as a function of the daily EIR
 #' @description Compute the steady state of the SEIS model as a function of the daily eir.
