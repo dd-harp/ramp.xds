@@ -4,10 +4,12 @@
 \alias{add_lines_X_SIS}
 \title{Add lines for the density of infected individuals for the SIS model}
 \usage{
-add_lines_X_SIS(XH, nStrata, clrs = c("darkblue", "darkred"), llty = 1)
+add_lines_X_SIS(time, XH, nStrata, clrs = c("darkblue", "darkred"), llty = 1)
 }
 \arguments{
-\item{XH}{a list with the outputs of parse_Xorbits_SIS}
+\item{time}{time points for the observations}
+
+\item{XH}{parsed outputs, from parse_Xorbits_SIS}
 
 \item{nStrata}{the number of population strata}
 

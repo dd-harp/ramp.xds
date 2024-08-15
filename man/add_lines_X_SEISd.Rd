@@ -4,9 +4,11 @@
 \alias{add_lines_X_SEISd}
 \title{Add lines for the density of infected individuals for the SEISd model}
 \usage{
-add_lines_X_SEISd(XH, nStrata, clrs = c("darkblue", "darkred"), llty = 1)
+add_lines_X_SEISd(time, XH, nStrata, clrs = c("darkblue", "darkred"), llty = 1)
 }
 \arguments{
+\item{time}{time points for the observations}
+
 \item{XH}{a list with the outputs of parse_Xorbits_SEISd}
 
 \item{nStrata}{the number of population strata}

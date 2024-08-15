@@ -207,7 +207,7 @@ make_X_indices.SIS <- function(pars, i) {with(pars,{
 #' @inheritParams update_Xinits
 #' @return an `xds` object
 #' @export
-update_Xinits.SIS <- function(pars, y0, i) {
+update_Xinits.SIS <- function(pars, y0, i=1) {
   with(list_Xvars(y0, pars, i),{
     pars$Xinits[[i]]$S = S
     pars$Xinits[[i]]$I = I
@@ -285,42 +285,31 @@ F_pr_by_pcr.SIS <- function(vars, Xpar) {
 #' @inheritParams xds_plot_X
 #' @export
 xds_plot_X.SIS = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, add_axes=TRUE){
-  vars = pars$outputs$orbits
+  XH = pars$outputs$orbits$XH[[i]]
   time = pars$outputs$time
 
   if(add_axes==TRUE)
-    with(vars$XH[[i]],
-         plot(time, 0*time, type = "n", ylim = c(0, max(H)),
-              ylab = "# Infected", xlab = "Time"))
+    plot(time, 0*time, type = "n", ylim = c(0, max(XH$H)),
+         ylab = "# Infected", xlab = "Time")
 
-
-  add_lines_X_SIS(vars$XH[[i]], pars$nStrata[i], clrs, llty)
+  add_lines_X_SIS(time, XH, pars$nStrata[i], clrs, llty)
 }
 
 #' Add lines for the density of infected individuals for the SIS model
 #'
-#' @param XH a list with the outputs of parse_Xorbits_SIS
+#' @param time time points for the observations
+#' @param XH parsed outputs, from parse_Xorbits_SIS
 #' @param nStrata the number of population strata
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
 #' @export
-add_lines_X_SIS = function(XH, nStrata, clrs=c("darkblue","darkred"), llty=1){
+add_lines_X_SIS = function(time, XH, nStrata, clrs=c("darkblue","darkred"), llty=1){
   with(XH,{
-    if(nStrata==1) {
-      lines(time, S, col=clrs[1], lty = llty[1])
-      lines(time, I, col=clrs[2], lty = llty[1])
-    }
-    if(nStrata>1){
-      if (length(clrs)==2) clrs=matrix(clrs, 2, nStrata)
-      if (length(llty)==1) llty=rep(llty, nStrata)
-
-      for(i in 1:nStrata){
-        lines(time, S[,i], col=clrs[1,i], lty = llty[i])
-        lines(time, I[,i], col=clrs[2,i], lty = llty[i])
-      }
-    }
-  })}
+      lines(time, S, col=clrs[1], lty = llty)
+      lines(time, I, col=clrs[2], lty = llty)
+    })
+}
 
 #' @title Compute the HTC for the SIS model
 #' @description Implements [HTC] for the SIS model with demography.
