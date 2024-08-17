@@ -1,0 +1,81 @@
+---
+title: "Working with Models in `ramp.xds`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Working with Models in `ramp.xds`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# 
+
+**`ramp.xds`** was designed to reduce the costs of model building and computation for malaria and other mosquito-transmitted pathogens. This vignette discusses how to work with models: 
+
++ Solving and Outputs
+
++ Initial Values
+
++ Changing Parameters 
+
++ Analysis 
+
+
+Also see 
+
++ [Getting Started](GettingStarted.html)
+
++ [Understanding](Understanding_ramp.xds.html)
+
+## Modifying Models
+
+**`ramp.xds`** has built-in utilities to make it easy to work with the models, including functions to visualize the outputs, to examine and change initial values and parameters, and to analyze the models. 
+
+The **`xds` model object** -- any object that can be solved by `xde_solve` or `dts_solve` -- is a compound list in R. If you know what you're doing, it's easy enough to examine or change any of the parameter values or inital conditions. That might be the way to go in the long run, but at the start, the **`xds` model object** might be hard to understand. Some functions provided make it easy to take a peak at some part of the model, and the code and documentation is designed to be instructive.  
+
+
+Changing the *structure* of a model is more difficult, so these are dealt with in separate vignettes. Structural changes include:
+
+- changing the number of population strata
+
+- changing the number of patches
+
+- adding or removing aquatic habitats 
+
+- adding vertebrate host species 
+
+- adding vector species 
+
+Some of the values affect the rigid interfaces for egg laying and emergence and for blood feeding and transmission, so changing the values without updating the interface would create a model that was internally inconsistent. To handle this, **`ramp.xds`** has introduced functions to make it easy to change values after setup. 
+
+From the user perspective, using these **`change_`** functions will make it easy to avoid various errors. There are three kinds of functions:
+
++ Changing a quantity that affects some part of an interface: 
+
+    - Human population density 
+    
+    - The mosquito dispersal matrix 
+    
+    - The time spent matrix 
+
++ Changing initial values, except human / host population density: 
+
++ Changing parameter values. 
+
+### Initial Values
+
+### Parameters
+
+
+
+
+**Modification** of any features of a model, but some of these features are: 
+
+- `change_H`
+
+- `change_calK` 
+
+- `change_*par`  
+
+- `change_*inits`  
+
+To build a model with the features you want. The goal of software design was to make it possible to do almost anything, but there were some important constraints. 

@@ -22,26 +22,24 @@ xde_derivatives.full <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-  pars <- Visiting(t, pars)
-  # vector control
+  # set the values of resource variables
+  pars <- Resources(t, pars)
+  # implement malaria control
   pars <- Control(t, y, pars)
 
   # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
-
   # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
 
   # available sugar & bionomic parameters
   pars <- Bionomics(t, y, pars)
-
   # modify mosquito bionomic parameters
   # by computing independent effect sizes
   pars <- VectorControlEffectSizes(t, y, pars)
 
   # emergence: Lambda
   pars <- Emergence(t, y, pars)
-
   # transmission: beta, EIR, and kappa
   pars <- Transmission(t, y, pars)
 
@@ -75,8 +73,8 @@ xde_derivatives.human <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-  pars <- Visiting(t, pars)
-
+  # set the values of resource variables
+  pars <- Resources(t, pars)
   # vector control
   pars <- Control(t, y, pars)
 
@@ -117,7 +115,8 @@ xde_derivatives.mosy <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-  pars <- Visiting(t, pars)
+  # set the values of resource variables
+  pars <- Resources(t, pars)
   # vector control
   pars <- Control(t, y, pars)
 
@@ -182,7 +181,8 @@ xde_derivatives.aquatic <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-  pars <- Visiting(t, pars)
+  # set the values of resource variables
+  pars <- Resources(t, pars)
   # vector control
   pars <- Control(t, y, pars)
 

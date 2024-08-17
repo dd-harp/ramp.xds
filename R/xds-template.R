@@ -105,7 +105,7 @@ make_xds_template = function(xds='xde', frame='full', dlay = 'ode',
 
   pars <- setup_exposure_pois(pars)
   pars <- setup_travel_static(pars)
-  pars <- setup_visitors_static(pars)
+
 
   pars$Linits = list()
   pars$MYZinits = list()
@@ -119,7 +119,7 @@ make_xds_template = function(xds='xde', frame='full', dlay = 'ode',
   pars$outputs = list()
   pars$compute = list()
 
-  pars <- setup_sugar_static(pars)
+  pars <- setup_resources_static(pars)
   pars <- setup_control_no_control(pars)
   pars <- setup_vc_no_control(pars)
 

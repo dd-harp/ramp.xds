@@ -66,8 +66,9 @@ dts_update.full <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-  pars <- Visiting(t, pars)
-  # vector control
+  # set the values of resource variables
+  pars <- Resources(t, pars)
+  # implement malaria control
   pars <- Control(t, y, pars)
 
   # blood feeding: available blood hosts, TaR, relative biting rates
@@ -123,7 +124,8 @@ dts_update.human <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-  pars <- Visiting(t, pars)
+  # set the values of resource variables
+  pars <- Resources(t, pars)
 
   # vector control
   pars <- Control(t, y, pars)
@@ -161,13 +163,13 @@ dts_update.mosy <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-
+  # set the values of resource variables
+  pars <- Resources(t, pars)
   # vector control
   pars <- Control(t, y, pars)
 
   # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
-
   # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
 
@@ -224,8 +226,9 @@ dts_update.aquatic <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-
-  # vector control
+  # set the values of resource variables
+  pars <- Resources(t, pars)
+  # implement malaria control models
   pars <- Control(t, y, pars)
 
   # modify baseline mosquito bionomic parameters

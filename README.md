@@ -15,6 +15,8 @@ library(devtools)
 devtools::install_github("dd-harp/ramp.xds")
 ```
 
+Also see the related vignette [*Getting Started*](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
+
 ## What is RAMP?
 
 RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty in conventional analysis and through simulation-based analytics.

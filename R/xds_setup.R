@@ -1,7 +1,7 @@
 # functions to set up models
 
 #' @title Build an **`xds`** object
-#' @description Set up an **`xds`** object and set `pars$frame <- 'full'`.
+#' @description Set up an **`xds`** object and set `pars$frame <- class(pars$frame) <- 'full'`.
 #'
 #' Each dynamical component is fully configured for a single host and vector species:
 #'
