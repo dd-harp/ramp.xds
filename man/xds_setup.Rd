@@ -75,7 +75,7 @@ xds_setup(
 a \link{list}
 }
 \description{
-Set up an \strong{\code{xds}} object and set \code{pars$frame <- 'full'}.
+Set up an \strong{\code{xds}} object and set \code{pars$frame <- class(pars$frame) <- 'full'}.
 
 Each dynamical component is fully configured for a single host and vector species:
 \itemize{

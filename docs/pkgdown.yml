@@ -23,7 +23,8 @@ articles:
   spat_metric: spat_metric.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   vc_lemenach: vc_lemenach.html
-last_built: 2024-08-15T18:57Z
+  Working: Working.html
+last_built: 2024-08-17T23:30Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

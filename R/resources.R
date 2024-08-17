@@ -26,6 +26,7 @@ Resources.static <- function(t, pars) {
 #' @export
 Resources.setup <- function(t, pars) {
 
+  pars = Visiting(t, pars)
   pars = OtherBloodHosts(t, pars)
   pars = HabitatDynamics(t, pars)
   pars = SugarDynamics(t, pars)
@@ -58,8 +59,11 @@ setup_resources_static <- function(pars){
   class(RESOURCES) <- 'setup'
   pars$RESOURCES <- RESOURCES
 
-  pars = setup_sugar_static(pars)
-  pars = setup_other_blood_hosts_static(pars)
+  pars <- setup_visitors_static(pars)
+  pars <- setup_other_blood_hosts_static(pars)
+  pars <- setup_habitat_dynamics_static(pars)
+  pars <- setup_sugar_static(pars)
+
   return(pars)
 }
 

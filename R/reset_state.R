@@ -32,7 +32,7 @@ reset_state_i <- function(i, tm, y_matrix, pars) {
 #' @return **pars** a [list]
 reset_state.full <- function(t, y, pars) {
   pars <- Forcing(t, pars)
-  pars <- Visiting(t, pars)
+  pars <- Resources(t, pars)
   pars <- Control(t, y, pars)
   pars <- BloodFeeding(t, y, pars)
   pars <- EggLaying(t, y, pars)
@@ -53,7 +53,7 @@ reset_state.full <- function(t, y, pars) {
 #' @return **pars** a [list]
 reset_state.aquatic <- function(t, y, pars) {
   pars <- Forcing(t, pars)
-  pars <- Visiting(t, pars)
+  pars <- Resources(t, pars)
   pars <- Control(t, y, pars)
   pars <- Bionomics(t, y, pars)
   pars <- VectorControlEffectSizes(t, y, pars)
@@ -67,7 +67,7 @@ reset_state.aquatic <- function(t, y, pars) {
 #' @return **pars** a [list]
 reset_state.mosy <- function(t, y, pars) {
   pars <- Forcing(t, pars)
-  pars <- Visiting(t, pars)
+  pars <- Resources(t, pars)
   pars <- Control(t, y, pars)
   pars <- BloodFeeding(t, y, pars)
   pars <- EggLaying(t, y, pars)
@@ -84,7 +84,7 @@ reset_state.mosy <- function(t, y, pars) {
 #' @return **pars** a [list]
 reset_state.human <- function(t, y, pars) {
   pars <- Forcing(t, pars)
-  pars <- Visiting(t, pars)
+  pars <- Resources(t, pars)
   pars <- Control(t, y, pars)
   pars <- BloodFeeding(t, y, pars)
   pars <- Bionomics(t, y, pars)
