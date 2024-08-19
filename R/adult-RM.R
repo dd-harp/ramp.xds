@@ -13,13 +13,7 @@ dMYZdt.RM <- function(t, y, pars, s){
   deip_dt = d_F_eip_dt(t, pars$vars, pars$MYZpar[[s]]$eip_par)
   MYZpar = update_MYZpar_RM(pars$MYZpar[[s]])
 
-  with(pars$ix$MYZ[[s]],{
-    M <- y[M_ix]
-    P <- y[P_ix]
-    Y <- y[Y_ix]
-    Z <- y[Z_ix]
-    U <- matrix(y[U_ix], pars$nPatches, pars$nPatches)
-
+  with(list_MYZvars(y, pars, s),{
     with(MYZpar,{
 
       if (t <= eip) {
@@ -230,6 +224,7 @@ list_MYZvars.RM <- function(y, pars, s){
          P = y[P_ix],
          Y = y[Y_ix],
          Z = y[Z_ix]
+         U = matrix(y[U_ix], pars$nPatches, pars$nPatches)
        )))
 }
 
