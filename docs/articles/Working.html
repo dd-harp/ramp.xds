@@ -178,15 +178,49 @@
 <h2 id="section"></h2>
 <p><strong><code>ramp.xds</code></strong> was designed to reduce the
 costs of model building and computation for malaria and other
-mosquito-transmitted pathogens. This vignette discusses how to work with
-models:</p>
+mosquito-transmitted pathogens. One of the core challenges for the
+software was to provide users with a set of utilities that would make it
+easy to do work with models.</p>
 <ul>
-<li><p>Solving and Outputs</p></li>
-<li><p>Initial Values</p></li>
-<li><p>Changing Parameters</p></li>
-<li><p>Analysis</p></li>
+<li><p><strong>Solving</strong> - functions make it easy to solve
+dynamical systems. In these systems, <em>time</em> is the independent
+variable. Given a set of initial values, <code>xde_solve</code> or
+<code>dts_solve</code> compute the values of the dependent variables at
+those time points.</p></li>
+<li>
+<p><strong>Outputs</strong> - the raw outputs are returned in
+several usable forms:</p>
+<ul>
+<li><p>raw outputs are returned in tabular form</p></li>
+<li><p>outputs are parsed into named lists; the values of the dependent
+variables can be retrieved by name.</p></li>
+<li><p>dynamical terms are computed and returned.</p></li>
 </ul>
-<p>Also see</p>
+</li>
+<li><p><strong>Visualize</strong> - a family of functions makes it easy
+to plot basic outputs of the models.</p></li>
+<li><p><strong>Initial Values</strong> - a set of utilities was
+developed to work with initial values, making it easy to change the
+intitial values through a function call.</p></li>
+<li><p><strong>Changing Parameters</strong> - another set of utilities
+was developed to change parameter values through a function
+call.</p></li>
+<li>
+<p><strong>Analysis</strong> - the software includes functions that
+perform various analytical tasks:</p>
+<ul>
+<li><p>Solve for the steady states of various model components using a
+method that does not involve simulation, a way of independently
+verifying the code.</p></li>
+<li><p>Compute stable orbits.</p></li>
+<li><p>Compute vectorial capacity and its spatial-temporal dispersion,
+the human transmitting capacity and its spatial-temporal dispersion, and
+malaria reproductive numbers as pseudo-threshold conditions.</p></li>
+</ul>
+</li>
+</ul>
+<p>In the following sections, we provide an overview of these functions
+and an introduction. Closely related vignettes include:</p>
 <ul>
 <li><p><a href="GettingStarted.html">Getting Started</a></p></li>
 <li><p><a href="Understanding_ramp.xds.html">Understanding</a></p></li>
@@ -200,23 +234,17 @@ outputs, to examine and change initial values and parameters, and to
 analyze the models.</p>
 <p>The <strong><code>xds</code> model object</strong> – any object that
 can be solved by <code>xde_solve</code> or <code>dts_solve</code> – is a
-compound list in R. If you know what you’re doing, it’s easy enough to
-examine or change any of the parameter values or inital conditions. That
-might be the way to go in the long run, but at the start, the
-<strong><code>xds</code> model object</strong> might be hard to
-understand. Some functions provided make it easy to take a peak at some
-part of the model, and the code and documentation is designed to be
-instructive.</p>
-<p>Changing the <em>structure</em> of a model is more difficult, so
-these are dealt with in separate vignettes. Structural changes
-include:</p>
-<ul>
-<li><p>changing the number of population strata</p></li>
-<li><p>changing the number of patches</p></li>
-<li><p>adding or removing aquatic habitats</p></li>
-<li><p>adding vertebrate host species</p></li>
-<li><p>adding vector species</p></li>
-</ul>
+compound list in R. Anyone who is already familiar with the format of
+the <strong><code>xds</code></strong> model object can examine any part
+of it, or change any of the parameter values or initial conditions.
+While that might be the way to go in the long run, the
+<strong><code>xds</code> model object</strong> includes a set of
+utilities to retrieve initial values, parameters, and some other values
+of interests.</p>
+<p>The code and documentation for these utilities is designed to be
+instructive, and a goal for <strong><code>ramp.xds</code></strong> has
+been to provide detailed documentation, include references to peer
+reviewed journal articles.</p>
 <p>Some of the values affect the rigid interfaces for egg laying and
 emergence and for blood feeding and transmission, so changing the values
 without updating the interface would create a model that was internally
@@ -241,6 +269,11 @@ density:</p></li>
 <div class="section level4">
 <h4 id="initial-values">Initial Values<a class="anchor" aria-label="anchor" href="#initial-values"></a>
 </h4>
+<ul>
+<li>To examine the initial values, <code>get_Xinits</code> or
+<code>get_MYZinits</code> or <code>get_Linits</code> returns the initial
+values as a named list.</li>
+</ul>
 </div>
 <div class="section level4">
 <h4 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
@@ -257,6 +290,33 @@ these features are:</p>
 design was to make it possible to do almost anything, but there were
 some important constraints.</p>
 </div>
+</div>
+<div class="section level3">
+<h3 id="structural-parameters">Structural Parameters<a class="anchor" aria-label="anchor" href="#structural-parameters"></a>
+</h3>
+<p>Some changes affect the model’s <em>structure.</em> These are
+considered <strong>advanced options</strong> for model building, and
+they are dealt with in separate vignettes. Structural changes
+include:</p>
+<ul>
+<li><p>changing the number of population strata</p></li>
+<li><p>changing the number of patches</p></li>
+<li><p>adding or removing aquatic habitats</p></li>
+<li><p>adding vertebrate host species</p></li>
+<li><p>adding vector species</p></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="outputs">Outputs<a class="anchor" aria-label="anchor" href="#outputs"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
+</h3>
 </div>
 </div>
   </div>

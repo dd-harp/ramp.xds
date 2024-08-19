@@ -11,7 +11,7 @@
 #' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
 #' @export
-create_MYZpar_RM_static = function(nPatches, MYZopts=list(), eip=12,
+create_MYZpar_RM = function(nPatches, MYZopts=list(), eip=12,
                                    g=1/12, sigma=1/8, mu=0, f=0.3, q=0.95,
                                    nu=1, eggsPerBatch=60){
 
@@ -22,13 +22,13 @@ create_MYZpar_RM_static = function(nPatches, MYZopts=list(), eip=12,
     eip_par <- 'static'
     class(eip_par) <- 'static'
     MYZpar$eip_par <- eip_par
-
     MYZpar$eip    <- checkIt(eip, 1)
-    MYZpar$g      <- checkIt(g, nPatches)
-    MYZpar$sigma  <- checkIt(sigma, nPatches)
+
+    MYZpar$f_t      <- checkIt(f, nPatches)
+    MYZpar$q_t      <- checkIt(q, nPatches)
+    MYZpar$g_t      <- checkIt(g, nPatches)
+    MYZpar$sigma_t  <- checkIt(sigma, nPatches)
     MYZpar$mu     <- checkIt(mu, nPatches)
-    MYZpar$f      <- checkIt(f, nPatches)
-    MYZpar$q      <- checkIt(q, nPatches)
     MYZpar$nu     <- checkIt(nu, nPatches)
 
     MYZpar$eggsPerBatch <- eggsPerBatch
@@ -43,8 +43,8 @@ create_MYZpar_RM_static = function(nPatches, MYZopts=list(), eip=12,
     MYZpar$Omega <- Omega
     MYZpar$Upsilon <- expm::expm(-Omega*eip)
 
-    MYZpar$baseline <- 'RM_static'
-    class(MYZpar$baseline) <- 'RM_static'
+    MYZpar$baseline <- 'RM'
+    class(MYZpar$baseline) <- 'RM'
     MYZpar$effect_sizes <- 'unmodified'
     class(MYZpar$effect_sizes) <- 'unmodified'
 
@@ -63,13 +63,11 @@ create_MYZpar_RM_static = function(nPatches, MYZopts=list(), eip=12,
 #' @inheritParams MBionomics
 #' @return the model as a [list]
 #' @export
-MBionomics.RM_static <- function(t, y, pars, s) {
+MBionomics.RM <- function(t, y, pars, s) {
   pars$MYZpar[[s]]$es_f     <- rep(1, pars$nPatches)
   pars$MYZpar[[s]]$es_q     <- rep(1, pars$nPatches)
   pars$MYZpar[[s]]$es_g     <- rep(1, pars$nPatches)
   pars$MYZpar[[s]]$es_sigma <- rep(1, pars$nPatches)
-  pars$MYZpar[[s]]$es_mu    <- rep(1, pars$nPatches)
-  pars$MYZpar[[s]]$es_nu    <- rep(1, pars$nPatches)
   return(pars)
 }
 
@@ -86,7 +84,7 @@ MBionomics.RM_static <- function(t, y, pars, s) {
 #' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
 #' @export
-create_MYZpar_RMfunc = function(nPatches, MYZopts=list(), eip =12,
+create_MYZpar_GeRM = function(nPatches, MYZopts=list(), eip =12,
                                  g=1/12,  sigma=1/8,  mu=0,
                                  f=0.3,  q=0.95,
                                  nu=1,  eggsPerBatch=60){
@@ -95,9 +93,6 @@ create_MYZpar_RMfunc = function(nPatches, MYZopts=list(), eip =12,
     MYZpar <- list()
 
     MYZpar$nPatches <- nPatches
-
-    MYZpar = list()
-    class(MYZpar) <- "func"
 
     eip_par <- list()
     class(eip_par) <- 'static'
@@ -109,31 +104,35 @@ create_MYZpar_RMfunc = function(nPatches, MYZopts=list(), eip =12,
     MYZpar$f_par <- list()
     class(MYZpar$f_par) <- "static"
     MYZpar$f_par$f = f
-    MYZpar$f=f
+    MYZpar$f_t = f
+    MYZpar$es_f = 1
 
     q=checkIt(q, nPatches)
     MYZpar$q_par <- list()
     class(MYZpar$q_par) <- "static"
     MYZpar$q_par$q = q
-    MYZpar$q=q
+    MYZpar$q_t = q
+    MYZpar$es_q = 1
 
     g=checkIt(g, nPatches)
     MYZpar$g_par <- list()
     class(MYZpar$g_par) <- "static"
     MYZpar$g_par$g = g
-    MYZpar$g=g
+    MYZpar$g_t = g
+    MYZpar$es_g = 1
 
     mu=checkIt(mu, nPatches)
     MYZpar$mu_par <- list()
     class(MYZpar$mu_par) <- "static"
     MYZpar$mu_par$mu = mu
-    MYZpar$mu=mu
+    MYZpar$mu = mu
 
     sigma=checkIt(sigma, nPatches)
     MYZpar$sigma_par <- list()
     class(MYZpar$sigma_par) <- "static"
     MYZpar$sigma_par$sigma = sigma
-    MYZpar$sigma=sigma
+    MYZpar$sigma_t = sigma
+    MYZpar$es_sigma = 1
 
     nu=checkIt(nu, nPatches)
     MYZpar$nu_par <- list()
@@ -160,7 +159,7 @@ create_MYZpar_RMfunc = function(nPatches, MYZopts=list(), eip =12,
     MYZpar$eggsPerBatch <- eggsPerBatch
 
     MYZpar$baseline <- MYZpar
-    class(MYZpar$baseline) <- 'RM_func'
+    class(MYZpar$baseline) <- 'GeRM'
 
     return(MYZpar)
 })}
@@ -170,60 +169,24 @@ create_MYZpar_RMfunc = function(nPatches, MYZopts=list(), eip =12,
 #' @inheritParams MBionomics
 #' @return the model as a [list]
 #' @export
-MBionomics.RM_func <- function(t, y, pars, s) {
+MBionomics.GeRM <- function(t, y, pars, s) {
   with(pars$MYZpar[[s]],{
-    pars$MYZpar[[s]]$f <- F_f(t, vars, f_par)
-    pars$MYZpar[[s]]$q <- F_q(t, vars, f_par)
-    pars$MYZpar[[s]]$g <- F_g(t, vars, f_par)
-    pars$MYZpar[[s]]$sigma <- F_sigma(t, vars, f_par)
-    pars$MYZpar[[s]]$mu <- F_mu(t, vars, f_par)
-    pars$MYZpar[[s]]$nu <- F_nu(t, vars, f_par)
-    pars$MYZpar[[s]]$eip <- F_eip(t, vars, f_par)
-    pars$MYZpar[[s]]$calK <- F_calK(t, vars, f_par)
+    pars$MYZpar[[s]]$f_t      <- F_f(t, vars, f_par)
+    pars$MYZpar[[s]]$es_f     <- rep(1, pars$nPatches)
+    pars$MYZpar[[s]]$q_t      <- F_q(t, vars, f_par)
+    pars$MYZpar[[s]]$es_q     <- rep(1, pars$nPatches)
+    pars$MYZpar[[s]]$g_t      <- F_g(t, vars, f_par)
+    pars$MYZpar[[s]]$es_g     <- rep(1, pars$nPatches)
+    pars$MYZpar[[s]]$sigma_t  <- F_sigma(t, vars, f_par)
+    pars$MYZpar[[s]]$es_sigma <- rep(1, pars$nPatches)
+    pars$MYZpar[[s]]$mu       <- F_mu(t, vars, f_par)
+    pars$MYZpar[[s]]$nu       <- F_nu(t, vars, f_par)
+    pars$MYZpar[[s]]$eip      <- F_eip(t, vars, f_par)
+    pars$MYZpar[[s]]$calK     <- F_calK(t, vars, f_par)
     pars$MYZpar[[s]]$eggsPerBatch <- eggsPerBatch
-    Omega <- compute_Omega(pars, s)
-    pars$MYZpar[[s]]$Omega <- Omega
-    pars$MYZpar[[s]]$Upsilon <- expm::expm(-Omega*eip)
     pars <- make_MYZprobs(pars, s)
     return(pars)
   })}
-
-#' @title Update Ross-Macdonald Bionomic Parameters
-#' @description Update bionomic parameter values as the product of the baseline and
-#' the effect sizes
-#' @param MYZpar an `xds` adult mosquito  model object
-#' @return the model as a [list]
-#' @export
-update_MYZpar_RM = function(MYZpar){
-  UseMethod("update_MYZpar_RM", MYZpar$effect_sizes)
-}
-
-#' @title Update Ross-Macdonald Bionomic Parameters
-#' @description If there is no modification, return
-#' the parameters without modification
-#' @inheritParams update_MYZpar_RM
-#' @return the model as a [list]
-#' @export
-update_MYZpar_RM.unmodified = function(MYZpar){
-  return(MYZpar)
-}
-
-#' @title Update Ross-Macdonald Bionomic Parameters
-#' @description If there is no modification, return
-#' the parameters without modification
-#' @inheritParams update_MYZpar_RM
-#' @return the model as a [list]
-#' @export
-update_MYZpar_RM.modified = function(MYZpar){
-  MYZpar$f = with(MYZpar, f*es_f)
-  MYZpar$q = with(MYZpar, q*es_q)
-  MYZpar$g = with(MYZpar,g*es_g)
-  MYZpar$sigma = with(MYZpar,sigma*es_sigma)
-  MYZpar$mu = with(MYZpar,mu*es_mu)
-  MYZpar$nu = with(MYZpar,nu*es_nu)
-  MYZpar$Omega <-with(MYZpar, compute_Omega_xde(g,sigma,mu, calK))
-  return(MYZpar)
-}
 
 #' @title Compute probabilities from rates
 #' @description This method dispatches on `MYZname`.
@@ -258,3 +221,76 @@ MYZ_rates2probs_RM.modified = function(MYZpar, runtime){
       MYZpar$nnu <- exp(-nu*MYZday*Dday)
       return(MYZpar)
     })})}
+
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_f.RM = function(pars, s=1){
+  with(pars$MYZpar[[s]], f_t*es_f)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_q.RM = function(pars, s=1){
+  with(pars$MYZpar[[s]], q_t*es_q)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_g.RM = function(pars, s=1){
+  with(pars$MYZpar[[s]], g_t*es_g)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_sigma.RM = function(pars, s=1){
+  with(pars$MYZpar[[s]], sigma_t*es_sigma)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_f.GeRM = function(pars, s=1){
+  with(pars$MYZpar[[s]], f_t*es_f)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_q.GeRM = function(pars, s=1){
+  with(pars$MYZpar[[s]], q_t*es_q)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_g.GeRM = function(pars, s=1){
+  with(pars$MYZpar[[s]], g_t*es_g)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_sigma.GeRM = function(pars, s=1){
+  with(pars$MYZpar[[s]], sigma_t*es_sigma)
+}

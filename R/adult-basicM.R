@@ -10,11 +10,11 @@ dMYZdt.basicM <- function(t, y, pars, s){
 
   Lambda = pars$Lambda[[s]]
 
-  with(pars$ix$MYZ[[s]],{
-    M <- y[M_ix]
-    P <- y[P_ix]
+  with(list_MYZvars(y, pars, s),{
+    with(pars$MYZpar[[s]],{
 
-    with(pars$MYZpar[[s]]$now,{
+      f = f_t*es_f;
+      Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
 
       dMdt <- Lambda - (Omega %*% M)
       dPdt <- f*(M - P) - (Omega %*% P)
@@ -65,7 +65,12 @@ Update_MYZt.basicM <- function(t, y, pars, s) {
 #' @return a [list] vector
 #' @export
 make_MYZpar.basicM = function(MYZname, pars, s, MYZopts=list()){
-  MYZpar <- create_MYZpar_RM_static(pars$nPatches, MYZopts)
+  setup_as = with(MYZopts, ifelse(exists("setup_as"), setup_as, "RM"))
+  if(setup_as == "GeRM"){
+    MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
+  } else {
+    MYZpar <- create_MYZpar_RM(pars$nPatches, MYZopts)
+  }
   class(MYZpar) <- 'basicM'
   pars$MYZpar[[s]] = MYZpar
   return(pars)
@@ -88,8 +93,10 @@ F_fqZ.basicM <- function(t, y, pars, s) {
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqM.basicM <- function(t, y, pars, s) {
+  f = get_f(pars, s)
+  q = get_q(pars, s)
   M = y[pars$ix$MYZ[[s]]$M_ix]
-  with(pars$MYZpar[[s]]$now, f*q*M)
+  return(f*q*M)
 }
 
 #' @title Number of eggs laid by adult mosquitoes
@@ -99,7 +106,7 @@ F_fqM.basicM <- function(t, y, pars, s) {
 #' @export
 F_eggs.basicM <- function(t, y, pars, s) {
   M <- y[pars$ix$MYZ[[s]]$M_ix]
-  with(pars$MYZpar[[s]]$now, {
+  with(pars$MYZpar[[s]], {
     return(M*nu*eggsPerBatch)
   })
 }

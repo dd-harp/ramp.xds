@@ -159,7 +159,7 @@ y0
 
 
 ```{r}
-out <- deSolve::ode(y = as.vector(unlist(y0)), times = seq(0,50, by=10), func = xde_derivatives, parms = params, method = 'lsoda')
+out <- deSolve::ode(y = get_inits(params, flatten=TRUE), times = seq(0,50, by=10), func = xde_derivatives, parms = params, method = 'lsoda')
 out1 <- out
 ```
 

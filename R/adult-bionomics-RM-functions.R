@@ -11,6 +11,15 @@ F_f <- function(t, vars, f_par) {
   UseMethod("F_f", f_par)
 }
 
+#' @title Static model for the blood feeding rate
+#' @description Implements [F_f] for a static model
+#' @inheritParams F_f
+#' @return a [numeric] vector of length `nPatches`
+#' @export
+F_f.static <- function(t, vars, f_par){
+  f_par$f
+}
+
 #' @title Compute the human blood fraction
 #' @description This method dispatches on the type of `q_par$q_par`. It should
 #' set the values of the bionomic parameters to baseline values.
@@ -21,6 +30,15 @@ F_f <- function(t, vars, f_par) {
 #' @export
 F_q <- function(t, vars, q_par) {
   UseMethod("F_q", q_par)
+}
+
+#' @title Static model for human blood fraction
+#' @description Implements [F_q] for a static model
+#' @inheritParams F_q
+#' @return a [numeric] vector of length `nPatches`
+#' @export
+F_q.static <- function(t, vars, q_par){
+  q_par$q
 }
 
 #' @title Compute the human blood fraction
@@ -35,7 +53,6 @@ F_p <- function(t, vars, p_par) {
   UseMethod("F_p", p_par)
 }
 
-
 #' @title Compute mosguito survival
 #' @description This method dispatches on the type of `q_par$g_par`. It should
 #' set the values of g to (possibly changing) baseline values.
@@ -46,6 +63,15 @@ F_p <- function(t, vars, p_par) {
 #' @export
 F_g <- function(t, vars, g_par) {
   UseMethod("F_g", g_par)
+}
+
+#' @title Static model for mosquito survival
+#' @description Implements [F_g] for a static model
+#' @inheritParams F_g
+#' @return a [numeric] vector of length `nPatches`
+#' @export
+F_g.static <- function(t, vars, g_par){
+  g_par$g
 }
 
 #' @title Compute mosquito emigration rates
@@ -60,6 +86,15 @@ F_sigma <- function(t, vars, sigma_par) {
   UseMethod("F_sigma", sigma_par)
 }
 
+#' @title Static model for mosquito emigration
+#' @description Implements [F_sigma] for a static model
+#' @inheritParams F_sigma
+#' @return a [numeric] vector of length `nPatches`
+#' @export
+F_sigma.static <- function(t, vars, sigma_par){
+  sigma_par$sigma
+}
+
 #' @title Compute the emigration loss
 #' @description Compute the fraction lost to emigration
 #' @param t current simulation time
@@ -69,6 +104,15 @@ F_sigma <- function(t, vars, sigma_par) {
 #' @export
 F_mu <- function(t, vars, mu_par) {
   UseMethod("F_mu", mu_par)
+}
+
+#' @title Static model for mosquito survival
+#' @description Implements [F_mu] for a static model
+#' @inheritParams F_mu
+#' @return a [numeric] vector of length `nPatches`
+#' @export
+F_mu.static <- function(t, vars, mu_par){
+  mu_par$mu
 }
 
 #' @title Compute the egg laying rate
@@ -83,6 +127,16 @@ F_nu <- function(t, vars, nu_par) {
   UseMethod("F_nu", nu_par)
 }
 
+#' @title Static model for the egg laying rate
+#' @description Implements [F_nu] for a static model
+#' @inheritParams F_nu
+#' @return a [numeric] vector of length `nPatches`
+#' @export
+F_nu.static <- function(t, vars, nu_par){
+  nu_par$nu
+}
+
+
 #' @title Compute the egg laying rate
 #' @description This method ...
 #' @param t current simulation time
@@ -93,3 +147,14 @@ F_nu <- function(t, vars, nu_par) {
 F_calK <- function(t, vars, calK_par) {
   UseMethod("F_calK", calK_par)
 }
+
+#' @title Static model for mosquito emigration
+#' @description Implements [F_calK] for a static model
+#' @inheritParams F_calK
+#' @return a [numeric] vector of length `nPatches`
+#' @export
+F_calK.static <- function(t, vars, calK_par){
+  calK_par$calK
+}
+
+

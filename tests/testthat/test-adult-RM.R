@@ -50,8 +50,7 @@ test_that("RM models reach equilibrium", {
   params$Lambda[[1]] = Lambda
   params$kappa[[1]] = kappa
 
-  y0 = get_MYZinits(params, 1)
-  y0 = as.vector(unlist(y0))
+  y0 = unname(as.vector(unlist(get_MYZinits(params, 1))))
   params <- MBionomics(0,y0,params, 1)
 
   # solve ODEs

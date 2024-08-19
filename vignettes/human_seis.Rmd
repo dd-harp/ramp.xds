@@ -107,8 +107,6 @@ $$
 
 ```{r}
 SEISd = xds_setup(Xname = "SEISd", MYZname = "trivial", MYZopts = MYZo, Xopts=Xo, HPop=HPop)
-SEISd$dlay = "dde" 
-class(SEISd$dlay) = "dde" 
 SEISd = xde_solve(SEISd, Tmax = 3650, dt=15)
 ```
 

@@ -767,33 +767,21 @@
           <p class="section-desc"></p><p>Basic Plotting</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="MBionomics.RM_static.html">MBionomics(<i>&lt;RM_static&gt;</i>)</a></code> </p>
+          <p><code><a href="MBionomics.RM.html">MBionomics(<i>&lt;RM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Macdonald-style adult mosquito bionomics</p></td>
       </tr><tr><td>
-          <p><code><a href="MBionomics.RM_func.html">MBionomics(<i>&lt;RM_func&gt;</i>)</a></code> </p>
+          <p><code><a href="MBionomics.GeRM.html">MBionomics(<i>&lt;GeRM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Set mosquito bionomics to baseline</p></td>
       </tr><tr><td>
-          <p><code><a href="create_MYZpar_RM_static.html">create_MYZpar_RM_static()</a></code> </p>
+          <p><code><a href="create_MYZpar_RM.html">create_MYZpar_RM()</a></code> </p>
         </td>
         <td><p>Make parameters for RM ODE adult mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="create_MYZpar_RMfunc.html">create_MYZpar_RMfunc()</a></code> </p>
+          <p><code><a href="create_MYZpar_GeRM.html">create_MYZpar_GeRM()</a></code> </p>
         </td>
         <td><p>Make parameters for GeRM ODE adult mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_MYZpar_RM.html">update_MYZpar_RM()</a></code> </p>
-        </td>
-        <td><p>Update Ross-Macdonald Bionomic Parameters</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_MYZpar_RM.modified.html">update_MYZpar_RM(<i>&lt;modified&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Update Ross-Macdonald Bionomic Parameters</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_MYZpar_RM.unmodified.html">update_MYZpar_RM(<i>&lt;unmodified&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Update Ross-Macdonald Bionomic Parameters</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="visualization-for-adult-mosquito">Visualization for Adult Mosquito <a href="#visualization-for-adult-mosquito" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Basic Plotting</p>
@@ -852,6 +840,14 @@
         <td><p>Make the mosquito demography matrix for spatial RM model in continuous time</p></td>
       </tr><tr><td>
           <p><code><a href="compute_Omega.dts.html">compute_Omega(<i>&lt;dts&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Make the mosquito demography matrix for spatial RM model in continuous time</p></td>
+      </tr><tr><td>
+          <p><code><a href="compute_Upsilon.html">compute_Upsilon()</a></code> </p>
+        </td>
+        <td><p>Make the mosquito demography matrix for spatial RM model in continuous time</p></td>
+      </tr><tr><td>
+          <p><code><a href="compute_Upsilon.xde.html">compute_Upsilon(<i>&lt;xde&gt;</i>)</a></code> </p>
         </td>
         <td><p>Make the mosquito demography matrix for spatial RM model in continuous time</p></td>
       </tr><tr><td>
@@ -3239,6 +3235,10 @@
         </td>
         <td><p>Compute dynamical terms</p></td>
       </tr><tr><td>
+          <p><code><a href="get_bionomics_s_t.html">get_bionomics_s_t()</a></code> </p>
+        </td>
+        <td><p>Compute dynamical terms</p></td>
+      </tr><tr><td>
           <p><code><a href="get_ft.html">get_ft()</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
@@ -3246,6 +3246,14 @@
           <p><code><a href="get_qt.html">get_qt()</a></code> </p>
         </td>
         <td><p>Get the human fraction</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_gt.html">get_gt()</a></code> </p>
+        </td>
+        <td><p>Get the mosquito mortality rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigmat.html">get_sigmat()</a></code> </p>
+        </td>
+        <td><p>Get the mosquito emigration rate</p></td>
       </tr><tr><td>
           <p><code><a href="get_f.html">get_f()</a></code> </p>
         </td>
@@ -3255,15 +3263,7 @@
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
-          <p><code><a href="get_f.basicM.html">get_f(<i>&lt;basicM&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_f.si.html">get_f(<i>&lt;si&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_f.sei.html">get_f(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="get_f.GeRM.html">get_f(<i>&lt;GeRM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
@@ -3279,15 +3279,7 @@
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
-          <p><code><a href="get_q.basicM.html">get_q(<i>&lt;basicM&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_q.si.html">get_q(<i>&lt;si&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_q.sei.html">get_q(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="get_q.GeRM.html">get_q(<i>&lt;GeRM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
@@ -3303,15 +3295,7 @@
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
-          <p><code><a href="get_g.basicM.html">get_g(<i>&lt;basicM&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_g.si.html">get_g(<i>&lt;si&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_g.sei.html">get_g(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="get_g.GeRM.html">get_g(<i>&lt;GeRM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
@@ -3327,15 +3311,7 @@
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
-          <p><code><a href="get_sigma.basicM.html">get_sigma(<i>&lt;basicM&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_sigma.si.html">get_sigma(<i>&lt;si&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_sigma.sei.html">get_sigma(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="get_sigma.GeRM.html">get_sigma(<i>&lt;GeRM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
