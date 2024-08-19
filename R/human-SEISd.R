@@ -60,6 +60,7 @@ Update_Xt.SEISd <- function(t, y, pars, i) {
 #' @export
 make_Xpar.SEISd = function(Xname, pars, i, Xopts=list()){
   pars$dlay = 'dde'
+  class(pars$dlay) = 'dde'
   pars$Xpar[[i]] = create_Xpar_SEISd(pars$nStrata[i], Xopts)
   return(pars)
 }
@@ -327,10 +328,16 @@ xds_plot_X.SEISd = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, add
 #'
 #' @export
 add_lines_X_SEISd = function(time, XH, nStrata, clrs=c("darkblue","darkred"), llty=1){
+  if (length(llty)< nStrata) llty = rep(llty, nStrata)
   with(XH,{
-    lines(time, S+E, col=clrs[1], lty = llty)
-    lines(time, I, col=clrs[2], lty = llty)
-  })
+    if(nStrata == 1){
+      lines(time, S+E, col=clrs[1], lty = llty)
+      lines(time, I, col=clrs[2], lty = llty)
+    } else {
+      for(i in 1:nStrata)
+        lines(time, S[,i] + E[,i], col=clrs[1], lty = llty[i])
+      lines(time, I[,i], col=clrs[2], lty = llty[i])
+    }})
 }
 
 

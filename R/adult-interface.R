@@ -195,3 +195,38 @@ update_MYZinits <- function(pars, y0, s) {
   UseMethod("update_MYZinits", pars$MYZpar[[s]])
 }
 
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_f = function(pars, s=1){
+  UseMethod("get_f", pars$MYZpar[[s]]$baseline)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_q = function(pars, s=1){
+  UseMethod("get_q", pars$MYZpar[[s]]$baseline)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_g = function(pars, s=1){
+  UseMethod("get_g", pars$MYZpar[[s]]$baseline)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_sigma = function(pars, s=1){
+  UseMethod("get_sigma", pars$MYZpar[[s]]$baseline)
+}

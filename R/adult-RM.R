@@ -11,16 +11,15 @@ dMYZdt.RM <- function(t, y, pars, s){
   Lambda = pars$Lambda[[s]]
   kappa = pars$kappa[[s]]
   deip_dt = d_F_eip_dt(t, pars$vars, pars$MYZpar[[s]]$eip_par)
-  MYZpar = update_MYZpar_RM(pars$MYZpar[[s]])
+  U = matrix(y[pars$ix$MYZ[[s]]$U_ix], pars$nPatches, pars$nPatches)
 
-  with(pars$ix$MYZ[[s]],{
-    M <- y[M_ix]
-    P <- y[P_ix]
-    Y <- y[Y_ix]
-    Z <- y[Z_ix]
-    U <- matrix(y[U_ix], pars$nPatches, pars$nPatches)
-
-    with(MYZpar,{
+  with(list_MYZvars(y, pars, s),{
+    with(pars$MYZpar[[s]],{
+      f = f_t*es_f
+      q = q_t*es_q
+      g = g_t*es_g
+      sigma = sigma_t*es_sigma
+      Omega = compute_Omega_xde(g, sigma, mu, calK)
 
       if (t <= eip) {
         M_eip <- pars$MYZinits[[s]]$M
@@ -29,12 +28,13 @@ dMYZdt.RM <- function(t, y, pars, s){
         g_eip <- g
         sigma_eip <- sigma
       } else {
-        M_eip <- lagvalue(t=t-eip, nr = M_ix)
-        Y_eip <- lagvalue(t=t-eip, nr = Y_ix)
-        fqkappa_eip <- lagderiv(t=t-eip, nr = fqkappa_ix)
-        g_eip <- lagderiv(t=t-eip, nr = g_ix)
-        sigma_eip <- lagderiv(t=t-eip, nr = sigma_ix)
+        M_eip <- lagvalue(t=t-eip, nr = pars$ix$MYZ[[s]]$M_ix)
+        Y_eip <- lagvalue(t=t-eip, nr = pars$ix$MYZ[[s]]$Y_ix)
+        fqkappa_eip <- lagderiv(t=t-eip, nr = pars$ix$MYZ[[s]]$fqkappa_ix)
+        g_eip <- lagderiv(t=t-eip, nr = pars$ix$MYZ[[s]]$g_ix)
+        sigma_eip <- lagderiv(t=t-eip, nr = pars$ix$MYZ[[s]]$sigma_ix)
       }
+
       Omega_eip <- compute_Omega_xde(g_eip, sigma_eip, mu, calK)
       dMdt <- Lambda - (Omega %*% M)
       dPdt <- f*(M - P) - (Omega %*% P)
@@ -145,7 +145,9 @@ Update_MYZt.RM <- function(t, y, pars, s) {
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqZ.RM <- function(t, y, pars, s) {
-  with(pars$MYZpar[[s]], f*q)*y[pars$ix$MYZ[[s]]$Z_ix]
+  f = get_f(pars, s)
+  q = get_q(pars, s)
+  f*q*y[pars$ix$MYZ[[s]]$Z_ix]
 }
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
@@ -154,7 +156,9 @@ F_fqZ.RM <- function(t, y, pars, s) {
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqM.RM <- function(t, y, pars, s) {
-  with(pars$MYZpar[[s]], f*q)*y[pars$ix$MYZ[[s]]$M_ix]
+  f = get_f(pars, s)
+  q = get_q(pars, s)
+  f*q*y[pars$ix$MYZ[[s]]$M_ix]
 }
 
 #' @title Number of eggs laid by adult mosquitoes
@@ -178,7 +182,12 @@ F_eggs.RM <- function(t, y, pars, s) {
 make_MYZpar.RM = function(MYZname, pars, s, MYZopts=list()){
   pars$dlay <- 'dde'
   class(pars$dlay) <- 'dde'
-  MYZpar <- create_MYZpar_RM_static(pars$nPatches, MYZopts)
+  setup_as = with(MYZopts, ifelse(exists("setup_as"), setup_as, "RM"))
+  if(setup_as == "GeRM"){
+    MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
+  } else {
+    MYZpar <- create_MYZpar_RM(pars$nPatches, MYZopts)
+  }
   class(MYZpar) <- 'RM'
   pars$MYZpar[[s]] = MYZpar
   return(pars)
@@ -190,6 +199,8 @@ make_MYZpar.RM = function(MYZname, pars, s, MYZopts=list()){
 #' @return a [list]
 #' @export
 make_MYZinits.RM = function(pars, s, MYZopts=list()){with(pars$MYZpar[[s]], {
+  Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
+  Upsilon = expm(-Omega*eip)
   pars$MYZinits[[s]] = create_MYZinits_RM(nPatches, Upsilon, MYZopts)
   return(pars)
 })}
@@ -208,13 +219,12 @@ get_MYZinits.RM <- function(pars, s=1){
 #' @return a [list]
 #' @export
 update_MYZinits.RM <- function(pars, y0, s) {
-  Upsilon = get_Upsilon(pars, s)
   with(pars$ix$MYZ[[s]],{
     M = y0[M_ix]
     P = y0[P_ix]
     Y = y0[Y_ix]
     Z = y0[Z_ix]
-    pars$MYZinits[[s]]= create_MYZinits_RM(pars$nPatches, Upsilon, list(), M=M, P=P, Y=Y, Z=Z)
+    pars = make_MYZinits(pars, s, list(M=M, P=P, Y=Y, Z=Z))
     return(pars)
   })}
 

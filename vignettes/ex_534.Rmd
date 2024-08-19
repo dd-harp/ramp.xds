@@ -292,7 +292,7 @@ Upsilon <- expm::expm(-Omega*eip)
 The function `xde_make_MYZpar_RM` can be used to construct the adult mosquito model object, called `MYZpar.`  
                               
 ```{r MYZpar}
-MYZpar = create_MYZpar_RM_static(nPatches, MYZo) 
+MYZpar = create_MYZpar_RM(nPatches, MYZo) 
 class(MYZpar) <- "RM"
 ```
 
@@ -603,12 +603,15 @@ xds_setup(dlay='dde',
 ```
 
 
-
 We solve and take the differences to check: 
 
 ```{r}
 mod534 <- xde_solve(mod534, Tmax=735, dt=15)
 mod534$outputs$orbits$deout -> out2
+```
+
+```{r}
+xds_plot_M(mod534, llty = c(1:3))
 ```
 
 Interestingly, the differences are small: 

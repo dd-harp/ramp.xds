@@ -9,11 +9,13 @@ vignette: >
 
 # 
 
-**`ramp.xds`** was designed to reduce the costs of building, solving, and analyzing models describing malaria transmission dynamics and control or the dynamics and control of other mosquito-transmitted pathogens. This vignette and several related vignettes are designed to help first-time users get started. Closely related vignettes are:
+**`ramp.xds`** was designed to reduce the costs of building, solving, and analyzing models describing malaria transmission dynamics and control or the dynamics and control of other mosquito-transmitted pathogens. This vignette gives a basic overview of using the software. 
 
-+ [Working with Models in **`ramp.xds`**](Working.html) - a primer on using **`ramp.xds`,** including... 
+Closely related vignettes are:
 
-+ [Modularity](Modularity.html)
++ [Working with Models in **`ramp.xds`**](Working.html) - a primer on learning how to **`ramp.xds`** 
+
++ [Modularity](Modularity.html) - a discussion of
 
 
 ## Installation 

@@ -8,13 +8,13 @@
 dMYZdt.si <- function(t, y, pars, s) {
   Lambda = pars$Lambda[[s]]
   kappa = pars$kappa[[s]]
-  MYZpar = update_MYZpar_RM(pars$MYZpar[[s]])
 
-  with(pars$ix$MYZ[[s]],{
-    M <- y[M_ix]
-    Z <- y[Z_ix]
+  with(list_MYZvars(y, pars, s),{
+    with(pars$MYZpar[[s]],{
 
-    with(MYZpar,{
+      f = f_t*es_f; q = q_t*es_q
+      Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
+
       dM <- Lambda - (Omega %*% M)
       dZ <- f*q*kappa*(M-Z) - (Omega %*% Z)
 
@@ -61,7 +61,12 @@ Update_MYZt.si <- function(t, y, pars, s) {
 #' @return a [list] vector
 #' @export
 make_MYZpar.si = function(MYZname, pars, s, MYZopts=list()){
-  MYZpar = create_MYZpar_RM_static(pars$nPatches, MYZopts)
+  setup_as = with(MYZopts, ifelse(exists("setup_as"), setup_as, "RM"))
+  if(setup_as == "GeRM"){
+    MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
+  } else {
+    MYZpar <- create_MYZpar_RM(pars$nPatches, MYZopts)
+  }
   class(MYZpar) <- "si"
   pars$MYZpar[[s]] <- MYZpar
   return(pars)
@@ -73,8 +78,11 @@ make_MYZpar.si = function(MYZname, pars, s, MYZopts=list()){
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqZ.si <- function(t, y, pars, s) {
+  f = get_f(pars, s)
+  q = get_q(pars, s)
   Z = y[pars$ix$MYZ[[s]]$Z_ix]
-  with(pars$MYZpar[[s]], f*q*(Upsilon %*% Z))
+  Upsilon = compute_Upsilon(pars, s)
+  return(f*q*(Upsilon %*% Z))
 }
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
@@ -83,8 +91,10 @@ F_fqZ.si <- function(t, y, pars, s) {
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqM.si <- function(t, y, pars, s) {
+  f = get_f(pars, s)
+  q = get_q(pars, s)
   M = y[pars$ix$MYZ[[s]]$M_ix]
-  with(pars$MYZpar[[s]], f*q*M)
+  return(f*q*M)
 }
 
 #' @title Number of eggs laid by adult mosquitoes
@@ -187,7 +197,12 @@ make_indices_MYZ.si <- function(pars, s) {with(pars,{
 parse_MYZorbits.si <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
   M = outputs[,M_ix]
   Y = outputs[,Z_ix]
-  Z = t(with(pars$MYZpar[[1]], Upsilon %*% t(Y)))
+  Z = Y*0
+  tm = pars$outputs$time
+  for(i in 1:length(tm)){
+    Upsilon = get_bionomics_s_t(tm[i], outputs[i,], pars, s)$Upsilon
+    Z[i,] = Upsilon%*% Y[i,]
+  }
   ff = get_ft(pars,s)
   qq = get_qt(pars,s)
   y = Y/M

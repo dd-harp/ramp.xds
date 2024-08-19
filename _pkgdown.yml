@@ -283,13 +283,10 @@ reference:
   desc: |
     Basic Plotting
   contents:
-  - MBionomics.RM_static
-  - MBionomics.RM_func
-  - create_MYZpar_RM_static
-  - create_MYZpar_RMfunc
-  - update_MYZpar_RM
-  - update_MYZpar_RM.modified
-  - update_MYZpar_RM.unmodified
+  - MBionomics.RM
+  - MBionomics.GeRM
+  - create_MYZpar_RM
+  - create_MYZpar_GeRM
 - subtitle: Visualization for Adult Mosquito
   desc: |
     Basic Plotting
@@ -311,6 +308,8 @@ reference:
   - compute_Omega
   - compute_Omega.xde
   - compute_Omega.dts
+  - compute_Upsilon
+  - compute_Upsilon.xde
   - make_Omega
   - make_Omega.xde
   - make_Omega.dts
@@ -1070,31 +1069,26 @@ reference:
   - F_ni.hMoI
   - get_bionomics
   - get_bionomics_s
+  - get_bionomics_s_t
   - get_ft
   - get_qt
+  - get_gt
+  - get_sigmat
   - get_f
   - get_f.RM
-  - get_f.basicM
-  - get_f.si
-  - get_f.sei
+  - get_f.GeRM
   - get_f.trivial
   - get_q
   - get_q.RM
-  - get_q.basicM
-  - get_q.si
-  - get_q.sei
+  - get_q.GeRM
   - get_q.trivial
   - get_g
   - get_g.RM
-  - get_g.basicM
-  - get_g.si
-  - get_g.sei
+  - get_g.GeRM
   - get_g.trivial
   - get_sigma
   - get_sigma.RM
-  - get_sigma.basicM
-  - get_sigma.si
-  - get_sigma.sei
+  - get_sigma.GeRM
   - get_sigma.trivial
   - make_outputs
   - make_outputs.full

@@ -324,10 +324,16 @@ xds_plot_X.SEIS = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, add_
 #'
 #' @export
 add_lines_X_SEIS = function(time, XH, nStrata, clrs=c("darkblue","darkred"), llty=1){
+  if (length(llty)< nStrata) llty = rep(llty, nStrata)
   with(XH,{
-    lines(time, S+E, col=clrs[1], lty = llty)
-    lines(time, I, col=clrs[2], lty = llty)
-  })
+    if(nStrata == 1){
+      lines(time, S+E, col=clrs[1], lty = llty)
+      lines(time, I, col=clrs[2], lty = llty)
+    } else {
+      for(i in 1:nStrata)
+        lines(time, S[,i] + E[,i], col=clrs[1], lty = llty[i])
+      lines(time, I[,i], col=clrs[2], lty = llty[i])
+    }})
 }
 
 #' @title Compute the steady states for the SEIS model as a function of the daily EIR

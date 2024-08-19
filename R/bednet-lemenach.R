@@ -22,7 +22,7 @@ BedNetEffects.lemenach <- function(t, pars, s){
 BedNetEffectSizes.lemenach <- function(t, pars, s){
   with(pars$ITNefsz,
     with(pars$MYZpar[[s]],{
-      es <- sapply(1:pars$nPatches, compute_bednet_effect_sizes_lemenach, phi=phi, f=f,q=q, g=g, tau0_frac=tau0_frac, r=r,ss=ss)
+      es <- sapply(1:pars$nPatches, compute_bednet_effect_sizes_lemenach, phi=phi, f=f_t,q=q_t, g=g_t, tau0_frac=tau0_frac, r=r,ss=ss)
       pars$MYZpar[[s]]$es_f <- pars$MYZpar[[s]]$es_f*es[1,]
       pars$MYZpar[[s]]$es_q <- pars$MYZpar[[s]]$es_q*es[2,]
       pars$MYZpar[[s]]$es_g <- pars$MYZpar[[s]]$es_g*es[3,]

@@ -6,7 +6,10 @@
 #' @return a [numeric] vector of length `nHabitats`
 #' @export
 F_fqZ.trivial <- function(t, y, pars, s) {
-    with(pars$MYZpar[[s]], return(with(baseline,f*q)*MYZf(t, scale=1)))
+  f = get_f(pars, s)
+  q = get_q(pars, s)
+  fqZ = f*q*pars$MYZpar[[s]]$MYZf(t, scale=1)
+  return(fqZ)
 }
 
 #' @title Blood feeding rate of the infective mosquito population
@@ -15,7 +18,9 @@ F_fqZ.trivial <- function(t, y, pars, s) {
 #' @return a [numeric] vector of length `nHabitats`
 #' @export
 F_fqM.trivial <- function(t, y, pars, s) {
-  with(pars$MYZpar[[s]], return(with(baseline,f*q)*MYZf(t, scale=1)))
+  f = get_f(pars, s)
+  q = get_q(pars, s)
+  return(f*q*pars$MYZpar[[s]]$MYZf(t, scale=1))
 }
 
 
@@ -85,12 +90,19 @@ create_MYZpar_trivial = function(nPatches, MYZopts,
     MYZpar <- list()
     MYZpar$nPatches <- nPatches
 
+    MYZpar$eip <- 0
+    MYZpar$f_t  <- checkIt(f, nPatches)
+    MYZpar$es_f <- rep(1, nPatches)
+    MYZpar$q_t  <- checkIt(q, nPatches)
+    MYZpar$es_q <- rep(1, nPatches)
+    MYZpar$g_t  <- rep(0, nPatches)
+    MYZpar$es_g <- rep(1, nPatches)
+    MYZpar$sigma_t  <- rep(0, nPatches)
+    MYZpar$es_sigma <- rep(1, nPatches)
+
     base = list()
-    base$f      <- checkIt(f, nPatches)
-    base$q      <- checkIt(q, nPatches)
-    class(base) <- 'static'
+    class(base) <- c('static', 'trivial')
     MYZpar$baseline = base
-    MYZpar$now = base
 
     MYZpar$MYZm <- checkIt(MYZm, nPatches)
     if(is.null(MYZf)) MYZf = function(t, scale=1){return(scale*(MYZm + 0*t))}
@@ -142,3 +154,40 @@ get_MYZinits.trivial <- function(pars, s){
   return(c())
 }
 
+
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_f.trivial = function(pars, s=1){
+  with(pars$MYZpar[[s]], f_t*es_f)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_q.trivial = function(pars, s=1){
+  with(pars$MYZpar[[s]], q_t*es_q)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_g.trivial = function(pars, s=1){
+  numeric(0)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_sigma.trivial = function(pars, s=1){
+  numeric(0)
+}
