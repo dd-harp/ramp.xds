@@ -12,7 +12,7 @@ library(ramp.xds)
 ```
 
 ```{r, echo=F}
-devtools::load_all()
+#devtools::load_all()
 ```
 
 # 
@@ -107,11 +107,11 @@ xds_plot_YZ(rm, add_axes=FALSE, llty=2)
 
 ### `sei`
 
-In the standard SEI compartmental model (or its equivalent under a change of variables): 
+In the standard SEI compartmental model (or its equivalent under a change of variables), let $\nu$: 
 
-$$\frac{dY}{dt} = fq\kappa(M-Y) - g Y - \tau^{-1} Y$$
+$$\frac{dY}{dt} = fq\kappa(M-Y) - g Y - Y/ \tau$$
 
-$$\frac{dZ}{dt} =  \tau^{-1} Y - g Z$$  
+$$\frac{dZ}{dt} =  Y / \tau - g Z$$  
 
 ```{r}
 sei = xds_setup(MYZname = "sei", Xname = "trivial", Xopts = list(kappa=0.1), Lname = "trivial", Lopts = list(Lambda=5), HPop=10)
@@ -125,3 +125,5 @@ xds_plot_YZ(rm, add_axes=FALSE, llty=2)
 ```
 
 ### Comparing Models
+
+## Exogenous Forcing
