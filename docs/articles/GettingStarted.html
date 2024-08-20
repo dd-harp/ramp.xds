@@ -175,19 +175,20 @@
     
 <div class="section level2">
 <h2 id="section"></h2>
-<p><strong><code>ramp.xds</code></strong> was designed to reduce the
-costs of building, solving, and analyzing models describing malaria
-transmission dynamics and control or the dynamics and control of other
-mosquito-transmitted pathogens. This vignette gives a basic overview of
-using the software.</p>
-<p>Closely related vignettes are:</p>
+<p><strong><code>ramp.xds</code></strong> reduces the costs of building,
+solving, and analyzing models describing malaria transmission dynamics
+and control. It can also be used to study the dynamics and control of
+other mosquito-transmitted pathogens. This vignette gives a basic
+overview. Closely related vignettes are:</p>
 <ul>
 <li><p><a href="Working.html">Working with Models in
 <strong><code>ramp.xds</code></strong></a> - a primer on learning how to
 <strong><code>ramp.xds</code></strong></p></li>
-<li><p><a href="Modularity.html">Modularity</a> - a discussion
-of</p></li>
+<li><p><a href="modularity.html">Modularity</a> - an overview of the
+modular design.</p></li>
 </ul>
+<p>Also, browse the menus of the <a href="https://dd-harp.github.io/ramp.xds/index.html"><strong><code>ramp.xds</code></strong>
+homepage</a></p>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
@@ -202,10 +203,13 @@ of</p></li>
 <div class="section level3">
 <h3 id="demo">Demo<a class="anchor" aria-label="anchor" href="#demo"></a>
 </h3>
-<p>The software is designed to make it easy to build models.</p>
+<p>With <strong><code>ramp.xds</code></strong> it’s easy to build models
+for the transmission dynamics and control of malaria or other
+mosquito-borne pathogens.</p>
 <ul>
 <li>
-<code><a href="../reference/xds_setup.html">xds_setup()</a></code> returns a fully configured model;</li>
+<code><a href="../reference/xds_setup.html">xds_setup()</a></code> returns a fully configured model (with all
+the default settings, see below);</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -244,59 +248,91 @@ including the EIR.</li>
 <code>xde_solve</code> stores the values of mosquito bionomic
 parameters</li>
 </ul>
-<p>Every time <code>xde_solve</code> is called, the outputs are
-replaced.</p>
-<p>If the user wants to save them for analysis, they must get the
-values. Functions like <code><a href="../reference/get_EIR.html">get_EIR()</a></code> make it easy to examine or
-save a set of standard outputs without delving into the details.</p>
+<p>When <code>xde_solve</code> is called, the <strong><code>xds</code>
+model object</strong> it returns has replaced any old values. Pulling
+information is easy, but a user will probably have to write a function
+to do it.</p>
+<p>Functions like <code><a href="../reference/get_EIR.html">get_EIR()</a></code> make it easy to examine or save
+a set of standard outputs without delving into the details.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_EIR.html">get_EIR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##              [,1]</span></span>
 <span><span class="co">## [1,] 0.0002850000</span></span>
 <span><span class="co">## [2,] 0.0002622311</span></span>
 <span><span class="co">## [3,] 0.0002412851</span></span></code></pre>
-<p>Another set of functions plots the outputs:</p>
+<p>Another set of functions plots standard outputs:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_X.html">xds_plot_X</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_YZ.html">xds_plot_YZ</a></span><span class="op">(</span><span class="va">model</span>, add_axes<span class="op">=</span><span class="cn">F</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_EIR.html">xds_plot_EIR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
-<p><img src="GettingStarted_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
+<div class="figure">
+<img src="GettingStarted_files/figure-html/unnamed-chunk-8-1.png" alt="**Figure 1:** Plotting standard outputs" width="768"><p class="caption">
+<strong>Figure 1:</strong> Plotting standard outputs
+</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="model-building">Model Building<a class="anchor" aria-label="anchor" href="#model-building"></a>
 </h3>
-<p>From a design perspective, a Setup interface can’t possibly
+<p>From a design perspective, the setup interface can’t possibly
 anticipate the needs of every end user. Instead, it has adopted a system
-for setting up models that is based on the principle of <em>scaling
-complexity:</em> the framework has framed the universe of possible
-models as a nested, hierarchical set. In some limiting case, a complex
-model is often <em>equivalent to</em> a simpler model. Rather than try
-to build one big supermodel, the framework envisions the software around
-<em>model families</em> at varying levels of complexity. In its simplest
-form, each model family represents the state of a single population. In
-practice, a single population is subdivided into sub-populations: human
-population strata; adult mosquitoes in patches; and immature mosquitoes
-in aquatic habitats.</p>
-<p>The concept for scaling complexity in model building was (in some
-weird sense) how to construct linked sets of models that could serve as
-a platform to explore the space of all possible models. To make this
-work, model building is handled in two steps:</p>
+for setting up models based on the principle of <em>scaling
+complexity:</em> the framework regards a subset of the universe of
+possible models as a nested, hierarchical set. In some limiting case,
+some complex model are equivalent to a simpler model. Rather than try to
+build one big supermodel, the framework envisions the software around
+<em>model families</em> developed at varying levels of complexity.</p>
+<p>In general, the term <em>model family</em> describes a single
+dynamical component defined by a set of states and transitions in the
+form of a system of differential or difference equations: one example is
+the <em>SIS</em> compartmental model family for human infections. It’s
+called a model family because each unique set of parameters would define
+a different <em>model.</em></p>
+<p>In its simplest form, each model family represents the state of a
+single population. In practice, a single population is subdivided into
+sub-populations: human population strata; adult mosquitoes in patches;
+and immature mosquitoes in aquatic habitats. In
+<strong><code>ramp.xds</code></strong> it is comparatively simple to
+configure a model with multiple strata, patches, and habitats.</p>
+<p>Each model developed in <strong><code>ramp.xds</code></strong> is
+thus characterized by:</p>
+<ul>
+<li><p>The choice of <em>model family</em> for each dynamical component
+and the model parameters.</p></li>
+<li><p>The model structure, including the number of patches, the number
+of habitats and their membership in the patches, and the number of human
+population strata and their residency within the strata.</p></li>
+<li><p>Functions that define exogenous variables and functional
+responses that drive exogenous forcing by weather and malaria
+control.</p></li>
+</ul>
+<p>The concept for designing a setup interface to support complexity
+scaling in model building works bass ackwards. The framework was
+designed around models that could be linked to serve as a platform that
+could explore models of unbounded realism and complexity, but it would
+need to start very simple. To work out all the kinks, the software would
+have to build in ports and junctions that could handle a large set of
+advanced features, but most of these features would be turned off for
+basic setup. Model building is handled in two steps:</p>
 <ul>
 <li><p><strong>Basic Setup</strong> is handled by the function
 <code>xds_setup().</code> It’s designed to help a user get started with
-a properly formulated spatial model.</p></li>
+a properly formulated interface that can handle</p></li>
 <li><p><strong>Advanced Setup</strong> handles exogenous forcing, vector
-control, and other modes of malaria control,</p></li>
+control, and other modes of malaria control, human demography and aging,
+and host population stratification.</p></li>
 </ul>
 <p>Another set of functions has been developed to work with models. See
-the related vignette <a href="Working.html">Working with Models.</a></p>
+the related vignette <a href="Working.html">Working with Models.</a>
+Also, see the related software package <a href="https://dd-harp.github.io/ramp.work/" class="external-link"><strong><code>ramp.work</code></strong></a>.</p>
 <div class="section level4">
 <h4 id="modularity">Modularity<a class="anchor" aria-label="anchor" href="#modularity"></a>
 </h4>
-<p>The framework is designed to support five dynamical components each
-handling a different process. The five components are organized into
-three chunks:</p>
+<p>The framework is designed around five dynamical components organized
+into three chunks:</p>
 <ol style="list-style-type: decimal">
 <li>
 <p>The vertebrate host population, denoted <span class="math inline">\(\cal XH\)</span>:</p>
@@ -325,7 +361,13 @@ feeding and transmission, denoted <span class="math inline">\(\cal
 B\)</span>. The last two chunks are connected through egg laying and
 emergence, <span class="math inline">\(\cal N, U\)</span>.</p>
 <hr>
-<p><img src="notation1.png"></p>
+<div class="float">
+<img src="notation1.png" alt="Figure 2 Modular dynamic components that form the core of ramp.xds"><div class="figcaption">
+<strong>Figure 2</strong> Modular dynamic
+components that form the core of
+<strong><code>ramp.xds</code></strong>
+</div>
+</div>
 <hr>
 </div>
 <div class="section level4">
@@ -357,7 +399,9 @@ infections and immunity in the human population, called <span class="math inline
 model are defined in <code>create_Xpar_SIS.</code> To replace the
 default values at setup, a named list can be passed as
 <code>Xopts = list(...)</code> and the named values in
-<code>Xopts</code> will be used instead of the defaults.</p></li>
+<code>Xopts</code> will be used instead of the defaults. (The human
+demographic model, <span class="math inline">\(\cal H\)</span> is set up
+as an advanced option.)</p></li>
 <li><p><code>MYZname</code> dispatches a model family for adult mosquito
 ecology and parasite infection dynamics, <span class="math inline">\(\cal MYZ.\)</span> The setup default model is
 <code>MYZname="RM"</code> and default parameters for the <code>RM</code>
@@ -379,20 +423,22 @@ be used instead of the defaults.</p></li>
 <p>returns the same values as the function call:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model2</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, MYZname <span class="op">=</span> <span class="st">"RM"</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span><span class="op">)</span></span></code></pre></div>
-<p><strong>Structural Parameters</strong> are also set up during setup.
-Basic setup makes it possible to handle <em>spatial dynamics</em> with
-<em>multiple human / host</em> population strata. Basic setup was
-developed to ensure that all interfaces are set up properly when there
-are multiple patches, multiple habitats, multiple population strata, and
-malaria importation. The framework follows the mathematical formulas and
-(with small changes) the notation in <a href="">Wu SL, <em>et. al.</em>
-2023</a></p>
+<p><strong>Structural Parameters</strong> are also configured using
+<code>xde_setup.</code> In basic setup, users can configure a malaria
+landscape with <em>spatial dynamics,</em> structured <em>aquatic
+habitats,</em> and <em>multiple human / host</em> population strata.
+Basic setup was developed to ensure that all interfaces are set up
+properly when there are multiple patches, multiple habitats, multiple
+population strata, and malaria importation. The framework follows the
+mathematical formulas and (with small changes) the notation in <a href="">Wu SL, <em>et. al.</em> 2023</a></p>
 <ul>
 <li><p><strong><code>nPatches</code></strong> or <span class="math inline">\(n_p\)</span> is the number of patches in the
 model.</p></li>
-<li><p><strong><code>membership</code></strong> is a vector with the
-identity of patch where each habitat can be found. Setup sets the value
-of a variable
+<li><p><strong><code>membership</code></strong> is set up by passing a
+vector with the identity of patch where each habitat can be found, and
+it sets up the habitat matrix, <span class="math inline">\(\cal
+N\)</span>. Setup sets the value of a variable describing the number of
+habitats, <span class="math inline">\(n_q\)</span> =
 <strong><code>nHabitats &lt;- length(membership)</code>.</strong> One
 configurable option is <strong><code>searchQ</code></strong> with the
 habitat search weights.</p></li>
@@ -400,12 +446,13 @@ habitat search weights.</p></li>
 population density, and <strong><code>residence</code></strong> is a
 vector describing the location of the patch where each stratum resides.
 Setup checks that <code>length(HPop) == length(residence)</code> and
-sets the value of a variable
+sets the number of strata, <span class="math inline">\(n_h\)</span> or
 <strong><code>nStrata &lt;- length(residence)</code>.</strong> It is
 also possible to configure heterogeneous biting at the command line by
 passing <strong><code>searchH</code></strong></p></li>
 <li>
-<p>If <code>nPatches &gt;1</code> then</p>
+<p>If <code>nPatches &gt;1</code> then other setup-configurable
+options are to pass:</p>
 <ul>
 <li><p>a matrix <code>calK</code> describing mosquito dispersal among
 the patches.</p></li>
@@ -459,7 +506,12 @@ stratified, but it is also possible to configure other host species (or
 types) to make setup and configuration easier.</p></li>
 </ul>
 <hr>
-<p><img src="ModularGeneralized.png"></p>
+<div class="float">
+<img src="ModularGeneralized.png" alt="Figure 3 – The modular structure and extensibility of ramp.xds."><div class="figcaption">
+<strong>Figure 3</strong> – The modular
+structure and extensibility of
+<strong><code>ramp.xds</code></strong>.</div>
+</div>
 </div>
 </div>
   </div>
