@@ -201,7 +201,8 @@ parse_MYZorbits.si <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
   tm = pars$outputs$time
   for(i in 1:length(tm)){
     Upsilon = get_bionomics_s_t(tm[i], outputs[i,], pars, s)$Upsilon
-    Z[i,] = Upsilon%*% Y[i,]
+    if(pars$nPatches == 1) Z[i] = Upsilon%*% Y[i]
+    if(pars$nPatches > 1) Z[i,] = Upsilon%*% Y[i,]
   }
   ff = get_ft(pars,s)
   qq = get_qt(pars,s)

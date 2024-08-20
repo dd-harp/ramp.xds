@@ -183,12 +183,11 @@ overview. Closely related vignettes are:</p>
 <ul>
 <li><p><a href="Working.html">Working with Models in
 <strong><code>ramp.xds</code></strong></a> - a primer on learning how to
-<strong><code>ramp.xds</code></strong></p></li>
+work with the <strong><code>xds</code> model object</strong></p></li>
 <li><p><a href="modularity.html">Modularity</a> - an overview of the
 modular design.</p></li>
 </ul>
-<p>Also, browse the menus of the <a href="https://dd-harp.github.io/ramp.xds/index.html"><strong><code>ramp.xds</code></strong>
-homepage</a></p>
+<p>Also, browse the menus.</p>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
@@ -293,8 +292,8 @@ called a model family because each unique set of parameters would define
 a different <em>model.</em></p>
 <p>In its simplest form, each model family represents the state of a
 single population. In practice, a single population is subdivided into
-sub-populations: human population strata; adult mosquitoes in patches;
-and immature mosquitoes in aquatic habitats. In
+sub-populations: human population strata or adult mosquitoes in patches
+or immature mosquitoes in aquatic habitats. In
 <strong><code>ramp.xds</code></strong> it is comparatively simple to
 configure a model with multiple strata, patches, and habitats.</p>
 <p>Each model developed in <strong><code>ramp.xds</code></strong> is
@@ -475,10 +474,10 @@ developed, we will add the links here.</em></p>
 advanced options are not defined.</p>
 <ul>
 <li><p><strong>Exposure</strong> – Since catch counts data for
-mosquitoes are usually well-described by a negative binomial
-distribution, <strong><code>ramp.xds</code></strong> has implemented a
-step between the computation of the EIR and the FoI to model
-<em>environmental heterogeneity,</em> based on a probability
+mosquitoes are usually well-described by the negative binomial
+distribution family, <strong><code>ramp.xds</code></strong> has
+implemented a step between the computation of the EIR and the FoI to
+model <em>environmental heterogeneity,</em> based on a probability
 distribution function describing the number of infective bites per
 person. By default, <code>xds_setup</code> configures a Poisson model,
 but this can be changed.</p></li>
