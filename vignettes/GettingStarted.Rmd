@@ -11,11 +11,11 @@ vignette: >
 
 **`ramp.xds`** reduces the costs of building, solving, and analyzing models describing malaria transmission dynamics and control. It can also be used to study the dynamics and control of other mosquito-transmitted pathogens. This vignette gives a basic overview.  Closely related vignettes are:
 
-+ [Working with Models in **`ramp.xds`**](Working.html) - a primer on learning how to **`ramp.xds`** 
++ [Working with Models in **`ramp.xds`**](Working.html) - a primer on learning how to work with the **`xds` model object** 
 
 + [Modularity](modularity.html) - an overview of the modular design.  
 
-Also, browse the menus of the [**`ramp.xds`** homepage](https://dd-harp.github.io/ramp.xds/index.html)
+Also, browse the menus. 
 
 ## Installation 
 
@@ -92,7 +92,7 @@ From a design perspective, the setup interface can't possibly anticipate the nee
 
 In general, the term *model family* describes a single dynamical component defined by a set of states and transitions in the form of a system of differential or difference equations: one example is the *SIS* compartmental model family for human infections. It's called a model family because each unique set of parameters would define a different *model.* 
 
-In its simplest form, each model family represents the state of a single population. In practice, a single population is subdivided into sub-populations: human population strata; adult mosquitoes in patches; and immature mosquitoes in aquatic habitats. In **`ramp.xds`** it is comparatively simple to configure a model with multiple strata, patches, and habitats. 
+In its simplest form, each model family represents the state of a single population. In practice, a single population is subdivided into sub-populations: human population strata or adult mosquitoes in patches or immature mosquitoes in aquatic habitats. In **`ramp.xds`** it is comparatively simple to configure a model with multiple strata, patches, and habitats. 
 
 Each model developed in **`ramp.xds`** is thus characterized by:
 
@@ -186,7 +186,7 @@ To learn more, we suggest taking a look at the [5-3-4 Vignette](https://dd-harp.
 
 **Advanced Setup Options:** During basic setup, most advanced options are not defined. 
 
-- **Exposure** -- Since catch counts data for mosquitoes are usually well-described by a negative binomial distribution, **`ramp.xds`** has implemented a step between the computation of the EIR and the FoI to model *environmental heterogeneity,* based on a probability distribution function describing the number of infective bites per person. By default, `xds_setup` configures a Poisson model, but this can be changed. 
+- **Exposure** -- Since catch counts data for mosquitoes are usually well-described by the negative binomial distribution family, **`ramp.xds`** has implemented a step between the computation of the EIR and the FoI to model *environmental heterogeneity,* based on a probability distribution function describing the number of infective bites per person. By default, `xds_setup` configures a Poisson model, but this can be changed. 
 
 - **Human Demography** -- In basic setup, the human demographic model is the *trivial* model, but it can be configured with births, deaths, and aging.  
 
