@@ -25,7 +25,7 @@ Implements \link{dMYZdt} for the sei ODE model.
 The dynamics of adult mosquitoes:
 \deqn{\frac{dM}{dt} = \Lambda - \Omega \cdot M}
 For infected mosquitoes:
-\deqn{\frac{dY}{dt} = fq\kappa(M-Y) - \Omega \cdot Y - Y/\tau}
+\deqn{\frac{dY}{dt} = fq\kappa(M-Y-Z) - \Omega \cdot Y - Y/\tau}
 For infectious mosquitoes:
 \deqn{\frac{dZ}{dt} = Y/\tau - \Omega \cdot Z}
 }

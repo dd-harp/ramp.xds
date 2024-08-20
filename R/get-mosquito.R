@@ -36,6 +36,27 @@ get_sigmat = function(pars, s=1){
   return(pars$outputs$bionomics[[s]]$sigma)
 }
 
+
+#' @title Make the mosquito demography matrix
+#' @description This method dispatches on the type of `MYZpar`.
+#' @param pars a [list]
+#' @param s the species index
+#' @return the derivatives a [vector]
+#' @export
+get_Omega <- function(pars, s){
+  pars$MYZpar[[s]]$Omega
+}
+
+#' @title Make the mosquito demography matrix
+#' @description This method dispatches on the type of `MYZpar`.
+#' @param pars a [list]
+#' @param s the species index
+#' @return the derivatives a [vector]
+#' @export
+get_Upsilon <- function(pars, s){
+  pars$MYZpar[[s]]$Upsilon
+}
+
 #' @title Compute dynamical terms
 #' @description Using the output of deSolve
 #' compute the dynamical terms for the output of `xde_solve.ode` or `xde_solve.dde`

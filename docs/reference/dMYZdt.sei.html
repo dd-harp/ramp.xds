@@ -75,6 +75,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/AdultMosquitoes.html">Adult Mosquitoes</a>
+    </li>
+    <li>
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
@@ -168,6 +171,15 @@
     
 
 <p>a <a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector</p>
+    </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>The dynamics of adult mosquitoes:
+$$\frac{dM}{dt} = \Lambda - \Omega \cdot M$$
+For infected mosquitoes:
+$$\frac{dY}{dt} = fq\kappa(M-Y-Z) - \Omega \cdot Y - Y/\tau$$
+For infectious mosquitoes:
+$$\frac{dZ}{dt} = Y/\tau - \Omega \cdot Z$$</p>
     </div>
 
   </div>

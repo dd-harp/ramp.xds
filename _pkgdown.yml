@@ -315,9 +315,6 @@ reference:
   - make_Omega
   - make_Omega.xde
   - make_Omega.dts
-  - update_Omega
-  - update_Omega.xde
-  - update_Omega.dts
   - get_Omega
   - get_Upsilon
 - subtitle: EIP
