@@ -95,6 +95,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/AdultMosquitoes.html">Adult Mosquitoes</a>
+    </li>
+    <li>
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
@@ -289,9 +292,8 @@ The equation for <span class="math inline">\(M\)</span> and <span class="math in
 <code class="sourceCode R"><span><span class="va">si</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"si"</span>, Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span>, Lopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda<span class="op">=</span><span class="fl">5</span><span class="op">)</span>, HPop<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">si</span> <span class="op">=</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">si</span>, Tmax<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">si</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/xds_plot_YZ.html">xds_plot_YZ</a></span><span class="op">(</span><span class="va">si</span>, add_axes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/xds_plot_YZ.html">xds_plot_YZ</a></span><span class="op">(</span><span class="va">rm</span>, add_axes<span class="op">=</span><span class="cn">FALSE</span>, llty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_YZ_fracs.html">xds_plot_YZ_fracs</a></span><span class="op">(</span><span class="va">si</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_YZ_fracs.html">xds_plot_YZ_fracs</a></span><span class="op">(</span><span class="va">rm</span>, add_axes<span class="op">=</span><span class="cn">FALSE</span>, llty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-6-1.png" width="480"></p>
 </div>
 <div class="section level4">
@@ -299,18 +301,17 @@ The equation for <span class="math inline">\(M\)</span> and <span class="math in
 <code>sei</code><a class="anchor" aria-label="anchor" href="#sei"></a>
 </h4>
 <p>In the standard SEI compartmental model (or its equivalent under a
-change of variables):</p>
-<p><span class="math display">\[\frac{dY}{dt} = fq\kappa(M-Y) - g Y -
-\tau^{-1} Y\]</span></p>
-<p><span class="math display">\[\frac{dZ}{dt} =  \tau^{-1} Y - g
+change of variables), let <span class="math inline">\(\nu\)</span>:</p>
+<p><span class="math display">\[\frac{dY}{dt} = fq\kappa(M-Y) - g Y - Y/
+\tau\]</span></p>
+<p><span class="math display">\[\frac{dZ}{dt} =  Y / \tau - g
 Z\]</span></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sei</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"sei"</span>, Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span>, Lopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda<span class="op">=</span><span class="fl">5</span><span class="op">)</span>, HPop<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">sei</span> <span class="op">=</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">sei</span>, Tmax<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">sei</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/xds_plot_YZ.html">xds_plot_YZ</a></span><span class="op">(</span><span class="va">sei</span>, add_axes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/xds_plot_YZ.html">xds_plot_YZ</a></span><span class="op">(</span><span class="va">rm</span>, add_axes<span class="op">=</span><span class="cn">FALSE</span>, llty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_YZ_fracs.html">xds_plot_YZ_fracs</a></span><span class="op">(</span><span class="va">rm</span>, llty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_YZ_fracs.html">xds_plot_YZ_fracs</a></span><span class="op">(</span><span class="va">sei</span>, add_axes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
 </div>
 <div class="section level4">

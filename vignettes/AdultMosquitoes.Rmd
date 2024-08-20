@@ -99,9 +99,8 @@ si = xde_solve(si, Tmax=100)
 ```
 
 ```{r, fig.width=5, fig.height=3.5}
-xds_plot_M(si)
-xds_plot_YZ(si, add_axes=FALSE)
-xds_plot_YZ(rm, add_axes=FALSE, llty=2)
+xds_plot_YZ_fracs(si)
+xds_plot_YZ_fracs(rm, add_axes=FALSE, llty=2)
 ```
 
 
@@ -119,9 +118,8 @@ sei = xde_solve(sei, Tmax=100)
 ```
 
 ```{r, fig.width=5, fig.height=3.5}
-xds_plot_M(sei)
-xds_plot_YZ(sei, add_axes=FALSE)
-xds_plot_YZ(rm, add_axes=FALSE, llty=2)
+xds_plot_YZ_fracs(rm, llty=2)
+xds_plot_YZ_fracs(sei, add_axes=FALSE)
 ```
 
 ### Comparing Models
