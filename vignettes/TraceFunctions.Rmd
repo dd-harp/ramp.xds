@@ -52,33 +52,51 @@ The trivial modules each returns different values:
         
         - `trend = function(t){...}`
 
-+ $\cal X$ - 
-The trivial module for human / host infection and immunity is set up by `create_Xpar_trivial.` `F_X` calls `F_H` and then returns `H*kappa*season(t)*trend(t)` 
++ $\cal X$ - The trivial module for human / host infection and immunity is set up by `create_Xpar_trivial.` `F_X` calls `F_H` and then returns `H*kappa*season(t)*trend(t)` 
 
-    -`F_H` is configured in `xds_setup` by passing `HPop = ...` 
+    - `F_H` is configured in `xds_setup` by passing `HPop = ...` 
     
     - To configure `F_X,` `Xopts` must be a named list that sets the values of the elements. The values of `F_X` should be in the interval $[0,H]:$ 
     
-        - `kappa = c(...)`
+      - `kappa = c(...)`
         
-        - `season = function(t){...}`
+      - `season = function(t){...}`
         
-        - `trend = function(t){...}`
+      - `trend = function(t){...}`
         
 
 
 ## Emergence 
 
-The following example configures the emergence rate to rise initially, but then to decline with a seasonal signal: 
+The following adult mosquito model is forced by emergence and net infectiousness: 
+
++ `Lo` configures the adult mosquito emergence rate to rise initially, but then to decline with a seasonal signal: 
 
 ```{r}
 Lo = list(season = function(t){1+sin(2*pi*t/365)}, 
           trend = function(t){(1+t/250)*exp(-t/1000)}, 
           Lambda =5)
-rm = xds_setup(Xname = "trivial", Xopts = list(kappa=0.1), Lname = "trivial", Lopts = Lo, HPop=10)
+```
+
++ `Xo` configures the net infectiousness to rise to 80% over time. 
+
+```{r}
+Xo = list(kappa = 0.8, 
+          trend = function(t){exp(t/500)/(10+exp(t/500))})
+```
+
+```{r, echo=F, eval=F}
+tt = seq(0, 3650, by = 10)
+with(Xo, plot(tt, trend(tt), type = "l"))
+```
+
+```{r}
+rm = xds_setup(Xname = "trivial", Xopts = Xo, HPop=10, 
+               Lname = "trivial", Lopts = Lo)
 rm <- xde_solve(rm, 3650, dt=10)
 ```
 
 ```{r, fig.width=6, fig.height=3.5}
 xds_plot_M(rm)
+xds_plot_YZ(rm, add_axes=FALSE)
 ```
