@@ -181,23 +181,100 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridisLite/" class="external-link">viridisLite</a></span><span class="op">)</span></span></code></pre></div>
+<p>As part of the <em>plug-and-play</em> modular design for
+<strong><code>ramp.xds</code>,</strong> each dynamical component
+includes a trivial model that has no variables. The outputs required by
+other components are passed as a <strong>trace function</strong>. These
+trace functions have three parts:</p>
+<ul>
+<li><p>a mean value, or a scaling argument</p></li>
+<li><p>a function that returns a seasonal signal, configured with a line
+in the appropriate options list,
+<code>season = function(t){...}</code></p></li>
+<li><p>a function that returns a trend, configured with a line in the
+appropriate options list, <code>trend = function(t){...}</code></p></li>
+</ul>
+<p>The trivial modules each returns different values:</p>
+<ul>
+<li>
+<p><span class="math inline">\(\cal L\)</span> - The trivial aquatic
+module is set up by <code>create_Lpar_trivial.</code> The function
+<code><a href="../reference/F_emerge.html">F_emerge()</a></code> returns <code>Lambda*season(t)*trend(t).</code>
+To override the defaults, <code>Lopts</code> must be a named list that
+sets the values of the elements:</p>
+<ul>
+<li><p><code>Lambda = c(...)</code></p></li>
+<li><p><code>season = function(t){...}</code></p></li>
+<li><p><code>trend = function(t){...}</code></p></li>
+</ul>
+</li>
+<li>
+<p><span class="math inline">\(\cal MYZ\)</span> - The trivial adult
+mosquito module is setup by <code>create_MYZpar_trivial.</code> The
+values will return either <code>F_fqZ</code> or <code>F_eggs</code></p>
+<ul>
+<li>
+<p>the function <code><a href="../reference/F_fqZ.html">F_fqZ()</a></code> returns
+<code>f*q*Z*season(t)*trend(t)</code>. To configure,
+<code>MYZopts</code> should be a named list that sets the values of the
+elements:</p>
+<ul>
+<li><p><code>f = c(...)</code></p></li>
+<li><p><code>q = c(...)</code></p></li>
+<li><p><code>Z = c(...)</code></p></li>
+<li><p><code>season = function(t){...}</code></p></li>
+<li><p><code>trend = function(t){...}</code></p></li>
+</ul>
+</li>
+<li>
+<p>the function <code><a href="../reference/F_eggs.html">F_eggs()</a></code> returns
+<code>eggs*season(t)*trend(t)</code>; to override the defaults,
+<code>MYZopts</code> must be a named list that sets the values of the
+elements:</p>
+<ul>
+<li><p><code>eggs = c(...)</code></p></li>
+<li><p><code>season = function(t){...}</code></p></li>
+<li><p><code>trend = function(t){...}</code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><span class="math inline">\(\cal X\)</span> - The trivial module
+for human / host infection and immunity is set up by
+<code>create_Xpar_trivial.</code> <code>F_X</code> calls
+<code>F_H</code> and then returns
+<code>H*kappa*season(t)*trend(t)</code></p>
+<p>-<code>F_H</code> is configured in <code>xds_setup</code> by passing
+<code>HPop = ...</code></p>
+<ul>
+<li>
+<p>To configure <code>F_X,</code> <code>Xopts</code> must be a named
+list that sets the values of the elements. The values of
+<code>F_X</code> should be in the interval <span class="math inline">\([0,H]:\)</span></p>
+<ul>
+<li><p><code>kappa = c(...)</code></p></li>
+<li><p><code>season = function(t){...}</code></p></li>
+<li><p><code>trend = function(t){...}</code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <div class="section level2">
-<h2 id="oplus">
-<span class="math inline">\(\oplus\)</span><a class="anchor" aria-label="anchor" href="#oplus"></a>
+<h2 id="emergence">Emergence<a class="anchor" aria-label="anchor" href="#emergence"></a>
 </h2>
-<p>The trivial models for each dynamical component include the</p>
-<div class="section level3">
-<h3 id="section"></h3>
+<p>The following example configures the emergence rate to rise
+initially, but then to decline with a seasonal signal:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>season <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="va">t</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span><span class="op">}</span>, </span>
-<span>          trend <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">t</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span><span class="op">}</span>, </span>
+<span>          trend <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">t</span><span class="op">/</span><span class="fl">250</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">t</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span><span class="op">}</span>, </span>
 <span>          Lambda <span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">rm</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span>, HPop<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">rm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">rm</span>, <span class="fl">3650</span>, dt<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">rm</span><span class="op">)</span></span></code></pre></div>
-<p><img src="TraceFunctions_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-</div>
+<p><img src="TraceFunctions_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 </div>
   </div>
 

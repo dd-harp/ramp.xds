@@ -12,20 +12,73 @@ library(ramp.xds)
 library(viridisLite)
 ```
 
-# $\oplus$ 
+As part of the  *plug-and-play* modular design for **`ramp.xds`,** each dynamical component includes a trivial model that has no variables. The outputs required by other components are passed as a **trace function**. These trace functions have three parts:
 
-The trivial models for each dynamical component include the 
++ a mean value, or a scaling argument
 
-## 
++ a function that returns a seasonal signal, configured with a line in the appropriate options list, `season = function(t){...}` 
+
++ a function that returns a trend, configured with a line in the appropriate options list, `trend = function(t){...}` 
+
+The trivial modules each returns different values:
+
++ $\cal L$ - The trivial aquatic module is set up by `create_Lpar_trivial.` The function `F_emerge()` returns `Lambda*season(t)*trend(t).` To override the defaults, `Lopts` must be a named list that sets the values of the elements: 
+
+    - `Lambda = c(...)` 
+        
+    - `season = function(t){...}`
+        
+    - `trend = function(t){...}`
+
++ $\cal MYZ$ - The trivial adult mosquito module is setup by `create_MYZpar_trivial.` The values will return either `F_fqZ` or `F_eggs` 
+
+    - the function `F_fqZ()` returns `f*q*Z*season(t)*trend(t)`. To configure, `MYZopts` should be a named list that sets the values of the elements: 
+    
+        - `f = c(...)` 
+        
+        - `q = c(...)` 
+        
+        - `Z = c(...)`
+        
+        - `season = function(t){...}`
+        
+        - `trend = function(t){...}`
+    
+    - the function `F_eggs()` returns `eggs*season(t)*trend(t)`; to override the defaults, `MYZopts` must be a named list that sets the values of the elements:
+    
+        - ` eggs = c(...)`
+        
+        - `season = function(t){...}`
+        
+        - `trend = function(t){...}`
+
++ $\cal X$ - 
+The trivial module for human / host infection and immunity is set up by `create_Xpar_trivial.` `F_X` calls `F_H` and then returns `H*kappa*season(t)*trend(t)` 
+
+    -`F_H` is configured in `xds_setup` by passing `HPop = ...` 
+    
+    - To configure `F_X,` `Xopts` must be a named list that sets the values of the elements. The values of `F_X` should be in the interval $[0,H]:$ 
+    
+        - `kappa = c(...)`
+        
+        - `season = function(t){...}`
+        
+        - `trend = function(t){...}`
+        
+
+
+## Emergence 
+
+The following example configures the emergence rate to rise initially, but then to decline with a seasonal signal: 
 
 ```{r}
 Lo = list(season = function(t){1+sin(2*pi*t/365)}, 
-          trend = function(t){exp(-t/1000)}, 
+          trend = function(t){(1+t/250)*exp(-t/1000)}, 
           Lambda =5)
 rm = xds_setup(Xname = "trivial", Xopts = list(kappa=0.1), Lname = "trivial", Lopts = Lo, HPop=10)
 rm <- xde_solve(rm, 3650, dt=10)
 ```
 
-```{r}
+```{r, fig.width=6, fig.height=3.5}
 xds_plot_M(rm)
 ```
