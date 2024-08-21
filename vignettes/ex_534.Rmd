@@ -166,7 +166,7 @@ The egg dispersal matrix $\mathcal{U}$ is a $n_q \times n_p$ matrix describing h
  .2 & 0 & 0\\ 
  .1 & 0 & 0\\ 
  0 & .8 & 0\\ 
- 0 & .2 & 0\\ d
+ 0 & .2 & 0\\ 
  \end{array} \right]
 \end{equation}
 
