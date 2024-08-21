@@ -16,8 +16,6 @@ library(viridisLite)
 #devtools::load_all()
 ```
 
-# $\oplus$  
-
 The basic mosquito models in **`ramp.xds`** are variants of George Macdonald mathematical models, developed with help from P. Armitage. The variables for all the models in **`ramp.xds`** are mosquito densities, and the default model is from Aron & May, 1982.
 
 ## George Macdonald 
