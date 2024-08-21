@@ -9,6 +9,7 @@ vignette: >
 
 ```{r}
 library(ramp.xds)
+library(viridisLite)
 ```
 
 ```{r, echo=F}
@@ -17,7 +18,7 @@ library(ramp.xds)
 
 # $\oplus$  
 
-The basic mosquito models in **`ramp.xds`** are variants of George Macdonald mathematical models, developed with help from P. Armitage. 
+The basic mosquito models in **`ramp.xds`** are variants of George Macdonald mathematical models, developed with help from P. Armitage. The variables for all the models in **`ramp.xds`** are mosquito densities, and the default model is from Aron & May, 1982.
 
 ## George Macdonald 
 
@@ -97,7 +98,7 @@ $$e^{-g\tau} \frac{fq\kappa}{g+fq\kappa} = p^n \frac{ax}{ax - \log_{e}p}$$
 
 + $\sigma$ - a vector describing patch-specific emigration rates 
 
-+ $\mu$ - a vector describing migration-related loss 
++ $\mu$ - a vector describing the fraction of mosquitoes *lost* through migration, including mortality and dispersal out of the system
 
 + $\cal K$ - a dispersal matrix
 
@@ -131,11 +132,9 @@ xds_plot_YZ_fracs(rm, add_axes=FALSE, llty=2)
 
 ### `sei`
 
-In the standard SEI compartmental model (or its equivalent under a change of variables), let $\nu$: 
+In a model that is equivalent to the standard SEI compartmental model (under a change of variables), the equations for $M$ and $Y$ are as above, but the fraction infectious is: 
 
-$$\frac{dY}{dt} = fq\kappa(M-Y) - g Y - Y/ \tau$$
-
-$$\frac{dZ}{dt} =  Y / \tau - g Z$$  
+$$\frac{dZ}{dt} =  (Y-Z) / \tau - g Z$$  
 
 ```{r}
 sei = xds_setup(MYZname = "sei", Xname = "trivial", Xopts = list(kappa=0.1), Lname = "trivial", Lopts = list(Lambda=5), HPop=10)
@@ -149,4 +148,25 @@ xds_plot_YZ_fracs(sei, add_axes=FALSE)
 
 ## Comparing Models
 
+```{r, fig.width=5, fig.height=3.5}
+clrs = turbo(4)[-2]
+xds_plot_Z_fracs(rm, Zclrs=clrs[1])
+text(80, 0.15, "RM", col = clrs[1])
+text(80, 0.11, "si", col = clrs[2])
+text(80, 0.07, "sei", col = clrs[3])
+xds_plot_Z_fracs(si, add_axes=FALSE, Zclrs = clrs[2])
+xds_plot_Z_fracs(sei, add_axes=FALSE, Zclrs = clrs[3])
+```
+
+```{r}
+rm1 <- rm 
+rm1$Lpar[[1]]$season = function(t){1+sin(2*pi*t/365)}
+rm1$Lpar[[1]]$trend = function(t){exp(-t/1000)}
+rm1 <- xde_solve(rm1, Tmax=1500)
+xds_plot_M(rm1)
+```
+
+
 ## Exogenous Forcing
+
+

@@ -233,8 +233,8 @@ let:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="../reference/list_Xvars.html">list_Xvars</a></span><span class="op">(</span><span class="va">seis</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">last_y</span>, <span class="va">seis</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">seis_inf</span></span>
 <span><span class="va">seis_inf</span></span>
-<span><span class="co">#&gt;          S          E          I          H </span></span>
-<span><span class="co">#&gt;  652.95170   25.04472  322.00358 1000.00000</span></span></code></pre></div>
+<span><span class="co">#&gt;           S           E           I           H </span></span>
+<span><span class="co">#&gt;  911.577028    6.381039   82.041933 1000.000000</span></span></code></pre></div>
 <p>This model has the steady state…</p>
 <p><span class="math display">\[
 \bar E = H \frac {hr}{h(r+\nu) + r \nu} \\
@@ -248,7 +248,7 @@ let:</p>
 <span><span class="co">#&gt;  652.95170   25.04472  322.00358 1000.00000</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">seis_inf</span><span class="op">-</span><span class="va">seis_ss</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-9</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="compartment-model-as-an-dde">Compartment Model as an DDE<a class="anchor" aria-label="anchor" href="#compartment-model-as-an-dde"></a>
@@ -273,8 +273,8 @@ state, <span class="math inline">\(h=h_{v}\)</span>, so</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="../reference/list_Xvars.html">list_Xvars</a></span><span class="op">(</span><span class="va">SEISd</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">last_y</span>, <span class="va">SEISd</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="va">seisd_inf</span></span>
 <span><span class="va">seisd_inf</span></span>
-<span><span class="co">#&gt;          S          E          I          H </span></span>
-<span><span class="co">#&gt;  652.95180   25.04457  322.00363 1000.00000</span></span></code></pre></div>
+<span><span class="co">#&gt;           S           E           I           H </span></span>
+<span><span class="co">#&gt;  911.577042    6.381024   82.041934 1000.000000</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_steady_state_X.html">xde_steady_state_X</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">365</span>, <span class="fl">1000</span>, <span class="va">SEISd</span><span class="op">$</span><span class="va">Xpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">seisd_ss</span></span>
 <span><span class="va">seisd_ss</span></span>
@@ -282,7 +282,7 @@ state, <span class="math inline">\(h=h_{v}\)</span>, so</p>
 <span><span class="co">#&gt;  652.95170   25.04472  322.00358 1000.00000</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">seisd_inf</span><span class="op">-</span><span class="va">seisd_ss</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-5</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 </div>
 </div>
   </div>

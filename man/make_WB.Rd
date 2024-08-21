@@ -4,9 +4,11 @@
 \alias{make_WB}
 \title{Compute availability blood hosts of the i^th species}
 \usage{
-make_WB(pars, y = 0)
+make_WB(t, pars, y = 0)
 }
 \arguments{
+\item{t}{the time}
+
 \item{pars}{an \code{xds} object}
 
 \item{y}{state vector}

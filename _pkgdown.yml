@@ -1055,7 +1055,7 @@ reference:
   desc: |
     Basic visualization of the transmission terms
   contents:
-  - F_1
+  - F_flat
 - subtitle: New
   desc: |
     Basic visualization of the transmission terms

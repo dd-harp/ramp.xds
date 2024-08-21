@@ -475,7 +475,7 @@ params$TaR
 ```{r change_blood_weights}
 params <- change_blood_weights(params, searchWtsH)
 y0 <- get_inits(params)
-params <- make_WB(params, y0)
+params <- make_WB(0, params, y0)
 ```
 
 ```{r}

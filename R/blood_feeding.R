@@ -92,7 +92,7 @@ setup_BLOOD_FEEDING <- function(pars){
 
   # Relative activity rates for mosquitoes
   up$F_circadian = list()
-  up$F_circadian[[1]] = F_1
+  up$F_circadian[[1]] = F_flat
 
   # Mosquito
   pars$BFpar <- up
@@ -190,14 +190,15 @@ compute_B = function(W, visitors, other_blood){
 
 #' @title Compute availability blood hosts of the i^th species
 #' @description Compute the availability for the pathogen's hosts for blood feeding
+#' @param t the time
 #' @param pars an `xds` object
 #' @param y state vector
 #' @return an `xds` object
 #' @export
-make_WB <- function(pars, y=0){
+make_WB <- function(t, pars, y=0){
   y = as.vector(unlist(y))
   for(s in 1:pars$nVectors){
-    H = F_H(y, pars, 1)
+    H = F_H(t, y, pars, 1)
     TaR = pars$TaR[[s]][[1]]
     wts = pars$BFpar$search_weights[[s]][[1]]
     Wi = compute_W(wts, H, TaR)
@@ -236,14 +237,15 @@ compute_RBR = function(search_weights, H){
 
 #' @title Compute and attach the relative biting rates
 #' @description Compute the availability for the pathogen's hosts for blood feeding
+#' @param t the time
 #' @param pars an `xds` object
 #' @param y state vector
 #' @return an `xds` object
 #' @export
-make_RBR = function(pars, y){
+make_RBR = function(t, pars, y){
   y = as.vector(unlist(y))
   for(i in 1:pars$nHosts){
-    H = F_H(y, pars, i)
+    H = F_H(t, y, pars, i)
     wts = pars$BFpar$search_weights[[1]][[i]]
     pars$rbr[[i]] = compute_RBR(wts, H)
   }
@@ -334,9 +336,9 @@ BloodFeeding.static = function(t, y, pars){
 #' @return an `xds` object
 #' @export
 BloodFeeding.dynamic = function(t, y, pars){
-  pars <- make_TaR(pars)
-  pars <- make_WB(pars, y)
-  pars <- make_RBR(pars, y)
+  pars <- make_TaR(pars, t)
+  pars <- make_WB(t, pars, y)
+  pars <- make_RBR(t, pars, y)
   return(pars)
 }
 

@@ -78,11 +78,11 @@ make_Xpar.hMoI = function(Xname, pars, i, Xopts=list()){
 #' @return a [numeric] vector of length `nStrata`
 #' @importFrom stats pexp
 #' @export
-F_X.hMoI <- function(y, pars, i) {
+F_X.hMoI <- function(t, y, pars, i) {
   with(pars$ix$X[[i]],{
   m1 = y[m1_ix]
   m2 = y[m2_ix]
-  H <- F_H(y, pars, i)
+  H <- F_H(t, y, pars, i)
   with(pars$Xpar[[i]],{
     x1 <- pexp(q = m1)
     x2 <- pexp(q = m2)
@@ -96,7 +96,7 @@ F_X.hMoI <- function(y, pars, i) {
 #' @inheritParams F_H
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_H.hMoI <- function(y, pars, i) {
+F_H.hMoI <- function(t, y, pars, i) {
   pars$Xpar[[i]]$H
 }
 

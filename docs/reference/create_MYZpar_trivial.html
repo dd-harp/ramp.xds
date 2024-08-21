@@ -144,7 +144,16 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_MYZpar_trivial</span><span class="op">(</span><span class="va">nPatches</span>, <span class="va">MYZopts</span>, f <span class="op">=</span> <span class="fl">1</span>, q <span class="op">=</span> <span class="fl">1</span>, MYZm <span class="op">=</span> <span class="fl">1</span>, MYZf <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_MYZpar_trivial</span><span class="op">(</span></span>
+<span>  <span class="va">nPatches</span>,</span>
+<span>  <span class="va">MYZopts</span>,</span>
+<span>  f <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  q <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  Z <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  eggs <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  season <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  trend <span class="op">=</span> <span class="va">F_flat</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -165,12 +174,20 @@
 <dd><p>the human fraction</p></dd>
 
 
-<dt>MYZm</dt>
-<dd><p>a vector of mean mosquito densities</p></dd>
+<dt>Z</dt>
+<dd><p>the human fraction</p></dd>
 
 
-<dt>MYZf</dt>
-<dd><p>a <a href="https://rdrr.io/r/base/function.html" class="external-link">function</a> of the form MYZf(t, pars) that computes temporal fluctuations</p></dd>
+<dt>eggs</dt>
+<dd><p>the human fraction</p></dd>
+
+
+<dt>season</dt>
+<dd><p>a seasonality function</p></dd>
+
+
+<dt>trend</dt>
+<dd><p>a trend function</p></dd>
 
 </dl></div>
     <div id="value">

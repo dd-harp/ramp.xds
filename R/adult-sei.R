@@ -5,10 +5,10 @@
 #' @details
 #' The dynamics of adult mosquitoes:
 #' \deqn{\frac{dM}{dt} = \Lambda - \Omega \cdot M}
-#' For infected mosquitoes:
-#' \deqn{\frac{dY}{dt} = fq\kappa(M-Y-Z) - \Omega \cdot Y - Y/\tau}
-#' For infectious mosquitoes:
-#' \deqn{\frac{dZ}{dt} = Y/\tau - \Omega \cdot Z}
+#' The density of infected but not infectious mosquitoes:
+#' \deqn{\frac{dY}{dt} = fq\kappa(M-Y) - \Omega \cdot Y}
+#' The density of infectious mosquitoes:
+#' \deqn{\frac{dZ}{dt} = (Y-Z)/\tau - \Omega \cdot Z}
 #' @inheritParams dMYZdt
 #' @return a [numeric] vector
 #' @export
@@ -23,8 +23,8 @@ dMYZdt.sei <- function(t, y, pars, s) {
       Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
 
       dM <- Lambda - (Omega %*% M)
-      dY <- f*q*kappa*(M-Y-Z) - Omega %*% Y - Y/eip
-      dZ <- Y/eip - (Omega %*% Z)
+      dY <- f*q*kappa*(M-Y) - Omega %*% Y
+      dZ <- (Y-Z)/eip - (Omega %*% Z)
 
       return(c(dM, dY, dZ))
     })

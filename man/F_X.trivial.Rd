@@ -4,9 +4,11 @@
 \alias{F_X.trivial}
 \title{Size of effective infectious human population}
 \usage{
-\method{F_X}{trivial}(y, pars, i)
+\method{F_X}{trivial}(t, y, pars, i)
 }
 \arguments{
+\item{t}{current simulation time}
+
 \item{y}{state vector}
 
 \item{pars}{an \strong{\code{xds}} object}

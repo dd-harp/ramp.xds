@@ -176,23 +176,24 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridisLite/" class="external-link">viridisLite</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="oplus">
 <span class="math inline">\(\oplus\)</span><a class="anchor" aria-label="anchor" href="#oplus"></a>
 </h2>
 <p>The basic mosquito models in <strong><code>ramp.xds</code></strong>
-are variants of Macdonald’s model, first published in <a href="https://pubmed.ncbi.nlm.nih.gov/14958825/" class="external-link"><em>The analysis of the
-sporozoite rate</em></a>.</p>
+are variants of George Macdonald mathematical models, developed with
+help from P. Armitage. The variables for all the models in
+<strong><code>ramp.xds</code></strong> are mosquito densities, and the
+default model is from Aron &amp; May, 1982.</p>
 <div class="section level3">
 <h3 id="george-macdonald">George Macdonald<a class="anchor" aria-label="anchor" href="#george-macdonald"></a>
 </h3>
-<p>Three of George Macdonald’s papers published from 1950-52 transformed
-the study of malaria epidemiology and medical entomology.</p>
+<p>George Macdonald’s papers published from 1952 transformed the
+quantitative study of medical entomology and malaria transmission by
+mosquitoes:</p>
 <ul>
-<li><p>In 1950, <a href="https://pubmed.ncbi.nlm.nih.gov/14798657/" class="external-link"><em>The analysis of
-malaria parasite rates in infants</em></a> summarized decades of
-research in malaria epidemiology.</p></li>
 <li><p>1952 - <a href="https://pubmed.ncbi.nlm.nih.gov/14958825/" class="external-link"><em>The analysis of the
 sporozoite rate</em></a> presented a formula for the sporozoite rate.
 Macdonald’s analysis demonstrated the importance of mosquito
@@ -202,7 +203,7 @@ analysis of equilibrium in malaria</em></a> introduced the <em>basic
 reproduction rate</em> of malaria with a compact set of
 parameters.</p></li>
 </ul>
-<p>In Macdonald’s notation (and some of his words):</p>
+<p>Macdon In Macdonald’s notation (and some of his words):</p>
 <ul>
 <li><p><span class="math inline">\(m=\)</span> the ratio of anopheline
 vectors to humans</p></li>
@@ -284,7 +285,11 @@ human population density of <span class="math inline">\(H=10.\)</span></p>
 e^{-g}\)</span> or equivalently <span class="math inline">\(g = -\ln
 p\)</span>, <span class="math inline">\(\kappa = x,\)</span> and <span class="math inline">\(n=\tau\)</span> so:</p>
 <p><span class="math display">\[e^{-g\tau} \frac{fq\kappa}{g+fq\kappa} =
-p^n \frac{ax}{ax - \log_{e}p}\]</span> ### Spatial Dynamics</p>
+p^n \frac{ax}{ax - \log_{e}p}\]</span></p>
+</div>
+<div class="section level4">
+<h4 id="spatial-dynamics">Spatial Dynamics<a class="anchor" aria-label="anchor" href="#spatial-dynamics"></a>
+</h4>
 <p><strong><code>ramp.xds</code></strong> can also model mosquito
 spatial dynamics, as described in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" class="external-link">Spatial
 Dynamics of Malaria Transmission (2023) <em>PLoS Computational
@@ -292,12 +297,33 @@ Biology</em></a>. In the spatial formulations, a landscape is
 sub-divided into a set of <span class="math inline">\(n_p\)</span>
 patches. The variables <span class="math inline">\(M\)</span> and <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span> are vectors of length <span class="math inline">\(n_p,\)</span> and the paramger <span class="math inline">\(g\)</span> is replaced by a mosquito demographic
 matrix <span class="math inline">\(\Omega\)</span> that describes
-dispersal.</p>
+dispersal. The matrix <span class="math inline">\(\Omega\)</span>
+combines several parameters:</p>
+<ul>
+<li><p><span class="math inline">\(g\)</span> - a vector describing
+patch-specific dispersal</p></li>
+<li><p><span class="math inline">\(\sigma\)</span> - a vector describing
+patch-specific emigration rates</p></li>
+<li><p><span class="math inline">\(\mu\)</span> - a vector describing
+the fraction of mosquitoes <em>lost</em> through migration, including
+mortality and dispersal out of the system</p></li>
+<li><p><span class="math inline">\(\cal K\)</span> - a dispersal
+matrix</p></li>
+</ul>
+<p><span class="math display">\[\Omega = \mbox{diag}\left(g\right) -
+\left[\mbox{diag}\left(1-\mu\right)-{\cal K} \right] \cdot
+\mbox{diag}\left(\sigma\right)\]</span></p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="variants">Variants<a class="anchor" aria-label="anchor" href="#variants"></a>
 </h3>
+<p><strong><code>ramp.xds</code></strong> also includes two variants of
+Macdonald’s model:</p>
+<ul>
+<li><p><code>si</code> is a simpler version of the model above</p></li>
+<li><p><code>sei</code> is a compartmental model</p></li>
+</ul>
 <div class="section level4">
 <h4 id="si">
 <code>si</code><a class="anchor" aria-label="anchor" href="#si"></a>
@@ -317,11 +343,10 @@ The equation for <span class="math inline">\(M\)</span> and <span class="math in
 <h4 id="sei">
 <code>sei</code><a class="anchor" aria-label="anchor" href="#sei"></a>
 </h4>
-<p>In the standard SEI compartmental model (or its equivalent under a
-change of variables), let <span class="math inline">\(\nu\)</span>:</p>
-<p><span class="math display">\[\frac{dY}{dt} = fq\kappa(M-Y) - g Y - Y/
-\tau\]</span></p>
-<p><span class="math display">\[\frac{dZ}{dt} =  Y / \tau - g
+<p>In a model that is equivalent to the standard SEI compartmental model
+(under a change of variables), the equations for <span class="math inline">\(M\)</span> and <span class="math inline">\(Y\)</span> are as above, but the fraction
+infectious is:</p>
+<p><span class="math display">\[\frac{dZ}{dt} =  (Y-Z) / \tau - g
 Z\]</span></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sei</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"sei"</span>, Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span>, Lopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda<span class="op">=</span><span class="fl">5</span><span class="op">)</span>, HPop<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
@@ -331,10 +356,26 @@ Z\]</span></p>
 <span><span class="fu"><a href="../reference/xds_plot_YZ_fracs.html">xds_plot_YZ_fracs</a></span><span class="op">(</span><span class="va">sei</span>, add_axes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
 </div>
-<div class="section level4">
-<h4 id="comparing-models">Comparing Models<a class="anchor" aria-label="anchor" href="#comparing-models"></a>
-</h4>
 </div>
+<div class="section level3">
+<h3 id="comparing-models">Comparing Models<a class="anchor" aria-label="anchor" href="#comparing-models"></a>
+</h3>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">clrs</span> <span class="op">=</span> <span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">2</span><span class="op">]</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">rm</span>, Zclrs<span class="op">=</span><span class="va">clrs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">0.15</span>, <span class="st">"RM"</span>, col <span class="op">=</span> <span class="va">clrs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">0.11</span>, <span class="st">"si"</span>, col <span class="op">=</span> <span class="va">clrs</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">0.07</span>, <span class="st">"sei"</span>, col <span class="op">=</span> <span class="va">clrs</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">si</span>, add_axes<span class="op">=</span><span class="cn">FALSE</span>, Zclrs <span class="op">=</span> <span class="va">clrs</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">sei</span>, add_axes<span class="op">=</span><span class="cn">FALSE</span>, Zclrs <span class="op">=</span> <span class="va">clrs</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">rm1</span> <span class="op">&lt;-</span> <span class="va">rm</span> </span>
+<span><span class="va">rm1</span><span class="op">$</span><span class="va">Lpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">season</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="va">t</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="va">rm1</span><span class="op">$</span><span class="va">Lpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">trend</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">t</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="va">rm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">rm1</span>, Tmax<span class="op">=</span><span class="fl">1500</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">rm1</span><span class="op">)</span></span></code></pre></div>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="exogenous-forcing">Exogenous Forcing<a class="anchor" aria-label="anchor" href="#exogenous-forcing"></a>

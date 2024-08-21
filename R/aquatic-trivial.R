@@ -1,5 +1,35 @@
 # specialized methods for the aquatic mosquito trivial model
 
+#' @title Number of newly emerging adults from each larval habitat
+#' @description Implements [F_emerge] for the trivial (forced emergence) model.
+#' @inheritParams F_emerge
+#' @return a [numeric] vector of length `nHabitats`
+#' @export
+F_emerge.trivial <- function(t, y, pars, s) {
+  with(pars$Lpar[[s]], Lambda*season(t)*trend(t))
+}
+
+#' @title Make parameters for trivial aquatic mosquito model
+#' @param nHabitats the number of habitats in the model
+#' @param Lopts a [list] that overwrites default values
+#' @param Lambda vector of mean emergence rates from each aquatic habitat
+#' @param season a function that gives a seasonal pattern
+#' @param trend a function that returns a temporal trend
+#' @return none
+#' @export
+create_Lpar_trivial = function(nHabitats, Lopts=list(),
+                               Lambda=1000, season=F_flat, trend=F_flat){
+  with(Lopts,{
+    Lpar = list()
+    class(Lpar) <- "trivial"
+    Lpar$Lambda = checkIt(Lambda, nHabitats)
+    Lpar$season = season
+    Lpar$trend = trend
+    Lpar$baseline = "trivial"
+    class(Lpar$baseline) = "trivial"
+    return(Lpar)
+  })}
+
 #' @title Reset aquatic parameters to baseline
 #' @description Implements [LBionomics] for the RM model
 #' @inheritParams LBionomics
@@ -16,15 +46,6 @@ LBionomics.trivial <- function(t, y, pars, s) {
 #' @export
 xde_steady_state_L.trivial = function(eta, Lpar){
   return(numeric(0))
-}
-
-#' @title Number of newly emerging adults from each larval habitat
-#' @description Implements [F_emerge] for the trivial (forced emergence) model.
-#' @inheritParams F_emerge
-#' @return a [numeric] vector of length `nHabitats`
-#' @export
-F_emerge.trivial <- function(t, y, pars, s) {
-  with(pars$Lpar[[s]], scale*Lt(t))
 }
 
 #' @title Derivatives for aquatic stage mosquitoes
@@ -73,24 +94,6 @@ make_Lpar.trivial = function(Lname, pars, s, Lopts=list()){
   return(pars)
 }
 
-#' @title Make parameters for trivial aquatic mosquito model
-#' @param nHabitats the number of habitats in the model
-#' @param Lopts a [list] that overwrites default values
-#' @param Lambda vector of mean emergence rates from each aquatic habitat
-#' @param Lt is a [function] of the form Lt(t,pars) that computes temporal fluctuations
-#' @return none
-#' @export
-create_Lpar_trivial = function(nHabitats, Lopts=list(), Lambda=1000, Lt = NULL){
-  with(Lopts,{
-    Lpar = list()
-    class(Lpar) <- "trivial"
-    Lpar$scale = checkIt(Lambda, nHabitats)
-    if(is.null(Lt)) Lt = function(t){1}
-    Lpar$Lt = Lt
-    Lpar$baseline = "trivial"
-    class(Lpar$baseline) = "trivial"
-    return(Lpar)
-  })}
 
 #' @title Setup \eqn{\cal L}-trivial
 #' @description Implements [make_Linits] for the trivial model
