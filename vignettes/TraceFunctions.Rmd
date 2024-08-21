@@ -1,0 +1,31 @@
+---
+title: "Trace Functions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Trace Functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+library(ramp.xds)
+library(viridisLite)
+```
+
+# $\oplus$ 
+
+The trivial models for each dynamical component include the 
+
+## 
+
+```{r}
+Lo = list(season = function(t){1+sin(2*pi*t/365)}, 
+          trend = function(t){exp(-t/1000)}, 
+          Lambda =5)
+rm = xds_setup(Xname = "trivial", Xopts = list(kappa=0.1), Lname = "trivial", Lopts = Lo, HPop=10)
+rm <- xde_solve(rm, 3650, dt=10)
+```
+
+```{r}
+xds_plot_M(rm)
+```
