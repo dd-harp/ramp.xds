@@ -4,9 +4,11 @@
 \alias{F_X.hMoI}
 \title{Size of effective infectious human population}
 \usage{
-\method{F_X}{hMoI}(y, pars, i)
+\method{F_X}{hMoI}(t, y, pars, i)
 }
 \arguments{
+\item{t}{current simulation time}
+
 \item{y}{state vector}
 
 \item{pars}{an \strong{\code{xds}} object}

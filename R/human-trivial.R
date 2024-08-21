@@ -1,5 +1,46 @@
 # specialized methods for a human trivial model
 
+#' @title Size of effective infectious human population
+#' @description Implements [F_X] for the trivial model.
+#' @inheritParams F_X
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_X.trivial <- function(t, y, pars, i) {
+  H = F_H(t, y, pars, i)
+  X = with(pars$Xpar[[i]],  H*kappa*season(t)*trend(t))
+  return(X)
+}
+
+#' @title Size of the human population
+#' @description Implements [F_H] for the trivial model.
+#' @inheritParams F_H
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_H.trivial <- function(t, y, pars, i) {
+  pars$Xpar[[i]]$H
+}
+
+#' @title Make parameters for trivial human model
+#' @param nPatches the number of patches
+#' @param Xopts a [list]
+#' @param kappa net infectiousness
+#' @param HPop initial human population density
+#' @param season a seasonality function
+#' @param trend a trend function
+#' @return a [list]
+#' @export
+create_Xpar_trivial <- function(nPatches, Xopts, kappa=.1, HPop=1,
+                                season=F_flat, trend=F_flat){with(Xopts,{
+  Xpar <- list()
+  class(Xpar) <- c('trivial')
+  Xpar$H = checkIt(HPop, nPatches)
+  Xpar$kappa= checkIt(kappa, nPatches)
+  Xpar$season = season
+  Xpar$trend = trend
+  return(Xpar)
+})}
+
+
 #' @title Derivatives for human population
 #' @description Implements [dXdt] for the trivial model.
 #' @inheritParams dXdt
@@ -18,41 +59,8 @@ Update_Xt.trivial <- function(t, y, pars, i) {
   numeric(0)
 }
 
-#' @title Make parameters for trivial human model
-#' @param nPatches the number of patches
-#' @param Xopts a [list]
-#' @param kappa net infectiousness
-#' @param HPop initial human population density
-#' @return a [list]
-#' @export
-create_Xpar_trivial <- function(nPatches, Xopts, kappa=.1, HPop=1){with(Xopts,{
-  Xpar <- list()
-  class(Xpar) <- c('trivial')
-  Xpar$H = checkIt(HPop, nPatches)
-  Xpar$kappa= checkIt(kappa, nPatches)
-  Xpar$Kf = function(t){return(0*t + kappa)}
-  return(Xpar)
-})}
 
-#' @title Size of effective infectious human population
-#' @description Implements [F_X] for the trivial model.
-#' @inheritParams F_X
-#' @return a [numeric] vector of length `nStrata`
-#' @export
-F_X.trivial <- function(y, pars, i) {
-  H = F_H(y, pars, i)
-  X = with(pars$Xpar[[i]],  H*kappa)
-  return(X)
-}
 
-#' @title Size of the human population
-#' @description Implements [F_H] for the trivial model.
-#' @inheritParams F_H
-#' @return a [numeric] vector of length `nStrata`
-#' @export
-F_H.trivial <- function(y, pars, i) {
-  pars$Xpar[[i]]$H
-}
 
 #' @title Compute the "true" prevalence of infection / parasite rate
 #' @description Implements [F_pr] for the trivial model.

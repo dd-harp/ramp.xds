@@ -4,9 +4,11 @@
 \alias{F_H}
 \title{Size of human population denominators}
 \usage{
-F_H(y, pars, i)
+F_H(t, y, pars, i)
 }
 \arguments{
+\item{t}{current simulation time}
+
 \item{y}{state vector}
 
 \item{pars}{an \strong{\code{xds}} object}

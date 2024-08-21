@@ -4,9 +4,11 @@
 \alias{F_X}
 \title{Size of effective infectious human population}
 \usage{
-F_X(y, pars, i)
+F_X(t, y, pars, i)
 }
 \arguments{
+\item{t}{current simulation time}
+
 \item{y}{state vector}
 
 \item{pars}{an \strong{\code{xds}} object}

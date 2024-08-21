@@ -4,7 +4,16 @@
 \alias{create_MYZpar_trivial}
 \title{Make parameters for trivial aquatic mosquito model}
 \usage{
-create_MYZpar_trivial(nPatches, MYZopts, f = 1, q = 1, MYZm = 1, MYZf = NULL)
+create_MYZpar_trivial(
+  nPatches,
+  MYZopts,
+  f = 1,
+  q = 1,
+  Z = 1,
+  eggs = 1,
+  season = F_flat,
+  trend = F_flat
+)
 }
 \arguments{
 \item{nPatches}{an integer}
@@ -15,9 +24,13 @@ create_MYZpar_trivial(nPatches, MYZopts, f = 1, q = 1, MYZm = 1, MYZf = NULL)
 
 \item{q}{the human fraction}
 
-\item{MYZm}{a vector of mean mosquito densities}
+\item{Z}{the human fraction}
 
-\item{MYZf}{a \link{function} of the form MYZf(t, pars) that computes temporal fluctuations}
+\item{eggs}{the human fraction}
+
+\item{season}{a seasonality function}
+
+\item{trend}{a trend function}
 }
 \value{
 none

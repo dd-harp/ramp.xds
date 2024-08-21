@@ -4,9 +4,11 @@
 \alias{F_X.SEISd}
 \title{Size of effective infectious human population}
 \usage{
-\method{F_X}{SEISd}(y, pars, i)
+\method{F_X}{SEISd}(t, y, pars, i)
 }
 \arguments{
+\item{t}{current simulation time}
+
 \item{y}{state vector}
 
 \item{pars}{an \strong{\code{xds}} object}

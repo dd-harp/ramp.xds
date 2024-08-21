@@ -75,6 +75,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/AdultMosquitoes.html">Adult Mosquitoes</a>
+    </li>
+    <li>
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
@@ -141,7 +144,14 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_Xpar_trivial</span><span class="op">(</span><span class="va">nPatches</span>, <span class="va">Xopts</span>, kappa <span class="op">=</span> <span class="fl">0.1</span>, HPop <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_Xpar_trivial</span><span class="op">(</span></span>
+<span>  <span class="va">nPatches</span>,</span>
+<span>  <span class="va">Xopts</span>,</span>
+<span>  kappa <span class="op">=</span> <span class="fl">0.1</span>,</span>
+<span>  HPop <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  season <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  trend <span class="op">=</span> <span class="va">F_flat</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -160,6 +170,14 @@
 
 <dt>HPop</dt>
 <dd><p>initial human population density</p></dd>
+
+
+<dt>season</dt>
+<dd><p>a seasonality function</p></dd>
+
+
+<dt>trend</dt>
+<dd><p>a trend function</p></dd>
 
 </dl></div>
     <div id="value">

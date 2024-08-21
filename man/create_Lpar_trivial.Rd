@@ -4,7 +4,13 @@
 \alias{create_Lpar_trivial}
 \title{Make parameters for trivial aquatic mosquito model}
 \usage{
-create_Lpar_trivial(nHabitats, Lopts = list(), Lambda = 1000, Lt = NULL)
+create_Lpar_trivial(
+  nHabitats,
+  Lopts = list(),
+  Lambda = 1000,
+  season = F_flat,
+  trend = F_flat
+)
 }
 \arguments{
 \item{nHabitats}{the number of habitats in the model}
@@ -13,7 +19,9 @@ create_Lpar_trivial(nHabitats, Lopts = list(), Lambda = 1000, Lt = NULL)
 
 \item{Lambda}{vector of mean emergence rates from each aquatic habitat}
 
-\item{Lt}{is a \link{function} of the form Lt(t,pars) that computes temporal fluctuations}
+\item{season}{a function that gives a seasonal pattern}
+
+\item{trend}{a function that returns a temporal trend}
 }
 \value{
 none

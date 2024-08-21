@@ -68,7 +68,7 @@ compute_beta = function(H, W, wts_f, TaR){
 #' @export
 make_beta <- function(t, y, pars){
   for(i in 1:pars$nHosts){
-    H = F_H(y, pars, i)
+    H = F_H(t, y, pars, i)
     for(s in 1:pars$nVectors){
       W = pars$vars$W[[s]]
       wts = pars$BFpar$search_weights[[s]][[i]]
@@ -181,7 +181,7 @@ make_kappa <- function(t, y, pars){
     Wi = pars$vars$Wi[[s]][[1]]
     W = pars$vars$W[[s]]
     beta = pars$beta[[s]][[1]]
-    X = F_X(y, pars, 1)
+    X = F_X(t, y, pars, 1)
 
     kappa <- compute_kappa(Wi, W, beta, X)
 

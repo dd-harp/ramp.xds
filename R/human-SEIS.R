@@ -96,7 +96,7 @@ create_Xpar_SEIS = function(nStrata, Xopts=list(),
 #' @inheritParams F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X.SEIS <- function(y, pars, i) {
+F_X.SEIS <- function(t, y, pars, i) {
   I = y[pars$ix$X[[i]]$I_ix]
   X = with(pars$Xpar[[i]], c*I)
   return(X)
@@ -107,7 +107,7 @@ F_X.SEIS <- function(y, pars, i) {
 #' @inheritParams F_H
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_H.SEIS <- function(y, pars, i){
+F_H.SEIS <- function(t, y, pars, i){
   with(list_Xvars(y, pars, i), return(H))
 }
 

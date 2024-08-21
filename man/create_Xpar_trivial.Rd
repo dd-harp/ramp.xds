@@ -4,7 +4,14 @@
 \alias{create_Xpar_trivial}
 \title{Make parameters for trivial human model}
 \usage{
-create_Xpar_trivial(nPatches, Xopts, kappa = 0.1, HPop = 1)
+create_Xpar_trivial(
+  nPatches,
+  Xopts,
+  kappa = 0.1,
+  HPop = 1,
+  season = F_flat,
+  trend = F_flat
+)
 }
 \arguments{
 \item{nPatches}{the number of patches}
@@ -14,6 +21,10 @@ create_Xpar_trivial(nPatches, Xopts, kappa = 0.1, HPop = 1)
 \item{kappa}{net infectiousness}
 
 \item{HPop}{initial human population density}
+
+\item{season}{a seasonality function}
+
+\item{trend}{a trend function}
 }
 \value{
 a \link{list}
