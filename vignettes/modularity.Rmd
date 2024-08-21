@@ -12,6 +12,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
+This software supports nimble model building with functions to set up, solve, and analyze dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission formulated as dynamical systems in continuous or discrete time. The systems are naturally modular: an intermediate step in developing a model for **`ramp.xds`** is to rewrite the equations using [Modular Forms](https://dd-harp.github.io/ramp.xds/articles/modularity.html). 
+
+The mathematical framework and software have a modular design developed around an algorithm to model mosquito blood feeding on vertebrate hosts and parasite / pathogen transmission, including patch-based spatial dynamics within a defined geographical domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen linking infection dynamics in mosquito and vertebrate host populations. It guarantees mathematical consistency in computing blood feeding rates and habits and in allocating bites and blood meals with heterogeneous vertebrate host population densities, including models with dynamically changing availability of host populations or other vertebrate animals. 
+
+The framework and software also support spatial models of mosquito ecology through an algorithm that describes egg laying by adult mosquitoes in aquatic habitats and emergence of adult mosquitoes. The egg laying algorithm provides a rigorous interface linking dynamical components describing adult mosquito populations in a set of spatial patches and immature aquatic mosquito populations in a structured set of aquatic habitats. 
+
+
 ## Modularity
 
 Dynamical systems models for malaria and other mosquito-borne pathogens (MBPs) are naturally modular. Transmission dynamics involve infection dynamics in populations of two different species of hosts: a mosquito host, and a human or other vertebrate animal host. Parasite / pathogen transmission occurs through blood feeding. The modular nature of these systems can be emphasized by rewriting the equations using [modular forms](modular_forms.html)
