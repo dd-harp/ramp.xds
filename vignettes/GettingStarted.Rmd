@@ -9,17 +9,12 @@ vignette: >
 
 # 
 
-**`ramp.xds`** reduces the costs of building, solving, and analyzing models describing malaria transmission dynamics and control. It can also be used to study the dynamics and control of other mosquito-transmitted pathogens. This vignette gives a basic overview.  Closely related vignettes are:
-
-+ [Working with Models in **`ramp.xds`**](Working.html) - a primer on learning how to work with the **`xds` model object** 
-
-+ [Modularity](modularity.html) - an overview of the modular design.  
-
-Also, browse the menus. 
+**`ramp.xds`** reduces the costs of building, solving, and analyzing models describing the epidemiology,  transmission dynamics and control of malaria and other mosquito-transmitted pathogens. This vignette gives a demonstration and a basic introduction. Another useful vignette is a primer for working with the **`xds` model object**, called 
+[Working with Models in **`ramp.xds`**](Working.html). 
 
 ## Installation 
 
-To download the R package, run these commands: 
+The software was developed in RStudio. To download the R package, run these commands: 
 
 ```{r, eval=F}
 library(devtools)
@@ -67,14 +62,14 @@ The outputs are:
 + `deout` -- the raw (unparsed) outputs  
 + `bionomics` -- For models with exogenous forcing, `xde_solve` stores the values of mosquito bionomic parameters 
 
-When `xde_solve` is called, the **`xds` model object** it returns has replaced any old values. Pulling information is easy, but a user will probably have to write a function to do it.  
+When `xde_solve` is called, the **`xds` model object** it returns has replaced any old values. To do anything with the outputs, the user will probably have to write a wrapper function that solves and extracts.  
 
 Functions like `get_EIR()` make it easy to examine or save a set of standard outputs without delving into the details. 
 
 ```{r}
 head(get_EIR(model), 3)
 ```
-Another set of functions plots standard outputs:
+**`ramp.xds`** includes functions to plot standard outputs:
 
 
 ```{r, fig.height=6, fig.width=8, fig.cap = "**Figure 1:** Plotting standard outputs" }

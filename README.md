@@ -33,7 +33,7 @@ The software was designed around a rigorous mathematical framework for modular m
 
 **`ramp.xds`** is part of a suite of R packages developed to support RAMP: 
 
-+ **`ramp.xds`** is the core computational engine for simulation-based analytics. It includes a basic set of models -- enough to design, demonstrate and tests the basic features of modular software. 
++ **`ramp.xds`** is the core computational engine for simulation-based analytics. It includes a basic set of models -- enough to design, verify, and demonstrate the basic features of modular software. 
 
 +  [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an extended library of stable code that has been tested and verified. It includes a large set of model families published in peer review that are not included in **`ramp.xds`** The ability to reuse code reduces the costs of replicating studies. Through this library, **`ramp.xds`** also supports nimble model building and analytics for other mosquito-borne pathogens. 
 
