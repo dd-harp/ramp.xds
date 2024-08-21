@@ -9,6 +9,8 @@ navbar:
       href: articles/GettingStarted.html
     - text: Working with Models in ramp.xds
       href: articles/Working.html
+    - text: Trace Functions
+      href: articles/TraceFunctions.html
     - text: Understanding ramp.xds
       href: articles/Understanding_ramp.xds.html
     - text: Modular Forms for Disease Dynamics
