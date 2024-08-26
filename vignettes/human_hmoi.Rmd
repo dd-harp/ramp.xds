@@ -59,8 +59,7 @@ We can use this to calculate the net infectious probability, and then $\kappa = 
 ```{r, message=FALSE, warning=FALSE}
 library(ramp.xds)
 library(deSolve)
-library(data.table)
-library(ggplot2)
+library(viridisLite)
 ```
 
 ```{r, echo=FALSE} 
@@ -89,21 +88,21 @@ b <- 0.55
 c1 <- 0.05
 c2 <- 0.25
 r1 <- 1/250
-r2 <- 1/5
+r2 <- 1/50
 ```
 
 
 
 
 ```{r}
-m2 <- 1.5
+m2 <- rlnorm(3, .2, .5) 
 h <- r2*m2
 m1 <- h/r1
 Xo = list(b = b, c1 = c1, c2 = c2, r1 = r1, r2 = r2, m1=m1, m2=m2)
 ```
 
 ```{r}
-eir <- rep(h/b, 3) 
+eir <- h/b
 ```
 
 ```{r}
@@ -113,19 +112,19 @@ params = make_Xinits(params, H, 1, Xo)
 
 
 ```{r}
-fF_eir = function(eir){
-  EIR = as.vector(eir) 
-  return(function(t, bday=0, scale=1){scale*EIR})
-} 
-F_eir = fF_eir(eir)
+F_season = function(t){1}
+F_trend = function(t){1}
+F_age = function(a){1}
 ```
+
 
 
 ```{r}
 params$EIRpar = list() 
-params$EIRpar$bday=0 
-params$EIRpar$scale=1 
-params$F_eir = F_eir
+params$EIRpar$eir <- as.vector(eir)
+params$EIRpar$F_season <- F_season
+params$EIRpar$F_trend <- F_trend
+params$EIRpar$F_age <- F_age
 ```
 
 ```{r}
@@ -140,26 +139,21 @@ y0
 
 
 ```{r}
-out <- deSolve::ode(y = as.vector(unlist(y0)), times = c(0, 365), func = xde_derivatives, 
-                    parms = params, method = 'lsoda') 
-out1 <- out
+out1 <- xde_solve_cohort(eir, 0, params)$outputs$cohort
 ```
 
 
 ```{r, out.width = "100%"}
-
-colnames(out)[params$ix$X[[1]]$m1_ix+1] <- paste0('m1_', 1:params$nStrata)
-colnames(out)[params$ix$X[[1]]$m2_ix+1] <- paste0('m2_', 1:params$nStrata)
-
-out <- as.data.table(out)
-out <- melt(out, id.vars = 'time')
-out[, c("Component", "Strata") := tstrsplit(variable, '_', fixed = TRUE)]
-out[, variable := NULL]
-
-ggplot(data = out, mapping = aes(x = time, y = value, color = Strata)) +
-  geom_line() +
-  facet_wrap(Strata ~ Component, scales = 'free') +
-  theme_bw()
+clrs = turbo(5)
+with(out1,{
+  plot(age, XH[[1]]$m1[,1], col = clrs[1], ylim = range(XH[[1]]$m1), type = "l")
+  lines(age, XH[[1]]$m1[,2], col = clrs[2])
+  lines(age, XH[[1]]$m1[,3], col =clrs[5])
+  
+  lines(age, XH[[1]]$m2[,1], col = clrs[1], lty = 2)
+  lines(age, XH[[1]]$m2[,2], col = clrs[2], lty=2)
+  lines(age, XH[[1]]$m2[,3], col =clrs[5], lty=2)
+})
 ```
 
 # Using Setup
@@ -167,12 +161,12 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Strata)) +
 
 
 ```{r}
-xds_setup_cohort(F_eir, 'xde', Xname="hMoI", HPop=H, Xopts = Xo) ->test_hMoI_xde
+xds_setup_cohort(eir, bday=0, Xname="hMoI", HPop=H, Xopts = Xo) ->test_hMoI_xde
 ```
 
 ```{r}
-xde_solve(test_hMoI_xde, 365, 365)$outputs$orbits$deout -> out2
-approx_equal(out2, out1)
+xde_solve_cohort(eir, 0, test_hMoI_xde)$outputs$cohort -> out2
+sum((out2$XH[[1]]$m1-out1$XH[[1]]$m1)^2)
 ```
 
 

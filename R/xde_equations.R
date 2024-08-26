@@ -147,29 +147,6 @@ xde_derivatives.mosy <- function(t, y, pars) {
   return(list(c(dL, dM)))
 }
 
-#' @title Differential equation models for human cohorts
-#' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
-#' generic methods for each model component.
-#' @inheritParams xde_derivatives
-#' @return a [list] containing the vector of all state derivatives
-#' @export
-xde_derivatives.cohort <- function(t, y, pars) {
-
-  F_eir <- pars$F_eir
-  # EIR: entomological inoculation rate trace
-  pars$EIR[[1]] <- with(pars$EIRpar, F_eir(t, bday, scale))*pars$rbr[[1]]
-
-  # FoI: force of infection
-  pars <- Exposure(t, y, pars)
-
-  # state derivatives
-  dX <- dXdt(t, y, pars, 1)
-  if(pars$nHosts > 1)
-    for(i in 2:pars$nHosts)
-      dX <- c(dX, dXdt(t, y, pars, i))
-
-  return(list(c(dX)))
-}
 
 #' @title Differential equation models for aquatic mosquito populations
 #' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
