@@ -53,23 +53,25 @@ dts_steady_state_X = function(ar, H, Xpar){
 
 #' @title Size of effective infectious human population
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @param t current simulation time
 #' @param y state vector
 #' @param pars an **`xds`** object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X <- function(y, pars, i) {
+F_X <- function(t, y, pars, i) {
   UseMethod("F_X", pars$Xpar[[i]])
 }
 
 #' @title Size of human population denominators
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @param t current simulation time
 #' @param y state vector
 #' @param pars an **`xds`** object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_H <- function(y, pars, i) {
+F_H <- function(t, y, pars, i) {
   UseMethod("F_H", pars$Xpar[[i]])
 }
 

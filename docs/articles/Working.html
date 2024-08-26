@@ -56,6 +56,9 @@
       <a href="../articles/Working.html">Working with Models in ramp.xds</a>
     </li>
     <li>
+      <a href="../articles/TraceFunctions.html">Trace Functions</a>
+    </li>
+    <li>
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
@@ -95,6 +98,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/AdultMosquitoes.html">Adult Mosquitoes</a>
+    </li>
+    <li>
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
@@ -174,57 +180,125 @@
 
     
     
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="section"></h2>
 <p><strong><code>ramp.xds</code></strong> was designed to reduce the
 costs of model building and computation for malaria and other
 mosquito-transmitted pathogens. One of the core challenges for the
 software was to provide users with a set of utilities that would make it
-easy to do work with models.</p>
-<ul>
-<li><p><strong>Solving</strong> - functions make it easy to solve
-dynamical systems. In these systems, <em>time</em> is the independent
-variable. Given a set of initial values, <code>xde_solve</code> or
-<code>dts_solve</code> compute the values of the dependent variables at
-those time points.</p></li>
-<li>
-<p><strong>Outputs</strong> - the raw outputs are returned in
-several usable forms:</p>
+easy to do work with models after they’ve been built.</p>
+<div class="section level3">
+<h3 id="set-up">Set Up<a class="anchor" aria-label="anchor" href="#set-up"></a>
+</h3>
+<p>The function <code>xds_setup</code> was discussed in <a href="https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html">Getting
+Started</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, MYZname <span class="op">=</span> <span class="st">"si"</span>, Lname <span class="op">=</span> <span class="st">"basicL"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span><span class="op">$</span><span class="va">MYZname</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "si"</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
+</h3>
+<p>The functions <code>xde_solve</code> and <code>dts_solve</code> can
+be called to solve dynamical systems. In these systems, <em>time</em> is
+the independent variable. Given a set of initial values,
+<code>xde_solve</code> or <code>dts_solve</code> compute the values of
+the dependent variables at those time points. Other functions return
+stable orbits for models with a canonical seasonal signal.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="outputs">Outputs<a class="anchor" aria-label="anchor" href="#outputs"></a>
+</h3>
+<p>The variables and terms are returned as raw and parsed outputs:</p>
 <ul>
 <li><p>raw outputs are returned in tabular form</p></li>
 <li><p>outputs are parsed into named lists; the values of the dependent
 variables can be retrieved by name.</p></li>
 <li><p>dynamical terms are computed and returned.</p></li>
 </ul>
-</li>
-<li><p><strong>Visualize</strong> - a family of functions makes it easy
-to plot basic outputs of the models.</p></li>
-<li><p><strong>Initial Values</strong> - a set of utilities was
-developed to work with initial values, making it easy to change the
-intitial values through a function call.</p></li>
-<li><p><strong>Changing Parameters</strong> - another set of utilities
-was developed to change parameter values through a function
-call.</p></li>
-<li>
-<p><strong>Analysis</strong> - the software includes functions that
-perform various analytical tasks:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "time"      "last_y"    "bionomics" "orbits"    "terms"     "deout"</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="visualize">Visualize<a class="anchor" aria-label="anchor" href="#visualize"></a>
+</h3>
+<p>a family of functions makes it easy to plot basic outputs of the
+models.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Working_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
+</div>
+<div class="section level3">
+<h3 id="initial-values">Initial Values<a class="anchor" aria-label="anchor" href="#initial-values"></a>
+</h3>
+<p>A set of utilities was developed to work with initial values, making
+it easy to change the intitial values through a function call. In
+solving, <code>xde_solve</code> calls <code>get_inits</code> with a
+<code>flatten=TRUE</code></p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">mod</span>, flatten<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1]   1   5   1 999   1</span></span></code></pre>
+<p>With the default, <code>flatten=FALSE</code>, <code>get_inits</code>
+returns a named list that is easy to read:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $L</span></span>
+<span><span class="co">## $L$L</span></span>
+<span><span class="co">## [1] 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $MYZ</span></span>
+<span><span class="co">## $MYZ$M</span></span>
+<span><span class="co">## [1] 5</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $MYZ$Z</span></span>
+<span><span class="co">## [1] 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $X</span></span>
+<span><span class="co">## $X$S</span></span>
+<span><span class="co">## [1] 999</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $X$I</span></span>
+<span><span class="co">## [1] 1</span></span></code></pre>
+<p>Since it is a named list, it’s easy to examine a specific element in
+that list:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">MYZ</span></span></code></pre></div>
+<pre><code><span><span class="co">## $M</span></span>
+<span><span class="co">## [1] 5</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $Z</span></span>
+<span><span class="co">## [1] 1</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
+</h3>
+<p>Another set of utilities was developed to change parameter values
+through a function call.</p>
+</div>
+<div class="section level3">
+<h3 id="analyze">Analyze<a class="anchor" aria-label="anchor" href="#analyze"></a>
+</h3>
+<p>The software includes functions that perform various analytical
+tasks:</p>
 <ul>
-<li><p>Solve for the steady states of various model components using a
-method that does not involve simulation, a way of independently
-verifying the code.</p></li>
+<li><p>Compute the steady states of model components using a method that
+does not involve simulation. These functions also provide a way of
+independently verifying the code.</p></li>
 <li><p>Compute stable orbits.</p></li>
 <li><p>Compute vectorial capacity and its spatial-temporal dispersion,
 the human transmitting capacity and its spatial-temporal dispersion, and
 malaria reproductive numbers as pseudo-threshold conditions.</p></li>
 </ul>
-</li>
-</ul>
-<p>In the following sections, we provide an overview of these functions
-and an introduction. Closely related vignettes include:</p>
-<ul>
-<li><p><a href="GettingStarted.html">Getting Started</a></p></li>
-<li><p><a href="Understanding_ramp.xds.html">Understanding</a></p></li>
-</ul>
+</div>
 <div class="section level3">
 <h3 id="modifying-models">Modifying Models<a class="anchor" aria-label="anchor" href="#modifying-models"></a>
 </h3>
@@ -234,10 +308,10 @@ outputs, to examine and change initial values and parameters, and to
 analyze the models.</p>
 <p>The <strong><code>xds</code> model object</strong> – any object that
 can be solved by <code>xde_solve</code> or <code>dts_solve</code> – is a
-compound list in R. Anyone who is already familiar with the format of
-the <strong><code>xds</code></strong> model object can examine any part
-of it, or change any of the parameter values or initial conditions.
-While that might be the way to go in the long run, the
+compound list in R. If you’re already familiar with the format of the
+<strong><code>xds</code></strong> model object, it’s possible examine
+any part of it, or change any of the parameter values or initial
+conditions. While that might be the way to go in the long run, the
 <strong><code>xds</code> model object</strong> includes a set of
 utilities to retrieve initial values, parameters, and some other values
 of interests.</p>
@@ -266,18 +340,6 @@ avoid various errors. There are three kinds of functions:</p>
 density:</p></li>
 <li><p>Changing parameter values.</p></li>
 </ul>
-<div class="section level4">
-<h4 id="initial-values">Initial Values<a class="anchor" aria-label="anchor" href="#initial-values"></a>
-</h4>
-<ul>
-<li>To examine the initial values, <code>get_Xinits</code> or
-<code>get_MYZinits</code> or <code>get_Linits</code> returns the initial
-values as a named list.</li>
-</ul>
-</div>
-<div class="section level4">
-<h4 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
-</h4>
 <p><strong>Modification</strong> of any features of a model, but some of
 these features are:</p>
 <ul>
@@ -289,7 +351,6 @@ these features are:</p>
 <p>To build a model with the features you want. The goal of software
 design was to make it possible to do almost anything, but there were
 some important constraints.</p>
-</div>
 </div>
 <div class="section level3">
 <h3 id="structural-parameters">Structural Parameters<a class="anchor" aria-label="anchor" href="#structural-parameters"></a>
@@ -305,18 +366,6 @@ include:</p>
 <li><p>adding vertebrate host species</p></li>
 <li><p>adding vector species</p></li>
 </ul>
-</div>
-<div class="section level3">
-<h3 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
-</h3>
-</div>
-<div class="section level3">
-<h3 id="outputs">Outputs<a class="anchor" aria-label="anchor" href="#outputs"></a>
-</h3>
-</div>
-<div class="section level3">
-<h3 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
-</h3>
 </div>
 </div>
   </div>

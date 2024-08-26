@@ -8,21 +8,9 @@
 F_fqZ.trivial <- function(t, y, pars, s) {
   f = get_f(pars, s)
   q = get_q(pars, s)
-  fqZ = f*q*pars$MYZpar[[s]]$MYZf(t, scale=1)
-  return(fqZ)
+  Z = with(pars$MYZpar[[s]], Z*season(t)*trend(t))
+  return(f*q*Z)
 }
-
-#' @title Blood feeding rate of the infective mosquito population
-#' @description Implements [F_fqM] for the trivial model.
-#' @inheritParams F_fqM
-#' @return a [numeric] vector of length `nHabitats`
-#' @export
-F_fqM.trivial <- function(t, y, pars, s) {
-  f = get_f(pars, s)
-  q = get_q(pars, s)
-  return(f*q*pars$MYZpar[[s]]$MYZf(t, scale=1))
-}
-
 
 #' @title Number of eggs laid by adult mosquitoes
 #' @description Implements [F_eggs] for the trivial model.
@@ -30,8 +18,19 @@ F_fqM.trivial <- function(t, y, pars, s) {
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_eggs.trivial <- function(t, y, pars, s) {
-  with(pars$MYZpar[[s]], return(MYZf(t, scale=1)))
+  with(pars$MYZpar[[s]],
+    return(eggs*season(t)*trend(t))
+)}
+
+#' @title Blood feeding rate of the infective mosquito population
+#' @description Implements [F_fqM] for the trivial model.
+#' @inheritParams F_fqM
+#' @return a [numeric] vector of length `nHabitats`
+#' @export
+F_fqM.trivial <- function(t, y, pars, s){
+  return(numeric(0))
 }
+
 
 #' @title Derivatives for aquatic stage mosquitoes
 #' @description Implements [dMYZdt] for the trivial (forced emergence) model.
@@ -78,14 +77,15 @@ xde_steady_state_MYZ.trivial = function(Lambda, kappa, MYZpar){with(MYZpar,{
 #' @param MYZopts a [list] of values that overwrites the defaults
 #' @param f the blood feeding rate
 #' @param q the human fraction
-#' @param MYZm a vector of mean mosquito densities
-#' @param MYZf a [function] of the form MYZf(t, pars) that computes temporal fluctuations
+#' @param Z the human fraction
+#' @param eggs the human fraction
+#' @param season a seasonality function
+#' @param trend a trend function
 #' @return none
 #' @export
 create_MYZpar_trivial = function(nPatches, MYZopts,
-                               f = 1, q = 1,
-                               MYZm = 1, MYZf = NULL){
-
+                               f = 1, q = 1, Z=1, eggs=1,
+                               season = F_flat, trend=F_flat){
   with(MYZopts,{
     MYZpar <- list()
     MYZpar$nPatches <- nPatches
@@ -104,9 +104,10 @@ create_MYZpar_trivial = function(nPatches, MYZopts,
     class(base) <- c('static', 'trivial')
     MYZpar$baseline = base
 
-    MYZpar$MYZm <- checkIt(MYZm, nPatches)
-    if(is.null(MYZf)) MYZf = function(t, scale=1){return(scale*(MYZm + 0*t))}
-    MYZpar$MYZf = MYZf
+    MYZpar$Z <- checkIt(Z, nPatches)
+    MYZpar$eggs <- checkIt(eggs, nPatches)
+    MYZpar$season <- season
+    MYZpar$trend <- trend
     return(MYZpar)
   })}
 

@@ -56,6 +56,9 @@
       <a href="../articles/Working.html">Working with Models in ramp.xds</a>
     </li>
     <li>
+      <a href="../articles/TraceFunctions.html">Trace Functions</a>
+    </li>
+    <li>
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
@@ -95,6 +98,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/AdultMosquitoes.html">Adult Mosquitoes</a>
+    </li>
+    <li>
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
@@ -176,23 +182,17 @@
 <div class="section level2">
 <h2 id="section"></h2>
 <p><strong><code>ramp.xds</code></strong> reduces the costs of building,
-solving, and analyzing models describing malaria transmission dynamics
-and control. It can also be used to study the dynamics and control of
-other mosquito-transmitted pathogens. This vignette gives a basic
-overview. Closely related vignettes are:</p>
-<ul>
-<li><p><a href="Working.html">Working with Models in
-<strong><code>ramp.xds</code></strong></a> - a primer on learning how to
-<strong><code>ramp.xds</code></strong></p></li>
-<li><p><a href="modularity.html">Modularity</a> - an overview of the
-modular design.</p></li>
-</ul>
-<p>Also, browse the menus of the <a href="https://dd-harp.github.io/ramp.xds/index.html"><strong><code>ramp.xds</code></strong>
-homepage</a></p>
+solving, and analyzing models describing the epidemiology, transmission
+dynamics and control of malaria and other mosquito-transmitted
+pathogens. This vignette gives a demonstration and a basic introduction.
+Another useful vignette is a primer for working with the
+<strong><code>xds</code> model object</strong>, called <a href="Working.html">Working with Models in
+<strong><code>ramp.xds</code></strong></a>.</p>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
-<p>To download the R package, run these commands:</p>
+<p>The software was developed in RStudio. To download the R package, run
+these commands:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dd-harp/ramp.xds"</span><span class="op">)</span></span></code></pre></div>
@@ -249,9 +249,9 @@ including the EIR.</li>
 parameters</li>
 </ul>
 <p>When <code>xde_solve</code> is called, the <strong><code>xds</code>
-model object</strong> it returns has replaced any old values. Pulling
-information is easy, but a user will probably have to write a function
-to do it.</p>
+model object</strong> it returns has replaced any old values. To do
+anything with the outputs, the user will probably have to write a
+wrapper function that solves and extracts.</p>
 <p>Functions like <code><a href="../reference/get_EIR.html">get_EIR()</a></code> make it easy to examine or save
 a set of standard outputs without delving into the details.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -260,7 +260,8 @@ a set of standard outputs without delving into the details.</p>
 <span><span class="co">## [1,] 0.0002850000</span></span>
 <span><span class="co">## [2,] 0.0002622311</span></span>
 <span><span class="co">## [3,] 0.0002412851</span></span></code></pre>
-<p>Another set of functions plots standard outputs:</p>
+<p><strong><code>ramp.xds</code></strong> includes functions to plot
+standard outputs:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_X.html">xds_plot_X</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
@@ -293,8 +294,8 @@ called a model family because each unique set of parameters would define
 a different <em>model.</em></p>
 <p>In its simplest form, each model family represents the state of a
 single population. In practice, a single population is subdivided into
-sub-populations: human population strata; adult mosquitoes in patches;
-and immature mosquitoes in aquatic habitats. In
+sub-populations: human population strata or adult mosquitoes in patches
+or immature mosquitoes in aquatic habitats. In
 <strong><code>ramp.xds</code></strong> it is comparatively simple to
 configure a model with multiple strata, patches, and habitats.</p>
 <p>Each model developed in <strong><code>ramp.xds</code></strong> is
@@ -475,10 +476,10 @@ developed, we will add the links here.</em></p>
 advanced options are not defined.</p>
 <ul>
 <li><p><strong>Exposure</strong> – Since catch counts data for
-mosquitoes are usually well-described by a negative binomial
-distribution, <strong><code>ramp.xds</code></strong> has implemented a
-step between the computation of the EIR and the FoI to model
-<em>environmental heterogeneity,</em> based on a probability
+mosquitoes are usually well-described by the negative binomial
+distribution family, <strong><code>ramp.xds</code></strong> has
+implemented a step between the computation of the EIR and the FoI to
+model <em>environmental heterogeneity,</em> based on a probability
 distribution function describing the number of infective bites per
 person. By default, <code>xds_setup</code> configures a Poisson model,
 but this can be changed.</p></li>

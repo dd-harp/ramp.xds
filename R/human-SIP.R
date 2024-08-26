@@ -103,7 +103,7 @@ dts_steady_state_X.SIP = function(ar, H, Xpar){with(Xpar,{
 #' @inheritParams F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X.SIP <- function(y, pars, i) {
+F_X.SIP <- function(t, y, pars, i) {
   I = y[pars$ix$X[[i]]$I_ix]
   X = with(pars$Xpar[[i]], c*I)
   return(X)
@@ -114,7 +114,7 @@ F_X.SIP <- function(y, pars, i) {
 #' @inheritParams F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_H.SIP <- function(y, pars, i){
+F_H.SIP <- function(t, y, pars, i){
   with(list_Xvars(y, pars, i), return(H))
 }
 

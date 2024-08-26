@@ -9,6 +9,8 @@ navbar:
       href: articles/GettingStarted.html
     - text: Working with Models in ramp.xds
       href: articles/Working.html
+    - text: Trace Functions
+      href: articles/TraceFunctions.html
     - text: Understanding ramp.xds
       href: articles/Understanding_ramp.xds.html
     - text: Modular Forms for Disease Dynamics
@@ -31,6 +33,8 @@ navbar:
       href: articles/environmental_heterogeneity.html
   - text: Mosquito - Adult
     menu:
+    - text: Adult Mosquitoes
+      href: articles/AdultMosquitoes.html
     - text: Ross-Macdonald model
       href: articles/adult_RM.html
     - text: Ross-Macdonald, discrete time
@@ -313,9 +317,6 @@ reference:
   - make_Omega
   - make_Omega.xde
   - make_Omega.dts
-  - update_Omega
-  - update_Omega.xde
-  - update_Omega.dts
   - get_Omega
   - get_Upsilon
 - subtitle: EIP
@@ -1056,7 +1057,7 @@ reference:
   desc: |
     Basic visualization of the transmission terms
   contents:
-  - F_1
+  - F_flat
 - subtitle: New
   desc: |
     Basic visualization of the transmission terms

@@ -21,3 +21,11 @@ a \link{numeric} vector
 \description{
 Implements \link{dMYZdt} for the sei ODE model.
 }
+\details{
+The dynamics of adult mosquitoes:
+\deqn{\frac{dM}{dt} = \Lambda - \Omega \cdot M}
+The density of infected but not infectious mosquitoes:
+\deqn{\frac{dY}{dt} = fq\kappa(M-Y) - \Omega \cdot Y}
+The density of infectious mosquitoes:
+\deqn{\frac{dZ}{dt} = (Y-Z)/\tau - \Omega \cdot Z}
+}

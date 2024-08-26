@@ -56,6 +56,9 @@
       <a href="../articles/Working.html">Working with Models in ramp.xds</a>
     </li>
     <li>
+      <a href="../articles/TraceFunctions.html">Trace Functions</a>
+    </li>
+    <li>
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
@@ -95,6 +98,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/AdultMosquitoes.html">Adult Mosquitoes</a>
+    </li>
+    <li>
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
@@ -168,13 +174,40 @@
 Pathogens</h3>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/vignettes/modularity.Rmd" class="external-link"><code>vignettes/modularity.Rmd</code></a></small>
-      <div class="hidden name"><code>modularity.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/vignettes/Modularity.Rmd" class="external-link"><code>vignettes/Modularity.Rmd</code></a></small>
+      <div class="hidden name"><code>Modularity.Rmd</code></div>
 
     </div>
 
     
     
+<p>This software supports nimble model building with functions to set
+up, solve, and analyze dynamical systems models for mosquito ecology and
+mosquito-borne pathogen transmission formulated as dynamical systems in
+continuous or discrete time. The systems are naturally modular: an
+intermediate step in developing a model for
+<strong><code>ramp.xds</code></strong> is to rewrite the equations using
+<a href="https://dd-harp.github.io/ramp.xds/articles/modularity.html">Modular
+Forms</a>.</p>
+<p>The mathematical framework and software have a modular design
+developed around an algorithm to model mosquito blood feeding on
+vertebrate hosts and parasite / pathogen transmission, including
+patch-based spatial dynamics within a defined geographical domain. The
+blood feeding algorithm provides a rigorous computational interface
+linking dynamical components describing parasite/pathogen linking
+infection dynamics in mosquito and vertebrate host populations. It
+guarantees mathematical consistency in computing blood feeding rates and
+habits and in allocating bites and blood meals with heterogeneous
+vertebrate host population densities, including models with dynamically
+changing availability of host populations or other vertebrate
+animals.</p>
+<p>The framework and software also support spatial models of mosquito
+ecology through an algorithm that describes egg laying by adult
+mosquitoes in aquatic habitats and emergence of adult mosquitoes. The
+egg laying algorithm provides a rigorous interface linking dynamical
+components describing adult mosquito populations in a set of spatial
+patches and immature aquatic mosquito populations in a structured set of
+aquatic habitats.</p>
 <div class="section level2">
 <h2 id="modularity">Modularity<a class="anchor" aria-label="anchor" href="#modularity"></a>
 </h2>

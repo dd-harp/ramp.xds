@@ -4,9 +4,11 @@
 \alias{F_H.hMoI}
 \title{Size of the human population}
 \usage{
-\method{F_H}{hMoI}(y, pars, i)
+\method{F_H}{hMoI}(t, y, pars, i)
 }
 \arguments{
+\item{t}{current simulation time}
+
 \item{y}{state vector}
 
 \item{pars}{an \strong{\code{xds}} object}

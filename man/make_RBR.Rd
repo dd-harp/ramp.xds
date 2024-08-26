@@ -4,9 +4,11 @@
 \alias{make_RBR}
 \title{Compute and attach the relative biting rates}
 \usage{
-make_RBR(pars, y)
+make_RBR(t, pars, y)
 }
 \arguments{
+\item{t}{the time}
+
 \item{pars}{an \code{xds} object}
 
 \item{y}{state vector}

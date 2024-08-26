@@ -56,6 +56,9 @@
       <a href="../articles/Working.html">Working with Models in ramp.xds</a>
     </li>
     <li>
+      <a href="../articles/TraceFunctions.html">Trace Functions</a>
+    </li>
+    <li>
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
@@ -95,6 +98,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/AdultMosquitoes.html">Adult Mosquitoes</a>
+    </li>
+    <li>
       <a href="../articles/adult_RM.html">Ross-Macdonald model</a>
     </li>
     <li>
@@ -343,7 +349,7 @@ availability:</p>
 .2 &amp; 0 &amp; 0\\
 .1 &amp; 0 &amp; 0\\
 0 &amp; .8 &amp; 0\\
-0 &amp; .2 &amp; 0\\ d
+0 &amp; .2 &amp; 0\\
 \end{array} \right]
 \end{equation}\]</span></p>
 <p>It is computed using the function <code>compute_calU</code> that
@@ -724,7 +730,7 @@ availability and the egg distribution matrix. The functions
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_blood_weights.html">change_blood_weights</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">searchWtsH</span><span class="op">)</span></span>
 <span><span class="va">y0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_WB.html">make_WB</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">y0</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_WB.html">make_WB</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">params</span>, <span class="va">y0</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">vars</span><span class="op">$</span><span class="va">W</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1]   2.0 114.3 934.2</span></span></code></pre></div>

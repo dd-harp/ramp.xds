@@ -29,6 +29,7 @@ Imports:
   MASS
 Suggests:
     ggplot2,
+    viridisLite,
     data.table,
     knitr,
     rmarkdown,

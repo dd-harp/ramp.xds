@@ -33,58 +33,6 @@ make_Omega.dts <- function(pars, s){with(pars$MYZpar[[s]],{
   return(pars)
 })}
 
-#' @title Make the mosquito demography matrix
-#' @description This method dispatches on the type of `MYZpar`.
-#' @param pars a [list]
-#' @param s the species index
-#' @return the derivatives a [vector]
-#' @export
-update_Omega <- function(pars, s){
-  UseMethod("update_Omega", pars$xds)
-}
-
-#' @title Make the mosquito demography matrix
-#' @description This method dispatches on the type of `MYZpar`.
-#' @inheritParams update_Omega
-#' @return the derivatives a [vector]
-#' @export
-update_Omega.xde <- function(pars, s){with(pars$MYZpar[[s]],{
-  Omega = compute_Omega_xde(g, sigma, mu, calK)
-  pars$MYZpar[[s]]$Omega = Omega
-  pars$MYZpar[[s]]$Omega_eip = Omega
-  pars$MYZpar[[s]]$Upsilon = expm::expm(-Omega*eip)
-  return(pars)
-})}
-
-#' @title Make the mosquito demography matrix
-#' @note This method dispatches on the type of `pars$MYZpar[[s]]`
-#' @inheritParams update_Omega
-#' @return the derivatives a [vector]
-#' @export
-update_Omega.dts <- function(pars, s){with(pars$MYZpar[[s]],{
-  pars$MYZpar[[s]]$Omega = compute_Omega_dts(p, ssigma, mu, calK)
-  return(pars)
-})}
-
-#' @title Make the mosquito demography matrix
-#' @description This method dispatches on the type of `MYZpar`.
-#' @param pars a [list]
-#' @param s the species index
-#' @return the derivatives a [vector]
-#' @export
-get_Omega <- function(pars, s){
-  pars$MYZpar[[s]]$Omega
-}
-
-#' @title Make the mosquito demography matrix
-#' @description This method dispatches on the type of `MYZpar`.
-#' @param pars a [list]
-#' @param s the species index
-#' @return the derivatives a [vector]
-#' @export
-get_Upsilon <- function(pars, s){
-  pars$MYZpar[[s]]$Upsilon
-}
 
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
 #' @param pars a [list]
