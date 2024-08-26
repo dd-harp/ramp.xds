@@ -332,26 +332,30 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
 #' ages experiencing exposure.
 #' @details
 #' Please write me
-#' @param F_eir is a cohort exposure function
+#' @param eir is the entomological inoculation rate
+#' @param bday the birthday of a cohort
+#' @param F_season a function describing a seasonal pattern over time
+#' @param F_trend a function describing a temporal trend over time
+#' @param F_age a assigning a biting weight by age
 #' @param xds is `xde`/`dts` for differential / difference equations
 #' @param dlay is either "ode" or "dde"
-#' @param bday the birthday of a cohort
-#' @param scale the birthday of a cohort
-#' @param model_name is a name for the model (arbitrary)
 #' @param Xname is a character string defining a X model
-#' @param HPop is the number of humans in each stratum
-#' @param Xday is the run-time time step for X component (in days): integer or 1/integer
-#' @param searchB is a vector of search weights for blood feeding
 #' @param Xopts a list to configure the X model
+#' @param Xday is the run-time time step for X component (in days): integer or 1/integer
+#' @param HPop is the number of humans in each stratum
+#' @param searchB is a vector of search weights for blood feeding
+#' @param model_name is a name for the model (arbitrary)
 #' @return a [list]
 #' @export
-xds_setup_cohort = function(F_eir,
+xds_setup_cohort = function(eir, bday=0,
+                            F_season = F_flat,
+                            F_trend = F_flat,
+                            F_age = F_flat,
                             xds = 'xde', dlay = 'ode',
-                            Xopts = list(),
-                            bday=0, scale=1,
 
                             # Dynamical Components
                             Xname = "SIS",
+                            Xopts = list(),
                             Xday = 1,
 
                             # Model Structure
@@ -360,7 +364,6 @@ xds_setup_cohort = function(F_eir,
 
                             # Human Strata / Options
                             model_name = "unnamed"
-
 ){
   nPatches = length(HPop)
   residence = rep(1, length(HPop))
@@ -369,9 +372,11 @@ xds_setup_cohort = function(F_eir,
   pars <- make_runtime(pars, Xday, 1, 1, "trivial")
   class(pars$compute) <- "na"
 
-  pars$EIRpar$bday = bday
-  pars$EIRpar$scale = scale
-  pars$F_eir = F_eir
+  pars$EIRpar <- list()
+  pars$EIRpar$eir <- eir
+  pars$EIRpar$F_season <- F_season
+  pars$EIRpar$F_trend <- F_trend
+  pars$EIRpar$F_age <- F_age
 
   # Aquatic Mosquito Dynamics
   pars       <- make_Lpar("trivial", pars, 1, list())

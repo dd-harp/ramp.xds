@@ -152,13 +152,15 @@ ages experiencing exposure.</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xds_setup_cohort</span><span class="op">(</span></span>
-<span>  <span class="va">F_eir</span>,</span>
+<span>  <span class="va">eir</span>,</span>
+<span>  bday <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  F_season <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  F_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  F_age <span class="op">=</span> <span class="va">F_flat</span>,</span>
 <span>  xds <span class="op">=</span> <span class="st">"xde"</span>,</span>
 <span>  dlay <span class="op">=</span> <span class="st">"ode"</span>,</span>
-<span>  Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  bday <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  scale <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  Xname <span class="op">=</span> <span class="st">"SIS"</span>,</span>
+<span>  Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  Xday <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  HPop <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  searchB <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -168,8 +170,24 @@ ages experiencing exposure.</p>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>F_eir</dt>
-<dd><p>is a cohort exposure function</p></dd>
+    <dl><dt>eir</dt>
+<dd><p>is the entomological inoculation rate</p></dd>
+
+
+<dt>bday</dt>
+<dd><p>the birthday of a cohort</p></dd>
+
+
+<dt>F_season</dt>
+<dd><p>a function describing a seasonal pattern over time</p></dd>
+
+
+<dt>F_trend</dt>
+<dd><p>a function describing a temporal trend over time</p></dd>
+
+
+<dt>F_age</dt>
+<dd><p>a assigning a biting weight by age</p></dd>
 
 
 <dt>xds</dt>
@@ -180,20 +198,12 @@ ages experiencing exposure.</p>
 <dd><p>is either "ode" or "dde"</p></dd>
 
 
-<dt>Xopts</dt>
-<dd><p>a list to configure the X model</p></dd>
-
-
-<dt>bday</dt>
-<dd><p>the birthday of a cohort</p></dd>
-
-
-<dt>scale</dt>
-<dd><p>the birthday of a cohort</p></dd>
-
-
 <dt>Xname</dt>
 <dd><p>is a character string defining a X model</p></dd>
+
+
+<dt>Xopts</dt>
+<dd><p>a list to configure the X model</p></dd>
 
 
 <dt>Xday</dt>
