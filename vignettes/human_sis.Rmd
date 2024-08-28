@@ -55,8 +55,7 @@ $$
 ```{r, message=FALSE, warning=FALSE}
 library(ramp.xds)
 library(deSolve)
-library(data.table)
-library(ggplot2)
+library(viridisLite)
 ```
 
 
@@ -108,22 +107,6 @@ Xo$I=ss$I
 ```
 
 
-
-```{r}
-fF_eir = function(eir){
-  EIR = as.vector(eir) 
-  return(function(t, bday=0, scale=1){scale*EIR})
-} 
-F_eir = fF_eir(eir)
-```
-
-```{r}
-params$EIRpar = list() 
-params$EIRpar$bday=0 
-params$EIRpar$scale=1 
-params$F_eir = F_eir
-```
-
 ```{r}
 params <- make_Xpar("SIS", params, 1, Xo)
 params <- make_Xinits(params, H, 1, Xo)
@@ -135,43 +118,59 @@ params <- make_indices(params)
 ```
 
 ```{r}
-y0 <- as.vector(unlist(get_inits(params)))
+F_season = function(t){1}
+F_trend = function(t){1}
+F_age = function(a){1}
 ```
+
+```{r}
+params$EIRpar = list() 
+params$EIRpar$eir <- as.vector(eir)
+params$EIRpar$F_season <- F_season
+params$EIRpar$F_trend <- F_trend
+params$EIRpar$F_age <- F_age
+```
+
+```{r}
+params = make_indices(params)
+```
+
+```{r}
+Xo$S=H 
+Xo$I=H*0
+params = make_Xinits(params, H, 1, Xopts = Xo)
+y0 <- get_inits(params)
+y0$X
+```
+
 
 
 ```{r}
-out <- deSolve::ode(y = y0, times = c(0, 365), xde_derivatives, 
-                    parms = params, method = 'lsoda') 
-out1 <- out
+out1 <- xde_solve_cohort(eir, 0, params)$outputs$cohort
 ```
+
 
 ```{r, out.width = "100%"}
-colnames(out)[params$ix$X$S_ix+1] <- paste0('S_', 1:params$nStrata)
-colnames(out)[params$ix$X$I_ix+1] <- paste0('I_', 1:params$nStrata)
-
-out <- as.data.table(out)
-out <- melt(out, id.vars = 'time')
-out[, c("Component", "Strata") := tstrsplit(variable, '_', fixed = TRUE)]
-out[, variable := NULL]
-
-ggplot(data = out, mapping = aes(x = time, y = value, color = Strata)) +
-  geom_line() +
-  facet_wrap(. ~ Component, scales = 'free') +
-  theme_bw()
-
+clrs = turbo(5)
+with(out1,{
+  plot(age, XH[[1]]$true_pr[,1], col = clrs[1], ylim = c(0,1), type = "l")
+  lines(age, XH[[1]]$true_pr[,2], col = clrs[2])
+  lines(age, XH[[1]]$true_pr[,3], col =clrs[5])
+  
+})
 ```
+
 
 ## Using Setup
 
 We have developed utilities for setting up models. We pass the parameter values and initial values as lists: 
 
-
-
 ```{r}
-xds_setup_cohort(F_eir, Xname="SIS", HPop=H, Xopts = Xo) -> test_SIS_xde
+xds_setup_cohort(eir, Xname="SIS", HPop=H, Xopts = Xo) -> test_SIS_xde
 ```
 
 ```{r}
-xde_solve(test_SIS_xde, 365, 365)$outputs$deout -> out2
-approx_equal(out2,out1)
+xde_solve_cohort(eir, 0, test_SIS_xde)$outputs$cohort -> out2
+sum((out2$XH[[1]]$true_pr-out1$XH[[1]]$true_pr)^2)
 ```
+

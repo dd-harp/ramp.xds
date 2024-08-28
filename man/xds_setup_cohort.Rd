@@ -5,13 +5,15 @@
 \title{Set up an \strong{\code{xds}} object to model human cohort dynamics}
 \usage{
 xds_setup_cohort(
-  F_eir,
+  eir,
+  bday = 0,
+  F_season = F_flat,
+  F_trend = F_flat,
+  F_age = F_flat,
   xds = "xde",
   dlay = "ode",
-  Xopts = list(),
-  bday = 0,
-  scale = 1,
   Xname = "SIS",
+  Xopts = list(),
   Xday = 1,
   HPop = 1000,
   searchB = 1,
@@ -19,19 +21,23 @@ xds_setup_cohort(
 )
 }
 \arguments{
-\item{F_eir}{is a cohort exposure function}
+\item{eir}{is the entomological inoculation rate}
+
+\item{bday}{the birthday of a cohort}
+
+\item{F_season}{a function describing a seasonal pattern over time}
+
+\item{F_trend}{a function describing a temporal trend over time}
+
+\item{F_age}{a assigning a biting weight by age}
 
 \item{xds}{is \code{xde}/\code{dts} for differential / difference equations}
 
 \item{dlay}{is either "ode" or "dde"}
 
-\item{Xopts}{a list to configure the X model}
-
-\item{bday}{the birthday of a cohort}
-
-\item{scale}{the birthday of a cohort}
-
 \item{Xname}{is a character string defining a X model}
+
+\item{Xopts}{a list to configure the X model}
 
 \item{Xday}{is the run-time time step for X component (in days): integer or 1/integer}
 

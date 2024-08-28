@@ -958,7 +958,13 @@ reference:
   - xde_derivatives.aquatic
   - xde_derivatives.mosy
   - xde_derivatives.human
-  - xde_derivatives.cohort
+- subtitle: Cohort
+  contents:
+  - xde_solve_cohort
+  - xde_cohort_derivatives
+  - xde_cohort_desolve
+  - xde_cohort_desolve.dde
+  - xde_cohort_desolve.ode
 - subtitle: Update
   contents:
   - dts_update

@@ -2404,6 +2404,27 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/view_residence_matrix.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_cohort_derivatives.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_cohort_desolve.dde.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_cohort_desolve.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_cohort_desolve.ode.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_cohort_solve.dde.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_cohort_solve.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_cohort_solve.ode.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.aquatic.html</loc>
   </url>
   <url>
@@ -2429,6 +2450,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_solve.ode.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_solve_cohort.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_stable_orbit.html</loc>

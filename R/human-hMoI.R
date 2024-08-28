@@ -192,7 +192,10 @@ parse_Xorbits.hMoI <- function(outputs, pars, i){
   with(pars$ix$X[[i]], {
     m1 = outputs[,m1_ix]
     m2 = outputs[,m2_ix]
-  return(list(H=H, m1=m1, m2=m2))
+    ni = F_ni(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
+    pr = F_pr(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
+    pr_by_lm = F_pr_by_lm(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
+  return(list(H=H, m1=m1, m2=m2, ni=ni, pr=pr, pr_lm= pr_by_lm))
 })}
 
 #' @title Return initial values as a vector
@@ -208,8 +211,8 @@ get_Xinits.hMoI <- function(pars, i){pars$Xinits[[i]]}
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_ni.hMoI<- function(vars, Xpar) {with(Xpar,{
-  x1 <- pexp(q = m1)
-  x2 <- pexp(q = m2)
+  x1 <- 1 - exp(-vars$m1)
+  x2 <- 1 - exp(-vars$m2)
   ni <- (c2 * x2) + (c1 * (x1 - x2))
   return(ni)
 })}
@@ -230,7 +233,7 @@ F_pr.hMoI<- function(vars, Xpar) {
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_pr_by_lm.hMoI<- function(vars, Xpar) {
-  pr = with(vars, 1-exp(-m1))
+  pr = with(vars, 1-exp(-m2))
   return(pr)
 }
 

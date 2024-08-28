@@ -16,7 +16,7 @@ xde_solve = function(pars, Tmax=365, dt=1){
 #' @export
 xde_solve.ode = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
-  y0 = as.vector(unlist(get_inits(pars)))
+  y0 = get_inits(pars, flatten=TRUE)
   deSolve::ode(y = y0, times = tt, func = xde_derivatives, parms = pars, method = "lsoda") -> deout
   tm <- deout[,1]
   pars <- make_outputs(pars, deout[,-1], tm)
@@ -31,7 +31,7 @@ xde_solve.ode = function(pars, Tmax=365, dt=1){
 #' @export
 xde_solve.dde = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
-  y0 = as.vector(unlist(get_inits(pars)))
+  y0 = get_inits(pars, flatten=TRUE)
   deSolve::dede(y = y0, times = tt, func = xde_derivatives, parms = pars, method = "lsoda") -> deout
   tm <- deout[,1]
   pars <- make_outputs(pars, deout[,-1], tm)
@@ -70,7 +70,7 @@ xde_steady = function(pars){
 #' @return a [list]
 #' @export
 xde_steady.ode = function(pars){
-  y0 = as.vector(unlist(get_inits(pars)))
+  y0 = get_inits(pars, flatten=TRUE)
   rootSolve::steady(y=y0, func = xde_derivatives, parms = pars)$y -> y_eq
   pars$outputs$steady = parse_y(y_eq, pars)
   return(pars)
@@ -82,10 +82,9 @@ xde_steady.ode = function(pars){
 #' @return a [list]
 #' @export
 xde_steady.dde = function(pars){
-  y0 = as.vector(unlist(get_inits(pars)))
+  y0 = get_inits(pars, flatten=TRUE)
   rootSolve::runsteady(y=y0, func = xde_derivatives, parms = pars)$y -> y_eq
   pars$outputs$steady = parse_y(y_eq, pars)
   return(pars)
 }
-
 
