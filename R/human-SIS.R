@@ -96,8 +96,6 @@ create_Xpar_SIS = function(nStrata, Xopts=list(),
   })}
 
 
-
-
 #' @title Size of effective infectious human population
 #' @description Implements [F_X] for the SIS model.
 #' @inheritParams F_X
