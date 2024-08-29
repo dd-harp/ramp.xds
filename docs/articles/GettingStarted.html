@@ -226,27 +226,20 @@ and the return value replaces <code>model.</code> Before
 After solving, the outputs are stored as <code>model$outputs</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "time"      "last_y"    "bionomics" "orbits"    "terms"     "deout"</span></span></code></pre>
-<p>The outputs are:</p>
+<pre><code><span><span class="co">## [1] "time"   "last_y" "orbits" "terms"  "deout"</span></span></code></pre>
+<p>Standard outputs are:</p>
 <ul>
-<li>
-<code>time</code> – are the time points when the values of the
-dependent variables were evaluated</li>
-<li>
-<code>last_y</code> – is the final state</li>
-<li>
-<code>orbits</code> – are the solutions with the variables parsed by
-name</li>
-<li>
-<code>terms</code> – the dynamical terms describing transmission,
-including the EIR.</li>
-<li>
-<code>deout</code> – the raw (unparsed) outputs<br>
-</li>
-<li>
-<code>bionomics</code> – For models with exogenous forcing,
+<li><p><code>time</code> – are the time points when the values of the
+dependent variables were evaluated</p></li>
+<li><p><code>last_y</code> – is the final state</p></li>
+<li><p><code>orbits</code> – are the solutions with the variables parsed
+by name</p></li>
+<li><p><code>terms</code> – the dynamical terms describing transmission,
+including the EIR.</p></li>
+<li><p><code>deout</code> – the raw (unparsed) outputs</p></li>
+<li><p><code>bionomics</code> – For models with exogenous forcing,
 <code>xde_solve</code> stores the values of mosquito bionomic
-parameters</li>
+parameters</p></li>
 </ul>
 <p>When <code>xde_solve</code> is called, the <strong><code>xds</code>
 model object</strong> it returns has replaced any old values. To do

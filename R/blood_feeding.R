@@ -208,7 +208,7 @@ make_WB <- function(t, pars, y=0){
 
     if(pars$nHosts > 1){
       for(i in 2:pars$nHosts){
-        H = F_H(y, pars, i)
+        H = F_H(t, y, pars, i)
         TaR = pars$TaR[[s]][[i]]
         wts = pars$BFpar$search_weights[[s]][[i]]
         Wi = compute_W(wts, H, TaR)

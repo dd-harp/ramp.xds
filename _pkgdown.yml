@@ -107,6 +107,7 @@ reference:
   contents:
   - xde_solve
   - xde_stable_orbit
+  - xde_solve_cohort
   - xde_steady
   - dts_solve
   - dts_steady
