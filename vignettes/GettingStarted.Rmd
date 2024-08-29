@@ -53,13 +53,14 @@ Note that `model` was passed to `xde_solve,` and the return value replaces `mode
 names(model$outputs)
 ```
 
-The outputs are:
+Standard outputs are:
 
 + `time` -- are the time points when the values of the dependent variables were evaluated
 + `last_y` -- is the final state 
 + `orbits` -- are the solutions with the variables parsed by name 
 + `terms` -- the dynamical terms describing transmission, including the EIR. 
 + `deout` -- the raw (unparsed) outputs  
+
 + `bionomics` -- For models with exogenous forcing, `xde_solve` stores the values of mosquito bionomic parameters 
 
 When `xde_solve` is called, the **`xds` model object** it returns has replaced any old values. To do anything with the outputs, the user will probably have to write a wrapper function that solves and extracts.  
