@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ramp.xds</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9</span>
       </span>
     </div>
 
@@ -169,6 +169,34 @@
         </td>
         <td><p>Set up an <strong><code>xds</code></strong> object to model human cohort dynamics</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="solve">Solve <a href="#solve" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to solve equations</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="xde_solve.html">xde_solve()</a></code> </p>
+        </td>
+        <td><p>Solve a system of equations</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_stable_orbit.html">xde_stable_orbit()</a></code> </p>
+        </td>
+        <td><p>Solve for the steady state or stable orbit of a system of equations</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_solve_cohort.html">xde_solve_cohort()</a></code> </p>
+        </td>
+        <td><p>Cohort dynamics for a human / host model</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady.html">xde_steady()</a></code> </p>
+        </td>
+        <td><p>Solve for the steady state of a system of equations using <a href="https://rdrr.io/pkg/rootSolve/man/steady.html" class="external-link">rootSolve::steady</a></p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_solve.html">dts_solve()</a></code> </p>
+        </td>
+        <td><p>Solve a discrete-time system</p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_steady.html">dts_steady()</a></code> </p>
+        </td>
+        <td><p>Solve for the steady state of a system of equations</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="change-parameters-initial-values">Change Parameters &amp; Initial Values <a href="#change-parameters-initial-values" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Methods to set up basic models</p>
         </th>
@@ -220,34 +248,6 @@
           <p><code><a href="parse_y.html">parse_y()</a></code> </p>
         </td>
         <td><p>Parse the output of an object returned by deSolve</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="solve">Solve <a href="#solve" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Methods to solve equations</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="xde_solve.html">xde_solve()</a></code> </p>
-        </td>
-        <td><p>Solve a system of equations</p></td>
-      </tr><tr><td>
-          <p><code><a href="xde_stable_orbit.html">xde_stable_orbit()</a></code> </p>
-        </td>
-        <td><p>Solve for the steady state or stable orbit of a system of equations</p></td>
-      </tr><tr><td>
-          <p><code><a href="xde_solve_cohort.html">xde_solve_cohort()</a></code> </p>
-        </td>
-        <td><p>Cohort orbits for a model \(\cal X\)</p></td>
-      </tr><tr><td>
-          <p><code><a href="xde_steady.html">xde_steady()</a></code> </p>
-        </td>
-        <td><p>Solve for the steady state of a system of equations using <a href="https://rdrr.io/pkg/rootSolve/man/steady.html" class="external-link">rootSolve::steady</a></p></td>
-      </tr><tr><td>
-          <p><code><a href="dts_solve.html">dts_solve()</a></code> </p>
-        </td>
-        <td><p>Solve a discrete-time system</p></td>
-      </tr><tr><td>
-          <p><code><a href="dts_steady.html">dts_steady()</a></code> </p>
-        </td>
-        <td><p>Solve for the steady state of a system of equations</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="analyze">Analyze <a href="#analyze" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Built-in methods to analyze dynamical systems</p>
@@ -2897,13 +2897,13 @@
         </td>
         <td><p>Differential equations isolating the humans, forced with Ztrace</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="cohort">Cohort <a href="#cohort" class="anchor" aria-hidden="true"></a></h3>
+          <h3 id="cohort-dynamics">Cohort Dynamics <a href="#cohort-dynamics" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="xde_solve_cohort.html">xde_solve_cohort()</a></code> </p>
         </td>
-        <td><p>Cohort orbits for a model \(\cal X\)</p></td>
+        <td><p>Cohort dynamics for a human / host model</p></td>
       </tr><tr><td>
           <p><code><a href="xde_cohort_derivatives.html">xde_cohort_derivatives()</a></code> </p>
         </td>
@@ -3215,7 +3215,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="F_flat.html">F_flat()</a></code> </p>
         </td>
-        <td><p>The trivial function F_flat</p></td>
+        <td><p>A trivial function F_flat</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="new">New <a href="#new" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Basic visualization of the transmission terms</p>
@@ -3339,27 +3339,23 @@
       </tr><tr><td>
           <p><code><a href="make_outputs.html">make_outputs()</a></code> </p>
         </td>
-        <td><p>Compute</p></td>
+        <td><p>Make Outputs</p></td>
       </tr><tr><td>
           <p><code><a href="make_outputs.full.html">make_outputs(<i>&lt;full&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Compute</p></td>
+        <td><p>Make Outputs</p></td>
       </tr><tr><td>
           <p><code><a href="make_outputs.mosy.html">make_outputs(<i>&lt;mosy&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Compute</p></td>
+        <td><p>Make Outputs</p></td>
       </tr><tr><td>
           <p><code><a href="make_outputs.aquatic.html">make_outputs(<i>&lt;aquatic&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Compute</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_outputs.cohort.html">make_outputs(<i>&lt;cohort&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute</p></td>
+        <td><p>Make Outputs</p></td>
       </tr><tr><td>
           <p><code><a href="make_outputs.human.html">make_outputs(<i>&lt;human&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Compute</p></td>
+        <td><p>Make Outputs</p></td>
       </tr><tr><td>
           <p><code><a href="get_terms.html">get_terms()</a></code> </p>
         </td>

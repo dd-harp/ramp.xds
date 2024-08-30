@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ramp.xds</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9</span>
       </span>
     </div>
 
@@ -342,48 +342,7 @@ of those bionomic parameters to
 <span>               MYZopts <span class="op">=</span> <span class="va">MYZo</span>, calK <span class="op">=</span> <span class="va">calK</span>, HPop<span class="op">=</span><span class="va">HPop</span>, Lopts <span class="op">=</span> <span class="va">Lo</span>, </span>
 <span>               kappa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.075</span>, <span class="fl">0.025</span><span class="op">)</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">mosy1</span></span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">mosy1</span>,Tmax<span class="op">=</span><span class="fl">50</span>,dt<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out2</span></span>
-<span><span class="co">#&gt; Called from: get_bionomics_s(tm, de_vars, pars, 1)</span></span>
-<span><span class="co">#&gt; debug: pars &lt;- reset_state_i(1, tm, de_vars, pars)</span></span>
-<span><span class="co">#&gt; debug: f &lt;- get_f(pars, s)</span></span>
-<span><span class="co">#&gt; debug: q &lt;- get_q(pars, s)</span></span>
-<span><span class="co">#&gt; debug: g &lt;- get_g(pars, s)</span></span>
-<span><span class="co">#&gt; debug: sigma &lt;- get_sigma(pars, s)</span></span>
-<span><span class="co">#&gt; debug: Omega &lt;- compute_Omega(pars, s)</span></span>
-<span><span class="co">#&gt; debug: Upsilon &lt;- compute_Upsilon(pars, s)</span></span>
-<span><span class="co">#&gt; debug: for (i in 2:length(tm)) {</span></span>
-<span><span class="co">#&gt;     pars &lt;- reset_state_i(i, tm, de_vars, pars)</span></span>
-<span><span class="co">#&gt;     f &lt;- rbind(f, get_f(pars, s))</span></span>
-<span><span class="co">#&gt;     q &lt;- rbind(q, get_q(pars, s))</span></span>
-<span><span class="co">#&gt;     g &lt;- rbind(g, get_g(pars, s))</span></span>
-<span><span class="co">#&gt;     sigma &lt;- rbind(sigma, get_sigma(pars, s))</span></span>
-<span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; debug: pars &lt;- reset_state_i(i, tm, de_vars, pars)</span></span>
-<span><span class="co">#&gt; debug: f &lt;- rbind(f, get_f(pars, s))</span></span>
-<span><span class="co">#&gt; debug: q &lt;- rbind(q, get_q(pars, s))</span></span>
-<span><span class="co">#&gt; debug: g &lt;- rbind(g, get_g(pars, s))</span></span>
-<span><span class="co">#&gt; debug: sigma &lt;- rbind(sigma, get_sigma(pars, s))</span></span>
-<span><span class="co">#&gt; debug: pars &lt;- reset_state_i(i, tm, de_vars, pars)</span></span>
-<span><span class="co">#&gt; debug: f &lt;- rbind(f, get_f(pars, s))</span></span>
-<span><span class="co">#&gt; debug: q &lt;- rbind(q, get_q(pars, s))</span></span>
-<span><span class="co">#&gt; debug: g &lt;- rbind(g, get_g(pars, s))</span></span>
-<span><span class="co">#&gt; debug: sigma &lt;- rbind(sigma, get_sigma(pars, s))</span></span>
-<span><span class="co">#&gt; debug: pars &lt;- reset_state_i(i, tm, de_vars, pars)</span></span>
-<span><span class="co">#&gt; debug: f &lt;- rbind(f, get_f(pars, s))</span></span>
-<span><span class="co">#&gt; debug: q &lt;- rbind(q, get_q(pars, s))</span></span>
-<span><span class="co">#&gt; debug: g &lt;- rbind(g, get_g(pars, s))</span></span>
-<span><span class="co">#&gt; debug: sigma &lt;- rbind(sigma, get_sigma(pars, s))</span></span>
-<span><span class="co">#&gt; debug: pars &lt;- reset_state_i(i, tm, de_vars, pars)</span></span>
-<span><span class="co">#&gt; debug: f &lt;- rbind(f, get_f(pars, s))</span></span>
-<span><span class="co">#&gt; debug: q &lt;- rbind(q, get_q(pars, s))</span></span>
-<span><span class="co">#&gt; debug: g &lt;- rbind(g, get_g(pars, s))</span></span>
-<span><span class="co">#&gt; debug: sigma &lt;- rbind(sigma, get_sigma(pars, s))</span></span>
-<span><span class="co">#&gt; debug: pars &lt;- reset_state_i(i, tm, de_vars, pars)</span></span>
-<span><span class="co">#&gt; debug: f &lt;- rbind(f, get_f(pars, s))</span></span>
-<span><span class="co">#&gt; debug: q &lt;- rbind(q, get_q(pars, s))</span></span>
-<span><span class="co">#&gt; debug: g &lt;- rbind(g, get_g(pars, s))</span></span>
-<span><span class="co">#&gt; debug: sigma &lt;- rbind(sigma, get_sigma(pars, s))</span></span>
-<span><span class="co">#&gt; debug: return(list(f = f, q = q, g = g, sigma = sigma))</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">mosy1</span>,Tmax<span class="op">=</span><span class="fl">50</span>,dt<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out2</span></span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">out2</span><span class="op">-</span><span class="va">out1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0</span></span></code></pre></div>

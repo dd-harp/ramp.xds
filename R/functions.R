@@ -1,5 +1,5 @@
 
-#' @title The trivial function F_flat
+#' @title A trivial function F_flat
 #' @description A function that returns 1
 #' @param x an arbitrary input
 #' @return a vector of ones of length x

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{F_flat}
 \alias{F_flat}
-\title{The trivial function F_flat}
+\title{A trivial function F_flat}
 \usage{
 F_flat(x)
 }
