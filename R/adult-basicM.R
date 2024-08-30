@@ -2,7 +2,7 @@
 
 #' @title Derivatives for adult mosquitoes
 #' @description Implements [dMYZdt] for the basicM xde ODE model.
-#' @details \deqn{\begin{array}{rl}\frac{dM}{dt} &= \Lambda(t) - \Omega \cdot M \\ \frac{dP}{dt} &= f(M-P) - \Omega\cdot P\end{array}}
+#' @details \deqn{\begin{array}{rl}dM/dt &= \Lambda(t) - \Omega \cdot M \\ dP/dt &= f(M-P) - \Omega\cdot P\end{array}}
 #' @inheritParams dMYZdt
 #' @return a [numeric] vector
 #' @export

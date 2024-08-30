@@ -82,9 +82,10 @@ reference:
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_cohort
-- subtitle: Solve
+  - make_xds_template
+- subtitle: Solve and Analyze
   desc: |
-    Methods to solve equations
+    Methods to solve or analyze equations
   contents:
   - xde_solve
   - xde_stable_orbit
@@ -92,30 +93,6 @@ reference:
   - xde_steady
   - dts_solve
   - dts_steady
-- subtitle: Change Parameters & Initial Values
-  desc: |
-    Methods to set up basic models
-  contents:
-  - change_H
-  - update_inits
-  - last_to_inits
-  - parse_orbits
-  - parse_y
-  - get_inits
-  - get_H
-- subtitle: Examine
-  desc: |
-    Methods to
-  contents:
-  - get_inits
-  - get_last
-  - parse_orbits
-  - parse_y
-
-- subtitle: Analyze
-  desc: |
-    Built-in methods to analyze dynamical systems
-  contents:
   - xde_steady_state_X
   - xde_steady_state_MYZ
   - xde_steady_state_L
@@ -143,21 +120,39 @@ reference:
   contents:
   - dLdt.trivial
   - dLdt.basicL
-- subtitle: Internals
+- subtitle: Interface
   desc: |
-    Some internal functions and utilities that are useful to know about
+    Functions that compute dynamical terms and exogenous variables
   contents:
   - Forcing
   - Control
+  - Resources
   - BloodFeeding
   - EggLaying
   - Bionomics
   - Transmission
   - Exposure
-  - Visiting
-  - make_xds_template
+- subtitle: Change Parameters & Initial Values
+  desc: |
+    Methods to set up basic models
+  contents:
+  - change_H
+  - update_inits
+  - last_to_inits
+  - parse_orbits
+  - parse_y
+  - get_inits
+  - get_H
   - make_indices
   - trigger_setup
+- subtitle: Examine
+  desc: |
+    Methods to
+  contents:
+  - get_inits
+  - get_last
+  - parse_orbits
+  - parse_y
 - title: Blood Feeding and Transmission
   desc: |
     Methods to compute terms describing blood feeding and transmission
@@ -762,15 +757,22 @@ reference:
     Methods to implement exogeneous forcing.
   contents:
   - Forcing
-  - Forcing.static
-  - Forcing.dynamic
-  - Forcing.setup
-  - setup_forcing
+  - Weather
+  - Rainfall
   - Shock
   - Control
   - Clinic
   - Development
   - MassMedical
+- subtitle: Forcing
+  desc: |
+    Specialized methods the null model (no exogenous forcing)
+  contents:
+  - Forcing
+  - Forcing.static
+  - Forcing.dynamic
+  - Forcing.setup
+  - setup_forcing
 - subtitle: Models
   desc: |
     Specialized methods the null model (no exogenous forcing)

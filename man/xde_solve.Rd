@@ -14,7 +14,7 @@ xde_solve(pars, Tmax = 365, dt = 1)
 \item{dt}{the time interval for outputs}
 }
 \value{
-a \link{list}
+pars an \strong{\code{xds}} object
 }
 \description{
 This method solves a system of equations and returns the values of

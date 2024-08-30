@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{dLdt.basicL}
 \alias{dLdt.basicL}
-\title{Derivatives for \code{basicL}}
+\title{\eqn{\cal L} Component Derivatives for a \code{basicL}}
 \usage{
 \method{dLdt}{basicL}(t, y, pars, s)
 }
@@ -19,12 +19,9 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{dLdt} for the \code{basicL} competition model.
-}
-\details{
 This implements differential equation model for aquatic mosquito ecology.
 It has been modified slightly from a version published by Smith DL, \emph{et al.} (2013):
-\deqn{\frac{dL}{dt} = \eta - (\psi + \phi + \theta L)L}
+\deqn{dL/dt = \eta - (\psi + \phi + \theta L)L}
 
 \strong{Parameters:}
 \itemize{
@@ -34,7 +31,8 @@ It has been modified slightly from a version published by Smith DL, \emph{et al.
 \item \eqn{\theta}: density dependence in mortality: the slope of the response to mean crowding
 }
 
-To put it another way, per-capita mortality is \eqn{\phi + \theta L}
+To put it another way, per-capita mortality is \eqn{\phi + \theta L}, and the emergence rate
+of adult mosquitoes is \eqn{\psi L}
 }
 \references{
 {\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }

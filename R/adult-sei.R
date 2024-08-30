@@ -1,6 +1,6 @@
 # specialized methods for the adult mosquito sei model
 
-#' @title Derivatives for a oviposition model for adult mosquito infection dynamics
+#' @title \eqn{\cal MYZ} Component Derivatives for an SEI Mosquito Model
 #' @description Implements [dMYZdt] for the sei ODE model.
 #' @details
 #' The dynamics of adult mosquitoes:

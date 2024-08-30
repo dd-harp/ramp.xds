@@ -19,5 +19,18 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{dXdt} for the SIP model.
+Compute the derivatives for SIP compartmental model:
+\deqn{
+\begin{array}{rrrrcc}
+dS/dt =& - (h +\xi) S &+ r I & + \eta P & + d{\cal H}(S) &+ B(t, H) \\
+dI/dt =& (1-\rho) h S & - (r+\xi) I &&+ d{\cal H}(I) \\
+dP/dt =& (\rho h +\xi)S & +\xi I & - \eta P &+ d{\cal H}(P)
+\end{array}
+}
+where \eqn{H = S+I+P}; \eqn{B(t, H)} is the
+time-dependent birth rate; and the \eqn{d{\cal H}}
+operator computes derivatives for the demographic model \eqn{\cal H}.
+}
+\seealso{
+The parameters are defined in \link{create_Xpar_SIP}
 }

@@ -14,10 +14,10 @@
 \item{dt}{the time interval for outputs}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This method solves a system of equations and returns the values of
+This method solves a system of equations and computes the values of
 the dependent variables at times \eqn{t=0, dt, 2dt, ... Tmax}. The function dispatches
 on \code{pars$dlay} to call:
 \itemize{

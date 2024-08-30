@@ -20,7 +20,11 @@ a \link{numeric} vector
 }
 \description{
 Compute the derivatives for SIS compartmental model, defined as:
-\deqn{\frac{dH}{dt} = B(t) - h S - r I + d{\cal H}(S)}
-\deqn{\frac{dI}{dt} = h S - r I + d{\cal H}(I)}
-where \eqn{H = S+I}, \eqn{B(t)} is the time-dependent birth rate, and \eqn{d{\cal H}} is a linear demographic operator.
+\deqn{
+\begin{array}{rcccc}
+dS/dt =& - h S &+ r I &+ d{\cal H}(S) &+ B(t, H) \\
+dI/dt =& h S & - r I &+ d{\cal H}(I)
+\end{array}
+}
+where \eqn{H = S+I}; \eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{d{\cal H}} operator computes derivatives for the demographic model \eqn{\cal H}.
 }

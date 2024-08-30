@@ -1,6 +1,6 @@
 # generic methods for aquatic component
 
-#' @title Compute Derivatives for \eqn{\cal L}
+#' @title \eqn{\cal L} Component Derivatives
 #' @description This method computes and returns the derivatives
 #' for the \eqn{\cal L} dynamical component -- a model family
 #' describing immature mosquitoes in aquatic habitats

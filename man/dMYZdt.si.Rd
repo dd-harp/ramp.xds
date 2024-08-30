@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-si.R
 \name{dMYZdt.si}
 \alias{dMYZdt.si}
-\title{Derivatives for a simple model for adult mosquito infection dynamics}
+\title{\eqn{\cal MYZ} Component Derivatives for an SI Mosquito Model}
 \usage{
 \method{dMYZdt}{si}(t, y, pars, s)
 }
@@ -19,5 +19,14 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{dMYZdt} for the si ODE model.
+Derivatives for a simple SI model for mosquito infection
+dynamics, where \eqn{M} is the density of mosquitoes, and \eqn{Y} the
+density of infected mosquitoes:
+\deqn{
+\begin{array}{rr}
+dM/dt =& \Lambda &- \Omega \cdot M \\
+dY/dt =& f q \kappa (M-Y) &- \Omega \cdot Y
+\end{array}.
+}
+The model assumes \eqn{Z = \Upsilon Y}
 }

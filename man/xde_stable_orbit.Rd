@@ -2,17 +2,17 @@
 % Please edit documentation in R/xde_solving.R
 \name{xde_stable_orbit}
 \alias{xde_stable_orbit}
-\title{Solve for the steady state or stable orbit of a system of equations}
+\title{Compute the stable orbit for a system of differential equations}
 \usage{
 xde_stable_orbit(pars, Ymax = 10)
 }
 \arguments{
-\item{pars}{a \link{list} that defines a model}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{Ymax}{the number of years to burn-in}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on the type of \code{pars$xde}.

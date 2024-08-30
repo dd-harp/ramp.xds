@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{dLdt}
 \alias{dLdt}
-\title{Compute Derivatives for \eqn{\cal L}}
+\title{\eqn{\cal L} Component Derivatives}
 \usage{
 dLdt(t, y, pars, s)
 }

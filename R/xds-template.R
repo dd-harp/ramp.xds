@@ -1,9 +1,10 @@
 # function make_xds_template and supporting function F_H.setup
 
-#' @title Make an **`xds`** object template
-#' @description Creates and returns structured template, called an
-#' **`xds`** object, with generic features and options that can be configured
-#' to set up and solve systems of differential equations using **`ramp.xds`**
+#' @title Make an **`xds`** Object Template
+#' @description Creates and returns structured template for an
+#' **`xds`** object. The returned object has set up generic features
+#' and placeholders for options that must be configured
+#' to fully define an **`xds`** object
 #' @details This function sets up the basic structures required
 #' to configure and run a basic model. The returned object is a list
 #' with various required elements attached and configured, but without
@@ -29,6 +30,12 @@
 #' - **`nHabitats`** or \eqn{n_q}, the number of aquatic habitats, is set to `length(membership)`
 #' - **`nStrata`** or \eqn{n_h}, the number of human/ host population strata, is set to `length(HPop)`
 #'
+#' Next, the function sets up empty lists to hold the objects that define components:
+#' - `Xpar`
+#' -
+#' - **Transmission**  calls [setup_TRANSMISSION()] and [setup_visitors_static()] sets up a static
+#'
+#' model for the availability of visitors; by default, there are no visitors
 #' Next, the function sets up egg laying, blood feeding, and transmission:
 #' - **Egg Laying** calls [create_habitat_matrix()], then [setup_EGG_LAYING()]
 #' - **Blood Feeding** calls [create_residence_matrix()], then [setup_BLOOD_FEEDING()]

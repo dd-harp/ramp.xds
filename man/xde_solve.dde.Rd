@@ -14,7 +14,7 @@
 \item{dt}{the time interval for outputs}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 Implements \link{xde_solve} for delay differential equations
