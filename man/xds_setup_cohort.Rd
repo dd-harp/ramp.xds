@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_cohort}
 \alias{xds_setup_cohort}
-\title{Set up an \strong{\code{xds}} object to model human cohort dynamics}
+\title{Make an \strong{\code{xds}} Object to Study Human / Host Cohort Dynamics}
 \usage{
 xds_setup_cohort(
   eir,
@@ -48,13 +48,23 @@ xds_setup_cohort(
 \item{model_name}{is a name for the model (arbitrary)}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
-The user supplies a function \code{F_eir(time, birthday, ...)} and specifies a model, and
-the \code{xds} is set up to simulate dynamics for cohorts of different
-ages experiencing exposure.
+A modified version of \link{xds_setup} to setup up studies of cohort
+dynamics.
+
+The \strong{\code{xds}} object defines \code{frame = class(frame) = 'cohort'} but there
+is no \code{cohort} case for \link{xde_solve} or \link{dts_solve}. Instead, cohort
+dynamics are studied using \link{xde_solve_cohort}, which was designed
+to compare the outcomes for cohorts of different ages when exposure is
+changing.
+
+The interface includes options to configure a function
+describing \code{F_eir} as a function of time, with seasonal components
+and a trend. Exposure in a cohort is a function of its age, including
+a function that modifies exposure by age.
 }
-\details{
-Please write me
+\seealso{
+\link{xds_setup} and \link{xds_setup_human} and \link{xde_solve_cohort}
 }

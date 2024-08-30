@@ -178,9 +178,6 @@
 
     
     
-<div class="section level2">
-<h2 id="history">History<a class="anchor" aria-label="anchor" href="#history"></a>
-</h2>
 <p>The idea of developing modular software to simulate the dynamics and
 control of mosquito-borne pathogens originated sometime around 2009 at
 the Emerging Pathogens Institute, University of Florida. It took much
@@ -189,25 +186,356 @@ various publications. Some of the algorithms trivial back to other
 software packages that were never launched, but that someday might yet
 be completed (e.g., MASH). In retrospect, a key challenge was blood
 feeding, but it was not the only one.</p>
-<div class="section level3">
-<h3 id="mbites">
+<div class="section level2">
+<h2 id="mbites">
 <code>MBITES</code><a class="anchor" aria-label="anchor" href="#mbites"></a>
-</h3>
+</h2>
+<p>2023-01-17</p>
 </div>
-<div class="section level3">
-<h3 id="micromob">
+<div class="section level2">
+<h2 id="micromob">
 <code>MicroMoB</code><a class="anchor" aria-label="anchor" href="#micromob"></a>
-</h3>
+</h2>
 </div>
-<div class="section level3">
-<h3 id="exde">
+<div class="section level2">
+<h2 id="exde">
 <code>exDE</code><a class="anchor" aria-label="anchor" href="#exde"></a>
+</h2>
+</div>
+<div class="section level2">
+<h2 id="ramp-xde">
+<code>ramp.xde</code><a class="anchor" aria-label="anchor" href="#ramp-xde"></a>
+</h2>
+<p>In this document, we let <code>exDE</code></p>
+<p>A major change was implemented in the way <code>ramp.xde</code>
+handles <strong>delay differential equations.</strong> New algorithms
+were added to Ross-Macdonald models that compute mosquito survival and
+dispersal through an incubation period varying in length.</p>
+<ul>
+<li><p><strong>Inits</strong> – <strong>initial values</strong> are now
+handled separately, with new functions <code><a href="../reference/get_inits.html">get_inits()</a></code> and the
+<code>S3</code> families of functions <code>get_inits_L()</code> and
+<code>get_inits_MYZ()</code> and <code>get_inits_X().</code> A new
+function <code><a href="../reference/update_inits.html">update_inits()</a></code> resets the initial values to the
+last value simulated.</p></li>
+<li><p><strong>Indexing</strong> – <strong>indices</strong> for
+variables are now collected in <code>pars$ix</code></p></li>
+<li><p><strong>Setup</strong> – Several new functions have been added to
+set up basic models.</p></li>
+<li><p><strong>Solving</strong> – The <code>S3</code> function
+<code><a href="../reference/xde_solve.html">xde_solve()</a></code> was added to solve differential equations of
+various classes.</p></li>
+<li><p><strong>Outputs</strong> – The <code>S3</code> function
+<code>parse_deout()</code> was added to parse the output of
+<code>deSolve</code> and return the orbits in a set of named lists.
+These lists are attached to <code>pars$outputs$orbits.</code> New
+functions were also written to compute the dynamical terms that connect
+the major components.</p></li>
+<li><p><strong>Demography</strong> – Functionality has been added to
+handle human demographic changes, including births, deaths, migration,
+and aging.</p></li>
+<li><p><strong>Hosts</strong> – This version handles multiple vertebrate
+host or vector species.</p></li>
+<li><p><strong>Forcing</strong> – The models have been reconfigured to
+model malaria as a <em>changing baseline</em> that has been modified by
+<em>vector control.</em></p></li>
+</ul>
+<div class="section level3 tabset">
+<h3 class="tabset" id="ddes">DDEs<a class="anchor" aria-label="anchor" href="#ddes"></a>
+</h3>
+<div class="section level4">
+<h4 id="exde-1">
+<code>exDE</code><a class="anchor" aria-label="anchor" href="#exde-1"></a>
+</h4>
+<p>In modular computation with delay differential equations, it is often
+necessary to compute the value of a term at some lagged values. For
+example, in the Ross-Macdonald model:</p>
+<p><span class="math display">\[
+\begin{array}{rl}
+\dot Y &amp;= fq \kappa (M-Y) - g Y \\
+\dot Z &amp;= f_\tau q_\tau \kappa_\tau (M_\tau-Y_\tau) e^{-g\tau} - g Z
+\end{array}
+\]</span> the values of the variables at time <span class="math inline">\(t-\tau\)</span> can be retrieved using
+<code>lagvalue,</code> but the term <span class="math inline">\(\kappa(t-\tau)\)</span> is computed outside of
+<code>dMYZdt</code> and passed as an argument. To handle this in Version
+1.0, the function that computed <span class="math inline">\(\kappa\)</span> dispatched on the type of
+<code>dMYZdt</code> so that it would pass two values: <span class="math inline">\((\kappa(t), \kappa(t-\tau).\)</span></p>
+<p>Handling delays in general posed a far greater challenge in models
+with exogenous forcing. Consider, for example, models where blood
+feeding depends on resource availability, and resources vary with time:
+we would need to compute the blood feeding parameters in relation to
+blood host availability and vector control (with effect sizes <span class="math inline">\(\epsilon_*\)</span>):</p>
+<p><span class="math display">\[f(t-\tau)= F_f(B(t-\tau))
+\epsilon_f(\phi(t-\tau))\]</span> and <span class="math display">\[q(t-\tau)=F_q(W(t-\tau), B(t-\tau))
+\epsilon_q(\phi(t-\tau)).\]</span> The software design challenge was
+daunting, and it would have become difficult to manage if this
+dispatching had fully propagated.</p>
+<p>The decision to internalize computation of lagged values was
+consistent with the overall <em>plug-and-play</em> design principle, and
+it would almost certainly lower the burden for developers wanting to add
+new models.</p>
+</div>
+<div class="section level4">
+<h4 id="ramp-xde-1">
+<code>ramp.xde</code><a class="anchor" aria-label="anchor" href="#ramp-xde-1"></a>
+</h4>
+<p>A change was made to <strong>internalize compuation of lagged values
+for terms.</strong> For terms that depend on variables or processes
+outside of a dynamical component and whose value must be known at some
+lagged value in the past, generically denoted <span class="math inline">\(k(t)\)</span>, we create a new variable <span class="math inline">\(K(t)\)</span>, and such that <span class="math display">\[dK/dt = k.\]</span> We add this variable to the
+the derivatives function, and index the new dummy variable <span class="math inline">\(K\)</span> as if it were a model variable. The
+value of <span class="math inline">\(k(t-\tau)\)</span> can be computed
+using <code><a href="https://rdrr.io/pkg/deSolve/man/timelags.html" class="external-link">deSolve::lagderiv</a></code></p>
+<p>For an example, see the implementation in the function
+<code>dMYZdt.RM</code></p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="initial-values">Initial Values<a class="anchor" aria-label="anchor" href="#initial-values"></a>
+</h3>
+<div class="section level4">
+<h4 id="exde-2">
+<code>exDE</code><a class="anchor" aria-label="anchor" href="#exde-2"></a>
+</h4>
+<p>In version 1.0, the initial values were stored with the parameters in
+<code>pars$MYZpar</code> or <code>pars$Lpar</code> or
+<code>pars$Xpar</code></p>
+</div>
+<div class="section level4">
+<h4 id="ramp-xde-2">
+<code>ramp.xde</code><a class="anchor" aria-label="anchor" href="#ramp-xde-2"></a>
+</h4>
+<p>In version 2.0, initial values are found in
+<code>pars$MYZinits</code> or <code>pars$Linits</code> or
+<code>pars$Xinits</code></p>
+<ul>
+<li>A function <code><a href="../reference/get_inits.html">get_inits()</a></code> returns a vector of initial
+values</li>
+</ul>
+<p><strong><code>pars</code></strong></p>
+<ul>
+<li>
+<p><code>MYZinits</code> is a list()</p>
+<ul>
+<li><p><code>MYZinits[[1]]</code> has initial values for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>MYZinits[[2]]</code> has initial values for the <span class="math inline">\(2^{nd}\)</span> species</p></li>
+<li><p>… up to the <span class="math inline">\(s^{th}\)</span> species
+where <span class="math inline">\(s =\)</span>
+<code>nVectors</code></p></li>
+</ul>
+</li>
+<li>
+<p><code>Linits</code> is a list()</p>
+<ul>
+<li><p><code>Linits[[1]]</code> has initial values for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>Linits[[2]]</code> has initial values for the <span class="math inline">\(2^{nd}\)</span> species</p></li>
+<li><p>… up to the <span class="math inline">\(s^{th}\)</span> species
+where <span class="math inline">\(s =\)</span>
+<code>nVectors</code></p></li>
+</ul>
+</li>
+<li>
+<p><code>Xinits</code> is a list()</p>
+<ul>
+<li><p><code>Xinits[[1]]</code> has initial values for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>Xinits[[2]]</code> has initial values for the <span class="math inline">\(2^{nd}\)</span> species</p></li>
+<li><p>… up to the <span class="math inline">\(i^{th}\)</span> species
+where <span class="math inline">\(i =\)</span>
+<code>nHosts</code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section level3 tabset">
+<h3 class="tabset" id="indexing">Indexing<a class="anchor" aria-label="anchor" href="#indexing"></a>
+</h3>
+<div class="section level4">
+<h4 id="exde-3">
+<code>exDE</code><a class="anchor" aria-label="anchor" href="#exde-3"></a>
+</h4>
+<p>In version 1.0, the indices were attached to <code>pars</code></p>
+<ul>
+<li><p><code>MYZ_ix</code> for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>L_ix</code> for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>X_ix</code> for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+</ul>
+</div>
+<div class="section level4">
+<h4 id="ramp-xde-3">
+<code>ramp.xde</code><a class="anchor" aria-label="anchor" href="#ramp-xde-3"></a>
+</h4>
+<p>In version 2.0, indices are stored as named lists under
+<code>pars$ix</code></p>
+<ul>
+<li>
+<p><code>MYZ_ix</code> is a list()</p>
+<ul>
+<li><p><code>MYZ[[1]]</code> has indices for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>MYZ[[2]]</code> has indices for the <span class="math inline">\(2^{nd}\)</span> species</p></li>
+<li><p>… up to the <span class="math inline">\(s^{th}\)</span> species
+where <span class="math inline">\(s =\)</span>
+<code>nVectors</code></p></li>
+</ul>
+</li>
+<li>
+<p><code>L_ix</code> is a list()</p>
+<ul>
+<li><p><code>L[[1]]</code> has indices for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>L[[2]]</code> has indices for the <span class="math inline">\(2^{nd}\)</span> species</p></li>
+<li><p>… up to the <span class="math inline">\(s^{th}\)</span> species
+where <span class="math inline">\(s =\)</span>
+<code>nVectors</code></p></li>
+</ul>
+</li>
+<li>
+<p><code>X_ix</code> is a list()</p>
+<ul>
+<li><p><code>X[[1]]</code> has indices for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>X[[2]]</code> has indices for the <span class="math inline">\(2^{nd}\)</span> species</p></li>
+<li><p>… up to the <span class="math inline">\(i^{th}\)</span> species
+where <span class="math inline">\(i =\)</span>
+<code>nHosts</code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section level3">
+<h3 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
+</h3>
+<p><strong><code>ramp.xde</code> Version 2.0</strong> adds a new class
+of functions, called <code>xde_setup</code> that streamline model setup
+for all models. As we added new features to handle malaria control and
+exogenous forcing, the burden of managing</p>
+<p>Easy setup relies on several new functions:</p>
+<ul>
+<li>
+<code>make_parameters_xde</code> (in <code>utils.R</code>) creates a
+new list that sets up an empty model.</li>
+</ul>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><p><code>setup_MYZpar</code> sets up and returns a
+<code>MYZpar</code> object.</p></li>
+<li><p><code>setup_Lpar</code> sets up and returns a <code>Lpar</code>
+object</p></li>
+<li><p><code>setup_Xpar</code> sets up and returns a <code>Xpar</code>
+object</p></li>
+</ul>
+<p><strong>Initial Values</strong></p>
+<ul>
+<li><p><code>setup_MYZinits</code> sets up and returns a
+<code>MYZinits</code> object</p></li>
+<li><p><code>setup_Linits</code> sets up and returns a
+<code>Linits</code> object</p></li>
+<li><p><code>setup_Xinits</code> sets up and returns a
+<code>Xinits</code> object</p></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
 </h3>
 </div>
 <div class="section level3">
-<h3 id="ramp-xde">
-<code>ramp.xde</code><a class="anchor" aria-label="anchor" href="#ramp-xde"></a>
+<h3 id="outputs">Outputs<a class="anchor" aria-label="anchor" href="#outputs"></a>
 </h3>
+<p>Version 2.0 parses outputs and includes functions for basic
+plotting.</p>
+<ul>
+<li>
+<p><code>parse_deout</code> and related functions parse the output
+of <code>deSolve()</code> and attach the values of the variables by name
+to a list called <code>pars$outputs</code></p>
+<ul>
+<li><p>for ordinary solving, the outputs are attached to
+<code>pars$outputs$orbits</code></p></li>
+<li><p>for steady states, the outputs are attached to
+<code>pars$outputs$stable_orbits</code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="demography">Demography<a class="anchor" aria-label="anchor" href="#demography"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="multi-species">Multi-Species<a class="anchor" aria-label="anchor" href="#multi-species"></a>
+</h3>
+<p>Models with multiple vector species or multiple host species are now
+handled.</p>
+<ol style="list-style-type: decimal">
+<li>
+<p>There are two new structural parameters:</p>
+<ul>
+<li><p><code>nVectors</code> is the number of vector species;</p></li>
+<li><p><code>nHosts</code> is the number of vertebrate host
+species;</p></li>
+</ul>
+</li>
+<li><p><strong>Parameters</strong> - Mutiple-species required making
+changes to the way <code>MYZpar</code> and <code>Lpar</code> and
+<code>Xpar</code> were configured</p></li>
+<li><p><strong>Transmission</strong> - Mutiple-species required making
+changes to the way <code>beta</code> and <code>kappa</code> and
+<code>EIR</code> and <code>FoI</code> were handled.</p></li>
+<li><p><strong>Egg Laying</strong> - Mutiple-species required making
+changes to the way egg-laying was handled.</p></li>
+</ol>
+<div class="section level4">
+<h4 id="exde-4">
+<code>exDE</code><a class="anchor" aria-label="anchor" href="#exde-4"></a>
+</h4>
+<p>In version 1.0, the default object had one vertebrate host and one
+vector species</p>
+<p><strong><code>pars</code></strong></p>
+<ul>
+<li><p><code>MYZpar</code> for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>Lpar</code> for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>Xpar</code> for the <span class="math inline">\(1^{st}\)</span> species</p></li>
+</ul>
+</div>
+<div class="section level4">
+<h4 id="ramp-xde-4">
+<code>ramp.xde</code><a class="anchor" aria-label="anchor" href="#ramp-xde-4"></a>
+</h4>
+<p>In version 2.0, the default object has changed the location of major
+objects:</p>
+<p><strong><code>pars</code></strong></p>
+<ul>
+<li>
+<p><code>MYZpar</code> is a list()</p>
+<ul>
+<li><p><code>MYZpar[[1]]</code> is the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>MYZpar[[2]]</code> is the <span class="math inline">\(2^{nd}\)</span> species</p></li>
+<li><p>… up to the <span class="math inline">\(s^{th}\)</span> species
+where <span class="math inline">\(s =\)</span>
+<code>nVectors</code></p></li>
+</ul>
+</li>
+<li>
+<p><code>Lpar</code> is a list()</p>
+<ul>
+<li><p><code>Lpar[[1]]</code> is the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>Lpar[[2]]</code> is the <span class="math inline">\(2^{nd}\)</span> species</p></li>
+<li><p>… up to the <span class="math inline">\(s^{th}\)</span> species
+where <span class="math inline">\(s =\)</span>
+<code>nVectors</code></p></li>
+</ul>
+</li>
+<li>
+<p><code>Xpar</code> is a list()</p>
+<ul>
+<li><p><code>Xpar[[1]]</code> is the <span class="math inline">\(1^{st}\)</span> species</p></li>
+<li><p><code>Xpar[[2]]</code> is the <span class="math inline">\(2^{nd}\)</span> species</p></li>
+<li><p>… up to the <span class="math inline">\(i^{th}\)</span> species
+where <span class="math inline">\(i =\)</span>
+<code>nHosts</code></p></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div class="section level3">
 <h3 id="ramp-dts">
@@ -226,43 +554,6 @@ name exDE was changed to ramp.xds where development continued. A stable
 version of exDE was restored. Functionality for discrete time systems
 was added to ramp.xds in the spring of 2024. A name change to ramp.xds
 is planned.</p>
-</div>
-<div class="section level3">
-<h3 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
-</h3>
-<ul>
-<li><p>From its inception, this project has been supported by a grants
-from the Bill and Melinda Gates Foundation, “Modeling for Adaptive
-Malaria Control” (INV 030600, PI = David L Smith, University of
-Washington).</p></li>
-<li><p>Development of <strong><code>ramp.xds</code></strong> benefited
-from the mosquito working groups of RAPIDD (Research and Policy for
-Infectious Disease Dynamics) led by Professor Thomas Scott. RAPIDD was
-led by F. Ellis McKenzie and funded by the Fogarty International Center
-and the Department of homeland security.</p></li>
-<li><p>Adaptive Vector Control is funded by grant Spatial Targeting and
-Adaptive Vector Control for Residual Transmission and Malaria
-Elimination in Urban African Settings (R01 AI163398, PI = David L
-Smith), from US National Institute of Allergies and Infectious Diseases
-(NIAID).</p></li>
-<li><p>Development of the software was supported through a collaboration
-with the <a href="https://www.mcd.org/focus-areas/featured-projects/bioko-island-malaria-elimination-project" class="external-link">Bioko
-Island Malaria Elimination Program</a></p></li>
-<li><p>Development of this software benefited from funding and
-collaboration with the NIAID grant Program for Resistance, Immunology,
-Surveillance &amp; Modeling of Malaria in Uganda (PRISM) (2U19AI089674,
-PIs = Grant Dorsey, University of California San Francisco; and Moses
-Kamya, Infectious Diseases Research Collaboration), which was part of
-the International Centers of Excellence in Malaria Research (ICEMR)
-program.</p></li>
-<li><p>Funding to develop models of West Nile Virus to support Harris
-County Public Health was funded by the NSF as part of a project,
-Computing the Biome (PI= Janos Sztipanovits). The project was part of
-the Convergence Accelerator program of the National Science Foundation,
-Directorate for Technology, Innovation, and Partnerships (TIP) (NSF
-2040688 and NSF 2040688, PI=Janos Sztipanovits, Vanderbilt
-University).</p></li>
-</ul>
 </div>
 </div>
   </div>

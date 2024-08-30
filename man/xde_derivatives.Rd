@@ -2,7 +2,7 @@
 % Please edit documentation in R/xde_equations.R
 \name{xde_derivatives}
 \alias{xde_derivatives}
-\title{Generalized spatial differential equation model}
+\title{Compute Derivatives}
 \usage{
 xde_derivatives(t, y, pars)
 }
@@ -17,6 +17,8 @@ xde_derivatives(t, y, pars)
 a \link{list} containing the vector of all state derivatives
 }
 \description{
-Compute derivatives for \link[deSolve:ode]{deSolve::ode} or \link[deSolve:dede]{deSolve::dede} using
-generic methods for each model component.
+The function to compute the derivatives dispatches on \code{class(frame)}
+}
+\seealso{
+\link{xde_solve}
 }

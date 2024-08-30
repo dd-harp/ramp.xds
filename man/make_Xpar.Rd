@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-interface.R
 \name{make_Xpar}
 \alias{make_Xpar}
-\title{Make a \eqn{cal X} Model}
+\title{Make Parameters for a \eqn{cal X} - Component Model}
 \usage{
 make_Xpar(Xname, pars, i, Xopts = list())
 }
@@ -19,5 +19,5 @@ make_Xpar(Xname, pars, i, Xopts = list())
 an \strong{\code{xds}} object
 }
 \description{
-Make a model
+Make the parameters - \code{Xpar} - for a \eqn{cal X} - Component Model
 }

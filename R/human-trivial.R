@@ -40,9 +40,9 @@ create_Xpar_trivial <- function(nPatches, Xopts, kappa=.1, HPop=1,
   return(Xpar)
 })}
 
-
-#' @title Derivatives for human population
-#' @description Implements [dXdt] for the trivial model.
+#' @title Compute Derivatives for the `trivial` \eqn{\cal X} Model
+#' @description The trivial model has no state variables so it returns
+#' a numeric vector of length 0
 #' @inheritParams dXdt
 #' @return a [numeric] vector
 #' @export
@@ -50,17 +50,15 @@ dXdt.trivial <- function(t, y, pars, i) {
   numeric(0)
 }
 
-#' @title Derivatives for human population
-#' @description Implements [Update_Xt] for the trivial model.
+#' @title Update States for the `trivial` \eqn{\cal X} Model
+#' @description The trivial model has no state variables so it returns
+#' a numeric vector of length 0
 #' @inheritParams Update_Xt
 #' @return a [numeric] vector
 #' @export
 Update_Xt.trivial <- function(t, y, pars, i) {
   numeric(0)
 }
-
-
-
 
 #' @title Compute the "true" prevalence of infection / parasite rate
 #' @description Implements [F_pr] for the trivial model.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SIS.R
 \name{dXdt.SIS}
 \alias{dXdt.SIS}
-\title{Derivatives for the SIS \eqn{\cal X} Compartment Model}
+\title{\eqn{\cal X} Component Derivatives for an SIS Model}
 \usage{
 \method{dXdt}{SIS}(t, y, pars, i)
 }
@@ -19,9 +19,8 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{dXdt} for the SIS model for human / vertebrate host infections
-}
-\details{
-The core dynamics of infection
-\deqn{\frac{dS}{dt} = -h S + r I}
+Compute the derivatives for SIS compartmental model, defined as:
+\deqn{\frac{dH}{dt} = B(t) - h S - r I + d{\cal H}(S)}
+\deqn{\frac{dI}{dt} = h S - r I + d{\cal H}(I)}
+where \eqn{H = S+I}, \eqn{B(t)} is the time-dependent birth rate, and \eqn{d{\cal H}} is a linear demographic operator.
 }

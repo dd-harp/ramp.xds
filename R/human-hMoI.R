@@ -1,7 +1,6 @@
 # a hybrid model tracking mean MoI for all and apparent infections
 
-
-#' @title Derivatives for human population
+#' @title `\eqn{\cal X}` Component Derivatives for the `hMoI` model
 #' @description Implements [dXdt] for the hybrid MoI model.
 #' @inheritParams dXdt
 #' @return a [numeric] vector

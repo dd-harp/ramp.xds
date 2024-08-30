@@ -2,7 +2,7 @@
 % Please edit documentation in R/xde_solving.R
 \name{xde_solve.dde}
 \alias{xde_solve.dde}
-\title{Solve a system of equations as a dde}
+\title{Solve a system of equations using \link{deSolve:dde}}
 \usage{
 \method{xde_solve}{dde}(pars, Tmax = 365, dt = 1)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-hMoI.R
 \name{dXdt.hMoI}
 \alias{dXdt.hMoI}
-\title{Derivatives for human population}
+\title{\verb{\eqn{\cal X}} Component Derivatives for the \code{hMoI} model}
 \usage{
 \method{dXdt}{hMoI}(t, y, pars, i)
 }

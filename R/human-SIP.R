@@ -1,6 +1,6 @@
 # specialized methods for the human SIP model
 
-#' @title Derivatives for human population
+#' @title \eqn{\cal X} Component Derivatives for an SIP Model
 #' @description Implements [dXdt] for the SIP model.
 #' @inheritParams dXdt
 #' @return a [numeric] vector
@@ -22,7 +22,7 @@ dXdt.SIP <- function(t, y, pars, i){
   })
 }
 
-#' @title Setup Xpar.SIP
+#' @title Setup `Xpar` for an `SIP`
 #' @description Implements [make_Xpar] for the SIP model
 #' @inheritParams make_Xpar
 #' @return a [list] vector
