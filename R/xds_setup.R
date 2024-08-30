@@ -1,36 +1,62 @@
 # functions to set up models
 
-#' @title Build an **`xds`** object
-#' @description Set up an **`xds`** object and set `pars$frame <- class(pars$frame) <- 'full'`.
+#' @title Basic Setup: Make a Fully Defined **`xds`** Object
 #'
-#' Each dynamical component is fully configured for a single host and vector species:
+#' @description Make a fully defined **`xds`** object:
 #'
-#' - **`Xpar`** defines a model for human / host infection dynamics of class `Xname` (the \eqn{\cal XH} dynamical component)
-#' - **`MYZpar`** defines a model for adult mosquito ecology & infection dynamics of class `MYZname` (the \eqn{\cal MYZ} dynamical component)
-#' - **`Lpar`** defines the aquatic mosquito ecology of class `Lname` (The \eqn{\cal L} dynamical component)
+#' - Define the dynamical components:
+#'    - \eqn{\cal XH} - a model for human / host infection dynamics of class **`Xname`** with trivial demographics
+#'    - \eqn{\cal MYZ} - a model for adult mosquito ecology and infection dynamics of class **`MYZname`**
+#'    - \eqn{\cal L} - a model for aquatic mosquito ecology of class **`Lname`**
+#' - Define basic structural parameters for a single host and vector population:
+#'    - \eqn{n_p} or `nPatches` - the number of patches
+#'    - \eqn{n_q} or `nHabitats` - the number and locations of aquatic habitats
+#'    - \eqn{n_h} or `nStrata` - the number of human / host population strata and basic demographic information
+#' - Configure some of the basic elements
+#'    - Search weights for human population strata
+#'    - Search weights for aquatic habitats
+#'    - The mosquito dispersal matrix, \eqn{\cal K}
+#'    - The time spent matrix \eqn{\Theta}
+#' - Configure runtime parameters for discrete-time systems
 #'
-#' The model sets the basic structural parameters:
-#' - `nPatches` - the number of patches in the model
-#' - `nStrata` - the number of human / host population strata
-#' - `nHabitats` - the number of habitats
+#' Advanced options can be configured after basic setup.
 #'
+#' @note If \eqn{\cal MYZ} is the trivial model, consider using [xds_setup_aquatic] or [xds_setup_human] or [xds_setup_cohort]. Models for mosquito
+#' ecology need not include states describing infection status (see [xds_setup_mosy]).
+#' @details
+#' 1. Using the basic structural parameters, a basic template is created by [make_xds_template] with
+#' a properly configured interface for blood feeding and egg laying, and `pars$frame = class(pars$frame) = 'full'` .
 #'
-#' @details This sets up an **`xds`** object with `pars$frame = 'full'`
-#' - Parameter values for the models are passed as named lists: `Xopts`, `MYZopts`, and `Lopts`
-#' - Search weights, the mosquito dispersal matrix, and the time spent matrix can also be
-#' configured using parameters passed at the command line.
-#' - Runtime parameters for `dts` models can be configured by passing values: `Xday`, `MYZday`, and `Lday`
+#'    - `nPatches` is passed as a parameter
+#'    - `nHabitats` is configured by passing the habitat `membership` vector, and `nHabitats <- length(membership)`
+#'    - `nStrata` is configured by passing a vector of human population densities and a residence vector, and `nStrata <- length(residence) <- length(HPop)`
+#'    - `nHosts=1` -- basic setup handles the first host species
+#'    - `nVectors=1` -- basic setup handles the first vector species
+#'
+#' 2. Each one of the dynamical components is configured.
+#'
+#'    - **`pars$Xpar[[1]]`** defines a model for human / host infection dynamics of class `Xname` (the \eqn{\cal XH} dynamical component). The parameter values passed in a named list, `Xopts.`
+#'    - **`pars$MYZpar[[1]]`** defines a model for adult mosquito ecology & infection dynamics of class `MYZname` (the \eqn{\cal MYZ} dynamical component). The parameter values are passed in a named list, `MYZopts.`
+#'    - **`pars$Lpar[[1]]`** defines a model for aquatic mosquito ecology of class `Lname` (The \eqn{\cal L} dynamical component). The parameter values are passed in a named list, `Lopts.`
+#'
+#' 3. After configuring the dynamical components, several structural parameters can be configured at the command line:
+#'
+#'    - Habitat search weights can be set
+#'    - Host population search weights can be set
+#'    - A mosquito dispersal matrix, \eqn{\cal K}, can be set
+#'    - A time spent matrix, \eqn{\Theta}, can be set
+#'    - Runtime parameters for `dts` models can be configured by passing values: `Xday`, `MYZday`, and `Lday`
 #'
 #' Advanced features must be configured later, including:
 #' - multiple-host species or multiple-vector species
 #' - exogenous forcing by weather, resources, or other factors
 #' - vector control, vaccines, or other mass
-#'
+#' @seealso [make_xds_template]
 #' @param xds is `xde`/`dts` for differential / difference equations
 #' @param dlay is either "ode" or "dde"
-#' @param MYZname is a character string defining a MYZ model
-#' @param Xname is a character string defining a X model
-#' @param Lname is a character string defining a L model
+#' @param MYZname a character string defining a \eqn{\cal MYZ} model
+#' @param Xname a character string defining a \eqn{\cal X} model
+#' @param Lname a character string defining a \eqn{\cal L} model
 #' @param nPatches is the number of patches
 #' @param membership is a vector that describes the patch where each aquatic habitat is found
 #' @param residence is a vector that describes the patch where each human stratum lives
@@ -47,7 +73,7 @@
 #' @param Lopts a list to configure the L model
 #' @param BFopts a list to configure the blood feeding model
 #' @param model_name is a name for the model (arbitrary)
-#' @return a [list]
+#' @return an **`xds`** object
 #' @export
 xds_setup = function(xds = 'xde', dlay = 'ode',
                  ### Dynamical Components
@@ -124,7 +150,17 @@ xds_setup = function(xds = 'xde', dlay = 'ode',
   return(pars)
 }
 
-#' @title Set up an **`xds`** object to model mosquito ecology
+#' @title Make an **`xds`** Object to Study Mosquito Ecology
+#'
+#' @description A modified version of [xds_setup] that streamlines setup for models that do not require a
+#' component describing parasite / pathogen infection dynamics in the adult mosquito population.
+#'
+#' The **`xds`** object defines `frame = class(frame) = 'mosy'`
+#' to dispatch [xde_solve.mosy] or [dts_solve.mosy] and associated functions.
+#'
+#' The \eqn{\cal X} model is trivial, but since humans / vertebrate hosts can be a
+#' resource, `HPop` must be set. Notably, it is possible to set values of NI `kappa` but
+#' @seealso [xds_setup] and [dMYZdt.basicM]
 #' @param xds is `xde`/`dts` for differential / difference equations
 #' @param dlay is either "ode" or "dde"
 #' @param MYZname is a character string defining a MYZ model
@@ -140,7 +176,7 @@ xds_setup = function(xds = 'xde', dlay = 'ode',
 #' @param MYZopts a list to configure the MYZ model
 #' @param Lopts a list to configure the L model
 #' @param model_name is a name for the model (arbitrary)
-#' @return a [list]
+#' @return an **`xds`** object
 #' @export
 xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
                           ### Dynamical Components
@@ -205,7 +241,14 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 }
 
 
-#' @title Set up an **`xds`** object to model aquatic mosquito ecology
+#' @title Make an **`xds`** Object to Study Aquatic Mosquito Ecology
+#' @description A modified version of [xds_setup] that streamlines setup for a model that
+#' with a trivial \eqn{\cal MYZ} component. The model also configures a trivial \eqn{\cal X} component.
+#'
+#' The **`xds`** object defines `frame = class(frame) = 'aquatic'`
+#' to dispatch [xde_solve.aquatic] or [dts_solve.aquatic]
+#'
+#' @seealso [xds_setup]
 #' @param xds is `xde`/`dts` for differential / difference equations
 #' @param dlay is either "ode" or "dde"
 #' @param nHabitats is the number of habitats
@@ -214,7 +257,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 #' @param Lopts a list to configure the L model
 #' @param MYZopts a list to configure F_eggs from the trivial model
 #' @param model_name is a name for the model (arbitrary)
-#' @return a [list]
+#' @return an **`xds`** object
 #' @export
 xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
                              nHabitats=1,
@@ -249,11 +292,25 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 }
 
 
-#' @title Set up an **`xds`** object to model human / host infection dynamics
-#' @description
-#' Set up a model to explore human dynamics forced by infective mosquitoes
-#' @details
-#' Write me
+#' @title Make an **`xds`** Object to Study Human / Host Epidemiology
+#'
+#' @description A modified version of [xds_setup] that
+#' streamlines setup for models with a trival \eqn{\cal MYZ} component.
+#'
+#' The **`xds`** object defines `frame = class(frame) = 'human'`
+#' to dispatch [xde_solve.human] or [dts_solve.human] and associated functions.
+#'
+#' The \eqn{\cal MYZ} model is trivial. The funcion [F_fqZ] still passes the
+#' density of infectious adult mosquitoes, so \eqn{f} and \eqn{q} can still be
+#' configured. In this case, the daily EIR is computed using the blood feeding
+#' interface, including [Exposure], in the same way as a model with a non-trivial
+#' \eqn{\cal MYZ} component.
+#'
+#' To study human cohort dynamics by passing a function that computes the daily EIR,
+#' consider using [xds_setup_cohort].
+#'
+#' @seealso [xds_setup] and [xds_setup_cohort]
+#'
 #' @param xds is `xde`/`dts` for differential / difference equations'
 #' @param dlay  either "ode" or "dde"
 #' @param Xname a character string defining a X model
@@ -267,7 +324,7 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 #' @param Xopts list to configure the X model
 #' @param BFopts list to configure the blood feeding model
 #' @param model_name a name for the model
-#' @return a [list]
+#' @return an **`xds`** object
 #' @export
 xds_setup_human = function(xds = 'xde', dlay = 'ode',
                            ### Dynamical Components
@@ -325,13 +382,23 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
   return(pars)
 }
 
-#' @title Set up an **`xds`** object to model human cohort dynamics
-#' @description
-#' The user supplies a function `F_eir(time, birthday, ...)` and specifies a model, and
-#' the `xds` is set up to simulate dynamics for cohorts of different
-#' ages experiencing exposure.
-#' @details
-#' Please write me
+#' @title Make an **`xds`** Object to Study Human / Host Cohort Dynamics
+#' @description A modified version of [xds_setup] to setup up studies of cohort
+#' dynamics.
+#'
+#' The **`xds`** object defines `frame = class(frame) = 'cohort'` but there
+#' is no `cohort` case for [xde_solve] or [dts_solve]. Instead, cohort
+#' dynamics are studied using [xde_solve_cohort], which was designed
+#' to compare the outcomes for cohorts of different ages when exposure is
+#' changing.
+#'
+#' The interface includes options to configure a function
+#' describing `F_eir` as a function of time, with seasonal components
+#' and a trend. Exposure in a cohort is a function of its age, including
+#' a function that modifies exposure by age.
+#'
+#' @seealso [xds_setup] and [xds_setup_human] and [xde_solve_cohort]
+#'
 #' @param eir is the entomological inoculation rate
 #' @param bday the birthday of a cohort
 #' @param F_season a function describing a seasonal pattern over time
@@ -345,7 +412,7 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
 #' @param HPop is the number of humans in each stratum
 #' @param searchB is a vector of search weights for blood feeding
 #' @param model_name is a name for the model (arbitrary)
-#' @return a [list]
+#' @return an **`xds`** object
 #' @export
 xds_setup_cohort = function(eir, bday=0,
                             F_season = F_flat,

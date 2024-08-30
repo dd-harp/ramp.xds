@@ -1,5 +1,14 @@
-#' @title Solve a system of equations
-#' @description This method dispatches on the type of `pars$xde`.
+#' @title Solve a system of differential equations
+#' @description This method solves a system of equations and returns the values of
+#' the dependent variables at times \eqn{t=0, dt, 2dt, ... Tmax}. The function dispatches
+#' on `pars$dlay` to call:
+#'
+#'   - [deSolve::ode] if `class(dlay) == 'ode'`
+#'   - [deSolve::dede] if `class(dlay) == 'dde'`
+#'
+#' Note that the call to [xde_derivatives] dispatches on `pars$frame`
+#'
+#' @seealso [xde_derivatives()]
 #' @param pars a [list] that defines a model
 #' @param Tmax the last time point, run from 0...Tmax
 #' @param dt the time interval for outputs
@@ -9,7 +18,15 @@ xde_solve = function(pars, Tmax=365, dt=1){
   UseMethod("xde_solve", pars$dlay)
 }
 
-#' @title Solve a system of equations as an ode
+#' @title Solve a system of equations using [deSolve::ode]
+#' @description This method solves a system of equations and returns the values of
+#' the dependent variables at times \eqn{t=0, dt, 2dt, ... Tmax}. The function dispatches
+#' on `pars$dlay` to call:
+#'
+#'   - [deSolve::ode] if `class(dlay) == 'ode'`
+#'   - [deSolve::dede] if `class(dlay) == 'dde'`
+#'
+#' Note that the call to [xde_derivatives] dispatches on `pars$frame`
 #' @description Implements [xde_solve] for ordinary differential equations
 #' @inheritParams xde_solve
 #' @return a [list]
@@ -24,7 +41,7 @@ xde_solve.ode = function(pars, Tmax=365, dt=1){
   return(pars)
 }
 
-#' @title Solve a system of equations as a dde
+#' @title Solve a system of equations using [deSolve:dde]
 #' @description Implements [xde_solve] for delay differential equations
 #' @inheritParams xde_solve
 #'@return a [list]

@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_aquatic}
 \alias{xds_setup_aquatic}
-\title{Set up an \strong{\code{xds}} object to model aquatic mosquito ecology}
+\title{Make an \strong{\code{xds}} Object to Study Aquatic Mosquito Ecology}
 \usage{
 xds_setup_aquatic(
   xds = "xde",
@@ -33,8 +33,15 @@ xds_setup_aquatic(
 \item{model_name}{is a name for the model (arbitrary)}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
-Set up an \strong{\code{xds}} object to model aquatic mosquito ecology
+A modified version of \link{xds_setup} that streamlines setup for a model that
+with a trivial \eqn{\cal MYZ} component. The model also configures a trivial \eqn{\cal X} component.
+
+The \strong{\code{xds}} object defines \code{frame = class(frame) = 'aquatic'}
+to dispatch \link{xde_solve.aquatic} or \link{dts_solve.aquatic}
+}
+\seealso{
+\link{xds_setup}
 }

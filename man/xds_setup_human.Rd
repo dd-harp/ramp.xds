@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_human}
 \alias{xds_setup_human}
-\title{Set up an \strong{\code{xds}} object to model human / host infection dynamics}
+\title{Make an \strong{\code{xds}} Object to Study Human / Host Epidemiology}
 \usage{
 xds_setup_human(
   xds = "xde",
@@ -48,11 +48,24 @@ xds_setup_human(
 \item{model_name}{a name for the model}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
-Set up a model to explore human dynamics forced by infective mosquitoes
+A modified version of \link{xds_setup} that
+streamlines setup for models with a trival \eqn{\cal MYZ} component.
+
+The \strong{\code{xds}} object defines \code{frame = class(frame) = 'human'}
+to dispatch \link{xde_solve.human} or \link{dts_solve.human} and associated functions.
+
+The \eqn{\cal MYZ} model is trivial. The funcion \link{F_fqZ} still passes the
+density of infectious adult mosquitoes, so \eqn{f} and \eqn{q} can still be
+configured. In this case, the daily EIR is computed using the blood feeding
+interface, including \link{Exposure}, in the same way as a model with a non-trivial
+\eqn{\cal MYZ} component.
+
+To study human cohort dynamics by passing a function that computes the daily EIR,
+consider using \link{xds_setup_cohort}.
 }
-\details{
-Write me
+\seealso{
+\link{xds_setup} and \link{xds_setup_cohort}
 }

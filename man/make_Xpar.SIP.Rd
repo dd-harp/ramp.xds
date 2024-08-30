@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SIP.R
 \name{make_Xpar.SIP}
 \alias{make_Xpar.SIP}
-\title{Setup Xpar.SIP}
+\title{Setup \code{Xpar} for an \code{SIP}}
 \usage{
 \method{make_Xpar}{SIP}(Xname, pars, i, Xopts = list())
 }

@@ -1,10 +1,10 @@
 # specialized methods for the human SIS model
 
-#' @title Derivatives for the SIS \eqn{\cal X} Compartment Model
-#' @description Implements [dXdt] for the SIS model for human / vertebrate host infections
-#' @details
-#' The core dynamics of infection
-#' \deqn{\frac{dS}{dt} = -h S + r I}
+#' @title \eqn{\cal X} Component Derivatives for an SIS Model
+#' @description Compute the derivatives for SIS compartmental model, defined as:
+#' \deqn{\frac{dH}{dt} = B(t) - h S - r I + d{\cal H}(S)}
+#' \deqn{\frac{dI}{dt} = h S - r I + d{\cal H}(I)}
+#' where \eqn{H = S+I}, \eqn{B(t)} is the time-dependent birth rate, and \eqn{d{\cal H}} is a linear demographic operator.
 #' @inheritParams dXdt
 #' @return a [numeric] vector
 #' @export
@@ -20,7 +20,6 @@ dXdt.SIS <- function(t, y, pars, i) {
     })
   })
 }
-
 
 #' @title Compute the steady states for the SIS model as a function of the daily EIR
 #' @description Compute the steady state of the SIS model as a function of the daily eir.

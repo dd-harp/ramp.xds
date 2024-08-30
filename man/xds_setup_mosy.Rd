@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_mosy}
 \alias{xds_setup_mosy}
-\title{Set up an \strong{\code{xds}} object to model mosquito ecology}
+\title{Make an \strong{\code{xds}} Object to Study Mosquito Ecology}
 \usage{
 xds_setup_mosy(
   xds = "xde",
@@ -54,8 +54,18 @@ xds_setup_mosy(
 \item{model_name}{is a name for the model (arbitrary)}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
-Set up an \strong{\code{xds}} object to model mosquito ecology
+A modified version of \link{xds_setup} that streamlines setup for models that do not require a
+component describing parasite / pathogen infection dynamics in the adult mosquito population.
+
+The \strong{\code{xds}} object defines \code{frame = class(frame) = 'mosy'}
+to dispatch \link{xde_solve.mosy} or \link{dts_solve.mosy} and associated functions.
+
+The \eqn{\cal X} model is trivial, but since humans / vertebrate hosts can be a
+resource, \code{HPop} must be set. Notably, it is possible to set values of NI \code{kappa} but
+}
+\seealso{
+\link{xds_setup} and \link{dMYZdt.basicM}
 }

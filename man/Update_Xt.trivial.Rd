@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-trivial.R
 \name{Update_Xt.trivial}
 \alias{Update_Xt.trivial}
-\title{Derivatives for human population}
+\title{Update States for the \code{trivial} \eqn{\cal X} Model}
 \usage{
 \method{Update_Xt}{trivial}(t, y, pars, i)
 }
@@ -19,5 +19,6 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{Update_Xt} for the trivial model.
+The trivial model has no state variables so it returns
+a numeric vector of length 0
 }

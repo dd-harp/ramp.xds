@@ -1,21 +1,24 @@
 # generic methods for human component
 
-#' @title Derivatives for \eqn{\cal X} Models
+#' @title Compute Derivatives for an \eqn{\cal X} - Component Model
 #' @description Compute and return the derivatives
-#' for a model of class \eqn{\cal X} - dynamics of infection and
-#' immunity in humans or other vertebrate host
+#' for a model of class \eqn{\cal X} - the dynamics of infection and
+#' immunity in humans or other vertebrate host.
+#'
+#' The function dispatches on `class(Xpar).`
+#'
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an **`xds`** object
 #' @param i the host species index
-#' @return a [numeric] vector
+#' @return the derivatives as a [numeric] vector
 #' @export
 dXdt <- function(t, y, pars, i) {
   UseMethod("dXdt", pars$Xpar[[i]])
 }
 
-#' @title Make a \eqn{cal X} Model
-#' @description Make a model
+#' @title Make Parameters for a \eqn{cal X} - Component Model
+#' @description Make the parameters - `Xpar` - for a \eqn{cal X} - Component Model
 #' @param Xname a [character] string
 #' @param pars an **`xds`** object
 #' @param i the host species index

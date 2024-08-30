@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SIP.R
 \name{dXdt.SIP}
 \alias{dXdt.SIP}
-\title{Derivatives for human population}
+\title{\eqn{\cal X} Component Derivatives for an SIP Model}
 \usage{
 \method{dXdt}{SIP}(t, y, pars, i)
 }

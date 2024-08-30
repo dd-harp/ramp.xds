@@ -1,6 +1,6 @@
 # The SEIS
 
-#' @title Derivatives for the SEIS model for human / vertebrate host infections
+#' @title \eqn{\cal X} Component Derivatives for an SEIS Compartmental Model
 #' @description Implements [dXdt] for the SEIS model
 #' @inheritParams dXdt
 #' @return a [numeric] vector

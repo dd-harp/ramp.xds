@@ -16,7 +16,7 @@
 #'      - "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}.
 #' in some form (possibly the trivial case) (see [xds_setup()])
 #'      - "mozy" is for mosquito ecology models (see [xds_setup_mosy()]), including models without pathogen infection dynamics in mosquitoes
-#'      - "aquatic" is for aquatic mosquito ecology models (see [xds_setup_mosy()]), forced by a function describing egg laying
+#'      - "aquatic" is for aquatic mosquito ecology models (see [xds_setup_aquatic()]), forced by a function describing egg laying
 #'      - "human" is for human/host infection dynamics(see [xds_setup_human()]), forced by the infective density of adult mosquitoes, \eqn{fqZ}
 #'      - "cohort" is for human/host cohort infection dynamics (see [xds_setup_cohort()]), forced by a function `F_eir`
 #' - **`dlay`** is either "ode" or "dde" and it only affects dispatching for differential equations

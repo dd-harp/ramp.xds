@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-trivial.R
 \name{dXdt.trivial}
 \alias{dXdt.trivial}
-\title{Derivatives for human population}
+\title{Compute Derivatives for the \code{trivial} \eqn{\cal X} Model}
 \usage{
 \method{dXdt}{trivial}(t, y, pars, i)
 }
@@ -19,5 +19,6 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{dXdt} for the trivial model.
+The trivial model has no state variables so it returns
+a numeric vector of length 0
 }

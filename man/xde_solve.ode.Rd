@@ -2,7 +2,7 @@
 % Please edit documentation in R/xde_solving.R
 \name{xde_solve.ode}
 \alias{xde_solve.ode}
-\title{Solve a system of equations as an ode}
+\title{Solve a system of equations using \link[deSolve:ode]{deSolve::ode}}
 \usage{
 \method{xde_solve}{ode}(pars, Tmax = 365, dt = 1)
 }
@@ -17,5 +17,15 @@
 a \link{list}
 }
 \description{
+This method solves a system of equations and returns the values of
+the dependent variables at times \eqn{t=0, dt, 2dt, ... Tmax}. The function dispatches
+on \code{pars$dlay} to call:
+\itemize{
+\item \link[deSolve:ode]{deSolve::ode} if \code{class(dlay) == 'ode'}
+\item \link[deSolve:dede]{deSolve::dede} if \code{class(dlay) == 'dde'}
+}
+
+Note that the call to \link{xde_derivatives} dispatches on \code{pars$frame}
+
 Implements \link{xde_solve} for ordinary differential equations
 }
