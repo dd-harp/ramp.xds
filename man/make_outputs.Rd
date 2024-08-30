@@ -2,7 +2,7 @@
 % Please edit documentation in R/outputs-make.R
 \name{make_outputs}
 \alias{make_outputs}
-\title{Compute}
+\title{Make Outputs}
 \usage{
 make_outputs(pars, de_vars, tm)
 }
@@ -17,5 +17,5 @@ make_outputs(pars, de_vars, tm)
 an \strong{\code{xds}} object
 }
 \description{
-Compute
+Make Outputs
 }

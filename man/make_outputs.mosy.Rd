@@ -2,7 +2,7 @@
 % Please edit documentation in R/outputs-make.R
 \name{make_outputs.mosy}
 \alias{make_outputs.mosy}
-\title{Compute}
+\title{Make Outputs}
 \usage{
 \method{make_outputs}{mosy}(pars, de_vars, tm)
 }
@@ -17,5 +17,5 @@
 an \strong{\code{xds}} object
 }
 \description{
-Compute
+Make Outputs
 }

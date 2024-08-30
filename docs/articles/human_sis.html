@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ramp.xds</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9</span>
       </span>
     </div>
 
@@ -265,13 +265,14 @@ of all our parameters.</p>
 <span><span class="co">#&gt; [1]  64.60177 238.56209  94.55959</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $I</span></span>
-<span><span class="co">#&gt; [1]  35.39823 261.43791 155.44041</span></span>
-<span></span>
-<span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>MYZm <span class="op">=</span> <span class="va">eir</span><span class="op">*</span><span class="va">H</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#&gt; [1]  35.39823 261.43791 155.44041</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>MYZm <span class="op">=</span> <span class="va">eir</span><span class="op">*</span><span class="va">H</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Xo</span><span class="op">$</span><span class="va">S</span><span class="op">=</span><span class="va">ss</span><span class="op">$</span><span class="va">S</span></span>
 <span><span class="va">Xo</span><span class="op">$</span><span class="va">I</span><span class="op">=</span><span class="va">ss</span><span class="op">$</span><span class="va">I</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Xpar.html">make_Xpar</a></span><span class="op">(</span><span class="st">"SIS"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Xo</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Xinits.html">make_Xinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">H</span>, <span class="fl">1</span>, <span class="va">Xo</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Hpar_static.html">setup_Hpar_static</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
@@ -279,19 +280,19 @@ of all our parameters.</p>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Linits.html">make_Linits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">F_season</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">}</span></span>
 <span><span class="va">F_trend</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">}</span></span>
 <span><span class="va">F_age</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span> </span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">eir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">eir</span><span class="op">)</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">F_season</span> <span class="op">&lt;-</span> <span class="va">F_season</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">F_trend</span> <span class="op">&lt;-</span> <span class="va">F_trend</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">F_age</span> <span class="op">&lt;-</span> <span class="va">F_age</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Xo</span><span class="op">$</span><span class="va">S</span><span class="op">=</span><span class="va">H</span> </span>
 <span><span class="va">Xo</span><span class="op">$</span><span class="va">I</span><span class="op">=</span><span class="va">H</span><span class="op">*</span><span class="fl">0</span></span>
 <span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Xinits.html">make_Xinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">H</span>, <span class="fl">1</span>, Xopts <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span></span>
@@ -302,9 +303,9 @@ of all our parameters.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $I</span></span>
 <span><span class="co">#&gt; [1] 0 0 0</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">out1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve_cohort.html">xde_solve_cohort</a></span><span class="op">(</span><span class="va">eir</span>, <span class="fl">0</span>, <span class="va">params</span><span class="op">)</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">cohort</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">out1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve_cohort.html">xde_solve_cohort</a></span><span class="op">(</span><span class="va">eir</span>, <span class="fl">0</span>, <span class="va">params</span><span class="op">)</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">cohort</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clrs</span> <span class="op">=</span> <span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">out1</span>,<span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">XH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">true_pr</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, col <span class="op">=</span> <span class="va">clrs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
@@ -319,9 +320,9 @@ of all our parameters.</p>
 </h3>
 <p>We have developed utilities for setting up models. We pass the
 parameter values and initial values as lists:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup_cohort.html">xds_setup_cohort</a></span><span class="op">(</span><span class="va">eir</span>, Xname<span class="op">=</span><span class="st">"SIS"</span>, HPop<span class="op">=</span><span class="va">H</span>, Xopts <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_SIS_xde</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup_cohort.html">xds_setup_cohort</a></span><span class="op">(</span><span class="va">eir</span>, Xname<span class="op">=</span><span class="st">"SIS"</span>, HPop<span class="op">=</span><span class="va">H</span>, Xopts <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_SIS_xde</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_solve_cohort.html">xde_solve_cohort</a></span><span class="op">(</span><span class="va">eir</span>, <span class="fl">0</span>, <span class="va">test_SIS_xde</span><span class="op">)</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">cohort</span> <span class="op">-&gt;</span> <span class="va">out2</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">out2</span><span class="op">$</span><span class="va">XH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">true_pr</span><span class="op">-</span><span class="va">out1</span><span class="op">$</span><span class="va">XH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">true_pr</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0</span></span></code></pre></div>

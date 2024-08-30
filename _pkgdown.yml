@@ -960,7 +960,7 @@ reference:
   - xde_derivatives.aquatic
   - xde_derivatives.mosy
   - xde_derivatives.human
-- subtitle: Cohort
+- subtitle: Cohort Dynamics
   contents:
   - xde_solve_cohort
   - xde_cohort_derivatives
@@ -1103,7 +1103,6 @@ reference:
   - make_outputs.full
   - make_outputs.mosy
   - make_outputs.aquatic
-  - make_outputs.cohort
   - make_outputs.human
   - get_terms
   - get_EIR
