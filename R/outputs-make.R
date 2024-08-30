@@ -1,5 +1,5 @@
 
-#' @title Compute
+#' @title Make Outputs
 #' @param pars an `xds` object
 #' @param de_vars the output of [deSolve]
 #' @param tm the time
@@ -8,7 +8,7 @@ make_outputs = function(pars, de_vars, tm){
   UseMethod("make_outputs", pars$frame)
 }
 
-#' @title Compute
+#' @title Make Outputs
 #' @inheritParams make_outputs
 #' @return an **`xds`** object
 make_outputs.full = function(pars, de_vars, tm){
@@ -20,7 +20,7 @@ make_outputs.full = function(pars, de_vars, tm){
   return(pars)
 }
 
-#' @title Compute
+#' @title Make Outputs
 #' @inheritParams make_outputs
 #' @return an **`xds`** object
 make_outputs.mosy = function(pars, de_vars, tm){
@@ -31,7 +31,7 @@ make_outputs.mosy = function(pars, de_vars, tm){
   return(pars)
 }
 
-#' @title Compute
+#' @title Make Outputs
 #' @inheritParams make_outputs
 #' @return an **`xds`** object
 make_outputs.aquatic = function(pars, de_vars, tm){
@@ -41,7 +41,7 @@ make_outputs.aquatic = function(pars, de_vars, tm){
   return(pars)
 }
 
-#' @title Compute
+#' @title Make Outputs
 #' @inheritParams make_outputs
 #' @return an **`xds`** object
 make_outputs.human = function(pars, de_vars, tm){
@@ -52,7 +52,7 @@ make_outputs.human = function(pars, de_vars, tm){
   return(pars)
 }
 
-#' @title Compute
+#' @title Make Outputs
 #' @inheritParams make_outputs
 #' @return an **`xds`** object
 make_outputs.cohort = function(pars, de_vars, tm){

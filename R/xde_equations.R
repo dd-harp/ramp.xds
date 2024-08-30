@@ -45,7 +45,7 @@ xde_derivatives.full <- function(t, y, pars) {
 
   # compute the FoI
   pars <- Exposure(t, y, pars)
-#  if(t > 179) browser()
+
   # compute derivatives
   dL <- dLdt(t, y, pars, 1)
   dMYZ <- dMYZdt(t, y, pars, 1)

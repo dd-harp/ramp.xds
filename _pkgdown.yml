@@ -82,6 +82,16 @@ reference:
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_cohort
+- subtitle: Solve
+  desc: |
+    Methods to solve equations
+  contents:
+  - xde_solve
+  - xde_stable_orbit
+  - xde_solve_cohort
+  - xde_steady
+  - dts_solve
+  - dts_steady
 - subtitle: Change Parameters & Initial Values
   desc: |
     Methods to set up basic models
@@ -101,16 +111,7 @@ reference:
   - get_last
   - parse_orbits
   - parse_y
-- subtitle: Solve
-  desc: |
-    Methods to solve equations
-  contents:
-  - xde_solve
-  - xde_stable_orbit
-  - xde_solve_cohort
-  - xde_steady
-  - dts_solve
-  - dts_steady
+
 - subtitle: Analyze
   desc: |
     Built-in methods to analyze dynamical systems
