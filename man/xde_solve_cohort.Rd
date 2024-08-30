@@ -2,35 +2,35 @@
 % Please edit documentation in R/xde_cohort.R
 \name{xde_solve_cohort}
 \alias{xde_solve_cohort}
-\title{Cohort orbits for a model \eqn{\cal X}}
+\title{Cohort dynamics for a human / host model}
 \usage{
 xde_solve_cohort(
   eir,
   bday,
   pars,
-  A = 10,
-  da = 10,
   F_season = NULL,
   F_trend = NULL,
-  F_age = NULL
+  F_age = NULL,
+  A = 10,
+  da = 10
 )
 }
 \arguments{
-\item{eir}{the population average daily eir}
+\item{eir}{the average daily EIR for a population}
 
 \item{bday}{a cohort's birthday}
 
-\item{pars}{a \link{list} that defines a model}
-
-\item{A}{the maximum age (in years)}
-
-\item{da}{the output interval (age, in days)}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{F_season}{a function describing a seasonal pattern over time}
 
 \item{F_trend}{a function describing a temporal trend over time}
 
 \item{F_age}{a function assigning a biting weight by age}
+
+\item{A}{the maximum age to compute (in years)}
+
+\item{da}{the output interval (age, in days)}
 }
 \value{
 an \strong{\code{xds}} object
@@ -40,9 +40,9 @@ Compute the states for a model \eqn{\cal X} in a cohort of humans / hosts
 as it ages, up to age \eqn{A} years of age
 }
 \details{
-The treats treats the model
+This method substitutes age for time: a model
 \deqn{\cal X(t)}
-as if it were a function of age \eqn{a}:
+is solved with respect to age \eqn{a}:
 \deqn{\cal X(a),}
 where the daily EIR is computed by a \emph{trace} function with four elements:
 \itemize{

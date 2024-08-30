@@ -1,13 +1,13 @@
 
 
-#' @title Cohort orbits for a model \eqn{\cal X}
+#' @title Cohort dynamics for a human / host model
 #' @description
 #' Compute the states for a model \eqn{\cal X} in a cohort of humans / hosts
 #' as it ages, up to age \eqn{A} years of age
 #' @details
-#' The treats treats the model
+#' This method substitutes age for time: a model
 #' \deqn{\cal X(t)}
-#' as if it were a function of age \eqn{a}:
+#' is solved with respect to age \eqn{a}:
 #' \deqn{\cal X(a),}
 #' where the daily EIR is computed by a *trace* function with four elements:
 #' + \eqn{\bar E} or `eir`, the mean daily EIR,
@@ -22,22 +22,25 @@
 #' and the trace function is:
 #'  \deqn{E(a, t) = \hat E \; \omega(a) \; S(t)\; T(t) }
 #' The output is returned as `pars$outputs$cohort`
-#' @param eir the population average daily eir
+#' @param eir the average daily EIR for a population
 #' @param bday a cohort's birthday
-#' @param pars a [list] that defines a model
-#' @param A the maximum age (in years)
-#' @param da the output interval (age, in days)
+#' @param pars an **`xds`** object
 #' @param F_season a function describing a seasonal pattern over time
 #' @param F_trend a function describing a temporal trend over time
 #' @param F_age a function assigning a biting weight by age
+#' @param A the maximum age to compute (in years)
+#' @param da the output interval (age, in days)
 #' @return an **`xds`** object
 #' @export
-xde_solve_cohort = function(eir, bday, pars, A=10, da=10,
-                      F_season = NULL, F_trend=NULL, F_age=NULL){
+xde_solve_cohort = function(eir, bday, pars,
+                            F_season = NULL,
+                            F_trend = NULL,
+                            F_age =NULL,
+                            A = 10, da = 10){
 
-  if(!is.null(F_season)) pars$EIRpar$F_season = F_season
-  if(!is.null(F_trend)) pars$EIRpar$F_trend = F_trend
-  if(!is.null(F_age)) pars$EIRpar$F_age = F_age
+  if(is.null(F_season)) F_season = F_flat
+  if(is.null(F_trend)) F_trend = F_flat
+  if(is.null(F_age)) F_age = F_flat
 
   F_eir <- with(pars$EIRpar, function(age, bday){
     eir*F_season(age+bday)*F_trend(age+bday)*F_age(age)
@@ -49,6 +52,7 @@ xde_solve_cohort = function(eir, bday, pars, A=10, da=10,
 
   xde_cohort_desolve(bday, y0, age, pars) -> deout
   de_vars <- deout[,-1]
+
   pars$outputs$cohort <- parse_orbits(de_vars, pars)
   pars$outputs$cohort$age <- age
   pars$outputs$cohort$time <- age+bday
