@@ -1,7 +1,8 @@
 # specialized methods for the adult mosquito RM model
 
-#' @title Derivatives for adult mosquitoes
-#' @description Implements [dMYZdt] for the RM DDE model.
+#' @title \eqn{\cal MYZ} Component Derivatives for a Ross-Macdonald Mosquito Model
+#' @description Compute the derivatives for a generalized, non-autonomous dynamic model
+#' for mosquito ecology and infection dynamics.
 #' @inheritParams dMYZdt
 #' @return a [numeric] vector
 #' @importFrom deSolve lagvalue

@@ -1,7 +1,16 @@
 # specialized methods for the adult mosquito si model
 
-#' @title Derivatives for a simple model for adult mosquito infection dynamics
-#' @description Implements [dMYZdt] for the si ODE model.
+#' @title \eqn{\cal MYZ} Component Derivatives for an SI Mosquito Model
+#' @description Derivatives for a simple SI model for mosquito infection
+#' dynamics, where \eqn{M} is the density of mosquitoes, and \eqn{Y} the
+#' density of infected mosquitoes:
+#' \deqn{
+#' \begin{array}{rr}
+#' dM/dt =& \Lambda &- \Omega \cdot M \\
+#' dY/dt =& f q \kappa (M-Y) &- \Omega \cdot Y
+#' \end{array}.
+#' }
+#' The model assumes \eqn{Z = \Upsilon Y}
 #' @inheritParams dMYZdt
 #' @return a [numeric] vector
 #' @export
@@ -16,9 +25,9 @@ dMYZdt.si <- function(t, y, pars, s) {
       Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
 
       dM <- Lambda - (Omega %*% M)
-      dZ <- f*q*kappa*(M-Z) - (Omega %*% Z)
+      dY <- f*q*kappa*(M-Y) - (Omega %*% Y)
 
-      return(c(dM, dZ))
+      return(c(dM, dY))
     })
   })
 }
@@ -31,8 +40,8 @@ dMYZdt.si <- function(t, y, pars, s) {
 xde_steady_state_MYZ.si = function(Lambda, kappa, MYZpar){with(MYZpar,{
   Omega_inv <- solve(Omega)
   M_eq <- as.vector(Omega_inv %*% Lambda)
-  Z_eq <- as.vector(ginv(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
-  return(list(M=M_eq, Z=Z_eq))
+  Y_eq <- as.vector(ginv(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
+  return(list(M=M_eq, Y=Y_eq))
 })}
 
 #' @title Derivatives for adult mosquitoes
@@ -48,9 +57,9 @@ Update_MYZt.si <- function(t, y, pars, s) {
   with(list_MYZvars(y, pars, s),{
     with(pars$MYZpar[[s]],{
       Mt <- ccc*Lambda*D + Omega %*% M
-      Zt <- Omega%*%((1-exp(-f*q*kappa*pars$MYZday))*(M-Z)) + (Omega %*% Z)
-      Zt <- Zt + (1-exp(-ccc))*(1-exp(-f*q*kappa*pars$MYZday))*Lambda*ccc*D
-      return(list(M=unname(Mt), Z=unname(Zt)))
+      Yt <- Omega%*%((1-exp(-f*q*kappa*pars$MYYday))*(M-Y)) + (Omega %*% Y)
+      Yt <- Yt + (1-exp(-ccc))*(1-exp(-f*q*kappa*pars$MYYday))*Lambda*ccc*D
+      return(list(M=unname(Mt), Y=unname(Yt)))
     })
   })
 }
@@ -80,9 +89,9 @@ make_MYZpar.si = function(MYZname, pars, s, MYZopts=list()){
 F_fqZ.si <- function(t, y, pars, s) {
   f = get_f(pars, s)
   q = get_q(pars, s)
-  Z = y[pars$ix$MYZ[[s]]$Z_ix]
+  Y = y[pars$ix$MYZ[[s]]$Y_ix]
   Upsilon = compute_Upsilon(pars, s)
-  return(f*q*(Upsilon %*% Z))
+  return(f*q*(Upsilon %*% Y))
 }
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
@@ -118,7 +127,7 @@ list_MYZvars.si <- function(y, pars, s){
   with(pars$ix$MYZ[[s]],
        return(list(
          M = y[M_ix],
-         Z = y[Z_ix]
+         Y = y[Y_ix]
        )))
 }
 
@@ -131,7 +140,7 @@ put_MYZvars.si <- function(MYZvars, y, pars, s){
   with(pars$ix$MYZ[[s]],
        with(MYZvars,{
          y[M_ix] = M
-         y[Z_ix] = Z
+         y[Y_ix] = Y
          return(y)
        }))
 }
@@ -155,15 +164,15 @@ make_MYZinits.si = function(pars, s, MYZopts=list()){
 #' @param nPatches the number of patches in the model
 #' @param MYZopts a [list] of values that overwrites the defaults
 #' @param M total mosquito density at each patch
-#' @param Z infectious mosquito density at each patch
+#' @param Y infectious mosquito density at each patch
 #' @return a [list]
 #' @export
 create_MYZinits_si = function(nPatches, MYZopts = list(),
-                                M=5, Z=1){
+                                M=5, Y=1){
   with(MYZopts,{
     M = checkIt(M, nPatches)
-    Z = checkIt(Z, nPatches)
-    return(list(M=M,  Z=Z))
+    Y = checkIt(Y, nPatches)
+    return(list(M=M,  Y=Y))
   })
 }
 
@@ -179,11 +188,11 @@ make_indices_MYZ.si <- function(pars, s) {with(pars,{
   M_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(M_ix, 1)
 
-  Z_ix <- seq(from = max_ix+1, length.out=nPatches)
-  max_ix <- tail(Z_ix, 1)
+  Y_ix <- seq(from = max_ix+1, length.out=nPatches)
+  max_ix <- tail(Y_ix, 1)
 
   pars$max_ix = max_ix
-  pars$ix$MYZ[[s]] = list(M_ix=M_ix, Z_ix=Z_ix)
+  pars$ix$MYZ[[s]] = list(M_ix=M_ix, Y_ix=Y_ix)
   return(pars)
 })}
 
@@ -196,7 +205,7 @@ make_indices_MYZ.si <- function(pars, s) {with(pars,{
 #' @export
 parse_MYZorbits.si <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
   M = outputs[,M_ix]
-  Y = outputs[,Z_ix]
+  Y = outputs[,Y_ix]
   Z = Y*0
   tm = pars$outputs$time
   for(i in 1:length(tm)){
@@ -224,7 +233,7 @@ get_MYZinits.si <- function(pars, s) {pars$MYZinits[[s]]}
 #' @export
 update_MYZinits.si <- function(pars, y0, s) {with(pars$ix$MYZ[[s]],{
   M = y0[M_ix]
-  Z = y0[Z_ix]
-  pars$MYZinits[[s]] = create_MYZinits_si(pars$nPatches, list(), M=M, Z=Z)
+  Y = y0[Y_ix]
+  pars$MYZinits[[s]] = create_MYZinits_si(pars$nPatches, list(), M=M, Y=Y)
   return(pars)
 })}

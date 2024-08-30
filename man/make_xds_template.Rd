@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds-template.R
 \name{make_xds_template}
 \alias{make_xds_template}
-\title{Make an \strong{\code{xds}} object template}
+\title{Make an \strong{\code{xds}} Object Template}
 \usage{
 make_xds_template(
   xds = "xde",
@@ -30,9 +30,10 @@ make_xds_template(
 an \code{xds} object
 }
 \description{
-Creates and returns structured template, called an
-\strong{\code{xds}} object, with generic features and options that can be configured
-to set up and solve systems of differential equations using \strong{\code{ramp.xds}}
+Creates and returns structured template for an
+\strong{\code{xds}} object. The returned object has set up generic features
+and placeholders for options that must be configured
+to fully define an \strong{\code{xds}} object
 }
 \details{
 This function sets up the basic structures required
@@ -66,6 +67,14 @@ Second, the function sets the values of the \strong{structural parameters}:
 \item \strong{\code{nStrata}} or \eqn{n_h}, the number of human/ host population strata, is set to \code{length(HPop)}
 }
 
+Next, the function sets up empty lists to hold the objects that define components:
+\itemize{
+\item \code{Xpar}
+\item 
+\item \strong{Transmission}  calls \code{\link[=setup_TRANSMISSION]{setup_TRANSMISSION()}} and \code{\link[=setup_visitors_static]{setup_visitors_static()}} sets up a static
+}
+
+model for the availability of visitors; by default, there are no visitors
 Next, the function sets up egg laying, blood feeding, and transmission:
 \itemize{
 \item \strong{Egg Laying} calls \code{\link[=create_habitat_matrix]{create_habitat_matrix()}}, then \code{\link[=setup_EGG_LAYING]{setup_EGG_LAYING()}}

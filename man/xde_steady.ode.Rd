@@ -7,11 +7,14 @@
 \method{xde_steady}{ode}(pars)
 }
 \arguments{
-\item{pars}{a \link{list} that defines a model}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$xde}
+Solve for the steady state of a system of equations using \link[rootSolve:steady]{rootSolve::steady}
+}
+\note{
+This method dispatches on \code{class(dlay)}
 }

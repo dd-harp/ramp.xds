@@ -21,11 +21,11 @@ create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, phi=1/8, theta=1
   })
 }
 
-#' @title Derivatives for `basicL`
-#' @description Implements [dLdt] for the `basicL` competition model.
-#' @details This implements differential equation model for aquatic mosquito ecology.
+#' @title \eqn{\cal L} Component Derivatives for a `basicL`
+#' @description
+#' This implements differential equation model for aquatic mosquito ecology.
 #' It has been modified slightly from a version published by Smith DL, *et al.* (2013):
-#' \deqn{\frac{dL}{dt} = \eta - (\psi + \phi + \theta L)L}
+#' \deqn{dL/dt = \eta - (\psi + \phi + \theta L)L}
 #'
 #' **Parameters:**
 #' - \eqn{\eta}: egg deposition rate
@@ -33,7 +33,8 @@ create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, phi=1/8, theta=1
 #' - \eqn{\phi}: density-independent death rate
 #' - \eqn{\theta}: density dependence in mortality: the slope of the response to mean crowding
 #'
-#' To put it another way, per-capita mortality is \eqn{\phi + \theta L}
+#' To put it another way, per-capita mortality is \eqn{\phi + \theta L}, and the emergence rate
+#' of adult mosquitoes is \eqn{\psi L}
 #'
 #' @inheritParams dLdt
 #' @return a [numeric] vector

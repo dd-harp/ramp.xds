@@ -12,14 +12,14 @@
 #' @param pars a [list] that defines a model
 #' @param Tmax the last time point, run from 0...Tmax
 #' @param dt the time interval for outputs
-#' @return a [list]
+#' @return pars an **`xds`** object
 #' @export
 xde_solve = function(pars, Tmax=365, dt=1){
   UseMethod("xde_solve", pars$dlay)
 }
 
 #' @title Solve a system of equations using [deSolve::ode]
-#' @description This method solves a system of equations and returns the values of
+#' @description This method solves a system of equations and computes the values of
 #' the dependent variables at times \eqn{t=0, dt, 2dt, ... Tmax}. The function dispatches
 #' on `pars$dlay` to call:
 #'
@@ -29,7 +29,8 @@ xde_solve = function(pars, Tmax=365, dt=1){
 #' Note that the call to [xde_derivatives] dispatches on `pars$frame`
 #' @description Implements [xde_solve] for ordinary differential equations
 #' @inheritParams xde_solve
-#' @return a [list]
+#' @return an **`xds`** object
+#'
 #' @export
 xde_solve.ode = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
@@ -44,7 +45,7 @@ xde_solve.ode = function(pars, Tmax=365, dt=1){
 #' @title Solve a system of equations using [deSolve:dde]
 #' @description Implements [xde_solve] for delay differential equations
 #' @inheritParams xde_solve
-#'@return a [list]
+#' @return an **`xds`** object
 #' @export
 xde_solve.dde = function(pars, Tmax=365, dt=1){
   tt = seq(0, Tmax, by=dt)
@@ -56,11 +57,11 @@ xde_solve.dde = function(pars, Tmax=365, dt=1){
   return(pars)
 }
 
-#' @title Solve for the steady state or stable orbit of a system of equations
+#' @title Compute the stable orbit for a system of differential equations
 #' @description This method dispatches on the type of `pars$xde`.
-#' @param pars a [list] that defines a model
+#' @param pars an **`xds`** object
 #' @param Ymax the number of years to burn-in
-#' @return a [list]
+#' @return an **`xds`** object
 #' @export
 xde_stable_orbit = function(pars, Ymax=10){
   pars <- xde_solve(pars, Tmax = Ymax*365, dt=1)
@@ -74,17 +75,17 @@ xde_stable_orbit = function(pars, Ymax=10){
 
 #' @title Solve for the steady state of a system of equations using [rootSolve::steady]
 #' @description This method dispatches on the type of `pars$xde`
-#' @param pars a [list] that defines a model
-#' @return a [list]
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
 #' @export
 xde_steady = function(pars){
   UseMethod("xde_steady", pars$dlay)
 }
 
 #' @title Solve for the steady state of a system of equations using [rootSolve::steady]
-#' @description This method dispatches on the type of `pars$xde`
-#' @param pars a [list] that defines a model
-#' @return a [list]
+#' @note This method dispatches on `class(dlay)`
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
 #' @export
 xde_steady.ode = function(pars){
   y0 = get_inits(pars, flatten=TRUE)
@@ -95,8 +96,8 @@ xde_steady.ode = function(pars){
 
 #' @title Solve for the steady state of a system of equations using [rootSolve::steady]
 #' @description This method dispatches on the type of `pars$xde`
-#' @param pars a [list] that defines a model
-#' @return a [list]
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
 #' @export
 xde_steady.dde = function(pars){
   y0 = get_inits(pars, flatten=TRUE)

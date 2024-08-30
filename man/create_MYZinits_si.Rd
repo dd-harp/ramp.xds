@@ -4,7 +4,7 @@
 \alias{create_MYZinits_si}
 \title{Make inits for si adult mosquito model}
 \usage{
-create_MYZinits_si(nPatches, MYZopts = list(), M = 5, Z = 1)
+create_MYZinits_si(nPatches, MYZopts = list(), M = 5, Y = 1)
 }
 \arguments{
 \item{nPatches}{the number of patches in the model}
@@ -13,7 +13,7 @@ create_MYZinits_si(nPatches, MYZopts = list(), M = 5, Z = 1)
 
 \item{M}{total mosquito density at each patch}
 
-\item{Z}{infectious mosquito density at each patch}
+\item{Y}{infectious mosquito density at each patch}
 }
 \value{
 a \link{list}

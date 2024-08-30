@@ -7,10 +7,10 @@
 xde_steady(pars)
 }
 \arguments{
-\item{pars}{a \link{list} that defines a model}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on the type of \code{pars$xde}

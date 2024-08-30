@@ -168,9 +168,13 @@
           <p><code><a href="xds_setup_cohort.html">xds_setup_cohort()</a></code> </p>
         </td>
         <td><p>Make an <strong><code>xds</code></strong> Object to Study Human / Host Cohort Dynamics</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_xds_template.html">make_xds_template()</a></code> </p>
+        </td>
+        <td><p>Make an <strong><code>xds</code></strong> Object Template</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="solve">Solve <a href="#solve" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Methods to solve equations</p>
+          <h3 id="solve-and-analyze">Solve and Analyze <a href="#solve-and-analyze" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to solve or analyze equations</p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="xde_solve.html">xde_solve()</a></code> </p>
@@ -179,7 +183,7 @@
       </tr><tr><td>
           <p><code><a href="xde_stable_orbit.html">xde_stable_orbit()</a></code> </p>
         </td>
-        <td><p>Solve for the steady state or stable orbit of a system of equations</p></td>
+        <td><p>Compute the stable orbit for a system of differential equations</p></td>
       </tr><tr><td>
           <p><code><a href="xde_solve_cohort.html">xde_solve_cohort()</a></code> </p>
         </td>
@@ -196,63 +200,7 @@
           <p><code><a href="dts_steady.html">dts_steady()</a></code> </p>
         </td>
         <td><p>Solve for the steady state of a system of equations</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="change-parameters-initial-values">Change Parameters &amp; Initial Values <a href="#change-parameters-initial-values" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Methods to set up basic models</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="change_H.html">change_H()</a></code> </p>
-        </td>
-        <td><p>Change human population density</p></td>
       </tr><tr><td>
-          <p><code><a href="update_inits.html">update_inits()</a></code> </p>
-        </td>
-        <td><p>Set the initial values to the last values of the last simulation</p></td>
-      </tr><tr><td>
-          <p><code><a href="last_to_inits.html">last_to_inits()</a></code> </p>
-        </td>
-        <td><p>Set the initial values to the last values of the last simulation</p></td>
-      </tr><tr><td>
-          <p><code><a href="parse_orbits.html">parse_orbits()</a></code> </p>
-        </td>
-        <td><p>Parse the outputs of an object created by xde_solve or dts_solve</p></td>
-      </tr><tr><td>
-          <p><code><a href="parse_y.html">parse_y()</a></code> </p>
-        </td>
-        <td><p>Parse the output of an object returned by deSolve</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_inits.html">get_inits()</a></code> </p>
-        </td>
-        <td><p>Get the stored initial values, \(y_0\)</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_H.html">get_H()</a></code> </p>
-        </td>
-        <td><p>Get the initial values as a vector</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="examine">Examine <a href="#examine" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Methods to</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="get_inits.html">get_inits()</a></code> </p>
-        </td>
-        <td><p>Get the stored initial values, \(y_0\)</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_last.html">get_last()</a></code> </p>
-        </td>
-        <td><p>Get the last state</p></td>
-      </tr><tr><td>
-          <p><code><a href="parse_orbits.html">parse_orbits()</a></code> </p>
-        </td>
-        <td><p>Parse the outputs of an object created by xde_solve or dts_solve</p></td>
-      </tr><tr><td>
-          <p><code><a href="parse_y.html">parse_y()</a></code> </p>
-        </td>
-        <td><p>Parse the output of an object returned by deSolve</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="analyze">Analyze <a href="#analyze" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Built-in methods to analyze dynamical systems</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
           <p><code><a href="xde_steady_state_X.html">xde_steady_state_X()</a></code> </p>
         </td>
         <td><p>Steady States for \(\cal X\)-Models</p></td>
@@ -299,15 +247,15 @@
       </tr><tr><td>
           <p><code><a href="dMYZdt.si.html">dMYZdt(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for a simple model for adult mosquito infection dynamics</p></td>
+        <td><p>\(\cal MYZ\) Component Derivatives for an SI Mosquito Model</p></td>
       </tr><tr><td>
           <p><code><a href="dMYZdt.sei.html">dMYZdt(<i>&lt;sei&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for a oviposition model for adult mosquito infection dynamics</p></td>
+        <td><p>\(\cal MYZ\) Component Derivatives for an SEI Mosquito Model</p></td>
       </tr><tr><td>
           <p><code><a href="dMYZdt.RM.html">dMYZdt(<i>&lt;RM&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for adult mosquitoes</p></td>
+        <td><p>\(\cal MYZ\) Component Derivatives for a Ross-Macdonald Mosquito Model</p></td>
       </tr><tr><td>
           <p><code><a href="dMYZdt.basicM.html">dMYZdt(<i>&lt;basicM&gt;</i>)</a></code> </p>
         </td>
@@ -319,14 +267,14 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dLdt.trivial.html">dLdt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for aquatic stage mosquitoes</p></td>
+        <td><p>\(\cal L\) Component Derivatives for the <code>trivial</code> model</p></td>
       </tr><tr><td>
           <p><code><a href="dLdt.basicL.html">dLdt(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for <code>basicL</code></p></td>
+        <td><p>\(\cal L\) Component Derivatives for a <code>basicL</code></p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="internals">Internals <a href="#internals" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Some internal functions and utilities that are useful to know about</p>
+          <h3 id="interface">Interface <a href="#interface" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Functions that compute dynamical terms and exogenous variables</p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="Forcing.html">Forcing()</a></code> </p>
@@ -336,6 +284,10 @@
           <p><code><a href="Control.html">Control()</a></code> </p>
         </td>
         <td><p>Modify parameters due to exogenous forcing by all kinds of control</p></td>
+      </tr><tr><td>
+          <p><code><a href="Resources.html">Resources()</a></code> </p>
+        </td>
+        <td><p>Set the values of exogenous variables describing available mosquito resources</p></td>
       </tr><tr><td>
           <p><code><a href="BloodFeeding.html">BloodFeeding()</a></code> </p>
         </td>
@@ -356,14 +308,38 @@
           <p><code><a href="Exposure.html">Exposure()</a></code> </p>
         </td>
         <td><p>Compute Infection Rates</p></td>
-      </tr><tr><td>
-          <p><code><a href="Visiting.html">Visiting()</a></code> </p>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="change-parameters-initial-values">Change Parameters &amp; Initial Values <a href="#change-parameters-initial-values" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to set up basic models</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="change_H.html">change_H()</a></code> </p>
         </td>
-        <td><p>Visiting</p></td>
+        <td><p>Change human population density</p></td>
       </tr><tr><td>
-          <p><code><a href="make_xds_template.html">make_xds_template()</a></code> </p>
+          <p><code><a href="update_inits.html">update_inits()</a></code> </p>
         </td>
-        <td><p>Make an <strong><code>xds</code></strong> object template</p></td>
+        <td><p>Set the initial values to the last values of the last simulation</p></td>
+      </tr><tr><td>
+          <p><code><a href="last_to_inits.html">last_to_inits()</a></code> </p>
+        </td>
+        <td><p>Set the initial values to the last values of the last simulation</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_orbits.html">parse_orbits()</a></code> </p>
+        </td>
+        <td><p>Parse the outputs of an object created by xde_solve or dts_solve</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_y.html">parse_y()</a></code> </p>
+        </td>
+        <td><p>Parse the output of an object returned by deSolve</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_inits.html">get_inits()</a></code> </p>
+        </td>
+        <td><p>Get the stored initial values, \(y_0\)</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_H.html">get_H()</a></code> </p>
+        </td>
+        <td><p>Get the initial values as a vector</p></td>
       </tr><tr><td>
           <p><code><a href="make_indices.html">make_indices()</a></code> </p>
         </td>
@@ -372,6 +348,26 @@
           <p><code><a href="trigger_setup.html">trigger_setup()</a></code> </p>
         </td>
         <td><p>Trigger <code>setup</code></p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="examine">Examine <a href="#examine" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="get_inits.html">get_inits()</a></code> </p>
+        </td>
+        <td><p>Get the stored initial values, \(y_0\)</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_last.html">get_last()</a></code> </p>
+        </td>
+        <td><p>Get the last state</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_orbits.html">parse_orbits()</a></code> </p>
+        </td>
+        <td><p>Parse the outputs of an object created by xde_solve or dts_solve</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_y.html">parse_y()</a></code> </p>
+        </td>
+        <td><p>Parse the output of an object returned by deSolve</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="blood-feeding-and-transmission">Blood Feeding and Transmission <a href="#blood-feeding-and-transmission" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Methods to compute terms describing blood feeding and transmission</p>
@@ -1039,7 +1035,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dMYZdt.si.html">dMYZdt(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for a simple model for adult mosquito infection dynamics</p></td>
+        <td><p>\(\cal MYZ\) Component Derivatives for an SI Mosquito Model</p></td>
       </tr><tr><td>
           <p><code><a href="xde_steady_state_MYZ.si.html">xde_steady_state_MYZ(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
@@ -1103,7 +1099,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dMYZdt.sei.html">dMYZdt(<i>&lt;sei&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for a oviposition model for adult mosquito infection dynamics</p></td>
+        <td><p>\(\cal MYZ\) Component Derivatives for an SEI Mosquito Model</p></td>
       </tr><tr><td>
           <p><code><a href="xde_steady_state_MYZ.sei.html">xde_steady_state_MYZ(<i>&lt;sei&gt;</i>)</a></code> </p>
         </td>
@@ -1167,7 +1163,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dMYZdt.RM.html">dMYZdt(<i>&lt;RM&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for adult mosquitoes</p></td>
+        <td><p>\(\cal MYZ\) Component Derivatives for a Ross-Macdonald Mosquito Model</p></td>
       </tr><tr><td>
           <p><code><a href="Update_MYZt.RM.html">Update_MYZt(<i>&lt;RM&gt;</i>)</a></code> </p>
         </td>
@@ -1279,7 +1275,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dLdt.html">dLdt()</a></code> </p>
         </td>
-        <td><p>Compute Derivatives for \(\cal L\)</p></td>
+        <td><p>\(\cal L\) Component Derivatives</p></td>
       </tr><tr><td>
           <p><code><a href="xde_steady_state_L.html">xde_steady_state_L()</a></code> </p>
         </td>
@@ -1355,7 +1351,7 @@
       </tr><tr><td>
           <p><code><a href="dLdt.trivial.html">dLdt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for aquatic stage mosquitoes</p></td>
+        <td><p>\(\cal L\) Component Derivatives for the <code>trivial</code> model</p></td>
       </tr><tr><td>
           <p><code><a href="Update_Lt.trivial.html">Update_Lt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
@@ -1399,7 +1395,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dLdt.basicL.html">dLdt(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Derivatives for <code>basicL</code></p></td>
+        <td><p>\(\cal L\) Component Derivatives for a <code>basicL</code></p></td>
       </tr><tr><td>
           <p><code><a href="Update_Lt.basicL.html">Update_Lt(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
@@ -2321,21 +2317,13 @@
         </td>
         <td><p>Set the values of exogenous variables</p></td>
       </tr><tr><td>
-          <p><code><a href="Forcing.static.html">Forcing(<i>&lt;static&gt;</i>)</a></code> </p>
+          <p><code><a href="Weather.html">Weather()</a></code> </p>
         </td>
-        <td><p>Set the values of exogenous variables</p></td>
+        <td><p>Methods for exogenous variables describing weather</p></td>
       </tr><tr><td>
-          <p><code><a href="Forcing.dynamic.html">Forcing(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+          <p><code><a href="Rainfall.html">Rainfall()</a></code> </p>
         </td>
-        <td><p>Set the values of exogenous variables</p></td>
-      </tr><tr><td>
-          <p><code><a href="Forcing.setup.html">Forcing(<i>&lt;setup&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Set the values of exogenous variables</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_forcing.html">setup_forcing()</a></code> </p>
-        </td>
-        <td><p>Set up exogenous forcing</p></td>
+        <td><p>Methods for exogenous variables describing rainfall</p></td>
       </tr><tr><td>
           <p><code><a href="Shock.html">Shock()</a></code> </p>
         </td>
@@ -2356,6 +2344,30 @@
           <p><code><a href="MassMedical.html">MassMedical()</a></code> </p>
         </td>
         <td><p>Methods for mass medical interventions</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="forcing">Forcing <a href="#forcing" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Specialized methods the null model (no exogenous forcing)</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="Forcing.html">Forcing()</a></code> </p>
+        </td>
+        <td><p>Set the values of exogenous variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="Forcing.static.html">Forcing(<i>&lt;static&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set the values of exogenous variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="Forcing.dynamic.html">Forcing(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set the values of exogenous variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="Forcing.setup.html">Forcing(<i>&lt;setup&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set the values of exogenous variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_forcing.html">setup_forcing()</a></code> </p>
+        </td>
+        <td><p>Set up exogenous forcing</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="models">Models <a href="#models" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods the null model (no exogenous forcing)</p>
@@ -2991,7 +3003,7 @@
       </tr><tr><td>
           <p><code><a href="xde_stable_orbit.html">xde_stable_orbit()</a></code> </p>
         </td>
-        <td><p>Solve for the steady state or stable orbit of a system of equations</p></td>
+        <td><p>Compute the stable orbit for a system of differential equations</p></td>
       </tr><tr><td>
           <p><code><a href="xde_steady.html">xde_steady()</a></code> </p>
         </td>
