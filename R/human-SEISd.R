@@ -1,6 +1,6 @@
 # The delay SEIS model as a delay differential equation and delay difference equation
 
-#' @title \eqn{\cal X} Component Derivatives for an SEIS Delay Compartmental Model
+#' @title \eqn{\cal X} Component Derivatives for the `SEISd` Model
 #' @description Implements [dXdt] for the SEISd model
 #' @inheritParams dXdt
 #' @return a [numeric] vector

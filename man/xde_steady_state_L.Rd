@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{xde_steady_state_L}
 \alias{xde_steady_state_L}
-\title{Steady States for \eqn{\cal L}}
+\title{Compute steady states for \eqn{\cal L} models}
 \usage{
 xde_steady_state_L(eta, Lpar)
 }

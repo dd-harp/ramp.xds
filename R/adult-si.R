@@ -1,6 +1,6 @@
 # specialized methods for the adult mosquito si model
 
-#' @title \eqn{\cal MYZ} Component Derivatives for an SI Mosquito Model
+#' @title \eqn{\cal MYZ} Component Derivatives for the `si` Mosquito Model
 #' @description Derivatives for a simple SI model for mosquito infection
 #' dynamics, where \eqn{M} is the density of mosquitoes, and \eqn{Y} the
 #' density of infected mosquitoes:

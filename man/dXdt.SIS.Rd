@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SIS.R
 \name{dXdt.SIS}
 \alias{dXdt.SIS}
-\title{\eqn{\cal X} Component Derivatives for an SIS Model}
+\title{\eqn{\cal X} Component Derivatives for the \code{SIS} Model}
 \usage{
 \method{dXdt}{SIS}(t, y, pars, i)
 }

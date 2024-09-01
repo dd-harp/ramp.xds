@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{dts_steady_state_L}
 \alias{dts_steady_state_L}
-\title{Steady States for \eqn{\cal L}}
+\title{Compute steady States for \eqn{\cal L}-Models}
 \usage{
 dts_steady_state_L(eta, Lpar)
 }

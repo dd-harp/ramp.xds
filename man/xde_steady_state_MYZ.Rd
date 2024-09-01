@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-interface.R
 \name{xde_steady_state_MYZ}
 \alias{xde_steady_state_MYZ}
-\title{Compute the steady states as a function of the daily EIR}
+\title{Compute steady states for \eqn{\cal MYZ} models}
 \usage{
 xde_steady_state_MYZ(Lambda, kappa, MYZpar)
 }

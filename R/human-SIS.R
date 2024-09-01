@@ -1,6 +1,6 @@
 # specialized methods for the human SIS model
 
-#' @title \eqn{\cal X} Component Derivatives for an SIS Model
+#' @title \eqn{\cal X} Component Derivatives for the `SIS` Model
 #' @description Compute the derivatives for SIS compartmental model, defined as:
 #' \deqn{
 #' \begin{array}{rcccc}
