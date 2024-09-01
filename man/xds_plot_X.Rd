@@ -4,7 +4,7 @@
 \alias{xds_plot_X}
 \title{Basic plotting for epidemiological models}
 \usage{
-xds_plot_X(pars, i = 1, clrs = "black", llty = 1, add_axes = TRUE)
+xds_plot_X(pars, i = 1, clrs = "black", llty = 1, add = FALSE)
 }
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}
@@ -15,7 +15,7 @@ xds_plot_X(pars, i = 1, clrs = "black", llty = 1, add_axes = TRUE)
 
 \item{llty}{an integer (or integers) to set the \code{lty} for plotting}
 
-\item{add_axes}{a logical: plot axes only if TRUE}
+\item{add}{plot axes only if FALSE}
 }
 \description{
 Basic plotting for epidemiological models

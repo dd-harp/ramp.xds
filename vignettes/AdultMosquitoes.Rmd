@@ -1,8 +1,8 @@
 ---
-title: "Parasite Transmission by Adult Mosquitoes"
+title: "Adult Mosquito Models"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Parasite Transmission by Adult Mosquitoes}
+  %\VignetteIndexEntry{Adult Mosquito Models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,48 +16,100 @@ library(viridisLite)
 #devtools::load_all()
 ```
 
+Nimble model building in **`ramp.xds`** proceeds from simple to complex. Some basic concepts used throughout **`ramp.xds`** are:
+
++ **Model Family** - what is colloquially referred to as a *model* in the code library is more accurately described as a model family. Each model family is defined by a set of *states* and transitions (*i.e.* as defined for one population stratum) that represent the *true* but unobservable state of a population, also known as *latent* states. A model family describing adult mosquitoes has been assigned a unique `MYZname` and that can be setup using `xds_setup(MYZname = 'this').` A model in **`ramp.xds`** is defined by a **`xds`** object -- it can be solved, and it will return values. 
+
+    - Each model can be represented as a directed graph, and two models belong to the same model family if their graphs are identical. 
+    
+    - Two models are also identical if one can be derived from another by a change of variables. 
+
++ **Spatial Dynamics** - in the case of adult mosquitoes, the population is structured spatially: each stratum represents the mosquitoes in a single patch. The states and state transitions are replicated in each patch. 
+
++ **Forcing** is incorporated through functions that compute the parameters as a function of time. By default, each model is set up as an  **autonomous** system of equations. An autonomous system is then modified by adding exogenous variables and forcing, making it a **non-autonomous** system. 
+
++ **Vector Species** (or types) - basic setup handles a single vector species (or type). Each new species must be added separately. adds to the model.  
+
++ **Model Skill Set** - a model's skill set is defined as the set of observable quantities that are naturally represented by the latent states such that they can be computed without requiring extraneous information. 
+
+## Basic Models
+
 The basic mosquito models in **`ramp.xds`** are variants of George Macdonald mathematical models, developed with help from P. Armitage. The variables for all the models in **`ramp.xds`** are mosquito densities, and the default model is from Aron & May, 1982.
 
-## George Macdonald 
+**`ramp.xds`** there are several versions of basic models for mosquito infection dynamics. These models make similar assumptions about mosquito ecology and infection dynamics. (The equations are in the documentation for The four models are
 
-George Macdonald's papers published from 1952 transformed the quantitative study of medical entomology and malaria transmission by mosquitoes: 
++ **`basicM`** - see [dMYZdt.basicM] does not include any infection dynamics. 
 
-+ 1952 - [*The analysis of the sporozoite rate*](https://pubmed.ncbi.nlm.nih.gov/14958825/) presented a formula for the sporozoite rate. Macdonald's analysis demonstrated the importance of mosquito survival.  
+```{r}
+basicM <- xds_setup(MYZname = "basicM", Xname = "trivial", Xopts = list(kappa = .1, Y=0, Z=0))
+basicM <- xde_solve(basicM, Tmax=80)
+```
 
-+ 1952 [*The analysis of equilibrium in malaria*](https://pubmed.ncbi.nlm.nih.gov/12995455/) introduced the *basic reproduction rate* of malaria with a compact set of parameters. 
++ **`si`** - A standard SI compartmental model for infection, see [dMYZdt.si]. 
 
-Macdon
-In Macdonald's notation (and some of his words): 
+```{r}
+si <- xds_setup(MYZname = "si", Xname = "trivial", Xopts = list(kappa = .1, Y=0, Z=0), MYZopts = list(Y=0))
+si <- xde_solve(si, Tmax=80)
+```
 
-+ $m=$ the ratio of anopheline vectors to humans 
++ **`sei`** - a standard SEI compartmental model, see [dMYZdt.sei]
 
-+ $a=$ the average number of humans bitten by one mosquito in one day. 
+```{r}
+sei <- xds_setup(MYZname = "sei", Xname = "trivial", Xopts = list(kappa = .1), MYZopts = list(Y=0, Z=0))
+sei <- xde_solve(sei, Tmax=80)
+```
 
-+ $b=$ the proportion bites by infectious mosquitoes that cause an infection.  
++ **`RM`** - modified from Aron & May (1982), see [dMYZdt.RM]
 
-+ $p=$ the probability a mosquito surviving through one whole day.  
+```{r}
+RM <- xds_setup(MYZname = "RM", Xname = "trivial", Xopts = list(kappa = .1), MYZopts = list(Y=0, Z=0))
+RM <- xde_solve(RM, Tmax=80)
+```
 
-+ $n=$ the time taken for completion of the extrinsic cycle
+### Ecology 
 
-The mathematical models that are now commonly called the *Ross-Macdonald* model typically combine Ronald Ross's model for human infections, an *SIS* compartmental model, with an *SEI* model for mosquito infections. As a differential equation, Macdonald's model was almost certainly a delay differential equation. 
-
-**`ramp.xds`** has adopted as its default model (`MYZname = "RM"`) a set of equations published by Joan Aron and Bob May in 1982. In the following, we discuss models for mosquito ecology and infection dynamics in **`ramp.xds`** 
-
-## `RM`
-
-Let $M$ denote the density of adult mosquitoes, $\Lambda(t)$ the emergence rate of adult mosquitoes from aquatic habitats, and $g$ the adult mosquito mortality rate. Mosquito population density is described by an equation: 
+The ecology for `basicM` and `si` and `sei` and `RM` is identical. Let $M$ denote the density of adult mosquitoes, $\Lambda(t)$ the emergence rate of adult mosquitoes from aquatic habitats, and $g$ the adult mosquito mortality rate. Mosquito population density is described by an equation: 
 
 $$\frac{dM}{dt} = \Lambda(t) - g M$$
+If $n_p>1$ then $M$ is a vector and we formulate a demographic matrix as described in [Spatial Dynamics of Malaria Transmission (2023) *PLoS Computational Biology*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). The models have four parameter families:
+
++ $g$ the patch-specific daily mortality rates (the probability of surviving one day is $p = e^{-g}$
+
++ $\sigma$ is a patch-specific daily emigration rate 
+
++ $\mu$ is the a patch-specific proportion lost through migration 
+
++ $\cal K$ is a mosquito dispersal matrix 
+
+$$\Omega = \mbox{diag}\left(g\right) + \left[ \mbox{diag}\left(1-\mu\right) -  {\cal K} \right] \cdot \mbox{diag}\left(\sigma\right)$$ 
+Note that if $n_p=1$, then $\Omega = g$. This gives us the more general formulation:  
+
+$$\frac{dM}{dt} = \Lambda(t) - \Omega \cdot M$$
+
 If $\Lambda$ is constant, then the equation has a steady state: 
 
-$$\bar M = \Lambda/g$$ 
+$$\bar M = \Omega^{-1} \cdot \Lambda$$ 
+
+```{r, fig.width=5, fig.height=3.5}
+xds_plot_M(basicM)
+xds_plot_M(si, add=TRUE, clrs="darkred")
+xds_plot_M(sei, add=TRUE, clrs = "darkblue")
+xds_plot_M(RM, add=TRUE, clrs = "orange")
+```
+
+### Infection 
+
+The infection dynamics for `si` and `sei` and `RM` are identical. (The model `basicM` does not define a variable $Y$). 
 
 The dynamics of infection depend on a quantity that we will call $\kappa(t)$ denoting the net infectiousness (NI) of humans, or the probability a mosquito becomes infected after blood feeding on a human. Let $f$ denote the overall blood feeding rate, and let $q$ denote the fraction of blood meals on humans (*a.k.a* the human fraction). Let $Y$ denote the density of mosquitoes that are infected with parasites, and its dynamics are described by: 
 
-$$\frac{dY}{dt} = fq\kappa(M-Y) - gY$$
-Let $Z$ denote the density of mosquitoes that have sporozoites in their salivary glands, and let $\tau$ denote the time elapsed between the blood meal that infects a mosquito and the point in time when a surviving mosquito has sporozoites in its salivary glands.  The probability a mosquito has survived $\tau$ days is $e^{-g\tau}$, and we let a subscripted $\tau$ denote the value of a variable at time $t-\tau.$ The density of infectious mosquitoes is modeled by:  
+$$\frac{dY}{dt} = fq\kappa(M-Y) - \Omega \cdot Y$$
+```{r, fig.width=5, fig.height=3.5}
+xds_plot_Y(si, llty=1, clrs="darkred")
+xds_plot_Y(sei, add=TRUE, llty=2, clrs = "darkblue")
+xds_plot_Y(RM, add=TRUE, llty=3, clrs = "orange")
+```
 
-$$\frac{dZ}{dt} = e^{-g \tau} fq\kappa_\tau(M_\tau-Y_\tau) - gZ$$
 If $M$ and $\kappa$ have reached the steady state, then the fraction of infected mosquitoes, $y=Y/M$ is given by:
 
 $$y = \frac{fq\kappa}{g+fq\kappa}$$ 
@@ -65,6 +117,41 @@ $$y = \frac{fq\kappa}{g+fq\kappa}$$
 and the fraction of *infectious* mosquitoes (*i.e.* with sporozoites in their salivary glands), is called the sporozoite rate,
 
 $$z = e^{-g\tau} \frac{fq\kappa}{g+fq\kappa}$$ 
+
+### Infectiousness 
+
+Let $Z$ denote the density of mosquitoes that have sporozoites in their salivary glands, and let $\tau$ denote the time elapsed between the blood meal that infects a mosquito and the point in time when a surviving mosquito has sporozoites in its salivary glands.  The probability a mosquito has survived $\tau$ days is $e^{-g\tau}$, and we let a subscripted $\tau$ denote the value of a variable at time $t-\tau.$ 
+
++ In `RM` the density of infectious mosquitoes is modeled by:  
+
+$$\frac{dZ}{dt} = e^{-g \tau} fq\kappa_\tau(M_\tau-Y_\tau) - gZ$$
+
++ In the `si` model, the density of infectious mosquitoes has ignored the delay, but it discounts biting by the fraction that would survive (and disperse) through the EIP. To put it another way `si` and `RM` would have the same steady state if autonomous model. 
+
+$$Z = e^{-\Omega \tau}\cdot Y$$ 
+
+
++ In the `si` model, the density of infectious mosquitoes has ignored the delay, but it discounts biting by the fraction that would survive (and disperse) through the EIP. 
+
+$$dZ/dt = (Y-Z)/\tau- \Omega \cdot Z$$ 
+
+
+```{r, fig.width=5, fig.height=3.5}
+xds_plot_Z(sei, llty=1, clrs="darkblue")
+xds_plot_Z(si, add=TRUE, clrs = "darkred")
+xds_plot_Z(RM, add=TRUE, clrs = "orange")
+```
+
+```{r, fig.width=5, fig.height=3.5}
+xds_plot_Z_fracs(sei, clrs="darkblue")
+xds_plot_Z_fracs(RM,  add=T, clrs = "orange")
+xds_plot_Z_fracs(sei, add=T, clrs="darkblue")
+xds_plot_Z_fracs(si, add=T,  clrs = "darkred")
+```
+
+
+
+
 This is equivalent to Macdonald's formula. 
 
 In **`ramp.xds`** this set of equations is implemented. This sets up and solves a model with $\kappa$ and $\Lambda$ passed as constant values, and a human population density of $H=10.$ 
@@ -76,10 +163,9 @@ rm = xde_solve(rm, Tmax=100)
 
 ```{r, fig.width=5, fig.height=3.5}
 xds_plot_M(rm)
-xds_plot_YZ(rm, add_axes=FALSE)
+xds_plot_Y(rm, add=TRUE)
+xds_plot_Z(rm, add=TRUE)
 ```
-
-
 
 
 ### Macdonald's Formula
@@ -88,80 +174,12 @@ If we wanted to replicate Macdonald's equations, we would let $a=fq$, $p = e^{-g
 
 $$e^{-g\tau} \frac{fq\kappa}{g+fq\kappa} = p^n \frac{ax}{ax - \log_{e}p}$$
 
-### Spatial Dynamics 
-
-**`ramp.xds`** can also model mosquito spatial dynamics, as described in [Spatial Dynamics of Malaria Transmission (2023) *PLoS Computational Biology*](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). In the spatial formulations, a landscape is sub-divided into a set of $n_p$ patches. The variables $M$ and $Y$ and $Z$ are vectors of length $n_p,$ and the paramger $g$ is replaced by a mosquito demographic matrix $\Omega$ that describes dispersal. The matrix $\Omega$ combines several parameters:
-
-+ $g$ - a vector describing patch-specific dispersal
-
-+ $\sigma$ - a vector describing patch-specific emigration rates 
-
-+ $\mu$ - a vector describing the fraction of mosquitoes *lost* through migration, including mortality and dispersal out of the system
-
-+ $\cal K$ - a dispersal matrix
-
-$$\Omega = \mbox{diag}\left(g\right) - \left[\mbox{diag}\left(1-\mu\right)-{\cal K} \right] \cdot
-\mbox{diag}\left(\sigma\right)$$
-
-## Variants 
-
-**`ramp.xds`** also includes two variants of Macdonald's model:  
-
-+ `si` is a simpler version of the model above 
-
-+ `sei` is a compartmental model 
-
-
-### `si`
-
-A simple variant of Macdonald's model ignores the delay for the EIP. The equation for $M$ and $Y$ are as above, but 
-
-$$Z = e^{-g\tau} Y$$ 
-```{r}
-si = xds_setup(MYZname = "si", Xname = "trivial", Xopts = list(kappa=0.1), Lname = "trivial", Lopts = list(Lambda=5), HPop=10)
-si = xde_solve(si, Tmax=100)
-```
-
-```{r, fig.width=5, fig.height=3.5}
-xds_plot_Z_fracs(rm, llty=2)
-xds_plot_Z_fracs(si, add_axes=FALSE)
-```
-
-
-### `sei`
-
-In a model that is equivalent to the standard SEI compartmental model (under a change of variables), the equations for $M$ and $Y$ are as above, but the fraction infectious is: 
-
-$$\frac{dZ}{dt} =  (Y-Z) / \tau - g Z$$  
-
-```{r}
-sei = xds_setup(MYZname = "sei", Xname = "trivial", Xopts = list(kappa=0.1), Lname = "trivial", Lopts = list(Lambda=5), HPop=10)
-sei = xde_solve(sei, Tmax=100)
-```
-
-```{r, fig.width=5, fig.height=3.5}
-xds_plot_Z_fracs(rm, llty=2)
-xds_plot_Z_fracs(sei, add_axes=FALSE)
-```
-
-## Comparing Models
-
-```{r, fig.width=5, fig.height=3.5}
-clrs = turbo(4)[-2]
-xds_plot_Z_fracs(rm, Zclrs=clrs[1])
-text(80, 0.15, "RM", col = clrs[1])
-text(80, 0.11, "si", col = clrs[2])
-text(80, 0.07, "sei", col = clrs[3])
-xds_plot_Z_fracs(si, add_axes=FALSE, Zclrs = clrs[2])
-xds_plot_Z_fracs(sei, add_axes=FALSE, Zclrs = clrs[3])
-```
-
 ```{r}
 Lo = list(season = function(t){1+sin(2*pi*t/365)}, 
           trend = function(t){exp(-t/1000)}, 
           Lambda =5)
 rm = xds_setup(Xname = "trivial", Xopts = list(kappa=0.1), Lname = "trivial", Lopts = Lo, HPop=10)
-rm <- xde_solve(rm, 3650, dt=10)
+rm <- xde_solve(rm, 3680, dt=10)
 ```
 
 ```{r, fig.height=3.5, fig.width=6}
@@ -171,4 +189,5 @@ xds_plot_M(rm)
 
 ## Exogenous Forcing
 
+A challenge for these models was to compute the bionomic parameters as a baseline that was modified by control. A challenge for making software that was extensible was how to accommodate various ways. 
 

@@ -294,10 +294,12 @@ reference:
   contents:
   - xds_plot_M
   - xds_lines_M
-  - xds_plot_YZ
-  - xds_lines_YZ
-  - xds_plot_YZ_fracs
-  - xds_lines_YZ_fracs
+  - xds_plot_Y
+  - xds_lines_Y
+  - xds_plot_Z
+  - xds_lines_Z
+  - xds_plot_Y_fracs
+  - xds_lines_Y_fracs
   - xds_plot_Z_fracs
   - xds_lines_Z_fracs
 - subtitle: Mosquito Demography

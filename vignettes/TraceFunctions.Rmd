@@ -98,5 +98,6 @@ rm <- xde_solve(rm, 3650, dt=10)
 
 ```{r, fig.width=6, fig.height=3.5}
 xds_plot_M(rm)
-xds_plot_YZ(rm, add_axes=FALSE)
+xds_plot_Y(rm, add=T)
+xds_plot_Z(rm, add=T)
 ```

@@ -42,7 +42,7 @@ xde_solve.ode = function(pars, Tmax=365, dt=1){
   return(pars)
 }
 
-#' @title Solve a system of equations using [deSolve:dde]
+#' @title Solve a system of equations using [deSolve::dede]
 #' @description Implements [xde_solve] for delay differential equations
 #' @inheritParams xde_solve
 #' @return an **`xds`** object
