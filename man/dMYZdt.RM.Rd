@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-RM.R
 \name{dMYZdt.RM}
 \alias{dMYZdt.RM}
-\title{\eqn{\cal MYZ} Component Derivatives for a Ross-Macdonald Mosquito Model}
+\title{\eqn{\cal MYZ} Component Derivatives for the \code{RM} model}
 \usage{
 \method{dMYZdt}{RM}(t, y, pars, s)
 }
@@ -19,6 +19,6 @@
 a \link{numeric} vector
 }
 \description{
-Compute the derivatives for a generalized, non-autonomous dynamic model
+Compute the derivatives for the generalized, non-autonomous Ross-Macdonald model
 for mosquito ecology and infection dynamics.
 }

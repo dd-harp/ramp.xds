@@ -32,7 +32,7 @@ F_fqM.trivial <- function(t, y, pars, s){
 }
 
 
-#' @title Derivatives for aquatic stage mosquitoes
+#' @title \eqn{\cal MYZ} Component Derivatives for the `trivial` model
 #' @description Implements [dMYZdt] for the trivial (forced emergence) model.
 #' @inheritParams dMYZdt
 #' @return a [numeric] vector

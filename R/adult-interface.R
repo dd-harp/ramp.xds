@@ -13,7 +13,7 @@ dMYZdt <- function(t, y, pars, s) {
   UseMethod("dMYZdt", pars$MYZpar[[s]])
 }
 
-#' @title Compute the steady states as a function of the daily EIR
+#' @title Compute steady states for \eqn{\cal MYZ} models
 #' @description This method dispatches on the type of `MYZpar`.
 #' @param Lambda the daily emergence rate of adult mosquitoes
 #' @param kappa net infectiousness

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-si.R
 \name{dMYZdt.si}
 \alias{dMYZdt.si}
-\title{\eqn{\cal MYZ} Component Derivatives for an SI Mosquito Model}
+\title{\eqn{\cal MYZ} Component Derivatives for the \code{si} Mosquito Model}
 \usage{
 \method{dMYZdt}{si}(t, y, pars, s)
 }

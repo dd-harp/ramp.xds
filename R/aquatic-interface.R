@@ -158,7 +158,7 @@ parse_Lorbits <- function(outputs, pars, s) {
   UseMethod("parse_Lorbits", pars$Lpar[[s]])
 }
 
-#' @title Steady States for \eqn{\cal L}
+#' @title Compute steady states for \eqn{\cal L} models
 #' @description For differential equation models, compute
 #' steady states as a function of daily eggs laid, \eqn{\eta}
 #' @note This method dispatches on the class of `Lpar`.
@@ -170,7 +170,7 @@ xde_steady_state_L = function(eta, Lpar){
   UseMethod("xde_steady_state_L", Lpar)
 }
 
-#' @title Steady States for \eqn{\cal L}
+#' @title Compute steady States for \eqn{\cal L}-Models
 #' @description For discrete time systems, compute
 #' steady states as a function of daily eggs laid, \eqn{\eta}
 #' @note This method dispatches on the class of `Lpar`.

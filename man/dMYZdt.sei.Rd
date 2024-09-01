@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-sei.R
 \name{dMYZdt.sei}
 \alias{dMYZdt.sei}
-\title{\eqn{\cal MYZ} Component Derivatives for an SEI Mosquito Model}
+\title{\eqn{\cal MYZ} Component Derivatives for the \code{sei} Mosquito Model}
 \usage{
 \method{dMYZdt}{sei}(t, y, pars, s)
 }

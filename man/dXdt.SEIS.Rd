@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SEIS.R
 \name{dXdt.SEIS}
 \alias{dXdt.SEIS}
-\title{\eqn{\cal X} Component Derivatives for an SEIS Compartmental Model}
+\title{\eqn{\cal X} Component Derivatives for the \code{SEIS} Model}
 \usage{
 \method{dXdt}{SEIS}(t, y, pars, i)
 }

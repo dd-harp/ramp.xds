@@ -1,6 +1,6 @@
 # The SEIS
 
-#' @title \eqn{\cal X} Component Derivatives for an SEIS Compartmental Model
+#' @title \eqn{\cal X} Component Derivatives for the `SEIS` Model
 #' @description Implements [dXdt] for the SEIS model
 #' @inheritParams dXdt
 #' @return a [numeric] vector

@@ -40,7 +40,7 @@ create_Xpar_trivial <- function(nPatches, Xopts, kappa=.1, HPop=1,
   return(Xpar)
 })}
 
-#' @title Compute Derivatives for the `trivial` \eqn{\cal X} Model
+#' @title \eqn{\cal X} Component Derivatives for the `trivial` model
 #' @description The trivial model has no state variables so it returns
 #' a numeric vector of length 0
 #' @inheritParams dXdt

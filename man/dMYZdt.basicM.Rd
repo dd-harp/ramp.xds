@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-basicM.R
 \name{dMYZdt.basicM}
 \alias{dMYZdt.basicM}
-\title{Derivatives for adult mosquitoes}
+\title{\eqn{\cal MYZ} Component Derivatives for \code{basicM}}
 \usage{
 \method{dMYZdt}{basicM}(t, y, pars, s)
 }

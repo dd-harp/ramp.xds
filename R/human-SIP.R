@@ -1,6 +1,6 @@
 # specialized methods for the human SIP model
 
-#' @title \eqn{\cal X} Component Derivatives for an SIP Model
+#' @title \eqn{\cal X} Component Derivatives for the `SIP` Model
 #' @description Compute the derivatives for SIP compartmental model:
 #' \deqn{
 #' \begin{array}{rrrrcc}
