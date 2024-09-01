@@ -63,12 +63,12 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
   fqZ <- eir2fqZ(eir, beta)
 
   # equilibrium solutions
-  Z <-  Upsilon_inv %*% diag(1/as.vector(f*q), nPatches) %*% fqZ
-  M <- diag(1/as.vector(f*q*kappa), nPatches) %*% (diag(as.vector(f*q*kappa)) + Omega) %*% Z
+  Y <-  Upsilon_inv %*% diag(1/as.vector(f*q), nPatches) %*% fqZ
+  M <- diag(1/as.vector(f*q*kappa), nPatches) %*% (diag(as.vector(f*q*kappa)) + Omega) %*% Y
   Lambda <- as.vector(Omega %*% M)
 
   MYZo$M=M
-  MYZo$Z=Z
+  MYZo$Y=Y
 
   psi <- 1/10
   phi <- 1/12
@@ -94,11 +94,11 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
   out <- itn_mod$outputs$last_y
 
   M_sim <- out[itn_mod$ix$MYZ[[1]]$M_ix]
-  Z_sim <- out[itn_mod$ix$MYZ[[1]]$Z_ix]
+  Y_sim <- out[itn_mod$ix$MYZ[[1]]$Y_ix]
   I_sim <- out[itn_mod$ix$X[[1]]$I_ix]
 
   expect_equal(as.vector(M_sim), as.vector(M), tolerance = numeric_tol)
-  expect_equal(as.vector(Z_sim), as.vector(Z), tolerance = numeric_tol)
+  expect_equal(as.vector(Y_sim), as.vector(Y), tolerance = numeric_tol)
   expect_equal(as.vector(I_sim), as.vector(I), tolerance = numeric_tol)
 })
 
@@ -162,12 +162,12 @@ test_that("Le Menach VC model under control reaches the enw predicted equilibriu
   fqZ <- eir2fqZ(eir, beta)
 
   # equilibrium solutions
-  Z <-  Upsilon_inv %*% diag(1/as.vector(f*q), nPatches) %*% fqZ
-  M <- diag(1/as.vector(f*q*kappa), nPatches) %*% (diag(as.vector(f*q*kappa)) + Omega) %*% Z
+  Y <-  Upsilon_inv %*% diag(1/as.vector(f*q), nPatches) %*% fqZ
+  M <- diag(1/as.vector(f*q*kappa), nPatches) %*% (diag(as.vector(f*q*kappa)) + Omega) %*% Y
   Lambda <- as.vector(Omega %*% M)
 
   MYZo$M=M
-  MYZo$Z=Z
+  MYZo$Y=Y
 
   psi <- 1/10
   phi <- 1/12
@@ -195,11 +195,11 @@ test_that("Le Menach VC model under control reaches the enw predicted equilibriu
 
 
   M_sim0 <- out0[itn_mod$ix$MYZ[[1]]$M_ix]
-  Z_sim0 <- out0[itn_mod$ix$MYZ[[1]]$Z_ix]
+  Y_sim0 <- out0[itn_mod$ix$MYZ[[1]]$Y_ix]
   I_sim0 <- out0[itn_mod$ix$X[[1]]$I_ix]
 
   as.vector(M_sim0) - as.vector(M) +1
-  as.vector(Z_sim0) - as.vector(Z) +1
+  as.vector(Y_sim0) - as.vector(Y) +1
 
   set.seed(23)
 nPatches <- 3
@@ -260,12 +260,12 @@ Upsilon_inv <- expm::expm(Omega * eip)
 fqZ <- eir2fqZ(eir, beta)
 
 # equilibrium solutions
-Z <-  Upsilon_inv %*% diag(1/as.vector(f*q), nPatches) %*% fqZ
-M <- diag(1/as.vector(f*q*kappa), nPatches) %*% (diag(as.vector(f*q*kappa)) + Omega) %*% Z
+Y <-  Upsilon_inv %*% diag(1/as.vector(f*q), nPatches) %*% fqZ
+M <- diag(1/as.vector(f*q*kappa), nPatches) %*% (diag(as.vector(f*q*kappa)) + Omega) %*% Y
 Lambda <- as.vector(Omega %*% M)
 
 MYZo$M=M
-MYZo$Z=Z
+MYZo$Y=Y
 
 psi <- 1/10
 phi <- 1/12
@@ -293,7 +293,7 @@ out0 <- itn_mod$outputs$last_y
 
 
 M_sim0 <- out0[itn_mod$ix$MYZ[[1]]$M_ix]
-Z_sim0 <- out0[itn_mod$ix$MYZ[[1]]$Z_ix]
+Y_sim0 <- out0[itn_mod$ix$MYZ[[1]]$Y_ix]
 I_sim0 <- out0[itn_mod$ix$X[[1]]$I_ix]
 
 
@@ -329,7 +329,7 @@ ss <- xde_steady_state_MYZ(Lambda, kappa, MYZn)
 # The model will be calibrated with the original values,
 # but steady states under control
 MYZo$M <- ss$M
-MYZo$Z <- ss$Z
+MYZo$Y <- ss$Y
 
 
 xds_setup(MYZname="si", Xname="trivial", Lname="trivial",
@@ -349,12 +349,12 @@ itn_mod_trivial <- xde_solve(itn_mod_trivial, 1000, 1)
 
 out <- itn_mod_trivial$outputs$last_y
 M_sim <- out[itn_mod_trivial$ix$MYZ[[1]]$M_ix]
-Z_sim <- out[itn_mod_trivial$ix$MYZ[[1]]$Z_ix]
+Y_sim <- out[itn_mod_trivial$ix$MYZ[[1]]$Y_ix]
 
 expect_equal(as.vector(M_sim0), as.vector(M), tolerance = numeric_tol)
-expect_equal(as.vector(Z_sim0), as.vector(Z), tolerance = numeric_tol)
+expect_equal(as.vector(Y_sim0), as.vector(Y), tolerance = numeric_tol)
 expect_equal(as.vector(M_sim), as.vector(ss$M), tolerance = numeric_tol)
-expect_equal(as.vector(Z_sim), as.vector(ss$Z), tolerance = numeric_tol)
+expect_equal(as.vector(Y_sim), as.vector(ss$Y), tolerance = numeric_tol)
 
 })
 

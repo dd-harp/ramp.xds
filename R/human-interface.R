@@ -225,10 +225,10 @@ F_pr_by_pcr <- function(vars, Xpar) {
 #' @param i the host species index
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
-#' @param add_axes a logical: plot axes only if TRUE
+#' @param add plot axes only if FALSE
 #'
 #' @export
-xds_plot_X = function(pars, i=1, clrs="black", llty=1, add_axes=TRUE){
+xds_plot_X = function(pars, i=1, clrs="black", llty=1, add=FALSE){
   UseMethod("xds_plot_X", pars$Xpar[[i]])
 }
 

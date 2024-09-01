@@ -55,7 +55,7 @@ A modified version of \link{xds_setup} that
 streamlines setup for models with a trival \eqn{\cal MYZ} component.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'human'}
-to dispatch \link{xde_solve.human} or \link{dts_solve.human} and associated functions.
+to dispatch \link{xde_derivatives.human} or \link{dts_update.human} and associated functions.
 
 The \eqn{\cal MYZ} model is trivial. The funcion \link{F_fqZ} still passes the
 density of infectious adult mosquitoes, so \eqn{f} and \eqn{q} can still be

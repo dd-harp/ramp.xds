@@ -61,7 +61,7 @@ A modified version of \link{xds_setup} that streamlines setup for models that do
 component describing parasite / pathogen infection dynamics in the adult mosquito population.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'mosy'}
-to dispatch \link{xde_solve.mosy} or \link{dts_solve.mosy} and associated functions.
+to dispatch \link{xde_derivatives.mosy} or \link{dts_update.mosy} and associated functions.
 
 The \eqn{\cal X} model is trivial, but since humans / vertebrate hosts can be a
 resource, \code{HPop} must be set. Notably, it is possible to set values of NI \code{kappa} but

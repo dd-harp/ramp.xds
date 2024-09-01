@@ -307,11 +307,11 @@ F_pr_by_pcr.SEISd <- function(vars, Xpar) {
 #'
 #' @inheritParams xds_plot_X
 #' @export
-xds_plot_X.SEISd = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, add_axes=TRUE){
+xds_plot_X.SEISd = function(pars, i=1, clrs=c("darkblue","darkred"), llty=1, add=FALSE){
   XH = pars$outputs$orbits$XH[[i]]
   time = pars$outputs$time
 
-  if(add_axes==TRUE)
+  if(add==FALSE)
     plot(time, 0*time, type = "n", ylim = c(0, max(XH$H)),
          ylab = "# Infected", xlab = "Time")
 

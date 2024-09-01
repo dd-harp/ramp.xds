@@ -40,7 +40,7 @@ A modified version of \link{xds_setup} that streamlines setup for a model that
 with a trivial \eqn{\cal MYZ} component. The model also configures a trivial \eqn{\cal X} component.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'aquatic'}
-to dispatch \link{xde_solve.aquatic} or \link{dts_solve.aquatic}
+to dispatch \link{xde_derivatives.aquatic} or \link{dts_update.aquatic}
 }
 \seealso{
 \link{xds_setup}

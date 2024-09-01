@@ -4,13 +4,7 @@
 \alias{xds_plot_X.SEISd}
 \title{Plot the density of infected individuals for the SEISd model}
 \usage{
-\method{xds_plot_X}{SEISd}(
-  pars,
-  i = 1,
-  clrs = c("darkblue", "darkred"),
-  llty = 1,
-  add_axes = TRUE
-)
+\method{xds_plot_X}{SEISd}(pars, i = 1, clrs = c("darkblue", "darkred"), llty = 1, add = FALSE)
 }
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}
@@ -21,7 +15,7 @@
 
 \item{llty}{an integer (or integers) to set the \code{lty} for plotting}
 
-\item{add_axes}{a logical: plot axes only if TRUE}
+\item{add}{plot axes only if FALSE}
 }
 \description{
 Plot the density of infected individuals for the SEISd model

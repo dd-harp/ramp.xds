@@ -23,7 +23,7 @@ library(deSolve)
 ```
 
 ```{r, echo=FALSE}
-devtools::load_all()
+#devtools::load_all()
 ```
 
 # Introduction

@@ -156,7 +156,7 @@ xds_setup = function(xds = 'xde', dlay = 'ode',
 #' component describing parasite / pathogen infection dynamics in the adult mosquito population.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'mosy'`
-#' to dispatch [xde_solve.mosy] or [dts_solve.mosy] and associated functions.
+#' to dispatch [xde_derivatives.mosy] or [dts_update.mosy] and associated functions.
 #'
 #' The \eqn{\cal X} model is trivial, but since humans / vertebrate hosts can be a
 #' resource, `HPop` must be set. Notably, it is possible to set values of NI `kappa` but
@@ -246,7 +246,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 #' with a trivial \eqn{\cal MYZ} component. The model also configures a trivial \eqn{\cal X} component.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'aquatic'`
-#' to dispatch [xde_solve.aquatic] or [dts_solve.aquatic]
+#' to dispatch [xde_derivatives.aquatic] or [dts_update.aquatic]
 #'
 #' @seealso [xds_setup]
 #' @param xds is `xde`/`dts` for differential / difference equations
@@ -298,7 +298,7 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 #' streamlines setup for models with a trival \eqn{\cal MYZ} component.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'human'`
-#' to dispatch [xde_solve.human] or [dts_solve.human] and associated functions.
+#' to dispatch [xde_derivatives.human] or [dts_update.human] and associated functions.
 #'
 #' The \eqn{\cal MYZ} model is trivial. The funcion [F_fqZ] still passes the
 #' density of infectious adult mosquitoes, so \eqn{f} and \eqn{q} can still be
