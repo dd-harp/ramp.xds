@@ -20,13 +20,14 @@ articles:
   human_sis: human_sis.html
   modular_forms: modular_forms.html
   modularity: modularity.html
+  Nimble: Nimble.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
   spat_metric: spat_metric.html
   TraceFunctions: TraceFunctions.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   vc_lemenach: vc_lemenach.html
   Working: Working.html
-last_built: 2024-09-01T05:05Z
+last_built: 2024-09-02T22:35Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles
