@@ -100,7 +100,7 @@ create_MYZpar_GeRM = function(nPatches, MYZopts=list(), eip =12,
 MBionomics.GeRM <- function(t, y, pars, s) {
   with(pars$MYZpar[[s]],{
     pars$MYZpar[[s]]$f_t      <- F_f(t, vars, f_par)
-    pars$MYZpar[[s]]$es_f     <- rep(1, pars$nPatches)
+    pars$MYZpar[[s]]$es_f     < rep(1, p-ars$nPatches)
     pars$MYZpar[[s]]$q_t      <- F_q(t, vars, f_par)
     pars$MYZpar[[s]]$es_q     <- rep(1, pars$nPatches)
     pars$MYZpar[[s]]$g_t      <- F_g(t, vars, f_par)

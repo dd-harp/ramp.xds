@@ -1,8 +1,6 @@
 url: https://dd-harp.github.io/ramp.xds
 navbar:
   left:
-  - text: Functions
-    href: reference/index.html
   - text: Articles
     menu:
     - text: Getting Started with ramp.xds
@@ -57,6 +55,8 @@ navbar:
       href: articles/human_hmoi.html
     - text: SEIS model
       href: articles/human_seis.html
+  - text: Functions
+    href: reference/index.html
   right:
   - icon: fa-github
     href: https://github.com/dd-harp/ramp.xds/
