@@ -12,25 +12,11 @@ library(ramp.xds)
 library(viridisLite)
 ```
 
-```{r, echo=F}
-#devtools::load_all()
-```
+Models for adult mosquito ecology, behavior, and infection dynamics pose some problems for their *extensibility.* The models in **`ramp.xds`** were included for several reasons: 
 
-Nimble model building in **`ramp.xds`** proceeds from simple to complex. Some basic concepts used throughout **`ramp.xds`** are:
++ They serve as an important set of models to test the software; 
 
-+ **Model Family** - what is colloquially referred to as a *model* in the code library is more accurately described as a model family. Each model family is defined by a set of *states* and transitions (*i.e.* as defined for one population stratum) that represent the *true* but unobservable state of a population, also known as *latent* states. A model family describing adult mosquitoes has been assigned a unique `MYZname` and that can be setup using `xds_setup(MYZname = 'this').` A model in **`ramp.xds`** is defined by a **`xds`** object -- it can be solved, and it will return values. 
-
-    - Each model can be represented as a directed graph, and two models belong to the same model family if their graphs are identical. 
-    
-    - Two models are also identical if one can be derived from another by a change of variables. 
-
-+ **Spatial Dynamics** - in the case of adult mosquitoes, the population is structured spatially: each stratum represents the mosquitoes in a single patch. The states and state transitions are replicated in each patch. 
-
-+ **Forcing** is incorporated through functions that compute the parameters as a function of time. By default, each model is set up as an  **autonomous** system of equations. An autonomous system is then modified by adding exogenous variables and forcing, making it a **non-autonomous** system. 
-
-+ **Vector Species** (or types) - basic setup handles a single vector species (or type). Each new species must be added separately. adds to the model.  
-
-+ **Model Skill Set** - a model's skill set is defined as the set of observable quantities that are naturally represented by the latent states such that they can be computed without requiring extraneous information. 
++ They illustrate some important basic features of **`ramp.xds`** design princples (see [Nimble Model Building and Scalable Complexity](Nimble.html)). 
 
 ## Basic Models
 
