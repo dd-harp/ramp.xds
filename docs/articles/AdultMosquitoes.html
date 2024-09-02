@@ -39,9 +39,6 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../reference/index.html">Functions</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
@@ -147,6 +144,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../reference/index.html">Functions</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -181,45 +181,16 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridisLite/" class="external-link">viridisLite</a></span><span class="op">)</span></span></code></pre></div>
-<p>Nimble model building in <strong><code>ramp.xds</code></strong>
-proceeds from simple to complex. Some basic concepts used throughout
-<strong><code>ramp.xds</code></strong> are:</p>
+<p>Models for adult mosquito ecology, behavior, and infection dynamics
+pose some problems for their <em>extensibility.</em> The models in
+<strong><code>ramp.xds</code></strong> were included for several
+reasons:</p>
 <ul>
-<li>
-<p><strong>Model Family</strong> - what is colloquially referred to
-as a <em>model</em> in the code library is more accurately described as
-a model family. Each model family is defined by a set of <em>states</em>
-and transitions (<em>i.e.</em> as defined for one population stratum)
-that represent the <em>true</em> but unobservable state of a population,
-also known as <em>latent</em> states. A model family describing adult
-mosquitoes has been assigned a unique <code>MYZname</code> and that can
-be setup using <code>xds_setup(MYZname = 'this').</code> A model in
-<strong><code>ramp.xds</code></strong> is defined by a
-<strong><code>xds</code></strong> object – it can be solved, and it will
-return values.</p>
-<ul>
-<li><p>Each model can be represented as a directed graph, and two models
-belong to the same model family if their graphs are identical.</p></li>
-<li><p>Two models are also identical if one can be derived from another
-by a change of variables.</p></li>
-</ul>
-</li>
-<li><p><strong>Spatial Dynamics</strong> - in the case of adult
-mosquitoes, the population is structured spatially: each stratum
-represents the mosquitoes in a single patch. The states and state
-transitions are replicated in each patch.</p></li>
-<li><p><strong>Forcing</strong> is incorporated through functions that
-compute the parameters as a function of time. By default, each model is
-set up as an <strong>autonomous</strong> system of equations. An
-autonomous system is then modified by adding exogenous variables and
-forcing, making it a <strong>non-autonomous</strong> system.</p></li>
-<li><p><strong>Vector Species</strong> (or types) - basic setup handles
-a single vector species (or type). Each new species must be added
-separately. adds to the model.</p></li>
-<li><p><strong>Model Skill Set</strong> - a model’s skill set is defined
-as the set of observable quantities that are naturally represented by
-the latent states such that they can be computed without requiring
-extraneous information.</p></li>
+<li><p>They serve as an important set of models to test the
+software;</p></li>
+<li><p>They illustrate some important basic features of
+<strong><code>ramp.xds</code></strong> design princples (see <a href="Nimble.html">Nimble Model Building and Scalable
+Complexity</a>).</p></li>
 </ul>
 <div class="section level2">
 <h2 id="basic-models">Basic Models<a class="anchor" aria-label="anchor" href="#basic-models"></a>
@@ -303,7 +274,7 @@ equation has a steady state:</p>
 <span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">si</span>, add<span class="op">=</span><span class="cn">TRUE</span>, clrs<span class="op">=</span><span class="st">"darkred"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">sei</span>, add<span class="op">=</span><span class="cn">TRUE</span>, clrs <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">RM</span>, add<span class="op">=</span><span class="cn">TRUE</span>, clrs <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-6-1.png" width="480"></p>
 </div>
 <div class="section level3">
 <h3 id="infection">Infection<a class="anchor" aria-label="anchor" href="#infection"></a>
@@ -324,7 +295,7 @@ are infected with parasites, and its dynamics are described by:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">si</span>, llty<span class="op">=</span><span class="fl">1</span>, clrs<span class="op">=</span><span class="st">"darkred"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">sei</span>, add<span class="op">=</span><span class="cn">TRUE</span>, llty<span class="op">=</span><span class="fl">2</span>, clrs <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">RM</span>, add<span class="op">=</span><span class="cn">TRUE</span>, llty<span class="op">=</span><span class="fl">3</span>, clrs <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
 <p>If <span class="math inline">\(M\)</span> and <span class="math inline">\(\kappa\)</span> have reached the steady state,
 then the fraction of infected mosquitoes, <span class="math inline">\(y=Y/M\)</span> is given by:</p>
 <p><span class="math display">\[y =
@@ -370,13 +341,13 @@ Z\]</span></p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">sei</span>, llty<span class="op">=</span><span class="fl">1</span>, clrs<span class="op">=</span><span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">si</span>, add<span class="op">=</span><span class="cn">TRUE</span>, clrs <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">RM</span>, add<span class="op">=</span><span class="cn">TRUE</span>, clrs <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">sei</span>, clrs<span class="op">=</span><span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">RM</span>,  add<span class="op">=</span><span class="cn">T</span>, clrs <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">sei</span>, add<span class="op">=</span><span class="cn">T</span>, clrs<span class="op">=</span><span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">si</span>, add<span class="op">=</span><span class="cn">T</span>,  clrs <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-10-1.png" width="480"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
 <p>This is equivalent to Macdonald’s formula.</p>
 <p>In <strong><code>ramp.xds</code></strong> this set of equations is
 implemented. This sets up and solves a model with <span class="math inline">\(\kappa\)</span> and <span class="math inline">\(\Lambda\)</span> passed as constant values, and a
@@ -388,7 +359,7 @@ human population density of <span class="math inline">\(H=10.\)</span></p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">rm</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">rm</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">rm</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-12-1.png" width="480"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-11-1.png" width="480"></p>
 </div>
 <div class="section level3">
 <h3 id="macdonalds-formula">Macdonald’s Formula<a class="anchor" aria-label="anchor" href="#macdonalds-formula"></a>
@@ -406,7 +377,7 @@ p^n \frac{ax}{ax - \log_{e}p}\]</span></p>
 <span><span class="va">rm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">rm</span>, <span class="fl">3680</span>, dt<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">rm</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-14-1.png" width="576"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-13-1.png" width="576"></p>
 </div>
 </div>
 <div class="section level2">
