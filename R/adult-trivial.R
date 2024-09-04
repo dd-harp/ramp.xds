@@ -8,7 +8,7 @@
 F_fqZ.trivial <- function(t, y, pars, s) {
   f = get_f(pars, s)
   q = get_q(pars, s)
-  Z = with(pars$MYZpar[[s]], Z*season(t)*trend(t))
+  Z = with(pars$MYZpar[[s]], Z*F_season(t)*F_trend(t))
   return(f*q*Z)
 }
 
@@ -19,7 +19,7 @@ F_fqZ.trivial <- function(t, y, pars, s) {
 #' @export
 F_eggs.trivial <- function(t, y, pars, s) {
   with(pars$MYZpar[[s]],
-    return(eggs*season(t)*trend(t))
+    return(eggs*F_season(t)*F_trend(t))
 )}
 
 #' @title Blood feeding rate of the infective mosquito population
@@ -79,13 +79,13 @@ xde_steady_state_MYZ.trivial = function(Lambda, kappa, MYZpar){with(MYZpar,{
 #' @param q the human fraction
 #' @param Z the human fraction
 #' @param eggs the human fraction
-#' @param season a seasonality function
-#' @param trend a trend function
+#' @param F_season a F_seasonality function
+#' @param F_trend a F_trend function
 #' @return none
 #' @export
 create_MYZpar_trivial = function(nPatches, MYZopts,
                                f = 1, q = 1, Z=1, eggs=1,
-                               season = F_flat, trend=F_flat){
+                               F_season = F_flat, F_trend=F_flat){
   with(MYZopts,{
     MYZpar <- list()
     MYZpar$nPatches <- nPatches
@@ -106,8 +106,8 @@ create_MYZpar_trivial = function(nPatches, MYZopts,
 
     MYZpar$Z <- checkIt(Z, nPatches)
     MYZpar$eggs <- checkIt(eggs, nPatches)
-    MYZpar$season <- season
-    MYZpar$trend <- trend
+    MYZpar$F_season <- F_season
+    MYZpar$F_trend <- F_trend
     return(MYZpar)
   })}
 

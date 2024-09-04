@@ -4,39 +4,37 @@
 #' @param i the host species index
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
-#' @param stable a logical: set to FALSE for `orbits` and TRUE for `stable_orbits`
-#' @param add_axes a logical: plot axes only if TRUE
+#' @param add a logical: plot axes only if FALSE
 #'
 #' @export
-xds_plot_EIR <- function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
-
-  tm = pars$outputs$time
+xds_plot_EIR <- function(pars, i=1, clrs="black", llty=1, add=FALSE){
+  times = pars$outputs$time
   EIR = get_EIR(pars, i)
-  if(add_axes==TRUE){
-      plot(tm, EIR, type = "n",
+
+  if(add==FALSE){
+      plot(times, 0*times, type = "n",
            xlab = "Time", ylab = "dEIR", ylim = range(0, EIR))
   }
-  xds_lines_EIR(tm, EIR, pars$nStrata[i], clrs, llty)
+  xds_lines_EIR(times, EIR, pars$nStrata[i], clrs, llty)
 }
 
 #' Add lines for the EIR *vs.* time
 #'
-#' @param tm the time
+#' @param times the time
 #' @param EIR the entomological inoculation rate
 #' @param nStrata the number of human / host population strata
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
 #' @export
-xds_lines_EIR <- function(tm, EIR, nStrata, clrs="black", llty=1){
-
+xds_lines_EIR <- function(times, EIR, nStrata, clrs="black", llty=1){
   if(nStrata==1)
-   graphics::lines(tm, EIR, col=clrs, lty = llty)
+    graphics::lines(times, EIR, col=clrs, lty = llty)
   if(nStrata>1){
     if(length(clrs)==1) clrs=rep(clrs, nStrata)
     if(length(llty)==1) llty=rep(llty, nStrata)
     for(i in 1:nStrata)
-      graphics::lines(tm, EIR[,i], col=clrs[i], lty = llty)
+      graphics::lines(times, EIR[,i], col=clrs[i], lty = llty)
   }
 
 }
@@ -47,38 +45,19 @@ xds_lines_EIR <- function(tm, EIR, nStrata, clrs="black", llty=1){
 #' @param i the host species index
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
-#' @param stable a logical: set to FALSE for `orbits` and TRUE for `stable_orbits`
-#' @param add_axes a logical: plot axes only if TRUE
+#' @param stable a logical: set to FALSE for `orbits` and FALSE for `stable_orbits`
+#' @param add a logical: plot axes only if FALSE
 #'
 #' @export
-xds_plot_aEIR <- function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
-  vars=with(pars$outputs,if(stable==TRUE){stable_orbits}else{orbits})
+xds_plot_aEIR <- function(pars, i=1, clrs="black", llty=1, stable=FALSE, add=FALSE){
+  times = pars$outputs$time
+  EIR = get_EIR(pars, i)
 
-  tm = vars$terms$time
-  aEIR = 365*vars$terms$eir[[i]]
-  if(add_axes==TRUE)
-      plot(tm, aEIR, type = "n", xlab = "Time", ylab = "aEIR", ylim = range(0, aEIR))
+  aEIR = 365*EIR
+  if(add==FALSE)
+      plot(times, 0*times, type = "n", xlab = "Time", ylab = "aEIR", ylim = range(0, aEIR))
 
-  xds_lines_aEIR(tm, aEIR, pars$Hpar[[i]]$nStrata, clrs, llty)
-}
-
-#' Add lines for the annualized EIR *vs.* t
-#'
-#' @param tm the time
-#' @param EIR the entomological inoculation rate
-#' @param nStrata the number of human / host population strata
-#' @param clrs a vector of colors
-#' @param llty an integer (or integers) to set the `lty` for plotting
-#'
-#' @export
-xds_lines_aEIR <- function(tm, EIR, nStrata, clrs="black", llty=1){
-  aeir = 365*EIR
-  if(nStrata==1) graphics::lines(tm, aeir, col=clrs)
-  if(nStrata>1){
-    if (length(clrs)==1) clrs=rep(clrs, nStrata)
-    for(i in 1:nStrata)
-      graphics::lines(tm, aeir[,i], col=clrs[i])
-  }
+  xds_lines_EIR(times, aEIR, pars$nStrata[i], clrs, llty)
 }
 
 #' Plot the prevalence / parasite rate (PR) from a model of human infection and immunity
@@ -87,38 +66,39 @@ xds_lines_aEIR <- function(tm, EIR, nStrata, clrs="black", llty=1){
 #' @param i the host species index
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) that specifies `lty` for plotting
-#' @param stable a logical: set to FALSE for `orbits` and TRUE for `stable_orbits`
-#' @param add_axes a logical: plot axes only if TRUE
+#' @param add a logical: plot axes only if FALSE
 #'
 #' @export
-xds_plot_PR = function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
+xds_plot_PR = function(pars, i=1, clrs="black", llty=1, add=FALSE){
+  terms = pars$outputs$orbits$XH[[1]]
+  times = pars$outputs$time
 
   tm = pars$outputs$time
-  if(add_axes==TRUE){
-    plot(tm, 0*tm + 1, type = "n", ylim = c(0,1),
+  if(add==FALSE){
+    plot(times, 0*times, type = "n", ylim = c(0,1),
          ylab = "Prevalence", xlab = "Time")
   }
 
-  xds_lines_PR(tm, pars$outputs$orbits$XH[[1]]$true_pr, pars$nStrata[i], clrs, llty)
+  xds_lines_PR(times, terms$true_pr, pars$nStrata[i], clrs, llty)
 }
 
 #' Add lines for the prevalence / parasite rate (PR) from a model of human infection and immunity
 #'
-#' @param tm the time
+#' @param times the time
 #' @param PR the computed parasite rate
 #' @param nStrata the number of human / host population strata
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) that specifies `lty` for plotting
 #'
 #' @export
-xds_lines_PR = function(tm, PR, nStrata, clrs="black", llty=1){
+xds_lines_PR = function(times, PR, nStrata, clrs="black", llty=1){
 
-  if(nStrata==1) graphics::lines(tm, PR, col=clrs[1], lty = llty[1])
+  if(nStrata==1) graphics::lines(times, PR, col=clrs[1], lty = llty[1])
   if(nStrata>1){
     if (length(clrs)==1) clrs=rep(clrs, nStrata)
     if (length(llty)==1) llty=rep(llty, nStrata)
     for(i in 1:nStrata)
-      graphics::lines(tm, PR[,i], col=clrs[i], lty = llty[i])
+      graphics::lines(times, PR[,i], col=clrs[i], lty = llty[i])
   }
 }
 

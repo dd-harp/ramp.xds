@@ -19,17 +19,17 @@ Also see the related vignette [*Getting Started*](https://dd-harp.github.io/ramp
 
 ## What is RAMP?
 
-RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- is a bespoke inferential system for malaria decision support and adaptive malaria control. A core goal for RAMP is to characterize, quantify, and propagate uncertainty in conventional analysis and through simulation-based analytics.
+RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- describes bespoke inferential systems for malaria decision support and adaptive malaria control that go to great lengths to characterize, quantify, and propagate uncertainty. RAMP includes conventional analysis and simulation-based analytics.
 
 ## What is **`ramp.xds`**?
 
-**`ramp.xds`** is an R software package that supports nimble model building for simulation-based analytics and malaria research. It was designed to help research scientists and policy analysts set up, analyze, solve, and use dynamical systems models describing the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. The software also supports nimble model building and analysis for mosquito ecology, with the capability to handle forcing by weather and other exogenous variables. 
+**`ramp.xds`** is an R software package that supports nimble model building for simulation-based analytics and malaria research. The software was designed to help research scientists and policy analysts set up, analyze, solve, and use dynamical systems models describing the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. The software also supports nimble model building and analysis for mosquito ecology, with the capability to handle forcing by weather and other exogenous variables. 
 
-**`ramp.xds`** has been designed to serve the needs of malaria programs, where mathematical models are used for decision support and adaptive malaria control in a defined geographical area. Mechanistic models describing malaria transmission in a place that have been fitted to available data and that have quantified uncertainty are a synthesis of malaria intelligence. In this formulation, the models can facilitate complex analysis, extending our innate mental capabilities. As the needs of a malaria program changes, the models can be modified -- simplified or extended -- to serve the tasks at hand. 
+**`ramp.xds`** has been designed to serve the needs of malaria programs, where mathematical models are used for decision support and adaptive malaria control in a defined geographical area. Mechanistic models that have been fitted to data describing malaria in a place provide a synthesis of *malaria intelligence.* These models can facilitate complex analysis, extending our innate mental capabilities. By characterizing and quantifying uncertainty, and then propagating the uncertainty through the analysis, simulation-based analytics serve as a platform for giving robust policy advice and for adaptive malaria control. As the needs of a malaria program changes, the models can be modified -- simplified or extended -- to serve the tasks at hand.
 
 **`ramp.xds`** was developed to apply malaria theory: it outputs standard, observable malaria metrics, and it easily solve dynamical systems, computes steady states and stable orbits, and computes the spatio-temporal vectorial capacity and the basic and adjusted reproductive numbers for malaria parasites. 
 
-*** 
+## A Software Ecosystem for Robust, Simulation-based Analytics  
 
 **`ramp.xds`** is part of a suite of R packages developed to support RAMP: 
 

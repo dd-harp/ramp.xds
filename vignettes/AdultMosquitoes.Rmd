@@ -12,7 +12,27 @@ library(ramp.xds)
 library(viridisLite)
 ```
 
-Models for adult mosquito ecology, behavior, and infection dynamics pose some problems for their *extensibility.* The models in **`ramp.xds`** were included for several reasons: 
+```{r, echo=F}
+#devtools::load_all()
+```
+
+Models for adult mosquito ecology, behavior, and infection dynamics in **`ramp.xds`** are all variants of basic models for mosquito infection dynamics. [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) includes an expanded set of  models for adult mosquitoes, including some behavioral state models (see [MYZ-Overview](https://dd-harp.github.io/ramp.library/articles/MYZ-Overview.html)). 
+The dynamical terms rquired by $\cal MYZ$ models are: 
+
++ `Lambda` or $\Lambda$ - the emergence rates of adult mosquitoes in the patches
+
++ `kappa` or $\kappa$ - net infectiousness (NI), the probability a mosquito becomes infected after blood feeding on a human. 
+The dynamical terms output by $\cal MYZ$ models are:
+
++ `F_fqZ` outputs the number of bites by infectious mosquitoes, per patch, per day 
+
++ `F_fqM` outputs the number of bites by mosquitoes, per patch, per day 
+
++ `F_eggs` outputs the number of eggs laid by mosquitoes, per patch, per day 
+
+In this vignette, we discuss the challenge of *extensibility,* in particular, the challenges of modeling malaria transmission by mosquitoes as a *changing baseline* that has been modified by *vector control.*  
+
+The models in **`ramp.xds`** were included for several reasons: 
 
 + They serve as an important set of models to test the software; 
 
@@ -20,35 +40,58 @@ Models for adult mosquito ecology, behavior, and infection dynamics pose some pr
 
 ## Basic Models
 
-The basic mosquito models in **`ramp.xds`** are variants of George Macdonald mathematical models, developed with help from P. Armitage. The variables for all the models in **`ramp.xds`** are mosquito densities, and the default model is from Aron & May, 1982.
+These models all use a common set of parameters: 
+
++ $f$ the patch-specific overall feeding rates
+
++ $q$ the patch-specific human fraction
+
++ $g$ the patch-specific mortality rate 
+
++ $\sigma$ the patch-specific emigration rate 
+
++ $\mu$ patch-specific mortality associated with emigration
+
++ $\nu$ patch-specific egg-laying rates 
+
++ $\cal K$ a dispersal matrix
+
 
 **`ramp.xds`** there are several versions of basic models for mosquito infection dynamics. These models make similar assumptions about mosquito ecology and infection dynamics. (The equations are in the documentation for The four models are
 
-+ **`basicM`** - see [dMYZdt.basicM] does not include any infection dynamics. 
++ **`basicM`** - no infection dynamics (see [dMYZdt.basicM](https://dd-harp.github.io/ramp.xds/reference/dMYZdt.basicM.html)) 
 
 ```{r}
-basicM <- xds_setup(MYZname = "basicM", Xname = "trivial", Xopts = list(kappa = .1, Y=0, Z=0))
+basicM <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1), 
+                    MYZname = "basicM")
+
 basicM <- xde_solve(basicM, Tmax=80)
 ```
 
-+ **`si`** - A standard SI compartmental model for infection, see [dMYZdt.si]. 
++ **`si`** - A standard SI compartmental model for infection, see [dMYZdt.si](https://dd-harp.github.io/ramp.xds/reference/dMYZdt.si.html). 
 
 ```{r}
-si <- xds_setup(MYZname = "si", Xname = "trivial", Xopts = list(kappa = .1, Y=0, Z=0), MYZopts = list(Y=0))
+si <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1), 
+                MYZname = "si", MYZopts = list(Y=0))
+
 si <- xde_solve(si, Tmax=80)
 ```
 
 + **`sei`** - a standard SEI compartmental model, see [dMYZdt.sei]
 
 ```{r}
-sei <- xds_setup(MYZname = "sei", Xname = "trivial", Xopts = list(kappa = .1), MYZopts = list(Y=0, Z=0))
+sei <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1), 
+                 MYZname = "sei", MYZopts = list(Y=0, Z=0))
+
 sei <- xde_solve(sei, Tmax=80)
 ```
 
 + **`RM`** - modified from Aron & May (1982), see [dMYZdt.RM]
 
 ```{r}
-RM <- xds_setup(MYZname = "RM", Xname = "trivial", Xopts = list(kappa = .1), MYZopts = list(Y=0, Z=0))
+RM <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1),
+                MYZname = "RM", MYZopts = list(Y=0, Z=0))
+
 RM <- xde_solve(RM, Tmax=80)
 ```
 
@@ -164,7 +207,8 @@ $$e^{-g\tau} \frac{fq\kappa}{g+fq\kappa} = p^n \frac{ax}{ax - \log_{e}p}$$
 Lo = list(season = function(t){1+sin(2*pi*t/365)}, 
           trend = function(t){exp(-t/1000)}, 
           Lambda =5)
-rm = xds_setup(Xname = "trivial", Xopts = list(kappa=0.1), Lname = "trivial", Lopts = Lo, HPop=10)
+rm = xds_setup(Xname = "trivial", Xopts = list(kappa=0.1), HPop=10,
+               Lname = "trivial", Lopts = Lo)
 rm <- xde_solve(rm, 3680, dt=10)
 ```
 

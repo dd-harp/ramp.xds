@@ -59,7 +59,7 @@
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
-      <a href="../articles/modularity.html">Modular Forms for Disease Dynamics</a>
+      <a href="../articles/modular_forms.html">Modular Forms for Disease Dynamics</a>
     </li>
     <li>
       <a href="../articles/ex_534.html">5-3-4 Spatial Example</a>
@@ -71,19 +71,10 @@
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
     </li>
     <li>
-      <a href="../articles/Contributing.html">Contributing</a>
-    </li>
-    <li>
       <a href="../articles/heterogeneous_transmission.html">Heterogeneous Transmission</a>
     </li>
     <li>
-      <a href="../articles/heterogeneous_biting.html">Heterogeneous Biting</a>
-    </li>
-    <li>
-      <a href="../articles/heterogeneous_mixing.html">Heterogeneous Mixing</a>
-    </li>
-    <li>
-      <a href="../articles/environmental_heterogeneity.html">Environmental Heterogeneity</a>
+      <a href="../articles/Contributing.html">Contributing</a>
     </li>
   </ul>
 </li>
@@ -116,7 +107,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -188,24 +179,26 @@ other components are passed as a <strong>trace function</strong>. These
 trace functions have three parts:</p>
 <ul>
 <li><p>a mean value, or a scaling argument</p></li>
-<li><p>a function that returns a seasonal signal, configured with a line
-in the appropriate options list,
-<code>season = function(t){...}</code></p></li>
-<li><p>a function that returns a trend, configured with a line in the
-appropriate options list, <code>trend = function(t){...}</code></p></li>
+<li><p>a function that returns a F_seasonal signal, configured with a
+line in the appropriate options list,
+<code>F_season = function(t){...}</code></p></li>
+<li><p>a function that returns a F_trend, configured with a line in the
+appropriate options list,
+<code>F_trend = function(t){...}</code></p></li>
 </ul>
 <p>The trivial modules each returns different values:</p>
 <ul>
 <li>
 <p><span class="math inline">\(\cal L\)</span> - The trivial aquatic
 module is set up by <code>create_Lpar_trivial.</code> The function
-<code><a href="../reference/F_emerge.html">F_emerge()</a></code> returns <code>Lambda*season(t)*trend(t).</code>
-To override the defaults, <code>Lopts</code> must be a named list that
-sets the values of the elements:</p>
+<code><a href="../reference/F_emerge.html">F_emerge()</a></code> returns
+<code>Lambda*F_season(t)*F_trend(t).</code> To override the defaults,
+<code>Lopts</code> must be a named list that sets the values of the
+elements:</p>
 <ul>
-<li><p><code>Lambda = c(...)</code></p></li>
-<li><p><code>season = function(t){...}</code></p></li>
-<li><p><code>trend = function(t){...}</code></p></li>
+<li><p><code>Lambda = c(...)</code> is the</p></li>
+<li><p><code>F_season = function(t){...}</code></p></li>
+<li><p><code>F_trend = function(t){...}</code></p></li>
 </ul>
 </li>
 <li>
@@ -214,27 +207,31 @@ mosquito module is setup by <code>create_MYZpar_trivial.</code> The
 values will return either <code>F_fqZ</code> or <code>F_eggs</code></p>
 <ul>
 <li>
+<p>Both <code>F_fqZ</code> and <code>F_eggs</code> use the same
+seasonality and trend functions:</p>
+<ul>
+<li><p><code>F_season = function(t){...}</code></p></li>
+<li><p><code>F_trend = function(t){...}</code></p></li>
+</ul>
+</li>
+<li>
 <p>the function <code><a href="../reference/F_fqZ.html">F_fqZ()</a></code> returns
-<code>f*q*Z*season(t)*trend(t)</code>. To configure,
+<code>f*q*Z*F_season(t)*F_trend(t)</code>. To configure,
 <code>MYZopts</code> should be a named list that sets the values of the
 elements:</p>
 <ul>
 <li><p><code>f = c(...)</code></p></li>
 <li><p><code>q = c(...)</code></p></li>
 <li><p><code>Z = c(...)</code></p></li>
-<li><p><code>season = function(t){...}</code></p></li>
-<li><p><code>trend = function(t){...}</code></p></li>
 </ul>
 </li>
 <li>
 <p>the function <code><a href="../reference/F_eggs.html">F_eggs()</a></code> returns
-<code>eggs*season(t)*trend(t)</code>; to override the defaults,
+<code>eggs*F_season(t)*F_trend(t)</code>; to override the defaults,
 <code>MYZopts</code> must be a named list that sets the values of the
 elements:</p>
 <ul>
-<li><p><code>eggs = c(...)</code></p></li>
-<li><p><code>season = function(t){...}</code></p></li>
-<li><p><code>trend = function(t){...}</code></p></li>
+<li><code>eggs = c(...)</code></li>
 </ul>
 </li>
 </ul>
@@ -244,7 +241,7 @@ elements:</p>
 for human / host infection and immunity is set up by
 <code>create_Xpar_trivial.</code> <code>F_X</code> calls
 <code>F_H</code> and then returns
-<code>H*kappa*season(t)*trend(t)</code></p>
+<code>H*kappa*F_season(t)*F_trend(t)</code></p>
 <ul>
 <li><p><code>F_H</code> is configured in <code>xds_setup</code> by
 passing <code>HPop = ...</code></p></li>
@@ -254,8 +251,8 @@ list that sets the values of the elements. The values of
 <code>F_X</code> should be in the interval <span class="math inline">\([0,H]:\)</span></p>
 <ul>
 <li><p><code>kappa = c(...)</code></p></li>
-<li><p><code>season = function(t){...}</code></p></li>
-<li><p><code>trend = function(t){...}</code></p></li>
+<li><p><code>F_season = function(t){...}</code></p></li>
+<li><p><code>F_trend = function(t){...}</code></p></li>
 </ul>
 </li>
 </ul>
@@ -269,11 +266,11 @@ infectiousness:</p>
 <ul>
 <li>
 <code>Lo</code> configures the adult mosquito emergence rate to rise
-initially, but then to decline with a seasonal signal:</li>
+initially, but then to decline with a F_seasonal signal:</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>season <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="va">t</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span><span class="op">}</span>, </span>
-<span>          trend <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">t</span><span class="op">/</span><span class="fl">250</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">t</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span><span class="op">}</span>, </span>
+<code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>F_season <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="va">t</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span><span class="op">}</span>, </span>
+<span>          F_trend <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">t</span><span class="op">/</span><span class="fl">250</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">t</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span><span class="op">}</span>, </span>
 <span>          Lambda <span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
@@ -282,7 +279,7 @@ over time.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">0.8</span>, </span>
-<span>          trend <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">t</span><span class="op">/</span><span class="fl">500</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">10</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">t</span><span class="op">/</span><span class="fl">500</span><span class="op">)</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<span>          F_trend <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">t</span><span class="op">/</span><span class="fl">500</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">10</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">t</span><span class="op">/</span><span class="fl">500</span><span class="op">)</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rm</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="va">Xo</span>, HPop<span class="op">=</span><span class="fl">10</span>, </span>
 <span>               Lname <span class="op">=</span> <span class="st">"trivial"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span><span class="op">)</span></span>
@@ -291,7 +288,7 @@ over time.</li>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">rm</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">rm</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">rm</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<p><img src="TraceFunctions_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
+<p><img src="TraceFunctions_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
 </div>
   </div>
 

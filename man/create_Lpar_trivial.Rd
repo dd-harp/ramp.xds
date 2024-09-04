@@ -8,8 +8,8 @@ create_Lpar_trivial(
   nHabitats,
   Lopts = list(),
   Lambda = 1000,
-  season = F_flat,
-  trend = F_flat
+  F_season = F_flat,
+  F_trend = F_flat
 )
 }
 \arguments{
@@ -19,9 +19,9 @@ create_Lpar_trivial(
 
 \item{Lambda}{vector of mean emergence rates from each aquatic habitat}
 
-\item{season}{a function that gives a seasonal pattern}
+\item{F_season}{a function that gives a F_seasonal pattern}
 
-\item{trend}{a function that returns a temporal trend}
+\item{F_trend}{a function that returns a temporal F_trend}
 }
 \value{
 none

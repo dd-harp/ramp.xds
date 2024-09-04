@@ -221,23 +221,26 @@ itn_mod = setup_itn_lemenach(itn_mod, F_phi=ITN_cov)
 xde_solve(itn_mod, 1830, dt=15) -> itn_mod
 ```
 
-```{r, fig.height=8, fig.width=8}
-par(mfrow = c(3,3))
-with(itn_mod$outputs,{
-  with(itn_mod$outputs$orbits$MYZ[[1]],{
-    plot(time, Z[,1], type = "l")
-    plot(time, Z[,2], type = "l")
-    plot(time, Z[,3], type = "l")
-  })
-  with(itn_mod$outputs$orbits$X[[1]],{
+```{r, fig.height=7, fig.width=6}
+par(mfrow = c(2,1))
+require(viridisLite)
+xds_plot_Y(itn_mod, clrs=turbo(3), llty=2)
+xds_plot_Z(itn_mod, clrs=turbo(3), add=T)
+xds_plot_aEIR(itn_mod)
+```
+
+```{r, fig.height=5, fig.width=8}
+par(mfrow = c(2,3))
+
+with(itn_mod$outputs$orbits$XH[[1]],{
     plot(time, I[,1], type = "l")
     plot(time, I[,2], type = "l")
     plot(time, I[,3], type = "l")
-  })
-  with(itn_mod$outputs$terms,{
+})
+  
+with(itn_mod$outputs$terms,{
     plot(time, EIR[,1], type = "l")
     plot(time, EIR[,2], type = "l")
     plot(time, EIR[,3], type = "l")
   })
-})
 ```

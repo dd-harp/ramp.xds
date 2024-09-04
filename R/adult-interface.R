@@ -13,26 +13,6 @@ dMYZdt <- function(t, y, pars, s) {
   UseMethod("dMYZdt", pars$MYZpar[[s]])
 }
 
-#' @title Compute steady states for \eqn{\cal MYZ} models
-#' @description This method dispatches on the type of `MYZpar`.
-#' @param Lambda the daily emergence rate of adult mosquitoes
-#' @param kappa net infectiousness
-#' @param MYZpar a list that defines an adult model
-#' @return none
-#' @export
-xde_steady_state_MYZ = function(Lambda, kappa, MYZpar){
-  UseMethod("xde_steady_state_MYZ", MYZpar)
-}
-
-#' @title Compute the steady states as a function of the daily EIR
-#' @description This method dispatches on the type of `MYZpar`.
-#' @param Lambda the daily emergence rate of adult mosquitoes
-#' @param MYZpar a list that defines an adult model
-#' @return none
-#' @export
-xde_steady_state_M = function(Lambda, MYZpar){
-  UseMethod("xde_steady_state_M", MYZpar)
-}
 
 #' @title A function to set up adult mosquito models
 #' @description This method dispatches on `MYZname`.
@@ -229,4 +209,25 @@ get_g = function(pars, s=1){
 #' @export
 get_sigma = function(pars, s=1){
   UseMethod("get_sigma", pars$MYZpar[[s]]$baseline)
+}
+
+#' @title Compute steady states for \eqn{\cal MYZ} models
+#' @description This method dispatches on the type of `MYZpar`.
+#' @param Lambda the daily emergence rate of adult mosquitoes
+#' @param kappa net infectiousness
+#' @param MYZpar a list that defines an adult model
+#' @return none
+#' @export
+xde_steady_state_MYZ = function(Lambda, kappa, MYZpar){
+  UseMethod("xde_steady_state_MYZ", MYZpar)
+}
+
+#' @title Compute the steady states as a function of the daily EIR
+#' @description This method dispatches on the type of `MYZpar`.
+#' @param Lambda the daily emergence rate of adult mosquitoes
+#' @param MYZpar a list that defines an adult model
+#' @return none
+#' @export
+xde_steady_state_M = function(Lambda, MYZpar){
+  UseMethod("xde_steady_state_M", MYZpar)
 }

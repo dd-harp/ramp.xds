@@ -166,7 +166,7 @@ create_Linits_basicL = function(nHabitats, Lopts=list(), L=1){with(Lopts,{
 #' @title Parse the variable names for the basicL model
 #' @description Implements [parse_Lorbits] for basicL competition model.
 #' @inheritParams parse_Lorbits
-#' @return [list]
+#' @return a parsed [list]; the variables are attached by name
 #' @export
 parse_Lorbits.basicL <- function(outputs, pars, s) {
   L = outputs[,pars$ix$L[[s]]$L_ix]

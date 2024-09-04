@@ -59,7 +59,7 @@
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
-      <a href="../articles/modularity.html">Modular Forms for Disease Dynamics</a>
+      <a href="../articles/modular_forms.html">Modular Forms for Disease Dynamics</a>
     </li>
     <li>
       <a href="../articles/ex_534.html">5-3-4 Spatial Example</a>
@@ -71,19 +71,10 @@
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
     </li>
     <li>
-      <a href="../articles/Contributing.html">Contributing</a>
-    </li>
-    <li>
       <a href="../articles/heterogeneous_transmission.html">Heterogeneous Transmission</a>
     </li>
     <li>
-      <a href="../articles/heterogeneous_biting.html">Heterogeneous Biting</a>
-    </li>
-    <li>
-      <a href="../articles/heterogeneous_mixing.html">Heterogeneous Mixing</a>
-    </li>
-    <li>
-      <a href="../articles/environmental_heterogeneity.html">Environmental Heterogeneity</a>
+      <a href="../articles/Contributing.html">Contributing</a>
     </li>
   </ul>
 </li>
@@ -116,7 +107,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -359,25 +350,29 @@ value.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">itn_mod</span>, <span class="fl">1830</span>, dt<span class="op">=</span><span class="fl">15</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">itn_mod</span></span></code></pre></div>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">outputs</span>,<span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">MYZ</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,<span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">Z</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">Z</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">Z</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">X</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,<span class="op">{</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridisLite/" class="external-link">viridisLite</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: viridisLite</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">itn_mod</span>, clrs<span class="op">=</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, llty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">itn_mod</span>, clrs<span class="op">=</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_aEIR.html">xds_plot_aEIR</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">)</span></span></code></pre></div>
+<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-22-1.png" width="576"></p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">XH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,<span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">I</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">I</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">I</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">terms</span>,<span class="op">{</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">terms</span>,<span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">EIR</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">EIR</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">EIR</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-22-1.png" width="768"></p>
+<span>  <span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-23-1.png" width="768"></p>
 </div>
   </div>
 

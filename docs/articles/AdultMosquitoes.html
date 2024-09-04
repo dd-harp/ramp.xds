@@ -59,7 +59,7 @@
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
-      <a href="../articles/modularity.html">Modular Forms for Disease Dynamics</a>
+      <a href="../articles/modular_forms.html">Modular Forms for Disease Dynamics</a>
     </li>
     <li>
       <a href="../articles/ex_534.html">5-3-4 Spatial Example</a>
@@ -71,19 +71,10 @@
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
     </li>
     <li>
-      <a href="../articles/Contributing.html">Contributing</a>
-    </li>
-    <li>
       <a href="../articles/heterogeneous_transmission.html">Heterogeneous Transmission</a>
     </li>
     <li>
-      <a href="../articles/heterogeneous_biting.html">Heterogeneous Biting</a>
-    </li>
-    <li>
-      <a href="../articles/heterogeneous_mixing.html">Heterogeneous Mixing</a>
-    </li>
-    <li>
-      <a href="../articles/environmental_heterogeneity.html">Environmental Heterogeneity</a>
+      <a href="../articles/Contributing.html">Contributing</a>
     </li>
   </ul>
 </li>
@@ -116,7 +107,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -182,9 +173,31 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridisLite/" class="external-link">viridisLite</a></span><span class="op">)</span></span></code></pre></div>
 <p>Models for adult mosquito ecology, behavior, and infection dynamics
-pose some problems for their <em>extensibility.</em> The models in
-<strong><code>ramp.xds</code></strong> were included for several
-reasons:</p>
+in <strong><code>ramp.xds</code></strong> are all variants of basic
+models for mosquito infection dynamics. <a href="https://dd-harp.github.io/ramp.library/" class="external-link"><strong><code>ramp.library</code></strong></a>
+includes an expanded set of models for adult mosquitoes, including some
+behavioral state models (see <a href="https://dd-harp.github.io/ramp.library/articles/MYZ-Overview.html" class="external-link">MYZ-Overview</a>).
+The dynamical terms rquired by <span class="math inline">\(\cal
+MYZ\)</span> models are:</p>
+<ul>
+<li><p><code>Lambda</code> or <span class="math inline">\(\Lambda\)</span> - the emergence rates of adult
+mosquitoes in the patches</p></li>
+<li><p><code>kappa</code> or <span class="math inline">\(\kappa\)</span>
+- net infectiousness (NI), the probability a mosquito becomes infected
+after blood feeding on a human. The dynamical terms output by <span class="math inline">\(\cal MYZ\)</span> models are:</p></li>
+<li><p><code>F_fqZ</code> outputs the number of bites by infectious
+mosquitoes, per patch, per day</p></li>
+<li><p><code>F_fqM</code> outputs the number of bites by mosquitoes, per
+patch, per day</p></li>
+<li><p><code>F_eggs</code> outputs the number of eggs laid by
+mosquitoes, per patch, per day</p></li>
+</ul>
+<p>In this vignette, we discuss the challenge of <em>extensibility,</em>
+in particular, the challenges of modeling malaria transmission by
+mosquitoes as a <em>changing baseline</em> that has been modified by
+<em>vector control.</em></p>
+<p>The models in <strong><code>ramp.xds</code></strong> were included
+for several reasons:</p>
 <ul>
 <li><p>They serve as an important set of models to test the
 software;</p></li>
@@ -195,30 +208,45 @@ Complexity</a>).</p></li>
 <div class="section level2">
 <h2 id="basic-models">Basic Models<a class="anchor" aria-label="anchor" href="#basic-models"></a>
 </h2>
-<p>The basic mosquito models in <strong><code>ramp.xds</code></strong>
-are variants of George Macdonald mathematical models, developed with
-help from P. Armitage. The variables for all the models in
-<strong><code>ramp.xds</code></strong> are mosquito densities, and the
-default model is from Aron &amp; May, 1982.</p>
+<p>These models all use a common set of parameters:</p>
+<ul>
+<li><p><span class="math inline">\(f\)</span> the patch-specific overall
+feeding rates</p></li>
+<li><p><span class="math inline">\(q\)</span> the patch-specific human
+fraction</p></li>
+<li><p><span class="math inline">\(g\)</span> the patch-specific
+mortality rate</p></li>
+<li><p><span class="math inline">\(\sigma\)</span> the patch-specific
+emigration rate</p></li>
+<li><p><span class="math inline">\(\mu\)</span> patch-specific mortality
+associated with emigration</p></li>
+<li><p><span class="math inline">\(\nu\)</span> patch-specific
+egg-laying rates</p></li>
+<li><p><span class="math inline">\(\cal K\)</span> a dispersal
+matrix</p></li>
+</ul>
 <p><strong><code>ramp.xds</code></strong> there are several versions of
 basic models for mosquito infection dynamics. These models make similar
 assumptions about mosquito ecology and infection dynamics. (The
 equations are in the documentation for The four models are</p>
 <ul>
 <li>
-<strong><code>basicM</code></strong> - see [dMYZdt.basicM] does not
-include any infection dynamics.</li>
+<strong><code>basicM</code></strong> - no infection dynamics (see <a href="https://dd-harp.github.io/ramp.xds/reference/dMYZdt.basicM.html">dMYZdt.basicM</a>)</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">basicM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"basicM"</span>, Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span>, Y<span class="op">=</span><span class="fl">0</span>, Z<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">basicM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>, </span>
+<span>                    MYZname <span class="op">=</span> <span class="st">"basicM"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">basicM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">basicM</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <strong><code>si</code></strong> - A standard SI compartmental model
-for infection, see [dMYZdt.si].</li>
+for infection, see <a href="https://dd-harp.github.io/ramp.xds/reference/dMYZdt.si.html">dMYZdt.si</a>.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">si</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"si"</span>, Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span>, Y<span class="op">=</span><span class="fl">0</span>, Z<span class="op">=</span><span class="fl">0</span><span class="op">)</span>, MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Y<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">si</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>, </span>
+<span>                MYZname <span class="op">=</span> <span class="st">"si"</span>, MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Y<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">si</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">si</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
@@ -226,7 +254,9 @@ for infection, see [dMYZdt.si].</li>
 model, see [dMYZdt.sei]</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sei</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"sei"</span>, Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>, MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Y<span class="op">=</span><span class="fl">0</span>, Z<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sei</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>, </span>
+<span>                 MYZname <span class="op">=</span> <span class="st">"sei"</span>, MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Y<span class="op">=</span><span class="fl">0</span>, Z<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">sei</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">sei</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
@@ -234,7 +264,9 @@ model, see [dMYZdt.sei]</li>
 (1982), see [dMYZdt.RM]</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">RM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"RM"</span>, Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>, MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Y<span class="op">=</span><span class="fl">0</span>, Z<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">RM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>,</span>
+<span>                MYZname <span class="op">=</span> <span class="st">"RM"</span>, MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Y<span class="op">=</span><span class="fl">0</span>, Z<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">RM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">RM</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="ecology">Ecology<a class="anchor" aria-label="anchor" href="#ecology"></a>
@@ -274,7 +306,7 @@ equation has a steady state:</p>
 <span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">si</span>, add<span class="op">=</span><span class="cn">TRUE</span>, clrs<span class="op">=</span><span class="st">"darkred"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">sei</span>, add<span class="op">=</span><span class="cn">TRUE</span>, clrs <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">RM</span>, add<span class="op">=</span><span class="cn">TRUE</span>, clrs <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-6-1.png" width="480"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
 </div>
 <div class="section level3">
 <h3 id="infection">Infection<a class="anchor" aria-label="anchor" href="#infection"></a>
@@ -295,7 +327,7 @@ are infected with parasites, and its dynamics are described by:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">si</span>, llty<span class="op">=</span><span class="fl">1</span>, clrs<span class="op">=</span><span class="st">"darkred"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">sei</span>, add<span class="op">=</span><span class="cn">TRUE</span>, llty<span class="op">=</span><span class="fl">2</span>, clrs <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">RM</span>, add<span class="op">=</span><span class="cn">TRUE</span>, llty<span class="op">=</span><span class="fl">3</span>, clrs <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
 <p>If <span class="math inline">\(M\)</span> and <span class="math inline">\(\kappa\)</span> have reached the steady state,
 then the fraction of infected mosquitoes, <span class="math inline">\(y=Y/M\)</span> is given by:</p>
 <p><span class="math display">\[y =
@@ -341,13 +373,13 @@ Z\]</span></p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">sei</span>, llty<span class="op">=</span><span class="fl">1</span>, clrs<span class="op">=</span><span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">si</span>, add<span class="op">=</span><span class="cn">TRUE</span>, clrs <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">RM</span>, add<span class="op">=</span><span class="cn">TRUE</span>, clrs <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">sei</span>, clrs<span class="op">=</span><span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">RM</span>,  add<span class="op">=</span><span class="cn">T</span>, clrs <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">sei</span>, add<span class="op">=</span><span class="cn">T</span>, clrs<span class="op">=</span><span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z_fracs.html">xds_plot_Z_fracs</a></span><span class="op">(</span><span class="va">si</span>, add<span class="op">=</span><span class="cn">T</span>,  clrs <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-10-1.png" width="480"></p>
 <p>This is equivalent to Macdonald’s formula.</p>
 <p>In <strong><code>ramp.xds</code></strong> this set of equations is
 implemented. This sets up and solves a model with <span class="math inline">\(\kappa\)</span> and <span class="math inline">\(\Lambda\)</span> passed as constant values, and a
@@ -359,7 +391,7 @@ human population density of <span class="math inline">\(H=10.\)</span></p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">rm</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">rm</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">rm</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-11-1.png" width="480"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-12-1.png" width="480"></p>
 </div>
 <div class="section level3">
 <h3 id="macdonalds-formula">Macdonald’s Formula<a class="anchor" aria-label="anchor" href="#macdonalds-formula"></a>
@@ -373,11 +405,12 @@ p^n \frac{ax}{ax - \log_{e}p}\]</span></p>
 <code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>season <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="va">t</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span><span class="op">}</span>, </span>
 <span>          trend <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">t</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span><span class="op">}</span>, </span>
 <span>          Lambda <span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
-<span><span class="va">rm</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span>, HPop<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">rm</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span>, HPop<span class="op">=</span><span class="fl">10</span>,</span>
+<span>               Lname <span class="op">=</span> <span class="st">"trivial"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span><span class="op">)</span></span>
 <span><span class="va">rm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">rm</span>, <span class="fl">3680</span>, dt<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">rm</span><span class="op">)</span></span></code></pre></div>
-<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-13-1.png" width="576"></p>
+<p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-14-1.png" width="576"></p>
 </div>
 </div>
 <div class="section level2">

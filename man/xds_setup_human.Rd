@@ -5,9 +5,10 @@
 \title{Make an \strong{\code{xds}} Object to Study Human / Host Epidemiology}
 \usage{
 xds_setup_human(
+  Xname = "SIS",
+  Xopts = list(),
   xds = "xde",
   dlay = "ode",
-  Xname = "SIS",
   nPatches = 1,
   residence = 1,
   HPop = 1000,
@@ -15,17 +16,18 @@ xds_setup_human(
   searchB = 1,
   TimeSpent = list(),
   MYZopts = list(),
-  Xopts = list(),
   BFopts = list(),
   model_name = "unnamed"
 )
 }
 \arguments{
+\item{Xname}{a character string defining a X model}
+
+\item{Xopts}{list to configure the X model}
+
 \item{xds}{is \code{xde}/\code{dts} for differential / difference equations'}
 
 \item{dlay}{either "ode" or "dde"}
-
-\item{Xname}{a character string defining a X model}
 
 \item{nPatches}{the number of patches}
 
@@ -40,8 +42,6 @@ xds_setup_human(
 \item{TimeSpent}{either a TimeSpent matrix or a string to call a function that sets it up}
 
 \item{MYZopts}{list to configure the MYZ model}
-
-\item{Xopts}{list to configure the X model}
 
 \item{BFopts}{list to configure the blood feeding model}
 

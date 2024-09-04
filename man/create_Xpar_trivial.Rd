@@ -9,8 +9,8 @@ create_Xpar_trivial(
   Xopts,
   kappa = 0.1,
   HPop = 1,
-  season = F_flat,
-  trend = F_flat
+  F_season = F_flat,
+  F_trend = F_flat
 )
 }
 \arguments{
@@ -22,9 +22,9 @@ create_Xpar_trivial(
 
 \item{HPop}{initial human population density}
 
-\item{season}{a seasonality function}
+\item{F_season}{a F_seasonality function}
 
-\item{trend}{a trend function}
+\item{F_trend}{a F_trend function}
 }
 \value{
 a \link{list}

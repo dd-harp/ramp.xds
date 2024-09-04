@@ -14,7 +14,7 @@
 \item{s}{the species index}
 }
 \value{
-\link{list}
+a parsed \link{list}; the variables are attached by name
 }
 \description{
 Implements \link{parse_Lorbits} for basicL competition model.
