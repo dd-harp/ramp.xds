@@ -4,10 +4,10 @@
 \alias{xds_lines_PR}
 \title{Add lines for the prevalence / parasite rate (PR) from a model of human infection and immunity}
 \usage{
-xds_lines_PR(tm, PR, nStrata, clrs = "black", llty = 1)
+xds_lines_PR(times, PR, nStrata, clrs = "black", llty = 1)
 }
 \arguments{
-\item{tm}{the time}
+\item{times}{the time}
 
 \item{PR}{the computed parasite rate}
 

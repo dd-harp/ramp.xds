@@ -6,52 +6,50 @@
 \usage{
 xds_setup(
   xds = "xde",
-  dlay = "ode",
-  MYZname = "RM",
   Xname = "SIS",
+  Xopts = list(),
+  MYZname = "RM",
+  MYZopts = list(),
   Lname = "trivial",
+  Lopts = list(),
   nPatches = 1,
-  membership = 1,
-  residence = 1,
   HPop = 1000,
-  Xday = 1,
-  MYZday = 1,
-  Lday = 1,
+  residence = 1,
+  membership = 1,
   searchB = 1,
   TimeSpent = list(),
   calK = list(),
   searchQ = 1,
-  MYZopts = list(),
-  Xopts = list(),
-  Lopts = list(),
+  Xday = 1,
+  MYZday = 1,
+  Lday = 1,
   BFopts = list(),
+  dlay = "ode",
   model_name = "unnamed"
 )
 }
 \arguments{
 \item{xds}{is \code{xde}/\code{dts} for differential / difference equations}
 
-\item{dlay}{is either "ode" or "dde"}
+\item{Xname}{a character string defining a \eqn{\cal X} model}
+
+\item{Xopts}{a list to configure the X model}
 
 \item{MYZname}{a character string defining a \eqn{\cal MYZ} model}
 
-\item{Xname}{a character string defining a \eqn{\cal X} model}
+\item{MYZopts}{a list to configure the MYZ model}
 
 \item{Lname}{a character string defining a \eqn{\cal L} model}
 
+\item{Lopts}{a list to configure the L model}
+
 \item{nPatches}{is the number of patches}
-
-\item{membership}{is a vector that describes the patch where each aquatic habitat is found}
-
-\item{residence}{is a vector that describes the patch where each human stratum lives}
 
 \item{HPop}{is the number of humans in each patch}
 
-\item{Xday}{is the run-time time step for X component (in days): integer or 1/integer}
+\item{residence}{is a vector that describes the patch where each human stratum lives}
 
-\item{MYZday}{is the run-time time step for MYZ component (in days): integer or 1/integer}
-
-\item{Lday}{is the run-time time step for L component (in days): integer or 1/integer}
+\item{membership}{is a vector that describes the patch where each aquatic habitat is found}
 
 \item{searchB}{is a vector of search weights for blood feeding}
 
@@ -61,13 +59,15 @@ xds_setup(
 
 \item{searchQ}{is a vector of search weights for egg laying}
 
-\item{MYZopts}{a list to configure the MYZ model}
+\item{Xday}{is the run-time time step for X component (in days): integer or 1/integer}
 
-\item{Xopts}{a list to configure the X model}
+\item{MYZday}{is the run-time time step for MYZ component (in days): integer or 1/integer}
 
-\item{Lopts}{a list to configure the L model}
+\item{Lday}{is the run-time time step for L component (in days): integer or 1/integer}
 
 \item{BFopts}{a list to configure the blood feeding model}
+
+\item{dlay}{is either "ode" or "dde"}
 
 \item{model_name}{is a name for the model (arbitrary)}
 }
@@ -75,7 +75,7 @@ xds_setup(
 an \strong{\code{xds}} object
 }
 \description{
-Make a fully defined \strong{\code{xds}} object:
+Make an \strong{\code{xds}} \emph{model object}:
 \itemize{
 \item Define the dynamical components:
 \itemize{
@@ -86,8 +86,8 @@ Make a fully defined \strong{\code{xds}} object:
 \item Define basic structural parameters for a single host and vector population:
 \itemize{
 \item \eqn{n_p} or \code{nPatches} - the number of patches
-\item \eqn{n_q} or \code{nHabitats} - the number and locations of aquatic habitats
-\item \eqn{n_h} or \code{nStrata} - the number of human / host population strata and basic demographic information
+\item \eqn{n_q} or \code{nHabitats <- length(membership)} - the number and locations of aquatic habitats
+\item \eqn{n_h} or \code{nStrata <- length(residence)} - the number of human / host population strata and basic demographic information
 }
 \item Configure some of the basic elements
 \itemize{

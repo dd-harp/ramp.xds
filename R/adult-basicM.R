@@ -66,15 +66,16 @@ Update_MYZt.basicM <- function(t, y, pars, s) {
 #' @export
 make_MYZpar.basicM = function(MYZname, pars, s, MYZopts=list()){
   setup_as = with(MYZopts, ifelse(exists("setup_as"), setup_as, "RM"))
-  if(setup_as == "GeRM"){
-    MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
-  } else {
-    MYZpar <- create_MYZpar_RM(pars$nPatches, MYZopts)
-  }
-  class(MYZpar) <- 'basicM'
-  pars$MYZpar[[s]] = MYZpar
-  return(pars)
-}
+  with(MYZopts,{
+    if(setup_as == "GeRM"){
+      MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
+    } else {
+      MYZpar <- create_MYZpar_RM(pars$nPatches, MYZopts)
+    }
+    class(MYZpar) <- 'basicM'
+    pars$MYZpar[[s]] = MYZpar
+    return(pars)
+})}
 
 
 

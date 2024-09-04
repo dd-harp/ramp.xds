@@ -12,23 +12,17 @@ navbar:
     - text: Understanding ramp.xds
       href: articles/Understanding_ramp.xds.html
     - text: Modular Forms for Disease Dynamics
-      href: articles/modularity.html
+      href: articles/modular_forms.html
     - text: 5-3-4 Spatial Example
       href: articles/ex_534.html
     - text: Spatial Metrics
       href: articles/spat_metric.html
     - text: Vector Control Example
       href: articles/vc_lemenach.html
-    - text: Contributing
-      href: articles/Contributing.html
     - text: Heterogeneous Transmission
       href: articles/heterogeneous_transmission.html
-    - text: Heterogeneous Biting
-      href: articles/heterogeneous_biting.html
-    - text: Heterogeneous Mixing
-      href: articles/heterogeneous_mixing.html
-    - text: Environmental Heterogeneity
-      href: articles/environmental_heterogeneity.html
+    - text: Contributing
+      href: articles/Contributing.html
   - text: Mosquito - Adult
     menu:
     - text: Adult Mosquitoes
@@ -42,7 +36,7 @@ navbar:
   - text: Mosquito - Aquatic
     menu:
     - text: Aquatic - Trivial (forced) model
-      href: articles/aqua_trivial.html
+      href: articles/aqua_trace.html
     - text: Basic Competition
       href: articles/aqua_basic.html
   - text: Human / Host
@@ -1030,9 +1024,8 @@ reference:
     Basic visualization of the transmission terms
   contents:
   - xds_plot_EIR
-  - xds_lines_EIR
   - xds_plot_aEIR
-  - xds_lines_aEIR
+  - xds_lines_EIR
   - xds_plot_PR
   - xds_lines_PR
 - title: Functions and Utilities

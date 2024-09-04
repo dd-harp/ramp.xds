@@ -59,7 +59,7 @@
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
-      <a href="../articles/modularity.html">Modular Forms for Disease Dynamics</a>
+      <a href="../articles/modular_forms.html">Modular Forms for Disease Dynamics</a>
     </li>
     <li>
       <a href="../articles/ex_534.html">5-3-4 Spatial Example</a>
@@ -71,19 +71,10 @@
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
     </li>
     <li>
-      <a href="../articles/Contributing.html">Contributing</a>
-    </li>
-    <li>
       <a href="../articles/heterogeneous_transmission.html">Heterogeneous Transmission</a>
     </li>
     <li>
-      <a href="../articles/heterogeneous_biting.html">Heterogeneous Biting</a>
-    </li>
-    <li>
-      <a href="../articles/heterogeneous_mixing.html">Heterogeneous Mixing</a>
-    </li>
-    <li>
-      <a href="../articles/environmental_heterogeneity.html">Environmental Heterogeneity</a>
+      <a href="../articles/Contributing.html">Contributing</a>
     </li>
   </ul>
 </li>
@@ -116,7 +107,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -178,24 +169,24 @@
 
     
     
-<p>A <strong>Modular Form</strong> for disease dynamics is a stylized
-way of writing the dynamical systems that emphasizes the modular
-structure of the process. A mathematical framework for building models
-of malaria dynamics and control (and other mosquito-borne pathogens) was
-described in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" target="_blank" class="external-link">Spatial Dynamics of Malaria Transmission</a>, and the
-framework was implemented in <code>ramp.xds.</code> The forms we
-describe here rewrite models so that they closely resemble their
-implementation in <code>ramp.xds</code>, which makes it possible to
-relate written equations and computed code.</p>
-<p>For an extended discussion of modularity, see the closely related
-vignettes <a href="Understanding_ramp.xds.html" target="_blank">Understanding ramp.xds</a> and <a href="modularity.html">Generalized Modularity and Extensibility</a></p>
+<p>A <strong>modular form</strong> is a stylized way of writing down a
+dynamical systems that emphasizes the structure of the underlying
+process. The modular structure of <strong><code>ramp.xds</code></strong>
+can be understood through the use of these forms. The forms we describe
+here rewrite models so that they closely resemble their implementation
+in <code>ramp.xds</code>, which makes it possible to relate written
+equations and computed code.</p>
 <div class="section level2">
 <h2 id="a-standard-form">A Standard Form<a class="anchor" aria-label="anchor" href="#a-standard-form"></a>
 </h2>
+<p>A mathematical framework for building modular models of malaria
+dynamics and control (and other mosquito-borne pathogens) was described
+in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" target="_blank" class="external-link">Spatial Dynamics of Malaria Transmission</a>, and that
+framework has been implemented in <code>ramp.xds.</code></p>
 <p>There is no <em>standard form</em> for writing down systems of
-differential equations: here, <em>a standard form</em> is any way of
-writing down a system of equations that does not emphasize the
-modularity, or <em>not a modular form.</em></p>
+differential equations, but many forms are used, depending on context.
+For comparison, we writing down a system of equations that does not
+emphasize the modularity, or <em>not a modular form.</em></p>
 <p>To illustrate the modular form, we start with the
 <em>Ross-Macdonald</em>-style model in Box 1.</p>
 <hr>
@@ -242,14 +233,14 @@ is epidemiologically meaningful – it is called the force of infection
 <span class="math display">\[h=b e^{-gn}fq \frac YH,\]</span></p>
 <p>and now we can rewrite the equation</p>
 <p><span class="math display">\[
-dI/dt = h H (H-I) - r I
+dI/dt = h  (H-I) - r I
 \]</span></p>
 <p>Next, we isolate the equation describing mosquito infection dynamics,
 we note that it depends on a term that we will call the net
 infectiousness (NI).</p>
-<p><span class="math display">\[\kappa = c \frac IH\]</span></p>
-<p>The term <span class="math inline">\(c I\)</span> is the density of
-infected humans, weighted by their infectiousness.</p>
+<p><span class="math display">\[\kappa = \frac XH\]</span></p>
+<p>The term <span class="math display">\[ X = c I\]</span> is the
+density of infected humans, weighted by their infectiousness.</p>
 <p>We note that <span class="math inline">\(fq\kappa\)</span> is the FoI
 for mosquito infections, and now we can rewrite the equation for
 mosquitoes:</p>

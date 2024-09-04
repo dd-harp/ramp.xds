@@ -5,26 +5,27 @@
 #' @inheritParams F_emerge
 #' @return a [numeric] vector of length `nHabitats`
 #' @export
-F_emerge.trivial <- function(t, y, pars, s) {
-  with(pars$Lpar[[s]], Lambda*season(t)*trend(t))
-}
+F_emerge.trivial <- function(t, y, pars, s) {with(pars$Lpar[[s]],{
+  emergents = Lambda*F_season(t)*F_trend(t)
+  return(emergents)
+})}
 
 #' @title Make parameters for trivial aquatic mosquito model
 #' @param nHabitats the number of habitats in the model
 #' @param Lopts a [list] that overwrites default values
 #' @param Lambda vector of mean emergence rates from each aquatic habitat
-#' @param season a function that gives a seasonal pattern
-#' @param trend a function that returns a temporal trend
+#' @param F_season a function that gives a F_seasonal pattern
+#' @param F_trend a function that returns a temporal F_trend
 #' @return none
 #' @export
 create_Lpar_trivial = function(nHabitats, Lopts=list(),
-                               Lambda=1000, season=F_flat, trend=F_flat){
+                               Lambda=1000, F_season=F_flat, F_trend=F_flat){
   with(Lopts,{
     Lpar = list()
     class(Lpar) <- "trivial"
     Lpar$Lambda = checkIt(Lambda, nHabitats)
-    Lpar$season = season
-    Lpar$trend = trend
+    Lpar$F_season = F_season
+    Lpar$F_trend = F_trend
     Lpar$baseline = "trivial"
     class(Lpar$baseline) = "trivial"
     return(Lpar)

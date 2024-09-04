@@ -59,7 +59,7 @@
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
-      <a href="../articles/modularity.html">Modular Forms for Disease Dynamics</a>
+      <a href="../articles/modular_forms.html">Modular Forms for Disease Dynamics</a>
     </li>
     <li>
       <a href="../articles/ex_534.html">5-3-4 Spatial Example</a>
@@ -71,19 +71,10 @@
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
     </li>
     <li>
-      <a href="../articles/Contributing.html">Contributing</a>
-    </li>
-    <li>
       <a href="../articles/heterogeneous_transmission.html">Heterogeneous Transmission</a>
     </li>
     <li>
-      <a href="../articles/heterogeneous_biting.html">Heterogeneous Biting</a>
-    </li>
-    <li>
-      <a href="../articles/heterogeneous_mixing.html">Heterogeneous Mixing</a>
-    </li>
-    <li>
-      <a href="../articles/environmental_heterogeneity.html">Environmental Heterogeneity</a>
+      <a href="../articles/Contributing.html">Contributing</a>
     </li>
   </ul>
 </li>
@@ -116,7 +107,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/aqua_trivial.html">Aquatic - Trivial (forced) model</a>
+      <a href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
     </li>
     <li>
       <a href="../articles/aqua_basic.html">Basic Competition</a>
@@ -227,7 +218,7 @@ After solving, the outputs are stored as <code>model$outputs</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "time"   "last_y" "orbits" "terms"  "deout"</span></span></code></pre>
-<p>Standard outputs are:</p>
+<p>The outputs from solving a system of equations include:</p>
 <ul>
 <li><p><code>time</code> – are the time points when the values of the
 dependent variables were evaluated</p></li>
@@ -268,6 +259,42 @@ standard outputs:</p>
 <strong>Figure 1:</strong> Plotting standard outputs
 </p>
 </div>
+</div>
+<div class="section level3">
+<h3 id="trivial-models-and-trace-functions">Trivial Models and Trace Functions<a class="anchor" aria-label="anchor" href="#trivial-models-and-trace-functions"></a>
+</h3>
+<p>The software was designed to be fully modular. A basic requirement
+for full modularity is that every dynamical component must include a
+<em>trace</em> module. In each <code>trace</code> module, no variables
+are defined, but the dynamical terms needed by related dynamical
+components include a fully configurable <em>trace</em> function. In
+above example, the <span class="math inline">\(\cal L\)</span> component
+was trivial, but we can create a new model by modifying the old one.
+First, we define <code>F_season</code> and the mean values of
+<code>Lambda</code></p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>       Lambda<span class="op">=</span><span class="fl">500</span>, </span>
+<span>       F_season <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="op">(</span><span class="va">t</span><span class="op">+</span><span class="fl">90</span><span class="op">)</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">model</span>, <span class="fl">1</span>, <span class="va">Lo</span><span class="op">)</span></span>
+<span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_to_inits.html">last_to_inits</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">model_1</span>, Tmax<span class="op">=</span><span class="fl">365</span><span class="op">*</span><span class="fl">3</span><span class="op">)</span> </span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_X.html">xds_plot_X</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="GettingStarted_files/figure-html/unnamed-chunk-12-1.png" alt="**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" width="768"><p class="caption">
+<strong>Figure 2:</strong> Outputs with Seasonal Forced Emergence using
+a Trace Function
+</p>
+</div>
+<p>For more information, see the vignette <a href="https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.html">Trace
+Functions</a></p>
 </div>
 <div class="section level3">
 <h3 id="model-building">Model Building<a class="anchor" aria-label="anchor" href="#model-building"></a>
@@ -413,10 +440,10 @@ To replace the default values at setup, a named list can be passed as
 be used instead of the defaults.</p></li>
 </ul>
 <p>Thu function call:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model1</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>returns the same values as the function call:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model2</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, MYZname <span class="op">=</span> <span class="st">"RM"</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Structural Parameters</strong> are also configured using
 <code>xde_setup.</code> In basic setup, users can configure a malaria
@@ -466,33 +493,52 @@ population strata.</p>
 </h3>
 <p><em><strong>NOTE:</strong> As demos for these advanced options get
 developed, we will add the links here.</em></p>
-<p><strong>Advanced Setup Options:</strong> During basic setup, most
-advanced options are not defined.</p>
+<p><strong>Advanced Setup Options:</strong> During basic setup, two
+advanced options can be configured, but most of the advanced options
+must be added after basic setup.</p>
 <ul>
+<li><p><strong>Spatial Heterogeneity</strong> –</p></li>
+<li><p><strong>Human Mobility</strong> –</p></li>
+<li>
+<p><strong>Malaria Importation</strong> includes <em>travel</em> and
+<em>visitors</em></p>
+<ul>
+<li><p><em>Travel Malaria</em> –In basic setup, travel malaria is set up
+to model exposure while traveling, but time spent traveling and the
+travel FoI are set to zero.</p></li>
+<li><p><em>Visiting</em> – In basic setup, visiting is set up but the
+availability of visitors is set to zero.</p></li>
+</ul>
+</li>
 <li><p><strong>Exposure</strong> – Since catch counts data for
 mosquitoes are usually well-described by the negative binomial
 distribution family, <strong><code>ramp.xds</code></strong> has
 implemented a step between the computation of the EIR and the FoI to
-model <em>environmental heterogeneity,</em> based on a probability
-distribution function describing the number of infective bites per
-person. By default, <code>xds_setup</code> configures a Poisson model,
-but this can be changed.</p></li>
-<li><p><strong>Human Demography</strong> – In basic setup, the human
+model <a href="https://dd-harp.github.io/ramp.xds/articles/heterogeneous_transmission.html#environmental-heterogeneity-in-exposure"><em>environmental
+heterogeneity</em></a> based on a probability distribution function
+describing the number of infective bites per person. By default,
+<code>xds_setup</code> configures a Poisson model, but this can be
+changed.</p></li>
+<li>
+<p><strong>Human Demography</strong> – In basic setup, the human
 demographic model is the <em>trivial</em> model, but it can be
-configured with births, deaths, and aging.</p></li>
-<li><p><strong>Travel Malaria</strong> – In basic setup, travel malaria
-is set up to model exposure while traveling, but time spent traveling
-and the travel FoI are set to zero.</p></li>
-<li><p><strong>Visiting</strong> – In basic setup, visiting is set up
-but the availability of visitors is set to zero.</p></li>
-<li><p><strong>Forcing</strong> – handles exogenous forcing by setting
-up the functions that compute <em>exogenous variables,</em> including
-weather and hydrology.</p></li>
-<li><p><strong>Control</strong> – handles malaria control and vector
-control.</p></li>
-<li><p><strong>Bionomics</strong> – handles functional responses to
-exogenous forcing variables and computes a
-<strong>baseline.</strong></p></li>
+configured to include</p>
+<ul>
+<li><p>Vital dynamics: births, deaths</p></li>
+<li><p>Migration</p></li>
+<li><p>Cohort dynamics and aging</p></li>
+<li><p>Pregnancy</p></li>
+</ul>
+</li>
+<li><p><strong>Forcing</strong> – set up exogenous forcing, including
+<em>exogenous variables</em> (<em>e.g.</em> weather and hydrology) and
+the <em>functional responses</em> to compute mosquito bionomic
+parameters</p></li>
+<li><p><strong>Vector Control</strong> – set up vector control,
+including</p></li>
+<li><p><strong>Health Systems</strong> – a variety of functions to
+handle surveillance and malaria control through health systems,
+including care seeking, mass vaccination, IPTp</p></li>
 <li><p><strong>Multiple Vector Species</strong> – Each vector species
 has spatial structure, but it is also possible to configure other vector
 species (or type).</p></li>

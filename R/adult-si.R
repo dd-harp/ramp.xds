@@ -7,10 +7,12 @@
 #' \deqn{
 #' \begin{array}{rr}
 #' dM/dt =& \Lambda &- \Omega \cdot M \\
-#' dY/dt =& f q \kappa (M-Y) &- \Omega \cdot Y
+#' dY/dt =& f q \kappa (M-Y) &- \Omega \cdot Y \\
 #' \end{array}.
 #' }
-#' The model assumes \eqn{Z = \Upsilon Y}
+#' and infectious mosquitoes are by the variable
+#' \deqn{Z = e^{-\Omega \tau} \cdot Y}
+#'
 #' @inheritParams dMYZdt
 #' @return a [numeric] vector
 #' @export

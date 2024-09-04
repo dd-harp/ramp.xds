@@ -53,7 +53,7 @@ Note that `model` was passed to `xde_solve,` and the return value replaces `mode
 names(model$outputs)
 ```
 
-Standard outputs are:
+The outputs from solving a system of equations include:
 
 + `time` -- are the time points when the values of the dependent variables were evaluated
 + `last_y` -- is the final state 
@@ -83,7 +83,37 @@ xds_plot_PR(model)
 xds_plot_EIR(model)
 ```
 
-## Model Building 
+## Trivial Models and Trace Functions
+
+The software was designed to be fully modular. A basic requirement for full modularity is that every dynamical component must include a *trace* module. In each `trace` module, no variables are defined, but  the dynamical terms needed by related dynamical components include a fully configurable *trace* function. In above example, the $\cal L$ component was trivial, but we can create a new model by modifying the old one. First, we define `F_season` and the mean values of `Lambda` 
+
+```{r}
+Lo = list(
+       Lambda=500, 
+       F_season = function(t){return(1+sin(2*pi*(t+90)/365))})
+```
+
+```{r}
+model_1 <- make_Lpar("trivial", model, 1, Lo)
+model_1 <- last_to_inits(model_1)
+```
+
+```{r}
+model_1 <- xde_solve(model_1, Tmax=365*3) 
+```
+
+```{r, fig.height=3.5, fig.width=8, fig.cap = "**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" }
+par(mfrow = c(1,2))
+xds_plot_X(model_1)
+xds_plot_M(model_1)
+xds_plot_Y(model_1, add=T)
+xds_plot_Z(model_1, add=T)
+```
+
+
+For more information, see the vignette [Trace Functions](https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.html)
+
+## Model Building
 
 From a design perspective, the setup interface can't possibly anticipate the needs of every end user. Instead, it has adopted a system for setting up models based on the principle of *scaling complexity:* the framework regards a subset of the universe of possible models as a nested, hierarchical set. In some limiting case, some complex model are equivalent to a simpler model. Rather than try to build one big supermodel, the framework envisions the software around *model families* developed at varying levels of complexity. 
 
@@ -177,25 +207,42 @@ model2 = xds_setup(Xname = "SIS", MYZname = "RM", Lname = "trivial")
 
 To learn more, we suggest taking a look at the [5-3-4 Vignette](https://dd-harp.github.io/ramp.xds/articles/ex_534.html), a model with 5 aquatic habitats, 3 patches, and 4 human population strata.  
 
+
 ## Advanced Setup 
 
 ***NOTE:**  As demos for these advanced options get developed, we will add the links here.* 
 
-**Advanced Setup Options:** During basic setup, most advanced options are not defined. 
+**Advanced Setup Options:** During basic setup, two advanced options can be configured, but most of the advanced options must be added after basic setup.  
 
-- **Exposure** -- Since catch counts data for mosquitoes are usually well-described by the negative binomial distribution family, **`ramp.xds`** has implemented a step between the computation of the EIR and the FoI to model *environmental heterogeneity,* based on a probability distribution function describing the number of infective bites per person. By default, `xds_setup` configures a Poisson model, but this can be changed. 
++ **Spatial Heterogeneity** -- 
 
-- **Human Demography** -- In basic setup, the human demographic model is the *trivial* model, but it can be configured with births, deaths, and aging.  
++ **Human Mobility** -- 
 
-- **Travel Malaria** -- In basic setup, travel malaria is set up to model exposure while traveling, but time spent traveling and the travel FoI are set to zero.  
+- **Malaria Importation** includes *travel* and *visitors*
 
-- **Visiting** -- In basic setup, visiting is set up but the availability of visitors is set to zero. 
+    - *Travel Malaria* --In basic setup, travel malaria is set up to model exposure while traveling, but time spent traveling and the travel FoI are set to zero. 
+    
+    - *Visiting* --  In basic setup, visiting is set up but the availability of visitors is set to zero.
+    
++ **Exposure** -- Since catch counts data for mosquitoes are usually well-described by the negative binomial distribution family, **`ramp.xds`** has implemented a step between the computation of the EIR and the FoI to model [*environmental heterogeneity*](https://dd-harp.github.io/ramp.xds/articles/heterogeneous_transmission.html#environmental-heterogeneity-in-exposure) based on a probability distribution function describing the number of infective bites per person. By default, `xds_setup` configures a Poisson model, but this can be changed. 
 
-- **Forcing** -- handles exogenous forcing by setting up the functions that compute *exogenous variables,* including weather and hydrology. 
++ **Human Demography** -- In basic setup, the human demographic model is the *trivial* model, but it can be configured to include
 
-- **Control** -- handles malaria control and vector control. 
+    - Vital dynamics: births, deaths
+    
+    + Migration 
+    
+    - Cohort dynamics and aging  
+    
+    - Pregnancy 
 
-- **Bionomics** -- handles functional responses to exogenous forcing variables and computes a **baseline.**
+
+
+- **Forcing** -- set up exogenous forcing, including *exogenous variables* (*e.g.* weather and hydrology) and the *functional responses* to compute mosquito bionomic parameters 
+
+- **Vector Control** -- set up vector control, including  
+
+- **Health Systems** -- a variety of functions to handle surveillance and malaria control through health systems, including care seeking, mass vaccination, IPTp
 
 - **Multiple Vector Species** -- Each vector species has spatial structure, but it is also possible to configure other vector species (or type). 
 

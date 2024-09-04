@@ -2,7 +2,7 @@
 
 #' @title Basic Setup: Make a Fully Defined **`xds`** Object
 #'
-#' @description Make a fully defined **`xds`** object:
+#' @description Make an **`xds`** *model object*:
 #'
 #' - Define the dynamical components:
 #'    - \eqn{\cal XH} - a model for human / host infection dynamics of class **`Xname`** with trivial demographics
@@ -10,8 +10,8 @@
 #'    - \eqn{\cal L} - a model for aquatic mosquito ecology of class **`Lname`**
 #' - Define basic structural parameters for a single host and vector population:
 #'    - \eqn{n_p} or `nPatches` - the number of patches
-#'    - \eqn{n_q} or `nHabitats` - the number and locations of aquatic habitats
-#'    - \eqn{n_h} or `nStrata` - the number of human / host population strata and basic demographic information
+#'    - \eqn{n_q} or `nHabitats <- length(membership)` - the number and locations of aquatic habitats
+#'    - \eqn{n_h} or `nStrata <- length(residence)` - the number of human / host population strata and basic demographic information
 #' - Configure some of the basic elements
 #'    - Search weights for human population strata
 #'    - Search weights for aquatic habitats
@@ -53,53 +53,48 @@
 #' - vector control, vaccines, or other mass
 #' @seealso [make_xds_template]
 #' @param xds is `xde`/`dts` for differential / difference equations
-#' @param dlay is either "ode" or "dde"
-#' @param MYZname a character string defining a \eqn{\cal MYZ} model
 #' @param Xname a character string defining a \eqn{\cal X} model
+#' @param Xopts a list to configure the X model
+#' @param MYZname a character string defining a \eqn{\cal MYZ} model
+#' @param MYZopts a list to configure the MYZ model
 #' @param Lname a character string defining a \eqn{\cal L} model
+#' @param Lopts a list to configure the L model
 #' @param nPatches is the number of patches
-#' @param membership is a vector that describes the patch where each aquatic habitat is found
-#' @param residence is a vector that describes the patch where each human stratum lives
 #' @param HPop is the number of humans in each patch
-#' @param Xday is the run-time time step for X component (in days): integer or 1/integer
-#' @param MYZday is the run-time time step for MYZ component (in days): integer or 1/integer
-#' @param Lday is the run-time time step for L component (in days): integer or 1/integer
+#' @param residence is a vector that describes the patch where each human stratum lives
+#' @param membership is a vector that describes the patch where each aquatic habitat is found
 #' @param searchB is a vector of search weights for blood feeding
 #' @param TimeSpent is either a TimeSpent matrix or a string to call a function that sets it up
 #' @param calK is either a calK matrix or a string that defines how to set it up
 #' @param searchQ is a vector of search weights for egg laying
-#' @param MYZopts a list to configure the MYZ model
-#' @param Xopts a list to configure the X model
-#' @param Lopts a list to configure the L model
+#' @param dlay is either "ode" or "dde"
+#' @param Xday is the run-time time step for X component (in days): integer or 1/integer
+#' @param MYZday is the run-time time step for MYZ component (in days): integer or 1/integer
+#' @param Lday is the run-time time step for L component (in days): integer or 1/integer
 #' @param BFopts a list to configure the blood feeding model
 #' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
 #' @export
-xds_setup = function(xds = 'xde', dlay = 'ode',
-                 ### Dynamical Components
-                     MYZname = "RM",
+xds_setup = function(xds = 'xde',
                      Xname = "SIS",
+                     Xopts = list(),
+                     MYZname = "RM",
+                     MYZopts = list(),
                      Lname = "trivial",
-                 ### Model Structure
+                     Lopts = list(),
                      nPatches = 1,
-                     membership=1,
-                     residence=1,
-                     HPop=1000,
-                 ### Runtime Time parameters
+                     HPop = 1000,
+                     residence = 1,
+                     membership = 1,
+                     searchB = 1,
+                     TimeSpent = list(),
+                     calK = list(),
+                     searchQ = 1,
                      Xday = 1,
                      MYZday = 1,
                      Lday = 1,
-                 ### Setup Parameters
-                     searchB = 1,
-                     TimeSpent = list(),
-                     calK    = list(),
-                     searchQ = 1,
-                 ### Options
-                     MYZopts = list(),
-                     Xopts = list(),
-                     Lopts = list(),
                      BFopts = list(),
-                 ### Name
+                     dlay = 'ode',
                      model_name = "unnamed"
 ){
   stopifnot(length(HPop) == length(residence))
@@ -326,9 +321,11 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 #' @param model_name a name for the model
 #' @return an **`xds`** object
 #' @export
-xds_setup_human = function(xds = 'xde', dlay = 'ode',
+xds_setup_human = function(Xname = "SIS",
+                           Xopts = list(),
+
+                           xds = 'xde', dlay = 'ode',
                            ### Dynamical Components
-                           Xname = "SIS",
                            ### Model Structure
                            nPatches=1,
                            residence=1,
@@ -339,7 +336,6 @@ xds_setup_human = function(xds = 'xde', dlay = 'ode',
                            TimeSpent = list(),
                            ### Options
                            MYZopts = list(),
-                           Xopts = list(),
                            BFopts = list(),
                            ### Name
                            model_name = "unnamed"

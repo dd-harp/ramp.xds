@@ -10,7 +10,7 @@ xds_plot_aEIR(
   clrs = "black",
   llty = 1,
   stable = FALSE,
-  add_axes = TRUE
+  add = FALSE
 )
 }
 \arguments{
@@ -22,9 +22,9 @@ xds_plot_aEIR(
 
 \item{llty}{an integer (or integers) to set the \code{lty} for plotting}
 
-\item{stable}{a logical: set to FALSE for \code{orbits} and TRUE for \code{stable_orbits}}
+\item{stable}{a logical: set to FALSE for \code{orbits} and FALSE for \code{stable_orbits}}
 
-\item{add_axes}{a logical: plot axes only if TRUE}
+\item{add}{a logical: plot axes only if FALSE}
 }
 \description{
 Plot the annualized EIR \emph{vs.} time

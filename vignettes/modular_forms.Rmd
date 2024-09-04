@@ -8,15 +8,13 @@ vignette: >
 ---
 
 
-A **Modular Form** for disease dynamics is a stylized way of writing the dynamical systems that emphasizes the modular structure of the process. A mathematical framework for building models of malaria dynamics and control (and other mosquito-borne pathogens) was described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}, and the framework was implemented in `ramp.xds.` The forms we describe here rewrite models so that they closely resemble their implementation in `ramp.xds`, which makes it possible to relate written equations and computed code. 
-
-For an extended discussion of modularity, see the closely related vignettes 
-[Understanding ramp.xds](Understanding_ramp.xds.html){target="_blank"} and [Generalized Modularity and Extensibility](modularity.html)
+A **modular form** is a stylized way of writing down a dynamical systems that emphasizes the structure of the underlying process. The modular structure of **`ramp.xds`** can be understood through the use of these forms. The forms we describe here rewrite models so that they closely resemble their implementation in `ramp.xds`, which makes it possible to relate written equations and computed code. 
 
 ## A Standard Form
 
-There is no *standard form* for writing down systems of differential equations: here, *a standard form* 
-is any way of writing down a system of equations that does not emphasize the modularity, or *not a modular form.* 
+A mathematical framework for building modular models of malaria dynamics and control (and other mosquito-borne pathogens) was described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}, and that framework has been implemented in `ramp.xds.` 
+
+There is no *standard form* for writing down systems of differential equations, but many forms are used, depending on context. For comparison, we writing down a system of equations that does not emphasize the modularity, or *not a modular form.* 
 
 To illustrate the modular form, we start with the *Ross-Macdonald*-style model in Box 1.  
 
@@ -52,14 +50,14 @@ We illustrate by writing a Ross-Macdonald model in its modular form (Figure 1). 
 and now we can rewrite the equation
 
 $$ 
-dI/dt = h H (H-I) - r I
+dI/dt = h  (H-I) - r I
 $$
 
 Next, we isolate the equation describing mosquito infection dynamics, we note that it depends on a term that we will call the net infectiousness (NI).  
 
-$$\kappa = c \frac IH$$ 
+$$\kappa = \frac XH$$ 
 
-The term $c I$ is the density of infected humans, weighted by their infectiousness. 
+The term $$ X = c I$$ is the density of infected humans, weighted by their infectiousness. 
 
 We note that $fq\kappa$ is the FoI for mosquito infections, and now we can rewrite the equation for mosquitoes: 
 

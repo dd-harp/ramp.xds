@@ -12,47 +12,50 @@ library(ramp.xds)
 library(viridisLite)
 ```
 
+
+```{r, echo=F}
+#devtools::load_all()
+```
+
 As part of the  *plug-and-play* modular design for **`ramp.xds`,** each dynamical component includes a trivial model that has no variables. The outputs required by other components are passed as a **trace function**. These trace functions have three parts:
 
 + a mean value, or a scaling argument
 
-+ a function that returns a seasonal signal, configured with a line in the appropriate options list, `season = function(t){...}` 
++ a function that returns a F_seasonal signal, configured with a line in the appropriate options list, `F_season = function(t){...}` 
 
-+ a function that returns a trend, configured with a line in the appropriate options list, `trend = function(t){...}` 
++ a function that returns a F_trend, configured with a line in the appropriate options list, `F_trend = function(t){...}` 
 
 The trivial modules each returns different values:
 
-+ $\cal L$ - The trivial aquatic module is set up by `create_Lpar_trivial.` The function `F_emerge()` returns `Lambda*season(t)*trend(t).` To override the defaults, `Lopts` must be a named list that sets the values of the elements: 
++ $\cal L$ - The trivial aquatic module is set up by `create_Lpar_trivial.` The function `F_emerge()` returns `Lambda*F_season(t)*F_trend(t).` To override the defaults, `Lopts` must be a named list that sets the values of the elements: 
 
-    - `Lambda = c(...)` 
+    - `Lambda = c(...)` is the
         
-    - `season = function(t){...}`
+    - `F_season = function(t){...}`
         
-    - `trend = function(t){...}`
+    - `F_trend = function(t){...}`
 
 + $\cal MYZ$ - The trivial adult mosquito module is setup by `create_MYZpar_trivial.` The values will return either `F_fqZ` or `F_eggs` 
 
-    - the function `F_fqZ()` returns `f*q*Z*season(t)*trend(t)`. To configure, `MYZopts` should be a named list that sets the values of the elements: 
+    - Both `F_fqZ` and `F_eggs` use the same seasonality and trend functions: 
+
+        - `F_season = function(t){...}` 
+        
+        - `F_trend = function(t){...}` 
+
+    - the function `F_fqZ()` returns `f*q*Z*F_season(t)*F_trend(t)`. To configure, `MYZopts` should be a named list that sets the values of the elements: 
     
         - `f = c(...)` 
         
         - `q = c(...)` 
         
         - `Z = c(...)`
-        
-        - `season = function(t){...}`
-        
-        - `trend = function(t){...}`
     
-    - the function `F_eggs()` returns `eggs*season(t)*trend(t)`; to override the defaults, `MYZopts` must be a named list that sets the values of the elements:
+    - the function `F_eggs()` returns `eggs*F_season(t)*F_trend(t)`; to override the defaults, `MYZopts` must be a named list that sets the values of the elements:
     
         - ` eggs = c(...)`
-        
-        - `season = function(t){...}`
-        
-        - `trend = function(t){...}`
 
-+ $\cal X$ - The trivial module for human / host infection and immunity is set up by `create_Xpar_trivial.` `F_X` calls `F_H` and then returns `H*kappa*season(t)*trend(t)` 
++ $\cal X$ - The trivial module for human / host infection and immunity is set up by `create_Xpar_trivial.` `F_X` calls `F_H` and then returns `H*kappa*F_season(t)*F_trend(t)` 
 
     - `F_H` is configured in `xds_setup` by passing `HPop = ...` 
     
@@ -60,9 +63,9 @@ The trivial modules each returns different values:
     
       - `kappa = c(...)`
         
-      - `season = function(t){...}`
+      - `F_season = function(t){...}`
         
-      - `trend = function(t){...}`
+      - `F_trend = function(t){...}`
         
 
 
@@ -70,11 +73,11 @@ The trivial modules each returns different values:
 
 The following adult mosquito model is forced by emergence and net infectiousness: 
 
-+ `Lo` configures the adult mosquito emergence rate to rise initially, but then to decline with a seasonal signal: 
++ `Lo` configures the adult mosquito emergence rate to rise initially, but then to decline with a F_seasonal signal: 
 
 ```{r}
-Lo = list(season = function(t){1+sin(2*pi*t/365)}, 
-          trend = function(t){(1+t/250)*exp(-t/1000)}, 
+Lo = list(F_season = function(t){1+sin(2*pi*t/365)}, 
+          F_trend = function(t){(1+t/250)*exp(-t/1000)}, 
           Lambda =5)
 ```
 
@@ -82,12 +85,12 @@ Lo = list(season = function(t){1+sin(2*pi*t/365)},
 
 ```{r}
 Xo = list(kappa = 0.8, 
-          trend = function(t){exp(t/500)/(10+exp(t/500))})
+          F_trend = function(t){exp(t/500)/(10+exp(t/500))})
 ```
 
 ```{r, echo=F, eval=F}
 tt = seq(0, 3650, by = 10)
-with(Xo, plot(tt, trend(tt), type = "l"))
+with(Xo, plot(tt, F_trend(tt), type = "l"))
 ```
 
 ```{r}
