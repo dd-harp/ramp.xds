@@ -65,7 +65,7 @@ These models all use a common set of parameters:
 basicM <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1), 
                     MYZname = "basicM")
 
-basicM <- xde_solve(basicM, Tmax=80)
+basicM <- xds_solve(basicM, Tmax=80)
 ```
 
 + **`si`** - A standard SI compartmental model for infection, see [dMYZdt.si](https://dd-harp.github.io/ramp.xds/reference/dMYZdt.si.html). 
@@ -74,7 +74,7 @@ basicM <- xde_solve(basicM, Tmax=80)
 si <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1), 
                 MYZname = "si", MYZopts = list(Y=0))
 
-si <- xde_solve(si, Tmax=80)
+si <- xds_solve(si, Tmax=80)
 ```
 
 + **`sei`** - a standard SEI compartmental model, see [dMYZdt.sei]
@@ -83,7 +83,7 @@ si <- xde_solve(si, Tmax=80)
 sei <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1), 
                  MYZname = "sei", MYZopts = list(Y=0, Z=0))
 
-sei <- xde_solve(sei, Tmax=80)
+sei <- xds_solve(sei, Tmax=80)
 ```
 
 + **`RM`** - modified from Aron & May (1982), see [dMYZdt.RM]
@@ -92,7 +92,7 @@ sei <- xde_solve(sei, Tmax=80)
 RM <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1),
                 MYZname = "RM", MYZopts = list(Y=0, Z=0))
 
-RM <- xde_solve(RM, Tmax=80)
+RM <- xds_solve(RM, Tmax=80)
 ```
 
 ### Ecology 
@@ -187,7 +187,7 @@ In **`ramp.xds`** this set of equations is implemented. This sets up and solves 
 
 ```{r}
 rm = xds_setup(Xname = "trivial", Xopts = list(kappa=0.1), Lname = "trivial", Lopts = list(Lambda=5), HPop=10)
-rm = xde_solve(rm, Tmax=100)
+rm = xds_solve(rm, Tmax=100)
 ```
 
 ```{r, fig.width=5, fig.height=3.5}
@@ -209,7 +209,7 @@ Lo = list(season = function(t){1+sin(2*pi*t/365)},
           Lambda =5)
 rm = xds_setup(Xname = "trivial", Xopts = list(kappa=0.1), HPop=10,
                Lname = "trivial", Lopts = Lo)
-rm <- xde_solve(rm, 3680, dt=10)
+rm <- xds_solve(rm, 3680, dt=10)
 ```
 
 ```{r, fig.height=3.5, fig.width=6}

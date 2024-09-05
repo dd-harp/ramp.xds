@@ -237,7 +237,7 @@ equations are in the documentation for The four models are</p>
 <code class="sourceCode R"><span><span class="va">basicM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>, </span>
 <span>                    MYZname <span class="op">=</span> <span class="st">"basicM"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">basicM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">basicM</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">basicM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">basicM</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <strong><code>si</code></strong> - A standard SI compartmental model
@@ -247,7 +247,7 @@ for infection, see <a href="https://dd-harp.github.io/ramp.xds/reference/dMYZdt.
 <code class="sourceCode R"><span><span class="va">si</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>, </span>
 <span>                MYZname <span class="op">=</span> <span class="st">"si"</span>, MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Y<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">si</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">si</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">si</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">si</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <strong><code>sei</code></strong> - a standard SEI compartmental
@@ -257,7 +257,7 @@ model, see [dMYZdt.sei]</li>
 <code class="sourceCode R"><span><span class="va">sei</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>, </span>
 <span>                 MYZname <span class="op">=</span> <span class="st">"sei"</span>, MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Y<span class="op">=</span><span class="fl">0</span>, Z<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">sei</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">sei</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">sei</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">sei</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <strong><code>RM</code></strong> - modified from Aron &amp; May
@@ -267,7 +267,7 @@ model, see [dMYZdt.sei]</li>
 <code class="sourceCode R"><span><span class="va">RM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>,</span>
 <span>                MYZname <span class="op">=</span> <span class="st">"RM"</span>, MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Y<span class="op">=</span><span class="fl">0</span>, Z<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">RM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">RM</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">RM</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">RM</span>, Tmax<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="ecology">Ecology<a class="anchor" aria-label="anchor" href="#ecology"></a>
 </h3>
@@ -386,7 +386,7 @@ implemented. This sets up and solves a model with <span class="math inline">\(\k
 human population density of <span class="math inline">\(H=10.\)</span></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rm</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span>, Lopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda<span class="op">=</span><span class="fl">5</span><span class="op">)</span>, HPop<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="va">rm</span> <span class="op">=</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">rm</span>, Tmax<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">rm</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">rm</span>, Tmax<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">rm</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">rm</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
@@ -407,7 +407,7 @@ p^n \frac{ax}{ax - \log_{e}p}\]</span></p>
 <span>          Lambda <span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">rm</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"trivial"</span>, Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span>, HPop<span class="op">=</span><span class="fl">10</span>,</span>
 <span>               Lname <span class="op">=</span> <span class="st">"trivial"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span><span class="op">)</span></span>
-<span><span class="va">rm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">rm</span>, <span class="fl">3680</span>, dt<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">rm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">rm</span>, <span class="fl">3680</span>, dt<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">rm</span><span class="op">)</span></span></code></pre></div>
 <p><img src="AdultMosquitoes_files/figure-html/unnamed-chunk-14-1.png" width="576"></p>

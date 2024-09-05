@@ -5,13 +5,11 @@
 \title{Make an \strong{\code{xds}} Object to Study Human / Host Cohort Dynamics}
 \usage{
 xds_setup_cohort(
-  eir,
-  bday = 0,
+  eir = 1,
   F_season = F_flat,
   F_trend = F_flat,
   F_age = F_flat,
-  xds = "xde",
-  dlay = "ode",
+  xds = "ode",
   Xname = "SIS",
   Xopts = list(),
   Xday = 1,
@@ -23,17 +21,13 @@ xds_setup_cohort(
 \arguments{
 \item{eir}{is the entomological inoculation rate}
 
-\item{bday}{the birthday of a cohort}
-
 \item{F_season}{a function describing a seasonal pattern over time}
 
 \item{F_trend}{a function describing a temporal trend over time}
 
 \item{F_age}{a assigning a biting weight by age}
 
-\item{xds}{is \code{xde}/\code{dts} for differential / difference equations}
-
-\item{dlay}{is either "ode" or "dde"}
+\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
 \item{Xname}{is a character string defining a X model}
 
@@ -55,8 +49,8 @@ A modified version of \link{xds_setup} to setup up studies of cohort
 dynamics.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'cohort'} but there
-is no \code{cohort} case for \link{xde_solve} or \link{dts_solve}. Instead, cohort
-dynamics are studied using \link{xde_solve_cohort}, which was designed
+is no \code{cohort} case for \link{xds_solve}. Instead, cohort
+dynamics are studied using \link{xds_solve_cohort}, which was designed
 to compare the outcomes for cohorts of different ages when exposure is
 changing.
 
@@ -66,5 +60,5 @@ and a trend. Exposure in a cohort is a function of its age, including
 a function that modifies exposure by age.
 }
 \seealso{
-\link{xds_setup} and \link{xds_setup_human} and \link{xde_solve_cohort}
+\link{xds_setup} and \link{xds_setup_human} and \link{xds_solve_cohort}
 }

@@ -29,10 +29,10 @@ mod$MYZname
 
 ## Solving 
 
-The functions `xde_solve` and `dts_solve` can be called to solve dynamical systems. In these systems, *time* is the independent variable. Given a set of initial values, `xde_solve` or `dts_solve` compute the values of the dependent variables at those time points. Other functions return stable orbits for models with a canonical seasonal signal.  
+The functions `xds_solve` and `dts_solve` can be called to solve dynamical systems. In these systems, *time* is the independent variable. Given a set of initial values, `xds_solve` or `dts_solve` compute the values of the dependent variables at those time points. Other functions return stable orbits for models with a canonical seasonal signal.  
 
 ```{r}
-mod <- xde_solve(mod)
+mod <- xds_solve(mod)
 ```
 
 ## Outputs 
@@ -59,7 +59,7 @@ xds_plot_M(mod)
 
 ## Initial Values 
 
-A set of utilities was developed to work with initial values, making it easy to change the intitial values through a function call. In solving, `xde_solve` calls `get_inits` with a `flatten=TRUE` 
+A set of utilities was developed to work with initial values, making it easy to change the intitial values through a function call. In solving, `xds_solve` calls `get_inits` with a `flatten=TRUE` 
 
 ```{r}
 get_inits(mod, flatten=TRUE)
@@ -94,7 +94,7 @@ The software includes functions that perform various analytical tasks:
 
 **`ramp.xds`** has built-in utilities to make it easy to work with the models, including functions to visualize the outputs, to examine and change initial values and parameters, and to analyze the models. 
 
-The **`xds` model object** -- any object that can be solved by `xde_solve` or `dts_solve` -- is a compound list in R. If you're already familiar with the format of the **`xds`** model object, it's possible examine any part of it, or change any of the parameter values or initial conditions. While that might be the way to go in the long run, the **`xds` model object** includes a set of utilities to retrieve initial values, parameters, and some other values of interests. 
+The **`xds` model object** -- any object that can be solved by `xds_solve` or `dts_solve` -- is a compound list in R. If you're already familiar with the format of the **`xds`** model object, it's possible examine any part of it, or change any of the parameter values or initial conditions. While that might be the way to go in the long run, the **`xds` model object** includes a set of utilities to retrieve initial values, parameters, and some other values of interests. 
 
 The code and documentation for these utilities is designed to be instructive, and a goal for **`ramp.xds`** has been to provide detailed documentation, include references to peer reviewed journal articles. 
 

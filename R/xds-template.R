@@ -12,7 +12,7 @@
 #'
 #' First, the function sets up some short text strings (assigned to the same `S3` class)
 #' to dispatch various **cases** of of various `S3` functions:
-#' - **`xds`** is either "xde" for differential equations or "dts" for difference equations;
+#' - **`xds`** is either "ode" or "dde" for ordinary / delay differential equations; or "dts" for difference equations;
 #' - **`frame`** is one of several cases:
 #'      - "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}.
 #' in some form (possibly the trivial case) (see [xds_setup()])
@@ -20,7 +20,6 @@
 #'      - "aquatic" is for aquatic mosquito ecology models (see [xds_setup_aquatic()]), forced by a function describing egg laying
 #'      - "human" is for human/host infection dynamics(see [xds_setup_human()]), forced by the infective density of adult mosquitoes, \eqn{fqZ}
 #'      - "cohort" is for human/host cohort infection dynamics (see [xds_setup_cohort()]), forced by a function `F_eir`
-#' - **`dlay`** is either "ode" or "dde" and it only affects dispatching for differential equations
 #' - **`forcing`** is set to "static"
 #'
 #' Second, the function sets the values of the **structural parameters**:
@@ -50,7 +49,6 @@
 #'
 #' @param xds is used to dispatch various functions to set up and solve systems of differential equations. 'xde' for ordinary or delay differential equations; 'dts' for "discrete time systems"
 #' @param frame model component subset
-#' @param dlay is "ode"/"dde" for ordinary/delay differential equations
 #' @param nPatches is the number of patches
 #' @param membership is the habitat membership vector
 #' @param residence is the strata residence vector
@@ -58,11 +56,12 @@
 #' @seealso Related: [xds_setup()]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
 #'
 #' @export
-make_xds_template = function(xds='xde', frame='full', dlay = 'ode',
+make_xds_template = function(xds='ode', frame='full',
                            nPatches=1, membership=1, residence=1){
   pars = list()
   class(pars) <- 'xds_obj'
   xds <- xds
+  if(xds == 'ode' | xds == 'dde') xds <- c(xds, 'xde')
   class(xds) <- xds
   pars$xds <- xds
   xdlst = list()
@@ -71,10 +70,6 @@ make_xds_template = function(xds='xde', frame='full', dlay = 'ode',
   frame <- frame
   class(frame) <- frame
   pars$frame <- frame
-
-  dlay <- dlay
-  class(dlay) <- dlay
-  pars$dlay <- dlay
 
   forcing <- 'static'
   class(forcing) <- 'static'

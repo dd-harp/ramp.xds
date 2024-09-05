@@ -52,7 +52,7 @@
 #' - exogenous forcing by weather, resources, or other factors
 #' - vector control, vaccines, or other mass
 #' @seealso [make_xds_template]
-#' @param xds is `xde`/`dts` for differential / difference equations
+#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname a character string defining a \eqn{\cal X} model
 #' @param Xopts a list to configure the X model
 #' @param MYZname a character string defining a \eqn{\cal MYZ} model
@@ -67,7 +67,6 @@
 #' @param TimeSpent is either a TimeSpent matrix or a string to call a function that sets it up
 #' @param calK is either a calK matrix or a string that defines how to set it up
 #' @param searchQ is a vector of search weights for egg laying
-#' @param dlay is either "ode" or "dde"
 #' @param Xday is the run-time time step for X component (in days): integer or 1/integer
 #' @param MYZday is the run-time time step for MYZ component (in days): integer or 1/integer
 #' @param Lday is the run-time time step for L component (in days): integer or 1/integer
@@ -75,7 +74,7 @@
 #' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
 #' @export
-xds_setup = function(xds = 'xde',
+xds_setup = function(xds = 'ode',
                      Xname = "SIS",
                      Xopts = list(),
                      MYZname = "RM",
@@ -94,13 +93,12 @@ xds_setup = function(xds = 'xde',
                      MYZday = 1,
                      Lday = 1,
                      BFopts = list(),
-                     dlay = 'ode',
                      model_name = "unnamed"
 ){
   stopifnot(length(HPop) == length(residence))
-  pars <- make_xds_template('xde', 'full', dlay, nPatches, membership, residence)
+  pars <- make_xds_template('ode', 'full', nPatches, membership, residence)
   pars <- make_runtime(pars, Xday, MYZday, Lday, Lname)
-  class(pars$compute) <- 'xde'
+  class(pars$compute) <- 'ode'
 
   # Aquatic Mosquito Dynamics
   pars$Lname <- Lname
@@ -156,8 +154,7 @@ xds_setup = function(xds = 'xde',
 #' The \eqn{\cal X} model is trivial, but since humans / vertebrate hosts can be a
 #' resource, `HPop` must be set. Notably, it is possible to set values of NI `kappa` but
 #' @seealso [xds_setup] and [dMYZdt.basicM]
-#' @param xds is `xde`/`dts` for differential / difference equations
-#' @param dlay is either "ode" or "dde"
+#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param MYZname is a character string defining a MYZ model
 #' @param Lname is a character string defining a L model
 #' @param nPatches is the number of patches
@@ -173,7 +170,7 @@ xds_setup = function(xds = 'xde',
 #' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
 #' @export
-xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
+xds_setup_mosy = function(xds = 'ode',
                           ### Dynamical Components
                           MYZname = "basicM",
                           Lname = "basicL",
@@ -197,7 +194,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 ){
   residence = 1:nPatches
   HPop = checkIt(HPop, nPatches)
-  pars <- make_xds_template('xde', 'mosy', dlay, nPatches, membership, residence)
+  pars <- make_xds_template('ode', 'mosy', nPatches, membership, residence)
   pars <- make_runtime(pars, 1, MYZday, Lday, Lname)
   class(pars$compute) = "na"
 
@@ -244,8 +241,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 #' to dispatch [xde_derivatives.aquatic] or [dts_update.aquatic]
 #'
 #' @seealso [xds_setup]
-#' @param xds is `xde`/`dts` for differential / difference equations
-#' @param dlay is either "ode" or "dde"
+#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param nHabitats is the number of habitats
 #' @param Lname is a character string defining a L model
 #' @param Lday is the run-time time step for L component (in days): integer or 1/integer
@@ -254,7 +250,7 @@ xds_setup_mosy = function(xds = 'xde', dlay = 'ode',
 #' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
 #' @export
-xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
+xds_setup_aquatic = function(xds = 'ode',
                              nHabitats=1,
                              Lname = "basicL",
                              Lday = 1,
@@ -264,7 +260,7 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 
   nPatches= nHabitats
   membership = 1:nHabitats
-  pars <- make_xds_template('xde', 'aquatic', dlay, nPatches, membership)
+  pars <- make_xds_template('ode', 'aquatic', nPatches, membership)
   pars <- make_runtime(pars, 1, 1, Lday, Lname)
   class(pars$compute) = "na"
 
@@ -306,8 +302,7 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 #'
 #' @seealso [xds_setup] and [xds_setup_cohort]
 #'
-#' @param xds is `xde`/`dts` for differential / difference equations'
-#' @param dlay  either "ode" or "dde"
+#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname a character string defining a X model
 #' @param nPatches the number of patches
 #' @param residence a vector that describes the patch where each human stratum lives
@@ -324,7 +319,7 @@ xds_setup_aquatic = function(xds = 'xde', dlay = 'ode',
 xds_setup_human = function(Xname = "SIS",
                            Xopts = list(),
 
-                           xds = 'xde', dlay = 'ode',
+                           xds = 'ode',
                            ### Dynamical Components
                            ### Model Structure
                            nPatches=1,
@@ -342,7 +337,7 @@ xds_setup_human = function(Xname = "SIS",
 ){
   stopifnot(length(HPop) == length(residence))
   membership=1
-  pars <- make_xds_template('xde', 'human', dlay, nPatches, membership, residence)
+  pars <- make_xds_template('ode', 'human', nPatches, membership, residence)
   pars <- make_runtime(pars, Xday, 1, 1, "trivial")
   pars$compute = 'na'
   class(pars$compute) <- 'na'
@@ -383,8 +378,8 @@ xds_setup_human = function(Xname = "SIS",
 #' dynamics.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'cohort'` but there
-#' is no `cohort` case for [xde_solve] or [dts_solve]. Instead, cohort
-#' dynamics are studied using [xde_solve_cohort], which was designed
+#' is no `cohort` case for [xds_solve]. Instead, cohort
+#' dynamics are studied using [xds_solve_cohort], which was designed
 #' to compare the outcomes for cohorts of different ages when exposure is
 #' changing.
 #'
@@ -393,15 +388,13 @@ xds_setup_human = function(Xname = "SIS",
 #' and a trend. Exposure in a cohort is a function of its age, including
 #' a function that modifies exposure by age.
 #'
-#' @seealso [xds_setup] and [xds_setup_human] and [xde_solve_cohort]
+#' @seealso [xds_setup] and [xds_setup_human] and [xds_solve_cohort]
 #'
 #' @param eir is the entomological inoculation rate
-#' @param bday the birthday of a cohort
 #' @param F_season a function describing a seasonal pattern over time
 #' @param F_trend a function describing a temporal trend over time
 #' @param F_age a assigning a biting weight by age
-#' @param xds is `xde`/`dts` for differential / difference equations
-#' @param dlay is either "ode" or "dde"
+#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname is a character string defining a X model
 #' @param Xopts a list to configure the X model
 #' @param Xday is the run-time time step for X component (in days): integer or 1/integer
@@ -410,11 +403,11 @@ xds_setup_human = function(Xname = "SIS",
 #' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
 #' @export
-xds_setup_cohort = function(eir, bday=0,
+xds_setup_cohort = function(eir=1,
                             F_season = F_flat,
                             F_trend = F_flat,
                             F_age = F_flat,
-                            xds = 'xde', dlay = 'ode',
+                            xds = 'ode',
 
                             # Dynamical Components
                             Xname = "SIS",
@@ -431,7 +424,7 @@ xds_setup_cohort = function(eir, bday=0,
   nPatches = length(HPop)
   residence = rep(1, length(HPop))
   membership = 1
-  pars <- make_xds_template('xde', 'cohort', dlay, nPatches, membership, residence)
+  pars <- make_xds_template('ode', 'cohort', nPatches, membership, residence)
   pars <- make_runtime(pars, Xday, 1, 1, "trivial")
   class(pars$compute) <- "na"
 
@@ -440,6 +433,11 @@ xds_setup_cohort = function(eir, bday=0,
   pars$EIRpar$F_season <- F_season
   pars$EIRpar$F_trend <- F_trend
   pars$EIRpar$F_age <- F_age
+
+  F_eir <- with(pars$EIRpar, function(age, bday){
+    eir*F_season(age+bday)*F_trend(age+bday)*F_age(age)
+  })
+  pars$F_eir = F_eir
 
   # Aquatic Mosquito Dynamics
   pars       <- make_Lpar("trivial", pars, 1, list())

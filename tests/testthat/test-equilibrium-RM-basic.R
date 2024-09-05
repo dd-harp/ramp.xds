@@ -102,7 +102,7 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
 
   params$kappa[[1]] = kappa
 
-  params <- xde_solve(params, 730, 1)
+  params <- xds_solve(params, 730, 1)
 
   out <- params$outputs$last_y
 

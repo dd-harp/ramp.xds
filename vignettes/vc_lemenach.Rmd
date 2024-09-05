@@ -177,7 +177,7 @@ itn_mod <- VectorControlEffectSizes(0, 0, itn_mod)
 ```
 
 ```{r}
-itn_mod <- xde_solve(itn_mod, 1830, dt=15)
+itn_mod <- xds_solve(itn_mod, Tmax=1830, dt=15)
 ```
 
 
@@ -218,7 +218,7 @@ itn_mod = setup_itn_lemenach(itn_mod, F_phi=ITN_cov)
 
 
 ```{r solve}
-xde_solve(itn_mod, 1830, dt=15) -> itn_mod
+xds_solve(itn_mod, 1830, dt=15) -> itn_mod
 ```
 
 ```{r, fig.height=7, fig.width=6}

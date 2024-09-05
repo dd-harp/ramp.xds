@@ -59,8 +59,8 @@ Update_Xt.SEISd <- function(t, y, pars, i) {
 #' @return a [list] vector
 #' @export
 make_Xpar.SEISd = function(Xname, pars, i, Xopts=list()){
-  pars$dlay = 'dde'
-  class(pars$dlay) = 'dde'
+  pars$xds = 'dde'
+  class(pars$xds) = c('dde', 'xde')
   pars$Xpar[[i]] = create_Xpar_SEISd(pars$nStrata[i], Xopts)
   return(pars)
 }

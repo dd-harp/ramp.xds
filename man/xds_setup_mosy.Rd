@@ -5,8 +5,7 @@
 \title{Make an \strong{\code{xds}} Object to Study Mosquito Ecology}
 \usage{
 xds_setup_mosy(
-  xds = "xde",
-  dlay = "ode",
+  xds = "ode",
   MYZname = "basicM",
   Lname = "basicL",
   nPatches = 1,
@@ -23,9 +22,7 @@ xds_setup_mosy(
 )
 }
 \arguments{
-\item{xds}{is \code{xde}/\code{dts} for differential / difference equations}
-
-\item{dlay}{is either "ode" or "dde"}
+\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
 \item{MYZname}{is a character string defining a MYZ model}
 

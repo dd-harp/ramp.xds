@@ -368,7 +368,7 @@ A user only needs to know how to encode the information and what information to 
     
     - Other options -- `mosy`, `aquatic`, `human`, and `cohort` -- work on subsets of the components, and while they could be configured using `full` 
 
-+ the third required term sets the value of`dlay` that dispatches `xde_solve` 
++ the third required term sets the value of`dlay` that dispatches `xds_solve` 
 
     - `ode` uses `deSolve::ode` for ordinary differential equations, 
     
@@ -378,7 +378,7 @@ A user only needs to know how to encode the information and what information to 
 
 
 ```{r}
-params = make_xds_template("xde", "full", "dde", nPatches, membership, residence) 
+params = make_xds_template("ode", "full", nPatches, membership, residence) 
 ```
 
 After being set up:
@@ -593,8 +593,7 @@ Xo = list(
 
 
 ```{r}
-xds_setup(dlay='dde',
-  MYZname="RM", Xname="SIS", Lname="basicL", 
+xds_setup(MYZname="RM", Xname="SIS", Lname="basicL", 
   nPatches = 3, HPop=c(10, 90, 100, 900), 
   membership=c(1,1,1,2,2), 
   MYZopts=MYZo, calK=calK, Xopts=Xo, Lopts = Lo,
@@ -606,7 +605,7 @@ xds_setup(dlay='dde',
 We solve and take the differences to check: 
 
 ```{r}
-mod534 <- xde_solve(mod534, Tmax=735, dt=15)
+mod534 <- xds_solve(mod534, Tmax=735, dt=15)
 mod534$outputs$orbits$deout -> out2
 ```
 

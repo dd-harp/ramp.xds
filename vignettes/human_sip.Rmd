@@ -70,7 +70,7 @@ nStrata <- 3
 H <- c(100, 500, 250)
 nPatches <- 3
 residence <- 1:3 
-params <- make_xds_template("xde", "human", "ode", nPatches, 1, residence) 
+params <- make_xds_template("ode", "human", nPatches, 1, residence) 
 ```
 
 
@@ -159,6 +159,6 @@ xds_setup_human(Xname="SIP", nPatches=3, residence = 1:3, HPop=H, Xopts = Xo, MY
 ```
 
 ```{r}
-xde_solve(test_SIP_xde, 365, 365)$outputs$orbits$deout -> out2
+xds_solve(test_SIP_xde, 365, 365)$outputs$orbits$deout -> out2
 approx_equal(out2,out1) 
 ```

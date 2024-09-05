@@ -145,9 +145,8 @@ to fully define an <strong><code>xds</code></strong> object</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_xds_template</span><span class="op">(</span></span>
-<span>  xds <span class="op">=</span> <span class="st">"xde"</span>,</span>
+<span>  xds <span class="op">=</span> <span class="st">"ode"</span>,</span>
 <span>  frame <span class="op">=</span> <span class="st">"full"</span>,</span>
-<span>  dlay <span class="op">=</span> <span class="st">"ode"</span>,</span>
 <span>  nPatches <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  membership <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  residence <span class="op">=</span> <span class="fl">1</span></span>
@@ -162,10 +161,6 @@ to fully define an <strong><code>xds</code></strong> object</p>
 
 <dt>frame</dt>
 <dd><p>model component subset</p></dd>
-
-
-<dt>dlay</dt>
-<dd><p>is "ode"/"dde" for ordinary/delay differential equations</p></dd>
 
 
 <dt>nPatches</dt>
@@ -193,7 +188,7 @@ to configure and run a basic model. The returned object is a list
 with various required elements attached and configured, but without
 specifying the dynamical components or any advanced features.</p>
 <p>First, the function sets up some short text strings (assigned to the same <code>S3</code> class)
-to dispatch various <strong>cases</strong> of of various <code>S3</code> functions:</p><ul><li><p><strong><code>xds</code></strong> is either "xde" for differential equations or "dts" for difference equations;</p></li>
+to dispatch various <strong>cases</strong> of of various <code>S3</code> functions:</p><ul><li><p><strong><code>xds</code></strong> is either "ode" or "dde" for ordinary / delay differential equations; or "dts" for difference equations;</p></li>
 <li><p><strong><code>frame</code></strong> is one of several cases:</p><ul><li><p>"full" includes all three dynamical components: a human/host dynamical component, \(\cal XH\); and adult mosquito dynamical component, \(\cal MYZ\); and an aquatic mosquito dynamical component, \(\cal L\).
 in some form (possibly the trivial case) (see <code><a href="xds_setup.html">xds_setup()</a></code>)</p></li>
 <li><p>"mozy" is for mosquito ecology models (see <code><a href="xds_setup_mosy.html">xds_setup_mosy()</a></code>), including models without pathogen infection dynamics in mosquitoes</p></li>
@@ -201,7 +196,6 @@ in some form (possibly the trivial case) (see <code><a href="xds_setup.html">xds
 <li><p>"human" is for human/host infection dynamics(see <code><a href="xds_setup_human.html">xds_setup_human()</a></code>), forced by the infective density of adult mosquitoes, \(fqZ\)</p></li>
 <li><p>"cohort" is for human/host cohort infection dynamics (see <code><a href="xds_setup_cohort.html">xds_setup_cohort()</a></code>), forced by a function <code>F_eir</code></p></li>
 </ul></li>
-<li><p><strong><code>dlay</code></strong> is either "ode" or "dde" and it only affects dispatching for differential equations</p></li>
 <li><p><strong><code>forcing</code></strong> is set to "static"</p></li>
 </ul><p>Second, the function sets the values of the <strong>structural parameters</strong>:</p><ul><li><p><strong><code>nVectors</code></strong> or \(n_s\), the number of vector species is set to 1;</p></li>
 <li><p><strong><code>nHosts</code></strong> or \(n_i\), the number of host species is set to 1;</p></li>

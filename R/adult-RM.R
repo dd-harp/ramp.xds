@@ -181,8 +181,8 @@ F_eggs.RM <- function(t, y, pars, s) {
 #' @return a [list] vector
 #' @export
 make_MYZpar.RM = function(MYZname, pars, s, MYZopts=list()){
-  pars$dlay <- 'dde'
-  class(pars$dlay) <- 'dde'
+  pars$xds <- 'dde'
+  class(pars$xds) <- c('dde', 'xde')
   setup_as = with(MYZopts, ifelse(exists("setup_as"), setup_as, "RM"))
   if(setup_as == "GeRM"){
     MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)

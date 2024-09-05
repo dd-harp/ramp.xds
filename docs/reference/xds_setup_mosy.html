@@ -149,8 +149,7 @@ resource, <code>HPop</code> must be set. Notably, it is possible to set values o
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xds_setup_mosy</span><span class="op">(</span></span>
-<span>  xds <span class="op">=</span> <span class="st">"xde"</span>,</span>
-<span>  dlay <span class="op">=</span> <span class="st">"ode"</span>,</span>
+<span>  xds <span class="op">=</span> <span class="st">"ode"</span>,</span>
 <span>  MYZname <span class="op">=</span> <span class="st">"basicM"</span>,</span>
 <span>  Lname <span class="op">=</span> <span class="st">"basicL"</span>,</span>
 <span>  nPatches <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -170,11 +169,7 @@ resource, <code>HPop</code> must be set. Notably, it is possible to set values o
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>xds</dt>
-<dd><p>is <code>xde</code>/<code>dts</code> for differential / difference equations</p></dd>
-
-
-<dt>dlay</dt>
-<dd><p>is either "ode" or "dde"</p></dd>
+<dd><p>is <code>ode</code> or <code>dde</code> or <code>dts</code> for ordinary OR delay differential OR difference equations</p></dd>
 
 
 <dt>MYZname</dt>

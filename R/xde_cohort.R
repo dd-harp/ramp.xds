@@ -22,29 +22,18 @@
 #' and the trace function is:
 #'  \deqn{E(a, t) = \hat E \; \omega(a) \; S(t)\; T(t) }
 #' The output is returned as `pars$outputs$cohort`
-#' @param eir the average daily EIR for a population
-#' @param bday a cohort's birthday
 #' @param pars an **`xds`** object
-#' @param F_season a function describing a seasonal pattern over time
-#' @param F_trend a function describing a temporal trend over time
-#' @param F_age a function assigning a biting weight by age
+#' @param bday the cohort birthday
 #' @param A the maximum age to compute (in years)
 #' @param da the output interval (age, in days)
 #' @return an **`xds`** object
 #' @export
-xde_solve_cohort = function(eir, bday, pars,
-                            F_season = NULL,
-                            F_trend = NULL,
-                            F_age =NULL,
-                            A = 10, da = 10){
-
-  if(is.null(F_season)) F_season = F_flat
-  if(is.null(F_trend)) F_trend = F_flat
-  if(is.null(F_age)) F_age = F_flat
+xds_solve_cohort = function(pars, bday=0, A = 10, da = 10){
 
   F_eir <- with(pars$EIRpar, function(age, bday){
     eir*F_season(age+bday)*F_trend(age+bday)*F_age(age)
   })
+
   pars$F_eir = F_eir
 
   age = seq(0, A*365, by=da)
@@ -53,7 +42,7 @@ xde_solve_cohort = function(eir, bday, pars,
   xde_cohort_desolve(bday, y0, age, pars) -> deout
   de_vars <- deout[,-1]
 
-  pars$outputs$cohort <- parse_orbits(de_vars, pars)
+  pars$outputs$cohort <- parse_orbits(de_vars, pars)$XH[[1]]
   pars$outputs$cohort$age <- age
   pars$outputs$cohort$time <- age+bday
   pars$outputs$cohort$eir <- F_eir(age, bday)
@@ -95,7 +84,7 @@ xde_cohort_derivatives <- function(age, y, pars, birthday) {
 #' @return a [list]
 #' @export
 xde_cohort_desolve  = function(birthday, inits, times, pars){
-  UseMethod("xde_cohort_desolve", pars$dlay)
+  UseMethod("xde_cohort_desolve", pars$xds)
 }
 
 #' @title Solve a system of equations as a dde

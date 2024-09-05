@@ -3,7 +3,7 @@
 #' @title Compute Derivatives
 #' @description The function to compute the derivatives dispatches on `class(frame)`
 #'
-#' @seealso [xde_solve]
+#' @seealso [xds_solve]
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars a [list]

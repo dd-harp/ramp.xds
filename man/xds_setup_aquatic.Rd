@@ -5,8 +5,7 @@
 \title{Make an \strong{\code{xds}} Object to Study Aquatic Mosquito Ecology}
 \usage{
 xds_setup_aquatic(
-  xds = "xde",
-  dlay = "ode",
+  xds = "ode",
   nHabitats = 1,
   Lname = "basicL",
   Lday = 1,
@@ -16,9 +15,7 @@ xds_setup_aquatic(
 )
 }
 \arguments{
-\item{xds}{is \code{xde}/\code{dts} for differential / difference equations}
-
-\item{dlay}{is either "ode" or "dde"}
+\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
 \item{nHabitats}{is the number of habitats}
 

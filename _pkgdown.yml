@@ -81,11 +81,10 @@ reference:
   desc: |
     Methods to solve or analyze equations
   contents:
-  - xde_solve
+  - xds_solve
   - xde_stable_orbit
-  - xde_solve_cohort
+  - xds_solve_cohort
   - xde_steady
-  - dts_solve
   - dts_steady
   - xde_steady_state_X
   - xde_steady_state_MYZ
@@ -960,7 +959,7 @@ reference:
   - xde_derivatives.human
 - subtitle: Cohort Dynamics
   contents:
-  - xde_solve_cohort
+  - xds_solve_cohort
   - xde_cohort_derivatives
   - xde_cohort_desolve
   - xde_cohort_desolve.dde
@@ -983,14 +982,14 @@ reference:
   desc: |
     Wrappers around the derivatives functions that handle time and parse outputs
   contents:
-  - xde_solve
-  - xde_solve.dde
-  - xde_solve.ode
+  - xds_solve
+  - xds_solve.dde
+  - xds_solve.ode
+  - xds_solve.dts
   - xde_stable_orbit
   - xde_steady
   - xde_steady.ode
   - xde_steady.dde
-  - dts_solve
   - dts_stable_orbit
   - dts_steady
 - title: Analysis and Visualization

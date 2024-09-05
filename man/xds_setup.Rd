@@ -5,7 +5,7 @@
 \title{Basic Setup: Make a Fully Defined \strong{\code{xds}} Object}
 \usage{
 xds_setup(
-  xds = "xde",
+  xds = "ode",
   Xname = "SIS",
   Xopts = list(),
   MYZname = "RM",
@@ -24,12 +24,11 @@ xds_setup(
   MYZday = 1,
   Lday = 1,
   BFopts = list(),
-  dlay = "ode",
   model_name = "unnamed"
 )
 }
 \arguments{
-\item{xds}{is \code{xde}/\code{dts} for differential / difference equations}
+\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
 \item{Xname}{a character string defining a \eqn{\cal X} model}
 
@@ -66,8 +65,6 @@ xds_setup(
 \item{Lday}{is the run-time time step for L component (in days): integer or 1/integer}
 
 \item{BFopts}{a list to configure the blood feeding model}
-
-\item{dlay}{is either "ode" or "dde"}
 
 \item{model_name}{is a name for the model (arbitrary)}
 }

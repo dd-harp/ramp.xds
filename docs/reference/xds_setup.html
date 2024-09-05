@@ -173,7 +173,7 @@ Advanced options can be configured after basic setup."><!-- mathjax --><script s
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xds_setup</span><span class="op">(</span></span>
-<span>  xds <span class="op">=</span> <span class="st">"xde"</span>,</span>
+<span>  xds <span class="op">=</span> <span class="st">"ode"</span>,</span>
 <span>  Xname <span class="op">=</span> <span class="st">"SIS"</span>,</span>
 <span>  Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  MYZname <span class="op">=</span> <span class="st">"RM"</span>,</span>
@@ -192,7 +192,6 @@ Advanced options can be configured after basic setup."><!-- mathjax --><script s
 <span>  MYZday <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  Lday <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  BFopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  dlay <span class="op">=</span> <span class="st">"ode"</span>,</span>
 <span>  model_name <span class="op">=</span> <span class="st">"unnamed"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -200,7 +199,7 @@ Advanced options can be configured after basic setup."><!-- mathjax --><script s
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>xds</dt>
-<dd><p>is <code>xde</code>/<code>dts</code> for differential / difference equations</p></dd>
+<dd><p>is <code>ode</code> or <code>dde</code> or <code>dts</code> for ordinary OR delay differential OR difference equations</p></dd>
 
 
 <dt>Xname</dt>
@@ -273,10 +272,6 @@ Advanced options can be configured after basic setup."><!-- mathjax --><script s
 
 <dt>BFopts</dt>
 <dd><p>a list to configure the blood feeding model</p></dd>
-
-
-<dt>dlay</dt>
-<dd><p>is either "ode" or "dde"</p></dd>
 
 
 <dt>model_name</dt>
