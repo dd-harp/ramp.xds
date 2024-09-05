@@ -91,7 +91,7 @@ test_that("test equilibrium with RM adults (DDE), SIS_xde humans, trivial", {
                       Xname = "SIS", Xopts=Xo, HPop=H, membership=membership, nPatches=nPatches, residence=residence)
 
 
-  params <- xde_solve(params, 730, 1)
+  params <- xds_solve(params, 730, 1)
 
   out <- params$outputs$last_y
 

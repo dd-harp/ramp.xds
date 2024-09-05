@@ -53,7 +53,7 @@ test_that("forced emergence works with equilibrium", {
                       MYZopts = MYZo, Lopts = Lo, Xopts = Xo, residence=residence,
                       nPatches=nPatches, membership=membership, HPop = rep(1000, nPatches))
 
-  params <- xde_solve(params)
+  params <- xds_solve(params)
   out <- params$outputs$last_y
 
   M_sim <- out[params$ix$MYZ[[1]]$M_ix]

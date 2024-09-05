@@ -5,9 +5,8 @@
 \title{Make an \strong{\code{xds}} Object Template}
 \usage{
 make_xds_template(
-  xds = "xde",
+  xds = "ode",
   frame = "full",
-  dlay = "ode",
   nPatches = 1,
   membership = 1,
   residence = 1
@@ -17,8 +16,6 @@ make_xds_template(
 \item{xds}{is used to dispatch various functions to set up and solve systems of differential equations. 'xde' for ordinary or delay differential equations; 'dts' for "discrete time systems"}
 
 \item{frame}{model component subset}
-
-\item{dlay}{is "ode"/"dde" for ordinary/delay differential equations}
 
 \item{nPatches}{is the number of patches}
 
@@ -44,7 +41,7 @@ specifying the dynamical components or any advanced features.
 First, the function sets up some short text strings (assigned to the same \code{S3} class)
 to dispatch various \strong{cases} of of various \code{S3} functions:
 \itemize{
-\item \strong{\code{xds}} is either "xde" for differential equations or "dts" for difference equations;
+\item \strong{\code{xds}} is either "ode" or "dde" for ordinary / delay differential equations; or "dts" for difference equations;
 \item \strong{\code{frame}} is one of several cases:
 \itemize{
 \item "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}.
@@ -54,7 +51,6 @@ in some form (possibly the trivial case) (see \code{\link[=xds_setup]{xds_setup(
 \item "human" is for human/host infection dynamics(see \code{\link[=xds_setup_human]{xds_setup_human()}}), forced by the infective density of adult mosquitoes, \eqn{fqZ}
 \item "cohort" is for human/host cohort infection dynamics (see \code{\link[=xds_setup_cohort]{xds_setup_cohort()}}), forced by a function \code{F_eir}
 }
-\item \strong{\code{dlay}} is either "ode" or "dde" and it only affects dispatching for differential equations
 \item \strong{\code{forcing}} is set to "static"
 }
 

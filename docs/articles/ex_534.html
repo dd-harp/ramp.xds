@@ -588,7 +588,7 @@ components, and while they could be configured using
 </li>
 <li>
 <p>the third required term sets the value of<code>dlay</code> that
-dispatches <code>xde_solve</code></p>
+dispatches <code>xds_solve</code></p>
 <ul>
 <li><p><code>ode</code> uses <code><a href="https://rdrr.io/pkg/deSolve/man/ode.html" class="external-link">deSolve::ode</a></code> for ordinary
 differential equations,</p></li>
@@ -601,7 +601,7 @@ differential equations</p></li>
 above.</p></li>
 </ul>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_xds_template.html">make_xds_template</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"full"</span>, <span class="st">"dde"</span>, <span class="va">nPatches</span>, <span class="va">membership</span>, <span class="va">residence</span><span class="op">)</span> </span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_xds_template.html">make_xds_template</a></span><span class="op">(</span><span class="st">"ode"</span>, <span class="st">"full"</span>, <span class="va">nPatches</span>, <span class="va">membership</span>, <span class="va">residence</span><span class="op">)</span> </span></code></pre></div>
 <p>After being set up:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">params</span><span class="op">$</span><span class="va">nHabitats</span>, <span class="va">params</span><span class="op">$</span><span class="va">nPatches</span>, <span class="va">params</span><span class="op">$</span><span class="va">nStrata</span><span class="op">)</span></span>
@@ -851,8 +851,7 @@ returned as a named list, to make it easy to examine.</p>
 <span> c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">.02</span>, <span class="fl">.1</span>, <span class="fl">.02</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>dlay<span class="op">=</span><span class="st">'dde'</span>,</span>
-<span>  MYZname<span class="op">=</span><span class="st">"RM"</span>, Xname<span class="op">=</span><span class="st">"SIS"</span>, Lname<span class="op">=</span><span class="st">"basicL"</span>, </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname<span class="op">=</span><span class="st">"RM"</span>, Xname<span class="op">=</span><span class="st">"SIS"</span>, Lname<span class="op">=</span><span class="st">"basicL"</span>, </span>
 <span>  nPatches <span class="op">=</span> <span class="fl">3</span>, HPop<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">90</span>, <span class="fl">100</span>, <span class="fl">900</span><span class="op">)</span>, </span>
 <span>  membership<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>, </span>
 <span>  MYZopts<span class="op">=</span><span class="va">MYZo</span>, calK<span class="op">=</span><span class="va">calK</span>, Xopts<span class="op">=</span><span class="va">Xo</span>, Lopts <span class="op">=</span> <span class="va">Lo</span>,</span>
@@ -860,7 +859,7 @@ returned as a named list, to make it easy to examine.</p>
 <span>  TimeSpent<span class="op">=</span><span class="va">TaR</span>, searchQ <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">8</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod534</span></span></code></pre></div>
 <p>We solve and take the differences to check:</p>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod534</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_solve.html">xde_solve</a></span><span class="op">(</span><span class="va">mod534</span>, Tmax<span class="op">=</span><span class="fl">735</span>, dt<span class="op">=</span><span class="fl">15</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">mod534</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">mod534</span>, Tmax<span class="op">=</span><span class="fl">735</span>, dt<span class="op">=</span><span class="fl">15</span><span class="op">)</span></span>
 <span><span class="va">mod534</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out2</span></span></code></pre></div>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">mod534</span>, llty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>

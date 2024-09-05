@@ -90,7 +90,7 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
             Xopts=Xo, residence=1:3, searchB=searchWtsH,
             TimeSpent=TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
 
-  itn_mod <- xde_solve(itn_mod, 730, 1)
+  itn_mod <- xds_solve(itn_mod, 730, 1)
   out <- itn_mod$outputs$last_y
 
   M_sim <- out[itn_mod$ix$MYZ[[1]]$M_ix]
@@ -189,7 +189,7 @@ test_that("Le Menach VC model under control reaches the enw predicted equilibriu
             Xopts=Xo, residence=1:3, searchB=searchWtsH,
             TimeSpent=TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
 
-  itn_mod <- xde_solve(itn_mod, 730)
+  itn_mod <- xds_solve(itn_mod, 730)
 
   out0 <- itn_mod$outputs$last_y
 
@@ -287,7 +287,7 @@ xds_setup(MYZname="si", Xname="SIS", Lname="basicL",
           Xopts=Xo, residence=1:3, searchB=searchWtsH,
           TimeSpent=TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
 
-itn_mod <- xde_solve(itn_mod, 730)
+itn_mod <- xds_solve(itn_mod, 730)
 
 out0 <- itn_mod$outputs$last_y
 
@@ -345,7 +345,7 @@ itn_mod_trivial <- setup_control_forced(itn_mod_trivial)
 itn_mod_trivial <- setup_vc_control(itn_mod_trivial)
 itn_mod_trivial = setup_itn_lemenach(itn_mod_trivial, F_phi=ITN_cov)
 
-itn_mod_trivial <- xde_solve(itn_mod_trivial, 1000, 1)
+itn_mod_trivial <- xds_solve(itn_mod_trivial, 1000, 1)
 
 out <- itn_mod_trivial$outputs$last_y
 M_sim <- out[itn_mod_trivial$ix$MYZ[[1]]$M_ix]

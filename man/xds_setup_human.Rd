@@ -7,8 +7,7 @@
 xds_setup_human(
   Xname = "SIS",
   Xopts = list(),
-  xds = "xde",
-  dlay = "ode",
+  xds = "ode",
   nPatches = 1,
   residence = 1,
   HPop = 1000,
@@ -25,9 +24,7 @@ xds_setup_human(
 
 \item{Xopts}{list to configure the X model}
 
-\item{xds}{is \code{xde}/\code{dts} for differential / difference equations'}
-
-\item{dlay}{either "ode" or "dde"}
+\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
 \item{nPatches}{the number of patches}
 

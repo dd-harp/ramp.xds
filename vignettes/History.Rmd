@@ -37,7 +37,7 @@ A major change was implemented in the way `ramp.xde` handles **delay differentia
 
 + **Setup** -- Several new functions have been added to set up basic models. 
 
-+ **Solving** -- The `S3` function  `xde_solve()` was added to solve differential equations of various classes. 
++ **Solving** -- The `S3` function  `xds_solve()` was added to solve differential equations of various classes. 
 
 + **Outputs** -- The `S3` function  `parse_deout()` was added to parse the output of `deSolve` and return the orbits in a set of named lists. These lists are attached to `pars$outputs$orbits.` New functions were also written to compute the dynamical terms that connect the major components. 
 

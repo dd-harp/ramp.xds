@@ -96,7 +96,7 @@ with(Xo, plot(tt, F_trend(tt), type = "l"))
 ```{r}
 rm = xds_setup(Xname = "trivial", Xopts = Xo, HPop=10, 
                Lname = "trivial", Lopts = Lo)
-rm <- xde_solve(rm, 3650, dt=10)
+rm <- xds_solve(rm, 3650, dt=10)
 ```
 
 ```{r, fig.width=6, fig.height=3.5}

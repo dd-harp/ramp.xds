@@ -20,5 +20,5 @@ a \link{list} containing the vector of all state derivatives
 The function to compute the derivatives dispatches on \code{class(frame)}
 }
 \seealso{
-\link{xde_solve}
+\link{xds_solve}
 }

@@ -2625,4 +2625,19 @@
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.html</loc>
   </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve.dde.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve.dts.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve.ode.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve_cohort.html</loc>
+  </url>
 </urlset>
