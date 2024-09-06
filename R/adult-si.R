@@ -1,7 +1,7 @@
 # specialized methods for the adult mosquito si model
 
 #' @title \eqn{\cal MYZ} Component Derivatives for the `si` Mosquito Model
-#' @description Derivatives for a simple SI model for mosquito infection
+#' @description Derivatives for a simple si model for mosquito infection
 #' dynamics, where \eqn{M} is the density of mosquitoes, and \eqn{Y} the
 #' density of infected mosquitoes:
 #' \deqn{
@@ -22,9 +22,6 @@ dMYZdt.si <- function(t, y, pars, s) {
 
   with(list_MYZvars(y, pars, s),{
     with(pars$MYZpar[[s]],{
-
-      f = f_t*es_f; q = q_t*es_q
-      Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
 
       dM <- Lambda - (Omega %*% M)
       dY <- f*q*kappa*(M-Y) - (Omega %*% Y)
@@ -72,27 +69,159 @@ Update_MYZt.si <- function(t, y, pars, s) {
 #' @return a [list] vector
 #' @export
 make_MYZpar.si = function(MYZname, pars, s, MYZopts=list()){
-  setup_as = with(MYZopts, ifelse(exists("setup_as"), setup_as, "RM"))
-  if(setup_as == "GeRM"){
-    MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
-  } else {
-    MYZpar <- create_MYZpar_RM(pars$nPatches, MYZopts)
-  }
+  MYZpar <- create_MYZpar_si(pars$nPatches, MYZopts)
   class(MYZpar) <- "si"
   pars$MYZpar[[s]] <- MYZpar
   return(pars)
+}
+
+#' @title Make parameters for si ODE adult mosquito model
+#' @param nPatches is the number of patches, an integer
+#' @param MYZopts a [list] of values that overwrites the defaults
+#' @param eip the extrinsic incubation period
+#' @param g mosquito mortality rate
+#' @param sigma emigration rate
+#' @param mu fraction lost during emigration
+#' @param f feeding rate
+#' @param q human blood fraction
+#' @param nu oviposition rate, per mosquito
+#' @param eggsPerBatch eggs laid per oviposition
+#' @return a [list]
+#' @export
+create_MYZpar_si = function(nPatches, MYZopts=list(), eip=12,
+                            g=1/12, sigma=1/8, mu=0, f=0.3, q=0.95,
+                            nu=1, eggsPerBatch=60){
+
+  with(MYZopts,{
+    MYZpar <- list()
+    MYZpar$nPatches <- nPatches
+
+    eip_par <- 'static'
+    class(eip_par) <- 'static'
+    MYZpar$eip_par <- eip_par
+    MYZpar$eip    <- checkIt(eip, 1)
+
+    MYZpar$f_t      <- checkIt(f, nPatches)
+    MYZpar$q_t      <- checkIt(q, nPatches)
+    MYZpar$g_t      <- checkIt(g, nPatches)
+    MYZpar$sigma_t  <- checkIt(sigma, nPatches)
+    MYZpar$mu     <- checkIt(mu, nPatches)
+    MYZpar$nu     <- checkIt(nu, nPatches)
+
+    MYZpar$eggsPerBatch <- eggsPerBatch
+    MYZpar$calK <- diag(nPatches)
+
+    MYZpar$es_f       <- rep(1, nPatches)
+    MYZpar$es_q       <- rep(1, nPatches)
+    MYZpar$es_g       <- rep(1, nPatches)
+    MYZpar$es_sigma   <- rep(1, nPatches)
+
+    Omega <- diag(g, nPatches)
+    MYZpar$Omega <- Omega
+    MYZpar$Upsilon <- expm::expm(-Omega*eip)
+
+    MYZpar$baseline <- 'si'
+    class(MYZpar$baseline) <- 'si'
+    MYZpar$effect_sizes <- 'unmodified'
+    class(MYZpar$effect_sizes) <- 'unmodified'
+
+    return(MYZpar)
+  })}
+
+#' @title Macdonald-style adult mosquito bionomics
+#' @description Reset the effect sizes for static models
+#' @description
+#' When modules are added to compute effect sizes
+#' from baseline parameters, those functions store
+#' an effect size. The total effect size is the
+#' product of the effect sizes for each intervention.
+#' Since coverage could be changing dynamically, these
+#' must be reset each time the derivatives are computed.
+#' @inheritParams MBionomics
+#' @return the model as a [list]
+#' @export
+MBaseline.si <- function(t, y, pars, s) {
+  pars$MYZpar[[s]]$es_f     <- rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_q     <- rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_g     <- rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_sigma <- rep(1, pars$nPatches)
+  return(pars)
+}
+
+
+#' @title Macdonald-style adult mosquito bionomics
+#' @description Reset the effect sizes for static models
+#' @description
+#' When modules are added to compute effect sizes
+#' from baseline parameters, those functions store
+#' an effect size. The total effect size is the
+#' product of the effect sizes for each intervention.
+#' Since coverage could be changing dynamically, these
+#' must be reset each time the derivatives are computed.
+#' @inheritParams MBionomics
+#' @return the model as a [list]
+#' @export
+MBionomics.si <- function(t, y, pars, s) {
+  with(pars$MYZpar[[s]],{
+    pars$MYZpar[[s]]$f <- es_f*f_t
+    pars$MYZpar[[s]]$q <- es_q*q_t
+    pars$MYZpar[[s]]$g <- es_g*g_t
+    pars$MYZpar[[s]]$sigma <- es_sigma*sigma_t
+    pars <- make_Omega(pars, s)
+    return(pars)
+})}
+
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_f.si = function(pars, s=1){
+  with(pars$MYZpar[[s]], f_t*es_f)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_q.si = function(pars, s=1){
+  with(pars$MYZpar[[s]], q_t*es_q)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_g.si = function(pars, s=1){
+  with(pars$MYZpar[[s]], g_t*es_g)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_sigma.si = function(pars, s=1){
+  with(pars$MYZpar[[s]], sigma_t*es_sigma)
 }
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
 #' @description Implements [F_fqZ] for the si model.
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
+#' @importFrom expm expm
 #' @export
 F_fqZ.si <- function(t, y, pars, s) {
   f = get_f(pars, s)
   q = get_q(pars, s)
+  g = get_g(pars, s)
+  sigma = get_sigma(pars, s)
   Y = y[pars$ix$MYZ[[s]]$Y_ix]
-  Upsilon = compute_Upsilon(pars, s)
+  Omega = with(pars$MYZpar[[s]], compute_Omega_xde(g, sigma, mu, calK))
+  Upsilon = with(pars$MYZpar[[s]],expm::expm(-Omega*eip))
   return(f*q*(Upsilon %*% Y))
 }
 

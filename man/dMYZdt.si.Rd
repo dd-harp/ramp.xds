@@ -19,7 +19,7 @@
 a \link{numeric} vector
 }
 \description{
-Derivatives for a simple SI model for mosquito infection
+Derivatives for a simple si model for mosquito infection
 dynamics, where \eqn{M} is the density of mosquitoes, and \eqn{Y} the
 density of infected mosquitoes:
 \deqn{

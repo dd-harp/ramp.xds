@@ -2,7 +2,7 @@ library(expm)
 library(deSolve)
 
 
-test_that("RM models reach equilibrium", {
+test_that("macdonald models reach equilibrium", {
 
   # tolerance for tests comparing floats
   numeric_tol <- 1e-4
@@ -45,7 +45,7 @@ test_that("RM models reach equilibrium", {
   MYZo$Y=Y_eq
   MYZo$Z=Z_eq
 
-  params <- xds_setup(MYZname= "RM", Xname = "trivial", Lname = "trivial", nPatches=nPatches, membership = c(1:nPatches), Xopts=Xo, MYZopts=MYZo, Lopts=Lo, calK = calK)
+  params <- xds_setup(MYZname= "macdonald", Xname = "trivial", Lname = "trivial", nPatches=nPatches, membership = c(1:nPatches), Xopts=Xo, MYZopts=MYZo, Lopts=Lo, calK = calK)
 
   params$Lambda[[1]] = Lambda
   params$kappa[[1]] = kappa

@@ -23,7 +23,7 @@ VectorControlEffects.no_control <- function(t, y, pars) {
 #' @inheritParams VectorControlEffectSizes
 #' @return a named [list]
 #' @export
-VectorControlEffectSizes.no_control <- function(t, y, pars) {
+VectorControlEffectSizes.no_control <- function(t, y, pars){
   return(pars)
 }
 

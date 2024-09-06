@@ -139,7 +139,14 @@
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for dts</span></span>
-<span><span class="fu"><a href="setup_travel_static.html">setup_travel_static</a></span><span class="op">(</span><span class="va">pars</span>, delta <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="setup_travel_static.html">setup_travel_static</a></span><span class="op">(</span></span>
+<span>  <span class="va">pars</span>,</span>
+<span>  time_traveling <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  delta <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  F_season <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  F_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  i <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -148,8 +155,24 @@
 <dd><p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p></dd>
 
 
+<dt>time_traveling</dt>
+<dd><p>the time spent traveling</p></dd>
+
+
 <dt>delta</dt>
 <dd><p>the travel FoI</p></dd>
+
+
+<dt>F_season</dt>
+<dd><p>a function describing a seasonal pattern</p></dd>
+
+
+<dt>F_trend</dt>
+<dd><p>a function describing a trend</p></dd>
+
+
+<dt>i</dt>
+<dd><p>the host species index</p></dd>
 
 </dl></div>
     <div id="value">

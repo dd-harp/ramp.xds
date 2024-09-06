@@ -173,6 +173,8 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#devtools::load_all()</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="section"></h2>
 <p><strong><code>ramp.xds</code></strong> was designed to reduce the
@@ -185,22 +187,22 @@ easy to do work with models after they’ve been built.</p>
 </h3>
 <p>The function <code>xds_setup</code> was discussed in <a href="https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html">Getting
 Started</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, MYZname <span class="op">=</span> <span class="st">"si"</span>, Lname <span class="op">=</span> <span class="st">"basicL"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, MYZname <span class="op">=</span> <span class="st">"si"</span>, Lname <span class="op">=</span> <span class="st">"basicL"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span><span class="op">$</span><span class="va">MYZname</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "si"</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
 </h3>
-<p>The functions <code>xds_solve</code> and <code>dts_solve</code> can
-be called to solve dynamical systems. In these systems, <em>time</em> is
-the independent variable. Given a set of initial values,
-<code>xds_solve</code> or <code>dts_solve</code> compute the values of
-the dependent variables at those time points. Other functions return
-stable orbits for models with a canonical seasonal signal.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p>The functions <code>xds_solve</code> can be called to solve dynamical
+systems. In these systems, <em>time</em> is the independent variable.
+Given a set of initial values, <code>xds_solve</code> or
+<code>dts_solve</code> compute the values of the dependent variables at
+those time points. Other functions return stable orbits for models with
+a canonical seasonal signal.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -213,7 +215,7 @@ stable orbits for models with a canonical seasonal signal.</p>
 variables can be retrieved by name.</p></li>
 <li><p>dynamical terms are computed and returned.</p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "time"   "last_y" "orbits" "terms"  "deout"</span></span></code></pre>
 </div>
@@ -222,9 +224,9 @@ variables can be retrieved by name.</p></li>
 </h3>
 <p>a family of functions makes it easy to plot basic outputs of the
 models.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Working_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
+<p><img src="Working_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
 </div>
 <div class="section level3">
 <h3 id="initial-values">Initial Values<a class="anchor" aria-label="anchor" href="#initial-values"></a>
@@ -233,12 +235,12 @@ models.</p>
 it easy to change the intitial values through a function call. In
 solving, <code>xds_solve</code> calls <code>get_inits</code> with a
 <code>flatten=TRUE</code></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">mod</span>, flatten<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1]   1   5   1 999   1</span></span></code></pre>
 <p>With the default, <code>flatten=FALSE</code>, <code>get_inits</code>
 returns a named list that is easy to read:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $L</span></span>
 <span><span class="co">## $L$L</span></span>
@@ -261,7 +263,7 @@ returns a named list that is easy to read:</p>
 <span><span class="co">## [1] 1</span></span></code></pre>
 <p>Since it is a named list, it’s easy to examine a specific element in
 that list:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">MYZ</span></span></code></pre></div>
 <pre><code><span><span class="co">## $M</span></span>
 <span><span class="co">## [1] 5</span></span>

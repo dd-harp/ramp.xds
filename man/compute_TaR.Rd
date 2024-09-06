@@ -4,7 +4,7 @@
 \alias{compute_TaR}
 \title{Compute blood feeding availability of all vertebrate hosts}
 \usage{
-compute_TaR(t, TiSp, F_circadian)
+compute_TaR(t, TiSp, F_circadian, time_traveling)
 }
 \arguments{
 \item{t}{the time}
@@ -12,6 +12,8 @@ compute_TaR(t, TiSp, F_circadian)
 \item{TiSp}{a time spent matrix}
 
 \item{F_circadian}{a function to compute relative activity rates by time of day}
+
+\item{time_traveling}{the fraction of time spent outside the spatial domain}
 }
 \value{
 a TaR \link{matrix}

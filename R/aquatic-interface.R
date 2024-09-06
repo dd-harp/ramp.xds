@@ -30,6 +30,31 @@ Update_Lt <- function(t, y, pars, s) {
   UseMethod("Update_Lt", pars$Lpar[[s]])
 }
 
+
+#' @title Larval and Aquatic Stage Baseline
+#' @description Handle immature mosquito bionomic parameters as a baseline modified by control
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars an `xds` object
+#' @param s the species index
+#' @return an `xds` object
+#' @export
+LBaseline <- function(t, y, pars, s) {
+  UseMethod("LBaseline", pars$Lpar[[s]]$baseline)
+}
+
+#' @title Larval and Aquatic Stage Bionomics
+#' @description Handle immature mosquito bionomic parameters as a baseline modified by control
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars an `xds` object
+#' @param s the species index
+#' @return an `xds` object
+#' @export
+LBionomics <- function(t, y, pars, s) {
+  UseMethod("LBionomics", pars$Lpar[[s]]$baseline)
+}
+
 #' @title Create and configure **`Lpar`** for \eqn{\cal L}-Models
 #' @description
 #' Each instance of `make_Lpar` calls a function (usually `create_Lpar_*`) that

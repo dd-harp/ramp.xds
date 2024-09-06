@@ -16,7 +16,10 @@ travel_malaria <- function(t, pars) {
 #' @return a [numeric]
 #' @export
 travel_malaria.xde <- function(t, pars) {
-    return(pars$TRAVEL$delta)
+  with(pars$TRAVEL,{
+     travel_foi = delta*F_season(t)*F_trend(t)
+     return(travel_foi)
+  })
 }
 
 #' @title A model for the travel FoI
@@ -25,16 +28,24 @@ travel_malaria.xde <- function(t, pars) {
 #' @return a [numeric]
 #' @export
 travel_malaria.dts <- function(t, pars) {
-    return(pars$TRAVEL$delta)
+  with(pars$TRAVEL,{
+     travel_ar = delta*F_season(t)*F_trend(t)
+     return(travel_ar)
+  })
 }
 
 #' @title A function to set up malaria importation
 #' @description Setup a static model for travel malaria
 #' @param pars a [list]
+#' @param time_traveling the time spent traveling
 #' @param delta the travel FoI
+#' @param F_season a function describing a seasonal pattern
+#' @param F_trend a function describing a trend
+#' @param i the host species index
 #' @return a [list]
 #' @export
-setup_travel_static = function(pars, delta=0){
+setup_travel_static = function(pars, time_traveling=0, delta=0,
+                               F_season=F_flat, F_trend=F_flat, i=1){
   UseMethod("setup_travel_static", pars$xds)
 }
 
@@ -43,11 +54,15 @@ setup_travel_static = function(pars, delta=0){
 #' @inheritParams setup_travel_static
 #' @return a [list]
 #' @export
-setup_travel_static.xde = function(pars, delta=0){
+setup_travel_static.xde = function(pars, time_traveling=0, delta=0,
+                                   F_season=F_flat, F_trend=F_flat, i=1){
   TRAVEL <- list()
   class(TRAVEL) <- 'static'
   pars$TRAVEL <- TRAVEL
-  pars$TRAVEL$delta = delta
+  pars$time_traveling[[i]] = rep(time_traveling, pars$nStrata[i])
+  pars$TRAVEL$delta = rep(delta, pars$nStrata[i])
+  pars$TRAVEL$F_season = F_season
+  pars$TRAVEL$F_trend = F_trend
   return(pars)
 }
 
@@ -56,10 +71,13 @@ setup_travel_static.xde = function(pars, delta=0){
 #' @inheritParams setup_travel_static
 #' @return a [list]
 #' @export
-setup_travel_static.dts = function(pars, delta=0){
+setup_travel_static.dts = function(pars,  time_traveling=0, delta=0,
+                                   F_season = F_flat, F_trend=F_flat, i=1){
   TRAVEL <- list()
   class(TRAVEL) <- 'static'
-  pars$TRAVEL <- TRAVEL
-  pars$delta = delta
+  pars$time_traveling[[i]] = rep(time_traveling, pars$nStrata[i])
+  pars$TRAVEL$delta = rep(delta, pars$nStrata[i])
+  pars$TRAVEL$F_season = F_season
+  pars$TRAVEL$F_trend = F_trend
   return(pars)
 }

@@ -32,6 +32,15 @@ create_Lpar_trivial = function(nHabitats, Lopts=list(),
   })}
 
 #' @title Reset aquatic parameters to baseline
+#' @description Implements [LBaseline] for the RM model
+#' @inheritParams LBaseline
+#' @return a named [list]
+#' @export
+LBaseline.trivial<- function(t, y, pars, s) {
+  return(pars)
+}
+
+#' @title Reset aquatic parameters to baseline
 #' @description Implements [LBionomics] for the RM model
 #' @inheritParams LBionomics
 #' @return an **`xds`** object

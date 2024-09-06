@@ -207,7 +207,7 @@ parse_Xorbits.SIP <- function(outputs, pars, i) {
     H = S+I+P
     vars <- list(S=S, I=I, P=P, H=H)
     vars$ni <- F_ni(vars, pars$Xpar[[i]])
-    vars$pr <- F_pr(vars, pars$Xpar[[i]])
+    vars$true_pr <- F_pr(vars, pars$Xpar[[i]])
     return(vars)
 })}
 

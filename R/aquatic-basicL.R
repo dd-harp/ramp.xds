@@ -106,16 +106,32 @@ make_Lpar.basicL = function(Lname, pars, s, Lopts=list()){
 
 
 #' @title Reset aquatic parameters to baseline
+#' @description Implements [LBaseline] for the RM model
+#' @inheritParams LBaseline
+#' @return a named [list]
+#' @export
+LBaseline.basicL <- function(t, y, pars, s) {
+  with(pars$Lpar[[s]]$baseline,{
+    pars$Lpar[[s]]$psi <- psi
+    pars$Lpar[[s]]$phi <- phi
+    pars$Lpar[[s]]$theta <- theta
+
+    return(pars)
+})}
+
+
+#' @title Reset aquatic parameters to baseline
 #' @description Implements [LBionomics] for the RM model
 #' @inheritParams LBionomics
 #' @return a named [list]
 #' @export
-LBionomics.basicL <- function(t, y, pars, s) {with(pars$Lpar[[s]]$baseline,{
-  pars$Lpar[[s]]$psi <- psi
-  pars$Lpar[[s]]$phi <- phi
-  pars$Lpar[[s]]$theta <- theta
+LBionomics.basicL <- function(t, y, pars, s) {
+  with(pars$Lpar[[s]]$baseline,{
+    pars$Lpar[[s]]$psi <- psi
+    pars$Lpar[[s]]$phi <- phi
+    pars$Lpar[[s]]$theta <- theta
 
-  return(pars)
+    return(pars)
 })}
 
 

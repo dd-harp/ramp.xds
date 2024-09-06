@@ -32,6 +32,39 @@ F_fqM.trivial <- function(t, y, pars, s){
 }
 
 
+#' @title Macdonald-style adult mosquito bionomics
+#' @description Reset the effect trivialzes for static models
+#' @description
+#' When modules are added to compute effect sizes
+#' from baseline parameters, those functions store
+#' an effect size. The total effect size is the
+#' product of the effect sizes for each intervention.
+#' since coverage could be changing dynamically, these
+#' must be reset each time the derivatives are computed.
+#' @inheritParams MBionomics
+#' @return the model as a [list]
+#' @export
+MBaseline.trivial <- function(t, y, pars, s) {
+  return(pars)
+}
+
+#' @title Macdonald-style adult mosquito bionomics
+#' @description Reset the effect sizes for static models
+#' @description
+#' When modules are added to compute effect sizes
+#' from baseline parameters, those functions store
+#' an effect size. The total effect size is the
+#' product of the effect sizes for each intervention.
+#' since coverage could be changing dynamically, these
+#' must be reset each time the derivatives are computed.
+#' @inheritParams MBionomics
+#' @return the model as a [list]
+#' @export
+MBionomics.trivial <- function(t, y, pars, s) {
+  return(pars)
+}
+
+
 #' @title \eqn{\cal MYZ} Component Derivatives for the `trivial` model
 #' @description Implements [dMYZdt] for the trivial (forced emergence) model.
 #' @inheritParams dMYZdt

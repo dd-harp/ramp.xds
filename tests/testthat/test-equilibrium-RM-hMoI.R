@@ -4,7 +4,7 @@ library(deSolve)
 
 numeric_tol <- 1e-5
 
-test_that("test equilibrium with RM adults (DDE), hMoI humans, trivial", {
+test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", {
 
   # set number of patches and strata
   nPatches <- 2
@@ -83,7 +83,7 @@ test_that("test equilibrium with RM adults (DDE), hMoI humans, trivial", {
   P <- solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M
   Lambda <- Omega %*% M
 
-  xde_steady_state_MYZ.RM(Lambda, kappa, MYZo) -> ss
+  xde_steady_state_MYZ.macdonald(Lambda, kappa, MYZo) -> ss
 
   MYZo$M=M
   MYZo$P=P
@@ -94,7 +94,7 @@ test_that("test equilibrium with RM adults (DDE), hMoI humans, trivial", {
   Lo = list(Lambda=Lambda)
 
   # parameters for exDE
-  params <- xds_setup(MYZname = "RM", MYZopts=MYZo, Lname = "trivial", Lopts=Lo, TimeSpent = TaR, calK=calK,
+  params <- xds_setup(MYZname = "macdonald", MYZopts=MYZo, Lname = "trivial", Lopts=Lo, TimeSpent = TaR, calK=calK,
                       Xname = "hMoI", Xopts=Xo, HPop=H, membership=membership, nPatches=nPatches, residence=residence)
 
 
