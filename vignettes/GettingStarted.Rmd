@@ -175,7 +175,7 @@ The `xds_setup()` function **`ramp.xds`** has assigned default options for every
 
 + `Xname` dispatches a model family for parasitic infections and immunity in the human population, called $\cal X.$ The setup default model is `Xname="SIS"` and default parameters for the `SIS` model are defined in `create_Xpar_SIS.` To replace the default values at setup, a named list can be passed as `Xopts = list(...)` and the named values in `Xopts` will be used instead of the defaults. (The human demographic model, $\cal H$ is set up as an advanced option.) 
 
-+ `MYZname` dispatches a model family for adult mosquito ecology and parasite infection dynamics, $\cal MYZ.$ The setup default model is `MYZname="RM"` and default parameters for the `RM` model are defined in `create_MYZpar_RM.` To replace the default values at setup, a named list can be passed as `MYZopts = list(...)` and the named values in `MYZopts` will be used instead of the defaults.  
++ `MYZname` dispatches a model family for adult mosquito ecology and parasite infection dynamics, $\cal MYZ.$ The setup default model is `MYZname="macdonald"` and default parameters for the `macdonald` model are defined in `create_MYZpar_macdonald.` To replace the default values at setup, a named list can be passed as `MYZopts = list(...)` and the named values in `MYZopts` will be used instead of the defaults.  
 
 + `Lname` specifies a model family for aquatic mosquito ecology, $\cal L.$  The setup default model is the trivial model `Lname = "trivial"`. It has no variables, but it passes the outputs -- emerging adults -- as a parameter. To replace the default values at setup, a named list can be passed as `Lopts = list(...)` and the values in `Lopts` will be used instead of the defaults.  
 
@@ -188,7 +188,7 @@ model1 = xds_setup()
 returns the same values as the function call: 
 
 ```{r}
-model2 = xds_setup(Xname = "SIS", MYZname = "RM", Lname = "trivial")
+model2 = xds_setup(Xname = "SIS", MYZname = "macdonald", Lname = "trivial")
 ```
 
 **Structural Parameters** are also configured using `xde_setup.` In basic setup, users can configure a malaria landscape with *spatial dynamics,* structured *aquatic habitats,* and *multiple human / host* population strata. Basic setup was developed to ensure that all interfaces are set up properly when there are multiple patches, multiple habitats, multiple population strata, and malaria importation. The framework follows the mathematical formulas and (with small changes) the notation in [Wu SL, *et. al.* 2023]()

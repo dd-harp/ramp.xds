@@ -11,6 +11,10 @@ vignette: >
 library(ramp.xds)
 ```
 
+```{r}
+#devtools::load_all()
+```
+
 # 
 
 **`ramp.xds`** was designed to reduce the costs of model building and computation for malaria and other mosquito-transmitted pathogens. One of the core challenges for the software was to provide users with a set of utilities that would make it easy to do work with models after they've been built. 
@@ -29,7 +33,7 @@ mod$MYZname
 
 ## Solving 
 
-The functions `xds_solve` and `dts_solve` can be called to solve dynamical systems. In these systems, *time* is the independent variable. Given a set of initial values, `xds_solve` or `dts_solve` compute the values of the dependent variables at those time points. Other functions return stable orbits for models with a canonical seasonal signal.  
+The functions `xds_solve` can be called to solve dynamical systems. In these systems, *time* is the independent variable. Given a set of initial values, `xds_solve` or `dts_solve` compute the values of the dependent variables at those time points. Other functions return stable orbits for models with a canonical seasonal signal.  
 
 ```{r}
 mod <- xds_solve(mod)

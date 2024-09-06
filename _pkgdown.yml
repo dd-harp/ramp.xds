@@ -104,8 +104,9 @@ reference:
   contents:
   - dMYZdt.trivial
   - dMYZdt.si
-  - dMYZdt.sei
-  - dMYZdt.RM
+  - dMYZdt.macdonald
+  - dMYZdt.SEI
+  - dMYZdt.GeRM
   - dMYZdt.basicM
 - subtitle: Models -- Aquatic Mosquito
   desc: |
@@ -122,6 +123,7 @@ reference:
   - Resources
   - BloodFeeding
   - EggLaying
+  - BaselineBionomics
   - Bionomics
   - Transmission
   - Exposure
@@ -258,10 +260,13 @@ reference:
     Generic methods for the adult mosquito dynamics component.
   contents:
   - dMYZdt
+  - MBaseline
+  - MBionomics
   - xde_steady_state_MYZ
   - xde_steady_state_M
   - make_MYZpar
   - Update_MYZt
+  - MYZ_rates2probs
   - dts_steady_state_MYZ
   - F_fqZ
   - F_fqM
@@ -273,14 +278,6 @@ reference:
   - update_MYZinits
   - make_indices_MYZ
   - parse_MYZorbits
-- subtitle: Adult Mosquito Bionomics
-  desc: |
-    Basic Plotting
-  contents:
-  - MBionomics.RM
-  - MBionomics.GeRM
-  - create_MYZpar_RM
-  - create_MYZpar_GeRM
 - subtitle: Visualization for Adult Mosquito
   desc: |
     Basic Plotting
@@ -331,6 +328,8 @@ reference:
   - F_fqM.trivial
   - F_eggs.trivial
   - dMYZdt.trivial
+  - MBaseline.trivial
+  - MBionomics.trivial
   - Update_MYZt.trivial
   - make_MYZpar.trivial
   - create_MYZpar_trivial
@@ -345,6 +344,8 @@ reference:
     Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.
   contents:
   - dMYZdt.basicM
+  - MBaseline.basicM
+  - MBionomics.basicM
   - xde_steady_state_M.basicM
   - Update_MYZt.basicM
   - make_MYZpar.basicM
@@ -363,9 +364,12 @@ reference:
     Specialized methods for simple infection dynamics for an adult mosquito population
   contents:
   - dMYZdt.si
+  - MBaseline.si
+  - MBionomics.si
   - xde_steady_state_MYZ.si
   - Update_MYZt.si
   - make_MYZpar.si
+  - create_MYZpar_si
   - F_fqZ.si
   - F_fqM.si
   - F_eggs.si
@@ -377,43 +381,85 @@ reference:
   - parse_MYZorbits.si
   - get_MYZinits.si
   - update_MYZinits.si
+  - get_f.si
+  - get_q.si
+  - get_g.si
+  - get_sigma.si
 - subtitle: The "SEI" compartment model for infection
   desc: |
     Specialized methods for simple infection dynamics for an adult mosquito population
   contents:
-  - dMYZdt.sei
-  - xde_steady_state_MYZ.sei
-  - Update_MYZt.sei
-  - make_MYZpar.sei
-  - F_fqZ.sei
-  - F_fqM.sei
-  - F_eggs.sei
-  - list_MYZvars.sei
-  - put_MYZvars.sei
-  - make_MYZinits.sei
-  - create_MYZinits_sei
-  - make_indices_MYZ.sei
-  - parse_MYZorbits.sei
-  - get_MYZinits.sei
-  - update_MYZinits.sei
-- subtitle: RM
+  - dMYZdt.SEI
+  - MBaseline.SEI
+  - MBionomics.SEI
+  - xde_steady_state_MYZ.SEI
+  - Update_MYZt.SEI
+  - make_MYZpar.SEI
+  - create_MYZpar_SEI
+  - F_fqZ.SEI
+  - F_fqM.SEI
+  - F_eggs.SEI
+  - list_MYZvars.SEI
+  - put_MYZvars.SEI
+  - make_MYZinits.SEI
+  - create_MYZinits_SEI
+  - make_indices_MYZ.SEI
+  - parse_MYZorbits.SEI
+  - get_MYZinits.SEI
+  - update_MYZinits.SEI
+  - get_f.SEI
+  - get_q.SEI
+  - get_g.SEI
+  - get_sigma.SEI
+- subtitle: macdonald
+  desc: |
+    Specialized methods for a Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
+  contents:
+  - dMYZdt.macdonald
+  - MBaseline.macdonald
+  - MBionomics.macdonald
+  - xde_steady_state_MYZ.macdonald
+  - make_MYZpar.macdonald
+  - create_MYZpar_macdonald
+  - list_MYZvars.macdonald
+  - F_fqZ.macdonald
+  - F_fqM.macdonald
+  - F_eggs.macdonald
+  - make_MYZinits.macdonald
+  - create_MYZinits_macdonald
+  - get_MYZinits.macdonald
+  - update_MYZinits.macdonald
+  - make_indices_MYZ.macdonald
+  - parse_MYZorbits.macdonald
+  - get_f.macdonald
+  - get_q.macdonald
+  - get_g.macdonald
+  - get_sigma.macdonald
+- subtitle: GeRM
   desc: |
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
   contents:
-  - dMYZdt.RM
-  - Update_MYZt.RM
-  - xde_steady_state_MYZ.RM
-  - make_MYZpar.RM
-  - list_MYZvars.RM
-  - F_fqZ.RM
-  - F_fqM.RM
-  - F_eggs.RM
-  - make_MYZinits.RM
-  - create_MYZinits_RM
-  - get_MYZinits.RM
-  - update_MYZinits.RM
-  - make_indices_MYZ.RM
-  - parse_MYZorbits.RM
+  - dMYZdt.GeRM
+  - MBaseline.GeRM
+  - MBionomics.GeRM
+  - Update_MYZt.GeRM
+  - xde_steady_state_MYZ.GeRM
+  - make_MYZpar.GeRM
+  - create_MYZpar_GeRM
+  - list_MYZvars.GeRM
+  - F_fqZ.GeRM
+  - F_fqM.GeRM
+  - F_eggs.GeRM
+  - make_MYZinits.GeRM
+  - create_MYZinits_GeRM
+  - get_MYZinits.GeRM
+  - update_MYZinits.GeRM
+  - make_indices_MYZ.GeRM
+  - parse_MYZorbits.GeRM
+  - get_f.GeRM
+  - get_q.GeRM
+  - get_g.GeRM
+  - get_sigma.GeRM
 - subtitle: RM-Mosquito in discrete-time
   desc: |
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, in discrete time.
@@ -440,6 +486,7 @@ reference:
   - Update_Lt
   - dts_steady_state_L
   - LBionomics
+  - LBaseline
   - LBionomics.static
   - F_emerge
   - make_Linits
@@ -454,6 +501,7 @@ reference:
     Specialized methods for the exogeneously forced trivial model of aquatic mosquito dynamics.
   contents:
   - LBionomics.trivial
+  - LBaseline.trivial
   - xde_steady_state_L.trivial
   - F_emerge.trivial
   - dLdt.trivial
@@ -476,6 +524,7 @@ reference:
   - make_Lpar.basicL
   - create_Lpar_basicL
   - LBionomics.basicL
+  - LBaseline.basicL
   - F_emerge.basicL
   - make_Linits.basicL
   - create_Linits_basicL
@@ -488,7 +537,6 @@ reference:
     Methods to compute or update mosquito bionomic parameters
   contents:
   - Bionomics
-  - MBionomics
   - MBionomics.static
 - subtitle:  Functional Responses
   desc: |
@@ -1039,10 +1087,6 @@ reference:
   - make_runtime
   - make_runtime.dts
   - make_runtime.xde
-  - MYZ_rates2probs
-  - MYZ_rates2probs_RM
-  - MYZ_rates2probs_RM.unmodified
-  - MYZ_rates2probs_RM.modified
 - subtitle: Utilities
   desc: |
     Utilities
@@ -1080,19 +1124,15 @@ reference:
   - get_gt
   - get_sigmat
   - get_f
-  - get_f.RM
   - get_f.GeRM
   - get_f.trivial
   - get_q
-  - get_q.RM
   - get_q.GeRM
   - get_q.trivial
   - get_g
-  - get_g.RM
   - get_g.GeRM
   - get_g.trivial
   - get_sigma
-  - get_sigma.RM
   - get_sigma.GeRM
   - get_sigma.trivial
   - make_outputs

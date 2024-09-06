@@ -4,7 +4,7 @@ library(deSolve)
 
 
 
-test_that("test equilibrium with RM adults (DDE), basic competition", {
+test_that("test equilibrium with macdonald adults (DDE), basic competition", {
 
   numeric_tol <- 1e-5
 
@@ -80,7 +80,7 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
 
 
 
-  xde_steady_state_MYZ.RM(Lambda, kappa, MYZo) -> ss
+  xde_steady_state_MYZ.macdonald(Lambda, kappa, MYZo) -> ss
 
   MYZo$M=M
   MYZo$P=P
@@ -97,7 +97,7 @@ test_that("test equilibrium with RM adults (DDE), basic competition", {
 
   Xo = list(kappa=kappa, HPop=H)
   # parameters for exDE
-  params <- xds_setup_mosy(MYZname = "RM", MYZopts=MYZo, Lname = "basicL", Lopts=Lo, calK=calK, kappa=kappa,
+  params <- xds_setup_mosy(MYZname = "macdonald", MYZopts=MYZo, Lname = "basicL", Lopts=Lo, calK=calK, kappa=kappa,
                        HPop=H, membership=membership, nPatches=nPatches)
 
   params$kappa[[1]] = kappa

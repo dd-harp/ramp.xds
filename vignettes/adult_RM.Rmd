@@ -210,7 +210,7 @@ We use `ramp.xds::make_inits_MYZ_RM_xde` to store the initial values. These equa
 
 ```{r}
 params <- make_xds_template("dde", "mosy", nPatches, 1:3, 1:3)
-params <- make_MYZpar("RM", params, 1,  MYZo)  
+params <- make_MYZpar("macdonald", params, 1, MYZo)  
 params <- make_MYZinits(params, 1, MYZo)
 params <- make_Xpar("trivial", params, 1, Xo) 
 params <- make_Xinits(params, HPop, 1)
@@ -294,7 +294,7 @@ To set up the model, we call `xds_setup` with
 
 + `nPatches` is set to 3 
 
-+ `MYZname` is set to "RM" to run the Ross-Macdonald model for adult mosquitoes; to pass our options, we write `MYZopts = MYZo`; and finally, the dispersal matrix `calK` is passed as `calK=calK` 
++ `MYZname` is set to "macdonald" to run the Ross-Macdonald model for adult mosquitoes; to pass our options, we write `MYZopts = MYZo`; and finally, the dispersal matrix `calK` is passed as `calK=calK` 
 
 + `Xname` is set to "trivial" to run the trivial module for human infection dynamics 
 
@@ -304,7 +304,7 @@ Otherwise, setup takes care of all the internals:
 
 
 ```{r using setup}
-xds_setup(MYZname = "RM", Xname = "trivial", Lname = "trivial",  
+xds_setup(MYZname = "macdonald", Xname = "trivial", Lname = "trivial",  
     nPatches=3, calK=calK, membership = c(1:3), 
     residence = c(1:3), HPop = HPop,
     MYZopts = MYZo, Xopts = Xo, Lopts = Lo) -> MYZeg

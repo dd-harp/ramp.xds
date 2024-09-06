@@ -236,13 +236,17 @@
         </td>
         <td><p>\(\cal MYZ\) Component Derivatives for the <code>si</code> Mosquito Model</p></td>
       </tr><tr><td>
-          <p><code><a href="dMYZdt.sei.html">dMYZdt(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="dMYZdt.macdonald.html">dMYZdt(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
-        <td><p>\(\cal MYZ\) Component Derivatives for the <code>sei</code> Mosquito Model</p></td>
+        <td><p>Derivatives for adult mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="dMYZdt.RM.html">dMYZdt(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="dMYZdt.SEI.html">dMYZdt(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
-        <td><p>\(\cal MYZ\) Component Derivatives for the <code>RM</code> model</p></td>
+        <td><p>\(\cal MYZ\) Component Derivatives for the <code>SEI</code> Mosquito Model</p></td>
+      </tr><tr><td>
+          <p><code><a href="dMYZdt.GeRM.html">dMYZdt(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>\(\cal MYZ\) Component Derivatives for the <code>GeRM</code> model</p></td>
       </tr><tr><td>
           <p><code><a href="dMYZdt.basicM.html">dMYZdt(<i>&lt;basicM&gt;</i>)</a></code> </p>
         </td>
@@ -283,6 +287,10 @@
           <p><code><a href="EggLaying.html">EggLaying()</a></code> </p>
         </td>
         <td><p>Compute eggs laid</p></td>
+      </tr><tr><td>
+          <p><code><a href="BaselineBionomics.html">BaselineBionomics()</a></code> </p>
+        </td>
+        <td><p>Set bionomic parameter rates relative to baseline</p></td>
       </tr><tr><td>
           <p><code><a href="Bionomics.html">Bionomics()</a></code> </p>
         </td>
@@ -696,6 +704,14 @@
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
       </tr><tr><td>
+          <p><code><a href="MBaseline.html">MBaseline()</a></code> </p>
+        </td>
+        <td><p>Adult Mosquito Baseline Bionomics</p></td>
+      </tr><tr><td>
+          <p><code><a href="MBionomics.html">MBionomics()</a></code> </p>
+        </td>
+        <td><p>Adult Mosquito Bionomics</p></td>
+      </tr><tr><td>
           <p><code><a href="xde_steady_state_MYZ.html">xde_steady_state_MYZ()</a></code> </p>
         </td>
         <td><p>Compute steady states for \(\cal MYZ\) models</p></td>
@@ -711,6 +727,10 @@
           <p><code><a href="Update_MYZt.html">Update_MYZt()</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
+      </tr><tr><td>
+          <p><code><a href="MYZ_rates2probs.html">MYZ_rates2probs()</a></code> </p>
+        </td>
+        <td><p>Compute probabilities from rates</p></td>
       </tr><tr><td>
           <p><code><a href="dts_steady_state_MYZ.html">dts_steady_state_MYZ()</a></code> </p>
         </td>
@@ -755,26 +775,6 @@
           <p><code><a href="parse_MYZorbits.html">parse_MYZorbits()</a></code> </p>
         </td>
         <td><p>Parse the outputs and return the variables by name in a list</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="adult-mosquito-bionomics">Adult Mosquito Bionomics <a href="#adult-mosquito-bionomics" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Basic Plotting</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="MBionomics.RM.html">MBionomics(<i>&lt;RM&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Macdonald-style adult mosquito bionomics</p></td>
-      </tr><tr><td>
-          <p><code><a href="MBionomics.GeRM.html">MBionomics(<i>&lt;GeRM&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Set mosquito bionomics to baseline</p></td>
-      </tr><tr><td>
-          <p><code><a href="create_MYZpar_RM.html">create_MYZpar_RM()</a></code> </p>
-        </td>
-        <td><p>Make parameters for RM ODE adult mosquito model</p></td>
-      </tr><tr><td>
-          <p><code><a href="create_MYZpar_GeRM.html">create_MYZpar_GeRM()</a></code> </p>
-        </td>
-        <td><p>Make parameters for GeRM ODE adult mosquito model</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="visualization-for-adult-mosquito">Visualization for Adult Mosquito <a href="#visualization-for-adult-mosquito" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Basic Plotting</p>
@@ -928,6 +928,14 @@
         </td>
         <td><p>\(\cal MYZ\) Component Derivatives for the <code>trivial</code> model</p></td>
       </tr><tr><td>
+          <p><code><a href="MBaseline.trivial.html">MBaseline(<i>&lt;trivial&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Macdonald-style adult mosquito bionomics</p></td>
+      </tr><tr><td>
+          <p><code><a href="MBionomics.trivial.html">MBionomics(<i>&lt;trivial&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Macdonald-style adult mosquito bionomics</p></td>
+      </tr><tr><td>
           <p><code><a href="Update_MYZt.trivial.html">Update_MYZt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for aquatic stage mosquitoes</p></td>
@@ -971,6 +979,14 @@
           <p><code><a href="dMYZdt.basicM.html">dMYZdt(<i>&lt;basicM&gt;</i>)</a></code> </p>
         </td>
         <td><p>\(\cal MYZ\) Component Derivatives for <code>basicM</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="MBaseline.basicM.html">MBaseline(<i>&lt;basicM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set mosquito bionomics to baseline</p></td>
+      </tr><tr><td>
+          <p><code><a href="MBionomics.basicM.html">MBionomics(<i>&lt;basicM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set mosquito bionomics to baseline</p></td>
       </tr><tr><td>
           <p><code><a href="xde_steady_state_M.basicM.html">xde_steady_state_M(<i>&lt;basicM&gt;</i>)</a></code> </p>
         </td>
@@ -1032,6 +1048,14 @@
         </td>
         <td><p>\(\cal MYZ\) Component Derivatives for the <code>si</code> Mosquito Model</p></td>
       </tr><tr><td>
+          <p><code><a href="MBaseline.si.html">MBaseline(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Macdonald-style adult mosquito bionomics</p></td>
+      </tr><tr><td>
+          <p><code><a href="MBionomics.si.html">MBionomics(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Macdonald-style adult mosquito bionomics</p></td>
+      </tr><tr><td>
           <p><code><a href="xde_steady_state_MYZ.si.html">xde_steady_state_MYZ(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
         <td><p>Steady States: MYZ-si</p></td>
@@ -1043,6 +1067,10 @@
           <p><code><a href="make_MYZpar.si.html">make_MYZpar(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
         <td><p>Setup MYZpar for the si model</p></td>
+      </tr><tr><td>
+          <p><code><a href="create_MYZpar_si.html">create_MYZpar_si()</a></code> </p>
+        </td>
+        <td><p>Make parameters for si ODE adult mosquito model</p></td>
       </tr><tr><td>
           <p><code><a href="F_fqZ.si.html">F_fqZ(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
@@ -1087,130 +1115,286 @@
           <p><code><a href="update_MYZinits.si.html">update_MYZinits(<i>&lt;si&gt;</i>)</a></code> </p>
         </td>
         <td><p>Make inits for si adult mosquito model</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_f.si.html">get_f(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_q.si.html">get_q(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_g.si.html">get_g(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigma.si.html">get_sigma(<i>&lt;si&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="the-sei-compartment-model-for-infection">The “SEI” compartment model for infection <a href="#the-sei-compartment-model-for-infection" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for simple infection dynamics for an adult mosquito population</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="dMYZdt.sei.html">dMYZdt(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="dMYZdt.SEI.html">dMYZdt(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
-        <td><p>\(\cal MYZ\) Component Derivatives for the <code>sei</code> Mosquito Model</p></td>
+        <td><p>\(\cal MYZ\) Component Derivatives for the <code>SEI</code> Mosquito Model</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_steady_state_MYZ.sei.html">xde_steady_state_MYZ(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="MBaseline.SEI.html">MBaseline(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Steady States: MYZ-sei</p></td>
+        <td><p>Set mosquito bionomics to baseline</p></td>
       </tr><tr><td>
-          <p><code><a href="Update_MYZt.sei.html">Update_MYZt(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="MBionomics.SEI.html">MBionomics(<i>&lt;SEI&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set mosquito bionomics to baseline</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_MYZ.SEI.html">xde_steady_state_MYZ(<i>&lt;SEI&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Steady States: MYZ-SEI</p></td>
+      </tr><tr><td>
+          <p><code><a href="Update_MYZt.SEI.html">Update_MYZt(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="make_MYZpar.sei.html">make_MYZpar(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="make_MYZpar.SEI.html">make_MYZpar(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Setup MYZpar for the sei model</p></td>
+        <td><p>Setup MYZpar for the SEI model</p></td>
       </tr><tr><td>
-          <p><code><a href="F_fqZ.sei.html">F_fqZ(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="create_MYZpar_SEI.html">create_MYZpar_SEI()</a></code> </p>
+        </td>
+        <td><p>Make parameters for SEI ODE adult mosquito model</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_fqZ.SEI.html">F_fqZ(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
         <td><p>The net blood feeding rate of the infective mosquito population in a patch</p></td>
       </tr><tr><td>
-          <p><code><a href="F_fqM.sei.html">F_fqM(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="F_fqM.SEI.html">F_fqM(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
         <td><p>The net blood feeding rate of the infective mosquito population in a patch</p></td>
       </tr><tr><td>
-          <p><code><a href="F_eggs.sei.html">F_eggs(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="F_eggs.SEI.html">F_eggs(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
         <td><p>Number of eggs laid by adult mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="list_MYZvars.sei.html">list_MYZvars(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="list_MYZvars.SEI.html">list_MYZvars(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
         <td><p>Return the variables as a list</p></td>
       </tr><tr><td>
-          <p><code><a href="put_MYZvars.sei.html">put_MYZvars(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="put_MYZvars.SEI.html">put_MYZvars(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
         <td><p>Return the variables as a list</p></td>
       </tr><tr><td>
-          <p><code><a href="make_MYZinits.sei.html">make_MYZinits(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="make_MYZinits.SEI.html">make_MYZinits(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Setup initial values for the sei model</p></td>
+        <td><p>Setup initial values for the SEI model</p></td>
       </tr><tr><td>
-          <p><code><a href="create_MYZinits_sei.html">create_MYZinits_sei()</a></code> </p>
+          <p><code><a href="create_MYZinits_SEI.html">create_MYZinits_SEI()</a></code> </p>
         </td>
-        <td><p>Make inits for sei adult mosquito model</p></td>
+        <td><p>Make inits for SEI adult mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.sei.html">make_indices_MYZ(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="make_indices_MYZ.SEI.html">make_indices_MYZ(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_MYZorbits.sei.html">parse_MYZorbits(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_MYZorbits.SEI.html">parse_MYZorbits(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Parse the output of deSolve and return variables for the sei model</p></td>
+        <td><p>Parse the output of deSolve and return variables for the SEI model</p></td>
       </tr><tr><td>
-          <p><code><a href="get_MYZinits.sei.html">get_MYZinits(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="get_MYZinits.SEI.html">get_MYZinits(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
         <td><p>Return initial values as a vector</p></td>
       </tr><tr><td>
-          <p><code><a href="update_MYZinits.sei.html">update_MYZinits(<i>&lt;sei&gt;</i>)</a></code> </p>
+          <p><code><a href="update_MYZinits.SEI.html">update_MYZinits(<i>&lt;SEI&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Make inits for sei adult mosquito model</p></td>
+        <td><p>Make inits for SEI adult mosquito model</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_f.SEI.html">get_f(<i>&lt;SEI&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_q.SEI.html">get_q(<i>&lt;SEI&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_g.SEI.html">get_g(<i>&lt;SEI&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigma.SEI.html">get_sigma(<i>&lt;SEI&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="rm">RM <a href="#rm" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron &amp; Robert May (1982).</p>
+          <h3 id="macdonald">macdonald <a href="#macdonald" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Specialized methods for a Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron &amp; Robert May (1982).</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="dMYZdt.RM.html">dMYZdt(<i>&lt;RM&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>\(\cal MYZ\) Component Derivatives for the <code>RM</code> model</p></td>
-      </tr><tr><td>
-          <p><code><a href="Update_MYZt.RM.html">Update_MYZt(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="dMYZdt.macdonald.html">dMYZdt(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for adult mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_steady_state_MYZ.RM.html">xde_steady_state_MYZ(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="MBaseline.macdonald.html">MBaseline(<i>&lt;macdonald&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>macdonald-style adult mosquito bionomics</p></td>
+      </tr><tr><td>
+          <p><code><a href="MBionomics.macdonald.html">MBionomics(<i>&lt;macdonald&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>macdonald-style adult mosquito bionomics</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_MYZ.macdonald.html">xde_steady_state_MYZ(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
         <td><p>Compute the steady states as a function of the daily EIR</p></td>
       </tr><tr><td>
-          <p><code><a href="make_MYZpar.RM.html">make_MYZpar(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="make_MYZpar.macdonald.html">make_MYZpar(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Setup MYZpar for the RM model</p></td>
+        <td><p>Setup MYZpar for the macdonald model</p></td>
       </tr><tr><td>
-          <p><code><a href="list_MYZvars.RM.html">list_MYZvars(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="create_MYZpar_macdonald.html">create_MYZpar_macdonald()</a></code> </p>
+        </td>
+        <td><p>Make parameters for macdonald ODE adult mosquito model</p></td>
+      </tr><tr><td>
+          <p><code><a href="list_MYZvars.macdonald.html">list_MYZvars(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
         <td><p>Return the variables as a list</p></td>
       </tr><tr><td>
-          <p><code><a href="F_fqZ.RM.html">F_fqZ(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="F_fqZ.macdonald.html">F_fqZ(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
         <td><p>The net blood feeding rate of the infective mosquito population in a patch</p></td>
       </tr><tr><td>
-          <p><code><a href="F_fqM.RM.html">F_fqM(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="F_fqM.macdonald.html">F_fqM(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
         <td><p>The net blood feeding rate of the infective mosquito population in a patch</p></td>
       </tr><tr><td>
-          <p><code><a href="F_eggs.RM.html">F_eggs(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="F_eggs.macdonald.html">F_eggs(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
         <td><p>Number of eggs laid by adult mosquitoes</p></td>
       </tr><tr><td>
-          <p><code><a href="make_MYZinits.RM.html">make_MYZinits(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="make_MYZinits.macdonald.html">make_MYZinits(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Setup initial values for the RM model</p></td>
+        <td><p>Setup initial values for the macdonald model</p></td>
       </tr><tr><td>
-          <p><code><a href="create_MYZinits_RM.html">create_MYZinits_RM()</a></code> </p>
+          <p><code><a href="create_MYZinits_macdonald.html">create_MYZinits_macdonald()</a></code> </p>
         </td>
-        <td><p>Make inits for RM adult mosquito model</p></td>
+        <td><p>Make inits for macdonald adult mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="get_MYZinits.RM.html">get_MYZinits(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="get_MYZinits.macdonald.html">get_MYZinits(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
         <td><p>Return initial values as a list</p></td>
       </tr><tr><td>
-          <p><code><a href="update_MYZinits.RM.html">update_MYZinits(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="update_MYZinits.macdonald.html">update_MYZinits(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Update inits for RM adult mosquito model</p></td>
+        <td><p>Update inits for macdonald adult mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.RM.html">make_indices_MYZ(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="make_indices_MYZ.macdonald.html">make_indices_MYZ(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
-          <p><code><a href="parse_MYZorbits.RM.html">parse_MYZorbits(<i>&lt;RM&gt;</i>)</a></code> </p>
+          <p><code><a href="parse_MYZorbits.macdonald.html">parse_MYZorbits(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Parse the output of deSolve and return variables for the RM model</p></td>
+        <td><p>Parse the output of deSolve and return variables for the macdonald model</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_f.macdonald.html">get_f(<i>&lt;macdonald&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_q.macdonald.html">get_q(<i>&lt;macdonald&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_g.macdonald.html">get_g(<i>&lt;macdonald&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigma.macdonald.html">get_sigma(<i>&lt;macdonald&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="germ">GeRM <a href="#germ" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron &amp; Robert May (1982).</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="dMYZdt.GeRM.html">dMYZdt(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>\(\cal MYZ\) Component Derivatives for the <code>GeRM</code> model</p></td>
+      </tr><tr><td>
+          <p><code><a href="MBaseline.GeRM.html">MBaseline(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set mosquito bionomics to baseline</p></td>
+      </tr><tr><td>
+          <p><code><a href="MBionomics.GeRM.html">MBionomics(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set mosquito bionomics to baseline</p></td>
+      </tr><tr><td>
+          <p><code><a href="Update_MYZt.GeRM.html">Update_MYZt(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives for adult mosquitoes</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_MYZ.GeRM.html">xde_steady_state_MYZ(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the steady states as a function of the daily EIR</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_MYZpar.GeRM.html">make_MYZpar(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Setup MYZpar for the GeRM model</p></td>
+      </tr><tr><td>
+          <p><code><a href="create_MYZpar_GeRM.html">create_MYZpar_GeRM()</a></code> </p>
+        </td>
+        <td><p>Make parameters for GeRM ODE adult mosquito model</p></td>
+      </tr><tr><td>
+          <p><code><a href="list_MYZvars.GeRM.html">list_MYZvars(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Return the variables as a list</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_fqZ.GeRM.html">F_fqZ(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>The net blood feeding rate of the infective mosquito population in a patch</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_fqM.GeRM.html">F_fqM(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>The net blood feeding rate of the infective mosquito population in a patch</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_eggs.GeRM.html">F_eggs(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Number of eggs laid by adult mosquitoes</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_MYZinits.GeRM.html">make_MYZinits(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Setup initial values for the GeRM model</p></td>
+      </tr><tr><td>
+          <p><code><a href="create_MYZinits_GeRM.html">create_MYZinits_GeRM()</a></code> </p>
+        </td>
+        <td><p>Make inits for GeRM adult mosquito model</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_MYZinits.GeRM.html">get_MYZinits(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Return initial values as a list</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_MYZinits.GeRM.html">update_MYZinits(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update inits for GeRM adult mosquito model</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_indices_MYZ.GeRM.html">make_indices_MYZ(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Add indices for adult mosquitoes to parameter list</p></td>
+      </tr><tr><td>
+          <p><code><a href="parse_MYZorbits.GeRM.html">parse_MYZorbits(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Parse the output of deSolve and return variables for the GeRM model</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_f.GeRM.html">get_f(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_q.GeRM.html">get_q(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_g.GeRM.html">get_g(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_sigma.GeRM.html">get_sigma(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get the feeding rate</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="rm-mosquito-in-discrete-time">RM-Mosquito in discrete-time <a href="#rm-mosquito-in-discrete-time" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, in discrete time.</p>
@@ -1290,7 +1474,11 @@
       </tr><tr><td>
           <p><code><a href="LBionomics.html">LBionomics()</a></code> </p>
         </td>
-        <td><p>Set aquatic bionomic parameter rates relative to baseline</p></td>
+        <td><p>Larval and Aquatic Stage Bionomics</p></td>
+      </tr><tr><td>
+          <p><code><a href="LBaseline.html">LBaseline()</a></code> </p>
+        </td>
+        <td><p>Larval and Aquatic Stage Baseline</p></td>
       </tr><tr><td>
           <p><code><a href="LBionomics.static.html">LBionomics(<i>&lt;static&gt;</i>)</a></code> </p>
         </td>
@@ -1333,6 +1521,10 @@
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="LBionomics.trivial.html">LBionomics(<i>&lt;trivial&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Reset aquatic parameters to baseline</p></td>
+      </tr><tr><td>
+          <p><code><a href="LBaseline.trivial.html">LBaseline(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Reset aquatic parameters to baseline</p></td>
       </tr><tr><td>
@@ -1412,6 +1604,10 @@
         </td>
         <td><p>Reset aquatic parameters to baseline</p></td>
       </tr><tr><td>
+          <p><code><a href="LBaseline.basicL.html">LBaseline(<i>&lt;basicL&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Reset aquatic parameters to baseline</p></td>
+      </tr><tr><td>
           <p><code><a href="F_emerge.basicL.html">F_emerge(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
         <td><p>Number of newly emerging adults from each larval habitat</p></td>
@@ -1447,10 +1643,6 @@
           <p><code><a href="Bionomics.html">Bionomics()</a></code> </p>
         </td>
         <td><p>Set bionomic parameter rates relative to baseline</p></td>
-      </tr><tr><td>
-          <p><code><a href="MBionomics.html">MBionomics()</a></code> </p>
-        </td>
-        <td><p>Adult Mosquito Bionomics</p></td>
       </tr><tr><td>
           <p><code><a href="MBionomics.static.html">MBionomics(<i>&lt;static&gt;</i>)</a></code> </p>
         </td>
@@ -3151,22 +3343,6 @@
           <p><code><a href="make_runtime.xde.html">make_runtime(<i>&lt;xde&gt;</i>)</a></code> </p>
         </td>
         <td><p>Set up run-time time step support for <code>xde</code> models</p></td>
-      </tr><tr><td>
-          <p><code><a href="MYZ_rates2probs.html">MYZ_rates2probs()</a></code> </p>
-        </td>
-        <td><p>Compute probabilities from rates</p></td>
-      </tr><tr><td>
-          <p><code><a href="MYZ_rates2probs_RM.html">MYZ_rates2probs_RM()</a></code> </p>
-        </td>
-        <td><p>Compute probabilities from rates</p></td>
-      </tr><tr><td>
-          <p><code><a href="MYZ_rates2probs_RM.unmodified.html">MYZ_rates2probs_RM(<i>&lt;unmodified&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute probabilities from rates</p></td>
-      </tr><tr><td>
-          <p><code><a href="MYZ_rates2probs_RM.modified.html">MYZ_rates2probs_RM(<i>&lt;modified&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute probabilities from rates</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="utilities">Utilities <a href="#utilities" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Utilities</p>
@@ -3280,10 +3456,6 @@
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
-          <p><code><a href="get_f.RM.html">get_f(<i>&lt;RM&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
           <p><code><a href="get_f.GeRM.html">get_f(<i>&lt;GeRM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
@@ -3293,10 +3465,6 @@
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
           <p><code><a href="get_q.html">get_q()</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_q.RM.html">get_q(<i>&lt;RM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
@@ -3312,10 +3480,6 @@
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
-          <p><code><a href="get_g.RM.html">get_g(<i>&lt;RM&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
           <p><code><a href="get_g.GeRM.html">get_g(<i>&lt;GeRM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
@@ -3325,10 +3489,6 @@
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>
           <p><code><a href="get_sigma.html">get_sigma()</a></code> </p>
-        </td>
-        <td><p>Get the feeding rate</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_sigma.RM.html">get_sigma(<i>&lt;RM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the feeding rate</p></td>
       </tr><tr><td>

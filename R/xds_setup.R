@@ -77,7 +77,7 @@
 xds_setup = function(xds = 'ode',
                      Xname = "SIS",
                      Xopts = list(),
-                     MYZname = "RM",
+                     MYZname = "macdonald",
                      MYZopts = list(),
                      Lname = "trivial",
                      Lopts = list(),

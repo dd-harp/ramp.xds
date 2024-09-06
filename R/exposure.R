@@ -31,8 +31,9 @@ Exposure <- function(t, y, pars){
 #' @export
 Exposure.xde <- function(t, y, pars){
   for(i in 1:pars$nHosts){
+    trv = pars$time_traveling[[i]]
     b = as.vector(F_b(y, pars, i))
-    pars$FoI[[i]] = F_foi(pars$EIR[[i]], b, pars) + travel_malaria(t, pars)
+    pars$FoI[[i]] = (1-trv)*F_foi(pars$EIR[[i]], b, pars) + trv*travel_malaria(t, pars)
   }
   return(pars)
 }
@@ -57,8 +58,9 @@ Exposure.xde <- function(t, y, pars){
 #' @export
 Exposure.dts <- function(t, y, pars){
   for(i in 1:pars$nHosts){
+    trv = pars$time_traveling[[i]]
     b = as.vector(F_b(y, pars, i))
-    pars$AR[[i]] = F_ar(pars$EIR[[i]]*pars$Xday, b, pars) + travel_malaria(t, pars)
+    pars$AR[[i]] = (1-trv)*F_ar(pars$EIR[[i]]*pars$Xday, b, pars) + trv*travel_malaria(t, pars)
   }
   return(pars)
 }

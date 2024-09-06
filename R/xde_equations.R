@@ -23,21 +23,22 @@ xde_derivatives.full <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-  # set the values of resource variables
-  pars <- Resources(t, pars)
   # implement malaria control
   pars <- Control(t, y, pars)
-
+  # set the values of resource variables
+  pars <- Resources(t, pars)
   # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
   # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
-
-  # available sugar & bionomic parameters
-  pars <- Bionomics(t, y, pars)
-  # modify mosquito bionomic parameters
-  # by computing independent effect sizes
+  # Compute baseline mosquito bionomic parameters
+  # (including available sugar)
+  pars <- BaselineBionomics(t, y, pars)
+  # Compute total effect size assuming
+  # "independent effect sizes"
   pars <- VectorControlEffectSizes(t, y, pars)
+  # Modify the baseline
+  pars <- Bionomics(t, y, pars)
 
   # emergence: Lambda
   pars <- Emergence(t, y, pars)
@@ -74,20 +75,20 @@ xde_derivatives.human <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-  # set the values of resource variables
-  pars <- Resources(t, pars)
   # vector control
   pars <- Control(t, y, pars)
-
-
+  # set the values of resource variables
+  pars <- Resources(t, pars)
   # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
-
-  # set and modify the baseline mosquito bionomic parameters
-  pars <- Bionomics(t, y, pars)
-
-  # modify the baseline mosquito bionomic parameters
+  # Compute baseline mosquito bionomic parameters
+  # (including available sugar)
+  pars <- BaselineBionomics(t, y, pars)
+  # Compute total effect size assuming
+  # "independent effect sizes"
   pars <- VectorControlEffectSizes(t, y, pars)
+  # Modify the baseline
+  pars <- Bionomics(t, y, pars)
 
   # compute beta, EIR, and kappa
   pars <- Transmission(t, y, pars)
@@ -116,10 +117,10 @@ xde_derivatives.mosy <- function(t, y, pars) {
 
   # set the values of exogenous forcing variables
   pars <- Forcing(t, pars)
-  # set the values of resource variables
-  pars <- Resources(t, pars)
   # vector control
   pars <- Control(t, y, pars)
+  # set the values of resource variables
+  pars <- Resources(t, pars)
 
   # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
@@ -127,11 +128,14 @@ xde_derivatives.mosy <- function(t, y, pars) {
   # egg laying: available habitat, egg distribution matrix
   pars <- EggLaying(t, y, pars)
 
-  # update adult bionomic parameters to baseline
-  # or with integrated effect sizes
-  pars <- Bionomics(t, y, pars)
-
+  # Compute baseline mosquito bionomic parameters
+  # (including available sugar)
+  pars <- BaselineBionomics(t, y, pars)
+  # Compute total effect size assuming
+  # "independent effect sizes"
   pars <- VectorControlEffectSizes(t, y, pars)
+  # Modify the baseline
+  pars <- Bionomics(t, y, pars)
 
   # emergence: compute Lambda
   pars <- Emergence(t, y, pars)
@@ -164,9 +168,13 @@ xde_derivatives.aquatic <- function(t, y, pars) {
   # vector control
   pars <- Control(t, y, pars)
 
-  # modify baseline mosquito bionomic parameters
-  pars <- Bionomics(t, y, pars)
+  # Compute baseline mosquito bionomic parameters
+  pars <- BaselineBionomics(t, y, pars)
+  # Compute total effect size assuming
+  # "independent effect sizes"
   pars <- VectorControlEffectSizes(t, y, pars)
+  # Modify the baseline
+  pars <- Bionomics(t, y, pars)
 
   # egg laying: compute eta
 

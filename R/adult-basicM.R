@@ -13,9 +13,6 @@ dMYZdt.basicM <- function(t, y, pars, s){
   with(list_MYZvars(y, pars, s),{
     with(pars$MYZpar[[s]],{
 
-      f = f_t*es_f;
-      Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
-
       dMdt <- Lambda - (Omega %*% M)
       dPdt <- f*(M - P) - (Omega %*% P)
 
@@ -23,6 +20,46 @@ dMYZdt.basicM <- function(t, y, pars, s){
     })
   })
 }
+
+
+#' @title Set mosquito bionomics to baseline
+#' @description Implements [MBaseline] for models with no forcing on the baseline
+#' @inheritParams MBaseline
+#' @return the model as a [list]
+#' @export
+MBaseline.basicM <- function(t, y, pars, s){with(pars$MYZpar[[s]],{
+  # Baseline parameters
+  pars$MYZpar[[s]]$f_t      <- F_f(t, vars, f_par)
+  pars$MYZpar[[s]]$q_t      <- F_q(t, vars, q_par)
+  pars$MYZpar[[s]]$g_t      <- F_g(t, vars, g_par)
+  pars$MYZpar[[s]]$sigma_t  <- F_sigma(t, vars, sigma_par)
+  pars$MYZpar[[s]]$mu       <- F_mu(t, vars, mu_par)
+  pars$MYZpar[[s]]$nu       <- F_nu(t, vars, nu_par)
+  pars$MYZpar[[s]]$eip      <- F_eip(t, vars, eip_par)
+  pars$MYZpar[[s]]$calK     <- F_calK(t, vars, calK_par)
+  pars$MYZpar[[s]]$eggsPerBatch <- eggsPerBatch
+  # Reset Effect Sizes
+  pars$MYZpar[[s]]$es_f     < rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_q     <- rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_g     <- rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_sigma <- rep(1, pars$nPatches)
+  return(pars)
+})}
+
+#' @title Set mosquito bionomics to baseline
+#' @description Implements [MBionomics] for models with no forcing on the baseline
+#' @inheritParams MBionomics
+#' @return the model as a [list]
+#' @export
+MBionomics.basicM <- function(t, y, pars, s) {with(pars$MYZpar[[s]],{
+  pars$MYZpar[[s]]$f <- es_f*f_t
+  pars$MYZpar[[s]]$q <- es_q*q_t
+  pars$MYZpar[[s]]$g <- es_g*g_t
+  pars$MYZpar[[s]]$sigma <- es_sigma*sigma_t
+  pars <- make_Omega(pars, s)
+  return(pars)
+})}
+
 
 #' @title Compute the steady states as a function of the daily EIR
 #' @description This method dispatches on the type of `MYZpar`
@@ -66,18 +103,11 @@ Update_MYZt.basicM <- function(t, y, pars, s) {
 #' @export
 make_MYZpar.basicM = function(MYZname, pars, s, MYZopts=list()){
   setup_as = with(MYZopts, ifelse(exists("setup_as"), setup_as, "RM"))
-  with(MYZopts,{
-    if(setup_as == "GeRM"){
-      MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
-    } else {
-      MYZpar <- create_MYZpar_RM(pars$nPatches, MYZopts)
-    }
-    class(MYZpar) <- 'basicM'
-    pars$MYZpar[[s]] = MYZpar
-    return(pars)
-})}
-
-
+  MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
+  class(MYZpar) <- 'basicM'
+  pars$MYZpar[[s]] = MYZpar
+  return(pars)
+}
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
 #' @description Implements [F_fqZ] for the basicM xde model.

@@ -89,7 +89,6 @@ setup_BLOOD_FEEDING <- function(pars){
   up$search_weights[[1]] = list()
   up$search_weights[[1]][[1]] = wts
 
-
   # Relative activity rates for mosquitoes
   up$F_circadian = list()
   up$F_circadian[[1]] = F_flat
@@ -100,6 +99,8 @@ setup_BLOOD_FEEDING <- function(pars){
   # Time Spent (TiSp): For each Host Species, i
   pars$TimeSpent = list()
   pars$TimeSpent[[1]] = calJ
+  pars$time_traveling = list()
+  pars$time_traveling[[1]] = rep(0, pars$nStrata)
 
   # Time at Risk (TaR): For each TiSp,
   # one for each Vector Species, s
@@ -166,7 +167,7 @@ change_blood_weights = function(pars, search_weights=1, s=1, i=1){
 #' @seealso Availability of all vertebrate hosts for blood feeding is computed by [compute_B()]
 #' @export
 compute_W = function(search_weights, H, TaR){
-  W=TaR %*% (search_weights*H)
+  W = TaR %*% (search_weights*H)
   return(as.vector(W))
 }
 
@@ -265,11 +266,12 @@ make_RBR = function(t, pars, y){
 #' @param t the time
 #' @param TiSp a time spent matrix
 #' @param F_circadian a function to compute relative activity rates by time of day
+#' @param time_traveling the fraction of time spent outside the spatial domain
 #' @return a TaR [matrix]
 #' @export
-compute_TaR = function(t, TiSp, F_circadian){
+compute_TaR = function(t, TiSp, F_circadian, time_traveling){
   d = 24*floor(t%%1)
-  TaR = F_circadian(d)*TiSp
+  TaR = F_circadian(d)*TiSp %*% diag(1-time_traveling)
   return(TaR)
 }
 
@@ -282,7 +284,7 @@ compute_TaR = function(t, TiSp, F_circadian){
 make_TaR <- function(pars, t=0){
   for(s in 1:pars$nVectors)
     for(i in 1:pars$nHosts)
-      pars$TaR[[i]][[s]] = compute_TaR(t, pars$TimeSpent[[i]], pars$BFpar$F_circadian[[s]])
+      pars$TaR[[i]][[s]] = compute_TaR(t, pars$TimeSpent[[i]], pars$BFpar$F_circadian[[s]], pars$time_traveling[[i]])
   return(pars)
 }
 

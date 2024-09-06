@@ -13,6 +13,29 @@ dMYZdt <- function(t, y, pars, s) {
   UseMethod("dMYZdt", pars$MYZpar[[s]])
 }
 
+#' @title Adult Mosquito Baseline Bionomics
+#' @description Handle adult mosquito bionomics as a baseline modified by control
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars an `xds` object
+#' @param s the species index
+#' @return an `xds` object
+#' @export
+MBaseline <- function(t, y, pars, s) {
+  UseMethod("MBaseline", pars$MYZpar[[s]]$baseline)
+}
+
+#' @title Adult Mosquito Bionomics
+#' @description Handle adult mosquito bionomics as a baseline modified by control
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars an `xds` object
+#' @param s the species index
+#' @return an `xds` object
+#' @export
+MBionomics <- function(t, y, pars, s) {
+  UseMethod("MBionomics", pars$MYZpar[[s]]$baseline)
+}
 
 #' @title A function to set up adult mosquito models
 #' @description This method dispatches on `MYZname`.

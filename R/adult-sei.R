@@ -1,7 +1,7 @@
-# specialized methods for the adult mosquito sei model
+# specialized methods for the adult mosquito SEI model
 
-#' @title \eqn{\cal MYZ} Component Derivatives for the `sei` Mosquito Model
-#' @description Implements [dMYZdt] for the sei ODE model.
+#' @title \eqn{\cal MYZ} Component Derivatives for the `SEI` Mosquito Model
+#' @description Implements [dMYZdt] for the SEI ODE model.
 #' @details
 #' The dynamics of adult mosquitoes:
 #' \deqn{\frac{dM}{dt} = \Lambda - \Omega \cdot M}
@@ -12,15 +12,12 @@
 #' @inheritParams dMYZdt
 #' @return a [numeric] vector
 #' @export
-dMYZdt.sei <- function(t, y, pars, s) {
+dMYZdt.SEI <- function(t, y, pars, s) {
   Lambda = pars$Lambda[[s]]
   kappa = pars$kappa[[s]]
 
   with(list_MYZvars(y, pars, s),{
     with(pars$MYZpar[[s]],{
-
-      f = f_t*es_f; q = q_t*es_q
-      Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
 
       dM <- Lambda - (Omega %*% M)
       dY <- f*q*kappa*(M-Y) - Omega %*% Y
@@ -31,23 +28,23 @@ dMYZdt.sei <- function(t, y, pars, s) {
   })
 }
 
-#' @title Steady States: MYZ-sei
+#' @title Steady States: MYZ-SEI
 #' @description This method dispatches on the type of `MYZpar`.
 #' @inheritParams xde_steady_state_MYZ
 #' @return none
 #' @export
-xde_steady_state_MYZ.sei = function(Lambda, kappa, MYZpar){with(MYZpar,{
+xde_steady_state_MYZ.SEI = function(Lambda, kappa, MYZpar){with(MYZpar,{
   Omega_inv <- solve(Omega)
   Z_eq <- as.vector(solve(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
   return(c(M=M_eq, Z=Z_eq))
 })}
 
 #' @title Derivatives for adult mosquitoes
-#' @description Implements [Update_MYZt] for the sei model.
+#' @description Implements [Update_MYZt] for the SEI model.
 #' @inheritParams Update_MYZt
 #' @return a [numeric] vector
 #' @export
-Update_MYZt.sei <- function(t, y, pars, s) {
+Update_MYZt.SEI <- function(t, y, pars, s) {
   Lambda = pars$Lambda[[s]]
   kappa = pars$kappa[[s]]
   D = pars$MYZday
@@ -62,29 +59,24 @@ Update_MYZt.sei <- function(t, y, pars, s) {
   })
 }
 
-#' @title Setup MYZpar for the sei model
-#' @description Implements [make_MYZpar] for the sei model
+#' @title Setup MYZpar for the SEI model
+#' @description Implements [make_MYZpar] for the SEI model
 #' @inheritParams make_MYZpar
 #' @return a [list] vector
 #' @export
-make_MYZpar.sei = function(MYZname, pars, s, MYZopts=list()){
-  setup_as = with(MYZopts, ifelse(exists("setup_as"), setup_as, "RM"))
-  if(setup_as == "GeRM"){
-    MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
-  } else {
-    MYZpar <- create_MYZpar_RM(pars$nPatches, MYZopts)
-  }
-  class(MYZpar) <- 'sei'
+make_MYZpar.SEI = function(MYZname, pars, s, MYZopts=list()){
+  MYZpar <- create_MYZpar_SEI(pars$nPatches, MYZopts)
+  class(MYZpar) <- 'SEI'
   pars$MYZpar[[s]] <- MYZpar
   return(pars)
 }
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
-#' @description Implements [F_fqZ] for the sei model.
+#' @description Implements [F_fqZ] for the SEI model.
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
 #' @export
-F_fqZ.sei <- function(t, y, pars, s) {
+F_fqZ.SEI <- function(t, y, pars, s) {
   f = get_f(pars, s)
   q = get_q(pars, s)
   Z = y[pars$ix$MYZ[[s]]$Z_ix]
@@ -92,11 +84,11 @@ F_fqZ.sei <- function(t, y, pars, s) {
 }
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
-#' @description Implements [F_fqM] for the sei model.
+#' @description Implements [F_fqM] for the SEI model.
 #' @inheritParams F_fqM
 #' @return a [numeric] vector of length `nPatches`
 #' @export
-F_fqM.sei <- function(t, y, pars, s) {
+F_fqM.SEI <- function(t, y, pars, s) {
   f = get_f(pars, s)
   q = get_q(pars, s)
   M = y[pars$ix$MYZ[[s]]$M_ix]
@@ -104,11 +96,11 @@ F_fqM.sei <- function(t, y, pars, s) {
 }
 
 #' @title Number of eggs laid by adult mosquitoes
-#' @description Implements [F_eggs] for the sei model.
+#' @description Implements [F_eggs] for the SEI model.
 #' @inheritParams F_eggs
 #' @return a [numeric] vector of length `nPatches`
 #' @export
-F_eggs.sei <- function(t, y, pars, s) {
+F_eggs.SEI <- function(t, y, pars, s) {
   M <- y[pars$ix$MYZ[[s]]$M_ix]
   with(pars$MYZpar[[s]],{
     return(M*nu*eggsPerBatch)
@@ -120,7 +112,7 @@ F_eggs.sei <- function(t, y, pars, s) {
 #' @inheritParams list_MYZvars
 #' @return a [list]
 #' @export
-list_MYZvars.sei <- function(y, pars, s){
+list_MYZvars.SEI <- function(y, pars, s){
   with(pars$ix$MYZ[[s]],
        return(list(
          M = y[M_ix],
@@ -134,7 +126,7 @@ list_MYZvars.sei <- function(y, pars, s){
 #' @inheritParams put_MYZvars
 #' @return a [list]
 #' @export
-put_MYZvars.sei <- function(MYZvars, y, pars, s){
+put_MYZvars.SEI <- function(MYZvars, y, pars, s){
   with(pars$ix$MYZ[[s]],
        with(MYZvars,{
          y[M_ix] = M
@@ -148,18 +140,18 @@ put_MYZvars.sei <- function(MYZvars, y, pars, s){
 
 
 
-#' @title Setup initial values for the sei model
-#' @description Implements [make_MYZinits] for the sei model
+#' @title Setup initial values for the SEI model
+#' @description Implements [make_MYZinits] for the SEI model
 #' @inheritParams make_MYZinits
 #' @return a [list]
 #' @export
-make_MYZinits.sei = function(pars, s, MYZopts=list()){
-  pars$MYZinits[[s]] = with(pars$MYZpar[[s]], create_MYZinits_sei(nPatches, MYZopts))
+make_MYZinits.SEI = function(pars, s, MYZopts=list()){
+  pars$MYZinits[[s]] = with(pars$MYZpar[[s]], create_MYZinits_SEI(nPatches, MYZopts))
   return(pars)
 }
 
 
-#' @title Make inits for sei adult mosquito model
+#' @title Make inits for SEI adult mosquito model
 #' @param nPatches the number of patches in the model
 #' @param MYZopts a [list] of values that overwrites the defaults
 #' @param M total mosquito density at each patch
@@ -167,7 +159,7 @@ make_MYZinits.sei = function(pars, s, MYZopts=list()){
 #' @param Z infectious mosquito density at each patch
 #' @return a [list]
 #' @export
-create_MYZinits_sei = function(nPatches, MYZopts = list(),
+create_MYZinits_SEI = function(nPatches, MYZopts = list(),
                               M=5, Y=1, Z=0){
   with(MYZopts,{
     M = checkIt(M, nPatches)
@@ -179,12 +171,12 @@ create_MYZinits_sei = function(nPatches, MYZopts = list(),
 
 
 #' @title Add indices for adult mosquitoes to parameter list
-#' @description Implements [make_indices_MYZ] for the sei model.
+#' @description Implements [make_indices_MYZ] for the SEI model.
 #' @inheritParams make_indices_MYZ
 #' @return a [list]
 #' @importFrom utils tail
 #' @export
-make_indices_MYZ.sei <- function(pars, s) {with(pars,{
+make_indices_MYZ.SEI <- function(pars, s) {with(pars,{
 
   M_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(M_ix, 1)
@@ -201,12 +193,12 @@ make_indices_MYZ.sei <- function(pars, s) {with(pars,{
 })}
 
 
-#' @title Parse the output of deSolve and return variables for the sei model
-#' @description Implements [parse_MYZorbits] for the sei model
+#' @title Parse the output of deSolve and return variables for the SEI model
+#' @description Implements [parse_MYZorbits] for the SEI model
 #' @inheritParams parse_MYZorbits
 #' @return a [list]
 #' @export
-parse_MYZorbits.sei <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
+parse_MYZorbits.SEI <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
   M = outputs[,M_ix]
   Y = outputs[,Y_ix]
   Z = outputs[,Z_ix]
@@ -218,22 +210,193 @@ parse_MYZorbits.sei <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
 })}
 
 #' @title Return initial values as a vector
-#' @description Implements [get_MYZinits] for the sei model.
+#' @description Implements [get_MYZinits] for the SEI model.
 #' @inheritParams get_MYZinits
 #' @return [numeric]
 #' @export
-get_MYZinits.sei <- function(pars, s) {
+get_MYZinits.SEI <- function(pars, s) {
   pars$MYZinits[[s]]
 }
 
-#' @title Make inits for sei adult mosquito model
+#' @title Make inits for SEI adult mosquito model
 #' @inheritParams update_MYZinits
 #' @return a [list]
 #' @export
-update_MYZinits.sei <- function(pars, y0, s) {with(pars$ix$MYZ[[s]],{
+update_MYZinits.SEI <- function(pars, y0, s) {with(pars$ix$MYZ[[s]],{
   M = y0[M_ix]
   Y = y0[Y_ix]
   Z = y0[Z_ix]
-  pars$MYZinits[[s]] = create_MYZinits_sei(pars$nPatches, list(), M=M, Y=Y, Z=Z)
+  pars$MYZinits[[s]] = create_MYZinits_SEI(pars$nPatches, list(), M=M, Y=Y, Z=Z)
   return(pars)
 })}
+
+
+#' @title Make parameters for SEI ODE adult mosquito model
+#' @param nPatches is the number of patches, an integer
+#' @param MYZopts a [list] of values that overwrites the defaults
+#' @param eip the extrinsic incubation period
+#' @param g mosquito mortality rate
+#' @param sigma emigration rate
+#' @param mu emigration loss
+#' @param f feeding rate
+#' @param q human blood fraction
+#' @param nu oviposition rate, per mosquito
+#' @param eggsPerBatch eggs laid per oviposition
+#' @return a [list]
+#' @export
+create_MYZpar_SEI = function(nPatches, MYZopts=list(), eip =12,
+                              g=1/12,  sigma=1/8,  mu=0,
+                              f=0.3,  q=0.95,
+                              nu=1,  eggsPerBatch=60){
+  with(MYZopts,{
+
+    MYZpar <- list()
+
+    MYZpar$nPatches <- nPatches
+
+    eip_par <- list()
+    class(eip_par) <- 'static'
+    eip_par$eip = eip
+    MYZpar$eip_par <- eip_par
+    MYZpar$eip=eip
+
+    f=checkIt(f, nPatches)
+    MYZpar$f_par <- list()
+    class(MYZpar$f_par) <- "static"
+    MYZpar$f_par$f = f
+    MYZpar$f_t = f
+    MYZpar$es_f = 1
+
+    q=checkIt(q, nPatches)
+    MYZpar$q_par <- list()
+    class(MYZpar$q_par) <- "static"
+    MYZpar$q_par$q = q
+    MYZpar$q_t = q
+    MYZpar$es_q = 1
+
+    g=checkIt(g, nPatches)
+    MYZpar$g_par <- list()
+    class(MYZpar$g_par) <- "static"
+    MYZpar$g_par$g = g
+    MYZpar$g_t = g
+    MYZpar$es_g = 1
+
+    mu=checkIt(mu, nPatches)
+    MYZpar$mu_par <- list()
+    class(MYZpar$mu_par) <- "static"
+    MYZpar$mu_par$mu = mu
+    MYZpar$mu = mu
+
+    sigma=checkIt(sigma, nPatches)
+    MYZpar$sigma_par <- list()
+    class(MYZpar$sigma_par) <- "static"
+    MYZpar$sigma_par$sigma = sigma
+    MYZpar$sigma_t = sigma
+    MYZpar$es_sigma = 1
+
+    nu=checkIt(nu, nPatches)
+    MYZpar$nu_par <- list()
+    class(MYZpar$nu_par) <- "static"
+    MYZpar$nu_par$nu = nu
+    MYZpar$nu=nu
+
+    calK = diag(nPatches)
+    MYZpar$calK_par <- list()
+    class(MYZpar$calK_par) <- "static"
+    MYZpar$calK_par$calK = calK
+    MYZpar$calK=calK
+
+    Omega <- diag(g, nPatches)
+    MYZpar$Omega <- Omega
+    MYZpar$Upsilon <- expm::expm(-Omega*eip)
+    MYZpar$nPatches <- nPatches
+
+    Omega <- diag(g, nPatches)
+    MYZpar$Omega <- Omega
+    MYZpar$Upsilon <- expm::expm(-Omega*eip)
+    MYZpar$nPatches <- nPatches
+
+    MYZpar$eggsPerBatch <- eggsPerBatch
+
+    MYZpar$baseline <- MYZpar
+    class(MYZpar$baseline) <- 'SEI'
+
+    return(MYZpar)
+})}
+
+
+#' @title Set mosquito bionomics to baseline
+#' @description Implements [MBaseline] for models with no forcing on the baseline
+#' @inheritParams MBaseline
+#' @return the model as a [list]
+#' @export
+MBaseline.SEI <- function(t, y, pars, s){with(pars$MYZpar[[s]],{
+  # Baseline parameters
+  pars$MYZpar[[s]]$f_t      <- F_f(t, vars, f_par)
+  pars$MYZpar[[s]]$q_t      <- F_q(t, vars, q_par)
+  pars$MYZpar[[s]]$g_t      <- F_g(t, vars, g_par)
+  pars$MYZpar[[s]]$sigma_t  <- F_sigma(t, vars, sigma_par)
+  pars$MYZpar[[s]]$mu       <- F_mu(t, vars, mu_par)
+  pars$MYZpar[[s]]$nu       <- F_nu(t, vars, nu_par)
+  pars$MYZpar[[s]]$eip      <- F_eip(t, vars, eip_par)
+  pars$MYZpar[[s]]$calK     <- F_calK(t, vars, calK_par)
+  pars$MYZpar[[s]]$eggsPerBatch <- eggsPerBatch
+  # Reset Effect Sizes
+  pars$MYZpar[[s]]$es_f     < rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_q     <- rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_g     <- rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_sigma <- rep(1, pars$nPatches)
+  return(pars)
+})}
+
+#' @title Set mosquito bionomics to baseline
+#' @description Implements [MBionomics] for models with no forcing on the baseline
+#' @inheritParams MBionomics
+#' @return the model as a [list]
+#' @export
+MBionomics.SEI <- function(t, y, pars, s) {
+  with(pars$MYZpar[[s]],{
+    pars$MYZpar[[s]]$f <- es_f*f_t
+    pars$MYZpar[[s]]$q <- es_q*q_t
+    pars$MYZpar[[s]]$g <- es_g*g_t
+    pars$MYZpar[[s]]$sigma <- es_sigma*sigma_t
+    pars <- make_Omega(pars, s)
+    return(pars)
+})}
+
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_f.SEI = function(pars, s=1){
+  with(pars$MYZpar[[s]], f_t*es_f)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_q.SEI = function(pars, s=1){
+  with(pars$MYZpar[[s]], q_t*es_q)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_g.SEI = function(pars, s=1){
+  with(pars$MYZpar[[s]], g_t*es_g)
+}
+
+#' @title Get the feeding rate
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_sigma.SEI = function(pars, s=1){
+  with(pars$MYZpar[[s]], sigma_t*es_sigma)
+}

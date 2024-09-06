@@ -18,7 +18,6 @@ make_Omega.xde <- function(pars, s){with(pars$MYZpar[[s]],{
   sigma = get_sigma(pars, s)
   Omega = compute_Omega_xde(g, sigma, mu, calK)
   pars$MYZpar[[s]]$Omega = Omega
-  pars$MYZpar[[s]]$Omega_eip = Omega
   pars$MYZpar[[s]]$Upsilon = expm::expm(-Omega*eip)
   return(pars)
 })}
@@ -47,7 +46,7 @@ compute_Omega <- function(pars, s){
 #' @param s the species index
 #' @export
 compute_Omega.xde <- function(pars, s){with(pars$MYZpar[[s]],{
-  compute_Omega_xde(g_t*es_g, sigma_t*es_g, mu, calK)
+  compute_Omega_xde(g, sigma, mu, calK)
 })}
 
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
@@ -103,7 +102,7 @@ compute_Upsilon <- function(pars, s){
 #' @param s the species index
 #' @export
 compute_Upsilon.xde <- function(pars, s){with(pars$MYZpar[[s]],{
-  Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
+  Omega = compute_Omega_xde(g, sigma, mu, calK)
   Upsilon = expm(-Omega*eip)
   return(Upsilon)
 })}
