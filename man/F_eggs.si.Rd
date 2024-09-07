@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-si.R
 \name{F_eggs.si}
 \alias{F_eggs.si}
-\title{Number of eggs laid by adult mosquitoes}
+\title{\eqn{\cal MYZ} Component Egg Laying for the \code{si} Mosquito Model}
 \usage{
 \method{F_eggs}{si}(t, y, pars, s)
 }
@@ -19,5 +19,12 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_eggs} for the si model.
+The density of adult mosquitoes is \eqn{M}.
+The \strong{parameters} describing egg laying by adult mosquitoes are:
+\itemize{
+\item \eqn{\nu} or \code{nu} is the egg laying rate
+\item \eqn{\xi} or \code{eggsPerBatch} is the number of eggs per batch
+}
+
+The egg laying rate, per patch, is \deqn{\nu \xi M}
 }

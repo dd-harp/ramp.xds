@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-si.R
 \name{F_fqZ.si}
 \alias{F_fqZ.si}
-\title{The net blood feeding rate of the infective mosquito population in a patch}
+\title{\eqn{\cal MYZ} Component Net Blood Feeding by Infectious Mosquitoes for the \code{si} Mosquito Model}
 \usage{
 \method{F_fqZ}{si}(t, y, pars, s)
 }
@@ -19,5 +19,19 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_fqZ} for the si model.
+The variable \eqn{Y} is the density of \emph{infected} mosquitoes.
+The model blood feeding \strong{parameters} are:
+\itemize{
+\item \eqn{f} is the overall blood feeding rate
+\item \eqn{q} is the human fraction for blood feeding
+\item \eqn{\Omega} is the demographic matrix
+\item \eqn{\tau} is the EIP
+}
+
+The net blood feeding rate by infectious mosquitoes is computed by accounting
+for survival and dispersal that would occur in a delay differential equation:
+\deqn{\Upsilon = e^{-\Omega \tau}}
+so
+\deqn{fqZ = fq (\Upsilon \cdot Y)}
+The daily EIR for the population strata is \eqn{\beta \cdot fqZ}
 }
