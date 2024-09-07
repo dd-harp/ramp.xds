@@ -19,15 +19,50 @@
 a \link{numeric} vector
 }
 \description{
-Derivatives for a simple si model for mosquito infection
-dynamics, where \eqn{M} is the density of mosquitoes, and \eqn{Y} the
-density of infected mosquitoes:
+The \code{si} model for mosquito infection
+dynamics has the defined \strong{variable} classes:
+\itemize{
+\item \eqn{M} is the density of mosquitoes in each patch;
+\item \eqn{Y} is the density of infected mosquitoes in each patch.
+}
+
+The density of infectious mosquitoes in each patch is
+given by a term (returned by \link{F_fqZ.si}):
+\deqn{Z = e^{-\Omega \tau} \cdot Y}
+
+The model blood feeding \strong{parameters} are:
+\itemize{
+\item \eqn{f} is the overall blood feeding rate
+\item \eqn{q} is the human fraction for blood feeding
+}
+
+The \strong{parameters} describing egg laying (see \link{F_eggs.si}) are:
+\itemize{
+\item \eqn{\nu} is the egg laying rate
+\item \eqn{\xi} is the number of eggs per batch
+}
+
+The model demographic \strong{parameters} are:
+\itemize{
+\item \eqn{g} is the mortality rate
+\item \eqn{\sigma} is the emigration rate
+\item \eqn{\mu} is the emigration loss rate
+\item \eqn{\cal K} is the mosquito dispersal matrix
+}
+
+The four parameters describing mortality and migration are used to construct a
+demographic matrix:
+\deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) - \cal K \right) \cdot \mbox{diag}\left(\sigma\right)}
+
+The emergence rate of adult mosquitoes, \eqn{\Lambda}, is computed by \link{F_emerge},
+and the \strong{derivatives} returned by \link{dMYZdt.si} are given by the equations:
 \deqn{
 \begin{array}{rr}
 dM/dt =& \Lambda &- \Omega \cdot M \\
 dY/dt =& f q \kappa (M-Y) &- \Omega \cdot Y \\
 \end{array}.
 }
-and infectious mosquitoes are by the variable
-\deqn{Z = e^{-\Omega \tau} \cdot Y}
+}
+\seealso{
+\link{F_fqZ.si} and \link{F_eggs.si}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-interface.R
 \name{MBaseline}
 \alias{MBaseline}
-\title{Adult Mosquito Baseline Bionomics}
+\title{Adult Mosquito - Baseline Bionomics}
 \usage{
 MBaseline(t, y, pars, s)
 }
@@ -19,5 +19,6 @@ MBaseline(t, y, pars, s)
 an \code{xds} object
 }
 \description{
-Handle adult mosquito bionomics as a baseline modified by control
+Compute adult mosquito bionomics as a
+\emph{changing baseline.}
 }

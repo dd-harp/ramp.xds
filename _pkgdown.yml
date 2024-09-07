@@ -21,6 +21,8 @@ navbar:
       href: articles/vc_lemenach.html
     - text: Heterogeneous Transmission
       href: articles/heterogeneous_transmission.html
+    - text: Nimble Model Building and Scaling Complexity
+      href: articles/Nimble.html
     - text: Contributing
       href: articles/Contributing.html
   - text: Mosquito - Adult

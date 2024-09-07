@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-interface.R
 \name{dMYZdt}
 \alias{dMYZdt}
-\title{Derivatives for adult mosquitoes}
+\title{\eqn{\cal MYZ} Component Derivatives for the \code{GeRM} model}
 \usage{
 dMYZdt(t, y, pars, s)
 }
@@ -16,8 +16,11 @@ dMYZdt(t, y, pars, s)
 \item{s}{the species index}
 }
 \value{
-the derivatives a \link{vector}
+derivatives for the \eqn{\cal MYZ} component as a \link{vector}
 }
 \description{
-This method dispatches on the type of \code{pars$MYZpar}.
+The description for each method should include the equations.
+}
+\note{
+This is the \code{S3} generic. Methods dispatch on \code{MYZpar}
 }

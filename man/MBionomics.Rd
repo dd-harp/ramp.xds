@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-interface.R
 \name{MBionomics}
 \alias{MBionomics}
-\title{Adult Mosquito Bionomics}
+\title{Adult Mosquito - Bionomics}
 \usage{
 MBionomics(t, y, pars, s)
 }
@@ -19,5 +19,5 @@ MBionomics(t, y, pars, s)
 an \code{xds} object
 }
 \description{
-Handle adult mosquito bionomics as a baseline modified by control
+Modify the baseline
 }

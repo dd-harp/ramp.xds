@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-si.R
 \name{F_fqM.si}
 \alias{F_fqM.si}
-\title{The net blood feeding rate of the infective mosquito population in a patch}
+\title{\eqn{\cal MYZ} Component Net Blood Feeding by Mosquitoes for the \code{si} Mosquito Model}
 \usage{
 \method{F_fqM}{si}(t, y, pars, s)
 }
@@ -19,5 +19,11 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_fqM} for the si model.
+The variable \eqn{M} is the density of  mosquitoes.
+The model blood feeding \strong{parameters} are:
+\itemize{
+\item \eqn{f} is the overall blood feeding rate
+\item \eqn{q} is the human fraction for blood feeding
+The daily HBR for the human / host population strata is \eqn{\beta \cdot fqM}
+}
 }

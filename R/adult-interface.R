@@ -1,20 +1,23 @@
 # generic methods for adult component
 
-#' @title Derivatives for adult mosquitoes
-
-#' @description This method dispatches on the type of `pars$MYZpar`.
+#' @title \eqn{\cal MYZ} Component Derivatives for the `GeRM` model
+#' @description
+#' The description for each method should include the equations.
+#'
+#' @note This is the `S3` generic. Methods dispatch on `MYZpar`
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
 #' @param s the species index
-#' @return the derivatives a [vector]
+#' @return derivatives for the \eqn{\cal MYZ} component as a [vector]
 #' @export
 dMYZdt <- function(t, y, pars, s) {
   UseMethod("dMYZdt", pars$MYZpar[[s]])
 }
 
-#' @title Adult Mosquito Baseline Bionomics
-#' @description Handle adult mosquito bionomics as a baseline modified by control
+#' @title Adult Mosquito - Baseline Bionomics
+#' @description Compute adult mosquito bionomics as a
+#' *changing baseline.*
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
@@ -25,8 +28,8 @@ MBaseline <- function(t, y, pars, s) {
   UseMethod("MBaseline", pars$MYZpar[[s]]$baseline)
 }
 
-#' @title Adult Mosquito Bionomics
-#' @description Handle adult mosquito bionomics as a baseline modified by control
+#' @title Adult Mosquito - Bionomics
+#' @description Modify the baseline
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
