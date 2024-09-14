@@ -304,8 +304,7 @@ F_eggs.GeRM <- function(t, y, pars, s) {
 #' @return a [list] vector
 #' @export
 make_MYZpar.GeRM = function(MYZname, pars, s, MYZopts=list()){
-  pars$xds <- 'dde'
-  class(pars$xds) <- c('dde', 'xde')
+  pars = xds_dde(pars)
   MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
   class(MYZpar) <- 'GeRM'
   pars$MYZpar[[s]] = MYZpar

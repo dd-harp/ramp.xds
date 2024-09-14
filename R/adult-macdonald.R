@@ -98,8 +98,7 @@ F_eggs.macdonald <- function(t, y, pars, s) {
 #' @return a [list] vector
 #' @export
 make_MYZpar.macdonald = function(MYZname, pars, s, MYZopts=list()){
-  pars$xds <- c('dde', 'xde')
-  class(pars$xds) <- c('dde', 'xde')
+  pars = xds_dde(pars)
   MYZpar <- create_MYZpar_macdonald(pars$nPatches, MYZopts)
   class(MYZpar) <- 'macdonald'
   pars$MYZpar[[s]] = MYZpar

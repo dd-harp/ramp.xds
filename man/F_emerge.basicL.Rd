@@ -6,15 +6,6 @@
 \usage{
 \method{F_emerge}{basicL}(t, y, pars, s)
 }
-\arguments{
-\item{t}{current simulation time}
-
-\item{y}{state vector}
-
-\item{pars}{an \strong{\code{xds}} object}
-
-\item{s}{the species index}
-}
 \value{
 a \link{numeric} vector of length \code{nHabitats}
 }

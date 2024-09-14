@@ -44,8 +44,8 @@
 #' Finally, the function sets up a few other miscellaneous options:
 #' - [Exposure] is called *after* [Transmission] to compute environmentally heterogeneous exposure
 #' and malaria importation through travel:
-#'      - [setup_exposure_pois()] sets up a Poisson model for environmental heterogeneity
-#'      - [setup_travel_static()] sets up a model with no exposure through travel
+#'      - [setup_exposure_pois] sets up a Poisson model for environmental heterogeneity
+#'      - [setup_travel_static] sets up a model with no exposure through travel
 #'
 #' @param xds is used to dispatch various functions to set up and solve systems of differential equations. 'xde' for ordinary or delay differential equations; 'dts' for "discrete time systems"
 #' @param frame model component subset
@@ -53,7 +53,7 @@
 #' @param membership is the habitat membership vector
 #' @param residence is the strata residence vector
 #' @return an `xds` object
-#' @seealso Related: [xds_setup()]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
+#' @seealso Related: [xds_setup] and [setup_basic_forcing]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
 #'
 #' @export
 make_xds_template = function(xds='ode', frame='full',
@@ -71,9 +71,6 @@ make_xds_template = function(xds='ode', frame='full',
   class(frame) <- frame
   pars$frame <- frame
 
-  forcing <- 'static'
-  class(forcing) <- 'static'
-  pars$forcing <- forcing
 
   pars$compute <- 'frame'
 
@@ -105,8 +102,9 @@ make_xds_template = function(xds='ode', frame='full',
   pars <- setup_BLOOD_FEEDING(pars)
   pars <- setup_TRANSMISSION(pars)
 
-  pars <- setup_exposure_pois(pars)
-  pars <- setup_travel_static(pars)
+  pars   <- setup_exposure_pois(pars)
+  pars    <- setup_travel_static(pars)
+
 
 
   pars$Linits = list()
@@ -121,9 +119,40 @@ make_xds_template = function(xds='ode', frame='full',
   pars$outputs = list()
   pars$compute = list()
 
+  forcing <- setup_no_forcing(pars)
   pars <- setup_resources_static(pars)
   pars <- setup_control_no_control(pars)
   pars <- setup_vc_no_control(pars)
 
+  return(pars)
+}
+
+#' @title Set `xds` to `dde`
+#' @description Creates and returns structured template for an
+#' @return a **`ramp.xds`** object
+xds_dde = function(pars){
+  UseMethod(xds_dde, "pars$xds")
+}
+
+#' @title Set `xds` for `dde`
+#' @description Do not change `xds`
+#' @return a **`ramp.xds`** object
+xds_dde.dde = function(pars){
+  return(pars)
+}
+
+#' @title Set `xds` for `dts`
+#' @description Do not change `xds`
+#' @return a **`ramp.xds`** object
+xds_dde.dts = function(pars){
+  return(pars)
+}
+
+#' @title Set `xds` to `dde`
+#' @description Change `xds` from `ode` to `dde`
+#' @return a **`ramp.xds`** object
+xds_dde.ode = function(pars){
+  pars$xds = 'dde'
+  class(pars$xds) = c('dde', 'xde')
   return(pars)
 }

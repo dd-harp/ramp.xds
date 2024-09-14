@@ -2,7 +2,7 @@
 % Please edit documentation in R/weather.R
 \name{Weather}
 \alias{Weather}
-\title{Methods for exogenous variables describing weather}
+\title{Set the values of exogenous variables describing weather}
 \usage{
 Weather(t, pars)
 }
@@ -15,5 +15,5 @@ Weather(t, pars)
 \link{list}
 }
 \description{
-This method dispatches on the type of \code{pars$WEATHER}.
+This method dispatches on the type of \code{pars$weather}.
 }

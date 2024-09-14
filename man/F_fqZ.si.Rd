@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-si.R
 \name{F_fqZ.si}
 \alias{F_fqZ.si}
-\title{\eqn{\cal MYZ} Component Net Blood Feeding by Infectious Mosquitoes for the \code{si} Mosquito Model}
+\title{Net Blood Feeding by Infectious Mosquitoes - \code{si} Mosquito Model}
 \usage{
 \method{F_fqZ}{si}(t, y, pars, s)
 }

@@ -15,5 +15,6 @@ Forcing(t, pars)
 an \strong{\code{xds}} object
 }
 \description{
-This method...
+Set the values of
+exogenous variables.
 }

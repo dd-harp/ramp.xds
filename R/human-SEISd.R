@@ -25,7 +25,6 @@ dXdt.SEISd <- function(t, y, pars, i) {
       dI <- foi_nu*S_nu - r*I + dHdt(t, I, Hpar)
       dcfoi <- foi
 
-#      if (t > 20) browser()
       return(c(dS, dE, dI, dcfoi))
     })
   })
@@ -59,8 +58,7 @@ Update_Xt.SEISd <- function(t, y, pars, i) {
 #' @return a [list] vector
 #' @export
 make_Xpar.SEISd = function(Xname, pars, i, Xopts=list()){
-  pars$xds = 'dde'
-  class(pars$xds) = c('dde', 'xde')
+  pars = xds_dde(pars)
   pars$Xpar[[i]] = create_Xpar_SEISd(pars$nStrata[i], Xopts)
   return(pars)
 }

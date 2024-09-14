@@ -15,5 +15,15 @@
 an \strong{\code{xds}} object
 }
 \description{
-This method...
+With dynamic forcing, exogenous variables
+can be set in one of four function calls:
+\itemize{
+\item Weather
+\item Hydrology
+\item Shock
+\item Development
+}
+}
+\seealso{
+\link{dynamic_forcing}
 }

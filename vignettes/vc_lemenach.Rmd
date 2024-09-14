@@ -187,7 +187,7 @@ itn_mod <- last_to_inits(itn_mod)
 
 
 ```{r}
-itn_mod <- setup_forcing(itn_mod)
+itn_mod <- dynamic_forcing(itn_mod)
 itn_mod <- setup_control_forced(itn_mod)
 ```
 

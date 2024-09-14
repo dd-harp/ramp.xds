@@ -1,0 +1,27 @@
+---
+title: "Exogenous Forcing"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Exogenous Forcing}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Functions to set up exogenous forcing variables are organized into sets. 
+
++ `Forcing` dispatches on `pars$forcing` (functions not exported)
+    - `Weather` dispatches on `pars$weather` (functions not exported)
+        - `Temperature` 
+            - `setup_temperature()`
+            - dispatches on `pars$temperature` 
+        - `Rainfall`
+            - `setup_rainfall()` 
+            - dispatches on `pars$rainfall`
+        - `Humidity`
+            - `setup_humidity()` 
+            - dispatches on `pars$humidity`
+    - `hydrology`
+    - `shocks`
+    - `development`
+
++ `Control`

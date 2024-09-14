@@ -19,6 +19,8 @@ Also see the related vignette [*Getting Started*](https://dd-harp.github.io/ramp
 
 ## What is RAMP?
 
+**`ramp.xds`** was developed to support RAMP. 
+
 RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- describes bespoke inferential systems for malaria decision support and adaptive malaria control that go to great lengths to characterize, quantify, and propagate uncertainty. RAMP includes conventional analysis and simulation-based analytics.
 
 ## What is **`ramp.xds`**?
@@ -39,7 +41,7 @@ RAMP -- **R**obust **A**nalytics for **M**alaria **P**olicy -- describes bespoke
 
 + [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) includes algorithms to apply the framework, include code to fit models to data and to do constrained optimization 
 
-+ [**`ramp.malaria`**](https://dd-harp.github.io/ramp.malaria/) includes a large set of models illustrating capabilities of **`ramp.xds`** 
++ [**`ramp.models`**](https://dd-harp.github.io/ramp.models/) includes a large set of models illustrating capabilities of **`ramp.xds`** 
 
 **`ramp.xds`**  is under active development. It supersedes two other software packages, no longer under active development: [**`exDE`**](https://dd-harp.github.io/exDE/) and [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB/). The history of development of RAMP simulation software has been memorialized in a [vignette](https://dd-harp.github.io/ramp.xds/articles/History.html).
 
