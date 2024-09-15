@@ -20,8 +20,64 @@ Functions to set up exogenous forcing variables are organized into sets.
         - `Humidity`
             - `setup_humidity()` 
             - dispatches on `pars$humidity`
-    - `hydrology`
-    - `shocks`
-    - `development`
+    - `Hydrology`
+            - `setup_hydrology()` 
+            - dispatches on `pars$hydrology`
+    - `Shocks` - **event** 
+            - `setup_shocks()` 
+            - dispatches on `pars$shocks`
+    - `Development`
+            - `setup_development()` 
+            - dispatches on `pars$development`
 
-+ `Control`
++ `Health`
+  - School 
+  - Clinic 
+      - IPTp
+      - IPTi
+      - TopUpITN 
+  - MassHealth
+      - SMC - **event**
+      - MassVaccinate - **event** 
+      - MassTreat - **event** 
+  - PersonalProtection   
+  - ActiveCaseDetection
+
++ `VectorControl`
+    - BedNet 
+        - DistributeBedNets
+        - OwnBedNet
+        - UseBedNet
+        - BedNetEffects
+    - IRS
+        - SprayHouses
+        - IRS_Effects
+    - AreaSpray
+        - SprayArea
+        - AreaSprayEffects
+    - SugarBait
+        - DistibuteSugarBaits
+        - SugarBaitEffects
+    - LSM  
+        - TreatHabitats
+        - LSM_Effects
+    - EM 
+        ModifyLandscape - **event** 
+    - Endectocide 
+    - AdultDisseminatedLarvicide 
+
+
++ Resources
+    - Visitors
+    - Other Blood Hosts 
+    - Habitat Dynamics 
+    - Sugar Dynamics 
+
++ VectorControlEffectSizes
+    - BedNet_EffectSizes
+    - IRS_EffectSizes 
+    - AreaSpray_EffectSizes 
+    - SugarBait_EffectSizes 
+    - LSM_EffectSizes 
+    - EM_EffectSizes 
+    

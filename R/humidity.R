@@ -7,7 +7,7 @@
 #' @return an **`xds`** object
 #' @export
 Humidity <- function(t, pars) {
-  UseMethod("Humidity", pars$forcing$weather$humidity)
+  UseMethod("Humidity", pars$humidity)
 }
 
 #' @title Set no humidity
@@ -26,7 +26,7 @@ Humidity.basic <- function(t, pars) {
 setup_no_humidity <- function(pars) {
   humidity <- 'basic'
   class(humidity) <- 'basic'
-  pars$forcing$weather$humidity <- humidity
+  pars$humidity <- humidity
   return(pars)
 }
 
@@ -34,14 +34,14 @@ setup_no_humidity <- function(pars) {
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param Tname the name of a model to set up
+#' @param name the name of a model to set up
 #' @param pars an **`xds`** object
 #' @param Topts a list of options to override defaults
 #' @return an **`xds`** object
 #' @export
-setup_humidity = function(Tname, pars, Topts=list()){
-  class(Tname) <- Tname
-  UseMethod("setup_humidity", Tname)
+setup_humidity = function(name, pars, Topts=list()){
+  class(name) <- name
+  UseMethod("setup_humidity", name)
 }
 
 #' @title Set no humidity
@@ -59,8 +59,8 @@ Humidity.func <- function(t, pars) {with(pars$humidity,{
 #' forcing and set all the
 #' @inheritParams setup_humidity
 #' @export
-setup_humidity.func = function(Tname, pars, Topts=list()){
-  pars = setup_humidity_sin(pars, Topts())
+setup_humidity.func = function(name, pars, Topts=list()){
+  pars = setup_humidity_func(pars, Topts())
 }
 
 #' @title Set up dynamic forcing

@@ -87,7 +87,7 @@ dynamic_forcing.basic = function(pars){
   class(forcing) <- 'dynamic'
   pars$forcing <- forcing
   pars <- setup_no_weather(pars)
-  pars <- setup_hydrology_no_forcing(pars)
+  pars <- setup_no_hydrology(pars)
   pars <- setup_no_shock(pars)
   pars <- setup_no_development(pars)
   return(pars)

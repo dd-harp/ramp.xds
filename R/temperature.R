@@ -7,7 +7,7 @@
 #' @return an **`xds`** object
 #' @export
 Temperature <- function(t, pars) {
-  UseMethod("Temperature", pars$forcing$weather$temperature)
+  UseMethod("Temperature", pars$temperature)
 }
 
 #' @title Set no temperature
@@ -26,7 +26,7 @@ Temperature.basic <- function(t, pars) {
 setup_no_temperature <- function(pars) {
   temperature <- 'basic'
   class(temperature) <- 'basic'
-  pars$forcing$weather$temperature <- temperature
+  pars$temperature <- temperature
   return(pars)
 }
 

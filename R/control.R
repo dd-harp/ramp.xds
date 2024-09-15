@@ -84,10 +84,10 @@ setup_control_forced <- function(pars) {
   class(CONTROL) <- 'forced'
   pars$CONTROL <- CONTROL
   pars <- setup_habitat_dynamics_static(pars)
-  pars <-  setup_care_seeking_no_behavior(pars)
-  pars <-  setup_mass_medical_no_control(pars)
-  pars <-  setup_clinic_no_control(pars)
-  pars <-  setup_vc_no_control(pars)
+  pars <- setup_care_seeking_no_behavior(pars)
+  pars <- setup_mass_medical_no_control(pars)
+  pars <- setup_clinic_no_control(pars)
+  pars <- setup_vc_no_control(pars)
   return(pars)
 }
 

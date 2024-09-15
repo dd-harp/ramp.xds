@@ -7,7 +7,7 @@
 #' @return an **`xds`** object
 #' @export
 Rainfall <- function(t, pars) {
-  UseMethod("Rainfall", pars$forcing$weather$rainfall)
+  UseMethod("Rainfall", pars$rainfall)
 }
 
 #' @title Set no rainfall
@@ -26,7 +26,7 @@ Rainfall.basic <- function(t, pars) {
 setup_no_rainfall <- function(pars) {
   rainfall <- 'basic'
   class(rainfall) <- 'basic'
-  pars$forcing$weather$rainfall <- rainfall
+  pars$rainfall <- rainfall
   return(pars)
 }
 
@@ -60,7 +60,7 @@ Rainfall.func <- function(t, pars) {with(pars$rainfall,{
 #' @inheritParams setup_rainfall
 #' @export
 setup_rainfall.func = function(Tname, pars, Topts=list()){
-  pars = setup_rainfall_sin(pars, Topts())
+  pars = setup_rainfall_func(pars, Topts())
 }
 
 #' @title Set up dynamic forcing
