@@ -15,7 +15,7 @@ Temperature <- function(t, pars) {
 #' @inheritParams Temperature
 #' @return [list]
 #' @export
-Temperature.basic <- function(t, pars) {
+Temperature.none <- function(t, pars) {
   return(pars)
 }
 
@@ -24,8 +24,8 @@ Temperature.basic <- function(t, pars) {
 #' @return an **`xds`** object
 #' @export
 setup_no_temperature <- function(pars) {
-  temperature <- 'basic'
-  class(temperature) <- 'basic'
+  temperature <- 'none'
+  class(temperature) <- 'none'
   pars$temperature <- temperature
   return(pars)
 }
@@ -60,7 +60,8 @@ Temperature.func <- function(t, pars) {with(pars$temperature,{
 #' @inheritParams setup_temperature
 #' @export
 setup_temperature.func = function(Tname, pars, Topts=list()){
-  pars = setup_temperature_sin(pars, Topts())
+  pars <- dynamic_weather(pars)
+  pars = setup_temperature_func(pars, Topts())
 }
 
 #' @title Set up dynamic forcing

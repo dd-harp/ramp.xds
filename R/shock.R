@@ -1,21 +1,21 @@
 
-#' @title Set the shock
+#' @title System Shocks
 #' @description Set the value of exogenous variables related to
-#' shock
+#' systemic shocks
 #' @param t current simulation time
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
 #' @export
-Schock <- function(t, pars) {
-  UseMethod("Schock", pars$forcing$shock)
+Shock <- function(t, pars) {
+  UseMethod("Shock", pars$forcing$shock)
 }
 
 #' @title Set no shock
 #' @description The null model for shock
-#' @inheritParams Schock
+#' @inheritParams Shock
 #' @return [list]
 #' @export
-Schock.basic <- function(t, pars) {
+Shock.none <- function(t, pars) {
   return(pars)
 }
 
@@ -24,8 +24,8 @@ Schock.basic <- function(t, pars) {
 #' @return an **`xds`** object
 #' @export
 setup_no_shock <- function(pars) {
-  shock <- 'basic'
-  class(shock) <- 'basic'
+  shock <- 'none'
+  class(shock) <- 'none'
   pars$forcing$shock <- shock
   return(pars)
 }
@@ -36,22 +36,22 @@ setup_no_shock <- function(pars) {
 #' forcing and set all the
 #' @param name the name of a model to set up
 #' @param pars an **`xds`** object
-#' @param Topts a list of options to override defaults
+#' @param opts a list of options to override defaults
 #' @return an **`xds`** object
 #' @export
-setup_shock = function(name, pars, Topts=list()){
+setup_shock = function(name, pars, opts=list()){
   class(name) <- name
   UseMethod("setup_shock", name)
 }
 
 #' @title Set no shock
 #' @description The null model for shock
-#' @inheritParams Schock
+#' @inheritParams Shock
 #' @return [list]
 #' @export
-Schock.func <- function(t, pars) {
-  pars = F_shock(t, pars)
-
+Shock.func <- function(t, pars) {
+  #pars = F_shock(t, pars)
+  return(pars)
 }
 
 #' @title Set up dynamic forcing
@@ -60,9 +60,9 @@ Schock.func <- function(t, pars) {
 #' forcing and set all the
 #' @inheritParams setup_shock
 #' @export
-setup_shock.func = function(name="func", pars, Topts=list()){
+setup_shock.func = function(name="func", pars, opts=list()){
   pars <- dynamic_forcing(pars)
-  pars = setup_shock_func(pars, Topts())
+  pars = setup_shock_func(pars, opts())
 }
 
 #' @title Set up dynamic forcing
@@ -70,12 +70,12 @@ setup_shock.func = function(name="func", pars, Topts=list()){
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @param pars an **`xds`** object
-#' @param Topts a list of options to override defaults
-#' @param eventT the time when a schock occurs
-#' @param F_schock the effects of the schock
+#' @param opts a list of options to override defaults
+#' @param eventT the time when a shock occurs
+#' @param F_shock the effects of the shock
 #' @return an **`xds`** object
 #' @export
-setup_shock_func = function(pars, Topts=list(), eventT=365, F_schock=NULL){
+setup_shock_func = function(pars, opts=list(), eventT=365, F_shock=NULL){
   shock <- list()
   class(shock) <- 'func'
   shock$eventT = eventT

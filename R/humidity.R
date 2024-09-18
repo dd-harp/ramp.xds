@@ -15,7 +15,7 @@ Humidity <- function(t, pars) {
 #' @inheritParams Humidity
 #' @return [list]
 #' @export
-Humidity.basic <- function(t, pars) {
+Humidity.none <- function(t, pars) {
   return(pars)
 }
 
@@ -24,8 +24,8 @@ Humidity.basic <- function(t, pars) {
 #' @return an **`xds`** object
 #' @export
 setup_no_humidity <- function(pars) {
-  humidity <- 'basic'
-  class(humidity) <- 'basic'
+  humidity <- 'none'
+  class(humidity) <- 'none'
   pars$humidity <- humidity
   return(pars)
 }

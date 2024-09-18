@@ -24,7 +24,7 @@ library(ramp.xds)
 The function `xds_setup` was discussed in [Getting Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html). 
 
 ```{r}
-mod <- xds_setup(Xname = "SIS", MYZname = "si", Lname = "basicL")
+mod <- xds_setup(Xname = "SIS", MYZname = "SI", Lname = "basicL")
 ```
 
 ```{r}

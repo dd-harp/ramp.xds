@@ -17,5 +17,5 @@ an \strong{\code{xds}} object
 \description{
 Call all the functions to set the
 values of exogenous variables and then revert
-the \code{basic} case
+the \code{none} case
 }

@@ -2,16 +2,16 @@
 % Please edit documentation in R/development.R
 \name{setup_no_development}
 \alias{setup_no_development}
-\title{Set up the no_dev model for developments (do nothing)}
+\title{Set up "no development"}
 \usage{
 setup_no_development(pars)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
-Set up the no_dev model for developments (do nothing)
+Set up "no development"
 }

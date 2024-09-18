@@ -13,7 +13,7 @@ Weather <- function(t, pars) {
 #' @description Implements a null weather model
 #' @inheritParams Weather
 #' @return [list]
-Weather.basic <- function(t, pars) {
+Weather.none <- function(t, pars) {
   return(pars)
 }
 
@@ -21,8 +21,8 @@ Weather.basic <- function(t, pars) {
 #' @param pars a [list]
 #' @return [list]
 setup_no_weather <- function(pars) {
-  weather <- 'basic'
-  class(weather) <- 'basic'
+  weather <- 'none'
+  class(weather) <- 'none'
   pars$forcing$weather <- weather
   return(pars)
 }
@@ -43,7 +43,7 @@ dynamic_weather = function(pars){
 #' weather and set all the
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
-dynamic_weather.basic = function(pars){
+dynamic_weather.none = function(pars){
   # turn on dynamic forcing
   pars <- dynamic_forcing(pars)
   weather <- 'dynamic'

@@ -15,5 +15,5 @@ OviTraps(t, pars)
 \link{list}
 }
 \description{
-This method dispatches on the type of \code{pars$OVITRAPS}.
+This method dispatches on the type of \code{pars$ovitraps}.
 }

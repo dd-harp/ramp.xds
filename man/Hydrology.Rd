@@ -2,18 +2,19 @@
 % Please edit documentation in R/hydrology.R
 \name{Hydrology}
 \alias{Hydrology}
-\title{Set the values of exogenous variables describing hydrology}
+\title{Set the hydrology}
 \usage{
 Hydrology(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$HYDROLOGY}.
+Set the value of exogenous variables related to
+hydrology
 }

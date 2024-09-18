@@ -2,7 +2,7 @@
 % Please edit documentation in R/forcing.R
 \name{setup_no_forcing}
 \alias{setup_no_forcing}
-\title{Basic set up for exogenous forcing}
+\title{none set up for exogenous forcing}
 \usage{
 setup_no_forcing(pars)
 }
@@ -13,6 +13,6 @@ setup_no_forcing(pars)
 an \strong{\code{xds}} object
 }
 \description{
-This sets up the \code{basic} option
+This sets up the \code{none} option
 for exogenous forcing: no forcing.
 }

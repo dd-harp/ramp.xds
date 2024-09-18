@@ -2,18 +2,19 @@
 % Please edit documentation in R/development.R
 \name{Development}
 \alias{Development}
-\title{Set up developments}
+\title{Set the development}
 \usage{
 Development(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$DEVELOPMENT}.
+Set the value of exogenous variables related to
+development
 }

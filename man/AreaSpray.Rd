@@ -2,18 +2,19 @@
 % Please edit documentation in R/area_spray.R
 \name{AreaSpray}
 \alias{AreaSpray}
-\title{Methods for mass spraying}
+\title{Set the AreaSpray}
 \usage{
 AreaSpray(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$AREA_SPRAY}.
+Set the value of exogenous variables related to
+AreaSpray
 }

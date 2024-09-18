@@ -1,0 +1,69 @@
+---
+title: "Bed Nets"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Bed Nets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+library(ramp.xds)
+```
+
+
+```{r}
+mod <- xds_setup(MYZname = "SI")
+```
+
+```{r}
+cov_opts <- list(
+  mean = 0.5, 
+  F_season = function(t)
+    {ifelse(t < 0, 0, (sin(2*pi*(t-365/4) / 365) + 1))}
+)
+```
+
+```{r}
+tt = seq(0:730)
+with(cov_opts, plot(tt, mean*F_season(tt), type = "l"))
+```
+
+
+```{r}
+mod <- xds_setup_bednets(mod,
+     coverage_name = "func", coverage_opts = cov_opts, 
+     effectsizes_name = "lemenach")
+
+```
+
+```{r}
+tt = seq(0:730)
+with(mod$bednets$coverage, plot(tt, mean*F_season(tt), type = "l"))
+```
+Every model for  
+
+- `VectorControl`
+    - `BedNet`
+        -  `DistributeBedNets`
+        -  `OwnBedNets`
+        -  `UseBedNets`
+        -  `BedNetEffects`
+- `VectorControlEffectSizes`
+    - `BedNetCoverage`
+    - `BedNetEffectSizes`
+
+setup_bednet = function(pars, 
+    dist_name = `basic`,
+    distribute = list(),
+    own_name = `basic`,
+    own = list(), 
+    use_name = `basic`,
+    use = list(), 
+    effects_name = `basic`,
+    effects = list(), 
+    coverage_name = `basic`,
+    coverage = list(),
+    es_name = `basic`,
+    effect_sizes =list()
+)

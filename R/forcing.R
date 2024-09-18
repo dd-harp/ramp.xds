@@ -10,24 +10,24 @@ Forcing = function(t, pars){
 }
 
 #' @title Set the values of exogenous variables
-#' @description After basic setup, no exogenous
+#' @description After none setup, no exogenous
 #' variables are configured so forcing returns
 #' the **`xds`** object without modification
 #' @param t current simulation time
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
-Forcing.basic = function(t, pars){
+Forcing.none = function(t, pars){
   return(pars)
 }
 
-#' @title Basic set up for exogenous forcing
-#' @description This sets up the `basic` option
+#' @title none set up for exogenous forcing
+#' @description This sets up the `none` option
 #' for exogenous forcing: no forcing.
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
 setup_no_forcing = function(pars){
-  forcing <- 'basic'
-  class(forcing) <- 'basic'
+  forcing <- 'none'
+  class(forcing) <- 'none'
   pars$forcing <- forcing
   return(pars)
 }
@@ -35,14 +35,14 @@ setup_no_forcing = function(pars){
 #' @title The `setup` case for exogenous forcing
 #' @description Call all the functions to set the
 #' values of exogenous variables and then revert
-#' the `basic` case
+#' the `none` case
 #' @param t current simulation time
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
 Forcing.setup = function(t, pars){
   class(pars$forcing) <- 'dynamic'
   pars <- Forcing(t, pars)
-  class(pars$forcing) <- 'basic'
+  class(pars$forcing) <- 'none'
   return(pars)
 }
 
@@ -82,7 +82,7 @@ dynamic_forcing = function(pars){
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
 #' @export
-dynamic_forcing.basic = function(pars){
+dynamic_forcing.none = function(pars){
   forcing <- 'dynamic'
   class(forcing) <- 'dynamic'
   pars$forcing <- forcing

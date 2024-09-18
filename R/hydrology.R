@@ -7,7 +7,7 @@
 #' @return an **`xds`** object
 #' @export
 Hydrology <- function(t, pars) {
-  UseMethod("Hydrology", pars$forcing$hydrology)
+  UseMethod("Hydrology", pars$hydrology)
 }
 
 #' @title Set no hydrology
@@ -15,7 +15,7 @@ Hydrology <- function(t, pars) {
 #' @inheritParams Hydrology
 #' @return [list]
 #' @export
-Hydrology.basic <- function(t, pars) {
+Hydrology.none <- function(t, pars) {
   return(pars)
 }
 
@@ -24,9 +24,10 @@ Hydrology.basic <- function(t, pars) {
 #' @return an **`xds`** object
 #' @export
 setup_no_hydrology <- function(pars) {
-  hydrology <- 'basic'
-  class(hydrology) <- 'basic'
-  pars$forcing$hydrology <- hydrology
+  hydrology <- list()
+  hydrology$name <- 'none'
+  class(hydrology) <- 'none'
+  pars$hydrology <- hydrology
   return(pars)
 }
 
@@ -36,10 +37,10 @@ setup_no_hydrology <- function(pars) {
 #' forcing and set all the
 #' @param Hname the name of a model to set up
 #' @param pars an **`xds`** object
-#' @param Topts a list of options to override defaults
+#' @param setup_no_forcing a list of options to override defaults
 #' @return an **`xds`** object
 #' @export
-setup_hydrology = function(Hname, pars, Topts=list()){
+setup_hydrology = function(Hname, pars, setup_no_forcing=list()){
   class(Hname) <- Hname
   UseMethod("setup_hydrology", Hname)
 }
@@ -59,8 +60,8 @@ Hydrology.func <- function(t, pars) {with(pars$hydrology,{
 #' forcing and set all the
 #' @inheritParams setup_hydrology
 #' @export
-setup_hydrology.func = function(Hname, pars, Topts=list()){
-  pars = setup_hydrology_func(pars, Topts())
+setup_hydrology.func = function(Hname, pars, setup_no_forcing=list()){
+  pars = setup_hydrology_func(pars, setup_no_forcing())
 }
 
 #' @title Set up dynamic forcing
@@ -68,16 +69,16 @@ setup_hydrology.func = function(Hname, pars, Topts=list()){
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @param pars an **`xds`** object
-#' @param Topts a list of options to override defaults
+#' @param setup_no_forcing a list of options to override defaults
 #' @param mean the mean water level
 #' @param F_season the seasonal signal in hydrology
 #' @param F_trend a temporal trend in hydrology
 #' @return an **`xds`** object
 #' @export
-setup_hydrology_func = function(pars, Topts=list(), meanT=30, F_season=F_flat, F_trend=F_flat){
+setup_hydrology_func = function(pars, setup_no_forcing=list(), mean=30, F_season=F_flat, F_trend=F_flat){
   hydrology <- list()
   class(hydrology) <- 'func'
-  hydrology$meanT <- mean
+  hydrology$mean <- mean
   hydrology$F_season <- F_season
   hydrology$F_trend <- F_trend
   pars$hydrology <- hydrology

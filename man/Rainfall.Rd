@@ -2,18 +2,19 @@
 % Please edit documentation in R/rainfall.R
 \name{Rainfall}
 \alias{Rainfall}
-\title{Methods for exogenous variables describing rainfall}
+\title{Set the rainfall}
 \usage{
 Rainfall(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$RAINFALL}.
+Set the value of exogenous variables related to
+rainfall
 }

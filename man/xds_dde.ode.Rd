@@ -6,6 +6,9 @@
 \usage{
 \method{xds_dde}{ode}(pars)
 }
+\arguments{
+\item{pars}{a \strong{\code{ramp.xds}} object}
+}
 \value{
 a \strong{\code{ramp.xds}} object
 }

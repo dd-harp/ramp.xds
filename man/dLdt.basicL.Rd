@@ -31,7 +31,7 @@ It has been modified slightly from a version published by Smith DL, \emph{et al.
 \item \eqn{\theta}: density dependence in mortality: the slope of the response to mean crowding
 }
 
-To put it another way, per-capita mortality is \eqn{\phi + \theta L}, and the emergence rate
+Per-capita mortality is thus \eqn{\phi + \theta L}, and the emergence rate
 of adult mosquitoes is \eqn{\psi L}
 }
 \references{

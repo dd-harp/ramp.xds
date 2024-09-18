@@ -72,7 +72,6 @@ setup_resources_static <- function(pars){
 #' @return [list]
 #' @export
 setup_resources_forced <- function(pars) {
-  pars = setup_control(pars)
   RESOURCES <- list()
   class(RESOURCES) <- 'forced'
   pars$RESOURCES <- RESOURCES

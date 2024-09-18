@@ -84,7 +84,7 @@ test_that("Le Menach VC model with 0 coverage stays roughly at equilibrium", {
 
 
 
-  xds_setup(MYZname="si", Xname="SIS", Lname="basicL",
+  xds_setup(MYZname="SI", Xname="SIS", Lname="basicL",
             nPatches=3, HPop=HPop, membership=membership,
             MYZopts=MYZo, calK=calK,
             Xopts=Xo, residence=1:3, searchB=searchWtsH,
@@ -183,7 +183,7 @@ test_that("Le Menach VC model under control reaches the enw predicted equilibriu
 
 
 
-  xds_setup(MYZname="si", Xname="SIS", Lname="basicL",
+  xds_setup(MYZname="SI", Xname="SIS", Lname="basicL",
             nPatches=3, HPop=HPop, membership=membership,
             MYZopts=MYZo, calK=calK,
             Xopts=Xo, residence=1:3, searchB=searchWtsH,
@@ -281,7 +281,7 @@ Lo = list(psi=psi, phi=phi, theta=theta, L=L)
 
 
 
-xds_setup(MYZname="si", Xname="SIS", Lname="basicL",
+xds_setup(MYZname="SI", Xname="SIS", Lname="basicL",
           nPatches=3, HPop=HPop, membership=membership,
           MYZopts=MYZo, calK=calK,
           Xopts=Xo, residence=1:3, searchB=searchWtsH,
@@ -303,20 +303,21 @@ Emergence(5*365, out0, itn_mod) -> itn_mod
 Lambda <- itn_mod$Lambda[[1]]
 Ln = list(Lambda=Lambda)
 
-itn_mod_trivial <- itn_mod
-ITN_cov <- function(t, pars){0.7}
-itn_mod_trivial = setup_itn_lemenach(itn_mod_trivial, F_phi=ITN_cov)
+cov_opts <- list()
+cov_opts$mean = 0.7
+cov_opts$F_season = F_flat
 
-es <- with(itn_mod_trivial$ITNefsz,
-           with(MYZo,
-                sapply(1:nPatches, compute_bednet_effect_sizes_lemenach, phi=0.7, f=f,q=q, g=g, tau0_frac=tau0_frac, r=r,ss=ss)))
+es <- with(MYZo,
+          sapply(1:nPatches, compute_bednet_effect_sizes_lemenach, phi=0.7,
+                f=f,q=q, g=g, tau0_frac = c(0.68/3, 2.32/3), rr = 0.56, ss = 0.03))
+
 
 # Turn the X component into a trivial function
 Xn = list(kappa=kappa, H=HPop)
 
 # The parameter values to the values they should reach under control
 MYZn <- MYZo
-class(MYZn) <- "si"
+class(MYZn) <- "SI"
 MYZn$f <- MYZo$f*es[1,]
 MYZn$q <- MYZo$q*es[2,]
 MYZn$g <- MYZo$g*es[3,]
@@ -332,22 +333,20 @@ MYZo$M <- ss$M
 MYZo$Y <- ss$Y
 
 
-xds_setup(MYZname="si", Xname="trivial", Lname="trivial",
+xds_setup(MYZname="SI", Xname="trivial", Lname="trivial",
           nPatches=3, HPop=HPop, membership=membership,
           MYZopts=MYZo, calK=calK,
           Xopts=Xn, residence=1:3, searchB=searchWtsH,
           searchQ=rep(1,3), Lopts=Ln) -> itn_mod_trivial
 
-class(itn_mod_trivial$MYZpar[[1]]$effect_sizes) <- "modified"
-class(itn_mod_trivial$forcing) <- "dynamic"
-itn_mod_trivial <- setup_forcing(itn_mod_trivial)
-itn_mod_trivial <- setup_control_forced(itn_mod_trivial)
-itn_mod_trivial <- setup_vc_control(itn_mod_trivial)
-itn_mod_trivial = setup_itn_lemenach(itn_mod_trivial, F_phi=ITN_cov)
+
+itn_mod_trivial <- xds_setup_bednets(itn_mod_trivial,
+                             coverage_name = "func", coverage_opts = cov_opts,
+                             effectsizes_name = "lemenach")
 
 itn_mod_trivial <- xds_solve(itn_mod_trivial, 1000, 1)
 
-out <- itn_mod_trivial$outputs$last_y
+out <- as.vector(unlist(itn_mod_trivial$outputs$last_y))
 M_sim <- out[itn_mod_trivial$ix$MYZ[[1]]$M_ix]
 Y_sim <- out[itn_mod_trivial$ix$MYZ[[1]]$Y_ix]
 

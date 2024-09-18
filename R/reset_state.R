@@ -31,15 +31,7 @@ reset_state_i <- function(i, tm, y_matrix, pars) {
 #' @inheritParams reset_state
 #' @return **pars** a [list]
 reset_state.full <- function(t, y, pars) {
-  pars <- Forcing(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- Resources(t, pars)
-  pars <- BloodFeeding(t, y, pars)
-  pars <- EggLaying(t, y, pars)
-  pars <- BaselineBionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
-  pars <- Bionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
+  pars <- Exogenous(t, y, pars)
   pars <- Emergence(t, y, pars)
   pars <- Transmission(t, y, pars)
   pars <- make_EIR_full(t, y, pars)
@@ -47,19 +39,13 @@ reset_state.full <- function(t, y, pars) {
   return(pars)
 }
 
-
 #' @title Compute other variables at time t
 #' @description Compute everything but the derivatives for the generalized
 #' spatial differential equation model
 #' @inheritParams reset_state
 #' @return **pars** a [list]
 reset_state.aquatic <- function(t, y, pars) {
-  pars <- Forcing(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- Resources(t, pars)
-  pars <- BaselineBionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
-  pars <- Bionomics(t, y, pars)
+  pars <- Exogenous(t, y, pars)
   return(pars)
 }
 
@@ -69,14 +55,7 @@ reset_state.aquatic <- function(t, y, pars) {
 #' @inheritParams reset_state
 #' @return **pars** a [list]
 reset_state.mosy <- function(t, y, pars) {
-  pars <- Forcing(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- Resources(t, pars)
-  pars <- BloodFeeding(t, y, pars)
-  pars <- EggLaying(t, y, pars)
-  pars <- BaselineBionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
-  pars <- Bionomics(t, y, pars)
+  pars <- Exogenous(t, y, pars)
   pars <- Emergence(t, y, pars)
   return(pars)
 }
@@ -87,13 +66,7 @@ reset_state.mosy <- function(t, y, pars) {
 #' @inheritParams reset_state
 #' @return **pars** a [list]
 reset_state.human <- function(t, y, pars) {
-  pars <- Forcing(t, pars)
-  pars <- Control(t, y, pars)
-  pars <- Resources(t, pars)
-  pars <- BloodFeeding(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
-  pars <- BaselineBionomics(t, y, pars)
-  pars <- Bionomics(t, y, pars)
+  pars <- Exogenous(t, y, pars)
   pars <- Transmission(t, y, pars)
   pars <- Exposure(t, y, pars)
   return(pars)
@@ -105,5 +78,6 @@ reset_state.human <- function(t, y, pars) {
 #' @inheritParams reset_state
 #' @return **pars** a [list]
 reset_state.cohort<- function(t, y, pars) {
+  pars <- Exogenous(t, y, pars)
   return(pars)
 }

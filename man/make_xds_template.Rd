@@ -90,5 +90,5 @@ and malaria importation through travel:
 }
 }
 \seealso{
-Related: \link{xds_setup} and \link{setup_basic_forcing}. Illustrated in a vignette: \href{https://dd-harp.github.io/ramp.xds/articles/ex_534.html}{5-3-4 Example}
+Related: \link{xds_setup} and \link{setup_no_forcing}. Illustrated in a vignette: \href{https://dd-harp.github.io/ramp.xds/articles/ex_534.html}{5-3-4 Example}
 }

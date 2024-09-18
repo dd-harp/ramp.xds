@@ -53,7 +53,7 @@
 #' @param membership is the habitat membership vector
 #' @param residence is the strata residence vector
 #' @return an `xds` object
-#' @seealso Related: [xds_setup] and [setup_basic_forcing]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
+#' @seealso Related: [xds_setup] and [setup_no_forcing]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
 #'
 #' @export
 make_xds_template = function(xds='ode', frame='full',
@@ -105,8 +105,6 @@ make_xds_template = function(xds='ode', frame='full',
   pars   <- setup_exposure_pois(pars)
   pars    <- setup_travel_static(pars)
 
-
-
   pars$Linits = list()
   pars$MYZinits = list()
   pars$Xinits = list()
@@ -119,23 +117,25 @@ make_xds_template = function(xds='ode', frame='full',
   pars$outputs = list()
   pars$compute = list()
 
-  forcing <- setup_no_forcing(pars)
+  pars <- setup_no_forcing(pars)
+  pars <- setup_no_health(pars)
+  pars <- setup_no_vector_control(pars)
   pars <- setup_resources_static(pars)
-  pars <- setup_control_no_control(pars)
-  pars <- setup_vc_no_control(pars)
 
   return(pars)
 }
 
 #' @title Set `xds` to `dde`
 #' @description Creates and returns structured template for an
+#' @param pars a **`ramp.xds`** object
 #' @return a **`ramp.xds`** object
 xds_dde = function(pars){
-  UseMethod(xds_dde, "pars$xds")
+  UseMethod("xds_dde", pars$xds)
 }
 
 #' @title Set `xds` for `dde`
 #' @description Do not change `xds`
+#' @param pars a **`ramp.xds`** object
 #' @return a **`ramp.xds`** object
 xds_dde.dde = function(pars){
   return(pars)
@@ -143,6 +143,7 @@ xds_dde.dde = function(pars){
 
 #' @title Set `xds` for `dts`
 #' @description Do not change `xds`
+#' @param pars a **`ramp.xds`** object
 #' @return a **`ramp.xds`** object
 xds_dde.dts = function(pars){
   return(pars)
@@ -150,6 +151,7 @@ xds_dde.dts = function(pars){
 
 #' @title Set `xds` to `dde`
 #' @description Change `xds` from `ode` to `dde`
+#' @param pars a **`ramp.xds`** object
 #' @return a **`ramp.xds`** object
 xds_dde.ode = function(pars){
   pars$xds = 'dde'

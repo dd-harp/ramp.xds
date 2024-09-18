@@ -15,7 +15,7 @@ Rainfall <- function(t, pars) {
 #' @inheritParams Rainfall
 #' @return [list]
 #' @export
-Rainfall.basic <- function(t, pars) {
+Rainfall.none <- function(t, pars) {
   return(pars)
 }
 
@@ -24,8 +24,8 @@ Rainfall.basic <- function(t, pars) {
 #' @return an **`xds`** object
 #' @export
 setup_no_rainfall <- function(pars) {
-  rainfall <- 'basic'
-  class(rainfall) <- 'basic'
+  rainfall <- 'none'
+  class(rainfall) <- 'none'
   pars$rainfall <- rainfall
   return(pars)
 }

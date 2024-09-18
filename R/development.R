@@ -15,7 +15,7 @@ Development <- function(t, pars) {
 #' @inheritParams Development
 #' @return [list]
 #' @export
-Development.basic <- function(t, pars) {
+Development.none <- function(t, pars) {
   return(pars)
 }
 
@@ -24,8 +24,8 @@ Development.basic <- function(t, pars) {
 #' @return an **`xds`** object
 #' @export
 setup_no_development <- function(pars) {
-  development <- 'basic'
-  class(development) <- 'basic'
+  development <- 'none'
+  class(development) <- 'none'
   pars$forcing$development <- development
   return(pars)
 }

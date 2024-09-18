@@ -9,26 +9,6 @@ vignette: >
 
 Functions to set up exogenous forcing variables are organized into sets. 
 
-+ `Forcing` dispatches on `pars$forcing` (functions not exported)
-    - `Weather` dispatches on `pars$weather` (functions not exported)
-        - `Temperature` 
-            - `setup_temperature()`
-            - dispatches on `pars$temperature` 
-        - `Rainfall`
-            - `setup_rainfall()` 
-            - dispatches on `pars$rainfall`
-        - `Humidity`
-            - `setup_humidity()` 
-            - dispatches on `pars$humidity`
-    - `Hydrology`
-            - `setup_hydrology()` 
-            - dispatches on `pars$hydrology`
-    - `Shocks` - **event** 
-            - `setup_shocks()` 
-            - dispatches on `pars$shocks`
-    - `Development`
-            - `setup_development()` 
-            - dispatches on `pars$development`
 
 + `Health`
   - School 
@@ -66,7 +46,6 @@ Functions to set up exogenous forcing variables are organized into sets.
     - Endectocide 
     - AdultDisseminatedLarvicide 
 
-
 + Resources
     - Visitors
     - Other Blood Hosts 
@@ -74,10 +53,14 @@ Functions to set up exogenous forcing variables are organized into sets.
     - Sugar Dynamics 
 
 + VectorControlEffectSizes
+    - BedNet_Coverage
     - BedNet_EffectSizes
+    - IRS_Coverage 
     - IRS_EffectSizes 
+    - AreaSpray_Coverage 
     - AreaSpray_EffectSizes 
+    - SugarBait_Coverage 
     - SugarBait_EffectSizes 
+    - LSM_Coverage 
     - LSM_EffectSizes 
-    - EM_EffectSizes 
     
