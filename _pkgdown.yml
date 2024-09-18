@@ -1,4 +1,1364 @@
-url: ~
-template:
-  bootstrap: 5
-
+url: https://dd-harp.github.io/ramp.xds
+navbar:
+  left:
+  - text: Articles
+    menu:
+    - text: Getting Started with ramp.xds
+      href: articles/GettingStarted.html
+    - text: Working with Models in ramp.xds
+      href: articles/Working.html
+    - text: Trace Functions
+      href: articles/TraceFunctions.html
+    - text: Understanding ramp.xds
+      href: articles/Understanding_ramp.xds.html
+    - text: Modular Forms for Disease Dynamics
+      href: articles/modular_forms.html
+    - text: 5-3-4 Spatial Example
+      href: articles/ex_534.html
+    - text: Spatial Metrics
+      href: articles/spat_metric.html
+    - text: Vector Control Example
+      href: articles/vc_lemenach.html
+    - text: Heterogeneous Transmission
+      href: articles/heterogeneous_transmission.html
+    - text: Nimble Model Building and Scaling Complexity
+      href: articles/Nimble.html
+    - text: Contributing
+      href: articles/Contributing.html
+  - text: Mosquito - Adult
+    menu:
+    - text: Adult Mosquitoes
+      href: articles/AdultMosquitoes.html
+    - text: Ross-Macdonald model
+      href: articles/adult_RM.html
+    - text: Ross-Macdonald, discrete time
+      href: articles/RM-dts-Mosquito.html
+    - text: Generalized Ross-Macdonald model
+      href: articles/adult_GeRM.html
+  - text: Mosquito - Aquatic
+    menu:
+    - text: Aquatic - Trivial (forced) model
+      href: articles/aqua_trace.html
+    - text: Basic Competition
+      href: articles/aqua_basic.html
+  - text: Human / Host
+    menu:
+    - text: SIS model
+      href: articles/human_sis.html
+    - text: SIP xde model
+      href: articles/human_sip.html
+    - text: MoI hybrid model
+      href: articles/human_hmoi.html
+    - text: SEIS model
+      href: articles/human_seis.html
+  - text: Functions
+    href: reference/index.html
+  right:
+  - icon: fa-github
+    href: https://github.com/dd-harp/ramp.xds/
+home:
+  sidebar:
+    structure:
+    - links
+    - license
+    - community
+    - citation
+    - authors
+    - dev
+reference:
+- title: Model Building & Analysis
+  desc: |
+    Methods to support nimble model building and analysis
+- subtitle: Build / Setup
+  desc: |
+    Methods to set up an **`xds`** object with basic features
+  contents:
+  - xds_setup
+  - xds_setup_mosy
+  - xds_setup_aquatic
+  - xds_setup_human
+  - xds_setup_cohort
+  - make_xds_template
+- subtitle: Solve and Analyze
+  desc: |
+    Methods to solve or analyze equations
+  contents:
+  - xds_solve
+  - xde_stable_orbit
+  - xds_solve_cohort
+  - xde_steady
+  - dts_steady
+  - xde_steady_state_X
+  - xde_steady_state_MYZ
+  - xde_steady_state_L
+- subtitle: Models -- Human / Host
+  desc: |
+    Models available in **`ramp.xds`** for human/host infection and immunity
+  contents:
+  - dXdt.trivial
+  - dXdt.SIS
+  - dXdt.SIP
+  - dXdt.SEIS
+  - dXdt.SEISd
+- subtitle: Models -- Adult Mosquito
+  desc: |
+    Models available in **`ramp.xds`** for adult mosquito ecology and infection dynamics
+  contents:
+  - dMYZdt.trivial
+  - dMYZdt.SI
+  - dMYZdt.macdonald
+  - dMYZdt.SEI
+  - dMYZdt.GeRM
+  - dMYZdt.basicM
+- subtitle: Models -- Aquatic Mosquito
+  desc: |
+    Models available in **`ramp.xds`** for the ecology of immature mosquitoes in aquatic habitats
+  contents:
+  - dLdt.trivial
+  - dLdt.basicL
+- subtitle: Interface
+  desc: |
+    Functions that compute dynamical terms and exogenous variables
+  contents:
+  - Forcing
+  - Health
+  - VectorControl
+  - Resources
+  - BloodFeeding
+  - EggLaying
+  - BaselineBionomics
+  - Bionomics
+  - Transmission
+  - Exposure
+- subtitle: Change Parameters & Initial Values
+  desc: |
+    Methods to set up basic models
+  contents:
+  - change_H
+  - update_inits
+  - last_to_inits
+  - parse_orbits
+  - parse_y
+  - get_inits
+  - get_H
+  - make_indices
+  - trigger_setup
+- subtitle: Examine
+  desc: |
+    Methods to
+  contents:
+  - get_inits
+  - get_last
+  - parse_orbits
+  - parse_y
+- title: Blood Feeding and Transmission
+  desc: |
+    Methods to compute terms describing blood feeding and transmission
+  contents:
+  - create_residence_matrix
+  - view_residence_matrix
+- subtitle: Blood Feeding
+  desc: |
+    Methods to compute vertebrate host availibility and time at risk
+  contents:
+  - setup_BLOOD_FEEDING
+  - BloodFeeding
+  - BloodFeeding.static
+  - BloodFeeding.dynamic
+  - BloodFeeding.setup
+  - change_blood_weights
+  - compute_W
+  - compute_B
+  - make_WB
+  - compute_RBR
+  - make_RBR
+  - compute_TaR
+  - make_TaR
+- subtitle: Transmision
+  desc: |
+    Specialized methods to compute the transmission terms
+  contents:
+  - setup_TRANSMISSION
+  - Transmission
+  - Transmission.static
+  - Transmission.dynamic
+  - Transmission.setup
+  - compute_beta
+  - make_beta
+  - compute_EIR
+  - make_EIR_full
+  - make_EIR
+  - compute_kappa
+  - make_kappa
+  - compute_local_frac
+  - make_local_frac
+- subtitle: Time Spent
+  desc: |
+    Method to set up Time Spent Matrices
+  contents:
+  - change_TimeSpent
+  - make_TimeSpent
+  - make_TimeSpent.athome
+  - create_TimeSpent_athome
+  - make_TimeSpent.as_matrix
+  - make_TimeSpent.xy
+  - create_TimeSpent_xy
+- title: Egg Laying & Emergence
+  desc: |
+    Generic methods for the aquatic (immature) mosquito component.
+  contents:
+  - create_habitat_matrix
+  - setup_EGG_LAYING
+  - Emergence
+  - EggLaying
+  - EggLaying.setup
+  - EggLaying.static
+  - EggLaying.dynamic
+  - change_habitat_weights
+  - compute_Q
+  - compute_Qtot
+  - make_Q
+  - compute_calU
+  - make_calU
+  - compute_eggs_laid
+  - make_eggs_laid
+  - view_habitat_matrix
+- title: Exposure
+  desc: |
+    Methods for environmental heterogeneity
+  contents:
+  - Exposure
+  - Exposure.xde
+  - Exposure.dts
+  - Exposure.multiday
+  - setup_exposure_multiday
+  - F_foi
+  - foi2eir
+  - F_ar
+  - ar2eir
+- subtitle: Poisson Exposure
+  desc: |
+    Specialized methods the Poisson exposure model
+  contents:
+  - F_foi.pois
+  - F_ar.pois
+  - foi2eir.pois
+  - ar2eir.pois
+  - setup_exposure_pois
+  - setup_exposure_pois.xde
+  - setup_exposure_pois.dts
+- subtitle: Negative Binomial Exposure
+  desc: |
+    Specialized methods the Negative Binomial exposure model
+  contents:
+  - F_foi.nb
+  - F_ar.nb
+  - foi2eir.nb
+  - ar2eir.nb
+  - setup_exposure_nb
+  - setup_exposure_nb.xde
+  - setup_exposure_nb.dts
+- title: Adult Mosquito Dynamics
+  desc: |
+    Generic methods for the adult mosquito dynamics component.
+  contents:
+  - dMYZdt
+  - MBaseline
+  - MBionomics
+  - xde_steady_state_MYZ
+  - xde_steady_state_M
+  - make_MYZpar
+  - Update_MYZt
+  - MYZ_rates2probs
+  - dts_steady_state_MYZ
+  - F_fqZ
+  - F_fqM
+  - F_eggs
+  - list_MYZvars
+  - put_MYZvars
+  - make_MYZinits
+  - get_MYZinits
+  - update_MYZinits
+  - make_indices_MYZ
+  - parse_MYZorbits
+- subtitle: Visualization for Adult Mosquito
+  desc: |
+    Basic Plotting
+  contents:
+  - xds_plot_M
+  - xds_lines_M
+  - xds_plot_Y
+  - xds_lines_Y
+  - xds_plot_Z
+  - xds_lines_Z
+  - xds_plot_Y_fracs
+  - xds_lines_Y_fracs
+  - xds_plot_Z_fracs
+  - xds_lines_Z_fracs
+- subtitle: Mosquito Demography
+  desc: |
+    Specialized methods for  NULL dynamics: a funtion generates values of Z to force human infection dynamics
+  contents:
+  - compute_Omega_xde
+  - compute_Omega_dts
+  - compute_Omega
+  - compute_Omega.xde
+  - compute_Omega.dts
+  - compute_Upsilon
+  - compute_Upsilon.xde
+  - make_Omega
+  - make_Omega.xde
+  - make_Omega.dts
+  - get_Omega
+  - get_Upsilon
+- subtitle: EIP
+  desc: |
+    Specialized methods for  NULL dynamics: a funtion generates values of Z to force human infection dynamics
+  contents:
+  - F_eip
+  - d_F_eip_dt
+  - setup_EIP
+  - F_eip.static
+  - d_F_eip_dt.static
+  - F_eip.fixedlag_dts
+  - setup_EIP.fixedlag_dts
+  - setup_eip_fixedlag_dts
+- subtitle: trivial
+  desc: |
+    Specialized methods for NULL dynamics: a funtion generates values for F_eggs or F_fqZ or F_fqM
+  contents:
+  - F_fqZ.trivial
+  - F_fqM.trivial
+  - F_eggs.trivial
+  - dMYZdt.trivial
+  - MBaseline.trivial
+  - MBionomics.trivial
+  - Update_MYZt.trivial
+  - make_MYZpar.trivial
+  - create_MYZpar_trivial
+  - xde_steady_state_MYZ.trivial
+  - make_MYZinits.trivial
+  - make_indices_MYZ.trivial
+  - parse_MYZorbits.trivial
+  - get_MYZinits.trivial
+  - update_MYZinits.trivial
+- subtitle: basicM
+  desc: |
+    Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.
+  contents:
+  - dMYZdt.basicM
+  - MBaseline.basicM
+  - MBionomics.basicM
+  - xde_steady_state_M.basicM
+  - Update_MYZt.basicM
+  - make_MYZpar.basicM
+  - F_fqZ.basicM
+  - F_fqM.basicM
+  - F_eggs.basicM
+  - make_MYZinits.basicM
+  - create_MYZinits_basicM
+  - make_indices_MYZ.basicM
+  - list_MYZvars.basicM
+  - parse_MYZorbits.basicM
+  - get_MYZinits.basicM
+  - update_MYZinits.basicM
+- subtitle: The "SI" model for infection
+  desc: |
+    Specialized methods for simple infection dynamics for an adult mosquito population
+  contents:
+  - dMYZdt.SI
+  - MBaseline.SI
+  - MBionomics.SI
+  - xde_steady_state_MYZ.SI
+  - Update_MYZt.SI
+  - make_MYZpar.SI
+  - create_MYZpar_SI
+  - F_fqZ.SI
+  - F_fqM.SI
+  - F_eggs.SI
+  - list_MYZvars.SI
+  - put_MYZvars.SI
+  - make_MYZinits.SI
+  - create_MYZinits_SI
+  - make_indices_MYZ.SI
+  - parse_MYZorbits.SI
+  - get_MYZinits.SI
+  - update_MYZinits.SI
+  - get_f.SI
+  - get_q.SI
+  - get_g.SI
+  - get_sigma.SI
+- subtitle: The "SEI" compartment model for infection
+  desc: |
+    Specialized methods for simple infection dynamics for an adult mosquito population
+  contents:
+  - dMYZdt.SEI
+  - MBaseline.SEI
+  - MBionomics.SEI
+  - xde_steady_state_MYZ.SEI
+  - Update_MYZt.SEI
+  - make_MYZpar.SEI
+  - create_MYZpar_SEI
+  - F_fqZ.SEI
+  - F_fqM.SEI
+  - F_eggs.SEI
+  - list_MYZvars.SEI
+  - put_MYZvars.SEI
+  - make_MYZinits.SEI
+  - create_MYZinits_SEI
+  - make_indices_MYZ.SEI
+  - parse_MYZorbits.SEI
+  - get_MYZinits.SEI
+  - update_MYZinits.SEI
+  - get_f.SEI
+  - get_q.SEI
+  - get_g.SEI
+  - get_sigma.SEI
+- subtitle: macdonald
+  desc: |
+    Specialized methods for a Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
+  contents:
+  - dMYZdt.macdonald
+  - MBaseline.macdonald
+  - MBionomics.macdonald
+  - xde_steady_state_MYZ.macdonald
+  - make_MYZpar.macdonald
+  - create_MYZpar_macdonald
+  - list_MYZvars.macdonald
+  - F_fqZ.macdonald
+  - F_fqM.macdonald
+  - F_eggs.macdonald
+  - make_MYZinits.macdonald
+  - create_MYZinits_macdonald
+  - get_MYZinits.macdonald
+  - update_MYZinits.macdonald
+  - make_indices_MYZ.macdonald
+  - parse_MYZorbits.macdonald
+  - get_f.macdonald
+  - get_q.macdonald
+  - get_g.macdonald
+  - get_sigma.macdonald
+- subtitle: GeRM
+  desc: |
+    Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
+  contents:
+  - dMYZdt.GeRM
+  - MBaseline.GeRM
+  - MBionomics.GeRM
+  - Update_MYZt.GeRM
+  - xde_steady_state_MYZ.GeRM
+  - make_MYZpar.GeRM
+  - create_MYZpar_GeRM
+  - list_MYZvars.GeRM
+  - F_fqZ.GeRM
+  - F_fqM.GeRM
+  - F_eggs.GeRM
+  - make_MYZinits.GeRM
+  - create_MYZinits_GeRM
+  - get_MYZinits.GeRM
+  - update_MYZinits.GeRM
+  - make_indices_MYZ.GeRM
+  - parse_MYZorbits.GeRM
+  - get_f.GeRM
+  - get_q.GeRM
+  - get_g.GeRM
+  - get_sigma.GeRM
+- subtitle: RM-Mosquito in discrete-time
+  desc: |
+    Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, in discrete time.
+  contents:
+  - F_fqZ.RM_dts
+  - F_fqM.RM_dts
+  - F_eggs.RM_dts
+  - Update_MYZt.RM_dts
+  - make_MYZinits.RM_dts
+  - list_MYZvars.RM_dts
+  - put_MYZvars.RM_dts
+  - create_MYZinits_RM_dts
+  - make_indices_MYZ.RM_dts
+  - parse_MYZorbits.RM_dts
+  - get_MYZinits.RM_dts
+  - update_MYZinits.RM_dts
+- title: Aquatic Mosquito Dynamics
+  desc: |
+    Generic methods for the aquatic (immature) mosquito component.
+  contents:
+  - dLdt
+  - xde_steady_state_L
+  - make_Lpar
+  - Update_Lt
+  - dts_steady_state_L
+  - LBionomics
+  - LBaseline
+  - LBionomics.static
+  - F_emerge
+  - make_Linits
+  - list_Lvars
+  - put_Lvars
+  - make_indices_L
+  - parse_Lorbits
+  - get_Linits
+  - update_Linits
+- subtitle: trivial
+  desc: |
+    Specialized methods for the exogeneously forced trivial model of aquatic mosquito dynamics.
+  contents:
+  - LBionomics.trivial
+  - LBaseline.trivial
+  - xde_steady_state_L.trivial
+  - F_emerge.trivial
+  - dLdt.trivial
+  - Update_Lt.trivial
+  - make_Lpar.trivial
+  - create_Lpar_trivial
+  - make_Linits.trivial
+  - list_Lvars.trivial
+  - put_Lvars.trivial
+  - make_indices_L.trivial
+  - parse_Lorbits.trivial
+  - update_Linits.trivial
+- subtitle: basicL
+  desc: |
+    Specialized methods for a basicL competition model of aquatic mosquito dynamics.
+  contents:
+  - dLdt.basicL
+  - Update_Lt.basicL
+  - xde_steady_state_L.basicL
+  - make_Lpar.basicL
+  - create_Lpar_basicL
+  - LBionomics.basicL
+  - LBaseline.basicL
+  - F_emerge.basicL
+  - make_Linits.basicL
+  - create_Linits_basicL
+  - list_Lvars.basicL
+  - make_indices_L.basicL
+  - parse_Lorbits.basicL
+  - update_Linits.basicL
+- title: Mosquito Bionomics
+  desc: |
+    Methods to compute or update mosquito bionomic parameters
+  contents:
+  - Bionomics
+  - MBionomics.static
+- subtitle:  Functional Responses
+  desc: |
+    Compute bionomic parameters as functional responses to resource availability
+  contents:
+  - F_f
+  - F_q
+  - F_g
+  - F_p
+  - F_sigma
+  - F_mu
+  - F_nu
+  - F_calK
+  - F_f.static
+  - F_q.static
+  - F_g.static
+  - F_sigma.static
+  - F_mu.static
+  - F_nu.static
+  - F_calK.static
+  - F_sigma.BQS
+  - F_nu.type2
+  - F_f.type2
+  - F_q.dynamic
+- subtitle: Mosquito Dispersal
+  desc: |
+    Specialized methods to set up mosquito dispersal matrices
+  contents:
+  - change_calK
+  - make_calK
+  - make_calK.herethere
+  - create_calK_herethere
+  - make_calK.as_matrix
+  - make_calK.xy
+  - create_calK_xy
+- title: Human Infection Dynamics
+  desc: |
+    Generic methods for the dynamical component that handles human infection dynamics, immunity, disease and transmission
+  contents:
+  - dXdt
+  - Update_Xt
+  - make_Xinits
+  - make_X_indices
+  - list_Xvars
+  - put_Xvars
+  - make_Xpar
+  - F_X
+  - F_H
+  - F_b
+  - parse_Xorbits
+  - get_Xinits
+  - update_Xinits
+  - HTC
+  - F_pr
+  - F_pr_by_lm
+  - F_pr_by_rdt
+  - F_pr_by_pcr
+  - xds_plot_X
+  - xde_steady_state_X
+  - xde_steady_state_XH
+  - dts_steady_state_X
+- subtitle: trivial
+  desc: |
+    Specialized methods for a human trivial model to pass kappa as a parameter
+  contents:
+  - F_X.trivial
+  - F_H.trivial
+  - F_pr.trivial
+  - xde_steady_state_X.trivial
+  - F_pr_by_lm.trivial
+  - F_pr_by_rdt.trivial
+  - F_pr_by_pcr.trivial
+  - F_b.trivial
+  - dXdt.trivial
+  - Update_Xt.trivial
+  - make_Xpar.trivial
+  - create_Xpar_trivial
+  - make_Xinits.trivial
+  - make_X_indices.trivial
+  - parse_Xorbits.trivial
+  - get_Xinits.trivial
+  - update_Xinits.trivial
+- subtitle: hMoI
+  desc: |
+    Specialized methods for a hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
+  contents:
+  - dXdt.hMoI
+  - make_Xpar.hMoI
+  - create_Xpar_hMoI
+  - xde_steady_state_X.hMoI
+  - make_Xinits.hMoI
+  - create_Xinits_hMoI
+  - make_X_indices.hMoI
+  - F_X.hMoI
+  - F_H.hMoI
+  - F_b.hMoI
+  - F_pr.hMoI
+  - F_pr_by_lm.hMoI
+  - F_pr_by_rdt.hMoI
+  - F_pr_by_pcr.hMoI
+  - parse_Xorbits.hMoI
+  - get_Xinits.hMoI
+  - update_Xinits.hMoI
+  - HTC.hMoI
+- subtitle: SIS
+  desc: |
+    Specialized methods for the SIS (Susceptible-Infected-Susceptible) model of human dynamics.
+  contents:
+  - dXdt.SIS
+  - Update_Xt.SIS
+  - make_Xpar.SIS
+  - create_Xpar_SIS
+  - make_Xinits.SIS
+  - create_Xinits_SIS
+  - make_X_indices.SIS
+  - list_Xvars.SIS
+  - put_Xvars.SIS
+  - F_X.SIS
+  - F_H.SIS
+  - F_b.SIS
+  - parse_Xorbits.SIS
+  - get_Xinits.SIS
+  - update_Xinits.SIS
+  - HTC.SIS
+  - F_pr.SIS
+  - F_pr_by_lm.SIS
+  - F_pr_by_rdt.SIS
+  - F_pr_by_pcr.SIS
+  - xds_plot_X.SIS
+  - add_lines_X_SIS
+  - xde_steady_state_X.SIS
+  - dts_steady_state_X.SIS
+- subtitle: SEIS
+  desc: |
+    Specialized methods for the SEIS (Susceptible-Infected-Susceptible) model of human dynamics.
+  contents:
+  - dXdt.SEIS
+  - Update_Xt.SEIS
+  - make_Xpar.SEIS
+  - create_Xpar_SEIS
+  - make_Xinits.SEIS
+  - create_Xinits_SEIS
+  - make_X_indices.SEIS
+  - list_Xvars.SEIS
+  - put_Xvars.SEIS
+  - F_X.SEIS
+  - F_H.SEIS
+  - F_pr.SEIS
+  - F_pr_by_lm.SEIS
+  - F_pr_by_rdt.SEIS
+  - F_pr_by_pcr.SEIS
+  - F_b.SEIS
+  - parse_Xorbits.SEIS
+  - get_Xinits.SEIS
+  - update_Xinits.SEIS
+  - HTC.SEIS
+  - xds_plot_X.SEIS
+  - add_lines_X_SEIS
+  - xde_steady_state_X.SEIS
+  - dts_steady_state_X.SEIS
+- subtitle: SEISd
+  desc: |
+    Specialized methods for the SEISd (Susceptible-Infected-Susceptible) model of human dynamics.
+  contents:
+  - dXdt.SEISd
+  - Update_Xt.SEISd
+  - make_Xpar.SEISd
+  - create_Xpar_SEISd
+  - xde_steady_state_X.SEISd
+  - make_Xinits.SEISd
+  - create_Xinits_SEISd
+  - make_X_indices.SEISd
+  - list_Xvars.SEISd
+  - put_Xvars.SEISd
+  - F_X.SEISd
+  - F_H.SEISd
+  - F_b.SEISd
+  - parse_Xorbits.SEISd
+  - get_Xinits.SEISd
+  - update_Xinits.SEISd
+  - HTC.SEISd
+  - F_pr.SEISd
+  - F_pr_by_lm.SEISd
+  - F_pr_by_rdt.SEISd
+  - F_pr_by_pcr.SEISd
+  - xds_plot_X.SEISd
+  - add_lines_X_SEISd
+- subtitle: SIP
+  desc: |
+    Specialized methods for the SIP (Susceptible-Infected-Prophylaxis) model of human dynamics.
+  contents:
+  - dXdt.SIP
+  - Update_Xt.SIP
+  - make_Xpar.SIP
+  - create_Xpar_SIP
+  - xde_steady_state_X.SIP
+  - dts_steady_state_X.SIP
+  - make_Xinits.SIP
+  - create_Xinits_SIP
+  - make_X_indices.SIP
+  - list_Xvars.SIP
+  - F_X.SIP
+  - F_H.SIP
+  - F_b.SIP
+  - parse_Xorbits.SIP
+  - get_Xinits.SIP
+  - update_Xinits.SIP
+  - HTC.SIP
+  - F_pr.SIP
+  - F_pr_by_lm.SIP
+  - F_pr_by_rdt.SIP
+  - F_pr_by_pcr.SIP
+  - xds_plot_X.SIP
+  - add_lines_X_SIP
+- subtitle: SIPd
+  desc: |
+    Specialized methods for the SIPd (Susceptible-Infected-Prophylaxis) model of human dynamics.
+  contents:
+  - dXdt.SIPd
+  - Update_Xt.SIPd
+  - make_Xpar.SIPd
+  - create_Xpar_SIPd
+  - xde_steady_state_X.SIPd
+  - dts_steady_state_X.SIPd
+  - make_Xinits.SIPd
+  - create_Xinits_SIPd
+  - make_X_indices.SIPd
+  - list_Xvars.SIPd
+  - F_X.SIPd
+  - F_H.SIPd
+  - F_b.SIPd
+  - parse_Xorbits.SIPd
+  - get_Xinits.SIPd
+  - update_Xinits.SIPd
+  - HTC.SIPd
+  - F_pr.SIPd
+  - F_pr_by_lm.SIPd
+  - F_pr_by_rdt.SIPd
+  - F_pr_by_pcr.SIPd
+  - xds_plot_X.SIPd
+  - add_lines_X_SIPd
+- title: Human Population Dynamics
+  desc: |
+    Generic methods for the human demography and aging
+  contents:
+  - dHdt
+  - setup_Hpar_static
+  - Births
+  - make_parameters_demography_null
+- subtitle: static
+  desc: |
+    Specialized methods for the static (constant) demographic model
+  contents:
+  - Births.zero
+  - dHdt.zero
+- subtitle: Care Seeking
+  desc: |
+    Methods to implement care seeking
+  contents:
+  - CareSeeking
+  - CareSeeking.no_behavior
+  - setup_care_seeking_no_behavior
+- title: Imported Malaria
+  desc: |
+    Methods to implement imported malaria
+  contents:
+  - travel_malaria
+  - Visiting
+- subtitle: Travel Malaria
+  desc: |
+    Specialized methods for travel malaria
+  contents:
+  - travel_malaria.xde
+  - travel_malaria.dts
+  - setup_travel_static
+  - setup_travel_static.xde
+  - setup_travel_static.dts
+- subtitle: Visiting
+  desc: |
+    Methods for the availability and infectiousness of a visitor population
+  contents:
+  - Visiting.static
+  - setup_visitors_static
+  - Visiting.basic
+  - setup_visitors_basic
+- title: Exogeneous Forcing
+  desc: |
+    Methods to implement exogeneous forcing.
+  contents:
+  - Exogenous
+  - Forcing
+  - Weather
+  - Rainfall
+  - Shock
+  - Health
+  - VectorControl
+  - Clinic
+  - Development
+  - MassHealth
+- subtitle: Forcing
+  desc: |
+    Specialized methods the null model (no exogenous forcing)
+  contents:
+  - Forcing
+  - Forcing.none
+  - setup_no_forcing
+  - Forcing.dynamic
+  - Forcing.setup
+  - dynamic_forcing
+  - dynamic_forcing.none
+  - dynamic_forcing.setup
+  - dynamic_forcing.dynamic
+- subtitle: Models
+  desc: |
+    Specialized methods the null model (no exogenous forcing)
+  contents:
+  - Shock.none
+  - setup_no_shock
+  - Development.none
+  - Development.func
+  - setup_no_development
+  - Health.none
+  - setup_no_health
+- title: Weather
+  desc: |
+    Specialized methods for weather
+  contents:
+  - Weather
+  - Weather.none
+  - Weather.dynamic
+  - setup_no_weather
+  - dynamic_weather
+  - dynamic_weather.none
+  - dynamic_weather.setup
+  - dynamic_weather.dynamic
+- subtitle: Temperature
+  desc: |
+    Specialized methods for temperature
+  contents:
+  - Temperature
+  - Temperature.none
+  - setup_no_temperature
+  - setup_temperature
+  - Temperature.func
+  - setup_temperature.func
+  - setup_temperature_func
+- subtitle: Rainfall
+  desc: |
+    Specialized methods for rainfall
+  contents:
+  - Rainfall
+  - Rainfall.none
+  - setup_no_rainfall
+  - setup_rainfall
+  - Rainfall.func
+  - setup_rainfall.func
+  - setup_rainfall_func
+- subtitle: Humidity
+  desc: |
+    Specialized methods for humidity
+  contents:
+  - Humidity
+  - Humidity.none
+  - setup_no_humidity
+  - setup_humidity
+  - Humidity.func
+  - setup_humidity.func
+  - setup_humidity_func
+- subtitle: Hydrology
+  desc: |
+    Specialized methods for hydrology
+  contents:
+  - Hydrology
+  - Hydrology.none
+  - setup_no_hydrology
+  - Hydrology.func
+  - setup_hydrology
+  - setup_hydrology.func
+  - setup_hydrology_func
+- subtitle: Shock
+  desc: |
+    Specialized methods for hydrology
+  contents:
+  - Shock
+  - Shock.none
+  - setup_no_shock
+  - setup_shock
+  - Shock.func
+  - setup_shock.func
+  - setup_shock_func
+- subtitle: Development
+  desc: |
+    Specialized methods for hydrology
+  contents:
+  - Development
+  - Development.none
+  - setup_no_development
+  - setup_development
+  - Development.func
+  - setup_development.func
+  - setup_development_func
+- title: Resource Dynamics
+  desc: |
+    Methods to implement resource availability
+  contents:
+  - Resources
+  - Resources.static
+  - Resources.setup
+  - Resources.forced
+  - setup_resources_static
+  - setup_resources_forced
+- subtitle: Other Blood Hosts
+  desc: |
+    Methods to simulate availability of other blood hosts
+  contents:
+  - OtherBloodHosts
+  - OtherBloodHosts.static
+  - setup_other_blood_hosts_static
+- subtitle: Habitat Dynamics and Availability
+  desc: |
+    Specialized methods for weather
+  contents:
+  - HabitatDynamics
+  - HabitatDynamics.static
+  - setup_habitat_dynamics_static
+- subtitle: Sugar
+  desc: |
+    Methods to simulate availability of sugar
+  contents:
+  - SugarDynamics
+  - SugarDynamics.static
+  - setup_sugar_static
+  - AvailableSugar
+  - AvailableSugar.static
+  - AvailableSugar.forced
+- title: Vector Control
+  desc: |
+    Methods to implement vector control.
+  contents:
+  - VectorControl
+  - VectorControl.none
+  - VectorControl.setup
+  - VectorControl.dynamic
+  - VectorControlEffectSizes
+  - VectorControlEffectSizes.none
+  - VectorControlEffectSizes.dynamic
+  - setup_no_vector_control
+  - dynamic_vector_control
+  - dynamic_vector_control.none
+  - dynamic_vector_control.setup
+  - dynamic_vector_control.dynamic
+- subtitle: Bed Nets
+  desc: |
+    Specialized methods to implement Bed Nets
+  contents:
+  - BedNet
+  - BedNet.none
+  - setup_no_bednets
+  - BedNet.dynamic
+  - xds_setup_bednets
+  - DistributeBedNets
+  - setup_distribute_bednets
+  - DistributeBedNets.none
+  - setup_distribute_bednets.none
+  - DistributeBedNets.func
+  - setup_distribute_bednets.func
+  - setup_distribute_bednets_func
+  - OwnBedNets
+  - setup_own_bednets
+  - OwnBedNets.none
+  - setup_own_bednets.none
+  - OwnBedNets.func
+  - setup_own_bednets.func
+  - setup_own_bednets_func
+  - UseBedNets
+  - setup_use_bednets
+  - UseBedNets.none
+  - setup_use_bednets.none
+  - UseBedNets.func
+  - setup_use_bednets.func
+  - setup_use_bednets_func
+  - BedNetEffects
+  - setup_bednet_effects
+  - BedNetEffects.none
+  - setup_bednet_effects.none
+  - BedNetCoverage
+  - setup_bednet_coverage
+  - BedNetCoverage.none
+  - setup_bednet_coverage.none
+  - BedNetCoverage.func
+  - setup_bednet_coverage.func
+  - setup_bednet_coverage_func
+  - BedNetEffectSizes
+  - setup_bednet_effectsizes
+  - BedNetEffectSizes.none
+  - setup_bednet_effectsizes.none
+  - BedNetEffectSizes.func
+  - setup_bednet_effectsizes.func
+  - setup_bednet_effectsizes_func
+  - BedNetEffectSizes.lemenach
+  - setup_bednet_effectsizes.lemenach
+  - setup_bednet_effectsizes_lemenach
+  - compute_bednet_effect_sizes_lemenach
+- subtitle: Indoor Residual Spraying
+  desc: |
+    Methods to implement IRS
+  contents:
+  - IRS
+  - IRS.none
+  - setup_no_irs
+  - IRS.dynamic
+  - xds_setup_irs
+  - SprayHouses
+  - setup_spray_houses
+  - SprayHouses.none
+  - setup_spray_houses.none
+  - IRSEffects
+  - setup_irs_effects
+  - IRSEffects.none
+  - setup_irs_effects.none
+  - IRSCoverage
+  - setup_irs_coverage
+  - IRSCoverage.none
+  - setup_irs_coverage.none
+  - IRSCoverage.func
+  - setup_irs_coverage.func
+  - setup_irs_coverage_func
+  - IRSEffectSizes
+  - setup_irs_effectsizes
+  - IRSEffectSizes.none
+  - setup_irs_effectsizes.none
+- subtitle: Larval Source Management (LSM)
+  desc: |
+    Methods to implement LSM
+  contents:
+  - LSM
+  - LSM.none
+  - setup_no_lsm
+  - LSM.dynamic
+  - xds_setup_lsm
+  - TreatHabitats
+  - setup_treat_habitats
+  - TreatHabitats.none
+  - setup_treat_habitats.none
+  - LSMEffects
+  - setup_lsm_effects
+  - LSMEffects.none
+  - setup_lsm_effects.none
+  - LSMCoverage
+  - setup_lsm_coverage
+  - LSMCoverage.none
+  - setup_lsm_coverage.none
+  - LSMCoverage.func
+  - setup_lsm_coverage.func
+  - setup_lsm_coverage_func
+  - LSMEffectSizes
+  - setup_lsm_effectsizes
+  - LSMEffectSizes.none
+  - setup_lsm_effectsizes.none
+- subtitle: Area Spraying
+  desc: |
+    Methods to implement area spraying
+  contents:
+  - AreaSpray
+  - AreaSpray.none
+  - setup_no_area_spray
+  - AreaSpray.dynamic
+  - xds_setup_area_spray
+  - SprayArea
+  - setup_spray_area
+  - SprayArea.none
+  - setup_spray_area.none
+  - AreaSprayEffects
+  - setup_area_spray_effects
+  - AreaSprayEffects.none
+  - setup_area_spray_effects.none
+  - AreaSprayCoverage
+  - setup_area_spray_coverage
+  - AreaSprayCoverage.none
+  - setup_area_spray_coverage.none
+  - AreaSprayCoverage.func
+  - setup_area_spray_coverage.func
+  - setup_area_spray_coverage_func
+  - AreaSprayEffectSizes
+  - setup_area_spray_effectsizes
+  - AreaSprayEffectSizes.none
+  - setup_area_spray_effectsizes.none
+- subtitle: Sugar Baits
+  desc: |
+    Methods to implement sugar baits
+  contents:
+  - SugarBaits
+  - SugarBaits.none
+  - setup_no_sugar_baits
+  - SugarBaits.dynamic
+  - xds_setup_sugar_baits
+  - DistributeSugarBaits
+  - setup_distribute_sugar_baits
+  - DistributeSugarBaits.none
+  - setup_distribute_sugar_baits.none
+  - SugarBaitEffects
+  - setup_sugar_bait_effects
+  - SugarBaitEffects.none
+  - setup_sugar_bait_effects.none
+  - SugarBaitCoverage
+  - setup_sugar_bait_coverage
+  - SugarBaitCoverage.none
+  - setup_sugar_bait_coverage.none
+  - SugarBaitCoverage.func
+  - setup_sugar_bait_coverage.func
+  - setup_sugar_bait_coverage_func
+  - SugarBaitEffectSizes
+  - setup_sugar_bait_effectsizes
+  - SugarBaitEffectSizes.none
+  - setup_sugar_bait_effectsizes.none
+- subtitle: Ovitraps
+  desc: |
+    Specialized methods for ovitraps
+  contents:
+  - OviTraps
+  - OviTraps.none
+  - setup_no_ovitraps
+- title: Health
+  desc: |
+    Methods to implement health-based Interventions
+  contents:
+  - Health
+  - Health.none
+  - setup_no_health
+  - Health.dynamic
+  - Health.setup
+  - dynamic_health
+  - dynamic_health.none
+  - dynamic_health.setup
+  - dynamic_health.dynamic
+- subtitle: Clinic
+  desc: |
+    Methods to implement clinic-based interventions
+  contents:
+  - Clinic
+  - Clinic.none
+  - setup_no_clinic
+- subtitle: School
+  desc: |
+    Methods to implement school-based interventions
+  contents:
+  - School
+  - School.none
+  - setup_no_school
+- subtitle: MassHealth
+  desc: |
+    Methods to implement clinic-based interventions
+  contents:
+  - MassHealth
+  - MassHealth.none
+  - setup_no_mass_health
+- subtitle: ActiveCaseDetection
+  desc: |
+    Methods to implement clinic-based interventions
+  contents:
+  - ActiveCaseDetection
+  - ActiveCaseDetection.none
+  - setup_no_active_case_detection
+- title: Solving
+  desc: |
+    Methods to compute the derivatives and solve the equat
+- subtitle: Derivatives
+  contents:
+  - xde_derivatives
+  - xde_derivatives.full
+  - xde_derivatives.aquatic
+  - xde_derivatives.mosy
+  - xde_derivatives.human
+- subtitle: Cohort Dynamics
+  contents:
+  - xds_solve_cohort
+  - xde_cohort_derivatives
+  - xde_cohort_desolve
+  - xde_cohort_desolve.dde
+  - xde_cohort_desolve.ode
+- subtitle: Update
+  contents:
+  - dts_update
+  - dts_update.full
+  - dts_update.aquatic
+  - dts_update.mosy
+  - dts_update.human
+  - dts_update.cohort
+  - dts_update_Lt
+  - dts_update_MYZt
+  - dts_update_Xt
+  - Update_Xt
+  - Update_MYZt
+  - Update_Lt
+- subtitle: Exogenous Forcing
+  contents:
+  - Exogenous
+  - Exogenous.full
+  - Exogenous.aquatic
+  - Exogenous.mosy
+  - Exogenous.human
+- subtitle: Solving
+  desc: |
+    Wrappers around the derivatives functions that handle time and parse outputs
+  contents:
+  - xds_solve
+  - xds_solve.dde
+  - xds_solve.ode
+  - xds_solve.dts
+  - xde_stable_orbit
+  - xde_steady
+  - xde_steady.ode
+  - xde_steady.dde
+  - dts_stable_orbit
+  - dts_steady
+- title: Analysis and Visualization
+  desc: |
+    Methods to compute and output terms
+- subtitle: Spatial metrics
+  contents:
+  - metric_calV
+  - metric_calD
+  - metric_calR
+  - metric_calZ
+- subtitle: Metric Conversions
+  contents:
+  - fqZ2eir
+  - eir2fqZ
+- subtitle: Compute terms
+  desc: |
+    Methods to compute and transmission terms
+  contents:
+  - parse_orbits
+  - parse_y
+  - reset_state_i
+  - reset_state
+  - reset_state.full
+  - reset_state.aquatic
+  - reset_state.mosy
+  - reset_state.cohort
+  - reset_state.human
+- subtitle: Plot terms
+  desc: |
+    Basic visualization of the transmission terms
+  contents:
+  - xds_plot_EIR
+  - xds_plot_aEIR
+  - xds_lines_EIR
+  - xds_plot_PR
+  - xds_lines_PR
+- title: Functions and Utilities
+  desc: |
+    stuff that is generally useful
+- subtitle: Rutime
+  desc: |
+    Basic visualization of the transmission terms
+  contents:
+  - runt
+  - set_Dday
+  - make_runtime
+  - make_runtime.dts
+  - make_runtime.xde
+- subtitle: Utilities
+  desc: |
+    Utilities
+  contents:
+  - trigger_setup
+  - trigger_setup.static
+  - trigger_setup.setup
+  - trigger_setup.dynamic
+  - diag_inverse
+  - approx_equal
+  - checkIt
+  - shapeIt
+  - list_vars
+  - xds_flatten
+  - xds_dde
+  - xds_dde.ode
+  - xds_dde.dde
+  - xds_dde.dts
+- subtitle: Functions
+  desc: |
+    Basic visualization of the transmission terms
+  contents:
+  - F_flat
+- subtitle: New
+  desc: |
+    Basic visualization of the transmission terms
+  contents:
+  - F_ni
+  - F_ni.SEIS
+  - F_ni.SEISd
+  - F_ni.SIP
+  - F_ni.SIPd
+  - F_ni.SIS
+  - F_ni.hMoI
+  - get_bionomics
+  - get_bionomics_s
+  - get_bionomics_s_t
+  - get_ft
+  - get_qt
+  - get_gt
+  - get_sigmat
+  - get_f
+  - get_f.GeRM
+  - get_f.trivial
+  - get_q
+  - get_q.GeRM
+  - get_q.trivial
+  - get_g
+  - get_g.GeRM
+  - get_g.trivial
+  - get_sigma
+  - get_sigma.GeRM
+  - get_sigma.trivial
+  - make_outputs
+  - make_outputs.full
+  - make_outputs.mosy
+  - make_outputs.aquatic
+  - make_outputs.human
+  - get_terms
+  - get_EIR
