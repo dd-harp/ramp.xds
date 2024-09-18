@@ -1,4 +1,36 @@
-# specialized methods for the aquatic mosquito basicL competition model
+# the aquatic mosquito `basicL` competition model
+
+#' @title \eqn{\cal L} Component Derivatives for a `basicL`
+#' @description
+#' This implements differential equation model for aquatic mosquito ecology.
+#' It has been modified slightly from a version published by Smith DL, *et al.* (2013):
+#' \deqn{dL/dt = \eta - (\psi + \phi + \theta L)L}
+#'
+#' **Parameters:**
+#' - \eqn{\eta}: egg deposition rate
+#' - \eqn{\psi}: maturation rate
+#' - \eqn{\phi}: density-independent death rate
+#' - \eqn{\theta}: density dependence in mortality: the slope of the response to mean crowding
+#'
+#' Per-capita mortality is thus \eqn{\phi + \theta L}, and the emergence rate
+#' of adult mosquitoes is \eqn{\psi L}
+#'
+#' @inheritParams dLdt
+#' @return a [numeric] vector
+#' @references{\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
+#' @seealso [create_Lpar_basicL]
+#' @export
+dLdt.basicL <- function(t, y, pars, s) {
+  eta <- as.vector(pars$eggs_laid[[s]])
+  with(pars$ix$L[[s]],{
+    L <- y[L_ix]
+    with(pars$Lpar[[s]], {
+      dL = eta - (psi + phi + (theta*L))*L
+      return(dL)
+    })
+  })
+}
+
 
 #' @title Make parameters for basicL competition aquatic mosquito model
 #' @param nHabitats the number of habitats in the model
@@ -20,38 +52,6 @@ create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, phi=1/8, theta=1
     return(Lpar)
   })
 }
-
-#' @title \eqn{\cal L} Component Derivatives for a `basicL`
-#' @description
-#' This implements differential equation model for aquatic mosquito ecology.
-#' It has been modified slightly from a version published by Smith DL, *et al.* (2013):
-#' \deqn{dL/dt = \eta - (\psi + \phi + \theta L)L}
-#'
-#' **Parameters:**
-#' - \eqn{\eta}: egg deposition rate
-#' - \eqn{\psi}: maturation rate
-#' - \eqn{\phi}: density-independent death rate
-#' - \eqn{\theta}: density dependence in mortality: the slope of the response to mean crowding
-#'
-#' To put it another way, per-capita mortality is \eqn{\phi + \theta L}, and the emergence rate
-#' of adult mosquitoes is \eqn{\psi L}
-#'
-#' @inheritParams dLdt
-#' @return a [numeric] vector
-#' @references{\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
-#' @seealso [create_Lpar_basicL]
-#' @export
-dLdt.basicL <- function(t, y, pars, s) {
-  eta <- as.vector(pars$eggs_laid[[s]])
-  with(pars$ix$L[[s]],{
-    L <- y[L_ix]
-    with(pars$Lpar[[s]], {
-      dL = eta - (psi + phi + (theta*L))*L
-      return(dL)
-    })
-  })
-}
-
 
 #' @title Compute the steady state as a function of the egg deposition rate eta
 #' @description This method dispatches on the type of `Lpar`.

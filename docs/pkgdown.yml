@@ -6,8 +6,10 @@ articles:
   AdultMosquitoes: AdultMosquitoes.html
   aqua_basic: aqua_basic.html
   aqua_trace: aqua_trace.html
+  BedNets: BedNets.html
   Contributing: Contributing.html
   ex_534: ex_534.html
+  Forcing: Forcing.html
   GettingStarted: GettingStarted.html
   heterogeneous_biting: heterogeneous_biting.html
   heterogeneous_transmission: heterogeneous_transmission.html
@@ -24,8 +26,9 @@ articles:
   TraceFunctions: TraceFunctions.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   vc_lemenach: vc_lemenach.html
+  VectorControl: VectorControl.html
   Working: Working.html
-last_built: 2024-09-07T21:32Z
+last_built: 2024-09-18T00:07Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

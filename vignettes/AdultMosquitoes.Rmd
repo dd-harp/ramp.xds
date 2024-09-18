@@ -81,6 +81,7 @@ macdonald <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1),
 
 macdonald <- xds_solve(macdonald, Tmax=80)
 ```
+```
 
 
 + [**`basicM`**](https://dd-harp.github.io/ramp.xds/reference/dMYZdt.basicM.html) is based on **`GeRM`,** but it lacks variables describing infected or infectious mosquitoes. 
@@ -95,10 +96,10 @@ basicM <- xds_solve(basicM, Tmax=80)
 + [**`si`**](https://dd-harp.github.io/ramp.xds/reference/dMYZdt.si.html) is a basic SI compartmental model for infection in mosquitoes that was set up to accommodate a static baseline with exogenous forcing by vector control. It assumes that the density of infectious mosquitoes is the density of infected mosquitoes modified by survival and dispersal through an EIP, computed with present parameters $Z = e^{-\Omega \tau} \cdot Y.$
 
 ```{r}
-si <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1), 
-                MYZname = "si", MYZopts = list(Y=0))
+SI <- xds_setup(Xname = "trivial", Xopts = list(kappa = .1), 
+                MYZname = "SI", MYZopts = list(Y=0))
 
-si <- xds_solve(si, Tmax=80)
+SI <- xds_solve(SI, Tmax=80)
 ```
 
 + [**`SEI`**](https://dd-harp.github.io/ramp.xds/reference/dMYZdt.si.html) is a standard SEI compartmental model that is fully parameterized for exogenous forcing. 
@@ -139,7 +140,7 @@ $$\bar M = \Omega^{-1} \cdot \Lambda$$
 
 ```{r, fig.width=5, fig.height=3.5}
 xds_plot_M(basicM)
-xds_plot_M(si, add=TRUE, clrs="darkred")
+xds_plot_M(SI, add=TRUE, clrs="darkred")
 xds_plot_M(SEI, add=TRUE, clrs = "darkblue")
 xds_plot_M(macdonald, add=TRUE, clrs = "orange")
 xds_plot_M(GeRM, add=TRUE, clrs = "darkgreen")
@@ -153,7 +154,7 @@ The dynamics of infection depend on a quantity that we will call $\kappa(t)$ den
 
 $$\frac{dY}{dt} = fq\kappa(M-Y) - \Omega \cdot Y$$
 ```{r, fig.width=5, fig.height=3.5}
-xds_plot_Y(si, llty=1, clrs="darkred")
+xds_plot_Y(SI, llty=1, clrs="darkred")
 xds_plot_Y(SEI, add=TRUE, llty=2, clrs = "darkblue")
 xds_plot_Y(macdonald, add=TRUE, llty=3, clrs = "orange")
 xds_plot_Y(GeRM, add=TRUE, llty=3, clrs = "darkgreen")
@@ -187,7 +188,7 @@ $$dZ/dt = (Y-Z)/\tau- \Omega \cdot Z$$
 
 ```{r, fig.width=5, fig.height=3.5}
 xds_plot_Z(SEI, llty=1, clrs="darkblue")
-xds_plot_Z(si, add=TRUE, clrs = "darkred")
+xds_plot_Z(SI, add=TRUE, clrs = "darkred")
 xds_plot_Z(macdonald, add=TRUE, clrs = "orange")
 xds_plot_Z(GeRM, add=TRUE, llty=3, clrs = "darkgreen")
 ```
@@ -196,7 +197,7 @@ xds_plot_Z(GeRM, add=TRUE, llty=3, clrs = "darkgreen")
 xds_plot_Z_fracs(SEI, clrs="darkblue")
 xds_plot_Z_fracs(macdonald,  add=T, clrs = "orange")
 xds_plot_Z_fracs(SEI, add=T, clrs="darkblue")
-xds_plot_Z_fracs(si, add=T,  clrs = "darkred")
+xds_plot_Z_fracs(SI, add=T,  clrs = "darkred")
 xds_plot_Z_fracs(GeRM, add=TRUE, llty=3, clrs = "darkgreen")
 ```
 

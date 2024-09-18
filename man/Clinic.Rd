@@ -17,5 +17,5 @@ Clinic(t, y, pars)
 \link{list}
 }
 \description{
-This method dispatches on the type of \code{pars$CLINIC}.
+This method dispatches on the type of \code{pars$clinic}.
 }

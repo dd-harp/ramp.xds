@@ -2,7 +2,7 @@
 % Please edit documentation in R/forcing.R
 \name{Forcing.setup}
 \alias{Forcing.setup}
-\title{Set the values of exogenous variables}
+\title{The \code{setup} case for exogenous forcing}
 \usage{
 \method{Forcing}{setup}(t, pars)
 }
@@ -15,5 +15,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-This method...
+Call all the functions to set the
+values of exogenous variables and then revert
+the \code{none} case
 }

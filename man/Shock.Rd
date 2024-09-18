@@ -2,18 +2,19 @@
 % Please edit documentation in R/shock.R
 \name{Shock}
 \alias{Shock}
-\title{Set up shocks}
+\title{System Shocks}
 \usage{
 Shock(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$SHOCK}.
+Set the value of exogenous variables related to
+systemic shocks
 }

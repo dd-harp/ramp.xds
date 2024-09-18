@@ -44,6 +44,19 @@ dMYZdt.GeRM <- function(t, y, pars, s){
 }
 
 
+#' @title Setup MYZpar for the GeRM model
+#' @description Implements [make_MYZpar] for the GeRM model
+#' @inheritParams make_MYZpar
+#' @return a [list] vector
+#' @export
+make_MYZpar.GeRM = function(MYZname, pars, s, MYZopts=list()){
+  pars = xds_dde(pars)
+  MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
+  class(MYZpar) <- 'GeRM'
+  pars$MYZpar[[s]] = MYZpar
+  return(pars)
+}
+
 #' @title Make parameters for GeRM ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer
 #' @param MYZopts a [list] of values that overwrites the defaults
@@ -298,19 +311,7 @@ F_eggs.GeRM <- function(t, y, pars, s) {
 }
 
 
-#' @title Setup MYZpar for the GeRM model
-#' @description Implements [make_MYZpar] for the GeRM model
-#' @inheritParams make_MYZpar
-#' @return a [list] vector
-#' @export
-make_MYZpar.GeRM = function(MYZname, pars, s, MYZopts=list()){
-  pars$xds <- 'dde'
-  class(pars$xds) <- c('dde', 'xde')
-  MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
-  class(MYZpar) <- 'GeRM'
-  pars$MYZpar[[s]] = MYZpar
-  return(pars)
-}
+
 
 #' @title Setup initial values for the GeRM model
 #' @description Implements [make_MYZinits] for the GeRM model

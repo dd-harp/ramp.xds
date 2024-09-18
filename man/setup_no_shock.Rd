@@ -2,16 +2,16 @@
 % Please edit documentation in R/shock.R
 \name{setup_no_shock}
 \alias{setup_no_shock}
-\title{Set up the no_shock model for shocks (do nothing)}
+\title{Set up "no shock"}
 \usage{
 setup_no_shock(pars)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
-Set up the no_shock model for shocks (do nothing)
+Set up "no shock"
 }

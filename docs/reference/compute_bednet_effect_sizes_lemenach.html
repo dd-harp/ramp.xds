@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ramp.xds</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.98</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Modify baseline values due to vector control</h1>
-    <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/bednet-lemenach.R" class="external-link"><code>R/bednet-lemenach.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/bednet-effectsizes-lemenach.R" class="external-link"><code>R/bednet-effectsizes-lemenach.R</code></a></small>
     <div class="hidden name"><code>compute_bednet_effect_sizes_lemenach.Rd</code></div>
     </div>
 
@@ -141,7 +141,16 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_bednet_effect_sizes_lemenach</span><span class="op">(</span><span class="va">ix</span>, <span class="va">phi</span>, <span class="va">ff</span>, <span class="va">qq</span>, <span class="va">gg</span>, <span class="va">tau0_frac</span>, <span class="va">r</span>, <span class="va">ss</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_bednet_effect_sizes_lemenach</span><span class="op">(</span></span>
+<span>  <span class="va">ix</span>,</span>
+<span>  <span class="va">phi</span>,</span>
+<span>  <span class="va">ff</span>,</span>
+<span>  <span class="va">qq</span>,</span>
+<span>  <span class="va">gg</span>,</span>
+<span>  tau0_frac <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.68</span><span class="op">/</span><span class="fl">3</span>, <span class="fl">2.32</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span>,</span>
+<span>  rr <span class="op">=</span> <span class="fl">0.56</span>,</span>
+<span>  ss <span class="op">=</span> <span class="fl">0.03</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -171,7 +180,7 @@
 host seeking/bloodfeeding <em>vs.</em> resting/oviposition</p></dd>
 
 
-<dt>r</dt>
+<dt>rr</dt>
 <dd><p>probability of mosquito being repelled upon contact with ITN</p></dd>
 
 
@@ -183,9 +192,7 @@ host seeking/bloodfeeding <em>vs.</em> resting/oviposition</p></dd>
     <h2>Value</h2>
     
 
-<p>a named <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
-
-
+<p>an <strong><code>xds</code></strong> model object</p>
     </div>
     <div id="references">
     <h2>References</h2>

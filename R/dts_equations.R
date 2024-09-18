@@ -64,26 +64,8 @@ dts_update_Xt = function(t, y, pars, i){
 #' @export
 dts_update.full <- function(t, y, pars) {
 
-  # set the values of exogenous forcing variables
-  pars <- Forcing(t, pars)
-  # set the values of resource variables
-  pars <- Resources(t, pars)
-  # implement malaria control
-  pars <- Control(t, y, pars)
-
-  # blood feeding: available blood hosts, TaR, relative biting rates
-  pars <- BloodFeeding(t, y, pars)
-
-  # egg laying: available habitat, egg distribution matrix
-  pars <- EggLaying(t, y, pars)
-
-  # update adult bionomic parameters to baseline
-  # or with integrated effect sizes
-  pars <- Bionomics(t, y, pars)
-
-  # modify mosquito bionomic parameters
-  # by computing independent effect sizes
-  pars <- VectorControlEffectSizes(t, y, pars)
+  # exogenous forcing
+  pars <- Exogenous(t, y, pars)
 
   # emergence: Lambda
   pars <- Emergence(t, y, pars)
@@ -122,19 +104,8 @@ dts_update.full <- function(t, y, pars) {
 #' @export
 dts_update.human <- function(t, y, pars) {
 
-  # set the values of exogenous forcing variables
-  pars <- Forcing(t, pars)
-  # set the values of resource variables
-  pars <- Resources(t, pars)
-
-  # vector control
-  pars <- Control(t, y, pars)
-
-  # blood feeding: available blood hosts, TaR, relative biting rates
-  pars <- BloodFeeding(t, y, pars)
-
-  # set and modify the baseline mosquito bionomic parameters
-  pars <- Bionomics(t, y, pars)
+  # exogenous forcing
+  pars <- Exogenous(t, y, pars)
 
   pars <- VectorControlEffectSizes(t, y, pars)
 
@@ -161,21 +132,8 @@ dts_update.human <- function(t, y, pars) {
 #' @export
 dts_update.mosy <- function(t, y, pars) {
 
-  # set the values of exogenous forcing variables
-  pars <- Forcing(t, pars)
-  # set the values of resource variables
-  pars <- Resources(t, pars)
-  # vector control
-  pars <- Control(t, y, pars)
-
-  # blood feeding: available blood hosts, TaR, relative biting rates
-  pars <- BloodFeeding(t, y, pars)
-  # egg laying: available habitat, egg distribution matrix
-  pars <- EggLaying(t, y, pars)
-
-  # adult bionomic parameters
-  pars <- Bionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
+  # exogenous forcing
+  pars <- Exogenous(t, y, pars)
 
   # emergence: compute Lambda
   pars <- Emergence(t, y, pars)
@@ -224,19 +182,10 @@ dts_update.cohort <- function(t, y, pars) {
 #' @export
 dts_update.aquatic <- function(t, y, pars) {
 
-  # set the values of exogenous forcing variables
-  pars <- Forcing(t, pars)
-  # set the values of resource variables
-  pars <- Resources(t, pars)
-  # implement malaria control models
-  pars <- Control(t, y, pars)
-
-  # modify baseline mosquito bionomic parameters
-  pars <- Bionomics(t, y, pars)
-  pars <- VectorControlEffectSizes(t, y, pars)
+  # exogenous forcing
+  pars <- Exogenous(t, y, pars)
 
   # egg laying: compute eta
-
   pars$eggs_laid[[1]] = F_eggs(t, y, pars, 1)
 
   # compute derivatives

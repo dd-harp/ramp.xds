@@ -1,0 +1,66 @@
+---
+title: "Exogenous Forcing"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Exogenous Forcing}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Functions to set up exogenous forcing variables are organized into sets. 
+
+
++ `Health`
+  - School 
+  - Clinic 
+      - IPTp
+      - IPTi
+      - TopUpITN 
+  - MassHealth
+      - SMC - **event**
+      - MassVaccinate - **event** 
+      - MassTreat - **event** 
+  - PersonalProtection   
+  - ActiveCaseDetection
+
++ `VectorControl`
+    - BedNet 
+        - DistributeBedNets
+        - OwnBedNet
+        - UseBedNet
+        - BedNetEffects
+    - IRS
+        - SprayHouses
+        - IRS_Effects
+    - AreaSpray
+        - SprayArea
+        - AreaSprayEffects
+    - SugarBait
+        - DistibuteSugarBaits
+        - SugarBaitEffects
+    - LSM  
+        - TreatHabitats
+        - LSM_Effects
+    - EM 
+        ModifyLandscape - **event** 
+    - Endectocide 
+    - AdultDisseminatedLarvicide 
+
++ Resources
+    - Visitors
+    - Other Blood Hosts 
+    - Habitat Dynamics 
+    - Sugar Dynamics 
+
++ VectorControlEffectSizes
+    - BedNet_Coverage
+    - BedNet_EffectSizes
+    - IRS_Coverage 
+    - IRS_EffectSizes 
+    - AreaSpray_Coverage 
+    - AreaSpray_EffectSizes 
+    - SugarBait_Coverage 
+    - SugarBait_EffectSizes 
+    - LSM_Coverage 
+    - LSM_EffectSizes 
+    

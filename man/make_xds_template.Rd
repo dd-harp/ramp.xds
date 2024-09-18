@@ -84,11 +84,11 @@ Finally, the function sets up a few other miscellaneous options:
 \item \link{Exposure} is called \emph{after} \link{Transmission} to compute environmentally heterogeneous exposure
 and malaria importation through travel:
 \itemize{
-\item \code{\link[=setup_exposure_pois]{setup_exposure_pois()}} sets up a Poisson model for environmental heterogeneity
-\item \code{\link[=setup_travel_static]{setup_travel_static()}} sets up a model with no exposure through travel
+\item \link{setup_exposure_pois} sets up a Poisson model for environmental heterogeneity
+\item \link{setup_travel_static} sets up a model with no exposure through travel
 }
 }
 }
 \seealso{
-Related: \code{\link[=xds_setup]{xds_setup()}}. Illustrated in a vignette: \href{https://dd-harp.github.io/ramp.xds/articles/ex_534.html}{5-3-4 Example}
+Related: \link{xds_setup} and \link{setup_no_forcing}. Illustrated in a vignette: \href{https://dd-harp.github.io/ramp.xds/articles/ex_534.html}{5-3-4 Example}
 }

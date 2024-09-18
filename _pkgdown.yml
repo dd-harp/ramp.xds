@@ -105,7 +105,7 @@ reference:
     Models available in **`ramp.xds`** for adult mosquito ecology and infection dynamics
   contents:
   - dMYZdt.trivial
-  - dMYZdt.si
+  - dMYZdt.SI
   - dMYZdt.macdonald
   - dMYZdt.SEI
   - dMYZdt.GeRM
@@ -121,7 +121,8 @@ reference:
     Functions that compute dynamical terms and exogenous variables
   contents:
   - Forcing
-  - Control
+  - Health
+  - VectorControl
   - Resources
   - BloodFeeding
   - EggLaying
@@ -365,28 +366,28 @@ reference:
   desc: |
     Specialized methods for simple infection dynamics for an adult mosquito population
   contents:
-  - dMYZdt.si
-  - MBaseline.si
-  - MBionomics.si
-  - xde_steady_state_MYZ.si
-  - Update_MYZt.si
-  - make_MYZpar.si
-  - create_MYZpar_si
-  - F_fqZ.si
-  - F_fqM.si
-  - F_eggs.si
-  - list_MYZvars.si
-  - put_MYZvars.si
-  - make_MYZinits.si
-  - create_MYZinits_si
-  - make_indices_MYZ.si
-  - parse_MYZorbits.si
-  - get_MYZinits.si
-  - update_MYZinits.si
-  - get_f.si
-  - get_q.si
-  - get_g.si
-  - get_sigma.si
+  - dMYZdt.SI
+  - MBaseline.SI
+  - MBionomics.SI
+  - xde_steady_state_MYZ.SI
+  - Update_MYZt.SI
+  - make_MYZpar.SI
+  - create_MYZpar_SI
+  - F_fqZ.SI
+  - F_fqM.SI
+  - F_eggs.SI
+  - list_MYZvars.SI
+  - put_MYZvars.SI
+  - make_MYZinits.SI
+  - create_MYZinits_SI
+  - make_indices_MYZ.SI
+  - parse_MYZorbits.SI
+  - get_MYZinits.SI
+  - update_MYZinits.SI
+  - get_f.SI
+  - get_q.SI
+  - get_g.SI
+  - get_sigma.SI
 - subtitle: The "SEI" compartment model for infection
   desc: |
     Specialized methods for simple infection dynamics for an adult mosquito population
@@ -753,6 +754,33 @@ reference:
   - F_pr_by_pcr.SIP
   - xds_plot_X.SIP
   - add_lines_X_SIP
+- subtitle: SIPd
+  desc: |
+    Specialized methods for the SIPd (Susceptible-Infected-Prophylaxis) model of human dynamics.
+  contents:
+  - dXdt.SIPd
+  - Update_Xt.SIPd
+  - make_Xpar.SIPd
+  - create_Xpar_SIPd
+  - xde_steady_state_X.SIPd
+  - dts_steady_state_X.SIPd
+  - make_Xinits.SIPd
+  - create_Xinits_SIPd
+  - make_X_indices.SIPd
+  - list_Xvars.SIPd
+  - F_X.SIPd
+  - F_H.SIPd
+  - F_b.SIPd
+  - parse_Xorbits.SIPd
+  - get_Xinits.SIPd
+  - update_Xinits.SIPd
+  - HTC.SIPd
+  - F_pr.SIPd
+  - F_pr_by_lm.SIPd
+  - F_pr_by_rdt.SIPd
+  - F_pr_by_pcr.SIPd
+  - xds_plot_X.SIPd
+  - add_lines_X_SIPd
 - title: Human Population Dynamics
   desc: |
     Generic methods for the human demography and aging
@@ -801,75 +829,118 @@ reference:
   desc: |
     Methods to implement exogeneous forcing.
   contents:
+  - Exogenous
   - Forcing
   - Weather
   - Rainfall
   - Shock
-  - Control
+  - Health
+  - VectorControl
   - Clinic
   - Development
-  - MassMedical
+  - MassHealth
 - subtitle: Forcing
   desc: |
     Specialized methods the null model (no exogenous forcing)
   contents:
   - Forcing
-  - Forcing.static
+  - Forcing.none
+  - setup_no_forcing
   - Forcing.dynamic
   - Forcing.setup
-  - setup_forcing
+  - dynamic_forcing
+  - dynamic_forcing.none
+  - dynamic_forcing.setup
+  - dynamic_forcing.dynamic
 - subtitle: Models
   desc: |
     Specialized methods the null model (no exogenous forcing)
   contents:
-  - Shock.no_shock
+  - Shock.none
   - setup_no_shock
-  - Control.no_control
-  - Control.static
-  - setup_control
-  - setup_control.no_control
-  - setup_control_no_control
-  - setup_control.forced
-  - Clinic.no_control
-  - setup_clinic_no_control
-  - setup_clinic_forced
-  - Development.no_dev
+  - Development.none
+  - Development.func
   - setup_no_development
-  - MassMedical.no_control
-  - setup_mass_medical_no_control
-- subtitle: forced
-  desc: |
-    Specialized methods to call forcing
-  contents:
-  - Control.forced
-  - setup_control_forced
-  - MassMedical.forced
-  - setup_mass_medical_forced
-- subtitle: Weather
+  - Health.none
+  - setup_no_health
+- title: Weather
   desc: |
     Specialized methods for weather
   contents:
   - Weather
-  - Weather.no_forcing
-  - Weather.forced
-  - setup_weather_no_forcing
-  - setup_weather_forced
-  - setup_rainfall_no_forcing
-  - Rainfall
-  - Rainfall.no_forcing
-  - setup_temperature_no_forcing
+  - Weather.none
+  - Weather.dynamic
+  - setup_no_weather
+  - dynamic_weather
+  - dynamic_weather.none
+  - dynamic_weather.setup
+  - dynamic_weather.dynamic
+- subtitle: Temperature
+  desc: |
+    Specialized methods for temperature
+  contents:
   - Temperature
-  - Temperature.no_forcing
-  - setup_relative_humidity_no_forcing
-  - Relative_Humidity
-  - Relative_Humidity.no_forcing
+  - Temperature.none
+  - setup_no_temperature
+  - setup_temperature
+  - Temperature.func
+  - setup_temperature.func
+  - setup_temperature_func
+- subtitle: Rainfall
+  desc: |
+    Specialized methods for rainfall
+  contents:
+  - Rainfall
+  - Rainfall.none
+  - setup_no_rainfall
+  - setup_rainfall
+  - Rainfall.func
+  - setup_rainfall.func
+  - setup_rainfall_func
+- subtitle: Humidity
+  desc: |
+    Specialized methods for humidity
+  contents:
+  - Humidity
+  - Humidity.none
+  - setup_no_humidity
+  - setup_humidity
+  - Humidity.func
+  - setup_humidity.func
+  - setup_humidity_func
 - subtitle: Hydrology
   desc: |
     Specialized methods for hydrology
   contents:
   - Hydrology
-  - Hydrology.no_forcing
-  - setup_hydrology_no_forcing
+  - Hydrology.none
+  - setup_no_hydrology
+  - Hydrology.func
+  - setup_hydrology
+  - setup_hydrology.func
+  - setup_hydrology_func
+- subtitle: Shock
+  desc: |
+    Specialized methods for hydrology
+  contents:
+  - Shock
+  - Shock.none
+  - setup_no_shock
+  - setup_shock
+  - Shock.func
+  - setup_shock.func
+  - setup_shock_func
+- subtitle: Development
+  desc: |
+    Specialized methods for hydrology
+  contents:
+  - Development
+  - Development.none
+  - setup_no_development
+  - setup_development
+  - Development.func
+  - setup_development.func
+  - setup_development_func
 - title: Resource Dynamics
   desc: |
     Methods to implement resource availability
@@ -909,94 +980,229 @@ reference:
     Methods to implement vector control.
   contents:
   - VectorControl
-  - VectorControlEffects
+  - VectorControl.none
+  - VectorControl.setup
+  - VectorControl.dynamic
   - VectorControlEffectSizes
-- subtitle: null model
-  desc: |
-    Specialized methods for the null model (no vector control)
-  contents:
-  - VectorControl.no_control
-  - VectorControlEffects.no_control
-  - VectorControlEffectSizes.no_control
-  - setup_vc_no_control
-- subtitle: Implement Control
-  desc: |
-    Specialized methods to implement vector control
-  contents:
-  - VectorControl.control
-  - VectorControlEffects.control
-  - VectorControlEffectSizes.control
-  - setup_vc_control
+  - VectorControlEffectSizes.none
+  - VectorControlEffectSizes.dynamic
+  - setup_no_vector_control
+  - dynamic_vector_control
+  - dynamic_vector_control.none
+  - dynamic_vector_control.setup
+  - dynamic_vector_control.dynamic
 - subtitle: Bed Nets
   desc: |
-    Methods to implement bed nets
+    Specialized methods to implement Bed Nets
   contents:
+  - BedNet
+  - BedNet.none
+  - setup_no_bednets
+  - BedNet.dynamic
+  - xds_setup_bednets
   - DistributeBedNets
-  - DistributeBedNets.no_nets
-  - OwnBedNet
-  - OwnBedNet.no_nets
-  - UseBedNet
-  - UseBedNet.no_nets
+  - setup_distribute_bednets
+  - DistributeBedNets.none
+  - setup_distribute_bednets.none
+  - DistributeBedNets.func
+  - setup_distribute_bednets.func
+  - setup_distribute_bednets_func
+  - OwnBedNets
+  - setup_own_bednets
+  - OwnBedNets.none
+  - setup_own_bednets.none
+  - OwnBedNets.func
+  - setup_own_bednets.func
+  - setup_own_bednets_func
+  - UseBedNets
+  - setup_use_bednets
+  - UseBedNets.none
+  - setup_use_bednets.none
+  - UseBedNets.func
+  - setup_use_bednets.func
+  - setup_use_bednets_func
   - BedNetEffects
-  - BedNetEffects.no_nets
+  - setup_bednet_effects
+  - BedNetEffects.none
+  - setup_bednet_effects.none
+  - BedNetCoverage
+  - setup_bednet_coverage
+  - BedNetCoverage.none
+  - setup_bednet_coverage.none
+  - BedNetCoverage.func
+  - setup_bednet_coverage.func
+  - setup_bednet_coverage_func
   - BedNetEffectSizes
-  - BedNetEffectSizes.no_nets
-  - setup_no_nets
-  - BedNetEffects.lemenach
+  - setup_bednet_effectsizes
+  - BedNetEffectSizes.none
+  - setup_bednet_effectsizes.none
+  - BedNetEffectSizes.func
+  - setup_bednet_effectsizes.func
+  - setup_bednet_effectsizes_func
   - BedNetEffectSizes.lemenach
+  - setup_bednet_effectsizes.lemenach
+  - setup_bednet_effectsizes_lemenach
   - compute_bednet_effect_sizes_lemenach
-  - setup_itn_lemenach
 - subtitle: Indoor Residual Spraying
   desc: |
     Methods to implement IRS
   contents:
+  - IRS
+  - IRS.none
+  - setup_no_irs
+  - IRS.dynamic
+  - xds_setup_irs
   - SprayHouses
-  - IRS_Effects
-  - IRS_EffectSizes
-  - SprayHouses.null
-  - IRS_Effects.null
-  - IRS_EffectSizes.null
-  - setup_irs_null
+  - setup_spray_houses
+  - SprayHouses.none
+  - setup_spray_houses.none
+  - IRSEffects
+  - setup_irs_effects
+  - IRSEffects.none
+  - setup_irs_effects.none
+  - IRSCoverage
+  - setup_irs_coverage
+  - IRSCoverage.none
+  - setup_irs_coverage.none
+  - IRSCoverage.func
+  - setup_irs_coverage.func
+  - setup_irs_coverage_func
+  - IRSEffectSizes
+  - setup_irs_effectsizes
+  - IRSEffectSizes.none
+  - setup_irs_effectsizes.none
+- subtitle: Larval Source Management (LSM)
+  desc: |
+    Methods to implement LSM
+  contents:
+  - LSM
+  - LSM.none
+  - setup_no_lsm
+  - LSM.dynamic
+  - xds_setup_lsm
+  - TreatHabitats
+  - setup_treat_habitats
+  - TreatHabitats.none
+  - setup_treat_habitats.none
+  - LSMEffects
+  - setup_lsm_effects
+  - LSMEffects.none
+  - setup_lsm_effects.none
+  - LSMCoverage
+  - setup_lsm_coverage
+  - LSMCoverage.none
+  - setup_lsm_coverage.none
+  - LSMCoverage.func
+  - setup_lsm_coverage.func
+  - setup_lsm_coverage_func
+  - LSMEffectSizes
+  - setup_lsm_effectsizes
+  - LSMEffectSizes.none
+  - setup_lsm_effectsizes.none
 - subtitle: Area Spraying
   desc: |
     Methods to implement area spraying
   contents:
   - AreaSpray
+  - AreaSpray.none
+  - setup_no_area_spray
+  - AreaSpray.dynamic
+  - xds_setup_area_spray
+  - SprayArea
+  - setup_spray_area
+  - SprayArea.none
+  - setup_spray_area.none
   - AreaSprayEffects
+  - setup_area_spray_effects
+  - AreaSprayEffects.none
+  - setup_area_spray_effects.none
+  - AreaSprayCoverage
+  - setup_area_spray_coverage
+  - AreaSprayCoverage.none
+  - setup_area_spray_coverage.none
+  - AreaSprayCoverage.func
+  - setup_area_spray_coverage.func
+  - setup_area_spray_coverage_func
   - AreaSprayEffectSizes
-  - AreaSpray.null
-  - AreaSprayEffects.null
-  - AreaSprayEffectSizes.null
-  - setup_area_spray_null
+  - setup_area_spray_effectsizes
+  - AreaSprayEffectSizes.none
+  - setup_area_spray_effectsizes.none
 - subtitle: Sugar Baits
   desc: |
     Methods to implement sugar baits
   contents:
   - SugarBaits
+  - SugarBaits.none
+  - setup_no_sugar_baits
+  - SugarBaits.dynamic
+  - xds_setup_sugar_baits
+  - DistributeSugarBaits
+  - setup_distribute_sugar_baits
+  - DistributeSugarBaits.none
+  - setup_distribute_sugar_baits.none
   - SugarBaitEffects
+  - setup_sugar_bait_effects
+  - SugarBaitEffects.none
+  - setup_sugar_bait_effects.none
+  - SugarBaitCoverage
+  - setup_sugar_bait_coverage
+  - SugarBaitCoverage.none
+  - setup_sugar_bait_coverage.none
+  - SugarBaitCoverage.func
+  - setup_sugar_bait_coverage.func
+  - setup_sugar_bait_coverage_func
   - SugarBaitEffectSizes
-  - SugarBaits.null
-  - SugarBaitEffects.null
-  - SugarBaitEffectSizes.null
-  - setup_sugar_baits_null
-- subtitle: Larval Source Management
-  desc: |
-    Methods to implement LSM
-  contents:
-  - TreatHabitats
-  - LSM_Effects
-  - LSM_EffectSizes
-  - TreatHabitats.null
-  - LSM_Effects.null
-  - LSM_EffectSizes.null
-  - setup_lsm_null
+  - setup_sugar_bait_effectsizes
+  - SugarBaitEffectSizes.none
+  - setup_sugar_bait_effectsizes.none
 - subtitle: Ovitraps
   desc: |
     Specialized methods for ovitraps
   contents:
   - OviTraps
-  - OviTraps.null
-  - setup_ovitraps_null
+  - OviTraps.none
+  - setup_no_ovitraps
+- title: Health
+  desc: |
+    Methods to implement health-based Interventions
+  contents:
+  - Health
+  - Health.none
+  - setup_no_health
+  - Health.dynamic
+  - Health.setup
+  - dynamic_health
+  - dynamic_health.none
+  - dynamic_health.setup
+  - dynamic_health.dynamic
+- subtitle: Clinic
+  desc: |
+    Methods to implement clinic-based interventions
+  contents:
+  - Clinic
+  - Clinic.none
+  - setup_no_clinic
+- subtitle: School
+  desc: |
+    Methods to implement school-based interventions
+  contents:
+  - School
+  - School.none
+  - setup_no_school
+- subtitle: MassHealth
+  desc: |
+    Methods to implement clinic-based interventions
+  contents:
+  - MassHealth
+  - MassHealth.none
+  - setup_no_mass_health
+- subtitle: ActiveCaseDetection
+  desc: |
+    Methods to implement clinic-based interventions
+  contents:
+  - ActiveCaseDetection
+  - ActiveCaseDetection.none
+  - setup_no_active_case_detection
 - title: Solving
   desc: |
     Methods to compute the derivatives and solve the equat
@@ -1028,6 +1234,13 @@ reference:
   - Update_Xt
   - Update_MYZt
   - Update_Lt
+- subtitle: Exogenous Forcing
+  contents:
+  - Exogenous
+  - Exogenous.full
+  - Exogenous.aquatic
+  - Exogenous.mosy
+  - Exogenous.human
 - subtitle: Solving
   desc: |
     Wrappers around the derivatives functions that handle time and parse outputs
@@ -1103,6 +1316,10 @@ reference:
   - shapeIt
   - list_vars
   - xds_flatten
+  - xds_dde
+  - xds_dde.ode
+  - xds_dde.dde
+  - xds_dde.dts
 - subtitle: Functions
   desc: |
     Basic visualization of the transmission terms
@@ -1116,6 +1333,7 @@ reference:
   - F_ni.SEIS
   - F_ni.SEISd
   - F_ni.SIP
+  - F_ni.SIPd
   - F_ni.SIS
   - F_ni.hMoI
   - get_bionomics
