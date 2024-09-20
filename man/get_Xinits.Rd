@@ -4,7 +4,7 @@
 \alias{get_Xinits}
 \title{Return initial values as a vector}
 \usage{
-get_Xinits(pars, i)
+get_Xinits(pars, i = 1)
 }
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}

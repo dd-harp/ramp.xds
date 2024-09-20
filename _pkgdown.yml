@@ -3,15 +3,15 @@ navbar:
   left:
   - text: Articles
     menu:
-    - text: Getting Started with ramp.xds
+    - text: Getting Started
       href: articles/GettingStarted.html
-    - text: Working with Models in ramp.xds
+    - text: Working with Models
       href: articles/Working.html
     - text: Trace Functions
       href: articles/TraceFunctions.html
     - text: Understanding ramp.xds
       href: articles/Understanding_ramp.xds.html
-    - text: Modular Forms for Disease Dynamics
+    - text: Modular Forms
       href: articles/modular_forms.html
     - text: 5-3-4 Spatial Example
       href: articles/ex_534.html
