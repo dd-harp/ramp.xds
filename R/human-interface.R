@@ -162,7 +162,7 @@ parse_Xorbits <- function(outputs, pars, i) {
 #' @param i the host species index
 #' @return none
 #' @export
-get_Xinits <- function(pars, i) {
+get_Xinits <- function(pars, i=1) {
   UseMethod("get_Xinits", pars$Xpar[[i]])
 }
 

@@ -1,6 +1,6 @@
 ---
 title: "Getting Started"
-subtitle: "Demonstrating the Capabilities of ramp.xds"
+subtitle: "A ramp.xds Demo"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Getting Started}
@@ -10,8 +10,9 @@ vignette: >
 
 # 
 
-**`ramp.xds`** was developed to reduce the costs of building, solving, analyzing, and using models describing the epidemiology, transmission dynamics and control of malaria and other mosquito-transmitted pathogens. This vignette gives a demonstration and a basic introduction. Another useful vignette is a primer for working with the **`xds`** *model object*, called 
-[Working with Models in **`ramp.xds`**](Working.html). 
+**`ramp.xds`** was developed to reduce the costs of building, solving, analyzing, and using models describing the epidemiology, transmission dynamics and control of malaria and other mosquito-transmitted pathogens. This vignette gives a demonstration and a basic introduction. 
+
+Another useful vignette is [Working with Models](Working.html). 
 
 ## Installation 
 
@@ -32,26 +33,22 @@ library(ramp.xds)
 #devtools::load_all()
 ```
 
+Additional modules are available in the companion R-package [**`ramp.library`**](https://dd-harp.github.io/ramp.library/)
+
 ## Demo
 
 With **`ramp.xds`** it's easy to build models for the transmission dynamics and control of malaria or other mosquito-borne pathogens. 
-
 Model building in **`ramp.xds`** starts 
-with a function called `xds_setup().`  
-
-All of the arguments in `xds_setup()` are assigned default values, so calling `xds_setup()` with no arguments returns a fully configured model with all the default settings. 
+with a function called `xds_setup().`
+All arguments in `xds_setup()` are assigned default values, so calling `xds_setup()` with no arguments returns a fully configured model with all the default settings. 
 
 ```{r}
 model <- xds_setup()
 ```
 
-This object, called `model,` which was returned by `xds_setup()` is called a **`ramp`** *model object:* it is a fully defined model that can be solved by `xds_solve()`. 
+The object `model` returned by `xds_setup()` is called a **`ramp`** *model object:* it is a fully defined model that can be solved by `xds_solve()`. 
 
-At this point, `model` has an empty placeholder for outputs:
 
-```{r}
-model$outputs 
-```
 
 Later, after solving the equations, it won't be empty. 
 
@@ -68,7 +65,7 @@ model$Xname
 ```{r}
 get_Xpars(model)
 ```
-By examining The parameters are stored as `model$Xpar[[i]],` for the $i^{th}$ species. Knowing the names, the parameters can then be viewed (or changed):
+Functions like `get_Xpars` are designed to help users get to know the model oject. In this case, the parameters are stored as `model$Xpar[[i]],` for the $i^{th}$ species. Knowing the names, the parameters can then be viewed (or changed):
 
 ```{r}
 model$Xpar[[1]]$r
@@ -80,6 +77,11 @@ The defaults can be over-written at setup by passing `Xopts = list(...)` with di
 Xo = list(b=1/150, c=0.2, b=0.6)
 model1 <- xds_setup(Xopts = Xo)
 get_Xpars(model1)
+```
+Similarly, initial values were assigned default values at setup:
+
+```{r}
+get_Xinits(model)
 ```
 
 The name of the default module for adult mosquito ecology and infection dynamics is called `MYZname.` The default module is Macdonald's model: 
@@ -102,13 +104,27 @@ The design pattern is followed: parameters can be viewed with `get_Lpars` and th
 
 ### Solving 
 
-The function `xds_solve(model)` returns the model object with the solutions to the *initial value problem(s)* for the model defined by `model` attached as `model$outputs.` In other words, it solves the equations using `deSolve` to return the values of the variables at a set of time points, given a set of inital values. Calling it with only one argument, `model,` solves the initial value problem for the default set of time points  daily outputs for one year: 
+After setting up, `model` has an empty placeholder for outputs:
+
+```{r}
+model$outputs 
+```
+
+Calling `xds_solve(model)` returns solutions to the *initial value problem(s):* `xds_solve` calls `deSolve,` and the values of the dependent variables at a set of time points are attached as `model$outputs.` 
+
+There are three ways to pass the argument `time` to `deSolve`: first, `xds_solve` can set up a vector of time points `seq(0, Tmax, by = dt)` that are configurable with the arguments `Tmax` and `dt;` second, if no arguments are passed for time, then it uses the defaults `Tmax=365` and `dt=1;` third, `deSolve` will use the optional argument `times` if it is supplied. All four of the following do the same thing: 
+
+```{r, eval=F}
+model <- xds_solve(model, times = 0:365) 
+model <- xds_solve(model, times = 0:365, Tmax=730, dt=5) 
+model <- xds_solve(model, Tmax=365, dt=1) 
+```
 
 ```{r}
 model <- xds_solve(model) 
 ```
 
-Note that `model` was passed to `xds_solve,` and the return value replaces `model.` Before `xds_solve,` `model$outputs` was an empty list. After solving, the outputs are stored as `model$outputs`: 
+Note `xds_solve` requires an **`xds`** *model object* and that it returns an **`xds`** *model object.* In this case, the function passes `model` and the return value replaces `model.` Before `xds_solve,` `model$outputs` was an empty list. After solving, the outputs are stored as `model$outputs`: 
 
 ```{r}
 names(model$outputs)
@@ -117,9 +133,9 @@ names(model$outputs)
 The outputs from solving a system of equations include:
 
 + `time` -- are the time points when the values of the dependent variables were evaluated
-+ `last_y` -- is the dependent variables at the last time point: the last state of the system  
-+ `orbits` -- are the solutions with the variables parsed by name 
-+ `terms` -- the dynamical terms describing transmission, including the EIR. 
++ `last_y` -- is the dependent variables at the last time point, the last state of the system  
++ `orbits` -- are the solutions with the values of the dependent variables parsed by name, accessible separately for each dynamical component 
++ `terms` -- dynamical terms describing transmission, including the EIR 
 + `deout` -- the raw (unparsed) outputs  
 
 Note that the `time` holds the default values of the independent variable time where we solved the initial value problem for the dependent variables. 
@@ -171,12 +187,22 @@ xds_plot_EIR(model)
 
 ### Analysis
 
+**`ramp.xds`** has built-in functions that compute some quantities of interest, including stable states or stable orbits. 
 
 
 ## Trivial Models and Trace Functions
 
-The software was designed to be fully modular. A basic requirement for full modularity is that every dynamical component must include a *trace* module. In each `trace` module, no variables are defined, but  the dynamical terms needed by related dynamical components include a fully configurable *trace* function. In above example, the $\cal L$ component was trivial, but we can create a new model by modifying the old one. First, we define `F_season` and the mean values of `Lambda` 
+The software was designed to be fully modular, so that any module for one dynamical component can be replaced with another. The models included in **`ramp.xds`** are just enough to illustrate its the features ensure that the software is working as it should.
 
+A basic requirement for full modularity is that every dynamical component must include a *trivial* module. In the `trivial` module, no variables are defined, but the dynamical terms needed by related dynamical components are passed by a configurable *trace* function with a generic form:
+
+```{r, eval=F}
+mean*F_season(t, phase, season_opts)*F_trend(t, trend_opts)
+```
+
+The default for the $\cal L$ dynamical component is the `trivial` module, where the `mean` is is called `Lambda.`
+
+It is easy to change the `trace` function. First, we define `F_season` and change the mean value of `Lambda.` 
 The generic format for seasonal functions is `F_season(t, phase, season_opts),` where `phase` sets the phase (time of year), and `season_opts` is a set of configurable parameter values:
 
 ```{r}
@@ -185,7 +211,7 @@ The generic format for seasonal functions is `F_season(t, phase, season_opts),` 
           (1+sin(2*pi*(t+phase)/365))^pwr))} 
 ```
 
-Having defined `F_sp,`  we now attach it to a list of options:
+Having defined `F_sp,` we now configure a list of options:
 
 ```{r}
 Lo = list(
@@ -196,16 +222,25 @@ Lo = list(
       )
 ```
 
-We use the first model as a template for the new model, but we have replaced
+We use the first model as a template for the new model, but we assign the return value a new name `model_1` so that the original one still exists: 
 
 ```{r}
 model_1 <- make_Lpar("trivial", model, 1, Lopts=Lo)
+```
+
+We want to change the initial values of `model_1.` Since `model_1` was copied from `model,` the last values from solving it are available, and we can use a function `last_to_inits` to set the initial values.
+
+```{r}
 model_1 <- last_to_inits(model_1)
 ```
 
+Now, we solve it over a three year period
+
 ```{r}
-model_1 <- xds_solve(model_1, Tmax=365*3) 
+model_1 <- xds_solve(model_1, Tmax=365*3, dt=5) 
 ```
+
+and plot the results. 
 
 ```{r, fig.height=2.6, fig.width=6, fig.cap = "**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" }
 par(mfrow = c(1,2))
@@ -220,27 +255,11 @@ For more information, see the vignette [Trace Functions](https://dd-harp.github.
 
 ## Model Building
 
-From a design perspective, the setup interface can't possibly anticipate the needs of every end user. Instead, it has adopted a system for setting up models based on the principle of *scaling complexity:* the framework regards a subset of the universe of possible models as a nested, hierarchical set. In some limiting case, some complex model are equivalent to a simpler model. Rather than try to build one big supermodel, the framework envisions the software around **modules** for the **dynamical components** that define *model families* at varying levels of complexity. 
+From a design perspective, the setup interface can't possibly anticipate the needs of every end user. Instead, it has adopted a system for *progressive model building* based on a framework designed for *scaling complexity.* 
 
-In general, a module is an element in the model library. It defines a *model family.* If `nStrata=1,` it represents a set of states and transitions describing a single population in the form of a system of differential or difference equations. For example, the `SIS` module for the $\cal X$ component is the *SIS* compartmental model family for human infections. It's called a model family because each unique set of parameters would define a different *model.* 
+The a mathematical framework supported the design of **`ramp.xds.`** That framework handles a subset of the universe of all possible models. That subset is understood as nested, hierarchical sets of models expanding out from a set of simple base models. Simpler model families are a nested within some complex model families. 
 
-In its simplest form, each model family represents the state of a single population. In practice, a single population is subdivided into sub-populations: human population strata or adult mosquitoes in patches or immature mosquitoes in aquatic habitats. In **`ramp.xds`** it is comparatively simple to configure a model with multiple strata, patches, and habitats. 
-
-Each model developed in **`ramp.xds`** is thus characterized by:
-
-+ The choice of *model family* for each dynamical component and the model parameters. 
-
-+ The model structure, including the number of patches, the number of habitats and their membership in the patches, and the number of human population strata and their residency within the strata. 
-
-+ Functions that define exogenous variables and functional responses that drive exogenous forcing by weather and malaria control.  
-
-The concept for designing a setup interface to support complexity scaling in model building works bass ackwards. The framework was designed around models that could be linked to serve as a platform that could explore models of unbounded realism and complexity, but it would need to start very simple. To work out all the kinks, the software would have to build in ports and junctions that could handle a large set of advanced features, but most of these features would be turned off for basic setup. Model building is handled in two steps:
-
-* **Basic Setup** is handled by the function `xds_setup().` It's designed to help a user get started with a properly formulated interface that can handle spatial dynamics, structured aquatic habitats, and a stratified human population
-
-+ **Advanced Setup** handles exogenous forcing, vector control, and other modes of malaria control, human demography and aging, and host population stratification. 
-
-Another set of functions has been developed to work with models. See the related vignette [Working with Models.](Working.html) Also, see the related software package [**`ramp.work`**](https://dd-harp.github.io/ramp.work/). 
+Rather than try and construct a supermodel, the software includes a set of **modules** for each one of the **dynamical components.** Each module defines a *model families* at some maximum level of complexity. Any new module can be added, and it might be better than any model that was already included, but the simple models can be used to get some work done in the meantime. 
 
 ### Modularity
 
@@ -263,39 +282,69 @@ The framework is designed around five dynamical components organized into three 
 These three chunks are connected by two interfaces. The first two chunks are connected through the rigid interface describing blood feeding and transmission, denoted $\cal B$. The last two chunks are connected through egg laying and emergence, $\cal N, U$. 
 
 ***
+
 ![**Figure 2** Modular dynamic components that form the core of **`ramp.xds`**](notation1.png)
 
 ***
+
+### Modules 
+
+In general, *module* is the term we use to describe an element in the model library. Since the parameter values can be changed, each *module* defines a *model family* in the form of a system of differential or difference equations. Each family is defined by a set of states and state transitions (*i.e.* by the topology of the graph) for a single population (`nStrata=1`). 
+
+For example, the `SIS` module for the $\cal X$ component is the *SIS* compartmental model family for human infections. It's called a model family because each unique set of parameters would define a different *model.* 
+
+In its simplest form, each model family represents the state of a single population, but any model can replicate those states and sub-divide a single population into sub-populations with different parameters. These are population strata for $\cal X$; adult mosquitoes in patches for $\cal MYZ$; immature mosquitoes in aquatic habitats for $\cal L$. In **`ramp.xds`** it is comparatively simple to configure a model with multiple strata, patches, and habitats. 
+
+Each model developed in **`ramp.xds`** is thus characterized by:
+
++ The choice of *model family* for each dynamical component, model parameters, and initial values. 
+
++ The model structure, including the number of patches, the number of habitats and their membership in the patches, and the number of human population strata and their residency within the strata. 
+
++ Functions that define exogenous variables and functional responses that drive exogenous forcing by weather and malaria control.  
+
+## Progressive Setup  
+
+The concept for designing a setup interface to support complexity scaling in model building works bass ackwards. Basic setup was designed around simple models with structural flexibility. Each model returned by basic setup could serve as a platform for developing models of unbounded realism and complexity. To make this work, the software built in ports and junctions that could handle a large set of advanced features, but most of these features would be turned off for basic setup. Model building is handled in two steps:
+
++ **Basic Setup** is handled by the function `xds_setup().` It's designed to help a user get started with a properly formulated interface that can handle spatial dynamics, structured aquatic habitats, and a stratified human population.
+
++ **Advanced Setup** handles advanced features, including exogenous forcing, vector control, and other modes of malaria control, human demography and aging, and host population stratification. 
 
 ### Basic Setup  
 
 *For our purposes, **Basic Setup** encompasses the configurable options in `xds_setup().`*
 
-Which model was setup and solved in the demo above? The software supports a modular framework for model building that is highly flexible and extensible. It's capable of building very capable models, but the software embraces a model-building philosophy of starting simple and adding realism or complexity one step at a time. 
+The software supports a modular framework for model building that is highly flexible and extensible. It's capable of building very realistic models, but progressive setup embraces a model-building philosophy of starting simple and adding realism or complexity one step at a time. 
 
 The demo model, above, is one version of the Ross-Macdonald model. It illustrates how the software has streamlined the process of building fairly simple models. The following sections describe how to make **`ramp.xds`** build models that are much more complicated and realistic. 
 
-The `xds_setup()` function **`ramp.xds`** has assigned default options for everything. Each model must configure three dynamical components: human epidemiology; adult mosquito ecology and infection dynamics; and aquatic mosquito ecology. Each one of these three dynamical component is configured by specifying a model name (as a string) and options, passed as a named list, to override the defaults for the model: 
+As described above, the `xds_setup()` function **`ramp.xds`** has assigned default options for everything. Each model must configure three dynamical components: human epidemiology; adult mosquito ecology and infection dynamics; and aquatic mosquito ecology. Each one of these three dynamical component is configured by specifying a model name (as a string) and options, passed as a named list, to override the defaults for the model: 
 
-+ `Xname` dispatches a model family for parasitic infections and immunity in the human population, called $\cal X.$ The setup default model is `Xname="SIS"` and default parameters for the `SIS` model are defined in `create_Xpar_SIS.` To replace the default values at setup, a named list can be passed as `Xopts = list(...)` and the named values in `Xopts` will be used instead of the defaults. (The human demographic model, $\cal H$ is set up as an advanced option.) 
++ `Xname` dispatches a model family for parasitic infections and immunity in the human population, called $\cal X.$ The setup default model is `Xname="SIS"` and default parameters for the `SIS` model are defined in `create_Xpar_SIS.` To replace the default values at setup, a named list can be passed as `Xopts = list(...)` and the named values in `Xopts` will be 
+he values of named parameters and the initial values of named variables instead of the defaults. (The human demographic model, $\cal H$ is set up as an advanced option.) 
 
-+ `MYZname` dispatches a model family for adult mosquito ecology and parasite infection dynamics, $\cal MYZ.$ The setup default model is `MYZname="macdonald"` and default parameters for the `macdonald` model are defined in `create_MYZpar_macdonald.` To replace the default values at setup, a named list can be passed as `MYZopts = list(...)` and the named values in `MYZopts` will be used instead of the defaults.  
++ `MYZname` dispatches a model family for adult mosquito ecology and parasite infection dynamics, $\cal MYZ.$ The setup default model is `MYZname="macdonald"` and default parameters for the `macdonald` model are defined in `create_MYZpar_macdonald.` To replace the default values at setup, a named list can be passed as `MYZopts = list(...)` and the named values in `MYZopts` will set the values of named parameters and the initial values of named variables instead of the defaults.  
 
-+ `Lname` specifies a model family for aquatic mosquito ecology, $\cal L.$  The setup default model is the trivial model `Lname = "trivial"`. It has no variables, but it passes the outputs -- emerging adults -- as a parameter. To replace the default values at setup, a named list can be passed as `Lopts = list(...)` and the values in `Lopts` will be used instead of the defaults.  
++ `Lname` specifies a model family for aquatic mosquito ecology, $\cal L.$  The setup default model is the trivial model `Lname = "trivial"`. It has no variables, but it passes the outputs -- emerging adults -- as a parameter. To replace the default values at setup, a named list can be passed as `Lopts = list(...)` and the values in `Lopts` will set the values of named parameters and the initial values of named variables instead of the defaults.  
 
 Thu function call: 
 
-```{r}
+```{r, eval=F}
 model1 = xds_setup()
 ```
 
 returns the same values as the function call: 
 
-```{r}
-model2 = xds_setup(Xname = "SIS", MYZname = "macdonald", Lname = "trivial")
+```{r, eval=F}
+model2 = xds_setup(Xname = "SIS", 
+                   MYZname = "macdonald", 
+                   Lname = "trivial")
 ```
 
-**Structural Parameters** are also configured using `xde_setup.` In basic setup, users can configure a malaria landscape with *spatial dynamics,* structured *aquatic habitats,* and *multiple human / host* population strata. Basic setup was developed to ensure that all interfaces are set up properly when there are multiple patches, multiple habitats, multiple population strata, and malaria importation. The framework follows the mathematical formulas and (with small changes) the notation in [Wu SL, *et. al.* 2023]()
+### Structural Parameters 
+
+Structural parameters describe things like the number of patches, the number of population strata, the number of aquatic habitats, the number of host species, and the number of vector species. `xds_setup` sets up models with one host species and one vector species, users can configure a malaria landscape with *spatial dynamics,* structured *aquatic habitats,* and *multiple human / host* population strata. Basic setup was developed to ensure that all interfaces are set up properly when there are multiple patches, multiple habitats, multiple population strata, and malaria importation. The software and documentation follow the mathematical framework formulas and (with small changes) the notation in [Wu SL, *et. al.* 2023](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684). The following structural parameters can be set through `xds_setup:`
     
 - **`nPatches`** or $n_p$ is the number of patches in the model. 
     
@@ -310,8 +359,6 @@ model2 = xds_setup(Xname = "SIS", MYZname = "macdonald", Lname = "trivial")
     - a matrix `TimeSpent` can be passed to configure human time spent  
 
 To learn more, we suggest taking a look at the [5-3-4 Vignette](https://dd-harp.github.io/ramp.xds/articles/ex_534.html), a model with 5 aquatic habitats, 3 patches, and 4 human population strata.  
-
-## Using Basic Setup 
 
 ### Spatial Mosquito Ecology  
 
