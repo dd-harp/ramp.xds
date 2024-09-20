@@ -148,6 +148,20 @@ create_MYZpar_macdonald = function(nPatches, MYZopts=list(), eip=12,
     return(MYZpar)
   })}
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+get_MYZpars.macdonald <- function(pars, s=1) {
+  with(pars$MYZpar[[s]], list(
+    f=f, q=q, g=g, sigma=sigma, eip=eip, mu=mu,
+    nu=nu, eggsPerBatch=eggsPerBatch, calK=calK
+  ))
+}
+
+
 #' @title Setup initial values for the macdonald model
 #' @description Implements [make_MYZinits] for the macdonald model
 #' @inheritParams make_MYZinits

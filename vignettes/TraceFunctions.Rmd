@@ -76,8 +76,8 @@ The following adult mosquito model is forced by emergence and net infectiousness
 + `Lo` configures the adult mosquito emergence rate to rise initially, but then to decline with a F_seasonal signal: 
 
 ```{r}
-Lo = list(F_season = function(t){1+sin(2*pi*t/365)}, 
-          F_trend = function(t){(1+t/250)*exp(-t/1000)}, 
+Lo = list(F_season = function(t, phase=0, opts=list()){1+sin(2*pi*t/365)}, 
+          F_trend = function(t, opts=list()){(1+t/250)*exp(-t/1000)}, 
           Lambda =5)
 ```
 
@@ -85,12 +85,12 @@ Lo = list(F_season = function(t){1+sin(2*pi*t/365)},
 
 ```{r}
 Xo = list(kappa = 0.8, 
-          F_trend = function(t){exp(t/500)/(10+exp(t/500))})
+          F_trend = function(t, opts=list()){exp(t/500)/(10+exp(t/500))})
 ```
 
 ```{r, echo=F, eval=F}
 tt = seq(0, 3650, by = 10)
-with(Xo, plot(tt, F_trend(tt), type = "l"))
+with(Xo, plot(tt, F_trend(tt, list()), type = "l"))
 ```
 
 ```{r}

@@ -6,26 +6,51 @@
 #' @return a [numeric] vector of length `nHabitats`
 #' @export
 F_emerge.trivial <- function(t, y, pars, s) {with(pars$Lpar[[s]],{
-  emergents = Lambda*F_season(t)*F_trend(t)
+  emergents = Lambda*F_season(t, phase, season_opts)*F_trend(t, trend_opts)
   return(emergents)
 })}
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+get_Lpars.trivial <- function(pars, s=1) {
+  with(pars$Lpar[[s]], list(
+    Lambda=Lambda,
+    F_season=F_season,
+    phase=phase,
+    season_opts=season_opts,
+    F_trend=F_trend,
+    trend_opts=trend_opts
+  ))
+}
 
 #' @title Make parameters for trivial aquatic mosquito model
 #' @param nHabitats the number of habitats in the model
 #' @param Lopts a [list] that overwrites default values
 #' @param Lambda vector of mean emergence rates from each aquatic habitat
-#' @param F_season a function that gives a F_seasonal pattern
-#' @param F_trend a function that returns a temporal F_trend
+#' @param F_season a F_seasonality function
+#' @param phase a parameter to set the phase of F_season
+#' @param season_opts a [list] of options to pass to F_season
+#' @param F_trend a F_trend function
+#' @param trend_opts a [list] of options to pass to F_trend
 #' @return none
 #' @export
 create_Lpar_trivial = function(nHabitats, Lopts=list(),
-                               Lambda=1000, F_season=F_flat, F_trend=F_flat){
+                               Lambda=1000,
+                               F_season=F_no_season, phase=0, season_opts=list(),
+                               F_trend=F_no_trend, trend_opts=list()){
   with(Lopts,{
     Lpar = list()
     class(Lpar) <- "trivial"
     Lpar$Lambda = checkIt(Lambda, nHabitats)
     Lpar$F_season = F_season
+    Lpar$phase=phase
+    Lpar$season_opts=season_opts
     Lpar$F_trend = F_trend
+    Lpar$trend_opts=trend_opts
     Lpar$baseline = "trivial"
     class(Lpar$baseline) = "trivial"
     return(Lpar)

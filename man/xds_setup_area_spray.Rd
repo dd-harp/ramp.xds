@@ -6,8 +6,8 @@
 \usage{
 xds_setup_area_spray(
   pars,
-  treat_habitats_name = "none",
-  treat_habitats_opts = list(),
+  spray_area_name = "none",
+  spray_area_opts = list(),
   effects_name = "none",
   effects_opts = list(),
   coverage_name = "none",
@@ -19,9 +19,9 @@ xds_setup_area_spray(
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}
 
-\item{treat_habitats_name}{the name of a model for mass bed net distribution}
+\item{spray_area_name}{the name of a model for mass bed net distribution}
 
-\item{treat_habitats_opts}{options for the bed net distribution model}
+\item{spray_area_opts}{options for the bed net distribution model}
 
 \item{effects_name}{the name of a model for bed net effects}
 

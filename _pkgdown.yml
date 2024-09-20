@@ -27,8 +27,7 @@ navbar:
       href: articles/Contributing.html
   - text: Mosquito - Adult
     menu:
-    - text: Adult Mosquitoes
-      href: articles/AdultMosquitoes.html
+
     - text: Ross-Macdonald model
       href: articles/adult_RM.html
     - text: Ross-Macdonald, discrete time
@@ -45,12 +44,8 @@ navbar:
     menu:
     - text: SIS model
       href: articles/human_sis.html
-    - text: SIP xde model
-      href: articles/human_sip.html
     - text: MoI hybrid model
       href: articles/human_hmoi.html
-    - text: SEIS model
-      href: articles/human_seis.html
   - text: Functions
     href: reference/index.html
   right:
@@ -97,9 +92,6 @@ reference:
   contents:
   - dXdt.trivial
   - dXdt.SIS
-  - dXdt.SIP
-  - dXdt.SEIS
-  - dXdt.SEISd
 - subtitle: Models -- Adult Mosquito
   desc: |
     Models available in **`ramp.xds`** for adult mosquito ecology and infection dynamics
@@ -107,7 +99,6 @@ reference:
   - dMYZdt.trivial
   - dMYZdt.SI
   - dMYZdt.macdonald
-  - dMYZdt.SEI
   - dMYZdt.GeRM
   - dMYZdt.basicM
 - subtitle: Models -- Aquatic Mosquito
@@ -275,6 +266,7 @@ reference:
   - F_fqM
   - F_eggs
   - list_MYZvars
+  - get_MYZpars
   - put_MYZvars
   - make_MYZinits
   - get_MYZinits
@@ -335,6 +327,7 @@ reference:
   - MBionomics.trivial
   - Update_MYZt.trivial
   - make_MYZpar.trivial
+  - get_MYZpars.trivial
   - create_MYZpar_trivial
   - xde_steady_state_MYZ.trivial
   - make_MYZinits.trivial
@@ -359,6 +352,7 @@ reference:
   - create_MYZinits_basicM
   - make_indices_MYZ.basicM
   - list_MYZvars.basicM
+  - get_MYZpars.basicM
   - parse_MYZorbits.basicM
   - get_MYZinits.basicM
   - update_MYZinits.basicM
@@ -377,6 +371,7 @@ reference:
   - F_fqM.SI
   - F_eggs.SI
   - list_MYZvars.SI
+  - get_MYZpars.SI
   - put_MYZvars.SI
   - make_MYZinits.SI
   - create_MYZinits_SI
@@ -388,32 +383,7 @@ reference:
   - get_q.SI
   - get_g.SI
   - get_sigma.SI
-- subtitle: The "SEI" compartment model for infection
-  desc: |
-    Specialized methods for simple infection dynamics for an adult mosquito population
-  contents:
-  - dMYZdt.SEI
-  - MBaseline.SEI
-  - MBionomics.SEI
-  - xde_steady_state_MYZ.SEI
-  - Update_MYZt.SEI
-  - make_MYZpar.SEI
-  - create_MYZpar_SEI
-  - F_fqZ.SEI
-  - F_fqM.SEI
-  - F_eggs.SEI
-  - list_MYZvars.SEI
-  - put_MYZvars.SEI
-  - make_MYZinits.SEI
-  - create_MYZinits_SEI
-  - make_indices_MYZ.SEI
-  - parse_MYZorbits.SEI
-  - get_MYZinits.SEI
-  - update_MYZinits.SEI
-  - get_f.SEI
-  - get_q.SEI
-  - get_g.SEI
-  - get_sigma.SEI
+
 - subtitle: macdonald
   desc: |
     Specialized methods for a Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
@@ -425,6 +395,7 @@ reference:
   - make_MYZpar.macdonald
   - create_MYZpar_macdonald
   - list_MYZvars.macdonald
+  - get_MYZpars.macdonald
   - F_fqZ.macdonald
   - F_fqM.macdonald
   - F_eggs.macdonald
@@ -450,6 +421,7 @@ reference:
   - make_MYZpar.GeRM
   - create_MYZpar_GeRM
   - list_MYZvars.GeRM
+  - get_MYZpars.GeRM
   - F_fqZ.GeRM
   - F_fqM.GeRM
   - F_eggs.GeRM
@@ -494,6 +466,7 @@ reference:
   - F_emerge
   - make_Linits
   - list_Lvars
+  - get_Lpars
   - put_Lvars
   - make_indices_L
   - parse_Lorbits
@@ -513,6 +486,7 @@ reference:
   - create_Lpar_trivial
   - make_Linits.trivial
   - list_Lvars.trivial
+  - get_Lpars.trivial
   - put_Lvars.trivial
   - make_indices_L.trivial
   - parse_Lorbits.trivial
@@ -532,6 +506,7 @@ reference:
   - make_Linits.basicL
   - create_Linits_basicL
   - list_Lvars.basicL
+  - get_Lpars.basicL
   - make_indices_L.basicL
   - parse_Lorbits.basicL
   - update_Linits.basicL
@@ -584,6 +559,7 @@ reference:
   - make_Xinits
   - make_X_indices
   - list_Xvars
+  - get_Xpars
   - put_Xvars
   - make_Xpar
   - F_X
@@ -621,6 +597,7 @@ reference:
   - make_X_indices.trivial
   - parse_Xorbits.trivial
   - get_Xinits.trivial
+  - get_Xpars.trivial
   - update_Xinits.trivial
 - subtitle: hMoI
   desc: |
@@ -642,6 +619,7 @@ reference:
   - F_pr_by_pcr.hMoI
   - parse_Xorbits.hMoI
   - get_Xinits.hMoI
+  - get_Xpars.hMoI
   - update_Xinits.hMoI
   - HTC.hMoI
 - subtitle: SIS
@@ -656,6 +634,7 @@ reference:
   - create_Xinits_SIS
   - make_X_indices.SIS
   - list_Xvars.SIS
+  - get_Xpars.SIS
   - put_Xvars.SIS
   - F_X.SIS
   - F_H.SIS
@@ -672,115 +651,7 @@ reference:
   - add_lines_X_SIS
   - xde_steady_state_X.SIS
   - dts_steady_state_X.SIS
-- subtitle: SEIS
-  desc: |
-    Specialized methods for the SEIS (Susceptible-Infected-Susceptible) model of human dynamics.
-  contents:
-  - dXdt.SEIS
-  - Update_Xt.SEIS
-  - make_Xpar.SEIS
-  - create_Xpar_SEIS
-  - make_Xinits.SEIS
-  - create_Xinits_SEIS
-  - make_X_indices.SEIS
-  - list_Xvars.SEIS
-  - put_Xvars.SEIS
-  - F_X.SEIS
-  - F_H.SEIS
-  - F_pr.SEIS
-  - F_pr_by_lm.SEIS
-  - F_pr_by_rdt.SEIS
-  - F_pr_by_pcr.SEIS
-  - F_b.SEIS
-  - parse_Xorbits.SEIS
-  - get_Xinits.SEIS
-  - update_Xinits.SEIS
-  - HTC.SEIS
-  - xds_plot_X.SEIS
-  - add_lines_X_SEIS
-  - xde_steady_state_X.SEIS
-  - dts_steady_state_X.SEIS
-- subtitle: SEISd
-  desc: |
-    Specialized methods for the SEISd (Susceptible-Infected-Susceptible) model of human dynamics.
-  contents:
-  - dXdt.SEISd
-  - Update_Xt.SEISd
-  - make_Xpar.SEISd
-  - create_Xpar_SEISd
-  - xde_steady_state_X.SEISd
-  - make_Xinits.SEISd
-  - create_Xinits_SEISd
-  - make_X_indices.SEISd
-  - list_Xvars.SEISd
-  - put_Xvars.SEISd
-  - F_X.SEISd
-  - F_H.SEISd
-  - F_b.SEISd
-  - parse_Xorbits.SEISd
-  - get_Xinits.SEISd
-  - update_Xinits.SEISd
-  - HTC.SEISd
-  - F_pr.SEISd
-  - F_pr_by_lm.SEISd
-  - F_pr_by_rdt.SEISd
-  - F_pr_by_pcr.SEISd
-  - xds_plot_X.SEISd
-  - add_lines_X_SEISd
-- subtitle: SIP
-  desc: |
-    Specialized methods for the SIP (Susceptible-Infected-Prophylaxis) model of human dynamics.
-  contents:
-  - dXdt.SIP
-  - Update_Xt.SIP
-  - make_Xpar.SIP
-  - create_Xpar_SIP
-  - xde_steady_state_X.SIP
-  - dts_steady_state_X.SIP
-  - make_Xinits.SIP
-  - create_Xinits_SIP
-  - make_X_indices.SIP
-  - list_Xvars.SIP
-  - F_X.SIP
-  - F_H.SIP
-  - F_b.SIP
-  - parse_Xorbits.SIP
-  - get_Xinits.SIP
-  - update_Xinits.SIP
-  - HTC.SIP
-  - F_pr.SIP
-  - F_pr_by_lm.SIP
-  - F_pr_by_rdt.SIP
-  - F_pr_by_pcr.SIP
-  - xds_plot_X.SIP
-  - add_lines_X_SIP
-- subtitle: SIPd
-  desc: |
-    Specialized methods for the SIPd (Susceptible-Infected-Prophylaxis) model of human dynamics.
-  contents:
-  - dXdt.SIPd
-  - Update_Xt.SIPd
-  - make_Xpar.SIPd
-  - create_Xpar_SIPd
-  - xde_steady_state_X.SIPd
-  - dts_steady_state_X.SIPd
-  - make_Xinits.SIPd
-  - create_Xinits_SIPd
-  - make_X_indices.SIPd
-  - list_Xvars.SIPd
-  - F_X.SIPd
-  - F_H.SIPd
-  - F_b.SIPd
-  - parse_Xorbits.SIPd
-  - get_Xinits.SIPd
-  - update_Xinits.SIPd
-  - HTC.SIPd
-  - F_pr.SIPd
-  - F_pr_by_lm.SIPd
-  - F_pr_by_rdt.SIPd
-  - F_pr_by_pcr.SIPd
-  - xds_plot_X.SIPd
-  - add_lines_X_SIPd
+
 - title: Human Population Dynamics
   desc: |
     Generic methods for the human demography and aging
@@ -1325,15 +1196,14 @@ reference:
     Basic visualization of the transmission terms
   contents:
   - F_flat
+  - F_no_season
+  - F_no_trend
+  - F_sin_season
 - subtitle: New
   desc: |
     Basic visualization of the transmission terms
   contents:
   - F_ni
-  - F_ni.SEIS
-  - F_ni.SEISd
-  - F_ni.SIP
-  - F_ni.SIPd
   - F_ni.SIS
   - F_ni.hMoI
   - get_bionomics

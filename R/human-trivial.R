@@ -7,7 +7,7 @@
 #' @export
 F_X.trivial <- function(t, y, pars, i) {
   H = F_H(t, y, pars, i)
-  X = with(pars$Xpar[[i]],  H*kappa*F_season(t)*F_trend(t))
+  X = with(pars$Xpar[[i]],  H*kappa*F_season(t, phase, season_opts)*F_trend(t, trend_opts))
   return(X)
 }
 
@@ -26,19 +26,26 @@ F_H.trivial <- function(t, y, pars, i) {
 #' @param kappa net infectiousness
 #' @param HPop initial human population density
 #' @param F_season a F_seasonality function
+#' @param phase a parameter to set the phase of F_season
+#' @param season_opts a [list] of options to pass to F_season
 #' @param F_trend a F_trend function
+#' @param trend_opts a [list] of options to pass to F_trend
 #' @return a [list]
 #' @export
 create_Xpar_trivial <- function(nPatches, Xopts, kappa=.1, HPop=1,
-                                F_season=F_flat, F_trend=F_flat){with(Xopts,{
-  Xpar <- list()
-  class(Xpar) <- c('trivial')
-  Xpar$H = checkIt(HPop, nPatches)
-  Xpar$kappa= checkIt(kappa, nPatches)
-  Xpar$F_season = F_season
-  Xpar$F_trend = F_trend
-  return(Xpar)
-})}
+                                F_season=F_no_season, phase=0, season_opts=list(),
+                                F_trend=F_no_trend, trend_opts=list()){with(Xopts,{
+                                  Xpar <- list()
+                                  class(Xpar) <- c('trivial')
+                                  Xpar$H = checkIt(HPop, nPatches)
+                                  Xpar$kappa= checkIt(kappa, nPatches)
+                                  Xpar$F_season <- F_season
+                                  Xpar$phase <- phase
+                                  Xpar$season_opts <- season_opts
+                                  Xpar$F_trend <- F_trend
+                                  Xpar$trend_opts <- trend_opts
+                                  return(Xpar)
+                                })}
 
 #' @title \eqn{\cal X} Component Derivatives for the `trivial` model
 #' @description The trivial model has no state variables so it returns
@@ -174,4 +181,21 @@ update_Xinits.trivial <- function(pars, y0, i) {
 #' @export
 get_Xinits.trivial <- function(pars, i){
   numeric(0)
+}
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Xpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param i the host species index
+#' @return a [list]
+#' @export
+get_Xpars.trivial <- function(pars, i=1) {
+  with(pars$Xpar[[i]], list(
+    kappa=kappa,
+    F_season=F_season,
+    phase=phase,
+    season_opts=season_opts,
+    F_trend=F_trend,
+    trend_opts=trend_opts
+  ))
 }

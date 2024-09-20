@@ -8,7 +8,7 @@
 F_fqZ.trivial <- function(t, y, pars, s) {
   f = get_f(pars, s)
   q = get_q(pars, s)
-  Z = with(pars$MYZpar[[s]], Z*F_season(t)*F_trend(t))
+  Z = with(pars$MYZpar[[s]], Z*F_season(t, phase, season_opts)*F_trend(t, trend_opts))
   return(f*q*Z)
 }
 
@@ -19,8 +19,8 @@ F_fqZ.trivial <- function(t, y, pars, s) {
 #' @export
 F_eggs.trivial <- function(t, y, pars, s) {
   with(pars$MYZpar[[s]],
-    return(eggs*F_season(t)*F_trend(t))
-)}
+       return(eggs*F_season(t, phase, season_opts)*F_trend(t, trend_opts))
+  )}
 
 #' @title Blood feeding rate of the infective mosquito population
 #' @description Implements [F_fqM] for the trivial model.
@@ -96,6 +96,24 @@ make_MYZpar.trivial = function(MYZname, pars, s, MYZopts=NULL){
   return(pars)
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+get_MYZpars.trivial <- function(pars, s=1) {
+  with(pars$MYZpar[[s]], list(
+    f=f, q=q, Z=Z, eggs=eggs,
+    F_season=F_season,
+    phase=phase,
+    season_opts=season_opts,
+    F_trend=F_trend,
+    trend_opts=trend_opts
+  ))
+}
+
+
 #' @title Steady States: MYZ-trivial
 #' @description This method dispatches on the type of `MYZpar`.
 #' @inheritParams xde_steady_state_MYZ
@@ -113,12 +131,16 @@ xde_steady_state_MYZ.trivial = function(Lambda, kappa, MYZpar){with(MYZpar,{
 #' @param Z the human fraction
 #' @param eggs the human fraction
 #' @param F_season a F_seasonality function
+#' @param phase a parameter to set the phase of F_season
+#' @param season_opts a [list] of options to pass to F_season
 #' @param F_trend a F_trend function
+#' @param trend_opts a [list] of options to pass to F_trend
 #' @return none
 #' @export
 create_MYZpar_trivial = function(nPatches, MYZopts,
                                f = 1, q = 1, Z=1, eggs=1,
-                               F_season = F_flat, F_trend=F_flat){
+                               F_season=F_no_season, phase=0, season_opts=list(),
+                               F_trend=F_no_trend, trend_opts=list()){
   with(MYZopts,{
     MYZpar <- list()
     MYZpar$nPatches <- nPatches
@@ -140,7 +162,10 @@ create_MYZpar_trivial = function(nPatches, MYZopts,
     MYZpar$Z <- checkIt(Z, nPatches)
     MYZpar$eggs <- checkIt(eggs, nPatches)
     MYZpar$F_season <- F_season
+    MYZpar$phase <- phase
+    MYZpar$season_opts <- season_opts
     MYZpar$F_trend <- F_trend
+    MYZpar$trend_opts <- trend_opts
     return(MYZpar)
   })}
 

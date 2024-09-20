@@ -1,0 +1,8 @@
+---
+title: "Spatial Transmission Dynamics with `ramp.xds`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Spatial Transmission Dynamics with `ramp.xds`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---

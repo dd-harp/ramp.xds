@@ -57,7 +57,19 @@ create_Xpar_hMoI = function(nStrata, Xopts=list(),
     Xpar$r2 = checkIt(r2, nStrata)
 
     return(Xpar)
-})}
+  })}
+
+#' @title Return the parameters as a list
+#' @description Parameter values for the \eqn{i^{th}} host are
+#' stored as `pars$Xpar[[i]]`. This returns the stored parameter
+#' values as a list.
+#' @inheritParams get_Xpars
+#' @return a [list]
+#' @seealso [create_Xpar_hMoI]
+#' @export
+get_Xpars.hMoI<- function(pars, i=1) {
+  with(pars$Xpar[[i]],list(b=b, c1=c1, r1=r1, r2=r2))
+}
 
 #' @title Setup Xpar.hMoI
 #' @description Implements [make_Xpar] for the hMoI model
@@ -79,16 +91,16 @@ make_Xpar.hMoI = function(Xname, pars, i, Xopts=list()){
 #' @export
 F_X.hMoI <- function(t, y, pars, i) {
   with(pars$ix$X[[i]],{
-  m1 = y[m1_ix]
-  m2 = y[m2_ix]
-  H <- F_H(t, y, pars, i)
-  with(pars$Xpar[[i]],{
-    x1 <- pexp(q = m1)
-    x2 <- pexp(q = m2)
-    X <- ((c2 * x2) + (c1 * (x1 - x2)))*H
-    return(X)
-  })
-})}
+    m1 = y[m1_ix]
+    m2 = y[m2_ix]
+    H <- F_H(t, y, pars, i)
+    with(pars$Xpar[[i]],{
+      x1 <- pexp(q = m1)
+      x2 <- pexp(q = m2)
+      X <- ((c2 * x2) + (c1 * (x1 - x2)))*H
+      return(X)
+    })
+  })}
 
 #' @title Size of the human population
 #' @description Implements [F_H] for the hybrid MoI model.

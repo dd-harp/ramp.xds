@@ -31,6 +31,18 @@ dLdt.basicL <- function(t, y, pars, s) {
   })
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+get_Lpars.basicL <- function(pars, s=1) {
+  with(pars$Lpar[[s]], list(
+    psi=psi, phi=phi, theta=theta
+  ))
+}
+
 
 #' @title Make parameters for basicL competition aquatic mosquito model
 #' @param nHabitats the number of habitats in the model
@@ -59,9 +71,9 @@ create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, phi=1/8, theta=1
 #' @return a named [list]
 #' @export
 xde_steady_state_L.basicL = function(eta, Lpar){with(Lpar,{
- t1 = (psi+phi)/theta
- t2 = 4*eta/theta
- return(list(L=(-t1 + sqrt(t1^2 + t2))/2))
+  t1 = (psi+phi)/theta
+  t2 = 4*eta/theta
+  return(list(L=(-t1 + sqrt(t1^2 + t2))/2))
 })}
 
 # specialized methods for the aquatic mosquito basicL competition model

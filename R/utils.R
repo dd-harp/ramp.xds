@@ -120,9 +120,9 @@ list_vars <- function(pars, y0=NULL, s=1, i=1){
   if(is.null(y0)) y0=get_inits(pars)
   y0 = unname(y0)
   c(
-  list_Lvars(y0, pars, s),
-  list_MYZvars(y0, pars, s),
-  list_Xvars(y0, pars, s))
+    list_Lvars(y0, pars, s),
+    list_MYZvars(y0, pars, s),
+    list_Xvars(y0, pars, s))
 }
 
 #' @title Set the initial values to the last values of the last simulation

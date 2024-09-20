@@ -3,7 +3,6 @@ pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   adult_RM: adult_RM.html
-  AdultMosquitoes: AdultMosquitoes.html
   aqua_basic: aqua_basic.html
   aqua_trace: aqua_trace.html
   BedNets: BedNets.html
@@ -15,20 +14,20 @@ articles:
   heterogeneous_transmission: heterogeneous_transmission.html
   History: History.html
   human_hmoi: human_hmoi.html
-  human_seis: human_seis.html
-  human_sip: human_sip.html
   human_sis: human_sis.html
   modular_forms: modular_forms.html
   modularity: modularity.html
+  MosquitoSpatialEcology: MosquitoSpatialEcology.html
   Nimble: Nimble.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
   spat_metric: spat_metric.html
+  SpatialTransmissionDynamics: SpatialTransmissionDynamics.html
   TraceFunctions: TraceFunctions.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   vc_lemenach: vc_lemenach.html
   VectorControl: VectorControl.html
   Working: Working.html
-last_built: 2024-09-18T00:07Z
+last_built: 2024-09-20T20:55Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

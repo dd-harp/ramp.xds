@@ -53,6 +53,17 @@ make_MYZpar = function(MYZname, pars, s, MYZopts=list()){
   UseMethod("make_MYZpar", MYZname)
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+get_MYZpars <- function(pars, s=1) {
+  UseMethod("get_MYZpars", pars$MYZpar[[s]])
+}
+
+
 #' @title Compute probabilities from rates
 #' @description This method dispatches on `MYZname`.
 #' @param MYZpar the `MYZ` model object

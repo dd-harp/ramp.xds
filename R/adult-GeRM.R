@@ -151,6 +151,19 @@ create_MYZpar_GeRM = function(nPatches, MYZopts=list(), eip =12,
     return(MYZpar)
   })}
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+get_MYZpars.GeRM <- function(pars, s=1) {
+  with(pars$MYZpar[[s]], list(
+    f=f_t, q=q_t, g=g_t, sigma=sigma_t, eip=eip, mu=mu_t,
+    nu=nu_t, eggsPerBatch=eggsPerBatch, calK=calK
+  ))
+}
+
 #' @title Set mosquito bionomics to baseline
 #' @description Implements [MBaseline] for models with no forcing on the baseline
 #' @inheritParams MBaseline
