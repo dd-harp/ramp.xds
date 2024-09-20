@@ -46,10 +46,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/GettingStarted.html">Getting Started with ramp.xds</a>
+      <a href="../articles/GettingStarted.html">Getting Started</a>
     </li>
     <li>
-      <a href="../articles/Working.html">Working with Models in ramp.xds</a>
+      <a href="../articles/Working.html">Working with Models</a>
     </li>
     <li>
       <a href="../articles/TraceFunctions.html">Trace Functions</a>
@@ -58,7 +58,7 @@
       <a href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     </li>
     <li>
-      <a href="../articles/modular_forms.html">Modular Forms for Disease Dynamics</a>
+      <a href="../articles/modular_forms.html">Modular Forms</a>
     </li>
     <li>
       <a href="../articles/ex_534.html">5-3-4 Spatial Example</a>
@@ -153,8 +153,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
-            <h3 data-toc-skip class="subtitle">Demonstrating the
-Capabilities of ramp.xds</h3>
+            <h3 data-toc-skip class="subtitle">A ramp.xds Demo</h3>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/GettingStarted.Rmd" class="external-link"><code>vignettes/GettingStarted.Rmd</code></a></small>
@@ -170,10 +169,9 @@ Capabilities of ramp.xds</h3>
 costs of building, solving, analyzing, and using models describing the
 epidemiology, transmission dynamics and control of malaria and other
 mosquito-transmitted pathogens. This vignette gives a demonstration and
-a basic introduction. Another useful vignette is a primer for working
-with the <strong><code>xds</code></strong> <em>model object</em>, called
-<a href="Working.html">Working with Models in
-<strong><code>ramp.xds</code></strong></a>.</p>
+a basic introduction.</p>
+<p>Another useful vignette is <a href="Working.html">Working with
+Models</a>.</p>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
@@ -185,29 +183,25 @@ these commands:</p>
 <p>Then load <strong><code>ramp.xds</code></strong>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
+<p>Additional modules are available in the companion R-package <a href="https://dd-harp.github.io/ramp.library/" class="external-link"><strong><code>ramp.library</code></strong></a></p>
 </div>
 <div class="section level3">
 <h3 id="demo">Demo<a class="anchor" aria-label="anchor" href="#demo"></a>
 </h3>
 <p>With <strong><code>ramp.xds</code></strong> it’s easy to build models
 for the transmission dynamics and control of malaria or other
-mosquito-borne pathogens.</p>
-<p>Model building in <strong><code>ramp.xds</code></strong> starts with
-a function called <code>xds_setup().</code></p>
-<p>All of the arguments in <code><a href="../reference/xds_setup.html">xds_setup()</a></code> are assigned default
-values, so calling <code><a href="../reference/xds_setup.html">xds_setup()</a></code> with no arguments returns a
-fully configured model with all the default settings.</p>
+mosquito-borne pathogens. Model building in
+<strong><code>ramp.xds</code></strong> starts with a function called
+<code>xds_setup().</code> All arguments in <code><a href="../reference/xds_setup.html">xds_setup()</a></code> are
+assigned default values, so calling <code><a href="../reference/xds_setup.html">xds_setup()</a></code> with no
+arguments returns a fully configured model with all the default
+settings.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>This object, called <code>model,</code> which was returned by
-<code><a href="../reference/xds_setup.html">xds_setup()</a></code> is called a <strong><code>ramp</code></strong>
-<em>model object:</em> it is a fully defined model that can be solved by
+<p>The object <code>model</code> returned by <code><a href="../reference/xds_setup.html">xds_setup()</a></code> is
+called a <strong><code>ramp</code></strong> <em>model object:</em> it is
+a fully defined model that can be solved by
 <code><a href="../reference/xds_solve.html">xds_solve()</a></code>.</p>
-<p>At this point, <code>model</code> has an empty placeholder for
-outputs:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span> </span></code></pre></div>
-<pre><code><span><span class="co">## list()</span></span></code></pre>
 <p>Later, after solving the equations, it won’t be empty.</p>
 <div class="section level4">
 <h4 id="defaults">Defaults<a class="anchor" aria-label="anchor" href="#defaults"></a>
@@ -216,12 +210,12 @@ outputs:</p>
 module for human / host infection and immune dynamics is stored as
 <code>Xname.</code> The default module is the <code>SIS</code>
 compartmental model:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">Xname</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "SIS"</span></span></code></pre>
 <p><code>SIS</code> was set up with default parameter values, that can
 be viewed with the function <code>get_Xpars</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_Xpars.html">get_Xpars</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $b</span></span>
 <span><span class="co">## [1] 0.55</span></span>
@@ -231,17 +225,18 @@ be viewed with the function <code>get_Xpars</code>:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## $r</span></span>
 <span><span class="co">## [1] 0.005555556</span></span></code></pre>
-<p>By examining The parameters are stored as
+<p>Functions like <code>get_Xpars</code> are designed to help users get
+to know the model oject. In this case, the parameters are stored as
 <code>model$Xpar[[i]],</code> for the
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
 species. Knowing the names, the parameters can then be viewed (or
 changed):</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">Xpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.005555556</span></span></code></pre>
 <p>The defaults can be over-written at setup by passing
 <code>Xopts = list(...)</code> with different values:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">150</span>, c<span class="op">=</span><span class="fl">0.2</span>, b<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span></span>
 <span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xopts <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_Xpars.html">get_Xpars</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
@@ -253,6 +248,14 @@ changed):</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## $r</span></span>
 <span><span class="co">## [1] 0.005555556</span></span></code></pre>
+<p>Similarly, initial values were assigned default values at setup:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_Xinits.html">get_Xinits</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $S</span></span>
+<span><span class="co">## [1] 999</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $I</span></span>
+<span><span class="co">## [1] 1</span></span></code></pre>
 <p>The name of the default module for adult mosquito ecology and
 infection dynamics is called <code>MYZname.</code> The default module is
 Macdonald’s model:</p>
@@ -280,21 +283,37 @@ passing a named list of values to <code>Lopts</code> in
 <div class="section level4">
 <h4 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
 </h4>
-<p>The function <code>xds_solve(model)</code> returns the model object
-with the solutions to the <em>initial value problem(s)</em> for the
-model defined by <code>model</code> attached as
-<code>model$outputs.</code> In other words, it solves the equations
-using <code>deSolve</code> to return the values of the variables at a
-set of time points, given a set of inital values. Calling it with only
-one argument, <code>model,</code> solves the initial value problem for
-the default set of time points daily outputs for one year:</p>
+<p>After setting up, <code>model</code> has an empty placeholder for
+outputs:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span> </span></code></pre></div>
+<pre><code><span><span class="co">## list()</span></span></code></pre>
+<p>Calling <code>xds_solve(model)</code> returns solutions to the
+<em>initial value problem(s):</em> <code>xds_solve</code> calls
+<code>deSolve,</code> and the values of the dependent variables at a set
+of time points are attached as <code>model$outputs.</code></p>
+<p>There are three ways to pass the argument <code>time</code> to
+<code>deSolve</code>: first, <code>xds_solve</code> can set up a vector
+of time points <code>seq(0, Tmax, by = dt)</code> that are configurable
+with the arguments <code>Tmax</code> and <code>dt;</code> second, if no
+arguments are passed for time, then it uses the defaults
+<code>Tmax=365</code> and <code>dt=1;</code> third, <code>deSolve</code>
+will use the optional argument <code>times</code> if it is supplied. All
+four of the following do the same thing:</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, times <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">365</span><span class="op">)</span> </span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, times <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">365</span>, Tmax<span class="op">=</span><span class="fl">730</span>, dt<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, Tmax<span class="op">=</span><span class="fl">365</span>, dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span> </span></code></pre></div>
-<p>Note that <code>model</code> was passed to <code>xds_solve,</code>
-and the return value replaces <code>model.</code> Before
-<code>xds_solve,</code> <code>model$outputs</code> was an empty list.
-After solving, the outputs are stored as <code>model$outputs</code>:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<p>Note <code>xds_solve</code> requires an
+<strong><code>xds</code></strong> <em>model object</em> and that it
+returns an <strong><code>xds</code></strong> <em>model object.</em> In
+this case, the function passes <code>model</code> and the return value
+replaces <code>model.</code> Before <code>xds_solve,</code>
+<code>model$outputs</code> was an empty list. After solving, the outputs
+are stored as <code>model$outputs</code>:</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "time"   "last_y" "orbits" "terms"  "deout"</span></span></code></pre>
 <p>The outputs from solving a system of equations include:</p>
@@ -304,24 +323,25 @@ After solving, the outputs are stored as <code>model$outputs</code>:</p>
 dependent variables were evaluated</li>
 <li>
 <code>last_y</code> – is the dependent variables at the last time
-point: the last state of the system<br>
+point, the last state of the system<br>
 </li>
 <li>
-<code>orbits</code> – are the solutions with the variables parsed by
-name</li>
+<code>orbits</code> – are the solutions with the values of the
+dependent variables parsed by name, accessible separately for each
+dynamical component</li>
 <li>
-<code>terms</code> – the dynamical terms describing transmission,
-including the EIR.</li>
+<code>terms</code> – dynamical terms describing transmission,
+including the EIR</li>
 <li>
 <code>deout</code> – the raw (unparsed) outputs</li>
 </ul>
 <p>Note that the <code>time</code> holds the default values of the
 independent variable time where we solved the initial value problem for
 the dependent variables.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">time</span>, <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0 1 2 3 4</span></span></code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">time</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 363 364 365</span></span></code></pre>
 <p>When <code>xds_solve</code> is called, the <strong><code>xds</code>
@@ -341,7 +361,7 @@ computes some standard <em>terms</em> that are likely to be of
 interest.</p>
 <p>Functions like <code><a href="../reference/get_EIR.html">get_EIR()</a></code> make it easy to examine or save
 a set of standard outputs without delving into the details.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_EIR.html">get_EIR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##              [,1]</span></span>
 <span><span class="co">## [1,] 0.0002850000</span></span>
@@ -367,7 +387,7 @@ in the human / host population</p></li>
 <li><p><code>xds_plot_EIR</code> plots the EIR for each one of the human
 / host population strata</p></li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_X.html">xds_plot_X</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
@@ -376,7 +396,7 @@ in the human / host population</p></li>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_EIR.html">xds_plot_EIR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="GettingStarted_files/figure-html/unnamed-chunk-16-1.png" alt="**Figure 1:** Plotting standard outputs" width="576"><p class="caption">
+<img src="GettingStarted_files/figure-html/unnamed-chunk-18-1.png" alt="**Figure 1:** Plotting standard outputs" width="576"><p class="caption">
 <strong>Figure 1:</strong> Plotting standard outputs
 </p>
 </div>
@@ -384,52 +404,71 @@ in the human / host population</p></li>
 <div class="section level4">
 <h4 id="analysis">Analysis<a class="anchor" aria-label="anchor" href="#analysis"></a>
 </h4>
+<p><strong><code>ramp.xds</code></strong> has built-in functions that
+compute some quantities of interest, including stable states or stable
+orbits.</p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="trivial-models-and-trace-functions">Trivial Models and Trace Functions<a class="anchor" aria-label="anchor" href="#trivial-models-and-trace-functions"></a>
 </h3>
-<p>The software was designed to be fully modular. A basic requirement
-for full modularity is that every dynamical component must include a
-<em>trace</em> module. In each <code>trace</code> module, no variables
-are defined, but the dynamical terms needed by related dynamical
-components include a fully configurable <em>trace</em> function. In
-above example, the <span class="math inline">$\cal L$</span> component
-was trivial, but we can create a new model by modifying the old one.
-First, we define <code>F_season</code> and the mean values of
-<code>Lambda</code></p>
-<p>The generic format for seasonal functions is
+<p>The software was designed to be fully modular, so that any module for
+one dynamical component can be replaced with another. The models
+included in <strong><code>ramp.xds</code></strong> are just enough to
+illustrate its the features ensure that the software is working as it
+should.</p>
+<p>A basic requirement for full modularity is that every dynamical
+component must include a <em>trivial</em> module. In the
+<code>trivial</code> module, no variables are defined, but the dynamical
+terms needed by related dynamical components are passed by a
+configurable <em>trace</em> function with a generic form:</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mean</span><span class="op">*</span><span class="fu">F_season</span><span class="op">(</span><span class="va">t</span>, <span class="va">phase</span>, <span class="va">season_opts</span><span class="op">)</span><span class="op">*</span><span class="fu">F_trend</span><span class="op">(</span><span class="va">t</span>, <span class="va">trend_opts</span><span class="op">)</span></span></code></pre></div>
+<p>The default for the <span class="math inline">$\cal L$</span>
+dynamical component is the <code>trivial</code> module, where the
+<code>mean</code> is is called <code>Lambda.</code></p>
+<p>It is easy to change the <code>trace</code> function. First, we
+define <code>F_season</code> and change the mean value of
+<code>Lambda.</code> The generic format for seasonal functions is
 <code>F_season(t, phase, season_opts),</code> where <code>phase</code>
 sets the phase (time of year), and <code>season_opts</code> is a set of
 configurable parameter values:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">F_sp</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span>, <span class="va">phase</span>, <span class="va">season_opts</span><span class="op">)</span><span class="op">{</span></span>
 <span>   <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">season_opts</span>,</span>
 <span>          <span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="op">(</span><span class="va">t</span><span class="op">+</span><span class="va">phase</span><span class="op">)</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="va">pwr</span><span class="op">)</span><span class="op">)</span><span class="op">}</span> </span></code></pre></div>
-<p>Having defined <code>F_sp,</code> we now attach it to a list of
+<p>Having defined <code>F_sp,</code> we now configure a list of
 options:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>       Lambda<span class="op">=</span><span class="fl">500</span>, </span>
 <span>       phase<span class="op">=</span><span class="fl">90</span>, </span>
 <span>       season_opts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pwr<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,</span>
 <span>       F_season<span class="op">=</span><span class="va">F_sp</span></span>
 <span>      <span class="op">)</span></span></code></pre></div>
-<p>We use the first model as a template for the new model, but we have
-replaced</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">model</span>, <span class="fl">1</span>, Lopts<span class="op">=</span><span class="va">Lo</span><span class="op">)</span></span>
-<span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_to_inits.html">last_to_inits</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model_1</span>, Tmax<span class="op">=</span><span class="fl">365</span><span class="op">*</span><span class="fl">3</span><span class="op">)</span> </span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<p>We use the first model as a template for the new model, but we assign
+the return value a new name <code>model_1</code> so that the original
+one still exists:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Lpar.html">make_Lpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">model</span>, <span class="fl">1</span>, Lopts<span class="op">=</span><span class="va">Lo</span><span class="op">)</span></span></code></pre></div>
+<p>We want to change the initial values of <code>model_1.</code> Since
+<code>model_1</code> was copied from <code>model,</code> the last values
+from solving it are available, and we can use a function
+<code>last_to_inits</code> to set the initial values.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_to_inits.html">last_to_inits</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span></code></pre></div>
+<p>Now, we solve it over a three year period</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model_1</span>, Tmax<span class="op">=</span><span class="fl">365</span><span class="op">*</span><span class="fl">3</span>, dt<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span></code></pre></div>
+<p>and plot the results.</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_X.html">xds_plot_X</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="GettingStarted_files/figure-html/unnamed-chunk-21-1.png" alt="**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" width="576"><p class="caption">
+<img src="GettingStarted_files/figure-html/unnamed-chunk-25-1.png" alt="**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" width="576"><p class="caption">
 <strong>Figure 2:</strong> Outputs with Seasonal Forced Emergence using
 a Trace Function
 </p>
@@ -442,59 +481,20 @@ Functions</a></p>
 </h3>
 <p>From a design perspective, the setup interface can’t possibly
 anticipate the needs of every end user. Instead, it has adopted a system
-for setting up models based on the principle of <em>scaling
-complexity:</em> the framework regards a subset of the universe of
-possible models as a nested, hierarchical set. In some limiting case,
-some complex model are equivalent to a simpler model. Rather than try to
-build one big supermodel, the framework envisions the software around
-<strong>modules</strong> for the <strong>dynamical components</strong>
-that define <em>model families</em> at varying levels of complexity.</p>
-<p>In general, a module is an element in the model library. It defines a
-<em>model family.</em> If <code>nStrata=1,</code> it represents a set of
-states and transitions describing a single population in the form of a
-system of differential or difference equations. For example, the
-<code>SIS</code> module for the <span class="math inline">$\cal
-X$</span> component is the <em>SIS</em> compartmental model family for
-human infections. It’s called a model family because each unique set of
-parameters would define a different <em>model.</em></p>
-<p>In its simplest form, each model family represents the state of a
-single population. In practice, a single population is subdivided into
-sub-populations: human population strata or adult mosquitoes in patches
-or immature mosquitoes in aquatic habitats. In
-<strong><code>ramp.xds</code></strong> it is comparatively simple to
-configure a model with multiple strata, patches, and habitats.</p>
-<p>Each model developed in <strong><code>ramp.xds</code></strong> is
-thus characterized by:</p>
-<ul>
-<li><p>The choice of <em>model family</em> for each dynamical component
-and the model parameters.</p></li>
-<li><p>The model structure, including the number of patches, the number
-of habitats and their membership in the patches, and the number of human
-population strata and their residency within the strata.</p></li>
-<li><p>Functions that define exogenous variables and functional
-responses that drive exogenous forcing by weather and malaria
-control.</p></li>
-</ul>
-<p>The concept for designing a setup interface to support complexity
-scaling in model building works bass ackwards. The framework was
-designed around models that could be linked to serve as a platform that
-could explore models of unbounded realism and complexity, but it would
-need to start very simple. To work out all the kinks, the software would
-have to build in ports and junctions that could handle a large set of
-advanced features, but most of these features would be turned off for
-basic setup. Model building is handled in two steps:</p>
-<ul>
-<li><p><strong>Basic Setup</strong> is handled by the function
-<code>xds_setup().</code> It’s designed to help a user get started with
-a properly formulated interface that can handle spatial dynamics,
-structured aquatic habitats, and a stratified human population</p></li>
-<li><p><strong>Advanced Setup</strong> handles exogenous forcing, vector
-control, and other modes of malaria control, human demography and aging,
-and host population stratification.</p></li>
-</ul>
-<p>Another set of functions has been developed to work with models. See
-the related vignette <a href="Working.html">Working with Models.</a>
-Also, see the related software package <a href="https://dd-harp.github.io/ramp.work/" class="external-link"><strong><code>ramp.work</code></strong></a>.</p>
+for <em>progressive model building</em> based on a framework designed
+for <em>scaling complexity.</em></p>
+<p>The a mathematical framework supported the design of
+<strong><code>ramp.xds.</code></strong> That framework handles a subset
+of the universe of all possible models. That subset is understood as
+nested, hierarchical sets of models expanding out from a set of simple
+base models. Simpler model families are a nested within some complex
+model families.</p>
+<p>Rather than try and construct a supermodel, the software includes a
+set of <strong>modules</strong> for each one of the <strong>dynamical
+components.</strong> Each module defines a <em>model families</em> at
+some maximum level of complexity. Any new module can be added, and it
+might be better than any model that was already included, but the simple
+models can be used to get some work done in the meantime.</p>
 <div class="section level4">
 <h4 id="modularity">Modularity<a class="anchor" aria-label="anchor" href="#modularity"></a>
 </h4>
@@ -539,21 +539,76 @@ components that form the core of
 <hr>
 </div>
 <div class="section level4">
+<h4 id="modules">Modules<a class="anchor" aria-label="anchor" href="#modules"></a>
+</h4>
+<p>In general, <em>module</em> is the term we use to describe an element
+in the model library. Since the parameter values can be changed, each
+<em>module</em> defines a <em>model family</em> in the form of a system
+of differential or difference equations. Each family is defined by a set
+of states and state transitions (<em>i.e.</em> by the topology of the
+graph) for a single population (<code>nStrata=1</code>).</p>
+<p>For example, the <code>SIS</code> module for the <span class="math inline">$\cal X$</span> component is the <em>SIS</em>
+compartmental model family for human infections. It’s called a model
+family because each unique set of parameters would define a different
+<em>model.</em></p>
+<p>In its simplest form, each model family represents the state of a
+single population, but any model can replicate those states and
+sub-divide a single population into sub-populations with different
+parameters. These are population strata for <span class="math inline">$\cal X$</span>; adult mosquitoes in patches for
+<span class="math inline">$\cal MYZ$</span>; immature mosquitoes in
+aquatic habitats for <span class="math inline">$\cal L$</span>. In
+<strong><code>ramp.xds</code></strong> it is comparatively simple to
+configure a model with multiple strata, patches, and habitats.</p>
+<p>Each model developed in <strong><code>ramp.xds</code></strong> is
+thus characterized by:</p>
+<ul>
+<li><p>The choice of <em>model family</em> for each dynamical component,
+model parameters, and initial values.</p></li>
+<li><p>The model structure, including the number of patches, the number
+of habitats and their membership in the patches, and the number of human
+population strata and their residency within the strata.</p></li>
+<li><p>Functions that define exogenous variables and functional
+responses that drive exogenous forcing by weather and malaria
+control.</p></li>
+</ul>
+</div>
+</div>
+<div class="section level3">
+<h3 id="progressive-setup">Progressive Setup<a class="anchor" aria-label="anchor" href="#progressive-setup"></a>
+</h3>
+<p>The concept for designing a setup interface to support complexity
+scaling in model building works bass ackwards. Basic setup was designed
+around simple models with structural flexibility. Each model returned by
+basic setup could serve as a platform for developing models of unbounded
+realism and complexity. To make this work, the software built in ports
+and junctions that could handle a large set of advanced features, but
+most of these features would be turned off for basic setup. Model
+building is handled in two steps:</p>
+<ul>
+<li><p><strong>Basic Setup</strong> is handled by the function
+<code>xds_setup().</code> It’s designed to help a user get started with
+a properly formulated interface that can handle spatial dynamics,
+structured aquatic habitats, and a stratified human population.</p></li>
+<li><p><strong>Advanced Setup</strong> handles advanced features,
+including exogenous forcing, vector control, and other modes of malaria
+control, human demography and aging, and host population
+stratification.</p></li>
+</ul>
+<div class="section level4">
 <h4 id="basic-setup">Basic Setup<a class="anchor" aria-label="anchor" href="#basic-setup"></a>
 </h4>
 <p><em>For our purposes, <strong>Basic Setup</strong> encompasses the
 configurable options in <code>xds_setup().</code></em></p>
-<p>Which model was setup and solved in the demo above? The software
-supports a modular framework for model building that is highly flexible
-and extensible. It’s capable of building very capable models, but the
-software embraces a model-building philosophy of starting simple and
-adding realism or complexity one step at a time.</p>
+<p>The software supports a modular framework for model building that is
+highly flexible and extensible. It’s capable of building very realistic
+models, but progressive setup embraces a model-building philosophy of
+starting simple and adding realism or complexity one step at a time.</p>
 <p>The demo model, above, is one version of the Ross-Macdonald model. It
 illustrates how the software has streamlined the process of building
 fairly simple models. The following sections describe how to make
 <strong><code>ramp.xds</code></strong> build models that are much more
 complicated and realistic.</p>
-<p>The <code><a href="../reference/xds_setup.html">xds_setup()</a></code> function
+<p>As described above, the <code><a href="../reference/xds_setup.html">xds_setup()</a></code> function
 <strong><code>ramp.xds</code></strong> has assigned default options for
 everything. Each model must configure three dynamical components: human
 epidemiology; adult mosquito ecology and infection dynamics; and aquatic
@@ -567,7 +622,8 @@ infections and immunity in the human population, called <span class="math inline
 model are defined in <code>create_Xpar_SIS.</code> To replace the
 default values at setup, a named list can be passed as
 <code>Xopts = list(...)</code> and the named values in
-<code>Xopts</code> will be used instead of the defaults. (The human
+<code>Xopts</code> will be he values of named parameters and the initial
+values of named variables instead of the defaults. (The human
 demographic model, <span class="math inline">$\cal H$</span> is set up
 as an advanced option.)</p></li>
 <li><p><code>MYZname</code> dispatches a model family for adult mosquito
@@ -576,30 +632,43 @@ MYZ.$</span> The setup default model is <code>MYZname="macdonald"</code>
 and default parameters for the <code>macdonald</code> model are defined
 in <code>create_MYZpar_macdonald.</code> To replace the default values
 at setup, a named list can be passed as <code>MYZopts = list(...)</code>
-and the named values in <code>MYZopts</code> will be used instead of the
-defaults.</p></li>
+and the named values in <code>MYZopts</code> will set the values of
+named parameters and the initial values of named variables instead of
+the defaults.</p></li>
 <li><p><code>Lname</code> specifies a model family for aquatic mosquito
 ecology, <span class="math inline">$\cal L.$</span> The setup default
 model is the trivial model <code>Lname = "trivial"</code>. It has no
 variables, but it passes the outputs – emerging adults – as a parameter.
 To replace the default values at setup, a named list can be passed as
 <code>Lopts = list(...)</code> and the values in <code>Lopts</code> will
-be used instead of the defaults.</p></li>
+set the values of named parameters and the initial values of named
+variables instead of the defaults.</p></li>
 </ul>
 <p>Thu function call:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model1</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>returns the same values as the function call:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model2</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, MYZname <span class="op">=</span> <span class="st">"macdonald"</span>, Lname <span class="op">=</span> <span class="st">"trivial"</span><span class="op">)</span></span></code></pre></div>
-<p><strong>Structural Parameters</strong> are also configured using
-<code>xde_setup.</code> In basic setup, users can configure a malaria
-landscape with <em>spatial dynamics,</em> structured <em>aquatic
-habitats,</em> and <em>multiple human / host</em> population strata.
-Basic setup was developed to ensure that all interfaces are set up
-properly when there are multiple patches, multiple habitats, multiple
-population strata, and malaria importation. The framework follows the
-mathematical formulas and (with small changes) the notation in <a href="">Wu SL, <em>et. al.</em> 2023</a></p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model2</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, </span>
+<span>                   MYZname <span class="op">=</span> <span class="st">"macdonald"</span>, </span>
+<span>                   Lname <span class="op">=</span> <span class="st">"trivial"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="structural-parameters">Structural Parameters<a class="anchor" aria-label="anchor" href="#structural-parameters"></a>
+</h4>
+<p>Structural parameters describe things like the number of patches, the
+number of population strata, the number of aquatic habitats, the number
+of host species, and the number of vector species.
+<code>xds_setup</code> sets up models with one host species and one
+vector species, users can configure a malaria landscape with <em>spatial
+dynamics,</em> structured <em>aquatic habitats,</em> and <em>multiple
+human / host</em> population strata. Basic setup was developed to ensure
+that all interfaces are set up properly when there are multiple patches,
+multiple habitats, multiple population strata, and malaria importation.
+The software and documentation follow the mathematical framework
+formulas and (with small changes) the notation in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" class="external-link">Wu
+SL, <em>et. al.</em> 2023</a>. The following structural parameters can
+be set through <code>xds_setup:</code></p>
 <ul>
 <li><p><strong><code>nPatches</code></strong> or
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mi>p</mi></msub><annotation encoding="application/x-tex">n_p</annotation></semantics></math>
@@ -637,10 +706,6 @@ time spent</p></li>
 Vignette</a>, a model with 5 aquatic habitats, 3 patches, and 4 human
 population strata.</p>
 </div>
-</div>
-<div class="section level3">
-<h3 id="using-basic-setup">Using Basic Setup<a class="anchor" aria-label="anchor" href="#using-basic-setup"></a>
-</h3>
 <div class="section level4">
 <h4 id="spatial-mosquito-ecology">Spatial Mosquito Ecology<a class="anchor" aria-label="anchor" href="#spatial-mosquito-ecology"></a>
 </h4>
@@ -655,7 +720,7 @@ habitats.</p>
 <p>In <strong><code>ramp.xds</code>,</strong> malaria spatial dynamics
 are implemented through a model of blood feeding in a patch-based
 simulation model.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>nPatches<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
