@@ -47,8 +47,8 @@ AreaSpray.dynamic <- function(t, pars) {
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @param pars an **`xds`** object
-#' @param treat_habitats_name the name of a model for mass bed net distribution
-#' @param treat_habitats_opts options for the bed net distribution model
+#' @param spray_area_name the name of a model for mass bed net distribution
+#' @param spray_area_opts options for the bed net distribution model
 #' @param effects_name the name of a model for bed net effects
 #' @param effects_opts options for the bed net effects model
 #' @param coverage_name the name of a model for bed net coverage
@@ -58,14 +58,14 @@ AreaSpray.dynamic <- function(t, pars) {
 #' @return an **`xds`** object
 #' @export
 xds_setup_area_spray = function(pars,
-                        treat_habitats_name = 'none', treat_habitats_opts = list(),
+                        spray_area_name = 'none', spray_area_opts = list(),
                         effects_name = 'none', effects_opts = list(),
                         coverage_name = 'none', coverage_opts = list(),
                         effectsizes_name = 'none', effectsizes_opts = list()){
   pars = dynamic_vector_control(pars)
   AreaSprays <- list()
   class(AreaSprays) <- 'dynamic'
-  pars <- setup_spray_area(treat_habitats_name, pars, treat_habitats_opts)
+  pars <- setup_spray_area(spray_area_name, pars, spray_area_opts)
   pars <- setup_area_spray_effects(effects_name, pars, effects_opts)
   pars <- setup_area_spray_coverage(coverage_name, pars, coverage_opts)
   pars <- setup_area_spray_effectsizes(effectsizes_name, pars, effectsizes_opts)

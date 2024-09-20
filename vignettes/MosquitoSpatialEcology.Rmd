@@ -1,0 +1,57 @@
+---
+title: "Mosquito Spatial Ecology with `ramp.xds`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mosquito Spatial Ecology with `ramp.xds`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+library(ramp.xds)
+```
+
+
+In **`ramp.xds`,** mosquito spatial ecology is implemented in a patch-based simulation model: a spatial domain is subdivided into patches; and each patch contains an arbitrary number of habitats. 
+
+Suppose there are 5 patches and 15 habitats: 5 habitats in patch 1; no habitats in patch 2; 3 habitats in patch 3; and 4 habitats in patch 4; and 2 habitats in patch 5. 
+
+```{r}
+membership = c(rep(1,5), rep(3, 3), rep(4,5), rep(5,2))
+membership
+```
+```{r}
+calJ = create_residence_matrix(5, membership)
+```
+
+The model for egg-laying is motivated by the notion of mosquito searching. Each habitat is assigned a *search weight* that is related to how easy it is for the mosquito to find it. Functions can be configured to compute mosquito *emigration* rates, $\sigma,$ as a function of habitat availability in the patch, the sum of the patch's habitat search weights.  
+
+```{r}
+set.seed(23)
+searchQ = rlnorm(15, log(0.5), 1.2)
+searchQ
+```
+
+```{r}
+Q <- compute_Q(calJ, searchQ)
+```
+
+```{r}
+sigma <- exp(-Q/2)
+```
+
+```{r}
+x = runif(5, -1, 1)
+y = runif(5, -1, 1)
+ker = function(d){exp(-d)}
+calK = create_calK_xy(cbind(x,y), ker=ker)
+calK
+```
+
+```{r}
+model5 <- xds_setup(nPatches=5, membership=membership, searchQ=searchQ, calK=calK)
+```
+
+```{r}
+round(model5$calU[[1]]*1000)/1000
+```

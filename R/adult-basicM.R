@@ -109,6 +109,19 @@ make_MYZpar.basicM = function(MYZname, pars, s, MYZopts=list()){
   return(pars)
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+get_MYZpars.basicM <- function(pars, s=1) {
+  with(pars$MYZpar[[s]], list(
+    f=f_t, q=q_t, g=g_t, sigma=sigma_t, eip=eip, mu=mu_t,
+    nu=nu_t, eggsPerBatch=eggsPerBatch, calK=calK
+  ))
+}
+
 #' @title The net blood feeding rate of the infective mosquito population in a patch
 #' @description Implements [F_fqZ] for the basicM xde model.
 #' @inheritParams F_fqZ

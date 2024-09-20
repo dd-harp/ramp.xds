@@ -123,6 +123,16 @@ list_Xvars <- function(y, pars, i) {
   UseMethod("list_Xvars", pars$Xpar[[i]])
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @param pars an **`xds`** object
+#' @param i the host species index
+#' @return a [list]
+#' @export
+get_Xpars <- function(pars, i=1) {
+  UseMethod("get_Xpars", pars$Xpar[[i]])
+}
+
 #' @title Put Xvars in place of the X variables in y
 #' @description This method dispatches on the type of `pars$Xpar[[s]]`.
 #' @param Xvars the X variables to insert into y

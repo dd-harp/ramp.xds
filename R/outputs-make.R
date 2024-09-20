@@ -14,7 +14,7 @@ make_outputs = function(pars, de_vars, tm){
 make_outputs.full = function(pars, de_vars, tm){
   pars$outputs$time <- tm
   pars$outputs$last_y <- tail(de_vars, 1)
-#  pars$outputs$bionomics <- get_bionomics(tm, de_vars, pars)
+  #  pars$outputs$bionomics <- get_bionomics(tm, de_vars, pars)
   pars$outputs$orbits <- parse_orbits(de_vars, pars)
   pars$outputs$terms <- get_terms(tm, de_vars, pars)
   return(pars)

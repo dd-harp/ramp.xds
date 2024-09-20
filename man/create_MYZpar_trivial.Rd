@@ -11,8 +11,11 @@ create_MYZpar_trivial(
   q = 1,
   Z = 1,
   eggs = 1,
-  F_season = F_flat,
-  F_trend = F_flat
+  F_season = F_no_season,
+  phase = 0,
+  season_opts = list(),
+  F_trend = F_no_trend,
+  trend_opts = list()
 )
 }
 \arguments{
@@ -30,7 +33,13 @@ create_MYZpar_trivial(
 
 \item{F_season}{a F_seasonality function}
 
+\item{phase}{a parameter to set the phase of F_season}
+
+\item{season_opts}{a \link{list} of options to pass to F_season}
+
 \item{F_trend}{a F_trend function}
+
+\item{trend_opts}{a \link{list} of options to pass to F_trend}
 }
 \value{
 none

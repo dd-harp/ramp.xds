@@ -30,6 +30,15 @@ Update_Lt <- function(t, y, pars, s) {
   UseMethod("Update_Lt", pars$Lpar[[s]])
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+get_Lpars <- function(pars, s=1) {
+  UseMethod("get_Lpars", pars$Lpar[[s]])
+}
 
 #' @title Larval and Aquatic Stage Baseline
 #' @description Handle immature mosquito bionomic parameters as a baseline modified by control

@@ -30,7 +30,7 @@ dXdt.SIS <- function(t, y, pars, i) {
 #' @inheritParams xde_steady_state_X
 #' @return the steady states as a named vector
 #' @export
-  xde_steady_state_X.SIS = function(foi, H, Xpar){with(Xpar,{
+xde_steady_state_X.SIS = function(foi, H, Xpar){with(Xpar,{
   Ieq = foi/(foi+r)*H
   Seq = H-Ieq
   return(list(S=Seq, I=Ieq))
@@ -86,7 +86,7 @@ make_Xpar.SIS = function(Xname, pars, i, Xopts=list()){
 #' @return a [list]
 #' @export
 create_Xpar_SIS = function(nStrata, Xopts=list(),
-                             b=0.55, r=1/180, c=0.15){
+                           b=0.55, r=1/180, c=0.15){
   with(Xopts,{
     Xpar = list()
     class(Xpar) <- "SIS"
@@ -148,10 +148,21 @@ put_Xvars.SIS <- function(Xvars, y, pars, i) {
 #' @export
 list_Xvars.SIS <- function(y, pars, i) {
   with(pars$ix$X[[i]],{
-       S = y[S_ix]
-       I = y[I_ix]
-       H = S+I
-       return(list(S=S,I=I,H=H))})
+    S = y[S_ix]
+    I = y[I_ix]
+    H = S+I
+    return(list(S=S,I=I,H=H))})
+}
+
+#' @title Return the parameters as a list
+#' @description Parameter values for the \eqn{i^{th}} host are
+#' stored as `pars$Xpar[[i]]`. This returns the stored parameter
+#' values as a list.
+#' @inheritParams get_Xpars
+#' @return a [list]
+#' @export
+get_Xpars.SIS <- function(pars, i=1) {
+  with(pars$Xpar[[i]],list(b=b, c=c, r=r))
 }
 
 #' @title Make initial values for the SIS xde human model, with defaults

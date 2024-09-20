@@ -86,7 +86,7 @@ make_MYZinits.RM_dts = function(pars, s, MYZopts=list()){
 #' @return a [list]
 #' @export
 create_MYZinits_RM_dts = function(nPatches, max_eip, MYZopts = list(),
-                                M=5, P=1, U=0, Y=1, Z=1){
+                                  M=5, P=1, U=0, Y=1, Z=1){
   with(MYZopts,{
     M = checkIt(M, nPatches)
     P = checkIt(P, nPatches)
@@ -140,7 +140,7 @@ list_MYZvars.RM_dts <- function(y, pars, s){
          U = y[U_ix],
          Y = matrix(y[Y_ix], pars$nPatches, pars$MYZpar[[s]]$max_eip),
          Z = y[Z_ix]
-  )))
+       )))
 }
 
 #' @title Return the variables as a list

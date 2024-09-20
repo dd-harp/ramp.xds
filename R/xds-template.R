@@ -129,6 +129,7 @@ make_xds_template = function(xds='ode', frame='full',
 #' @description Creates and returns structured template for an
 #' @param pars a **`ramp.xds`** object
 #' @return a **`ramp.xds`** object
+#' @export
 xds_dde = function(pars){
   UseMethod("xds_dde", pars$xds)
 }
@@ -137,6 +138,7 @@ xds_dde = function(pars){
 #' @description Do not change `xds`
 #' @param pars a **`ramp.xds`** object
 #' @return a **`ramp.xds`** object
+#' @export
 xds_dde.dde = function(pars){
   return(pars)
 }
@@ -145,6 +147,7 @@ xds_dde.dde = function(pars){
 #' @description Do not change `xds`
 #' @param pars a **`ramp.xds`** object
 #' @return a **`ramp.xds`** object
+#' @export
 xds_dde.dts = function(pars){
   return(pars)
 }
@@ -153,6 +156,7 @@ xds_dde.dts = function(pars){
 #' @description Change `xds` from `ode` to `dde`
 #' @param pars a **`ramp.xds`** object
 #' @return a **`ramp.xds`** object
+#' @export
 xds_dde.ode = function(pars){
   pars$xds = 'dde'
   class(pars$xds) = c('dde', 'xde')

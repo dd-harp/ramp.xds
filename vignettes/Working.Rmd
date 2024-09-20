@@ -1,8 +1,9 @@
 ---
-title: "Working with Models in `ramp.xds`"
+title: "Working with Models"
+subtitle: ""
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Working with Models in `ramp.xds`}
+  %\VignetteIndexEntry{Working with Models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
