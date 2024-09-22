@@ -114,3 +114,4 @@ cran-comments.md
 .Rproj
 *.Rproj
 docs
+/docs/reference

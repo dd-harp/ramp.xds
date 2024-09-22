@@ -150,14 +150,14 @@ list_MYZvars.RM_dts <- function(y, pars, s){
 #' @export
 put_MYZvars.RM_dts <- function(MYZvars, y, pars, s){
   with(pars$ix$MYZ[[s]],
-    with(MYZvars,{
-      y[M_ix] = M
-      y[P_ix] = P
-      y[U_ix] = U
-      y[Y_ix] = Y
-      y[Z_ix] = Z
-      return(y)
-  }))
+       with(MYZvars,{
+         y[M_ix] = M
+         y[P_ix] = P
+         y[U_ix] = U
+         y[Y_ix] = Y
+         y[Z_ix] = Z
+         return(y)
+       }))
 }
 
 
