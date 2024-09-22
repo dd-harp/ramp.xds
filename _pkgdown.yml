@@ -5,6 +5,8 @@ navbar:
     menu:
     - text: Getting Started
       href: articles/GettingStarted.html
+    - text: Progressive Model Building
+      href: articles/ModelBuilding.html
     - text: Working with Models
       href: articles/Working.html
     - text: Trace Functions
@@ -27,8 +29,7 @@ navbar:
       href: articles/Contributing.html
   - text: Mosquito - Adult
     menu:
-
-    - text: Ross-Macdonald model
+    - text: Macdonald's Model
       href: articles/adult_RM.html
     - text: Ross-Macdonald, discrete time
       href: articles/RM-dts-Mosquito.html

@@ -129,7 +129,7 @@ LBaseline.basicL <- function(t, y, pars, s) {
     pars$Lpar[[s]]$theta <- theta
 
     return(pars)
-})}
+  })}
 
 
 #' @title Reset aquatic parameters to baseline
@@ -144,7 +144,7 @@ LBionomics.basicL <- function(t, y, pars, s) {
     pars$Lpar[[s]]$theta <- theta
 
     return(pars)
-})}
+  })}
 
 
 

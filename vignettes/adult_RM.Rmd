@@ -1,8 +1,9 @@
 ---
-title: "A Ross-Macdonald Adult Mosquito Model"
+title: "Macdonald's Model"
+subtitle: "A Delay Differential Equation for Adult Mosquito Infection Dynamics"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{A Ross-Macdonald Adult Mosquito Model}
+  %\VignetteIndexEntry{Macdonald's Model}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,48 +15,84 @@ knitr::opts_chunk$set(
 )
 ```
 
+This module called `macdonald` was included in **`ramp.xds`** for historical reasons. In this form, the model is difficult to extend because of problems formulating the delay. The model, as presented here, has fixed parameter values. It can not be extended with *forcing.* To address these problems, we have developed a fully extensible delay differential equation model that extends `macdonald,` the generalized, non-autonomous Ross-Macdonald module `GeRM.`
 
-The Ross-Macdonald adult mosquito model fulfills the generic interface of the adult mosquito component. 
-
-Here, we use a Ross-Macdonald model based on a model first published in 1982 by Joan Aron and Robert May^[The population dynamics of malaria. In *The Population Dynamics of Infectious Diseases: Theory and Applications,* R. M. Anderson, ed. (Springer US), pp. 139–179. [online](https://link.springer.com/chapter/10.1007/978-1-4899-2901-3_5){target="_blank"}]. It includes state variables for total mosquito density $M$, infected mosquito density $Y$, and infectious mosquito density $Z$. Because of the interest in parity, the model has been extended to include a variable that tracks parous mosquitoes, $P$.
 
 # Differential Equations 
 
+## Macdonald's Model
+
+Macdonald's model for the sporozoite rate, published in 1952^[The analysis of the sporozoite rate. Macdonald G (1952). Trop Dis Bull 49(6):569-86.] has played an important role in studies of malaria. Later that same year, Macdonald introduced a formula for the basic reproductive rate, now called $R_0.$^[The analysis of equilibrium in malaria. Macdonald G (1952). Trop Dis Bull 49(9):813-29.] Macdonald gives credit to his colleague Armitage for the mathematics. Armitage's paper would be published the next year,^[A note on the epidemiology of malaria. Armitage P (1953). Trop Dis Bull 50(10):890-2] but that paper does not present the model as a system of differential equations. 
+
+A simple system of differential equations that is consistent with Macdonald's model for the sporozoite rate has three parameters and one term: 
+
++ the human blood feeding rate, $a$
+
++ the extrinsic incubation period, $\tau$  
+
++ the mosquito death rate, $g$; or the probability of surviving one day, $p=e^{-g}$, so $g=-\ln p$  
+
++ the fraction of bites on humans that infect a mosquito, $\kappa$ 
+
+Let $y$ denote the fraction of mosquitoes that are infected. The dynamics are given by:
+$$\frac{dy}{dt} = a \kappa (1-y) - g y$$ 
+Let $z$ denote the fraction of mosquitoes that are infectious. The model is a delay differential equation. Let $y_\tau$ denote the value of $y$ at time $t-\tau.$ If the parameters and terms are constant, then:  
+$$\frac{dz}{dt} = e^{-g\tau} a \kappa (1-y_\tau) - g z$$ 
+The model has a steady state for the fraction infected: 
+$$\bar y = \frac{a \kappa} {a \kappa + g}$$ 
+The fraction infectious, also called the sporozoite rate, is 
+$$\bar z = \frac{a \kappa} {a \kappa + g}e^{-g\tau}.$$ 
+Macdonald used $p$ so his formula was: 
+$$\bar z = \frac{a \kappa} {a \kappa -\ln p}e^{-p\tau}$$ 
+
+To generate the formula for $R_0,$ Macdonald introduces another variable and three additional parameters: 
+
++ the ratio of mosquitoes to humans, $m$ 
+
++ the rate infections clear, $r$ 
+
++ the fraction of infectious bites that infect a human, $b$ 
+
+The fraction of infected and infectious humans, $x,$ is given by the equation: 
+
+$$\frac{dx}{dt} = m a z (1-y) - r x$$
+and the model assumes that $\kappa = x.$ The formula for $R_0$ in this system is:
+$$R_0 = \frac{m b a^2}{gr} e^{-g\tau} = \frac{m b a^2}{(-\ln p)r} e^{-p\tau}$$ 
+In this form, the model is difficult to use or extend. 
+
+## Aron & May  
+
+The mosquito module in **`ramp.xds`** called `macdonald` is based on a model first published in 1982 by Joan Aron and Robert May^[The population dynamics of malaria. In *The Population Dynamics of Infectious Diseases: Theory and Applications,* R. M. Anderson, ed. (Springer US), pp. 139–179. [online](https://link.springer.com/chapter/10.1007/978-1-4899-2901-3_5){target="_blank"}]. It includes state variables for total mosquito density $M$, infected mosquito density $Y$, and infectious mosquito density $Z$. In this model, the blood feeding rate is split into an overall blood feeding rate, $f$, and the human fraction, $q$ such that $$a=fq.$$ The Aron & May's equations are: 
+$$\begin{array}{rl} 
+\frac{dM}{dt} &= \Lambda(t) - g M \\
+\frac{dY}{dt} &= fq\kappa(M-Y) - g Y \\
+\frac{dZ}{dt} &= e^{-g\tau}fq\kappa_\tau(M_\tau-Y_\tau) - g Z \\
+\end{array}$$
+
 ## Delay Differential Equations
 
-These equations are naturally implemented by `ramp.xds::dMYZdt.RM_dde,` but they can also be implemented in a closely related set of odes using `ramp.xds::dMYZdt.RM_ode` (see below). 
-
-$$
-\dot{M} = \Lambda - \Omega\cdot M 
-$$
-$$
-\dot{P} = \mbox{diag}(f) \cdot (M-P) -  \Omega \cdot P
+The module called `macdonald` has been extended beyond the Aron & May formulation to include spatial dynamics and parity. To formulate the spatial model, a spatial domain is sub-divided into a set of patches. Variable and parameter names do not change, but they can now represent vectors of length $n_p.$ To formulate the *demographic matrix,* denoted $\Omega,$ that describes mosquito mortality, emigration, and other loss from the system. We let $\sigma$ denote the emigration rate and $\cal K$ the mosquito dispersal matrix. We also introduce a parameter, $\mu$ to model the fraction of mosquitoes that are lost to emigration from each patch. 
+$$\Omega = \mbox{diag} \left(g\right) + \left(\mbox{diag} \left(1-\mu\right)  - \cal K\right) \cdot \mbox{diag} \left(\sigma\right) 
 $$
 
-$$
-\dot{Y} = \mbox{diag}(fq\kappa) \cdot (M-Y) - \Omega \cdot Y
-$$
+### Dynamics
 
-$$
+$$\begin{array}{rl}
+\dot{M} & = \Lambda - \Omega\cdot M  \\
+\dot{P} & = \mbox{diag}(f) \cdot (M-P) -  \Omega \cdot P\\ 
+\dot{Y} & = \mbox{diag}(fq\kappa) \cdot (M-Y) - \Omega \cdot Y \\
+\dot{Z} & = 
 \dot{Z} = e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa_{t-\tau}) \cdot (M_{t-\tau}-Y_{t-\tau}) - \Omega \cdot Z
-$$
-
-Recall that the mosquito demography matrix describing mortality and dispersal is given by:
-
-$$
-\Omega =  \mbox{diag(g)} + \left(I- {\cal K}\right) \cdot \mbox{diag}(\sigma)
+\end{array}
 $$
 
 ## Ordinary Differential Equations
 
-In the following, the equation are solved by `ramp.xds::dMYZdt.RM_ode`.
-
-The system of ODEs is the same as above except for the equation giving the rate of change in infectious mosquito density, which becomes:
-
+We note that the module `SI` provides a reasonably simple approximating model that has no delay, but in computing $fqZ,$ it includes mortality and dispersal that would have occurred during the EIP: 
 $$
-\dot{Z} = e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa) \cdot (M-Y) - \Omega \cdot Z
+Z = e^{-\Omega \tau} \cdot Y 
 $$
-The resulting set of equations is similar in spirit to the simple model presented in  Smith & McKenzie (2004)^[Smith, D.L., Ellis McKenzie, F. Statics and dynamics of malaria infection in Anopheles mosquitoes. Malar J 3, 13 (2004). [online](https://doi.org/10.1186/1475-2875-3-13){target="_blank"}]. in that mortality and dispersal over the EIP is accounted for, but the time lag is not. While
+The implementation of `SI` is similar in spirit to the simple model presented in  Smith & McKenzie (2004)^[Smith, D.L., Ellis McKenzie, F. Statics and dynamics of malaria infection in Anopheles mosquitoes. Malar J 3, 13 (2004). [online](https://doi.org/10.1186/1475-2875-3-13){target="_blank"}]. in that mortality and dispersal over the EIP is accounted for, but the time lag is not. While
 transient dynamics of the ODE model will not equal the DDE model, they have the same
 equilibrium values, and so for numerical work requiring finding equilibrium points, the faster
 ODE model can be safely substituted.

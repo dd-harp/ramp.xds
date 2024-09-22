@@ -138,9 +138,9 @@ xde_steady_state_MYZ.trivial = function(Lambda, kappa, MYZpar){with(MYZpar,{
 #' @return none
 #' @export
 create_MYZpar_trivial = function(nPatches, MYZopts,
-                               f = 1, q = 1, Z=1, eggs=1,
-                               F_season=F_no_season, phase=0, season_opts=list(),
-                               F_trend=F_no_trend, trend_opts=list()){
+                                 f = 1, q = 1, Z=1, eggs=1,
+                                 F_season=F_no_season, phase=0, season_opts=list(),
+                                 F_trend=F_no_trend, trend_opts=list()){
   with(MYZopts,{
     MYZpar <- list()
     MYZpar$nPatches <- nPatches
