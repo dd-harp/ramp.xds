@@ -36,7 +36,7 @@ Basic setup was designed around simple models with structural flexibility. Each 
 
 The framework is designed around five dynamical components organized into three chunks: 
 
-1. The vertebrate host population, denoted $\cal XH$: 
+1. The vertebrate host population, denoted $\mathcal{XH}$: 
 
     + human (or host) demography ($\cal H$) including births, deaths, aging and migration;
 
