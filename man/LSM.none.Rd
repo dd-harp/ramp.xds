@@ -12,7 +12,7 @@
 \item{pars}{an \strong{\code{xds}} object}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
 The null model for LSM

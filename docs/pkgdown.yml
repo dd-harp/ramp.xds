@@ -5,7 +5,6 @@ articles:
   adult_RM: adult_RM.html
   aqua_basic: aqua_basic.html
   aqua_trace: aqua_trace.html
-  BedNets: BedNets.html
   Contributing: Contributing.html
   ex_534: ex_534.html
   Forcing: Forcing.html
@@ -25,10 +24,9 @@ articles:
   SpatialTransmissionDynamics: SpatialTransmissionDynamics.html
   TraceFunctions: TraceFunctions.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
-  vc_lemenach: vc_lemenach.html
   VectorControl: VectorControl.html
   Working: Working.html
-last_built: 2024-09-21T19:37Z
+last_built: 2024-09-23T20:03Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

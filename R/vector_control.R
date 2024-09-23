@@ -21,6 +21,7 @@ VectorControl.none = function(t, y, pars){
   return(pars)
 }
 
+
 #' @title Distribute vector control, the null model
 #' @description Implements [VectorControl] for the control model of vector control (do nothing)
 #' @inheritParams VectorControl
@@ -29,12 +30,26 @@ VectorControl.none = function(t, y, pars){
 VectorControl.dynamic <- function(t, y, pars) {
   pars = BedNet(t, pars)
   pars = IRS(t, pars)
-#  pars = AreaSpray(t, pars)
-#  pars = SugarBait(t, pars)
-#  pars = LSM(t, pars)
-#  pars = EM(t, pars)
-#  pars = Endectocide(t, pars)
-#  pars = ADLarvicide(t, pars)
+  #  pars = AreaSpray(t, pars)
+  #  pars = SugarBait(t, pars)
+  #  pars = LSM(t, pars)
+  #  pars = EM(t, pars)
+  #  pars = Endectocide(t, pars)
+  #  pars = ADLarvicide(t, pars)
+  return(pars)
+}
+
+#' @title The `setup` case for exogenous vector_control
+#' @description Call all the functions to set the
+#' values of exogenous variables and then revert
+#' the `none` case
+#' @param t current simulation time
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
+VectorControl.setup = function(t, pars){
+  class(pars$vector_control) <- 'dynamic'
+  pars <- VectorControl(t, pars)
+  class(pars$vector_control) <- 'none'
   return(pars)
 }
 
@@ -70,12 +85,12 @@ VectorControlEffectSizes.dynamic <- function(t, y, pars) {
     pars <- BedNetEffectSizes(t, pars, s)
     pars <- IRSEffectSizes(t, pars, s)
   }
-#  pars = AreaSprayEffectSizes(t, pars)
-#  pars = SugarBaitEffectSizes(t, pars)
-#  pars = LSMEffectSizes(t, pars)
-#  pars = EM_EffectSizes(t, pars)
-#  pars = Endectocide_EffectSizes(t, pars)
-#  pars = ADLarvicide_EffectSizes(t, pars)
+  #  pars = AreaSprayEffectSizes(t, pars)
+  #  pars = SugarBaitEffectSizes(t, pars)
+  #  pars = LSMEffectSizes(t, pars)
+  #  pars = EM_EffectSizes(t, pars)
+  #  pars = Endectocide_EffectSizes(t, pars)
+  #  pars = ADLarvicide_EffectSizes(t, pars)
   return(pars)
 }
 
@@ -91,26 +106,13 @@ setup_no_vector_control = function(pars){
   return(pars)
 }
 
-#' @title The `setup` case for exogenous vector_control
-#' @description Call all the functions to set the
-#' values of exogenous variables and then revert
-#' the `none` case
-#' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
-VectorControl.setup = function(t, pars){
-  class(pars$vector_control) <- 'dynamic'
-  pars <- VectorControl(t, pars)
-  class(pars$vector_control) <- 'none'
-  return(pars)
-}
-
 #' @title Set up dynamic vector_control
 #' @description If dynamic vector_control has not
 #' already been set up, then turn on dynamic
 #' vector_control and set all the
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
+#' @export
 dynamic_vector_control = function(pars){
   UseMethod("dynamic_vector_control", pars$vector_control)
 }
