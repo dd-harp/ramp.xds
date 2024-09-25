@@ -113,6 +113,41 @@ get_MYZpars.trivial <- function(pars, s=1) {
   ))
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @inheritParams set_Xinits
+#' @return an **`xds`** object
+#' @export
+set_Xinits.trivial <- function(pars, i=1, Xopts=list()) {
+  return(pars)
+}
+
+#' @title Set new MYZ parameter values
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZinits
+#' @return an `xds` object
+#' @export
+set_MYZinits.trivial <- function(pars, s=1, MYZopts=list()) {
+  return(pars)
+}
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZpars
+#' @return an **`xds`** object
+#' @export
+set_MYZpars.trivial <- function(pars, s=1, MYZopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$MYZpar[[s]], with(MYZopts,{
+    pars$MYZpar[[s]]$MYZambda = MYZambda
+    pars$MYZpar[[s]]$F_season = F_season
+    pars$MYZpar[[s]]$phase = phase
+    pars$MYZpar[[s]]$season_opts = season_opts
+    pars$MYZpar[[s]]$F_trend = F_trend
+    pars$MYZpar[[s]]$trend_opts = trend_opts
+    return(pars)
+ }))}
+
 
 #' @title Steady States: MYZ-trivial
 #' @description This method dispatches on the type of `MYZpar`.

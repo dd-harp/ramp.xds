@@ -43,6 +43,19 @@ get_Lpars.basicL <- function(pars, s=1) {
   ))
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @inheritParams set_Lpars
+#' @return an **`xds`** object
+#' @export
+set_Lpars.basicL <- function(pars, s=1, Lopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$Lpar[[s]], with(Lopts,{
+    pars$Lpar[[s]]$psi = checkIt(psi, nHabitats)
+    pars$Lpar[[s]]$phi = checkIt(phi, nHabitats)
+    pars$Lpar[[s]]$theta = checkIt(theta, nHabitats)
+    return(pars)
+}))}
 
 #' @title Make parameters for basicL competition aquatic mosquito model
 #' @param nHabitats the number of habitats in the model
@@ -60,7 +73,6 @@ create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, phi=1/8, theta=1
     Lpar$psi = checkIt(psi, nHabitats)
     Lpar$phi = checkIt(phi, nHabitats)
     Lpar$theta = checkIt(theta, nHabitats)
-    Lpar$baseline <- Lpar
     return(Lpar)
   })
 }
@@ -123,11 +135,10 @@ make_Lpar.basicL = function(Lname, pars, s, Lopts=list()){
 #' @return a named [list]
 #' @export
 LBaseline.basicL <- function(t, y, pars, s) {
-  with(pars$Lpar[[s]]$baseline,{
+  with(pars$Lpar[[s]],{
     pars$Lpar[[s]]$psi <- psi
     pars$Lpar[[s]]$phi <- phi
     pars$Lpar[[s]]$theta <- theta
-
     return(pars)
   })}
 
@@ -138,7 +149,7 @@ LBaseline.basicL <- function(t, y, pars, s) {
 #' @return a named [list]
 #' @export
 LBionomics.basicL <- function(t, y, pars, s) {
-  with(pars$Lpar[[s]]$baseline,{
+  with(pars$Lpar[[s]],{
     pars$Lpar[[s]]$psi <- psi
     pars$Lpar[[s]]$phi <- phi
     pars$Lpar[[s]]$theta <- theta
@@ -169,6 +180,17 @@ make_Linits.basicL = function(pars, s, Lopts=list()){
   pars$Linits[[s]] = create_Linits_basicL(pars$nHabitats, Lopts)
   return(pars)
 }
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @inheritParams set_Linits
+#' @return an **`xds`** object
+#' @export
+set_Linits.basicL <- function(pars, s=1, Lopts=list()) {
+  with(pars$Linits[[s]], with(Lopts,{
+    pars$Linits[[s]]$L = L
+    return(pars)
+}))}
 
 #' @title Update inits for the basicL aquatic mosquito competition model
 #' @inheritParams update_Linits

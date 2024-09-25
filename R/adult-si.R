@@ -258,6 +258,37 @@ get_MYZpars.SI <- function(pars, s=1) {
   ))
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZpars
+#' @return an **`xds`** object
+#' @export
+set_MYZpars.SI <- function(pars, s=1, MYZopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$MYZpar[[s]], with(MYZopts,{
+    pars$MYZpar[[s]]$f_t = f
+    pars$MYZpar[[s]]$q_t = q
+    pars$MYZpar[[s]]$g_t = g
+    pars$MYZpar[[s]]$sigma_t = sigma
+    pars$MYZpar[[s]]$eip_t = eip
+    pars$MYZpar[[s]]$mu_t = mu
+    pars$MYZpar[[s]]$nu_t = nu
+    pars$MYZpar[[s]]$eggsPerBatch = eggsPerBatch
+    return(pars)
+  }))}
+
+#' @title Set new MYZ parameter values
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZinits
+#' @return an `xds` object
+#' @export
+set_MYZinits.SI <- function(pars, s=1, MYZopts=list()) {
+  with(pars$MYZpar[[s]], with(MYZopts,{
+    pars$MYZinits[[s]]$M = M
+    pars$MYZinits[[s]]$Y = Y
+    return(pars)
+}))}
+
 #' @title Setup initial values for the `SI` model
 #' @description Implements [make_MYZinits] for the `SI` model
 #' @inheritParams make_MYZinits

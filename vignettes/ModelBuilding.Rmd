@@ -13,8 +13,7 @@ library(ramp.xds)
 
 **`ramp.xds`** is based on a mathematical framework for model building that is modular, flexible and extensible. Using the built-in functions, it's comparatively easy to build highly *realistic* models by starting simple and adding features one at a time. We call this *progressive model building.* 
 
-In the vignette [Getting Started](GettingStarted.html), we introduced the function `xds_setup().` From a software design perspective, a setup interface can't possibly anticipate the needs of every end user without constraining possibilities. The point of `xds_setup()` is to help build models up to a certain level of complexity. 
-Instead, we have adopted a system for *progressive model building* based on a mathematical framework and the idea of *scaling complexity.* 
+In the vignette [Getting Started](GettingStarted.html), we introduced the function `xds_setup().` From a software design perspective, a setup interface can't possibly anticipate the needs of every end user without constraining possibilities. The point of `xds_setup()` is to help build models up to a certain level of complexity. Instead, we have adopted a system for *progressive model building* based on a mathematical framework and the idea of *scaling complexity.* 
 
 Progressive model building is a practical method for building complex models in two phases:  
 
@@ -22,6 +21,7 @@ Progressive model building is a practical method for building complex models in 
 
 + **Advanced Setup** handles advanced features, including exogenous forcing, vector control, and other modes of malaria control, human demography and aging, and host population stratification. 
 
+In the following, we introduce **Basic Setup**
 
 ## Modularity and Etensibility 
 

@@ -133,6 +133,28 @@ get_Xpars <- function(pars, i=1) {
   UseMethod("get_Xpars", pars$Xpar[[i]])
 }
 
+#' @title Set new X parameter values
+#' @description This method dispatches on the type of `pars$Xpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param i the vector species index
+#' @param Xopts a named list
+#' @return an `xds` object
+#' @export
+set_Xpars <- function(pars, i=1, Xopts=list()) {
+  UseMethod("set_Xpars", pars$Xpar[[i]])
+}
+
+#' @title Set new X parameter values
+#' @description This method dispatches on the type of `pars$Xpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param i the vector species index
+#' @param Xopts a named list
+#' @return an `xds` object
+#' @export
+set_Xinits <- function(pars, i=1, Xopts=list()) {
+  UseMethod("set_Xinits", pars$Xpar[[i]])
+}
+
 #' @title Put Xvars in place of the X variables in y
 #' @description This method dispatches on the type of `pars$Xpar[[s]]`.
 #' @param Xvars the X variables to insert into y

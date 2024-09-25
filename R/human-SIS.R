@@ -165,6 +165,22 @@ get_Xpars.SIS <- function(pars, i=1) {
   with(pars$Xpar[[i]],list(b=b, c=c, r=r))
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @inheritParams set_Xpars
+#' @return an **`xds`** object
+#' @export
+set_Xpars.SIS <- function(pars, i=1, Xopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$Xpar[[i]], with(Xopts,{
+    pars$Xpar[[i]]$b <- b
+    pars$Xpar[[i]]$c <- c
+    pars$Xpar[[i]]$r <- r
+    return(pars)
+  }))}
+
+
+
 #' @title Make initial values for the SIS xde human model, with defaults
 #' @param nStrata the number of strata in the model
 #' @param H the initial human population density
@@ -178,6 +194,9 @@ create_Xinits_SIS = function(nStrata, H, Xopts = list(), I=1){with(Xopts,{
   return(list(S=S, I=I))
 })}
 
+
+
+
 #' @title Setup Xinits.SIS
 #' @description Implements [make_Xinits] for the SIS model
 #' @inheritParams make_Xinits
@@ -187,6 +206,18 @@ make_Xinits.SIS = function(pars, H, i, Xopts=list()){
   pars$Xinits[[i]] = with(pars, create_Xinits_SIS(pars$nStrata[i], H, Xopts))
   return(pars)
 }
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @inheritParams set_Xinits
+#' @return an **`xds`** object
+#' @export
+set_Xinits.SIS <- function(pars, i=1, Xopts=list()) {
+  with(pars$Xpar[[i]], with(Xopts,{
+    pars$Xinits[[i]]$S = S
+    pars$Xinits[[i]]$I = I
+    return(pars)
+}))}
 
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Xpar`
