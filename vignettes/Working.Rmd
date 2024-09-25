@@ -13,7 +13,7 @@ library(ramp.xds)
 ```
 
 ```{r}
-devtools::load_all()
+#devtools::load_all()
 ```
 
 # 
