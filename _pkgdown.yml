@@ -5,8 +5,8 @@ navbar:
     menu:
     - text: Getting Started
       href: articles/GettingStarted.html
-    - text: Progressive Model Building
-      href: articles/ModelBuilding.html
+    - text: Basic Setup
+      href: articles/BasicSetup.html
     - text: Working with Models
       href: articles/Working.html
     - text: Trace Functions
@@ -19,10 +19,8 @@ navbar:
       href: articles/ex_534.html
     - text: Spatial Metrics
       href: articles/spat_metric.html
-    - text: Heterogeneous Transmission
-      href: articles/heterogeneous_transmission.html
-    - text: Nimble Model Building and Scaling Complexity
-      href: articles/Nimble.html
+    - text: Exposure
+      href: articles/Exposure.html
     - text: Contributing
       href: articles/Contributing.html
   - text: Mosquito - Adult
@@ -266,9 +264,11 @@ reference:
   - F_eggs
   - list_MYZvars
   - get_MYZpars
+  - set_MYZpars
   - put_MYZvars
   - make_MYZinits
   - get_MYZinits
+  - set_MYZinits
   - update_MYZinits
   - make_indices_MYZ
   - parse_MYZorbits
@@ -327,6 +327,8 @@ reference:
   - Update_MYZt.trivial
   - make_MYZpar.trivial
   - get_MYZpars.trivial
+  - set_MYZpars.trivial
+  - set_MYZinits.trivial
   - create_MYZpar_trivial
   - xde_steady_state_MYZ.trivial
   - make_MYZinits.trivial
@@ -352,6 +354,8 @@ reference:
   - make_indices_MYZ.basicM
   - list_MYZvars.basicM
   - get_MYZpars.basicM
+  - set_MYZpars.basicM
+  - set_MYZinits.basicM
   - parse_MYZorbits.basicM
   - get_MYZinits.basicM
   - update_MYZinits.basicM
@@ -371,6 +375,8 @@ reference:
   - F_eggs.SI
   - list_MYZvars.SI
   - get_MYZpars.SI
+  - set_MYZpars.SI
+  - set_MYZinits.SI
   - put_MYZvars.SI
   - make_MYZinits.SI
   - create_MYZinits_SI
@@ -382,7 +388,6 @@ reference:
   - get_q.SI
   - get_g.SI
   - get_sigma.SI
-
 - subtitle: macdonald
   desc: |
     Specialized methods for a Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
@@ -395,6 +400,8 @@ reference:
   - create_MYZpar_macdonald
   - list_MYZvars.macdonald
   - get_MYZpars.macdonald
+  - set_MYZpars.macdonald
+  - set_MYZinits.macdonald
   - F_fqZ.macdonald
   - F_fqM.macdonald
   - F_eggs.macdonald
@@ -421,6 +428,8 @@ reference:
   - create_MYZpar_GeRM
   - list_MYZvars.GeRM
   - get_MYZpars.GeRM
+  - set_MYZpars.GeRM
+  - set_MYZinits.GeRM
   - F_fqZ.GeRM
   - F_fqM.GeRM
   - F_eggs.GeRM
@@ -466,10 +475,12 @@ reference:
   - make_Linits
   - list_Lvars
   - get_Lpars
+  - set_Lpars
   - put_Lvars
   - make_indices_L
   - parse_Lorbits
   - get_Linits
+  - set_Linits
   - update_Linits
 - subtitle: trivial
   desc: |
@@ -486,6 +497,8 @@ reference:
   - make_Linits.trivial
   - list_Lvars.trivial
   - get_Lpars.trivial
+  - set_Lpars.trivial
+  - set_Linits.trivial
   - put_Lvars.trivial
   - make_indices_L.trivial
   - parse_Lorbits.trivial
@@ -506,6 +519,8 @@ reference:
   - create_Linits_basicL
   - list_Lvars.basicL
   - get_Lpars.basicL
+  - set_Lpars.basicL
+  - set_Linits.basicL
   - make_indices_L.basicL
   - parse_Lorbits.basicL
   - update_Linits.basicL
@@ -559,6 +574,7 @@ reference:
   - make_X_indices
   - list_Xvars
   - get_Xpars
+  - set_Xpars
   - put_Xvars
   - make_Xpar
   - F_X
@@ -566,6 +582,7 @@ reference:
   - F_b
   - parse_Xorbits
   - get_Xinits
+  - set_Xinits
   - update_Xinits
   - HTC
   - F_pr
@@ -596,7 +613,9 @@ reference:
   - make_X_indices.trivial
   - parse_Xorbits.trivial
   - get_Xinits.trivial
+  - set_Xinits.trivial
   - get_Xpars.trivial
+  - set_Xpars.trivial
   - update_Xinits.trivial
 - subtitle: hMoI
   desc: |
@@ -618,7 +637,9 @@ reference:
   - F_pr_by_pcr.hMoI
   - parse_Xorbits.hMoI
   - get_Xinits.hMoI
+  - set_Xinits.hMoI
   - get_Xpars.hMoI
+  - set_Xpars.hMoI
   - update_Xinits.hMoI
   - HTC.hMoI
 - subtitle: SIS
@@ -634,12 +655,14 @@ reference:
   - make_X_indices.SIS
   - list_Xvars.SIS
   - get_Xpars.SIS
+  - set_Xpars.SIS
   - put_Xvars.SIS
   - F_X.SIS
   - F_H.SIS
   - F_b.SIS
   - parse_Xorbits.SIS
   - get_Xinits.SIS
+  - set_Xinits.SIS
   - update_Xinits.SIS
   - HTC.SIS
   - F_pr.SIS

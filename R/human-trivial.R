@@ -199,3 +199,23 @@ get_Xpars.trivial <- function(pars, i=1) {
     trend_opts=trend_opts
   ))
 }
+
+
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Xpar[[s]]`.
+#' @inheritParams set_Xpars
+#' @return an **`xds`** object
+#' @export
+set_Xpars.trivial <- function(pars, i=1, Xopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$Xpar[[i]], with(Xopts,{
+    pars$Xpar[[i]]$kappa = kappa
+    pars$Xpar[[i]]$F_season = F_season
+    pars$Xpar[[i]]$phase = phase
+    pars$Xpar[[i]]$season_opts = season_opts
+    pars$Xpar[[i]]$F_trend = F_trend
+    pars$Xpar[[i]]$trend_opts = trend_opts
+    return(pars)
+  }))}
+

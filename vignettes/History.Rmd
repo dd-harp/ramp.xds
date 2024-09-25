@@ -14,255 +14,37 @@ knitr::opts_chunk$set(
 )
 ```
 
-The idea of developing modular software to simulate the dynamics and control of mosquito-borne pathogens originated sometime around 2009 at the Emerging Pathogens Institute, University of Florida. It took much longer than anticipated to finish. Some concepts have appeared in various publications. Some of the algorithms trivial back to other software packages that were never launched, but that someday might yet be completed (e.g., MASH). In retrospect, a key challenge was blood feeding, but it was not the only one.
 
+The idea of developing modular software to simulate the dynamics and control of mosquito-borne pathogens originated sometime around 2009 at the Emerging Pathogens Institute, University of Florida. It took much longer than anticipated to finish. The supporting concepts have appeared in various publications. Some algorithms trace back to software packages that never launched. In retrospect, a key challenge was blood feeding, but it was not the only one.
 
-## `MBITES`
+Briefly, **`ramp.xds`** and its supporting satellite packages have replaced `MicroMoB,` and `exDE.`  David L Smith developed the prototypes in R, but it was Sean L. Wu who turned them into the first versions of the R-packages. In the case of `MicroMoB`, the software package was develoepd with the help of Sophie Libkind. The name `exDE` was changed first to `ramp.xde,` which gave rise to `ramp.dts,` a discrete-time version of `ramp.xde.`  After a few months, these two merged and were rebranded as `ramp.xds` where development continued. Stable versions of `MicroMoB` and `exDE` were restored to their last stable versions.
 
-2023-01-17
+The following is a slightly longer and more detailed timeline:
 
-## `MicroMoB`
++ Late in 2021, [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB) was developed as a software package to build discrete-time dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. The software was born late in 2021. David Smith wrote the first draft of the software. Sean Wu turned it into a software package and added a lot to it, with the help of Sophie Libkind. 
 
-## `exDE`
++ Late in 2022, [**`exDE`**](https://dd-harp.github.io/exDE/) was developed as a software package to build and solve continuous-time dynamical systems mdoels for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. Once again, it was David Smith wrote the first draft of the software. Sean Wu turned it into a software package.  
 
-## `ramp.xde` 
++ The first version of `exDE` had been designed to handle non-autonomous systems, but none of those features had been fully implemented. During 2023, new features were added. At some point, `exDE` was rebranded as `ramp.xde`. Among the new features added were: 
 
-In this document, we let `exDE`
+    + A major change was implemented in the way `ramp.xde` handled **delay differential equations.** To interalize computation of terms, a new protocol was developed to add dummy variables and use `lagderivs` to internalize computation of any term passed to any module. New algorithms were added to Ross-Macdonald models that compute mosquito survival and dispersal through an incubation period varying in length.  
 
-A major change was implemented in the way `ramp.xde` handles **delay differential equations.** New algorithms were added to Ross-Macdonald models that compute mosquito survival and dispersal through an incubation period varying in length.  
+    + **Inits** -- *initial values,* had been handled in a single list, but the protocol was changed so they are now handled separately, with new functions `get_inits()` and the `S3` families of functions `get_inits_L()` and `get_inits_MYZ()` and `get_inits_X().` A new function `update_inits()` resets the initial values to the last value simulated. The change avoids any issues that migh arise if two different modules used the same variable name.  
 
-+ **Inits** -- **initial values** are now handled separately, with new functions `get_inits()` and the `S3` families of functions `get_inits_L()` and `get_inits_MYZ()` and `get_inits_X().` A new function `update_inits()` resets the initial values to the last value simulated. 
+    + **Indexing** -- **indices** for variables are now collected in `pars$ix`
 
-+ **Indexing** -- **indices** for variables are now collected in `pars$ix`
+    + **Setup** -- Several new functions were added to set up basic models. 
 
-+ **Setup** -- Several new functions have been added to set up basic models. 
+    + **Solving** -- The `S3` function, now called `xds_solve()` was added to solve differential equations of various classes. 
 
-+ **Solving** -- The `S3` function  `xds_solve()` was added to solve differential equations of various classes. 
+    + **Outputs** -- The `S3` function `parse_deout()` was added to parse the output of `deSolve` and return the orbits in a set of named lists. These lists are attached to `pars$outputs$orbits.` New functions were also written to compute the dynamical terms that connect the major components. 
 
-+ **Outputs** -- The `S3` function  `parse_deout()` was added to parse the output of `deSolve` and return the orbits in a set of named lists. These lists are attached to `pars$outputs$orbits.` New functions were also written to compute the dynamical terms that connect the major components. 
+    + **Demography** -- Functionality was added to handle human demographic changes, including births, deaths, migration, and aging.  
 
-+ **Demography** -- Functionality has been added to handle human demographic changes, including births, deaths, migration, and aging.  
+    + **Hosts** -- An overhaul was required to handle multiple vertebrate host or vector species. 
 
-+ **Hosts** -- This version handles multiple vertebrate host or vector species. 
+    + **Forcing** -- The models have been reconfigured to model malaria as a *changing baseline* that has been modified by *vector control.* This required changes to the order of functions that implemented various aspects of forcing by weather and other exogenous variables, and to the return values for functions that computed *independent effect sizes*
 
-+ **Forcing** -- The models have been reconfigured to model malaria as a *changing baseline* that has been modified by *vector control.* 
++ **`ramp.dts`** was born in April, 2024. The goal had always been to bring `MicroMoB` up to the same level of functionality as `exDE` / `ramp.xde` but it suddenly seemed easier to clone `ramp.xde` and replace the functions 
 
-### DDEs {.tabset}
-
-
-#### `exDE` 
-
-In modular computation with delay differential equations, it is often necessary to compute the value of a term at some lagged values.  For example, in the Ross-Macdonald model:
-
-$$ 
-\begin{array}{rl}
-\dot Y &= fq \kappa (M-Y) - g Y \\
-\dot Z &= f_\tau q_\tau \kappa_\tau (M_\tau-Y_\tau) e^{-g\tau} - g Z
-\end{array}
-$$
-the values of the variables at time $t-\tau$ can be retrieved using `lagvalue,` but the term
-$\kappa(t-\tau)$ is computed outside of `dMYZdt` and passed as an argument. To handle this in 
-Version 1.0, the function that computed $\kappa$ dispatched on the type of `dMYZdt` so that it would pass two values: $(\kappa(t), \kappa(t-\tau).$
-
-
-
-Handling delays in general posed a far greater challenge in models with exogenous forcing. Consider, for example, models where blood feeding depends on resource availability, and resources vary with time: we would need to compute the blood feeding parameters in relation to blood host availability and vector control (with effect sizes $\epsilon_*$):   
-
-$$f(t-\tau)= F_f(B(t-\tau)) \epsilon_f(\phi(t-\tau))$$ 
-and 
-$$q(t-\tau)=F_q(W(t-\tau), B(t-\tau)) \epsilon_q(\phi(t-\tau)).$$ 
-The software design challenge was daunting, and it would have become difficult to manage if this dispatching had fully propagated. 
-
-The decision to internalize computation of lagged values was consistent with the overall *plug-and-play* design principle, and it would almost certainly lower the burden for developers wanting to add new models.  
-
-#### `ramp.xde`
-
-A change was made to **internalize compuation of lagged values for terms.** For terms that depend on variables or processes outside of a dynamical component and whose value must be known at some lagged value in the past, generically denoted $k(t)$, we create a new variable $K(t)$, and such that $$dK/dt = k.$$ We add this variable to the the derivatives function, and index the new dummy variable $K$ as if it were a model variable. The value of $k(t-\tau)$ can be computed using `deSolve::lagderiv` 
-
-For an example, see the implementation in the function `dMYZdt.RM`
-
-### Initial Values 
-
-#### `exDE` 
-
-In version 1.0, the initial values were stored with the parameters in  `pars$MYZpar` or `pars$Lpar` or `pars$Xpar`  
-
-#### `ramp.xde`
-
-In version 2.0, initial values are found in `pars$MYZinits` or `pars$Linits` or `pars$Xinits`  
-
-+ A function `get_inits()` returns a vector of initial values
-
-**`pars`**
-
-+ `MYZinits` is a list() 
-
-    - `MYZinits[[1]]` has initial values for the $1^{st}$ species 
-    
-    - `MYZinits[[2]]` has initial values for the $2^{nd}$ species  
-    
-    - ...  up to the $s^{th}$ species where $s =$ `nVectors`
-
-+ `Linits` is a list() 
-
-    - `Linits[[1]]` has initial values for the $1^{st}$ species 
-    
-    - `Linits[[2]]` has initial values for the $2^{nd}$ species  
-    
-    - ...  up to the $s^{th}$ species where $s =$ `nVectors`
-
-+ `Xinits` is a list() 
-
-    - `Xinits[[1]]` has initial values for the $1^{st}$ species 
-    
-    - `Xinits[[2]]` has initial values for the $2^{nd}$ species  
-    
-    - ...  up to the $i^{th}$ species where $i =$ `nHosts`
-
-
-### Indexing {.tabset}
-
-#### `exDE` 
-
-In version 1.0, the indices were attached to `pars`
-
-+ `MYZ_ix` for the $1^{st}$ species 
-
-+ `L_ix` for the $1^{st}$ species 
-    
-+ `X_ix` for the $1^{st}$ species 
-
-#### `ramp.xde` 
-
-In version 2.0, indices are stored as named lists under `pars$ix` 
-
-+ `MYZ_ix` is a list() 
-
-    - `MYZ[[1]]` has indices for the $1^{st}$ species 
-    
-    - `MYZ[[2]]` has indices for the $2^{nd}$ species  
-    
-    - ...  up to the $s^{th}$ species where $s =$ `nVectors`
-
-+ `L_ix` is a list() 
-
-    - `L[[1]]` has indices for the $1^{st}$ species 
-    
-    - `L[[2]]` has indices for the $2^{nd}$ species  
-    
-    - ...  up to the $s^{th}$ species where $s =$ `nVectors`
-
-+ `X_ix` is a list() 
-
-    - `X[[1]]` has indices for the $1^{st}$ species 
-    
-    - `X[[2]]` has indices for the $2^{nd}$ species  
-    
-    - ...  up to the $i^{th}$ species where $i =$ `nHosts`
-    
-    
-
-### Setup 
- 
-**`ramp.xde` Version 2.0** adds a new class of functions, called `xde_setup` that streamline model setup for all models. As we added new features to handle malaria control and exogenous forcing, the burden of managing 
-
-Easy setup relies on several new functions: 
-
-+ `make_parameters_xde` (in `utils.R`) creates a new list that sets up an empty model. 
-
-**Parameters** 
-
-+ `setup_MYZpar` sets up and returns a `MYZpar` object. 
-
-+ `setup_Lpar`  sets up and returns a `Lpar` object 
-
-+ `setup_Xpar`  sets up and returns a `Xpar` object 
-
-**Initial Values** 
-
-+ `setup_MYZinits` sets up and returns a `MYZinits` object 
-
-+ `setup_Linits` sets up and returns a `Linits` object 
-
-+ `setup_Xinits`  sets up and returns a `Xinits` object 
-
-### Solving 
-
-### Outputs 
-
-Version 2.0 parses outputs and includes functions for basic plotting. 
-
-+ `parse_deout` and related functions parse the output of `deSolve()` and attach the values of the variables by name to a list called `pars$outputs`
-
-    - for ordinary solving, the outputs are attached to `pars$outputs$orbits` 
-    
-    - for steady states, the outputs are attached to `pars$outputs$stable_orbits` 
-
-### Demography 
-
-### Multi-Species 
-
-Models with multiple vector species or multiple host species are now handled. 
-
-1. There are two new structural parameters:
-
-    + `nVectors` is the number of vector species; 
-
-    + `nHosts` is the number of vertebrate host species;
-
-2. **Parameters** - Mutiple-species required making changes to the way `MYZpar` and `Lpar` and `Xpar` were configured
-
-3. **Transmission** - Mutiple-species required making changes to the way `beta` and `kappa` and `EIR` and `FoI` were handled.  
-
-4. **Egg Laying** - Mutiple-species required making changes to the way egg-laying was handled.  
-
-
-#### `exDE`
-
-In version 1.0, the default object had one vertebrate host and one vector species
-
-**`pars`**
-
-+ `MYZpar` for the $1^{st}$ species 
-
-+ `Lpar` for the $1^{st}$ species 
-    
-+ `Xpar` for the $1^{st}$ species 
-
-
-#### `ramp.xde` 
-
-In version 2.0, the default object has changed the location of major objects: 
-
-**`pars`**
-
-+ `MYZpar` is a list() 
-
-    - `MYZpar[[1]]` is the $1^{st}$ species 
-    
-    - `MYZpar[[2]]` is the $2^{nd}$ species  
-    
-    - ...  up to the $s^{th}$ species where $s =$ `nVectors`
-
-+ `Lpar` is a list() 
-
-    - `Lpar[[1]]` is the $1^{st}$ species 
-    
-    - `Lpar[[2]]` is the $2^{nd}$ species  
-    
-    - ...  up to the $s^{th}$ species where $s =$ `nVectors`
-
-+ `Xpar` is a list() 
-
-    - `Xpar[[1]]` is the $1^{st}$ species 
-    
-    - `Xpar[[2]]` is the $2^{nd}$ species  
-    
-    - ...  up to the $i^{th}$ species where $i =$ `nHosts`
-
-
-### `ramp.dts` 
-
-### `ramp.xds` 
-
-**`ramp.xds`** was designed to replace exDE and MicroMoB, which were originally designed by Sean L. Wu and Professor David L. Smith. David L Smith developed the prototypes. Sean L. Wu wrote the first versions of the R-packages. Development of exDE continued. The name exDE was changed to ramp.xds where development continued. A stable version of exDE was restored. Functionality for discrete time systems was added to ramp.xds in the spring of 2024. A name change to ramp.xds is planned. 
++ **`ramp.xds`** was born when it became clear that **`ramp.xde`** and **`ramp.dts`** had large amounts of overlapping code. 

@@ -35,9 +35,9 @@ MBaseline.basicM <- function(t, y, pars, s){with(pars$MYZpar[[s]],{
   pars$MYZpar[[s]]$sigma_t  <- F_sigma(t, vars, sigma_par)
   pars$MYZpar[[s]]$mu       <- F_mu(t, vars, mu_par)
   pars$MYZpar[[s]]$nu       <- F_nu(t, vars, nu_par)
-  pars$MYZpar[[s]]$eip      <- F_eip(t, vars, eip_par)
   pars$MYZpar[[s]]$calK     <- F_calK(t, vars, calK_par)
-  pars$MYZpar[[s]]$eggsPerBatch <- eggsPerBatch
+  pars$MYZpar[[s]]$eggsPerBatch <- eggsPerBatc
+  h
   # Reset Effect Sizes
   pars$MYZpar[[s]]$es_f     < rep(1, pars$nPatches)
   pars$MYZpar[[s]]$es_q     <- rep(1, pars$nPatches)
@@ -102,7 +102,6 @@ Update_MYZt.basicM <- function(t, y, pars, s) {
 #' @return a [list] vector
 #' @export
 make_MYZpar.basicM = function(MYZname, pars, s, MYZopts=list()){
-  setup_as = with(MYZopts, ifelse(exists("setup_as"), setup_as, "RM"))
   MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
   class(MYZpar) <- 'basicM'
   pars$MYZpar[[s]] = MYZpar
@@ -117,10 +116,30 @@ make_MYZpar.basicM = function(MYZname, pars, s, MYZopts=list()){
 #' @export
 get_MYZpars.basicM <- function(pars, s=1) {
   with(pars$MYZpar[[s]], list(
-    f=f_t, q=q_t, g=g_t, sigma=sigma_t, eip=eip, mu=mu_t,
+    f=f_t, q=q_t, g=g_t, sigma=sigma_t, mu=mu_t,
     nu=nu_t, eggsPerBatch=eggsPerBatch, calK=calK
   ))
 }
+
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZpars
+#' @return an **`xds`** object
+#' @export
+set_MYZpars.basicM <- function(pars, s=1, MYZopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$MYZpar[[s]], with(MYZopts,{
+    pars$MYZpar[[s]]$f_par <- f_par
+    pars$MYZpar[[s]]$q_par <- q_par
+    pars$MYZpar[[s]]$g_par <- g_par
+    pars$MYZpar[[s]]$sigma_par <- sigma_par
+    pars$MYZpar[[s]]$mu_par <- mu_par
+    pars$MYZpar[[s]]$nu_par <- nu_par
+    pars$MYZpar[[s]]$calK_par <- calK_par
+    pars$MYZpar[[s]]$eggsPerBatch <- eggsPerBatch
+    return(pars)
+  }))}
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
 #' @description Implements [F_fqZ] for the basicM xde model.
@@ -164,6 +183,19 @@ make_MYZinits.basicM = function(pars, s, MYZopts){
   pars$MYZinits[[s]] = create_MYZinits_basicM(pars$nPatches, MYZopts)
   return(pars)
 }
+
+
+#' @title Set new MYZ parameter values
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZinits
+#' @return an `xds` object
+#' @export
+set_MYZinits.basicM <- function(pars, s=1, MYZopts=list()) {
+  with(pars$MYZpar[[s]], with(MYZopts,{
+    pars$MYZinits[[s]]$M = M
+    pars$MYZinits[[s]]$P = P
+    return(pars)
+ }))}
 
 #' @title Make inits for basicM adult mosquito model
 #' @param nPatches the number of patches in the model
@@ -214,6 +246,25 @@ get_MYZinits.basicM <- function(pars, s) {
   pars$MYZinits[[s]]
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZpars
+#' @return an **`xds`** object
+#' @export
+set_MYZpars.GeRM <- function(pars, s=1, MYZopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$MYZpar[[s]], with(MYZopts,{
+    pars$MYZpar[[s]]$f_par <- f_par
+    pars$MYZpar[[s]]$q_par <- q_par
+    pars$MYZpar[[s]]$g_par <- g_par
+    pars$MYZpar[[s]]$sigma_par <- sigma_par
+    pars$MYZpar[[s]]$mu_par <- mu_par
+    pars$MYZpar[[s]]$nu_par <- nu_par
+    pars$MYZpar[[s]]$eip_par <- eip_par
+    pars$MYZpar[[s]]$calK_par <- calK_par
+    pars$MYZpar[[s]]$eggsPerBatch <- eggsPerBatch
+    return(pars)
+  }))}
 
 #' @title Add indices for adult mosquitoes to parameter list
 #' @description Implements [make_indices_MYZ] for the basic M model.
@@ -247,4 +298,4 @@ parse_MYZorbits.basicM <- function(outputs, pars, s) {
     P = outputs[,P_ix]
     parous = P/M
     return(list(M=M, P=P, parous=parous))
-})}
+  })}

@@ -30,15 +30,6 @@ Update_Lt <- function(t, y, pars, s) {
   UseMethod("Update_Lt", pars$Lpar[[s]])
 }
 
-#' @title Return the parameters as a list
-#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
-#' @param pars an **`xds`** object
-#' @param s the vector species index
-#' @return a [list]
-#' @export
-get_Lpars <- function(pars, s=1) {
-  UseMethod("get_Lpars", pars$Lpar[[s]])
-}
 
 #' @title Larval and Aquatic Stage Baseline
 #' @description Handle immature mosquito bionomic parameters as a baseline modified by control
@@ -49,7 +40,7 @@ get_Lpars <- function(pars, s=1) {
 #' @return an `xds` object
 #' @export
 LBaseline <- function(t, y, pars, s) {
-  UseMethod("LBaseline", pars$Lpar[[s]]$baseline)
+  UseMethod("LBaseline", pars$Lpar[[s]])
 }
 
 #' @title Larval and Aquatic Stage Bionomics
@@ -61,7 +52,7 @@ LBaseline <- function(t, y, pars, s) {
 #' @return an `xds` object
 #' @export
 LBionomics <- function(t, y, pars, s) {
-  UseMethod("LBionomics", pars$Lpar[[s]]$baseline)
+  UseMethod("LBionomics", pars$Lpar[[s]])
 }
 
 #' @title Create and configure **`Lpar`** for \eqn{\cal L}-Models
@@ -81,6 +72,40 @@ make_Lpar = function(Lname, pars, s, Lopts=list()){
   class(Lname) <- Lname
   UseMethod("make_Lpar", Lname)
 }
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @return a [list]
+#' @export
+get_Lpars <- function(pars, s=1) {
+  UseMethod("get_Lpars", pars$Lpar[[s]])
+}
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @param Lopts a named list
+#' @return an `xds` object
+#' @export
+set_Lpars <- function(pars, s=1, Lopts=list()) {
+  UseMethod("set_Lpars", pars$Lpar[[s]])
+}
+
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @param Lopts a named list
+#' @return an `xds` object
+#' @export
+set_Linits <- function(pars, s=1, Lopts=list()) {
+  UseMethod("set_Linits", pars$Lpar[[s]])
+}
+
 
 #' @title Set aquatic bionomic parameter rates relative to baseline
 #' @description It should compute the values of parameters

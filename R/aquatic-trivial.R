@@ -27,6 +27,32 @@ get_Lpars.trivial <- function(pars, s=1) {
   ))
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @inheritParams set_Lpars
+#' @return an **`xds`** object
+#' @export
+set_Lpars.trivial <- function(pars, s=1, Lopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$Lpar[[s]], with(Lopts,{
+    pars$Lpar[[s]]$Lambda = Lambda
+    pars$Lpar[[s]]$F_season = F_season
+    pars$Lpar[[s]]$phase = phase
+    pars$Lpar[[s]]$season_opts = season_opts
+    pars$Lpar[[s]]$F_trend = F_trend
+    pars$Lpar[[s]]$trend_opts = trend_opts
+    return(pars)
+  }))}
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @inheritParams set_Linits
+#' @return an **`xds`** object
+#' @export
+set_Linits.trivial <- function(pars, s=1, Lopts=list()) {
+  return(pars)
+}
+
 #' @title Make parameters for trivial aquatic mosquito model
 #' @param nHabitats the number of habitats in the model
 #' @param Lopts a [list] that overwrites default values

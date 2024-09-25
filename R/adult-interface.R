@@ -63,6 +63,16 @@ get_MYZpars <- function(pars, s=1) {
   UseMethod("get_MYZpars", pars$MYZpar[[s]])
 }
 
+#' @title Set new MYZ parameter values
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @param MYZopts a named list
+#' @return an `xds` object
+#' @export
+set_MYZpars <- function(pars, s=1, MYZopts=list()) {
+  UseMethod("set_MYZpars", pars$MYZpar[[s]])
+}
 
 #' @title Compute probabilities from rates
 #' @description This method dispatches on `MYZname`.
@@ -168,6 +178,16 @@ make_MYZinits = function(pars, s, MYZopts=list()){
   UseMethod("make_MYZinits", pars$MYZpar[[s]])
 }
 
+#' @title Set new MYZ parameter values
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @param MYZopts a named list
+#' @return an `xds` object
+#' @export
+set_MYZinits <- function(pars, s=1, MYZopts=list()) {
+  UseMethod("set_MYZinits", pars$MYZpar[[s]])
+}
 
 #' @title Add indices for adult mosquitoes to parameter list
 #' @description This method dispatches on the type of `pars$MYZpar`.

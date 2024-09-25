@@ -68,8 +68,25 @@ create_Xpar_hMoI = function(nStrata, Xopts=list(),
 #' @seealso [create_Xpar_hMoI]
 #' @export
 get_Xpars.hMoI<- function(pars, i=1) {
-  with(pars$Xpar[[i]],list(b=b, c1=c1, r1=r1, r2=r2))
+  with(pars$Xpar[[i]],list(b=b, c1=c1, c2=c2, r1=r1, r2=r2))
 }
+
+
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @inheritParams set_Xpars
+#' @return an **`xds`** object
+#' @export
+set_Xpars.hMoI <- function(pars, i=1, Xopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$Xpar[[i]], with(Xopts,{
+    pars$Xpar[[i]]$b <- b
+    pars$Xpar[[i]]$c1 <- c1
+    pars$Xpar[[i]]$c2 <- c2
+    pars$Xpar[[i]]$r1 <- r1
+    pars$Xpar[[i]]$r2 <- r2
+    return(pars)
+  }))}
 
 #' @title Setup Xpar.hMoI
 #' @description Implements [make_Xpar] for the hMoI model
@@ -135,6 +152,18 @@ make_Xinits.hMoI = function(pars, H, i, Xopts=list()){
   return(pars)
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @inheritParams set_Xinits
+#' @return an **`xds`** object
+#' @export
+set_Xinits.hMoI <- function(pars, i=1, Xopts=list()) {
+  with(pars$Xpar[[i]], with(Xopts,{
+    pars$Xinits[[i]]$m1 = m1
+    pars$Xinits[[i]]$m2 = m2
+    return(pars)
+  }))}
+
 #' @title Make inits for hybrid MoI human model
 #' @description MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
 #' @param nStrata the number of population strata
@@ -191,7 +220,7 @@ update_Xinits.hMoI <- function(pars, y0, i) {
     m2 = y0[m2_ix]
     pars$Xinits[[i]] = create_Xinits_hMoI(pars$nStrata[i], m1=m1, m2=m2)
     return(pars)
-})}
+  })}
 
 #' @title Parse the output of deSolve and return variables for the hMoI model
 #' @description Implements [parse_Xorbits] for the hMoI model
@@ -206,8 +235,8 @@ parse_Xorbits.hMoI <- function(outputs, pars, i){
     ni = F_ni(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
     pr = F_pr(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
     pr_by_lm = F_pr_by_lm(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
-  return(list(H=H, m1=m1, m2=m2, ni=ni, pr=pr, pr_lm= pr_by_lm))
-})}
+    return(list(H=H, m1=m1, m2=m2, ni=ni, pr=pr, pr_lm= pr_by_lm))
+  })}
 
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Xpar`.

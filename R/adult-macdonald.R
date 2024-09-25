@@ -161,6 +161,25 @@ get_MYZpars.macdonald <- function(pars, s=1) {
   ))
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZpars
+#' @return an **`xds`** object
+#' @export
+set_MYZpars.macdonald <- function(pars, s=1, MYZopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$MYZpar[[s]], with(MYZopts,{
+    pars$MYZpar[[s]]$f = f
+    pars$MYZpar[[s]]$q = q
+    pars$MYZpar[[s]]$g = g
+    pars$MYZpar[[s]]$sigma = sigma
+    pars$MYZpar[[s]]$eip = eip
+    pars$MYZpar[[s]]$mu = mu
+    pars$MYZpar[[s]]$nu = nu
+    pars$MYZpar[[s]]$eggsPerBatch = eggsPerBatch
+    return(pars)
+  }))}
+
 
 #' @title Setup initial values for the macdonald model
 #' @description Implements [make_MYZinits] for the macdonald model
@@ -172,6 +191,19 @@ make_MYZinits.macdonald = function(pars, s, MYZopts=list()){with(pars$MYZpar[[s]
   return(pars)
 })}
 
+#' @title Set new MYZ parameter values
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZinits
+#' @return an `xds` object
+#' @export
+set_MYZinits.macdonald <- function(pars, s=1, MYZopts=list()) {
+  with(pars$MYZpar[[s]], with(MYZopts,{
+    pars$MYZinits[[s]]$M = M
+    pars$MYZinits[[s]]$Y = Y
+    pars$MYZinits[[s]]$P = P
+    pars$MYZinits[[s]]$Z = Z
+    return(pars)
+  }))}
 
 #' @title Return initial values as a list
 #' @description Implements [get_MYZinits] for the macdonald model.

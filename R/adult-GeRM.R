@@ -164,12 +164,34 @@ get_MYZpars.GeRM <- function(pars, s=1) {
   ))
 }
 
+#' @title Return the parameters as a list
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZpars
+#' @return an **`xds`** object
+#' @export
+set_MYZpars.GeRM <- function(pars, s=1, MYZopts=list()) {
+  nHabitats <- pars$nHabitats
+  with(pars$MYZpar[[s]], with(MYZopts,{
+    pars$MYZpar[[s]]$f_par <- f_par
+    pars$MYZpar[[s]]$q_par <- q_par
+    pars$MYZpar[[s]]$g_par <- g_par
+    pars$MYZpar[[s]]$sigma_par <- sigma_par
+    pars$MYZpar[[s]]$mu_par <- mu_par
+    pars$MYZpar[[s]]$nu_par <- nu_par
+    pars$MYZpar[[s]]$eip_par <- eip_par
+    pars$MYZpar[[s]]$calK_par <- calK_par
+    pars$MYZpar[[s]]$eggsPerBatch <- eggsPerBatch
+    return(pars)
+  }))}
+
+
 #' @title Set mosquito bionomics to baseline
 #' @description Implements [MBaseline] for models with no forcing on the baseline
 #' @inheritParams MBaseline
 #' @return the model as a [list]
 #' @export
 MBaseline.GeRM <- function(t, y, pars, s){with(pars$MYZpar[[s]],{
+  vars = pars$vars
   # Baseline parameters
   pars$MYZpar[[s]]$f_t      <- F_f(t, vars, f_par)
   pars$MYZpar[[s]]$q_t      <- F_q(t, vars, q_par)
@@ -181,7 +203,7 @@ MBaseline.GeRM <- function(t, y, pars, s){with(pars$MYZpar[[s]],{
   pars$MYZpar[[s]]$calK     <- F_calK(t, vars, calK_par)
   pars$MYZpar[[s]]$eggsPerBatch <- eggsPerBatch
   # Reset Effect Sizes
-  pars$MYZpar[[s]]$es_f     < rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_f     <- rep(1, pars$nPatches)
   pars$MYZpar[[s]]$es_q     <- rep(1, pars$nPatches)
   pars$MYZpar[[s]]$es_g     <- rep(1, pars$nPatches)
   pars$MYZpar[[s]]$es_sigma <- rep(1, pars$nPatches)
@@ -337,6 +359,20 @@ make_MYZinits.GeRM = function(pars, s, MYZopts=list()){with(pars$MYZpar[[s]], {
   pars$MYZinits[[s]] = create_MYZinits_GeRM(nPatches, Upsilon, MYZopts)
   return(pars)
 })}
+
+#' @title Set new MYZ parameter values
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' @inheritParams set_MYZinits
+#' @return an `xds` object
+#' @export
+set_MYZinits.GeRM <- function(pars, s=1, MYZopts=list()) {
+  with(pars$MYZpar[[s]], with(MYZopts,{
+    pars$MYZinits[[s]]$M = M
+    pars$MYZinits[[s]]$Y = Y
+    pars$MYZinits[[s]]$P = P
+    pars$MYZinits[[s]]$Z = Z
+    return(pars)
+  }))}
 
 #' @title Return initial values as a list
 #' @description Implements [get_MYZinits] for the GeRM model.

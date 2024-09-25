@@ -1,0 +1,23 @@
+---
+title: "Exposure"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Exposure}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+In **`ramp.xds`**  exposure to infective bites is handled in several steps: 
+
+1. The number of infective bites, per patch, is computed by a function `F_fqZ.` 
+
+2. These bites are allocated to the local human population strata and to visitors according to their *availability,* which returns the daily `EIR` as a vector. Whereas `F_fqz` is a vector of length $n_p$ or `nPatches,`  the EIR is a vector of length $n_h$ or `nStrata.`
+
+3. Total exposure is transformed into a measure of the *local* FoI or AR under a model of environmental heterogeneity.
+
+4. A separate model estimates the *travel* FoI or AR.
+
+5. The *total* FoI is the sum of expected time spent traveling. 
+
+
+## 
