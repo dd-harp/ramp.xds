@@ -211,37 +211,33 @@ would be turned off for basic setup.</p>
 into three chunks:</p>
 <ol style="list-style-type: decimal">
 <li>
-<p>The vertebrate host population, denoted
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒳</mi><mi>ℋ</mi></mrow><annotation encoding="application/x-tex">\mathcal{XH}</annotation></semantics></math>:</p>
+<p>Human / vertebrate host ecology, infection and immunity, called
+the <strong>XH</strong>-component</p>
 <ul>
-<li><p>human (or host) demography
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℋ</mi><annotation encoding="application/x-tex">\mathcal H</annotation></semantics></math>)
+<li><p>human (or host) demography (<strong>H</strong>-component)
 including births, deaths, aging and migration;</p></li>
-<li><p>malaria epidemiology
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi><annotation encoding="application/x-tex">\mathcal X</annotation></semantics></math>),
-in the narrow sense; or more generally, the dynamics of infection and
-immunity in the host population;</p></li>
+<li><p>malaria epidemiology (<strong>X</strong>-component), in the
+narrow sense; or more generally, the dynamics of infection and immunity
+in the host population;</p></li>
 </ul>
 </li>
 <li>
-<p>The adult mosquito population, denoted
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℳ</mi><mi>𝒴</mi><mi>𝒵</mi></mrow><annotation encoding="application/x-tex">\mathcal {MYZ}</annotation></semantics></math>:</p>
+<p>Adult mosquito ecology and infection dynamics, called the
+<strong>MYZ</strong>-component</p>
 <ul>
-<li><p>mosquito ecology
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℳ</mi><annotation encoding="application/x-tex">\mathcal M</annotation></semantics></math>)</p></li>
-<li><p>mosquito infection dynamics
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒴</mi><annotation encoding="application/x-tex">\mathcal Y</annotation></semantics></math>)</p></li>
+<li><p>mosquito ecology: the <strong>M</strong>-component</p></li>
+<li><p>mosquito infection dynamics: the
+<strong>Y</strong>-component</p></li>
+<li><p>parasite development: the <strong>Z</strong>-component</p></li>
 </ul>
 </li>
-<li><p>Aquatic mosquito ecology, denoted
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi><annotation encoding="application/x-tex">\mathcal L</annotation></semantics></math></p></li>
+<li><p>Aquatic mosquito ecology, called the
+<strong>L</strong>-component</p></li>
 </ol>
 <p>These three chunks are connected by two interfaces. The first two
 chunks are connected through the rigid interface describing blood
-feeding and transmission, denoted
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℬ</mi><annotation encoding="application/x-tex">\mathcal B</annotation></semantics></math>.
-The last two chunks are connected through egg laying and emergence,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒩</mi><mo mathvariant="script">,</mo><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">\mathcal {N, U}</annotation></semantics></math>.</p>
+feeding and transmission. The last two chunks are connected through egg
+laying and emergence.</p>
 <hr>
 <div class="float">
 <img src="notation1.png" alt="Figure 2 Modular dynamic components that form the core of ramp.xds"><div class="figcaption">
@@ -258,20 +254,17 @@ of differential or difference equations. Each family is defined by a set
 of states and state transitions (<em>i.e.</em> by the topology of the
 graph) for a single population (<code>nStrata=1</code>).</p>
 <p>For example, the <code>SIS</code> module for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi><annotation encoding="application/x-tex">\mathcal X</annotation></semantics></math>
-component is the <em>SIS</em> compartmental model family for human
-infections. It’s called a model family because each unique set of
-parameters would define a different <em>model.</em></p>
+<strong>X</strong>-component is the <em>SIS</em> compartmental model
+family for human infections. It’s called a model family because each
+unique set of parameters would define a different <em>model.</em></p>
 <p>In its simplest form, each model family represents the state of a
 single population, but any model can replicate those states and
 sub-divide a single population into sub-populations with different
-parameters. These are population strata for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi><annotation encoding="application/x-tex">\mathcal X</annotation></semantics></math>;
-adult mosquitoes in patches for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℳ</mi><mi>𝒴</mi><mi>𝒵</mi></mrow><annotation encoding="application/x-tex">\mathcal {MYZ}</annotation></semantics></math>;
-immature mosquitoes in aquatic habitats for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi><annotation encoding="application/x-tex">\mathcal L</annotation></semantics></math>.
-In <strong><code>ramp.xds</code></strong> it is comparatively simple to
+parameters. These are population strata for the
+<strong>X</strong>-component; adult mosquitoes are found in patches for
+the <strong>MYZ</strong>-component; immature mosquitoes in aquatic
+habitats for <strong>L</strong>-component. In
+<strong><code>ramp.xds</code></strong> it is comparatively simple to
 configure a model with multiple strata, patches, and habitats.</p>
 </div>
 </div>
@@ -311,32 +304,26 @@ mosquito ecology. Each one of these three dynamical component is
 configured by specifying a model name (as a string) and options, passed
 as a named list, to override the defaults for the model:</p>
 <ul>
-<li><p><code>Xname</code> dispatches a model family for parasitic
-infections and immunity in the human population, called
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒳</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal X.</annotation></semantics></math>
-The setup default model is <code>Xname="SIS"</code> and default
-parameters for the <code>SIS</code> model are defined in
+<li><p><code>Xname</code> dispatches a module for the <strong>X</strong>
+component. The setup default model is <code>Xname="SIS"</code> and
+default parameters for the <code>SIS</code> model are defined in
 <code>create_Xpar_SIS.</code> To replace the default values at setup, a
 named list can be passed as <code>Xopts = list(...)</code> and the named
 values in <code>Xopts</code> will be he values of named parameters and
 the initial values of named variables instead of the defaults. (The
-human demographic model,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℋ</mi><annotation encoding="application/x-tex">\mathcal H</annotation></semantics></math>
-is set up as an advanced option.)</p></li>
-<li><p><code>MYZname</code> dispatches a model family for adult mosquito
-ecology and parasite infection dynamics,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>ℳ</mi><mi>𝒴</mi><mi>𝒵</mi></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal {MYZ}.</annotation></semantics></math>
-The setup default model is <code>MYZname="macdonald"</code> and default
-parameters for the <code>macdonald</code> model are defined in
+human demographic module for the <strong>H</strong>-component is set up
+as an advanced option.)</p></li>
+<li><p><code>MYZname</code> dispatches a module for the
+<strong>MYZ</strong> component. The setup default model is
+<code>MYZname="macdonald"</code> and default parameters for the
+<code>macdonald</code> model are defined in
 <code>create_MYZpar_macdonald.</code> To replace the default values at
 setup, a named list can be passed as <code>MYZopts = list(...)</code>
 and the named values in <code>MYZopts</code> will set the values of
 named parameters and the initial values of named variables instead of
 the defaults.</p></li>
-<li><p><code>Lname</code> specifies a model family for aquatic mosquito
-ecology,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℒ</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal L.</annotation></semantics></math>
-The setup default model is the trivial model
+<li><p><code>Lname</code> dispatches a module for the <strong>L</strong>
+component. The setup default model is the trivial model
 <code>Lname = "trivial"</code>. It has no variables, but it passes the
 outputs – emerging adults – as a parameter. To replace the default
 values at setup, a named list can be passed as
@@ -378,8 +365,8 @@ be set through <code>xds_setup:</code></p>
 is the number of patches in the model.</p></li>
 <li><p><strong><code>membership</code></strong> is set up by passing a
 vector with the identity of patch where each habitat can be found, and
-it sets up the habitat matrix,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒩</mi><annotation encoding="application/x-tex">\mathcal N</annotation></semantics></math>.
+it sets up the habitat membership matrix,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>.
 Setup sets the value of a variable describing the number of habitats,
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mi>q</mi></msub><annotation encoding="application/x-tex">n_q</annotation></semantics></math>
 = <strong><code>nHabitats &lt;- length(membership)</code>.</strong> One
@@ -398,10 +385,14 @@ passing <strong><code>searchH</code></strong></p></li>
 <p>If <code>nPatches &gt;1</code> then other setup-configurable
 options are to pass:</p>
 <ul>
-<li><p>a matrix <code>calK</code> describing mosquito dispersal among
-the patches.</p></li>
-<li><p>a matrix <code>TimeSpent</code> can be passed to configure human
-time spent</p></li>
+<li><p>a matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math>
+or <code>calK</code> describing mosquito dispersal among the
+patches.</p></li>
+<li><p>a matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Θ</mi><annotation encoding="application/x-tex">\Theta</annotation></semantics></math>
+or <code>TimeSpent</code> can be passed to configure human time
+spent</p></li>
 </ul>
 </li>
 </ul>

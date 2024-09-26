@@ -260,7 +260,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/ar2eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/ar2eir.nb.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/ar2eir.pois.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_H.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_TimeSpent.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_blood_weights.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_calK.html</loc></url>
@@ -545,6 +544,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/reset_state_i.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/runt.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_Dday.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/set_H.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_Linits.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_Linits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_Linits.trivial.html</loc></url>
