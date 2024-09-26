@@ -441,7 +441,7 @@ xds_setup_cohort = function(eir=1,
 
   stats::integrate(F_eir, 0, 365, bday=0)$val -> scale
 
-  pars$EIRpar$scale = scale
+  pars$EIRpar$scale = scale*365
 
   F_eir <- with(pars$EIRpar, function(age, bday){
     eir/scale*F_season(age+bday)*F_trend(age+bday)*F_age(age)
