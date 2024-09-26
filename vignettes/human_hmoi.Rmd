@@ -112,9 +112,9 @@ params = make_Xinits(params, H, 1, Xo)
 
 
 ```{r}
-F_season = function(t){1}
-F_trend = function(t){1}
-F_age = function(a){1}
+F_season = function(t){0*t+1}
+F_trend = function(t){0*t+1}
+F_age = function(a){0*a+1}
 ```
 
 

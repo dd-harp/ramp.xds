@@ -9,10 +9,7 @@ create_Lpar_trivial(
   Lopts = list(),
   Lambda = 1000,
   F_season = F_no_season,
-  phase = 0,
-  season_opts = list(),
-  F_trend = F_no_trend,
-  trend_opts = list()
+  F_trend = F_no_trend
 )
 }
 \arguments{
@@ -24,13 +21,7 @@ create_Lpar_trivial(
 
 \item{F_season}{a F_seasonality function}
 
-\item{phase}{a parameter to set the phase of F_season}
-
-\item{season_opts}{a \link{list} of options to pass to F_season}
-
 \item{F_trend}{a F_trend function}
-
-\item{trend_opts}{a \link{list} of options to pass to F_trend}
 }
 \value{
 none

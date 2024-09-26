@@ -122,7 +122,7 @@ reference:
   desc: |
     Methods to set up basic models
   contents:
-  - change_H
+  - set_H
   - update_inits
   - last_to_inits
   - parse_orbits

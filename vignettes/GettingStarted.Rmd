@@ -12,7 +12,7 @@ vignette: >
 
 **`ramp.xds`** was developed to reduce the costs of building, solving, analyzing, and using models describing the epidemiology, transmission dynamics and control of malaria and other mosquito-transmitted pathogens. This vignette gives a demonstration and a basic introduction. 
 
-The next vignette is [Progressive Model Building](ModelBuilding.html). 
+The next vignette is [Basic Setup](BasicSetup.html). 
 
 ## Installation 
 
@@ -37,7 +37,7 @@ Additional modules are available in the companion R-package [**`ramp.library`**]
 
 ## Demo
 
-With **`ramp.xds`** it's easy to build models for the transmission dynamics and control of malaria or other mosquito-borne pathogens. 
+**`ramp.xds`** makes it easy to build and use models for the transmission dynamics and control of malaria or other mosquito-borne pathogens. 
 Model building in **`ramp.xds`** starts 
 with a function called `xds_setup().`
 All arguments in `xds_setup()` are assigned default values, so calling `xds_setup()` with no arguments returns a fully configured model with all the default settings. 
@@ -46,11 +46,7 @@ All arguments in `xds_setup()` are assigned default values, so calling `xds_setu
 model <- xds_setup()
 ```
 
-The object `model` returned by `xds_setup()` is called a **`ramp`** *model object:* it is a fully defined model that can be solved by `xds_solve()`. 
-
-
-
-Later, after solving the equations, it won't be empty. 
+The object `model` returned by `xds_setup()` is called a **xds model** object: it is a fully defined model that can be solved by `xds_solve()`. 
 
 ### Defaults 
 
@@ -71,17 +67,32 @@ Functions like `get_Xpars` are designed to help users get to know the model ojec
 model$Xpar[[1]]$r
 ```
 
-The defaults can be over-written at setup by passing `Xopts = list(...)` with different values: 
-
-```{r}
-Xo = list(b=1/150, c=0.2, b=0.6)
-model1 <- xds_setup(Xopts = Xo)
-get_Xpars(model1)
-```
 Similarly, initial values were assigned default values at setup:
 
 ```{r}
 get_Xinits(model)
+```
+
+The default parameters and initial values can be over-written at setup by passing `Xopts = list(...)` 
+with different values: 
+
+```{r}
+Xo = list(b=1/150, c=0.2, b=0.6, S=3, I=2)
+model1 <- xds_setup(Xopts = Xo)
+get_Xpars(model1)
+```
+
+One thing about overwriting the defaults is that the variable $S$ in this model is computed in relation to the total population size $H$, which plays an important role in setting up the *Blood Feeding* interface, so the $S=3$ above was ignored.
+
+```{r}
+get_Xinits(model1)
+```
+
+To change the human population density, use the `set_H` function. 
+
+```{r}
+model1 <- set_H(1004, model1)
+get_Xinits(model1)
 ```
 
 The name of the default module for adult mosquito ecology and infection dynamics is called `MYZname.` The default module is Macdonald's model: 
@@ -197,7 +208,7 @@ The software was designed to be fully modular, so that any module for one dynami
 A basic requirement for full modularity is that every dynamical component must include a *trivial* module. In the `trivial` module, no variables are defined, but the dynamical terms needed by related dynamical components are passed by a configurable *trace* function with a generic form:
 
 ```{r, eval=F}
-mean*F_season(t, phase, season_opts)*F_trend(t, trend_opts)
+mean*F_season(t)*F_trend(t)
 ```
 
 The default for the $\cal L$ dynamical component is the `trivial` module, where the `mean` is is called `Lambda.`
@@ -206,9 +217,7 @@ It is easy to change the `trace` function. First, we define `F_season` and chang
 The generic format for seasonal functions is `F_season(t, phase, season_opts),` where `phase` sets the phase (time of year), and `season_opts` is a set of configurable parameter values:
 
 ```{r}
- F_sp = function(t, phase, season_opts){
-   return(with(season_opts,
-          (1+sin(2*pi*(t+phase)/365))^pwr))} 
+ F_sp = function(t){(1+sin(2*pi*t/365))} 
 ```
 
 Having defined `F_sp,` we now configure a list of options:
@@ -216,8 +225,6 @@ Having defined `F_sp,` we now configure a list of options:
 ```{r}
 Lo = list(
        Lambda=500, 
-       phase=90, 
-       season_opts=list(pwr=2),
        F_season=F_sp
       )
 ```
