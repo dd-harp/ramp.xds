@@ -5,7 +5,7 @@
 #' @param i the host species index
 #' @return a [list]
 #' @export
-change_H = function(H, pars, i=1){
+set_H = function(H, pars, i=1){
   stopifnot(length(H) == pars$nStrata[i])
   vars <- as.list(get_Xinits(pars,i))
   pars <- make_Xinits(pars, H, i, vars)

@@ -31,7 +31,15 @@
 xds_solve_cohort = function(pars, bday=0, A = 10, da = 10){
 
   F_eir <- with(pars$EIRpar, function(age, bday){
-    eir*F_season(age+bday)*F_trend(age+bday)*F_age(age)
+    F_season(age+bday)*F_trend(age+bday)
+  })
+
+  stats::integrate(F_eir, 0, 365, bday=0)$val -> scale
+
+  pars$EIRpar$scale = scale
+
+  F_eir <- with(pars$EIRpar, function(age, bday){
+    eir/scale*F_season(age+bday)*F_trend(age+bday)*F_age(age)
   })
 
   pars$F_eir = F_eir
