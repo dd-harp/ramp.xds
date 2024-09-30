@@ -65,7 +65,7 @@ MBionomics.trivial <- function(t, y, pars, s) {
 }
 
 
-#' @title \eqn{\cal MYZ} Component Derivatives for the `trivial` model
+#' @title **MYZ** Component Derivatives for the `trivial` model
 #' @description Implements [dMYZdt] for the trivial (forced emergence) model.
 #' @inheritParams dMYZdt
 #' @return a [numeric] vector

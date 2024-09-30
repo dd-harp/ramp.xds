@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{dLdt.trivial}
 \alias{dLdt.trivial}
-\title{\eqn{\cal L} Component Derivatives for the \code{trivial} model}
+\title{\strong{L} Component Derivatives for the \code{trivial} model}
 \usage{
 \method{dLdt}{trivial}(t, y, pars, s)
 }

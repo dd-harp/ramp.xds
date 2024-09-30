@@ -94,7 +94,7 @@ xde_steady_state_L.trivial = function(eta, Lpar){
   return(numeric(0))
 }
 
-#' @title \eqn{\cal L} Component Derivatives for the `trivial` model
+#' @title **L** Component Derivatives for the `trivial` model
 #' @description Return a numeric vector of length 0
 #' @inheritParams dLdt
 #' @return an empty [list]

@@ -123,6 +123,8 @@ reference:
     Methods to set up basic models
   contents:
   - set_H
+  - set_eir
+  - set_eir.cohort
   - update_inits
   - last_to_inits
   - parse_orbits
@@ -1095,7 +1097,17 @@ reference:
   - F_flat
   - F_no_season
   - F_no_trend
-  - F_sin_season
+  - make_function
+  - make_function.sin
+  - makepar_F_sin
+  - make_function.sum
+  - makepar_F_sum
+  - make_function.product
+  - makepar_F_product
+  - make_function.sigmoid
+  - makepar_F_sigmoid
+  - make_function.sharkfin
+  - makepar_F_sharkfin
 - subtitle: New
   desc: |
     Basic visualization of the transmission terms

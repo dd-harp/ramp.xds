@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-macdonald.R
 \name{dMYZdt.macdonald}
 \alias{dMYZdt.macdonald}
-\title{Derivatives for adult mosquitoes}
+\title{\strong{MYZ} Component for the \code{macdonald} Adult Mosquito Module}
 \usage{
 \method{dMYZdt}{macdonald}(t, y, pars, s)
 }

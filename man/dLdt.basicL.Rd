@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{dLdt.basicL}
 \alias{dLdt.basicL}
-\title{\eqn{\cal L} Component Derivatives for a \code{basicL}}
+\title{\strong{L} Component Derivatives for a \code{basicL}}
 \usage{
 \method{dLdt}{basicL}(t, y, pars, s)
 }

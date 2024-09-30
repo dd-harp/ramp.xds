@@ -4,8 +4,8 @@
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
 get_H = function(pars, i=1){
-  y=get_inits(pars)
-  F_H(as.vector(unlist(y)), pars, i)
+  y = get_inits(pars, flatten=TRUE)
+  F_H(0, y, pars, i)
 }
 
 

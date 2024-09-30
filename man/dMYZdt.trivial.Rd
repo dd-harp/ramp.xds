@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-trivial.R
 \name{dMYZdt.trivial}
 \alias{dMYZdt.trivial}
-\title{\eqn{\cal MYZ} Component Derivatives for the \code{trivial} model}
+\title{\strong{MYZ} Component Derivatives for the \code{trivial} model}
 \usage{
 \method{dMYZdt}{trivial}(t, y, pars, s)
 }

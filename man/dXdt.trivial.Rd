@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-trivial.R
 \name{dXdt.trivial}
 \alias{dXdt.trivial}
-\title{\eqn{\cal X} Component Derivatives for the \code{trivial} model}
+\title{\strong{X} Component Derivatives for the \code{trivial} model}
 \usage{
 \method{dXdt}{trivial}(t, y, pars, i)
 }

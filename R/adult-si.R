@@ -1,6 +1,6 @@
 # specialized methods for the adult mosquito SI model
 
-#' @title \eqn{\cal MYZ} Component Derivatives for the `SI` Mosquito Model
+#' @title **MYZ** Component Derivatives for the `SI` Mosquito Module
 #' @description The `SI` model for mosquito infection
 #' dynamics has the defined **variable** classes:
 #' - \eqn{M} is the density of mosquitoes in each patch;
