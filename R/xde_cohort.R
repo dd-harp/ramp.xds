@@ -1,4 +1,37 @@
 
+#' @title Reset the mean daily EIR
+#' @description For cohort models, reset the EIR
+#' @param eir the mean eir
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
+#' @export
+set_eir  = function(eir, pars){
+  UseMethod("set_eir", pars$frame)
+}
+
+#' @title Reset the mean daily EIR
+#' @description For cohort models, reset the EIR
+#' @param eir the mean eir
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
+#' @export
+set_eir.cohort  = function(eir, pars){
+
+  F_eir <- with(pars$EIRpar, function(age, bday){
+    F_season(age+bday)
+  })
+
+  stats::integrate(F_eir, 0, 365, bday=0)$val -> scale
+
+  pars$EIRpar$scale = scale/365
+  pars$EIRpar$eir = eir
+
+  with(pars$EIRpar,{
+    pars$F_eir <- function(age, bday){
+       eir/scale*F_season(age+bday)*F_trend(age+bday)*F_age(age)}
+    return(pars)
+  })
+}
 
 #' @title Cohort dynamics for a human / host model
 #' @description
@@ -30,19 +63,7 @@
 #' @export
 xds_solve_cohort = function(pars, bday=0, A = 10, da = 10){
 
-  F_eir <- with(pars$EIRpar, function(age, bday){
-    F_season(age+bday)*F_trend(age+bday)
-  })
-
-  stats::integrate(F_eir, 0, 365, bday=0)$val -> scale
-
-  pars$EIRpar$scale = scale*365
-
-  F_eir <- with(pars$EIRpar, function(age, bday){
-    eir/scale*F_season(age+bday)*F_trend(age+bday)*F_age(age)
-  })
-
-  pars$F_eir = F_eir
+  pars <- set_eir(pars$EIRpar$eir, pars)
 
   age = seq(0, A*365, by=da)
   y0 = get_inits(pars, flatten=TRUE)
@@ -53,8 +74,7 @@ xds_solve_cohort = function(pars, bday=0, A = 10, da = 10){
   pars$outputs$cohort <- parse_orbits(de_vars, pars)$XH[[1]]
   pars$outputs$cohort$age <- age
   pars$outputs$cohort$time <- age+bday
-  pars$outputs$cohort$eir <- F_eir(age, bday)
-
+  pars$outputs$cohort$eir <- with(pars, F_eir(age, bday))
   return(pars)
 }
 

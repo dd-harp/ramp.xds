@@ -1,6 +1,6 @@
 # specialized methods for the adult mosquito GeRM model
 
-#' @title \eqn{\cal MYZ} Component Derivatives for the `GeRM` model
+#' @title **MYZ** Component Derivatives for the `GeRM` model
 #' @description Compute the derivatives for the generalized, non-autonomous Ross-Macdonald model
 #' for mosquito ecology and infection dynamics.
 #' @inheritParams dMYZdt

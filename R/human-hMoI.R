@@ -1,6 +1,6 @@
 # a hybrid model tracking mean MoI for all and apparent infections
 
-#' @title `\eqn{\cal X}` Component Derivatives for the `hMoI` model
+#' @title **X** Component Derivatives for the `hMoI` module
 #' @description Implements [dXdt] for the hybrid MoI model.
 #' @inheritParams dXdt
 #' @return a [numeric] vector

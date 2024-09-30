@@ -1,6 +1,6 @@
 # the aquatic mosquito `basicL` competition model
 
-#' @title \eqn{\cal L} Component Derivatives for a `basicL`
+#' @title **L** Component Derivatives for a `basicL`
 #' @description
 #' This implements differential equation model for aquatic mosquito ecology.
 #' It has been modified slightly from a version published by Smith DL, *et al.* (2013):

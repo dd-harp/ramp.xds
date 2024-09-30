@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-GeRM.R
 \name{dMYZdt.GeRM}
 \alias{dMYZdt.GeRM}
-\title{\eqn{\cal MYZ} Component Derivatives for the \code{GeRM} model}
+\title{\strong{MYZ} Component Derivatives for the \code{GeRM} model}
 \usage{
 \method{dMYZdt}{GeRM}(t, y, pars, s)
 }

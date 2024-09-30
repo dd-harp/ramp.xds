@@ -435,19 +435,7 @@ xds_setup_cohort = function(eir=1,
   pars$EIRpar$F_trend <- F_trend
   pars$EIRpar$F_age <- F_age
 
-  F_eir <- with(pars$EIRpar, function(age, bday){
-    F_season(age+bday)*F_trend(age+bday)
-  })
-
-  stats::integrate(F_eir, 0, 365, bday=0)$val -> scale
-
-  pars$EIRpar$scale = scale*365
-
-  F_eir <- with(pars$EIRpar, function(age, bday){
-    eir/scale*F_season(age+bday)*F_trend(age+bday)*F_age(age)
-  })
-
-  pars$F_eir = F_eir
+  pars <- set_eir(eir, pars)
 
   # Aquatic Mosquito Dynamics
   pars       <- make_Lpar("trivial", pars, 1, list())

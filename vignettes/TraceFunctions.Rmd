@@ -25,9 +25,13 @@ As part of the  *plug-and-play* modular design for **`ramp.xds`,** each dynamica
 
 + a function that returns a F_trend, configured with a line in the appropriate options list, `F_trend = function(t){...}` 
 
+
+## Trivial Modules 
+
+
 The trivial modules each returns different values:
 
-+ $\cal L$ - The trivial aquatic module is set up by `create_Lpar_trivial.` The function `F_emerge()` returns `Lambda*F_season(t)*F_trend(t).` To override the defaults, `Lopts` must be a named list that sets the values of the elements: 
++ The trivial **L**-component module is set up by `create_Lpar_trivial.` The function `F_emerge()` returns `Lambda*F_season(t)*F_trend(t).` To override the defaults, `Lopts` must be a named list that sets the values of the elements: 
 
     - `Lambda = c(...)` is the
         
@@ -35,7 +39,7 @@ The trivial modules each returns different values:
         
     - `F_trend = function(t){...}`
 
-+ $\cal MYZ$ - The trivial adult mosquito module is setup by `create_MYZpar_trivial.` The values will return either `F_fqZ` or `F_eggs` 
++ The trivial **MYZ**-component module is setup by `create_MYZpar_trivial.` The values will return either `F_fqZ` or `F_eggs` 
 
     - Both `F_fqZ` and `F_eggs` use the same seasonality and trend functions: 
 
@@ -55,7 +59,7 @@ The trivial modules each returns different values:
     
         - ` eggs = c(...)`
 
-+ $\cal X$ - The trivial module for human / host infection and immunity is set up by `create_Xpar_trivial.` `F_X` calls `F_H` and then returns `H*kappa*F_season(t)*F_trend(t)` 
++ The trivial **X**-component module for human / host infection and immunity is set up by `create_Xpar_trivial.` `F_X` calls `F_H` and then returns `H*kappa*F_season(t)*F_trend(t)` 
 
     - `F_H` is configured in `xds_setup` by passing `HPop = ...` 
     
@@ -67,40 +71,151 @@ The trivial modules each returns different values:
         
       - `F_trend = function(t){...}`
         
+## `make_function`
 
+To make it easy to conduct thought experiments, **`ramp.xds`** has developed a system for setting up functions: 
 
-## Emergence 
+  + `make_function(opts)` as a tool for generating functions with the right properties. 
+  
+  + `makepar_F_*` is an informal function family to construct parameter / options for `make_function` methods. 
 
-The following adult mosquito model is forced by emergence and net infectiousness: 
+### Seasonality
 
-+ `Lo` configures the adult mosquito emergence rate to rise initially, but then to decline with a F_seasonal signal: 
+A constructor for seasonality functions drawn from a generalized family involving trigonometric functions is returned by `make_function.sin` with the associated `makepar_F_sin` that returns functions of the form: 
+$$S(t) =  c\left(1 + \epsilon + \sin\left(\frac{2 \pi (t-\tau)}{365}\right)\right)^p$$
 
-```{r}
-Lo = list(F_season = function(t, phase=0, opts=list()){1+sin(2*pi*t/365)}, 
-          F_trend = function(t, opts=list()){(1+t/250)*exp(-t/1000)}, 
-          Lambda =5)
-```
++ $c$ or `norm` is a normalizing constant 
 
-+ `Xo` configures the net infectiousness to rise to 80% over time. 
++ $\tau$ or `phase` sets the timing of the peak
 
-```{r}
-Xo = list(kappa = 0.8, 
-          F_trend = function(t, opts=list()){exp(t/500)/(10+exp(t/500))})
-```
++ $\epsilon \geq 0$ or `floor` is a shape parameter: increasing the values of $\epsilon$ reduces the variance 
 
-```{r, echo=F, eval=F}
-tt = seq(0, 3650, by = 10)
-with(Xo, plot(tt, F_trend(tt, list()), type = "l"))
-```
++ $p \geq 0$ or `pw` is a shape parameter.
 
 ```{r}
-rm = xds_setup(Xname = "trivial", Xopts = Xo, HPop=10, 
-               Lname = "trivial", Lopts = Lo)
-rm <- xds_solve(rm, 3650, dt=10)
+p1 = makepar_F_sin()
+S1 <- make_function(p1)
+
 ```
 
-```{r, fig.width=6, fig.height=3.5}
-xds_plot_M(rm)
-xds_plot_Y(rm, add=T)
-xds_plot_Z(rm, add=T)
+The default normalizing constant is $365$ so that if $S$ is multiplied by some other constant, $m,$ the average daily value of the function over a year is $1.$
+
+```{r}
+integrate(S1, 0, 365)$val
+```
+
+```{r, fig.height=3.5, fig.width=5}
+tt <- seq(0, 3*365, by=5)
+plot(tt, S1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(S(t)))
+```
+
+
+```{r}
+p2 = makepar_F_sin(phase=120)
+S2 <- make_function(p2)
+```
+
+
+```{r, fig.height=3.5, fig.width=5}
+plot(tt, S1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(S(t)))
+lines(tt, S2(tt), col = "blue")
+```
+
+The function can return a vector of $N$ functions, each one configured as if $N=1$
+
+```{r}
+p3 = makepar_F_sin(phase = c(0,120), N=2)
+S3 <- make_function(p3)
+```
+
+```{r, fig.height=3.5, fig.width=5}
+s3 <- S3(tt) 
+plot(tt, s3[1,], type ="l", xlab = "Time (in Days)", ylab = expression(S(t)))
+lines(tt, S1(tt), col = "yellow", lty=2)
+lines(tt, s3[2,], col = "blue")
+lines(tt, S2(tt), col = "orange", lty=2)
+```
+```{r}
+p4 <- makepar_F_sin(floor=.5)
+p5 <- makepar_F_sin(floor=2)
+p6 <- makepar_F_sin(pw=3)
+p7 <- makepar_F_sin(pw=6)
+```
+
+
+```{r}
+S4 <- make_function(p4)
+S5 <- make_function(p5)
+S6 <- make_function(p6)
+S7 <- make_function(p7)
+```
+
+The shape parameters make it easy to configure a seasonality function with a range of features: 
+
+```{r, fig.height=3.5, fig.width=5}
+clrs = turbo(7)
+plot(tt, S7(tt), type ="n", xlab = "Time (in Days)", ylab = expression(S(t)))
+lines(tt, S1(tt), col = clrs[1])
+lines(tt, S4(tt), col = clrs[2])
+lines(tt, S5(tt), col = clrs[3])
+lines(tt, S6(tt), col = clrs[5])
+lines(tt, S7(tt), col = clrs[7])
+text(1000, 3.5, expression(p==6), col=clrs[7])
+text(1000, 3, expression(p==3), col=clrs[5])
+text(1000, 2.5, expression(epsilon==0.5), col=clrs[2])
+text(1000, 2, expression(epsilon==2), col=clrs[3])
+```
+
+
+###  `sigmoid` 
+
+```{r}
+ps1 <- makepar_F_sigmoid()
+Fs1 <- make_function(ps1)
+```
+
+```{r, fig.height=3.5, fig.width=5}
+tt <- seq(0, 365, by=5)
+plot(tt, Fs1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(Fs1(t)))
+```
+
+### `sharkfin`
+
+```{r}
+c1 <- makepar_F_sharkfin()
+C1<- make_function(c1)
+```
+
+
+
+```{r, fig.height=3.5, fig.width=5}
+tt <- seq(0, 565, by=5)
+plot(tt, C1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(Fs1(t)))
+```
+
+
+
+```{r}
+c2a <- makepar_F_sharkfin(L = 90, dk = 1/110)
+c2b <- makepar_F_sharkfin(L = 180, dk = 1/40)
+```
+
+```{r}
+c2 <- makepar_F_sharkfin(L = c(90, 180), dk = c(1/110, 1/40), pw=c(2,1), N=2)
+```
+
+```{r}
+C2<- make_function(c2)
+```
+
+
+```{r}
+C2t <- C2(tt)
+```
+
+
+
+```{r, fig.height=3.5, fig.width=5}
+plot(tt, C2t[1,], type ="l", xlab = "Time (in Days)", ylab = expression(Fs1(t)))
+lines(tt, C2t[2,])
 ```

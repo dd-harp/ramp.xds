@@ -1,6 +1,6 @@
 # specialized methods for the adult mosquito macdonald model
 
-#' @title Derivatives for adult mosquitoes
+#' @title **MYZ** Component for the `macdonald` Adult Mosquito Module
 #' @description Implements [dMYZdt] for macdonald's DDE model.
 #' @inheritParams dMYZdt
 #' @return a [numeric] vector

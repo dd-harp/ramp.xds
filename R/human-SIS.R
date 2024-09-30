@@ -1,6 +1,6 @@
 # specialized methods for the human SIS model
 
-#' @title \eqn{\cal X} Component Derivatives for the `SIS` Model
+#' @title **X** Component Derivatives for the `SIS` Model
 #' @description Compute the derivatives for SIS compartmental model, defined as:
 #' \deqn{
 #' \begin{array}{rcccc}
@@ -213,8 +213,8 @@ make_Xinits.SIS = function(pars, H, i, Xopts=list()){
 #' @return an **`xds`** object
 #' @export
 set_Xinits.SIS <- function(pars, i=1, Xopts=list()) {
-  with(pars$Xpar[[i]], with(Xopts,{
-    pars$Xinits[[i]]$S = S
+  with(get_Xinits(pars, i), with(Xopts,{
+    pars$Xinits[[i]]$S = get_H(pars,i)-I
     pars$Xinits[[i]]$I = I
     return(pars)
 }))}
