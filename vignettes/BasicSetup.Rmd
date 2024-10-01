@@ -11,6 +11,10 @@ vignette: >
 library(ramp.xds)
 ```
 
+```{r, echo=F}
+#devtools::load_all()
+```
+
 
 **`ramp.xds`** is based on a mathematical framework for model building that is modular, flexible and extensible. Using the built-in functions, it's comparatively easy to build highly *realistic* models by starting simple and adding features one at a time. We call this *progressive model building.* 
 

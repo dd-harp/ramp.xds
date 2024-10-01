@@ -2,12 +2,12 @@
 % Please edit documentation in R/functions.R
 \name{F_flat}
 \alias{F_flat}
-\title{A trivial function F_flat}
+\title{The trivial function}
 \usage{
-F_flat(x)
+F_flat(t)
 }
 \arguments{
-\item{x}{an arbitrary input}
+\item{t}{an arbitrary input}
 }
 \value{
 a vector of ones of length x

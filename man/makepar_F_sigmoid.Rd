@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{makepar_F_sigmoid}
 \alias{makepar_F_sigmoid}
-\title{Make a Simoidal Function}
+\title{Make Parameters for a Sigmoidal Function}
 \usage{
 makepar_F_sigmoid(k = 1/7, D = 100, Tl = 0, N = 1)
 }

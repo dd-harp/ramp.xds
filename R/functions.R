@@ -1,27 +1,10 @@
 
-#' @title A trivial function F_flat
+#' @title The trivial function
 #' @description A function that returns 1
-#' @param x an arbitrary input
+#' @param t an arbitrary input
 #' @return a vector of ones of length x
 #' @export
-F_flat = function(x){return(0*x+1)}
-
-#' @title A trivial function F_no_season
-#' @description A function that returns 1
-#' @param t the time
-#' @param phase the phase
-#' @param season_opts a list of options
-#' @return a vector of ones of length x
-#' @export
-F_no_season = function(t, phase=0, season_opts=list){return(0*t+1)}
-
-#' @title A trivial function F_no_trend
-#' @description A function that returns 1
-#' @param t the time
-#' @param trend_opts a list of options
-#' @return a vector of ones of length x
-#' @export
-F_no_trend = function(t, trend_opts=list()){return(0*t+1)}
+F_flat = function(t){return(0*t+1)}
 
 #' @title Make a Function
 #' @description Build a function of time for trace functions
@@ -34,12 +17,13 @@ make_function = function(opts){
   UseMethod("make_function", opts)
 }
 
-#' @title Make a sine-based Seasonality Function
-#' @description Build a function to model a
-#' forced seasonal signal. The shape parameters determine
-#' the timing, frequency, and relative intensity
-#' over the season. The function is normalized
-#' to have an annual value set by `norm`
+#' @title Make a Sine-based Seasonality Function
+#' @description Return a function of the form
+#' \deqn{c \left(1+\epsilon + \sin\left(\frac{2 \pi (t-\tau)}{365}\right)\right)^p}
+#' where \eqn{c} is a normalizing constant, and
+#' + \eqn{\epsilon \geq 0} or `floor`
+#' + \eqn{\tau} or `phase`
+#' + \eqn{p} or `pw`
 #' @inheritParams make_function
 #' @importFrom stats integrate
 #' @return a function for seasonality
@@ -65,6 +49,7 @@ make_function.sin = function(opts){
 #' @param norm the normalization period
 #' @param N the length of the vector to return
 #' @return a function for seasonality
+#' @seealso [make_function.sin]
 #' @export
 makepar_F_sin = function(phase=0, floor=0, pw=1, norm=365, N=1){
   pars <- list()
@@ -100,7 +85,7 @@ make_function.sigmoid = function(opts){
   return(F3)
 }
 
-#' @title Make a Simoidal Function
+#' @title Make Parameters for a Sigmoidal Function
 #' @description Return an object to configure
 #' a function [make_function.sigmoid]
 #' @param k the rate parameter

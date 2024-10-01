@@ -24,3 +24,6 @@ a function for seasonality
 Return an object to configure
 a function \link{make_function.sin}
 }
+\seealso{
+\link{make_function.sin}
+}
