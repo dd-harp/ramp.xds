@@ -57,7 +57,7 @@ set_Linits.trivial <- function(pars, s=1, Lopts=list()) {
 #' @export
 create_Lpar_trivial = function(nHabitats, Lopts=list(),
                                Lambda=1000,
-                               F_season=F_no_season, F_trend=F_no_trend){
+                               F_season=F_flat, F_trend=F_flat){
   with(Lopts,{
     Lpar = list()
     class(Lpar) <- "trivial"

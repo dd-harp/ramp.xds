@@ -25,12 +25,12 @@ F_H.trivial <- function(t, y, pars, i) {
 #' @param Xopts a [list]
 #' @param kappa net infectiousness
 #' @param HPop initial human population density
-#' @param F_season a F_seasonality function
-#' @param F_trend a F_trend function
+#' @param F_season a function returning a seasonal signal
+#' @param F_trend a function returning a trend
 #' @return a [list]
 #' @export
 create_Xpar_trivial <- function(nPatches, Xopts, kappa=.1, HPop=1,
-                                F_season=F_no_season, F_trend=F_no_trend){
+                                F_season=F_flat, F_trend=F_flat){
   with(Xopts,{
     Xpar <- list()
     class(Xpar) <- c('trivial')

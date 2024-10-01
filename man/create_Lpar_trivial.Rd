@@ -8,8 +8,8 @@ create_Lpar_trivial(
   nHabitats,
   Lopts = list(),
   Lambda = 1000,
-  F_season = F_no_season,
-  F_trend = F_no_trend
+  F_season = F_flat,
+  F_trend = F_flat
 )
 }
 \arguments{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{make_function.sin}
 \alias{make_function.sin}
-\title{Make a sine-based Seasonality Function}
+\title{Make a Sine-based Seasonality Function}
 \usage{
 \method{make_function}{sin}(opts)
 }
@@ -13,9 +13,12 @@
 a function for seasonality
 }
 \description{
-Build a function to model a
-forced seasonal signal. The shape parameters determine
-the timing, frequency, and relative intensity
-over the season. The function is normalized
-to have an annual value set by \code{norm}
+Return a function of the form
+\deqn{c \left(1+\epsilon + \sin\left(\frac{2 \pi (t-\tau)}{365}\right)\right)^p}
+where \eqn{c} is a normalizing constant, and
+\itemize{
+\item \eqn{\epsilon \geq 0} or \code{floor}
+\item \eqn{\tau} or \code{phase}
+\item \eqn{p} or \code{pw}
+}
 }
