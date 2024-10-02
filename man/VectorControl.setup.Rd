@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{VectorControl.setup}
 \alias{VectorControl.setup}
-\title{The \code{setup} case for exogenous vector_control}
+\title{Vector Control for Static Vector Control}
 \usage{
 \method{VectorControl}{setup}(t, pars)
 }
@@ -15,7 +15,8 @@
 an \strong{\code{xds}} object
 }
 \description{
-Call all the functions to set the
-values of exogenous variables and then revert
-the \code{none} case
+The \code{setup} case runs the \code{dynamic}
+case once, to set the values of variables for
+static models. It then reverts to \code{none} so that
+those values are not changed again.
 }

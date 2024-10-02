@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{dynamic_vector_control}
 \alias{dynamic_vector_control}
-\title{Set up dynamic vector_control}
+\title{Turn On Vector Control}
 \usage{
 dynamic_vector_control(pars)
 }
@@ -13,7 +13,12 @@ dynamic_vector_control(pars)
 an \strong{\code{xds}} object
 }
 \description{
-If dynamic vector_control has not
-already been set up, then turn on dynamic
-vector_control and set all the
+Any function that sets up
+non-trivial vector control must
+calls this function.
+If \code{class(pars$vector_control) == 'none'}
+then it is set to \code{dynamic} and the
+trivial module for every mode of
+vector control is set up. Otherwise,
+nothing happens.
 }

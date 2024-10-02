@@ -55,7 +55,7 @@ set_Lpars.basicL <- function(pars, s=1, Lopts=list()) {
     pars$Lpar[[s]]$phi = checkIt(phi, nHabitats)
     pars$Lpar[[s]]$theta = checkIt(theta, nHabitats)
     return(pars)
-}))}
+  }))}
 
 #' @title Make parameters for basicL competition aquatic mosquito model
 #' @param nHabitats the number of habitats in the model

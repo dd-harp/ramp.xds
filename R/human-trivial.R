@@ -39,7 +39,7 @@ create_Xpar_trivial <- function(nPatches, Xopts, kappa=.1, HPop=1,
     Xpar$F_season <- F_season
     Xpar$F_trend <- F_trend
     return(Xpar)
-})}
+  })}
 
 #' @title **X** Component Derivatives for the `trivial` model
 #' @description The trivial model has no state variables so it returns

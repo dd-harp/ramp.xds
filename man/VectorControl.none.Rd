@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{VectorControl.none}
 \alias{VectorControl.none}
-\title{Set the values of exogenous variables}
+\title{Implement No Vector Control}
 \usage{
 \method{VectorControl}{none}(t, y, pars)
 }
@@ -17,7 +17,9 @@
 an \strong{\code{xds}} object
 }
 \description{
-After none setup, no exogenous
-variables are configured so vector_control returns
-the \strong{\code{xds}} object without modification
+With no vector control,
+the \strong{\code{xds}} object is returned unmodified
+}
+\note{
+No control or \code{none} is the default setting
 }

@@ -1,8 +1,13 @@
 
-
-#' @title Set the values of exogenous variables
-#' @description Set the values of
-#' exogenous variables.
+#' @title Implement Vector Control
+#' @description The generic function to
+#' implement vector control.
+#' @note This function is a junction that
+#' calls functions to implement various modes of
+#' vector control, but the non-trivial modules
+#' are not found in **`ramp.xds`.**
+#' All non-trivial vector control modules are in
+#' [**`ramp.control`**](https://github.com/dd-harp/ramp.control).
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an **`xds`** object
@@ -11,10 +16,10 @@ VectorControl = function(t, y, pars){
   UseMethod("VectorControl", pars$vector_control)
 }
 
-#' @title Set the values of exogenous variables
-#' @description After none setup, no exogenous
-#' variables are configured so vector_control returns
-#' the **`xds`** object without modification
+#' @title Implement No Vector Control
+#' @description With no vector control,
+#' the **`xds`** object is returned unmodified
+#' @note No control or `none` is the default setting
 #' @inheritParams VectorControl
 #' @return an **`xds`** object
 VectorControl.none = function(t, y, pars){
@@ -22,29 +27,37 @@ VectorControl.none = function(t, y, pars){
 }
 
 
-#' @title Distribute vector control, the null model
-#' @description Implements [VectorControl] for the control model of vector control (do nothing)
+#' @title Implement Some Vector Control
+#' @description Implements various forms
+#' of vector control. Each mode for vector
+#' control is set up and configured separately.
+#' @note This function is a junction that
+#' calls functions to implement various modes of
+#' vector control, but the non-trivial modules
+#' are not found in **`ramp.xds`.**
+#' All non-trivial vector control modules are in
+#' [**`ramp.control`**](https://github.com/dd-harp/ramp.control).
 #' @inheritParams VectorControl
 #' @return a named [list]
 #' @export
 VectorControl.dynamic <- function(t, y, pars) {
   pars = BedNet(t, pars)
   pars = IRS(t, pars)
-  #  pars = AreaSpray(t, pars)
-  #  pars = SugarBait(t, pars)
-  #  pars = LSM(t, pars)
+  pars = AreaSpray(t, pars)
+  pars = SugarBait(t, pars)
+  pars = LSM(t, pars)
   #  pars = EM(t, pars)
   #  pars = Endectocide(t, pars)
   #  pars = ADLarvicide(t, pars)
   return(pars)
 }
 
-#' @title The `setup` case for exogenous vector_control
-#' @description Call all the functions to set the
-#' values of exogenous variables and then revert
-#' the `none` case
-#' @param t current simulation time
-#' @param pars an **`xds`** object
+#' @title Vector Control for Static Vector Control
+#' @description The `setup` case runs the `dynamic`
+#' case once, to set the values of variables for
+#' static models. It then reverts to `none` so that
+#' those values are not changed again.
+#' @inheritParams VectorControl
 #' @return an **`xds`** object
 VectorControl.setup = function(t, pars){
   class(pars$vector_control) <- 'dynamic'
@@ -67,8 +80,8 @@ VectorControlEffectSizes <- function(t, y, pars) {
 
 #' @title Set the values of exogenous variables
 #' @description After none setup, no exogenous
-#' variables are configured so vector_control returns
-#' the **`xds`** object without modification
+#' variables are configured so the function returns
+#' the unmodified **`xds`** object
 #' @inheritParams VectorControlEffectSizes
 #' @return an **`xds`** object
 VectorControlEffectSizes.none = function(t, y, pars){
@@ -94,9 +107,10 @@ VectorControlEffectSizes.dynamic <- function(t, y, pars) {
   return(pars)
 }
 
-#' @title none set up for exogenous vector_control
-#' @description This sets up the `none` option
-#' for exogenous vector_control: no vector_control.
+#' @title Setup Function for No Vector Control (default)
+#' @description This sets `class(vector_control) <- 'none'`
+#' to dispatch the no vector control option.
+#' @seealso [VectorControl.none]
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
 setup_no_vector_control = function(pars){
@@ -106,10 +120,15 @@ setup_no_vector_control = function(pars){
   return(pars)
 }
 
-#' @title Set up dynamic vector_control
-#' @description If dynamic vector_control has not
-#' already been set up, then turn on dynamic
-#' vector_control and set all the
+#' @title Turn On Vector Control
+#' @description Any function that sets up
+#' non-trivial vector control must
+#' calls this function.
+#' If `class(pars$vector_control) == 'none'`
+#' then it is set to `dynamic` and the
+#' trivial module for every mode of
+#' vector control is set up. Otherwise,
+#' nothing happens.
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
 #' @export
@@ -117,10 +136,14 @@ dynamic_vector_control = function(pars){
   UseMethod("dynamic_vector_control", pars$vector_control)
 }
 
-#' @title Set up dynamic vector_control
-#' @description If dynamic vector_control has not
-#' already been set up, then turn on dynamic
-#' vector_control and set all the
+#' @title Turn On Vector Control
+#' @description If
+#' `class(pars$vector_control) == 'none'`
+#' then dynamic vector_control has not
+#' been set up by any other function.
+#' This sets `class(vector_control) <- 'dynamic'` and
+#' then sets up a  trivial module for every mode of
+#' vector control.
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
 #' @export
@@ -133,10 +156,11 @@ dynamic_vector_control.none = function(pars){
   return(pars)
 }
 
-#' @title Set up dynamic vector_control
-#' @description If dynamic vector_control has not
-#' already been set up, then turn on dynamic
-#' vector_control and set all the
+#' @title Vector Control is Turned On
+#' @description If
+#' `class(pars$vector_control) == 'setup'`
+#' then dynamic vector control has been turned
+#' on. The unmodified **`xds`** object is returned.
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
 #' @export
@@ -144,10 +168,11 @@ dynamic_vector_control.setup = function(pars){
   return(pars)
 }
 
-#' @title Set up dynamic vector_control
-#' @description If dynamic vector_control has not
-#' already been set up, then turn on dynamic
-#' vector_control and set all the
+#' @title Vector Control is Turned On
+#' @description If
+#' `class(pars$vector_control) == 'dynamic'`
+#' then dynamic vector control has been turned
+#' on. The unmodified **`xds`** object is returned.
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
 #' @export

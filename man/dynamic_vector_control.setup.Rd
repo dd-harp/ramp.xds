@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{dynamic_vector_control.setup}
 \alias{dynamic_vector_control.setup}
-\title{Set up dynamic vector_control}
+\title{Vector Control is Turned On}
 \usage{
 \method{dynamic_vector_control}{setup}(pars)
 }
@@ -13,7 +13,8 @@
 an \strong{\code{xds}} object
 }
 \description{
-If dynamic vector_control has not
-already been set up, then turn on dynamic
-vector_control and set all the
+If
+\code{class(pars$vector_control) == 'setup'}
+then dynamic vector control has been turned
+on. The unmodified \strong{\code{xds}} object is returned.
 }

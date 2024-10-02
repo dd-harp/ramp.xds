@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{setup_no_vector_control}
 \alias{setup_no_vector_control}
-\title{none set up for exogenous vector_control}
+\title{Setup Function for No Vector Control (default)}
 \usage{
 setup_no_vector_control(pars)
 }
@@ -13,6 +13,9 @@ setup_no_vector_control(pars)
 an \strong{\code{xds}} object
 }
 \description{
-This sets up the \code{none} option
-for exogenous vector_control: no vector_control.
+This sets \code{class(vector_control) <- 'none'}
+to dispatch the no vector control option.
+}
+\seealso{
+\link{VectorControl.none}
 }
