@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{VectorControl}
 \alias{VectorControl}
-\title{Set the values of exogenous variables}
+\title{Implement Vector Control}
 \usage{
 VectorControl(t, y, pars)
 }
@@ -17,6 +17,14 @@ VectorControl(t, y, pars)
 an \strong{\code{xds}} object
 }
 \description{
-Set the values of
-exogenous variables.
+The generic function to
+implement vector control.
+}
+\note{
+This function is a junction that
+calls functions to implement various modes of
+vector control, but the non-trivial modules
+are not found in \strong{\code{ramp.xds}.}
+All non-trivial vector control modules are in
+\href{https://github.com/dd-harp/ramp.control}{\strong{\code{ramp.control}}}.
 }

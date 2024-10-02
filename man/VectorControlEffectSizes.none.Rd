@@ -18,6 +18,6 @@ an \strong{\code{xds}} object
 }
 \description{
 After none setup, no exogenous
-variables are configured so vector_control returns
-the \strong{\code{xds}} object without modification
+variables are configured so the function returns
+the unmodified \strong{\code{xds}} object
 }

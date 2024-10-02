@@ -28,7 +28,7 @@ set_eir.cohort  = function(eir, pars){
 
   with(pars$EIRpar,{
     pars$F_eir <- function(age, bday){
-       eir/scale*F_season(age+bday)*F_trend(age+bday)*F_age(age)}
+      eir/scale*F_season(age+bday)*F_trend(age+bday)*F_age(age)}
     return(pars)
   })
 }

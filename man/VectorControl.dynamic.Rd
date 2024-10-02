@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{VectorControl.dynamic}
 \alias{VectorControl.dynamic}
-\title{Distribute vector control, the null model}
+\title{Implement Some Vector Control}
 \usage{
 \method{VectorControl}{dynamic}(t, y, pars)
 }
@@ -17,5 +17,15 @@
 a named \link{list}
 }
 \description{
-Implements \link{VectorControl} for the control model of vector control (do nothing)
+Implements various forms
+of vector control. Each mode for vector
+control is set up and configured separately.
+}
+\note{
+This function is a junction that
+calls functions to implement various modes of
+vector control, but the non-trivial modules
+are not found in \strong{\code{ramp.xds}.}
+All non-trivial vector control modules are in
+\href{https://github.com/dd-harp/ramp.control}{\strong{\code{ramp.control}}}.
 }
