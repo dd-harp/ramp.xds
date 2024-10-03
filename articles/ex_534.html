@@ -451,16 +451,16 @@ parameters,
 (density-independent mortality rates), and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>
 (density-dependent mortality terms), and initial conditions. The
-function <code>ramp.xds::xde_make_Lpar_basicL</code> does basic checking
-of the input parameters and returns a list with the correct class for
-method dispatch. The returned list is attached to the main parameter
-list with name <code>Lpar</code>.</p>
+function <code>ramp.xds::xde_setup_Lpar_basicL</code> does basic
+checking of the input parameters and returns a list with the correct
+class for method dispatch. The returned list is attached to the main
+parameter list with name <code>Lpar</code>.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">psi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span>, <span class="va">nHabitats</span><span class="op">)</span></span>
 <span><span class="va">phi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span>, <span class="va">nHabitats</span><span class="op">)</span></span>
 <span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">40</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">10</span><span class="op">)</span> </span>
 <span></span>
-<span><span class="va">Lpar</span> <span class="op">=</span> <span class="fu"><a href="../reference/create_Lpar_basicL.html">create_Lpar_basicL</a></span><span class="op">(</span><span class="va">nHabitats</span>, psi<span class="op">=</span><span class="va">psi</span>, phi<span class="op">=</span><span class="va">phi</span>, theta <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">Lpar</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_Lpar_basicL.html">make_Lpar_basicL</a></span><span class="op">(</span><span class="va">nHabitats</span>, psi<span class="op">=</span><span class="va">psi</span>, phi<span class="op">=</span><span class="va">phi</span>, theta <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="adult-mosquito-dynamics">Adult Mosquito Dynamics<a class="anchor" aria-label="anchor" href="#adult-mosquito-dynamics"></a>
@@ -696,7 +696,7 @@ them.</p>
 <span><span class="va">params</span><span class="op">$</span><span class="va">Xpar</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span> </span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">Xpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">Xpar</span> </span></code></pre></div>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Linits.html">make_Linits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">Linits</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Linits.html">setup_Linits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">Linits</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_MYZinits.html">make_MYZinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZinits</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Xinits.html">make_Xinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">HPop</span>, <span class="fl">1</span>, <span class="va">Xinits</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">

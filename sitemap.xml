@@ -281,9 +281,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_eggs_laid.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_kappa.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_local_frac.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/create_Linits_basicL.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/create_Lpar_basicL.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/create_Lpar_trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/create_MYZinits_GeRM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/create_MYZinits_RM_dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/create_MYZinits_basicM.html</loc></url>
@@ -433,12 +430,9 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/list_vars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_EIR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_EIR_full.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Linits.basicL.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Linits.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Linits.trivial.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Lpar.basicL.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Lpar.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Lpar.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Linits_basicL.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Lpar_basicL.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Lpar_trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_MYZinits.GeRM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_MYZinits.RM_dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_MYZinits.basicM.html</loc></url>
@@ -489,9 +483,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.sin.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.sum.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_indices.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_L.basicL.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_L.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_L.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_MYZ.GeRM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_MYZ.RM_dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_indices_MYZ.basicM.html</loc></url>
@@ -536,8 +527,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_Xorbits.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_orbits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_y.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/put_Lvars.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/put_Lvars.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/put_MYZvars.RM_dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/put_MYZvars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/put_MYZvars.si.html</loc></url>
@@ -586,6 +575,12 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_EIP.fixedlag_dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_EIP.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Hpar_static.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Linits.basicL.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Linits.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Linits.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Lpar.basicL.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Lpar.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Lpar.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_TRANSMISSION.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_care_seeking_no_behavior.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_development.func.html</loc></url>
@@ -606,6 +601,9 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_hydrology.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_hydrology.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_hydrology_func.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_indices_L.basicL.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_indices_L.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_indices_L.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_no_active_case_detection.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_no_area_spray.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_no_bednets.html</loc></url>
