@@ -85,12 +85,12 @@ Update_MYZt.trivial <- function(t, y, pars, s){
 
 
 #' @title Setup the trivial
-#' @description Implements [make_MYZpar] for the trivial model
-#' @inheritParams make_MYZpar
+#' @description Implements [setup_MYZpar] for the trivial model
+#' @inheritParams setup_MYZpar
 #' @return a [list] vector
 #' @export
-make_MYZpar.trivial = function(MYZname, pars, s, MYZopts=NULL){
-  MYZpar <- create_MYZpar_trivial(pars$nPatches, MYZopts)
+setup_MYZpar.trivial = function(MYZname, pars, s, MYZopts=NULL){
+  MYZpar <- make_MYZpar_trivial(pars$nPatches, MYZopts)
   class(MYZpar) <- 'trivial'
   pars$MYZpar[[s]] <- MYZpar
   return(pars)
@@ -163,7 +163,7 @@ xde_steady_state_MYZ.trivial = function(Lambda, kappa, MYZpar){with(MYZpar,{
 #' @param F_trend a F_trend function
 #' @return none
 #' @export
-create_MYZpar_trivial = function(nPatches, MYZopts,
+make_MYZpar_trivial = function(nPatches, MYZopts,
                                  f = 1, q = 1, Z=1, eggs=1,
                                  F_season=F_flat, F_trend=F_flat){
   with(MYZopts,{
@@ -192,11 +192,11 @@ create_MYZpar_trivial = function(nPatches, MYZopts,
   })}
 
 #' @title Setup the trivial model
-#' @description Implements [make_MYZinits] for the trivial model
-#' @inheritParams make_MYZinits
+#' @description Implements [setup_MYZinits] for the trivial model
+#' @inheritParams setup_MYZinits
 #' @return a [list] vector
 #' @export
-make_MYZinits.trivial = function(pars, s, MYZopts=NULL){
+setup_MYZinits.trivial = function(pars, s, MYZopts=NULL){
   return(pars)
 }
 

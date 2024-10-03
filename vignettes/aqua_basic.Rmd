@@ -98,7 +98,7 @@ F_eta = function(t, pars){
 
 params = setup_Lpar("basicL", params, 1, Lo)
 params = setup_Linits(params, 1, Lo)
-params = make_MYZpar("trivial", params, 1, MYZo)
+params = setup_MYZpar("trivial", params, 1, MYZo)
 
 params = make_indices(params)
 ```

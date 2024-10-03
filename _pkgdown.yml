@@ -257,7 +257,7 @@ reference:
   - MBionomics
   - xde_steady_state_MYZ
   - xde_steady_state_M
-  - make_MYZpar
+  - setup_MYZpar
   - Update_MYZt
   - MYZ_rates2probs
   - dts_steady_state_MYZ
@@ -268,7 +268,7 @@ reference:
   - get_MYZpars
   - set_MYZpars
   - put_MYZvars
-  - make_MYZinits
+  - setup_MYZinits
   - get_MYZinits
   - set_MYZinits
   - update_MYZinits
@@ -327,13 +327,13 @@ reference:
   - MBaseline.trivial
   - MBionomics.trivial
   - Update_MYZt.trivial
-  - make_MYZpar.trivial
+  - setup_MYZpar.trivial
   - get_MYZpars.trivial
   - set_MYZpars.trivial
   - set_MYZinits.trivial
-  - create_MYZpar_trivial
+  - make_MYZpar_trivial
   - xde_steady_state_MYZ.trivial
-  - make_MYZinits.trivial
+  - setup_MYZinits.trivial
   - make_indices_MYZ.trivial
   - parse_MYZorbits.trivial
   - get_MYZinits.trivial
@@ -347,12 +347,12 @@ reference:
   - MBionomics.basicM
   - xde_steady_state_M.basicM
   - Update_MYZt.basicM
-  - make_MYZpar.basicM
+  - setup_MYZpar.basicM
   - F_fqZ.basicM
   - F_fqM.basicM
   - F_eggs.basicM
-  - make_MYZinits.basicM
-  - create_MYZinits_basicM
+  - setup_MYZinits.basicM
+  - make_MYZinits_basicM
   - make_indices_MYZ.basicM
   - list_MYZvars.basicM
   - get_MYZpars.basicM
@@ -370,8 +370,8 @@ reference:
   - MBionomics.SI
   - xde_steady_state_MYZ.SI
   - Update_MYZt.SI
-  - make_MYZpar.SI
-  - create_MYZpar_SI
+  - setup_MYZpar.SI
+  - make_MYZpar_SI
   - F_fqZ.SI
   - F_fqM.SI
   - F_eggs.SI
@@ -380,8 +380,8 @@ reference:
   - set_MYZpars.SI
   - set_MYZinits.SI
   - put_MYZvars.SI
-  - make_MYZinits.SI
-  - create_MYZinits_SI
+  - setup_MYZinits.SI
+  - make_MYZinits_SI
   - make_indices_MYZ.SI
   - parse_MYZorbits.SI
   - get_MYZinits.SI
@@ -398,8 +398,8 @@ reference:
   - MBaseline.macdonald
   - MBionomics.macdonald
   - xde_steady_state_MYZ.macdonald
-  - make_MYZpar.macdonald
-  - create_MYZpar_macdonald
+  - setup_MYZpar.macdonald
+  - make_MYZpar_macdonald
   - list_MYZvars.macdonald
   - get_MYZpars.macdonald
   - set_MYZpars.macdonald
@@ -407,8 +407,8 @@ reference:
   - F_fqZ.macdonald
   - F_fqM.macdonald
   - F_eggs.macdonald
-  - make_MYZinits.macdonald
-  - create_MYZinits_macdonald
+  - setup_MYZinits.macdonald
+  - make_MYZinits_macdonald
   - get_MYZinits.macdonald
   - update_MYZinits.macdonald
   - make_indices_MYZ.macdonald
@@ -426,8 +426,8 @@ reference:
   - MBionomics.GeRM
   - Update_MYZt.GeRM
   - xde_steady_state_MYZ.GeRM
-  - make_MYZpar.GeRM
-  - create_MYZpar_GeRM
+  - setup_MYZpar.GeRM
+  - make_MYZpar_GeRM
   - list_MYZvars.GeRM
   - get_MYZpars.GeRM
   - set_MYZpars.GeRM
@@ -435,8 +435,8 @@ reference:
   - F_fqZ.GeRM
   - F_fqM.GeRM
   - F_eggs.GeRM
-  - make_MYZinits.GeRM
-  - create_MYZinits_GeRM
+  - setup_MYZinits.GeRM
+  - make_MYZinits_GeRM
   - get_MYZinits.GeRM
   - update_MYZinits.GeRM
   - make_indices_MYZ.GeRM
@@ -453,10 +453,10 @@ reference:
   - F_fqM.RM_dts
   - F_eggs.RM_dts
   - Update_MYZt.RM_dts
-  - make_MYZinits.RM_dts
+  - setup_MYZinits.RM_dts
   - list_MYZvars.RM_dts
   - put_MYZvars.RM_dts
-  - create_MYZinits_RM_dts
+  - make_MYZinits_RM_dts
   - make_indices_MYZ.RM_dts
   - parse_MYZorbits.RM_dts
   - get_MYZinits.RM_dts

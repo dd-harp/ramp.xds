@@ -45,13 +45,13 @@ dMYZdt.GeRM <- function(t, y, pars, s){
 
 
 #' @title Setup MYZpar for the GeRM model
-#' @description Implements [make_MYZpar] for the GeRM model
-#' @inheritParams make_MYZpar
+#' @description Implements [setup_MYZpar] for the GeRM model
+#' @inheritParams setup_MYZpar
 #' @return a [list] vector
 #' @export
-make_MYZpar.GeRM = function(MYZname, pars, s, MYZopts=list()){
+setup_MYZpar.GeRM = function(MYZname, pars, s, MYZopts=list()){
   pars = xds_dde(pars)
-  MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
+  MYZpar <- make_MYZpar_GeRM(pars$nPatches, MYZopts)
   class(MYZpar) <- 'GeRM'
   pars$MYZpar[[s]] = MYZpar
   return(pars)
@@ -70,7 +70,7 @@ make_MYZpar.GeRM = function(MYZname, pars, s, MYZopts=list()){
 #' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
 #' @export
-create_MYZpar_GeRM = function(nPatches, MYZopts=list(), eip =12,
+make_MYZpar_GeRM = function(nPatches, MYZopts=list(), eip =12,
                               g=1/12,  sigma=1/8,  mu=0,
                               f=0.3,  q=0.95,
                               nu=1,  eggsPerBatch=60){
@@ -266,7 +266,7 @@ Update_MYZt.GeRM <- function(t, y, pars, s) {
 #' @param Z infectious mosquito density at each patch
 #' @return a [list]
 #' @export
-create_MYZinits_GeRM = function(nPatches, Upsilon, MYZopts = list(),
+make_MYZinits_GeRM = function(nPatches, Upsilon, MYZopts = list(),
                               M=5, P=1, Y=1, Z=1){
   stopifnot(dim(Upsilon) == c(nPatches,nPatches))
   with(MYZopts,{
@@ -349,14 +349,14 @@ F_eggs.GeRM <- function(t, y, pars, s) {
 
 
 #' @title Setup initial values for the GeRM model
-#' @description Implements [make_MYZinits] for the GeRM model
-#' @inheritParams make_MYZinits
+#' @description Implements [setup_MYZinits] for the GeRM model
+#' @inheritParams setup_MYZinits
 #' @return a [list]
 #' @export
-make_MYZinits.GeRM = function(pars, s, MYZopts=list()){with(pars$MYZpar[[s]], {
+setup_MYZinits.GeRM = function(pars, s, MYZopts=list()){with(pars$MYZpar[[s]], {
   Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
   Upsilon = expm(-Omega*eip)
-  pars$MYZinits[[s]] = create_MYZinits_GeRM(nPatches, Upsilon, MYZopts)
+  pars$MYZinits[[s]] = make_MYZinits_GeRM(nPatches, Upsilon, MYZopts)
   return(pars)
 })}
 
@@ -393,7 +393,7 @@ update_MYZinits.GeRM <- function(pars, y0, s) {
     P = y0[P_ix]
     Y = y0[Y_ix]
     Z = y0[Z_ix]
-    pars = make_MYZinits(pars, s, list(M=M, P=P, Y=Y, Z=Z))
+    pars = setup_MYZinits(pars, s, list(M=M, P=P, Y=Y, Z=Z))
     return(pars)
   })}
 

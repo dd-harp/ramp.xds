@@ -62,9 +62,9 @@ MBionomics <- function(t, y, pars, s) {
 #' @param MYZopts a [list]
 #' @return [list]
 #' @export
-make_MYZpar = function(MYZname, pars, s, MYZopts=list()){
+setup_MYZpar = function(MYZname, pars, s, MYZopts=list()){
   class(MYZname) <- MYZname
-  UseMethod("make_MYZpar", MYZname)
+  UseMethod("setup_MYZpar", MYZname)
 }
 
 #' @title Return the parameters as a list
@@ -176,8 +176,8 @@ put_MYZvars <- function(MYZvars, y, pars, s) {
 #' @param MYZopts a [list]
 #' @return [list]
 #' @export
-make_MYZinits = function(pars, s, MYZopts=list()){
-  UseMethod("make_MYZinits", pars$MYZpar[[s]])
+setup_MYZinits = function(pars, s, MYZopts=list()){
+  UseMethod("setup_MYZinits", pars$MYZpar[[s]])
 }
 
 #' @title Set new MYZ parameter values

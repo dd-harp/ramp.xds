@@ -65,12 +65,12 @@ F_eggs.RM_dts <- function(t, y, pars, s) {
 
 
 #' @title Setup initial values for the RM_dts model
-#' @description Implements [make_MYZinits] for the RM_dts model
-#' @inheritParams make_MYZinits
+#' @description Implements [setup_MYZinits] for the RM_dts model
+#' @inheritParams setup_MYZinits
 #' @return a [list]
 #' @export
-make_MYZinits.RM_dts = function(pars, s, MYZopts=list()){
-  pars$MYZinits[[s]] = with(pars$MYZpar[[s]], create_MYZinits_RM_dts(nPatches, max_eip, MYZopts))
+setup_MYZinits.RM_dts = function(pars, s, MYZopts=list()){
+  pars$MYZinits[[s]] = with(pars$MYZpar[[s]], make_MYZinits_RM_dts(nPatches, max_eip, MYZopts))
   return(pars)
 }
 
@@ -85,7 +85,7 @@ make_MYZinits.RM_dts = function(pars, s, MYZopts=list()){
 #' @param Z infectious mosquito density at each patch
 #' @return a [list]
 #' @export
-create_MYZinits_RM_dts = function(nPatches, max_eip, MYZopts = list(),
+make_MYZinits_RM_dts = function(nPatches, max_eip, MYZopts = list(),
                                   M=5, P=1, U=0, Y=1, Z=1){
   with(MYZopts,{
     M = checkIt(M, nPatches)
@@ -197,7 +197,7 @@ update_MYZinits.RM_dts <- function(pars, y0, s) {with(pars$ix$MYZ[[s]],{
   U = y0[U_ix]
   Y = y0[Y_ix]
   Z = y0[Z_ix]
-  pars$MYZinits[[s]] = create_MYZinits_RM_dts(pars$nPatches, max_eip, list(), M=M, P=P, U=U, Y=Y, Z=Z)
+  pars$MYZinits[[s]] = make_MYZinits_RM_dts(pars$nPatches, max_eip, list(), M=M, P=P, U=U, Y=Y, Z=Z)
   return(pars)
 })}
 
