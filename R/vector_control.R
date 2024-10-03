@@ -2,11 +2,9 @@
 #' @title Implement Vector Control
 #' @description The generic function to
 #' implement vector control.
-#' @note This function is a junction that
-#' calls functions to implement various modes of
-#' vector control, but the non-trivial modules
-#' are not found in **`ramp.xds`.**
-#' All non-trivial vector control modules are in
+#' @note This a junction to implement various modes of
+#' vector control.
+#' Non-trivial vector control modules are in
 #' [**`ramp.control`**](https://github.com/dd-harp/ramp.control).
 #' @param t current simulation time
 #' @param y state vector
@@ -31,11 +29,9 @@ VectorControl.none = function(t, y, pars){
 #' @description Implements various forms
 #' of vector control. Each mode for vector
 #' control is set up and configured separately.
-#' @note This function is a junction that
-#' calls functions to implement various modes of
-#' vector control, but the non-trivial modules
-#' are not found in **`ramp.xds`.**
-#' All non-trivial vector control modules are in
+#' @note This a junction to implement various modes of
+#' vector control.
+#' Non-trivial vector control modules are in
 #' [**`ramp.control`**](https://github.com/dd-harp/ramp.control).
 #' @inheritParams VectorControl
 #' @return a named [list]
@@ -44,7 +40,7 @@ VectorControl.dynamic <- function(t, y, pars) {
   pars = BedNet(t, pars)
   pars = IRS(t, pars)
   pars = AreaSpray(t, pars)
-  pars = SugarBait(t, pars)
+  pars = SugarBaits(t, pars)
   pars = LSM(t, pars)
   #  pars = EM(t, pars)
   #  pars = Endectocide(t, pars)

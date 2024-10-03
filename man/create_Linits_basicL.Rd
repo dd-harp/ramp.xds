@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{create_Linits_basicL}
 \alias{create_Linits_basicL}
-\title{Make inits for basicL competition aquatic mosquito model}
+\title{Create Initial Values for \strong{L} Component Variables for \code{basicL}}
 \usage{
 create_Linits_basicL(nHabitats, Lopts = list(), L = 1)
 }
@@ -17,5 +17,5 @@ create_Linits_basicL(nHabitats, Lopts = list(), L = 1)
 a \link{list} with Linits added
 }
 \description{
-Make inits for basicL competition aquatic mosquito model
+Initial values of the variable \eqn{L} can be set
 }

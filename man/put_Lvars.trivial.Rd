@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{put_Lvars.trivial}
 \alias{put_Lvars.trivial}
-\title{Return the variables as a list}
+\title{Return \strong{L} Component variables as a list}
 \usage{
 \method{put_Lvars}{trivial}(Lvars, y, pars, s)
 }

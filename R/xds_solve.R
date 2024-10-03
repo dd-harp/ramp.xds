@@ -35,8 +35,9 @@ xds_solve.ode = function(pars, Tmax=365, dt=1, times=NULL){
   if(!is.null(times)) tt <- times
   y0 = get_inits(pars, flatten=TRUE)
   deSolve::ode(y = y0, times = tt, func = xde_derivatives, parms = pars, method = "lsoda") -> deout
-  tm <- deout[,1]
-  pars <- make_outputs(pars, deout[,-1], tm)
+  deout <- matrix(deout, nrow = length(tt), ncol = length(y0)+1)
+  tm <- as.vector(deout[,1])
+  pars <- make_outputs(pars, as.matrix(deout[,-1]), tm)
   pars$outputs$deout <- deout
   return(pars)
 }
@@ -51,8 +52,9 @@ xds_solve.dde = function(pars, Tmax=365, dt=1, times=NULL){
   if(!is.null(times)) tt <- times
   y0 = get_inits(pars, flatten=TRUE)
   deSolve::dede(y = y0, times = tt, func = xde_derivatives, parms = pars, method = "lsoda") -> deout
-  tm <- deout[,1]
-  pars <- make_outputs(pars, deout[,-1], tm)
+  deout <- matrix(deout, nrow = length(tt), ncol = length(y0)+1)
+  tm <- as.vector(deout[,1])
+  pars <- make_outputs(pars, as.matrix(deout[,-1]), tm)
   pars$outputs$deout <- deout
   return(pars)
 }

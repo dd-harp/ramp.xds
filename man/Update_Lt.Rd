@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{Update_Lt}
 \alias{Update_Lt}
-\title{Update States for \eqn{\cal L}}
+\title{Update States for \strong{L}}
 \usage{
 Update_Lt(t, y, pars, s)
 }
@@ -20,8 +20,7 @@ the states, a \link{numeric} vector of length \eqn{n_q=}\code{nHabitats}
 }
 \description{
 This method updates the state variables
-for the \eqn{\cal L} component -- immature mosquitoes
-in aquatic habitats
+for \strong{L} Component modules
 }
 \note{
 Dispatches on the class of \code{pars$Lpar[[s]]}

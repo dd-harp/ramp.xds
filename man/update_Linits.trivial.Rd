@@ -4,12 +4,12 @@
 \alias{update_Linits.trivial}
 \title{Update inits for the basic aquatic mosquito competition model}
 \usage{
-\method{update_Linits}{trivial}(pars, y0, s)
+\method{update_Linits}{trivial}(pars, y, s)
 }
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}
 
-\item{y0}{a vector of variable values from a simulation}
+\item{y}{the state variables}
 
 \item{s}{the species index}
 }

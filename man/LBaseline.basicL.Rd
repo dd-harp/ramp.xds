@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{LBaseline.basicL}
 \alias{LBaseline.basicL}
-\title{Reset aquatic parameters to baseline}
+\title{Reset \strong{L} Component Parameters to Baseline}
 \usage{
 \method{LBaseline}{basicL}(t, y, pars, s)
 }
@@ -16,8 +16,9 @@
 \item{s}{the species index}
 }
 \value{
-a named \link{list}
+a \strong{\code{ramp.xds}} object
 }
 \description{
-Implements \link{LBaseline} for the RM model
+Set \strong{L} component parameters
+to baseline values for \code{basicL}
 }

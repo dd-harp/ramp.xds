@@ -20,9 +20,9 @@ xds_setup_human(
 )
 }
 \arguments{
-\item{Xname}{a character string defining a X model}
+\item{Xname}{a character string defining a \strong{X} Component module}
 
-\item{Xopts}{list to configure the X model}
+\item{Xopts}{a named list to configure the \strong{X} Component module}
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
@@ -32,13 +32,13 @@ xds_setup_human(
 
 \item{HPop}{the number of humans in each patch}
 
-\item{Xday}{is the run-time time step for X component (in days): integer or 1/integer}
+\item{Xday}{is the run-time time step for \strong{X} Component (in days): integer or 1/integer}
 
 \item{searchB}{a vector of search weights for blood feeding}
 
 \item{TimeSpent}{either a TimeSpent matrix or a string to call a function that sets it up}
 
-\item{MYZopts}{list to configure the MYZ model}
+\item{MYZopts}{list to configure the \strong{MYZ} Component module}
 
 \item{BFopts}{list to configure the blood feeding model}
 
@@ -49,16 +49,16 @@ an \strong{\code{xds}} object
 }
 \description{
 A modified version of \link{xds_setup} that
-streamlines setup for models with a trival \eqn{\cal MYZ} component.
+streamlines setup for models with a trival \strong{MYZ} Component.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'human'}
 to dispatch \link{xde_derivatives.human} or \link{dts_update.human} and associated functions.
 
-The \eqn{\cal MYZ} model is trivial. The funcion \link{F_fqZ} still passes the
-density of infectious adult mosquitoes, so \eqn{f} and \eqn{q} can still be
+The \strong{MYZ} Component module is set to \code{trivial.} The funcion \link{F_fqZ.trivial} is called to compute passes the
+density of infectious adult mosquitoes, and \eqn{f} and \eqn{q} can still be
 configured. In this case, the daily EIR is computed using the blood feeding
 interface, including \link{Exposure}, in the same way as a model with a non-trivial
-\eqn{\cal MYZ} component.
+\strong{MYZ} Component module.
 
 To study human cohort dynamics by passing a function that computes the daily EIR,
 consider using \link{xds_setup_cohort}.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{make_Lpar.basicL}
 \alias{make_Lpar.basicL}
-\title{xde_setup Lpar for the basicL model}
+\title{Set up \code{Lpar} for the \code{basicL} model}
 \usage{
 \method{make_Lpar}{basicL}(Lname, pars, s, Lopts = list())
 }
@@ -19,5 +19,9 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{make_Lpar} for the basicL model
+The function sets up \code{Lpar} for the \eqn{s^{th}} species
+by calling \link{create_Lpar_basicL}
+}
+\seealso{
+\link{create_Lpar_basicL}
 }

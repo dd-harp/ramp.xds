@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{set_Lpars.basicL}
 \alias{set_Lpars.basicL}
-\title{Return the parameters as a list}
+\title{Set \strong{L} Component parameters for \code{basicL}}
 \usage{
 \method{set_Lpars}{basicL}(pars, s = 1, Lopts = list())
 }
@@ -17,5 +17,14 @@
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar[[s]]}.
+Set the values of \strong{L} component parameters
+\itemize{
+\item \code{psi} or \eqn{\psi}
+\item \code{xi}  or \eqn{\xi}
+\item \code{phi} or \eqn{\phi}
+\item \code{theta} or \eqn{\theta}
+}
+}
+\seealso{
+\link{dLdt.basicL} or \link{create_Lpar_basicL}
 }

@@ -2,20 +2,21 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{update_Linits.basicL}
 \alias{update_Linits.basicL}
-\title{Update inits for the basicL aquatic mosquito competition model}
+\title{Update Initial Values for \code{basicL} from a state vector \code{y}}
 \usage{
-\method{update_Linits}{basicL}(pars, y0, s)
+\method{update_Linits}{basicL}(pars, y, s)
 }
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}
 
-\item{y0}{a vector of variable values from a simulation}
+\item{y}{the state variables}
 
 \item{s}{the species index}
 }
 \value{
-none
+an \strong{\code{xds}} object
 }
 \description{
-Update inits for the basicL aquatic mosquito competition model
+Extract the values of the variable \eqn{L} from
+a state vector \code{y} and use them to set the initial value for \eqn{L}
 }

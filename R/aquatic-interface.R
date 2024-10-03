@@ -1,9 +1,8 @@
 # generic methods for aquatic component
 
-#' @title \eqn{\cal L} Component Derivatives
+#' @title **L** Component Derivatives
 #' @description This method computes and returns the derivatives
-#' for the \eqn{\cal L} dynamical component -- a model family
-#' describing immature mosquitoes in aquatic habitats
+#' for the **L** Component modules
 #' @note Dispatches on the class of `pars$Lpar[[s]]`
 #' @param t current simulation time
 #' @param y state vector
@@ -15,10 +14,9 @@ dLdt <- function(t, y, pars, s) {
   UseMethod("dLdt", pars$Lpar[[s]])
 }
 
-#' @title Update States for \eqn{\cal L}
+#' @title Update States for **L**
 #' @description This method updates the state variables
-#' for the \eqn{\cal L} component -- immature mosquitoes
-#' in aquatic habitats
+#' for **L** Component modules
 #' @note Dispatches on the class of `pars$Lpar[[s]]`
 #' @param t current simulation time
 #' @param y state vector
@@ -31,7 +29,7 @@ Update_Lt <- function(t, y, pars, s) {
 }
 
 
-#' @title Larval and Aquatic Stage Baseline
+#' @title Baseline Bionomics for an **L** Component Module
 #' @description Handle immature mosquito bionomic parameters as a baseline modified by control
 #' @param t current simulation time
 #' @param y state vector
@@ -43,7 +41,8 @@ LBaseline <- function(t, y, pars, s) {
   UseMethod("LBaseline", pars$Lpar[[s]])
 }
 
-#' @title Larval and Aquatic Stage Bionomics
+
+#' @title Bionomics for an **L** Component Module
 #' @description Handle immature mosquito bionomic parameters as a baseline modified by control
 #' @param t current simulation time
 #' @param y state vector
@@ -55,7 +54,7 @@ LBionomics <- function(t, y, pars, s) {
   UseMethod("LBionomics", pars$Lpar[[s]])
 }
 
-#' @title Create and configure **`Lpar`** for \eqn{\cal L}-Models
+#' @title Set up `Lpar` for **L** Component modules
 #' @description
 #' Each instance of `make_Lpar` calls a function (usually `create_Lpar_*`) that
 #' creates an object **`Lpar`.**
@@ -73,8 +72,7 @@ make_Lpar = function(Lname, pars, s, Lopts=list()){
   UseMethod("make_Lpar", Lname)
 }
 
-#' @title Return the parameters as a list
-#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @title Get parameters for the **L** Component module
 #' @param pars an **`xds`** object
 #' @param s the vector species index
 #' @return a [list]
@@ -83,8 +81,7 @@ get_Lpars <- function(pars, s=1) {
   UseMethod("get_Lpars", pars$Lpar[[s]])
 }
 
-#' @title Return the parameters as a list
-#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @title Set **L** Component Parameters
 #' @param pars an **`xds`** object
 #' @param s the vector species index
 #' @param Lopts a named list
@@ -95,8 +92,7 @@ set_Lpars <- function(pars, s=1, Lopts=list()) {
 }
 
 
-#' @title Return the parameters as a list
-#' @description This method dispatches on the type of `pars$Lpar[[s]]`.
+#' @title Set **L** Component Initial Values
 #' @param pars an **`xds`** object
 #' @param s the vector species index
 #' @param Lopts a named list
@@ -104,22 +100,6 @@ set_Lpars <- function(pars, s=1, Lopts=list()) {
 #' @export
 set_Linits <- function(pars, s=1, Lopts=list()) {
   UseMethod("set_Linits", pars$Lpar[[s]])
-}
-
-
-#' @title Set aquatic bionomic parameter rates relative to baseline
-#' @description It should compute the values of parameters
-#' as a function of exogenous variables
-#' or reset the values of the bionomic parameters to baseline values.
-#' @note This method dispatches on the class of `pars$Lpar[[s]]`
-#' @param t current simulation time
-#' @param y state vector
-#' @param pars an **`xds`** object
-#' @param s the species index
-#' @return an **`xds`** object
-#' @export
-LBionomics <- function(t, y, pars, s) {
-  UseMethod("LBionomics", pars$Lpar[[s]])
 }
 
 #' @title Emerging adults
@@ -136,9 +116,9 @@ F_emerge <- function(t, y, pars, s) {
   UseMethod("F_emerge", pars$Lpar[[s]])
 }
 
-#' @title Return \eqn{\cal L} variables as a list
-#' @description Extract the variables describing the states of \eqn{\cal L}
-#' for the \eqn{s^{th}} species and return them as a named list
+#' @title Return **L** Component Variables as a list
+#' @description Extract the variables describing **L** Component
+#' states for the \eqn{s^{th}} species and return them as a named list
 #' @note This method dispatches on the class of `pars$Lpar[[s]]`.
 #' @param y the variables
 #' @param pars an **`xds`** object
@@ -161,7 +141,7 @@ put_Lvars <- function(Lvars, y, pars, s) {
   UseMethod("put_Lvars", pars$Lpar[[s]])
 }
 
-#' @title A function to set up adult mosquito models
+#' @title Set up Initial Values of Variables for **L** Component modules
 #' @description This method dispatches on `Lname`.
 #' @param pars an **`xds`** object
 #' @param s the species index
@@ -182,20 +162,17 @@ get_Linits <- function(pars, s=1) {
   pars$Linits[[s]]
 }
 
-#' @title Set the initial values from a vector of model states
-#' @description This method dispatches on the class of `pars$Lpar`.
+#' @title Set Initial Values for the **L** Component Module from a State Vector
 #' @param pars an **`xds`** object
-#' @param y0 a vector of variable values from a simulation
+#' @param y the state variables
 #' @param s the species index
 #' @return an `xds` object
 #' @export
-update_Linits <- function(pars, y0, s) {
+update_Linits <- function(pars, y, s) {
   UseMethod("update_Linits", pars$Lpar[[s]])
 }
 
-#' @title Add indices for aquatic stage mosquitoes to parameter list
-#' @description This method dispatches on the class of `pars$Lpar`. Adds field `L_ix`
-#' to parameter list.
+#' @title Set the Values of the Indices for **L** Component Modules
 #' @param pars an **`xds`** object
 #' @param s the species index
 #' @return an **`xds`** object
@@ -204,7 +181,7 @@ make_indices_L <- function(pars, s) {
   UseMethod("make_indices_L", pars$Lpar[[s]])
 }
 
-#' @title Parse \eqn{\cal L} Outputs
+#' @title Parse **L** Component Outputs
 #' @description After solving a dynamical system, parse the outputs and
 #' return the variables by name in a list.
 #' @note This method dispatches on the class of `pars$Lpar[[s]]`
@@ -217,7 +194,7 @@ parse_Lorbits <- function(outputs, pars, s) {
   UseMethod("parse_Lorbits", pars$Lpar[[s]])
 }
 
-#' @title Compute steady states for \eqn{\cal L} models
+#' @title Compute steady states for **L** Component Modules
 #' @description For differential equation models, compute
 #' steady states as a function of daily eggs laid, \eqn{\eta}
 #' @note This method dispatches on the class of `Lpar`.
@@ -229,7 +206,7 @@ xde_steady_state_L = function(eta, Lpar){
   UseMethod("xde_steady_state_L", Lpar)
 }
 
-#' @title Compute steady States for \eqn{\cal L}-Models
+#' @title Compute steady States for **L** Component Modules
 #' @description For discrete time systems, compute
 #' steady states as a function of daily eggs laid, \eqn{\eta}
 #' @note This method dispatches on the class of `Lpar`.

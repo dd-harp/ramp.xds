@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{make_Linits.basicL}
 \alias{make_Linits.basicL}
-\title{Setup the basicL model}
+\title{Setup the Initial Values for \strong{L} Component Variables for \code{basicL}}
 \usage{
 \method{make_Linits}{basicL}(pars, s, Lopts = list())
 }
@@ -17,5 +17,10 @@
 a \link{list}
 }
 \description{
-Implements \link{make_Linits} for the basicL model
+This sets initial values of the variable \eqn{L} by
+calling \link{create_Linits_basicL}. Default values are used unless other values
+are passed in \code{Lopts} by name (\emph{i.e.} \code{Lopts$L})
+}
+\seealso{
+\link{create_Linits_basicL}
 }

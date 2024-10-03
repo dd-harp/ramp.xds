@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{parse_Lorbits.basicL}
 \alias{parse_Lorbits.basicL}
-\title{Parse the variable names for the basicL model}
+\title{Parse \strong{L} Component Variables for \code{basicL}}
 \usage{
 \method{parse_Lorbits}{basicL}(outputs, pars, s)
 }
@@ -14,8 +14,10 @@
 \item{s}{the species index}
 }
 \value{
-a parsed \link{list}; the variables are attached by name
+a named \link{list}
 }
 \description{
-Implements \link{parse_Lorbits} for basicL competition model.
+The function returns the column representing
+the variable \eqn{L} from a matrix where each row is a state variable.
+The variale is returned as a named list.
 }

@@ -29,11 +29,11 @@ xds_setup_cohort(
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
-\item{Xname}{is a character string defining a X model}
+\item{Xname}{is a character string specifying an \strong{X} Component module}
 
-\item{Xopts}{a list to configure the X model}
+\item{Xopts}{a list to configure the \strong{X} Component module}
 
-\item{Xday}{is the run-time time step for X component (in days): integer or 1/integer}
+\item{Xday}{is the run-time time step for \strong{X} Component (in days): integer or 1/integer}
 
 \item{HPop}{is the number of humans in each stratum}
 

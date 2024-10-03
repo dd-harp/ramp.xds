@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{xde_steady_state_L.basicL}
 \alias{xde_steady_state_L.basicL}
-\title{Compute the steady state as a function of the egg deposition rate eta}
+\title{Compute the Steady State for \link{dLdt.basicL}}
 \usage{
 \method{xde_steady_state_L}{basicL}(eta, Lpar)
 }
@@ -12,8 +12,12 @@
 \item{Lpar}{a list that defines an xde model}
 }
 \value{
-a named \link{list}
+the values of \eqn{L} at the steady state
 }
 \description{
-This method dispatches on the type of \code{Lpar}.
+Given an egg deposition rate \verb{eta,}
+return a steady state value for the equations in \link{dLdt.basicL}
+}
+\note{
+This function does not use deSolve
 }

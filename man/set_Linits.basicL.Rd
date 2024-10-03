@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{set_Linits.basicL}
 \alias{set_Linits.basicL}
-\title{Return the parameters as a list}
+\title{Set the Initial Values for \strong{L} Component Variables for \code{basicL}}
 \usage{
 \method{set_Linits}{basicL}(pars, s = 1, Lopts = list())
 }
@@ -17,5 +17,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar[[s]]}.
+Initial values of the variable \eqn{L} are reset if they are
+passed as a named component of \code{Lopts}
 }

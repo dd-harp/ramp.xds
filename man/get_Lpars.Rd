@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{get_Lpars}
 \alias{get_Lpars}
-\title{Return the parameters as a list}
+\title{Get parameters for the \strong{L} Component module}
 \usage{
 get_Lpars(pars, s = 1)
 }
@@ -15,5 +15,5 @@ get_Lpars(pars, s = 1)
 a \link{list}
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar[[s]]}.
+Get parameters for the \strong{L} Component module
 }

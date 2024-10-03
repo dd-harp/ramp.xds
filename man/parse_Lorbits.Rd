@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{parse_Lorbits}
 \alias{parse_Lorbits}
-\title{Parse \eqn{\cal L} Outputs}
+\title{Parse \strong{L} Component Outputs}
 \usage{
 parse_Lorbits(outputs, pars, s)
 }

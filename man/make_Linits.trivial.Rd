@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{make_Linits.trivial}
 \alias{make_Linits.trivial}
-\title{Setup \eqn{\cal L}-trivial}
+\title{Setup Initial Values for the \strong{L} Component \code{trivial} Module}
 \usage{
 \method{make_Linits}{trivial}(pars, s, Lopts = list())
 }
@@ -17,5 +17,5 @@
 a \link{list}
 }
 \description{
-Implements \link{make_Linits} for the trivial model
+The \code{trivial} module initial values are an empty list
 }

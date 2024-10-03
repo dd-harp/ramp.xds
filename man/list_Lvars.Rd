@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{list_Lvars}
 \alias{list_Lvars}
-\title{Return \eqn{\cal L} variables as a list}
+\title{Return \strong{L} Component Variables as a list}
 \usage{
 list_Lvars(y, pars, s)
 }
@@ -17,8 +17,8 @@ list_Lvars(y, pars, s)
 a named \link{list}: the variables of \eqn{\cal L} by name
 }
 \description{
-Extract the variables describing the states of \eqn{\cal L}
-for the \eqn{s^{th}} species and return them as a named list
+Extract the variables describing \strong{L} Component
+states for the \eqn{s^{th}} species and return them as a named list
 }
 \note{
 This method dispatches on the class of \code{pars$Lpar[[s]]}.

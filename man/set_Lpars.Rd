@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{set_Lpars}
 \alias{set_Lpars}
-\title{Return the parameters as a list}
+\title{Set \strong{L} Component Parameters}
 \usage{
 set_Lpars(pars, s = 1, Lopts = list())
 }
@@ -17,5 +17,5 @@ set_Lpars(pars, s = 1, Lopts = list())
 an \code{xds} object
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar[[s]]}.
+Set \strong{L} Component Parameters
 }
