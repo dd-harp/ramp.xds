@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{LBionomics.basicL}
 \alias{LBionomics.basicL}
-\title{Modify \strong{L} Component Parameters}
+\title{Bionomics for \code{basicL} (\strong{L} Component)}
 \usage{
 \method{LBionomics}{basicL}(t, y, pars, s)
 }

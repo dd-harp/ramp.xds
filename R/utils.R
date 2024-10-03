@@ -9,7 +9,7 @@ make_indices <- function(pars) {
   s = length(pars$Linits)
   if(s>0)
     for(ix in 1:s)
-      pars = make_indices_L(pars, ix)
+      pars = setup_indices_L(pars, ix)
 
   s = length(pars$MYZinits)
   if(s>0)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{Update_Lt.trivial}
 \alias{Update_Lt.trivial}
-\title{Derivatives for aquatic stage mosquitoes}
+\title{Update State Variables for \code{trivial} (\strong{L} Component)}
 \usage{
 \method{Update_Lt}{trivial}(t, y, pars, s)
 }

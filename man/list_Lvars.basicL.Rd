@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{list_Lvars.basicL}
 \alias{list_Lvars.basicL}
-\title{List \strong{L} Component Variables}
+\title{List \strong{L} Component Variables for \code{basicL}}
 \usage{
 \method{list_Lvars}{basicL}(y, pars, s)
 }

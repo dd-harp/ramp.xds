@@ -26,5 +26,5 @@ Set the values of \strong{L} component parameters
 }
 }
 \seealso{
-\link{dLdt.basicL} or \link{create_Lpar_basicL}
+\link{dLdt.basicL} or \link{make_Lpar_basicL}
 }

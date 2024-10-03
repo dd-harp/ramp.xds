@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{dLdt.basicL}
 \alias{dLdt.basicL}
-\title{\strong{L} Component Derivatives for \code{basicL}}
+\title{Derivatives for \code{basicL} (\strong{L} Component)}
 \usage{
 \method{dLdt}{basicL}(t, y, pars, s)
 }
@@ -49,5 +49,5 @@ of adult mosquitoes is \eqn{\psi e^{-\xi L} L }
 {\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
 }
 \seealso{
-\link{create_Lpar_basicL}
+\link{make_Lpar_basicL}
 }

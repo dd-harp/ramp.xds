@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{set_Lpars.trivial}
 \alias{set_Lpars.trivial}
-\title{Return the parameters as a list}
+\title{Set \strong{L} Component parameters for \code{trivial}}
 \usage{
 \method{set_Lpars}{trivial}(pars, s = 1, Lopts = list())
 }
@@ -17,5 +17,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar[[s]]}.
+If \code{Lambda} or \code{F_season} or \code{F_trend}
+are named in a list \code{Lopts}, the old value is replaced
 }

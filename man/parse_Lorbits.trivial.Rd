@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{parse_Lorbits.trivial}
 \alias{parse_Lorbits.trivial}
-\title{Parse the variable names for the trivial model}
+\title{Parse \strong{L} Component Variables for \code{basicL}}
 \usage{
 \method{parse_Lorbits}{trivial}(outputs, pars, s)
 }
@@ -14,8 +14,8 @@
 \item{s}{the species index}
 }
 \value{
-\link{list}
+none
 }
 \description{
-Implements \link{parse_Lorbits} for the trivial model.
+Return a numeric vector of length 0
 }

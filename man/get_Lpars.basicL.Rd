@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{get_Lpars.basicL}
 \alias{get_Lpars.basicL}
-\title{Get \strong{L} component parameters}
+\title{Get \strong{L} Component Parameters for \code{basicL}}
 \usage{
 \method{get_Lpars}{basicL}(pars, s = 1)
 }
@@ -18,5 +18,5 @@ a \link{list}
 Get the \strong{L} component parameters
 }
 \seealso{
-\link{dLdt.basicL}
+\link{dLdt.basicL} or \link{set_Lpars.basicL}
 }

@@ -103,8 +103,8 @@ xds_setup = function(xds = 'ode',
 
   # Aquatic Mosquito Dynamics
   pars$Lname <- Lname
-  pars       <- make_Lpar(Lname, pars, 1, Lopts)
-  pars       <- make_Linits(pars, 1, Lopts)
+  pars       <- setup_Lpar(Lname, pars, 1, Lopts)
+  pars       <- setup_Linits(pars, 1, Lopts)
 
   # Adult Mosquito Dynamics
   pars$MYZname   <- MYZname
@@ -206,8 +206,8 @@ xds_setup_mosy = function(xds = 'ode',
 
   # Aquatic Mosquito Dynamics
   pars$Lname <- Lname
-  pars       <- make_Lpar(Lname, pars, 1, Lopts)
-  pars       <- make_Linits(pars, 1, Lopts)
+  pars       <- setup_Lpar(Lname, pars, 1, Lopts)
+  pars       <- setup_Linits(pars, 1, Lopts)
 
   Xo <- list(kappa=kappa, HPop=HPop)
   pars <- make_Xpar("trivial", pars, 1, Xo)
@@ -268,8 +268,8 @@ xds_setup_aquatic = function(xds = 'ode',
 
   # Aquatic Mosquito Dynamics
   pars$Lname <- Lname
-  pars       <- make_Lpar(Lname, pars, 1, Lopts)
-  pars       <- make_Linits(pars, 1, Lopts)
+  pars       <- setup_Lpar(Lname, pars, 1, Lopts)
+  pars       <- setup_Linits(pars, 1, Lopts)
 
   # Adult Mosquito Dynamics
   pars$MYZname   <- "trivial"
@@ -345,8 +345,8 @@ xds_setup_human = function(Xname = "SIS",
   class(pars$compute) <- 'na'
 
   # Aquatic Mosquito Dynamics
-  pars       <- make_Lpar("trivial", pars, 1, list())
-  pars       <- make_Linits(pars, 1)
+  pars       <- setup_Lpar("trivial", pars, 1, list())
+  pars       <- setup_Linits(pars, 1)
 
   # Mosquito Dynamics
   pars           <- make_MYZpar("trivial", pars, 1, MYZopts)
@@ -440,8 +440,8 @@ xds_setup_cohort = function(eir=1,
   pars <- set_eir(eir, pars)
 
   # Aquatic Mosquito Dynamics
-  pars       <- make_Lpar("trivial", pars, 1, list())
-  pars       <- make_Linits(pars, 1)
+  pars       <- setup_Lpar("trivial", pars, 1, list())
+  pars       <- setup_Linits(pars, 1)
 
   # Adult Mosquito Dynamics
   pars           <- make_MYZpar("trivial", pars, 1, list())

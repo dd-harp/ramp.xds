@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{LBaseline.trivial}
 \alias{LBaseline.trivial}
-\title{Reset aquatic parameters to baseline}
+\title{Baseline Bionomics for \code{trivial} (\strong{L} Component)}
 \usage{
 \method{LBaseline}{trivial}(t, y, pars, s)
 }

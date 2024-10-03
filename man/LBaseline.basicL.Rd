@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{LBaseline.basicL}
 \alias{LBaseline.basicL}
-\title{Reset \strong{L} Component Parameters to Baseline}
+\title{Baseline Bionomics for \code{basicL} (\strong{L} Component)}
 \usage{
 \method{LBaseline}{basicL}(t, y, pars, s)
 }

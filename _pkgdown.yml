@@ -467,19 +467,18 @@ reference:
   contents:
   - dLdt
   - xde_steady_state_L
-  - make_Lpar
+  - setup_Lpar
   - Update_Lt
   - dts_steady_state_L
   - LBionomics
   - LBaseline
   - LBionomics.static
   - F_emerge
-  - make_Linits
+  - setup_Linits
   - list_Lvars
   - get_Lpars
   - set_Lpars
-  - put_Lvars
-  - make_indices_L
+  - setup_indices_L
   - parse_Lorbits
   - get_Linits
   - set_Linits
@@ -494,15 +493,14 @@ reference:
   - F_emerge.trivial
   - dLdt.trivial
   - Update_Lt.trivial
-  - make_Lpar.trivial
-  - create_Lpar_trivial
-  - make_Linits.trivial
+  - setup_Lpar.trivial
+  - make_Lpar_trivial
+  - setup_Linits.trivial
   - list_Lvars.trivial
   - get_Lpars.trivial
   - set_Lpars.trivial
   - set_Linits.trivial
-  - put_Lvars.trivial
-  - make_indices_L.trivial
+  - setup_indices_L.trivial
   - parse_Lorbits.trivial
   - update_Linits.trivial
 - subtitle: basicL
@@ -512,18 +510,18 @@ reference:
   - dLdt.basicL
   - Update_Lt.basicL
   - xde_steady_state_L.basicL
-  - make_Lpar.basicL
-  - create_Lpar_basicL
+  - setup_Lpar.basicL
+  - make_Lpar_basicL
   - LBionomics.basicL
   - LBaseline.basicL
   - F_emerge.basicL
-  - make_Linits.basicL
-  - create_Linits_basicL
+  - setup_Linits.basicL
+  - make_Linits_basicL
   - list_Lvars.basicL
   - get_Lpars.basicL
   - set_Lpars.basicL
   - set_Linits.basicL
-  - make_indices_L.basicL
+  - setup_indices_L.basicL
   - parse_Lorbits.basicL
   - update_Linits.basicL
 - title: Mosquito Bionomics
