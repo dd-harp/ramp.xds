@@ -508,10 +508,11 @@ by <code>compute_Omega_xde</code>:</p>
 is computed using matrix exponentiation:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Upsilon</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="op">-</span><span class="va">Omega</span><span class="op">*</span><span class="va">eip</span><span class="op">)</span></span></code></pre></div>
-<p>The function <code>xde_make_MYZpar_RM</code> can be used to construct
-the adult mosquito model object, called <code>MYZpar.</code></p>
+<p>The function <code>xde_setup_MYZpar_RM</code> can be used to
+construct the adult mosquito model object, called
+<code>MYZpar.</code></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">MYZpar</span> <span class="op">=</span> <span class="fu"><a href="../reference/create_MYZpar_macdonald.html">create_MYZpar_macdonald</a></span><span class="op">(</span><span class="va">nPatches</span>, <span class="va">MYZo</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">MYZpar</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_MYZpar_macdonald.html">make_MYZpar_macdonald</a></span><span class="op">(</span><span class="va">nPatches</span>, <span class="va">MYZo</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">MYZpar</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"macdonald"</span></span></code></pre></div>
 <p>The parameters are assigned to a list called <code>baseline</code> so
 that it can be stored and used to compute the values of bionomic
@@ -697,7 +698,7 @@ them.</p>
 <span><span class="va">params</span><span class="op">$</span><span class="va">Xpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">Xpar</span> </span></code></pre></div>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Linits.html">setup_Linits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">Linits</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_MYZinits.html">make_MYZinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZinits</span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_MYZinits.html">setup_MYZinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZinits</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Xinits.html">make_Xinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">HPop</span>, <span class="fl">1</span>, <span class="va">Xinits</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Hpar_static.html">setup_Hpar_static</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
