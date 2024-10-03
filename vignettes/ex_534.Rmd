@@ -289,10 +289,10 @@ Survival and dispersal through the EIP in this model, denoted $\Upsilon,$  is co
 Upsilon <- expm::expm(-Omega*eip)
 ```
 
-The function `xde_make_MYZpar_RM` can be used to construct the adult mosquito model object, called `MYZpar.`  
+The function `xde_setup_MYZpar_RM` can be used to construct the adult mosquito model object, called `MYZpar.`  
                               
 ```{r MYZpar}
-MYZpar = create_MYZpar_macdonald(nPatches, MYZo) 
+MYZpar = make_MYZpar_macdonald(nPatches, MYZo) 
 class(MYZpar) <- "macdonald"
 ```
 
@@ -425,7 +425,7 @@ params$Xpar[[1]] = Xpar
 
 ```{r}
 params <- setup_Linits(params, 1, Linits)
-params <- make_MYZinits(params, 1, MYZinits)
+params <- setup_MYZinits(params, 1, MYZinits)
 params <- make_Xinits(params, HPop, 1, Xinits)
 ```
 

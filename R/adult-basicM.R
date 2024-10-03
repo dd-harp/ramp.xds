@@ -97,12 +97,12 @@ Update_MYZt.basicM <- function(t, y, pars, s) {
 
 
 #' @title Setup MYZpar for the basicM xde model
-#' @description Implements [make_MYZpar] for the basicM xde model
-#' @inheritParams make_MYZpar
+#' @description Implements [setup_MYZpar] for the basicM xde model
+#' @inheritParams setup_MYZpar
 #' @return a [list] vector
 #' @export
-make_MYZpar.basicM = function(MYZname, pars, s, MYZopts=list()){
-  MYZpar <- create_MYZpar_GeRM(pars$nPatches, MYZopts)
+setup_MYZpar.basicM = function(MYZname, pars, s, MYZopts=list()){
+  MYZpar <- make_MYZpar_GeRM(pars$nPatches, MYZopts)
   class(MYZpar) <- 'basicM'
   pars$MYZpar[[s]] = MYZpar
   return(pars)
@@ -175,12 +175,12 @@ F_eggs.basicM <- function(t, y, pars, s) {
 }
 
 #' @title Setup the basicM model
-#' @description Implements [make_MYZinits] for the basicM model
-#' @inheritParams make_MYZinits
+#' @description Implements [setup_MYZinits] for the basicM model
+#' @inheritParams setup_MYZinits
 #' @return a [list] vector
 #' @export
-make_MYZinits.basicM = function(pars, s, MYZopts){
-  pars$MYZinits[[s]] = create_MYZinits_basicM(pars$nPatches, MYZopts)
+setup_MYZinits.basicM = function(pars, s, MYZopts){
+  pars$MYZinits[[s]] = make_MYZinits_basicM(pars$nPatches, MYZopts)
   return(pars)
 }
 
@@ -204,7 +204,7 @@ set_MYZinits.basicM <- function(pars, s=1, MYZopts=list()) {
 #' @param P total parous mosquito density at each patch
 #' @return none
 #' @export
-create_MYZinits_basicM = function(nPatches, MYZopts, M=5, P=1){
+make_MYZinits_basicM = function(nPatches, MYZopts, M=5, P=1){
   with(MYZopts,{
     M = checkIt(M, nPatches)
     P = checkIt(P, nPatches)
@@ -219,7 +219,7 @@ create_MYZinits_basicM = function(nPatches, MYZopts, M=5, P=1){
 update_MYZinits.basicM <- function(pars, y0, s) {with(pars$ix$MYZ[[s]],{
   M = y0[M_ix]
   P = y0[P_ix]
-  pars$MYZinits[[s]] = create_MYZinits_basicM(pars$nPatches, list(), M=M, P=P)
+  pars$MYZinits[[s]] = make_MYZinits_basicM(pars$nPatches, list(), M=M, P=P)
   return(pars)
 })}
 

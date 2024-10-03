@@ -39,7 +39,7 @@ The trivial modules each returns different values:
         
     - `F_trend = function(t){...}`
 
-+ The trivial **MYZ**-component module is setup by `create_MYZpar_trivial.` The values will return either `F_fqZ` or `F_eggs` 
++ The trivial **MYZ**-component module is setup by `make_MYZpar_trivial.` The values will return either `F_fqZ` or `F_eggs` 
 
     - Both `F_fqZ` and `F_eggs` use the same seasonality and trend functions: 
 

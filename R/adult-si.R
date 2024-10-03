@@ -181,12 +181,12 @@ MBionomics.SI <- function(t, y, pars, s) {
 
 
 #' @title Setup MYZpar for the SI model
-#' @description Implements [make_MYZpar] for the SI model
-#' @inheritParams make_MYZpar
+#' @description Implements [setup_MYZpar] for the SI model
+#' @inheritParams setup_MYZpar
 #' @return a [list] vector
 #' @export
-make_MYZpar.SI = function(MYZname, pars, s, MYZopts=list()){
-  MYZpar <- create_MYZpar_SI(pars$nPatches, MYZopts)
+setup_MYZpar.SI = function(MYZname, pars, s, MYZopts=list()){
+  MYZpar <- make_MYZpar_SI(pars$nPatches, MYZopts)
   class(MYZpar) <- "SI"
   pars$MYZpar[[s]] <- MYZpar
   return(pars)
@@ -205,7 +205,7 @@ make_MYZpar.SI = function(MYZname, pars, s, MYZopts=list()){
 #' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
 #' @export
-create_MYZpar_SI = function(nPatches, MYZopts=list(), eip=12,
+make_MYZpar_SI = function(nPatches, MYZopts=list(), eip=12,
                             g=1/12, sigma=1/8, mu=0, f=0.3, q=0.95,
                             nu=1, eggsPerBatch=60){
 
@@ -290,12 +290,12 @@ set_MYZinits.SI <- function(pars, s=1, MYZopts=list()) {
 }))}
 
 #' @title Setup initial values for the `SI` model
-#' @description Implements [make_MYZinits] for the `SI` model
-#' @inheritParams make_MYZinits
+#' @description Implements [setup_MYZinits] for the `SI` model
+#' @inheritParams setup_MYZinits
 #' @return a [list]
 #' @export
-make_MYZinits.SI = function(pars, s, MYZopts=list()){
-  pars$MYZinits[[s]] = with(pars$MYZpar[[s]], create_MYZinits_SI(nPatches, MYZopts))
+setup_MYZinits.SI = function(pars, s, MYZopts=list()){
+  pars$MYZinits[[s]] = with(pars$MYZpar[[s]], make_MYZinits_SI(nPatches, MYZopts))
   return(pars)
 }
 
@@ -307,7 +307,7 @@ make_MYZinits.SI = function(pars, s, MYZopts=list()){
 #' @param Y infectious mosquito density at each patch
 #' @return a [list]
 #' @export
-create_MYZinits_SI = function(nPatches, MYZopts = list(),
+make_MYZinits_SI = function(nPatches, MYZopts = list(),
                               M=5, Y=1){
   with(MYZopts,{
     M = checkIt(M, nPatches)
@@ -323,7 +323,7 @@ create_MYZinits_SI = function(nPatches, MYZopts = list(),
 update_MYZinits.SI <- function(pars, y0, s) {with(pars$ix$MYZ[[s]],{
   M = y0[M_ix]
   Y = y0[Y_ix]
-  pars$MYZinits[[s]] = create_MYZinits_SI(pars$nPatches, list(), M=M, Y=Y)
+  pars$MYZinits[[s]] = make_MYZinits_SI(pars$nPatches, list(), M=M, Y=Y)
   return(pars)
 })}
 

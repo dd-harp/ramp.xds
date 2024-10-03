@@ -127,9 +127,9 @@ params = setup_Lpar("trivial", params, 1, Lopts = list(Lambda=alpha))
 
 params = setup_Linits(params, 1)
 
-params = make_MYZpar("basicM", params, 1, MYZopts=MYZo)
+params = setup_MYZpar("basicM", params, 1, MYZopts=MYZo)
 
-params = make_MYZinits(params, 1, list(M=M_eq, P=P_eq))
+params = setup_MYZinits(params, 1, list(M=M_eq, P=P_eq))
 ```
 
 

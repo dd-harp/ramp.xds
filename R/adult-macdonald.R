@@ -45,7 +45,7 @@ dMYZdt.macdonald <- function(t, y, pars, s){
 #' @param Z infectious mosquito density at each patch
 #' @return a [list]
 #' @export
-create_MYZinits_macdonald = function(nPatches, MYZopts = list(),
+make_MYZinits_macdonald = function(nPatches, MYZopts = list(),
                                      M=5, P=1, Y=1, Z=1){
   with(MYZopts,{
     M = unname(checkIt(M, nPatches))
@@ -93,13 +93,13 @@ F_eggs.macdonald <- function(t, y, pars, s) {
 
 
 #' @title Setup MYZpar for the macdonald model
-#' @description Implements [make_MYZpar] for the macdonald model
-#' @inheritParams make_MYZpar
+#' @description Implements [setup_MYZpar] for the macdonald model
+#' @inheritParams setup_MYZpar
 #' @return a [list] vector
 #' @export
-make_MYZpar.macdonald = function(MYZname, pars, s, MYZopts=list()){
+setup_MYZpar.macdonald = function(MYZname, pars, s, MYZopts=list()){
   pars = xds_dde(pars)
-  MYZpar <- create_MYZpar_macdonald(pars$nPatches, MYZopts)
+  MYZpar <- make_MYZpar_macdonald(pars$nPatches, MYZopts)
   class(MYZpar) <- 'macdonald'
   pars$MYZpar[[s]] = MYZpar
   return(pars)
@@ -119,7 +119,7 @@ make_MYZpar.macdonald = function(MYZname, pars, s, MYZopts=list()){
 #' @return a [list]
 #' @importFrom expm expm
 #' @export
-create_MYZpar_macdonald = function(nPatches, MYZopts=list(), eip=12,
+make_MYZpar_macdonald = function(nPatches, MYZopts=list(), eip=12,
                                    g=1/12, sigma=1/8, mu=0, f=0.3, q=0.95,
                                    nu=1, eggsPerBatch=60){
 
@@ -182,12 +182,12 @@ set_MYZpars.macdonald <- function(pars, s=1, MYZopts=list()) {
 
 
 #' @title Setup initial values for the macdonald model
-#' @description Implements [make_MYZinits] for the macdonald model
-#' @inheritParams make_MYZinits
+#' @description Implements [setup_MYZinits] for the macdonald model
+#' @inheritParams setup_MYZinits
 #' @return a [list]
 #' @export
-make_MYZinits.macdonald = function(pars, s, MYZopts=list()){with(pars$MYZpar[[s]], {
-  pars$MYZinits[[s]] = create_MYZinits_macdonald(nPatches, MYZopts)
+setup_MYZinits.macdonald = function(pars, s, MYZopts=list()){with(pars$MYZpar[[s]], {
+  pars$MYZinits[[s]] = make_MYZinits_macdonald(nPatches, MYZopts)
   return(pars)
 })}
 
@@ -224,7 +224,7 @@ update_MYZinits.macdonald <- function(pars, y0, s) {
     P = y0[P_ix]
     Y = y0[Y_ix]
     Z = y0[Z_ix]
-    pars = make_MYZinits(pars, s, list(M=M, P=P, Y=Y, Z=Z))
+    pars = setup_MYZinits(pars, s, list(M=M, P=P, Y=Y, Z=Z))
     return(pars)
   })}
 
