@@ -478,7 +478,6 @@ reference:
   - list_Lvars
   - get_Lpars
   - set_Lpars
-  - put_Lvars
   - setup_indices_L
   - parse_Lorbits
   - get_Linits
@@ -501,7 +500,6 @@ reference:
   - get_Lpars.trivial
   - set_Lpars.trivial
   - set_Linits.trivial
-  - put_Lvars.trivial
   - setup_indices_L.trivial
   - parse_Lorbits.trivial
   - update_Linits.trivial
