@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{Update_Lt.basicL}
 \alias{Update_Lt.basicL}
-\title{Update \strong{L} Component Variables for \code{basicL}}
+\title{Update State Variables for \code{basicL} (\strong{L} Component)}
 \usage{
 \method{Update_Lt}{basicL}(t, y, pars, s)
 }
@@ -19,5 +19,5 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{Update_Lt} for the basicL competition model.
+Implements \link{Update_Lt} for the \code{basicL} competition model.
 }

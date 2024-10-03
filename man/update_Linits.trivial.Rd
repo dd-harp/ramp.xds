@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{update_Linits.trivial}
 \alias{update_Linits.trivial}
-\title{Update inits for the basic aquatic mosquito competition model}
+\title{Update Initial Values for \code{basicL} from a state vector \code{y}}
 \usage{
 \method{update_Linits}{trivial}(pars, y, s)
 }
@@ -14,8 +14,8 @@
 \item{s}{the species index}
 }
 \value{
-none
+an \strong{\code{xds}} object
 }
 \description{
-Update inits for the basic aquatic mosquito competition model
+Returns the unmodified \strong{\code{xds}} object
 }

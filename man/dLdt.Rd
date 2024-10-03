@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{dLdt}
 \alias{dLdt}
-\title{\strong{L} Component Derivatives}
+\title{Derivatives for an \strong{L} Component Module}
 \usage{
 dLdt(t, y, pars, s)
 }

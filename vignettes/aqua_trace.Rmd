@@ -123,9 +123,9 @@ to `ramp.xds::xDE_diffeqn_mosy`.
 ```{r}
 params <- make_xds_template("ode", "mosy", nPatches, membership)
 
-params = make_Lpar("trivial", params, 1, Lopts = list(Lambda=alpha))
+params = setup_Lpar("trivial", params, 1, Lopts = list(Lambda=alpha))
 
-params = make_Linits(params, 1)
+params = setup_Linits(params, 1)
 
 params = make_MYZpar("basicM", params, 1, MYZopts=MYZo)
 

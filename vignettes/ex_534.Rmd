@@ -232,14 +232,14 @@ compute_beta(HPop, W, searchWtsH, TaR)
 
 ## Aquatic Mosquito Dynamics 
 
-For this simulation, we use the basic competition model of larval dynamics called `basicL` (see more [here](aqua_basic.html)). It requires specification of three parameters, $\psi$ (maturation rates), $\phi$ (density-independent mortality rates), and $\theta$ (density-dependent mortality terms), and initial conditions. The function `ramp.xds::xde_make_Lpar_basicL` does basic checking of the input parameters and returns a list with the correct class for method dispatch. The returned list is attached to the main parameter list with name `Lpar`.
+For this simulation, we use the basic competition model of larval dynamics called `basicL` (see more [here](aqua_basic.html)). It requires specification of three parameters, $\psi$ (maturation rates), $\phi$ (density-independent mortality rates), and $\theta$ (density-dependent mortality terms), and initial conditions. The function `ramp.xds::xde_setup_Lpar_basicL` does basic checking of the input parameters and returns a list with the correct class for method dispatch. The returned list is attached to the main parameter list with name `Lpar`.
 
 ```{r Lpar}
 psi <- rep(1/8, nHabitats)
 phi <- rep(1/8, nHabitats)
 theta <- c(1/10, 1/20, 1/40, 1/100, 1/10) 
 
-Lpar = create_Lpar_basicL(nHabitats, psi=psi, phi=phi, theta = theta)
+Lpar = make_Lpar_basicL(nHabitats, psi=psi, phi=phi, theta = theta)
 ```
 
 
@@ -424,7 +424,7 @@ params$Xpar[[1]] = Xpar
 ```
 
 ```{r}
-params <- make_Linits(params, 1, Linits)
+params <- setup_Linits(params, 1, Linits)
 params <- make_MYZinits(params, 1, MYZinits)
 params <- make_Xinits(params, HPop, 1, Xinits)
 ```

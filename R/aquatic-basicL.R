@@ -1,6 +1,6 @@
 # the aquatic mosquito `basicL` competition model
 
-#' @title **L** Component Derivatives for `basicL`
+#' @title Derivatives for `basicL` (**L** Component)
 #' @description
 #' This implements differential equation model for aquatic mosquito ecology.
 #' The equations have been modified slightly from a version published by
@@ -29,7 +29,7 @@
 #' @inheritParams dLdt
 #' @return a [numeric] vector
 #' @references{\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
-#' @seealso [create_Lpar_basicL]
+#' @seealso [make_Lpar_basicL]
 #' @export
 dLdt.basicL <- function(t, y, pars, s) {
   eta <- as.vector(pars$eggs_laid[[s]])
@@ -42,20 +42,78 @@ dLdt.basicL <- function(t, y, pars, s) {
   })
 }
 
-#' @title Set up `Lpar` for the `basicL` model
-#' @description The function sets up `Lpar` for the \eqn{s^{th}} species
-#' by calling [create_Lpar_basicL]
-#' @inheritParams make_Lpar
-#' @return an **`xds`** object
-#' @seealso [create_Lpar_basicL]
+
+#' @title Update State Variables for `basicL` (**L** Component)
+#' @description Implements [Update_Lt] for the `basicL` competition model.
+#' @inheritParams Update_Lt
+#' @return a [numeric] vector
 #' @export
-make_Lpar.basicL = function(Lname, pars, s, Lopts=list()){
-  pars$Lpar[[s]] = create_Lpar_basicL(pars$nHabitats, Lopts)
+Update_Lt.basicL <- function(t, y, pars, s) {
+  eta <- pars$eggs_laid[[s]]
+  with(list_Lvars(y, pars, s),{
+    L <- y[L_ix]
+    with(pars$Lpar[[s]], {
+      Lt = eta + (1-exp(-(psi+xi*L)))*exp(-(phi+theta*L))*L
+      return(Lt)
+    })
+  })
+}
+
+#' @title Compute Emergent Adults for `basicL` (**L** Component)
+#' @description The number of adults emerging from the habitats,
+#' per day, is:
+#' \deqn{\psi e^{-\xi L} L.}
+#' @inheritParams F_emerge
+#' @return a [numeric] vector of length `nHabitats`
+#' @seealso [dLdt.basicL]
+#' @export
+F_emerge.basicL <- function(t, y, pars, s) {
+  L <- y[pars$ix$L[[s]]$L_ix]
+  with(pars$Lpar[[s]],{
+    return(psi*exp(-xi*L)*L)
+  })
+}
+
+#' @title Baseline Bionomics for `basicL` (**L** Component)
+#' @description Set **L** component parameters
+#' to baseline values for `basicL`
+#' @inheritParams LBaseline
+#' @return a **`ramp.xds`** object
+#' @export
+LBaseline.basicL <- function(t, y, pars, s) {
+  with(pars$Lpar[[s]],{
+    pars$Lpar[[s]]$es_psi <- rep(1, nHabitats)
+    pars$Lpar[[s]]$es_phi <- rep(1, nHabitats)
+    return(pars)
+})}
+
+#' @title Bionomics for `basicL` (**L** Component)
+#' @description Implements [LBionomics] for the `basicL`
+#' @inheritParams LBionomics
+#' @return a **`ramp.xds`** object
+#' @export
+LBionomics.basicL <- function(t, y, pars, s) {
+  with(pars$Lpar[[s]],{
+    pars$Lpar[[s]]$psi <- psi_t*es_psi
+    pars$Lpar[[s]]$phi <- phi_t*es_phi
+    return(pars)
+})}
+
+
+#' @title Setup `Lpar` for `basicL` (**L** Component)
+#' @description The function sets up `Lpar` for the \eqn{s^{th}} species
+#' by calling [make_Lpar_basicL]
+#' @inheritParams setup_Lpar
+#' @return an **`xds`** object
+#' @seealso [make_Lpar_basicL]
+#' @export
+setup_Lpar.basicL = function(Lname, pars, s, Lopts=list()){
+  pars$Lpar[[s]] = make_Lpar_basicL(pars$nHabitats, Lopts)
   pars <- LBionomics(0, 0, pars, s)
   return(pars)
 }
 
-#' @title Create `Lpar` for `basicL`
+#' @title Make `Lpar` for `basicL` (**L** Component)
 #' @description The following parameters will be set to the values in
 #' `Lopts.` If they are not found, default values will be used.
 #'
@@ -70,10 +128,10 @@ make_Lpar.basicL = function(Lname, pars, s, Lopts=list()){
 #' @param xi delayed maturation in response to mean crowding
 #' @param phi density-independent mortality rates for each aquatic habitat
 #' @param theta density-dependent mortality terms for each aquatic habitat
-#' @seealso Called by: [make_Lpar.basicL]. Related: [dLdt.basicL] & [Update_Lt.basicL]
+#' @seealso Called by: [setup_Lpar.basicL]. Related: [dLdt.basicL] & [Update_Lt.basicL]
 #' @return **`Lpar`** an **L** component object
 #' @export
-create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, xi=0, phi=1/8, theta=1/100){
+make_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, xi=0, phi=1/8, theta=1/100){
   with(Lopts,{
     Lpar = list()
     class(Lpar) <- "basicL"
@@ -88,13 +146,12 @@ create_Lpar_basicL = function(nHabitats, Lopts=list(), psi=1/8, xi=0, phi=1/8, t
   })
 }
 
-
-#' @title Get **L** component parameters
+#' @title Get **L** Component Parameters for `basicL`
 #' @description Get the **L** component parameters
 #' @param pars an **`xds`** object
 #' @param s the vector species index
 #' @return a [list]
-#' @seealso [dLdt.basicL]
+#' @seealso [dLdt.basicL] or [set_Lpars.basicL]
 #' @export
 get_Lpars.basicL <- function(pars, s=1) {
   with(pars$Lpar[[s]], list(
@@ -109,7 +166,7 @@ get_Lpars.basicL <- function(pars, s=1) {
 #' - `phi` or \eqn{\phi}
 #' - `theta` or \eqn{\theta}
 #' @inheritParams set_Lpars
-#' @seealso [dLdt.basicL] or [create_Lpar_basicL]
+#' @seealso [dLdt.basicL] or [make_Lpar_basicL]
 #' @return an **`xds`** object
 #' @export
 set_Lpars.basicL <- function(pars, s=1, Lopts=list()) {
@@ -123,82 +180,33 @@ set_Lpars.basicL <- function(pars, s=1, Lopts=list()) {
   }))}
 
 
-#' @title Compute the Steady State for [dLdt.basicL]
-#' @description Given an egg deposition rate `eta,`
-#' return a steady state value for the equations in [dLdt.basicL]
-#' @note This function does not use deSolve
-#' @inheritParams xde_steady_state_L
-#' @return the values of \eqn{L} at the steady state
-#' @importFrom stats nlm
+
+#' @title Setup Initial Values for `basicL` (**L** Component)
+#' @description This sets initial values of the variable \eqn{L} by
+#' calling [make_Linits_basicL]. Default values are used unless other values
+#' are passed in `Lopts` by name (*i.e.* `Lopts$L`)
+#' @inheritParams setup_Linits
+#' @seealso [make_Linits_basicL]
+#' @return a [list]
 #' @export
-xde_steady_state_L.basicL = function(eta, Lpar){
-  dL <- function(L, eta, Lpar){with(Lpar,{
-    sum((eta - (psi*exp(-xi*L) + phi + (theta*L))*L)^2)
-  })}
-  L=nlm(dL, eta, Lpar=Lpar, eta=eta)$estimate
-  list(L=L)
+setup_Linits.basicL = function(pars, s, Lopts=list()){
+  pars$Linits[[s]] = make_Linits_basicL(pars$nHabitats, Lopts)
+  return(pars)
 }
 
-#' @title Update **L** Component Variables for `basicL`
-#' @description Implements [Update_Lt] for the basicL competition model.
-#' @inheritParams Update_Lt
-#' @return a [numeric] vector
+#' @title Make Initial Values for `basicL` (**L** Component)
+#' @description Initial values of the variable \eqn{L} can be set
+#' @param nHabitats the number of habitats in the model
+#' @param Lopts a [list] that overwrites default values
+#' @param L initial conditions
+#' @return a [list] with Linits added
 #' @export
-Update_Lt.basicL <- function(t, y, pars, s) {
-  eta <- pars$eggs_laid[[s]]
-  with(list_Lvars(y, pars, s),{
-    L <- y[L_ix]
-    with(pars$Lpar[[s]], {
-      Lt = eta + (1-exp(-psi*exp(-xi*L)))*exp(-(phi+theta*L))*L
-      return(Lt)
-    })
-  })
-}
-
-#' @title Compute emergent adults
-#' @description The function computes the number of
-#' emergent adults from aquatic habitats for `basicL`
-#' @inheritParams F_emerge
-#' @return a [numeric] vector of length `nHabitats`
-#' @export
-F_emerge.basicL <- function(t, y, pars, s) {
-  L <- y[pars$ix$L[[s]]$L_ix]
-  with(pars$Lpar[[s]],{
-    return(psi*exp(-xi*L)*L)
-  })
-}
-
-
-
-
-#' @title Reset **L** Component Parameters to Baseline
-#' @description Set **L** component parameters
-#' to baseline values for `basicL`
-#' @inheritParams LBaseline
-#' @return a **`ramp.xds`** object
-#' @export
-LBaseline.basicL <- function(t, y, pars, s) {
-  with(pars$Lpar[[s]],{
-    pars$Lpar[[s]]$es_psi <- rep(1, nHabitats)
-    pars$Lpar[[s]]$es_phi <- rep(1, nHabitats)
-    return(pars)
+make_Linits_basicL = function(nHabitats, Lopts=list(), L=1){with(Lopts,{
+  L = checkIt(L, nHabitats)
+  return(list(L=L))
 })}
 
-#' @title Modify **L** Component Parameters
-#' @description Implements [LBionomics] for the `basicL`
-#' @inheritParams LBionomics
-#' @return a **`ramp.xds`** object
-#' @export
-LBionomics.basicL <- function(t, y, pars, s) {
-  with(pars$Lpar[[s]],{
-    pars$Lpar[[s]]$psi <- psi_t*es_psi
-    pars$Lpar[[s]]$phi <- phi_t*es_phi
-    return(pars)
-  })}
-
-
-
-#' @title List **L** Component Variables
+#' @title List **L** Component Variables for `basicL`
 #' @description Extract the **L** component variables from the
 #' vector of state variables (`y`) and return them as a named list
 #' @inheritParams list_Lvars
@@ -211,21 +219,7 @@ list_Lvars.basicL <- function(y, pars, s){
        )))
 }
 
-
-#' @title Setup the Initial Values for **L** Component Variables for `basicL`
-#' @description This sets initial values of the variable \eqn{L} by
-#' calling [create_Linits_basicL]. Default values are used unless other values
-#' are passed in `Lopts` by name (*i.e.* `Lopts$L`)
-#' @inheritParams make_Linits
-#' @seealso [create_Linits_basicL]
-#' @return a [list]
-#' @export
-make_Linits.basicL = function(pars, s, Lopts=list()){
-  pars$Linits[[s]] = create_Linits_basicL(pars$nHabitats, Lopts)
-  return(pars)
-}
-
-#' @title Set the Initial Values for **L** Component Variables for `basicL`
+#' @title Set the Initial Values for `basicL` (**L** Component)
 #' @description Initial values of the variable \eqn{L} are reset if they are
 #' passed as a named component of `Lopts`
 #' @inheritParams set_Linits
@@ -249,38 +243,14 @@ update_Linits.basicL <- function(pars, y, s) {
   return(pars)
 }
 
-#' @title Create Initial Values for **L** Component Variables for `basicL`
-#' @description Initial values of the variable \eqn{L} can be set
-#' @param nHabitats the number of habitats in the model
-#' @param Lopts a [list] that overwrites default values
-#' @param L initial conditions
-#' @return a [list] with Linits added
-#' @export
-create_Linits_basicL = function(nHabitats, Lopts=list(), L=1){with(Lopts,{
-  L = checkIt(L, nHabitats)
-  return(list(L=L))
-})}
-
-#' @title Parse **L** Component Variables for `basicL`
-#' @description The function returns the column representing
-#' the variable \eqn{L} from a matrix where each row is a state variable.
-#' The variale is returned as a named list.
-#' @inheritParams parse_Lorbits
-#' @return a named [list]
-#' @export
-parse_Lorbits.basicL <- function(outputs, pars, s) {
-  L = outputs[,pars$ix$L[[s]]$L_ix]
-  return(list(L=L))
-}
-
-#' @title Make Indices for **L** Component Variables for `basicL`
+#' @title Setup Variable Indices for `basicL` (**L** Component)
 #' @description Set the values of the indices for the **L** component variables
 #' for the `basicL` module
-#' @inheritParams make_indices_L
+#' @inheritParams setup_indices_L
 #' @return an **`xds`** object
 #' @importFrom utils tail
 #' @export
-make_indices_L.basicL <- function(pars, s) {with(pars,{
+setup_indices_L.basicL <- function(pars, s) {with(pars,{
 
   L_ix <- seq(from = max_ix+1, length.out = nHabitats)
   max_ix <- tail(L_ix, 1)
@@ -292,4 +262,41 @@ make_indices_L.basicL <- function(pars, s) {with(pars,{
   return(pars)
 })}
 
+#' @title Parse **L** Component Variables for `basicL`
+#' @description The function returns the column representing
+#' the variable \eqn{L} from a matrix where each row is a state variable.
+#' The variable is returned as a named list.
+#' @inheritParams parse_Lorbits
+#' @return a named [list]
+#' @export
+parse_Lorbits.basicL <- function(outputs, pars, s) {
+  L = outputs[,pars$ix$L[[s]]$L_ix]
+  return(list(L=L))
+}
 
+
+#' @title Set **L** Component Initial Values
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @param Lopts a named list
+#' @return an `xds` object
+#' @export
+set_Linits <- function(pars, s=1, Lopts=list()) {
+  UseMethod("set_Linits", pars$Lpar[[s]])
+}
+
+#' @title Compute the Steady State of `dLdt.basicL` (**L** Component)
+#' @description Given an egg deposition rate `eta,`
+#' return a steady state value for the equations in [dLdt.basicL]
+#' @note This function does not use deSolve
+#' @inheritParams xde_steady_state_L
+#' @return the values of \eqn{L} at the steady state
+#' @importFrom stats nlm
+#' @export
+xde_steady_state_L.basicL = function(eta, Lpar){
+  dL <- function(L, eta, Lpar){with(Lpar,{
+    sum((eta - (psi*exp(-xi*L) + phi + (theta*L))*L)^2)
+  })}
+  L=nlm(dL, eta, Lpar=Lpar, eta=eta)$estimate
+  list(L=L)
+}

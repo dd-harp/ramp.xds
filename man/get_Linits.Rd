@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{get_Linits}
 \alias{get_Linits}
-\title{Get the stored initial values}
+\title{Get Initial Values for the \strong{L} Component}
 \usage{
 get_Linits(pars, s = 1)
 }
@@ -15,7 +15,7 @@ get_Linits(pars, s = 1)
 a named \link{list}
 }
 \description{
-Get the stored initial values
+Get Initial Values for the \strong{L} Component
 }
 \note{
 This method dispatches on the class of \code{pars$Lpar}.

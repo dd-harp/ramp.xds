@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{set_Linits.trivial}
 \alias{set_Linits.trivial}
-\title{Return the parameters as a list}
+\title{Set the Initial Values for \code{trivial} (\strong{L} Component)}
 \usage{
 \method{set_Linits}{trivial}(pars, s = 1, Lopts = list())
 }
@@ -17,5 +17,5 @@
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar[[s]]}.
+Returns the unmodified \strong{\code{xds}} object
 }

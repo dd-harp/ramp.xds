@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{update_Linits}
 \alias{update_Linits}
-\title{Set Initial Values for the \strong{L} Component Module from a State Vector}
+\title{Update \strong{L} Component Initial Values}
 \usage{
 update_Linits(pars, y, s)
 }
@@ -17,5 +17,6 @@ update_Linits(pars, y, s)
 an \code{xds} object
 }
 \description{
-Set Initial Values for the \strong{L} Component Module from a State Vector
+This sets initial values for an \strong{L} Component
+module from a state variables vector \eqn{y}
 }

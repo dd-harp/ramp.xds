@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{F_emerge.basicL}
 \alias{F_emerge.basicL}
-\title{Compute emergent adults}
+\title{Compute Emergent Adults for \code{basicL} (\strong{L} Component)}
 \usage{
 \method{F_emerge}{basicL}(t, y, pars, s)
 }
@@ -19,6 +19,10 @@
 a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-The function computes the number of
-emergent adults from aquatic habitats for \code{basicL}
+The number of adults emerging from the habitats,
+per day, is:
+\deqn{\psi e^{-\xi L} L.}
+}
+\seealso{
+\link{dLdt.basicL}
 }

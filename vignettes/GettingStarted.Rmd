@@ -232,7 +232,7 @@ Lo = list(
 We use the first model as a template for the new model, but we assign the return value a new name `model_1` so that the original one still exists: 
 
 ```{r}
-model_1 <- make_Lpar("trivial", model, 1, Lopts=Lo)
+model_1 <- setup_Lpar("trivial", model, 1, Lopts=Lo)
 ```
 
 We want to change the initial values of `model_1.` Since `model_1` was copied from `model,` the last values from solving it are available, and we can use a function `last_to_inits` to set the initial values.

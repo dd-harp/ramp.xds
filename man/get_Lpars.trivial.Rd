@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{get_Lpars.trivial}
 \alias{get_Lpars.trivial}
-\title{Return the parameters as a list}
+\title{Get \strong{L} Component Parameters for \code{trivial}}
 \usage{
 \method{get_Lpars}{trivial}(pars, s = 1)
 }
@@ -15,5 +15,5 @@
 a \link{list}
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar[[s]]}.
+Show the trace function
 }

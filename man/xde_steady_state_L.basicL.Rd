@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{xde_steady_state_L.basicL}
 \alias{xde_steady_state_L.basicL}
-\title{Compute the Steady State for \link{dLdt.basicL}}
+\title{Compute the Steady State of \code{dLdt.basicL} (\strong{L} Component)}
 \usage{
 \method{xde_steady_state_L}{basicL}(eta, Lpar)
 }

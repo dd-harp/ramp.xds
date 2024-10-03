@@ -96,8 +96,8 @@ F_eta = function(t, pars){
   pars$eggs_laid[[1]]
 }
 
-params = make_Lpar("basicL", params, 1, Lo)
-params = make_Linits(params, 1, Lo)
+params = setup_Lpar("basicL", params, 1, Lo)
+params = setup_Linits(params, 1, Lo)
 params = make_MYZpar("trivial", params, 1, MYZo)
 
 params = make_indices(params)

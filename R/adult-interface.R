@@ -15,6 +15,20 @@ dMYZdt <- function(t, y, pars, s) {
   UseMethod("dMYZdt", pars$MYZpar[[s]])
 }
 
+
+#' @title Derivatives for adult mosquitoes
+#' @description This method dispatches on the type of `pars$MYZpar`.
+#' @param t current simulation time
+#' @param y state vector
+#' @param pars a [list]
+#' @param s the species index
+#' @return the derivatives a [vector]
+#' @export
+Update_MYZt <- function(t, y, pars, s) {
+  UseMethod("Update_MYZt", pars$MYZpar[[s]])
+}
+
+
 #' @title Adult Mosquito - Baseline Bionomics
 #' @description Compute adult mosquito bionomics as a
 #' *changing baseline.*
@@ -82,18 +96,6 @@ set_MYZpars <- function(pars, s=1, MYZopts=list()) {
 #' @export
 MYZ_rates2probs = function(MYZpar, runtime){
   UseMethod("MYZ_rates2probs", MYZpar)
-}
-
-#' @title Derivatives for adult mosquitoes
-#' @description This method dispatches on the type of `pars$MYZpar`.
-#' @param t current simulation time
-#' @param y state vector
-#' @param pars a [list]
-#' @param s the species index
-#' @return the derivatives a [vector]
-#' @export
-Update_MYZt <- function(t, y, pars, s) {
-  UseMethod("Update_MYZt", pars$MYZpar[[s]])
 }
 
 #' @title Compute the steady states as a function of the daily EIR

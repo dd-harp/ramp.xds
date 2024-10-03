@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{set_Linits.basicL}
 \alias{set_Linits.basicL}
-\title{Set the Initial Values for \strong{L} Component Variables for \code{basicL}}
+\title{Set the Initial Values for \code{basicL} (\strong{L} Component)}
 \usage{
 \method{set_Linits}{basicL}(pars, s = 1, Lopts = list())
 }

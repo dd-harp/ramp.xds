@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{list_Lvars}
 \alias{list_Lvars}
-\title{Return \strong{L} Component Variables as a list}
+\title{List \strong{L} Component Variables}
 \usage{
 list_Lvars(y, pars, s)
 }

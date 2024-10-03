@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{xde_steady_state_L.trivial}
 \alias{xde_steady_state_L.trivial}
-\title{Compute the steady state as a function of the egg deposition rate eta}
+\title{Compute the Steady State of \code{dLdt.trivial} (\strong{L} Component)}
 \usage{
 \method{xde_steady_state_L}{trivial}(eta, Lpar)
 }
@@ -15,5 +15,5 @@
 none
 }
 \description{
-This method dispatches on the type of \code{Lpar}.
+Return a numeric vector of length 0
 }
