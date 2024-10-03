@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{make_Linits}
 \alias{make_Linits}
-\title{A function to set up adult mosquito models}
+\title{Set up Initial Values of Variables for \strong{L} Component modules}
 \usage{
 make_Linits(pars, s, Lopts = list())
 }

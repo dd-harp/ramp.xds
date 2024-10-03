@@ -140,7 +140,7 @@ set_MYZpars.trivial <- function(pars, s=1, MYZopts=list()) {
     pars$MYZpar[[s]]$F_season = F_season
     pars$MYZpar[[s]]$F_trend = F_trend
     return(pars)
- }))}
+  }))}
 
 
 #' @title Steady States: MYZ-trivial

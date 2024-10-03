@@ -19,13 +19,13 @@ xds_setup_aquatic(
 
 \item{nHabitats}{is the number of habitats}
 
-\item{Lname}{is a character string defining a L model}
+\item{Lname}{is a character string defining a \strong{L} Component module}
 
-\item{Lday}{is the run-time time step for L component (in days): integer or 1/integer}
+\item{Lday}{is the run-time time step for \strong{L} Component (in days): integer or 1/integer}
 
-\item{Lopts}{a list to configure the L model}
+\item{Lopts}{a list to configure the \strong{L} Component module}
 
-\item{MYZopts}{a list to configure F_eggs from the trivial model}
+\item{MYZopts}{a list to configure \link{F_eggs.trivial}}
 
 \item{model_name}{is a name for the model (arbitrary)}
 }
@@ -33,8 +33,9 @@ xds_setup_aquatic(
 an \strong{\code{xds}} object
 }
 \description{
-A modified version of \link{xds_setup} that streamlines setup for a model that
-with a trivial \eqn{\cal MYZ} component. The model also configures a trivial \eqn{\cal X} component.
+A modified version of \link{xds_setup} that streamlines setup for an \strong{L} Component
+when the \strong{MYZ} Component is set to \code{trivial.} The model
+also sets \strong{X} Component to the \code{trivial} module.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'aquatic'}
 to dispatch \link{xde_derivatives.aquatic} or \link{dts_update.aquatic}

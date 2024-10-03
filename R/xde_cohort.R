@@ -122,7 +122,7 @@ xde_cohort_desolve  = function(birthday, inits, times, pars){
 #' @export
 xde_cohort_desolve.dde = function(birthday, inits, times, pars){
   return(deSolve::dede(y=inits, times=times, func=xde_cohort_derivatives, parms=pars,
-                method = "lsoda", birthday=birthday))
+                       method = "lsoda", birthday=birthday))
 }
 
 #' @title Solve a system of equations as a ode

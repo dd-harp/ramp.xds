@@ -30,17 +30,17 @@ xds_setup(
 \arguments{
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
-\item{Xname}{a character string defining a \eqn{\cal X} model}
+\item{Xname}{a character string defining a \strong{X} Component module}
 
-\item{Xopts}{a list to configure the X model}
+\item{Xopts}{a list to configure the \strong{X} Component module}
 
-\item{MYZname}{a character string defining a \eqn{\cal MYZ} model}
+\item{MYZname}{a character string defining a \strong{MYZ} Component module}
 
-\item{MYZopts}{a list to configure the MYZ model}
+\item{MYZopts}{a list to configure the \strong{MYZ} Component module}
 
-\item{Lname}{a character string defining a \eqn{\cal L} model}
+\item{Lname}{a character string defining a \strong{L} Component module}
 
-\item{Lopts}{a list to configure the L model}
+\item{Lopts}{a list to configure the \strong{L} Component module}
 
 \item{nPatches}{is the number of patches}
 
@@ -58,11 +58,11 @@ xds_setup(
 
 \item{searchQ}{is a vector of search weights for egg laying}
 
-\item{Xday}{is the run-time time step for X component (in days): integer or 1/integer}
+\item{Xday}{is the run-time time step for \strong{X} Component (in days): integer or 1/integer}
 
-\item{MYZday}{is the run-time time step for MYZ component (in days): integer or 1/integer}
+\item{MYZday}{is the run-time time step for \strong{MYZ} Component (in days): integer or 1/integer}
 
-\item{Lday}{is the run-time time step for L component (in days): integer or 1/integer}
+\item{Lday}{is the run-time time step for \strong{L} Component (in days): integer or 1/integer}
 
 \item{BFopts}{a list to configure the blood feeding model}
 
@@ -76,15 +76,15 @@ Make an \strong{\code{xds}} \emph{model object}:
 \itemize{
 \item Define the dynamical components:
 \itemize{
-\item \eqn{\cal XH} - a model for human / host infection dynamics of class \strong{\code{Xname}} with trivial demographics
-\item \eqn{\cal MYZ} - a model for adult mosquito ecology and infection dynamics of class \strong{\code{MYZname}}
-\item \eqn{\cal L} - a model for aquatic mosquito ecology of class \strong{\code{Lname}}
+\item \strong{X} Component modules for human / host infection dynamics of class \strong{\code{Xname}} with trivial demographics
+\item \strong{MYZ} Component modules for adult mosquito ecology and infection dynamics of class \strong{\code{MYZname}}
+\item \strong{L} Component modules for aquatic mosquito ecology of class \strong{\code{Lname}}
 }
 \item Define basic structural parameters for a single host and vector population:
 \itemize{
 \item \eqn{n_p} or \code{nPatches} - the number of patches
-\item \eqn{n_q} or \code{nHabitats <- length(membership)} - the number and locations of aquatic habitats
-\item \eqn{n_h} or \code{nStrata <- length(residence)} - the number of human / host population strata and basic demographic information
+\item \eqn{n_q} or \code{nHabitats = length(membership)} - the number and locations of aquatic habitats
+\item \eqn{n_h} or \code{nStrata = length(residence)} - the number of human / host population strata and basic demographic information
 }
 \item Configure some of the basic elements
 \itemize{
@@ -104,17 +104,21 @@ Advanced options can be configured after basic setup.
 a properly configured interface for blood feeding and egg laying, and \code{pars$frame = class(pars$frame) = 'full'} .
 \itemize{
 \item \code{nPatches} is passed as a parameter
-\item \code{nHabitats} is configured by passing the habitat \code{membership} vector, and \code{nHabitats <- length(membership)}
-\item \code{nStrata} is configured by passing a vector of human population densities and a residence vector, and \code{nStrata <- length(residence) <- length(HPop)}
-\item \code{nHosts=1} -- basic setup handles the first host species
-\item \code{nVectors=1} -- basic setup handles the first vector species
+\item \code{nHabitats} is configured by passing the habitat \code{membership} vector, and \code{nHabitats = length(membership)}
+\item \code{nStrata} is configured by passing a vector of human population densities and a residence vector, and \code{nStrata = length(residence) = length(HPop)}
+\item \code{nHosts=1} (basic setup handles only the first host species)
+\item \code{nVectors=1} (basic setup handles only the first vector species)
 }
-\item Each one of the dynamical components is configured.
+}
+
+.
+2. Each one of the dynamical components is configured.
 \itemize{
-\item \strong{\code{pars$Xpar[[1]]}} defines a model for human / host infection dynamics of class \code{Xname} (the \eqn{\cal XH} dynamical component). The parameter values passed in a named list, \code{Xopts.}
-\item \strong{\code{pars$MYZpar[[1]]}} defines a model for adult mosquito ecology & infection dynamics of class \code{MYZname} (the \eqn{\cal MYZ} dynamical component). The parameter values are passed in a named list, \code{MYZopts.}
-\item \strong{\code{pars$Lpar[[1]]}} defines a model for aquatic mosquito ecology of class \code{Lname} (The \eqn{\cal L} dynamical component). The parameter values are passed in a named list, \code{Lopts.}
+\item \strong{\code{pars$Xpar[[1]]}} defines a model for human / host infection dynamics of class \code{Xname} (the \strong{X} component). The parameter values passed in a named list, \code{Xopts.}
+\item \strong{\code{pars$MYZpar[[1]]}} defines a model for adult mosquito ecology & infection dynamics of class \code{MYZname} (the \strong{MYZ} Component). The parameter values are passed in a named list, \code{MYZopts.}
+\item \strong{\code{pars$Lpar[[1]]}} defines a model for aquatic mosquito ecology of class \code{Lname} (The \strong{L} Component). The parameter values are passed in a named list, \code{Lopts.}
 }
+\enumerate{
 \item After configuring the dynamical components, several structural parameters can be configured at the command line:
 \itemize{
 \item Habitat search weights can be set
@@ -133,7 +137,7 @@ Advanced features must be configured later, including:
 }
 }
 \note{
-If \eqn{\cal MYZ} is the trivial model, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_cohort}. Models for mosquito
+If the \strong{MYZ} Component is the \code{trivial} module, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_cohort}. Models for mosquito
 ecology need not include states describing infection status (see \link{xds_setup_mosy}).
 }
 \seealso{

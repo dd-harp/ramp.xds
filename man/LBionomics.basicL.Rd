@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{LBionomics.basicL}
 \alias{LBionomics.basicL}
-\title{Reset aquatic parameters to baseline}
+\title{Modify \strong{L} Component Parameters}
 \usage{
 \method{LBionomics}{basicL}(t, y, pars, s)
 }
@@ -11,13 +11,13 @@
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{pars}{an \code{xds} object}
 
 \item{s}{the species index}
 }
 \value{
-a named \link{list}
+a \strong{\code{ramp.xds}} object
 }
 \description{
-Implements \link{LBionomics} for the RM model
+Implements \link{LBionomics} for the \code{basicL}
 }

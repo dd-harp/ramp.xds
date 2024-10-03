@@ -217,7 +217,7 @@ set_Xinits.SIS <- function(pars, i=1, Xopts=list()) {
     pars$Xinits[[i]]$S = get_H(pars,i)-I
     pars$Xinits[[i]]$I = I
     return(pars)
-}))}
+  }))}
 
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Xpar`

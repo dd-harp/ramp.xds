@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{F_emerge.basicL}
 \alias{F_emerge.basicL}
-\title{Number of newly emerging adults from each larval habitat}
+\title{Compute emergent adults}
 \usage{
 \method{F_emerge}{basicL}(t, y, pars, s)
 }
@@ -19,5 +19,6 @@
 a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-Implements \link{F_emerge} for the basicL competition model.
+The function computes the number of
+emergent adults from aquatic habitats for \code{basicL}
 }

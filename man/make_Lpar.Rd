@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{make_Lpar}
 \alias{make_Lpar}
-\title{Create and configure \strong{\code{Lpar}} for \eqn{\cal L}-Models}
+\title{Set up \code{Lpar} for \strong{L} Component modules}
 \usage{
 make_Lpar(Lname, pars, s, Lopts = list())
 }

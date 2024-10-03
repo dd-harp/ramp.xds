@@ -195,7 +195,7 @@ set_MYZinits.basicM <- function(pars, s=1, MYZopts=list()) {
     pars$MYZinits[[s]]$M = M
     pars$MYZinits[[s]]$P = P
     return(pars)
- }))}
+  }))}
 
 #' @title Make inits for basicM adult mosquito model
 #' @param nPatches the number of patches in the model

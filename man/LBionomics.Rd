@@ -2,10 +2,8 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{LBionomics}
 \alias{LBionomics}
-\title{Larval and Aquatic Stage Bionomics}
+\title{Bionomics for an \strong{L} Component Module}
 \usage{
-LBionomics(t, y, pars, s)
-
 LBionomics(t, y, pars, s)
 }
 \arguments{
@@ -13,22 +11,13 @@ LBionomics(t, y, pars, s)
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{pars}{an \code{xds} object}
 
 \item{s}{the species index}
 }
 \value{
 an \code{xds} object
-
-an \strong{\code{xds}} object
 }
 \description{
 Handle immature mosquito bionomic parameters as a baseline modified by control
-
-It should compute the values of parameters
-as a function of exogenous variables
-or reset the values of the bionomic parameters to baseline values.
-}
-\note{
-This method dispatches on the class of \code{pars$Lpar[[s]]}
 }

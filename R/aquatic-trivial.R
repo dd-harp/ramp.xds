@@ -1,7 +1,10 @@
 # specialized methods for the aquatic mosquito trivial model
 
 #' @title Number of newly emerging adults from each larval habitat
-#' @description Implements [F_emerge] for the trivial (forced emergence) model.
+#' @description The number of emerging adults is a function \deqn{\Lambda S(t) T(t)} where
+#' + \eqn{\Lambda} or `Lambda` is the mean number of adult female mosquitoes emerging per day
+#' + \eqn{S(t)} or `F_season` is a seasonal signal (ideally, with an average annual mean of 1)
+#' + \eqn{T(t)} or `F_trend` is a function returning a trend (ideally, with an average value of 1)
 #' @inheritParams F_emerge
 #' @return a [numeric] vector of length `nHabitats`
 #' @export
@@ -112,7 +115,7 @@ list_Lvars.trivial <- function(y, pars, s){
   return(list())
 }
 
-#' @title Return the variables as a list
+#' @title Return **L** Component variables as a list
 #' @description This method dispatches on the type of `pars$Lpar[[s]]`
 #' @inheritParams put_Lvars
 #' @return a [list]
@@ -130,7 +133,7 @@ Update_Lt.trivial <- function(t, y, pars, s) {
   return(list())
 }
 
-#' @title xde_setup Lpar for the trivial model
+#' @title Setup `Lpar` for the `trivial` module
 #' @description Implements [make_Lpar] for the trivial model
 #' @inheritParams make_Lpar
 #' @return a [list] vector
@@ -141,8 +144,8 @@ make_Lpar.trivial = function(Lname, pars, s, Lopts=list()){
 }
 
 
-#' @title Setup \eqn{\cal L}-trivial
-#' @description Implements [make_Linits] for the trivial model
+#' @title Setup Initial Values for the **L** Component `trivial` Module
+#' @description The `trivial` module initial values are an empty list
 #' @inheritParams make_Linits
 #' @return a [list]
 #' @export
@@ -164,7 +167,7 @@ make_indices_L.trivial <- function(pars, s) {
 #' @inheritParams update_Linits
 #' @return none
 #' @export
-update_Linits.trivial<- function(pars, y0, s) {
+update_Linits.trivial<- function(pars, y, s) {
   return(pars)
 }
 

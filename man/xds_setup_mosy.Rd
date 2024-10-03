@@ -24,9 +24,9 @@ xds_setup_mosy(
 \arguments{
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
-\item{MYZname}{is a character string defining a MYZ model}
+\item{MYZname}{is a character string defining a \strong{MYZ} Component module}
 
-\item{Lname}{is a character string defining a L model}
+\item{Lname}{is a character string defining a \strong{L} Component module}
 
 \item{nPatches}{is the number of patches}
 
@@ -34,9 +34,9 @@ xds_setup_mosy(
 
 \item{HPop}{is the human population density}
 
-\item{MYZday}{is the run-time time step for MYZ component (in days): integer or 1/integer}
+\item{MYZday}{is the run-time time step for \strong{MYZ} Component (in days): integer or 1/integer}
 
-\item{Lday}{is the run-time time step for L component (in days): integer or 1/integer}
+\item{Lday}{is the run-time time step for \strong{L} Component (in days): integer or 1/integer}
 
 \item{calK}{is either a calK matrix or a string that defines how to set it up}
 
@@ -44,9 +44,9 @@ xds_setup_mosy(
 
 \item{kappa}{is a vector describing net infectiousness}
 
-\item{MYZopts}{a list to configure the MYZ model}
+\item{MYZopts}{a list to configure the \strong{MYZ} Component module}
 
-\item{Lopts}{a list to configure the L model}
+\item{Lopts}{a list to configure the \strong{L} Component module}
 
 \item{model_name}{is a name for the model (arbitrary)}
 }
@@ -60,8 +60,8 @@ component describing parasite / pathogen infection dynamics in the adult mosquit
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'mosy'}
 to dispatch \link{xde_derivatives.mosy} or \link{dts_update.mosy} and associated functions.
 
-The \eqn{\cal X} model is trivial, but since humans / vertebrate hosts can be a
-resource, \code{HPop} must be set. Notably, it is possible to set values of NI \code{kappa} but
+The \strong{X} Component module is \code{trivial}, but since humans / vertebrate hosts can be a
+resource, \code{HPop} must be set.
 }
 \seealso{
 \link{xds_setup} and \link{dMYZdt.basicM}

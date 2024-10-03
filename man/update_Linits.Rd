@@ -2,14 +2,14 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{update_Linits}
 \alias{update_Linits}
-\title{Set the initial values from a vector of model states}
+\title{Set Initial Values for the \strong{L} Component Module from a State Vector}
 \usage{
-update_Linits(pars, y0, s)
+update_Linits(pars, y, s)
 }
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}
 
-\item{y0}{a vector of variable values from a simulation}
+\item{y}{the state variables}
 
 \item{s}{the species index}
 }
@@ -17,5 +17,5 @@ update_Linits(pars, y0, s)
 an \code{xds} object
 }
 \description{
-This method dispatches on the class of \code{pars$Lpar}.
+Set Initial Values for the \strong{L} Component Module from a State Vector
 }

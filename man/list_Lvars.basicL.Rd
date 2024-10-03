@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{list_Lvars.basicL}
 \alias{list_Lvars.basicL}
-\title{Return the variables as a list}
+\title{List \strong{L} Component Variables}
 \usage{
 \method{list_Lvars}{basicL}(y, pars, s)
 }
@@ -14,8 +14,9 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+a named \link{list}
 }
 \description{
-This method dispatches on the type of \code{pars$Lpar[[s]]}
+Extract the \strong{L} component variables from the
+vector of state variables (\code{y}) and return them as a named list
 }

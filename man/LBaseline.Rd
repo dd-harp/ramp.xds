@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{LBaseline}
 \alias{LBaseline}
-\title{Larval and Aquatic Stage Baseline}
+\title{Baseline Bionomics for an \strong{L} Component Module}
 \usage{
 LBaseline(t, y, pars, s)
 }

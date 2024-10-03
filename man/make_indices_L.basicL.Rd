@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{make_indices_L.basicL}
 \alias{make_indices_L.basicL}
-\title{Add indices for aquatic mosquitoes to parameter list}
+\title{Make Indices for \strong{L} Component Variables for \code{basicL}}
 \usage{
 \method{make_indices_L}{basicL}(pars, s)
 }
@@ -12,8 +12,9 @@
 \item{s}{the species index}
 }
 \value{
-none
+an \strong{\code{xds}} object
 }
 \description{
-Implements \link{make_indices_L} for the basic M model.
+Set the values of the indices for the \strong{L} component variables
+for the \code{basicL} module
 }

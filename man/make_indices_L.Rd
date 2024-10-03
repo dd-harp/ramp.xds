@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{make_indices_L}
 \alias{make_indices_L}
-\title{Add indices for aquatic stage mosquitoes to parameter list}
+\title{Set the Values of the Indices for \strong{L} Component Modules}
 \usage{
 make_indices_L(pars, s)
 }
@@ -15,6 +15,5 @@ make_indices_L(pars, s)
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the class of \code{pars$Lpar}. Adds field \code{L_ix}
-to parameter list.
+Set the Values of the Indices for \strong{L} Component Modules
 }

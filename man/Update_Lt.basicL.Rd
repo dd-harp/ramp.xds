@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{Update_Lt.basicL}
 \alias{Update_Lt.basicL}
-\title{Derivatives for aquatic stage mosquitoes}
+\title{Update \strong{L} Component Variables for \code{basicL}}
 \usage{
 \method{Update_Lt}{basicL}(t, y, pars, s)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{dLdt.basicL}
 \alias{dLdt.basicL}
-\title{\strong{L} Component Derivatives for a \code{basicL}}
+\title{\strong{L} Component Derivatives for \code{basicL}}
 \usage{
 \method{dLdt}{basicL}(t, y, pars, s)
 }
@@ -20,19 +20,30 @@ a \link{numeric} vector
 }
 \description{
 This implements differential equation model for aquatic mosquito ecology.
-It has been modified slightly from a version published by Smith DL, \emph{et al.} (2013):
-\deqn{dL/dt = \eta - (\psi + \phi + \theta L)L}
+The equations have been modified slightly from a version published by
+Smith DL, \emph{et al.} (2013); this version includes delayed maturation i
+in response to mean crowding.
 
-\strong{Parameters:}
+\strong{Variables:}
 \itemize{
-\item \eqn{\eta}: egg deposition rate
-\item \eqn{\psi}: maturation rate
-\item \eqn{\phi}: density-independent death rate
-\item \eqn{\theta}: density dependence in mortality: the slope of the response to mean crowding
+\item \eqn{L}: the density of mosquito larvae in each habitat
 }
 
+\strong{Parameters and Terms:}
+\itemize{
+\item \eqn{\eta} or \code{eta}: egg deposition rate (from \link{F_eggs})
+\item \eqn{\psi} or \code{psi}: maturation rate
+\item \eqn{\xi} or \code{xi}: delayed maturation parameter in response to mean crowding
+\item \eqn{\phi} or \code{phi}: density-independent death rate
+\item \eqn{\theta} or \code{theta}: the slope of the mortality rate in response to mean crowding
+}
+
+\strong{Dynamics:}
+
+\deqn{dL/dt = \eta - (\psi\;e^{-\xi L} + \phi + \theta L)L}
+
 Per-capita mortality is thus \eqn{\phi + \theta L}, and the emergence rate
-of adult mosquitoes is \eqn{\psi L}
+of adult mosquitoes is \eqn{\psi e^{-\xi L} L }
 }
 \references{
 {\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-trivial.R
 \name{make_Lpar.trivial}
 \alias{make_Lpar.trivial}
-\title{xde_setup Lpar for the trivial model}
+\title{Setup \code{Lpar} for the \code{trivial} module}
 \usage{
 \method{make_Lpar}{trivial}(Lname, pars, s, Lopts = list())
 }

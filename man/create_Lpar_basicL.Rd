@@ -2,12 +2,13 @@
 % Please edit documentation in R/aquatic-basicL.R
 \name{create_Lpar_basicL}
 \alias{create_Lpar_basicL}
-\title{Make parameters for basicL competition aquatic mosquito model}
+\title{Create \code{Lpar} for \code{basicL}}
 \usage{
 create_Lpar_basicL(
   nHabitats,
   Lopts = list(),
   psi = 1/8,
+  xi = 0,
   phi = 1/8,
   theta = 1/100
 )
@@ -19,16 +20,25 @@ create_Lpar_basicL(
 
 \item{psi}{maturation rates for each aquatic habitat}
 
+\item{xi}{delayed maturation in response to mean crowding}
+
 \item{phi}{density-independent mortality rates for each aquatic habitat}
 
 \item{theta}{density-dependent mortality terms for each aquatic habitat}
 }
 \value{
-\strong{\code{Lpar}} an \strong{\code{xds}} \eqn{\cal L} object
+\strong{\code{Lpar}} an \strong{L} component object
 }
 \description{
-Make parameters for basicL competition aquatic mosquito model
+The following parameters will be set to the values in
+\code{Lopts.} If they are not found, default values will be used.
+\itemize{
+\item \eqn{\psi} or \code{psi}: maturation rate
+\item \eqn{\xi} or \code{xi}: delayed maturation response due to mean crowding
+\item \eqn{\phi} or \code{phi}: density-independent death rate
+\item \eqn{\theta} or \code{theta}: density dependence in mortality: the slope of the response to mean crowding
+}
 }
 \seealso{
-Related: \link{dLdt.basicL} & \link{Update_Lt.basicL}
+Called by: \link{make_Lpar.basicL}. Related: \link{dLdt.basicL} & \link{Update_Lt.basicL}
 }

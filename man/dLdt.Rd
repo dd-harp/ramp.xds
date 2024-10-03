@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-interface.R
 \name{dLdt}
 \alias{dLdt}
-\title{\eqn{\cal L} Component Derivatives}
+\title{\strong{L} Component Derivatives}
 \usage{
 dLdt(t, y, pars, s)
 }
@@ -20,8 +20,7 @@ the derivatives, a \link{numeric} vector of length \eqn{n_q=}\code{nHabitats}
 }
 \description{
 This method computes and returns the derivatives
-for the \eqn{\cal L} dynamical component -- a model family
-describing immature mosquitoes in aquatic habitats
+for the \strong{L} Component modules
 }
 \note{
 Dispatches on the class of \code{pars$Lpar[[s]]}
