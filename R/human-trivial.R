@@ -29,7 +29,7 @@ F_H.trivial <- function(t, y, pars, i) {
 #' @param F_trend a function returning a trend
 #' @return a [list]
 #' @export
-create_Xpar_trivial <- function(nPatches, Xopts, kappa=.1, HPop=1,
+make_Xpar_trivial <- function(nPatches, Xopts, kappa=.1, HPop=1,
                                 F_season=F_flat, F_trend=F_flat){
   with(Xopts,{
     Xpar <- list()
@@ -119,33 +119,33 @@ F_b.trivial <- function(y, pars, i) {
 
 
 #' @title xde_setup Xpar.trivial
-#' @description Implements [make_Xpar] for the trivial model
-#' @inheritParams make_Xpar
+#' @description Implements [setup_Xpar] for the trivial model
+#' @inheritParams setup_Xpar
 #' @return a [list] vectord
 #' @export
-make_Xpar.trivial = function(Xname, pars, i, Xopts=list()){
-  pars$Xpar[[i]] = create_Xpar_trivial(pars$nPatches, Xopts)
+setup_Xpar.trivial = function(Xname, pars, i, Xopts=list()){
+  pars$Xpar[[i]] = make_Xpar_trivial(pars$nPatches, Xopts)
   return(pars)
 }
 
 
 #' @title Setup Xinits.trivial
-#' @description Implements [make_Xinits] for the trivial model
-#' @inheritParams make_Xinits
+#' @description Implements [setup_Xinits] for the trivial model
+#' @inheritParams setup_Xinits
 #' @return a [list] vector
 #' @export
-make_Xinits.trivial = function(pars, H, i, Xopts=list()){
+setup_Xinits.trivial = function(pars, H, i, Xopts=list()){
   pars$Xpar[[i]]$H = H
   return(pars)
 }
 
 #' @title Add indices for human population to parameter list
-#' @description Implements [make_X_indices] for the trivial model.
-#' @inheritParams make_X_indices
+#' @description Implements [setup_X_indices] for the trivial model.
+#' @inheritParams setup_X_indices
 #' @return none
 #' @importFrom utils tail
 #' @export
-make_X_indices.trivial <- function(pars, i) {
+setup_X_indices.trivial <- function(pars, i) {
   return(pars)
 }
 

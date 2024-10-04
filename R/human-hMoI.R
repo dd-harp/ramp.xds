@@ -43,7 +43,7 @@ xde_steady_state_X.hMoI = function(foi, H, Xpar){with(Xpar,{
 #' @param r2 recovery rate from patent infections
 #' @return none
 #' @export
-create_Xpar_hMoI = function(nStrata, Xopts=list(),
+make_Xpar_hMoI = function(nStrata, Xopts=list(),
                             b=0.55, r1=1/180, r2 = 1/70,
                             c1=0.015, c2=0.15){
   with(Xopts,{
@@ -65,7 +65,7 @@ create_Xpar_hMoI = function(nStrata, Xopts=list(),
 #' values as a list.
 #' @inheritParams get_Xpars
 #' @return a [list]
-#' @seealso [create_Xpar_hMoI]
+#' @seealso [make_Xpar_hMoI]
 #' @export
 get_Xpars.hMoI<- function(pars, i=1) {
   with(pars$Xpar[[i]],list(b=b, c1=c1, c2=c2, r1=r1, r2=r2))
@@ -89,12 +89,12 @@ set_Xpars.hMoI <- function(pars, i=1, Xopts=list()) {
   }))}
 
 #' @title Setup Xpar.hMoI
-#' @description Implements [make_Xpar] for the hMoI model
-#' @inheritParams make_Xpar
+#' @description Implements [setup_Xpar] for the hMoI model
+#' @inheritParams setup_Xpar
 #' @return a [list] vector
 #' @export
-make_Xpar.hMoI = function(Xname, pars, i, Xopts=list()){
-  pars$Xpar[[i]] = create_Xpar_hMoI(pars$nStrata[i], Xopts)
+setup_Xpar.hMoI = function(Xname, pars, i, Xopts=list()){
+  pars$Xpar[[i]] = make_Xpar_hMoI(pars$nStrata[i], Xopts)
   return(pars)
 }
 
@@ -142,13 +142,13 @@ F_b.hMoI <- function(y, pars,i) {
 
 
 #' @title Setup Xinits.hMoI
-#' @description Implements [make_Xinits] for the hMoI model
-#' @inheritParams make_Xinits
+#' @description Implements [setup_Xinits] for the hMoI model
+#' @inheritParams setup_Xinits
 #' @return a [list] vector
 #' @export
-make_Xinits.hMoI = function(pars, H, i, Xopts=list()){
+setup_Xinits.hMoI = function(pars, H, i, Xopts=list()){
   pars$Xpar[[i]]$H = H
-  pars$Xinits[[i]] = create_Xinits_hMoI(pars$nStrata[i], Xopts)
+  pars$Xinits[[i]] = make_Xinits_hMoI(pars$nStrata[i], Xopts)
   return(pars)
 }
 
@@ -172,7 +172,7 @@ set_Xinits.hMoI <- function(pars, i=1, Xopts=list()) {
 #' @param m2 mean MoI among patent human infections
 #' @return none
 #' @export
-create_Xinits_hMoI = function(nStrata, Xopts = list(), m1=2, m2=1){with(Xopts,{
+make_Xinits_hMoI = function(nStrata, Xopts = list(), m1=2, m2=1){with(Xopts,{
   m1 = checkIt(m1, nStrata)
   m2 = checkIt(m2, nStrata)
   return(list(m1=m1, m2=m2))
@@ -191,12 +191,12 @@ HTC.hMoI <- function(pars, i) {
 }
 
 #' @title Add indices for human population to parameter list
-#' @description Implements [make_X_indices] for the hybrid MoI model.
-#' @inheritParams make_X_indices
+#' @description Implements [setup_X_indices] for the hybrid MoI model.
+#' @inheritParams setup_X_indices
 #' @return none
 #' @importFrom utils tail
 #' @export
-make_X_indices.hMoI <- function(pars, i) {with(pars,{
+setup_X_indices.hMoI <- function(pars, i) {with(pars,{
   m1_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(m1_ix, 1)
 
@@ -218,7 +218,7 @@ update_Xinits.hMoI <- function(pars, y0, i) {
   with(pars$ix$X[[i]],{
     m1 = y0[m1_ix]
     m2 = y0[m2_ix]
-    pars$Xinits[[i]] = create_Xinits_hMoI(pars$nStrata[i], m1=m1, m2=m2)
+    pars$Xinits[[i]] = make_Xinits_hMoI(pars$nStrata[i], m1=m1, m2=m2)
     return(pars)
   })}
 

@@ -19,7 +19,7 @@ make_indices <- function(pars) {
   i = length(pars$Xinits)
   if(i>0)
     for(ix in 1:i)
-      pars = make_X_indices(pars, ix)
+      pars = setup_X_indices(pars, ix)
 
   return(pars)
 }

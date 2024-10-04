@@ -306,7 +306,7 @@ names(MYZpar)
 
 We use a static demographic model, which assumes a constant population size (constant $H$).
 
-The 5-3-4 model uses the basic SIS (Susceptible-Infected-Susceptible) model for the human component (see more [here](human_sis.html)). It can be configured using `ramp.xds::xde_make_Xpar_SIS.` 
+The 5-3-4 model uses the basic SIS (Susceptible-Infected-Susceptible) model for the human component (see more [here](human_sis.html)). It can be configured using `ramp.xds::xde_setup_Xpar_SIS.` 
 
 
 ```{r X parameters}
@@ -318,7 +318,7 @@ c <- c(0.1, .02, .1, .02)
 The model is configured and assigned the name `Xpar`:
 
 ```{r Xpar}
-Xpar <- create_Xpar_SIS(nStrata, list(), b, r, c)
+Xpar <- make_Xpar_SIS(nStrata, list(), b, r, c)
 ```
 
 ## Initial Conditions
@@ -426,7 +426,7 @@ params$Xpar[[1]] = Xpar
 ```{r}
 params <- setup_Linits(params, 1, Linits)
 params <- setup_MYZinits(params, 1, MYZinits)
-params <- make_Xinits(params, HPop, 1, Xinits)
+params <- setup_Xinits(params, HPop, 1, Xinits)
 ```
 
 ```{r}

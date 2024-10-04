@@ -25,9 +25,9 @@ dXdt <- function(t, y, pars, i) {
 #' @param Xopts a [list]
 #' @return an **`xds`** object
 #' @export
-make_Xpar = function(Xname, pars, i, Xopts=list()){
+setup_Xpar = function(Xname, pars, i, Xopts=list()){
   class(Xname) <- Xname
-  UseMethod("make_Xpar", Xname)
+  UseMethod("setup_Xpar", Xname)
 }
 
 #' @title Update X states for a discrete time system
@@ -98,8 +98,8 @@ F_b <- function(y, pars, i) {
 #' @param Xopts a [list]
 #' @return an **`xds`** object
 #' @export
-make_Xinits = function(pars, H, i, Xopts=list()){
-  UseMethod("make_Xinits", pars$Xpar[[i]])
+setup_Xinits = function(pars, H, i, Xopts=list()){
+  UseMethod("setup_Xinits", pars$Xpar[[i]])
 }
 
 #' @title Add indices for human population to parameter list
@@ -108,8 +108,8 @@ make_Xinits = function(pars, H, i, Xopts=list()){
 #' @param i the host species index
 #' @return an **`xds`** object
 #' @export
-make_X_indices <- function(pars, i) {
-  UseMethod("make_X_indices", pars$Xpar[[i]])
+setup_X_indices <- function(pars, i) {
+  UseMethod("setup_X_indices", pars$Xpar[[i]])
 }
 
 #' @title Return the variables as a list

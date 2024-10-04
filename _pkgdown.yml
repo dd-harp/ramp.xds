@@ -570,13 +570,13 @@ reference:
   contents:
   - dXdt
   - Update_Xt
-  - make_Xinits
-  - make_X_indices
+  - setup_Xinits
+  - setup_X_indices
   - list_Xvars
   - get_Xpars
   - set_Xpars
   - put_Xvars
-  - make_Xpar
+  - setup_Xpar
   - F_X
   - F_H
   - F_b
@@ -607,10 +607,10 @@ reference:
   - F_b.trivial
   - dXdt.trivial
   - Update_Xt.trivial
-  - make_Xpar.trivial
-  - create_Xpar_trivial
-  - make_Xinits.trivial
-  - make_X_indices.trivial
+  - setup_Xpar.trivial
+  - make_Xpar_trivial
+  - setup_Xinits.trivial
+  - setup_X_indices.trivial
   - parse_Xorbits.trivial
   - get_Xinits.trivial
   - set_Xinits.trivial
@@ -622,12 +622,12 @@ reference:
     Specialized methods for a hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
   contents:
   - dXdt.hMoI
-  - make_Xpar.hMoI
-  - create_Xpar_hMoI
+  - setup_Xpar.hMoI
+  - make_Xpar_hMoI
   - xde_steady_state_X.hMoI
-  - make_Xinits.hMoI
-  - create_Xinits_hMoI
-  - make_X_indices.hMoI
+  - setup_Xinits.hMoI
+  - make_Xinits_hMoI
+  - setup_X_indices.hMoI
   - F_X.hMoI
   - F_H.hMoI
   - F_b.hMoI
@@ -648,11 +648,11 @@ reference:
   contents:
   - dXdt.SIS
   - Update_Xt.SIS
-  - make_Xpar.SIS
-  - create_Xpar_SIS
-  - make_Xinits.SIS
-  - create_Xinits_SIS
-  - make_X_indices.SIS
+  - setup_Xpar.SIS
+  - make_Xpar_SIS
+  - setup_Xinits.SIS
+  - make_Xinits_SIS
+  - setup_X_indices.SIS
   - list_Xvars.SIS
   - get_Xpars.SIS
   - set_Xpars.SIS

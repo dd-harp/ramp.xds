@@ -113,8 +113,8 @@ xds_setup = function(xds = 'ode',
 
   # Human Dynamics
   pars$Xname <- Xname
-  pars       <- make_Xpar(Xname, pars,  1, Xopts)
-  pars       <- make_Xinits(pars, HPop, 1, Xopts)
+  pars       <- setup_Xpar(Xname, pars,  1, Xopts)
+  pars       <- setup_Xinits(pars, HPop, 1, Xopts)
   pars       <- setup_Hpar_static(pars, 1)
 
   pars = make_indices(pars)
@@ -210,7 +210,7 @@ xds_setup_mosy = function(xds = 'ode',
   pars       <- setup_Linits(pars, 1, Lopts)
 
   Xo <- list(kappa=kappa, HPop=HPop)
-  pars <- make_Xpar("trivial", pars, 1, Xo)
+  pars <- setup_Xpar("trivial", pars, 1, Xo)
 
   pars = make_indices(pars)
 
@@ -277,7 +277,7 @@ xds_setup_aquatic = function(xds = 'ode',
 
   # Human Dynamics
   pars$Xname <- "trivial"
-  pars <- make_Xpar("trivial", pars, 1, list())
+  pars <- setup_Xpar("trivial", pars, 1, list())
 
   pars = make_indices(pars)
   pars$model_name <- model_name
@@ -353,8 +353,8 @@ xds_setup_human = function(Xname = "SIS",
 
   # Human Dynamics
   pars$Xname <- Xname
-  pars       <- make_Xpar(Xname, pars,  1, Xopts)
-  pars       <- make_Xinits(pars, HPop, 1, Xopts)
+  pars       <- setup_Xpar(Xname, pars,  1, Xopts)
+  pars       <- setup_Xinits(pars, HPop, 1, Xopts)
   pars       <- setup_Hpar_static(pars, 1)
 
   pars = make_indices(pars)
@@ -448,8 +448,8 @@ xds_setup_cohort = function(eir=1,
 
   # Human Dynamics
   pars$Xname <- Xname
-  pars       <- make_Xpar(Xname, pars,  1, Xopts)
-  pars       <- make_Xinits(pars, HPop, 1, Xopts)
+  pars       <- setup_Xpar(Xname, pars,  1, Xopts)
+  pars       <- setup_Xinits(pars, HPop, 1, Xopts)
   pars       <- setup_Hpar_static(pars, 1)
 
   pars = make_indices(pars)
