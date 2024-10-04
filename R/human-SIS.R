@@ -68,12 +68,12 @@ dts_steady_state_X.SIS = function(ar, H, Xpar){with(Xpar,{
 })}
 
 #' @title Setup Xpar.SIS
-#' @description Implements [make_Xpar] for the SIS model
-#' @inheritParams make_Xpar
+#' @description Implements [setup_Xpar] for the SIS model
+#' @inheritParams setup_Xpar
 #' @return a [list] vector
 #' @export
-make_Xpar.SIS = function(Xname, pars, i, Xopts=list()){
-  pars$Xpar[[i]] = create_Xpar_SIS(pars$nStrata[1], Xopts)
+setup_Xpar.SIS = function(Xname, pars, i, Xopts=list()){
+  pars$Xpar[[i]] = make_Xpar_SIS(pars$nStrata[1], Xopts)
   return(pars)
 }
 
@@ -85,7 +85,7 @@ make_Xpar.SIS = function(Xname, pars, i, Xopts=list()){
 #' @param r recovery rate
 #' @return a [list]
 #' @export
-create_Xpar_SIS = function(nStrata, Xopts=list(),
+make_Xpar_SIS = function(nStrata, Xopts=list(),
                            b=0.55, r=1/180, c=0.15){
   with(Xopts,{
     Xpar = list()
@@ -188,7 +188,7 @@ set_Xpars.SIS <- function(pars, i=1, Xopts=list()) {
 #' @param I the initial values of the parameter I
 #' @return a [list]
 #' @export
-create_Xinits_SIS = function(nStrata, H, Xopts = list(), I=1){with(Xopts,{
+make_Xinits_SIS = function(nStrata, H, Xopts = list(), I=1){with(Xopts,{
   S = unname(as.vector(checkIt(H-I, nStrata)))
   I = unname(as.vector(checkIt(I, nStrata)))
   return(list(S=S, I=I))
@@ -198,12 +198,12 @@ create_Xinits_SIS = function(nStrata, H, Xopts = list(), I=1){with(Xopts,{
 
 
 #' @title Setup Xinits.SIS
-#' @description Implements [make_Xinits] for the SIS model
-#' @inheritParams make_Xinits
+#' @description Implements [setup_Xinits] for the SIS model
+#' @inheritParams setup_Xinits
 #' @return a [list] vector
 #' @export
-make_Xinits.SIS = function(pars, H, i, Xopts=list()){
-  pars$Xinits[[i]] = with(pars, create_Xinits_SIS(pars$nStrata[i], H, Xopts))
+setup_Xinits.SIS = function(pars, H, i, Xopts=list()){
+  pars$Xinits[[i]] = with(pars, make_Xinits_SIS(pars$nStrata[i], H, Xopts))
   return(pars)
 }
 
@@ -228,12 +228,12 @@ get_Xinits.SIS <- function(pars, i=1){pars$Xinits[[i]]}
 
 
 #' @title Add indices for human population to parameter list
-#' @description Implements [make_X_indices] for the SIS model.
-#' @inheritParams make_X_indices
+#' @description Implements [setup_X_indices] for the SIS model.
+#' @inheritParams setup_X_indices
 #' @return none
 #' @importFrom utils tail
 #' @export
-make_X_indices.SIS <- function(pars, i) {with(pars,{
+setup_X_indices.SIS <- function(pars, i) {with(pars,{
 
   S_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(S_ix, 1)

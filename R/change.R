@@ -8,7 +8,7 @@
 set_H = function(H, pars, i=1){
   stopifnot(length(H) == pars$nStrata[i])
   vars <- as.list(get_Xinits(pars,i))
-  pars <- make_Xinits(pars, H, i, vars)
+  pars <- setup_Xinits(pars, H, i, vars)
   class(pars$BFpar) <- trigger_setup(pars$BFpar)
   class(pars$beta) <- trigger_setup(pars$beta)
   return(pars)

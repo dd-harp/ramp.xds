@@ -106,8 +106,8 @@ eir <- h/b
 ```
 
 ```{r}
-params = make_Xpar("hMoI", params, 1, Xo)
-params = make_Xinits(params, H, 1, Xo) 
+params = setup_Xpar("hMoI", params, 1, Xo)
+params = setup_Xinits(params, H, 1, Xo) 
 ```
 
 

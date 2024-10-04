@@ -20,5 +20,5 @@ stored as \code{pars$Xpar[[i]]}. This returns the stored parameter
 values as a list.
 }
 \seealso{
-\link{create_Xpar_hMoI}
+\link{make_Xpar_hMoI}
 }

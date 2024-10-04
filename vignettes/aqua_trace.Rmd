@@ -134,7 +134,7 @@ params = setup_MYZinits(params, 1, list(M=M_eq, P=P_eq))
 
 
 ```{r}
-params = make_Xpar("trivial", params, 1, list(HPop=HPop))
+params = setup_Xpar("trivial", params, 1, list(HPop=HPop))
 ```
 
 
