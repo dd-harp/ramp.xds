@@ -466,50 +466,48 @@ reference:
     Generic methods for the aquatic (immature) mosquito component.
   contents:
   - dLdt
-  - xde_steady_state_L
-  - setup_Lpar
   - Update_Lt
-  - dts_steady_state_L
+  - F_emerge
   - LBionomics
   - LBaseline
-  - LBionomics.static
-  - F_emerge
-  - setup_Linits
-  - list_Lvars
+  - setup_Lpar
   - get_Lpars
   - set_Lpars
+  - setup_Linits
+  - list_Lvars
+  - update_Linits
+  - set_Linits
+  - get_Linits
   - setup_Lix
   - parse_Lorbits
-  - get_Linits
-  - set_Linits
-  - update_Linits
+  - xde_steady_state_L
+  - dts_steady_state_L
 - subtitle: trivial
   desc: |
     Specialized methods for the exogeneously forced trivial model of aquatic mosquito dynamics.
   contents:
-  - LBionomics.trivial
-  - LBaseline.trivial
-  - xde_steady_state_L.trivial
-  - F_emerge.trivial
   - dLdt.trivial
   - Update_Lt.trivial
+  - F_emerge.trivial
+  - LBionomics.trivial
+  - LBaseline.trivial
   - setup_Lpar.trivial
   - make_Lpar_trivial
-  - setup_Linits.trivial
-  - list_Lvars.trivial
   - get_Lpars.trivial
   - set_Lpars.trivial
+  - setup_Linits.trivial
+  - list_Lvars.trivial
   - set_Linits.trivial
+  - update_Linits.trivial
   - setup_Lix.trivial
   - parse_Lorbits.trivial
-  - update_Linits.trivial
+  - xde_steady_state_L.trivial
 - subtitle: basicL
   desc: |
     Specialized methods for a basicL competition model of aquatic mosquito dynamics.
   contents:
   - dLdt.basicL
   - Update_Lt.basicL
-  - xde_steady_state_L.basicL
   - setup_Lpar.basicL
   - make_Lpar_basicL
   - LBionomics.basicL
@@ -524,12 +522,12 @@ reference:
   - setup_Lix.basicL
   - parse_Lorbits.basicL
   - update_Linits.basicL
+  - xde_steady_state_L.basicL
 - title: Mosquito Bionomics
   desc: |
     Methods to compute or update mosquito bionomic parameters
   contents:
   - Bionomics
-  - MBionomics.static
 - subtitle:  Functional Responses
   desc: |
     Compute bionomic parameters as functional responses to resource availability
