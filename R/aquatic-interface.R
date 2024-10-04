@@ -171,8 +171,8 @@ update_Linits <- function(pars, y, s) {
 #' @param s the species index
 #' @return an **`xds`** object
 #' @export
-setup_indices_L <- function(pars, s) {
-  UseMethod("setup_indices_L", pars$Lpar[[s]])
+setup_Lix <- function(pars, s) {
+  UseMethod("setup_Lix", pars$Lpar[[s]])
 }
 
 #' @title Parse **L** Component Outputs

@@ -140,12 +140,12 @@ setup_Xinits.trivial = function(pars, H, i, Xopts=list()){
 }
 
 #' @title Add indices for human population to parameter list
-#' @description Implements [setup_X_indices] for the trivial model.
-#' @inheritParams setup_X_indices
+#' @description Implements [setup_Xix] for the trivial model.
+#' @inheritParams setup_Xix
 #' @return none
 #' @importFrom utils tail
 #' @export
-setup_X_indices.trivial <- function(pars, i) {
+setup_Xix.trivial <- function(pars, i) {
   return(pars)
 }
 

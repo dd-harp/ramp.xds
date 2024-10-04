@@ -246,11 +246,11 @@ update_Linits.basicL <- function(pars, y, s) {
 #' @title Setup Variable Indices for `basicL` (**L** Component)
 #' @description Set the values of the indices for the **L** component variables
 #' for the `basicL` module
-#' @inheritParams setup_indices_L
+#' @inheritParams setup_Lix
 #' @return an **`xds`** object
 #' @importFrom utils tail
 #' @export
-setup_indices_L.basicL <- function(pars, s) {with(pars,{
+setup_Lix.basicL <- function(pars, s) {with(pars,{
 
   L_ix <- seq(from = max_ix+1, length.out = nHabitats)
   max_ix <- tail(L_ix, 1)

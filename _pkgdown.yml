@@ -272,7 +272,7 @@ reference:
   - get_MYZinits
   - set_MYZinits
   - update_MYZinits
-  - make_indices_MYZ
+  - setup_MYZix
   - parse_MYZorbits
 - subtitle: Visualization for Adult Mosquito
   desc: |
@@ -334,7 +334,7 @@ reference:
   - make_MYZpar_trivial
   - xde_steady_state_MYZ.trivial
   - setup_MYZinits.trivial
-  - make_indices_MYZ.trivial
+  - setup_MYZix.trivial
   - parse_MYZorbits.trivial
   - get_MYZinits.trivial
   - update_MYZinits.trivial
@@ -353,7 +353,7 @@ reference:
   - F_eggs.basicM
   - setup_MYZinits.basicM
   - make_MYZinits_basicM
-  - make_indices_MYZ.basicM
+  - setup_MYZix.basicM
   - list_MYZvars.basicM
   - get_MYZpars.basicM
   - set_MYZpars.basicM
@@ -382,7 +382,7 @@ reference:
   - put_MYZvars.SI
   - setup_MYZinits.SI
   - make_MYZinits_SI
-  - make_indices_MYZ.SI
+  - setup_MYZix.SI
   - parse_MYZorbits.SI
   - get_MYZinits.SI
   - update_MYZinits.SI
@@ -411,7 +411,7 @@ reference:
   - make_MYZinits_macdonald
   - get_MYZinits.macdonald
   - update_MYZinits.macdonald
-  - make_indices_MYZ.macdonald
+  - setup_MYZix.macdonald
   - parse_MYZorbits.macdonald
   - get_f.macdonald
   - get_q.macdonald
@@ -439,7 +439,7 @@ reference:
   - make_MYZinits_GeRM
   - get_MYZinits.GeRM
   - update_MYZinits.GeRM
-  - make_indices_MYZ.GeRM
+  - setup_MYZix.GeRM
   - parse_MYZorbits.GeRM
   - get_f.GeRM
   - get_q.GeRM
@@ -457,7 +457,7 @@ reference:
   - list_MYZvars.RM_dts
   - put_MYZvars.RM_dts
   - make_MYZinits_RM_dts
-  - make_indices_MYZ.RM_dts
+  - setup_MYZix.RM_dts
   - parse_MYZorbits.RM_dts
   - get_MYZinits.RM_dts
   - update_MYZinits.RM_dts
@@ -478,7 +478,7 @@ reference:
   - list_Lvars
   - get_Lpars
   - set_Lpars
-  - setup_indices_L
+  - setup_Lix
   - parse_Lorbits
   - get_Linits
   - set_Linits
@@ -500,7 +500,7 @@ reference:
   - get_Lpars.trivial
   - set_Lpars.trivial
   - set_Linits.trivial
-  - setup_indices_L.trivial
+  - setup_Lix.trivial
   - parse_Lorbits.trivial
   - update_Linits.trivial
 - subtitle: basicL
@@ -521,7 +521,7 @@ reference:
   - get_Lpars.basicL
   - set_Lpars.basicL
   - set_Linits.basicL
-  - setup_indices_L.basicL
+  - setup_Lix.basicL
   - parse_Lorbits.basicL
   - update_Linits.basicL
 - title: Mosquito Bionomics
@@ -571,7 +571,7 @@ reference:
   - dXdt
   - Update_Xt
   - setup_Xinits
-  - setup_X_indices
+  - setup_Xix
   - list_Xvars
   - get_Xpars
   - set_Xpars
@@ -610,7 +610,7 @@ reference:
   - setup_Xpar.trivial
   - make_Xpar_trivial
   - setup_Xinits.trivial
-  - setup_X_indices.trivial
+  - setup_Xix.trivial
   - parse_Xorbits.trivial
   - get_Xinits.trivial
   - set_Xinits.trivial
@@ -627,7 +627,7 @@ reference:
   - xde_steady_state_X.hMoI
   - setup_Xinits.hMoI
   - make_Xinits_hMoI
-  - setup_X_indices.hMoI
+  - setup_Xix.hMoI
   - F_X.hMoI
   - F_H.hMoI
   - F_b.hMoI
@@ -652,7 +652,7 @@ reference:
   - make_Xpar_SIS
   - setup_Xinits.SIS
   - make_Xinits_SIS
-  - setup_X_indices.SIS
+  - setup_Xix.SIS
   - list_Xvars.SIS
   - get_Xpars.SIS
   - set_Xpars.SIS

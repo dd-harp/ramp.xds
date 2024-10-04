@@ -99,12 +99,12 @@ make_MYZinits_RM_dts = function(nPatches, max_eip, MYZopts = list(),
 
 
 #' @title Add indices for adult mosquitoes to parameter list
-#' @description Implements [make_indices_MYZ] for the RM_dts model.
-#' @inheritParams make_indices_MYZ
+#' @description Implements [setup_MYZix] for the RM_dts model.
+#' @inheritParams setup_MYZix
 #' @return a [list]
 #' @importFrom utils tail
 #' @export
-make_indices_MYZ.RM_dts <- function(pars, s) {with(pars,{
+setup_MYZix.RM_dts <- function(pars, s) {with(pars,{
 
   M_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(M_ix, 1)

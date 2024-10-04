@@ -9,17 +9,17 @@ make_indices <- function(pars) {
   s = length(pars$Linits)
   if(s>0)
     for(ix in 1:s)
-      pars = setup_indices_L(pars, ix)
+      pars = setup_Lix(pars, ix)
 
   s = length(pars$MYZinits)
   if(s>0)
     for(ix in 1:s)
-      pars = make_indices_MYZ(pars, ix)
+      pars = setup_MYZix(pars, ix)
 
   i = length(pars$Xinits)
   if(i>0)
     for(ix in 1:i)
-      pars = setup_X_indices(pars, ix)
+      pars = setup_Xix(pars, ix)
 
   return(pars)
 }

@@ -267,12 +267,12 @@ set_MYZpars.GeRM <- function(pars, s=1, MYZopts=list()) {
   }))}
 
 #' @title Add indices for adult mosquitoes to parameter list
-#' @description Implements [make_indices_MYZ] for the basic M model.
-#' @inheritParams make_indices_MYZ
+#' @description Implements [setup_MYZix] for the basic M model.
+#' @inheritParams setup_MYZix
 #' @return none
 #' @importFrom utils tail
 #' @export
-make_indices_MYZ.basicM <- function(pars, s) {with(pars,{
+setup_MYZix.basicM <- function(pars, s) {with(pars,{
 
   M_ix <- seq(from = max_ix+1, length.out = nPatches)
   max_ix <- tail(M_ix, 1)

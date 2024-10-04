@@ -448,12 +448,12 @@ xde_steady_state_MYZ.GeRM = function(Lambda, kappa, MYZpar){with(MYZpar,{
 
 
 #' @title Add indices for adult mosquitoes to parameter list
-#' @description Implements [make_indices_MYZ] for the GeRM model.
-#' @inheritParams make_indices_MYZ
+#' @description Implements [setup_MYZix] for the GeRM model.
+#' @inheritParams setup_MYZix
 #' @return a [list]
 #' @importFrom utils tail
 #' @export
-make_indices_MYZ.GeRM <- function(pars, s) {with(pars,{
+setup_MYZix.GeRM <- function(pars, s) {with(pars,{
 
   M_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(M_ix, 1)

@@ -228,12 +228,12 @@ get_Xinits.SIS <- function(pars, i=1){pars$Xinits[[i]]}
 
 
 #' @title Add indices for human population to parameter list
-#' @description Implements [setup_X_indices] for the SIS model.
-#' @inheritParams setup_X_indices
+#' @description Implements [setup_Xix] for the SIS model.
+#' @inheritParams setup_Xix
 #' @return none
 #' @importFrom utils tail
 #' @export
-setup_X_indices.SIS <- function(pars, i) {with(pars,{
+setup_Xix.SIS <- function(pars, i) {with(pars,{
 
   S_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(S_ix, 1)

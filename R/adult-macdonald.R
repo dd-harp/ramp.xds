@@ -282,12 +282,12 @@ xde_steady_state_MYZ.macdonald = function(Lambda, kappa, MYZpar){with(MYZpar,{
 
 
 #' @title Add indices for adult mosquitoes to parameter list
-#' @description Implements [make_indices_MYZ] for the macdonald model.
-#' @inheritParams make_indices_MYZ
+#' @description Implements [setup_MYZix] for the macdonald model.
+#' @inheritParams setup_MYZix
 #' @return a [list]
 #' @importFrom utils tail
 #' @export
-make_indices_MYZ.macdonald <- function(pars, s) {with(pars,{
+setup_MYZix.macdonald <- function(pars, s) {with(pars,{
 
   M_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(M_ix, 1)
