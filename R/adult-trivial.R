@@ -201,11 +201,11 @@ setup_MYZinits.trivial = function(pars, s, MYZopts=NULL){
 }
 
 #' @title Add indices for aquatic stage mosquitoes to parameter list
-#' @description Implements [make_indices_MYZ] for trivial (forced emergence) model.
-#' @inheritParams make_indices_MYZ
+#' @description Implements [setup_MYZix] for trivial (forced emergence) model.
+#' @inheritParams setup_MYZix
 #' @return none
 #' @export
-make_indices_MYZ.trivial <- function(pars, s) {
+setup_MYZix.trivial <- function(pars, s) {
   return(pars)
 }
 

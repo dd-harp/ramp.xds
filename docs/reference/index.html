@@ -767,7 +767,7 @@
         </td>
         <td><p>Set the initial values as a vector</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.html">make_indices_MYZ()</a></code> </p>
+          <p><code><a href="setup_MYZix.html">setup_MYZix()</a></code> </p>
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
@@ -967,7 +967,7 @@
         </td>
         <td><p>Setup the trivial model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.trivial.html">make_indices_MYZ(<i>&lt;trivial&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_MYZix.trivial.html">setup_MYZix(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for aquatic stage mosquitoes to parameter list</p></td>
       </tr><tr><td>
@@ -1031,7 +1031,7 @@
         </td>
         <td><p>Make inits for basicM adult mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.basicM.html">make_indices_MYZ(<i>&lt;basicM&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_MYZix.basicM.html">setup_MYZix(<i>&lt;basicM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
@@ -1135,7 +1135,7 @@
         </td>
         <td><p>Make inits for <code>SI</code> adult mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.SI.html">make_indices_MYZ(<i>&lt;SI&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_MYZix.SI.html">setup_MYZix(<i>&lt;SI&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
@@ -1239,7 +1239,7 @@
         </td>
         <td><p>Update inits for macdonald adult mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.macdonald.html">make_indices_MYZ(<i>&lt;macdonald&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_MYZix.macdonald.html">setup_MYZix(<i>&lt;macdonald&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
@@ -1339,7 +1339,7 @@
         </td>
         <td><p>Update inits for GeRM adult mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.GeRM.html">make_indices_MYZ(<i>&lt;GeRM&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_MYZix.GeRM.html">setup_MYZix(<i>&lt;GeRM&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
@@ -1399,7 +1399,7 @@
         </td>
         <td><p>Make inits for RM_dts adult mosquito model</p></td>
       </tr><tr><td>
-          <p><code><a href="make_indices_MYZ.RM_dts.html">make_indices_MYZ(<i>&lt;RM_dts&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_MYZix.RM_dts.html">setup_MYZix(<i>&lt;RM_dts&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for adult mosquitoes to parameter list</p></td>
       </tr><tr><td>
@@ -1423,21 +1423,13 @@
         </td>
         <td><p>Derivatives for an <strong>L</strong> Component Module</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_steady_state_L.html">xde_steady_state_L()</a></code> </p>
-        </td>
-        <td><p>Compute steady states for <strong>L</strong> Component Modules</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_Lpar.html">setup_Lpar()</a></code> </p>
-        </td>
-        <td><p>Set up <code>Lpar</code> for <strong>L</strong> Component modules</p></td>
-      </tr><tr><td>
           <p><code><a href="Update_Lt.html">Update_Lt()</a></code> </p>
         </td>
         <td><p>Update State Variables for an <strong>L</strong> Component Module</p></td>
       </tr><tr><td>
-          <p><code><a href="dts_steady_state_L.html">dts_steady_state_L()</a></code> </p>
+          <p><code><a href="F_emerge.html">F_emerge()</a></code> </p>
         </td>
-        <td><p>Compute steady States for <strong>L</strong> Component Modules</p></td>
+        <td><p>Compute Emergent Adults</p></td>
       </tr><tr><td>
           <p><code><a href="LBionomics.html">LBionomics()</a></code> </p>
         </td>
@@ -1447,21 +1439,9 @@
         </td>
         <td><p>Baseline Bionomics for an <strong>L</strong> Component Module</p></td>
       </tr><tr><td>
-          <p><code><a href="LBionomics.static.html">LBionomics(<i>&lt;static&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_Lpar.html">setup_Lpar()</a></code> </p>
         </td>
-        <td><p>Set mosquito bionomics to baseline</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_emerge.html">F_emerge()</a></code> </p>
-        </td>
-        <td><p>Compute Emergent Adults</p></td>
-      </tr><tr><td>
-          <p><code><a href="setup_Linits.html">setup_Linits()</a></code> </p>
-        </td>
-        <td><p>Setup Initial Values for the <strong>L</strong> Component</p></td>
-      </tr><tr><td>
-          <p><code><a href="list_Lvars.html">list_Lvars()</a></code> </p>
-        </td>
-        <td><p>List <strong>L</strong> Component Variables</p></td>
+        <td><p>Set up <code>Lpar</code> for <strong>L</strong> Component modules</p></td>
       </tr><tr><td>
           <p><code><a href="get_Lpars.html">get_Lpars()</a></code> </p>
         </td>
@@ -1471,7 +1451,27 @@
         </td>
         <td><p>Set <strong>L</strong> Component Parameters</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_indices_L.html">setup_indices_L()</a></code> </p>
+          <p><code><a href="setup_Linits.html">setup_Linits()</a></code> </p>
+        </td>
+        <td><p>Setup Initial Values for the <strong>L</strong> Component</p></td>
+      </tr><tr><td>
+          <p><code><a href="list_Lvars.html">list_Lvars()</a></code> </p>
+        </td>
+        <td><p>List <strong>L</strong> Component Variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_Linits.html">update_Linits()</a></code> </p>
+        </td>
+        <td><p>Update <strong>L</strong> Component Initial Values</p></td>
+      </tr><tr><td>
+          <p><code><a href="set_Linits.html">set_Linits()</a></code> </p>
+        </td>
+        <td><p>Set <strong>L</strong> Component Initial Values</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_Linits.html">get_Linits()</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for the <strong>L</strong> Component</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_Lix.html">setup_Lix()</a></code> </p>
         </td>
         <td><p>Set the Values of the Indices for <strong>L</strong> Component Modules</p></td>
       </tr><tr><td>
@@ -1479,38 +1479,18 @@
         </td>
         <td><p>Parse <strong>L</strong> Component Outputs</p></td>
       </tr><tr><td>
-          <p><code><a href="get_Linits.html">get_Linits()</a></code> </p>
+          <p><code><a href="xde_steady_state_L.html">xde_steady_state_L()</a></code> </p>
         </td>
-        <td><p>Get Initial Values for the <strong>L</strong> Component</p></td>
+        <td><p>Compute steady states for <strong>L</strong> Component Modules</p></td>
       </tr><tr><td>
-          <p><code><a href="set_Linits.html">set_Linits()</a></code> </p>
+          <p><code><a href="dts_steady_state_L.html">dts_steady_state_L()</a></code> </p>
         </td>
-        <td><p>Set <strong>L</strong> Component Initial Values</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_Linits.html">update_Linits()</a></code> </p>
-        </td>
-        <td><p>Update <strong>L</strong> Component Initial Values</p></td>
+        <td><p>Compute steady States for <strong>L</strong> Component Modules</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="trivial">trivial <a href="#trivial" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for the exogeneously forced trivial model of aquatic mosquito dynamics.</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="LBionomics.trivial.html">LBionomics(<i>&lt;trivial&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Bionomics for <code>trivial</code> (<strong>L</strong> Component)</p></td>
-      </tr><tr><td>
-          <p><code><a href="LBaseline.trivial.html">LBaseline(<i>&lt;trivial&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Baseline Bionomics for <code>trivial</code> (<strong>L</strong> Component)</p></td>
-      </tr><tr><td>
-          <p><code><a href="xde_steady_state_L.trivial.html">xde_steady_state_L(<i>&lt;trivial&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute the Steady State of <code>dLdt.trivial</code> (<strong>L</strong> Component)</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_emerge.trivial.html">F_emerge(<i>&lt;trivial&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute Emergent Adults for <code>trivial</code> (<strong>L</strong> Component)</p></td>
-      </tr><tr><td>
           <p><code><a href="dLdt.trivial.html">dLdt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives for <code>trivial</code> (<strong>L</strong> Component)</p></td>
@@ -1518,6 +1498,18 @@
           <p><code><a href="Update_Lt.trivial.html">Update_Lt(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Update State Variables for <code>trivial</code> (<strong>L</strong> Component)</p></td>
+      </tr><tr><td>
+          <p><code><a href="F_emerge.trivial.html">F_emerge(<i>&lt;trivial&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute Emergent Adults for <code>trivial</code> (<strong>L</strong> Component)</p></td>
+      </tr><tr><td>
+          <p><code><a href="LBionomics.trivial.html">LBionomics(<i>&lt;trivial&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Bionomics for <code>trivial</code> (<strong>L</strong> Component)</p></td>
+      </tr><tr><td>
+          <p><code><a href="LBaseline.trivial.html">LBaseline(<i>&lt;trivial&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Baseline Bionomics for <code>trivial</code> (<strong>L</strong> Component)</p></td>
       </tr><tr><td>
           <p><code><a href="setup_Lpar.trivial.html">setup_Lpar(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
@@ -1527,14 +1519,6 @@
         </td>
         <td><p>Make <code>Lpar</code> for <code>trivial</code> (<strong>L</strong> Component)</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_Linits.trivial.html">setup_Linits(<i>&lt;trivial&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Setup Initial Values for the <strong>L</strong> Component <code>trivial</code> Module</p></td>
-      </tr><tr><td>
-          <p><code><a href="list_Lvars.trivial.html">list_Lvars(<i>&lt;trivial&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>List <strong>L</strong> Component Variables for <code>trivial</code></p></td>
-      </tr><tr><td>
           <p><code><a href="get_Lpars.trivial.html">get_Lpars(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get <strong>L</strong> Component Parameters for <code>trivial</code></p></td>
@@ -1543,11 +1527,23 @@
         </td>
         <td><p>Set <strong>L</strong> Component parameters for <code>trivial</code></p></td>
       </tr><tr><td>
+          <p><code><a href="setup_Linits.trivial.html">setup_Linits(<i>&lt;trivial&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Setup Initial Values for the <strong>L</strong> Component <code>trivial</code> Module</p></td>
+      </tr><tr><td>
+          <p><code><a href="list_Lvars.trivial.html">list_Lvars(<i>&lt;trivial&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>List <strong>L</strong> Component Variables for <code>trivial</code></p></td>
+      </tr><tr><td>
           <p><code><a href="set_Linits.trivial.html">set_Linits(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Set the Initial Values for <code>trivial</code> (<strong>L</strong> Component)</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_indices_L.trivial.html">setup_indices_L(<i>&lt;trivial&gt;</i>)</a></code> </p>
+          <p><code><a href="update_Linits.trivial.html">update_Linits(<i>&lt;trivial&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update Initial Values for <code>basicL</code> from a state vector <code>y</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_Lix.trivial.html">setup_Lix(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Setup Variable Indices for <code>trivial</code> (<strong>L</strong> Component)</p></td>
       </tr><tr><td>
@@ -1555,9 +1551,9 @@
         </td>
         <td><p>Parse <strong>L</strong> Component Variables for <code>basicL</code></p></td>
       </tr><tr><td>
-          <p><code><a href="update_Linits.trivial.html">update_Linits(<i>&lt;trivial&gt;</i>)</a></code> </p>
+          <p><code><a href="xde_steady_state_L.trivial.html">xde_steady_state_L(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Update Initial Values for <code>basicL</code> from a state vector <code>y</code></p></td>
+        <td><p>Compute the Steady State of <code>dLdt.trivial</code> (<strong>L</strong> Component)</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="basicl">basicL <a href="#basicl" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Specialized methods for a basicL competition model of aquatic mosquito dynamics.</p>
@@ -1570,10 +1566,6 @@
           <p><code><a href="Update_Lt.basicL.html">Update_Lt(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
         <td><p>Update State Variables for <code>basicL</code> (<strong>L</strong> Component)</p></td>
-      </tr><tr><td>
-          <p><code><a href="xde_steady_state_L.basicL.html">xde_steady_state_L(<i>&lt;basicL&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Compute the Steady State of <code>dLdt.basicL</code> (<strong>L</strong> Component)</p></td>
       </tr><tr><td>
           <p><code><a href="setup_Lpar.basicL.html">setup_Lpar(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
@@ -1619,7 +1611,7 @@
         </td>
         <td><p>Set the Initial Values for <code>basicL</code> (<strong>L</strong> Component)</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_indices_L.basicL.html">setup_indices_L(<i>&lt;basicL&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_Lix.basicL.html">setup_Lix(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
         <td><p>Setup Variable Indices for <code>basicL</code> (<strong>L</strong> Component)</p></td>
       </tr><tr><td>
@@ -1630,6 +1622,10 @@
           <p><code><a href="update_Linits.basicL.html">update_Linits(<i>&lt;basicL&gt;</i>)</a></code> </p>
         </td>
         <td><p>Update Initial Values for <code>basicL</code> from a state vector <code>y</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_steady_state_L.basicL.html">xde_steady_state_L(<i>&lt;basicL&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the Steady State of <code>dLdt.basicL</code> (<strong>L</strong> Component)</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="mosquito-bionomics">Mosquito Bionomics <a href="#mosquito-bionomics" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Methods to compute or update mosquito bionomic parameters</p>
@@ -1638,10 +1634,6 @@
           <p><code><a href="Bionomics.html">Bionomics()</a></code> </p>
         </td>
         <td><p>Set bionomic parameter rates relative to baseline</p></td>
-      </tr><tr><td>
-          <p><code><a href="MBionomics.static.html">MBionomics(<i>&lt;static&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Set mosquito bionomics to baseline</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="functional-responses">Functional Responses <a href="#functional-responses" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Compute bionomic parameters as functional responses to resource availability</p>
@@ -1771,7 +1763,7 @@
         </td>
         <td><p>A function to set up Xpar</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_X_indices.html">setup_X_indices()</a></code> </p>
+          <p><code><a href="setup_Xix.html">setup_Xix()</a></code> </p>
         </td>
         <td><p>Add indices for human population to parameter list</p></td>
       </tr><tr><td>
@@ -1915,7 +1907,7 @@
         </td>
         <td><p>Setup Xinits.trivial</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_X_indices.trivial.html">setup_X_indices(<i>&lt;trivial&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_Xix.trivial.html">setup_Xix(<i>&lt;trivial&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for human population to parameter list</p></td>
       </tr><tr><td>
@@ -1971,7 +1963,7 @@
         </td>
         <td><p>Make inits for hybrid MoI human model</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_X_indices.hMoI.html">setup_X_indices(<i>&lt;hMoI&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_Xix.hMoI.html">setup_Xix(<i>&lt;hMoI&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for human population to parameter list</p></td>
       </tr><tr><td>
@@ -2059,7 +2051,7 @@
         </td>
         <td><p>Make initial values for the SIS xde human model, with defaults</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_X_indices.SIS.html">setup_X_indices(<i>&lt;SIS&gt;</i>)</a></code> </p>
+          <p><code><a href="setup_Xix.SIS.html">setup_Xix(<i>&lt;SIS&gt;</i>)</a></code> </p>
         </td>
         <td><p>Add indices for human population to parameter list</p></td>
       </tr><tr><td>

@@ -36,21 +36,3 @@ Bionomics <- function(t, y, pars){
   }
   return(pars)
 }
-
-#' @title Set mosquito bionomics to baseline
-#' @description Implements [MBionomics] for models with no forcing
-#' @inheritParams MBionomics
-#' @return an `xds` object
-#' @export
-MBionomics.static <- function(t, y, pars, s) {
-  return(pars)
-}
-
-#' @title Set mosquito bionomics to baseline
-#' @description Implements [LBionomics] for models with no forcing
-#' @inheritParams LBionomics
-#' @return the model as a [list]
-#' @export
-LBionomics.static <- function(t, y, pars, s) {
-  return(pars)
-}

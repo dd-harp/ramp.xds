@@ -243,14 +243,25 @@ update_Linits.basicL <- function(pars, y, s) {
   return(pars)
 }
 
+
+#' @title Set **L** Component Initial Values
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @param Lopts a named list
+#' @return an `xds` object
+#' @export
+set_Linits <- function(pars, s=1, Lopts=list()) {
+  UseMethod("set_Linits", pars$Lpar[[s]])
+}
+
 #' @title Setup Variable Indices for `basicL` (**L** Component)
 #' @description Set the values of the indices for the **L** component variables
 #' for the `basicL` module
-#' @inheritParams setup_indices_L
+#' @inheritParams setup_Lix
 #' @return an **`xds`** object
 #' @importFrom utils tail
 #' @export
-setup_indices_L.basicL <- function(pars, s) {with(pars,{
+setup_Lix.basicL <- function(pars, s) {with(pars,{
 
   L_ix <- seq(from = max_ix+1, length.out = nHabitats)
   max_ix <- tail(L_ix, 1)
@@ -272,17 +283,6 @@ setup_indices_L.basicL <- function(pars, s) {with(pars,{
 parse_Lorbits.basicL <- function(outputs, pars, s) {
   L = outputs[,pars$ix$L[[s]]$L_ix]
   return(list(L=L))
-}
-
-
-#' @title Set **L** Component Initial Values
-#' @param pars an **`xds`** object
-#' @param s the vector species index
-#' @param Lopts a named list
-#' @return an `xds` object
-#' @export
-set_Linits <- function(pars, s=1, Lopts=list()) {
-  UseMethod("set_Linits", pars$Lpar[[s]])
 }
 
 #' @title Compute the Steady State of `dLdt.basicL` (**L** Component)

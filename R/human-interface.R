@@ -108,8 +108,8 @@ setup_Xinits = function(pars, H, i, Xopts=list()){
 #' @param i the host species index
 #' @return an **`xds`** object
 #' @export
-setup_X_indices <- function(pars, i) {
-  UseMethod("setup_X_indices", pars$Xpar[[i]])
+setup_Xix <- function(pars, i) {
+  UseMethod("setup_Xix", pars$Xpar[[i]])
 }
 
 #' @title Return the variables as a list

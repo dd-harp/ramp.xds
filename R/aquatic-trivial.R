@@ -154,11 +154,11 @@ update_Linits.trivial<- function(pars, y, s) {
 }
 
 #' @title Setup Variable Indices for `trivial` (**L** Component)
-#' @description Implements [setup_indices_L] for trivial (forced emergence) model.
-#' @inheritParams setup_indices_L
+#' @description Implements [setup_Lix] for trivial (forced emergence) model.
+#' @inheritParams setup_Lix
 #' @return an **`xds`** object
 #' @export
-setup_indices_L.trivial <- function(pars, s) {
+setup_Lix.trivial <- function(pars, s) {
   return(pars)
 }
 

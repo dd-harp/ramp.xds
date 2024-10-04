@@ -197,8 +197,8 @@ set_MYZinits <- function(pars, s=1, MYZopts=list()) {
 #' @param s the species index
 #' @return [list]
 #' @export
-make_indices_MYZ <- function(pars, s) {
-  UseMethod("make_indices_MYZ", pars$MYZpar[[s]])
+setup_MYZix <- function(pars, s) {
+  UseMethod("setup_MYZix", pars$MYZpar[[s]])
 }
 
 #' @title Parse the outputs and return the variables by name in a list

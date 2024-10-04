@@ -191,12 +191,12 @@ HTC.hMoI <- function(pars, i) {
 }
 
 #' @title Add indices for human population to parameter list
-#' @description Implements [setup_X_indices] for the hybrid MoI model.
-#' @inheritParams setup_X_indices
+#' @description Implements [setup_Xix] for the hybrid MoI model.
+#' @inheritParams setup_Xix
 #' @return none
 #' @importFrom utils tail
 #' @export
-setup_X_indices.hMoI <- function(pars, i) {with(pars,{
+setup_Xix.hMoI <- function(pars, i) {with(pars,{
   m1_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(m1_ix, 1)
 
