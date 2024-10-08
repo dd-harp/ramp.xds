@@ -19,5 +19,8 @@ In **`ramp.xds`**  exposure to infective bites is handled in several steps:
 
 5. The *total* FoI is the sum of expected time spent traveling. 
 
+## Availability 
 
-## 
+## Environmental Heterogeneity
+
+## Travel 
