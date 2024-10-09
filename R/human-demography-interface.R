@@ -68,4 +68,3 @@ make_parameters_demography_null <- function(pars, H) {
   return(pars)
 }
 
-
