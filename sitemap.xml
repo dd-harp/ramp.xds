@@ -40,6 +40,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BedNetEffectSizes.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Bionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Births.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/Births.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Births.zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BloodFeeding.dynamic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BloodFeeding.html</loc></url>
@@ -284,6 +285,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/create_habitat_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/create_residence_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dHdt.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/dHdt.matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dHdt.zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dLdt.html</loc></url>
@@ -538,6 +540,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_EGG_LAYING.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_EIP.fixedlag_dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_EIP.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Hmatrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Hpar_static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Linits.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Linits.html</loc></url>
@@ -581,6 +584,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Xpar.hMoI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Xpar.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_Xpar.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_births_static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_care_seeking_no_behavior.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_development.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_development.html</loc></url>
