@@ -671,21 +671,20 @@ reference:
   - add_lines_X_SIS
   - xde_steady_state_X.SIS
   - dts_steady_state_X.SIS
-
 - title: Human Population Dynamics
   desc: |
-    Generic methods for the human demography and aging
+    Methods for the human demography and aging
   contents:
   - dHdt
   - setup_Hpar_static
   - Births
   - make_parameters_demography_null
-- subtitle: static
-  desc: |
-    Specialized methods for the static (constant) demographic model
-  contents:
   - Births.zero
   - dHdt.zero
+  - Births.static
+  - setup_births_static
+  - dHdt.matrix
+  - setup_Hmatrix
 - subtitle: Care Seeking
   desc: |
     Methods to implement care seeking

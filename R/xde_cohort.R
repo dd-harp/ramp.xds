@@ -71,10 +71,14 @@ xds_solve_cohort = function(pars, bday=0, A = 10, da = 10){
   xde_cohort_desolve(bday, y0, age, pars) -> deout
   de_vars <- deout[,-1]
 
-  pars$outputs$cohort <- parse_orbits(de_vars, pars)$XH[[1]]
-  pars$outputs$cohort$age <- age
-  pars$outputs$cohort$time <- age+bday
-  pars$outputs$cohort$eir <- with(pars, F_eir(age, bday))
+  pars$outputs$orbits <- list()
+  pars$outputs$orbits$XH <- list()
+  pars$outputs$orbits$XH[[1]] <- parse_orbits(de_vars, pars)$XH[[1]]
+  pars$outputs$last_y <- tail(de_vars, 1)
+  pars$outputs$orbits$age <- age
+  pars$outputs$orbits$time <- age+bday
+  pars$outputs$orbits$terms <- list()
+  pars$outputs$orbits$terms$EIR<- with(pars, F_eir(age, bday))
   return(pars)
 }
 

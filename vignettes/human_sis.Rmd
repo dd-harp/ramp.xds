@@ -147,18 +147,21 @@ y0$X
 
 
 ```{r}
-out1 <- xds_solve_cohort(params)$outputs$cohort
+params <-xds_solve_cohort(params) 
+out1 <- params$outputs$orbits
 ```
 
 
 ```{r, out.width = "100%"}
 clrs = turbo(5)
-with(out1,{
-  plot(age, true_pr[,1], col = clrs[1], ylim = c(0,1), type = "l")
-  lines(age, true_pr[,2], col = clrs[2])
-  lines(age, true_pr[,3], col =clrs[5])
+XH <- out1$XH[[1]] 
+age <- out1$age
+
+
+plot(age, XH$true_pr[,1], col = clrs[1], ylim = c(0,1), type = "l")
+lines(age, XH$true_pr[,2], col = clrs[2])
+lines(age, XH$true_pr[,3], col =clrs[5])
   
-})
 ```
 
 
@@ -171,7 +174,8 @@ xds_setup_cohort(eir, Xname="SIS", HPop=H, Xopts = Xo) -> test_SIS_xde
 ```
 
 ```{r}
-xds_solve_cohort(test_SIS_xde)$outputs$cohort -> out2
-sum((out2$XH[[1]]$true_pr-out1$XH[[1]]$true_pr)^2)
+xds_solve_cohort(test_SIS_xde)-> test_SIS_xde 
+test_SIS_xde$outputs$orbits$XH[[1]] -> XH2
+sum((XH$true_pr-XH2$true_pr)^2)
 ```
 
