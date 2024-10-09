@@ -2136,7 +2136,7 @@
         <td><p>Compute the steady states for the dts SIS model as a function of the daily EIR</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="human-population-dynamics">Human Population Dynamics <a href="#human-population-dynamics" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p><p>Generic methods for the human demography and aging</p>
+          <p class="section-desc"></p><p>Methods for the human demography and aging</p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="dHdt.html">dHdt()</a></code> </p>
@@ -2154,18 +2154,30 @@
           <p><code><a href="make_parameters_demography_null.html">make_parameters_demography_null()</a></code> </p>
         </td>
         <td><p>Make parameters for null human demography model</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h3 id="static">static <a href="#static" class="anchor" aria-hidden="true"></a></h3>
-          <p class="section-desc"></p><p>Specialized methods for the static (constant) demographic model</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
+      </tr><tr><td>
           <p><code><a href="Births.zero.html">Births(<i>&lt;zero&gt;</i>)</a></code> </p>
         </td>
         <td><p>Derivatives of demographic changes in human populations</p></td>
       </tr><tr><td>
           <p><code><a href="dHdt.zero.html">dHdt(<i>&lt;zero&gt;</i>)</a></code> </p>
         </td>
+        <td><p>Compute Demographic Changes</p></td>
+      </tr><tr><td>
+          <p><code><a href="Births.static.html">Births(<i>&lt;static&gt;</i>)</a></code> </p>
+        </td>
         <td><p>Derivatives of demographic changes in human populations</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_births_static.html">setup_births_static()</a></code> </p>
+        </td>
+        <td><p>Setup a static birth_rate</p></td>
+      </tr><tr><td>
+          <p><code><a href="dHdt.matrix.html">dHdt(<i>&lt;matrix&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Derivatives of demographic changes in human populations</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_Hmatrix.html">setup_Hmatrix()</a></code> </p>
+        </td>
+        <td><p>Setup a matrix for <code>dHdt</code></p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="care-seeking">Care Seeking <a href="#care-seeking" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Methods to implement care seeking</p>
