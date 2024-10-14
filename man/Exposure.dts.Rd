@@ -33,5 +33,5 @@ exposure to malaria while traveling, (\eqn{T_\delta}):
 \deqn{\alpha = (1-\delta) \; F_\alpha(E, b) + \delta\; T_\alpha(b)}
 }
 \seealso{
-Related: \link{Exposure} & \link{F_ar.pois} & \link{F_ar.nb} & \link{travel_malaria}
+Related: \link{Exposure} & \link{F_ar.pois} & \link{F_ar.nb} & \link{travel_eir} & \link{traveling}
 }

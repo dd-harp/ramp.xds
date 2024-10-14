@@ -696,19 +696,22 @@ reference:
   - setup_care_seeking_no_behavior
 - title: Imported Malaria
   desc: |
-    Methods to implement imported malaria
+    Methods to implement time spent traveling
   contents:
-  - travel_malaria
+  - traveling
+  - traveling.static
+  - traveling.setup
+  - traveling.dynamic
+  - setup_no_travel
+  - setup_static_travel
+  - setup_dynamic_travel
   - Visiting
 - subtitle: Travel Malaria
   desc: |
     Specialized methods for travel malaria
   contents:
-  - travel_malaria.xde
-  - travel_malaria.dts
-  - setup_travel_static
-  - setup_travel_static.xde
-  - setup_travel_static.dts
+  - travel_eir
+  - setup_travel_eir
 - subtitle: Visiting
   desc: |
     Methods for the availability and infectiousness of a visitor population

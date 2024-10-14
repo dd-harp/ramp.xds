@@ -45,7 +45,7 @@
 #' - [Exposure] is called *after* [Transmission] to compute environmentally heterogeneous exposure
 #' and malaria importation through travel:
 #'      - [setup_exposure_pois] sets up a Poisson model for environmental heterogeneity
-#'      - [setup_travel_static] sets up a model with no exposure through travel
+#'      - [setup_no_travel] sets up a model with no exposure through travel
 #'
 #' @param xds is used to dispatch various functions to set up and solve systems of differential equations. 'xde' for ordinary or delay differential equations; 'dts' for "discrete time systems"
 #' @param frame model component subset
@@ -103,7 +103,10 @@ make_xds_template = function(xds='ode', frame='full',
   pars <- setup_TRANSMISSION(pars)
 
   pars   <- setup_exposure_pois(pars)
-  pars    <- setup_travel_static(pars)
+  pars$travel <- list()
+  pars <- setup_no_travel(pars, 1)
+  pars$travel_eir <- list()
+  pars <- setup_travel_eir(pars, 1)
 
   pars$Linits = list()
   pars$MYZinits = list()

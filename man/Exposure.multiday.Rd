@@ -20,6 +20,6 @@ the function modifies \strong{pars} and returns it: the computed FoI are stored 
 This function translates seven days of daily entomological
 inoculation rate (dEIR) into a multiday attack rate. The daily FoI
 is the sum of two terms: 1) a function \link{F_foi} computes the local dFoI;
-2) a function \link{travel_malaria} that computes the FoI resulting from
+2) a function \link{travel_eir} and \link{traveling}
 exposure while traveling.
 }
