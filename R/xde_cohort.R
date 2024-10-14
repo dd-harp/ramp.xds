@@ -77,8 +77,9 @@ xds_solve_cohort = function(pars, bday=0, A = 10, da = 10){
   pars$outputs$last_y <- tail(de_vars, 1)
   pars$outputs$orbits$age <- age
   pars$outputs$orbits$time <- age+bday
-  pars$outputs$orbits$terms <- list()
-  pars$outputs$orbits$terms$EIR<- with(pars, F_eir(age, bday))
+  pars$outputs$terms <- list()
+  pars$outputs$terms$EIR <- list()
+  pars$outputs$terms$EIR[[1]] <- with(pars, F_eir(age, bday))
   return(pars)
 }
 

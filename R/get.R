@@ -45,3 +45,26 @@ get_terms <- function(tm, de_vars, pars) {
 get_EIR = function(pars, i){
   pars$outputs$terms$EIR
 }
+
+#' @title Get **XH** outputs
+#' @param pars an **`xds`** object
+#' @param i the host species index
+#' @export
+get_XH = function(pars, i=1){
+  got = pars$outputs$orbits$XH[[i]]
+  got$time = pars$outputs$orbits$time
+  got$eir = pars$outputs$terms$EIR[[i]]
+  return(got)
+}
+
+#' @title Get **MYZ** outputs
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @export
+get_MYZ = function(pars, s=1){
+  got = pars$outputs$orbits$MYZ[[s]]
+  got$time = pars$outputs$orbits$time
+  got$kappa = pars$outputs$terms$kappa[[s]]
+  return(got)
+}
+
