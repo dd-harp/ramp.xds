@@ -131,6 +131,8 @@ reference:
   - parse_y
   - get_inits
   - get_H
+  - get_XH
+  - get_MYZ
   - make_indices
   - trigger_setup
 - subtitle: Examine
