@@ -283,8 +283,10 @@ compute_TaR = function(t, TiSp, F_circadian, time_traveling){
 #' @export
 make_TaR <- function(pars, t=0){
   for(s in 1:pars$nVectors)
-    for(i in 1:pars$nHosts)
+    for(i in 1:pars$nHosts){
+      pars = traveling(t, pars, i)
       pars$TaR[[i]][[s]] = compute_TaR(t, pars$TimeSpent[[i]], pars$BFpar$F_circadian[[s]], pars$time_traveling[[i]])
+    }
   return(pars)
 }
 

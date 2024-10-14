@@ -27,9 +27,10 @@ a model for the probability of infection
 per infectious bite, \eqn{b} (called from \eqn{F_b},
 as defined by an \eqn{\cal X} model).
 The total FoI is a weighted sum of the local FoI and
-exposure to malaria while traveling, (\eqn{T_h}):
-\deqn{h = (1-\delta) \; F_h(E, b) + \delta\; T_h(b,t)}
+exposure to malaria while traveling,
+computed from the the travel EIR, \eqn{E_T}:
+\deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_T, b,t)}
 }
 \seealso{
-Related: \link{Exposure} & \link{F_foi.pois} & \link{F_foi.nb} & \link{travel_malaria}
+Related: \link{Exposure} & \link{F_foi.pois} & \link{F_foi.nb} & \link{travel_eir} & \link{traveling}
 }

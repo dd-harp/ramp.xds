@@ -85,7 +85,7 @@ Finally, the function sets up a few other miscellaneous options:
 and malaria importation through travel:
 \itemize{
 \item \link{setup_exposure_pois} sets up a Poisson model for environmental heterogeneity
-\item \link{setup_travel_static} sets up a model with no exposure through travel
+\item \link{setup_no_travel} sets up a model with no exposure through travel
 }
 }
 }

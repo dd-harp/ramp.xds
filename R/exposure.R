@@ -7,7 +7,7 @@
 #' @param y the state variables
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object
-#' @seealso Cases: [Exposure.xde] & [Exposure.dts]. Related: [travel_malaria] & [F_ar] & [F_foi]
+#' @seealso Cases: [Exposure.xde] & [Exposure.dts]. Related: [F_ar] & [F_foi]
 #' @export
 Exposure <- function(t, y, pars){
   UseMethod("Exposure", pars$xds)
@@ -23,17 +23,19 @@ Exposure <- function(t, y, pars){
 #' per infectious bite, \eqn{b} (called from \eqn{F_b},
 #' as defined by an \eqn{\cal X} model).
 #' The total FoI is a weighted sum of the local FoI and
-#' exposure to malaria while traveling, (\eqn{T_h}):
-#' \deqn{h = (1-\delta) \; F_h(E, b) + \delta\; T_h(b,t)}
+#' exposure to malaria while traveling,
+#' computed from the the travel EIR, \eqn{E_T}:
+#' \deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_T, b,t)}
 #' @inheritParams Exposure
-#' @seealso Related: [Exposure] & [F_foi.pois] & [F_foi.nb] & [travel_malaria]
+#' @seealso Related: [Exposure] & [F_foi.pois] & [F_foi.nb] & [travel_eir] & [traveling]
 #' @return an **`xds`** object
 #' @export
 Exposure.xde <- function(t, y, pars){
   for(i in 1:pars$nHosts){
     trv = pars$time_traveling[[i]]
+    travelEIR = travel_eir(t, pars, i)
     b = as.vector(F_b(y, pars, i))
-    pars$FoI[[i]] = (1-trv)*F_foi(pars$EIR[[i]], b, pars) + trv*travel_malaria(t, pars)
+    pars$FoI[[i]] = (1-trv)*F_foi(pars$EIR[[i]], b, pars) + trv*F_foi(travelEIR, b, pars)
   }
   return(pars)
 }
@@ -54,13 +56,14 @@ Exposure.xde <- function(t, y, pars){
 #' \deqn{\alpha = (1-\delta) \; F_\alpha(E, b) + \delta\; T_\alpha(b)}
 #' @inheritParams Exposure
 #' @return an **`xds`** object
-#' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [travel_malaria]
+#' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [travel_eir] & [traveling]
 #' @export
 Exposure.dts <- function(t, y, pars){
   for(i in 1:pars$nHosts){
     trv = pars$time_traveling[[i]]
+    travelEIR = travel_eir(t, pars, i)*pars$Xday
     b = as.vector(F_b(y, pars, i))
-    pars$AR[[i]] = (1-trv)*F_ar(pars$EIR[[i]]*pars$Xday, b, pars) + trv*travel_malaria(t, pars)
+    pars$AR[[i]] = (1-trv)*F_ar(pars$EIR[[i]]*pars$Xday, b, pars) + trv*F_ar(travelEIR, b, pars)
   }
   return(pars)
 }
