@@ -2,7 +2,7 @@
 % Please edit documentation in R/traveling.R
 \name{traveling.setup}
 \alias{traveling.setup}
-\title{A model for the travel FoI}
+\title{Time Spent Traveling}
 \usage{
 \method{traveling}{setup}(t, pars, i)
 }
@@ -17,5 +17,9 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{traveling} through a model for the travel FoI
+This function sets a static value for the parameter
+describing time spent traveling, resets the class to \code{static} and
+then triggers an update to the blood feeding model.
+It is computed in \link{make_TaR}
+and used to compute availability. It is also used in \link{Exposure}
 }

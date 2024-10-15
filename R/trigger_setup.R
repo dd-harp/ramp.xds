@@ -18,7 +18,7 @@ trigger_setup = function(obj){
 #' @return the `obj`
 #' @export
 trigger_setup.static = function(obj){
-  class(obj) <- 'obj'
+  class(obj) <- 'setup'
   return(obj)
 }
 

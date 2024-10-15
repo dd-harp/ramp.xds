@@ -2,7 +2,7 @@
 % Please edit documentation in R/traveling.R
 \name{setup_dynamic_travel}
 \alias{setup_dynamic_travel}
-\title{A function to set up malaria importation}
+\title{Set up a dynamic model for travel}
 \usage{
 setup_dynamic_travel(
   pars,
@@ -27,5 +27,5 @@ setup_dynamic_travel(
 a \link{list}
 }
 \description{
-Setup a static model for travel malaria
+Setup a dynamical model for time spent traveling
 }

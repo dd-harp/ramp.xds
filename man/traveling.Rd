@@ -2,7 +2,7 @@
 % Please edit documentation in R/traveling.R
 \name{traveling}
 \alias{traveling}
-\title{A model for the travel FoI}
+\title{Time Spent Traveling}
 \usage{
 traveling(t, pars, i)
 }
@@ -17,7 +17,7 @@ traveling(t, pars, i)
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{traveling}. The function is
-called by \link{make_TaR} to set the fraction of time spent
-traveling
+This function sets the value of a parameter
+describing time spent traveling. It is computed in \link{make_TaR}
+and used to compute availability. It is also used in \link{Exposure}
 }

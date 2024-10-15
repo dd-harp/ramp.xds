@@ -1,8 +1,8 @@
 
-#' @title A model for the travel FoI
-#' @description Implements [traveling]. The function is
-#' called by [make_TaR] to set the fraction of time spent
-#' traveling
+#' @title Time Spent Traveling
+#' @description This function sets the value of a parameter
+#' describing time spent traveling. It is computed in [make_TaR]
+#' and used to compute availability. It is also used in [Exposure]
 #' @param t current simulation time
 #' @param pars a [list]#
 #' @param i host species index
@@ -12,8 +12,9 @@ traveling <- function(t, pars, i) {
   UseMethod("traveling", pars$travel[[i]])
 }
 
-#' @title A model for the travel FoI
-#' @description Implements [traveling] through a model for the travel FoI
+#' @title Time Spent Traveling
+#' @description For a static model for time spent traveling, the function
+#' does not update anything.
 #' @inheritParams traveling
 #' @return an **`xds`** object
 #' @export
@@ -21,19 +22,26 @@ traveling.static <- function(t, pars, i) {
   return(pars)
 }
 
-#' @title A model for the travel FoI
-#' @description Implements [traveling] through a model for the travel FoI
+#' @title Time Spent Traveling
+#' @description This function sets a static value for the parameter
+#' describing time spent traveling, resets the class to `static` and
+#' then triggers an update to the blood feeding model.
+#' It is computed in [make_TaR]
+#' and used to compute availability. It is also used in [Exposure]
 #' @inheritParams traveling
 #' @return an **`xds`** object
 #' @export
 traveling.setup <- function(t, pars, i) {
   pars$time_traveling[[i]] <- pars$travel[[i]]$traveling_fraction
+  class(pars$travel[[i]]) <- "static"
   pars <- trigger_setup(pars$BFpar)
   return(pars)
 }
 
-#' @title A model for the travel FoI
-#' @description Implements [traveling] through a model for the travel FoI
+#' @title Time Spent Traveling
+#' @description This function sets the value of a parameter
+#' describing time spent traveling. It is computed in [make_TaR]
+#' and used to compute availability. It is also used in [Exposure]
 #' @inheritParams traveling
 #' @return an **`xds`** object
 #' @export
@@ -44,8 +52,9 @@ traveling.dynamic <- function(t, pars, i) {
   })
 }
 
-#' @title A function to set up malaria importation
-#' @description Setup a static model for travel malaria
+#' @title Set up no travel
+#' @description Setup a static model for time spent traveling with
+#' no time spent traveling
 #' @param pars a [list]
 #' @param i the host species index
 #' @return a [list]
@@ -58,6 +67,8 @@ setup_no_travel = function(pars, i=1){
   return(pars)
 }
 
+#' @title Set up static travel
+#' @description Setup a static model for time spent traveling
 #' @title A function to set up malaria importation
 #' @description Setup a static model for travel malaria
 #' @param pars an **`xds`** object
@@ -66,15 +77,14 @@ setup_no_travel = function(pars, i=1){
 #' @return a [list]
 #' @export
 setup_static_travel = function(pars, traveling_fraction=0, i=1){
-  trv <- list()
-  class(trv) <- "setup"
-  trv$traveling_fraction <- traveling_fraction
-  pars$travel[[i]] <- trv
+  pars <- setup_dynamic_travel(pars, traveling_fraction)
+  pars$time_traveling[[i]] <- traveling_fraction
+  class(pars$travel[[i]]) <- "static"
   return(pars)
 }
 
-#' @title A function to set up malaria importation
-#' @description Setup a static model for travel malaria
+#' @title Set up a dynamic model for travel
+#' @description Setup a dynamical model for time spent traveling
 #' @param pars a [list]
 #' @param traveling the time spent traveling
 #' @param F_season a function describing a seasonal pattern

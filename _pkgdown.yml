@@ -708,7 +708,7 @@ reference:
   - Visiting
 - subtitle: Travel Malaria
   desc: |
-    Specialized methods for travel malaria
+    Model the EIR while traveling
   contents:
   - travel_eir
   - setup_travel_eir

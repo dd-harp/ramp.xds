@@ -2,7 +2,7 @@
 % Please edit documentation in R/traveling.R
 \name{traveling.static}
 \alias{traveling.static}
-\title{A model for the travel FoI}
+\title{Time Spent Traveling}
 \usage{
 \method{traveling}{static}(t, pars, i)
 }
@@ -17,5 +17,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{traveling} through a model for the travel FoI
+For a static model for time spent traveling, the function
+does not update anything.
 }
