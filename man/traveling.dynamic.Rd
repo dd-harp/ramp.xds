@@ -2,7 +2,7 @@
 % Please edit documentation in R/traveling.R
 \name{traveling.dynamic}
 \alias{traveling.dynamic}
-\title{A model for the travel FoI}
+\title{Time Spent Traveling}
 \usage{
 \method{traveling}{dynamic}(t, pars, i)
 }
@@ -17,5 +17,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{traveling} through a model for the travel FoI
+This function sets the value of a parameter
+describing time spent traveling. It is computed in \link{make_TaR}
+and used to compute availability. It is also used in \link{Exposure}
 }

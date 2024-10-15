@@ -2,7 +2,7 @@
 % Please edit documentation in R/traveling.R
 \name{setup_static_travel}
 \alias{setup_static_travel}
-\title{A function to set up malaria importation}
+\title{Set up static travel}
 \usage{
 setup_static_travel(pars, traveling_fraction = 0, i = 1)
 }
@@ -17,5 +17,7 @@ setup_static_travel(pars, traveling_fraction = 0, i = 1)
 a \link{list}
 }
 \description{
+Setup a static model for time spent traveling
+
 Setup a static model for travel malaria
 }

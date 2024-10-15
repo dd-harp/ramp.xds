@@ -2,7 +2,7 @@
 % Please edit documentation in R/traveling.R
 \name{setup_no_travel}
 \alias{setup_no_travel}
-\title{A function to set up malaria importation}
+\title{Set up no travel}
 \usage{
 setup_no_travel(pars, i = 1)
 }
@@ -15,5 +15,6 @@ setup_no_travel(pars, i = 1)
 a \link{list}
 }
 \description{
-Setup a static model for travel malaria
+Setup a static model for time spent traveling with
+no time spent traveling
 }
