@@ -1094,6 +1094,8 @@ reference:
   desc: |
     Basic visualization of the transmission terms
   contents:
+  - F_zero
+  - F_one
   - F_flat
   - make_function
   - make_function.sin

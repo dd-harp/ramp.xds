@@ -1,5 +1,19 @@
 
 #' @title The trivial function
+#' @description A function that returns 0
+#' @param t an arbitrary input
+#' @return a vector of ones of length x
+#' @export
+F_zero = function(t){return(0*t)}
+
+#' @title The trivial function
+#' @description A function that returns 1
+#' @param t an arbitrary input
+#' @return a vector of ones of length x
+#' @export
+F_one = function(t){return(0*t+1)}
+
+#' @title The trivial function
 #' @description A function that returns 1
 #' @param t an arbitrary input
 #' @return a vector of ones of length x
