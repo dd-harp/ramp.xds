@@ -29,7 +29,7 @@ The four parameters describing mortality and migration are used to construct a
 demographic matrix:
 $$\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) - \cal K \right) \cdot \mbox{diag}\left(\sigma\right)$$
 The emergence rate of adult mosquitoes, \(\Lambda\), is computed by F_emerge,
-and the derivatives returned by dMYZdt.SI are given by the equations:
+and the derivatives are given by the equations:
 $$
 \begin{array}{rr}
 dM/dt =&amp;amp; \Lambda &amp;amp;- \Omega \cdot M \\
@@ -156,7 +156,7 @@ $$"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1><strong>MYZ</strong> Component Derivatives for the <code>SI</code> Mosquito Module</h1>
-    <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/adult-si.R" class="external-link"><code>R/adult-si.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/adult-SI.R" class="external-link"><code>R/adult-SI.R</code></a></small>
     <div class="hidden name"><code>dMYZdt.SI.Rd</code></div>
     </div>
 
@@ -179,7 +179,7 @@ $$Z = e^{-\Omega \tau} \cdot Y$$</p>
 demographic matrix:
 $$\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) - \cal K \right) \cdot \mbox{diag}\left(\sigma\right)$$</p>
 <p>The emergence rate of adult mosquitoes, \(\Lambda\), is computed by <a href="F_emerge.html">F_emerge</a>,
-and the <strong>derivatives</strong> returned by dMYZdt.SI are given by the equations:
+and the <strong>derivatives</strong> are given by the equations:
 $$
 \begin{array}{rr}
 dM/dt =&amp; \Lambda &amp;- \Omega \cdot M \\
@@ -215,7 +215,7 @@ $$</p>
     <h2>Value</h2>
     
 
-<p>a <a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector</p>
+<p>a vector with the derivatives</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>

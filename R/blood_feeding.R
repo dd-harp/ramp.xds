@@ -70,8 +70,7 @@ create_residence_matrix = function(nPatches, residence){
 #' @param pars an **`xds`** object
 #' @return a modified **`xds`** object
 #' @seealso [setup_TRANSMISSION]
-#' @references
-#' \insertRef{WuSL2023SpatialDynamics}{ramp.xds}
+#' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @export
 setup_BLOOD_FEEDING <- function(pars){
 
@@ -160,8 +159,7 @@ change_blood_weights = function(pars, search_weights=1, s=1, i=1){
 #' that is \eqn{n_p \times n_h}. The search weight is a *per-capita* measure
 #' so we weight it by human population density, \eqn{H}. Availability, \eqn{W}
 #' is computed as \deqn{\Psi \cdot (\omega H).}
-#' @references
-#' \insertRef{WuSL2023SpatialDynamics}{ramp.xds}
+#' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @param search_weights blood feeding search weights for the host strata
 #' @param H host density
 #' @param TaR the host species index
@@ -180,8 +178,7 @@ compute_W = function(search_weights, H, TaR){
 #' The availability of other vertebrate hosts is a sum of available local
 #' hosts \eqn{W}, and visitors \eqn{W_\delta}, and other available vertebrate hosts, \eqn{O}.
 #' Total availability is a simple sum: \deqn{B = W + W_\delta + O}
-#' @references
-#' \insertRef{WuSL2023SpatialDynamics}{ramp.xds}
+#' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @param W availability of the parasite's / pathogen' local hosts
 #' @param visitors availability of *visitors,* or non-resident host populations
 #' @param other_blood availability of other vertebrate hosts
@@ -264,8 +261,7 @@ make_RBR = function(t, pars, y){
 #' The availability of other vertebrate hosts is a sum of available local
 #' hosts \eqn{W}, and visitors \eqn{W_\delta}, and other available vertebrate hosts, \eqn{O}.
 #' Total availability is a simple sum: \deqn{B = W + W_\delta + O}
-#' @references
-#' \insertRef{WuSL2023SpatialDynamics}{ramp.xds}
+#' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @param t the time
 #' @param TiSp a time spent matrix
 #' @param F_circadian a function to compute relative activity rates by time of day
