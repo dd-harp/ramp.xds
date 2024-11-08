@@ -17,6 +17,8 @@ devtools::install_github("dd-harp/ramp.xds")
 
 Also see the related vignette [*Getting Started*](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
 
+bump. 
+
 ## What is RAMP?
 
 **`ramp.xds`** was developed to support RAMP. 
