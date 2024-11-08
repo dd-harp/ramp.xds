@@ -61,7 +61,7 @@ set_eir.cohort  = function(eir, pars){
 #' @param da the output interval (age, in days)
 #' @return an **`xds`** object
 #' @export
-xds_solve_cohort = function(pars, bday=0, A = 10, da = 10){
+xds_solve_cohort = function(pars, bday=0, A=10, da = 10){
 
   pars <- set_eir(pars$EIRpar$eir, pars)
 

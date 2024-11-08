@@ -206,8 +206,8 @@ setup_MYZpar.SI = function(MYZname, pars, s, MYZopts=list()){
 #' @return a [list]
 #' @export
 make_MYZpar_SI = function(nPatches, MYZopts=list(), eip=12,
-                            g=1/12, sigma=1/8, mu=0, f=0.3, q=0.95,
-                            nu=1, eggsPerBatch=60){
+                          g=1/12, sigma=1/8, mu=0, f=0.3, q=0.95,
+                          nu=1, eggsPerBatch=60){
 
   with(MYZopts,{
     MYZpar <- list()
@@ -287,7 +287,7 @@ set_MYZinits.SI <- function(pars, s=1, MYZopts=list()) {
     pars$MYZinits[[s]]$M = M
     pars$MYZinits[[s]]$Y = Y
     return(pars)
-}))}
+  }))}
 
 #' @title Setup initial values for the `SI` model
 #' @description Implements [setup_MYZinits] for the `SI` model
@@ -308,7 +308,7 @@ setup_MYZinits.SI = function(pars, s, MYZopts=list()){
 #' @return a [list]
 #' @export
 make_MYZinits_SI = function(nPatches, MYZopts = list(),
-                              M=5, Y=1){
+                            M=5, Y=1){
   with(MYZopts,{
     M = checkIt(M, nPatches)
     Y = checkIt(Y, nPatches)
