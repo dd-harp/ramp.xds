@@ -29,7 +29,7 @@
 #' \deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) - \cal K \right) \cdot \mbox{diag}\left(\sigma\right)}
 #'
 #' The emergence rate of adult mosquitoes, \eqn{\Lambda}, is computed by [F_emerge],
-#' and the **derivatives** returned by [dMYZdt.SI] are given by the equations:
+#' and the **derivatives** are given by the equations:
 #' \deqn{
 #' \begin{array}{rr}
 #' dM/dt =& \Lambda &- \Omega \cdot M \\
