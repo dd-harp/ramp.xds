@@ -7,13 +7,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r}
-library(ramp.xds)
-```
+Previous: [*Getting Started.*](GettingStarted.html) Next: [*Working with Models*.](Working.html) 
+Also, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/_site/index.html)
 
-```{r, echo=F}
-#devtools::load_all()
-```
+*** 
 
 
 **`ramp.xds`** is based on a mathematical framework for model building that is modular, flexible and extensible. Using the built-in functions, it's comparatively easy to build highly *realistic* models by starting simple and adding features one at a time. We call this *progressive model building.* 
@@ -92,6 +89,14 @@ he values of named parameters and the initial values of named variables instead 
 + `Lname` dispatches a module for the **L** component. The setup default model is the trivial model `Lname = "trivial"`. It has no variables, but it passes the outputs -- emerging adults -- as a parameter. To replace the default values at setup, a named list can be passed as `Lopts = list(...)` and the values in `Lopts` will set the values of named parameters and the initial values of named variables instead of the defaults.  
 
 ### Defaults
+
+```{r}
+library(ramp.xds)
+```
+
+```{r, echo=F}
+#devtools::load_all()
+```
 
 
 Thu function call: 

@@ -1,6 +1,5 @@
 ---
 title: "Getting Started"
-subtitle: "A ramp.xds Demo"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Getting Started}
@@ -8,11 +7,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+Next: [Basic Setup](BasicSetup.html). 
+Also, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/_site/index.html)
+
+*** 
+
 # 
 
 **`ramp.xds`** was developed to reduce the costs of building, solving, analyzing, and using models describing the epidemiology, transmission dynamics and control of malaria and other mosquito-transmitted pathogens. This vignette gives a demonstration and a basic introduction. 
 
-The next vignette is [Basic Setup](BasicSetup.html). 
 
 ## Installation 
 

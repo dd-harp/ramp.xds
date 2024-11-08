@@ -8,19 +8,26 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r}
-library(ramp.xds)
-```
+Previous: [*Basic Setup.*](BasicSetup.html) 
+Also, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/_site/index.html)
 
-```{r}
-#devtools::load_all()
-```
+***
+
 
 # 
 
 **`ramp.xds`** was designed to reduce the costs of model building and computation for malaria and other mosquito-transmitted pathogens. One of the core challenges for the software was to provide users with a set of utilities that would make it easy to do work with models after they've been built. 
 
 ## Set Up
+
+
+```{r}
+library(ramp.xds)
+```
+
+```{r, echo=F}
+#devtools::load_all()
+```
 
 The function `xds_setup` was discussed in [Getting Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html). 
 
