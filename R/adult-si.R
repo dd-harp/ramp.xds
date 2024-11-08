@@ -32,14 +32,14 @@
 #' and the **derivatives** are given by the equations:
 #' \deqn{
 #' \begin{array}{rr}
-#' dM/dt =& \Lambda &- \Omega \cdot M \\
-#' dY/dt =& f q \kappa (M-Y) &- \Omega \cdot Y \\
+#' dM/dt = & \Lambda - \Omega \cdot M \\
+#' dY/dt = & f q \kappa (M-Y) - \Omega \cdot Y
 #' \end{array}.
 #' }
 #'
 #' @seealso [F_fqZ.SI] and [F_eggs.SI]
 #' @inheritParams dMYZdt
-#' @return a [numeric] vector
+#' @return a vector with the derivatives
 #' @export
 dMYZdt.SI <- function(t, y, pars, s) {
   Lambda = pars$Lambda[[s]]

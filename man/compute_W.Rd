@@ -29,7 +29,7 @@ so we weight it by human population density, \eqn{H}. Availability, \eqn{W}
 is computed as \deqn{\Psi \cdot (\omega H).}
 }
 \references{
-\insertRef{WuSL2023SpatialDynamics}{ramp.xds}
+{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 }
 \seealso{
 Availability of all vertebrate hosts for blood feeding is computed by \code{\link[=compute_B]{compute_B()}}
