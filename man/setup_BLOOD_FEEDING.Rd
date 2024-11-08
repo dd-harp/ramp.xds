@@ -54,7 +54,7 @@ time spent by time of day weighted by mosquito species-specific \emph{search wei
 and a circadian function describing relative mosquito blood feeding rates by time of day.
 }
 \references{
-{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
+\insertRef{WuSL2023SpatialDynamics}{ramp.xds}
 }
 \seealso{
 \link{setup_TRANSMISSION}

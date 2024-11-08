@@ -28,6 +28,5 @@ hosts \eqn{W}, and visitors \eqn{W_\delta}, and other available vertebrate hosts
 Total availability is a simple sum: \deqn{B = W + W_\delta + O}
 }
 \references{
-{This function implements equation 3
-from \insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
+\insertRef{WuSL2023SpatialDynamics}{ramp.xds}
 }
