@@ -15,7 +15,9 @@ library(devtools)
 devtools::install_github("dd-harp/ramp.xds")
 ```
 
-Also see the related vignette [*Getting Started*](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
+Also see the vignette [*Getting Started*](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html). 
+
+**`ramp.xds`** is part of [**SimBA**](https://faculty.washington.edu/smitdave/simba/_site/index.html)
 
 ## What is RAMP?
 
