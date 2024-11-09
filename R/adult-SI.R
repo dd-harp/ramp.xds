@@ -434,6 +434,7 @@ get_sigma.si_old = function(pars, s=1){
   with(pars$MYZpar[[s]], sigma_t*es_sigma)
 }
 
+
 #' @title Return initial values as a vector
 #' @description Implements [get_MYZinits] for the `si_old` model.
 #' @inheritParams get_MYZinits
