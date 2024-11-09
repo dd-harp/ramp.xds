@@ -3,10 +3,10 @@
 #' @title **MYZ** Component Derivatives for the `si_old` Mosquito Module
 #' @description The `si_old` model for mosquito infection
 #' dynamics has the defined **variable** classes:
-#' - \eqn{M} is the densi_oldty of mosquitoes in each patch;
-#' - \eqn{Y} is the densi_oldty of infected mosquitoes in each patch.
+#' - \eqn{M} is the density of mosquitoes in each patch;
+#' - \eqn{Y} is the density of infected mosquitoes in each patch.
 #'
-#' The densi_oldty of infectious mosquitoes in each patch is
+#' The denty of infectious mosquitoes in each patch is
 #' given by a term (returned by [F_fqZ.si_old]):
 #' \deqn{Z = e^{-\Omega \tau} \cdot Y}
 #'
@@ -20,13 +20,13 @@
 #'
 #'The model demographic **parameters** are:
 #' - \eqn{g} is the mortality rate
-#' - \eqn{\si_oldgma} is the emigration rate
+#' - \eqn{\sigma} is the emigration rate
 #' - \eqn{\mu} is the emigration loss rate
 #' - \eqn{\cal K} is the mosquito dispersal matrix
 #'
 #' The four parameters describing mortality and migration are used to construct a
 #' demographic matrix:
-#' \deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) - \cal K \right) \cdot \mbox{diag}\left(\si_oldgma\right)}
+#' \deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) - \cal K \right) \cdot \mbox{diag}\left(\sigma\right)}
 #'
 #' The emergence rate of adult mosquitoes, \eqn{\Lambda}, is computed by [F_emerge],
 #' and the **derivatives** are given by the equations:
@@ -78,7 +78,7 @@ Update_MYZt.si_old <- function(t, y, pars, s) {
 }
 
 #' @title Net Blood Feeding by Infectious Mosquitoes - `si_old` Mosquito Model
-#' @description The variable \eqn{Y} is the densi_oldty of *infected* mosquitoes.
+#' @description The variable \eqn{Y} is the density of *infected* mosquitoes.
 #' The model blood feeding **parameters** are:
 #' - \eqn{f} is the overall blood feeding rate
 #' - \eqn{q} is the human fraction for blood feeding
@@ -87,9 +87,9 @@ Update_MYZt.si_old <- function(t, y, pars, s) {
 #'
 #' The net blood feeding rate by infectious mosquitoes is computed by accounting
 #' for survival and dispersal that would occur in a delay differential equation:
-#' \deqn{\Upsi_oldlon = e^{-\Omega \tau}}
+#' \deqn{\Upsilon = e^{-\Omega \tau}}
 #' so
-#' \deqn{fqZ = fq (\Upsi_oldlon \cdot Y)}
+#' \deqn{fqZ = fq (\Upsilon \cdot Y)}
 #' The daily EIR for the population strata is \eqn{\beta \cdot fqZ}
 #'
 #' @inheritParams F_fqZ
@@ -98,12 +98,12 @@ Update_MYZt.si_old <- function(t, y, pars, s) {
 #' @export
 F_fqZ.si_old <- function(t, y, pars, s) {
   Y = y[pars$ix$MYZ[[s]]$Y_ix]
-  fqZ = with(pars$MYZpar[[s]], f*q*(Upsi_oldlon %*%Y))
+  fqZ = with(pars$MYZpar[[s]], f*q*(Upsilon %*%Y))
   return(fqZ)
 }
 
 #' @title \eqn{\cal MYZ} Component Net Blood Feeding by Mosquitoes for the `si_old` Mosquito Model
-#' @description  The variable \eqn{M} is the densi_oldty of  mosquitoes.
+#' @description  The variable \eqn{M} is the density of  mosquitoes.
 #' The model blood feeding **parameters** are:
 #' - \eqn{f} is the overall blood feeding rate
 #' - \eqn{q} is the human fraction for blood feeding
@@ -118,7 +118,7 @@ F_fqM.si_old <- function(t, y, pars, s){
 }
 
 #' @title \eqn{\cal MYZ} Component Egg Laying for the `si_old` Mosquito Model
-#' @description The densi_oldty of adult mosquitoes is \eqn{M}.
+#' @description The density of adult mosquitoes is \eqn{M}.
 #' The **parameters** describing egg laying by adult mosquitoes are:
 #' - \eqn{\nu} or `nu` is the egg laying rate
 #' - \eqn{\xi} or `eggsPerBatch` is the number of eggs per batch
@@ -137,13 +137,13 @@ F_eggs.si_old <- function(t, y, pars, s) {
 
 
 #' @title Macdonald-style adult mosquito bionomics
-#' @description Reset the effect si_oldzes for static models
+#' @description Reset the effect sizes for static models
 #' @description
-#' When modules are added to compute effect si_oldzes
+#' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store
-#' an effect si_oldze. The total effect si_oldze is the
-#' product of the effect si_oldzes for each intervention.
-#' si_oldnce coverage could be changing dynamically, these
+#' an effect size. The total effect size is the
+#' product of the effect sizes for each intervention.
+#' since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MBionomics
 #' @return the model as a [list]
@@ -152,18 +152,18 @@ MBaseline.si_old <- function(t, y, pars, s) {
   pars$MYZpar[[s]]$es_f     <- rep(1, pars$nPatches)
   pars$MYZpar[[s]]$es_q     <- rep(1, pars$nPatches)
   pars$MYZpar[[s]]$es_g     <- rep(1, pars$nPatches)
-  pars$MYZpar[[s]]$es_si_oldgma <- rep(1, pars$nPatches)
+  pars$MYZpar[[s]]$es_sigma <- rep(1, pars$nPatches)
   return(pars)
 }
 
 #' @title Macdonald-style adult mosquito bionomics
-#' @description Reset the effect si_oldzes for static models
+#' @description Reset the effect sizes for static models
 #' @description
-#' When modules are added to compute effect si_oldzes
+#' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store
-#' an effect si_oldze. The total effect si_oldze is the
-#' product of the effect si_oldzes for each intervention.
-#' si_oldnce coverage could be changing dynamically, these
+#' an effect size. The total effect size is the
+#' product of the effect sizes for each intervention.
+#' since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MBionomics
 #' @return the model as a [list]
@@ -173,7 +173,7 @@ MBionomics.si_old <- function(t, y, pars, s) {
     pars$MYZpar[[s]]$f <- es_f*f_t
     pars$MYZpar[[s]]$q <- es_q*q_t
     pars$MYZpar[[s]]$g <- es_g*g_t
-    pars$MYZpar[[s]]$si_oldgma <- es_si_oldgma*si_oldgma_t
+    pars$MYZpar[[s]]$sigma <- es_sigma*sigma_t
     pars <- make_Omega(pars, s)
     return(pars)
   })}
@@ -195,18 +195,18 @@ setup_MYZpar.si_old = function(MYZname, pars, s, MYZopts=list()){
 #' @title Make parameters for si_old ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer
 #' @param MYZopts a [list] of values that overwrites the defaults
-#' @param eip the extrinsi_oldc incubation period
+#' @param eip the extrinsic incubation period
 #' @param g mosquito mortality rate
-#' @param si_oldgma emigration rate
+#' @param sigma emigration rate
 #' @param mu fraction lost during emigration
 #' @param f feeding rate
 #' @param q human blood fraction
-#' @param nu oviposi_oldtion rate, per mosquito
-#' @param eggsPerBatch eggs laid per oviposi_oldtion
+#' @param nu oviposition rate, per mosquito
+#' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
 #' @export
 make_MYZpar_si_old = function(nPatches, MYZopts=list(), eip=12,
-                          g=1/12, si_oldgma=1/8, mu=0, f=0.3, q=0.95,
+                          g=1/12, sigma=1/8, mu=0, f=0.3, q=0.95,
                           nu=1, eggsPerBatch=60){
 
   with(MYZopts,{
@@ -221,7 +221,7 @@ make_MYZpar_si_old = function(nPatches, MYZopts=list(), eip=12,
     MYZpar$f_t      <- checkIt(f, nPatches)
     MYZpar$q_t      <- checkIt(q, nPatches)
     MYZpar$g_t      <- checkIt(g, nPatches)
-    MYZpar$si_oldgma_t  <- checkIt(si_oldgma, nPatches)
+    MYZpar$sigma_t  <- checkIt(sigma, nPatches)
     MYZpar$mu     <- checkIt(mu, nPatches)
     MYZpar$nu     <- checkIt(nu, nPatches)
 
@@ -231,16 +231,16 @@ make_MYZpar_si_old = function(nPatches, MYZopts=list(), eip=12,
     MYZpar$es_f       <- rep(1, nPatches)
     MYZpar$es_q       <- rep(1, nPatches)
     MYZpar$es_g       <- rep(1, nPatches)
-    MYZpar$es_si_oldgma   <- rep(1, nPatches)
+    MYZpar$es_sigma   <- rep(1, nPatches)
 
     Omega <- diag(g, nPatches)
     MYZpar$Omega <- Omega
-    MYZpar$Upsi_oldlon <- expm::expm(-Omega*eip)
+    MYZpar$Upsilon <- expm::expm(-Omega*eip)
 
     MYZpar$baseline <- 'si_old'
     class(MYZpar$baseline) <- 'si_old'
-    MYZpar$effect_si_oldzes <- 'unmodified'
-    class(MYZpar$effect_si_oldzes) <- 'unmodified'
+    MYZpar$effect_sizes <- 'unmodified'
+    class(MYZpar$effect_sizes) <- 'unmodified'
 
     return(MYZpar)
   })}
@@ -253,7 +253,7 @@ make_MYZpar_si_old = function(nPatches, MYZopts=list(), eip=12,
 #' @export
 get_MYZpars.si_old <- function(pars, s=1) {
   with(pars$MYZpar[[s]], list(
-    f=f_t, q=q_t, g=g_t, si_oldgma=si_oldgma_t, eip=eip, mu=mu_t,
+    f=f_t, q=q_t, g=g_t, sigma=sigma_t, eip=eip, mu=mu_t,
     nu=nu_t, eggsPerBatch=eggsPerBatch, calK=calK
   ))
 }
@@ -269,7 +269,7 @@ set_MYZpars.si_old <- function(pars, s=1, MYZopts=list()) {
     pars$MYZpar[[s]]$f_t = f
     pars$MYZpar[[s]]$q_t = q
     pars$MYZpar[[s]]$g_t = g
-    pars$MYZpar[[s]]$si_oldgma_t = si_oldgma
+    pars$MYZpar[[s]]$sigma_t = sigma
     pars$MYZpar[[s]]$eip_t = eip
     pars$MYZpar[[s]]$mu_t = mu
     pars$MYZpar[[s]]$nu_t = nu
@@ -303,8 +303,8 @@ setup_MYZinits.si_old = function(pars, s, MYZopts=list()){
 #' @title Make inits for `si_old` adult mosquito model
 #' @param nPatches the number of patches in the model
 #' @param MYZopts a [list] of values that overwrites the defaults
-#' @param M total mosquito densi_oldty at each patch
-#' @param Y infectious mosquito densi_oldty at each patch
+#' @param M total mosquito density at each patch
+#' @param Y infectious mosquito density at each patch
 #' @return a [list]
 #' @export
 make_MYZinits_si_old = function(nPatches, MYZopts = list(),
@@ -386,9 +386,9 @@ parse_MYZorbits.si_old <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
   Z = Y*0
   tm = pars$outputs$time
   for(i in 1:length(tm)){
-    Upsi_oldlon = get_bionomics_s_t(tm[i], outputs[i,], pars, s)$Upsi_oldlon
-    if(pars$nPatches == 1) Z[i] = Upsi_oldlon%*% Y[i]
-    if(pars$nPatches > 1) Z[i,] = Upsi_oldlon%*% Y[i,]
+    Upsilon = get_bionomics_s_t(tm[i], outputs[i,], pars, s)$Upsilon
+    if(pars$nPatches == 1) Z[i] = Upsilon%*% Y[i]
+    if(pars$nPatches > 1) Z[i,] = Upsilon%*% Y[i,]
   }
   ff = get_ft(pars,s)
   qq = get_qt(pars,s)
@@ -401,7 +401,7 @@ parse_MYZorbits.si_old <- function(outputs, pars, s) {with(pars$ix$MYZ[[s]],{
 #' @title Get the feeding rate
 #' @param pars an **`xds`** object
 #' @param s the vector species index
-#' @return y a [numeric] vector assi_oldgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
 get_f.si_old = function(pars, s=1){
   with(pars$MYZpar[[s]], f_t*es_f)
@@ -410,7 +410,7 @@ get_f.si_old = function(pars, s=1){
 #' @title Get the feeding rate
 #' @param pars an **`xds`** object
 #' @param s the vector species index
-#' @return y a [numeric] vector assi_oldgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
 get_q.si_old = function(pars, s=1){
   with(pars$MYZpar[[s]], q_t*es_q)
@@ -419,7 +419,7 @@ get_q.si_old = function(pars, s=1){
 #' @title Get the feeding rate
 #' @param pars an **`xds`** object
 #' @param s the vector species index
-#' @return y a [numeric] vector assi_oldgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
 get_g.si_old = function(pars, s=1){
   with(pars$MYZpar[[s]], g_t*es_g)
@@ -428,10 +428,10 @@ get_g.si_old = function(pars, s=1){
 #' @title Get the feeding rate
 #' @param pars an **`xds`** object
 #' @param s the vector species index
-#' @return y a [numeric] vector assi_oldgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
 get_sigma.si_old = function(pars, s=1){
-  with(pars$MYZpar[[s]], si_oldgma_t*es_si_oldgma)
+  with(pars$MYZpar[[s]], sigma_t*es_sigma)
 }
 
 #' @title Return initial values as a vector

@@ -94,7 +94,6 @@ reference:
     Models available in **`ramp.xds`** for adult mosquito ecology and infection dynamics
   contents:
   - dMYZdt.trivial
-  - dMYZdt.MY
   - dMYZdt.macdonald
   - dMYZdt.GeRM
   - dMYZdt.basicM
