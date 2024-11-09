@@ -368,8 +368,8 @@ reference:
   desc: |
     Specialized methods for simple infection dynamics for an adult mosquito population
   contents:
-  - dMYZdt.si_old
   - MBaseline.si_old
+  - dMYZdt.si_old
   - MBionomics.si_old
   - xde_steady_state_MYZ.si_old
   - Update_MYZt.si_old
