@@ -1392,7 +1392,7 @@
         <dd>Make inits for RM adult mosquito model</dd>
       </dl></div><div class="section level2">
       
-      <h3 id="the-my-model-for-infection">The “MY” model for infection<a class="anchor" aria-label="anchor" href="#the-my-model-for-infection"></a></h3>
+      <h3 id="the-si-model-for-infection">The “SI” model for infection<a class="anchor" aria-label="anchor" href="#the-si-model-for-infection"></a></h3>
       <div class="section-desc"><p>Specialized methods for simple infection dynamics for an adult mosquito population</p></div>
 
       
@@ -1403,263 +1403,127 @@
 
       <dl><dt>
           
-          <code><a href="dMYZdt.MY.html">dMYZdt(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="dMYZdt.SI.html">dMYZdt(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd><strong>MYZ</strong> Component Derivatives for the <code>MY</code> Mosquito Module</dd>
+        <dd><strong>MYZ</strong> Component Derivatives for the <code>SI</code> Mosquito Module</dd>
       </dl><dl><dt>
           
-          <code><a href="MBaseline.MY.html">MBaseline(<i>&lt;MY&gt;</i>)</a></code> 
-        </dt>
-        <dd>Macdonald-style adult mosquito bionomics</dd>
-      </dl><dl><dt>
-          
-          <code><a href="MBionomics.MY.html">MBionomics(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="MBaseline.SI.html">MBaseline(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Macdonald-style adult mosquito bionomics</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_steady_state_MYZ.MY.html">xde_steady_state_MYZ(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="MBionomics.SI.html">MBionomics(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd>Steady States: MYZ-MY</dd>
+        <dd>Macdonald-style adult mosquito bionomics</dd>
       </dl><dl><dt>
           
-          <code><a href="Update_MYZt.MY.html">Update_MYZt(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="xde_steady_state_MYZ.SI.html">xde_steady_state_MYZ(<i>&lt;SI&gt;</i>)</a></code> 
+        </dt>
+        <dd>Steady States: MYZ-SI</dd>
+      </dl><dl><dt>
+          
+          <code><a href="Update_MYZt.SI.html">Update_MYZt(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Derivatives for adult mosquitoes</dd>
       </dl><dl><dt>
           
-          <code><a href="setup_MYZpar.MY.html">setup_MYZpar(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="setup_MYZpar.SI.html">setup_MYZpar(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd>Setup MYZpar for the MY model</dd>
+        <dd>Setup MYZpar for the SI model</dd>
       </dl><dl><dt>
           
-          <code><a href="make_MYZpar_MY.html">make_MYZpar_MY()</a></code> 
+          <code><a href="make_MYZpar_SI.html">make_MYZpar_SI()</a></code> 
         </dt>
-        <dd>Make parameters for si ODE adult mosquito model</dd>
+        <dd>Make parameters for SI ODE adult mosquito model</dd>
       </dl><dl><dt>
           
-          <code><a href="F_fqZ.MY.html">F_fqZ(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="F_fqZ.SI.html">F_fqZ(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd>Net Blood Feeding by Infectious Mosquitoes - <code>MY</code> Mosquito Model</dd>
+        <dd>Net Blood Feeding by Infectious Mosquitoes - <code>SI</code> Mosquito Model</dd>
       </dl><dl><dt>
           
-          <code><a href="F_fqM.MY.html">F_fqM(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="F_fqM.SI.html">F_fqM(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd>\(\cal MYZ\) Component Net Blood Feeding by Mosquitoes for the <code>MY</code> Mosquito Model</dd>
+        <dd>\(\cal MYZ\) Component Net Blood Feeding by Mosquitoes for the <code>SI</code> Mosquito Model</dd>
       </dl><dl><dt>
           
-          <code><a href="F_eggs.MY.html">F_eggs(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="F_eggs.SI.html">F_eggs(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd>\(\cal MYZ\) Component Egg Laying for the <code>MY</code> Mosquito Model</dd>
+        <dd>\(\cal MYZ\) Component Egg Laying for the <code>SI</code> Mosquito Model</dd>
       </dl><dl><dt>
           
-          <code><a href="list_MYZvars.MY.html">list_MYZvars(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="list_MYZvars.SI.html">list_MYZvars(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Return the variables as a list</dd>
       </dl><dl><dt>
           
-          <code><a href="get_MYZpars.MY.html">get_MYZpars(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="get_MYZpars.SI.html">get_MYZpars(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Return the parameters as a list</dd>
       </dl><dl><dt>
           
-          <code><a href="set_MYZpars.MY.html">set_MYZpars(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="set_MYZpars.SI.html">set_MYZpars(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Return the parameters as a list</dd>
       </dl><dl><dt>
           
-          <code><a href="set_MYZinits.MY.html">set_MYZinits(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="set_MYZinits.SI.html">set_MYZinits(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Set new MYZ parameter values</dd>
       </dl><dl><dt>
           
-          <code><a href="put_MYZvars.MY.html">put_MYZvars(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="put_MYZvars.SI.html">put_MYZvars(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Return the variables as a list</dd>
       </dl><dl><dt>
           
-          <code><a href="setup_MYZinits.MY.html">setup_MYZinits(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="setup_MYZinits.SI.html">setup_MYZinits(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd>Setup initial values for the <code>MY</code> model</dd>
+        <dd>Setup initial values for the <code>SI</code> model</dd>
       </dl><dl><dt>
           
-          <code><a href="make_MYZinits_MY.html">make_MYZinits_MY()</a></code> 
+          <code><a href="make_MYZinits_SI.html">make_MYZinits_SI()</a></code> 
         </dt>
-        <dd>Make inits for <code>MY</code> adult mosquito model</dd>
+        <dd>Make inits for <code>SI</code> adult mosquito model</dd>
       </dl><dl><dt>
           
-          <code><a href="setup_MYZix.MY.html">setup_MYZix(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="setup_MYZix.SI.html">setup_MYZix(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Add indices for adult mosquitoes to parameter list</dd>
       </dl><dl><dt>
           
-          <code><a href="parse_MYZorbits.MY.html">parse_MYZorbits(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="parse_MYZorbits.SI.html">parse_MYZorbits(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd>Parse the output of deSolve and return variables for the <code>MY</code> model</dd>
+        <dd>Parse the output of deSolve and return variables for the <code>SI</code> model</dd>
       </dl><dl><dt>
           
-          <code><a href="get_MYZinits.MY.html">get_MYZinits(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="get_MYZinits.SI.html">get_MYZinits(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Return initial values as a vector</dd>
       </dl><dl><dt>
           
-          <code><a href="update_MYZinits.MY.html">update_MYZinits(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="update_MYZinits.SI.html">update_MYZinits(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd>Make inits for <code>MY</code> adult mosquito model</dd>
+        <dd>Make inits for <code>SI</code> adult mosquito model</dd>
       </dl><dl><dt>
           
-          <code><a href="get_f.MY.html">get_f(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="get_f.SI.html">get_f(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Get the feeding rate</dd>
       </dl><dl><dt>
           
-          <code><a href="get_q.MY.html">get_q(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="get_q.SI.html">get_q(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Get the feeding rate</dd>
       </dl><dl><dt>
           
-          <code><a href="get_g.MY.html">get_g(<i>&lt;MY&gt;</i>)</a></code> 
+          <code><a href="get_g.SI.html">get_g(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Get the feeding rate</dd>
       </dl><dl><dt>
           
-          <code><a href="get_sigma.MY.html">get_sigma(<i>&lt;MY&gt;</i>)</a></code> 
-        </dt>
-        <dd>Get the feeding rate</dd>
-      </dl></div><div class="section level2">
-      
-      <h3 id="the-si-old-model-for-infection">The “si_old” model for infection<a class="anchor" aria-label="anchor" href="#the-si-old-model-for-infection"></a></h3>
-      <div class="section-desc"><p>Specialized methods for simple infection dynamics for an adult mosquito population</p></div>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="dMYZdt.si_old.html">dMYZdt(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd><strong>MYZ</strong> Component Derivatives for the <code>si_old</code> Mosquito Module</dd>
-      </dl><dl><dt>
-          
-          <code><a href="MBaseline.si_old.html">MBaseline(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Macdonald-style adult mosquito bionomics</dd>
-      </dl><dl><dt>
-          
-          <code><a href="MBionomics.si_old.html">MBionomics(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Macdonald-style adult mosquito bionomics</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xde_steady_state_MYZ.si_old.html">xde_steady_state_MYZ(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Steady States: MYZ-si_old</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Update_MYZt.si_old.html">Update_MYZt(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Derivatives for adult mosquitoes</dd>
-      </dl><dl><dt>
-          
-          <code><a href="setup_MYZpar.si_old.html">setup_MYZpar(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Setup MYZpar for the si_old model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="make_MYZpar_si_old.html">make_MYZpar_si_old()</a></code> 
-        </dt>
-        <dd>Make parameters for si_old ODE adult mosquito model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="F_fqZ.si_old.html">F_fqZ(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Net Blood Feeding by Infectious Mosquitoes - <code>si_old</code> Mosquito Model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="F_fqM.si_old.html">F_fqM(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>\(\cal MYZ\) Component Net Blood Feeding by Mosquitoes for the <code>si_old</code> Mosquito Model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="F_eggs.si_old.html">F_eggs(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>\(\cal MYZ\) Component Egg Laying for the <code>si_old</code> Mosquito Model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="list_MYZvars.si_old.html">list_MYZvars(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Return the variables as a list</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_MYZpars.si_old.html">get_MYZpars(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Return the parameters as a list</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_MYZpars.si_old.html">set_MYZpars(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Return the parameters as a list</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_MYZinits.si_old.html">set_MYZinits(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Set new MYZ parameter values</dd>
-      </dl><dl><dt>
-          
-          <code><a href="put_MYZvars.si_old.html">put_MYZvars(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Return the variables as a list</dd>
-      </dl><dl><dt>
-          
-          <code><a href="setup_MYZinits.si_old.html">setup_MYZinits(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Setup initial values for the <code>si_old</code> model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="make_MYZinits_si_old.html">make_MYZinits_si_old()</a></code> 
-        </dt>
-        <dd>Make inits for <code>si_old</code> adult mosquito model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="setup_MYZix.si_old.html">setup_MYZix(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Add indices for adult mosquitoes to parameter list</dd>
-      </dl><dl><dt>
-          
-          <code><a href="parse_MYZorbits.si_old.html">parse_MYZorbits(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Parse the output of deSolve and return variables for the <code>si_old</code> model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_MYZinits.si_old.html">get_MYZinits(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Return initial values as a vector</dd>
-      </dl><dl><dt>
-          
-          <code><a href="update_MYZinits.si_old.html">update_MYZinits(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Make inits for <code>si_old</code> adult mosquito model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_f.si_old.html">get_f(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Get the feeding rate</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_q.si_old.html">get_q(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Get the feeding rate</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_g.si_old.html">get_g(<i>&lt;si_old&gt;</i>)</a></code> 
-        </dt>
-        <dd>Get the feeding rate</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_sigma.si_old.html">get_sigma(<i>&lt;si_old&gt;</i>)</a></code> 
+          <code><a href="get_sigma.SI.html">get_sigma(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Get the feeding rate</dd>
       </dl></div><div class="section level2">
