@@ -3,10 +3,10 @@
 #' @title **MYZ** Component Derivatives for the `SI` Mosquito Module
 #' @description The `SI` model for mosquito infection
 #' dynamics has the defined **variable** classes:
-#' - \eqn{M} is the denSIty of mosquitoes in each patch;
-#' - \eqn{Y} is the denSIty of infected mosquitoes in each patch.
+#' - \eqn{M} is the density of mosquitoes in each patch;
+#' - \eqn{Y} is the density of infected mosquitoes in each patch.
 #'
-#' The denSIty of infectious mosquitoes in each patch is
+#' The density of infectious mosquitoes in each patch is
 #' given by a term (returned by [F_fqZ.SI]):
 #' \deqn{Z = e^{-\Omega \tau} \cdot Y}
 #'
@@ -78,7 +78,7 @@ Update_MYZt.SI <- function(t, y, pars, s) {
 }
 
 #' @title Net Blood Feeding by Infectious Mosquitoes - `SI` Mosquito Model
-#' @description The variable \eqn{Y} is the denSIty of *infected* mosquitoes.
+#' @description The variable \eqn{Y} is the density of *infected* mosquitoes.
 #' The model blood feeding **parameters** are:
 #' - \eqn{f} is the overall blood feeding rate
 #' - \eqn{q} is the human fraction for blood feeding
@@ -103,7 +103,7 @@ F_fqZ.SI <- function(t, y, pars, s) {
 }
 
 #' @title \eqn{\cal MYZ} Component Net Blood Feeding by Mosquitoes for the `SI` Mosquito Model
-#' @description  The variable \eqn{M} is the denSIty of  mosquitoes.
+#' @description  The variable \eqn{M} is the density of  mosquitoes.
 #' The model blood feeding **parameters** are:
 #' - \eqn{f} is the overall blood feeding rate
 #' - \eqn{q} is the human fraction for blood feeding
@@ -118,7 +118,7 @@ F_fqM.SI <- function(t, y, pars, s){
 }
 
 #' @title \eqn{\cal MYZ} Component Egg Laying for the `SI` Mosquito Model
-#' @description The denSIty of adult mosquitoes is \eqn{M}.
+#' @description The density of adult mosquitoes is \eqn{M}.
 #' The **parameters** describing egg laying by adult mosquitoes are:
 #' - \eqn{\nu} or `nu` is the egg laying rate
 #' - \eqn{\xi} or `eggsPerBatch` is the number of eggs per batch
@@ -303,8 +303,8 @@ setup_MYZinits.SI = function(pars, s, MYZopts=list()){
 #' @title Make inits for `SI` adult mosquito model
 #' @param nPatches the number of patches in the model
 #' @param MYZopts a [list] of values that overwrites the defaults
-#' @param M total mosquito denSIty at each patch
-#' @param Y infectious mosquito denSIty at each patch
+#' @param M total mosquito density at each patch
+#' @param Y infectious mosquito density at each patch
 #' @return a [list]
 #' @export
 make_MYZinits_SI = function(nPatches, MYZopts = list(),
