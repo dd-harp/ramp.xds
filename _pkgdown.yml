@@ -96,7 +96,7 @@ reference:
     Models available in **`ramp.xds`** for adult mosquito ecology and infection dynamics
   contents:
   - dMYZdt.trivial
-  - dMYZdt.MY
+  - dMYZdt.SI
   - dMYZdt.macdonald
   - dMYZdt.GeRM
   - dMYZdt.basicM
@@ -365,64 +365,35 @@ reference:
   - parse_MYZorbits.basicM
   - get_MYZinits.basicM
   - update_MYZinits.basicM
-- subtitle: The "MY" model for infection
+- subtitle: The "SI" model for infection
   desc: |
     Specialized methods for simple infection dynamics for an adult mosquito population
   contents:
-  - dMYZdt.MY
-  - MBaseline.MY
-  - MBionomics.MY
-  - xde_steady_state_MYZ.MY
-  - Update_MYZt.MY
-  - setup_MYZpar.MY
-  - make_MYZpar_MY
-  - F_fqZ.MY
-  - F_fqM.MY
-  - F_eggs.MY
-  - list_MYZvars.MY
-  - get_MYZpars.MY
-  - set_MYZpars.MY
-  - set_MYZinits.MY
-  - put_MYZvars.MY
-  - setup_MYZinits.MY
-  - make_MYZinits_MY
-  - setup_MYZix.MY
-  - parse_MYZorbits.MY
-  - get_MYZinits.MY
-  - update_MYZinits.MY
-  - get_f.MY
-  - get_q.MY
-  - get_g.MY
-  - get_sigma.MY
-- subtitle: The "si_old" model for infection
-  desc: |
-    Specialized methods for simple infection dynamics for an adult mosquito population
-  contents:
-  - dMYZdt.si_old
-  - MBaseline.si_old
-  - MBionomics.si_old
-  - xde_steady_state_MYZ.si_old
-  - Update_MYZt.si_old
-  - setup_MYZpar.si_old
-  - make_MYZpar_si_old
-  - F_fqZ.si_old
-  - F_fqM.si_old
-  - F_eggs.si_old
-  - list_MYZvars.si_old
-  - get_MYZpars.si_old
-  - set_MYZpars.si_old
-  - set_MYZinits.si_old
-  - put_MYZvars.si_old
-  - setup_MYZinits.si_old
-  - make_MYZinits_si_old
-  - setup_MYZix.si_old
-  - parse_MYZorbits.si_old
-  - get_MYZinits.si_old
-  - update_MYZinits.si_old
-  - get_f.si_old
-  - get_q.si_old
-  - get_g.si_old
-  - get_sigma.si_old
+  - dMYZdt.SI
+  - MBaseline.SI
+  - MBionomics.SI
+  - xde_steady_state_MYZ.SI
+  - Update_MYZt.SI
+  - setup_MYZpar.SI
+  - make_MYZpar_SI
+  - F_fqZ.SI
+  - F_fqM.SI
+  - F_eggs.SI
+  - list_MYZvars.SI
+  - get_MYZpars.SI
+  - set_MYZpars.SI
+  - set_MYZinits.SI
+  - put_MYZvars.SI
+  - setup_MYZinits.SI
+  - make_MYZinits_SI
+  - setup_MYZix.SI
+  - parse_MYZorbits.SI
+  - get_MYZinits.SI
+  - update_MYZinits.SI
+  - get_f.SI
+  - get_q.SI
+  - get_g.SI
+  - get_sigma.SI
 - subtitle: macdonald
   desc: |
     Specialized methods for a Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
