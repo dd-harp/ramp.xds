@@ -161,11 +161,13 @@ changed):</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">Xpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.005555556</span></span></code></pre>
-<p>Similarly, initial values were assigned default values at setup:</p>
+<p>Similarly, initial values were assigned default values at setup. In
+<strong><code>ramp.xds,</code></strong> human/host demography is treated
+as a distinct process, so the intial values for :</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_Xinits.html">get_Xinits</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## $S</span></span>
-<span><span class="co">## [1] 999</span></span>
+<pre><code><span><span class="co">## $H</span></span>
+<span><span class="co">## [1] 1000</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $I</span></span>
 <span><span class="co">## [1] 1</span></span></code></pre>
@@ -173,7 +175,7 @@ changed):</p>
 setup by passing <code>Xopts = list(...)</code> with different
 values:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">150</span>, c<span class="op">=</span><span class="fl">0.2</span>, b<span class="op">=</span><span class="fl">0.6</span>, S<span class="op">=</span><span class="fl">3</span>, I<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">150</span>, c<span class="op">=</span><span class="fl">0.2</span>, b<span class="op">=</span><span class="fl">0.6</span>, I<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xopts <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_Xpars.html">get_Xpars</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $b</span></span>
@@ -184,18 +186,27 @@ values:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## $r</span></span>
 <span><span class="co">## [1] 0.005555556</span></span></code></pre>
-<p>One thing about overwriting the defaults is that the variable
+<p>In the <code>SIS</code> model, we set
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>=</mo><mi>S</mi><mo>+</mo><mi>I</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">H=S+I,</annotation></semantics></math>
+so the software computes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>H</mi><mi>/</mi><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">dH/dt</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>I</mi><mi>/</mi><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">dI/dt</annotation></semantics></math>
+and sets
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mi>H</mi><mo>−</mo><mi>I</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">S=H-I.</annotation></semantics></math>
+By policy, the software computes the total population size,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">H,</annotation></semantics></math>
+dynamically and treats it differently. This is because plays an
+important role in setting up the <em>Blood Feeding</em> interface, so it
+is not possible to set
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">S.</annotation></semantics></math>
+Instead,
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
-in this model is computed in relation to the total population size
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>,
-which plays an important role in setting up the <em>Blood Feeding</em>
-interface, so the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">S=3</annotation></semantics></math>
-above was ignored.</p>
+is computed after solving and parsing.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_Xinits.html">get_Xinits</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## $S</span></span>
-<span><span class="co">## [1] 998</span></span>
+<pre><code><span><span class="co">## $H</span></span>
+<span><span class="co">## [1] 1000</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $I</span></span>
 <span><span class="co">## [1] 2</span></span></code></pre>
@@ -204,8 +215,8 @@ function.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/set_H.html">set_H</a></span><span class="op">(</span><span class="fl">1004</span>, <span class="va">model1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_Xinits.html">get_Xinits</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## $S</span></span>
-<span><span class="co">## [1] 1002</span></span>
+<pre><code><span><span class="co">## $H</span></span>
+<span><span class="co">## [1] 1000</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $I</span></span>
 <span><span class="co">## [1] 2</span></span></code></pre>

@@ -159,7 +159,7 @@ solving, <code>xds_solve</code> calls <code>get_inits</code> with a
 <code>flatten=TRUE</code></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">mod</span>, flatten<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1]   1   5   1 999   1</span></span></code></pre>
+<pre><code><span><span class="co">## [1]    1    5    1 1000    1</span></span></code></pre>
 <p>With the default, <code>flatten=FALSE</code>, <code>get_inits</code>
 returns a named list that is easy to read:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -178,8 +178,8 @@ returns a named list that is easy to read:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $X</span></span>
-<span><span class="co">## $X$S</span></span>
-<span><span class="co">## [1] 999</span></span>
+<span><span class="co">## $X$H</span></span>
+<span><span class="co">## [1] 1000</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $X$I</span></span>
 <span><span class="co">## [1] 1</span></span></code></pre>
