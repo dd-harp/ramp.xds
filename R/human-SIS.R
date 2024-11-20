@@ -1,14 +1,17 @@
 # specialized methods for the human SIS model
 
 #' @title **X** Component Derivatives for the `SIS` Model
-#' @description Compute the derivatives for SIS compartmental model, defined as:
+#' @description
+#' Compute the derivatives for SIS compartmental model. Here, the model includes human demographic changes,
+#' and it is computed in an equivalent form:
 #' \deqn{
-#' \begin{array}{rcccc}
-#' dS/dt =& - h S &+ r I &+ d{\cal H}(S) &+ B(t, H) \\
-#' dI/dt =& h S & - r I &+ d{\cal H}(I)
+#' \begin{array}{rl}
+#' dH/dt = & B(t,H)  + {\cal D} \cdot H \\
+#' dI/dt = & h (H-I) - r I + {\cal D} \cdot I
 #' \end{array}
 #' }
-#' where \eqn{H = S+I}; \eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{d{\cal H}} operator computes derivatives for the demographic model \eqn{\cal H}.
+#' where \eqn{S=H-I} ; \eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{\cal D} is a matrix describing demographic changes,
+#' including mortality, migration, and aging.
 #' @inheritParams dXdt
 #' @return a [numeric] vector
 #' @export
@@ -18,9 +21,9 @@ dXdt.SIS <- function(t, y, pars, i) {
   Hpar <- pars$Hpar[[i]]
   with(list_Xvars(y, pars, i),{
     with(pars$Xpar[[i]], {
-      dS <- Births(t, H, Hpar) - foi*S + r*I + dHdt(t, S, Hpar)
-      dI <- foi*S - r*I + dHdt(t, I, Hpar)
-      return(c(dS, dI))
+      dH <- Births(t, H, Hpar) + dHdt(t, H, Hpar)
+      dI <- foi*(H-I) - r*I + dHdt(t, I, Hpar)
+      return(c(dH, dI))
     })
   })
 }
@@ -136,7 +139,7 @@ F_b.SIS <- function(y, pars, i) {
 put_Xvars.SIS <- function(Xvars, y, pars, i) {
   with(pars$ix$X[[i]],
        with(as.list(Xvars),{
-         y[S_ix] = S
+         y[H_ix] = H
          y[I_ix] = I
          return(y)
        }))}
@@ -148,9 +151,9 @@ put_Xvars.SIS <- function(Xvars, y, pars, i) {
 #' @export
 list_Xvars.SIS <- function(y, pars, i) {
   with(pars$ix$X[[i]],{
-    S = y[S_ix]
+    H = y[H_ix]
     I = y[I_ix]
-    H = S+I
+    S = H-I
     return(list(S=S,I=I,H=H))})
 }
 
@@ -189,9 +192,8 @@ set_Xpars.SIS <- function(pars, i=1, Xopts=list()) {
 #' @return a [list]
 #' @export
 make_Xinits_SIS = function(nStrata, H, Xopts = list(), I=1){with(Xopts,{
-  S = unname(as.vector(checkIt(H-I, nStrata)))
   I = unname(as.vector(checkIt(I, nStrata)))
-  return(list(S=S, I=I))
+  return(list(H=H, I=I))
 })}
 
 
@@ -214,7 +216,6 @@ setup_Xinits.SIS = function(pars, H, i, Xopts=list()){
 #' @export
 set_Xinits.SIS <- function(pars, i=1, Xopts=list()) {
   with(get_Xinits(pars, i), with(Xopts,{
-    pars$Xinits[[i]]$S = get_H(pars,i)-I
     pars$Xinits[[i]]$I = I
     return(pars)
   }))}
@@ -235,14 +236,14 @@ get_Xinits.SIS <- function(pars, i=1){pars$Xinits[[i]]}
 #' @export
 setup_Xix.SIS <- function(pars, i) {with(pars,{
 
-  S_ix <- seq(from = max_ix+1, length.out=nStrata[i])
-  max_ix <- tail(S_ix, 1)
+  H_ix <- seq(from = max_ix+1, length.out=nStrata[i])
+  max_ix <- tail(H_ix, 1)
 
   I_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(I_ix, 1)
 
   pars$max_ix = max_ix
-  pars$ix$X[[i]] = list(S_ix=S_ix, I_ix=I_ix)
+  pars$ix$X[[i]] = list(H_ix=H_ix, I_ix=I_ix)
   return(pars)
 })}
 
@@ -252,7 +253,7 @@ setup_Xix.SIS <- function(pars, i) {with(pars,{
 #' @export
 update_Xinits.SIS <- function(pars, y0, i=1) {
   with(list_Xvars(y0, pars, i),{
-    pars$Xinits[[i]]$S = S
+    pars$Xinits[[i]]$H = get_H(pars, i)
     pars$Xinits[[i]]$I = I
     return(pars)
   })}
@@ -264,9 +265,9 @@ update_Xinits.SIS <- function(pars, y0, i=1) {
 #' @return none
 #' @export
 parse_Xorbits.SIS <- function(outputs, pars, i) {with(pars$ix$X[[i]],{
-  S <- outputs[,S_ix]
+  H <- outputs[,H_ix]
   I <- outputs[,I_ix]
-  H <- S+I
+  S <- H-I
   ni <- pars$Xpar[[i]]$c*I/H
   true_pr <- I/H
   vars <- list(S=S, I=I, H=H, ni=ni, true_pr=true_pr)

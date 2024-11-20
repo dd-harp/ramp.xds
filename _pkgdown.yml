@@ -1043,6 +1043,8 @@ reference:
   desc: |
     Methods to compute and transmission terms
   contents:
+  - average_PR_true
+  - average_EIR
   - parse_orbits
   - parse_y
   - reset_state_i

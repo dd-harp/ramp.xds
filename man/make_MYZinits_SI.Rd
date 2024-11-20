@@ -11,9 +11,9 @@ make_MYZinits_SI(nPatches, MYZopts = list(), M = 5, Y = 1)
 
 \item{MYZopts}{a \link{list} of values that overwrites the defaults}
 
-\item{M}{total mosquito denSIty at each patch}
+\item{M}{total mosquito density at each patch}
 
-\item{Y}{infectious mosquito denSIty at each patch}
+\item{Y}{infectious mosquito density at each patch}
 }
 \value{
 a \link{list}
