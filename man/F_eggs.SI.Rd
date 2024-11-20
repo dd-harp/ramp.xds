@@ -19,7 +19,7 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-The denSIty of adult mosquitoes is \eqn{M}.
+The density of adult mosquitoes is \eqn{M}.
 The \strong{parameters} describing egg laying by adult mosquitoes are:
 \itemize{
 \item \eqn{\nu} or \code{nu} is the egg laying rate

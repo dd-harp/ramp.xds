@@ -19,7 +19,7 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-The variable \eqn{M} is the denSIty of  mosquitoes.
+The variable \eqn{M} is the density of  mosquitoes.
 The model blood feeding \strong{parameters} are:
 \itemize{
 \item \eqn{f} is the overall blood feeding rate

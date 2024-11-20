@@ -7,7 +7,7 @@
 make_parameters_demography_null(pars, H)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{pars}{an \strong{\code{xds}} object}
 
 \item{H}{size of human population in each strata}
 }

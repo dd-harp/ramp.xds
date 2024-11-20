@@ -19,12 +19,13 @@
 a \link{numeric} vector
 }
 \description{
-Compute the derivatives for SIS compartmental model, defined as:
+Compute the derivatives for SIS compartmental model. Here, the model is computed in an equivalent form:
 \deqn{
-\begin{array}{rcccc}
-dS/dt =& - h S &+ r I &+ d{\cal H}(S) &+ B(t, H) \\
-dI/dt =& h S & - r I &+ d{\cal H}(I)
+\begin{array}{rl}
+dH/dt = & B(t,H)  + {\cal D} \cdot H \\
+dI/dt = & h (H-I) - r I + {\cal D} \cdot I
 \end{array}
 }
-where \eqn{H = S+I}; \eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{d{\cal H}} operator computes derivatives for the demographic model \eqn{\cal H}.
+where \eqn{S=H-I} ; \eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{\cal D} is the matrix describing demographic changes,
+including mortality, migration, and aging.
 }

@@ -1,7 +1,22 @@
 # generic methods for demography (nested within human; \cal{H} in \cal{X})
 
+#' @title Change human population density
+#' @param H human population density
+#' @param pars an **`xds`** object
+#' @param i the host species index
+#' @return a [list]
+#' @export
+set_H = function(H, pars, i=1){
+  stopifnot(length(H) == pars$nStrata[i])
+  vars <- as.list(get_Xinits(pars,i))
+  pars <- setup_Xinits(pars, H, i, vars)
+  class(pars$BFpar) <- trigger_setup(pars$BFpar)
+  class(pars$beta) <- trigger_setup(pars$beta)
+  return(pars)
+}
+
 #' @title A utility to set up Hpar
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param i the host species index
 #' @return a [list]
 #' @export
@@ -45,7 +60,7 @@ Births <- function(t, y, Hpar){
 }
 
 #' @title Make parameters for null human demography model
-#' @param pars a [list]
+#' @param pars an **`xds`** object
 #' @param H size of human population in each strata
 #' @return none
 #' @export

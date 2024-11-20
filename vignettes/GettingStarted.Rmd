@@ -70,7 +70,7 @@ Functions like `get_Xpars` are designed to help users get to know the model ojec
 model$Xpar[[1]]$r
 ```
 
-Similarly, initial values were assigned default values at setup:
+Similarly, initial values were assigned default values at setup. In **`ramp.xds,`** human/host demography is treated as a distinct process, so the intial values for :
 
 ```{r}
 get_Xinits(model)
@@ -80,12 +80,11 @@ The default parameters and initial values can be over-written at setup by passin
 with different values: 
 
 ```{r}
-Xo = list(b=1/150, c=0.2, b=0.6, S=3, I=2)
+Xo = list(b=1/150, c=0.2, b=0.6, I=2)
 model1 <- xds_setup(Xopts = Xo)
 get_Xpars(model1)
 ```
-
-One thing about overwriting the defaults is that the variable $S$ in this model is computed in relation to the total population size $H$, which plays an important role in setting up the *Blood Feeding* interface, so the $S=3$ above was ignored.
+In the `SIS` model, we set $H=S+I,$ so the software computes $dH/dt$ and $dI/dt$ and sets $S=H-I.$ By policy, the software computes the total population size, $H,$ dynamically and treats it differently. This is because plays an important role in setting up the *Blood Feeding* interface, so it is not possible to set $S.$ Instead, $S$ is computed after solving and parsing. 
 
 ```{r}
 get_Xinits(model1)

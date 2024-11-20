@@ -22,11 +22,11 @@ a vector with the derivatives
 The \code{SI} model for mosquito infection
 dynamics has the defined \strong{variable} classes:
 \itemize{
-\item \eqn{M} is the denSIty of mosquitoes in each patch;
-\item \eqn{Y} is the denSIty of infected mosquitoes in each patch.
+\item \eqn{M} is the density of mosquitoes in each patch;
+\item \eqn{Y} is the density of infected mosquitoes in each patch.
 }
 
-The denSIty of infectious mosquitoes in each patch is
+The density of infectious mosquitoes in each patch is
 given by a term (returned by \link{F_fqZ.SI}):
 \deqn{Z = e^{-\Omega \tau} \cdot Y}
 
