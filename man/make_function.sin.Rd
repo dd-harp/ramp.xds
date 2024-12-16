@@ -13,12 +13,15 @@
 a function for seasonality
 }
 \description{
-Return a function of the form
-\deqn{c \left(1+\epsilon + \sin\left(\frac{2 \pi (t-\tau)}{365}\right)\right)^p}
+Return a seasonal pattern \eqn{S(t)}, a function of the form
+\deqn{S(t) = c \left(1+\epsilon + \sin\left(\frac{2 \pi (t-\tau)}{365}\right)\right)^p}
 where \eqn{c} is a normalizing constant, and
 \itemize{
 \item \eqn{\epsilon \geq 0} or \code{floor}
 \item \eqn{\tau} or \code{phase}
 \item \eqn{p} or \code{pw}
 }
+
+The algorithm sets the constant \eqn{c} or \code{norm}
+such that \deqn{\int_0^{365} S(t) dt=c} where the default is \code{norm=365.}
 }
