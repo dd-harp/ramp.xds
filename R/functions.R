@@ -32,12 +32,15 @@ make_function = function(opts){
 }
 
 #' @title Make a Sine-based Seasonality Function
-#' @description Return a function of the form
-#' \deqn{c \left(1+\epsilon + \sin\left(\frac{2 \pi (t-\tau)}{365}\right)\right)^p}
+#' @description Return a seasonal pattern \eqn{S(t)}, a function of the form
+#' \deqn{S(t) = c \left(1+\epsilon + \sin\left(\frac{2 \pi (t-\tau)}{365}\right)\right)^p}
 #' where \eqn{c} is a normalizing constant, and
 #' + \eqn{\epsilon \geq 0} or `floor`
 #' + \eqn{\tau} or `phase`
 #' + \eqn{p} or `pw`
+#'
+#' The algorithm sets the constant \eqn{c} or `norm`
+#' such that \deqn{\int_0^{365} S(t) dt=c} where the default is `norm=365.`
 #' @inheritParams make_function
 #' @importFrom stats integrate
 #' @return a function for seasonality
