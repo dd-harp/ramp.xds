@@ -51,7 +51,6 @@
 /*.Rcheck/
 
 # RStudio files
-.Rproj
 .Rproj.user/
 
 # produced vignettes
@@ -111,8 +110,6 @@ cran-comments.md
 .Rproj.user
 .Rdata
 .quarto
-.Rproj
 *.Rproj
 docs/
-
 
