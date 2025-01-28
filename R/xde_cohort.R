@@ -59,13 +59,19 @@ set_eir.cohort  = function(eir, pars){
 #' @param bday the cohort birthday
 #' @param A the maximum age to compute (in years)
 #' @param da the output interval (age, in days)
+#' @param times the output times 
 #' @return an **`xds`** object
 #' @export
-xds_solve_cohort = function(pars, bday=0, A=10, da = 10){
+xds_solve_cohort = function(pars, bday=0, A=10, da=10, times=NULL){
 
   pars <- set_eir(pars$EIRpar$eir, pars)
 
-  age = seq(0, A*365, by=da)
+  age <- seq(0, A*365, by=da) 
+  if(!is.null(times)){
+    age <- times
+    bday <- 0
+  } 
+  
   y0 = get_inits(pars, flatten=TRUE)
 
   xde_cohort_desolve(bday, y0, age, pars) -> deout
@@ -77,6 +83,7 @@ xds_solve_cohort = function(pars, bday=0, A=10, da = 10){
   pars$outputs$last_y <- tail(de_vars, 1)
   pars$outputs$orbits$age <- age
   pars$outputs$orbits$time <- age+bday
+  pars$outputs$time <- age+bday
   pars$outputs$terms <- list()
   pars$outputs$terms$EIR <- list()
   pars$outputs$terms$EIR[[1]] <- with(pars, F_eir(age, bday))

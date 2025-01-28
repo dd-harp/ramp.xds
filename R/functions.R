@@ -43,6 +43,7 @@ make_function = function(opts){
 #' such that \deqn{\int_0^{365} S(t) dt=c} where the default is `norm=365.`
 #' @inheritParams make_function
 #' @importFrom stats integrate
+#' @seealso [makepar_F_sin]
 #' @return a function for seasonality
 #' @export
 make_function.sin = function(opts){
