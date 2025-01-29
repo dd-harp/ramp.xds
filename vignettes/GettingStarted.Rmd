@@ -8,7 +8,7 @@ vignette: >
 ---
 
 Next: [Basic Setup](BasicSetup.html). 
-Also, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/_site/index.html)
+Also, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)
 
 *** 
 
