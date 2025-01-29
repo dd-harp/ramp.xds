@@ -4,7 +4,7 @@
 \alias{xds_solve_cohort}
 \title{Cohort dynamics for a human / host model}
 \usage{
-xds_solve_cohort(pars, bday = 0, A = 10, da = 10)
+xds_solve_cohort(pars, bday = 0, A = 10, da = 10, times = NULL)
 }
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}
@@ -14,6 +14,8 @@ xds_solve_cohort(pars, bday = 0, A = 10, da = 10)
 \item{A}{the maximum age to compute (in years)}
 
 \item{da}{the output interval (age, in days)}
+
+\item{times}{the output times}
 }
 \value{
 an \strong{\code{xds}} object

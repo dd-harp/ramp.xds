@@ -228,3 +228,32 @@ makepar_F_sharkfin = function(D=100, L=180, uk = 1/7, dk=1/40, pw=1, mx=1, N=1){
   pars$N = N
   return(pars)
 }
+
+
+#' @title Make a spline function
+#' @description A spline function passes time points `tt` and
+#' associated values `yy` and returns a spline function 
+#' @inheritParams make_function
+#' @return a function
+#' @export
+make_function.splinef = function(opts){
+  ff <- function(t){
+    stats::spline(opts$tt, opts$yy, xout = t)$y
+  }
+  return(ff)
+}
+
+
+#' @title Make Parameters for a Spline 
+#' @description Return an object for [make_function.splinef]
+#' @param tt the nodes 
+#' @param yy the y values 
+#' @return parameters to configure the `splinef` case of `make_function`
+#' @export
+makepar_F_splinef = function(tt, yy){
+  pars <- list()
+  class(pars) = "splinef"
+  pars$tt = tt
+  pars$yy = yy 
+  return(pars)
+}

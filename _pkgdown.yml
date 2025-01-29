@@ -1111,6 +1111,8 @@ reference:
   - makepar_F_sigmoid
   - make_function.sharkfin
   - makepar_F_sharkfin
+  - make_function.splinef
+  - makepar_F_splinef
 - subtitle: New
   desc: |
     Basic visualization of the transmission terms

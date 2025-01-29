@@ -25,3 +25,6 @@ where \eqn{c} is a normalizing constant, and
 The algorithm sets the constant \eqn{c} or \code{norm}
 such that \deqn{\int_0^{365} S(t) dt=c} where the default is \code{norm=365.}
 }
+\seealso{
+\link{makepar_F_sin}
+}
