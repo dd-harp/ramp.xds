@@ -219,3 +219,23 @@ C2t <- C2(tt)
 plot(tt, C2t[1,], type ="l", xlab = "Time (in Days)", ylab = expression(Fs1(t)))
 lines(tt, C2t[2,])
 ```
+
+### Spline
+
+
+```{r}
+tv = c(-1:6)*365/4
+yv = c(1/2, 1, 2, 1, 1/3, 1, 3, 1) 
+sp0 <- makepar_F_splinef(tv, yv)
+```
+
+
+```{r}
+ff <- make_function(sp0)
+```
+
+
+```{r}
+plot(tt, ff(tt), type = "l")
+```
+
