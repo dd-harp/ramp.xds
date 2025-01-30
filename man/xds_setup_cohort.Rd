@@ -7,8 +7,11 @@
 xds_setup_cohort(
   eir = 1,
   F_season = F_flat,
+  season_par = list(),
   F_trend = F_flat,
+  trend_par = list(),
   F_age = F_flat,
+  age_par = list(),
   xds = "ode",
   Xname = "SIS",
   Xopts = list(),
@@ -23,9 +26,15 @@ xds_setup_cohort(
 
 \item{F_season}{a function describing a seasonal pattern over time}
 
+\item{season_par}{parameters to configure a seasonality function using \link{make_function}}
+
 \item{F_trend}{a function describing a temporal trend over time}
 
+\item{trend_par}{parameters to configure a trends function using \link{make_function}}
+
 \item{F_age}{a assigning a biting weight by age}
+
+\item{age_par}{parameters to configure an age weights function using \link{make_function}}
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 

@@ -394,8 +394,11 @@ xds_setup_human = function(Xname = "SIS",
 #'
 #' @param eir is the entomological inoculation rate
 #' @param F_season a function describing a seasonal pattern over time
+#' @param season_par parameters to configure a seasonality function using [make_function]
 #' @param F_trend a function describing a temporal trend over time
+#' @param trend_par parameters to configure a trends function using [make_function]
 #' @param F_age a assigning a biting weight by age
+#' @param age_par parameters to configure an age weights function using [make_function]
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname is a character string specifying an **X** Component module
 #' @param Xopts a list to configure the **X** Component module
@@ -406,9 +409,9 @@ xds_setup_human = function(Xname = "SIS",
 #' @return an **`xds`** object
 #' @export
 xds_setup_cohort = function(eir=1,
-                            F_season = F_flat,
-                            F_trend = F_flat,
-                            F_age = F_flat,
+                            F_season = F_flat, season_par = list(),
+                            F_trend = F_flat, trend_par = list(),
+                            F_age = F_flat, age_par = list(),
                             xds = 'ode',
 
                             # Dynamical Components
@@ -434,9 +437,20 @@ xds_setup_cohort = function(eir=1,
   pars$EIRpar$eir <- eir
   pars$EIRpar$scale <- 1
   pars$EIRpar$F_season <- F_season
+  pars$EIRpar$season_par <- season_par
+  if(length(season_par)>0){
+    pars$EIRpar$F_season <- make_function(season_par)
+  } 
   pars$EIRpar$F_trend <- F_trend
+  pars$EIRpar$trend_par <- trend_par
+  if(length(trend_par)>0){
+    pars$EIRpar$F_trend <- make_function(trend_par) 
+  }
   pars$EIRpar$F_age <- F_age
-
+  pars$EIRpar$age_par <- age_par
+  if(length(age_par)>0){
+    pars$EIRpar$F_age <- make_function(age_par) 
+  } 
   pars <- set_eir(eir, pars)
 
   # Aquatic Mosquito Dynamics

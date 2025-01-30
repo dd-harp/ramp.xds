@@ -12,7 +12,9 @@ make_MYZpar_trivial(
   Z = 1,
   eggs = 1,
   F_season = F_flat,
-  F_trend = F_flat
+  season_par = list(),
+  F_trend = F_flat,
+  trend_par = list()
 )
 }
 \arguments{
@@ -28,9 +30,13 @@ make_MYZpar_trivial(
 
 \item{eggs}{the human fraction}
 
-\item{F_season}{a F_seasonality function}
+\item{F_season}{a function describing a seasonal pattern}
 
-\item{F_trend}{a F_trend function}
+\item{season_par}{parameters to configure a \code{F_season} using \link{make_function}}
+
+\item{F_trend}{a function describing a temporal trend}
+
+\item{trend_par}{parameters to configure \code{F_trend} using \link{make_function}}
 }
 \value{
 none
