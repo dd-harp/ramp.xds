@@ -1,4 +1,4 @@
-# specialized methods for the adult mosquito trivial model
+# SPECIALIZED METHODS FOR THE ADULT MOSQUITO TRIVIAL MODEL
 
 #' @title Blood feeding rate of the infective mosquito population
 #' @description Implements [F_fqZ] for the trivial model.
@@ -136,9 +136,17 @@ set_MYZinits.trivial <- function(pars, s=1, MYZopts=list()) {
 set_MYZpars.trivial <- function(pars, s=1, MYZopts=list()) {
   nHabitats <- pars$nHabitats
   with(pars$MYZpar[[s]], with(MYZopts,{
-    pars$MYZpar[[s]]$MYZambda = MYZambda
     pars$MYZpar[[s]]$F_season = F_season
+    if(exits("season_par")){
+      MYZpar[[s]]$F_season <- make_function(season_par) 
+      MYZpar[[s]]$season_par <- season_par
+    } 
     pars$MYZpar[[s]]$F_trend = F_trend
+    if(exists("trend_par")){
+      MYZpar[[s]]$F_trend <- make_function(trend_par) 
+      MYZpar[[s]]$trend_par <- trend_par
+    }   
+    
     return(pars)
   }))}
 
@@ -159,13 +167,16 @@ xde_steady_state_MYZ.trivial = function(Lambda, kappa, MYZpar){with(MYZpar,{
 #' @param q the human fraction
 #' @param Z the human fraction
 #' @param eggs the human fraction
-#' @param F_season a F_seasonality function
-#' @param F_trend a F_trend function
+#' @param F_season a function describing a seasonal pattern 
+#' @param season_par parameters to configure a `F_season` using [make_function]
+#' @param F_trend a function describing a temporal trend 
+#' @param trend_par parameters to configure `F_trend` using [make_function]
 #' @return none
 #' @export
 make_MYZpar_trivial = function(nPatches, MYZopts,
-                                 f = 1, q = 1, Z=1, eggs=1,
-                                 F_season=F_flat, F_trend=F_flat){
+                               f = 1, q = 1, Z=1, eggs=1,
+                               F_season=F_flat, season_par = list(), 
+                               F_trend=F_flat, trend_par = list()){
   with(MYZopts,{
     MYZpar <- list()
     MYZpar$nPatches <- nPatches
@@ -186,8 +197,18 @@ make_MYZpar_trivial = function(nPatches, MYZopts,
 
     MYZpar$Z <- checkIt(Z, nPatches)
     MYZpar$eggs <- checkIt(eggs, nPatches)
-    MYZpar$F_season <- F_season
-    MYZpar$F_trend <- F_trend
+   
+    MYZpar$F_season = F_season
+    MYZpar$season_par <- season_par
+    if(length(season_par)>0)
+      MYZpar$F_season <- make_function(season_par) 
+
+    MYZpar$F_trend = F_trend
+    MYZpar$trend_par <- trend_par
+    if(length(trend_par)>0)
+      MYZpar$F_trend <- make_function(trend_par) 
+
+    
     return(MYZpar)
   })}
 

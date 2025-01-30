@@ -17,13 +17,20 @@ library(viridisLite)
 #devtools::load_all()
 ```
 
-As part of the  *plug-and-play* modular design for **`ramp.xds`,** each dynamical component includes a trivial model that has no variables. The outputs required by other components are passed as a **trace function**. These trace functions have three parts:
+As part of the  *plug-and-play* modular design for **`ramp.xds`,** each dynamical component includes a trivial model that has no variables. The outputs required by other components are passed as a **trace function**. Trace functions in **`ramp.xds`** have three parts:
 
-+ a mean value, or a scaling argument
++ a mean value, and/or a scaling argument
 
 + a function that returns a F_seasonal signal, configured with a line in the appropriate options list, `F_season = function(t){...}` 
 
 + a function that returns a F_trend, configured with a line in the appropriate options list, `F_trend = function(t){...}` 
+
+A trace function can be configured in two ways: 
+
++ A function can be passed as an argument;
+
++ Parameters to configure a function using `make_function` can be passed; by default the parameter option is set to `NULL,` and if not null, then `make_function` gets called and the parameters are saved.  
+
 
 
 ## Trivial Modules 

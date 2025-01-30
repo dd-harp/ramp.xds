@@ -9,7 +9,9 @@ make_Lpar_trivial(
   Lopts = list(),
   Lambda = 1000,
   F_season = F_flat,
-  F_trend = F_flat
+  season_par = list(),
+  F_trend = F_flat,
+  trend_par = list()
 )
 }
 \arguments{
@@ -19,9 +21,13 @@ make_Lpar_trivial(
 
 \item{Lambda}{vector of mean emergence rates from each aquatic habitat}
 
-\item{F_season}{a F_seasonality function}
+\item{F_season}{a function describing a seasonal pattern over time}
 
-\item{F_trend}{a F_trend function}
+\item{season_par}{an object to configure a seasonality function using \link{make_function}}
+
+\item{F_trend}{a function describing a temporal trend over time}
+
+\item{trend_par}{an object to configure a trends function using \link{make_function}}
 }
 \value{
 none

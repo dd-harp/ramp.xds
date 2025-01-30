@@ -68,19 +68,31 @@ setup_Lpar.trivial = function(Lname, pars, s, Lopts=list()){
 #' @param nHabitats the number of habitats in the model
 #' @param Lopts a [list] that overwrites default values
 #' @param Lambda vector of mean emergence rates from each aquatic habitat
-#' @param F_season a F_seasonality function
-#' @param F_trend a F_trend function
+#' @param F_season a function describing a seasonal pattern over time
+#' @param season_par an object to configure a seasonality function using [make_function]
+#' @param F_trend a function describing a temporal trend over time
+#' @param trend_par an object to configure a trends function using [make_function]
 #' @return none
 #' @export
 make_Lpar_trivial = function(nHabitats, Lopts=list(),
                              Lambda=1000,
-                             F_season=F_flat, F_trend=F_flat){
+                             F_season=F_flat, season_par = list(), 
+                             F_trend=F_flat, trend_par = list()){
   with(Lopts,{
     Lpar = list()
     class(Lpar) <- "trivial"
     Lpar$Lambda = checkIt(Lambda, nHabitats)
+    
     Lpar$F_season = F_season
+    Lpar$season_par <- season_par
+    if(length(season_par)>0)
+      Lpar$F_season <- make_function(season_par) 
+
     Lpar$F_trend = F_trend
+    Lpar$trend_par <- trend_par
+    if(length(trend_par)>0)
+      Lpar$F_trend <- make_function(trend_par) 
+    
     return(Lpar)
   })}
 
