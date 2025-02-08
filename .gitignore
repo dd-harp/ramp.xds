@@ -110,6 +110,7 @@ cran-comments.md
 .Rproj.user
 .Rdata
 .quarto
+ramp.xds.Rproj
 *.Rproj
 docs/
 
