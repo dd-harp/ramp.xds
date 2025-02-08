@@ -69,12 +69,12 @@ make_function.sin = function(opts){
 #' @return a function for seasonality
 #' @seealso [make_function.sin]
 #' @export
-makepar_F_sin = function(phase=0, floor=0, pw=1, norm=365, N=1){
+makepar_F_sin = function(phase=0, floor=0, pw=0, norm=365, N=1){
   pars <- list()
   class(pars) <- "sin"
   pars$phase=checkIt(phase, N)
-  pars$floor=checkIt(floor, N)
-  pars$pw=checkIt(pw, N)
+  pars$floor=abs(checkIt(floor, N))
+  pars$pw=1+abs(checkIt(pw, N))
   pars$norm=norm
   pars$N=N
   return(pars)
@@ -243,16 +243,30 @@ make_function.splinef = function(opts){
   return(ff)
 }
 
+#' @title Make a spline function
+#' @description A spline function passes time points `tt` and
+#' associated values `yy` and returns a spline function 
+#' @inheritParams make_function
+#' @return a function
+#' @export
+make_function.splineX = function(opts){
+  ff <- function(t){
+    exp(stats::spline(opts$tt, log(opts$yy), xout = t)$y)
+  }
+  return(ff)
+}
 
 #' @title Make Parameters for a Spline 
-#' @description Return an object for [make_function.splinef]
+#' @description Return an object for [make_function.splinef] or [make_function.splineX]
 #' @param tt the nodes 
 #' @param yy the y values 
-#' @return parameters to configure the `splinef` case of `make_function`
+#' @param X a switch to configure for splinef or splineX  
+#' @return parameters to configure the `splinef` or `splineX` case of `make_function`
 #' @export
-makepar_F_splinef = function(tt, yy){
+makepar_F_spline = function(tt, yy, X=FALSE){
   pars <- list()
   class(pars) = "splinef"
+  if(X==TRUE) class(pars) = "splineX"
   pars$tt = tt
   pars$yy = yy 
   return(pars)
