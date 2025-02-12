@@ -17,20 +17,20 @@ set_eir  = function(eir, pars){
 #' @export
 set_eir.cohort  = function(eir, pars){
 
-  F_eir <- with(pars$EIRpar, function(age, bday){
-    F_season(age+bday)
-  })
+  pars$EIRpar$eir <- eir  
+  if(length(pars$EIRpar$season_par)>0)  
+    pars$EIRpar$F_season <- make_function(pars$EIRpar$season_par)
+  if(length(pars$EIRpar$trend_par)>0)  
+    pars$EIRpar$F_trend <- make_function(pars$EIRpar$trend_par)
+  if(length(pars$EIRpar$age_par)>0)  
+    pars$EIRpar$F_age <- make_function(pars$EIRpar$age_par)
 
-  stats::integrate(F_eir, 0, 365, bday=0)$val -> scale
-
-  pars$EIRpar$scale = scale/365
-  pars$EIRpar$eir = eir
-
-  with(pars$EIRpar,{
-    pars$F_eir <- function(age, bday){
+  pars$F_eir <- with(pars$EIRpar,{
+     function(age, bday){
       eir/scale*F_season(age+bday)*F_trend(age+bday)*F_age(age)}
-    return(pars)
   })
+  
+  return(pars)
 }
 
 #' @title Cohort dynamics for a human / host model

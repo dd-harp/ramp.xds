@@ -1113,6 +1113,7 @@ reference:
   - makepar_F_sharkfin
   - make_function.splinef
   - make_function.splineX
+  - make_function.spline2
   - makepar_F_spline
 - subtitle: New
   desc: |

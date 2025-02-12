@@ -122,9 +122,13 @@ F_age = function(a){0*a+1}
 ```{r}
 params$EIRpar = list() 
 params$EIRpar$eir <- as.vector(eir)
+params$EIRpar$scale <- 1 
 params$EIRpar$F_season <- F_season
 params$EIRpar$F_trend <- F_trend
 params$EIRpar$F_age <- F_age
+params$EIRpar$season_par <- list() 
+params$EIRpar$trend_par<- list() 
+params$EIRpar$age_par<- list() 
 ```
 
 ```{r}
