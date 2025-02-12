@@ -69,14 +69,14 @@ make_function.sin = function(opts){
 #' @return a function for seasonality
 #' @seealso [make_function.sin]
 #' @export
-makepar_F_sin = function(phase=0, floor=0, pw=0, norm=365, N=1){
+makepar_F_sin = function(phase=0, floor=0, pw=1, norm=365, N=1){
   pars <- list()
   class(pars) <- "sin"
-  pars$phase=checkIt(phase, N)
-  pars$floor=abs(checkIt(floor, N))
-  pars$pw=1+abs(checkIt(pw, N))
-  pars$norm=norm
-  pars$N=N
+  pars$phase = checkIt(phase, N)
+  pars$floor = abs(checkIt(floor, N))
+  pars$pw = abs(checkIt(pw, N))
+  pars$norm = norm
+  pars$N = N
   return(pars)
 }
 
@@ -160,7 +160,7 @@ makepar_F_sum = function(opts1, opts2){
 make_function.product = function(opts){
   F1 = make_function(opts$opts1)
   F2 = make_function(opts$opts2)
-  F3 = function(t){F1(t)+F2(t)}
+  F3 = function(t){F1(t)*F2(t)}
   return(F3)
 }
 
@@ -251,10 +251,24 @@ make_function.splinef = function(opts){
 #' @export
 make_function.splineX = function(opts){
   ff <- function(t){
-    exp(stats::spline(opts$tt, log(opts$yy), xout = t)$y)
+    exp(stats::spline(opts$tt, opts$yy, xout = t)$y)
   }
   return(ff)
 }
+
+#' @title Make a spline function
+#' @description A spline function passes time points `tt` and
+#' associated values `yy` and returns a spline function 
+#' @inheritParams make_function
+#' @return a function
+#' @export
+make_function.spline2 = function(opts){
+  ff <- function(t){
+    (stats::spline(opts$tt, opts$yy, xout = t)$y)^2
+  }
+  return(ff)
+}
+
 
 #' @title Make Parameters for a Spline 
 #' @description Return an object for [make_function.splinef] or [make_function.splineX]
@@ -267,6 +281,7 @@ makepar_F_spline = function(tt, yy, X=FALSE){
   pars <- list()
   class(pars) = "splinef"
   if(X==TRUE) class(pars) = "splineX"
+  if(X==2) class(pars) = "spline2"
   pars$tt = tt
   pars$yy = yy 
   return(pars)
