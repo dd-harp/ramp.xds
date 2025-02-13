@@ -17,7 +17,7 @@ Return a seasonal pattern \eqn{S(t)}, a function of the form
 \deqn{S(t) = c \left(1+\epsilon + \sin\left(\frac{2 \pi (t-\tau)}{365}\right)\right)^p}
 where \eqn{c} is a normalizing constant, and
 \itemize{
-\item \eqn{\epsilon \geq 0} or \code{floor}
+\item \eqn{\epsilon \geq 0} or \code{bottom}
 \item \eqn{\tau} or \code{phase}
 \item \eqn{p} or \code{pw}
 }
