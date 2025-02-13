@@ -95,7 +95,7 @@ $$S(t) =  c\left(1 + \epsilon + \sin\left(\frac{2 \pi (t-\tau)}{365}\right)\righ
 
 + $\tau$ or `phase` sets the timing of the peak
 
-+ $\epsilon \geq 0$ or `floor` is a shape parameter: increasing the values of $\epsilon$ reduces the variance 
++ $\epsilon \geq 0$ or `bottom` is a shape parameter: increasing the values of $\epsilon$ reduces the variance 
 
 + $p \geq 0$ or `pw` is a shape parameter.
 
@@ -143,8 +143,8 @@ lines(tt, s3[2,], col = "blue")
 lines(tt, S2(tt), col = "orange", lty=2)
 ```
 ```{r}
-p4 <- makepar_F_sin(floor=.5)
-p5 <- makepar_F_sin(floor=2)
+p4 <- makepar_F_sin(bottom=.5)
+p5 <- makepar_F_sin(bottom=2)
 p6 <- makepar_F_sin(pw=3)
 p7 <- makepar_F_sin(pw=6)
 ```

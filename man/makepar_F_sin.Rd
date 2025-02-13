@@ -4,12 +4,12 @@
 \alias{makepar_F_sin}
 \title{parameters for make_function}
 \usage{
-makepar_F_sin(phase = 0, floor = 0, pw = 1, norm = 365, N = 1)
+makepar_F_sin(phase = 0, bottom = 0, pw = 1, norm = 365, N = 1)
 }
 \arguments{
 \item{phase}{the phase for a seasonal function}
 
-\item{floor}{shape parameter}
+\item{bottom}{shape parameter}
 
 \item{pw}{shape parameter}
 
