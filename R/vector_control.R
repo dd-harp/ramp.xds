@@ -93,10 +93,10 @@ VectorControlEffectSizes.dynamic <- function(t, y, pars) {
   for(s in 1:pars$nVectors){
     pars <- BedNetEffectSizes(t, pars, s)
     pars <- IRSEffectSizes(t, pars, s)
+    pars <- AreaSprayEffectSizes(t, pars, s)
+    pars <- SugarBaitEffectSizes(t, pars, s)
+    pars <- LSMEffectSizes(t, pars, s)
   }
-  #  pars = AreaSprayEffectSizes(t, pars)
-  #  pars = SugarBaitEffectSizes(t, pars)
-  #  pars = LSMEffectSizes(t, pars)
   #  pars = EM_EffectSizes(t, pars)
   #  pars = Endectocide_EffectSizes(t, pars)
   #  pars = ADLarvicide_EffectSizes(t, pars)
