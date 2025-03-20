@@ -911,6 +911,8 @@ reference:
   contents:
   - LSM
   - LSM.none
+  - LSMEffectSizes
+  - LSMEffectSizes.none
   - setup_no_lsm
 - subtitle: Area Spraying
   desc: |
@@ -918,6 +920,8 @@ reference:
   contents:
   - AreaSpray
   - AreaSpray.none
+  - AreaSprayEffectSizes
+  - AreaSprayEffectSizes.none
   - setup_no_area_spray
 - subtitle: Sugar Baits
   desc: |
@@ -925,6 +929,8 @@ reference:
   contents:
   - SugarBaits
   - SugarBaits.none
+  - SugarBaitEffectSizes
+  - SugarBaitEffectSizes.none
   - setup_no_sugar_baits
 - subtitle: Ovitraps
   desc: |
