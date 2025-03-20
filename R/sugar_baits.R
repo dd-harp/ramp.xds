@@ -26,6 +26,6 @@ SugarBaits.none <- function(t, pars) {
 setup_no_sugar_baits <- function(pars) {
   SugarBaits <- 'none'
   class(SugarBaits) <- 'none'
-  pars$SugarBaits <- SugarBaits
+  pars$sugar_baits <- SugarBaits
   return(pars)
 }

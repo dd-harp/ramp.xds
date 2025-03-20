@@ -7,7 +7,7 @@
 #' @return an **`xds`** object
 #' @export
 AreaSpray <- function(t, pars) {
-  UseMethod("AreaSpray", pars$AreaSpray)
+  UseMethod("AreaSpray", pars$area_spray)
 }
 
 #' @title Set no AreaSpray

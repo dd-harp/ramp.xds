@@ -149,6 +149,9 @@ dynamic_vector_control.none = function(pars){
   pars$vector_control <- vector_control
   pars <- setup_no_bednets(pars)
   pars <- setup_no_irs(pars)
+  pars <- setup_no_area_spray(pars)
+  pars <- setup_no_lsm(pars)
+  pars <- setup_no_sugar_baits(pars)
   return(pars)
 }
 
