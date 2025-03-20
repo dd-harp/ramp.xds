@@ -1,0 +1,70 @@
+---
+title: "Forcing"
+subtitle: "A Changing Baseline Modified by Control"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Forcing}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The design of **`ramp.xds`** facilitates modeling malaria as a changing baseline that has been modified by control. This is handled in the full model by calling `Exogenous` to set the values of parameters in non-autonomous models. The function `Exogenous` calls: 
+
++ `Forcing` 
+
+    - Weather
+    
+    - Hydrology
+    
+    - Shocks
+    
+    - Development
+
++ `Health`
+
+    - Mass distribution of interventions
+    
+    - Clinical interventions
+    
+    - School-based interventions
+    
+    - Active Case Detection
+
++ `VectorControl` -- sets / updates vector control coverage and other related parameters 
+
+    - **BedNet** - Distribute Bed Nets and update variables describing ownership & use
+    
+    - **IRS** - Mass spray and set the value of a parameter describing the killing effects of IRS
+
+    - **AreaSpray**     
+    
+    - **SugarBaits**     
+    
+    - **LSM**     
+
++ `Resources` -- sets the value of variables describing resource availability, including:
+
+    + Availability of **Visitors**
+    
+    + Availability of **Other Blood Hosts** (*i.e.*, not hosts for the parasite / pathogen)
+    
+    + Habitat Dynamics, search weights, and availability of **Aquatic Habitats** 
+    
+    + Availability of **Sugar**
+
++ `BloodFeeding` -- sets up variables used to compute blood feeding, including time at risk and the availability of humans.
+
+    - Compute the availability of humans, $W$
+    
+    - Compute total availability of vertebrate hosts, $B$
+
++ `BaselineBionomics` -- Compute the values of baseline parameter values, including blood feeding rates ($f$), the human fractions ($q$), mortality rates ($g$)
+
++ `VectorControlEffectSizes` -- compute the effect sizes of vector control under models with independent effect sizes. Intervention coverage is updated in `VectorControl`
+
+    + **BedNetEffectSizes** 
+    
+    + **IRSEffectSizes** 
+
++ `Bionomics` -- modifies the baseline mosquito bionomic parameters to account for the independent effect sizes of control 
+

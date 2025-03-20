@@ -26,6 +26,7 @@ xde_derivatives.full <- function(t, y, pars) {
 
   # emergence: Lambda
   pars <- Emergence(t, y, pars)
+  
   # transmission: beta, EIR, and kappa
   pars <- Transmission(t, y, pars)
 

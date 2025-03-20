@@ -51,7 +51,8 @@ setup_no_bednets <- function(pars) {
   bednets$name <- 'none'
   class(bednets) <- 'none'
   pars$bednets <- bednets
-  pars$bednets$effectsizes <- bednets
+  pars$bednets$effectsizes <- list()  
+  pars$bednets$effectsizes[[1]] <- bednets
   return(pars)
 }
 

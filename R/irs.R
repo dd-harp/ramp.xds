@@ -28,7 +28,7 @@ IRS.none <- function(t, pars) {
 #' @return an **`xds`** object
 #' @export
 IRSEffectSizes <- function(t, pars, s) {
-  UseMethod("IRSEffectSizes", pars$irs$effectsizes)
+  UseMethod("IRSEffectSizes", pars$irs$effectsizes[[s]])
 }
 
 #' @title Set no irs_effectsizes
@@ -49,6 +49,7 @@ setup_no_irs <- function(pars) {
   class(irs) = 'none'
   irs$name = 'none'
   pars$irs <- irs
-  pars$irs$effectsizes <- irs
+  pars$irs$effectsizes <- list()   
+  pars$irs$effectsizes[[1]] <- irs 
   return(pars)
 }
