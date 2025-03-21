@@ -732,9 +732,6 @@ reference:
   - Shock
   - Health
   - VectorControl
-  - Clinic
-  - Development
-  - MassHealth
 - subtitle: Forcing
   desc: |
     Specialized methods the null model (no exogenous forcing)
@@ -894,40 +891,6 @@ reference:
   - Health
   - Health.none
   - setup_no_health
-  - Health.dynamic
-  - Health.setup
-  - dynamic_health
-  - dynamic_health.none
-  - dynamic_health.setup
-  - dynamic_health.dynamic
-- subtitle: Clinic
-  desc: |
-    Methods to implement clinic-based interventions
-  contents:
-  - Clinic
-  - Clinic.none
-  - setup_no_clinic
-- subtitle: School
-  desc: |
-    Methods to implement school-based interventions
-  contents:
-  - School
-  - School.none
-  - setup_no_school
-- subtitle: MassHealth
-  desc: |
-    Methods to implement clinic-based interventions
-  contents:
-  - MassHealth
-  - MassHealth.none
-  - setup_no_mass_health
-- subtitle: ActiveCaseDetection
-  desc: |
-    Methods to implement clinic-based interventions
-  contents:
-  - ActiveCaseDetection
-  - ActiveCaseDetection.none
-  - setup_no_active_case_detection
 - title: Solving
   desc: |
     Methods to compute the derivatives and solve the equat
