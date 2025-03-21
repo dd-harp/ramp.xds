@@ -688,13 +688,6 @@ reference:
   - setup_births_static
   - dHdt.matrix
   - setup_Hmatrix
-- subtitle: Care Seeking
-  desc: |
-    Methods to implement care seeking
-  contents:
-  - CareSeeking
-  - CareSeeking.no_behavior
-  - setup_care_seeking_no_behavior
 - title: Imported Malaria
   desc: |
     Methods to implement time spent traveling
@@ -706,31 +699,20 @@ reference:
   - setup_no_travel
   - setup_static_travel
   - setup_dynamic_travel
-  - Visiting
 - subtitle: Travel Malaria
   desc: |
     Model the EIR while traveling
   contents:
   - travel_eir
   - setup_travel_eir
-- subtitle: Visiting
-  desc: |
-    Methods for the availability and infectiousness of a visitor population
-  contents:
-  - Visiting.static
-  - setup_visitors_static
-  - Visiting.basic
-  - setup_visitors_basic
 - title: Exogeneous Forcing
   desc: |
     Methods to implement exogeneous forcing.
   contents:
   - Exogenous
   - Forcing
-  - Weather
-  - Rainfall
-  - Shock
   - Health
+  - Resources 
   - VectorControl
 - subtitle: Forcing
   desc: |
@@ -739,136 +721,14 @@ reference:
   - Forcing
   - Forcing.none
   - setup_no_forcing
-  - Forcing.dynamic
-  - Forcing.setup
-  - dynamic_forcing
-  - dynamic_forcing.none
-  - dynamic_forcing.setup
-  - dynamic_forcing.dynamic
-- subtitle: Models
-  desc: |
-    Specialized methods the null model (no exogenous forcing)
-  contents:
-  - Shock.none
-  - setup_no_shock
-  - Development.none
-  - Development.func
-  - setup_no_development
-  - Health.none
-  - setup_no_health
-- title: Weather
-  desc: |
-    Specialized methods for weather
-  contents:
-  - Weather
-  - Weather.none
-  - Weather.dynamic
-  - setup_no_weather
-  - dynamic_weather
-  - dynamic_weather.none
-  - dynamic_weather.setup
-  - dynamic_weather.dynamic
-- subtitle: Temperature
-  desc: |
-    Specialized methods for temperature
-  contents:
-  - Temperature
-  - Temperature.none
-  - setup_no_temperature
-  - setup_temperature
-  - Temperature.func
-  - setup_temperature.func
-  - setup_temperature_func
-- subtitle: Rainfall
-  desc: |
-    Specialized methods for rainfall
-  contents:
-  - Rainfall
-  - Rainfall.none
-  - setup_no_rainfall
-  - setup_rainfall
-  - Rainfall.func
-  - setup_rainfall.func
-  - setup_rainfall_func
-- subtitle: Humidity
-  desc: |
-    Specialized methods for humidity
-  contents:
-  - Humidity
-  - Humidity.none
-  - setup_no_humidity
-  - setup_humidity
-  - Humidity.func
-  - setup_humidity.func
-  - setup_humidity_func
-- subtitle: Hydrology
-  desc: |
-    Specialized methods for hydrology
-  contents:
-  - Hydrology
-  - Hydrology.none
-  - setup_no_hydrology
-  - Hydrology.func
-  - setup_hydrology
-  - setup_hydrology.func
-  - setup_hydrology_func
-- subtitle: Shock
-  desc: |
-    Specialized methods for hydrology
-  contents:
-  - Shock
-  - Shock.none
-  - setup_no_shock
-  - setup_shock
-  - Shock.func
-  - setup_shock.func
-  - setup_shock_func
-- subtitle: Development
-  desc: |
-    Specialized methods for hydrology
-  contents:
-  - Development
-  - Development.none
-  - setup_no_development
-  - setup_development
-  - Development.func
-  - setup_development.func
-  - setup_development_func
-- title: Resource Dynamics
+- subtitle: Resource Dynamics
   desc: |
     Methods to implement resource availability
   contents:
   - Resources
   - Resources.static
-  - Resources.setup
-  - Resources.forced
   - setup_resources_static
-  - setup_resources_forced
-- subtitle: Other Blood Hosts
-  desc: |
-    Methods to simulate availability of other blood hosts
-  contents:
-  - OtherBloodHosts
-  - OtherBloodHosts.static
-  - setup_other_blood_hosts_static
-- subtitle: Habitat Dynamics and Availability
-  desc: |
-    Specialized methods for weather
-  contents:
-  - HabitatDynamics
-  - HabitatDynamics.static
-  - setup_habitat_dynamics_static
-- subtitle: Sugar
-  desc: |
-    Methods to simulate availability of sugar
-  contents:
-  - SugarDynamics
-  - SugarDynamics.static
-  - setup_sugar_static
-  - AvailableSugar
-  - AvailableSugar.static
-  - AvailableSugar.forced
-- title: Vector Control
+- subtitle: Vector Control
   desc: |
     Methods to implement vector control.
   contents:
@@ -877,14 +737,7 @@ reference:
   - VectorControlEffectSizes
   - VectorControlEffectSizes.none
   - setup_no_vector_control
-- subtitle: Ovitraps
-  desc: |
-    Specialized methods for ovitraps
-  contents:
-  - OviTraps
-  - OviTraps.none
-  - setup_no_ovitraps
-- title: Health
+- subtitle: Health
   desc: |
     Methods to implement health-based Interventions
   contents:

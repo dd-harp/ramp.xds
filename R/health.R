@@ -1,5 +1,6 @@
+# Functions to setup malaria control are found in ramp.control
 
-#' @title Set the values variables for health interventions
+#' @title Set the values variables for health-based malaria control  
 #' @description Set the values of
 #' variables for health interventions.
 #' @param t current simulation time

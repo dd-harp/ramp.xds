@@ -67,7 +67,7 @@ Next, the function sets up empty lists to hold the objects that define component
 \itemize{
 \item \code{Xpar}
 \item 
-\item \strong{Transmission}  calls \code{\link[=setup_TRANSMISSION]{setup_TRANSMISSION()}} and \code{\link[=setup_visitors_static]{setup_visitors_static()}} sets up a static
+\item \strong{Transmission}  calls \code{\link[=setup_TRANSMISSION]{setup_TRANSMISSION()}}
 }
 
 model for the availability of visitors; by default, there are no visitors
@@ -75,7 +75,7 @@ Next, the function sets up egg laying, blood feeding, and transmission:
 \itemize{
 \item \strong{Egg Laying} calls \code{\link[=create_habitat_matrix]{create_habitat_matrix()}}, then \code{\link[=setup_EGG_LAYING]{setup_EGG_LAYING()}}
 \item \strong{Blood Feeding} calls \code{\link[=create_residence_matrix]{create_residence_matrix()}}, then \code{\link[=setup_BLOOD_FEEDING]{setup_BLOOD_FEEDING()}}
-\item \strong{Transmission}  calls \code{\link[=setup_TRANSMISSION]{setup_TRANSMISSION()}} and \code{\link[=setup_visitors_static]{setup_visitors_static()}} sets up a static
+\item \strong{Transmission}  calls \code{\link[=setup_TRANSMISSION]{setup_TRANSMISSION()}} sets up a static
 model for the availability of visitors; by default, there are no visitors
 }
 
