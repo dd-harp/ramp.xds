@@ -24,8 +24,9 @@ Exogenous.full <- function(t, y, pars) {
   pars <- Forcing(t, pars)
   # implement malaria control
   pars <- Health(t, y, pars)
+  # implement vector control
   pars <- VectorControl(t, y, pars)
-  # set the values of resource variables
+  # set the values of resource variables -- 
   pars <- Resources(t, pars)
   # blood feeding: available blood hosts, TaR, relative biting rates
   pars <- BloodFeeding(t, y, pars)
@@ -34,8 +35,7 @@ Exogenous.full <- function(t, y, pars) {
   # Compute baseline mosquito bionomic parameters
   # (including available sugar)
   pars <- BaselineBionomics(t, y, pars)
-  # Compute total effect size assuming
-  # "independent effect sizes"
+  # Compute  "independent effect sizes"
   pars <- VectorControlEffectSizes(t, y, pars)
   # Modify the baseline
   pars <- Bionomics(t, y, pars)
@@ -51,10 +51,11 @@ Exogenous.full <- function(t, y, pars) {
 #' @export
 Exogenous.human <- function(t, y, pars) {
 
-  # set the values of Exogenous forcing variables
+  # weather port -- see ramp.forcing
   pars <- Forcing(t, pars)
-  # vector control
+  # malaria control port -- see ramp.control
   pars <- Health(t, y, pars)
+  # vector control port -- see ramp.control
   pars <- VectorControl(t, y, pars)
   # set the values of resource variables
   pars <- Resources(t, pars)

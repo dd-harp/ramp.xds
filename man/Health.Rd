@@ -2,7 +2,7 @@
 % Please edit documentation in R/health.R
 \name{Health}
 \alias{Health}
-\title{Set the values variables for health interventions}
+\title{Set the values variables for health-based malaria control}
 \usage{
 Health(t, y, pars)
 }

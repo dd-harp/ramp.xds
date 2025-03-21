@@ -32,13 +32,13 @@
 #' Next, the function sets up empty lists to hold the objects that define components:
 #' - `Xpar`
 #' -
-#' - **Transmission**  calls [setup_TRANSMISSION()] and [setup_visitors_static()] sets up a static
+#' - **Transmission**  calls [setup_TRANSMISSION()] 
 #'
 #' model for the availability of visitors; by default, there are no visitors
 #' Next, the function sets up egg laying, blood feeding, and transmission:
 #' - **Egg Laying** calls [create_habitat_matrix()], then [setup_EGG_LAYING()]
 #' - **Blood Feeding** calls [create_residence_matrix()], then [setup_BLOOD_FEEDING()]
-#' - **Transmission**  calls [setup_TRANSMISSION()] and [setup_visitors_static()] sets up a static
+#' - **Transmission**  calls [setup_TRANSMISSION()] sets up a static
 #' model for the availability of visitors; by default, there are no visitors
 #'
 #' Finally, the function sets up a few other miscellaneous options:

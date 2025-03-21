@@ -17,8 +17,9 @@ BaselineBionomics(t, y, pars)
 a \link{list}
 }
 \description{
-This calls Mbionomics and Lbionmics for each species. This function
-resets bionomic parameters to their pre-control baseline value, which can later be
+This calls MBaseline and LBaseline for each species.
+
+This function sets bionomic parameters to their pre-control baseline value, which can later be
 modified by vector control. In some models, the pre-control baseline is computed in
 here as a function of resource availability.
 }
