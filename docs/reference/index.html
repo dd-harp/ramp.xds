@@ -177,7 +177,7 @@
         <dd>Compute steady states for <strong>L</strong> Component Modules</dd>
       </dl></div><div class="section level2">
       
-      <h3 id="models-human-host">Models – Human / Host<a class="anchor" aria-label="anchor" href="#models-human-host"></a></h3>
+      <h3 id="models-human-host-infection-demography">Models – Human / Host Infection &amp; Demography<a class="anchor" aria-label="anchor" href="#models-human-host-infection-demography"></a></h3>
       <div class="section-desc"><p>Models available in <strong><code>ramp.xds</code></strong> for human/host infection and immunity</p></div>
 
       
@@ -198,7 +198,7 @@
         <dd><strong>X</strong> Component Derivatives for the <code>SIS</code> Model</dd>
       </dl></div><div class="section level2">
       
-      <h3 id="models-adult-mosquito">Models – Adult Mosquito<a class="anchor" aria-label="anchor" href="#models-adult-mosquito"></a></h3>
+      <h3 id="models-adult-mosquito-infection-ecology">Models – Adult Mosquito Infection &amp; Ecology<a class="anchor" aria-label="anchor" href="#models-adult-mosquito-infection-ecology"></a></h3>
       <div class="section-desc"><p>Models available in <strong><code>ramp.xds</code></strong> for adult mosquito ecology and infection dynamics</p></div>
 
       
@@ -429,27 +429,6 @@
 
       <dl><dt>
           
-          <code><a href="create_residence_matrix.html">create_residence_matrix()</a></code> 
-        </dt>
-        <dd>Create the residence matrix, \(\cal J\)</dd>
-      </dl><dl><dt>
-          
-          <code><a href="view_residence_matrix.html">view_residence_matrix()</a></code> 
-        </dt>
-        <dd>View residence membership</dd>
-      </dl></div><div class="section level2">
-      
-      <h3 id="blood-feeding">Blood Feeding<a class="anchor" aria-label="anchor" href="#blood-feeding"></a></h3>
-      <div class="section-desc"><p>Methods to compute vertebrate host availibility and time at risk</p></div>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
           <code><a href="setup_BLOOD_FEEDING.html">setup_BLOOD_FEEDING()</a></code> 
         </dt>
         <dd>Set up Blood Feeding</dd>
@@ -474,6 +453,52 @@
         </dt>
         <dd>Compute blood feeding objects: setup for static models</dd>
       </dl><dl><dt>
+          
+          <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code> 
+        </dt>
+        <dd>Setup the interface for parasite / pathogen transmission</dd>
+      </dl><dl><dt>
+          
+          <code><a href="Transmission.html">Transmission()</a></code> 
+        </dt>
+        <dd>Compute the mixing matrix and transmission terms</dd>
+      </dl><dl><dt>
+          
+          <code><a href="Transmission.static.html">Transmission(<i>&lt;static&gt;</i>)</a></code> 
+        </dt>
+        <dd>Compute transmission terms with a static mixing matrix</dd>
+      </dl><dl><dt>
+          
+          <code><a href="Transmission.dynamic.html">Transmission(<i>&lt;dynamic&gt;</i>)</a></code> 
+        </dt>
+        <dd>Compute transmission, the dynamic case</dd>
+      </dl><dl><dt>
+          
+          <code><a href="Transmission.setup.html">Transmission(<i>&lt;setup&gt;</i>)</a></code> 
+        </dt>
+        <dd>Compute transmission, the static case</dd>
+      </dl><dl><dt>
+          
+          <code><a href="create_residence_matrix.html">create_residence_matrix()</a></code> 
+        </dt>
+        <dd>Create the residence matrix, \(\cal J\)</dd>
+      </dl><dl><dt>
+          
+          <code><a href="view_residence_matrix.html">view_residence_matrix()</a></code> 
+        </dt>
+        <dd>View residence membership</dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="blood-feeding">Blood Feeding<a class="anchor" aria-label="anchor" href="#blood-feeding"></a></h3>
+      <div class="section-desc"><p>Methods for time at risk &amp; blood host availability</p></div>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="change_blood_weights.html">change_blood_weights()</a></code> 
         </dt>
@@ -516,7 +541,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="transmision">Transmision<a class="anchor" aria-label="anchor" href="#transmision"></a></h3>
-      <div class="section-desc"><p>Specialized methods to compute the transmission terms</p></div>
+      <div class="section-desc"><p>Compute beta, EIR, kappa, &amp; local_frac</p></div>
 
       
     </div><div id="" class="section level2">
@@ -525,31 +550,6 @@
       
 
       <dl><dt>
-          
-          <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code> 
-        </dt>
-        <dd>Setup the interface for parasite / pathogen transmission</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Transmission.html">Transmission()</a></code> 
-        </dt>
-        <dd>Compute the mixing matrix and transmission terms</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Transmission.static.html">Transmission(<i>&lt;static&gt;</i>)</a></code> 
-        </dt>
-        <dd>Compute transmission terms with a static mixing matrix</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Transmission.dynamic.html">Transmission(<i>&lt;dynamic&gt;</i>)</a></code> 
-        </dt>
-        <dd>Compute transmission, the dynamic case</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Transmission.setup.html">Transmission(<i>&lt;setup&gt;</i>)</a></code> 
-        </dt>
-        <dd>Compute transmission, the static case</dd>
-      </dl><dl><dt>
           
           <code><a href="compute_beta.html">compute_beta()</a></code> 
         </dt>
@@ -597,7 +597,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="time-spent">Time Spent<a class="anchor" aria-label="anchor" href="#time-spent"></a></h3>
-      <div class="section-desc"><p>Method to set up Time Spent Matrices</p></div>
+      <div class="section-desc"><p>Set up Time Spent Matrices</p></div>
 
       
     </div><div id="" class="section level2">
@@ -643,7 +643,7 @@
       </dl></div><div class="section level2">
       <h2 id="egg-laying-emergence">Egg Laying &amp; Emergence<a class="anchor" aria-label="anchor" href="#egg-laying-emergence"></a></h2>
       
-      <div class="section-desc"><p>Generic methods for the aquatic (immature) mosquito component.</p></div>
+      <div class="section-desc"><p>Generic methods for egg laying</p></div>
 
       
     </div><div id="" class="section level2">
@@ -652,11 +652,6 @@
       
 
       <dl><dt>
-          
-          <code><a href="create_habitat_matrix.html">create_habitat_matrix()</a></code> 
-        </dt>
-        <dd>Create the habitat membership matrix, \(\cal N\)</dd>
-      </dl><dl><dt>
           
           <code><a href="setup_EGG_LAYING.html">setup_EGG_LAYING()</a></code> 
         </dt>
@@ -686,6 +681,22 @@
           <code><a href="EggLaying.dynamic.html">EggLaying(<i>&lt;dynamic&gt;</i>)</a></code> 
         </dt>
         <dd>Compute eggs laid</dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="habitat-availability">Habitat Availability<a class="anchor" aria-label="anchor" href="#habitat-availability"></a></h3>
+      <div class="section-desc"><p>Habitat search weights, availability</p></div>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="create_habitat_matrix.html">create_habitat_matrix()</a></code> 
+        </dt>
+        <dd>Create the habitat membership matrix, \(\cal N\)</dd>
       </dl><dl><dt>
           
           <code><a href="change_habitat_weights.html">change_habitat_weights()</a></code> 
@@ -734,7 +745,7 @@
       </dl></div><div class="section level2">
       <h2 id="exposure">Exposure<a class="anchor" aria-label="anchor" href="#exposure"></a></h2>
       
-      <div class="section-desc"><p>Methods for environmental heterogeneity</p></div>
+      <div class="section-desc"><p>Methods for Exposure</p></div>
 
       
     </div><div id="" class="section level2">
@@ -1135,7 +1146,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="eip">EIP<a class="anchor" aria-label="anchor" href="#eip"></a></h3>
-      <div class="section-desc"><p>Specialized methods for NULL dynamics: a funtion generates values of Z to force human infection dynamics</p></div>
+      <div class="section-desc"><p>Methods for the extrinsic incubation period</p></div>
 
       
     </div><div id="" class="section level2">
@@ -1186,7 +1197,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="trivial">trivial<a class="anchor" aria-label="anchor" href="#trivial"></a></h3>
-      <div class="section-desc"><p>Specialized methods for NULL dynamics: a funtion generates values for F_eggs or F_fqZ or F_fqM</p></div>
+      <div class="section-desc"><p>The trivial model for adult mosquitoes</p></div>
 
       
     </div><div id="" class="section level2">
@@ -1287,7 +1298,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="basicm">basicM<a class="anchor" aria-label="anchor" href="#basicm"></a></h3>
-      <div class="section-desc"><p>Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.</p></div>
+      <div class="section-desc"><p>Methods for basicM, adult mosquito ecology without infection dynamics.</p></div>
 
       
     </div><div id="" class="section level2">
@@ -1953,7 +1964,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="trivial-1">trivial<a class="anchor" aria-label="anchor" href="#trivial-1"></a></h3>
-      <div class="section-desc"><p>Specialized methods for the exogeneously forced trivial model of aquatic mosquito dynamics.</p></div>
+      <div class="section-desc"><p>The trivial model for aquatic dynamics</p></div>
 
       
     </div><div id="" class="section level2">
@@ -2044,7 +2055,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="basicl">basicL<a class="anchor" aria-label="anchor" href="#basicl"></a></h3>
-      <div class="section-desc"><p>Specialized methods for a basicL competition model of aquatic mosquito dynamics.</p></div>
+      <div class="section-desc"><p>A basic model for aquatic mosquito dynamics</p></div>
 
       
     </div><div id="" class="section level2">
@@ -2308,7 +2319,7 @@
       </dl></div><div class="section level2">
       <h2 id="human-infection-dynamics">Human Infection Dynamics<a class="anchor" aria-label="anchor" href="#human-infection-dynamics"></a></h2>
       
-      <div class="section-desc"><p>Generic methods for the dynamical component that handles human infection dynamics, immunity, disease and transmission</p></div>
+      <div class="section-desc"><p>Generic methods for models of human/host infection dynamics, immunity, disease and transmission</p></div>
 
       
     </div><div id="" class="section level2">
@@ -2444,7 +2455,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="trivial-2">trivial<a class="anchor" aria-label="anchor" href="#trivial-2"></a></h3>
-      <div class="section-desc"><p>Specialized methods for a human trivial model to pass kappa as a parameter</p></div>
+      <div class="section-desc"><p>Specialized methods the trivial human model</p></div>
 
       
     </div><div id="" class="section level2">
@@ -2555,7 +2566,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="hmoi">hMoI<a class="anchor" aria-label="anchor" href="#hmoi"></a></h3>
-      <div class="section-desc"><p>Specialized methods for a hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.</p></div>
+      <div class="section-desc"><p>A hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.</p></div>
 
       
     </div><div id="" class="section level2">
@@ -2671,7 +2682,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="sis">SIS<a class="anchor" aria-label="anchor" href="#sis"></a></h3>
-      <div class="section-desc"><p>Specialized methods for the SIS (Susceptible-Infected-Susceptible) model of human dynamics.</p></div>
+      <div class="section-desc"><p>The SIS (Susceptible-Infected-Susceptible) model of human dynamics.</p></div>
 
       
     </div><div id="" class="section level2">
@@ -2960,28 +2971,28 @@
         <dd>Compute Derivatives</dd>
       </dl><dl><dt>
           
-          <code><a href="Forcing.html">Forcing()</a></code> 
+          <code><a href="Exogenous.full.html">Exogenous(<i>&lt;full&gt;</i>)</a></code> 
         </dt>
-        <dd>Set the values of exogenous variables</dd>
+        <dd>Generalized spatial differential equation model</dd>
       </dl><dl><dt>
           
-          <code><a href="Health.html">Health()</a></code> 
+          <code><a href="Exogenous.aquatic.html">Exogenous(<i>&lt;aquatic&gt;</i>)</a></code> 
         </dt>
-        <dd>Set the values variables for health-based malaria control</dd>
+        <dd>Differential equation models for aquatic mosquito populations</dd>
       </dl><dl><dt>
           
-          <code><a href="Resources.html">Resources()</a></code> 
+          <code><a href="Exogenous.mosy.html">Exogenous(<i>&lt;mosy&gt;</i>)</a></code> 
         </dt>
-        <dd>Set the values of exogenous variables describing available mosquito resources</dd>
+        <dd>Generalized spatial differential equation model (mosquito only)</dd>
       </dl><dl><dt>
           
-          <code><a href="VectorControl.html">VectorControl()</a></code> 
+          <code><a href="Exogenous.human.html">Exogenous(<i>&lt;human&gt;</i>)</a></code> 
         </dt>
-        <dd>Implement Vector Control</dd>
+        <dd>Differential equations isolating the humans, forced with Ztrace</dd>
       </dl></div><div class="section level2">
       
       <h3 id="forcing">Forcing<a class="anchor" aria-label="anchor" href="#forcing"></a></h3>
-      <div class="section-desc"><p>Specialized methods the null model (no exogenous forcing)</p></div>
+      <div class="section-desc"><p>The port for exogenous forcing</p></div>
 
       
     </div><div id="" class="section level2">
@@ -3007,7 +3018,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="resource-dynamics">Resource Dynamics<a class="anchor" aria-label="anchor" href="#resource-dynamics"></a></h3>
-      <div class="section-desc"><p>Methods to implement resource availability</p></div>
+      <div class="section-desc"><p>The port for resource dynamics</p></div>
 
       
     </div><div id="" class="section level2">
@@ -3033,7 +3044,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="vector-control">Vector Control<a class="anchor" aria-label="anchor" href="#vector-control"></a></h3>
-      <div class="section-desc"><p>Methods to implement vector control.</p></div>
+      <div class="section-desc"><p>The ports for vector control</p></div>
 
       
     </div><div id="" class="section level2">
@@ -3069,7 +3080,7 @@
       </dl></div><div class="section level2">
       
       <h3 id="health">Health<a class="anchor" aria-label="anchor" href="#health"></a></h3>
-      <div class="section-desc"><p>Methods to implement health-based Interventions</p></div>
+      <div class="section-desc"><p>The ports for malaria control</p></div>
 
       
     </div><div id="" class="section level2">
@@ -3095,7 +3106,7 @@
       </dl></div><div class="section level2">
       <h2 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a></h2>
       
-      <div class="section-desc"><p>Methods to compute the derivatives and solve the equat</p></div>
+      <div class="section-desc"><p>Methods to compute the derivatives and dynamical systems</p></div>
 
       
     </div><div class="section level2">
@@ -3241,42 +3252,6 @@
           <code><a href="Update_Lt.html">Update_Lt()</a></code> 
         </dt>
         <dd>Update State Variables for an <strong>L</strong> Component Module</dd>
-      </dl></div><div class="section level2">
-      
-      <h3 id="exogenous-forcing">Exogenous Forcing<a class="anchor" aria-label="anchor" href="#exogenous-forcing"></a></h3>
-      
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="Exogenous.html">Exogenous()</a></code> 
-        </dt>
-        <dd>Compute Derivatives</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Exogenous.full.html">Exogenous(<i>&lt;full&gt;</i>)</a></code> 
-        </dt>
-        <dd>Generalized spatial differential equation model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Exogenous.aquatic.html">Exogenous(<i>&lt;aquatic&gt;</i>)</a></code> 
-        </dt>
-        <dd>Differential equation models for aquatic mosquito populations</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Exogenous.mosy.html">Exogenous(<i>&lt;mosy&gt;</i>)</a></code> 
-        </dt>
-        <dd>Generalized spatial differential equation model (mosquito only)</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Exogenous.human.html">Exogenous(<i>&lt;human&gt;</i>)</a></code> 
-        </dt>
-        <dd>Differential equations isolating the humans, forced with Ztrace</dd>
       </dl></div><div class="section level2">
       
       <h3 id="solving-1">Solving<a class="anchor" aria-label="anchor" href="#solving-1"></a></h3>

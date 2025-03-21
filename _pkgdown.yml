@@ -85,13 +85,13 @@ reference:
   - xde_steady_state_X
   - xde_steady_state_MYZ
   - xde_steady_state_L
-- subtitle: Models -- Human / Host
+- subtitle: Models -- Human / Host Infection & Demography
   desc: |
     Models available in **`ramp.xds`** for human/host infection and immunity
   contents:
   - dXdt.trivial
   - dXdt.SIS
-- subtitle: Models -- Adult Mosquito
+- subtitle: Models -- Adult Mosquito Infection & Ecology
   desc: |
     Models available in **`ramp.xds`** for adult mosquito ecology and infection dynamics
   contents:
@@ -148,17 +148,22 @@ reference:
   desc: |
     Methods to compute terms describing blood feeding and transmission
   contents:
-  - create_residence_matrix
-  - view_residence_matrix
-- subtitle: Blood Feeding
-  desc: |
-    Methods to compute vertebrate host availibility and time at risk
-  contents:
   - setup_BLOOD_FEEDING
   - BloodFeeding
   - BloodFeeding.static
   - BloodFeeding.dynamic
   - BloodFeeding.setup
+  - setup_TRANSMISSION
+  - Transmission
+  - Transmission.static
+  - Transmission.dynamic
+  - Transmission.setup
+  - create_residence_matrix
+  - view_residence_matrix
+- subtitle: Blood Feeding
+  desc: |
+    Methods for time at risk & blood host availability 
+  contents:
   - change_blood_weights
   - compute_W
   - compute_B
@@ -169,13 +174,8 @@ reference:
   - make_TaR
 - subtitle: Transmision
   desc: |
-    Specialized methods to compute the transmission terms
+    Compute beta, EIR, kappa, & local_frac 
   contents:
-  - setup_TRANSMISSION
-  - Transmission
-  - Transmission.static
-  - Transmission.dynamic
-  - Transmission.setup
   - compute_beta
   - make_beta
   - compute_EIR
@@ -187,7 +187,7 @@ reference:
   - make_local_frac
 - subtitle: Time Spent
   desc: |
-    Method to set up Time Spent Matrices
+    Set up Time Spent Matrices
   contents:
   - change_TimeSpent
   - make_TimeSpent
@@ -198,15 +198,19 @@ reference:
   - create_TimeSpent_xy
 - title: Egg Laying & Emergence
   desc: |
-    Generic methods for the aquatic (immature) mosquito component.
+    Generic methods for egg laying 
   contents:
-  - create_habitat_matrix
   - setup_EGG_LAYING
   - Emergence
   - EggLaying
   - EggLaying.setup
   - EggLaying.static
   - EggLaying.dynamic
+- subtitle: Habitat Availability 
+  desc: |
+    Habitat search weights, availability
+  contents:
+  - create_habitat_matrix
   - change_habitat_weights
   - compute_Q
   - compute_Qtot
@@ -218,7 +222,7 @@ reference:
   - view_habitat_matrix
 - title: Exposure
   desc: |
-    Methods for environmental heterogeneity
+    Methods for Exposure 
   contents:
   - Exposure
   - Exposure.xde
@@ -309,7 +313,7 @@ reference:
   - get_Upsilon
 - subtitle: EIP
   desc: |
-    Specialized methods for  NULL dynamics: a funtion generates values of Z to force human infection dynamics
+    Methods for the extrinsic incubation period 
   contents:
   - F_eip
   - d_F_eip_dt
@@ -321,7 +325,7 @@ reference:
   - setup_eip_fixedlag_dts
 - subtitle: trivial
   desc: |
-    Specialized methods for NULL dynamics: a funtion generates values for F_eggs or F_fqZ or F_fqM
+    The trivial model for adult mosquitoes 
   contents:
   - F_fqZ.trivial
   - F_fqM.trivial
@@ -343,7 +347,7 @@ reference:
   - update_MYZinits.trivial
 - subtitle: basicM
   desc: |
-    Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.
+    Methods for basicM, adult mosquito ecology without infection dynamics.
   contents:
   - dMYZdt.basicM
   - MBaseline.basicM
@@ -487,7 +491,7 @@ reference:
   - dts_steady_state_L
 - subtitle: trivial
   desc: |
-    Specialized methods for the exogeneously forced trivial model of aquatic mosquito dynamics.
+    The trivial model for aquatic dynamics 
   contents:
   - dLdt.trivial
   - Update_Lt.trivial
@@ -507,7 +511,7 @@ reference:
   - xde_steady_state_L.trivial
 - subtitle: basicL
   desc: |
-    Specialized methods for a basicL competition model of aquatic mosquito dynamics.
+    A basic model for aquatic mosquito dynamics
   contents:
   - dLdt.basicL
   - Update_Lt.basicL
@@ -567,7 +571,7 @@ reference:
   - create_calK_xy
 - title: Human Infection Dynamics
   desc: |
-    Generic methods for the dynamical component that handles human infection dynamics, immunity, disease and transmission
+    Generic methods for models of human/host infection dynamics, immunity, disease and transmission
   contents:
   - dXdt
   - Update_Xt
@@ -596,7 +600,7 @@ reference:
   - dts_steady_state_X
 - subtitle: trivial
   desc: |
-    Specialized methods for a human trivial model to pass kappa as a parameter
+    Specialized methods the trivial human model 
   contents:
   - F_X.trivial
   - F_H.trivial
@@ -620,7 +624,7 @@ reference:
   - update_Xinits.trivial
 - subtitle: hMoI
   desc: |
-    Specialized methods for a hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
+    A hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
   contents:
   - dXdt.hMoI
   - setup_Xpar.hMoI
@@ -645,7 +649,7 @@ reference:
   - HTC.hMoI
 - subtitle: SIS
   desc: |
-    Specialized methods for the SIS (Susceptible-Infected-Susceptible) model of human dynamics.
+    The SIS (Susceptible-Infected-Susceptible) model of human dynamics.
   contents:
   - dXdt.SIS
   - Update_Xt.SIS
@@ -710,27 +714,27 @@ reference:
     Methods to implement exogeneous forcing.
   contents:
   - Exogenous
-  - Forcing
-  - Health
-  - Resources 
-  - VectorControl
+  - Exogenous.full
+  - Exogenous.aquatic
+  - Exogenous.mosy
+  - Exogenous.human
 - subtitle: Forcing
   desc: |
-    Specialized methods the null model (no exogenous forcing)
+    The port for exogenous forcing 
   contents:
   - Forcing
   - Forcing.none
   - setup_no_forcing
 - subtitle: Resource Dynamics
   desc: |
-    Methods to implement resource availability
+    The port for resource dynamics 
   contents:
   - Resources
   - Resources.static
   - setup_resources_static
 - subtitle: Vector Control
   desc: |
-    Methods to implement vector control.
+    The ports for vector control 
   contents:
   - VectorControl
   - VectorControl.none
@@ -739,14 +743,14 @@ reference:
   - setup_no_vector_control
 - subtitle: Health
   desc: |
-    Methods to implement health-based Interventions
+    The ports for malaria control 
   contents:
   - Health
   - Health.none
   - setup_no_health
 - title: Solving
   desc: |
-    Methods to compute the derivatives and solve the equat
+    Methods to compute the derivatives and dynamical systems 
 - subtitle: Derivatives
   contents:
   - xde_derivatives
@@ -775,13 +779,6 @@ reference:
   - Update_Xt
   - Update_MYZt
   - Update_Lt
-- subtitle: Exogenous Forcing
-  contents:
-  - Exogenous
-  - Exogenous.full
-  - Exogenous.aquatic
-  - Exogenous.mosy
-  - Exogenous.human
 - subtitle: Solving
   desc: |
     Wrappers around the derivatives functions that handle time and parse outputs
