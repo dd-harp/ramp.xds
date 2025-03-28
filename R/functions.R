@@ -94,11 +94,11 @@ makepar_F_sin = function(phase=0, bottom=0, pw=1, norm=365, N=1){
 make_function.sigmoid = function(opts){
   opts$normit = rep(1, opts$N)
   for(i in 1:opts$N){
-    F1 = with(opts,function(t){exp(k[i]*(t-D[i]))/(1+exp(k[i]*(t-D[i])))})
+    F1 = with(opts,function(t){1e-15+exp(k[i]*(t-D[i]))/(1+exp(k[i]*(t-D[i])))})
     over_T = ifelse(T>0, integrate(F1, 0, T)$val, 1)
     opts$normit[i] <- opts$normit[i]/over_T
   }
-  F2 = with(opts,function(t){exp(k*(t-D))/(1+exp(k*(t-D)))})
+  F2 = with(opts,function(t){1e-15+exp(k*(t-D))/(1+exp(k*(t-D)))})
   F3 = function(t){if(length(t) == 1) return(F2(t)) else return(sapply(t, F2))}
   return(F3)
 }
@@ -191,15 +191,15 @@ makepar_F_product = function(opts1, opts2){
 #' @return a function
 #' @export
 make_function.sharkfin = function(opts){
-  siggy <- function(t, k, D){exp(k*(t-D))/(1+exp(k*(t-D)))}
+  siggy <- function(t, k, D){exp(-k*(t-D))/(1+exp(-k*(t-D)))}
   opts$normit = opts$mx
   for(i in 1:opts$N){
-    F1 = with(opts,function(t){(siggy(t, uk[i], D[i])*siggy(t,-dk[i],D[i]+L[i]))^pw[i]})
+    F1 = with(opts,function(t){((1-siggy(t, uk[i], D[i]))*siggy(t,dk[i],D[i]+L[i]))^pw[i]})
     tt <- with(opts, c(D[i]:(D[i]+L[i])))
     mx <- max(F1(tt))
     opts$normit[i] <- opts$normit[i]/mx
   }
-  F2 = with(opts,function(t){normit*(siggy(t, uk, D)*siggy(t, -dk, D+L))^pw})
+  F2 = with(opts,function(t){normit*((1-siggy(t, uk, D))*siggy(t, dk, D+L))^pw})
   F3 = function(t){if(length(t) == 1) return(F2(t)) else return(sapply(t, F2))}
   return(F3)
 }
