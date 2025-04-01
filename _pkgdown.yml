@@ -1,6 +1,6 @@
 template:
   bootstrap: 5
-url: https://dd-harp.github.io/ramp.xds
+url: https://dd-harp.github.io/ramp.xds/
 navbar:
   left:
   - text: Articles
@@ -161,8 +161,7 @@ reference:
   - create_residence_matrix
   - view_residence_matrix
 - subtitle: Blood Feeding
-  desc: |
-    Methods for time at risk & blood host availability 
+  desc: "Methods for time at risk & blood host availability \n"
   contents:
   - change_blood_weights
   - compute_W
@@ -173,8 +172,7 @@ reference:
   - compute_TaR
   - make_TaR
 - subtitle: Transmision
-  desc: |
-    Compute beta, EIR, kappa, & local_frac 
+  desc: "Compute beta, EIR, kappa, & local_frac \n"
   contents:
   - compute_beta
   - make_beta
@@ -197,8 +195,7 @@ reference:
   - make_TimeSpent.xy
   - create_TimeSpent_xy
 - title: Egg Laying & Emergence
-  desc: |
-    Generic methods for egg laying 
+  desc: "Generic methods for egg laying \n"
   contents:
   - setup_EGG_LAYING
   - Emergence
@@ -206,7 +203,7 @@ reference:
   - EggLaying.setup
   - EggLaying.static
   - EggLaying.dynamic
-- subtitle: Habitat Availability 
+- subtitle: Habitat Availability
   desc: |
     Habitat search weights, availability
   contents:
@@ -221,8 +218,7 @@ reference:
   - make_eggs_laid
   - view_habitat_matrix
 - title: Exposure
-  desc: |
-    Methods for Exposure 
+  desc: "Methods for Exposure \n"
   contents:
   - Exposure
   - Exposure.xde
@@ -312,8 +308,7 @@ reference:
   - get_Omega
   - get_Upsilon
 - subtitle: EIP
-  desc: |
-    Methods for the extrinsic incubation period 
+  desc: "Methods for the extrinsic incubation period \n"
   contents:
   - F_eip
   - d_F_eip_dt
@@ -324,8 +319,7 @@ reference:
   - setup_EIP.fixedlag_dts
   - setup_eip_fixedlag_dts
 - subtitle: trivial
-  desc: |
-    The trivial model for adult mosquitoes 
+  desc: "The trivial model for adult mosquitoes \n"
   contents:
   - F_fqZ.trivial
   - F_fqM.trivial
@@ -490,8 +484,7 @@ reference:
   - xde_steady_state_L
   - dts_steady_state_L
 - subtitle: trivial
-  desc: |
-    The trivial model for aquatic dynamics 
+  desc: "The trivial model for aquatic dynamics \n"
   contents:
   - dLdt.trivial
   - Update_Lt.trivial
@@ -533,9 +526,8 @@ reference:
 - title: Mosquito Bionomics
   desc: |
     Methods to compute or update mosquito bionomic parameters
-  contents:
-  - Bionomics
-- subtitle:  Functional Responses
+  contents: Bionomics
+- subtitle: Functional Responses
   desc: |
     Compute bionomic parameters as functional responses to resource availability
   contents:
@@ -599,8 +591,7 @@ reference:
   - xde_steady_state_XH
   - dts_steady_state_X
 - subtitle: trivial
-  desc: |
-    Specialized methods the trivial human model 
+  desc: "Specialized methods the trivial human model \n"
   contents:
   - F_X.trivial
   - F_H.trivial
@@ -719,22 +710,19 @@ reference:
   - Exogenous.mosy
   - Exogenous.human
 - subtitle: Forcing
-  desc: |
-    The port for exogenous forcing 
+  desc: "The port for exogenous forcing \n"
   contents:
   - Forcing
   - Forcing.none
   - setup_no_forcing
 - subtitle: Resource Dynamics
-  desc: |
-    The port for resource dynamics 
+  desc: "The port for resource dynamics \n"
   contents:
   - Resources
   - Resources.static
   - setup_resources_static
 - subtitle: Vector Control
-  desc: |
-    The ports for vector control 
+  desc: "The ports for vector control \n"
   contents:
   - VectorControl
   - VectorControl.none
@@ -742,15 +730,13 @@ reference:
   - VectorControlEffectSizes.none
   - setup_no_vector_control
 - subtitle: Health
-  desc: |
-    The ports for malaria control 
+  desc: "The ports for malaria control \n"
   contents:
   - Health
   - Health.none
   - setup_no_health
 - title: Solving
-  desc: |
-    Methods to compute the derivatives and dynamical systems 
+  desc: "Methods to compute the derivatives and dynamical systems \n"
 - subtitle: Derivatives
   contents:
   - xde_derivatives
@@ -917,3 +903,4 @@ reference:
   - make_outputs.human
   - get_terms
   - get_EIR
+
