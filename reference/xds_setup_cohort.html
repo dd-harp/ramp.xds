@@ -98,8 +98,11 @@ a function that modifies exposure by age.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xds_setup_cohort</span><span class="op">(</span></span>
 <span>  eir <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  F_season <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  season_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  F_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  trend_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  F_age <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  age_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  xds <span class="op">=</span> <span class="st">"ode"</span>,</span>
 <span>  Xname <span class="op">=</span> <span class="st">"SIS"</span>,</span>
 <span>  Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -122,12 +125,24 @@ a function that modifies exposure by age.</p>
 <dd><p>a function describing a seasonal pattern over time</p></dd>
 
 
+<dt id="arg-season-par">season_par<a class="anchor" aria-label="anchor" href="#arg-season-par"></a></dt>
+<dd><p>parameters to configure a seasonality function using <a href="make_function.html">make_function</a></p></dd>
+
+
 <dt id="arg-f-trend">F_trend<a class="anchor" aria-label="anchor" href="#arg-f-trend"></a></dt>
 <dd><p>a function describing a temporal trend over time</p></dd>
 
 
+<dt id="arg-trend-par">trend_par<a class="anchor" aria-label="anchor" href="#arg-trend-par"></a></dt>
+<dd><p>parameters to configure a trends function using <a href="make_function.html">make_function</a></p></dd>
+
+
 <dt id="arg-f-age">F_age<a class="anchor" aria-label="anchor" href="#arg-f-age"></a></dt>
 <dd><p>a assigning a biting weight by age</p></dd>
+
+
+<dt id="arg-age-par">age_par<a class="anchor" aria-label="anchor" href="#arg-age-par"></a></dt>
+<dd><p>parameters to configure an age weights function using <a href="make_function.html">make_function</a></p></dd>
 
 
 <dt id="arg-xds">xds<a class="anchor" aria-label="anchor" href="#arg-xds"></a></dt>

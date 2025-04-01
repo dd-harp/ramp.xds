@@ -134,11 +134,11 @@ in some form (possibly the trivial case) (see <code><a href="xds_setup.html">xds
 <li><p><strong><code>nStrata</code></strong> or \(n_h\), the number of human/ host population strata, is set to <code>length(HPop)</code></p></li>
 </ul><p>Next, the function sets up empty lists to hold the objects that define components:</p><ul><li><p><code>Xpar</code></p></li>
 <li><p></p></li>
-<li><p><strong>Transmission</strong>  calls <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code> and <code><a href="setup_visitors_static.html">setup_visitors_static()</a></code> sets up a static</p></li>
+<li><p><strong>Transmission</strong>  calls <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code></p></li>
 </ul><p>model for the availability of visitors; by default, there are no visitors
 Next, the function sets up egg laying, blood feeding, and transmission:</p><ul><li><p><strong>Egg Laying</strong> calls <code><a href="create_habitat_matrix.html">create_habitat_matrix()</a></code>, then <code><a href="setup_EGG_LAYING.html">setup_EGG_LAYING()</a></code></p></li>
 <li><p><strong>Blood Feeding</strong> calls <code><a href="create_residence_matrix.html">create_residence_matrix()</a></code>, then <code><a href="setup_BLOOD_FEEDING.html">setup_BLOOD_FEEDING()</a></code></p></li>
-<li><p><strong>Transmission</strong>  calls <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code> and <code><a href="setup_visitors_static.html">setup_visitors_static()</a></code> sets up a static
+<li><p><strong>Transmission</strong>  calls <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code> sets up a static
 model for the availability of visitors; by default, there are no visitors</p></li>
 </ul><p>Finally, the function sets up a few other miscellaneous options:</p><ul><li><p><a href="Exposure.html">Exposure</a> is called <em>after</em> <a href="Transmission.html">Transmission</a> to compute environmentally heterogeneous exposure
 and malaria importation through travel:</p><ul><li><p><a href="setup_exposure_pois.html">setup_exposure_pois</a> sets up a Poisson model for environmental heterogeneity</p></li>

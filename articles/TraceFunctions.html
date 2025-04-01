@@ -98,16 +98,26 @@
 <p>As part of the <em>plug-and-play</em> modular design for
 <strong><code>ramp.xds</code>,</strong> each dynamical component
 includes a trivial model that has no variables. The outputs required by
-other components are passed as a <strong>trace function</strong>. These
-trace functions have three parts:</p>
+other components are passed as a <strong>trace function</strong>. Trace
+functions in <strong><code>ramp.xds</code></strong> have three
+parts:</p>
 <ul>
-<li><p>a mean value, or a scaling argument</p></li>
+<li><p>a mean value, and/or a scaling argument</p></li>
 <li><p>a function that returns a F_seasonal signal, configured with a
 line in the appropriate options list,
 <code>F_season = function(t){...}</code></p></li>
 <li><p>a function that returns a F_trend, configured with a line in the
 appropriate options list,
 <code>F_trend = function(t){...}</code></p></li>
+</ul>
+<p>A trace function can be configured in two ways:</p>
+<ul>
+<li><p>A function can be passed as an argument;</p></li>
+<li><p>Parameters to configure a function using
+<code>make_function</code> can be passed; by default the parameter
+option is set to <code>NULL,</code> and if not null, then
+<code>make_function</code> gets called and the parameters are
+saved.</p></li>
 </ul>
 <div class="section level2">
 <h2 id="trivial-modules">Trivial Modules<a class="anchor" aria-label="anchor" href="#trivial-modules"></a>
@@ -212,7 +222,7 @@ or <code>norm</code> is a normalizing constant</p></li>
 <li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
 or <code>phase</code> sets the timing of the peak</p></li>
 <li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\epsilon \geq 0</annotation></semantics></math>
-or <code>floor</code> is a shape parameter: increasing the values of
+or <code>bottom</code> is a shape parameter: increasing the values of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϵ</mi><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math>
 reduces the variance</p></li>
 <li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p \geq 0</annotation></semantics></math>
@@ -258,8 +268,8 @@ functions, each one configured as if
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">S2</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"orange"</span>, lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="TraceFunctions_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makepar_F_sin.html">makepar_F_sin</a></span><span class="op">(</span>floor<span class="op">=</span><span class="fl">.5</span><span class="op">)</span></span>
-<span><span class="va">p5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makepar_F_sin.html">makepar_F_sin</a></span><span class="op">(</span>floor<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makepar_F_sin.html">makepar_F_sin</a></span><span class="op">(</span>bottom<span class="op">=</span><span class="fl">.5</span><span class="op">)</span></span>
+<span><span class="va">p5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makepar_F_sin.html">makepar_F_sin</a></span><span class="op">(</span>bottom<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">p6</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makepar_F_sin.html">makepar_F_sin</a></span><span class="op">(</span>pw<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">p7</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makepar_F_sin.html">makepar_F_sin</a></span><span class="op">(</span>pw<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -319,6 +329,19 @@ with a range of features:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">C2t</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, type <span class="op">=</span><span class="st">"l"</span>, xlab <span class="op">=</span> <span class="st">"Time (in Days)"</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu">Fs1</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">C2t</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p><img src="TraceFunctions_files/figure-html/unnamed-chunk-21-1.png" width="480"></p>
+</div>
+<div class="section level3">
+<h3 id="spline">Spline<a class="anchor" aria-label="anchor" href="#spline"></a>
+</h3>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tv</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span><span class="op">*</span><span class="fl">365</span><span class="op">/</span><span class="fl">4</span></span>
+<span><span class="va">yv</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span><span class="va">sp0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makepar_F_spline.html">makepar_F_spline</a></span><span class="op">(</span><span class="va">tv</span>, <span class="va">yv</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ff</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_function.html">make_function</a></span><span class="op">(</span><span class="va">sp0</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">ff</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="TraceFunctions_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

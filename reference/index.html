@@ -171,7 +171,7 @@
         <dd>Compute steady states for <strong>L</strong> Component Modules</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="models-human-host">Models – Human / Host<a class="anchor" aria-label="anchor" href="#models-human-host"></a></h3>
+      <h3 id="models-human-host-infection-demography">Models – Human / Host Infection &amp; Demography<a class="anchor" aria-label="anchor" href="#models-human-host-infection-demography"></a></h3>
       <div class="section-desc"><p>Models available in <strong><code>ramp.xds</code></strong> for human/host infection and immunity</p></div>
 
 
@@ -194,7 +194,7 @@
         <dd><strong>X</strong> Component Derivatives for the <code>SIS</code> Model</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="models-adult-mosquito">Models – Adult Mosquito<a class="anchor" aria-label="anchor" href="#models-adult-mosquito"></a></h3>
+      <h3 id="models-adult-mosquito-infection-ecology">Models – Adult Mosquito Infection &amp; Ecology<a class="anchor" aria-label="anchor" href="#models-adult-mosquito-infection-ecology"></a></h3>
       <div class="section-desc"><p>Models available in <strong><code>ramp.xds</code></strong> for adult mosquito ecology and infection dynamics</p></div>
 
 
@@ -272,7 +272,7 @@
           <code><a href="Health.html">Health()</a></code>
 
         </dt>
-        <dd>Set the values variables for health interventions</dd>
+        <dd>Set the values variables for health-based malaria control</dd>
       </dl><dl><dt>
 
           <code><a href="VectorControl.html">VectorControl()</a></code>
@@ -458,29 +458,6 @@
 
       <dl><dt>
 
-          <code><a href="create_residence_matrix.html">create_residence_matrix()</a></code>
-
-        </dt>
-        <dd>Create the residence matrix, \(\cal J\)</dd>
-      </dl><dl><dt>
-
-          <code><a href="view_residence_matrix.html">view_residence_matrix()</a></code>
-
-        </dt>
-        <dd>View residence membership</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="blood-feeding">Blood Feeding<a class="anchor" aria-label="anchor" href="#blood-feeding"></a></h3>
-      <div class="section-desc"><p>Methods to compute vertebrate host availibility and time at risk</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
           <code><a href="setup_BLOOD_FEEDING.html">setup_BLOOD_FEEDING()</a></code>
 
         </dt>
@@ -510,6 +487,59 @@
         </dt>
         <dd>Compute blood feeding objects: setup for static models</dd>
       </dl><dl><dt>
+
+          <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code>
+
+        </dt>
+        <dd>Setup the interface for parasite / pathogen transmission</dd>
+      </dl><dl><dt>
+
+          <code><a href="Transmission.html">Transmission()</a></code>
+
+        </dt>
+        <dd>Compute the mixing matrix and transmission terms</dd>
+      </dl><dl><dt>
+
+          <code><a href="Transmission.static.html">Transmission(<i>&lt;static&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Compute transmission terms with a static mixing matrix</dd>
+      </dl><dl><dt>
+
+          <code><a href="Transmission.dynamic.html">Transmission(<i>&lt;dynamic&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Compute transmission, the dynamic case</dd>
+      </dl><dl><dt>
+
+          <code><a href="Transmission.setup.html">Transmission(<i>&lt;setup&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Compute transmission, the static case</dd>
+      </dl><dl><dt>
+
+          <code><a href="create_residence_matrix.html">create_residence_matrix()</a></code>
+
+        </dt>
+        <dd>Create the residence matrix, \(\cal J\)</dd>
+      </dl><dl><dt>
+
+          <code><a href="view_residence_matrix.html">view_residence_matrix()</a></code>
+
+        </dt>
+        <dd>View residence membership</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="blood-feeding">Blood Feeding<a class="anchor" aria-label="anchor" href="#blood-feeding"></a></h3>
+      <div class="section-desc"><p>Methods for time at risk &amp; blood host availability</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
 
           <code><a href="change_blood_weights.html">change_blood_weights()</a></code>
 
@@ -560,7 +590,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="transmision">Transmision<a class="anchor" aria-label="anchor" href="#transmision"></a></h3>
-      <div class="section-desc"><p>Specialized methods to compute the transmission terms</p></div>
+      <div class="section-desc"><p>Compute beta, EIR, kappa, &amp; local_frac</p></div>
 
 
     </div><div class="section level2">
@@ -569,36 +599,6 @@
 
 
       <dl><dt>
-
-          <code><a href="setup_TRANSMISSION.html">setup_TRANSMISSION()</a></code>
-
-        </dt>
-        <dd>Setup the interface for parasite / pathogen transmission</dd>
-      </dl><dl><dt>
-
-          <code><a href="Transmission.html">Transmission()</a></code>
-
-        </dt>
-        <dd>Compute the mixing matrix and transmission terms</dd>
-      </dl><dl><dt>
-
-          <code><a href="Transmission.static.html">Transmission(<i>&lt;static&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Compute transmission terms with a static mixing matrix</dd>
-      </dl><dl><dt>
-
-          <code><a href="Transmission.dynamic.html">Transmission(<i>&lt;dynamic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Compute transmission, the dynamic case</dd>
-      </dl><dl><dt>
-
-          <code><a href="Transmission.setup.html">Transmission(<i>&lt;setup&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Compute transmission, the static case</dd>
-      </dl><dl><dt>
 
           <code><a href="compute_beta.html">compute_beta()</a></code>
 
@@ -655,7 +655,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="time-spent">Time Spent<a class="anchor" aria-label="anchor" href="#time-spent"></a></h3>
-      <div class="section-desc"><p>Method to set up Time Spent Matrices</p></div>
+      <div class="section-desc"><p>Set up Time Spent Matrices</p></div>
 
 
     </div><div class="section level2">
@@ -708,7 +708,7 @@
       </dl></div><div class="section level2">
       <h2 id="egg-laying-emergence">Egg Laying &amp; Emergence<a class="anchor" aria-label="anchor" href="#egg-laying-emergence"></a></h2>
 
-      <div class="section-desc"><p>Generic methods for the aquatic (immature) mosquito component.</p></div>
+      <div class="section-desc"><p>Generic methods for egg laying</p></div>
 
 
     </div><div class="section level2">
@@ -717,12 +717,6 @@
 
 
       <dl><dt>
-
-          <code><a href="create_habitat_matrix.html">create_habitat_matrix()</a></code>
-
-        </dt>
-        <dd>Create the habitat membership matrix, \(\cal N\)</dd>
-      </dl><dl><dt>
 
           <code><a href="setup_EGG_LAYING.html">setup_EGG_LAYING()</a></code>
 
@@ -758,6 +752,23 @@
 
         </dt>
         <dd>Compute eggs laid</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="habitat-availability">Habitat Availability<a class="anchor" aria-label="anchor" href="#habitat-availability"></a></h3>
+      <div class="section-desc"><p>Habitat search weights, availability</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="create_habitat_matrix.html">create_habitat_matrix()</a></code>
+
+        </dt>
+        <dd>Create the habitat membership matrix, \(\cal N\)</dd>
       </dl><dl><dt>
 
           <code><a href="change_habitat_weights.html">change_habitat_weights()</a></code>
@@ -815,7 +826,7 @@
       </dl></div><div class="section level2">
       <h2 id="exposure">Exposure<a class="anchor" aria-label="anchor" href="#exposure"></a></h2>
 
-      <div class="section-desc"><p>Methods for environmental heterogeneity</p></div>
+      <div class="section-desc"><p>Methods for Exposure</p></div>
 
 
     </div><div class="section level2">
@@ -1283,7 +1294,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="eip">EIP<a class="anchor" aria-label="anchor" href="#eip"></a></h3>
-      <div class="section-desc"><p>Specialized methods for NULL dynamics: a funtion generates values of Z to force human infection dynamics</p></div>
+      <div class="section-desc"><p>Methods for the extrinsic incubation period</p></div>
 
 
     </div><div class="section level2">
@@ -1342,7 +1353,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="trivial">trivial<a class="anchor" aria-label="anchor" href="#trivial"></a></h3>
-      <div class="section-desc"><p>Specialized methods for NULL dynamics: a funtion generates values for F_eggs or F_fqZ or F_fqM</p></div>
+      <div class="section-desc"><p>The trivial model for adult mosquitoes</p></div>
 
 
     </div><div class="section level2">
@@ -1461,7 +1472,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="basicm">basicM<a class="anchor" aria-label="anchor" href="#basicm"></a></h3>
-      <div class="section-desc"><p>Specialized methods for basicM, a model of adult mosquito dynamics with no parasite infection dynamics.</p></div>
+      <div class="section-desc"><p>Methods for basicM, adult mosquito ecology without infection dynamics.</p></div>
 
 
     </div><div class="section level2">
@@ -2247,7 +2258,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="trivial-1">trivial<a class="anchor" aria-label="anchor" href="#trivial-1"></a></h3>
-      <div class="section-desc"><p>Specialized methods for the exogeneously forced trivial model of aquatic mosquito dynamics.</p></div>
+      <div class="section-desc"><p>The trivial model for aquatic dynamics</p></div>
 
 
     </div><div class="section level2">
@@ -2354,7 +2365,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="basicl">basicL<a class="anchor" aria-label="anchor" href="#basicl"></a></h3>
-      <div class="section-desc"><p>Specialized methods for a basicL competition model of aquatic mosquito dynamics.</p></div>
+      <div class="section-desc"><p>A basic model for aquatic mosquito dynamics</p></div>
 
 
     </div><div class="section level2">
@@ -2662,7 +2673,7 @@
       </dl></div><div class="section level2">
       <h2 id="human-infection-dynamics">Human Infection Dynamics<a class="anchor" aria-label="anchor" href="#human-infection-dynamics"></a></h2>
 
-      <div class="section-desc"><p>Generic methods for the dynamical component that handles human infection dynamics, immunity, disease and transmission</p></div>
+      <div class="section-desc"><p>Generic methods for models of human/host infection dynamics, immunity, disease and transmission</p></div>
 
 
     </div><div class="section level2">
@@ -2823,7 +2834,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="trivial-2">trivial<a class="anchor" aria-label="anchor" href="#trivial-2"></a></h3>
-      <div class="section-desc"><p>Specialized methods for a human trivial model to pass kappa as a parameter</p></div>
+      <div class="section-desc"><p>Specialized methods the trivial human model</p></div>
 
 
     </div><div class="section level2">
@@ -2954,7 +2965,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="hmoi">hMoI<a class="anchor" aria-label="anchor" href="#hmoi"></a></h3>
-      <div class="section-desc"><p>Specialized methods for a hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.</p></div>
+      <div class="section-desc"><p>A hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.</p></div>
 
 
     </div><div class="section level2">
@@ -3091,7 +3102,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="sis">SIS<a class="anchor" aria-label="anchor" href="#sis"></a></h3>
-      <div class="section-desc"><p>Specialized methods for the SIS (Susceptible-Infected-Susceptible) model of human dynamics.</p></div>
+      <div class="section-desc"><p>The SIS (Susceptible-Infected-Susceptible) model of human dynamics.</p></div>
 
 
     </div><div class="section level2">
@@ -3333,35 +3344,6 @@
         </dt>
         <dd>Setup a matrix for <code>dHdt</code></dd>
       </dl></div><div class="section level2">
-
-      <h3 id="care-seeking">Care Seeking<a class="anchor" aria-label="anchor" href="#care-seeking"></a></h3>
-      <div class="section-desc"><p>Methods to implement care seeking</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="CareSeeking.html">CareSeeking()</a></code>
-
-        </dt>
-        <dd>Set the values of exogenous variables describing care seeking</dd>
-      </dl><dl><dt>
-
-          <code><a href="CareSeeking.no_behavior.html">CareSeeking(<i>&lt;no_behavior&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set the values of exogenous variables describing care seeking</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_care_seeking_no_behavior.html">setup_care_seeking_no_behavior()</a></code>
-
-        </dt>
-        <dd>Make parameters for the no_behavior model for care seeking (do nothing)</dd>
-      </dl></div><div class="section level2">
       <h2 id="imported-malaria">Imported Malaria<a class="anchor" aria-label="anchor" href="#imported-malaria"></a></h2>
 
       <div class="section-desc"><p>Methods to implement time spent traveling</p></div>
@@ -3414,12 +3396,6 @@
 
         </dt>
         <dd>Set up a dynamic model for travel</dd>
-      </dl><dl><dt>
-
-          <code><a href="Visiting.html">Visiting()</a></code>
-
-        </dt>
-        <dd>Visiting</dd>
       </dl></div><div class="section level2">
 
       <h3 id="travel-malaria">Travel Malaria<a class="anchor" aria-label="anchor" href="#travel-malaria"></a></h3>
@@ -3444,41 +3420,6 @@
         </dt>
         <dd>Setup Travel EIR</dd>
       </dl></div><div class="section level2">
-
-      <h3 id="visiting">Visiting<a class="anchor" aria-label="anchor" href="#visiting"></a></h3>
-      <div class="section-desc"><p>Methods for the availability and infectiousness of a visitor population</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Visiting.static.html">Visiting(<i>&lt;static&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Visiting, a static model</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_visitors_static.html">setup_visitors_static()</a></code>
-
-        </dt>
-        <dd>Make parameters for the static model visitors (no visitors)</dd>
-      </dl><dl><dt>
-
-          <code><a href="Visiting.basic.html">Visiting(<i>&lt;basic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Visiting, the basic model</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_visitors_basic.html">setup_visitors_basic()</a></code>
-
-        </dt>
-        <dd>Make parameters and functions for the basic model for visitors</dd>
-      </dl></div><div class="section level2">
       <h2 id="exogeneous-forcing">Exogeneous Forcing<a class="anchor" aria-label="anchor" href="#exogeneous-forcing"></a></h2>
 
       <div class="section-desc"><p>Methods to implement exogeneous forcing.</p></div>
@@ -3497,62 +3438,32 @@
         <dd>Compute Derivatives</dd>
       </dl><dl><dt>
 
-          <code><a href="Forcing.html">Forcing()</a></code>
+          <code><a href="Exogenous.full.html">Exogenous(<i>&lt;full&gt;</i>)</a></code>
 
         </dt>
-        <dd>Set the values of exogenous variables</dd>
+        <dd>Generalized spatial differential equation model</dd>
       </dl><dl><dt>
 
-          <code><a href="Weather.html">Weather()</a></code>
+          <code><a href="Exogenous.aquatic.html">Exogenous(<i>&lt;aquatic&gt;</i>)</a></code>
 
         </dt>
-        <dd>Set the values of exogenous variables describing weather</dd>
+        <dd>Differential equation models for aquatic mosquito populations</dd>
       </dl><dl><dt>
 
-          <code><a href="Rainfall.html">Rainfall()</a></code>
+          <code><a href="Exogenous.mosy.html">Exogenous(<i>&lt;mosy&gt;</i>)</a></code>
 
         </dt>
-        <dd>Set the rainfall</dd>
+        <dd>Generalized spatial differential equation model (mosquito only)</dd>
       </dl><dl><dt>
 
-          <code><a href="Shock.html">Shock()</a></code>
+          <code><a href="Exogenous.human.html">Exogenous(<i>&lt;human&gt;</i>)</a></code>
 
         </dt>
-        <dd>System Shocks</dd>
-      </dl><dl><dt>
-
-          <code><a href="Health.html">Health()</a></code>
-
-        </dt>
-        <dd>Set the values variables for health interventions</dd>
-      </dl><dl><dt>
-
-          <code><a href="VectorControl.html">VectorControl()</a></code>
-
-        </dt>
-        <dd>Implement Vector Control</dd>
-      </dl><dl><dt>
-
-          <code><a href="Clinic.html">Clinic()</a></code>
-
-        </dt>
-        <dd>Methods for distributing interventions during clinical visits</dd>
-      </dl><dl><dt>
-
-          <code><a href="Development.html">Development()</a></code>
-
-        </dt>
-        <dd>Set the development</dd>
-      </dl><dl><dt>
-
-          <code><a href="MassHealth.html">MassHealth()</a></code>
-
-        </dt>
-        <dd>Methods for mass distributing health interventions</dd>
+        <dd>Differential equations isolating the humans, forced with Ztrace</dd>
       </dl></div><div class="section level2">
 
       <h3 id="forcing">Forcing<a class="anchor" aria-label="anchor" href="#forcing"></a></h3>
-      <div class="section-desc"><p>Specialized methods the null model (no exogenous forcing)</p></div>
+      <div class="section-desc"><p>The port for exogenous forcing</p></div>
 
 
     </div><div class="section level2">
@@ -3578,476 +3489,10 @@
 
         </dt>
         <dd>none set up for exogenous forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="Forcing.dynamic.html">Forcing(<i>&lt;dynamic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set the values of exogenous variables</dd>
-      </dl><dl><dt>
-
-          <code><a href="Forcing.setup.html">Forcing(<i>&lt;setup&gt;</i>)</a></code>
-
-        </dt>
-        <dd>The <code>setup</code> case for exogenous forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_forcing.html">dynamic_forcing()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_forcing.none.html">dynamic_forcing(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_forcing.setup.html">dynamic_forcing(<i>&lt;setup&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_forcing.dynamic.html">dynamic_forcing(<i>&lt;dynamic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="models">Models<a class="anchor" aria-label="anchor" href="#models"></a></h3>
-      <div class="section-desc"><p>Specialized methods the null model (no exogenous forcing)</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Shock.none.html">Shock(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no shock</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_shock.html">setup_no_shock()</a></code>
-
-        </dt>
-        <dd>Set up "no shock"</dd>
-      </dl><dl><dt>
-
-          <code><a href="Development.none.html">Development(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no development</dd>
-      </dl><dl><dt>
-
-          <code><a href="Development.func.html">Development(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no development</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_development.html">setup_no_development()</a></code>
-
-        </dt>
-        <dd>Set up "no development"</dd>
-      </dl><dl><dt>
-
-          <code><a href="Health.none.html">Health(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no exogenous health variables</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_health.html">setup_no_health()</a></code>
-
-        </dt>
-        <dd>none set up for exogenous health</dd>
-      </dl></div><div class="section level2">
-      <h2 id="weather">Weather<a class="anchor" aria-label="anchor" href="#weather"></a></h2>
-
-      <div class="section-desc"><p>Specialized methods for weather</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Weather.html">Weather()</a></code>
-
-        </dt>
-        <dd>Set the values of exogenous variables describing weather</dd>
-      </dl><dl><dt>
-
-          <code><a href="Weather.none.html">Weather(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Methods for exogenous variables describing weather</dd>
-      </dl><dl><dt>
-
-          <code><a href="Weather.dynamic.html">Weather(<i>&lt;dynamic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Methods for exogenous variables describing weather</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_weather.html">setup_no_weather()</a></code>
-
-        </dt>
-        <dd>Set up the no_forcing model for weather</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_weather.html">dynamic_weather()</a></code>
-
-        </dt>
-        <dd>Set up dynamic weather</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_weather.none.html">dynamic_weather(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic weather</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_weather.setup.html">dynamic_weather(<i>&lt;setup&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic weather</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_weather.dynamic.html">dynamic_weather(<i>&lt;dynamic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic weather</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="temperature">Temperature<a class="anchor" aria-label="anchor" href="#temperature"></a></h3>
-      <div class="section-desc"><p>Specialized methods for temperature</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Temperature.html">Temperature()</a></code>
-
-        </dt>
-        <dd>Set the temperature</dd>
-      </dl><dl><dt>
-
-          <code><a href="Temperature.none.html">Temperature(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no temperature</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_temperature.html">setup_no_temperature()</a></code>
-
-        </dt>
-        <dd>Set up "no temperature"</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_temperature.html">setup_temperature()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="Temperature.func.html">Temperature(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no temperature</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_temperature.func.html">setup_temperature(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_temperature_func.html">setup_temperature_func()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="rainfall">Rainfall<a class="anchor" aria-label="anchor" href="#rainfall"></a></h3>
-      <div class="section-desc"><p>Specialized methods for rainfall</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Rainfall.html">Rainfall()</a></code>
-
-        </dt>
-        <dd>Set the rainfall</dd>
-      </dl><dl><dt>
-
-          <code><a href="Rainfall.none.html">Rainfall(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no rainfall</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_rainfall.html">setup_no_rainfall()</a></code>
-
-        </dt>
-        <dd>Set up "no rainfall"</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_rainfall.html">setup_rainfall()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="Rainfall.func.html">Rainfall(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no rainfall</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_rainfall.func.html">setup_rainfall(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_rainfall_func.html">setup_rainfall_func()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="humidity">Humidity<a class="anchor" aria-label="anchor" href="#humidity"></a></h3>
-      <div class="section-desc"><p>Specialized methods for humidity</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Humidity.html">Humidity()</a></code>
-
-        </dt>
-        <dd>Set the humidity</dd>
-      </dl><dl><dt>
-
-          <code><a href="Humidity.none.html">Humidity(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no humidity</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_humidity.html">setup_no_humidity()</a></code>
-
-        </dt>
-        <dd>Set up "no humidity"</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_humidity.html">setup_humidity()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="Humidity.func.html">Humidity(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no humidity</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_humidity.func.html">setup_humidity(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_humidity_func.html">setup_humidity_func()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="hydrology">Hydrology<a class="anchor" aria-label="anchor" href="#hydrology"></a></h3>
-      <div class="section-desc"><p>Specialized methods for hydrology</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Hydrology.html">Hydrology()</a></code>
-
-        </dt>
-        <dd>Set the hydrology</dd>
-      </dl><dl><dt>
-
-          <code><a href="Hydrology.none.html">Hydrology(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no hydrology</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_hydrology.html">setup_no_hydrology()</a></code>
-
-        </dt>
-        <dd>Set up "no hydrology"</dd>
-      </dl><dl><dt>
-
-          <code><a href="Hydrology.func.html">Hydrology(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no hydrology</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_hydrology.html">setup_hydrology()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_hydrology.func.html">setup_hydrology(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_hydrology_func.html">setup_hydrology_func()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="shock">Shock<a class="anchor" aria-label="anchor" href="#shock"></a></h3>
-      <div class="section-desc"><p>Specialized methods for hydrology</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Shock.html">Shock()</a></code>
-
-        </dt>
-        <dd>System Shocks</dd>
-      </dl><dl><dt>
-
-          <code><a href="Shock.none.html">Shock(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no shock</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_shock.html">setup_no_shock()</a></code>
-
-        </dt>
-        <dd>Set up "no shock"</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_shock.html">setup_shock()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="Shock.func.html">Shock(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no shock</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_shock.func.html">setup_shock(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_shock_func.html">setup_shock_func()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a></h3>
-      <div class="section-desc"><p>Specialized methods for hydrology</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Development.html">Development()</a></code>
-
-        </dt>
-        <dd>Set the development</dd>
-      </dl><dl><dt>
-
-          <code><a href="Development.none.html">Development(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no development</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_development.html">setup_no_development()</a></code>
-
-        </dt>
-        <dd>Set up "no development"</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_development.html">setup_development()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="Development.func.html">Development(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no development</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_development.func.html">setup_development(<i>&lt;func&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_development_func.html">setup_development_func()</a></code>
-
-        </dt>
-        <dd>Set up dynamic forcing</dd>
-      </dl></div><div class="section level2">
-      <h2 id="resource-dynamics">Resource Dynamics<a class="anchor" aria-label="anchor" href="#resource-dynamics"></a></h2>
-
-      <div class="section-desc"><p>Methods to implement resource availability</p></div>
+      <h3 id="resource-dynamics">Resource Dynamics<a class="anchor" aria-label="anchor" href="#resource-dynamics"></a></h3>
+      <div class="section-desc"><p>The port for resource dynamics</p></div>
 
 
     </div><div class="section level2">
@@ -4069,137 +3514,14 @@
         <dd>Modify resources and resource availability</dd>
       </dl><dl><dt>
 
-          <code><a href="Resources.setup.html">Resources(<i>&lt;setup&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Modify resources and resource availability</dd>
-      </dl><dl><dt>
-
-          <code><a href="Resources.forced.html">Resources(<i>&lt;forced&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Methods for resources</dd>
-      </dl><dl><dt>
-
           <code><a href="setup_resources_static.html">setup_resources_static()</a></code>
 
         </dt>
         <dd>Set up parameters for the static model for resource availability</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_resources_forced.html">setup_resources_forced()</a></code>
-
-        </dt>
-        <dd>Set up a model for mass medical</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="other-blood-hosts">Other Blood Hosts<a class="anchor" aria-label="anchor" href="#other-blood-hosts"></a></h3>
-      <div class="section-desc"><p>Methods to simulate availability of other blood hosts</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="OtherBloodHosts.html">OtherBloodHosts()</a></code>
-
-        </dt>
-        <dd>Set the values of exogenous variables describing other blood hosts</dd>
-      </dl><dl><dt>
-
-          <code><a href="OtherBloodHosts.static.html">OtherBloodHosts(<i>&lt;static&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set the values of exogenous variables describing other blood hosts</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_other_blood_hosts_static.html">setup_other_blood_hosts_static()</a></code>
-
-        </dt>
-        <dd>Make parameters for the static model for other blood hosts (do nothing)</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="habitat-dynamics-and-availability">Habitat Dynamics and Availability<a class="anchor" aria-label="anchor" href="#habitat-dynamics-and-availability"></a></h3>
-      <div class="section-desc"><p>Specialized methods for weather</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="HabitatDynamics.html">HabitatDynamics()</a></code>
-
-        </dt>
-        <dd>Habitat Dynamics and Searching</dd>
-      </dl><dl><dt>
-
-          <code><a href="HabitatDynamics.static.html">HabitatDynamics(<i>&lt;static&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set the values of habitat search weights and other exogenous variables describing habitat_dynamics</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_habitat_dynamics_static.html">setup_habitat_dynamics_static()</a></code>
-
-        </dt>
-        <dd>Setup the egg laying object</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="sugar">Sugar<a class="anchor" aria-label="anchor" href="#sugar"></a></h3>
-      <div class="section-desc"><p>Methods to simulate availability of sugar</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="SugarDynamics.html">SugarDynamics()</a></code>
-
-        </dt>
-        <dd>Set the values of exogenous variables describing sugar</dd>
-      </dl><dl><dt>
-
-          <code><a href="SugarDynamics.static.html">SugarDynamics(<i>&lt;static&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set the values of exogenous variables describing sugar</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_sugar_static.html">setup_sugar_static()</a></code>
-
-        </dt>
-        <dd>Make parameters for the static model for sugar (do nothing)</dd>
-      </dl><dl><dt>
-
-          <code><a href="AvailableSugar.html">AvailableSugar()</a></code>
-
-        </dt>
-        <dd>Update the availability of sugar</dd>
-      </dl><dl><dt>
-
-          <code><a href="AvailableSugar.static.html">AvailableSugar(<i>&lt;static&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Compute total availability of sugar</dd>
-      </dl><dl><dt>
-
-          <code><a href="AvailableSugar.forced.html">AvailableSugar(<i>&lt;forced&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Compute total availability of sugar</dd>
-      </dl></div><div class="section level2">
-      <h2 id="vector-control">Vector Control<a class="anchor" aria-label="anchor" href="#vector-control"></a></h2>
-
-      <div class="section-desc"><p>Methods to implement vector control.</p></div>
+      <h3 id="vector-control">Vector Control<a class="anchor" aria-label="anchor" href="#vector-control"></a></h3>
+      <div class="section-desc"><p>The ports for vector control</p></div>
 
 
     </div><div class="section level2">
@@ -4221,18 +3543,6 @@
         <dd>Implement No Vector Control</dd>
       </dl><dl><dt>
 
-          <code><a href="VectorControl.dynamic.html">VectorControl(<i>&lt;dynamic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Implement Some Vector Control</dd>
-      </dl><dl><dt>
-
-          <code><a href="VectorControl.setup.html">VectorControl(<i>&lt;setup&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Vector Control for Static Vector Control</dd>
-      </dl><dl><dt>
-
           <code><a href="VectorControlEffectSizes.html">VectorControlEffectSizes()</a></code>
 
         </dt>
@@ -4245,242 +3555,14 @@
         <dd>Set the values of exogenous variables</dd>
       </dl><dl><dt>
 
-          <code><a href="VectorControlEffectSizes.dynamic.html">VectorControlEffectSizes(<i>&lt;dynamic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Distribute vector control, the null model</dd>
-      </dl><dl><dt>
-
           <code><a href="setup_no_vector_control.html">setup_no_vector_control()</a></code>
 
         </dt>
         <dd>Setup Function for No Vector Control (default)</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_vector_control.html">dynamic_vector_control()</a></code>
-
-        </dt>
-        <dd>Turn On Vector Control</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_vector_control.none.html">dynamic_vector_control(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Turn On Vector Control</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_vector_control.setup.html">dynamic_vector_control(<i>&lt;setup&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Vector Control is Turned On</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_vector_control.dynamic.html">dynamic_vector_control(<i>&lt;dynamic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Vector Control is Turned On</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="bed-nets">Bed Nets<a class="anchor" aria-label="anchor" href="#bed-nets"></a></h3>
-      <div class="section-desc"><p>Specialized methods to implement Bed Nets</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="BedNet.html">BedNet()</a></code>
-
-        </dt>
-        <dd>Set the bednet</dd>
-      </dl><dl><dt>
-
-          <code><a href="BedNet.none.html">BedNet(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no bednet</dd>
-      </dl><dl><dt>
-
-          <code><a href="BedNetEffectSizes.html">BedNetEffectSizes()</a></code>
-
-        </dt>
-        <dd>Set the bednet_effectsizes</dd>
-      </dl><dl><dt>
-
-          <code><a href="BedNetEffectSizes.none.html">BedNetEffectSizes(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no bednet_effectsizes</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_bednets.html">setup_no_bednets()</a></code>
-
-        </dt>
-        <dd>Set up "no bednet"</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="indoor-residual-spraying">Indoor Residual Spraying<a class="anchor" aria-label="anchor" href="#indoor-residual-spraying"></a></h3>
-      <div class="section-desc"><p>Methods to implement IRS</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="IRS.html">IRS()</a></code>
-
-        </dt>
-        <dd>Implement IRS</dd>
-      </dl><dl><dt>
-
-          <code><a href="IRS.none.html">IRS(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no irs</dd>
-      </dl><dl><dt>
-
-          <code><a href="IRSEffectSizes.html">IRSEffectSizes()</a></code>
-
-        </dt>
-        <dd>Set the irs_effectsizes</dd>
-      </dl><dl><dt>
-
-          <code><a href="IRSEffectSizes.none.html">IRSEffectSizes(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no irs_effectsizes</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_irs.html">setup_no_irs()</a></code>
-
-        </dt>
-        <dd>Set up "no irs"</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="larval-source-management-lsm-">Larval Source Management (LSM)<a class="anchor" aria-label="anchor" href="#larval-source-management-lsm-"></a></h3>
-      <div class="section-desc"><p>Methods to implement LSM</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="LSM.html">LSM()</a></code>
-
-        </dt>
-        <dd>Set the LSM</dd>
-      </dl><dl><dt>
-
-          <code><a href="LSM.none.html">LSM(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no LSM</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_lsm.html">setup_no_lsm()</a></code>
-
-        </dt>
-        <dd>Set up "no LSM"</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="area-spraying">Area Spraying<a class="anchor" aria-label="anchor" href="#area-spraying"></a></h3>
-      <div class="section-desc"><p>Methods to implement area spraying</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="AreaSpray.html">AreaSpray()</a></code>
-
-        </dt>
-        <dd>Set the AreaSpray</dd>
-      </dl><dl><dt>
-
-          <code><a href="AreaSpray.none.html">AreaSpray(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set no AreaSpray</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_area_spray.html">setup_no_area_spray()</a></code>
-
-        </dt>
-        <dd>Set up "no AreaSpray"</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="sugar-baits">Sugar Baits<a class="anchor" aria-label="anchor" href="#sugar-baits"></a></h3>
-      <div class="section-desc"><p>Methods to implement sugar baits</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="SugarBaits.html">SugarBaits()</a></code>
-
-        </dt>
-        <dd>Set the SugarBaits</dd>
-      </dl><dl><dt>
-
-          <code><a href="SugarBaits.none.html">SugarBaits(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>No sugar baits</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_sugar_baits.html">setup_no_sugar_baits()</a></code>
-
-        </dt>
-        <dd>Set up no sugar baits</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="ovitraps">Ovitraps<a class="anchor" aria-label="anchor" href="#ovitraps"></a></h3>
-      <div class="section-desc"><p>Specialized methods for ovitraps</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="OviTraps.html">OviTraps()</a></code>
-
-        </dt>
-        <dd>Methods for oviposition traps</dd>
-      </dl><dl><dt>
-
-          <code><a href="OviTraps.none.html">OviTraps(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Methods for oviposition traps</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_ovitraps.html">setup_no_ovitraps()</a></code>
-
-        </dt>
-        <dd>Set up the none model for oviposition traps (do nothing)</dd>
-      </dl></div><div class="section level2">
-      <h2 id="health">Health<a class="anchor" aria-label="anchor" href="#health"></a></h2>
-
-      <div class="section-desc"><p>Methods to implement health-based Interventions</p></div>
+      <h3 id="health">Health<a class="anchor" aria-label="anchor" href="#health"></a></h3>
+      <div class="section-desc"><p>The ports for malaria control</p></div>
 
 
     </div><div class="section level2">
@@ -4493,7 +3575,7 @@
           <code><a href="Health.html">Health()</a></code>
 
         </dt>
-        <dd>Set the values variables for health interventions</dd>
+        <dd>Set the values variables for health-based malaria control</dd>
       </dl><dl><dt>
 
           <code><a href="Health.none.html">Health(<i>&lt;none&gt;</i>)</a></code>
@@ -4506,162 +3588,10 @@
 
         </dt>
         <dd>none set up for exogenous health</dd>
-      </dl><dl><dt>
-
-          <code><a href="Health.dynamic.html">Health(<i>&lt;dynamic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set the values of exogenous variables</dd>
-      </dl><dl><dt>
-
-          <code><a href="Health.setup.html">Health(<i>&lt;setup&gt;</i>)</a></code>
-
-        </dt>
-        <dd>The <code>setup</code> case for health variables</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_health.html">dynamic_health()</a></code>
-
-        </dt>
-        <dd>Set up dynamic health</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_health.none.html">dynamic_health(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic health</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_health.setup.html">dynamic_health(<i>&lt;setup&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic health</dd>
-      </dl><dl><dt>
-
-          <code><a href="dynamic_health.dynamic.html">dynamic_health(<i>&lt;dynamic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set up dynamic health</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="clinic">Clinic<a class="anchor" aria-label="anchor" href="#clinic"></a></h3>
-      <div class="section-desc"><p>Methods to implement clinic-based interventions</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Clinic.html">Clinic()</a></code>
-
-        </dt>
-        <dd>Methods for distributing interventions during clinical visits</dd>
-      </dl><dl><dt>
-
-          <code><a href="Clinic.none.html">Clinic(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Methods for distributing interventions during clinical visits</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_clinic.html">setup_no_clinic()</a></code>
-
-        </dt>
-        <dd>Set up the none model for clinical distribution (do nothing)</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="school">School<a class="anchor" aria-label="anchor" href="#school"></a></h3>
-      <div class="section-desc"><p>Methods to implement school-based interventions</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="School.html">School()</a></code>
-
-        </dt>
-        <dd>Methods for distributing interventions during schoolal visits</dd>
-      </dl><dl><dt>
-
-          <code><a href="School.none.html">School(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Methods for distributing interventions during schoolal visits</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_school.html">setup_no_school()</a></code>
-
-        </dt>
-        <dd>Set up the none model for schoolal distribution (do nothing)</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="masshealth">MassHealth<a class="anchor" aria-label="anchor" href="#masshealth"></a></h3>
-      <div class="section-desc"><p>Methods to implement clinic-based interventions</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="MassHealth.html">MassHealth()</a></code>
-
-        </dt>
-        <dd>Methods for mass distributing health interventions</dd>
-      </dl><dl><dt>
-
-          <code><a href="MassHealth.none.html">MassHealth(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Methods for distributing interventions during mass_healthal visits</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_mass_health.html">setup_no_mass_health()</a></code>
-
-        </dt>
-        <dd>Set up the none model for mass_healthal distribution (do nothing)</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="activecasedetection">ActiveCaseDetection<a class="anchor" aria-label="anchor" href="#activecasedetection"></a></h3>
-      <div class="section-desc"><p>Methods to implement clinic-based interventions</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="ActiveCaseDetection.html">ActiveCaseDetection()</a></code>
-
-        </dt>
-        <dd>Methods for mass distributing health interventions</dd>
-      </dl><dl><dt>
-
-          <code><a href="ActiveCaseDetection.none.html">ActiveCaseDetection(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Methods for distributing interventions during active_case_detectional visits</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_no_active_case_detection.html">setup_no_active_case_detection()</a></code>
-
-        </dt>
-        <dd>Set up the none model for active_case_detectional distribution (do nothing)</dd>
       </dl></div><div class="section level2">
       <h2 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a></h2>
 
-      <div class="section-desc"><p>Methods to compute the derivatives and solve the equat</p></div>
+      <div class="section-desc"><p>Methods to compute the derivatives and dynamical systems</p></div>
 
 
     </div><div class="section level2">
@@ -4829,47 +3759,6 @@
 
         </dt>
         <dd>Update State Variables for an <strong>L</strong> Component Module</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="exogenous-forcing">Exogenous Forcing<a class="anchor" aria-label="anchor" href="#exogenous-forcing"></a></h3>
-
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="Exogenous.html">Exogenous()</a></code>
-
-        </dt>
-        <dd>Compute Derivatives</dd>
-      </dl><dl><dt>
-
-          <code><a href="Exogenous.full.html">Exogenous(<i>&lt;full&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Generalized spatial differential equation model</dd>
-      </dl><dl><dt>
-
-          <code><a href="Exogenous.aquatic.html">Exogenous(<i>&lt;aquatic&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Differential equation models for aquatic mosquito populations</dd>
-      </dl><dl><dt>
-
-          <code><a href="Exogenous.mosy.html">Exogenous(<i>&lt;mosy&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Generalized spatial differential equation model (mosquito only)</dd>
-      </dl><dl><dt>
-
-          <code><a href="Exogenous.human.html">Exogenous(<i>&lt;human&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Differential equations isolating the humans, forced with Ztrace</dd>
       </dl></div><div class="section level2">
 
       <h3 id="solving-1">Solving<a class="anchor" aria-label="anchor" href="#solving-1"></a></h3>
@@ -5231,6 +4120,18 @@
         <dd>Check the shape and dimensions of an object</dd>
       </dl><dl><dt>
 
+          <code><a href="xds_shrink.html">xds_shrink()</a></code>
+
+        </dt>
+        <dd>Shrink an xds model object</dd>
+      </dl><dl><dt>
+
+          <code><a href="xds_shrink.cohort.html">xds_shrink(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Shrink an xds model object</dd>
+      </dl><dl><dt>
+
           <code><a href="list_vars.html">list_vars()</a></code>
 
         </dt>
@@ -5360,6 +4261,30 @@
 
         </dt>
         <dd>Make Parameters for a Sharkfin Function</dd>
+      </dl><dl><dt>
+
+          <code><a href="make_function.splinef.html">make_function(<i>&lt;splinef&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Make a spline function</dd>
+      </dl><dl><dt>
+
+          <code><a href="make_function.splineX.html">make_function(<i>&lt;splineX&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Make a spline function</dd>
+      </dl><dl><dt>
+
+          <code><a href="make_function.spline2.html">make_function(<i>&lt;spline2&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Make a spline function</dd>
+      </dl><dl><dt>
+
+          <code><a href="makepar_F_spline.html">makepar_F_spline()</a></code>
+
+        </dt>
+        <dd>Make Parameters for a Spline</dd>
       </dl></div><div class="section level2">
 
       <h3 id="new">New<a class="anchor" aria-label="anchor" href="#new"></a></h3>

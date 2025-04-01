@@ -71,7 +71,9 @@
 <span>  kappa <span class="op">=</span> <span class="fl">0.1</span>,</span>
 <span>  HPop <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  F_season <span class="op">=</span> <span class="va">F_flat</span>,</span>
-<span>  F_trend <span class="op">=</span> <span class="va">F_flat</span></span>
+<span>  season_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  F_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  trend_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -96,11 +98,19 @@
 
 
 <dt id="arg-f-season">F_season<a class="anchor" aria-label="anchor" href="#arg-f-season"></a></dt>
-<dd><p>a function returning a seasonal signal</p></dd>
+<dd><p>a function describing a seasonal pattern</p></dd>
+
+
+<dt id="arg-season-par">season_par<a class="anchor" aria-label="anchor" href="#arg-season-par"></a></dt>
+<dd><p>parameters to configure a <code>F_season</code> using <a href="make_function.html">make_function</a></p></dd>
 
 
 <dt id="arg-f-trend">F_trend<a class="anchor" aria-label="anchor" href="#arg-f-trend"></a></dt>
-<dd><p>a function returning a trend</p></dd>
+<dd><p>a function describing a temporal trend</p></dd>
+
+
+<dt id="arg-trend-par">trend_par<a class="anchor" aria-label="anchor" href="#arg-trend-par"></a></dt>
+<dd><p>parameters to configure <code>F_trend</code> using <a href="make_function.html">make_function</a></p></dd>
 
 </dl></div>
     <div class="section level2">
