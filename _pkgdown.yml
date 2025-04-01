@@ -854,6 +854,8 @@ reference:
   - approx_equal
   - checkIt
   - shapeIt
+  - xds_shrink
+  - xds_shrink.cohort
   - list_vars
   - xds_flatten
   - xds_dde
