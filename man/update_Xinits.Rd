@@ -4,12 +4,12 @@
 \alias{update_Xinits}
 \title{Set the initial values from a vector of states}
 \usage{
-update_Xinits(pars, y0, i)
+update_Xinits(pars, y, i)
 }
 \arguments{
 \item{pars}{an \strong{\code{xds}} object}
 
-\item{y0}{a vector of initial values}
+\item{y}{the variables}
 
 \item{i}{the host species index}
 }

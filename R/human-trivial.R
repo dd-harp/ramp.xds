@@ -176,7 +176,7 @@ parse_Xorbits.trivial <- function(outputs, pars,i) {
 #' @inheritParams update_Xinits
 #' @return none
 #' @export
-update_Xinits.trivial <- function(pars, y0, i) {
+update_Xinits.trivial <- function(pars, y, i) {
   return(pars)
 }
 

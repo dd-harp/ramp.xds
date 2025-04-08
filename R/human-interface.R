@@ -191,11 +191,11 @@ get_Xinits <- function(pars, i=1) {
 #' @title Set the initial values from a vector of states
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param pars an **`xds`** object
-#' @param y0 a vector of initial values
+#' @param y the variables 
 #' @param i the host species index
 #' @return an **`xds`** object
 #' @export
-update_Xinits <- function(pars, y0, i) {
+update_Xinits <- function(pars, y, i) {
   UseMethod("update_Xinits", pars$Xpar[[i]])
 }
 
