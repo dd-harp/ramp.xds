@@ -251,8 +251,8 @@ setup_Xix.SIS <- function(pars, i) {with(pars,{
 #' @inheritParams update_Xinits
 #' @return an `xds` object
 #' @export
-update_Xinits.SIS <- function(pars, y0, i=1) {
-  with(list_Xvars(y0, pars, i),{
+update_Xinits.SIS <- function(pars, y, i=1) {
+  with(list_Xvars(y, pars, i),{
     pars$Xinits[[i]]$H = get_H(pars, i)
     pars$Xinits[[i]]$I = I
     return(pars)

@@ -50,7 +50,8 @@ get_inits <- function(pars, flatten=FALSE){
       Xi = c(Xi, get_Xinits(pars, ix))
   y = list(L=Li, MYZ=MYZi, X=Xi)
   if(flatten) y <- xds_flatten(y)
-
+ 
+  
   return(y)
 }
 

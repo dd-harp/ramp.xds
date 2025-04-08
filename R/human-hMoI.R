@@ -214,10 +214,10 @@ setup_Xix.hMoI <- function(pars, i) {with(pars,{
 #' @inheritParams update_Xinits
 #' @return none
 #' @export
-update_Xinits.hMoI <- function(pars, y0, i) {
+update_Xinits.hMoI <- function(pars, y, i) {
   with(pars$ix$X[[i]],{
-    m1 = y0[m1_ix]
-    m2 = y0[m2_ix]
+    m1 = y[m1_ix]
+    m2 = y[m2_ix]
     pars$Xinits[[i]] = make_Xinits_hMoI(pars$nStrata[i], m1=m1, m2=m2)
     return(pars)
   })}
