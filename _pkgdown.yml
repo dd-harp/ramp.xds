@@ -73,6 +73,7 @@ reference:
   - xds_setup_human
   - xds_setup_cohort
   - make_xds_template
+  - print.xds_obj
 - subtitle: Solve and Analyze
   desc: |
     Methods to solve or analyze equations

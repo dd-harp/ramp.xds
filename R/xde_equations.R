@@ -33,8 +33,10 @@ xde_derivatives.full <- function(t, y, pars) {
   # compute the FoI
   pars <- Exposure(t, y, pars)
 
-  # compute derivatives
+  # compute derivatives for the L module 
   dL <- dLdt(t, y, pars, 1)
+  
+  # compute derivatives for the MYZ module 
   dMYZ <- dMYZdt(t, y, pars, 1)
   if(pars$nVectors > 1)
     for(s in 2:pars$nVectors){
@@ -42,12 +44,19 @@ xde_derivatives.full <- function(t, y, pars) {
       dMYZ <- c(dMYZ, dMYZdt(t, y, pars, s))
     }
 
+  # compute derivatives for the XH module 
   dX <- dXdt(t, y, pars, 1)
   if(pars$nHosts > 1)
     for(i in 2:pars$nHosts)
       dX <- c(dX, dXdt(t, y, pars, i))
-
-  return(list(c(dL, dMYZ, dX)))
+ 
+  # other variables 
+  dV <- dVdt(t, y, pars, 1)
+  if(pars$nOtherVariables > 1)
+    for(i in 2:length(nOtherVariables))
+      dV <- c(dV, dVdt(t, y, pars, i)) 
+  
+  return(list(c(dL, dMYZ, dX, dV)))
 }
 
 #' @title Differential equations isolating the humans, forced with Ztrace
