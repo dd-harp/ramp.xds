@@ -95,7 +95,6 @@ make_Xpar_SIS = function(nStrata, Xopts=list(),
     class(Xpar) <- "SIS"
 
     Xpar$b = checkIt(b, nStrata)
-    Xpar$Fb = Xpar 
     Xpar$c = checkIt(c, nStrata)
     Xpar$r = checkIt(r, nStrata)
 

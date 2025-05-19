@@ -51,7 +51,6 @@ make_Xpar_hMoI = function(nStrata, Xopts=list(),
     class(Xpar) <- "hMoI"
 
     Xpar$b = checkIt(b, nStrata)
-    Xpar$Fb <- Xpar
     Xpar$c1 = checkIt(c1, nStrata)
     Xpar$c2 = checkIt(c2, nStrata)
     Xpar$r1 = checkIt(r1, nStrata)
