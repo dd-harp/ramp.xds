@@ -82,6 +82,7 @@ make_xds_template = function(xds='ode', frame='full',
   pars$MYZpar      <- xdlst
   pars$Lname       <- 'unspecified'
   pars$Lpar        <- xdlst
+  pars$Vpar        <- setup_other_variables(pars) 
 
   vars <- list()
   class(vars) <- 'static'

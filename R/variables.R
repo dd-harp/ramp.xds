@@ -38,7 +38,7 @@ setup_Vix <- function(pars, i){
 #' @inheritParams dVdt
 #' @return Derivatives for auxiliary variables as a [vector]
 #' @export
-dVdt.none <- function(t, y, pars, i){
+dVdt.setup <- function(t, y, pars, i){
   return(list())   
 }
 
@@ -49,12 +49,12 @@ dVdt.none <- function(t, y, pars, i){
 #' @param pars an `xds` object
 #' @return the `xds` object
 #' @export
-setup_null_auxiliary_variable = function(pars){
+setup_other_variables = function(pars){
   pars$nOtherVariables = 1 
-  none <- list() 
-  class(none) <- "none" 
+  setup <- list() 
+  class(setup) <- "setup" 
   pars$Vpar = list() 
-  pars$Vpar[[1]] = none
+  pars$Vpar[[1]] = setup 
   return(pars)
 }
 
