@@ -79,14 +79,14 @@ F_H <- function(t, y, pars, i) {
 }
 
 #' @title Infection blocking pre-erythrocytic immunity
-#' @description This method dispatches on the type of `pars$Xpar[[i]]`.
+#' @description This method dispatches on the type of `pars$Xpar[[i]]$Fb`.
 #' @param y state vector
 #' @param pars an **`xds`** object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_b <- function(y, pars, i) {
-  UseMethod("F_b", pars$Xpar[[i]])
+  UseMethod("F_b", pars$Xpar[[i]]$Fb)
 }
 
 
