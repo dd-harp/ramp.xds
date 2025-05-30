@@ -16,7 +16,7 @@ dXdt(t, y, pars, i)
 \item{i}{the host species index}
 }
 \value{
-the derivatives as a \link{numeric} vector
+the derivatives, a \link{numeric} vector
 }
 \description{
 Compute and return the derivatives

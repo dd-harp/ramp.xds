@@ -23,8 +23,8 @@
 #' - **`forcing`** is set to "static"
 #'
 #' Second, the function sets the values of the **structural parameters**:
-#' - **`nVectors`** or \eqn{n_s}, the number of vector species is set to 1;
-#' - **`nHosts`** or \eqn{n_i}, the number of host species is set to 1;
+#' - **`nVectorSpecies`** or \eqn{n_s}, the number of vector species is set to 1;
+#' - **`nHostSpecies`** or \eqn{n_i}, the number of host species is set to 1;
 #' - **`nPatches`** or \eqn{n_p} is the number of patches
 #' - **`nHabitats`** or \eqn{n_q}, the number of aquatic habitats, is set to `length(membership)`
 #' - **`nStrata`** or \eqn{n_h}, the number of human/ host population strata, is set to `length(HPop)`
@@ -82,14 +82,14 @@ make_xds_template = function(xds='ode', frame='full',
   pars$MYZpar      <- xdlst
   pars$Lname       <- 'unspecified'
   pars$Lpar        <- xdlst
-  pars$Vpar        <- setup_other_variables(pars) 
+  pars             <- setup_other_variables(pars) 
 
   vars <- list()
   class(vars) <- 'static'
   pars$vars = vars
 
-  pars$nVectors  = 1
-  pars$nHosts    = 1
+  pars$nVectorSpecies  = 1
+  pars$nHostSpecies    = 1
   pars$nPatches  = nPatches
   pars$nHabitats = length(membership)
   pars$habitat_matrix = create_habitat_matrix(nPatches, membership)

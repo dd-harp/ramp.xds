@@ -233,8 +233,8 @@ parse_Xorbits.hMoI <- function(outputs, pars, i){
     m1 = outputs[,m1_ix]
     m2 = outputs[,m2_ix]
     ni = F_ni(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
-    pr = F_pr(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
-    pr_by_lm = F_pr_by_lm(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
+    pr = F_prevalence(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
+    pr_by_lm = F_pfpr_by_lm(list(m1=m1, m2=m2, H=H), pars$Xpar[[1]])
     return(list(H=H, m1=m1, m2=m2, ni=ni, pr=pr, pr_lm= pr_by_lm))
   })}
 
@@ -258,41 +258,41 @@ F_ni.hMoI<- function(vars, Xpar) {with(Xpar,{
 })}
 
 #' @title Compute the "true" prevalence of infection / parasite rate
-#' @description Implements [F_pr] for the hMoI model.
-#' @inheritParams F_pr
+#' @description Implements [F_prevalence] for the hMoI model.
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr.hMoI<- function(vars, Xpar) {
+F_prevalence.hMoI<- function(vars, Xpar) {
   pr = with(vars, 1-exp(-m1))
   return(pr)
 }
 
 #' @title Compute the prevalence of infection by light microscopy
-#' @description Implements [F_pr] for the hMoI model.
-#' @inheritParams F_pr
+#' @description Implements [F_prevalence] for the hMoI model.
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_lm.hMoI<- function(vars, Xpar) {
+F_pfpr_by_lm.hMoI<- function(vars, Xpar) {
   pr = with(vars, 1-exp(-m2))
   return(pr)
 }
 
 #' @title Compute the prevalence of infection by RDT
-#' @description Implements [F_pr] for the hMoI model.
-#' @inheritParams F_pr
+#' @description Implements [F_prevalence] for the hMoI model.
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_rdt.hMoI<- function(vars, Xpar) {
+F_pfpr_by_rdt.hMoI<- function(vars, Xpar) {
   pr = with(vars, 1-exp(-m1))
   return(pr)
 }
 
 #' @title Compute the prevalence of infection by PCR
-#' @description Implements [F_pr] for the hMoI model.
-#' @inheritParams F_pr
+#' @description Implements [F_prevalence] for the hMoI model.
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_pcr.hMoI<- function(vars, Xpar) {
+F_pfpr_by_pcr.hMoI<- function(vars, Xpar) {
   pr = with(vars, 1-exp(-m1))
   return(pr)
 }

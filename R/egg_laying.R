@@ -161,7 +161,7 @@ compute_Qtot = function(Q, Q_ovitraps, Q_bad_habitats){
 #' @seealso [compute_Q]
 #' @export
 make_Q = function(pars){with(pars,{
-  for(s in 1:nVectors){
+  for(s in 1:nVectorSpecies){
     # Q describes available habitats
     w = EGGpar$search_weights[[s]]
     Q = compute_Q(habitat_matrix, w)
@@ -214,7 +214,7 @@ compute_calU = function(search_weights, habitat_matrix, Q){
 #' @return an `xds` object
 #' @export
 make_calU = function(pars){
-  for(s in 1:pars$nVectors)
+  for(s in 1:pars$nVectorSpecies)
     pars$calU[[s]] = compute_calU(pars$EGGpar$search_weights[[s]], pars$habitat_matrix, pars$vars$Q[[s]])
   return(pars)
 }
@@ -239,7 +239,7 @@ compute_eggs_laid = function(eggs_laid, calU){
 #' @seealso [compute_eggs_laid]
 #' @export
 make_eggs_laid = function(t, y, pars){
-  for(s in 1:pars$nVectors)
+  for(s in 1:pars$nVectorSpecies)
     pars$eggs_laid[[s]] = compute_eggs_laid(F_eggs(t, y, pars, s), pars$calU[[s]])
   return(pars)
 }

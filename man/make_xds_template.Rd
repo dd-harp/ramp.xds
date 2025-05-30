@@ -56,8 +56,8 @@ in some form (possibly the trivial case) (see \code{\link[=xds_setup]{xds_setup(
 
 Second, the function sets the values of the \strong{structural parameters}:
 \itemize{
-\item \strong{\code{nVectors}} or \eqn{n_s}, the number of vector species is set to 1;
-\item \strong{\code{nHosts}} or \eqn{n_i}, the number of host species is set to 1;
+\item \strong{\code{nVectorSpecies}} or \eqn{n_s}, the number of vector species is set to 1;
+\item \strong{\code{nHostSpecies}} or \eqn{n_i}, the number of host species is set to 1;
 \item \strong{\code{nPatches}} or \eqn{n_p} is the number of patches
 \item \strong{\code{nHabitats}} or \eqn{n_q}, the number of aquatic habitats, is set to \code{length(membership)}
 \item \strong{\code{nStrata}} or \eqn{n_h}, the number of human/ host population strata, is set to \code{length(HPop)}

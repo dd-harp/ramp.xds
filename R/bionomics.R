@@ -11,7 +11,7 @@
 #' @return a [list]
 #' @export
 BaselineBionomics <- function(t, y, pars){
-  for(s in 1:pars$nVectors){
+  for(s in 1:pars$nVectorSpecies){
     pars <- MBaseline(t, y, pars, s)
     pars <- LBaseline(t, y, pars, s)
   }
@@ -30,7 +30,7 @@ BaselineBionomics <- function(t, y, pars){
 #' @export
 Bionomics <- function(t, y, pars){
   
-  for(s in 1:pars$nVectors){
+  for(s in 1:pars$nVectorSpecies){
     pars <- MBionomics(t, y, pars, s)
     pars <- LBionomics(t, y, pars, s)
   }

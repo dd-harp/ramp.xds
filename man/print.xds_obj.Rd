@@ -4,10 +4,12 @@
 \alias{print.xds_obj}
 \title{Print for xds_objects}
 \usage{
-\method{print}{xds_obj}(x)
+\method{print}{xds_obj}(x, ...)
 }
 \arguments{
-\item{x}{an xds_object}
+\item{x}{an object used to select a method.}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
 a description of the model

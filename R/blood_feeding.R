@@ -198,7 +198,7 @@ compute_B = function(W, visitors, other_blood){
 #' @export
 make_WB <- function(t, pars, y=0){
   y = as.vector(unlist(y))
-  for(s in 1:pars$nVectors){
+  for(s in 1:pars$nVectorSpecies){
     H = F_H(t, y, pars, 1)
     TaR = pars$TaR[[s]][[1]]
     wts = pars$BFpar$search_weights[[s]][[1]]
@@ -207,8 +207,8 @@ make_WB <- function(t, pars, y=0){
     pars$vars$Wi[[s]][[1]] = Wi
     pars$vars$W[[s]] = Wi
 
-    if(pars$nHosts > 1){
-      for(i in 2:pars$nHosts){
+    if(pars$nHostSpecies > 1){
+      for(i in 2:pars$nHostSpecies){
         H = F_H(t, y, pars, i)
         TaR = pars$TaR[[s]][[i]]
         wts = pars$BFpar$search_weights[[s]][[i]]
@@ -245,7 +245,7 @@ compute_RBR = function(search_weights, H){
 #' @export
 make_RBR = function(t, pars, y){
   y = as.vector(unlist(y))
-  for(i in 1:pars$nHosts){
+  for(i in 1:pars$nHostSpecies){
     H = F_H(t, y, pars, i)
     wts = pars$BFpar$search_weights[[1]][[i]]
     pars$rbr[[i]] = compute_RBR(wts, H)
@@ -281,8 +281,8 @@ compute_TaR = function(t, TiSp, F_circadian, time_traveling){
 #' @return an `xds` object
 #' @export
 make_TaR <- function(pars, t=0){
-  for(s in 1:pars$nVectors)
-    for(i in 1:pars$nHosts){
+  for(s in 1:pars$nVectorSpecies)
+    for(i in 1:pars$nHostSpecies){
       pars = traveling(t, pars, i)
       pars$TaR[[i]][[s]] = compute_TaR(t, pars$TimeSpent[[i]], pars$BFpar$F_circadian[[s]], pars$time_traveling[[i]])
     }

@@ -11,7 +11,7 @@
 #' @return derivatives for the \eqn{\cal MYZ} component as a [vector]
 #' @export
 dVdt <- function(t, y, pars, i) {
-  UseMethod("dVdt", pars$Vpar[i])
+  UseMethod("dVdt", pars$Vpar[[i]])
 }
 
 #' @title Compute Other Variables 

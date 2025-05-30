@@ -30,8 +30,8 @@
 #'    - `nPatches` is passed as a parameter
 #'    - `nHabitats` is configured by passing the habitat `membership` vector, and `nHabitats = length(membership)`
 #'    - `nStrata` is configured by passing a vector of human population densities and a residence vector, and `nStrata = length(residence) = length(HPop)`
-#'    - `nHosts=1` (basic setup handles only the first host species)
-#'    - `nVectors=1` (basic setup handles only the first vector species)
+#'    - `nHostSpecies=1` (basic setup handles only the first host species)
+#'    - `nVectorSpecies=1` (basic setup handles only the first vector species)
 #'
 #'.
 #' 2. Each one of the dynamical components is configured.
@@ -110,6 +110,7 @@ xds_setup = function(xds = 'ode',
   pars$MYZname   <- MYZname
   pars           <- setup_MYZpar(MYZname, pars, 1, MYZopts)
   pars           <- setup_MYZinits(pars, 1, MYZopts)
+  
 
   # Human Dynamics
   pars$Xname <- Xname
@@ -121,16 +122,20 @@ xds_setup = function(xds = 'ode',
 
   Qwts       <- with(Lopts, checkIt(searchQ, pars$nHabitats))
   pars       <- change_habitat_weights(pars, Qwts, 1)
+  
 
   wts        <- with(BFopts, checkIt(searchB, pars$nStrata))
   pars       <- change_blood_weights(pars, wts, 1, 1)
+  
 
   if(is.matrix(TimeSpent))
     pars <- change_TimeSpent(TimeSpent, pars, 1)
 
+  
   if(is.matrix(calK))
-    pars <- change_calK(calK, pars,1)
+    pars <- change_calK(calK, pars, 1)
 
+  
   # Probably Not Necessary
   y0 <- as.vector(unlist(get_inits(pars)))
 

@@ -3,7 +3,7 @@
 #' @title Blood feeding rate of the infective mosquito population
 #' @description Implements [F_fqZ] for the trivial model.
 #' @inheritParams F_fqZ
-#' @return a [numeric] vector of length `nHabitats`
+#' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqZ.trivial <- function(t, y, pars, s) {
   f = get_f(pars, s)
@@ -25,7 +25,7 @@ F_eggs.trivial <- function(t, y, pars, s) {
 #' @title Blood feeding rate of the infective mosquito population
 #' @description Implements [F_fqM] for the trivial model.
 #' @inheritParams F_fqM
-#' @return a [numeric] vector of length `nHabitats`
+#' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqM.trivial <- function(t, y, pars, s){
   return(numeric(0))

@@ -38,22 +38,22 @@ xde_derivatives.full <- function(t, y, pars) {
   
   # compute derivatives for the MYZ module 
   dMYZ <- dMYZdt(t, y, pars, 1)
-  if(pars$nVectors > 1)
-    for(s in 2:pars$nVectors){
+  if(pars$nVectorSpecies > 1)
+    for(s in 2:pars$nVectorSpecies){
       dL <- c(dL, dLdt(t, y, pars, s))
       dMYZ <- c(dMYZ, dMYZdt(t, y, pars, s))
     }
 
   # compute derivatives for the XH module 
   dX <- dXdt(t, y, pars, 1)
-  if(pars$nHosts > 1)
-    for(i in 2:pars$nHosts)
+  if(pars$nHostSpecies > 1)
+    for(i in 2:pars$nHostSpecies)
       dX <- c(dX, dXdt(t, y, pars, i))
  
   # other variables 
   dV <- dVdt(t, y, pars, 1)
   if(pars$nOtherVariables > 1)
-    for(i in 2:length(nOtherVariables))
+    for(i in 2:length(pars$nOtherVariables))
       dV <- c(dV, dVdt(t, y, pars, i)) 
   
   return(list(c(dL, dMYZ, dX, dV)))
@@ -78,8 +78,8 @@ xde_derivatives.human <- function(t, y, pars) {
 
   # state derivatives
   dX <- dXdt(t, y, pars, 1)
-  if(pars$nHosts > 1)
-    for(i in 2:pars$nHosts)
+  if(pars$nHostSpecies > 1)
+    for(i in 2:pars$nHostSpecies)
       dX <- c(dX, dXdt(t, y, pars, i))
 
   return(list(c(dX)))
@@ -104,8 +104,8 @@ xde_derivatives.mosy <- function(t, y, pars){
   # state derivatives
   dL <- dLdt(t, y, pars, 1)
   dM <- dMYZdt(t, y, pars, 1)
-  if (pars$nVectors > 1)
-    for(s in 2:pars$nVectors){
+  if (pars$nVectorSpecies > 1)
+    for(s in 2:pars$nVectorSpecies){
       dL <- c(dL, dLdt(t, y, pars, s))
       dM <- c(dM, dMYZdt(t, y, pars, s))
     }
@@ -129,8 +129,8 @@ xde_derivatives.aquatic <- function(t, y, pars) {
 
   # state derivatives
   dL <- dLdt(t, y, pars, 1)
-  if(pars$nVectors > 1)
-    for(s in 1:pars$nVectors)
+  if(pars$nVectorSpecies > 1)
+    for(s in 1:pars$nVectorSpecies)
       dL <- c(dL, dLdt(t, y, pars, s))
 
   return(list(c(dL)))
