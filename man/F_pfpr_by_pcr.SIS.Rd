@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SIS.R
 \name{F_pfpr_by_pcr.SIS}
 \alias{F_pfpr_by_pcr.SIS}
-\title{Compute the prevalence of infection by PCR}
+\title{Compute \emph{Pf}PR by PCR}
 \usage{
 \method{F_pfpr_by_pcr}{SIS}(vars, Xpar)
 }
@@ -15,5 +15,5 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_pfpr} for the SIS model.
+Implements \link{F_prevalence} for the SIS model.
 }

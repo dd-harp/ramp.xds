@@ -284,8 +284,8 @@ F_ni.SIS <- function(vars, Xpar) {
   return(pr)
 }
 
-#' @title Compute the "true" prevalence of infection / parasite rate
-#' @description Implements [F_pfpr] for the SIS model.
+#' @title Compute the prevalence of infection 
+#' @description Implements [F_prevalence] for the SIS model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export
@@ -294,8 +294,8 @@ F_prevalence.SIS <- function(vars, Xpar) {
   return(pr)
 }
 
-#' @title Compute the prevalence of infection by light microscopy
-#' @description Implements [F_pfpr] for the SIS model.
+#' @title Compute *Pf*PR by light microscopy
+#' @description Implements [F_prevalence] for the SIS model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export
@@ -304,8 +304,8 @@ F_pfpr_by_lm.SIS <- function(vars, Xpar) {
   return(pr)
 }
 
-#' @title Compute the prevalence of infection by RDT
-#' @description Implements [F_pfpr] for the SIS model.
+#' @title Compute *Pf*PR by RDT 
+#' @description Implements [F_prevalence] for the SIS model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export
@@ -314,8 +314,8 @@ F_pfpr_by_rdt.SIS <- function(vars, Xpar) {
   return(pr)
 }
 
-#' @title Compute the prevalence of infection by PCR
-#' @description Implements [F_pfpr] for the SIS model.
+#' @title Compute *Pf*PR by PCR 
+#' @description Implements [F_prevalence] for the SIS model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export

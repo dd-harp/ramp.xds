@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SIS.R
 \name{F_pfpr_by_lm.SIS}
 \alias{F_pfpr_by_lm.SIS}
-\title{Compute the prevalence of infection by light microscopy}
+\title{Compute \emph{Pf}PR by light microscopy}
 \usage{
 \method{F_pfpr_by_lm}{SIS}(vars, Xpar)
 }
@@ -15,5 +15,5 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_pfpr} for the SIS model.
+Implements \link{F_prevalence} for the SIS model.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SIS.R
 \name{F_prevalence.SIS}
 \alias{F_prevalence.SIS}
-\title{Compute the "true" prevalence of infection / parasite rate}
+\title{Compute the prevalence of infection}
 \usage{
 \method{F_prevalence}{SIS}(vars, Xpar)
 }
@@ -15,5 +15,5 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_pfpr} for the SIS model.
+Implements \link{F_prevalence} for the SIS model.
 }
