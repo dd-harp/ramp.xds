@@ -106,6 +106,15 @@ reference:
   contents:
   - dLdt.trivial
   - dLdt.basicL
+- subtitle: Other Variables 
+  desc: |
+    Compute the derivatives for other variables 
+  contents:
+  - dVdt
+  - dVdt.setup
+  - setup_Vix
+  - setup_other_variables
+  - add_variable 
 - subtitle: Interface
   desc: |
     Functions that compute dynamical terms and exogenous variables
