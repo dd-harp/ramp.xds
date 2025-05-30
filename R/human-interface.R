@@ -11,7 +11,7 @@
 #' @param y state vector
 #' @param pars an **`xds`** object
 #' @param i the host species index
-#' @return the derivatives as a [numeric] vector
+#' @return the derivatives, a [numeric] vector 
 #' @export
 dXdt <- function(t, y, pars, i) {
   UseMethod("dXdt", pars$Xpar[[i]])
@@ -216,38 +216,38 @@ F_ni <- function(vars, Xpar) {
 #' @param Xpar a list defining a model for human
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr <- function(vars, Xpar) {
-  UseMethod("F_pr", Xpar)
+F_prevalence <- function(vars, Xpar) {
+  UseMethod("F_prevalence", Xpar)
 }
 
 #' @title Compute the prevalence of infection by light microscopy
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`
-#' @inheritParams F_pr
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_lm <- function(vars, Xpar) {
-  UseMethod("F_pr", Xpar)
+F_pfpr_by_lm <- function(vars, Xpar) {
+  UseMethod("F_prevalence", Xpar)
 }
 
 #' @title Compute the prevalence of infection by RDT
 #' @description A function that translates the state variables into
 #' the predicted *Pf*PR by rapid diagnostic test (RDT)
-#' @inheritParams F_pr
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_rdt <- function(vars, Xpar) {
-  UseMethod("F_pr", Xpar)
+F_pfpr_by_rdt <- function(vars, Xpar) {
+  UseMethod("F_prevalence", Xpar)
 }
 
 #' @title Compute infection prevalence by PCR
 #' @description A function that translates the state variables into
 #' the predicted *Pf*PR by PCR
 #' @note This method dispatches on the type of `pars$Xpar[[i]]`.
-#' @inheritParams F_pr
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr_by_pcr <- function(vars, Xpar) {
-  UseMethod("F_pr", Xpar)
+F_pfpr_by_pcr <- function(vars, Xpar) {
+  UseMethod("F_prevalence", Xpar)
 }
 
 

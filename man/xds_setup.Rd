@@ -106,8 +106,8 @@ a properly configured interface for blood feeding and egg laying, and \code{pars
 \item \code{nPatches} is passed as a parameter
 \item \code{nHabitats} is configured by passing the habitat \code{membership} vector, and \code{nHabitats = length(membership)}
 \item \code{nStrata} is configured by passing a vector of human population densities and a residence vector, and \code{nStrata = length(residence) = length(HPop)}
-\item \code{nHosts=1} (basic setup handles only the first host species)
-\item \code{nVectors=1} (basic setup handles only the first vector species)
+\item \code{nHostSpecies=1} (basic setup handles only the first host species)
+\item \code{nVectorSpecies=1} (basic setup handles only the first vector species)
 }
 }
 

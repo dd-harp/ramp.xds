@@ -74,20 +74,20 @@ Update_Xt.trivial <- function(t, y, pars, i) {
 }
 
 #' @title Compute the "true" prevalence of infection / parasite rate
-#' @description Implements [F_pr] for the trivial model.
-#' @inheritParams F_pr
+#' @description Implements [F_prevalence] for the trivial model.
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector numeric(0)
 #' @export
-F_pr.trivial <- function(vars, Xpar) {
+F_prevalence.trivial <- function(vars, Xpar) {
   return(numeric(0))
 }
 
 #' @title Compute the prevalence of infection by light microscopy
-#' @description Implements [F_pr] for the trivial model.
-#' @inheritParams F_pr
+#' @description Implements [F_prevalence] for the trivial model.
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector numeric(0)
 #' @export
-F_pr_by_lm.trivial <- function(vars, Xpar) {
+F_pfpr_by_lm.trivial <- function(vars, Xpar) {
   return(numeric(0))
 }
 
@@ -102,21 +102,21 @@ xde_steady_state_X.trivial = function(foi, H, Xpar){with(Xpar,{
 
 
 #' @title Compute the prevalence of infection by RDT
-#' @description Implements [F_pr] for the trivial model.
-#' @inheritParams F_pr
+#' @description Implements [F_prevalence] for the trivial model.
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector numeric(0)
 #' @export
-F_pr_by_rdt.trivial <- function(vars, Xpar) {
+F_pfpr_by_rdt.trivial <- function(vars, Xpar) {
   return(numeric(0))
 }
 
 
 #' @title Compute the prevalence of infection by PCR
-#' @description Implements [F_pr] for the trivial model.
-#' @inheritParams F_pr
+#' @description Implements [F_prevalence] for the trivial model.
+#' @inheritParams F_prevalence
 #' @return a [numeric] vector numeric(0)
 #' @export
-F_pr_by_pcr.trivial <- function(vars, Xpar) {
+F_pfpr_by_pcr.trivial <- function(vars, Xpar) {
   return(numeric(0))
 }
 

@@ -170,3 +170,25 @@ xds_flatten <- function(vars){
 }
 
 
+#' Print for xds_objects
+#'
+#' @inheritParams base::print
+#'  
+#' @returns a description of the model
+#' @export
+print.xds_obj = function(x, ...){
+  print("HUMAN / HOST",  quote=FALSE)
+  print(c("# Species:   ", x$nHostSpecies), quote=FALSE)
+  print("",  quote=FALSE)
+  print(c("X Module:    ", x$Xname), quote=FALSE)
+  print(c("# Strata:    ", x$nStrata), quote=FALSE)
+  print("",  quote=FALSE)
+  print("VECTORS",  quote=FALSE)
+  print(c("# Species:    ", x$nVectorSpecies), quote=FALSE)
+  print("",  quote=FALSE)
+  print(c("MYZ Module:  ", x$MYZname), quote=FALSE)
+  print(c("# Patches:   ", x$nPatches), quote=FALSE)
+  print("",  quote=FALSE)
+  print(c("L Module:    ", x$Lname), quote=FALSE)
+  print(c("# Habitats:  ", x$nHabitats), quote=FALSE)
+}

@@ -31,7 +31,7 @@ Exposure <- function(t, y, pars){
 #' @return an **`xds`** object
 #' @export
 Exposure.xde <- function(t, y, pars){
-  for(i in 1:pars$nHosts){
+  for(i in 1:pars$nHostSpecies){
     trv = pars$time_traveling[[i]]
     travelEIR = travel_eir(t, pars, i)
     b = as.vector(F_b(y, pars, i))
@@ -59,7 +59,7 @@ Exposure.xde <- function(t, y, pars){
 #' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [travel_eir] & [traveling]
 #' @export
 Exposure.dts <- function(t, y, pars){
-  for(i in 1:pars$nHosts){
+  for(i in 1:pars$nHostSpecies){
     trv = pars$time_traveling[[i]]
     travelEIR = travel_eir(t, pars, i)*pars$Xday
     b = as.vector(F_b(y, pars, i))

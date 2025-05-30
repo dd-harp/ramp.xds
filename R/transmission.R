@@ -67,9 +67,9 @@ compute_beta = function(H, W, wts_f, TaR){
 #' @return an `xds` object
 #' @export
 make_beta <- function(t, y, pars){
-  for(i in 1:pars$nHosts){
+  for(i in 1:pars$nHostSpecies){
     H = F_H(t, y, pars, i)
-    for(s in 1:pars$nVectors){
+    for(s in 1:pars$nVectorSpecies){
       W = pars$vars$W[[s]]
       wts = pars$BFpar$search_weights[[s]][[i]]
       TaR = pars$TaR[[s]][[i]]
@@ -103,15 +103,15 @@ compute_EIR <- function(fqZ, beta, local_frac) {
 #' @export
 make_EIR <- function(t, y, pars){
 
-  for(i in 1:pars$nHosts){
+  for(i in 1:pars$nHostSpecies){
     fqZ <- F_fqZ(t, y, pars, 1)
     beta <- pars$beta[[1]][[i]]
     lf <- pars$vars$local_frac[[1]]
 
     pars$EIR[[i]] <- compute_EIR(fqZ, beta, lf)
 
-    if(pars$nVectors > 1)
-      for(s in 2:pars$nVectors){
+    if(pars$nVectorSpecies > 1)
+      for(s in 2:pars$nVectorSpecies){
         fqZ <- F_fqZ(t, y, pars, 1)
         beta <- pars$beta[[s]][[i]]
         lf <- pars$vars$local_frac[[s]]
@@ -131,7 +131,7 @@ make_EIR <- function(t, y, pars){
 #' @export
 make_EIR_full <- function(t, y, pars){
 
-  for(i in 1:pars$nHosts){
+  for(i in 1:pars$nHostSpecies){
     fqZ <- F_fqZ(t, y, pars, 1)
     beta <- pars$beta[[1]][[i]]
     lf <- pars$vars$local_frac[[1]]
@@ -140,7 +140,7 @@ make_EIR_full <- function(t, y, pars){
     pars$EIR[[i]] <- eir
     s = length(pars$MYZpar)
     if(s>1)
-      for(s in 2:pars$nVectors){
+      for(s in 2:pars$nVectorSpecies){
         fqZ <- F_fqZ(t, y, pars, s)
         beta <- pars$beta[[s]][[i]]
         lf <- pars$vars$local_frac[[s]]
@@ -177,7 +177,7 @@ compute_kappa <- function(Wi, W, beta, X) {
 #' @return an `xds` object
 #' @export
 make_kappa <- function(t, y, pars){
-  for(s in 1:pars$nVectors){
+  for(s in 1:pars$nVectorSpecies){
     Wi = pars$vars$Wi[[s]][[1]]
     W = pars$vars$W[[s]]
     beta = pars$beta[[s]][[1]]
@@ -185,8 +185,8 @@ make_kappa <- function(t, y, pars){
 
     kappa <- compute_kappa(Wi, W, beta, X)
 
-    if(pars$nHosts>1)
-      for(i in 2:pars$nHosts){
+    if(pars$nHostSpecies>1)
+      for(i in 2:pars$nHostSpecies){
         beta = pars$beta[[s]][[i]]
         Wi = pars$vars$Wi[[s]][[i]]
         W = pars$vars$W[[s]]
@@ -220,7 +220,7 @@ compute_local_frac <- function(W, Visitors){
 #' @return an `xds` object
 #' @export
 make_local_frac <- function(pars){with(pars$vars,{
-  for(s in 1:pars$nVectors){
+  for(s in 1:pars$nVectorSpecies){
     pars$vars$local_frac[[s]] = compute_local_frac(W[[s]], visitors[[s]])
   }
   return(pars)
