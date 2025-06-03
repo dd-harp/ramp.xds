@@ -684,6 +684,7 @@ reference:
     Methods for the human demography and aging
   contents:
   - dHdt
+  - dAdt
   - setup_Hpar_static
   - Births
   - make_parameters_demography_null
@@ -692,6 +693,7 @@ reference:
   - Births.static
   - setup_births_static
   - dHdt.matrix
+  - dAdt.matrix
   - setup_Hmatrix
 - title: Imported Malaria
   desc: |

@@ -8,6 +8,15 @@ dHdt.zero <- function(t, y, Hpar){
   0*y
 }
 
+#' @title Compute Demographic Changes
+#' @description Return a vector of zeros
+#' @inheritParams dHdt
+#' @return a [numeric] vector of 0s
+#' @export
+dAdt.zero <- function(t, y, Hpar){
+  0*y
+}
+
 #' @title Derivatives of demographic changes in human populations
 #' @description Implements [dHdt] when `y` is static
 #' @inheritParams dHdt
@@ -16,6 +25,16 @@ dHdt.zero <- function(t, y, Hpar){
 dHdt.matrix <- function(t, y, Hpar){
   Hpar$Hmatrix %*% y
 }
+
+#' @title Derivatives of demographic changes in human populations
+#' @description Implements [dHdt] when `y` is static
+#' @inheritParams dHdt
+#' @return a [numeric] vector of 0s
+#' @export
+dAdt.matrix <- function(t, y, Hpar){
+  Hpar$Amatrix %*% y
+}
+
 
 #' @title Setup a matrix for `dHdt`
 #' @description A demographic matrix should be a
@@ -33,6 +52,7 @@ setup_Hmatrix <- function(pars, i, Hmatrix) {
   dH <- list()
   class(dH) <- "matrix"
   dH$Hmatrix <- Hmatrix
+  dH$Amatrix <- Hmatrix
   pars$Hpar[[1]]$dH <- dH
 
   return(pars)
