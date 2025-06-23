@@ -244,10 +244,10 @@ make_function.sharkfin = function(opts){
 
 #' @title Make Parameters for a Sharkfin Function
 #' @description Return an object for [make_function.sharkfin]
-#' @param D the half-saturation day
-#' @param L shape parameter
-#' @param uk the rate parameter for
-#' @param dk the length of the vector to return
+#' @param D the half-saturation day for scale-up
+#' @param L the half-saturation day for decay 
+#' @param uk shape parameter for scale-up
+#' @param dk shape parameter for decay 
 #' @param pw shape parameter, power
 #' @param mx a maximum value
 #' @param N the length of the vector to return
