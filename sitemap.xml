@@ -222,6 +222,9 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/create_calK_xy.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/create_habitat_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/create_residence_matrix.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/dAdt.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/dAdt.matrix.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/dAdt.zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dHdt.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dHdt.matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dHdt.zero.html</loc></url>
@@ -384,6 +387,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.splineX.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.splinef.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.sum.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.type2.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_indices.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_kappa.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_local_frac.html</loc></url>
@@ -403,6 +407,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_sin.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_spline.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_sum.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_type2.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/metric_calD.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/metric_calR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/metric_calV.html</loc></url>
