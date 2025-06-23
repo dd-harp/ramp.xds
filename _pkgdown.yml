@@ -879,6 +879,8 @@ reference:
   - makepar_F_sigmoid
   - make_function.sharkfin
   - makepar_F_sharkfin
+  - make_function.type2
+  - makepar_F_type2
   - make_function.splinef
   - make_function.splineX
   - make_function.spline2
