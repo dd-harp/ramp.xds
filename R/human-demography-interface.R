@@ -89,6 +89,7 @@ make_parameters_demography_null <- function(pars, H) {
   dH <- "zero"
   class(dH) <- "zero"
   Hpar$dH <- dH
+  Hpar$dA <- dH
 
   pars$Hpar[[1]] <- Hpar
 

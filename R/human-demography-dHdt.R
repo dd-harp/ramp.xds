@@ -10,7 +10,7 @@ dHdt.zero <- function(t, y, Hpar){
 
 #' @title Compute Demographic Changes
 #' @description Return a vector of zeros
-#' @inheritParams dHdt
+#' @inheritParams dAdt
 #' @return a [numeric] vector of 0s
 #' @export
 dAdt.zero <- function(t, y, Hpar){
@@ -27,8 +27,8 @@ dHdt.matrix <- function(t, y, Hpar){
 }
 
 #' @title Derivatives of demographic changes in human populations
-#' @description Implements [dHdt] when `y` is static
-#' @inheritParams dHdt
+#' @description Implements [dAdt] when `y` is static
+#' @inheritParams dAdt
 #' @return a [numeric] vector of 0s
 #' @export
 dAdt.matrix <- function(t, y, Hpar){
