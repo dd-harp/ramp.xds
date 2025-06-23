@@ -17,5 +17,5 @@
 a \link{numeric} vector of 0s
 }
 \description{
-Implements \link{dHdt} when \code{y} is static
+Implements \link{dAdt} when \code{y} is static
 }

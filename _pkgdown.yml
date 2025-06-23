@@ -690,6 +690,7 @@ reference:
   - make_parameters_demography_null
   - Births.zero
   - dHdt.zero
+  - dAdt.zero
   - Births.static
   - setup_births_static
   - dHdt.matrix
