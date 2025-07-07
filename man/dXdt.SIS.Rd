@@ -24,9 +24,11 @@ and it is computed in an equivalent form:
 \deqn{
 \begin{array}{rl}
 dH/dt = & B(t,H)  + {\cal D} \cdot H \\
-dI/dt = & h (H-I) - r I + {\cal D} \cdot I
+dI/dt = & h (H-I) - r I - \xi(t) + {\cal D} \cdot I
 \end{array}
 }
-where \eqn{S=H-I} ; \eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{\cal D} is a matrix describing demographic changes,
-including mortality, migration, and aging.
+where \eqn{S=H-I} ;
+\eqn{\xi(t)} is a function to simulate mass treatment;
+\eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{\cal D} is a matrix describing demographic changes,
+including mortality, migration, and aging;
 }

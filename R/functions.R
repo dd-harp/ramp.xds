@@ -159,7 +159,6 @@ makepar_F_sigmoid = function(k=1/7, D=100, Tl=0, N=1){
   return(pars)
 }
 
-
 #' @title Make a Function that is the sum of Two other Functions
 #' @description Build a function that is the sum of two
 #' other functions.
@@ -216,6 +215,34 @@ makepar_F_product = function(opts1, opts2){
   return(pars)
 }
 
+#' @title Make a Sinusoidal Function
+#' @description Build a function that is the
+#' product of two other functions
+#' @inheritParams make_function
+#' @return a function that is the product of two other functions
+#' @export
+make_function.nproduct = function(opts){
+  F1 = make_function(opts$opts1)
+  F2 = make_function(opts$opts2)
+  F3 = function(t){1-(1-F1(t))*(1-F2(t))}
+  return(F3)
+}
+
+#' @title parameters for make_function
+#' @description Return an object to configure
+#' a function [make_function.product]
+#' @param opts1 options for first function
+#' @param opts2 options for second function
+#' @return a function
+#' @export
+makepar_F_nproduct = function(opts1, opts2){
+  pars <- list()
+  class(pars) <- "nproduct"
+  pars$opts1 <- opts1
+  pars$opts2 <- opts2
+  return(pars)
+}
+
 #' @title Make a Sharkfin Function
 #' @description A sharkfin function is built in steps:
 #' 1. take the product of two sigmoidal functions
@@ -228,7 +255,8 @@ makepar_F_product = function(opts1, opts2){
 #' @return a function
 #' @export
 make_function.sharkfin = function(opts){
-  siggy <- function(t, k, D){exp(-k*(t-D))/(1+exp(-k*(t-D)))}
+  siggy <- function(t, k=1, D=1){
+    x = pmax(pmin(k*(t-D),80),-80); exp(-x)/(1+exp(-x))}
   opts$normit = opts$mx
   for(i in 1:opts$N){
     F1 = with(opts,function(t){((1-siggy(t, uk[i], D[i]))*siggy(t,dk[i],D[i]+L[i]))^pw[i]})

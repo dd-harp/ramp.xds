@@ -875,6 +875,8 @@ reference:
   - makepar_F_sum
   - make_function.product
   - makepar_F_product
+  - make_function.nproduct
+  - makepar_F_nproduct
   - make_function.sigmoid
   - makepar_F_sigmoid
   - make_function.sharkfin
