@@ -7,11 +7,13 @@
 #' \deqn{
 #' \begin{array}{rl}
 #' dH/dt = & B(t,H)  + {\cal D} \cdot H \\
-#' dI/dt = & h (H-I) - r I + {\cal D} \cdot I
+#' dI/dt = & h (H-I) - r I - \xi(t) + {\cal D} \cdot I
 #' \end{array}
 #' }
-#' where \eqn{S=H-I} ; \eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{\cal D} is a matrix describing demographic changes,
-#' including mortality, migration, and aging.
+#' where \eqn{S=H-I} ; 
+#' \eqn{\xi(t)} is a function to simulate mass treatment;
+#' \eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{\cal D} is a matrix describing demographic changes,
+#' including mortality, migration, and aging; 
 #' @inheritParams dXdt
 #' @return a [numeric] vector
 #' @export
@@ -22,7 +24,7 @@ dXdt.SIS <- function(t, y, pars, i) {
   with(list_Xvars(y, pars, i),{
     with(pars$Xpar[[i]], {
       dH <- Births(t, H, Hpar) + dHdt(t, H, Hpar)
-      dI <- foi*(H-I) - r*I + dHdt(t, I, Hpar)
+      dI <- foi*(H-I) - r*I - F_treat(t)/H*I + dHdt(t, I, Hpar)
       return(c(dH, dI))
     })
   })
@@ -97,6 +99,7 @@ make_Xpar_SIS = function(nStrata, Xopts=list(),
     Xpar$b = checkIt(b, nStrata)
     Xpar$c = checkIt(c, nStrata)
     Xpar$r = checkIt(r, nStrata)
+    Xpar$F_treat = F_zero 
 
     return(Xpar)
   })}

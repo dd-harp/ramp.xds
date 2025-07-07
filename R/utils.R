@@ -173,9 +173,10 @@ xds_flatten <- function(vars){
 #' Print for xds_objects
 #'
 #' @inheritParams base::print
-#'  
+#' @rdname print 
 #' @returns a description of the model
-#' @export
+#' @export print.xds_obj
+#' @export 
 print.xds_obj = function(x, ...){
   print("HUMAN / HOST",  quote=FALSE)
   print(c("# Species:   ", x$nHostSpecies), quote=FALSE)
