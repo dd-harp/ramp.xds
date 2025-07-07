@@ -31,6 +31,7 @@ setup_Hpar_static = function(pars, i){
   dH <- "zero"
   class(dH) <- "zero"
   Hpar$dH <- dH
+  Hpar$dA <- dH
 
   pars$Hpar[[i]] <- Hpar
   return(pars)
@@ -46,6 +47,17 @@ setup_Hpar_static = function(pars, i){
 #' @export
 dHdt <- function(t, y, Hpar){
   UseMethod("dHdt", Hpar$dH)
+}
+
+#' @title An Aging Matrix
+#' @description This method dispatches on the type of pars$Hpar$dH
+#' @param t current simulation time
+#' @param y state vector
+#' @param Hpar a [list]
+#' @return see help pages for specific methods
+#' @export
+dAdt <- function(t, y, Hpar){
+  UseMethod("dAdt", Hpar$dA)
 }
 
 #' @title A function that computes the birth rate for human populations
@@ -77,6 +89,7 @@ make_parameters_demography_null <- function(pars, H) {
   dH <- "zero"
   class(dH) <- "zero"
   Hpar$dH <- dH
+  Hpar$dA <- dH
 
   pars$Hpar[[1]] <- Hpar
 

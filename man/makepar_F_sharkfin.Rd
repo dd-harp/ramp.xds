@@ -15,13 +15,13 @@ makepar_F_sharkfin(
 )
 }
 \arguments{
-\item{D}{the half-saturation day}
+\item{D}{the half-saturation day for scale-up}
 
-\item{L}{shape parameter}
+\item{L}{the half-saturation day for decay}
 
-\item{uk}{the rate parameter for}
+\item{uk}{shape parameter for scale-up}
 
-\item{dk}{the length of the vector to return}
+\item{dk}{shape parameter for decay}
 
 \item{pw}{shape parameter, power}
 
