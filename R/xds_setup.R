@@ -441,21 +441,25 @@ xds_setup_cohort = function(eir=1,
   pars$EIRpar <- list()
   pars$EIRpar$eir <- eir
   pars$EIRpar$scale <- 1
+  
   pars$EIRpar$F_season <- F_season
   pars$EIRpar$season_par <- season_par
   if(length(season_par)>0){
     pars$EIRpar$F_season <- make_function(season_par)
   } 
+  
   pars$EIRpar$F_trend <- F_trend
   pars$EIRpar$trend_par <- trend_par
   if(length(trend_par)>0){
     pars$EIRpar$F_trend <- make_function(trend_par) 
   }
+  
   pars$EIRpar$F_age <- F_age
   pars$EIRpar$age_par <- age_par
   if(length(age_par)>0){
     pars$EIRpar$F_age <- make_function(age_par) 
   } 
+  
   pars <- set_eir(eir, pars)
 
   # Aquatic Mosquito Dynamics

@@ -685,14 +685,17 @@ reference:
     Methods for the human demography and aging
   contents:
   - dHdt
+  - dAdt
   - setup_Hpar_static
   - Births
   - make_parameters_demography_null
   - Births.zero
   - dHdt.zero
+  - dAdt.zero
   - Births.static
   - setup_births_static
   - dHdt.matrix
+  - dAdt.matrix
   - setup_Hmatrix
 - title: Imported Malaria
   desc: |
@@ -879,6 +882,8 @@ reference:
   - makepar_F_sigmoid
   - make_function.sharkfin
   - makepar_F_sharkfin
+  - make_function.type2
+  - makepar_F_type2
   - make_function.splinef
   - make_function.splineX
   - make_function.spline2
