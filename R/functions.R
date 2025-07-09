@@ -159,6 +159,7 @@ makepar_F_sigmoid = function(k=1/7, D=100, Tl=0, N=1){
   return(pars)
 }
 
+
 #' @title Make a Function that is the sum of Two other Functions
 #' @description Build a function that is the sum of two
 #' other functions.

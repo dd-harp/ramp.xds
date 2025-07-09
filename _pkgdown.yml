@@ -72,6 +72,7 @@ reference:
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_cohort
+  - xds_setup_eir
   - make_xds_template
   - print.xds_obj
 - subtitle: Solve and Analyze

@@ -488,3 +488,105 @@ xds_setup_cohort = function(eir=1,
 
   return(pars)
 }
+
+#' @title Make an **`xds`** Object to Study Malaria Epidemiology
+#' 
+#' @description A modified version of [xds_setup] to setup up 
+#' studies of malaria epidemiology, defined in a narrow sense, to
+#' examine patterns in populations forced by the EIR. 
+#'
+#' The **`xds`** object defines `frame = class(frame) = 'cohort'` but there
+#' is no `cohort` case for [xds_solve]. Instead, cohort
+#' dynamics are studied using [xds_solve_eir], which was designed
+#' to compare the outcomes for cohorts of different ages when exposure is
+#' changing.
+#'
+#' The interface includes options to configure a function
+#' describing `F_eir` as a function of time, with seasonal components
+#' and a trend. Exposure in a cohort is a function of its age, including
+#' a function that modifies exposure by age. Models set up 
+#' with [xds_setup_eir] are like models set up with 
+#' [xds_setup_cohort], but they lack a function to model exposure by 
+#' age.  
+#'
+#' @seealso [xds_setup] and [xds_setup_human] and [xds_solve_eir]
+#'
+#' @param eir is the entomological inoculation rate
+#' @param F_season a function describing a seasonal pattern over time
+#' @param season_par parameters to configure a seasonality function using [make_function]
+#' @param F_trend a function describing a temporal trend over time
+#' @param trend_par parameters to configure a trends function using [make_function]
+#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
+#' @param Xname is a character string specifying an **X** Component module
+#' @param Xopts a list to configure the **X** Component module
+#' @param Xday is the run-time time step for **X** Component (in days): integer or 1/integer
+#' @param HPop is the number of humans in each stratum
+#' @param searchB is a vector of search weights for blood feeding
+#' @param model_name is a name for the model (arbitrary)
+#' @return an **`xds`** object
+#' @export
+xds_setup_eir = function(eir=1,
+                            F_season = F_flat, season_par = list(),
+                            F_trend = F_flat, trend_par = list(),
+                            F_age = F_flat, age_par = list(),
+                            xds = 'ode',
+
+                            # Dynamical Components
+                            Xname = "SIS",
+                            Xopts = list(),
+                            Xday = 1,
+
+                            # Model Structure
+                            HPop=1000,
+                            searchB = 1,
+
+                            # Human Strata / Options
+                            model_name = "unnamed"
+){
+  nPatches = length(HPop)
+  residence = rep(1, length(HPop))
+  membership = 1
+  pars <- make_xds_template('ode', 'cohort', nPatches, membership, residence)
+  pars <- make_runtime(pars, Xday, 1, 1, "trivial")
+  class(pars$compute) <- "na"
+
+  pars$EIRpar <- list()
+  pars$EIRpar$eir <- eir
+  pars$EIRpar$scale <- 1
+  pars$EIRpar$F_season <- F_season
+  pars$EIRpar$season_par <- season_par
+  if(length(season_par)>0){
+    pars$EIRpar$F_season <- make_function(season_par)
+  } 
+  pars$EIRpar$F_trend <- F_trend
+  pars$EIRpar$trend_par <- trend_par
+  if(length(trend_par)>0){
+    pars$EIRpar$F_trend <- make_function(trend_par) 
+  }
+
+  # Aquatic Mosquito Dynamics
+  pars       <- setup_Lpar("trivial", pars, 1, list())
+  pars       <- setup_Linits(pars, 1)
+
+  # Adult Mosquito Dynamics
+  pars           <- setup_MYZpar("trivial", pars, 1, list())
+
+  # Human Dynamics
+  pars$Xname <- Xname
+  pars       <- setup_Xpar(Xname, pars,  1, Xopts)
+  pars       <- setup_Xinits(pars, HPop, 1, Xopts)
+  pars       <- setup_Hpar_static(pars, 1)
+
+  pars = make_indices(pars)
+
+  wts        <- checkIt(searchB, pars$nStrata)
+  pars       <- change_blood_weights(pars, wts, 1, 1)
+
+  # Probably Not Necessary
+  y0 <- as.vector(unlist(get_inits(pars)))
+  pars <- BloodFeeding(0, y0, pars)
+
+  pars$model_name <- model_name
+
+  return(pars)
+}
