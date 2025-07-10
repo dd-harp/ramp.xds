@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_human}
 \alias{xds_setup_human}
-\title{Make an \strong{\code{xds}} Object to Study Human / Host Epidemiology}
+\title{Build a Model of Human / Host Epidemiology}
 \usage{
 xds_setup_human(
   Xname = "SIS",
@@ -48,6 +48,8 @@ xds_setup_human(
 an \strong{\code{xds}} object
 }
 \description{
+\loadmathjax
+
 A modified version of \link{xds_setup} that
 streamlines setup for models with a trival \strong{MYZ} Component.
 

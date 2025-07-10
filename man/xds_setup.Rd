@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup}
 \alias{xds_setup}
-\title{Basic Setup: Make a Fully Defined \strong{\code{xds}} Object}
+\title{Build a Model with All Components}
 \usage{
 xds_setup(
   xds = "ode",
@@ -72,25 +72,26 @@ xds_setup(
 an \strong{\code{xds}} object
 }
 \description{
+\loadmathjax
 Make an \strong{\code{xds}} \emph{model object}:
 \itemize{
 \item Define the dynamical components:
 \itemize{
-\item \strong{X} Component modules for human / host infection dynamics of class \strong{\code{Xname}} with trivial demographics
-\item \strong{MYZ} Component modules for adult mosquito ecology and infection dynamics of class \strong{\code{MYZname}}
+\item \strong{XH} - Component modules for human / host infection dynamics of class \strong{\code{Xname}} with trivial demographics
+\item \strong{MYZ} - Component modules for adult mosquito ecology and infection dynamics of class \strong{\code{MYZname}}
 \item \strong{L} Component modules for aquatic mosquito ecology of class \strong{\code{Lname}}
 }
 \item Define basic structural parameters for a single host and vector population:
 \itemize{
 \item \eqn{n_p} or \code{nPatches} - the number of patches
-\item \eqn{n_q} or \code{nHabitats = length(membership)} - the number and locations of aquatic habitats
+\item \eqn{n_q} or \code{nHabitats = length(membership)} - the numer and locations of aquatic habitats
 \item \eqn{n_h} or \code{nStrata = length(residence)} - the number of human / host population strata and basic demographic information
 }
 \item Configure some of the basic elements
 \itemize{
 \item Search weights for human population strata
 \item Search weights for aquatic habitats
-\item The mosquito dispersal matrix, \eqn{\cal K}
+\item The mosquito dispersal matrix, \eqn{K}
 \item The time spent matrix \eqn{\Theta}
 }
 \item Configure runtime parameters for discrete-time systems

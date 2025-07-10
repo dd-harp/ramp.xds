@@ -23,29 +23,24 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a>
     <a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a>
-    <a class="dropdown-item" href="../articles/Working.html">Working with Models</a>
-    <a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a>
-    <a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     <a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a>
-    <a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a>
-    <a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a>
     <a class="dropdown-item" href="../articles/Exposure.html">Exposure</a>
     <a class="dropdown-item" href="../articles/Contributing.html">Contributing</a>
   </div>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-mosquito-adult">Mosquito - Adult</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-adult-mosquitoes">Adult Mosquitoes</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
     <a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a>
     <a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a>
     <a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
   </div>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-mosquito-aquatic">Mosquito - Aquatic</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-    <a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
-    <a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a>
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-immature-mosquitoes">Immature Mosquitoes</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+    <a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a>
+    <a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a>
   </div>
 </li>
 <li class="nav-item dropdown">
@@ -111,14 +106,14 @@
 to guarantee mathematical consistency for egg laying and emergence.
 The interface is defined by an object called <code>EGGpar</code> that is
 attached to the <code>xds</code> object <code>pars</code> as <code>pars$EGGpar</code>.
-The interface includes</p><ul><li><p>a habitat membership matrix, \(\cal N\) made by <a href="create_habitat_matrix.html">create_habitat_matrix</a></p></li>
+The interface includes</p><ul><li><p>a habitat membership matrix, \(N\) made by <a href="create_habitat_matrix.html">create_habitat_matrix</a></p></li>
 <li><p>the habitat search weights</p></li>
 <li><p>a quantity that is motivated by mosquito searching for resources, called
 habitat availability \(Q\) made by <a href="compute_Q.html">compute_Q</a>;</p></li>
 <li><p>the availability of ovitraps</p></li>
 <li><p>the availability of unsuitable habitats</p></li>
 <li><p>the availability of anything that is like a habitat, but that is an aquatic habitat in the model, including ovitraps and unsuitable habitats, \(Q_{tot}\) made by <a href="compute_Qtot.html">compute_Qtot</a>;</p></li>
-<li><p>the egg distribution matrix \(\cal U\), made by <a href="compute_calU.html">compute_calU</a></p></li>
+<li><p>the egg distribution matrix \(U\), made by <a href="compute_Umatrix.html">compute_Umatrix</a></p></li>
 <li><p>a vector that stores eggs laid</p></li>
 </ul><p>This function is called by <code>make_xds_template</code> to set up <code>EGGpar</code> and the variables and parameters with all
 the variables it might depend on.</p>

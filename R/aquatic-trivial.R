@@ -1,6 +1,6 @@
 # specialized methods for the aquatic mosquito trivial model
 
-#' @title Derivatives for `trivial` (**L** Component)
+#' @title Handle derivatives for the `trivial` **L** module 
 #' @description Return a numeric vector of length 0
 #' @inheritParams dLdt
 #' @return an empty [list]

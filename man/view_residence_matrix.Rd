@@ -15,7 +15,7 @@ view_residence_matrix(pars, i = 1)
 a named \link{list}
 }
 \description{
-Shows the residence membership information from \eqn{\cal J}
+Shows the residence membership information (from the residence matrix)
 }
 \seealso{
 \link{create_residence_matrix}

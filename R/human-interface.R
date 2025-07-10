@@ -1,11 +1,10 @@
 # generic methods for human component
 
-#' @title Compute Derivatives for an \eqn{\cal X} - Component Model
+#' @title Compute Derivatives for the **X** Component 
 #' @description Compute and return the derivatives
-#' for a model of class \eqn{\cal X} - the dynamics of infection and
-#' immunity in humans or other vertebrate host.
+#' for an **X**-Component module. 
 #'
-#' The function dispatches on `class(Xpar).`
+#' @note The function dispatches on `class(Xpar[[i]]).`
 #'
 #' @param t current simulation time
 #' @param y state vector
@@ -17,8 +16,9 @@ dXdt <- function(t, y, pars, i) {
   UseMethod("dXdt", pars$Xpar[[i]])
 }
 
-#' @title Make Parameters for a \eqn{cal X} - Component Model
-#' @description Make the parameters - `Xpar` - for a \eqn{cal X} - Component Model
+#' @title Setup an **X** Module
+#' @description Set the parameter values and configure a model 
+#' for the **X** Component
 #' @param Xname a [character] string
 #' @param pars an **`xds`** object
 #' @param i the host species index
@@ -250,7 +250,6 @@ F_pfpr_by_pcr <- function(vars, Xpar) {
   UseMethod("F_prevalence", Xpar)
 }
 
-
 #' Basic plotting for epidemiological models
 #'
 #' @param pars an **`xds`** object
@@ -274,19 +273,19 @@ HTC <- function(pars, i) {
   UseMethod("HTC", pars$Xpar[[i]])
 }
 
-#' @title Steady States for \eqn{\cal X}-Models
+#' @title Compute Steady States for an **X**-Component Module 
 #' @description Compute the steady states as a function of the daily FoI for a
 #' static value of human population density
 #' @param foi the daily FoI
 #' @param H human / host population density
-#' @param Xpar a list that defines an \eqn{\cal X} model
+#' @param Xpar a list that defines an **X** model object
 #' @return none
 #' @export
 xde_steady_state_X = function(foi, H, Xpar){
   UseMethod("xde_steady_state_X", Xpar)
 }
 
-#' @title Steady States for \eqn{\cal XH}-Models
+#' @title Compute Steady States for an **XH**-Component Module 
 #' @description Compute the steady states as a function of the daily FoI for
 #' a model that has a steady state human / host population density
 #' @description This method dispatches on the type of `Xpar`.

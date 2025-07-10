@@ -18,19 +18,19 @@ an \code{xds} object
 }
 \description{
 In autonomous models, this function gets called once to set up a variable describing host availability (\eqn{Q}) and
-the egg distribution matrix (\eqn{\cal U}).
+the egg distribution matrix (\eqn{U}).
 }
 \details{
 If conditions are time, invariant,
 then \link{EggLaying.static} computes eggs laid. The functions that
-compute \eqn{Q} and \eqn{\cal U} are called \emph{once} after setup.
+compute \eqn{Q} and \eqn{U} are called \emph{once} after setup.
 The class of \code{EGGpar} is set to \code{static} and the function
 is never called again. If any parameters are changed that would
 affect egg laying, then the class of \code{EGGpar} should get reset to \code{setup}
-to reconfigure \eqn{Q} and \eqn{\cal U}.
+to reconfigure \eqn{Q} and \eqn{U}.
 }
 \seealso{
 For \eqn{Q}, see \link{compute_Q}
 
-For \eqn{\cal U}, see \link{compute_calU}
+For \eqn{U}, see \link{compute_Umatrix}
 }

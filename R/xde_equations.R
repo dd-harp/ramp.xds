@@ -135,3 +135,23 @@ xde_derivatives.aquatic <- function(t, y, pars) {
 
   return(list(c(dL)))
 }
+
+#' @title Differential equation models for aquatic mosquito populations
+#' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
+#' generic methods for each model component.
+#' @inheritParams xde_derivatives
+#' @return a [list] containing the vector of all state derivatives
+#' @export
+xde_derivatives.eir <- function(t, y, pars) {
+
+  # EIR: entomological inoculation rate trace
+  pars$EIR[[1]] <- pars$F_eir(t)
+  
+  # FoI: force of infection
+  pars <- Exposure(t, y, pars)
+  
+  # state derivatives
+  dX <- dXdt(t, y, pars, 1)
+  
+  return(list(c(dX)))
+}  

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-hMoI.R
 \name{dXdt.hMoI}
 \alias{dXdt.hMoI}
-\title{\strong{X} Component Derivatives for the \code{hMoI} module}
+\title{Compute Derivatives for the \code{hMoI} (\strong{X}-Model)}
 \usage{
 \method{dXdt}{hMoI}(t, y, pars, i)
 }

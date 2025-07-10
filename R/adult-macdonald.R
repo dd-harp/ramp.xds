@@ -1,7 +1,46 @@
 # specialized methods for the adult mosquito macdonald model
 
-#' @title **MYZ** Component for the `macdonald` Adult Mosquito Module
-#' @description Implements [dMYZdt] for macdonald's DDE model.
+#' @title Compute derivatives for the **MYZ** module `macdonald`
+#' @description 
+#' This implements a delay differential equation model for adult mosquito ecology and
+#' infection dynamics that is consistent with the model published by George
+#' Macdonald in 1952. A generalized version of this model, the **MYZ** module `GeRM`, 
+#' was developed to handle exogenous forcing by weather and vector control. This model
+#' should be used only for educational purposes. 
+#'
+#' **Variables:**
+#'
+#' - \eqn{M}: the density of adult mosquitoes 
+#' - \eqn{Y}: the density of infected adult mosquitoes 
+#' - \eqn{Z}: the density of infectious adult mosquitoes 
+#'
+#' **Parameters and Terms:**
+#'
+#' - \eqn{\Lambda} or `Lambda`: the emergence rate of adult mosquitoes (from `F_emerge`) 
+#' - \eqn{f} or `f`: the blood feeding rate 
+#' - \eqn{q} or `q`: maturation rate
+#' - \eqn{\tau} or `eip`: the extrinsic incubation period 
+#' - \eqn{\Omega} or `Omega`: an adult mosquito demographic matrix, including mortality and migration 
+#' - \eqn{\Upsilon} or `Upsilon`: survival and dispersal through the eip, \eqn{\Upsilon= e^{-\Omega \tau}}
+#'
+#'
+#' **Dynamics:**
+#' In the delay equation, we use the subscript to denote the lagged value of a 
+#' variable or term: *e.g.*, \eqn{M_\tau = M(t-\tau)}. 
+#' 
+#' \deqn{
+#' \begin{array}{rl}
+#' dM/dt &= \Lambda - \Omega \cdot M \\
+#' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
+#' dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Y \\
+#' \end{array}}
+#'
+#' This model was included mainly for the historical interest. It has been updated to handle
+#' exogenous forcing by weather and vector control in the module `GeRM` 
+#' 
+#' @note This model is not capable of being extended to 
+#' handle exogenous forcing by weather or vector control. Please 
+#' use the `GeRM` model. 
 #' @inheritParams dMYZdt
 #' @return a [numeric] vector
 #' @importFrom deSolve lagvalue

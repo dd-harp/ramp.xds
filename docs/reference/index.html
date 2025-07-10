@@ -23,29 +23,24 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a>
     <a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a>
-    <a class="dropdown-item" href="../articles/Working.html">Working with Models</a>
-    <a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a>
-    <a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a>
     <a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a>
-    <a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a>
-    <a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a>
     <a class="dropdown-item" href="../articles/Exposure.html">Exposure</a>
     <a class="dropdown-item" href="../articles/Contributing.html">Contributing</a>
   </div>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-mosquito-adult">Mosquito - Adult</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-adult-mosquitoes">Adult Mosquitoes</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
     <a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a>
     <a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a>
     <a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
   </div>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-mosquito-aquatic">Mosquito - Aquatic</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-    <a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a>
-    <a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a>
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-immature-mosquitoes">Immature Mosquitoes</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+    <a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a>
+    <a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a>
   </div>
 </li>
 <li class="nav-item dropdown">
@@ -85,7 +80,7 @@
       
     </div><div class="section level2">
       
-      <h3 id="build-setup">Build / Setup<a class="anchor" aria-label="anchor" href="#build-setup"></a></h3>
+      <h3 id="basic-setup">Basic Setup<a class="anchor" aria-label="anchor" href="#basic-setup"></a></h3>
       <div class="section-desc"><p>Methods to set up an <strong><code>xds</code></strong> object with basic features</p></div>
 
       
@@ -98,32 +93,32 @@
           
           <code><a href="xds_setup.html">xds_setup()</a></code> 
         </dt>
-        <dd>Basic Setup: Make a Fully Defined <strong><code>xds</code></strong> Object</dd>
+        <dd>Build a Model with All Components</dd>
       </dl><dl><dt>
           
           <code><a href="xds_setup_mosy.html">xds_setup_mosy()</a></code> 
         </dt>
-        <dd>Make an <strong><code>xds</code></strong> Object to Study Mosquito Ecology</dd>
+        <dd>Build a Model of Mosquito Ecology</dd>
       </dl><dl><dt>
           
           <code><a href="xds_setup_aquatic.html">xds_setup_aquatic()</a></code> 
         </dt>
-        <dd>Make an <strong><code>xds</code></strong> Object to Study Aquatic Mosquito Ecology</dd>
+        <dd>Build a Model of Immature Mosquito Ecology</dd>
       </dl><dl><dt>
           
           <code><a href="xds_setup_human.html">xds_setup_human()</a></code> 
         </dt>
-        <dd>Make an <strong><code>xds</code></strong> Object to Study Human / Host Epidemiology</dd>
+        <dd>Build a Model of Human / Host Epidemiology</dd>
       </dl><dl><dt>
           
           <code><a href="xds_setup_cohort.html">xds_setup_cohort()</a></code> 
         </dt>
-        <dd>Make an <strong><code>xds</code></strong> Object to Study Human / Host Cohort Dynamics</dd>
+        <dd>Build a Model of Human / Host Cohort Dynamics</dd>
       </dl><dl><dt>
           
           <code><a href="xds_setup_eir.html">xds_setup_eir()</a></code> 
         </dt>
-        <dd>Make an <strong><code>xds</code></strong> Object to Study Malaria Epidemiology</dd>
+        <dd>Build a Model for a single Human / Host Epidemiology forced by the EIR</dd>
       </dl><dl><dt>
           
           <code><a href="make_xds_template.html">make_xds_template()</a></code> 
@@ -136,7 +131,7 @@
         <dd>Print for xds_objects</dd>
       </dl></div><div class="section level2">
       
-      <h3 id="solve-and-analyze">Solve and Analyze<a class="anchor" aria-label="anchor" href="#solve-and-analyze"></a></h3>
+      <h3 id="solving-and-analysis">Solving and Analysis<a class="anchor" aria-label="anchor" href="#solving-and-analysis"></a></h3>
       <div class="section-desc"><p>Methods to solve or analyze equations</p></div>
 
       
@@ -174,12 +169,12 @@
           
           <code><a href="xde_steady_state_X.html">xde_steady_state_X()</a></code> 
         </dt>
-        <dd>Steady States for \(\cal X\)-Models</dd>
+        <dd>Compute Steady States for an <strong>X</strong>-Component Module</dd>
       </dl><dl><dt>
           
           <code><a href="xde_steady_state_MYZ.html">xde_steady_state_MYZ()</a></code> 
         </dt>
-        <dd>Compute steady states for \(\cal MYZ\) models</dd>
+        <dd>Compute steady states for <strong>MYZ</strong> Modules</dd>
       </dl><dl><dt>
           
           <code><a href="xde_steady_state_L.html">xde_steady_state_L()</a></code> 
@@ -187,7 +182,7 @@
         <dd>Compute steady states for <strong>L</strong> Component Modules</dd>
       </dl></div><div class="section level2">
       
-      <h3 id="models-human-host-infection-demography">Models – Human / Host Infection &amp; Demography<a class="anchor" aria-label="anchor" href="#models-human-host-infection-demography"></a></h3>
+      <h3 id="xh-modules">XH Modules<a class="anchor" aria-label="anchor" href="#xh-modules"></a></h3>
       <div class="section-desc"><p>Models available in <strong><code>ramp.xds</code></strong> for human/host infection and immunity</p></div>
 
       
@@ -200,15 +195,15 @@
           
           <code><a href="dXdt.trivial.html">dXdt(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
-        <dd><strong>X</strong> Component Derivatives for the <code>trivial</code> model</dd>
+        <dd>Handle Derivatives for the <code>trivial</code> <strong>X</strong>-Module</dd>
       </dl><dl><dt>
           
           <code><a href="dXdt.SIS.html">dXdt(<i>&lt;SIS&gt;</i>)</a></code> 
         </dt>
-        <dd><strong>X</strong> Component Derivatives for the <code>SIS</code> Model</dd>
+        <dd>Compute Derivatives for the <code>SIS</code> <strong>X</strong>-Model</dd>
       </dl></div><div class="section level2">
       
-      <h3 id="models-adult-mosquito-infection-ecology">Models – Adult Mosquito Infection &amp; Ecology<a class="anchor" aria-label="anchor" href="#models-adult-mosquito-infection-ecology"></a></h3>
+      <h3 id="myz-modules">MYZ Modules<a class="anchor" aria-label="anchor" href="#myz-modules"></a></h3>
       <div class="section-desc"><p>Models available in <strong><code>ramp.xds</code></strong> for adult mosquito ecology and infection dynamics</p></div>
 
       
@@ -221,12 +216,12 @@
           
           <code><a href="dMYZdt.trivial.html">dMYZdt(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
-        <dd><strong>MYZ</strong> Component Derivatives for the <code>trivial</code> model</dd>
+        <dd>Handle derivatives for the <code>trivial</code> <strong>MYZ</strong> module</dd>
       </dl><dl><dt>
           
           <code><a href="dMYZdt.macdonald.html">dMYZdt(<i>&lt;macdonald&gt;</i>)</a></code> 
         </dt>
-        <dd><strong>MYZ</strong> Component for the <code>macdonald</code> Adult Mosquito Module</dd>
+        <dd>Compute derivatives for the <strong>MYZ</strong> module <code>macdonald</code></dd>
       </dl><dl><dt>
           
           <code><a href="dMYZdt.GeRM.html">dMYZdt(<i>&lt;GeRM&gt;</i>)</a></code> 
@@ -239,7 +234,7 @@
         <dd><strong>MYZ</strong> Component Derivatives for <code>basicM</code></dd>
       </dl></div><div class="section level2">
       
-      <h3 id="models-aquatic-mosquito">Models – Aquatic Mosquito<a class="anchor" aria-label="anchor" href="#models-aquatic-mosquito"></a></h3>
+      <h3 id="l-modules">L Modules<a class="anchor" aria-label="anchor" href="#l-modules"></a></h3>
       <div class="section-desc"><p>Models available in <strong><code>ramp.xds</code></strong> for the ecology of immature mosquitoes in aquatic habitats</p></div>
 
       
@@ -252,7 +247,7 @@
           
           <code><a href="dLdt.trivial.html">dLdt(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
-        <dd>Derivatives for <code>trivial</code> (<strong>L</strong> Component)</dd>
+        <dd>Handle derivatives for the <code>trivial</code> <strong>L</strong> module</dd>
       </dl><dl><dt>
           
           <code><a href="dLdt.basicL.html">dLdt(<i>&lt;basicL&gt;</i>)</a></code> 
@@ -296,7 +291,7 @@
         <dd>Add a new variable</dd>
       </dl></div><div class="section level2">
       
-      <h3 id="interface">Interface<a class="anchor" aria-label="anchor" href="#interface"></a></h3>
+      <h3 id="ports-and-junctions">Ports and Junctions<a class="anchor" aria-label="anchor" href="#ports-and-junctions"></a></h3>
       <div class="section-desc"><p>Functions that compute dynamical terms and exogenous variables</p></div>
 
       
@@ -527,7 +522,7 @@
           
           <code><a href="create_residence_matrix.html">create_residence_matrix()</a></code> 
         </dt>
-        <dd>Create the residence matrix, \(\cal J\)</dd>
+        <dd>Create the Residency Matrix</dd>
       </dl><dl><dt>
           
           <code><a href="view_residence_matrix.html">view_residence_matrix()</a></code> 
@@ -742,7 +737,7 @@
           
           <code><a href="create_habitat_matrix.html">create_habitat_matrix()</a></code> 
         </dt>
-        <dd>Create the habitat membership matrix, \(\cal N\)</dd>
+        <dd>Create the habitat membership matrix, \(N\)</dd>
       </dl><dl><dt>
           
           <code><a href="change_habitat_weights.html">change_habitat_weights()</a></code> 
@@ -765,14 +760,14 @@
         <dd>Compute and store availability of egg-laying habitats</dd>
       </dl><dl><dt>
           
-          <code><a href="compute_calU.html">compute_calU()</a></code> 
+          <code><a href="compute_Umatrix.html">compute_Umatrix()</a></code> 
         </dt>
-        <dd>Compute the egg distribution matrix - \(\cal U\)</dd>
+        <dd>Compute the egg distribution matrix - \(U\)</dd>
       </dl><dl><dt>
           
-          <code><a href="make_calU.html">make_calU()</a></code> 
+          <code><a href="make_Umatrix.html">make_Umatrix()</a></code> 
         </dt>
-        <dd>Compute and store \(\cal U\)</dd>
+        <dd>Compute and store \(U\)</dd>
       </dl><dl><dt>
           
           <code><a href="compute_eggs_laid.html">compute_eggs_laid()</a></code> 
@@ -787,7 +782,7 @@
           
           <code><a href="view_habitat_matrix.html">view_habitat_matrix()</a></code> 
         </dt>
-        <dd>View habitat membership, \(\cal N\)</dd>
+        <dd>View habitat membership, \(N\)</dd>
       </dl></div><div class="section level2">
       <h2 id="exposure">Exposure<a class="anchor" aria-label="anchor" href="#exposure"></a></h2>
       
@@ -937,7 +932,7 @@
         </dt>
         <dd>Set up the negative binomial model for exposure for discrete time models</dd>
       </dl></div><div class="section level2">
-      <h2 id="adult-mosquito-dynamics">Adult Mosquito Dynamics<a class="anchor" aria-label="anchor" href="#adult-mosquito-dynamics"></a></h2>
+      <h2 id="adult-mosquito-modules">Adult Mosquito Modules<a class="anchor" aria-label="anchor" href="#adult-mosquito-modules"></a></h2>
       
       <div class="section-desc"><p>Generic methods for the adult mosquito dynamics component.</p></div>
 
@@ -951,22 +946,22 @@
           
           <code><a href="dMYZdt.html">dMYZdt()</a></code> 
         </dt>
-        <dd>\(\cal MYZ\) Component Derivatives for the <code>GeRM</code> model</dd>
+        <dd>Compute Derivatives for an Adult Mosquito Model</dd>
       </dl><dl><dt>
           
           <code><a href="MBaseline.html">MBaseline()</a></code> 
         </dt>
-        <dd>Adult Mosquito - Baseline Bionomics</dd>
+        <dd>Adult Mosquito Bionomics - Baseline</dd>
       </dl><dl><dt>
           
           <code><a href="MBionomics.html">MBionomics()</a></code> 
         </dt>
-        <dd>Adult Mosquito - Bionomics</dd>
+        <dd>Adult Mosquito Bionomics - Modified by Control</dd>
       </dl><dl><dt>
           
           <code><a href="xde_steady_state_MYZ.html">xde_steady_state_MYZ()</a></code> 
         </dt>
-        <dd>Compute steady states for \(\cal MYZ\) models</dd>
+        <dd>Compute steady states for <strong>MYZ</strong> Modules</dd>
       </dl><dl><dt>
           
           <code><a href="xde_steady_state_M.html">xde_steady_state_M()</a></code> 
@@ -981,7 +976,7 @@
           
           <code><a href="Update_MYZt.html">Update_MYZt()</a></code> 
         </dt>
-        <dd>Derivatives for adult mosquitoes</dd>
+        <dd>Update States for a Adult Mosquito Model</dd>
       </dl><dl><dt>
           
           <code><a href="MYZ_rates2probs.html">MYZ_rates2probs()</a></code> 
@@ -1270,7 +1265,7 @@
           
           <code><a href="dMYZdt.trivial.html">dMYZdt(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
-        <dd><strong>MYZ</strong> Component Derivatives for the <code>trivial</code> model</dd>
+        <dd>Handle derivatives for the <code>trivial</code> <strong>MYZ</strong> module</dd>
       </dl><dl><dt>
           
           <code><a href="MBaseline.trivial.html">MBaseline(<i>&lt;trivial&gt;</i>)</a></code> 
@@ -1285,12 +1280,12 @@
           
           <code><a href="Update_MYZt.trivial.html">Update_MYZt(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
-        <dd>Derivatives for aquatic stage mosquitoes</dd>
+        <dd>Handle state updates for the <code>trivial</code> <strong>MYZ</strong> module</dd>
       </dl><dl><dt>
           
           <code><a href="setup_MYZpar.trivial.html">setup_MYZpar(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
-        <dd>Setup the trivial</dd>
+        <dd>Setup the trivial model for an adult mosquito model</dd>
       </dl><dl><dt>
           
           <code><a href="get_MYZpars.trivial.html">get_MYZpars(<i>&lt;trivial&gt;</i>)</a></code> 
@@ -1502,12 +1497,12 @@
           
           <code><a href="F_fqM.SI.html">F_fqM(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd>\(\cal MYZ\) Component Net Blood Feeding by Mosquitoes for the <code>SI</code> Mosquito Model</dd>
+        <dd>Compute Net Blood Feeding by Mosquitoes for <code>SI</code></dd>
       </dl><dl><dt>
           
           <code><a href="F_eggs.SI.html">F_eggs(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
-        <dd>\(\cal MYZ\) Component Egg Laying for the <code>SI</code> Mosquito Model</dd>
+        <dd>Compute Component Egg Laying Rates for <code>SI</code></dd>
       </dl><dl><dt>
           
           <code><a href="list_MYZvars.SI.html">list_MYZvars(<i>&lt;SI&gt;</i>)</a></code> 
@@ -1598,7 +1593,7 @@
           
           <code><a href="dMYZdt.macdonald.html">dMYZdt(<i>&lt;macdonald&gt;</i>)</a></code> 
         </dt>
-        <dd><strong>MYZ</strong> Component for the <code>macdonald</code> Adult Mosquito Module</dd>
+        <dd>Compute derivatives for the <strong>MYZ</strong> module <code>macdonald</code></dd>
       </dl><dl><dt>
           
           <code><a href="MBaseline.macdonald.html">MBaseline(<i>&lt;macdonald&gt;</i>)</a></code> 
@@ -1912,7 +1907,7 @@
         </dt>
         <dd>Make inits for RM_dts adult mosquito model</dd>
       </dl></div><div class="section level2">
-      <h2 id="aquatic-mosquito-dynamics">Aquatic Mosquito Dynamics<a class="anchor" aria-label="anchor" href="#aquatic-mosquito-dynamics"></a></h2>
+      <h2 id="aquatic-mosquito-modules">Aquatic Mosquito Modules<a class="anchor" aria-label="anchor" href="#aquatic-mosquito-modules"></a></h2>
       
       <div class="section-desc"><p>Generic methods for the aquatic (immature) mosquito component.</p></div>
 
@@ -2022,7 +2017,7 @@
           
           <code><a href="dLdt.trivial.html">dLdt(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
-        <dd>Derivatives for <code>trivial</code> (<strong>L</strong> Component)</dd>
+        <dd>Handle derivatives for the <code>trivial</code> <strong>L</strong> module</dd>
       </dl><dl><dt>
           
           <code><a href="Update_Lt.trivial.html">Update_Lt(<i>&lt;trivial&gt;</i>)</a></code> 
@@ -2377,7 +2372,7 @@
           
           <code><a href="dXdt.html">dXdt()</a></code> 
         </dt>
-        <dd>Compute Derivatives for an \(\cal X\) - Component Model</dd>
+        <dd>Compute Derivatives for the <strong>X</strong> Component</dd>
       </dl><dl><dt>
           
           <code><a href="Update_Xt.html">Update_Xt()</a></code> 
@@ -2417,7 +2412,7 @@
           
           <code><a href="setup_Xpar.html">setup_Xpar()</a></code> 
         </dt>
-        <dd>Make Parameters for a \(cal X\) - Component Model</dd>
+        <dd>Setup an <strong>X</strong> Module</dd>
       </dl><dl><dt>
           
           <code><a href="F_X.html">F_X()</a></code> 
@@ -2487,12 +2482,12 @@
           
           <code><a href="xde_steady_state_X.html">xde_steady_state_X()</a></code> 
         </dt>
-        <dd>Steady States for \(\cal X\)-Models</dd>
+        <dd>Compute Steady States for an <strong>X</strong>-Component Module</dd>
       </dl><dl><dt>
           
           <code><a href="xde_steady_state_XH.html">xde_steady_state_XH()</a></code> 
         </dt>
-        <dd>Steady States for \(\cal XH\)-Models</dd>
+        <dd>Compute Steady States for an <strong>XH</strong>-Component Module</dd>
       </dl><dl><dt>
           
           <code><a href="dts_steady_state_X.html">dts_steady_state_X()</a></code> 
@@ -2553,12 +2548,12 @@
           
           <code><a href="dXdt.trivial.html">dXdt(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
-        <dd><strong>X</strong> Component Derivatives for the <code>trivial</code> model</dd>
+        <dd>Handle Derivatives for the <code>trivial</code> <strong>X</strong>-Module</dd>
       </dl><dl><dt>
           
           <code><a href="Update_Xt.trivial.html">Update_Xt(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
-        <dd>Update States for the <code>trivial</code> \(\cal X\) Model</dd>
+        <dd>Handle State Updating for the <code>trivial</code> <strong>X</strong>-Module</dd>
       </dl><dl><dt>
           
           <code><a href="setup_Xpar.trivial.html">setup_Xpar(<i>&lt;trivial&gt;</i>)</a></code> 
@@ -2624,7 +2619,7 @@
           
           <code><a href="dXdt.hMoI.html">dXdt(<i>&lt;hMoI&gt;</i>)</a></code> 
         </dt>
-        <dd><strong>X</strong> Component Derivatives for the <code>hMoI</code> module</dd>
+        <dd>Compute Derivatives for the <code>hMoI</code> (<strong>X</strong>-Model)</dd>
       </dl><dl><dt>
           
           <code><a href="setup_Xpar.hMoI.html">setup_Xpar(<i>&lt;hMoI&gt;</i>)</a></code> 
@@ -2639,7 +2634,7 @@
           
           <code><a href="xde_steady_state_X.hMoI.html">xde_steady_state_X(<i>&lt;hMoI&gt;</i>)</a></code> 
         </dt>
-        <dd>Steady States: hMoI</dd>
+        <dd>Compute Steady States for <code>hMoI</code> (<strong>X</strong>-Model)</dd>
       </dl><dl><dt>
           
           <code><a href="setup_Xinits.hMoI.html">setup_Xinits(<i>&lt;hMoI&gt;</i>)</a></code> 
@@ -2740,7 +2735,7 @@
           
           <code><a href="dXdt.SIS.html">dXdt(<i>&lt;SIS&gt;</i>)</a></code> 
         </dt>
-        <dd><strong>X</strong> Component Derivatives for the <code>SIS</code> Model</dd>
+        <dd>Compute Derivatives for the <code>SIS</code> <strong>X</strong>-Model</dd>
       </dl><dl><dt>
           
           <code><a href="Update_Xt.SIS.html">Update_Xt(<i>&lt;SIS&gt;</i>)</a></code> 
@@ -2889,6 +2884,11 @@
         <dd>Derivatives of demographic changes in human populations</dd>
       </dl><dl><dt>
           
+          <code><a href="dAdt.html">dAdt()</a></code> 
+        </dt>
+        <dd>An Aging Matrix</dd>
+      </dl><dl><dt>
+          
           <code><a href="setup_Hpar_static.html">setup_Hpar_static()</a></code> 
         </dt>
         <dd>A utility to set up Hpar</dd>
@@ -2914,6 +2914,11 @@
         <dd>Compute Demographic Changes</dd>
       </dl><dl><dt>
           
+          <code><a href="dAdt.zero.html">dAdt(<i>&lt;zero&gt;</i>)</a></code> 
+        </dt>
+        <dd>Compute Demographic Changes</dd>
+      </dl><dl><dt>
+          
           <code><a href="Births.static.html">Births(<i>&lt;static&gt;</i>)</a></code> 
         </dt>
         <dd>Derivatives of demographic changes in human populations</dd>
@@ -2925,6 +2930,11 @@
       </dl><dl><dt>
           
           <code><a href="dHdt.matrix.html">dHdt(<i>&lt;matrix&gt;</i>)</a></code> 
+        </dt>
+        <dd>Derivatives of demographic changes in human populations</dd>
+      </dl><dl><dt>
+          
+          <code><a href="dAdt.matrix.html">dAdt(<i>&lt;matrix&gt;</i>)</a></code> 
         </dt>
         <dd>Derivatives of demographic changes in human populations</dd>
       </dl><dl><dt>
@@ -3191,6 +3201,11 @@
           <code><a href="xde_derivatives.human.html">xde_derivatives(<i>&lt;human&gt;</i>)</a></code> 
         </dt>
         <dd>Differential equations isolating the humans, forced with Ztrace</dd>
+      </dl><dl><dt>
+          
+          <code><a href="xde_derivatives.eir.html">xde_derivatives(<i>&lt;eir&gt;</i>)</a></code> 
+        </dt>
+        <dd>Differential equation models for aquatic mosquito populations</dd>
       </dl></div><div class="section level2">
       
       <h3 id="cohort-dynamics">Cohort Dynamics<a class="anchor" aria-label="anchor" href="#cohort-dynamics"></a></h3>
@@ -3270,6 +3285,11 @@
         <dd>Difference equation models for human cohorts</dd>
       </dl><dl><dt>
           
+          <code><a href="dts_update.eir.html">dts_update(<i>&lt;eir&gt;</i>)</a></code> 
+        </dt>
+        <dd>Difference equation models for aquatic mosquito populations</dd>
+      </dl><dl><dt>
+          
           <code><a href="dts_update_Lt.html">dts_update_Lt()</a></code> 
         </dt>
         <dd>Difference equations isolating the humans, forced with Ztrace</dd>
@@ -3292,7 +3312,7 @@
           
           <code><a href="Update_MYZt.html">Update_MYZt()</a></code> 
         </dt>
-        <dd>Derivatives for adult mosquitoes</dd>
+        <dd>Update States for a Adult Mosquito Model</dd>
       </dl><dl><dt>
           
           <code><a href="Update_Lt.html">Update_Lt()</a></code> 
@@ -3745,6 +3765,16 @@
         <dd>Make Parameters for a Sharkfin Function</dd>
       </dl><dl><dt>
           
+          <code><a href="make_function.type2.html">make_function(<i>&lt;type2&gt;</i>)</a></code> 
+        </dt>
+        <dd>Make a type2 function for age</dd>
+      </dl><dl><dt>
+          
+          <code><a href="makepar_F_type2.html">makepar_F_type2()</a></code> 
+        </dt>
+        <dd>parameters for make_function</dd>
+      </dl><dl><dt>
+          
           <code><a href="make_function.splinef.html">make_function(<i>&lt;splinef&gt;</i>)</a></code> 
         </dt>
         <dd>Make a spline function</dd>
@@ -3907,6 +3937,11 @@
       </dl><dl><dt>
           
           <code><a href="make_outputs.human.html">make_outputs(<i>&lt;human&gt;</i>)</a></code> 
+        </dt>
+        <dd>Make Outputs</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_outputs.eir.html">make_outputs(<i>&lt;eir&gt;</i>)</a></code> 
         </dt>
         <dd>Make Outputs</dd>
       </dl><dl><dt>

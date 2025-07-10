@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-interface.R
 \name{xde_steady_state_X}
 \alias{xde_steady_state_X}
-\title{Steady States for \eqn{\cal X}-Models}
+\title{Compute Steady States for an \strong{X}-Component Module}
 \usage{
 xde_steady_state_X(foi, H, Xpar)
 }
@@ -11,7 +11,7 @@ xde_steady_state_X(foi, H, Xpar)
 
 \item{H}{human / host population density}
 
-\item{Xpar}{a list that defines an \eqn{\cal X} model}
+\item{Xpar}{a list that defines an \strong{X} model object}
 }
 \value{
 none

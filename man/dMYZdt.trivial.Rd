@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-trivial.R
 \name{dMYZdt.trivial}
 \alias{dMYZdt.trivial}
-\title{\strong{MYZ} Component Derivatives for the \code{trivial} model}
+\title{Handle derivatives for the \code{trivial} \strong{MYZ} module}
 \usage{
 \method{dMYZdt}{trivial}(t, y, pars, s)
 }
@@ -16,7 +16,7 @@
 \item{s}{the species index}
 }
 \value{
-a \link{numeric} vector
+a null value
 }
 \description{
 Implements \link{dMYZdt} for the trivial (forced emergence) model.

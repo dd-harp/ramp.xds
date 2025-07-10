@@ -12,8 +12,10 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+the parameters as a named list
 }
 \description{
-This method dispatches on the type of \code{pars$MYZpar[[s]]}.
+Return the parameters
+in the trivial \strong{MYZ}-Component
+model as a named list
 }

@@ -2,7 +2,6 @@
 
 #' @title Derivatives for `basicL` (**L** Component)
 #' @description
-#' \loadmathjax
 #' This implements differential equation model for aquatic mosquito ecology.
 #' The equations have been modified slightly from a version published by
 #' Smith DL, *et al.* (2013); this version includes delayed maturation i

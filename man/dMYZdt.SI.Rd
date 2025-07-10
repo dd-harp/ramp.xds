@@ -47,12 +47,12 @@ The model demographic \strong{parameters} are:
 \item \eqn{g} is the mortality rate
 \item \eqn{\sigma} is the emigration rate
 \item \eqn{\mu} is the emigration loss rate
-\item \eqn{\cal K} is the mosquito dispersal matrix
+\item \eqn{K} is the mosquito dispersal matrix
 }
 
 The four parameters describing mortality and migration are used to construct a
 demographic matrix:
-\deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) - \cal K \right) \cdot \mbox{diag}\left(\sigma\right)}
+\deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) -  K \right) \cdot \mbox{diag}\left(\sigma\right)}
 
 The emergence rate of adult mosquitoes, \eqn{\Lambda}, is computed by \link{F_emerge},
 and the \strong{derivatives} are given by the equations:

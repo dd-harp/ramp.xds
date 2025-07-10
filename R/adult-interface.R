@@ -1,37 +1,43 @@
 # generic methods for adult component
 
-#' @title \eqn{\cal MYZ} Component Derivatives for the `GeRM` model
+#' @title Compute Derivatives for an Adult Mosquito Model 
+#' 
 #' @description
-#' The description for each method should include the equations.
+#' 
+#' In the description, each method should include the equations and 
+#' a reference to relevant papers in the literature.  
 #'
-#' @note This is the `S3` generic. Methods dispatch on `MYZpar`
+#' @note This is the `S3` generic. Methods dispatch on `MYZpar[[s]]`
+#' 
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
 #' @param s the species index
-#' @return derivatives for the \eqn{\cal MYZ} component as a [vector]
+#' 
+#' @return Derivatives for an adult mosquito model, a [vector]
+#' 
 #' @export
 dMYZdt <- function(t, y, pars, s) {
   UseMethod("dMYZdt", pars$MYZpar[[s]])
 }
 
-
-#' @title Derivatives for adult mosquitoes
-#' @description This method dispatches on the type of `pars$MYZpar`.
+#' @title Update States for a Adult Mosquito Model 
+#' 
+#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars a [list]
 #' @param s the species index
-#' @return the derivatives a [vector]
+#' 
+#' @return Updated states for an adult mosquito model, a [vector]
+#' 
 #' @export
 Update_MYZt <- function(t, y, pars, s) {
   UseMethod("Update_MYZt", pars$MYZpar[[s]])
 }
 
-
-#' @title Adult Mosquito - Baseline Bionomics
-#' @description Compute adult mosquito bionomics as a
-#' *changing baseline.*
+#' @title Adult Mosquito Bionomics - Baseline 
+#' @description Compute the baseline adult mosquito bionomic parameter values 
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
@@ -42,8 +48,8 @@ MBaseline <- function(t, y, pars, s) {
   UseMethod("MBaseline", pars$MYZpar[[s]]$baseline)
 }
 
-#' @title Adult Mosquito - Bionomics
-#' @description Modify the baseline
+#' @title Adult Mosquito Bionomics - Modified by Control
+#' @description Modify the baseline adult mosquito bionomic parameters
 #' @param t current simulation time
 #' @param y state vector
 #' @param pars an `xds` object
@@ -270,7 +276,7 @@ get_sigma = function(pars, s=1){
   UseMethod("get_sigma", pars$MYZpar[[s]]$baseline)
 }
 
-#' @title Compute steady states for \eqn{\cal MYZ} models
+#' @title Compute steady states for **MYZ** Modules
 #' @description This method dispatches on the type of `MYZpar`.
 #' @param Lambda the daily emergence rate of adult mosquitoes
 #' @param kappa net infectiousness

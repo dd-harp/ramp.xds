@@ -1,6 +1,7 @@
 # a hybrid model tracking mean MoI for all and apparent infections
 
-#' @title **X** Component Derivatives for the `hMoI` module
+#' @title Compute Derivatives for the `hMoI` (**X**-Model)
+#'  
 #' @description Implements [dXdt] for the hybrid MoI model.
 #' @inheritParams dXdt
 #' @return a [numeric] vector
@@ -21,7 +22,8 @@ dXdt.hMoI <- function(t, y, pars, i) {
   })
 }
 
-#' @title Steady States: hMoI
+#' @title Compute Steady States for `hMoI` (**X**-Model)
+#' 
 #' @description Compute the steady state of the hMoI model as a function of the daily foi
 #' @inheritParams xde_steady_state_X
 #' @return the steady states as a named vector

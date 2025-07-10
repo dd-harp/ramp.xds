@@ -23,7 +23,7 @@ guarantee mathematical consistency for blood feeding and transmission.
 The interface is for blood feeding is defined by an object called \code{BFpar} that
 is attached to the \strong{\code{xds}} object pars as \code{pars$BFpar}. The blood feeding interface
 \itemize{
-\item the residency matrix \eqn{\cal J}
+\item the residency matrix \eqn{J}
 \item a time spent (TiSp) matrix \eqn{\Theta}
 \item a circadian function \code{F_circadian} for each vector species
 \item a time at risk (TaR) matrix \eqn{\Psi} that is the product the TiSp matrix and the circadian function

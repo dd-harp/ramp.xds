@@ -65,30 +65,39 @@ MBionomics.trivial <- function(t, y, pars, s) {
 }
 
 
-#' @title **MYZ** Component Derivatives for the `trivial` model
+#' @title Handle derivatives for the `trivial` **MYZ** module 
 #' @description Implements [dMYZdt] for the trivial (forced emergence) model.
 #' @inheritParams dMYZdt
-#' @return a [numeric] vector
+#' @return a null value 
 #' @export
 dMYZdt.trivial <- function(t, y, pars, s){
   numeric(0)
 }
 
-#' @title Derivatives for aquatic stage mosquitoes
+#' @title Handle state updates for the `trivial` **MYZ** module
 #' @description Implements [Update_MYZt] for the trivial (forced emergence) model.
 #' @inheritParams Update_MYZt
-#' @return a [numeric] vector
+#' @return a null vector 
 #' @export
 Update_MYZt.trivial <- function(t, y, pars, s){
   numeric(0)
 }
 
 
-#' @title Setup the trivial
-#' @description Implements [setup_MYZpar] for the trivial model
+#' @title Setup the trivial model for an adult mosquito model
+#' 
+#' @description Set up the trivial adult mosquito model. 
+#' In general, this should be used for aquatic mosquito 
+#' ecology or human / host epidemiology.  In the former case, 
+#' the user configures `F_eggs`; in the latter, 
+#' `F_fqZ` 
+#' 
 #' @inheritParams setup_MYZpar
-#' @return a [list] vector
+#' 
+#' @return a modified **`xds`** model object
+#' 
 #' @export
+#' 
 setup_MYZpar.trivial = function(MYZname, pars, s, MYZopts=NULL){
   MYZpar <- make_MYZpar_trivial(pars$nPatches, MYZopts)
   class(MYZpar) <- 'trivial'
@@ -97,15 +106,24 @@ setup_MYZpar.trivial = function(MYZname, pars, s, MYZopts=NULL){
 }
 
 #' @title Return the parameters as a list
-#' @description This method dispatches on the type of `pars$MYZpar[[s]]`.
+#' 
+#' @description Return the parameters 
+#' in the trivial **MYZ**-Component 
+#' model as a named list 
+#' 
 #' @param pars an **`xds`** object
 #' @param s the vector species index
-#' @return a [list]
+#' 
+#' @return the parameters as a named list 
+#' 
 #' @export
+#' 
 get_MYZpars.trivial <- function(pars, s=1) {
   with(pars$MYZpar[[s]], list(
     f=f, q=q, Z=Z, eggs=eggs,
+    season_par=season_par,
     F_season=F_season,
+    trend_par=trend_par,
     F_trend=F_trend
   ))
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-SI.R
 \name{F_eggs.SI}
 \alias{F_eggs.SI}
-\title{\eqn{\cal MYZ} Component Egg Laying for the \code{SI} Mosquito Model}
+\title{Compute Component Egg Laying Rates for \code{SI}}
 \usage{
 \method{F_eggs}{SI}(t, y, pars, s)
 }

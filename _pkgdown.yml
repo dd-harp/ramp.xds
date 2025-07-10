@@ -1,5 +1,6 @@
 template:
   bootstrap: 5
+  math-rendering: mathjax
 url: https://dd-harp.github.io/ramp.xds/
 navbar:
   left:
@@ -9,23 +10,13 @@ navbar:
       href: articles/GettingStarted.html
     - text: Basic Setup
       href: articles/BasicSetup.html
-    - text: Working with Models
-      href: articles/Working.html
-    - text: Trace Functions
-      href: articles/TraceFunctions.html
-    - text: Understanding ramp.xds
-      href: articles/Understanding_ramp.xds.html
     - text: Modular Forms
       href: articles/modular_forms.html
-    - text: 5-3-4 Spatial Example
-      href: articles/ex_534.html
-    - text: Spatial Metrics
-      href: articles/spat_metric.html
     - text: Exposure
       href: articles/Exposure.html
     - text: Contributing
       href: articles/Contributing.html
-  - text: Mosquito - Adult
+  - text: Adult Mosquitoes 
     menu:
     - text: Macdonald's Model
       href: articles/adult_RM.html
@@ -33,11 +24,11 @@ navbar:
       href: articles/RM-dts-Mosquito.html
     - text: Generalized Ross-Macdonald model
       href: articles/adult_GeRM.html
-  - text: Mosquito - Aquatic
+  - text: Immature Mosquitoes 
     menu:
-    - text: Aquatic - Trivial (forced) model
+    - text: Emergence (the trivial module) 
       href: articles/aqua_trace.html
-    - text: Basic Competition
+    - text: basicL
       href: articles/aqua_basic.html
   - text: Human / Host
     menu:
@@ -63,7 +54,7 @@ reference:
 - title: Model Building & Analysis
   desc: |
     Methods to support nimble model building and analysis
-- subtitle: Build / Setup
+- subtitle: Basic Setup
   desc: |
     Methods to set up an **`xds`** object with basic features
   contents:
@@ -75,7 +66,7 @@ reference:
   - xds_setup_eir
   - make_xds_template
   - print.xds_obj
-- subtitle: Solve and Analyze
+- subtitle: Solving and Analysis 
   desc: |
     Methods to solve or analyze equations
   contents:
@@ -87,13 +78,13 @@ reference:
   - xde_steady_state_X
   - xde_steady_state_MYZ
   - xde_steady_state_L
-- subtitle: Models -- Human / Host Infection & Demography
+- subtitle: XH Modules 
   desc: |
     Models available in **`ramp.xds`** for human/host infection and immunity
   contents:
   - dXdt.trivial
   - dXdt.SIS
-- subtitle: Models -- Adult Mosquito Infection & Ecology
+- subtitle: MYZ Modules 
   desc: |
     Models available in **`ramp.xds`** for adult mosquito ecology and infection dynamics
   contents:
@@ -101,7 +92,7 @@ reference:
   - dMYZdt.macdonald
   - dMYZdt.GeRM
   - dMYZdt.basicM
-- subtitle: Models -- Aquatic Mosquito
+- subtitle: L Modules 
   desc: |
     Models available in **`ramp.xds`** for the ecology of immature mosquitoes in aquatic habitats
   contents:
@@ -116,7 +107,7 @@ reference:
   - setup_Vix
   - setup_other_variables
   - add_variable 
-- subtitle: Interface
+- subtitle: Ports and Junctions 
   desc: |
     Functions that compute dynamical terms and exogenous variables
   contents:
@@ -223,8 +214,8 @@ reference:
   - compute_Q
   - compute_Qtot
   - make_Q
-  - compute_calU
-  - make_calU
+  - compute_Umatrix
+  - make_Umatrix
   - compute_eggs_laid
   - make_eggs_laid
   - view_habitat_matrix
@@ -262,7 +253,7 @@ reference:
   - setup_exposure_nb
   - setup_exposure_nb.xde
   - setup_exposure_nb.dts
-- title: Adult Mosquito Dynamics
+- title: Adult Mosquito Modules 
   desc: |
     Generic methods for the adult mosquito dynamics component.
   contents:
@@ -473,7 +464,7 @@ reference:
   - parse_MYZorbits.RM_dts
   - get_MYZinits.RM_dts
   - update_MYZinits.RM_dts
-- title: Aquatic Mosquito Dynamics
+- title: Aquatic Mosquito Modules 
   desc: |
     Generic methods for the aquatic (immature) mosquito component.
   contents:
@@ -758,6 +749,7 @@ reference:
   - xde_derivatives.aquatic
   - xde_derivatives.mosy
   - xde_derivatives.human
+  - xde_derivatives.eir
 - subtitle: Cohort Dynamics
   contents:
   - xds_solve_cohort
@@ -773,6 +765,7 @@ reference:
   - dts_update.mosy
   - dts_update.human
   - dts_update.cohort
+  - dts_update.eir
   - dts_update_Lt
   - dts_update_MYZt
   - dts_update_Xt
@@ -919,6 +912,7 @@ reference:
   - make_outputs.mosy
   - make_outputs.aquatic
   - make_outputs.human
+  - make_outputs.eir
   - get_terms
   - get_EIR
 

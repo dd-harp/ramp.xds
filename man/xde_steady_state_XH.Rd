@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-interface.R
 \name{xde_steady_state_XH}
 \alias{xde_steady_state_XH}
-\title{Steady States for \eqn{\cal XH}-Models}
+\title{Compute Steady States for an \strong{XH}-Component Module}
 \usage{
 xde_steady_state_XH(foi, Xpar)
 }

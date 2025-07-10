@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_eir}
 \alias{xds_setup_eir}
-\title{Make an \strong{\code{xds}} Object to Study Malaria Epidemiology}
+\title{Build a Model for a single Human / Host Epidemiology forced by the EIR}
 \usage{
 xds_setup_eir(
   eir = 1,
@@ -10,8 +10,6 @@ xds_setup_eir(
   season_par = list(),
   F_trend = F_flat,
   trend_par = list(),
-  F_age = F_flat,
-  age_par = list(),
   xds = "ode",
   Xname = "SIS",
   Xopts = list(),
@@ -50,24 +48,23 @@ xds_setup_eir(
 an \strong{\code{xds}} object
 }
 \description{
+\loadmathjax
+
 A modified version of \link{xds_setup} to setup up
 studies of malaria epidemiology, defined in a narrow sense, to
 examine patterns in populations forced by the EIR.
 
-The \strong{\code{xds}} object defines \code{frame = class(frame) = 'cohort'} but there
-is no \code{cohort} case for \link{xds_solve}. Instead, cohort
-dynamics are studied using \link{xds_solve_eir}, which was designed
-to compare the outcomes for cohorts of different ages when exposure is
-changing.
+The \strong{\code{xds}} object defines \code{frame = class(frame) = 'eir'}
+to dispatch \link{xde_derivatives.eir} or \link{dts_update.eir}
 
 The interface includes options to configure a function
 describing \code{F_eir} as a function of time, with seasonal components
 and a trend. Exposure in a cohort is a function of its age, including
 a function that modifies exposure by age. Models set up
-with \link{xds_setup_eir} are like models set up with
+with \code{xds_setup_eir} are like models set up with
 \link{xds_setup_cohort}, but they lack a function to model exposure by
 age.
 }
 \seealso{
-\link{xds_setup} and \link{xds_setup_human} and \link{xds_solve_eir}
+\link{xds_setup} and \link{xds_setup_human}
 }

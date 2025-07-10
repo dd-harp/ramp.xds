@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{create_habitat_matrix}
 \alias{create_habitat_matrix}
-\title{Create the habitat membership matrix, \eqn{\cal N}}
+\title{Create the habitat membership matrix, \eqn{N}}
 \usage{
 create_habitat_matrix(nPatches, membership)
 }
@@ -12,10 +12,10 @@ create_habitat_matrix(nPatches, membership)
 \item{membership}{a vector describing the patch index for each habitat}
 }
 \value{
-the habitat membership \link{matrix}, denoted \eqn{\cal N} where \eqn{\left|\cal N\right|= n_p \times n_q}
+the habitat membership \link{matrix}, denoted \eqn{N} where \eqn{\left|N\right|= n_p \times n_q}
 }
 \description{
-The habitat membership matrix, \eqn{\cal N}, holds
+The habitat membership matrix, \eqn{N}, holds
 information about the patch location of each habitat. It is part of
 the egg-laying and emergence interface, making it possible
 to compute egg laying from patches to habitats; and emergence from habitats to patches.
@@ -24,9 +24,9 @@ to compute egg laying from patches to habitats; and emergence from habitats to p
 Information about the patch location of each habitat
 is passed as the membership vector, an ordered list of patch locations. If
 the \eqn{i^{th}} habitat is in the \eqn{j^{th}} patch, then
-\eqn{{\cal N}_{j,i}=1.} Otherwise, \eqn{{\cal N}_{j,i}=0.}
+\eqn{{N}_{j,i}=1.} Otherwise, \eqn{{N}_{j,i}=0.}
 
-Since \eqn{\cal N} is a matrix, it is readily used for computation. Let:
+Since \eqn{N} is a matrix, it is readily used for computation. Let:
 \itemize{
 \item \eqn{n_q = } \code{nHabitats}, the number of habitats;
 \item \eqn{n_p = } \code{nPatches}, the number of patches.
@@ -34,7 +34,7 @@ Since \eqn{\cal N} is a matrix, it is readily used for computation. Let:
 
 If \eqn{w} is any vector describing a quantity in
 habitats (\emph{i.e.}, \eqn{\left|w\right|= n_q}), then
-\deqn{W={\cal N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= n_p}.
+\deqn{W={N}\cdot w} is a vector that has summed \eqn{w} by patch, and \eqn{\left|W\right|= n_p}.
 }
 \examples{
 create_habitat_matrix(3, c(1,1,2,2,2))

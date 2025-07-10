@@ -19,6 +19,6 @@ an \code{xds} object
 \description{
 Compute host availability, \eqn{W},
 total blood host availability, \eqn{B},
-the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi}
+the time spent matrix \eqn{(\Theta)}, and the time-at-risk matrix \eqn{(\Psi)}
 for static models.
 }

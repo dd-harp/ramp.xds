@@ -26,14 +26,14 @@ The interface is defined by an object called \code{EGGpar} that is
 attached to the \code{xds} object \code{pars} as \code{pars$EGGpar}.
 The interface includes
 \itemize{
-\item a habitat membership matrix, \eqn{\cal N} made by \link{create_habitat_matrix}
+\item a habitat membership matrix, \eqn{N} made by \link{create_habitat_matrix}
 \item the habitat search weights
 \item a quantity that is motivated by mosquito searching for resources, called
 habitat availability \eqn{Q} made by \link{compute_Q};
 \item the availability of ovitraps
 \item the availability of unsuitable habitats
 \item the availability of anything that is like a habitat, but that is an aquatic habitat in the model, including ovitraps and unsuitable habitats, \eqn{Q_{tot}} made by \link{compute_Qtot};
-\item the egg distribution matrix \eqn{\cal U}, made by \link{compute_calU}
+\item the egg distribution matrix \eqn{U}, made by \link{compute_Umatrix}
 \item a vector that stores eggs laid
 }
 

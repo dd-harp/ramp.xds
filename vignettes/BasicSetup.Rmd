@@ -21,15 +21,16 @@ Progressive model building is a practical method for building complex models in 
 
 + **Basic Setup** is handled by the function `xds_setup().` It's designed to help a user get started with a properly formulated interface that can handle spatial dynamics, structured aquatic habitats, and a stratified human population.
 
-+ **Advanced Setup** handles advanced features, including exogenous forcing, vector control, and other modes of malaria control, human demography and aging, and host population stratification. 
++ **Advanced Setup** handles advanced features, including exogenous forcing, vector control, and other modes of malaria control, human demography and aging, and host population stratification. Advanced setup is described in [**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)
 
 In the following, we introduce **Basic Setup**
 
 ## Modularity and Etensibility 
 
-A mathematical framework supported the design of **`ramp.xds.`** That framework handles a subset of the universe of all possible models. That subset can be understood as nested, hierarchical sets of models expanding out from a set of simple base models. Notably, the math works bass ackwards. We could be more rigorous in defining what we mean by all that, but this vignette is not the place for it. We use the concept to motivate progressive model building.
+**`ramp.xds`** was developed around a mathematically rigorous framework that takes advantage of the natural modularity of mosquito-transmitted pathogens. The core functions handle [**spatial dynamics**](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684), and the software was designed to model malaria as a *changing baseline modified by control.* The framework is structurally flexible and extensible.  
 
-Basic setup was designed around simple models with structural flexibility. Each model returned by basic setup could serve as a platform for developing models of unbounded realism and complexity. To make this work, the software built in ports and junctions that could handle a large set of advanced features, but most of these features would be turned off for basic setup. 
+
+**Basic setup** creates a model that sets up the basic structural elements for the spatial dynamics, and that sets up the dynamical modules. A model returned by basic setup is designed to be modified with the potential to develop models of unbounded realism and complexity. To make this work, the software built in ports and junctions that could handle a large set of advanced features, but most of these features would be turned off for basic setup. 
 
 ### Modularity
 
@@ -53,13 +54,7 @@ The framework is designed around five dynamical components organized into three 
 
 These three chunks are connected by two interfaces. The first two chunks are connected through the rigid interface describing blood feeding and transmission. The last two chunks are connected through egg laying and emergence. 
 
-***
-
-![**Figure 2** Modular dynamic components that form the core of **`ramp.xds`**](notation1.png)
-
-***
-
-In general, *module* is the term we use to describe an element in the model library. Since the parameter values can be changed, each *module* defines a *model family* in the form of a system of differential or difference equations. Each family is defined by a set of states and state transitions (*i.e.* by the topology of the graph) for a single population (`nStrata=1`). 
+In general, A *module* describes an element in the model library that executes all the functions in one of the core chunks. Since the parameter values can be changed, each *module* defines a *model family* in the form of a system of differential or difference equations. A model family is defined by a set of states and state transitions (*i.e.* by the topology of the graph) for a single population (`nStrata=1`). 
 
 For example, the `SIS` module for the **X**-component is the *SIS* compartmental model family for human infections. It's called a model family because each unique set of parameters would define a different *model.* 
 
@@ -122,74 +117,14 @@ Structural parameters describe things like the number of patches, the number of 
 - **`membership`** is set up by passing a vector with the identity of patch where each habitat can be found, and it sets up the habitat membership matrix, $Q$. Setup sets the value of a variable describing the number of habitats, $n_q$ = **`nHabitats <- length(membership)`.** One configurable option is **`searchQ`** with the habitat search weights. 
     
 - **`HPop`** is a vector with human population density, and **`residence`** is a vector describing the location of the patch where each stratum resides.  Setup checks that `length(HPop) == length(residence)` and sets the number of strata, $n_h$ or **`nStrata <- length(residence)`.** It is also possible to configure heterogeneous biting at the command line by passing **`searchH`** 
-    
+
+### Spatial Dynamics
+
 - If `nPatches >1` then other setup-configurable options are to pass:
     
     - a matrix $K$ or `calK` describing mosquito dispersal among the patches.  
           
     - a matrix $\Theta$ or `TimeSpent` can be passed to configure human time spent  
 
-To learn more, we suggest taking a look at the [5-3-4 Vignette](https://dd-harp.github.io/ramp.xds/articles/ex_534.html), a model with 5 aquatic habitats, 3 patches, and 4 human population strata.  
+To learn more, we suggest taking a look at the [5-3-4 Vignette](https://faculty.washington.edu/smitdave/simba/model534.html), a model with 5 aquatic habitats, 3 patches, and 4 human population strata.  
 
-### Spatial Mosquito Ecology  
-
-In **`ramp.xds`,** mosquito spatial ecology is implemented in a patch-based simulation model: a spatial domain is subdivided into patches; and each patch contains an arbitrary number of habitats.
-
-### Spatial Transmission Dynamics
-
-In **`ramp.xds`,** malaria spatial dynamics are implemented through a model of blood feeding in a patch-based simulation model.
-
-```{r}
-model5 <- xds_setup(nPatches=4)
-```
-
-
-### Human / Host Population Strata 
-
-## Advanced Setup 
-
-***NOTE:**  As demos for these advanced options get developed, we will add the links here.* 
-
-**Advanced Setup Options:** During basic setup, two advanced options can be configured, but most of the advanced options must be added after basic setup.  
-
-### Spatial Dynamics 
-
-+ **Spatial Heterogeneity** -- 
-
-+ **Human Mobility** -- 
-
-- **Malaria Importation** includes *travel* and *visitors*
-
-    - *Travel Malaria* --In basic setup, travel malaria is set up to model exposure while traveling, but time spent traveling and the travel FoI are set to zero. 
-    
-    - *Visiting* --  In basic setup, visiting is set up but the availability of visitors is set to zero.
-    
-+ **Exposure** -- Since catch counts data for mosquitoes are usually well-described by the negative binomial distribution family, **`ramp.xds`** has implemented a step between the computation of the EIR and the FoI to model [*environmental heterogeneity*](https://dd-harp.github.io/ramp.xds/articles/heterogeneous_transmission.html#environmental-heterogeneity-in-exposure) based on a probability distribution function describing the number of infective bites per person. By default, `xds_setup` configures a Poisson model, but this can be changed. 
-
-+ **Human Demography** -- In basic setup, the human demographic model is the *trivial* model, but it can be configured to include
-
-    - Vital dynamics: births, deaths
-    
-    + Migration 
-    
-    - Cohort dynamics and aging  
-    
-    - Pregnancy 
-
-
-
-- **Forcing** -- set up exogenous forcing, including *exogenous variables* (*e.g.* weather and hydrology) and the *functional responses* to compute mosquito bionomic parameters 
-
-- **Vector Control** -- set up vector control, including  
-
-- **Health Systems** -- a variety of functions to handle surveillance and malaria control through health systems, including care seeking, mass vaccination, IPTp
-
-- **Multiple Vector Species** -- Each vector species has spatial structure, but it is also possible to configure other vector species (or type). 
-
-- **Multiple Host Species** -- Each host species can be stratified, but it is also possible to configure other host species (or types) to make setup and configuration easier. 
-
-*** 
-
-![**Figure 3** -- The modular structure and extensibility of **`ramp.xds`**.](ModularGeneralized.png)
-
-***

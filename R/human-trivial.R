@@ -53,7 +53,7 @@ make_Xpar_trivial <- function(nPatches, Xopts, kappa=.1, HPop=1,
     return(Xpar)
   })}
 
-#' @title **X** Component Derivatives for the `trivial` model
+#' @title Handle Derivatives for the `trivial` **X**-Module
 #' @description The trivial model has no state variables so it returns
 #' a numeric vector of length 0
 #' @inheritParams dXdt
@@ -63,7 +63,7 @@ dXdt.trivial <- function(t, y, pars, i) {
   numeric(0)
 }
 
-#' @title Update States for the `trivial` \eqn{\cal X} Model
+#' @title Handle State Updating for the `trivial` **X**-Module
 #' @description The trivial model has no state variables so it returns
 #' a numeric vector of length 0
 #' @inheritParams Update_Xt

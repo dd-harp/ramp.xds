@@ -1,6 +1,6 @@
 
-#' @title Create the residence matrix, \eqn{\cal J}
-#' @description The residence matrix, \eqn{\cal J}, holds
+#' @title Create the Residency Matrix 
+#' @description The residency matrix, \eqn{J}, holds
 #' information about residency for each human population stratum.
 #' It is the template for the time spent and time at risk matrices, making it possible
 #' to compute mosquito parameters describing blood feeding, the mixing matrix,
@@ -8,25 +8,25 @@
 #' @details Information about residence in a patch location for each stratum
 #' is passed as the residence vector, an ordered list of patch locations. If
 #' the \eqn{i^{th}} stratum lives in the \eqn{j^{th}} patch, then
-#' \eqn{{\cal J}_{j,i}=1.} Otherwise, \eqn{{\cal J}_{j,i}=0.}
+#' \eqn{{J}_{j,i}=1.} Otherwise, \eqn{{J}_{j,i}=0.}
 #'
-#' Since \eqn{\cal J} is a matrix, it is readily used for computation. Let:
+#' Since \eqn{J} is a matrix, it is readily used for computation. Let:
 #' - \eqn{n_h = } `nStrata`, the number of population strata;
 #' - \eqn{n_p = } `nPatches`, the number of patches.
 #'
 #' If \eqn{w} is any vector describing a quantity in strata (*i.e.*, \eqn{\left|w\right|=n_h}), then
-#' \deqn{W={\cal J}\cdot w} is a vector that has summed \eqn{w} by residency for the strata, and \eqn{\left|W\right|= n_p}.
+#' \deqn{W={J}\cdot w} is a vector that has summed \eqn{w} by residency for the strata, and \eqn{\left|W\right|= n_p}.
 #' @param nPatches the number of patches
 #' @param residence a vector describing the patch index for each habitat
-#' @return the residence [matrix], denoted \eqn{\cal J} where \eqn{\left|\cal J\right|= n_p \times n_h}
+#' @return the residence [matrix], denoted \eqn{J} where \eqn{\left|J\right|= n_p \times n_h}
 #' @seealso see [setup_BLOOD_FEEDING]
 #' @seealso see [view_residence_matrix]
 #' @export
 create_residence_matrix = function(nPatches, residence){
   nStrata = length(residence)
-  calJ = matrix(0, nPatches, nStrata)
-  calJ[cbind(residence, 1:nStrata)]=1
-  return(calJ)
+  Jmatrix = matrix(0, nPatches, nStrata)
+  Jmatrix[cbind(residence, 1:nStrata)]=1
+  return(Jmatrix)
 }
 
 #' @title Set up Blood Feeding
@@ -39,7 +39,7 @@ create_residence_matrix = function(nPatches, residence){
 #' guarantee mathematical consistency for blood feeding and transmission.
 #' The interface is for blood feeding is defined by an object called `BFpar` that
 #' is attached to the **`xds`** object pars as `pars$BFpar`. The blood feeding interface
-#' - the residency matrix \eqn{\cal J}
+#' - the residency matrix \eqn{J}
 #' - a time spent (TiSp) matrix \eqn{\Theta}
 #' - a circadian function `F_circadian` for each vector species
 #' - a time at risk (TaR) matrix \eqn{\Psi} that is the product the TiSp matrix and the circadian function
@@ -79,8 +79,8 @@ setup_BLOOD_FEEDING <- function(pars){
 
   H = rep(1, pars$nStrata)
   wts = rep(1, pars$nStrata)
-  calJ = pars$residence_matrix[[1]]
-  W = compute_W(wts, H, calJ)
+  Jmatrix = pars$residence_matrix[[1]]
+  W = compute_W(wts, H, Jmatrix)
 
   # There is a set of search weights for
   # each combination of host and vector species:
@@ -98,7 +98,7 @@ setup_BLOOD_FEEDING <- function(pars){
 
   # Time Spent (TiSp): For each Host Species, i
   pars$TimeSpent = list()
-  pars$TimeSpent[[1]] = calJ
+  pars$TimeSpent[[1]] = Jmatrix
   pars$time_traveling = list()
   pars$time_traveling[[1]] = rep(0, pars$nStrata)
 
@@ -107,7 +107,7 @@ setup_BLOOD_FEEDING <- function(pars){
   # TaR[[s]][[i]]
   pars$TaR = list()
   pars$TaR[[1]] = list()
-  pars$TaR[[1]][[1]] = calJ
+  pars$TaR[[1]][[1]] = Jmatrix
 
   # Exogenous variables
   # Available Blood Hosts: Wi[[s]][[i]]
@@ -333,7 +333,7 @@ BloodFeeding.static = function(t, y, pars){
 #' @title Compute blood feeding objects dynamically
 #' @description Compute host availability, \eqn{W},
 #' total blood host availability, \eqn{B},
-#' the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi}
+#' the time spent matrix \eqn{(\Theta)}, and the time-at-risk matrix \eqn{(\Psi)}
 #' for static models.
 #' @inheritParams BloodFeeding
 #' @return an `xds` object
@@ -346,7 +346,7 @@ BloodFeeding.dynamic = function(t, y, pars){
 }
 
 #' @title View residence membership
-#' @description Shows the residence membership information from \eqn{\cal J}
+#' @description Shows the residence membership information (from the residence matrix) 
 #' @param pars an `xds` object
 #' @param i the host species index
 #' @return a named [list]

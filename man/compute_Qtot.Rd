@@ -23,8 +23,8 @@ a mosquito might lay eggs, including ovitraps and unsuitable habitats.
 \details{
 The availability of the habitats that we have defined in the model, denoted \eqn{Q},
 sums search weights, \eqn{\omega_h}, by patch
-using the habitat membership matrix, \eqn{\cal N}, and we can compute
-\deqn{Q = {\cal N} \cdot \omega_h.}
+using the habitat membership matrix, \eqn{N}, and we can compute
+\deqn{Q = {N} \cdot \omega_h.}
 If some ovitraps and bad_habitats are also available, with values \eqn{Q_o} and \eqn{Q_b} respectively, then
 \deqn{Q = Q_h + Q_o + Q_b.}
 The availability of habitats, ovitraps and bad_habitats are computed elsewhere and stored on \code{pars$vars}.
@@ -32,7 +32,7 @@ The availability of habitats, ovitraps and bad_habitats are computed elsewhere a
 \seealso{
 This function is called by \link{make_Q}
 
-\link{create_habitat_matrix} discusses \eqn{\cal N}
+\link{create_habitat_matrix} discusses \eqn{N}
 
 The availability of ovitraps and bad habitats is setup in \link{setup_EGG_LAYING}
 }

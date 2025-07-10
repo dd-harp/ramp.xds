@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-trivial.R
 \name{setup_MYZpar.trivial}
 \alias{setup_MYZpar.trivial}
-\title{Setup the trivial}
+\title{Setup the trivial model for an adult mosquito model}
 \usage{
 \method{setup_MYZpar}{trivial}(MYZname, pars, s, MYZopts = NULL)
 }
@@ -16,8 +16,12 @@
 \item{MYZopts}{a \link{list}}
 }
 \value{
-a \link{list} vector
+a modified \strong{\code{xds}} model object
 }
 \description{
-Implements \link{setup_MYZpar} for the trivial model
+Set up the trivial adult mosquito model.
+In general, this should be used for aquatic mosquito
+ecology or human / host epidemiology.  In the former case,
+the user configures \code{F_eggs}; in the latter,
+\code{F_fqZ}
 }
