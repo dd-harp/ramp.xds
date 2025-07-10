@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Macdonald's Model • ramp.xds</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -34,29 +40,24 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with Models</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a></li>
-    <li><a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
   </ul>
 </li>
 <li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-adult" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Adult</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-aquatic" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Aquatic</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a></li>
-    <li><a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -111,76 +112,49 @@ Ross-Macdonald module <code>GeRM.</code></p>
 <p>Macdonald’s model for the sporozoite rate, published in 1952<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;The analysis of the sporozoite rate. Macdonald G (1952).
 Trop Dis Bull 49(6):569-86.&lt;/p&gt;"><sup>1</sup></a> has played
 an important role in studies of malaria. Later that same year, Macdonald
-introduced a formula for the basic reproductive rate, now called
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mn>0</mn></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">R_0.</annotation></semantics></math><a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;The analysis of equilibrium in malaria. Macdonald G
-(1952). Trop Dis Bull 49(9):813-29.&lt;/p&gt;"><sup>2</sup></a> Macdonald
-gives credit to his colleague Armitage for the mathematics. Armitage’s
-paper would be published the next year,<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;A note on the epidemiology of malaria. Armitage P
-(1953). Trop Dis Bull 50(10):890-2&lt;/p&gt;"><sup>3</sup></a> but that paper does
-not present the model as a system of differential equations.</p>
+introduced a formula for the basic reproductive rate, now called <span class="math inline">\(R_0.\)</span><a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;The analysis of equilibrium in malaria. Macdonald G
+(1952). Trop Dis Bull 49(9):813-29.&lt;/p&gt;"><sup>2</sup></a> Macdonald gives credit to his colleague
+Armitage for the mathematics. Armitage’s paper would be published the
+next year,<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;A note on the epidemiology of malaria. Armitage P
+(1953). Trop Dis Bull 50(10):890-2&lt;/p&gt;"><sup>3</sup></a> but that paper does not present the model
+as a system of differential equations.</p>
 <p>A simple system of differential equations that is consistent with
 Macdonald’s model for the sporozoite rate has three parameters and one
 term:</p>
 <ul>
-<li><p>the human blood feeding rate,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math></p></li>
-<li><p>the extrinsic incubation period,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math></p></li>
-<li><p>the mosquito death rate,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>;
-or the probability of surviving one day,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>g</mi></mrow></msup></mrow><annotation encoding="application/x-tex">p=e^{-g}</annotation></semantics></math>,
-so
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>=</mo><mo>−</mo><mo>ln</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">g=-\ln p</annotation></semantics></math></p></li>
-<li><p>the fraction of bites on humans that infect a mosquito,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>κ</mi><annotation encoding="application/x-tex">\kappa</annotation></semantics></math></p></li>
+<li><p>the human blood feeding rate, <span class="math inline">\(a\)</span></p></li>
+<li><p>the extrinsic incubation period, <span class="math inline">\(\tau\)</span></p></li>
+<li><p>the mosquito death rate, <span class="math inline">\(g\)</span>;
+or the probability of surviving one day, <span class="math inline">\(p=e^{-g}\)</span>, so <span class="math inline">\(g=-\ln p\)</span></p></li>
+<li><p>the fraction of bites on humans that infect a mosquito, <span class="math inline">\(\kappa\)</span></p></li>
 </ul>
-<p>Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
-denote the fraction of mosquitoes that are infected. The dynamics are
-given by:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mi>a</mi><mi>κ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>g</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">\frac{dy}{dt} = a \kappa (1-y) - g y</annotation></semantics></math>
-Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>
-denote the fraction of mosquitoes that are infectious. The model is a
-delay differential equation. Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>y</mi><mi>τ</mi></msub><annotation encoding="application/x-tex">y_\tau</annotation></semantics></math>
-denote the value of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
-at time
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>−</mo><mi>τ</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">t-\tau.</annotation></semantics></math>
-If the parameters and terms are constant, then:<br><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><mi>z</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>g</mi><mi>τ</mi></mrow></msup><mi>a</mi><mi>κ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>y</mi><mi>τ</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>g</mi><mi>z</mi></mrow><annotation encoding="application/x-tex">\frac{dz}{dt} = e^{-g\tau} a \kappa (1-y_\tau) - g z</annotation></semantics></math>
-The model has a steady state for the fraction infected:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>y</mi><mo accent="true">‾</mo></mover><mo>=</mo><mfrac><mrow><mi>a</mi><mi>κ</mi></mrow><mrow><mi>a</mi><mi>κ</mi><mo>+</mo><mi>g</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\bar y = \frac{a \kappa} {a \kappa + g}</annotation></semantics></math>
-The fraction infectious, also called the sporozoite rate, is
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>z</mi><mo accent="true">‾</mo></mover><mo>=</mo><mfrac><mrow><mi>a</mi><mi>κ</mi></mrow><mrow><mi>a</mi><mi>κ</mi><mo>+</mo><mi>g</mi></mrow></mfrac><msup><mi>e</mi><mrow><mo>−</mo><mi>g</mi><mi>τ</mi></mrow></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">\bar z = \frac{a \kappa} {a \kappa + g}e^{-g\tau}.</annotation></semantics></math>
-Macdonald used
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>
-so his formula was:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>z</mi><mo accent="true">‾</mo></mover><mo>=</mo><mfrac><mrow><mi>a</mi><mi>κ</mi></mrow><mrow><mi>a</mi><mi>κ</mi><mo>−</mo><mo>ln</mo><mi>p</mi></mrow></mfrac><msup><mi>e</mi><mrow><mo>−</mo><mi>p</mi><mi>τ</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\bar z = \frac{a \kappa} {a \kappa -\ln p}e^{-p\tau}</annotation></semantics></math></p>
-<p>To generate the formula for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mn>0</mn></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">R_0,</annotation></semantics></math>
+<p>Let <span class="math inline">\(y\)</span> denote the fraction of
+mosquitoes that are infected. The dynamics are given by: <span class="math display">\[\frac{dy}{dt} = a \kappa (1-y) - g y\]</span> Let
+<span class="math inline">\(z\)</span> denote the fraction of mosquitoes
+that are infectious. The model is a delay differential equation. Let
+<span class="math inline">\(y_\tau\)</span> denote the value of <span class="math inline">\(y\)</span> at time <span class="math inline">\(t-\tau.\)</span> If the parameters and terms are
+constant, then:<br><span class="math display">\[\frac{dz}{dt} = e^{-g\tau} a \kappa
+(1-y_\tau) - g z\]</span> The model has a steady state for the fraction
+infected: <span class="math display">\[\bar y = \frac{a \kappa} {a
+\kappa + g}\]</span> The fraction infectious, also called the sporozoite
+rate, is <span class="math display">\[\bar z = \frac{a \kappa} {a \kappa
++ g}e^{-g\tau}.\]</span> Macdonald used <span class="math inline">\(p\)</span> so his formula was: <span class="math display">\[\bar z = \frac{a \kappa} {a \kappa -\ln
+p}e^{-p\tau}\]</span></p>
+<p>To generate the formula for <span class="math inline">\(R_0,\)</span>
 Macdonald introduces another variable and three additional
 parameters:</p>
 <ul>
-<li><p>the ratio of mosquitoes to humans,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math></p></li>
-<li><p>the rate infections clear,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math></p></li>
-<li><p>the fraction of infectious bites that infect a human,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math></p></li>
+<li><p>the ratio of mosquitoes to humans, <span class="math inline">\(m\)</span></p></li>
+<li><p>the rate infections clear, <span class="math inline">\(r\)</span></p></li>
+<li><p>the fraction of infectious bites that infect a human, <span class="math inline">\(b\)</span></p></li>
 </ul>
-<p>The fraction of infected and infectious humans,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">x,</annotation></semantics></math>
-is given by the equation:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><mi>x</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mi>m</mi><mi>a</mi><mi>z</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>r</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\frac{dx}{dt} = m a z (1-y) - r x</annotation></semantics></math>
-and the model assumes that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mi>x</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\kappa = x.</annotation></semantics></math>
-The formula for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mn>0</mn></msub><annotation encoding="application/x-tex">R_0</annotation></semantics></math>
-in this system is:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mn>0</mn></msub><mo>=</mo><mfrac><mrow><mi>m</mi><mi>b</mi><msup><mi>a</mi><mn>2</mn></msup></mrow><mrow><mi>g</mi><mi>r</mi></mrow></mfrac><msup><mi>e</mi><mrow><mo>−</mo><mi>g</mi><mi>τ</mi></mrow></msup><mo>=</mo><mfrac><mrow><mi>m</mi><mi>b</mi><msup><mi>a</mi><mn>2</mn></msup></mrow><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><mo>ln</mo><mi>p</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>r</mi></mrow></mfrac><msup><mi>e</mi><mrow><mo>−</mo><mi>p</mi><mi>τ</mi></mrow></msup></mrow><annotation encoding="application/x-tex">R_0 = \frac{m b a^2}{gr} e^{-g\tau} = \frac{m b a^2}{(-\ln p)r} e^{-p\tau}</annotation></semantics></math>
-In this form, the model is difficult to use or extend.</p>
+<p>The fraction of infected and infectious humans, <span class="math inline">\(x,\)</span> is given by the equation:</p>
+<p><span class="math display">\[\frac{dx}{dt} = m a z (1-y) - r
+x\]</span> and the model assumes that <span class="math inline">\(\kappa
+= x.\)</span> The formula for <span class="math inline">\(R_0\)</span>
+in this system is: <span class="math display">\[R_0 = \frac{m b a^2}{gr}
+e^{-g\tau} = \frac{m b a^2}{(-\ln p)r} e^{-p\tau}\]</span> In this form,
+the model is difficult to use or extend.</p>
 </div>
 <div class="section level3">
 <h3 id="aron-may">Aron &amp; May<a class="anchor" aria-label="anchor" href="#aron-may"></a>
@@ -190,25 +164,16 @@ In this form, the model is difficult to use or extend.</p>
 Joan Aron and Robert May<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;The population dynamics of malaria. In &lt;em&gt;The
 Population Dynamics of Infectious Diseases: Theory and
 Applications,&lt;/em&gt; R. M. Anderson, ed. (Springer US), pp. 139–179. &lt;a href="https://link.springer.com/chapter/10.1007/978-1-4899-2901-3_5" target="_blank" class="external-link"&gt;online&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a>. It includes state variables for total
-mosquito density
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>,
-infected mosquito density
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Y</mi><annotation encoding="application/x-tex">Y</annotation></semantics></math>,
-and infectious mosquito density
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>.
-In this model, the blood feeding rate is split into an overall blood
-feeding rate,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math>,
-and the human fraction,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math>
-such that
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>f</mi><mi>q</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">a=fq.</annotation></semantics></math>
-The Aron &amp; May’s equations are:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mfrac><mrow><mi>d</mi><mi>M</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>Λ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>g</mi><mi>M</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mfrac><mrow><mi>d</mi><mi>Y</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>f</mi><mi>q</mi><mi>κ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo>−</mo><mi>Y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>g</mi><mi>Y</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mfrac><mrow><mi>d</mi><mi>Z</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>g</mi><mi>τ</mi></mrow></msup><mi>f</mi><mi>q</mi><msub><mi>κ</mi><mi>τ</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>M</mi><mi>τ</mi></msub><mo>−</mo><msub><mi>Y</mi><mi>τ</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>g</mi><mi>Z</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{rl} 
+mosquito density <span class="math inline">\(M\)</span>, infected
+mosquito density <span class="math inline">\(Y\)</span>, and infectious
+mosquito density <span class="math inline">\(Z\)</span>. In this model,
+the blood feeding rate is split into an overall blood feeding rate,
+<span class="math inline">\(f\)</span>, and the human fraction, <span class="math inline">\(q\)</span> such that <span class="math display">\[a=fq.\]</span> The Aron &amp; May’s equations
+are: <span class="math display">\[\begin{array}{rl}
 \frac{dM}{dt} &amp;= \Lambda(t) - g M \\
 \frac{dY}{dt} &amp;= fq\kappa(M-Y) - g Y \\
 \frac{dZ}{dt} &amp;= e^{-g\tau}fq\kappa_\tau(M_\tau-Y_\tau) - g Z \\
-\end{array}</annotation></semantics></math></p>
+\end{array}\]</span></p>
 </div>
 <div class="section level3">
 <h3 id="delay-differential-equations">Delay Differential Equations<a class="anchor" aria-label="anchor" href="#delay-differential-equations"></a>
@@ -217,125 +182,96 @@ The Aron &amp; May’s equations are:
 Aron &amp; May formulation to include spatial dynamics and parity. To
 formulate the spatial model, a spatial domain is sub-divided into a set
 of patches. Variable and parameter names do not change, but they can now
-represent vectors of length
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>p</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">n_p.</annotation></semantics></math>
-To formulate the <em>demographic matrix,</em> denoted
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\Omega,</annotation></semantics></math>
-that describes mosquito mortality, emigration, and other loss from the
-system. We let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math>
-denote the emigration rate and <span class="math inline">$\cal K$</span>
-the mosquito dispersal matrix. We also introduce a parameter,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
-to model the fraction of mosquitoes that are lost to emigration from
-each patch. <span class="math display">$$\Omega = \mbox{diag}
-\left(g\right) + \left(\mbox{diag} \left(1-\mu\right)  - \cal K\right)
-\cdot \mbox{diag} \left(\sigma\right)
-$$</span></p>
+represent vectors of length <span class="math inline">\(n_p.\)</span> To
+formulate the <em>demographic matrix,</em> denoted <span class="math inline">\(\Omega,\)</span> that describes mosquito
+mortality, emigration, and other loss from the system. We let <span class="math inline">\(\sigma\)</span> denote the emigration rate and
+<span class="math inline">\(\cal K\)</span> the mosquito dispersal
+matrix. We also introduce a parameter, <span class="math inline">\(\mu\)</span> to model the fraction of mosquitoes
+that are lost to emigration from each patch. <span class="math display">\[\Omega = \mbox{diag} \left(g\right) +
+\left(\mbox{diag} \left(1-\mu\right)  - \cal K\right) \cdot \mbox{diag}
+\left(\sigma\right)
+\]</span></p>
 <div class="section level4">
 <h4 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a>
 </h4>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mover><mi>M</mi><mo accent="true">̇</mo></mover></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>Λ</mi><mo>−</mo><mi>Ω</mi><mo>⋅</mo><mi>M</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mover><mi>P</mi><mo accent="true">̇</mo></mover></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo>−</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>Ω</mi><mo>⋅</mo><mi>P</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mover><mi>Y</mi><mo accent="true">̇</mo></mover></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mi>q</mi><mi>κ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo>−</mo><mi>Y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>Ω</mi><mo>⋅</mo><mi>Y</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mover><mi>Z</mi><mo accent="true">̇</mo></mover></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mover><mi>Z</mi><mo accent="true">̇</mo></mover><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>Ω</mi><mi>τ</mi></mrow></msup><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mi>q</mi><msub><mi>κ</mi><mrow><mi>t</mi><mo>−</mo><mi>τ</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>M</mi><mrow><mi>t</mi><mo>−</mo><mi>τ</mi></mrow></msub><mo>−</mo><msub><mi>Y</mi><mrow><mi>t</mi><mo>−</mo><mi>τ</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>Ω</mi><mo>⋅</mo><mi>Z</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{rl}
+<p><span class="math display">\[\begin{array}{rl}
 \dot{M} &amp; = \Lambda - \Omega\cdot M  \\
-\dot{P} &amp; = \mbox{diag}(f) \cdot (M-P) -  \Omega \cdot P\\ 
+\dot{P} &amp; = \mbox{diag}(f) \cdot (M-P) -  \Omega \cdot P\\
 \dot{Y} &amp; = \mbox{diag}(fq\kappa) \cdot (M-Y) - \Omega \cdot Y \\
-\dot{Z} &amp; = 
-\dot{Z} = e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa_{t-\tau}) \cdot (M_{t-\tau}-Y_{t-\tau}) - \Omega \cdot Z
+\dot{Z} &amp; =
+\dot{Z} = e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa_{t-\tau}) \cdot
+(M_{t-\tau}-Y_{t-\tau}) - \Omega \cdot Z
 \end{array}
-</annotation></semantics></math></p>
+\]</span></p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="ordinary-differential-equations">Ordinary Differential Equations<a class="anchor" aria-label="anchor" href="#ordinary-differential-equations"></a>
 </h3>
 <p>We note that the module <code>SI</code> provides a reasonably simple
-approximating model that has no delay, but in computing
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>q</mi><mi>Z</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">fqZ,</annotation></semantics></math>
-it includes mortality and dispersal that would have occurred during the
-EIP:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>Ω</mi><mi>τ</mi></mrow></msup><mo>⋅</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">
-Z = e^{-\Omega \tau} \cdot Y 
-</annotation></semantics></math> The implementation of <code>SI</code>
-is similar in spirit to the simple model presented in Smith &amp;
-McKenzie (2004)<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;Smith, D.L., Ellis McKenzie, F. Statics and dynamics of
-malaria infection in Anopheles mosquitoes. Malar J 3, 13 (2004). &lt;a href="https://doi.org/10.1186/1475-2875-3-13" target="_blank" class="external-link"&gt;online&lt;/a&gt;&lt;/p&gt;'><sup>5</sup></a>. in that mortality and dispersal over the
-EIP is accounted for, but the time lag is not. While transient dynamics
-of the ODE model will not equal the DDE model, they have the same
-equilibrium values, and so for numerical work requiring finding
-equilibrium points, the faster ODE model can be safely substituted.</p>
+approximating model that has no delay, but in computing <span class="math inline">\(fqZ,\)</span> it includes mortality and dispersal
+that would have occurred during the EIP: <span class="math display">\[
+Z = e^{-\Omega \tau} \cdot Y
+\]</span> The implementation of <code>SI</code> is similar in spirit to
+the simple model presented in Smith &amp; McKenzie (2004)<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;Smith, D.L., Ellis McKenzie, F. Statics and dynamics of
+malaria infection in Anopheles mosquitoes. Malar J 3, 13 (2004). &lt;a href="https://doi.org/10.1186/1475-2875-3-13" target="_blank" class="external-link"&gt;online&lt;/a&gt;&lt;/p&gt;'><sup>5</sup></a>. in that mortality and
+dispersal over the EIP is accounted for, but the time lag is not. While
+transient dynamics of the ODE model will not equal the DDE model, they
+have the same equilibrium values, and so for numerical work requiring
+finding equilibrium points, the faster ODE model can be safely
+substituted.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="equilibrium-solutions">Equilibrium solutions<a class="anchor" aria-label="anchor" href="#equilibrium-solutions"></a>
 </h2>
 <p>There are two logical ways to begin solving the non-trivial
-equilibrium. The first assumes
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Λ</mi><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math>
-is known, which implies good knowledge of mosquito ecology. The second
-assumes
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>
-is known, which implies knowledge of the biting rate on the human
-population. We show both below.</p>
+equilibrium. The first assumes <span class="math inline">\(\Lambda\)</span> is known, which implies good
+knowledge of mosquito ecology. The second assumes <span class="math inline">\(Z\)</span> is known, which implies knowledge of
+the biting rate on the human population. We show both below.</p>
 <div class="section level3">
-<h3 id="starting-with-lambda">Starting with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Λ</mi><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math><a class="anchor" aria-label="anchor" href="#starting-with-lambda"></a>
+<h3 id="starting-with-lambda">Starting with <span class="math inline">\(\Lambda\)</span><a class="anchor" aria-label="anchor" href="#starting-with-lambda"></a>
 </h3>
-<p>Given
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Λ</mi><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math>
-we can solve:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><msup><mi>Ω</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mi>Λ</mi></mrow><annotation encoding="application/x-tex">
+<p>Given <span class="math inline">\(\Lambda\)</span> we can solve:</p>
+<p><span class="math display">\[
 M = \Omega^{-1} \cdot \Lambda
-</annotation></semantics></math> Then given
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
-we set
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>Y</mi><mo accent="true">̇</mo></mover><annotation encoding="application/x-tex">\dot{Y}</annotation></semantics></math>
-to zero and factor out
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Y</mi><annotation encoding="application/x-tex">Y</annotation></semantics></math>
-to get:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mi>q</mi><mi>κ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>Ω</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mi>q</mi><mi>κ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">
-Y = (\mbox{diag}(fq\kappa) + \Omega)^{-1} \cdot \mbox{diag}(fq\kappa) \cdot M
-</annotation></semantics></math> We set
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>Z</mi><mo accent="true">̇</mo></mover><annotation encoding="application/x-tex">\dot{Z}</annotation></semantics></math>
-to zero to get:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>=</mo><msup><mi>Ω</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>Ω</mi><mi>τ</mi></mrow></msup><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mi>q</mi><mi>κ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo>−</mo><mi>Y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
-Z = \Omega^{-1} \cdot e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa) \cdot (M-Y)
-</annotation></semantics></math></p>
-<p>Because the dynamics of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>
-are independent of the infection dynamics, we can solve it given
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
-as:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>Ω</mi><mo>+</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">
+\]</span> Then given <span class="math inline">\(M\)</span> we set <span class="math inline">\(\dot{Y}\)</span> to zero and factor out <span class="math inline">\(Y\)</span> to get:</p>
+<p><span class="math display">\[
+Y = (\mbox{diag}(fq\kappa) + \Omega)^{-1} \cdot \mbox{diag}(fq\kappa)
+\cdot M
+\]</span> We set <span class="math inline">\(\dot{Z}\)</span> to zero to
+get:</p>
+<p><span class="math display">\[
+Z = \Omega^{-1} \cdot e^{-\Omega \tau} \cdot \mbox{diag}(fq\kappa) \cdot
+(M-Y)
+\]</span></p>
+<p>Because the dynamics of <span class="math inline">\(P\)</span> are
+independent of the infection dynamics, we can solve it given <span class="math inline">\(M\)</span> as:</p>
+<p><span class="math display">\[
 P = (\Omega + \mbox{diag}(f))^{-1} \cdot \mbox{diag}(f) \cdot M
-</annotation></semantics></math></p>
+\]</span></p>
 </div>
 <div class="section level3">
-<h3 id="starting-with-z">Starting with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math><a class="anchor" aria-label="anchor" href="#starting-with-z"></a>
+<h3 id="starting-with-z">Starting with <span class="math inline">\(Z\)</span><a class="anchor" aria-label="anchor" href="#starting-with-z"></a>
 </h3>
-<p>It is more common that we start from an estimate of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>,
-perhaps derived from an estimated EIR (entomological inoculation rate).
-Given
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>,
-we can calculate the other state variables and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Λ</mi><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math>.
-For numerical implementation, note that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>Ω</mi><mi>τ</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><msup><mi>e</mi><mrow><mi>Ω</mi><mi>τ</mi></mrow></msup></mrow><annotation encoding="application/x-tex">(e^{-\Omega\tau})^{-1} = e^{\Omega\tau}</annotation></semantics></math>.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>−</mo><mi>Y</mi><mo>=</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mi>/</mi><mi>f</mi><mi>q</mi><mi>κ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>Ω</mi><mi>τ</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mi>Ω</mi><mo>⋅</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">
-M-Y = \mbox{diag}(1/fq\kappa) \cdot (e^{-\Omega\tau})^{-1} \cdot \Omega \cdot Z
-</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><msup><mi>Ω</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mi>q</mi><mi>κ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo>−</mo><mi>Y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+<p>It is more common that we start from an estimate of <span class="math inline">\(Z\)</span>, perhaps derived from an estimated EIR
+(entomological inoculation rate). Given <span class="math inline">\(Z\)</span>, we can calculate the other state
+variables and <span class="math inline">\(\Lambda\)</span>. For
+numerical implementation, note that <span class="math inline">\((e^{-\Omega\tau})^{-1} =
+e^{\Omega\tau}\)</span>.</p>
+<p><span class="math display">\[
+M-Y = \mbox{diag}(1/fq\kappa) \cdot (e^{-\Omega\tau})^{-1} \cdot \Omega
+\cdot Z
+\]</span></p>
+<p><span class="math display">\[
 Y = \Omega^{-1} \cdot \mbox{diag}(fq\kappa) \cdot (M-Y)
-</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mo>−</mo><mi>Y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">
+\]</span></p>
+<p><span class="math display">\[
 M = (M - Y) + Y
-</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Λ</mi><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">
+\]</span></p>
+<p><span class="math display">\[
 \Lambda = \Omega \cdot M
-</annotation></semantics></math> We can use the same equation for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>
-as above.</p>
+\]</span> We can use the same equation for <span class="math inline">\(P\)</span> as above.</p>
 </div>
 </div>
 <div class="section level2">
@@ -354,12 +290,14 @@ example</a> to run a full simulation.</p>
 <div class="section level3">
 <h3 id="ross-macdonald">Ross-Macdonald<a class="anchor" aria-label="anchor" href="#ross-macdonald"></a>
 </h3>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>a</mi><mi>κ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>g</mi><mi>y</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mfrac><mrow><mi>d</mi><mi>z</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>g</mi><mi>τ</mi></mrow></msup><mi>q</mi><msub><mi>κ</mi><mi>τ</mi></msub><mrow><mo stretchy="true" form="prefix">[</mo><mn>1</mn><mo>−</mo><msub><mi>y</mi><mi>τ</mi></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo>−</mo><mi>g</mi><mi>z</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \begin{array}{rl}
-\frac{\textstyle{dy}}{\textstyle{dt}} &amp; = a \kappa \left(1 -y  \right) - g y \\ 
-\frac{\textstyle{dz}}{\textstyle{dt}} &amp; = e^{-g\tau} q \kappa_\tau \left[1 - y_\tau \right] - g z
+\frac{\textstyle{dy}}{\textstyle{dt}} &amp; = a \kappa \left(1
+-y  \right) - g y \\
+\frac{\textstyle{dz}}{\textstyle{dt}} &amp; = e^{-g\tau} q \kappa_\tau
+\left[1 - y_\tau \right] - g z
 \end{array}
-</annotation></semantics></math></p>
+\]</span></p>
 </div>
 <div class="section level3">
 <h3 id="the-long-way">The long way<a class="anchor" aria-label="anchor" href="#the-long-way"></a>
@@ -390,11 +328,9 @@ example</a> to run a full simulation.</p>
 <p>Now we set up the parameter environment with the correct class using
 <code>ramp.xds::make_parameters_MYZ_RM_xde,</code> noting that we will
 be solving as an <code>ode.</code></p>
-<p>Now we set the values of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>κ</mi><annotation encoding="application/x-tex">\kappa</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Λ</mi><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math>
-and solve for the equilibrium values.</p>
+<p>Now we set the values of <span class="math inline">\(\kappa\)</span>
+and <span class="math inline">\(\Lambda\)</span> and solve for the
+equilibrium values.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">kappa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.075</span>, <span class="fl">0.025</span><span class="op">)</span></span>
 <span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>kappa<span class="op">=</span><span class="va">kappa</span><span class="op">)</span></span>
@@ -412,9 +348,8 @@ and solve for the equilibrium values.</p>
 <span><span class="va">MYZo</span><span class="op">$</span><span class="va">Y</span><span class="op">=</span><span class="va">Y_eq</span></span>
 <span><span class="va">MYZo</span><span class="op">$</span><span class="va">Z</span><span class="op">=</span><span class="va">Z_eq</span></span></code></pre></div>
 <p>We use <code>ramp.xds::make_inits_MYZ_RM_xde</code> to store the
-initial values. These equations have been implemented to compute
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Υ</mi><annotation encoding="application/x-tex">\Upsilon</annotation></semantics></math>
-dynamically, so we attach <code>Upsilon</code> as initial values:</p>
+initial values. These equations have been implemented to compute <span class="math inline">\(\Upsilon\)</span> dynamically, so we attach
+<code>Upsilon</code> as initial values:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_xds_template.html">make_xds_template</a></span><span class="op">(</span><span class="st">"dde"</span>, <span class="st">"mosy"</span>, <span class="va">nPatches</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_MYZpar.html">setup_MYZpar</a></span><span class="op">(</span><span class="st">"macdonald"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZo</span><span class="op">)</span>  </span>

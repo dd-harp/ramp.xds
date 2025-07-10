@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Understanding ramp.xds • ramp.xds</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -29,34 +35,29 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="active nav-item dropdown">
+<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with Models</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a></li>
-    <li><a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-adult" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Adult</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-aquatic" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Aquatic</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a></li>
-    <li><a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -193,35 +194,35 @@ chunks, the core dynamical components. The chunks represented five
 distinct processes:</p>
 <ul>
 <li>
-<p><span class="math inline">$\cal XH$</span> - Human demography and
-parasite infection dynamics, including immunity and disease, diagnostics
-and treatment,</p>
+<p><span class="math inline">\(\cal XH\)</span> - Human demography
+and parasite infection dynamics, including immunity and disease,
+diagnostics and treatment,</p>
 <ul>
-<li><p><span class="math inline">$\cal X$</span> - The dynamical process
-describing the dynamics of human infection and immunity</p></li>
-<li><p><span class="math inline">$\cal H$</span> - A dynamical model
+<li><p><span class="math inline">\(\cal X\)</span> - The dynamical
+process describing the dynamics of human infection and immunity</p></li>
+<li><p><span class="math inline">\(\cal H\)</span> - A dynamical model
 describing human demography</p></li>
 </ul>
 </li>
 <li>
-<p><span class="math inline">$\cal MYZ$</span> - Adult mosquito
+<p><span class="math inline">\(\cal MYZ\)</span> - Adult mosquito
 ecology and behavior, and parasite infection dynamics</p>
 <ul>
-<li><p><span class="math inline">$\cal M$</span> - The model for adult
+<li><p><span class="math inline">\(\cal M\)</span> - The model for adult
 mosquito ecology</p></li>
-<li><p><span class="math inline">$\cal YZ$</span> - The model for adult
-mosquito infection dynmics, consistent with <span class="math inline">$\cal M$</span></p></li>
+<li><p><span class="math inline">\(\cal YZ\)</span> - The model for
+adult mosquito infection dynmics, consistent with <span class="math inline">\(\cal M\)</span></p></li>
 </ul>
 </li>
-<li><p><span class="math inline">$\cal L$</span> - Aquatic mosquito
+<li><p><span class="math inline">\(\cal L\)</span> - Aquatic mosquito
 ecology</p></li>
 </ul>
 <p>The three core dynamical components were connected by two rigid
 interfaces, discussed at greater length below:</p>
 <ul>
-<li><p><span class="math inline">$\cal B$</span> - Blood
+<li><p><span class="math inline">\(\cal B\)</span> - Blood
 Feeding</p></li>
-<li><p><span class="math inline">$\cal U$</span> - Egg laying and
+<li><p><span class="math inline">\(\cal U\)</span> - Egg laying and
 emergence</p></li>
 </ul>
 <p>Exogenous forcing was implemented largely through a flexible set of
@@ -236,22 +237,20 @@ dynamics.</em></p>
 model:</p>
 <ul>
 <li><p><strong>Malaria Epidemiology</strong> or the model for infection
-dynamics and immunity in humans (<span class="math inline">$\cal
-X$</span>) is specified by passing <code>Xname</code> – a string,
+dynamics and immunity in humans (<span class="math inline">\(\cal
+X\)</span>) is specified by passing <code>Xname</code> – a string,
 corresponding to a model from the <code>ramp.xds</code> library, that
 specifies the model family for human infection dynamics that gets
-dispatched by the S3 function implementing <span class="math inline">$\cal X$</span> tasks.</p></li>
+dispatched by the S3 function implementing <span class="math inline">\(\cal X\)</span> tasks.</p></li>
 <li>
 <p>How many <strong>host species</strong> are there? The number of
 distinct <em>vertebrate host</em> species (or types) in a model is
 <code>pars$nHosts</code></p>
 <ul>
-<li><p>The model for the human population for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-species is defined by <code>pars$Xpar[[i]]</code></p></li>
-<li><p>The demographic model for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-species is defined by <code>pars$Hpar[[i]]</code></p></li>
+<li><p>The model for the human population for the <span class="math inline">\(i^{th}\)</span> species is defined by
+<code>pars$Xpar[[i]]</code></p></li>
+<li><p>The demographic model for the <span class="math inline">\(i^{th}\)</span> species is defined by
+<code>pars$Hpar[[i]]</code></p></li>
 <li><p>A vector passed at setup, <code>HPop,</code> defines the
 population density for the population strata of each vertebrate host
 species.</p></li>
@@ -279,12 +278,10 @@ distinct <em>mosquito vector</em> species (or type) in a model is
 <code>pars$nVectors</code> Each vector species is defined by a two sets
 of parameters:</p>
 <ul>
-<li><p>The model for the adult population for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>s</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">s^{th}</annotation></semantics></math>
-species is defined by <code>pars$MYZpar[[s]]</code></p></li>
-<li><p>The model for the aquatic population for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>s</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">s^{th}</annotation></semantics></math>
-species is defined by <code>pars$Lpar[[s]]</code></p></li>
+<li><p>The model for the adult population for the <span class="math inline">\(s^{th}\)</span> species is defined by
+<code>pars$MYZpar[[s]]</code></p></li>
+<li><p>The model for the aquatic population for the <span class="math inline">\(s^{th}\)</span> species is defined by
+<code>pars$Lpar[[s]]</code></p></li>
 </ul>
 </li>
 <li><p><strong>Spatial dynamics</strong> are implemented through
@@ -296,14 +293,11 @@ Habitats.</strong> A parameter <code>pars$nHabitats</code> is the number
 of distinct aquatic habitats in a model. Additional information is
 needed to configure the model for <em>egg laying</em> (see below):</p>
 <ul>
-<li><p>a <code>membership</code> vector is required: the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-element of the membership matrix, <span class="math inline">$\cal
-N,$</span> identifies the patch to which it belongs.</p></li>
-<li><p>a <code>searchQ</code> vector is required: the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-element gives the habitat <em>search weight</em> to compute the egg
-laying matrix, <span class="math inline">$\cal U$</span></p></li>
+<li><p>a <code>membership</code> vector is required: the <span class="math inline">\(i^{th}\)</span> element of the membership matrix,
+<span class="math inline">\(\cal N,\)</span> identifies the patch to
+which it belongs.</p></li>
+<li><p>a <code>searchQ</code> vector is required: the <span class="math inline">\(i^{th}\)</span> element gives the habitat
+<em>search weight</em> to compute the egg laying matrix, <span class="math inline">\(\cal U\)</span></p></li>
 </ul>
 </li>
 </ul>
@@ -315,76 +309,62 @@ laying matrix, <span class="math inline">$\cal U$</span></p></li>
 <li>
 <p>Models for human ecology and parasite / pathogen infection
 dynamics would appear in one dynamical component. The part that computes
-the dynamics of infection and immunity was called <span class="math inline">$\cal X$</span>, and the part that describes human
-demography was called <span class="math inline">$\cal H.$</span> These
+the dynamics of infection and immunity was called <span class="math inline">\(\cal X\)</span>, and the part that describes human
+demography was called <span class="math inline">\(\cal H.\)</span> These
 two components can’t be separated in any easy way, so we call this chunk
-<span class="math inline">$\cal XH$</span>.</p>
+<span class="math inline">\(\cal XH\)</span>.</p>
 <ul>
-<li><p>The derivatives for a model of class <span class="math inline">$\cal X$</span> for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-species is computed by a <code>S3</code> function
-<code>dXdt(t, y, pars, i)</code></p></li>
-<li><p>The updating function for a model of class <span class="math inline">$\cal X$</span> for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-species is computed by a <code>S3</code> function
-<code>DT_Xt(t, y, pars, i)</code></p></li>
+<li><p>The derivatives for a model of class <span class="math inline">\(\cal X\)</span> for the <span class="math inline">\(i^{th}\)</span> species is computed by a
+<code>S3</code> function <code>dXdt(t, y, pars, i)</code></p></li>
+<li><p>The updating function for a model of class <span class="math inline">\(\cal X\)</span> for the <span class="math inline">\(i^{th}\)</span> species is computed by a
+<code>S3</code> function <code>DT_Xt(t, y, pars, i)</code></p></li>
 <li><p>The parameters for the model are in an object called
 <code>Xpar</code> and <code>dXdt</code> dispatches on
 <code>class(Xpar)</code></p></li>
 <li><p>Since there could be multiple host species, <code>Xpar</code> for
-the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-species is <code>pars$Xpar[[i]].</code></p></li>
-<li><p>The demographic model, <span class="math inline">$\cal H$</span>,
-configured as a birth process,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">B(t)</annotation></semantics></math>,
-and a linear tranformation among strata (including mortality),
-<code>dHdt(y, pars)</code> called from <code>dXdt</code></p></li>
+the <span class="math inline">\(i^{th}\)</span> species is
+<code>pars$Xpar[[i]].</code></p></li>
+<li><p>The demographic model, <span class="math inline">\(\cal
+H\)</span>, configured as a birth process, <span class="math inline">\(B(t)\)</span>, and a linear tranformation among
+strata (including mortality), <code>dHdt(y, pars)</code> called from
+<code>dXdt</code></p></li>
 </ul>
 </li>
 <li>
 <p>Models for adult mosquito ecology and parasite / pathogen
 infection dynamics would appear in a second dynamical component. The
-part that computes the dynamics of infection was called <span class="math inline">$\cal YZ$</span>, and the part that computes
-mosquito population dynamics was called <span class="math inline">$\cal
-M$</span>. These two components can’t be separated in any easy way, so
-we call this chunk <span class="math inline">$\cal MYZ$</span>.</p>
+part that computes the dynamics of infection was called <span class="math inline">\(\cal YZ\)</span>, and the part that computes
+mosquito population dynamics was called <span class="math inline">\(\cal
+M\)</span>. These two components can’t be separated in any easy way, so
+we call this chunk <span class="math inline">\(\cal MYZ\)</span>.</p>
 <ul>
 <li><p>The derivatives for a model of this type are computed by a
 <code>S3</code> function <code>dMYZdt(t, y, pars, s)</code> or
-<code>dMdt(t, y, pars, s)</code> for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>s</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">s^{th}</annotation></semantics></math>
-vector species</p></li>
-<li><p>The updating function for a model of class <span class="math inline">$\cal MYZ$</span> for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-species is computed by a <code>S3</code> function
-<code>DT_MYZt(t, y, pars, s)</code></p></li>
+<code>dMdt(t, y, pars, s)</code> for the <span class="math inline">\(s^{th}\)</span> vector species</p></li>
+<li><p>The updating function for a model of class <span class="math inline">\(\cal MYZ\)</span> for the <span class="math inline">\(i^{th}\)</span> species is computed by a
+<code>S3</code> function <code>DT_MYZt(t, y, pars, s)</code></p></li>
 <li><p>The parameters for the model are in an object called
 <code>MYZpar</code> and <code>dMYZdt</code> and <code>DT_MYZt</code>
 dispatch on <code>class(MYZpar)</code></p></li>
 <li><p>Since there could be multiple host species, <code>MYZpar</code>
-for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-species is <code>pars$MYZpar[[i]].</code></p></li>
+for the <span class="math inline">\(i^{th}\)</span> species is
+<code>pars$MYZpar[[i]].</code></p></li>
 </ul>
 </li>
 <li>
-<p>Models for aquatic mosquito ecology were called <span class="math inline">$\cal L$</span>.</p>
+<p>Models for aquatic mosquito ecology were called <span class="math inline">\(\cal L\)</span>.</p>
 <ul>
 <li><p>The derivatives for a model of this type are computed by a
 <code>S3</code> function <code>dLdt(t, y, pars, s)</code> or
 <code>DT_Lt(t, y, pars, s)</code></p></li>
-<li><p>The updating function for a model of class <span class="math inline">$\cal MYZ$</span> for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-species is computed by a <code>S3</code> function
-<code>DT_MYZt(t, y, pars, s)</code></p></li>
+<li><p>The updating function for a model of class <span class="math inline">\(\cal MYZ\)</span> for the <span class="math inline">\(i^{th}\)</span> species is computed by a
+<code>S3</code> function <code>DT_MYZt(t, y, pars, s)</code></p></li>
 <li><p>The parameters for the model are in an object called
 <code>Lpar</code> and <code>dLdt</code> and <code>DT_Lt</code> dispatch
 on <code>class(Lpar)</code></p></li>
 <li><p>Since there could be multiple host species, <code>Lpar</code> for
-the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-species is <code>pars$Lpar[[i]].</code></p></li>
+the <span class="math inline">\(i^{th}\)</span> species is
+<code>pars$Lpar[[i]].</code></p></li>
 </ul>
 </li>
 </ul>
@@ -409,33 +389,21 @@ bionomic parameters to static values that are not constrained. In <a href="https
 introduce a fully defined blood feeding module that constrains the blood
 feeding rate and the human fraction using the concept of <em>resource
 availability.</em></p>
-<p>If
-<code>nPatches</code><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">&gt;1</annotation></semantics></math>
-or if
-<code>nStrata</code><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">&gt;1</annotation></semantics></math>,
-then it is necessary to supply some additional information to configure
-the mixing matrix,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>,
-which is attached as <code>pars$beta[[i]][[s]]</code> for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-host and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>s</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">s^{th}</annotation></semantics></math>
-vector species.</p>
+<p>If <code>nPatches</code><span class="math inline">\(&gt;1\)</span> or
+if <code>nStrata</code><span class="math inline">\(&gt;1\)</span>, then
+it is necessary to supply some additional information to configure the
+mixing matrix, <span class="math inline">\(\beta\)</span>, which is
+attached as <code>pars$beta[[i]][[s]]</code> for the <span class="math inline">\(i^{th}\)</span> host and <span class="math inline">\(s^{th}\)</span> vector species.</p>
 <ul>
 <li><p>A <em>time spent</em> matrix must be configured for each host
 species</p></li>
 <li><p>A vector of <em>blood feeding search weights</em> must be
-provided for each stratum, and for each species. The
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-element of the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>s</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">s^{th}</annotation></semantics></math>
-vector is used to compute its <em>availability</em> to hosts for blood
-feeding.</p></li>
+provided for each stratum, and for each species. The <span class="math inline">\(i^{th}\)</span> element of the <span class="math inline">\(s^{th}\)</span> vector is used to compute its
+<em>availability</em> to hosts for blood feeding.</p></li>
 <li><p>A <em>circadian weighting function</em> is required for each
-vector species, which is used to transform the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-time spent matrix into a set of <code>nVectors</code> matrices
-describing <em>time at risk.</em></p></li>
+vector species, which is used to transform the <span class="math inline">\(i^{th}\)</span> time spent matrix into a set of
+<code>nVectors</code> matrices describing <em>time at
+risk.</em></p></li>
 <li><p>A <em>demographic</em> matrix must be configured for each
 mosquito species that describes mosquito survival and dispersal in the
 patches.</p></li>
@@ -448,12 +416,10 @@ patches.</p></li>
 <em>model</em> for <strong>egg laying</strong> and
 <strong>emergence.</strong></p>
 <ul>
-<li><p>A <em>membership</em> vector must be provided: the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-element is the index of the patch where the habitat is found</p></li>
-<li><p>A <em>search</em> vector must be provided: the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-element is the index of the patch where the habitat is found</p></li>
+<li><p>A <em>membership</em> vector must be provided: the <span class="math inline">\(i^{th}\)</span> element is the index of the patch
+where the habitat is found</p></li>
+<li><p>A <em>search</em> vector must be provided: the <span class="math inline">\(i^{th}\)</span> element is the index of the patch
+where the habitat is found</p></li>
 </ul>
 </div>
 </div>

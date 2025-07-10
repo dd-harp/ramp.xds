@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Getting Started • ramp.xds</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -34,29 +40,24 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with Models</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a></li>
-    <li><a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-adult" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Adult</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-aquatic" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Aquatic</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a></li>
-    <li><a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -92,7 +93,9 @@
 
     
     
-<p>Next: <a href="BasicSetup.html">Basic Setup</a>. Also, see <a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong></a></p>
+<p>Next: <a href="BasicSetup.html">Basic Setup</a>.</p>
+<p>Additional documentation is available in the <a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong>
+Project</a> website.</p>
 <hr>
 <div class="section level2">
 <h2 id="section"></h2>
@@ -112,7 +115,13 @@ these commands:</p>
 <p>Then load <strong><code>ramp.xds</code></strong>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
-<p>Additional modules are available in the companion R-package <a href="https://dd-harp.github.io/ramp.library/" class="external-link"><strong><code>ramp.library</code></strong></a></p>
+<p>Additional modules and functionality are available in companion
+R-packages, including <a href="https://dd-harp.github.io/ramp.library/" class="external-link"><strong><code>ramp.library</code></strong></a>,
+<a href="https://dd-harp.github.io/ramp.control/" class="external-link"><strong><code>ramp.control</code></strong></a>,
+<a href="https://dd-harp.github.io/ramp.forcing/" class="external-link"><strong><code>ramp.forcing</code></strong></a>,
+and <a href="https://dd-harp.github.io/ramp.demog/" class="external-link"><strong><code>ramp.demog</code></strong></a>.
+For more information, see the <a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong>
+Project</a> website.</p>
 </div>
 <div class="section level3">
 <h3 id="demo">Demo<a class="anchor" aria-label="anchor" href="#demo"></a>
@@ -154,10 +163,8 @@ be viewed with the function <code>get_Xpars</code>:</p>
 <span><span class="co">## [1] 0.005555556</span></span></code></pre>
 <p>Functions like <code>get_Xpars</code> are designed to help users get
 to know the model oject. In this case, the parameters are stored as
-<code>model$Xpar[[i]],</code> for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-species. Knowing the names, the parameters can then be viewed (or
-changed):</p>
+<code>model$Xpar[[i]],</code> for the <span class="math inline">\(i^{th}\)</span> species. Knowing the names, the
+parameters can then be viewed (or changed):</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">Xpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.005555556</span></span></code></pre>
@@ -186,23 +193,13 @@ values:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## $r</span></span>
 <span><span class="co">## [1] 0.005555556</span></span></code></pre>
-<p>In the <code>SIS</code> model, we set
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>=</mo><mi>S</mi><mo>+</mo><mi>I</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">H=S+I,</annotation></semantics></math>
-so the software computes
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>H</mi><mi>/</mi><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">dH/dt</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>I</mi><mi>/</mi><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">dI/dt</annotation></semantics></math>
-and sets
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mi>H</mi><mo>−</mo><mi>I</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">S=H-I.</annotation></semantics></math>
-By policy, the software computes the total population size,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">H,</annotation></semantics></math>
+<p>In the <code>SIS</code> model, we set <span class="math inline">\(H=S+I,\)</span> so the software computes <span class="math inline">\(dH/dt\)</span> and <span class="math inline">\(dI/dt\)</span> and sets <span class="math inline">\(S=H-I.\)</span> By policy, the software computes
+the total population size, <span class="math inline">\(H,\)</span>
 dynamically and treats it differently. This is because plays an
 important role in setting up the <em>Blood Feeding</em> interface, so it
-is not possible to set
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">S.</annotation></semantics></math>
-Instead,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
-is computed after solving and parsing.</p>
+is not possible to set <span class="math inline">\(S.\)</span> Instead,
+<span class="math inline">\(S\)</span> is computed after solving and
+parsing.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_Xinits.html">get_Xinits</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $H</span></span>
@@ -360,17 +357,10 @@ in the human / host population</p></li>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_EIR.html">xds_plot_EIR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="GettingStarted_files/figure-html/unnamed-chunk-20-1.png" alt="**Figure 1:** Plotting standard outputs" width="576"><p class="caption">
+<img src="GettingStarted_files/figure-html/unnamed-chunk-19-1.png" alt="**Figure 1:** Plotting standard outputs" width="576"><p class="caption">
 <strong>Figure 1:</strong> Plotting standard outputs
 </p>
 </div>
-</div>
-<div class="section level4">
-<h4 id="analysis">Analysis<a class="anchor" aria-label="anchor" href="#analysis"></a>
-</h4>
-<p><strong><code>ramp.xds</code></strong> has built-in functions that
-compute some quantities of interest, including stable states or stable
-orbits.</p>
 </div>
 </div>
 <div class="section level3">
@@ -388,9 +378,9 @@ terms needed by related dynamical components are passed by a
 configurable <em>trace</em> function with a generic form:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mean</span><span class="op">*</span><span class="fu">F_season</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu">F_trend</span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span></code></pre></div>
-<p>The default for the <span class="math inline">$\cal L$</span>
-dynamical component is the <code>trivial</code> module, where the
-<code>mean</code> is is called <code>Lambda.</code></p>
+<p>The default for the aquatic mosquito dynamical component is the
+<code>trivial</code> module, where the <code>mean</code> is is called
+<code>Lambda.</code></p>
 <p>It is easy to change the <code>trace</code> function. First, we
 define <code>F_season</code> and change the mean value of
 <code>Lambda.</code> The generic format for seasonal functions is
@@ -428,14 +418,11 @@ from solving it are available, and we can use a function
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="GettingStarted_files/figure-html/unnamed-chunk-27-1.png" alt="**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" width="576"><p class="caption">
+<img src="GettingStarted_files/figure-html/unnamed-chunk-26-1.png" alt="**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" width="576"><p class="caption">
 <strong>Figure 2:</strong> Outputs with Seasonal Forced Emergence using
 a Trace Function
 </p>
 </div>
-<p>A useful place to keep reading is <a href="ModelBuilding.html">Progressive Model Building</a></p>
-<p>For more information about trace functions, see the vignette <a href="https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.html">Trace
-Functions</a> and [Progressive Model]</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

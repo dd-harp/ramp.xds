@@ -5,12 +5,18 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Trace (exogenously forced) Aquatic Mosquito Model • ramp.xds</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Emergence • ramp.xds</title>
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Trace (exogenously forced) Aquatic Mosquito Model">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Emergence">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -34,29 +40,24 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with Models</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a></li>
-    <li><a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-adult" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Adult</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
 </li>
 <li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-aquatic" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Aquatic</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a></li>
-    <li><a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -83,7 +84,9 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Trace (exogenously forced) Aquatic Mosquito Model</h1>
+      <h1>Emergence</h1>
+            <h3 data-toc-skip class="subtitle">The Trivial Module for
+Aquatic Dynamics</h3>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/aqua_trace.Rmd" class="external-link"><code>vignettes/aqua_trace.Rmd</code></a></small>
@@ -155,19 +158,11 @@ patch.</p>
 <span></span>
 <span><span class="va">kappa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.075</span>, <span class="fl">0.025</span><span class="op">)</span></span>
 <span><span class="va">Lambda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
-<p>Next, we calculate equilibrium values following the <a href="adult_RM.html">Ross-Macdonald vignette</a>. We use
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒩</mi><annotation encoding="application/x-tex">\mathcal{N}</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒰</mi><annotation encoding="application/x-tex">\mathcal{U}</annotation></semantics></math>
-to describe how aquatic habitats are dispersed amongst patches, and how
-mosquitoes in each patch disperse eggs to each habitat, respectively.
-Please note because we have unequal numbers of aquatic habitats and
-patches, we use <code><a href="https://rdrr.io/pkg/MASS/man/ginv.html" class="external-link">MASS::ginv</a></code> to compute the generalized
-inverse of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒩</mi><annotation encoding="application/x-tex">\mathcal{N}</annotation></semantics></math>
-to get
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
-required at equilibrium.</p>
+<p>Next, we calculate equilibrium values following the <a href="adult_RM.html">Ross-Macdonald vignette</a>. We use <span class="math inline">\(\mathcal{N}\)</span> and <span class="math inline">\(\mathcal{U}\)</span> to describe how aquatic
+habitats are dispersed amongst patches, and how mosquitoes in each patch
+disperse eggs to each habitat, respectively. Please note because we have
+unequal numbers of aquatic habitats and patches, we use
+<code><a href="https://rdrr.io/pkg/MASS/man/ginv.html" class="external-link">MASS::ginv</a></code> to compute the generalized inverse of <span class="math inline">\(\mathcal{N}\)</span> to get <span class="math inline">\(\alpha\)</span> required at equilibrium.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># equilibrium solutions</span></span>
 <span><span class="va">Omega_inv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">Omega</span><span class="op">)</span></span>

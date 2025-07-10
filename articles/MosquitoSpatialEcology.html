@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Mosquito Spatial Ecology with `ramp.xds` • ramp.xds</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -34,29 +40,24 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with Models</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a></li>
-    <li><a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-adult" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Adult</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-aquatic" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Aquatic</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a></li>
-    <li><a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -110,10 +111,9 @@ no habitats in patch 2; 3 habitats in patch 3; and 4 habitats in patch
 <p>The model for egg-laying is motivated by the notion of mosquito
 searching. Each habitat is assigned a <em>search weight</em> that is
 related to how easy it is for the mosquito to find it. Functions can be
-configured to compute mosquito <em>emigration</em> rates,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\sigma,</annotation></semantics></math>
-as a function of habitat availability in the patch, the sum of the
-patch’s habitat search weights.</p>
+configured to compute mosquito <em>emigration</em> rates, <span class="math inline">\(\sigma,\)</span> as a function of habitat
+availability in the patch, the sum of the patch’s habitat search
+weights.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span></span>
 <span><span class="va">searchQ</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span>, <span class="fl">1.2</span><span class="op">)</span></span>
@@ -141,22 +141,7 @@ patch’s habitat search weights.</p>
 <code class="sourceCode R"><span><span class="va">model5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>nPatches<span class="op">=</span><span class="fl">5</span>, membership<span class="op">=</span><span class="va">membership</span>, searchQ<span class="op">=</span><span class="va">searchQ</span>, calK<span class="op">=</span><span class="va">calK</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">model5</span><span class="op">$</span><span class="va">calU</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">*</span><span class="fl">1000</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span></span></code></pre></div>
-<pre><code><span><span class="co">##        [,1] [,2]  [,3]  [,4]  [,5]</span></span>
-<span><span class="co">##  [1,] 0.075    0 0.000 0.000 0.000</span></span>
-<span><span class="co">##  [2,] 0.035    0 0.000 0.000 0.000</span></span>
-<span><span class="co">##  [3,] 0.179    0 0.000 0.000 0.000</span></span>
-<span><span class="co">##  [4,] 0.513    0 0.000 0.000 0.000</span></span>
-<span><span class="co">##  [5,] 0.197    0 0.000 0.000 0.000</span></span>
-<span><span class="co">##  [6,] 0.000    0 0.479 0.000 0.000</span></span>
-<span><span class="co">##  [7,] 0.000    0 0.091 0.000 0.000</span></span>
-<span><span class="co">##  [8,] 0.000    0 0.431 0.000 0.000</span></span>
-<span><span class="co">##  [9,] 0.000    0 0.000 0.106 0.000</span></span>
-<span><span class="co">## [10,] 0.000    0 0.000 0.664 0.000</span></span>
-<span><span class="co">## [11,] 0.000    0 0.000 0.130 0.000</span></span>
-<span><span class="co">## [12,] 0.000    0 0.000 0.029 0.000</span></span>
-<span><span class="co">## [13,] 0.000    0 0.000 0.071 0.000</span></span>
-<span><span class="co">## [14,] 0.000    0 0.000 0.000 0.885</span></span>
-<span><span class="co">## [15,] 0.000    0 0.000 0.000 0.115</span></span></code></pre>
+<pre><code><span><span class="co">## numeric(0)</span></span></code></pre>
   </main>
 </div>
 

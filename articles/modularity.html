@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Nimble Model Building • ramp.xds</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -34,29 +40,24 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with Models</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a></li>
-    <li><a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-adult" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Adult</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-aquatic" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Aquatic</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a></li>
-    <li><a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -144,7 +145,7 @@ ecology).</p>
 <div class="float">
 <img src="modularity.png" alt="Figure 1 A diagram of the core components in dynamical systems models of malaria: \cal L"><div class="figcaption">
 <strong>Figure 1</strong> A diagram of the core
-components in dynamical systems models of malaria: <span class="math inline">$\cal L$</span>
+components in dynamical systems models of malaria: <span class="math inline">\(\cal L\)</span>
 </div>
 </div>
 <hr>
@@ -169,21 +170,14 @@ to compute parasite transmission during blood feeding. These are stored
 in the main model object <code>pars</code>:</p>
 <ul>
 <li><p><code>pars$beta</code> - a function that allocates infective
-bites to human strata. In this case,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>=</mo><mn>1</mn><mi>/</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">\beta = 1/H</annotation></semantics></math></p></li>
-<li><p><code>pars$NI</code> - a function
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>X</mi></msub><annotation encoding="application/x-tex">F_X</annotation></semantics></math>
-computes the effective density. In this case,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>X</mi></msub><annotation encoding="application/x-tex">F_X</annotation></semantics></math>
-returns
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">cI</annotation></semantics></math></p></li>
-<li><p><code>pars$fqZ</code> - a function
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>f</mi></msub><mi>q</mi><mi>Z</mi></mrow><annotation encoding="application/x-tex">F_fqZ</annotation></semantics></math>
-computes infective biting density</p></li>
-<li><p><code>pars$EIR</code> - the daily EIR is
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>⋅</mo><mi>f</mi><mi>q</mi><mi>Z</mi></mrow><annotation encoding="application/x-tex">\beta \cdot fqZ</annotation></semantics></math></p></li>
-<li><p><code>pars$FoI</code> - the daily FoI is
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>h</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>E</mi><mi>I</mi><mi>R</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>p</mi><mi>a</mi><mi>r</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">F_h(EIR, b, pars</annotation></semantics></math>Xpar)$</p></li>
+bites to human strata. In this case, <span class="math inline">\(\beta =
+1/H\)</span></p></li>
+<li><p><code>pars$NI</code> - a function <span class="math inline">\(F_X\)</span> computes the effective density. In
+this case, <span class="math inline">\(F_X\)</span> returns <span class="math inline">\(cI\)</span></p></li>
+<li><p><code>pars$fqZ</code> - a function <span class="math inline">\(F_fqZ\)</span> computes infective biting
+density</p></li>
+<li><p><code>pars$EIR</code> - the daily EIR is <span class="math inline">\(\beta \cdot fqZ\)</span></p></li>
+<li><p><code>pars$FoI</code> - the daily FoI is <span class="math inline">\(F_h(EIR, b, pars\)</span>Xpar)$</p></li>
 </ul>
 </li>
 <li><p><code>Exposure(t, y, pars)</code> computes the FoI from the EIR
@@ -217,19 +211,16 @@ below).</p>
 components:</p>
 <ul>
 <li>
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℳ</mi><annotation encoding="application/x-tex">\mathcal M</annotation></semantics></math>:
-adult mosquitoes, whose dynamics are described by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>ℳ</mi><mi>/</mi><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">d\mathcal{M}/dt</annotation></semantics></math>
+<span class="math inline">\(\mathcal M\)</span>: adult mosquitoes,
+whose dynamics are described by <span class="math inline">\(d\mathcal{M}/dt\)</span>
 </li>
 <li>
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi><annotation encoding="application/x-tex">\mathcal{L}</annotation></semantics></math>:
-aquatic (immature) mosquitoes, whose dynamics are described by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>ℒ</mi><mi>/</mi><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">d\mathcal{L}/dt</annotation></semantics></math>
+<span class="math inline">\(\mathcal{L}\)</span>: aquatic (immature)
+mosquitoes, whose dynamics are described by <span class="math inline">\(d\mathcal{L}/dt\)</span>
 </li>
 <li>
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi><annotation encoding="application/x-tex">\mathcal{X}</annotation></semantics></math>:
-human population, whose dynamics are described by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>𝒳</mi><mi>/</mi><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">d\mathcal{X}/dt</annotation></semantics></math>
+<span class="math inline">\(\mathcal{X}\)</span>: human population,
+whose dynamics are described by <span class="math inline">\(d\mathcal{X}/dt\)</span>
 </li>
 </ul>
 <p>The combined state from these 3 components is the entire state of the
@@ -247,20 +238,11 @@ which affect the dynamical components</li>
 <p>There are also functions which handle the exchange of information
 (flows) between the dynamical components and which couple their
 dynamics. Bloodfeeding is the process by which adult mosquitoes seek out
-and feed on blood hosts, and results in the quantities
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>I</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">EIR</annotation></semantics></math>
-(entomological inoculation rate) and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>κ</mi><annotation encoding="application/x-tex">\kappa</annotation></semantics></math>,
-the net infectiousness of humans to mosquitoes, which couple the
-dynamics of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℳ</mi><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi><annotation encoding="application/x-tex">\mathcal{X}</annotation></semantics></math>.
-Likewise emergence of new adults from aquatic habitats and egg laying by
-adults into habitats couples
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℳ</mi><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi><annotation encoding="application/x-tex">\mathcal{L}</annotation></semantics></math>.</p>
+and feed on blood hosts, and results in the quantities <span class="math inline">\(EIR\)</span> (entomological inoculation rate) and
+<span class="math inline">\(\kappa\)</span>, the net infectiousness of
+humans to mosquitoes, which couple the dynamics of <span class="math inline">\(\mathcal{M}\)</span> and <span class="math inline">\(\mathcal{X}\)</span>. Likewise emergence of new
+adults from aquatic habitats and egg laying by adults into habitats
+couples <span class="math inline">\(\mathcal{M}\)</span> and <span class="math inline">\(\mathcal{L}\)</span>.</p>
 <p>The function <code><a href="../reference/xde_derivatives.html">ramp.xds::xde_derivatives</a></code> compute the
 necessary quantities and returns a vector of derivatives of all state
 variables which can be used to solve trajectories from a model in

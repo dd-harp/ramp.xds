@@ -208,11 +208,11 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_Qtot.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_RBR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_TaR.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_Umatrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_Upsilon.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_Upsilon.xde.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_W.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_beta.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_calU.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_eggs_laid.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_kappa.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_local_frac.html</loc></url>
@@ -254,6 +254,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dts_steady_state_X.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.aquatic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.cohort.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.full.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dts_update.human.html</loc></url>
@@ -365,6 +366,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent.athome.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent.xy.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Umatrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_WB.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Xinits_SIS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_Xinits_hMoI.html</loc></url>
@@ -376,7 +378,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_calK.herethere.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_calK.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_calK.xy.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_calU.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_eggs_laid.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.nproduct.html</loc></url>
@@ -393,6 +394,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_kappa.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_local_frac.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_outputs.aquatic.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_outputs.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_outputs.full.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_outputs.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_outputs.human.html</loc></url>
@@ -573,6 +575,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_cohort_desolve.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_cohort_desolve.ode.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.aquatic.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.full.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.human.html</loc></url>

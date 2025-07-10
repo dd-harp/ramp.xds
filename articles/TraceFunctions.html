@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Trace Functions • ramp.xds</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -29,34 +35,29 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="active nav-item dropdown">
+<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with Models</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a></li>
-    <li><a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-adult" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Adult</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-aquatic" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Aquatic</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a></li>
-    <li><a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -182,8 +183,7 @@ passing <code>HPop = ...</code></p></li>
 <li>
 <p>To configure <code>F_X,</code> <code>Xopts</code> must be a named
 list that sets the values of the elements. The values of
-<code>F_X</code> should be in the interval
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">[</mo><mn>0</mn><mo>,</mo><mi>H</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>:</mo></mrow><annotation encoding="application/x-tex">[0,H]:</annotation></semantics></math></p>
+<code>F_X</code> should be in the interval <span class="math inline">\([0,H]:\)</span></p>
 <ul>
 <li><p><code>kappa = c(...)</code></p></li>
 <li><p><code>F_season = function(t){...}</code></p></li>
@@ -214,31 +214,24 @@ methods.</p></li>
 <p>A constructor for seasonality functions drawn from a generalized
 family involving trigonometric functions is returned by
 <code>make_function.sin</code> with the associated
-<code>makepar_F_sin</code> that returns functions of the form:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>c</mi><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>ϵ</mi><mo>+</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mn>2</mn><mi>π</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><mi>τ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mn>365</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mi>p</mi></msup></mrow><annotation encoding="application/x-tex">S(t) =  c\left(1 + \epsilon + \sin\left(\frac{2 \pi (t-\tau)}{365}\right)\right)^p</annotation></semantics></math></p>
+<code>makepar_F_sin</code> that returns functions of the form: <span class="math display">\[S(t) =  c\left(1 + \epsilon + \sin\left(\frac{2
+\pi (t-\tau)}{365}\right)\right)^p\]</span></p>
 <ul>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>
-or <code>norm</code> is a normalizing constant</p></li>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
-or <code>phase</code> sets the timing of the peak</p></li>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\epsilon \geq 0</annotation></semantics></math>
-or <code>bottom</code> is a shape parameter: increasing the values of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϵ</mi><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math>
-reduces the variance</p></li>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p \geq 0</annotation></semantics></math>
-or <code>pw</code> is a shape parameter.</p></li>
+<li><p><span class="math inline">\(c\)</span> or <code>norm</code> is a
+normalizing constant</p></li>
+<li><p><span class="math inline">\(\tau\)</span> or <code>phase</code>
+sets the timing of the peak</p></li>
+<li><p><span class="math inline">\(\epsilon \geq 0\)</span> or
+<code>bottom</code> is a shape parameter: increasing the values of <span class="math inline">\(\epsilon\)</span> reduces the variance</p></li>
+<li><p><span class="math inline">\(p \geq 0\)</span> or <code>pw</code>
+is a shape parameter.</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p1</span> <span class="op">=</span> <span class="fu"><a href="../reference/makepar_F_sin.html">makepar_F_sin</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">S1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_function.html">make_function</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></code></pre></div>
-<p>The default normalizing constant is
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>365</mn><annotation encoding="application/x-tex">365</annotation></semantics></math>
-so that if
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
-is multiplied by some other constant,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">m,</annotation></semantics></math>
-the average daily value of the function over a year is
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">1.</annotation></semantics></math></p>
+<p>The default normalizing constant is <span class="math inline">\(365\)</span> so that if <span class="math inline">\(S\)</span> is multiplied by some other constant,
+<span class="math inline">\(m,\)</span> the average daily value of the
+function over a year is <span class="math inline">\(1.\)</span></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></span><span class="op">(</span><span class="va">S1</span>, <span class="fl">0</span>, <span class="fl">365</span><span class="op">)</span><span class="op">$</span><span class="va">val</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 365</span></span></code></pre>
@@ -253,10 +246,8 @@ the average daily value of the function over a year is
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">S1</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span><span class="st">"l"</span>, xlab <span class="op">=</span> <span class="st">"Time (in Days)"</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu">S</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">S2</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="TraceFunctions_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
-<p>The function can return a vector of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
-functions, each one configured as if
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">N=1</annotation></semantics></math></p>
+<p>The function can return a vector of <span class="math inline">\(N\)</span> functions, each one configured as if
+<span class="math inline">\(N=1\)</span></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p3</span> <span class="op">=</span> <span class="fu"><a href="../reference/makepar_F_sin.html">makepar_F_sin</a></span><span class="op">(</span>phase <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">120</span><span class="op">)</span>, N<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">S3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_function.html">make_function</a></span><span class="op">(</span><span class="va">p3</span><span class="op">)</span></span></code></pre></div>

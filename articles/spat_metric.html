@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Spatial Metrics • ramp.xds</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -29,34 +35,29 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="active nav-item dropdown">
+<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with Models</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a></li>
-    <li><a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-adult" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Adult</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-aquatic" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Aquatic</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a></li>
-    <li><a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -93,217 +94,142 @@
     
     
 <p>All state components are assumed to be column vectors. Additionally,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
-will always denote the number of strata in the human population,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>l</mi><annotation encoding="application/x-tex">l</annotation></semantics></math>
-the number of aquatic habitats and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>
-the number of patches.</p>
+<span class="math inline">\(n\)</span> will always denote the number of
+strata in the human population, <span class="math inline">\(l\)</span>
+the number of aquatic habitats and <span class="math inline">\(p\)</span> the number of patches.</p>
 <div class="section level3">
 <h3 id="human-movement">Human Movement<a class="anchor" aria-label="anchor" href="#human-movement"></a>
 </h3>
-<p>We start with the fundamental matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Ψ</mi><annotation encoding="application/x-tex">\Psi</annotation></semantics></math>
-which is of dimension
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">p\times n</annotation></semantics></math>
-, where each column
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
-gives the distribution of time at risk for that strata over places
-(rows). If all strata are considered to be potentially at risk 100% of
-the time, then the columns will sum to one, which is the convention we
-will adopt for this document.</p>
-<p>Then
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Ψ</mi><mrow><mi>j</mi><mi>i</mi></mrow></msub><annotation encoding="application/x-tex">\Psi_{ji}</annotation></semantics></math>
-is the fraction of time that strata
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
-spends in patch
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>.</p>
+<p>We start with the fundamental matrix <span class="math inline">\(\Psi\)</span> which is of dimension <span class="math inline">\(p\times n\)</span> , where each column <span class="math inline">\(i\)</span> gives the distribution of time at risk
+for that strata over places (rows). If all strata are considered to be
+potentially at risk 100% of the time, then the columns will sum to one,
+which is the convention we will adopt for this document.</p>
+<p>Then <span class="math inline">\(\Psi_{ji}\)</span> is the fraction
+of time that strata <span class="math inline">\(i\)</span> spends in
+patch <span class="math inline">\(j\)</span>.</p>
 </div>
 <div class="section level3">
 <h3 id="ambient-human-population">Ambient Human Population<a class="anchor" aria-label="anchor" href="#ambient-human-population"></a>
 </h3>
-<p>Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>
-be a length
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
-column vector giving the population size of each strata. Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>w</mi><mi>f</mi></msub><annotation encoding="application/x-tex">w_{f}</annotation></semantics></math>
-be a length
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
-column vector giving the biting weights on each strata (the null value
-is
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>).
-We want to know
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>W</mi><annotation encoding="application/x-tex">W</annotation></semantics></math>,
-a length
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>
-column vector which tells us how many people are at each patch (summing
-over all strata who are there).</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>Ψ</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><msub><mi>w</mi><mrow><mi>f</mi><mn>1</mn></mrow></msub><msub><mi>H</mi><mi>i</mi></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>⋮</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>Ψ</mi><mrow><mi>p</mi><mi>i</mi></mrow></msub><msub><mi>w</mi><mrow><mi>f</mi><mi>i</mi></mrow></msub><msub><mi>H</mi><mi>i</mi></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>Ψ</mi><mo>⋅</mo><msub><mi>w</mi><mi>f</mi></msub><mi>H</mi></mrow><annotation encoding="application/x-tex">
+<p>Let <span class="math inline">\(H\)</span> be a length <span class="math inline">\(n\)</span> column vector giving the population
+size of each strata. Let <span class="math inline">\(w_{f}\)</span> be a
+length <span class="math inline">\(n\)</span> column vector giving the
+biting weights on each strata (the null value is <span class="math inline">\(1\)</span>). We want to know <span class="math inline">\(W\)</span>, a length <span class="math inline">\(p\)</span> column vector which tells us how many
+people are at each patch (summing over all strata who are there).</p>
+<p><span class="math display">\[
 W =\begin{bmatrix}
 \sum_{i} \Psi_{1i}w_{f1}H_{i} \\ \vdots \\ \sum_{i} \Psi_{pi}w_{fi}H_{i}
 \end{bmatrix} = \Psi \cdot w_{f} H
-</annotation></semantics></math> Each element of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>W</mi><annotation encoding="application/x-tex">W</annotation></semantics></math>
-then gives the total weighted person-time spent by all strata at that
+\]</span> Each element of <span class="math inline">\(W\)</span> then
+gives the total weighted person-time spent by all strata at that
 location.</p>
 </div>
 <div class="section level3">
 <h3 id="biting-distribution-matrix">Biting Distribution Matrix<a class="anchor" aria-label="anchor" href="#biting-distribution-matrix"></a>
 </h3>
-<p>The biting distribution matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
-is a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">n \times p</annotation></semantics></math>
-matrix which is central to formulating mathematically consistent models
-of bloodfeeding, and, by extension, consistent models of mosquito-borne
-pathogen transmission.</p>
+<p>The biting distribution matrix <span class="math inline">\(\beta\)</span> is a <span class="math inline">\(n
+\times p\)</span> matrix which is central to formulating mathematically
+consistent models of bloodfeeding, and, by extension, consistent models
+of mosquito-borne pathogen transmission.</p>
 <p>It is given mathematically as:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>=</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>w</mi><mi>f</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><msup><mi>Ψ</mi><mi>⊤</mi></msup><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mi>/</mi><mi>W</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \beta = \mbox{diag}(w_{f}) \cdot \Psi^{\top} \cdot \mbox{diag}(1/W)
-</annotation></semantics></math></p>
+\]</span></p>
 <p>And it can be written out component-wise as:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mfrac><mrow><msub><mi>Ψ</mi><mn>11</mn></msub><msub><mi>w</mi><mrow><mi>f</mi><mn>1</mn></mrow></msub></mrow><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>Ψ</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><msub><mi>w</mi><mrow><mi>f</mi><mi>i</mi></mrow></msub><msub><mi>H</mi><mi>i</mi></msub></mrow></mfrac></mtd><mtd columnalign="center" style="text-align: center"><mi>⋯</mi></mtd><mtd columnalign="center" style="text-align: center"><mfrac><mrow><msub><mi>Ψ</mi><mrow><mi>p</mi><mn>1</mn></mrow></msub><msub><mi>w</mi><mrow><mi>f</mi><mn>1</mn></mrow></msub></mrow><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>Ψ</mi><mrow><mi>p</mi><mi>i</mi></mrow></msub><msub><mi>w</mi><mrow><mi>f</mi><mi>i</mi></mrow></msub><msub><mi>H</mi><mi>i</mi></msub></mrow></mfrac></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>⋮</mi></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="center" style="text-align: center"><mi>⋮</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mfrac><mrow><msub><mi>Ψ</mi><mrow><mn>1</mn><mi>n</mi></mrow></msub><msub><mi>w</mi><mrow><mi>f</mi><mi>n</mi></mrow></msub></mrow><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>Ψ</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><msub><mi>w</mi><mrow><mi>f</mi><mi>i</mi></mrow></msub><msub><mi>H</mi><mi>i</mi></msub></mrow></mfrac></mtd><mtd columnalign="center" style="text-align: center"><mi>⋯</mi></mtd><mtd columnalign="center" style="text-align: center"><mfrac><mrow><msub><mi>Ψ</mi><mrow><mi>p</mi><mi>n</mi></mrow></msub><msub><mi>w</mi><mrow><mi>f</mi><mi>n</mi></mrow></msub></mrow><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>Ψ</mi><mrow><mi>p</mi><mi>i</mi></mrow></msub><msub><mi>w</mi><mrow><mi>f</mi><mi>i</mi></mrow></msub><msub><mi>H</mi><mi>i</mi></msub></mrow></mfrac></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">
-\beta = \begin{bmatrix} 
-\frac{\Psi_{11}w_{f1}}{\sum_{i}\Psi_{1i}w_{fi}H_{i}} &amp; \cdots &amp; \frac{\Psi_{p1}w_{f1}}{\sum_{i}\Psi_{pi}w_{fi}H_{i}} \\
+<p><span class="math display">\[
+\beta = \begin{bmatrix}
+\frac{\Psi_{11}w_{f1}}{\sum_{i}\Psi_{1i}w_{fi}H_{i}} &amp; \cdots &amp;
+\frac{\Psi_{p1}w_{f1}}{\sum_{i}\Psi_{pi}w_{fi}H_{i}} \\
 \vdots &amp; &amp; \vdots \\
-\frac{\Psi_{1n}w_{fn}}{\sum_{i}\Psi_{1i}w_{fi}H_{i}} &amp; \cdots &amp; \frac{\Psi_{pn}w_{fn}}{\sum_{i}\Psi_{pi}w_{fi}H_{i}} 
+\frac{\Psi_{1n}w_{fn}}{\sum_{i}\Psi_{1i}w_{fi}H_{i}} &amp; \cdots &amp;
+\frac{\Psi_{pn}w_{fn}}{\sum_{i}\Psi_{pi}w_{fi}H_{i}}
 \end{bmatrix}
-</annotation></semantics></math></p>
-<p>Now we can get a clearer impression of what
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>β</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">\beta_{ij}</annotation></semantics></math>
-is. It is the probability a bite from mosquitoes in patch
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>
-lands on any particular person in strata
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.
-Another way say this is that it is the proportion of person-time spent
-by a single person in strata
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
-at patch
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>,
-out of all person-time spent at that patch.</p>
+\]</span></p>
+<p>Now we can get a clearer impression of what <span class="math inline">\(\beta_{ij}\)</span> is. It is the probability a
+bite from mosquitoes in patch <span class="math inline">\(j\)</span>
+lands on any particular person in strata <span class="math inline">\(i\)</span>. Another way say this is that it is the
+proportion of person-time spent by a single person in strata <span class="math inline">\(i\)</span> at patch <span class="math inline">\(j\)</span>, out of all person-time spent at that
+patch.</p>
 <p>If we wanted to look at a matrix whose columns sum to unity and
 elements give the probability of a bite taken on the ambient population
-in patch
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>
-to land on strata
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>,
-we could look at the following matrix:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>H</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">
+in patch <span class="math inline">\(j\)</span> to land on strata <span class="math inline">\(i\)</span>, we could look at the following
+matrix:</p>
+<p><span class="math display">\[
 \mbox{diag}(H) \cdot \beta
-</annotation></semantics></math></p>
-<p>This operation has the effect of multiplying each column in
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
-by the diagonal of of the matrix on the left, so that the columns sum to
-one (or the column sums of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Ψ</mi><annotation encoding="application/x-tex">\Psi</annotation></semantics></math>,
-in case the total time at risk is
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">&lt; 1</annotation></semantics></math>).</p>
-<p>Likewise if we want to recover
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>Ψ</mi><mi>⊤</mi></msup><annotation encoding="application/x-tex">\Psi^{\top}</annotation></semantics></math>,
-a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">n \times p</annotation></semantics></math>
-matrix whose rows describe how each strata distributes its time across
-patches, one can simply multiply on the right by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>W</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mbox{diag}(W)</annotation></semantics></math>
-which has the effect of multiplying each column of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
-by that element of the diagonal of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>W</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mbox{diag}(W)</annotation></semantics></math>.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>W</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+\]</span></p>
+<p>This operation has the effect of multiplying each column in <span class="math inline">\(\beta\)</span> by the diagonal of of the matrix on
+the left, so that the columns sum to one (or the column sums of <span class="math inline">\(\Psi\)</span>, in case the total time at risk is
+<span class="math inline">\(&lt; 1\)</span>).</p>
+<p>Likewise if we want to recover <span class="math inline">\(\Psi^{\top}\)</span>, a <span class="math inline">\(n \times p\)</span> matrix whose rows describe how
+each strata distributes its time across patches, one can simply multiply
+on the right by <span class="math inline">\(\mbox{diag}(W)\)</span>
+which has the effect of multiplying each column of <span class="math inline">\(\beta\)</span> by that element of the diagonal of
+<span class="math inline">\(\mbox{diag}(W)\)</span>.</p>
+<p><span class="math display">\[
 \beta \cdot \mbox{diag}(W)
-</annotation></semantics></math></p>
+\]</span></p>
 </div>
 <div class="section level3">
 <h3 id="human-transmitting-capacity-htc">Human transmitting capacity (HTC)<a class="anchor" aria-label="anchor" href="#human-transmitting-capacity-htc"></a>
 </h3>
-<p>Human transmitting capacity is a vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>
-of length
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>,
-each element of which gives the number of net infectious days for an
-infected individual in each strata. For the homogeneous SIS model, it is
-simply:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mfrac><mi>c</mi><mi>r</mi></mfrac></mrow><annotation encoding="application/x-tex">
+<p>Human transmitting capacity is a vector <span class="math inline">\(D\)</span> of length <span class="math inline">\(n\)</span>, each element of which gives the number
+of net infectious days for an infected individual in each strata. For
+the homogeneous SIS model, it is simply:</p>
+<p><span class="math display">\[
 D = \frac{c}{r}
-</annotation></semantics></math></p>
+\]</span></p>
 </div>
 <div class="section level3">
 <h3 id="parasite-dispersal-by-mosquitoes">Parasite dispersal by mosquitoes<a class="anchor" aria-label="anchor" href="#parasite-dispersal-by-mosquitoes"></a>
 </h3>
-<p>The parasite dispersal by mosquitoes matrix,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒱</mi><annotation encoding="application/x-tex">\mathcal{V}</annotation></semantics></math>
-is the spatial analogue to vectorial capacity, which is the expected
-number of humans infected per infected human, per day, assuming perfect
-transmission efficiency.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒱</mi><mo>=</mo><mi>f</mi><mi>q</mi><msup><mi>Ω</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>Ω</mi><mi>τ</mi></mrow></msup><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>f</mi><mi>q</mi><mi>M</mi></mrow><mi>W</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
-\mathcal{V} = fq\Omega^{-1} \cdot e^{-\Omega\tau} \cdot \mbox{diag}\left(\frac{fqM}{W}\right)
-</annotation></semantics></math> It can be understood by going from
-right to left. The matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>f</mi><mi>q</mi><mi>M</mi></mrow><mi>W</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mbox{diag}\left(\frac{fqM}{W}\right)</annotation></semantics></math>
-is a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>×</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">p\times p</annotation></semantics></math>
-matrix, the diagonal giving the numbers of bloodmeals taken on each
-person in each patch, per day. Multiplying on the left by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>e</mi><mrow><mo>−</mo><mi>Ω</mi><mi>τ</mi></mrow></msup><annotation encoding="application/x-tex">e^{-\Omega\tau}</annotation></semantics></math>
-has the effect of multiplying each column of the matrix on the left by
-the corresponding element of the diagonal of the matrix on the right.
-That intermediate matrix will have columns which describe how those
-bites/person from each patch are distributed across other patches over
-the extrinsic incubation period, accounting for mortality during that
-period. The final multiplication on the left distributes those bites
-after the EIP has passed.</p>
+<p>The parasite dispersal by mosquitoes matrix, <span class="math inline">\(\mathcal{V}\)</span> is the spatial analogue to
+vectorial capacity, which is the expected number of humans infected per
+infected human, per day, assuming perfect transmission efficiency.</p>
+<p><span class="math display">\[
+\mathcal{V} = fq\Omega^{-1} \cdot e^{-\Omega\tau} \cdot
+\mbox{diag}\left(\frac{fqM}{W}\right)
+\]</span> It can be understood by going from right to left. The matrix
+<span class="math inline">\(\mbox{diag}\left(\frac{fqM}{W}\right)\)</span> is
+a <span class="math inline">\(p\times p\)</span> matrix, the diagonal
+giving the numbers of bloodmeals taken on each person in each patch, per
+day. Multiplying on the left by <span class="math inline">\(e^{-\Omega\tau}\)</span> has the effect of
+multiplying each column of the matrix on the left by the corresponding
+element of the diagonal of the matrix on the right. That intermediate
+matrix will have columns which describe how those bites/person from each
+patch are distributed across other patches over the extrinsic incubation
+period, accounting for mortality during that period. The final
+multiplication on the left distributes those bites after the EIP has
+passed.</p>
 <p>If we only have a single patch, the formula becomes:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>f</mi><mi>q</mi></mrow><mi>g</mi></mfrac><msup><mi>e</mi><mrow><mo>−</mo><mi>g</mi><mi>τ</mi></mrow></msup><mi>f</mi><mi>q</mi><mfrac><mi>M</mi><mi>H</mi></mfrac></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \frac{fq}{g} e^{-g\tau}fq\frac{M}{H}
-</annotation></semantics></math> Which is equivalent to (after
-substituting
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>=</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">H=W</annotation></semantics></math>)
-the classic formula from <a href="https://malariajournal.biomedcentral.com/articles/10.1186/1475-2875-3-13" class="external-link">Smith
-and McKenzie (2004)</a>:
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>f</mi><mi>q</mi></mrow><mi>g</mi></mfrac><msup><mi>e</mi><mrow><mo>−</mo><mi>g</mi><mi>τ</mi></mrow></msup><mi>f</mi><mi>q</mi><mfrac><mi>M</mi><mi>H</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{fq}{g}e^{-g\tau}fq\frac{M}{H}</annotation></semantics></math>.</p>
+\]</span> Which is equivalent to (after substituting <span class="math inline">\(H=W\)</span>) the classic formula from <a href="https://malariajournal.biomedcentral.com/articles/10.1186/1475-2875-3-13" class="external-link">Smith
+and McKenzie (2004)</a>: <span class="math inline">\(\frac{fq}{g}e^{-g\tau}fq\frac{M}{H}\)</span>.</p>
 </div>
 <div class="section level3">
 <h3 id="parasite-dispersal-by-humans">Parasite dispersal by humans<a class="anchor" aria-label="anchor" href="#parasite-dispersal-by-humans"></a>
 </h3>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi><mo>=</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>W</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><msup><mi>β</mi><mi>T</mi></msup><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>D</mi><mi>H</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">
-\mathcal{D} = \mbox{diag}\left(W \right) \cdot \beta^T \cdot \mbox{diag}\left(bDH\right) \cdot \beta
-</annotation></semantics></math> We can first examine the multiplication
-of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>D</mi><mi>H</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\mbox{diag}\left(bDH\right) \cdot \beta</annotation></semantics></math>
-on the right. This has the effect of multiplying each column of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
-by the diagonal of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>D</mi><mi>H</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mbox{diag}\left(bDH\right)</annotation></semantics></math>.
-This results in a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">n\times p</annotation></semantics></math>
-matrix whose columns give the distribution of potentially transmitting
-person-time
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mrow><mi>b</mi><mi>c</mi></mrow><mi>r</mi></mfrac><annotation encoding="application/x-tex">\frac{bc}{r}</annotation></semantics></math>)
-a person in each strata contributes to a patch. It is a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>×</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">p\times p</annotation></semantics></math>
-matrix.</p>
-<p>On the left
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>W</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><msup><mi>β</mi><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">\mbox{diag}\left(W \right) \cdot \beta^T</annotation></semantics></math>
-multiplies each column of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>β</mi><mi>T</mi></msup><annotation encoding="application/x-tex">\beta^T</annotation></semantics></math>
-by the diagonal of that matrix; this has the effect of recovering the
-original movement matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Ψ</mi><annotation encoding="application/x-tex">\Psi</annotation></semantics></math>.
-So multiplying the intermediate matrix produced by the preceding section
-by this on the left distributes that potentially-transmitting person
-time across patches. Therefore
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>-th
-column of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒟</mi><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math>
-describes how potentially infectious person-time from a person infected
-in
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
-is distributed across other patches.</p>
+<p><span class="math display">\[
+\mathcal{D} = \mbox{diag}\left(W \right) \cdot \beta^T \cdot
+\mbox{diag}\left(bDH\right) \cdot \beta
+\]</span> We can first examine the multiplication of <span class="math inline">\(\mbox{diag}\left(bDH\right) \cdot \beta\)</span>
+on the right. This has the effect of multiplying each column of <span class="math inline">\(\beta\)</span> by the diagonal of <span class="math inline">\(\mbox{diag}\left(bDH\right)\)</span>. This results
+in a <span class="math inline">\(n\times p\)</span> matrix whose columns
+give the distribution of potentially transmitting person-time (<span class="math inline">\(\frac{bc}{r}\)</span>) a person in each strata
+contributes to a patch. It is a <span class="math inline">\(p\times
+p\)</span> matrix.</p>
+<p>On the left <span class="math inline">\(\mbox{diag}\left(W \right)
+\cdot \beta^T\)</span> multiplies each column of <span class="math inline">\(\beta^T\)</span> by the diagonal of that matrix;
+this has the effect of recovering the original movement matrix <span class="math inline">\(\Psi\)</span>. So multiplying the intermediate
+matrix produced by the preceding section by this on the left distributes
+that potentially-transmitting person time across patches. Therefore
+<span class="math inline">\(i\)</span>-th column of <span class="math inline">\(\mathcal{D}\)</span> describes how potentially
+infectious person-time from a person infected in <span class="math inline">\(i\)</span> is distributed across other
+patches.</p>
 <p>In the 1 patch, 1 strata case, it simplifies considerably to:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi><mo>=</mo><mfrac><mrow><mi>b</mi><mi>c</mi></mrow><mi>r</mi></mfrac></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \mathcal{D} = \frac{bc}{r}
-</annotation></semantics></math></p>
+\]</span></p>
 </div>
 <div class="section level3">
 <h3 id="parasite-dispersal-through-one-parasite-generation">Parasite Dispersal through one Parasite Generation<a class="anchor" aria-label="anchor" href="#parasite-dispersal-through-one-parasite-generation"></a>
@@ -313,52 +239,37 @@ dispersed through one parasite generation. This can be done with from
 mosquito to mosquito, or human to human. Below we show the equation for
 parasite dispersal through a generation, beginning and ending with a
 human host.</p>
-<p><span class="math display">$$
+<p><span class="math display">\[
 \mathcal{R} =   b \beta \cdot {\cal V}  \cdot \mbox{diag}\left(W \right)
 \cdot \beta^T  \cdot \mbox{diag}\left(DH\right)
-$$</span></p>
-<p>Here
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℛ</mi><annotation encoding="application/x-tex">\mathcal{R}</annotation></semantics></math>
-is a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n\times n</annotation></semantics></math>
-matrix, the columns of which describe how infections starting in that
-strata are disseminated among other strata after one generation. Once
-again we can learn how to interpret the equation by walking from left to
-right.
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>W</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><msup><mi>β</mi><mi>T</mi></msup><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>D</mi><mi>H</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mbox{diag}\left(W \right) \cdot \beta^T  \cdot \mbox{diag}\left(DH\right)</annotation></semantics></math>
-produces a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">p\times n</annotation></semantics></math>
-matrix which describes how infectious person-time in each strata is
-spread across patches. Multiplication by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒱</mi><annotation encoding="application/x-tex">\mathcal{V}</annotation></semantics></math>
-then describes how this infectious person-time is transformed into
+\]</span></p>
+<p>Here <span class="math inline">\(\mathcal{R}\)</span> is a <span class="math inline">\(n\times n\)</span> matrix, the columns of which
+describe how infections starting in that strata are disseminated among
+other strata after one generation. Once again we can learn how to
+interpret the equation by walking from left to right. <span class="math inline">\(\mbox{diag}\left(W \right) \cdot \beta^T  \cdot
+\mbox{diag}\left(DH\right)\)</span> produces a <span class="math inline">\(p\times n\)</span> matrix which describes how
+infectious person-time in each strata is spread across patches.
+Multiplication by <span class="math inline">\(\mathcal{V}\)</span> then
+describes how this infectious person-time is transformed into
 potentially infectious bites by mosquitoes, distributed over space and
-accounting for mortality during the EIP. Final multiplication by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>
-takes into account where persons will contact those infectious bites,
-and the transmission efficiency back to human hosts.</p>
+accounting for mortality during the EIP. Final multiplication by <span class="math inline">\(\beta\)</span> and <span class="math inline">\(b\)</span> takes into account where persons will
+contact those infectious bites, and the transmission efficiency back to
+human hosts.</p>
 <p>Once again, we can take the 1 patch, 1 strata case to see how this
 formula simplifies:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>b</mi><mi>c</mi></mrow><mi>r</mi></mfrac><mo>⋅</mo><mfrac><mrow><mi>f</mi><mi>q</mi></mrow><mi>g</mi></mfrac><msup><mi>e</mi><mrow><mo>−</mo><mi>g</mi><mi>τ</mi></mrow></msup><mi>f</mi><mi>q</mi><mfrac><mi>M</mi><mi>H</mi></mfrac></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \frac{bc}{r} \cdot \frac{fq}{g} e^{-g\tau}fq\frac{M}{H}
-</annotation></semantics></math></p>
-<p>Which is precisely the formula for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mn>0</mn></msub><annotation encoding="application/x-tex">R_{0}</annotation></semantics></math>
-in <a href="https://malariajournal.biomedcentral.com/articles/10.1186/1475-2875-3-13" class="external-link">Smith
-and McKenzie (2004)</a>. Therefore
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℛ</mi><annotation encoding="application/x-tex">\mathcal{R}</annotation></semantics></math>
-is the “logical” spatial version of this threshold metric.</p>
+\]</span></p>
+<p>Which is precisely the formula for <span class="math inline">\(R_{0}\)</span> in <a href="https://malariajournal.biomedcentral.com/articles/10.1186/1475-2875-3-13" class="external-link">Smith
+and McKenzie (2004)</a>. Therefore <span class="math inline">\(\mathcal{R}\)</span> is the “logical” spatial
+version of this threshold metric.</p>
 <p>If we track parasite dispersal from mosquitoes to mosquitoes we
-arrive at the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>×</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">p\times p</annotation></semantics></math>
-matrix:</p>
-<p><span class="math display">$$
+arrive at the <span class="math inline">\(p\times p\)</span> matrix:</p>
+<p><span class="math display">\[
 \mathcal{Z} = e^{-\Omega\tau} \cdot \mbox{diag}\left( \frac{fq M}{W}
 \right) \cdot {\cal D} \cdot  fq\Omega^{-1}
-$$</span> In the 1 patch 1 strata case this becomes the same equation as
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℛ</mi><annotation encoding="application/x-tex">\mathcal{R}</annotation></semantics></math>.</p>
+\]</span> In the 1 patch 1 strata case this becomes the same equation as
+<span class="math inline">\(\mathcal{R}\)</span>.</p>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>

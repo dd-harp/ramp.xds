@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Basic Mosquito Infection Dynamics in Discrete Time • ramp.xds</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -34,29 +40,24 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with Models</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a></li>
-    <li><a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
   </ul>
 </li>
 <li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-adult" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Adult</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-aquatic" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Aquatic</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a></li>
-    <li><a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -108,168 +109,137 @@ patch, and then we present the equations for the multi-patch model.</p>
 <h2 id="in-a-single-patch">In a Single Patch<a class="anchor" aria-label="anchor" href="#in-a-single-patch"></a>
 </h2>
 <p>We define several variables describing adult female mosquitoes. Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mi>t</mi></msub><annotation encoding="application/x-tex">M_t</annotation></semantics></math>
-denote the total density of uninfected mosquitoes at time
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">t.</annotation></semantics></math>
-We assume that mosquitoes emerge from aquatic habitats at the rate
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Λ</mi><mi>t</mi></msub><annotation encoding="application/x-tex">\Lambda_t</annotation></semantics></math>
-and that a proportion of mosquitoes,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>,
-survives each day. The total density of mosquitoes is described by an
-equation:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>Λ</mi><mi>t</mi></msub><mo>+</mo><mi>p</mi><msub><mi>M</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">M_{t+1} = \Lambda_t + p M_t</annotation></semantics></math></p>
-<p>We let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math>
-denote the proportion of mosquitoes that blood feeds each day, and let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mi>t</mi></msub><annotation encoding="application/x-tex">P_t</annotation></semantics></math>
-denote the density of parous mosquitoes:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>f</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>M</mi><mi>t</mi></msub><mo>−</mo><msub><mi>P</mi><mi>t</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>p</mi><msub><mi>P</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">P_{t+1} = f(M_t - P_t) + p P_t</annotation></semantics></math></p>
+<span class="math inline">\(M_t\)</span> denote the total density of
+uninfected mosquitoes at time <span class="math inline">\(t.\)</span> We
+assume that mosquitoes emerge from aquatic habitats at the rate <span class="math inline">\(\Lambda_t\)</span> and that a proportion of
+mosquitoes, <span class="math inline">\(p\)</span>, survives each day.
+The total density of mosquitoes is described by an equation:</p>
+<p><span class="math display">\[M_{t+1} = \Lambda_t + p M_t\]</span></p>
+<p>We let <span class="math inline">\(f\)</span> denote the proportion
+of mosquitoes that blood feeds each day, and let <span class="math inline">\(P_t\)</span> denote the density of parous
+mosquitoes:</p>
+<p><span class="math display">\[P_{t+1} = f(M_t - P_t) + p
+P_t\]</span></p>
 <p>To model the infection process we need two additional parameters:</p>
 <ul>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math>
-- the proportion of blood meals that are taken on humans</p></li>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>κ</mi><mi>t</mi></msub><annotation encoding="application/x-tex">\kappa_t</annotation></semantics></math>
-- fraction of human blood meals that infect the mosquito</p></li>
+<li><p><span class="math inline">\(q\)</span> - the proportion of blood
+meals that are taken on humans</p></li>
+<li><p><span class="math inline">\(\kappa_t\)</span> - fraction of human
+blood meals that infect the mosquito</p></li>
 </ul>
-<p>Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math>
-denote the density of uninfected mosquitoes:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>Λ</mi><mi>t</mi></msub><mo>+</mo><mi>p</mi><msup><mi>e</mi><mrow><mo>−</mo><mi>f</mi><mi>q</mi><msub><mi>κ</mi><mi>t</mi></msub></mrow></msup><msub><mi>U</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">U_{t+1} = \Lambda_t + p e^{-f q \kappa_t} U_t </annotation></semantics></math>
-Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Y</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">Y_{i,t}</annotation></semantics></math>
-denote a the density of cohorts of infected mosquitoes infected
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
-days ago:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mrow><mn>1</mn><mo>,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>f</mi><mi>q</mi><msub><mi>κ</mi><mi>t</mi></msub></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>U</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">Y_{1, t+1} = p (1-e^{-f q \kappa_t}) U_t </annotation></semantics></math>
-We let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
-denote the oldest cohort of infected mosquitoes that we would wish to
-track. For mosquitoes infected more than 1 day ago, we let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>G</mi><mi>i</mi></msub><annotation encoding="application/x-tex">G_i</annotation></semantics></math>
-be the fraction that becomes infectious the next day. If we modeled the
-EIP with a fixed delay, then
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">G_i = 1</annotation></semantics></math>
-for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>&lt;</mo><mi>τ</mi></mrow><annotation encoding="application/x-tex">i &lt; \tau</annotation></semantics></math>,
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>τ</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">G_\tau = 1</annotation></semantics></math>.
-Mosquitoes would become infectious on day
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>+</mo><mn>1</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\tau+1.</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo>,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>G</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>Y</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">Y_{i+1, t+1} = p \left(1-G_i \right) Y_{i, t} </annotation></semantics></math></p>
+<p>Let <span class="math inline">\(U\)</span> denote the density of
+uninfected mosquitoes:</p>
+<p><span class="math display">\[U_{t+1} = \Lambda_t + p e^{-f q
+\kappa_t} U_t \]</span> Let <span class="math inline">\(Y_{i,t}\)</span>
+denote a the density of cohorts of infected mosquitoes infected <span class="math inline">\(i\)</span> days ago:</p>
+<p><span class="math display">\[Y_{1, t+1} = p (1-e^{-f q \kappa_t}) U_t
+\]</span> We let <span class="math inline">\(\tau\)</span> denote the
+oldest cohort of infected mosquitoes that we would wish to track. For
+mosquitoes infected more than 1 day ago, we let <span class="math inline">\(G_i\)</span> be the fraction that becomes
+infectious the next day. If we modeled the EIP with a fixed delay, then
+<span class="math inline">\(G_i = 1\)</span> for <span class="math inline">\(i &lt; \tau\)</span>, and <span class="math inline">\(G_\tau = 1\)</span>. Mosquitoes would become
+infectious on day <span class="math inline">\(\tau+1.\)</span></p>
+<p><span class="math display">\[Y_{i+1, t+1} = p \left(1-G_i \right)
+Y_{i, t} \]</span></p>
 <p>and</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mrow><mi>τ</mi><mo>,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>G</mi><mrow><mi>τ</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>Y</mi><mrow><mi>τ</mi><mo>−</mo><mn>1</mn><mo>,</mo><mi>t</mi></mrow></msub><mo>+</mo><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>G</mi><mi>τ</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>Y</mi><mrow><mi>τ</mi><mo>,</mo><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">Y_{\tau, t+1} = p \left(1-G_{\tau-1} \right) Y_{\tau-1, t} + p \left(1-G_\tau \right) Y_{\tau, t}</annotation></semantics></math></p>
-<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Z</mi><mi>t</mi></msub><annotation encoding="application/x-tex">Z_t</annotation></semantics></math>
-denote the density of infectious mosquitoes at time
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Z</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><mi>p</mi><msub><mi>G</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>i</mi></msub><mo>+</mo><mi>p</mi><msub><mi>Z</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">Z_{t+1} = \sum_i p G_i Y_i  + p Z_t</annotation></semantics></math></p>
+<p><span class="math display">\[Y_{\tau, t+1} = p \left(1-G_{\tau-1}
+\right) Y_{\tau-1, t} + p \left(1-G_\tau \right) Y_{\tau,
+t}\]</span></p>
+<p><span class="math inline">\(Z_t\)</span> denote the density of
+infectious mosquitoes at time <span class="math inline">\(t\)</span></p>
+<p><span class="math display">\[Z_{t+1} = \sum_i p G_i Y_i  + p
+Z_t\]</span></p>
 <p>As we have defined our variables, one of them is not necessary,
 since</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>=</mo><mi>M</mi><mo>−</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">U = M- \sum_i Y_i - Z</annotation></semantics></math></p>
+<p><span class="math display">\[U = M- \sum_i Y_i - Z\]</span></p>
 </div>
 <div class="section level2">
 <h2 id="the-multi-patch-model">The Multi-Patch Model<a class="anchor" aria-label="anchor" href="#the-multi-patch-model"></a>
 </h2>
-<p>In a model with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
-patches, the model is defined as before, but now we let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mi>t</mi></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">M_t,</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>t</mi></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">P_t,</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>U</mi><mi>t</mi></msub><annotation encoding="application/x-tex">U_t</annotation></semantics></math>,
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Z</mi><mi>t</mi></msub><annotation encoding="application/x-tex">Z_t</annotation></semantics></math>
-be vectors of length
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">p,</annotation></semantics></math>
-and we let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math>
-be a vector of length
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\tau,</annotation></semantics></math>
-(where
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mn>1</mn></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">G_1 = 0</annotation></semantics></math>).
-We let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Y</mi><mi>t</mi></msub><annotation encoding="application/x-tex">Y_t</annotation></semantics></math>
-denote a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>×</mo><mi>τ</mi></mrow><annotation encoding="application/x-tex">p \times \tau</annotation></semantics></math>
-matrix, where each row is a cohort of mosquitoes, and where column
-represents the mosquitoes in a location. We let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Y</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">Y_{i,t}</annotation></semantics></math>
-denote the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-cohort:</p>
-<p>Now, we also need to define mosquito movement. We let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math>
-denote a vector describing the proportion of mosquitoes that emigrates
-from each patch, and let <span class="math inline">$\cal K$</span>
-denote a matrix describing the fraction of emigrating mosquitoes that
-end up in every other patch, where <span class="math display">$$\mbox{diag}\; {\cal K} = 0.$$</span> and where
-the columns sum up to a number that is less than or equal to one, where
-the gap represents mortality occurring during dispersal.</p>
-<p>We let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Ω</mi><annotation encoding="application/x-tex">\Omega</annotation></semantics></math>
-denote the demographic matrix where:</p>
-<p><span class="math display">$$\Omega = \mbox{diag}\left( p \left(
+<p>In a model with <span class="math inline">\(n\)</span> patches, the
+model is defined as before, but now we let <span class="math inline">\(M_t,\)</span> <span class="math inline">\(P_t,\)</span> <span class="math inline">\(U_t\)</span>, and <span class="math inline">\(Z_t\)</span> be vectors of length <span class="math inline">\(p,\)</span> and we let <span class="math inline">\(G\)</span> be a vector of length <span class="math inline">\(\tau,\)</span> (where <span class="math inline">\(G_1 = 0\)</span>). We let <span class="math inline">\(Y_t\)</span> denote a <span class="math inline">\(p \times \tau\)</span> matrix, where each row is a
+cohort of mosquitoes, and where column represents the mosquitoes in a
+location. We let <span class="math inline">\(Y_{i,t}\)</span> denote the
+<span class="math inline">\(i^{th}\)</span> cohort:</p>
+<p>Now, we also need to define mosquito movement. We let <span class="math inline">\(\sigma\)</span> denote a vector describing the
+proportion of mosquitoes that emigrates from each patch, and let <span class="math inline">\(\cal K\)</span> denote a matrix describing the
+fraction of emigrating mosquitoes that end up in every other patch,
+where <span class="math display">\[\mbox{diag}\; {\cal K} = 0.\]</span>
+and where the columns sum up to a number that is less than or equal to
+one, where the gap represents mortality occurring during dispersal.</p>
+<p>We let <span class="math inline">\(\Omega\)</span> denote the
+demographic matrix where:</p>
+<p><span class="math display">\[\Omega = \mbox{diag}\left( p \left(
 1-\sigma \right) \right) + \mbox{diag}\left( p \sigma \right) \cdot
-{\cal K} $$</span> Now the dynamics are very similar:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>M</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>Λ</mi><mi>t</mi></msub><mo>+</mo><mi>Ω</mi><mo>⋅</mo><msub><mi>M</mi><mi>t</mi></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>P</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>f</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>M</mi><mi>t</mi></msub><mo>−</mo><msub><mi>P</mi><mi>t</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>Ω</mi><mo>⋅</mo><msub><mi>P</mi><mi>t</mi></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>U</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>Λ</mi><mi>t</mi></msub><mo>+</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>f</mi><mi>q</mi><msub><mi>κ</mi><mi>t</mi></msub></mrow></msup><msub><mi>U</mi><mi>t</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>Y</mi><mrow><mn>1</mn><mo>,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>f</mi><mi>q</mi><msub><mi>κ</mi><mi>t</mi></msub></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>U</mi><mi>t</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>Y</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo>,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>Ω</mi><mo>⋅</mo><msub><mi>Y</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>G</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>Y</mi><mrow><mi>τ</mi><mo>,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Y</mi><mrow><mi>τ</mi><mo>−</mo><mn>1</mn><mo>,</mo><mi>t</mi></mrow></msub><mspace width="0.278em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>G</mi><mrow><mi>τ</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Y</mi><mrow><mi>τ</mi><mo>,</mo><mi>t</mi></mrow></msub><mspace width="0.278em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>G</mi><mi>τ</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>Z</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Y</mi><mi>t</mi></msub><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>Ω</mi><mo>⋅</mo><msub><mi>Z</mi><mi>t</mi></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd></mtr></mtable><annotation encoding="application/x-tex"> 
+{\cal K} \]</span> Now the dynamics are very similar:</p>
+<p><span class="math display">\[
 \begin{array}{rl}
 M_{t+1} &amp;= \Lambda_t + \Omega \cdot M_t \\
 P_{t+1} &amp;= f (M_t - P_t) + \Omega \cdot P_t \\ \hline
-U_{t+1} &amp;= \Lambda_t + \Omega \cdot \left(e^{-fq\kappa_t} U_t \right) \\
-Y_{1, t+1} &amp;= \Omega \cdot \left(\left(1-e^{-fq\kappa_t}\right)  U_t \right)  \\
+U_{t+1} &amp;= \Lambda_t + \Omega \cdot \left(e^{-fq\kappa_t} U_t
+\right) \\
+Y_{1, t+1} &amp;= \Omega \cdot \left(\left(1-e^{-fq\kappa_t}\right)  U_t
+\right)  \\
 Y_{i+1, t+1} &amp;= \Omega \cdot Y_{i,t} \left(1-G_i   \right)  \\
-Y_{\tau, t+1} &amp;= \Omega \cdot \left( Y_{\tau-1, t}\;\left(1-G_{\tau-1} \right)  \right) + 
+Y_{\tau, t+1} &amp;= \Omega \cdot \left( Y_{\tau-1,
+t}\;\left(1-G_{\tau-1} \right)  \right) +
 \Omega \cdot \left( Y_{\tau, t} \; \left(1-G_\tau \right) \right)  \\
-Z_{t+1} &amp;=  \Omega \cdot \left(Y_t \cdot \mbox{diag}(G) \right)+ \Omega \cdot Z_t \\
+Z_{t+1} &amp;=  \Omega \cdot \left(Y_t \cdot \mbox{diag}(G) \right)+
+\Omega \cdot Z_t \\
 \end{array}
-</annotation></semantics></math></p>
+\]</span></p>
 </div>
 <div class="section level2">
 <h2 id="implementation-notes">Implementation Notes:<a class="anchor" aria-label="anchor" href="#implementation-notes"></a>
 </h2>
 <p>In the implementation, we could choose models where the EIP is
 distributed over some period but where the fraction maturing after time
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
-is continuous. We have chosen a rotating index to track age of infection
-cohorts in the matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>;</mo></mrow><annotation encoding="application/x-tex">Y;</annotation></semantics></math>
-using modulo arithmetic, each columns tracks a single cohort for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
-days. On the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\tau +1</annotation></semantics></math>
-day, the column is added to the one before, and then we compute
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mrow><mn>1</mn><mo>,</mo><mi>t</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">Y_{1,t}.</annotation></semantics></math>
-The computation thus does this:</p>
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>M</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>Λ</mi><mi>t</mi></msub><mo>+</mo><mi>Ω</mi><mo>⋅</mo><msub><mi>M</mi><mi>t</mi></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>P</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>f</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>M</mi><mi>t</mi></msub><mo>−</mo><msub><mi>P</mi><mi>t</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>Ω</mi><mo>⋅</mo><msub><mi>P</mi><mi>t</mi></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>U</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>Λ</mi><mi>t</mi></msub><mo>+</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>f</mi><mi>q</mi><msub><mi>κ</mi><mi>t</mi></msub></mrow></msup><msub><mi>U</mi><mi>t</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>Y</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Y</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>G</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>Z</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Y</mi><mi>t</mi></msub><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mspace width="0.278em"></mspace><mi>G</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>Ω</mi><mo>⋅</mo><msub><mi>Z</mi><mi>t</mi></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{rl}
+<span class="math inline">\(\tau\)</span> is continuous. We have chosen
+a rotating index to track age of infection cohorts in the matrix <span class="math inline">\(Y;\)</span> using modulo arithmetic, each columns
+tracks a single cohort for <span class="math inline">\(\tau\)</span>
+days. On the <span class="math inline">\(\tau +1\)</span> day, the
+column is added to the one before, and then we compute <span class="math inline">\(Y_{1,t}.\)</span> The computation thus does
+this:</p>
+<span class="math display">\[\begin{array}{rl}
 M_{t+1} &amp;= \Lambda_t + \Omega \cdot M_t \\
-P_{t+1} &amp;= f(M_t-P_t) + \Omega \cdot P_t \\ \hline 
-U_{t+1} &amp;= \Lambda_t + \Omega \cdot \left(e^{-fq\kappa_t} U_t \right) \\
-Y_{t+1} &amp;= \Omega \cdot \left(Y_{i, t} \cdot \mbox{diag} \left(1-G \right) \right)  \\
-Z_{t+1} &amp;= \Omega \cdot \left( Y_t \cdot \mbox{diag}\; G \right)+ \Omega \cdot Z_t \\
-\end{array}</annotation></semantics></math><p>Noting that in the modulo arithmetic,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>+</mo><mn>1</mn><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\tau+1 = 1</annotation></semantics></math>,
-we get:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>Y</mi><mrow><mi>τ</mi><mo>,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>Y</mi><mrow><mi>τ</mi><mo>,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>Y</mi><mrow><mi>τ</mi><mo>+</mo><mn>1</mn><mo>,</mo><mi>t</mi></mrow></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>Y</mi><mrow><mn>1</mn><mo>,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>f</mi><mi>q</mi><msub><mi>κ</mi><mi>t</mi></msub></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>U</mi><mi>t</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd></mtr></mtable><annotation encoding="application/x-tex"> 
+P_{t+1} &amp;= f(M_t-P_t) + \Omega \cdot P_t \\ \hline
+U_{t+1} &amp;= \Lambda_t + \Omega \cdot \left(e^{-fq\kappa_t} U_t
+\right) \\
+Y_{t+1} &amp;= \Omega \cdot \left(Y_{i, t} \cdot \mbox{diag} \left(1-G
+\right) \right)  \\
+Z_{t+1} &amp;= \Omega \cdot \left( Y_t \cdot \mbox{diag}\; G \right)+
+\Omega \cdot Z_t \\
+\end{array}\]</span>
+<p>Noting that in the modulo arithmetic, <span class="math inline">\(\tau+1 = 1\)</span>, we get:</p>
+<p><span class="math display">\[
 \begin{array}{rl}
 Y_{\tau, t+1} &amp;= Y_{\tau, t+1} + Y_{\tau+1, t}    \\
-Y_{1, t+1} &amp;= \Omega \cdot \left(\left(1-e^{-fq\kappa_t}\right)  U_t \right)  \\
+Y_{1, t+1} &amp;= \Omega \cdot \left(\left(1-e^{-fq\kappa_t}\right)  U_t
+\right)  \\
 \end{array}
-</annotation></semantics></math></p>
+\]</span></p>
 </div>
 <div class="section level2">
 <h2 id="verification">Verification<a class="anchor" aria-label="anchor" href="#verification"></a>
 </h2>
 <p>We can verify our model by solving for steady states.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>M</mi><mo accent="true">‾</mo></mover><mo>=</mo><mi>Λ</mi><mo>⋅</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>Ω</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\bar M = \Lambda \cdot (1-\Omega)^{-1}</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>P</mi><mo accent="true">‾</mo></mover><mo>=</mo><mi>f</mi><mover><mi>M</mi><mo accent="true">‾</mo></mover><mo>⋅</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>Ω</mi><mo>+</mo><mtext mathvariant="normal">diag</mtext><mspace width="0.278em"></mspace><mi>f</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\bar P = f \bar M \cdot (1-\Omega+ \mbox{diag}\;f )^{-1}</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>U</mi><mo accent="true">‾</mo></mover><mo>=</mo><mi>Λ</mi><mo>⋅</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>Ω</mi><mo>⋅</mo><mtext mathvariant="normal">diag</mtext><mspace width="0.278em"></mspace><msup><mi>e</mi><mrow><mo>−</mo><mi>f</mi><mi>q</mi><mi>κ</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\bar U = \Lambda \cdot (1-\Omega \cdot \mbox{diag}\; e^{-fq\kappa})^{-1}</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>Y</mi><mo accent="true">‾</mo></mover><mn>1</mn></msub><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>f</mi><mi>q</mi><mi>κ</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mover><mi>U</mi><mo accent="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\bar Y_1 = \Omega \cdot \left( 1- e^{-fq\kappa}\right) \cdot \bar U</annotation></semantics></math>
-For
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&lt;</mo><mi>i</mi><mo>&lt;</mo><mi>τ</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">1 &lt; i &lt; \tau,</annotation></semantics></math>
-we get a recursive relationship:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>Y</mi><mo accent="true">‾</mo></mover><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mspace width="0.278em"></mspace><msub><mover><mi>Y</mi><mo accent="true">‾</mo></mover><mi>i</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>G</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\bar Y_{i+1} = \Omega \cdot \; \bar Y_i (1-G_i) </annotation></semantics></math>
-and for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mi>τ</mi></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">Y_{\tau},</annotation></semantics></math>
+<p><span class="math display">\[\bar M = \Lambda \cdot
+(1-\Omega)^{-1}\]</span></p>
+<p><span class="math display">\[\bar P = f \bar M \cdot (1-\Omega+
+\mbox{diag}\;f )^{-1}\]</span></p>
+<p><span class="math display">\[\bar U = \Lambda \cdot (1-\Omega \cdot
+\mbox{diag}\; e^{-fq\kappa})^{-1}\]</span></p>
+<p><span class="math display">\[\bar Y_1 = \Omega \cdot \left( 1-
+e^{-fq\kappa}\right) \cdot \bar U\]</span> For <span class="math inline">\(1 &lt; i &lt; \tau,\)</span> we get a recursive
+relationship:</p>
+<p><span class="math display">\[\bar Y_{i+1} = \Omega \cdot \; \bar Y_i
+(1-G_i) \]</span> and for <span class="math inline">\(Y_{\tau},\)</span>
 we get:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>Y</mi><mo accent="true">‾</mo></mover><mi>τ</mi></msub><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtext mathvariant="normal">diag</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>G</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><msub><mover><mi>Y</mi><mo accent="true">‾</mo></mover><mrow><mi>τ</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>⋅</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>Ω</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>G</mi><mi>τ</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\bar Y_{\tau} = \Omega \cdot \left( \mbox{diag} \left(1-G\right) \right) \bar Y_{\tau-1} \cdot \left(1 - \Omega \left (1-G_\tau \right)  \right)^{-1}</annotation></semantics></math>
-and</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>Z</mi><mo accent="true">‾</mo></mover><mo>=</mo><mi>Ω</mi><mo>⋅</mo><mi>G</mi><mo>⋅</mo><mi>Y</mi><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>Ω</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\bar Z = \Omega \cdot G \cdot Y \left( 1- \Omega\right)^{-1}</annotation></semantics></math></p>
+<p><span class="math display">\[\bar Y_{\tau} = \Omega \cdot \left(
+\mbox{diag} \left(1-G\right) \right) \bar Y_{\tau-1} \cdot \left(1 -
+\Omega \left (1-G_\tau \right)  \right)^{-1}\]</span> and</p>
+<p><span class="math display">\[\bar Z = \Omega \cdot G \cdot Y \left(
+1- \Omega\right)^{-1}\]</span></p>
 </div>
 <div class="section level2">
 <h2 id="demo">Demo<a class="anchor" aria-label="anchor" href="#demo"></a>

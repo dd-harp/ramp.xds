@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>5-3-4 Example • ramp.xds</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -29,34 +35,29 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="active nav-item dropdown">
+<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with Models</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/Understanding_ramp.xds.html">Understanding ramp.xds</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_534.html">5-3-4 Spatial Example</a></li>
-    <li><a class="dropdown-item" href="../articles/spat_metric.html">Spatial Metrics</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-adult" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Adult</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-adult">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-mosquito-aquatic" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Mosquito - Aquatic</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-mosquito-aquatic">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Aquatic - Trivial (forced) model</a></li>
-    <li><a class="dropdown-item" href="../articles/aqua_basic.html">Basic Competition</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -106,13 +107,10 @@ mosquito-borne pathogen transmission dynamics and control using modular
 software. It serves several purposes:</p>
 <ul>
 <li>Modular notation is illustrated by constructing a model with five
-aquatic habitats
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>q</mi></msub><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">n_q=5</annotation></semantics></math>),
-three patches
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>p</mi></msub><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n_p=3</annotation></semantics></math>),
-and four human population strata
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">n_h=4</annotation></semantics></math>).
-We call it <code>5-3-4</code>.</li>
+aquatic habitats (<span class="math inline">\(n_q=5\)</span>), three
+patches (<span class="math inline">\(n_p=3\)</span>), and four human
+population strata (<span class="math inline">\(n_h=4\)</span>). We call
+it <code>5-3-4</code>.</li>
 </ul>
 <div class="section level3">
 <h3 id="diagram">Diagram<a class="anchor" aria-label="anchor" href="#diagram"></a>
@@ -146,9 +144,8 @@ list of the index of patches where the habitats are found:</p>
 <code class="sourceCode R"><span><span class="va">membership</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">membership</span></span>
 <span><span class="co">#&gt; [1] 1 1 1 2 2</span></span></code></pre></div>
-<p>The number of habitats,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mi>q</mi></msub><annotation encoding="application/x-tex">n_q</annotation></semantics></math>
-or <code>nHabitats</code>, is the length of the membership matrix:</p>
+<p>The number of habitats, <span class="math inline">\(n_q\)</span> or
+<code>nHabitats</code>, is the length of the membership matrix:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nHabitats</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">membership</span><span class="op">)</span></span>
 <span><span class="va">nHabitats</span></span>
@@ -159,40 +156,31 @@ list of the index of patches where people live:</p>
 <code class="sourceCode R"><span><span class="va">residence</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">residence</span></span>
 <span><span class="co">#&gt; [1] 2 2 3 3</span></span></code></pre></div>
-<p>The number of strata,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mi>h</mi></msub><annotation encoding="application/x-tex">n_h</annotation></semantics></math>
-or <code>nStrata</code>, is the length of the residence matrix:</p>
+<p>The number of strata, <span class="math inline">\(n_h\)</span> or
+<code>nStrata</code>, is the length of the residence matrix:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nStrata</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">residence</span><span class="op">)</span></span>
 <span><span class="va">nStrata</span></span>
 <span><span class="co">#&gt; [1] 4</span></span></code></pre></div>
-<p>The number of patches,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mi>p</mi></msub><annotation encoding="application/x-tex">n_p</annotation></semantics></math>
-or <code>nPatches</code>, is just a number:</p>
+<p>The number of patches, <span class="math inline">\(n_p\)</span> or
+<code>nPatches</code>, is just a number:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nPatches</span> <span class="op">=</span> <span class="fl">3</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="aquatic-habitat-membership-matrix">Aquatic Habitat Membership Matrix<a class="anchor" aria-label="anchor" href="#aquatic-habitat-membership-matrix"></a>
 </h3>
-<p>For computation, <code>ramp.xds</code> uses an
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>p</mi></msub><mo>×</mo><msub><mi>n</mi><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">n_p \times n_q</annotation></semantics></math>
-matrix called <span class="math inline">$\cal{N}.$</span> It is
-specified by the habitat vector. In the matrix, <span class="math inline">${\cal N}_{i,j}$</span> is
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>
-if the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-patch contains the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>j</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">j^{th}</annotation></semantics></math>
-habitat:</p>
-<p><span class="math display">$$\begin{equation}
-{\cal N} = \left[
+<p>For computation, <code>ramp.xds</code> uses an <span class="math inline">\(n_p \times n_q\)</span> matrix called <span class="math inline">\(\cal{N}.\)</span> It is specified by the habitat
+vector. In the matrix, <span class="math inline">\({N}_{i,j}\)</span> is
+<span class="math inline">\(1\)</span> if the <span class="math inline">\(i^{th}\)</span> patch contains the <span class="math inline">\(j^{th}\)</span> habitat:</p>
+<p><span class="math display">\[\begin{equation}
+{N} = \left[
 \begin{array}{ccccc}
 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1\\
 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
 \end{array} \right]
-\end{equation}$$</span></p>
+\end{equation}\]</span></p>
 <p>The matrix is created by a function
 <code>create_habitat_matrix</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -203,9 +191,7 @@ habitat:</p>
 <span><span class="co">#&gt; [2,]    0    0    0    1    1</span></span>
 <span><span class="co">#&gt; [3,]    0    0    0    0    0</span></span></code></pre></div>
 <p>The habitat matrix is used to sum quantities in habitats up to
-patches. For example, the number of habitats per patch is <span class="math inline">${\cal N} \cdot 1$</span>, where
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>
-is a vector of 1’s:</p>
+patches. For example, the number of habitats per patch is <span class="math inline">\({N} \cdot 1\)</span>, where <span class="math inline">\(1\)</span> is a vector of 1’s:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">habitat_matrix</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; [1] 3 2 0</span></span></code></pre></div>
@@ -213,25 +199,17 @@ is a vector of 1’s:</p>
 <div class="section level3">
 <h3 id="the-residence-matrix">The Residence Matrix<a class="anchor" aria-label="anchor" href="#the-residence-matrix"></a>
 </h3>
-<p>For computation, <code>ramp.xds</code> also creates a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>p</mi></msub><mo>×</mo><msub><mi>n</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">n_p \times n_h</annotation></semantics></math>
-matrix called <span class="math inline">$\cal J.$</span> It is specified
-by residence vector. The element <span class="math inline">${\cal
-J}_{i,j}$</span> is
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>
-if the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>j</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">j^{th}</annotation></semantics></math>
-stratum resides in the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math>
-patch:</p>
-<p><span class="math display">$$\begin{equation}
+<p>For computation, <code>ramp.xds</code> also creates a <span class="math inline">\(n_p \times n_h\)</span> matrix called <span class="math inline">\(\cal J.\)</span> It is specified by residence
+vector. The element <span class="math inline">\({\cal J}_{i,j}\)</span>
+is <span class="math inline">\(1\)</span> if the <span class="math inline">\(j^{th}\)</span> stratum resides in the <span class="math inline">\(i^{th}\)</span> patch:</p>
+<p><span class="math display">\[\begin{equation}
 {\cal J} = \left[
 \begin{array}{cccc}
 0 &amp; 0 &amp; 0 &amp; 0 \\
 1 &amp; 1 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 1 &amp; 1 \\
 \end{array} \right]
-\end{equation}$$</span></p>
+\end{equation}\]</span></p>
 <p>The matrix is created by a function
 <code>create_residence_matrix</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -252,20 +230,18 @@ patch:</p>
 <p>It is plausible that these habitats are not all found with the same
 propensity. Habitats are found after a search, and that search begins
 after mosquitoes have blood fed. To compute egg distribution, we create
-a vector describing habitat <em>search weights,</em> denoted
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\omega.</annotation></semantics></math>
-The proportion of eggs laid in each patch is it’s search weight as a
-proportion of summed search weights of all habitats in a patch, a
-quantity that we have called <em>availability,</em>
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>.</p>
+a vector describing habitat <em>search weights,</em> denoted <span class="math inline">\(\omega.\)</span> The proportion of eggs laid in
+each patch is it’s search weight as a proportion of summed search
+weights of all habitats in a patch, a quantity that we have called
+<em>availability,</em> <span class="math inline">\(Q\)</span>.</p>
 <p>For now, we generate arbitary weights for each one of the
 habitats:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">searchWtsQ</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">8</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">searchWtsQ</span></span>
 <span><span class="co">#&gt; [1] 7 2 1 8 2</span></span></code></pre></div>
-<p>And we can compute availability as <span class="math inline">$\cal N
-\cdot w$</span>. In <code>ramp.xds</code>, the function that computes
+<p>And we can compute availability as <span class="math inline">\(N
+\cdot w\)</span>. In <code>ramp.xds</code>, the function that computes
 habitat availability is called <code>compute_Q</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_Q.html">compute_Q</a></span><span class="op">(</span><span class="va">habitat_matrix</span>, <span class="va">searchWtsQ</span><span class="op">)</span></span>
@@ -277,15 +253,13 @@ availability can be used to compute the values of some adult mosquito
 bionomic parameters using <em>functional responses,</em> that make use
 of their absolute values. The absolute values only have a meaning
 through their effects.</p>
-<p>The egg dispersal matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒰</mi><annotation encoding="application/x-tex">\mathcal{U}</annotation></semantics></math>
-is a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>q</mi></msub><mo>×</mo><msub><mi>n</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">n_q \times n_p</annotation></semantics></math>
-matrix describing how eggs laid by adult mosquitoes in a patch are
-allocated among the aquatic habitats in that patch. It is a matrix of
-search weights normalized by availability:</p>
-<p><span class="math display">$$\begin{equation}
-{\cal U} = \left[
+<p>The egg dispersal matrix <span class="math inline">\(U\)</span> is a
+<span class="math inline">\(n_q \times n_p\)</span> matrix describing
+how eggs laid by adult mosquitoes in a patch are allocated among the
+aquatic habitats in that patch. It is a matrix of search weights
+normalized by availability:</p>
+<p><span class="math display">\[\begin{equation}
+U = \left[
 \begin{array}{ccccc}
 .7 &amp; 0 &amp; 0\\
 .2 &amp; 0 &amp; 0\\
@@ -293,13 +267,13 @@ search weights normalized by availability:</p>
 0 &amp; .8 &amp; 0\\
 0 &amp; .2 &amp; 0\\
 \end{array} \right]
-\end{equation}$$</span></p>
-<p>It is computed using the function <code>compute_calU</code> that
+\end{equation}\]</span></p>
+<p>It is computed using the function <code>compute_Umatrix</code> that
 takes care of a problem that could arise from having empty patches, like
 patch 3 in this model.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">calU</span> <span class="op">=</span> <span class="fu"><a href="../reference/compute_calU.html">compute_calU</a></span><span class="op">(</span><span class="va">searchWtsQ</span>, <span class="va">habitat_matrix</span>, <span class="va">Q</span><span class="op">)</span></span>
-<span><span class="va">calU</span></span>
+<code class="sourceCode R"><span><span class="va">Umatrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/compute_Umatrix.html">compute_Umatrix</a></span><span class="op">(</span><span class="va">searchWtsQ</span>, <span class="va">habitat_matrix</span>, <span class="va">Q</span><span class="op">)</span></span>
+<span><span class="va">Umatrix</span></span>
 <span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
 <span><span class="co">#&gt; [1,]  0.7  0.0    0</span></span>
 <span><span class="co">#&gt; [2,]  0.2  0.0    0</span></span>
@@ -327,21 +301,18 @@ affected by a set of <em>search weights.</em></p>
 <p>This size of each population stratum differs:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HPop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">90</span>, <span class="fl">100</span>, <span class="fl">900</span><span class="op">)</span></span></code></pre></div>
-<p>The time spent matrix,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Θ</mi><annotation encoding="application/x-tex">\Theta</annotation></semantics></math>
-is a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>p</mi></msub><mo>×</mo><msub><mi>n</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">n_p \times n_h</annotation></semantics></math>
-matrix. Each column describes how a human stratum allocates time among
-patches.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Θ</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>.01</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>.001</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>.001</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0.95</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>.92</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>.04</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>.02</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0.04</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>.02</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>.959</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>.929</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\begin{equation}
+<p>The time spent matrix, <span class="math inline">\(\Theta\)</span> is
+a <span class="math inline">\(n_p \times n_h\)</span> matrix. Each
+column describes how a human stratum allocates time among patches.</p>
+<p><span class="math display">\[\begin{equation}
 \Theta = \left[
- \begin{array}{cccc}
- 0.01 &amp; .01 &amp; .001 &amp; .001 \\ 
- 0.95 &amp; .92 &amp; .04 &amp; .02 \\ 
- 0.04 &amp; .02 &amp; .959 &amp; .929 \\
- \end{array}
- \right] 
-\end{equation}</annotation></semantics></math></p>
+\begin{array}{cccc}
+0.01 &amp; .01 &amp; .001 &amp; .001 \\
+0.95 &amp; .92 &amp; .04 &amp; .02 \\
+0.04 &amp; .02 &amp; .959 &amp; .929 \\
+\end{array}
+\right]
+\end{equation}\]</span></p>
 <p>This model does not consider daily patterns in human or mosquito
 activity, so time spent and time at risk are identical.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
@@ -360,8 +331,7 @@ density weighed by their search weights:</p>
 <div class="section level3">
 <h3 id="transmission">Transmission<a class="anchor" aria-label="anchor" href="#transmission"></a>
 </h3>
-<p>A mixing matrix,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>,
+<p>A mixing matrix, <span class="math inline">\(\beta\)</span>,
 describes the expected proportion of each infective bite that would be
 received be each population stratum.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
@@ -377,12 +347,9 @@ received be each population stratum.</p>
 </h3>
 <p>For this simulation, we use the basic competition model of larval
 dynamics called <code>basicL</code> (see more <a href="aqua_basic.html">here</a>). It requires specification of three
-parameters,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ψ</mi><annotation encoding="application/x-tex">\psi</annotation></semantics></math>
-(maturation rates),
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
-(density-independent mortality rates), and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>
+parameters, <span class="math inline">\(\psi\)</span> (maturation
+rates), <span class="math inline">\(\phi\)</span> (density-independent
+mortality rates), and <span class="math inline">\(\theta\)</span>
 (density-dependent mortality terms), and initial conditions. The
 function <code>ramp.xds::xde_setup_Lpar_basicL</code> does basic
 checking of the input parameters and returns a list with the correct
@@ -399,13 +366,11 @@ parameter list with name <code>Lpar</code>.</p>
 <h3 id="adult-mosquito-dynamics">Adult Mosquito Dynamics<a class="anchor" aria-label="anchor" href="#adult-mosquito-dynamics"></a>
 </h3>
 <p>It also uses the Ross-Macdonald model (see more <a href="adult_RM.html">here</a>). Part of the specification of parameters
-includes the construction of the mosquito dispersal matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒦</mi><annotation encoding="application/x-tex">\mathcal{K}</annotation></semantics></math>,
-and the mosquito demography matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Ω</mi><annotation encoding="application/x-tex">\Omega</annotation></semantics></math>.
-Like for the aquatic parameters, we use
-<code>ramp.xds::make_parameters_MYZ_RM_ode</code> to check parameter
-types and return a list with the correct class for method dispatch.</p>
+includes the construction of the mosquito dispersal matrix <span class="math inline">\(\mathcal{K}\)</span>, and the mosquito demography
+matrix <span class="math inline">\(\Omega\)</span>. Like for the aquatic
+parameters, we use <code>ramp.xds::make_parameters_MYZ_RM_ode</code> to
+check parameter types and return a list with the correct class for
+method dispatch.</p>
 <p>The parameter values are:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">12</span> </span>
@@ -419,26 +384,22 @@ types and return a list with the correct class for method dispatch.</p>
 <p>We create a named list:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>g<span class="op">=</span><span class="va">g</span>, sigma<span class="op">=</span><span class="va">sigma</span>, mu<span class="op">=</span><span class="va">mu</span>, f<span class="op">=</span><span class="va">f</span>, q<span class="op">=</span><span class="va">q</span>, nu<span class="op">=</span><span class="va">nu</span>, eip<span class="op">=</span><span class="va">eip</span>, eggsPerBatch<span class="op">=</span><span class="va">eggsPerBatch</span><span class="op">)</span></span></code></pre></div>
-<p>Mosquito dispersal among the patches is described by a matrix, <span class="math inline">$\cal K.$</span> Each column in <span class="math inline">$\cal K$</span> describes the proportion of
-emigrating mosquitoes that go to every other patch. The diagonal
-elements are all
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>:</p>
+<p>Mosquito dispersal among the patches is described by a matrix, <span class="math inline">\(K.\)</span> Each column in <span class="math inline">\(K\)</span> describes the proportion of emigrating
+mosquitoes that go to every other patch. The diagonal elements are all
+<span class="math inline">\(0\)</span>:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">calK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
 <span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.6</span>, <span class="fl">.3</span><span class="op">)</span>, </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.4</span>, <span class="fl">0</span>, <span class="fl">.7</span><span class="op">)</span>, </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.6</span>, <span class="fl">.4</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>We construct the demographic matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Ω</mi><annotation encoding="application/x-tex">\Omega</annotation></semantics></math>
-given by the formula <span class="math display">$$\Omega =
-\mbox{diag}\left(g\right) - \left[\mbox{diag}\left(1-\mu\right) - {\cal
-K} \right] \cdot \mbox{diag}\left(\sigma\right)$$</span> It is computed
-by <code>compute_Omega_xde</code>:</p>
+<p>We construct the demographic matrix <span class="math inline">\(\Omega\)</span> given by the formula <span class="math display">\[\Omega = \mbox{diag}\left(g\right) -
+\left[\mbox{diag}\left(1-\mu\right) - {K} \right] \cdot
+\mbox{diag}\left(\sigma\right)\]</span> It is computed by
+<code>compute_Omega_xde</code>:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_Omega_xde.html">compute_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">calK</span><span class="op">)</span></span></code></pre></div>
-<p>Survival and dispersal through the EIP in this model, denoted
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Υ</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\Upsilon,</annotation></semantics></math>
-is computed using matrix exponentiation:</p>
+<p>Survival and dispersal through the EIP in this model, denoted <span class="math inline">\(\Upsilon,\)</span> is computed using matrix
+exponentiation:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Upsilon</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="op">-</span><span class="va">Omega</span><span class="op">*</span><span class="va">eip</span><span class="op">)</span></span></code></pre></div>
 <p>The function <code>xde_setup_MYZpar_RM</code> can be used to
@@ -460,8 +421,7 @@ parameters that have been modified by control.</p>
 <h3 id="human-infection-dynamics">Human Infection Dynamics<a class="anchor" aria-label="anchor" href="#human-infection-dynamics"></a>
 </h3>
 <p>We use a static demographic model, which assumes a constant
-population size (constant
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>).</p>
+population size (constant <span class="math inline">\(H\)</span>).</p>
 <p>The 5-3-4 model uses the basic SIS (Susceptible-Infected-Susceptible)
 model for the human component (see more <a href="human_sis.html">here</a>). It can be configured using
 <code>ramp.xds::xde_setup_Xpar_SIS.</code></p>
@@ -589,7 +549,7 @@ above.</p></li>
 <span><span class="co">#&gt; $patch_membership</span></span>
 <span><span class="co">#&gt; [1] 1 1 1 2 2</span></span></code></pre></div>
 <p>The function <code>make_xds_template</code> was designed to create a
-scaffolding. So <code>Q</code> and <code>calU</code> get created with
+scaffolding. So <code>Q</code> and <code>Umatrix</code> get created with
 default values: Iall patches are assumed to have the same biting
 weights.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
@@ -602,7 +562,7 @@ function <code>make_xds_template</code> only sets up the first species.
 Similarly, we can view the egg distribution matrix for the first
 species:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">calU</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">Umatrix</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt;           [,1] [,2] [,3]</span></span>
 <span><span class="co">#&gt; [1,] 0.3333333  0.0    0</span></span>
 <span><span class="co">#&gt; [2,] 0.3333333  0.0    0</span></span>
@@ -648,17 +608,17 @@ list.</p>
 function called <code>set_habitat_wts_static.</code> After setting the
 values of the habitat search weights, we need to update habitat
 availability and the egg distribution matrix. The functions
-<code>makeQ</code> and <code>make_calU</code> do this.</p>
+<code>makeQ</code> and <code>make_Umatrix</code> do this.</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_habitat_weights.html">change_habitat_weights</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">searchWtsQ</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Q.html">make_Q</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_calU.html">make_calU</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Umatrix.html">make_Umatrix</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
 <p>We can check to see</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">vars</span><span class="op">$</span><span class="va">Q</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 10 10  0</span></span></code></pre></div>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">calU</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">Umatrix</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
 <span><span class="co">#&gt; [1,]  0.7  0.0    0</span></span>
 <span><span class="co">#&gt; [2,]  0.2  0.0    0</span></span>
@@ -719,19 +679,16 @@ one we’ve illustrated here. In some models, we might want to make the
 habitat search weights change dynamically. For example, we might want to
 simulate habitat dynamics with some ephemeral habitats that dry up and
 can’t be found. That would be called a <em>non-autonomous</em> system,
-and we would need to recompute the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
-and <span class="math inline">$\cal U$</span> each time step. The egg
-laying object is assigned a class <code>dynamic</code> for dispatching
-by R’s S3 object system. If none of the values affecting egg laying are
-time dependent – we would call the resulting system <em>autonomous</em>
-– then we assign the objects a class <code>static</code> so they don’t
-get updated. To guarantee that we are recomputing things correctly,
-whenever the software updates the values of static parameters, it
-assigns the class <code>setup.</code> Whenever
-<code>EggLaying.setup</code> gets called, it runs
-<code>EggLaying.dynamic</code> once and then changes the class to
-<code>static.</code></p>
+and we would need to recompute the <span class="math inline">\(Q\)</span> and <span class="math inline">\(U\)</span> each time step. The egg laying object
+is assigned a class <code>dynamic</code> for dispatching by R’s S3
+object system. If none of the values affecting egg laying are time
+dependent – we would call the resulting system <em>autonomous</em> –
+then we assign the objects a class <code>static</code> so they don’t get
+updated. To guarantee that we are recomputing things correctly, whenever
+the software updates the values of static parameters, it assigns the
+class <code>setup.</code> Whenever <code>EggLaying.setup</code> gets
+called, it runs <code>EggLaying.dynamic</code> once and then changes the
+class to <code>static.</code></p>
 </div>
 </div>
 <div class="section level3">
