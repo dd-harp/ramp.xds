@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_aquatic}
 \alias{xds_setup_aquatic}
-\title{Make an \strong{\code{xds}} Object to Study Aquatic Mosquito Ecology}
+\title{Build a Model of Immature Mosquito Ecology}
 \usage{
 xds_setup_aquatic(
   xds = "ode",
@@ -33,6 +33,8 @@ xds_setup_aquatic(
 an \strong{\code{xds}} object
 }
 \description{
+\loadmathjax
+
 A modified version of \link{xds_setup} that streamlines setup for an \strong{L} Component
 when the \strong{MYZ} Component is set to \code{trivial.} The model
 also sets \strong{X} Component to the \code{trivial} module.

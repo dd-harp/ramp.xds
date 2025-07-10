@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-SIS.R
 \name{dXdt.SIS}
 \alias{dXdt.SIS}
-\title{\strong{X} Component Derivatives for the \code{SIS} Model}
+\title{Compute Derivatives for the \code{SIS} \strong{X}-Model}
 \usage{
 \method{dXdt}{SIS}(t, y, pars, i)
 }
@@ -23,12 +23,12 @@ Compute the derivatives for SIS compartmental model. Here, the model includes hu
 and it is computed in an equivalent form:
 \deqn{
 \begin{array}{rl}
-dH/dt = & B(t,H)  + {\cal D} \cdot H \\
-dI/dt = & h (H-I) - r I - \xi(t) + {\cal D} \cdot I
+dH/dt = & B(t,H)  + D \cdot H \\
+dI/dt = & h (H-I) - r I - \xi(t) +  D \cdot I
 \end{array}
 }
 where \eqn{S=H-I} ;
 \eqn{\xi(t)} is a function to simulate mass treatment;
-\eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{\cal D} is a matrix describing demographic changes,
+\eqn{B(t, H)} is the time-dependent birth rate; and \eqn{D} is a linear operator, a matrix describing demographic changes,
 including mortality, migration, and aging;
 }

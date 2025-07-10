@@ -7,7 +7,7 @@
 compute_Q(habitat_matrix, search_weights)
 }
 \arguments{
-\item{habitat_matrix}{the membership matrix, \eqn{\cal N}}
+\item{habitat_matrix}{the membership matrix, \eqn{N}}
 
 \item{search_weights}{the habitat search weights, \eqn{\omega_q}}
 }
@@ -19,13 +19,13 @@ Compute the availability of aquatic habitats.
 }
 \details{
 The availability of the habitats that we have defined in the model, denoted \eqn{Q}, sums search weights, \eqn{\omega_q}, by patch
-using the habitat membership matrix, \eqn{\cal N}, and we can compute
-\deqn{Q = {\cal N} \cdot \omega_q.}
+using the habitat membership matrix, \eqn{N}, and we can compute
+\deqn{Q = {N} \cdot \omega_q.}
 }
 \seealso{
 This function is called by \link{make_Q}
 
-\link{create_habitat_matrix} discusses \eqn{\cal N}
+\link{create_habitat_matrix} discusses \eqn{N}
 
 The availability of ovitraps and bad habitats is setup in \link{setup_EGG_LAYING}
 }

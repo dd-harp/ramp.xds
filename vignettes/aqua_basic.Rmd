@@ -1,8 +1,9 @@
 ---
-title: "basicL_xde Competition Aquatic Mosquito Model"
+title: "basicL"
+subtitle: "A Basic Model for Immature Mosquitoes"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{basicL_xde Competition Aquatic Mosquito Model}
+  %\VignetteIndexEntry{basicL}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

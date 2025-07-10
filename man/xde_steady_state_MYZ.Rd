@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-interface.R
 \name{xde_steady_state_MYZ}
 \alias{xde_steady_state_MYZ}
-\title{Compute steady states for \eqn{\cal MYZ} models}
+\title{Compute steady states for \strong{MYZ} Modules}
 \usage{
 xde_steady_state_MYZ(Lambda, kappa, MYZpar)
 }

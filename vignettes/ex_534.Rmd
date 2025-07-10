@@ -87,10 +87,10 @@ nPatches = 3
 
 ## Aquatic Habitat Membership Matrix
 
-For computation, `ramp.xds` uses an $n_p \times n_q$ matrix called $\cal{N}.$ It is specified by the habitat vector. In the matrix, ${\cal N}_{i,j}$ is $1$ if the $i^{th}$ patch contains the $j^{th}$ habitat:  
+For computation, `ramp.xds` uses an $n_p \times n_q$ matrix called $\cal{N}.$ It is specified by the habitat vector. In the matrix, ${N}_{i,j}$ is $1$ if the $i^{th}$ patch contains the $j^{th}$ habitat:  
 
 \begin{equation}
-{\cal N} = \left[
+{N} = \left[
  \begin{array}{ccccc} 
  1 & 1 & 1 & 0 & 0 \\ 
  0 & 0 & 0 & 1 & 1\\ 
@@ -104,7 +104,7 @@ The matrix is created by a function `create_habitat_matrix`:
 habitat_matrix = create_habitat_matrix(nPatches, membership)
 habitat_matrix
 ```
-The habitat matrix is used to sum quantities in habitats up to patches. For example, the number of habitats per patch is ${\cal N} \cdot 1$, where $1$ is a vector of 1's:
+The habitat matrix is used to sum quantities in habitats up to patches. For example, the number of habitats per patch is ${N} \cdot 1$, where $1$ is a vector of 1's:
 
 ```{r}
 as.vector(habitat_matrix %*% rep(1,5)) 
@@ -148,7 +148,7 @@ searchWtsQ = c(7,2,1,8,2)
 searchWtsQ
 ```
 
-And we can compute availability as $\cal N \cdot w$. In `ramp.xds`, the function that computes habitat availability is called `compute_Q`:
+And we can compute availability as $N \cdot w$. In `ramp.xds`, the function that computes habitat availability is called `compute_Q`:
 
 ```{r compute_Q}
 Q <- compute_Q(habitat_matrix, searchWtsQ)
@@ -157,10 +157,10 @@ Q
 
 Eggs are distributed among habitats in proportion to the relative values of the habitat search weights. These habitat search weights and availability can be used to compute the values of some adult mosquito bionomic parameters using *functional responses,* that make use of their absolute values. The absolute values only have a meaning through their effects. 
 
-The egg dispersal matrix $\mathcal{U}$ is a $n_q \times n_p$ matrix describing how eggs laid by adult mosquitoes in a patch are allocated among the aquatic habitats in that patch. It is a matrix of search weights normalized by availability: 
+The egg dispersal matrix $U$ is a $n_q \times n_p$ matrix describing how eggs laid by adult mosquitoes in a patch are allocated among the aquatic habitats in that patch. It is a matrix of search weights normalized by availability: 
 
 \begin{equation}
-{\cal U} = \left[
+U = \left[
  \begin{array}{ccccc} 
  .7 & 0 & 0\\ 
  .2 & 0 & 0\\ 
@@ -170,11 +170,11 @@ The egg dispersal matrix $\mathcal{U}$ is a $n_q \times n_p$ matrix describing h
  \end{array} \right]
 \end{equation}
 
-It is computed using the function `compute_calU` that takes care of a problem that could arise from having empty patches, like patch 3 in this model.  
+It is computed using the function `compute_Umatrix` that takes care of a problem that could arise from having empty patches, like patch 3 in this model.  
 
-```{r compute_calU}
-calU = compute_calU(searchWtsQ, habitat_matrix, Q)
-calU
+```{r compute_Umatrix}
+Umatrix = compute_Umatrix(searchWtsQ, habitat_matrix, Q)
+Umatrix
 ```
 
 ## Blood Feeding 
@@ -266,7 +266,7 @@ We create a named list:
 MYZo = list(g=g, sigma=sigma, mu=mu, f=f, q=q, nu=nu, eip=eip, eggsPerBatch=eggsPerBatch)
 ```
 
-Mosquito dispersal among the patches is described by a matrix, $\cal K.$  Each column in $\cal K$ describes the proportion of emigrating mosquitoes that go to every other patch. The diagonal elements are all $0$: 
+Mosquito dispersal among the patches is described by a matrix, $K.$  Each column in $K$ describes the proportion of emigrating mosquitoes that go to every other patch. The diagonal elements are all $0$: 
 
 ```{r calK}
 calK <- t(matrix(
@@ -276,7 +276,7 @@ calK <- t(matrix(
 ```
 
 We construct the demographic matrix $\Omega$ given by the formula 
-$$\Omega = \mbox{diag}\left(g\right) - \left[\mbox{diag}\left(1-\mu\right) - {\cal K} \right] \cdot \mbox{diag}\left(\sigma\right)$$
+$$\Omega = \mbox{diag}\left(g\right) - \left[\mbox{diag}\left(1-\mu\right) - {K} \right] \cdot \mbox{diag}\left(\sigma\right)$$
 It is computed by `compute_Omega_xde`:
 
 ```{r Omega}
@@ -398,7 +398,7 @@ If we want to retrieve the membership matrix, we can call `view_habitat_matrix`
 view_habitat_matrix(params)
 ```
 
-The function `make_xds_template` was designed to create a scaffolding. So `Q` and `calU` get created with default values: Iall patches are assumed to have the same biting weights. 
+The function `make_xds_template` was designed to create a scaffolding. So `Q` and `Umatrix` get created with default values: Iall patches are assumed to have the same biting weights. 
 
 ```{r}
 params$vars$Q
@@ -406,7 +406,7 @@ params$vars$Q
 A little detail to note is that an `xds` object is designed to handle multiple vector and multiple host species. The function `make_xds_template` only sets up the first species. Similarly, we can view the egg distribution matrix for the first species: 
 
 ```{r}
-params$calU[[1]]
+params$Umatrix[[1]]
 ```
 While this is a reasonable way to start, we don't want to get stuck using the default values. 
 
@@ -441,12 +441,12 @@ params = make_indices(params)
 
 ### Setting Parameter Values 
 
-To assign new values for the habitat search weights, we use a function called `set_habitat_wts_static.` After setting the values of the habitat search weights, we need to update habitat availability and the egg distribution matrix. The functions `makeQ` and `make_calU` do this.  
+To assign new values for the habitat search weights, we use a function called `set_habitat_wts_static.` After setting the values of the habitat search weights, we need to update habitat availability and the egg distribution matrix. The functions `makeQ` and `make_Umatrix` do this.  
 
 ```{r change_habitat_weights}
 params <- change_habitat_weights(params, searchWtsQ)
 params <- make_Q(params)
-params <- make_calU(params)
+params <- make_Umatrix(params)
 ```
 
 We can check to see
@@ -456,7 +456,7 @@ params$vars$Q[[1]]
 ```
 
 ```{r}
-params$calU[[1]]
+params$Umatrix[[1]]
 ```
 
 ```{r change_TimeSpent}
@@ -498,7 +498,7 @@ get_Upsilon(params, 1)
 
 Functions like `set_habitat_wts_static` are designed to modify parameters to guarantee that all the internal objects that rely on those parameters get updated. If we use `set_habitat_wts_static` the updating gets done automatically.  
 
-The software was designed to handled more complex situations than the one we've illustrated here. In some models, we might want to make the habitat search weights change dynamically. For example, we might want to simulate habitat dynamics with some ephemeral habitats that dry up and can't be found. That would be called a *non-autonomous* system, and we would need to recompute the $Q$ and $\cal U$ each time step. The egg laying object is assigned a class `dynamic` for dispatching by R's S3 object system. If none of the values affecting egg laying are time dependent -- we would call the resulting system *autonomous* -- then we assign the objects a class `static` so they don't get updated. To guarantee that we are recomputing things correctly, whenever the software updates the values of static parameters, it assigns the class `setup.` Whenever `EggLaying.setup` gets called, it runs `EggLaying.dynamic` once and then changes the class to `static.` 
+The software was designed to handled more complex situations than the one we've illustrated here. In some models, we might want to make the habitat search weights change dynamically. For example, we might want to simulate habitat dynamics with some ephemeral habitats that dry up and can't be found. That would be called a *non-autonomous* system, and we would need to recompute the $Q$ and $U$ each time step. The egg laying object is assigned a class `dynamic` for dispatching by R's S3 object system. If none of the values affecting egg laying are time dependent -- we would call the resulting system *autonomous* -- then we assign the objects a class `static` so they don't get updated. To guarantee that we are recomputing things correctly, whenever the software updates the values of static parameters, it assigns the class `setup.` Whenever `EggLaying.setup` gets called, it runs `EggLaying.dynamic` once and then changes the class to `static.` 
 
 
 

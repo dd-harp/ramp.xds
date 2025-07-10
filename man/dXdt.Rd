@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-interface.R
 \name{dXdt}
 \alias{dXdt}
-\title{Compute Derivatives for an \eqn{\cal X} - Component Model}
+\title{Compute Derivatives for the \strong{X} Component}
 \usage{
 dXdt(t, y, pars, i)
 }
@@ -20,8 +20,8 @@ the derivatives, a \link{numeric} vector
 }
 \description{
 Compute and return the derivatives
-for a model of class \eqn{\cal X} - the dynamics of infection and
-immunity in humans or other vertebrate host.
-
-The function dispatches on \verb{class(Xpar).}
+for an \strong{X}-Component module.
+}
+\note{
+The function dispatches on \verb{class(Xpar[[i]]).}
 }

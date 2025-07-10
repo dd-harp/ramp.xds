@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-interface.R
 \name{Update_MYZt}
 \alias{Update_MYZt}
-\title{Derivatives for adult mosquitoes}
+\title{Update States for a Adult Mosquito Model}
 \usage{
 Update_MYZt(t, y, pars, s)
 }
@@ -16,8 +16,8 @@ Update_MYZt(t, y, pars, s)
 \item{s}{the species index}
 }
 \value{
-the derivatives a \link{vector}
+Updated states for an adult mosquito model, a \link{vector}
 }
 \description{
-This method dispatches on the type of \code{pars$MYZpar}.
+This method dispatches on the type of \code{pars$MYZpar[[s]]}.
 }

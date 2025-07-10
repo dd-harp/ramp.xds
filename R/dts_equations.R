@@ -196,3 +196,24 @@ dts_update.aquatic <- function(t, y, pars) {
 
   return(c(Lt))
 }
+
+#' @title Difference equation models for aquatic mosquito populations
+#' @description Compute and update the state variables for
+#' a model with only aquatic mosquitoes
+#' @inheritParams dts_update
+#' @return a [vector] containing the vector of all state derivatives
+#' @export
+dts_update.eir <- function(t, y, pars) {
+  
+  # EIR: entomological inoculation rate trace
+  pars$EIR[[1]] <- pars$F_eir(t)
+  
+  # FoI: force of infection
+  pars <- Exposure(t, y, pars)
+  
+  # state derivatives
+  Xt <- dts_update_Xt(t, y, pars, 1)
+  
+  return(list(c(Xt)))
+}
+

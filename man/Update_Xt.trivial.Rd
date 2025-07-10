@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-trivial.R
 \name{Update_Xt.trivial}
 \alias{Update_Xt.trivial}
-\title{Update States for the \code{trivial} \eqn{\cal X} Model}
+\title{Handle State Updating for the \code{trivial} \strong{X}-Module}
 \usage{
 \method{Update_Xt}{trivial}(t, y, pars, i)
 }

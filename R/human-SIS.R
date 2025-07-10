@@ -1,18 +1,18 @@
 # specialized methods for the human SIS model
 
-#' @title **X** Component Derivatives for the `SIS` Model
-#' @description
+#' @title Compute Derivatives for the `SIS` **X**-Model
+#' @description 
 #' Compute the derivatives for SIS compartmental model. Here, the model includes human demographic changes,
 #' and it is computed in an equivalent form:
 #' \deqn{
 #' \begin{array}{rl}
-#' dH/dt = & B(t,H)  + {\cal D} \cdot H \\
-#' dI/dt = & h (H-I) - r I - \xi(t) + {\cal D} \cdot I
+#' dH/dt = & B(t,H)  + D \cdot H \\
+#' dI/dt = & h (H-I) - r I - \xi(t) +  D \cdot I
 #' \end{array}
 #' }
 #' where \eqn{S=H-I} ; 
 #' \eqn{\xi(t)} is a function to simulate mass treatment;
-#' \eqn{B(t, H)} is the time-dependent birth rate; and the \eqn{\cal D} is a matrix describing demographic changes,
+#' \eqn{B(t, H)} is the time-dependent birth rate; and \eqn{D} is a linear operator, a matrix describing demographic changes,
 #' including mortality, migration, and aging; 
 #' @inheritParams dXdt
 #' @return a [numeric] vector

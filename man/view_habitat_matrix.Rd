@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{view_habitat_matrix}
 \alias{view_habitat_matrix}
-\title{View habitat membership, \eqn{\cal N}}
+\title{View habitat membership, \eqn{N}}
 \usage{
 view_habitat_matrix(pars)
 }

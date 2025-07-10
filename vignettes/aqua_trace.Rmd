@@ -1,8 +1,9 @@
 ---
-title: "Trace (exogenously forced) Aquatic Mosquito Model"
+title: "Emergence"
+subtitle: "The Trivial Module for Aquatic Dynamics"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Trace (exogenously forced) Aquatic Mosquito Model}
+  %\VignetteIndexEntry{Emergence}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

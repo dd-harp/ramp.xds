@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_cohort}
 \alias{xds_setup_cohort}
-\title{Make an \strong{\code{xds}} Object to Study Human / Host Cohort Dynamics}
+\title{Build a Model of Human / Host Cohort Dynamics}
 \usage{
 xds_setup_cohort(
   eir = 1,
@@ -54,6 +54,8 @@ xds_setup_cohort(
 an \strong{\code{xds}} object
 }
 \description{
+\loadmathjax
+
 A modified version of \link{xds_setup} to setup up studies of cohort
 dynamics.
 

@@ -22,11 +22,11 @@
 #' - \eqn{g} is the mortality rate
 #' - \eqn{\sigma} is the emigration rate
 #' - \eqn{\mu} is the emigration loss rate
-#' - \eqn{\cal K} is the mosquito dispersal matrix
+#' - \eqn{K} is the mosquito dispersal matrix
 #'
 #' The four parameters describing mortality and migration are used to construct a
 #' demographic matrix:
-#' \deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) - \cal K \right) \cdot \mbox{diag}\left(\sigma\right)}
+#' \deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) -  K \right) \cdot \mbox{diag}\left(\sigma\right)}
 #'
 #' The emergence rate of adult mosquitoes, \eqn{\Lambda}, is computed by [F_emerge],
 #' and the **derivatives** are given by the equations:
@@ -102,7 +102,7 @@ F_fqZ.SI <- function(t, y, pars, s) {
   return(fqZ)
 }
 
-#' @title \eqn{\cal MYZ} Component Net Blood Feeding by Mosquitoes for the `SI` Mosquito Model
+#' @title Compute Net Blood Feeding by Mosquitoes for `SI` 
 #' @description  The variable \eqn{M} is the density of  mosquitoes.
 #' The model blood feeding **parameters** are:
 #' - \eqn{f} is the overall blood feeding rate
@@ -117,7 +117,7 @@ F_fqM.SI <- function(t, y, pars, s){
   return(fqM)
 }
 
-#' @title \eqn{\cal MYZ} Component Egg Laying for the `SI` Mosquito Model
+#' @title Compute Component Egg Laying Rates for `SI` 
 #' @description The density of adult mosquitoes is \eqn{M}.
 #' The **parameters** describing egg laying by adult mosquitoes are:
 #' - \eqn{\nu} or `nu` is the egg laying rate

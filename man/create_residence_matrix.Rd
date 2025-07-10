@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{create_residence_matrix}
 \alias{create_residence_matrix}
-\title{Create the residence matrix, \eqn{\cal J}}
+\title{Create the Residency Matrix}
 \usage{
 create_residence_matrix(nPatches, residence)
 }
@@ -12,10 +12,10 @@ create_residence_matrix(nPatches, residence)
 \item{residence}{a vector describing the patch index for each habitat}
 }
 \value{
-the residence \link{matrix}, denoted \eqn{\cal J} where \eqn{\left|\cal J\right|= n_p \times n_h}
+the residence \link{matrix}, denoted \eqn{J} where \eqn{\left|J\right|= n_p \times n_h}
 }
 \description{
-The residence matrix, \eqn{\cal J}, holds
+The residency matrix, \eqn{J}, holds
 information about residency for each human population stratum.
 It is the template for the time spent and time at risk matrices, making it possible
 to compute mosquito parameters describing blood feeding, the mixing matrix,
@@ -25,16 +25,16 @@ and terms describing transmission.
 Information about residence in a patch location for each stratum
 is passed as the residence vector, an ordered list of patch locations. If
 the \eqn{i^{th}} stratum lives in the \eqn{j^{th}} patch, then
-\eqn{{\cal J}_{j,i}=1.} Otherwise, \eqn{{\cal J}_{j,i}=0.}
+\eqn{{J}_{j,i}=1.} Otherwise, \eqn{{J}_{j,i}=0.}
 
-Since \eqn{\cal J} is a matrix, it is readily used for computation. Let:
+Since \eqn{J} is a matrix, it is readily used for computation. Let:
 \itemize{
 \item \eqn{n_h = } \code{nStrata}, the number of population strata;
 \item \eqn{n_p = } \code{nPatches}, the number of patches.
 }
 
 If \eqn{w} is any vector describing a quantity in strata (\emph{i.e.}, \eqn{\left|w\right|=n_h}), then
-\deqn{W={\cal J}\cdot w} is a vector that has summed \eqn{w} by residency for the strata, and \eqn{\left|W\right|= n_p}.
+\deqn{W={J}\cdot w} is a vector that has summed \eqn{w} by residency for the strata, and \eqn{\left|W\right|= n_p}.
 }
 \seealso{
 see \link{setup_BLOOD_FEEDING}

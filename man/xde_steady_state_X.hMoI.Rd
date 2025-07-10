@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-hMoI.R
 \name{xde_steady_state_X.hMoI}
 \alias{xde_steady_state_X.hMoI}
-\title{Steady States: hMoI}
+\title{Compute Steady States for \code{hMoI} (\strong{X}-Model)}
 \usage{
 \method{xde_steady_state_X}{hMoI}(foi, H, Xpar)
 }
@@ -11,7 +11,7 @@
 
 \item{H}{human / host population density}
 
-\item{Xpar}{a list that defines an \eqn{\cal X} model}
+\item{Xpar}{a list that defines an \strong{X} model object}
 }
 \value{
 the steady states as a named vector

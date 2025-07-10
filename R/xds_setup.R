@@ -1,21 +1,22 @@
 # functions to set up models
 
-#' @title Basic Setup: Make a Fully Defined **`xds`** Object
+#' @title Build a Model with All Components 
 #'
-#' @description Make an **`xds`** *model object*:
-#'
+#' @description 
+#' \loadmathjax
+#' Make an **`xds`** *model object*:
 #' - Define the dynamical components:
-#'    - **X** Component modules for human / host infection dynamics of class **`Xname`** with trivial demographics
-#'    - **MYZ** Component modules for adult mosquito ecology and infection dynamics of class **`MYZname`**
+#'    - **XH** - Component modules for human / host infection dynamics of class **`Xname`** with trivial demographics
+#'    - **MYZ** - Component modules for adult mosquito ecology and infection dynamics of class **`MYZname`**
 #'    - **L** Component modules for aquatic mosquito ecology of class **`Lname`**
 #' - Define basic structural parameters for a single host and vector population:
 #'    - \eqn{n_p} or `nPatches` - the number of patches
-#'    - \eqn{n_q} or `nHabitats = length(membership)` - the number and locations of aquatic habitats
+#'    - \eqn{n_q} or `nHabitats = length(membership)` - the numer and locations of aquatic habitats
 #'    - \eqn{n_h} or `nStrata = length(residence)` - the number of human / host population strata and basic demographic information
 #' - Configure some of the basic elements
 #'    - Search weights for human population strata
 #'    - Search weights for aquatic habitats
-#'    - The mosquito dispersal matrix, \eqn{\cal K}
+#'    - The mosquito dispersal matrix, \eqn{K}
 #'    - The time spent matrix \eqn{\Theta}
 #' - Configure runtime parameters for discrete-time systems
 #'
@@ -149,10 +150,13 @@ xds_setup = function(xds = 'ode',
   return(pars)
 }
 
-#' @title Make an **`xds`** Object to Study Mosquito Ecology
+#' @title Build a Model of Mosquito Ecology
 #'
-#' @description A modified version of [xds_setup] that streamlines setup for models that do not require a
-#' component describing parasite / pathogen infection dynamics in the adult mosquito population.
+#' @description 
+#' \loadmathjax
+#' A modified version of [xds_setup] that streamlines setup for models without parasite / pathogen infection
+#' dynamics. These models lack the **Y** component and an **X** component, but they will often need an **H** 
+#' component (host density).
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'mosy'`
 #' to dispatch [xde_derivatives.mosy] or [dts_update.mosy] and associated functions.
@@ -165,7 +169,7 @@ xds_setup = function(xds = 'ode',
 #' @param Lname is a character string defining a **L** Component module
 #' @param nPatches is the number of patches
 #' @param membership is a vector that describes the patch where each aquatic habitat is found
-#' @param HPop is the human population density
+#' @param HPop is the human / host population density
 #' @param MYZday is the run-time time step for **MYZ** Component (in days): integer or 1/integer
 #' @param Lday is the run-time time step for **L** Component (in days): integer or 1/integer
 #' @param calK is either a calK matrix or a string that defines how to set it up
@@ -239,8 +243,12 @@ xds_setup_mosy = function(xds = 'ode',
 }
 
 
-#' @title Make an **`xds`** Object to Study Aquatic Mosquito Ecology
-#' @description A modified version of [xds_setup] that streamlines setup for an **L** Component
+#' @title Build a Model of Immature Mosquito Ecology
+#' 
+#' @description 
+#' \loadmathjax
+#' 
+#' A modified version of [xds_setup] that streamlines setup for an **L** Component
 #' when the **MYZ** Component is set to `trivial.` The model
 #' also sets **X** Component to the `trivial` module.
 #'
@@ -290,9 +298,12 @@ xds_setup_aquatic = function(xds = 'ode',
 }
 
 
-#' @title Make an **`xds`** Object to Study Human / Host Epidemiology
+#' @title Build a Model of Human / Host Epidemiology
 #'
-#' @description A modified version of [xds_setup] that
+#' @description 
+#' \loadmathjax
+#' 
+#' A modified version of [xds_setup] that
 #' streamlines setup for models with a trival **MYZ** Component.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'human'`
@@ -380,8 +391,11 @@ xds_setup_human = function(Xname = "SIS",
   return(pars)
 }
 
-#' @title Make an **`xds`** Object to Study Human / Host Cohort Dynamics
-#' @description A modified version of [xds_setup] to setup up studies of cohort
+#' @title Build a Model of Human / Host Cohort Dynamics
+#' @description 
+#' \loadmathjax
+#' 
+#' A modified version of [xds_setup] to setup up studies of cohort
 #' dynamics.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'cohort'` but there
@@ -489,27 +503,28 @@ xds_setup_cohort = function(eir=1,
   return(pars)
 }
 
-#' @title Make an **`xds`** Object to Study Malaria Epidemiology
+#' @title Build a Model for a single Human / Host Epidemiology forced by the EIR
 #' 
-#' @description A modified version of [xds_setup] to setup up 
+#' @description 
+#' \loadmathjax
+#' 
+#' A modified version of [xds_setup] to setup up 
 #' studies of malaria epidemiology, defined in a narrow sense, to
 #' examine patterns in populations forced by the EIR. 
 #'
-#' The **`xds`** object defines `frame = class(frame) = 'cohort'` but there
-#' is no `cohort` case for [xds_solve]. Instead, cohort
-#' dynamics are studied using [xds_solve_eir], which was designed
-#' to compare the outcomes for cohorts of different ages when exposure is
-#' changing.
+#' The **`xds`** object defines `frame = class(frame) = 'eir'` 
+#' to dispatch [xde_derivatives.eir] or [dts_update.eir]
+#'
 #'
 #' The interface includes options to configure a function
 #' describing `F_eir` as a function of time, with seasonal components
 #' and a trend. Exposure in a cohort is a function of its age, including
 #' a function that modifies exposure by age. Models set up 
-#' with [xds_setup_eir] are like models set up with 
+#' with `xds_setup_eir` are like models set up with 
 #' [xds_setup_cohort], but they lack a function to model exposure by 
 #' age.  
 #'
-#' @seealso [xds_setup] and [xds_setup_human] and [xds_solve_eir]
+#' @seealso [xds_setup] and [xds_setup_human] 
 #'
 #' @param eir is the entomological inoculation rate
 #' @param F_season a function describing a seasonal pattern over time
@@ -528,7 +543,6 @@ xds_setup_cohort = function(eir=1,
 xds_setup_eir = function(eir=1,
                             F_season = F_flat, season_par = list(),
                             F_trend = F_flat, trend_par = list(),
-                            F_age = F_flat, age_par = list(),
                             xds = 'ode',
 
                             # Dynamical Components
@@ -546,7 +560,7 @@ xds_setup_eir = function(eir=1,
   nPatches = length(HPop)
   residence = rep(1, length(HPop))
   membership = 1
-  pars <- make_xds_template('ode', 'cohort', nPatches, membership, residence)
+  pars <- make_xds_template('ode', 'eir', nPatches, membership, residence)
   pars <- make_runtime(pars, Xday, 1, 1, "trivial")
   class(pars$compute) <- "na"
 
@@ -563,6 +577,9 @@ xds_setup_eir = function(eir=1,
   if(length(trend_par)>0){
     pars$EIRpar$F_trend <- make_function(trend_par) 
   }
+  
+  pars$EIRpar$F_age <- F_one
+  pars$EIRpar$age_par <- list()  
 
   # Aquatic Mosquito Dynamics
   pars       <- setup_Lpar("trivial", pars, 1, list())

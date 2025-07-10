@@ -1,14 +1,19 @@
 ---
 title: "Getting Started"
 output: rmarkdown::html_vignette
+html_vignette: 
+  math-rendering: mathjax::local
 vignette: >
   %\VignetteIndexEntry{Getting Started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+
+
 Next: [Basic Setup](BasicSetup.html). 
-Also, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)
+
+Additional documentation is available in the [**SimBA** Project](https://faculty.washington.edu/smitdave/simba/index.html) website.
 
 *** 
 
@@ -32,11 +37,12 @@ Then load **`ramp.xds`**:
 library(ramp.xds)
 ```
 
-```{r, echo=F}
-#devtools::load_all()
-```
-
-Additional modules are available in the companion R-package [**`ramp.library`**](https://dd-harp.github.io/ramp.library/)
+Additional modules and functionality are available in companion R-packages, including 
+[**`ramp.library`**](https://dd-harp.github.io/ramp.library/),
+[**`ramp.control`**](https://dd-harp.github.io/ramp.control/),
+[**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/), and
+[**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/).
+For more information, see the [**SimBA** Project](https://faculty.washington.edu/smitdave/simba/index.html) website.
 
 ## Demo
 
@@ -198,11 +204,6 @@ xds_plot_PR(model)
 xds_plot_EIR(model)
 ```
 
-### Analysis
-
-**`ramp.xds`** has built-in functions that compute some quantities of interest, including stable states or stable orbits. 
-
-
 ## Trivial Models and Trace Functions
 
 The software was designed to be fully modular, so that any module for one dynamical component can be replaced with another. The models included in **`ramp.xds`** are just enough to illustrate its the features ensure that the software is working as it should.
@@ -213,7 +214,7 @@ A basic requirement for full modularity is that every dynamical component must i
 mean*F_season(t)*F_trend(t)
 ```
 
-The default for the $\cal L$ dynamical component is the `trivial` module, where the `mean` is is called `Lambda.`
+The default for the aquatic mosquito dynamical component is the `trivial` module, where the `mean` is is called `Lambda.`
 
 It is easy to change the `trace` function. First, we define `F_season` and change the mean value of `Lambda.` 
 The generic format for seasonal functions is `F_season(t, phase, season_opts),` where `phase` sets the phase (time of year), and `season_opts` is a set of configurable parameter values:
@@ -260,6 +261,3 @@ xds_plot_Z(model_1, add=T)
 ```
 
 
-A useful place to keep reading is [Progressive Model Building](ModelBuilding.html)
-
-For more information about trace functions, see the vignette [Trace Functions](https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.html) and [Progressive Model]

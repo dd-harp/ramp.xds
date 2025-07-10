@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_mosy}
 \alias{xds_setup_mosy}
-\title{Make an \strong{\code{xds}} Object to Study Mosquito Ecology}
+\title{Build a Model of Mosquito Ecology}
 \usage{
 xds_setup_mosy(
   xds = "ode",
@@ -32,7 +32,7 @@ xds_setup_mosy(
 
 \item{membership}{is a vector that describes the patch where each aquatic habitat is found}
 
-\item{HPop}{is the human population density}
+\item{HPop}{is the human / host population density}
 
 \item{MYZday}{is the run-time time step for \strong{MYZ} Component (in days): integer or 1/integer}
 
@@ -54,8 +54,10 @@ xds_setup_mosy(
 an \strong{\code{xds}} object
 }
 \description{
-A modified version of \link{xds_setup} that streamlines setup for models that do not require a
-component describing parasite / pathogen infection dynamics in the adult mosquito population.
+\loadmathjax
+A modified version of \link{xds_setup} that streamlines setup for models without parasite / pathogen infection
+dynamics. These models lack the \strong{Y} component and an \strong{X} component, but they will often need an \strong{H}
+component (host density).
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'mosy'}
 to dispatch \link{xde_derivatives.mosy} or \link{dts_update.mosy} and associated functions.

@@ -19,7 +19,6 @@
 a \link{numeric} vector
 }
 \description{
-\loadmathjax
 This implements differential equation model for aquatic mosquito ecology.
 The equations have been modified slightly from a version published by
 Smith DL, \emph{et al.} (2013); this version includes delayed maturation i

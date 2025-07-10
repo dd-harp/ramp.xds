@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-trivial.R
 \name{Update_MYZt.trivial}
 \alias{Update_MYZt.trivial}
-\title{Derivatives for aquatic stage mosquitoes}
+\title{Handle state updates for the \code{trivial} \strong{MYZ} module}
 \usage{
 \method{Update_MYZt}{trivial}(t, y, pars, s)
 }
@@ -16,7 +16,7 @@
 \item{s}{the species index}
 }
 \value{
-a \link{numeric} vector
+a null vector
 }
 \description{
 Implements \link{Update_MYZt} for the trivial (forced emergence) model.
