@@ -65,13 +65,6 @@ make_function.one = function(opts){
   return(F_one)
 }
 
-#' @title The trivial function
-#' @description A function that returns 1
-#' @param t an arbitrary input
-#' @return a vector of vals of length x
-#' @export
-F_val = function(t, val=1){return(0*t+val)}
-
 #' @title parameters for make_function
 #' @description Return an object to return [F_val]
 #' @param val the value to return
