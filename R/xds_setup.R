@@ -578,8 +578,7 @@ xds_setup_eir = function(eir=1,
     pars$EIRpar$F_trend <- make_function(trend_par) 
   }
   
-  pars$EIRpar$F_age <- F_one
-  pars$EIRpar$age_par <- list()  
+  pars <- set_eir(eir, pars)
 
   # Aquatic Mosquito Dynamics
   pars       <- setup_Lpar("trivial", pars, 1, list())

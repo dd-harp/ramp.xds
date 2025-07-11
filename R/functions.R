@@ -1,25 +1,3 @@
-
-#' @title The trivial function
-#' @description A function that returns 0
-#' @param t an arbitrary input
-#' @return a vector of ones of length x
-#' @export
-F_zero = function(t){return(0*t)}
-
-#' @title The trivial function
-#' @description A function that returns 1
-#' @param t an arbitrary input
-#' @return a vector of ones of length x
-#' @export
-F_one = function(t){return(0*t+1)}
-
-#' @title The trivial function
-#' @description A function that returns 1
-#' @param t an arbitrary input
-#' @return a vector of ones of length x
-#' @export
-F_flat = function(t){return(0*t+1)}
-
 #' @title Make a Function
 #' @description Build a function of time for trace functions
 #' exogenous forcing by weather, vector control, or mass
@@ -30,6 +8,100 @@ F_flat = function(t){return(0*t+1)}
 make_function = function(opts){
   UseMethod("make_function", opts)
 }
+
+#' @title The trivial function
+#' @description A function that returns 0
+#' @param t an arbitrary input
+#' @return a vector of ones of length x
+#' @export
+F_zero = function(t){return(0*t)}
+
+#' @title parameters for make_function
+#' @description Return an object to configure
+#' a function [make_function.zero]
+#' @return a function to return  
+#' @seealso [make_function.zero]
+#' @export
+makepar_F_zero = function(){
+  pars <- list()
+  class(pars) <- "zero"
+  return(pars)
+}
+
+#' @title Make a Function that is the sum of Two other Functions
+#' @description Return [F_zero]
+#' @inheritParams make_function
+#' @return a function that is the sum of two other functions
+#' @export
+make_function.zero = function(opts){
+  return(F_zero)
+}
+
+#' @title The trivial function
+#' @description A function that returns 1
+#' @param t an arbitrary input
+#' @return a vector of ones of length x
+#' @export
+F_one = function(t){return(0*t+1)}
+
+#' @title parameters for make_function
+#' @description Return an object to return [F_one]
+#' @return a function for seasonality
+#' @seealso [make_function.one]
+#' @export
+makepar_F_one = function(){
+  pars <- list()
+  class(pars) <- "one"
+  return(pars)
+}
+
+#' @title Make a Function that is the sum of Two other Functions
+#' @description Build a function that is the sum of two
+#' other functions.
+#' @inheritParams make_function
+#' @return a function that is the sum of two other functions
+#' @export
+make_function.one = function(opts){
+  return(F_one)
+}
+
+#' @title The trivial function
+#' @description A function that returns 1
+#' @param t an arbitrary input
+#' @return a vector of vals of length x
+#' @export
+F_val = function(t, val=1){return(0*t+val)}
+
+#' @title parameters for make_function
+#' @description Return an object to return [F_val]
+#' @param val the value to return
+#' @return a function for seasonality
+#' @seealso [make_function.val]
+#' @export
+makepar_F_val = function(val){
+  pars <- list()
+  class(pars) <- "val"
+  pars$val <- val 
+  return(pars)
+}
+
+#' @title Make a Function that is the sum of Two other Functions
+#' @description Build a function that returns a constant value 
+#' @inheritParams make_function
+#' @return a function that returns a constant value 
+#' @export
+make_function.val = function(opts){
+  Fv = function(t){return(0*t + opts$val)}
+  return(Fv)
+}
+
+#' @title The trivial function
+#' @description A function that returns 1
+#' @param t an arbitrary input
+#' @return a vector of ones of length x
+#' @export
+F_flat = function(t){return(0*t+1)}
+
 
 #' @title Make a Sine-based Seasonality Function
 #' @description Return a seasonal pattern \eqn{S(t)}, a function of the form
