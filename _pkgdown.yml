@@ -861,7 +861,14 @@ reference:
     Basic visualization of the transmission terms
   contents:
   - F_zero
+  - make_function.zero
+  - makepar_F_zero
   - F_one
+  - make_function.one
+  - makepar_F_one
+  - F_val
+  - make_function.val
+  - makepar_F_val
   - F_flat
   - make_function
   - make_function.sin
