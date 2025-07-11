@@ -78,13 +78,13 @@ reference:
   - xde_steady_state_X
   - xde_steady_state_MYZ
   - xde_steady_state_L
-- subtitle: XH Modules 
+- subtitle: XH Modules - Human / Host Epidemiology
   desc: |
     Models available in **`ramp.xds`** for human/host infection and immunity
   contents:
   - dXdt.trivial
   - dXdt.SIS
-- subtitle: MYZ Modules 
+- subtitle: MYZ Modules - Adult Mosquitoes
   desc: |
     Models available in **`ramp.xds`** for adult mosquito ecology and infection dynamics
   contents:
@@ -92,7 +92,7 @@ reference:
   - dMYZdt.macdonald
   - dMYZdt.GeRM
   - dMYZdt.basicM
-- subtitle: L Modules 
+- subtitle: L Modules - Immature Mosquitoes
   desc: |
     Models available in **`ramp.xds`** for the ecology of immature mosquitoes in aquatic habitats
   contents:
@@ -128,6 +128,7 @@ reference:
   - set_H
   - set_eir
   - set_eir.cohort
+  - set_eir.eir
   - update_inits
   - last_to_inits
   - parse_orbits
