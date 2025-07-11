@@ -184,7 +184,7 @@
         <dd>Compute steady states for <strong>L</strong> Component Modules</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="xh-modules">XH Modules<a class="anchor" aria-label="anchor" href="#xh-modules"></a></h3>
+      <h3 id="xh-modules-human-host-epidemiology">XH Modules - Human / Host Epidemiology<a class="anchor" aria-label="anchor" href="#xh-modules-human-host-epidemiology"></a></h3>
       <div class="section-desc"><p>Models available in <strong><code>ramp.xds</code></strong> for human/host infection and immunity</p></div>
 
 
@@ -207,7 +207,7 @@
         <dd>Compute Derivatives for the <code>SIS</code> <strong>X</strong>-Model</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="myz-modules">MYZ Modules<a class="anchor" aria-label="anchor" href="#myz-modules"></a></h3>
+      <h3 id="myz-modules-adult-mosquitoes">MYZ Modules - Adult Mosquitoes<a class="anchor" aria-label="anchor" href="#myz-modules-adult-mosquitoes"></a></h3>
       <div class="section-desc"><p>Models available in <strong><code>ramp.xds</code></strong> for adult mosquito ecology and infection dynamics</p></div>
 
 
@@ -242,7 +242,7 @@
         <dd><strong>MYZ</strong> Component Derivatives for <code>basicM</code></dd>
       </dl></div><div class="section level2">
 
-      <h3 id="l-modules">L Modules<a class="anchor" aria-label="anchor" href="#l-modules"></a></h3>
+      <h3 id="l-modules-immature-mosquitoes">L Modules - Immature Mosquitoes<a class="anchor" aria-label="anchor" href="#l-modules-immature-mosquitoes"></a></h3>
       <div class="section-desc"><p>Models available in <strong><code>ramp.xds</code></strong> for the ecology of immature mosquitoes in aquatic habitats</p></div>
 
 
@@ -401,6 +401,12 @@
       </dl><dl><dt>
 
           <code><a href="set_eir.cohort.html">set_eir(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Reset the mean daily EIR</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_eir.eir.html">set_eir(<i>&lt;eir&gt;</i>)</a></code>
 
         </dt>
         <dd>Reset the mean daily EIR</dd>
@@ -4269,10 +4275,52 @@
         <dd>The trivial function</dd>
       </dl><dl><dt>
 
+          <code><a href="make_function.zero.html">make_function(<i>&lt;zero&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Make a Function that is the sum of Two other Functions</dd>
+      </dl><dl><dt>
+
+          <code><a href="makepar_F_zero.html">makepar_F_zero()</a></code>
+
+        </dt>
+        <dd>parameters for make_function</dd>
+      </dl><dl><dt>
+
           <code><a href="F_one.html">F_one()</a></code>
 
         </dt>
         <dd>The trivial function</dd>
+      </dl><dl><dt>
+
+          <code><a href="make_function.one.html">make_function(<i>&lt;one&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Make a Function that is the sum of Two other Functions</dd>
+      </dl><dl><dt>
+
+          <code><a href="makepar_F_one.html">makepar_F_one()</a></code>
+
+        </dt>
+        <dd>parameters for make_function</dd>
+      </dl><dl><dt>
+
+          <code><a href="F_val.html">F_val()</a></code>
+
+        </dt>
+        <dd>The trivial function</dd>
+      </dl><dl><dt>
+
+          <code><a href="make_function.val.html">make_function(<i>&lt;val&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Make a Function that is the sum of Two other Functions</dd>
+      </dl><dl><dt>
+
+          <code><a href="makepar_F_val.html">makepar_F_val()</a></code>
+
+        </dt>
+        <dd>parameters for make_function</dd>
       </dl><dl><dt>
 
           <code><a href="F_flat.html">F_flat()</a></code>

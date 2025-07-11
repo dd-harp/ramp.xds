@@ -135,6 +135,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_sigma.BQS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_sigma.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_sigma.static.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/F_val.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Forcing.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Forcing.none.html</loc></url>
@@ -381,6 +382,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_eggs_laid.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.nproduct.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.one.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.product.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.sharkfin.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.sigmoid.html</loc></url>
@@ -390,6 +392,8 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.splinef.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.sum.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.type2.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.val.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_function.zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_indices.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_kappa.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_local_frac.html</loc></url>
@@ -405,6 +409,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_runtime.xde.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_xds_template.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_nproduct.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_one.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_product.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_sharkfin.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_sigmoid.html</loc></url>
@@ -412,6 +417,8 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_spline.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_sum.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_type2.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_val.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/metric_calD.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/metric_calR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/metric_calV.html</loc></url>
@@ -475,6 +482,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_Xpars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_Xpars.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_eir.cohort.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/set_eir.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_BLOOD_FEEDING.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_EGG_LAYING.html</loc></url>
