@@ -866,7 +866,6 @@ reference:
   - F_one
   - make_function.one
   - makepar_F_one
-  - F_val
   - make_function.val
   - makepar_F_val
   - F_flat
