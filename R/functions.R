@@ -66,7 +66,7 @@ make_function.one = function(opts){
 }
 
 #' @title parameters for make_function
-#' @description Return an object to return [F_val]
+#' @description Return an object to return a value 
 #' @param val the value to return
 #' @return a function for seasonality
 #' @seealso [make_function.val]
