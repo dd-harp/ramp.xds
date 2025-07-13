@@ -13,7 +13,7 @@ makepar_F_val(val)
 a function for seasonality
 }
 \description{
-Return an object to return \link{F_val}
+Return an object to return a value
 }
 \seealso{
 \link{make_function.val}
