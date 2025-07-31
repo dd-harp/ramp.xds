@@ -19,7 +19,7 @@ metric_calZ(Omega, tau, f, q, M, W, calD)
 
 \item{W}{ambient human population at each patch}
 
-\item{calD}{parasite dispersal by humans matrix (see \link[ramp.xde:metric_calD]{ramp.xde::metric_calD})}
+\item{calD}{parasite dispersal by humans matrix (see \link{metric_calD})}
 }
 \value{
 a numeric \link{matrix}

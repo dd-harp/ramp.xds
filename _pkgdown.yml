@@ -136,6 +136,11 @@ reference:
   - get_inits
   - get_H
   - get_XH
+  - get_PR
+  - get_PR.true
+  - get_PR.lm
+  - get_PR.rdt
+  - get_PR.pcr
   - get_MYZ
   - make_indices
   - trigger_setup

@@ -1,67 +1,4 @@
 
-#' @title Reset the mean daily EIR
-#' @description For cohort models, reset the EIR
-#' @param eir the mean eir
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
-#' @export
-set_eir  = function(eir, pars){
-  UseMethod("set_eir", pars$frame)
-}
-
-#' @title Reset the mean daily EIR
-#' 
-#' @description For cohort dynamcis models, set the mean EIR
-#' 
-#' @inheritParams set_eir
-#' 
-#' @return an **`xds`** object
-#' 
-#' @export
-#' 
-set_eir.cohort  = function(eir, pars){
-
-  pars$EIRpar$eir <- eir  
-  if(length(pars$EIRpar$season_par)>0)  
-    pars$EIRpar$F_season <- make_function(pars$EIRpar$season_par)
-  if(length(pars$EIRpar$trend_par)>0)  
-    pars$EIRpar$F_trend <- make_function(pars$EIRpar$trend_par)
-  if(length(pars$EIRpar$age_par)>0)  
-    pars$EIRpar$F_age <- make_function(pars$EIRpar$age_par)
-
-  pars$F_eir <- with(pars$EIRpar,{
-     function(age, bday){
-      eir/scale*F_season(age+bday)*F_trend(age+bday)*F_age(age)}
-  })
-  return(pars)
-}
-
-#' @title Reset the mean daily EIR
-#' 
-#' @description For cohort models, reset the EIR
-#' 
-#' @inheritParams set_eir
-#' 
-#' @return an **`xds`** object
-#' 
-#' @export
-#' 
-set_eir.eir = function(eir, pars){
-  
-  pars$EIRpar$eir <- eir  
-  if(length(pars$EIRpar$season_par)>0)  
-    pars$EIRpar$F_season <- make_function(pars$EIRpar$season_par)
-  if(length(pars$EIRpar$trend_par)>0)  
-    pars$EIRpar$F_trend <- make_function(pars$EIRpar$trend_par)
-  
-  pars$F_eir <- with(pars$EIRpar,{
-    function(t){
-      eir/scale*F_season(t)*F_trend(t)}
-  })
-  
-  return(pars)
-}
-
 #' @title Cohort dynamics for a human / host model
 #' @description
 #' Compute the states for a model \eqn{\cal X} in a cohort of humans / hosts
@@ -88,18 +25,13 @@ set_eir.eir = function(eir, pars){
 #' @param bday the cohort birthday
 #' @param A the maximum age to compute (in years)
 #' @param da the output interval (age, in days)
-#' @param times the output times 
 #' @return an **`xds`** object
 #' @export
-xds_solve_cohort = function(pars, bday=0, A=10, da=10, times=NULL){
+xds_solve_cohort = function(pars, bday=0, A=10, da=10){
 
   pars <- set_eir(pars$EIRpar$eir, pars)
 
   age <- seq(0, A*365, by=da) 
-  if(!is.null(times)){
-    age <- times
-    bday <- 0
-  } 
   
   y0 = get_inits(pars, flatten=TRUE)
 

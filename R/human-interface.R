@@ -188,6 +188,8 @@ get_Xinits <- function(pars, i=1) {
   UseMethod("get_Xinits", pars$Xpar[[i]])
 }
 
+
+
 #' @title Set the initial values from a vector of states
 #' @description This method dispatches on the type of `pars$Xpar[[i]]`.
 #' @param pars an **`xds`** object
