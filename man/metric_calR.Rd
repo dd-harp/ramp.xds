@@ -11,7 +11,7 @@ metric_calR(b, beta, calV, W, D, H)
 
 \item{beta}{the biting distribution matrix}
 
-\item{calV}{parasite dispersal by mosquitoes matrix (see \link[ramp.xde:metric_calV]{ramp.xde::metric_calV})}
+\item{calV}{parasite dispersal by mosquitoes matrix (see \link{metric_calV})}
 
 \item{W}{ambient human population at each patch}
 

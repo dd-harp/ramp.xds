@@ -21,17 +21,20 @@ a \link{numeric} vector
 \description{
 This implements differential equation model for aquatic mosquito ecology.
 The equations have been modified slightly from a version published by
-Smith DL, \emph{et al.} (2013); this version includes delayed maturation i
-in response to mean crowding.
+Smith DL, \emph{et al.} (2013).
 
 \strong{Variables:}
 \itemize{
 \item \eqn{L}: the density of mosquito larvae in each habitat
 }
 
-\strong{Parameters and Terms:}
+\strong{Input:}
 \itemize{
 \item \eqn{\eta} or \code{eta}: egg deposition rate (from \link{F_eggs})
+}
+
+\strong{Parameters:}
+\itemize{
 \item \eqn{\psi} or \code{psi}: maturation rate
 \item \eqn{\xi} or \code{xi}: delayed maturation parameter in response to mean crowding
 \item \eqn{\phi} or \code{phi}: density-independent death rate
@@ -42,8 +45,24 @@ in response to mean crowding.
 
 \deqn{dL/dt = \eta - (\psi\;e^{-\xi L} + \phi + \theta L)L}
 
-Per-capita mortality is thus \eqn{\phi + \theta L}, and the emergence rate
-of adult mosquitoes is \eqn{\psi e^{-\xi L} L }
+\strong{Output:}
+\itemize{
+\item The function \link{F_emerge} computes the net emergence rate (\eqn{\alpha}):
+}
+
+\deqn{\alpha = \psi e^{-\xi L} L }
+
+\strong{Regulation:}
+
+In this model, population is regulated in two ways.
+First, per-capita mortality increases with mean crowding;
+per-capita mortality is \eqn{\phi + \theta L.}
+Second, maturation is delayed in response to mean crowding \eqn{\psi\;e^{-\xi L.}}
+Depending on the values of \eqn{\xi,}
+productivity in some habitats might not be a monotonically increasing function of egg laying.
+
+The model by Smith DL, \emph{et al.} (2013) did not include delayed maturation;
+that model is recovered by setting \eqn{\xi=0.}
 }
 \references{
 {\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
