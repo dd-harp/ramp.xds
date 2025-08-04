@@ -292,6 +292,11 @@ xds_setup_aquatic = function(xds = 'ode',
   pars$Xname <- "trivial"
   pars <- setup_Xpar("trivial", pars, 1, list())
 
+  # Set `forced_by` 
+  forced_by = "egg_laying"
+  class(forced_by) = "egg_laying"
+  pars$forced_by = forced_by 
+  
   pars = make_indices(pars)
   pars$model_name <- model_name
   return(pars)
@@ -360,6 +365,8 @@ xds_setup_human = function(Xname = "SIS",
   pars$compute = 'na'
   class(pars$compute) <- 'na'
 
+
+  
   # Aquatic Mosquito Dynamics
   pars       <- setup_Lpar("trivial", pars, 1, list())
   pars       <- setup_Linits(pars, 1)
@@ -381,6 +388,11 @@ xds_setup_human = function(Xname = "SIS",
   if(is.matrix(TimeSpent))
     pars <- change_TimeSpent(TimeSpent, pars, 1)
 
+  forced_by = "fqZ"
+  class(forced_by) = "fqZ"
+  pars$forced_by = forced_by 
+  
+  
   # Probably Not Necessary
   y0 <- as.vector(unlist(get_inits(pars)))
   pars <- BloodFeeding(0, y0, pars)
@@ -500,6 +512,11 @@ xds_setup_cohort = function(eir=1,
 
   pars$model_name <- model_name
 
+  # Set `forced_by` 
+  forced_by = "cohort"
+  class(forced_by) = "cohort"
+  pars$forced_by = forced_by 
+  
   return(pars)
 }
 
@@ -602,6 +619,11 @@ xds_setup_eir = function(eir=1,
   y0 <- as.vector(unlist(get_inits(pars)))
   pars <- BloodFeeding(0, y0, pars)
 
+  # Set `forced_by` 
+  forced_by = "eir"
+  class(forced_by) = "eir"
+  pars$forced_by = forced_by 
+  
   pars$model_name <- model_name
 
   return(pars)

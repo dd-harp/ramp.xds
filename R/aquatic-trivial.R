@@ -55,6 +55,9 @@ LBionomics.trivial <- function(t, y, pars, s) {
 #' @return a [list] vector
 #' @export
 setup_Lpar.trivial = function(Lname, pars, s, Lopts=list()){
+  forced_by = "Lambda"
+  class(forced_by) = "Lambda"
+  pars$forced_by = forced_by 
   pars$Lpar[[s]] = make_Lpar_trivial(pars$nHabitats, Lopts)
   return(pars)
 }

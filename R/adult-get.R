@@ -1,4 +1,15 @@
 
+#' @title Get **MYZ** outputs
+#' @param pars an **`xds`** object
+#' @param s the vector species index
+#' @export
+get_MYZ = function(pars, s=1){
+  got = pars$outputs$orbits$MYZ[[s]]
+  got$time = pars$outputs$orbits$time
+  got$kappa = pars$outputs$terms$kappa[[s]]
+  return(got)
+}
+
 #' @title Get the feeding rate
 #' @param pars an **`xds`** object
 #' @param s the vector species index
