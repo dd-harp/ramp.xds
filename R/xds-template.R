@@ -70,7 +70,10 @@ make_xds_template = function(xds='ode', frame='full',
   frame <- frame
   class(frame) <- frame
   pars$frame <- frame
-
+ 
+  forced_by <- "none" 
+  class(forced_by) <- "none" 
+  pars$forced_by <- forced_by 
 
   pars$compute <- 'frame'
 
