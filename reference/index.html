@@ -32,7 +32,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes"><li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
-    <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald, discrete time</a></li>
+    <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul></li>
 <li class="nav-item dropdown">
@@ -116,7 +116,7 @@
           <code><a href="make_xds_template.html">make_xds_template()</a></code>
 
         </dt>
-        <dd>Make an <strong><code>xds</code></strong> Object Template</dd>
+        <dd>Make an <strong><code>xds</code></strong> model object Template</dd>
       </dl><dl><dt>
 
           <code><a href="print.html">print(<i>&lt;xds_obj&gt;</i>)</a></code>
@@ -182,6 +182,12 @@
 
         </dt>
         <dd>Compute steady states for <strong>L</strong> Component Modules</dd>
+      </dl><dl><dt>
+
+          <code><a href="burnin.html">burnin()</a></code>
+
+        </dt>
+        <dd>Burn-in</dd>
       </dl></div><div class="section level2">
 
       <h3 id="xh-modules-human-host-epidemiology">XH Modules - Human / Host Epidemiology<a class="anchor" aria-label="anchor" href="#xh-modules-human-host-epidemiology"></a></h3>
@@ -680,7 +686,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="transmision">Transmision<a class="anchor" aria-label="anchor" href="#transmision"></a></h3>
-      <div class="section-desc"><p>Compute beta, EIR, kappa, &amp; local_frac</p></div>
+      <div class="section-desc"><p>Compute beta - EIR - kappa - &amp; local_frac</p></div>
 
 
     </div><div class="section level2">
@@ -845,7 +851,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="habitat-availability">Habitat Availability<a class="anchor" aria-label="anchor" href="#habitat-availability"></a></h3>
-      <div class="section-desc"><p>Habitat search weights, availability</p></div>
+      <div class="section-desc"><p>Habitat search weights - availability</p></div>
 
 
     </div><div class="section level2">
@@ -1562,7 +1568,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="basicm">basicM<a class="anchor" aria-label="anchor" href="#basicm"></a></h3>
-      <div class="section-desc"><p>Methods for basicM, adult mosquito ecology without infection dynamics.</p></div>
+      <div class="section-desc"><p>Methods for basicM - adult mosquito ecology without infection dynamics.</p></div>
 
 
     </div><div class="section level2">
@@ -1848,7 +1854,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="macdonald">macdonald<a class="anchor" aria-label="anchor" href="#macdonald"></a></h3>
-      <div class="section-desc"><p>Specialized methods for a Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron &amp; Robert May (1982).</p></div>
+      <div class="section-desc"><p>Specialized methods for a Macdonald-style model of adult mosquito dynamics - modified slightly from a model published by Joan Aron &amp; Robert May (1982).</p></div>
 
 
     </div><div class="section level2">
@@ -1997,7 +2003,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="germ">GeRM<a class="anchor" aria-label="anchor" href="#germ"></a></h3>
-      <div class="section-desc"><p>Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron &amp; Robert May (1982).</p></div>
+      <div class="section-desc"><p>Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics - modified slightly from a model published by Joan Aron &amp; Robert May (1982).</p></div>
 
 
     </div><div class="section level2">
@@ -2152,7 +2158,7 @@
       </dl></div><div class="section level2">
 
       <h3 id="rm-mosquito-in-discrete-time">RM-Mosquito in discrete-time<a class="anchor" aria-label="anchor" href="#rm-mosquito-in-discrete-time"></a></h3>
-      <div class="section-desc"><p>Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, in discrete time.</p></div>
+      <div class="section-desc"><p>Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics - in discrete time.</p></div>
 
 
     </div><div class="section level2">
@@ -2763,7 +2769,7 @@
       </dl></div><div class="section level2">
       <h2 id="human-infection-dynamics">Human Infection Dynamics<a class="anchor" aria-label="anchor" href="#human-infection-dynamics"></a></h2>
 
-      <div class="section-desc"><p>Generic methods for models of human/host infection dynamics, immunity, disease and transmission</p></div>
+      <div class="section-desc"><p>Generic methods for models of human/host infection dynamics - immunity - disease and transmission</p></div>
 
 
     </div><div class="section level2">
@@ -4656,6 +4662,564 @@
 
         </dt>
         <dd>Get the feeding rate</dd>
+      </dl></div><div class="section level2">
+      <h2 id="update-forcing">Update Forcing<a class="anchor" aria-label="anchor" href="#update-forcing"></a></h2>
+
+      <div class="section-desc"><p>Methods to get, set, and update forcing functions</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="update_F_season.Lambda.html">update_F_season(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update the seasonality function</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_F_season.html">update_F_season()</a></code>
+
+        </dt>
+        <dd>Update the seasonality function</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_F_season.cohort.html">update_F_season(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update the seasonality function</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_F_season.eir.html">update_F_season(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update the seasonality function</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_F_trend.Lambda.html">update_F_trend(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update the trend function</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_F_trend.html">update_F_trend()</a></code>
+
+        </dt>
+        <dd>Update the trend function</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_F_trend.cohort.html">update_F_trend(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update the trend function</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_F_trend.eir.html">update_F_trend(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update the trend function</dd>
+      </dl><dl><dt>
+
+          <code><a href="show_season.Lambda.html">show_season(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot the Fitted season</dd>
+      </dl><dl><dt>
+
+          <code><a href="show_season.html">show_season()</a></code>
+
+        </dt>
+        <dd>Plot the Fitted season</dd>
+      </dl><dl><dt>
+
+          <code><a href="show_season.eir.html">show_season(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot the Fitted season</dd>
+      </dl><dl><dt>
+
+          <code><a href="show_trend.Lambda.html">show_trend(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot the Fitted Trend</dd>
+      </dl><dl><dt>
+
+          <code><a href="show_trend.html">show_trend()</a></code>
+
+        </dt>
+        <dd>Plot the Fitted Trend</dd>
+      </dl><dl><dt>
+
+          <code><a href="show_trend.eir.html">show_trend(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot the Fitted Trend</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="update-function">Update function<a class="anchor" aria-label="anchor" href="#update-function"></a></h3>
+      <div class="section-desc"><p>A flexibile utility to update a vector</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="update_function_X.html">update_function_X()</a></code>
+
+        </dt>
+        <dd>Update a function</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_function_X.mean_forcing.html">update_function_X(<i>&lt;mean_forcing&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update Mean Forcing</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_function_X.phase.html">update_function_X(<i>&lt;phase&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update a function</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_function_X.amplitude.html">update_function_X(<i>&lt;amplitude&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update a function</dd>
+      </dl><dl><dt>
+
+          <code><a href="update_function_X.season.html">update_function_X(<i>&lt;season&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update <code>F_season</code></dd>
+      </dl><dl><dt>
+
+          <code><a href="update_function_X.trend.html">update_function_X(<i>&lt;trend&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Update a function</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="modify-vector">Modify Vector<a class="anchor" aria-label="anchor" href="#modify-vector"></a></h3>
+      <div class="section-desc"><p>A flexibile utility to update a vector</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="modify_vector_X.html">modify_vector_X()</a></code>
+
+        </dt>
+        <dd>Modify some values in a vector</dd>
+      </dl><dl><dt>
+
+          <code><a href="modify_vector_X.NULL.html">modify_vector_X(<i>&lt;NULL&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Replace Values in a List</dd>
+      </dl><dl><dt>
+
+          <code><a href="modify_vector_X.numeric.html">modify_vector_X(<i>&lt;numeric&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Replace Values in a List</dd>
+      </dl><dl><dt>
+
+          <code><a href="modify_vector_X.list.html">modify_vector_X(<i>&lt;list&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Replace Values in a List</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="get-and-set-for-mean-forcing">Get and Set for Mean Forcing<a class="anchor" aria-label="anchor" href="#get-and-set-for-mean-forcing"></a></h3>
+      <div class="section-desc"><p>Functions to change Forcing</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="get_mean_forcing.html">get_mean_forcing()</a></code>
+
+        </dt>
+        <dd>Get mean forcing</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_mean_forcing.none.html">get_mean_forcing(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get mean forcing</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_mean_forcing.Lambda.html">get_mean_forcing(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get mean forcing</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_mean_forcing.eir.html">get_mean_forcing(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get mean forcing</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_mean_forcing.cohort.html">get_mean_forcing(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get mean forcing</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_mean_forcing.html">set_mean_forcing()</a></code>
+
+        </dt>
+        <dd>Set mean forcing</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_mean_forcing.none.html">set_mean_forcing(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set mean forcing</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_mean_forcing.Lambda.html">set_mean_forcing(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set mean forcing</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_mean_forcing.eir.html">set_mean_forcing(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set mean forcing</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_mean_forcing.cohort.html">set_mean_forcing(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>set mean forcing</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="get-and-set-for-seasonality">Get and Set for Seasonality<a class="anchor" aria-label="anchor" href="#get-and-set-for-seasonality"></a></h3>
+      <div class="section-desc"><p>Utilities to change</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="get_season.html">get_season()</a></code>
+
+        </dt>
+        <dd>Get seasonal pattern</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_phase.html">get_season_phase()</a></code>
+
+        </dt>
+        <dd>Get phase</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_phase.none.html">get_season_phase(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get phase</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_phase.Lambda.html">get_season_phase(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get phase</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_phase.eir.html">get_season_phase(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get phase</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_phase.cohort.html">get_season_phase(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get phase</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_bottom.html">get_season_bottom()</a></code>
+
+        </dt>
+        <dd>Get the seasonal bottom</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_bottom.none.html">get_season_bottom(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get the seasonal bottom</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_bottom.Lambda.html">get_season_bottom(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get the seasonal bottom</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_bottom.eir.html">get_season_bottom(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get the seasonal bottom</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_bottom.cohort.html">get_season_bottom(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get the seasonal bottom</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_pw.html">get_season_pw()</a></code>
+
+        </dt>
+        <dd>Get the seasonal pw</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_pw.none.html">get_season_pw(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get the seasonal pw</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_pw.Lambda.html">get_season_pw(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get the seasonal pw</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_pw.eir.html">get_season_pw(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get the seasonal pw</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_season_pw.cohort.html">get_season_pw(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get the seasonal pw</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season.html">set_season()</a></code>
+
+        </dt>
+        <dd>Get seasonal pattern</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_phase.html">set_season_phase()</a></code>
+
+        </dt>
+        <dd>Set phase</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_phase.none.html">set_season_phase(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set phase</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_phase.Lambda.html">set_season_phase(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set phase</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_phase.eir.html">set_season_phase(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set phase</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_phase.cohort.html">set_season_phase(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>set phase</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_bottom.html">set_season_bottom()</a></code>
+
+        </dt>
+        <dd>Set bottom</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_bottom.none.html">set_season_bottom(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set bottom</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_bottom.Lambda.html">set_season_bottom(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set bottom</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_bottom.eir.html">set_season_bottom(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set bottom</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_bottom.cohort.html">set_season_bottom(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>set bottom</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_pw.html">set_season_pw()</a></code>
+
+        </dt>
+        <dd>Set pw</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_pw.none.html">set_season_pw(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set pw</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_pw.Lambda.html">set_season_pw(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set pw</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_pw.eir.html">set_season_pw(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set pw</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_season_pw.cohort.html">set_season_pw(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>set pw</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="get-and-set-for-spline-trend-functions">Get and Set for Spline Trend Functions<a class="anchor" aria-label="anchor" href="#get-and-set-for-spline-trend-functions"></a></h3>
+      <div class="section-desc"><p>Utilities to change the interpolation points</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="get_spline.html">get_spline()</a></code>
+
+        </dt>
+        <dd>Get spline interpolation points</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_spline_s.html">get_spline_s()</a></code>
+
+        </dt>
+        <dd>Get spline interpolation points</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_spline_s.none.html">get_spline_s(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get spline interpolation points</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_spline_s.Lambda.html">get_spline_s(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get spline interpolation points</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_spline_s.eir.html">get_spline_s(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get spline interpolation points</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_spline_s.cohort.html">get_spline_s(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Get spline interpolation points</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_spline.html">set_spline()</a></code>
+
+        </dt>
+        <dd>Set the interpolating points</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_spline.none.html">set_spline(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set yy</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_spline.Lambda.html">set_spline(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set the \(y\) value for interpolating points</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_spline.eir.html">set_spline(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set yy</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_spline.cohort.html">set_spline(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>set yy</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_spline_y.html">set_spline_y()</a></code>
+
+        </dt>
+        <dd>Set yy</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_spline_y.none.html">set_spline_y(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set yy</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_spline_y.Lambda.html">set_spline_y(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set the \(y\) value for interpolating points</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_spline_y.eir.html">set_spline_y(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set yy</dd>
+      </dl><dl><dt>
+
+          <code><a href="set_spline_y.cohort.html">set_spline_y(<i>&lt;cohort&gt;</i>)</a></code>
+
+        </dt>
+        <dd>set yy</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
