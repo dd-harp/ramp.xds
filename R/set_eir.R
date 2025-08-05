@@ -21,7 +21,7 @@ set_eir  = function(eir, pars){
 #' 
 set_eir.cohort  = function(eir, pars){
   
-  pars$EIRpar$eir <- eir  
+  pars$EIRpar$eir <- eir 
   if(length(pars$EIRpar$season_par)>0)  
     pars$EIRpar$F_season <- make_function(pars$EIRpar$season_par)
   if(length(pars$EIRpar$trend_par)>0)  

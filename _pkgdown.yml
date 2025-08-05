@@ -20,7 +20,7 @@ navbar:
     menu:
     - text: Macdonald's Model
       href: articles/adult_RM.html
-    - text: Ross-Macdonald, discrete time
+    - text: Ross-Macdonald - discrete time
       href: articles/RM-dts-Mosquito.html
     - text: Generalized Ross-Macdonald model
       href: articles/adult_GeRM.html
@@ -78,6 +78,7 @@ reference:
   - xde_steady_state_X
   - xde_steady_state_MYZ
   - xde_steady_state_L
+  - burnin 
 - subtitle: XH Modules - Human / Host Epidemiology
   desc: |
     Models available in **`ramp.xds`** for human/host infection and immunity
@@ -180,7 +181,7 @@ reference:
   - compute_TaR
   - make_TaR
 - subtitle: Transmision
-  desc: "Compute beta, EIR, kappa, & local_frac \n"
+  desc: "Compute beta - EIR - kappa - & local_frac \n"
   contents:
   - compute_beta
   - make_beta
@@ -213,7 +214,7 @@ reference:
   - EggLaying.dynamic
 - subtitle: Habitat Availability
   desc: |
-    Habitat search weights, availability
+    Habitat search weights - availability
   contents:
   - create_habitat_matrix
   - change_habitat_weights
@@ -349,7 +350,7 @@ reference:
   - update_MYZinits.trivial
 - subtitle: basicM
   desc: |
-    Methods for basicM, adult mosquito ecology without infection dynamics.
+    Methods for basicM - adult mosquito ecology without infection dynamics.
   contents:
   - dMYZdt.basicM
   - MBaseline.basicM
@@ -401,7 +402,7 @@ reference:
   - get_sigma.SI
 - subtitle: macdonald
   desc: |
-    Specialized methods for a Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
+    Specialized methods for a Macdonald-style model of adult mosquito dynamics - modified slightly from a model published by Joan Aron & Robert May (1982).
   contents:
   - dMYZdt.macdonald
   - MBaseline.macdonald
@@ -428,7 +429,7 @@ reference:
   - get_sigma.macdonald
 - subtitle: GeRM
   desc: |
-    Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, modified slightly from a model published by Joan Aron & Robert May (1982).
+    Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics - modified slightly from a model published by Joan Aron & Robert May (1982).
   contents:
   - dMYZdt.GeRM
   - MBaseline.GeRM
@@ -456,7 +457,7 @@ reference:
   - get_sigma.GeRM
 - subtitle: RM-Mosquito in discrete-time
   desc: |
-    Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics, in discrete time.
+    Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics - in discrete time.
   contents:
   - F_fqZ.RM_dts
   - F_fqM.RM_dts
@@ -571,7 +572,7 @@ reference:
   - create_calK_xy
 - title: Human Infection Dynamics
   desc: |
-    Generic methods for models of human/host infection dynamics, immunity, disease and transmission
+    Generic methods for models of human/host infection dynamics - immunity - disease and transmission
   contents:
   - dXdt
   - Update_Xt
@@ -927,4 +928,112 @@ reference:
   - make_outputs.eir
   - get_terms
   - get_EIR
+- title: Update Forcing 
+  desc: |
+    Methods to get, set, and update forcing functions 
+  contents: 
+  - update_F_season.Lambda 
+  - update_F_season
+  - update_F_season.cohort 
+  - update_F_season.eir 
+  - update_F_trend.Lambda 
+  - update_F_trend 
+  - update_F_trend.cohort 
+  - update_F_trend.eir
+  - show_season.Lambda 
+  - show_season 
+  - show_season.eir 
+  - show_trend.Lambda 
+  - show_trend 
+  - show_trend.eir
+- subtitle: Update function 
+  desc: |
+    A flexibile utility to update a vector 
+  contents:
+  - update_function_X 
+  - update_function_X.mean_forcing
+  - update_function_X.phase
+  - update_function_X.amplitude
+  - update_function_X.season
+  - update_function_X.trend
+- subtitle: Modify Vector 
+  desc: |
+    A flexibile utility to update a vector 
+  contents:
+  - modify_vector_X
+  - modify_vector_X.NULL
+  - modify_vector_X.numeric
+  - modify_vector_X.list
 
+- subtitle: Get and Set for Mean Forcing 
+  desc: |
+    Functions to change Forcing 
+  contents: 
+  - get_mean_forcing
+  - get_mean_forcing.none
+  - get_mean_forcing.Lambda
+  - get_mean_forcing.eir
+  - get_mean_forcing.cohort
+  - set_mean_forcing
+  - set_mean_forcing.none
+  - set_mean_forcing.Lambda
+  - set_mean_forcing.eir
+  - set_mean_forcing.cohort
+- subtitle: Get and Set for Seasonality 
+  desc: |
+    Utilities to change  
+  contents: 
+  - get_season
+  - get_season_phase
+  - get_season_phase.none
+  - get_season_phase.Lambda
+  - get_season_phase.eir
+  - get_season_phase.cohort
+  - get_season_bottom
+  - get_season_bottom.none
+  - get_season_bottom.Lambda
+  - get_season_bottom.eir
+  - get_season_bottom.cohort
+  - get_season_pw
+  - get_season_pw.none
+  - get_season_pw.Lambda
+  - get_season_pw.eir
+  - get_season_pw.cohort
+  - set_season
+  - set_season_phase
+  - set_season_phase.none
+  - set_season_phase.Lambda
+  - set_season_phase.eir
+  - set_season_phase.cohort
+  - set_season_bottom
+  - set_season_bottom.none
+  - set_season_bottom.Lambda
+  - set_season_bottom.eir
+  - set_season_bottom.cohort
+  - set_season_pw
+  - set_season_pw.none
+  - set_season_pw.Lambda
+  - set_season_pw.eir
+  - set_season_pw.cohort
+- subtitle: Get and Set for Spline Trend Functions
+  desc: |
+    Utilities to change the interpolation points
+  contents:   
+  - get_spline
+  - get_spline_s
+  - get_spline_s.none
+  - get_spline_s.Lambda
+  - get_spline_s.eir
+  - get_spline_s.cohort
+  - set_spline
+  - set_spline.none
+  - set_spline.Lambda
+  - set_spline.eir
+  - set_spline.cohort
+  - set_spline_y
+  - set_spline_y.none
+  - set_spline_y.Lambda
+  - set_spline_y.eir
+  - set_spline_y.cohort
+ 
+  
