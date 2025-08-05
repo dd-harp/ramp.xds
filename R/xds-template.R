@@ -1,12 +1,12 @@
 # function make_xds_template and supporting function F_H.setup
 
-#' @title Make an **`xds`** Object Template
+#' @title Make an **`xds`** model object Template
 #' @description Creates and returns structured template for an
-#' **`xds`** object. The returned object has set up generic features
+#' **`xds`** model object. The returned model object has set up generic features
 #' and placeholders for options that must be configured
-#' to fully define an **`xds`** object
+#' to fully define an **`xds`** model object
 #' @details This function sets up the basic structures required
-#' to configure and run a basic model. The returned object is a list
+#' to configure and run a basic model. The returned model object is a list
 #' with various required elements attached and configured, but without
 #' specifying the dynamical components or any advanced features.
 #'
@@ -29,7 +29,7 @@
 #' - **`nHabitats`** or \eqn{n_q}, the number of aquatic habitats, is set to `length(membership)`
 #' - **`nStrata`** or \eqn{n_h}, the number of human/ host population strata, is set to `length(HPop)`
 #'
-#' Next, the function sets up empty lists to hold the objects that define components:
+#' Next, the function sets up empty lists to hold the model objects that define components:
 #' - `Xpar`
 #' -
 #' - **Transmission**  calls [setup_TRANSMISSION()] 
@@ -52,120 +52,120 @@
 #' @param nPatches is the number of patches
 #' @param membership is the habitat membership vector
 #' @param residence is the strata residence vector
-#' @return an `xds` object
+#' @return an `xds` model object
 #' @seealso Related: [xds_setup] and [setup_no_forcing]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
 #'
 #' @export
 make_xds_template = function(xds='ode', frame='full',
                            nPatches=1, membership=1, residence=1){
-  pars = list()
-  class(pars) <- 'xds_obj'
+  xds_obj = list()
+  class(xds_obj) <- 'xds_obj'
   xds <- xds
   if(xds == 'ode' | xds == 'dde') xds <- c(xds, 'xde')
   class(xds) <- xds
-  pars$xds <- xds
+  xds_obj$xds <- xds
   xdlst = list()
   class(xdlst) = xds
 
   frame <- frame
   class(frame) <- frame
-  pars$frame <- frame
+  xds_obj$frame <- frame
  
   forced_by <- "none" 
   class(forced_by) <- "none" 
-  pars$forced_by <- forced_by 
+  xds_obj$forced_by <- forced_by 
 
-  pars$compute <- 'frame'
+  xds_obj$compute <- 'frame'
 
-  pars$model_name  <- 'unnamed'
-  pars$Xname       <- 'unspecified'
-  pars$Xpar        <- xdlst
-  pars$Hpar        <- list()
-  pars$MYZname     <- 'unspecified'
-  pars$MYZpar      <- xdlst
-  pars$Lname       <- 'unspecified'
-  pars$Lpar        <- xdlst
-  pars             <- setup_other_variables(pars) 
+  xds_obj$model_name  <- 'unnamed'
+  xds_obj$Xname       <- 'unspecified'
+  xds_obj$Xpar        <- xdlst
+  xds_obj$Hpar        <- list()
+  xds_obj$MYZname     <- 'unspecified'
+  xds_obj$MYZpar      <- xdlst
+  xds_obj$Lname       <- 'unspecified'
+  xds_obj$Lpar        <- xdlst
+  xds_obj             <- setup_other_variables(xds_obj) 
 
   vars <- list()
   class(vars) <- 'static'
-  pars$vars = vars
+  xds_obj$vars = vars
 
-  pars$nVectorSpecies  = 1
-  pars$nHostSpecies    = 1
-  pars$nPatches  = nPatches
-  pars$nHabitats = length(membership)
-  pars$habitat_matrix = create_habitat_matrix(nPatches, membership)
+  xds_obj$nVectorSpecies  = 1
+  xds_obj$nHostSpecies    = 1
+  xds_obj$nPatches  = nPatches
+  xds_obj$nHabitats = length(membership)
+  xds_obj$habitat_matrix = create_habitat_matrix(nPatches, membership)
 
-  pars$nStrata   = length(residence)
-  pars$residence_matrix = list()
-  pars$residence_matrix[[1]] = create_residence_matrix(nPatches, residence)
+  xds_obj$nStrata   = length(residence)
+  xds_obj$residence_matrix = list()
+  xds_obj$residence_matrix[[1]] = create_residence_matrix(nPatches, residence)
 
-  pars$Lambda = list()
-  pars <- setup_EGG_LAYING(pars)
-  pars <- setup_BLOOD_FEEDING(pars)
-  pars <- setup_TRANSMISSION(pars)
+  xds_obj$Lambda = list()
+  xds_obj <- setup_EGG_LAYING(xds_obj)
+  xds_obj <- setup_BLOOD_FEEDING(xds_obj)
+  xds_obj <- setup_TRANSMISSION(xds_obj)
 
-  pars   <- setup_exposure_pois(pars)
-  pars$travel <- list()
-  pars <- setup_no_travel(pars, 1)
-  pars$travel_eir <- list()
-  pars <- setup_travel_eir(pars, 1)
+  xds_obj   <- setup_exposure_pois(xds_obj)
+  xds_obj$travel <- list()
+  xds_obj <- setup_no_travel(xds_obj, 1)
+  xds_obj$travel_eir <- list()
+  xds_obj <- setup_travel_eir(xds_obj, 1)
 
-  pars$Linits = list()
-  pars$MYZinits = list()
-  pars$Xinits = list()
+  xds_obj$Linits = list()
+  xds_obj$MYZinits = list()
+  xds_obj$Xinits = list()
 
-  pars$ix = list()
-  pars$ix$X = list()
-  pars$ix$MYZ = list()
-  pars$ix$L = list()
+  xds_obj$ix = list()
+  xds_obj$ix$X = list()
+  xds_obj$ix$MYZ = list()
+  xds_obj$ix$L = list()
 
-  pars$outputs = list()
-  pars$compute = list()
+  xds_obj$outputs = list()
+  xds_obj$compute = list()
 
-  pars <- setup_no_forcing(pars)
-  pars <- setup_no_health(pars)
-  pars <- setup_no_vector_control(pars)
-  pars <- setup_resources_static(pars)
+  xds_obj <- setup_no_forcing(xds_obj)
+  xds_obj <- setup_no_health(xds_obj)
+  xds_obj <- setup_no_vector_control(xds_obj)
+  xds_obj <- setup_resources_static(xds_obj)
 
-  return(pars)
+  return(xds_obj)
 }
 
 #' @title Set `xds` to `dde`
 #' @description Creates and returns structured template for an
-#' @param pars a **`ramp.xds`** object
-#' @return a **`ramp.xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-xds_dde = function(pars){
-  UseMethod("xds_dde", pars$xds)
+xds_dde = function(xds_obj){
+  UseMethod("xds_dde", xds_obj$xds)
 }
 
 #' @title Set `xds` for `dde`
 #' @description Do not change `xds`
-#' @param pars a **`ramp.xds`** object
-#' @return a **`ramp.xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-xds_dde.dde = function(pars){
-  return(pars)
+xds_dde.dde = function(xds_obj){
+  return(xds_obj)
 }
 
 #' @title Set `xds` for `dts`
 #' @description Do not change `xds`
-#' @param pars a **`ramp.xds`** object
-#' @return a **`ramp.xds`** object
+#' @param xds_obj a **`ramp.xds`** modelobject
+#' @return a **`ramp.xds`** model object
 #' @export
-xds_dde.dts = function(pars){
-  return(pars)
+xds_dde.dts = function(xds_obj){
+  return(xds_obj)
 }
 
 #' @title Set `xds` to `dde`
 #' @description Change `xds` from `ode` to `dde`
-#' @param pars a **`ramp.xds`** object
-#' @return a **`ramp.xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-xds_dde.ode = function(pars){
-  pars$xds = 'dde'
-  class(pars$xds) = c('dde', 'xde')
-  return(pars)
+xds_dde.ode = function(xds_obj){
+  xds_obj$xds = 'dde'
+  class(xds_obj$xds) = c('dde', 'xde')
+  return(xds_obj)
 }

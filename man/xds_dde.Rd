@@ -4,13 +4,13 @@
 \alias{xds_dde}
 \title{Set \code{xds} to \code{dde}}
 \usage{
-xds_dde(pars)
+xds_dde(xds_obj)
 }
 \arguments{
-\item{pars}{a \strong{\code{ramp.xds}} object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-a \strong{\code{ramp.xds}} object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Creates and returns structured template for an

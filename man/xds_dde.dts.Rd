@@ -4,13 +4,13 @@
 \alias{xds_dde.dts}
 \title{Set \code{xds} for \code{dts}}
 \usage{
-\method{xds_dde}{dts}(pars)
+\method{xds_dde}{dts}(xds_obj)
 }
 \arguments{
-\item{pars}{a \strong{\code{ramp.xds}} object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} modelobject}
 }
 \value{
-a \strong{\code{ramp.xds}} object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Do not change \code{xds}

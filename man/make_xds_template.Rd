@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds-template.R
 \name{make_xds_template}
 \alias{make_xds_template}
-\title{Make an \strong{\code{xds}} Object Template}
+\title{Make an \strong{\code{xds}} model object Template}
 \usage{
 make_xds_template(
   xds = "ode",
@@ -24,17 +24,17 @@ make_xds_template(
 \item{residence}{is the strata residence vector}
 }
 \value{
-an \code{xds} object
+an \code{xds} model object
 }
 \description{
 Creates and returns structured template for an
-\strong{\code{xds}} object. The returned object has set up generic features
+\strong{\code{xds}} model object. The returned model object has set up generic features
 and placeholders for options that must be configured
-to fully define an \strong{\code{xds}} object
+to fully define an \strong{\code{xds}} model object
 }
 \details{
 This function sets up the basic structures required
-to configure and run a basic model. The returned object is a list
+to configure and run a basic model. The returned model object is a list
 with various required elements attached and configured, but without
 specifying the dynamical components or any advanced features.
 
@@ -63,7 +63,7 @@ Second, the function sets the values of the \strong{structural parameters}:
 \item \strong{\code{nStrata}} or \eqn{n_h}, the number of human/ host population strata, is set to \code{length(HPop)}
 }
 
-Next, the function sets up empty lists to hold the objects that define components:
+Next, the function sets up empty lists to hold the model objects that define components:
 \itemize{
 \item \code{Xpar}
 \item 
