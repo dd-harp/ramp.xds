@@ -66,9 +66,9 @@ reference:
   - xds_setup_eir
   - make_xds_object_template
   - print.xds_obj
-- subtitle: Get, Set, and Show
+- subtitle: Get, Set, and Show Forcing
   desc: |
-    Methods to get, set, and show forcing patterns 
+    For models that are forced, get, set, and show aspects of the forcing assumption
   contents:
   - get_mean_forcing
   - set_mean_forcing

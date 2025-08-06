@@ -11,6 +11,22 @@
 #' @return a **`ramp.xds`** model object
 #' 
 #' @export
+set_trend = function(X, xds_obj, s=1){
+  set_spline(X, xds_obj, s)
+} 
+  
+#' @title Set the interpolating points  
+#' 
+#' @description
+#' Set the interpolating points for F_trend 
+#' 
+#' @param X the new interpolating points 
+#' @param xds_obj a **`ramp.xds`** model object
+#' @param s the vector species index
+#'
+#' @return a **`ramp.xds`** model object
+#' 
+#' @export
 set_spline = function(X, xds_obj, s=1){
   UseMethod("set_spline", xds_obj$forced_by) 
 }

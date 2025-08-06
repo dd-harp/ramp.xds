@@ -37,7 +37,7 @@ habitat availability \eqn{Q} made by \link{compute_Q};
 \item a vector that stores eggs laid
 }
 
-This function is called by \code{make_xds_template} to set up \code{EGGpar} and the variables and parameters with all
+This function is called by \code{make_xds_object_template} to set up \code{EGGpar} and the variables and parameters with all
 the variables it might depend on.
 }
 \references{

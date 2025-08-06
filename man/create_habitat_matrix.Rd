@@ -40,7 +40,7 @@ habitats (\emph{i.e.}, \eqn{\left|w\right|= n_q}), then
 create_habitat_matrix(3, c(1,1,2,2,2))
 }
 \seealso{
-create_habitat matrix is called by \code{\link[=make_xds_template]{make_xds_template()}} and \code{\link[=setup_EGG_LAYING]{setup_EGG_LAYING()}}
+create_habitat matrix is called by \code{\link[=make_xds_object_template]{make_xds_object_template()}} and \code{\link[=setup_EGG_LAYING]{setup_EGG_LAYING()}}
 
 see \code{\link[=view_habitat_matrix]{view_habitat_matrix()}}
 }

@@ -1,3 +1,15 @@
+#' @title Get the trend parameters 
+#' 
+#' @description
+#' Get the interpolating points 
+#' for a spline function.
+#' 
+#' @param xds_obj an **`xds`** object
+#' 
+#' @export
+get_trend = function(xds_obj){
+  get_spline(xds_obj)
+}
 
 #' @title Get spline interpolation points 
 #' 

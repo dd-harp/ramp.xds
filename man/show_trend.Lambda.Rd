@@ -2,21 +2,21 @@
 % Please edit documentation in R/show_trend.R
 \name{show_trend.Lambda}
 \alias{show_trend.Lambda}
-\title{Plot the Fitted Trend}
+\title{Plot the temporal trend}
 \usage{
-\method{show_trend}{Lambda}(model, dt = 10, add = FALSE)
+\method{show_trend}{Lambda}(xds_obj, tm, add = FALSE)
 }
 \arguments{
-\item{model}{a \strong{`ramp.xds} model object}
+\item{xds_obj}{a \strong{`ramp.xds} model object}
 
-\item{dt}{the outputs interval}
+\item{tm}{the time points}
 
 \item{add}{add to existing plot}
 }
 \value{
-a \strong{`ramp.xds} model object
+the temporal trend, invisibly
 }
 \description{
-for a model forced by emergence,
-output the fitted trend
+For a model forced by emergence,
+show the temporal trend
 }
