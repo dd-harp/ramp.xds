@@ -3,7 +3,7 @@
 #' @description
 #' Get the parameters set the seasonal pattern
 #' 
-#' @param X the new bottom parameter
+#' @param X a list with new parameters for bottom, phase, and pw 
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param s the vector species index
 #' 

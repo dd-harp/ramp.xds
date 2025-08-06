@@ -4,17 +4,17 @@
 \alias{set_season_phase.Lambda}
 \title{Set phase}
 \usage{
-\method{set_season_phase}{Lambda}(X, xds_obj, s = 1)
+\method{set_season_phase}{Lambda}(phase, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new phase parameter}
+\item{phase}{the new phase parameter}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{s}{the vector species index}
 }
 \value{
-the \strong{\code{ramp.xds}} model object
+the \strong{\code{ramp.xds}} model object with an updated phase parameter
 }
 \description{
 Set the phase for the seasonal pattern for the

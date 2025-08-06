@@ -4,10 +4,10 @@
 \alias{set_season_phase}
 \title{Set phase}
 \usage{
-set_season_phase(X, xds_obj, s = 1)
+set_season_phase(phase, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new phase parameter}
+\item{phase}{the new phase parameter}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
@@ -17,5 +17,5 @@ set_season_phase(X, xds_obj, s = 1)
 a \strong{\code{ramp.xds}} model object
 }
 \description{
-Set the phase parameter to \code{X}
+Update the phase parameter
 }

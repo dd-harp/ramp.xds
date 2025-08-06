@@ -4,10 +4,10 @@
 \alias{set_season_bottom}
 \title{Set bottom}
 \usage{
-set_season_bottom(X, xds_obj, s = 1)
+set_season_bottom(bottom, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new bottom parameter}
+\item{bottom}{the new bottom parameter}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
@@ -17,5 +17,5 @@ set_season_bottom(X, xds_obj, s = 1)
 a \strong{\code{ramp.xds}} model object
 }
 \description{
-Set the bottom parameter to \code{X}
+Set the bottom parameter to \code{bottom}
 }

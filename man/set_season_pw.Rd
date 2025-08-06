@@ -2,12 +2,12 @@
 % Please edit documentation in R/set_season_pw.R
 \name{set_season_pw}
 \alias{set_season_pw}
-\title{Set pw}
+\title{Set pw, a seasonality shape parameter}
 \usage{
-set_season_pw(X, xds_obj, s = 1)
+set_season_pw(pw, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{a named list with the new parameter values}
+\item{pw}{a named list with the new parameter values}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
@@ -17,5 +17,5 @@ set_season_pw(X, xds_obj, s = 1)
 a \strong{\code{ramp.xds}} model object
 }
 \description{
-Set the pw parameter to \code{X}
+Set the pw parameter to \code{pw}
 }

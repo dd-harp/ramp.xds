@@ -952,12 +952,14 @@ reference:
   - update_F_trend 
   - update_F_trend.cohort 
   - update_F_trend.eir
-  - show_season.Lambda 
   - show_season 
+  - show_season.Lambda 
+  - show_season.none
   - show_season.eir 
-  - show_trend.Lambda 
   - show_trend 
+  - show_trend.Lambda 
   - show_trend.eir
+  - show_trend.none
 - subtitle: Update function 
   desc: |
     A flexibile utility to update a vector 

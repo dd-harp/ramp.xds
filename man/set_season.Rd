@@ -7,7 +7,7 @@
 set_season(X, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new bottom parameter}
+\item{X}{a list with new parameters for bottom, phase, and pw}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
