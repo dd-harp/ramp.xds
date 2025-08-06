@@ -352,9 +352,9 @@ Xinits = list(I = as.vector(0.2*HPop))
 
 To build a model, `ramp.xds` must create an template that stores the information about the patches, habitats, and strata in a rigid form. The functions that solve and analyze the systems of differential equations are, like most computer programs, unforgiving. An object describing a model that can be solved by `ramp.xds` is called an `xds` object. `ramp.xds` supports nimble model building for e**x**tensible **d**ynamical **s**ystems, including e**x**tensible systems of **d**ifferential equations (`xde`), and **d**iscrete-**t**ime **s**ystems using difference equations (`dts`).
 
-Since the software is designed to solve very complex systems, we will need to create an object that *could* accommodate added realism (*e.g.* vector control). The function `make_xds_template` sets up a compound list in `R` that is like a building that we anticipate modifying, with *ports* and *junctions* ready. These capabilities that are not needed by simple models. The software's requires that some objects are present to handle all that complexity. Since most users won't want to learn about the details, the software includes a function, called `make_xds_template` that sets up the scaffolding for a model, including many that are set to their `null` values (turned off). 
+Since the software is designed to solve very complex systems, we will need to create an object that *could* accommodate added realism (*e.g.* vector control). The function `make_xds_object_template` sets up a compound list in `R` that is like a building that we anticipate modifying, with *ports* and *junctions* ready. These capabilities that are not needed by simple models. The software's requires that some objects are present to handle all that complexity. Since most users won't want to learn about the details, the software includes a function, called `make_xds_object_template` that sets up the scaffolding for a model, including many that are set to their `null` values (turned off). 
 
-A user only needs to know how to encode the information and what information to encode. The rest is handled by functions. It is helpful for users to understand some of the notation and terms. The following are set up in order by `make_xds_template`: 
+A user only needs to know how to encode the information and what information to encode. The rest is handled by functions. It is helpful for users to understand some of the notation and terms. The following are set up in order by `make_xds_object_template`: 
 
 + the first required argument sets the value and class of `xds` 
     
@@ -378,7 +378,7 @@ A user only needs to know how to encode the information and what information to 
 
 
 ```{r}
-params = make_xds_template("dde", "full", nPatches, membership, residence) 
+params = make_xds_object_template("dde", "full", nPatches, membership, residence) 
 ```
 
 After being set up:
@@ -387,7 +387,7 @@ After being set up:
 c(params$nHabitats, params$nPatches, params$nStrata)
 ```
 
-This was created by `make_xds_template` and stored as `params$habitat_matrix` 
+This was created by `make_xds_object_template` and stored as `params$habitat_matrix` 
 
 ```{r}
 params$habitat_matrix
@@ -398,12 +398,12 @@ If we want to retrieve the membership matrix, we can call `view_habitat_matrix`
 view_habitat_matrix(params)
 ```
 
-The function `make_xds_template` was designed to create a scaffolding. So `Q` and `Umatrix` get created with default values: Iall patches are assumed to have the same biting weights. 
+The function `make_xds_object_template` was designed to create a scaffolding. So `Q` and `Umatrix` get created with default values: Iall patches are assumed to have the same biting weights. 
 
 ```{r}
 params$vars$Q
 ```
-A little detail to note is that an `xds` object is designed to handle multiple vector and multiple host species. The function `make_xds_template` only sets up the first species. Similarly, we can view the egg distribution matrix for the first species: 
+A little detail to note is that an `xds` object is designed to handle multiple vector and multiple host species. The function `make_xds_object_template` only sets up the first species. Similarly, we can view the egg distribution matrix for the first species: 
 
 ```{r}
 params$Umatrix[[1]]

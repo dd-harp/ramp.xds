@@ -56,7 +56,7 @@
 #' @seealso Related: [xds_setup] and [setup_no_forcing]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
 #'
 #' @export
-make_xds_template = function(xds='ode', frame='full',
+make_xds_object_template = function(xds='ode', frame='full',
                            nPatches=1, membership=1, residence=1){
   xds_obj = list()
   class(xds_obj) <- 'xds_obj'

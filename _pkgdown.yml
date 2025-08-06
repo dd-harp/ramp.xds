@@ -64,8 +64,20 @@ reference:
   - xds_setup_human
   - xds_setup_cohort
   - xds_setup_eir
-  - make_xds_template
+  - make_xds_object_template
   - print.xds_obj
+- subtitle: Get, Set, and Show
+  desc: |
+    Methods to get, set, and show forcing patterns 
+  contents:
+  - get_mean_forcing
+  - set_mean_forcing
+  - show_season
+  - get_season
+  - set_season
+  - show_trend
+  - get_trend
+  - set_trend
 - subtitle: Solving and Analysis 
   desc: |
     Methods to solve or analyze equations
@@ -964,7 +976,6 @@ reference:
   - modify_vector_X.NULL
   - modify_vector_X.numeric
   - modify_vector_X.list
-
 - subtitle: Get and Set for Mean Forcing 
   desc: |
     Functions to change Forcing 
