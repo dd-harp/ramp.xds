@@ -12,6 +12,7 @@ get_H = function(pars, i=1){
 #' @title Get **XH** outputs
 #' @param pars an **`xds`** object
 #' @param i the host species index
+#' @return the orbits for the **XH** component 
 #' @export
 get_XH = function(pars, i=1){
   got = pars$outputs$orbits$XH[[i]]
@@ -42,13 +43,14 @@ get_PR <- function(pars, method = "true", i=1) {
 #' 
 #' @inheritParams get_PR 
 #' 
-#' @return none
+#' @return the true PR 
 #' @export
 get_PR.true <- function(pars, method= "true", i=1) {
-  XH <- get_XH(pars, i)$true_pr
+  XH <- get_XH(pars, i)
+  XH$true_pr
 }
 
-#' @title Get the *Pf*PR from a Malaria Model 
+#' @title Get the *Pf*PR from a MalariasModel 
 #' @description Return the *Pf*PR by PCR
 #' @inheritParams get_PR 
 #' @return none

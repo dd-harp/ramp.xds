@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-get.R
 \name{get_PR.pcr}
 \alias{get_PR.pcr}
-\title{Get the \emph{Pf}PR from a Malaria Model}
+\title{Get the \emph{Pf}PR from a MalariasModel}
 \usage{
 \method{get_PR}{pcr}(pars, method = "pcr", i = 1)
 }

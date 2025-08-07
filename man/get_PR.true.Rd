@@ -14,7 +14,7 @@
 \item{i}{the host species index}
 }
 \value{
-none
+the true PR
 }
 \description{
 Return the true \emph{Pf}PR

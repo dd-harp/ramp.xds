@@ -997,6 +997,10 @@ reference:
     Utilities to change  
   contents: 
   - get_season
+  - get_season_par
+  - get_season_par.Lambda
+  - get_season_par.eir
+  - get_season_par.cohort
   - get_season_phase
   - get_season_phase.none
   - get_season_phase.Lambda

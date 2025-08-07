@@ -4,7 +4,7 @@
 \alias{show_season}
 \title{Plot the seasonal pattern}
 \usage{
-show_season(xds_obj, tm, add = FALSE)
+show_season(xds_obj, tm = seq(0, 730, by = 5), add = FALSE)
 }
 \arguments{
 \item{xds_obj}{a \strong{`ramp.xds} model object}

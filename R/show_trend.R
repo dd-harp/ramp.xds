@@ -11,7 +11,7 @@
 #' @return the temporal trend, invisibly
 #'  
 #' @export
-show_trend = function(xds_obj, tm, add=FALSE){
+show_trend = function(xds_obj, tm = seq(0, 3650, by=10), add=FALSE){
   UseMethod("show_trend", xds_obj$forced_by)
 }
 
@@ -27,7 +27,7 @@ show_trend = function(xds_obj, tm, add=FALSE){
 #' @importFrom graphics plot lines
 #' 
 #' @export
-show_trend.none = function(xds_obj, tm, add=FALSE){
+show_trend.none = function(xds_obj, tm = seq(0, 3650, by=10), add=FALSE){
   return(c()) 
 }
 
@@ -43,7 +43,7 @@ show_trend.none = function(xds_obj, tm, add=FALSE){
 #' @importFrom graphics plot lines
 #' 
 #' @export
-show_trend.Lambda = function(xds_obj, tm, add=FALSE){
+show_trend.Lambda = function(xds_obj, tm = seq(0, 3650, by=10), add=FALSE){
   trend <- xds_obj$Lpar[[1]]$F_trend(tm)
   if(add==FALSE) plot(tm, trend, ylab = "Temporal Trend", xlab = "Time", type = "n")
   lines(tm, trend)
@@ -60,7 +60,7 @@ show_trend.Lambda = function(xds_obj, tm, add=FALSE){
 #' @return the temporal trend, invisibly
 #' 
 #' @export
-show_trend.eir= function(xds_obj, tm, add=FALSE){
+show_trend.eir= function(xds_obj, tm = seq(0, 3650, by=10), add=FALSE){
   trend <- xds_obj$EIRpar$F_trend(tm)
   if(add==FALSE) plot(tm, trend, ylab = "Temporal Trend", xlab = "Time", type = "n")
   lines(tm, trend)

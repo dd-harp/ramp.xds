@@ -8,7 +8,7 @@
 #' @return the seasonal pattern, invisibly
 #'  
 #' @export
-show_season = function(xds_obj, tm, add=FALSE){
+show_season = function(xds_obj, tm = seq(0, 730, by=5), add=FALSE){
   UseMethod("show_season", xds_obj$forced_by)
 }
 
@@ -24,7 +24,7 @@ show_season = function(xds_obj, tm, add=FALSE){
 #' @importFrom graphics plot lines
 #' 
 #' @export
-show_season.none = function(xds_obj, tm, add=FALSE){
+show_season.none = function(xds_obj, tm = seq(0, 730, by=5), add=FALSE){
   return(c()) 
 }
 
@@ -40,7 +40,7 @@ show_season.none = function(xds_obj, tm, add=FALSE){
 #' @importFrom graphics plot lines
 #' 
 #' @export
-show_season.Lambda = function(xds_obj, tm, add=FALSE){
+show_season.Lambda = function(xds_obj, tm = seq(0, 730, by=5), add=FALSE){
   season <- xds_obj$Lpar[[1]]$F_season(tm)
   if(add==FALSE) plot(tm, season, ylab = "Seasonal Pattern", xlab = "Time", type = "n")
   lines(tm, season)
@@ -57,7 +57,7 @@ show_season.Lambda = function(xds_obj, tm, add=FALSE){
 #' @return the seasonal pattern, invisibly
 #' 
 #' @export
-show_season.eir= function(xds_obj, tm, add=FALSE){
+show_season.eir= function(xds_obj, tm = seq(0, 730, by=5), add=FALSE){
   season <- xds_obj$EIRpar$F_season(tm)
   if(add==FALSE) plot(tm, season, ylab = "Seasonal Pattern", xlab = "Time", type = "n")
   lines(tm, season)

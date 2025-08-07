@@ -23,7 +23,7 @@ update_F_season = function(xds_obj, s=1){
 #' 
 #' @export
 update_F_season.Lambda = function(xds_obj, s=1){
-  xds_obj$Lpar[[1]]$F_season = make_function(xds_obj$Lpar[[1]]$season_par)
+  xds_obj$Lpar[[s]]$F_season = make_function(xds_obj$Lpar[[s]]$season_par)
   return(xds_obj)
 }
 

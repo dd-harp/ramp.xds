@@ -45,7 +45,7 @@ set_season_pw.none = function(pw, xds_obj, s=1){
 set_season_pw.Lambda = function(pw, xds_obj, s=1){
   stopifnot(length(xds_obj$Lpar[[s]]$season_par$pw) == length(pw))
   xds_obj$Lpar[[s]]$season_par$pw = pw
-  xds_obj$Lpar[[s]]$F_season <- make_function(xds_obj$EIRpar$season_par)
+  xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }
 
@@ -64,6 +64,7 @@ set_season_pw.Lambda = function(pw, xds_obj, s=1){
 set_season_pw.eir = function(pw, xds_obj, s=1){
   stopifnot(length(xds_obj$EIRpar$season_par$pw) == length(pw))
   xds_obj$EIRpar$season_par$pw = pw
+  xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }
 
@@ -82,5 +83,6 @@ set_season_pw.eir = function(pw, xds_obj, s=1){
 set_season_pw.cohort = function(pw, xds_obj, s=1){
   stopifnot(length(xds_obj$EIRpar$season_par$pw) == length(pw))
   xds_obj$EIRpar$season_par$pw = pw
+  xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }  

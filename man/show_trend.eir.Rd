@@ -4,7 +4,7 @@
 \alias{show_trend.eir}
 \title{Plot the temporal trend}
 \usage{
-\method{show_trend}{eir}(xds_obj, tm, add = FALSE)
+\method{show_trend}{eir}(xds_obj, tm = seq(0, 3650, by = 10), add = FALSE)
 }
 \arguments{
 \item{xds_obj}{a \strong{`ramp.xds} model object}

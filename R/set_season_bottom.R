@@ -45,6 +45,7 @@ set_season_bottom.none = function(bottom, xds_obj, s=1){
 set_season_bottom.Lambda = function(bottom, xds_obj, s=1){
   stopifnot(length(xds_obj$Lpar[[s]]$season_par$bottom) == length(bottom))
   xds_obj$Lpar[[s]]$season_par$bottom = bottom
+  xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }
 
@@ -63,6 +64,7 @@ set_season_bottom.Lambda = function(bottom, xds_obj, s=1){
 set_season_bottom.eir = function(bottom, xds_obj, s=1){
   stopifnot(length(xds_obj$EIRpar$season_par$bottom) == length(bottom))
   xds_obj$EIRpar$season_par$bottom = bottom
+  xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }
 
@@ -79,5 +81,6 @@ set_season_bottom.eir = function(bottom, xds_obj, s=1){
 set_season_bottom.cohort = function(bottom, xds_obj, s=1){
   stopifnot(length(xds_obj$EIRpar$season_par$bottom) == length(bottom))
   xds_obj$EIRpar$season_par$bottom = bottom
+  xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }  
