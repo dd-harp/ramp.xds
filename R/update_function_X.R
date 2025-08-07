@@ -83,7 +83,7 @@ update_function_X.amplitude = function(X, ix, xds_obj, update="amplitude", s=1){
 #' @returns sum of squared differences
 #' @export
 update_function_X.season = function(X, ix, xds_obj, update="season", s=1){
-  stopifnot(X%%3 == 0)
+  stopifnot(length(X)%%3 == 0)
   l = length(X)/3
   X_phase = X[1:l]
   X_bottom = X[1:l + l]

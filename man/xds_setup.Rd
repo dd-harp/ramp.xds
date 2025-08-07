@@ -101,8 +101,8 @@ Advanced options can be configured after basic setup.
 }
 \details{
 \enumerate{
-\item Using the basic structural parameters, a basic template is created by \link{make_xds_template} with
-a properly configured interface for blood feeding and egg laying, and \code{pars$frame = class(pars$frame) = 'full'} .
+\item Using the basic structural parameters, a basic template is created by \link{make_xds_object_template} with
+a properly configured interface for blood feeding and egg laying, and \code{xds_obj$frame = class(xds_obj$frame) = 'full'} .
 \itemize{
 \item \code{nPatches} is passed as a parameter
 \item \code{nHabitats} is configured by passing the habitat \code{membership} vector, and \code{nHabitats = length(membership)}
@@ -115,9 +115,9 @@ a properly configured interface for blood feeding and egg laying, and \code{pars
 .
 2. Each one of the dynamical components is configured.
 \itemize{
-\item \strong{\code{pars$Xpar[[1]]}} defines a model for human / host infection dynamics of class \code{Xname} (the \strong{X} component). The parameter values passed in a named list, \code{Xopts.}
-\item \strong{\code{pars$MYZpar[[1]]}} defines a model for adult mosquito ecology & infection dynamics of class \code{MYZname} (the \strong{MYZ} Component). The parameter values are passed in a named list, \code{MYZopts.}
-\item \strong{\code{pars$Lpar[[1]]}} defines a model for aquatic mosquito ecology of class \code{Lname} (The \strong{L} Component). The parameter values are passed in a named list, \code{Lopts.}
+\item \strong{\code{xds_obj$Xpar[[1]]}} defines a model for human / host infection dynamics of class \code{Xname} (the \strong{X} component). The parameter values passed in a named list, \code{Xopts.}
+\item \strong{\code{xds_obj$MYZpar[[1]]}} defines a model for adult mosquito ecology & infection dynamics of class \code{MYZname} (the \strong{MYZ} Component). The parameter values are passed in a named list, \code{MYZopts.}
+\item \strong{\code{xds_obj$Lpar[[1]]}} defines a model for aquatic mosquito ecology of class \code{Lname} (The \strong{L} Component). The parameter values are passed in a named list, \code{Lopts.}
 }
 \enumerate{
 \item After configuring the dynamical components, several structural parameters can be configured at the command line:
@@ -142,5 +142,5 @@ If the \strong{MYZ} Component is the \code{trivial} module, consider using \link
 ecology need not include states describing infection status (see \link{xds_setup_mosy}).
 }
 \seealso{
-\link{make_xds_template}
+\link{make_xds_object_template}
 }

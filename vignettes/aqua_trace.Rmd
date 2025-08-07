@@ -122,7 +122,7 @@ we must use `ramp.xds::MosquitoBehavior` to pass the equilibrium values of those
 to `ramp.xds::xDE_diffeqn_mosy`.
 
 ```{r}
-params <- make_xds_template("ode", "mosy", nPatches, membership)
+params <- make_xds_object_template("ode", "mosy", nPatches, membership)
 
 params = setup_Lpar("trivial", params, 1, Lopts = list(Lambda=alpha))
 

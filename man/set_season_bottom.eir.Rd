@@ -4,10 +4,10 @@
 \alias{set_season_bottom.eir}
 \title{Set bottom}
 \usage{
-\method{set_season_bottom}{eir}(X, xds_obj, s = 1)
+\method{set_season_bottom}{eir}(bottom, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new bottom parameter}
+\item{bottom}{the new bottom parameter}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 

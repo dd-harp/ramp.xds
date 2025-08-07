@@ -246,7 +246,7 @@ We use `ramp.xds::make_inits_MYZ_RM_xde` to store the initial values. These equa
 
 
 ```{r}
-params <- make_xds_template("dde", "mosy", nPatches, 1:3, 1:3)
+params <- make_xds_object_template("dde", "mosy", nPatches, 1:3, 1:3)
 params <- setup_MYZpar("macdonald", params, 1, MYZo)  
 params <- setup_MYZinits(params, 1, MYZo)
 params <- setup_Xpar("trivial", params, 1, Xo) 

@@ -4,10 +4,10 @@
 \alias{set_season_phase.cohort}
 \title{set phase}
 \usage{
-\method{set_season_phase}{cohort}(X, xds_obj, s = 1)
+\method{set_season_phase}{cohort}(phase, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new phase parameter}
+\item{phase}{the new phase parameter}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 

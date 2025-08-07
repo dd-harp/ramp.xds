@@ -25,8 +25,8 @@
 #' @note If the **MYZ** Component is the `trivial` module, consider using [xds_setup_aquatic] or [xds_setup_human] or [xds_setup_cohort]. Models for mosquito
 #' ecology need not include states describing infection status (see [xds_setup_mosy]).
 #' @details
-#' 1. Using the basic structural parameters, a basic template is created by [make_xds_template] with
-#' a properly configured interface for blood feeding and egg laying, and `pars$frame = class(pars$frame) = 'full'` .
+#' 1. Using the basic structural parameters, a basic template is created by [make_xds_object_template] with
+#' a properly configured interface for blood feeding and egg laying, and `xds_obj$frame = class(xds_obj$frame) = 'full'` .
 #'
 #'    - `nPatches` is passed as a parameter
 #'    - `nHabitats` is configured by passing the habitat `membership` vector, and `nHabitats = length(membership)`
@@ -37,9 +37,9 @@
 #'.
 #' 2. Each one of the dynamical components is configured.
 #'
-#'    - **`pars$Xpar[[1]]`** defines a model for human / host infection dynamics of class `Xname` (the **X** component). The parameter values passed in a named list, `Xopts.`
-#'    - **`pars$MYZpar[[1]]`** defines a model for adult mosquito ecology & infection dynamics of class `MYZname` (the **MYZ** Component). The parameter values are passed in a named list, `MYZopts.`
-#'    - **`pars$Lpar[[1]]`** defines a model for aquatic mosquito ecology of class `Lname` (The **L** Component). The parameter values are passed in a named list, `Lopts.`
+#'    - **`xds_obj$Xpar[[1]]`** defines a model for human / host infection dynamics of class `Xname` (the **X** component). The parameter values passed in a named list, `Xopts.`
+#'    - **`xds_obj$MYZpar[[1]]`** defines a model for adult mosquito ecology & infection dynamics of class `MYZname` (the **MYZ** Component). The parameter values are passed in a named list, `MYZopts.`
+#'    - **`xds_obj$Lpar[[1]]`** defines a model for aquatic mosquito ecology of class `Lname` (The **L** Component). The parameter values are passed in a named list, `Lopts.`
 #'
 #' 3. After configuring the dynamical components, several structural parameters can be configured at the command line:
 #'
@@ -53,7 +53,7 @@
 #' - multiple-host species or multiple-vector species
 #' - exogenous forcing by weather, resources, or other factors
 #' - vector control, vaccines, or other mass
-#' @seealso [make_xds_template]
+#' @seealso [make_xds_object_template]
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname a character string defining a **X** Component module
 #' @param Xopts a list to configure the **X** Component module
@@ -98,56 +98,56 @@ xds_setup = function(xds = 'ode',
                      model_name = "unnamed"
 ){
   stopifnot(length(HPop) == length(residence))
-  pars <- make_xds_template('ode', 'full', nPatches, membership, residence)
-  pars <- make_runtime(pars, Xday, MYZday, Lday, Lname)
-  class(pars$compute) <- 'ode'
+  xds_obj <- make_xds_object_template('ode', 'full', nPatches, membership, residence)
+  xds_obj <- make_runtime(xds_obj, Xday, MYZday, Lday, Lname)
+  class(xds_obj$compute) <- 'ode'
 
   # Aquatic Mosquito Dynamics
-  pars$Lname <- Lname
-  pars       <- setup_Lpar(Lname, pars, 1, Lopts)
-  pars       <- setup_Linits(pars, 1, Lopts)
+  xds_obj$Lname <- Lname
+  xds_obj       <- setup_Lpar(Lname, xds_obj, 1, Lopts)
+  xds_obj       <- setup_Linits(xds_obj, 1, Lopts)
 
   # Adult Mosquito Dynamics
-  pars$MYZname   <- MYZname
-  pars           <- setup_MYZpar(MYZname, pars, 1, MYZopts)
-  pars           <- setup_MYZinits(pars, 1, MYZopts)
+  xds_obj$MYZname   <- MYZname
+  xds_obj           <- setup_MYZpar(MYZname, xds_obj, 1, MYZopts)
+  xds_obj           <- setup_MYZinits(xds_obj, 1, MYZopts)
   
 
   # Human Dynamics
-  pars$Xname <- Xname
-  pars       <- setup_Xpar(Xname, pars,  1, Xopts)
-  pars       <- setup_Xinits(pars, HPop, 1, Xopts)
-  pars       <- setup_Hpar_static(pars, 1)
+  xds_obj$Xname <- Xname
+  xds_obj       <- setup_Xpar(Xname, xds_obj,  1, Xopts)
+  xds_obj       <- setup_Xinits(xds_obj, HPop, 1, Xopts)
+  xds_obj       <- setup_Hpar_static(xds_obj, 1)
 
-  pars = make_indices(pars)
+  xds_obj = make_indices(xds_obj)
 
-  Qwts       <- with(Lopts, checkIt(searchQ, pars$nHabitats))
-  pars       <- change_habitat_weights(pars, Qwts, 1)
+  Qwts       <- with(Lopts, checkIt(searchQ, xds_obj$nHabitats))
+  xds_obj       <- change_habitat_weights(xds_obj, Qwts, 1)
   
 
-  wts        <- with(BFopts, checkIt(searchB, pars$nStrata))
-  pars       <- change_blood_weights(pars, wts, 1, 1)
+  wts        <- with(BFopts, checkIt(searchB, xds_obj$nStrata))
+  xds_obj       <- change_blood_weights(xds_obj, wts, 1, 1)
   
 
   if(is.matrix(TimeSpent))
-    pars <- change_TimeSpent(TimeSpent, pars, 1)
+    xds_obj <- change_TimeSpent(TimeSpent, xds_obj, 1)
 
   
   if(is.matrix(calK))
-    pars <- change_calK(calK, pars, 1)
+    xds_obj <- change_calK(calK, xds_obj, 1)
 
   
   # Probably Not Necessary
-  y0 <- as.vector(unlist(get_inits(pars)))
+  y0 <- as.vector(unlist(get_inits(xds_obj)))
 
-  pars <- MBionomics(0, y0, pars,1)
-  pars <- EggLaying(0, y0, pars)
-  pars <- BloodFeeding(0, y0, pars)
-  pars <- Transmission(0, y0, pars)
+  xds_obj <- MBionomics(0, y0, xds_obj,1)
+  xds_obj <- EggLaying(0, y0, xds_obj)
+  xds_obj <- BloodFeeding(0, y0, xds_obj)
+  xds_obj <- Transmission(0, y0, xds_obj)
 
-  pars$model_name <- model_name
+  xds_obj$model_name <- model_name
 
-  return(pars)
+  return(xds_obj)
 }
 
 #' @title Build a Model of Mosquito Ecology
@@ -204,42 +204,42 @@ xds_setup_mosy = function(xds = 'ode',
 ){
   residence = 1:nPatches
   HPop = checkIt(HPop, nPatches)
-  pars <- make_xds_template('ode', 'mosy', nPatches, membership, residence)
-  pars <- make_runtime(pars, 1, MYZday, Lday, Lname)
-  class(pars$compute) = "na"
+  xds_obj <- make_xds_object_template('ode', 'mosy', nPatches, membership, residence)
+  xds_obj <- make_runtime(xds_obj, 1, MYZday, Lday, Lname)
+  class(xds_obj$compute) = "na"
 
   # Adult Mosquito Dynamics
-  pars$MYZname   <- MYZname
-  pars           <- setup_MYZpar(MYZname, pars, 1, MYZopts)
-  pars           <- setup_MYZinits(pars, 1, MYZopts)
+  xds_obj$MYZname   <- MYZname
+  xds_obj           <- setup_MYZpar(MYZname, xds_obj, 1, MYZopts)
+  xds_obj           <- setup_MYZinits(xds_obj, 1, MYZopts)
 
   # Aquatic Mosquito Dynamics
-  pars$Lname <- Lname
-  pars       <- setup_Lpar(Lname, pars, 1, Lopts)
-  pars       <- setup_Linits(pars, 1, Lopts)
+  xds_obj$Lname <- Lname
+  xds_obj       <- setup_Lpar(Lname, xds_obj, 1, Lopts)
+  xds_obj       <- setup_Linits(xds_obj, 1, Lopts)
 
   Xo <- list(kappa=kappa, HPop=HPop)
-  pars <- setup_Xpar("trivial", pars, 1, Xo)
+  xds_obj <- setup_Xpar("trivial", xds_obj, 1, Xo)
 
-  pars = make_indices(pars)
+  xds_obj = make_indices(xds_obj)
 
-  Qwts       <- with(Lopts, checkIt(searchQ, pars$nHabitats))
-  pars       <- change_habitat_weights(pars, Qwts, 1)
+  Qwts       <- with(Lopts, checkIt(searchQ, xds_obj$nHabitats))
+  xds_obj       <- change_habitat_weights(xds_obj, Qwts, 1)
 
   if(is.matrix(calK))
-    pars <- change_calK(calK, pars,1)
+    xds_obj <- change_calK(calK, xds_obj,1)
 
   # Probably Not Necessary
-  y0 <- as.vector(unlist(get_inits(pars)))
-  pars <- MBionomics(0, y0, pars,1)
-  pars <- EggLaying(0, y0, pars)
-  pars <- BloodFeeding(0, y0, pars)
+  y0 <- as.vector(unlist(get_inits(xds_obj)))
+  xds_obj <- MBionomics(0, y0, xds_obj,1)
+  xds_obj <- EggLaying(0, y0, xds_obj)
+  xds_obj <- BloodFeeding(0, y0, xds_obj)
 
-  pars$kappa[[1]] = checkIt(kappa, nPatches)
+  xds_obj$kappa[[1]] = checkIt(kappa, nPatches)
 
-  pars$model_name <- model_name
+  xds_obj$model_name <- model_name
 
-  return(pars)
+  return(xds_obj)
 }
 
 
@@ -275,31 +275,31 @@ xds_setup_aquatic = function(xds = 'ode',
 
   nPatches= nHabitats
   membership = 1:nHabitats
-  pars <- make_xds_template('ode', 'aquatic', nPatches, membership)
-  pars <- make_runtime(pars, 1, 1, Lday, Lname)
-  class(pars$compute) = "na"
+  xds_obj <- make_xds_object_template('ode', 'aquatic', nPatches, membership)
+  xds_obj <- make_runtime(xds_obj, 1, 1, Lday, Lname)
+  class(xds_obj$compute) = "na"
 
   # Aquatic Mosquito Dynamics
-  pars$Lname <- Lname
-  pars       <- setup_Lpar(Lname, pars, 1, Lopts)
-  pars       <- setup_Linits(pars, 1, Lopts)
+  xds_obj$Lname <- Lname
+  xds_obj       <- setup_Lpar(Lname, xds_obj, 1, Lopts)
+  xds_obj       <- setup_Linits(xds_obj, 1, Lopts)
 
   # Adult Mosquito Dynamics
-  pars$MYZname   <- "trivial"
-  pars           <- setup_MYZpar("trivial", pars, 1, MYZopts)
+  xds_obj$MYZname   <- "trivial"
+  xds_obj           <- setup_MYZpar("trivial", xds_obj, 1, MYZopts)
 
   # Human Dynamics
-  pars$Xname <- "trivial"
-  pars <- setup_Xpar("trivial", pars, 1, list())
+  xds_obj$Xname <- "trivial"
+  xds_obj <- setup_Xpar("trivial", xds_obj, 1, list())
 
   # Set `forced_by` 
   forced_by = "egg_laying"
   class(forced_by) = "egg_laying"
-  pars$forced_by = forced_by 
+  xds_obj$forced_by = forced_by 
   
-  pars = make_indices(pars)
-  pars$model_name <- model_name
-  return(pars)
+  xds_obj = make_indices(xds_obj)
+  xds_obj$model_name <- model_name
+  return(xds_obj)
 }
 
 
@@ -360,47 +360,47 @@ xds_setup_human = function(Xname = "SIS",
 ){
   stopifnot(length(HPop) == length(residence))
   membership=1
-  pars <- make_xds_template('ode', 'human', nPatches, membership, residence)
-  pars <- make_runtime(pars, Xday, 1, 1, "trivial")
-  pars$compute = 'na'
-  class(pars$compute) <- 'na'
+  xds_obj <- make_xds_object_template('ode', 'human', nPatches, membership, residence)
+  xds_obj <- make_runtime(xds_obj, Xday, 1, 1, "trivial")
+  xds_obj$compute = 'na'
+  class(xds_obj$compute) <- 'na'
 
 
   
   # Aquatic Mosquito Dynamics
-  pars       <- setup_Lpar("trivial", pars, 1, list())
-  pars       <- setup_Linits(pars, 1)
+  xds_obj       <- setup_Lpar("trivial", xds_obj, 1, list())
+  xds_obj       <- setup_Linits(xds_obj, 1)
 
   # Mosquito Dynamics
-  pars           <- setup_MYZpar("trivial", pars, 1, MYZopts)
+  xds_obj           <- setup_MYZpar("trivial", xds_obj, 1, MYZopts)
 
   # Human Dynamics
-  pars$Xname <- Xname
-  pars       <- setup_Xpar(Xname, pars,  1, Xopts)
-  pars       <- setup_Xinits(pars, HPop, 1, Xopts)
-  pars       <- setup_Hpar_static(pars, 1)
+  xds_obj$Xname <- Xname
+  xds_obj       <- setup_Xpar(Xname, xds_obj,  1, Xopts)
+  xds_obj       <- setup_Xinits(xds_obj, HPop, 1, Xopts)
+  xds_obj       <- setup_Hpar_static(xds_obj, 1)
 
-  pars = make_indices(pars)
+  xds_obj = make_indices(xds_obj)
 
-  wts        <- with(BFopts, checkIt(searchB, pars$nStrata))
-  pars       <- change_blood_weights(pars, wts, 1, 1)
+  wts        <- with(BFopts, checkIt(searchB, xds_obj$nStrata))
+  xds_obj       <- change_blood_weights(xds_obj, wts, 1, 1)
 
   if(is.matrix(TimeSpent))
-    pars <- change_TimeSpent(TimeSpent, pars, 1)
+    xds_obj <- change_TimeSpent(TimeSpent, xds_obj, 1)
 
   forced_by = "fqZ"
   class(forced_by) = "fqZ"
-  pars$forced_by = forced_by 
+  xds_obj$forced_by = forced_by 
   
   
   # Probably Not Necessary
-  y0 <- as.vector(unlist(get_inits(pars)))
-  pars <- BloodFeeding(0, y0, pars)
-  pars <- Transmission(0, y0, pars)
+  y0 <- as.vector(unlist(get_inits(xds_obj)))
+  xds_obj <- BloodFeeding(0, y0, xds_obj)
+  xds_obj <- Transmission(0, y0, xds_obj)
 
-  pars$model_name <- model_name
+  xds_obj$model_name <- model_name
 
-  return(pars)
+  return(xds_obj)
 }
 
 #' @title Build a Model of Human / Host Cohort Dynamics
@@ -460,64 +460,64 @@ xds_setup_cohort = function(eir=1,
   nPatches = length(HPop)
   residence = rep(1, length(HPop))
   membership = 1
-  pars <- make_xds_template('ode', 'cohort', nPatches, membership, residence)
-  pars <- make_runtime(pars, Xday, 1, 1, "trivial")
-  class(pars$compute) <- "na"
+  xds_obj <- make_xds_object_template('ode', 'cohort', nPatches, membership, residence)
+  xds_obj <- make_runtime(xds_obj, Xday, 1, 1, "trivial")
+  class(xds_obj$compute) <- "na"
 
-  pars$EIRpar <- list()
-  pars$EIRpar$eir <- eir
-  pars$EIRpar$scale <- 1
+  xds_obj$EIRpar <- list()
+  xds_obj$EIRpar$eir <- eir
+  xds_obj$EIRpar$scale <- 1
   
-  pars$EIRpar$F_season <- F_season
-  pars$EIRpar$season_par <- season_par
+  xds_obj$EIRpar$F_season <- F_season
+  xds_obj$EIRpar$season_par <- season_par
   if(length(season_par)>0){
-    pars$EIRpar$F_season <- make_function(season_par)
+    xds_obj$EIRpar$F_season <- make_function(season_par)
   } 
   
-  pars$EIRpar$F_trend <- F_trend
-  pars$EIRpar$trend_par <- trend_par
+  xds_obj$EIRpar$F_trend <- F_trend
+  xds_obj$EIRpar$trend_par <- trend_par
   if(length(trend_par)>0){
-    pars$EIRpar$F_trend <- make_function(trend_par) 
+    xds_obj$EIRpar$F_trend <- make_function(trend_par) 
   }
   
-  pars$EIRpar$F_age <- F_age
-  pars$EIRpar$age_par <- age_par
+  xds_obj$EIRpar$F_age <- F_age
+  xds_obj$EIRpar$age_par <- age_par
   if(length(age_par)>0){
-    pars$EIRpar$F_age <- make_function(age_par) 
+    xds_obj$EIRpar$F_age <- make_function(age_par) 
   } 
   
-  pars <- set_eir(eir, pars)
+  xds_obj <- set_eir(eir, xds_obj)
 
   # Aquatic Mosquito Dynamics
-  pars       <- setup_Lpar("trivial", pars, 1, list())
-  pars       <- setup_Linits(pars, 1)
+  xds_obj       <- setup_Lpar("trivial", xds_obj, 1, list())
+  xds_obj       <- setup_Linits(xds_obj, 1)
 
   # Adult Mosquito Dynamics
-  pars           <- setup_MYZpar("trivial", pars, 1, list())
+  xds_obj           <- setup_MYZpar("trivial", xds_obj, 1, list())
 
   # Human Dynamics
-  pars$Xname <- Xname
-  pars       <- setup_Xpar(Xname, pars,  1, Xopts)
-  pars       <- setup_Xinits(pars, HPop, 1, Xopts)
-  pars       <- setup_Hpar_static(pars, 1)
+  xds_obj$Xname <- Xname
+  xds_obj       <- setup_Xpar(Xname, xds_obj,  1, Xopts)
+  xds_obj       <- setup_Xinits(xds_obj, HPop, 1, Xopts)
+  xds_obj       <- setup_Hpar_static(xds_obj, 1)
 
-  pars = make_indices(pars)
+  xds_obj = make_indices(xds_obj)
 
-  wts        <- checkIt(searchB, pars$nStrata)
-  pars       <- change_blood_weights(pars, wts, 1, 1)
+  wts        <- checkIt(searchB, xds_obj$nStrata)
+  xds_obj       <- change_blood_weights(xds_obj, wts, 1, 1)
 
   # Probably Not Necessary
-  y0 <- as.vector(unlist(get_inits(pars)))
-  pars <- BloodFeeding(0, y0, pars)
+  y0 <- as.vector(unlist(get_inits(xds_obj)))
+  xds_obj <- BloodFeeding(0, y0, xds_obj)
 
-  pars$model_name <- model_name
+  xds_obj$model_name <- model_name
 
   # Set `forced_by` 
   forced_by = "cohort"
   class(forced_by) = "cohort"
-  pars$forced_by = forced_by 
+  xds_obj$forced_by = forced_by 
   
-  return(pars)
+  return(xds_obj)
 }
 
 #' @title Build a Model for a single Human / Host Epidemiology forced by the EIR
@@ -577,54 +577,55 @@ xds_setup_eir = function(eir=1,
   nPatches = length(HPop)
   residence = rep(1, length(HPop))
   membership = 1
-  pars <- make_xds_template('ode', 'eir', nPatches, membership, residence)
-  pars <- make_runtime(pars, Xday, 1, 1, "trivial")
-  class(pars$compute) <- "na"
+  
+  xds_obj <- make_xds_object_template('ode', 'eir', nPatches, membership, residence)
+  xds_obj <- make_runtime(xds_obj, Xday, 1, 1, "trivial")
+  class(xds_obj$compute) <- "na"
 
-  pars$EIRpar <- list()
-  pars$EIRpar$eir <- eir
-  pars$EIRpar$scale <- 1
-  pars$EIRpar$F_season <- F_season
-  pars$EIRpar$season_par <- season_par
+  xds_obj$EIRpar <- list()
+  xds_obj$EIRpar$eir <- eir
+  xds_obj$EIRpar$scale <- 1
+  xds_obj$EIRpar$F_season <- F_season
+  xds_obj$EIRpar$season_par <- season_par
   if(length(season_par)>0){
-    pars$EIRpar$F_season <- make_function(season_par)
+    xds_obj$EIRpar$F_season <- make_function(season_par)
   } 
-  pars$EIRpar$F_trend <- F_trend
-  pars$EIRpar$trend_par <- trend_par
+  xds_obj$EIRpar$F_trend <- F_trend
+  xds_obj$EIRpar$trend_par <- trend_par
   if(length(trend_par)>0){
-    pars$EIRpar$F_trend <- make_function(trend_par) 
+    xds_obj$EIRpar$F_trend <- make_function(trend_par) 
   }
   
-  pars <- set_eir(eir, pars)
+  xds_obj <- set_eir(eir, xds_obj)
 
   # Aquatic Mosquito Dynamics
-  pars       <- setup_Lpar("trivial", pars, 1, list())
-  pars       <- setup_Linits(pars, 1)
+  xds_obj       <- setup_Lpar("trivial", xds_obj, 1, list())
+  xds_obj       <- setup_Linits(xds_obj, 1)
 
   # Adult Mosquito Dynamics
-  pars           <- setup_MYZpar("trivial", pars, 1, list())
+  xds_obj           <- setup_MYZpar("trivial", xds_obj, 1, list())
 
   # Human Dynamics
-  pars$Xname <- Xname
-  pars       <- setup_Xpar(Xname, pars,  1, Xopts)
-  pars       <- setup_Xinits(pars, HPop, 1, Xopts)
-  pars       <- setup_Hpar_static(pars, 1)
+  xds_obj$Xname <- Xname
+  xds_obj       <- setup_Xpar(Xname, xds_obj,  1, Xopts)
+  xds_obj       <- setup_Xinits(xds_obj, HPop, 1, Xopts)
+  xds_obj       <- setup_Hpar_static(xds_obj, 1)
 
-  pars = make_indices(pars)
+  xds_obj = make_indices(xds_obj)
 
-  wts        <- checkIt(searchB, pars$nStrata)
-  pars       <- change_blood_weights(pars, wts, 1, 1)
+  wts        <- checkIt(searchB, xds_obj$nStrata)
+  xds_obj       <- change_blood_weights(xds_obj, wts, 1, 1)
 
   # Probably Not Necessary
-  y0 <- as.vector(unlist(get_inits(pars)))
-  pars <- BloodFeeding(0, y0, pars)
+  y0 <- as.vector(unlist(get_inits(xds_obj)))
+  xds_obj <- BloodFeeding(0, y0, xds_obj)
 
   # Set `forced_by` 
   forced_by = "eir"
   class(forced_by) = "eir"
-  pars$forced_by = forced_by 
+  xds_obj$forced_by = forced_by 
   
-  pars$model_name <- model_name
+  xds_obj$model_name <- model_name
 
-  return(pars)
+  return(xds_obj)
 }

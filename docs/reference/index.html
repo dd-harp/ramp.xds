@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -121,7 +121,7 @@
         <dd>Build a Model for a single Human / Host Epidemiology forced by the EIR</dd>
       </dl><dl><dt>
           
-          <code><a href="make_xds_template.html">make_xds_template()</a></code> 
+          <code><a href="make_xds_object_template.html">make_xds_object_template()</a></code> 
         </dt>
         <dd>Make an <strong><code>xds</code></strong> model object Template</dd>
       </dl><dl><dt>
@@ -129,6 +129,57 @@
           <code><a href="print.html">print(<i>&lt;xds_obj&gt;</i>)</a></code> 
         </dt>
         <dd>Print for xds_objects</dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="get-set-and-show-forcing">Get, Set, and Show Forcing<a class="anchor" aria-label="anchor" href="#get-set-and-show-forcing"></a></h3>
+      <div class="section-desc"><p>For models that are forced, get, set, and show aspects of the forcing assumption</p></div>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="get_mean_forcing.html">get_mean_forcing()</a></code> 
+        </dt>
+        <dd>Get mean forcing</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_mean_forcing.html">set_mean_forcing()</a></code> 
+        </dt>
+        <dd>Set mean forcing</dd>
+      </dl><dl><dt>
+          
+          <code><a href="show_season.html">show_season()</a></code> 
+        </dt>
+        <dd>Plot the seasonal pattern</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_season.html">get_season()</a></code> 
+        </dt>
+        <dd>Get seasonal pattern</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_season.html">set_season()</a></code> 
+        </dt>
+        <dd>Get seasonal pattern</dd>
+      </dl><dl><dt>
+          
+          <code><a href="show_trend.html">show_trend()</a></code> 
+        </dt>
+        <dd>Plot the temporal trend</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_trend.html">get_trend()</a></code> 
+        </dt>
+        <dd>Get the trend parameters</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_trend.html">set_trend()</a></code> 
+        </dt>
+        <dd>Set the interpolating points</dd>
       </dl></div><div class="section level2">
       
       <h3 id="solving-and-analysis">Solving and Analysis<a class="anchor" aria-label="anchor" href="#solving-and-analysis"></a></h3>
@@ -4072,34 +4123,44 @@
         <dd>Update the trend function</dd>
       </dl><dl><dt>
           
-          <code><a href="show_season.Lambda.html">show_season(<i>&lt;Lambda&gt;</i>)</a></code> 
-        </dt>
-        <dd>Plot the Fitted season</dd>
-      </dl><dl><dt>
-          
           <code><a href="show_season.html">show_season()</a></code> 
         </dt>
-        <dd>Plot the Fitted season</dd>
+        <dd>Plot the seasonal pattern</dd>
+      </dl><dl><dt>
+          
+          <code><a href="show_season.Lambda.html">show_season(<i>&lt;Lambda&gt;</i>)</a></code> 
+        </dt>
+        <dd>Plot the seasonal pattern</dd>
+      </dl><dl><dt>
+          
+          <code><a href="show_season.none.html">show_season(<i>&lt;none&gt;</i>)</a></code> 
+        </dt>
+        <dd>Plot the seasonal pattern</dd>
       </dl><dl><dt>
           
           <code><a href="show_season.eir.html">show_season(<i>&lt;eir&gt;</i>)</a></code> 
         </dt>
-        <dd>Plot the Fitted season</dd>
-      </dl><dl><dt>
-          
-          <code><a href="show_trend.Lambda.html">show_trend(<i>&lt;Lambda&gt;</i>)</a></code> 
-        </dt>
-        <dd>Plot the Fitted Trend</dd>
+        <dd>Plot the seasonal pattern</dd>
       </dl><dl><dt>
           
           <code><a href="show_trend.html">show_trend()</a></code> 
         </dt>
-        <dd>Plot the Fitted Trend</dd>
+        <dd>Plot the temporal trend</dd>
+      </dl><dl><dt>
+          
+          <code><a href="show_trend.Lambda.html">show_trend(<i>&lt;Lambda&gt;</i>)</a></code> 
+        </dt>
+        <dd>Plot the temporal trend</dd>
       </dl><dl><dt>
           
           <code><a href="show_trend.eir.html">show_trend(<i>&lt;eir&gt;</i>)</a></code> 
         </dt>
-        <dd>Plot the Fitted Trend</dd>
+        <dd>Plot the temporal trend</dd>
+      </dl><dl><dt>
+          
+          <code><a href="show_trend.none.html">show_trend(<i>&lt;none&gt;</i>)</a></code> 
+        </dt>
+        <dd>Plot the temporal trend</dd>
       </dl></div><div class="section level2">
       
       <h3 id="update-function">Update function<a class="anchor" aria-label="anchor" href="#update-function"></a></h3>
@@ -4383,27 +4444,27 @@
           
           <code><a href="set_season_pw.html">set_season_pw()</a></code> 
         </dt>
-        <dd>Set pw</dd>
+        <dd>Set pw, a seasonality shape parameter</dd>
       </dl><dl><dt>
           
           <code><a href="set_season_pw.none.html">set_season_pw(<i>&lt;none&gt;</i>)</a></code> 
         </dt>
-        <dd>Set pw</dd>
+        <dd>Set pw, a seasonality shape parameter</dd>
       </dl><dl><dt>
           
           <code><a href="set_season_pw.Lambda.html">set_season_pw(<i>&lt;Lambda&gt;</i>)</a></code> 
         </dt>
-        <dd>Set pw</dd>
+        <dd>Set pw, a seasonality shape parameter</dd>
       </dl><dl><dt>
           
           <code><a href="set_season_pw.eir.html">set_season_pw(<i>&lt;eir&gt;</i>)</a></code> 
         </dt>
-        <dd>Set pw</dd>
+        <dd>Set pw, a seasonality shape parameter</dd>
       </dl><dl><dt>
           
           <code><a href="set_season_pw.cohort.html">set_season_pw(<i>&lt;cohort&gt;</i>)</a></code> 
         </dt>
-        <dd>set pw</dd>
+        <dd>Set pw, a seasonality shape parameter</dd>
       </dl></div><div class="section level2">
       
       <h3 id="get-and-set-for-spline-trend-functions">Get and Set for Spline Trend Functions<a class="anchor" aria-label="anchor" href="#get-and-set-for-spline-trend-functions"></a></h3>

@@ -2,12 +2,12 @@
 % Please edit documentation in R/set_season_pw.R
 \name{set_season_pw.Lambda}
 \alias{set_season_pw.Lambda}
-\title{Set pw}
+\title{Set pw, a seasonality shape parameter}
 \usage{
-\method{set_season_pw}{Lambda}(X, xds_obj, s = 1)
+\method{set_season_pw}{Lambda}(pw, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{a named list with the new parameter values}
+\item{pw}{a named list with the new parameter values}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 

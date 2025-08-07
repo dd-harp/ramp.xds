@@ -11,6 +11,9 @@ get_XH(pars, i = 1)
 
 \item{i}{the host species index}
 }
+\value{
+the orbits for the \strong{XH} component
+}
 \description{
 Get \strong{XH} outputs
 }

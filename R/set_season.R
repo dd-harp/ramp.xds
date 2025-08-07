@@ -3,7 +3,7 @@
 #' @description
 #' Get the parameters set the seasonal pattern
 #' 
-#' @param X the new bottom parameter
+#' @param X a list with new parameters for bottom, phase, and pw 
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param s the vector species index
 #' 
@@ -21,7 +21,7 @@ set_season = function(X, xds_obj, s=1){
   if(length(X$pw) == xds_obj$nPatches)
     xds_obj <- set_season_pw(X$pw, xds_obj, s)
  
-  xds_obj <- update_F_season(xds_obj) 
+  xds_obj <- update_F_season(xds_obj, s) 
   
   return(xds_obj)
 }

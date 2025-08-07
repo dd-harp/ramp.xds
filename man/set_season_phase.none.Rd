@@ -4,17 +4,17 @@
 \alias{set_season_phase.none}
 \title{Set phase}
 \usage{
-\method{set_season_phase}{none}(X, xds_obj, s = 1)
+\method{set_season_phase}{none}(phase, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new phase parameter}
+\item{phase}{the new phase parameter}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{s}{the vector species index}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+the unmodified \strong{\code{ramp.xds}} model object
 }
 \description{
 Implement \code{set_season_phase} for a model

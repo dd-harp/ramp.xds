@@ -71,7 +71,7 @@ set up parameters. Please note that this only runs the aquatic mosquito componen
 nHabitats <- 3
 nPatches=nHabitats
 membership=1:nPatches
-params <- make_xds_template("ode", "aquatic", nPatches, membership)
+params <- make_xds_object_template("ode", "aquatic", nPatches, membership)
 ```
 
 

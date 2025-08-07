@@ -64,8 +64,20 @@ reference:
   - xds_setup_human
   - xds_setup_cohort
   - xds_setup_eir
-  - make_xds_template
+  - make_xds_object_template
   - print.xds_obj
+- subtitle: Get, Set, and Show Forcing
+  desc: |
+    For models that are forced, get, set, and show aspects of the forcing assumption
+  contents:
+  - get_mean_forcing
+  - set_mean_forcing
+  - show_season
+  - get_season
+  - set_season
+  - show_trend
+  - get_trend
+  - set_trend
 - subtitle: Solving and Analysis 
   desc: |
     Methods to solve or analyze equations
@@ -940,12 +952,14 @@ reference:
   - update_F_trend 
   - update_F_trend.cohort 
   - update_F_trend.eir
-  - show_season.Lambda 
   - show_season 
+  - show_season.Lambda 
+  - show_season.none
   - show_season.eir 
-  - show_trend.Lambda 
   - show_trend 
+  - show_trend.Lambda 
   - show_trend.eir
+  - show_trend.none
 - subtitle: Update function 
   desc: |
     A flexibile utility to update a vector 
@@ -964,7 +978,6 @@ reference:
   - modify_vector_X.NULL
   - modify_vector_X.numeric
   - modify_vector_X.list
-
 - subtitle: Get and Set for Mean Forcing 
   desc: |
     Functions to change Forcing 
@@ -984,6 +997,10 @@ reference:
     Utilities to change  
   contents: 
   - get_season
+  - get_season_par
+  - get_season_par.Lambda
+  - get_season_par.eir
+  - get_season_par.cohort
   - get_season_phase
   - get_season_phase.none
   - get_season_phase.Lambda

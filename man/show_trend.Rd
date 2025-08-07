@@ -2,20 +2,21 @@
 % Please edit documentation in R/show_trend.R
 \name{show_trend}
 \alias{show_trend}
-\title{Plot the Fitted Trend}
+\title{Plot the temporal trend}
 \usage{
-show_trend(model, dt = 10, add = FALSE)
+show_trend(xds_obj, tm = seq(0, 3650, by = 10), add = FALSE)
 }
 \arguments{
-\item{model}{a \strong{`ramp.xds} model object}
+\item{xds_obj}{a \strong{`ramp.xds} model object}
 
-\item{dt}{the outputs interval}
+\item{tm}{the time points}
 
 \item{add}{add to existing plot}
 }
 \value{
-a \strong{`ramp.xds} model object
+the temporal trend, invisibly
 }
 \description{
-Plot the Fitted Trend
+For a model with temporal forcing,
+show the temporal trend
 }
