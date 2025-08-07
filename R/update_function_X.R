@@ -27,7 +27,7 @@ update_function_X = function(X, ix, xds_obj, update, s=1){
 update_function_X.mean_forcing = function(X, ix, xds_obj, update="mean_forcing", s=1){
   avg   <- get_mean_forcing(xds_obj)
   avg   <- modify_vector_X(X, ix, avg)
-  xds_obj <- set_mean_forcing(X, xds_obj, s) 
+  xds_obj <- set_mean_forcing(avg, xds_obj, s)
   return(xds_obj)
 }
 
