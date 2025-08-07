@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -351,7 +351,7 @@ equilibrium values.</p>
 initial values. These equations have been implemented to compute <span class="math inline">\(\Upsilon\)</span> dynamically, so we attach
 <code>Upsilon</code> as initial values:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_xds_template.html">make_xds_template</a></span><span class="op">(</span><span class="st">"dde"</span>, <span class="st">"mosy"</span>, <span class="va">nPatches</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_xds_object_template.html">make_xds_object_template</a></span><span class="op">(</span><span class="st">"dde"</span>, <span class="st">"mosy"</span>, <span class="va">nPatches</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_MYZpar.html">setup_MYZpar</a></span><span class="op">(</span><span class="st">"macdonald"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZo</span><span class="op">)</span>  </span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_MYZinits.html">setup_MYZinits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span>, <span class="va">MYZo</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Xpar.html">setup_Xpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Xo</span><span class="op">)</span> </span>

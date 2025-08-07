@@ -57,7 +57,7 @@ Advanced options can be configured after basic setup."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -241,17 +241,17 @@ Make an <strong><code>xds</code></strong> <em>model object</em>:</p><ul><li><p>D
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
 
-<ol><li><p>Using the basic structural parameters, a basic template is created by <a href="make_xds_template.html">make_xds_template</a> with
-a properly configured interface for blood feeding and egg laying, and <code>pars$frame = class(pars$frame) = 'full'</code> .</p><ul><li><p><code>nPatches</code> is passed as a parameter</p></li>
+<ol><li><p>Using the basic structural parameters, a basic template is created by <a href="make_xds_object_template.html">make_xds_object_template</a> with
+a properly configured interface for blood feeding and egg laying, and <code>xds_obj$frame = class(xds_obj$frame) = 'full'</code> .</p><ul><li><p><code>nPatches</code> is passed as a parameter</p></li>
 <li><p><code>nHabitats</code> is configured by passing the habitat <code>membership</code> vector, and <code>nHabitats = length(membership)</code></p></li>
 <li><p><code>nStrata</code> is configured by passing a vector of human population densities and a residence vector, and <code>nStrata = length(residence) = length(HPop)</code></p></li>
 <li><p><code>nHostSpecies=1</code> (basic setup handles only the first host species)</p></li>
 <li><p><code>nVectorSpecies=1</code> (basic setup handles only the first vector species)</p></li>
 </ul></li>
 </ol><p>.
-2. Each one of the dynamical components is configured.</p><ul><li><p><strong><code>pars$Xpar[[1]]</code></strong> defines a model for human / host infection dynamics of class <code>Xname</code> (the <strong>X</strong> component). The parameter values passed in a named list, <code>Xopts.</code></p></li>
-<li><p><strong><code>pars$MYZpar[[1]]</code></strong> defines a model for adult mosquito ecology &amp; infection dynamics of class <code>MYZname</code> (the <strong>MYZ</strong> Component). The parameter values are passed in a named list, <code>MYZopts.</code></p></li>
-<li><p><strong><code>pars$Lpar[[1]]</code></strong> defines a model for aquatic mosquito ecology of class <code>Lname</code> (The <strong>L</strong> Component). The parameter values are passed in a named list, <code>Lopts.</code></p></li>
+2. Each one of the dynamical components is configured.</p><ul><li><p><strong><code>xds_obj$Xpar[[1]]</code></strong> defines a model for human / host infection dynamics of class <code>Xname</code> (the <strong>X</strong> component). The parameter values passed in a named list, <code>Xopts.</code></p></li>
+<li><p><strong><code>xds_obj$MYZpar[[1]]</code></strong> defines a model for adult mosquito ecology &amp; infection dynamics of class <code>MYZname</code> (the <strong>MYZ</strong> Component). The parameter values are passed in a named list, <code>MYZopts.</code></p></li>
+<li><p><strong><code>xds_obj$Lpar[[1]]</code></strong> defines a model for aquatic mosquito ecology of class <code>Lname</code> (The <strong>L</strong> Component). The parameter values are passed in a named list, <code>Lopts.</code></p></li>
 </ul><ol><li><p>After configuring the dynamical components, several structural parameters can be configured at the command line:</p><ul><li><p>Habitat search weights can be set</p></li>
 <li><p>Host population search weights can be set</p></li>
 <li><p>A mosquito dispersal matrix, \(\cal K\), can be set</p></li>
@@ -269,7 +269,7 @@ ecology need not include states describing infection status (see <a href="xds_se
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="make_xds_template.html">make_xds_template</a></p></div>
+    <div class="dont-index"><p><a href="make_xds_object_template.html">make_xds_object_template</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

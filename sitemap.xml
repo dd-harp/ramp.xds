@@ -339,6 +339,10 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_season_bottom.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_season_bottom.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_season_bottom.none.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_season_par.Lambda.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_season_par.cohort.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_season_par.eir.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_season_par.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_season_phase.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_season_phase.cohort.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_season_phase.eir.html</loc></url>
@@ -362,6 +366,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_s.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_s.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_terms.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_trend.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/index.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/last_to_inits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/list_Lvars.basicL.html</loc></url>
@@ -440,7 +445,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_runtime.dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_runtime.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_runtime.xde.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_xds_template.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_nproduct.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_one.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_product.html</loc></url>
@@ -552,6 +557,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_spline_y.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_spline_y.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_spline_y.none.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/set_trend.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_BLOOD_FEEDING.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_EGG_LAYING.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_EIP.fixedlag_dts.html</loc></url>
@@ -623,9 +629,11 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/show_season.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/show_season.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/show_season.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/show_season.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/show_trend.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/show_trend.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/show_trend.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/show_trend.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/travel_eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/traveling.dynamic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/traveling.html</loc></url>
