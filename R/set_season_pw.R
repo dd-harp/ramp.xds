@@ -6,12 +6,13 @@
 #' 
 #' @param pw a named list with the new parameter values 
 #' @param xds_obj a **`ramp.xds`** model object
-#' @param s the vector species index
+#' @param s the vector species inde
+#' @param compile_F if true, call `update_F_season` 
 #'
 #' @return a **`ramp.xds`** model object
 #' 
 #' @export
-set_season_pw = function(pw, xds_obj, s=1){
+set_season_pw = function(pw, xds_obj, s=1, compile_F=TRUE){
   UseMethod("set_season_pw", xds_obj$forced_by) 
 }
 
@@ -26,7 +27,7 @@ set_season_pw = function(pw, xds_obj, s=1){
 #' @return a **`ramp.xds`** model object
 #' 
 #' @export
-set_season_pw.none = function(pw, xds_obj, s=1){
+set_season_pw.none = function(pw, xds_obj, s=1, compile_F=TRUE){
   return(xds_obj)
 }
 
@@ -42,10 +43,11 @@ set_season_pw.none = function(pw, xds_obj, s=1){
 #' @return the **`ramp.xds`** model object
 #' 
 #' @export
-set_season_pw.Lambda = function(pw, xds_obj, s=1){
+set_season_pw.Lambda = function(pw, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$Lpar[[s]]$season_par$pw) == length(pw))
   xds_obj$Lpar[[s]]$season_par$pw = pw
   xds_obj = update_F_season(xds_obj, s)
+  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }
 
@@ -61,10 +63,11 @@ set_season_pw.Lambda = function(pw, xds_obj, s=1){
 #' @return a **`ramp.xds`** model object
 #' 
 #' @export
-set_season_pw.eir = function(pw, xds_obj, s=1){
+set_season_pw.eir = function(pw, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$EIRpar$season_par$pw) == length(pw))
   xds_obj$EIRpar$season_par$pw = pw
   xds_obj = update_F_season(xds_obj, s)
+  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }
 
@@ -80,9 +83,10 @@ set_season_pw.eir = function(pw, xds_obj, s=1){
 #' @return a **`ramp.xds`** model object
 #' 
 #' @export
-set_season_pw.cohort = function(pw, xds_obj, s=1){
+set_season_pw.cohort = function(pw, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$EIRpar$season_par$pw) == length(pw))
   xds_obj$EIRpar$season_par$pw = pw
   xds_obj = update_F_season(xds_obj, s)
+  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }  

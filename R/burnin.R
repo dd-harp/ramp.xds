@@ -5,13 +5,13 @@
 #' Reset the initial conditions.
 #'
 #' @param model a **`ramp.xds`** model object
-#' @param neg_inf_yr run from -neg_inf_yr years to the present
+#' @param t_neg_inf run from -abs(t_neg_inf) days to \eqn{t=0} 
 #'
 #' @returns a **`ramp.xds`** model object
 #'
 #' @export
-burnin = function(model, neg_inf_yr = 10){
-  times = c(-abs(neg_inf_yr)*365, 0)
+burnin = function(model, t_neg_inf = -3650){
+  times = c(-abs(t_neg_inf), 0)
   model <- xds_solve(model, times=times)
   model <- last_to_inits(model)
   return(model)

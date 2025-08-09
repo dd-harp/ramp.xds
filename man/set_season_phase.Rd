@@ -4,7 +4,7 @@
 \alias{set_season_phase}
 \title{Set phase}
 \usage{
-set_season_phase(phase, xds_obj, s = 1)
+set_season_phase(phase, xds_obj, s = 1, compile_F = TRUE)
 }
 \arguments{
 \item{phase}{the new phase parameter}
@@ -12,6 +12,8 @@ set_season_phase(phase, xds_obj, s = 1)
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{s}{the vector species index}
+
+\item{compile_F}{if true, call \code{update_F_season}}
 }
 \value{
 a \strong{\code{ramp.xds}} model object
