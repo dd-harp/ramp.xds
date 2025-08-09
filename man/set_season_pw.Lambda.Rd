@@ -4,14 +4,16 @@
 \alias{set_season_pw.Lambda}
 \title{Set pw, a seasonality shape parameter}
 \usage{
-\method{set_season_pw}{Lambda}(pw, xds_obj, s = 1)
+\method{set_season_pw}{Lambda}(pw, xds_obj, s = 1, compile_F = TRUE)
 }
 \arguments{
 \item{pw}{a named list with the new parameter values}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{s}{the vector species index}
+\item{s}{the vector species inde}
+
+\item{compile_F}{if true, call \code{update_F_season}}
 }
 \value{
 the \strong{\code{ramp.xds}} model object
