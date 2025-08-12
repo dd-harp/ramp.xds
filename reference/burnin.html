@@ -72,7 +72,7 @@ Reset the initial conditions.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">burnin</span><span class="op">(</span><span class="va">model</span>, neg_inf_yr <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">burnin</span><span class="op">(</span><span class="va">model</span>, t_neg_inf <span class="op">=</span> <span class="op">-</span><span class="fl">3650</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -83,8 +83,8 @@ Reset the initial conditions.</p>
 <dd><p>a <strong><code>ramp.xds</code></strong> model object</p></dd>
 
 
-<dt id="arg-neg-inf-yr">neg_inf_yr<a class="anchor" aria-label="anchor" href="#arg-neg-inf-yr"></a></dt>
-<dd><p>run from -neg_inf_yr years to the present</p></dd>
+<dt id="arg-t-neg-inf">t_neg_inf<a class="anchor" aria-label="anchor" href="#arg-t-neg-inf"></a></dt>
+<dd><p>run from -abs(t_neg_inf) days to \(t=0\)</p></dd>
 
 </dl></div>
     <div class="section level2">

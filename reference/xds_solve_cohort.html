@@ -69,14 +69,14 @@ as it ages, up to age \(A\) years of age</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xds_solve_cohort</span><span class="op">(</span><span class="va">pars</span>, bday <span class="op">=</span> <span class="fl">0</span>, A <span class="op">=</span> <span class="fl">10</span>, da <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xds_solve_cohort</span><span class="op">(</span><span class="va">xds_obj</span>, bday <span class="op">=</span> <span class="fl">0</span>, A <span class="op">=</span> <span class="fl">10</span>, da <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-pars">pars<a class="anchor" aria-label="anchor" href="#arg-pars"></a></dt>
+<dl><dt id="arg-xds-obj">xds_obj<a class="anchor" aria-label="anchor" href="#arg-xds-obj"></a></dt>
 <dd><p>an <strong><code>xds</code></strong> object</p></dd>
 
 
@@ -112,7 +112,7 @@ are related by the formula:
 $$t = B + a$$
 and the trace function is:
 $$E(a, t) = \hat E \; \omega(a) \; S(t)\; T(t) $$
-The output is returned as <code>pars$outputs$cohort</code></p>
+The output is returned as <code>xds_obj$outputs$cohort</code></p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

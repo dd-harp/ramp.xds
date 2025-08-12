@@ -461,10 +461,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/metric_calR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/metric_calV.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/metric_calZ.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/modify_vector_X.NULL.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/modify_vector_X.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/modify_vector_X.list.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/modify_vector_X.numeric.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_Lorbits.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_Lorbits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_Lorbits.trivial.html</loc></url>
@@ -523,9 +519,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_Xpars.hMoI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_Xpars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_Xpars.trivial.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/set_eir.cohort.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/set_eir.eir.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/set_eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_mean_forcing.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_mean_forcing.cohort.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/set_mean_forcing.eir.html</loc></url>
@@ -665,12 +658,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/update_Xinits.hMoI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/update_Xinits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/update_Xinits.trivial.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/update_function_X.amplitude.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/update_function_X.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/update_function_X.mean_forcing.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/update_function_X.phase.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/update_function_X.season.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/update_function_X.trend.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/update_inits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/view_habitat_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/view_residence_matrix.html</loc></url>
