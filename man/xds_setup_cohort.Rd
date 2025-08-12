@@ -66,7 +66,7 @@ to compare the outcomes for cohorts of different ages when exposure is
 changing.
 
 The interface includes options to configure a function
-describing \code{F_eir} as a function of time, with seasonal components
+computing dEIR as a function of time, with seasonal components
 and a trend. Exposure in a cohort is a function of its age, including
 a function that modifies exposure by age.
 }

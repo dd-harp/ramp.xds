@@ -417,7 +417,7 @@ xds_setup_human = function(Xname = "SIS",
 #' changing.
 #'
 #' The interface includes options to configure a function
-#' describing `F_eir` as a function of time, with seasonal components
+#' computing dEIR as a function of time, with seasonal components
 #' and a trend. Exposure in a cohort is a function of its age, including
 #' a function that modifies exposure by age.
 #'
@@ -486,8 +486,11 @@ xds_setup_cohort = function(eir=1,
     xds_obj$EIRpar$F_age <- make_function(age_par) 
   } 
   
-  xds_obj <- set_eir(eir, xds_obj)
-
+  xds_obj$F_eir=function(age, birthday){with(xds_obj$EIRpar,{
+    t = age+birthday
+    eir*F_season(t)*F_trend(t)*F_age(age)
+  })}
+  
   # Aquatic Mosquito Dynamics
   xds_obj       <- setup_Lpar("trivial", xds_obj, 1, list())
   xds_obj       <- setup_Linits(xds_obj, 1)
@@ -534,7 +537,7 @@ xds_setup_cohort = function(eir=1,
 #'
 #'
 #' The interface includes options to configure a function
-#' describing `F_eir` as a function of time, with seasonal components
+#' compute the daily EIR as a function of time, with seasonal components
 #' and a trend. Exposure in a cohort is a function of its age, including
 #' a function that modifies exposure by age. Models set up 
 #' with `xds_setup_eir` are like models set up with 
@@ -585,6 +588,7 @@ xds_setup_eir = function(eir=1,
   xds_obj$EIRpar <- list()
   xds_obj$EIRpar$eir <- eir
   xds_obj$EIRpar$scale <- 1
+  
   xds_obj$EIRpar$F_season <- F_season
   xds_obj$EIRpar$season_par <- season_par
   if(length(season_par)>0){
@@ -596,8 +600,6 @@ xds_setup_eir = function(eir=1,
     xds_obj$EIRpar$F_trend <- make_function(trend_par) 
   }
   
-  xds_obj <- set_eir(eir, xds_obj)
-
   # Aquatic Mosquito Dynamics
   xds_obj       <- setup_Lpar("trivial", xds_obj, 1, list())
   xds_obj       <- setup_Linits(xds_obj, 1)

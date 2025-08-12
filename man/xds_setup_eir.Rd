@@ -58,7 +58,7 @@ The \strong{\code{xds}} object defines \code{frame = class(frame) = 'eir'}
 to dispatch \link{xde_derivatives.eir} or \link{dts_update.eir}
 
 The interface includes options to configure a function
-describing \code{F_eir} as a function of time, with seasonal components
+compute the daily EIR as a function of time, with seasonal components
 and a trend. Exposure in a cohort is a function of its age, including
 a function that modifies exposure by age. Models set up
 with \code{xds_setup_eir} are like models set up with

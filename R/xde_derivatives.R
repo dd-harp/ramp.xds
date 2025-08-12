@@ -145,7 +145,7 @@ xde_derivatives.aquatic <- function(t, y, pars) {
 xde_derivatives.eir <- function(t, y, pars) {
 
   # EIR: entomological inoculation rate trace
-  pars$EIR[[1]] <- pars$F_eir(t)
+  pars$EIR[[1]] <- with(pars$EIRpar, eir*F_season(t)*F_trend(t)) 
   
   # FoI: force of infection
   pars <- Exposure(t, y, pars)

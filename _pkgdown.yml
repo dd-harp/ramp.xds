@@ -139,9 +139,6 @@ reference:
     Methods to set up basic models
   contents:
   - set_H
-  - set_eir
-  - set_eir.cohort
-  - set_eir.eir
   - update_inits
   - last_to_inits
   - parse_orbits

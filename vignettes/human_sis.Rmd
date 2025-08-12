@@ -130,7 +130,6 @@ params$EIRpar$scale <- 1
 params$EIRpar$F_season <- F_season
 params$EIRpar$F_trend <- F_trend
 params$EIRpar$F_age <- F_age
-params <- set_eir(eir, params)
 ```
 
 ```{r}

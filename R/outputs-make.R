@@ -61,6 +61,6 @@ make_outputs.eir = function(pars, de_vars, tm){
   pars$outputs$orbits <- parse_orbits(de_vars, pars)
   pars$outputs$terms <- list()
   pars$outputs$terms$EIR <- list()
-  pars$outputs$terms$EIR[[1]] <- with(pars, F_eir(tm))
+  pars$outputs$terms$EIR[[1]] <- with(pars$EIRpar, eir*F_season(tm)*F_trend(tm))
   return(pars)
 }
