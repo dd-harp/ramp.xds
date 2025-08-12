@@ -4,12 +4,12 @@
 \alias{burnin}
 \title{Burn-in}
 \usage{
-burnin(model, neg_inf_yr = 10)
+burnin(model, t_neg_inf = -3650)
 }
 \arguments{
 \item{model}{a \strong{\code{ramp.xds}} model object}
 
-\item{neg_inf_yr}{run from -neg_inf_yr years to the present}
+\item{t_neg_inf}{run from -abs(t_neg_inf) days to \eqn{t=0}}
 }
 \value{
 a \strong{\code{ramp.xds}} model object

@@ -4,7 +4,7 @@
 \alias{xde_cohort_desolve.ode}
 \title{Solve a system of equations as a ode}
 \usage{
-\method{xde_cohort_desolve}{ode}(birthday, inits, times, pars)
+\method{xde_cohort_desolve}{ode}(birthday, inits, times, xds_obj)
 }
 \arguments{
 \item{birthday}{a cohort birthday}
@@ -13,7 +13,7 @@
 
 \item{times}{= the times}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
 a \link{list}

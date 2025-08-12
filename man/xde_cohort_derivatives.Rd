@@ -4,14 +4,14 @@
 \alias{xde_cohort_derivatives}
 \title{Differential equation models for human cohorts}
 \usage{
-xde_cohort_derivatives(age, y, pars, birthday)
+xde_cohort_derivatives(age, y, xds_obj, birthday)
 }
 \arguments{
 \item{age}{host age}
 
 \item{y}{the state variables}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 
 \item{birthday}{the cohort birthday}
 }

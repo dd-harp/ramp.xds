@@ -4,7 +4,7 @@
 \alias{set_season_bottom.Lambda}
 \title{Set bottom}
 \usage{
-\method{set_season_bottom}{Lambda}(bottom, xds_obj, s = 1)
+\method{set_season_bottom}{Lambda}(bottom, xds_obj, s = 1, compile_F = TRUE)
 }
 \arguments{
 \item{bottom}{the new bottom parameter}
@@ -12,6 +12,8 @@
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{s}{the vector species index}
+
+\item{compile_F}{if true, call \code{update_F_season}}
 }
 \value{
 the \strong{\code{ramp.xds}} model object

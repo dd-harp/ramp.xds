@@ -139,9 +139,6 @@ reference:
     Methods to set up basic models
   contents:
   - set_H
-  - set_eir
-  - set_eir.cohort
-  - set_eir.eir
   - update_inits
   - last_to_inits
   - parse_orbits
@@ -960,24 +957,6 @@ reference:
   - show_trend.Lambda 
   - show_trend.eir
   - show_trend.none
-- subtitle: Update function 
-  desc: |
-    A flexibile utility to update a vector 
-  contents:
-  - update_function_X 
-  - update_function_X.mean_forcing
-  - update_function_X.phase
-  - update_function_X.amplitude
-  - update_function_X.season
-  - update_function_X.trend
-- subtitle: Modify Vector 
-  desc: |
-    A flexibile utility to update a vector 
-  contents:
-  - modify_vector_X
-  - modify_vector_X.NULL
-  - modify_vector_X.numeric
-  - modify_vector_X.list
 - subtitle: Get and Set for Mean Forcing 
   desc: |
     Functions to change Forcing 

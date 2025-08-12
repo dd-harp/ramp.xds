@@ -4,10 +4,10 @@
 \alias{xds_solve_cohort}
 \title{Cohort dynamics for a human / host model}
 \usage{
-xds_solve_cohort(pars, bday = 0, A = 10, da = 10)
+xds_solve_cohort(xds_obj, bday = 0, A = 10, da = 10)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 
 \item{bday}{the cohort birthday}
 
@@ -41,5 +41,5 @@ are related by the formula:
 \deqn{t = B + a}
 and the trace function is:
 \deqn{E(a, t) = \hat E \; \omega(a) \; S(t)\; T(t) }
-The output is returned as \code{pars$outputs$cohort}
+The output is returned as \code{xds_obj$outputs$cohort}
 }

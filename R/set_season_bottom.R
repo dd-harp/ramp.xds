@@ -7,11 +7,12 @@
 #' @param bottom the new bottom parameter
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param s the vector species index
+#' @param compile_F if true, call `update_F_season` 
 #'
 #' @return a **`ramp.xds`** model object
 #' 
 #' @export
-set_season_bottom = function(bottom, xds_obj, s=1){
+set_season_bottom = function(bottom, xds_obj, s=1, compile_F=TRUE){
   UseMethod("set_season_bottom", xds_obj$forced_by) 
 }
 
@@ -26,7 +27,7 @@ set_season_bottom = function(bottom, xds_obj, s=1){
 #' @return a **`ramp.xds`** model object
 #' 
 #' @export
-set_season_bottom.none = function(bottom, xds_obj, s=1){
+set_season_bottom.none = function(bottom, xds_obj, s=1, compile_F=TRUE){
   return(xds_obj)
 }
 
@@ -42,10 +43,10 @@ set_season_bottom.none = function(bottom, xds_obj, s=1){
 #' @return the **`ramp.xds`** model object
 #' 
 #' @export
-set_season_bottom.Lambda = function(bottom, xds_obj, s=1){
+set_season_bottom.Lambda = function(bottom, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$Lpar[[s]]$season_par$bottom) == length(bottom))
   xds_obj$Lpar[[s]]$season_par$bottom = bottom
-  xds_obj = update_F_season(xds_obj, s)
+  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }
 
@@ -61,10 +62,10 @@ set_season_bottom.Lambda = function(bottom, xds_obj, s=1){
 #' @return a **`ramp.xds`** model object
 #' 
 #' @export
-set_season_bottom.eir = function(bottom, xds_obj, s=1){
+set_season_bottom.eir = function(bottom, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$EIRpar$season_par$bottom) == length(bottom))
   xds_obj$EIRpar$season_par$bottom = bottom
-  xds_obj = update_F_season(xds_obj, s)
+  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }
 
@@ -78,9 +79,9 @@ set_season_bottom.eir = function(bottom, xds_obj, s=1){
 #' @inheritParams set_season_bottom
 #' 
 #' @export
-set_season_bottom.cohort = function(bottom, xds_obj, s=1){
+set_season_bottom.cohort = function(bottom, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$EIRpar$season_par$bottom) == length(bottom))
   xds_obj$EIRpar$season_par$bottom = bottom
-  xds_obj = update_F_season(xds_obj, s)
+  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }  

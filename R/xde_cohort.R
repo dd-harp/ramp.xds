@@ -20,35 +20,34 @@
 #' \deqn{t = B + a}
 #' and the trace function is:
 #'  \deqn{E(a, t) = \hat E \; \omega(a) \; S(t)\; T(t) }
-#' The output is returned as `pars$outputs$cohort`
-#' @param pars an **`xds`** object
+#' The output is returned as `xds_obj$outputs$cohort`
+#' @param xds_obj an **`xds`** object
 #' @param bday the cohort birthday
 #' @param A the maximum age to compute (in years)
 #' @param da the output interval (age, in days)
 #' @return an **`xds`** object
 #' @export
-xds_solve_cohort = function(pars, bday=0, A=10, da=10){
-
-  pars <- set_eir(pars$EIRpar$eir, pars)
+xds_solve_cohort = function(xds_obj, bday=0, A=10, da=10){
 
   age <- seq(0, A*365, by=da) 
   
-  y0 = get_inits(pars, flatten=TRUE)
+  y0 = get_inits(xds_obj, flatten=TRUE)
 
-  xde_cohort_desolve(bday, y0, age, pars) -> deout
+  xde_cohort_desolve(bday, y0, age, xds_obj) -> deout
   de_vars <- deout[,-1]
 
-  pars$outputs$orbits <- list()
-  pars$outputs$orbits$XH <- list()
-  pars$outputs$orbits$XH[[1]] <- parse_orbits(de_vars, pars)$XH[[1]]
-  pars$outputs$last_y <- tail(de_vars, 1)
-  pars$outputs$orbits$age <- age
-  pars$outputs$orbits$time <- age+bday
-  pars$outputs$time <- age+bday
-  pars$outputs$terms <- list()
-  pars$outputs$terms$EIR <- list()
-  pars$outputs$terms$EIR[[1]] <- with(pars, F_eir(age, bday))
-  return(pars)
+  xds_obj$outputs$orbits <- list()
+  xds_obj$outputs$orbits$XH <- list()
+  xds_obj$outputs$orbits$XH[[1]] <- parse_orbits(de_vars, xds_obj)$XH[[1]]
+  xds_obj$outputs$last_y <- tail(de_vars, 1)
+  xds_obj$outputs$orbits$age <- age
+  xds_obj$outputs$orbits$time <- age+bday
+  tm <- age + bday
+  xds_obj$outputs$time <- tm 
+  xds_obj$outputs$terms <- list()
+  xds_obj$outputs$terms$EIR <- list()
+  xds_obj$outputs$terms$EIR[[1]] <- with(xds_obj$EIRpar, eir*F_season(tm)*F_trend(tm)*F_age(age))
+  return(xds_obj)
 }
 
 #' @title Differential equation models for human cohorts
@@ -56,22 +55,22 @@ xds_solve_cohort = function(pars, bday=0, A=10, da=10){
 #' generic methods for each model component.
 #' @param age host age
 #' @param y the state variables
-#' @param pars an **`xds`** object
+#' @param xds_obj an **`xds`** object
 #' @param birthday the cohort birthday
 #' @return a [list] containing the vector of all state derivatives
 #' @export
-xde_cohort_derivatives <- function(age, y, pars, birthday) {
+xde_cohort_derivatives <- function(age, y, xds_obj, birthday) {
 
   t = age+birthday
 
   # EIR: entomological inoculation rate trace
-  pars$EIR[[1]] <- pars$F_eir(age, birthday)
+  xds_obj$EIR[[1]] <- with(xds_obj$EIRpar, eir*F_trend(t)*F_season(t)*F_age(age))
 
   # FoI: force of infection
-  pars <- Exposure(t, y, pars)
+  xds_obj <- Exposure(t, y, xds_obj)
 
   # state derivatives
-  dX <- dXdt(age, y, pars, 1)
+  dX <- dXdt(age, y, xds_obj, 1)
 
   return(list(c(dX)))
 }
@@ -81,11 +80,11 @@ xde_cohort_derivatives <- function(age, y, pars, birthday) {
 #' @param birthday a cohort birthday
 #' @param inits initial values
 #' @param times = the times
-#' @param pars an **`xds`** object
+#' @param xds_obj an **`xds`** object
 #' @return a [list]
 #' @export
-xde_cohort_desolve  = function(birthday, inits, times, pars){
-  UseMethod("xde_cohort_desolve", pars$xds)
+xde_cohort_desolve  = function(birthday, inits, times, xds_obj){
+  UseMethod("xde_cohort_desolve", xds_obj$xds)
 }
 
 #' @title Solve a system of equations as a dde
@@ -93,8 +92,8 @@ xde_cohort_desolve  = function(birthday, inits, times, pars){
 #' @inheritParams xde_cohort_desolve
 #'@return a [list]
 #' @export
-xde_cohort_desolve.dde = function(birthday, inits, times, pars){
-  return(deSolve::dede(y=inits, times=times, func=xde_cohort_derivatives, parms=pars,
+xde_cohort_desolve.dde = function(birthday, inits, times, xds_obj){
+  return(deSolve::dede(y=inits, times=times, func=xde_cohort_derivatives, parms=xds_obj,
                        method = "lsoda", birthday=birthday))
 }
 
@@ -103,8 +102,8 @@ xde_cohort_desolve.dde = function(birthday, inits, times, pars){
 #' @inheritParams xde_cohort_desolve
 #'@return a [list]
 #' @export
-xde_cohort_desolve.ode = function(birthday, inits, times, pars){
-  return(deSolve::ode(y=inits, times=times, func=xde_cohort_derivatives, parms = pars,
+xde_cohort_desolve.ode = function(birthday, inits, times, xds_obj){
+  return(deSolve::ode(y=inits, times=times, func=xde_cohort_derivatives, parms = xds_obj,
                       method = "lsoda", birthday=birthday))
 }
 
