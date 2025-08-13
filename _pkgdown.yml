@@ -976,25 +976,13 @@ reference:
     Utilities to change  
   contents: 
   - get_season
-  - get_season_par
-  - get_season_par.Lambda
-  - get_season_par.eir
-  - get_season_par.cohort
+  - get_season.none
+  - get_season.Lambda
+  - get_season.eir
+  - get_season.cohort
   - get_season_phase
-  - get_season_phase.none
-  - get_season_phase.Lambda
-  - get_season_phase.eir
-  - get_season_phase.cohort
   - get_season_bottom
-  - get_season_bottom.none
-  - get_season_bottom.Lambda
-  - get_season_bottom.eir
-  - get_season_bottom.cohort
   - get_season_pw
-  - get_season_pw.none
-  - get_season_pw.Lambda
-  - get_season_pw.eir
-  - get_season_pw.cohort
   - set_season
   - set_season_phase
   - set_season_phase.none
@@ -1015,6 +1003,11 @@ reference:
   desc: |
     Utilities to change the interpolation points
   contents:   
+  - get_trend
+  - get_trend.none
+  - get_trend.Lambda
+  - get_trend.eir
+  - get_trend.cohort
   - get_spline
   - get_spline_s
   - get_spline_s.none

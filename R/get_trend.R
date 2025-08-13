@@ -1,3 +1,4 @@
+
 #' @title Get the trend parameters 
 #' 
 #' @description
@@ -5,10 +6,71 @@
 #' for a spline function.
 #' 
 #' @param xds_obj an **`xds`** object
+#' @param s the vector species index
+#' 
+#' @return trend parameters 
+#'   
+#' @export
+get_trend = function(xds_obj, s=1){
+  UseMethod("get_trend", xds_obj$forced_by) 
+}
+
+#' @title Get the trend parameters 
+#' 
+#' @description
+#' Get the interpolating points 
+#' for a spline function.
+#' 
+#' @inheritParams get_trend
+#' 
+#' @return trend parameters 
 #' 
 #' @export
-get_trend = function(xds_obj){
-  get_spline(xds_obj)
+get_trend.none = function(xds_obj, s=1){
+  return(c())
+}
+
+#' @title Get the trend parameters 
+#' 
+#' @description
+#' Get the interpolating points 
+#' for a spline function.
+#' 
+#' @inheritParams get_trend
+#' 
+#' @return trend parameters 
+#' 
+#' @export
+get_trend.Lambda= function(xds_obj, s=1){
+  return(xds_obj$Lpar[[s]]$trend_par)
+}
+
+#' @title Get the trend parameters 
+#' 
+#' @description
+#' Get the interpolating points 
+#' for a spline function.
+#' 
+#' @inheritParams get_trend
+#' 
+#' @return trend parameters 
+#' 
+#' @export
+get_trend.eir= function(xds_obj, s=1){
+  return(xds_obj$EIRpar$trend_par)
+}
+
+#' @title Get the trend parameters 
+#' 
+#' @description
+#' Get the interpolating points 
+#' for a spline function.
+#' 
+#' @inheritParams get_trend
+#' 
+#' @export
+get_trend.cohort = function(xds_obj, s=1){
+  return(xds_obj$EIRpar$trend_par)
 }
 
 #' @title Get spline interpolation points 

@@ -4,10 +4,15 @@
 \alias{get_season}
 \title{Get seasonal pattern}
 \usage{
-get_season(xds_obj)
+get_season(xds_obj, s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} object}
+
+\item{s}{the vector species index}
+}
+\value{
+seasonal pattern parameters
 }
 \description{
 Get the parameters set the seasonal pattern
