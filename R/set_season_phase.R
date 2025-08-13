@@ -66,7 +66,6 @@ set_season_phase.Lambda = function(phase, xds_obj, s=1, compile_F=TRUE){
 set_season_phase.eir = function(phase, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$EIRpar$season_par$phase) == length(phase))
   xds_obj$EIRpar$season_par$phase = phase
-  xds_obj = update_F_season(xds_obj, s)
   if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }
@@ -84,7 +83,6 @@ set_season_phase.eir = function(phase, xds_obj, s=1, compile_F=TRUE){
 set_season_phase.cohort = function(phase, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$EIRpar$season_par$phase) == length(phase))
   xds_obj$EIRpar$season_par$phase = phase
-  xds_obj = update_F_season(xds_obj, s)
   if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
   return(xds_obj)
 }  

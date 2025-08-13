@@ -38,6 +38,7 @@ update_F_season.Lambda = function(xds_obj, s=1){
 #' @export
 update_F_season.eir = function(xds_obj, s=1){
   xds_obj$EIRpar$F_season <- make_function(xds_obj$EIRpar$season_par)
+  return(xds_obj)
 }
 
 #' @title Update the seasonality function 
@@ -51,4 +52,5 @@ update_F_season.eir = function(xds_obj, s=1){
 #' @export
 update_F_season.cohort = function(xds_obj, s=1){
   xds_obj$EIRpar$F_season <- make_function(xds_obj$EIRpar$season_par)
+  return(xds_obj)
 }

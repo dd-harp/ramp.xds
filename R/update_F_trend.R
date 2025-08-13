@@ -39,6 +39,7 @@ update_F_trend.Lambda = function(xds_obj, s=1){
 #' @export
 update_F_trend.eir = function(xds_obj, s=1){
   xds_obj$EIRpar$F_trend <- make_function(xds_obj$EIRpar$trend_par)
+  return(xds_obj)
 }
 
 #' @title Update the trend function 
@@ -53,4 +54,5 @@ update_F_trend.eir = function(xds_obj, s=1){
 #' @export
 update_F_trend.cohort = function(xds_obj, s=1){
   xds_obj$EIRpar$F_trend <- make_function(xds_obj$EIRpar$trend_par)
+  return(xds_obj)
 }

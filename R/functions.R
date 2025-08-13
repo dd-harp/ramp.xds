@@ -145,6 +145,7 @@ makepar_F_sin = function(phase=0, bottom=0, pw=1, norm=365, N=1){
   return(pars)
 }
 
+
 #' @title Make a type2 function for age
 #' @description Return an age pattern \eqn{\omega(a)}, a function of the form
 #' \deqn{\omega(a) = \frac{A(a+\tau)}{B+a+\tau}}
