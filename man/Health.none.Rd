@@ -4,20 +4,20 @@
 \alias{Health.none}
 \title{Set no exogenous health variables}
 \usage{
-\method{Health}{none}(t, y, pars)
+\method{Health}{none}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{ramp.xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 After none setup, no exogenous
 variables are configured so \code{Health} returns
-the \strong{\code{xds}} object without modification
+the \strong{\code{ramp.xds}} model object without modification
 }

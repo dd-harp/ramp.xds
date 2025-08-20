@@ -4,17 +4,17 @@
 \alias{Health}
 \title{Set the values variables for health-based malaria control}
 \usage{
-Health(t, y, pars)
+Health(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{ramp.xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set the values of
