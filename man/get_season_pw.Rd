@@ -4,7 +4,7 @@
 \alias{get_season_pw}
 \title{Get pw for seasonality}
 \usage{
-get_season_pw(xds_obj, s)
+get_season_pw(xds_obj, s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} object}

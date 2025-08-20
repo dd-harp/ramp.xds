@@ -4,7 +4,7 @@
 \alias{get_season_bottom}
 \title{Get phase}
 \usage{
-get_season_bottom(xds_obj, s)
+get_season_bottom(xds_obj, s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} object}
