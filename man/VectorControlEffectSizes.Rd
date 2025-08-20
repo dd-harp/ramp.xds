@@ -4,18 +4,18 @@
 \alias{VectorControlEffectSizes}
 \title{Vector control effect sizes}
 \usage{
-VectorControlEffectSizes(t, y, pars)
+VectorControlEffectSizes(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
-an \strong{\code{xds}} object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-This method dispatches on the type of \code{pars$VECTOR_CONTROL}.
+This method dispatches on the type of \code{xds_obj$VECTOR_CONTROL}.
 }

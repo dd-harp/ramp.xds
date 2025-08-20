@@ -4,13 +4,13 @@
 \alias{setup_no_health}
 \title{none set up for exogenous health}
 \usage{
-setup_no_health(pars)
+setup_no_health(xds_obj)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{ramp.xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 This sets up the \code{none} option

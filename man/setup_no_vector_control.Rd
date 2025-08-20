@@ -4,13 +4,13 @@
 \alias{setup_no_vector_control}
 \title{Setup Function for No Vector Control (default)}
 \usage{
-setup_no_vector_control(pars)
+setup_no_vector_control(xds_obj)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
-an \strong{\code{xds}} object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 This sets \code{class(vector_control) <- 'none'}

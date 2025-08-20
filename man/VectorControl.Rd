@@ -4,17 +4,17 @@
 \alias{VectorControl}
 \title{Implement Vector Control}
 \usage{
-VectorControl(t, y, pars)
+VectorControl(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The generic function to

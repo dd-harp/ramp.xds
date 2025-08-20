@@ -4,17 +4,17 @@
 \alias{VectorControlEffectSizes.none}
 \title{Set the values of exogenous variables}
 \usage{
-\method{VectorControlEffectSizes}{none}(t, y, pars)
+\method{VectorControlEffectSizes}{none}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
-an \strong{\code{xds}} object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 After none setup, no exogenous

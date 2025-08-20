@@ -5,35 +5,35 @@
 #' variables for health interventions.
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj an **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-Health = function(t, y, pars){
-  UseMethod("Health", pars$health)
+Health = function(t, y, xds_obj){
+  UseMethod("Health", xds_obj$health)
 }
 
 #' @title Set no exogenous health variables
 #' @description After none setup, no exogenous
 #' variables are configured so `Health` returns
-#' the **`xds`** object without modification
+#' the **`ramp.xds`** model object without modification
 #' @inheritParams Health
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-Health.none = function(t, y, pars){
-  return(pars)
+Health.none = function(t, y, xds_obj){
+  return(xds_obj)
 }
 
 #' @title none set up for exogenous health
 #' @description This sets up the `none` option
 #' for exogenous health: no health.
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj an **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_no_health = function(pars){
+setup_no_health = function(xds_obj){
   health <- 'none'
   class(health) <- 'none'
-  pars$health <- health
-  return(pars)
+  xds_obj$health <- health
+  return(xds_obj)
 }
 
 
