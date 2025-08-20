@@ -24,7 +24,7 @@ get_season = function(xds_obj, s=1){
 #' @return seasonal pattern parameters 
 #' 
 #' @export
-get_season.none = function(xds_obj, s){
+get_season.none = function(xds_obj, s=1){
    return(c()) 
 }
 
@@ -39,7 +39,7 @@ get_season.none = function(xds_obj, s){
 #' @returns the phase parameter(s) 
 #' 
 #' @export
-get_season_phase = function(xds_obj, s){
+get_season_phase = function(xds_obj, s=1){
   get_season(xds_obj, s)$phase
 }
 
@@ -54,7 +54,7 @@ get_season_phase = function(xds_obj, s){
 #' @returns the phase parameter(s) 
 #' 
 #' @export
-get_season_bottom = function(xds_obj, s){
+get_season_bottom = function(xds_obj, s=1){
   get_season(xds_obj, s)$bottom
 }
 
@@ -69,7 +69,7 @@ get_season_bottom = function(xds_obj, s){
 #' @returns the phase parameter(s) 
 #' 
 #' @export
-get_season_pw = function(xds_obj, s){
+get_season_pw = function(xds_obj, s=1){
   get_season(xds_obj, s)$pw
 }
 

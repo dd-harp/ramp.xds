@@ -4,7 +4,7 @@
 \alias{get_season.none}
 \title{Get seasonal pattern}
 \usage{
-\method{get_season}{none}(xds_obj, s)
+\method{get_season}{none}(xds_obj, s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} object}
