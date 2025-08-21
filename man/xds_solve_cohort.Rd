@@ -7,7 +7,7 @@
 xds_solve_cohort(xds_obj, bday = 0, A = 10, da = 10)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{bday}{the cohort birthday}
 

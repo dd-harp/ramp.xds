@@ -11,7 +11,7 @@ xde_cohort_derivatives(age, y, xds_obj, birthday)
 
 \item{y}{the state variables}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{birthday}{the cohort birthday}
 }

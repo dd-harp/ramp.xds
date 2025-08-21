@@ -2,7 +2,8 @@
 
 #' @title Make an **`xds`** model object Template
 #' @description Creates and returns structured template for an
-#' **`xds`** model object. The returned model object has set up generic features
+#' **`xds`** model object. 
+#' The returned model object has set up generic features
 #' and placeholders for options that must be configured
 #' to fully define an **`xds`** model object
 #' @details This function sets up the basic structures required
@@ -47,6 +48,8 @@
 #'      - [setup_exposure_pois] sets up a Poisson model for environmental heterogeneity
 #'      - [setup_no_travel] sets up a model with no exposure through travel
 #'
+#' @note `xds` stands for extensible differential equation
+#'
 #' @param xds is used to dispatch various functions to set up and solve systems of differential equations. 'xde' for ordinary or delay differential equations; 'dts' for "discrete time systems"
 #' @param frame model component subset
 #' @param nPatches is the number of patches
@@ -58,12 +61,21 @@
 #' @export
 make_xds_object_template = function(xds='ode', frame='full',
                            nPatches=1, membership=1, residence=1){
+  
   xds_obj = list()
   class(xds_obj) <- 'xds_obj'
-  xds <- xds
-  if(xds == 'ode' | xds == 'dde') xds <- c(xds, 'xde')
-  class(xds) <- xds
+  
+  stopifnot(xds %in% c("ode", "dde", "dts"))
+ 
+  xde <- xds
+  class(xde) <- xds  
+  xds_obj$xde <- xde
+  
+  if(xds == 'ode') class(xds) <- 'xde'
+  if(xds == 'dde') class(xds) <- 'xde'
+  if(xds == 'dts') class(xds) <- 'dts'
   xds_obj$xds <- xds
+  
   xdlst = list()
   class(xdlst) = xds
 
@@ -138,7 +150,7 @@ make_xds_object_template = function(xds='ode', frame='full',
 #' @return a **`ramp.xds`** model object
 #' @export
 xds_dde = function(xds_obj){
-  UseMethod("xds_dde", xds_obj$xds)
+  UseMethod("xds_dde", xds_obj$xde)
 }
 
 #' @title Set `xds` for `dde`
@@ -165,7 +177,7 @@ xds_dde.dts = function(xds_obj){
 #' @return a **`ramp.xds`** model object
 #' @export
 xds_dde.ode = function(xds_obj){
-  xds_obj$xds = 'dde'
-  class(xds_obj$xds) = c('dde', 'xde')
+  xds_obj$xde = 'dde'
+  class(xds_obj$xde) ='dde'
   return(xds_obj)
 }
