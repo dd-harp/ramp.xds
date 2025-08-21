@@ -13,7 +13,7 @@
 #' @return pars an **`xds`** object
 #' @export
 xds_solve = function(pars, Tmax=365, dt=1, times=NULL){
-  UseMethod("xds_solve", pars$xds)
+  UseMethod("xds_solve", pars$xde)
 }
 
 #' @title Solve a system of equations using [deSolve::ode]
