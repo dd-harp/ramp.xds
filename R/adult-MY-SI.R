@@ -176,14 +176,14 @@ F_eggs.SI <- function(t, y, xds_obj, s) {
 #' @export
 MBaseline.SI <- function(t, y, xds_obj, s) {
   
-  xds_obj$MYpar[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$q_t      <- F_human_frac(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$nu       <- F_batch_rate(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$eip      <- F_eip(t, xds_obj, s) 
-  xds_obj                     <- F_K_matrix(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$eip      <- F_eip(t, xds_obj, s) 
+  xds_obj                      <- F_K_matrix(t, xds_obj, s) 
   
   xds_obj$MY_obj[[s]]$es_f     <- rep(1, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$es_q     <- rep(1, xds_obj$nPatches)
