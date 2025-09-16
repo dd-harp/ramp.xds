@@ -4,10 +4,10 @@
 \alias{average_EIR}
 \title{Compute the average EIR}
 \usage{
-average_EIR(pars, i = 1, members = NULL)
+average_EIR(xds_obj, i = 1, members = NULL)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 
 \item{i}{the human species index}
 
@@ -19,7 +19,7 @@ a PfPR
 \description{
 This is a generic way of computing the average EIR
 for some subset(s) of the population strata. The object members is a
-membership matrix, like the residence matrix (see \link{create_residence_matrix}).
+membership matrix, like the residence matrix (see \link{make_residency_matrix}).
 If the residence matrix were passed to members, average_EIR returns
 the average EIR for the residents of each patch, which is could be different
 from what would be computed.

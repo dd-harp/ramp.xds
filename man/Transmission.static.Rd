@@ -4,14 +4,14 @@
 \alias{Transmission.static}
 \title{Compute transmission terms with a static mixing matrix}
 \usage{
-\method{Transmission}{static}(t, y, pars)
+\method{Transmission}{static}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \code{xds} object}
+\item{xds_obj}{an \code{xds} object}
 }
 \value{
 an \code{xds} object

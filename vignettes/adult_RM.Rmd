@@ -198,21 +198,21 @@ eggsPerBatch <- 30
 
 
 ```{r}
-MYZo = list(f=f,q=q,g=g,sigma=sigma,mu=mu,eip=eip,nu=nu,eggsPerBatch=eggsPerBatch)
+MYo = list(f=f,q=q,g=g,sigma=sigma,mu=mu,eip=eip,nu=nu,eggsPerBatch=eggsPerBatch)
 ```
 
 ```{r}
-calK <- matrix(0, nPatches, nPatches)
-calK[1, 2:3] <- c(0.2, 0.8)
-calK[2, c(1,3)] <- c(0.5, 0.5)
-calK[3, 1:2] <- c(0.7, 0.3)
-calK <- t(calK)
+K_matrix <- matrix(0, nPatches, nPatches)
+K_matrix[1, 2:3] <- c(0.2, 0.8)
+K_matrix[2, c(1,3)] <- c(0.5, 0.5)
+K_matrix[3, 1:2] <- c(0.7, 0.3)
+K_matrix <- t(K_matrix)
 
-Omega <- compute_Omega_xde(g, sigma, mu, calK)
+Omega <- make_Omega_xde(g, sigma, mu, K_matrix)
 Upsilon <- expm::expm(-Omega * eip)
 ```
 
-Now we set up the parameter environment with the correct class using `ramp.xds::make_parameters_MYZ_RM_xde,` noting that we will be solving as an `ode.`  
+Now we set up the parameter environment with the correct class using `ramp.xds::make_parameters_MY_RM_xde,` noting that we will be solving as an `ode.`  
 
 
 Now we set the values of $\kappa$ and $\Lambda$ and solve for the equilibrium values.
@@ -234,26 +234,25 @@ Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
 ```
 
 ```{r}
-MYZo$M=M_eq
-MYZo$P=P_eq
-MYZo$Y=Y_eq
-MYZo$Z=Z_eq
+MYo$M=M_eq
+MYo$P=P_eq
+MYo$Y=Y_eq
+MYo$Z=Z_eq
 ```
 
-We use `ramp.xds::make_inits_MYZ_RM_xde` to store the initial values. These equations have been implemented to compute $\Upsilon$ dynamically, so we attach `Upsilon` as initial values:
+We use `ramp.xds::make_inits_MY_RM_xde` to store the initial values. These equations have been implemented to compute $\Upsilon$ dynamically, so we attach `Upsilon` as initial values:
 
 
 
 
 ```{r}
 params <- make_xds_object_template("dde", "mosy", nPatches, 1:3, 1:3)
-params <- setup_MYZpar("macdonald", params, 1, MYZo)  
-params <- setup_MYZinits(params, 1, MYZo)
-params <- setup_Xpar("trivial", params, 1, Xo) 
-params <- setup_Xinits(params, HPop, 1)
-params <- setup_Lpar("trivial", params, 1, Lo)
-params <- setup_Linits(params, 1, Lo)
-params <- setup_Hpar_static(params, 1)
+params <- setup_MY_obj("macdonald", params, 1, MYo)  
+params <- setup_MY_inits(params, 1, MYo)
+params <- setup_XH_obj("trivial", params, 1, Xo) 
+params <- setup_XH_inits(params, HPop, 1)
+params <- setup_L_obj("trivial", params, 1, Lo)
+params <- setup_L_inits(params, 1, Lo)
 ```
 
 We set the indices with `ramp.xds::make_indices`. 
@@ -263,26 +262,26 @@ params = make_indices(params)
 ```
 
 ```{r}
-params <- change_calK(calK, params, 1)
+params <- change_K_matrix(K_matrix, params, 1)
 ```
 
 ```{r}
-params$Lambda[[1]] = Lambda
-params$kappa[[1]] = kappa 
+params$terms$Lambda[[1]] = Lambda
+params$terms$kappa[[1]] = kappa 
 ```
 
 Then we can set up the initial conditions vector and use `deSolve::ode` to solve the model.  Normally these values would be computed within `ramp.xds::xDE_diffeqn`. Here, we set up a local version: 
 
 ```{r solve, out.width = "100%"}
-y0 = get_MYZinits(params, 1) 
+y0 = get_MY_inits(params, 1) 
 y0 = as.vector(unlist(y0))
 params <- MBionomics(0,y0,params, 1)
 
-dMYZdt_local = func=function(t, y, pars) {
-  list(dMYZdt(t, y, pars, 1))
+dMYdt_local = func=function(t, y, pars) {
+  list(dMYdt(t, y, pars, 1))
 }
 
-out <- deSolve::dede(y = y0, times = 0:50, dMYZdt_local, parms=params, 
+out <- deSolve::dede(y = y0, times = 0:50, dMYdt_local, parms=params, 
                     method = 'lsoda') 
 out1 <- out
 ```
@@ -291,10 +290,10 @@ The output is plotted below. The flat lines shown here is a verification that th
 
 ```{r, out.width = "100%"}
 out = out[, 1:13]
-colnames(out)[params$MYZpar$M_ix+1] <- paste0('M_', 1:params$nPatches)
-colnames(out)[params$MYZpar$P_ix+1] <- paste0('P_', 1:params$nPatches)
-colnames(out)[params$MYZpar$Y_ix+1] <- paste0('Y_', 1:params$nPatches)
-colnames(out)[params$MYZpar$Z_ix+1] <- paste0('Z_', 1:params$nPatches)
+colnames(out)[params$MY_obj$M_ix+1] <- paste0('M_', 1:params$nPatches)
+colnames(out)[params$MY_obj$P_ix+1] <- paste0('P_', 1:params$nPatches)
+colnames(out)[params$MY_obj$Y_ix+1] <- paste0('Y_', 1:params$nPatches)
+colnames(out)[params$MY_obj$Z_ix+1] <- paste0('Z_', 1:params$nPatches)
 
 out <- as.data.table(out)
 out <- melt(out, id.vars = 'time')
@@ -331,7 +330,7 @@ To set up the model, we call `xds_setup` with
 
 + `nPatches` is set to 3 
 
-+ `MYZname` is set to "macdonald" to run the Ross-Macdonald model for adult mosquitoes; to pass our options, we write `MYZopts = MYZo`; and finally, the dispersal matrix `calK` is passed as `calK=calK` 
++ `MYname` is set to "macdonald" to run the Ross-Macdonald model for adult mosquitoes; to pass our options, we write `MYoptions = MYo`; and finally, the dispersal matrix `K_matrix` is passed as `K_matrix=K_matrix` 
 
 + `Xname` is set to "trivial" to run the trivial module for human infection dynamics 
 
@@ -341,22 +340,22 @@ Otherwise, setup takes care of all the internals:
 
 
 ```{r using setup}
-xds_setup(MYZname = "macdonald", Xname = "trivial", Lname = "trivial",  
-    nPatches=3, calK=calK, membership = c(1:3), 
+xds_setup(MYname = "macdonald", Xname = "trivial", Lname = "trivial",  
+    nPatches=3, K_matrix=K_matrix, membership = c(1:3), 
     residence = c(1:3), HPop = HPop,
-    MYZopts = MYZo, Xopts = Xo, Lopts = Lo) -> MYZeg
+    MYoptions = MYo, XHoptions = Xo, Loptions = Lo) -> MYeg
 ```
   
 Now, we can solve the equations using `xds_solve` and compare the output to what we got above. If they are identical, the two objects should be identical, so can simply add the absolute value of their differences:  
 
 ```{r xds_solve}
-xds_solve(MYZeg, Tmax=50, dt=1) -> MYZeg 
-out2 <- MYZeg$outputs$orbits$deout
+xds_solve(MYeg, Tmax=50, dt=1) -> MYeg 
+out2 <- MYeg$outputs$orbits$deout
 sum(abs(out1-out2))==0 
 ```
+
 ```{r}
 rbind(tail(out2,1)[1 + 1:12],
 c(M_eq, P_eq, Y_eq, Z_eq))
-
 ```
 

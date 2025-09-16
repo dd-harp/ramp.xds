@@ -6,25 +6,23 @@
 \usage{
 xds_setup_mosy(
   xds = "ode",
-  MYZname = "basicM",
+  MYname = "basicM",
   Lname = "basicL",
   nPatches = 1,
   membership = 1,
   HPop = 1000,
-  MYZday = 1,
-  Lday = 1,
-  calK = list(),
+  K_matrix = list(),
   searchQ = 1,
   kappa = 0,
-  MYZopts = list(),
-  Lopts = list(),
+  MYoptions = list(),
+  Loptions = list(),
   model_name = "unnamed"
 )
 }
 \arguments{
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
-\item{MYZname}{is a character string defining a \strong{MYZ} Component module}
+\item{MYname}{is a character string defining a \strong{MY} Component module}
 
 \item{Lname}{is a character string defining a \strong{L} Component module}
 
@@ -34,19 +32,15 @@ xds_setup_mosy(
 
 \item{HPop}{is the human / host population density}
 
-\item{MYZday}{is the run-time time step for \strong{MYZ} Component (in days): integer or 1/integer}
-
-\item{Lday}{is the run-time time step for \strong{L} Component (in days): integer or 1/integer}
-
-\item{calK}{is either a calK matrix or a string that defines how to set it up}
+\item{K_matrix}{is either a K_matrix matrix or a string that defines how to set it up}
 
 \item{searchQ}{is a vector of search weights for egg laying}
 
 \item{kappa}{is a vector describing net infectiousness}
 
-\item{MYZopts}{a list to configure the \strong{MYZ} Component module}
+\item{MYoptions}{a list to configure the \strong{MY} Component module}
 
-\item{Lopts}{a list to configure the \strong{L} Component module}
+\item{Loptions}{a list to configure the \strong{L} Component module}
 
 \item{model_name}{is a name for the model (arbitrary)}
 }
@@ -66,5 +60,5 @@ The \strong{X} Component module is \code{trivial}, but since humans / vertebrate
 resource, \code{HPop} must be set.
 }
 \seealso{
-\link{xds_setup} and \link{dMYZdt.basicM}
+\link{xds_setup} and \link{dMYdt.basicM}
 }

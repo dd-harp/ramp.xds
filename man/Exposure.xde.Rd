@@ -2,16 +2,16 @@
 % Please edit documentation in R/exposure.R
 \name{Exposure.xde}
 \alias{Exposure.xde}
-\title{Compute the FoI}
+\title{Compute the Force of Infection}
 \usage{
-\method{Exposure}{xde}(t, y, pars)
+\method{Exposure}{xde}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{the time}
 
 \item{y}{the state variables}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
 an \strong{\code{xds}} object
@@ -24,7 +24,7 @@ The local force of infection (FoI or \eqn{h}) is
 a function of local daily entomological inoculation
 rate (dEIR or \eqn{E}) under
 a model for the probability of infection
-per infectious bite, \eqn{b} (called from \eqn{F_b},
+per infectious bite, \eqn{b} (called from \eqn{F_infectivity},
 as defined by an \eqn{\cal X} model).
 The total FoI is a weighted sum of the local FoI and
 exposure to malaria while traveling,
@@ -32,5 +32,5 @@ computed from the the travel EIR, \eqn{E_T}:
 \deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_T, b,t)}
 }
 \seealso{
-Related: \link{Exposure} & \link{F_foi.pois} & \link{F_foi.nb} & \link{travel_eir} & \link{traveling}
+Related: \link{Exposure} & \link{F_foi.pois} & \link{F_foi.nb} & \link{Travel}
 }

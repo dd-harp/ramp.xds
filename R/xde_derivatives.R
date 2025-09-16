@@ -1,62 +1,54 @@
 # generalized spatial differential equations
 
 #' @title Compute Derivatives
+#' 
 #' @description The function to compute the derivatives dispatches on `class(frame)`
 #'
 #' @seealso [xds_solve]
+#' 
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
+#' @param xds_obj an **`xds`** model object 
+#' 
 #' @return a [list] containing the vector of all state derivatives
+#' 
 #' @export
-xde_derivatives <- function(t, y, pars) {
-  UseMethod("xde_derivatives", pars$frame)
+xde_derivatives <- function(t, y, xds_obj) {
+  UseMethod("xde_derivatives", xds_obj$frame)
 }
 
 #' @title Generalized spatial differential equation model
 #' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
 #' generic methods for each model component.
+#' 
 #' @inheritParams xde_derivatives
+#' 
 #' @return a [list] containing the vector of all state derivatives
 #' @export
-xde_derivatives.full <- function(t, y, pars) {
-
-  # exogenous forcing
-  pars <- Exogenous(t, y, pars)
-
-  # emergence: Lambda
-  pars <- Emergence(t, y, pars)
+xde_derivatives.full <- function(t, y, xds_obj) {
   
-  # transmission: beta, EIR, and kappa
-  pars <- Transmission(t, y, pars)
-
-  # compute the FoI
-  pars <- Exposure(t, y, pars)
-
-  # compute derivatives for the L module 
-  dL <- dLdt(t, y, pars, 1)
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
   
-  # compute derivatives for the MYZ module 
-  dMYZ <- dMYZdt(t, y, pars, 1)
-  if(pars$nVectorSpecies > 1)
-    for(s in 2:pars$nVectorSpecies){
-      dL <- c(dL, dLdt(t, y, pars, s))
-      dMYZ <- c(dMYZ, dMYZdt(t, y, pars, s))
+  dL <- dLdt(t, y, xds_obj, 1)
+  dMY <- dMYdt(t, y, xds_obj, 1)
+  
+  if(xds_obj$nVectorSpecies > 1)
+    for(s in 2:xds_obj$nVectorSpecies){
+      dL <- c(dL, dLdt(t, y, xds_obj, s))
+      dMY <- c(dMY, dMYdt(t, y, xds_obj, s))
     }
 
-  # compute derivatives for the XH module 
-  dX <- dXdt(t, y, pars, 1)
-  if(pars$nHostSpecies > 1)
-    for(i in 2:pars$nHostSpecies)
-      dX <- c(dX, dXdt(t, y, pars, i))
+  dXH <- dXHdt(t, y, xds_obj, 1)
+  if(xds_obj$nHostSpecies > 1)
+    for(i in 2:xds_obj$nHostSpecies)
+      dXH <- c(dXH, dXHdt(t, y, xds_obj, i))
  
-  # other variables 
-  dV <- dVdt(t, y, pars, 1)
-  if(pars$nOtherVariables > 1)
-    for(i in 2:length(pars$nOtherVariables))
-      dV <- c(dV, dVdt(t, y, pars, i)) 
+  dV <- dVdt(t, y, xds_obj, 1)
+  if(xds_obj$nOtherVariables > 1)
+    for(i in 2:length(xds_obj$nOtherVariables))
+      dV <- c(dV, dVdt(t, y, xds_obj, i)) 
   
-  return(list(c(dL, dMYZ, dX, dV)))
+  return(list(c(dL, dMY, dXH, dV)))
 }
 
 #' @title Differential equations isolating the humans, forced with Ztrace
@@ -65,24 +57,21 @@ xde_derivatives.full <- function(t, y, pars) {
 #' @inheritParams xde_derivatives
 #' @return a [list] containing the vector of all state derivatives
 #' @export
-xde_derivatives.human <- function(t, y, pars) {
+xde_derivatives.human <- function(t, y, xds_obj) {
+  
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
+  
+  dXH <- dXHdt(t, y, xds_obj, 1)
+  if(xds_obj$nHostSpecies > 1)
+    for(i in 2:xds_obj$nHostSpecies)
+      dXH <- c(dXH, dXHdt(t, y, xds_obj, i))
 
-  # exogenous forcing
-  pars <- Exogenous(t, y, pars)
-
-  # compute beta, EIR, and kappa
-  pars <- Transmission(t, y, pars)
-
-  # compute the FoI
-  pars <- Exposure(t, y, pars)
-
-  # state derivatives
-  dX <- dXdt(t, y, pars, 1)
-  if(pars$nHostSpecies > 1)
-    for(i in 2:pars$nHostSpecies)
-      dX <- c(dX, dXdt(t, y, pars, i))
-
-  return(list(c(dX)))
+  dV <- dVdt(t, y, xds_obj, 1)
+  if(xds_obj$nOtherVariables > 1)
+    for(i in 2:length(xds_obj$nOtherVariables))
+      dV <- c(dV, dVdt(t, y, xds_obj, i))
+  
+  return(list(c(dXH, dV)))
 }
 
 
@@ -93,24 +82,25 @@ xde_derivatives.human <- function(t, y, pars) {
 #' @inheritParams xde_derivatives
 #' @return a [list] containing the vector of all state derivatives
 #' @export
-xde_derivatives.mosy <- function(t, y, pars){
-
-  # exogenous forcing
-  pars <- Exogenous(t, y, pars)
-
-  # emergence: compute Lambda
-  pars <- Emergence(t, y, pars)
-
-  # state derivatives
-  dL <- dLdt(t, y, pars, 1)
-  dM <- dMYZdt(t, y, pars, 1)
-  if (pars$nVectorSpecies > 1)
-    for(s in 2:pars$nVectorSpecies){
-      dL <- c(dL, dLdt(t, y, pars, s))
-      dM <- c(dM, dMYZdt(t, y, pars, s))
+xde_derivatives.mosy <- function(t, y, xds_obj){
+  
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
+  
+  dL <- dLdt(t, y, xds_obj, 1)
+  dMY <- dMYdt(t, y, xds_obj, 1)
+  
+  if (xds_obj$nVectorSpecies > 1)
+    for(s in 2:xds_obj$nVectorSpecies){
+      dL <- c(dL, dLdt(t, y, xds_obj, s))
+      dMY <- c(dMY, dMYdt(t, y, xds_obj, s))
     }
 
-  return(list(c(dL, dM)))
+  dV <- dVdt(t, y, xds_obj, 1)
+  if(xds_obj$nOtherVariables > 1)
+    for(i in 2:length(xds_obj$nOtherVariables))
+      dV <- c(dV, dVdt(t, y, xds_obj, i))
+
+  return(list(c(dL, dMY, dV)))
 }
 
 #' @title Differential equation models for aquatic mosquito populations
@@ -119,21 +109,21 @@ xde_derivatives.mosy <- function(t, y, pars){
 #' @inheritParams xde_derivatives
 #' @return a [list] containing the vector of all state derivatives
 #' @export
-xde_derivatives.aquatic <- function(t, y, pars) {
+xde_derivatives.aquatic <- function(t, y, xds_obj) {
 
-  # exogenous forcing
-  pars <- Exogenous(t, y, pars)
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
 
-  # egg laying: compute eta
-  pars$eggs_laid[[1]] = F_eggs(t, y, pars, 1)
+  dL <- dLdt(t, y, xds_obj, 1)
+  if(xds_obj$nVectorSpecies > 1)
+    for(s in 1:xds_obj$nVectorSpecies)
+      dL <- c(dL, dLdt(t, y, xds_obj, s))
 
-  # state derivatives
-  dL <- dLdt(t, y, pars, 1)
-  if(pars$nVectorSpecies > 1)
-    for(s in 1:pars$nVectorSpecies)
-      dL <- c(dL, dLdt(t, y, pars, s))
-
-  return(list(c(dL)))
+  dV <- dVdt(t, y, xds_obj, 1)
+  if(xds_obj$nOtherVariables > 1)
+    for(i in 2:length(xds_obj$nOtherVariables))
+      dV <- c(dV, dVdt(t, y, xds_obj, i))
+  
+  return(list(c(dL, dV)))
 }
 
 #' @title Differential equation models for aquatic mosquito populations
@@ -142,16 +132,16 @@ xde_derivatives.aquatic <- function(t, y, pars) {
 #' @inheritParams xde_derivatives
 #' @return a [list] containing the vector of all state derivatives
 #' @export
-xde_derivatives.eir <- function(t, y, pars) {
+xde_derivatives.eir <- function(t, y, xds_obj) {
 
-  # EIR: entomological inoculation rate trace
-  pars$EIR[[1]] <- with(pars$EIRpar, eir*F_season(t)*F_trend(t)) 
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
   
-  # FoI: force of infection
-  pars <- Exposure(t, y, pars)
+  dXH <- dXHdt(t, y, xds_obj, 1)
   
-  # state derivatives
-  dX <- dXdt(t, y, pars, 1)
+  dV <- dVdt(t, y, xds_obj, 1)
+  if(xds_obj$nOtherVariables > 1)
+    for(i in 2:length(xds_obj$nOtherVariables))
+      dV <- c(dV, dVdt(t, y, xds_obj, i))
   
-  return(list(c(dX)))
+  return(list(c(dXH, dV)))
 }  

@@ -4,10 +4,10 @@
 \alias{list_vars}
 \title{Set the initial values to the last values of the last simulation}
 \usage{
-list_vars(pars, y0 = NULL, s = 1, i = 1)
+list_vars(xds_obj, y0 = NULL, s = 1, i = 1)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{y0}{a \link{vector} of initial values}
 

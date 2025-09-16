@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{VectorControl.none}
 \alias{VectorControl.none}
-\title{Implement No Vector Control}
+\title{Compute Vector Control Effect Sizes}
 \usage{
 \method{VectorControl}{none}(t, y, xds_obj)
 }

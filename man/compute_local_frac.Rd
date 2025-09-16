@@ -4,15 +4,13 @@
 \alias{compute_local_frac}
 \title{Compute the local fraction}
 \usage{
-compute_local_frac(W, Visitors)
+compute_local_frac(xds_obj)
 }
 \arguments{
-\item{W}{availability of blood hosts}
-
-\item{Visitors}{availability of visitors}
+\item{xds_obj}{an \code{xds} object}
 }
 \value{
-the fraction of bites
+an \code{xds} object
 }
 \description{
 Compute the availability for the pathogen's hosts for blood feeding

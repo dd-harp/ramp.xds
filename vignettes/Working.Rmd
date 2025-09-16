@@ -32,11 +32,11 @@ library(ramp.xds)
 The function `xds_setup` was discussed in [Getting Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html). 
 
 ```{r}
-mod <- xds_setup(Xname = "SIS", MYZname = "SI", Lname = "basicL")
+mod <- xds_setup(Xname = "SIS", MYname = "SI", Lname = "basicL")
 ```
 
 ```{r}
-mod$MYZname
+mod$MYname
 ```
 
 ## Solving 
@@ -85,7 +85,7 @@ get_inits(mod)
 Since it is a named list, it's easy to examine a specific element in that list: 
 
 ```{r}
-get_inits(mod)$MYZ
+get_inits(mod)$MY
 ```
 
 ## Parameters 

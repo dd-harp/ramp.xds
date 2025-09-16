@@ -2,19 +2,20 @@
 % Please edit documentation in R/blood_feeding.R
 \name{compute_RBR}
 \alias{compute_RBR}
-\title{Compute relative biting rates}
+\title{Compute and attach the relative biting rates}
 \usage{
-compute_RBR(search_weights, H)
+compute_RBR(t, xds_obj, y)
 }
 \arguments{
-\item{search_weights}{blood feeding search weights for the host strata}
+\item{t}{the time}
 
-\item{H}{host density}
+\item{xds_obj}{an \code{xds} object}
+
+\item{y}{state vector}
 }
 \value{
-host availability, a \link{vector}
+an \code{xds} object
 }
 \description{
-Relative biting rates translate biting weights into a
-frailty parameter -- a multiplicative term.
+Compute the available for the pathogen's hosts for blood feeding
 }

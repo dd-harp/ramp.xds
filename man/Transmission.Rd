@@ -4,18 +4,18 @@
 \alias{Transmission}
 \title{Compute the mixing matrix and transmission terms}
 \usage{
-Transmission(t, y, pars)
+Transmission(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \code{xds} object}
+\item{xds_obj}{an \code{xds} object}
 }
 \value{
 an \code{xds} object
 }
 \description{
-This method dispatches on the type of \code{pars$beta}
+This method dispatches on the type of \code{xds_obj$beta}
 }

@@ -2,16 +2,16 @@
 % Please edit documentation in R/xds_solve.R
 \name{xds_solve.ode}
 \alias{xds_solve.ode}
-\title{Solve a system of equations using \link[deSolve:ode]{deSolve::ode}}
+\title{Solve a System of Ordinary Differential Equations}
 \usage{
-\method{xds_solve}{ode}(pars, Tmax = 365, dt = 1, times = NULL)
+\method{xds_solve}{ode}(xds_obj, Tmax = 365, dt = 1, times = NULL)
 }
 \arguments{
-\item{pars}{a \link{list} that defines a model}
+\item{xds_obj}{an \strong{\code{xds}} object}
 
 \item{Tmax}{the last time point, run from 0...Tmax}
 
-\item{dt}{the time interval for outputs}
+\item{dt}{the time step}
 
 \item{times}{the times}
 }
@@ -21,13 +21,13 @@ an \strong{\code{xds}} object
 \description{
 This method solves a system of equations and computes the values of
 the dependent variables at times \eqn{t=0, dt, 2dt, ... Tmax}. The function dispatches
-on \code{pars$dlay} to call:
+on \code{xds_obj$dlay} to call:
 \itemize{
 \item \link[deSolve:ode]{deSolve::ode} if \code{class(dlay) == 'ode'}
 \item \link[deSolve:dede]{deSolve::dede} if \code{class(dlay) == 'dde'}
 }
 
-Note that the call to \link{xde_derivatives} dispatches on \code{pars$frame}
+Note that the call to \link{xde_derivatives} dispatches on \code{xds_obj$frame}
 
 Implements \link{xds_solve} for ordinary differential equations
 }

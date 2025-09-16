@@ -2,31 +2,18 @@
 % Please edit documentation in R/blood_feeding.R
 \name{compute_TaR}
 \alias{compute_TaR}
-\title{Compute blood feeding availability of all vertebrate hosts}
+\title{Make TaR}
 \usage{
-compute_TaR(t, TiSp, F_circadian, time_traveling)
+compute_TaR(xds_obj, t = 0)
 }
 \arguments{
+\item{xds_obj}{an \code{xds} object}
+
 \item{t}{the time}
-
-\item{TiSp}{a time spent matrix}
-
-\item{F_circadian}{a function to compute relative activity rates by time of day}
-
-\item{time_traveling}{the fraction of time spent outside the spatial domain}
 }
 \value{
-a TaR \link{matrix}
+an \code{xds} object
 }
 \description{
-Computes availability all vertebrate hosts to blood feeding
-mosquitoes
-}
-\details{
-The availability of other vertebrate hosts is a sum of available local
-hosts \eqn{W}, and visitors \eqn{W_\delta}, and other available vertebrate hosts, \eqn{O}.
-Total availability is a simple sum: \deqn{B = W + W_\delta + O}
-}
-\references{
-{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
+Make a time at risk matrix (TaR) from a time spent matrix and a circadian function
 }

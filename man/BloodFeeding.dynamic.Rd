@@ -4,21 +4,21 @@
 \alias{BloodFeeding.dynamic}
 \title{Compute blood feeding objects dynamically}
 \usage{
-\method{BloodFeeding}{dynamic}(t, y, pars)
+\method{BloodFeeding}{dynamic}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{the time}
 
 \item{y}{the state variables}
 
-\item{pars}{an \code{xds} object}
+\item{xds_obj}{an \code{xds} object}
 }
 \value{
 an \code{xds} object
 }
 \description{
-Compute host availability, \eqn{W},
-total blood host availability, \eqn{B},
+Compute host available, \eqn{W},
+total blood host available, \eqn{B},
 the time spent matrix \eqn{(\Theta)}, and the time-at-risk matrix \eqn{(\Psi)}
 for static models.
 }

@@ -4,14 +4,14 @@
 \alias{F_ar}
 \title{Compute Local Attack Rates}
 \usage{
-F_ar(eir, b, pars)
+F_ar(eir, b, env_het_obj)
 }
 \arguments{
 \item{eir}{the daily eir for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 a \link{numeric} vector: local attack rates for the strata
@@ -28,9 +28,9 @@ heterogeneous exposure --
 the distribution of bites per person.
 
 The model for human / host infection (\eqn{\cal X}) provide
-a term \eqn{b}, from \link{F_b} that describe the probability of infection
+a term \eqn{b}, from \link{F_infectivity} that describe the probability of infection
 per infectious bite, possibly affected by
-pre-erythrocytic immunity.
+pre-erythrocytic immunity
 }
 \seealso{
 Cases: \link{F_ar.nb} and \link{F_ar.pois}. Related: \link{ar2eir} & \link{Exposure.dts}

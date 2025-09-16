@@ -4,14 +4,14 @@
 \alias{Emergence}
 \title{Compute emerging adults}
 \usage{
-Emergence(t, y, pars)
+Emergence(t, y, xds_obj)
 }
 \arguments{
 \item{t}{the time}
 
 \item{y}{the state variables}
 
-\item{pars}{a \code{xds} object}
+\item{xds_obj}{a \code{xds} object}
 }
 \value{
 an \code{xds} object

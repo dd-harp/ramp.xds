@@ -6,15 +6,14 @@
 \usage{
 xds_setup_human(
   Xname = "SIS",
-  Xopts = list(),
+  XHoptions = list(),
   xds = "ode",
   nPatches = 1,
   residence = 1,
   HPop = 1000,
-  Xday = 1,
   searchB = 1,
   TimeSpent = list(),
-  MYZopts = list(),
+  MYoptions = list(),
   BFopts = list(),
   model_name = "unnamed"
 )
@@ -22,7 +21,7 @@ xds_setup_human(
 \arguments{
 \item{Xname}{a character string defining a \strong{X} Component module}
 
-\item{Xopts}{a named list to configure the \strong{X} Component module}
+\item{XHoptions}{a named list to configure the \strong{X} Component module}
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
@@ -32,35 +31,33 @@ xds_setup_human(
 
 \item{HPop}{the number of humans in each patch}
 
-\item{Xday}{is the run-time time step for \strong{X} Component (in days): integer or 1/integer}
-
 \item{searchB}{a vector of search weights for blood feeding}
 
 \item{TimeSpent}{either a TimeSpent matrix or a string to call a function that sets it up}
 
-\item{MYZopts}{list to configure the \strong{MYZ} Component module}
+\item{MYoptions}{list to configure the \strong{MY} Component module}
 
 \item{BFopts}{list to configure the blood feeding model}
 
 \item{model_name}{a name for the model}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 \loadmathjax
 
 A modified version of \link{xds_setup} that
-streamlines setup for models with a trival \strong{MYZ} Component.
+streamlines setup for models with a trival \strong{MY} Component.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'human'}
 to dispatch \link{xde_derivatives.human} or \link{dts_update.human} and associated functions.
 
-The \strong{MYZ} Component module is set to \code{trivial.} The funcion \link{F_fqZ.trivial} is called to compute passes the
+The \strong{MY} Component module is set to \code{trivial.} The funcion \link{F_fqZ.trivial} is called to compute passes the
 density of infectious adult mosquitoes, and \eqn{f} and \eqn{q} can still be
 configured. In this case, the daily EIR is computed using the blood feeding
 interface, including \link{Exposure}, in the same way as a model with a non-trivial
-\strong{MYZ} Component module.
+\strong{MY} Component module.
 
 To study human cohort dynamics by passing a function that computes the daily EIR,
 consider using \link{xds_setup_cohort}.

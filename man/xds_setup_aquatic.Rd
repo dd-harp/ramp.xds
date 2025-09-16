@@ -8,9 +8,8 @@ xds_setup_aquatic(
   xds = "ode",
   nHabitats = 1,
   Lname = "basicL",
-  Lday = 1,
-  Lopts = list(),
-  MYZopts = list(),
+  Loptions = list(),
+  MYoptions = list(),
   model_name = "unnamed"
 )
 }
@@ -21,11 +20,9 @@ xds_setup_aquatic(
 
 \item{Lname}{is a character string defining a \strong{L} Component module}
 
-\item{Lday}{is the run-time time step for \strong{L} Component (in days): integer or 1/integer}
+\item{Loptions}{a list to configure the \strong{L} Component module}
 
-\item{Lopts}{a list to configure the \strong{L} Component module}
-
-\item{MYZopts}{a list to configure \link{F_eggs.trivial}}
+\item{MYoptions}{a list to configure \link{F_eggs.trivial}}
 
 \item{model_name}{is a name for the model (arbitrary)}
 }
@@ -36,7 +33,7 @@ an \strong{\code{xds}} object
 \loadmathjax
 
 A modified version of \link{xds_setup} that streamlines setup for an \strong{L} Component
-when the \strong{MYZ} Component is set to \code{trivial.} The model
+when the \strong{MY} Component is set to \code{trivial.} The model
 also sets \strong{X} Component to the \code{trivial} module.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'aquatic'}

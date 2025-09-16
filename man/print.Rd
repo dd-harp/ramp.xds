@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{print.xds_obj}
 \alias{print.xds_obj}
-\title{Print for xds_objects}
+\title{Print the \strong{\code{xds}} model object}
 \usage{
 \method{print}{xds_obj}(x, ...)
 }
@@ -15,5 +15,5 @@
 a description of the model
 }
 \description{
-Print for xds_objects
+Print the \strong{\code{xds}} model object
 }

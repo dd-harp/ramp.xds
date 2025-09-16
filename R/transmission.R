@@ -4,43 +4,39 @@
 #' @description Sets up the object that defines the transmission interface for an `xds` model object.
 #' @details
 #' This implements a model for egg laying described by Wu SL, *et al.*, (2023).
-#' @param pars an `xds` object
-#' @return an `xds` object
+#' @param xds_obj an **`xds`** model object
+#' @return an **`xds`** model object
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @seealso [make_xds_object_template]
-#' @seealso [setup_BLOOD_FEEDING]
+#' @seealso [setup_XY_interface]
 #' @export
-setup_TRANSMISSION <- function(pars){
+setup_transmission <- function(xds_obj){
 
   # Mixing Matrix: beta[[s]][[i]]
-  pars$beta = list()
-  pars$beta[[1]] = list()
-  pars$beta[[1]][[1]] = diag(1)
-  class(pars$beta) <- 'setup'
+  xds_obj$terms$beta = list()
+  xds_obj$terms$beta[[1]] = list()
+  xds_obj$terms$beta[[1]][[1]] = diag(1)
+  class(xds_obj$terms$beta) <- 'setup'
 
   # Entomological Inoculation Rate: EIR[[i]]
   # eir[[s]][[i]]
-  pars$eir = list()
-  pars$eir[[1]] = list()
-  pars$eir[[1]][[1]] = diag(1)
-  pars$EIR = list()
-  pars$EIR[[1]] = diag(1)
+  xds_obj$terms$eir = list()
+  xds_obj$terms$eir[[1]] = list()
+  xds_obj$terms$eir[[1]][[1]] = diag(1)
+  xds_obj$terms$EIR = list()
+  xds_obj$terms$EIR[[1]] = diag(1)
 
   # Net Infectiousness: ni[[s]][[i]]
-  pars$ni = list()
-  pars$ni[[1]] = list()
-  pars$ni[[1]][[1]] = diag(1)
-  pars$kappa = list()
+  xds_obj$terms$ni = list()
+  xds_obj$terms$ni[[1]] = list()
+  xds_obj$terms$ni[[1]][[1]] = diag(1)
+  xds_obj$terms$kappa = list()
 
   # Local Fraction: local_frac[[s]]
-  pars$local_frac = list()
-  pars$local_frac[[1]] = rep(1, pars$nPatches)
+  xds_obj$terms$local_frac = list()
+  xds_obj$terms$local_frac[[1]] = rep(1, xds_obj$nPatches)
 
-  # x_visitors: x_visitors[[s]]
-  pars$vars$x_visitors = list()
-  pars$vars$x_visitors[[1]] = rep(0, pars$nPatches)
-
-  return(pars)
+  return(xds_obj)
 }
 
 
@@ -52,7 +48,7 @@ setup_TRANSMISSION <- function(pars){
 #' @param TaR (time at risk), a [matrix]  dimensions `nPatches` by `nStrata`
 #' @return a [matrix] of dimensions `nStrata` by `nPatches`
 #' @export
-compute_beta = function(H, W, wts_f, TaR){
+F_beta = function(H, W, wts_f, TaR){
   ix = which(W==0)
   if(length(ix)>0) W[ix]=1
   beta = diag(wts_f, length(H)) %*% t(TaR) %*% diag(1/W, length(W))
@@ -63,21 +59,21 @@ compute_beta = function(H, W, wts_f, TaR){
 #' @description This function computes the mixing matrix, beta
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars an `xds` object
+#' @param xds_obj an `xds` object
 #' @return an `xds` object
 #' @export
-make_beta <- function(t, y, pars){
-  for(i in 1:pars$nHostSpecies){
-    H = F_H(t, y, pars, i)
-    for(s in 1:pars$nVectorSpecies){
-      W = pars$vars$W[[s]]
-      wts = pars$BFpar$search_weights[[s]][[i]]
-      TaR = pars$TaR[[s]][[i]]
-      pars$beta[[s]][[i]] <- compute_beta(H, W, wts, TaR)
+compute_beta <- function(t, y, xds_obj){
+  for(i in 1:xds_obj$nHostSpecies){
+    H = F_H(t, y, xds_obj, i)
+    for(s in 1:xds_obj$nVectorSpecies){
+      W = xds_obj$XY_interface$W[[s]]
+      wts = xds_obj$XY_interface$search_weights[[s]][[i]]
+      TaR = xds_obj$XY_interface$TaR[[s]][[i]]
+      xds_obj$terms$beta[[s]][[i]] <- F_beta(H, W, wts, TaR)
     }
   }
 
-  return(pars)
+  return(xds_obj)
 }
 
 #' @title Compute the daily Entomological Inoculation Rate (EIR)
@@ -88,7 +84,7 @@ make_beta <- function(t, y, pars){
 #' @param local_frac is the fraction of bites occurring on residents
 #' @return [numeric] vector of length `nStrata`
 #' @export
-compute_EIR <- function(fqZ, beta, local_frac) {
+F_eir <- function(fqZ, beta, local_frac){
   eir = beta %*% (fqZ*local_frac)
   return(as.vector(eir))
 }
@@ -98,59 +94,59 @@ compute_EIR <- function(fqZ, beta, local_frac) {
 #' @description This function computes the EIR for each stratum of each host species
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars an `xds` object
+#' @param xds_obj an `xds` object
 #' @return an `xds` object
 #' @export
-make_EIR <- function(t, y, pars){
+compute_EIR <- function(t, y, xds_obj){
 
-  for(i in 1:pars$nHostSpecies){
-    fqZ <- F_fqZ(t, y, pars, 1)
-    beta <- pars$beta[[1]][[i]]
-    lf <- pars$vars$local_frac[[1]]
+  for(i in 1:xds_obj$nHostSpecies){
+    fqZ <- F_fqZ(t, y, xds_obj, 1)
+    beta <- xds_obj$terms$beta[[1]][[i]]
+    lf <- xds_obj$terms$local_frac[[1]]
 
-    pars$EIR[[i]] <- compute_EIR(fqZ, beta, lf)
-
-    if(pars$nVectorSpecies > 1)
-      for(s in 2:pars$nVectorSpecies){
-        fqZ <- F_fqZ(t, y, pars, 1)
-        beta <- pars$beta[[s]][[i]]
-        lf <- pars$vars$local_frac[[s]]
-        pars$EIR[[i]] <- pars$EIR[[i]] + compute_EIR(fqZ, beta, lf)
+    xds_obj$terms$EIR[[i]] <- F_eir(fqZ, beta, lf)
+    
+    if(xds_obj$nVectorSpecies > 1)
+      for(s in 2:xds_obj$nVectorSpecies){
+        fqZ <- F_fqZ(t, y, xds_obj, 1)
+        beta <- xds_obj$terms$beta[[s]][[i]]
+        lf <- xds_obj$terms$local_frac[[s]]
+        xds_obj$terms$EIR[[i]] <- xds_obj$terms$EIR[[i]] + F_eir(fqZ, beta, lf)
       }
   }
 
-  return(pars)
+  return(xds_obj)
 }
 
 #' @title Compute EIR for each vector-host pair
 #' @description This function computes the EIR from each vector species for each stratum of each host species
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars an `xds` object
+#' @param xds_obj an `xds` object
 #' @return an `xds` object
 #' @export
-make_EIR_full <- function(t, y, pars){
+compute_EIR_full <- function(t, y, xds_obj){
 
-  for(i in 1:pars$nHostSpecies){
-    fqZ <- F_fqZ(t, y, pars, 1)
-    beta <- pars$beta[[1]][[i]]
-    lf <- pars$vars$local_frac[[1]]
-    eir <- compute_EIR(fqZ, beta, lf)
-    pars$eir[[1]][[i]] <- eir
-    pars$EIR[[i]] <- eir
-    s = length(pars$MYZpar)
+  for(i in 1:xds_obj$nHostSpecies){
+    fqZ <- F_fqZ(t, y, xds_obj, 1)
+    beta <- xds_obj$terms$beta[[1]][[i]]
+    lf <- xds_obj$terms$local_frac[[1]]
+    eir <- F_eir(fqZ, beta, lf)
+    xds_obj$terms$eir[[1]][[i]] <- eir
+    xds_obj$terms$EIR[[i]] <- eir
+    s = length(xds_obj$MY_obj)
     if(s>1)
-      for(s in 2:pars$nVectorSpecies){
-        fqZ <- F_fqZ(t, y, pars, s)
-        beta <- pars$beta[[s]][[i]]
-        lf <- pars$vars$local_frac[[s]]
-        eir <- compute_EIR(fqZ, beta, lf)
-        pars$eir[[s]][[i]] <- eir
-        pars$EIR[[i]] <- pars$EIR[[i]] + eir
+      for(s in 2:xds_obj$nVectorSpecies){
+        fqZ <- F_fqZ(t, y, xds_obj, s)
+        beta <- xds_obj$terms$beta[[s]][[i]]
+        lf <- xds_obj$terms$local_frac[[s]]
+        eir <- F_eir(fqZ, beta, lf)
+        xds_obj$terms$eir[[s]][[i]] <- eir
+        xds_obj$terms$EIR[[i]] <- xds_obj$terms$EIR[[i]] + eir
       }
   }
 
-  return(pars)
+  return(xds_obj)
 }
 
 
@@ -162,10 +158,10 @@ make_EIR_full <- function(t, y, pars){
 #' @param X the infectious density of the strata
 #' @return a [numeric] vector of length `nPatches`
 #' @export
-compute_kappa <- function(Wi, W, beta, X) {
+F_kappa <- function(Wi, W, beta, X) {
   ix = which(W==0)
   if(length(ix)>0) W[ix]=1
-  kappa = Wi/W*(as.vector(t(beta) %*% X))
+  kappa = Wi/W*(as.vector(t(beta) %*% X)) 
   return(as.vector(kappa))
 }
 
@@ -173,32 +169,34 @@ compute_kappa <- function(Wi, W, beta, X) {
 #' @description This function computes kappa for each vector species in each patch
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars an `xds` object
+#' @param xds_obj an `xds` object
 #' @return an `xds` object
 #' @export
-make_kappa <- function(t, y, pars){
-  for(s in 1:pars$nVectorSpecies){
-    Wi = pars$vars$Wi[[s]][[1]]
-    W = pars$vars$W[[s]]
-    beta = pars$beta[[s]][[1]]
-    X = F_X(t, y, pars, 1)
+compute_kappa <- function(t, y, xds_obj){
+  for(s in 1:xds_obj$nVectorSpecies){
+    Wi = xds_obj$XY_interface$Wi[[s]][[1]]
+    W = xds_obj$XY_interface$W[[s]]
+    beta = xds_obj$terms$beta[[s]][[1]]
+    X = F_X(t, y, xds_obj, 1)
+    
 
-    kappa <- compute_kappa(Wi, W, beta, X)
+    kappa <- F_kappa(Wi, W, beta, X)
 
-    if(pars$nHostSpecies>1)
-      for(i in 2:pars$nHostSpecies){
-        beta = pars$beta[[s]][[i]]
-        Wi = pars$vars$Wi[[s]][[i]]
-        W = pars$vars$W[[s]]
-        kappa <- kappa + compute_kappa(Wi, W, beta, X)
+    if(xds_obj$nHostSpecies>1)
+      for(i in 2:xds_obj$nHostSpecies){
+        beta = xds_obj$terms$beta[[s]][[i]]
+        Wi = xds_obj$XY_interface$Wi[[s]][[i]]
+        W = xds_obj$XY_interface$W[[s]]
+        kappa <- kappa + F_kappa(Wi, W, beta, X)
       }
 
-    lf = pars$local_frac[[s]]
-    kappa = lf*kappa + (1-lf)*pars$vars$x_visitors[[s]]
-    pars$kappa[[s]] = kappa
+    lf = xds_obj$terms$local_frac[[s]]
+    kappa_visitors = xds_obj$XY_interface$vis_kappa[[s]]
+    kappa = lf*kappa + (1-lf)*kappa_visitors
+    xds_obj$terms$kappa[[s]] = kappa
   }
 
-  return(pars)
+  return(xds_obj)
 }
 
 #' @title Compute the local fraction
@@ -207,7 +205,7 @@ make_kappa <- function(t, y, pars){
 #' @param Visitors availability of visitors
 #' @return the fraction of bites
 #' @export
-compute_local_frac <- function(W, Visitors){
+F_local_frac <- function(W, Visitors){
   local_frac = W/(W+Visitors)
   ix = which(W+Visitors == 0)
   if(length(ix>0)) local_frac[ix] = 1
@@ -216,25 +214,25 @@ compute_local_frac <- function(W, Visitors){
 
 #' @title Compute the local fraction
 #' @description Compute the availability for the pathogen's hosts for blood feeding
-#' @param pars an `xds` object
+#' @param xds_obj an `xds` object
 #' @return an `xds` object
 #' @export
-make_local_frac <- function(pars){with(pars$vars,{
-  for(s in 1:pars$nVectorSpecies){
-    pars$vars$local_frac[[s]] = compute_local_frac(W[[s]], visitors[[s]])
+compute_local_frac <- function(xds_obj){with(xds_obj$XY_interface,{
+  for(s in 1:xds_obj$nVectorSpecies){
+    xds_obj$vars$local_frac[[s]] = F_local_frac(W[[s]], visitors[[s]])
   }
-  return(pars)
+  return(xds_obj)
 })}
 
 #' @title Compute the mixing matrix and transmission terms
-#' @description This method dispatches on the type of `pars$beta`
+#' @description This method dispatches on the type of `xds_obj$beta`
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars an `xds` object
+#' @param xds_obj an `xds` object
 #' @return an `xds` object
 #' @export
-Transmission <- function(t, y, pars){
-  UseMethod('Transmission', pars$beta)
+Transmission <- function(t, y, xds_obj){
+  UseMethod('Transmission', xds_obj$terms$beta)
 }
 
 #' @title Compute transmission terms with a static mixing matrix
@@ -242,10 +240,10 @@ Transmission <- function(t, y, pars){
 #' @inheritParams Transmission
 #' @return an `xds` object
 #' @export
-Transmission.static <- function(t, y, pars){
-  pars = make_EIR(t, y, pars)
-  pars = make_kappa(t, y, pars)
-  return(pars)
+Transmission.static <- function(t, y, xds_obj){
+  xds_obj = compute_EIR(t, y, xds_obj)
+  xds_obj = compute_kappa(t, y, xds_obj)
+  return(xds_obj)
 }
 
 #' @title Compute transmission, the dynamic case
@@ -253,12 +251,8 @@ Transmission.static <- function(t, y, pars){
 #' @inheritParams Transmission
 #' @return an `xds` object
 #' @export
-Transmission.dynamic <- function(t, y, pars){
-  pars = make_local_frac(pars)
-  pars = make_beta(t, y, pars)
-  pars = make_EIR(t, y, pars)
-  pars = make_kappa(t, y, pars)
-  return(pars)
+Transmission.dynamic <- function(t, y, xds_obj){
+  return(transmission_dynamics(t, y, xds_obj)) 
 }
 
 #' @title Compute transmission, the static case
@@ -268,13 +262,23 @@ Transmission.dynamic <- function(t, y, pars){
 #' @inheritParams Transmission
 #' @return an `xds` object
 #' @export
-Transmission.setup <- function(t, y, pars){
-  class(pars$beta) <- 'dynamic'
-  pars <- Transmission(t, y, pars)
-  class(pars$BFpar) <- 'static'
-  return(pars)
+Transmission.setup <- function(t, y, xds_obj){
+  class(xds_obj$XY_interface) <- 'static'
+  xds_obj <- transmission_dynamics(t, y, xds_obj)
+  return(xds_obj)
 }
 
-
+#' @title Compute transmission, the dynamic case
+#' @description Compute transmission terms with a dynamic mixing matrix
+#' @inheritParams Transmission
+#' @return an `xds` object
+#' @export
+transmission_dynamics <- function(t, y, xds_obj){
+  xds_obj = compute_local_frac(xds_obj)
+  xds_obj = compute_beta(t, y, xds_obj)
+  xds_obj = compute_EIR(t, y, xds_obj)
+  xds_obj = compute_kappa(t, y, xds_obj)
+  return(xds_obj)
+}
 
 

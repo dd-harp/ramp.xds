@@ -37,6 +37,10 @@ Then load **`ramp.xds`**:
 library(ramp.xds)
 ```
 
+```{r, echo=F}
+#devtools::load_all()
+```
+
 Additional modules and functionality are available in companion R-packages, including 
 [**`ramp.library`**](https://dd-harp.github.io/ramp.library/),
 [**`ramp.control`**](https://dd-harp.github.io/ramp.control/),
@@ -65,51 +69,51 @@ The arguments are stored and can be easily retrieved. The name of the module for
 model$Xname
 ```
 
-`SIS` was set up with default parameter values, that can be viewed with the function `get_Xpars`: 
+`SIS` was set up with default parameter values, that can be viewed with the function `get_XH_obj`: 
 
 ```{r}
-get_Xpars(model)
+get_XH_pars(model)
 ```
-Functions like `get_Xpars` are designed to help users get to know the model oject. In this case, the parameters are stored as `model$Xpar[[i]],` for the $i^{th}$ species. Knowing the names, the parameters can then be viewed (or changed):
+Functions like `get_XH_obj` are designed to help users get to know the model oject. In this case, the parameters are stored as `model$Xpar[[i]],` for the $i^{th}$ species. Knowing the names, the parameters can then be viewed (or changed):
 
 ```{r}
-model$Xpar[[1]]$r
+model$XH_obj[[1]]$r
 ```
 
 Similarly, initial values were assigned default values at setup. In **`ramp.xds,`** human/host demography is treated as a distinct process, so the intial values for :
 
 ```{r}
-get_Xinits(model)
+get_XH_inits(model, 1)
 ```
 
-The default parameters and initial values can be over-written at setup by passing `Xopts = list(...)` 
-with different values: 
+The default parameters and initial values can be over-written at setup by passing `options = list(...)` 
+with different values. Since `xds_setup` calls functions to set up several model objects, each component has its own options name. For the `XH` component, setup options for the **XH** component are passed in `XHoptions`:
 
 ```{r}
 Xo = list(b=1/150, c=0.2, b=0.6, I=2)
-model1 <- xds_setup(Xopts = Xo)
-get_Xpars(model1)
+model1 <- xds_setup(XHoptions = Xo)
+get_XH_pars(model1)
 ```
 In the `SIS` model, we set $H=S+I,$ so the software computes $dH/dt$ and $dI/dt$ and sets $S=H-I.$ By policy, the software computes the total population size, $H,$ dynamically and treats it differently. This is because plays an important role in setting up the *Blood Feeding* interface, so it is not possible to set $S.$ Instead, $S$ is computed after solving and parsing. 
 
 ```{r}
-get_Xinits(model1)
+get_XH_inits(model1)
 ```
 
-To change the human population density, use the `set_H` function. 
+To change the human population density, use the `change_H` function. 
 
 ```{r}
-model1 <- set_H(1004, model1)
-get_Xinits(model1)
+model1 <- change_H(1004, model1)
+get_XH_inits(model1)
 ```
 
-The name of the default module for adult mosquito ecology and infection dynamics is called `MYZname.` The default module is Macdonald's model: 
+The name of the default module for adult mosquito ecology and infection dynamics is called `MYname.` The default module is Macdonald's model: 
 
 ```{r}
-model$MYZname
+model$MYname
 ```
 
-The design pattern is followed: once again, parameters can be viewed with `get_MYZpars` and the method for setting parameter values by passing a named list of values to `MYZopts` in `xds_setup()` 
+The design pattern is followed: once again, parameters can be viewed with `get_MYpars` and the method for setting parameter values by passing a named list of values to `MYopts` in `xds_setup()` 
 
 The name of the default module for aquatic mosquito ecology is called `Lname.` The default module is the `trivial` module: 
 
@@ -119,7 +123,7 @@ model$Lname
 
 For the `trivial` module, arguments passed at the command line configure functions that pass values to other dynamical components. 
 
-The design pattern is followed: parameters can be viewed with `get_Lpars` and the method for setting parameter values by passing a named list of values to `Lopts` in `xds_setup()` 
+The design pattern is followed: parameters can be viewed with `get_Lpars` and the method for setting parameter values by passing a named list of values to `Loptions` in `xds_setup()` 
 
 ### Solving 
 
@@ -134,8 +138,8 @@ Calling `xds_solve(model)` returns solutions to the *initial value problem(s):* 
 There are three ways to pass the argument `time` to `deSolve`: first, `xds_solve` can set up a vector of time points `seq(0, Tmax, by = dt)` that are configurable with the arguments `Tmax` and `dt;` second, if no arguments are passed for time, then it uses the defaults `Tmax=365` and `dt=1;` third, `deSolve` will use the optional argument `times` if it is supplied. All four of the following do the same thing: 
 
 ```{r, eval=F}
-model <- xds_solve(model, times = 0:365) 
-model <- xds_solve(model, times = 0:365, Tmax=730, dt=5) 
+model <- xds_solve(model, times=0:365) 
+model <- xds_solve(model, times=0:365, Tmax=730, dt=5) 
 model <- xds_solve(model, Tmax=365, dt=1) 
 ```
 
@@ -151,11 +155,10 @@ names(model$outputs)
 
 The outputs from solving a system of equations include:
 
-+ `time` -- are the time points when the values of the dependent variables were evaluated
-+ `last_y` -- is the dependent variables at the last time point, the last state of the system  
-+ `orbits` -- are the solutions with the values of the dependent variables parsed by name, accessible separately for each dynamical component 
-+ `terms` -- dynamical terms describing transmission, including the EIR 
 + `deout` -- the raw (unparsed) outputs  
++ `time` -- the time points where dependent variables were computed 
++ `last_y` -- the last state of the system  
++ `orbits` -- solutions with the values of the dependent variables and terms parsed by name, accessible separately for each dynamical component 
 
 Note that the `time` holds the default values of the independent variable time where we solved the initial value problem for the dependent variables. 
 
@@ -235,7 +238,7 @@ Lo = list(
 We use the first model as a template for the new model, but we assign the return value a new name `model_1` so that the original one still exists: 
 
 ```{r}
-model_1 <- setup_Lpar("trivial", model, 1, Lopts=Lo)
+model_1 <- setup_L_obj("trivial", model, 1, options=Lo)
 ```
 
 We want to change the initial values of `model_1.` Since `model_1` was copied from `model,` the last values from solving it are available, and we can use a function `last_to_inits` to set the initial values.

@@ -4,14 +4,14 @@
 \alias{F_ar.pois}
 \title{Poisson Attack Rates}
 \usage{
-\method{F_ar}{pois}(eir, b, pars)
+\method{F_ar}{pois}(eir, b, env_het_obj)
 }
 \arguments{
 \item{eir}{the daily eir for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 a \link{numeric} vector: attack rates for the population strata

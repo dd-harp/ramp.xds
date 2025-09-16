@@ -15,15 +15,15 @@ test_that("human SIS_xde model remains at equilibrium", {
 
   foi <- ((r*I)/(HPop-I))
 
-  params <- xds_setup_human(Xname ="SIS", Xopts=Xo, nPatches=nPatches, HPop=HPop, residence = residence)
-  params$FoI[[1]] <- foi
+  params <- xds_setup_human(Xname ="SIS", XHoptions=Xo, nPatches=nPatches, HPop=HPop, residence = residence)
+  params$terms$FoI[[1]] <- foi
 
   # set initial conditions
   y0 <- as.vector(unlist(get_inits(params)))
 
   out <- deSolve::ode(y = y0, times = c(0, 365), func = function(t, y, pars, s) {
-    list(dXdt(t, y, pars, s))
+    list(dXHdt(t, y, pars, s))
   }, parms = params, method = 'lsoda', s=1)
 
-  expect_equal(as.vector(out[2L, params$ix$X[[1]]$I_ix+1]), I, tolerance = numeric_tol)
+  expect_equal(as.vector(out[2L, params$XH_obj[[1]]$ix$I_ix+1]), I, tolerance = numeric_tol)
 })

@@ -70,9 +70,9 @@ xde_cohort_derivatives <- function(age, y, xds_obj, birthday) {
   xds_obj <- Exposure(t, y, xds_obj)
 
   # state derivatives
-  dX <- dXdt(age, y, xds_obj, 1)
+  dXH <- dXHdt(age, y, xds_obj, 1)
 
-  return(list(c(dX)))
+  return(list(c(dXH)))
 }
 
 #' @title Solve a system of equations as an ode

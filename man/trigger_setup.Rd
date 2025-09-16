@@ -7,7 +7,7 @@
 trigger_setup(obj)
 }
 \arguments{
-\item{obj}{part of an \strong{\code{xds}} object}
+\item{obj}{an object}
 }
 \value{
 the \code{obj}

@@ -4,14 +4,14 @@
 \alias{dts_update.cohort}
 \title{Difference equation models for human cohorts}
 \usage{
-\method{dts_update}{cohort}(t, y, pars)
+\method{dts_update}{cohort}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{xds_obj}{a \link{list}}
 }
 \value{
 a \link{vector} containing the vector of all state derivatives

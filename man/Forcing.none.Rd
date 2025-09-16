@@ -2,20 +2,20 @@
 % Please edit documentation in R/forcing.R
 \name{Forcing.none}
 \alias{Forcing.none}
-\title{Set the values of exogenous variables}
+\title{Exogenous Forcing}
 \usage{
-\method{Forcing}{none}(t, pars)
+\method{Forcing}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-After none setup, no exogenous
-variables are configured so forcing returns
-the \strong{\code{xds}} object without modification
+After basic setup, no exogenous
+variables are set up. \code{Forcing} returns
+the unmodified \strong{\code{xds}} object.
 }

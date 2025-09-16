@@ -3,11 +3,14 @@
 #' Sums up adults emerging from all aquatic habitats using the habitat membership matrix
 #' @param t the time
 #' @param y the state variables
-#' @param pars a `xds` object
+#' @param xds_obj a `xds` object
 #' @return an `xds` object
 #' @export
-Emergence = function(t, y, pars){
-  for(s in 1:pars$nVectorSpecies)
-    pars$Lambda[[s]] = pars$habitat_matrix %*% F_emerge(t, y, pars, s)
-  return(pars)
+Emergence = function(t, y, xds_obj){
+  N = xds_obj$ML_interface$habitat_matrix
+  for(s in 1:xds_obj$nVectorSpecies)
+    alpha = F_emerge(t, y, xds_obj, s)
+    xds_obj$terms$alpha[[s]] = alpha 
+    xds_obj$terms$Lambda[[s]] = N %*% alpha 
+  return(xds_obj)
 }

@@ -4,14 +4,14 @@
 \alias{Exposure}
 \title{Compute Infection Rates}
 \usage{
-Exposure(t, y, pars)
+Exposure(t, y, xds_obj)
 }
 \arguments{
 \item{t}{the time}
 
 \item{y}{the state variables}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
 an \strong{\code{xds}} object

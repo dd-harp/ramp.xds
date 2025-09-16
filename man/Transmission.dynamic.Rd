@@ -4,14 +4,14 @@
 \alias{Transmission.dynamic}
 \title{Compute transmission, the dynamic case}
 \usage{
-\method{Transmission}{dynamic}(t, y, pars)
+\method{Transmission}{dynamic}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \code{xds} object}
+\item{xds_obj}{an \code{xds} object}
 }
 \value{
 an \code{xds} object

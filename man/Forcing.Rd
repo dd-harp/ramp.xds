@@ -2,19 +2,21 @@
 % Please edit documentation in R/forcing.R
 \name{Forcing}
 \alias{Forcing}
-\title{Set the values of exogenous variables}
+\title{Exogenous Forcing}
 \usage{
-Forcing(t, pars)
+Forcing(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-Set the values of
-exogenous variables.
+Set up a junction for exogenous forcing
+by weather and hydrology. Non-trivial
+examples are in the satellite package
+\code{ramp.forcing}
 }

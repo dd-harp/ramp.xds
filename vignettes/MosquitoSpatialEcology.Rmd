@@ -11,6 +11,10 @@ vignette: >
 library(ramp.xds)
 ```
 
+```{r, echo=F}
+#devtools::load_all()
+```
+
 
 In **`ramp.xds`,** mosquito spatial ecology is implemented in a patch-based simulation model: a spatial domain is subdivided into patches; and each patch contains an arbitrary number of habitats. 
 
@@ -21,7 +25,7 @@ membership = c(rep(1,5), rep(3, 3), rep(4,5), rep(5,2))
 membership
 ```
 ```{r}
-calJ = create_residence_matrix(5, membership)
+calJ = make_residency_matrix(5, membership)
 ```
 
 The model for egg-laying is motivated by the notion of mosquito searching. Each habitat is assigned a *search weight* that is related to how easy it is for the mosquito to find it. Functions can be configured to compute mosquito *emigration* rates, $\sigma,$ as a function of habitat availability in the patch, the sum of the patch's habitat search weights.  
@@ -33,7 +37,7 @@ searchQ
 ```
 
 ```{r}
-Q <- compute_Q(calJ, searchQ)
+Q <- F_Q(calJ, searchQ)
 ```
 
 ```{r}
@@ -44,14 +48,14 @@ sigma <- exp(-Q/2)
 x = runif(5, -1, 1)
 y = runif(5, -1, 1)
 ker = function(d){exp(-d)}
-calK = create_calK_xy(cbind(x,y), ker=ker)
-calK
+K_matrix = make_K_matrix_xy(cbind(x,y), ker=ker)
+K_matrix
 ```
 
 ```{r}
-model5 <- xds_setup(nPatches=5, membership=membership, searchQ=searchQ, calK=calK)
+model5 <- xds_setup(nPatches=5, membership=membership, searchQ=searchQ, K_matrix=K_matrix)
 ```
 
 ```{r}
-round(model5$calU[[1]]*1000)/1000
+round(model5$ML_interface$habitat_matrix[[1]]*1000)/1000
 ```
