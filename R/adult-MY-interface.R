@@ -126,8 +126,20 @@ MBionomics <- function(t, y, xds_obj, s) {
   UseMethod("MBionomics", xds_obj$MY_obj[[s]])
 }
 
-#' @title Setup an **MY** Module (Adult Mosquito Ecology & Infection Dynamics) 
-#' @description This method dispatches on `MYname`.
+#' @title Setup an **MY** Model Object 
+#' 
+#' @description 
+#' This function is a structured interface, a way  
+#' of building a model objects describing adult mosquito 
+#' ecology & infection dynamics. The string *MYname* 
+#' is assigned its own class (`class(MYname) <- MYname`).
+#' 
+#' Since each model will require different arguments,  
+#' the dispatched function `setup_MY_obj.MYname` 
+#' calls `make_MY_obj_MYname,` passing
+#' the `options` to set the values of parameters or
+#' terms. 
+#'  
 #' @param MYname the name of the model
 #' @param xds_obj a [list]
 #' @param s the species index
@@ -236,7 +248,7 @@ change_MY_inits <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_MY_inits", xds_obj$MY_obj[[s]])
 }
 
-#' @title Get the feeding rate
+#' @title Get the feeding rate(s)
 #' @param xds_obj an **`xds`** object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
@@ -245,7 +257,7 @@ get_f = function(xds_obj, s=1){
   UseMethod("get_f", xds_obj$MY_obj[[s]])
 }
 
-#' @title Get the feeding rate
+#' @title Get the human fraction(s) 
 #' @param xds_obj an **`xds`** object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
@@ -254,7 +266,7 @@ get_q = function(xds_obj, s=1){
   UseMethod("get_q", xds_obj$MY_obj[[s]])
 }
 
-#' @title Get the feeding rate
+#' @title Get the adult mosquito mortality rate(s)
 #' @param xds_obj an **`xds`** object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
@@ -263,13 +275,31 @@ get_g = function(xds_obj, s=1){
   UseMethod("get_g", xds_obj$MY_obj[[s]])
 }
 
-#' @title Get the feeding rate
+#' @title Get the patch emigration rates
 #' @param xds_obj an **`xds`** object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
 get_sigma = function(xds_obj, s=1){
   UseMethod("get_sigma", xds_obj$MY_obj[[s]])
+}
+
+#' @title Get mosquito population density 
+#' @param xds_obj an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_M = function(xds_obj, s=1){
+  UseMethod("get_M", xds_obj$MY_obj[[s]])
+}
+
+#' @title Get the density of infectious, blood feeding mosquitoes
+#' @param xds_obj an **`xds`** object
+#' @param s the vector species index
+#' @return y a [numeric] vector assigned the class "dynamic"
+#' @export
+get_Z = function(xds_obj, s=1){
+  UseMethod("get_Z", xds_obj$MY_obj[[s]])
 }
 
 #' @title Compute steady states for **MY** 

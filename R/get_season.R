@@ -1,8 +1,11 @@
 
-#' @title Get seasonal pattern 
+#' @title Get the Seasonal Pattern 
 #' 
 #' @description
-#' Get the parameters set the seasonal pattern
+#' Get the parameters for the seasonal pattern
+#' forcing the model
+#' 
+#' @note Dispatches on `forced_by`  
 #' 
 #' @param xds_obj an **`xds`** object
 #' @param s the vector species index
