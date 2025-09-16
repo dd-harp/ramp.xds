@@ -14,7 +14,7 @@ dynamics are studied using xds_solve_cohort, which was designed
 to compare the outcomes for cohorts of different ages when exposure is
 changing.
 The interface includes options to configure a function
-computing dEIR as a function of time, with seasonal components
+describing F_eir as a function of time, with seasonal components
 and a trend. Exposure in a cohort is a function of its age, including
 a function that modifies exposure by age."><meta property="og:description" content="
 A modified version of xds_setup to setup up studies of cohort
@@ -25,7 +25,7 @@ dynamics are studied using xds_solve_cohort, which was designed
 to compare the outcomes for cohorts of different ages when exposure is
 changing.
 The interface includes options to configure a function
-computing dEIR as a function of time, with seasonal components
+describing F_eir as a function of time, with seasonal components
 and a trend. Exposure in a cohort is a function of its age, including
 a function that modifies exposure by age."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -35,7 +35,7 @@ a function that modifies exposure by age."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@ a function that modifies exposure by age."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Build a Model of Human / Host Cohort Dynamics</h1>
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/v0.99-3-beta/R/xds_setup.R" class="external-link"><code>R/xds_setup.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/xds_setup.R" class="external-link"><code>R/xds_setup.R</code></a></small>
       <div class="d-none name"><code>xds_setup_cohort.Rd</code></div>
     </div>
 
@@ -92,7 +92,7 @@ dynamics are studied using <a href="xds_solve_cohort.html">xds_solve_cohort</a>,
 to compare the outcomes for cohorts of different ages when exposure is
 changing.</p>
 <p>The interface includes options to configure a function
-computing dEIR as a function of time, with seasonal components
+describing <code>F_eir</code> as a function of time, with seasonal components
 and a trend. Exposure in a cohort is a function of its age, including
 a function that modifies exposure by age.</p>
     </div>
@@ -109,8 +109,7 @@ a function that modifies exposure by age.</p>
 <span>  age_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  xds <span class="op">=</span> <span class="st">"ode"</span>,</span>
 <span>  Xname <span class="op">=</span> <span class="st">"SIS"</span>,</span>
-<span>  Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  Xday <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  XHoptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  HPop <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  searchB <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  model_name <span class="op">=</span> <span class="st">"unnamed"</span></span>
@@ -157,12 +156,8 @@ a function that modifies exposure by age.</p>
 <dd><p>is a character string specifying an <strong>X</strong> Component module</p></dd>
 
 
-<dt id="arg-xopts">Xopts<a class="anchor" aria-label="anchor" href="#arg-xopts"></a></dt>
+<dt id="arg-xhoptions">XHoptions<a class="anchor" aria-label="anchor" href="#arg-xhoptions"></a></dt>
 <dd><p>a list to configure the <strong>X</strong> Component module</p></dd>
-
-
-<dt id="arg-xday">Xday<a class="anchor" aria-label="anchor" href="#arg-xday"></a></dt>
-<dd><p>is the run-time time step for <strong>X</strong> Component (in days): integer or 1/integer</p></dd>
 
 
 <dt id="arg-hpop">HPop<a class="anchor" aria-label="anchor" href="#arg-hpop"></a></dt>
@@ -191,7 +186,7 @@ a function that modifies exposure by age.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Sean L. Wu, David L. Smith.</p>
+  <p>Developed by David L. Smith, Sean L. Wu.</p>
 </div>
 
 <div class="pkgdown-footer-right">

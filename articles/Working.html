@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +87,7 @@
       <h1>Working with Models</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/v0.99-3-beta/vignettes/Working.Rmd" class="external-link"><code>vignettes/Working.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/Working.Rmd" class="external-link"><code>vignettes/Working.Rmd</code></a></small>
       <div class="d-none name"><code>Working.Rmd</code></div>
     </div>
 
@@ -111,9 +111,9 @@ easy to do work with models after they’ve been built.</p>
 <p>The function <code>xds_setup</code> was discussed in <a href="https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html">Getting
 Started</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, MYZname <span class="op">=</span> <span class="st">"SI"</span>, Lname <span class="op">=</span> <span class="st">"basicL"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, MYname <span class="op">=</span> <span class="st">"SI"</span>, Lname <span class="op">=</span> <span class="st">"basicL"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span><span class="op">$</span><span class="va">MYZname</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mod</span><span class="op">$</span><span class="va">MYname</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "SI"</span></span></code></pre>
 </div>
 <div class="section level3">
@@ -140,7 +140,7 @@ variables can be retrieved by name.</p></li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "time"   "last_y" "orbits" "terms"  "deout"</span></span></code></pre>
+<pre><code><span><span class="co">## [1] "deout"  "time"   "last_y" "orbits"</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="visualize">Visualize<a class="anchor" aria-label="anchor" href="#visualize"></a>
@@ -170,11 +170,11 @@ returns a named list that is easy to read:</p>
 <span><span class="co">## [1] 1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## $MYZ</span></span>
-<span><span class="co">## $MYZ$M</span></span>
+<span><span class="co">## $MY</span></span>
+<span><span class="co">## $MY$M</span></span>
 <span><span class="co">## [1] 5</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## $MYZ$Y</span></span>
+<span><span class="co">## $MY$Y</span></span>
 <span><span class="co">## [1] 1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## </span></span>
@@ -187,7 +187,7 @@ returns a named list that is easy to read:</p>
 <p>Since it is a named list, it’s easy to examine a specific element in
 that list:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">MYZ</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">MY</span></span></code></pre></div>
 <pre><code><span><span class="co">## $M</span></span>
 <span><span class="co">## [1] 5</span></span>
 <span><span class="co">## </span></span>
@@ -291,7 +291,7 @@ include:</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Sean L. Wu, David L. Smith.</p>
+  <p>Developed by David L. Smith, Sean L. Wu.</p>
 </div>
 
 <div class="pkgdown-footer-right">

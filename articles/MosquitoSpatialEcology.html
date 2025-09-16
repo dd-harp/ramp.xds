@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +87,7 @@
       <h1>Mosquito Spatial Ecology with `ramp.xds`</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/v0.99-3-beta/vignettes/MosquitoSpatialEcology.Rmd" class="external-link"><code>vignettes/MosquitoSpatialEcology.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/MosquitoSpatialEcology.Rmd" class="external-link"><code>vignettes/MosquitoSpatialEcology.Rmd</code></a></small>
       <div class="d-none name"><code>MosquitoSpatialEcology.Rmd</code></div>
     </div>
 
@@ -107,7 +107,7 @@ no habitats in patch 2; 3 habitats in patch 3; and 4 habitats in patch
 <span><span class="va">membership</span></span></code></pre></div>
 <pre><code><span><span class="co">##  [1] 1 1 1 1 1 3 3 3 4 4 4 4 4 5 5</span></span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">calJ</span> <span class="op">=</span> <span class="fu"><a href="../reference/create_residence_matrix.html">create_residence_matrix</a></span><span class="op">(</span><span class="fl">5</span>, <span class="va">membership</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">calJ</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_residency_matrix.html">make_residency_matrix</a></span><span class="op">(</span><span class="fl">5</span>, <span class="va">membership</span><span class="op">)</span></span></code></pre></div>
 <p>The model for egg-laying is motivated by the notion of mosquito
 searching. Each habitat is assigned a <em>search weight</em> that is
 related to how easy it is for the mosquito to find it. Functions can be
@@ -122,15 +122,15 @@ weights.</p>
 <span><span class="co">##  [8] 1.6987614 0.5280192 3.3127820 0.6497283 0.1424179 0.3536054 0.8911105</span></span>
 <span><span class="co">## [15] 0.1161586</span></span></code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_Q.html">compute_Q</a></span><span class="op">(</span><span class="va">calJ</span>, <span class="va">searchQ</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/F_q.html">F_Q</a></span><span class="op">(</span><span class="va">calJ</span>, <span class="va">searchQ</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">Q</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">ker</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">d</span><span class="op">)</span><span class="op">}</span></span>
-<span><span class="va">calK</span> <span class="op">=</span> <span class="fu"><a href="../reference/create_calK_xy.html">create_calK_xy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span>, ker<span class="op">=</span><span class="va">ker</span><span class="op">)</span></span>
-<span><span class="va">calK</span></span></code></pre></div>
+<span><span class="va">K_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_K_matrix_xy.html">make_K_matrix_xy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span>, ker<span class="op">=</span><span class="va">ker</span><span class="op">)</span></span>
+<span><span class="va">K_matrix</span></span></code></pre></div>
 <pre><code><span><span class="co">##        [,1]      [,2]      [,3]      [,4]      [,5]</span></span>
 <span><span class="co">## 1 0.0000000 0.1718465 0.2682655 0.2862690 0.1655605</span></span>
 <span><span class="co">## 2 0.1754472 0.0000000 0.1413541 0.1436189 0.5330968</span></span>
@@ -138,17 +138,17 @@ weights.</p>
 <span><span class="co">## 4 0.3534971 0.1737070 0.4740391 0.0000000 0.1562521</span></span>
 <span><span class="co">## 5 0.1559399 0.4918137 0.1163413 0.1191831 0.0000000</span></span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>nPatches<span class="op">=</span><span class="fl">5</span>, membership<span class="op">=</span><span class="va">membership</span>, searchQ<span class="op">=</span><span class="va">searchQ</span>, calK<span class="op">=</span><span class="va">calK</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">model5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>nPatches<span class="op">=</span><span class="fl">5</span>, membership<span class="op">=</span><span class="va">membership</span>, searchQ<span class="op">=</span><span class="va">searchQ</span>, K_matrix<span class="op">=</span><span class="va">K_matrix</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">model5</span><span class="op">$</span><span class="va">calU</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">*</span><span class="fl">1000</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span></span></code></pre></div>
-<pre><code><span><span class="co">## numeric(0)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">model5</span><span class="op">$</span><span class="va">ML_interface</span><span class="op">$</span><span class="va">habitat_matrix</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">*</span><span class="fl">1000</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 1</span></span></code></pre>
   </main>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Sean L. Wu, David L. Smith.</p>
+  <p>Developed by David L. Smith, Sean L. Wu.</p>
 </div>
 
 <div class="pkgdown-footer-right">

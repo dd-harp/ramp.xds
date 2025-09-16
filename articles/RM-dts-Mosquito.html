@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,7 @@
 Dynamics</h3>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/v0.99-3-beta/vignettes/RM-dts-Mosquito.Rmd" class="external-link"><code>vignettes/RM-dts-Mosquito.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/RM-dts-Mosquito.Rmd" class="external-link"><code>vignettes/RM-dts-Mosquito.Rmd</code></a></small>
       <div class="d-none name"><code>RM-dts-Mosquito.Rmd</code></div>
     </div>
 
@@ -247,7 +247,7 @@ we get:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"RM"</span>, Xname <span class="op">=</span> <span class="st">"trivial"</span>, xds <span class="op">=</span> <span class="st">'dts'</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Om</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">rm1</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="fu"><a href="../reference/compute_Omega_dts.html">compute_Omega_dts</a></span><span class="op">(</span><span class="va">pp</span>, <span class="va">ssigma</span>, <span class="va">mmu</span>, <span class="va">calK</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Om</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">rm1</span><span class="op">$</span><span class="va">MYZpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="fu">compute_Omega_dts</span><span class="op">(</span><span class="va">pp</span>, <span class="va">ssigma</span>, <span class="va">mmu</span>, <span class="va">calK</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dts_solve</span><span class="op">(</span><span class="va">rm1</span>, <span class="fl">200</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">rm1</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -313,7 +313,7 @@ we get:</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Sean L. Wu, David L. Smith.</p>
+  <p>Developed by David L. Smith, Sean L. Wu.</p>
 </div>
 
 <div class="pkgdown-footer-right">

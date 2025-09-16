@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +87,7 @@
       <h1>Cohort Dynamics</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/v0.99-3-beta/vignettes/Cohorts.Rmd" class="external-link"><code>vignettes/Cohorts.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/Cohorts.Rmd" class="external-link"><code>vignettes/Cohorts.Rmd</code></a></small>
       <div class="d-none name"><code>Cohorts.Rmd</code></div>
     </div>
 
@@ -134,13 +134,13 @@ functions.</p>
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span><span class="op">*</span><span class="fl">365</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F_s</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span><span class="st">"l"</span>, ylab <span class="op">=</span> <span class="st">"Seasonality, Trend"</span>, xlab <span class="op">=</span> <span class="st">"Time (in Days)"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F_t</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span><span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Cohorts_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
+<p><img src="Cohorts_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">opts</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Z<span class="op">=</span><span class="fl">2000</span><span class="op">/</span><span class="fl">365</span>, season_par <span class="op">=</span> <span class="va">Sp</span>, trend_par <span class="op">=</span> <span class="va">Tp</span><span class="op">)</span></span>
-<span><span class="va">mod_human</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup_human.html">xds_setup_human</a></span><span class="op">(</span>HPop<span class="op">=</span><span class="fl">1000</span>, MYZopts <span class="op">=</span> <span class="va">opts</span><span class="op">)</span></span>
+<span><span class="va">mod_human</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup_human.html">xds_setup_human</a></span><span class="op">(</span>HPop<span class="op">=</span><span class="fl">1000</span>, XHoptions <span class="op">=</span> <span class="va">opts</span><span class="op">)</span></span>
 <span><span class="va">mod_human</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">mod_human</span>, Tmax<span class="op">=</span><span class="fl">5</span><span class="op">*</span><span class="fl">365</span>, dt<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod_human</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Cohorts_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
+<p><img src="Cohorts_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
 <p>With this value of <span class="math inline">\(Z\)</span> and a
 population size of <span class="math inline">\(H=1000\)</span>, the
 scaling function gives us an annual EIR of 2.</p>
@@ -148,11 +148,6 @@ scaling function gives us an annual EIR of 2.</p>
 <code class="sourceCode R"><span><span class="va">mod_eir</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup_eir.html">xds_setup_eir</a></span><span class="op">(</span>eir<span class="op">=</span><span class="fl">2</span><span class="op">/</span><span class="fl">365</span>, season_par <span class="op">=</span> <span class="va">Sp</span>, trend_par <span class="op">=</span> <span class="va">Tp</span><span class="op">)</span></span>
 <span><span class="va">mod_eir</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">mod_eir</span>, Tmax<span class="op">=</span><span class="fl">365</span><span class="op">*</span><span class="fl">5</span>, dt<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod_eir</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Cohorts_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_cohort</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup_cohort.html">xds_setup_cohort</a></span><span class="op">(</span>eir<span class="op">=</span><span class="fl">2</span><span class="op">/</span><span class="fl">365</span>, season_par <span class="op">=</span> <span class="va">Sp</span>, trend_par <span class="op">=</span> <span class="va">Tp</span><span class="op">)</span></span>
-<span><span class="va">mod_cohort</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve_cohort.html">xds_solve_cohort</a></span><span class="op">(</span><span class="va">mod_cohort</span>, A<span class="op">=</span><span class="fl">5</span>, da<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod_cohort</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cohorts_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
 </div>
   </main>
@@ -161,7 +156,7 @@ scaling function gives us an annual EIR of 2.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Sean L. Wu, David L. Smith.</p>
+  <p>Developed by David L. Smith, Sean L. Wu.</p>
 </div>
 
 <div class="pkgdown-footer-right">

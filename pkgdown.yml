@@ -6,6 +6,7 @@ articles:
   aqua_basic: aqua_basic.html
   aqua_trace: aqua_trace.html
   BasicSetup: BasicSetup.html
+  BloodFeeding: BloodFeeding.html
   Cohorts: Cohorts.html
   Contributing: Contributing.html
   ex_534: ex_534.html
@@ -20,12 +21,11 @@ articles:
   modularity: modularity.html
   MosquitoSpatialEcology: MosquitoSpatialEcology.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
-  spat_metric: spat_metric.html
   SpatialTransmissionDynamics: SpatialTransmissionDynamics.html
   TraceFunctions: TraceFunctions.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   Working: Working.html
-last_built: 2025-09-10T17:41Z
+last_built: 2025-09-16T02:17Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

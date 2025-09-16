@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +87,7 @@
       <h1>Getting Started</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/v0.99-3-beta/vignettes/GettingStarted.Rmd" class="external-link"><code>vignettes/GettingStarted.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/GettingStarted.Rmd" class="external-link"><code>vignettes/GettingStarted.Rmd</code></a></small>
       <div class="d-none name"><code>GettingStarted.Rmd</code></div>
     </div>
 
@@ -150,9 +150,9 @@ compartmental model:</p>
 <code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">Xname</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "SIS"</span></span></code></pre>
 <p><code>SIS</code> was set up with default parameter values, that can
-be viewed with the function <code>get_Xpars</code>:</p>
+be viewed with the function <code>get_XH_obj</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_Xpars.html">get_Xpars</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_XH_pars.html">get_XH_pars</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $b</span></span>
 <span><span class="co">## [1] 0.55</span></span>
 <span><span class="co">## </span></span>
@@ -161,30 +161,33 @@ be viewed with the function <code>get_Xpars</code>:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## $r</span></span>
 <span><span class="co">## [1] 0.005555556</span></span></code></pre>
-<p>Functions like <code>get_Xpars</code> are designed to help users get
+<p>Functions like <code>get_XH_obj</code> are designed to help users get
 to know the model oject. In this case, the parameters are stored as
 <code>model$Xpar[[i]],</code> for the <span class="math inline">\(i^{th}\)</span> species. Knowing the names, the
 parameters can then be viewed (or changed):</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">Xpar</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">XH_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.005555556</span></span></code></pre>
 <p>Similarly, initial values were assigned default values at setup. In
 <strong><code>ramp.xds,</code></strong> human/host demography is treated
 as a distinct process, so the intial values for :</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_Xinits.html">get_Xinits</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_XH_inits.html">get_XH_inits</a></span><span class="op">(</span><span class="va">model</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $H</span></span>
 <span><span class="co">## [1] 1000</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $I</span></span>
 <span><span class="co">## [1] 1</span></span></code></pre>
 <p>The default parameters and initial values can be over-written at
-setup by passing <code>Xopts = list(...)</code> with different
-values:</p>
+setup by passing <code>options = list(...)</code> with different values.
+Since <code>xds_setup</code> calls functions to set up several model
+objects, each component has its own options name. For the
+<code>XH</code> component, setup options for the <strong>XH</strong>
+component are passed in <code>XHoptions</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">150</span>, c<span class="op">=</span><span class="fl">0.2</span>, b<span class="op">=</span><span class="fl">0.6</span>, I<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xopts <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/get_Xpars.html">get_Xpars</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>XHoptions <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_XH_pars.html">get_XH_pars</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $b</span></span>
 <span><span class="co">## [1] 0.006666667</span></span>
 <span><span class="co">## </span></span>
@@ -201,31 +204,31 @@ is not possible to set <span class="math inline">\(S.\)</span> Instead,
 <span class="math inline">\(S\)</span> is computed after solving and
 parsing.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_Xinits.html">get_Xinits</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_XH_inits.html">get_XH_inits</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $H</span></span>
 <span><span class="co">## [1] 1000</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $I</span></span>
 <span><span class="co">## [1] 2</span></span></code></pre>
-<p>To change the human population density, use the <code>set_H</code>
+<p>To change the human population density, use the <code>change_H</code>
 function.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/set_H.html">set_H</a></span><span class="op">(</span><span class="fl">1004</span>, <span class="va">model1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/get_Xinits.html">get_Xinits</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_H.html">change_H</a></span><span class="op">(</span><span class="fl">1004</span>, <span class="va">model1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_XH_inits.html">get_XH_inits</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $H</span></span>
 <span><span class="co">## [1] 1000</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $I</span></span>
 <span><span class="co">## [1] 2</span></span></code></pre>
 <p>The name of the default module for adult mosquito ecology and
-infection dynamics is called <code>MYZname.</code> The default module is
+infection dynamics is called <code>MYname.</code> The default module is
 Macdonald’s model:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">MYZname</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">MYname</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "macdonald"</span></span></code></pre>
 <p>The design pattern is followed: once again, parameters can be viewed
-with <code>get_MYZpars</code> and the method for setting parameter
-values by passing a named list of values to <code>MYZopts</code> in
+with <code>get_MYpars</code> and the method for setting parameter values
+by passing a named list of values to <code>MYopts</code> in
 <code><a href="../reference/xds_setup.html">xds_setup()</a></code></p>
 <p>The name of the default module for aquatic mosquito ecology is called
 <code>Lname.</code> The default module is the <code>trivial</code>
@@ -238,7 +241,7 @@ line configure functions that pass values to other dynamical
 components.</p>
 <p>The design pattern is followed: parameters can be viewed with
 <code>get_Lpars</code> and the method for setting parameter values by
-passing a named list of values to <code>Lopts</code> in
+passing a named list of values to <code>Loptions</code> in
 <code><a href="../reference/xds_setup.html">xds_setup()</a></code></p>
 </div>
 <div class="section level4">
@@ -262,8 +265,8 @@ arguments are passed for time, then it uses the defaults
 will use the optional argument <code>times</code> if it is supplied. All
 four of the following do the same thing:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, times <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">365</span><span class="op">)</span> </span>
-<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, times <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">365</span>, Tmax<span class="op">=</span><span class="fl">730</span>, dt<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, times<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">365</span><span class="op">)</span> </span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, times<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">365</span>, Tmax<span class="op">=</span><span class="fl">730</span>, dt<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, Tmax<span class="op">=</span><span class="fl">365</span>, dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span> </span></code></pre></div>
@@ -276,25 +279,22 @@ replaces <code>model.</code> Before <code>xds_solve,</code>
 are stored as <code>model$outputs</code>:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "time"   "last_y" "orbits" "terms"  "deout"</span></span></code></pre>
+<pre><code><span><span class="co">## [1] "deout"  "time"   "last_y" "orbits"</span></span></code></pre>
 <p>The outputs from solving a system of equations include:</p>
 <ul>
 <li>
-<code>time</code> – are the time points when the values of the
-dependent variables were evaluated</li>
-<li>
-<code>last_y</code> – is the dependent variables at the last time
-point, the last state of the system<br>
+<code>deout</code> – the raw (unparsed) outputs<br>
 </li>
 <li>
-<code>orbits</code> – are the solutions with the values of the
-dependent variables parsed by name, accessible separately for each
+<code>time</code> – the time points where dependent variables were
+computed</li>
+<li>
+<code>last_y</code> – the last state of the system<br>
+</li>
+<li>
+<code>orbits</code> – solutions with the values of the dependent
+variables and terms parsed by name, accessible separately for each
 dynamical component</li>
-<li>
-<code>terms</code> – dynamical terms describing transmission,
-including the EIR</li>
-<li>
-<code>deout</code> – the raw (unparsed) outputs</li>
 </ul>
 <p>Note that the <code>time</code> holds the default values of the
 independent variable time where we solved the initial value problem for
@@ -357,7 +357,7 @@ in the human / host population</p></li>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_EIR.html">xds_plot_EIR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="GettingStarted_files/figure-html/unnamed-chunk-19-1.png" alt="**Figure 1:** Plotting standard outputs" width="576"><p class="caption">
+<img src="GettingStarted_files/figure-html/unnamed-chunk-20-1.png" alt="**Figure 1:** Plotting standard outputs" width="576"><p class="caption">
 <strong>Figure 1:</strong> Plotting standard outputs
 </p>
 </div>
@@ -400,7 +400,7 @@ options:</p>
 the return value a new name <code>model_1</code> so that the original
 one still exists:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Lpar.html">setup_Lpar</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">model</span>, <span class="fl">1</span>, Lopts<span class="op">=</span><span class="va">Lo</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_L_obj.html">setup_L_obj</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">model</span>, <span class="fl">1</span>, options<span class="op">=</span><span class="va">Lo</span><span class="op">)</span></span></code></pre></div>
 <p>We want to change the initial values of <code>model_1.</code> Since
 <code>model_1</code> was copied from <code>model,</code> the last values
 from solving it are available, and we can use a function
@@ -418,7 +418,7 @@ from solving it are available, and we can use a function
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="GettingStarted_files/figure-html/unnamed-chunk-26-1.png" alt="**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" width="576"><p class="caption">
+<img src="GettingStarted_files/figure-html/unnamed-chunk-27-1.png" alt="**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" width="576"><p class="caption">
 <strong>Figure 2:</strong> Outputs with Seasonal Forced Emergence using
 a Trace Function
 </p>
@@ -432,7 +432,7 @@ a Trace Function
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Sean L. Wu, David L. Smith.</p>
+  <p>Developed by David L. Smith, Sean L. Wu.</p>
 </div>
 
 <div class="pkgdown-footer-right">

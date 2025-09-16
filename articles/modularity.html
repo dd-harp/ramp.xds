@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,7 +90,7 @@
 Pathogens</h3>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/v0.99-3-beta/vignettes/modularity.Rmd" class="external-link"><code>vignettes/modularity.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/modularity.Rmd" class="external-link"><code>vignettes/modularity.Rmd</code></a></small>
       <div class="d-none name"><code>modularity.Rmd</code></div>
     </div>
 
@@ -191,8 +191,8 @@ implemented the code in the syle of <code>RMv2</code>:</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">pars</span>,<span class="op">{</span></span>
 <span>      <span class="va">pars</span> <span class="op">=</span> <span class="fu"><a href="../reference/Transmission.html">Transmission</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span><span class="op">)</span></span>
 <span>      <span class="va">pars</span> <span class="op">=</span> <span class="fu"><a href="../reference/Exposure.html">Exposure</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span><span class="op">)</span></span>
-<span>      <span class="va">dX</span> <span class="op">=</span> <span class="fu"><a href="../reference/dXdt.html">dXdt</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span><span class="op">)</span> </span>
-<span>      <span class="va">dY</span> <span class="op">=</span> <span class="fu"><a href="../reference/dMYZdt.html">dMYZdt</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span><span class="op">)</span> </span>
+<span>      <span class="va">dX</span> <span class="op">=</span> <span class="fu">dXdt</span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span><span class="op">)</span> </span>
+<span>      <span class="va">dY</span> <span class="op">=</span> <span class="fu">dMYZdt</span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span><span class="op">)</span> </span>
 <span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">dX</span>, <span class="va">dY</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -260,7 +260,7 @@ article</a> describing the theory behind the model.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Sean L. Wu, David L. Smith.</p>
+  <p>Developed by David L. Smith, Sean L. Wu.</p>
 </div>
 
 <div class="pkgdown-footer-right">
