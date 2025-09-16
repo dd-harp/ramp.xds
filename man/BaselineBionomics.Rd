@@ -4,14 +4,14 @@
 \alias{BaselineBionomics}
 \title{Set bionomic parameter rates relative to baseline}
 \usage{
-BaselineBionomics(t, y, pars)
+BaselineBionomics(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{xds_obj}{a \link{list}}
 }
 \value{
 a \link{list}

@@ -3,7 +3,7 @@
 #' @description For various `S3` functions, change
 #' the class of the dispatching object from `static`
 #' to `setup`
-#' @param obj part of an **`xds`** object
+#' @param obj an object 
 #' @return the `obj`
 #' @export
 trigger_setup = function(obj){

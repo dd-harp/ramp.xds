@@ -79,7 +79,7 @@ Here, we build a model step-by-step.
 nStrata <- 3
 H <- c(100, 500, 250)
 residence = rep(1,3) 
-params <- make_xds_object_template("ode", "cohort", 1, 1, residence)
+xds_obj <- make_xds_object_template("ode", "eir", 1, 1, residence)
 ```
 
 
@@ -106,59 +106,60 @@ eir <- h/b
 ```
 
 ```{r}
-params = setup_Xpar("hMoI", params, 1, Xo)
-params = setup_Xinits(params, H, 1, Xo) 
+xds_obj = setup_XH_obj("hMoI", xds_obj, 1, Xo)
+xds_obj = setup_XH_inits(xds_obj, H, 1, Xo) 
+```
+
+```{r}
+xds_obj = setup_MY_obj("trivial", xds_obj, 1)
+xds_obj = setup_L_obj("trivial", xds_obj, 1)
 ```
 
 
 ```{r}
 F_season = function(t){0*t+1}
 F_trend = function(t){0*t+1}
-F_age = function(a){0*a+1}
 ```
 
 
 
 ```{r}
-params$EIRpar = list() 
-params$EIRpar$eir <- as.vector(eir)
-params$EIRpar$scale <- 1 
-params$EIRpar$F_season <- F_season
-params$EIRpar$F_trend <- F_trend
-params$EIRpar$F_age <- F_age
-params$EIRpar$season_par <- list() 
-params$EIRpar$trend_par<- list() 
-params$EIRpar$age_par<- list() 
+xds_obj$EIRpar = list() 
+xds_obj$EIRpar$eir <- as.vector(eir)
+xds_obj$EIRpar$scale <- 1 
+xds_obj$EIRpar$F_season <- F_season
+xds_obj$EIRpar$F_trend <- F_trend
+xds_obj$EIRpar$season_par <- list() 
+xds_obj$EIRpar$trend_par<- list() 
 ```
 
 ```{r}
-params = make_indices(params)
+xds_obj = make_indices(xds_obj)
 ```
 
 ```{r}
-y0 <- get_inits(params)
+y0 <- get_inits(xds_obj)
 y0
 ```
 
 
 
 ```{r}
-params <- xds_solve_cohort(params) 
-out1 <- params$outputs$orbits
+xds_obj <- xds_solve(xds_obj) 
+XH <- xds_obj$outputs$orbits$XH[[1]]
+time <- xds_obj$outputs$time
 ```
 
 
 ```{r, out.width = "100%"}
-XH <- out1$XH[[1]] 
-age <- out1$age
 clrs = turbo(5)
-plot(age, XH$m1[,1], col = clrs[1], ylim = range(XH$m1), type = "l")
-lines(age, XH$m1[,2], col = clrs[2])
-lines(age, XH$m1[,3], col =clrs[5])
+plot(time, XH$m1[,1], col = clrs[1], ylim = range(XH$m1), type = "l")
+lines(time, XH$m1[,2], col = clrs[2])
+lines(time, XH$m1[,3], col =clrs[5])
   
-lines(age, XH$m2[,1], col = clrs[1], lty = 2)
-lines(age, XH$m2[,2], col = clrs[2], lty=2)
-lines(age, XH$m2[,3], col =clrs[5], lty=2)
+lines(time, XH$m2[,1], col = clrs[1], lty = 2)
+lines(time, XH$m2[,2], col = clrs[2], lty=2)
+lines(time, XH$m2[,3], col =clrs[5], lty=2)
 ```
 
 # Using Setup
@@ -166,13 +167,13 @@ lines(age, XH$m2[,3], col =clrs[5], lty=2)
 
 
 ```{r}
-xds_setup_cohort(eir, Xname="hMoI", HPop=H, Xopts = Xo) ->test_hMoI
+xds_setup_eir(eir, Xname="hMoI", HPop=H, XHoptions = Xo) ->test_hMoI
 ```
 
 ```{r}
-xds_solve_cohort(test_hMoI)-> test_hMoI 
-XH2 <- params$outputs$orbits$XH[[1]]
-sum((XH$m1-XH$m1)^2)
+xds_solve(test_hMoI)-> test_hMoI 
+XH2 <- test_hMoI$outputs$orbits$XH[[1]]
+sum((XH$m1-XH2$m1)^2)
 ```
 
 

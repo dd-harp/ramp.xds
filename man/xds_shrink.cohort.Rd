@@ -2,16 +2,16 @@
 % Please edit documentation in R/io.R
 \name{xds_shrink.cohort}
 \alias{xds_shrink.cohort}
-\title{Shrink an xds model object}
+\title{Shrink an xds xds_obj object}
 \usage{
-\method{xds_shrink}{cohort}(model)
+\method{xds_shrink}{cohort}(xds_obj)
 }
 \arguments{
-\item{model}{an xds model object}
+\item{xds_obj}{an xds xds_obj object}
 }
 \value{
-a smaller xds model object
+a smaller xds xds_obj object
 }
 \description{
-Shrink an xds model object
+Shrink an xds xds_obj object
 }

@@ -4,26 +4,26 @@
 \alias{BloodFeeding.setup}
 \title{Compute blood feeding objects: setup for static models}
 \usage{
-\method{BloodFeeding}{setup}(t, y, pars)
+\method{BloodFeeding}{setup}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{the time}
 
 \item{y}{the state variables}
 
-\item{pars}{an \code{xds} object}
+\item{xds_obj}{an \code{xds} object}
 }
 \value{
 an \code{xds} object
 }
 \description{
-This sets up host availability, \eqn{W},
-total blood host availability, \eqn{B},
+This sets up host available, \eqn{W},
+total blood host available, \eqn{B},
 the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi}
 for static models.
 }
 \details{
 The mixing matrix, \eqn{\beta}, depends on
-blood feeding terms, so the class of \code{pars$beta} must also
+blood feeding terms, so the class of \code{xds_obj$beta} must also
 be updated, if they are not dynamic, so \link{trigger_setup} is called.
 }

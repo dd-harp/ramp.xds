@@ -4,14 +4,14 @@
 \alias{ar2eir}
 \title{Convert AR to EIR}
 \usage{
-ar2eir(ar, b, pars)
+ar2eir(ar, b, env_het_obj)
 }
 \arguments{
 \item{ar}{the attack rate}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 the daily EIR as a \link{numeric} vector

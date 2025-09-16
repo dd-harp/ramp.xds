@@ -4,14 +4,14 @@
 \alias{xde_derivatives.eir}
 \title{Differential equation models for aquatic mosquito populations}
 \usage{
-\method{xde_derivatives}{eir}(t, y, pars)
+\method{xde_derivatives}{eir}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a \link{list} containing the vector of all state derivatives

@@ -4,14 +4,14 @@
 \alias{ar2eir.nb}
 \title{A negative binomial model for the daily EIR. as a function of the daily attack rate}
 \usage{
-\method{ar2eir}{nb}(ar, b, pars)
+\method{ar2eir}{nb}(ar, b, env_het_obj)
 }
 \arguments{
 \item{ar}{the attack rate}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}

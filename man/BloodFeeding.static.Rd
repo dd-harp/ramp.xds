@@ -4,14 +4,14 @@
 \alias{BloodFeeding.static}
 \title{Compute blood feeding objects: static models}
 \usage{
-\method{BloodFeeding}{static}(t, y, pars)
+\method{BloodFeeding}{static}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{the time}
 
 \item{y}{the state variables}
 
-\item{pars}{an \code{xds} object}
+\item{xds_obj}{an \code{xds} object}
 }
 \value{
 the unmodified \code{xds} object

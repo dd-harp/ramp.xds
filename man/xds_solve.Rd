@@ -2,29 +2,35 @@
 % Please edit documentation in R/xds_solve.R
 \name{xds_solve}
 \alias{xds_solve}
-\title{Solve a system of differential equations}
+\title{Solve a Dynamical System}
 \usage{
-xds_solve(pars, Tmax = 365, dt = 1, times = NULL)
+xds_solve(xds_obj, Tmax = 365, dt = 1, times = NULL)
 }
 \arguments{
-\item{pars}{a \link{list} that defines a model}
+\item{xds_obj}{an \strong{\code{xds}} object}
 
 \item{Tmax}{the last time point, run from 0...Tmax}
 
-\item{dt}{the time interval for outputs}
+\item{dt}{the time step}
 
 \item{times}{the times}
 }
 \value{
-pars an \strong{\code{xds}} object
+an \strong{\code{xds}} object
 }
 \description{
-This method solves a system of equations and returns the values of
-the dependent variables at \code{times} or at  \eqn{t=0, dt, 2\;dt, ... Tmax}.
+Besides solving, this function does several housekeeping tasks:
+\itemize{
+\item runs \link{check_models}
+\item sets up the vector of times when outputs are wanted: see \link{make_times_xde} or \link{make_times_dts}
+\item sets up \eqn{y_0,} the initial values vector (see \link{get_inits})
+\item solves the system
+\item parses and attaches outputs (see \link{parse_outputs})
+}
 }
 \note{
-Note that \link{xde_derivatives} dispatches on \code{class(frame)}
+The function \code{\link[=xds_solve]{xds_solve()}} dispatches on \code{xds_obj$xde}
 }
 \seealso{
-\code{\link[=xde_derivatives]{xde_derivatives()}}
+\code{\link[=xde_derivatives]{xde_derivatives()}} or \code{\link[=dts_update]{dts_update()}}
 }

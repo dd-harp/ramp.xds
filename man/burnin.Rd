@@ -2,20 +2,23 @@
 % Please edit documentation in R/burnin.R
 \name{burnin}
 \alias{burnin}
-\title{Burn-in}
+\title{Burn In}
 \usage{
-burnin(model, t_neg_inf = -3650)
+burnin(xds_obj, t_neg_inf = -3650)
 }
 \arguments{
-\item{model}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
-\item{t_neg_inf}{run from -abs(t_neg_inf) days to \eqn{t=0}}
+\item{t_neg_inf}{days before the present, \eqn{t_{-\infty}}}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+a \strong{\code{ramp.xds}} xds_obj object
 }
 \description{
-Use the defined hindcast to
-run a model from the past up to the present.
-Reset the initial conditions.
+Run the model from some time in the
+remote past (\eqn{t_{-\infty}}) up to the present (\eqn{t=0}), and then
+reset the initial conditions.
+}
+\note{
+The algorithm sets \eqn{t_{-\infty}} to \eqn{-|}\code{t_neg_inf}\eqn{|}, the negative absolute value of \code{t_neg_inf}
 }

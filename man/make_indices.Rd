@@ -4,13 +4,13 @@
 \alias{make_indices}
 \title{Make indices for all the model variables}
 \usage{
-make_indices(pars)
+make_indices(xds_obj)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Make indices for all the model variables

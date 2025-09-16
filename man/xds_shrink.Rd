@@ -2,16 +2,16 @@
 % Please edit documentation in R/io.R
 \name{xds_shrink}
 \alias{xds_shrink}
-\title{Shrink an xds model object}
+\title{Shrink an xds xds_obj object}
 \usage{
-xds_shrink(model)
+xds_shrink(xds_obj)
 }
 \arguments{
-\item{model}{an xds model object}
+\item{xds_obj}{an xds xds_obj object}
 }
 \value{
 invisible()
 }
 \description{
-Shrink an xds model object
+Shrink an xds xds_obj object
 }

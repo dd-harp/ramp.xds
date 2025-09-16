@@ -4,20 +4,20 @@
 \alias{BloodFeeding}
 \title{Blood feeding}
 \usage{
-BloodFeeding(t, y, pars)
+BloodFeeding(t, y, xds_obj)
 }
 \arguments{
 \item{t}{the time}
 
 \item{y}{the state variables}
 
-\item{pars}{an \code{xds} object}
+\item{xds_obj}{an \code{xds} object}
 }
 \value{
 an \code{xds} object
 }
 \description{
-Compute and store host availability, \eqn{W},
-total blood host availability, \eqn{B},
+Compute and store host available, \eqn{W},
+total blood host available, \eqn{B},
 the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi},
 }

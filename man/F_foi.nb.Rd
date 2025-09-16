@@ -2,16 +2,16 @@
 % Please edit documentation in R/exposure-nb.R
 \name{F_foi.nb}
 \alias{F_foi.nb}
-\title{Negative Binomial Force of Infection}
+\title{Negative Binomial Exposure}
 \usage{
-\method{F_foi}{nb}(eir, b, pars)
+\method{F_foi}{nb}(eir, b, env_het_obj)
 }
 \arguments{
 \item{eir}{the daily eir for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}
@@ -32,5 +32,5 @@ This negative binomial model uses the \strong{mu} \eqn{= bE} and \strong{size} \
 parameterization (see \link{pnbinom}).
 }
 \seealso{
-Related topics: \link{Exposure.xde} and \link{F_ar.nb} and \link{setup_exposure_nb}
+Related topics: \link{Exposure.xde} and \link{F_ar.nb} and \link{make_exposure_nb}
 }

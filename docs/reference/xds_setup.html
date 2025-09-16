@@ -4,7 +4,7 @@
 Make an xds model object:
 Define the dynamical components:
 XH - Component modules for human / host infection dynamics of class Xname with trivial demographics
-MYZ - Component modules for adult mosquito ecology and infection dynamics of class MYZname
+MY - Component modules for adult mosquito ecology and infection dynamics of class MYname
 L Component modules for aquatic mosquito ecology of class Lname
 
 Define basic structural parameters for a single host and vector population:
@@ -18,15 +18,14 @@ Search weights for aquatic habitats
 The mosquito dispersal matrix, \(K\)
 The time spent matrix \(\Theta\)
 
-Configure runtime parameters for discrete-time systems
 
 
-Advanced options can be configured after basic setup."><title>Build a Model with All Components — xds_setup • ramp.xds</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Build a Model with All Components — xds_setup"><meta property="og:description" content="
+Advanced options can be configured after basic setup."><title>Build a Model and Configure All Components — xds_setup • ramp.xds</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Build a Model and Configure All Components — xds_setup"><meta property="og:description" content="
 
 Make an xds model object:
 Define the dynamical components:
 XH - Component modules for human / host infection dynamics of class Xname with trivial demographics
-MYZ - Component modules for adult mosquito ecology and infection dynamics of class MYZname
+MY - Component modules for adult mosquito ecology and infection dynamics of class MYname
 L Component modules for aquatic mosquito ecology of class Lname
 
 Define basic structural parameters for a single host and vector population:
@@ -40,7 +39,6 @@ Search weights for aquatic habitats
 The mosquito dispersal matrix, \(K\)
 The time spent matrix \(\Theta\)
 
-Configure runtime parameters for discrete-time systems
 
 
 Advanced options can be configured after basic setup."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -54,7 +52,7 @@ Advanced options can be configured after basic setup."><!-- mathjax --><script s
     
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,7 +111,7 @@ Advanced options can be configured after basic setup."><!-- mathjax --><script s
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Build a Model with All Components</h1>
+      <img src="" class="logo" alt=""><h1>Build a Model and Configure All Components</h1>
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/HEAD/R/xds_setup.R" class="external-link"><code>R/xds_setup.R</code></a></small>
       <div class="d-none name"><code>xds_setup.Rd</code></div>
     </div>
@@ -122,7 +120,7 @@ Advanced options can be configured after basic setup."><!-- mathjax --><script s
     <p><script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script>
 
 Make an <strong><code>xds</code></strong> <em>model object</em>:</p><ul><li><p>Define the dynamical components:</p><ul><li><p><strong>XH</strong> - Component modules for human / host infection dynamics of class <strong><code>Xname</code></strong> with trivial demographics</p></li>
-<li><p><strong>MYZ</strong> - Component modules for adult mosquito ecology and infection dynamics of class <strong><code>MYZname</code></strong></p></li>
+<li><p><strong>MY</strong> - Component modules for adult mosquito ecology and infection dynamics of class <strong><code>MYname</code></strong></p></li>
 <li><p><strong>L</strong> Component modules for aquatic mosquito ecology of class <strong><code>Lname</code></strong></p></li>
 </ul></li>
 <li><p>Define basic structural parameters for a single host and vector population:</p><ul><li><p>\(n_p\) or <code>nPatches</code> - the number of patches</p></li>
@@ -134,7 +132,6 @@ Make an <strong><code>xds</code></strong> <em>model object</em>:</p><ul><li><p>D
 <li><p>The mosquito dispersal matrix, \(K\)</p></li>
 <li><p>The time spent matrix \(\Theta\)</p></li>
 </ul></li>
-<li><p>Configure runtime parameters for discrete-time systems</p></li>
 </ul><p>Advanced options can be configured after basic setup.</p>
     </div>
 
@@ -143,22 +140,19 @@ Make an <strong><code>xds</code></strong> <em>model object</em>:</p><ul><li><p>D
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xds_setup</span><span class="op">(</span></span>
 <span>  xds <span class="op">=</span> <span class="st">"ode"</span>,</span>
 <span>  Xname <span class="op">=</span> <span class="st">"SIS"</span>,</span>
-<span>  Xopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  MYZname <span class="op">=</span> <span class="st">"macdonald"</span>,</span>
-<span>  MYZopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  XHoptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  MYname <span class="op">=</span> <span class="st">"macdonald"</span>,</span>
+<span>  MYoptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  Lname <span class="op">=</span> <span class="st">"trivial"</span>,</span>
-<span>  Lopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  Loptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  nPatches <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  HPop <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  residence <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  membership <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  searchB <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  TimeSpent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  calK <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  K_matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  searchQ <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  Xday <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  MYZday <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  Lday <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  BFopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  model_name <span class="op">=</span> <span class="st">"unnamed"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -174,23 +168,23 @@ Make an <strong><code>xds</code></strong> <em>model object</em>:</p><ul><li><p>D
 <dd><p>a character string defining a <strong>X</strong> Component module</p></dd>
 
 
-<dt>Xopts</dt>
+<dt>XHoptions</dt>
 <dd><p>a list to configure the <strong>X</strong> Component module</p></dd>
 
 
-<dt>MYZname</dt>
-<dd><p>a character string defining a <strong>MYZ</strong> Component module</p></dd>
+<dt>MYname</dt>
+<dd><p>a character string defining an <strong>MY</strong> module</p></dd>
 
 
-<dt>MYZopts</dt>
-<dd><p>a list to configure the <strong>MYZ</strong> Component module</p></dd>
+<dt>MYoptions</dt>
+<dd><p>options to set up the <strong>MY</strong> component</p></dd>
 
 
 <dt>Lname</dt>
 <dd><p>a character string defining a <strong>L</strong> Component module</p></dd>
 
 
-<dt>Lopts</dt>
+<dt>Loptions</dt>
 <dd><p>a list to configure the <strong>L</strong> Component module</p></dd>
 
 
@@ -218,24 +212,12 @@ Make an <strong><code>xds</code></strong> <em>model object</em>:</p><ul><li><p>D
 <dd><p>is either a TimeSpent matrix or a string to call a function that sets it up</p></dd>
 
 
-<dt>calK</dt>
-<dd><p>is either a calK matrix or a string that defines how to set it up</p></dd>
+<dt>K_matrix</dt>
+<dd><p>is either a K_matrix matrix or a string that defines how to set it up</p></dd>
 
 
 <dt>searchQ</dt>
 <dd><p>is a vector of search weights for egg laying</p></dd>
-
-
-<dt>Xday</dt>
-<dd><p>is the run-time time step for <strong>X</strong> Component (in days): integer or 1/integer</p></dd>
-
-
-<dt>MYZday</dt>
-<dd><p>is the run-time time step for <strong>MYZ</strong> Component (in days): integer or 1/integer</p></dd>
-
-
-<dt>Lday</dt>
-<dd><p>is the run-time time step for <strong>L</strong> Component (in days): integer or 1/integer</p></dd>
 
 
 <dt>BFopts</dt>
@@ -263,14 +245,13 @@ a properly configured interface for blood feeding and egg laying, and <code>xds_
 <li><p><code>nVectorSpecies=1</code> (basic setup handles only the first vector species)</p></li>
 </ul></li>
 </ol><p>.
-2. Each one of the dynamical components is configured.</p><ul><li><p><strong><code>xds_obj$Xpar[[1]]</code></strong> defines a model for human / host infection dynamics of class <code>Xname</code> (the <strong>X</strong> component). The parameter values passed in a named list, <code>Xopts.</code></p></li>
-<li><p><strong><code>xds_obj$MYZpar[[1]]</code></strong> defines a model for adult mosquito ecology &amp; infection dynamics of class <code>MYZname</code> (the <strong>MYZ</strong> Component). The parameter values are passed in a named list, <code>MYZopts.</code></p></li>
-<li><p><strong><code>xds_obj$Lpar[[1]]</code></strong> defines a model for aquatic mosquito ecology of class <code>Lname</code> (The <strong>L</strong> Component). The parameter values are passed in a named list, <code>Lopts.</code></p></li>
+2. Each one of the dynamical components is configured.</p><ul><li><p><strong><code>xds_obj$XH_obj[[1]]</code></strong> defines a model for human / host infection dynamics of class <code>Xname</code> (the <strong>X</strong> component). The parameter values passed in a named list, <code>XHoptions.</code></p></li>
+<li><p><strong><code>xds_obj$MY_obj[[1]]</code></strong> defines a model for adult mosquito ecology &amp; infection dynamics of class <code>MYname</code> (the <strong>MY</strong> Component). The parameter values are passed in a named list, <code>MYoptions.</code></p></li>
+<li><p><strong><code>xds_obj$L_obj[[1]]</code></strong> defines a model for aquatic mosquito ecology of class <code>Lname</code> (The <strong>L</strong> Component). The parameter values are passed in a named list, <code>Loptions.</code></p></li>
 </ul><ol><li><p>After configuring the dynamical components, several structural parameters can be configured at the command line:</p><ul><li><p>Habitat search weights can be set</p></li>
 <li><p>Host population search weights can be set</p></li>
 <li><p>A mosquito dispersal matrix, \(\cal K\), can be set</p></li>
 <li><p>A time spent matrix, \(\Theta\), can be set</p></li>
-<li><p>Runtime parameters for <code>dts</code> models can be configured by passing values: <code>Xday</code>, <code>MYZday</code>, and <code>Lday</code></p></li>
 </ul></li>
 </ol><p>Advanced features must be configured later, including:</p><ul><li><p>multiple-host species or multiple-vector species</p></li>
 <li><p>exogenous forcing by weather, resources, or other factors</p></li>
@@ -278,7 +259,7 @@ a properly configured interface for blood feeding and egg laying, and <code>xds_
 </ul></div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>If the <strong>MYZ</strong> Component is the <code>trivial</code> module, consider using <a href="xds_setup_aquatic.html">xds_setup_aquatic</a> or <a href="xds_setup_human.html">xds_setup_human</a> or <a href="xds_setup_cohort.html">xds_setup_cohort</a>. Models for mosquito
+    <p>If the <strong>MY</strong> Component is the <code>trivial</code> module, consider using <a href="xds_setup_aquatic.html">xds_setup_aquatic</a> or <a href="xds_setup_human.html">xds_setup_human</a> or <a href="xds_setup_cohort.html">xds_setup_cohort</a>. Models for mosquito
 ecology need not include states describing infection status (see <a href="xds_setup_mosy.html">xds_setup_mosy</a>).</p>
     </div>
     <div class="section level2">
@@ -291,7 +272,7 @@ ecology need not include states describing infection status (see <a href="xds_se
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Sean L. Wu, David L. Smith.</p>
+  <p>Developed by David L. Smith, Sean L. Wu.</p>
 </div>
 
 <div class="pkgdown-footer-right">

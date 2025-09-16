@@ -14,8 +14,7 @@ xds_setup_cohort(
   age_par = list(),
   xds = "ode",
   Xname = "SIS",
-  Xopts = list(),
-  Xday = 1,
+  XHoptions = list(),
   HPop = 1000,
   searchB = 1,
   model_name = "unnamed"
@@ -40,9 +39,7 @@ xds_setup_cohort(
 
 \item{Xname}{is a character string specifying an \strong{X} Component module}
 
-\item{Xopts}{a list to configure the \strong{X} Component module}
-
-\item{Xday}{is the run-time time step for \strong{X} Component (in days): integer or 1/integer}
+\item{XHoptions}{a list to configure the \strong{X} Component module}
 
 \item{HPop}{is the number of humans in each stratum}
 
@@ -66,7 +63,7 @@ to compare the outcomes for cohorts of different ages when exposure is
 changing.
 
 The interface includes options to configure a function
-computing dEIR as a function of time, with seasonal components
+describing \code{F_eir} as a function of time, with seasonal components
 and a trend. Exposure in a cohort is a function of its age, including
 a function that modifies exposure by age.
 }

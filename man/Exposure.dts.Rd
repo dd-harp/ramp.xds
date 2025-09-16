@@ -4,14 +4,14 @@
 \alias{Exposure.dts}
 \title{Compute Attack Rates}
 \usage{
-\method{Exposure}{dts}(t, y, pars)
+\method{Exposure}{dts}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{the time}
 
 \item{y}{the state variables}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
 an \strong{\code{xds}} object
@@ -26,12 +26,12 @@ Local attack rates (AR or \eqn{\alpha}) are
 a function of local daily entomological inoculation
 rates (dEIR or \eqn{E}), and
 a model for the probability of infection
-per infectious bite, \eqn{b} (from \eqn{F_b},
+per infectious bite, \eqn{b} (from \eqn{F_infectivity},
 as defined by an \eqn{\cal X} model).
 The total attack rates also consider
 exposure to malaria while traveling, (\eqn{T_\delta}):
-\deqn{\alpha = (1-\delta) \; F_\alpha(E, b) + \delta\; T_\alpha(b)}
+\deqn{\alpha = 1-((1-\delta) \; F_\alpha(E, b))(1-\delta\; T_\alpha(b))}
 }
 \seealso{
-Related: \link{Exposure} & \link{F_ar.pois} & \link{F_ar.nb} & \link{travel_eir} & \link{traveling}
+Related: \link{Exposure} & \link{F_ar.pois} & \link{F_ar.nb} & \link{Travel}
 }

@@ -77,20 +77,20 @@ eggsPerBatch <- 30
 ```
 
 ```{r}
-MYZo = list(
+MYo = list(
   g=g, sigma=sigma, mu=mu, f=f, q=q, nu=nu, eggsPerBatch = eggsPerBatch
 )
 ```
 
 
 ```{r}
-calK <- matrix(0, nPatches, nPatches)
-calK[1, 2:3] <- c(0.2, 0.8)
-calK[2, c(1,3)] <- c(0.5, 0.5)
-calK[3, 1:2] <- c(0.7, 0.3)
-calK <- t(calK)
+K_matrix <- matrix(0, nPatches, nPatches)
+K_matrix[1, 2:3] <- c(0.2, 0.8)
+K_matrix[2, c(1,3)] <- c(0.5, 0.5)
+K_matrix[3, 1:2] <- c(0.7, 0.3)
+K_matrix <- t(K_matrix)
 
-Omega <- compute_Omega_xde(g, sigma, mu, calK)
+Omega <- make_Omega_xde(g, sigma, mu, K_matrix)
 Upsilon <- expm::expm(-Omega * eip)
 
 kappa <- c(0.1, 0.075, 0.025)
@@ -122,51 +122,51 @@ we must use `ramp.xds::MosquitoBehavior` to pass the equilibrium values of those
 to `ramp.xds::xDE_diffeqn_mosy`.
 
 ```{r}
-params <- make_xds_object_template("ode", "mosy", nPatches, membership)
+xds_obj <- make_xds_object_template("ode", "mosy", nPatches, membership)
 
-params = setup_Lpar("trivial", params, 1, Lopts = list(Lambda=alpha))
+xds_obj = setup_L_obj("trivial", xds_obj, 1, options = list(Lambda=alpha))
 
-params = setup_Linits(params, 1)
+xds_obj = setup_L_inits(xds_obj, 1)
 
-params = setup_MYZpar("basicM", params, 1, MYZopts=MYZo)
+xds_obj = setup_MY_obj("basicM", xds_obj, 1, options=MYo)
 
-params = setup_MYZinits(params, 1, list(M=M_eq, P=P_eq))
+xds_obj = setup_MY_inits(xds_obj, 1, list(M=M_eq, P=P_eq))
 ```
 
 
 ```{r}
-params = setup_Xpar("trivial", params, 1, list(HPop=HPop))
+xds_obj = setup_XH_obj("trivial", xds_obj, 1, list(HPop=HPop))
 ```
 
 
 ```{r}
-params = make_indices(params)
+xds_obj = make_indices(xds_obj)
 ```
 
 ```{r}
-params$kappa = list()
-params$kappa[[1]] = kappa
+xds_obj$terms$kappa = list()
+xds_obj$terms$kappa[[1]] = kappa  
 ```
 
 
 ```{r}
-params <- change_calK(calK, params)
+xds_obj <- change_K_matrix(K_matrix, xds_obj)
 ```
 
 ```{r}
-y0 <- get_inits(params)
+y0 <- get_inits(xds_obj)
 y0
 ```
 
 
 ```{r}
-out <- deSolve::ode(y = get_inits(params, flatten=TRUE), times = seq(0,50, by=10), func = xde_derivatives, parms = params, method = 'lsoda')
+out <- deSolve::ode(y = get_inits(xds_obj, flatten=TRUE), times = seq(0,50, by=10), func = xde_derivatives, parms = xds_obj, method = 'lsoda')
 out1 <- out
 ```
 
 ```{r, out.width = "100%"}
-colnames(out)[params$ix$MYZ[[1]]$M_ix+1] <- paste0('M_', 1:params$nPatches)
-colnames(out)[params$ix$MYZ[[1]]$P_ix+1] <- paste0('P_', 1:params$nPatches)
+colnames(out)[xds_obj$MY_obj[[1]]$ix$M_ix+1] <- paste0('M_', 1:xds_obj$nPatches)
+colnames(out)[xds_obj$MY_obj[[1]]$ix$P_ix+1] <- paste0('P_', 1:xds_obj$nPatches)
 
 out <- as.data.table(out)
 out <- melt(out, id.vars = 'time')
@@ -188,7 +188,7 @@ Lo = list(
 ```
 
 ```{r}
-MYZo = list(
+MYo = list(
   f = 0.3,
   q = 0.9,
   g = 1/20,
@@ -203,14 +203,14 @@ MYZo = list(
 
 
 ```{r}
-xds_setup_mosy(MYZname = "basicM", Lname = "trivial", 
+xds_setup_mosy(MYname = "basicM", Lname = "trivial", 
                nPatches = 3, membership = c(1,2,3,3), 
-               MYZopts = MYZo, calK = calK, HPop=HPop, Lopts = Lo, 
+               MYoptions = MYo, K_matrix = K_matrix, HPop=HPop, Loptions = Lo, 
                kappa = c(0.1, 0.075, 0.025))->mosy1
 ```
 
 ```{r}
-xds_solve(mosy1,Tmax=50,dt=10)$outputs$orbits$deout -> out2
+xds_solve(mosy1,Tmax=50,dt=10)$outputs$deout -> out2
 ```
 
 ```{r}

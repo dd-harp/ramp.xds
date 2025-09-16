@@ -4,14 +4,14 @@
 \alias{F_ar.nb}
 \title{Negative Binomial Attack Rates}
 \usage{
-\method{F_ar}{nb}(eir, b, pars)
+\method{F_ar}{nb}(eir, b, env_het_obj)
 }
 \arguments{
 \item{eir}{the daily eir for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}
@@ -33,5 +33,5 @@ The formula is equivalent to:
 \code{pnbinom(0, mu=b*eir, size=phi, lower.tail=FALSE)}
 }
 \seealso{
-Related topics: \link{Exposure.dts}, \link{setup_exposure_nb} & \link{F_foi.nb}
+Related topics: \link{Exposure.dts}, \link{make_exposure_nb} & \link{F_foi.nb}
 }

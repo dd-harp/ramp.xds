@@ -4,14 +4,14 @@
 \alias{dts_update_Lt}
 \title{Difference equations isolating the humans, forced with Ztrace}
 \usage{
-dts_update_Lt(t, y, pars, s)
+dts_update_Lt(t, y, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{xds_obj}{a \link{list}}
 
 \item{s}{the vector species index}
 }

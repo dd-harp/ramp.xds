@@ -37,11 +37,11 @@ get_mean_forcing.none = function(xds_obj){
 #' @export
 get_mean_forcing.Lambda = function(xds_obj){
   if(xds_obj$nVectorSpecies == 1){
-    return(xds_obj$Lpar[[1]]$Lambda)
+    return(xds_obj$L_obj[[1]]$Lambda)
   } else { 
     Lambda = list() 
     for(s in 1:length(xds_obj$nVectorSpecies)) 
-      Lambda[[s]] <- xds_obj$Lpar[[s]]$Lambda 
+      Lambda[[s]] <- xds_obj$L_obj[[s]]$Lambda 
     return(Lambda)
   } 
 }

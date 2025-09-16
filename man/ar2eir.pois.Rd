@@ -4,14 +4,14 @@
 \alias{ar2eir.pois}
 \title{Convert AR to EIR under a Poisson model for Exposure}
 \usage{
-\method{ar2eir}{pois}(ar, b, pars)
+\method{ar2eir}{pois}(ar, b, env_het_obj)
 }
 \arguments{
 \item{ar}{the attack rate}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \code{xds} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}

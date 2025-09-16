@@ -4,11 +4,11 @@
 #' @description dts_update_s the state variables
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
+#' @param xds_obj a [list]
 #' @return a [list] containing the vector of all state derivatives
 #' @export
-dts_update <- function(t, y, pars) {
-  UseMethod("dts_update", pars$frame)
+dts_update <- function(t, y, xds_obj) {
+  UseMethod("dts_update", xds_obj$frame)
 }
 
 
@@ -17,14 +17,14 @@ dts_update <- function(t, y, pars) {
 #' a model with only humans
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
+#' @param xds_obj a [list]
 #' @param s the vector species index
 #' @return a [vector] containing the vector of all state derivatives
 #' @export
-dts_update_Lt = function(t, y, pars, s){
-  tt = with(pars$runtime,runt(t,Dday,Lday))
-  if(tt) return(Update_Lt(t, y, pars, s))
-  else return(list_Lvars(y, pars,s))
+dts_update_Lt = function(t, y, xds_obj, s){
+  tt = with(xds_obj$runtime,runt(t,Dday,Lday))
+  if(tt) return(Update_Lt(t, y, xds_obj, s))
+  else return(get_L_vars(y, xds_obj,s))
 }
 
 #' @title Difference equations isolating the humans, forced with Ztrace
@@ -32,14 +32,14 @@ dts_update_Lt = function(t, y, pars, s){
 #' a model with only humans
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
+#' @param xds_obj a [list]
 #' @param s the vector species index
 #' @return a [vector] containing the vector of all state derivatives
 #' @export
-dts_update_MYZt = function(t, y, pars, s){
-  tt = with(pars$runtime,runt(t,Dday,MYZday))
-  if(tt) return(Update_MYZt(t, y, pars, s))
-  else return(list_MYZvars(y, pars, s))
+dts_update_MYt = function(t, y, xds_obj, s){
+  tt = with(xds_obj$runtime,runt(t,Dday,MYday))
+  if(tt) return(Update_MYt(t, y, xds_obj, s))
+  else return(get_MY_vars(y, xds_obj, s))
 }
 
 #' @title Difference equations isolating the humans, forced with Ztrace
@@ -47,14 +47,14 @@ dts_update_MYZt = function(t, y, pars, s){
 #' a model with only humans
 #' @param t current simulation time
 #' @param y state vector
-#' @param pars a [list]
+#' @param xds_obj a [list]
 #' @param i the host species index
 #' @return a [vector] containing the vector of all state derivatives
 #' @export
-dts_update_Xt = function(t, y, pars, i){
-  tt = with(pars$runtime,runt(t,Dday,Xday))
-  if(tt) return(Update_Xt(t, y, pars, i))
-  else return(list_Xvars(y, pars, i))
+dts_update_XHt = function(t, y, xds_obj, i){
+  tt = with(xds_obj$runtime,runt(t,Dday,XHday))
+  if(tt) return(Update_XHt(t, y, xds_obj, i))
+  else return(get_XH_vars(y, xds_obj, i))
 }
 
 #' @title Generalized spatial differential equation model
@@ -62,37 +62,27 @@ dts_update_Xt = function(t, y, pars, i){
 #' @inheritParams dts_update
 #' @return a [list] containing the vector of all state derivatives
 #' @export
-dts_update.full <- function(t, y, pars) {
+dts_update.full <- function(t, y, xds_obj) {
 
-  # exogenous forcing
-  pars <- Exogenous(t, y, pars)
-
-  # emergence: Lambda
-  pars <- Emergence(t, y, pars)
-
-  # transmission: beta, EIR, and kappa
-  pars <- Transmission(t, y, pars)
-
-  # compute the FoI
-  pars <- Exposure(t, y, pars)
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
 
   # dts_update_ Variables
-  Lt <- dts_update_Lt(t, y, pars, 1)
-  if(pars$nVectors > 1)
-    for(s in 2:pars$nVectors)
-      Lt <- c(Lt, dts_update_Lt(t, y, pars, s))
+  Lt <- dts_update_Lt(t, y, xds_obj, 1)
+  if(xds_obj$nVectors > 1)
+    for(s in 2:xds_obj$nVectors)
+      Lt <- c(Lt, dts_update_Lt(t, y, xds_obj, s))
 
-  MYZt <- dts_update_MYZt(t, y, pars, 1)
-  if(pars$nVectors > 1)
-    for(s in 2:pars$nVectors)
-      MYZt <- c(MYZt, dts_update_MYZt(t, y, pars, s))
+  MYt <- dts_update_MYt(t, y, xds_obj, 1)
+  if(xds_obj$nVectors > 1)
+    for(s in 2:xds_obj$nVectors)
+      MYt <- c(MYt, dts_update_MYt(t, y, xds_obj, s))
 
-  Xt <- dts_update_Xt(t, y, pars, 1)
-  if(pars$nHosts > 1)
-    for(i in 2:pars$nHosts)
-      Xt <- c(Xt, dts_update_Xt(t, y, pars, i))
+  XHt <- dts_update_XHt(t, y, xds_obj, 1)
+  if(xds_obj$nHosts > 1)
+    for(i in 2:xds_obj$nHosts)
+      XHt <- c(XHt, dts_update_XHt(t, y, xds_obj, i))
 
-  return(unlist(c(Lt, MYZt, Xt)))
+  return(unlist(c(Lt, MYt, XHt)))
 }
 
 
@@ -102,26 +92,17 @@ dts_update.full <- function(t, y, pars) {
 #' @inheritParams dts_update
 #' @return a [vector] containing the vector of all state derivatives
 #' @export
-dts_update.human <- function(t, y, pars) {
-
-  # exogenous forcing
-  pars <- Exogenous(t, y, pars)
-
-  pars <- VectorControlEffectSizes(t, y, pars)
-
-  # compute beta, EIR, and kappa
-  pars <- Transmission(t, y, pars)
-
-  # compute the FoI
-  pars <- Exposure(t, y, pars)
+dts_update.human <- function(t, y, xds_obj) {
+  
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
 
   # state derivatives
-  Xt <- dts_update_Xt(t, y, pars, 1)
-  if(pars$nHosts > 1)
-    for(i in 2:pars$nHosts)
-      Xt <- c(Xt, dts_update_Xt(t, y, pars, i))
+  XHt <- dts_update_XHt(t, y, xds_obj, 1)
+  if(xds_obj$nHosts > 1)
+    for(i in 2:xds_obj$nHosts)
+      XHt <- c(XHt, dts_update_XHt(t, y, xds_obj, i))
 
-  return(c(Xt))
+  return(c(XHt))
 }
 
 #' @title Generalized spatial differential equation model (mosquito only)
@@ -130,23 +111,20 @@ dts_update.human <- function(t, y, pars) {
 #' @inheritParams dts_update
 #' @return a [vector] containing the vector of all state derivatives
 #' @export
-dts_update.mosy <- function(t, y, pars) {
+dts_update.mosy <- function(t, y, xds_obj) {
 
-  # exogenous forcing
-  pars <- Exogenous(t, y, pars)
-
-  # emergence: compute Lambda
-  pars <- Emergence(t, y, pars)
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
+  
   # compute derivatives
-  Lt <- dts_update_Lt(t, y, pars, 1)
-  if(pars$nVectors > 1)
-    for(s in 2:pars$nVectors)
-      Lt <- c(Lt, dts_update_Lt(t, y, pars, s))
+  Lt <- dts_update_Lt(t, y, xds_obj, 1)
+  if(xds_obj$nVectors > 1)
+    for(s in 2:xds_obj$nVectors)
+      Lt <- c(Lt, dts_update_Lt(t, y, xds_obj, s))
 
-  Mt <- dts_update_MYZt(t, y, pars, 1)
-  if(pars$nVectors > 1)
-    for(s in 2:pars$nVectors)
-      Mt <- c(Mt, dts_update_MYZt(t, y, pars, s))
+  Mt <- dts_update_MYt(t, y, xds_obj, 1)
+  if(xds_obj$nVectors > 1)
+    for(s in 2:xds_obj$nVectors)
+      Mt <- c(Mt, dts_update_MYt(t, y, xds_obj, s))
 
   return(c(Lt, Mt))
 }
@@ -157,21 +135,17 @@ dts_update.mosy <- function(t, y, pars) {
 #' @inheritParams dts_update
 #' @return a [vector] containing the vector of all state derivatives
 #' @export
-dts_update.cohort <- function(t, y, pars) {
+dts_update.cohort <- function(t, y, xds_obj) {
 
-  # EIR: entomological inoculation rate trace
-  pars$EIR[[1]] <- with(pars$EIRpar, F_eir(t, bday, scale))*pars$BFpar$relativeBitingRate[[1]][[1]]
-
-  # FoI: force of infection
-  pars <- Exposure(t, y, pars)
-
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
+  
   # state derivatives
-  Xt <- dts_update_Xt(t, y, pars, 1)
-  if(pars$nHosts > 1)
-    for(i in 2:pars$nHosts)
-      Xt <- c(Xt, dts_update_Xt(t, y, pars, i))
+  XHt <- dts_update_XHt(t, y, xds_obj, 1)
+  if(xds_obj$nHosts > 1)
+    for(i in 2:xds_obj$nHosts)
+      XHt <- c(XHt, dts_update_XHt(t, y, xds_obj, i))
 
-  return(c(Xt))
+  return(c(XHt))
 }
 
 #' @title Difference equation models for aquatic mosquito populations
@@ -180,19 +154,15 @@ dts_update.cohort <- function(t, y, pars) {
 #' @inheritParams dts_update
 #' @return a [vector] containing the vector of all state derivatives
 #' @export
-dts_update.aquatic <- function(t, y, pars) {
+dts_update.aquatic <- function(t, y, xds_obj) {
 
-  # exogenous forcing
-  pars <- Exogenous(t, y, pars)
-
-  # egg laying: compute eta
-  pars$eggs_laid[[1]] = F_eggs(t, y, pars, 1)
-
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
+  
   # compute derivatives
-  Lt <- dts_update_Lt(t, y, pars, 1)
-  if(pars$nVectors > 1)
-    for(s in 2:pars$nVectors)
-      Lt <- c(Lt, dts_update_Lt(t, y, pars, s))
+  Lt <- dts_update_Lt(t, y, xds_obj, 1)
+  if(xds_obj$nVectors > 1)
+    for(s in 2:xds_obj$nVectors)
+      Lt <- c(Lt, dts_update_Lt(t, y, xds_obj, s))
 
   return(c(Lt))
 }
@@ -203,17 +173,13 @@ dts_update.aquatic <- function(t, y, pars) {
 #' @inheritParams dts_update
 #' @return a [vector] containing the vector of all state derivatives
 #' @export
-dts_update.eir <- function(t, y, pars) {
+dts_update.eir <- function(t, y, xds_obj) {
   
-  # EIR: entomological inoculation rate trace
-  pars$EIR[[1]] <- pars$F_eir(t)
-  
-  # FoI: force of infection
-  pars <- Exposure(t, y, pars)
+  xds_obj <- xds_compute_terms(t, y, xds_obj)
   
   # state derivatives
-  Xt <- dts_update_Xt(t, y, pars, 1)
+  XHt <- dts_update_XHt(t, y, xds_obj, 1)
   
-  return(list(c(Xt)))
+  return(list(c(XHt)))
 }
 

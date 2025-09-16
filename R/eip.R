@@ -1,34 +1,50 @@
 # generic methods to compute the extrinsic incubation period (EIP)
 
+#' @title Setup an EIP Bionomic Object 
+#' 
+#' @description Set up an object
+#' to compute the human fraction, \eqn{eip} 
+#' 
+#' @param eip the mosquito patch emigration rate
+#' @param MY_obj an **`MY`** model object 
+#' 
+#' @return a **`MY`** model object
+#' 
+#' @export
+setup_eip_obj = function(eip, MY_obj){
+  MY_obj$eip = eip
+  MY_obj$eip_obj <- list()  
+  class(MY_obj$eip_obj) <- "static" 
+  MY_obj$eip_obj$eip <- eip 
+  MY_obj$eip_obj$dF_eip <- F_zero 
+  return(MY_obj)
+}
+
 #' @title Compute the EIP
-#' @description This method ...
+#' 
+#' @description This method dispatches on the type of `eip_obj`. It 
+#' sets the values the EIP, \eqn{\eip} 
+#' 
 #' @param t current simulation time
-#' @param vars exogenous variables
-#' @param eip_par a [list]
-#' @return a [numeric] vector of length `nPatches`
+#' @param xds_obj a **`xds`** model object
+#' @param s vector species index
+#' 
+#' @return a [numeric] vector oeip length `nPatches`
+#' 
 #' @export
-F_eip <- function(t, vars, eip_par) {
-  UseMethod("F_eip", eip_par)
+F_eip <- function(t, xds_obj, s){
+  UseMethod("F_eip", xds_obj$MY_obj[[s]]$eip_obj)
 }
 
-#' @title Compute the derivative of the EIP as a function of time
-#' @description This method ...
-#' @param t current simulation time
-#' @param vars exogenous variables
-#' @param eip_par a [list]
-#' @return [numeric]
+#' @title Static model patch emigration 
+#' 
+#' @description Implements [F_eip] for a static model
+#' 
+#' @inheritParams F_eip
+#' 
+#' @return \eqn{eip}, the patch emigration rate 
 #' @export
-d_F_eip_dt <- function(t, vars, eip_par) {
-  UseMethod("d_F_eip_dt", eip_par)
-}
-
-#' @title Set up the fixed model for control forcing (do nothing)
-#' @param EIPopts a list with options to setup EIPmod; must include EIPmod$EIPname
-#' @param MYZpar the MYZ parameters
-#' @return [list] MYZpar with the EIPmod attached
-#' @export
-setup_EIP <- function(EIPopts, MYZpar) {
-  class(EIPopts) <- EIPopts$EIPname
-  UseMethod("setup_EIP", EIPopts)
+F_eip.static <- function(t, xds_obj, s){
+  return(xds_obj$MY_obj[[s]]$eip_obj$eip)
 }
 

@@ -2,18 +2,32 @@
 % Please edit documentation in R/resources.R
 \name{Resources}
 \alias{Resources}
-\title{Set the values of exogenous variables describing available mosquito resources}
+\title{Resources}
 \usage{
-Resources(t, pars)
+Resources(t, y, xds_obj)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{t}{the time}
 
-\item{pars}{a \link{list}}
+\item{y}{the state variables}
+
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-none
+an \strong{\code{xds}} model object
 }
 \description{
-This method dispatches on the type of \code{pars$RESOURCES}.
+Computes availability of resources potentially
+affecting adult mosquito bionomics: blood hosts,
+aquatic habitats, and sugar. There are ports to
+compute variables that are part of the blood feeding,
+egg laying, or exposure interfaces.
+\itemize{
+\item \link{BloodHosts} availability of alternative blood hosts
+\item \link{HabitatDynamics} to modify habitat search weights
+\item \link{Travel} to compute variables associated with exposure while traveling
+\item \link{Visitors} to compute parasite/pathogen blood feeding on visitors
+\item \link{Traps} to compute availability of oviposition traps
+\item \link{Sugar} availability of sugar
+}
 }

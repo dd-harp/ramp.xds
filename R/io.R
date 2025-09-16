@@ -1,27 +1,27 @@
 
-#' Shrink an xds model object
+#' Shrink an xds xds_obj object
 #'
-#' @param model an xds model object
+#' @param xds_obj an xds xds_obj object
 #'
 #' @returns invisible() 
 #' @export
-xds_shrink = function(model){
-  UseMethod("xds_shrink", model$frame)
+xds_shrink = function(xds_obj){
+  UseMethod("xds_shrink", xds_obj$frame)
 }
 
 
-#' Shrink an xds model object
+#' Shrink an xds xds_obj object
 #'
-#' @param model an xds model object
+#' @param xds_obj an xds xds_obj object
 #'
-#' @returns a smaller xds model object 
+#' @returns a smaller xds xds_obj object 
 #' @export
-xds_shrink.cohort = function(model){
-  model$F_eir <- list()  
-  model$EIRpar$F_season <- list()  
-  model$EIRpar$F_trend <- list()  
-  model$EIRpar$F_age <- list()  
-  model$outputs <- list()  
-  return(model) 
+xds_shrink.cohort = function(xds_obj){
+  xds_obj$F_eir <- list()  
+  xds_obj$EIRpar$F_season <- list()  
+  xds_obj$EIRpar$F_trend <- list()  
+  xds_obj$EIRpar$F_age <- list()  
+  xds_obj$outputs <- list()  
+  return(xds_obj) 
 }
 

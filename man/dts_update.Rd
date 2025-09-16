@@ -4,14 +4,14 @@
 \alias{dts_update}
 \title{dts_update_ States for Discrete-Time Systems}
 \usage{
-dts_update(t, y, pars)
+dts_update(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{xds_obj}{a \link{list}}
 }
 \value{
 a \link{list} containing the vector of all state derivatives

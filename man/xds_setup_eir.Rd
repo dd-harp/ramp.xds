@@ -6,14 +6,13 @@
 \usage{
 xds_setup_eir(
   eir = 1,
-  F_season = F_flat,
   season_par = list(),
-  F_trend = F_flat,
+  F_season = F_flat,
   trend_par = list(),
+  F_trend = F_flat,
   xds = "ode",
   Xname = "SIS",
-  Xopts = list(),
-  Xday = 1,
+  XHoptions = list(),
   HPop = 1000,
   searchB = 1,
   model_name = "unnamed"
@@ -22,21 +21,19 @@ xds_setup_eir(
 \arguments{
 \item{eir}{is the entomological inoculation rate}
 
-\item{F_season}{a function describing a seasonal pattern over time}
-
 \item{season_par}{parameters to configure a seasonality function using \link{make_function}}
 
-\item{F_trend}{a function describing a temporal trend over time}
+\item{F_season}{a function describing a seasonal pattern over time}
 
 \item{trend_par}{parameters to configure a trends function using \link{make_function}}
+
+\item{F_trend}{a function describing a temporal trend over time}
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
 \item{Xname}{is a character string specifying an \strong{X} Component module}
 
-\item{Xopts}{a list to configure the \strong{X} Component module}
-
-\item{Xday}{is the run-time time step for \strong{X} Component (in days): integer or 1/integer}
+\item{XHoptions}{a list to configure the \strong{X} Component module}
 
 \item{HPop}{is the number of humans in each stratum}
 
@@ -58,7 +55,7 @@ The \strong{\code{xds}} object defines \code{frame = class(frame) = 'eir'}
 to dispatch \link{xde_derivatives.eir} or \link{dts_update.eir}
 
 The interface includes options to configure a function
-compute the daily EIR as a function of time, with seasonal components
+describing \code{F_eir} as a function of time, with seasonal components
 and a trend. Exposure in a cohort is a function of its age, including
 a function that modifies exposure by age. Models set up
 with \code{xds_setup_eir} are like models set up with

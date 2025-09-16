@@ -4,14 +4,14 @@
 \alias{F_foi.pois}
 \title{Poisson Force of Infection}
 \usage{
-\method{F_foi}{pois}(eir, b, pars)
+\method{F_foi}{pois}(eir, b, env_het_obj)
 }
 \arguments{
 \item{eir}{the daily eir for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}

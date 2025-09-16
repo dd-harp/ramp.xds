@@ -14,7 +14,7 @@ over one time step, is a weighted sum of local and travel exposure."><!-- mathja
     
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99-3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +87,7 @@ over one time step, is a weighted sum of local and travel exposure.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for dts</span></span>
-<span><span class="fu"><a href="Exposure.html">Exposure</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="Exposure.html">Exposure</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -100,7 +100,7 @@ over one time step, is a weighted sum of local and travel exposure.</p>
 <dd><p>the state variables</p></dd>
 
 
-<dt>pars</dt>
+<dt>xds_obj</dt>
 <dd><p>an <strong><code>xds</code></strong> object</p></dd>
 
 </dl></div>
@@ -116,15 +116,15 @@ over one time step, is a weighted sum of local and travel exposure.</p>
 a function of local daily entomological inoculation
 rates (dEIR or \(E\)), and
 a model for the probability of infection
-per infectious bite, \(b\) (from \(F_b\),
+per infectious bite, \(b\) (from \(F_infectivity\),
 as defined by an \(\cal X\) model).
 The total attack rates also consider
 exposure to malaria while traveling, (\(T_\delta\)):
-$$\alpha = (1-\delta) \; F_\alpha(E, b) + \delta\; T_\alpha(b)$$</p>
+$$\alpha = 1-((1-\delta) \; F_\alpha(E, b))(1-\delta\; T_\alpha(b))$$</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>Related: <a href="Exposure.html">Exposure</a> &amp; <a href="F_ar.pois.html">F_ar.pois</a> &amp; <a href="F_ar.nb.html">F_ar.nb</a> &amp; <a href="travel_eir.html">travel_eir</a> &amp; <a href="traveling.html">traveling</a></p></div>
+    <div class="dont-index"><p>Related: <a href="Exposure.html">Exposure</a> &amp; <a href="F_ar.pois.html">F_ar.pois</a> &amp; <a href="F_ar.nb.html">F_ar.nb</a> &amp; <a href="Travel.html">Travel</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -132,7 +132,7 @@ $$\alpha = (1-\delta) \; F_\alpha(E, b) + \delta\; T_\alpha(b)$$</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Sean L. Wu, David L. Smith.</p>
+  <p>Developed by David L. Smith, Sean L. Wu.</p>
 </div>
 
 <div class="pkgdown-footer-right">

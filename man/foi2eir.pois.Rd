@@ -4,14 +4,14 @@
 \alias{foi2eir.pois}
 \title{Convert FoI to EIR under a Poisson model for Exposure}
 \usage{
-\method{foi2eir}{pois}(foi, b, pars)
+\method{foi2eir}{pois}(foi, b, env_het_obj)
 }
 \arguments{
 \item{foi}{the daily FoI for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 dEIR as a \link{numeric} vector of length \eqn{n_h=}\code{nStrata}

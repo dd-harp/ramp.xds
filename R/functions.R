@@ -1,3 +1,63 @@
+
+#' @title The trivial function
+#' @description A function that returns 0
+#' @param t an arbitrary input
+#' @param V an arbitrary input
+#' @return a vector of ones of length x
+#' @export
+Zero_tV = function(t, V=list()){return(0*t)}
+
+#' @title The trivial function
+#' @description A function that returns 0
+#' @param t an arbitrary input
+#' @param V an arbitrary input
+#' @return a vector of ones of length x
+#' @export
+One_tV= function(t, V=list()){return(0*t+1)}
+
+#' @title Get Variables 
+#' 
+#' @description A utility to write functions 
+#' that respond to state variables or exogenous
+#' variables 
+#' 
+#' @note The method dispatches on `class(func)`
+#' 
+#' @param t current simulation time
+#' @param y variables 
+#' @param func a function that dispatches [get_variables] and pulls variables it needs 
+#' @param xds_obj an **`xds`** model object 
+#' 
+#' @return a vector of variables 
+#' @export
+get_variables = function(t, y, func, xds_obj){
+  UseMethod("get_variables", func) 
+}
+
+#' @title Get Variables 
+#' 
+#' @description The null case for [get_variables]
+#' 
+#' @inheritParams get_variables 
+#' 
+#' @return a set of variables 
+#' @export
+get_variables.na = function(t, y, func, xds_obj){
+  return(numeric(0)) 
+}
+
+#' @title Exponential Function 
+#' 
+#' @description An exponential 
+#' function.  
+#' 
+#' @param d an arbitrary input
+#' 
+#' @return a [numeric] vector of length d
+#' 
+#' @export
+F_exp = function(d){return(exp(-d))}
+
 #' @title Make a Function
 #' @description Build a function of time for trace functions
 #' exogenous forcing by weather, vector control, or mass
@@ -144,7 +204,6 @@ makepar_F_sin = function(phase=0, bottom=0, pw=1, norm=365, N=1){
   pars$N = N
   return(pars)
 }
-
 
 #' @title Make a type2 function for age
 #' @description Return an age pattern \eqn{\omega(a)}, a function of the form
@@ -418,3 +477,35 @@ makepar_F_spline = function(tt, yy, X=FALSE){
   pars$yy = yy 
   return(pars)
 }
+
+#' Make a Time Series Function 
+#'
+#' @param options configurable options 
+#' @param N the length of the return value 
+#' @param scale scale parameter, usually the average 
+#' @param season_par seasonality function parameters 
+#' @param trend_par trend function parameters 
+#'
+#' @returns a function
+#' @export
+make_ts_function = function(options=list(), 
+                            N=1,
+                            scale=1, 
+                            season_par = list(),
+                            trend_par = list()){
+  with(options,{
+    scale = checkIt(scale, N)
+    if(length(season_par) == 0){
+      F_season = F_one
+    } else {
+      season_par$N = N
+      F_season <- make_function(season_par)
+    } 
+    if(length(trend_par) == 0){
+      F_trend = F_one
+    } else {
+      trend_par$N = N
+      F_trend <- make_function(trend_par)
+    }
+    return(function(t, V=list()){scale*F_season(t)*F_trend(t)})
+})}

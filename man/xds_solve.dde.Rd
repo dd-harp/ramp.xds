@@ -2,16 +2,16 @@
 % Please edit documentation in R/xds_solve.R
 \name{xds_solve.dde}
 \alias{xds_solve.dde}
-\title{Solve a system of equations using \link[deSolve:dede]{deSolve::dede}}
+\title{Solve a System of Delay Differential Equations}
 \usage{
-\method{xds_solve}{dde}(pars, Tmax = 365, dt = 1, times = NULL)
+\method{xds_solve}{dde}(xds_obj, Tmax = 365, dt = 1, times = NULL)
 }
 \arguments{
-\item{pars}{a \link{list} that defines a model}
+\item{xds_obj}{an \strong{\code{xds}} object}
 
 \item{Tmax}{the last time point, run from 0...Tmax}
 
-\item{dt}{the time interval for outputs}
+\item{dt}{the time step}
 
 \item{times}{the times}
 }

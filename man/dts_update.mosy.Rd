@@ -4,14 +4,14 @@
 \alias{dts_update.mosy}
 \title{Generalized spatial differential equation model (mosquito only)}
 \usage{
-\method{dts_update}{mosy}(t, y, pars)
+\method{dts_update}{mosy}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{xds_obj}{a \link{list}}
 }
 \value{
 a \link{vector} containing the vector of all state derivatives

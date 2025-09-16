@@ -4,10 +4,10 @@
 \alias{get_inits}
 \title{Get the stored initial values, \eqn{y_0}}
 \usage{
-get_inits(pars, flatten = FALSE)
+get_inits(xds_obj, flatten = FALSE)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{flatten}{a \link{logical}: if true, results are returned as an unnamed vector}
 }

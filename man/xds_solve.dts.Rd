@@ -2,16 +2,16 @@
 % Please edit documentation in R/xds_solve.R
 \name{xds_solve.dts}
 \alias{xds_solve.dts}
-\title{Solve a discrete-time system}
+\title{Solve a Discrete-Time System}
 \usage{
-\method{xds_solve}{dts}(pars, Tmax = 365, dt = NULL, times = NULL)
+\method{xds_solve}{dts}(xds_obj, Tmax = 365, dt = 1, times = NULL)
 }
 \arguments{
-\item{pars}{a \link{list} that defines a model}
+\item{xds_obj}{an \strong{\code{xds}} object}
 
 \item{Tmax}{the last time point, run from 0...Tmax}
 
-\item{dt}{the time interval for outputs}
+\item{dt}{the time step}
 
 \item{times}{the times}
 }
@@ -19,5 +19,10 @@
 a \link{list}
 }
 \description{
-Implements \link{xds_solve} for equations
+Implements \link{xds_solve} for discrete time systems.
+}
+\note{
+For discrete time systems, the values in \code{times} need not be
+a sequence. If \code{times} is not null, the system iterates up to \code{max(times)}
+and then returns the solutions at the subset specified in \code{times.}
 }

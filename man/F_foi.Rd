@@ -4,14 +4,14 @@
 \alias{F_foi}
 \title{Compute the Local FoI}
 \usage{
-F_foi(eir, b, pars)
+F_foi(eir, b, env_het_obj)
 }
 \arguments{
 \item{eir}{the daily eir for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 the local FoI as a \link{numeric} vector of length \eqn{n_h =} \code{nStrata}
@@ -29,7 +29,7 @@ heterogeneous exposure --
 the distribution of bites per person.
 
 The model for human / host infection (\eqn{\cal X}) provide
-a term \eqn{b}, from \link{F_b} that describe the probability of infection
+a term \eqn{b}, from \link{F_infectivity} that describe the probability of infection
 per infectious bite, possibly affected by
 pre-erythrocytic immunity.
 }

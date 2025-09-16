@@ -4,14 +4,14 @@
 \alias{foi2eir.nb}
 \title{A negative binomial model for the daily FoI as a function of the daily EIR.}
 \usage{
-\method{foi2eir}{nb}(foi, b, pars)
+\method{foi2eir}{nb}(foi, b, env_het_obj)
 }
 \arguments{
 \item{foi}{the daily FoI for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}

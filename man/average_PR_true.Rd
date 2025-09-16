@@ -4,10 +4,10 @@
 \alias{average_PR_true}
 \title{Compute the average True PR}
 \usage{
-average_PR_true(pars, i = 1, members = NULL)
+average_PR_true(xds_obj, i = 1, members = NULL)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 
 \item{i}{the human species index}
 
@@ -19,7 +19,7 @@ a PfPR
 \description{
 This is a generic way of computing the average PR
 for some subset(s) of the population. The object \code{members} is a
-membership matrix, like the residence matrix (see \link{create_residence_matrix}).
+membership matrix, like the residence matrix (see \link{make_residency_matrix}).
 If the residence matrix were passed to members, average_PR_true returns
 the average PR for each patch by residency.
 

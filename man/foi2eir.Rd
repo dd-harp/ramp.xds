@@ -4,14 +4,14 @@
 \alias{foi2eir}
 \title{Convert FoI to EIR}
 \usage{
-foi2eir(foi, b, pars)
+foi2eir(foi, b, env_het_obj)
 }
 \arguments{
 \item{foi}{the daily FoI for each stratum}
 
 \item{b}{the probability of infection, per bite}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{env_het_obj}{an environmental heterogeneity model object}
 }
 \value{
 the daily EIR as a \link{numeric} vector

@@ -4,14 +4,14 @@
 \alias{Transmission.setup}
 \title{Compute transmission, the static case}
 \usage{
-\method{Transmission}{setup}(t, y, pars)
+\method{Transmission}{setup}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \code{xds} object}
+\item{xds_obj}{an \code{xds} object}
 }
 \value{
 an \code{xds} object

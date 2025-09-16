@@ -25,7 +25,7 @@ get_season = function(xds_obj, s=1){
 #' 
 #' @export
 get_season.none = function(xds_obj, s=1){
-   return(c()) 
+  return(c()) 
 }
 
 #' @title Get phase 

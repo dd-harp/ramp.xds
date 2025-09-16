@@ -1,7 +1,42 @@
 
-#' @title Negative Binomial Force of Infection
+#' @title Set up a nbson model for Exposure and Infection
+#' 
+#' @inheritParams setup_exposure
+#' 
+#' @return an  **`xds`** object
+#' @export
+#' @seealso Also, see [F_foi.nb] and [F_ar.nb]
+#'
+setup_exposure.nb <- function(EHname, xds_obj, i=1, options=list()) {
+  xds_obj$XY_interface$env_het_obj[[i]] = make_exposure_nb(xds_obj$nStrata, options)
+  return(xds_obj)
+}
+
+#' @title Make a nbson Exposure Model Object 
+#' 
+#' @description Set up the nbson model for
+#' exposure for continuous time models
+#'
+#' @param nStrata the number of population strata
+#' @param options options to configure negative binomial exposure
+#' @param sz the `size` parameter for a negative binomial distribution
+#' 
+#' @return a local exposure model object
+#' 
+#' @seealso Also, see [F_foi.nb]
+#' @export
+make_exposure_nb <- function(nStrata, options, sz=1) {
+  local_exposure_object <- list()
+  class(local_exposure_object) <- 'nb'
+  local_exposure_object$sz = with(options, sz) 
+  return(local_exposure_object)
+}
+
+#' @title Negative Binomial Exposure 
+#' 
 #' @description Compute the daily FoI from the daily EIR
 #' under a negative binomial model for exposure
+#' 
 #' @details
 #' This function computes the local daily FoI, \eqn{h} as a function of
 #' the local daily EIR, \eqn{E},
@@ -14,11 +49,11 @@
 #' parameterization (see [pnbinom]).
 #' @inheritParams F_foi
 #' @return a [numeric] vector of length `nStrata`
-#' @seealso Related topics: [Exposure.xde] and [F_ar.nb] and [setup_exposure_nb]
+#' @seealso Related topics: [Exposure.xde] and [F_ar.nb] and [make_exposure_nb]
 #' @export
-F_foi.nb <- function(eir, b, pars){
-  log(1 + b*eir/pars$FoIpar$sz)*pars$FoIpar$sz
-}
+F_foi.nb <- function(eir, b, env_het_obj){with(env_het_obj,{
+  log(1 + b*eir/sz)*sz
+})}
 
 #' @title A negative binomial model for the daily FoI as a function of the daily EIR.
 #' @description Implements [foi2eir] for a negative binomial model
@@ -32,9 +67,9 @@ F_foi.nb <- function(eir, b, pars){
 #' @return a [numeric] vector of length `nStrata`
 #' @seealso [F_foi.nb]
 #' @export
-foi2eir.nb <- function(foi, b, pars){
-  (exp(foi/pars$ARpar$sz) - 1)*pars$ARpar$sz/b
-}
+foi2eir.nb <- function(foi, b, env_het_obj){with(env_het_obj,{
+  (exp(foi/sz) - 1)*sz/b
+})}
 
 #' @title Negative Binomial Attack Rates
 #' @description A negative binomial model for the attack rate as a function of the daily EIR.
@@ -52,11 +87,11 @@ foi2eir.nb <- function(foi, b, pars){
 #'`pnbinom(0, mu=b*eir, size=phi, lower.tail=FALSE)`
 #' @inheritParams F_ar
 #' @return a [numeric] vector of length `nStrata`
-#' @seealso Related topics: [Exposure.dts], [setup_exposure_nb] & [F_foi.nb]
+#' @seealso Related topics: [Exposure.dts], [make_exposure_nb] & [F_foi.nb]
 #' @export
-F_ar.nb <- function(eir, b, pars){
-  1 - (1+b*eir/pars$ARpar$sz)^(-pars$ARpar$sz)
-}
+F_ar.nb <- function(eir, b, env_het_obj){with(env_het_obj,{
+  1 - (1+b*eir/sz)^(-sz)
+})}
 
 #' @title A negative binomial model for the daily EIR. as a function of the daily attack rate
 #' @description Implements [ar2eir] for a negative binomial model
@@ -64,44 +99,6 @@ F_ar.nb <- function(eir, b, pars){
 #' @return a [numeric] vector of length `nStrata`
 #' @seealso [F_ar.nb]
 #' @export
-ar2eir.nb <- function(ar, b, pars){
- ((1-ar)^(-1/pars$ARpar$sz)-1)*pars$ARpar$sz/b
-}
-
-#' @title Set up the negative binomial model of exposure
-#' @param pars an `xds` object
-#' @param sz the negative binomial size parameter (see [pnbinom])
-#' @return an `xds` object
-#' @seealso [F_foi.nb] and [F_ar.nb]
-#' @export
-setup_exposure_nb <- function(pars, sz) {
-  UseMethod("setup_exposure_nb", pars$xds)
-}
-
-#' @title Set up the negative binomial model of exposure for continuous time models
-#' @inheritParams setup_exposure_nb
-#' @return an **`xds`** object
-#' @seealso Also, see [F_foi.nb]
-#' @export
-setup_exposure_nb.xde <- function(pars, sz) {
-  FoIpar <- list()
-  class(FoIpar) <- 'nb'
-  FoIpar$sz = sz
-  pars$FoIpar <- FoIpar
-  pars$FoI    <- list()
-  return(pars)
-}
-
-#' @title Set up the negative binomial model for exposure for discrete time models
-#' @inheritParams setup_exposure_nb
-#' @return an **`xds`** object
-#' @seealso Also, see [F_ar.nb]
-#' @export
-setup_exposure_nb.dts <- function(pars, sz) {
-  ARpar <- list()
-  class(ARpar) <- 'nb'
-  ARpar$sz = sz
-  pars$ARpar <- ARpar
-  pars$AR    <- list()
-  return(pars)
-}
+ar2eir.nb <- function(ar, b, env_het_obj){with(env_het_obj,{
+ ((1-ar)^(-1/sz)-1)*sz/b
+})}

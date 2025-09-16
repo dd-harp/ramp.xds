@@ -4,14 +4,14 @@
 \alias{xde_derivatives.human}
 \title{Differential equations isolating the humans, forced with Ztrace}
 \usage{
-\method{xde_derivatives}{human}(t, y, pars)
+\method{xde_derivatives}{human}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a \link{list} containing the vector of all state derivatives

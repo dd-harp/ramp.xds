@@ -22,16 +22,16 @@ test_that("human hybrid MoI model remains at equilibrium", {
 
   Xo = list(b=b,c1=c1,c2=c2,r1=r1,r2=r2, m2=m2, m1=m1)
 
-  params <- xds_setup_human(Xname ="hMoI", Xopts=Xo, nPatches=nPatches, HPop=H, residence = residence)
-  params$FoI[[1]] <- foi
+  params <- xds_setup_human(Xname ="hMoI", XHoptions =Xo, nPatches=nPatches, HPop=H, residence = residence)
+  params$terms$FoI[[1]] <- foi
 
   y0 <- as.vector(unlist(get_inits(params)))
 
   out <- deSolve::ode(y = y0, times = c(0, 365), func = function(t, y, pars, s) {
-    list(dXdt(t, y, pars, s))
+    list(dXHdt(t, y, pars, s))
   }, parms = params, method = 'lsoda', s=1)
 
-  expect_equal(as.vector(out[2L, params$ix$X[[1]]$m1_ix+1]), m1, tolerance = numeric_tol)
-  expect_equal(as.vector(out[2L, params$ix$X[[1]]$m2_ix+1]), m2, tolerance = numeric_tol)
+  expect_equal(as.vector(out[2L, params$XH_obj[[1]]$ix$m1_ix+1]), m1, tolerance = numeric_tol)
+  expect_equal(as.vector(out[2L, params$XH_obj[[1]]$ix$m2_ix+1]), m2, tolerance = numeric_tol)
 
 })

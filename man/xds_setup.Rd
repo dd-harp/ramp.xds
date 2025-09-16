@@ -2,27 +2,24 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup}
 \alias{xds_setup}
-\title{Build a Model with All Components}
+\title{Build a Model and Configure All Components}
 \usage{
 xds_setup(
   xds = "ode",
   Xname = "SIS",
-  Xopts = list(),
-  MYZname = "macdonald",
-  MYZopts = list(),
+  XHoptions = list(),
+  MYname = "macdonald",
+  MYoptions = list(),
   Lname = "trivial",
-  Lopts = list(),
+  Loptions = list(),
   nPatches = 1,
   HPop = 1000,
   residence = 1,
   membership = 1,
   searchB = 1,
   TimeSpent = list(),
-  calK = list(),
+  K_matrix = list(),
   searchQ = 1,
-  Xday = 1,
-  MYZday = 1,
-  Lday = 1,
   BFopts = list(),
   model_name = "unnamed"
 )
@@ -32,15 +29,15 @@ xds_setup(
 
 \item{Xname}{a character string defining a \strong{X} Component module}
 
-\item{Xopts}{a list to configure the \strong{X} Component module}
+\item{XHoptions}{a list to configure the \strong{X} Component module}
 
-\item{MYZname}{a character string defining a \strong{MYZ} Component module}
+\item{MYname}{a character string defining an \strong{MY} module}
 
-\item{MYZopts}{a list to configure the \strong{MYZ} Component module}
+\item{MYoptions}{options to set up the \strong{MY} component}
 
 \item{Lname}{a character string defining a \strong{L} Component module}
 
-\item{Lopts}{a list to configure the \strong{L} Component module}
+\item{Loptions}{a list to configure the \strong{L} Component module}
 
 \item{nPatches}{is the number of patches}
 
@@ -54,15 +51,9 @@ xds_setup(
 
 \item{TimeSpent}{is either a TimeSpent matrix or a string to call a function that sets it up}
 
-\item{calK}{is either a calK matrix or a string that defines how to set it up}
+\item{K_matrix}{is either a K_matrix matrix or a string that defines how to set it up}
 
 \item{searchQ}{is a vector of search weights for egg laying}
-
-\item{Xday}{is the run-time time step for \strong{X} Component (in days): integer or 1/integer}
-
-\item{MYZday}{is the run-time time step for \strong{MYZ} Component (in days): integer or 1/integer}
-
-\item{Lday}{is the run-time time step for \strong{L} Component (in days): integer or 1/integer}
 
 \item{BFopts}{a list to configure the blood feeding model}
 
@@ -78,7 +69,7 @@ Make an \strong{\code{xds}} \emph{model object}:
 \item Define the dynamical components:
 \itemize{
 \item \strong{XH} - Component modules for human / host infection dynamics of class \strong{\code{Xname}} with trivial demographics
-\item \strong{MYZ} - Component modules for adult mosquito ecology and infection dynamics of class \strong{\code{MYZname}}
+\item \strong{MY} - Component modules for adult mosquito ecology and infection dynamics of class \strong{\code{MYname}}
 \item \strong{L} Component modules for aquatic mosquito ecology of class \strong{\code{Lname}}
 }
 \item Define basic structural parameters for a single host and vector population:
@@ -94,7 +85,6 @@ Make an \strong{\code{xds}} \emph{model object}:
 \item The mosquito dispersal matrix, \eqn{K}
 \item The time spent matrix \eqn{\Theta}
 }
-\item Configure runtime parameters for discrete-time systems
 }
 
 Advanced options can be configured after basic setup.
@@ -115,9 +105,9 @@ a properly configured interface for blood feeding and egg laying, and \code{xds_
 .
 2. Each one of the dynamical components is configured.
 \itemize{
-\item \strong{\code{xds_obj$Xpar[[1]]}} defines a model for human / host infection dynamics of class \code{Xname} (the \strong{X} component). The parameter values passed in a named list, \code{Xopts.}
-\item \strong{\code{xds_obj$MYZpar[[1]]}} defines a model for adult mosquito ecology & infection dynamics of class \code{MYZname} (the \strong{MYZ} Component). The parameter values are passed in a named list, \code{MYZopts.}
-\item \strong{\code{xds_obj$Lpar[[1]]}} defines a model for aquatic mosquito ecology of class \code{Lname} (The \strong{L} Component). The parameter values are passed in a named list, \code{Lopts.}
+\item \strong{\code{xds_obj$XH_obj[[1]]}} defines a model for human / host infection dynamics of class \code{Xname} (the \strong{X} component). The parameter values passed in a named list, \code{XHoptions.}
+\item \strong{\code{xds_obj$MY_obj[[1]]}} defines a model for adult mosquito ecology & infection dynamics of class \code{MYname} (the \strong{MY} Component). The parameter values are passed in a named list, \code{MYoptions.}
+\item \strong{\code{xds_obj$L_obj[[1]]}} defines a model for aquatic mosquito ecology of class \code{Lname} (The \strong{L} Component). The parameter values are passed in a named list, \code{Loptions.}
 }
 \enumerate{
 \item After configuring the dynamical components, several structural parameters can be configured at the command line:
@@ -126,7 +116,6 @@ a properly configured interface for blood feeding and egg laying, and \code{xds_
 \item Host population search weights can be set
 \item A mosquito dispersal matrix, \eqn{\cal K}, can be set
 \item A time spent matrix, \eqn{\Theta}, can be set
-\item Runtime parameters for \code{dts} models can be configured by passing values: \code{Xday}, \code{MYZday}, and \code{Lday}
 }
 }
 
@@ -138,7 +127,7 @@ Advanced features must be configured later, including:
 }
 }
 \note{
-If the \strong{MYZ} Component is the \code{trivial} module, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_cohort}. Models for mosquito
+If the \strong{MY} Component is the \code{trivial} module, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_cohort}. Models for mosquito
 ecology need not include states describing infection status (see \link{xds_setup_mosy}).
 }
 \seealso{

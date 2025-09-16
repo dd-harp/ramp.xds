@@ -4,18 +4,19 @@
 \alias{F_eip}
 \title{Compute the EIP}
 \usage{
-F_eip(t, vars, eip_par)
+F_eip(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{vars}{exogenous variables}
+\item{xds_obj}{a \strong{\code{xds}} model object}
 
-\item{eip_par}{a \link{list}}
+\item{s}{vector species index}
 }
 \value{
-a \link{numeric} vector of length \code{nPatches}
+a \link{numeric} vector oeip length \code{nPatches}
 }
 \description{
-This method ...
+This method dispatches on the type of \code{eip_obj}. It
+sets the values the EIP, \eqn{\eip}
 }

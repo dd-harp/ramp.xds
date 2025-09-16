@@ -4,13 +4,13 @@
 \alias{last_to_inits}
 \title{Set the initial values to the last values of the last simulation}
 \usage{
-last_to_inits(pars)
+last_to_inits(xds_obj)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Set the initial values to the last values of the last simulation

@@ -1,0 +1,10 @@
+---
+title: "The Blood Feeding Interface"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The Blood Feeding Interface}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+

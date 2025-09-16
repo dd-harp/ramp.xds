@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{VectorControl}
 \alias{VectorControl}
-\title{Implement Vector Control}
+\title{Vector Control}
 \usage{
 VectorControl(t, y, xds_obj)
 }
