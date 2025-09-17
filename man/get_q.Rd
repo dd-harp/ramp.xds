@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_q}
 \alias{get_q}
-\title{Get the feeding rate}
+\title{Get the human fraction(s)}
 \usage{
 get_q(xds_obj, s = 1)
 }
@@ -15,5 +15,5 @@ get_q(xds_obj, s = 1)
 y a \link{numeric} vector assigned the class "dynamic"
 }
 \description{
-Get the feeding rate
+Get the human fraction(s)
 }

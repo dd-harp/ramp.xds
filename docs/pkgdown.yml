@@ -9,6 +9,7 @@ articles:
   BloodFeeding: BloodFeeding.html
   Cohorts: Cohorts.html
   Contributing: Contributing.html
+  EggLaying: EggLaying.html
   ex_534: ex_534.html
   Exposure: Exposure.html
   Forcing: Forcing.html
@@ -16,16 +17,19 @@ articles:
   History: History.html
   human_hmoi: human_hmoi.html
   human_sis: human_sis.html
+  L-interface: L-interface.html
   ModelBuilding: ModelBuilding.html
   modular_forms: modular_forms.html
   modularity: modularity.html
   MosquitoSpatialEcology: MosquitoSpatialEcology.html
+  MY-interface: MY-interface.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
   SpatialTransmissionDynamics: SpatialTransmissionDynamics.html
   TraceFunctions: TraceFunctions.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   Working: Working.html
-last_built: 2025-09-16T02:38Z
+  XH-interface: XH-interface.html
+last_built: 2025-09-17T15:48Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

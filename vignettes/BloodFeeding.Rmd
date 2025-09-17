@@ -1,8 +1,8 @@
 ---
-title: "The Blood Feeding Interface"
+title: "Blood Feeding"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{The Blood Feeding Interface}
+  %\VignetteIndexEntry{Blood Feeding}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

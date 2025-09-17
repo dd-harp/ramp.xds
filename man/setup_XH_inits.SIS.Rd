@@ -16,7 +16,7 @@
 \item{options}{a \link{list}}
 }
 \value{
-a \link{list} vector
+a \strong{\code{ramp.xds}} object
 }
 \description{
 Setup initial values for \emph{SIS}

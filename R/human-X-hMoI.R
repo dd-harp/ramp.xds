@@ -14,14 +14,11 @@
 #' @export
 skill_set_XH.hMoI = function(Xname = "hMoI"){
   return(list(
-    demography  = FALSE, 
-    prevalence  = TRUE, 
-    malaria     = TRUE, 
-    diagnostics = TRUE, 
-    lm          = FALSE, 
-    rdt         = FALSE, 
-    pcr         = FALSE,
-    mda         = FALSE
+    H_component = FALSE, 
+    X_component = TRUE, 
+    mda         = FALSE, 
+    msat        = FALSE, 
+    malaria     = TRUE
   ))
 }
 

@@ -24,13 +24,15 @@
     <a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a>
     <a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a>
     <a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a>
+    <a class="dropdown-item" href="../articles/EggLaying.html">Habitats and Egg Laying</a>
+    <a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a>
     <a class="dropdown-item" href="../articles/Exposure.html">Exposure</a>
-    <a class="dropdown-item" href="../articles/Contributing.html">Contributing</a>
   </div>
 </li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-adult-mosquitoes">Adult Mosquitoes</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
+    <a class="dropdown-item" href="../articles/MY-interface.html">MY Interface</a>
     <a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a>
     <a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald - discrete time</a>
     <a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
@@ -39,6 +41,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-immature-mosquitoes">Immature Mosquitoes</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+    <a class="dropdown-item" href="../articles/L-interface.html">L Interface</a>
     <a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a>
     <a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a>
   </div>
@@ -46,6 +49,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-human-host">Human / Host</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-human-host">
+    <a class="dropdown-item" href="../articles/XH-interface.html">XH Interface</a>
     <a class="dropdown-item" href="../articles/human_sis.html">SIS model</a>
     <a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a>
   </div>
@@ -149,7 +153,7 @@
           
           <code><a href="setup_MY_obj.html">setup_MY_obj()</a></code> 
         </dt>
-        <dd>Setup an <strong>MY</strong> Module (Adult Mosquito Ecology &amp; Infection Dynamics)</dd>
+        <dd>Setup an <strong>MY</strong> Model Object</dd>
       </dl><dl><dt>
           
           <code><a href="setup_MY_inits.html">setup_MY_inits()</a></code> 
@@ -484,7 +488,7 @@
           
           <code><a href="get_season.html">get_season()</a></code> 
         </dt>
-        <dd>Get seasonal pattern</dd>
+        <dd>Get the Seasonal Pattern</dd>
       </dl><dl><dt>
           
           <code><a href="get_trend.html">get_trend()</a></code> 
@@ -1497,7 +1501,7 @@
           
           <code><a href="setup_MY_obj.html">setup_MY_obj()</a></code> 
         </dt>
-        <dd>Setup an <strong>MY</strong> Module (Adult Mosquito Ecology &amp; Infection Dynamics)</dd>
+        <dd>Setup an <strong>MY</strong> Model Object</dd>
       </dl><dl><dt>
           
           <code><a href="get_MY_vars.html">get_MY_vars()</a></code> 
@@ -1558,6 +1562,16 @@
           <code><a href="steady_state_M.html">steady_state_M()</a></code> 
         </dt>
         <dd>Compute steady states for <strong>M</strong></dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_M.html">get_M()</a></code> 
+        </dt>
+        <dd>Get mosquito population density</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_Z.html">get_Z()</a></code> 
+        </dt>
+        <dd>Get the density of infectious, blood feeding mosquitoes</dd>
       </dl></div><div class="section level2">
       
       <h3 id="visualization-for-adult-mosquito">Visualization for Adult Mosquito<a class="anchor" aria-label="anchor" href="#visualization-for-adult-mosquito"></a></h3>
@@ -4544,7 +4558,7 @@
           
           <code><a href="get_season.html">get_season()</a></code> 
         </dt>
-        <dd>Get seasonal pattern</dd>
+        <dd>Get the Seasonal Pattern</dd>
       </dl><dl><dt>
           
           <code><a href="get_season.none.html">get_season(<i>&lt;none&gt;</i>)</a></code> 
@@ -4836,7 +4850,7 @@
           
           <code><a href="get_f.html">get_f()</a></code> 
         </dt>
-        <dd>Get the feeding rate</dd>
+        <dd>Get the feeding rate(s)</dd>
       </dl><dl><dt>
           
           <code><a href="get_f.basicM.html">get_f(<i>&lt;basicM&gt;</i>)</a></code> 
@@ -4851,7 +4865,7 @@
           
           <code><a href="get_g.html">get_g()</a></code> 
         </dt>
-        <dd>Get the feeding rate</dd>
+        <dd>Get the adult mosquito mortality rate(s)</dd>
       </dl><dl><dt>
           
           <code><a href="get_g.basicM.html">get_g(<i>&lt;basicM&gt;</i>)</a></code> 
@@ -4866,7 +4880,7 @@
           
           <code><a href="get_q.html">get_q()</a></code> 
         </dt>
-        <dd>Get the feeding rate</dd>
+        <dd>Get the human fraction(s)</dd>
       </dl><dl><dt>
           
           <code><a href="get_q.basicM.html">get_q(<i>&lt;basicM&gt;</i>)</a></code> 
@@ -4881,7 +4895,7 @@
           
           <code><a href="get_sigma.html">get_sigma()</a></code> 
         </dt>
-        <dd>Get the feeding rate</dd>
+        <dd>Get the patch emigration rates</dd>
       </dl><dl><dt>
           
           <code><a href="get_sigma.basicM.html">get_sigma(<i>&lt;basicM&gt;</i>)</a></code> 

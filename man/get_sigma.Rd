@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_sigma}
 \alias{get_sigma}
-\title{Get the feeding rate}
+\title{Get the patch emigration rates}
 \usage{
 get_sigma(xds_obj, s = 1)
 }
@@ -15,5 +15,5 @@ get_sigma(xds_obj, s = 1)
 y a \link{numeric} vector assigned the class "dynamic"
 }
 \description{
-Get the feeding rate
+Get the patch emigration rates
 }

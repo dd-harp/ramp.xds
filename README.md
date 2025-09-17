@@ -33,7 +33,7 @@ To get started, see the vignette [*Getting Started*](https://dd-harp.github.io/r
 
 **`ramp.xds`** supports nimble model building for simulation-based malaria analytics and research. 
 The software was designed to lower the costs of setting up, solving, analyzing, and applying dynamical systems to model the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. 
-The software also supports nimble model building and analysis for mosquito ecology and parasite/pathogen transmission, designed to understand malaria transmission with a *changing baseline* (using [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) to model the effects of weather, hydrology, ...) that has been *modified by vector control* (using [**`ramp.control`**](https://dd-harp.github.io/ramp.control/)).
+The software also supports nimble model building and analysis for mosquito ecology and parasite/pathogen transmission by mosquitoes as a *changing baseline* (using [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) to model the effects of weather, hydrology, ...) that is *modified by vector control* (using [**`ramp.control`**](https://dd-harp.github.io/ramp.control/)).
 
 
 **RAMP** is shorthand for the bespoke inferential systems developed for malaria decision support and adaptive malaria control that go to great lengths to characterize, quantify, and propagate uncertainty. 
@@ -41,7 +41,7 @@ RAMP systems combine elements of data science, conventional statistical analysis
 
 The [**SimBA** project](https://faculty.washington.edu/smitdave/simba/index.html) (**Sim**ultation-**B**ased **A**nalytics) is a
 software development project to support malaria analytics and development of robust policy advice for
-malaria and other mosquito-transmitted pathogens.
+malaria and other mosquito-transmitted pathogens. SimBA includes **`ramp.xds`** and all its satellite packages (below). 
 
 **`ramp.xds`** has been designed to serve the needs of malaria programs, where mathematical models are used for decision support and adaptive malaria control in a defined geographical area. Mechanistic models that have been fitted to data describing malaria in a place provide a synthesis of *malaria intelligence.* These models can facilitate complex analysis, extending our innate mental capabilities. By characterizing and quantifying uncertainty, and then propagating the uncertainty through the analysis, simulation-based analytics serve as a platform for giving robust policy advice and for adaptive malaria control. As the needs of a malaria program changes, the models can be modified -- simplified or extended -- to serve the tasks at hand.
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_g}
 \alias{get_g}
-\title{Get the feeding rate}
+\title{Get the adult mosquito mortality rate(s)}
 \usage{
 get_g(xds_obj, s = 1)
 }
@@ -15,5 +15,5 @@ get_g(xds_obj, s = 1)
 y a \link{numeric} vector assigned the class "dynamic"
 }
 \description{
-Get the feeding rate
+Get the adult mosquito mortality rate(s)
 }
