@@ -6,6 +6,7 @@ articles:
   aqua_basic: aqua_basic.html
   aqua_trace: aqua_trace.html
   BasicSetup: BasicSetup.html
+  Bionomics: Bionomics.html
   BloodFeeding: BloodFeeding.html
   Cohorts: Cohorts.html
   Contributing: Contributing.html
@@ -29,7 +30,7 @@ articles:
   Understanding_ramp.xds: Understanding_ramp.xds.html
   Working: Working.html
   XH-interface: XH-interface.html
-last_built: 2025-09-17T15:48Z
+last_built: 2025-09-17T16:38Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

@@ -18,6 +18,8 @@ navbar:
       href: articles/BloodFeeding.html
     - text: Exposure
       href: articles/Exposure.html
+    - text: Ports & Junctions 
+      href: articles/Forcing.html
   - text: Adult Mosquitoes 
     menu:
     - text: MY Interface 

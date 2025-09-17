@@ -1,0 +1,9 @@
+---
+title: "Mosquito Bionomics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mosquito Bionomics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
