@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,14 +41,17 @@
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
+    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats and Egg Laying</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-    <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
+    <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
-<li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
+<li><a class="dropdown-item" href="../articles/MY-interface.html">MY Interface</a></li>
+    <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
@@ -56,14 +59,16 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+<li><a class="dropdown-item" href="../articles/L-interface.html">L Interface</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-human-host">
-<li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
+<li><a class="dropdown-item" href="../articles/XH-interface.html">XH Interface</a></li>
+    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
     <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
@@ -107,9 +112,10 @@ introduced the function <code>xds_setup().</code> From a software design
 perspective, a setup interface can’t possibly anticipate the needs of
 every end user without constraining possibilities. The point of
 <code><a href="../reference/xds_setup.html">xds_setup()</a></code> is to help build models up to a certain level
-of complexity. Instead, we have adopted a system for <em>progressive
-model building</em> based on a mathematical framework and the idea of
-<em>scaling complexity.</em></p>
+of complexity. After that, features get added using the <em>advanced
+setup</em> functions. Together, basic and advanced setup functions make
+up a system for <em>progressive model building</em> based on a
+mathematical framework and the idea of <em>scaling complexity.</em></p>
 <p>Progressive model building is a practical method for building complex
 models in two phases:</p>
 <ul>
@@ -120,9 +126,10 @@ structured aquatic habitats, and a stratified human population.</p></li>
 <li><p><strong>Advanced Setup</strong> handles advanced features,
 including exogenous forcing, vector control, and other modes of malaria
 control, human demography and aging, and host population stratification.
-Advanced setup is described in <a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong></a></p></li>
+Advanced setup is described in <a href="https://faculty.washington.edu/smitdave/simba/advanced_setup.html" class="external-link"><strong>SimBA
+:: Advanced Setup.</strong></a></p></li>
 </ul>
-<p>In the following, we introduce <strong>Basic Setup</strong></p>
+<p>Here, we cover <strong>Basic Setup</strong></p>
 <div class="section level2">
 <h2 id="modularity-and-etensibility">Modularity and Etensibility<a class="anchor" aria-label="anchor" href="#modularity-and-etensibility"></a>
 </h2>
@@ -131,15 +138,19 @@ mathematically rigorous framework that takes advantage of the natural
 modularity of mosquito-transmitted pathogens. The core functions handle
 <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" class="external-link"><strong>spatial
 dynamics</strong></a>, and the software was designed to model malaria as
-a <em>changing baseline modified by control.</em> The framework is
-structurally flexible and extensible.</p>
-<p><strong>Basic setup</strong> creates a model that sets up the basic
-structural elements for the spatial dynamics, and that sets up the
-dynamical modules. A model returned by basic setup is designed to be
-modified with the potential to develop models of unbounded realism and
-complexity. To make this work, the software built in ports and junctions
-that could handle a large set of advanced features, but most of these
-features would be turned off for basic setup.</p>
+a <em>changing baseline modified by control.</em> The model was
+developed to handle patch-based models, stratified human/host
+populations with demography and aging, and structured habitats. The
+framework does not constrain the model structure, and the software built
+in <em>ports</em> and <em>junctions</em> to add new variables or
+features.</p>
+<p><strong>Basic setup</strong> creates a model that sets up the
+dynamical modules and basic structural elements for spatial dynamics. A
+model returned by basic setup is designed to be modified with the
+potential to develop models of unbounded realism and complexity. To make
+this work, the software built in ports and junctions that could handle a
+large set of advanced features, but most of these features would be
+turned off for basic setup.</p>
 <div class="section level3">
 <h3 id="modularity">Modularity<a class="anchor" aria-label="anchor" href="#modularity"></a>
 </h3>
@@ -159,7 +170,7 @@ in the host population;</p></li>
 </li>
 <li>
 <p>Adult mosquito ecology and infection dynamics, called the
-<strong>MYZ</strong>-component</p>
+<strong>MY</strong>-component</p>
 <ul>
 <li><p>mosquito ecology: the <strong>M</strong>-component</p></li>
 <li><p>mosquito infection dynamics: the
@@ -190,7 +201,7 @@ single population, but any model can replicate those states and
 sub-divide a single population into sub-populations with different
 parameters. These are population strata for the
 <strong>X</strong>-component; adult mosquitoes are found in patches for
-the <strong>MYZ</strong>-component; immature mosquitoes in aquatic
+the <strong>MY</strong>-component; immature mosquitoes in aquatic
 habitats for <strong>L</strong>-component. In
 <strong><code>ramp.xds</code></strong> it is comparatively simple to
 configure a model with multiple strata, patches, and habitats.</p>
@@ -235,19 +246,19 @@ as a named list, to override the defaults for the model:</p>
 <li><p><code>Xname</code> dispatches a module for the <strong>X</strong>
 component. The setup default model is <code>Xname="SIS"</code> and
 default parameters for the <code>SIS</code> model are defined in
-<code>create_Xpar_SIS.</code> To replace the default values at setup, a
-named list can be passed as <code>Xopts = list(...)</code> and the named
-values in <code>Xopts</code> will be he values of named parameters and
-the initial values of named variables instead of the defaults. (The
-human demographic module for the <strong>H</strong>-component is set up
-as an advanced option.)</p></li>
-<li><p><code>MYZname</code> dispatches a module for the
-<strong>MYZ</strong> component. The setup default model is
-<code>MYZname="macdonald"</code> and default parameters for the
+<code>make_XH_obj_SIS.</code> To replace the default values at setup, a
+named list can be passed as <code>XHoptions = list(...)</code> and the
+named values in <code>XHoptions</code> will be he values of named
+parameters and the initial values of named variables instead of the
+defaults. (Human demogaphy – the <strong>H</strong>-component – is set
+up as an advanced option.)</p></li>
+<li><p><code>MYname</code> dispatches a module for the
+<strong>MY</strong> component. The setup default model is
+<code>MYname="macdonald"</code> and default parameters for the
 <code>macdonald</code> model are defined in
-<code>make_MYZpar_macdonald.</code> To replace the default values at
-setup, a named list can be passed as <code>MYZopts = list(...)</code>
-and the named values in <code>MYZopts</code> will set the values of
+<code>make_MY_obj_macdonald.</code> To replace the default values at
+setup, a named list can be passed as <code>MYoptions = list(...)</code>
+and the named values in <code>MYoptions</code> will set the values of
 named parameters and the initial values of named variables instead of
 the defaults.</p></li>
 <li><p><code>Lname</code> dispatches a module for the <strong>L</strong>
@@ -255,9 +266,9 @@ component. The setup default model is the trivial model
 <code>Lname = "trivial"</code>. It has no variables, but it passes the
 outputs – emerging adults – as a parameter. To replace the default
 values at setup, a named list can be passed as
-<code>Lopts = list(...)</code> and the values in <code>Lopts</code> will
-set the values of named parameters and the initial values of named
-variables instead of the defaults.</p></li>
+<code>Loptions = list(...)</code> and the values in
+<code>Loptions</code> will set the values of named parameters and the
+initial values of named variables instead of the defaults.</p></li>
 </ul>
 <div class="section level3">
 <h3 id="defaults">Defaults<a class="anchor" aria-label="anchor" href="#defaults"></a>
@@ -270,7 +281,7 @@ variables instead of the defaults.</p></li>
 <p>returns the same values as the function call:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model2</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, </span>
-<span>                   MYZname <span class="op">=</span> <span class="st">"macdonald"</span>, </span>
+<span>                   MYname <span class="op">=</span> <span class="st">"macdonald"</span>, </span>
 <span>                   Lname <span class="op">=</span> <span class="st">"trivial"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -294,7 +305,7 @@ be set through <code>xds_setup:</code></p>
 model.</p></li>
 <li><p><strong><code>membership</code></strong> is set up by passing a
 vector with the identity of patch where each habitat can be found, and
-it sets up the habitat membership matrix, <span class="math inline">\(Q\)</span>. Setup sets the value of a variable
+it sets up the habitat membership matrix, <span class="math inline">\(N\)</span>. Setup sets the value of a variable
 describing the number of habitats, <span class="math inline">\(n_q\)</span> =
 <strong><code>nHabitats &lt;- length(membership)</code>.</strong> One
 configurable option is <strong><code>searchQ</code></strong> with the
@@ -308,6 +319,10 @@ sets the number of strata, <span class="math inline">\(n_h\)</span> or
 also possible to configure heterogeneous biting at the command line by
 passing <strong><code>searchH</code></strong></p></li>
 </ul>
+<p>The full list of configurable options for <code>xds_setup</code> is
+found by asking for help in R:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">xds_setup</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="spatial-dynamics">Spatial Dynamics<a class="anchor" aria-label="anchor" href="#spatial-dynamics"></a>
@@ -318,7 +333,7 @@ passing <strong><code>searchH</code></strong></p></li>
 options are to pass:</p>
 <ul>
 <li><p>a matrix <span class="math inline">\(K\)</span> or
-<code>calK</code> describing mosquito dispersal among the
+<code>K_matrix</code> describing mosquito dispersal among the
 patches.</p></li>
 <li><p>a matrix <span class="math inline">\(\Theta\)</span> or
 <code>TimeSpent</code> can be passed to configure human time

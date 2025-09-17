@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Forcing • ramp.xds</title>
+<title>Ports &amp; Junctions • ramp.xds</title>
 <!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
   window.MathJax = {
     chtml: {
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Forcing">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Ports &amp; Junctions">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,20 +35,23 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item dropdown">
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
+    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats and Egg Laying</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-    <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
+    <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
-<li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
+<li><a class="dropdown-item" href="../articles/MY-interface.html">MY Interface</a></li>
+    <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
@@ -56,14 +59,16 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+<li><a class="dropdown-item" href="../articles/L-interface.html">L Interface</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-human-host">
-<li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
+<li><a class="dropdown-item" href="../articles/XH-interface.html">XH Interface</a></li>
+    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
     <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
@@ -84,9 +89,9 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Forcing</h1>
-            <h3 data-toc-skip class="subtitle">A Changing Baseline
-Modified by Control</h3>
+      <h1>Ports &amp; Junctions</h1>
+            <h3 data-toc-skip class="subtitle">Exogenous Forcing: A
+Changing Baseline Modified by Control</h3>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/Forcing.Rmd" class="external-link"><code>vignettes/Forcing.Rmd</code></a></small>
@@ -97,77 +102,81 @@ Modified by Control</h3>
     
 <p>The design of <strong><code>ramp.xds</code></strong> facilitates
 modeling malaria as a changing baseline that has been modified by
-control. This is handled in the full model by calling
-<code>Exogenous</code> to set the values of parameters in non-autonomous
-models. The function <code>Exogenous</code> calls:</p>
+control. Most of the functionality is found in the satellite packages,
+but <strong><code>ramp.xds</code></strong> sets this up by adding
+<em>ports</em> and <em>junctions.</em></p>
 <ul>
 <li>
-<p><code>Forcing</code></p>
+<p>a <strong><em>port</em></strong> in
+<strong><code>ramp.xds</code></strong> or one of the satellite package
+is a structured way of handling a specific part of malaria. Examples
+include temperature, mosquito resources, mosquito traps, larval source
+management, bed nets, or habitat dynamics. Each <em>port</em> is defined
+by:</p>
 <ul>
-<li><p>Weather</p></li>
-<li><p>Hydrology</p></li>
-<li><p>Shocks</p></li>
-<li><p>Development</p></li>
+<li><p>a model object</p></li>
+<li><p>functions that set up variables</p></li>
 </ul>
 </li>
-<li>
-<p><code>Health</code></p>
-<ul>
-<li><p>Mass distribution of interventions</p></li>
-<li><p>Clinical interventions</p></li>
-<li><p>School-based interventions</p></li>
-<li><p>Active Case Detection</p></li>
+<li><p>a <strong><em>junction</em></strong> in
+<strong><code>ramp.xds</code></strong> is a function that implements
+several <em>ports.</em></p></li>
 </ul>
-</li>
-<li>
-<p><code>VectorControl</code> – sets / updates vector control
-coverage and other related parameters</p>
+<p>The junctions in <strong><code>ramp.xds</code></strong> get called in
+a specific order to minimize <em>conflicts</em> that could arise. The
+junctions are all functions that get implemented in
+<code>xds_compute_terms.</code> They are:</p>
 <ul>
-<li><p><strong>BedNet</strong> - Distribute Bed Nets and update
-variables describing ownership &amp; use</p></li>
-<li><p><strong>IRS</strong> - Mass spray and set the value of a
-parameter describing the killing effects of IRS</p></li>
-<li><p><strong>AreaSpray</strong></p></li>
-<li><p><strong>SugarBaits</strong></p></li>
-<li><p><strong>LSM</strong></p></li>
+<li><p><strong>Forcing</strong> - functions to setup variables for
+weather and hydrology</p></li>
+<li><p><strong>Health</strong> - functions to setup mass treatment, mass
+vaccination, and more</p></li>
+<li><p><strong>Vector Control</strong> - functions to
+<em>distribute</em> vector control commodities.</p></li>
+<li><p><strong>Resources</strong> - functions to model availability of
+mosquito resources, including ports for variables on the blood feeding
+and egg laying interfaces</p></li>
 </ul>
-</li>
-<li>
-<p><code>Resources</code> – sets the value of variables describing
-resource availability, including:</p>
+<div class="section level2">
+<h2 id="forcing">Forcing<a class="anchor" aria-label="anchor" href="#forcing"></a>
+</h2>
+<p><code>Forcing</code> :: <strong><code>ramp.xds</code></strong> sets
+up an empty <em>junction</em> handle exogenous forcing by weather and
+hydrology. Models to implement forcing are in
+<strong><code>ramp.forcing</code></strong></p>
+</div>
+<div class="section level2">
+<h2 id="vector-control">Vector Control<a class="anchor" aria-label="anchor" href="#vector-control"></a>
+</h2>
+<p><code>VectorControl</code> and
+<code>VectorControlEffectSizes</code>::
+<strong><code>ramp.xds</code></strong> sets up an empty
+<em>junctions</em> handle various aspects of vector control. Models to
+implement vector control are in
+<strong><code>ramp.control</code></strong></p>
+</div>
+<div class="section level2">
+<h2 id="health">Health<a class="anchor" aria-label="anchor" href="#health"></a>
+</h2>
+<p><code>Health</code>:: <strong><code>ramp.xds</code></strong> sets up
+an empty <em>junctions</em> to handle various aspects of health systems
+interventions.</p>
+</div>
+<div class="section level2">
+<h2 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
+</h2>
+<p>The ports are:</p>
 <ul>
-<li><p>Availability of <strong>Visitors</strong></p></li>
-<li><p>Availability of <strong>Other Blood Hosts</strong>
-(<em>i.e.</em>, not hosts for the parasite / pathogen)</p></li>
-<li><p>Habitat Dynamics, search weights, and availability of
-<strong>Aquatic Habitats</strong></p></li>
-<li><p>Availability of <strong>Sugar</strong></p></li>
+<li><p>BloodHosts</p></li>
+<li><p>HabitatDynamics</p></li>
+<li><p>Travel</p></li>
+<li><p>Visitors</p></li>
+<li><p>Traps</p></li>
+<li><p>Sugar</p></li>
 </ul>
-</li>
-<li>
-<p><code>BloodFeeding</code> – sets up variables used to compute
-blood feeding, including time at risk and the availability of
-humans.</p>
-<ul>
-<li><p>Compute the availability of humans, <span class="math inline">\(W\)</span></p></li>
-<li><p>Compute total availability of vertebrate hosts, <span class="math inline">\(B\)</span></p></li>
-</ul>
-</li>
-<li><p><code>BaselineBionomics</code> – Compute the values of baseline
-parameter values, including blood feeding rates (<span class="math inline">\(f\)</span>), the human fractions (<span class="math inline">\(q\)</span>), mortality rates (<span class="math inline">\(g\)</span>)</p></li>
-<li>
-<p><code>VectorControlEffectSizes</code> – compute the effect sizes
-of vector control under models with independent effect sizes.
-Intervention coverage is updated in <code>VectorControl</code></p>
-<ul>
-<li><p><strong>BedNetEffectSizes</strong></p></li>
-<li><p><strong>IRSEffectSizes</strong></p></li>
-</ul>
-</li>
-<li><p><code>Bionomics</code> – modifies the baseline mosquito bionomic
-parameters to account for the independent effect sizes of
-control</p></li>
-</ul></main>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

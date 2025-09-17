@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,14 +41,17 @@
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
+    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats and Egg Laying</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-    <li><a class="dropdown-item" href="../articles/Contributing.html">Contributing</a></li>
+    <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
-<li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
+<li><a class="dropdown-item" href="../articles/MY-interface.html">MY Interface</a></li>
+    <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul>
@@ -56,14 +59,16 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
-<li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
+<li><a class="dropdown-item" href="../articles/L-interface.html">L Interface</a></li>
+    <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-human-host">
-<li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
+<li><a class="dropdown-item" href="../articles/XH-interface.html">XH Interface</a></li>
+    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
     <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
@@ -161,17 +166,24 @@ be viewed with the function <code>get_XH_obj</code>:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## $r</span></span>
 <span><span class="co">## [1] 0.005555556</span></span></code></pre>
-<p>Functions like <code>get_XH_obj</code> are designed to help users get
-to know the model oject. In this case, the parameters are stored as
+<p>Functions like <code>get_XH_pars</code> are designed to help users
+get to know the model oject. In this case, the parameters are stored as
 <code>model$Xpar[[i]],</code> for the <span class="math inline">\(i^{th}\)</span> species. Knowing the names, the
 parameters can then be viewed (or changed):</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">XH_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.005555556</span></span></code></pre>
+<p>To make it easy to change parameters, we also wrote the
+<code>change_XH_pars</code> by passing the new values to be changed in a
+named list.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_XH_pars.html">change_XH_pars</a></span><span class="op">(</span><span class="va">model</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>r<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">150</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_XH_pars.html">get_XH_pars</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.006666667</span></span></code></pre>
 <p>Similarly, initial values were assigned default values at setup. In
 <strong><code>ramp.xds,</code></strong> human/host demography is treated
 as a distinct process, so the intial values for :</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_XH_inits.html">get_XH_inits</a></span><span class="op">(</span><span class="va">model</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $H</span></span>
 <span><span class="co">## [1] 1000</span></span>
@@ -184,7 +196,7 @@ Since <code>xds_setup</code> calls functions to set up several model
 objects, each component has its own options name. For the
 <code>XH</code> component, setup options for the <strong>XH</strong>
 component are passed in <code>XHoptions</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">150</span>, c<span class="op">=</span><span class="fl">0.2</span>, b<span class="op">=</span><span class="fl">0.6</span>, I<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>XHoptions <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_XH_pars.html">get_XH_pars</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
@@ -203,7 +215,7 @@ important role in setting up the <em>Blood Feeding</em> interface, so it
 is not possible to set <span class="math inline">\(S.\)</span> Instead,
 <span class="math inline">\(S\)</span> is computed after solving and
 parsing.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_XH_inits.html">get_XH_inits</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $H</span></span>
 <span><span class="co">## [1] 1000</span></span>
@@ -212,7 +224,7 @@ parsing.</p>
 <span><span class="co">## [1] 2</span></span></code></pre>
 <p>To change the human population density, use the <code>change_H</code>
 function.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_H.html">change_H</a></span><span class="op">(</span><span class="fl">1004</span>, <span class="va">model1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_XH_inits.html">get_XH_inits</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $H</span></span>
@@ -220,36 +232,37 @@ function.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## $I</span></span>
 <span><span class="co">## [1] 2</span></span></code></pre>
-<p>The name of the default module for adult mosquito ecology and
-infection dynamics is called <code>MYname.</code> The default module is
-Macdonald’s model:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<p>The module for adult mosquito ecology and infection dynamics is
+called <code>MYname.</code> The default module is Macdonald’s model:</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">MYname</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "macdonald"</span></span></code></pre>
 <p>The design pattern is followed: once again, parameters can be viewed
-with <code>get_MYpars</code> and the method for setting parameter values
-by passing a named list of values to <code>MYopts</code> in
-<code><a href="../reference/xds_setup.html">xds_setup()</a></code></p>
+with <code>get_MY_pars</code> and the method for setting parameter
+values by passing a named list of values to <code>MYoptions</code> in
+<code><a href="../reference/xds_setup.html">xds_setup()</a></code> or changing the parameter values by passing new
+values by name in a list to <code>change_MY_pars.</code></p>
 <p>The name of the default module for aquatic mosquito ecology is called
 <code>Lname.</code> The default module is the <code>trivial</code>
 module:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">Lname</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "trivial"</span></span></code></pre>
 <p>For the <code>trivial</code> module, arguments passed at the command
 line configure functions that pass values to other dynamical
 components.</p>
 <p>The design pattern is followed: parameters can be viewed with
-<code>get_Lpars</code> and the method for setting parameter values by
+<code>get_L_pars</code> and the method for setting parameter values by
 passing a named list of values to <code>Loptions</code> in
-<code><a href="../reference/xds_setup.html">xds_setup()</a></code></p>
+<code>xds_setup().</code> After setup, the <code>change_L_pars</code>
+works in the same way as the other <code>change_</code> functions.</p>
 </div>
 <div class="section level4">
 <h4 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
 </h4>
 <p>After setting up, <code>model</code> has an empty placeholder for
 outputs:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span> </span></code></pre></div>
 <pre><code><span><span class="co">## list()</span></span></code></pre>
 <p>Calling <code>xds_solve(model)</code> returns solutions to the
@@ -264,12 +277,15 @@ arguments are passed for time, then it uses the defaults
 <code>Tmax=365</code> and <code>dt=1;</code> third, <code>deSolve</code>
 will use the optional argument <code>times</code> if it is supplied. All
 four of the following do the same thing:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, times<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">365</span><span class="op">)</span> </span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, times<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">365</span>, Tmax<span class="op">=</span><span class="fl">730</span>, dt<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, Tmax<span class="op">=</span><span class="fl">365</span>, dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span> </span></code></pre></div>
+<p>Internally, these are handled by the function
+<code>make_times_xde</code> for systems of differential equations, and
+<code>make_times_dts</code> for discrete time systems.</p>
 <p>Note <code>xds_solve</code> requires an
 <strong><code>xds</code></strong> <em>model object</em> and that it
 returns an <strong><code>xds</code></strong> <em>model object.</em> In
@@ -277,7 +293,7 @@ this case, the function passes <code>model</code> and the return value
 replaces <code>model.</code> Before <code>xds_solve,</code>
 <code>model$outputs</code> was an empty list. After solving, the outputs
 are stored as <code>model$outputs</code>:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "deout"  "time"   "last_y" "orbits"</span></span></code></pre>
 <p>The outputs from solving a system of equations include:</p>
@@ -299,10 +315,10 @@ dynamical component</li>
 <p>Note that the <code>time</code> holds the default values of the
 independent variable time where we solved the initial value problem for
 the dependent variables.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">time</span>, <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0 1 2 3 4</span></span></code></pre>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">time</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 363 364 365</span></span></code></pre>
 <p>When <code>xds_solve</code> is called, the <strong><code>xds</code>
@@ -322,7 +338,7 @@ computes some standard <em>terms</em> that are likely to be of
 interest.</p>
 <p>Functions like <code><a href="../reference/get_EIR.html">get_EIR()</a></code> make it easy to examine or save
 a set of standard outputs without delving into the details.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_EIR.html">get_EIR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##              [,1]</span></span>
 <span><span class="co">## [1,] 0.0002850000</span></span>
@@ -348,7 +364,7 @@ in the human / host population</p></li>
 <li><p><code>xds_plot_EIR</code> plots the EIR for each one of the human
 / host population strata</p></li>
 </ul>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_X.html">xds_plot_X</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
@@ -357,7 +373,7 @@ in the human / host population</p></li>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_EIR.html">xds_plot_EIR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="GettingStarted_files/figure-html/unnamed-chunk-20-1.png" alt="**Figure 1:** Plotting standard outputs" width="576"><p class="caption">
+<img src="GettingStarted_files/figure-html/unnamed-chunk-21-1.png" alt="**Figure 1:** Plotting standard outputs" width="576"><p class="caption">
 <strong>Figure 1:</strong> Plotting standard outputs
 </p>
 </div>
@@ -376,7 +392,7 @@ component must include a <em>trivial</em> module. In the
 <code>trivial</code> module, no variables are defined, but the dynamical
 terms needed by related dynamical components are passed by a
 configurable <em>trace</em> function with a generic form:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mean</span><span class="op">*</span><span class="fu">F_season</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu">F_trend</span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span></code></pre></div>
 <p>The default for the aquatic mosquito dynamical component is the
 <code>trivial</code> module, where the <code>mean</code> is is called
@@ -387,11 +403,11 @@ define <code>F_season</code> and change the mean value of
 <code>F_season(t, phase, season_opts),</code> where <code>phase</code>
 sets the phase (time of year), and <code>season_opts</code> is a set of
 configurable parameter values:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">F_sp</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="va">t</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span><span class="op">)</span><span class="op">}</span> </span></code></pre></div>
 <p>Having defined <code>F_sp,</code> we now configure a list of
 options:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>       Lambda<span class="op">=</span><span class="fl">500</span>, </span>
 <span>       F_season<span class="op">=</span><span class="va">F_sp</span></span>
@@ -399,26 +415,26 @@ options:</p>
 <p>We use the first model as a template for the new model, but we assign
 the return value a new name <code>model_1</code> so that the original
 one still exists:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_L_obj.html">setup_L_obj</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">model</span>, <span class="fl">1</span>, options<span class="op">=</span><span class="va">Lo</span><span class="op">)</span></span></code></pre></div>
 <p>We want to change the initial values of <code>model_1.</code> Since
 <code>model_1</code> was copied from <code>model,</code> the last values
 from solving it are available, and we can use a function
 <code>last_to_inits</code> to set the initial values.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_to_inits.html">last_to_inits</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span></code></pre></div>
 <p>Now, we solve it over a three year period</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model_1</span>, Tmax<span class="op">=</span><span class="fl">365</span><span class="op">*</span><span class="fl">3</span>, dt<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span></code></pre></div>
 <p>and plot the results.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_X.html">xds_plot_X</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="GettingStarted_files/figure-html/unnamed-chunk-27-1.png" alt="**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" width="576"><p class="caption">
+<img src="GettingStarted_files/figure-html/unnamed-chunk-28-1.png" alt="**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" width="576"><p class="caption">
 <strong>Figure 2:</strong> Outputs with Seasonal Forced Emergence using
 a Trace Function
 </p>

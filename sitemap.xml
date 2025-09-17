@@ -3,13 +3,17 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/LICENSE-text.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/LICENSE.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/articles/Bionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Cohorts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Contributing.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/articles/EggLaying.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Exposure.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Forcing.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/History.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/articles/L-interface.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/articles/MY-interface.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/ModelBuilding.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/MosquitoSpatialEcology.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/RM-dts-Mosquito.html</loc></url>
@@ -17,6 +21,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Understanding_ramp.xds.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Working.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/articles/XH-interface.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/adult_RM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/aqua_basic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/aqua_trace.html</loc></url>
@@ -337,6 +342,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_vars.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_vars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_vars.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_M.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_ix.html</loc></url>
@@ -376,6 +382,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_XH_vars.hMoI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_XH_vars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_XH_vars.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_Z.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_f.GeRM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_f.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_f.basicM.html</loc></url>
