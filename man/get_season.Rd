@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_season.R
 \name{get_season}
 \alias{get_season}
-\title{Get seasonal pattern}
+\title{Get the Seasonal Pattern}
 \usage{
 get_season(xds_obj, s = 1)
 }
@@ -15,5 +15,9 @@ get_season(xds_obj, s = 1)
 seasonal pattern parameters
 }
 \description{
-Get the parameters set the seasonal pattern
+Get the parameters for the seasonal pattern
+forcing the model
+}
+\note{
+Dispatches on \code{forced_by}
 }

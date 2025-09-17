@@ -1,0 +1,9 @@
+---
+title: "Habitats and Egg Laying"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Habitats and Egg Laying}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+

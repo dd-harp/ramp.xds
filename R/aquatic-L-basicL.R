@@ -35,7 +35,7 @@ check_L.basicL = function(xds_obj, s){
 #'
 #' - \eqn{L}: the density of mosquito larvae in each habitat
 #'
-#' **Input:**
+#' **Input Term:**
 #' 
 #' - \eqn{\eta} or `eta`: egg deposition rate (from [F_eggs])
 #'
@@ -46,11 +46,11 @@ check_L.basicL = function(xds_obj, s){
 #' - \eqn{\phi} or `phi`: density-independent death rate
 #' - \eqn{\theta} or `theta`: the slope of the mortality rate in response to mean crowding
 #'
-#' **Dynamics:**
+#' **Dynamical System:**
 #'
 #' \deqn{dL/dt = \eta - (\psi\;e^{-\xi L} + \phi + \theta L)L}
 #' 
-#' **Output:**
+#' **Output Term:**
 #' 
 #' - The function [F_emerge] computes the net emergence rate (\eqn{\alpha}):
 #'

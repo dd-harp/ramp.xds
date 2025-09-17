@@ -6,7 +6,7 @@ Variables:
 \(L\): the density of mosquito larvae in each habitat
 
 
-Input:
+Input Term:
 \(\eta\) or eta: egg deposition rate (from F_eggs)
 
 
@@ -17,9 +17,9 @@ Parameters:
 \(\theta\) or theta: the slope of the mortality rate in response to mean crowding
 
 
-Dynamics:
+Dynamical System:
 $$dL/dt = \eta - (\psi\;e^{-\xi L} + \phi + \theta L)L$$
-Output:
+Output Term:
 The function F_emerge computes the net emergence rate (\(\alpha\)):
 
 
@@ -39,7 +39,7 @@ Variables:
 \(L\): the density of mosquito larvae in each habitat
 
 
-Input:
+Input Term:
 \(\eta\) or eta: egg deposition rate (from F_eggs)
 
 
@@ -50,9 +50,9 @@ Parameters:
 \(\theta\) or theta: the slope of the mortality rate in response to mean crowding
 
 
-Dynamics:
+Dynamical System:
 $$dL/dt = \eta - (\psi\;e^{-\xi L} + \phi + \theta L)L$$
-Output:
+Output Term:
 The function F_emerge computes the net emergence rate (\(\alpha\)):
 
 
@@ -76,7 +76,7 @@ that model is recovered by setting \(\xi=0.\)"><!-- mathjax --><script src="http
     
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,13 +90,16 @@ that model is recovered by setting \(\xi=0.\)"><!-- mathjax --><script src="http
     <a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a>
     <a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a>
     <a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a>
+    <a class="dropdown-item" href="../articles/EggLaying.html">Habitats and Egg Laying</a>
+    <a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a>
     <a class="dropdown-item" href="../articles/Exposure.html">Exposure</a>
-    <a class="dropdown-item" href="../articles/Contributing.html">Contributing</a>
+    <a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a>
   </div>
 </li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-adult-mosquitoes">Adult Mosquitoes</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
+    <a class="dropdown-item" href="../articles/MY-interface.html">MY Interface</a>
     <a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a>
     <a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald - discrete time</a>
     <a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a>
@@ -105,6 +108,7 @@ that model is recovered by setting \(\xi=0.\)"><!-- mathjax --><script src="http
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-immature-mosquitoes">Immature Mosquitoes</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
+    <a class="dropdown-item" href="../articles/L-interface.html">L Interface</a>
     <a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a>
     <a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a>
   </div>
@@ -112,6 +116,7 @@ that model is recovered by setting \(\xi=0.\)"><!-- mathjax --><script src="http
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-human-host">Human / Host</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-human-host">
+    <a class="dropdown-item" href="../articles/XH-interface.html">XH Interface</a>
     <a class="dropdown-item" href="../articles/human_sis.html">SIS model</a>
     <a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a>
   </div>
@@ -145,14 +150,14 @@ that model is recovered by setting \(\xi=0.\)"><!-- mathjax --><script src="http
 The equations have been modified slightly from a version published by
 Smith DL, <em>et al.</em> (2013).</p>
 <p><strong>Variables:</strong></p><ul><li><p>\(L\): the density of mosquito larvae in each habitat</p></li>
-</ul><p><strong>Input:</strong></p><ul><li><p>\(\eta\) or <code>eta</code>: egg deposition rate (from <a href="F_eggs.html">F_eggs</a>)</p></li>
+</ul><p><strong>Input Term:</strong></p><ul><li><p>\(\eta\) or <code>eta</code>: egg deposition rate (from <a href="F_eggs.html">F_eggs</a>)</p></li>
 </ul><p><strong>Parameters:</strong></p><ul><li><p>\(\psi\) or <code>psi</code>: maturation rate</p></li>
 <li><p>\(\xi\) or <code>xi</code>: delayed maturation parameter in response to mean crowding</p></li>
 <li><p>\(\phi\) or <code>phi</code>: density-independent death rate</p></li>
 <li><p>\(\theta\) or <code>theta</code>: the slope of the mortality rate in response to mean crowding</p></li>
-</ul><p><strong>Dynamics:</strong></p>
+</ul><p><strong>Dynamical System:</strong></p>
 <p>$$dL/dt = \eta - (\psi\;e^{-\xi L} + \phi + \theta L)L$$</p>
-<p><strong>Output:</strong></p><ul><li><p>The function <a href="F_emerge.html">F_emerge</a> computes the net emergence rate (\(\alpha\)):</p></li>
+<p><strong>Output Term:</strong></p><ul><li><p>The function <a href="F_emerge.html">F_emerge</a> computes the net emergence rate (\(\alpha\)):</p></li>
 </ul><p>$$\alpha = \psi e^{-\xi L} L $$</p>
 <p><strong>Regulation:</strong></p>
 <p>In this model, population is regulated in two ways.

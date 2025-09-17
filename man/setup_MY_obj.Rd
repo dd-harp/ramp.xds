@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{setup_MY_obj}
 \alias{setup_MY_obj}
-\title{Setup an \strong{MY} Module (Adult Mosquito Ecology & Infection Dynamics)}
+\title{Setup an \strong{MY} Model Object}
 \usage{
 setup_MY_obj(MYname, xds_obj, s, options = list())
 }
@@ -19,5 +19,14 @@ setup_MY_obj(MYname, xds_obj, s, options = list())
 \link{list}
 }
 \description{
-This method dispatches on \code{MYname}.
+This function is a structured interface, a way
+of building a model objects describing adult mosquito
+ecology & infection dynamics. The string \emph{MYname}
+is assigned its own class (\code{class(MYname) <- MYname}).
+
+Since each model will require different arguments,
+the dispatched function \code{setup_MY_obj.MYname}
+calls \verb{make_MY_obj_MYname,} passing
+the \code{options} to set the values of parameters or
+terms.
 }

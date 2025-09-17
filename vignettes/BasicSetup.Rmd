@@ -15,22 +15,23 @@ Also, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)
 
 **`ramp.xds`** is based on a mathematical framework for model building that is modular, flexible and extensible. Using the built-in functions, it's comparatively easy to build highly *realistic* models by starting simple and adding features one at a time. We call this *progressive model building.* 
 
-In the vignette [Getting Started](GettingStarted.html), we introduced the function `xds_setup().` From a software design perspective, a setup interface can't possibly anticipate the needs of every end user without constraining possibilities. The point of `xds_setup()` is to help build models up to a certain level of complexity. Instead, we have adopted a system for *progressive model building* based on a mathematical framework and the idea of *scaling complexity.* 
+In the vignette [Getting Started](GettingStarted.html), we introduced the function `xds_setup().` From a software design perspective, a setup interface can't possibly anticipate the needs of every end user without constraining possibilities. The point of `xds_setup()` is to help build models up to a certain level of complexity. After that, features get added using the *advanced setup* functions. Together, basic and advanced setup functions make up a system for *progressive model building* based on a mathematical framework and the idea of *scaling complexity.* 
 
 Progressive model building is a practical method for building complex models in two phases:  
 
 + **Basic Setup** is handled by the function `xds_setup().` It's designed to help a user get started with a properly formulated interface that can handle spatial dynamics, structured aquatic habitats, and a stratified human population.
 
-+ **Advanced Setup** handles advanced features, including exogenous forcing, vector control, and other modes of malaria control, human demography and aging, and host population stratification. Advanced setup is described in [**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)
++ **Advanced Setup** handles advanced features, including exogenous forcing, vector control, and other modes of malaria control, human demography and aging, and host population stratification. Advanced setup is described in [**SimBA :: Advanced Setup.**](https://faculty.washington.edu/smitdave/simba/advanced_setup.html)
 
-In the following, we introduce **Basic Setup**
+Here, we cover **Basic Setup**
 
 ## Modularity and Etensibility 
 
-**`ramp.xds`** was developed around a mathematically rigorous framework that takes advantage of the natural modularity of mosquito-transmitted pathogens. The core functions handle [**spatial dynamics**](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684), and the software was designed to model malaria as a *changing baseline modified by control.* The framework is structurally flexible and extensible.  
+**`ramp.xds`** was developed around a mathematically rigorous framework that takes advantage of the natural modularity of mosquito-transmitted pathogens. The core functions handle [**spatial dynamics**](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684), and the software was designed to model malaria as a *changing baseline modified by control.* 
+The model was developed to handle patch-based models, stratified human/host populations with demography and aging, and structured habitats. The framework does not constrain the model structure, and the software built in *ports* and *junctions* to add new variables or features.  
 
 
-**Basic setup** creates a model that sets up the basic structural elements for the spatial dynamics, and that sets up the dynamical modules. A model returned by basic setup is designed to be modified with the potential to develop models of unbounded realism and complexity. To make this work, the software built in ports and junctions that could handle a large set of advanced features, but most of these features would be turned off for basic setup. 
+**Basic setup** creates a model that sets up the dynamical modules and basic structural elements for spatial dynamics. A model returned by basic setup is designed to be modified with the potential to develop models of unbounded realism and complexity. To make this work, the software built in ports and junctions that could handle a large set of advanced features, but most of these features would be turned off for basic setup. 
 
 ### Modularity
 
@@ -42,7 +43,7 @@ The framework is designed around five dynamical components organized into three 
 
     + malaria epidemiology (**X**-component), in the narrow sense; or more generally, the dynamics of infection and immunity in the host population;  
 
-2. Adult mosquito ecology and infection dynamics, called the **MYZ**-component 
+2. Adult mosquito ecology and infection dynamics, called the **MY**-component 
 
     + mosquito ecology: the **M**-component 
 
@@ -58,7 +59,7 @@ In general, A *module* describes an element in the model library that executes a
 
 For example, the `SIS` module for the **X**-component is the *SIS* compartmental model family for human infections. It's called a model family because each unique set of parameters would define a different *model.* 
 
-In its simplest form, each model family represents the state of a single population, but any model can replicate those states and sub-divide a single population into sub-populations with different parameters. These are population strata for the **X**-component; adult mosquitoes are found in patches for the **MYZ**-component; immature mosquitoes in aquatic habitats for **L**-component. In **`ramp.xds`** it is comparatively simple to configure a model with multiple strata, patches, and habitats. 
+In its simplest form, each model family represents the state of a single population, but any model can replicate those states and sub-divide a single population into sub-populations with different parameters. These are population strata for the **X**-component; adult mosquitoes are found in patches for the **MY**-component; immature mosquitoes in aquatic habitats for **L**-component. In **`ramp.xds`** it is comparatively simple to configure a model with multiple strata, patches, and habitats. 
 
 ## Basic Setup  
 
@@ -76,12 +77,12 @@ The demo in [Getting Started](GettingStarted.html) sets up one version of the Ro
 
 As described in [Getting Started](GettingStarted.html), the `xds_setup()` function **`ramp.xds`** has assigned default options for everything. Each model must configure three dynamical components: human epidemiology; adult mosquito ecology and infection dynamics; and aquatic mosquito ecology. Each one of these three dynamical component is configured by specifying a model name (as a string) and options, passed as a named list, to override the defaults for the model: 
 
-+ `Xname` dispatches a module for the **X** component. The setup default model is `Xname="SIS"` and default parameters for the `SIS` model are defined in `create_Xpar_SIS.` To replace the default values at setup, a named list can be passed as `Xopts = list(...)` and the named values in `Xopts` will be 
-he values of named parameters and the initial values of named variables instead of the defaults. (The human demographic module for the **H**-component is set up as an advanced option.) 
++ `Xname` dispatches a module for the **X** component. The setup default model is `Xname="SIS"` and default parameters for the `SIS` model are defined in `make_XH_obj_SIS.` To replace the default values at setup, a named list can be passed as `XHoptions = list(...)` and the named values in `XHoptions` will be 
+he values of named parameters and the initial values of named variables instead of the defaults. (Human demogaphy -- the **H**-component -- is set up as an advanced option.) 
 
-+ `MYZname` dispatches a module for the **MYZ** component. The setup default model is `MYZname="macdonald"` and default parameters for the `macdonald` model are defined in `make_MYZpar_macdonald.` To replace the default values at setup, a named list can be passed as `MYZopts = list(...)` and the named values in `MYZopts` will set the values of named parameters and the initial values of named variables instead of the defaults.  
++ `MYname` dispatches a module for the **MY** component. The setup default model is `MYname="macdonald"` and default parameters for the `macdonald` model are defined in `make_MY_obj_macdonald.` To replace the default values at setup, a named list can be passed as `MYoptions = list(...)` and the named values in `MYoptions` will set the values of named parameters and the initial values of named variables instead of the defaults.  
 
-+ `Lname` dispatches a module for the **L** component. The setup default model is the trivial model `Lname = "trivial"`. It has no variables, but it passes the outputs -- emerging adults -- as a parameter. To replace the default values at setup, a named list can be passed as `Lopts = list(...)` and the values in `Lopts` will set the values of named parameters and the initial values of named variables instead of the defaults.  
++ `Lname` dispatches a module for the **L** component. The setup default model is the trivial model `Lname = "trivial"`. It has no variables, but it passes the outputs -- emerging adults -- as a parameter. To replace the default values at setup, a named list can be passed as `Loptions = list(...)` and the values in `Loptions` will set the values of named parameters and the initial values of named variables instead of the defaults.  
 
 ### Defaults
 
@@ -104,7 +105,7 @@ returns the same values as the function call:
 
 ```{r, eval=F}
 model2 = xds_setup(Xname = "SIS", 
-                   MYZname = "macdonald", 
+                   MYname = "macdonald", 
                    Lname = "trivial")
 ```
 
@@ -114,15 +115,21 @@ Structural parameters describe things like the number of patches, the number of 
     
 - **`nPatches`** or $n_p$ is the number of patches in the model. 
     
-- **`membership`** is set up by passing a vector with the identity of patch where each habitat can be found, and it sets up the habitat membership matrix, $Q$. Setup sets the value of a variable describing the number of habitats, $n_q$ = **`nHabitats <- length(membership)`.** One configurable option is **`searchQ`** with the habitat search weights. 
+- **`membership`** is set up by passing a vector with the identity of patch where each habitat can be found, and it sets up the habitat membership matrix, $N$. Setup sets the value of a variable describing the number of habitats, $n_q$ = **`nHabitats <- length(membership)`.** One configurable option is **`searchQ`** with the habitat search weights. 
     
 - **`HPop`** is a vector with human population density, and **`residence`** is a vector describing the location of the patch where each stratum resides.  Setup checks that `length(HPop) == length(residence)` and sets the number of strata, $n_h$ or **`nStrata <- length(residence)`.** It is also possible to configure heterogeneous biting at the command line by passing **`searchH`** 
+
+The full list of configurable options for `xds_setup` is found by asking for help in R:
+
+```{r, eval=F}
+?xds_setup
+```
 
 ### Spatial Dynamics
 
 - If `nPatches >1` then other setup-configurable options are to pass:
     
-    - a matrix $K$ or `calK` describing mosquito dispersal among the patches.  
+    - a matrix $K$ or `K_matrix` describing mosquito dispersal among the patches.  
           
     - a matrix $\Theta$ or `TimeSpent` can be passed to configure human time spent  
 

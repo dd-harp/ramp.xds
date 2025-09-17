@@ -16,7 +16,7 @@ the \strong{\code{xds}} model object with a new variable
 }
 \description{
 This is a generic method to add new dependent state variables
-that are not computed by \code{dVdt.}
+that are computed by \code{dVdt.}
 
 The model object for the new variable should fully define
 an other variables module, including methods to set up

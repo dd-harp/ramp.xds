@@ -74,10 +74,17 @@ model$Xname
 ```{r}
 get_XH_pars(model)
 ```
-Functions like `get_XH_obj` are designed to help users get to know the model oject. In this case, the parameters are stored as `model$Xpar[[i]],` for the $i^{th}$ species. Knowing the names, the parameters can then be viewed (or changed):
+Functions like `get_XH_pars` are designed to help users get to know the model oject. In this case, the parameters are stored as `model$Xpar[[i]],` for the $i^{th}$ species. Knowing the names, the parameters can then be viewed (or changed):
 
 ```{r}
 model$XH_obj[[1]]$r
+```
+
+To make it easy to change parameters, we also wrote the `change_XH_pars` by passing the new values to be changed in a named list. 
+
+```{r}
+model <- change_XH_pars(model, 1, list(r=1/150))
+get_XH_pars(model)$r
 ```
 
 Similarly, initial values were assigned default values at setup. In **`ramp.xds,`** human/host demography is treated as a distinct process, so the intial values for :
@@ -107,13 +114,13 @@ model1 <- change_H(1004, model1)
 get_XH_inits(model1)
 ```
 
-The name of the default module for adult mosquito ecology and infection dynamics is called `MYname.` The default module is Macdonald's model: 
+The module for adult mosquito ecology and infection dynamics is called `MYname.` The default module is Macdonald's model: 
 
 ```{r}
 model$MYname
 ```
 
-The design pattern is followed: once again, parameters can be viewed with `get_MYpars` and the method for setting parameter values by passing a named list of values to `MYopts` in `xds_setup()` 
+The design pattern is followed: once again, parameters can be viewed with `get_MY_pars` and the method for setting parameter values by passing a named list of values to `MYoptions` in `xds_setup()`  or changing the parameter values by passing new values by name in a list to `change_MY_pars.`
 
 The name of the default module for aquatic mosquito ecology is called `Lname.` The default module is the `trivial` module: 
 
@@ -123,7 +130,7 @@ model$Lname
 
 For the `trivial` module, arguments passed at the command line configure functions that pass values to other dynamical components. 
 
-The design pattern is followed: parameters can be viewed with `get_Lpars` and the method for setting parameter values by passing a named list of values to `Loptions` in `xds_setup()` 
+The design pattern is followed: parameters can be viewed with `get_L_pars` and the method for setting parameter values by passing a named list of values to `Loptions` in `xds_setup().` After setup, the `change_L_pars` works in the same way as the other `change_` functions.
 
 ### Solving 
 
@@ -146,6 +153,8 @@ model <- xds_solve(model, Tmax=365, dt=1)
 ```{r}
 model <- xds_solve(model) 
 ```
+
+Internally, these are handled by the function `make_times_xde` for systems of differential equations, and `make_times_dts` for discrete time systems. 
 
 Note `xds_solve` requires an **`xds`** *model object* and that it returns an **`xds`** *model object.* In this case, the function passes `model` and the return value replaces `model.` Before `xds_solve,` `model$outputs` was an empty list. After solving, the outputs are stored as `model$outputs`: 
 

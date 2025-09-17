@@ -57,12 +57,12 @@ dMYdt.basicM <- function(t, y, xds_obj, s){
 #' @export
 MBaseline.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   # Baseline parameters
-  xds_obj$MYpar[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$q_t      <- F_human_frac(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s) 
-  xds_obj$MYpar[[s]]$nu       <- F_batch_rate(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s) 
+  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s) 
   xds_obj                     <- F_K_matrix(t, xds_obj, s) 
   
   # Reset Effect Sizes

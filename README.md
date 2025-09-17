@@ -29,29 +29,32 @@ To get started, see the vignette [*Getting Started*](https://dd-harp.github.io/r
 ## What is RAMP?
 
 
-**`ramp.xds`** was developed to support simulation-based analytics and **R**obust **A**nalytics for **M**alaria **P**olicy, or **RAMP**. 
+**`ramp.xds`** is an R software package that was developed to support **Sim**ulation-**B**ased **A**nalytics ([**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)) and **R**obust **A**nalytics for **M**alaria **P**olicy, or [**RAMP**](https://faculty.washington.edu/smitdave/ramp/index.html). 
 
-**`ramp.xds`** is an R software package that supports nimble model building for simulation-based analytics and malaria research. The software was designed to help research scientists and policy analysts set up, analyze, solve, and use dynamical systems models of the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. The software also supports nimble model building and analysis for mosquito ecology, with the capability to handle forcing by weather and other exogenous variables.  
+**`ramp.xds`** supports nimble model building for simulation-based malaria analytics and research. 
+The software was designed to lower the costs of setting up, solving, analyzing, and applying dynamical systems to model the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. 
+The software also supports nimble model building and analysis for mosquito ecology and parasite/pathogen transmission by mosquitoes as a *changing baseline* (using [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) to model the effects of weather, hydrology, ...) that is *modified by vector control* (using [**`ramp.control`**](https://dd-harp.github.io/ramp.control/)).
 
-**RAMP** is shorthand for bespoke inferential systems for malaria decision support and adaptive malaria control that go to great lengths to characterize, quantify, and propagate uncertainty. 
+
+**RAMP** is shorthand for the bespoke inferential systems developed for malaria decision support and adaptive malaria control that go to great lengths to characterize, quantify, and propagate uncertainty. 
 RAMP systems combine elements of data science, conventional statistical analysis, and simulation-based analytics. 
 
 The [**SimBA** project](https://faculty.washington.edu/smitdave/simba/index.html) (**Sim**ultation-**B**ased **A**nalytics) is a
-software development project to support malaria analaytics and development of robust policy advice for
-malaria and other mosquito-transmitted pathogens.
+software development project to support malaria analytics and development of robust policy advice for
+malaria and other mosquito-transmitted pathogens. SimBA includes **`ramp.xds`** and all its satellite packages (below). 
 
 **`ramp.xds`** has been designed to serve the needs of malaria programs, where mathematical models are used for decision support and adaptive malaria control in a defined geographical area. Mechanistic models that have been fitted to data describing malaria in a place provide a synthesis of *malaria intelligence.* These models can facilitate complex analysis, extending our innate mental capabilities. By characterizing and quantifying uncertainty, and then propagating the uncertainty through the analysis, simulation-based analytics serve as a platform for giving robust policy advice and for adaptive malaria control. As the needs of a malaria program changes, the models can be modified -- simplified or extended -- to serve the tasks at hand.
 
-**`ramp.xds`** was developed to apply malaria theory: the software solve dynamical systems and outputs the predicted values of standard, observable malaria metrics. 
-It also provides some computational support for qualitative analysis: it computes steady states, stable orbits and reproductive numbers.  
+**`ramp.xds`** was developed to apply malaria theory: the software solves dynamical systems and outputs the predicted values of standard, observable malaria metrics. 
+It also provides some computational support for qualitative analysis: it computes steady states, stable orbits and reproductive numbers. In [**`ramp.work`**](https://dd-harp.github.io/ramp.work/), we developed algorithms that fit models and evaluate vector control; that develope short term forecasts; and that enable scenario planning and strategic planning.
 
 ## **`ramp.xds`** and SimBA
 
-Originally, **`ramp.xds`** was much larger, but it made sense to split the software into several R packages. 
+Originally, **`ramp.xds`** was a single program, but it made sense to split the software into several R packages. 
 When it split, we started using calling the software development project **SimBA**. 
 In the narrow sense, **SimBA** software includes six distinct R packages: 
 
-1. **`ramp.xds`** handles core computational and analysis. 
+1. **`ramp.xds`** handles setup, solving, plotting, and some analysis. 
 It was developed to build and solve dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens based on a well-defined mathematical framework.
 It includes a basic set of models -- enough to design, verify, and demonstrate the basic features of modular software. 
 
@@ -80,19 +83,18 @@ We welcome issues and encourage contribution regardless of experience; the lengt
 
 ## Acknowledgements
 
-+ This project has been supported by a grant from the Bill and Melinda Gates Foundation, **Modeling for Adaptive Malaria Control** (INV 030600, PI = David L Smith, University of Washington).
++ This project was supported by a grant from the Bill and Melinda Gates Foundation, **Modeling for Adaptive Malaria Control** (INV 030600, PI = David L Smith, University of Washington).
 
-+ Adaptive Vector Control is funded by grant **Spatial Targeting and Adaptive Vector Control for Residual Transmission and Malaria Elimination in Urban African Settings** (R01 AI163398, PI = David L Smith), from US National Institute of Allergies and Infectious Diseases (NIAID).
++ Support for *Adaptive Vector Control* is funded by grant **Spatial Targeting and Adaptive Vector Control for Residual Transmission and Malaria Elimination in Urban African Settings** (R01 AI163398, PI = David L Smith), from US National Institute of Allergies and Infectious Diseases (NIAID).
 
-+ Development of the software was supported through a collaboration with the [**Bioko Island Malaria Elimination Program**](https://www.mcd.org/focus-areas/featured-projects/bioko-island-malaria-elimination-project) 
-
-+ Development of the software was supported through a collaboration with Uganda's **National Malaria Control Division** and **Department of Health Information** in the [Uganda Ministry of Health](https://www.health.go.ug/)
++ Development of SimBA, RAMP and Adaptive Malaria Control was supported through collaboration with the [**Bioko Island Malaria Elimination Program**](https://www.mcd.org/focus-areas/featured-projects/bioko-island-malaria-elimination-project) and
+Uganda's **National Malaria Control Division** and **Department of Health Information** in the [Uganda Ministry of Health](https://www.health.go.ug/)
 
 + Development of this software benefited from funding and collaboration with the NIAID grant **Program for Resistance, Immunology, Surveillance & Modeling of Malaria in Uganda** (PRISM) (2U19AI089674, PIs = Grant Dorsey, University of California San Francisco; and Moses Kamya, Infectious Diseases Research Collaboration), which was part of the **International Centers of Excellence in Malaria Research** (ICEMR) program.
 
 + Funding to develop models of West Nile Virus to support Harris County Public Health was funded by the NSF as part of a project, Computing the Biome (PI = Janos Sztipanovits). The project was part of the Convergence Accelerator program of the National Science Foundation, Directorate for Technology, Innovation, and Partnerships (TIP) ([NSF 2040688](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2040688) and [NSF 2040688](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2134862), PI=Janos Sztipanovits, Vanderbilt University).
 
-+ We acknowledge the important formative role played by the mosquito working groups of **RAPIDD** (Research and Policy for Infectious Disease Dynamics), which was sponsored by the Fogarty International Center, NIH, and the Department of Homeland Security. The mosquito working groups were led by Professor Thomas Scott. RAPIDD was led by F. Ellis McKenzie. 
++ We also acknowledge the importance of the mosquito working groups of **RAPIDD** (Research and Policy for Infectious Disease Dynamics), which was sponsored by the Fogarty International Center, NIH, and the Department of Homeland Security. The mosquito working groups were led by Professor Thomas Scott. RAPIDD was directed by F. Ellis McKenzie. 
 
 
 

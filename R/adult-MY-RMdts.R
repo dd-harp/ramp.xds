@@ -34,8 +34,8 @@ check_MY.RMdts = function(xds_obj, s){
 #' @return a [numeric] vector
 #' @export
 Update_MYt.RMdts <- function(t, y, xds_obj, s) {
-  Lambda = xds_obj$ML_interface$Lambda[[s]]*xds_obj$MYday
-  kappa = xds_obj$kappa[[s]]
+  Lambda = xds_obj$terms$Lambda[[s]]
+  kappa = xds_obj$terms$kappa[[s]]
 
 
   with(get_MY_vars(y, xds_obj, s),{

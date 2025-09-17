@@ -28,7 +28,7 @@ Smith DL, \emph{et al.} (2013).
 \item \eqn{L}: the density of mosquito larvae in each habitat
 }
 
-\strong{Input:}
+\strong{Input Term:}
 \itemize{
 \item \eqn{\eta} or \code{eta}: egg deposition rate (from \link{F_eggs})
 }
@@ -41,11 +41,11 @@ Smith DL, \emph{et al.} (2013).
 \item \eqn{\theta} or \code{theta}: the slope of the mortality rate in response to mean crowding
 }
 
-\strong{Dynamics:}
+\strong{Dynamical System:}
 
 \deqn{dL/dt = \eta - (\psi\;e^{-\xi L} + \phi + \theta L)L}
 
-\strong{Output:}
+\strong{Output Term:}
 \itemize{
 \item The function \link{F_emerge} computes the net emergence rate (\eqn{\alpha}):
 }

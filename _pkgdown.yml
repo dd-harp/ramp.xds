@@ -12,12 +12,18 @@ navbar:
       href: articles/BasicSetup.html
     - text: Modular Forms
       href: articles/modular_forms.html
+    - text: Habitats and Egg Laying 
+      href: articles/EggLaying.html
+    - text: Blood Feeding 
+      href: articles/BloodFeeding.html
     - text: Exposure
       href: articles/Exposure.html
-    - text: Contributing
-      href: articles/Contributing.html
+    - text: Ports & Junctions 
+      href: articles/Forcing.html
   - text: Adult Mosquitoes 
     menu:
+    - text: MY Interface 
+      href: articles/MY-interface.html
     - text: Macdonald's Model
       href: articles/adult_RM.html
     - text: Ross-Macdonald - discrete time
@@ -26,12 +32,16 @@ navbar:
       href: articles/adult_GeRM.html
   - text: Immature Mosquitoes 
     menu:
+    - text: L Interface 
+      href: articles/L-interface.html
     - text: Emergence (the trivial module) 
       href: articles/aqua_trace.html
     - text: basicL
       href: articles/aqua_basic.html
   - text: Human / Host
     menu:
+    - text: XH Interface 
+      href: articles/XH-interface.html
     - text: SIS model
       href: articles/human_sis.html
     - text: MoI hybrid model
@@ -395,6 +405,8 @@ reference:
   - steady_state_MY
   - steady_state_Y
   - steady_state_M
+  - get_M 
+  - get_Z 
 - subtitle: Visualization for Adult Mosquito
   desc: |
     Basic Plotting

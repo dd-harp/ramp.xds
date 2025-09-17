@@ -47,7 +47,7 @@ setup_other_variables = function(xds_obj){
 #' 
 #' @description
 #' This is a generic method to add new dependent state variables 
-#' that are not computed by `dVdt.` 
+#' that are computed by `dVdt.` 
 #' 
 #' The model object for the new variable should fully define 
 #' an other variables module, including methods to set up
