@@ -14,7 +14,7 @@
 #' @return an **`xds`** object
 #' @export
 Traps = function(t, y, xds_obj){
-  UseMethod("Traps", xds_obj$variables$traps_obj)
+  UseMethod("Traps", xds_obj$resources_obj$traps_obj)
 }
 
 #' @title Set the values of exogenous variables
@@ -45,6 +45,6 @@ setup_traps_object = function(xds_obj){
   xds_obj$ML_interface$Qtraps[[1]] <- rep(0, xds_obj$nPatches)
   xds_obj$XY_interface$Btraps = list()
   xds_obj$XY_interface$Btraps[[1]] <- rep(0, xds_obj$nPatches)
-  xds_obj$variables$traps_obj <- traps
+  xds_obj$resources_obj$traps_obj <- traps
   return(xds_obj)
 }

@@ -15,7 +15,7 @@
 #' @return an **`xds`** object
 #' @export
 Sugar = function(t, y, xds_obj){
-  UseMethod("Sugar", xds_obj$variables$sugar_obj)
+  UseMethod("Sugar", xds_obj$resources_obj$sugar_obj)
 }
 
 #' @title Set the values of exogenous variables
@@ -42,6 +42,6 @@ setup_sugar_object = function(xds_obj){
   class(sugar) <- 'none'
   sugar$name <- "Junction: Natural Sugar Dynamics" 
   sugar$ports <- "Sugar Availability, Sugar Baits" 
-  xds_obj$variables$sugar_obj <- sugar
+  xds_obj$resources_obj$sugar_obj <- sugar
   return(xds_obj)
 }

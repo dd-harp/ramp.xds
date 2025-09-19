@@ -184,71 +184,7 @@ reference:
   contents:
   - show_season
   - show_trend
-- title: Variables 
-  desc: |
-    Compute the derivatives for other variables 
-- subtitle: Other Variables 
-  desc: |
-    Compute the derivatives for other variables 
-  contents:
-  - add_variable 
-  - setup_other_variables
-  - dVdt
-  - dVdt.setup
-  - setup_V_ix.setup
-  - setup_V_obj
-  - get_V_vars 
-  - setup_V_ix
-  - parse_V_orbits 
-  - get_V_pars 
-  - get_V_ix 
-  - change_V_pars 
-  - setup_V_inits 
-  - get_V_inits
-  - change_V_inits 
-- subtitle: Junctions 
-  desc: |
-    Functions that compute dynamical terms and exogenous variables
-  contents:
-  - Forcing
-  - Health
-  - VectorControl
-  - Resources
-  - BloodFeeding
-  - EggLaying
-  - Traps 
-  - BaselineBionomics
-  - ModifiedBionomics
-  - Transmission
-  - Exposure
-- subtitle: Change Parameters & Initial Values
-  desc: |
-    Methods to set up basic models
-  contents:
-  - change_H
-  - update_inits
-  - last_to_inits
-  - parse_orbits
-  - parse_y
-  - get_inits
-  - get_H
-  - get_XH
-  - get_PR
-  - get_PR.true
-  - get_PR.lm
-  - get_PR.rdt
-  - get_PR.pcr
-  - make_indices
-  - trigger_setup
-- subtitle: Examine
-  desc: |
-    Methods to
-  contents:
-  - get_inits
-  - get_last
-  - parse_orbits
-  - parse_y
-- title: Blood Feeding and Transmission
+- title: Blood Feeding & Transmission
   desc: |
     Methods to compute terms describing blood feeding and transmission
   contents:
@@ -256,7 +192,7 @@ reference:
   - check_XY_interface
   - make_residency_matrix
   - view_residency_matrix
-- subtitle: Blood Feeding
+- subtitle: Blood Feeding Interface
   desc: "Methods for time at risk & blood host availability \n"
   contents:
   - blood_feeding_dynamics
@@ -305,8 +241,39 @@ reference:
   - TimeSpent 
   - TimeSpent.setup
   - TimeSpent.static
-- title: Mosquito Habitats 
-  desc: Habitat Dynamics - Emergence - & Egg Laying 
+- subtitle: Exposure
+  desc: Methods for Environmental Heterogeneity 
+  contents:
+  - setup_exposure 
+  - Exposure
+  - Exposure.xde
+  - Exposure.dts
+  - F_foi
+  - F_ar
+  - foi2eir
+  - ar2eir
+- subtitle: Poisson Exposure
+  desc: |
+    Specialized methods the Poisson exposure model
+  contents:
+  - setup_exposure.pois
+  - make_exposure_pois 
+  - F_foi.pois
+  - F_ar.pois
+  - foi2eir.pois
+  - ar2eir.pois
+- subtitle: Negative Binomial Exposure
+  desc: |
+    Specialized methods the Negative Binomial exposure model
+  contents:
+  - setup_exposure.nb
+  - make_exposure_nb 
+  - F_foi.nb
+  - F_ar.nb
+  - foi2eir.nb
+  - ar2eir.nb
+- title: Habitats & Egg Laying
+  desc: Mosquito Population Dynamic Interface 
   contents:
   - setup_ML_interface
   - check_ML_interface
@@ -347,38 +314,122 @@ reference:
   - EggLaying
   - EggLaying.setup
   - EggLaying.static
-  - EggLaying.dynamic
-- title: Exposure
-  desc: Methods for Environmental Heterogeneity 
-  contents:
-  - setup_exposure 
-  - Exposure
-  - Exposure.xde
-  - Exposure.dts
-  - F_foi
-  - F_ar
-  - foi2eir
-  - ar2eir
-- subtitle: Poisson Exposure
+  - EggLaying.dynamic  
+- title: Human / Host Component 
   desc: |
-    Specialized methods the Poisson exposure model
+    Generic methods for models of human/host infection dynamics - immunity - disease and transmission
   contents:
-  - setup_exposure.pois
-  - make_exposure_pois 
-  - F_foi.pois
-  - F_ar.pois
-  - foi2eir.pois
-  - ar2eir.pois
-- subtitle: Negative Binomial Exposure
+  - skill_set_XH
+  - check_XH
+  - dXHdt
+  - Update_XHt
+  - setup_XH_obj
+  - setup_XH_inits
+  - setup_XH_ix
+  - get_XH_vars
+  - get_XH_pars
+  - change_XH_pars
+  - F_X
+  - F_H
+  - F_infectivity
+  - parse_XH_orbits
+  - get_XH_inits
+  - change_XH_inits
+  - HTC
+  - F_prevalence
+  - F_ni 
+  - F_pfpr_by_lm
+  - F_pfpr_by_rdt
+  - F_pfpr_by_pcr
+  - xds_plot_X
+  - steady_state_X
+  - steady_state_XH
+- subtitle: trivial
+  desc: "Specialized methods the trivial human model \n"
+  contents:
+  - skill_set_XH.trivial 
+  - check_XH.trivial 
+  - F_X.trivial
+  - F_H.trivial
+  - F_ni.trivial 
+  - F_prevalence.trivial
+  - steady_state_X.trivial
+  - F_pfpr_by_lm.trivial
+  - F_pfpr_by_rdt.trivial
+  - F_pfpr_by_pcr.trivial
+  - F_infectivity.trivial
+  - dXHdt.trivial
+  - Update_XHt.trivial
+  - setup_XH_obj.trivial
+  - make_XH_obj_trivial
+  - setup_XH_inits.trivial
+  - setup_XH_ix.trivial
+  - parse_XH_orbits.trivial
+  - get_XH_pars.trivial
+  - change_XH_pars.trivial
+  - steady_state_XH.trivial 
+- subtitle: hMoI
   desc: |
-    Specialized methods the Negative Binomial exposure model
+    A hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
   contents:
-  - setup_exposure.nb
-  - make_exposure_nb 
-  - F_foi.nb
-  - F_ar.nb
-  - foi2eir.nb
-  - ar2eir.nb
+  - skill_set_XH.hMoI 
+  - dXHdt.hMoI
+  - setup_XH_obj.hMoI
+  - make_XH_obj_hMoI
+  - steady_state_X.hMoI
+  - setup_XH_inits.hMoI
+  - make_XH_inits_hMoI
+  - setup_XH_ix.hMoI
+  - F_X.hMoI
+  - F_H.hMoI
+  - F_infectivity.hMoI
+  - F_prevalence.hMoI
+  - F_ni.hMoI
+  - F_pfpr_by_lm.hMoI
+  - F_pfpr_by_rdt.hMoI
+  - F_pfpr_by_pcr.hMoI
+  - parse_XH_orbits.hMoI
+  - change_XH_inits.hMoI
+  - get_XH_pars.hMoI
+  - change_XH_pars.hMoI
+  - HTC.hMoI
+  - check_XH.hMoI 
+  - get_XH_vars.hMoI 
+- subtitle: SIS
+  desc: |
+    "The SIS (Susceptible-Infected-Susceptible) model of human dynamics"
+  contents:
+  - skill_set_XH.SIS
+  - check_XH.SIS
+  - dXHdt.SIS
+  - setup_XH_obj.SIS
+  - make_XH_obj_SIS
+  - setup_XH_inits.SIS
+  - make_XH_inits_SIS
+  - setup_XH_ix.SIS
+  - get_XH_vars.SIS
+  - get_XH_pars.SIS
+  - change_XH_pars.SIS
+  - F_X.SIS
+  - F_H.SIS
+  - F_infectivity.SIS
+  - parse_XH_orbits.SIS
+  - change_XH_inits.SIS
+  - HTC.SIS
+  - F_prevalence.SIS
+  - F_ni.SIS
+  - F_pfpr_by_lm.SIS
+  - F_pfpr_by_rdt.SIS
+  - F_pfpr_by_pcr.SIS
+  - xds_plot_X.SIS
+  - add_lines_X_SIS
+  - steady_state_X.SIS
+- subtitle: Human Population Dynamics
+  desc: |
+    Methods for the human demography and aging
+  contents:
+  - Births
+  - Births.zero
 - title: Adult Mosquito Component 
   desc: |
     Generic methods for the adult mosquito dynamics component.
@@ -707,154 +758,45 @@ reference:
   - make_K_matrix_xy
   - F_K_matrix
   - F_K_matrix.static 
-- title: Human / Host Component 
+- title: Other Dynamic Variables 
   desc: |
-    Generic methods for models of human/host infection dynamics - immunity - disease and transmission
-  contents:
-  - skill_set_XH
-  - check_XH
-  - dXHdt
-  - Update_XHt
-  - setup_XH_obj
-  - setup_XH_inits
-  - setup_XH_ix
-  - get_XH_vars
-  - get_XH_pars
-  - change_XH_pars
-  - F_X
-  - F_H
-  - F_infectivity
-  - parse_XH_orbits
-  - get_XH_inits
-  - change_XH_inits
-  - HTC
-  - F_prevalence
-  - F_ni 
-  - F_pfpr_by_lm
-  - F_pfpr_by_rdt
-  - F_pfpr_by_pcr
-  - xds_plot_X
-  - steady_state_X
-  - steady_state_XH
-- subtitle: trivial
-  desc: "Specialized methods the trivial human model \n"
-  contents:
-  - skill_set_XH.trivial 
-  - check_XH.trivial 
-  - F_X.trivial
-  - F_H.trivial
-  - F_ni.trivial 
-  - F_prevalence.trivial
-  - steady_state_X.trivial
-  - F_pfpr_by_lm.trivial
-  - F_pfpr_by_rdt.trivial
-  - F_pfpr_by_pcr.trivial
-  - F_infectivity.trivial
-  - dXHdt.trivial
-  - Update_XHt.trivial
-  - setup_XH_obj.trivial
-  - make_XH_obj_trivial
-  - setup_XH_inits.trivial
-  - setup_XH_ix.trivial
-  - parse_XH_orbits.trivial
-  - get_XH_pars.trivial
-  - change_XH_pars.trivial
-  - steady_state_XH.trivial 
-- subtitle: hMoI
+    Compute the derivatives for other variables 
+- subtitle: Other Dynamic Variables 
   desc: |
-    A hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
+    Compute the derivatives for other variables 
   contents:
-  - skill_set_XH.hMoI 
-  - dXHdt.hMoI
-  - setup_XH_obj.hMoI
-  - make_XH_obj_hMoI
-  - steady_state_X.hMoI
-  - setup_XH_inits.hMoI
-  - make_XH_inits_hMoI
-  - setup_XH_ix.hMoI
-  - F_X.hMoI
-  - F_H.hMoI
-  - F_infectivity.hMoI
-  - F_prevalence.hMoI
-  - F_ni.hMoI
-  - F_pfpr_by_lm.hMoI
-  - F_pfpr_by_rdt.hMoI
-  - F_pfpr_by_pcr.hMoI
-  - parse_XH_orbits.hMoI
-  - change_XH_inits.hMoI
-  - get_XH_pars.hMoI
-  - change_XH_pars.hMoI
-  - HTC.hMoI
-  - check_XH.hMoI 
-  - get_XH_vars.hMoI 
-- subtitle: SIS
+  - add_variable 
+  - setup_other_variables
+  - dVdt
+  - dVdt.setup
+  - setup_V_ix.setup
+  - setup_V_obj
+  - get_V_vars 
+  - setup_V_ix
+  - parse_V_orbits 
+  - get_V_pars 
+  - get_V_ix 
+  - change_V_pars 
+  - setup_V_inits 
+  - get_V_inits
+  - change_V_inits 
+- subtitle: Junctions 
   desc: |
-    "The SIS (Susceptible-Infected-Susceptible) model of human dynamics"
+    Functions that compute dynamical terms and exogenous variables
   contents:
-  - skill_set_XH.SIS
-  - check_XH.SIS
-  - dXHdt.SIS
-  - setup_XH_obj.SIS
-  - make_XH_obj_SIS
-  - setup_XH_inits.SIS
-  - make_XH_inits_SIS
-  - setup_XH_ix.SIS
-  - get_XH_vars.SIS
-  - get_XH_pars.SIS
-  - change_XH_pars.SIS
-  - F_X.SIS
-  - F_H.SIS
-  - F_infectivity.SIS
-  - parse_XH_orbits.SIS
-  - change_XH_inits.SIS
-  - HTC.SIS
-  - F_prevalence.SIS
-  - F_ni.SIS
-  - F_pfpr_by_lm.SIS
-  - F_pfpr_by_rdt.SIS
-  - F_pfpr_by_pcr.SIS
-  - xds_plot_X.SIS
-  - add_lines_X_SIS
-  - steady_state_X.SIS
-- subtitle: Human Population Dynamics
-  desc: |
-    Methods for the human demography and aging
-  contents:
-  - Births
-  - Births.zero
-- title: Travel 
-  desc: |
-    Time spent traveling & the travel EIR
-  contents:
-  - setup_travel_object
-  - change_time_at_home 
-  - change_travel_EIR
-  - setup_F_travel
-  - setup_F_travel.static
-  - setup_F_travel.ts_func
-  - setup_F_travel_eir
-  - setup_F_travel_eir.static
-  - setup_F_travel_eir.ts_func
-  - Travel 
-  - Travel.static
-  - Travel.setup
-  - Travel.dynamic
-  - travel_dynamics
-- title: Visitors 
-  desc: |
-    Blood Feeding on non-Residents 
-  contents:
-  - setup_F_vis_kappa 
-  - setup_F_vis_kappa.ts_func 
-  - setup_F_visitors 
-  - setup_F_visitors.ts_func 
-  - setup_visitor_object 
-  - visitor_dynamics
-  - Visitors 
-  - Visitors.dynamic 
-  - Visitors.setup 
-  - Visitors.static 
-- title: Junctions 
+  - Forcing
+  - Health
+  - VectorControl
+  - Resources
+  - BloodFeeding
+  - EggLaying
+  - Traps 
+  - BaselineBionomics
+  - ModifiedBionomics
+  - Transmission
+  - Exposure
+- title: Ports & Junctions
+- subtitle: Junctions 
   desc: Set up junction boxes to add features 
 - subtitle: Forcing
   desc: Exogenous forcing (see `ramp.control`)
@@ -876,6 +818,38 @@ reference:
   - setup_health_object
   - Health
   - Health.none
+- subtitle: Travel 
+  desc: |
+    Time spent traveling & the travel EIR
+  contents:
+  - setup_travel_object
+  - change_time_at_home 
+  - change_travel_EIR
+  - setup_F_travel
+  - setup_F_travel.static
+  - setup_F_travel.ts_func
+  - setup_F_travel_eir
+  - setup_F_travel_eir.static
+  - setup_F_travel_eir.ts_func
+  - Travel 
+  - Travel.static
+  - Travel.setup
+  - Travel.dynamic
+  - travel_dynamics
+- subtitle: Visitors 
+  desc: |
+    Blood Feeding on non-Residents 
+  contents:
+  - setup_F_vis_kappa 
+  - setup_F_vis_kappa.ts_func 
+  - setup_F_visitors 
+  - setup_F_visitors.ts_func 
+  - setup_visitor_object 
+  - visitor_dynamics
+  - Visitors 
+  - Visitors.dynamic 
+  - Visitors.setup 
+  - Visitors.static 
 - title: Solving
   desc: "Methods to compute the derivatives and dynamical systems \n"
 - subtitle: Solve 
@@ -990,6 +964,26 @@ reference:
   - ode_to_dde.ode
   - ode_to_dde.dde
   - ode_to_dde.dts
+- subtitle: Change Parameters & Initial Values
+  desc: |
+    Methods to set up basic models
+  contents:
+  - change_H
+  - update_inits
+  - last_to_inits
+  - parse_orbits
+  - parse_y
+  - get_inits
+  - get_last
+  - get_H
+  - get_XH
+  - get_PR
+  - get_PR.true
+  - get_PR.lm
+  - get_PR.rdt
+  - get_PR.pcr
+  - make_indices
+  - trigger_setup
 - subtitle: Functions
   desc: |
     Basic visualization of the transmission terms
@@ -1022,7 +1016,7 @@ reference:
   - make_function.splineX
   - make_function.spline2
   - makepar_F_spline
-- title: Update Forcing 
+- subtitle: Update Forcing 
   desc: |
     Methods to get - set - and update forcing functions 
   contents: 
@@ -1042,8 +1036,7 @@ reference:
   - show_trend.Lambda 
   - show_trend.eir
   - show_trend.none
-
-- title: Get and Set for Mean Forcing 
+- subtitle: Get and Set for Mean Forcing 
   desc: |
     Functions to change Forcing 
   contents: 
@@ -1114,7 +1107,6 @@ reference:
   desc: Move  
   contents:   
   - F_exp 
-  - blood_hosts_dynamics 
   - change_MY_inits.RMdts 
   - check_models 
   - get_EIR 
@@ -1152,6 +1144,7 @@ reference:
   - BloodHosts.dynamic 
   - BloodHosts.setup 
   - BloodHosts.static 
+  - blood_hosts_dynamics 
 
   - setup_sugar_object 
   - Sugar 

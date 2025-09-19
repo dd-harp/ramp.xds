@@ -161,7 +161,7 @@ change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
 #' @return a [list]
 #' @export
 setup_L_inits.trivial = function(xds_obj, s, options=list()){
-  xds_obj$Linits[[s]]$inits = list()
+  xds_obj$L_obj[[s]]$inits = list()
   return(xds_obj)
 }
 
