@@ -83,13 +83,6 @@ test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", 
   P <- solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M
   Lambda <- Omega %*% M
 
-  class(MYo) = "macdonald"
-  steady_state_MY(Lambda, kappa, MYo) -> ss
-
-  MYo$M=M
-  MYo$P=P
-  MYo$Y=Y
-  MYo$Z=Z
 
 
   Lo = list(Lambda=Lambda)
@@ -98,6 +91,14 @@ test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", 
   params <- xds_setup(MYname = "macdonald", MYoptions=MYo, Lname = "trivial", Loptions=Lo, TimeSpent = TaR, K_matrix=K_matrix,
                       Xname = "hMoI", XHoptions=Xo, HPop=H, membership=membership, nPatches=nPatches, residence=residence)
 
+  steady_state_MY(Lambda, kappa, params, 1) -> ss
+
+  MYo$M=ss$M
+  MYo$P=ss$P
+  MYo$Y=ss$Y
+  MYo$Z=ss$Z
+  
+  params <- change_MY_inits(params, 1, MYo)
 
   params <- xds_solve(params, 730, 1)
 

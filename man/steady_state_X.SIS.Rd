@@ -4,14 +4,16 @@
 \alias{steady_state_X.SIS}
 \title{Compute the steady states for the SIS model as a function of the daily EIR}
 \usage{
-\method{steady_state_X}{SIS}(foi, H, XH_obj)
+\method{steady_state_X}{SIS}(foi, H, xds_obj, i = 1)
 }
 \arguments{
 \item{foi}{the daily FoI}
 
 \item{H}{human / host population density}
 
-\item{XH_obj}{an \strong{XH} model object}
+\item{xds_obj}{an \strong{\code{xds}} object}
+
+\item{i}{the vector species index}
 }
 \value{
 the steady states as a named vector

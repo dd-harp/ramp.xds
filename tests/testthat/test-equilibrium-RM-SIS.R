@@ -73,14 +73,11 @@ test_that("test equilibrium with macdonald adults (DDE), SIS_xde humans, trivial
   Z <- fqZ/f/q
   fqk <- as.vector(f*q*kappa)
   MY <- solve(Upsilon) %*% Omega %*% Z
-#  Y <- solve(Omega) %*% (diag(as.vector(f*q*kappa), nPatches, nPatches) %*% MY)
   Y <- solve(Omega) %*% MY
   M <- diag(1/fqk)%*%(diag(fqk)%*%Y + Omega %*%Y) 
   P <- solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M
   Lambda <- Omega %*% M
 
-  class(MYo) <- "macdonald"
-  steady_state_MY(Lambda, kappa, MYo) -> ss
 
   MYo$M=M
   MYo$P=P

@@ -353,7 +353,6 @@ reference:
   - F_H.trivial
   - F_ni.trivial 
   - F_prevalence.trivial
-  - steady_state_X.trivial
   - F_pfpr_by_lm.trivial
   - F_pfpr_by_rdt.trivial
   - F_pfpr_by_pcr.trivial
@@ -367,7 +366,6 @@ reference:
   - parse_XH_orbits.trivial
   - get_XH_pars.trivial
   - change_XH_pars.trivial
-  - steady_state_XH.trivial 
 - subtitle: hMoI
   desc: |
     A hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
@@ -511,7 +509,6 @@ reference:
   - change_MY_pars.trivial
   - change_MY_inits.trivial
   - make_MY_obj_trivial
-  - steady_state_MY.trivial
   - setup_MY_inits.trivial
   - setup_MY_ix.trivial
   - parse_MY_orbits.trivial
@@ -524,7 +521,6 @@ reference:
   - dMYdt.basicM
   - MBaseline.basicM
   - MBionomics.basicM
-  - steady_state_M.basicM
   - Update_MYt.basicM
   - setup_MY_obj.basicM
   - make_M_obj_basicM 
@@ -539,6 +535,8 @@ reference:
   - change_MY_pars.basicM
   - change_MY_inits.basicM
   - parse_MY_orbits.basicM
+  - steady_state_M.basicM_ode
+  - steady_state_M.basicM_dts
 - subtitle: The "SI" model for infection
   desc: |
     Specialized methods for simple infection dynamics for an adult mosquito population
@@ -548,7 +546,6 @@ reference:
   - dMYdt.SI
   - MBaseline.SI
   - MBionomics.SI
-  - steady_state_MY.SI
   - Update_MYt.SI
   - setup_MY_obj.SI
   - make_MY_obj_SI
@@ -567,6 +564,7 @@ reference:
   - get_q.SI
   - get_g.SI
   - get_sigma.SI
+  - steady_state_MY.SI_ode
 - subtitle: macdonald
   desc: |
     Specialized methods for a Macdonald-style model of adult mosquito dynamics - modified slightly from a model published by Joan Aron & Robert May (1982).
@@ -677,7 +675,6 @@ reference:
   - change_L_inits.trivial
   - setup_L_ix.trivial
   - parse_L_orbits.trivial
-  - steady_state_L.trivial
 - subtitle: basicL
   desc: |
     A basic model for aquatic mosquito dynamics
@@ -699,7 +696,7 @@ reference:
   - change_L_inits.basicL
   - setup_L_ix.basicL
   - parse_L_orbits.basicL
-  - steady_state_L.basicL
+  - steady_state_L.basicL_ode
 - title: Mosquito Bionomics
   desc: |
     Methods to compute or update mosquito bionomic parameters

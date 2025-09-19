@@ -199,15 +199,5 @@ setup_L_ix.trivial <- function(xds_obj, s) {
 #' @return none
 #' @export
 parse_L_orbits.trivial <- function(outputs, xds_obj, s) {
-  return(numeric(0))
+  return(list())
 }
-
-#' @title Compute the Steady State of `dLdt.trivial` (**L** Component)
-#' @description Return a numeric vector of length 0
-#' @inheritParams steady_state_L
-#' @return none
-#' @export
-steady_state_L.trivial = function(eta, L_obj){
-  return(numeric(0))
-}
-

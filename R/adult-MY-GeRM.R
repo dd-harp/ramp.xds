@@ -447,7 +447,7 @@ change_MY_inits.GeRM <- function(xds_obj, s=1, options=list()) {
 #' @return none
 #' @importFrom MASS ginv
 #' @export
-steady_state_MY.GeRM = function(Lambda, kappa, MY_obj){with(MY_obj,{
+steady_state_MY.GeRM = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$MY_obj[[s]],{
   kappa = as.vector(kappa); Lambda = as.vector(Lambda)
   Omega_inv <- ginv(Omega)
   M_eq <- as.vector(Omega_inv %*% Lambda)

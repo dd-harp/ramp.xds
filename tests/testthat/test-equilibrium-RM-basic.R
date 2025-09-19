@@ -79,14 +79,8 @@ test_that("test equilibrium with macdonald adults (DDE), basic competition", {
   Lambda <- Omega %*% M
 
 
-  class(MYo) = "macdonald"
-  steady_state_MY(Lambda, kappa, MYo) -> ss
 
-  MYo$M=M
-  MYo$P=P
-  MYo$Y=Y
-  MYo$Z=Z
-
+ 
   psi <- 1/10
   phi <- 1/12
   eta <- M * nu * eggsPerBatch
@@ -102,6 +96,15 @@ test_that("test equilibrium with macdonald adults (DDE), basic competition", {
 
   params$terms$kappa[[1]] = kappa
 
+  steady_state_MY(Lambda, kappa, params, 1) -> ss
+  
+  MYo$M=ss$M
+  MYo$P=ss$P
+  MYo$Y=ss$Y
+  MYo$Z=ss$Z
+  
+  params <- change_MY_inits(params, 1, MYo)
+  
   params <- xds_solve(params, 730, 1)
 
   out <- params$outputs$last_y

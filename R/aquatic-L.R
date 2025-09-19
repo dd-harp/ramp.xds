@@ -3,9 +3,7 @@
 #' @title The **L** Module Skill Set 
 #' 
 #' @description The **L** skill set is a list of 
-#' an module's capabilities: 
-#' 
-#' + `demography` is 
+#' describing capabilities and compatabilities
 #'
 #' @param Lname the **L** module name 
 #' 
@@ -203,13 +201,18 @@ parse_L_orbits <- function(outputs, xds_obj, s) {
 }
 
 #' @title Compute steady states for **L** Component Modules
+#' 
 #' @description For differential equation models, compute
 #' steady states as a function of daily eggs laid, \eqn{\eta}
+#' 
 #' @note This method dispatches on the class of `L_obj`.
+#' 
 #' @param eta the egg-laying rate
-#' @param L_obj a list that defines an xde model
+#' @param xds_obj an **`xds`** object
+#' @param s the species index
+#' 
 #' @return a named [list]: values of the state variables at the steady state
 #' @export
-steady_state_L = function(eta, L_obj){
-  UseMethod("steady_state_L", L_obj)
+steady_state_L = function(eta, xds_obj, s=1){
+  UseMethod("steady_state_L", xds_obj$L_obj[[s]])
 }

@@ -4,12 +4,14 @@
 \alias{steady_state_L}
 \title{Compute steady states for \strong{L} Component Modules}
 \usage{
-steady_state_L(eta, L_obj)
+steady_state_L(eta, xds_obj, s = 1)
 }
 \arguments{
 \item{eta}{the egg-laying rate}
 
-\item{L_obj}{a list that defines an xde model}
+\item{xds_obj}{an \strong{\code{xds}} object}
+
+\item{s}{the species index}
 }
 \value{
 a named \link{list}: values of the state variables at the steady state

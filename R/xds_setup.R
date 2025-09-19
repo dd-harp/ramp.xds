@@ -183,8 +183,7 @@ xds_setup_mosy = function(xds = 'ode',
 ){
   residence = 1:nPatches
   HPop = checkIt(HPop, nPatches)
-  xds_obj <- make_xds_object_template('ode', 'mosy', nPatches, membership, residence)
-  
+  xds_obj <- make_xds_object_template(xds, 'mosy', nPatches, membership, residence)
   
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- MYname
@@ -245,7 +244,7 @@ xds_setup_aquatic = function(xds = 'ode',
 
   nPatches= nHabitats
   membership = 1:nHabitats
-  xds_obj <- make_xds_object_template('ode', 'aquatic', nPatches, membership)
+  xds_obj <- make_xds_object_template(xds, 'aquatic', nPatches, membership)
 
   # Aquatic Mosquito Dynamics
   xds_obj$Lname <- Lname
@@ -322,7 +321,7 @@ xds_setup_human = function(Xname = "SIS",
 ){
   stopifnot(length(HPop) == length(residence))
   membership=1
-  xds_obj <- make_xds_object_template('ode', 'human', nPatches, membership, residence)
+  xds_obj <- make_xds_object_template(xds, 'human', nPatches, membership, residence)
 
   # Aquatic Mosquito Dynamics
   xds_obj       <- setup_L_obj("trivial", xds_obj, 1, list())
@@ -410,7 +409,7 @@ xds_setup_cohort = function(eir=1,
   nPatches = length(HPop)
   residence = rep(1, length(HPop))
   membership = 1
-  xds_obj <- make_xds_object_template('ode', 'cohort', nPatches, membership, residence)
+  xds_obj <- make_xds_object_template(xds, 'cohort', nPatches, membership, residence)
 
   xds_obj$EIRpar <- list()
   xds_obj$EIRpar$eir <- eir
@@ -517,7 +516,7 @@ xds_setup_eir = function(eir=1,
   nPatches = length(HPop)
   residence = rep(1, length(HPop))
   membership = 1
-  xds_obj <- make_xds_object_template('ode', 'eir', nPatches, membership, residence)
+  xds_obj <- make_xds_object_template(xds, 'eir', nPatches, membership, residence)
 
   xds_obj$EIRpar <- list()
   xds_obj$EIRpar$eir <- eir

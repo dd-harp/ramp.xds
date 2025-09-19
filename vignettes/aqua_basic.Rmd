@@ -8,13 +8,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-
 The basicL_xde competition aquatic mosquito model fulfills the generic interface of the aquatic mosquito component. It has a single compartment "larvae" for each aquatic habitat, and mosquitoes in that aquatic habitat suffer density-independent and dependent mortality, and mature at some rate $\psi$.
 
 # Differential Equations
@@ -30,10 +23,10 @@ $$
 Because the equations allow the number of larval habitats $l$ to differ from $p$, in general the emergence rate is given by:
 
 $$
-\Lambda = \mathcal{N}\cdot \alpha
+\Lambda = N \cdot \alpha
 $$
 
-Where $\mathcal{N}$ is a $p\times l$ matrix and $\alpha$ is a length $l$ column vector given as:
+Where $N$ is a $p\times l$ matrix and $\alpha$ is a length $l$ column vector given as:
 
 $$
 \alpha = \psi L
@@ -59,7 +52,7 @@ library(ggplot2)
 
 
 ```{r, echo=F}
-#devtools::load_all()
+devtools::load_all()
 ```
 
 ## The long way 
@@ -87,9 +80,6 @@ MYZo = list(MYZm <- eta)
 ```
 
 ```{r}
-
-
-
 params$eggs_laid = eta 
 F_eta = function(t, pars){
   pars$eggs_laid

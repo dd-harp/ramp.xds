@@ -4,14 +4,16 @@
 \alias{steady_state_Y}
 \title{Compute steady states for \strong{Y}}
 \usage{
-steady_state_Y(M, kappa, MY_obj)
+steady_state_Y(M, kappa, xds_obj, s = 1)
 }
 \arguments{
 \item{M}{adult mosquito population density}
 
 \item{kappa}{net infectiousness}
 
-\item{MY_obj}{a list that defines an adult model}
+\item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{s}{the vector species index}
 }
 \value{
 none

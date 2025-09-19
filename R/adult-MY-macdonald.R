@@ -344,7 +344,7 @@ change_MY_inits.macdonald = function(xds_obj, s, options=list()){
 #' @importFrom MASS ginv
 #' @importFrom expm expm
 #' @export
-steady_state_MY.macdonald = function(Lambda, kappa, MY_obj){with(MY_obj,{
+steady_state_MY.macdonald = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$MY_obj[[s]],{
   kappa = as.vector(kappa); Lambda = as.vector(Lambda)
   Omega_inv <- ginv(Omega)
   Upsilon = expm(-Omega*eip)

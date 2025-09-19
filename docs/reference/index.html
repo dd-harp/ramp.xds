@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1-0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -1346,11 +1346,6 @@
         <dd>Compute the "true" prevalence of infection / parasite rate</dd>
       </dl><dl><dt>
           
-          <code><a href="steady_state_X.trivial.html">steady_state_X(<i>&lt;trivial&gt;</i>)</a></code> 
-        </dt>
-        <dd>Compute the steady states for the trivial model as a function of the daily EIR</dd>
-      </dl><dl><dt>
-          
           <code><a href="F_pfpr_by_lm.trivial.html">F_pfpr_by_lm(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
         <dd>Compute the prevalence of infection by light microscopy</dd>
@@ -1414,11 +1409,6 @@
           <code><a href="change_XH_pars.trivial.html">change_XH_pars(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
         <dd>Return the parameters as a list</dd>
-      </dl><dl><dt>
-          
-          <code><a href="steady_state_XH.trivial.html">steady_state_XH(<i>&lt;trivial&gt;</i>)</a></code> 
-        </dt>
-        <dd>Compute the steady states for the trivial model as a function of the daily EIR</dd>
       </dl></div><div class="section level2">
       
       <h3 id="hmoi">hMoI<a class="anchor" aria-label="anchor" href="#hmoi"></a></h3>
@@ -2074,11 +2064,6 @@
         <dd>Make parameters for trivial aquatic mosquito model</dd>
       </dl><dl><dt>
           
-          <code><a href="steady_state_MY.trivial.html">steady_state_MY(<i>&lt;trivial&gt;</i>)</a></code> 
-        </dt>
-        <dd>Steady States: MY-trivial</dd>
-      </dl><dl><dt>
-          
           <code><a href="setup_MY_inits.trivial.html">setup_MY_inits(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
         <dd>Setup the trivial model</dd>
@@ -2128,11 +2113,6 @@
           <code><a href="MBionomics.basicM.html">MBionomics(<i>&lt;basicM&gt;</i>)</a></code> 
         </dt>
         <dd>Set mosquito bionomics to baseline</dd>
-      </dl><dl><dt>
-          
-          <code><a href="steady_state_M.basicM.html">steady_state_M(<i>&lt;basicM&gt;</i>)</a></code> 
-        </dt>
-        <dd>Compute the steady states as a function of the daily EIR</dd>
       </dl><dl><dt>
           
           <code><a href="Update_MYt.basicM.html">Update_MYt(<i>&lt;basicM&gt;</i>)</a></code> 
@@ -2203,6 +2183,16 @@
           <code><a href="parse_MY_orbits.basicM.html">parse_MY_orbits(<i>&lt;basicM&gt;</i>)</a></code> 
         </dt>
         <dd>parse outputs for basicM</dd>
+      </dl><dl><dt>
+          
+          <code><a href="steady_state_M.basicM_ode.html">steady_state_M(<i>&lt;basicM_ode&gt;</i>)</a></code> 
+        </dt>
+        <dd>Compute the steady states as a function of the daily EIR</dd>
+      </dl><dl><dt>
+          
+          <code><a href="steady_state_M.basicM_dts.html">steady_state_M(<i>&lt;basicM_dts&gt;</i>)</a></code> 
+        </dt>
+        <dd>Compute the steady states as a function of the daily EIR</dd>
       </dl></div><div class="section level2">
       
       <h3 id="the-si-model-for-infection">The “SI” model for infection<a class="anchor" aria-label="anchor" href="#the-si-model-for-infection"></a></h3>
@@ -2239,11 +2229,6 @@
           <code><a href="MBionomics.SI.html">MBionomics(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Macdonald-style adult mosquito bionomics</dd>
-      </dl><dl><dt>
-          
-          <code><a href="steady_state_MY.SI.html">steady_state_MY(<i>&lt;SI&gt;</i>)</a></code> 
-        </dt>
-        <dd>Steady States: MY-SI</dd>
       </dl><dl><dt>
           
           <code><a href="Update_MYt.SI.html">Update_MYt(<i>&lt;SI&gt;</i>)</a></code> 
@@ -2334,6 +2319,11 @@
           <code><a href="get_sigma.SI.html">get_sigma(<i>&lt;SI&gt;</i>)</a></code> 
         </dt>
         <dd>Get the feeding rate</dd>
+      </dl><dl><dt>
+          
+          <code><a href="steady_state_MY.SI_ode.html">steady_state_MY(<i>&lt;SI_ode&gt;</i>)</a></code> 
+        </dt>
+        <dd>Steady States: MY-SI</dd>
       </dl></div><div class="section level2">
       
       <h3 id="macdonald">macdonald<a class="anchor" aria-label="anchor" href="#macdonald"></a></h3>
@@ -2844,11 +2834,6 @@
           <code><a href="parse_L_orbits.trivial.html">parse_L_orbits(<i>&lt;trivial&gt;</i>)</a></code> 
         </dt>
         <dd>parse <strong>L</strong> Component Variables for <code>basicL</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="steady_state_L.trivial.html">steady_state_L(<i>&lt;trivial&gt;</i>)</a></code> 
-        </dt>
-        <dd>Compute the Steady State of <code>dLdt.trivial</code> (<strong>L</strong> Component)</dd>
       </dl></div><div class="section level2">
       
       <h3 id="basicl">basicL<a class="anchor" aria-label="anchor" href="#basicl"></a></h3>
@@ -2947,7 +2932,7 @@
         <dd>parse <strong>L</strong> Component Variables for <code>basicL</code></dd>
       </dl><dl><dt>
           
-          <code><a href="steady_state_L.basicL.html">steady_state_L(<i>&lt;basicL&gt;</i>)</a></code> 
+          <code><a href="steady_state_L.basicL_ode.html">steady_state_L(<i>&lt;basicL_ode&gt;</i>)</a></code> 
         </dt>
         <dd>Compute the Steady State of <code>dLdt.basicL</code> (<strong>L</strong> Component)</dd>
       </dl></div><div class="section level2">

@@ -425,10 +425,11 @@ add_lines_X_SIS = function(time, XH, nStrata, clrs=c("darkblue","darkred"), llty
 #' @inheritParams steady_state_X
 #' @return the steady states as a named vector
 #' @export
-steady_state_X.SIS = function(foi, H, XH_obj){with(XH_obj,{
-  Ieq = foi/(foi+r)*H
-  Seq = H-Ieq
-  return(list(S=Seq, I=Ieq))
+steady_state_X.SIS = function(foi, H, xds_obj, i=1){
+  with(xds_obj$XH_obj[[i]],{
+    Ieq = foi/(foi+r)*H
+    Seq = H-Ieq
+    return(list(S=Seq, I=Ieq))
 })}
 
 

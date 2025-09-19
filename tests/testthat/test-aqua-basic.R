@@ -17,7 +17,6 @@ test_that("basic competition stays at equilibrium", {
 
   Lo = list(psi=psi, xi=xi, phi=phi, theta=theta, L=L)
   class(Lo) <- "basicL"
-  steady_state_L(eggs_laid, Lo)
 
   params <- xds_setup_aquatic(Lname = "basicL", nHabitats=nHabitats, Loptions=Lo)
 

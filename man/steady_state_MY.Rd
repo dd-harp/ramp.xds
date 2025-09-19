@@ -4,14 +4,16 @@
 \alias{steady_state_MY}
 \title{Compute steady states for \strong{MY}}
 \usage{
-steady_state_MY(Lambda, kappa, MY_obj)
+steady_state_MY(Lambda, kappa, xds_obj, s = 1)
 }
 \arguments{
 \item{Lambda}{the daily emergence rate of adult mosquitoes}
 
 \item{kappa}{net infectiousness}
 
-\item{MY_obj}{a list that defines an adult model}
+\item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{s}{the vector species index}
 }
 \value{
 the steady states

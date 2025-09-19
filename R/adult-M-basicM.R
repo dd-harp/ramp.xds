@@ -97,7 +97,19 @@ MBionomics.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 #' @inheritParams steady_state_M
 #' @return none
 #' @export
-steady_state_M.basicM = function(Lambda, MY_obj){with(MY_obj,{
+steady_state_M.basicM_ode = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[s]],{
+  Omega_inv <- solve(Omega)
+  M_eq  <- as.vector(Omega_inv %*% Lambda)
+  P_eq <- as.vector(solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
+  return(c(M=M_eq, P=P_eq))
+})}
+
+#' @title Compute the steady states as a function of the daily EIR
+#' @description This method dispatches on the type of `MY_obj`
+#' @inheritParams steady_state_M
+#' @return none
+#' @export
+steady_state_M.basicM_dts = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[s]],{
   Omega_inv <- solve(Omega)
   M_eq  <- as.vector(Omega_inv %*% Lambda)
   P_eq <- as.vector(solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
@@ -112,13 +124,14 @@ steady_state_M.basicM = function(Lambda, MY_obj){with(MY_obj,{
 #' @return a [numeric] vector
 #' @export
 Update_MYt.basicM <- function(t, y, xds_obj, s) {
-  Lambda = xds_obj$Lambda[[s]]*xds_obj$Dday
+  
+  Lambda = xds_obj$terms$Lambda[[s]]
 
   with(get_MY_vars(y, xds_obj, s),{
     with(xds_obj$MY_obj[[s]],{
 
-      Mt <- Lambda + Omega %*% M
-      Pt <- f*(M-P) + Omega %*% P
+      Mt <- Lambda + expm::expm(-Omega) %*% M
+      Pt <- (1-exp(-f))*(M-P) + expm::expm(-Omega) %*% P
 
       return(c(Mt, Pt))
     })
@@ -133,7 +146,9 @@ Update_MYt.basicM <- function(t, y, xds_obj, s) {
 #' @return a [list] vector
 #' @export
 setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
-  xds_obj$MY_obj[[s]]=make_M_obj_basicM(xds_obj$nPatches, options)
+  MY_obj <- make_M_obj_basicM(xds_obj$nPatches, options)
+  class(MY_obj) <- c("basicM", paste("basicM_", xds_obj$xds, sep=""))
+  xds_obj$MY_obj[[s]]= MY_obj
   return(xds_obj)
 }
 
@@ -156,8 +171,7 @@ make_M_obj_basicM = function(nPatches, options=list(),
 
   with(options,{
     MY_obj <- list()
-   
-    class(MY_obj) = "basicM" 
+     
     MY_obj$nPatches <- nPatches
     
     MY_obj <- setup_f_obj(checkIt(f, nPatches), MY_obj)
