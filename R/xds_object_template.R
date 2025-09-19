@@ -130,12 +130,15 @@ make_xds_object_template = function(xds='ode', frame='full',
   xds_obj$L_obj       <- xdlst
   xds_obj             <- setup_other_variables(xds_obj) 
 
-  # Junctions
+  # Junctions 
+  xds_obj$resources_obj   <- list() 
   xds_obj <- setup_sugar_object(xds_obj)
   xds_obj <- setup_traps_object(xds_obj)
   xds_obj <- setup_forcing_object(xds_obj)
+  xds_obj$control_obj     <- list() 
   xds_obj <- setup_health_object(xds_obj)
   xds_obj <- setup_vector_control_object(xds_obj)
+  
   
   xds_obj$outputs = list()
 

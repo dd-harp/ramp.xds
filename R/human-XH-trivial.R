@@ -138,24 +138,6 @@ F_pfpr_by_lm.trivial <- function(vars, XH_obj) {
   return(numeric(0))
 }
 
-#' @title Compute the steady states for the trivial model as a function of the daily EIR
-#' @description Compute the steady state of the trivial model as a function of the daily eir.
-#' @inheritParams steady_state_XH
-#' @return the steady states as a named vector
-#' @export
-steady_state_XH.trivial = function(foi, XH_obj){
-  return(list())
-}
-
-#' @title Compute the steady states for the trivial model as a function of the daily EIR
-#' @description Compute the steady state of the trivial model as a function of the daily eir.
-#' @inheritParams steady_state_X
-#' @return the steady states as a named vector
-#' @export
-steady_state_X.trivial = function(foi, H, XH_obj){
-  return(list())
-}
-
 
 #' @title Compute the prevalence of infection by RDT
 #' @description Implements [F_prevalence] for the trivial model.

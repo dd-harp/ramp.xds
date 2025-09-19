@@ -9,7 +9,7 @@
 #' @return a **`ramp.xds`** model object
 #' @export
 Health = function(t, y, xds_obj){
-  UseMethod("Health", xds_obj$health_obj)
+  UseMethod("Health", xds_obj$control_obj$health_obj)
 }
 
 #' @title Set no exogenous health variables
@@ -35,7 +35,7 @@ setup_health_object = function(xds_obj){
   health$name <- "Junction: Health Interventions"
   health$ports <- "Ports: Mass Treatment, Mass Vaccination, Surveillance"
   health$domore <- "see `ramp.control"
-  xds_obj$health_obj <- health
+  xds_obj$control_obj$health_obj <- health
   return(xds_obj)
 }
 

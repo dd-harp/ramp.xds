@@ -4,12 +4,14 @@
 \alias{steady_state_XH}
 \title{Steady States for \strong{XH}}
 \usage{
-steady_state_XH(foi, XH_obj)
+steady_state_XH(foi, xds_obj, i = 1)
 }
 \arguments{
 \item{foi}{the daily FoI}
 
-\item{XH_obj}{an \strong{XH} model object}
+\item{xds_obj}{an \strong{\code{xds}} object}
+
+\item{i}{the vector species index}
 }
 \value{
 steady states

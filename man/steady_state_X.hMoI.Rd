@@ -4,14 +4,16 @@
 \alias{steady_state_X.hMoI}
 \title{Compute Steady States for \code{hMoI} (\strong{X}-Model)}
 \usage{
-\method{steady_state_X}{hMoI}(foi, H, XH_obj)
+\method{steady_state_X}{hMoI}(foi, H, xds_obj, i = 1)
 }
 \arguments{
 \item{foi}{the daily FoI}
 
 \item{H}{human / host population density}
 
-\item{XH_obj}{an \strong{XH} model object}
+\item{xds_obj}{an \strong{\code{xds}} object}
+
+\item{i}{the vector species index}
 }
 \value{
 the steady states as a named vector

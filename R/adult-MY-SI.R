@@ -223,7 +223,7 @@ MBionomics.SI <- function(t, y, xds_obj, s) {
 #' @export
 setup_MY_obj.SI = function(MYname, xds_obj, s, options=list()){
   MY_obj <- make_MY_obj_SI(xds_obj$nPatches, options)
-  class(MY_obj) <- "SI"
+  class(MY_obj) <- c("SI", paste("SI_", xds_obj$xds, sep=""))
   xds_obj$MY_obj[[s]] <- MY_obj
   return(xds_obj)
 }
@@ -435,9 +435,10 @@ get_sigma.SI = function(xds_obj, s=1){
 #' @inheritParams steady_state_MY
 #' @return none
 #' @export
-steady_state_MY.SI = function(Lambda, kappa, MY_obj){with(MY_obj,{
-  Omega_inv <- solve(Omega)
-  M_eq <- as.vector(Omega_inv %*% Lambda)
-  Y_eq <- as.vector(ginv(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
-  return(list(M=M_eq, Y=Y_eq))
+steady_state_MY.SI_ode = function(Lambda, kappa, xds_obj, s=1){
+  with(xds_obj$MY_obj[[s]],{
+    Omega_inv <- solve(Omega)
+    M_eq <- as.vector(Omega_inv %*% Lambda)
+    Y_eq <- as.vector(ginv(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
+    return(list(M=M_eq, Y=Y_eq))
 })}

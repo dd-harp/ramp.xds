@@ -4,12 +4,14 @@
 \alias{steady_state_M}
 \title{Compute steady states for \strong{M}}
 \usage{
-steady_state_M(Lambda, MY_obj)
+steady_state_M(Lambda, xds_obj, s = 1)
 }
 \arguments{
 \item{Lambda}{the daily emergence rate of adult mosquitoes}
 
-\item{MY_obj}{a list that defines an adult model}
+\item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{s}{the vector species index}
 }
 \value{
 the steady states

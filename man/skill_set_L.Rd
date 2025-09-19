@@ -14,8 +14,5 @@ skill_set_L(Lname)
 }
 \description{
 The \strong{L} skill set is a list of
-an module's capabilities:
-\itemize{
-\item \code{demography} is
-}
+describing capabilities and compatabilities
 }

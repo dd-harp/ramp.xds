@@ -234,15 +234,6 @@ change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
   }))}
 
 
-#' @title Steady States: MY-trivial
-#' @description This method dispatches on the type of `MY_obj`.
-#' @inheritParams steady_state_MY
-#' @return none
-#' @export
-steady_state_MY.trivial = function(Lambda, kappa, MY_obj){
-  list()  
-}
-
 #' @title The **trivial** Module Skill Set 
 #' 
 #' @description The **MY** skill set is a list of 

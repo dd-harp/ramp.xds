@@ -345,12 +345,13 @@ HTC <- function(xds_obj, i) {
 #' 
 #' @param foi the daily FoI
 #' @param H human / host population density
-#' @param XH_obj an **XH** model object
+#' @param xds_obj an **`xds`** object
+#' @param i the vector species index
 #' 
 #' @return steady states 
 #' @export
-steady_state_X = function(foi, H, XH_obj){
-  UseMethod("steady_state_X", XH_obj)
+steady_state_X = function(foi, H, xds_obj, i=1){
+  UseMethod("steady_state_X", xds_obj$XH_obj[[i]])
 }
 
 #' @title Steady States for **XH**
@@ -359,10 +360,11 @@ steady_state_X = function(foi, H, XH_obj){
 #' static value of human population density
 #' 
 #' @param foi the daily FoI
-#' @param XH_obj an **XH** model object
+#' @param xds_obj an **`xds`** object
+#' @param i the vector species index
 #' 
 #' @return steady states 
 #' @export
-steady_state_XH = function(foi, XH_obj){
-  UseMethod("steady_state_XH", XH_obj)
+steady_state_XH = function(foi, xds_obj, i=1){
+  UseMethod("steady_state_XH", xds_obj$XH_obj[[i]])
 }

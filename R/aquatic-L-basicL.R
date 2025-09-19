@@ -161,7 +161,9 @@ LBionomics.basicL <- function(t, y, xds_obj, s) {
 #' @seealso [make_L_obj_basicL]
 #' @export
 setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
-  xds_obj$L_obj[[s]] = make_L_obj_basicL(xds_obj$nHabitats, options)
+  L_obj <- make_L_obj_basicL(xds_obj$nHabitats, options)
+  class(L_obj) <- c("basicL", paste("basicL_", xds_obj$xds, sep=""))
+  xds_obj$L_obj[[s]] = L_obj 
   xds_obj <- LBaseline(0, 0, xds_obj, 1)
   return(xds_obj)
 }
@@ -325,10 +327,11 @@ parse_L_orbits.basicL <- function(outputs, xds_obj, s) {
 #' @return the values of \eqn{L} at the steady state
 #' @importFrom stats nlm
 #' @export
-steady_state_L.basicL = function(eta, L_obj){
-  dL <- function(L, eta, L_obj){with(L_obj,{
-    sum((eta - (psi*exp(-xi*L) + phi + (theta*L))*L)^2)
-  })}
-  L=nlm(dL, eta, L_obj=L_obj, eta=eta)$estimate
-  list(L=L)
-}
+steady_state_L.basicL_ode = function(eta, xds_obj, s=1){
+  with(xds_obj$L_obj[[s]],{
+    dL <- function(L, eta, L_obj){with(L_obj,{
+      sum((eta - (psi*exp(-xi*L) + phi + (theta*L))*L)^2)
+    })}
+    L=nlm(dL, eta, L_obj=L_obj, eta=eta)$estimate
+    list(L=L)
+})}

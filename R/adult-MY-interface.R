@@ -311,12 +311,13 @@ get_Z = function(xds_obj, s=1){
 #' 
 #' @param Lambda the daily emergence rate of adult mosquitoes
 #' @param kappa net infectiousness
-#' @param MY_obj a list that defines an adult model
+#' @param xds_obj an **`xds`** model object 
+#' @param s the vector species index 
 #'
 #' @return the steady states
 #' @export
-steady_state_MY = function(Lambda, kappa, MY_obj){
-  UseMethod("steady_state_MY", MY_obj)
+steady_state_MY = function(Lambda, kappa, xds_obj, s=1){
+  UseMethod("steady_state_MY", xds_obj$MY_obj[[s]])
 }
 
 #' @title Compute steady states for **M** 
@@ -327,13 +328,14 @@ steady_state_MY = function(Lambda, kappa, MY_obj){
 #' the population density of adult mosquitoes at the steady state
 #' 
 #' @param Lambda the daily emergence rate of adult mosquitoes
-#' @param MY_obj a list that defines an adult model
+#' @param xds_obj an **`xds`** model object 
+#' @param s the vector species index 
 #'
 #' @return the steady states
 #'  
 #' @export
-steady_state_M = function(Lambda, MY_obj){
-  UseMethod("steady_state_M", MY_obj)
+steady_state_M = function(Lambda, xds_obj, s=1){
+  UseMethod("steady_state_M", xds_obj$MY_obj[[s]])
 }
 
 #' @title Compute steady states for **Y** 
@@ -345,11 +347,12 @@ steady_state_M = function(Lambda, MY_obj){
 #' 
 #' @param M adult mosquito population density 
 #' @param kappa net infectiousness 
-#' @param MY_obj a list that defines an adult model
+#' @param xds_obj an **`xds`** model object 
+#' @param s the vector species index 
 #' 
 #' @return none
 #' @export
-steady_state_Y = function(M, kappa, MY_obj){
-  UseMethod("steady_state_M", MY_obj)
+steady_state_Y = function(M, kappa, xds_obj, s=1){
+  UseMethod("steady_state_M", xds_obj$MY_obj[[s]])
 }
 

@@ -326,8 +326,9 @@ F_pfpr_by_pcr.hMoI<- function(vars, XH_obj) {
 #' @inheritParams steady_state_X
 #' @return the steady states as a named vector
 #' @export
-steady_state_X.hMoI = function(foi, H, XH_obj){with(XH_obj,{
-  m1 = foi/r1
-  m2 = foi/r2
-  return(c(m1=m1, m2=m2))
+steady_state_X.hMoI = function(foi, H, xds_obj, i=1){
+  with(xds_obj$XH_obj[[1]],{
+    m1 = foi/r1
+    m2 = foi/r2
+    return(c(m1=m1, m2=m2))
 })}
