@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{dLdt.basicL}
 \alias{dLdt.basicL}
-\title{Derivatives for \code{basicL} (\strong{L} Component)}
+\title{Compute Derivatives for \strong{L} module \code{basicL}}
 \usage{
 \method{dLdt}{basicL}(t, y, xds_obj, s)
 }

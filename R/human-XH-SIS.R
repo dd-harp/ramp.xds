@@ -206,7 +206,7 @@ parse_XH_orbits.SIS <- function(outputs, xds_obj, i) {
 #' 
 #' @return a **`ramp.xds`** object 
 #' @export
-setup_XH_inits.SIS = function(xds_obj, H, i, options=list()){
+setup_XH_inits.SIS = function(xds_obj, H, i=1, options=list()){
   xds_obj$XH_obj[[i]]$inits = make_XH_inits_SIS(xds_obj$nStrata[i], H, options)
   return(xds_obj)
 }

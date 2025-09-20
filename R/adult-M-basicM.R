@@ -28,7 +28,7 @@ check_MY.basicM = function(xds_obj, s){
 }
 
 
-#' @title **MY** Component Derivatives for `basicM`
+#' @title Compute Derivatives for **M** module `basicM` 
 #' @description Implements [dMYdt] for the basicM xde ODE model.
 #' @details \deqn{\begin{array}{rl}dM/dt &= \Lambda(t) - \Omega \cdot M \\ dP/dt &= f(M-P) - \Omega\cdot P\end{array}}
 #' @inheritParams dMYdt

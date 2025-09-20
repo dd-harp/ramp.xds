@@ -29,7 +29,8 @@ check_MY.GeRM = function(xds_obj, s){
 }
 
 
-#' @title **MY** Component Derivatives for the `GeRM` model
+#' @title Compute Derivatives for **MY** module `GeRM` 
+#' 
 #' @description Compute the derivatives for the generalized, non-autonomous Ross-Macdonald model
 #' for mosquito ecology and infection dynamics.
 #' @inheritParams dMYdt

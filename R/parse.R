@@ -146,7 +146,6 @@ parse_outputs.eir = function(xds_obj, de_vars, tm){
 #' @return an **`xds`** model object 
 #' @export
 parse_XH_terms <- function(xds_obj, i=1) {
-  
   eir = c()
   foi = c()
   ni = c()
@@ -157,9 +156,9 @@ parse_XH_terms <- function(xds_obj, i=1) {
     xds_obj <- xds_compute_terms(tm[ix], y_ix, xds_obj)
     vars = get_XH_vars(y_ix, xds_obj, i)
     eir = rbind(eir, xds_obj$terms$EIR[[i]])
-    foi = rbind(foi, xds_obj$terms$foi[[i]])
-    ni  = rbind(ni, F_ni(vars, xds_obj$XH_obj[[i]]))
+    foi = rbind(foi, xds_obj$terms$FoI[[i]])
     x   = rbind(x, F_prevalence(vars, xds_obj$XH_obj[[i]]))
+    ni  = rbind(ni, F_ni(vars, xds_obj$XH_obj[[i]]))
   }
   xds_obj$outputs$orbits$XH[[i]]$eir = eir
   xds_obj$outputs$orbits$XH[[i]]$foi = foi

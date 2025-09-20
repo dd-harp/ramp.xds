@@ -175,7 +175,7 @@ setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
 #' @inheritParams setup_XH_inits
 #' @return a [list] vector
 #' @export
-setup_XH_inits.trivial = function(xds_obj, H, i, options=list()){
+setup_XH_inits.trivial = function(xds_obj, H, i=1, options=list()){
   return(xds_obj)
 }
 

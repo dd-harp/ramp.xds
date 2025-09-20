@@ -4,7 +4,7 @@
 \alias{setup_XH_inits}
 \title{Setup Initial Values for \strong{XH} Modules}
 \usage{
-setup_XH_inits(xds_obj, H, i, options = list())
+setup_XH_inits(xds_obj, H, i = 1, options = list())
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} object}
