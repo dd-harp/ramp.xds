@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{dMYdt.SI}
 \alias{dMYdt.SI}
-\title{\strong{MY} Component Derivatives for the \code{SI} Mosquito Module}
+\title{Compute Derivatives for \strong{MY} module \code{SI}}
 \usage{
 \method{dMYdt}{SI}(t, y, xds_obj, s)
 }

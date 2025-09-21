@@ -209,7 +209,7 @@ F_infectivity.hMoI <- function(y, xds_obj,i) {
 #' @inheritParams setup_XH_inits
 #' @return a [list] vector
 #' @export
-setup_XH_inits.hMoI = function(xds_obj, H, i, options=list()){
+setup_XH_inits.hMoI = function(xds_obj, H, i=1, options=list()){
   xds_obj$XH_obj[[i]]$H = H
   xds_obj$XH_obj[[i]]$inits = make_XH_inits_hMoI(xds_obj$nStrata[i], options)
   return(xds_obj)

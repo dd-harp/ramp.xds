@@ -27,7 +27,8 @@ check_MY.SI = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title **MY** Component Derivatives for the `SI` Mosquito Module
+#' @title Compute Derivatives for **MY** module `SI` 
+#' 
 #' @description The `SI` model for mosquito infection
 #' dynamics has the defined **variable** classes:
 #' - \eqn{M} is the density of mosquitoes in each patch;

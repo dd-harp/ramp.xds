@@ -4,7 +4,7 @@
 \alias{setup_XH_inits.trivial}
 \title{Setup Xinits.trivial}
 \usage{
-\method{setup_XH_inits}{trivial}(xds_obj, H, i, options = list())
+\method{setup_XH_inits}{trivial}(xds_obj, H, i = 1, options = list())
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} object}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{dMYdt.basicM}
 \alias{dMYdt.basicM}
-\title{\strong{MY} Component Derivatives for \code{basicM}}
+\title{Compute Derivatives for \strong{M} module \code{basicM}}
 \usage{
 \method{dMYdt}{basicM}(t, y, xds_obj, s)
 }

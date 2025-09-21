@@ -231,7 +231,7 @@ change_XH_pars <- function(xds_obj, i=1, options=list()) {
 #' @param options a [list]
 #' @return an **`xds`** object
 #' @export
-setup_XH_inits = function(xds_obj, H, i, options=list()){
+setup_XH_inits = function(xds_obj, H, i=1, options=list()){
   UseMethod("setup_XH_inits", xds_obj$XH_obj[[i]])
 }
 

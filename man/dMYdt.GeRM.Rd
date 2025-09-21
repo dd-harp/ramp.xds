@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeRM.R
 \name{dMYdt.GeRM}
 \alias{dMYdt.GeRM}
-\title{\strong{MY} Component Derivatives for the \code{GeRM} model}
+\title{Compute Derivatives for \strong{MY} module \code{GeRM}}
 \usage{
 \method{dMYdt}{GeRM}(t, y, xds_obj, s)
 }

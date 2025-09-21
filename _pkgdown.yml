@@ -112,6 +112,9 @@ reference:
     Modules for aquatic mosquito ecology
   contents:
   - setup_exposure
+  - setup_travel_object
+  - change_K_matrix 
+  - change_TimeSpent_matrix
   - add_variable 
 - title: Solve - Analyze - Visualize
   desc: |

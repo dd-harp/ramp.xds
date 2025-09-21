@@ -4,7 +4,7 @@
 \alias{setup_XH_inits.hMoI}
 \title{Setup Xinits.hMoI}
 \usage{
-\method{setup_XH_inits}{hMoI}(xds_obj, H, i, options = list())
+\method{setup_XH_inits}{hMoI}(xds_obj, H, i = 1, options = list())
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} object}

@@ -25,7 +25,8 @@ check_L.basicL = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Derivatives for `basicL` (**L** Component)
+#' @title Compute Derivatives for **L** module `basicL` 
+#' 
 #' @description
 #' This implements differential equation model for aquatic mosquito ecology.
 #' The equations have been modified slightly from a version published by
