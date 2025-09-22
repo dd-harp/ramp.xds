@@ -4,7 +4,7 @@
 #' @description dts_update_s the state variables
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @return a [list] containing the vector of all state derivatives
 #' @export
 dts_update <- function(t, y, xds_obj) {
@@ -17,7 +17,7 @@ dts_update <- function(t, y, xds_obj) {
 #' a model with only humans
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [vector] containing the vector of all state derivatives
 #' @export
@@ -32,7 +32,7 @@ dts_update_Lt = function(t, y, xds_obj, s){
 #' a model with only humans
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [vector] containing the vector of all state derivatives
 #' @export
@@ -47,7 +47,7 @@ dts_update_MYt = function(t, y, xds_obj, s){
 #' a model with only humans
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [vector] containing the vector of all state derivatives
 #' @export

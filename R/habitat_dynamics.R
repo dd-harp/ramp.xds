@@ -10,7 +10,7 @@
 #' + availability of bad habitats
 #' + with multiple vector species, weights can be assigned to bad habitats 
 #' 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return an **`xds`** model object
 #' @export
@@ -49,7 +49,7 @@ change_habitat_weights = function(wts, xds_obj, s=1){
 #' @title Change Habitat Search Weights
 #' @description Set the search weights, \eqn{\omega}, for a set of aquatic habitats
 #' @param Qbad availability of bad habitat 
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return an `xds` object
 #' @export
@@ -67,7 +67,7 @@ change_bad_habitat = function(Qbad, xds_obj, s=1){
 #' 
 #' @param t current simulation time
 #' @param y state variables 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
 #' @export
@@ -130,7 +130,7 @@ HabitatDynamics.dynamic <- function(t, y, xds_obj) {
 #' 
 #' @param t current time
 #' @param y state variables 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return an **`xds`** object
 #' @export
@@ -154,7 +154,7 @@ habitat_dynamics <- function(t, y, xds_obj){
 #' and no exposure while searching
 #' 
 #' @param mod_name the model name
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list to configure `F_habitat_weights`
 #' 
@@ -171,7 +171,7 @@ setup_F_habitat_weights = function(mod_name, xds_obj, s, options){
 #' and no exposure while searching
 #' 
 #' @param mod_name the model name
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a list of setup options (see [make_ts_function])
 #' 
@@ -190,7 +190,7 @@ setup_F_habitat_weights.static = function(mod_name, xds_obj, s, options=list()){
 #' and no exposure while searching
 #' 
 #' @param mod_name the model name
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a list of setup options (see [make_ts_function])
 #' 
@@ -211,7 +211,7 @@ setup_F_habitat_weights.ts_func = function(mod_name, xds_obj, s, options=list())
 #' and no exposure while searching
 #' 
 #' @param mod_name the model name
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list to configure `F_bad_habitat`
 #' 
@@ -228,7 +228,7 @@ setup_F_bad_habitat = function(mod_name, xds_obj, s, options){
 #' and no exposure while searching
 #' 
 #' @param mod_name the model name
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a list of setup options (see [make_ts_function])
 #' 
@@ -247,7 +247,7 @@ setup_F_bad_habitat.static = function(mod_name, xds_obj, s, options=list()){
 #' and no exposure while searching
 #' 
 #' @param mod_name the model name
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a list of setup options for [make_ts_function]
 #' 

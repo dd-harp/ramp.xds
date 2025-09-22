@@ -11,7 +11,7 @@ dts_update_XHt(t, y, xds_obj, i)
 
 \item{y}{state vector}
 
-\item{xds_obj}{a \link{list}}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the host species index}
 }

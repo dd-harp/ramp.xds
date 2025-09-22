@@ -8,7 +8,7 @@
 #' 
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return a [list] containing the vector of all state derivatives
 #' 

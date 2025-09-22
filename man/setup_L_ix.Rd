@@ -7,7 +7,7 @@
 setup_L_ix(xds_obj, s)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the species index}
 }

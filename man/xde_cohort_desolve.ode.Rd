@@ -13,7 +13,7 @@
 
 \item{times}{= the times}
 
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a \link{list}

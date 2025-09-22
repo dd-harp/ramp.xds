@@ -26,7 +26,7 @@ One_tV= function(t, V=list()){return(0*t+1)}
 #' @param t current simulation time
 #' @param y variables 
 #' @param func a function that dispatches [get_variables] and pulls variables it needs 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return a vector of variables 
 #' @export

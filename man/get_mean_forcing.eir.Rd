@@ -7,7 +7,7 @@
 \method{get_mean_forcing}{eir}(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \description{
 Get the mean daily EIR for an \code{eir} model

@@ -9,7 +9,7 @@ Forcing(t, xds_obj)
 \arguments{
 \item{t}{current simulation time}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 an \strong{\code{xds}} object

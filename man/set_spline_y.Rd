@@ -9,7 +9,7 @@ set_spline_y(X, xds_obj, s = 1)
 \arguments{
 \item{X}{the new yy parameter}
 
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 }

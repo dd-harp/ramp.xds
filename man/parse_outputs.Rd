@@ -7,7 +7,7 @@
 parse_outputs(xds_obj, de_vars, tm)
 }
 \arguments{
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{de_vars}{the solutions \link{matrix}}
 

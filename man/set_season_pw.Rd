@@ -9,7 +9,7 @@ set_season_pw(pw, xds_obj, s = 1, compile_F = TRUE)
 \arguments{
 \item{pw}{a named list with the new parameter values}
 
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species inde}
 

@@ -11,7 +11,7 @@ Exposure(t, y, xds_obj)
 
 \item{y}{the state variables}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 an \strong{\code{xds}} object

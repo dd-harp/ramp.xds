@@ -11,7 +11,7 @@ dLdt(t, y, xds_obj, s)
 
 \item{y}{state vector}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the species index}
 }

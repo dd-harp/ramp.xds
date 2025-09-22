@@ -16,7 +16,7 @@ skill_set_L.basicL = function(Lname = "basicL"){
 
 #' Run a check before solving 
 #'
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index 
 #'
 #' @returns an **`xds`** model object 
@@ -206,7 +206,7 @@ make_L_obj_basicL = function(nHabitats, options=list(), psi=1/8, xi=0, phi=1/8, 
 
 #' @title Get **L** Component Parameters for `basicL`
 #' @description Get the **L** component parameters
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
 #' @seealso [dLdt.basicL] or [change_L_pars.basicL]

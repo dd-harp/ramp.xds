@@ -122,7 +122,7 @@ make_TimeSpent_xy = function(xy, residence, kern, stay, travel) {
 #' the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi},
 #' @param t the time
 #' @param y the state variables
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
 TimeSpent = function(t, y, xds_obj){

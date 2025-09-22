@@ -9,7 +9,7 @@
 \arguments{
 \item{outputs}{a \link{matrix} with the solutions to a dynamical system}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the species index}
 }

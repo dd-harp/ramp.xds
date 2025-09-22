@@ -9,7 +9,7 @@ change_bad_habitat(Qbad, xds_obj, s = 1)
 \arguments{
 \item{Qbad}{availability of bad habitat}
 
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 }

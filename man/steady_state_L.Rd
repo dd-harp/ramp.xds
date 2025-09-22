@@ -9,7 +9,7 @@ steady_state_L(eta, xds_obj, s = 1)
 \arguments{
 \item{eta}{the egg-laying rate}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the species index}
 }

@@ -7,7 +7,7 @@
 show_trend(xds_obj, tm = seq(0, 3650, by = 10), add = FALSE)
 }
 \arguments{
-\item{xds_obj}{a \strong{`ramp.xds} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{tm}{the time points}
 

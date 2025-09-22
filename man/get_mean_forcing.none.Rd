@@ -7,7 +7,7 @@
 \method{get_mean_forcing}{none}(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \description{
 Return null for models without forcing

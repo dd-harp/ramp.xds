@@ -5,7 +5,7 @@
 #' Set the mean forcing parameter to `X`
 #' 
 #' @param X the new mean forcing parameter
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
 #' @return a **`ramp.xds`** model object

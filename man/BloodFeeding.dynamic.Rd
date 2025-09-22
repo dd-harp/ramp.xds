@@ -11,7 +11,7 @@
 
 \item{y}{the state variables}
 
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 an \code{xds} object

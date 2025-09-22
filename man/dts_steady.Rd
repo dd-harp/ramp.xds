@@ -7,7 +7,7 @@
 dts_steady(xds_obj, Tx = 1000)
 }
 \arguments{
-\item{xds_obj}{a \link{list} that defines a model}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{Tx}{the number of steps to equilibrium}
 }

@@ -1,7 +1,7 @@
 
 #' @title Solve for the steady state of a system of equations using [rootSolve::steady]
 #' @description This method dispatches on the type of `xds_obj$xde`
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param options a list of configurable options 
 #' @return an **`xds`** object
 #' @export
@@ -40,7 +40,7 @@ xds_stable_orbit.dts = function(xds_obj, options=list()){
 
 #' @title Solve for the steady state of a system of equations using [rootSolve::steady]
 #' @description This method dispatches on the type of `xds_obj$xde`
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @export
 xds_steady = function(xds_obj){
@@ -49,7 +49,7 @@ xds_steady = function(xds_obj){
 
 #' @title Solve for the steady state of a system of equations using [rootSolve::steady]
 #' @note This method dispatches on `class(dlay)`
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @export
 xds_steady.ode = function(xds_obj){
@@ -61,7 +61,7 @@ xds_steady.ode = function(xds_obj){
 
 #' @title Solve for the steady state of a system of equations using [rootSolve::steady]
 #' @description This method dispatches on the type of `xds_obj$xde`
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @export
 xds_steady.dde = function(xds_obj){
@@ -75,7 +75,7 @@ xds_steady.dde = function(xds_obj){
 
 #' @title Solve for the steady state or stable orbit of a system of equations
 #' @description This method dispatches on the type of `xds_obj$dts`.
-#' @param xds_obj a [list] that defines a model
+#' @param xds_obj an **`xds`** model object
 #' @param Tburn the number of steps to burn
 #' @param yr the number of time steps in a year
 #' @return a [list]
@@ -99,7 +99,7 @@ dts_stable_orbit = function(xds_obj, Tburn=10, yr=365){
 
 #' @title Solve for the steady state of a system of equations
 #' @description This method dispatches on the type of `xds_obj$dts`
-#' @param xds_obj a [list] that defines a model
+#' @param xds_obj an **`xds`** model object
 #' @param Tx the number of steps to equilibrium
 #' @return a [list]
 #' @export

@@ -7,7 +7,7 @@
 \method{setup_V_ix}{setup}(xds_obj, i)
 }
 \arguments{
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the variable index}
 }

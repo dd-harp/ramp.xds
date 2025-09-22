@@ -11,7 +11,7 @@ Travel(t, y, xds_obj)
 
 \item{y}{variables}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 an \strong{\code{xds}} object

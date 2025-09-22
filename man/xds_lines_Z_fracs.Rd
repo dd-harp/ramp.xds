@@ -11,7 +11,7 @@ xds_lines_Z_fracs(times, MY, xds_obj, clrs = "darkred", llty = 1)
 
 \item{MY}{xds_objed outputs}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{clrs}{a vector of colors for infective mosquitoes}
 

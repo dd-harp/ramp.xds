@@ -27,7 +27,7 @@ setup_psi_obj = function(psi, L_obj){
 #' set the values opsi the bionomic parameters to baseline values
 #' 
 #' @param t current simulation time
-#' @param xds_obj a **`xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 
 #' @return a [numeric] vector opsi length `nPatches`

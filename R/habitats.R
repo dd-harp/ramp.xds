@@ -6,7 +6,7 @@
 #' 
 #' @description Run a set of consistency checks for the `ML_interface`
 #' 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @export
 #'  
@@ -39,7 +39,7 @@ check_ML_interface = function(xds_obj){
 #' This function is called by `compute_xds_object_template` to set up `ML_interface` and the variables and parameters with all
 #' the variables it might depend on.
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param membership is the habitat membership vector
 #' @return an `xds` object
 #' @importFrom Rdpack reprompt
@@ -129,7 +129,7 @@ make_habitat_matrix = function(nPatches, membership){
 
 #' @title View habitat membership, \eqn{N}
 #' @description Output the habitat membership information as a list
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @return a [list]
 #' @seealso [make_habitat_matrix()]
 #' @export

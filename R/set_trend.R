@@ -5,7 +5,7 @@
 #' Set the interpolating points for F_trend 
 #' 
 #' @param X the new interpolating points 
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
 #' @return a **`ramp.xds`** model object
@@ -21,7 +21,7 @@ set_trend = function(X, xds_obj, s=1){
 #' Set the interpolating points for F_trend 
 #' 
 #' @param X the new interpolating points 
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
 #' @return a **`ramp.xds`** model object
@@ -110,7 +110,7 @@ set_spline.cohort = function(X, xds_obj, s=1){
 #' Set the yy parameter to `X`
 #' 
 #' @param X the new yy parameter
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
 #' @return a **`ramp.xds`** model object
@@ -192,7 +192,7 @@ set_spline_y.cohort = function(X, xds_obj, s=1){
 #' 
 #' @description Update `F_trend`
 #' 
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @return a **`ramp.xds`** model object
@@ -220,7 +220,7 @@ update_F_trend.Lambda = function(xds_obj, s=1){
 #' 
 #' @description Update `F_trend`
 #' 
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'  
 #' @return a **`ramp.xds`** model object
@@ -235,7 +235,7 @@ update_F_trend.eir = function(xds_obj, s=1){
 #' 
 #' @description Update `F_trend`
 #' 
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'  
 #' @return a **`ramp.xds`** model object

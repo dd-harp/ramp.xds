@@ -9,7 +9,7 @@ change_blood_hosts(blood_hosts, xds_obj, s)
 \arguments{
 \item{blood_hosts}{availability of other blood hosts}
 
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 }

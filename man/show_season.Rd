@@ -7,7 +7,7 @@
 show_season(xds_obj, tm = seq(0, 730, by = 5), add = FALSE)
 }
 \arguments{
-\item{xds_obj}{a \strong{`ramp.xds} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{tm}{the time points}
 

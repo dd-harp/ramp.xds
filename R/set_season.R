@@ -4,7 +4,7 @@
 #' Get the parameters set the seasonal pattern
 #' 
 #' @param X a list with new parameters for bottom, phase, and pw 
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @return a **`ramp.xds`** model object
@@ -33,7 +33,7 @@ set_season = function(X, xds_obj, s=1){
 #' Set the bottom parameter to `bottom`
 #' 
 #' @param bottom the new bottom parameter
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param compile_F if true, call `update_F_season` 
 #'
@@ -121,7 +121,7 @@ set_season_bottom.cohort = function(bottom, xds_obj, s=1, compile_F=TRUE){
 #' Update the phase parameter 
 #' 
 #' @param phase the new phase parameter
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param compile_F if true, call `update_F_season` 
 #'
@@ -210,7 +210,7 @@ set_season_phase.cohort = function(phase, xds_obj, s=1, compile_F=TRUE){
 #' Set the pw parameter to `pw`
 #' 
 #' @param pw a named list with the new parameter values 
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species inde
 #' @param compile_F if true, call `update_F_season` 
 #'
@@ -298,7 +298,7 @@ set_season_pw.cohort = function(pw, xds_obj, s=1, compile_F=TRUE){
 #' 
 #' @description Update `F_season` 
 #' 
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @return a **`ramp.xds`** model object

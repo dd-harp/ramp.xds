@@ -9,7 +9,7 @@ set_season_bottom(bottom, xds_obj, s = 1, compile_F = TRUE)
 \arguments{
 \item{bottom}{the new bottom parameter}
 
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 

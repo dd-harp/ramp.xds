@@ -7,7 +7,7 @@
 #' here as a function of resource availability.
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @return a [list]
 #' @export
 BaselineBionomics <- function(t, y, xds_obj){
@@ -25,7 +25,7 @@ BaselineBionomics <- function(t, y, xds_obj){
 #' here as a function of resource availability.
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @return a [list]
 #' @export
 ModifiedBionomics <- function(t, y, xds_obj){

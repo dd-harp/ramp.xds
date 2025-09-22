@@ -7,7 +7,7 @@
 burnin(xds_obj, t_neg_inf = -3650)
 }
 \arguments{
-\item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{t_neg_inf}{days before the present, \eqn{t_{-\infty}}}
 }

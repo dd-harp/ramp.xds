@@ -7,7 +7,7 @@
 #' other blood_hosts -- potential blood hosts
 #' that are not hosts for the pathogen  
 #' 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return an **`xds`** model object
 #' @export
@@ -27,7 +27,7 @@ setup_blood_host_object = function(xds_obj){
 #' @title Set static blood feeding search weights
 #' @description Set the blood feeding search weights, \eqn{\omega}, for a set of host strata
 #' @param blood_hosts availability of other blood hosts 
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return an `xds` object
 #' @export
@@ -46,7 +46,7 @@ change_blood_hosts = function(blood_hosts, xds_obj,  s){
 #' 
 #' @param t current time
 #' @param y the state variable vector
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
 #' @export
@@ -108,7 +108,7 @@ BloodHosts.dynamic <- function(t, y, xds_obj) {
 #' 
 #' @param t current time
 #' @param y the state variable vector
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return an **`xds`** object
 #' @export
@@ -127,7 +127,7 @@ blood_hosts_dynamics <- function(t, y, xds_obj){
 #' and no exposure while blood_hostsing
 #' 
 #' @param mod_name the model name
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a list to configure `F_blood_hosts`
 #' 

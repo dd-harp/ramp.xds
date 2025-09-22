@@ -9,7 +9,7 @@ setup_MY_obj(MYname, xds_obj, s, options = list())
 \arguments{
 \item{MYname}{the name of the model}
 
-\item{xds_obj}{a \link{list}}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the species index}
 

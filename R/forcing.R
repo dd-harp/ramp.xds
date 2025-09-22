@@ -9,7 +9,7 @@
 #' `ramp.forcing`
 #' 
 #' @param t current simulation time
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #'
 #' @export
@@ -25,7 +25,7 @@ Forcing = function(t, xds_obj){
 #' the unmodified **`xds`** object. 
 #' 
 #' @param t current simulation time
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @export
 Forcing.none = function(t, xds_obj){
@@ -35,7 +35,7 @@ Forcing.none = function(t, xds_obj){
 #' @title Setup the Junction for Exogenous Forcing
 #' @description This sets up the `none` option
 #' for exogenous forcing: no forcing.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @export
 setup_forcing_object = function(xds_obj){

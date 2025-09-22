@@ -7,7 +7,7 @@
 #' 
 #' @note Dispatches on `forced_by`  
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @return seasonal pattern parameters 

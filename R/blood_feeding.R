@@ -3,7 +3,7 @@
 #' 
 #' @description Run a set of consistency checks for the `XY_interface`
 #' 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @export
 #'  
@@ -116,7 +116,7 @@ make_residency_matrix = function(nPatches, residence){
 #' time spent by time of day weighted by mosquito species-specific *search weights* reflecting different preferences
 #' and a circadian function describing relative mosquito blood feeding rates by time of day.
 #' 
-#' @param xds_obj an **`xds`** model object template
+#' @param xds_obj an **`xds`** model object
 #' @param residency the residency vector 
 #' 
 #' @return a **`xds`** model object template with a blood feeding object
@@ -195,7 +195,7 @@ setup_XY_interface <- function(xds_obj, residency){
 #' for a set of host strata
 #' 
 #' @param wts the blood feeding search weights
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param i the host species index
 #' 
@@ -254,7 +254,7 @@ F_B_available = function(W, visitors, other_blood, Btraps){
 #' @description Compute the available for the pathogen's hosts for blood feeding
 #' @param t the time
 #' @param y state vector
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
 compute_WB <- function(t, y, xds_obj){
@@ -291,7 +291,7 @@ F_rbr = function(search_weights, H){
 #' @title Compute and attach the relative biting rates
 #' @description Compute the available for the pathogen's hosts for blood feeding
 #' @param t the time
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param y state vector
 #' @return an `xds` object
 #' @export
@@ -328,7 +328,7 @@ F_TaR = function(t, TiSp, F_circadian, time_at_home){
 
 #' @title Make TaR
 #' @description Make a time at risk matrix (TaR) from a time spent matrix and a circadian function
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param t the time
 #' @return an `xds` object
 #' @export
@@ -348,7 +348,7 @@ compute_TaR <- function(xds_obj, t=0){
 #' the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi},
 #' @param t the time
 #' @param y the state variables
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
 BloodFeeding = function(t, y, xds_obj){
@@ -412,7 +412,7 @@ blood_feeding_dynamics = function(t, y, xds_obj){
 
 #' @title View residence membership
 #' @description Shows the residence membership information (from the residence matrix) 
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a named [list]
 #' @seealso [make_residency_matrix]

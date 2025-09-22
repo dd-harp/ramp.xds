@@ -11,7 +11,7 @@ Health(t, y, xds_obj)
 
 \item{y}{state vector}
 
-\item{xds_obj}{an \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a \strong{\code{ramp.xds}} model object

@@ -4,7 +4,7 @@
 #' @description For a model with temporal forcing,
 #' show the temporal trend 
 #'
-#' @param xds_obj a **`ramp.xds** model object
+#' @param xds_obj an **`xds`** model object
 #' @param tm the time points 
 #' @param add add to existing plot
 #'

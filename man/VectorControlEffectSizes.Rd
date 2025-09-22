@@ -11,7 +11,7 @@ VectorControlEffectSizes(t, y, xds_obj)
 
 \item{y}{state vector}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a \strong{\code{ramp.xds}} model object

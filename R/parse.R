@@ -1,7 +1,7 @@
 
 #' @title parse the output of an object returned by deSolve
 #' @param y a [vector] with the variables
-#' @param xds_obj a **`xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @return varslist a [list]
 #' @export
 parse_y <- function(y, xds_obj){
@@ -32,7 +32,7 @@ parse_y <- function(y, xds_obj){
 }
 
 #' @title parse the outputs of an object created by xde_solve or dts_solve
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param outputs a [matrix] of _orbits returned by deSolve
 #' @return varslist a [list]
 #' @export
@@ -65,7 +65,7 @@ parse_orbits <- function(outputs, xds_obj){
 
 
 #' @title Make Outputs
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param de_vars the solutions [matrix]
 #' @param tm the time
 #' @return an **`xds`** object
@@ -140,7 +140,7 @@ parse_outputs.eir = function(xds_obj, de_vars, tm){
 #' @description Pull the stored values of the 
 #' EIR and the FoI and compute NI
 #' 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param i host species index
 #'
 #' @return an **`xds`** model object 
@@ -172,7 +172,7 @@ parse_XH_terms <- function(xds_obj, i=1) {
 #' @description Pull the stored values of the 
 #' Lambda, G, fqZ, and kappa
 #' 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 
 #' @return an **`xds`** model object 
@@ -212,7 +212,7 @@ parse_MY_terms <- function(xds_obj, s=1) {
 #' Note that the total effect size of control 
 #' is the ratio. 
 #' 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 
 #' @return an **`xds`** model object 
@@ -252,7 +252,7 @@ parse_bionomics <- function(xds_obj, s=1) {
 #' @description Pull the stored values of the 
 #' alpha, eta 
 #' 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s vector species index 
 #' 
 #' @return an **`xds`** model object 

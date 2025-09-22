@@ -7,7 +7,7 @@
 \method{xds_solve}{ode}(xds_obj, Tmax = 365, dt = 1, times = NULL)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{Tmax}{the last time point, run from 0...Tmax}
 

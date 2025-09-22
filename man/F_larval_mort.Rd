@@ -9,7 +9,7 @@ F_larval_mort(t, xds_obj, s)
 \arguments{
 \item{t}{current simulation time}
 
-\item{xds_obj}{a \strong{\code{xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{vector species index}
 }

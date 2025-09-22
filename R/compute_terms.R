@@ -12,7 +12,7 @@
 #' matrix with 1 column and `nStrata` rows, with only some elements set to one,
 #' then it returns the average over those strata.
 #'
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the human species index
 #' @param members a membership matrix
 #' @return a PfPR
@@ -40,7 +40,7 @@ average_PR_true = function(xds_obj, i=1, members=NULL){
 #' matrix with 1 column and `nStrata` rows, with only some elements set to one,
 #' then it returns the average over those strata.
 #'
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the human species index
 #' @param members a membership matrix
 #' @return a PfPR

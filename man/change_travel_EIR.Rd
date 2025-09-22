@@ -9,7 +9,7 @@ change_travel_EIR(teir, xds_obj, i)
 \arguments{
 \item{teir}{availability of other blood hosts}
 
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the host species index}
 }

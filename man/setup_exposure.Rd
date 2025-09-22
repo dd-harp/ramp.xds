@@ -9,7 +9,7 @@ setup_exposure(EHname, xds_obj, i = 1, options = list())
 \arguments{
 \item{EHname}{environmental heterogeneity model name}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the host species index}
 

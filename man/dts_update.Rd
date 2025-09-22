@@ -11,7 +11,7 @@ dts_update(t, y, xds_obj)
 
 \item{y}{state vector}
 
-\item{xds_obj}{a \link{list}}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a \link{list} containing the vector of all state derivatives

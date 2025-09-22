@@ -11,7 +11,7 @@ blood_feeding_dynamics(t, y, xds_obj)
 
 \item{y}{the state variables}
 
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 an \code{xds} object

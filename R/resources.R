@@ -1,4 +1,22 @@
 
+
+#' @title Setup Resources Object
+#'  
+#' @description Resources is a junction with 
+#' ports for several objects that are part of the 
+#' blood feeding or habitat interface. 
+#'  
+#' @param xds_obj an **`xds`** model object
+#' 
+#' @return an **`xds`** model object
+#' 
+#' @export
+setup_resources_object = function(xds_obj){
+  xds_obj <- setup_sugar_object(xds_obj)
+  xds_obj <- setup_traps_object(xds_obj)
+  return(xds_obj)
+}
+
 #' @title Resources
 #'  
 #' @description Computes availability of resources potentially

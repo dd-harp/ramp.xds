@@ -5,7 +5,7 @@
 #' to model blood feeding and importation  
 #' from visitors 
 #' 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return an **`xds`** model object
 #' @export
@@ -33,7 +33,7 @@ setup_visitor_object = function(xds_obj){
 #' 
 #' @param t current time
 #' @param y the state variable vector
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
 #' @export
@@ -98,7 +98,7 @@ Visitors.dynamic <- function(t, y, xds_obj) {
 #' 
 #' @param t current time
 #' @param y the state variable vector
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #'
 #' 
 #' @return an **`xds`** object
@@ -123,7 +123,7 @@ visitor_dynamics <- function(t, y, xds_obj){
 #' and no exposure while visitorsing
 #' 
 #' @param mod_name the model name 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list to setup `F_visitors`
 #' 
@@ -158,7 +158,7 @@ setup_F_visitors.ts_func = function(mod_name, xds_obj, s, options){
 #' and no exposure while visitorsing
 #' 
 #' @param mod_name the model name 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a list to configure `F_vis_kappa` 
 #' 

@@ -213,7 +213,7 @@ get_XH_vars.trivial<- function(y, xds_obj, i) {
 
 #' @title Return the parameters as a list
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [list]
 #' @export

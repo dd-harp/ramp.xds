@@ -7,7 +7,7 @@
 get_MY_inits(xds_obj, s = 1)
 }
 \arguments{
-\item{xds_obj}{a \link{list}}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the species index}
 }
