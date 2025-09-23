@@ -18,7 +18,7 @@ skill_set_MY.RMdts = function(MYname){
 
 #' Run a check before solving 
 #'
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index 
 #'
 #' @returns an **`xds`** model object 

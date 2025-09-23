@@ -52,7 +52,7 @@ setup_K_obj = function(nPatches, MY_obj){
 #' @note This method dispatches on the type of `f_obj` attached to the `MY_obj`.
 #' 
 #' @param t current simulation time
-#' @param xds_obj a **`xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 
 #' @return a [numeric] vector of length `nPatches`

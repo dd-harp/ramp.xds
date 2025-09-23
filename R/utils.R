@@ -172,7 +172,7 @@ get_last <- function(xds_obj, parse=FALSE){
 }
 
 #' @title Set the initial values to the last values of the last simulation
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @export

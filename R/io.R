@@ -1,7 +1,7 @@
 
 #' Shrink an xds xds_obj object
 #'
-#' @param xds_obj an xds xds_obj object
+#' @param xds_obj an **`xds`** model object
 #'
 #' @returns invisible() 
 #' @export
@@ -12,7 +12,7 @@ xds_shrink = function(xds_obj){
 
 #' Shrink an xds xds_obj object
 #'
-#' @param xds_obj an xds xds_obj object
+#' @param xds_obj an **`xds`** model object
 #'
 #' @returns a smaller xds xds_obj object 
 #' @export

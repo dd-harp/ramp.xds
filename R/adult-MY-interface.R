@@ -19,7 +19,7 @@ skill_set_MY = function(MYname){
 
 #' Run a check before solving 
 #'
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index 
 #'
 #' @returns an **`xds`** model object 
@@ -39,7 +39,7 @@ check_MY = function(xds_obj, s){
 #' 
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' 
 #' @return Derivatives for an adult mosquito model, a [vector]
@@ -54,7 +54,7 @@ dMYdt <- function(t, y, xds_obj, s) {
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' 
 #' @return Updated states for an adult mosquito model, a [vector]
@@ -69,7 +69,7 @@ Update_MYt <- function(t, y, xds_obj, s) {
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [numeric] vector of length `nPatches`
 #' @export
@@ -81,7 +81,7 @@ F_fqZ <- function(t, y, xds_obj, s) {
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [numeric] vector of length `nPatches`
 #' @export
@@ -93,7 +93,7 @@ F_fqM <- function(t, y, xds_obj, s) {
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [numeric] vector of length `nPatches`
 #' @export
@@ -106,7 +106,7 @@ F_eggs <- function(t, y, xds_obj, s) {
 #' @description Compute the baseline adult mosquito bionomic parameter values 
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return an `xds` object
 #' @export
@@ -118,7 +118,7 @@ MBaseline <- function(t, y, xds_obj, s) {
 #' @description Modify the baseline adult mosquito bionomic parameters
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return an `xds` object
 #' @export
@@ -141,7 +141,7 @@ MBionomics <- function(t, y, xds_obj, s) {
 #' terms. 
 #'  
 #' @param MYname the name of the model
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @param options a [list]
 #' @return [list]
@@ -153,7 +153,7 @@ setup_MY_obj = function(MYname, xds_obj, s, options=list()){
 
 #' @title Add indices for adult mosquitoes to parameter list
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return [list]
 #' @export
@@ -164,7 +164,7 @@ setup_MY_ix <- function(xds_obj, s) {
 #' @title Return the variables as a list
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param y the variables
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
 #' @export
@@ -174,7 +174,7 @@ get_MY_vars <- function(y, xds_obj, s) {
 
 #' @title Get **MY** Variable Indices
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return [list]
 #' @export
@@ -186,7 +186,7 @@ get_MY_ix <- function(xds_obj, s) {
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
 #' It computes the variables by name and returns a named list.
 #' @param outputs a [matrix] of outputs from deSolve
-#' @param xds_obj a [list] that defines a model
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return [list]
 #' @export
@@ -196,7 +196,7 @@ parse_MY_orbits <- function(outputs, xds_obj, s) {
 
 #' @title Return the parameters as a list
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
 #' @export
@@ -206,7 +206,7 @@ get_MY_pars <- function(xds_obj, s=1) {
 
 #' @title Set new MY parameter values
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list
 #' @return an `xds` object
@@ -217,7 +217,7 @@ change_MY_pars <- function(xds_obj, s=1, options=list()) {
 
 #' @title A function to set up adult mosquito models
 #' @description This method dispatches on `MYname`.
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @param options a [list]
 #' @return [list]
@@ -229,7 +229,7 @@ setup_MY_inits = function(xds_obj, s, options=list()){
 
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return [numeric]
 #' @export
@@ -239,7 +239,7 @@ get_MY_inits <- function(xds_obj, s=1) {
 
 #' @title Set new MY parameter values
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list
 #' @return an `xds` object
@@ -249,7 +249,7 @@ change_MY_inits <- function(xds_obj, s=1, options=list()) {
 }
 
 #' @title Get the feeding rate(s)
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
@@ -258,7 +258,7 @@ get_f = function(xds_obj, s=1){
 }
 
 #' @title Get the human fraction(s) 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
@@ -267,7 +267,7 @@ get_q = function(xds_obj, s=1){
 }
 
 #' @title Get the adult mosquito mortality rate(s)
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
@@ -276,7 +276,7 @@ get_g = function(xds_obj, s=1){
 }
 
 #' @title Get the patch emigration rates
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
@@ -285,7 +285,7 @@ get_sigma = function(xds_obj, s=1){
 }
 
 #' @title Get mosquito population density 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
@@ -294,7 +294,7 @@ get_M = function(xds_obj, s=1){
 }
 
 #' @title Get the density of infectious, blood feeding mosquitoes
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
@@ -311,7 +311,7 @@ get_Z = function(xds_obj, s=1){
 #' 
 #' @param Lambda the daily emergence rate of adult mosquitoes
 #' @param kappa net infectiousness
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index 
 #'
 #' @return the steady states
@@ -328,7 +328,7 @@ steady_state_MY = function(Lambda, kappa, xds_obj, s=1){
 #' the population density of adult mosquitoes at the steady state
 #' 
 #' @param Lambda the daily emergence rate of adult mosquitoes
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index 
 #'
 #' @return the steady states
@@ -347,7 +347,7 @@ steady_state_M = function(Lambda, xds_obj, s=1){
 #' 
 #' @param M adult mosquito population density 
 #' @param kappa net infectiousness 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index 
 #' 
 #' @return none

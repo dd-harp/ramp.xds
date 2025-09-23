@@ -16,7 +16,7 @@ skill_set_L.trivial = function(Lname="trivial"){
 
 #' Run a check before solving 
 #'
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index 
 #'
 #' @returns an **`xds`** model object 
@@ -127,7 +127,7 @@ make_L_obj_trivial = function(nHabitats, options=list(),
 
 #' @title Get **L** Component Parameters for `trivial`
 #' @description Show the trace function
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
 #' @export

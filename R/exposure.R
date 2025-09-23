@@ -12,7 +12,7 @@
 #' exposure while traveling separately.  
 #' 
 #' @param EHname environmental heterogeneity model name 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options set up options list
 #' 
@@ -31,7 +31,7 @@ setup_exposure <- function(EHname, xds_obj, i=1, options=list()){
 #' immunity, and exposure to malaria while traveling.
 #' @param t the time
 #' @param y the state variables
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @seealso Cases: [Exposure.xde] & [Exposure.dts]. Related: [F_ar] & [F_foi]
 #' @export

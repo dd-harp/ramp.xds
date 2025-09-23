@@ -18,7 +18,7 @@ skill_set_MY.SI = function(MYname){
 
 #' Run a check before solving 
 #'
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index 
 #'
 #' @returns an **`xds`** model object 
@@ -323,7 +323,7 @@ parse_MY_orbits.SI <- function(outputs, xds_obj, s) {
 
 #' @title Return the parameters as a list
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
 #' @export
@@ -396,7 +396,7 @@ change_MY_inits.SI = function(xds_obj, s, options=list()){
 }
 
 #' @title Get the feeding rate
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector asSIgned the class "dynamic"
 #' @export
@@ -405,7 +405,7 @@ get_f.SI = function(xds_obj, s=1){
 }
 
 #' @title Get the feeding rate
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector asSIgned the class "dynamic"
 #' @export
@@ -414,7 +414,7 @@ get_q.SI = function(xds_obj, s=1){
 }
 
 #' @title Get the feeding rate
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector asSIgned the class "dynamic"
 #' @export
@@ -423,7 +423,7 @@ get_g.SI = function(xds_obj, s=1){
 }
 
 #' @title Get the feeding rate
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector asSIgned the class "dynamic"
 #' @export

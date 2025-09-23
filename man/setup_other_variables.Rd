@@ -7,7 +7,7 @@
 setup_other_variables(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 the \code{xds} object

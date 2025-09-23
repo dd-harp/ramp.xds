@@ -26,7 +26,7 @@ setup_eip_obj = function(eip, MY_obj){
 #' sets the values the EIP, \eqn{\eip} 
 #' 
 #' @param t current simulation time
-#' @param xds_obj a **`xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 
 #' @return a [numeric] vector oeip length `nPatches`

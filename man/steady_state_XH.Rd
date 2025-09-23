@@ -9,7 +9,7 @@ steady_state_XH(foi, xds_obj, i = 1)
 \arguments{
 \item{foi}{the daily FoI}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the vector species index}
 }

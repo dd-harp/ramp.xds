@@ -7,7 +7,7 @@
 view_habitat_matrix(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a \link{list}

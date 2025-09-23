@@ -2,7 +2,7 @@
 
 #' Run a check before solving 
 #'
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index 
 #'
 #' @returns an **`xds`** model object 
@@ -184,7 +184,7 @@ get_MY_vars.trivial <- function(y, xds_obj, s){
 #' in the trivial **MY**-Component 
 #' model as a named list 
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @return the parameters as a named list 
@@ -289,7 +289,7 @@ get_MY_inits.trivial <- function(xds_obj, s){
 
 
 #' @title Get the feeding rate
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
@@ -298,7 +298,7 @@ get_f.trivial = function(xds_obj, s=1){
 }
 
 #' @title Get the feeding rate
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
@@ -307,7 +307,7 @@ get_q.trivial = function(xds_obj, s=1){
 }
 
 #' @title Get the feeding rate
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
@@ -316,7 +316,7 @@ get_g.trivial = function(xds_obj, s=1){
 }
 
 #' @title Get the feeding rate
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export

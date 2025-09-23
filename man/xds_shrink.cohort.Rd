@@ -7,7 +7,7 @@
 \method{xds_shrink}{cohort}(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an xds xds_obj object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a smaller xds xds_obj object

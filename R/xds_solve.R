@@ -15,7 +15,7 @@
 #'
 #' @seealso [xde_derivatives()] or [dts_update()]
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param Tmax the last time point, run from 0...Tmax
 #' @param dt the time step 
 #' @param times the times

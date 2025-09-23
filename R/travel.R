@@ -11,7 +11,7 @@
 #' is returned by [get_variables] dispatching on `class(F_travel)`
 #' 
 #' 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return an **`xds`** model object
 #' @export
@@ -38,7 +38,7 @@ setup_travel_object = function(xds_obj){
 #' @description Set a new *static* value for travel EIR
 #' 
 #' @param time_at_home time spent in spatial domain (*i.e.* in the patches) 
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'  
 #' @return an `xds` object
@@ -55,7 +55,7 @@ change_time_at_home = function(time_at_home, xds_obj,  i){
 #' @description Set a new *static* value for travel EIR
 #' 
 #' @param teir availability of other blood hosts 
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'  
 #' @return an `xds` object
@@ -74,7 +74,7 @@ change_travel_EIR = function(teir, xds_obj,  i){
 #' 
 #' @param t current simulation time
 #' @param y variables 
-#' @param xds_obj an **`xds`** object 
+#' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
 #' @export
@@ -135,7 +135,7 @@ Travel.dynamic <- function(t, y, xds_obj) {
 #' 
 #' @param t current time
 #' @param y the state variable vector
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return an **`xds`** object
 #' @export
@@ -160,7 +160,7 @@ travel_dynamics <- function(t, y, xds_obj){
 #' and no exposure while traveling
 #' 
 #' @param setup_name a string to dispatch `setup_F_travel` 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options setup options for `F_travel` 
 #' 
@@ -210,7 +210,7 @@ setup_F_travel.ts_func = function(setup_name, xds_obj, i, options=list()){
 #' experienced while traveling 
 #' 
 #' @param setup_name a string to dispatch `setup_F_travel_eir` 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options a named list to set up `F_travel_eir` 
 #' 
@@ -243,7 +243,7 @@ setup_F_travel_eir.static = function(setup_name, xds_obj, i, options){
 #' and no exposure while traveling
 #' 
 #' @param setup_name a 
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options options list to set up `F_travel_eir`
 #' 

@@ -11,7 +11,7 @@ xds_lines_Z(times, MY, xds_obj, clrs = "darkred", llty = 1)
 
 \item{MY}{xds_objed ouptuts}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{clrs}{a vector of colors}
 

@@ -6,7 +6,7 @@
 #'
 #' @note The algorithm sets \eqn{t_{-\infty}} to \eqn{-|}`t_neg_inf`\eqn{|}, the negative absolute value of `t_neg_inf`
 #' 
-#' @param xds_obj a **`ramp.xds`** xds_obj object
+#' @param xds_obj an **`xds`** model object
 #' @param t_neg_inf days before the present, \eqn{t_{-\infty}} 
 #'
 #' @returns a **`ramp.xds`** xds_obj object

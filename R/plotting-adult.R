@@ -1,7 +1,7 @@
 
 #' @title Plot adult mosquito population density
 #'
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
@@ -23,7 +23,7 @@ xds_plot_M = function(xds_obj, s=1, clrs="darkblue", llty=1, add=FALSE){
 #'
 #' @param times a sequence of times when variables were output
 #' @param MY xds_objed ouptuts
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
@@ -43,7 +43,7 @@ xds_lines_M = function(times, MY, xds_obj, clrs="darkblue", llty=1){
 
 #' Plot the density of infected and infective mosquitoes
 #'
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param clrs a vector of colors for infected mosquitoes
 #' @param llty an integer (or integers) to set the `lty` for plotting
@@ -66,7 +66,7 @@ xds_plot_Y = function(xds_obj, s=1, clrs = "purple", llty=1, add=FALSE){
 #'
 #' @param times a sequence of times when variables were output
 #' @param MY xds_objed ouptuts
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
@@ -88,7 +88,7 @@ xds_lines_Y = function(times, MY, xds_obj, clrs="purple", llty=1){
 
 #' Plot the density of infected and infective mosquitoes
 #'
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param clrs a vector of colors for infective mosquitoes
 #' @param llty an integer (or integers) to set the `lty` for plotting
@@ -111,7 +111,7 @@ xds_plot_Z = function(xds_obj, s=1,  clrs="darkred", llty=1, add=FALSE){
 #'
 #' @param times a sequence of times when variables were output
 #' @param MY xds_objed ouptuts
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
@@ -133,7 +133,7 @@ xds_lines_Z = function(times, MY, xds_obj, clrs = "darkred", llty=1){
 
 #' Plot the fraction of infected and infective mosquitoes
 #'
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param clrs a vector of colors for infected mosquitoes
 #' @param llty an integer (or integers) to set the `lty` for plotting
@@ -156,7 +156,7 @@ xds_plot_Y_fracs = function(xds_obj, s=1, clrs = "purple", llty=1,  add=FALSE){
 #'
 #' @param times times points for the observations
 #' @param MY xds_objed ouptuts
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param clrs a vector of colors for infected mosquitoes
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
@@ -179,7 +179,7 @@ xds_lines_Y_fracs = function(times, MY, xds_obj, clrs="purple", llty=1){
 
 #' Plot the fraction infective
 #'
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param clrs a vector of colors for infective mosquitoes
 #' @param llty an integer (or integers) to set the `lty` for plotting
@@ -202,7 +202,7 @@ xds_plot_Z_fracs = function(xds_obj, s=1, clrs = "darkred", llty=1, add=FALSE){
 #'
 #' @param times a sequence of times when variables were output
 #' @param MY xds_objed outputs
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param clrs a vector of colors for infective mosquitoes
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'

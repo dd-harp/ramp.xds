@@ -7,7 +7,7 @@
 \method{change_MY_inits}{RMdts}(xds_obj, s, options)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 

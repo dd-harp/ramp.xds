@@ -9,7 +9,7 @@ compute_RBR(t, xds_obj, y)
 \arguments{
 \item{t}{the time}
 
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{y}{state vector}
 }

@@ -7,7 +7,7 @@
 compute_TaR(xds_obj, t = 0)
 }
 \arguments{
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{t}{the time}
 }

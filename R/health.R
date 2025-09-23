@@ -5,11 +5,11 @@
 #' variables for health interventions.
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @return a **`ramp.xds`** model object
 #' @export
 Health = function(t, y, xds_obj){
-  UseMethod("Health", xds_obj$control_obj$health_obj)
+  UseMethod("Health", xds_obj$health_obj)
 }
 
 #' @title Set no exogenous health variables
@@ -26,7 +26,7 @@ Health.none = function(t, y, xds_obj){
 #' @title none set up for exogenous health
 #' @description This sets up the `none` option
 #' for exogenous health: no health.
-#' @param xds_obj an **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @return a **`ramp.xds`** model object
 #' @export
 setup_health_object = function(xds_obj){
@@ -35,7 +35,7 @@ setup_health_object = function(xds_obj){
   health$name <- "Junction: Health Interventions"
   health$ports <- "Ports: Mass Treatment, Mass Vaccination, Surveillance"
   health$domore <- "see `ramp.control"
-  xds_obj$control_obj$health_obj <- health
+  xds_obj$health_obj <- health
   return(xds_obj)
 }
 

@@ -9,7 +9,7 @@ change_time_at_home(time_at_home, xds_obj, i)
 \arguments{
 \item{time_at_home}{time spent in spatial domain (\emph{i.e.} in the patches)}
 
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the host species index}
 }

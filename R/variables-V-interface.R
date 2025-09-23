@@ -6,7 +6,7 @@
 #' @note This is the `S3` generic. Methods dispatch on `V_obj`
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @param i the i^th auxiliary variable 
 #' @return derivatives for the \eqn{\cal MYZ} component as a [vector]
 #' @export
@@ -54,7 +54,7 @@ get_V_vars <- function(y, xds_obj, i=1) {
 #' 
 #' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return an **`xds`** object
 #' @export
@@ -67,7 +67,7 @@ setup_V_ix <- function(xds_obj, i) {
 #' @description Get and display the values of the indices
 #' for the variables   
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' 
 #' @return an **`xds`** object
@@ -103,7 +103,7 @@ parse_V_orbits <- function(outputs, xds_obj, i) {
 
 #' @title Return the parameters as a list
 #' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [list]
 #' @export
@@ -113,7 +113,7 @@ get_V_pars <- function(xds_obj, i=1) {
 
 #' @title Set new X parameter values
 #' @description This method dispatches on the type of `xds_obj$V_obj[[s]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
 #' @param options a named list
 #' @return an `xds` object
@@ -127,7 +127,7 @@ change_V_pars <- function(xds_obj, i=1, options=list()) {
 #' 
 #' @description This method dispatches on `xds_obj$V_obj[[i]]`.
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param H initial host population density
 #' @param i the host species index
 #' @param options a [list]
@@ -156,7 +156,7 @@ get_V_inits = function(xds_obj, i=1){
 
 #' @title Set new X parameter values
 #' @description This method dispatches on the type of `xds_obj$V_obj[[s]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
 #' @param options a named list
 #' @return an `xds` object

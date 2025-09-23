@@ -9,7 +9,7 @@
 \arguments{
 \item{X}{the new mean forcing parameter}
 
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 }

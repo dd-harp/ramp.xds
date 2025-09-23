@@ -7,7 +7,7 @@
 setup_XY_interface(xds_obj, residency)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} model object template}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{residency}{the residency vector}
 }

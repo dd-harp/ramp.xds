@@ -35,7 +35,7 @@ The junctions in **`ramp.xds`** get called in a specific order to minimize *conf
 
 ## Vector Control 
 
-`VectorControl` and `VectorControlEffectSizes`:: **`ramp.xds`** sets up an empty *junctions* handle various aspects of vector control.  Models to implement vector control are in **`ramp.control`**
+`VectorControl` and `VectorControlEffectSizes`:: **`ramp.xds`** sets up an empty *junction* to handle various aspects of vector control.  Models to implement vector control are in **`ramp.control`**
 
 ## Health 
 

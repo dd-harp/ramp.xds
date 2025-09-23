@@ -59,7 +59,7 @@ F_beta = function(H, W, wts_f, TaR){
 #' @description This function computes the mixing matrix, beta
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
 compute_beta <- function(t, y, xds_obj){
@@ -94,7 +94,7 @@ F_eir <- function(fqZ, beta, local_frac){
 #' @description This function computes the EIR for each stratum of each host species
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
 compute_EIR <- function(t, y, xds_obj){
@@ -122,7 +122,7 @@ compute_EIR <- function(t, y, xds_obj){
 #' @description This function computes the EIR from each vector species for each stratum of each host species
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
 compute_EIR_full <- function(t, y, xds_obj){
@@ -169,7 +169,7 @@ F_kappa <- function(Wi, W, beta, X) {
 #' @description This function computes kappa for each vector species in each patch
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
 compute_kappa <- function(t, y, xds_obj){
@@ -214,7 +214,7 @@ F_local_frac <- function(W, Visitors){
 
 #' @title Compute the local fraction
 #' @description Compute the availability for the pathogen's hosts for blood feeding
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
 compute_local_frac <- function(xds_obj){with(xds_obj$XY_interface,{
@@ -228,7 +228,7 @@ compute_local_frac <- function(xds_obj){with(xds_obj$XY_interface,{
 #' @description This method dispatches on the type of `xds_obj$beta`
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an `xds` object
+#' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
 Transmission <- function(t, y, xds_obj){

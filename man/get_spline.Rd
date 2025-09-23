@@ -7,7 +7,7 @@
 get_spline(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \description{
 Get the interpolating points

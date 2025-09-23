@@ -7,7 +7,7 @@
 dts_stable_orbit(xds_obj, Tburn = 10, yr = 365)
 }
 \arguments{
-\item{xds_obj}{a \link{list} that defines a model}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{Tburn}{the number of steps to burn}
 

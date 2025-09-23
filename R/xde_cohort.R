@@ -21,7 +21,7 @@
 #' and the trace function is:
 #'  \deqn{E(a, t) = \hat E \; \omega(a) \; S(t)\; T(t) }
 #' The output is returned as `xds_obj$outputs$cohort`
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param bday the cohort birthday
 #' @param A the maximum age to compute (in years)
 #' @param da the output interval (age, in days)
@@ -55,7 +55,7 @@ xds_solve_cohort = function(xds_obj, bday=0, A=10, da=10){
 #' generic methods for each model component.
 #' @param age host age
 #' @param y the state variables
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param birthday the cohort birthday
 #' @return a [list] containing the vector of all state derivatives
 #' @export
@@ -80,7 +80,7 @@ xde_cohort_derivatives <- function(age, y, xds_obj, birthday) {
 #' @param birthday a cohort birthday
 #' @param inits initial values
 #' @param times = the times
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return a [list]
 #' @export

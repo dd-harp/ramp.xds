@@ -18,7 +18,7 @@ get_mean_forcing = function(xds_obj){
 #' @description
 #' Return null for models without forcing 
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @export
 get_mean_forcing.none = function(xds_obj){
@@ -32,7 +32,7 @@ get_mean_forcing.none = function(xds_obj){
 #' rate(s) \eqn{\Lambda}, for a model 
 #' forced by adult mosquito emergence
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @export
 get_mean_forcing.Lambda = function(xds_obj){
@@ -51,7 +51,7 @@ get_mean_forcing.Lambda = function(xds_obj){
 #' @description
 #' Get the mean daily EIR for an `eir` model
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @export
 get_mean_forcing.eir = function(xds_obj){
@@ -64,7 +64,7 @@ get_mean_forcing.eir = function(xds_obj){
 #' Get the mean daily EIR for 
 #' a `cohort` model
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @export
 get_mean_forcing.cohort = function(xds_obj){

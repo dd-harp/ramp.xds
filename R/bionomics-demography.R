@@ -34,7 +34,7 @@ setup_Omega.dts <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
 
 
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @export
 make_Omega <- function(xds_obj, s){
@@ -42,7 +42,7 @@ make_Omega <- function(xds_obj, s){
 }
 
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @export
 make_Omega.xde <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
@@ -66,7 +66,7 @@ make_Omega_xde <- function(g, sigma, mu, K_matrix){
 }
 
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @export
 make_Omega.dts <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
@@ -90,7 +90,7 @@ make_Omega_dts <- function(p, ssigma, mu, K_matrix){
 }
 
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @export
 make_Upsilon <- function(xds_obj, s){
@@ -98,7 +98,7 @@ make_Upsilon <- function(xds_obj, s){
 }
 
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @export
 make_Upsilon.xde <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
@@ -110,7 +110,7 @@ make_Upsilon.xde <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
 
 #' @title Make the mosquito demography matrix
 #' @description This method dispatches on the type of `MY_obj`.
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return the derivatives a [vector]
 #' @export
@@ -120,7 +120,7 @@ get_Omega <- function(xds_obj, s=1){
 
 #' @title Make the mosquito demography matrix
 #' @description This method dispatches on the type of `MY_obj`.
-#' @param xds_obj a [list]
+#' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return the derivatives a [vector]
 #' @export

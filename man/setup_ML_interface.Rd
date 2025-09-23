@@ -7,7 +7,7 @@
 setup_ML_interface(xds_obj, membership)
 }
 \arguments{
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{membership}{is the habitat membership vector}
 }

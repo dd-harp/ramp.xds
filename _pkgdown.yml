@@ -788,13 +788,7 @@ reference:
   - Health
   - VectorControl
   - Resources
-  - BloodFeeding
-  - EggLaying
-  - Traps 
-  - BaselineBionomics
-  - ModifiedBionomics
-  - Transmission
-  - Exposure
+ 
 - title: Ports & Junctions
 - subtitle: Junctions 
   desc: Set up junction boxes to add features 
@@ -818,6 +812,18 @@ reference:
   - setup_health_object
   - Health
   - Health.none
+- subtitle: Resources 
+  desc: "The ports for resources\n"
+  contents:
+  - setup_resources_object
+  - Resources
+  - BloodFeeding
+  - EggLaying
+  - Traps 
+  - BaselineBionomics
+  - ModifiedBionomics
+  - Transmission
+  - Exposure
 - subtitle: Travel 
   desc: |
     Time spent traveling & the travel EIR

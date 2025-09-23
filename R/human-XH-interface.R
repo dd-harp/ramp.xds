@@ -19,7 +19,7 @@ skill_set_XH = function(Xname){
 
 #' Check / update before solving 
 #'
-#' @param xds_obj an **`xds`** model object 
+#' @param xds_obj an **`xds`** model object
 #' @param i host species index 
 #'
 #' @returns an **`xds`** model object 
@@ -66,7 +66,7 @@ Update_XHt <- function(t, y, xds_obj, i) {
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @export
@@ -78,7 +78,7 @@ F_X <- function(t, y, xds_obj, i) {
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #' @param t current simulation time
 #' @param y state vector
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @export
@@ -89,7 +89,7 @@ F_H <- function(t, y, xds_obj, i) {
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #' @param y state vector
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @export
@@ -134,7 +134,7 @@ get_XH_vars <- function(y, xds_obj, i=1) {
 
 #' @title Change human population density
 #' @param H human population density
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [list]
 #' @export
@@ -152,7 +152,7 @@ change_H = function(H, xds_obj, i=1){
 #' 
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return an **`xds`** object
 #' @export
@@ -165,7 +165,7 @@ setup_XH_ix <- function(xds_obj, i) {
 #' @description Get and display the values of the indices
 #' for the variables   
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' 
 #' @return an **`xds`** object
@@ -201,7 +201,7 @@ parse_XH_orbits <- function(outputs, xds_obj, i) {
 
 #' @title Return the parameters as a list
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [list]
 #' @export
@@ -211,7 +211,7 @@ get_XH_pars <- function(xds_obj, i=1) {
 
 #' @title Set new X parameter values
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
 #' @param options a named list
 #' @return an `xds` object
@@ -225,7 +225,7 @@ change_XH_pars <- function(xds_obj, i=1, options=list()) {
 #' 
 #' @description This method dispatches on `xds_obj$XH_obj[[i]]`.
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param H initial host population density
 #' @param i the host species index
 #' @param options a [list]
@@ -254,7 +254,7 @@ get_XH_inits = function(xds_obj, i=1){
 
 #' @title Set new X parameter values
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
 #' @param options a named list
 #' @return an `xds` object
@@ -317,7 +317,7 @@ F_pfpr_by_pcr <- function(vars, XH_obj) {
 
 #' Basic plotting for epidemiological models
 #'
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
@@ -330,7 +330,7 @@ xds_plot_X = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
 
 #' @title Compute the human transmitting capacity
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return none
 #' @export
@@ -345,7 +345,7 @@ HTC <- function(xds_obj, i) {
 #' 
 #' @param foi the daily FoI
 #' @param H human / host population density
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
 #' 
 #' @return steady states 
@@ -360,7 +360,7 @@ steady_state_X = function(foi, H, xds_obj, i=1){
 #' static value of human population density
 #' 
 #' @param foi the daily FoI
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
 #' 
 #' @return steady states 

@@ -7,7 +7,7 @@
 setup_sugar_object(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 an \strong{\code{xds}} object

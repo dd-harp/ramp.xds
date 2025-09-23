@@ -7,7 +7,7 @@
 xds_stable_orbit(xds_obj, options = list())
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{a list of configurable options}
 }

@@ -7,7 +7,7 @@
 setup_health_object(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a \strong{\code{ramp.xds}} model object

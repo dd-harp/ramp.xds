@@ -10,7 +10,7 @@
 #' 
 #' @param t current simulation time
 #' @param y dependent variables vector
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @return an **`xds`** object
 #' @export
@@ -34,7 +34,7 @@ Sugar.none = function(t, y, xds_obj){
 #' @title Setup the Junction for Exogenous sugar
 #' @description This sets up the `none` option
 #' for exogenous sugar: no sugar.
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @export
 setup_sugar_object = function(xds_obj){

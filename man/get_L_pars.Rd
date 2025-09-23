@@ -7,7 +7,7 @@
 get_L_pars(xds_obj, s = 1)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 }

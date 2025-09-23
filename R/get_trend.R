@@ -5,7 +5,7 @@
 #' Get the interpolating points 
 #' for a spline function.
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @return trend parameters 
@@ -79,7 +79,7 @@ get_trend.cohort = function(xds_obj, s=1){
 #' Get the interpolating points 
 #' for a spline function.
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' 
 #' @export
 get_spline = function(xds_obj){
@@ -99,7 +99,7 @@ get_spline = function(xds_obj){
 #' Get the interpolating points 
 #' for a spline function.
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @export
@@ -113,7 +113,7 @@ get_spline_s = function(xds_obj, s){
 #' Return the value that sets mean forcing
 #' for forced models. 
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @export
 get_spline_s.none = function(xds_obj, s){
@@ -126,7 +126,7 @@ get_spline_s.none = function(xds_obj, s){
 #' @description
 #' Return the 
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @return the interpolation points, as a list
@@ -143,7 +143,7 @@ get_spline_s.Lambda = function(xds_obj, s=1){
 #' @description
 #' Return the 
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @export
@@ -158,7 +158,7 @@ get_spline_s.eir = function(xds_obj, s=1){
 #' @description
 #' Return the 
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
 #' @export

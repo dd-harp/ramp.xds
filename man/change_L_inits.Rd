@@ -7,7 +7,7 @@
 change_L_inits(xds_obj, s = 1, options = list())
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 

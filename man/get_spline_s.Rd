@@ -7,7 +7,7 @@
 get_spline_s(xds_obj, s)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 }

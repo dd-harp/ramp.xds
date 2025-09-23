@@ -9,7 +9,7 @@ change_blood_search_weights(wts, xds_obj, s = 1, i = 1)
 \arguments{
 \item{wts}{the blood feeding search weights}
 
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 

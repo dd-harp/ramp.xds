@@ -11,7 +11,7 @@ F_eggs(t, y, xds_obj, s)
 
 \item{y}{state vector}
 
-\item{xds_obj}{a \link{list}}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the species index}
 }
