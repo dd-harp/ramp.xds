@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2-0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,11 +114,6 @@
           <code><a href="xds_setup_human.html">xds_setup_human()</a></code> 
         </dt>
         <dd>Build a Model of Human / Host Epidemiology</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xds_setup_cohort.html">xds_setup_cohort()</a></code> 
-        </dt>
-        <dd>Build a Model of Human / Host Cohort Dynamics</dd>
       </dl><dl><dt>
           
           <code><a href="xds_setup_eir.html">xds_setup_eir()</a></code> 
@@ -3745,42 +3740,6 @@
         <dd>Generalized spatial differential equation model (mosquito only)</dd>
       </dl></div><div class="section level2">
       
-      <h3 id="cohort-dynamics">Cohort Dynamics<a class="anchor" aria-label="anchor" href="#cohort-dynamics"></a></h3>
-      
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="xds_solve_cohort.html">xds_solve_cohort()</a></code> 
-        </dt>
-        <dd>Cohort dynamics for a human / host model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xde_cohort_derivatives.html">xde_cohort_derivatives()</a></code> 
-        </dt>
-        <dd>Differential equation models for human cohorts</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xde_cohort_desolve.html">xde_cohort_desolve()</a></code> 
-        </dt>
-        <dd>Solve a system of equations as an ode</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xde_cohort_desolve.dde.html">xde_cohort_desolve(<i>&lt;dde&gt;</i>)</a></code> 
-        </dt>
-        <dd>Solve a system of equations as a dde</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xde_cohort_desolve.ode.html">xde_cohort_desolve(<i>&lt;ode&gt;</i>)</a></code> 
-        </dt>
-        <dd>Solve a system of equations as a ode</dd>
-      </dl></div><div class="section level2">
-      
       <h3 id="dts-update">DTS Update<a class="anchor" aria-label="anchor" href="#dts-update"></a></h3>
       
 
@@ -3815,11 +3774,6 @@
           <code><a href="dts_update.human.html">dts_update(<i>&lt;human&gt;</i>)</a></code> 
         </dt>
         <dd>Difference equations isolating the humans, forced with Ztrace</dd>
-      </dl><dl><dt>
-          
-          <code><a href="dts_update.cohort.html">dts_update(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>Difference equation models for human cohorts</dd>
       </dl><dl><dt>
           
           <code><a href="dts_update.eir.html">dts_update(<i>&lt;eir&gt;</i>)</a></code> 
@@ -4118,11 +4072,6 @@
         <dd>Shrink an xds xds_obj object</dd>
       </dl><dl><dt>
           
-          <code><a href="xds_shrink.cohort.html">xds_shrink(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>Shrink an xds xds_obj object</dd>
-      </dl><dl><dt>
-          
           <code><a href="list_vars.html">list_vars()</a></code> 
         </dt>
         <dd>Set the initial values to the last values of the last simulation</dd>
@@ -4204,7 +4153,7 @@
         <dd>Get the initial values as a vector</dd>
       </dl><dl><dt>
           
-          <code><a href="get_XH.html">get_XH()</a></code> 
+          <code><a href="get_XH_out.html">get_XH_out()</a></code> 
         </dt>
         <dd>Get <strong>XH</strong> outputs</dd>
       </dl><dl><dt>
@@ -4416,11 +4365,6 @@
         <dd>Update the seasonality function</dd>
       </dl><dl><dt>
           
-          <code><a href="update_F_season.cohort.html">update_F_season(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>Update the seasonality function</dd>
-      </dl><dl><dt>
-          
           <code><a href="update_F_season.eir.html">update_F_season(<i>&lt;eir&gt;</i>)</a></code> 
         </dt>
         <dd>Update the seasonality function</dd>
@@ -4432,11 +4376,6 @@
       </dl><dl><dt>
           
           <code><a href="update_F_trend.html">update_F_trend()</a></code> 
-        </dt>
-        <dd>Update the trend function</dd>
-      </dl><dl><dt>
-          
-          <code><a href="update_F_trend.cohort.html">update_F_trend(<i>&lt;cohort&gt;</i>)</a></code> 
         </dt>
         <dd>Update the trend function</dd>
       </dl><dl><dt>
@@ -4517,11 +4456,6 @@
         <dd>Get mean forcing</dd>
       </dl><dl><dt>
           
-          <code><a href="get_mean_forcing.cohort.html">get_mean_forcing(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>Get mean forcing</dd>
-      </dl><dl><dt>
-          
           <code><a href="set_mean_forcing.html">set_mean_forcing()</a></code> 
         </dt>
         <dd>Set mean forcing</dd>
@@ -4540,11 +4474,6 @@
           <code><a href="set_mean_forcing.eir.html">set_mean_forcing(<i>&lt;eir&gt;</i>)</a></code> 
         </dt>
         <dd>Set mean forcing</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_mean_forcing.cohort.html">set_mean_forcing(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>set mean forcing</dd>
       </dl></div><div class="section level2">
       
       <h3 id="get-and-set-for-seasonality">Get and Set for Seasonality<a class="anchor" aria-label="anchor" href="#get-and-set-for-seasonality"></a></h3>
@@ -4574,11 +4503,6 @@
       </dl><dl><dt>
           
           <code><a href="get_season.eir.html">get_season(<i>&lt;eir&gt;</i>)</a></code> 
-        </dt>
-        <dd>Get seasonal pattern</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_season.cohort.html">get_season(<i>&lt;cohort&gt;</i>)</a></code> 
         </dt>
         <dd>Get seasonal pattern</dd>
       </dl><dl><dt>
@@ -4623,11 +4547,6 @@
         <dd>Set phase</dd>
       </dl><dl><dt>
           
-          <code><a href="set_season_phase.cohort.html">set_season_phase(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>set phase</dd>
-      </dl><dl><dt>
-          
           <code><a href="set_season_bottom.html">set_season_bottom()</a></code> 
         </dt>
         <dd>Set bottom</dd>
@@ -4648,11 +4567,6 @@
         <dd>Set bottom</dd>
       </dl><dl><dt>
           
-          <code><a href="set_season_bottom.cohort.html">set_season_bottom(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>set bottom</dd>
-      </dl><dl><dt>
-          
           <code><a href="set_season_pw.html">set_season_pw()</a></code> 
         </dt>
         <dd>Set pw, a seasonality shape parameter</dd>
@@ -4669,11 +4583,6 @@
       </dl><dl><dt>
           
           <code><a href="set_season_pw.eir.html">set_season_pw(<i>&lt;eir&gt;</i>)</a></code> 
-        </dt>
-        <dd>Set pw, a seasonality shape parameter</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_season_pw.cohort.html">set_season_pw(<i>&lt;cohort&gt;</i>)</a></code> 
         </dt>
         <dd>Set pw, a seasonality shape parameter</dd>
       </dl></div><div class="section level2">
@@ -4709,11 +4618,6 @@
         <dd>Get the trend parameters</dd>
       </dl><dl><dt>
           
-          <code><a href="get_trend.cohort.html">get_trend(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>Get the trend parameters</dd>
-      </dl><dl><dt>
-          
           <code><a href="get_spline.html">get_spline()</a></code> 
         </dt>
         <dd>Get spline interpolation points</dd>
@@ -4739,11 +4643,6 @@
         <dd>Get spline interpolation points</dd>
       </dl><dl><dt>
           
-          <code><a href="get_spline_s.cohort.html">get_spline_s(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>Get spline interpolation points</dd>
-      </dl><dl><dt>
-          
           <code><a href="set_spline.html">set_spline()</a></code> 
         </dt>
         <dd>Set the interpolating points</dd>
@@ -4764,11 +4663,6 @@
         <dd>Set yy</dd>
       </dl><dl><dt>
           
-          <code><a href="set_spline.cohort.html">set_spline(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>set yy</dd>
-      </dl><dl><dt>
-          
           <code><a href="set_spline_y.html">set_spline_y()</a></code> 
         </dt>
         <dd>Set yy</dd>
@@ -4787,11 +4681,6 @@
           <code><a href="set_spline_y.eir.html">set_spline_y(<i>&lt;eir&gt;</i>)</a></code> 
         </dt>
         <dd>Set yy</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_spline_y.cohort.html">set_spline_y(<i>&lt;cohort&gt;</i>)</a></code> 
-        </dt>
-        <dd>set yy</dd>
       </dl></div><div class="section level2">
       <h2 id="new">New<a class="anchor" aria-label="anchor" href="#new"></a></h2>
       

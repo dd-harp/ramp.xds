@@ -129,24 +129,6 @@ dts_update.mosy <- function(t, y, xds_obj) {
   return(c(Lt, Mt))
 }
 
-#' @title Difference equation models for human cohorts
-#' @description Compute and update the state variables for
-#' a cohort
-#' @inheritParams dts_update
-#' @return a [vector] containing the vector of all state derivatives
-#' @export
-dts_update.cohort <- function(t, y, xds_obj) {
-
-  xds_obj <- xds_compute_terms(t, y, xds_obj)
-  
-  # state derivatives
-  XHt <- dts_update_XHt(t, y, xds_obj, 1)
-  if(xds_obj$nHosts > 1)
-    for(i in 2:xds_obj$nHosts)
-      XHt <- c(XHt, dts_update_XHt(t, y, xds_obj, i))
-
-  return(c(XHt))
-}
 
 #' @title Difference equation models for aquatic mosquito populations
 #' @description Compute and update the state variables for

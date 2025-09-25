@@ -22,7 +22,7 @@ get_H = function(xds_obj, i=1){
 get_XH_out = function(xds_obj, i=1){
   
   got = xds_obj$outputs$orbits$XH[[i]]
-  got$time = xds_obj$outputs$orbits$time
+  got$time = xds_obj$outputs$time
   
   return(got)
 }
@@ -52,7 +52,7 @@ get_PR <- function(xds_obj, method = "true", i=1) {
 #' @return the true PR 
 #' @export
 get_PR.true <- function(xds_obj, method= "true", i=1) {
-  XH <- get_XH(xds_obj, i)
+  XH <- get_XH_out(xds_obj, i)
   XH$true_pr
 }
 
@@ -62,7 +62,7 @@ get_PR.true <- function(xds_obj, method= "true", i=1) {
 #' @return none
 #' @export
 get_PR.pcr<- function(xds_obj, method = "pcr", i=1) {
-  XH <- get_XH(xds_obj, i)
+  XH <- get_XH_out(xds_obj, i)
   F_pfpr_by_pcr(XH, xds_obj$Xpar[[i]])
 } 
 
@@ -72,7 +72,7 @@ get_PR.pcr<- function(xds_obj, method = "pcr", i=1) {
 #' @return none
 #' @export
 get_PR.lm<- function(xds_obj, method = "lm", i=1) {
-  XH <- get_XH(xds_obj, i)
+  XH <- get_XH_out(xds_obj, i)
   F_pfpr_by_lm(XH, xds_obj$Xpar[[i]])
 }
 
@@ -82,6 +82,6 @@ get_PR.lm<- function(xds_obj, method = "lm", i=1) {
 #' @return none
 #' @export
 get_PR.rdt<- function(xds_obj, method = "rdt", i=1) {
-  XH <- get_XH(xds_obj, i)
+  XH <- get_XH_out(xds_obj, i)
   F_pfpr_by_rdt(XH, xds_obj$Xpar[[i]])
 }

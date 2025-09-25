@@ -71,7 +71,6 @@ reference:
   - xds_setup_mosy
   - xds_setup_aquatic
   - xds_setup_human
-  - xds_setup_cohort
   - xds_setup_eir
 - subtitle: Modules & Interfaces
   desc: Functions to set up Modules and Interfaces 
@@ -878,13 +877,6 @@ reference:
   - xds_compute_terms.full 
   - xds_compute_terms.human 
   - xds_compute_terms.mosy 
-- subtitle: Cohort Dynamics
-  contents:
-  - xds_solve_cohort
-  - xde_cohort_derivatives
-  - xde_cohort_desolve
-  - xde_cohort_desolve.dde
-  - xde_cohort_desolve.ode
 - subtitle: DTS Update
   contents:
   - dts_update
@@ -892,7 +884,6 @@ reference:
   - dts_update.aquatic
   - dts_update.mosy
   - dts_update.human
-  - dts_update.cohort
   - dts_update.eir
   - dts_update_Lt
   - dts_update_MYt
@@ -963,7 +954,6 @@ reference:
   - checkIt
   - shapeIt
   - xds_shrink
-  - xds_shrink.cohort
   - list_vars
   - xds_flatten
   - ode_to_dde
@@ -982,7 +972,7 @@ reference:
   - get_inits
   - get_last
   - get_H
-  - get_XH
+  - get_XH_out
   - get_PR
   - get_PR.true
   - get_PR.lm
@@ -1028,11 +1018,9 @@ reference:
   contents: 
   - update_F_season.Lambda 
   - update_F_season
-  - update_F_season.cohort 
   - update_F_season.eir 
   - update_F_trend.Lambda 
   - update_F_trend 
-  - update_F_trend.cohort 
   - update_F_trend.eir
   - show_season 
   - show_season.Lambda 
@@ -1050,12 +1038,10 @@ reference:
   - get_mean_forcing.none
   - get_mean_forcing.Lambda
   - get_mean_forcing.eir
-  - get_mean_forcing.cohort
   - set_mean_forcing
   - set_mean_forcing.none
   - set_mean_forcing.Lambda
   - set_mean_forcing.eir
-  - set_mean_forcing.cohort
 - subtitle: Get and Set for Seasonality 
   desc: |
     Utilities to change  
@@ -1064,7 +1050,6 @@ reference:
   - get_season.none
   - get_season.Lambda
   - get_season.eir
-  - get_season.cohort
   - get_season_phase
   - get_season_bottom
   - get_season_pw
@@ -1073,17 +1058,14 @@ reference:
   - set_season_phase.none
   - set_season_phase.Lambda
   - set_season_phase.eir
-  - set_season_phase.cohort
   - set_season_bottom
   - set_season_bottom.none
   - set_season_bottom.Lambda
   - set_season_bottom.eir
-  - set_season_bottom.cohort
   - set_season_pw
   - set_season_pw.none
   - set_season_pw.Lambda
   - set_season_pw.eir
-  - set_season_pw.cohort
 - subtitle: Get and Set for Spline Trend Functions
   desc: |
     Utilities to change the interpolation points
@@ -1092,23 +1074,19 @@ reference:
   - get_trend.none
   - get_trend.Lambda
   - get_trend.eir
-  - get_trend.cohort
   - get_spline
   - get_spline_s
   - get_spline_s.none
   - get_spline_s.Lambda
   - get_spline_s.eir
-  - get_spline_s.cohort
   - set_spline
   - set_spline.none
   - set_spline.Lambda
   - set_spline.eir
-  - set_spline.cohort
   - set_spline_y
   - set_spline_y.none
   - set_spline_y.Lambda
   - set_spline_y.eir
-  - set_spline_y.cohort
 - title: New  
   desc: Move  
   contents:   

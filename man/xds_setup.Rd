@@ -127,7 +127,7 @@ Advanced features must be configured later, including:
 }
 }
 \note{
-If the \strong{MY} Component is the \code{trivial} module, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_cohort}. Models for mosquito
+If the \strong{MY} Component is the \code{trivial} module, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_eir}. Models for mosquito
 ecology need not include states describing infection status (see \link{xds_setup_mosy}).
 }
 \seealso{

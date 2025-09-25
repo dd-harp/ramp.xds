@@ -30,7 +30,6 @@
 #'      - "aquatic" is for aquatic mosquito ecology models (see [xds_setup_aquatic()]), forced by a function describing egg laying
 #'      - "human" is for human/host infection dynamics(see [xds_setup_human()]), forced by the infective density of adult mosquitoes, \eqn{fqZ}
 #'      - "eir" is for human/host cohort infection dynamics (see [xds_setup_eir()]), forced by a function `F_eir`
-#'      - "cohort" is for human/host cohort infection dynamics (see [xds_setup_cohort()]), forced by a function `F_eir`
 #' 
 #' - **`forcing`** is set to "static"
 #'

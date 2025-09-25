@@ -54,7 +54,6 @@ in some form (possibly the trivial case) (see \code{\link[=xds_setup]{xds_setup(
 \item "aquatic" is for aquatic mosquito ecology models (see \code{\link[=xds_setup_aquatic]{xds_setup_aquatic()}}), forced by a function describing egg laying
 \item "human" is for human/host infection dynamics(see \code{\link[=xds_setup_human]{xds_setup_human()}}), forced by the infective density of adult mosquitoes, \eqn{fqZ}
 \item "eir" is for human/host cohort infection dynamics (see \code{\link[=xds_setup_eir]{xds_setup_eir()}}), forced by a function \code{F_eir}
-\item "cohort" is for human/host cohort infection dynamics (see \code{\link[=xds_setup_cohort]{xds_setup_cohort()}}), forced by a function \code{F_eir}
 }
 \item \strong{\code{forcing}} is set to "static"
 }

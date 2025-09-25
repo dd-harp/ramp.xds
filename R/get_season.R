@@ -104,15 +104,3 @@ get_season.Lambda = function(xds_obj, s=1){
 get_season.eir= function(xds_obj, s=1){
   xds_obj$EIRpar$season_par
 }
-
-#' @title Get seasonal pattern 
-#' 
-#' @description
-#' Get the parameters set the seasonal pattern
-#' 
-#' @inheritParams get_season
-#' 
-#' @export
-get_season.cohort = function(xds_obj, s=1){
-  xds_obj$EIRpar$season_par
-}
