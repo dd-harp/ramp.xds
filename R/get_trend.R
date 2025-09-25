@@ -60,19 +60,6 @@ get_trend.eir= function(xds_obj, s=1){
   return(xds_obj$EIRpar$trend_par)
 }
 
-#' @title Get the trend parameters 
-#' 
-#' @description
-#' Get the interpolating points 
-#' for a spline function.
-#' 
-#' @inheritParams get_trend
-#' 
-#' @export
-get_trend.cohort = function(xds_obj, s=1){
-  return(xds_obj$EIRpar$trend_par)
-}
-
 #' @title Get spline interpolation points 
 #' 
 #' @description
@@ -148,21 +135,6 @@ get_spline_s.Lambda = function(xds_obj, s=1){
 #' 
 #' @export
 get_spline_s.eir = function(xds_obj, s=1){
-  tt <- xds_obj$EIRpar$trend_par$tt
-  yy <- xds_obj$EIRpar$trend_par$yy
-  return(list(tt=tt, yy=yy))
-}
-
-#' @title Get spline interpolation points 
-#' 
-#' @description
-#' Return the 
-#' 
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' 
-#' @export
-get_spline_s.cohort = function(xds_obj, s=1){
   tt <- xds_obj$EIRpar$trend_par$tt
   yy <- xds_obj$EIRpar$trend_par$yy
   return(list(tt=tt, yy=yy))

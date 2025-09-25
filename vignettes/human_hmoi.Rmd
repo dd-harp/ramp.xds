@@ -129,8 +129,10 @@ xds_obj$EIRpar$eir <- as.vector(eir)
 xds_obj$EIRpar$scale <- 1 
 xds_obj$EIRpar$F_season <- F_season
 xds_obj$EIRpar$F_trend <- F_trend
+xds_obj$EIRpar$F_age <- F_flat
 xds_obj$EIRpar$season_par <- list() 
 xds_obj$EIRpar$trend_par<- list() 
+xds_obj$EIRpar$age_par<- list() 
 ```
 
 ```{r}

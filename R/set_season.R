@@ -97,22 +97,6 @@ set_season_bottom.eir = function(bottom, xds_obj, s=1, compile_F=TRUE){
   return(xds_obj)
 }
 
-#' @title set bottom 
-#' 
-#' @description
-#' Set the bottom for the eir seasonal pattern for 
-#' a `cohort` model 
-#' and return the **`ramp.xds`** model object
-#' 
-#' @inheritParams set_season_bottom
-#' 
-#' @export
-set_season_bottom.cohort = function(bottom, xds_obj, s=1, compile_F=TRUE){
-  stopifnot(length(xds_obj$EIRpar$season_par$bottom) == length(bottom))
-  xds_obj$EIRpar$season_par$bottom = bottom
-  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
-  return(xds_obj)
-}  
 
 
 #' @title Set phase 
@@ -186,22 +170,6 @@ set_season_phase.eir = function(phase, xds_obj, s=1, compile_F=TRUE){
   return(xds_obj)
 }
 
-#' @title set phase 
-#' 
-#' @description
-#' Set the phase for the eir seasonal pattern for 
-#' a `cohort` model 
-#' and return the **`ramp.xds`** model object
-#' 
-#' @inheritParams set_season_phase
-#' 
-#' @export
-set_season_phase.cohort = function(phase, xds_obj, s=1, compile_F=TRUE){
-  stopifnot(length(xds_obj$EIRpar$season_par$phase) == length(phase))
-  xds_obj$EIRpar$season_par$phase = phase
-  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
-  return(xds_obj)
-}  
 
 
 #' @title Set pw, a seasonality shape parameter 
@@ -274,25 +242,6 @@ set_season_pw.eir = function(pw, xds_obj, s=1, compile_F=TRUE){
   return(xds_obj)
 }
 
-#' @title Set pw, a seasonality shape parameter 
-#' 
-#' @description
-#' Set the pw for the eir seasonal pattern for 
-#' a `cohort` model 
-#' and return the **`ramp.xds`** model object
-#' 
-#' @inheritParams set_season_pw
-#' 
-#' @return a **`ramp.xds`** model object
-#' 
-#' @export
-set_season_pw.cohort = function(pw, xds_obj, s=1, compile_F=TRUE){
-  stopifnot(length(xds_obj$EIRpar$season_par$pw) == length(pw))
-  xds_obj$EIRpar$season_par$pw = pw
-  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
-  return(xds_obj)
-}  
-
 
 #' @title Update the seasonality function 
 #' 
@@ -336,16 +285,4 @@ update_F_season.eir = function(xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Update the seasonality function 
-#' 
-#' @description Update `F_season` 
-#' 
-#' @inheritParams update_F_season 
-#'  
-#' @return a **`ramp.xds`** model object
-#' 
-#' @export
-update_F_season.cohort = function(xds_obj, s=1){
-  xds_obj$EIRpar$F_season <- make_function(xds_obj$EIRpar$season_par)
-  return(xds_obj)
-}
+

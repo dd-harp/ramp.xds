@@ -19,7 +19,7 @@
 #' @export
 average_PR_true = function(xds_obj, i=1, members=NULL){
   if(is.null(members)) members = matrix(1, nrow=xds_obj$nStrata[i], ncol=1)
-  XH <- get_XH(xds_obj,i)
+  XH <- get_XH_out(xds_obj,i)
   Ht <- XH$H %*% members
   npos <- with(XH, true_pr*H) %*% members
   PR <- npos/Ht
@@ -47,7 +47,7 @@ average_PR_true = function(xds_obj, i=1, members=NULL){
 #' @export
 average_EIR = function(xds_obj, i=1, members=NULL){
   if(is.null(members)) members = matrix(1, nrow=xds_obj$nStrata[i], ncol=1)
-  XH <- get_XH(xds_obj,i)
+  XH <- get_XH_out(xds_obj,i)
   terms <- xds_obj$outputs$terms
   Ht <- XH$H %*% members
   fqZ <- (XH$H*terms$EIR) %*% members

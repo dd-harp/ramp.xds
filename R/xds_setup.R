@@ -21,7 +21,7 @@
 #'
 #' Advanced options can be configured after basic setup.
 #'
-#' @note If the **MY** Component is the `trivial` module, consider using [xds_setup_aquatic] or [xds_setup_human] or [xds_setup_cohort]. Models for mosquito
+#' @note If the **MY** Component is the `trivial` module, consider using [xds_setup_aquatic] or [xds_setup_human] or [xds_setup_eir]. Models for mosquito
 #' ecology need not include states describing infection status (see [xds_setup_mosy]).
 #' @details
 #' 1. Using the basic structural parameters, a basic template is created by [make_xds_object_template] with
@@ -283,9 +283,9 @@ xds_setup_aquatic = function(xds = 'ode',
 #' **MY** Component module.
 #'
 #' To study human cohort dynamics by passing a function that computes the daily EIR,
-#' consider using [xds_setup_cohort].
+#' consider using [xds_setup_eir].
 #'
-#' @seealso [xds_setup] and [xds_setup_cohort]
+#' @seealso [xds_setup] and [xds_setup_eir]
 #'
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname a character string defining a **X** Component module
@@ -354,110 +354,6 @@ xds_setup_human = function(Xname = "SIS",
   return(xds_obj)
 }
 
-#' @title Build a Model of Human / Host Cohort Dynamics
-#' @description 
-#' \loadmathjax
-#' 
-#' A modified version of [xds_setup] to setup up studies of cohort
-#' dynamics.
-#'
-#' The **`xds`** object defines `frame = class(frame) = 'cohort'` but there
-#' is no `cohort` case for [xds_solve]. Instead, cohort
-#' dynamics are studied using [xds_solve_cohort], which was designed
-#' to compare the outcomes for cohorts of different ages when exposure is
-#' changing.
-#'
-#' The interface includes options to configure a function
-#' describing `F_eir` as a function of time, with seasonal components
-#' and a trend. Exposure in a cohort is a function of its age, including
-#' a function that modifies exposure by age.
-#'
-#' @seealso [xds_setup] and [xds_setup_human] and [xds_solve_cohort]
-#'
-#' @param eir is the entomological inoculation rate
-#' @param F_season a function describing a seasonal pattern over time
-#' @param season_par parameters to configure a seasonality function using [make_function]
-#' @param F_trend a function describing a temporal trend over time
-#' @param trend_par parameters to configure a trends function using [make_function]
-#' @param F_age a assigning a biting weight by age
-#' @param age_par parameters to configure an age weights function using [make_function]
-#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
-#' @param Xname is a character string specifying an **X** Component module
-#' @param XHoptions a list to configure the **X** Component module
-#' @param HPop is the number of humans in each stratum
-#' @param searchB is a vector of search weights for blood feeding
-#' @param model_name is a name for the model (arbitrary)
-#' @return an **`xds`** object
-#' @export
-xds_setup_cohort = function(eir=1,
-                            F_season = F_flat, season_par = list(),
-                            F_trend = F_flat, trend_par = list(),
-                            F_age = F_flat, age_par = list(),
-                            xds = 'ode',
-
-                            # Dynamical Components
-                            Xname = "SIS",
-                            XHoptions = list(),
-
-                            # Model Structure
-                            HPop=1000,
-                            searchB = 1,
-
-                            # Human Strata / Options
-                            model_name = "unnamed"
-){
-  nPatches = length(HPop)
-  residence = rep(1, length(HPop))
-  membership = 1
-  xds_obj <- make_xds_object_template(xds, 'cohort', nPatches, membership, residence)
-
-  xds_obj$EIRpar <- list()
-  xds_obj$EIRpar$eir <- eir
-  xds_obj$EIRpar$scale <- 1
-  
-  xds_obj$EIRpar$F_season <- F_season
-  xds_obj$EIRpar$season_par <- season_par
-  if(length(season_par)>0){
-    xds_obj$EIRpar$F_season <- make_function(season_par)
-  } 
-  
-  xds_obj$EIRpar$F_trend <- F_trend
-  xds_obj$EIRpar$trend_par <- trend_par
-  if(length(trend_par)>0){
-    xds_obj$EIRpar$F_trend <- make_function(trend_par) 
-  }
-  
-  xds_obj$EIRpar$F_age <- F_age
-  xds_obj$EIRpar$age_par <- age_par
-  if(length(age_par)>0){
-    xds_obj$EIRpar$F_age <- make_function(age_par) 
-  } 
-
-  # Aquatic Mosquito Dynamics
-  xds_obj       <- setup_L_obj("trivial", xds_obj, 1, list())
-  xds_obj       <- setup_L_inits(xds_obj, 1)
-
-  # Adult Mosquito Dynamics
-  xds_obj           <- setup_MY_obj("trivial", xds_obj, 1, list())
-
-  # Human Dynamics
-  xds_obj$Xname <- Xname
-  xds_obj       <- setup_XH_obj(Xname, xds_obj,  1, XHoptions)
-  xds_obj       <- setup_XH_inits(xds_obj, HPop, 1, XHoptions)
-
-  xds_obj = make_indices(xds_obj)
-
-  wts        <- checkIt(searchB, xds_obj$nStrata)
-  xds_obj       <- change_blood_search_weights(wts, xds_obj, 1, 1)
-
-  # Probably Not Necessary
-  y0 <- as.vector(unlist(get_inits(xds_obj)))
-  xds_obj <- BloodFeeding(0, y0, xds_obj)
-
-  xds_obj$model_name <- model_name
-
-  return(xds_obj)
-}
 
 #' @title Build a Model for a single Human / Host Epidemiology forced by the EIR
 #' 
@@ -474,11 +370,10 @@ xds_setup_cohort = function(eir=1,
 #'
 #' The interface includes options to configure a function
 #' describing `F_eir` as a function of time, with seasonal components
-#' and a trend. Exposure in a cohort is a function of its age, including
-#' a function that modifies exposure by age. Models set up 
-#' with `xds_setup_eir` are like models set up with 
-#' [xds_setup_cohort], but they lack a function to model exposure by 
-#' age.  
+#' and a trend. 
+#' 
+#' This can be used to model a cohort as it ages; 
+#' a function is set up to modify exposure by age. 
 #'
 #' @seealso [xds_setup] and [xds_setup_human] 
 #'
@@ -487,6 +382,8 @@ xds_setup_cohort = function(eir=1,
 #' @param F_season a function describing a seasonal pattern over time
 #' @param trend_par parameters to configure a trends function using [make_function]
 #' @param F_trend a function describing a temporal trend over time
+#' @param F_age a assigning a biting weight by age
+#' @param age_par parameters to configure an age weights function using [make_function]
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname is a character string specifying an **X** Component module
 #' @param XHoptions a list to configure the **X** Component module
@@ -500,6 +397,8 @@ xds_setup_eir = function(eir=1,
                          F_season = F_flat, 
                          trend_par = list(),
                          F_trend = F_flat, 
+                         age_par = list(),
+                         F_age = F_flat, 
                          xds = 'ode',
 
                          # Dynamical Components
@@ -517,6 +416,7 @@ xds_setup_eir = function(eir=1,
   residence = rep(1, length(HPop))
   membership = 1
   xds_obj <- make_xds_object_template(xds, 'eir', nPatches, membership, residence)
+  xds_obj$forced_by = xds_obj$frame 
 
   xds_obj$EIRpar <- list()
   xds_obj$EIRpar$eir <- eir
@@ -531,6 +431,11 @@ xds_setup_eir = function(eir=1,
   if(length(trend_par)>0){
     xds_obj$EIRpar$F_trend <- make_function(trend_par) 
   }
+  xds_obj$EIRpar$F_age <- F_age
+  xds_obj$EIRpar$age_par <- age_par
+  if(length(age_par)>0){
+    xds_obj$EIRpar$F_age <- make_function(age_par) 
+  }
 
   # Aquatic Mosquito Dynamics
   xds_obj       <- setup_L_obj("trivial", xds_obj, 1, list())
@@ -543,6 +448,8 @@ xds_setup_eir = function(eir=1,
   xds_obj$Xname <- Xname
   xds_obj       <- setup_XH_obj(Xname, xds_obj,  1, XHoptions)
   xds_obj       <- setup_XH_inits(xds_obj, HPop, 1, XHoptions)
+  
+  xds_obj$forced_by = xds_obj$frame 
 
   xds_obj       = make_indices(xds_obj)
 

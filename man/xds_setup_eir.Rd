@@ -10,6 +10,8 @@ xds_setup_eir(
   F_season = F_flat,
   trend_par = list(),
   F_trend = F_flat,
+  age_par = list(),
+  F_age = F_flat,
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
@@ -28,6 +30,10 @@ xds_setup_eir(
 \item{trend_par}{parameters to configure a trends function using \link{make_function}}
 
 \item{F_trend}{a function describing a temporal trend over time}
+
+\item{age_par}{parameters to configure an age weights function using \link{make_function}}
+
+\item{F_age}{a assigning a biting weight by age}
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
@@ -56,11 +62,10 @@ to dispatch \link{xde_derivatives.eir} or \link{dts_update.eir}
 
 The interface includes options to configure a function
 describing \code{F_eir} as a function of time, with seasonal components
-and a trend. Exposure in a cohort is a function of its age, including
-a function that modifies exposure by age. Models set up
-with \code{xds_setup_eir} are like models set up with
-\link{xds_setup_cohort}, but they lack a function to model exposure by
-age.
+and a trend.
+
+This can be used to model a cohort as it ages;
+a function is set up to modify exposure by age.
 }
 \seealso{
 \link{xds_setup} and \link{xds_setup_human}

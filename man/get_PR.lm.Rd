@@ -4,10 +4,10 @@
 \alias{get_PR.lm}
 \title{Get the \emph{Pf}PR from a Malaria Model}
 \usage{
-\method{get_PR}{lm}(pars, method = "lm", i = 1)
+\method{get_PR}{lm}(xds_obj, method = "lm", i = 1)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 
 \item{method}{the method used for computing \emph{Pf}PR}
 

@@ -60,8 +60,8 @@ interface, including \link{Exposure}, in the same way as a model with a non-triv
 \strong{MY} Component module.
 
 To study human cohort dynamics by passing a function that computes the daily EIR,
-consider using \link{xds_setup_cohort}.
+consider using \link{xds_setup_eir}.
 }
 \seealso{
-\link{xds_setup} and \link{xds_setup_cohort}
+\link{xds_setup} and \link{xds_setup_eir}
 }

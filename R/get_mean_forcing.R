@@ -58,16 +58,3 @@ get_mean_forcing.eir = function(xds_obj){
   return(xds_obj$EIRpar$eir)  
 }
 
-#' @title Get mean forcing 
-#' 
-#' @description
-#' Get the mean daily EIR for 
-#' a `cohort` model
-#' 
-#' @param xds_obj an **`xds`** model object
-#' 
-#' @export
-get_mean_forcing.cohort = function(xds_obj){
-  return(xds_obj$EIRpar$cohort)  
-}
-

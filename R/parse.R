@@ -157,7 +157,7 @@ parse_XH_terms <- function(xds_obj, i=1) {
     vars = get_XH_vars(y_ix, xds_obj, i)
     eir = rbind(eir, xds_obj$terms$EIR[[i]])
     foi = rbind(foi, xds_obj$terms$FoI[[i]])
-    x   = rbind(x, F_prevalence(vars, xds_obj$XH_obj[[i]]))
+    true_pr = rbind(x, F_prevalence(vars, xds_obj$XH_obj[[i]]))
     ni  = rbind(ni, F_ni(vars, xds_obj$XH_obj[[i]]))
   }
   xds_obj$outputs$orbits$XH[[i]]$eir = eir

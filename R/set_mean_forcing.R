@@ -63,20 +63,4 @@ set_mean_forcing.eir = function(X, xds_obj, s=1){
   return(xds_obj) 
 }
 
-#' @title set mean forcing 
-#' 
-#' @description
-#' Set the mean daily EIR for a `cohort` model 
-#' 
-#' @inheritParams set_mean_forcing
-#' 
-#' @return a **`ramp.xds`** model object
-#' 
-#' @export
-set_mean_forcing.cohort = function(X, xds_obj, s=1){
-  stopifnot(length(xds_obj$EIRpar$eir) == length(X))
-  xds_obj$EIRpar$eir = X
-  return(xds_obj) 
-}
-
 

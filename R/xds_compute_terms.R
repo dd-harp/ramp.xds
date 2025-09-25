@@ -149,7 +149,7 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
 #' @export
 xds_compute_terms.eir <- function(t, y, xds_obj) {
   # EIR: entomological inoculation rate trace
-  xds_obj$terms$EIR[[1]] <- with(xds_obj$EIRpar, eir*F_season(t)*F_trend(t)) 
+  xds_obj$terms$EIR[[1]] <- with(xds_obj$EIRpar, eir*F_season(t)*F_trend(t)*F_age(t)) 
   # FoI: force of infection
   xds_obj <- Exposure(t, y, xds_obj)
   return(xds_obj)  
