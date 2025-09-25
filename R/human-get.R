@@ -1,23 +1,29 @@
 
 #' @title Get the initial values as a vector
-#' @param pars an **`xds`** object
+#' 
+#' @param xds_obj an **`xds`** object
 #' @param i the human species index
+#' 
 #' @return y a [numeric] vector assigned the class "dynamic"
 #' @export
-get_H = function(pars, i=1){
-  y = get_inits(pars, flatten=TRUE)
-  F_H(0, y, pars, i)
+get_H = function(xds_obj, i=1){
+  y = get_inits(xds_obj, flatten=TRUE)
+  F_H(0, y, xds_obj, i)
 }
 
 #' @title Get **XH** outputs
-#' @param pars an **`xds`** object
+#' 
+#' @param xds_obj an **`xds`** object
 #' @param i the host species index
+#' 
 #' @return the orbits for the **XH** component 
+#' 
 #' @export
-get_XH = function(pars, i=1){
-  got = pars$outputs$orbits$XH[[i]]
-  got$time = pars$outputs$orbits$time
-  got$eir = pars$outputs$terms$EIR[[i]]
+get_XH_out = function(xds_obj, i=1){
+  
+  got = xds_obj$outputs$orbits$XH[[i]]
+  got$time = xds_obj$outputs$orbits$time
+  
   return(got)
 }
 
@@ -29,11 +35,11 @@ get_XH = function(pars, i=1){
 #' + `rdt` for the *Pf*PR by RDT 
 #' + `pcr` for the *Pf*PR by PCR 
 #' @param method the method used for computing *Pf*PR 
-#' @param pars an **`xds`** object
+#' @param xds_obj an **`xds`** object
 #' @param i the host species index
 #' @return none
 #' @export
-get_PR <- function(pars, method = "true", i=1) {
+get_PR <- function(xds_obj, method = "true", i=1) {
   class(method) = method
   UseMethod("get_PR", method)
 }
@@ -45,8 +51,8 @@ get_PR <- function(pars, method = "true", i=1) {
 #' 
 #' @return the true PR 
 #' @export
-get_PR.true <- function(pars, method= "true", i=1) {
-  XH <- get_XH(pars, i)
+get_PR.true <- function(xds_obj, method= "true", i=1) {
+  XH <- get_XH(xds_obj, i)
   XH$true_pr
 }
 
@@ -55,9 +61,9 @@ get_PR.true <- function(pars, method= "true", i=1) {
 #' @inheritParams get_PR 
 #' @return none
 #' @export
-get_PR.pcr<- function(pars, method = "pcr", i=1) {
-  XH <- get_XH(pars, i)
-  F_pfpr_by_pcr(XH, pars$Xpar[[i]])
+get_PR.pcr<- function(xds_obj, method = "pcr", i=1) {
+  XH <- get_XH(xds_obj, i)
+  F_pfpr_by_pcr(XH, xds_obj$Xpar[[i]])
 } 
 
 #' @title Get the *Pf*PR from a Malaria Model 
@@ -65,9 +71,9 @@ get_PR.pcr<- function(pars, method = "pcr", i=1) {
 #' @inheritParams get_PR 
 #' @return none
 #' @export
-get_PR.lm<- function(pars, method = "lm", i=1) {
-  XH <- get_XH(pars, i)
-  F_pfpr_by_lm(XH, pars$Xpar[[i]])
+get_PR.lm<- function(xds_obj, method = "lm", i=1) {
+  XH <- get_XH(xds_obj, i)
+  F_pfpr_by_lm(XH, xds_obj$Xpar[[i]])
 }
 
 #' @title Get the *Pf*PR from a Malaria Model 
@@ -75,7 +81,7 @@ get_PR.lm<- function(pars, method = "lm", i=1) {
 #' @inheritParams get_PR 
 #' @return none
 #' @export
-get_PR.rdt<- function(pars, method = "rdt", i=1) {
-  XH <- get_XH(pars, i)
-  F_pfpr_by_rdt(XH, pars$Xpar[[i]])
+get_PR.rdt<- function(xds_obj, method = "rdt", i=1) {
+  XH <- get_XH(xds_obj, i)
+  F_pfpr_by_rdt(XH, xds_obj$Xpar[[i]])
 }

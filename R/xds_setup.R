@@ -517,6 +517,7 @@ xds_setup_eir = function(eir=1,
   residence = rep(1, length(HPop))
   membership = 1
   xds_obj <- make_xds_object_template(xds, 'eir', nPatches, membership, residence)
+  xds_obj$forced_by = xds_obj$frame 
 
   xds_obj$EIRpar <- list()
   xds_obj$EIRpar$eir <- eir
@@ -543,6 +544,8 @@ xds_setup_eir = function(eir=1,
   xds_obj$Xname <- Xname
   xds_obj       <- setup_XH_obj(Xname, xds_obj,  1, XHoptions)
   xds_obj       <- setup_XH_inits(xds_obj, HPop, 1, XHoptions)
+  
+  xds_obj$forced_by = xds_obj$frame 
 
   xds_obj       = make_indices(xds_obj)
 

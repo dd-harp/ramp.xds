@@ -4,10 +4,10 @@
 \alias{get_H}
 \title{Get the initial values as a vector}
 \usage{
-get_H(pars, i = 1)
+get_H(xds_obj, i = 1)
 }
 \arguments{
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 
 \item{i}{the human species index}
 }

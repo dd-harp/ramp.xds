@@ -7,7 +7,7 @@ Authors@R: c(
       person("Sean L.", "Wu", email = "slwood89@gmail.com", role = "aut", comment = c(ORCID = "0000-0002-5781-9493"))
     )
 Description: A computational tool to set up, solve, analyze, and visualize dynamical systems models 
-             to support simulation-based analytics for malaria and other mosquito-borne pathogens. 
+             to support research and simulation-based analytics for malaria and other mosquito-borne pathogens. 
              Supported systems currently include ordinary and delay differential equations and discrete time systems. 
              The software implements a mathematical framework described in Wu et al. (2022) <doi:10.1101/2022.11.07.22282044>.
 License: MIT + file LICENSE

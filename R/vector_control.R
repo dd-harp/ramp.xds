@@ -20,7 +20,7 @@ setup_vector_control_object = function(xds_obj){
   vector_control$name <- "Junction: Vector Control" 
   vector_control$ports <- "Ports: IRS, Bed Nets, LSM, Area Spraying (see ramp.control)" 
   vector_control$domore <- "see `ramp.control`" 
-  class(vector_control) <- 'none'
+  class(vector_control) = "none"
   xds_obj$vector_control_obj <- vector_control
   return(xds_obj)
 }
