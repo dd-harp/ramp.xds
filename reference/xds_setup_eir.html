@@ -13,11 +13,9 @@ The xds object defines frame = class(frame) = 'eir'
 to dispatch xde_derivatives.eir or dts_update.eir
 The interface includes options to configure a function
 describing F_eir as a function of time, with seasonal components
-and a trend. Exposure in a cohort is a function of its age, including
-a function that modifies exposure by age. Models set up
-with xds_setup_eir are like models set up with
-xds_setup_cohort, but they lack a function to model exposure by
-age."><meta property="og:description" content="
+and a trend.
+This can be used to model a cohort as it ages;
+a function is set up to modify exposure by age."><meta property="og:description" content="
 A modified version of xds_setup to setup up
 studies of malaria epidemiology, defined in a narrow sense, to
 examine patterns in populations forced by the EIR.
@@ -25,11 +23,9 @@ The xds object defines frame = class(frame) = 'eir'
 to dispatch xde_derivatives.eir or dts_update.eir
 The interface includes options to configure a function
 describing F_eir as a function of time, with seasonal components
-and a trend. Exposure in a cohort is a function of its age, including
-a function that modifies exposure by age. Models set up
-with xds_setup_eir are like models set up with
-xds_setup_cohort, but they lack a function to model exposure by
-age."></head><body>
+and a trend.
+This can be used to model a cohort as it ages;
+a function is set up to modify exposure by age."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -37,7 +33,7 @@ age."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,11 +94,9 @@ examine patterns in populations forced by the EIR.</p>
 to dispatch <a href="xde_derivatives.eir.html">xde_derivatives.eir</a> or <a href="dts_update.eir.html">dts_update.eir</a></p>
 <p>The interface includes options to configure a function
 describing <code>F_eir</code> as a function of time, with seasonal components
-and a trend. Exposure in a cohort is a function of its age, including
-a function that modifies exposure by age. Models set up
-with <code>xds_setup_eir</code> are like models set up with
-<a href="xds_setup_cohort.html">xds_setup_cohort</a>, but they lack a function to model exposure by
-age.</p>
+and a trend.</p>
+<p>This can be used to model a cohort as it ages;
+a function is set up to modify exposure by age.</p>
     </div>
 
     <div class="section level2">
@@ -113,6 +107,8 @@ age.</p>
 <span>  F_season <span class="op">=</span> <span class="va">F_flat</span>,</span>
 <span>  trend_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  F_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  age_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  F_age <span class="op">=</span> <span class="va">F_flat</span>,</span>
 <span>  xds <span class="op">=</span> <span class="st">"ode"</span>,</span>
 <span>  Xname <span class="op">=</span> <span class="st">"SIS"</span>,</span>
 <span>  XHoptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -144,6 +140,14 @@ age.</p>
 
 <dt id="arg-f-trend">F_trend<a class="anchor" aria-label="anchor" href="#arg-f-trend"></a></dt>
 <dd><p>a function describing a temporal trend over time</p></dd>
+
+
+<dt id="arg-age-par">age_par<a class="anchor" aria-label="anchor" href="#arg-age-par"></a></dt>
+<dd><p>parameters to configure an age weights function using <a href="make_function.html">make_function</a></p></dd>
+
+
+<dt id="arg-f-age">F_age<a class="anchor" aria-label="anchor" href="#arg-f-age"></a></dt>
+<dd><p>a assigning a biting weight by age</p></dd>
 
 
 <dt id="arg-xds">xds<a class="anchor" aria-label="anchor" href="#arg-xds"></a></dt>
