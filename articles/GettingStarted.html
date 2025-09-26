@@ -98,20 +98,29 @@
 
     
     
+<p>This vignette gives a basic introduction to
+<strong><code>ramp.xds</code></strong> and a quick demonstration.</p>
+<ul>
+<li><p>How to install <strong><code>ramp.xds</code></strong></p></li>
+<li>
+<p>A demonstration:</p>
+<ul>
+<li><p>Set up a model</p></li>
+<li><p>Solve it</p></li>
+</ul>
+</li>
+</ul>
 <p>Next: <a href="BasicSetup.html">Basic Setup</a>.</p>
 <p>Additional documentation is available in the <a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong>
 Project</a> website.</p>
 <hr>
-<div class="section level2">
-<h2 id="section"></h2>
 <p><strong><code>ramp.xds</code></strong> was developed to reduce the
 costs of building, solving, analyzing, and using models describing the
 epidemiology, transmission dynamics and control of malaria and other
-mosquito-transmitted pathogens. This vignette gives a demonstration and
-a basic introduction.</p>
-<div class="section level3">
-<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h3>
+mosquito-transmitted pathogens.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>The software was developed in RStudio. To download the R package, run
 these commands:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -128,9 +137,9 @@ and <a href="https://dd-harp.github.io/ramp.demog/" class="external-link"><stron
 For more information, see the <a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong>
 Project</a> website.</p>
 </div>
-<div class="section level3">
-<h3 id="demo">Demo<a class="anchor" aria-label="anchor" href="#demo"></a>
-</h3>
+<div class="section level2">
+<h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
+</h2>
 <p><strong><code>ramp.xds</code></strong> makes it easy to build and use
 models for the transmission dynamics and control of malaria or other
 mosquito-borne pathogens. Model building in
@@ -141,12 +150,10 @@ arguments returns a fully configured model with all the default
 settings.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>The object <code>model</code> returned by <code><a href="../reference/xds_setup.html">xds_setup()</a></code> is
-called a <strong>xds model</strong> object: it is a fully defined model
-that can be solved by <code><a href="../reference/xds_solve.html">xds_solve()</a></code>.</p>
-<div class="section level4">
-<h4 id="defaults">Defaults<a class="anchor" aria-label="anchor" href="#defaults"></a>
-</h4>
+<p>The object returned by <code><a href="../reference/xds_setup.html">xds_setup()</a></code> is called a
+<strong>xds model</strong> object: it is a fully defined model that can
+be solved by <code><a href="../reference/xds_solve.html">xds_solve()</a></code>. Here, called it
+<code>model.</code></p>
 <p>The arguments are stored and can be easily retrieved. The name of the
 module for human / host infection and immune dynamics is stored as
 <code>Xname.</code> The default module is the <code>SIS</code>
@@ -257,9 +264,9 @@ passing a named list of values to <code>Loptions</code> in
 <code>xds_setup().</code> After setup, the <code>change_L_pars</code>
 works in the same way as the other <code>change_</code> functions.</p>
 </div>
-<div class="section level4">
-<h4 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
-</h4>
+<div class="section level2">
+<h2 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
+</h2>
 <p>After setting up, <code>model</code> has an empty placeholder for
 outputs:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
@@ -329,9 +336,9 @@ replaced. If the outputs need to be saved for future analyses, the user
 will probably have to write a wrapper function that extracts and saves
 it.</p>
 </div>
-<div class="section level4">
-<h4 id="parsing">Parsing<a class="anchor" aria-label="anchor" href="#parsing"></a>
-</h4>
+<div class="section level2">
+<h2 id="outputs">Outputs<a class="anchor" aria-label="anchor" href="#outputs"></a>
+</h2>
 <p>To make it easy to deal with the outputs, the dependent variables are
 parsed and returned in named lists. <code>xde_solve()</code> also
 computes some standard <em>terms</em> that are likely to be of
@@ -345,9 +352,9 @@ a set of standard outputs without delving into the details.</p>
 <span><span class="co">## [2,] 0.0002622311</span></span>
 <span><span class="co">## [3,] 0.0002412851</span></span></code></pre>
 </div>
-<div class="section level4">
-<h4 id="visualizing">Visualizing<a class="anchor" aria-label="anchor" href="#visualizing"></a>
-</h4>
+<div class="section level2">
+<h2 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
+</h2>
 <p><strong><code>ramp.xds</code></strong> includes functions to plot
 standard outputs:</p>
 <ul>
@@ -378,10 +385,9 @@ in the human / host population</p></li>
 </p>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="trivial-models-and-trace-functions">Trivial Models and Trace Functions<a class="anchor" aria-label="anchor" href="#trivial-models-and-trace-functions"></a>
-</h3>
+<div class="section level2">
+<h2 id="trivial-models-and-trace-functions">Trivial Models and Trace Functions<a class="anchor" aria-label="anchor" href="#trivial-models-and-trace-functions"></a>
+</h2>
 <p>The software was designed to be fully modular, so that any module for
 one dynamical component can be replaced with another. The models
 included in <strong><code>ramp.xds</code></strong> are just enough to
@@ -438,7 +444,6 @@ from solving it are available, and we can use a function
 <strong>Figure 2:</strong> Outputs with Seasonal Forced Emergence using
 a Trace Function
 </p>
-</div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

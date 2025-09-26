@@ -71,7 +71,16 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_XH_obj_SIS</span><span class="op">(</span><span class="va">nStrata</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, b <span class="op">=</span> <span class="fl">0.55</span>, r <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">180</span>, c <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_XH_obj_SIS</span><span class="op">(</span></span>
+<span>  <span class="va">nStrata</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  b <span class="op">=</span> <span class="fl">0.55</span>,</span>
+<span>  r <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">180</span>,</span>
+<span>  c <span class="op">=</span> <span class="fl">0.15</span>,</span>
+<span>  d_lm <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<span>  d_rdt <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<span>  d_pcr <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -96,6 +105,18 @@
 
 <dt id="arg-c">c<a class="anchor" aria-label="anchor" href="#arg-c"></a></dt>
 <dd><p>transmission probability (efficiency) from human to mosquito</p></dd>
+
+
+<dt id="arg-d-lm">d_lm<a class="anchor" aria-label="anchor" href="#arg-d-lm"></a></dt>
+<dd><p>detection by light microscopy</p></dd>
+
+
+<dt id="arg-d-rdt">d_rdt<a class="anchor" aria-label="anchor" href="#arg-d-rdt"></a></dt>
+<dd><p>detection by RDT</p></dd>
+
+
+<dt id="arg-d-pcr">d_pcr<a class="anchor" aria-label="anchor" href="#arg-d-pcr"></a></dt>
+<dd><p>detection by pcr</p></dd>
 
 </dl></div>
     <div class="section level2">
