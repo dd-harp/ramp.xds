@@ -311,13 +311,13 @@ get_MY_vars.SI <- function(y, xds_obj, s){
 #' @return a [list]
 #' @export
 parse_MY_orbits.SI <- function(outputs, xds_obj, s) {
-  with(xds_obj$MY_obj[[s]]$ix,{
-    M = outputs[,M_ix]
-    Y = outputs[,Y_ix]
-    Z = Y*0
+  with(xds_obj$MY_obj[[s]],{
+    M = outputs[,ix$M_ix]
+    Y = outputs[,ix$Y_ix]
+    Z = t(Upsilon %*% t(Y))
     y = Y/M
     z = Z/M
-    return(list(M=M, Z=Z, Y=Y, y=y, z=z))
+    return(list(M=M, Y=Y, Z=Z, y=y, z=z))
 })}
 
 
