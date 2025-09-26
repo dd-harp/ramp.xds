@@ -239,7 +239,7 @@ make_XH_inits_SIS = function(nStrata, H, options=list(), I=1){
 #' @export
 change_XH_inits.SIS <- function(xds_obj, i=1, options=list()) {
   with(get_XH_inits(xds_obj, i), with(options,{
-    xds_obj$Xinits[[i]]$I = I
+    xds_obj$XH_obj[[i]]$inits$I = I
     return(xds_obj)
   }))}
 
@@ -304,9 +304,7 @@ F_prevalence.SIS <- function(vars, XH_obj) {
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_ni.SIS <- function(vars, XH_obj) {
-  return(with(vars,with(XH_obj, 
-                        c*I/H 
-  )))}
+  return(with(vars,with(XH_obj, c*I/H)))}
 
 #' @title Compute the HTC for the SIS model
 #' @description Implements [HTC] for the SIS model with demography.
@@ -314,11 +312,7 @@ F_ni.SIS <- function(vars, XH_obj) {
 #' @return a [numeric] vector
 #' @export
 HTC.SIS <- function(xds_obj, i) {
-  with(xds_obj$XH_obj[[i]],
-       return(c/r)
-  )
-}
-
+  with(xds_obj$XH_obj[[i]], return(c/r))}
 
 #' @title The **XH** Module Skill Set 
 #' 

@@ -66,7 +66,7 @@ xds_plot_PR = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
   
   if(add==FALSE){
     with(get_XH_out(xds_obj, i),
-      plot(time, true_pr, type = "n", ylim = c(0,1),
+      plot(time, 0*time, type = "n", ylim = range(0,true_pr),
            ylab = "Prevalence", xlab = "Time")
   )}
   
@@ -90,7 +90,7 @@ xds_lines_PR = function(xds_obj, i, clrs="black", llty=1){
   
   with(get_XH_out(xds_obj, i),{
     if(n==1) lines(time, true_pr, col=clrs, lty = llty)
-    else for(j in 1:n) lines(time, true_pr[,j], col=clrs[j], lty = llty[j])
+    if(n>1) for(j in 1:n) lines(time, true_pr[,j], col=clrs[j], lty = llty[j])
 })}
 
 
