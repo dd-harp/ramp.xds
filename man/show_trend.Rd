@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_trend.R
 \name{show_trend}
 \alias{show_trend}
-\title{Plot the temporal trend}
+\title{Plot the Temporal Trend}
 \usage{
 show_trend(xds_obj, tm = seq(0, 3650, by = 10), add = FALSE)
 }

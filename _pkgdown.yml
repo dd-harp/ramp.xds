@@ -142,7 +142,6 @@ reference:
   - xds_plot_PR
   - xds_lines_PR
   - xds_plot_EIR
-  - xds_plot_aEIR
   - xds_lines_EIR
   - xds_plot_M
   - xds_lines_M
@@ -175,9 +174,9 @@ reference:
   - change_MY_pars
   - change_L_pars
   - change_H
-  - set_mean_forcing
-  - set_season
-  - set_trend
+  - change_mean_forcing
+  - change_season
+  - change_trend
   - change_TimeSpent_matrix
   - change_K_matrix
 - subtitle: Show
@@ -344,6 +343,7 @@ reference:
   - F_pfpr_by_rdt
   - F_pfpr_by_pcr
   - xds_plot_X
+  - xds_plot_XH
   - steady_state_X
   - steady_state_XH
 - subtitle: trivial
@@ -932,8 +932,9 @@ reference:
   desc: |
     Basic visualization of the transmission terms
   contents:
+  - get_XH_out
+  - get_MY_out
   - xds_plot_EIR
-  - xds_plot_aEIR
   - xds_lines_EIR
   - xds_plot_PR
   - xds_lines_PR
@@ -972,7 +973,6 @@ reference:
   - get_inits
   - get_last
   - get_H
-  - get_XH_out
   - get_PR
   - get_PR.true
   - get_PR.lm
@@ -1038,10 +1038,10 @@ reference:
   - get_mean_forcing.none
   - get_mean_forcing.Lambda
   - get_mean_forcing.eir
-  - set_mean_forcing
-  - set_mean_forcing.none
-  - set_mean_forcing.Lambda
-  - set_mean_forcing.eir
+  - change_mean_forcing
+  - change_mean_forcing.none
+  - change_mean_forcing.Lambda
+  - change_mean_forcing.eir
 - subtitle: Get and Set for Seasonality 
   desc: |
     Utilities to change  
@@ -1053,19 +1053,19 @@ reference:
   - get_season_phase
   - get_season_bottom
   - get_season_pw
-  - set_season
-  - set_season_phase
-  - set_season_phase.none
-  - set_season_phase.Lambda
-  - set_season_phase.eir
-  - set_season_bottom
-  - set_season_bottom.none
-  - set_season_bottom.Lambda
-  - set_season_bottom.eir
-  - set_season_pw
-  - set_season_pw.none
-  - set_season_pw.Lambda
-  - set_season_pw.eir
+  - change_season
+  - change_season_phase
+  - change_season_phase.none
+  - change_season_phase.Lambda
+  - change_season_phase.eir
+  - change_season_bottom
+  - change_season_bottom.none
+  - change_season_bottom.Lambda
+  - change_season_bottom.eir
+  - change_season_pw
+  - change_season_pw.none
+  - change_season_pw.Lambda
+  - change_season_pw.eir
 - subtitle: Get and Set for Spline Trend Functions
   desc: |
     Utilities to change the interpolation points
@@ -1079,14 +1079,14 @@ reference:
   - get_spline_s.none
   - get_spline_s.Lambda
   - get_spline_s.eir
-  - set_spline
-  - set_spline.none
-  - set_spline.Lambda
-  - set_spline.eir
-  - set_spline_y
-  - set_spline_y.none
-  - set_spline_y.Lambda
-  - set_spline_y.eir
+  - change_spline
+  - change_spline.none
+  - change_spline.Lambda
+  - change_spline.eir
+  - change_spline_y
+  - change_spline_y.none
+  - change_spline_y.Lambda
+  - change_spline_y.eir
 - title: New  
   desc: Move  
   contents:   

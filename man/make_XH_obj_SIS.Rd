@@ -4,7 +4,16 @@
 \alias{make_XH_obj_SIS}
 \title{Make an SIS \strong{XH} model object}
 \usage{
-make_XH_obj_SIS(nStrata, options = list(), b = 0.55, r = 1/180, c = 0.15)
+make_XH_obj_SIS(
+  nStrata,
+  options = list(),
+  b = 0.55,
+  r = 1/180,
+  c = 0.15,
+  d_lm = 0.8,
+  d_rdt = 0.8,
+  d_pcr = 0.9
+)
 }
 \arguments{
 \item{nStrata}{is the number of population strata}
@@ -16,6 +25,12 @@ make_XH_obj_SIS(nStrata, options = list(), b = 0.55, r = 1/180, c = 0.15)
 \item{r}{recovery rate}
 
 \item{c}{transmission probability (efficiency) from human to mosquito}
+
+\item{d_lm}{detection by light microscopy}
+
+\item{d_rdt}{detection by RDT}
+
+\item{d_pcr}{detection by pcr}
 }
 \value{
 an \strong{XH} model object

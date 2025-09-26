@@ -1,5 +1,5 @@
 
-#' @title Plot the temporal trend 
+#' @title Plot the Temporal Trend 
 #' 
 #' @description For a model with temporal forcing,
 #' show the temporal trend 
@@ -44,7 +44,7 @@ show_trend.none = function(xds_obj, tm = seq(0, 3650, by=10), add=FALSE){
 #' 
 #' @export
 show_trend.Lambda = function(xds_obj, tm = seq(0, 3650, by=10), add=FALSE){
-  trend <- xds_obj$Lpar[[1]]$F_trend(tm)
+  trend <- xds_obj$L_obj[[1]]$F_trend(tm)
   if(add==FALSE) plot(tm, trend, ylab = "Temporal Trend", xlab = "Time", type = "n")
   lines(tm, trend)
   return(invisible(trend))
@@ -61,7 +61,7 @@ show_trend.Lambda = function(xds_obj, tm = seq(0, 3650, by=10), add=FALSE){
 #' 
 #' @export
 show_trend.eir= function(xds_obj, tm = seq(0, 3650, by=10), add=FALSE){
-  trend <- xds_obj$EIRpar$F_trend(tm)
+  trend <- xds_obj$EIR_obj$F_trend(tm)
   if(add==FALSE) plot(tm, trend, ylab = "Temporal Trend", xlab = "Time", type = "n")
   lines(tm, trend)
   return(invisible(trend))

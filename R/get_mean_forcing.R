@@ -55,6 +55,6 @@ get_mean_forcing.Lambda = function(xds_obj){
 #' 
 #' @export
 get_mean_forcing.eir = function(xds_obj){
-  return(xds_obj$EIRpar$eir)  
+  return(xds_obj$EIR_obj$eir)  
 }
 

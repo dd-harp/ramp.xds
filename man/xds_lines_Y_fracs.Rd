@@ -4,11 +4,9 @@
 \alias{xds_lines_Y_fracs}
 \title{Add lines for the fraction of infected and infective mosquitoes}
 \usage{
-xds_lines_Y_fracs(times, MY, xds_obj, clrs = "purple", llty = 1)
+xds_lines_Y_fracs(MY, xds_obj, clrs = "purple", llty = 1)
 }
 \arguments{
-\item{times}{times points for the observations}
-
 \item{MY}{xds_objed ouptuts}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}

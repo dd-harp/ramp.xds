@@ -87,7 +87,7 @@ get_season_pw = function(xds_obj, s=1){
 #' 
 #' @export
 get_season.Lambda = function(xds_obj, s=1){
-  xds_obj$Lpar[[s]]$season_par
+  xds_obj$L_obj[[s]]$season_par
 }
 
 #' @title Get seasonal pattern 
@@ -102,5 +102,5 @@ get_season.Lambda = function(xds_obj, s=1){
 #' 
 #' @export
 get_season.eir= function(xds_obj, s=1){
-  xds_obj$EIRpar$season_par
+  xds_obj$EIR_obj$season_par
 }
