@@ -4,14 +4,14 @@
 \alias{get_PR.pcr}
 \title{Get the \emph{Pf}PR from a MalariasModel}
 \usage{
-\method{get_PR}{pcr}(xds_obj, method = "pcr", i = 1)
+\method{get_PR}{pcr}(xds_obj, i = 1, method = "pcr")
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} object}
 
-\item{method}{the method used for computing \emph{Pf}PR}
-
 \item{i}{the host species index}
+
+\item{method}{the method used for computing \emph{Pf}PR}
 }
 \value{
 none

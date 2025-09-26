@@ -4,14 +4,14 @@
 \alias{get_PR.rdt}
 \title{Get the \emph{Pf}PR from a Malaria Model}
 \usage{
-\method{get_PR}{rdt}(xds_obj, method = "rdt", i = 1)
+\method{get_PR}{rdt}(xds_obj, i = 1, method = "rdt")
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} object}
 
-\item{method}{the method used for computing \emph{Pf}PR}
-
 \item{i}{the host species index}
+
+\item{method}{the method used for computing \emph{Pf}PR}
 }
 \value{
 none

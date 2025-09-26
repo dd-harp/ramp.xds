@@ -4,11 +4,9 @@
 \alias{xds_lines_Y}
 \title{Add lines for the density of infected and infective mosquitoes}
 \usage{
-xds_lines_Y(times, MY, xds_obj, clrs = "purple", llty = 1)
+xds_lines_Y(MY, xds_obj, clrs = "purple", llty = 1)
 }
 \arguments{
-\item{times}{a sequence of times when variables were output}
-
 \item{MY}{xds_objed ouptuts}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}

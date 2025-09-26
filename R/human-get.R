@@ -39,7 +39,7 @@ get_XH_out = function(xds_obj, i=1){
 #' @param i the host species index
 #' @return none
 #' @export
-get_PR <- function(xds_obj, method = "true", i=1) {
+get_PR <- function(xds_obj, i=1, method="true") {
   class(method) = method
   UseMethod("get_PR", method)
 }
@@ -51,9 +51,8 @@ get_PR <- function(xds_obj, method = "true", i=1) {
 #' 
 #' @return the true PR 
 #' @export
-get_PR.true <- function(xds_obj, method= "true", i=1) {
-  XH <- get_XH_out(xds_obj, i)
-  XH$true_pr
+get_PR.true <- function(xds_obj, i=1, method="true") {
+  get_XH_out(xds_obj, i)$true_pr
 }
 
 #' @title Get the *Pf*PR from a MalariasModel 
@@ -61,9 +60,9 @@ get_PR.true <- function(xds_obj, method= "true", i=1) {
 #' @inheritParams get_PR 
 #' @return none
 #' @export
-get_PR.pcr<- function(xds_obj, method = "pcr", i=1) {
+get_PR.pcr<- function(xds_obj, i=1, method="pcr") {
   XH <- get_XH_out(xds_obj, i)
-  F_pfpr_by_pcr(XH, xds_obj$Xpar[[i]])
+  F_pfpr_by_pcr(XH, xds_obj$XH_obj[[i]])
 } 
 
 #' @title Get the *Pf*PR from a Malaria Model 
@@ -71,9 +70,9 @@ get_PR.pcr<- function(xds_obj, method = "pcr", i=1) {
 #' @inheritParams get_PR 
 #' @return none
 #' @export
-get_PR.lm<- function(xds_obj, method = "lm", i=1) {
+get_PR.lm<- function(xds_obj, i=1, method = "lm") {
   XH <- get_XH_out(xds_obj, i)
-  F_pfpr_by_lm(XH, xds_obj$Xpar[[i]])
+  F_pfpr_by_lm(XH, xds_obj$XH_obj[[i]])
 }
 
 #' @title Get the *Pf*PR from a Malaria Model 
@@ -81,7 +80,7 @@ get_PR.lm<- function(xds_obj, method = "lm", i=1) {
 #' @inheritParams get_PR 
 #' @return none
 #' @export
-get_PR.rdt<- function(xds_obj, method = "rdt", i=1) {
+get_PR.rdt<- function(xds_obj, i=1, method = "rdt") {
   XH <- get_XH_out(xds_obj, i)
-  F_pfpr_by_rdt(XH, xds_obj$Xpar[[i]])
+  F_pfpr_by_rdt(XH, xds_obj$XH_obj[[i]])
 }

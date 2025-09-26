@@ -10,6 +10,15 @@ vignette: >
 ---
 
 
+This vignette gives a basic introduction to **`ramp.xds`** and a quick demonstration. 
+
++ How to install **`ramp.xds`**
+
++ A demonstration: 
+
+    + Set up a model 
+    
+    + Solve it
 
 Next: [Basic Setup](BasicSetup.html). 
 
@@ -17,10 +26,7 @@ Additional documentation is available in the [**SimBA** Project](https://faculty
 
 *** 
 
-# 
-
-**`ramp.xds`** was developed to reduce the costs of building, solving, analyzing, and using models describing the epidemiology, transmission dynamics and control of malaria and other mosquito-transmitted pathogens. This vignette gives a demonstration and a basic introduction. 
-
+**`ramp.xds`** was developed to reduce the costs of building, solving, analyzing, and using models describing the epidemiology, transmission dynamics and control of malaria and other mosquito-transmitted pathogens.
 
 ## Installation 
 
@@ -48,7 +54,7 @@ Additional modules and functionality are available in companion R-packages, incl
 [**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/).
 For more information, see the [**SimBA** Project](https://faculty.washington.edu/smitdave/simba/index.html) website.
 
-## Demo
+## Setup 
 
 **`ramp.xds`** makes it easy to build and use models for the transmission dynamics and control of malaria or other mosquito-borne pathogens. 
 Model building in **`ramp.xds`** starts 
@@ -59,9 +65,7 @@ All arguments in `xds_setup()` are assigned default values, so calling `xds_setu
 model <- xds_setup()
 ```
 
-The object `model` returned by `xds_setup()` is called a **xds model** object: it is a fully defined model that can be solved by `xds_solve()`. 
-
-### Defaults 
+The object returned by `xds_setup()` is called a **xds model** object: it is a fully defined model that can be solved by `xds_solve()`. Here, called it `model.` 
 
 The arguments are stored and can be easily retrieved. The name of the module for human / host infection and immune dynamics is stored as `Xname.` The default module is the `SIS` compartmental model:
 
@@ -132,7 +136,7 @@ For the `trivial` module, arguments passed at the command line configure functio
 
 The design pattern is followed: parameters can be viewed with `get_L_pars` and the method for setting parameter values by passing a named list of values to `Loptions` in `xds_setup().` After setup, the `change_L_pars` works in the same way as the other `change_` functions.
 
-### Solving 
+## Solving 
 
 After setting up, `model` has an empty placeholder for outputs:
 
@@ -180,7 +184,7 @@ When `xds_solve` is called, the **`xds` model object** it returns has replaced a
 
 On the other hand, if anything has changed, any old outputs will get replaced. If the outputs need to be saved for future analyses, the user will probably have to write a wrapper function that extracts and saves it.
 
-### Parsing 
+## Outputs 
 
 To make it easy to deal with the outputs, the dependent variables are parsed and returned in named lists. `xde_solve()` also computes some standard *terms* that are likely to be of interest.  
 
@@ -190,7 +194,7 @@ Functions like `get_EIR()` make it easy to examine or save a set of standard out
 head(get_EIR(model), 3)
 ```
 
-### Visualizing
+## Visualization 
 
 **`ramp.xds`** includes functions to plot standard outputs:
 

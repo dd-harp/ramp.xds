@@ -124,15 +124,15 @@ F_trend = function(t){0*t+1}
 
 
 ```{r}
-xds_obj$EIRpar = list() 
-xds_obj$EIRpar$eir <- as.vector(eir)
-xds_obj$EIRpar$scale <- 1 
-xds_obj$EIRpar$F_season <- F_season
-xds_obj$EIRpar$F_trend <- F_trend
-xds_obj$EIRpar$F_age <- F_flat
-xds_obj$EIRpar$season_par <- list() 
-xds_obj$EIRpar$trend_par<- list() 
-xds_obj$EIRpar$age_par<- list() 
+xds_obj$EIR_obj = list() 
+xds_obj$EIR_obj$eir <- as.vector(eir)
+xds_obj$EIR_obj$scale <- 1 
+xds_obj$EIR_obj$F_season <- F_season
+xds_obj$EIR_obj$F_trend <- F_trend
+xds_obj$EIR_obj$F_age <- F_flat
+xds_obj$EIR_obj$season_par <- list() 
+xds_obj$EIR_obj$trend_par<- list() 
+xds_obj$EIR_obj$age_par<- list() 
 ```
 
 ```{r}

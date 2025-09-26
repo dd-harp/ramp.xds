@@ -79,12 +79,16 @@ setup_XH_obj.SIS = function(Xname, xds_obj, i, options=list()){
 #' @param b transmission probability (efficiency) from mosquito to human
 #' @param c transmission probability (efficiency) from human to mosquito
 #' @param r recovery rate
+#' @param d_lm detection by light microscopy  
+#' @param d_rdt detection by RDT 
+#' @param d_pcr detection by pcr 
 #' 
 #' @return an **XH** model object 
 #' 
 #' @export
 make_XH_obj_SIS = function(nStrata, options=list(),
-                             b=0.55, r=1/180, c=0.15){
+                             b=0.55, r=1/180, c=0.15,
+                             d_lm =0.8, d_rdt=0.8, d_pcr=0.9){
   with(options,{
     XH_obj = list()
     class(XH_obj) <- "SIS"
@@ -92,6 +96,9 @@ make_XH_obj_SIS = function(nStrata, options=list(),
     XH_obj$b = checkIt(b, nStrata)
     XH_obj$c = checkIt(c, nStrata)
     XH_obj$r = checkIt(r, nStrata)
+    XH_obj$d_lm = checkIt(d_lm, nStrata)
+    XH_obj$d_rdt = checkIt(d_rdt, nStrata)
+    XH_obj$d_pcr = checkIt(d_pcr, nStrata)
     
     # Ports for demographic models
     XH_obj$D_matrix = diag(0, nStrata) 
@@ -189,13 +196,12 @@ get_XH_vars.SIS <- function(y, xds_obj, i) {
 #' @return none
 #' @export
 parse_XH_orbits.SIS <- function(outputs, xds_obj, i) {
-  with(xds_obj$XH_obj[[i]]$ix,{
+  XH_obj = xds_obj$XH_obj[[i]]
+  with(XH_obj$ix,{
     H <- outputs[,H_ix]
     I <- outputs[,I_ix]
     S <- H-I
-    ni <- xds_obj$XH_obj[[i]]$c*I/H
-    true_pr <- I/H
-    vars <- list(S=S, I=I, H=H, ni=ni, true_pr=true_pr)
+    vars <- list(S=S, I=I, H=H) 
     return(vars)
 })}
 
@@ -357,7 +363,7 @@ check_XH.SIS = function(xds_obj, i){
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_pfpr_by_lm.SIS <- function(vars, XH_obj) {
-  pr = with(vars, I/H)
+  pr = with(XH_obj, with(vars, d_lm*I/H))
   return(pr)
 }
 
@@ -367,7 +373,7 @@ F_pfpr_by_lm.SIS <- function(vars, XH_obj) {
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_pfpr_by_rdt.SIS <- function(vars, XH_obj) {
-  pr = with(vars, I/H)
+  pr = with(XH_obj, with(vars, d_rdt*I/H))
   return(pr)
 }
 
@@ -377,7 +383,7 @@ F_pfpr_by_rdt.SIS <- function(vars, XH_obj) {
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_pfpr_by_pcr.SIS <- function(vars, XH_obj) {
-  pr = with(vars, I/H)
+  pr = with(XH_obj, with(vars, d_pcr*I/H))
   return(pr)
 }
 

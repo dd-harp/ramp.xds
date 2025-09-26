@@ -418,23 +418,23 @@ xds_setup_eir = function(eir=1,
   xds_obj <- make_xds_object_template(xds, 'eir', nPatches, membership, residence)
   xds_obj$forced_by = xds_obj$frame 
 
-  xds_obj$EIRpar <- list()
-  xds_obj$EIRpar$eir <- eir
-  xds_obj$EIRpar$scale <- 1
-  xds_obj$EIRpar$F_season <- F_season
-  xds_obj$EIRpar$season_par <- season_par
+  xds_obj$EIR_obj <- list()
+  xds_obj$EIR_obj$eir <- eir
+  xds_obj$EIR_obj$scale <- 1
+  xds_obj$EIR_obj$F_season <- F_season
+  xds_obj$EIR_obj$season_par <- season_par
   if(length(season_par)>0){
-    xds_obj$EIRpar$F_season <- make_function(season_par)
+    xds_obj$EIR_obj$F_season <- make_function(season_par)
   } 
-  xds_obj$EIRpar$F_trend <- F_trend
-  xds_obj$EIRpar$trend_par <- trend_par
+  xds_obj$EIR_obj$F_trend <- F_trend
+  xds_obj$EIR_obj$trend_par <- trend_par
   if(length(trend_par)>0){
-    xds_obj$EIRpar$F_trend <- make_function(trend_par) 
+    xds_obj$EIR_obj$F_trend <- make_function(trend_par) 
   }
-  xds_obj$EIRpar$F_age <- F_age
-  xds_obj$EIRpar$age_par <- age_par
+  xds_obj$EIR_obj$F_age <- F_age
+  xds_obj$EIR_obj$age_par <- age_par
   if(length(age_par)>0){
-    xds_obj$EIRpar$F_age <- make_function(age_par) 
+    xds_obj$EIR_obj$F_age <- make_function(age_par) 
   }
 
   # Aquatic Mosquito Dynamics

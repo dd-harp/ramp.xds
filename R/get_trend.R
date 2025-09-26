@@ -42,7 +42,7 @@ get_trend.none = function(xds_obj, s=1){
 #' 
 #' @export
 get_trend.Lambda= function(xds_obj, s=1){
-  return(xds_obj$Lpar[[s]]$trend_par)
+  return(xds_obj$L_obj[[s]]$trend_par)
 }
 
 #' @title Get the trend parameters 
@@ -57,7 +57,7 @@ get_trend.Lambda= function(xds_obj, s=1){
 #' 
 #' @export
 get_trend.eir= function(xds_obj, s=1){
-  return(xds_obj$EIRpar$trend_par)
+  return(xds_obj$EIR_obj$trend_par)
 }
 
 #' @title Get spline interpolation points 
@@ -120,8 +120,8 @@ get_spline_s.none = function(xds_obj, s){
 #' 
 #' @export
 get_spline_s.Lambda = function(xds_obj, s=1){
-  tt <- xds_obj$Lpar[[s]]$trend_par$tt  
-  yy <- xds_obj$Lpar[[s]]$trend_par$yy  
+  tt <- xds_obj$L_obj[[s]]$trend_par$tt  
+  yy <- xds_obj$L_obj[[s]]$trend_par$yy  
   return(list(tt=tt, yy=yy)) 
 }
 
@@ -135,7 +135,7 @@ get_spline_s.Lambda = function(xds_obj, s=1){
 #' 
 #' @export
 get_spline_s.eir = function(xds_obj, s=1){
-  tt <- xds_obj$EIRpar$trend_par$tt
-  yy <- xds_obj$EIRpar$trend_par$yy
+  tt <- xds_obj$EIR_obj$trend_par$tt
+  yy <- xds_obj$EIR_obj$trend_par$yy
   return(list(tt=tt, yy=yy))
 }

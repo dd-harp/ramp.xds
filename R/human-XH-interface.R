@@ -315,18 +315,6 @@ F_pfpr_by_pcr <- function(vars, XH_obj) {
   UseMethod("F_prevalence", XH_obj)
 }
 
-#' Basic plotting for epidemiological models
-#'
-#' @param xds_obj an **`xds`** model object
-#' @param i the host species index
-#' @param clrs a vector of colors
-#' @param llty an integer (or integers) to set the `lty` for plotting
-#' @param add plot axes only if FALSE
-#'
-#' @export
-xds_plot_X = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
-  UseMethod("xds_plot_X", xds_obj$XH_obj[[i]])
-}
 
 #' @title Compute the human transmitting capacity
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
@@ -367,4 +355,30 @@ steady_state_X = function(foi, H, xds_obj, i=1){
 #' @export
 steady_state_XH = function(foi, xds_obj, i=1){
   UseMethod("steady_state_XH", xds_obj$XH_obj[[i]])
+}
+
+#' Basic plotting for epidemiological models
+#'
+#' @param xds_obj an **`xds`** model object
+#' @param i the host species index
+#' @param clrs a vector of colors
+#' @param llty an integer (or integers) to set the `lty` for plotting
+#' @param add plot axes only if FALSE
+#'
+#' @export
+xds_plot_XH = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
+  UseMethod("xds_plot_X", xds_obj$XH_obj[[i]])
+}
+
+#' Basic plotting for epidemiological models
+#'
+#' @param xds_obj an **`xds`** model object
+#' @param i the host species index
+#' @param clrs a vector of colors
+#' @param llty an integer (or integers) to set the `lty` for plotting
+#' @param add plot axes only if FALSE
+#'
+#' @export
+xds_plot_X = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
+  UseMethod("xds_plot_X", xds_obj$XH_obj[[i]])
 }
