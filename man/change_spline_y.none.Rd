@@ -4,10 +4,10 @@
 \alias{change_spline_y.none}
 \title{Set yy}
 \usage{
-\method{change_spline_y}{none}(X, xds_obj, s = 1)
+\method{change_spline_y}{none}(yy, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new yy parameter}
+\item{yy}{new y values for the interpolation points}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

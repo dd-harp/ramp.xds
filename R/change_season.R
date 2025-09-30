@@ -19,9 +19,7 @@ change_season = function(X, xds_obj, s=1){
     xds_obj <- change_season_phase(X$phase, xds_obj, s, compile_F=FALSE) 
   
   if(length(X$pw) == xds_obj$nPatches)
-    xds_obj <- change_season_pw(X$pw, xds_obj, s, compile_F=FALSE)
-  
-  xds_obj <- update_F_season(xds_obj, s) 
+    xds_obj <- change_season_pw(X$pw, xds_obj, s, compile_F=TRUE)
   
   return(xds_obj)
 }
@@ -74,7 +72,8 @@ change_season_bottom.none = function(bottom, xds_obj, s=1, compile_F=TRUE){
 change_season_bottom.Lambda = function(bottom, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$L_obj[[s]]$season_par$bottom) == length(bottom))
   xds_obj$L_obj[[s]]$season_par$bottom = bottom
-  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
+  if(compile_F == TRUE) 
+     xds_obj$L_obj[[s]]$F_season = make_function(xds_obj$L_obj[[s]]$season_par)
   return(xds_obj)
 }
 
@@ -145,9 +144,11 @@ change_season_phase.none = function(phase, xds_obj, s=1, compile_F=TRUE){
 #' @export
 change_season_phase.Lambda = function(phase, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$L_obj[[s]]$season_par$phase) == length(phase))
+  phase = phase%%365
   xds_obj$L_obj[[s]]$season_par$phase = phase
   xds_obj <- update_F_season(xds_obj, s)
-  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
+  if(compile_F == TRUE) 
+     xds_obj$L_obj[[s]]$F_season = make_function(xds_obj$L_obj[[s]]$season_par)
   return(xds_obj)
 }
 
@@ -219,7 +220,8 @@ change_season_pw.none = function(pw, xds_obj, s=1, compile_F=TRUE){
 change_season_pw.Lambda = function(pw, xds_obj, s=1, compile_F=TRUE){
   stopifnot(length(xds_obj$L_obj[[s]]$season_par$pw) == length(pw))
   xds_obj$L_obj[[s]]$season_par$pw = pw
-  if(compile_F == TRUE) xds_obj = update_F_season(xds_obj, s)
+  if(compile_F == TRUE) 
+     xds_obj$L_obj[[s]]$F_season = make_function(xds_obj$L_obj[[s]]$season_par)
   return(xds_obj)
 }
 

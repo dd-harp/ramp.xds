@@ -7,7 +7,7 @@
 \method{change_spline}{none}(X, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new interpolating points}
+\item{X}{new interpolation points, as a list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

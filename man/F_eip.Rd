@@ -18,5 +18,5 @@ a \link{numeric} vector oeip length \code{nPatches}
 }
 \description{
 This method dispatches on the type of \code{eip_obj}. It
-sets the values the EIP, \eqn{\eip}
+sets the values the EIP
 }

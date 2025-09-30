@@ -1019,9 +1019,6 @@ reference:
   - update_F_season.Lambda 
   - update_F_season
   - update_F_season.eir 
-  - update_F_trend.Lambda 
-  - update_F_trend 
-  - update_F_trend.eir
   - show_season 
   - show_season.Lambda 
   - show_season.none

@@ -3,7 +3,7 @@
 #' @title Setup an EIP Bionomic Object 
 #' 
 #' @description Set up an object
-#' to compute the human fraction, \eqn{eip} 
+#' to compute the EIP 
 #' 
 #' @param eip the mosquito patch emigration rate
 #' @param MY_obj an **`MY`** model object 
@@ -23,7 +23,7 @@ setup_eip_obj = function(eip, MY_obj){
 #' @title Compute the EIP
 #' 
 #' @description This method dispatches on the type of `eip_obj`. It 
-#' sets the values the EIP, \eqn{\eip} 
+#' sets the values the EIP
 #' 
 #' @param t current simulation time
 #' @param xds_obj an **`xds`** model object
