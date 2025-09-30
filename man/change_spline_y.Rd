@@ -7,11 +7,11 @@
 change_spline_y(X, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new yy parameter}
-
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
+
+\item{yy}{new y values for the interpolation points}
 }
 \value{
 a \strong{\code{ramp.xds}} model object

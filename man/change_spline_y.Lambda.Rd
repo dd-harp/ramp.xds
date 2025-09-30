@@ -4,10 +4,10 @@
 \alias{change_spline_y.Lambda}
 \title{Set the \eqn{y} value for interpolating points}
 \usage{
-\method{change_spline_y}{Lambda}(X, xds_obj, s = 1)
+\method{change_spline_y}{Lambda}(yy, xds_obj, s = 1)
 }
 \arguments{
-\item{X}{the new yy parameter}
+\item{yy}{new y values for the interpolation points}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

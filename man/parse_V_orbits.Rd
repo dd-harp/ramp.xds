@@ -7,7 +7,7 @@
 parse_V_orbits(outputs, xds_obj, i)
 }
 \arguments{
-\item{outputs}{an output matrix returned by \link{deSolve}}
+\item{outputs}{an output matrix returned by \link[deSolve:deSolve]{deSolve::deSolve}}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -22,7 +22,7 @@ The orbits are parsed
 and attached by name to the \strong{\code{xds}} model object.
 
 For differential equations
-the solution matrix is returned by \link{deSolve}.
+the solution matrix is returned by \link[deSolve:deSolve]{deSolve::deSolve}.
 Discrete time systems return a matrix
 that has the same shape.
 }

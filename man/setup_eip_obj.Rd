@@ -16,5 +16,5 @@ a \strong{\code{MY}} model object
 }
 \description{
 Set up an object
-to compute the human fraction, \eqn{eip}
+to compute the EIP
 }
