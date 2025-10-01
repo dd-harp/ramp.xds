@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,30 +25,38 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats and Egg Laying</a></li>
-    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a></li>
-    <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+    <li><a class="dropdown-item" href="../articles/Working.html">Working with the Model Object</a></li>
+    <li><a class="dropdown-item" href="../articles/ex_534.html">The 5-3-4 Model</a></li>
+    <li><a class="dropdown-item" href="../articles/Delays.html">Delay Equations</a></li>
     <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
+    <li><a class="dropdown-item" href="../articles/DTS.html">Discrete Time Systems</a></li>
+    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Functions</a></li>
+  </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
+    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
+    <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+  </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-human-host"><li><a class="dropdown-item" href="../articles/XH-interface.html">The XH Component</a></li>
+    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
+    <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes"><li><a class="dropdown-item" href="../articles/MY-interface.html">MY Interface</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes"><li><a class="dropdown-item" href="../articles/MY-interface.html">The MY Component</a></li>
     <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes"><li><a class="dropdown-item" href="../articles/L-interface.html">L Interface</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes"><li><a class="dropdown-item" href="../articles/L-interface.html">The L Component</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
-  </ul></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-human-host"><li><a class="dropdown-item" href="../articles/XH-interface.html">XH Interface</a></li>
-    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
-    <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Functions</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><a class="external-link nav-link" href="https://github.com/dd-harp/ramp.xds/"><span class="fa fa-github"></span></a></li>
@@ -5050,43 +5058,31 @@
 
       <dl><dt>
 
-          <code><a href="update_F_season.Lambda.html">update_F_season(<i>&lt;Lambda&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Update the seasonality function</dd>
-      </dl><dl><dt>
-
-          <code><a href="update_F_season.html">update_F_season()</a></code>
-
-        </dt>
-        <dd>Update the seasonality function</dd>
-      </dl><dl><dt>
-
-          <code><a href="update_F_season.eir.html">update_F_season(<i>&lt;eir&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Update the seasonality function</dd>
-      </dl><dl><dt>
-
           <code><a href="show_season.html">show_season()</a></code>
 
         </dt>
         <dd>Plot the seasonal pattern</dd>
       </dl><dl><dt>
 
-          <code><a href="show_season.Lambda.html">show_season(<i>&lt;Lambda&gt;</i>)</a></code>
+          <code><a href="F_season.html">F_season()</a></code>
 
         </dt>
         <dd>Plot the seasonal pattern</dd>
       </dl><dl><dt>
 
-          <code><a href="show_season.none.html">show_season(<i>&lt;none&gt;</i>)</a></code>
+          <code><a href="F_season.Lambda.html">F_season(<i>&lt;Lambda&gt;</i>)</a></code>
 
         </dt>
         <dd>Plot the seasonal pattern</dd>
       </dl><dl><dt>
 
-          <code><a href="show_season.eir.html">show_season(<i>&lt;eir&gt;</i>)</a></code>
+          <code><a href="F_season.none.html">F_season(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot the seasonal pattern</dd>
+      </dl><dl><dt>
+
+          <code><a href="F_season.eir.html">F_season(<i>&lt;eir&gt;</i>)</a></code>
 
         </dt>
         <dd>Plot the seasonal pattern</dd>
@@ -5098,19 +5094,25 @@
         <dd>Plot the Temporal Trend</dd>
       </dl><dl><dt>
 
-          <code><a href="show_trend.Lambda.html">show_trend(<i>&lt;Lambda&gt;</i>)</a></code>
+          <code><a href="F_trend.html">F_trend()</a></code>
+
+        </dt>
+        <dd>Plot the Temporal Trend</dd>
+      </dl><dl><dt>
+
+          <code><a href="F_trend.Lambda.html">F_trend(<i>&lt;Lambda&gt;</i>)</a></code>
 
         </dt>
         <dd>Plot the temporal trend</dd>
       </dl><dl><dt>
 
-          <code><a href="show_trend.eir.html">show_trend(<i>&lt;eir&gt;</i>)</a></code>
+          <code><a href="F_trend.eir.html">F_trend(<i>&lt;eir&gt;</i>)</a></code>
 
         </dt>
         <dd>Plot the temporal trend</dd>
       </dl><dl><dt>
 
-          <code><a href="show_trend.none.html">show_trend(<i>&lt;none&gt;</i>)</a></code>
+          <code><a href="F_trend.none.html">F_trend(<i>&lt;none&gt;</i>)</a></code>
 
         </dt>
         <dd>Plot the temporal trend</dd>
@@ -5234,76 +5236,22 @@
         <dd>Get seasonal pattern</dd>
       </dl><dl><dt>
 
-          <code><a href="change_season_phase.html">change_season_phase()</a></code>
+          <code><a href="change_season.none.html">change_season(<i>&lt;none&gt;</i>)</a></code>
 
         </dt>
-        <dd>Set phase</dd>
+        <dd>Get seasonal pattern</dd>
       </dl><dl><dt>
 
-          <code><a href="change_season_phase.none.html">change_season_phase(<i>&lt;none&gt;</i>)</a></code>
+          <code><a href="change_season.Lambda.html">change_season(<i>&lt;Lambda&gt;</i>)</a></code>
 
         </dt>
-        <dd>Set phase</dd>
+        <dd>Get seasonal pattern</dd>
       </dl><dl><dt>
 
-          <code><a href="change_season_phase.Lambda.html">change_season_phase(<i>&lt;Lambda&gt;</i>)</a></code>
+          <code><a href="change_season.eir.html">change_season(<i>&lt;eir&gt;</i>)</a></code>
 
         </dt>
-        <dd>Set phase</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_season_phase.eir.html">change_season_phase(<i>&lt;eir&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set phase</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_season_bottom.html">change_season_bottom()</a></code>
-
-        </dt>
-        <dd>Set bottom</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_season_bottom.none.html">change_season_bottom(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set bottom</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_season_bottom.Lambda.html">change_season_bottom(<i>&lt;Lambda&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set bottom</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_season_bottom.eir.html">change_season_bottom(<i>&lt;eir&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set bottom</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_season_pw.html">change_season_pw()</a></code>
-
-        </dt>
-        <dd>Set pw, a seasonality shape parameter</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_season_pw.none.html">change_season_pw(<i>&lt;none&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set pw, a seasonality shape parameter</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_season_pw.Lambda.html">change_season_pw(<i>&lt;Lambda&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set pw, a seasonality shape parameter</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_season_pw.eir.html">change_season_pw(<i>&lt;eir&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set pw, a seasonality shape parameter</dd>
+        <dd>Get seasonal pattern</dd>
       </dl></div><div class="section level2">
 
       <h3 id="get-and-set-for-spline-trend-functions">Get and Set for Spline Trend Functions<a class="anchor" aria-label="anchor" href="#get-and-set-for-spline-trend-functions"></a></h3>

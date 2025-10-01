@@ -87,7 +87,8 @@ change_spline.eir = function(X, xds_obj, s=1){
 #' @title Set yy 
 #' 
 #' @description
-#' Set the yy parameter to `X`
+#' Set new \eqn{y}-values for the spline interpolating points 
+#' and update `F_trend`
 #' 
 #' @param yy new y values for the interpolation points 
 #' @param xds_obj an **`xds`** model object
@@ -96,7 +97,7 @@ change_spline.eir = function(X, xds_obj, s=1){
 #' @return a **`ramp.xds`** model object
 #' 
 #' @export
-change_spline_y = function(X, xds_obj, s=1){
+change_spline_y = function(yy, xds_obj, s=1){
   UseMethod("change_spline_y", xds_obj$forced_by) 
 }
 

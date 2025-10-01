@@ -1,6 +1,6 @@
 ---
 title: "The XH Component" 
-subtitle: "Human/Vertebrate Host Infection Dynamics and Immunity" 
+subtitle: "Models for Human or Vertebrate Host Infection, Immuno-Epidemiology & Demography" 
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{The XH Component}
@@ -8,9 +8,19 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-The **XH** component was designed for human malaria epidemiology, defined in a narrow sense to include exposure, infection dynamics, immunity, disease, infectiousness, diagnostics and detection. (In the broader sense, human malaria epidemiology also includes malaria transmission dynamics, but this is handled by other parts of **`ramp.xds.`**) The **XH** component also handles models for the epidemiology of other mosquito-borne diseases (see  [**`ramp.library`**](https://dd-harp.github.io/ramp.library/)). 
+The **XH** component was designed for human malaria epidemiology, defined in a narrow sense to include exposure, infection dynamics, immunity, disease, infectiousness, diagnostics and detection. In the broader sense, human malaria epidemiology also includes malaria transmission dynamics, but these aspects are handled by other parts of **`ramp.xds.`** 
+
+The **XH** component also handles models for the demography, infection dynamics, and immunity for vertebrate hosts other mosquito-borne diseases. 
+
+A library of **XH** modules can be found in [**`ramp.library`**](https://dd-harp.github.io/ramp.library/). 
 
 This vignette takes a deep dive into the design and structure of the **XH** component. It is useful for anyone who wants to learn more about how the code works.  
+
+## Overview  
+
+The **XH** component was designed to handle human demography and malaria epidemiology; and more broadly, the population dynamics of a vertebrate host population and the pathogen's infection dynamics and immuno-epidemiology. 
+
+... 
 
 ## Required Functions 
 

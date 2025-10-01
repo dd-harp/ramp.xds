@@ -1,6 +1,6 @@
 ---
 title: "The MY Component" 
-subtitle: "Adult Mosquito Ecology and Infection Dynamics" 
+subtitle: "Models for Adult Mosquito Ecology and Infection Dynamics" 
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{The MY Component}

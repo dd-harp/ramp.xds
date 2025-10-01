@@ -109,18 +109,18 @@ params <- make_indices(params)
 ```
 
 ```{r}
-F_season = function(t){0*t+1}
-F_trend = function(t){0*t+1}
-F_age = function(a){0*a+1}
+F_s = function(t){0*t+1}
+F_t= function(t){0*t+1}
+F_a = function(a){0*a+1}
 ```
 
 ```{r}
-params$EIRpar = list() 
-params$EIRpar$eir <- as.vector(eir)
-params$EIRpar$scale <- 1 
-params$EIRpar$F_season <- F_season
-params$EIRpar$F_trend <- F_trend
-params$EIRpar$F_age <- F_age
+params$EIR_obj = list() 
+params$EIR_obj$eir <- as.vector(eir)
+params$EIR_obj$scale <- 1 
+params$EIR_obj$F_season <- F_s
+params$EIR_obj$F_trend <- F_t
+params$EIR_obj$F_age <- F_a
 ```
 
 ```{r}

@@ -1,6 +1,6 @@
 ---
 title: "The L Component" 
-subtitle: "Immature Mosquito Ecology" 
+subtitle: "Models for Immature Mosquito Ecology" 
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{The L Component}

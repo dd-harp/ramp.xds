@@ -1,0 +1,9 @@
+---
+title: "Discrete Time Systems"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Discrete Time Systems}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+

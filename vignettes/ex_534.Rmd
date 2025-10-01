@@ -7,12 +7,6 @@ vignette: >
  %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
- collapse = TRUE,
- comment = "#>"
-)
-```
 
 ```{r, warning=FALSE, message=FALSE}
 library(ramp.xds)
@@ -20,10 +14,6 @@ library(expm)
 library(data.table)
 library(ggplot2)
 library(deSolve)
-```
-
-```{r, echo=FALSE}
-#devtools::load_all()
 ```
 
 # Introduction
@@ -42,7 +32,7 @@ The model `5-3-4` is designed to illustrate some important features of the frame
 
 + Transmission among patches is modeled using the concept of *time spent*, which is similar to the *visitation rates* that have been used in other models. While the strata have a residency (i.e; a patch they spend most of their time in), each stratum allocates their time across all the habitats. 
 
-![](534.png)
+![](./534.png)
 
 
 
