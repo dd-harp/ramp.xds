@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,17 +40,35 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats and Egg Laying</a></li>
-    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a></li>
-    <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+    <li><a class="dropdown-item" href="../articles/Working.html">Working with the Model Object</a></li>
+    <li><a class="dropdown-item" href="../articles/ex_534.html">The 5-3-4 Model</a></li>
+    <li><a class="dropdown-item" href="../articles/Delays.html">Delay Equations</a></li>
     <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
+    <li><a class="dropdown-item" href="../articles/DTS.html">Discrete Time Systems</a></li>
+    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Functions</a></li>
+  </ul>
+</li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
+<li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
+    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
+    <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+  </ul>
+</li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-human-host">
+<li><a class="dropdown-item" href="../articles/XH-interface.html">The XH Component</a></li>
+    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
+    <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
-<li><a class="dropdown-item" href="../articles/MY-interface.html">MY Interface</a></li>
+<li><a class="dropdown-item" href="../articles/MY-interface.html">The MY Component</a></li>
     <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
@@ -59,17 +77,9 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
-<li><a class="dropdown-item" href="../articles/L-interface.html">L Interface</a></li>
+<li><a class="dropdown-item" href="../articles/L-interface.html">The L Component</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
-  </ul>
-</li>
-<li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-human-host">
-<li><a class="dropdown-item" href="../articles/XH-interface.html">XH Interface</a></li>
-    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
-    <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Functions</a></li>
@@ -197,16 +207,16 @@ of all our parameters.</p>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_L_inits.html">setup_L_inits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">F_season</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">0</span><span class="op">*</span><span class="va">t</span><span class="op">+</span><span class="fl">1</span><span class="op">}</span></span>
-<span><span class="va">F_trend</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">0</span><span class="op">*</span><span class="va">t</span><span class="op">+</span><span class="fl">1</span><span class="op">}</span></span>
-<span><span class="va">F_age</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">{</span><span class="fl">0</span><span class="op">*</span><span class="va">a</span><span class="op">+</span><span class="fl">1</span><span class="op">}</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">F_s</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">0</span><span class="op">*</span><span class="va">t</span><span class="op">+</span><span class="fl">1</span><span class="op">}</span></span>
+<span><span class="va">F_t</span><span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">0</span><span class="op">*</span><span class="va">t</span><span class="op">+</span><span class="fl">1</span><span class="op">}</span></span>
+<span><span class="va">F_a</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">{</span><span class="fl">0</span><span class="op">*</span><span class="va">a</span><span class="op">+</span><span class="fl">1</span><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span> </span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">eir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">eir</span><span class="op">)</span></span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">scale</span> <span class="op">&lt;-</span> <span class="fl">1</span> </span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">F_season</span> <span class="op">&lt;-</span> <span class="va">F_season</span></span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">F_trend</span> <span class="op">&lt;-</span> <span class="va">F_trend</span></span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">F_age</span> <span class="op">&lt;-</span> <span class="va">F_age</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span> </span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">eir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">eir</span><span class="op">)</span></span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">scale</span> <span class="op">&lt;-</span> <span class="fl">1</span> </span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_season</span> <span class="op">&lt;-</span> <span class="va">F_s</span></span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_trend</span> <span class="op">&lt;-</span> <span class="va">F_t</span></span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_age</span> <span class="op">&lt;-</span> <span class="va">F_a</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
