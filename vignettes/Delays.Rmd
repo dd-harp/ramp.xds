@@ -1,0 +1,10 @@
+---
+title: "Delay Equations"
+subtitle: "Computing Lagged Values in a Modular Framework"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Delay Equations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+

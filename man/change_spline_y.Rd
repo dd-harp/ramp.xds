@@ -4,18 +4,19 @@
 \alias{change_spline_y}
 \title{Set yy}
 \usage{
-change_spline_y(X, xds_obj, s = 1)
+change_spline_y(yy, xds_obj, s = 1)
 }
 \arguments{
+\item{yy}{new y values for the interpolation points}
+
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
-
-\item{yy}{new y values for the interpolation points}
 }
 \value{
 a \strong{\code{ramp.xds}} model object
 }
 \description{
-Set the yy parameter to \code{X}
+Set new \eqn{y}-values for the spline interpolating points
+and update \code{F_trend}
 }

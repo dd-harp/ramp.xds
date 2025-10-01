@@ -17,5 +17,6 @@ show_season(xds_obj, tm = seq(0, 730, by = 5), add = FALSE)
 the seasonal pattern, invisibly
 }
 \description{
-Plot the seasonal pattern
+For a model forced by emergence,
+show the seasonal pattern
 }

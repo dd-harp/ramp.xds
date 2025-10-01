@@ -10,19 +10,39 @@ navbar:
       href: articles/GettingStarted.html
     - text: Basic Setup
       href: articles/BasicSetup.html
+    - text: Working with the Model Object
+      href: articles/Working.html
+    - text: The 5-3-4 Model 
+      href: articles/ex_534.html
+    - text: Delay Equations 
+      href: articles/Delays.html
+    - text: Ports & Junctions 
+      href: articles/Forcing.html
+    - text: Discrete Time Systems 
+      href: articles/DTS.html
+    - text: Functions 
+      href: articles/TraceFunctions.html
+  - text: Interfaces 
+    menu:
     - text: Modular Forms
       href: articles/modular_forms.html
-    - text: Habitats and Egg Laying 
+    - text: Habitats & Mosquito Ecology 
       href: articles/EggLaying.html
-    - text: Blood Feeding 
+    - text: Blood Feeding & Transmission 
       href: articles/BloodFeeding.html
     - text: Exposure
       href: articles/Exposure.html
-    - text: Ports & Junctions 
-      href: articles/Forcing.html
+  - text: Human / Host
+    menu:
+    - text: The XH Component 
+      href: articles/XH-interface.html
+    - text: SIS model
+      href: articles/human_sis.html
+    - text: MoI hybrid model
+      href: articles/human_hmoi.html
   - text: Adult Mosquitoes 
     menu:
-    - text: MY Interface 
+    - text: The MY Component 
       href: articles/MY-interface.html
     - text: Macdonald's Model
       href: articles/adult_RM.html
@@ -32,20 +52,12 @@ navbar:
       href: articles/adult_GeRM.html
   - text: Immature Mosquitoes 
     menu:
-    - text: L Interface 
+    - text: The L Component 
       href: articles/L-interface.html
     - text: Emergence (the trivial module) 
       href: articles/aqua_trace.html
     - text: basicL
       href: articles/aqua_basic.html
-  - text: Human / Host
-    menu:
-    - text: XH Interface 
-      href: articles/XH-interface.html
-    - text: SIS model
-      href: articles/human_sis.html
-    - text: MoI hybrid model
-      href: articles/human_hmoi.html
   - text: Functions
     href: reference/index.html
   right:
@@ -787,7 +799,6 @@ reference:
   - Health
   - VectorControl
   - Resources
- 
 - title: Ports & Junctions
 - subtitle: Junctions 
   desc: Set up junction boxes to add features 
@@ -1016,17 +1027,16 @@ reference:
   desc: |
     Methods to get - set - and update forcing functions 
   contents: 
-  - update_F_season.Lambda 
-  - update_F_season
-  - update_F_season.eir 
   - show_season 
-  - show_season.Lambda 
-  - show_season.none
-  - show_season.eir 
-  - show_trend 
-  - show_trend.Lambda 
-  - show_trend.eir
-  - show_trend.none
+  - F_season 
+  - F_season.Lambda 
+  - F_season.none
+  - F_season.eir 
+  - show_trend
+  - F_trend 
+  - F_trend.Lambda 
+  - F_trend.eir
+  - F_trend.none
 - subtitle: Get and Set for Mean Forcing 
   desc: |
     Functions to change Forcing 
@@ -1051,18 +1061,9 @@ reference:
   - get_season_bottom
   - get_season_pw
   - change_season
-  - change_season_phase
-  - change_season_phase.none
-  - change_season_phase.Lambda
-  - change_season_phase.eir
-  - change_season_bottom
-  - change_season_bottom.none
-  - change_season_bottom.Lambda
-  - change_season_bottom.eir
-  - change_season_pw
-  - change_season_pw.none
-  - change_season_pw.Lambda
-  - change_season_pw.eir
+  - change_season.none
+  - change_season.Lambda
+  - change_season.eir
 - subtitle: Get and Set for Spline Trend Functions
   desc: |
     Utilities to change the interpolation points

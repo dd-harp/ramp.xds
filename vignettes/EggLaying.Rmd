@@ -1,8 +1,9 @@
 ---
-title: "Habitats and Egg Laying"
+title: "Habitats & Mosquito Ecology" 
+subtitle: "The **ML** Interface for Egg Laying and Emergence"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Habitats and Egg Laying}
+  %\VignetteIndexEntry{Habitats & Mosquito Ecology}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
