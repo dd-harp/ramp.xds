@@ -48,12 +48,13 @@ Update_Lt.trivial <- function(t, y, xds_obj, s) {
 #' + \eqn{\Lambda} or `Lambda` is the mean number of adult female mosquitoes emerging per day
 #' + \eqn{S(t)} or `F_season` is a seasonal signal (ideally, with an average annual mean of 1)
 #' + \eqn{T(t)} or `F_trend` is a function returning a trend (ideally, with an average value of 1)
+#' + \eqn{P(t)} or `F_shock` is a function describing a perturbation (by default, set to 1) 
 #' @inheritParams F_emerge
 #' @return a [numeric] vector of length `nHabitats`
 #' @export
 F_emerge.trivial <- function(t, y, xds_obj, s) {
   with(xds_obj$L_obj[[s]],{
-    return(Lambda*F_season(t)*F_trend(t)) 
+    return(Lambda*F_season(t)*F_trend(t)*F_shock(t)) 
 })}
 
 #' @title Baseline Bionomics for `trivial` (**L** Component)
@@ -93,6 +94,7 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
 #' + \eqn{\Lambda} or `Lambda` is the mean number of adult female mosquitoes emerging per day
 #' + \eqn{S(t)} or `F_season` is a seasonal signal (ideally, with an average annual mean of 1)
 #' + \eqn{T(t)} or `F_trend` is a function returning a trend (ideally, with an average value of 1)
+#' + \eqn{P(t)} or `F_shock` is a function returning a perturbation (by default, set to 1) 
 #' @param nHabitats the number of habitats in the model
 #' @param options a [list] that overwrites default values
 #' @param Lambda vector of mean emergence rates from each aquatic habitat
@@ -100,12 +102,15 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
 #' @param season_par an object to configure a seasonality function using [make_function]
 #' @param F_trend a function describing a temporal trend over time
 #' @param trend_par an object to configure a trends function using [make_function]
+#' @param F_shock a function describing a temporal shock over time
+#' @param shock_par an object to configure a shocks function using [make_function]
 #' @return none
 #' @export
 make_L_obj_trivial = function(nHabitats, options=list(),
                              Lambda=1000,
                              F_season=F_flat, season_par = list(), 
-                             F_trend=F_flat, trend_par = list()){
+                             F_trend=F_flat, trend_par = list(),
+                             F_shock=F_flat, shock_par = list()){
   with(options,{
     L_obj = list()
     class(L_obj) <- "trivial"
@@ -121,6 +126,11 @@ make_L_obj_trivial = function(nHabitats, options=list(),
     if(length(trend_par)>0)
       L_obj$F_trend <- make_function(trend_par) 
     
+    L_obj$F_shock = F_shock
+    L_obj$shock_par <- shock_par
+    if(length(shock_par)>0)
+      L_obj$F_shock <- make_function(shock_par) 
+    
     return(L_obj)
 })}
 
@@ -135,14 +145,18 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
   with(xds_obj$L_obj[[s]], list(
     Lambda=Lambda,
     F_season=F_season,
-    F_trend=F_trend
+    F_trend=F_trend,
+    F_shock=F_shock
   ))
 }
 
 #' @title Set **L** Component parameters for `trivial`
-#' @description If `Lambda` or `F_season` or `F_trend`
+#' 
+#' @description If `Lambda` or `F_season` or `F_trend` or `F_shock`
 #' are named in a list `options`, the old value is replaced
+#' 
 #' @inheritParams change_L_pars
+#' 
 #' @return an **`xds`** object
 #' @export
 change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
@@ -151,6 +165,7 @@ change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
     xds_obj$L_obj[[s]]$Lambda = Lambda
     xds_obj$L_obj[[s]]$F_season = F_season
     xds_obj$L_obj[[s]]$F_trend = F_trend
+    xds_obj$L_obj[[s]]$F_shock = F_shock
     return(xds_obj)
   }))}
 

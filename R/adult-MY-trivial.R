@@ -19,7 +19,7 @@ check_MY.trivial = function(xds_obj, s){
 F_fqZ.trivial <- function(t, y, xds_obj, s) {
   f = get_f(xds_obj, s)
   q = get_q(xds_obj, s)
-  Z = with(xds_obj$MY_obj[[s]], Z*F_season(t)*F_trend(t))
+  Z = with(xds_obj$MY_obj[[s]], Z*F_season(t)*F_trend(t)*F_shock(t))
   return(f*q*Z)
 }
 
@@ -30,7 +30,7 @@ F_fqZ.trivial <- function(t, y, xds_obj, s) {
 #' @export
 F_eggs.trivial <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]],
-       return(eggs*F_season(t)*F_trend(t))
+       return(eggs*F_season(t)*F_trend(t)*F_shock(t))
   )}
 
 #' @title Blood feeding rate of the infective mosquito population
@@ -128,12 +128,15 @@ setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
 #' @param season_par parameters to configure a `F_season` using [make_function]
 #' @param F_trend a function describing a temporal trend 
 #' @param trend_par parameters to configure `F_trend` using [make_function]
+#' @param F_shock a function describing a temporal shock 
+#' @param shock_par parameters to configure `F_shock` using [make_function]
 #' @return none
 #' @export
 make_MY_obj_trivial = function(nPatches, options,
                                f = 1, q = 1, Z=1, eggs=1,
                                F_season=F_flat, season_par = list(), 
-                               F_trend=F_flat, trend_par = list()){
+                               F_trend=F_flat, trend_par = list(), 
+                               F_shock=F_flat, shock_par = list()){
   with(options,{
     MY_obj <- list()
     MY_obj$nPatches <- nPatches
@@ -165,6 +168,10 @@ make_MY_obj_trivial = function(nPatches, options,
     if(length(trend_par)>0)
       MY_obj$F_trend <- make_function(trend_par) 
     
+    MY_obj$F_shock = F_shock
+    MY_obj$shock_par <- shock_par
+    if(length(shock_par)>0)
+      MY_obj$F_shock <- make_function(shock_par) 
     
     return(MY_obj)
 })}
@@ -197,7 +204,9 @@ get_MY_pars.trivial <- function(xds_obj, s=1) {
     season_par=season_par,
     F_season=F_season,
     trend_par=trend_par,
-    F_trend=F_trend
+    F_trend=F_trend,
+    shock_par=shock_par,
+    F_shock=F_shock
   ))
 }
 
@@ -228,6 +237,12 @@ change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
     if(exists("trend_par")){
       MY_obj[[s]]$F_trend <- make_function(trend_par) 
       MY_obj[[s]]$trend_par <- trend_par
+    }   
+    
+    xds_obj$MY_obj[[s]]$F_shock = F_shock
+    if(exists("shock_par")){
+      MY_obj[[s]]$F_shock <- make_function(shock_par) 
+      MY_obj[[s]]$shock_par <- shock_par
     }   
     
     return(xds_obj)

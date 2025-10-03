@@ -14,7 +14,9 @@ make_MY_obj_trivial(
   F_season = F_flat,
   season_par = list(),
   F_trend = F_flat,
-  trend_par = list()
+  trend_par = list(),
+  F_shock = F_flat,
+  shock_par = list()
 )
 }
 \arguments{
@@ -37,6 +39,10 @@ make_MY_obj_trivial(
 \item{F_trend}{a function describing a temporal trend}
 
 \item{trend_par}{parameters to configure \code{F_trend} using \link{make_function}}
+
+\item{F_shock}{a function describing a temporal shock}
+
+\item{shock_par}{parameters to configure \code{F_shock} using \link{make_function}}
 }
 \value{
 none

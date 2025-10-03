@@ -12,6 +12,8 @@ xds_setup_eir(
   F_trend = F_flat,
   age_par = list(),
   F_age = F_flat,
+  shock_par = list(),
+  F_shock = F_flat,
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
@@ -34,6 +36,10 @@ xds_setup_eir(
 \item{age_par}{parameters to configure an age weights function using \link{make_function}}
 
 \item{F_age}{a assigning a biting weight by age}
+
+\item{shock_par}{parameters to configure a shock using \link{make_function}}
+
+\item{F_shock}{a function describing a shock}
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
