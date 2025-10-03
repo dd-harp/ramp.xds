@@ -123,14 +123,138 @@ mosquito-borne diseases.</p>
 <p>This vignette takes a deep dive into the design and structure of the
 <strong>XH</strong> component. It is useful for anyone who wants to
 learn more about how the code works.</p>
+<hr>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>The <strong>XH</strong> component was designed to handle human
-demography and malaria epidemiology; and more broadly, the population
-dynamics of a vertebrate host population and the pathogen’s infection
-dynamics and immuno-epidemiology.</p>
-<p>…</p>
+<p>The <strong>XH</strong> component handles demography and
+epidemiology. The software was designed to handle the epidemiology of
+<em>Plasmodium falciparum</em> in a human population, but the interface
+has the capability of handling other models for parasites and pathogens
+in human or vertebrate host populations.</p>
+<p>The interface handles malaria epidemiology in a narrow sense: it
+includes exposure, infection, disease, immunity, infectiousness, and
+diagnostics and detection. In the broad sense, malaria epidemiology
+includes transmission dynamics and control, but these are handled by
+other parts of the model.</p>
+<p>Each <strong>XH</strong> module is defined by:</p>
+<ul>
+<li>
+<p>An <strong>X</strong> component - disease dynamics</p>
+<ul>
+<li><p><span class="math inline">\(X\)</span>: a state space describing
+infection and immune states, and possibly other variables</p></li>
+<li><p><em>dynamics:</em> a system of equations describing the state
+transitions</p></li>
+<li><p><em>infectivity:</em> a function <span class="math inline">\(F_b(X)\)</span> to compute partial
+immunity</p></li>
+<li><p><em>infectiousness:</em> a function <span class="math inline">\(F_I(X)\)</span> describing the effective
+infectious density</p></li>
+</ul>
+</li>
+<li>
+<p>An <strong>H</strong> component - demography</p>
+<ul>
+<li><p><em>births:</em> a popualtion birth rate, <span class="math inline">\(F_B(t, H)\)</span></p></li>
+<li><p><em>deaths &amp; etc.</em> matrix describing morality and
+possibly aging, migration, and stratum dynamics</p></li>
+</ul>
+</li>
+</ul>
+<p>Since the <strong>X</strong> component is embedded in the
+<strong>H</strong> component, the two processes are handled
+together.</p>
+<div class="section level3">
+<h3 id="the-x-component">The <strong>X</strong> Component<a class="anchor" aria-label="anchor" href="#the-x-component"></a>
+</h3>
+<p>Models for disease dynamics are developed around a general notion of
+exposure defined by two metrics: daily entomological inoculation rates
+(dEIR or <span class="math inline">\(E\)</span>) and either</p>
+<ul>
+<li><p>the daily force of infection (dFoI or <span class="math inline">\(h\)</span>), the hazard rate for infection for
+humans / hosts who are susceptible to infection.</p></li>
+<li><p>the daily attack rate (dAR or <span class="math inline">\(1-e^{-h}\)</span>), the daily probability of
+infection for humans / hosts who are susceptible to infection.</p></li>
+</ul>
+<p>Some of <strong>X</strong> component is handled in the interface that
+translates local dEIR into a measure of the total dFoI.</p>
+<p>Disease dynamics are specified by a function:</p>
+<ul>
+<li><p>for systems of differential equations, <code>dXHdt</code>
+requires the dFoI and computes the derivatives, denoted <span class="math inline">\(d X/dt\)</span> and <span class="math inline">\(d
+H/dt.\)</span></p></li>
+<li><p>for discrete time systems <code>Update_XHt</code> requires the
+dAR and updates the states, either <span class="math inline">\(X_{t+1} =
+X_t + \Delta X\)</span> and <span class="math inline">\(H_{t+1} = H_t +
+\Delta {H}.\)</span></p></li>
+</ul>
+<p>All <strong>XH</strong> modules must include a function that computes
+the infectious density <span class="math inline">\(I = F_I(X,
+H),\)</span> where <span class="math inline">\(I/H\)</span> is the
+fraction of bites that would infect a perfectly competent mosquito.</p>
+<p>All <strong>XH</strong> modules must include a function that computes
+true prevalence <span class="math inline">\(x\)</span>, from the states,
+<span class="math inline">\(x=F_x(X, H)\)</span>.</p>
+<p>Malaria models must include functions that compute predicted observed
+prevalence by three diagnostic methods: by light microscopy, by rapid
+diagnostic test, and by PCR. If the functions computing the predicted
+<em>observed</em> prevalence by various diagnostics are not computable,
+not relevant, or if they are a linear function of the true prevalence,
+then this is reported as part of the <em>skill set.</em></p>
+<p>All models should include a <em>port</em> for mass treatment: terms
+to handle mass drug administration or mass screen and treat are designed
+into some modules and turned off by default. The capability to handle
+mass treatment is reported as part of the the skill set.</p>
+</div>
+<div class="section level3">
+<h3 id="the-h-component">The <strong>H</strong> Component<a class="anchor" aria-label="anchor" href="#the-h-component"></a>
+</h3>
+<p>The <strong>H</strong> component provides the ecological /
+demographic context for disease dynamics. A large number of models has
+been developed that assumes human / host population size is static. In
+<strong><code>ramp.xds,</code></strong> a modules either:</p>
+<ul>
+<li>
+<p>handle dynamically changing populations, and</p>
+<ul>
+<li><p>the equations handle demographic changes</p></li>
+<li><p>a constant population density model by default;</p></li>
+</ul>
+</li>
+<li><p><strong>OR</strong> report that demographic change is not part of
+its skill set</p></li>
+</ul>
+<p>Models in <strong><code>ramp.xds</code></strong> (and in the
+satellite package <strong><code>ramp.library</code></strong>) follow a
+convention in modeling demographic changes. If had <span class="math inline">\(N_X\)</span> mutually exclusive and collectively
+exhaustive states, the modules implement <span class="math inline">\(N_X-1\)</span> equations for the state variables.
+The compartment not computed is the class that receives newborns,
+denoted <span class="math inline">\({X}_0\)</span> (or one if these, if
+two or more classes get newborns.)</p>
+<p>These models generally use <span class="math inline">\(H\)</span> to
+denote the human / host population density, and the models are
+formulated to handle demography. Let <span class="math inline">\(B(t,
+H)\)</span> denote a population birth rate. Mortality and aging are
+handled by the demographic matrix, denoted <span class="math inline">\(D.\)</span> The models assume that <span class="math inline">\(H\)</span> could be a vector, so <span class="math inline">\(D\)</span> is a matrix: the diagonal includes
+per-capita death rates. For differential equations, the models
+compute:<br>
+% <span class="math display">\[\frac{dH}{dt} = B(t) - D \cdot H -
+F_\mu(X)\]</span> where <span class="math inline">\(F_\mu(X)\)</span> is
+a set of terms describing disease-induced mortality.</p>
+<p>The matrix <span class="math inline">\(D\)</span> is also applied to
+every state variable:</p>
+<p><span class="math display">\[\frac{d X_i}{dt} = F_i({X}) - {D} \cdot
+{X}_i\]</span> The value of <span class="math inline">\({X}_0\)</span>
+is computed and assigned a name using:</p>
+<p><span class="math display">\[X_0 = H - \sum_{i&gt;0}
+X_i.\]</span></p>
+<p>By default, the software sets <span class="math inline">\(B = D =
+F_\mu(X) = 0;\)</span> models with non-trivial demographic processes are
+handled as an advanced setup option.</p>
+<p>The demographic operator can also be modified to handle other
+dynamical transitions among classes, which is handled through models for
+cohort dynamics and .</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="required-functions">Required Functions<a class="anchor" aria-label="anchor" href="#required-functions"></a>
@@ -174,6 +298,7 @@ equations.</p></li>
 </ul>
 </li>
 </ol>
+<hr>
 </div>
 </div>
 <div class="section level2">
