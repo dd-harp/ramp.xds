@@ -43,7 +43,7 @@ change_season.none = function(X, xds_obj, s=1){
 #' 
 #' @export
 change_season.Lambda = function(X, xds_obj, s=1){
-  with(xds_obj$L_obj[[s]],
+  with(xds_obj$L_obj[[s]]$season_par,
     with(X,{
       xds_obj$L_obj[[s]]$season_par$pw = pw     
       xds_obj$L_obj[[s]]$season_par$bottom = bottom     
@@ -65,7 +65,7 @@ change_season.Lambda = function(X, xds_obj, s=1){
 #' 
 #' @export
 change_season.eir = function(X, xds_obj, s=1){
-  with(xds_obj$EIR_obj,
+  with(xds_obj$EIR_obj$season_par,
        with(X,{
          xds_obj$EIR_obj$season_par$pw = pw     
          xds_obj$EIR_obj$season_par$bottom = bottom     
