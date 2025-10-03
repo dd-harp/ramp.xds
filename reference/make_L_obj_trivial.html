@@ -9,11 +9,13 @@
 \(\Lambda\) or Lambda is the mean number of adult female mosquitoes emerging per day
 \(S(t)\) or F_season is a seasonal signal (ideally, with an average annual mean of 1)
 \(T(t)\) or F_trend is a function returning a trend (ideally, with an average value of 1)
+\(P(t)\) or F_shock is a function returning a perturbation (by default, set to 1)
 
 "><meta property="og:description" content="The number of emerging adults is a function $$\Lambda S(t) T(t)$$ where
 \(\Lambda\) or Lambda is the mean number of adult female mosquitoes emerging per day
 \(S(t)\) or F_season is a seasonal signal (ideally, with an average annual mean of 1)
 \(T(t)\) or F_trend is a function returning a trend (ideally, with an average value of 1)
+\(P(t)\) or F_shock is a function returning a perturbation (by default, set to 1)
 
 "></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -23,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.4-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,6 +89,7 @@
     <p>The number of emerging adults is a function $$\Lambda S(t) T(t)$$ where</p><ul><li><p>\(\Lambda\) or <code>Lambda</code> is the mean number of adult female mosquitoes emerging per day</p></li>
 <li><p>\(S(t)\) or <code>F_season</code> is a seasonal signal (ideally, with an average annual mean of 1)</p></li>
 <li><p>\(T(t)\) or <code>F_trend</code> is a function returning a trend (ideally, with an average value of 1)</p></li>
+<li><p>\(P(t)\) or <code>F_shock</code> is a function returning a perturbation (by default, set to 1)</p></li>
 </ul></div>
 
     <div class="section level2">
@@ -98,7 +101,9 @@
 <span>  F_season <span class="op">=</span> <span class="va">F_flat</span>,</span>
 <span>  season_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  F_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
-<span>  trend_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  trend_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  F_shock <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  shock_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -132,6 +137,14 @@
 
 <dt id="arg-trend-par">trend_par<a class="anchor" aria-label="anchor" href="#arg-trend-par"></a></dt>
 <dd><p>an object to configure a trends function using <a href="make_function.html">make_function</a></p></dd>
+
+
+<dt id="arg-f-shock">F_shock<a class="anchor" aria-label="anchor" href="#arg-f-shock"></a></dt>
+<dd><p>a function describing a temporal shock over time</p></dd>
+
+
+<dt id="arg-shock-par">shock_par<a class="anchor" aria-label="anchor" href="#arg-shock-par"></a></dt>
+<dd><p>an object to configure a shocks function using <a href="make_function.html">make_function</a></p></dd>
 
 </dl></div>
     <div class="section level2">
