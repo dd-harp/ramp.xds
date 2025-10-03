@@ -66,8 +66,7 @@ F_trend.none = function(tm, xds_obj){
 #' 
 #' @export
 F_trend.Lambda = function(tm, xds_obj){
-  return(xds_obj$L_obj[[1]]$F_trend(tm)) 
-
+  return(with(xds_obj$L_obj[[1]], F_trend(tm)*F_shock(tm))) 
 }
 
 #' @title Plot the temporal trend 
@@ -81,5 +80,5 @@ F_trend.Lambda = function(tm, xds_obj){
 #' 
 #' @export
 F_trend.eir= function(tm, xds_obj){
-  return(xds_obj$EIR_obj$F_trend(tm))
+  return(with(xds_obj$EIR_obj,F_trend(tm)*F_shock(tm)))
 }

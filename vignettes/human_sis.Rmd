@@ -120,6 +120,7 @@ params$EIR_obj$eir <- as.vector(eir)
 params$EIR_obj$scale <- 1 
 params$EIR_obj$F_season <- F_s
 params$EIR_obj$F_trend <- F_t
+params$EIR_obj$F_shock <- F_t
 params$EIR_obj$F_age <- F_a
 ```
 

@@ -1085,6 +1085,10 @@ reference:
   - change_spline_y.none
   - change_spline_y.Lambda
   - change_spline_y.eir
+  - change_shock
+  - change_shock.none
+  - change_shock.Lambda
+  - change_shock.eir
 - title: New  
   desc: Move  
   contents:   

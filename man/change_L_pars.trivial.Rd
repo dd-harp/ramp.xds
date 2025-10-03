@@ -17,6 +17,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-If \code{Lambda} or \code{F_season} or \code{F_trend}
+If \code{Lambda} or \code{F_season} or \code{F_trend} or \code{F_shock}
 are named in a list \code{options}, the old value is replaced
 }

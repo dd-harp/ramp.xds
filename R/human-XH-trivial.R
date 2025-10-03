@@ -36,7 +36,7 @@ check_XH.trivial = function(xds_obj, i){
 #' @export
 F_X.trivial <- function(t, y, xds_obj, i) {
   H = F_H(t, y, xds_obj, i)
-  X = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t))
+  X = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t)*F_shock(t))
   return(X)
 }
 
@@ -67,11 +67,14 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' @param season_par parameters to configure a `F_season` using [make_function]
 #' @param F_trend a function describing a temporal trend 
 #' @param trend_par parameters to configure `F_trend` using [make_function]
+#' @param F_shock a function describing a temporal shock 
+#' @param shock_par parameters to configure `F_shock` using [make_function]
 #' @return a [list]
 #' @export
 make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
                               F_season=F_flat, season_par = list(), 
-                              F_trend=F_flat, trend_par = list()){
+                              F_trend=F_flat, trend_par = list(), 
+                              F_shock=F_flat, shock_par = list()){
   with(options,{
     XH_obj <- list()
     class(XH_obj) <- c('trivial')
@@ -88,6 +91,11 @@ make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
     if(length(trend_par)>0)
       XH_obj$F_trend <- make_function(trend_par) 
 
+    XH_obj$F_shock = F_shock
+    XH_obj$shock_par <- shock_par
+    if(length(shock_par)>0)
+      XH_obj$F_shock <- make_function(shock_par) 
+    
     return(XH_obj)
   })}
 
@@ -222,6 +230,7 @@ get_XH_pars.trivial <- function(xds_obj, i=1) {
     kappa=kappa,
     F_season=F_season,
     F_trend=F_trend,
+    F_shock=F_shock,
   ))
 }
 
@@ -236,6 +245,7 @@ change_XH_pars.trivial <- function(xds_obj, i=1, options=list()) {
     xds_obj$XH_obj[[i]]$kappa = kappa
     xds_obj$XH_obj[[i]]$F_season = F_season
     xds_obj$XH_obj[[i]]$F_trend = F_trend
+    xds_obj$XH_obj[[i]]$F_shock = F_shock
     return(xds_obj)
 }))}
 
