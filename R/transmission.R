@@ -177,7 +177,7 @@ compute_kappa <- function(t, y, xds_obj){
     Wi = xds_obj$XY_interface$Wi[[s]][[1]]
     W = xds_obj$XY_interface$W[[s]]
     beta = xds_obj$terms$beta[[s]][[1]]
-    X = F_X(t, y, xds_obj, 1)
+    X = F_I(t, y, xds_obj, 1)
     
 
     kappa <- F_kappa(Wi, W, beta, X)

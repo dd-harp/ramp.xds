@@ -2,23 +2,33 @@
 
 #' @title The **XH** Module Skill Set 
 #' 
-#' @description The **XH** skill set is a list of 
-#' an module's capabilities. 
+#' @description The `hMoI` module is an example
+#' of a model that is not extensible. There is now
+#' way to add either dynamic human population density
+#' or mass treatment without violating the model
+#' assumptions.
+#' 
+#' The model does output observed population density
+#' and here it is
+#' 
 #' 
 #' @note This method dispatches on `class(xds_obj$XH_obj)` 
 #'
 #' @inheritParams skill_set_XH
 #' 
-#' @return the skill set, as a list 
+#' @return the `hMoI` *XH* module skill set, a list 
 #' 
 #' @export
 skill_set_XH.hMoI = function(Xname = "hMoI"){
   return(list(
-    H_component = FALSE, 
-    X_component = TRUE, 
-    mda         = FALSE, 
-    msat        = FALSE, 
-    malaria     = TRUE
+    H_dynamics = FALSE, 
+    mda        = FALSE, 
+    msat       = FALSE, 
+    malaria    = TRUE, 
+    pr_obs     = TRUE, 
+    pf_lm      = FALSE, 
+    pf_rdt     = FALSE, 
+    pf_pcr     = FALSE
   ))
 }
 
@@ -32,7 +42,7 @@ check_XH.hMoI = function(xds_obj, i){
   return(xds_obj)
 }
 
-#' @title Compute Derivatives for the `hMoI` (**X** Model)
+#' @title Compute Derivatives for `hMoI` (**X** Module)
 #'  
 #' @description Implements [dXHdt] for the hybrid MoI model.
 #' @inheritParams dXHdt
@@ -167,12 +177,12 @@ change_XH_pars.hMoI <- function(xds_obj, i=1, options=list()) {
 
 
 #' @title Size of effective infectious human population
-#' @description Implements [F_X] for the hybrid MoI model.
-#' @inheritParams F_X
+#' @description Implements [F_I] for the hybrid MoI model.
+#' @inheritParams F_I
 #' @return a [numeric] vector of length `nStrata`
 #' @importFrom stats pexp
 #' @export
-F_X.hMoI <- function(t, y, xds_obj, i) {
+F_I.hMoI <- function(t, y, xds_obj, i) {
   with(get_XH_vars(y, xds_obj, i),{ 
     with(xds_obj$XH_obj[[i]],{
       x1 <- pexp(q = m1)

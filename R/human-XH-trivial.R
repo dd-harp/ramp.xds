@@ -8,14 +8,19 @@
 #'
 #' @inheritParams skill_set_XH  
 #' 
-#' @return a list describing the skill set 
+#' @return the trivial *XH* module skill set, a list 
 #' 
 #' @export
 skill_set_XH.trivial = function(Xname){
   list(
-    demography = FALSE, 
-    prevalence = FALSE, 
-    malaria    = FALSE 
+    H_dynamics = TRUE, 
+    mda        = TRUE, 
+    msat       = TRUE, 
+    malaria    = TRUE, 
+    pr_obs     = TRUE, 
+    pf_lm      = FALSE, 
+    pf_rdt     = FALSE, 
+    pf_pcr     = FALSE
   ) 
 }
 
@@ -30,11 +35,11 @@ check_XH.trivial = function(xds_obj, i){
 }
 
 #' @title Size of effective infectious human population
-#' @description Implements [F_X] for the trivial model
-#' @inheritParams F_X
+#' @description Implements [F_I] for the trivial model
+#' @inheritParams F_I
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X.trivial <- function(t, y, xds_obj, i) {
+F_I.trivial <- function(t, y, xds_obj, i) {
   H = F_H(t, y, xds_obj, i)
   X = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t)*F_shock(t))
   return(X)
@@ -46,7 +51,8 @@ F_X.trivial <- function(t, y, xds_obj, i) {
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_H.trivial <- function(t, y, xds_obj, i) {
-  xds_obj$XH_obj[[i]]$H
+  H = with(xds_obj$XH_obj[[i]],  H*H_trend(t))
+  return(H) 
 }
 
 #' @title Infection blocking pre-erythrocytic immunity
@@ -59,6 +65,14 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 }
 
 #' @title Make parameters for trivial human model
+#' 
+#' @description The trivial module configures forcing with a seasonal pattern
+#' 
+#' + \eqn{H = F_H(t)} - human / host population density 
+#' + \eqn{I = F_I(t)} - human / host infectious density 
+#' 
+#' Since \eqn{\kappa} is the ratio \eqn{I/H} 
+#'  
 #' @param nPatches the number of patches
 #' @param options a [list]
 #' @param kappa net infectiousness
@@ -69,12 +83,15 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' @param trend_par parameters to configure `F_trend` using [make_function]
 #' @param F_shock a function describing a temporal shock 
 #' @param shock_par parameters to configure `F_shock` using [make_function]
+#' @param H_trend a function describing a temporal trend in human population density
+#' @param H_trend_par parameters to configure `H_trend` using [make_function]
 #' @return a [list]
 #' @export
 make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
                               F_season=F_flat, season_par = list(), 
                               F_trend=F_flat, trend_par = list(), 
-                              F_shock=F_flat, shock_par = list()){
+                              F_shock=F_flat, shock_par = list(), 
+                              H_trend=F_flat, H_trend_par = list()){
   with(options,{
     XH_obj <- list()
     class(XH_obj) <- c('trivial')
@@ -96,6 +113,11 @@ make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
     if(length(shock_par)>0)
       XH_obj$F_shock <- make_function(shock_par) 
     
+    XH_obj$H_trend = H_trend
+    XH_obj$H_trend_par <- H_trend_par
+    if(length(H_trend_par)>0)
+      XH_obj$H_trend <- make_function(H_trend_par) 
+
     return(XH_obj)
   })}
 
