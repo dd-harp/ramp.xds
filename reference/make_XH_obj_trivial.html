@@ -5,7 +5,17 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Make parameters for trivial human model — make_XH_obj_trivial"><meta name="description" content="Make parameters for trivial human model"><meta property="og:description" content="Make parameters for trivial human model"></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Make parameters for trivial human model — make_XH_obj_trivial"><meta name="description" content="The trivial module configures forcing with a seasonal pattern
+\(H = F_H(t)\) - human / host population density
+\(I = F_I(t)\) - human / host infectious density
+
+
+Since \(\kappa\) is the ratio \(I/H\)"><meta property="og:description" content="The trivial module configures forcing with a seasonal pattern
+\(H = F_H(t)\) - human / host population density
+\(I = F_I(t)\) - human / host infectious density
+
+
+Since \(\kappa\) is the ratio \(I/H\)"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -74,7 +84,9 @@
     </div>
 
     <div class="ref-description section level2">
-    <p>Make parameters for trivial human model</p>
+    <p>The trivial module configures forcing with a seasonal pattern</p><ul><li><p>\(H = F_H(t)\) - human / host population density</p></li>
+<li><p>\(I = F_I(t)\) - human / host infectious density</p></li>
+</ul><p>Since \(\kappa\) is the ratio \(I/H\)</p>
     </div>
 
     <div class="section level2">
@@ -89,7 +101,9 @@
 <span>  F_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
 <span>  trend_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  F_shock <span class="op">=</span> <span class="va">F_flat</span>,</span>
-<span>  shock_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  shock_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  H_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  H_trend_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -135,6 +149,14 @@
 
 <dt id="arg-shock-par">shock_par<a class="anchor" aria-label="anchor" href="#arg-shock-par"></a></dt>
 <dd><p>parameters to configure <code>F_shock</code> using <a href="make_function.html">make_function</a></p></dd>
+
+
+<dt id="arg-h-trend">H_trend<a class="anchor" aria-label="anchor" href="#arg-h-trend"></a></dt>
+<dd><p>a function describing a temporal trend in human population density</p></dd>
+
+
+<dt id="arg-h-trend-par">H_trend_par<a class="anchor" aria-label="anchor" href="#arg-h-trend-par"></a></dt>
+<dd><p>parameters to configure <code>H_trend</code> using <a href="make_function.html">make_function</a></p></dd>
 
 </dl></div>
     <div class="section level2">
