@@ -1,11 +1,18 @@
 # generic methods for human component
 
-#' @title The **XH** Module Skill Set 
+#' @title **XH** Skill Set 
 #' 
 #' @description The **XH** skill set is a list of 
 #' an module's capabilities: 
 #' 
-#' + `demography` is 
+#' + **`H_dynamics`** - if FALSE, \eqn{H} is static. The module doesn't have a port for demographic change 
+#' + **`mda`**:  if FALSE, the module doesn't have an `mda` port for mass drug administration 
+#' + **`msat`**:  if FALSE, the module doesn't have an `msat` port for mass  
+#' + **`malaria`**: if FALSE, the model probably shouldn't be used for malaria 
+#' + **`pr_obs`**: if TRUE, the model outputs a value for observed PR 
+#' + **`pf_rdt`**: if TRUE, the model outputs a value for prevalence by RDT 
+#' + **`pf_lm`**: if TRUE, the model outputs a value for prevalence by light microscopy 
+#' + **`pf_pcr`**: if FALSE, the model outputs a value for prevalence by PCR 
 #'
 #' @param Xname the **XH** module name 
 #' 
@@ -70,8 +77,8 @@ Update_XHt <- function(t, y, xds_obj, i) {
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X <- function(t, y, xds_obj, i) {
-  UseMethod("F_X", xds_obj$XH_obj[[i]])
+F_I <- function(t, y, xds_obj, i) {
+  UseMethod("F_I", xds_obj$XH_obj[[i]])
 }
 
 #' @title Size of human population denominators

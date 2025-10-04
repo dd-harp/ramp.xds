@@ -1,8 +1,31 @@
 # specialized methods for the human SIS model
 
+#' @title The **XH** Module Skill Set 
+#' 
+#' @description The **XH** skill set is a list of 
+#' an module's capabilities. 
+#' 
+#' @note This method dispatches on `class(xds_obj$XH_obj)` 
+#'
+#' @inheritParams skill_set_XH
+#' 
+#' @return the `SIS` *XH* module skill set, a list 
+#' 
+#' @export
+skill_set_XH.SIS = function(Xname = "SIS"){
+  return(list(
+    H_dynamics = TRUE, 
+    mda        = TRUE, 
+    msat       = TRUE, 
+    malaria    = TRUE, 
+    pr_obs     = TRUE, 
+    pf_lm      = FALSE, 
+    pf_rdt     = FALSE, 
+    pf_pcr     = FALSE
+  ))
+}
 
-
-#' @title Derivatives function for the `SIS` model (*XH** Model)
+#' @title Compute derivatives for the `SIS` model (*XH** Model)
 #'  
 #' @description 
 #' 
@@ -46,9 +69,9 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
   
   with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]], {
+      r_t = r + mda(t) + msat(t)
       dH <- Births(t, H, births) + D_matrix %*% H
       dI <- foi*(H-I) - r*I + D_matrix %*% I 
-      dI <- dI - mda(t)*I - msat(t)*I 
       return(c(dH, dI))
     })
   })
@@ -248,11 +271,11 @@ change_XH_inits.SIS <- function(xds_obj, i=1, options=list()) {
 #' @description In the *SIS* model family, infectious
 #' density is \eqn{cI}. 
 #' 
-#' @inheritParams F_X
+#' @inheritParams F_I
 #' 
 #' @return Infectious density 
 #' @export
-F_X.SIS <- function(t, y, xds_obj, i) {
+F_I.SIS <- function(t, y, xds_obj, i) {
   I = y[xds_obj$XH_obj[[i]]$ix$I_ix]
   X = with(xds_obj$XH_obj[[i]], c*I)
   return(X)
@@ -314,26 +337,7 @@ F_ni.SIS <- function(vars, XH_obj) {
 HTC.SIS <- function(xds_obj, i) {
   with(xds_obj$XH_obj[[i]], return(c/r))}
 
-#' @title The **XH** Module Skill Set 
-#' 
-#' @description The **XH** skill set is a list of 
-#' an module's capabilities. 
-#' 
-#' @note This method dispatches on `class(xds_obj$XH_obj)` 
-#'
-#' @inheritParams skill_set_XH
-#' 
-#' @return the skill set, as a list 
-#' 
-#' @export
-skill_set_XH.SIS = function(Xname = "SIS"){
-  return(list(
-    demography  = TRUE, 
-    prevalence  = TRUE, 
-    malaria     = TRUE, 
-    diagnostics = FALSE 
-  ))
-}
+
 
 #' Check / update before solving 
 #'

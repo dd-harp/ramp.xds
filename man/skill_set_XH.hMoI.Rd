@@ -10,11 +10,17 @@
 \item{Xname}{the \strong{XH} module name}
 }
 \value{
-the skill set, as a list
+the \code{hMoI} \emph{XH} module skill set, a list
 }
 \description{
-The \strong{XH} skill set is a list of
-an module's capabilities.
+The \code{hMoI} module is an example
+of a model that is not extensible. There is now
+way to add either dynamic human population density
+or mass treatment without violating the model
+assumptions.
+
+The model does output observed population density
+and here it is
 }
 \note{
 This method dispatches on \code{class(xds_obj$XH_obj)}

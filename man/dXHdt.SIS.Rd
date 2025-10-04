@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{dXHdt.SIS}
 \alias{dXHdt.SIS}
-\title{Derivatives function for the \code{SIS} model (\emph{XH}* Model)}
+\title{Compute derivatives for the \code{SIS} model (\emph{XH}* Model)}
 \usage{
 \method{dXHdt}{SIS}(t, y, xds_obj, i)
 }

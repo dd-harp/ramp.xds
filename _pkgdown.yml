@@ -100,6 +100,7 @@ reference:
   desc: |
     Modules for human/host demography and epidemiology.  (Also see <a href="https://dd-harp.github.io/ramp.library/" target = "_blank">ramp.library</a>.)
   contents:
+  - skill_set_XH 
   - make_XH_obj_trivial 
   - dXHdt.SIS
   - dXHdt.hMoI
@@ -342,7 +343,7 @@ reference:
   - get_XH_vars
   - get_XH_pars
   - change_XH_pars
-  - F_X
+  - F_I
   - F_H
   - F_infectivity
   - parse_XH_orbits
@@ -363,7 +364,7 @@ reference:
   contents:
   - skill_set_XH.trivial 
   - check_XH.trivial 
-  - F_X.trivial
+  - F_I.trivial
   - F_H.trivial
   - F_ni.trivial 
   - F_prevalence.trivial
@@ -392,7 +393,7 @@ reference:
   - setup_XH_inits.hMoI
   - make_XH_inits_hMoI
   - setup_XH_ix.hMoI
-  - F_X.hMoI
+  - F_I.hMoI
   - F_H.hMoI
   - F_infectivity.hMoI
   - F_prevalence.hMoI
@@ -422,7 +423,7 @@ reference:
   - get_XH_vars.SIS
   - get_XH_pars.SIS
   - change_XH_pars.SIS
-  - F_X.SIS
+  - F_I.SIS
   - F_H.SIS
   - F_infectivity.SIS
   - parse_XH_orbits.SIS
