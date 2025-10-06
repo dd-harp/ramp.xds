@@ -12,6 +12,37 @@ The **MY** component was designed to model adult mosquito ecology and infection 
 
 This vignette takes a deep dive into the design and structure of the **MY** component. It is useful for anyone who wants to learn more about how the code works.  
 
+## Overview 
+
+The **MY** component adult mosquito ecology and infection dynamics. We let **M** describe a state space describing mosquito ecology, and **Y** an embedded state space describing parasite or pathogen infection dynamics. Since **Y** is embedded within **M,** the two processes are handled together. 
+
+The **Y** component interacts with **X** through blood feeding and transmission: 
+
++ All **Y** components are developed around net-infectiousness, or $\kappa,$ the probability of becoming infected after blood feeding on a human. 
+
++ Each module must supply a function $F_Z$ that computes the expected number of infectious bites on humans. This is processed by the **XY** interface and transformed into the daily EIR for all the **XH** component strata. 
+
+The **M** component interacts with **L** through egg laying and emergence. 
+
++ The **M** component is developed around the net emergence rate of adult mosquitoes, or $\Lambda.$
+
++ Each **M** component must supply a function $F_G$ that computes the number of eggs laid by the adult mosquito population in a patch. The **ML**-interface determines how the eggs are apportioned among all the habitats in a patch.  
+A function `dMYdt` computes the derivatives for differential equation modules. `Update_MYt` updates the variables for discrete time systems.
+
+Two important issues for **MY** components are adult mosquito demography, including mortality and dispersal and the method for handling mosquito bionomics as a baseline that is modified by control
+
+### Mosquito Demography 
+
+There are some built-in functions to compute a mosquito demographic matrix, $\Omega,$ and a matrix that computes survival and dispersal through the EIP:  $$\Upsilon = e^{-\Omega \tau}$$
+
+For most of these models:: 
+$$\Omega = -g - \sigma + (1-\mu) \sigma K$$
+
+### Mosquito Bionomics 
+
+The core challenge for implementing mosquito bionomics was how to handle time-varying parameters affected by two or more processes: a baseline value affected by resource availability or weather; and a new value that has been modified by the presence of vector control. This challenge applies to all mosquitoes, whether adult or immature, so it is handled separately: 
+[Bionomics](https://github.com/dd-harp/ramp.xds/Bionomics.html){target="_blank"}.
+
 ## Required Functions 
 
 Each **MY** module includes XX required functions and some optional ones.
