@@ -8,15 +8,16 @@
 #' @param xds_obj an **`xds`** model object
 #' @param tm the time points 
 #' @param add add to existing plot
+#' @param clr the line color 
 #'
 #' @return the temporal trend, invisibly
 #'  
 #' @export
-show_trend = function(xds_obj, tm = seq(0, 3650, by=10), add=FALSE){
+show_trend = function(xds_obj, tm=seq(0, 3650, by=10), add=FALSE, clr = "black"){
   trend <- F_trend(tm, xds_obj)
   if(length(trend)>0){
-    if(add==FALSE) plot(tm, trend, ylab = "Temporal Trend", xlab = "Time", type = "n")
-    lines(tm, trend)
+    if(add==FALSE) plot(tm, trend, ylab = "Temporal Trend", col = clr, xlab = "Time", type = "n")
+    lines(tm, trend, col = clr)
   }
   return(invisible(trend)) 
   
