@@ -6,7 +6,7 @@ header-includes:
 --- 
 
 # **`ramp.xds`** - e**X**tensible **D**ynamical **S**ystems 
-## *Nimble model building and analytics for malaria and other mosquito-borne pathogens*
+## *Extensible dynamical systems and nimble model building for mosquito-borne disease dynamics.*
 
 
 <!-- badges: start -->
@@ -26,29 +26,62 @@ To get started, see the vignette [*Getting Started*](https://dd-harp.github.io/r
 
 ***
 
+**`ramp.xds`** is an R software package that supports **Sim**ulation-**B**ased **A**nalytics ([**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)) and **R**obust **A**nalytics for **M**alaria **P**olicy ([**RAMP**](https://faculty.washington.edu/smitdave/ramp/index.html)). 
+
 ## What is RAMP?
 
+**RAMP** is short acronym for a big idea about how to do malaria analytics.
 
-**`ramp.xds`** is an R software package that was developed to support **Sim**ulation-**B**ased **A**nalytics ([**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)) and **R**obust **A**nalytics for **M**alaria **P**olicy, or [**RAMP**](https://faculty.washington.edu/smitdave/ramp/index.html). 
+Malaria is complex: malaria involves a set of non-linear interactions among humans, mosquitoes, parasites, and malaria managers. 
+Lewis Hackett compared it to chess:
 
-**`ramp.xds`** supports nimble model building for simulation-based malaria analytics and research. 
-The software was designed to lower the costs of setting up, solving, analyzing, and applying dynamical systems to model the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. 
-The software also supports nimble model building and analysis for mosquito ecology and parasite/pathogen transmission by mosquitoes as a *changing baseline* (using [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) to model the effects of weather, hydrology, ...) that is *modified by vector control* (using [**`ramp.control`**](https://dd-harp.github.io/ramp.control/)).
+> …malaria is so moulded and altered by local conditions that it becomes a thousand different diseases and epidemiological puzzles. Like chess, it is played with a few pieces, but is capable of an infinite variety of situations.
 
+Hackett claims that malaria systems are also locally peculiar: small local differences (*e.g.* human and mosquito behaviors)  can affect blood feeding patterns, transmission, and the responses to control.
+Malaria complexity and local peculiarity are a source of uncertainty that undermine our efforts to understand, control or eliminate it. 
+Malaria research & analytics need a systematic way of dealing with uncertainty. This was the seed crystal for RAMP.  
 
-**RAMP** is shorthand for the bespoke inferential systems developed for malaria decision support and adaptive malaria control that go to great lengths to characterize, quantify, and propagate uncertainty. 
-RAMP systems combine elements of data science, conventional statistical analysis, and simulation-based analytics. 
+RAMP is designed for **malaria analytics,**
+defined as the systematic analysis of evidence to support malaria policy. 
+Managing malaria involves a large set of linked activities, and some of these come with 
+a heavy computational or quantitative load: 
+data processing and curation; conventional statistical analysis; scenario planning; 
+and strategic planning.
+*Simulation based analytics* 
+-- the application of dynamical systems models of malaria transmission dynamics and control in malaria analytics -- 
+play a key role through seamless integration of retrospective data analysis, real-time decision support, and evidence-based 
+approaches to setting rational expectations about the future. 
+This software, called **SimBA** (short for **Sim**ulation-**B**ased **A**nalytics),
+was designed to handle these tasks in a way that could handle uncertainty. 
 
 The [**SimBA** project](https://faculty.washington.edu/smitdave/simba/index.html) (**Sim**ultation-**B**ased **A**nalytics) is a
-software development project to support malaria analytics and development of robust policy advice for
-malaria and other mosquito-transmitted pathogens. SimBA includes **`ramp.xds`** and all its satellite packages (below). 
+suite of software packages that have the goal of supporting routine malaria analytics: 
+
++ It was designed to enable nimble model building;  
+
++ The models play a role in developing **malaria intelligence** -- a quantitative assessment of malaria built for malaria analysis; 
+
++ The software was designed for iterative engagement: the models can be reused and they can be modified.  
+
++ The software was designed for robust analytics; the functions enable development of analytics pipelines to propagate uncertainty. 
+
++ The software was designed for accountability; the analysis is transparent.   
+
+By nimble, we mean that software was designed to lower the costs of setting up, solving, analyzing, and applying dynamical systems to model the mosquito ecology or the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. 
+
+A core goal is to understand malaria transmission in terms of a *changing baseline* (using [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) to model the effects of weather, hydrology, ...) that is *modified by vector control* (using [**`ramp.control`**](https://dd-harp.github.io/ramp.control/)).
+
+## What is SimBA? 
+
+This package, **`ramp.xds`** handles core computation for a suite of six software packages that support simulation-based analytics. SimBA is how we describe the full suite. 
+
+SimBA includes **`ramp.xds`** and all its satellite packages (below). 
 
 **`ramp.xds`** has been designed to serve the needs of malaria programs, where mathematical models are used for decision support and adaptive malaria control in a defined geographical area. Mechanistic models that have been fitted to data describing malaria in a place provide a synthesis of *malaria intelligence.* These models can facilitate complex analysis, extending our innate mental capabilities. By characterizing and quantifying uncertainty, and then propagating the uncertainty through the analysis, simulation-based analytics serve as a platform for giving robust policy advice and for adaptive malaria control. As the needs of a malaria program changes, the models can be modified -- simplified or extended -- to serve the tasks at hand.
 
 **`ramp.xds`** was developed to apply malaria theory: the software solves dynamical systems and outputs the predicted values of standard, observable malaria metrics. 
 It also provides some computational support for qualitative analysis: it computes steady states, stable orbits and reproductive numbers. In [**`ramp.work`**](https://dd-harp.github.io/ramp.work/), we developed algorithms that fit models and evaluate vector control; that develope short term forecasts; and that enable scenario planning and strategic planning.
 
-## **`ramp.xds`** and SimBA
 
 Originally, **`ramp.xds`** was a single program, but it made sense to split the software into several R packages. 
 When it split, we started using calling the software development project **SimBA**. 

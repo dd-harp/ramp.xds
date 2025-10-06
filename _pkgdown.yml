@@ -100,10 +100,10 @@ reference:
   desc: |
     Modules for human/host demography and epidemiology.  (Also see <a href="https://dd-harp.github.io/ramp.library/" target = "_blank">ramp.library</a>.)
   contents:
-  - skill_set_XH 
   - make_XH_obj_trivial 
   - dXHdt.SIS
   - dXHdt.hMoI
+  - skill_set_XH
 - subtitle: MY Modules (Adult Mosquitoes)
   desc: |
     Modules for adult mosquito ecology and infection dynamics. (Also see <a href="https://dd-harp.github.io/ramp.library/" target = "_blank">ramp.library</a>.)

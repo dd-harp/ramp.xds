@@ -3,7 +3,8 @@
 #' @title The **XH** Module Skill Set 
 #' 
 #' @description The **XH** skill set is a list of 
-#' an module's capabilities 
+#' an module's capabilities. The relevant documentation 
+#' for setup is in [make_XH_obj_trivial]
 #' 
 #'
 #' @inheritParams skill_set_XH  
@@ -35,14 +36,20 @@ check_XH.trivial = function(xds_obj, i){
 }
 
 #' @title Size of effective infectious human population
-#' @description Implements [F_I] for the trivial model
+#' 
+#' @description The trace function for \eqn{\kappa} follows
+#' the **`ramp.xds`** standard for time series forcing. The
+#' trace function for \eqn{H} can be modified to follow a
+#' trend. Here, \eqn{I = \kappa H}. 
+#' 
 #' @inheritParams F_I
+#' 
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_I.trivial <- function(t, y, xds_obj, i) {
   H = F_H(t, y, xds_obj, i)
-  X = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t)*F_shock(t))
-  return(X)
+  I = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t)*F_shock(t))
+  return(I)
 }
 
 #' @title Size of the human population
@@ -121,9 +128,11 @@ make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
     return(XH_obj)
   })}
 
-#' @title Handle Derivatives for the `trivial` **X**-Module
+#' @title Handle Derivatives for the `trivial` **XH**-module
+#' 
 #' @description The trivial model has no state variables so it returns
 #' a numeric vector of length 0
+#' 
 #' @inheritParams dXHdt
 #' @return a [numeric] vector
 #' @export
@@ -132,8 +141,10 @@ dXHdt.trivial <- function(t, y, xds_obj, i) {
 }
 
 #' @title Handle State Updating for the `trivial` **X**-Module
+#' 
 #' @description The trivial model has no state variables so it returns
 #' a numeric vector of length 0
+#' 
 #' @inheritParams Update_XHt
 #' @return a [numeric] vector
 #' @export
