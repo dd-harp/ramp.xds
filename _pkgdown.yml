@@ -32,6 +32,8 @@ navbar:
       href: articles/BloodFeeding.html
     - text: Exposure
       href: articles/Exposure.html
+    - text: Bionomics 
+      href: articles/MosquitoBionomics.html
   - text: Human / Host
     menu:
     - text: The XH Component 

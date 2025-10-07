@@ -41,12 +41,13 @@ derivatives computed are:
 \deqn{
 \begin{array}{rl}
 dH/dt = & B(t,H)  + D \cdot H \\
-dI/dt = & h (H-I) - r I - \xi(t) +  D \cdot I
+dI/dt = & h (H-I) - (r + \xi(t)) I +  D \cdot I
 \end{array}
 }
 where \eqn{S=H-I};
 
-\eqn{\xi(t)} is a function to simulate mass treatment;
+The model has a port for \code{mda} and \code{msat} (in this model, they do the same thing). Let \eqn{\xi(t)} denote a treatment rate: the model computes \eqn{r(t) = r + \xi(t)}.
+
 \eqn{B(t, H)} is the time-dependent birth rate; and \eqn{D} is a linear operator, a matrix describing demographic changes,
 including mortality, migration, and aging;
 }

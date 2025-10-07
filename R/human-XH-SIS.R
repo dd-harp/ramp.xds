@@ -49,12 +49,13 @@ skill_set_XH.SIS = function(Xname = "SIS"){
 #' \deqn{
 #' \begin{array}{rl}
 #' dH/dt = & B(t,H)  + D \cdot H \\
-#' dI/dt = & h (H-I) - r I - \xi(t) +  D \cdot I
+#' dI/dt = & h (H-I) - (r + \xi(t)) I +  D \cdot I
 #' \end{array}
 #' }
 #' where \eqn{S=H-I}; 
 #' 
-#' \eqn{\xi(t)} is a function to simulate mass treatment;
+#' The model has a port for `mda` and `msat` (in this model, they do the same thing). Let \eqn{\xi(t)} denote a treatment rate: the model computes \eqn{r(t) = r + \xi(t)}. 
+#' 
 #' \eqn{B(t, H)} is the time-dependent birth rate; and \eqn{D} is a linear operator, a matrix describing demographic changes,
 #' including mortality, migration, and aging; 
 #' 
@@ -71,7 +72,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
     with(xds_obj$XH_obj[[i]], {
       r_t = r + mda(t) + msat(t)
       dH <- Births(t, H, births) + D_matrix %*% H
-      dI <- foi*(H-I) - r*I + D_matrix %*% I 
+      dI <- foi*(H-I) - r_t*I + D_matrix %*% I 
       return(c(dH, dI))
     })
   })
