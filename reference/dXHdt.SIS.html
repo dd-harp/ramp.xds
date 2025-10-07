@@ -23,11 +23,11 @@ derivatives computed are:
 $$
 \begin{array}{rl}
 dH/dt = &amp;amp; B(t,H)  + D \cdot H \\
-dI/dt = &amp;amp; h (H-I) - r I - \xi(t) +  D \cdot I
+dI/dt = &amp;amp; h (H-I) - (r + \xi(t)) I +  D \cdot I
 \end{array}
 $$
 where \(S=H-I\);
-\(\xi(t)\) is a function to simulate mass treatment;
+The model has a port for mda and msat (in this model, they do the same thing). Let \(\xi(t)\) denote a treatment rate: the model computes \(r(t) = r + \xi(t)\).
 \(B(t, H)\) is the time-dependent birth rate; and \(D\) is a linear operator, a matrix describing demographic changes,
 including mortality, migration, and aging;"><meta property="og:description" content="Compute the derivatives for SIS compartmental model:
 \(S\) is the density of susceptible humans (or hosts)
@@ -47,11 +47,11 @@ derivatives computed are:
 $$
 \begin{array}{rl}
 dH/dt = &amp;amp; B(t,H)  + D \cdot H \\
-dI/dt = &amp;amp; h (H-I) - r I - \xi(t) +  D \cdot I
+dI/dt = &amp;amp; h (H-I) - (r + \xi(t)) I +  D \cdot I
 \end{array}
 $$
 where \(S=H-I\);
-\(\xi(t)\) is a function to simulate mass treatment;
+The model has a port for mda and msat (in this model, they do the same thing). Let \(\xi(t)\) denote a treatment rate: the model computes \(r(t) = r + \xi(t)\).
 \(B(t, H)\) is the time-dependent birth rate; and \(D\) is a linear operator, a matrix describing demographic changes,
 including mortality, migration, and aging;"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -86,6 +86,7 @@ including mortality, migration, and aging;"></head><body>
     <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
@@ -137,12 +138,12 @@ derivatives computed are:</p>
 <p>$$
 \begin{array}{rl}
 dH/dt = &amp; B(t,H)  + D \cdot H \\
-dI/dt = &amp; h (H-I) - r I - \xi(t) +  D \cdot I
+dI/dt = &amp; h (H-I) - (r + \xi(t)) I +  D \cdot I
 \end{array}
 $$
 where \(S=H-I\);</p>
-<p>\(\xi(t)\) is a function to simulate mass treatment;
-\(B(t, H)\) is the time-dependent birth rate; and \(D\) is a linear operator, a matrix describing demographic changes,
+<p>The model has a port for <code>mda</code> and <code>msat</code> (in this model, they do the same thing). Let \(\xi(t)\) denote a treatment rate: the model computes \(r(t) = r + \xi(t)\).</p>
+<p>\(B(t, H)\) is the time-dependent birth rate; and \(D\) is a linear operator, a matrix describing demographic changes,
 including mortality, migration, and aging;</p>
     </div>
 

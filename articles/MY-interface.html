@@ -55,6 +55,7 @@
     <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -115,6 +116,64 @@ mosquito ecology and infection dynamics.</p>
 <p>This vignette takes a deep dive into the design and structure of the
 <strong>MY</strong> component. It is useful for anyone who wants to
 learn more about how the code works.</p>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
+<p>The <strong>MY</strong> component adult mosquito ecology and
+infection dynamics. We let <strong>M</strong> describe a state space
+describing mosquito ecology, and <strong>Y</strong> an embedded state
+space describing parasite or pathogen infection dynamics. Since
+<strong>Y</strong> is embedded within <strong>M,</strong> the two
+processes are handled together.</p>
+<p>The <strong>Y</strong> component interacts with <strong>X</strong>
+through blood feeding and transmission:</p>
+<ul>
+<li><p>All <strong>Y</strong> components are developed around
+net-infectiousness, or <span class="math inline">\(\kappa,\)</span> the
+probability of becoming infected after blood feeding on a
+human.</p></li>
+<li><p>Each module must supply a function <span class="math inline">\(F_Z\)</span> that computes the expected number of
+infectious bites on humans. This is processed by the <strong>XY</strong>
+interface and transformed into the daily EIR for all the
+<strong>XH</strong> component strata.</p></li>
+</ul>
+<p>The <strong>M</strong> component interacts with <strong>L</strong>
+through egg laying and emergence.</p>
+<ul>
+<li><p>The <strong>M</strong> component is developed around the net
+emergence rate of adult mosquitoes, or <span class="math inline">\(\Lambda.\)</span></p></li>
+<li><p>Each <strong>M</strong> component must supply a function <span class="math inline">\(F_G\)</span> that computes the number of eggs laid
+by the adult mosquito population in a patch. The
+<strong>ML</strong>-interface determines how the eggs are apportioned
+among all the habitats in a patch.<br>
+A function <code>dMYdt</code> computes the derivatives for differential
+equation modules. <code>Update_MYt</code> updates the variables for
+discrete time systems.</p></li>
+</ul>
+<p>Two important issues for <strong>MY</strong> components are adult
+mosquito demography, including mortality and dispersal and the method
+for handling mosquito bionomics as a baseline that is modified by
+control</p>
+<div class="section level3">
+<h3 id="mosquito-demography">Mosquito Demography<a class="anchor" aria-label="anchor" href="#mosquito-demography"></a>
+</h3>
+<p>There are some built-in functions to compute a mosquito demographic
+matrix, <span class="math inline">\(\Omega,\)</span> and a matrix that
+computes survival and dispersal through the EIP: <span class="math display">\[\Upsilon = e^{-\Omega \tau}\]</span></p>
+<p>For most of these models:: <span class="math display">\[\Omega = -g -
+\sigma + (1-\mu) \sigma K\]</span></p>
+</div>
+<div class="section level3">
+<h3 id="mosquito-bionomics">Mosquito Bionomics<a class="anchor" aria-label="anchor" href="#mosquito-bionomics"></a>
+</h3>
+<p>The core challenge for implementing mosquito bionomics was how to
+handle time-varying parameters affected by two or more processes: a
+baseline value affected by resource availability or weather; and a new
+value that has been modified by the presence of vector control. This
+challenge applies to all mosquitoes, whether adult or immature, so it is
+handled separately: <a href="https://github.com/dd-harp/ramp.xds/Bionomics.html" target="_blank" class="external-link">Bionomics</a>.</p>
+</div>
+</div>
 <div class="section level2">
 <h2 id="required-functions">Required Functions<a class="anchor" aria-label="anchor" href="#required-functions"></a>
 </h2>
