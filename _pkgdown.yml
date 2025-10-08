@@ -815,10 +815,10 @@ reference:
   desc: "The ports for vector control \n"
   contents:
   - setup_vector_control_object
-  - VectorControl
-  - VectorControl.none
-  - VectorControlEffectSizes
-  - VectorControlEffectSizes.none
+  - VectorControl1
+  - VectorControl1.none
+  - VectorControl2
+  - VectorControl2.none
 - subtitle: Health
   desc: "The ports for malaria control \n"
   contents:

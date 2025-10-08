@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{dXHdt.SIS}
 \alias{dXHdt.SIS}
-\title{Compute derivatives for the \code{SIS} model (\emph{XH}* Model)}
+\title{Compute derivatives for \code{SIS} (\strong{XH} Module)}
 \usage{
 \method{dXHdt}{SIS}(t, y, xds_obj, i)
 }
@@ -26,11 +26,15 @@ Compute the derivatives for SIS compartmental model:
 \item \eqn{H=S+I}  is human (or host) population density
 }
 
+The parameters and terms are:
+\itemize{
+\item \eqn{h} is the force of infection (from )
+\item \eqn{r} is the natural clearance rate for infections
+}
+
 The clearance rate for infections is \eqn{r}, and by assumption,
 individuals are assumed to be susceptible to infection after clearing
 infections.
-
-The model has a port to model mass treatment, in equations \eqn{\xi(t)}.
 
 The \strong{\code{xds}} implementation computes \eqn{dH/dt}
 rather than \eqn{dS/dt.} In the functions \link{get_XH_vars}
@@ -41,13 +45,31 @@ derivatives computed are:
 \deqn{
 \begin{array}{rl}
 dH/dt = & B(t,H)  + D \cdot H \\
-dI/dt = & h (H-I) - (r + \xi(t)) I +  D \cdot I
+dI/dt = & h (H-I) - r I +  D \cdot I
 \end{array}
 }
 where \eqn{S=H-I};
 
-The model has a port for \code{mda} and \code{msat} (in this model, they do the same thing). Let \eqn{\xi(t)} denote a treatment rate: the model computes \eqn{r(t) = r + \xi(t)}.
-
-\eqn{B(t, H)} is the time-dependent birth rate; and \eqn{D} is a linear operator, a matrix describing demographic changes,
+\eqn{B(t, H)} is the time-dependent population birth rate; and \eqn{D} is a linear operator, a matrix describing demographic changes,
 including mortality, migration, and aging;
+}
+\note{
+The model has a port to model mass treatment. The mass treatment rate, \eqn{\xi(t),} is a
+function of time. For mass screen and treat, the treatment rate is lowered by the probability
+of detection. In this model, mass treatment has
+the same effect as \eqn{r.} With mass treatment, infection
+dynamics are described by:
+
+\deqn{
+\begin{array}{rl}
+dI/dt = & h (H-I) - (r + \xi(t)) I +  D \cdot I
+\end{array}
+}
+
+The ports for \code{mda} and \code{msat} are
+handled by computing
+\itemize{
+\item \code{r_t = r + mda(t) + d_rdt*msat(t)}
+\item \code{dI <- foi*(H-I) - r_t*I + ...}
+}
 }

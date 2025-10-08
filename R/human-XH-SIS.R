@@ -25,7 +25,7 @@ skill_set_XH.SIS = function(Xname = "SIS"){
   ))
 }
 
-#' @title Compute derivatives for the `SIS` model (*XH** Model)
+#' @title Compute derivatives for `SIS` (**XH** Module)
 #'  
 #' @description 
 #' 
@@ -33,12 +33,16 @@ skill_set_XH.SIS = function(Xname = "SIS"){
 #' + \eqn{S} is the density of susceptible humans (or hosts)
 #' + \eqn{I} is the density of infected humans (or hosts)
 #' + \eqn{H=S+I}  is human (or host) population density
+#' 
+#' The parameters and terms are: 
+#' 
+#' + \eqn{h} is the force of infection (from ) 
+#' + \eqn{r} is the natural clearance rate for infections
 #'  
 #' The clearance rate for infections is \eqn{r}, and by assumption, 
 #' individuals are assumed to be susceptible to infection after clearing
 #' infections.
 #' 
-#' The model has a port to model mass treatment, in equations \eqn{\xi(t)}.
 #' 
 #' The **`xds`** implementation computes \eqn{dH/dt} 
 #' rather than \eqn{dS/dt.} In the functions [get_XH_vars] 
@@ -49,15 +53,32 @@ skill_set_XH.SIS = function(Xname = "SIS"){
 #' \deqn{
 #' \begin{array}{rl}
 #' dH/dt = & B(t,H)  + D \cdot H \\
-#' dI/dt = & h (H-I) - (r + \xi(t)) I +  D \cdot I
+#' dI/dt = & h (H-I) - r I +  D \cdot I
 #' \end{array}
 #' }
 #' where \eqn{S=H-I}; 
 #' 
-#' The model has a port for `mda` and `msat` (in this model, they do the same thing). Let \eqn{\xi(t)} denote a treatment rate: the model computes \eqn{r(t) = r + \xi(t)}. 
-#' 
-#' \eqn{B(t, H)} is the time-dependent birth rate; and \eqn{D} is a linear operator, a matrix describing demographic changes,
+#' \eqn{B(t, H)} is the time-dependent population birth rate; and \eqn{D} is a linear operator, a matrix describing demographic changes,
 #' including mortality, migration, and aging; 
+#' 
+#' @note 
+#' The model has a port to model mass treatment. The mass treatment rate, \eqn{\xi(t),} is a
+#' function of time. For mass screen and treat, the treatment rate is lowered by the probability
+#' of detection. In this model, mass treatment has  
+#' the same effect as \eqn{r.} With mass treatment, infection
+#' dynamics are described by: 
+#' 
+#' \deqn{
+#' \begin{array}{rl}
+#' dI/dt = & h (H-I) - (r + \xi(t)) I +  D \cdot I
+#' \end{array}
+#' }
+#' 
+#' The ports for `mda` and `msat` are 
+#' handled by computing 
+#' 
+#' + `r_t = r + mda(t) + d_rdt*msat(t)` 
+#' + `dI <- foi*(H-I) - r_t*I + ...` 
 #' 
 #' @inheritParams dXHdt
 #' 
@@ -70,7 +91,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
   
   with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]], {
-      r_t = r + mda(t) + msat(t)
+      r_t = r + mda(t) + d_rdt*msat(t)
       dH <- Births(t, H, births) + D_matrix %*% H
       dI <- foi*(H-I) - r_t*I + D_matrix %*% I 
       return(c(dH, dI))
