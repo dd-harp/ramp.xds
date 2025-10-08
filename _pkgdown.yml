@@ -800,7 +800,8 @@ reference:
   contents:
   - Forcing
   - Health
-  - VectorControl
+  - VectorControl1
+  - VectorControl2
   - Resources
 - title: Ports & Junctions
 - subtitle: Junctions 
