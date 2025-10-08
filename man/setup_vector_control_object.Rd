@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{setup_vector_control_object}
 \alias{setup_vector_control_object}
-\title{Setup a Junction for Vector Control}
+\title{Setup the Vector Control Junction}
 \usage{
 setup_vector_control_object(xds_obj)
 }
@@ -16,10 +16,12 @@ a \strong{\code{ramp.xds}} model object
 This creates \code{xds_obj$vector_control}
 and sets \verb{class(vector_control) = 'none'.}
 
+Vector control is implemented in two stages.
+
 Functions to implement vector control are
 in a companion package called
 \href{https://github.com/dd-harp/ramp.control}{\strong{\code{ramp.control}}}.
 }
 \seealso{
-\link{VectorControl.none}
+\link{VectorControl1.none}
 }

@@ -1,14 +1,16 @@
 
-#' @title Setup a Junction for Vector Control 
+#' @title Setup the Vector Control Junction
 #' 
 #' @description This creates `xds_obj$vector_control` 
 #' and sets `class(vector_control) = 'none'.` 
+#' 
+#' Vector control is implemented in two stages.
 #' 
 #' Functions to implement vector control are 
 #' in a companion package called 
 #' [**`ramp.control`**](https://github.com/dd-harp/ramp.control).
 #' 
-#' @seealso [VectorControl.none]
+#' @seealso [VectorControl1.none]
 #' 
 #' @param xds_obj an **`xds`** model object
 #' 
@@ -25,11 +27,12 @@ setup_vector_control_object = function(xds_obj){
   return(xds_obj)
 }
 
-#' @title Vector Control
-#' @description The generic function to
-#' implement vector control.
-#' @note This a junction to implement various modes of
-#' vector control.
+#' @title Vector Control, Stage 1
+#' 
+#' @description A junction to implement 
+#' stage one vector control functions. 
+#' 
+#' @note 
 #' Non-trivial vector control modules are in
 #' [**`ramp.control`**](https://github.com/dd-harp/ramp.control).
 #' 
@@ -39,28 +42,30 @@ setup_vector_control_object = function(xds_obj){
 #' 
 #' @return a **`ramp.xds`** model object
 #' @export
-VectorControl = function(t, y, xds_obj){
-  UseMethod("VectorControl", xds_obj$vector_control_obj)
+VectorControl1 = function(t, y, xds_obj){
+  UseMethod("VectorControl1", xds_obj$vector_control_obj)
 }
 
 #' @title Compute Vector Control Effect Sizes
 #' 
-#' @description With no vector control,
+#' @description Do no vector control:
 #' the **`xds`** object is returned unmodified
 #' 
 #' @note No control or `none` is the default setting
 #' 
-#' @inheritParams VectorControl
+#' @inheritParams VectorControl1
 #' 
 #' @return a **`ramp.xds`** model object
 #' @export
-VectorControl.none = function(t, y, xds_obj){
+VectorControl1.none = function(t, y, xds_obj){
   return(xds_obj)
 }
 
 
-#' @title Vector control effect sizes
-#' @description This method dispatches on the type of `xds_obj$VECTOR_CONTROL`.
+#' @title Vector Control, Stage 2 
+
+#' @description A junction to implement 
+#' stage two vector control functions 
 #' 
 #' @param t current simulation time
 #' @param y state vector
@@ -68,17 +73,20 @@ VectorControl.none = function(t, y, xds_obj){
 #' 
 #' @return a **`ramp.xds`** model object
 #' @export
-VectorControlEffectSizes <- function(t, y, xds_obj) {
-  UseMethod("VectorControlEffectSizes", xds_obj$vector_control_obj)
+VectorControl2 <- function(t, y, xds_obj) {
+  UseMethod("VectorControl2", xds_obj$vector_control_obj)
 }
 
 #' @title Set the values of exogenous variables
-#' @description After none setup, no exogenous
-#' variables are configured so the function returns
-#' the unmodified **`xds`** object
-#' @inheritParams VectorControlEffectSizes
+#' 
+#' @description Do no vector control:
+#' the **`xds`** object is returned unmodified
+#' 
+#' @inheritParams VectorControl2
+#' 
 #' @return a **`ramp.xds`** model object
+#' 
 #' @export
-VectorControlEffectSizes.none = function(t, y, xds_obj){
+VectorControl2.none = function(t, y, xds_obj){
   return(xds_obj)
 }
