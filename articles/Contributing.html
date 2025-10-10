@@ -109,7 +109,7 @@
 
     
     
-<p>Thank you for taking the time to contribute to <strong>exDE</strong>
+<p>Thank you for taking the time to contribute to <strong>SimBA</strong>
 (Extensible Differential Equations for mosquito-borne pathogen
 modeling). In this document we will explain the following topics:</p>
 <ul>
@@ -137,14 +137,14 @@ core dev team)?</li>
 figure out, how to ask for help?</li>
 </ul>
 <p>This document is intended to be a complete guide on how to get
-started developing with <strong>exDE</strong>. As this document is part
+started developing with <strong>SimBA</strong>. As this document is part
 of the package, if you find something about it incorrect, baffling, or
 just have a suggestion, please follow the steps for <a href="#sec8">bug/issue reporting</a> to let us know!</p>
 <!-- 1 -->
 <div class="section level2">
 <h2 id="sec1">Git workflow<a class="anchor" aria-label="anchor" href="#sec1"></a>
 </h2>
-<p>The <strong>exDE</strong> project is hosted on GitHub (<a href="https://github.com/dd-harp/exDE" class="external-link">at this repository</a>), and we
+<p>The <strong>SimBA</strong> project is hosted on GitHub (<a href="https://github.com/dd-harp/exDE" class="external-link">at this repository</a>), and we
 use a Git workflow similar to “Gitflow” (albeit without a separate
 <code>release</code> branch, <code>main</code> takes over that role),
 described <a href="https://www.atlassian.com/git/tutorials/comparing-workflows" class="external-link">here</a>.
@@ -165,7 +165,7 @@ them need them, and should be deleted after they have been merged into
 <ul>
 <li>
 <code>main</code>: this is the branch that contains the latest
-version release of <strong>exDE</strong>, and when it is updated the <a href="https://cran.r-project.org/package=exDE" class="external-link">CRAN version</a> will
+version release of <strong>SimBA</strong>, and when it is updated the <a href="https://cran.r-project.org/package=exDE" class="external-link">CRAN version</a> will
 also be updated. PRs should not be submitted to it except by the core
 dev team, as updated to <code>main</code> will mean we need to update
 the package on CRAN and do various other housekeeping tasks to accompany
@@ -185,7 +185,7 @@ more than every 1–2 months”</a>.</li>
 <li>
 <code>gh-pages</code>: this branch exists to support our GitHub
 pages website (the one you are browsing right now). It is updated
-automatically by our <a href="https://github.com/dd-harp/exDE/blob/main/.github/workflows/pkgdown.yaml" class="external-link">pkgdown
+automatically by our <a href="https://github.com/dd-harp/SimBA/blob/main/.github/workflows/pkgdown.yaml" class="external-link">pkgdown
 continuous integration workflow</a> which rebuilds the website when
 <code>main</code> is pushed to (i.e. when a PR is merged into
 <code>main</code>). <code>gh-pages</code> should be considered a
@@ -234,11 +234,11 @@ for version 0.2!</p>
 <p>Let’s say you have a great idea for a new feature, which is a change
 to improve this document. Here’s how you would get started with our Git
 workflow to get your feature on the road to being merged into the
-<strong>exDE</strong> software.</p>
+<strong>SimBA</strong> software.</p>
 <p>Please note, we assume some familiarity with Git commands here. For a
 reference on the meaning of these commands, please see the <a href="https://git-scm.com/docs" class="external-link">Git documentation</a>.</p>
 <ol style="list-style-type: decimal">
-<li>To start to work on <strong>exDE</strong>, you should first clone
+<li>To start to work on <strong>SimBA</strong>, you should first clone
 the repository. In a terminal window, navigate to the directory you want
 the <code>exDE</code> folder to appear in, and then run
 <code>git clone git@github.com:dd-harp/exDE.git</code>, if you use SSH
@@ -247,7 +247,7 @@ clone with HTTPS. These links can be found if you click the green “Code”
 button from the <a href="https://github.com/dd-harp/exDE" class="external-link">main
 repository page</a>.</li>
 <li>Once you clone the repository, go inside it with
-<code>cd exDE</code>. Then run <code>git fetch --all</code> which
+<code>cd SimBA</code>. Then run <code>git fetch --all</code> which
 retrieves information about all the branches on the remote (the
 repository on the GitHub website) into your local repository (the one on
 your computer).</li>
@@ -259,10 +259,10 @@ running <code>git pull origin dev</code>.</li>
 by running <code>git checkout -b feat/UpdateContributing</code>.</li>
 <li>To push this new branch to the remote repository, run
 <code>git push origin feat/UpdateContributing</code>. It will now appear
-in the <a href="https://github.com/dd-harp/exDE/branches" class="external-link">list of
+in the <a href="https://github.com/dd-harp/SimBA/branches" class="external-link">list of
 branches</a>.</li>
 <li>Now, make your changes! We recommend editing the package in <a href="https://posit.co/products/open-source/rstudio/" class="external-link">RStudio</a> using
-the R project file <code>exDE.Rproj</code> in the repository. This will
+the R project file <code>SimBA.Rproj</code> in the repository. This will
 be explained more in Section <a href="#sec3">3</a>.</li>
 <li>Once you are ready to push your changes, use <code>git add</code> to
 either add files to a commit one by one, or if you know you want to add
@@ -283,9 +283,9 @@ changes and submit a pull request (covered in Sections <a href="#sec4">4</a> and
 </div>
 </div>
 <div class="section level2">
-<h2 id="sec2">The <strong>exDE</strong> R package<a class="anchor" aria-label="anchor" href="#sec2"></a>
+<h2 id="sec2">The <strong>SimBA</strong> R package<a class="anchor" aria-label="anchor" href="#sec2"></a>
 </h2>
-<p><strong>exDE</strong> is an R package, so if you are going to be
+<p><strong>SimBA</strong> is an R package, so if you are going to be
 making substantial changes, it is necessary to have a sense of how it is
 organized and how the package must be rebuilt for creating
 documentation, exporting functions, and testing. The most extensive
@@ -295,7 +295,7 @@ Extensions</a>. A shorter guide with tips on current best practice is
 the book <a href="https://r-pkgs.org/" class="external-link">R Packages</a>, if you are
 unfamiliar with R packages, we reccomend briefly skimming the book as a
 starting point.</p>
-<p>The building of <strong>exDE</strong> is supported by <a href="https://pkgdown.r-lib.org/index.html" class="external-link">pkgdown</a>, which is
+<p>The building of <strong>SimBA</strong> is supported by <a href="https://pkgdown.r-lib.org/index.html" class="external-link">pkgdown</a>, which is
 responsible for automatically building the documentation website you are
 browsing right now, and <a href="https://testthat.r-lib.org/" class="external-link">testthat</a> which is used to test
 the package.</p>
@@ -319,11 +319,11 @@ additional authors, or to add additional packages to
 <code>NAMESPACE</code>: a <em>read-only</em> file produced when
 running <a href="https://roxygen2.r-lib.org/" class="external-link">roxygen2</a> to build
 documentation for the package, it tells R what functions are exported by
-this package into a user’s R session when the load <strong>exDE</strong>
-with <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(exDE)</a></code>. It should never be modified by
-hand.</li>
+this package into a user’s R session when the load
+<strong>SimBA</strong> with <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(exDE)</a></code>. It should never
+be modified by hand.</li>
 <li>
-<code>NEWS.md</code>: the NEWS page on the package’s <a href="https://cran.r-project.org/package=exDE" class="external-link">CRAN page</a> as well as
+<code>NEWS.md</code>: the NEWS page on the package’s <a href="https://cran.r-project.org/package=SimBA" class="external-link">CRAN page</a> as well as
 the News tab on the <a href="https://dd-harp.github.io/exDE/" class="external-link">GitHub
 pages website</a> are built from this file; it should only be modified
 by the dev team when ready to update <code>main</code> with a new
@@ -331,8 +331,8 @@ version. For more information, see the <code><a href="https://rdrr.io/r/utils/ne
 file.</li>
 <li>
 <code>README.md</code>: this is the main readme file which is
-displayed on the GitHub repository, the main page of the <a href="https://dd-harp.github.io/exDE/" class="external-link">GitHub pages website</a>, and the
-README page on the package’s <a href="https://cran.r-project.org/package=exDE" class="external-link">CRAN page</a>.</li>
+displayed on the GitHub repository, the main page of the <a href="https://dd-harp.github.io/SimBA/" class="external-link">GitHub pages website</a>, and
+the README page on the package’s <a href="https://cran.r-project.org/package=exDE" class="external-link">CRAN page</a>.</li>
 </ul>
 <p>The rest of the package is organized in directories. For more detail,
 we recommend reading the guides linked to earlier.</p>
@@ -371,7 +371,7 @@ remain at equilibrium after being integrated for some time.</li>
 <li>
 <code>vignettes/</code>: this folder contains .Rmd files contains
 the vignettes of the R package, longer form articles that document
-specific functionality in <strong>exDE</strong>. They are available on
+specific functionality in <strong>SimBA</strong>. They are available on
 the <a href="https://dd-harp.github.io/exDE/" class="external-link">GitHub pages website</a>
 via the top drop down menus and the package’s <a href="https://cran.r-project.org/package=exDE" class="external-link">CRAN page</a>.</li>
 </ul>
@@ -442,7 +442,7 @@ vector control.</li>
 </ul>
 </li>
 <li>
-<code>diffeqn.R</code>: the <strong>exDE</strong> generalized
+<code>diffeqn.R</code>: the <strong>SimBA</strong> generalized
 differential equations which implement the framework; these should not
 typically be modified.</li>
 <li>
@@ -455,10 +455,10 @@ Dynamics paper</a>)</li>
 </div>
 </div>
 <div class="section level2">
-<h2 id="sec3">Making large changes or additions to <strong>exDE</strong><a class="anchor" aria-label="anchor" href="#sec3"></a>
+<h2 id="sec3">Making large changes or additions to <strong>SimBA</strong><a class="anchor" aria-label="anchor" href="#sec3"></a>
 </h2>
 <p>After reading Section <a href="#sec2">2</a> you should have a
-reasonable grasp of how <strong>exDE</strong> as an R package is
+reasonable grasp of how <strong>SimBA</strong> as an R package is
 organized, but to really understand how to implement new models, more
 detail is necessary on what files one should actually modify or add. We
 will also describe best practices on what contributors should add to the
@@ -476,7 +476,7 @@ disease models as reference.</li>
 to run roxygen2 which builds functions documentation and updates the
 <code>NAMESPACE</code> with your new functions. Then run Build -&gt;
 Install Package (control/command + shift + B) to re-install and load the
-package. This only works if you have opened the <code>exDE.Rproj</code>
+package. This only works if you have opened the <code>SimBA.Rproj</code>
 file in RStudio as a project.</li>
 <li>Make a new vignette named something like “human_vignette.Rmd” in
 <code>vignettes/</code> describing the model and its parameters, and
@@ -496,14 +496,14 @@ in Section <a href="#sec4">4</a> and how to make a pull request in
 Section <a href="#sec5">5</a>.</li>
 </ol>
 <p>When writing a new model or modifying an existing one, please note
-that <strong>exDE</strong> achieves modularity through the extensive use
-of S3 dispatch, which is similar to single dispatch from other
+that <strong>SimBA</strong> achieves modularity through the extensive
+use of S3 dispatch, which is similar to single dispatch from other
 programming languages. More details are at <code><a href="https://rdrr.io/r/base/UseMethod.html" class="external-link">base::UseMethod</a></code>
 or the <a href="https://adv-r.hadley.nz/s3.html" class="external-link">S3 chapter</a> of
 Advanced R. Use of S3 dispatch appears extensively in the source code of
 <strong>exDE</strong>.</p>
 <p>If writing new functions, they must be documented. Again, the
-existing code provides a good reference. <strong>exDE</strong> depends
+existing code provides a good reference. <strong>SimBA</strong> depends
 upon <a href="https://roxygen2.r-lib.org/index.html" class="external-link">roxygen2</a> to
 build documentation, and its website provides help on how to write the
 appropriate tags (e.g. <code>#' @export</code> which makes that function
@@ -513,8 +513,8 @@ appear in the <strong>exDE</strong> <code>NAMESPACE</code>).</p>
 <div class="section level2">
 <h2 id="sec4">How to test locally<a class="anchor" aria-label="anchor" href="#sec4"></a>
 </h2>
-<p>After making changes to <strong>exDE</strong> but before submitting a
-PR, you should take some time to do local tests to make sure that the
+<p>After making changes to <strong>SimBA</strong> but before submitting
+a PR, you should take some time to do local tests to make sure that the
 package still works. It is extremely important to make sure that after
 you implement changes, to re-document and re-install the package. From
 RStudio, Build -&gt; Document (control/command + shift + D) re-documents
@@ -576,7 +576,7 @@ somewhat anxious about actually contributing at all. So it is a good
 time to say that making a PR can absolutely be a collaborative process.
 If after following the previous sections your local tests are not
 working, but you think your idea or new feature ought to work and would
-be a good addition to <strong>exDE</strong>, please consider submitting
+be a good addition to <strong>SimBA</strong>, please consider submitting
 a PR and tagging other persons on the dev team who can help you get it
 past the finish line.</p>
 <p>To make a pull request, first, navigate to your branch where you have
@@ -628,17 +628,17 @@ to:</p>
 <ul>
 <li>Evaluate whether or not the proposed addition is within the scope of
 the software (e.g. directly-transmitted diseases are outside the scope
-of <strong>exDE</strong>).</li>
+of <strong>SimBA</strong>).</li>
 <li>Ensure the PR is being made to <code>dev</code> only.</li>
 <li>If the code is not passing tests, identify problems and suggest
 solutions to the author (see Section <a href="#sec6">6</a> for more
 details on how to do this).</li>
-<li>If the PR makes significant modifications to <strong>exDE</strong>,
+<li>If the PR makes significant modifications to <strong>SimBA</strong>,
 work with the author (if they have not already done so) until the PR has
 tests and vignettes to document the new functions, and that those are
 added to the <code>_pkgdown.yml</code> file so the new features appear
 on the website.</li>
-<li>While in general, <strong>exDE</strong>’s design philosophy is that
+<li>While in general, <strong>SimBA</strong>’s design philosophy is that
 elegant and clear design that mirrors the mathematical description of
 the model is to be preferred over fast code in cases where there is a
 decision to be made, please correct obvious inefficiencies (e.g. be
@@ -655,7 +655,7 @@ to review PRs</a>.</li>
 branch being merged. Assuming the branch is called
 <code>feat/MyFeature</code>, to do this:</p>
 <ol style="list-style-type: decimal">
-<li>Navigate to the <code>exDE</code> repository on your computer</li>
+<li>Navigate to the <code>SimBA</code> repository on your computer</li>
 <li>
 <code>git fetch --all</code> to update the information on what
 branches are present in the remote</li>
@@ -679,7 +679,7 @@ merged branch or let the author know they can do so at this point.</p>
 <div class="section level2">
 <h2 id="sec6">How to deal with continuous integration<a class="anchor" aria-label="anchor" href="#sec6"></a>
 </h2>
-<p>In <strong>exDE</strong> we use <a href="https://docs.github.com/en/actions" class="external-link">GitHub Actions</a> to
+<p>In <strong>SimBA</strong> we use <a href="https://docs.github.com/en/actions" class="external-link">GitHub Actions</a> to
 automatically run continuous integration workflows, which are automated
 scripts which run when triggered by certain events (i.e. PRs or pushing
 to certain branches). The 3 workflows we run can be found in
@@ -695,27 +695,28 @@ is made to <code>main</code> or <code>dev</code>.</li>
 <code><a href="https://pkgdown.r-lib.org/reference/build_site_github_pages.html" class="external-link">pkgdown::build_site_github_pages</a></code> and pushes the new website
 to the <code>gh-pages</code> branch. It runs on pushes to
 <code>main</code> (i.e. when a PR is merged into <code>main</code>) and
-when a new <a href="https://github.com/dd-harp/exDE/releases" class="external-link">GitHub
+when a new <a href="https://github.com/dd-harp/SimBA/releases" class="external-link">GitHub
 release</a> is made.</li>
 <li>
 <code>test-coverage.yaml</code>: this runs
-<code>covr::codecov</code> which updates <strong>exDE</strong>’s <a href="https://app.codecov.io/gh/dd-harp/exDE" class="external-link">codecov</a> integration.
+<code>covr::codecov</code> which updates <strong>SimBA</strong>’s <a href="https://app.codecov.io/gh/dd-harp/exDE" class="external-link">codecov</a> integration.
 It runs on pushes to <code>main</code>.</li>
 </ul>
 <p>These three workflows are standard for R packages, and originated
 from <a href="https://github.com/r-lib/actions" class="external-link">https://github.com/r-lib/actions</a>.</p>
 <p>These workflows may encounter errors. Do not panic when this happens.
-Errors can be investigated by clicking on the failing workflow in the <a href="https://github.com/dd-harp/exDE/actions" class="external-link">Actions</a> tab, and then
-by clicking on the specific failing job(s) on the left hand side of the
-screen under “Jobs”. The errors will then be displayed. The <a href="https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs" class="external-link">Github
+Errors can be investigated by clicking on the failing workflow in the <a href="https://github.com/dd-harp/SimBA/actions" class="external-link">Actions</a> tab, and
+then by clicking on the specific failing job(s) on the left hand side of
+the screen under “Jobs”. The errors will then be displayed. The <a href="https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs" class="external-link">Github
 Actions documentation</a> also describes how to diagnose errors.</p>
 <p>Errors in <code>R-CMD-check</code> stemming from tests may sometimes
-be due to numerical errors; because <strong>exDE</strong> can only solve
-the model up to floating point errors, sometimes false positive errors
-are reported when the numerical routines encounter problems. Restart the
-tests by clicking “Re-run jobs” in the upper right hand and see if the
-errors persist. Errors in <code>pkgdown</code> are most likely cause by
-an ill-formed <code>_pkgdown.yml</code> file, please consult the <a href="https://pkgdown.r-lib.org/articles/pkgdown.html" class="external-link">pkgdown
+be due to numerical errors; because <strong>SimBA</strong> can only
+solve the model up to floating point errors, sometimes false positive
+errors are reported when the numerical routines encounter problems.
+Restart the tests by clicking “Re-run jobs” in the upper right hand and
+see if the errors persist. Errors in <code>pkgdown</code> are most
+likely cause by an ill-formed <code>_pkgdown.yml</code> file, please
+consult the <a href="https://pkgdown.r-lib.org/articles/pkgdown.html" class="external-link">pkgdown
 documentation</a> or post an issue to get more help.</p>
 <p>Finally if you encounter truly strange errors from the workflows
 (e.g. software not being installed, strange operating system specific
@@ -734,9 +735,9 @@ example.</p>
 </h2>
 <p>(For dev team only)</p>
 <p>When a sufficient number of new features have been added to
-<code>dev</code> that the version number of <strong>exDE</strong> should
-be increased, and a sufficient duration of time has passed since the
-last update to CRAN (<a href="https://cran.r-project.org/web/packages/policies.html#Submission" class="external-link">“no
+<code>dev</code> that the version number of <strong>SimBA</strong>
+should be increased, and a sufficient duration of time has passed since
+the last update to CRAN (<a href="https://cran.r-project.org/web/packages/policies.html#Submission" class="external-link">“no
 more than every 1–2 months”</a>), it is time to make a PR from
 <code>dev</code> to <code>main</code> to get ready to update the
 software. Before doing so please make sure:</p>
@@ -758,7 +759,7 @@ and using CRAN standards (you can use the function
 </ul>
 <p>You are now ready to create a PR from <code>dev</code> to
 <code>main</code>. After following the standard procedure (Section <a href="#sec5">5</a>) with the exception of deleting <code>dev</code>
-(protected from deletion), you are ready to update the <a href="https://cran.r-project.org/package=exDE" class="external-link">CRAN version</a> of
+(protected from deletion), you are ready to update the <a href="https://cran.r-project.org/package=SimBA" class="external-link">CRAN version</a> of
 <strong>exDE</strong>.</p>
 <p>To do so:</p>
 <ul>
@@ -770,8 +771,8 @@ CRAN, this function asks many useful questions to make sure that your
 package is actually ready to be submitted.</li>
 <li>
 <em>after</em> the new version has been accepted by CRAN make a new
-<a href="https://github.com/dd-harp/exDE/releases" class="external-link">GitHub release</a> to
-accompany the new version.</li>
+<a href="https://github.com/dd-harp/SimBA/releases" class="external-link">GitHub release</a>
+to accompany the new version.</li>
 <li>celebrate, or go rest.</li>
 </ul>
 <!-- 8 -->
@@ -780,7 +781,7 @@ accompany the new version.</li>
 <h2 id="sec8">How to report bugs or raise issues?<a class="anchor" aria-label="anchor" href="#sec8"></a>
 </h2>
 <p>We expect that the most common way for most users to interact with
-GitHub will be through the <a href="https://github.com/dd-harp/exDE/issues" class="external-link">issues tab</a>. This
+GitHub will be through the <a href="https://github.com/dd-harp/SimBA/issues" class="external-link">issues tab</a>. This
 should be the first point of contact with the <strong>exDE</strong>
 team, please do not hesitate to raise issues which may either be bug
 reports, questions, or comments/suggestions. We prefer more rather than
@@ -793,7 +794,7 @@ reproducible example of the bug in R code in addition to describing what
 is wrong. Please remember to include:</p>
 <ul>
 <li>
-<strong>exDE</strong> version</li>
+<strong>SimBA</strong> version</li>
 <li>Operating System</li>
 <li>R version</li>
 <li>Steps to recreate</li>
