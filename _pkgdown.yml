@@ -1021,6 +1021,8 @@ reference:
   - makepar_F_sigmoid
   - make_function.sharkfin
   - makepar_F_sharkfin
+  - make_function.sharkbite
+  - makepar_F_sharkbite
   - make_function.type2
   - makepar_F_type2
   - make_function.splinef
@@ -1041,6 +1043,11 @@ reference:
   - F_trend.Lambda 
   - F_trend.eir
   - F_trend.none
+  - show_shock
+  - F_shock 
+  - F_shock.Lambda 
+  - F_shock.eir
+  - F_shock.none
 - subtitle: Get and Set for Mean Forcing 
   desc: |
     Functions to change Forcing 

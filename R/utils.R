@@ -31,19 +31,19 @@ make_indices <- function(xds_obj) {
 #' @return a named [list] or `if(flatten==TRUE)` a [vector]
 #' @export
 get_inits <- function(xds_obj, flatten=FALSE){
-
+  
   Li = list()
   s = length(xds_obj$L_obj)
   if(s>0)
     for(ix in 1:s)
       Li = c(Li, get_L_inits(xds_obj, ix))
-
+  
   MYi = c()
   s = length(xds_obj$MY_obj)
   if(s>0)
     for(ix in 1:s)
       MYi = c(MYi, get_MY_inits(xds_obj, ix))
-
+  
   Xi = c()
   i = length(xds_obj$XH_obj)
   if(i>0)
@@ -51,7 +51,7 @@ get_inits <- function(xds_obj, flatten=FALSE){
       Xi = c(Xi, get_XH_inits(xds_obj, ix))
   y = list(L=Li, MY=MYi, X=Xi)
   if(flatten) y <- xds_flatten(y)
-
+  
   return(y)
 }
 

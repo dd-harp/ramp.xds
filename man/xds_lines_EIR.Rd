@@ -17,6 +17,9 @@ xds_lines_EIR(xds_obj, i = 1, clrs = "black", llty = 1, annual = TRUE)
 
 \item{annual}{if true, plot as an annualized rate}
 }
+\value{
+eir, invisibly
+}
 \description{
 Add lines for the EIR \emph{vs.} time
 }
