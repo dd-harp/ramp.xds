@@ -382,10 +382,10 @@ xds_setup_human = function(Xname = "SIS",
 #' @param F_season a function describing a seasonal pattern over time
 #' @param trend_par parameters to configure a trends function using [make_function]
 #' @param F_trend a function describing a temporal trend over time
-#' @param F_age a assigning a biting weight by age
 #' @param age_par parameters to configure an age weights function using [make_function]
-#' @param F_shock a function describing a shock 
+#' @param F_age a assigning a biting weight by age
 #' @param shock_par parameters to configure a shock using [make_function] 
+#' @param F_shock a function describing a shock 
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname is a character string specifying an **X** Component module
 #' @param XHoptions a list to configure the **X** Component module

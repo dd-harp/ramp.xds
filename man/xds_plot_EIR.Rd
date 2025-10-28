@@ -26,6 +26,9 @@ xds_plot_EIR(
 
 \item{annual}{if true, plot as an annualized rate}
 }
+\value{
+eir, invisibly
+}
 \description{
 Plot the EIR \emph{vs.} time
 }

@@ -17,6 +17,9 @@ xds_plot_PR(xds_obj, i = 1, clrs = "black", llty = 1, add = FALSE)
 
 \item{add}{a logical: plot axes only if FALSE}
 }
+\value{
+true pr, invisibly
+}
 \description{
 Plot the prevalence / parasite rate (PR) from a model of human infection and immunity
 }
