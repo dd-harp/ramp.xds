@@ -1,0 +1,83 @@
+# Delay Equations
+
+In this short vignette, we explain how **`ramp.xds`** was designed to
+handle the challenges of implementing delay differential equations.
+
+------------------------------------------------------------------------
+
+**Solving**
+
+To solve systems of delay differential equations, we need to use
+`deSolve::dede.` For ordinary differential equations, we use
+`deSolve::ode.` Discrete time systems don’t use `deSolve.` To handle all
+these differences, the `xds_obj` includes two objects: `xds_obj$xds` and
+`xds_obj$xde` that are used to dispatch functions that must handle
+ordinary and delay equations and discrete time systems in different
+ways.
+
+------------------------------------------------------------------------
+
+**Computing Lagged Values of Terms**
+
+There was a design challenge for implementing modularity in systems of
+delay differential equations. In modular software, a term can be
+computed anywhere, but the lagged values of that term must be stored
+somehow and retrieved in the function that computes the derivatives. The
+design principle is to internalize the computation of terms with a lag.
+The design solution involves the function `deSolve::lagderiv.` To
+compute the value of any lagged term, generically \\v,\\ a dummy
+variable is added, \\V,\\ where \\dV/dt = v.\\ Indexing for dummy
+variables is handled by the module. In computing the derivatives, the
+value `lagderiv` for \\V(t-\tau)\\ returns the value \\v(t-\tau).\\
+
+Discrete time systems present a different challenge, but the same
+principle gets applied. An object stores a many lagged values of the
+variables or terms as needed.
+
+The lagged values before runtime use initial values. (If you know a
+better way to handle this, please write me!)
+
+------------------------------------------------------------------------
+
+## A Lagged Value Example
+
+A model published by Aron and May in 1982 includes terms to describe the
+dynamics of infected (\\Y\\) and infectious (\\Z\\) mosquitoes. It is
+system of delay differential equations. To write it down, we let the
+subscript \\\tau\\ denote the value of a quantity at time \\t-\tau;\\
+for example, \\Y\_\tau = Y(t-\tau).\\
+
+\\ \begin{array}{rl} \frac{dY}{dt} &= f q \kappa(M-Y) - g Y \\
+\frac{dZ}{dt} &= f q \kappa\_\tau \left(M\_\tau -Y\_\tau \right) - g Z
+\end{array} \\
+
+To implement this, we would need the value of \\\kappa\_\tau\\ and of
+\\M\_\tau\\, and \\Y\_\tau.\\ In the software implementation \\M\\ and
+\\Y\\ are variables, so we can use `deSolve::lagvalue,` but the value of
+\\\kappa\\ is computed and stored in `Transmission.` One solution (let’s
+call it the external design solution for lagged values) is to handle
+lagged terms when they are computed, so `Transmission` would compute and
+store \\\kappa\_\tau.\\
+
+To extend the implementation to handle non-autonomous systems, we must
+be able to handle time-varying bionomic parameters, where the values of
+the parameters could be modified by weather, vector control, or
+something else. This extended non-autonomous system is:
+
+\\ \begin{array}{rl} \frac{dY}{dt} &= f q \kappa(M-Y) - g Y \\
+\frac{dZ}{dt} &= f\_\tau q\_\tau \kappa\_\tau \left(M\_\tau -Y\_\tau
+\right) - g Z \end{array} \\
+
+To implement this, we would need to know \\f\_\tau q\_\tau
+\kappa\_\tau.\\ In the external design solution for lagged values,
+software would need to store \\f\_\tau\\ and \\q\_\tau.\\ If those terms
+relied on other variables, the computation and storage problem for
+lagged values would proliferate.
+
+The internal design solution for lagged values creates a dummy variable,
+\\V\\, where \\dV/dt = f q \kappa.\\ In the module implementation, the
+variable \\V\\ is indexed in the same way as the other variables. It is
+computed in `dMYdt` just like the other variables. In the function call,
+[`deSolve::lagderiv`](https://rdrr.io/pkg/deSolve/man/timelags.html) is
+called to retrieve the lagged value \\f\_\tau q\_\tau \kappa\_\tau\\
+which is the lagged derivative of the variable `V.`

@@ -1,0 +1,177 @@
+# SIS-xde (Susceptible-Infected-Susceptible) Human Model
+
+The SIS (Susceptible-Infected-Susceptible) human xde model model
+fulfills the generic interface of the human population component. It is
+the simplest model of endemic diseases in humans.
+
+## 
+
+We subdivide a population into susceptible (\\S\\) and infected and
+infectious (\\I\\) individuals, where the total population is \\H =
+S+I.\\ We assume the force of infection (\\h\\, FoI) is linearly
+proportional to the EIR: \\h = b \times EIR.\\ In its general form, with
+births (\\B(H)\\) and deaths (at the per-capita rate \\\mu\\), the
+generalized SIS_xde dynamics are:
+
+\\ \begin{array}{rl} \dot{S} &= -h S + rI + B(H) -\mu S\\ \dot{I} &= h
+S - rI - \mu I \end{array} \\
+
+If there is no demographic change, the SIS-xde model can be rewritten as
+a single equation:
+
+\\ \dot{I} = h (H-I) - rI \\ Even in this simplified form, we are
+assuming that a population could be stratified, such that the variables
+and parameter are all vectors with length `nStrata.`
+
+## Equilibrium Solutions
+
+A typical situation when using this model is that \\H\\ (total
+population size by strata) and \\X\\ (number of infectious persons by
+strata) are known from census and survey data. Then it is of interest to
+find the value of \\EIR\\ (Entomological Inoculation Rate) which leads
+to that prevalence at equilibrium.
+
+\\ 0 = h \cdot (H-I) - rI \\
+
+\\ \bar I = H \frac{h}{h+r} \\
+
+\\ \bar S = H - \bar I \\
+
+## Example
+
+``` r
+library(ramp.xds)
+library(deSolve)
+library(viridisLite)
+```
+
+Here we run a simple example with 3 population strata at equilibrium. We
+use `ramp.xds::make_parameters_X_SIS_xde` to set up parameters. Please
+note that this only runs the human population component and that most
+users should read [our fully worked
+example](https://dd-harp.github.io/ramp.xds/articles/ex_534.md) to run a
+full simulation.
+
+We use the null (constant) model of human demography (\\H\\ constant for
+all time).
+
+### The Long Way
+
+To set up systems of differential equations, we must set the values of
+all our parameters.
+
+``` r
+nStrata <- 3
+H <- c(100, 500, 250)
+residence <- rep(1,3) 
+nPatches=1
+nHabitats=1
+membership=1
+params <- make_xds_object_template("ode", "eir", nPatches, membership, residence)
+```
+
+``` r
+b <- rep(0.55, nStrata) 
+c <- rep(0.15, nStrata) 
+r <- rep(1/200, nStrata) 
+Xo = list(b=b, c=c, r=r)
+params <- setup_XH_obj("SIS", params, 1, Xo)
+params <- setup_XH_inits(params, H, 1, Xo)
+```
+
+``` r
+foi = c(1:3)/365 
+eir <- foi/b 
+steady_state_X(foi, H, params)-> ss
+ss
+```
+
+    ## $S
+    ## [1]  64.60177 238.56209  94.55959
+    ## 
+    ## $I
+    ## [1]  35.39823 261.43791 155.44041
+
+``` r
+MYo = list(MYm = eir*H)
+```
+
+``` r
+Xo$S=ss$S
+Xo$I=ss$I
+```
+
+``` r
+params <- setup_MY_obj("trivial", params, 1)
+params <- setup_L_obj("trivial", params, 1)
+params <- setup_L_inits(params, 1)
+params <- make_indices(params)
+```
+
+``` r
+F_s = function(t){0*t+1}
+F_t= function(t){0*t+1}
+F_a = function(a){0*a+1}
+```
+
+``` r
+params$EIR_obj = list() 
+params$EIR_obj$eir <- as.vector(eir)
+params$EIR_obj$scale <- 1 
+params$EIR_obj$F_season <- F_s
+params$EIR_obj$F_trend <- F_t
+params$EIR_obj$F_shock <- F_t
+params$EIR_obj$F_age <- F_a
+```
+
+``` r
+params = make_indices(params)
+```
+
+``` r
+Xo$S=H 
+Xo$I=H*0
+params = setup_XH_inits(params, H, 1, options = Xo)
+y0 <- get_inits(params)
+y0$X
+```
+
+    ## $H
+    ## [1] 100 500 250
+    ## 
+    ## $I
+    ## [1] 0 0 0
+
+``` r
+params <- xds_solve(params) 
+```
+
+``` r
+clrs = turbo(5)
+XH <- get_XH_out(params, 1)
+
+with(XH,{
+  plot(time, true_pr[,1], col = clrs[1], ylim = c(0,1), type = "l")
+  lines(time, true_pr[,2], col = clrs[2])
+  lines(time, true_pr[,3], col =clrs[5])
+})  
+```
+
+![](human_sis_files/figure-html/unnamed-chunk-13-1.png)
+
+### Using Setup
+
+We have developed utilities for setting up models. We pass the parameter
+values and initial values as lists:
+
+``` r
+xds_setup_eir(eir, Xname="SIS", HPop=H, XHoptions = Xo) -> test_SIS_xde
+```
+
+``` r
+xds_solve(test_SIS_xde)-> test_SIS_xde 
+get_XH_out(test_SIS_xde, 1) -> XH2
+sum((XH$true_pr-XH2$true_pr)^2)
+```
+
+    ## [1] 0
