@@ -21,3 +21,4 @@ a \link{list} vector
 \description{
 Implements \link{setup_L_obj} for the trivial model
 }
+\keyword{internal}
