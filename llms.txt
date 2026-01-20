@@ -1867,75 +1867,25 @@ The trivial model for aquatic dynamics
 - [`check_L(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/check_L.trivial.md)
   : Run a check before solving
 
-- [`dLdt(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dLdt.trivial.md)
-  :
-
-  Derivatives for the `trivial` **L** module
-
-- [`Update_Lt(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.trivial.md)
-  :
-
-  Update State Variables for `trivial` (**L** Component)
-
 - [`F_emerge(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.trivial.md)
   :
 
   Compute Emergent Adults for `trivial` (**L** Component)
-
-- [`LBionomics(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/LBionomics.trivial.md)
-  :
-
-  Bionomics for `trivial` (**L** Component)
-
-- [`LBaseline(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/LBaseline.trivial.md)
-  :
-
-  Baseline Bionomics for `trivial` (**L** Component)
-
-- [`setup_L_obj(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.trivial.md)
-  :
-
-  Setup `L_obj` for the `trivial` module
 
 - [`make_L_obj_trivial()`](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_trivial.md)
   :
 
   Make `L_obj` for `trivial` (**L** Component)
 
-- [`get_L_pars(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.trivial.md)
-  :
-
-  Get **L** Component Parameters for `trivial`
-
 - [`change_L_pars(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_L_pars.trivial.md)
   :
 
   Set **L** Component parameters for `trivial`
 
-- [`setup_L_inits(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.trivial.md)
+- [`get_L_pars(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.trivial.md)
   :
 
-  Setup Initial Values for the **L** Component `trivial` Module
-
-- [`get_L_vars(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_L_vars.trivial.md)
-  :
-
-  List **L** Component Variables for `trivial`
-
-- [`change_L_inits(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_L_inits.trivial.md)
-  :
-
-  Set the Initial Values for `trivial` (**L** Component)
-
-- [`setup_L_ix(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_L_ix.trivial.md)
-  :
-
-  Setup Variable Indices for `trivial` (**L** Component)
-
-- [`parse_L_orbits(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_L_orbits.trivial.md)
-  :
-
-  parse **L** Component Variables for `basicL`
+  Get **L** Component Parameters for `trivial`
 
 ### basicL
 
@@ -2013,11 +1963,6 @@ A basic model for aquatic mosquito dynamics
   :
 
   Set the Initial Values for `basicL` (**L** Component)
-
-- [`setup_L_ix(`*`<basicL>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_L_ix.basicL.md)
-  :
-
-  Setup Variable Indices for `basicL` (**L** Component)
 
 - [`parse_L_orbits(`*`<basicL>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_L_orbits.basicL.md)
   :

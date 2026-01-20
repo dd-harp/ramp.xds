@@ -183,10 +183,8 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Health.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBaseline.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBaseline.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/LBaseline.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBaseline.GeRM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBaseline.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBaseline.basicM.html</loc></url>
@@ -219,7 +217,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Travel.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_Lt.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_Lt.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_Lt.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_MYt.GeRM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_MYt.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_MYt.SI.html</loc></url>
@@ -252,7 +249,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_L_inits.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_L_inits.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_L_inits.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_L_pars.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_L_pars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_L_pars.trivial.html</loc></url>
@@ -337,7 +333,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_local_frac.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dLdt.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/dLdt.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dMYdt.GeRM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dMYdt.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dMYdt.basicM.html</loc></url>
@@ -375,7 +370,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_pars.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_vars.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_vars.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_vars.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_M.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.trivial.html</loc></url>
@@ -542,7 +536,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/ode_to_dde.ode.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_L_orbits.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_L_orbits.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_L_orbits.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_L_terms.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.GeRM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.RMdts.html</loc></url>
@@ -591,10 +584,8 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_ix.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_ix.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_ix.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.trivial.html</loc></url>
