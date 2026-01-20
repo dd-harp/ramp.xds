@@ -678,20 +678,10 @@ reference:
   contents:
   - skill_set_L.trivial
   - check_L.trivial
-  - dLdt.trivial
-  - Update_Lt.trivial
   - F_emerge.trivial
-  - LBionomics.trivial
-  - LBaseline.trivial
-  - setup_L_obj.trivial
   - make_L_obj_trivial
-  - get_L_pars.trivial
   - change_L_pars.trivial
-  - setup_L_inits.trivial
-  - get_L_vars.trivial
-  - change_L_inits.trivial
-  - setup_L_ix.trivial
-  - parse_L_orbits.trivial
+  - get_L_pars.trivial
 - subtitle: basicL
   desc: |
     A basic model for aquatic mosquito dynamics
@@ -711,7 +701,6 @@ reference:
   - get_L_pars.basicL
   - change_L_pars.basicL
   - change_L_inits.basicL
-  - setup_L_ix.basicL
   - parse_L_orbits.basicL
   - steady_state_L.basicL_ode
 - title: Mosquito Bionomics

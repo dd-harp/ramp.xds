@@ -41,7 +41,7 @@ show_shock = function(xds_obj, tm=10*c(0:365), add=FALSE, clr="black", rng=NULL)
 #' @return the temporal trend, invisibly
 #'  
 #' @export
-show_trend = function(xds_obj, tm=10*c(0:365), add=FALSE, clr="black", rng=NULL, shock=TRUE){
+show_trend = function(xds_obj, tm=10*c(0:365), add=FALSE, clr="black", rng=NULL, shock=FALSE){
   trend <- F_trend(tm, xds_obj)
   if(shock) trend <- trend*F_shock(tm, xds_obj)
 

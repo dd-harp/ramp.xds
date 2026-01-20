@@ -22,3 +22,4 @@ a \strong{\code{ramp.xds}} object
 Set \strong{L} component parameters
 to baseline values for \code{basicL}
 }
+\keyword{internal}

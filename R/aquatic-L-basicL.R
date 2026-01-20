@@ -121,6 +121,7 @@ F_emerge.basicL <- function(t, y, xds_obj, s) {
 #' @description Set **L** component parameters
 #' to baseline values for `basicL`
 #' @inheritParams LBaseline
+#' @keywords internal 
 #' 
 #' @return a **`ramp.xds`** object
 #' @export
@@ -142,6 +143,7 @@ LBaseline.basicL <- function(t, y, xds_obj, s) {
 #' @title Bionomics for `basicL` (**L** Component)
 #' @description Implements [LBionomics] for the `basicL`
 #' @inheritParams LBionomics
+#' @keywords internal 
 #' @return a **`ramp.xds`** object
 #' @export
 LBionomics.basicL <- function(t, y, xds_obj, s) {
@@ -289,17 +291,17 @@ change_L_inits.basicL <- function(xds_obj, s=1, options=list()) {
     return(xds_obj)
 }))}
 
-#' @title Setup Variable Indices for `basicL` (**L** Component)
-#' @description Set the values of the indices for the **L** component variables
+#' @title Setup Variables Indices for `basicL` (**L** Component)
+#' @description Index the **L** component variables
 #' for the `basicL` module
 #' @inheritParams setup_L_ix
+#' @keywords internal 
 #' @return an **`xds`** object
-#' @importFrom utils tail
 #' @export
 setup_L_ix.basicL <- function(xds_obj, s) {with(xds_obj,{
 
   L_ix <- seq(from = max_ix+1, length.out = nHabitats)
-  max_ix <- tail(L_ix, 1)
+  max_ix <- max(L_ix)
 
   xds_obj$max_ix = max_ix
 
