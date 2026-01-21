@@ -84,46 +84,27 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' @param options a [list]
 #' @param kappa net infectiousness
 #' @param HPop initial human population density
-#' @param F_season a function describing a seasonal pattern 
 #' @param season_par parameters to configure a `F_season` using [make_function]
-#' @param F_trend a function describing a temporal trend 
 #' @param trend_par parameters to configure `F_trend` using [make_function]
-#' @param F_shock a function describing a temporal shock 
 #' @param shock_par parameters to configure `F_shock` using [make_function]
-#' @param H_trend a function describing a temporal trend in human population density
 #' @param H_trend_par parameters to configure `H_trend` using [make_function]
 #' @return a [list]
 #' @export
 make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
-                              F_season=F_flat, season_par = list(), 
-                              F_trend=F_flat, trend_par = list(), 
-                              F_shock=F_flat, shock_par = list(), 
-                              H_trend=F_flat, H_trend_par = list()){
+                               season_par = makepar_F_one(), 
+                               trend_par = makepar_F_one(),
+                               shock_par = makepar_F_one(),
+                               H_trend_par = makepar_F_one()){
   with(options,{
     XH_obj <- list()
     class(XH_obj) <- c('trivial')
     XH_obj$H = checkIt(HPop, nPatches)
     XH_obj$kappa= checkIt(kappa, nPatches)
     
-    XH_obj$F_season = F_season
-    XH_obj$season_par <- season_par
-    if(length(season_par)>0)
-      XH_obj$F_season <- make_function(season_par) 
-    
-    XH_obj$F_trend = F_trend
-    XH_obj$trend_par <- trend_par
-    if(length(trend_par)>0)
-      XH_obj$F_trend <- make_function(trend_par) 
-
-    XH_obj$F_shock = F_shock
-    XH_obj$shock_par <- shock_par
-    if(length(shock_par)>0)
-      XH_obj$F_shock <- make_function(shock_par) 
-    
-    XH_obj$H_trend = H_trend
-    XH_obj$H_trend_par <- H_trend_par
-    if(length(H_trend_par)>0)
-      XH_obj$H_trend <- make_function(H_trend_par) 
+    XH_obj$season_par = season_par
+    XH_obj$trend_par = trend_par
+    XH_obj$shock_par = shock_par
+    XH_obj$H_trend_par = H_trend_par
 
     return(XH_obj)
   })}
@@ -206,7 +187,11 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 #' @return a [list] vectord
 #' @export
 setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
+  XH <- "XH"
+  class(XH) <- "XH"
+  xds_obj$forced_by = XH
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nPatches, options)
+  xds_obj <- rebuild_forcing_functions(xds_obj, i)
   return(xds_obj)
 }
 

@@ -110,9 +110,14 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #' @export
 #' 
 setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
+  MY = "MY"
+  class(MY) = "MY"
+  xds_obj$forced_by = MY
+  
   MY_obj <- make_MY_obj_trivial(xds_obj$nPatches, options)
   class(MY_obj) <- 'trivial'
   xds_obj$MY_obj[[s]] <- MY_obj
+  xds_obj <- rebuild_forcing_functions(xds_obj, s)
   return(xds_obj)
 }
 
@@ -124,19 +129,16 @@ setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
 #' @param q the human fraction
 #' @param Z the human fraction
 #' @param eggs the human fraction
-#' @param F_season a function describing a seasonal pattern 
 #' @param season_par parameters to configure a `F_season` using [make_function]
-#' @param F_trend a function describing a temporal trend 
 #' @param trend_par parameters to configure `F_trend` using [make_function]
-#' @param F_shock a function describing a temporal shock 
 #' @param shock_par parameters to configure `F_shock` using [make_function]
 #' @return none
 #' @export
 make_MY_obj_trivial = function(nPatches, options,
                                f = 1, q = 1, Z=1, eggs=1,
-                               F_season=F_flat, season_par = list(), 
-                               F_trend=F_flat, trend_par = list(), 
-                               F_shock=F_flat, shock_par = list()){
+                               season_par = makepar_F_one(), 
+                               trend_par = makepar_F_one(),
+                               shock_par = makepar_F_one()){
   with(options,{
     MY_obj <- list()
     MY_obj$nPatches <- nPatches
@@ -158,20 +160,10 @@ make_MY_obj_trivial = function(nPatches, options,
     MY_obj$Z <- checkIt(Z, nPatches)
     MY_obj$eggs <- checkIt(eggs, nPatches)
     
-    MY_obj$F_season = F_season
     MY_obj$season_par <- season_par
-    if(length(season_par)>0)
-      MY_obj$F_season <- make_function(season_par) 
-    
-    MY_obj$F_trend = F_trend
     MY_obj$trend_par <- trend_par
-    if(length(trend_par)>0)
-      MY_obj$F_trend <- make_function(trend_par) 
-    
-    MY_obj$F_shock = F_shock
     MY_obj$shock_par <- shock_par
-    if(length(shock_par)>0)
-      MY_obj$F_shock <- make_function(shock_par) 
+     
     
     return(MY_obj)
 })}

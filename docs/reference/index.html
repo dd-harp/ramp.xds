@@ -81,7 +81,7 @@
     </div><div class="section level2">
 
       <h3 id="basic-setup">Basic Setup<a class="anchor" aria-label="anchor" href="#basic-setup"></a></h3>
-      <div class="section-desc"><p>Build an <strong><code>xds</code></strong> model object</p></div>
+      <div class="section-desc"><p>Build and store <strong><code>xds</code></strong> model objects</p></div>
 
 
     </div><div class="section level2">
@@ -119,6 +119,18 @@
 
         </dt>
         <dd>Build a Model for a single Human / Host Epidemiology forced by the EIR</dd>
+      </dl><dl><dt>
+
+          <code><a href="saveXDS.html">saveXDS()</a></code>
+
+        </dt>
+        <dd>saveRDS for <code>xds</code> Objects</dd>
+      </dl><dl><dt>
+
+          <code><a href="readXDS.html">readXDS()</a></code>
+
+        </dt>
+        <dd>readRDS for <code>xds</code> Objects</dd>
       </dl></div><div class="section level2">
 
       <h3 id="modules-interfaces">Modules &amp; Interfaces<a class="anchor" aria-label="anchor" href="#modules-interfaces"></a></h3>
@@ -3227,34 +3239,10 @@
         <dd>Run a check before solving</dd>
       </dl><dl><dt>
 
-          <code><a href="dLdt.trivial.html">dLdt(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Derivatives for the <code>trivial</code> <strong>L</strong> module</dd>
-      </dl><dl><dt>
-
-          <code><a href="Update_Lt.trivial.html">Update_Lt(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Update State Variables for <code>trivial</code> (<strong>L</strong> Component)</dd>
-      </dl><dl><dt>
-
           <code><a href="F_emerge.trivial.html">F_emerge(<i>&lt;trivial&gt;</i>)</a></code>
 
         </dt>
         <dd>Compute Emergent Adults for <code>trivial</code> (<strong>L</strong> Component)</dd>
-      </dl><dl><dt>
-
-          <code><a href="LBionomics.trivial.html">LBionomics(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Bionomics for <code>trivial</code> (<strong>L</strong> Component)</dd>
-      </dl><dl><dt>
-
-          <code><a href="LBaseline.trivial.html">LBaseline(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Baseline Bionomics for <code>trivial</code> (<strong>L</strong> Component)</dd>
       </dl><dl><dt>
 
           <code><a href="setup_L_obj.trivial.html">setup_L_obj(<i>&lt;trivial&gt;</i>)</a></code>
@@ -3279,36 +3267,6 @@
 
         </dt>
         <dd>Set <strong>L</strong> Component parameters for <code>trivial</code></dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_L_inits.trivial.html">setup_L_inits(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Setup Initial Values for the <strong>L</strong> Component <code>trivial</code> Module</dd>
-      </dl><dl><dt>
-
-          <code><a href="get_L_vars.trivial.html">get_L_vars(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>List <strong>L</strong> Component Variables for <code>trivial</code></dd>
-      </dl><dl><dt>
-
-          <code><a href="change_L_inits.trivial.html">change_L_inits(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set the Initial Values for <code>trivial</code> (<strong>L</strong> Component)</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_L_ix.trivial.html">setup_L_ix(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Setup Variable Indices for <code>trivial</code> (<strong>L</strong> Component)</dd>
-      </dl><dl><dt>
-
-          <code><a href="parse_L_orbits.trivial.html">parse_L_orbits(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>parse <strong>L</strong> Component Variables for <code>basicL</code></dd>
       </dl></div><div class="section level2">
 
       <h3 id="basicl">basicL<a class="anchor" aria-label="anchor" href="#basicl"></a></h3>
@@ -4736,12 +4694,6 @@
 
         </dt>
         <dd>Check the shape and dimensions of an model object</dd>
-      </dl><dl><dt>
-
-          <code><a href="xds_shrink.html">xds_shrink()</a></code>
-
-        </dt>
-        <dd>Shrink an xds xds_obj object</dd>
       </dl><dl><dt>
 
           <code><a href="list_vars.html">list_vars()</a></code>

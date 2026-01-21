@@ -8,12 +8,9 @@ make_L_obj_trivial(
   nHabitats,
   options = list(),
   Lambda = 1000,
-  F_season = F_flat,
-  season_par = list(),
-  F_trend = F_flat,
-  trend_par = list(),
-  F_shock = F_flat,
-  shock_par = list()
+  season_par = makepar_F_one(),
+  trend_par = makepar_F_one(),
+  shock_par = makepar_F_one()
 )
 }
 \arguments{
@@ -23,15 +20,9 @@ make_L_obj_trivial(
 
 \item{Lambda}{vector of mean emergence rates from each aquatic habitat}
 
-\item{F_season}{a function describing a seasonal pattern over time}
-
 \item{season_par}{an object to configure a seasonality function using \link{make_function}}
 
-\item{F_trend}{a function describing a temporal trend over time}
-
 \item{trend_par}{an object to configure a trends function using \link{make_function}}
-
-\item{F_shock}{a function describing a temporal shock over time}
 
 \item{shock_par}{an object to configure a shocks function using \link{make_function}}
 }

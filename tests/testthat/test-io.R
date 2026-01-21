@@ -1,0 +1,27 @@
+library(ramp.xds)
+test_that("a model that is saved using saveXDS is identical to the model returned by readXDS", {
+ 
+  Sp = makepar_F_sin(phase=123, bottom=.1, pw = .2) 
+  Tp = makepar_F_spline(365*(c(-10, 0:10)), rlnorm(12, 0, .2), X=2)
+  mod0 <- xds_setup_eir(season_par=Sp, trend_par=Tp) 
+  saveXDS(mod0, "tmp.rds")
+  mod1 <- readXDS("tmp.rds")
+  tt <- seq(0, 3650, by = 5)
+  S0 = mod0$EIR_obj$F_season(tt)
+  S1 = mod1$EIR_obj$F_season(tt)
+  T0 = mod0$EIR_obj$F_trend(tt)
+  T1 = mod1$EIR_obj$F_trend(tt)
+  expect_equal(S0, S1)
+  expect_equal(T0, T1)
+  
+  # The functions are stored differently
+  mod0$EIR_obj$F_season = list() 
+  mod1$EIR_obj$F_season = list() 
+  mod0$EIR_obj$F_trend = list() 
+  mod1$EIR_obj$F_trend = list() 
+  mod0$EIR_obj$F_age = list() 
+  mod1$EIR_obj$F_age = list() 
+  mod0$EIR_obj$F_shock = list() 
+  mod1$EIR_obj$F_shock = list() 
+  expect_true(identical(mod0, mod1))
+})

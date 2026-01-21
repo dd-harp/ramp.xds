@@ -28,6 +28,7 @@ check_L.trivial = function(xds_obj, s){
 #' @title Derivatives for the `trivial` **L** module 
 #' @description Returns a numeric vector of length 0
 #' @inheritParams dLdt
+#' @noRd
 #' @return an empty [list]
 #' @export
 dLdt.trivial <- function(t, y, xds_obj, s) {
@@ -37,6 +38,7 @@ dLdt.trivial <- function(t, y, xds_obj, s) {
 #' @title Update State Variables for `trivial` (**L** Component)
 #' @description Implements [Update_Lt] for the trivial (forced emergence) model.
 #' @inheritParams Update_Lt
+#' @noRd
 #' @return a [numeric] vector
 #' @export
 Update_Lt.trivial <- function(t, y, xds_obj, s) {
@@ -58,8 +60,9 @@ F_emerge.trivial <- function(t, y, xds_obj, s) {
 })}
 
 #' @title Baseline Bionomics for `trivial` (**L** Component)
-#' @description Implements [LBaseline] for the RM model
+#' @description Implements [LBaseline] for the `trivial` module
 #' @inheritParams LBaseline
+#' @noRd
 #' @return a named [list]
 #' @export
 LBaseline.trivial<- function(t, y, xds_obj, s) {
@@ -69,6 +72,7 @@ LBaseline.trivial<- function(t, y, xds_obj, s) {
 #' @title Bionomics for `trivial` (**L** Component)
 #' @description Implements [LBionomics] for the RM model
 #' @inheritParams LBionomics
+#' @noRd
 #' @return an **`xds`** object
 #' @export
 LBionomics.trivial <- function(t, y, xds_obj, s) {
@@ -78,6 +82,7 @@ LBionomics.trivial <- function(t, y, xds_obj, s) {
 #' @title Setup `L_obj` for the `trivial` module
 #' @description Implements [setup_L_obj] for the trivial model
 #' @inheritParams setup_L_obj
+#' @keywords internal
 #' @return a [list] vector
 #' @export
 setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
@@ -85,6 +90,7 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
   class(forced_by) = "Lambda"
   xds_obj$forced_by = forced_by 
   xds_obj$L_obj[[s]] = make_L_obj_trivial(xds_obj$nHabitats, options)
+  xds_obj = rebuild_forcing_functions(xds_obj, s)
   return(xds_obj)
 }
 
@@ -98,38 +104,24 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
 #' @param nHabitats the number of habitats in the model
 #' @param options a [list] that overwrites default values
 #' @param Lambda vector of mean emergence rates from each aquatic habitat
-#' @param F_season a function describing a seasonal pattern over time
 #' @param season_par an object to configure a seasonality function using [make_function]
-#' @param F_trend a function describing a temporal trend over time
 #' @param trend_par an object to configure a trends function using [make_function]
-#' @param F_shock a function describing a temporal shock over time
 #' @param shock_par an object to configure a shocks function using [make_function]
 #' @return none
 #' @export
 make_L_obj_trivial = function(nHabitats, options=list(),
                              Lambda=1000,
-                             F_season=F_flat, season_par = list(), 
-                             F_trend=F_flat, trend_par = list(),
-                             F_shock=F_flat, shock_par = list()){
+                             season_par = makepar_F_one(), 
+                             trend_par = makepar_F_one(),
+                             shock_par = makepar_F_one()){
   with(options,{
     L_obj = list()
     class(L_obj) <- "trivial"
     L_obj$Lambda = checkIt(Lambda, nHabitats)
     
-    L_obj$F_season = F_season
     L_obj$season_par <- season_par
-    if(length(season_par)>0)
-      L_obj$F_season <- make_function(season_par) 
-
-    L_obj$F_trend = F_trend
     L_obj$trend_par <- trend_par
-    if(length(trend_par)>0)
-      L_obj$F_trend <- make_function(trend_par) 
-    
-    L_obj$F_shock = F_shock
     L_obj$shock_par <- shock_par
-    if(length(shock_par)>0)
-      L_obj$F_shock <- make_function(shock_par) 
     
     return(L_obj)
 })}
@@ -173,6 +165,7 @@ change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
 #' @title Setup Initial Values for the **L** Component `trivial` Module
 #' @description The `trivial` module initial values are an empty list
 #' @inheritParams setup_L_inits
+#' @noRd
 #' @return a [list]
 #' @export
 setup_L_inits.trivial = function(xds_obj, s, options=list()){
@@ -183,6 +176,7 @@ setup_L_inits.trivial = function(xds_obj, s, options=list()){
 #' @title List **L** Component Variables for `trivial`
 #' @description This method dispatches on the type of `xds_obj$L_obj[[s]]`
 #' @inheritParams get_L_vars
+#' @noRd
 #' @return an empty [list]
 #' @export
 get_L_vars.trivial <- function(y, xds_obj, s){
@@ -193,6 +187,7 @@ get_L_vars.trivial <- function(y, xds_obj, s){
 #' @title Set the Initial Values for `trivial` (**L** Component)
 #' @description Returns the unmodified **`xds`** object
 #' @inheritParams change_L_inits
+#' @noRd
 #' @return an **`xds`** object
 #' @export
 change_L_inits.trivial <- function(xds_obj, s=1, options=list()) {
@@ -202,6 +197,7 @@ change_L_inits.trivial <- function(xds_obj, s=1, options=list()) {
 #' @title Setup Variable Indices for `trivial` (**L** Component)
 #' @description Implements [setup_L_ix] for trivial (forced emergence) model.
 #' @inheritParams setup_L_ix
+#' @noRd
 #' @return an **`xds`** object
 #' @export
 setup_L_ix.trivial <- function(xds_obj, s) {
@@ -211,6 +207,7 @@ setup_L_ix.trivial <- function(xds_obj, s) {
 #' @title parse **L** Component Variables for `basicL`
 #' @description Return a numeric vector of length 0
 #' @inheritParams parse_L_orbits
+#' @noRd
 #' @return none
 #' @export
 parse_L_orbits.trivial <- function(outputs, xds_obj, s) {
