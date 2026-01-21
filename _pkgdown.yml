@@ -683,7 +683,6 @@ reference:
   - F_emerge.trivial
   - setup_L_obj.trivial
   - make_L_obj_trivial
-  - get_L_pars.trivial
   - change_L_pars.trivial
 - subtitle: basicL
   desc: |
@@ -704,7 +703,6 @@ reference:
   - get_L_pars.basicL
   - change_L_pars.basicL
   - change_L_inits.basicL
-  - setup_L_ix.basicL
   - parse_L_orbits.basicL
   - steady_state_L.basicL_ode
 - title: Mosquito Bionomics
