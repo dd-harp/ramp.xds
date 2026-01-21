@@ -20,3 +20,4 @@ Get the \strong{L} component parameters
 \seealso{
 \link{dLdt.basicL} or \link{change_L_pars.basicL}
 }
+\keyword{internal}

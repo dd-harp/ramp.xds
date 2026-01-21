@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_steady.R
 \name{xds_stable_orbit.dts}
 \alias{xds_stable_orbit.dts}
-\title{Compute the stable orbit for a system of differential equations}
+\title{Compute the stable orbit for a discrete time system}
 \usage{
 \method{xds_stable_orbit}{dts}(xds_obj, options = list())
 }

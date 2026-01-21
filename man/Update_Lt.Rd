@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{Update_Lt}
 \alias{Update_Lt}
-\title{Update State Variables for an \strong{L} Component Module}
+\title{Update state variables (\strong{L} module)}
 \usage{
 Update_Lt(t, y, xds_obj, s)
 }

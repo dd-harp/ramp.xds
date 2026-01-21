@@ -7,13 +7,13 @@
 setup_L_obj(Lname, xds_obj, s, options = list())
 }
 \arguments{
-\item{Lname}{the class name of the aquatic model}
+\item{Lname}{the class name of the \strong{L} module}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the species index}
 
-\item{options}{a named \link{list} to configure \strong{\code{L_obj}}}
+\item{options}{a named list to configure \strong{\code{L_obj}}}
 }
 \value{
 an \strong{\code{xds}} object

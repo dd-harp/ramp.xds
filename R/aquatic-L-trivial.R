@@ -131,14 +131,15 @@ make_L_obj_trivial = function(nHabitats, options=list(),
 #' @description Show the trace function
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
+#' @keywords internal
 #' @return a [list]
 #' @export
 get_L_pars.trivial <- function(xds_obj, s=1) {
   with(xds_obj$L_obj[[s]], list(
     Lambda=Lambda,
-    F_season=F_season,
-    F_trend=F_trend,
-    F_shock=F_shock
+    season_par=season_par,
+    trend_par=trend_par,
+    shock_par=shock_par
   ))
 }
 

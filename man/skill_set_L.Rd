@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{skill_set_L}
 \alias{skill_set_L}
-\title{The \strong{L} Module Skill Set}
+\title{The skill set (\strong{L} module)}
 \usage{
 skill_set_L(Lname)
 }
@@ -13,6 +13,7 @@ skill_set_L(Lname)
 \emph{L} module skill set, as a list
 }
 \description{
-The \strong{L} skill set is a list of
-describing capabilities and compatabilities
+The skill set for an \strong{L} module
+is a list of that summarizes capabilities and
+compatabilities
 }
