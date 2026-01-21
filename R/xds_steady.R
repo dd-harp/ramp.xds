@@ -1,6 +1,9 @@
 
 #' @title Compute stable orbits 
-#' @description  
+#' 
+#' @description 
+#' Run the system for 10 years, and save the last year's orbits.
+#'  
 #' @param xds_obj an **`xds`** model object
 #' @param options a list of configurable options 
 #' @return an **`xds`** model object

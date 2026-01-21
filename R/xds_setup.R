@@ -379,13 +379,9 @@ xds_setup_human = function(Xname = "SIS",
 #'
 #' @param eir is the entomological inoculation rate
 #' @param season_par parameters to configure a seasonality function using [make_function]
-#' @param F_season a function describing a seasonal pattern over time
 #' @param trend_par parameters to configure a trends function using [make_function]
-#' @param F_trend a function describing a temporal trend over time
 #' @param age_par parameters to configure an age weights function using [make_function]
-#' @param F_age a assigning a biting weight by age
 #' @param shock_par parameters to configure a shock using [make_function] 
-#' @param F_shock a function describing a shock 
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname is a character string specifying an **X** Component module
 #' @param XHoptions a list to configure the **X** Component module
@@ -395,14 +391,10 @@ xds_setup_human = function(Xname = "SIS",
 #' @return an **`xds`** object
 #' @export
 xds_setup_eir = function(eir=1,
-                         season_par = list(),
-                         F_season = F_flat, 
-                         trend_par = list(),
-                         F_trend = F_flat, 
-                         age_par = list(),
-                         F_age = F_flat, 
-                         shock_par = list(),
-                         F_shock = F_flat, 
+                         season_par = makepar_F_one(), 
+                         trend_par = makepar_F_one(),
+                         age_par = makepar_F_one(),
+                         shock_par = makepar_F_one(),
                          xds = 'ode',
 
                          # Dynamical Components
@@ -425,26 +417,11 @@ xds_setup_eir = function(eir=1,
   xds_obj$EIR_obj <- list()
   xds_obj$EIR_obj$eir <- eir
   xds_obj$EIR_obj$scale <- 1
-  xds_obj$EIR_obj$F_season <- F_season
   xds_obj$EIR_obj$season_par <- season_par
-  if(length(season_par)>0){
-    xds_obj$EIR_obj$F_season <- make_function(season_par)
-  } 
-  xds_obj$EIR_obj$F_trend <- F_trend
   xds_obj$EIR_obj$trend_par <- trend_par
-  if(length(trend_par)>0){
-    xds_obj$EIR_obj$F_trend <- make_function(trend_par) 
-  }
-  xds_obj$EIR_obj$F_age <- F_age
   xds_obj$EIR_obj$age_par <- age_par
-  if(length(age_par)>0){
-    xds_obj$EIR_obj$F_age <- make_function(age_par) 
-  }
-  xds_obj$EIR_obj$F_shock <- F_shock
   xds_obj$EIR_obj$shock_par <- shock_par
-  if(length(shock_par)>0){
-    xds_obj$EIR_obj$F_shock <- make_function(shock_par) 
-  }
+  xds_obj = rebuild_forcing_functions(xds_obj, 1)
 
   # Aquatic Mosquito Dynamics
   xds_obj       <- setup_L_obj("trivial", xds_obj, 1, list())

@@ -60,7 +60,7 @@ F_emerge.trivial <- function(t, y, xds_obj, s) {
 })}
 
 #' @title Baseline Bionomics for `trivial` (**L** Component)
-#' @description Implements [LBaseline] for the RM model
+#' @description Implements [LBaseline] for the `trivial` module
 #' @inheritParams LBaseline
 #' @noRd
 #' @return a named [list]
@@ -90,6 +90,7 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
   class(forced_by) = "Lambda"
   xds_obj$forced_by = forced_by 
   xds_obj$L_obj[[s]] = make_L_obj_trivial(xds_obj$nHabitats, options)
+  xds_obj = rebuild_forcing_functions(xds_obj, s)
   return(xds_obj)
 }
 
@@ -103,38 +104,24 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
 #' @param nHabitats the number of habitats in the model
 #' @param options a [list] that overwrites default values
 #' @param Lambda vector of mean emergence rates from each aquatic habitat
-#' @param F_season a function describing a seasonal pattern over time
 #' @param season_par an object to configure a seasonality function using [make_function]
-#' @param F_trend a function describing a temporal trend over time
 #' @param trend_par an object to configure a trends function using [make_function]
-#' @param F_shock a function describing a temporal shock over time
 #' @param shock_par an object to configure a shocks function using [make_function]
 #' @return none
 #' @export
 make_L_obj_trivial = function(nHabitats, options=list(),
                              Lambda=1000,
-                             F_season=F_flat, season_par = list(), 
-                             F_trend=F_flat, trend_par = list(),
-                             F_shock=F_flat, shock_par = list()){
+                             season_par = makepar_F_one(), 
+                             trend_par = makepar_F_one(),
+                             shock_par = makepar_F_one()){
   with(options,{
     L_obj = list()
     class(L_obj) <- "trivial"
     L_obj$Lambda = checkIt(Lambda, nHabitats)
     
-    L_obj$F_season = F_season
     L_obj$season_par <- season_par
-    if(length(season_par)>0)
-      L_obj$F_season <- make_function(season_par) 
-
-    L_obj$F_trend = F_trend
     L_obj$trend_par <- trend_par
-    if(length(trend_par)>0)
-      L_obj$F_trend <- make_function(trend_par) 
-    
-    L_obj$F_shock = F_shock
     L_obj$shock_par <- shock_par
-    if(length(shock_par)>0)
-      L_obj$F_shock <- make_function(shock_par) 
     
     return(L_obj)
 })}
@@ -144,14 +131,15 @@ make_L_obj_trivial = function(nHabitats, options=list(),
 #' @description Show the trace function
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
+#' @keywords internal
 #' @return a [list]
 #' @export
 get_L_pars.trivial <- function(xds_obj, s=1) {
   with(xds_obj$L_obj[[s]], list(
     Lambda=Lambda,
-    F_season=F_season,
-    F_trend=F_trend,
-    F_shock=F_shock
+    season_par=season_par,
+    trend_par=trend_par,
+    shock_par=shock_par
   ))
 }
 

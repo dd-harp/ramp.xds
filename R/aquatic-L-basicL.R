@@ -210,6 +210,7 @@ make_L_obj_basicL = function(nHabitats, options=list(), psi=1/8, xi=0, phi=1/8, 
 #' @description Get the **L** component parameters
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
+#' @keywords internal
 #' @return a [list]
 #' @seealso [dLdt.basicL] or [change_L_pars.basicL]
 #' @export

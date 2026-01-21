@@ -81,7 +81,7 @@
     </div><div class="section level2">
 
       <h3 id="basic-setup">Basic Setup<a class="anchor" aria-label="anchor" href="#basic-setup"></a></h3>
-      <div class="section-desc"><p>Build an <strong><code>xds</code></strong> model object</p></div>
+      <div class="section-desc"><p>Build and store <strong><code>xds</code></strong> model objects</p></div>
 
 
     </div><div class="section level2">
@@ -119,6 +119,18 @@
 
         </dt>
         <dd>Build a Model for a single Human / Host Epidemiology forced by the EIR</dd>
+      </dl><dl><dt>
+
+          <code><a href="saveXDS.html">saveXDS()</a></code>
+
+        </dt>
+        <dd>saveRDS for <code>xds</code> Objects</dd>
+      </dl><dl><dt>
+
+          <code><a href="readXDS.html">readXDS()</a></code>
+
+        </dt>
+        <dd>readRDS for <code>xds</code> Objects</dd>
       </dl></div><div class="section level2">
 
       <h3 id="modules-interfaces">Modules &amp; Interfaces<a class="anchor" aria-label="anchor" href="#modules-interfaces"></a></h3>
@@ -375,7 +387,7 @@
           <code><a href="xds_stable_orbit.html">xds_stable_orbit()</a></code>
 
         </dt>
-        <dd>Solve for the steady state of a system of equations using <a href="https://rdrr.io/pkg/rootSolve/man/steady.html" class="external-link">rootSolve::steady</a></dd>
+        <dd>Compute stable orbits</dd>
       </dl><dl><dt>
 
           <code><a href="steady_state_X.html">steady_state_X()</a></code>
@@ -3105,7 +3117,7 @@
           <code><a href="skill_set_L.html">skill_set_L()</a></code>
 
         </dt>
-        <dd>The <strong>L</strong> Module Skill Set</dd>
+        <dd>The skill set (<strong>L</strong> module)</dd>
       </dl><dl><dt>
 
           <code><a href="check_L.html">check_L()</a></code>
@@ -3117,13 +3129,13 @@
           <code><a href="dLdt.html">dLdt()</a></code>
 
         </dt>
-        <dd>Derivatives for an <strong>L</strong> Component Module</dd>
+        <dd>Compute derivatives (<strong>L</strong> module)</dd>
       </dl><dl><dt>
 
           <code><a href="Update_Lt.html">Update_Lt()</a></code>
 
         </dt>
-        <dd>Update State Variables for an <strong>L</strong> Component Module</dd>
+        <dd>Update state variables (<strong>L</strong> module)</dd>
       </dl><dl><dt>
 
           <code><a href="F_emerge.html">F_emerge()</a></code>
@@ -3233,6 +3245,12 @@
         <dd>Compute Emergent Adults for <code>trivial</code> (<strong>L</strong> Component)</dd>
       </dl><dl><dt>
 
+          <code><a href="setup_L_obj.trivial.html">setup_L_obj(<i>&lt;trivial&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Setup <code>L_obj</code> for the <code>trivial</code> module</dd>
+      </dl><dl><dt>
+
           <code><a href="make_L_obj_trivial.html">make_L_obj_trivial()</a></code>
 
         </dt>
@@ -3243,12 +3261,6 @@
 
         </dt>
         <dd>Set <strong>L</strong> Component parameters for <code>trivial</code></dd>
-      </dl><dl><dt>
-
-          <code><a href="get_L_pars.trivial.html">get_L_pars(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Get <strong>L</strong> Component Parameters for <code>trivial</code></dd>
       </dl></div><div class="section level2">
 
       <h3 id="basicl">basicL<a class="anchor" aria-label="anchor" href="#basicl"></a></h3>
@@ -4367,7 +4379,7 @@
           <code><a href="Update_Lt.html">Update_Lt()</a></code>
 
         </dt>
-        <dd>Update State Variables for an <strong>L</strong> Component Module</dd>
+        <dd>Update state variables (<strong>L</strong> module)</dd>
       </dl></div><div class="section level2">
 
       <h3 id="solving-2">Solving<a class="anchor" aria-label="anchor" href="#solving-2"></a></h3>
@@ -4408,19 +4420,19 @@
           <code><a href="xds_stable_orbit.html">xds_stable_orbit()</a></code>
 
         </dt>
-        <dd>Solve for the steady state of a system of equations using <a href="https://rdrr.io/pkg/rootSolve/man/steady.html" class="external-link">rootSolve::steady</a></dd>
+        <dd>Compute stable orbits</dd>
       </dl><dl><dt>
 
           <code><a href="xds_stable_orbit.dts.html">xds_stable_orbit(<i>&lt;dts&gt;</i>)</a></code>
 
         </dt>
-        <dd>Compute the stable orbit for a system of differential equations</dd>
+        <dd>Compute the stable orbit for a discrete time system</dd>
       </dl><dl><dt>
 
           <code><a href="xds_stable_orbit.xde.html">xds_stable_orbit(<i>&lt;xde&gt;</i>)</a></code>
 
         </dt>
-        <dd>Compute the stable orbit for a system of differential equations</dd>
+        <dd>Compute stable orbit for a system of differential equations</dd>
       </dl><dl><dt>
 
           <code><a href="xds_steady.html">xds_steady()</a></code>
@@ -4670,12 +4682,6 @@
 
         </dt>
         <dd>Check the shape and dimensions of an model object</dd>
-      </dl><dl><dt>
-
-          <code><a href="xds_shrink.html">xds_shrink()</a></code>
-
-        </dt>
-        <dd>Shrink an xds xds_obj object</dd>
       </dl><dl><dt>
 
           <code><a href="list_vars.html">list_vars()</a></code>

@@ -79,13 +79,15 @@ reference:
   desc: Set up - Inspect - & Modify Models
 - subtitle: Basic Setup 
   desc: | 
-    Build an **`xds`** model object
+    Build and store **`xds`** model objects
   contents:
   - xds_setup
   - xds_setup_mosy
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_eir
+  - saveXDS 
+  - readXDS 
 - subtitle: Modules & Interfaces
   desc: Functions to set up Modules and Interfaces 
   contents:
@@ -679,9 +681,9 @@ reference:
   - skill_set_L.trivial
   - check_L.trivial
   - F_emerge.trivial
+  - setup_L_obj.trivial
   - make_L_obj_trivial
   - change_L_pars.trivial
-  - get_L_pars.trivial
 - subtitle: basicL
   desc: |
     A basic model for aquatic mosquito dynamics
@@ -958,7 +960,6 @@ reference:
   - approx_equal
   - checkIt
   - shapeIt
-  - xds_shrink
   - list_vars
   - xds_flatten
   - ode_to_dde
