@@ -22,12 +22,9 @@ make_L_obj_trivial(
   nHabitats,
   options = list(),
   Lambda = 1000,
-  F_season = F_flat,
-  season_par = list(),
-  F_trend = F_flat,
-  trend_par = list(),
-  F_shock = F_flat,
-  shock_par = list()
+  season_par = makepar_F_one(),
+  trend_par = makepar_F_one(),
+  shock_par = makepar_F_one()
 )
 ```
 
@@ -46,27 +43,15 @@ make_L_obj_trivial(
 
   vector of mean emergence rates from each aquatic habitat
 
-- F_season:
-
-  a function describing a seasonal pattern over time
-
 - season_par:
 
   an object to configure a seasonality function using
   [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
 
-- F_trend:
-
-  a function describing a temporal trend over time
-
 - trend_par:
 
   an object to configure a trends function using
   [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
-
-- F_shock:
-
-  a function describing a temporal shock over time
 
 - shock_par:
 

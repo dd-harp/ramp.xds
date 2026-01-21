@@ -1,6 +1,6 @@
-# Solve for the steady state of a system of equations using [rootSolve::steady](https://rdrr.io/pkg/rootSolve/man/steady.html)
+# Compute stable orbits
 
-This method dispatches on the type of `xds_obj$xde`
+Run the system for 10 years, and save the last year's orbits.
 
 ## Usage
 
@@ -20,4 +20,4 @@ xds_stable_orbit(xds_obj, options = list())
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

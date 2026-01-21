@@ -561,6 +561,17 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_outputs.mosy.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/parse_y.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/print.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/readXDS.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/rebuild_forcing_functions.Lambda.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/rebuild_forcing_functions.MY.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/rebuild_forcing_functions.XH.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/rebuild_forcing_functions.eir.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/rebuild_forcing_functions.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.Lambda.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.MY.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.XH.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.eir.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_bad_habitat.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_bad_habitat.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_bad_habitat.ts_func.html</loc></url>
@@ -742,7 +753,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_shrink.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve.dde.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve.dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve.html</loc></url>

@@ -21,14 +21,10 @@ modify exposure by age.
 ``` r
 xds_setup_eir(
   eir = 1,
-  season_par = list(),
-  F_season = F_flat,
-  trend_par = list(),
-  F_trend = F_flat,
-  age_par = list(),
-  F_age = F_flat,
-  shock_par = list(),
-  F_shock = F_flat,
+  season_par = makepar_F_one(),
+  trend_par = makepar_F_one(),
+  age_par = makepar_F_one(),
+  shock_par = makepar_F_one(),
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
@@ -49,36 +45,20 @@ xds_setup_eir(
   parameters to configure a seasonality function using
   [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
 
-- F_season:
-
-  a function describing a seasonal pattern over time
-
 - trend_par:
 
   parameters to configure a trends function using
   [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
-
-- F_trend:
-
-  a function describing a temporal trend over time
 
 - age_par:
 
   parameters to configure an age weights function using
   [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
 
-- F_age:
-
-  a assigning a biting weight by age
-
 - shock_par:
 
   parameters to configure a shock using
   [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
-
-- F_shock:
-
-  a function describing a shock
 
 - xds:
 

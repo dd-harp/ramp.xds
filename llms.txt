@@ -258,19 +258,33 @@ Set up - Inspect - & Modify Models
 
 ### Basic Setup
 
-Build an **`xds`** model object
+Build and store **`xds`** model objects
 
 - [`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
   : Build a Model and Configure All Components
+
 - [`xds_setup_mosy()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)
   : Build a Model of Mosquito Ecology
+
 - [`xds_setup_aquatic()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
   : Build a Model of Immature Mosquito Ecology
+
 - [`xds_setup_human()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
   : Build a Model of Human / Host Epidemiology
+
 - [`xds_setup_eir()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
   : Build a Model for a single Human / Host Epidemiology forced by the
   EIR
+
+- [`saveXDS()`](https://dd-harp.github.io/ramp.xds/reference/saveXDS.md)
+  :
+
+  saveRDS for `xds` Objects
+
+- [`readXDS()`](https://dd-harp.github.io/ramp.xds/reference/readXDS.md)
+  :
+
+  readRDS for `xds` Objects
 
 ### Modules & Interfaces
 
@@ -418,10 +432,7 @@ Compute Steady States & Stable Orbits
   [rootSolve::steady](https://rdrr.io/pkg/rootSolve/man/steady.html)
 
 - [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
-  :
-
-  Solve for the steady state of a system of equations using
-  [rootSolve::steady](https://rdrr.io/pkg/rootSolve/man/steady.html)
+  : Compute stable orbits
 
 - [`steady_state_X()`](https://dd-harp.github.io/ramp.xds/reference/steady_state_X.md)
   :
@@ -1778,19 +1789,19 @@ Generic methods for the aquatic (immature) mosquito component.
 - [`skill_set_L()`](https://dd-harp.github.io/ramp.xds/reference/skill_set_L.md)
   :
 
-  The **L** Module Skill Set
+  The skill set (**L** module)
 
 - [`check_L()`](https://dd-harp.github.io/ramp.xds/reference/check_L.md)
   : Run a check before solving
 
 - [`dLdt()`](https://dd-harp.github.io/ramp.xds/reference/dLdt.md) :
 
-  Derivatives for an **L** Component Module
+  Compute derivatives (**L** module)
 
 - [`Update_Lt()`](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.md)
   :
 
-  Update State Variables for an **L** Component Module
+  Update state variables (**L** module)
 
 - [`F_emerge()`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.md)
   : Compute Emergent Adults
@@ -1872,6 +1883,11 @@ The trivial model for aquatic dynamics
 
   Compute Emergent Adults for `trivial` (**L** Component)
 
+- [`setup_L_obj(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.trivial.md)
+  :
+
+  Setup `L_obj` for the `trivial` module
+
 - [`make_L_obj_trivial()`](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_trivial.md)
   :
 
@@ -1881,11 +1897,6 @@ The trivial model for aquatic dynamics
   :
 
   Set **L** Component parameters for `trivial`
-
-- [`get_L_pars(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.trivial.md)
-  :
-
-  Get **L** Component Parameters for `trivial`
 
 ### basicL
 
@@ -2360,7 +2371,7 @@ Methods to compute the derivatives and dynamical systems
 - [`Update_Lt()`](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.md)
   :
 
-  Update State Variables for an **L** Component Module
+  Update state variables (**L** module)
 
 ### Solving
 
@@ -2380,16 +2391,13 @@ outputs
   : Solve a Discrete-Time System
 
 - [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
-  :
-
-  Solve for the steady state of a system of equations using
-  [rootSolve::steady](https://rdrr.io/pkg/rootSolve/man/steady.html)
+  : Compute stable orbits
 
 - [`xds_stable_orbit(`*`<dts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.dts.md)
-  : Compute the stable orbit for a system of differential equations
+  : Compute the stable orbit for a discrete time system
 
 - [`xds_stable_orbit(`*`<xde>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.xde.md)
-  : Compute the stable orbit for a system of differential equations
+  : Compute stable orbit for a system of differential equations
 
 - [`xds_steady()`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.md)
   :
@@ -2528,9 +2536,6 @@ Utilities
 
 - [`shapeIt()`](https://dd-harp.github.io/ramp.xds/reference/shapeIt.md)
   : Check the shape and dimensions of an model object
-
-- [`xds_shrink()`](https://dd-harp.github.io/ramp.xds/reference/xds_shrink.md)
-  : Shrink an xds xds_obj object
 
 - [`list_vars()`](https://dd-harp.github.io/ramp.xds/reference/list_vars.md)
   : Set the initial values to the last values of the last simulation

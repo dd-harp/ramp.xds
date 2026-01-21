@@ -14,7 +14,7 @@ setup_L_obj(Lname, xds_obj, s, options = list())
 
 - Lname:
 
-  the class name of the aquatic model
+  the class name of the **L** module
 
 - xds_obj:
 
@@ -26,8 +26,7 @@ setup_L_obj(Lname, xds_obj, s, options = list())
 
 - options:
 
-  a named [list](https://rdrr.io/r/base/list.html) to configure
-  **`L_obj`**
+  a named list to configure **`L_obj`**
 
 ## Value
 

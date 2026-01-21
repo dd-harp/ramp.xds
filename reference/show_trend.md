@@ -11,7 +11,7 @@ show_trend(
   add = FALSE,
   clr = "black",
   rng = NULL,
-  shock = TRUE
+  shock = FALSE
 )
 ```
 

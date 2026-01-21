@@ -1,4 +1,4 @@
-# Compute the stable orbit for a system of differential equations
+# Compute stable orbit for a system of differential equations
 
 This method dispatches on the type of `xds_obj$xde`.
 

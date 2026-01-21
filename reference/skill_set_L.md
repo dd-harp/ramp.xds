@@ -1,7 +1,7 @@
-# The **L** Module Skill Set
+# The skill set (**L** module)
 
-The **L** skill set is a list of describing capabilities and
-compatabilities
+The skill set for an **L** module is a list of that summarizes
+capabilities and compatabilities
 
 ## Usage
 
