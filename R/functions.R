@@ -115,7 +115,7 @@ makepar_F_one = function(){
   return(pars)
 }
 
-#' @title Make a Function that is the sum of Two other Functions
+#' @title Make a Function 
 #' @description Build a function that is the sum of two
 #' other functions.
 #' @inheritParams make_function
@@ -124,6 +124,18 @@ makepar_F_one = function(){
 make_function.one = function(opts){
   return(F_one)
 }
+
+#' @title Make a Function that is the sum of Two other Functions
+#' @description Build a function that is the sum of two
+#' other functions.
+#' @inheritParams make_function
+#' @keywords internal
+#' @return a function that is the sum of two other functions
+#' @export
+make_function.list = function(opts){
+  return(F_one)
+}
+
 
 #' @title parameters for make_function
 #' @description Return an object to return a value 
