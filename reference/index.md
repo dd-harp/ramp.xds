@@ -2376,7 +2376,7 @@ Basic visualization of the transmission terms
 - [`F_one()`](https://dd-harp.github.io/ramp.xds/reference/F_one.md) :
   The trivial function
 - [`make_function(`*`<one>`*`)`](https://dd-harp.github.io/ramp.xds/reference/make_function.one.md)
-  : Make a Function that is the sum of Two other Functions
+  : Make a Function
 - [`makepar_F_one()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_one.md)
   : parameters for make_function
 - [`make_function(`*`<val>`*`)`](https://dd-harp.github.io/ramp.xds/reference/make_function.val.md)
