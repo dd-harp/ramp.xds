@@ -1,31 +1,137 @@
 ---
-title: "SIS-xde (Susceptible-Infected-Susceptible) Human Model"
+title: "SIS Dynamics (for Humans / Hosts)"
+subtitle: "Generalized SIS (Susceptible-Infected-Susceptible) Dynamics"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{SIS-xde (Susceptible-Infected-Susceptible) Human Model}
+  %\VignetteIndexEntry{SIS Dynamics (for Humans / Hosts)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-The SIS (Susceptible-Infected-Susceptible) human xde model model fulfills the generic interface of the human population component. It is the simplest model of endemic diseases in humans.
+For the **XH** component, the SIS (Susceptible-Infected-Susceptible) model implements a basic system of differential equations. It is, perhaps, the simplest model for an endemic pathogen of humans.
 
-# 
+# Dynamics
 
-We subdivide a population into susceptible ($S$) and infected and infectious ($I$) individuals, where the total population is $H = S+I.$ We assume the force of infection ($h$, FoI) is linearly proportional to the EIR: $h = b \times EIR.$ In its general form, with births ($B(H)$) and deaths (at the per-capita rate $\mu$), the generalized SIS_xde dynamics are:
+Here we present the **SIS** model progressively: 
+
++ **Basic Dynamics** - we present the SIS dynamics as a compartment model 
+
++ **Generalization** - we add terms for human demography and mass treatment
+
++ **Implementation** - Finally, we describe the model implemetation in an extensible form 
+
+## Basic Dynamics 
+
+A population is subdivided into susceptible ($S$) and infected and infectious ($I$) individuals, where the total population is $H = S+I.$ 
+
++ We let $h$ denote the force of infection (FoI). 
+
+
++ We let $r$ denote the clearance rate for infections. 
 
 $$
 \begin{array}{rl}
-\dot{S} &= -h S + rI + B(H) -\mu S\\
-\dot{I} &= h S  - rI - \mu I
+\dot{I} &= h S  - rI  \\
+\dot{S} &= - \dot I \\
 \end{array}
 $$
-
-If there is no demographic change, the SIS-xde model can be rewritten as a single equation: 
+Without demographic change, the SIS model can be rewritten as a single equation: 
 
 $$
 \dot{I} = h (H-I) - rI
 $$
-Even in this simplified form, we are assuming that a population could be stratified, such that the variables and parameter are all vectors with length `nStrata.`
+
+In addition, we assume that:
+
++ Infected humans are not fully infectious. The fraction of bloodmeals on infectious humans that infect a mosquito is $c.$ The infective density is $X=cI$ 
+
++ The probability a human would *test positive* is q, so while true prevalence is $x=I/H,$ the expected value for observed prevalence would be $qI/H.$
+
+## Generalization 
+
+The implementation of the model is general and extensible. It includes:
+
++ The population birth rate is $B(t, H)$ 
+
++ Deaths occur at a constant per-capita rate $\mu$ 
+
++ There is no parameter to describe disease-induced mortality 
+
++ The implementation includes a port to model mass treatment. In this model, humans who are treated and cured, at the rate $\xi(t)$ become susceptible to infection.
+    
+
+The generalized system of equations is implemented as:  
+
+$$
+\begin{array}{rl}
+\dot{H} &= B(t, H) - \mu H \\
+\dot{I} &= h (H-I)  - \left(r+\xi\left(t\right)\right) I - \mu I 
+\end{array}
+$$
+
+Utilities in `ramp.demog` make it possible to simulate aging and dynamic strata. We let $D$ denote a matrix and implement the dynamics in a more general form: 
+
+$$
+\begin{array}{rl}
+\dot{H} &= B(t, H) - D \cdot H \\
+\dot{I} &= h (H-I)  - \left(r+\xi\left(t\right)\right) I - D \cdot I 
+\end{array}
+$$
+Where the these two models are equivalent if $\mbox{diag} D = \mu.$ 
+
+## Implementation 
+
+Even in this simplified form, we are assuming that a population could be stratified, such that the variables, terms,  and parameter are all vectors with length `nStrata.`
+
+The equations are implemented in a generalized and extensible form, where $D$ is a matrix that includes mortality and that could also include dynamic exchanges among strata, including processes such as aging and migration. The derivatives computed by `dXHdt.SIS` are: 
+
+$$
+\begin{array}{rl}
+\dot{H} &= B(t, H) - D \cdot H \\
+\dot{I} &= h (H-I)  - \left(r+\xi\left(t\right)\right) I - D \cdot I 
+\end{array}
+$$
+The parameters are: 
+
+
++ $b$ the probability an infective bite on a human causes an infection (used by `Exposure`)
+
++ $h = F_b(h, E)$ is a dynamical term computed in `Exposure`  
+
+    - By default, the FoI is linearly proportional to the EIR: $h = b \times EIR$ 
+    
+    - For advanced options, see [Exposure](Exposure.html]) 
+
+
++ $r$ the clearance rate
+
+
++ $c$ the probability a human bloodmeal infects the mosquito 
+
++ $\xi(t)$: a function 
+
+    - The function $\xi(t)$ returns $0$ by default.
+    
+    - The function $\xi(t)$ can be configured as an advanced option using `ramp.control` (see [`ramp.control`::Mass Treatment](https://dd-harp.github.io/ramp.control/articles/MassTreatment.html))
+
++ $B(t,H)$: a function describing the population birth rate,
+
+    - The function $B(t, H)$ returns $0$ by default.
+    
+    - Other functions can be configured as advanced options in `ramp.demog` 
+
++ $D$: a matrix describing demographic changes in the population not associated with disease dynamics, including aging 
+
+    - The $D$ returns the $0$ matrix by default.
+    
+    - Other matrices can be configured as advanced options in `ramp.demog` 
+
+
+Infectiousness is computed as:
+
+$$
+F_I = c I
+$$
 
 # Equilibrium Solutions
 
@@ -112,6 +218,7 @@ params <- make_indices(params)
 F_s = function(t){0*t+1}
 F_t= function(t){0*t+1}
 F_a = function(a){0*a+1}
+F_k = function(a){0*a+1}
 ```
 
 ```{r}
@@ -119,8 +226,9 @@ params$EIR_obj = list()
 params$EIR_obj$eir <- as.vector(eir)
 params$EIR_obj$scale <- 1 
 params$EIR_obj$F_season <- F_s
-params$EIR_obj$F_trend <- F_t
-params$EIR_obj$F_age <- F_a
+params$EIR_obj$F_trend  <- F_t
+params$EIR_obj$F_age    <- F_a
+params$EIR_obj$F_shock  <- F_k
 ```
 
 ```{r}

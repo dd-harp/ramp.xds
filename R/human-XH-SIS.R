@@ -7,9 +7,9 @@
 #' @description 
 #' 
 #' Compute the derivatives for SIS compartmental model:
-#' + \eqn{S} is the density of susceptible humans (or hosts)
+#' + \eqn{H}  is human (or host) population density
 #' + \eqn{I} is the density of infected humans (or hosts)
-#' + \eqn{H=S+I}  is human (or host) population density
+#' + \eqn{S=H-I} is the density of susceptible humans (or hosts)
 #'  
 #' The clearance rate for infections is \eqn{r}, and by assumption, 
 #' individuals are assumed to be susceptible to infection after clearing

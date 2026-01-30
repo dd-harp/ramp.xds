@@ -21,9 +21,9 @@ the derivatives, as a vector
 \description{
 Compute the derivatives for SIS compartmental model:
 \itemize{
-\item \eqn{S} is the density of susceptible humans (or hosts)
+\item \eqn{H}  is human (or host) population density
 \item \eqn{I} is the density of infected humans (or hosts)
-\item \eqn{H=S+I}  is human (or host) population density
+\item \eqn{S=H-I} is the density of susceptible humans (or hosts)
 }
 
 The clearance rate for infections is \eqn{r}, and by assumption,

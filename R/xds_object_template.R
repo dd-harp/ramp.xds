@@ -66,6 +66,7 @@
 #' @param membership is the habitat membership vector
 #' @param residency is the strata residency vector
 #' 
+#' @keywords internal 
 #' @return an `xds` model object
 #' 
 #' @seealso Related: [xds_setup] and [setup_forcing_object]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)

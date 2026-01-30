@@ -22,3 +22,4 @@ an \strong{\code{xds}} object
 Set the parameter values and configure a model
 for the \strong{X} Component
 }
+\keyword{internal}
