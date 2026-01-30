@@ -1,10 +1,3 @@
-#' @title The trivial function
-#' @description A function that returns 0
-#' @param t an arbitrary input
-#' @param V an arbitrary input
-#' @return a vector of ones of length x
-#' @export
-Zero_tV01 = function(t, V=list()){return(0*t)}
 
 #' @title The trivial function
 #' @description A function that returns 0
