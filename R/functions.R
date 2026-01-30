@@ -4,7 +4,7 @@
 #' @param V an arbitrary input
 #' @return a vector of ones of length x
 #' @export
-Zero_tV3 = function(t, V=list()){return(0*t)}
+Zero_tV5 = function(t, V=list()){return(0*t)}
 
 
 #' @title The trivial function
