@@ -36,3 +36,4 @@ pre-erythrocytic immunity.
 \seealso{
 Cases: \link{F_foi.pois} & \link{F_foi.nb}. Related: \link{Exposure.xde} & \link{foi2eir}
 }
+\keyword{internal}

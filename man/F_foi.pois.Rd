@@ -30,3 +30,4 @@ infection per infective bite (\eqn{b}):
 \seealso{
 Related: \link{F_foi} & \link{F_ar.pois} & \link{foi2eir.pois}. Called from \link{Exposure.xde}
 }
+\keyword{internal}

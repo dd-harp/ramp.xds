@@ -24,3 +24,4 @@ Set up a Poisson model for Exposure and Infection
 \seealso{
 Also, see \link{F_foi.pois} and \link{F_ar.pois}
 }
+\keyword{internal}

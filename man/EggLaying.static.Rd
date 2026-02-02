@@ -19,3 +19,4 @@ an \code{xds} object
 \description{
 Computes eggs laid for an autonomous model
 }
+\keyword{internal}

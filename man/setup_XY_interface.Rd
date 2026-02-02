@@ -73,3 +73,4 @@ and a circadian function describing relative mosquito blood feeding rates by tim
 \seealso{
 \link{setup_transmission}
 }
+\keyword{internal}

@@ -17,3 +17,4 @@ a \link{numeric} vector
 \description{
 Implements \link{HTC} for the SIS model with demography.
 }
+\keyword{internal}

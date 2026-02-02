@@ -25,3 +25,4 @@ immunity, and exposure to malaria while traveling.
 \seealso{
 Cases: \link{Exposure.xde} & \link{Exposure.dts}. Related: \link{F_ar} & \link{F_foi}
 }
+\keyword{internal}

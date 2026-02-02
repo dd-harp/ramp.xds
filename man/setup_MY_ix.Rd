@@ -17,3 +17,4 @@ setup_MY_ix(xds_obj, s)
 \description{
 This method dispatches on the type of \code{xds_obj$MY_obj}.
 }
+\keyword{internal}

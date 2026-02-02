@@ -17,3 +17,4 @@ none
 \description{
 Implements \link{setup_MY_ix} for the basic M model.
 }
+\keyword{internal}

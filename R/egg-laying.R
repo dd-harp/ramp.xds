@@ -13,6 +13,7 @@
 #' @return an **`xds`** model object
 #' @seealso [setup_ML_interface()]
 #' @export
+#' @keywords internal
 EggLaying = function(t, y, xds_obj){
   UseMethod("EggLaying", xds_obj$ML_interface)
 }
@@ -42,6 +43,7 @@ EggLaying = function(t, y, xds_obj){
 #' @seealso For \eqn{Q}, see [compute_Qall]
 #' @seealso For \eqn{N}, see [make_habitat_matrix]
 #' @export
+#' @keywords internal
 EggLaying.setup = function(t, y, xds_obj){
   xds_obj <- egg_laying_dynamics(t, y, xds_obj)
   class(xds_obj$ML_interface) <- 'static'
@@ -53,6 +55,7 @@ EggLaying.setup = function(t, y, xds_obj){
 #' @inheritParams EggLaying
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 EggLaying.static = function(t, y, xds_obj){
   xds_obj = compute_eggs_laid(t, y, xds_obj)
   return(xds_obj)
@@ -64,6 +67,7 @@ EggLaying.static = function(t, y, xds_obj){
 #' @inheritParams EggLaying
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 EggLaying.dynamic = function(t, y, xds_obj){
   return(egg_laying_dynamics)
 }
@@ -74,6 +78,7 @@ EggLaying.dynamic = function(t, y, xds_obj){
 #' @inheritParams EggLaying
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 egg_laying_dynamics = function(t, y, xds_obj){
   xds_obj = compute_Qall(xds_obj)
   xds_obj = compute_O_matrix(xds_obj)
@@ -95,6 +100,7 @@ egg_laying_dynamics = function(t, y, xds_obj){
 #' @seealso [make_habitat_matrix] discusses \eqn{N}
 #' @seealso The availability of ovitraps and bad habitats is setup in [setup_ML_interface]
 #' @export
+#' @keywords internal
 F_Q = function(habitat_matrix, search_weights){
   Q <- habitat_matrix %*% search_weights
   return(as.vector(Q))
@@ -128,6 +134,7 @@ F_Q = function(habitat_matrix, search_weights){
 #' 
 #' @seealso The availability of traps and bad habitats is setup in [setup_ML_interface]
 #' @export
+#' @keywords internal
 F_Qall = function(Q, Q_traps, Q_bad){
   Qall <- Q + Q_traps + Q_bad
   return(as.vector(Qall))
@@ -167,6 +174,7 @@ F_Qall = function(Q, Q_traps, Q_bad){
 #' @seealso Total habitat availability, \eqn{\cal Q}, is computed by [F_Q]
 #' @seealso The availability of ovitraps and bad habitats is setup in [setup_ML_interface]
 #' @export
+#' @keywords internal
 make_O_matrix= function(search_weights, habitat_matrix, Q){
   ix = which(Q == 0)
   if(length(ix) > 0) Q[ix]=1
@@ -181,6 +189,7 @@ make_O_matrix= function(search_weights, habitat_matrix, Q){
 #' @return an `xds` object
 #' @seealso [F_Q]
 #' @export
+#' @keywords internal
 compute_Qall = function(xds_obj){with(xds_obj$ML_interface,{
   for(s in 1:xds_obj$nVectorSpecies){
     Q = F_Q(habitat_matrix, search_weights[[s]]) 
@@ -201,6 +210,7 @@ compute_Qall = function(xds_obj){with(xds_obj$ML_interface,{
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @export
+#' @keywords internal
 compute_O_matrix = function(xds_obj){
   for(s in 1:xds_obj$nVectorSpecies){
     wts = xds_obj$ML_interface$search_weights[[s]]
@@ -224,6 +234,7 @@ compute_O_matrix = function(xds_obj){
 #' 
 #' @seealso [compute_O_matrix] 
 #' @export
+#' @keywords internal
 F_eta = function(eggs_laid, O_matrix, Q, Qall){
   ix = which(Qall == 0)
   if(length(ix) > 0) Qall[ix]=1
@@ -239,6 +250,7 @@ F_eta = function(eggs_laid, O_matrix, Q, Qall){
 #' @return an `xds` object
 #' @seealso [compute_eggs_laid]
 #' @export
+#' @keywords internal
 compute_eggs_laid = function(t, y, xds_obj){
   with(xds_obj$ML_interface,{
     for(s in 1:xds_obj$nVectorSpecies){

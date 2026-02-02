@@ -38,3 +38,4 @@ an \strong{XH} model object
 \description{
 Make an SIS \strong{XH} model object
 }
+\keyword{internal}

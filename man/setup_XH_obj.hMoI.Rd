@@ -21,3 +21,4 @@ a \link{list} vector
 \description{
 Implements \link{setup_XH_obj} for the hMoI model
 }
+\keyword{internal}

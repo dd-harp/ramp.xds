@@ -19,3 +19,4 @@ an module's capabilities.
 \note{
 This method dispatches on \code{class(xds_obj$XH_obj)}
 }
+\keyword{internal}

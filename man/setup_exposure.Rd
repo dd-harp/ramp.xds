@@ -20,8 +20,14 @@ an \strong{\code{xds}} object
 }
 \description{
 Set up the model for
-exposure. The daily
-EIR is an expected value, but that expectation
+exposure. Current options for \code{EHname}
+\itemize{
+\item \code{pois} - a Poisson model
+\item \code{nb} - a Negative Binomial model family
+}
+}
+\note{
+The daily EIR is an expected value, but that expectation
 can have a distribution in a population. For
 example, if the expectation is gamma distributed,
 then we would get a negative binomial distribution

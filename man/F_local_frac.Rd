@@ -17,3 +17,4 @@ the fraction of bites
 \description{
 Compute the availability for the pathogen's hosts for blood feeding
 }
+\keyword{internal}

@@ -72,6 +72,7 @@ get_XH_vars.hMoI <- function(y, xds_obj, i) {
 #' @inheritParams setup_XH_ix
 #' @return none
 #' @importFrom utils tail
+#' @keywords internal
 #' @export
 setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
   
@@ -91,6 +92,7 @@ setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
 #' @description Implements [setup_XH_obj] for the hMoI model
 #' @inheritParams setup_XH_obj
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_XH_obj.hMoI = function(Xname, xds_obj, i, options=list()){
   xds_obj$XH_obj[[i]] = make_XH_obj_hMoI(xds_obj$nStrata[i], options)
@@ -208,6 +210,7 @@ F_infectivity.hMoI <- function(y, xds_obj,i) {
 #' @description Implements [setup_XH_inits] for the hMoI model
 #' @inheritParams setup_XH_inits
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_XH_inits.hMoI = function(xds_obj, H, i=1, options=list()){
   xds_obj$XH_obj[[i]]$H = H

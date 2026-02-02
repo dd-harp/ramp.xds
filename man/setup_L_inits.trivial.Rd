@@ -19,3 +19,4 @@ a \link{list}
 \description{
 The \code{trivial} module initial values are an empty list
 }
+\keyword{internal}

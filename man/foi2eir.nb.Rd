@@ -30,3 +30,4 @@ infection per infective bite:
 \seealso{
 \link{F_foi.nb}
 }
+\keyword{internal}

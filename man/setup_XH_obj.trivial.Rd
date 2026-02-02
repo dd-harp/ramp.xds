@@ -21,3 +21,4 @@ a \link{list} vectord
 \description{
 Implements \link{setup_XH_obj} for the trivial model
 }
+\keyword{internal}

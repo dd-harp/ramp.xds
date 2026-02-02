@@ -14,6 +14,7 @@
 #' 
 #' @return an **`xds`** model object
 #' @export
+#' @keywords internal
 setup_habitat_object = function(xds_obj){
   habs <- list()
   class(habs) <- "setup"
@@ -71,6 +72,7 @@ change_bad_habitat = function(Qbad, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #' @export
+#' @keywords internal
 HabitatDynamics <- function(t, y, xds_obj) {
   UseMethod("HabitatDynamics", xds_obj$ML_interface$habitat_obj)
 }
@@ -85,6 +87,7 @@ HabitatDynamics <- function(t, y, xds_obj) {
 #' @return an **`xds`** object
 #' 
 #' @export
+#' @keywords internal
 HabitatDynamics.setup<- function(t, y, xds_obj) {
   class(xds_obj$ML_interface$habitat_obj) <- 'static'
   xds_obj$ML_interface <- trigger_setup(xds_obj$ML_interface) 
@@ -100,6 +103,7 @@ HabitatDynamics.setup<- function(t, y, xds_obj) {
 #' 
 #' @return an **`xds`** object
 #' @export
+#' @keywords internal
 HabitatDynamics.static <- function(t, y, xds_obj) {
   return(xds_obj)
 }
@@ -113,6 +117,7 @@ HabitatDynamics.static <- function(t, y, xds_obj) {
 #' 
 #' @return an **`xds`** object
 #' @export
+#' @keywords internal
 HabitatDynamics.dynamic <- function(t, y, xds_obj) {
   return(habitat_dynamics(t, y, xds_obj)) 
 }
@@ -134,6 +139,7 @@ HabitatDynamics.dynamic <- function(t, y, xds_obj) {
 #' 
 #' @return an **`xds`** object
 #' @export
+#' @keywords internal
 habitat_dynamics <- function(t, y, xds_obj){
   for(s in 1:xds_obj$nVectorSpecies){
 
@@ -160,6 +166,7 @@ habitat_dynamics <- function(t, y, xds_obj){
 #' 
 #' @return an **`xds`** model object
 #' @export
+#' @keywords internal
 setup_F_habitat_weights = function(mod_name, xds_obj, s, options){
   class(mod_name) = mod_name
   UseMethod("setup_F_habitat_weights", mod_name) 
@@ -177,6 +184,7 @@ setup_F_habitat_weights = function(mod_name, xds_obj, s, options){
 #' 
 #' @return an **`xds`** model object
 #' @export
+#' @keywords internal
 setup_F_habitat_weights.static = function(mod_name, xds_obj, s, options=list()){
   F_habitat_weights <- Zero_tV
   class(F_habitat_weights) = "na" 
@@ -195,6 +203,7 @@ setup_F_habitat_weights.static = function(mod_name, xds_obj, s, options=list()){
 #' @param options a list of setup options (see [make_ts_function])
 #' 
 #' @return an **`xds`** model object
+#' @keywords internal
 #' @export
 setup_F_habitat_weights.ts_func = function(mod_name, xds_obj, s, options=list()){
   class(xds_obj$ML_interface$habitat_obj) <- 'dynamic'
@@ -216,6 +225,7 @@ setup_F_habitat_weights.ts_func = function(mod_name, xds_obj, s, options=list())
 #' @param options a named list to configure `F_bad_habitat`
 #' 
 #' @return an **`xds`** model object
+#' @keywords internal
 #' @export
 setup_F_bad_habitat = function(mod_name, xds_obj, s, options){
   class(mod_name) = mod_name
@@ -233,6 +243,7 @@ setup_F_bad_habitat = function(mod_name, xds_obj, s, options){
 #' @param options a list of setup options (see [make_ts_function])
 #' 
 #' @return an **`xds`** model object
+#' @keywords internal
 #' @export
 setup_F_bad_habitat.static = function(mod_name, xds_obj, s, options=list()){
   F_bad_habitats <- Zero_tV
@@ -252,6 +263,7 @@ setup_F_bad_habitat.static = function(mod_name, xds_obj, s, options=list()){
 #' @param options a list of setup options for [make_ts_function]
 #' 
 #' @return an **`xds`** model object
+#' @keywords internal
 #' @export
 setup_F_bad_habitat.ts_func = function(mod_name, xds_obj, s, options=list()){
   class(xds_obj$ML_interface$habitat_obj) <- 'dynamic'

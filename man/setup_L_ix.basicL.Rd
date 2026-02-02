@@ -18,3 +18,4 @@ an \strong{\code{xds}} object
 Set the values of the indices for the \strong{L} component variables
 for the \code{basicL} module
 }
+\keyword{internal}

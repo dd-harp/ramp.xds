@@ -24,3 +24,4 @@ Set up a nbson model for Exposure and Infection
 \seealso{
 Also, see \link{F_foi.nb} and \link{F_ar.nb}
 }
+\keyword{internal}

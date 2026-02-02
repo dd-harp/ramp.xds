@@ -143,6 +143,7 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
 #' @description Implements [setup_MY_obj] for the macdonald model
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_MY_obj.macdonald = function(MYname, xds_obj, s, options=list()){
   xds_obj = ode_to_dde(xds_obj)
@@ -200,6 +201,7 @@ make_MY_obj_macdonald = function(nPatches, options=list(), eip=12,
 #' @inheritParams setup_MY_ix
 #' @return a [list]
 #' @importFrom utils tail
+#' @keywords internal
 #' @export
 setup_MY_ix.macdonald <- function(xds_obj, s) {with(xds_obj,{
 
@@ -294,6 +296,7 @@ change_MY_pars.macdonald <- function(xds_obj, s=1, options=list()) {
 #' @description Implements [setup_MY_inits] for the macdonald model
 #' @inheritParams setup_MY_inits
 #' @return a [list]
+#' @keywords internal
 #' @export
 setup_MY_inits.macdonald = function(xds_obj, s, options=list()){with(xds_obj$MY_obj[[s]], {
   xds_obj$MY_obj[[s]]$inits = make_MY_inits_macdonald(nPatches, options)

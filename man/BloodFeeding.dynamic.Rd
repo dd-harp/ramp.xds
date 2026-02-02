@@ -22,3 +22,4 @@ total blood host available, \eqn{B},
 the time spent matrix \eqn{(\Theta)}, and the time-at-risk matrix \eqn{(\Psi)}
 for static models.
 }
+\keyword{internal}

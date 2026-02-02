@@ -17,3 +17,4 @@ a \link{numeric} vector of length \code{nStrata}
 \description{
 Implements \link{F_prevalence} for the SIS model.
 }
+\keyword{internal}

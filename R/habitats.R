@@ -9,7 +9,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @export
-#'  
+#' @keywords internal  
 check_ML_interface = function(xds_obj){
   return(xds_obj) 
 }
@@ -44,6 +44,7 @@ check_ML_interface = function(xds_obj){
 #' @return an `xds` object
 #' @importFrom Rdpack reprompt
 #' @seealso The habitat membership matrix is created by [make_habitat_matrix()]
+#' @keywords internal
 #' @export
 setup_ML_interface = function(xds_obj, membership){
   #Egg Laying Terms 
@@ -120,6 +121,7 @@ setup_ML_interface = function(xds_obj, membership){
 #' @examples
 #' make_habitat_matrix(3, c(1,1,2,2,2))
 #' @export
+#' @keywords internal
 make_habitat_matrix = function(nPatches, membership){
   nHabitats = length(membership)
   habitat_matrix = matrix(0, nPatches, nHabitats)

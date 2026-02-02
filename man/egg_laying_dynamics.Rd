@@ -20,3 +20,4 @@ an \code{xds} object
 Computes eggs laid with exogenous forcing
 on parameter affecting host availability.
 }
+\keyword{internal}

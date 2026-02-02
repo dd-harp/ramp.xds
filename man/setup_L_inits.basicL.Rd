@@ -24,3 +24,4 @@ are passed in \code{options} by name (\emph{i.e.} \code{options$L})
 \seealso{
 \link{make_L_inits_basicL}
 }
+\keyword{internal}

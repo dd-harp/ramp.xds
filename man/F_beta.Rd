@@ -21,3 +21,4 @@ a \link{matrix} of dimensions \code{nStrata} by \code{nPatches}
 \description{
 Compute beta, the biting distribution matrix
 }
+\keyword{internal}

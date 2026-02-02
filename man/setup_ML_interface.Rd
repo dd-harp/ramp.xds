@@ -46,3 +46,4 @@ the variables it might depend on.
 \seealso{
 The habitat membership matrix is created by \code{\link[=make_habitat_matrix]{make_habitat_matrix()}}
 }
+\keyword{internal}

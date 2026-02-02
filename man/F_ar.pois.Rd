@@ -34,3 +34,4 @@ The expression is equivalent to
 \seealso{
 Related: \link{F_foi} & \link{F_foi.pois} & \link{ar2eir.pois}. Called from \link{Exposure.dts}
 }
+\keyword{internal}

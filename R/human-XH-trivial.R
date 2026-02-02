@@ -63,30 +63,24 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' @param options a [list]
 #' @param kappa net infectiousness
 #' @param HPop initial human population density
-#' @param F_season a function describing a seasonal pattern 
 #' @param season_par parameters to configure a `F_season` using [make_function]
-#' @param F_trend a function describing a temporal trend 
 #' @param trend_par parameters to configure `F_trend` using [make_function]
 #' @return a [list]
 #' @export
 make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
-                              F_season=F_flat, season_par = list(), 
-                              F_trend=F_flat, trend_par = list()){
+                              season_par = makepar_F_one(), 
+                              trend_par = makepar_F_one()){
   with(options,{
     XH_obj <- list()
     class(XH_obj) <- c('trivial')
     XH_obj$H = checkIt(HPop, nPatches)
     XH_obj$kappa= checkIt(kappa, nPatches)
     
-    XH_obj$F_season = F_season
     XH_obj$season_par <- season_par
-    if(length(season_par)>0)
-      XH_obj$F_season <- make_function(season_par) 
+    XH_obj$F_season <- make_function(season_par) 
     
-    XH_obj$F_trend = F_trend
     XH_obj$trend_par <- trend_par
-    if(length(trend_par)>0)
-      XH_obj$F_trend <- make_function(trend_par) 
+    XH_obj$F_trend <- make_function(trend_par) 
 
     return(XH_obj)
   })}
@@ -163,6 +157,7 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 #' @description Implements [setup_XH_obj] for the trivial model
 #' @inheritParams setup_XH_obj
 #' @return a [list] vectord
+#' @keywords internal
 #' @export
 setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nPatches, options)
@@ -174,6 +169,7 @@ setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
 #' @description Implements [setup_XH_inits] for the trivial model
 #' @inheritParams setup_XH_inits
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_XH_inits.trivial = function(xds_obj, H, i=1, options=list()){
   return(xds_obj)
@@ -184,6 +180,7 @@ setup_XH_inits.trivial = function(xds_obj, H, i=1, options=list()){
 #' @inheritParams setup_XH_ix
 #' @return none
 #' @importFrom utils tail
+#' @keywords internal
 #' @export
 setup_XH_ix.trivial <- function(xds_obj, i) {
   return(xds_obj)

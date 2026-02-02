@@ -23,3 +23,4 @@ The \code{habitat_obj} handles:
 \item with multiple vector species, weights can be assigned to bad habitats
 }
 }
+\keyword{internal}

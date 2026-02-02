@@ -22,3 +22,4 @@ Computes eggs laid in aquatic habitats
 \seealso{
 \link{compute_eggs_laid}
 }
+\keyword{internal}

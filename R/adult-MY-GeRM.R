@@ -116,6 +116,7 @@ F_eggs.GeRM <- function(t, y, xds_obj, s) {
 #' @description Implements [setup_MY_obj] for the GeRM model
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_MY_obj.GeRM = function(MYname, xds_obj, s, options=list()){
   xds_obj = ode_to_dde(xds_obj)
@@ -183,6 +184,7 @@ make_MY_obj_GeRM = function(nPatches, options=list(), eip =12,
 #' @inheritParams setup_MY_ix
 #' @return a [list]
 #' @importFrom utils tail
+#' @keywords internal
 #' @export
 setup_MY_ix.GeRM <- function(xds_obj, s) {with(xds_obj,{
   
@@ -392,6 +394,7 @@ Update_MYt.GeRM <- function(t, y, xds_obj, s) {
 #' @description Implements [setup_MY_inits] for the GeRM model
 #' @inheritParams setup_MY_inits
 #' @return a [list]
+#' @keywords internal
 #' @export
 setup_MY_inits.GeRM = function(xds_obj, s, options=list()){with(xds_obj$MY_obj[[s]], {
   Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)

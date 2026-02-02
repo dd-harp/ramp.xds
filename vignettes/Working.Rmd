@@ -1,6 +1,5 @@
 ---
 title: "Working with Models"
-subtitle: ""
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Working with Models}

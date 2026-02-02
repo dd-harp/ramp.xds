@@ -1,66 +1,136 @@
 ---
-title: "SIS Dynamics (for Humans / Hosts)"
+title: "SIS Dynamics: an XH Module"
 subtitle: "Generalized SIS (Susceptible-Infected-Susceptible) Dynamics"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{SIS Dynamics (for Humans / Hosts)}
+  %\VignetteIndexEntry{SIS Dynamics: an XH Module}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-For the **XH** component, the SIS (Susceptible-Infected-Susceptible) model implements a basic system of differential equations. It is, perhaps, the simplest model for an endemic pathogen of humans.
+```
+Xname = "SIS"
+```
 
-# Dynamics
+*** 
 
-Here we present the **SIS** model progressively: 
+**CONTENTS:** 
 
-+ **Basic Dynamics** - we present the SIS dynamics as a compartment model 
++ **Basic Dynamics** 
 
-+ **Generalization** - we add terms for human demography and mass treatment
+    - the comparment model
+    
+    - infectiousness 
+    
+    - diagnostics and detection 
 
-+ **Implementation** - Finally, we describe the model implemetation in an extensible form 
++ **The `SIS` Module** - a description of the full implementation
 
-## Basic Dynamics 
+    - mass treatment 
+    
+    - human demography 
+    
+    - notation and setup  
+    
+    - variables 
+    
+    - dynamics 
+
++ **Example** - a fully worked example, with tests 
+
+    - using setup 
+    
+    - another test 
+    
+    - the long way 
+
+*** 
+
+
+# Basic Dynamics
+
+For the **XH** component, the **SIS** (Susceptible-Infected-Susceptible) model implements a basic system of differential equations. It is, perhaps, the simplest model for an endemic pathogen of humans. 
+
+The model we have implemented is extensible, with terms for human demography and mass treatment. Here we present the **SIS** model progressively in three steps: 
+
+
+*** 
+
+![**Fig 1**: A Diagram of the Basic SIS Compartment Model](SIS.png)
+
+***
+
+## The Compartment Model 
 
 A population is subdivided into susceptible ($S$) and infected and infectious ($I$) individuals, where the total population is $H = S+I.$ 
 
 + We let $h$ denote the force of infection (FoI). 
 
-
 + We let $r$ denote the clearance rate for infections. 
+
+The dynamics are described by a pair of equations: 
 
 $$
 \begin{array}{rl}
 \dot{I} &= h S  - rI  \\
-\dot{S} &= - \dot I \\
+\dot{S} &= -hS + rI 
 \end{array}
 $$
-Without demographic change, the SIS model can be rewritten as a single equation: 
+
+We note that since, $S=H-I,$ if $H$ is known, then one of these equations is redundant, so instead we compute: 
 
 $$
 \dot{I} = h (H-I) - rI
 $$
 
-In addition, we assume that:
+Note that if we introduce a change of variables, $x = I/H$, then if $dH/dt=0,$ the system is equivalent to:
 
-+ Infected humans are not fully infectious. The fraction of bloodmeals on infectious humans that infect a mosquito is $c.$ The infective density is $X=cI$ 
+$$
+\dot{x} = h (1-x) - r x
+$$
+Pull and Grab (1974)^[Pull, J. H. & Grab, B. (1974). A simple epidemiological model for evaluating the malaria inoculation rate and the risk of infection in infants. Bulletin of the World Health Organization, 51(5), 507 - 516. https://iris.who.int/handle/10665/260790]  fit a model like this to data describing malaria prevalence by age. 
 
-+ The probability a human would *test positive* is q, so while true prevalence is $x=I/H,$ the expected value for observed prevalence would be $qI/H.$
+## Infectiousness  
 
-## Generalization 
+Infected humans are not fully infectious. We assume that the fraction of bloodmeals on infectious humans that infect a mosquito is $c,$ so the fraction of mosquitoes that become infected after a human blood meal is $cI/H.$ The infectious density is computed as: $$F_I = c I$$
 
-The implementation of the model is general and extensible. It includes:
+## Diagnostics and Detection 
 
-+ The population birth rate is $B(t, H)$ 
+The probability a human would *test positive* is q, so while true prevalence is $x=I/H,$ observed prevalence would be $qI/H.$ The model includes three parameters for detection:
 
-+ Deaths occur at a constant per-capita rate $\mu$ 
++ `d_lm` - the probability of detecting parasites by light microscopy
 
-+ There is no parameter to describe disease-induced mortality 
++ `d_rdt` - the probability of detecting parasites by rapid diagnostic test 
 
-+ The implementation includes a port to model mass treatment. In this model, humans who are treated and cured, at the rate $\xi(t)$ become susceptible to infection.
-    
++ `d_pcr` - the probability of detecting parasites by PCR 
 
-The generalized system of equations is implemented as:  
+The model is too simple to get any meaningful insights about detection. 
+
+*** 
+
+# The `SIS` Module
+
+## Mass Treatment 
+
+A port was included to simulate mass treatment. In the SIS model, mass treatment increases the clearance rate from $r$ to  $r + \xi(t)$. After curing an infection, in this model, the humans become susceptible to infection again. 
+
+$$
+\dot{I} = h (H-I)  - \left(r+\xi\left(t\right)\right) I
+$$
+
+During basic set up, the function returns no effect: $\xi(t)=0$. Configuring a mass treatment function is handled as an advanced setup option in `ramp.control` (see [`ramp.control`::Mass Treatment](https://dd-harp.github.io/ramp.control/articles/MassTreatment.html))
+
+## Human Demography 
+
+The implementation of the model was generalized to consider human (or host) vital dynamics. The generalized system thus includes three ports: 
+
++ The population birth rate, $B(t, H)$ 
+
++ A constant per-capita rate, $\mu.$ The model does not include a parameter to describe disease-induced mortality 
+
++ Dynamic population exchanges among strata, using a *demographic matrix*, $D$.  
+
+For the moment, we set $D$ to be a diagonal matrix with $\mu$ on the main diagonal. Deaths affect $H$ and $I$, so:  
 
 $$
 \begin{array}{rl}
@@ -69,87 +139,87 @@ $$
 \end{array}
 $$
 
-Utilities in `ramp.demog` make it possible to simulate aging and dynamic strata. We let $D$ denote a matrix and implement the dynamics in a more general form: 
-
-$$
-\begin{array}{rl}
-\dot{H} &= B(t, H) - D \cdot H \\
-\dot{I} &= h (H-I)  - \left(r+\xi\left(t\right)\right) I - D \cdot I 
-\end{array}
-$$
-Where the these two models are equivalent if $\mbox{diag} D = \mu.$ 
-
-## Implementation 
-
-Even in this simplified form, we are assuming that a population could be stratified, such that the variables, terms,  and parameter are all vectors with length `nStrata.`
-
-The equations are implemented in a generalized and extensible form, where $D$ is a matrix that includes mortality and that could also include dynamic exchanges among strata, including processes such as aging and migration. The derivatives computed by `dXHdt.SIS` are: 
-
-$$
-\begin{array}{rl}
-\dot{H} &= B(t, H) - D \cdot H \\
-\dot{I} &= h (H-I)  - \left(r+\xi\left(t\right)\right) I - D \cdot I 
-\end{array}
-$$
-The parameters are: 
+More generally, we are assuming that a population could be stratified, such that the variables, terms,  and parameter are all vectors with length `nStrata.` Utilities in `ramp.demog` make it possible to simulate dynamic exchanges among strata, including aging, and to construct a matrix $D$. 
 
 
-+ $b$ the probability an infective bite on a human causes an infection (used by `Exposure`)
+## Notation and Setup
 
-+ $h = F_b(h, E)$ is a dynamical term computed in `Exposure`  
+The following summarizes the math notation (*e.g.* $b$), and `name`  and default setup value (*e.g.* `b=0.55`) for the parameters and ports.
 
-    - By default, the FoI is linearly proportional to the EIR: $h = b \times EIR$ 
++ $b$ or `b=0.55` is the probability an infective bite on a human causes an infection (used by `Exposure`)
+
++ $E$: the daily EIR is computed elsewhere 
+
++ $h$ or `foi` : the daily FoI is a dynamical term
+
+    - it is computed in `Exposure` as $h = F_h(b, E)$ 
+
+    - By default, the FoI is linearly proportional to the EIR: $h = b E$ 
     
     - For advanced options, see [Exposure](Exposure.html]) 
 
++ $r$ or `r=1/180` is the clearance rate
 
-+ $r$ the clearance rate
++ $c$ or `c=0.15` is the probability a blood meal on an infected human infects the mosquito 
 
++ $q$ or `d_lm=d_rdt=0.8` or `d_pcr = 0.9` represent the probability an infected person would test positive by light microscopy, RDT or PCR
 
-+ $c$ the probability a human bloodmeal infects the mosquito 
++ $\xi(t)$ is either called `mda(t)` or `msat(t)`: functions implementing mass treatment
 
-+ $\xi(t)$: a function 
-
-    - The function $\xi(t)$ returns $0$ by default.
+    - The function `mda(t)` implements mass drug administration
     
-    - The function $\xi(t)$ can be configured as an advanced option using `ramp.control` (see [`ramp.control`::Mass Treatment](https://dd-harp.github.io/ramp.control/articles/MassTreatment.html))
-
-+ $B(t,H)$: a function describing the population birth rate,
+    - The function `msat(t)` implements mass screen and treat (uses $q$) 
+    
+    - Setup for mass treatment is an advanced option in `ramp.control` 
+    
+    - To read more, see [`ramp.control`::Mass Treatment](https://dd-harp.github.io/ramp.control/articles/MassTreatment.html)
+    
++ $B(t,H)$ or `B(t,H) = 0`: a function describing the population birth rate
 
     - The function $B(t, H)$ returns $0$ by default.
     
     - Other functions can be configured as advanced options in `ramp.demog` 
 
-+ $D$: a matrix describing demographic changes in the population not associated with disease dynamics, including aging 
++ $D$ or `D_matrix=0` a matrix describing demographic changes in the population not associated with disease dynamics, including aging 
 
     - The $D$ returns the $0$ matrix by default.
     
     - Other matrices can be configured as advanced options in `ramp.demog` 
 
 
-Infectiousness is computed as:
+
+## Variables 
+
+The module has two variables: 
+
++ $H$ or `H` is human population density, a vector of length `nStrata`
+
+    -  Since human population size, $H,$ has effects on the blood feeding interface, its value must be assigned during setup as `HPop=...` 
+    
+    -  The parameter `nStrata` is set to `length(HPop)`
+    
+    - There is a function to change $H$ called `change_H` 
+    
++ $I$ or `I` is the density of infected humans, a vector of length `nStrata`
+
+    - The default initial value is $I=1$ 
+    
+    - The function to change the initial values of $I$ are called by `change_XH_inits`
+
+## Dynamics 
+
+The derivatives computed by `dXHdt.SIS` are equivalent to: 
 
 $$
-F_I = c I
+\begin{array}{rl}
+\dot{H} &= B(t, H) - D \cdot H \\
+\dot{I} &= h (H-I)  - \left(r+\xi\left(t\right)\right) I - D \cdot I 
+\end{array}
 $$
 
-# Equilibrium Solutions
+***
 
-A typical situation when using this model is that $H$ (total population size by strata) and $X$ (number of infectious persons by strata) are known from census and survey data. Then it is of interest to find the value of $EIR$ (Entomological Inoculation Rate) which leads to that prevalence at equilibrium.
-
-$$
-0 = h \cdot (H-I) - rI 
-$$
-
-$$ 
-\bar I = H \frac{h}{h+r}
-$$
-
-$$
-\bar S =  H - \bar I
-$$
-
-# Example
+# Example 
 
 ```{r, message=FALSE, warning=FALSE}
 library(ramp.xds)
@@ -157,24 +227,136 @@ library(deSolve)
 library(viridisLite)
 ```
 
-
 ```{r, echo=FALSE} 
 #devtools::load_all()
 ```
 
-Here we run a simple example with 3 population strata at equilibrium. We use `ramp.xds::make_parameters_X_SIS_xde` to
-set up parameters. Please note that this only runs the human population component and that most users should read [our fully worked example](ex_534.html) to run a full simulation.
+Here we run a simple example with 3 population strata at equilibrium. We use `ramp.xds::setup_XH` to set up parameters, and `ramp.xds::setup_XH_inits` to set the initial values. We configure a `trace` function to force the EIR. 
 
-We use the null (constant) model of human demography ($H$ constant for all time).
+Interested users should read [our fully worked example](ex_534.html). 
+
+First, we define the size of three population strata:
+
+```{r}
+H <- c(100, 500, 250)
+nStrata <- length(H) 
+``` 
+
+We use the use the default model of human demography with no births or deaths. 
+
+Next, we define the parameter values for all three strata as a named list:
+
+```{r}
+b <- rep(0.55, nStrata) 
+c <- rep(0.15, nStrata) 
+r <- rep(1/200, nStrata)
+```
+
+To use these values to build our model, we create a named list:
+
+```{r}
+Xo = list(b=b, c=c, r=r)
+```
+
+We want to set up the model in a way that tests the software. We want to set values of the EIR and, knowing what the answer should be, show that we get them back.  First, we set the values of the FoI, and then we compute the EIR:
+
+```{r}
+foi = c(1:3)/365 
+eir <- foi/b 
+```
+
+The equilibrium values we should get back after running the equations to steady state are $I = H h /(h+r)$
+
+```{r}
+I_eq = H*foi/(foi+r) 
+I_eq
+```
+
+
+
+First, we use `xds_setup` and next, we do it the long way 
+
+## Using Setup 
+
+To set up the model, we simply do this:  
+
+```{r}
+xds_setup_eir(eir, Xname="SIS", HPop=H, XHoptions = Xo) -> test_SIS
+```
+
+To solve it, we do this:
+
+```{r}
+xds_solve(test_SIS)-> test_SIS 
+``` 
+
+We plot the prevalence over time: 
+
+```{r, fig.width=7, fig.height=4}
+clrs = turbo(5)[c(1,2,5)]
+xds_plot_PR(test_SIS, clr=clrs)
+```
+
+If we set the initial values of $I$ to the steady state values, the variables  shouldn't change at all. To change the values, we simply add them to the list
+
+```{r, fig.width=7, fig.height=4}
+test_SIS <- change_XH_inits(test_SIS, options = list(I=I_eq))
+xds_solve(test_SIS)-> test_SIS 
+xds_plot_PR(test_SIS, clr=clrs)
+```
+
+Or we can use the `get_XH_out` function to get the values of the orbits. This gets the return values and pulls of the the values of $I$ at the last time step: 
+
+```{r}
+get_XH_out(test_SIS, 1) -> XH2
+I_last <- tail(XH2$I, 1)
+I_last
+``` 
+
+```{r}
+sum(tail(XH2$I, 1) - I_eq)
+```
+
+## Another Test
+
+If we set $I(0) = 0$, the simple model has a closed form solution: 
+
+$$
+I(t) = H (1-e^{-(h+r) t}) \frac{h}{h+r}
+$$
+We can reset the initial conditions and solve the system of differential equations: 
+
+```{r, fig.width=7, fig.height=4}
+test_SIS <- change_XH_inits(test_SIS, options = list(I=rep(0,3)))
+xds_solve(test_SIS)-> test_SIS 
+Itest = get_XH_out(test_SIS, 1)$I 
+xds_plot_PR(test_SIS, clr=clrs)
+```
+
+...and we can compute the exact solutions for the same values of $t$: 
+
+```{r}
+t = get_XH_out(test_SIS, 1)$time
+It = matrix(0, 366, 3)
+ss = H*foi/(r+foi)
+for(i in 1:3){
+  It[,i] = H[i]*(1-exp(-(r[i]+foi[i])*t))*foi[i]/(foi[i]+r[i])
+}
+```
+
+The summing over all the squared differences is less than $10^{-6}.$ 
+
+```{r}
+sum((It-Itest)^2) < 1e-6
+```
 
 ## The Long Way
 
-To set up systems of differential equations, we must set the values of all our parameters. 
+To set up systems of differential equations the long way, we must walk through several steps. 
 
+First we make an empty `xds` object, called `params`:
 
 ```{r}
-nStrata <- 3
-H <- c(100, 500, 250)
 residence <- rep(1,3) 
 nPatches=1
 nHabitats=1
@@ -182,30 +364,14 @@ membership=1
 params <- make_xds_object_template("ode", "eir", nPatches, membership, residence)
 ```
 
+Next, we build the `SIS` model and set the initial values. 
 
 ```{r}
-b <- rep(0.55, nStrata) 
-c <- rep(0.15, nStrata) 
-r <- rep(1/200, nStrata) 
-Xo = list(b=b, c=c, r=r)
 params <- setup_XH_obj("SIS", params, 1, Xo)
 params <- setup_XH_inits(params, H, 1, Xo)
 ```
 
-
-```{r}
-foi = c(1:3)/365 
-eir <- foi/b 
-steady_state_X(foi, H, params)-> ss
-ss
-
-MYo = list(MYm = eir*H)
-```
-```{r}
-Xo$S=ss$S
-Xo$I=ss$I
-```
-
+Now, we must set up the other components as trivial objects. 
 
 ```{r}
 params <- setup_MY_obj("trivial", params, 1)
@@ -214,65 +380,45 @@ params <- setup_L_inits(params, 1)
 params <- make_indices(params)
 ```
 
-```{r}
-F_s = function(t){0*t+1}
-F_t= function(t){0*t+1}
-F_a = function(a){0*a+1}
-F_k = function(a){0*a+1}
-```
+We must set up the trace function. 
 
 ```{r}
 params$EIR_obj = list() 
 params$EIR_obj$eir <- as.vector(eir)
+F1 = function(t){0*t+1}
 params$EIR_obj$scale <- 1 
-params$EIR_obj$F_season <- F_s
-params$EIR_obj$F_trend  <- F_t
-params$EIR_obj$F_age    <- F_a
-params$EIR_obj$F_shock  <- F_k
+params$EIR_obj$F_season = F1
+params$EIR_obj$F_trend = F1
+params$EIR_obj$F_age = F1
+params$EIR_obj$F_shock = F1
 ```
 
 ```{r}
 params = make_indices(params)
 ```
 
+Now, we set up the intitial values:
+
 ```{r}
-Xo$S=H 
-Xo$I=H*0
-params = setup_XH_inits(params, H, 1, options = Xo)
-y0 <- get_inits(params)
-y0$X
+params = setup_XH_inits(params, H, 1, options = list(I=I_eq))
 ```
 
-
+and finally, we solve:
 
 ```{r}
 params <- xds_solve(params) 
 ```
 
+and we end up at the same thing. 
 
-```{r, out.width = "100%"}
-clrs = turbo(5)
+```{r, fig.width=7, fig.height=4}
 XH <- get_XH_out(params, 1)
 
 with(XH,{
-  plot(time, true_pr[,1], col = clrs[1], ylim = c(0,1), type = "l")
+  plot(time, true_pr[,1], col = clrs[1], ylim = c(0,1), ylab = "Prevalence", type = "l")
   lines(time, true_pr[,2], col = clrs[2])
-  lines(time, true_pr[,3], col =clrs[5])
+  lines(time, true_pr[,3], col =clrs[3])
 })  
 ```
 
-
-## Using Setup
-
-We have developed utilities for setting up models. We pass the parameter values and initial values as lists: 
-
-```{r}
-xds_setup_eir(eir, Xname="SIS", HPop=H, XHoptions = Xo) -> test_SIS_xde
-```
-
-```{r}
-xds_solve(test_SIS_xde)-> test_SIS_xde 
-get_XH_out(test_SIS_xde, 1) -> XH2
-sum((XH$true_pr-XH2$true_pr)^2)
-```
 

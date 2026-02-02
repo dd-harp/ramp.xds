@@ -22,3 +22,4 @@ an \code{xds} object
 Change the blood feeding search weights, \eqn{\omega},
 for a set of host strata
 }
+\keyword{internal}

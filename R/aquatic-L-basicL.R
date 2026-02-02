@@ -160,6 +160,7 @@ LBionomics.basicL <- function(t, y, xds_obj, s) {
 #' @inheritParams setup_L_obj
 #' @return an **`xds`** object
 #' @seealso [make_L_obj_basicL]
+#' @keywords internal
 #' @export
 setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
   L_obj <- make_L_obj_basicL(xds_obj$nHabitats, options)
@@ -246,6 +247,7 @@ change_L_pars.basicL <- function(xds_obj, s=1, options=list()) {
 #' @inheritParams setup_L_inits
 #' @seealso [make_L_inits_basicL]
 #' @return a [list]
+#' @keywords internal
 #' @export
 setup_L_inits.basicL = function(xds_obj, s, options=list()){
   xds_obj$L_obj[[s]]$inits = make_L_inits_basicL(xds_obj$nHabitats, options)
@@ -295,6 +297,7 @@ change_L_inits.basicL <- function(xds_obj, s=1, options=list()) {
 #' @inheritParams setup_L_ix
 #' @return an **`xds`** object
 #' @importFrom utils tail
+#' @keywords internal
 #' @export
 setup_L_ix.basicL <- function(xds_obj, s) {with(xds_obj,{
 

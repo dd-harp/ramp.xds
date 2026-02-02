@@ -17,3 +17,4 @@ an \strong{\code{xds}} object
 \description{
 Implements \link{setup_L_ix} for trivial (forced emergence) model.
 }
+\keyword{internal}

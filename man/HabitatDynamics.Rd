@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 This function modifies search weights for
 habitats and availability of bad habitat
 }
+\keyword{internal}

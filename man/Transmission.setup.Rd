@@ -23,3 +23,4 @@ Set up and compute transmission terms with a static mixing matrix
 The \code{setup} case is called whenever any parameter affecting the mixing matrix
 in a static model is changed
 }
+\keyword{internal}

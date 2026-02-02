@@ -19,3 +19,4 @@ an \code{xds} object
 \description{
 Sums up adults emerging from all aquatic habitats using the habitat membership matrix
 }
+\keyword{internal}

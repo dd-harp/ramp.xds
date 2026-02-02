@@ -34,3 +34,4 @@ computed from the the travel EIR, \eqn{E_T}:
 \seealso{
 Related: \link{Exposure} & \link{F_foi.pois} & \link{F_foi.nb} & \link{Travel}
 }
+\keyword{internal}

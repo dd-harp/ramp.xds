@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{get_XH_pars.SIS}
 \alias{get_XH_pars.SIS}
-\title{Get \emph{SIS} model parameters}
+\title{Get \emph{SIS} module parameters}
 \usage{
 \method{get_XH_pars}{SIS}(xds_obj, i = 1)
 }
@@ -15,8 +15,10 @@
 SIS model parameters
 }
 \description{
+Returns the stored parameter
+values as a list.
+}
+\note{
 Parameter values for the \eqn{i^{th}} host are
 stored as \code{xds_obj$XH_obj[[i]]}.
-This returns the stored parameter
-values as a list.
 }

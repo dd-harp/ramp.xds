@@ -21,3 +21,4 @@ a \link{list} vector
 \description{
 Implements \link{setup_MY_obj} for the GeRM model
 }
+\keyword{internal}

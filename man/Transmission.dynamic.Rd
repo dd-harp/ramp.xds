@@ -19,3 +19,4 @@ an \code{xds} object
 \description{
 Compute transmission terms with a dynamic mixing matrix
 }
+\keyword{internal}

@@ -22,3 +22,4 @@ The inverse of \link{F_foi.pois} is \eqn{E=h/b}
 \seealso{
 Also, see \link{F_foi.pois}
 }
+\keyword{internal}

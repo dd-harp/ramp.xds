@@ -22,3 +22,4 @@ an \strong{\code{xds}} model object
 Setup a the function model for no time spent searching
 and no exposure while searching
 }
+\keyword{internal}

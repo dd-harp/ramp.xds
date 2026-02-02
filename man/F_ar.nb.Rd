@@ -35,3 +35,4 @@ The formula is equivalent to:
 \seealso{
 Related topics: \link{Exposure.dts}, \link{make_exposure_nb} & \link{F_foi.nb}
 }
+\keyword{internal}

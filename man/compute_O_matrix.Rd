@@ -18,3 +18,4 @@ for all the vector species. The matrix determines
 how all the eggs laid by adult mosquitoes are apportioned
 among larval habitats
 }
+\keyword{internal}

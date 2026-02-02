@@ -25,3 +25,4 @@ by calling \link{make_L_obj_basicL}
 \seealso{
 \link{make_L_obj_basicL}
 }
+\keyword{internal}

@@ -6,6 +6,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @export
+#' @keywords internal
 #'  
 check_XY_interface = function(xds_obj){
   return(xds_obj) 
@@ -56,6 +57,7 @@ check_XY_interface = function(xds_obj){
 #' @seealso see [view_residency_matrix]
 #' 
 #' @export
+#' @keywords internal
 make_residency_matrix = function(nPatches, residence){
   nStrata = length(residence)
   residency_matrix = matrix(0, nPatches, nStrata)
@@ -124,8 +126,10 @@ make_residency_matrix = function(nPatches, residence){
 #' @seealso [setup_transmission]
 #' 
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
+#' @keywords internal
 #' 
 #' @export
+#' @keywords internal
 setup_XY_interface <- function(xds_obj, residency){
   with(xds_obj,{
 
@@ -201,6 +205,7 @@ setup_XY_interface <- function(xds_obj, residency){
 #' 
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 change_blood_search_weights = function(wts, xds_obj, s=1, i=1){
   stopifnot(length(wts) == xds_obj$nStrata)
   xds_obj$XY_interface$search_weights[[s]][[i]] = wts 
@@ -226,6 +231,7 @@ change_blood_search_weights = function(wts, xds_obj, s=1, i=1){
 #' @return host available, a [vector]
 #' @seealso available of all vertebrate hosts for blood feeding is computed by [F_B_available()]
 #' @export
+#' @keywords internal
 F_W_available = function(search_weights, H, TaR){
   W = TaR %*% (search_weights*H)
   return(as.vector(W))
@@ -245,6 +251,7 @@ F_W_available = function(search_weights, H, TaR){
 #' @param Btraps blood feeding trap availability 
 #' @return host available, a [vector]
 #' @export
+#' @keywords internal
 F_B_available = function(W, visitors, other_blood, Btraps){
   B = W + visitors + other_blood + Btraps
   return(B)
@@ -257,6 +264,7 @@ F_B_available = function(W, visitors, other_blood, Btraps){
 #' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 compute_WB <- function(t, y, xds_obj){
   y = as.vector(unlist(y))
   with(xds_obj$XY_interface,{
@@ -283,6 +291,7 @@ compute_WB <- function(t, y, xds_obj){
 #' @param H host density
 #' @return host available, a [vector]
 #' @export
+#' @keywords internal
 F_rbr = function(search_weights, H){
   rbr = search_weights*sum(H)/sum(search_weights*H)
   return(as.vector(rbr))
@@ -295,6 +304,7 @@ F_rbr = function(search_weights, H){
 #' @param y state vector
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 compute_RBR = function(t, xds_obj, y){
   y = as.vector(unlist(y))
   for(i in 1:xds_obj$nHostSpecies){
@@ -320,6 +330,7 @@ compute_RBR = function(t, xds_obj, y){
 #' @param time_at_home the fraction of time spent at home 
 #' @return a TaR [matrix]
 #' @export
+#' @keywords internal
 F_TaR = function(t, TiSp, F_circadian, time_at_home){
   d = 24*floor(t%%1)
   TaR = F_circadian(d)*(TiSp %*% diag(time_at_home))
@@ -332,6 +343,7 @@ F_TaR = function(t, TiSp, F_circadian, time_at_home){
 #' @param t the time
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 compute_TaR <- function(xds_obj, t=0){
   with(xds_obj$XY_interface,{
     for(s in 1:xds_obj$nVectorSpecies)
@@ -351,6 +363,7 @@ compute_TaR <- function(xds_obj, t=0){
 #' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 BloodFeeding = function(t, y, xds_obj){
   UseMethod("BloodFeeding", xds_obj$XY_interface)
 }
@@ -366,6 +379,7 @@ BloodFeeding = function(t, y, xds_obj){
 #' @inheritParams BloodFeeding
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 BloodFeeding.setup = function(t, y, xds_obj){
   class(xds_obj$XY_interface) <- 'static'
   xds_obj$terms$beta <- trigger_setup(xds_obj$terms$beta)
@@ -378,6 +392,7 @@ BloodFeeding.setup = function(t, y, xds_obj){
 #' @inheritParams BloodFeeding
 #' @return the unmodified `xds` object
 #' @export
+#' @keywords internal
 BloodFeeding.static = function(t, y, xds_obj){
   return(xds_obj)
 }
@@ -390,6 +405,7 @@ BloodFeeding.static = function(t, y, xds_obj){
 #' @inheritParams BloodFeeding
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 BloodFeeding.dynamic = function(t, y, xds_obj){
   return(blood_feeding_dynamics(t, y, xds_obj))
 }
@@ -402,6 +418,7 @@ BloodFeeding.dynamic = function(t, y, xds_obj){
 #' @inheritParams BloodFeeding
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 blood_feeding_dynamics = function(t, y, xds_obj){
   xds_obj <- TimeSpent(t, y, xds_obj)
   xds_obj <- compute_TaR(xds_obj, t)
@@ -417,6 +434,7 @@ blood_feeding_dynamics = function(t, y, xds_obj){
 #' @return a named [list]
 #' @seealso [make_residency_matrix]
 #' @export
+#' @keywords internal
 view_residency_matrix = function(xds_obj, i=1){
   which(t(xds_obj$residency_matrix[[i]])==1, arr.ind=TRUE) -> residence
   res <- list(stratum = as.vector(residence[1,]), patch_id = as.vector(residence[2,]))
