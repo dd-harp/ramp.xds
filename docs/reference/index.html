@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.6-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,7 @@
     <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
@@ -79,7 +80,7 @@
       <dl></dl></div><div class="section level2">
 
       <h3 id="basic-setup">Basic Setup<a class="anchor" aria-label="anchor" href="#basic-setup"></a></h3>
-      <div class="section-desc"><p>Build an <strong><code>xds</code></strong> model object</p></div>
+      <div class="section-desc"><p>Build and store <strong><code>xds</code></strong> model objects</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -120,6 +121,20 @@
 
         </dt>
         <dd>Build a Model for a single Human / Host Epidemiology forced by the EIR</dd>
+
+        <dt>
+
+          <code><a href="saveXDS.html">saveXDS()</a></code>
+
+        </dt>
+        <dd>saveRDS for <code>xds</code> Objects</dd>
+
+        <dt>
+
+          <code><a href="readXDS.html">readXDS()</a></code>
+
+        </dt>
+        <dd>readRDS for <code>xds</code> Objects</dd>
       </dl></div><div class="section level2">
 
       <h3 id="advanced-setup">Advanced Setup<a class="anchor" aria-label="anchor" href="#advanced-setup"></a></h3>
@@ -214,7 +229,7 @@
           <code><a href="xds_stable_orbit.html">xds_stable_orbit()</a></code>
 
         </dt>
-        <dd>Solve for the steady state of a system of equations using <a href="https://rdrr.io/pkg/rootSolve/man/steady.html" class="external-link">rootSolve::steady</a></dd>
+        <dd>Compute stable orbits</dd>
 
         <dt>
 
@@ -734,7 +749,7 @@
           <code><a href="skill_set_XH.html">skill_set_XH()</a></code>
 
         </dt>
-        <dd>The <strong>XH</strong> Module Skill Set</dd>
+        <dd><strong>XH</strong> Skill Set</dd>
 
         <dt>
 
@@ -780,7 +795,7 @@
 
         <dt>
 
-          <code><a href="F_X.html">F_X()</a></code>
+          <code><a href="F_I.html">F_I()</a></code>
 
         </dt>
         <dd>Size of effective infectious human population</dd>
@@ -915,7 +930,7 @@
 
         <dt>
 
-          <code><a href="F_X.trivial.html">F_X(<i>&lt;trivial&gt;</i>)</a></code>
+          <code><a href="F_I.trivial.html">F_I(<i>&lt;trivial&gt;</i>)</a></code>
 
         </dt>
         <dd>Size of effective infectious human population</dd>
@@ -1032,7 +1047,7 @@
           <code><a href="dXHdt.hMoI.html">dXHdt(<i>&lt;hMoI&gt;</i>)</a></code>
 
         </dt>
-        <dd>Compute Derivatives for the <code>hMoI</code> (<strong>X</strong> Model)</dd>
+        <dd>Compute Derivatives for <code>hMoI</code> (<strong>X</strong> Module)</dd>
 
         <dt>
 
@@ -1057,7 +1072,7 @@
 
         <dt>
 
-          <code><a href="F_X.hMoI.html">F_X(<i>&lt;hMoI&gt;</i>)</a></code>
+          <code><a href="F_I.hMoI.html">F_I(<i>&lt;hMoI&gt;</i>)</a></code>
 
         </dt>
         <dd>Size of effective infectious human population</dd>
@@ -2367,7 +2382,7 @@
           <code><a href="skill_set_L.html">skill_set_L()</a></code>
 
         </dt>
-        <dd>The <strong>L</strong> Module Skill Set</dd>
+        <dd>The skill set (<strong>L</strong> module)</dd>
 
         <dt>
 
@@ -2381,14 +2396,14 @@
           <code><a href="dLdt.html">dLdt()</a></code>
 
         </dt>
-        <dd>Derivatives for an <strong>L</strong> Component Module</dd>
+        <dd>Compute derivatives (<strong>L</strong> module)</dd>
 
         <dt>
 
           <code><a href="Update_Lt.html">Update_Lt()</a></code>
 
         </dt>
-        <dd>Update State Variables for an <strong>L</strong> Component Module</dd>
+        <dd>Update state variables (<strong>L</strong> module)</dd>
 
         <dt>
 
@@ -2478,27 +2493,6 @@
 
         <dt>
 
-          <code><a href="check_L.trivial.html">check_L(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Run a check before solving</dd>
-
-        <dt>
-
-          <code><a href="dLdt.trivial.html">dLdt(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Derivatives for the <code>trivial</code> <strong>L</strong> module</dd>
-
-        <dt>
-
-          <code><a href="Update_Lt.trivial.html">Update_Lt(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Update State Variables for <code>trivial</code> (<strong>L</strong> Component)</dd>
-
-        <dt>
-
           <code><a href="F_emerge.trivial.html">F_emerge(<i>&lt;trivial&gt;</i>)</a></code>
 
         </dt>
@@ -2506,17 +2500,10 @@
 
         <dt>
 
-          <code><a href="LBionomics.trivial.html">LBionomics(<i>&lt;trivial&gt;</i>)</a></code>
+          <code><a href="check_L.trivial.html">check_L(<i>&lt;trivial&gt;</i>)</a></code>
 
         </dt>
-        <dd>Bionomics for <code>trivial</code> (<strong>L</strong> Component)</dd>
-
-        <dt>
-
-          <code><a href="LBaseline.trivial.html">LBaseline(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Baseline Bionomics for <code>trivial</code> (<strong>L</strong> Component)</dd>
+        <dd>Run a check before solving</dd>
 
         <dt>
 
@@ -2527,38 +2514,10 @@
 
         <dt>
 
-          <code><a href="get_L_pars.trivial.html">get_L_pars(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Get <strong>L</strong> Component Parameters for <code>trivial</code></dd>
-
-        <dt>
-
           <code><a href="change_L_pars.trivial.html">change_L_pars(<i>&lt;trivial&gt;</i>)</a></code>
 
         </dt>
         <dd>Set <strong>L</strong> Component parameters for <code>trivial</code></dd>
-
-        <dt>
-
-          <code><a href="get_L_vars.trivial.html">get_L_vars(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>List <strong>L</strong> Component Variables for <code>trivial</code></dd>
-
-        <dt>
-
-          <code><a href="change_L_inits.trivial.html">change_L_inits(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Set the Initial Values for <code>trivial</code> (<strong>L</strong> Component)</dd>
-
-        <dt>
-
-          <code><a href="parse_L_orbits.trivial.html">parse_L_orbits(<i>&lt;trivial&gt;</i>)</a></code>
-
-        </dt>
-        <dd>parse <strong>L</strong> Component Variables for <code>basicL</code></dd>
       </dl></div><div class="section level2">
 
       <h3 id="basicl">basicL<a class="anchor" aria-label="anchor" href="#basicl"></a></h3>
@@ -3170,10 +3129,17 @@
 
         <dt>
 
-          <code><a href="VectorControl.html">VectorControl()</a></code>
+          <code><a href="VectorControl1.html">VectorControl1()</a></code>
 
         </dt>
-        <dd>Vector Control</dd>
+        <dd>Vector Control, Stage 1</dd>
+
+        <dt>
+
+          <code><a href="VectorControl2.html">VectorControl2()</a></code>
+
+        </dt>
+        <dd>Vector Control, Stage 2</dd>
 
         <dt>
 
@@ -3236,32 +3202,32 @@
           <code><a href="setup_vector_control_object.html">setup_vector_control_object()</a></code>
 
         </dt>
-        <dd>Setup a Junction for Vector Control</dd>
+        <dd>Setup the Vector Control Junction</dd>
 
         <dt>
 
-          <code><a href="VectorControl.html">VectorControl()</a></code>
+          <code><a href="VectorControl1.html">VectorControl1()</a></code>
 
         </dt>
-        <dd>Vector Control</dd>
+        <dd>Vector Control, Stage 1</dd>
 
         <dt>
 
-          <code><a href="VectorControl.none.html">VectorControl(<i>&lt;none&gt;</i>)</a></code>
+          <code><a href="VectorControl1.none.html">VectorControl1(<i>&lt;none&gt;</i>)</a></code>
 
         </dt>
         <dd>Compute Vector Control Effect Sizes</dd>
 
         <dt>
 
-          <code><a href="VectorControlEffectSizes.html">VectorControlEffectSizes()</a></code>
+          <code><a href="VectorControl2.html">VectorControl2()</a></code>
 
         </dt>
-        <dd>Vector control effect sizes</dd>
+        <dd>Vector Control, Stage 2</dd>
 
         <dt>
 
-          <code><a href="VectorControlEffectSizes.none.html">VectorControlEffectSizes(<i>&lt;none&gt;</i>)</a></code>
+          <code><a href="VectorControl2.none.html">VectorControl2(<i>&lt;none&gt;</i>)</a></code>
 
         </dt>
         <dd>Set the values of exogenous variables</dd>
@@ -3775,7 +3741,7 @@
           <code><a href="Update_Lt.html">Update_Lt()</a></code>
 
         </dt>
-        <dd>Update State Variables for an <strong>L</strong> Component Module</dd>
+        <dd>Update state variables (<strong>L</strong> module)</dd>
       </dl></div><div class="section level2">
 
       <h3 id="solving-2">Solving<a class="anchor" aria-label="anchor" href="#solving-2"></a></h3>
@@ -3819,21 +3785,21 @@
           <code><a href="xds_stable_orbit.html">xds_stable_orbit()</a></code>
 
         </dt>
-        <dd>Solve for the steady state of a system of equations using <a href="https://rdrr.io/pkg/rootSolve/man/steady.html" class="external-link">rootSolve::steady</a></dd>
+        <dd>Compute stable orbits</dd>
 
         <dt>
 
           <code><a href="xds_stable_orbit.dts.html">xds_stable_orbit(<i>&lt;dts&gt;</i>)</a></code>
 
         </dt>
-        <dd>Compute the stable orbit for a system of differential equations</dd>
+        <dd>Compute the stable orbit for a discrete time system</dd>
 
         <dt>
 
           <code><a href="xds_stable_orbit.xde.html">xds_stable_orbit(<i>&lt;xde&gt;</i>)</a></code>
 
         </dt>
-        <dd>Compute the stable orbit for a system of differential equations</dd>
+        <dd>Compute stable orbit for a system of differential equations</dd>
 
         <dt>
 
@@ -4112,13 +4078,6 @@
 
         <dt>
 
-          <code><a href="xds_shrink.html">xds_shrink()</a></code>
-
-        </dt>
-        <dd>Shrink an xds xds_obj object</dd>
-
-        <dt>
-
           <code><a href="list_vars.html">list_vars()</a></code>
 
         </dt>
@@ -4315,7 +4274,7 @@
           <code><a href="make_function.one.html">make_function(<i>&lt;one&gt;</i>)</a></code>
 
         </dt>
-        <dd>Make a Function that is the sum of Two other Functions</dd>
+        <dd>Make a Function</dd>
 
         <dt>
 
@@ -4438,6 +4397,20 @@
 
         <dt>
 
+          <code><a href="make_function.sharkbite.html">make_function(<i>&lt;sharkbite&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Make a sharkbite Function</dd>
+
+        <dt>
+
+          <code><a href="makepar_F_sharkbite.html">makepar_F_sharkbite()</a></code>
+
+        </dt>
+        <dd>Make Parameters for a sharkbite Function</dd>
+
+        <dt>
+
           <code><a href="make_function.type2.html">make_function(<i>&lt;type2&gt;</i>)</a></code>
 
         </dt>
@@ -4553,6 +4526,41 @@
         <dt>
 
           <code><a href="F_trend.none.html">F_trend(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot the temporal trend</dd>
+
+        <dt>
+
+          <code><a href="show_shock.html">show_shock()</a></code>
+
+        </dt>
+        <dd>Plot the Temporal shock</dd>
+
+        <dt>
+
+          <code><a href="F_shock.html">F_shock()</a></code>
+
+        </dt>
+        <dd>Plot the Temporal Trend</dd>
+
+        <dt>
+
+          <code><a href="F_shock.Lambda.html">F_shock(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot the temporal trend</dd>
+
+        <dt>
+
+          <code><a href="F_shock.eir.html">F_shock(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot the temporal trend</dd>
+
+        <dt>
+
+          <code><a href="F_shock.none.html">F_shock(<i>&lt;none&gt;</i>)</a></code>
 
         </dt>
         <dd>Plot the temporal trend</dd>
@@ -4832,6 +4840,34 @@
         <dt>
 
           <code><a href="change_spline_y.eir.html">change_spline_y(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set yy</dd>
+
+        <dt>
+
+          <code><a href="change_shock.html">change_shock()</a></code>
+
+        </dt>
+        <dd>Set the interpolating points</dd>
+
+        <dt>
+
+          <code><a href="change_shock.none.html">change_shock(<i>&lt;none&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set yy</dd>
+
+        <dt>
+
+          <code><a href="change_shock.Lambda.html">change_shock(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Set the \(y\) value for interpolating points</dd>
+
+        <dt>
+
+          <code><a href="change_shock.eir.html">change_shock(<i>&lt;eir&gt;</i>)</a></code>
 
         </dt>
         <dd>Set yy</dd>

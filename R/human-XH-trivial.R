@@ -30,11 +30,11 @@ check_XH.trivial = function(xds_obj, i){
 }
 
 #' @title Size of effective infectious human population
-#' @description Implements [F_X] for the trivial model
-#' @inheritParams F_X
+#' @description Implements [F_I] for the trivial model
+#' @inheritParams F_I
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_X.trivial <- function(t, y, xds_obj, i) {
+F_I.trivial <- function(t, y, xds_obj, i) {
   H = F_H(t, y, xds_obj, i)
   X = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t))
   return(X)

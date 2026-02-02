@@ -296,11 +296,11 @@ change_XH_inits.SIS <- function(xds_obj, i=1, options=list()) {
 #' @description In the *SIS* model family, infectious
 #' density is \eqn{cI}. 
 #' 
-#' @inheritParams F_X
+#' @inheritParams F_I
 #' @keywords internal
 #' @return Infectious density 
 #' @export
-F_X.SIS <- function(t, y, xds_obj, i) {
+F_I.SIS <- function(t, y, xds_obj, i) {
   I = y[xds_obj$XH_obj[[i]]$ix$I_ix]
   X = with(xds_obj$XH_obj[[i]], c*I)
   return(X)

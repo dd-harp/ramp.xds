@@ -86,6 +86,8 @@ reference:
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_eir
+  - saveXDS 
+  - readXDS 
 - subtitle: Advanced Setup 
   desc: |
     Modules for aquatic mosquito ecology
@@ -256,7 +258,7 @@ reference:
   - make_XH_obj_hMoI
   - steady_state_X.hMoI
   - make_XH_inits_hMoI
-  - F_X.hMoI
+  - F_I.hMoI
   - F_H.hMoI
   - F_infectivity.hMoI
   - F_prevalence.hMoI
@@ -494,15 +496,10 @@ reference:
   desc: "The trivial model for aquatic dynamics \n"
   contents:
   - skill_set_L.trivial
+  - F_emerge.trivial 
   - check_L.trivial
-  - F_emerge.trivial
-  - LBionomics.trivial
-  - LBaseline.trivial
   - make_L_obj_trivial
   - change_L_pars.trivial
-  - get_L_vars.trivial
-  - change_L_inits.trivial
-  - parse_L_orbits.trivial
 - subtitle: basicL
   desc: |
     A basic model for aquatic mosquito dynamics
