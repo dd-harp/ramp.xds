@@ -1,9 +1,10 @@
 # generic methods for aquatic component
 
-#' @title The **L** Module Skill Set 
+#' @title The skill set (**L** module) 
 #' 
-#' @description The **L** skill set is a list of 
-#' describing capabilities and compatabilities
+#' @description The skill set for an **L** module 
+#' is a list of that summarizes capabilities and 
+#' compatabilities
 #'
 #' @param Lname the **L** module name 
 #' 
@@ -26,10 +27,13 @@ check_L = function(xds_obj, s){
   UseMethod("check_L", xds_obj$L_obj[[s]]) 
 }
 
-#' @title Derivatives for an **L** Component Module
+#' @title Compute derivatives (**L** module) 
+#' 
 #' @description This method computes and returns the derivatives
 #' for the **L** Component modules
+#' 
 #' @note Dispatches on the class of `xds_obj$L_obj[[s]]`
+#' 
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
@@ -40,9 +44,11 @@ dLdt <- function(t, y, xds_obj, s) {
   UseMethod("dLdt", xds_obj$L_obj[[s]])
 }
 
-#' @title Update State Variables for an **L** Component Module
+#' @title Update state variables (**L** module)
+#'  
 #' @description This method updates the state variables
 #' for **L** Component modules
+#' 
 #' @note Dispatches on the class of `xds_obj$L_obj[[s]]`
 #' @param t current simulation time
 #' @param y state vector
@@ -101,10 +107,12 @@ F_emerge <- function(t, y, xds_obj, s) {
 #' It is attached the **`xds`** object as `xds_obj$L_obj[[s]].` Each instance of `create_L_obj_*`
 #' should assign default parameter values that will be over-written by `options`
 #' @note This method assigns `Lname` to class(`Lname`) and dispatches on `Lname`.
-#' @param Lname the class name of the aquatic model
+#' 
+#' @param Lname the class name of the **L** module 
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @param options a named [list] to configure **`L_obj`**
+#' @param options a named list to configure **`L_obj`**
+#' 
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export

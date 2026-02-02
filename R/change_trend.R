@@ -14,7 +14,7 @@
 change_trend = function(X, xds_obj, s=1){
   change_spline(X, xds_obj, s)
 } 
-  
+
 #' @title Set the interpolating points  
 #' 
 #' @description
@@ -153,3 +153,4 @@ change_spline_y.eir = function(yy, xds_obj, s=1){
   xds_obj$EIR_obj$F_trend <- make_function(xds_obj$EIR_obj$trend_par)
   return(xds_obj)
 }
+

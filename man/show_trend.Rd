@@ -4,7 +4,14 @@
 \alias{show_trend}
 \title{Plot the Temporal Trend}
 \usage{
-show_trend(xds_obj, tm = seq(0, 3650, by = 10), add = FALSE)
+show_trend(
+  xds_obj,
+  tm = 10 * c(0:365),
+  add = FALSE,
+  clr = "black",
+  rng = NULL,
+  shock = FALSE
+)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
@@ -12,6 +19,12 @@ show_trend(xds_obj, tm = seq(0, 3650, by = 10), add = FALSE)
 \item{tm}{the time points}
 
 \item{add}{add to existing plot}
+
+\item{clr}{the line color}
+
+\item{rng}{if not NULL, range limits for plotting}
+
+\item{shock}{if 0,}
 }
 \value{
 the temporal trend, invisibly

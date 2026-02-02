@@ -1,15 +1,18 @@
 
-#' @title Solve for the steady state of a system of equations using [rootSolve::steady]
-#' @description This method dispatches on the type of `xds_obj$xde`
+#' @title Compute stable orbits 
+#' 
+#' @description 
+#' Run the system for 10 years, and save the last year's orbits.
+#'  
 #' @param xds_obj an **`xds`** model object
 #' @param options a list of configurable options 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 xds_stable_orbit = function(xds_obj, options=list()){
   UseMethod("xds_stable_orbit", xds_obj$xds)
 }
 
-#' @title Compute the stable orbit for a system of differential equations
+#' @title Compute stable orbit for a system of differential equations
 #' @description This method dispatches on the type of `xds_obj$xde`.
 #' @inheritParams xds_stable_orbit
 #' @return an **`xds`** object
@@ -27,7 +30,7 @@ xds_stable_orbit.xde = function(xds_obj, options=list()){
   return(xds_obj)
 }
 
-#' @title Compute the stable orbit for a system of differential equations
+#' @title Compute the stable orbit for a discrete time system 
 #' @description This method dispatches on the type of `xds_obj$xde`.
 #' @inheritParams xds_stable_orbit
 #' @return an **`xds`** object

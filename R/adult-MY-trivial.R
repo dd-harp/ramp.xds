@@ -19,7 +19,7 @@ check_MY.trivial = function(xds_obj, s){
 F_fqZ.trivial <- function(t, y, xds_obj, s) {
   f = get_f(xds_obj, s)
   q = get_q(xds_obj, s)
-  Z = with(xds_obj$MY_obj[[s]], Z*F_season(t)*F_trend(t))
+  Z = with(xds_obj$MY_obj[[s]], Z*F_season(t)*F_trend(t)*F_shock(t))
   return(f*q*Z)
 }
 
@@ -30,7 +30,7 @@ F_fqZ.trivial <- function(t, y, xds_obj, s) {
 #' @export
 F_eggs.trivial <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]],
-       return(eggs*F_season(t)*F_trend(t))
+       return(eggs*F_season(t)*F_trend(t)*F_shock(t))
   )}
 
 #' @title Blood feeding rate of the infective mosquito population
@@ -111,9 +111,14 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #' @export
 #' 
 setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
+  MY = "MY"
+  class(MY) = "MY"
+  xds_obj$forced_by = MY
+  
   MY_obj <- make_MY_obj_trivial(xds_obj$nPatches, options)
   class(MY_obj) <- 'trivial'
   xds_obj$MY_obj[[s]] <- MY_obj
+  xds_obj <- rebuild_forcing_functions(xds_obj, s)
   return(xds_obj)
 }
 
@@ -125,16 +130,16 @@ setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
 #' @param q the human fraction
 #' @param Z the human fraction
 #' @param eggs the human fraction
-#' @param F_season a function describing a seasonal pattern 
 #' @param season_par parameters to configure a `F_season` using [make_function]
-#' @param F_trend a function describing a temporal trend 
 #' @param trend_par parameters to configure `F_trend` using [make_function]
+#' @param shock_par parameters to configure `F_shock` using [make_function]
 #' @return none
 #' @export
 make_MY_obj_trivial = function(nPatches, options,
                                f = 1, q = 1, Z=1, eggs=1,
-                               F_season=F_flat, season_par = list(), 
-                               F_trend=F_flat, trend_par = list()){
+                               season_par = makepar_F_one(), 
+                               trend_par = makepar_F_one(),
+                               shock_par = makepar_F_one()){
   with(options,{
     MY_obj <- list()
     MY_obj$nPatches <- nPatches
@@ -156,16 +161,10 @@ make_MY_obj_trivial = function(nPatches, options,
     MY_obj$Z <- checkIt(Z, nPatches)
     MY_obj$eggs <- checkIt(eggs, nPatches)
     
-    MY_obj$F_season = F_season
     MY_obj$season_par <- season_par
-    if(length(season_par)>0)
-      MY_obj$F_season <- make_function(season_par) 
-    
-    MY_obj$F_trend = F_trend
     MY_obj$trend_par <- trend_par
-    if(length(trend_par)>0)
-      MY_obj$F_trend <- make_function(trend_par) 
-    
+    MY_obj$shock_par <- shock_par
+     
     
     return(MY_obj)
 })}
@@ -198,7 +197,9 @@ get_MY_pars.trivial <- function(xds_obj, s=1) {
     season_par=season_par,
     F_season=F_season,
     trend_par=trend_par,
-    F_trend=F_trend
+    F_trend=F_trend,
+    shock_par=shock_par,
+    F_shock=F_shock
   ))
 }
 
@@ -229,6 +230,12 @@ change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
     if(exists("trend_par")){
       MY_obj[[s]]$F_trend <- make_function(trend_par) 
       MY_obj[[s]]$trend_par <- trend_par
+    }   
+    
+    xds_obj$MY_obj[[s]]$F_shock = F_shock
+    if(exists("shock_par")){
+      MY_obj[[s]]$F_shock <- make_function(shock_par) 
+      MY_obj[[s]]$shock_par <- shock_par
     }   
     
     return(xds_obj)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{make_function.one}
 \alias{make_function.one}
-\title{Make a Function that is the sum of Two other Functions}
+\title{Make a Function}
 \usage{
 \method{make_function}{one}(opts)
 }

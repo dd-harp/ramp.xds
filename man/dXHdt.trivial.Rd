@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{dXHdt.trivial}
 \alias{dXHdt.trivial}
-\title{Handle Derivatives for the \code{trivial} \strong{X}-Module}
+\title{Handle Derivatives for the \code{trivial} \strong{XH}-module}
 \usage{
 \method{dXHdt}{trivial}(t, y, xds_obj, i)
 }

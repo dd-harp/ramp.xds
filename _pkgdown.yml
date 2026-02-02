@@ -32,6 +32,8 @@ navbar:
       href: articles/BloodFeeding.html
     - text: Exposure
       href: articles/Exposure.html
+    - text: Bionomics 
+      href: articles/MosquitoBionomics.html
   - text: Human / Host
     menu:
     - text: XH Component 
@@ -77,7 +79,7 @@ reference:
   desc: Set up & Modify Models
 - subtitle: Basic Setup 
   desc: | 
-    Build an **`xds`** model object
+    Build and store **`xds`** model objects
   contents:
   - xds_setup
   - xds_setup_mosy
@@ -210,7 +212,7 @@ reference:
   - get_XH_vars
   - get_XH_pars
   - change_XH_pars
-  - F_X
+  - F_I
   - F_H
   - F_infectivity
   - parse_XH_orbits
@@ -231,7 +233,7 @@ reference:
   contents:
   - skill_set_XH.trivial 
   - check_XH.trivial 
-  - F_X.trivial
+  - F_I.trivial
   - F_H.trivial
   - F_ni.trivial 
   - F_prevalence.trivial
@@ -493,13 +495,10 @@ reference:
   contents:
   - skill_set_L.trivial
   - check_L.trivial
-  - dLdt.trivial
-  - Update_Lt.trivial
   - F_emerge.trivial
   - LBionomics.trivial
   - LBaseline.trivial
   - make_L_obj_trivial
-  - get_L_pars.trivial
   - change_L_pars.trivial
   - get_L_vars.trivial
   - change_L_inits.trivial
@@ -609,7 +608,8 @@ reference:
   contents:
   - Forcing
   - Health
-  - VectorControl
+  - VectorControl1
+  - VectorControl2
   - Resources
 - title: Ports & Junctions
 - subtitle: Junctions 
@@ -624,10 +624,10 @@ reference:
   desc: "The ports for vector control \n"
   contents:
   - setup_vector_control_object
-  - VectorControl
-  - VectorControl.none
-  - VectorControlEffectSizes
-  - VectorControlEffectSizes.none
+  - VectorControl1
+  - VectorControl1.none
+  - VectorControl2
+  - VectorControl2.none
 - subtitle: Health
   desc: "The ports for malaria control \n"
   contents:
@@ -777,7 +777,6 @@ reference:
   - approx_equal
   - checkIt
   - shapeIt
-  - xds_shrink
   - list_vars
   - xds_flatten
   - ode_to_dde
@@ -829,6 +828,8 @@ reference:
   - makepar_F_sigmoid
   - make_function.sharkfin
   - makepar_F_sharkfin
+  - make_function.sharkbite
+  - makepar_F_sharkbite
   - make_function.type2
   - makepar_F_type2
   - make_function.splinef
@@ -849,6 +850,11 @@ reference:
   - F_trend.Lambda 
   - F_trend.eir
   - F_trend.none
+  - show_shock
+  - F_shock 
+  - F_shock.Lambda 
+  - F_shock.eir
+  - F_shock.none
 - subtitle: Get and Set for Mean Forcing 
   desc: |
     Functions to change Forcing 
@@ -897,6 +903,10 @@ reference:
   - change_spline_y.none
   - change_spline_y.Lambda
   - change_spline_y.eir
+  - change_shock
+  - change_shock.none
+  - change_shock.Lambda
+  - change_shock.eir
 - title: New  
   desc: Move  
   contents:   

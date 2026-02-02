@@ -8,10 +8,9 @@ make_L_obj_trivial(
   nHabitats,
   options = list(),
   Lambda = 1000,
-  F_season = F_flat,
-  season_par = list(),
-  F_trend = F_flat,
-  trend_par = list()
+  season_par = makepar_F_one(),
+  trend_par = makepar_F_one(),
+  shock_par = makepar_F_one()
 )
 }
 \arguments{
@@ -21,13 +20,11 @@ make_L_obj_trivial(
 
 \item{Lambda}{vector of mean emergence rates from each aquatic habitat}
 
-\item{F_season}{a function describing a seasonal pattern over time}
-
 \item{season_par}{an object to configure a seasonality function using \link{make_function}}
 
-\item{F_trend}{a function describing a temporal trend over time}
-
 \item{trend_par}{an object to configure a trends function using \link{make_function}}
+
+\item{shock_par}{an object to configure a shocks function using \link{make_function}}
 }
 \value{
 none
@@ -38,5 +35,6 @@ The number of emerging adults is a function \deqn{\Lambda S(t) T(t)} where
 \item \eqn{\Lambda} or \code{Lambda} is the mean number of adult female mosquitoes emerging per day
 \item \eqn{S(t)} or \code{F_season} is a seasonal signal (ideally, with an average annual mean of 1)
 \item \eqn{T(t)} or \code{F_trend} is a function returning a trend (ideally, with an average value of 1)
+\item \eqn{P(t)} or \code{F_shock} is a function returning a perturbation (by default, set to 1)
 }
 }

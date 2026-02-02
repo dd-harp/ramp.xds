@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_steady.R
 \name{xds_stable_orbit.xde}
 \alias{xds_stable_orbit.xde}
-\title{Compute the stable orbit for a system of differential equations}
+\title{Compute stable orbit for a system of differential equations}
 \usage{
 \method{xds_stable_orbit}{xde}(xds_obj, options = list())
 }

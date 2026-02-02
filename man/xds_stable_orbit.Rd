@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_steady.R
 \name{xds_stable_orbit}
 \alias{xds_stable_orbit}
-\title{Solve for the steady state of a system of equations using \link[rootSolve:steady]{rootSolve::steady}}
+\title{Compute stable orbits}
 \usage{
 xds_stable_orbit(xds_obj, options = list())
 }
@@ -12,8 +12,8 @@ xds_stable_orbit(xds_obj, options = list())
 \item{options}{a list of configurable options}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$xde}
+Run the system for 10 years, and save the last year's orbits.
 }

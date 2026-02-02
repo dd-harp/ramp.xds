@@ -30,7 +30,7 @@ xds_compute_terms.full <- function(t, y, xds_obj) {
   # implement malaria control
   xds_obj <- Health(t, y, xds_obj)
   # implement vector control 
-  xds_obj <- VectorControl(t, y, xds_obj)
+  xds_obj <- VectorControl1(t, y, xds_obj)
   # set the values of resource variables -- 
   xds_obj <- Resources(t, y, xds_obj)
   # blood feeding: available blood hosts, TaR, relative biting rates
@@ -41,7 +41,7 @@ xds_compute_terms.full <- function(t, y, xds_obj) {
   # (including available sugar)
   xds_obj <- BaselineBionomics(t, y, xds_obj)
   # Compute  "independent effect sizes"
-  xds_obj <- VectorControlEffectSizes(t, y, xds_obj)
+  xds_obj <- VectorControl2(t, y, xds_obj)
   # Modify the baseline
   xds_obj <- ModifiedBionomics(t, y, xds_obj)
   # emergence: Lambda
@@ -65,7 +65,7 @@ xds_compute_terms.human <- function(t, y, xds_obj) {
   # malaria control port -- see ramp.control
   xds_obj <- Health(t, y, xds_obj)
   # vector control port -- see ramp.control
-  xds_obj <- VectorControl(t, y, xds_obj)
+  xds_obj <- VectorControl1(t, y, xds_obj)
   # set the values of resource variables
   xds_obj <- Resources(t, y, xds_obj)
   # blood feeding: available blood hosts, TaR, relative biting rates
@@ -75,7 +75,7 @@ xds_compute_terms.human <- function(t, y, xds_obj) {
   xds_obj <- BaselineBionomics(t, y, xds_obj)
   # Compute total effect size assuming
   # "independent effect sizes"
-  xds_obj <- VectorControlEffectSizes(t, y, xds_obj)
+  xds_obj <- VectorControl2(t, y, xds_obj)
   # Modify the baseline
   xds_obj <- ModifiedBionomics(t, y, xds_obj)
   # compute beta, EIR, and kappa
@@ -96,7 +96,7 @@ xds_compute_terms.mosy <- function(t, y, xds_obj){
   # set the values of Exogenous forcing variables
   xds_obj <- Forcing(t, xds_obj)
   # vector control
-  xds_obj <- VectorControl(t, y, xds_obj)
+  xds_obj <- VectorControl1(t, y, xds_obj)
   # set the values of resource variables
   xds_obj <- Resources(t, y, xds_obj)
   # blood feeding: available blood hosts, TaR, relative biting rates
@@ -108,7 +108,7 @@ xds_compute_terms.mosy <- function(t, y, xds_obj){
   xds_obj <- BaselineBionomics(t, y, xds_obj)
   # Compute total effect size assuming
   # "independent effect sizes"
-  xds_obj <- VectorControlEffectSizes(t, y, xds_obj)
+  xds_obj <- VectorControl2(t, y, xds_obj)
   # Modify the baseline
   xds_obj <- ModifiedBionomics(t, y, xds_obj)
   # emergence: compute Lambda
@@ -128,12 +128,12 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
   # set the values of resource variables
   xds_obj <- Resources(t, y, xds_obj)
   # vector control
-  xds_obj <- VectorControl(t, y, xds_obj)
+  xds_obj <- VectorControl1(t, y, xds_obj)
   # Compute baseline mosquito bionomic parameters
   xds_obj <- BaselineBionomics(t, y, xds_obj)
   # Compute total effect size assuming
   # "independent effect sizes"
-  xds_obj <- VectorControlEffectSizes(t, y, xds_obj)
+  xds_obj <- VectorControl2(t, y, xds_obj)
   # Modify the baseline
   xds_obj <- ModifiedBionomics(t, y, xds_obj)
   # egg laying: compute eta
@@ -149,7 +149,7 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
 #' @export
 xds_compute_terms.eir <- function(t, y, xds_obj) {
   # EIR: entomological inoculation rate trace
-  xds_obj$terms$EIR[[1]] <- with(xds_obj$EIR_obj, eir*F_season(t)*F_trend(t)*F_age(t)) 
+  xds_obj$terms$EIR[[1]] <- with(xds_obj$EIR_obj, eir*F_season(t)*F_trend(t)*F_age(t)*F_shock(t)) 
   # FoI: force of infection
   xds_obj <- Exposure(t, y, xds_obj)
   return(xds_obj)  
