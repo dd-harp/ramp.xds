@@ -19,3 +19,4 @@ an \code{xds} object
 \description{
 This function computes the mixing matrix, beta
 }
+\keyword{internal}

@@ -35,3 +35,4 @@ exposure to malaria while traveling, (\eqn{T_\delta}):
 \seealso{
 Related: \link{Exposure} & \link{F_ar.pois} & \link{F_ar.nb} & \link{Travel}
 }
+\keyword{internal}

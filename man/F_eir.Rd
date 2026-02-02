@@ -20,3 +20,4 @@ F_eir(fqZ, beta, local_frac)
 Compute the daily EIR for a set of human population
 strata given the biting density of infective mosquitoes in each patch
 }
+\keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{change_XH_inits.SIS}
 \alias{change_XH_inits.SIS}
-\title{Return the parameters as a list}
+\title{\code{SIS} - Change Initial Values}
 \usage{
 \method{change_XH_inits}{SIS}(xds_obj, i = 1, options = list())
 }
@@ -17,5 +17,18 @@
 an \strong{\code{xds}} object
 }
 \description{
-Return the parameters as a list
+For the \strong{XH} module, \verb{SIS,}
+change the initial value(s) for the variable \eqn{I}.
+
+The argument
+passed as \code{options} should be a named list, and the
+new initial value(s) are set to \code{options$I}
+}
+\note{
+Initial values for human population size,
+the variable \eqn{H}, must be set using \link{change_H}
+}
+\seealso{
+The variable names are returned by calling \link{get_XH_inits}.
+The function \link{make_XH_inits_SIS} is called during setup.
 }

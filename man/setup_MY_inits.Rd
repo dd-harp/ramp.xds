@@ -19,3 +19,4 @@ setup_MY_inits(xds_obj, s, options = list())
 \description{
 This method dispatches on \code{MYname}.
 }
+\keyword{internal}

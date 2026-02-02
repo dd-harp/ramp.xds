@@ -40,3 +40,4 @@ This function is called by \link{compute_Qall}
 
 The availability of traps and bad habitats is setup in \link{setup_ML_interface}
 }
+\keyword{internal}

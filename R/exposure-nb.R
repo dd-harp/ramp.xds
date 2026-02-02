@@ -6,6 +6,7 @@
 #' @return an  **`xds`** object
 #' @export
 #' @seealso Also, see [F_foi.nb] and [F_ar.nb]
+#' @keywords internal
 #'
 setup_exposure.nb <- function(EHname, xds_obj, i=1, options=list()) {
   xds_obj$XY_interface$env_het_obj[[i]] = make_exposure_nb(xds_obj$nStrata, options)
@@ -51,6 +52,7 @@ make_exposure_nb <- function(nStrata, options, sz=1) {
 #' @return a [numeric] vector of length `nStrata`
 #' @seealso Related topics: [Exposure.xde] and [F_ar.nb] and [make_exposure_nb]
 #' @export
+#' @keywords internal
 F_foi.nb <- function(eir, b, env_het_obj){with(env_het_obj,{
   log(1 + b*eir/sz)*sz
 })}
@@ -67,6 +69,7 @@ F_foi.nb <- function(eir, b, env_het_obj){with(env_het_obj,{
 #' @return a [numeric] vector of length `nStrata`
 #' @seealso [F_foi.nb]
 #' @export
+#' @keywords internal
 foi2eir.nb <- function(foi, b, env_het_obj){with(env_het_obj,{
   (exp(foi/sz) - 1)*sz/b
 })}
@@ -89,6 +92,7 @@ foi2eir.nb <- function(foi, b, env_het_obj){with(env_het_obj,{
 #' @return a [numeric] vector of length `nStrata`
 #' @seealso Related topics: [Exposure.dts], [make_exposure_nb] & [F_foi.nb]
 #' @export
+#' @keywords internal
 F_ar.nb <- function(eir, b, env_het_obj){with(env_het_obj,{
   1 - (1+b*eir/sz)^(-sz)
 })}
@@ -99,6 +103,7 @@ F_ar.nb <- function(eir, b, env_het_obj){with(env_het_obj,{
 #' @return a [numeric] vector of length `nStrata`
 #' @seealso [F_ar.nb]
 #' @export
+#' @keywords internal
 ar2eir.nb <- function(ar, b, env_het_obj){with(env_het_obj,{
  ((1-ar)^(-1/sz)-1)*sz/b
 })}

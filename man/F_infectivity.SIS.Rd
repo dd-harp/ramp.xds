@@ -21,3 +21,4 @@ This function computes the fraction of infectious
 bites that cause an infection. The SIS model,
 assumes a constant fraction causes infection, \eqn{b}.
 }
+\keyword{internal}

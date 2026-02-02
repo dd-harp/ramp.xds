@@ -21,3 +21,4 @@ an \strong{\code{xds}} object
 \description{
 This method dispatches on \code{xds_obj$XH_obj[[i]]}.
 }
+\keyword{internal}

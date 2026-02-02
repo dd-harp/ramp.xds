@@ -18,3 +18,4 @@ host available, a \link{vector}
 Relative biting rates translate biting weights into a
 frailty parameter -- a multiplicative term.
 }
+\keyword{internal}

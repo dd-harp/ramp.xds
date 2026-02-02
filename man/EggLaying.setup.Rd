@@ -39,3 +39,4 @@ For \eqn{Q}, see \link{compute_Qall}
 
 For \eqn{N}, see \link{make_habitat_matrix}
 }
+\keyword{internal}

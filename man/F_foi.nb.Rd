@@ -34,3 +34,4 @@ parameterization (see \link{pnbinom}).
 \seealso{
 Related topics: \link{Exposure.xde} and \link{F_ar.nb} and \link{make_exposure_nb}
 }
+\keyword{internal}

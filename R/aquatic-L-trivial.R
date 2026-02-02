@@ -84,6 +84,7 @@ LBionomics.trivial <- function(t, y, xds_obj, s) {
 #' @inheritParams setup_L_obj
 #' @keywords internal
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
   forced_by = "Lambda"
@@ -168,6 +169,7 @@ change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
 #' @inheritParams setup_L_inits
 #' @noRd
 #' @return a [list]
+#' @keywords internal
 #' @export
 setup_L_inits.trivial = function(xds_obj, s, options=list()){
   xds_obj$L_obj[[s]]$inits = list()
@@ -200,6 +202,7 @@ change_L_inits.trivial <- function(xds_obj, s=1, options=list()) {
 #' @inheritParams setup_L_ix
 #' @noRd
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_L_ix.trivial <- function(xds_obj, s) {
   return(xds_obj)

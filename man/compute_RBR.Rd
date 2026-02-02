@@ -19,3 +19,4 @@ an \code{xds} object
 \description{
 Compute the available for the pathogen's hosts for blood feeding
 }
+\keyword{internal}

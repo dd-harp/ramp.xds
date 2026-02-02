@@ -22,3 +22,4 @@ Infectious density
 In the \emph{SIS} model family, infectious
 density is \eqn{cI}.
 }
+\keyword{internal}

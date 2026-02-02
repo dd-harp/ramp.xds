@@ -1,8 +1,13 @@
 #' @title Set Up Exposure 
 #' 
 #' @description Set up the model for 
-#' exposure. The daily
-#' EIR is an expected value, but that expectation
+#' exposure. Current options for `EHname` 
+#' 
+#' + `pois` - a Poisson model 
+#'
+#' + `nb` - a Negative Binomial model family
+#' 
+#' @note The daily EIR is an expected value, but that expectation
 #' can have a distribution in a population. For
 #' example, if the expectation is gamma distributed, 
 #' then we would get a negative binomial distribution
@@ -35,6 +40,7 @@ setup_exposure <- function(EHname, xds_obj, i=1, options=list()){
 #' @return an **`xds`** object
 #' @seealso Cases: [Exposure.xde] & [Exposure.dts]. Related: [F_ar] & [F_foi]
 #' @export
+#' @keywords internal
 Exposure <- function(t, y, xds_obj){
   UseMethod("Exposure", xds_obj$xds)
 }
@@ -58,6 +64,7 @@ Exposure <- function(t, y, xds_obj){
 #' @seealso Related: [Exposure] & [F_foi.pois] & [F_foi.nb] & [Travel]
 #' @return an **`xds`** object
 #' @export
+#' @keywords internal
 Exposure.xde <- function(t, y, xds_obj){
   with(xds_obj$XY_interface,{
     for(i in 1:xds_obj$nHostSpecies){
@@ -91,6 +98,7 @@ Exposure.xde <- function(t, y, xds_obj){
 #' @return an **`xds`** object
 #' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [Travel] 
 #' @export
+#' @keywords internal
 Exposure.dts <- function(t, y, xds_obj){
   with(xds_obj$XY_interface,{
     for(i in 1:xds_obj$nHostSpecies){
@@ -128,6 +136,7 @@ Exposure.dts <- function(t, y, xds_obj){
 #' @return the local FoI as a [numeric] vector of length \eqn{n_h =} `nStrata`
 #' @seealso Cases: [F_foi.pois] & [F_foi.nb]. Related: [Exposure.xde] & [foi2eir]
 #' @export
+#' @keywords internal
 F_foi <- function(eir, b, env_het_obj){
   UseMethod("F_foi", env_het_obj)
 }
@@ -154,6 +163,7 @@ F_foi <- function(eir, b, env_het_obj){
 #' 
 #' @seealso Cases: [F_ar.nb] and [F_ar.pois]. Related: [ar2eir] & [Exposure.dts]
 #' @export
+#' @keywords internal
 F_ar <- function(eir, b, env_het_obj){
   UseMethod("F_ar", env_het_obj)
 }

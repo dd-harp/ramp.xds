@@ -19,3 +19,4 @@ an \code{xds} object
 \description{
 This function computes kappa for each vector species in each patch
 }
+\keyword{internal}

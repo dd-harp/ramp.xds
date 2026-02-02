@@ -30,3 +30,4 @@ calls \verb{make_MY_obj_MYname,} passing
 the \code{options} to set the values of parameters or
 terms.
 }
+\keyword{internal}

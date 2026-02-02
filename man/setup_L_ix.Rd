@@ -17,3 +17,4 @@ an \strong{\code{xds}} object
 \description{
 Set the Values of the Indices for \strong{L} Component Modules
 }
+\keyword{internal}

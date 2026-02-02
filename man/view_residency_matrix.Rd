@@ -20,3 +20,4 @@ Shows the residence membership information (from the residence matrix)
 \seealso{
 \link{make_residency_matrix}
 }
+\keyword{internal}

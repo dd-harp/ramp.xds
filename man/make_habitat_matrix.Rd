@@ -44,3 +44,4 @@ compute_habitat matrix is called by \code{\link[=make_xds_object_template]{make_
 
 see \code{\link[=view_habitat_matrix]{view_habitat_matrix()}}
 }
+\keyword{internal}

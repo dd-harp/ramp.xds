@@ -19,5 +19,6 @@ make_XH_inits_SIS(nStrata, H, options = list(), I = 1)
 a \link{list}
 }
 \description{
-Make initial values for the SIS xde human model, with defaults
+Set the initial values
 }
+\keyword{internal}

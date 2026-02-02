@@ -1,9 +1,9 @@
 ---
-title: "basicL"
+title: "Basic L"
 subtitle: "A Basic Model for Immature Mosquitoes"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{basicL}
+  %\VignetteIndexEntry{Basic L}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

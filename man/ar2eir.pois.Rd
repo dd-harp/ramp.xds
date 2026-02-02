@@ -23,3 +23,4 @@ is \deqn{E = -\frac{\log(1-ar)}{b}}
 \seealso{
 Also, see \link{F_ar.pois}
 }
+\keyword{internal}

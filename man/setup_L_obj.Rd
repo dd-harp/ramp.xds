@@ -27,3 +27,4 @@ should assign default parameter values that will be over-written by \code{option
 \note{
 This method assigns \code{Lname} to class(\code{Lname}) and dispatches on \code{Lname}.
 }
+\keyword{internal}

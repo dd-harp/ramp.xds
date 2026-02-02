@@ -34,3 +34,4 @@ is computed as \deqn{\Psi \cdot (\omega H).}
 \seealso{
 available of all vertebrate hosts for blood feeding is computed by \code{\link[=F_B_available]{F_B_available()}}
 }
+\keyword{internal}

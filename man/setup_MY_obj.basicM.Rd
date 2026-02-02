@@ -21,3 +21,4 @@ a \link{list} vector
 \description{
 Implements \link{setup_MY_obj} for the basicM xde model
 }
+\keyword{internal}

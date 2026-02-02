@@ -6,6 +6,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 Emergence = function(t, y, xds_obj){
   N = xds_obj$ML_interface$habitat_matrix
   for(s in 1:xds_obj$nVectorSpecies)

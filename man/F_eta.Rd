@@ -24,3 +24,4 @@ Computes egg distribution for the aquatic habitats
 \seealso{
 \link{compute_O_matrix}
 }
+\keyword{internal}

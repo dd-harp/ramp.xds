@@ -15,3 +15,4 @@ an \strong{\code{xds}} model object
 \description{
 Run a set of consistency checks for the \code{XY_interface}
 }
+\keyword{internal}

@@ -21,3 +21,4 @@ a \link{numeric} vector of length \code{nPatches}
 \description{
 Compute the net infectiousness of humans in each patch at time \code{t}
 }
+\keyword{internal}

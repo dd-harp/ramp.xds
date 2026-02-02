@@ -95,6 +95,7 @@ F_eggs.RMdts <- function(t, y, xds_obj, s) {
 #' @description Implements [setup_MY_inits] for the RMdts model
 #' @inheritParams setup_MY_inits
 #' @return a [list]
+#' @keywords internal
 #' @export
 setup_MY_inits.RMdts = function(xds_obj, s, options=list()){
   xds_obj$MY_obj[[s]]$inits = with(xds_obj$MY_obj[[s]], make_MY_inits_RMdts(nPatches, max_eip, options))
@@ -130,6 +131,7 @@ make_MY_inits_RMdts = function(nPatches, max_eip, options = list(),
 #' @inheritParams setup_MY_ix
 #' @return a [list]
 #' @importFrom utils tail
+#' @keywords internal
 #' @export
 setup_MY_ix.RMdts <- function(xds_obj, s) {with(xds_obj,{
 

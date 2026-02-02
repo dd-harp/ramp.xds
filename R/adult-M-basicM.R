@@ -144,6 +144,7 @@ Update_MYt.basicM <- function(t, y, xds_obj, s) {
 #' @description Implements [setup_MY_obj] for the basicM xde model
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
   MY_obj <- make_M_obj_basicM(xds_obj$nPatches, options)
@@ -262,6 +263,7 @@ F_eggs.basicM <- function(t, y, xds_obj, s) {
 #' @description Implements [setup_MY_inits] for the basicM model
 #' @inheritParams setup_MY_inits
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_MY_inits.basicM = function(xds_obj, s, options){
   xds_obj$MY_obj[[s]]$inits = make_MY_inits_basicM(xds_obj$nPatches, options)
@@ -334,6 +336,7 @@ change_MY_pars.basicM <- function(xds_obj, s=1, options=list()) {
 #' @inheritParams setup_MY_ix
 #' @return none
 #' @importFrom utils tail
+#' @keywords internal
 #' @export
 setup_MY_ix.basicM <- function(xds_obj, s) {with(xds_obj,{
 

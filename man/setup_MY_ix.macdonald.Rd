@@ -17,3 +17,4 @@ a \link{list}
 \description{
 Implements \link{setup_MY_ix} for the macdonald model.
 }
+\keyword{internal}

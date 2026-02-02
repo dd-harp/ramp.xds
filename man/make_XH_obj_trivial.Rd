@@ -10,9 +10,7 @@ make_XH_obj_trivial(
   kappa = 0.1,
   HPop = 1,
   season_par = makepar_F_one(),
-  trend_par = makepar_F_one(),
-  shock_par = makepar_F_one(),
-  H_trend_par = makepar_F_one()
+  trend_par = makepar_F_one()
 )
 }
 \arguments{
@@ -27,20 +25,10 @@ make_XH_obj_trivial(
 \item{season_par}{parameters to configure a \code{F_season} using \link{make_function}}
 
 \item{trend_par}{parameters to configure \code{F_trend} using \link{make_function}}
-
-\item{shock_par}{parameters to configure \code{F_shock} using \link{make_function}}
-
-\item{H_trend_par}{parameters to configure \code{H_trend} using \link{make_function}}
 }
 \value{
 a \link{list}
 }
 \description{
-The trivial module configures forcing with a seasonal pattern
-\itemize{
-\item \eqn{H = F_H(t)} - human / host population density
-\item \eqn{I = F_I(t)} - human / host infectious density
-}
-
-Since \eqn{\kappa} is the ratio \eqn{I/H}
+Make parameters for trivial human model
 }

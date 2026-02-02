@@ -17,3 +17,4 @@ an \code{xds} object
 \description{
 Make a time at risk matrix (TaR) from a time spent matrix and a circadian function
 }
+\keyword{internal}

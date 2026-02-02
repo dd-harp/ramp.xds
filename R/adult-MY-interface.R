@@ -145,6 +145,7 @@ MBionomics <- function(t, y, xds_obj, s) {
 #' @param s the species index
 #' @param options a [list]
 #' @return [list]
+#' @keywords internal
 #' @export
 setup_MY_obj = function(MYname, xds_obj, s, options=list()){
   class(MYname) <- MYname
@@ -156,6 +157,7 @@ setup_MY_obj = function(MYname, xds_obj, s, options=list()){
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return [list]
+#' @keywords internal
 #' @export
 setup_MY_ix <- function(xds_obj, s) {
   UseMethod("setup_MY_ix", xds_obj$MY_obj[[s]])
@@ -221,6 +223,7 @@ change_MY_pars <- function(xds_obj, s=1, options=list()) {
 #' @param s the species index
 #' @param options a [list]
 #' @return [list]
+#' @keywords internal
 #' @export
 setup_MY_inits = function(xds_obj, s, options=list()){
   UseMethod("setup_MY_inits", xds_obj$MY_obj[[s]])

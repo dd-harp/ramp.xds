@@ -25,3 +25,4 @@ ecology or human / host epidemiology.  In the former case,
 the user configures \code{F_eggs}; in the latter,
 \code{F_fqZ}
 }
+\keyword{internal}

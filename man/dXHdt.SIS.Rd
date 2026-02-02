@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{dXHdt.SIS}
 \alias{dXHdt.SIS}
-\title{Compute derivatives for \code{SIS} (\strong{XH} Module)}
+\title{\code{SIS} Derivatives Function (an \strong{XH} Module)}
 \usage{
 \method{dXHdt}{SIS}(t, y, xds_obj, i)
 }
@@ -19,57 +19,45 @@
 the derivatives, as a vector
 }
 \description{
-Compute the derivatives for SIS compartmental model:
+Computes the derivatives for SIS compartmental model with variables:
 \itemize{
-\item \eqn{S} is the density of susceptible humans (or hosts)
-\item \eqn{I} is the density of infected humans (or hosts)
-\item \eqn{H=S+I}  is human (or host) population density
+\item \eqn{I} - the density of infected humans (or hosts)
+\item \eqn{S} - the density of susceptible humans (or hosts)
+\item \eqn{H} - human (or host) population density
 }
 
-The parameters and terms are:
-\itemize{
-\item \eqn{h} is the force of infection (from )
-\item \eqn{r} is the natural clearance rate for infections
-}
+The model assumes \eqn{S+I=H.} This function computes
+computes \eqn{dH/dt} and \eqn{dI/dt}.
+For convenience, \eqn{S} is also computed
+by \link{get_XH_vars.SIS}
+and \link{parse_XH_orbits.SIS}.
+
+The force of infection or "happenings" rate is \eqn{h}. It is computed
+upstream and used here.
 
 The clearance rate for infections is \eqn{r}, and by assumption,
 individuals are assumed to be susceptible to infection after clearing
 infections.
 
-The \strong{\code{xds}} implementation computes \eqn{dH/dt}
-rather than \eqn{dS/dt.} In the functions \link{get_XH_vars}
-and \link{parse_XH_orbits},
-\eqn{S} is computed as \eqn{S=H-I} and listed as a variable. The
+The module includes a port to model mass treatment, \eqn{\xi(t)}.
+
+\strong{Human Demographic}  change is modeled with two functions:
+\itemize{
+\item \eqn{B(t, H)} is the time-dependent population birth rate;
+\item \eqn{D} is a linear operator, a matrix describing mortality, migration, aging,
+and dynamical transfers among population strata.
+}
+
+The
 derivatives computed are:
 
 \deqn{
 \begin{array}{rl}
 dH/dt = & B(t,H)  + D \cdot H \\
-dI/dt = & h (H-I) - r I +  D \cdot I
+dI/dt = & h (H-I) - r I - \xi(t) +  D \cdot I
 \end{array}
 }
-where \eqn{S=H-I};
-
-\eqn{B(t, H)} is the time-dependent population birth rate; and \eqn{D} is a linear operator, a matrix describing demographic changes,
-including mortality, migration, and aging;
 }
-\note{
-The model has a port to model mass treatment. The mass treatment rate, \eqn{\xi(t),} is a
-function of time. For mass screen and treat, the treatment rate is lowered by the probability
-of detection. In this model, mass treatment has
-the same effect as \eqn{r.} With mass treatment, infection
-dynamics are described by:
-
-\deqn{
-\begin{array}{rl}
-dI/dt = & h (H-I) - (r + \xi(t)) I +  D \cdot I
-\end{array}
-}
-
-The ports for \code{mda} and \code{msat} are
-handled by computing
-\itemize{
-\item \code{r_t = r + mda(t) + d_rdt*msat(t)}
-\item \code{dI <- foi*(H-I) - r_t*I + ...}
-}
+\seealso{
+\href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Dynamics}
 }

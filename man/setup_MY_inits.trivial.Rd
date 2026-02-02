@@ -19,3 +19,4 @@ a \link{list} vector
 \description{
 Implements \link{setup_MY_inits} for the trivial model
 }
+\keyword{internal}

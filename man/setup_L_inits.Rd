@@ -19,3 +19,4 @@ an \strong{\code{xds}} object
 \description{
 This method dispatches on \code{Lname}.
 }
+\keyword{internal}

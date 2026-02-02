@@ -17,3 +17,4 @@ none
 \description{
 Implements \link{setup_XH_ix} for the hybrid MoI model.
 }
+\keyword{internal}

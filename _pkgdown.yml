@@ -36,9 +36,9 @@ navbar:
       href: articles/MosquitoBionomics.html
   - text: Human / Host
     menu:
-    - text: The XH Component 
+    - text: XH Component 
       href: articles/XH-interface.html
-    - text: SIS model
+    - text: SIS Dynamics 
       href: articles/human_sis.html
     - text: MoI hybrid model
       href: articles/human_hmoi.html
@@ -76,7 +76,7 @@ home:
     - dev
 reference:
 - title: Model Building 
-  desc: Set up - Inspect - & Modify Models
+  desc: Set up & Modify Models
 - subtitle: Basic Setup 
   desc: | 
     Build and store **`xds`** model objects
@@ -88,42 +88,7 @@ reference:
   - xds_setup_eir
   - saveXDS 
   - readXDS 
-- subtitle: Modules & Interfaces
-  desc: Functions to set up Modules and Interfaces 
-  contents:
-  - make_xds_object_template
-  - setup_XH_obj  
-  - setup_XH_inits
-  - setup_MY_obj  
-  - setup_MY_inits
-  - setup_L_obj  
-  - setup_L_inits
-  - setup_XY_interface
-  - setup_ML_interface
-- subtitle: XH Modules (Human / Host) 
-  desc: |
-    Modules for human/host demography and epidemiology.  (Also see <a href="https://dd-harp.github.io/ramp.library/" target = "_blank">ramp.library</a>.)
-  contents:
-  - make_XH_obj_trivial 
-  - dXHdt.SIS
-  - dXHdt.hMoI
-  - skill_set_XH
-- subtitle: MY Modules (Adult Mosquitoes)
-  desc: |
-    Modules for adult mosquito ecology and infection dynamics. (Also see <a href="https://dd-harp.github.io/ramp.library/" target = "_blank">ramp.library</a>.)
-  contents:
-  - make_MY_obj_trivial 
-  - dMYdt.macdonald
-  - dMYdt.SI
-  - dMYdt.GeRM
-  - dMYdt.basicM
-- subtitle: L Modules (Immature Mosquitoes)
-  desc: |
-    Modules for aquatic mosquito ecology.  (Also see <a href="https://dd-harp.github.io/ramp.library/" target = "_blank">ramp.library</a>.)
-  contents:
-  - make_L_obj_trivial 
-  - dLdt.basicL
-- subtitle: Advanced Setup Options 
+- subtitle: Advanced Setup 
   desc: |
     Modules for aquatic mosquito ecology
   contents:
@@ -206,44 +171,9 @@ reference:
   desc: |
     Methods to compute terms describing blood feeding and transmission
   contents:
-  - setup_XY_interface
   - check_XY_interface
   - make_residency_matrix
   - view_residency_matrix
-- subtitle: Blood Feeding Interface
-  desc: "Methods for time at risk & blood host availability \n"
-  contents:
-  - blood_feeding_dynamics
-  - change_blood_search_weights
-  - F_W_available 
-  - F_B_available 
-  - compute_WB
-  - compute_RBR
-  - F_rbr 
-  - compute_TaR
-  - F_TaR
-  - BloodFeeding
-  - BloodFeeding.static
-  - BloodFeeding.dynamic
-  - BloodFeeding.setup
-- subtitle: Transmission
-  desc: "Compute beta - EIR - kappa - & local_frac \n"
-  contents:
-  - setup_transmission
-  - transmission_dynamics
-  - compute_beta
-  - F_beta
-  - compute_EIR
-  - compute_EIR_full
-  - F_eir 
-  - compute_kappa
-  - F_kappa
-  - compute_local_frac
-  - F_local_frac
-  - Transmission
-  - Transmission.static
-  - Transmission.dynamic
-  - Transmission.setup
 - subtitle: Time Spent
   desc: |
     Set up Time Spent Matrices
@@ -260,90 +190,27 @@ reference:
   - TimeSpent.setup
   - TimeSpent.static
 - subtitle: Exposure
-  desc: Methods for Environmental Heterogeneity 
+  desc: Environmental Heterogeneity 
   contents:
   - setup_exposure 
-  - Exposure
-  - Exposure.xde
-  - Exposure.dts
-  - F_foi
-  - F_ar
   - foi2eir
   - ar2eir
-- subtitle: Poisson Exposure
-  desc: |
-    Specialized methods the Poisson exposure model
-  contents:
-  - setup_exposure.pois
   - make_exposure_pois 
-  - F_foi.pois
-  - F_ar.pois
-  - foi2eir.pois
-  - ar2eir.pois
-- subtitle: Negative Binomial Exposure
-  desc: |
-    Specialized methods the Negative Binomial exposure model
-  contents:
-  - setup_exposure.nb
   - make_exposure_nb 
-  - F_foi.nb
-  - F_ar.nb
-  - foi2eir.nb
-  - ar2eir.nb
 - title: Habitats & Egg Laying
   desc: Mosquito Population Dynamic Interface 
   contents:
-  - setup_ML_interface
-  - check_ML_interface
   - view_habitat_matrix 
-  - make_habitat_matrix
-  - Emergence
-  - EggLaying
-- subtitle: Habitat Dynamics 
-  desc: |
-    Habitat Dynamics 
-  contents:
-  - setup_habitat_object
   - change_habitat_weights
   - change_bad_habitat
-  - habitat_dynamics 
-  - HabitatDynamics 
-  - HabitatDynamics.setup
-  - HabitatDynamics.static
-  - HabitatDynamics.dynamic
-  - setup_F_habitat_weights 
-  - setup_F_habitat_weights.static
-  - setup_F_habitat_weights.ts_func
-  - setup_F_bad_habitat
-  - setup_F_bad_habitat.static
-  - setup_F_bad_habitat.ts_func
-- subtitle: Egg Laying
+- title: XH Component 
   desc: |
-    Habitat Availability & Egg Distribution 
-  contents:
-  - egg_laying_dynamics 
-  - compute_eggs_laid
-  - F_eta
-  - compute_Qall
-  - F_Q 
-  - F_Qall
-  - compute_O_matrix
-  - make_O_matrix
-  - EggLaying
-  - EggLaying.setup
-  - EggLaying.static
-  - EggLaying.dynamic  
-- title: Human / Host Component 
-  desc: |
-    Generic methods for models of human/host infection dynamics - immunity - disease and transmission
+    Models of human / host infection dynamics - immunity - disease - infectiousness - diagnostics and detection 
   contents:
   - skill_set_XH
   - check_XH
   - dXHdt
   - Update_XHt
-  - setup_XH_obj
-  - setup_XH_inits
-  - setup_XH_ix
   - get_XH_vars
   - get_XH_pars
   - change_XH_pars
@@ -378,10 +245,7 @@ reference:
   - F_infectivity.trivial
   - dXHdt.trivial
   - Update_XHt.trivial
-  - setup_XH_obj.trivial
   - make_XH_obj_trivial
-  - setup_XH_inits.trivial
-  - setup_XH_ix.trivial
   - parse_XH_orbits.trivial
   - get_XH_pars.trivial
   - change_XH_pars.trivial
@@ -391,12 +255,9 @@ reference:
   contents:
   - skill_set_XH.hMoI 
   - dXHdt.hMoI
-  - setup_XH_obj.hMoI
   - make_XH_obj_hMoI
   - steady_state_X.hMoI
-  - setup_XH_inits.hMoI
   - make_XH_inits_hMoI
-  - setup_XH_ix.hMoI
   - F_I.hMoI
   - F_H.hMoI
   - F_infectivity.hMoI
@@ -416,40 +277,19 @@ reference:
   desc: |
     "The SIS (Susceptible-Infected-Susceptible) model of human dynamics"
   contents:
-  - skill_set_XH.SIS
-  - check_XH.SIS
   - dXHdt.SIS
-  - setup_XH_obj.SIS
-  - make_XH_obj_SIS
-  - setup_XH_inits.SIS
-  - make_XH_inits_SIS
-  - setup_XH_ix.SIS
-  - get_XH_vars.SIS
-  - get_XH_pars.SIS
-  - change_XH_pars.SIS
-  - F_I.SIS
-  - F_H.SIS
-  - F_infectivity.SIS
-  - parse_XH_orbits.SIS
   - change_XH_inits.SIS
-  - HTC.SIS
-  - F_prevalence.SIS
-  - F_ni.SIS
-  - F_pfpr_by_lm.SIS
-  - F_pfpr_by_rdt.SIS
-  - F_pfpr_by_pcr.SIS
-  - xds_plot_X.SIS
-  - add_lines_X_SIS
-  - steady_state_X.SIS
+  - change_XH_pars.SIS
+  - get_XH_pars.SIS
 - subtitle: Human Population Dynamics
   desc: |
     Methods for the human demography and aging
   contents:
   - Births
   - Births.zero
-- title: Adult Mosquito Component 
+- title: MY Component 
   desc: |
-    Generic methods for the adult mosquito dynamics component.
+    Adult mosquito ecology and infection dynamics
   contents:
   - skill_set_MY 
   - check_MY 
@@ -460,14 +300,11 @@ reference:
   - F_eggs
   - MBaseline
   - MBionomics
-  - setup_MY_obj
   - get_MY_vars
   - get_MY_pars
   - change_MY_pars
-  - setup_MY_inits
   - get_MY_inits
   - change_MY_inits
-  - setup_MY_ix
   - get_MY_ix
   - parse_MY_orbits
   - steady_state_MY
@@ -523,13 +360,10 @@ reference:
   - Update_MYt.trivial
   - MBaseline.trivial
   - MBionomics.trivial
-  - setup_MY_obj.trivial
   - get_MY_pars.trivial
   - change_MY_pars.trivial
   - change_MY_inits.trivial
   - make_MY_obj_trivial
-  - setup_MY_inits.trivial
-  - setup_MY_ix.trivial
   - parse_MY_orbits.trivial
 - subtitle: basicM
   desc: |
@@ -541,14 +375,11 @@ reference:
   - MBaseline.basicM
   - MBionomics.basicM
   - Update_MYt.basicM
-  - setup_MY_obj.basicM
   - make_M_obj_basicM 
   - F_fqZ.basicM
   - F_fqM.basicM
   - F_eggs.basicM
-  - setup_MY_inits.basicM
   - make_MY_inits_basicM
-  - setup_MY_ix.basicM
   - get_MY_vars.basicM
   - get_MY_pars.basicM
   - change_MY_pars.basicM
@@ -566,7 +397,6 @@ reference:
   - MBaseline.SI
   - MBionomics.SI
   - Update_MYt.SI
-  - setup_MY_obj.SI
   - make_MY_obj_SI
   - F_fqZ.SI
   - F_fqM.SI
@@ -575,9 +405,7 @@ reference:
   - get_MY_pars.SI
   - change_MY_pars.SI
   - change_MY_inits.SI
-  - setup_MY_inits.SI
   - make_MY_inits_SI
-  - setup_MY_ix.SI
   - parse_MY_orbits.SI
   - get_f.SI
   - get_q.SI
@@ -594,7 +422,6 @@ reference:
   - MBaseline.macdonald
   - MBionomics.macdonald
   - steady_state_MY.macdonald
-  - setup_MY_obj.macdonald
   - make_MY_obj_macdonald
   - get_MY_vars.macdonald
   - get_MY_pars.macdonald
@@ -603,9 +430,7 @@ reference:
   - F_fqZ.macdonald
   - F_fqM.macdonald
   - F_eggs.macdonald
-  - setup_MY_inits.macdonald
   - make_MY_inits_macdonald
-  - setup_MY_ix.macdonald
   - parse_MY_orbits.macdonald
   - get_f.macdonald
   - get_q.macdonald
@@ -622,7 +447,6 @@ reference:
   - MBionomics.GeRM
   - Update_MYt.GeRM
   - steady_state_MY.GeRM
-  - setup_MY_obj.GeRM
   - make_MY_obj_GeRM
   - get_MY_vars.GeRM
   - get_MY_pars.GeRM
@@ -631,9 +455,7 @@ reference:
   - F_fqZ.GeRM
   - F_fqM.GeRM
   - F_eggs.GeRM
-  - setup_MY_inits.GeRM
   - make_MY_inits_GeRM
-  - setup_MY_ix.GeRM
   - parse_MY_orbits.GeRM
   - get_f.GeRM
   - get_q.GeRM
@@ -649,12 +471,10 @@ reference:
   - F_fqM.RMdts
   - F_eggs.RMdts
   - Update_MYt.RMdts
-  - setup_MY_inits.RMdts
   - get_MY_vars.RMdts
   - make_MY_inits_RMdts
-  - setup_MY_ix.RMdts
   - parse_MY_orbits.RMdts
-- title: Aquatic Mosquito Component 
+- title: L Component (Immature Mosquitoes)
   desc: |
     Generic methods for the aquatic (immature) mosquito component.
   contents:
@@ -665,23 +485,19 @@ reference:
   - F_emerge
   - LBionomics
   - LBaseline
-  - setup_L_obj
   - get_L_pars
   - change_L_pars
-  - setup_L_inits
   - get_L_vars
   - change_L_inits
   - get_L_inits
-  - setup_L_ix
   - parse_L_orbits
   - steady_state_L
 - subtitle: trivial
   desc: "The trivial model for aquatic dynamics \n"
   contents:
   - skill_set_L.trivial
+  - F_emerge.trivial 
   - check_L.trivial
-  - F_emerge.trivial
-  - setup_L_obj.trivial
   - make_L_obj_trivial
   - change_L_pars.trivial
 - subtitle: basicL
@@ -692,12 +508,10 @@ reference:
   - check_L.basicL
   - dLdt.basicL
   - Update_Lt.basicL
-  - setup_L_obj.basicL
   - make_L_obj_basicL
   - LBionomics.basicL
   - LBaseline.basicL
   - F_emerge.basicL
-  - setup_L_inits.basicL
   - make_L_inits_basicL
   - get_L_vars.basicL
   - get_L_pars.basicL
@@ -1115,14 +929,11 @@ reference:
   - get_sigma.trivial 
   - get_variables 
   - get_variables.na 
-  
   - make_ts_function 
   - One_tV 
   - Zero_tV 
-  
   - setup_traps_object 
   - Traps.none
-  
   - setup_blood_host_object 
   - setup_blood_hosts 
   - setup_blood_hosts.ts_func 

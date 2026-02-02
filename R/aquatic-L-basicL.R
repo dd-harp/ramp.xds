@@ -121,7 +121,6 @@ F_emerge.basicL <- function(t, y, xds_obj, s) {
 #' @description Set **L** component parameters
 #' to baseline values for `basicL`
 #' @inheritParams LBaseline
-#' @keywords internal 
 #' 
 #' @return a **`ramp.xds`** object
 #' @export
@@ -143,7 +142,6 @@ LBaseline.basicL <- function(t, y, xds_obj, s) {
 #' @title Bionomics for `basicL` (**L** Component)
 #' @description Implements [LBionomics] for the `basicL`
 #' @inheritParams LBionomics
-#' @keywords internal 
 #' @return a **`ramp.xds`** object
 #' @export
 LBionomics.basicL <- function(t, y, xds_obj, s) {
@@ -162,6 +160,7 @@ LBionomics.basicL <- function(t, y, xds_obj, s) {
 #' @inheritParams setup_L_obj
 #' @return an **`xds`** object
 #' @seealso [make_L_obj_basicL]
+#' @keywords internal
 #' @export
 setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
   L_obj <- make_L_obj_basicL(xds_obj$nHabitats, options)
@@ -210,7 +209,6 @@ make_L_obj_basicL = function(nHabitats, options=list(), psi=1/8, xi=0, phi=1/8, 
 #' @description Get the **L** component parameters
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @keywords internal
 #' @return a [list]
 #' @seealso [dLdt.basicL] or [change_L_pars.basicL]
 #' @export
@@ -249,6 +247,7 @@ change_L_pars.basicL <- function(xds_obj, s=1, options=list()) {
 #' @inheritParams setup_L_inits
 #' @seealso [make_L_inits_basicL]
 #' @return a [list]
+#' @keywords internal
 #' @export
 setup_L_inits.basicL = function(xds_obj, s, options=list()){
   xds_obj$L_obj[[s]]$inits = make_L_inits_basicL(xds_obj$nHabitats, options)
@@ -292,17 +291,18 @@ change_L_inits.basicL <- function(xds_obj, s=1, options=list()) {
     return(xds_obj)
 }))}
 
-#' @title Setup Variables Indices for `basicL` (**L** Component)
-#' @description Index the **L** component variables
+#' @title Setup Variable Indices for `basicL` (**L** Component)
+#' @description Set the values of the indices for the **L** component variables
 #' for the `basicL` module
 #' @inheritParams setup_L_ix
-#' @keywords internal 
 #' @return an **`xds`** object
+#' @importFrom utils tail
+#' @keywords internal
 #' @export
 setup_L_ix.basicL <- function(xds_obj, s) {with(xds_obj,{
 
   L_ix <- seq(from = max_ix+1, length.out = nHabitats)
-  max_ix <- max(L_ix)
+  max_ix <- tail(L_ix, 1)
 
   xds_obj$max_ix = max_ix
 

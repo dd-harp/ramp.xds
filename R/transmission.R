@@ -9,6 +9,7 @@
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @seealso [make_xds_object_template]
 #' @seealso [setup_XY_interface]
+#' @keywords internal
 #' @export
 setup_transmission <- function(xds_obj){
 
@@ -47,6 +48,7 @@ setup_transmission <- function(xds_obj){
 #' @param wts_f the blood feeding search weights
 #' @param TaR (time at risk), a [matrix]  dimensions `nPatches` by `nStrata`
 #' @return a [matrix] of dimensions `nStrata` by `nPatches`
+#' @keywords internal
 #' @export
 F_beta = function(H, W, wts_f, TaR){
   ix = which(W==0)
@@ -61,6 +63,7 @@ F_beta = function(H, W, wts_f, TaR){
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
+#' @keywords internal
 #' @export
 compute_beta <- function(t, y, xds_obj){
   for(i in 1:xds_obj$nHostSpecies){
@@ -84,6 +87,7 @@ compute_beta <- function(t, y, xds_obj){
 #' @param local_frac is the fraction of bites occurring on residents
 #' @return [numeric] vector of length `nStrata`
 #' @export
+#' @keywords internal
 F_eir <- function(fqZ, beta, local_frac){
   eir = beta %*% (fqZ*local_frac)
   return(as.vector(eir))
@@ -97,6 +101,7 @@ F_eir <- function(fqZ, beta, local_frac){
 #' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 compute_EIR <- function(t, y, xds_obj){
 
   for(i in 1:xds_obj$nHostSpecies){
@@ -125,6 +130,7 @@ compute_EIR <- function(t, y, xds_obj){
 #' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 compute_EIR_full <- function(t, y, xds_obj){
 
   for(i in 1:xds_obj$nHostSpecies){
@@ -158,6 +164,7 @@ compute_EIR_full <- function(t, y, xds_obj){
 #' @param X the infectious density of the strata
 #' @return a [numeric] vector of length `nPatches`
 #' @export
+#' @keywords internal
 F_kappa <- function(Wi, W, beta, X) {
   ix = which(W==0)
   if(length(ix)>0) W[ix]=1
@@ -172,6 +179,7 @@ F_kappa <- function(Wi, W, beta, X) {
 #' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 compute_kappa <- function(t, y, xds_obj){
   for(s in 1:xds_obj$nVectorSpecies){
     Wi = xds_obj$XY_interface$Wi[[s]][[1]]
@@ -205,6 +213,7 @@ compute_kappa <- function(t, y, xds_obj){
 #' @param Visitors availability of visitors
 #' @return the fraction of bites
 #' @export
+#' @keywords internal
 F_local_frac <- function(W, Visitors){
   local_frac = W/(W+Visitors)
   ix = which(W+Visitors == 0)
@@ -217,6 +226,7 @@ F_local_frac <- function(W, Visitors){
 #' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 compute_local_frac <- function(xds_obj){with(xds_obj$XY_interface,{
   for(s in 1:xds_obj$nVectorSpecies){
     xds_obj$vars$local_frac[[s]] = F_local_frac(W[[s]], visitors[[s]])
@@ -231,6 +241,7 @@ compute_local_frac <- function(xds_obj){with(xds_obj$XY_interface,{
 #' @param xds_obj an **`xds`** model object
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 Transmission <- function(t, y, xds_obj){
   UseMethod('Transmission', xds_obj$terms$beta)
 }
@@ -240,6 +251,7 @@ Transmission <- function(t, y, xds_obj){
 #' @inheritParams Transmission
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 Transmission.static <- function(t, y, xds_obj){
   xds_obj = compute_EIR(t, y, xds_obj)
   xds_obj = compute_kappa(t, y, xds_obj)
@@ -251,6 +263,7 @@ Transmission.static <- function(t, y, xds_obj){
 #' @inheritParams Transmission
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 Transmission.dynamic <- function(t, y, xds_obj){
   return(transmission_dynamics(t, y, xds_obj)) 
 }
@@ -262,6 +275,7 @@ Transmission.dynamic <- function(t, y, xds_obj){
 #' @inheritParams Transmission
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 Transmission.setup <- function(t, y, xds_obj){
   class(xds_obj$XY_interface) <- 'static'
   xds_obj <- transmission_dynamics(t, y, xds_obj)
@@ -273,6 +287,7 @@ Transmission.setup <- function(t, y, xds_obj){
 #' @inheritParams Transmission
 #' @return an `xds` object
 #' @export
+#' @keywords internal
 transmission_dynamics <- function(t, y, xds_obj){
   xds_obj = compute_local_frac(xds_obj)
   xds_obj = compute_beta(t, y, xds_obj)

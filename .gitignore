@@ -1,5 +1,12 @@
 # Prerequisites
 *.d
+*.Rd
+*/*.Rd
+*/*/*.Rd
+*.html
+*/*.html
+*.html
+*/*/*.html
 
 # Compiled Object files
 *.slo
@@ -113,8 +120,6 @@ cran-comments.md
 ramp.xds.Rproj
 *.Rproj
 docs/
-
+man/
 docs
-.DS_Store
-/docs
-*.html
+man

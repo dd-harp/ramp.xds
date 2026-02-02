@@ -20,3 +20,4 @@ add_lines_X_SIS(time, XH, nStrata, clrs = c("darkblue", "darkred"), llty = 1)
 \description{
 Add lines for the density of infected individuals for the SIS model
 }
+\keyword{internal}

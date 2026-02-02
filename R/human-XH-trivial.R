@@ -3,25 +3,19 @@
 #' @title The **XH** Module Skill Set 
 #' 
 #' @description The **XH** skill set is a list of 
-#' an module's capabilities. The relevant documentation 
-#' for setup is in [make_XH_obj_trivial]
+#' an module's capabilities 
 #' 
 #'
 #' @inheritParams skill_set_XH  
 #' 
-#' @return the trivial *XH* module skill set, a list 
+#' @return a list describing the skill set 
 #' 
 #' @export
 skill_set_XH.trivial = function(Xname){
   list(
-    H_dynamics = TRUE, 
-    mda        = TRUE, 
-    msat       = TRUE, 
-    malaria    = TRUE, 
-    pr_obs     = TRUE, 
-    pf_lm      = FALSE, 
-    pf_rdt     = FALSE, 
-    pf_pcr     = FALSE
+    demography = FALSE, 
+    prevalence = FALSE, 
+    malaria    = FALSE 
   ) 
 }
 
@@ -36,20 +30,14 @@ check_XH.trivial = function(xds_obj, i){
 }
 
 #' @title Size of effective infectious human population
-#' 
-#' @description The trace function for \eqn{\kappa} follows
-#' the **`ramp.xds`** standard for time series forcing. The
-#' trace function for \eqn{H} can be modified to follow a
-#' trend. Here, \eqn{I = \kappa H}. 
-#' 
+#' @description Implements [F_I] for the trivial model
 #' @inheritParams F_I
-#' 
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_I.trivial <- function(t, y, xds_obj, i) {
   H = F_H(t, y, xds_obj, i)
-  I = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t)*F_shock(t))
-  return(I)
+  X = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t))
+  return(X)
 }
 
 #' @title Size of the human population
@@ -58,8 +46,7 @@ F_I.trivial <- function(t, y, xds_obj, i) {
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_H.trivial <- function(t, y, xds_obj, i) {
-  H = with(xds_obj$XH_obj[[i]],  H*H_trend(t))
-  return(H) 
+  xds_obj$XH_obj[[i]]$H
 }
 
 #' @title Infection blocking pre-erythrocytic immunity
@@ -72,48 +59,35 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 }
 
 #' @title Make parameters for trivial human model
-#' 
-#' @description The trivial module configures forcing with a seasonal pattern
-#' 
-#' + \eqn{H = F_H(t)} - human / host population density 
-#' + \eqn{I = F_I(t)} - human / host infectious density 
-#' 
-#' Since \eqn{\kappa} is the ratio \eqn{I/H} 
-#'  
 #' @param nPatches the number of patches
 #' @param options a [list]
 #' @param kappa net infectiousness
 #' @param HPop initial human population density
 #' @param season_par parameters to configure a `F_season` using [make_function]
 #' @param trend_par parameters to configure `F_trend` using [make_function]
-#' @param shock_par parameters to configure `F_shock` using [make_function]
-#' @param H_trend_par parameters to configure `H_trend` using [make_function]
 #' @return a [list]
 #' @export
 make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
-                               season_par = makepar_F_one(), 
-                               trend_par = makepar_F_one(),
-                               shock_par = makepar_F_one(),
-                               H_trend_par = makepar_F_one()){
+                              season_par = makepar_F_one(), 
+                              trend_par = makepar_F_one()){
   with(options,{
     XH_obj <- list()
     class(XH_obj) <- c('trivial')
     XH_obj$H = checkIt(HPop, nPatches)
     XH_obj$kappa= checkIt(kappa, nPatches)
     
-    XH_obj$season_par = season_par
-    XH_obj$trend_par = trend_par
-    XH_obj$shock_par = shock_par
-    XH_obj$H_trend_par = H_trend_par
+    XH_obj$season_par <- season_par
+    XH_obj$F_season <- make_function(season_par) 
+    
+    XH_obj$trend_par <- trend_par
+    XH_obj$F_trend <- make_function(trend_par) 
 
     return(XH_obj)
   })}
 
-#' @title Handle Derivatives for the `trivial` **XH**-module
-#' 
+#' @title Handle Derivatives for the `trivial` **X**-Module
 #' @description The trivial model has no state variables so it returns
 #' a numeric vector of length 0
-#' 
 #' @inheritParams dXHdt
 #' @return a [numeric] vector
 #' @export
@@ -122,10 +96,8 @@ dXHdt.trivial <- function(t, y, xds_obj, i) {
 }
 
 #' @title Handle State Updating for the `trivial` **X**-Module
-#' 
 #' @description The trivial model has no state variables so it returns
 #' a numeric vector of length 0
-#' 
 #' @inheritParams Update_XHt
 #' @return a [numeric] vector
 #' @export
@@ -185,13 +157,10 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 #' @description Implements [setup_XH_obj] for the trivial model
 #' @inheritParams setup_XH_obj
 #' @return a [list] vectord
+#' @keywords internal
 #' @export
 setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
-  XH <- "XH"
-  class(XH) <- "XH"
-  xds_obj$forced_by = XH
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nPatches, options)
-  xds_obj <- rebuild_forcing_functions(xds_obj, i)
   return(xds_obj)
 }
 
@@ -200,6 +169,7 @@ setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
 #' @description Implements [setup_XH_inits] for the trivial model
 #' @inheritParams setup_XH_inits
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_XH_inits.trivial = function(xds_obj, H, i=1, options=list()){
   return(xds_obj)
@@ -210,6 +180,7 @@ setup_XH_inits.trivial = function(xds_obj, H, i=1, options=list()){
 #' @inheritParams setup_XH_ix
 #' @return none
 #' @importFrom utils tail
+#' @keywords internal
 #' @export
 setup_XH_ix.trivial <- function(xds_obj, i) {
   return(xds_obj)
@@ -248,7 +219,6 @@ get_XH_pars.trivial <- function(xds_obj, i=1) {
     kappa=kappa,
     F_season=F_season,
     F_trend=F_trend,
-    F_shock=F_shock,
   ))
 }
 
@@ -263,7 +233,6 @@ change_XH_pars.trivial <- function(xds_obj, i=1, options=list()) {
     xds_obj$XH_obj[[i]]$kappa = kappa
     xds_obj$XH_obj[[i]]$F_season = F_season
     xds_obj$XH_obj[[i]]$F_trend = F_trend
-    xds_obj$XH_obj[[i]]$F_shock = F_shock
     return(xds_obj)
 }))}
 

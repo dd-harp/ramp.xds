@@ -220,6 +220,7 @@ MBionomics.SI <- function(t, y, xds_obj, s) {
 #' @title Setup MY_obj for the SI model
 #' @description Implements [setup_MY_obj] for the SI model
 #' @inheritParams setup_MY_obj
+#' @keywords internal
 #' @return a [list] vector
 #' @export
 setup_MY_obj.SI = function(MYname, xds_obj, s, options=list()){
@@ -275,6 +276,7 @@ make_MY_obj_SI = function(nPatches, options=list(), eip=12,
 #' @description Implements [setup_MY_ix] for the `SI` model.
 #' @inheritParams setup_MY_ix
 #' @return a [list]
+#' @keywords internal
 #' @importFrom utils tail
 #' @export
 setup_MY_ix.SI <- function(xds_obj, s) {with(xds_obj,{
@@ -358,6 +360,7 @@ change_MY_pars.SI <- function(xds_obj, s=1, options=list()) {
 #' @description Implements [setup_MY_inits] for the `SI` model
 #' @inheritParams setup_MY_inits
 #' @return a [list]
+#' @keywords internal
 #' @export
 setup_MY_inits.SI = function(xds_obj, s, options=list()){
   xds_obj$MY_obj[[s]]$inits = make_MY_inits_SI(xds_obj$nPatches, options)

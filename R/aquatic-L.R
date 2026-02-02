@@ -114,6 +114,7 @@ F_emerge <- function(t, y, xds_obj, s) {
 #' @param options a named list to configure **`L_obj`**
 #' 
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_L_obj = function(Lname, xds_obj, s, options=list()){
   class(Lname) <- Lname
@@ -158,6 +159,7 @@ get_L_vars <- function(y, xds_obj, s) {
 #' @param s the species index
 #' @param options a [list]
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_L_inits = function(xds_obj, s, options=list()){
   UseMethod("setup_L_inits", xds_obj$L_obj[[s]])
@@ -190,6 +192,7 @@ change_L_inits <- function(xds_obj, s=1, options=list()) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_L_ix <- function(xds_obj, s) {
   UseMethod("setup_L_ix", xds_obj$L_obj[[s]])

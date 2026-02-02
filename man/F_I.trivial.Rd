@@ -19,8 +19,5 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-The trace function for \eqn{\kappa} follows
-the \strong{\code{ramp.xds}} standard for time series forcing. The
-trace function for \eqn{H} can be modified to follow a
-trend. Here, \eqn{I = \kappa H}.
+Implements \link{F_I} for the trivial model
 }

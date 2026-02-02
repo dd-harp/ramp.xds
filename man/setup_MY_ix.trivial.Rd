@@ -17,3 +17,4 @@ none
 \description{
 Implements \link{setup_MY_ix} for trivial (forced emergence) model.
 }
+\keyword{internal}

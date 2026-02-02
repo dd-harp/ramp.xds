@@ -22,3 +22,4 @@ Implements \link{ar2eir} for a negative binomial model
 \seealso{
 \link{F_ar.nb}
 }
+\keyword{internal}

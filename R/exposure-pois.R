@@ -5,6 +5,7 @@
 #' 
 #' @return an  **`xds`** object
 #' @export
+#' @keywords internal
 #' @seealso Also, see [F_foi.pois] and [F_ar.pois]
 #'
 setup_exposure.pois <- function(EHname, xds_obj, i=1, options = list()) {
@@ -42,6 +43,7 @@ make_exposure_pois <- function() {
 #' @inheritParams F_foi
 #' @return a [numeric] vector of length `nStrata`
 #' @seealso Related: [F_foi] & [F_ar.pois] & [foi2eir.pois]. Called from [Exposure.xde]
+#' @keywords internal
 #' @export
 F_foi.pois <- function(eir, b, env_het_obj){
   b*eir
@@ -62,6 +64,7 @@ F_foi.pois <- function(eir, b, env_het_obj){
 #' @inheritParams F_ar
 #' @return a [numeric] vector: attack rates for the population strata
 #' @seealso Related: [F_foi] & [F_foi.pois] & [ar2eir.pois]. Called from [Exposure.dts]
+#' @keywords internal
 #' @export
 F_ar.pois <- function(eir, b, env_het_obj){
   1 - exp(-b*eir)
@@ -73,6 +76,7 @@ F_ar.pois <- function(eir, b, env_het_obj){
 #' @inheritParams ar2eir
 #' @return a [numeric] vector of length `nStrata`
 #' @seealso Also, see [F_ar.pois]
+#' @keywords internal
 #' @export
 ar2eir.pois <- function(ar, b, env_het_obj){
   -log(1-ar)/b
@@ -83,6 +87,7 @@ ar2eir.pois <- function(ar, b, env_het_obj){
 #' @inheritParams foi2eir
 #' @return dEIR as a [numeric] vector of length \eqn{n_h=}`nStrata`
 #' @seealso Also, see [F_foi.pois]
+#' @keywords internal
 #' @export
 foi2eir.pois <- function(foi, b, env_het_obj){
    foi/b

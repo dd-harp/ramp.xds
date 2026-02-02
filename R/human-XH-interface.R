@@ -114,6 +114,7 @@ F_infectivity <- function(y, xds_obj, i) {
 #' @param options model options as a named list
 #' 
 #' @return an **`xds`** object
+#' @keywords internal
 #' 
 #' @export
 setup_XH_obj = function(Xname, xds_obj, i, options=list()){
@@ -162,6 +163,7 @@ change_H = function(H, xds_obj, i=1){
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_XH_ix <- function(xds_obj, i) {
   UseMethod("setup_XH_ix", xds_obj$XH_obj[[i]])
@@ -237,6 +239,7 @@ change_XH_pars <- function(xds_obj, i=1, options=list()) {
 #' @param i the host species index
 #' @param options a [list]
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_XH_inits = function(xds_obj, H, i=1, options=list()){
   UseMethod("setup_XH_inits", xds_obj$XH_obj[[i]])

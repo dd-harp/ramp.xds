@@ -304,6 +304,9 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
   geom_line() +
   facet_wrap(. ~ Component, scales = 'free') +
   theme_bw()
+
+#| fig.alt: >
+#|   Plottin orbits for the variables  
 ```
 
 ## Setup Utilities

@@ -35,3 +35,4 @@ pre-erythrocytic immunity
 \seealso{
 Cases: \link{F_ar.nb} and \link{F_ar.pois}. Related: \link{ar2eir} & \link{Exposure.dts}
 }
+\keyword{internal}

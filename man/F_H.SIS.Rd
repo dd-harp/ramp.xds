@@ -21,3 +21,4 @@ Human (host) population density, \eqn{H}
 \description{
 Implements \link{F_H} for the \emph{SIS} module
 }
+\keyword{internal}

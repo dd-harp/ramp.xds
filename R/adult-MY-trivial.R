@@ -106,6 +106,7 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #' @inheritParams setup_MY_obj
 #' 
 #' @return a modified **`xds`** model object
+#' @keywords internal
 #' 
 #' @export
 #' 
@@ -261,6 +262,7 @@ skill_set_MY.trivial = function(MYname){
 #' @description Implements [setup_MY_inits] for the trivial model
 #' @inheritParams setup_MY_inits
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_MY_inits.trivial = function(xds_obj, s, options=list()){
   return(xds_obj)
@@ -270,6 +272,7 @@ setup_MY_inits.trivial = function(xds_obj, s, options=list()){
 #' @description Implements [setup_MY_ix] for trivial (forced emergence) model.
 #' @inheritParams setup_MY_ix
 #' @return none
+#' @keywords internal
 #' @export
 setup_MY_ix.trivial <- function(xds_obj, s) {
   return(xds_obj)

@@ -10,10 +10,9 @@
 \item{Xname}{the \strong{XH} module name}
 }
 \value{
-the trivial \emph{XH} module skill set, a list
+a list describing the skill set
 }
 \description{
 The \strong{XH} skill set is a list of
-an module's capabilities. The relevant documentation
-for setup is in \link{make_XH_obj_trivial}
+an module's capabilities
 }
