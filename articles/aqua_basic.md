@@ -1,4 +1,4 @@
-# basicL
+# Basic L
 
 The basicL_xde competition aquatic mosquito model fulfills the generic
 interface of the aquatic mosquito component. It has a single compartment

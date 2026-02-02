@@ -11,6 +11,12 @@ component)
 
 - \\r\\ is set to `options$r`
 
+- \\d_lm\\ is set to `options$d_lm`
+
+- \\d_rdt\\ is set to `options$d_rdt`
+
+- \\d_pcr\\ is set to `options$d_pcr`
+
 ## Usage
 
 ``` r
@@ -35,3 +41,9 @@ change_XH_pars(xds_obj, i = 1, options = list())
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[`get_XH_pars.SIS()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md)
+and the github.io essay on [SIS
+Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)

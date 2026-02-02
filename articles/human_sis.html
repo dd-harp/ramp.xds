@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>SIS-xde (Susceptible-Infected-Susceptible) Human Model • ramp.xds</title>
+<title>SIS Dynamics: an XH Module • ramp.xds</title>
 <!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
   window.MathJax = {
     chtml: {
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="SIS-xde (Susceptible-Infected-Susceptible) Human Model">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="SIS Dynamics: an XH Module">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -61,8 +61,8 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-human-host">
-<li><a class="dropdown-item" href="../articles/XH-interface.html">The XH Component</a></li>
-    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
+<li><a class="dropdown-item" href="../articles/XH-interface.html">XH Component</a></li>
+    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS Dynamics</a></li>
     <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
@@ -100,7 +100,9 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>SIS-xde (Susceptible-Infected-Susceptible) Human Model</h1>
+      <h1>SIS Dynamics: an XH Module</h1>
+            <h3 data-toc-skip class="subtitle">Generalized SIS
+(Susceptible-Infected-Susceptible) Dynamics</h3>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/human_sis.Rmd" class="external-link"><code>vignettes/human_sis.Rmd</code></a></small>
@@ -109,156 +111,437 @@
 
     
     
-<p>The SIS (Susceptible-Infected-Susceptible) human xde model model
-fulfills the generic interface of the human population component. It is
-the simplest model of endemic diseases in humans.</p>
+<pre><code><span><span class="va">Xname</span> <span class="op">=</span> <span class="st">"SIS"</span></span></code></pre>
+<hr>
+<p><strong>CONTENTS:</strong></p>
+<ul>
+<li>
+<p><strong>Basic Dynamics</strong></p>
+<ul>
+<li><p>the comparment model</p></li>
+<li><p>infectiousness</p></li>
+<li><p>diagnostics and detection</p></li>
+</ul>
+</li>
+<li>
+<p><strong>The <code>SIS</code> Module</strong> - a description of
+the full implementation</p>
+<ul>
+<li><p>mass treatment</p></li>
+<li><p>human demography</p></li>
+<li><p>notation and setup</p></li>
+<li><p>variables</p></li>
+<li><p>dynamics</p></li>
+</ul>
+</li>
+<li>
+<p><strong>Example</strong> - a fully worked example, with tests</p>
+<ul>
+<li><p>using setup</p></li>
+<li><p>another test</p></li>
+<li><p>the long way</p></li>
+</ul>
+</li>
+</ul>
+<hr>
 <div class="section level2">
-<h2 id="section"></h2>
-<p>We subdivide a population into susceptible (<span class="math inline">\(S\)</span>) and infected and infectious (<span class="math inline">\(I\)</span>) individuals, where the total
-population is <span class="math inline">\(H = S+I.\)</span> We assume
-the force of infection (<span class="math inline">\(h\)</span>, FoI) is
-linearly proportional to the EIR: <span class="math inline">\(h = b
-\times EIR.\)</span> In its general form, with births (<span class="math inline">\(B(H)\)</span>) and deaths (at the per-capita rate
-<span class="math inline">\(\mu\)</span>), the generalized SIS_xde
-dynamics are:</p>
+<h2 id="basic-dynamics">Basic Dynamics<a class="anchor" aria-label="anchor" href="#basic-dynamics"></a>
+</h2>
+<p>For the <strong>XH</strong> component, the <strong>SIS</strong>
+(Susceptible-Infected-Susceptible) model implements a basic system of
+differential equations. It is, perhaps, the simplest model for an
+endemic pathogen of humans.</p>
+<p>The model we have implemented is extensible, with terms for human
+demography and mass treatment. Here we present the <strong>SIS</strong>
+model progressively in three steps:</p>
+<hr>
+<div class="float">
+<img src="SIS.png" alt="Fig 1: A Diagram of the Basic SIS Compartment Model"><div class="figcaption">
+<strong>Fig 1</strong>: A Diagram of the Basic
+SIS Compartment Model</div>
+</div>
+<hr>
+<div class="section level3">
+<h3 id="the-compartment-model">The Compartment Model<a class="anchor" aria-label="anchor" href="#the-compartment-model"></a>
+</h3>
+<p>A population is subdivided into susceptible (<span class="math inline">\(S\)</span>) and infected and infectious (<span class="math inline">\(I\)</span>) individuals, where the total
+population is <span class="math inline">\(H = S+I.\)</span></p>
+<ul>
+<li><p>We let <span class="math inline">\(h\)</span> denote the force of
+infection (FoI).</p></li>
+<li><p>We let <span class="math inline">\(r\)</span> denote the
+clearance rate for infections.</p></li>
+</ul>
+<p>The dynamics are described by a pair of equations:</p>
 <p><span class="math display">\[
 \begin{array}{rl}
-\dot{S} &amp;= -h S + rI + B(H) -\mu S\\
-\dot{I} &amp;= h S  - rI - \mu I
+\dot{I} &amp;= h S  - rI  \\
+\dot{S} &amp;= -hS + rI
 \end{array}
 \]</span></p>
-<p>If there is no demographic change, the SIS-xde model can be rewritten
-as a single equation:</p>
+<p>We note that since, <span class="math inline">\(S=H-I,\)</span> if
+<span class="math inline">\(H\)</span> is known, then one of these
+equations is redundant, so instead we compute:</p>
 <p><span class="math display">\[
 \dot{I} = h (H-I) - rI
-\]</span> Even in this simplified form, we are assuming that a
-population could be stratified, such that the variables and parameter
-are all vectors with length <code>nStrata.</code></p>
+\]</span></p>
+<p>Note that if we introduce a change of variables, <span class="math inline">\(x = I/H\)</span>, then if <span class="math inline">\(dH/dt=0,\)</span> the system is equivalent to:</p>
+<p><span class="math display">\[
+\dot{x} = h (1-x) - r x
+\]</span> Pull and Grab (1974)<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;Pull, J. H. &amp;amp; Grab, B. (1974). A simple
+epidemiological model for evaluating the malaria inoculation rate and
+the risk of infection in infants. Bulletin of the World Health
+Organization, 51(5), 507 - 516. &lt;a href="https://iris.who.int/handle/10665/260790" class="external-link uri"&gt;https://iris.who.int/handle/10665/260790&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a> fit a model like this to data describing
+malaria prevalence by age.</p>
+</div>
+<div class="section level3">
+<h3 id="infectiousness">Infectiousness<a class="anchor" aria-label="anchor" href="#infectiousness"></a>
+</h3>
+<p>Infected humans are not fully infectious. We assume that the fraction
+of bloodmeals on infectious humans that infect a mosquito is <span class="math inline">\(c,\)</span> so the fraction of mosquitoes that
+become infected after a human blood meal is <span class="math inline">\(cI/H.\)</span> The infectious density is computed
+as: <span class="math display">\[F_I = c I\]</span></p>
+</div>
+<div class="section level3">
+<h3 id="diagnostics-and-detection">Diagnostics and Detection<a class="anchor" aria-label="anchor" href="#diagnostics-and-detection"></a>
+</h3>
+<p>The probability a human would <em>test positive</em> is q, so while
+true prevalence is <span class="math inline">\(x=I/H,\)</span> observed
+prevalence would be <span class="math inline">\(qI/H.\)</span> The model
+includes three parameters for detection:</p>
+<ul>
+<li><p><code>d_lm</code> - the probability of detecting parasites by
+light microscopy</p></li>
+<li><p><code>d_rdt</code> - the probability of detecting parasites by
+rapid diagnostic test</p></li>
+<li><p><code>d_pcr</code> - the probability of detecting parasites by
+PCR</p></li>
+</ul>
+<p>The model is too simple to get any meaningful insights about
+detection.</p>
+<hr>
+</div>
 </div>
 <div class="section level2">
-<h2 id="equilibrium-solutions">Equilibrium Solutions<a class="anchor" aria-label="anchor" href="#equilibrium-solutions"></a>
+<h2 id="the-sis-module">The <code>SIS</code> Module<a class="anchor" aria-label="anchor" href="#the-sis-module"></a>
 </h2>
-<p>A typical situation when using this model is that <span class="math inline">\(H\)</span> (total population size by strata) and
-<span class="math inline">\(X\)</span> (number of infectious persons by
-strata) are known from census and survey data. Then it is of interest to
-find the value of <span class="math inline">\(EIR\)</span>
-(Entomological Inoculation Rate) which leads to that prevalence at
-equilibrium.</p>
+<div class="section level3">
+<h3 id="mass-treatment">Mass Treatment<a class="anchor" aria-label="anchor" href="#mass-treatment"></a>
+</h3>
+<p>A port was included to simulate mass treatment. In the SIS model,
+mass treatment increases the clearance rate from <span class="math inline">\(r\)</span> to <span class="math inline">\(r +
+\xi(t)\)</span>. After curing an infection, in this model, the humans
+become susceptible to infection again.</p>
 <p><span class="math display">\[
-0 = h \cdot (H-I) - rI
+\dot{I} = h (H-I)  - \left(r+\xi\left(t\right)\right) I
 \]</span></p>
+<p>During basic set up, the function returns no effect: <span class="math inline">\(\xi(t)=0\)</span>. Configuring a mass treatment
+function is handled as an advanced setup option in
+<code>ramp.control</code> (see <a href="https://dd-harp.github.io/ramp.control/articles/MassTreatment.html" class="external-link"><code>ramp.control</code>::Mass
+Treatment</a>)</p>
+</div>
+<div class="section level3">
+<h3 id="human-demography">Human Demography<a class="anchor" aria-label="anchor" href="#human-demography"></a>
+</h3>
+<p>The implementation of the model was generalized to consider human (or
+host) vital dynamics. The generalized system thus includes three
+ports:</p>
+<ul>
+<li><p>The population birth rate, <span class="math inline">\(B(t,
+H)\)</span></p></li>
+<li><p>A constant per-capita rate, <span class="math inline">\(\mu.\)</span> The model does not include a
+parameter to describe disease-induced mortality</p></li>
+<li><p>Dynamic population exchanges among strata, using a
+<em>demographic matrix</em>, <span class="math inline">\(D\)</span>.</p></li>
+</ul>
+<p>For the moment, we set <span class="math inline">\(D\)</span> to be a
+diagonal matrix with <span class="math inline">\(\mu\)</span> on the
+main diagonal. Deaths affect <span class="math inline">\(H\)</span> and
+<span class="math inline">\(I\)</span>, so:</p>
 <p><span class="math display">\[
-\bar I = H \frac{h}{h+r}
+\begin{array}{rl}
+\dot{H} &amp;= B(t, H) - \mu H \\
+\dot{I} &amp;= h (H-I)  - \left(r+\xi\left(t\right)\right) I - \mu I
+\end{array}
 \]</span></p>
+<p>More generally, we are assuming that a population could be
+stratified, such that the variables, terms, and parameter are all
+vectors with length <code>nStrata.</code> Utilities in
+<code>ramp.demog</code> make it possible to simulate dynamic exchanges
+among strata, including aging, and to construct a matrix <span class="math inline">\(D\)</span>.</p>
+</div>
+<div class="section level3">
+<h3 id="notation-and-setup">Notation and Setup<a class="anchor" aria-label="anchor" href="#notation-and-setup"></a>
+</h3>
+<p>The following summarizes the math notation (<em>e.g.</em> <span class="math inline">\(b\)</span>), and <code>name</code> and default
+setup value (<em>e.g.</em> <code>b=0.55</code>) for the parameters and
+ports.</p>
+<ul>
+<li><p><span class="math inline">\(b\)</span> or <code>b=0.55</code> is
+the probability an infective bite on a human causes an infection (used
+by <code>Exposure</code>)</p></li>
+<li><p><span class="math inline">\(E\)</span>: the daily EIR is computed
+elsewhere</p></li>
+<li>
+<p><span class="math inline">\(h\)</span> or <code>foi</code> : the
+daily FoI is a dynamical term</p>
+<ul>
+<li><p>it is computed in <code>Exposure</code> as <span class="math inline">\(h = F_h(b, E)\)</span></p></li>
+<li><p>By default, the FoI is linearly proportional to the EIR: <span class="math inline">\(h = b E\)</span></p></li>
+<li><p>For advanced options, see <a href="Exposure.html%5D">Exposure</a></p></li>
+</ul>
+</li>
+<li><p><span class="math inline">\(r\)</span> or <code>r=1/180</code> is
+the clearance rate</p></li>
+<li><p><span class="math inline">\(c\)</span> or <code>c=0.15</code> is
+the probability a blood meal on an infected human infects the
+mosquito</p></li>
+<li><p><span class="math inline">\(q\)</span> or
+<code>d_lm=d_rdt=0.8</code> or <code>d_pcr = 0.9</code> represent the
+probability an infected person would test positive by light microscopy,
+RDT or PCR</p></li>
+<li>
+<p><span class="math inline">\(\xi(t)\)</span> is either called
+<code>mda(t)</code> or <code>msat(t)</code>: functions implementing mass
+treatment</p>
+<ul>
+<li><p>The function <code>mda(t)</code> implements mass drug
+administration</p></li>
+<li><p>The function <code>msat(t)</code> implements mass screen and
+treat (uses <span class="math inline">\(q\)</span>)</p></li>
+<li><p>Setup for mass treatment is an advanced option in
+<code>ramp.control</code></p></li>
+<li><p>To read more, see <a href="https://dd-harp.github.io/ramp.control/articles/MassTreatment.html" class="external-link"><code>ramp.control</code>::Mass
+Treatment</a></p></li>
+</ul>
+</li>
+<li>
+<p><span class="math inline">\(B(t,H)\)</span> or
+<code>B(t,H) = 0</code>: a function describing the population birth
+rate</p>
+<ul>
+<li><p>The function <span class="math inline">\(B(t, H)\)</span> returns
+<span class="math inline">\(0\)</span> by default.</p></li>
+<li><p>Other functions can be configured as advanced options in
+<code>ramp.demog</code></p></li>
+</ul>
+</li>
+<li>
+<p><span class="math inline">\(D\)</span> or <code>D_matrix=0</code>
+a matrix describing demographic changes in the population not associated
+with disease dynamics, including aging</p>
+<ul>
+<li><p>The <span class="math inline">\(D\)</span> returns the <span class="math inline">\(0\)</span> matrix by default.</p></li>
+<li><p>Other matrices can be configured as advanced options in
+<code>ramp.demog</code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
+</h3>
+<p>The module has two variables:</p>
+<ul>
+<li>
+<p><span class="math inline">\(H\)</span> or <code>H</code> is human
+population density, a vector of length <code>nStrata</code></p>
+<ul>
+<li><p>Since human population size, <span class="math inline">\(H,\)</span> has effects on the blood feeding
+interface, its value must be assigned during setup as
+<code>HPop=...</code></p></li>
+<li><p>The parameter <code>nStrata</code> is set to
+<code>length(HPop)</code></p></li>
+<li><p>There is a function to change <span class="math inline">\(H\)</span> called <code>change_H</code></p></li>
+</ul>
+</li>
+<li>
+<p><span class="math inline">\(I\)</span> or <code>I</code> is the
+density of infected humans, a vector of length <code>nStrata</code></p>
+<ul>
+<li><p>The default initial value is <span class="math inline">\(I=1\)</span></p></li>
+<li><p>The function to change the initial values of <span class="math inline">\(I\)</span> are called by
+<code>change_XH_inits</code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a>
+</h3>
+<p>The derivatives computed by <code>dXHdt.SIS</code> are equivalent
+to:</p>
 <p><span class="math display">\[
-\bar S =  H - \bar I
+\begin{array}{rl}
+\dot{H} &amp;= B(t, H) - D \cdot H \\
+\dot{I} &amp;= h (H-I)  - \left(r+\xi\left(t\right)\right) I - D \cdot I
+\end{array}
 \]</span></p>
+<hr>
+</div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://desolve.r-forge.r-project.org/" class="external-link">deSolve</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridisLite/" class="external-link">viridisLite</a></span><span class="op">)</span></span></code></pre></div>
 <p>Here we run a simple example with 3 population strata at equilibrium.
-We use <code>ramp.xds::make_parameters_X_SIS_xde</code> to set up
-parameters. Please note that this only runs the human population
-component and that most users should read <a href="ex_534.html">our
-fully worked example</a> to run a full simulation.</p>
-<p>We use the null (constant) model of human demography (<span class="math inline">\(H\)</span> constant for all time).</p>
+We use <code>ramp.xds::setup_XH</code> to set up parameters, and
+<code><a href="../reference/setup_XH_inits.html">ramp.xds::setup_XH_inits</a></code> to set the initial values. We
+configure a <code>trace</code> function to force the EIR.</p>
+<p>Interested users should read <a href="ex_534.html">our fully worked
+example</a>.</p>
+<p>First, we define the size of three population strata:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">H</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span>, <span class="fl">250</span><span class="op">)</span></span>
+<span><span class="va">nStrata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">H</span><span class="op">)</span> </span></code></pre></div>
+<p>We use the use the default model of human demography with no births
+or deaths.</p>
+<p>Next, we define the parameter values for all three strata as a named
+list:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.55</span>, <span class="va">nStrata</span><span class="op">)</span> </span>
+<span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="va">nStrata</span><span class="op">)</span> </span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">200</span>, <span class="va">nStrata</span><span class="op">)</span></span></code></pre></div>
+<p>To use these values to build our model, we create a named list:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b<span class="op">=</span><span class="va">b</span>, c<span class="op">=</span><span class="va">c</span>, r<span class="op">=</span><span class="va">r</span><span class="op">)</span></span></code></pre></div>
+<p>We want to set up the model in a way that tests the software. We want
+to set values of the EIR and, knowing what the answer should be, show
+that we get them back. First, we set the values of the FoI, and then we
+compute the EIR:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">foi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">365</span> </span>
+<span><span class="va">eir</span> <span class="op">&lt;-</span> <span class="va">foi</span><span class="op">/</span><span class="va">b</span> </span></code></pre></div>
+<p>The equilibrium values we should get back after running the equations
+to steady state are <span class="math inline">\(I = H h
+/(h+r)\)</span></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">I_eq</span> <span class="op">=</span> <span class="va">H</span><span class="op">*</span><span class="va">foi</span><span class="op">/</span><span class="op">(</span><span class="va">foi</span><span class="op">+</span><span class="va">r</span><span class="op">)</span> </span>
+<span><span class="va">I_eq</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1]  35.39823 261.43791 155.44041</span></span></code></pre>
+<p>First, we use <code>xds_setup</code> and next, we do it the long
+way</p>
+<div class="section level3">
+<h3 id="using-setup">Using Setup<a class="anchor" aria-label="anchor" href="#using-setup"></a>
+</h3>
+<p>To set up the model, we simply do this:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup_eir.html">xds_setup_eir</a></span><span class="op">(</span><span class="va">eir</span>, Xname<span class="op">=</span><span class="st">"SIS"</span>, HPop<span class="op">=</span><span class="va">H</span>, XHoptions <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_SIS</span></span></code></pre></div>
+<p>To solve it, we do this:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS</span> </span></code></pre></div>
+<p>We plot the prevalence over time:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">clrs</span> <span class="op">=</span> <span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS</span>, clr<span class="op">=</span><span class="va">clrs</span><span class="op">)</span></span></code></pre></div>
+<p><img src="human_sis_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="672"></p>
+<p>If we set the initial values of <span class="math inline">\(I\)</span> to the steady state values, the
+variables shouldn’t change at all. To change the values, we simply add
+them to the list</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">test_SIS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_XH_inits.html">change_XH_inits</a></span><span class="op">(</span><span class="va">test_SIS</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>I<span class="op">=</span><span class="va">I_eq</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS</span> </span>
+<span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS</span>, clr<span class="op">=</span><span class="va">clrs</span><span class="op">)</span></span></code></pre></div>
+<p><img src="human_sis_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="672"></p>
+<p>Or we can use the <code>get_XH_out</code> function to get the values
+of the orbits. This gets the return values and pulls of the the values
+of <span class="math inline">\(I\)</span> at the last time step:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_XH_out.html">get_XH_out</a></span><span class="op">(</span><span class="va">test_SIS</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">XH2</span></span>
+<span><span class="va">I_last</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">XH2</span><span class="op">$</span><span class="va">I</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">I_last</span></span></code></pre></div>
+<pre><code><span><span class="co">##               4        5        6</span></span>
+<span><span class="co">## [366,] 35.39823 261.4379 155.4404</span></span></code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">XH2</span><span class="op">$</span><span class="va">I</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="va">I_eq</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="another-test">Another Test<a class="anchor" aria-label="anchor" href="#another-test"></a>
+</h3>
+<p>If we set <span class="math inline">\(I(0) = 0\)</span>, the simple
+model has a closed form solution:</p>
+<p><span class="math display">\[
+I(t) = H (1-e^{-(h+r) t}) \frac{h}{h+r}
+\]</span> We can reset the initial conditions and solve the system of
+differential equations:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">test_SIS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_XH_inits.html">change_XH_inits</a></span><span class="op">(</span><span class="va">test_SIS</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>I<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS</span> </span>
+<span><span class="va">Itest</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_XH_out.html">get_XH_out</a></span><span class="op">(</span><span class="va">test_SIS</span>, <span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">I</span> </span>
+<span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS</span>, clr<span class="op">=</span><span class="va">clrs</span><span class="op">)</span></span></code></pre></div>
+<p><img src="human_sis_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="672"></p>
+<p>…and we can compute the exact solutions for the same values of <span class="math inline">\(t\)</span>:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_XH_out.html">get_XH_out</a></span><span class="op">(</span><span class="va">test_SIS</span>, <span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">time</span></span>
+<span><span class="va">It</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">366</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">ss</span> <span class="op">=</span> <span class="va">H</span><span class="op">*</span><span class="va">foi</span><span class="op">/</span><span class="op">(</span><span class="va">r</span><span class="op">+</span><span class="va">foi</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">It</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="va">H</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="va">r</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">foi</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">*</span><span class="va">t</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="va">foi</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">/</span><span class="op">(</span><span class="va">foi</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">r</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>The summing over all the squared differences is less than <span class="math inline">\(10^{-6}.\)</span></p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">It</span><span class="op">-</span><span class="va">Itest</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-6</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+</div>
 <div class="section level3">
 <h3 id="the-long-way">The Long Way<a class="anchor" aria-label="anchor" href="#the-long-way"></a>
 </h3>
-<p>To set up systems of differential equations, we must set the values
-of all our parameters.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">nStrata</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
-<span><span class="va">H</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span>, <span class="fl">250</span><span class="op">)</span></span>
-<span><span class="va">residence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span> </span>
+<p>To set up systems of differential equations the long way, we must
+walk through several steps.</p>
+<p>First we make an empty <code>xds</code> object, called
+<code>params</code>:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">residence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span> </span>
 <span><span class="va">nPatches</span><span class="op">=</span><span class="fl">1</span></span>
 <span><span class="va">nHabitats</span><span class="op">=</span><span class="fl">1</span></span>
 <span><span class="va">membership</span><span class="op">=</span><span class="fl">1</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_xds_object_template.html">make_xds_object_template</a></span><span class="op">(</span><span class="st">"ode"</span>, <span class="st">"eir"</span>, <span class="va">nPatches</span>, <span class="va">membership</span>, <span class="va">residence</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.55</span>, <span class="va">nStrata</span><span class="op">)</span> </span>
-<span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="va">nStrata</span><span class="op">)</span> </span>
-<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">200</span>, <span class="va">nStrata</span><span class="op">)</span> </span>
-<span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b<span class="op">=</span><span class="va">b</span>, c<span class="op">=</span><span class="va">c</span>, r<span class="op">=</span><span class="va">r</span><span class="op">)</span></span>
-<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_XH_obj.html">setup_XH_obj</a></span><span class="op">(</span><span class="st">"SIS"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Xo</span><span class="op">)</span></span>
+<p>Next, we build the <code>SIS</code> model and set the initial
+values.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_XH_obj.html">setup_XH_obj</a></span><span class="op">(</span><span class="st">"SIS"</span>, <span class="va">params</span>, <span class="fl">1</span>, <span class="va">Xo</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_XH_inits.html">setup_XH_inits</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">H</span>, <span class="fl">1</span>, <span class="va">Xo</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">foi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">365</span> </span>
-<span><span class="va">eir</span> <span class="op">&lt;-</span> <span class="va">foi</span><span class="op">/</span><span class="va">b</span> </span>
-<span><span class="fu"><a href="../reference/steady_state_X.html">steady_state_X</a></span><span class="op">(</span><span class="va">foi</span>, <span class="va">H</span>, <span class="va">params</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">ss</span></span>
-<span><span class="va">ss</span></span></code></pre></div>
-<pre><code><span><span class="co">## $S</span></span>
-<span><span class="co">## [1]  64.60177 238.56209  94.55959</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $I</span></span>
-<span><span class="co">## [1]  35.39823 261.43791 155.44041</span></span></code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">MYo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>MYm <span class="op">=</span> <span class="va">eir</span><span class="op">*</span><span class="va">H</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Xo</span><span class="op">$</span><span class="va">S</span><span class="op">=</span><span class="va">ss</span><span class="op">$</span><span class="va">S</span></span>
-<span><span class="va">Xo</span><span class="op">$</span><span class="va">I</span><span class="op">=</span><span class="va">ss</span><span class="op">$</span><span class="va">I</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p>Now, we must set up the other components as trivial objects.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_MY_obj.html">setup_MY_obj</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_L_obj.html">setup_L_obj</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_L_inits.html">setup_L_inits</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">F_s</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">0</span><span class="op">*</span><span class="va">t</span><span class="op">+</span><span class="fl">1</span><span class="op">}</span></span>
-<span><span class="va">F_t</span><span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">0</span><span class="op">*</span><span class="va">t</span><span class="op">+</span><span class="fl">1</span><span class="op">}</span></span>
-<span><span class="va">F_a</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">{</span><span class="fl">0</span><span class="op">*</span><span class="va">a</span><span class="op">+</span><span class="fl">1</span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p>We must set up the trace function.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span> </span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">eir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">eir</span><span class="op">)</span></span>
+<span><span class="va">F1</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span><span class="fl">0</span><span class="op">*</span><span class="va">t</span><span class="op">+</span><span class="fl">1</span><span class="op">}</span></span>
 <span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">scale</span> <span class="op">&lt;-</span> <span class="fl">1</span> </span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_season</span> <span class="op">&lt;-</span> <span class="va">F_s</span></span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_trend</span> <span class="op">&lt;-</span> <span class="va">F_t</span></span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_shock</span> <span class="op">&lt;-</span> <span class="va">F_t</span></span>
-<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_age</span> <span class="op">&lt;-</span> <span class="va">F_a</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_season</span> <span class="op">=</span> <span class="va">F1</span></span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_trend</span> <span class="op">=</span> <span class="va">F1</span></span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_age</span> <span class="op">=</span> <span class="va">F1</span></span>
+<span><span class="va">params</span><span class="op">$</span><span class="va">EIR_obj</span><span class="op">$</span><span class="va">F_shock</span> <span class="op">=</span> <span class="va">F1</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Xo</span><span class="op">$</span><span class="va">S</span><span class="op">=</span><span class="va">H</span> </span>
-<span><span class="va">Xo</span><span class="op">$</span><span class="va">I</span><span class="op">=</span><span class="va">H</span><span class="op">*</span><span class="fl">0</span></span>
-<span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/setup_XH_inits.html">setup_XH_inits</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">H</span>, <span class="fl">1</span>, options <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span></span>
-<span><span class="va">y0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span></span>
-<span><span class="va">y0</span><span class="op">$</span><span class="va">X</span></span></code></pre></div>
-<pre><code><span><span class="co">## $H</span></span>
-<span><span class="co">## [1] 100 500 250</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $I</span></span>
-<span><span class="co">## [1] 0 0 0</span></span></code></pre>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<p>Now, we set up the intitial values:</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">params</span> <span class="op">=</span> <span class="fu"><a href="../reference/setup_XH_inits.html">setup_XH_inits</a></span><span class="op">(</span><span class="va">params</span>, <span class="va">H</span>, <span class="fl">1</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>I<span class="op">=</span><span class="va">I_eq</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>and finally, we solve:</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span> </span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">clrs</span> <span class="op">=</span> <span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
-<span><span class="va">XH</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_XH_out.html">get_XH_out</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
+<p>and we end up at the same thing.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">XH</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_XH_out.html">get_XH_out</a></span><span class="op">(</span><span class="va">params</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">XH</span>,<span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">true_pr</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, col <span class="op">=</span> <span class="va">clrs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">true_pr</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, col <span class="op">=</span> <span class="va">clrs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="st">"Prevalence"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">true_pr</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, col <span class="op">=</span> <span class="va">clrs</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">true_pr</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, col <span class="op">=</span><span class="va">clrs</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">true_pr</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, col <span class="op">=</span><span class="va">clrs</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span>  </span></code></pre></div>
-<p><img src="human_sis_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level3">
-<h3 id="using-setup">Using Setup<a class="anchor" aria-label="anchor" href="#using-setup"></a>
-</h3>
-<p>We have developed utilities for setting up models. We pass the
-parameter values and initial values as lists:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup_eir.html">xds_setup_eir</a></span><span class="op">(</span><span class="va">eir</span>, Xname<span class="op">=</span><span class="st">"SIS"</span>, HPop<span class="op">=</span><span class="va">H</span>, XHoptions <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_SIS_xde</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS_xde</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS_xde</span> </span>
-<span><span class="fu"><a href="../reference/get_XH_out.html">get_XH_out</a></span><span class="op">(</span><span class="va">test_SIS_xde</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">XH2</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">XH</span><span class="op">$</span><span class="va">true_pr</span><span class="op">-</span><span class="va">XH2</span><span class="op">$</span><span class="va">true_pr</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 0</span></span></code></pre>
+<p><img src="human_sis_files/figure-html/unnamed-chunk-24-1.png" class="r-plt" alt="" width="672"></p>
 </div>
 </div>
+
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>

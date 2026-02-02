@@ -61,8 +61,8 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-human-host">
-<li><a class="dropdown-item" href="../articles/XH-interface.html">The XH Component</a></li>
-    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS model</a></li>
+<li><a class="dropdown-item" href="../articles/XH-interface.html">XH Component</a></li>
+    <li><a class="dropdown-item" href="../articles/human_sis.html">SIS Dynamics</a></li>
     <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
@@ -111,88 +111,22 @@ in a Modular Framework</h3>
 
     
     
-<p>In this short vignette, we explain how
-<strong><code>ramp.xds</code></strong> was designed to handle the
-challenges of implementing delay differential equations.</p>
-<hr>
-<p><strong>Solving</strong></p>
-<p>To solve systems of delay differential equations, we need to use
-<code>deSolve::dede.</code> For ordinary differential equations, we use
-<code>deSolve::ode.</code> Discrete time systems don’t use
-<code>deSolve.</code> To handle all these differences, the
-<code>xds_obj</code> includes two objects: <code>xds_obj$xds</code> and
-<code>xds_obj$xde</code> that are used to dispatch functions that must
-handle ordinary and delay equations and discrete time systems in
-different ways.</p>
-<hr>
-<p><strong>Computing Lagged Values of Terms</strong></p>
-<p>There was a design challenge for implementing modularity in systems
-of delay differential equations. In modular software, a term can be
-computed anywhere, but the lagged values of that term must be stored
-somehow and retrieved in the function that computes the derivatives. The
-design principle is to internalize the computation of terms with a lag.
-The design solution involves the function
-<code>deSolve::lagderiv.</code> To compute the value of any lagged term,
-generically <span class="math inline">\(v,\)</span> a dummy variable is
-added, <span class="math inline">\(V,\)</span> where <span class="math inline">\(dV/dt = v.\)</span> Indexing for dummy variables
-is handled by the module. In computing the derivatives, the value
-<code>lagderiv</code> for <span class="math inline">\(V(t-\tau)\)</span>
-returns the value <span class="math inline">\(v(t-\tau).\)</span></p>
-<p>Discrete time systems present a different challenge, but the same
-principle gets applied. An object stores a many lagged values of the
-variables or terms as needed.</p>
-<p>The lagged values before runtime use initial values. (If you know a
-better way to handle this, please write me!)</p>
-<hr>
-<div class="section level2">
-<h2 id="a-lagged-value-example">A Lagged Value Example<a class="anchor" aria-label="anchor" href="#a-lagged-value-example"></a>
-</h2>
-<p>A model published by Aron and May in 1982 includes terms to describe
-the dynamics of infected (<span class="math inline">\(Y\)</span>) and
-infectious (<span class="math inline">\(Z\)</span>) mosquitoes. It is
-system of delay differential equations. To write it down, we let the
-subscript <span class="math inline">\(\tau\)</span> denote the value of
-a quantity at time <span class="math inline">\(t-\tau;\)</span> for
-example, <span class="math inline">\(Y_\tau = Y(t-\tau).\)</span></p>
-<p><span class="math display">\[
-\begin{array}{rl}
-\frac{dY}{dt} &amp;= f q \kappa(M-Y) - g Y \\
-\frac{dZ}{dt} &amp;= f q \kappa_\tau \left(M_\tau -Y_\tau \right) - g Z
-\end{array}
-\]</span></p>
-<p>To implement this, we would need the value of <span class="math inline">\(\kappa_\tau\)</span> and of <span class="math inline">\(M_\tau\)</span>, and <span class="math inline">\(Y_\tau.\)</span> In the software implementation
-<span class="math inline">\(M\)</span> and <span class="math inline">\(Y\)</span> are variables, so we can use
-<code>deSolve::lagvalue,</code> but the value of <span class="math inline">\(\kappa\)</span> is computed and stored in
-<code>Transmission.</code> One solution (let’s call it the external
-design solution for lagged values) is to handle lagged terms when they
-are computed, so <code>Transmission</code> would compute and store <span class="math inline">\(\kappa_\tau.\)</span></p>
-<p>To extend the implementation to handle non-autonomous systems, we
-must be able to handle time-varying bionomic parameters, where the
-values of the parameters could be modified by weather, vector control,
-or something else. This extended non-autonomous system is:</p>
-<p><span class="math display">\[
-\begin{array}{rl}
-\frac{dY}{dt} &amp;= f q \kappa(M-Y) - g Y \\
-\frac{dZ}{dt} &amp;= f_\tau q_\tau \kappa_\tau \left(M_\tau -Y_\tau
-\right) - g Z
-\end{array}
-\]</span></p>
-<p>To implement this, we would need to know <span class="math inline">\(f_\tau q_\tau \kappa_\tau.\)</span> In the
-external design solution for lagged values, software would need to store
-<span class="math inline">\(f_\tau\)</span> and <span class="math inline">\(q_\tau.\)</span> If those terms relied on other
-variables, the computation and storage problem for lagged values would
-proliferate.</p>
-<p>The internal design solution for lagged values creates a dummy
-variable, <span class="math inline">\(V\)</span>, where <span class="math display">\[dV/dt = f q \kappa.\]</span> In the module
-implementation, the variable <span class="math inline">\(V\)</span> is
-indexed in the same way as the other variables. It is computed in
-<code>dMYdt</code> just like the other variables. In the function call,
-<code><a href="https://rdrr.io/pkg/deSolve/man/timelags.html" class="external-link">deSolve::lagderiv</a></code> is called to retrieve the lagged value
-<span class="math inline">\(f_\tau q_\tau \kappa_\tau\)</span> which is
-the lagged derivative of the variable <code>V.</code></p>
-</div>
-  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
-    </nav></aside>
+<p>This software is designed to handle delay differential equations.
+Solving delay differential equations requires computing lagged values of
+variables, parameters or terms.</p>
+<p>The values of variables can be computed by
+<code>deSolve::lagvalue,</code> but in a modular framework, the need to
+compute lagged values of parameters computed by other modules presented
+a design challenge.</p>
+<p>A decision was made to internalize computation of any lagged terms
+through the creation of <em>accessory variables.</em> For every lagged
+term <span class="math inline">\(x(t-\tau)\)</span>, an accessory
+variable <span class="math inline">\(X\)</span> was created such that
+<span class="math display">\[\frac{dX}{dt} = x.\]</span> The variable
+<span class="math inline">\(X\)</span> is indexed and initialized like
+other dependent variables. Lagged values of <span class="math inline">\(x\)</span> are a simple call to
+<code><a href="https://rdrr.io/pkg/deSolve/man/timelags.html" class="external-link">deSolve::lagderiv</a></code> for <span class="math inline">\(X.\)</span></p>
+  </main>
 </div>
 
 

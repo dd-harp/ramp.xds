@@ -17,7 +17,7 @@ skill_set_XH(Xname = "SIS")
 
 ## Value
 
-the `SIS` *XH* module skill set, a list
+the skill set, as a list
 
 ## Note
 

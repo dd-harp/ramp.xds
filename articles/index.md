@@ -4,7 +4,7 @@
 
 - [Macdonald's
   Model](https://dd-harp.github.io/ramp.xds/articles/adult_RM.md):
-- [basicL](https://dd-harp.github.io/ramp.xds/articles/aqua_basic.md):
+- [Basic L](https://dd-harp.github.io/ramp.xds/articles/aqua_basic.md):
 - [Emergence](https://dd-harp.github.io/ramp.xds/articles/aqua_trace.md):
 - [Basic
   Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.md):
@@ -32,8 +32,8 @@
   History](https://dd-harp.github.io/ramp.xds/articles/History.md):
 - [Hybrid MoI (Multiplicity of Infection) Human
   Model](https://dd-harp.github.io/ramp.xds/articles/human_hmoi.md):
-- [SIS-xde (Susceptible-Infected-Susceptible) Human
-  Model](https://dd-harp.github.io/ramp.xds/articles/human_sis.md):
+- [SIS Dynamics: an XH
+  Module](https://dd-harp.github.io/ramp.xds/articles/human_sis.md):
 - [The L
   Component](https://dd-harp.github.io/ramp.xds/articles/L-interface.md):
 - [Progressive Model

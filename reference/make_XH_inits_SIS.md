@@ -1,6 +1,6 @@
 # Make initial values for the SIS xde human model, with defaults
 
-Make initial values for the SIS xde human model, with defaults
+Set the initial values
 
 ## Usage
 

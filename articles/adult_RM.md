@@ -312,6 +312,12 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
 
 ![](adult_RM_files/figure-html/unnamed-chunk-12-1.png)
 
+``` r
+
+#| fig.alt: >
+#|   Plottin orbits for the variables  
+```
+
 ### Setup Utilities
 
 In the vignette above, we set up a function to solve the differential

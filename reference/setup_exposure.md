@@ -1,13 +1,10 @@
 # Set Up Exposure
 
-Set up the model for exposure. The daily EIR is an expected value, but
-that expectation can have a distribution in a population. For example,
-if the expectation is gamma distributed, then we would get a negative
-binomial distribution of bites per person.
+Set up the model for exposure. Current options for `EHname`
 
-Note that
-[Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)
-handles local exposure and exposure while traveling separately.
+- `pois` - a Poisson model
+
+- `nb` - a Negative Binomial model family
 
 ## Usage
 
@@ -36,3 +33,14 @@ setup_exposure(EHname, xds_obj, i = 1, options = list())
 ## Value
 
 an **`xds`** object
+
+## Note
+
+The daily EIR is an expected value, but that expectation can have a
+distribution in a population. For example, if the expectation is gamma
+distributed, then we would get a negative binomial distribution of bites
+per person.
+
+Note that
+[Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)
+handles local exposure and exposure while traveling separately.

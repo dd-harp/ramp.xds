@@ -1,8 +1,6 @@
-# Get *SIS* model parameters
+# Get *SIS* module parameters
 
-Parameter values for the \\i^{th}\\ host are stored as
-`xds_obj$XH_obj[[i]]`. This returns the stored parameter values as a
-list.
+Returns the stored parameter values as a list.
 
 ## Usage
 
@@ -24,3 +22,8 @@ get_XH_pars(xds_obj, i = 1)
 ## Value
 
 SIS model parameters
+
+## Note
+
+Parameter values for the \\i^{th}\\ host are stored as
+`xds_obj$XH_obj[[i]]`.

@@ -1,4 +1,4 @@
-# Handle Derivatives for the `trivial` **XH**-module
+# Handle Derivatives for the `trivial` **X**-Module
 
 The trivial model has no state variables so it returns a numeric vector
 of length 0

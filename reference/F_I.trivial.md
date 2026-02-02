@@ -1,8 +1,7 @@
 # Size of effective infectious human population
 
-The trace function for \\\kappa\\ follows the **`ramp.xds`** standard
-for time series forcing. The trace function for \\H\\ can be modified to
-follow a trend. Here, \\I = \kappa H\\.
+Implements [F_I](https://dd-harp.github.io/ramp.xds/reference/F_I.md)
+for the trivial model
 
 ## Usage
 
