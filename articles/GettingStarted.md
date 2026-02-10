@@ -99,6 +99,15 @@ get_XH_pars(model)
     ## 
     ## $r
     ## [1] 0.005555556
+    ## 
+    ## $d_lm
+    ## [1] 0.8
+    ## 
+    ## $d_rdt
+    ## [1] 0.8
+    ## 
+    ## $d_pcr
+    ## [1] 0.9
 
 Functions like `get_XH_pars` are designed to help users get to know the
 model oject. In this case, the parameters are stored as
@@ -155,6 +164,15 @@ get_XH_pars(model1)
     ## 
     ## $r
     ## [1] 0.005555556
+    ## 
+    ## $d_lm
+    ## [1] 0.8
+    ## 
+    ## $d_rdt
+    ## [1] 0.8
+    ## 
+    ## $d_pcr
+    ## [1] 0.9
 
 In the `SIS` model, we set \\H=S+I,\\ so the software computes \\dH/dt\\
 and \\dI/dt\\ and sets \\S=H-I.\\ By policy, the software computes the

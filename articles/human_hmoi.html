@@ -40,7 +40,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
-    <li><a class="dropdown-item" href="../articles/Working.html">Working with the Model Object</a></li>
+    <li><a class="dropdown-item" href="../articles/Working.html">The xds Model Object</a></li>
     <li><a class="dropdown-item" href="../articles/ex_534.html">The 5-3-4 Model</a></li>
     <li><a class="dropdown-item" href="../articles/Delays.html">Delay Equations</a></li>
     <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
@@ -159,7 +159,7 @@ into the other components.</p>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://desolve.r-forge.r-project.org/" class="external-link">deSolve</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tpetzoldt/deSolve/" class="external-link">deSolve</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridisLite/" class="external-link">viridisLite</a></span><span class="op">)</span></span></code></pre></div>
 <p>Here we run a simple example with 3 population strata at equilibrium.
 We use <code>ramp.xds::make_parameters_X_hMoI_xde</code> to set up

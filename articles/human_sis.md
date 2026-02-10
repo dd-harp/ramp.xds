@@ -6,27 +6,29 @@
 
 **CONTENTS:**
 
-- **Basic Dynamics**
+- **Basic Dynamics / Basic Setup**
 
-  - the comparment model
+  - the `SIS` comparment model
+
+  - exposure
 
   - infectiousness
 
-  - diagnostics and detection
+  - diagnostics & detection
 
-- **The `SIS` Module** - a description of the full implementation
+  - basic setup
 
-  - mass treatment
+- **A Port: Mass Treatment**
 
-  - human demography
+- **Human Demography**
 
-  - notation and setup
+- **The `SIS` Module**
 
   - variables
 
-  - dynamics
+  - derivatives
 
-- **Example** - a fully worked example, with tests
+- **Example**
 
   - using setup
 
@@ -41,10 +43,6 @@
 For the **XH** component, the **SIS** (Susceptible-Infected-Susceptible)
 model implements a basic system of differential equations. It is,
 perhaps, the simplest model for an endemic pathogen of humans.
-
-The model we have implemented is extensible, with terms for human
-demography and mass treatment. Here we present the **SIS** model
-progressively in three steps:
 
 ------------------------------------------------------------------------
 
@@ -77,8 +75,30 @@ equations is redundant, so instead we compute:
 Note that if we introduce a change of variables, \\x = I/H\\, then if
 \\dH/dt=0,\\ the system is equivalent to:
 
-\\ \dot{x} = h (1-x) - r x \\ Pull and Grab (1974)[¹](#fn1) fit a model
-like this to data describing malaria prevalence by age.
+\\ \dot{x} = h (1-x) - r x \\
+
+We note that Pull and Grab (1974)[¹](#fn1) fit a model like this to data
+describing malaria prevalence by age.
+
+### Exposure
+
+The module handles exposure as part of the standard interface (see
+[Exposure](https://dd-harp.github.io/ramp.xds/articles/Exposure.md)). In
+a nutshell:
+
+- \\E\\: the daily EIR is computed for each population stratum
+
+- \\b\\ is the probability an infective bite on a human causes an
+  infection
+
+- \\h\\ or `foi` : the daily FoI is a dynamical term
+
+  - it is computed in `Exposure` as \\h = F_h(b, E)\\
+
+  - By default, the FoI is linearly proportional to the EIR: \\h = b E\\
+
+For advanced options, see
+[Exposure](https://dd-harp.github.io/ramp.xds/articles/Exposure.html%5D)
 
 ### Infectiousness
 
@@ -93,25 +113,65 @@ The probability a human would *test positive* is q, so while true
 prevalence is \\x=I/H,\\ observed prevalence would be \\qI/H.\\ The
 model includes three parameters for detection:
 
-- `d_lm` - the probability of detecting parasites by light microscopy
-
-- `d_rdt` - the probability of detecting parasites by rapid diagnostic
-  test
-
-- `d_pcr` - the probability of detecting parasites by PCR
-
 The model is too simple to get any meaningful insights about detection.
+
+### Basic Setup
+
+The following summarizes the math notation (*e.g.* \\b\\), and `name`
+and default setup value (*e.g.* `b=0.55`) for the parameters and ports.
+
+- \\b\\ or `b=0.55` is the probability an infective bite on a human
+  causes an infection
+
+- \\r\\ or `r=1/180` is the clearance rate
+
+- \\c\\ or `c=0.15` is the probability a blood meal on an infected human
+  infects the mosquito
+
+- \\q\\ ix the probability an infected person would test positive. The
+  default is to provide *Pf*PR estimates by light microscopy, RDT or
+  PCR:
+
+  - `d_lm=0.8` - the probability of detecting parasites by light
+    microscopy
+
+  - `d_rdt=0.8` - the probability of detecting parasites by rapid
+    diagnostic test
+
+  - `d_pcr=0.9` - the probability of detecting parasites by PCR
+
+``` r
+library(ramp.xds)
+mod <- xds_setup(Xname = "SIS") 
+get_XH_pars(mod)
+```
+
+    ## $b
+    ## [1] 0.55
+    ## 
+    ## $c
+    ## [1] 0.15
+    ## 
+    ## $r
+    ## [1] 0.005555556
+    ## 
+    ## $d_lm
+    ## [1] 0.8
+    ## 
+    ## $d_rdt
+    ## [1] 0.8
+    ## 
+    ## $d_pcr
+    ## [1] 0.9
 
 ------------------------------------------------------------------------
 
-## The `SIS` Module
+## Mass Treatment
 
-### Mass Treatment
-
-A port was included to simulate mass treatment. In the SIS model, mass
-treatment increases the clearance rate from \\r\\ to \\r + \xi(t)\\.
-After curing an infection, in this model, the humans become susceptible
-to infection again.
+The module includes a port to simulate mass treatment. In the SIS model,
+mass treatment increases the clearance rate from \\r\\ to \\r +
+\xi(t)\\. After curing an infection, in this model, the humans become
+susceptible to infection again.
 
 \\ \dot{I} = h (H-I) - \left(r+\xi\left(t\right)\right) I \\
 
@@ -120,7 +180,20 @@ Configuring a mass treatment function is handled as an advanced setup
 option in `ramp.control` (see [`ramp.control`::Mass
 Treatment](https://dd-harp.github.io/ramp.control/articles/MassTreatment.html))
 
-### Human Demography
+- \\\xi(t)\\ is either called `mda(t)` or `msat(t)`: functions
+  implementing mass treatment
+
+  - The function `mda(t)` implements mass drug administration
+
+  - The function `msat(t)` implements mass screen and treat using
+    detection parameters (see above)
+
+- Setup for mass treatment is an advanced option in `ramp.control`
+
+To read more, see [`ramp.control`::Mass
+Treatment](https://dd-harp.github.io/ramp.control/articles/MassTreatment.html)
+
+## Human Demography
 
 The implementation of the model was generalized to consider human (or
 host) vital dynamics. The generalized system thus includes three ports:
@@ -130,74 +203,26 @@ host) vital dynamics. The generalized system thus includes three ports:
 - A constant per-capita rate, \\\mu.\\ The model does not include a
   parameter to describe disease-induced mortality
 
-- Dynamic population exchanges among strata, using a *demographic
-  matrix*, \\D\\.
+\\ \dot{H} = B(t, H) - \mu H \\
 
-For the moment, we set \\D\\ to be a diagonal matrix with \\\mu\\ on the
-main diagonal. Deaths affect \\H\\ and \\I\\, so:
+In `ramp.demog`, we have implemented a generalized system called
+*principled stratification* making it possible model aging, migration,
+and dynamical exchanges among strata. After setup, all these dynamics
+are combined in a single demographic matrix \\D\\. The implementation is
+thus more general:
 
-\\ \begin{array}{rl} \dot{H} &= B(t, H) - \mu H \\ \dot{I} &= h (H-I) -
-\left(r+\xi\left(t\right)\right) I - \mu I \end{array} \\
+\\ \dot{H} = B(t, H) - D \cdot H \\
 
-More generally, we are assuming that a population could be stratified,
-such that the variables, terms, and parameter are all vectors with
-length `nStrata.` Utilities in `ramp.demog` make it possible to simulate
-dynamic exchanges among strata, including aging, and to construct a
-matrix \\D\\.
-
-### Notation and Setup
-
-The following summarizes the math notation (*e.g.* \\b\\), and `name`
-and default setup value (*e.g.* `b=0.55`) for the parameters and ports.
-
-- \\b\\ or `b=0.55` is the probability an infective bite on a human
-  causes an infection (used by `Exposure`)
-
-- \\E\\: the daily EIR is computed elsewhere
-
-- \\h\\ or `foi` : the daily FoI is a dynamical term
-
-  - it is computed in `Exposure` as \\h = F_h(b, E)\\
-
-  - By default, the FoI is linearly proportional to the EIR: \\h = b E\\
-
-  - For advanced options, see
-    [Exposure](https://dd-harp.github.io/ramp.xds/articles/Exposure.html%5D)
-
-- \\r\\ or `r=1/180` is the clearance rate
-
-- \\c\\ or `c=0.15` is the probability a blood meal on an infected human
-  infects the mosquito
-
-- \\q\\ or `d_lm=d_rdt=0.8` or `d_pcr = 0.9` represent the probability
-  an infected person would test positive by light microscopy, RDT or PCR
-
-- \\\xi(t)\\ is either called `mda(t)` or `msat(t)`: functions
-  implementing mass treatment
-
-  - The function `mda(t)` implements mass drug administration
-
-  - The function `msat(t)` implements mass screen and treat (uses \\q\\)
-
-  - Setup for mass treatment is an advanced option in `ramp.control`
-
-  - To read more, see [`ramp.control`::Mass
-    Treatment](https://dd-harp.github.io/ramp.control/articles/MassTreatment.html)
+By default, the model is implemented with static population dynamics:
 
 - \\B(t,H)\\ or `B(t,H) = 0`: a function describing the population birth
   rate
 
-  - The function \\B(t, H)\\ returns \\0\\ by default.
+- \\D\\ or `D_matrix=0,` where \\0\\ is a matrix of zeros.
 
-  - Other functions can be configured as advanced options in
-    `ramp.demog`
+Other functions can be configured as advanced options in `ramp.demog.`
 
-- \\D\\ or `D_matrix=0` a matrix describing demographic changes in the
-  population not associated with disease dynamics, including aging
-
-  - The \\D\\ returns the \\0\\ matrix by default.
-
-  - Other matrices can be configured as advanced options in `ramp.demog`
+## The `SIS` Module
 
 ### Variables
 
@@ -220,7 +245,7 @@ The module has two variables:
   - The function to change the initial values of \\I\\ are called by
     `change_XH_inits`
 
-### Dynamics
+### The Derivatives
 
 The derivatives computed by `dXHdt.SIS` are equivalent to:
 
@@ -230,12 +255,6 @@ The derivatives computed by `dXHdt.SIS` are equivalent to:
 ------------------------------------------------------------------------
 
 ## Example
-
-``` r
-library(ramp.xds)
-library(deSolve)
-library(viridisLite)
-```
 
 Here we run a simple example with 3 population strata at equilibrium. We
 use `ramp.xds::setup_XH` to set up parameters, and
@@ -310,11 +329,11 @@ xds_solve(test_SIS)-> test_SIS
 We plot the prevalence over time:
 
 ``` r
-clrs = turbo(5)[c(1,2,5)]
+clrs = viridisLite::turbo(5)[c(1,2,5)]
 xds_plot_PR(test_SIS, clr=clrs)
 ```
 
-![](human_sis_files/figure-html/unnamed-chunk-10-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-9-1.png)
 
 If we set the initial values of \\I\\ to the steady state values, the
 variables shouldn’t change at all. To change the values, we simply add
@@ -326,7 +345,7 @@ xds_solve(test_SIS)-> test_SIS
 xds_plot_PR(test_SIS, clr=clrs)
 ```
 
-![](human_sis_files/figure-html/unnamed-chunk-11-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-10-1.png)
 
 Or we can use the `get_XH_out` function to get the values of the orbits.
 This gets the return values and pulls of the the values of \\I\\ at the
@@ -361,7 +380,7 @@ Itest = get_XH_out(test_SIS, 1)$I
 xds_plot_PR(test_SIS, clr=clrs)
 ```
 
-![](human_sis_files/figure-html/unnamed-chunk-14-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-13-1.png)
 
 …and we can compute the exact solutions for the same values of \\t\\:
 
@@ -381,80 +400,6 @@ sum((It-Itest)^2) < 1e-6
 ```
 
     ## [1] TRUE
-
-### The Long Way
-
-To set up systems of differential equations the long way, we must walk
-through several steps.
-
-First we make an empty `xds` object, called `params`:
-
-``` r
-residence <- rep(1,3) 
-nPatches=1
-nHabitats=1
-membership=1
-params <- make_xds_object_template("ode", "eir", nPatches, membership, residence)
-```
-
-Next, we build the `SIS` model and set the initial values.
-
-``` r
-params <- setup_XH_obj("SIS", params, 1, Xo)
-params <- setup_XH_inits(params, H, 1, Xo)
-```
-
-Now, we must set up the other components as trivial objects.
-
-``` r
-params <- setup_MY_obj("trivial", params, 1)
-params <- setup_L_obj("trivial", params, 1)
-params <- setup_L_inits(params, 1)
-params <- make_indices(params)
-```
-
-We must set up the trace function.
-
-``` r
-params$EIR_obj = list() 
-params$EIR_obj$eir <- as.vector(eir)
-F1 = function(t){0*t+1}
-params$EIR_obj$scale <- 1 
-params$EIR_obj$F_season = F1
-params$EIR_obj$F_trend = F1
-params$EIR_obj$F_age = F1
-params$EIR_obj$F_shock = F1
-```
-
-``` r
-params = make_indices(params)
-```
-
-Now, we set up the intitial values:
-
-``` r
-params = setup_XH_inits(params, H, 1, options = list(I=I_eq))
-```
-
-and finally, we solve:
-
-``` r
-params <- xds_solve(params) 
-```
-
-and we end up at the same thing.
-
-``` r
-XH <- get_XH_out(params, 1)
-
-with(XH,{
-  plot(time, true_pr[,1], col = clrs[1], ylim = c(0,1), ylab = "Prevalence", type = "l")
-  lines(time, true_pr[,2], col = clrs[2])
-  lines(time, true_pr[,3], col =clrs[3])
-})  
-```
-
-![](human_sis_files/figure-html/unnamed-chunk-24-1.png)
 
 ------------------------------------------------------------------------
 
