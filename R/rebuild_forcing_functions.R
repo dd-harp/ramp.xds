@@ -36,7 +36,7 @@ rebuild_forcing_functions.eir = function(xds_obj, ix=1){
   with(xds_obj$EIR_obj,{
     xds_obj$EIR_obj$F_season = make_function(season_par) 
     xds_obj$EIR_obj$F_trend = make_function(trend_par) 
-    xds_obj$EIR_obj$F_age = make_function(age_par) 
+    xds_obj$EIR_obj$F_age = make_function(age_par)
     xds_obj$EIR_obj$F_shock = make_function(shock_par) 
     return(xds_obj)
 })}

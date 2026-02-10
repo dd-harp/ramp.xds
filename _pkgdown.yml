@@ -10,7 +10,7 @@ navbar:
       href: articles/GettingStarted.html
     - text: Basic Setup
       href: articles/BasicSetup.html
-    - text: Working with the Model Object
+    - text: The xds Model Object
       href: articles/Working.html
     - text: The 5-3-4 Model 
       href: articles/ex_534.html

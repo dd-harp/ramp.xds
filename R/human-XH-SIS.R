@@ -170,7 +170,8 @@ change_XH_pars.SIS <- function(xds_obj, i=1, options=list()) {
 #' @return SIS model parameters 
 #' @export
 get_XH_pars.SIS <- function(xds_obj, i=1) {
-  with(xds_obj$XH_obj[[i]],list(b=b, c=c, r=r))
+  with(xds_obj$XH_obj[[i]],list(b=b, c=c, r=r, 
+                                d_lm=d_lm, d_rdt=d_rdt, d_pcr=d_pcr))
 }
 
 #' @title Add indices for human population to parameter list
