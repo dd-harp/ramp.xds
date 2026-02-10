@@ -1,0 +1,58 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.6 Chrome/140.0.7339.249 Electron/38.8.0 Safari/537.36" version="29.3.6">
+  <diagram name="Page-1" id="CDZNiSLZkCPvFjkzEOfV">
+    <mxGraphModel dx="1018" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;1.928ex&quot; height=&quot;1.545ex&quot; role=&quot;img&quot; viewBox=&quot;0 -683 852 683&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; style=&quot;vertical-align: 0px;&quot;&gt;&lt;defs&gt;&lt;path id=&quot;MJX-1-TEX-I-1D44B&quot; d=&quot;M42 0C64 2 101 2 142 2C182 2 223 1 261 1C278 1 278 3 282 19C284 26 285 32 285 36C285 43 282 46 273 46C270 46 264 47 261 47C243 51 232 61 232 72C232 78 237 87 240 90C241 93 428 299 429 299L476 181C501 117 522 64 523 64C523 63 515 58 506 54C494 50 481 47 468 46C452 45 451 45 446 25C443 11 442 10 445 6C447 2 448 1 461 1C498 1 534 2 589 2C645 2 676 1 711 1C723 1 725 2 727 6C728 9 734 32 734 38C734 45 728 46 699 46C658 47 646 49 638 56C629 65 505 383 505 384L592 480C640 533 680 577 682 579C684 580 686 582 687 584C689 585 694 590 698 594C731 621 770 635 824 637L840 637C844 641 852 661 852 672C852 677 848 680 845 683L837 683C825 680 760 680 738 680C713 680 633 681 618 683L606 683C600 677 600 678 596 664C592 647 592 645 596 641C599 638 600 637 609 637C613 636 620 635 622 635C635 631 644 623 646 614C647 603 644 598 615 567C604 554 571 517 541 485L488 426L411 620L413 621C422 629 445 635 465 637C477 637 480 638 482 642C485 645 489 665 489 673C489 681 486 682 473 682C432 682 390 681 347 681C303 681 260 681 226 683L212 683C206 677 207 680 202 664C197 644 199 644 206 637L234 637C276 636 290 633 297 625C302 620 411 342 411 342C412 341 202 110 190 98C158 66 115 48 55 46C34 45 34 46 29 27C27 19 26 14 26 11C26 3 31 0 42 0Z&quot;&gt;&lt;/path&gt;&lt;/defs&gt;&lt;g stroke=&quot;currentColor&quot; fill=&quot;currentColor&quot; stroke-width=&quot;0&quot; transform=&quot;scale(1,-1)&quot;&gt;&lt;g data-mml-node=&quot;math&quot; data-latex=&quot;X&quot;&gt;&lt;g data-mml-node=&quot;mi&quot; data-latex=&quot;X&quot;&gt;&lt;use data-c=&quot;1D44B&quot; xlink:href=&quot;#MJX-1-TEX-I-1D44B&quot;&gt;&lt;/use&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;State&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="120" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="\(Y\)&amp;nbsp;&lt;div&gt;&lt;br class=&quot;Apple-interchange-newline&quot;&gt;State&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="280" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-3" edge="1" parent="1" source="KFT7uR7vYE-Vs_i-cavg-1" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="420" y="330" as="sourcePoint" />
+            <mxPoint x="280" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="r" vertex="1">
+          <mxGeometry height="30" width="60" x="200" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;" value="\(\frac{dX}{dt} = - r X\)&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="105" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;" value="\(\frac{dY}{dt} =&amp;nbsp; r X\)&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="250" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;1.928ex&quot; height=&quot;1.545ex&quot; role=&quot;img&quot; viewBox=&quot;0 -683 852 683&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; style=&quot;vertical-align: 0px;&quot;&gt;&lt;defs&gt;&lt;path id=&quot;MJX-1-TEX-I-1D44B&quot; d=&quot;M42 0C64 2 101 2 142 2C182 2 223 1 261 1C278 1 278 3 282 19C284 26 285 32 285 36C285 43 282 46 273 46C270 46 264 47 261 47C243 51 232 61 232 72C232 78 237 87 240 90C241 93 428 299 429 299L476 181C501 117 522 64 523 64C523 63 515 58 506 54C494 50 481 47 468 46C452 45 451 45 446 25C443 11 442 10 445 6C447 2 448 1 461 1C498 1 534 2 589 2C645 2 676 1 711 1C723 1 725 2 727 6C728 9 734 32 734 38C734 45 728 46 699 46C658 47 646 49 638 56C629 65 505 383 505 384L592 480C640 533 680 577 682 579C684 580 686 582 687 584C689 585 694 590 698 594C731 621 770 635 824 637L840 637C844 641 852 661 852 672C852 677 848 680 845 683L837 683C825 680 760 680 738 680C713 680 633 681 618 683L606 683C600 677 600 678 596 664C592 647 592 645 596 641C599 638 600 637 609 637C613 636 620 635 622 635C635 631 644 623 646 614C647 603 644 598 615 567C604 554 571 517 541 485L488 426L411 620L413 621C422 629 445 635 465 637C477 637 480 638 482 642C485 645 489 665 489 673C489 681 486 682 473 682C432 682 390 681 347 681C303 681 260 681 226 683L212 683C206 677 207 680 202 664C197 644 199 644 206 637L234 637C276 636 290 633 297 625C302 620 411 342 411 342C412 341 202 110 190 98C158 66 115 48 55 46C34 45 34 46 29 27C27 19 26 14 26 11C26 3 31 0 42 0Z&quot;&gt;&lt;/path&gt;&lt;/defs&gt;&lt;g stroke=&quot;currentColor&quot; fill=&quot;currentColor&quot; stroke-width=&quot;0&quot; transform=&quot;scale(1,-1)&quot;&gt;&lt;g data-mml-node=&quot;math&quot; data-latex=&quot;X&quot;&gt;&lt;g data-mml-node=&quot;mi&quot; data-latex=&quot;X&quot;&gt;&lt;use data-c=&quot;1D44B&quot; xlink:href=&quot;#MJX-1-TEX-I-1D44B&quot;&gt;&lt;/use&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;State&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="122.5" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="\(Y\)&amp;nbsp;&lt;div&gt;&lt;br class=&quot;Apple-interchange-newline&quot;&gt;State&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="282.5" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-12" edge="1" parent="1" source="KFT7uR7vYE-Vs_i-cavg-13" style="endArrow=blockThin;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=oval;startFill=1;endFill=1;jumpStyle=none;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="422.5" y="570" as="sourcePoint" />
+            <mxPoint x="282.5" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;" value="\(\frac{dX}{dt} = - X(t-\tau)\)&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="155" x="85" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;" value="\(\frac{dY}{dt} =&amp;nbsp; X(t-\tau)\)&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="250" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-16" edge="1" parent="1" source="KFT7uR7vYE-Vs_i-cavg-10" style="endArrow=blockThin;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=oval;startFill=1;endFill=1;jumpStyle=none;" target="KFT7uR7vYE-Vs_i-cavg-13" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="202.5" y="360" as="sourcePoint" />
+            <mxPoint x="282.5" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KFT7uR7vYE-Vs_i-cavg-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="\(\tau\)" vertex="1">
+          <mxGeometry height="30" width="30" x="252.5" y="345" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
