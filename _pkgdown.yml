@@ -38,7 +38,7 @@ navbar:
     menu:
     - text: XH Component 
       href: articles/XH-interface.html
-    - text: SIS Dynamics 
+    - text: The SIS Module 
       href: articles/human_sis.html
     - text: MoI hybrid model
       href: articles/human_hmoi.html

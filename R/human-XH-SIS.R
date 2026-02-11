@@ -88,9 +88,9 @@ setup_XH_obj.SIS = function(Xname, xds_obj, i, options=list()){
 #' @param b transmission probability (efficiency) from mosquito to human
 #' @param c transmission probability (efficiency) from human to mosquito
 #' @param r recovery rate
-#' @param d_lm detection by light microscopy  
-#' @param d_rdt detection by RDT 
-#' @param d_pcr detection by pcr 
+#' @param q_lm detection by light microscopy  
+#' @param q_rdt detection by RDT 
+#' @param q_pcr detection by pcr 
 #' 
 #' @return an **XH** model object
 #' @keywords internal 
@@ -98,7 +98,7 @@ setup_XH_obj.SIS = function(Xname, xds_obj, i, options=list()){
 #' @export
 make_XH_obj_SIS = function(nStrata, options=list(),
                              b=0.55, r=1/180, c=0.15,
-                             d_lm =0.8, d_rdt=0.8, d_pcr=0.9){
+                             q_lm =0.8, q_rdt=0.8, q_pcr=0.9){
   with(options,{
     XH_obj = list()
     class(XH_obj) <- "SIS"
@@ -106,9 +106,9 @@ make_XH_obj_SIS = function(nStrata, options=list(),
     XH_obj$b = checkIt(b, nStrata)
     XH_obj$c = checkIt(c, nStrata)
     XH_obj$r = checkIt(r, nStrata)
-    XH_obj$d_lm = checkIt(d_lm, nStrata)
-    XH_obj$d_rdt = checkIt(d_rdt, nStrata)
-    XH_obj$d_pcr = checkIt(d_pcr, nStrata)
+    XH_obj$q_lm = checkIt(q_lm, nStrata)
+    XH_obj$q_rdt = checkIt(q_rdt, nStrata)
+    XH_obj$q_pcr = checkIt(q_pcr, nStrata)
     
     # Ports for demographic models
     XH_obj$D_matrix = diag(0, nStrata) 
@@ -132,9 +132,9 @@ make_XH_obj_SIS = function(nStrata, options=list(),
 #' + \eqn{b} is set to `options$b`
 #' + \eqn{c} is set to `options$c`
 #' + \eqn{r} is set to `options$r`
-#' + \eqn{d_lm} is set to `options$d_lm`
-#' + \eqn{d_rdt} is set to `options$d_rdt`
-#' + \eqn{d_pcr} is set to `options$d_pcr`
+#' + \eqn{q_lm} is set to `options$q_lm`
+#' + \eqn{q_rdt} is set to `options$q_rdt`
+#' + \eqn{q_pcr} is set to `options$q_pcr`
 #'  
 #' @inheritParams change_XH_pars 
 #' 
@@ -149,9 +149,9 @@ change_XH_pars.SIS <- function(xds_obj, i=1, options=list()) {
     xds_obj$XH_obj[[i]]$b <- b
     xds_obj$XH_obj[[i]]$c <- c
     xds_obj$XH_obj[[i]]$r <- r
-    xds_obj$XH_obj[[i]]$d_lm <- d_lm
-    xds_obj$XH_obj[[i]]$d_rdt <- d_rdt
-    xds_obj$XH_obj[[i]]$d_pcr <- d_pcr
+    xds_obj$XH_obj[[i]]$q_lm <- q_lm
+    xds_obj$XH_obj[[i]]$q_rdt <- q_rdt
+    xds_obj$XH_obj[[i]]$q_pcr <- q_pcr
     return(xds_obj)
   }))}
 
@@ -171,7 +171,7 @@ change_XH_pars.SIS <- function(xds_obj, i=1, options=list()) {
 #' @export
 get_XH_pars.SIS <- function(xds_obj, i=1) {
   with(xds_obj$XH_obj[[i]],list(b=b, c=c, r=r, 
-                                d_lm=d_lm, d_rdt=d_rdt, d_pcr=d_pcr))
+                                q_lm=q_lm, q_rdt=q_rdt, q_pcr=q_pcr))
 }
 
 #' @title Add indices for human population to parameter list
@@ -414,7 +414,7 @@ check_XH.SIS = function(xds_obj, i){
 #' @keywords internal
 #' @export
 F_pfpr_by_lm.SIS <- function(vars, XH_obj) {
-  pr = with(XH_obj, with(vars, d_lm*I/H))
+  pr = with(XH_obj, with(vars, q_lm*I/H))
   return(pr)
 }
 
@@ -425,7 +425,7 @@ F_pfpr_by_lm.SIS <- function(vars, XH_obj) {
 #' @keywords internal
 #' @export
 F_pfpr_by_rdt.SIS <- function(vars, XH_obj) {
-  pr = with(XH_obj, with(vars, d_rdt*I/H))
+  pr = with(XH_obj, with(vars, q_rdt*I/H))
   return(pr)
 }
 
@@ -436,7 +436,7 @@ F_pfpr_by_rdt.SIS <- function(vars, XH_obj) {
 #' @keywords internal
 #' @export
 F_pfpr_by_pcr.SIS <- function(vars, XH_obj) {
-  pr = with(XH_obj, with(vars, d_pcr*I/H))
+  pr = with(XH_obj, with(vars, q_pcr*I/H))
   return(pr)
 }
 
