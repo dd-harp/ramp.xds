@@ -11,9 +11,9 @@ make_XH_obj_SIS(
   b = 0.55,
   r = 1/180,
   c = 0.15,
-  d_lm = 0.8,
-  d_rdt = 0.8,
-  d_pcr = 0.9
+  q_lm = 0.8,
+  q_rdt = 0.8,
+  q_pcr = 0.9
 )
 ```
 
@@ -39,15 +39,15 @@ make_XH_obj_SIS(
 
   transmission probability (efficiency) from human to mosquito
 
-- d_lm:
+- q_lm:
 
   detection by light microscopy
 
-- d_rdt:
+- q_rdt:
 
   detection by RDT
 
-- d_pcr:
+- q_pcr:
 
   detection by pcr
 

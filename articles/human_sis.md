@@ -1,56 +1,33 @@
-# SIS Dynamics: an XH Module
+# The SIS Module
 
     Xname = "SIS"
 
+For the **XH** component, the **SIS** module implements a basic system
+of differential equations, that is often called the **SIS** compartment
+model (see Figure 1). At basic setup, the module is specified like this:
+
+``` r
+library(ramp.xds)
+mod <- xds_setup(Xname = "SIS") 
+```
+
 ------------------------------------------------------------------------
 
-**CONTENTS:**
+![Figure 1: A Diagram of the SIS Model](SIS.png)
 
-- **Basic Dynamics / Basic Setup**
+**Figure 1**: A Diagram of the SIS Model
 
-  - the `SIS` comparment model
+------------------------------------------------------------------------
 
-  - exposure
-
-  - infectiousness
-
-  - diagnostics & detection
-
-  - basic setup
-
-- **A Port: Mass Treatment**
-
-- **Human Demography**
-
-- **The `SIS` Module**
-
-  - variables
-
-  - derivatives
-
-- **Example**
-
-  - using setup
-
-  - another test
-
-  - the long way
+A useful supplement is [**Malaria Theory** – SIS
+Dynamics](https://faculty.washington.edu/smitdave/malaria_theory/sis.html)
 
 ------------------------------------------------------------------------
 
 ## Basic Dynamics
 
-For the **XH** component, the **SIS** (Susceptible-Infected-Susceptible)
-model implements a basic system of differential equations. It is,
-perhaps, the simplest model for an endemic pathogen of humans.
-
-------------------------------------------------------------------------
-
-![Fig 1: A Diagram of the Basic SIS Compartment Model](SIS.png)
-
-**Fig 1**: A Diagram of the Basic SIS Compartment Model
-
-------------------------------------------------------------------------
+The following describes the notation and basic setup, including variable
+and parameter names.
 
 ### The Compartment Model
 
@@ -64,105 +41,114 @@ S+I.\\
 
 The dynamics are described by a pair of equations:
 
-\\ \begin{array}{rl} \dot{I} &= h S - rI \\ \dot{S} &= -hS + rI
-\end{array} \\
+\\ \begin{array}{rl} \frac{dS}{dt} &= -hS + rI \\ \frac{dI}{dt} &= h S -
+rI \end{array} \\
 
-We note that since, \\S=H-I,\\ if \\H\\ is known, then one of these
-equations is redundant, so instead we compute:
+If \\H\\ is constant, then one of these equations is redundant, and we
+need only compute:
 
-\\ \dot{I} = h (H-I) - rI \\
+\\ \frac{dI}{dt} = h (H-I) - rI \\
 
-Note that if we introduce a change of variables, \\x = I/H\\, then if
-\\dH/dt=0,\\ the system is equivalent to:
+The model here has been implemented in the **`ramp.xds`** modular
+framework that handles human demography, exposure, infectiousness, and
+diagnostics and detection.
 
-\\ \dot{x} = h (1-x) - r x \\
+In the **`ramp.xds`** module, \\H\\ is a variable, so we compute
+\\dH/dt,\\ and \\dI/dt\\ includes additional terms that describe
+demographic changes.
 
-We note that Pull and Grab (1974)[¹](#fn1) fit a model like this to data
-describing malaria prevalence by age.
+### Exposure and \\b\\
 
-### Exposure
-
-The module handles exposure as part of the standard interface (see
+The module handles exposure through the standard interface (see
 [Exposure](https://dd-harp.github.io/ramp.xds/articles/Exposure.md)). In
 a nutshell:
 
-- \\E\\: the daily EIR is computed for each population stratum
+- \\E(t)\\: the daily EIR is computed for each population stratum
 
-- \\b\\ is the probability an infective bite on a human causes an
-  infection
+- \\b\\ is a basis prameter in the **SIS** module describing the
+  probability of getting infected by an infectious bite
 
-- \\h\\ or `foi` : the daily FoI is a dynamical term
+- \\h\\ is the daily FoI, `foi` (or what Ross called the *happenings*
+  rate):
 
   - it is computed in `Exposure` as \\h = F_h(b, E)\\
 
-  - By default, the FoI is linearly proportional to the EIR: \\h = b E\\
+  - By default, the FoI assumes the number of bites per persion is
+    Poisson, so the FoI is linearly proportional to the EIR: \\h = b E\\
 
-For advanced options, see
+For more, including advanced setup options, see
 [Exposure](https://dd-harp.github.io/ramp.xds/articles/Exposure.html%5D)
 
-### Infectiousness
+### Infectiousness: \\c\\
 
 Infected humans are not fully infectious. We assume that the fraction of
 bloodmeals on infectious humans that infect a mosquito is \\c,\\ so the
-fraction of mosquitoes that become infected after a human blood meal is
-\\cI/H.\\ The infectious density is computed as: \\F_I = c I\\
+fraction of mosquitoes that become infected after a human blood meal on
+an individual member of the stratum is \\c\\. The blood feeding and
+transmission interface uses biting weights and availability, so we
+compute the infectious density of a stratum: \\F_I = c I.\\
 
 ### Diagnostics and Detection
 
-The probability a human would *test positive* is q, so while true
-prevalence is \\x=I/H,\\ observed prevalence would be \\qI/H.\\ The
-model includes three parameters for detection:
+The probability a human would *test positive* is denoted \\q\\, so while
+true prevalence is \\x=I/H,\\ observed prevalence would be \\x_q=qI/H.\\
+The model includes three parameters for detection by light microscopy,
+RDT or PCR:
 
-The model is too simple to get any meaningful insights about detection.
+- `q_lm` - the probability of detecting parasites by light microscopy
+
+- `q_rdt` - the probability of detecting parasites by rapid diagnostic
+  test
+
+- `q_pcr` - the probability of detecting parasites by PCR
+
+We note that in this model, the observed PR is a linear function of the
+true PR.
 
 ### Basic Setup
 
-The following summarizes the math notation (*e.g.* \\b\\), and `name`
-and default setup value (*e.g.* `b=0.55`) for the parameters and ports.
+During basic setup, the parameters are assigned the following default
+values:
 
-- \\b\\ or `b=0.55` is the probability an infective bite on a human
-  causes an infection
+- `b=0.55`
 
-- \\r\\ or `r=1/180` is the clearance rate
+- `r=1/180`
 
-- \\c\\ or `c=0.15` is the probability a blood meal on an infected human
-  infects the mosquito
+- `c=0.15`
 
-- \\q\\ ix the probability an infected person would test positive. The
-  default is to provide *Pf*PR estimates by light microscopy, RDT or
-  PCR:
+- `q_lm=0.8`
 
-  - `d_lm=0.8` - the probability of detecting parasites by light
-    microscopy
+- `q_rdt=0.8`
 
-  - `d_rdt=0.8` - the probability of detecting parasites by rapid
-    diagnostic test
+- `q_pcr=0.9`
 
-  - `d_pcr=0.9` - the probability of detecting parasites by PCR
+To inspect the parameters, use `get_XH_pars.` We already set up `mod`
+using the default values:
 
 ``` r
-library(ramp.xds)
-mod <- xds_setup(Xname = "SIS") 
-get_XH_pars(mod)
+get_XH_pars(mod)$r
 ```
 
-    ## $b
-    ## [1] 0.55
-    ## 
-    ## $c
-    ## [1] 0.15
-    ## 
-    ## $r
     ## [1] 0.005555556
-    ## 
-    ## $d_lm
-    ## [1] 0.8
-    ## 
-    ## $d_rdt
-    ## [1] 0.8
-    ## 
-    ## $d_pcr
-    ## [1] 0.9
+
+To overwrite the defaults at setup, pass a named list to `xds_setup.`
+
+``` r
+mod1 <- xds_setup(Xname = "SIS", XHoptions = list(r=1/200))
+get_XH_pars(mod1)$r
+```
+
+    ## [1] 0.005
+
+To change a parameter value after setup, pass a named list to
+`change_XH_pars.`
+
+``` r
+mod <- change_XH_pars(mod, options = list(r=1/100))
+get_XH_pars(mod)$r
+```
+
+    ## [1] 0.01
 
 ------------------------------------------------------------------------
 
@@ -196,14 +182,23 @@ Treatment](https://dd-harp.github.io/ramp.control/articles/MassTreatment.html)
 ## Human Demography
 
 The implementation of the model was generalized to consider human (or
-host) vital dynamics. The generalized system thus includes three ports:
+host) vital dynamics.
 
 - The population birth rate, \\B(t, H)\\
 
 - A constant per-capita rate, \\\mu.\\ The model does not include a
   parameter to describe disease-induced mortality
 
-\\ \dot{H} = B(t, H) - \mu H \\
+\\ \frac{dH}{dt} = B(t, H) - \mu H \\ These demographic changes in \\H\\
+require us to update the derivatives for \\S\\ and \\I.\\ Since newborns
+are susceptible, we get:
+
+\\ \frac{dS}{dt} = B(t, H) - h S + r I - \mu S \\
+
+The dynamics for infected individuals are:
+
+\\ \frac{dI}{dt} = h S - r I - \mu I \\ Once again, since \\H=S+I,\\ one
+of these equations is redundant, so we choose \\dH/dt\\ and \\dI/dt.\\
 
 In `ramp.demog`, we have implemented a generalized system called
 *principled stratification* making it possible model aging, migration,
@@ -333,7 +328,7 @@ clrs = viridisLite::turbo(5)[c(1,2,5)]
 xds_plot_PR(test_SIS, clr=clrs)
 ```
 
-![](human_sis_files/figure-html/unnamed-chunk-9-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-12-1.png)
 
 If we set the initial values of \\I\\ to the steady state values, the
 variables shouldn’t change at all. To change the values, we simply add
@@ -345,7 +340,7 @@ xds_solve(test_SIS)-> test_SIS
 xds_plot_PR(test_SIS, clr=clrs)
 ```
 
-![](human_sis_files/figure-html/unnamed-chunk-10-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-13-1.png)
 
 Or we can use the `get_XH_out` function to get the values of the orbits.
 This gets the return values and pulls of the the values of \\I\\ at the
@@ -380,7 +375,7 @@ Itest = get_XH_out(test_SIS, 1)$I
 xds_plot_PR(test_SIS, clr=clrs)
 ```
 
-![](human_sis_files/figure-html/unnamed-chunk-13-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-16-1.png)
 
 …and we can compute the exact solutions for the same values of \\t\\:
 
@@ -400,10 +395,3 @@ sum((It-Itest)^2) < 1e-6
 ```
 
     ## [1] TRUE
-
-------------------------------------------------------------------------
-
-1.  Pull, J. H. & Grab, B. (1974). A simple epidemiological model for
-    evaluating the malaria inoculation rate and the risk of infection in
-    infants. Bulletin of the World Health Organization, 51(5),
-    507 - 516. <https://iris.who.int/handle/10665/260790>

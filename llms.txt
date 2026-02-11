@@ -2439,7 +2439,7 @@ Move
   History](https://dd-harp.github.io/ramp.xds/articles/History.md):
 - [Hybrid MoI (Multiplicity of Infection) Human
   Model](https://dd-harp.github.io/ramp.xds/articles/human_hmoi.md):
-- [SIS Dynamics: an XH
+- [The SIS
   Module](https://dd-harp.github.io/ramp.xds/articles/human_sis.md):
 - [The L
   Component](https://dd-harp.github.io/ramp.xds/articles/L-interface.md):

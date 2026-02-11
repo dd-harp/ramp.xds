@@ -100,13 +100,13 @@ get_XH_pars(model)
     ## $r
     ## [1] 0.005555556
     ## 
-    ## $d_lm
+    ## $q_lm
     ## [1] 0.8
     ## 
-    ## $d_rdt
+    ## $q_rdt
     ## [1] 0.8
     ## 
-    ## $d_pcr
+    ## $q_pcr
     ## [1] 0.9
 
 Functions like `get_XH_pars` are designed to help users get to know the
@@ -165,13 +165,13 @@ get_XH_pars(model1)
     ## $r
     ## [1] 0.005555556
     ## 
-    ## $d_lm
+    ## $q_lm
     ## [1] 0.8
     ## 
-    ## $d_rdt
+    ## $q_rdt
     ## [1] 0.8
     ## 
-    ## $d_pcr
+    ## $q_pcr
     ## [1] 0.9
 
 In the `SIS` model, we set \\H=S+I,\\ so the software computes \\dH/dt\\
