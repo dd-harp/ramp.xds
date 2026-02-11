@@ -10,9 +10,9 @@ make_XH_obj_SIS(
   b = 0.55,
   r = 1/180,
   c = 0.15,
-  d_lm = 0.8,
-  d_rdt = 0.8,
-  d_pcr = 0.9
+  q_lm = 0.8,
+  q_rdt = 0.8,
+  q_pcr = 0.9
 )
 }
 \arguments{
@@ -26,11 +26,11 @@ make_XH_obj_SIS(
 
 \item{c}{transmission probability (efficiency) from human to mosquito}
 
-\item{d_lm}{detection by light microscopy}
+\item{q_lm}{detection by light microscopy}
 
-\item{d_rdt}{detection by RDT}
+\item{q_rdt}{detection by RDT}
 
-\item{d_pcr}{detection by pcr}
+\item{q_pcr}{detection by pcr}
 }
 \value{
 an \strong{XH} model object
