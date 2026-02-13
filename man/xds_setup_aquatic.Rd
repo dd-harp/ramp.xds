@@ -37,7 +37,8 @@ when the \strong{MY} Component is set to \code{trivial.} The model
 also sets \strong{X} Component to the \code{trivial} module.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'aquatic'}
-to dispatch \link{xde_derivatives.aquatic} or \link{dts_update.aquatic}
+to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
+and parse outputs
 }
 \seealso{
 \link{xds_setup}
