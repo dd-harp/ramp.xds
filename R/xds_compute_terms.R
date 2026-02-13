@@ -10,7 +10,7 @@
 #' @param xds_obj an **`xds`** model object
 #' 
 #' @return a [list] containing the vector of all state derivatives
-#' @noRd
+#' @keywords internal
 #' 
 #' @export
 xds_compute_terms <- function(t, y, xds_obj) {
@@ -24,7 +24,7 @@ xds_compute_terms <- function(t, y, xds_obj) {
 #' @inheritParams xds_compute_terms
 #' 
 #' @return a [list] containing the vector of all state derivatives
-#' @noRd
+#' @keywords internal
 #' @export
 xds_compute_terms.full <- function(t, y, xds_obj) {
   # set the values of Exogenous forcing variables
@@ -60,7 +60,7 @@ xds_compute_terms.full <- function(t, y, xds_obj) {
 #' generic methods for each model component.
 #' @inheritParams xds_compute_terms
 #' @return a [list] containing the vector of all state derivatives
-#' @noRd
+#' @keywords internal
 #' @export
 xds_compute_terms.human <- function(t, y, xds_obj) {
   # weather port -- see ramp.forcing
@@ -93,7 +93,7 @@ xds_compute_terms.human <- function(t, y, xds_obj) {
 #' mosquito components.
 #' @inheritParams xds_compute_terms
 #' @return a [list] containing the vector of all state derivatives
-#' @noRd
+#' @keywords internal
 #' @export
 xds_compute_terms.mosy <- function(t, y, xds_obj){
   
@@ -125,7 +125,7 @@ xds_compute_terms.mosy <- function(t, y, xds_obj){
 #' generic methods for each model component.
 #' @inheritParams xds_compute_terms
 #' @return a [list] containing the vector of all state derivatives
-#' @noRd
+#' @keywords internal
 #' @export
 xds_compute_terms.aquatic <- function(t, y, xds_obj) {
   # set the values of Exogenous forcing variables
@@ -151,7 +151,7 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
 #' generic methods for each model component.
 #' @inheritParams xds_compute_terms
 #' @return a [list] containing the vector of all state derivatives
-#' @noRd
+#' @keywords internal
 #' @export
 xds_compute_terms.eir <- function(t, y, xds_obj) {
   # EIR: entomological inoculation rate trace

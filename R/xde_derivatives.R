@@ -12,7 +12,7 @@
 #' 
 #' @return a [list] containing the vector of all state derivatives
 #' 
-#' @noRd
+#' @keywords internal
 #' 
 #' @export
 xde_derivatives <- function(t, y, xds_obj) {
@@ -25,7 +25,7 @@ xde_derivatives <- function(t, y, xds_obj) {
 #' 
 #' @inheritParams xde_derivatives
 #' 
-#' @noRd
+#' @keywords internal
 #' 
 #' @return a [list] containing the vector of all state derivatives
 #' @export
@@ -60,7 +60,7 @@ xde_derivatives.full <- function(t, y, xds_obj) {
 #' generic methods for each model component.
 #' @inheritParams xde_derivatives
 #' 
-#' @noRd
+#' @keywords internal
 #' @return a [list] containing the vector of all state derivatives
 #' @export
 xde_derivatives.human <- function(t, y, xds_obj) {
@@ -87,7 +87,7 @@ xde_derivatives.human <- function(t, y, xds_obj) {
 #' mosquito components.
 #' @inheritParams xde_derivatives
 #' 
-#' @noRd
+#' @keywords internal
 #' @return a [list] containing the vector of all state derivatives
 #' @export
 xde_derivatives.mosy <- function(t, y, xds_obj){
@@ -116,7 +116,7 @@ xde_derivatives.mosy <- function(t, y, xds_obj){
 #' generic methods for each model component.
 #' @inheritParams xde_derivatives
 #' 
-#' @noRd
+#' @keywords internal
 #' @return a [list] containing the vector of all state derivatives
 #' @export
 xde_derivatives.aquatic <- function(t, y, xds_obj) {
@@ -141,7 +141,7 @@ xde_derivatives.aquatic <- function(t, y, xds_obj) {
 #' generic methods for each model component.
 #' @inheritParams xde_derivatives
 #' 
-#' @noRd
+#' @keywords internal
 #' @return a [list] containing the vector of all state derivatives
 #' @export
 xde_derivatives.eir <- function(t, y, xds_obj) {

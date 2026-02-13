@@ -1,6 +1,11 @@
 
 #' @title Get **L** outputs
 #' 
+#' @description
+#' Pull the saved, parsed orbits for the **L** 
+#' component from an **`xds`** object
+#' 
+#' 
 #' @param xds_obj an **`xds`** object
 #' @param s the vector species index
 #' 
