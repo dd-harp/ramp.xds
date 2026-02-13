@@ -6,6 +6,7 @@
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @return a [list] containing the vector of all state derivatives
+#' @keywords internal
 #' @export
 dts_update <- function(t, y, xds_obj) {
   UseMethod("dts_update", xds_obj$frame)
@@ -20,6 +21,7 @@ dts_update <- function(t, y, xds_obj) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [vector] containing the vector of all state derivatives
+#' @keywords internal
 #' @export
 dts_update_Lt = function(t, y, xds_obj, s){
   tt = with(xds_obj$runtime,runt(t,Dday,Lday))
@@ -35,6 +37,7 @@ dts_update_Lt = function(t, y, xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [vector] containing the vector of all state derivatives
+#' @keywords internal
 #' @export
 dts_update_MYt = function(t, y, xds_obj, s){
   tt = with(xds_obj$runtime,runt(t,Dday,MYday))
@@ -50,6 +53,7 @@ dts_update_MYt = function(t, y, xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [vector] containing the vector of all state derivatives
+#' @keywords internal
 #' @export
 dts_update_XHt = function(t, y, xds_obj, i){
   tt = with(xds_obj$runtime,runt(t,Dday,XHday))
@@ -61,6 +65,7 @@ dts_update_XHt = function(t, y, xds_obj, i){
 #' @description dts_update_ the state variables
 #' @inheritParams dts_update
 #' @return a [list] containing the vector of all state derivatives
+#' @keywords internal
 #' @export
 dts_update.full <- function(t, y, xds_obj) {
 
@@ -91,6 +96,7 @@ dts_update.full <- function(t, y, xds_obj) {
 #' a model with only humans
 #' @inheritParams dts_update
 #' @return a [vector] containing the vector of all state derivatives
+#' @keywords internal
 #' @export
 dts_update.human <- function(t, y, xds_obj) {
   
@@ -110,6 +116,7 @@ dts_update.human <- function(t, y, xds_obj) {
 #' a model with mosquito ecology (no transmission)
 #' @inheritParams dts_update
 #' @return a [vector] containing the vector of all state derivatives
+#' @keywords internal
 #' @export
 dts_update.mosy <- function(t, y, xds_obj) {
 
@@ -135,6 +142,7 @@ dts_update.mosy <- function(t, y, xds_obj) {
 #' a model with only aquatic mosquitoes
 #' @inheritParams dts_update
 #' @return a [vector] containing the vector of all state derivatives
+#' @keywords internal
 #' @export
 dts_update.aquatic <- function(t, y, xds_obj) {
 
@@ -154,6 +162,7 @@ dts_update.aquatic <- function(t, y, xds_obj) {
 #' a model with only aquatic mosquitoes
 #' @inheritParams dts_update
 #' @return a [vector] containing the vector of all state derivatives
+#' @keywords internal
 #' @export
 dts_update.eir <- function(t, y, xds_obj) {
   

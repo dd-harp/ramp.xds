@@ -31,6 +31,3 @@ Besides solving, this function does several housekeeping tasks:
 \note{
 The function \code{\link[=xds_solve]{xds_solve()}} dispatches on \code{xds_obj$xde}
 }
-\seealso{
-\code{\link[=xde_derivatives]{xde_derivatives()}} or \code{\link[=dts_update]{dts_update()}}
-}

@@ -4,16 +4,18 @@
 \alias{xds_lines_PR}
 \title{Add lines for the prevalence / parasite rate (PR) from a model of human infection and immunity}
 \usage{
-xds_lines_PR(xds_obj, i, clrs = "black", llty = 1)
+xds_lines_PR(xds_obj, method, i, clrs = "black", lty = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{method}{the method used for computing \emph{Pf}PR}
 
 \item{i}{the host species index}
 
 \item{clrs}{a vector of colors}
 
-\item{llty}{an integer (or integers) that specifies \code{lty} for plotting}
+\item{lty}{an integer (or integers) that specifies \code{lty} for plotting}
 }
 \value{
 true pr, invisibly

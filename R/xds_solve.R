@@ -12,8 +12,6 @@
 #'  
 #' @note 
 #' The function [xds_solve()] dispatches on `xds_obj$xde`
-#'
-#' @seealso [xde_derivatives()] or [dts_update()]
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param Tmax the last time point, run from 0...Tmax
@@ -35,11 +33,11 @@ xds_solve = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #'
 #'   - [deSolve::ode] if `class(dlay) == 'ode'`
 #'   - [deSolve::dede] if `class(dlay) == 'dde'`
-#'
-#' Note that the call to [xde_derivatives] dispatches on `xds_obj$frame`
+#' 
 #' @description Implements [xds_solve] for ordinary differential equations
 #' @inheritParams xds_solve
 #' @return an **`xds`** object
+#' @noRd
 #'
 #' @export
 xds_solve.ode = function(xds_obj, Tmax=365, dt=1, times=NULL){
@@ -64,6 +62,7 @@ xds_solve.ode = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' @description Implements [xds_solve] for delay differential equations
 #' @inheritParams xds_solve
 #' @return an **`xds`** object
+#' @noRd
 #' @export
 xds_solve.dde = function(xds_obj, Tmax=365, dt=1, times=NULL){
 
@@ -92,6 +91,7 @@ xds_solve.dde = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' 
 #'  
 #' @inheritParams xds_solve
+#' @noRd
 #' @return a [list]
 #' @export
 xds_solve.dts = function(xds_obj, Tmax=365, dt=1, times=NULL){

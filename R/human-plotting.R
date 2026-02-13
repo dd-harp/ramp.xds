@@ -14,7 +14,7 @@ get_EIR = function(xds_obj, i=1){
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param clrs a vector of colors
-#' @param llty an integer (or integers) to set the `lty` for plotting
+#' @param lty an integer (or integers) to set the `lty` for plotting
 #' @param add a logical: plot axes only if FALSE
 #' @param annual if true, plot as an annualized rate
 #' 
@@ -23,7 +23,7 @@ get_EIR = function(xds_obj, i=1){
 #' @return eir, invisibly 
 #'
 #' @export
-xds_plot_EIR <- function(xds_obj, i=1, clrs="black", llty=1, add=FALSE, annual=TRUE){
+xds_plot_EIR <- function(xds_obj, i=1, clrs="black", lty=1, add=FALSE, annual=TRUE){
   ylb = ifelse(annual==TRUE, "aEIR", "dEIR")
   if(add==FALSE)
     with(get_XH_out(xds_obj, i),{ 
@@ -31,7 +31,7 @@ xds_plot_EIR <- function(xds_obj, i=1, clrs="black", llty=1, add=FALSE, annual=T
       plot(time, 0*time, type="n", ylim=range(0, fac*eir),
            xlab = "Time", ylab = ylb)
     })
-  eir <- xds_lines_EIR(xds_obj, i, clrs, llty, annual)
+  eir <- xds_lines_EIR(xds_obj, i, clrs, lty, annual)
   
   return(invisible(eir)) 
 }
@@ -41,7 +41,7 @@ xds_plot_EIR <- function(xds_obj, i=1, clrs="black", llty=1, add=FALSE, annual=T
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param clrs a vector of colors
-#' @param llty an integer (or integers) to set the `lty` for plotting
+#' @param lty an integer (or integers) to set the `lty` for plotting
 #' @param annual if true, plot as an annualized rate
 #' 
 #' @importFrom graphics lines
@@ -49,60 +49,64 @@ xds_plot_EIR <- function(xds_obj, i=1, clrs="black", llty=1, add=FALSE, annual=T
 #' @return eir, invisibly 
 #' 
 #' @export
-xds_lines_EIR <- function(xds_obj, i=1, clrs="black", llty=1, annual=TRUE){
+xds_lines_EIR <- function(xds_obj, i=1, clrs="black", lty=1, annual=TRUE){
   n = xds_obj$nStrata[i] 
   if(length(clrs) != n) clrs=rep(clrs, n)
-  if(length(llty) != n) llty=rep(llty, n)
+  if(length(lty) != n) lty=rep(lty, n)
   with(get_XH_out(xds_obj, i),{
     fac = ifelse(annual==TRUE, 365, 1)
-    for(j in 1:n) lines(time, fac*eir[,j], col=clrs[j], lty = llty)
+    for(j in 1:n) lines(time, fac*eir[,j], col=clrs[j], lty = lty)
     return(invisible(eir)) 
 })}
 
 #' Plot the prevalence / parasite rate (PR) from a model of human infection and immunity
 #'
 #' @param xds_obj an **`xds`** model object
+#' @param method the method used for computing *Pf*PR 
 #' @param i the host species index
 #' @param clrs a vector of colors
-#' @param llty an integer (or integers) that specifies `lty` for plotting
+#' @param lty an integer (or integers) that specifies `lty` for plotting
+#' @param y01 set ylim = c(0,1) 
 #' @param add a logical: plot axes only if FALSE
-#'
+#' 
 #' @return true pr, invisibly 
 #' 
 #' @export
-xds_plot_PR = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
-  
+xds_plot_PR = function(xds_obj, method="true", i=1, 
+                       clrs="black", lty=1, y01=FALSE, 
+                       add=FALSE){
   if(add==FALSE){
-    with(get_XH_out(xds_obj, i),
-      plot(time, 0*time, type = "n", ylim = range(0,true_pr),
+    with(get_PR(xds_obj, method, i),{
+      if(y01) {ylm=c(0,1)} else{ylm=range(0, pr)}
+      plot(time, 0*time, type = "n", ylim = ylm,
            ylab = "Prevalence", xlab = "Time")
-  )}
+  })}
   
-  true_pr <- xds_lines_PR(xds_obj, i, clrs, llty)
+  true_pr <- xds_lines_PR(xds_obj, method, i, clrs, lty)
   return(invisible(true_pr)) 
 }
 
 #' Add lines for the prevalence / parasite rate (PR) from a model of human infection and immunity
 #'
 #' @param xds_obj an **`xds`** model object
+#' @param method the method used for computing *Pf*PR 
 #' @param i the host species index
 #' @param clrs a vector of colors
-#' @param llty an integer (or integers) that specifies `lty` for plotting
+#' @param lty an integer (or integers) that specifies `lty` for plotting
 #' 
 #' @importFrom graphics lines
 #'
 #' @return true pr, invisibly 
 #' 
 #' @export
-xds_lines_PR = function(xds_obj, i, clrs="black", llty=1){
+xds_lines_PR = function(xds_obj, method, i, clrs="black", lty=1){
   n = xds_obj$nStrata[i] 
   if(length(clrs) != n) clrs=rep(clrs, n)
-  if(length(llty) != n) llty=rep(llty, n)
-  
-  with(get_XH_out(xds_obj, i),{
-    if(n==1) lines(time, true_pr, col=clrs, lty = llty)
-    if(n>1) for(j in 1:n) lines(time, true_pr[,j], col=clrs[j], lty = llty[j])
-    return(invisible(true_pr))
+  if(length(lty) != n) lty=rep(lty, n)
+  with(get_PR(xds_obj, method, i),{
+    if(n==1) lines(time, pr, col=clrs, lty = lty)
+    if(n>1) for(j in 1:n) lines(time, pr[,j], col=clrs[j], lty = lty[j])
+    return(invisible(pr))
 })}
 
 

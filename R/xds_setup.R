@@ -143,7 +143,8 @@ xds_setup = function(xds = 'ode',
 #' component (host density).
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'mosy'`
-#' to dispatch [xde_derivatives.mosy] or [dts_update.mosy] and associated functions.
+#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`), 
+#' and parse outputs
 #'
 #' The **X** Component module is `trivial`, but since humans / vertebrate hosts can be a
 #' resource, `HPop` must be set.
@@ -224,7 +225,8 @@ xds_setup_mosy = function(xds = 'ode',
 #' also sets **X** Component to the `trivial` module.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'aquatic'`
-#' to dispatch [xde_derivatives.aquatic] or [dts_update.aquatic]
+#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`), 
+#' and parse outputs
 #'
 #' @seealso [xds_setup]
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
@@ -274,7 +276,8 @@ xds_setup_aquatic = function(xds = 'ode',
 #' streamlines setup for models with a trival **MY** Component.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'human'`
-#' to dispatch [xde_derivatives.human] or [dts_update.human] and associated functions.
+#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`), 
+#' and parse outputs
 #'
 #' The **MY** Component module is set to `trivial.` The funcion [F_fqZ.trivial] is called to compute passes the
 #' density of infectious adult mosquitoes, and \eqn{f} and \eqn{q} can still be
@@ -365,7 +368,8 @@ xds_setup_human = function(Xname = "SIS",
 #' examine patterns in populations forced by the EIR. 
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'eir'` 
-#' to dispatch [xde_derivatives.eir] or [dts_update.eir]
+#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`), 
+#' and parse outputs
 #'
 #'
 #' The interface includes options to configure a function

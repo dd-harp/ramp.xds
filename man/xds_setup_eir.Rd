@@ -52,7 +52,8 @@ studies of malaria epidemiology, defined in a narrow sense, to
 examine patterns in populations forced by the EIR.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'eir'}
-to dispatch \link{xde_derivatives.eir} or \link{dts_update.eir}
+to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
+and parse outputs
 
 The interface includes options to configure a function
 describing \code{F_eir} as a function of time, with seasonal components

@@ -9,7 +9,8 @@
 A modified version of xds_setup that
 streamlines setup for models with a trival MY Component.
 The xds object defines frame = class(frame) = 'human'
-to dispatch xde_derivatives.human or dts_update.human and associated functions.
+to dispatch functions that compute derivatives (xde), update variables (dts),
+and parse outputs
 The MY Component module is set to trivial. The funcion F_fqZ.trivial is called to compute passes the
 density of infectious adult mosquitoes, and \(f\) and \(q\) can still be
 configured. In this case, the daily EIR is computed using the blood feeding
@@ -20,7 +21,8 @@ consider using xds_setup_eir."><meta property="og:description" content="MathJax 
 A modified version of xds_setup that
 streamlines setup for models with a trival MY Component.
 The xds object defines frame = class(frame) = 'human'
-to dispatch xde_derivatives.human or dts_update.human and associated functions.
+to dispatch functions that compute derivatives (xde), update variables (dts),
+and parse outputs
 The MY Component module is set to trivial. The funcion F_fqZ.trivial is called to compute passes the
 density of infectious adult mosquitoes, and \(f\) and \(q\) can still be
 configured. In this case, the daily EIR is computed using the blood feeding
@@ -101,7 +103,8 @@ consider using xds_setup_eir."></head><body>
 <p>A modified version of <a href="xds_setup.html">xds_setup</a> that
 streamlines setup for models with a trival <strong>MY</strong> Component.</p>
 <p>The <strong><code>xds</code></strong> object defines <code>frame = class(frame) = 'human'</code>
-to dispatch <a href="xde_derivatives.human.html">xde_derivatives.human</a> or <a href="dts_update.human.html">dts_update.human</a> and associated functions.</p>
+to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
+and parse outputs</p>
 <p>The <strong>MY</strong> Component module is set to <code>trivial.</code> The funcion <a href="F_fqZ.trivial.html">F_fqZ.trivial</a> is called to compute passes the
 density of infectious adult mosquitoes, and \(f\) and \(q\) can still be
 configured. In this case, the daily EIR is computed using the blood feeding

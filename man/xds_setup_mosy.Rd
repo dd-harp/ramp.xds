@@ -54,7 +54,8 @@ dynamics. These models lack the \strong{Y} component and an \strong{X} component
 component (host density).
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'mosy'}
-to dispatch \link{xde_derivatives.mosy} or \link{dts_update.mosy} and associated functions.
+to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
+and parse outputs
 
 The \strong{X} Component module is \code{trivial}, but since humans / vertebrate hosts can be a
 resource, \code{HPop} must be set.

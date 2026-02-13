@@ -51,7 +51,8 @@ A modified version of \link{xds_setup} that
 streamlines setup for models with a trival \strong{MY} Component.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'human'}
-to dispatch \link{xde_derivatives.human} or \link{dts_update.human} and associated functions.
+to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
+and parse outputs
 
 The \strong{MY} Component module is set to \code{trivial.} The funcion \link{F_fqZ.trivial} is called to compute passes the
 density of infectious adult mosquitoes, and \eqn{f} and \eqn{q} can still be

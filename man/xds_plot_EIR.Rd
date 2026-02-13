@@ -8,7 +8,7 @@ xds_plot_EIR(
   xds_obj,
   i = 1,
   clrs = "black",
-  llty = 1,
+  lty = 1,
   add = FALSE,
   annual = TRUE
 )
@@ -20,7 +20,7 @@ xds_plot_EIR(
 
 \item{clrs}{a vector of colors}
 
-\item{llty}{an integer (or integers) to set the \code{lty} for plotting}
+\item{lty}{an integer (or integers) to set the \code{lty} for plotting}
 
 \item{add}{a logical: plot axes only if FALSE}
 

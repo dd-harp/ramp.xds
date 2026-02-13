@@ -4,16 +4,28 @@
 \alias{xds_plot_PR}
 \title{Plot the prevalence / parasite rate (PR) from a model of human infection and immunity}
 \usage{
-xds_plot_PR(xds_obj, i = 1, clrs = "black", llty = 1, add = FALSE)
+xds_plot_PR(
+  xds_obj,
+  method = "true",
+  i = 1,
+  clrs = "black",
+  lty = 1,
+  y01 = FALSE,
+  add = FALSE
+)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{method}{the method used for computing \emph{Pf}PR}
 
 \item{i}{the host species index}
 
 \item{clrs}{a vector of colors}
 
-\item{llty}{an integer (or integers) that specifies \code{lty} for plotting}
+\item{lty}{an integer (or integers) that specifies \code{lty} for plotting}
+
+\item{y01}{set ylim = c(0,1)}
 
 \item{add}{a logical: plot axes only if FALSE}
 }
