@@ -6,7 +6,7 @@ header-includes:
 --- 
 
 # **`ramp.xds`** - e**X**tensible **D**ynamical **S**ystems 
-## *Extensible dynamical systems and nimble model building for mosquito-borne disease dynamics.*
+## *Nimble model building and computation for mosquito-borne disease dynamics.*
 
 
 <!-- badges: start -->
