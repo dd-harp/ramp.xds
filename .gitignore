@@ -125,4 +125,4 @@ docs
 man
 *.bkp
 /docs
-docs/pkgdown.yml
+
