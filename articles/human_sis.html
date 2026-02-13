@@ -115,10 +115,9 @@ Infection Dynamics</h3>
 <p>For the <strong>XH</strong> component, the <strong>SIS</strong>
 module implements a basic system of differential equations, that is
 often called the <strong>SIS</strong> compartment model (see Figure 1).
-At basic setup, the module is specified like this:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
-<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span><span class="op">)</span> </span></code></pre></div>
+This vignette describes the model and its implementation in
+<strong><code>ramp.xds.</code></strong> For a more mathematical
+introduction, see <a href="https://faculty.washington.edu/smitdave/malaria_theory/sis.html" target="_blank" class="external-link"><strong>Malaria Theory</strong> – SIS Dynamics</a></p>
 <hr>
 <div class="float">
 <img src="SIS.png" alt="Figure 1: A Diagram of the SIS Model"><div class="figcaption">
@@ -126,7 +125,11 @@ At basic setup, the module is specified like this:</p>
 Model</div>
 </div>
 <hr>
-<p>A useful supplement is <a href="https://faculty.washington.edu/smitdave/malaria_theory/sis.html" target="_blank" class="external-link"><strong>Malaria Theory</strong> – SIS Dynamics</a></p>
+<p>At basic setup, the <strong>SIS</strong> module with defaults is
+specified like this:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span><span class="op">)</span> </span></code></pre></div>
 <hr>
 <div class="section level2">
 <h2 id="basic-dynamics">Basic Dynamics<a class="anchor" aria-label="anchor" href="#basic-dynamics"></a>
@@ -189,11 +192,11 @@ Poisson, so the FoI is linearly proportional to the EIR: <span class="math inlin
 <h3 id="infectiousness-c">Infectiousness: <span class="math inline">\(c\)</span><a class="anchor" aria-label="anchor" href="#infectiousness-c"></a>
 </h3>
 <p>Infected humans are not fully infectious. We assume that the fraction
-of bloodmeals on infectious humans that infect a mosquito is <span class="math inline">\(c,\)</span> so the fraction of mosquitoes that
-become infected after a human blood meal on an individual member of the
-stratum is <span class="math inline">\(c\)</span>. The blood feeding and
-transmission interface uses biting weights and availability, so we
-compute the infectious density of a stratum: <span class="math display">\[F_I = c I.\]</span></p>
+of bloodmeals on infectious humans that infect a mosquito is <span class="math inline">\(c.\)</span> The blood feeding and transmission
+interface uses biting weights and availability, so we compute the
+infectious density of a stratum: <span class="math display">\[F_I = c
+I.\]</span></p>
+<p>If there is a single population stratum, then<br><span class="math display">\[\kappa = \frac {cI} H\]</span></p>
 </div>
 <div class="section level3">
 <h3 id="diagnostics-and-detection">Diagnostics and Detection<a class="anchor" aria-label="anchor" href="#diagnostics-and-detection"></a>
@@ -300,7 +303,7 @@ get:</p>
 <p><span class="math display">\[
 \frac{dI}{dt} = h S - r I  - \mu I  
 \]</span> Once again, since <span class="math inline">\(H=S+I,\)</span>
-one of these equations is redundant, so we choose <span class="math inline">\(dH/dt\)</span> and <span class="math inline">\(dI/dt.\)</span></p>
+one of these equations is redundant. We compute <span class="math inline">\(dH/dt\)</span> and <span class="math inline">\(dI/dt.\)</span></p>
 <p>In <code>ramp.demog</code>, we have implemented a generalized system
 called <em>principled stratification</em> making it possible model
 aging, migration, and dynamical exchanges among strata. After setup, all
@@ -374,8 +377,7 @@ to:</p>
 We use <code>ramp.xds::setup_XH</code> to set up parameters, and
 <code><a href="../reference/setup_XH_inits.html">ramp.xds::setup_XH_inits</a></code> to set the initial values. We
 configure a <code>trace</code> function to force the EIR.</p>
-<p>Interested users should read <a href="ex_534.html">our fully worked
-example</a>.</p>
+<p>Users interested in more technical details should read <a href="ex_534.html">our fully worked multi-patch example</a>.</p>
 <p>First, we define the size of three population strata:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">H</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span>, <span class="fl">250</span><span class="op">)</span></span>

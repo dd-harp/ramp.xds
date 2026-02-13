@@ -4,12 +4,10 @@
 
 For the **XH** component, the **SIS** module implements a basic system
 of differential equations, that is often called the **SIS** compartment
-model (see Figure 1). At basic setup, the module is specified like this:
-
-``` r
-library(ramp.xds)
-mod <- xds_setup(Xname = "SIS") 
-```
+model (see Figure 1). This vignette describes the model and its
+implementation in **`ramp.xds.`** For a more mathematical introduction,
+see [**Malaria Theory** – SIS
+Dynamics](https://faculty.washington.edu/smitdave/malaria_theory/sis.html)
 
 ------------------------------------------------------------------------
 
@@ -19,8 +17,12 @@ mod <- xds_setup(Xname = "SIS")
 
 ------------------------------------------------------------------------
 
-A useful supplement is [**Malaria Theory** – SIS
-Dynamics](https://faculty.washington.edu/smitdave/malaria_theory/sis.html)
+At basic setup, the **SIS** module with defaults is specified like this:
+
+``` r
+library(ramp.xds)
+mod <- xds_setup(Xname = "SIS") 
+```
 
 ------------------------------------------------------------------------
 
@@ -82,11 +84,13 @@ For more, including advanced setup options, see
 ### Infectiousness: \\c\\
 
 Infected humans are not fully infectious. We assume that the fraction of
-bloodmeals on infectious humans that infect a mosquito is \\c,\\ so the
-fraction of mosquitoes that become infected after a human blood meal on
-an individual member of the stratum is \\c\\. The blood feeding and
-transmission interface uses biting weights and availability, so we
-compute the infectious density of a stratum: \\F_I = c I.\\
+bloodmeals on infectious humans that infect a mosquito is \\c.\\ The
+blood feeding and transmission interface uses biting weights and
+availability, so we compute the infectious density of a stratum: \\F_I =
+c I.\\
+
+If there is a single population stratum, then  
+\\\kappa = \frac {cI} H\\
 
 ### Diagnostics and Detection
 
@@ -198,7 +202,7 @@ are susceptible, we get:
 The dynamics for infected individuals are:
 
 \\ \frac{dI}{dt} = h S - r I - \mu I \\ Once again, since \\H=S+I,\\ one
-of these equations is redundant, so we choose \\dH/dt\\ and \\dI/dt.\\
+of these equations is redundant. We compute \\dH/dt\\ and \\dI/dt.\\
 
 In `ramp.demog`, we have implemented a generalized system called
 *principled stratification* making it possible model aging, migration,
@@ -257,7 +261,8 @@ use `ramp.xds::setup_XH` to set up parameters, and
 to set the initial values. We configure a `trace` function to force the
 EIR.
 
-Interested users should read [our fully worked
+Users interested in more technical details should read [our fully worked
+multi-patch
 example](https://dd-harp.github.io/ramp.xds/articles/ex_534.md).
 
 First, we define the size of three population strata:
