@@ -1,0 +1,67 @@
+# Ports & Junctions
+
+The design of **`ramp.xds`** facilitates modeling malaria as a changing
+baseline that has been modified by control. Most of the functionality is
+found in the satellite packages, but **`ramp.xds`** sets this up by
+adding *ports* and *junctions.*
+
+- a ***port*** in **`ramp.xds`** or one of the satellite package is a
+  structured way of handling a specific part of malaria. Examples
+  include temperature, mosquito resources, mosquito traps, larval source
+  management, bed nets, or habitat dynamics. Each *port* is defined by:
+
+  - a model object
+
+  - functions that set up variables
+
+- a ***junction*** in **`ramp.xds`** is a function that implements
+  several *ports.*
+
+The junctions in **`ramp.xds`** get called in a specific order to
+minimize *conflicts* that could arise. The junctions are all functions
+that get implemented in `xds_compute_terms.` They are:
+
+- **Forcing** - functions to setup variables for weather and hydrology
+
+- **Health** - functions to setup mass treatment, mass vaccination, and
+  more
+
+- **Vector Control** - functions to *distribute* vector control
+  commodities.
+
+- **Resources** - functions to model availability of mosquito resources,
+  including ports for variables on the blood feeding and egg laying
+  interfaces
+
+## Forcing
+
+`Forcing` :: **`ramp.xds`** sets up an empty *junction* handle exogenous
+forcing by weather and hydrology. Models to implement forcing are in
+**`ramp.forcing`**
+
+## Vector Control
+
+`VectorControl` and `VectorControlEffectSizes`:: **`ramp.xds`** sets up
+an empty *junction* to handle various aspects of vector control. Models
+to implement vector control are in **`ramp.control`**
+
+## Health
+
+`Health`:: **`ramp.xds`** sets up an empty *junctions* to handle various
+aspects of health systems interventions.
+
+## Resources
+
+The ports are:
+
+- BloodHosts
+
+- HabitatDynamics
+
+- Travel
+
+- Visitors
+
+- Traps
+
+- Sugar

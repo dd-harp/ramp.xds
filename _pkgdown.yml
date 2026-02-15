@@ -107,7 +107,6 @@ reference:
   - burnin 
   - get_XH_out
   - get_MY_out
-  - get_L_out
 - subtitle: Analysis 
   desc: | 
     Compute Steady States & Stable Orbits
@@ -145,7 +144,6 @@ reference:
   contents:
   - get_XH_pars 
   - get_MY_pars 
-  - get_L_pars 
   - get_mean_forcing
   - get_season
   - get_trend
@@ -684,33 +682,8 @@ reference:
   contents:
   - make_times_dts 
   - make_times_xde 
-- subtitle: Derivatives
-  contents:
-  - xde_derivatives
-  - xde_derivatives.full
-  - xde_derivatives.aquatic
-  - xde_derivatives.mosy
-  - xde_derivatives.human
-  - xde_derivatives.eir
-- subtitle: Compute Terms
-  contents:
-  - xds_compute_terms 
-  - xds_compute_terms.aquatic 
-  - xds_compute_terms.eir 
-  - xds_compute_terms.full 
-  - xds_compute_terms.human 
-  - xds_compute_terms.mosy 
 - subtitle: DTS Update
   contents:
-  - dts_update
-  - dts_update.full
-  - dts_update.aquatic
-  - dts_update.mosy
-  - dts_update.human
-  - dts_update.eir
-  - dts_update_Lt
-  - dts_update_MYt
-  - dts_update_XHt
   - Update_XHt
   - Update_MYt
   - Update_Lt
@@ -719,15 +692,8 @@ reference:
     Wrappers around the derivatives functions that handle time and parse outputs
   contents:
   - xds_solve
-  - xds_solve.dde
-  - xds_solve.ode
-  - xds_solve.dts
   - xds_stable_orbit
-  - xds_stable_orbit.dts 
-  - xds_stable_orbit.xde
   - xds_steady
-  - xds_steady.ode
-  - xds_steady.dde
   - dts_stable_orbit
   - dts_steady
 - title: Analysis and Visualization
@@ -751,13 +717,14 @@ reference:
   - parse_outputs.full 
   - parse_outputs.human 
   - parse_outputs.mosy 
-- subtitle: Plot terms
+- subtitle: Get and plot terms
   desc: |
     Basic visualization of the transmission terms
   contents:
+  - get_H
+  - get_PR
   - get_XH_out
   - get_MY_out
-  - get_L_out
   - xds_plot_EIR
   - xds_lines_EIR
   - xds_plot_PR
@@ -795,12 +762,6 @@ reference:
   - parse_y
   - get_inits
   - get_last
-  - get_H
-  - get_PR
-  - get_PR.true
-  - get_PR.lm
-  - get_PR.rdt
-  - get_PR.pcr
   - make_indices
   - trigger_setup
 - subtitle: Functions

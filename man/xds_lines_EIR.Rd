@@ -4,7 +4,7 @@
 \alias{xds_lines_EIR}
 \title{Add lines for the EIR \emph{vs.} time}
 \usage{
-xds_lines_EIR(xds_obj, i = 1, clrs = "black", llty = 1, annual = TRUE)
+xds_lines_EIR(xds_obj, i = 1, clrs = "black", lty = 1, annual = TRUE)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
@@ -13,7 +13,7 @@ xds_lines_EIR(xds_obj, i = 1, clrs = "black", llty = 1, annual = TRUE)
 
 \item{clrs}{a vector of colors}
 
-\item{llty}{an integer (or integers) to set the \code{lty} for plotting}
+\item{lty}{an integer (or integers) to set the \code{lty} for plotting}
 
 \item{annual}{if true, plot as an annualized rate}
 }

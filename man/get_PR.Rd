@@ -4,25 +4,28 @@
 \alias{get_PR}
 \title{Get the \emph{Pf}PR from a Malaria Model}
 \usage{
-get_PR(xds_obj, i = 1, method = "true")
+get_PR(xds_obj, method = "true", i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} object}
 
-\item{i}{the host species index}
-
 \item{method}{the method used for computing \emph{Pf}PR}
+
+\item{i}{the host species index}
 }
 \value{
 none
 }
 \description{
-This method assigns \code{class(method)=method} and then
-dispatches on "type." Options are:
+\code{'method'} should be
 \itemize{
-\item \code{true} for the true \emph{Pf}PR
+\item \code{true} for the true \emph{Pf}PR (default)
 \item \code{lm} for the \emph{Pf}PR by light microscopy
 \item \code{rdt} for the \emph{Pf}PR by RDT
 \item \code{pcr} for the \emph{Pf}PR by PCR
 }
+}
+\note{
+The method assigns \code{class(method)='method'} then
+dispatches on \code{'method'}
 }

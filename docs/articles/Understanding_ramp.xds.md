@@ -1,0 +1,319 @@
+# Understanding ramp.xds
+
+This vignette gives a high-level overview of `ramp.xds` internals.
+
+The software design implements the mathematical framework described in
+[Spatial Dynamics of Malaria
+Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684).
+
+## Introduction
+
+A goal for `ramp.xds` was to lower the costs, in terms of human time and
+capital, of developing models that are realistic enough to support
+decisions affecting malaria policies. An operating assumption for
+developing this framework and software has been that robust decision
+support for malaria policies would put demands on model-building that
+often differ from what is expected from a scientific publication. For
+models to work in a policy setting, they must be *realistic* enough to
+be relevant to the policy discussions.
+
+This need for realism in models drove development of malaria models as
+funding flowed into malaria in the development goals era. The need for
+realism and practical ways of dealing with the associated *computational
+complexity* drove the development of several comprehensive
+*individual-based models* (IBMs), such as OpenMalaria, eMod, and
+MalariaTools. While IBMs have some advantages, they also have some
+disadvantages, including the high costs of using them. We thus sought to
+develop software that could handle enough computational complexity to
+address the needs of malaria programs. One advantage of using systems of
+differential equations is that they are much easier to analyze.
+
+Cost savings would come in time spent formulating, coding, verifying,
+debugging, & applying these models.
+
+## Scaling Complexity
+
+Among the most important questions for modeling is what level of
+complexity is appropriate for various different kinds of analysis. Given
+our interest in adaptive malaria control, we wanted to be able to
+conduct studies that could address questions about the value of
+gathering new data about features of local malaria transmission in a
+place. In developing this framework we thus wanted the capability of
+building simple models models and then adding *realism* through
+elaboration.
+
+Good models built to purpose would be – as Einstein suggested – *as
+simple as possible, but no simpler.* While most people would agree with
+Einstein in principle, he provided no usable advice about how to do
+this. How would you know a model had the right level of complexity? One
+way is to develop at least one model that is clearly too complex and
+then to provide some rigorous model selection on a suite of models of
+varying levels of complexity. How could we ever know that we had build a
+model that was at the right level of complexity if we had never
+developed a model that had demonstrably gone too far?
+
+We thus wanted a framework that could build simple models, models with
+potentially unbounded realism and complexity, and a large set of models
+in between. In other words, we wanted the capability of *scaling
+complexity.* The kinds of realism we imagined included:
+
+- realistic human demography, including age structure, births & deaths,
+  and migration;
+
+- human population heterogeneity, including differences in care seeking
+  or any heterogeneous trait that was relevant for malaria epidemiology
+  or transmission;
+
+- multiple host and vector species or types;
+
+- spatial heterogeneity and spatial dynamics, including human mobility
+  and mosquito dispersal, indoor and outdoor spaces, malaria
+  importation, and mosquito migration.
+
+- realistic mosquito ecology with exogenous forcing by weather and other
+  factors;
+
+- integrated vector control and interventions delivered through health
+  systems;
+
+At the same time, we wanted to have the flexibility to isolate and
+analyze various components of the model. Since the framework is modular,
+it should be possible to pass the inputs to one (or more) of the
+dynamical components from a *trivial* function, rather than from a fully
+coupled model. These trivial models also provide one way of rigorously
+pressure testing the software and verifying the code.
+
+We think of models as having a defined *skill set,* or output variables
+that naturally represent a subset of quantities that would be predicted
+by a model. The framework should make it easy to build models that have
+the right subset of features, including a set of dynamical components
+with skill sets that were up to any task.
+
+## Nimble Model Building and Modularity
+
+To support decisions affecting malaria policy, model building must be
+*nimble.* As malaria programs integrate sophisticated analytics into
+their decision-making, the conversation in a room can shift. Over time,
+programmatic priorities and needs can change. To keep up, the model
+builders *ought* to have the capability of building new models that
+could address the new concerns. While this might not be possible to do
+in real time, it should be possible to have a new model developed with
+preliminary results within a week or so.
+
+With these goals in mind, we developed a mathematical framework that
+could make computation for dynamical systems **modular.** The
+mathematical basis for modularity was described in [Spatial Dynamics of
+Malaria
+Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684).
+(Also, see the related vignettes on [modular
+forms](https://dd-harp.github.io/ramp.xds/articles/modular-forms.md) and
+[modularity](https://dd-harp.github.io/ramp.xds/articles/modularity.md).)
+
+We identified five kinds of processes grouped into three inseparable
+chunks, the core dynamical components. The chunks represented five
+distinct processes:
+
+- \\\cal XH\\ - Human demography and parasite infection dynamics,
+  including immunity and disease, diagnostics and treatment,
+
+  - \\\cal X\\ - The dynamical process describing the dynamics of human
+    infection and immunity
+
+  - \\\cal H\\ - A dynamical model describing human demography
+
+- \\\cal MYZ\\ - Adult mosquito ecology and behavior, and parasite
+  infection dynamics
+
+  - \\\cal M\\ - The model for adult mosquito ecology
+
+  - \\\cal YZ\\ - The model for adult mosquito infection dynmics,
+    consistent with \\\cal M\\
+
+- \\\cal L\\ - Aquatic mosquito ecology
+
+The three core dynamical components were connected by two rigid
+interfaces, discussed at greater length below:
+
+- \\\cal B\\ - Blood Feeding
+
+- \\\cal U\\ - Egg laying and emergence
+
+Exogenous forcing was implemented largely through a flexible set of
+processes that set the value of *exogenous variables* and functions to
+modify model parameters affecting *endogenous dynamics.*
+
+## Structural Elements
+
+Each model has several parameters that describe the structure of a
+model:
+
+- **Malaria Epidemiology** or the model for infection dynamics and
+  immunity in humans (\\\cal X\\) is specified by passing `Xname` – a
+  string, corresponding to a model from the `ramp.xds` library, that
+  specifies the model family for human infection dynamics that gets
+  dispatched by the S3 function implementing \\\cal X\\ tasks.
+
+- How many **host species** are there? The number of distinct
+  *vertebrate host* species (or types) in a model is `pars$nHosts`
+
+  - The model for the human population for the \\i^{th}\\ species is
+    defined by `pars$Xpar[[i]]`
+
+  - The demographic model for the \\i^{th}\\ species is defined by
+    `pars$Hpar[[i]]`
+
+  - A vector passed at setup, `HPop,` defines the population density for
+    the population strata of each vertebrate host species.
+
+  - The length of `HPop` is used to set the value of `nStrata`
+
+- **Mosquito Ecology** has two parts:
+
+  - The model family for **adult mosquito** infection dynamics and
+    ecology is specified by `MYZname` – a string, corresponding to a
+    model from the `ramp.xds` library, that specifies the model family
+    for adult mosquitoes
+
+  - The model family **aquatic mosquito** population dynamics is passed
+    as `Lname` – a string, corresponding to a model from the `ramp.xds`
+    library, that specifies the model family for aquatic mosquito
+    population dynamics that should be used
+
+- How many **vector species** are there? The number of distinct
+  *mosquito vector* species (or type) in a model is `pars$nVectors` Each
+  vector species is defined by a two sets of parameters:
+
+  - The model for the adult population for the \\s^{th}\\ species is
+    defined by `pars$MYZpar[[s]]`
+
+  - The model for the aquatic population for the \\s^{th}\\ species is
+    defined by `pars$Lpar[[s]]`
+
+- **Spatial dynamics** are implemented through patch-based
+  metapopulation models, where `pars$nPatches` is the number of distinct
+  *patches* in a model.
+
+- Immature Mosquitoes are found in **Aquatic Habitats.** A parameter
+  `pars$nHabitats` is the number of distinct aquatic habitats in a
+  model. Additional information is needed to configure the model for
+  *egg laying* (see below):
+
+  - a `membership` vector is required: the \\i^{th}\\ element of the
+    membership matrix, \\\cal N,\\ identifies the patch to which it
+    belongs.
+
+  - a `searchQ` vector is required: the \\i^{th}\\ element gives the
+    habitat *search weight* to compute the egg laying matrix, \\\cal U\\
+
+## Dynamics
+
+- Models for human ecology and parasite / pathogen infection dynamics
+  would appear in one dynamical component. The part that computes the
+  dynamics of infection and immunity was called \\\cal X\\, and the part
+  that describes human demography was called \\\cal H.\\ These two
+  components can’t be separated in any easy way, so we call this chunk
+  \\\cal XH\\.
+
+  - The derivatives for a model of class \\\cal X\\ for the \\i^{th}\\
+    species is computed by a `S3` function `dXdt(t, y, pars, i)`
+
+  - The updating function for a model of class \\\cal X\\ for the
+    \\i^{th}\\ species is computed by a `S3` function
+    `DT_Xt(t, y, pars, i)`
+
+  - The parameters for the model are in an object called `Xpar` and
+    `dXdt` dispatches on `class(Xpar)`
+
+  - Since there could be multiple host species, `Xpar` for the
+    \\i^{th}\\ species is `pars$Xpar[[i]].`
+
+  - The demographic model, \\\cal H\\, configured as a birth process,
+    \\B(t)\\, and a linear tranformation among strata (including
+    mortality), `dHdt(y, pars)` called from `dXdt`
+
+- Models for adult mosquito ecology and parasite / pathogen infection
+  dynamics would appear in a second dynamical component. The part that
+  computes the dynamics of infection was called \\\cal YZ\\, and the
+  part that computes mosquito population dynamics was called \\\cal M\\.
+  These two components can’t be separated in any easy way, so we call
+  this chunk \\\cal MYZ\\.
+
+  - The derivatives for a model of this type are computed by a `S3`
+    function `dMYZdt(t, y, pars, s)` or `dMdt(t, y, pars, s)` for the
+    \\s^{th}\\ vector species
+
+  - The updating function for a model of class \\\cal MYZ\\ for the
+    \\i^{th}\\ species is computed by a `S3` function
+    `DT_MYZt(t, y, pars, s)`
+
+  - The parameters for the model are in an object called `MYZpar` and
+    `dMYZdt` and `DT_MYZt` dispatch on `class(MYZpar)`
+
+  - Since there could be multiple host species, `MYZpar` for the
+    \\i^{th}\\ species is `pars$MYZpar[[i]].`
+
+- Models for aquatic mosquito ecology were called \\\cal L\\.
+
+  - The derivatives for a model of this type are computed by a `S3`
+    function `dLdt(t, y, pars, s)` or `DT_Lt(t, y, pars, s)`
+
+  - The updating function for a model of class \\\cal MYZ\\ for the
+    \\i^{th}\\ species is computed by a `S3` function
+    `DT_MYZt(t, y, pars, s)`
+
+  - The parameters for the model are in an object called `Lpar` and
+    `dLdt` and `DT_Lt` dispatch on `class(Lpar)`
+
+  - Since there could be multiple host species, `Lpar` for the
+    \\i^{th}\\ species is `pars$Lpar[[i]].`
+
+## Interfaces
+
+In developing a modular framework, we recognized the need to develop a
+rigorous yet flexible *interface* that would allow different dynamical
+components to interact.
+
+To connect these two dynamical components, we developed two well-defined
+interfaces: **blood feeding** and **egg laying.**
+
+### Blood Feeding
+
+A *model* for **blood feeding** and parasite / pathogen **transmission**
+by mosquitoes. This model *should* constrain mosquito blood feeding
+rates and the human fraction in sensible ways. It is possible to set the
+values of mosquito bionomic parameters to static values that are not
+constrained. In [Spatial Dynamics of Malaria
+Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684),
+we introduce a fully defined blood feeding module that constrains the
+blood feeding rate and the human fraction using the concept of *resource
+availability.*
+
+If `nPatches`\\\>1\\ or if `nStrata`\\\>1\\, then it is necessary to
+supply some additional information to configure the mixing matrix,
+\\\beta\\, which is attached as `pars$beta[[i]][[s]]` for the \\i^{th}\\
+host and \\s^{th}\\ vector species.
+
+- A *time spent* matrix must be configured for each host species
+
+- A vector of *blood feeding search weights* must be provided for each
+  stratum, and for each species. The \\i^{th}\\ element of the
+  \\s^{th}\\ vector is used to compute its *availability* to hosts for
+  blood feeding.
+
+- A *circadian weighting function* is required for each vector species,
+  which is used to transform the \\i^{th}\\ time spent matrix into a set
+  of `nVectors` matrices describing *time at risk.*
+
+- A *demographic* matrix must be configured for each mosquito species
+  that describes mosquito survival and dispersal in the patches.
+
+### Egg Laying
+
+A description of the locations of aquatic habitats and a *model* for
+**egg laying** and **emergence.**
+
+- A *membership* vector must be provided: the \\i^{th}\\ element is the
+  index of the patch where the habitat is found
+
+- A *search* vector must be provided: the \\i^{th}\\ element is the
+  index of the patch where the habitat is found
