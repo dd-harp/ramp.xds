@@ -908,7 +908,6 @@ reference:
   - BloodHosts.setup 
   - BloodHosts.static 
   - blood_hosts_dynamics 
-
   - setup_sugar_object 
   - Sugar 
   - Sugar.none 

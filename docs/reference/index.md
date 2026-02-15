@@ -1657,7 +1657,7 @@ Basic visualization of the transmission terms
 
   Get **MY** outputs
 
-- [`get_L_out()`](https://dd-harp.github.io/ramp.xds/reference/get_L_out.md)
+- [`get_L_orbits()`](https://dd-harp.github.io/ramp.xds/reference/get_L_orbits.md)
   :
 
   Get **L** outputs
