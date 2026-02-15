@@ -1,0 +1,96 @@
+# RAMP Software: A History
+
+The idea of developing modular software to simulate the dynamics and
+control of mosquito-borne pathogens originated sometime around 2009 at
+the Emerging Pathogens Institute, University of Florida. It took much
+longer than anticipated to finish. The supporting concepts have appeared
+in various publications. Some algorithms trace back to software packages
+that never launched. In retrospect, a key challenge was blood feeding,
+but it was not the only one.
+
+Briefly, **`ramp.xds`** and its supporting satellite packages have
+replaced `MicroMoB,` and `exDE.` David L Smith developed the prototypes
+in R, but it was Sean L. Wu who turned them into the first versions of
+the R-packages. In the case of `MicroMoB`, the software package was
+develoepd with the help of Sophie Libkind. The name `exDE` was changed
+first to `ramp.xde,` which gave rise to `ramp.dts,` a discrete-time
+version of `ramp.xde.` After a few months, these two merged and were
+rebranded as `ramp.xds` where development continued. Stable versions of
+`MicroMoB` and `exDE` were restored to their last stable versions.
+
+The following is a slightly longer and more detailed timeline:
+
+- Late in 2021, [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB) was
+  developed as a software package to build discrete-time dynamical
+  systems models for the epidemiology, transmission dynamics, and
+  control of malaria and other mosquito-transmitted pathogens. The
+  software was born late in 2021. David Smith wrote the first draft of
+  the software. Sean Wu turned it into a software package and added a
+  lot to it, with the help of Sophie Libkind.
+
+- Late in 2022, [**`exDE`**](https://dd-harp.github.io/exDE/) was
+  developed as a software package to build and solve continuous-time
+  dynamical systems mdoels for the epidemiology, transmission dynamics,
+  and control of malaria and other mosquito-transmitted pathogens. Once
+  again, it was David Smith wrote the first draft of the software. Sean
+  Wu turned it into a software package.
+
+- The first version of `exDE` had been designed to handle non-autonomous
+  systems, but none of those features had been fully implemented. During
+  2023, new features were added. At some point, `exDE` was rebranded as
+  `ramp.xde`. Among the new features added were:
+
+  - A major change was implemented in the way `ramp.xde` handled **delay
+    differential equations.** To interalize computation of terms, a new
+    protocol was developed to add dummy variables and use `lagderivs` to
+    internalize computation of any term passed to any module. New
+    algorithms were added to Ross-Macdonald models that compute mosquito
+    survival and dispersal through an incubation period varying in
+    length.
+
+  - **Inits** – *initial values,* had been handled in a single list, but
+    the protocol was changed so they are now handled separately, with
+    new functions
+    [`get_inits()`](https://dd-harp.github.io/ramp.xds/reference/get_inits.md)
+    and the `S3` families of functions `get_inits_L()` and
+    `get_inits_MYZ()` and `get_inits_X().` A new function
+    [`update_inits()`](https://dd-harp.github.io/ramp.xds/reference/update_inits.md)
+    resets the initial values to the last value simulated. The change
+    avoids any issues that migh arise if two different modules used the
+    same variable name.
+
+  - **Indexing** – **indices** for variables are now collected in
+    `pars$ix`
+
+  - **Setup** – Several new functions were added to set up basic models.
+
+  - **Solving** – The `S3` function, now called
+    [`xds_solve()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
+    was added to solve differential equations of various classes.
+
+  - **Outputs** – The `S3` function `parse_deout()` was added to parse
+    the output of `deSolve` and return the orbits in a set of named
+    lists. These lists are attached to `pars$outputs$orbits.` New
+    functions were also written to compute the dynamical terms that
+    connect the major components.
+
+  - **Demography** – Functionality was added to handle human demographic
+    changes, including births, deaths, migration, and aging.
+
+  - **Hosts** – An overhaul was required to handle multiple vertebrate
+    host or vector species.
+
+  - **Forcing** – The models have been reconfigured to model malaria as
+    a *changing baseline* that has been modified by *vector control.*
+    This required changes to the order of functions that implemented
+    various aspects of forcing by weather and other exogenous variables,
+    and to the return values for functions that computed *independent
+    effect sizes*
+
+- **`ramp.dts`** was born in April, 2024. The goal had always been to
+  bring `MicroMoB` up to the same level of functionality as `exDE` /
+  `ramp.xde` but it suddenly seemed easier to clone `ramp.xde` and
+  replace the functions
+
+- **`ramp.xds`** was born when it became clear that **`ramp.xde`** and
+  **`ramp.dts`** had large amounts of overlapping code.

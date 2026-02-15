@@ -119,9 +119,5 @@ cran-comments.md
 .quarto
 ramp.xds.Rproj
 *.Rproj
-docs/
-man/
-docs
-man
 *.bkp
 
