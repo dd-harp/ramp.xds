@@ -107,7 +107,6 @@ reference:
   - burnin 
   - get_XH_out
   - get_MY_out
-  - get_L_out
 - subtitle: Analysis 
   desc: | 
     Compute Steady States & Stable Orbits
@@ -145,7 +144,6 @@ reference:
   contents:
   - get_XH_pars 
   - get_MY_pars 
-  - get_L_pars 
   - get_mean_forcing
   - get_season
   - get_trend
