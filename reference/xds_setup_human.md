@@ -5,11 +5,8 @@ A modified version of
 that streamlines setup for models with a trival **MY** Component.
 
 The **`xds`** object defines `frame = class(frame) = 'human'` to
-dispatch
-[xde_derivatives.human](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.human.md)
-or
-[dts_update.human](https://dd-harp.github.io/ramp.xds/reference/dts_update.human.md)
-and associated functions.
+dispatch functions that compute derivatives (`xde`), update variables
+(`dts`), and parse outputs
 
 The **MY** Component module is set to `trivial.` The funcion
 [F_fqZ.trivial](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.trivial.md)

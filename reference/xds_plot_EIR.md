@@ -9,7 +9,7 @@ xds_plot_EIR(
   xds_obj,
   i = 1,
   clrs = "black",
-  llty = 1,
+  lty = 1,
   add = FALSE,
   annual = TRUE
 )
@@ -29,7 +29,7 @@ xds_plot_EIR(
 
   a vector of colors
 
-- llty:
+- lty:
 
   an integer (or integers) to set the `lty` for plotting
 

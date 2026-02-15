@@ -49,9 +49,3 @@ an **`xds`** object
 ## Note
 
 The function `xds_solve()` dispatches on `xds_obj$xde`
-
-## See also
-
-[`xde_derivatives()`](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.md)
-or
-[`dts_update()`](https://dd-harp.github.io/ramp.xds/reference/dts_update.md)

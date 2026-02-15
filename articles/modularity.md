@@ -153,12 +153,10 @@ and \\\mathcal{X}\\. Likewise emergence of new adults from aquatic
 habitats and egg laying by adults into habitats couples \\\mathcal{M}\\
 and \\\mathcal{L}\\.
 
-The function
-[`ramp.xds::xde_derivatives`](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.md)
-compute the necessary quantities and returns a vector of derivatives of
-all state variables which can be used to solve trajectories from a model
-in ramp.xds. The program flow within this function is summarized by this
-diagram:
+The function `ramp.xds::xde_derivatives` compute the necessary
+quantities and returns a vector of derivatives of all state variables
+which can be used to solve trajectories from a model in ramp.xds. The
+program flow within this function is summarized by this diagram:
 
 ![](xDEdiffeqn.png)
 

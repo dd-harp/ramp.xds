@@ -5,7 +5,7 @@ Add lines for the EIR *vs.* time
 ## Usage
 
 ``` r
-xds_lines_EIR(xds_obj, i = 1, clrs = "black", llty = 1, annual = TRUE)
+xds_lines_EIR(xds_obj, i = 1, clrs = "black", lty = 1, annual = TRUE)
 ```
 
 ## Arguments
@@ -22,7 +22,7 @@ xds_lines_EIR(xds_obj, i = 1, clrs = "black", llty = 1, annual = TRUE)
 
   a vector of colors
 
-- llty:
+- lty:
 
   an integer (or integers) to set the `lty` for plotting
 

@@ -7,10 +7,8 @@ is set to `trivial.` The model also sets **X** Component to the
 `trivial` module.
 
 The **`xds`** object defines `frame = class(frame) = 'aquatic'` to
-dispatch
-[xde_derivatives.aquatic](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.aquatic.md)
-or
-[dts_update.aquatic](https://dd-harp.github.io/ramp.xds/reference/dts_update.aquatic.md)
+dispatch functions that compute derivatives (`xde`), update variables
+(`dts`), and parse outputs
 
 ## Usage
 

@@ -57,8 +57,19 @@ Methods to solve or equations
 
 - [`xds_solve()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
   : Solve a Dynamical System
+
 - [`burnin()`](https://dd-harp.github.io/ramp.xds/reference/burnin.md) :
   Burn In
+
+- [`get_XH_out()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_out.md)
+  :
+
+  Get **XH** outputs
+
+- [`get_MY_out()`](https://dd-harp.github.io/ramp.xds/reference/get_MY_out.md)
+  :
+
+  Get **MY** outputs
 
 ### Analysis
 
@@ -163,27 +174,16 @@ Get model parameters
 
 - [`get_XH_pars()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)
   : Return the parameters as a list
-
 - [`get_MY_pars()`](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.md)
   : Return the parameters as a list
-
-- [`get_L_pars()`](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.md)
-  :
-
-  Get parameters for the **L** Component module
-
 - [`get_mean_forcing()`](https://dd-harp.github.io/ramp.xds/reference/get_mean_forcing.md)
   : Get mean forcing
-
 - [`get_season()`](https://dd-harp.github.io/ramp.xds/reference/get_season.md)
   : Get the Seasonal Pattern
-
 - [`get_trend()`](https://dd-harp.github.io/ramp.xds/reference/get_trend.md)
   : Get the trend parameters
-
 - [`get_TimeSpent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_TimeSpent_matrix.md)
   : Get the Time Spent Matrix
-
 - [`get_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.md)
   : Get the Mosquito Dispersal Matrix
 
@@ -1563,64 +1563,7 @@ Methods to compute the derivatives and dynamical systems
 - [`make_times_xde()`](https://dd-harp.github.io/ramp.xds/reference/make_times_xde.md)
   : Times Utility for Differential Equations
 
-### Derivatives
-
-- [`xde_derivatives()`](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.md)
-  : Compute Derivatives
-- [`xde_derivatives(`*`<full>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.full.md)
-  : Generalized spatial differential equation model
-- [`xde_derivatives(`*`<aquatic>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.aquatic.md)
-  : Differential equation models for aquatic mosquito populations
-- [`xde_derivatives(`*`<mosy>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.mosy.md)
-  : Generalized spatial differential equation model (mosquito only)
-- [`xde_derivatives(`*`<human>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.human.md)
-  : Differential equations isolating the humans, forced with Ztrace
-- [`xde_derivatives(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.eir.md)
-  : Differential equation models for aquatic mosquito populations
-
-### Compute Terms
-
-- [`xds_compute_terms()`](https://dd-harp.github.io/ramp.xds/reference/xds_compute_terms.md)
-  : Compute Derivatives
-- [`xds_compute_terms(`*`<aquatic>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_compute_terms.aquatic.md)
-  : Differential equation models for aquatic mosquito populations
-- [`xds_compute_terms(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_compute_terms.eir.md)
-  : Differential equation models for aquatic mosquito populations
-- [`xds_compute_terms(`*`<full>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_compute_terms.full.md)
-  : Generalized spatial differential equation model
-- [`xds_compute_terms(`*`<human>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_compute_terms.human.md)
-  : Differential equations isolating the humans, forced with Ztrace
-- [`xds_compute_terms(`*`<mosy>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_compute_terms.mosy.md)
-  : Generalized spatial differential equation model (mosquito only)
-
 ### DTS Update
-
-- [`dts_update()`](https://dd-harp.github.io/ramp.xds/reference/dts_update.md)
-  : dts_update\_ States for Discrete-Time Systems
-
-- [`dts_update(`*`<full>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dts_update.full.md)
-  : Generalized spatial differential equation model
-
-- [`dts_update(`*`<aquatic>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dts_update.aquatic.md)
-  : Difference equation models for aquatic mosquito populations
-
-- [`dts_update(`*`<mosy>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dts_update.mosy.md)
-  : Generalized spatial differential equation model (mosquito only)
-
-- [`dts_update(`*`<human>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dts_update.human.md)
-  : Difference equations isolating the humans, forced with Ztrace
-
-- [`dts_update(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dts_update.eir.md)
-  : Difference equation models for aquatic mosquito populations
-
-- [`dts_update_Lt()`](https://dd-harp.github.io/ramp.xds/reference/dts_update_Lt.md)
-  : Difference equations isolating the humans, forced with Ztrace
-
-- [`dts_update_MYt()`](https://dd-harp.github.io/ramp.xds/reference/dts_update_MYt.md)
-  : Difference equations isolating the humans, forced with Ztrace
-
-- [`dts_update_XHt()`](https://dd-harp.github.io/ramp.xds/reference/dts_update_XHt.md)
-  : Difference equations isolating the humans, forced with Ztrace
 
 - [`Update_XHt()`](https://dd-harp.github.io/ramp.xds/reference/Update_XHt.md)
   : Update X states for a discrete time system
@@ -1641,37 +1584,10 @@ outputs
 - [`xds_solve()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
   : Solve a Dynamical System
 
-- [`xds_solve(`*`<dde>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.dde.md)
-  : Solve a System of Delay Differential Equations
-
-- [`xds_solve(`*`<ode>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.ode.md)
-  : Solve a System of Ordinary Differential Equations
-
-- [`xds_solve(`*`<dts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.dts.md)
-  : Solve a Discrete-Time System
-
 - [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
   : Compute stable orbits
 
-- [`xds_stable_orbit(`*`<dts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.dts.md)
-  : Compute the stable orbit for a discrete time system
-
-- [`xds_stable_orbit(`*`<xde>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.xde.md)
-  : Compute stable orbit for a system of differential equations
-
 - [`xds_steady()`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.md)
-  :
-
-  Solve for the steady state of a system of equations using
-  [rootSolve::steady](https://rdrr.io/pkg/rootSolve/man/steady.html)
-
-- [`xds_steady(`*`<ode>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.ode.md)
-  :
-
-  Solve for the steady state of a system of equations using
-  [rootSolve::steady](https://rdrr.io/pkg/rootSolve/man/steady.html)
-
-- [`xds_steady(`*`<dde>`*`)`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.dde.md)
   :
 
   Solve for the steady state of a system of equations using
@@ -1720,9 +1636,16 @@ Methods to compute and transmission terms
 - [`parse_outputs(`*`<mosy>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_outputs.mosy.md)
   : Make Outputs
 
-### Plot terms
+### Get and plot terms
 
 Basic visualization of the transmission terms
+
+- [`get_H()`](https://dd-harp.github.io/ramp.xds/reference/get_H.md) :
+  Get the initial values as a vector
+
+- [`get_PR()`](https://dd-harp.github.io/ramp.xds/reference/get_PR.md) :
+
+  Get the *Pf*PR from a Malaria Model
 
 - [`get_XH_out()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_out.md)
   :
@@ -1839,33 +1762,6 @@ Methods to set up basic models
 
 - [`get_last()`](https://dd-harp.github.io/ramp.xds/reference/get_last.md)
   : Get the last state
-
-- [`get_H()`](https://dd-harp.github.io/ramp.xds/reference/get_H.md) :
-  Get the initial values as a vector
-
-- [`get_PR()`](https://dd-harp.github.io/ramp.xds/reference/get_PR.md) :
-
-  Get the *Pf*PR from a Malaria Model
-
-- [`get_PR(`*`<true>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_PR.true.md)
-  :
-
-  Get the *Pf*PR from a Malaria Model
-
-- [`get_PR(`*`<lm>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_PR.lm.md)
-  :
-
-  Get the *Pf*PR from a Malaria Model
-
-- [`get_PR(`*`<rdt>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_PR.rdt.md)
-  :
-
-  Get the *Pf*PR from a Malaria Model
-
-- [`get_PR(`*`<pcr>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_PR.pcr.md)
-  :
-
-  Get the *Pf*PR from a MalariasModel
 
 - [`make_indices()`](https://dd-harp.github.io/ramp.xds/reference/make_indices.md)
   : Make indices for all the model variables

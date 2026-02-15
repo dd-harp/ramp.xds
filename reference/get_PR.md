@@ -1,9 +1,8 @@
 # Get the *Pf*PR from a Malaria Model
 
-This method assigns `class(method)=method` and then dispatches on
-"type." Options are:
+`'method'` should be
 
-- `true` for the true *Pf*PR
+- `true` for the true *Pf*PR (default)
 
 - `lm` for the *Pf*PR by light microscopy
 
@@ -14,7 +13,7 @@ This method assigns `class(method)=method` and then dispatches on
 ## Usage
 
 ``` r
-get_PR(xds_obj, i = 1, method = "true")
+get_PR(xds_obj, method = "true", i = 1)
 ```
 
 ## Arguments
@@ -23,14 +22,19 @@ get_PR(xds_obj, i = 1, method = "true")
 
   an **`xds`** object
 
-- i:
-
-  the host species index
-
 - method:
 
   the method used for computing *Pf*PR
 
+- i:
+
+  the host species index
+
 ## Value
 
 none
+
+## Note
+
+The method assigns `class(method)='method'` then dispatches on
+`'method'`

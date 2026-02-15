@@ -6,9 +6,8 @@ to setup up studies of malaria epidemiology, defined in a narrow sense,
 to examine patterns in populations forced by the EIR.
 
 The **`xds`** object defines `frame = class(frame) = 'eir'` to dispatch
-[xde_derivatives.eir](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.eir.md)
-or
-[dts_update.eir](https://dd-harp.github.io/ramp.xds/reference/dts_update.eir.md)
+functions that compute derivatives (`xde`), update variables (`dts`),
+and parse outputs
 
 The interface includes options to configure a function describing
 `F_eir` as a function of time, with seasonal components and a trend.

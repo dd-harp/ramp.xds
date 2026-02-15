@@ -6,7 +6,15 @@ and immunity
 ## Usage
 
 ``` r
-xds_plot_PR(xds_obj, i = 1, clrs = "black", llty = 1, add = FALSE)
+xds_plot_PR(
+  xds_obj,
+  method = "true",
+  i = 1,
+  clrs = "black",
+  lty = 1,
+  y01 = FALSE,
+  add = FALSE
+)
 ```
 
 ## Arguments
@@ -14,6 +22,10 @@ xds_plot_PR(xds_obj, i = 1, clrs = "black", llty = 1, add = FALSE)
 - xds_obj:
 
   an **`xds`** model object
+
+- method:
+
+  the method used for computing *Pf*PR
 
 - i:
 
@@ -23,9 +35,13 @@ xds_plot_PR(xds_obj, i = 1, clrs = "black", llty = 1, add = FALSE)
 
   a vector of colors
 
-- llty:
+- lty:
 
   an integer (or integers) that specifies `lty` for plotting
+
+- y01:
+
+  set ylim = c(0,1)
 
 - add:
 

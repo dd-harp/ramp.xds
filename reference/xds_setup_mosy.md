@@ -7,10 +7,8 @@ dynamics. These models lack the **Y** component and an **X** component,
 but they will often need an **H** component (host density).
 
 The **`xds`** object defines `frame = class(frame) = 'mosy'` to dispatch
-[xde_derivatives.mosy](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.mosy.md)
-or
-[dts_update.mosy](https://dd-harp.github.io/ramp.xds/reference/dts_update.mosy.md)
-and associated functions.
+functions that compute derivatives (`xde`), update variables (`dts`),
+and parse outputs
 
 The **X** Component module is `trivial`, but since humans / vertebrate
 hosts can be a resource, `HPop` must be set.

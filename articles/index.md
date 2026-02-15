@@ -17,6 +17,8 @@
 - [Contributing](https://dd-harp.github.io/ramp.xds/articles/Contributing.md):
 - [Delay
   Equations](https://dd-harp.github.io/ramp.xds/articles/Delays.md):
+- [Diagnostics, Detection, &
+  Prevalence](https://dd-harp.github.io/ramp.xds/articles/Diagnostics.md):
 - [Discrete Time
   Systems](https://dd-harp.github.io/ramp.xds/articles/DTS.md):
 - [Habitats & Mosquito
