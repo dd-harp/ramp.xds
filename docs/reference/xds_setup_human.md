@@ -88,7 +88,7 @@ xds_setup_human(
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object
 
 ## See also
 

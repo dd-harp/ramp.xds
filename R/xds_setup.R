@@ -1,8 +1,8 @@
 # functions to set up models
 
-#' @title Build a Model and Configure All Components 
+#' @title Build a Model and Configure All Components
 #'
-#' @description 
+#' @description
 #' \loadmathjax
 #' Make an **`xds`** *model object*:
 #' - Define the dynamical components:
@@ -56,7 +56,7 @@
 #' @param Xname a character string defining a **X** Component module
 #' @param XHoptions a list to configure the **X** Component module
 #' @param MYname a character string defining an **MY** module
-#' @param MYoptions options to set up the **MY** component 
+#' @param MYoptions options to set up the **MY** component
 #' @param Lname a character string defining a **L** Component module
 #' @param Loptions a list to configure the **L** Component module
 #' @param nPatches is the number of patches
@@ -91,17 +91,17 @@ xds_setup = function(xds = 'ode',
 ){
   stopifnot(length(HPop) == length(residence))
   xds_obj <- make_xds_object_template('ode', 'full', nPatches, membership, residence)
-  
+
   # Aquatic Mosquito Dynamics
   xds_obj$Lname <- Lname
   xds_obj       <- setup_L_obj(Lname, xds_obj, 1, Loptions)
   xds_obj       <- setup_L_inits(xds_obj, 1, Loptions)
-  
+
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- MYname
   xds_obj           <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
   xds_obj           <- setup_MY_inits(xds_obj, 1, MYoptions)
-  
+
 
   # Human Dynamics
   xds_obj$Xname <- Xname
@@ -112,11 +112,11 @@ xds_setup = function(xds = 'ode',
 
   Qwts       <- with(Loptions, checkIt(searchQ, xds_obj$nHabitats))
   xds_obj       <- change_habitat_weights(Qwts, xds_obj, 1)
-  
+
 
   wts        <- with(BFopts, checkIt(searchB, xds_obj$nStrata))
   xds_obj    <- change_blood_search_weights(wts, xds_obj, 1, 1)
-  
+
 
   if(is.matrix(TimeSpent))
     xds_obj <- change_TimeSpent_matrix(TimeSpent, xds_obj, 1)
@@ -125,25 +125,25 @@ xds_setup = function(xds = 'ode',
   if(is.matrix(K_matrix))
     xds_obj <- change_K_matrix(K_matrix, xds_obj, 1)
 
-  
+
   # Probably Not Necessary
   y0 <- as.vector(unlist(get_inits(xds_obj)))
 
   xds_obj <- check_models(xds_obj)
-  
+
   return(xds_obj)
 }
 
 #' @title Build a Model of Mosquito Ecology
 #'
-#' @description 
+#' @description
 #' \loadmathjax
 #' A modified version of [xds_setup] that streamlines setup for models without parasite / pathogen infection
-#' dynamics. These models lack the **Y** component and an **X** component, but they will often need an **H** 
+#' dynamics. These models lack the **Y** component and an **X** component, but they will often need an **H**
 #' component (host density).
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'mosy'`
-#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`), 
+#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs
 #'
 #' The **X** Component module is `trivial`, but since humans / vertebrate hosts can be a
@@ -185,7 +185,7 @@ xds_setup_mosy = function(xds = 'ode',
   residence = 1:nPatches
   HPop = checkIt(HPop, nPatches)
   xds_obj <- make_xds_object_template(xds, 'mosy', nPatches, membership, residence)
-  
+
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- MYname
   xds_obj           <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
@@ -216,16 +216,16 @@ xds_setup_mosy = function(xds = 'ode',
 
 
 #' @title Build a Model of Immature Mosquito Ecology
-#' 
-#' @description 
+#'
+#' @description
 #' \loadmathjax
-#' 
+#'
 #' A modified version of [xds_setup] that streamlines setup for an **L** Component
 #' when the **MY** Component is set to `trivial.` The model
 #' also sets **X** Component to the `trivial` module.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'aquatic'`
-#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`), 
+#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs
 #'
 #' @seealso [xds_setup]
@@ -269,14 +269,14 @@ xds_setup_aquatic = function(xds = 'ode',
 
 #' @title Build a Model of Human / Host Epidemiology
 #'
-#' @description 
+#' @description
 #' \loadmathjax
-#' 
+#'
 #' A modified version of [xds_setup] that
 #' streamlines setup for models with a trival **MY** Component.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'human'`
-#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`), 
+#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs
 #'
 #' The **MY** Component module is set to `trivial.` The funcion [F_fqZ.trivial] is called to compute passes the
@@ -301,8 +301,8 @@ xds_setup_aquatic = function(xds = 'ode',
 #' @param XHoptions a named list to configure the **X** Component module
 #' @param BFopts list to configure the blood feeding model
 #' @param model_name a name for the model
-#' 
-#' @return an **`xds`** model object
+#'
+#' @return an **`xds`** object
 #' @export
 xds_setup_human = function(Xname = "SIS",
                            XHoptions = list(),
@@ -332,15 +332,15 @@ xds_setup_human = function(Xname = "SIS",
 
   # Mosquito Dynamics
   xds_obj           <- setup_MY_obj("trivial", xds_obj, 1, MYoptions)
- 
+
   # Human Dynamics
   xds_obj$Xname <- Xname
   xds_obj       <- setup_XH_obj(Xname, xds_obj,  1, XHoptions)
   xds_obj       <- setup_XH_inits(xds_obj, HPop, 1, XHoptions)
 
   xds_obj = make_indices(xds_obj)
-  
-  
+
+
   wts          <- with(BFopts, checkIt(searchB, xds_obj$nStrata))
   xds_obj      <- change_blood_search_weights(wts, xds_obj, 1, 1)
 
@@ -359,33 +359,33 @@ xds_setup_human = function(Xname = "SIS",
 
 
 #' @title Build a Model for a single Human / Host Epidemiology forced by the EIR
-#' 
-#' @description 
-#' \loadmathjax
-#' 
-#' A modified version of [xds_setup] to setup up 
-#' studies of malaria epidemiology, defined in a narrow sense, to
-#' examine patterns in populations forced by the EIR. 
 #'
-#' The **`xds`** object defines `frame = class(frame) = 'eir'` 
-#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`), 
+#' @description
+#' \loadmathjax
+#'
+#' A modified version of [xds_setup] to setup up
+#' studies of malaria epidemiology, defined in a narrow sense, to
+#' examine patterns in populations forced by the EIR.
+#'
+#' The **`xds`** object defines `frame = class(frame) = 'eir'`
+#' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs
 #'
 #'
 #' The interface includes options to configure a function
 #' describing `F_eir` as a function of time, with seasonal components
-#' and a trend. 
-#' 
-#' This can be used to model a cohort as it ages; 
-#' a function is set up to modify exposure by age. 
+#' and a trend.
 #'
-#' @seealso [xds_setup] and [xds_setup_human] 
+#' This can be used to model a cohort as it ages;
+#' a function is set up to modify exposure by age.
+#'
+#' @seealso [xds_setup] and [xds_setup_human]
 #'
 #' @param eir is the entomological inoculation rate
 #' @param season_par parameters to configure a seasonality function using [make_function]
 #' @param trend_par parameters to configure a trends function using [make_function]
 #' @param age_par parameters to configure an age weights function using [make_function]
-#' @param shock_par parameters to configure a shock using [make_function] 
+#' @param shock_par parameters to configure a shock using [make_function]
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname is a character string specifying an **X** Component module
 #' @param XHoptions a list to configure the **X** Component module
@@ -395,7 +395,7 @@ xds_setup_human = function(Xname = "SIS",
 #' @return an **`xds`** object
 #' @export
 xds_setup_eir = function(eir=1,
-                         season_par = makepar_F_one(), 
+                         season_par = makepar_F_one(),
                          trend_par = makepar_F_one(),
                          age_par = makepar_F_one(),
                          shock_par = makepar_F_one(),
@@ -416,7 +416,7 @@ xds_setup_eir = function(eir=1,
   residence = rep(1, length(HPop))
   membership = 1
   xds_obj <- make_xds_object_template(xds, 'eir', nPatches, membership, residence)
-  xds_obj$forced_by = xds_obj$frame 
+  xds_obj$forced_by = xds_obj$frame
 
   xds_obj$EIR_obj <- list()
   xds_obj$EIR_obj$eir <- eir
@@ -438,8 +438,8 @@ xds_setup_eir = function(eir=1,
   xds_obj$Xname <- Xname
   xds_obj       <- setup_XH_obj(Xname, xds_obj,  1, XHoptions)
   xds_obj       <- setup_XH_inits(xds_obj, HPop, 1, XHoptions)
-  
-  xds_obj$forced_by = xds_obj$frame 
+
+  xds_obj$forced_by = xds_obj$frame
 
   xds_obj       = make_indices(xds_obj)
 

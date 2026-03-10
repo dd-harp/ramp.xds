@@ -24,7 +24,7 @@ make_xds_object_template(
 \item{residency}{is the strata residency vector}
 }
 \value{
-an \code{xds} model object
+an \strong{\code{xds}} object
 }
 \description{
 This function is called by \link{xds_setup} to create

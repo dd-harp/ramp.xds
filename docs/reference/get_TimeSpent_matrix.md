@@ -20,4 +20,4 @@ get_TimeSpent_matrix(xds_obj, i = 1)
 
 ## Value
 
-a modified **`xds`** model object
+an **`xds`** object

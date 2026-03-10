@@ -12,7 +12,7 @@ setup_ML_interface(xds_obj, membership)
 \item{membership}{is the habitat membership vector}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Set up a part of the \code{xds} object that defines the interface for egg laying

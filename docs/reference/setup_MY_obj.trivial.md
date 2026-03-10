@@ -31,4 +31,4 @@ setup_MY_obj(MYname, xds_obj, s, options = list())
 
 ## Value
 
-a modified **`xds`** model object
+an **`xds`** object

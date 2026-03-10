@@ -2,7 +2,7 @@
 #' @description This method dispatches on the type of `MY_obj`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @return an **`xds`** model object
+#' @return an **`xds`** object
 #' @export
 setup_Omega <- function(xds_obj, s){
   UseMethod("setup_Omega", xds_obj$xds)
@@ -11,7 +11,7 @@ setup_Omega <- function(xds_obj, s){
 #' @title Make the mosquito demography matrix
 #' @description This method dispatches on the type of `MY_obj`.
 #' @inheritParams setup_Omega
-#' @return an **`xds`** model object
+#' @return an **`xds`** object
 #' @export
 setup_Omega.xde <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
   g = get_g(xds_obj, s)

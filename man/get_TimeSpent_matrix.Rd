@@ -12,7 +12,7 @@ get_TimeSpent_matrix(xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-a modified \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Get the Time Spent Matrix

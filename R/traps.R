@@ -1,15 +1,15 @@
 # The traps library is found in ramp.traps
 
-#' @title Set up Mosquito traps 
-#' 
-#' @description Create a junction  
-#' for mosquito traps 
-#' 
+#' @title Set up Mosquito traps
+#'
+#' @description Create a junction
+#' for mosquito traps
+#'
 #' @note Mosquito trap models are in
-#' `ramp.control` 
-#' 
+#' `ramp.control`
+#'
 #' @param t current simulation time
-#' @param y state variables 
+#' @param y state variables
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @export
@@ -21,7 +21,7 @@ Traps = function(t, y, xds_obj){
 #' @description After none setup, no exogenous
 #' variables are configured so traps returns
 #' the **`xds`** object without modification
-#' 
+#'
 #' @inheritParams Traps
 #'
 #' @return an **`xds`** object
@@ -37,10 +37,10 @@ Traps.none = function(t, y, xds_obj){
 #' @return an **`xds`** object
 #' @export
 setup_traps_object = function(xds_obj){
-  traps <- list() 
+  traps <- list()
   class(traps) <- 'none'
-  traps$name <- "Junction: Mosquito Traps" 
-  traps$ports <- "Ports: Ovitraps, Blood Traps, Sugar Baited Traps" 
+  traps$name <- "Junction: Mosquito Traps"
+  traps$ports <- "Ports: Ovitraps, Blood Traps, Sugar Baited Traps"
   xds_obj$ML_interface$Qtraps = list()
   xds_obj$ML_interface$Qtraps[[1]] <- rep(0, xds_obj$nPatches)
   xds_obj$XY_interface$Btraps = list()

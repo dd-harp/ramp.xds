@@ -20,4 +20,4 @@ parse_y(y, xds_obj)
 
 ## Value
 
-varslist a [list](https://rdrr.io/r/base/list.html)
+a named [list](https://rdrr.io/r/base/list.html)

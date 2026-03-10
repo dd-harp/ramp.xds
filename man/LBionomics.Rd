@@ -16,7 +16,7 @@ LBionomics(t, y, xds_obj, s)
 \item{s}{the species index}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Handle immature mosquito bionomic parameters as a baseline modified by control

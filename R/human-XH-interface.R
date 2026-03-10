@@ -1,55 +1,55 @@
 # generic methods for human component
 
-#' @title **XH** Skill Set 
-#' 
-#' @description The **XH** skill set is a list of 
-#' an module's capabilities: 
-#' 
-#' + **`H_dynamics`** - if FALSE, \eqn{H} is static. The module doesn't have a port for demographic change 
-#' + **`mda`**:  if FALSE, the module doesn't have an `mda` port for mass drug administration 
-#' + **`msat`**:  if FALSE, the module doesn't have an `msat` port for mass  
-#' + **`malaria`**: if FALSE, the model probably shouldn't be used for malaria 
-#' + **`pr_obs`**: if TRUE, the model outputs a value for observed PR 
-#' + **`pf_rdt`**: if TRUE, the model outputs a value for prevalence by RDT 
-#' + **`pf_lm`**: if TRUE, the model outputs a value for prevalence by light microscopy 
-#' + **`pf_pcr`**: if FALSE, the model outputs a value for prevalence by PCR 
+#' @title **XH** Skill Set
 #'
-#' @param Xname the **XH** module name 
-#' 
-#' @return *XH* module skill set, as a list 
-#' 
+#' @description The **XH** skill set is a list of
+#' an module's capabilities:
+#'
+#' + **`H_dynamics`** - if FALSE, \eqn{H} is static. The module doesn't have a port for demographic change
+#' + **`mda`**:  if FALSE, the module doesn't have an `mda` port for mass drug administration
+#' + **`msat`**:  if FALSE, the module doesn't have an `msat` port for mass
+#' + **`malaria`**: if FALSE, the model probably shouldn't be used for malaria
+#' + **`pr_obs`**: if TRUE, the model outputs a value for observed PR
+#' + **`pf_rdt`**: if TRUE, the model outputs a value for prevalence by RDT
+#' + **`pf_lm`**: if TRUE, the model outputs a value for prevalence by light microscopy
+#' + **`pf_pcr`**: if FALSE, the model outputs a value for prevalence by PCR
+#'
+#' @param Xname the **XH** module name
+#'
+#' @return *XH* module skill set, as a list
+#'
 #' @export
 skill_set_XH = function(Xname){
   class(Xname) <- Xname
   UseMethod("skill_set_XH", Xname)
 }
 
-#' Check / update before solving 
+#' Check / update before solving
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param i host species index 
+#' @param i host species index
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_XH = function(xds_obj,i){
-  UseMethod("check_XH", xds_obj$XH_obj[[i]]) 
+  UseMethod("check_XH", xds_obj$XH_obj[[i]])
 }
 
 #' @title Compute **XH** Component Derivatives
-#' 
-#' @description Using the stored values 
-#' of the daily FoI, compute the derivatives and 
-#' return the derivatives as a numeric vector. 
-#' 
-#' @note This method dispatches on `class(xds_obj$XH_obj)` 
+#'
+#' @description Using the stored values
+#' of the daily FoI, compute the derivatives and
+#' return the derivatives as a numeric vector.
+#'
+#' @note This method dispatches on `class(xds_obj$XH_obj)`
 #'
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' 
-#' @return the derivatives as a [numeric] vector 
-#' 
+#'
+#' @return the derivatives as a [numeric] vector
+#'
 #' @export
 dXHdt <- function(t, y, xds_obj, i) {
   UseMethod("dXHdt", xds_obj$XH_obj[[i]])
@@ -105,36 +105,36 @@ F_infectivity <- function(y, xds_obj, i) {
 }
 
 #' @title Setup an **XH** Module (Human / Host Epidemiology & Demography)
-#' @description Set the parameter values and configure a model 
+#' @description Set the parameter values and configure a model
 #' for the **X** Component
-#' 
-#' @param Xname the model name 
+#'
+#' @param Xname the model name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options model options as a named list
-#' 
+#'
 #' @return an **`xds`** object
 #' @keywords internal
-#' 
+#'
 #' @export
 setup_XH_obj = function(Xname, xds_obj, i, options=list()){
   class(Xname) <- Xname
   UseMethod("setup_XH_obj", Xname)
 }
 
-#' @title Get Variables by Name 
-#' 
+#' @title Get Variables by Name
+#'
 #' @description Get the the values
-#' of variables from the flat state 
-#' variable vector \eqn{y}, and return 
-#' the values as a named list 
-#' 
+#' of variables from the flat state
+#' variable vector \eqn{y}, and return
+#' the values as a named list
+#'
 #' @param y the variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' 
+#'
 #' @return Variables as a named list
-#'  
+#'
 #' @export
 get_XH_vars <- function(y, xds_obj, i=1) {
   UseMethod("get_XH_vars", xds_obj$XH_obj[[i]])
@@ -149,7 +149,7 @@ get_XH_vars <- function(y, xds_obj, i=1) {
 change_H = function(H, xds_obj, i=1){
   stopifnot(length(H) == xds_obj$nStrata[i])
   vars <- get_XH_inits(xds_obj,i)
-  vars$H <- H 
+  vars$H <- H
   xds_obj <- change_XH_inits(xds_obj, i, vars)
   xds_obj$XY_interface <- trigger_setup(xds_obj$XY_interface)
   return(xds_obj)
@@ -157,9 +157,9 @@ change_H = function(H, xds_obj, i=1){
 
 
 #' @title Add indices for human population to parameter list
-#' 
+#'
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return an **`xds`** object
@@ -170,13 +170,13 @@ setup_XH_ix <- function(xds_obj, i) {
 }
 
 #' @title Add indices for human population to parameter list
-#' 
+#'
 #' @description Get and display the values of the indices
-#' for the variables   
-#' 
+#' for the variables
+#'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' 
+#'
 #' @return an **`xds`** object
 #' @export
 get_XH_ix <- function(xds_obj, i=1) {
@@ -184,24 +184,24 @@ get_XH_ix <- function(xds_obj, i=1) {
 }
 
 
-#' @title Parse **XH** Outputs 
-#' 
+#' @title Parse **XH** Outputs
+#'
 #' @description After solving, this function extracts
-#' the values of the dependent variables for the **XH** 
+#' the values of the dependent variables for the **XH**
 #' module from the matrix of solutions,
-#' often called the "orbits." 
+#' often called the "orbits."
 #' The orbits are parsed
-#' and attached by name to the **`xds`** model object. 
-#' 
+#' and attached by name to the **`xds`** model object.
+#'
 #' For differential equations
-#' the solution matrix is returned by [deSolve]. 
-#' Discrete time systems return a matrix 
-#' that has the same shape. 
-#' 
+#' the solution matrix is returned by [deSolve].
+#' Discrete time systems return a matrix
+#' that has the same shape.
+#'
 #' @param outputs an output matrix returned by [deSolve]
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' 
+#'
 #' @export
 parse_XH_orbits <- function(outputs, xds_obj, i) {
   UseMethod("parse_XH_orbits", xds_obj$XH_obj[[i]])
@@ -223,17 +223,17 @@ get_XH_pars <- function(xds_obj, i=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
 #' @param options a named list
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 change_XH_pars <- function(xds_obj, i=1, options=list()) {
   UseMethod("change_XH_pars", xds_obj$XH_obj[[i]])
 }
 
 
-#' @title Setup Initial Values for **XH** Modules 
-#' 
+#' @title Setup Initial Values for **XH** Modules
+#'
 #' @description This method dispatches on `xds_obj$XH_obj[[i]]`.
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
 #' @param H initial host population density
 #' @param i the host species index
@@ -247,18 +247,18 @@ setup_XH_inits = function(xds_obj, H, i=1, options=list()){
 
 
 #' @title A function to set up XH_obj
-#' 
-#' @description Get and display the stored 
-#' set of initial values. 
-#'  
+#'
+#' @description Get and display the stored
+#' set of initial values.
+#'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' 
+#'
 #' @return the initial values, as a named list
-#' 
+#'
 #' @export
 get_XH_inits = function(xds_obj, i=1){
-  xds_obj$XH_obj[[i]]$inits 
+  xds_obj$XH_obj[[i]]$inits
 }
 
 
@@ -267,7 +267,7 @@ get_XH_inits = function(xds_obj, i=1){
 #' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
 #' @param options a named list
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 change_XH_inits <- function(xds_obj, i=1, options=list()) {
   UseMethod("change_XH_inits", xds_obj$XH_obj[[i]])
@@ -337,31 +337,31 @@ HTC <- function(xds_obj, i) {
 }
 
 #' @title Steady States for **X**
-#' 
+#'
 #' @description Compute the steady states as a function of the daily FoI for a
 #' static value of human population density
-#' 
+#'
 #' @param foi the daily FoI
 #' @param H human / host population density
 #' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
-#' 
-#' @return steady states 
+#'
+#' @return steady states
 #' @export
 steady_state_X = function(foi, H, xds_obj, i=1){
   UseMethod("steady_state_X", xds_obj$XH_obj[[i]])
 }
 
 #' @title Steady States for **XH**
-#' 
+#'
 #' @description Compute the steady states as a function of the daily FoI for a
 #' static value of human population density
-#' 
+#'
 #' @param foi the daily FoI
 #' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
-#' 
-#' @return steady states 
+#'
+#' @return steady states
 #' @export
 steady_state_XH = function(foi, xds_obj, i=1){
   UseMethod("steady_state_XH", xds_obj$XH_obj[[i]])

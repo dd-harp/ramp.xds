@@ -12,7 +12,7 @@ add_variable(var_object, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the \strong{\code{xds}} model object with a new variable
+an \strong{\code{xds}} object
 }
 \description{
 This is a generic method to add new dependent state variables

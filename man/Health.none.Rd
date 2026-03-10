@@ -14,7 +14,7 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 After none setup, no exogenous

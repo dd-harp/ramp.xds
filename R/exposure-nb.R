@@ -1,9 +1,9 @@
 
 #' @title Set up a nbson model for Exposure and Infection
-#' 
+#'
 #' @inheritParams setup_exposure
-#' 
-#' @return an  **`xds`** object
+#'
+#' @return an **`xds`** object
 #' @export
 #' @seealso Also, see [F_foi.nb] and [F_ar.nb]
 #' @keywords internal
@@ -13,31 +13,31 @@ setup_exposure.nb <- function(EHname, xds_obj, i=1, options=list()) {
   return(xds_obj)
 }
 
-#' @title Make a nbson Exposure Model Object 
-#' 
+#' @title Make a nbson Exposure Model Object
+#'
 #' @description Set up the nbson model for
 #' exposure for continuous time models
 #'
 #' @param nStrata the number of population strata
 #' @param options options to configure negative binomial exposure
 #' @param sz the `size` parameter for a negative binomial distribution
-#' 
+#'
 #' @return a local exposure model object
-#' 
+#'
 #' @seealso Also, see [F_foi.nb]
 #' @export
 make_exposure_nb <- function(nStrata, options, sz=1) {
   local_exposure_object <- list()
   class(local_exposure_object) <- 'nb'
-  local_exposure_object$sz = with(options, sz) 
+  local_exposure_object$sz = with(options, sz)
   return(local_exposure_object)
 }
 
-#' @title Negative Binomial Exposure 
-#' 
+#' @title Negative Binomial Exposure
+#'
 #' @description Compute the daily FoI from the daily EIR
 #' under a negative binomial model for exposure
-#' 
+#'
 #' @details
 #' This function computes the local daily FoI, \eqn{h} as a function of
 #' the local daily EIR, \eqn{E},

@@ -1,43 +1,43 @@
 # the aquatic mosquito `basicL` competition model
 
-#' @title The **L** Module Skill Set 
-#' 
-#' @description The **L** skill set is a list of 
-#' an module's capabilities 
+#' @title The **L** Module Skill Set
 #'
-#' @param Lname the name of the **L** module 
-#' 
-#' @return *L* module skill set, as a list 
-#' 
+#' @description The **L** skill set is a list of
+#' an module's capabilities
+#'
+#' @param Lname the name of the **L** module
+#'
+#' @return *L* module skill set, as a list
+#'
 #' @export
 skill_set_L.basicL = function(Lname = "basicL"){
   list(trivial=FALSE)
 }
 
-#' Run a check before solving 
+#' Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
+#' @param s the vector species index
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_L.basicL = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Compute Derivatives for **L** module `basicL` 
-#' 
+#' @title Compute Derivatives for **L** module `basicL`
+#'
 #' @description
 #' This implements differential equation model for aquatic mosquito ecology.
 #' The equations have been modified slightly from a version published by
-#' Smith DL, *et al.* (2013). 
+#' Smith DL, *et al.* (2013).
 #'
 #' **Variables:**
 #'
 #' - \eqn{L}: the density of mosquito larvae in each habitat
 #'
 #' **Input Term:**
-#' 
+#'
 #' - \eqn{\eta} or `eta`: egg deposition rate (from [F_eggs])
 #'
 #' **Parameters:**
@@ -50,23 +50,23 @@ check_L.basicL = function(xds_obj, s){
 #' **Dynamical System:**
 #'
 #' \deqn{dL/dt = \eta - (\psi\;e^{-\xi L} + \phi + \theta L)L}
-#' 
+#'
 #' **Output Term:**
-#' 
+#'
 #' - The function [F_emerge] computes the net emergence rate (\eqn{\alpha}):
 #'
 #' \deqn{\alpha = \psi e^{-\xi L} L }
-#' 
+#'
 #' **Regulation:**
-#' 
-#' In this model, population is regulated in two ways. 
-#' First, per-capita mortality increases with mean crowding; 
-#' per-capita mortality is \eqn{\phi + \theta L.} 
-#' Second, maturation is delayed in response to mean crowding \eqn{\psi\;e^{-\xi L.}} 
-#' Depending on the values of \eqn{\xi,} 
-#' productivity in some habitats might not be a monotonically increasing function of egg laying. 
-#' 
-#' The model by Smith DL, *et al.* (2013) did not include delayed maturation; 
+#'
+#' In this model, population is regulated in two ways.
+#' First, per-capita mortality increases with mean crowding;
+#' per-capita mortality is \eqn{\phi + \theta L.}
+#' Second, maturation is delayed in response to mean crowding \eqn{\psi\;e^{-\xi L.}}
+#' Depending on the values of \eqn{\xi,}
+#' productivity in some habitats might not be a monotonically increasing function of egg laying.
+#'
+#' The model by Smith DL, *et al.* (2013) did not include delayed maturation;
 #' that model is recovered by setting \eqn{\xi=0.}
 #'
 #' @inheritParams dLdt
@@ -117,21 +117,21 @@ F_emerge.basicL <- function(t, y, xds_obj, s) {
 }
 
 #' @title Baseline Bionomics for `basicL` (**L** Component)
-#' 
+#'
 #' @description Set **L** component parameters
 #' to baseline values for `basicL`
 #' @inheritParams LBaseline
-#' 
-#' @return a **`ramp.xds`** object
+#'
+#' @return an **`xds`** object
 #' @export
 LBaseline.basicL <- function(t, y, xds_obj, s) {
 
   with(xds_obj$L_obj[[s]],{
-    xds_obj$L_obj[[s]]$psi_t      <- F_maturation(t, xds_obj, s) 
-    xds_obj$L_obj[[s]]$phi_t      <- F_larval_mort(t, xds_obj, s) 
-    xds_obj$L_obj[[s]]$xi_t       <- F_dlay_maturation(t, xds_obj, s) 
-    xds_obj$L_obj[[s]]$theta_t    <- F_larval_dd_mort(t, xds_obj, s) 
-    
+    xds_obj$L_obj[[s]]$psi_t      <- F_maturation(t, xds_obj, s)
+    xds_obj$L_obj[[s]]$phi_t      <- F_larval_mort(t, xds_obj, s)
+    xds_obj$L_obj[[s]]$xi_t       <- F_dlay_maturation(t, xds_obj, s)
+    xds_obj$L_obj[[s]]$theta_t    <- F_larval_dd_mort(t, xds_obj, s)
+
     xds_obj$L_obj[[s]]$es_psi   <- rep(1, nHabitats)
     xds_obj$L_obj[[s]]$es_phi   <- rep(1, nHabitats)
     xds_obj$L_obj[[s]]$es_xi    <- rep(1, nHabitats)
@@ -142,7 +142,7 @@ LBaseline.basicL <- function(t, y, xds_obj, s) {
 #' @title Bionomics for `basicL` (**L** Component)
 #' @description Implements [LBionomics] for the `basicL`
 #' @inheritParams LBionomics
-#' @return a **`ramp.xds`** object
+#' @return an **`xds`** object
 #' @export
 LBionomics.basicL <- function(t, y, xds_obj, s) {
   with(xds_obj$L_obj[[s]],{
@@ -165,7 +165,7 @@ LBionomics.basicL <- function(t, y, xds_obj, s) {
 setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
   L_obj <- make_L_obj_basicL(xds_obj$nHabitats, options)
   class(L_obj) <- c("basicL", paste("basicL_", xds_obj$xds, sep=""))
-  xds_obj$L_obj[[s]] = L_obj 
+  xds_obj$L_obj[[s]] = L_obj
   xds_obj <- LBaseline(0, 0, xds_obj, 1)
   return(xds_obj)
 }
@@ -181,12 +181,12 @@ setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
 #'
 #' @param nHabitats the number of habitats in the model
 #' @param options a named [list]
-#' 
+#'
 #' @param psi maturation rates for each aquatic habitat
 #' @param xi delayed maturation in response to mean crowding
 #' @param phi density-independent mortality rates for each aquatic habitat
 #' @param theta density-dependent mortality terms for each aquatic habitat
-#' 
+#'
 #' @seealso Called by: [setup_L_obj.basicL]. Related: [dLdt.basicL] & [Update_Lt.basicL]
 #' @return **`L_obj`** an **L** component object
 #' @export
@@ -195,12 +195,12 @@ make_L_obj_basicL = function(nHabitats, options=list(), psi=1/8, xi=0, phi=1/8, 
     L_obj = list()
     class(L_obj) <- "basicL"
     L_obj$nHabitats <- nHabitats
-   
-    L_obj <- setup_psi_obj(checkIt(psi, nHabitats), L_obj) 
-    L_obj <- setup_phi_obj(checkIt(phi, nHabitats), L_obj) 
-    L_obj <- setup_xi_obj(checkIt(xi, nHabitats), L_obj) 
-    L_obj <- setup_theta_obj(checkIt(theta, nHabitats), L_obj) 
-   
+
+    L_obj <- setup_psi_obj(checkIt(psi, nHabitats), L_obj)
+    L_obj <- setup_phi_obj(checkIt(phi, nHabitats), L_obj)
+    L_obj <- setup_xi_obj(checkIt(xi, nHabitats), L_obj)
+    L_obj <- setup_theta_obj(checkIt(theta, nHabitats), L_obj)
+
     return(L_obj)
   })
 }

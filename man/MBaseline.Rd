@@ -16,7 +16,7 @@ MBaseline(t, y, xds_obj, s)
 \item{s}{the species index}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Compute the baseline adult mosquito bionomic parameter values

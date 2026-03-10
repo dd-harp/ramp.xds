@@ -22,7 +22,7 @@ setup_XY_interface(xds_obj, residency)
 
 ## Value
 
-a **`xds`** model object template with a blood feeding object
+an **`xds`** object
 
 ## Details
 

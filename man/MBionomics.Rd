@@ -16,7 +16,7 @@ MBionomics(t, y, xds_obj, s)
 \item{s}{the species index}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Modify the baseline adult mosquito bionomic parameters

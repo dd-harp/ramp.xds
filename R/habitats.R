@@ -1,22 +1,22 @@
 # The ML-interface. Also see:
-# + egg_laying.R 
-# + emergence.R 
+# + egg_laying.R
+# + emergence.R
 
-#' @title Check the ML Interface 
-#' 
+#' @title Check the ML Interface
+#'
 #' @description Run a set of consistency checks for the `ML_interface`
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** model object
+#' @return an **`xds`** object
 #' @export
-#' @keywords internal  
+#' @keywords internal
 check_ML_interface = function(xds_obj){
-  return(xds_obj) 
+  return(xds_obj)
 }
 
 
-#' @title Setup the Habitat Interface for Egg Laying and Emergence  
-#' 
+#' @title Setup the Habitat Interface for Egg Laying and Emergence
+#'
 #' @description Set up a part of the `xds` object that defines the interface for egg laying
 #' @details
 #' This implements a model for egg laying described by Wu SL, *et al.*, (2023).
@@ -41,55 +41,55 @@ check_ML_interface = function(xds_obj){
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 #' @param xds_obj an **`xds`** model object
 #' @param membership is the habitat membership vector
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @importFrom Rdpack reprompt
 #' @seealso The habitat membership matrix is created by [make_habitat_matrix()]
 #' @keywords internal
 #' @export
 setup_ML_interface = function(xds_obj, membership){
-  #Egg Laying Terms 
-  xds_obj$terms$G <- list() 
-  xds_obj$terms$G[[1]] <- rep(0, xds_obj$nPatches) 
-  xds_obj$terms$eta <- list() 
-  xds_obj$terms$eta[[1]] <- rep(0, xds_obj$nHabitats) 
-  
-  #Emergence Terms 
-  xds_obj$terms$alpha <- list() 
-  xds_obj$terms$alpha[[1]] <- rep(0, xds_obj$nHabitats) 
-  xds_obj$terms$Lambda <- list() 
-  xds_obj$terms$Lambda[[1]] <- rep(0, xds_obj$nPatches) 
-  
+  #Egg Laying Terms
+  xds_obj$terms$G <- list()
+  xds_obj$terms$G[[1]] <- rep(0, xds_obj$nPatches)
+  xds_obj$terms$eta <- list()
+  xds_obj$terms$eta[[1]] <- rep(0, xds_obj$nHabitats)
+
+  #Emergence Terms
+  xds_obj$terms$alpha <- list()
+  xds_obj$terms$alpha[[1]] <- rep(0, xds_obj$nHabitats)
+  xds_obj$terms$Lambda <- list()
+  xds_obj$terms$Lambda[[1]] <- rep(0, xds_obj$nPatches)
+
   interface <- list()
   class(interface) <- "setup"
-  
+
   habitat_matrix = make_habitat_matrix(xds_obj$nPatches, membership)
-  
+
   interface$habitat_matrix <- habitat_matrix
-  
+
   wts <- rep(1, xds_obj$nHabitats)
   interface$search_weights = list()
   interface$search_weights[[1]] <- wts
-  
+
   Q = F_Q(habitat_matrix, wts)
-  
+
   interface$laying_matrix = list()
   interface$laying_matrix[[1]] <- make_O_matrix(wts, habitat_matrix, Q)
-  
+
   interface$Q = list()
   interface$Q[[1]] <- Q
-  
-  interface$Qbad = list() 
+
+  interface$Qbad = list()
   interface$Qbad[[1]] = rep(0, xds_obj$nPatches)
-  
+
   interface$Qall=list()
   interface$Qall[[1]] <- Q
-  
-  
+
+
   xds_obj$ML_interface <- interface
 
 
 
-  
+
   return(xds_obj)
 }
 

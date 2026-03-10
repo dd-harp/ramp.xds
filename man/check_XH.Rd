@@ -12,7 +12,7 @@ check_XH(xds_obj, i)
 \item{i}{host species index}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Check / update before solving

@@ -14,7 +14,7 @@ change_TimeSpent_matrix(TimeSpent, xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-a modified \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Set up (or change) a Time Spent matrix

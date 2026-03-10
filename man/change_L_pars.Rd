@@ -14,7 +14,7 @@ change_L_pars(xds_obj, s = 1, options = list())
 \item{options}{a named list}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Set \strong{L} Component Parameters

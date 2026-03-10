@@ -29,4 +29,4 @@ change_blood_search_weights(wts, xds_obj, s = 1, i = 1)
 
 ## Value
 
-an `xds` object
+an **`xds`** object

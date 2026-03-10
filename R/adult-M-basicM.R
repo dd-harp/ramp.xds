@@ -1,34 +1,34 @@
 # specialized methods for a basic adult mosquito model
 
-#' @title The **MY** Module Skill Set 
-#' 
-#' @description The **MY** skill set is a list of 
-#' an module's capabilities: 
-#' 
-#' + `demography` is 
+#' @title The **MY** Module Skill Set
 #'
-#' @inheritParams skill_set_MY 
-#' 
-#' @return *MY* module skill set, as a list 
-#' 
+#' @description The **MY** skill set is a list of
+#' an module's capabilities:
+#'
+#' + `demography` is
+#'
+#' @inheritParams skill_set_MY
+#'
+#' @return *MY* module skill set, as a list
+#'
 #' @export
 skill_set_MY.basicM = function(MYname){
   return(list())
 }
 
-#' Run a check before solving 
+#' Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
+#' @param s the vector species index
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_MY.basicM = function(xds_obj, s){
   return(xds_obj)
 }
 
 
-#' @title Compute Derivatives for **M** module `basicM` 
+#' @title Compute Derivatives for **M** module `basicM`
 #' @description Implements [dMYdt] for the basicM xde ODE model.
 #' @details \deqn{\begin{array}{rl}dM/dt &= \Lambda(t) - \Omega \cdot M \\ dP/dt &= f(M-P) - \Omega\cdot P\end{array}}
 #' @inheritParams dMYdt
@@ -43,7 +43,7 @@ dMYdt.basicM <- function(t, y, xds_obj, s){
 
       dMdt <- Lambda - (Omega %*% M)
       dPdt <- f*(M - P) - (Omega %*% P)
-      
+
       return(c(dMdt, dPdt))
     })
   })
@@ -53,31 +53,31 @@ dMYdt.basicM <- function(t, y, xds_obj, s){
 #' @title Set mosquito bionomics to baseline
 #' @description Implements [MBaseline] for models with no forcing on the baseline
 #' @inheritParams MBaseline
-#' @return the model as a [list]
+#' @return an **`xds`** object
 #' @export
 MBaseline.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   # Baseline parameters
-  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s) 
-  xds_obj                     <- F_K_matrix(t, xds_obj, s) 
-  
+  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s)
+  xds_obj                     <- F_K_matrix(t, xds_obj, s)
+
   # Reset Effect Sizes
   xds_obj$MY_obj[[s]]$es_f     <- rep(1, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$es_q     <- rep(1, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$es_g     <- rep(1, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$es_sigma <- rep(1, xds_obj$nPatches)
-  
+
   return(xds_obj)
 })}
 
 #' @title Set mosquito bionomics to baseline
 #' @description Implements [MBionomics] for models with no forcing on the baseline
 #' @inheritParams MBionomics
-#' @return the model as a [list]
+#' @return an **`xds`** object
 #' @export
 MBionomics.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$f     <- es_f*f_t
@@ -85,9 +85,9 @@ MBionomics.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$g     <- es_g*g_t
   xds_obj$MY_obj[[s]]$sigma <- es_sigma*sigma_t
   xds_obj$MY_obj[[s]]$mu    <- es_mu*mu_t
-  
-  xds_obj$MY_obj[[s]]$Omega <- make_Omega(xds_obj, s) 
-  
+
+  xds_obj$MY_obj[[s]]$Omega <- make_Omega(xds_obj, s)
+
   return(xds_obj)
 })}
 
@@ -124,7 +124,7 @@ steady_state_M.basicM_dts = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[
 #' @return a [numeric] vector
 #' @export
 Update_MYt.basicM <- function(t, y, xds_obj, s) {
-  
+
   Lambda = xds_obj$terms$Lambda[[s]]
 
   with(get_MY_vars(y, xds_obj, s),{
@@ -165,32 +165,32 @@ setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
 #' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
 #' @export
-make_M_obj_basicM = function(nPatches, options=list(), 
+make_M_obj_basicM = function(nPatches, options=list(),
                             g=1/12,  sigma=1/8,  mu=0,
                             f=0.3,  q=0.95,
                             nu=1,  eggsPerBatch=60){
 
   with(options,{
     MY_obj <- list()
-     
+
     MY_obj$nPatches <- nPatches
-    
+
     MY_obj <- setup_f_obj(checkIt(f, nPatches), MY_obj)
-    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj) 
-    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj) 
-    MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj) 
-    MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj) 
-    MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj) 
-    
-    MY_obj <- setup_K_obj(nPatches, MY_obj) 
-   
-    
+    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj)
+    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj)
+    MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj)
+    MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj)
+    MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)
+
+    MY_obj <- setup_K_obj(nPatches, MY_obj)
+
+
     MY_obj$K_matrix <- diag(nPatches)
-    
+
     MY_obj$Omega <- diag(g, nPatches)
     MY_obj$nPatches <- nPatches
     MY_obj$eggsPerBatch <- eggsPerBatch
-    
+
     return(MY_obj)
 })}
 
@@ -274,7 +274,7 @@ setup_MY_inits.basicM = function(xds_obj, s, options){
 #' @title Set new MY parameter values
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_inits
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 change_MY_inits.basicM <- function(xds_obj, s=1, options=list()) {
   with(xds_obj$MY_obj[[s]], with(options,{

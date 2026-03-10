@@ -1,29 +1,29 @@
 # specialized methods for a human trivial model
 
-#' @title The **XH** Module Skill Set 
-#' 
-#' @description The **XH** skill set is a list of 
-#' an module's capabilities 
-#' 
+#' @title The **XH** Module Skill Set
 #'
-#' @inheritParams skill_set_XH  
-#' 
-#' @return a list describing the skill set 
-#' 
+#' @description The **XH** skill set is a list of
+#' an module's capabilities
+#'
+#'
+#' @inheritParams skill_set_XH
+#'
+#' @return a list describing the skill set
+#'
 #' @export
 skill_set_XH.trivial = function(Xname){
   list(
-    demography = FALSE, 
-    prevalence = FALSE, 
-    malaria    = FALSE 
-  ) 
+    demography = FALSE,
+    prevalence = FALSE,
+    malaria    = FALSE
+  )
 }
 
-#' Check / update before solving 
+#' Check / update before solving
 #'
 #' @inheritParams check_XH
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_XH.trivial = function(xds_obj, i){
   return(xds_obj)
@@ -68,19 +68,19 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' @return a [list]
 #' @export
 make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
-                              season_par = makepar_F_one(), 
+                              season_par = makepar_F_one(),
                               trend_par = makepar_F_one()){
   with(options,{
     XH_obj <- list()
     class(XH_obj) <- c('trivial')
     XH_obj$H = checkIt(HPop, nPatches)
     XH_obj$kappa= checkIt(kappa, nPatches)
-    
+
     XH_obj$season_par <- season_par
-    XH_obj$F_season <- make_function(season_par) 
-    
+    XH_obj$F_season <- make_function(season_par)
+
     XH_obj$trend_par <- trend_par
-    XH_obj$F_trend <- make_function(trend_par) 
+    XH_obj$F_trend <- make_function(trend_par)
 
     return(XH_obj)
   })}
@@ -114,7 +114,7 @@ F_prevalence.trivial <- function(vars, XH_obj) {
   return(numeric(0))
 }
 
-#' @title Compute the NI 
+#' @title Compute the NI
 #' @description Implements [F_ni] for the trivial model.
 #' @inheritParams F_ni
 #' @return a [numeric] vector numeric(0)
@@ -156,7 +156,7 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 #' @title xde_setup XH_obj.trivial
 #' @description Implements [setup_XH_obj] for the trivial model
 #' @inheritParams setup_XH_obj
-#' @return a [list] vectord
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
@@ -196,11 +196,11 @@ parse_XH_orbits.trivial <- function(outputs, xds_obj,i) {
 }
 
 
-#' @title Get Variables by Name 
-#' 
-#' @description Return an empty list 
-#' 
-#' @inheritParams get_XH_vars 
+#' @title Get Variables by Name
+#'
+#' @description Return an empty list
+#'
+#' @inheritParams get_XH_vars
 #' @return a [list]
 #' @export
 get_XH_vars.trivial<- function(y, xds_obj, i) {

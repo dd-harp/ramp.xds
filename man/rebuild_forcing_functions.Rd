@@ -12,7 +12,7 @@ rebuild_forcing_functions(xds_obj, ix)
 \item{ix}{the species index}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Rebuild forcing functions using \code{make_function}:

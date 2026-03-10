@@ -26,4 +26,4 @@ add_variable(var_object, xds_obj)
 
 ## Value
 
-the **`xds`** model object with a new variable
+an **`xds`** object

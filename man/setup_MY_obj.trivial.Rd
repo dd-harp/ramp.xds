@@ -16,7 +16,7 @@
 \item{options}{a \link{list}}
 }
 \value{
-a modified \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Set up the trivial adult mosquito model.

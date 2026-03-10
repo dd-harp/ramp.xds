@@ -1,9 +1,9 @@
 
 #' @title Set up a Poisson model for Exposure and Infection
-#' 
+#'
 #' @inheritParams setup_exposure
-#' 
-#' @return an  **`xds`** object
+#'
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 #' @seealso Also, see [F_foi.pois] and [F_ar.pois]
@@ -17,13 +17,13 @@ setup_exposure.pois <- function(EHname, xds_obj, i=1, options = list()) {
   return(xds_obj)
 }
 
-#' @title Make a Poisson Exposure Model Object 
-#' 
+#' @title Make a Poisson Exposure Model Object
+#'
 #' @description Set up the Poisson model for
 #' exposure for continuous time models
-#' 
+#'
 #' @return a local exposure model object
-#' 
+#'
 #' @seealso Also, see [F_foi.pois]
 #' @export
 make_exposure_pois <- function() {

@@ -12,7 +12,7 @@
 \item{i}{the variable index}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 The description for each method should include the equations.

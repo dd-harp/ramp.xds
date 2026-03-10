@@ -14,7 +14,7 @@ compute_RBR(t, xds_obj, y)
 \item{y}{state vector}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Compute the available for the pathogen's hosts for blood feeding

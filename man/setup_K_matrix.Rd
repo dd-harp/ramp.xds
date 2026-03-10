@@ -16,7 +16,7 @@ setup_K_matrix(Kname, s, xds_obj, options = list())
 \item{options}{a list of options to configure K_matrix}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Setup Mosquito Dispersal Matrix

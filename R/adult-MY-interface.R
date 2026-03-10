@@ -1,64 +1,64 @@
 # generic methods for adult component
 
-#' @title The **MY** Module Skill Set 
-#' 
-#' @description The **MY** skill set is a list of 
-#' an module's capabilities: 
-#' 
-#' + `demography` is 
+#' @title The **MY** Module Skill Set
+#'
+#' @description The **MY** skill set is a list of
+#' an module's capabilities:
+#'
+#' + `demography` is
 #'
 #' @param MYname  the **MY** module name
-#' 
-#' @return *MY* module skill set, as a list 
-#' 
+#'
+#' @return *MY* module skill set, as a list
+#'
 #' @export
 skill_set_MY = function(MYname){
   class(MYname) <- MYname
   UseMethod("skill_set_MY", MYname)
 }
 
-#' Run a check before solving 
+#' Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
+#' @param s the vector species index
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_MY = function(xds_obj, s){
-  UseMethod("check_MY", xds_obj$MY_obj[[s]]) 
+  UseMethod("check_MY", xds_obj$MY_obj[[s]])
 }
 
-#' @title Compute Derivatives for an Adult Mosquito Model 
-#' 
+#' @title Compute Derivatives for an Adult Mosquito Model
+#'
 #' @description
-#' 
-#' In the description, each method should include the equations and 
-#' a reference to relevant papers in the literature.  
+#'
+#' In the description, each method should include the equations and
+#' a reference to relevant papers in the literature.
 #'
 #' @note This is the `S3` generic. Methods dispatch on `MY_obj[[s]]`
-#' 
+#'
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' 
+#'
 #' @return Derivatives for an adult mosquito model, a [vector]
-#' 
+#'
 #' @export
 dMYdt <- function(t, y, xds_obj, s) {
   UseMethod("dMYdt", xds_obj$MY_obj[[s]])
 }
 
-#' @title Update States for a Adult Mosquito Model 
-#' 
+#' @title Update States for a Adult Mosquito Model
+#'
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' 
+#'
 #' @return Updated states for an adult mosquito model, a [vector]
-#' 
+#'
 #' @export
 Update_MYt <- function(t, y, xds_obj, s) {
   UseMethod("Update_MYt", xds_obj$MY_obj[[s]])
@@ -102,13 +102,13 @@ F_eggs <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Adult Mosquito Bionomics - Baseline 
-#' @description Compute the baseline adult mosquito bionomic parameter values 
+#' @title Adult Mosquito Bionomics - Baseline
+#' @description Compute the baseline adult mosquito bionomic parameter values
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 MBaseline <- function(t, y, xds_obj, s) {
   UseMethod("MBaseline", xds_obj$MY_obj[[s]])
@@ -120,26 +120,26 @@ MBaseline <- function(t, y, xds_obj, s) {
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 MBionomics <- function(t, y, xds_obj, s) {
   UseMethod("MBionomics", xds_obj$MY_obj[[s]])
 }
 
-#' @title Setup an **MY** Model Object 
-#' 
-#' @description 
-#' This function is a structured interface, a way  
-#' of building a model objects describing adult mosquito 
-#' ecology & infection dynamics. The string *MYname* 
+#' @title Setup an **MY** Model Object
+#'
+#' @description
+#' This function is a structured interface, a way
+#' of building a model objects describing adult mosquito
+#' ecology & infection dynamics. The string *MYname*
 #' is assigned its own class (`class(MYname) <- MYname`).
-#' 
-#' Since each model will require different arguments,  
-#' the dispatched function `setup_MY_obj.MYname` 
+#'
+#' Since each model will require different arguments,
+#' the dispatched function `setup_MY_obj.MYname`
 #' calls `make_MY_obj_MYname,` passing
 #' the `options` to set the values of parameters or
-#' terms. 
-#'  
+#' terms.
+#'
 #' @param MYname the name of the model
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
@@ -211,7 +211,7 @@ get_MY_pars <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 change_MY_pars <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_MY_pars", xds_obj$MY_obj[[s]])
@@ -245,7 +245,7 @@ get_MY_inits <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 change_MY_inits <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_MY_inits", xds_obj$MY_obj[[s]])
@@ -260,7 +260,7 @@ get_f = function(xds_obj, s=1){
   UseMethod("get_f", xds_obj$MY_obj[[s]])
 }
 
-#' @title Get the human fraction(s) 
+#' @title Get the human fraction(s)
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
@@ -287,7 +287,7 @@ get_sigma = function(xds_obj, s=1){
   UseMethod("get_sigma", xds_obj$MY_obj[[s]])
 }
 
-#' @title Get mosquito population density 
+#' @title Get mosquito population density
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
@@ -305,17 +305,17 @@ get_Z = function(xds_obj, s=1){
   UseMethod("get_Z", xds_obj$MY_obj[[s]])
 }
 
-#' @title Compute steady states for **MY** 
-#' 
-#' @description 
-#' Given the emergence rate of adult mosquitoes (\eqn{\Lambda} or `Lambda`) and the 
+#' @title Compute steady states for **MY**
+#'
+#' @description
+#' Given the emergence rate of adult mosquitoes (\eqn{\Lambda} or `Lambda`) and the
 #' net infectiousness of humans (\eqn{\kappa} or `kappa`), compute the steady states
 #' for the system
-#' 
+#'
 #' @param Lambda the daily emergence rate of adult mosquitoes
 #' @param kappa net infectiousness
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
+#' @param s the vector species index
 #'
 #' @return the steady states
 #' @export
@@ -323,36 +323,36 @@ steady_state_MY = function(Lambda, kappa, xds_obj, s=1){
   UseMethod("steady_state_MY", xds_obj$MY_obj[[s]])
 }
 
-#' @title Compute steady states for **M** 
-#' 
-#' @description 
-#'  
-#' Given the emergence rate of adult mosquitoes (\eqn{\Lambda} or `Lambda`) compute 
+#' @title Compute steady states for **M**
+#'
+#' @description
+#'
+#' Given the emergence rate of adult mosquitoes (\eqn{\Lambda} or `Lambda`) compute
 #' the population density of adult mosquitoes at the steady state
-#' 
+#'
 #' @param Lambda the daily emergence rate of adult mosquitoes
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
+#' @param s the vector species index
 #'
 #' @return the steady states
-#'  
+#'
 #' @export
 steady_state_M = function(Lambda, xds_obj, s=1){
   UseMethod("steady_state_M", xds_obj$MY_obj[[s]])
 }
 
-#' @title Compute steady states for **Y** 
-#' 
-#' @description 
-#' Given adult mosquito population density (\eqn{M} or `M`) and the 
+#' @title Compute steady states for **Y**
+#'
+#' @description
+#' Given adult mosquito population density (\eqn{M} or `M`) and the
 #' net infectiousness of humans (\eqn{\kappa} or `kappa`), compute the steady states
-#' for the other states 
-#' 
-#' @param M adult mosquito population density 
-#' @param kappa net infectiousness 
+#' for the other states
+#'
+#' @param M adult mosquito population density
+#' @param kappa net infectiousness
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
-#' 
+#' @param s the vector species index
+#'
 #' @return none
 #' @export
 steady_state_Y = function(M, kappa, xds_obj, s=1){

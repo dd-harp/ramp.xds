@@ -1,36 +1,36 @@
 # specialized methods for the adult mosquito GeRM model
 
-#' @title The **GeRM** Module Skill Set 
-#' 
-#' @description The **MY** skill set is a list of 
-#' an module's capabilities: 
-#' 
-#' + `demography` is 
+#' @title The **GeRM** Module Skill Set
 #'
-#' @inheritParams skill_set_MY 
-#' 
-#' @return *MY* module skill set, as a list 
-#' 
+#' @description The **MY** skill set is a list of
+#' an module's capabilities:
+#'
+#' + `demography` is
+#'
+#' @inheritParams skill_set_MY
+#'
+#' @return *MY* module skill set, as a list
+#'
 #' @export
 skill_set_MY.GeRM = function(MYname){
   return(list())
 }
 
-#' Run a check before solving 
+#' Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
+#' @param s the vector species index
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_MY.GeRM = function(xds_obj, s){
-  
+
   return(xds_obj)
 }
 
 
-#' @title Compute Derivatives for **MY** module `GeRM` 
-#' 
+#' @title Compute Derivatives for **MY** module `GeRM`
+#'
 #' @description Compute the derivatives for the generalized, non-autonomous Ross-Macdonald model
 #' for mosquito ecology and infection dynamics.
 #' @inheritParams dMYdt
@@ -39,13 +39,13 @@ check_MY.GeRM = function(xds_obj, s){
 #' @importFrom deSolve lagderiv
 #' @export
 dMYdt.GeRM <- function(t, y, xds_obj, s){
-  
+
   Lambda = xds_obj$terms$Lambda[[s]]
   kappa = xds_obj$terms$kappa[[s]]
 
   with(get_MY_vars(y, xds_obj, s),{
     with(xds_obj$MY_obj[[s]],{
-      
+
       deip_dt = dF_eip(t, xds_obj, s)
 
       if (t <= eip) {
@@ -152,13 +152,13 @@ make_MY_obj_GeRM = function(nPatches, options=list(), eip =12,
 
     MY_obj <- setup_eip_obj(checkIt(f, nPatches), MY_obj)
     MY_obj <- setup_f_obj(checkIt(f, nPatches), MY_obj)
-    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj) 
-    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj) 
-    MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj) 
-    MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj) 
-    MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj) 
+    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj)
+    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj)
+    MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj)
+    MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj)
+    MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)
 
-    MY_obj <- setup_K_obj(nPatches, MY_obj) 
+    MY_obj <- setup_K_obj(nPatches, MY_obj)
 
     Omega <- diag(g, nPatches)
     MY_obj$Omega <- Omega
@@ -187,31 +187,31 @@ make_MY_obj_GeRM = function(nPatches, options=list(), eip =12,
 #' @keywords internal
 #' @export
 setup_MY_ix.GeRM <- function(xds_obj, s) {with(xds_obj,{
-  
+
   M_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(M_ix, 1)
-  
+
   P_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(P_ix, 1)
-  
+
   Y_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(Y_ix, 1)
-  
+
   Z_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(Z_ix, 1)
-  
+
   U_ix <- seq(from = max_ix+1, length.out = nPatches^2)
   max_ix <- tail(U_ix, 1)
-  
+
   fqkappa_ix <- seq(from = max_ix+1, length.out = nPatches)
   max_ix <- tail(fqkappa_ix, 1)
-  
+
   g_ix <- seq(from = max_ix+1, length.out = nPatches)
   max_ix <- tail(g_ix, 1)
-  
+
   sigma_ix <- seq(from = max_ix+1, length.out = nPatches)
   max_ix <- tail(sigma_ix, 1)
-  
+
   xds_obj$max_ix = max_ix
   xds_obj$MY_obj[[s]]$ix = list(M_ix=M_ix, P_ix=P_ix, Y_ix=Y_ix, Z_ix=Z_ix,
                          U_ix = U_ix, fqkappa_ix=fqkappa_ix,
@@ -288,20 +288,20 @@ change_MY_pars.GeRM <- function(xds_obj, s=1, options=list()) {
 #' @title Set mosquito bionomics to baseline
 #' @description Implements [MBaseline] for models with no forcing on the baseline
 #' @inheritParams MBaseline
-#' @return the model as a [list]
+#' @return an **`xds`** object
 #' @export
 MBaseline.GeRM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   vars = xds_obj$vars
   # Baseline parameters
-  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$eip      <- F_eip(t, xds_obj, s) 
-  xds_obj                      <- F_K_matrix(t, xds_obj, s) 
-  
+  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$eip      <- F_eip(t, xds_obj, s)
+  xds_obj                      <- F_K_matrix(t, xds_obj, s)
+
   # Reset Effect Sizes
   xds_obj$MY_obj[[s]]$es_f     <- rep(1, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$es_q     <- rep(1, xds_obj$nPatches)
@@ -313,7 +313,7 @@ MBaseline.GeRM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
 #' @title Set mosquito bionomics to baseline
 #' @description Implements [MBionomics] for models with no forcing on the baseline
 #' @inheritParams MBionomics
-#' @return the model as a [list]
+#' @return an **`xds`** object
 #' @export
 MBionomics.GeRM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$f <- es_f*f_t
@@ -431,7 +431,7 @@ make_MY_inits_GeRM = function(nPatches, Upsilon, options = list(),
 #' @title Set new MY parameter values
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_inits
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 change_MY_inits.GeRM <- function(xds_obj, s=1, options=list()) {
   with(xds_obj$MY_obj[[s]]$inits, with(options,{

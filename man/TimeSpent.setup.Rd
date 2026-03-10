@@ -14,7 +14,7 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 This sets up host available, \eqn{W},

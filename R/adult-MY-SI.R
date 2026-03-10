@@ -1,34 +1,34 @@
 # specialized methods for the adult mosquito SI model
 
-#' @title The **SI** Module Skill Set 
-#' 
-#' @description The **MY** skill set is a list of 
-#' an module's capabilities: 
-#' 
-#' + `demography` is 
+#' @title The **SI** Module Skill Set
 #'
-#' @inheritParams skill_set_MY 
-#' 
-#' @return *MY* module skill set, as a list 
-#' 
+#' @description The **MY** skill set is a list of
+#' an module's capabilities:
+#'
+#' + `demography` is
+#'
+#' @inheritParams skill_set_MY
+#'
+#' @return *MY* module skill set, as a list
+#'
 #' @export
 skill_set_MY.SI = function(MYname){
   return(list())
 }
 
-#' Run a check before solving 
+#' Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
+#' @param s the vector species index
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_MY.SI = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Compute Derivatives for **MY** module `SI` 
-#' 
+#' @title Compute Derivatives for **MY** module `SI`
+#'
 #' @description The `SI` model for mosquito infection
 #' dynamics has the defined **variable** classes:
 #' - \eqn{M} is the density of mosquitoes in each patch;
@@ -129,7 +129,7 @@ F_fqZ.SI <- function(t, y, xds_obj, s) {
   return(fqZ)
 }
 
-#' @title Compute Net Blood Feeding by Mosquitoes for `SI` 
+#' @title Compute Net Blood Feeding by Mosquitoes for `SI`
 #' @description  The variable \eqn{M} is the density of  mosquitoes.
 #' The model blood feeding **parameters** are:
 #' - \eqn{f} is the overall blood feeding rate
@@ -144,7 +144,7 @@ F_fqM.SI <- function(t, y, xds_obj, s){
   return(fqM)
 }
 
-#' @title Compute Component Egg Laying Rates for `SI` 
+#' @title Compute Component Egg Laying Rates for `SI`
 #' @description The density of adult mosquitoes is \eqn{M}.
 #' The **parameters** describing egg laying by adult mosquitoes are:
 #' - \eqn{\nu} or `nu` is the egg laying rate
@@ -164,28 +164,27 @@ F_eggs.SI <- function(t, y, xds_obj, s) {
 
 
 #' @title Macdonald-style adult mosquito bionomics
-#' @description Reset the effect SIzes for static models
-#' @description
-#' When modules are added to compute effect SIzes
+#' @description Reset the effect sizes for static models.
+#' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store
-#' an effect SIze. The total effect SIze is the
-#' product of the effect SIzes for each intervention.
-#' SInce coverage could be changing dynamically, these
+#' an effect size. The total effect size is the
+#' product of the effect sizes for each intervention.
+#' Since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MBionomics
-#' @return the model as a [list]
+#' @return an **`xds`** object
 #' @export
 MBaseline.SI <- function(t, y, xds_obj, s) {
-  
-  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s) 
-  xds_obj$MY_obj[[s]]$eip      <- F_eip(t, xds_obj, s) 
-  xds_obj                      <- F_K_matrix(t, xds_obj, s) 
-  
+
+  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$eip      <- F_eip(t, xds_obj, s)
+  xds_obj                      <- F_K_matrix(t, xds_obj, s)
+
   xds_obj$MY_obj[[s]]$es_f     <- rep(1, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$es_q     <- rep(1, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$es_g     <- rep(1, xds_obj$nPatches)
@@ -194,16 +193,15 @@ MBaseline.SI <- function(t, y, xds_obj, s) {
 }
 
 #' @title Macdonald-style adult mosquito bionomics
-#' @description Reset the effect SIzes for static models
-#' @description
-#' When modules are added to compute effect SIzes
+#' @description Reset the effect sizes for static models.
+#' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store
-#' an effect SIze. The total effect SIze is the
-#' product of the effect SIzes for each intervention.
-#' SInce coverage could be changing dynamically, these
+#' an effect size. The total effect size is the
+#' product of the effect sizes for each intervention.
+#' Since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MBionomics
-#' @return the model as a [list]
+#' @return an **`xds`** object
 #' @export
 MBionomics.SI <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]],{
@@ -253,19 +251,19 @@ make_MY_obj_SI = function(nPatches, options=list(), eip=12,
 
     eip_par <- 'static'
     class(eip_par) <- 'static'
-    
-    MY_obj <- setup_eip_obj(checkIt(eip, nPatches), MY_obj) 
+
+    MY_obj <- setup_eip_obj(checkIt(eip, nPatches), MY_obj)
     MY_obj <- setup_f_obj(checkIt(f, nPatches), MY_obj)
-    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj) 
-    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj) 
-    MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj) 
-    MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj) 
-    MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj) 
+    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj)
+    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj)
+    MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj)
+    MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj)
+    MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)
 
     MY_obj$eggsPerBatch <- eggsPerBatch
-    MY_obj <- setup_K_obj(nPatches, MY_obj) 
+    MY_obj <- setup_K_obj(nPatches, MY_obj)
 
-    MY_obj$Omega <- diag(MY_obj$g, nPatches) 
+    MY_obj$Omega <- diag(MY_obj$g, nPatches)
     MY_obj$Upsilon <- with(MY_obj, expm::expm(-Omega*eip))
 
     return(MY_obj)
@@ -280,13 +278,13 @@ make_MY_obj_SI = function(nPatches, options=list(), eip=12,
 #' @importFrom utils tail
 #' @export
 setup_MY_ix.SI <- function(xds_obj, s) {with(xds_obj,{
-  
+
   M_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(M_ix, 1)
-  
+
   Y_ix <- seq(from = max_ix+1, length.out=nPatches)
   max_ix <- tail(Y_ix, 1)
-  
+
   xds_obj$max_ix = max_ix
   xds_obj$MY_obj[[s]]$ix = list(M_ix=M_ix, Y_ix=Y_ix)
   return(xds_obj)
@@ -386,15 +384,15 @@ make_MY_inits_SI = function(nPatches, options = list(),
 
 #' @title change initial values for the macdonald model
 #' @description Implements [change_MY_inits] for the macdonald model
-#' 
+#'
 #' @inheritParams change_MY_inits
-#' 
+#'
 #' @return a [list]
 #' @export
 change_MY_inits.SI = function(xds_obj, s, options=list()){
-  inits =  with(get_MY_inits(xds_obj, s), with(options,{ 
+  inits =  with(get_MY_inits(xds_obj, s), with(options,{
     list(M=M, Y=Y)}))
-  xds_obj$MY_obj[[s]]$inits=inits 
+  xds_obj$MY_obj[[s]]$inits=inits
   return(xds_obj)
 }
 

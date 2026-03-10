@@ -15,46 +15,46 @@ Zero_tV = function(t, V=list()){return(0*t)}
 #' @export
 One_tV= function(t, V=list()){return(0*t+1)}
 
-#' @title Get Variables 
-#' 
-#' @description A utility to write functions 
+#' @title Get Variables
+#'
+#' @description A utility to write functions
 #' that respond to state variables or exogenous
-#' variables 
-#' 
+#' variables
+#'
 #' @note The method dispatches on `class(func)`
-#' 
+#'
 #' @param t current simulation time
-#' @param y variables 
-#' @param func a function that dispatches [get_variables] and pulls variables it needs 
+#' @param y variables
+#' @param func a function that dispatches [get_variables] and pulls variables it needs
 #' @param xds_obj an **`xds`** model object
-#' 
-#' @return a vector of variables 
+#'
+#' @return a vector of variables
 #' @export
 get_variables = function(t, y, func, xds_obj){
-  UseMethod("get_variables", func) 
+  UseMethod("get_variables", func)
 }
 
-#' @title Get Variables 
-#' 
+#' @title Get Variables
+#'
 #' @description The null case for [get_variables]
-#' 
-#' @inheritParams get_variables 
-#' 
-#' @return a set of variables 
+#'
+#' @inheritParams get_variables
+#'
+#' @return a set of variables
 #' @export
 get_variables.na = function(t, y, func, xds_obj){
-  return(numeric(0)) 
+  return(numeric(0))
 }
 
-#' @title Exponential Function 
-#' 
-#' @description An exponential 
-#' function.  
-#' 
+#' @title Exponential Function
+#'
+#' @description An exponential
+#' function.
+#'
 #' @param d an arbitrary input
-#' 
+#'
 #' @return a [numeric] vector of length d
-#' 
+#'
 #' @export
 F_exp = function(d){return(exp(-d))}
 
@@ -79,7 +79,7 @@ F_zero = function(t){return(0*t)}
 #' @title parameters for make_function
 #' @description Return an object to configure
 #' a function [make_function.zero]
-#' @return a function to return  
+#' @return a function to return
 #' @seealso [make_function.zero]
 #' @export
 makepar_F_zero = function(){
@@ -115,7 +115,7 @@ makepar_F_one = function(){
   return(pars)
 }
 
-#' @title Make a Function 
+#' @title Make a Function
 #' @description Build a function that is the sum of two
 #' other functions.
 #' @inheritParams make_function
@@ -138,7 +138,7 @@ make_function.list = function(opts){
 
 
 #' @title parameters for make_function
-#' @description Return an object to return a value 
+#' @description Return an object to return a value
 #' @param val the value to return
 #' @return a function for seasonality
 #' @seealso [make_function.val]
@@ -146,14 +146,14 @@ make_function.list = function(opts){
 makepar_F_val = function(val){
   pars <- list()
   class(pars) <- "val"
-  pars$val <- val 
+  pars$val <- val
   return(pars)
 }
 
 #' @title Make a Function that is the sum of Two other Functions
-#' @description Build a function that returns a constant value 
+#' @description Build a function that returns a constant value
 #' @inheritParams make_function
-#' @return a function that returns a constant value 
+#' @return a function that returns a constant value
 #' @export
 make_function.val = function(opts){
   Fv = function(t){return(0*t + opts$val)}
@@ -239,10 +239,10 @@ make_function.type2 = function(opts){with(opts,{
 #' @description Return an object to configure
 #' a function [make_function.type2]
 #' @param shift a shift to set F(0)>0
-#' @param A asymptote 
-#' @param B slope 
+#' @param A asymptote
+#' @param B slope
 #' @param N the length of the vector to return
-#' @return a type 2 functional response 
+#' @return a type 2 functional response
 #' @seealso [make_function.type2]
 #' @export
 makepar_F_type2 = function(shift=30, A=1.8, B=5, N=1){
@@ -251,7 +251,7 @@ makepar_F_type2 = function(shift=30, A=1.8, B=5, N=1){
   pars$shift = checkIt(shift, N)
   pars$A = abs(checkIt(A, N))
   pars$B = abs(checkIt(B, N))
-  pars$N = N 
+  pars$N = N
   return(pars)
 }
 
@@ -411,9 +411,9 @@ make_function.sharkfin = function(opts){
 #' @title Make Parameters for a Sharkfin Function
 #' @description Return an object for [make_function.sharkfin]
 #' @param D the half-saturation day for scale-up
-#' @param L the half-saturation day for decay 
+#' @param L the half-saturation day for decay
 #' @param uk shape parameter for scale-up
-#' @param dk shape parameter for decay 
+#' @param dk shape parameter for decay
 #' @param pw shape parameter, power
 #' @param mx a maximum value
 #' @param N the length of the vector to return
@@ -463,9 +463,9 @@ make_function.sharkbite = function(opts){
 #' @title Make Parameters for a sharkbite Function
 #' @description Return an object for [make_function.sharkbite]
 #' @param D the half-saturation day for scale-up
-#' @param L the half-saturation day for decay 
+#' @param L the half-saturation day for decay
 #' @param uk shape parameter for scale-up
-#' @param dk shape parameter for decay 
+#' @param dk shape parameter for decay
 #' @param pw shape parameter, power
 #' @param mx a maximum value
 #' @param N the length of the vector to return
@@ -486,7 +486,7 @@ makepar_F_sharkbite = function(D=100, L=180, uk = 1/7, dk=1/40, pw=1, mx=1, N=1)
 
 #' @title Make a spline function
 #' @description A spline function passes time points `tt` and
-#' associated values `yy` and returns a spline function 
+#' associated values `yy` and returns a spline function
 #' @inheritParams make_function
 #' @return a function
 #' @export
@@ -499,7 +499,7 @@ make_function.splinef = function(opts){
 
 #' @title Make a spline function
 #' @description A spline function passes time points `tt` and
-#' associated values `yy` and returns a spline function 
+#' associated values `yy` and returns a spline function
 #' @inheritParams make_function
 #' @return a function
 #' @export
@@ -512,7 +512,7 @@ make_function.splineX = function(opts){
 
 #' @title Make a spline function
 #' @description A spline function passes time points `tt` and
-#' associated values `yy` and returns a spline function 
+#' associated values `yy` and returns a spline function
 #' @inheritParams make_function
 #' @return a function
 #' @export
@@ -524,11 +524,11 @@ make_function.spline2 = function(opts){
 }
 
 
-#' @title Make Parameters for a Spline 
+#' @title Make Parameters for a Spline
 #' @description Return an object for [make_function.splinef] or [make_function.splineX]
-#' @param tt the nodes 
-#' @param yy the y values 
-#' @param X a switch to configure for splinef or splineX  
+#' @param tt the nodes
+#' @param yy the y values
+#' @param X a switch to configure for splinef or splineX
 #' @return parameters to configure the `splinef` or `splineX` case of `make_function`
 #' @export
 makepar_F_spline = function(tt, yy, X=FALSE){
@@ -537,23 +537,23 @@ makepar_F_spline = function(tt, yy, X=FALSE){
   if(X==TRUE) class(pars) = "splineX"
   if(X==2) class(pars) = "spline2"
   pars$tt = tt
-  pars$yy = yy 
+  pars$yy = yy
   return(pars)
 }
 
-#' Make a Time Series Function 
+#' Make a Time Series Function
 #'
-#' @param options configurable options 
-#' @param N the length of the return value 
-#' @param scale scale parameter, usually the average 
-#' @param season_par seasonality function parameters 
-#' @param trend_par trend function parameters 
+#' @param options configurable options
+#' @param N the length of the return value
+#' @param scale scale parameter, usually the average
+#' @param season_par seasonality function parameters
+#' @param trend_par trend function parameters
 #'
-#' @returns a function
+#' @return a function
 #' @export
-make_ts_function = function(options=list(), 
+make_ts_function = function(options=list(),
                             N=1,
-                            scale=1, 
+                            scale=1,
                             season_par = list(),
                             trend_par = list()){
   with(options,{
@@ -563,7 +563,7 @@ make_ts_function = function(options=list(),
     } else {
       season_par$N = N
       F_season <- make_function(season_par)
-    } 
+    }
     if(length(trend_par) == 0){
       F_trend = F_one
     } else {

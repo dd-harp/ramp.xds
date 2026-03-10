@@ -16,7 +16,7 @@ setup_blood_hosts(mod_name, xds_obj, s, options)
 \item{options}{a list to configure \code{F_blood_hosts}}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Setup a model for no time spent blood_hostsing

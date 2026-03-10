@@ -14,7 +14,7 @@ change_shock(shock_par, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Set the interpolating points for F_trend

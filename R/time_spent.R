@@ -1,11 +1,11 @@
 
 #' @title Set up (or change) a Time Spent matrix
-#' 
+#'
 #' @param TimeSpent a time spent matrix
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' 
-#' @return a modified **`xds`** model object
+#'
+#' @return an **`xds`** object
 #' @export
 change_TimeSpent_matrix = function(TimeSpent, xds_obj, i=1){
   stopifnot(dim(TimeSpent) == dim(xds_obj$XY_interface$residency_matrix[[i]]))
@@ -14,27 +14,27 @@ change_TimeSpent_matrix = function(TimeSpent, xds_obj, i=1){
   return(xds_obj)
 }
 
-#' @title Get the Time Spent Matrix 
-#' 
+#' @title Get the Time Spent Matrix
+#'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' 
-#' @return a modified **`xds`** model object
+#'
+#' @return an **`xds`** object
 #' @export
 get_TimeSpent_matrix = function(xds_obj, i=1){
-  return(xds_obj$XY_interface$TimeSpent[[i]]) 
+  return(xds_obj$XY_interface$TimeSpent[[i]])
 }
 
 
 #' @title Make a time spent matrix, called TimeSpent
-#' 
-#' @param TimeSpent a matrix or a setup function name 
+#'
+#' @param TimeSpent a matrix or a setup function name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' @param options configuration options 
-#' 
-#' @return an **`xds`** model object
-#' 
+#' @param options configuration options
+#'
+#' @return an **`xds`** object
+#'
 #' @export
 setup_TimeSpent = function(TimeSpent, xds_obj, i, options = list()){
   if(is.matrix(TimeSpent)) class(options) <- "as_matrix"
@@ -123,7 +123,7 @@ make_TimeSpent_xy = function(xy, residence, kern, stay, travel) {
 #' @param t the time
 #' @param y the state variables
 #' @param xds_obj an **`xds`** model object
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 TimeSpent = function(t, y, xds_obj){
   UseMethod("TimeSpent", xds_obj$XY_interface)
@@ -138,7 +138,7 @@ TimeSpent = function(t, y, xds_obj){
 #' time spent terms, so the class of `xds_obj$beta` must also
 #' be updated, if they are not dynamic, so [trigger_setup] is called.
 #' @inheritParams TimeSpent
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 TimeSpent.setup = function(t, y, xds_obj){
   class(xds_obj$XY_interface) <- 'static'
@@ -150,7 +150,7 @@ TimeSpent.setup = function(t, y, xds_obj){
 #' @title Compute time spent objects: static models
 #' @description Return the time spent objects unmodified
 #' @inheritParams TimeSpent
-#' @return the unmodified `xds` object
+#' @return an **`xds`** object
 #' @export
 TimeSpent.static = function(t, y, xds_obj){
   return(xds_obj)

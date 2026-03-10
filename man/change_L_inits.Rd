@@ -14,7 +14,7 @@ change_L_inits(xds_obj, s = 1, options = list())
 \item{options}{a named list}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 This sets initial values for an \strong{L} Component

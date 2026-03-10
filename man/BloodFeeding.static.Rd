@@ -14,7 +14,7 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the unmodified \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Return the blood feeding objects unmodified

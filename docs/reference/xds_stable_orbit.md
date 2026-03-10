@@ -20,4 +20,4 @@ xds_stable_orbit(xds_obj, options = list())
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

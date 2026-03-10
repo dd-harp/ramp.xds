@@ -26,4 +26,4 @@ change_shock(shock_par, xds_obj, s = 1)
 
 ## Value
 
-a **`ramp.xds`** model object
+an **`xds`** object

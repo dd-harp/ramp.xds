@@ -21,7 +21,7 @@ setup_ML_interface(xds_obj, membership)
 
 ## Value
 
-an `xds` object
+an **`xds`** object
 
 ## Details
 

@@ -14,7 +14,7 @@ change_travel_EIR(teir, xds_obj, i)
 \item{i}{the host species index}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Set a new \emph{static} value for travel EIR

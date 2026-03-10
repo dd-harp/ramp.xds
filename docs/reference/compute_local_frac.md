@@ -16,4 +16,4 @@ compute_local_frac(xds_obj)
 
 ## Value
 
-an `xds` object
+an **`xds`** object

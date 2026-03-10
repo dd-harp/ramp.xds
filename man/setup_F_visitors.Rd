@@ -16,7 +16,7 @@ setup_F_visitors(mod_name, xds_obj, s, options)
 \item{options}{a named list to setup \code{F_visitors}}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Setup a model for no time spent visitorsing

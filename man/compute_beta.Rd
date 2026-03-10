@@ -14,7 +14,7 @@ compute_beta(t, y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 This function computes the mixing matrix, beta

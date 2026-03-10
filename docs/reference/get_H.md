@@ -12,7 +12,7 @@ get_H(xds_obj, i = 1)
 
 - xds_obj:
 
-  an **`xds`** object
+  an **`xds`** model object
 
 - i:
 

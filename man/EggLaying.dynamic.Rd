@@ -14,7 +14,7 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Computes eggs laid with exogenous forcing

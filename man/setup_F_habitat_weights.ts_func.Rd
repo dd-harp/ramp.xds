@@ -16,7 +16,7 @@
 \item{options}{a list of setup options (see \link{make_ts_function})}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Setup a the function model for no time spent searching

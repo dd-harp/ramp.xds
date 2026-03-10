@@ -14,7 +14,7 @@
 \item{s}{the vector species index}
 }
 \value{
-the \strong{\code{ramp.xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 and return the \strong{\code{ramp.xds}} model object

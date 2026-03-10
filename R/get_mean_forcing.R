@@ -1,60 +1,60 @@
 
-#' @title Get mean forcing 
-#' 
+#' @title Get mean forcing
+#'
 #' @description
 #' Get the parameter(s) that set mean forcing
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
-#' 
-#' @returns the mean parameter for forcing
-#'  
+#'
+#' @return the mean parameter for forcing
+#'
 #' @export
 get_mean_forcing = function(xds_obj){
-  UseMethod("get_mean_forcing", xds_obj$forced_by) 
+  UseMethod("get_mean_forcing", xds_obj$forced_by)
 }
 
-#' @title Get mean forcing 
-#' 
+#' @title Get mean forcing
+#'
 #' @description
-#' Return null for models without forcing 
-#' 
+#' Return null for models without forcing
+#'
 #' @param xds_obj an **`xds`** model object
-#' 
+#'
 #' @export
 get_mean_forcing.none = function(xds_obj){
-  return(c()) 
+  return(c())
 }
 
-#' @title Get mean forcing 
-#' 
+#' @title Get mean forcing
+#'
 #' @description
 #' Get `Lambda`, the mean emergence
-#' rate(s) \eqn{\Lambda}, for a model 
+#' rate(s) \eqn{\Lambda}, for a model
 #' forced by adult mosquito emergence
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
-#' 
+#'
 #' @export
 get_mean_forcing.Lambda = function(xds_obj){
   if(xds_obj$nVectorSpecies == 1){
     return(xds_obj$L_obj[[1]]$Lambda)
-  } else { 
-    Lambda = list() 
-    for(s in 1:length(xds_obj$nVectorSpecies)) 
-      Lambda[[s]] <- xds_obj$L_obj[[s]]$Lambda 
+  } else {
+    Lambda = list()
+    for(s in 1:length(xds_obj$nVectorSpecies))
+      Lambda[[s]] <- xds_obj$L_obj[[s]]$Lambda
     return(Lambda)
-  } 
+  }
 }
 
-#' @title Get mean forcing 
-#' 
+#' @title Get mean forcing
+#'
 #' @description
 #' Get the mean daily EIR for an `eir` model
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
-#' 
+#'
 #' @export
 get_mean_forcing.eir = function(xds_obj){
-  return(xds_obj$EIR_obj$eir)  
+  return(xds_obj$EIR_obj$eir)
 }
 

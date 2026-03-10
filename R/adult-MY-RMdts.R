@@ -1,27 +1,27 @@
 # specialized methods for the adult mosquito RMdts model
 
-#' @title The **RMdts** Module Skill Set 
-#' 
-#' @description The **MY** skill set is a list of 
-#' an module's capabilities: 
-#' 
-#' + `demography` is 
+#' @title The **RMdts** Module Skill Set
 #'
-#' @inheritParams skill_set_MY 
-#' 
-#' @return *MY* module skill set, as a list 
-#' 
+#' @description The **MY** skill set is a list of
+#' an module's capabilities:
+#'
+#' + `demography` is
+#'
+#' @inheritParams skill_set_MY
+#'
+#' @return *MY* module skill set, as a list
+#'
 #' @export
 skill_set_MY.RMdts = function(MYname){
   return(list())
 }
 
-#' Run a check before solving 
+#' Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
+#' @param s the vector species index
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_MY.RMdts = function(xds_obj, s){
   return(xds_obj)

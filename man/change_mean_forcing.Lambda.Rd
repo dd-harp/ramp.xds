@@ -14,7 +14,7 @@
 \item{s}{the vector species index}
 }
 \value{
-the \strong{\code{ramp.xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Set \code{Lambda} to \code{X} for the \eqn{s^{th}} species

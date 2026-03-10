@@ -12,7 +12,7 @@ compute_TaR(xds_obj, t = 0)
 \item{t}{the time}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Make a time at risk matrix (TaR) from a time spent matrix and a circadian function

@@ -20,4 +20,4 @@ parse_XH_terms(xds_obj, i = 1)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

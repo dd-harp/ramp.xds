@@ -1,7 +1,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @import mathjaxr 
+#' @import mathjaxr
 ## usethis namespace: end
 NULL
 #>NULL

@@ -16,7 +16,7 @@ setup_F_travel(setup_name, xds_obj, i, options = list())
 \item{options}{setup options for \code{F_travel}}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Setup a model for no time spent traveling

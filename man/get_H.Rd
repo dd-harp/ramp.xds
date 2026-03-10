@@ -7,7 +7,7 @@
 get_H(xds_obj, i = 1)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the human species index}
 }

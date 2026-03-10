@@ -12,7 +12,7 @@ parse_y(y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-varslist a \link{list}
+a named \link{list}
 }
 \description{
 parse the output of an object returned by deSolve

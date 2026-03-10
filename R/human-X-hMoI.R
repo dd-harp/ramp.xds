@@ -1,49 +1,49 @@
 # a hybrid model tracking mean MoI for all and apparent infections
 
-#' @title The **XH** Module Skill Set 
-#' 
+#' @title The **XH** Module Skill Set
+#'
 #' @description The `hMoI` module is an example
 #' of a model that is not extensible. There is now
 #' way to add either dynamic human population density
 #' or mass treatment without violating the model
 #' assumptions.
-#' 
+#'
 #' The model does output observed population density
 #' and here it is
-#' 
-#' 
-#' @note This method dispatches on `class(xds_obj$XH_obj)` 
+#'
+#'
+#' @note This method dispatches on `class(xds_obj$XH_obj)`
 #'
 #' @inheritParams skill_set_XH
-#' 
-#' @return the `hMoI` *XH* module skill set, a list 
-#' 
+#'
+#' @return the `hMoI` *XH* module skill set, a list
+#'
 #' @export
 skill_set_XH.hMoI = function(Xname = "hMoI"){
   return(list(
-    H_dynamics = FALSE, 
-    mda        = FALSE, 
-    msat       = FALSE, 
-    malaria    = TRUE, 
-    pr_obs     = TRUE, 
-    pf_lm      = FALSE, 
-    pf_rdt     = FALSE, 
+    H_dynamics = FALSE,
+    mda        = FALSE,
+    msat       = FALSE,
+    malaria    = TRUE,
+    pr_obs     = TRUE,
+    pf_lm      = FALSE,
+    pf_rdt     = FALSE,
     pf_pcr     = FALSE
   ))
 }
 
-#' Check / update before solving 
+#' Check / update before solving
 #'
 #' @inheritParams check_XH
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_XH.hMoI = function(xds_obj, i){
   return(xds_obj)
 }
 
 #' @title Compute Derivatives for `hMoI` (**X** Module)
-#'  
+#'
 #' @description Implements [dXHdt] for the hybrid MoI model.
 #' @inheritParams dXHdt
 #' @return a [numeric] vector
@@ -61,12 +61,12 @@ dXHdt.hMoI <- function(t, y, xds_obj, i) {
   })
 }
 
-#' @title Get Variables by Name 
-#' 
-#' @description Get the the value of variables from the flat state variable vector \eqn{y}, and return 
-#' the values as a named list 
-#' 
-#' @inheritParams get_XH_vars 
+#' @title Get Variables by Name
+#'
+#' @description Get the the value of variables from the flat state variable vector \eqn{y}, and return
+#' the values as a named list
+#'
+#' @inheritParams get_XH_vars
 #' @return a [list]
 #' @export
 get_XH_vars.hMoI <- function(y, xds_obj, i) {
@@ -85,15 +85,15 @@ get_XH_vars.hMoI <- function(y, xds_obj, i) {
 #' @keywords internal
 #' @export
 setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
-  
+
   m1_ix <- seq(from=max_ix+1, length.out=nStrata[i])
   max_ix <- tail(m1_ix, 1)
-  
+
   m2_ix <- seq(from=max_ix+1, length.out=nStrata[i])
   max_ix <- tail(m2_ix, 1)
-  
+
   xds_obj$XH_obj[[i]]$ix = list(m1_ix=m1_ix, m2_ix=m2_ix)
-  
+
   xds_obj$max_ix = max_ix
   return(xds_obj)
 })}
@@ -113,13 +113,13 @@ setup_XH_obj.hMoI = function(Xname, xds_obj, i, options=list()){
 #' @description MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
 #' @param nStrata is the number of human population strata
 #' @param options a [list] that overwrites default values
-#' 
+#'
 #' @param b transmission probability (efficiency) from mosquito to human
 #' @param c1 transmission probability (efficiency) from inapparent human infections to mosquito
 #' @param c2 transmission probability (efficiency) from patent human infections to mosquito
 #' @param r1 recovery rate from inapparent infections
 #' @param r2 recovery rate from patent infections
-#' 
+#'
 #' @return none
 #' @export
 make_XH_obj_hMoI = function(nStrata, options=list(),
@@ -139,15 +139,15 @@ make_XH_obj_hMoI = function(nStrata, options=list(),
   })}
 
 #' @title Return the parameters as a list
-#' 
+#'
 #' @description Parameter values for the \eqn{i^{th}} host are
 #' stored as `xds_obj$XH_obj[[i]]`. This returns the stored parameter
 #' values as a list.
-#' 
-#' @inheritParams get_XH_pars 
-#' 
+#'
+#' @inheritParams get_XH_pars
+#'
 #' @return a [list]
-#' 
+#'
 #' @seealso [make_XH_obj_hMoI]
 #' @export
 get_XH_pars.hMoI<- function(xds_obj, i=1) {
@@ -155,13 +155,13 @@ get_XH_pars.hMoI<- function(xds_obj, i=1) {
 }
 
 #' @title Return the parameters as a list
-#' 
+#'
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
-#' 
+#'
 #' @inheritParams change_XH_pars
-#' 
+#'
 #' @return an **`xds`** object
-#' 
+#'
 #' @export
 change_XH_pars.hMoI <- function(xds_obj, i=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
@@ -185,7 +185,7 @@ change_XH_pars.hMoI <- function(xds_obj, i=1, options=list()) {
 #' @importFrom stats pexp
 #' @export
 F_I.hMoI <- function(t, y, xds_obj, i) {
-  with(get_XH_vars(y, xds_obj, i),{ 
+  with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]],{
       x1 <- pexp(q = m1)
       x2 <- pexp(q = m2)
@@ -334,7 +334,7 @@ F_pfpr_by_pcr.hMoI<- function(vars, XH_obj) {
 }
 
 #' @title Compute Steady States for `hMoI` (**X**-Model)
-#' 
+#'
 #' @description Compute the steady state of the hMoI model as a function of the daily foi
 #' @inheritParams steady_state_X
 #' @return the steady states as a named vector
