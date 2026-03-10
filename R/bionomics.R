@@ -9,6 +9,7 @@
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @return a [list]
+#' @keywords internal
 #' @export
 BaselineBionomics <- function(t, y, xds_obj){
   for(s in 1:xds_obj$nVectorSpecies){
@@ -27,6 +28,7 @@ BaselineBionomics <- function(t, y, xds_obj){
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @return a [list]
+#' @keywords internal
 #' @export
 ModifiedBionomics <- function(t, y, xds_obj){
 

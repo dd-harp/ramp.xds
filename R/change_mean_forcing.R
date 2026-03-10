@@ -25,6 +25,7 @@ change_mean_forcing = function(X, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_mean_forcing.none = function(X, xds_obj, s=1){
   return(xds_obj)
@@ -40,6 +41,7 @@ change_mean_forcing.none = function(X, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_mean_forcing.Lambda = function(X, xds_obj, s=1){
   stopifnot(length(xds_obj$L_obj[[s]]$Lambda) == length(X))
@@ -56,6 +58,7 @@ change_mean_forcing.Lambda = function(X, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_mean_forcing.eir = function(X, xds_obj, s=1){
   stopifnot(length(xds_obj$EIR_obj$eir) == length(X))

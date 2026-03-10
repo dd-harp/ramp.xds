@@ -46,6 +46,7 @@ setup_TimeSpent = function(TimeSpent, xds_obj, i, options = list()){
 #' @description Implements [setup_TimeSpent] for as_matrix
 #' @inheritParams setup_TimeSpent
 #' @return a [list]
+#' @keywords internal
 #' @export
 setup_TimeSpent.athome = function(TimeSpent, xds_obj, i, options = list()){
   residence = xds_obj$residence[[i]]
@@ -74,6 +75,7 @@ make_TimeSpent_athome = function(nPatches, residence, options=list(), atHome=1, 
 #' @description Implements [setup_TimeSpent] for as_matrix
 #' @inheritParams setup_TimeSpent
 #' @return a [list]
+#' @keywords internal
 #' @export
 setup_TimeSpent.as_matrix = function(TimeSpent, xds_obj, i, options=list()){
   change_TimeSpent_matrix(TimeSpent, xds_obj, i)
@@ -83,6 +85,7 @@ setup_TimeSpent.as_matrix = function(TimeSpent, xds_obj, i, options=list()){
 #' @description Implements [setup_TimeSpent] for kernels
 #' @inheritParams setup_TimeSpent
 #' @return a [list]
+#' @keywords internal
 #' @export
 setup_TimeSpent.xy = function(TimeSpent, xds_obj, i, options=list()) {
   residence = xds_obj$B_interface[[i]]$residence
@@ -124,6 +127,7 @@ make_TimeSpent_xy = function(xy, residence, kern, stay, travel) {
 #' @param y the state variables
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 TimeSpent = function(t, y, xds_obj){
   UseMethod("TimeSpent", xds_obj$XY_interface)
@@ -139,6 +143,7 @@ TimeSpent = function(t, y, xds_obj){
 #' be updated, if they are not dynamic, so [trigger_setup] is called.
 #' @inheritParams TimeSpent
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 TimeSpent.setup = function(t, y, xds_obj){
   class(xds_obj$XY_interface) <- 'static'
@@ -151,6 +156,7 @@ TimeSpent.setup = function(t, y, xds_obj){
 #' @description Return the time spent objects unmodified
 #' @inheritParams TimeSpent
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 TimeSpent.static = function(t, y, xds_obj){
   return(xds_obj)

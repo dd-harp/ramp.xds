@@ -21,3 +21,4 @@ a \link{numeric} vector
 \description{
 Implements \link{Update_MYt} for the RMdts model.
 }
+\keyword{internal}

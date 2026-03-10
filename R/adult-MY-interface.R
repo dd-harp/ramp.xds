@@ -44,6 +44,7 @@ check_MY = function(xds_obj, s){
 #'
 #' @return Derivatives for an adult mosquito model, a [vector]
 #'
+#' @keywords internal
 #' @export
 dMYdt <- function(t, y, xds_obj, s) {
   UseMethod("dMYdt", xds_obj$MY_obj[[s]])
@@ -59,6 +60,7 @@ dMYdt <- function(t, y, xds_obj, s) {
 #'
 #' @return Updated states for an adult mosquito model, a [vector]
 #'
+#' @keywords internal
 #' @export
 Update_MYt <- function(t, y, xds_obj, s) {
   UseMethod("Update_MYt", xds_obj$MY_obj[[s]])
@@ -72,6 +74,7 @@ Update_MYt <- function(t, y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqZ <- function(t, y, xds_obj, s) {
   UseMethod("F_fqZ", xds_obj$MY_obj[[s]])
@@ -96,6 +99,7 @@ F_fqM <- function(t, y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_eggs <- function(t, y, xds_obj, s) {
   UseMethod("F_eggs", xds_obj$MY_obj[[s]])
@@ -109,6 +113,7 @@ F_eggs <- function(t, y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBaseline <- function(t, y, xds_obj, s) {
   UseMethod("MBaseline", xds_obj$MY_obj[[s]])
@@ -121,6 +126,7 @@ MBaseline <- function(t, y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBionomics <- function(t, y, xds_obj, s) {
   UseMethod("MBionomics", xds_obj$MY_obj[[s]])
@@ -191,6 +197,7 @@ get_MY_ix <- function(xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return [list]
+#' @keywords internal
 #' @export
 parse_MY_orbits <- function(outputs, xds_obj, s) {
   UseMethod("parse_MY_orbits", xds_obj$MY_obj[[s]])

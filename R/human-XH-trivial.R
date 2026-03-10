@@ -33,6 +33,7 @@ check_XH.trivial = function(xds_obj, i){
 #' @description Implements [F_I] for the trivial model
 #' @inheritParams F_I
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_I.trivial <- function(t, y, xds_obj, i) {
   H = F_H(t, y, xds_obj, i)
@@ -44,6 +45,7 @@ F_I.trivial <- function(t, y, xds_obj, i) {
 #' @description Implements [F_H] for the trivial model.
 #' @inheritParams F_H
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_H.trivial <- function(t, y, xds_obj, i) {
   xds_obj$XH_obj[[i]]$H
@@ -53,6 +55,7 @@ F_H.trivial <- function(t, y, xds_obj, i) {
 #' @description Implements [F_infectivity] for the trivial model.
 #' @inheritParams F_infectivity
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_infectivity.trivial <- function(y, xds_obj, i) {
   return(1)
@@ -90,6 +93,7 @@ make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
 #' a numeric vector of length 0
 #' @inheritParams dXHdt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 dXHdt.trivial <- function(t, y, xds_obj, i) {
   numeric(0)
@@ -100,6 +104,7 @@ dXHdt.trivial <- function(t, y, xds_obj, i) {
 #' a numeric vector of length 0
 #' @inheritParams Update_XHt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 Update_XHt.trivial <- function(t, y, xds_obj, i) {
   numeric(0)
@@ -118,6 +123,7 @@ F_prevalence.trivial <- function(vars, XH_obj) {
 #' @description Implements [F_ni] for the trivial model.
 #' @inheritParams F_ni
 #' @return a [numeric] vector numeric(0)
+#' @keywords internal
 #' @export
 F_ni.trivial <- function(vars, XH_obj) {
   return(numeric(0))
@@ -127,6 +133,7 @@ F_ni.trivial <- function(vars, XH_obj) {
 #' @description Implements [F_prevalence] for the trivial model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector numeric(0)
+#' @keywords internal
 #' @export
 F_pfpr_by_lm.trivial <- function(vars, XH_obj) {
   return(numeric(0))
@@ -137,6 +144,7 @@ F_pfpr_by_lm.trivial <- function(vars, XH_obj) {
 #' @description Implements [F_prevalence] for the trivial model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector numeric(0)
+#' @keywords internal
 #' @export
 F_pfpr_by_rdt.trivial <- function(vars, XH_obj) {
   return(numeric(0))
@@ -190,6 +198,7 @@ setup_XH_ix.trivial <- function(xds_obj, i) {
 #' @description Implements [parse_XH_orbits] for the trivial model
 #' @inheritParams parse_XH_orbits
 #' @return none
+#' @keywords internal
 #' @export
 parse_XH_orbits.trivial <- function(outputs, xds_obj,i) {
   return(list())

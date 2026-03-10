@@ -25,3 +25,4 @@ that assigns weights by distance. The fraction leaving from
 each patch that arrive at other patch is the vector of normalized
 weights.
 }
+\keyword{internal}

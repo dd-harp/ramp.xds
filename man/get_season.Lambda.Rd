@@ -17,3 +17,4 @@ seasonal pattern parameters
 \description{
 Get the parameters set the seasonal pattern
 }
+\keyword{internal}

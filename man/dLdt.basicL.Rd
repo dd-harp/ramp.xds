@@ -70,3 +70,4 @@ that model is recovered by setting \eqn{\xi=0.}
 \seealso{
 \link{make_L_obj_basicL}
 }
+\keyword{internal}

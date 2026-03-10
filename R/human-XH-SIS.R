@@ -47,6 +47,7 @@
 #' @seealso [SIS Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
 #' @return the derivatives, as a vector
 #'
+#' @keywords internal
 #' @export
 dXHdt.SIS <- function(t, y, xds_obj, i) {
 
@@ -359,13 +360,13 @@ F_prevalence.SIS <- function(vars, XH_obj) {
 F_ni.SIS <- function(vars, XH_obj) {
   return(with(vars,with(XH_obj, c*I/H)))}
 
-#' @title Compute the HTC for the SIS model
-#' @description Implements [HTC] for the SIS model with demography.
-#' @inheritParams HTC
+#' @title Compute the get_HTC for the SIS model
+#' @description Implements \code{get_HTC} for the SIS model with demography.
+#' @inheritParams get_HTC
 #' @return a [numeric] vector
 #' @keywords internal
 #' @export
-HTC.SIS <- function(xds_obj, i) {
+get_HTC.SIS <- function(xds_obj, i) {
   with(xds_obj$XH_obj[[i]], return(c/r))}
 
 #' @title The **XH** Module Skill Set

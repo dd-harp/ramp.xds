@@ -38,6 +38,7 @@ setup_resources_object = function(xds_obj){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 Resources = function(t, y, xds_obj){
   xds_obj <- BloodHosts(t, y, xds_obj)

@@ -24,3 +24,4 @@ for mosquito traps
 Mosquito trap models are in
 \code{ramp.control}
 }
+\keyword{internal}

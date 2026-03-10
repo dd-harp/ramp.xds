@@ -17,3 +17,4 @@ a named \link{list}
 \description{
 parse the output of an object returned by deSolve
 }
+\keyword{internal}

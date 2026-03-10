@@ -25,6 +25,7 @@ get_trend = function(xds_obj, s=1){
 #'
 #' @return trend parameters
 #'
+#' @keywords internal
 #' @export
 get_trend.none = function(xds_obj, s=1){
   return(c())
@@ -40,6 +41,7 @@ get_trend.none = function(xds_obj, s=1){
 #'
 #' @return trend parameters
 #'
+#' @keywords internal
 #' @export
 get_trend.Lambda= function(xds_obj, s=1){
   return(xds_obj$L_obj[[s]]$trend_par)
@@ -55,6 +57,7 @@ get_trend.Lambda= function(xds_obj, s=1){
 #'
 #' @return trend parameters
 #'
+#' @keywords internal
 #' @export
 get_trend.eir= function(xds_obj, s=1){
   return(xds_obj$EIR_obj$trend_par)
@@ -102,6 +105,7 @@ get_spline_s = function(xds_obj, s){
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
+#' @keywords internal
 #' @export
 get_spline_s.none = function(xds_obj, s){
   return(c())
@@ -118,6 +122,7 @@ get_spline_s.none = function(xds_obj, s){
 #'
 #' @return the interpolation points, as a list
 #'
+#' @keywords internal
 #' @export
 get_spline_s.Lambda = function(xds_obj, s=1){
   tt <- xds_obj$L_obj[[s]]$trend_par$tt
@@ -133,6 +138,7 @@ get_spline_s.Lambda = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
+#' @keywords internal
 #' @export
 get_spline_s.eir = function(xds_obj, s=1){
   tt <- xds_obj$EIR_obj$trend_par$tt

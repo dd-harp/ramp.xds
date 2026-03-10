@@ -15,6 +15,7 @@ check_MY.trivial = function(xds_obj, s){
 #' @description Implements [F_fqZ] for the trivial model.
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqZ.trivial <- function(t, y, xds_obj, s) {
   f = get_f(xds_obj, s)
@@ -27,6 +28,7 @@ F_fqZ.trivial <- function(t, y, xds_obj, s) {
 #' @description Implements [F_eggs] for the trivial model.
 #' @inheritParams F_eggs
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_eggs.trivial <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]],
@@ -53,6 +55,7 @@ F_fqM.trivial <- function(t, y, xds_obj, s){
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MBionomics
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBaseline.trivial <- function(t, y, xds_obj, s) {
   return(xds_obj)
@@ -68,6 +71,7 @@ MBaseline.trivial <- function(t, y, xds_obj, s) {
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MBionomics
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBionomics.trivial <- function(t, y, xds_obj, s) {
   return(xds_obj)
@@ -78,6 +82,7 @@ MBionomics.trivial <- function(t, y, xds_obj, s) {
 #' @description Implements [dMYdt] for the trivial (forced emergence) model.
 #' @inheritParams dMYdt
 #' @return a null value
+#' @keywords internal
 #' @export
 dMYdt.trivial <- function(t, y, xds_obj, s){
   numeric(0)
@@ -87,6 +92,7 @@ dMYdt.trivial <- function(t, y, xds_obj, s){
 #' @description Implements [Update_MYt] for the trivial (forced emergence) model.
 #' @inheritParams Update_MYt
 #' @return a null vector
+#' @keywords internal
 #' @export
 Update_MYt.trivial <- function(t, y, xds_obj, s){
   numeric(0)
@@ -171,6 +177,7 @@ make_MY_obj_trivial = function(nPatches, options,
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_vars.trivial <- function(y, xds_obj, s){
   return(list())
@@ -206,6 +213,7 @@ get_MY_pars.trivial <- function(xds_obj, s=1) {
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_MY_inits.trivial <- function(xds_obj, s=1, options=list()) {
   return(xds_obj)
@@ -280,6 +288,7 @@ setup_MY_ix.trivial <- function(xds_obj, s) {
 #' @description Implements [parse_MY_orbits] for trivial
 #' @inheritParams parse_MY_orbits
 #' @return [list]
+#' @keywords internal
 #' @export
 parse_MY_orbits.trivial <- function(outputs, xds_obj, s) {
   return(list())
@@ -289,6 +298,7 @@ parse_MY_orbits.trivial <- function(outputs, xds_obj, s) {
 #' @description Implements [get_MY_inits] for the GeRM model.
 #' @inheritParams get_MY_inits
 #' @return none
+#' @keywords internal
 #' @export
 get_MY_inits.trivial <- function(xds_obj, s){
   return(c())
@@ -300,6 +310,7 @@ get_MY_inits.trivial <- function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_f.trivial = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f_t*es_f)
@@ -309,6 +320,7 @@ get_f.trivial = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_q.trivial = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q_t*es_q)
@@ -318,6 +330,7 @@ get_q.trivial = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_g.trivial = function(xds_obj, s=1){
   numeric(0)
@@ -327,6 +340,7 @@ get_g.trivial = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_sigma.trivial = function(xds_obj, s=1){
   numeric(0)

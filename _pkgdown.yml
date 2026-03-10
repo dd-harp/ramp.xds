@@ -64,6 +64,7 @@ navbar:
     href: reference/index.html
   right:
   - icon: fa-github
+    aria-label: GitHub
     href: https://github.com/dd-harp/ramp.xds/
 home:
   sidebar:
@@ -107,6 +108,7 @@ reference:
   - burnin 
   - get_XH_out
   - get_MY_out
+  - get_L_out
 - subtitle: Analysis 
   desc: | 
     Compute Steady States & Stable Orbits
@@ -182,14 +184,8 @@ reference:
   - change_TimeSpent_matrix
   - get_TimeSpent_matrix
   - setup_TimeSpent
-  - setup_TimeSpent.as_matrix
-  - setup_TimeSpent.athome
   - make_TimeSpent_athome
-  - setup_TimeSpent.xy
   - make_TimeSpent_xy
-  - TimeSpent 
-  - TimeSpent.setup
-  - TimeSpent.static
 - subtitle: Exposure
   desc: Environmental Heterogeneity 
   contents:
@@ -210,22 +206,13 @@ reference:
   contents:
   - skill_set_XH
   - check_XH
-  - dXHdt
-  - Update_XHt
   - get_XH_vars
   - get_XH_pars
   - change_XH_pars
-  - F_I
-  - F_H
-  - F_infectivity
-  - parse_XH_orbits
   - get_XH_inits
   - change_XH_inits
-  - HTC
+  - get_HTC
   - F_prevalence
-  - F_ni 
-  - F_pfpr_by_lm
-  - F_pfpr_by_rdt
   - F_pfpr_by_pcr
   - xds_plot_X
   - xds_plot_XH
@@ -236,18 +223,9 @@ reference:
   contents:
   - skill_set_XH.trivial 
   - check_XH.trivial 
-  - F_I.trivial
-  - F_H.trivial
-  - F_ni.trivial 
   - F_prevalence.trivial
-  - F_pfpr_by_lm.trivial
-  - F_pfpr_by_rdt.trivial
   - F_pfpr_by_pcr.trivial
-  - F_infectivity.trivial
-  - dXHdt.trivial
-  - Update_XHt.trivial
   - make_XH_obj_trivial
-  - parse_XH_orbits.trivial
   - get_XH_pars.trivial
   - change_XH_pars.trivial
 - subtitle: hMoI
@@ -255,30 +233,20 @@ reference:
     A hybrid model of MoI (Multiplicity of Infection) for human infection dynamics.
   contents:
   - skill_set_XH.hMoI 
-  - dXHdt.hMoI
   - make_XH_obj_hMoI
   - steady_state_X.hMoI
   - make_XH_inits_hMoI
-  - F_I.hMoI
-  - F_H.hMoI
-  - F_infectivity.hMoI
   - F_prevalence.hMoI
-  - F_ni.hMoI
-  - F_pfpr_by_lm.hMoI
-  - F_pfpr_by_rdt.hMoI
   - F_pfpr_by_pcr.hMoI
-  - parse_XH_orbits.hMoI
   - change_XH_inits.hMoI
   - get_XH_pars.hMoI
   - change_XH_pars.hMoI
-  - HTC.hMoI
   - check_XH.hMoI 
   - get_XH_vars.hMoI 
 - subtitle: SIS
   desc: |
     "The SIS (Susceptible-Infected-Susceptible) model of human dynamics"
   contents:
-  - dXHdt.SIS
   - change_XH_inits.SIS
   - change_XH_pars.SIS
   - get_XH_pars.SIS
@@ -294,20 +262,13 @@ reference:
   contents:
   - skill_set_MY 
   - check_MY 
-  - dMYdt
-  - Update_MYt
-  - F_fqZ
   - F_fqM
-  - F_eggs
-  - MBaseline
-  - MBionomics
   - get_MY_vars
   - get_MY_pars
   - change_MY_pars
   - get_MY_inits
   - change_MY_inits
   - get_MY_ix
-  - parse_MY_orbits
   - steady_state_MY
   - steady_state_Y
   - steady_state_M
@@ -354,38 +315,21 @@ reference:
   contents:
   - skill_set_MY.trivial
   - check_MY.trivial
-  - F_fqZ.trivial
   - F_fqM.trivial
-  - F_eggs.trivial
-  - dMYdt.trivial
-  - Update_MYt.trivial
-  - MBaseline.trivial
-  - MBionomics.trivial
   - get_MY_pars.trivial
   - change_MY_pars.trivial
-  - change_MY_inits.trivial
   - make_MY_obj_trivial
-  - parse_MY_orbits.trivial
 - subtitle: basicM
   desc: |
     Methods for basicM - adult mosquito ecology without infection dynamics.
   contents:
   - skill_set_MY.basicM
   - check_MY.basicM
-  - dMYdt.basicM
-  - MBaseline.basicM
-  - MBionomics.basicM
-  - Update_MYt.basicM
   - make_M_obj_basicM 
-  - F_fqZ.basicM
   - F_fqM.basicM
-  - F_eggs.basicM
   - make_MY_inits_basicM
-  - get_MY_vars.basicM
   - get_MY_pars.basicM
   - change_MY_pars.basicM
-  - change_MY_inits.basicM
-  - parse_MY_orbits.basicM
   - steady_state_M.basicM_ode
   - steady_state_M.basicM_dts
 - subtitle: The "SI" model for infection
@@ -394,24 +338,11 @@ reference:
   contents:
   - skill_set_MY.SI
   - check_MY.SI
-  - dMYdt.SI
-  - MBaseline.SI
-  - MBionomics.SI
-  - Update_MYt.SI
   - make_MY_obj_SI
-  - F_fqZ.SI
   - F_fqM.SI
-  - F_eggs.SI
-  - get_MY_vars.SI
   - get_MY_pars.SI
   - change_MY_pars.SI
-  - change_MY_inits.SI
   - make_MY_inits_SI
-  - parse_MY_orbits.SI
-  - get_f.SI
-  - get_q.SI
-  - get_g.SI
-  - get_sigma.SI
   - steady_state_MY.SI_ode
 - subtitle: macdonald
   desc: |
@@ -419,70 +350,38 @@ reference:
   contents:
   - skill_set_MY.macdonald
   - check_MY.macdonald
-  - dMYdt.macdonald
-  - MBaseline.macdonald
-  - MBionomics.macdonald
   - steady_state_MY.macdonald
   - make_MY_obj_macdonald
-  - get_MY_vars.macdonald
   - get_MY_pars.macdonald
   - change_MY_pars.macdonald
-  - change_MY_inits.macdonald
-  - F_fqZ.macdonald
   - F_fqM.macdonald
-  - F_eggs.macdonald
   - make_MY_inits_macdonald
-  - parse_MY_orbits.macdonald
-  - get_f.macdonald
-  - get_q.macdonald
-  - get_g.macdonald
-  - get_sigma.macdonald
 - subtitle: GeRM
   desc: |
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics - modified slightly from a model published by Joan Aron & Robert May (1982).
   contents:
   - skill_set_MY.GeRM
   - check_MY.GeRM
-  - dMYdt.GeRM
-  - MBaseline.GeRM
-  - MBionomics.GeRM
-  - Update_MYt.GeRM
   - steady_state_MY.GeRM
   - make_MY_obj_GeRM
-  - get_MY_vars.GeRM
   - get_MY_pars.GeRM
   - change_MY_pars.GeRM
-  - change_MY_inits.GeRM
-  - F_fqZ.GeRM
   - F_fqM.GeRM
-  - F_eggs.GeRM
   - make_MY_inits_GeRM
-  - parse_MY_orbits.GeRM
-  - get_f.GeRM
-  - get_q.GeRM
-  - get_g.GeRM
-  - get_sigma.GeRM
 - subtitle: RM-Mosquito in discrete-time
   desc: |
     Specialized methods for a Ross-Macdonald-style model of adult mosquito dynamics - in discrete time.
   contents:
   - skill_set_MY.RMdts 
   - check_MY.RMdts 
-  - F_fqZ.RMdts
   - F_fqM.RMdts
-  - F_eggs.RMdts
-  - Update_MYt.RMdts
-  - get_MY_vars.RMdts
   - make_MY_inits_RMdts
-  - parse_MY_orbits.RMdts
 - title: L Component (Immature Mosquitoes)
   desc: |
     Generic methods for the aquatic (immature) mosquito component.
   contents:
   - skill_set_L
   - check_L
-  - dLdt
-  - Update_Lt
   - F_emerge
   - LBionomics
   - LBaseline
@@ -491,7 +390,6 @@ reference:
   - get_L_vars
   - change_L_inits
   - get_L_inits
-  - parse_L_orbits
   - steady_state_L
 - subtitle: trivial
   desc: "The trivial model for aquatic dynamics \n"
@@ -507,8 +405,6 @@ reference:
   contents:
   - skill_set_L.basicL
   - check_L.basicL
-  - dLdt.basicL
-  - Update_Lt.basicL
   - make_L_obj_basicL
   - LBionomics.basicL
   - LBaseline.basicL
@@ -518,7 +414,6 @@ reference:
   - get_L_pars.basicL
   - change_L_pars.basicL
   - change_L_inits.basicL
-  - parse_L_orbits.basicL
   - steady_state_L.basicL_ode
 - title: Mosquito Bionomics
   desc: |
@@ -571,10 +466,7 @@ reference:
   - change_K_matrix
   - get_K_matrix 
   - setup_K_matrix
-  - setup_K_matrix.as_matrix
-  - setup_K_matrix.herethere
   - make_K_matrix_herethere
-  - setup_K_matrix.xy
   - make_K_matrix_xy
   - F_K_matrix
   - F_K_matrix.static 
@@ -587,63 +479,33 @@ reference:
   contents:
   - add_variable 
   - setup_other_variables
-  - dVdt
-  - dVdt.setup
   - setup_V_ix.setup
   - setup_V_obj
   - get_V_vars 
   - setup_V_ix
-  - parse_V_orbits 
   - get_V_pars 
   - get_V_ix 
   - change_V_pars 
   - setup_V_inits 
   - get_V_inits
   - change_V_inits 
-- subtitle: Junctions 
-  desc: |
-    Functions that compute dynamical terms and exogenous variables
-  contents:
-  - Forcing
-  - Health
-  - VectorControl1
-  - VectorControl2
-  - Resources
 - title: Ports & Junctions
-- subtitle: Junctions 
-  desc: Set up junction boxes to add features 
 - subtitle: Forcing
   desc: Exogenous forcing (see `ramp.control`)
   contents:
   - setup_forcing_object
-  - Forcing
-  - Forcing.none
 - subtitle: Vector Control
   desc: "The ports for vector control \n"
   contents:
   - setup_vector_control_object
-  - VectorControl1
-  - VectorControl1.none
-  - VectorControl2
-  - VectorControl2.none
 - subtitle: Health
   desc: "The ports for malaria control \n"
   contents:
   - setup_health_object
-  - Health
-  - Health.none
 - subtitle: Resources 
   desc: "The ports for resources\n"
   contents:
   - setup_resources_object
-  - Resources
-  - BloodFeeding
-  - EggLaying
-  - Traps 
-  - BaselineBionomics
-  - ModifiedBionomics
-  - Transmission
-  - Exposure
 - subtitle: Travel 
   desc: |
     Time spent traveling & the travel EIR
@@ -657,10 +519,6 @@ reference:
   - setup_F_travel_eir
   - setup_F_travel_eir.static
   - setup_F_travel_eir.ts_func
-  - Travel 
-  - Travel.static
-  - Travel.setup
-  - Travel.dynamic
   - travel_dynamics
 - subtitle: Visitors 
   desc: |
@@ -672,21 +530,12 @@ reference:
   - setup_F_visitors.ts_func 
   - setup_visitor_object 
   - visitor_dynamics
-  - Visitors 
-  - Visitors.dynamic 
-  - Visitors.setup 
-  - Visitors.static 
 - title: Solving
   desc: "Methods to compute the derivatives and dynamical systems \n"
 - subtitle: Solve 
   contents:
   - make_times_dts 
   - make_times_xde 
-- subtitle: DTS Update
-  contents:
-  - Update_XHt
-  - Update_MYt
-  - Update_Lt
 - subtitle: Solving
   desc: |
     Wrappers around the derivatives functions that handle time and parse outputs
@@ -705,18 +554,6 @@ reference:
   contents:
   - average_PR_true
   - average_EIR
-  - parse_orbits
-  - parse_y
-  - parse_L_terms 
-  - parse_MY_terms 
-  - parse_XH_terms 
-  - parse_bionomics 
-  - parse_outputs 
-  - parse_outputs.aquatic 
-  - parse_outputs.eir 
-  - parse_outputs.full 
-  - parse_outputs.human 
-  - parse_outputs.mosy 
 - subtitle: Get and plot terms
   desc: |
     Basic visualization of the transmission terms
@@ -738,10 +575,6 @@ reference:
     Utilities
   contents:
   - print.xds_obj
-  - trigger_setup
-  - trigger_setup.static
-  - trigger_setup.setup
-  - trigger_setup.dynamic
   - diag_inverse
   - approx_equal
   - checkIt
@@ -759,12 +592,9 @@ reference:
   - change_H
   - update_inits
   - last_to_inits
-  - parse_orbits
-  - parse_y
   - get_inits
   - get_last
   - make_indices
-  - trigger_setup
 - subtitle: Functions
   desc: |
     Basic visualization of the transmission terms
@@ -805,67 +635,34 @@ reference:
   contents: 
   - show_season 
   - F_season 
-  - F_season.Lambda 
-  - F_season.none
-  - F_season.eir 
   - show_trend
   - F_trend 
-  - F_trend.Lambda 
-  - F_trend.eir
-  - F_trend.none
   - show_shock
   - F_shock 
-  - F_shock.Lambda 
-  - F_shock.eir
-  - F_shock.none
 - subtitle: Get and Set for Mean Forcing 
   desc: |
     Functions to change Forcing 
   contents: 
   - get_mean_forcing
-  - get_mean_forcing.none
-  - get_mean_forcing.Lambda
-  - get_mean_forcing.eir
   - change_mean_forcing
-  - change_mean_forcing.none
-  - change_mean_forcing.Lambda
-  - change_mean_forcing.eir
 - subtitle: Get and Set for Seasonality 
   desc: |
     Utilities to change  
   contents: 
   - get_season
-  - get_season.none
-  - get_season.Lambda
-  - get_season.eir
   - get_season_phase
   - get_season_bottom
   - get_season_pw
   - change_season
-  - change_season.none
-  - change_season.Lambda
-  - change_season.eir
 - subtitle: Get and Set for Spline Trend Functions
   desc: |
     Utilities to change the interpolation points
   contents:   
   - get_trend
-  - get_trend.none
-  - get_trend.Lambda
-  - get_trend.eir
   - get_spline
   - get_spline_s
-  - get_spline_s.none
-  - get_spline_s.Lambda
-  - get_spline_s.eir
   - change_spline
-  - change_spline.none
-  - change_spline.Lambda
-  - change_spline.eir
   - change_spline_y
-  - change_spline_y.none
-  - change_spline_y.Lambda
-  - change_spline_y.eir
   - change_shock
   - change_shock.none
   - change_shock.Lambda
@@ -874,41 +671,22 @@ reference:
   desc: Move  
   contents:   
   - F_exp 
-  - change_MY_inits.RMdts 
   - check_models 
   - get_EIR 
-  - get_MY_inits.trivial 
-  - get_MY_vars.trivial 
   - get_XH_ix 
   - get_XH_vars.trivial 
   - get_f 
-  - get_f.basicM 
-  - get_f.trivial 
   - get_g 
-  - get_g.basicM 
-  - get_g.trivial 
   - get_q 
-  - get_q.basicM 
-  - get_q.trivial 
   - get_sigma 
-  - get_sigma.basicM 
-  - get_sigma.trivial 
   - get_variables 
-  - get_variables.na 
   - make_ts_function 
   - One_tV 
   - Zero_tV 
   - setup_traps_object 
-  - Traps.none
   - setup_blood_host_object 
   - setup_blood_hosts 
   - setup_blood_hosts.ts_func 
   - change_blood_hosts 
-  - BloodHosts 
-  - BloodHosts.dynamic 
-  - BloodHosts.setup 
-  - BloodHosts.static 
   - blood_hosts_dynamics 
   - setup_sugar_object 
-  - Sugar 
-  - Sugar.none 

@@ -21,3 +21,4 @@ a null value
 \description{
 Implements \link{dMYdt} for the trivial (forced emergence) model.
 }
+\keyword{internal}

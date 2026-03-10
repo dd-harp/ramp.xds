@@ -41,6 +41,7 @@ setup_vector_control_object = function(xds_obj){
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 VectorControl1 = function(t, y, xds_obj){
   UseMethod("VectorControl1", xds_obj$vector_control_obj)
@@ -56,6 +57,7 @@ VectorControl1 = function(t, y, xds_obj){
 #' @inheritParams VectorControl1
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 VectorControl1.none = function(t, y, xds_obj){
   return(xds_obj)
@@ -72,6 +74,7 @@ VectorControl1.none = function(t, y, xds_obj){
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 VectorControl2 <- function(t, y, xds_obj) {
   UseMethod("VectorControl2", xds_obj$vector_control_obj)
@@ -86,6 +89,7 @@ VectorControl2 <- function(t, y, xds_obj) {
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 VectorControl2.none = function(t, y, xds_obj){
   return(xds_obj)

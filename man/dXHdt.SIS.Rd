@@ -61,3 +61,4 @@ dI/dt = & h (H-I) - r I - \xi(t) +  D \cdot I
 \seealso{
 \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Dynamics}
 }
+\keyword{internal}

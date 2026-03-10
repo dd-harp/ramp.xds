@@ -22,3 +22,4 @@ a \link{numeric} vector
 The trivial model has no state variables so it returns
 a numeric vector of length 0
 }
+\keyword{internal}

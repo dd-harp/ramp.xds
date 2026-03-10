@@ -17,3 +17,4 @@ a \link{numeric} vector of length \code{nStrata}
 \description{
 A function to compute NI as an output
 }
+\keyword{internal}

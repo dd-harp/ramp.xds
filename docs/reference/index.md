@@ -71,6 +71,11 @@ Methods to solve or equations
 
   Get **MY** outputs
 
+- [`get_L_out()`](https://dd-harp.github.io/ramp.xds/reference/get_L_out.md)
+  :
+
+  Get **L** outputs
+
 ### Analysis
 
 Compute Steady States & Stable Orbits
@@ -250,23 +255,10 @@ Set up Time Spent Matrices
   : Get the Time Spent Matrix
 - [`setup_TimeSpent()`](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.md)
   : Make a time spent matrix, called TimeSpent
-- [`setup_TimeSpent(`*`<as_matrix>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.as_matrix.md)
-  : Pass a pre-configured TimeSpent
-- [`setup_TimeSpent(`*`<athome>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.athome.md)
-  : Make a mosquito dispersal matrix, called TimeSpent with a here /
-  away
 - [`make_TimeSpent_athome()`](https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent_athome.md)
   : Make a mosquito dispersal matrix, called TimeSpent
-- [`setup_TimeSpent(`*`<xy>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.xy.md)
-  : Develop a mosquito dispersal matrix from a kernel and xy-coordinates
 - [`make_TimeSpent_xy()`](https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent_xy.md)
   : Make a mosquito dispersal matrix, called TimeSpent
-- [`TimeSpent()`](https://dd-harp.github.io/ramp.xds/reference/TimeSpent.md)
-  : time spent
-- [`TimeSpent(`*`<setup>`*`)`](https://dd-harp.github.io/ramp.xds/reference/TimeSpent.setup.md)
-  : Compute time spent objects: setup for static models
-- [`TimeSpent(`*`<static>`*`)`](https://dd-harp.github.io/ramp.xds/reference/TimeSpent.static.md)
-  : Compute time spent objects: static models
 
 ### Exposure
 
@@ -307,13 +299,6 @@ infectiousness - diagnostics and detection
 - [`check_XH()`](https://dd-harp.github.io/ramp.xds/reference/check_XH.md)
   : Check / update before solving
 
-- [`dXHdt()`](https://dd-harp.github.io/ramp.xds/reference/dXHdt.md) :
-
-  Compute **XH** Component Derivatives
-
-- [`Update_XHt()`](https://dd-harp.github.io/ramp.xds/reference/Update_XHt.md)
-  : Update X states for a discrete time system
-
 - [`get_XH_vars()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_vars.md)
   : Get Variables by Name
 
@@ -323,42 +308,19 @@ infectiousness - diagnostics and detection
 - [`change_XH_pars()`](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.md)
   : Set new X parameter values
 
-- [`F_I()`](https://dd-harp.github.io/ramp.xds/reference/F_I.md) : Size
-  of effective infectious human population
-
-- [`F_H()`](https://dd-harp.github.io/ramp.xds/reference/F_H.md) : Size
-  of human population denominators
-
-- [`F_infectivity()`](https://dd-harp.github.io/ramp.xds/reference/F_infectivity.md)
-  : Infection blocking pre-erythrocytic immunity
-
-- [`parse_XH_orbits()`](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.md)
-  :
-
-  Parse **XH** Outputs
-
 - [`get_XH_inits()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)
   : A function to set up XH_obj
 
 - [`change_XH_inits()`](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.md)
   : Set new X parameter values
 
-- [`HTC()`](https://dd-harp.github.io/ramp.xds/reference/HTC.md) :
-  Compute the human transmitting capacity
+- [`get_HTC()`](https://dd-harp.github.io/ramp.xds/reference/get_HTC.md)
+  : Compute the human transmitting capacity
 
 - [`F_prevalence()`](https://dd-harp.github.io/ramp.xds/reference/F_prevalence.md)
   :
 
   Compute the *true* prevalence of infection / parasite rate
-
-- [`F_ni()`](https://dd-harp.github.io/ramp.xds/reference/F_ni.md) :
-  Compute Net Infectiousness (NI)
-
-- [`F_pfpr_by_lm()`](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_lm.md)
-  : Compute the prevalence of infection by light microscopy
-
-- [`F_pfpr_by_rdt()`](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_rdt.md)
-  : Compute the prevalence of infection by RDT
 
 - [`F_pfpr_by_pcr()`](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_pcr.md)
   : Compute infection prevalence by PCR
@@ -391,46 +353,14 @@ Specialized methods the trivial human model
 - [`check_XH(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/check_XH.trivial.md)
   : Check / update before solving
 
-- [`F_I(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_I.trivial.md)
-  : Size of effective infectious human population
-
-- [`F_H(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_H.trivial.md)
-  : Size of the human population
-
-- [`F_ni(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_ni.trivial.md)
-  : Compute the NI
-
 - [`F_prevalence(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_prevalence.trivial.md)
   : Compute the "true" prevalence of infection / parasite rate
-
-- [`F_pfpr_by_lm(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_lm.trivial.md)
-  : Compute the prevalence of infection by light microscopy
-
-- [`F_pfpr_by_rdt(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_rdt.trivial.md)
-  : Compute the prevalence of infection by RDT
 
 - [`F_pfpr_by_pcr(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_pcr.trivial.md)
   : Compute the prevalence of infection by PCR
 
-- [`F_infectivity(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_infectivity.trivial.md)
-  : Infection blocking pre-erythrocytic immunity
-
-- [`dXHdt(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dXHdt.trivial.md)
-  :
-
-  Handle Derivatives for the `trivial` **X**-Module
-
-- [`Update_XHt(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Update_XHt.trivial.md)
-  :
-
-  Handle State Updating for the `trivial` **X**-Module
-
 - [`make_XH_obj_trivial()`](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_trivial.md)
   : Make parameters for trivial human model
-
-- [`parse_XH_orbits(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.trivial.md)
-  : parse the output of deSolve and return variables for the trivial
-  model
 
 - [`get_XH_pars(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.trivial.md)
   : Return the parameters as a list
@@ -448,11 +378,6 @@ dynamics.
 
   The **XH** Module Skill Set
 
-- [`dXHdt(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dXHdt.hMoI.md)
-  :
-
-  Compute Derivatives for `hMoI` (**X** Module)
-
 - [`make_XH_obj_hMoI()`](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_hMoI.md)
   : Make parameters for hybrid MoI human model
 
@@ -464,32 +389,11 @@ dynamics.
 - [`make_XH_inits_hMoI()`](https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_hMoI.md)
   : Make inits for hybrid MoI human model
 
-- [`F_I(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_I.hMoI.md)
-  : Size of effective infectious human population
-
-- [`F_H(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_H.hMoI.md)
-  : Size of the human population
-
-- [`F_infectivity(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_infectivity.hMoI.md)
-  : Infection blocking pre-erythrocytic immunity
-
 - [`F_prevalence(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_prevalence.hMoI.md)
   : Compute the "true" prevalence of infection / parasite rate
 
-- [`F_ni(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_ni.hMoI.md)
-  : Compute the "true" nievalence of infection / parasite rate
-
-- [`F_pfpr_by_lm(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_lm.hMoI.md)
-  : Compute the prevalence of infection by light microscopy
-
-- [`F_pfpr_by_rdt(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_rdt.hMoI.md)
-  : Compute the prevalence of infection by RDT
-
 - [`F_pfpr_by_pcr(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_pcr.hMoI.md)
   : Compute the prevalence of infection by PCR
-
-- [`parse_XH_orbits(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.hMoI.md)
-  : parse the output of deSolve and return variables for the hMoI model
 
 - [`change_XH_inits(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.hMoI.md)
   : Return the parameters as a list
@@ -500,9 +404,6 @@ dynamics.
 - [`change_XH_pars(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.hMoI.md)
   : Return the parameters as a list
 
-- [`HTC(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/HTC.hMoI.md)
-  : Compute the HTC for the hMoI model
-
 - [`check_XH(`*`<hMoI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/check_XH.hMoI.md)
   : Check / update before solving
 
@@ -512,11 +413,6 @@ dynamics.
 ### SIS
 
 “The SIS (Susceptible-Infected-Susceptible) model of human dynamics”
-
-- [`dXHdt(`*`<SIS>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dXHdt.SIS.md)
-  :
-
-  `SIS` Derivatives Function (an **XH** Module)
 
 - [`change_XH_inits(`*`<SIS>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.SIS.md)
   :
@@ -552,26 +448,8 @@ Adult mosquito ecology and infection dynamics
 - [`check_MY()`](https://dd-harp.github.io/ramp.xds/reference/check_MY.md)
   : Run a check before solving
 
-- [`dMYdt()`](https://dd-harp.github.io/ramp.xds/reference/dMYdt.md) :
-  Compute Derivatives for an Adult Mosquito Model
-
-- [`Update_MYt()`](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.md)
-  : Update States for a Adult Mosquito Model
-
-- [`F_fqZ()`](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.md) :
-  Blood feeding rate of the infective mosquito population
-
 - [`F_fqM()`](https://dd-harp.github.io/ramp.xds/reference/F_fqM.md) :
   Blood feeding rate of the mosquito population
-
-- [`F_eggs()`](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md) :
-  Number of eggs laid by adult mosquitoes
-
-- [`MBaseline()`](https://dd-harp.github.io/ramp.xds/reference/MBaseline.md)
-  : Adult Mosquito Bionomics - Baseline
-
-- [`MBionomics()`](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)
-  : Adult Mosquito Bionomics - Modified by Control
 
 - [`get_MY_vars()`](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.md)
   : Return the variables as a list
@@ -592,9 +470,6 @@ Adult mosquito ecology and infection dynamics
   :
 
   Get **MY** Variable Indices
-
-- [`parse_MY_orbits()`](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.md)
-  : parse the outputs and return the variables by name in a list
 
 - [`steady_state_MY()`](https://dd-harp.github.io/ramp.xds/reference/steady_state_MY.md)
   :
@@ -702,30 +577,8 @@ The trivial model for adult mosquitoes
 - [`check_MY(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/check_MY.trivial.md)
   : Run a check before solving
 
-- [`F_fqZ(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.trivial.md)
-  : Blood feeding rate of the infective mosquito population
-
 - [`F_fqM(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqM.trivial.md)
   : Blood feeding rate of the infective mosquito population
-
-- [`F_eggs(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_eggs.trivial.md)
-  : Number of eggs laid by adult mosquitoes
-
-- [`dMYdt(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dMYdt.trivial.md)
-  :
-
-  Handle derivatives for the `trivial` **MY** module
-
-- [`Update_MYt(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.trivial.md)
-  :
-
-  Handle state updates for the `trivial` **MY** module
-
-- [`MBaseline(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/MBaseline.trivial.md)
-  : Macdonald-style adult mosquito bionomics
-
-- [`MBionomics(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/MBionomics.trivial.md)
-  : Macdonald-style adult mosquito bionomics
 
 - [`get_MY_pars(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.trivial.md)
   : Return the parameters as a list
@@ -733,15 +586,8 @@ The trivial model for adult mosquitoes
 - [`change_MY_pars(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.trivial.md)
   : Return the parameters as a list
 
-- [`change_MY_inits(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.trivial.md)
-  : Set new MY parameter values
-
 - [`make_MY_obj_trivial()`](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_trivial.md)
   : Make parameters for trivial aquatic mosquito model
-
-- [`parse_MY_orbits(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.trivial.md)
-  : parse the output of deSolve and return variables for the trivial
-  model
 
 ### basicM
 
@@ -755,50 +601,20 @@ Methods for basicM - adult mosquito ecology without infection dynamics.
 - [`check_MY(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/check_MY.basicM.md)
   : Run a check before solving
 
-- [`dMYdt(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dMYdt.basicM.md)
-  :
-
-  Compute Derivatives for **M** module `basicM`
-
-- [`MBaseline(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/MBaseline.basicM.md)
-  : Set mosquito bionomics to baseline
-
-- [`MBionomics(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/MBionomics.basicM.md)
-  : Set mosquito bionomics to baseline
-
-- [`Update_MYt(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.basicM.md)
-  : Derivatives for adult mosquitoes
-
 - [`make_M_obj_basicM()`](https://dd-harp.github.io/ramp.xds/reference/make_M_obj_basicM.md)
   : Make parameters for GeRM ODE adult mosquito model
-
-- [`F_fqZ(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.basicM.md)
-  : The net blood feeding rate of the infective mosquito population in a
-  patch
 
 - [`F_fqM(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqM.basicM.md)
   : The net blood feeding rate of the mosquito population in a patch
 
-- [`F_eggs(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_eggs.basicM.md)
-  : Number of eggs laid by adult mosquitoes
-
 - [`make_MY_inits_basicM()`](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_basicM.md)
   : Make inits for basicM adult mosquito model
-
-- [`get_MY_vars(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.basicM.md)
-  : Return the variables as a list
 
 - [`get_MY_pars(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.basicM.md)
   : Return the parameters as a list
 
 - [`change_MY_pars(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)
   : Return the parameters as a list
-
-- [`change_MY_inits(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.basicM.md)
-  : Set new MY parameter values
-
-- [`parse_MY_orbits(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.basicM.md)
-  : parse outputs for basicM
 
 - [`steady_state_M(`*`<basicM_ode>`*`)`](https://dd-harp.github.io/ramp.xds/reference/steady_state_M.basicM_ode.md)
   : Compute the steady states as a function of the daily EIR
@@ -819,40 +635,13 @@ population
 - [`check_MY(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/check_MY.SI.md)
   : Run a check before solving
 
-- [`dMYdt(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dMYdt.SI.md)
-  :
-
-  Compute Derivatives for **MY** module `SI`
-
-- [`MBaseline(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/MBaseline.SI.md)
-  : Macdonald-style adult mosquito bionomics
-
-- [`MBionomics(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/MBionomics.SI.md)
-  : Macdonald-style adult mosquito bionomics
-
-- [`Update_MYt(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.SI.md)
-  : Derivatives for adult mosquitoes
-
 - [`make_MY_obj_SI()`](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_SI.md)
   : Make parameters for SI ODE adult mosquito model
-
-- [`F_fqZ(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.SI.md)
-  :
-
-  Net Blood Feeding by Infectious Mosquitoes - `SI` Mosquito Model
 
 - [`F_fqM(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqM.SI.md)
   :
 
   Compute Net Blood Feeding by Mosquitoes for `SI`
-
-- [`F_eggs(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_eggs.SI.md)
-  :
-
-  Compute Component Egg Laying Rates for `SI`
-
-- [`get_MY_vars(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.SI.md)
-  : Return the variables as a list
 
 - [`get_MY_pars(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.SI.md)
   : Return the parameters as a list
@@ -860,30 +649,10 @@ population
 - [`change_MY_pars(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.SI.md)
   : Return the parameters as a list
 
-- [`change_MY_inits(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.SI.md)
-  : change initial values for the macdonald model
-
 - [`make_MY_inits_SI()`](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_SI.md)
   :
 
   Make inits for `SI` adult mosquito model
-
-- [`parse_MY_orbits(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.SI.md)
-  :
-
-  parse the output of deSolve and return variables for the `SI` model
-
-- [`get_f(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_f.SI.md)
-  : Get the feeding rate
-
-- [`get_q(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_q.SI.md)
-  : Get the feeding rate
-
-- [`get_g(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_g.SI.md)
-  : Get the feeding rate
-
-- [`get_sigma(`*`<SI>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_sigma.SI.md)
-  : Get the feeding rate
 
 - [`steady_state_MY(`*`<SI_ode>`*`)`](https://dd-harp.github.io/ramp.xds/reference/steady_state_MY.SI_ode.md)
   : Steady States: MY-SI
@@ -902,25 +671,11 @@ Robert May (1982).
 - [`check_MY(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/check_MY.macdonald.md)
   : Run a check before solving
 
-- [`dMYdt(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dMYdt.macdonald.md)
-  :
-
-  Compute derivatives for the **MY** module `macdonald`
-
-- [`MBaseline(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/MBaseline.macdonald.md)
-  : Macdonald-style adult mosquito bionomics
-
-- [`MBionomics(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/MBionomics.macdonald.md)
-  : Macdonald-style adult mosquito bionomics
-
 - [`steady_state_MY(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/steady_state_MY.macdonald.md)
   : Compute the steady states as a function of the daily EIR
 
 - [`make_MY_obj_macdonald()`](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_macdonald.md)
   : Make parameters for macdonald ODE adult mosquito model
-
-- [`get_MY_vars(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.macdonald.md)
-  : Return the variables as a list
 
 - [`get_MY_pars(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.macdonald.md)
   : Return the parameters as a list
@@ -928,38 +683,12 @@ Robert May (1982).
 - [`change_MY_pars(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.macdonald.md)
   : Return the parameters as a list
 
-- [`change_MY_inits(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.macdonald.md)
-  : change initial values for the macdonald model
-
-- [`F_fqZ(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.macdonald.md)
-  : The net blood feeding rate of the infective mosquito population in a
-  patch
-
 - [`F_fqM(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqM.macdonald.md)
   : The net blood feeding rate of the infective mosquito population in a
   patch
 
-- [`F_eggs(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_eggs.macdonald.md)
-  : Number of eggs laid by adult mosquitoes
-
 - [`make_MY_inits_macdonald()`](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_macdonald.md)
   : Make inits for macdonald adult mosquito model
-
-- [`parse_MY_orbits(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.macdonald.md)
-  : parse the output of deSolve and return variables for the macdonald
-  model
-
-- [`get_f(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_f.macdonald.md)
-  : Get the feeding rate
-
-- [`get_q(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_q.macdonald.md)
-  : Get the feeding rate
-
-- [`get_g(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_g.macdonald.md)
-  : Get the feeding rate
-
-- [`get_sigma(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_sigma.macdonald.md)
-  : Get the feeding rate
 
 ### GeRM
 
@@ -975,28 +704,11 @@ Robert May (1982).
 - [`check_MY(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/check_MY.GeRM.md)
   : Run a check before solving
 
-- [`dMYdt(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dMYdt.GeRM.md)
-  :
-
-  Compute Derivatives for **MY** module `GeRM`
-
-- [`MBaseline(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/MBaseline.GeRM.md)
-  : Set mosquito bionomics to baseline
-
-- [`MBionomics(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/MBionomics.GeRM.md)
-  : Set mosquito bionomics to baseline
-
-- [`Update_MYt(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.GeRM.md)
-  : Derivatives for adult mosquitoes
-
 - [`steady_state_MY(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/steady_state_MY.GeRM.md)
   : Compute the steady states as a function of the daily EIR
 
 - [`make_MY_obj_GeRM()`](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_GeRM.md)
   : Make parameters for GeRM ODE adult mosquito model
-
-- [`get_MY_vars(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.GeRM.md)
-  : Return the variables as a list
 
 - [`get_MY_pars(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.GeRM.md)
   : Return the parameters as a list
@@ -1004,37 +716,12 @@ Robert May (1982).
 - [`change_MY_pars(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.GeRM.md)
   : Return the parameters as a list
 
-- [`change_MY_inits(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.GeRM.md)
-  : Set new MY parameter values
-
-- [`F_fqZ(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.GeRM.md)
-  : The net blood feeding rate of the infective mosquito population in a
-  patch
-
 - [`F_fqM(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqM.GeRM.md)
   : The net blood feeding rate of the infective mosquito population in a
   patch
 
-- [`F_eggs(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_eggs.GeRM.md)
-  : Number of eggs laid by adult mosquitoes
-
 - [`make_MY_inits_GeRM()`](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_GeRM.md)
   : Make inits for GeRM adult mosquito model
-
-- [`parse_MY_orbits(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.GeRM.md)
-  : parse the output of deSolve and return variables for the GeRM model
-
-- [`get_f(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_f.GeRM.md)
-  : Get the feeding rate
-
-- [`get_q(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_q.GeRM.md)
-  : Get the feeding rate
-
-- [`get_g(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_g.GeRM.md)
-  : Get the feeding rate
-
-- [`get_sigma(`*`<GeRM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_sigma.GeRM.md)
-  : Get the feeding rate
 
 ### RM-Mosquito in discrete-time
 
@@ -1049,28 +736,12 @@ dynamics - in discrete time.
 - [`check_MY(`*`<RMdts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/check_MY.RMdts.md)
   : Run a check before solving
 
-- [`F_fqZ(`*`<RMdts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.RMdts.md)
-  : The net blood feeding rate of the infective mosquito population in a
-  patch
-
 - [`F_fqM(`*`<RMdts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_fqM.RMdts.md)
   : The net blood feeding rate of the infective mosquito population in a
   patch
 
-- [`F_eggs(`*`<RMdts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_eggs.RMdts.md)
-  : Number of eggs laid by adult mosquitoes
-
-- [`Update_MYt(`*`<RMdts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.RMdts.md)
-  : Derivatives for adult mosquitoes
-
-- [`get_MY_vars(`*`<RMdts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.RMdts.md)
-  : Return the variables as a list
-
 - [`make_MY_inits_RMdts()`](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_RMdts.md)
   : Make inits for RMdts adult mosquito model
-
-- [`parse_MY_orbits(`*`<RMdts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.RMdts.md)
-  : parse the output of deSolve and return variables for the RMdts model
 
 ## L Component (Immature Mosquitoes)
 
@@ -1083,15 +754,6 @@ Generic methods for the aquatic (immature) mosquito component.
 
 - [`check_L()`](https://dd-harp.github.io/ramp.xds/reference/check_L.md)
   : Run a check before solving
-
-- [`dLdt()`](https://dd-harp.github.io/ramp.xds/reference/dLdt.md) :
-
-  Compute derivatives (**L** module)
-
-- [`Update_Lt()`](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.md)
-  :
-
-  Update state variables (**L** module)
 
 - [`F_emerge()`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.md)
   : Compute Emergent Adults
@@ -1130,11 +792,6 @@ Generic methods for the aquatic (immature) mosquito component.
   :
 
   Get Initial Values for the **L** Component
-
-- [`parse_L_orbits()`](https://dd-harp.github.io/ramp.xds/reference/parse_L_orbits.md)
-  :
-
-  parse **L** Component Outputs
 
 - [`steady_state_L()`](https://dd-harp.github.io/ramp.xds/reference/steady_state_L.md)
   :
@@ -1180,16 +837,6 @@ A basic model for aquatic mosquito dynamics
 - [`check_L(`*`<basicL>`*`)`](https://dd-harp.github.io/ramp.xds/reference/check_L.basicL.md)
   : Run a check before solving
 
-- [`dLdt(`*`<basicL>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.md)
-  :
-
-  Compute Derivatives for **L** module `basicL`
-
-- [`Update_Lt(`*`<basicL>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.basicL.md)
-  :
-
-  Update State Variables for `basicL` (**L** Component)
-
 - [`make_L_obj_basicL()`](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md)
   :
 
@@ -1234,11 +881,6 @@ A basic model for aquatic mosquito dynamics
   :
 
   Set the Initial Values for `basicL` (**L** Component)
-
-- [`parse_L_orbits(`*`<basicL>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_L_orbits.basicL.md)
-  :
-
-  parse **L** Component Variables for `basicL`
 
 - [`steady_state_L(`*`<basicL_ode>`*`)`](https://dd-harp.github.io/ramp.xds/reference/steady_state_L.basicL_ode.md)
   :
@@ -1339,14 +981,8 @@ Specialized methods to set up mosquito dispersal matrices
   : Get the Mosquito Dispersal Matrix
 - [`setup_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
   : Setup Mosquito Dispersal Matrix
-- [`setup_K_matrix(`*`<as_matrix>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.as_matrix.md)
-  : Setup a Here-There Dispersal Matrix
-- [`setup_K_matrix(`*`<herethere>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.herethere.md)
-  : Setup a Here-There Dispersal Matrix
 - [`make_K_matrix_herethere()`](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_herethere.md)
   : Make a Here-There Dispersal Matrix
-- [`setup_K_matrix(`*`<xy>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.xy.md)
-  : Setup a Kernel-Based Mosquito Dispersal Matrix
 - [`make_K_matrix_xy()`](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_xy.md)
   : make a Kernel-Based Mosquito Dispersal Matrix
 - [`F_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/F_K_matrix.md)
@@ -1368,12 +1004,6 @@ Compute the derivatives for other variables
 - [`setup_other_variables()`](https://dd-harp.github.io/ramp.xds/reference/setup_other_variables.md)
   : Set Up the first (null) other variable
 
-- [`dVdt()`](https://dd-harp.github.io/ramp.xds/reference/dVdt.md) :
-  Compute Other Variables
-
-- [`dVdt(`*`<setup>`*`)`](https://dd-harp.github.io/ramp.xds/reference/dVdt.setup.md)
-  : Compute Other Variables
-
 - [`setup_V_ix(`*`<setup>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_V_ix.setup.md)
   : Compute Other Variables
 
@@ -1387,11 +1017,6 @@ Compute the derivatives for other variables
 
 - [`setup_V_ix()`](https://dd-harp.github.io/ramp.xds/reference/setup_V_ix.md)
   : Add indices for human population to parameter list
-
-- [`parse_V_orbits()`](https://dd-harp.github.io/ramp.xds/reference/parse_V_orbits.md)
-  :
-
-  Parse **V** Outputs
 
 - [`get_V_pars()`](https://dd-harp.github.io/ramp.xds/reference/get_V_pars.md)
   : Return the parameters as a list
@@ -1413,26 +1038,7 @@ Compute the derivatives for other variables
 - [`change_V_inits()`](https://dd-harp.github.io/ramp.xds/reference/change_V_inits.md)
   : Set new X parameter values
 
-### Junctions
-
-Functions that compute dynamical terms and exogenous variables
-
-- [`Forcing()`](https://dd-harp.github.io/ramp.xds/reference/Forcing.md)
-  : Exogenous Forcing
-- [`Health()`](https://dd-harp.github.io/ramp.xds/reference/Health.md) :
-  Set the values variables for health-based malaria control
-- [`VectorControl1()`](https://dd-harp.github.io/ramp.xds/reference/VectorControl1.md)
-  : Vector Control, Stage 1
-- [`VectorControl2()`](https://dd-harp.github.io/ramp.xds/reference/VectorControl2.md)
-  : Vector Control, Stage 2
-- [`Resources()`](https://dd-harp.github.io/ramp.xds/reference/Resources.md)
-  : Resources
-
 ## Ports & Junctions
-
-### Junctions
-
-Set up junction boxes to add features
 
 ### Forcing
 
@@ -1440,10 +1046,6 @@ Exogenous forcing (see `ramp.control`)
 
 - [`setup_forcing_object()`](https://dd-harp.github.io/ramp.xds/reference/setup_forcing_object.md)
   : Setup the Junction for Exogenous Forcing
-- [`Forcing()`](https://dd-harp.github.io/ramp.xds/reference/Forcing.md)
-  : Exogenous Forcing
-- [`Forcing(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Forcing.none.md)
-  : Exogenous Forcing
 
 ### Vector Control
 
@@ -1451,14 +1053,6 @@ The ports for vector control
 
 - [`setup_vector_control_object()`](https://dd-harp.github.io/ramp.xds/reference/setup_vector_control_object.md)
   : Setup the Vector Control Junction
-- [`VectorControl1()`](https://dd-harp.github.io/ramp.xds/reference/VectorControl1.md)
-  : Vector Control, Stage 1
-- [`VectorControl1(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/VectorControl1.none.md)
-  : Compute Vector Control Effect Sizes
-- [`VectorControl2()`](https://dd-harp.github.io/ramp.xds/reference/VectorControl2.md)
-  : Vector Control, Stage 2
-- [`VectorControl2(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/VectorControl2.none.md)
-  : Set the values of exogenous variables
 
 ### Health
 
@@ -1466,10 +1060,6 @@ The ports for malaria control
 
 - [`setup_health_object()`](https://dd-harp.github.io/ramp.xds/reference/setup_health_object.md)
   : none set up for exogenous health
-- [`Health()`](https://dd-harp.github.io/ramp.xds/reference/Health.md) :
-  Set the values variables for health-based malaria control
-- [`Health(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Health.none.md)
-  : Set no exogenous health variables
 
 ### Resources
 
@@ -1477,22 +1067,6 @@ The ports for resources
 
 - [`setup_resources_object()`](https://dd-harp.github.io/ramp.xds/reference/setup_resources_object.md)
   : Setup Resources Object
-- [`Resources()`](https://dd-harp.github.io/ramp.xds/reference/Resources.md)
-  : Resources
-- [`BloodFeeding()`](https://dd-harp.github.io/ramp.xds/reference/BloodFeeding.md)
-  : Blood feeding
-- [`EggLaying()`](https://dd-harp.github.io/ramp.xds/reference/EggLaying.md)
-  : Compute eggs laid
-- [`Traps()`](https://dd-harp.github.io/ramp.xds/reference/Traps.md) :
-  Set up Mosquito traps
-- [`BaselineBionomics()`](https://dd-harp.github.io/ramp.xds/reference/BaselineBionomics.md)
-  : Set bionomic parameter rates relative to baseline
-- [`ModifiedBionomics()`](https://dd-harp.github.io/ramp.xds/reference/ModifiedBionomics.md)
-  : Set bionomic parameter rates relative to baseline
-- [`Transmission()`](https://dd-harp.github.io/ramp.xds/reference/Transmission.md)
-  : Compute the mixing matrix and transmission terms
-- [`Exposure()`](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)
-  : Compute Infection Rates
 
 ### Travel
 
@@ -1516,14 +1090,6 @@ Time spent traveling & the travel EIR
   : Set up no travel
 - [`setup_F_travel_eir(`*`<ts_func>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_F_travel_eir.ts_func.md)
   : Setup the Travel EIR
-- [`Travel()`](https://dd-harp.github.io/ramp.xds/reference/Travel.md) :
-  Time Spent F_travel
-- [`Travel(`*`<static>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Travel.static.md)
-  : Time Spent F_travel
-- [`Travel(`*`<setup>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Travel.setup.md)
-  : Time Spent F_travel
-- [`Travel(`*`<dynamic>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Travel.dynamic.md)
-  : Time Spent F_travel
 - [`travel_dynamics()`](https://dd-harp.github.io/ramp.xds/reference/travel_dynamics.md)
   : Time Spent Here
 
@@ -1543,14 +1109,6 @@ Blood Feeding on non-Residents
   : Setup the Visitors Object
 - [`visitor_dynamics()`](https://dd-harp.github.io/ramp.xds/reference/visitor_dynamics.md)
   : Availabilit of Visitors
-- [`Visitors()`](https://dd-harp.github.io/ramp.xds/reference/Visitors.md)
-  : Visitors
-- [`Visitors(`*`<dynamic>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Visitors.dynamic.md)
-  : Visitor Dynamics
-- [`Visitors(`*`<setup>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Visitors.setup.md)
-  : Visitors
-- [`Visitors(`*`<static>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Visitors.static.md)
-  : Visitors
 
 ## Solving
 
@@ -1562,19 +1120,6 @@ Methods to compute the derivatives and dynamical systems
   : Times Utility for Discrete Time Systems
 - [`make_times_xde()`](https://dd-harp.github.io/ramp.xds/reference/make_times_xde.md)
   : Times Utility for Differential Equations
-
-### DTS Update
-
-- [`Update_XHt()`](https://dd-harp.github.io/ramp.xds/reference/Update_XHt.md)
-  : Update X states for a discrete time system
-
-- [`Update_MYt()`](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.md)
-  : Update States for a Adult Mosquito Model
-
-- [`Update_Lt()`](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.md)
-  :
-
-  Update state variables (**L** module)
 
 ### Solving
 
@@ -1611,30 +1156,6 @@ Methods to compute and transmission terms
   : Compute the average True PR
 - [`average_EIR()`](https://dd-harp.github.io/ramp.xds/reference/average_EIR.md)
   : Compute the average EIR
-- [`parse_orbits()`](https://dd-harp.github.io/ramp.xds/reference/parse_orbits.md)
-  : parse the outputs of an object created by xde_solve or dts_solve
-- [`parse_y()`](https://dd-harp.github.io/ramp.xds/reference/parse_y.md)
-  : parse the output of an object returned by deSolve
-- [`parse_L_terms()`](https://dd-harp.github.io/ramp.xds/reference/parse_L_terms.md)
-  : Pull L Terms
-- [`parse_MY_terms()`](https://dd-harp.github.io/ramp.xds/reference/parse_MY_terms.md)
-  : Pull MY Terms
-- [`parse_XH_terms()`](https://dd-harp.github.io/ramp.xds/reference/parse_XH_terms.md)
-  : Pull XH Terms
-- [`parse_bionomics()`](https://dd-harp.github.io/ramp.xds/reference/parse_bionomics.md)
-  : Pull bionomic parameters
-- [`parse_outputs()`](https://dd-harp.github.io/ramp.xds/reference/parse_outputs.md)
-  : Make Outputs
-- [`parse_outputs(`*`<aquatic>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_outputs.aquatic.md)
-  : Make Outputs
-- [`parse_outputs(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_outputs.eir.md)
-  : Make Outputs
-- [`parse_outputs(`*`<full>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_outputs.full.md)
-  : Make Outputs
-- [`parse_outputs(`*`<human>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_outputs.human.md)
-  : Make Outputs
-- [`parse_outputs(`*`<mosy>`*`)`](https://dd-harp.github.io/ramp.xds/reference/parse_outputs.mosy.md)
-  : Make Outputs
 
 ### Get and plot terms
 
@@ -1693,26 +1214,6 @@ Utilities
 
   Print the **`xds`** model object
 
-- [`trigger_setup()`](https://dd-harp.github.io/ramp.xds/reference/trigger_setup.md)
-  :
-
-  Trigger `setup`
-
-- [`trigger_setup(`*`<static>`*`)`](https://dd-harp.github.io/ramp.xds/reference/trigger_setup.static.md)
-  :
-
-  Trigger `setup`
-
-- [`trigger_setup(`*`<setup>`*`)`](https://dd-harp.github.io/ramp.xds/reference/trigger_setup.setup.md)
-  :
-
-  Trigger `setup`
-
-- [`trigger_setup(`*`<dynamic>`*`)`](https://dd-harp.github.io/ramp.xds/reference/trigger_setup.dynamic.md)
-  :
-
-  Trigger `setup`
-
 - [`diag_inverse()`](https://dd-harp.github.io/ramp.xds/reference/diag_inverse.md)
   : Invert a diagonal matrix
 
@@ -1749,32 +1250,16 @@ Methods to set up basic models
 
 - [`change_H()`](https://dd-harp.github.io/ramp.xds/reference/change_H.md)
   : Change human population density
-
 - [`update_inits()`](https://dd-harp.github.io/ramp.xds/reference/update_inits.md)
   : Set the initial values to the last values of the last simulation
-
 - [`last_to_inits()`](https://dd-harp.github.io/ramp.xds/reference/last_to_inits.md)
   : Set the initial values to the last values of the last simulation
-
-- [`parse_orbits()`](https://dd-harp.github.io/ramp.xds/reference/parse_orbits.md)
-  : parse the outputs of an object created by xde_solve or dts_solve
-
-- [`parse_y()`](https://dd-harp.github.io/ramp.xds/reference/parse_y.md)
-  : parse the output of an object returned by deSolve
-
 - [`get_inits()`](https://dd-harp.github.io/ramp.xds/reference/get_inits.md)
   : Get the stored initial values, \\y_0\\
-
 - [`get_last()`](https://dd-harp.github.io/ramp.xds/reference/get_last.md)
   : Get the last state
-
 - [`make_indices()`](https://dd-harp.github.io/ramp.xds/reference/make_indices.md)
   : Make indices for all the model variables
-
-- [`trigger_setup()`](https://dd-harp.github.io/ramp.xds/reference/trigger_setup.md)
-  :
-
-  Trigger `setup`
 
 ### Functions
 
@@ -1849,32 +1334,14 @@ Methods to get - set - and update forcing functions
   : Plot the seasonal pattern
 - [`F_season()`](https://dd-harp.github.io/ramp.xds/reference/F_season.md)
   : Plot the seasonal pattern
-- [`F_season(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_season.Lambda.md)
-  : Plot the seasonal pattern
-- [`F_season(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_season.none.md)
-  : Plot the seasonal pattern
-- [`F_season(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_season.eir.md)
-  : Plot the seasonal pattern
 - [`show_trend()`](https://dd-harp.github.io/ramp.xds/reference/show_trend.md)
   : Plot the Temporal Trend
 - [`F_trend()`](https://dd-harp.github.io/ramp.xds/reference/F_trend.md)
   : Plot the Temporal Trend
-- [`F_trend(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_trend.Lambda.md)
-  : Plot the temporal trend
-- [`F_trend(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_trend.eir.md)
-  : Plot the temporal trend
-- [`F_trend(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_trend.none.md)
-  : Plot the temporal trend
 - [`show_shock()`](https://dd-harp.github.io/ramp.xds/reference/show_shock.md)
   : Plot the Temporal shock
 - [`F_shock()`](https://dd-harp.github.io/ramp.xds/reference/F_shock.md)
   : Plot the Temporal Trend
-- [`F_shock(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_shock.Lambda.md)
-  : Plot the temporal trend
-- [`F_shock(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_shock.eir.md)
-  : Plot the temporal trend
-- [`F_shock(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_shock.none.md)
-  : Plot the temporal trend
 
 ### Get and Set for Mean Forcing
 
@@ -1882,19 +1349,7 @@ Functions to change Forcing
 
 - [`get_mean_forcing()`](https://dd-harp.github.io/ramp.xds/reference/get_mean_forcing.md)
   : Get mean forcing
-- [`get_mean_forcing(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_mean_forcing.none.md)
-  : Get mean forcing
-- [`get_mean_forcing(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_mean_forcing.Lambda.md)
-  : Get mean forcing
-- [`get_mean_forcing(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_mean_forcing.eir.md)
-  : Get mean forcing
 - [`change_mean_forcing()`](https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.md)
-  : Set mean forcing
-- [`change_mean_forcing(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.none.md)
-  : Set mean forcing
-- [`change_mean_forcing(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.Lambda.md)
-  : Set mean forcing
-- [`change_mean_forcing(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.eir.md)
   : Set mean forcing
 
 ### Get and Set for Seasonality
@@ -1903,12 +1358,6 @@ Utilities to change
 
 - [`get_season()`](https://dd-harp.github.io/ramp.xds/reference/get_season.md)
   : Get the Seasonal Pattern
-- [`get_season(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_season.none.md)
-  : Get seasonal pattern
-- [`get_season(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_season.Lambda.md)
-  : Get seasonal pattern
-- [`get_season(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_season.eir.md)
-  : Get seasonal pattern
 - [`get_season_phase()`](https://dd-harp.github.io/ramp.xds/reference/get_season_phase.md)
   : Get phase
 - [`get_season_bottom()`](https://dd-harp.github.io/ramp.xds/reference/get_season_bottom.md)
@@ -1917,12 +1366,6 @@ Utilities to change
   : Get pw for seasonality
 - [`change_season()`](https://dd-harp.github.io/ramp.xds/reference/change_season.md)
   : Get seasonal pattern
-- [`change_season(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_season.none.md)
-  : Get seasonal pattern
-- [`change_season(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_season.Lambda.md)
-  : Get seasonal pattern
-- [`change_season(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_season.eir.md)
-  : Get seasonal pattern
 
 ### Get and Set for Spline Trend Functions
 
@@ -1930,37 +1373,13 @@ Utilities to change the interpolation points
 
 - [`get_trend()`](https://dd-harp.github.io/ramp.xds/reference/get_trend.md)
   : Get the trend parameters
-- [`get_trend(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_trend.none.md)
-  : Get the trend parameters
-- [`get_trend(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_trend.Lambda.md)
-  : Get the trend parameters
-- [`get_trend(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_trend.eir.md)
-  : Get the trend parameters
 - [`get_spline()`](https://dd-harp.github.io/ramp.xds/reference/get_spline.md)
   : Get spline interpolation points
 - [`get_spline_s()`](https://dd-harp.github.io/ramp.xds/reference/get_spline_s.md)
   : Get spline interpolation points
-- [`get_spline_s(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_spline_s.none.md)
-  : Get spline interpolation points
-- [`get_spline_s(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_spline_s.Lambda.md)
-  : Get spline interpolation points
-- [`get_spline_s(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_spline_s.eir.md)
-  : Get spline interpolation points
 - [`change_spline()`](https://dd-harp.github.io/ramp.xds/reference/change_spline.md)
   : Set the interpolating points
-- [`change_spline(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_spline.none.md)
-  : Set yy
-- [`change_spline(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_spline.Lambda.md)
-  : Set the \\y\\ value for interpolating points
-- [`change_spline(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_spline.eir.md)
-  : Set yy
 - [`change_spline_y()`](https://dd-harp.github.io/ramp.xds/reference/change_spline_y.md)
-  : Set yy
-- [`change_spline_y(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_spline_y.none.md)
-  : Set yy
-- [`change_spline_y(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_spline_y.Lambda.md)
-  : Set the \\y\\ value for interpolating points
-- [`change_spline_y(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_spline_y.eir.md)
   : Set yy
 - [`change_shock()`](https://dd-harp.github.io/ramp.xds/reference/change_shock.md)
   : Set the interpolating points
@@ -1977,47 +1396,23 @@ Move
 
 - [`F_exp()`](https://dd-harp.github.io/ramp.xds/reference/F_exp.md) :
   Exponential Function
-- [`change_MY_inits(`*`<RMdts>`*`)`](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.RMdts.md)
-  : Make inits for RMdts adult mosquito model
 - [`check_models()`](https://dd-harp.github.io/ramp.xds/reference/check_models.md)
   : Run Checks
 - [`get_EIR()`](https://dd-harp.github.io/ramp.xds/reference/get_EIR.md)
   : Get the EIR
-- [`get_MY_inits.trivial()`](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.trivial.md)
-  : Return initial values as a vector
-- [`get_MY_vars(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.trivial.md)
-  : Return the variables as a list
 - [`get_XH_ix()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_ix.md)
   : Add indices for human population to parameter list
 - [`get_XH_vars(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_XH_vars.trivial.md)
   : Get Variables by Name
 - [`get_f()`](https://dd-harp.github.io/ramp.xds/reference/get_f.md) :
   Get the feeding rate(s)
-- [`get_f(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_f.basicM.md)
-  : Get the feeding rate
-- [`get_f(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_f.trivial.md)
-  : Get the feeding rate
 - [`get_g()`](https://dd-harp.github.io/ramp.xds/reference/get_g.md) :
   Get the adult mosquito mortality rate(s)
-- [`get_g(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_g.basicM.md)
-  : Get the feeding rate
-- [`get_g(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_g.trivial.md)
-  : Get the feeding rate
 - [`get_q()`](https://dd-harp.github.io/ramp.xds/reference/get_q.md) :
   Get the human fraction(s)
-- [`get_q(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_q.basicM.md)
-  : Get the feeding rate
-- [`get_q(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_q.trivial.md)
-  : Get the feeding rate
 - [`get_sigma()`](https://dd-harp.github.io/ramp.xds/reference/get_sigma.md)
   : Get the patch emigration rates
-- [`get_sigma(`*`<basicM>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_sigma.basicM.md)
-  : Get the feeding rate
-- [`get_sigma(`*`<trivial>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_sigma.trivial.md)
-  : Get the feeding rate
 - [`get_variables()`](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  : Get Variables
-- [`get_variables(`*`<na>`*`)`](https://dd-harp.github.io/ramp.xds/reference/get_variables.na.md)
   : Get Variables
 - [`make_ts_function()`](https://dd-harp.github.io/ramp.xds/reference/make_ts_function.md)
   : Make a Time Series Function
@@ -2027,8 +1422,6 @@ Move
   : The trivial function
 - [`setup_traps_object()`](https://dd-harp.github.io/ramp.xds/reference/setup_traps_object.md)
   : Setup the Junction for Exogenous traps
-- [`Traps(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Traps.none.md)
-  : Set the values of exogenous variables
 - [`setup_blood_host_object()`](https://dd-harp.github.io/ramp.xds/reference/setup_blood_host_object.md)
   : Setup the Blood Hosts Object
 - [`setup_blood_hosts()`](https://dd-harp.github.io/ramp.xds/reference/setup_blood_hosts.md)
@@ -2037,19 +1430,7 @@ Move
   : Set up no blood_hosts
 - [`change_blood_hosts()`](https://dd-harp.github.io/ramp.xds/reference/change_blood_hosts.md)
   : Set static blood feeding search weights
-- [`BloodHosts()`](https://dd-harp.github.io/ramp.xds/reference/BloodHosts.md)
-  : Other Blood Hosts
-- [`BloodHosts(`*`<dynamic>`*`)`](https://dd-harp.github.io/ramp.xds/reference/BloodHosts.dynamic.md)
-  : Time Spent F_blood_hosts
-- [`BloodHosts(`*`<setup>`*`)`](https://dd-harp.github.io/ramp.xds/reference/BloodHosts.setup.md)
-  : Time Spent F_blood_hosts
-- [`BloodHosts(`*`<static>`*`)`](https://dd-harp.github.io/ramp.xds/reference/BloodHosts.static.md)
-  : Time Spent F_blood_hosts
 - [`blood_hosts_dynamics()`](https://dd-harp.github.io/ramp.xds/reference/blood_hosts_dynamics.md)
   : blood_hosts Dynamics
 - [`setup_sugar_object()`](https://dd-harp.github.io/ramp.xds/reference/setup_sugar_object.md)
   : Setup the Junction for Exogenous sugar
-- [`Sugar()`](https://dd-harp.github.io/ramp.xds/reference/Sugar.md) :
-  Set up Mosquito sugar
-- [`Sugar(`*`<none>`*`)`](https://dd-harp.github.io/ramp.xds/reference/Sugar.none.md)
-  : Set the values of exogenous variables

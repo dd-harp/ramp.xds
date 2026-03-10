@@ -18,3 +18,4 @@ an \strong{\code{xds}} object
 Pull the stored values of the
 EIR and the FoI and compute NI
 }
+\keyword{internal}

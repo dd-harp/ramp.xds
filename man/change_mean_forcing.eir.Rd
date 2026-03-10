@@ -19,3 +19,4 @@ an \strong{\code{xds}} object
 \description{
 Set the mean daily EIR for an \code{eir} model
 }
+\keyword{internal}

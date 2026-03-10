@@ -21,3 +21,4 @@ a \link{numeric} vector
 \description{
 Implements \link{dXHdt} for the hybrid MoI model.
 }
+\keyword{internal}

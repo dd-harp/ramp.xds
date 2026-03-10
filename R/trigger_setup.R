@@ -5,6 +5,7 @@
 #' to `setup`
 #' @param obj an object
 #' @return the `obj`
+#' @keywords internal
 #' @export
 trigger_setup = function(obj){
   UseMethod("trigger_setup", obj)
@@ -16,6 +17,7 @@ trigger_setup = function(obj){
 #' to `setup`
 #' @param obj part of an **`xds`** object
 #' @return the `obj`
+#' @keywords internal
 #' @export
 trigger_setup.static = function(obj){
   class(obj) <- 'setup'
@@ -27,6 +29,7 @@ trigger_setup.static = function(obj){
 #' leave the class of the dispatching object as `setup`
 #' @param obj part of an **`xds`** object
 #' @return the `obj`
+#' @keywords internal
 #' @export
 trigger_setup.setup = function(obj){
   return(obj)
@@ -37,6 +40,7 @@ trigger_setup.setup = function(obj){
 #' leave the class of the dispatching object as `dynamic`
 #' @param obj part of an **`xds`** object
 #' @return the `obj`
+#' @keywords internal
 #' @export
 trigger_setup.dynamic = function(obj){
   return(obj)

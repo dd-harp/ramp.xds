@@ -17,3 +17,4 @@ a \link{numeric} vector of length \code{nStrata}
 \description{
 This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}
 }
+\keyword{internal}

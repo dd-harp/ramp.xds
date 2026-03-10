@@ -24,3 +24,4 @@ The description for each method should include the equations.
 \note{
 This is the \code{S3} generic. Methods dispatch on \code{V_obj}
 }
+\keyword{internal}

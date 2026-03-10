@@ -26,6 +26,7 @@ get_season = function(xds_obj, s=1){
 #'
 #' @return seasonal pattern parameters
 #'
+#' @keywords internal
 #' @export
 get_season.none = function(xds_obj, s=1){
   return(c())
@@ -85,6 +86,7 @@ get_season_pw = function(xds_obj, s=1){
 #'
 #' @return seasonal pattern parameters
 #'
+#' @keywords internal
 #' @export
 get_season.Lambda = function(xds_obj, s=1){
   xds_obj$L_obj[[s]]$season_par
@@ -100,6 +102,7 @@ get_season.Lambda = function(xds_obj, s=1){
 
 #' @return seasonal pattern parameters
 #'
+#' @keywords internal
 #' @export
 get_season.eir= function(xds_obj, s=1){
   xds_obj$EIR_obj$season_par

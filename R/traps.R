@@ -12,6 +12,7 @@
 #' @param y state variables
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Traps = function(t, y, xds_obj){
   UseMethod("Traps", xds_obj$resources_obj$traps_obj)
@@ -25,6 +26,7 @@ Traps = function(t, y, xds_obj){
 #' @inheritParams Traps
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Traps.none = function(t, y, xds_obj){
   return(xds_obj)

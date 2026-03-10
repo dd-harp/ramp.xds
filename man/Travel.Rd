@@ -21,3 +21,4 @@ This function sets the value of a parameter
 describing time spent F_travel. It is computed in \link{compute_TaR}
 and used to compute availability. It is also used in \link{Exposure}
 }
+\keyword{internal}

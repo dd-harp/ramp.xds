@@ -50,6 +50,7 @@ check_XH = function(xds_obj,i){
 #'
 #' @return the derivatives as a [numeric] vector
 #'
+#' @keywords internal
 #' @export
 dXHdt <- function(t, y, xds_obj, i) {
   UseMethod("dXHdt", xds_obj$XH_obj[[i]])
@@ -62,6 +63,7 @@ dXHdt <- function(t, y, xds_obj, i) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 Update_XHt <- function(t, y, xds_obj, i) {
   UseMethod("Update_XHt", xds_obj$XH_obj[[i]])
@@ -76,6 +78,7 @@ Update_XHt <- function(t, y, xds_obj, i) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_I <- function(t, y, xds_obj, i) {
   UseMethod("F_I", xds_obj$XH_obj[[i]])
@@ -88,6 +91,7 @@ F_I <- function(t, y, xds_obj, i) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_H <- function(t, y, xds_obj, i) {
   UseMethod("F_H", xds_obj$XH_obj[[i]])
@@ -99,6 +103,7 @@ F_H <- function(t, y, xds_obj, i) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_infectivity <- function(y, xds_obj, i) {
   UseMethod("F_infectivity", xds_obj$XH_obj[[i]])
@@ -202,6 +207,7 @@ get_XH_ix <- function(xds_obj, i=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
+#' @keywords internal
 #' @export
 parse_XH_orbits <- function(outputs, xds_obj, i) {
   UseMethod("parse_XH_orbits", xds_obj$XH_obj[[i]])
@@ -279,6 +285,7 @@ change_XH_inits <- function(xds_obj, i=1, options=list()) {
 #' @param vars a list with the variables attached by name
 #' @param XH_obj a list defining a model for human
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_ni <- function(vars, XH_obj) {
   UseMethod("F_ni", XH_obj)
@@ -299,6 +306,7 @@ F_prevalence <- function(vars, XH_obj) {
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_pfpr_by_lm <- function(vars, XH_obj) {
   UseMethod("F_prevalence", XH_obj)
@@ -309,6 +317,7 @@ F_pfpr_by_lm <- function(vars, XH_obj) {
 #' the predicted *Pf*PR by rapid diagnostic test (RDT)
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_pfpr_by_rdt <- function(vars, XH_obj) {
   UseMethod("F_prevalence", XH_obj)
@@ -332,8 +341,8 @@ F_pfpr_by_pcr <- function(vars, XH_obj) {
 #' @param i the host species index
 #' @return none
 #' @export
-HTC <- function(xds_obj, i) {
-  UseMethod("HTC", xds_obj$XH_obj[[i]])
+get_HTC <- function(xds_obj, i) {
+  UseMethod("get_HTC", xds_obj$XH_obj[[i]])
 }
 
 #' @title Steady States for **X**

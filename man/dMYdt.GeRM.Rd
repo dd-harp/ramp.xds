@@ -22,3 +22,4 @@ a \link{numeric} vector
 Compute the derivatives for the generalized, non-autonomous Ross-Macdonald model
 for mosquito ecology and infection dynamics.
 }
+\keyword{internal}

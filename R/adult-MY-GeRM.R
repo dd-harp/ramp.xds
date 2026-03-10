@@ -37,6 +37,7 @@ check_MY.GeRM = function(xds_obj, s){
 #' @return a [numeric] vector
 #' @importFrom deSolve lagvalue
 #' @importFrom deSolve lagderiv
+#' @keywords internal
 #' @export
 dMYdt.GeRM <- function(t, y, xds_obj, s){
 
@@ -80,6 +81,7 @@ dMYdt.GeRM <- function(t, y, xds_obj, s){
 #' @description Implements [F_fqZ] for the GeRM model.
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqZ.GeRM <- function(t, y, xds_obj, s) {
   f = get_f(xds_obj, s)
@@ -102,6 +104,7 @@ F_fqM.GeRM <- function(t, y, xds_obj, s) {
 #' @description Implements [F_eggs] for the GeRM model.
 #' @inheritParams F_eggs
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_eggs.GeRM <- function(t, y, xds_obj, s) {
   M <- y[xds_obj$ix$MY[[s]]$M_ix]
@@ -223,6 +226,7 @@ setup_MY_ix.GeRM <- function(xds_obj, s) {with(xds_obj,{
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_vars.GeRM <- function(y, xds_obj, s){
   with(xds_obj$MY_obj[[s]]$ix, return(list(
@@ -237,6 +241,7 @@ get_MY_vars.GeRM <- function(y, xds_obj, s){
 #' @description Implements [parse_MY_orbits] for the GeRM model
 #' @inheritParams parse_MY_orbits
 #' @return a [list]
+#' @keywords internal
 #' @export
 parse_MY_orbits.GeRM <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[[s]]$ix,{
   M = outputs[,M_ix]
@@ -289,6 +294,7 @@ change_MY_pars.GeRM <- function(xds_obj, s=1, options=list()) {
 #' @description Implements [MBaseline] for models with no forcing on the baseline
 #' @inheritParams MBaseline
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBaseline.GeRM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   vars = xds_obj$vars
@@ -314,6 +320,7 @@ MBaseline.GeRM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
 #' @description Implements [MBionomics] for models with no forcing on the baseline
 #' @inheritParams MBionomics
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBionomics.GeRM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$f <- es_f*f_t
@@ -328,6 +335,7 @@ MBionomics.GeRM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 #' @description Implements [Update_MYt] for the GeRM_dts model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 Update_MYt.GeRM <- function(t, y, xds_obj, s) {
   Lambda = xds_obj$Lambda[[s]]*xds_obj$MYday
@@ -361,6 +369,7 @@ Update_MYt.GeRM <- function(t, y, xds_obj, s) {
 #' @description Implements [Update_MYt] for the GeRM_dts model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 Update_MYt.GeRM <- function(t, y, xds_obj, s) {
   Lambda = xds_obj$Lambda[[s]]*xds_obj$MYday
@@ -432,6 +441,7 @@ make_MY_inits_GeRM = function(nPatches, Upsilon, options = list(),
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_MY_inits.GeRM <- function(xds_obj, s=1, options=list()) {
   with(xds_obj$MY_obj[[s]]$inits, with(options,{
@@ -467,6 +477,7 @@ steady_state_MY.GeRM = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$MY_obj
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_f.GeRM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f)
@@ -476,6 +487,7 @@ get_f.GeRM = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_q.GeRM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q)
@@ -485,6 +497,7 @@ get_q.GeRM = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_g.GeRM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], g)
@@ -494,6 +507,7 @@ get_g.GeRM = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_sigma.GeRM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], sigma)

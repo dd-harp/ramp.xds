@@ -21,3 +21,4 @@ Derivatives for auxiliary variables as a \link{vector}
 \description{
 The description for each method should include the equations.
 }
+\keyword{internal}

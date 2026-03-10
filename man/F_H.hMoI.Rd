@@ -21,3 +21,4 @@ a \link{numeric} vector of length \code{nStrata}
 \description{
 Implements \link{F_H} for the hybrid MoI model.
 }
+\keyword{internal}

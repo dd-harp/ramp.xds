@@ -18,3 +18,4 @@ trend parameters
 Get the interpolating points
 for a spline function.
 }
+\keyword{internal}

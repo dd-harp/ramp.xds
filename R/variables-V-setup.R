@@ -19,6 +19,7 @@ setup_V_ix.setup <- function(xds_obj, i){
 #'
 #' @inheritParams dVdt
 #' @return Derivatives for auxiliary variables as a [vector]
+#' @keywords internal
 #' @export
 dVdt.setup <- function(t, y, xds_obj, i){
   return(list())

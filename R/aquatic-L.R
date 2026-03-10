@@ -39,6 +39,7 @@ check_L = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return the derivatives, a [numeric] vector of length \eqn{n_q=}`nHabitats`
+#' @keywords internal
 #' @export
 dLdt <- function(t, y, xds_obj, s) {
   UseMethod("dLdt", xds_obj$L_obj[[s]])
@@ -55,6 +56,7 @@ dLdt <- function(t, y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return the states, a [numeric] vector of length \eqn{n_q=}`nHabitats`
+#' @keywords internal
 #' @export
 Update_Lt <- function(t, y, xds_obj, s) {
   UseMethod("Update_Lt", xds_obj$L_obj[[s]])
@@ -206,6 +208,7 @@ setup_L_ix <- function(xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [list]
+#' @keywords internal
 #' @export
 parse_L_orbits <- function(outputs, xds_obj, s) {
   UseMethod("parse_L_orbits", xds_obj$L_obj[[s]])

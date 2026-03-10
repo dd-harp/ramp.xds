@@ -22,3 +22,4 @@ resets bionomic parameters to their pre-control baseline value, which can later 
 modified by vector control. In some models, the pre-control baseline is computed in
 here as a function of resource availability.
 }
+\keyword{internal}

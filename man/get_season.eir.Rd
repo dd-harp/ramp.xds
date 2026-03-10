@@ -18,3 +18,4 @@ seasonal pattern parameters
 Get the parameters that set
 the seasonal pattern
 }
+\keyword{internal}

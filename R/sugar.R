@@ -13,6 +13,7 @@
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Sugar = function(t, y, xds_obj){
   UseMethod("Sugar", xds_obj$resources_obj$sugar_obj)
@@ -26,6 +27,7 @@ Sugar = function(t, y, xds_obj){
 #' @inheritParams Sugar
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Sugar.none = function(t, y, xds_obj){
   return(xds_obj)

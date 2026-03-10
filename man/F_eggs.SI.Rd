@@ -28,3 +28,4 @@ The \strong{parameters} describing egg laying by adult mosquitoes are:
 
 The egg laying rate, per patch, is \deqn{\nu \xi M}
 }
+\keyword{internal}

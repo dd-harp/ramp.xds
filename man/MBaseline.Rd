@@ -21,3 +21,4 @@ an \strong{\code{xds}} object
 \description{
 Compute the baseline adult mosquito bionomic parameter values
 }
+\keyword{internal}

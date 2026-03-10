@@ -68,6 +68,7 @@ check_MY.SI = function(xds_obj, s){
 #' @inheritParams dMYdt
 #' @seealso [F_fqZ.SI] and [F_eggs.SI]
 #' @return a vector with the derivatives
+#' @keywords internal
 #' @export
 dMYdt.SI <- function(t, y, xds_obj, s) {
   Lambda = xds_obj$terms$Lambda[[s]]
@@ -88,6 +89,7 @@ dMYdt.SI <- function(t, y, xds_obj, s) {
 #' @description Implements [Update_MYt] for the SI model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 Update_MYt.SI <- function(t, y, xds_obj, s) {
   Lambda = xds_obj$Lambda[[s]]
@@ -122,6 +124,7 @@ Update_MYt.SI <- function(t, y, xds_obj, s) {
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
 #' @importFrom expm expm
+#' @keywords internal
 #' @export
 F_fqZ.SI <- function(t, y, xds_obj, s) {
   Y = y[xds_obj$MY_obj[[s]]$ix$Y_ix]
@@ -154,6 +157,7 @@ F_fqM.SI <- function(t, y, xds_obj, s){
 #'
 #' @inheritParams F_eggs
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_eggs.SI <- function(t, y, xds_obj, s) {
   M <- y[xds_obj$MY_obj[[s]]$ix$M_ix]
@@ -173,6 +177,7 @@ F_eggs.SI <- function(t, y, xds_obj, s) {
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MBionomics
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBaseline.SI <- function(t, y, xds_obj, s) {
 
@@ -202,6 +207,7 @@ MBaseline.SI <- function(t, y, xds_obj, s) {
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MBionomics
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBionomics.SI <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]],{
@@ -295,6 +301,7 @@ setup_MY_ix.SI <- function(xds_obj, s) {with(xds_obj,{
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_vars.SI <- function(y, xds_obj, s){
   with(xds_obj$MY_obj[[s]]$ix,
@@ -309,6 +316,7 @@ get_MY_vars.SI <- function(y, xds_obj, s){
 #' @description Implements [parse_MY_orbits] for the `SI` model
 #' @inheritParams parse_MY_orbits
 #' @return a [list]
+#' @keywords internal
 #' @export
 parse_MY_orbits.SI <- function(outputs, xds_obj, s) {
   with(xds_obj$MY_obj[[s]],{
@@ -388,6 +396,7 @@ make_MY_inits_SI = function(nPatches, options = list(),
 #' @inheritParams change_MY_inits
 #'
 #' @return a [list]
+#' @keywords internal
 #' @export
 change_MY_inits.SI = function(xds_obj, s, options=list()){
   inits =  with(get_MY_inits(xds_obj, s), with(options,{
@@ -400,6 +409,7 @@ change_MY_inits.SI = function(xds_obj, s, options=list()){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @keywords internal
 #' @export
 get_f.SI = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f)
@@ -409,6 +419,7 @@ get_f.SI = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @keywords internal
 #' @export
 get_q.SI = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q)
@@ -418,6 +429,7 @@ get_q.SI = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @keywords internal
 #' @export
 get_g.SI = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], g)
@@ -427,6 +439,7 @@ get_g.SI = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @keywords internal
 #' @export
 get_sigma.SI = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], sigma)

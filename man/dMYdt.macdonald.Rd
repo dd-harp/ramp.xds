@@ -61,3 +61,4 @@ This model is not capable of being extended to
 handle exogenous forcing by weather or vector control. Please
 use the \code{GeRM} model.
 }
+\keyword{internal}

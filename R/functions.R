@@ -41,6 +41,7 @@ get_variables = function(t, y, func, xds_obj){
 #' @inheritParams get_variables
 #'
 #' @return a set of variables
+#' @keywords internal
 #' @export
 get_variables.na = function(t, y, func, xds_obj){
   return(numeric(0))

@@ -27,3 +27,4 @@ product of the effect sizes for each intervention.
 Since coverage could be changing dynamically, these
 must be reset each time the derivatives are computed.
 }
+\keyword{internal}

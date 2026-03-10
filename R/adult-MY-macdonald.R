@@ -75,6 +75,7 @@ check_MY.macdonald = function(xds_obj, s){
 #' @return a [numeric] vector
 #' @importFrom deSolve lagvalue
 #' @importFrom deSolve lagderiv
+#' @keywords internal
 #' @export
 dMYdt.macdonald <- function(t, y, xds_obj, s){
 
@@ -108,6 +109,7 @@ dMYdt.macdonald <- function(t, y, xds_obj, s){
 #' @description Implements [F_fqZ] for the macdonald model.
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqZ.macdonald <- function(t, y, xds_obj, s) {
   f = get_f(xds_obj, s)
@@ -130,6 +132,7 @@ F_fqM.macdonald <- function(t, y, xds_obj, s) {
 #' @description Implements [F_eggs] for the macdonald model.
 #' @inheritParams F_eggs
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_eggs.macdonald <- function(t, y, xds_obj, s) {
   M <- y[xds_obj$MY_obj[[s]]$ix$M_ix]
@@ -231,6 +234,7 @@ setup_MY_ix.macdonald <- function(xds_obj, s) {with(xds_obj,{
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_vars.macdonald <- function(y, xds_obj, s){
   with(xds_obj$MY_obj[[s]]$ix,
@@ -245,6 +249,7 @@ get_MY_vars.macdonald <- function(y, xds_obj, s){
 #' @description Implements [parse_MY_orbits] for the macdonald model
 #' @inheritParams parse_MY_orbits
 #' @return a [list]
+#' @keywords internal
 #' @export
 parse_MY_orbits.macdonald <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[[s]]$ix,{
   M = outputs[,M_ix]
@@ -330,6 +335,7 @@ make_MY_inits_macdonald = function(nPatches, options = list(),
 #' @inheritParams change_MY_inits
 #'
 #' @return a [list]
+#' @keywords internal
 #' @export
 change_MY_inits.macdonald = function(xds_obj, s, options=list()){
   inits = with(get_MY_inits(xds_obj, s),
@@ -370,6 +376,7 @@ steady_state_MY.macdonald = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$M
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MBionomics
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBaseline.macdonald <- function(t, y, xds_obj, s) {
   return(xds_obj)
@@ -385,6 +392,7 @@ MBaseline.macdonald <- function(t, y, xds_obj, s) {
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MBionomics
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBionomics.macdonald <- function(t, y, xds_obj, s) {
   return(xds_obj)
@@ -395,6 +403,7 @@ MBionomics.macdonald <- function(t, y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_f.macdonald = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f)
@@ -404,6 +413,7 @@ get_f.macdonald = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_q.macdonald = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q)
@@ -413,6 +423,7 @@ get_q.macdonald = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_g.macdonald = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], g)
@@ -422,6 +433,7 @@ get_g.macdonald = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_sigma.macdonald = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], sigma)

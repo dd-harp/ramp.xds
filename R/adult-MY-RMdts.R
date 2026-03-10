@@ -32,6 +32,7 @@ check_MY.RMdts = function(xds_obj, s){
 #' @description Implements [Update_MYt] for the RMdts model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 Update_MYt.RMdts <- function(t, y, xds_obj, s) {
   Lambda = xds_obj$terms$Lambda[[s]]
@@ -64,6 +65,7 @@ Update_MYt.RMdts <- function(t, y, xds_obj, s) {
 #' @description Implements [F_fqZ] for the RMdts model.
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqZ.RMdts <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]], f*q)*y[xds_obj$ix$MY[[s]]$Z_ix]
@@ -82,6 +84,7 @@ F_fqM.RMdts <- function(t, y, xds_obj, s) {
 #' @description Implements [F_eggs] for the RMdts model.
 #' @inheritParams F_eggs
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_eggs.RMdts <- function(t, y, xds_obj, s) {
   M <- y[xds_obj$ix$MY[[s]]$M_ix]
@@ -160,6 +163,7 @@ setup_MY_ix.RMdts <- function(xds_obj, s) {with(xds_obj,{
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_vars.RMdts <- function(y, xds_obj, s){
   with(xds_obj$ix$MY[[s]],
@@ -177,6 +181,7 @@ get_MY_vars.RMdts <- function(y, xds_obj, s){
 #' @description Implements [parse_MY_orbits] for the RMdts model
 #' @inheritParams parse_MY_orbits
 #' @return a [list]
+#' @keywords internal
 #' @export
 parse_MY_orbits.RMdts <- function(outputs, xds_obj, s) {with(xds_obj$ix$MY[[s]],{
   M = outputs[,M_ix]
@@ -193,6 +198,7 @@ parse_MY_orbits.RMdts <- function(outputs, xds_obj, s) {with(xds_obj$ix$MY[[s]],
 #' @title Make inits for RMdts adult mosquito model
 #' @inheritParams change_MY_inits
 #' @return a [list]
+#' @keywords internal
 #' @export
 change_MY_inits.RMdts <- function(xds_obj, s, options) {
   with(xds_obj$MY_obj[[s]]$ix,{

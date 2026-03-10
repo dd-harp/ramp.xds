@@ -21,3 +21,4 @@ a set of variables
 \description{
 The null case for \link{get_variables}
 }
+\keyword{internal}

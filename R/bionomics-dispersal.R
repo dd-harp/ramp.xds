@@ -100,6 +100,7 @@ setup_K_matrix = function(Kname, s, xds_obj, options = list()){
 #' @inheritParams setup_K_matrix
 #'
 #' @return a [matrix]
+#' @keywords internal
 #' @export
 setup_K_matrix.as_matrix= function(Kname, s, xds_obj, options = list()){
   change_K_matrix(Kname, xds_obj, s)
@@ -113,6 +114,7 @@ setup_K_matrix.as_matrix= function(Kname, s, xds_obj, options = list()){
 #' @inheritParams setup_K_matrix
 #'
 #' @return a [matrix]
+#' @keywords internal
 #' @export
 setup_K_matrix.herethere = function(Kname, s, xds_obj, options = list()){
   K_matrix <- make_K_matrix_herethere(xds_obj$nPatches)
@@ -141,6 +143,7 @@ make_K_matrix_herethere = function(nPatches) {
 #' @inheritParams setup_K_matrix
 #'
 #' @return a [matrix]
+#' @keywords internal
 #' @export
 setup_K_matrix.xy = function(Kname = "xy", s, xds_obj, options=list()) {
   K_matrix <- with(options, make_K_matrix_xy(xy, ker))

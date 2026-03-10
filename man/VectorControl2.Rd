@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 A junction to implement
 stage two vector control functions
 }
+\keyword{internal}

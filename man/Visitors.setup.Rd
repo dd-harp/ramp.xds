@@ -23,3 +23,4 @@ then triggers an update to the blood feeding model.
 It is computed in \link{compute_TaR}
 and used to compute availability. It is also used in \link{Exposure}
 }
+\keyword{internal}

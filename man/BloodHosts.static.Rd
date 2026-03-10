@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 For a static model for time spent F_blood_hosts, the function
 does not update anything.
 }
+\keyword{internal}

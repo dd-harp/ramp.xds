@@ -26,3 +26,4 @@ return the derivatives as a numeric vector.
 \note{
 This method dispatches on \code{class(xds_obj$XH_obj)}
 }
+\keyword{internal}

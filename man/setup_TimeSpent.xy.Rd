@@ -21,3 +21,4 @@ a \link{list}
 \description{
 Implements \link{setup_TimeSpent} for kernels
 }
+\keyword{internal}
