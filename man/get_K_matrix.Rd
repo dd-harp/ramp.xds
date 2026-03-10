@@ -12,7 +12,7 @@ get_K_matrix(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Get the Mosquito Dispersal Matrix

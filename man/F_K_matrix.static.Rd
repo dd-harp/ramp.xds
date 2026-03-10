@@ -14,7 +14,7 @@
 \item{s}{vector species index}
 }
 \value{
-the \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Implements \link{F_K_matrix} for a static model

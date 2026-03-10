@@ -5,7 +5,7 @@
 #' @details
 #' This implements a model for egg laying described by Wu SL, *et al.*, (2023).
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** model object
+#' @return an **`xds`** object
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @seealso [make_xds_object_template]
 #' @seealso [setup_XY_interface]
@@ -62,7 +62,7 @@ F_beta = function(H, W, wts_f, TaR){
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 compute_beta <- function(t, y, xds_obj){
@@ -99,7 +99,7 @@ F_eir <- function(fqZ, beta, local_frac){
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 compute_EIR <- function(t, y, xds_obj){
@@ -110,7 +110,7 @@ compute_EIR <- function(t, y, xds_obj){
     lf <- xds_obj$terms$local_frac[[1]]
 
     xds_obj$terms$EIR[[i]] <- F_eir(fqZ, beta, lf)
-    
+
     if(xds_obj$nVectorSpecies > 1)
       for(s in 2:xds_obj$nVectorSpecies){
         fqZ <- F_fqZ(t, y, xds_obj, 1)
@@ -128,7 +128,7 @@ compute_EIR <- function(t, y, xds_obj){
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 compute_EIR_full <- function(t, y, xds_obj){
@@ -168,7 +168,7 @@ compute_EIR_full <- function(t, y, xds_obj){
 F_kappa <- function(Wi, W, beta, X) {
   ix = which(W==0)
   if(length(ix)>0) W[ix]=1
-  kappa = Wi/W*(as.vector(t(beta) %*% X)) 
+  kappa = Wi/W*(as.vector(t(beta) %*% X))
   return(as.vector(kappa))
 }
 
@@ -177,7 +177,7 @@ F_kappa <- function(Wi, W, beta, X) {
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 compute_kappa <- function(t, y, xds_obj){
@@ -186,7 +186,7 @@ compute_kappa <- function(t, y, xds_obj){
     W = xds_obj$XY_interface$W[[s]]
     beta = xds_obj$terms$beta[[s]][[1]]
     X = F_I(t, y, xds_obj, 1)
-    
+
 
     kappa <- F_kappa(Wi, W, beta, X)
 
@@ -224,7 +224,7 @@ F_local_frac <- function(W, Visitors){
 #' @title Compute the local fraction
 #' @description Compute the availability for the pathogen's hosts for blood feeding
 #' @param xds_obj an **`xds`** model object
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 compute_local_frac <- function(xds_obj){with(xds_obj$XY_interface,{
@@ -239,7 +239,7 @@ compute_local_frac <- function(xds_obj){with(xds_obj$XY_interface,{
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 Transmission <- function(t, y, xds_obj){
@@ -249,7 +249,7 @@ Transmission <- function(t, y, xds_obj){
 #' @title Compute transmission terms with a static mixing matrix
 #' @description In the static case, \eqn{\beta} is not updated
 #' @inheritParams Transmission
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 Transmission.static <- function(t, y, xds_obj){
@@ -261,11 +261,11 @@ Transmission.static <- function(t, y, xds_obj){
 #' @title Compute transmission, the dynamic case
 #' @description Compute transmission terms with a dynamic mixing matrix
 #' @inheritParams Transmission
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 Transmission.dynamic <- function(t, y, xds_obj){
-  return(transmission_dynamics(t, y, xds_obj)) 
+  return(transmission_dynamics(t, y, xds_obj))
 }
 
 #' @title Compute transmission, the static case
@@ -273,7 +273,7 @@ Transmission.dynamic <- function(t, y, xds_obj){
 #' @details The `setup` case is called whenever any parameter affecting the mixing matrix
 #' in a static model is changed
 #' @inheritParams Transmission
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 Transmission.setup <- function(t, y, xds_obj){
@@ -285,7 +285,7 @@ Transmission.setup <- function(t, y, xds_obj){
 #' @title Compute transmission, the dynamic case
 #' @description Compute transmission terms with a dynamic mixing matrix
 #' @inheritParams Transmission
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 transmission_dynamics <- function(t, y, xds_obj){

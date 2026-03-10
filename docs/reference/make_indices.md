@@ -16,4 +16,4 @@ make_indices(xds_obj)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

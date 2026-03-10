@@ -24,4 +24,4 @@ change_bad_habitat(Qbad, xds_obj, s = 1)
 
 ## Value
 
-an `xds` object
+an **`xds`** object

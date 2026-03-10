@@ -24,4 +24,4 @@ change_L_pars(xds_obj, s = 1, options = list())
 
 ## Value
 
-an `xds` object
+an **`xds`** object

@@ -14,7 +14,7 @@ compute_WB(t, y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Compute the available for the pathogen's hosts for blood feeding

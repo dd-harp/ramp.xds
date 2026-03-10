@@ -12,7 +12,7 @@ parse_XH_terms(xds_obj, i = 1)
 \item{i}{host species index}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Pull the stored values of the

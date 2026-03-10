@@ -16,7 +16,7 @@
 \item{options}{a named list to set up \code{F_travel_eir}}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Setup a model for no time spent traveling

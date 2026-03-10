@@ -10,7 +10,7 @@ compute_local_frac(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Compute the availability for the pathogen's hosts for blood feeding

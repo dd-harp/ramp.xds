@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{MBaseline.macdonald}
 \alias{MBaseline.macdonald}
-\title{macdonald-style adult mosquito bionomics}
+\title{Macdonald-style adult mosquito bionomics}
 \usage{
 \method{MBaseline}{macdonald}(t, y, xds_obj, s)
 }
@@ -19,8 +19,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-Reset the effect sizes for static models
-
+Reset the effect sizes for static models.
 When modules are added to compute effect sizes
 from baseline parameters, those functions store
 an effect size. The total effect size is the

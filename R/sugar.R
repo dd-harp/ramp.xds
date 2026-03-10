@@ -1,17 +1,17 @@
 # The sugar library is found in ramp.sugar
 
-#' @title Set up Mosquito sugar 
-#' 
-#' @description Create a junction  
-#' for mosquito sugar 
-#' 
+#' @title Set up Mosquito sugar
+#'
+#' @description Create a junction
+#' for mosquito sugar
+#'
 #' @note Mosquito trap models are in
-#' `ramp.control` 
-#' 
+#' `ramp.control`
+#'
 #' @param t current simulation time
 #' @param y dependent variables vector
 #' @param xds_obj an **`xds`** model object
-#' 
+#'
 #' @return an **`xds`** object
 #' @export
 Sugar = function(t, y, xds_obj){
@@ -22,9 +22,9 @@ Sugar = function(t, y, xds_obj){
 #' @description After none setup, no exogenous
 #' variables are configured so sugar returns
 #' the **`xds`** object without modification
-#' 
+#'
 #' @inheritParams Sugar
-#' 
+#'
 #' @return an **`xds`** object
 #' @export
 Sugar.none = function(t, y, xds_obj){
@@ -38,10 +38,10 @@ Sugar.none = function(t, y, xds_obj){
 #' @return an **`xds`** object
 #' @export
 setup_sugar_object = function(xds_obj){
-  sugar <- list() 
+  sugar <- list()
   class(sugar) <- 'none'
-  sugar$name <- "Junction: Natural Sugar Dynamics" 
-  sugar$ports <- "Sugar Availability, Sugar Baits" 
+  sugar$name <- "Junction: Natural Sugar Dynamics"
+  sugar$ports <- "Sugar Availability, Sugar Baits"
   xds_obj$resources_obj$sugar_obj <- sugar
   return(xds_obj)
 }

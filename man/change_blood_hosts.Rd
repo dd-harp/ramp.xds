@@ -14,7 +14,7 @@ change_blood_hosts(blood_hosts, xds_obj, s)
 \item{s}{the vector species index}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Set the blood feeding search weights, \eqn{\omega}, for a set of host strata

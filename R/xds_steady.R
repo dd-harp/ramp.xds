@@ -1,12 +1,12 @@
 
-#' @title Compute stable orbits 
-#' 
-#' @description 
+#' @title Compute stable orbits
+#'
+#' @description
 #' Run the system for 10 years, and save the last year's orbits.
-#'  
+#'
 #' @param xds_obj an **`xds`** model object
-#' @param options a list of configurable options 
-#' @return an **`xds`** model object
+#' @param options a list of configurable options
+#' @return an **`xds`** object
 #' @export
 xds_stable_orbit = function(xds_obj, options=list()){
   UseMethod("xds_stable_orbit", xds_obj$xds)
@@ -16,7 +16,7 @@ xds_stable_orbit = function(xds_obj, options=list()){
 #' @description This method dispatches on the type of `xds_obj$xde`.
 #' @inheritParams xds_stable_orbit
 #' @return an **`xds`** object
-#' @noRd
+#' @keywords internal
 #' @export
 xds_stable_orbit.xde = function(xds_obj, options=list()){
   Tmax = 3650
@@ -31,14 +31,14 @@ xds_stable_orbit.xde = function(xds_obj, options=list()){
   return(xds_obj)
 }
 
-#' @title Compute the stable orbit for a discrete time system 
+#' @title Compute the stable orbit for a discrete time system
 #' @description This method dispatches on the type of `xds_obj$xde`.
 #' @inheritParams xds_stable_orbit
 #' @return an **`xds`** object
-#' @noRd
+#' @keywords internal
 #' @export
 xds_stable_orbit.dts = function(xds_obj, options=list()){
-  stop(error="Not Written Yet")   
+  stop(error="Not Written Yet")
   return(xds_obj)
 }
 
@@ -56,7 +56,7 @@ xds_steady = function(xds_obj){
 #' @note This method dispatches on `class(dlay)`
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
-#' @noRd
+#' @keywords internal
 #' @export
 xds_steady.ode = function(xds_obj){
   y0 = get_inits(xds_obj, flatten=TRUE)
@@ -69,7 +69,7 @@ xds_steady.ode = function(xds_obj){
 #' @description This method dispatches on the type of `xds_obj$xde`
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
-#' @noRd
+#' @keywords internal
 #' @export
 xds_steady.dde = function(xds_obj){
   y0 = get_inits(xds_obj, flatten=TRUE)

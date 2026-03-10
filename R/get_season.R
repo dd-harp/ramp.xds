@@ -1,105 +1,105 @@
 
-#' @title Get the Seasonal Pattern 
-#' 
+#' @title Get the Seasonal Pattern
+#'
 #' @description
 #' Get the parameters for the seasonal pattern
 #' forcing the model
-#' 
-#' @note Dispatches on `forced_by`  
-#' 
+#'
+#' @note Dispatches on `forced_by`
+#'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' 
-#' @return seasonal pattern parameters 
-#' 
+#'
+#' @return seasonal pattern parameters
+#'
 #' @export
 get_season = function(xds_obj, s=1){
   UseMethod("get_season", xds_obj$forced_by)
 }
 
-#' @title Get seasonal pattern 
-#' 
+#' @title Get seasonal pattern
+#'
 #' @description
 #' Get the parameters set the seasonal pattern
-#' 
+#'
 #' @inheritParams get_season
-#' 
-#' @return seasonal pattern parameters 
-#' 
+#'
+#' @return seasonal pattern parameters
+#'
 #' @export
 get_season.none = function(xds_obj, s=1){
-  return(c()) 
+  return(c())
 }
 
-#' @title Get phase 
-#' 
+#' @title Get phase
+#'
 #' @description
 #' Get the parameter that sets the phase
-#' for a seasonally forced model 
-#' 
-#' @inheritParams get_season 
-#' 
-#' @returns the phase parameter(s) 
-#' 
+#' for a seasonally forced model
+#'
+#' @inheritParams get_season
+#'
+#' @return the phase parameter(s)
+#'
 #' @export
 get_season_phase = function(xds_obj, s=1){
   get_season(xds_obj, s)$phase
 }
 
-#' @title Get phase 
-#' 
+#' @title Get phase
+#'
 #' @description
 #' Get the parameter that sets the phase
-#' for a seasonally forced model 
-#' 
-#' @inheritParams get_season 
-#' 
-#' @returns the phase parameter(s) 
-#' 
+#' for a seasonally forced model
+#'
+#' @inheritParams get_season
+#'
+#' @return the phase parameter(s)
+#'
 #' @export
 get_season_bottom = function(xds_obj, s=1){
   get_season(xds_obj, s)$bottom
 }
 
-#' @title Get pw for seasonality  
-#' 
+#' @title Get pw for seasonality
+#'
 #' @description
 #' Get the parameter that sets the phase
-#' for a seasonally forced model 
-#' 
-#' @inheritParams get_season 
-#' 
-#' @returns the phase parameter(s) 
-#' 
+#' for a seasonally forced model
+#'
+#' @inheritParams get_season
+#'
+#' @return the phase parameter(s)
+#'
 #' @export
 get_season_pw = function(xds_obj, s=1){
   get_season(xds_obj, s)$pw
 }
 
-#' @title Get seasonal pattern 
-#' 
+#' @title Get seasonal pattern
+#'
 #' @description
 #' Get the parameters set the seasonal pattern
-#' 
+#'
 #' @inheritParams get_season
-#' 
-#' @return seasonal pattern parameters 
-#' 
+#'
+#' @return seasonal pattern parameters
+#'
 #' @export
 get_season.Lambda = function(xds_obj, s=1){
   xds_obj$L_obj[[s]]$season_par
 }
 
-#' @title Get seasonal pattern 
-#' 
+#' @title Get seasonal pattern
+#'
 #' @description
-#' Get the parameters that set 
+#' Get the parameters that set
 #' the seasonal pattern
-#' 
+#'
 #' @inheritParams get_season
 
-#' @return seasonal pattern parameters 
-#' 
+#' @return seasonal pattern parameters
+#'
 #' @export
 get_season.eir= function(xds_obj, s=1){
   xds_obj$EIR_obj$season_par

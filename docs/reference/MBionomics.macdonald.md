@@ -1,12 +1,10 @@
-# macdonald-style adult mosquito bionomics
+# Macdonald-style adult mosquito bionomics
 
-Reset the effect sizes for static models
-
-When modules are added to compute effect sizes from baseline parameters,
-those functions store an effect size. The total effect size is the
-product of the effect sizes for each intervention. Since coverage could
-be changing dynamically, these must be reset each time the derivatives
-are computed.
+Reset the effect sizes for static models. When modules are added to
+compute effect sizes from baseline parameters, those functions store an
+effect size. The total effect size is the product of the effect sizes
+for each intervention. Since coverage could be changing dynamically,
+these must be reset each time the derivatives are computed.
 
 ## Usage
 

@@ -14,7 +14,7 @@ change_MY_inits(xds_obj, s = 1, options = list())
 \item{options}{a named list}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}.

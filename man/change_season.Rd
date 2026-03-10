@@ -14,7 +14,7 @@ change_season(X, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Get the parameters set the seasonal pattern

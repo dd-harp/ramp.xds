@@ -1,28 +1,28 @@
-#' @title Set Up Exposure 
-#' 
-#' @description Set up the model for 
-#' exposure. Current options for `EHname` 
-#' 
-#' + `pois` - a Poisson model 
+#' @title Set Up Exposure
+#'
+#' @description Set up the model for
+#' exposure. Current options for `EHname`
+#'
+#' + `pois` - a Poisson model
 #'
 #' + `nb` - a Negative Binomial model family
-#' 
+#'
 #' @note The daily EIR is an expected value, but that expectation
 #' can have a distribution in a population. For
-#' example, if the expectation is gamma distributed, 
+#' example, if the expectation is gamma distributed,
 #' then we would get a negative binomial distribution
-#' of bites per person. 
-#' 
-#' Note that [Exposure] handles local exposure and 
-#' exposure while traveling separately.  
-#' 
-#' @param EHname environmental heterogeneity model name 
+#' of bites per person.
+#'
+#' Note that [Exposure] handles local exposure and
+#' exposure while traveling separately.
+#'
+#' @param EHname environmental heterogeneity model name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options set up options list
-#' 
+#'
 #' @return an **`xds`** object
-#' 
+#'
 #' @export
 setup_exposure <- function(EHname, xds_obj, i=1, options=list()){
   class(EHname) <- EHname
@@ -45,10 +45,10 @@ Exposure <- function(t, y, xds_obj){
   UseMethod("Exposure", xds_obj$xds)
 }
 
-#' @title Compute the Force of Infection 
-#' 
+#' @title Compute the Force of Infection
+#'
 #' @description For **`xde`** models, compute the FoI
-#' 
+#'
 #' @details
 #' The local force of infection (FoI or \eqn{h}) is
 #' a function of local daily entomological inoculation
@@ -76,7 +76,7 @@ Exposure.xde <- function(t, y, xds_obj){
       travel_foi = F_foi(tEIR, b, env_het_obj[[i]])
       xds_obj$terms$FoI[[i]] = local_foi*at_home + travel_foi*(1-at_home)
   }
-  
+
   return(xds_obj)
 })}
 
@@ -96,7 +96,7 @@ Exposure.xde <- function(t, y, xds_obj){
 #' \deqn{\alpha = 1-((1-\delta) \; F_\alpha(E, b))(1-\delta\; T_\alpha(b))}
 #' @inheritParams Exposure
 #' @return an **`xds`** object
-#' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [Travel] 
+#' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [Travel]
 #' @export
 #' @keywords internal
 Exposure.dts <- function(t, y, xds_obj){
@@ -128,11 +128,11 @@ Exposure.dts <- function(t, y, xds_obj){
 #' a term \eqn{b}, from [F_infectivity] that describe the probability of infection
 #' per infectious bite, possibly affected by
 #' pre-erythrocytic immunity.
-#' 
+#'
 #' @param eir the daily eir for each stratum
 #' @param b the probability of infection, per bite
 #' @param env_het_obj an environmental heterogeneity model object
-#' 
+#'
 #' @return the local FoI as a [numeric] vector of length \eqn{n_h =} `nStrata`
 #' @seealso Cases: [F_foi.pois] & [F_foi.nb]. Related: [Exposure.xde] & [foi2eir]
 #' @export
@@ -154,13 +154,13 @@ F_foi <- function(eir, b, env_het_obj){
 #' a term \eqn{b}, from [F_infectivity] that describe the probability of infection
 #' per infectious bite, possibly affected by
 #' pre-erythrocytic immunity
-#' 
+#'
 #' @param eir the daily eir for each stratum
 #' @param b the probability of infection, per bite
 #' @param env_het_obj an environmental heterogeneity model object
-#' 
+#'
 #' @return a [numeric] vector: local attack rates for the strata
-#' 
+#'
 #' @seealso Cases: [F_ar.nb] and [F_ar.pois]. Related: [ar2eir] & [Exposure.dts]
 #' @export
 #' @keywords internal
@@ -171,11 +171,11 @@ F_ar <- function(eir, b, env_het_obj){
 #' @title Convert FoI to EIR
 #' @description This function computes the inverse of [F_foi]
 #' under a model for environmentally heterogeneous exposure.
-#' 
+#'
 #' @param foi the daily FoI for each stratum
 #' @param b the probability of infection, per bite
 #' @param env_het_obj an environmental heterogeneity model object
-#' 
+#'
 #' @return the daily EIR as a [numeric] vector
 #' @seealso Cases: [foi2eir.pois] & [foi2eir.nb]
 #' @export
@@ -186,11 +186,11 @@ foi2eir <- function(foi, b, env_het_obj){
 #' @title Convert AR to EIR
 #' @description This function computes the inverse of [F_ar]
 #' under a model for environmentally heterogeneous exposure.
-#' 
+#'
 #' @param ar the attack rate
 #' @param b the probability of infection, per bite
 #' @param env_het_obj an environmental heterogeneity model object
-#' 
+#'
 #' @return the daily EIR as a [numeric] vector
 #' @seealso Cases: [ar2eir.pois] & [ar2eir.nb]
 #' @export

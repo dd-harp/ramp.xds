@@ -1,39 +1,39 @@
 # generic methods for aquatic component
 
-#' @title The skill set (**L** module) 
-#' 
-#' @description The skill set for an **L** module 
-#' is a list of that summarizes capabilities and 
+#' @title The skill set (**L** module)
+#'
+#' @description The skill set for an **L** module
+#' is a list of that summarizes capabilities and
 #' compatabilities
 #'
-#' @param Lname the **L** module name 
-#' 
-#' @return *L* module skill set, as a list 
-#' 
+#' @param Lname the **L** module name
+#'
+#' @return *L* module skill set, as a list
+#'
 #' @export
 skill_set_L = function(Lname){
   class(Lname) <- Lname
   UseMethod("skill_set_L", Lname)
 }
 
-#' Run a check before solving 
+#' Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
+#' @param s the vector species index
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_L = function(xds_obj, s){
-  UseMethod("check_L", xds_obj$L_obj[[s]]) 
+  UseMethod("check_L", xds_obj$L_obj[[s]])
 }
 
-#' @title Compute derivatives (**L** module) 
-#' 
+#' @title Compute derivatives (**L** module)
+#'
 #' @description This method computes and returns the derivatives
 #' for the **L** Component modules
-#' 
+#'
 #' @note Dispatches on the class of `xds_obj$L_obj[[s]]`
-#' 
+#'
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
@@ -45,10 +45,10 @@ dLdt <- function(t, y, xds_obj, s) {
 }
 
 #' @title Update state variables (**L** module)
-#'  
+#'
 #' @description This method updates the state variables
 #' for **L** Component modules
-#' 
+#'
 #' @note Dispatches on the class of `xds_obj$L_obj[[s]]`
 #' @param t current simulation time
 #' @param y state vector
@@ -67,7 +67,7 @@ Update_Lt <- function(t, y, xds_obj, s) {
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 LBaseline <- function(t, y, xds_obj, s) {
   UseMethod("LBaseline", xds_obj$L_obj[[s]])
@@ -80,7 +80,7 @@ LBaseline <- function(t, y, xds_obj, s) {
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 LBionomics <- function(t, y, xds_obj, s) {
   UseMethod("LBionomics", xds_obj$L_obj[[s]])
@@ -107,12 +107,12 @@ F_emerge <- function(t, y, xds_obj, s) {
 #' It is attached the **`xds`** object as `xds_obj$L_obj[[s]].` Each instance of `create_L_obj_*`
 #' should assign default parameter values that will be over-written by `options`
 #' @note This method assigns `Lname` to class(`Lname`) and dispatches on `Lname`.
-#' 
-#' @param Lname the class name of the **L** module 
+#'
+#' @param Lname the class name of the **L** module
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @param options a named list to configure **`L_obj`**
-#' 
+#'
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
@@ -134,7 +134,7 @@ get_L_pars <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 change_L_pars <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_L_pars", xds_obj$L_obj[[s]])
@@ -182,7 +182,7 @@ get_L_inits <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 change_L_inits <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_L_inits", xds_obj$L_obj[[s]])
@@ -212,16 +212,16 @@ parse_L_orbits <- function(outputs, xds_obj, s) {
 }
 
 #' @title Compute steady states for **L** Component Modules
-#' 
+#'
 #' @description For differential equation models, compute
 #' steady states as a function of daily eggs laid, \eqn{\eta}
-#' 
+#'
 #' @note This method dispatches on the class of `L_obj`.
-#' 
+#'
 #' @param eta the egg-laying rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' 
+#'
 #' @return a named [list]: values of the state variables at the steady state
 #' @export
 steady_state_L = function(eta, xds_obj, s=1){
@@ -230,22 +230,22 @@ steady_state_L = function(eta, xds_obj, s=1){
 
 
 #' @title Get **L** outputs
-#' 
+#'
 #' @description
-#' Pull the saved, parsed orbits for the **L** 
+#' Pull the saved, parsed orbits for the **L**
 #' component from an **`xds`** object
-#' 
-#' 
-#' @param xds_obj an **`xds`** object
+#'
+#'
+#' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' 
-#' @return the orbits for the **L** component 
-#' 
+#'
+#' @return the orbits for the **L** component
+#'
 #' @export
 get_L_out = function(xds_obj, s=1){
-  
+
   got = xds_obj$outputs$orbits$L[[s]]
   got$time = xds_obj$outputs$time
-  
+
   return(got)
 }

@@ -725,6 +725,7 @@ reference:
   - get_PR
   - get_XH_out
   - get_MY_out
+  - get_L_out
   - xds_plot_EIR
   - xds_lines_EIR
   - xds_plot_PR

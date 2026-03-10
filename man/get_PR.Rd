@@ -7,7 +7,7 @@
 get_PR(xds_obj, method = "true", i = 1)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{method}{the method used for computing \emph{Pf}PR}
 

@@ -14,7 +14,7 @@ Health(t, y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Set the values of

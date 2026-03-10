@@ -14,7 +14,7 @@ change_K_matrix(K_matrix, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Change Mosquito Dispersal Matrix

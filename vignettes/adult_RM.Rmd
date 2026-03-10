@@ -20,7 +20,7 @@ This module called `macdonald` was included in **`ramp.xds`** for historical rea
 
 # Differential Equations 
 
-## Macdonald's Model
+## Macdonald's Equations 
 
 Macdonald's model for the sporozoite rate, published in 1952^[The analysis of the sporozoite rate. Macdonald G (1952). Trop Dis Bull 49(6):569-86.] has played an important role in studies of malaria. Later that same year, Macdonald introduced a formula for the basic reproductive rate, now called $R_0.$^[The analysis of equilibrium in malaria. Macdonald G (1952). Trop Dis Bull 49(9):813-29.] Macdonald gives credit to his colleague Armitage for the mathematics. Armitage's paper would be published the next year,^[A note on the epidemiology of malaria. Armitage P (1953). Trop Dis Bull 50(10):890-2] but that paper does not present the model as a system of differential equations. 
 

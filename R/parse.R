@@ -2,7 +2,7 @@
 #' @title parse the output of an object returned by deSolve
 #' @param y a [vector] with the variables
 #' @param xds_obj an **`xds`** model object
-#' @return varslist a [list]
+#' @return a named [list]
 #' @export
 parse_y <- function(y, xds_obj){
 
@@ -34,7 +34,7 @@ parse_y <- function(y, xds_obj){
 #' @title parse the outputs of an object created by xde_solve or dts_solve
 #' @param xds_obj an **`xds`** model object
 #' @param outputs a [matrix] of _orbits returned by deSolve
-#' @return varslist a [list]
+#' @return a named [list]
 #' @export
 parse_orbits <- function(outputs, xds_obj){
   varslist = list()
@@ -135,15 +135,15 @@ parse_outputs.eir = function(xds_obj, de_vars, tm){
 }
 
 
-#' @title Pull XH Terms 
-#' 
-#' @description Pull the stored values of the 
+#' @title Pull XH Terms
+#'
+#' @description Pull the stored values of the
 #' EIR and the FoI and compute NI
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
 #' @param i host species index
 #'
-#' @return an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 parse_XH_terms <- function(xds_obj, i=1) {
   eir = c()
@@ -167,28 +167,28 @@ parse_XH_terms <- function(xds_obj, i=1) {
   return(xds_obj)
 }
 
-#' @title Pull MY Terms 
-#' 
-#' @description Pull the stored values of the 
+#' @title Pull MY Terms
+#'
+#' @description Pull the stored values of the
 #' Lambda, G, fqZ, and kappa
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
-#' 
-#' @return an **`xds`** model object 
+#'
+#' @return an **`xds`** object
 #' @export
 parse_MY_terms <- function(xds_obj, s=1) {
-  
-  Lambda = c()  
-  kappa = c()  
-  G = c()  
-  fqZ = c()  
-  fqM = c()  
-  
+
+  Lambda = c()
+  kappa = c()
+  G = c()
+  fqZ = c()
+  fqM = c()
+
   tm <- xds_obj$outputs$deout[,1]
   for(ix in 1:length(tm)){
-    y_ix <- xds_obj$outputs$deout[ix,-1] 
-    xds_obj <- xds_compute_terms(tm[ix], y_ix, xds_obj) 
+    y_ix <- xds_obj$outputs$deout[ix,-1]
+    xds_obj <- xds_compute_terms(tm[ix], y_ix, xds_obj)
     vars = get_MY_vars(y_ix, xds_obj, s)
     Lambda = rbind(Lambda, xds_obj$terms$Lambda[[s]])
     kappa  = rbind(kappa, xds_obj$terms$kappa[[s]])
@@ -201,32 +201,32 @@ parse_MY_terms <- function(xds_obj, s=1) {
   xds_obj$outputs$orbits$MY[[s]]$G=G
   xds_obj$outputs$orbits$MY[[s]]$Lambda=Lambda
   xds_obj$outputs$orbits$MY[[s]]$kappa=kappa
- 
-  return(xds_obj) 
+
+  return(xds_obj)
 }
 
-#' @title Pull bionomic parameters 
-#' 
-#' @description Pull the stored values of the 
-#' baseline and modified values of parameters. 
-#' Note that the total effect size of control 
-#' is the ratio. 
-#' 
+#' @title Pull bionomic parameters
+#'
+#' @description Pull the stored values of the
+#' baseline and modified values of parameters.
+#' Note that the total effect size of control
+#' is the ratio.
+#'
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
-#' 
-#' @return an **`xds`** model object 
+#'
+#' @return an **`xds`** object
 #' @export
 parse_bionomics <- function(xds_obj, s=1) {
-  ft = c()  
-  f = c()  
-  qt = c()  
-  q = c()  
-  gt = c()  
-  g = c()  
+  ft = c()
+  f = c()
+  qt = c()
+  q = c()
+  gt = c()
+  g = c()
   tm <- xds_obj$outputs$deout[,1]
   for(ix in 1:length(tm)){
-    y_ix <- xds_obj$outputs$deout[ix,-1] 
+    y_ix <- xds_obj$outputs$deout[ix,-1]
     xds_obj <- xds_compute_terms(tm[ix], y_ix, xds_obj)
     ft     = rbind(ft, xds_obj$MY_obj[[s]]$ft)
     f      = rbind(f, xds_obj$MY_obj[[s]]$f)
@@ -247,23 +247,23 @@ parse_bionomics <- function(xds_obj, s=1) {
   return(xds_obj)
 }
 
-#' @title Pull L Terms 
-#' 
-#' @description Pull the stored values of the 
-#' alpha, eta 
-#' 
+#' @title Pull L Terms
+#'
+#' @description Pull the stored values of the
+#' alpha, eta
+#'
 #' @param xds_obj an **`xds`** model object
-#' @param s vector species index 
-#' 
-#' @return an **`xds`** model object 
+#' @param s vector species index
+#'
+#' @return an **`xds`** object
 #' @export
 parse_L_terms <- function(xds_obj, s=1) {
-  alpha = c() 
-  eta = c() 
+  alpha = c()
+  eta = c()
   tm <- xds_obj$outputs$deout[,1]
   for(ix in 1:length(tm)){
-    y_ix <- xds_obj$outputs$deout[ix,-1] 
-    xds_obj <- xds_compute_terms(tm[ix], y_ix, xds_obj) 
+    y_ix <- xds_obj$outputs$deout[ix,-1]
+    xds_obj <- xds_compute_terms(tm[ix], y_ix, xds_obj)
     vars = get_L_vars(y_ix, xds_obj, s)
     alpha = rbind(alpha, xds_obj$terms$alpha[[s]])
     eta   = rbind(eta, xds_obj$terms$eta[[s]])

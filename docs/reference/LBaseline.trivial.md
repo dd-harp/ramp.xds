@@ -2,7 +2,7 @@
 
 Implements
 [LBaseline](https://dd-harp.github.io/ramp.xds/reference/LBaseline.md)
-for the RM model
+for the `trivial` module
 
 ## Usage
 

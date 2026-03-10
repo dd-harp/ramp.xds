@@ -61,7 +61,7 @@ For example, the `SIS` module for the **X**-component is the *SIS* compartmental
 
 In its simplest form, each model family represents the state of a single population, but any model can replicate those states and sub-divide a single population into sub-populations with different parameters. These are population strata for the **X**-component; adult mosquitoes are found in patches for the **MY**-component; immature mosquitoes in aquatic habitats for **L**-component. In **`ramp.xds`** it is comparatively simple to configure a model with multiple strata, patches, and habitats. 
 
-## Basic Setup  
+## Overview
 
 *For our purposes, **Basic Setup** encompasses the configurable options in `xds_setup().`* Each model returned by `xds_setup` is characterized by:
 

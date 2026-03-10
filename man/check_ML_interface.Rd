@@ -10,7 +10,7 @@ check_ML_interface(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Run a set of consistency checks for the \code{ML_interface}

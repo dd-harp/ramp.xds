@@ -25,4 +25,4 @@ TimeSpent(t, y, xds_obj)
 
 ## Value
 
-the unmodified `xds` object
+an **`xds`** object

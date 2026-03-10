@@ -20,11 +20,11 @@ compute_eggs_laid(t, y, xds_obj)
 
 - xds_obj:
 
-  an `xds` object
+  an **`xds`** model object
 
 ## Value
 
-an `xds` object
+an **`xds`** object
 
 ## See also
 

@@ -12,7 +12,7 @@ parse_L_terms(xds_obj, s = 1)
 \item{s}{vector species index}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Pull the stored values of the

@@ -12,7 +12,7 @@ xds_stable_orbit(xds_obj, options = list())
 \item{options}{a list of configurable options}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Run the system for 10 years, and save the last year's orbits.

@@ -22,7 +22,7 @@ setup_vector_control_object(xds_obj)
 
 ## Value
 
-a **`ramp.xds`** model object
+an **`xds`** object
 
 ## See also
 

@@ -1,8 +1,8 @@
 
 #' @title Make indices for all the model variables
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** model object
+#' @return an **`xds`** object
 #' @export
 make_indices <- function(xds_obj) {
   xds_obj$max_ix <- 0
@@ -31,19 +31,19 @@ make_indices <- function(xds_obj) {
 #' @return a named [list] or `if(flatten==TRUE)` a [vector]
 #' @export
 get_inits <- function(xds_obj, flatten=FALSE){
-  
+
   Li = list()
   s = length(xds_obj$L_obj)
   if(s>0)
     for(ix in 1:s)
       Li = c(Li, get_L_inits(xds_obj, ix))
-  
+
   MYi = c()
   s = length(xds_obj$MY_obj)
   if(s>0)
     for(ix in 1:s)
       MYi = c(MYi, get_MY_inits(xds_obj, ix))
-  
+
   Xi = c()
   i = length(xds_obj$XH_obj)
   if(i>0)
@@ -51,7 +51,7 @@ get_inits <- function(xds_obj, flatten=FALSE){
       Xi = c(Xi, get_XH_inits(xds_obj, ix))
   y = list(L=Li, MY=MYi, X=Xi)
   if(flatten) y <- xds_flatten(y)
-  
+
   return(y)
 }
 
@@ -96,13 +96,13 @@ checkIt = function(x, lng, type = "numeric", fixit=TRUE){
 }
 
 #' @title Check the shape and dimensions of an model object
-#' 
+#'
 #' @param obj a [numeric] model object
 #' @param d1 an [integer]
 #' @param d2 an [integer]
-#' 
+#'
 #' @return [matrix]
-#' 
+#'
 #' @export
 shapeIt = function(obj, d1, d2){
   Obj = as.matrix(obj)
@@ -153,16 +153,16 @@ update_inits <- function(xds_obj, y0=NULL){
   if(ii>0) for(ix in 1:ii){
     vars = get_XH_vars(y0, xds_obj, ix)
     xds_obj = change_XH_inits(xds_obj, ix, vars)
-  } 
-  
+  }
+
   return(xds_obj)
 }
 
 #' @title Get the last state
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
 #' @param parse if TRUE return a named list
-#'  
+#'
 #' @return a [numeric] vector
 #' @export
 get_last <- function(xds_obj, parse=FALSE){
@@ -174,7 +174,7 @@ get_last <- function(xds_obj, parse=FALSE){
 #' @title Set the initial values to the last values of the last simulation
 #' @param xds_obj an **`xds`** model object
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** model object
+#' @return an **`xds`** object
 #' @export
 last_to_inits <- function(xds_obj){
   xds_obj <- update_inits(xds_obj, xds_obj$outputs$last_y)
@@ -189,29 +189,29 @@ xds_flatten <- function(vars){
   return(unname(as.vector(unlist(vars))))
 }
 
-#' @title Run Checks 
-#' 
+#' @title Run Checks
+#'
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** model object
+#' @return an **`xds`** object
 #' @export
 check_models <- function(xds_obj) {
   for(i in 1:xds_obj$nHostSpecies)
     xds_obj <- check_XH(xds_obj, i)
-  
+
   for(s in 1:xds_obj$nVectorSpecies){
     xds_obj <- check_MY(xds_obj, s)
     xds_obj <- check_L(xds_obj, s)
   }
   return(xds_obj)
 }
-  
+
 #' Print the **`xds`** model object
 #'
 #' @inheritParams base::print
-#' @rdname print 
-#' @returns a description of the model
+#' @rdname print
+#' @return a description of the model
 #' @export print.xds_obj
-#' @export 
+#' @export
 print.xds_obj = function(x, ...){
   print("HUMAN / HOST",  quote=FALSE)
   print(c("# Species:   ", x$nHostSpecies), quote=FALSE)

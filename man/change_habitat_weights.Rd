@@ -14,7 +14,7 @@ change_habitat_weights(wts, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Set the search weights, \eqn{\omega}, for a set of aquatic habitats

@@ -10,7 +10,7 @@ setup_transmission(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Sets up the object that defines the transmission interface for an \code{xds} model object.

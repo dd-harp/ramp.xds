@@ -5,23 +5,21 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Solve a System of Ordinary Differential Equations — xds_solve.ode"><meta name="description" content="This method solves a system of equations and computes the values of
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Solve a System of Ordinary Differential Equations — xds_solve.ode"><meta name="description" content="Implements xds_solve for ordinary differential equations.
+This method solves a system of equations and computes the values of
 the dependent variables at times \(t=0, dt, 2dt, ... Tmax\). The function dispatches
 on xds_obj$dlay to call:
 deSolve::ode if class(dlay) == 'ode'
 deSolve::dede if class(dlay) == 'dde'
 
-
-Note that the call to xde_derivatives dispatches on xds_obj$frame
-Implements xds_solve for ordinary differential equations"><meta property="og:description" content="This method solves a system of equations and computes the values of
+"><meta property="og:description" content="Implements xds_solve for ordinary differential equations.
+This method solves a system of equations and computes the values of
 the dependent variables at times \(t=0, dt, 2dt, ... Tmax\). The function dispatches
 on xds_obj$dlay to call:
 deSolve::ode if class(dlay) == 'ode'
 deSolve::dede if class(dlay) == 'dde'
 
-
-Note that the call to xde_derivatives dispatches on xds_obj$frame
-Implements xds_solve for ordinary differential equations"></head><body>
+"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -91,13 +89,12 @@ Implements xds_solve for ordinary differential equations"></head><body>
     </div>
 
     <div class="ref-description section level2">
-    <p>This method solves a system of equations and computes the values of
+    <p>Implements <a href="xds_solve.html">xds_solve</a> for ordinary differential equations.
+This method solves a system of equations and computes the values of
 the dependent variables at times \(t=0, dt, 2dt, ... Tmax\). The function dispatches
 on <code>xds_obj$dlay</code> to call:</p><ul><li><p><a href="https://rdrr.io/pkg/deSolve/man/ode.html" class="external-link">deSolve::ode</a> if <code>class(dlay) == 'ode'</code></p></li>
 <li><p><a href="https://rdrr.io/pkg/deSolve/man/dede.html" class="external-link">deSolve::dede</a> if <code>class(dlay) == 'dde'</code></p></li>
-</ul><p>Note that the call to <a href="xde_derivatives.html">xde_derivatives</a> dispatches on <code>xds_obj$frame</code></p>
-<p>Implements <a href="xds_solve.html">xds_solve</a> for ordinary differential equations</p>
-    </div>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>

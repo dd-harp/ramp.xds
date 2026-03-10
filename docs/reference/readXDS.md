@@ -16,4 +16,4 @@ readXDS(filename)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

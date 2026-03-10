@@ -16,7 +16,7 @@ setup_F_travel_eir(setup_name, xds_obj, i, options)
 \item{options}{a named list to set up \code{F_travel_eir}}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Setup a model for the dEIR

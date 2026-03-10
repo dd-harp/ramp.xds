@@ -1,34 +1,34 @@
 
-#' @title Check the XY Interface 
-#' 
+#' @title Check the XY Interface
+#'
 #' @description Run a set of consistency checks for the `XY_interface`
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** model object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
-#'  
+#'
 check_XY_interface = function(xds_obj){
-  return(xds_obj) 
+  return(xds_obj)
 }
 
-#' @title Create the Residency Matrix 
-#' 
-#' @description This function creates the residency matrix that is used to sum 
-#' quantities describing human (or host) populations at the level of a patch. 
-#' 
-#' It is created  
-#' from the residency vector (`residence`), an ordered list 
-#' of the patch index for each stratum.  
-#' 
+#' @title Create the Residency Matrix
+#'
+#' @description This function creates the residency matrix that is used to sum
+#' quantities describing human (or host) populations at the level of a patch.
+#'
+#' It is created
+#' from the residency vector (`residence`), an ordered list
+#' of the patch index for each stratum.
+#'
 #' The structural
 #' parameter `nPatches` to handle cases where some patches
-#' have no residents.  
-#' 
-#' @details 
+#' have no residents.
+#'
+#' @details
 #' The residency matrix, herein denoted \eqn{J},  holds
 #' information about residency for each human (or host) population stratum.
-#' 
+#'
 #' Information about residence in a patch location for each stratum
 #' is passed as the residence vector, an ordered list of patch locations. If
 #' the \eqn{i^{th}} stratum lives in the \eqn{j^{th}} patch, then
@@ -37,25 +37,25 @@ check_XY_interface = function(xds_obj){
 #' Let:
 #' - \eqn{N_h = } `nStrata`, the number of population strata;
 #' - \eqn{N_p = } `nPatches`, the number of patches.
-#' 
+#'
 #' \eqn{J} is an \eqn{N_p \times N_h} matrix that is used to map information about
-#' human (or host) populations onto patches. 
-#' 
+#' human (or host) populations onto patches.
+#'
 #' If \eqn{w} is any vector describing a quantity in strata (*i.e.*, \eqn{\left|w\right|=N_h}), then
 #' \deqn{W={J}\cdot w} computes a vector that sums \eqn{w} by residency for the strata, and \eqn{\left|W\right|= N_p}.
-#' 
+#'
 #' It is a template for the time spent and time at risk matrices, making it possible
 #' to compute mosquito parameters describing blood feeding, the mixing matrix,
 #' and terms describing transmission.
-#' 
+#'
 #' @param nPatches the number of patches
 #' @param residence a vector describing the patch index for each habitat
-#' 
+#'
 #' @return a `nPatches` \eqn{\times} `nStrata` matrix
-#' 
+#'
 #' @seealso see [setup_XY_interface]
 #' @seealso see [view_residency_matrix]
-#' 
+#'
 #' @export
 #' @keywords internal
 make_residency_matrix = function(nPatches, residence){
@@ -66,22 +66,22 @@ make_residency_matrix = function(nPatches, residence){
 }
 
 #' @title Setup the Blood Feeding Interface
-#' 
-#' @description 
-#' This function, called by [make_xds_object_template], sets up 
-#' the blood feeding interface, `xds_obj$XY_interface.` 
-#' 
+#'
+#' @description
+#' This function, called by [make_xds_object_template], sets up
+#' the blood feeding interface, `xds_obj$XY_interface.`
+#'
 #' @details
-#' This implements a framework to model blood feeding 
+#' This implements a framework to model blood feeding
 #' described by Wu SL, *et al.*, (2023).
 #'
 #' Modular computation in **`ramp.xds`** requires a rigid interface to
 #' guarantee mathematical consistency in computing quantites related to blood feeding and transmission.
-#' 
-#' The interface for blood feeding is defined by an object called 
-#' `XY_interface`, 
-#' attached to the **`xds`** model object as `xds_obj$XY_interface.` 
-#' 
+#'
+#' The interface for blood feeding is defined by an object called
+#' `XY_interface`,
+#' attached to the **`xds`** model object as `xds_obj$XY_interface.`
+#'
 #' The blood feeding interface sets up several objects:
 #' - the residency matrix \eqn{J} (see [make_residency_matrix])
 #' - a time spent (TiSp) matrix \eqn{\Theta} (see [setup_TimeSpent])
@@ -102,32 +102,32 @@ make_residency_matrix = function(nPatches, residence){
 #' using *functional responses.* The human fraction ought to be \eqn{q=W/B}.
 #' available can also be used to model mosquito movement.
 #'
-#' **Mulit-Host Models** 
-#' 
-#' In models with multiple host species, let \eqn{W_i} denote the available of the \eqn{i^{th}} host species. 
-#' Total availablity of blood hosts is \deqn{B = \sum_i W_i + O + V,} 
+#' **Mulit-Host Models**
+#'
+#' In models with multiple host species, let \eqn{W_i} denote the available of the \eqn{i^{th}} host species.
+#' Total availablity of blood hosts is \deqn{B = \sum_i W_i + O + V,}
 #' so the the fraction of bites on each host species is \eqn{W_i/B}.
-#' 
+#'
 #' In models with multiple vector species and one host species, each vector species could have different search habits and preferences.
 #' so blood feeding available is computed for each species, denoted \eqn{B_s} and \eqn{W_{s}}.
-#' 
-#' In models with multiple vector and multiple host species, \eqn{W_{i,s}} 
+#'
+#' In models with multiple vector and multiple host species, \eqn{W_{i,s}}
 #' is the available of the \eqn{i^{th}} host species to the \eqn{s^{th}} vector species.
-#' 
+#'
 #' For hosts, available is based on *time spent* in each patch, and *time at risk,* or
 #' time spent by time of day weighted by mosquito species-specific *search weights* reflecting different preferences
 #' and a circadian function describing relative mosquito blood feeding rates by time of day.
-#' 
+#'
 #' @param xds_obj an **`xds`** model object
-#' @param residency the residency vector 
-#' 
-#' @return a **`xds`** model object template with a blood feeding object
-#' 
+#' @param residency the residency vector
+#'
+#' @return an **`xds`** object
+#'
 #' @seealso [setup_transmission]
-#' 
+#'
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @keywords internal
-#' 
+#'
 #' @export
 #' @keywords internal
 setup_XY_interface <- function(xds_obj, residency){
@@ -135,15 +135,15 @@ setup_XY_interface <- function(xds_obj, residency){
 
     interface = list()
     class(interface) <- "setup"
-    
+
     residency_matrix = list()
     residency_matrix[[1]] = make_residency_matrix(xds_obj$nPatches, residency)
-    interface$residency_matrix <- residency_matrix 
-    
+    interface$residency_matrix <- residency_matrix
+
     H = rep(1, nStrata)
     wts = rep(1, nStrata)
     W = F_W_available(wts, H, residency_matrix[[1]])
-  
+
     # There is a set of search weights for
     # each combination of host and vector species:
     # search_weights[[s]][[i]]
@@ -151,29 +151,29 @@ setup_XY_interface <- function(xds_obj, residency){
     search_weights[[1]] = list()
     search_weights[[1]][[1]] = wts
     interface$search_weights <- search_weights
-  
+
     # Relative activity rates for mosquitoes
     interface$F_circadian = list()
     interface$F_circadian[[1]] = F_flat
-  
+
     # Time Spent (TiSp): For each Host Species, i
     interface$TimeSpent = list()
     interface$TimeSpent = list()
     interface$TimeSpent[[1]] = residency_matrix[[1]]
-    
+
     # Time at Risk (TaR): For each TiSp,
     # one for each Vector Species, s
     # TaR[[s]][[i]]
     interface$TaR = list()
     interface$TaR[[1]] = list()
     interface$TaR[[1]][[1]] = residency_matrix
-  
+
     # Exogenous variables
     # Available Blood Hosts: Wi[[s]][[i]]
     interface$Wi = list()
     interface$Wi[[1]] = list()
     interface$Wi[[1]][[1]] = W
-  
+
     interface$W = list()
     interface$W[[1]] = W
 
@@ -186,29 +186,29 @@ setup_XY_interface <- function(xds_obj, residency){
 
     # Mosquito
     xds_obj$XY_interface <- interface
-  
- 
-    
+
+
+
     return(xds_obj)
 })}
 
-#' @title Change Blood Search Weights 
-#' 
-#' @description 
-#' Change the blood feeding search weights, \eqn{\omega}, 
+#' @title Change Blood Search Weights
+#'
+#' @description
+#' Change the blood feeding search weights, \eqn{\omega},
 #' for a set of host strata
-#' 
+#'
 #' @param wts the blood feeding search weights
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param i the host species index
-#' 
-#' @return an `xds` object
+#'
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 change_blood_search_weights = function(wts, xds_obj, s=1, i=1){
   stopifnot(length(wts) == xds_obj$nStrata)
-  xds_obj$XY_interface$search_weights[[s]][[i]] = wts 
+  xds_obj$XY_interface$search_weights[[s]][[i]] = wts
   xds_obj$XY_interface = trigger_setup(xds_obj$XY_interface)
   return(xds_obj)
 }
@@ -248,7 +248,7 @@ F_W_available = function(search_weights, H, TaR){
 #' @param W available of the parasite's / pathogen' local hosts
 #' @param visitors available of *visitors,* or non-resident host populations
 #' @param other_blood available of other vertebrate hosts
-#' @param Btraps blood feeding trap availability 
+#' @param Btraps blood feeding trap availability
 #' @return host available, a [vector]
 #' @export
 #' @keywords internal
@@ -262,7 +262,7 @@ F_B_available = function(W, visitors, other_blood, Btraps){
 #' @param t the time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 compute_WB <- function(t, y, xds_obj){
@@ -278,7 +278,7 @@ compute_WB <- function(t, y, xds_obj){
         xds_obj$XY_interface$Wi[[s]][[i]] = Wi
         W = W + Wi
       }
-      xds_obj$XY_interface$W[[s]] = W 
+      xds_obj$XY_interface$W[[s]] = W
       xds_obj$XY_interface$B[[s]] = F_B_available(W, visitors[[s]], blood_hosts[[s]], Btraps[[s]])
     }
     return(xds_obj)
@@ -302,7 +302,7 @@ F_rbr = function(search_weights, H){
 #' @param t the time
 #' @param xds_obj an **`xds`** model object
 #' @param y state vector
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 compute_RBR = function(t, xds_obj, y){
@@ -327,7 +327,7 @@ compute_RBR = function(t, xds_obj, y){
 #' @param t the time
 #' @param TiSp a time spent matrix
 #' @param F_circadian a function to compute relative activity rates by time of day
-#' @param time_at_home the fraction of time spent at home 
+#' @param time_at_home the fraction of time spent at home
 #' @return a TaR [matrix]
 #' @export
 #' @keywords internal
@@ -341,7 +341,7 @@ F_TaR = function(t, TiSp, F_circadian, time_at_home){
 #' @description Make a time at risk matrix (TaR) from a time spent matrix and a circadian function
 #' @param xds_obj an **`xds`** model object
 #' @param t the time
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 compute_TaR <- function(xds_obj, t=0){
@@ -349,7 +349,7 @@ compute_TaR <- function(xds_obj, t=0){
     for(s in 1:xds_obj$nVectorSpecies)
       for(i in 1:xds_obj$nHostSpecies){
         TaR = F_TaR(t, TimeSpent[[i]], F_circadian[[s]], time_at_home[[i]])
-        xds_obj$XY_interface$TaR[[i]][[s]] = TaR 
+        xds_obj$XY_interface$TaR[[i]][[s]] = TaR
       }
   return(xds_obj)
 })}
@@ -361,7 +361,7 @@ compute_TaR <- function(xds_obj, t=0){
 #' @param t the time
 #' @param y the state variables
 #' @param xds_obj an **`xds`** model object
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 BloodFeeding = function(t, y, xds_obj){
@@ -377,7 +377,7 @@ BloodFeeding = function(t, y, xds_obj){
 #' blood feeding terms, so the class of `xds_obj$beta` must also
 #' be updated, if they are not dynamic, so [trigger_setup] is called.
 #' @inheritParams BloodFeeding
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 BloodFeeding.setup = function(t, y, xds_obj){
@@ -390,7 +390,7 @@ BloodFeeding.setup = function(t, y, xds_obj){
 #' @title Compute blood feeding objects: static models
 #' @description Return the blood feeding objects unmodified
 #' @inheritParams BloodFeeding
-#' @return the unmodified `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 BloodFeeding.static = function(t, y, xds_obj){
@@ -403,7 +403,7 @@ BloodFeeding.static = function(t, y, xds_obj){
 #' the time spent matrix \eqn{(\Theta)}, and the time-at-risk matrix \eqn{(\Psi)}
 #' for static models.
 #' @inheritParams BloodFeeding
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 BloodFeeding.dynamic = function(t, y, xds_obj){
@@ -416,7 +416,7 @@ BloodFeeding.dynamic = function(t, y, xds_obj){
 #' the time spent matrix \eqn{(\Theta)}, and the time-at-risk matrix \eqn{(\Psi)}
 #' for static models.
 #' @inheritParams BloodFeeding
-#' @return an `xds` object
+#' @return an **`xds`** object
 #' @export
 #' @keywords internal
 blood_feeding_dynamics = function(t, y, xds_obj){
@@ -428,7 +428,7 @@ blood_feeding_dynamics = function(t, y, xds_obj){
 
 
 #' @title View residence membership
-#' @description Shows the residence membership information (from the residence matrix) 
+#' @description Shows the residence membership information (from the residence matrix)
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a named [list]

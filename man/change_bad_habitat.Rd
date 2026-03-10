@@ -14,7 +14,7 @@ change_bad_habitat(Qbad, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Set the search weights, \eqn{\omega}, for a set of aquatic habitats

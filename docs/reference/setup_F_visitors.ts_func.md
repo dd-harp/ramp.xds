@@ -30,4 +30,4 @@ setup_F_visitors(mod_name, xds_obj, s, options)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

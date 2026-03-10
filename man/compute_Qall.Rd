@@ -7,10 +7,10 @@
 compute_Qall(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an \code{xds} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Set the value of a variable, \eqn{Q}, that describes the availability of any habitat

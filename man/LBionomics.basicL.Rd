@@ -16,7 +16,7 @@
 \item{s}{the species index}
 }
 \value{
-a \strong{\code{ramp.xds}} object
+an \strong{\code{xds}} object
 }
 \description{
 Implements \link{LBionomics} for the \code{basicL}

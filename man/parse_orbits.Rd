@@ -12,7 +12,7 @@ parse_orbits(outputs, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-varslist a \link{list}
+a named \link{list}
 }
 \description{
 parse the outputs of an object created by xde_solve or dts_solve

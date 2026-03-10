@@ -16,7 +16,7 @@ setup_F_bad_habitat(mod_name, xds_obj, s, options)
 \item{options}{a named list to configure \code{F_bad_habitat}}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Setup a model for no time spent searching

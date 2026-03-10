@@ -12,7 +12,7 @@
 \item{s}{the species index}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on the type of \code{MY_obj}.

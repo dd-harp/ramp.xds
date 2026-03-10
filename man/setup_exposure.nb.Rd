@@ -16,7 +16,7 @@
 \item{options}{set up options list}
 }
 \value{
-an  \strong{\code{xds}} object
+an \strong{\code{xds}} object
 }
 \description{
 Set up a nbson model for Exposure and Infection

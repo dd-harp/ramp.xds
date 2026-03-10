@@ -17,4 +17,4 @@ setup_blood_host_object(xds_obj)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

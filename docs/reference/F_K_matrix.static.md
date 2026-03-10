@@ -27,7 +27,7 @@ F_K_matrix(t, xds_obj, s)
 
 ## Value
 
-the **`xds`** model object
+an **`xds`** object
 
 ## Note
 

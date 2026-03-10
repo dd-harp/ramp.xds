@@ -12,7 +12,7 @@ setup_XY_interface(xds_obj, residency)
 \item{residency}{the residency vector}
 }
 \value{
-a \strong{\code{xds}} model object template with a blood feeding object
+an \strong{\code{xds}} object
 }
 \description{
 This function, called by \link{make_xds_object_template}, sets up

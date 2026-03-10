@@ -16,15 +16,14 @@
 \item{s}{the species index}
 }
 \value{
-the model as a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
-Reset the effect SIzes for static models
-
-When modules are added to compute effect SIzes
+Reset the effect sizes for static models.
+When modules are added to compute effect sizes
 from baseline parameters, those functions store
-an effect SIze. The total effect SIze is the
-product of the effect SIzes for each intervention.
-SInce coverage could be changing dynamically, these
+an effect size. The total effect size is the
+product of the effect sizes for each intervention.
+Since coverage could be changing dynamically, these
 must be reset each time the derivatives are computed.
 }

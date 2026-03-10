@@ -16,7 +16,7 @@
 \item{options}{a list to configure \code{F_vis_kappa}}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Setup a model for the net infectiousness

@@ -29,4 +29,4 @@ setup_XH_obj(Xname, xds_obj, i, options = list())
 
 ## Value
 
-the **`xds`** model object
+an **`xds`** object

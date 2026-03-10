@@ -1,7 +1,7 @@
 
 #' @title Set bionomic parameter rates relative to baseline
-#' @description This calls MBaseline and LBaseline for each species. 
-#' 
+#' @description This calls MBaseline and LBaseline for each species.
+#'
 #' This function sets bionomic parameters to their pre-control baseline value, which can later be
 #' modified by vector control. In some models, the pre-control baseline is computed in
 #' here as a function of resource availability.
@@ -29,7 +29,7 @@ BaselineBionomics <- function(t, y, xds_obj){
 #' @return a [list]
 #' @export
 ModifiedBionomics <- function(t, y, xds_obj){
-  
+
   for(s in 1:xds_obj$nVectorSpecies){
     xds_obj <- MBionomics(t, y, xds_obj, s)
     xds_obj <- LBionomics(t, y, xds_obj, s)

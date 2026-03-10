@@ -14,7 +14,7 @@ Transmission(t, y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on the type of \code{xds_obj$beta}

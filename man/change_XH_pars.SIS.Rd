@@ -14,7 +14,7 @@
 \item{options}{a named list}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 A utility to change parameters

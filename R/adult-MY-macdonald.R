@@ -1,63 +1,63 @@
 # specialized methods for the adult mosquito macdonald model
 
-#' @title The **macdonald** Module Skill Set 
-#' 
-#' @description The **MY** skill set is a list of 
-#' an module's capabilities: 
-#' 
-#' + `demography` is 
+#' @title The **macdonald** Module Skill Set
 #'
-#' @inheritParams skill_set_MY 
-#' 
-#' @return *MY* module skill set, as a list 
-#' 
+#' @description The **MY** skill set is a list of
+#' an module's capabilities:
+#'
+#' + `demography` is
+#'
+#' @inheritParams skill_set_MY
+#'
+#' @return *MY* module skill set, as a list
+#'
 #' @export
 skill_set_MY.macdonald = function(MYname){
   return(list())
 }
 
-#' Run a check before solving 
+#' Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index 
+#' @param s the vector species index
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_MY.macdonald = function(xds_obj, s){
   Omega <- with(xds_obj$MY_obj[[s]], make_Omega_xde(g, sigma, mu, K_matrix))
   xds_obj$MY_obj[[s]]$Omega <- Omega
-  xds_obj$MY_obj[[s]]$Upsilon <- expm::expm(-Omega*xds_obj$MY_obj[[s]]$eip) 
+  xds_obj$MY_obj[[s]]$Upsilon <- expm::expm(-Omega*xds_obj$MY_obj[[s]]$eip)
   return(xds_obj)
 }
 
 #' @title Compute derivatives for the **MY** module `macdonald`
-#' @description 
+#' @description
 #' This implements a delay differential equation model for adult mosquito ecology and
 #' infection dynamics that is consistent with the model published by George
-#' Macdonald in 1952. A generalized version of this model, the **MY** module `GeRM`, 
+#' Macdonald in 1952. A generalized version of this model, the **MY** module `GeRM`,
 #' was developed to handle exogenous forcing by weather and vector control. This model
-#' should be used only for educational purposes. 
+#' should be used only for educational purposes.
 #'
 #' **Variables:**
 #'
-#' - \eqn{M}: the density of adult mosquitoes 
-#' - \eqn{Y}: the density of infected adult mosquitoes 
-#' - \eqn{Z}: the density of infectious adult mosquitoes 
+#' - \eqn{M}: the density of adult mosquitoes
+#' - \eqn{Y}: the density of infected adult mosquitoes
+#' - \eqn{Z}: the density of infectious adult mosquitoes
 #'
 #' **Parameters and Terms:**
 #'
-#' - \eqn{\Lambda} or `Lambda`: the emergence rate of adult mosquitoes (from `F_emerge`) 
-#' - \eqn{f} or `f`: the blood feeding rate 
+#' - \eqn{\Lambda} or `Lambda`: the emergence rate of adult mosquitoes (from `F_emerge`)
+#' - \eqn{f} or `f`: the blood feeding rate
 #' - \eqn{q} or `q`: maturation rate
-#' - \eqn{\tau} or `eip`: the extrinsic incubation period 
-#' - \eqn{\Omega} or `Omega`: an adult mosquito demographic matrix, including mortality and migration 
+#' - \eqn{\tau} or `eip`: the extrinsic incubation period
+#' - \eqn{\Omega} or `Omega`: an adult mosquito demographic matrix, including mortality and migration
 #' - \eqn{\Upsilon} or `Upsilon`: survival and dispersal through the eip, \eqn{\Upsilon= e^{-\Omega \tau}}
 #'
 #'
 #' **Dynamics:**
-#' In the delay equation, we use the subscript to denote the lagged value of a 
-#' variable or term: *e.g.*, \eqn{M_\tau = M(t-\tau)}. 
-#' 
+#' In the delay equation, we use the subscript to denote the lagged value of a
+#' variable or term: *e.g.*, \eqn{M_\tau = M(t-\tau)}.
+#'
 #' \deqn{
 #' \begin{array}{rl}
 #' dM/dt &= \Lambda - \Omega \cdot M \\
@@ -66,11 +66,11 @@ check_MY.macdonald = function(xds_obj, s){
 #' \end{array}}
 #'
 #' This model was included mainly for the historical interest. It has been updated to handle
-#' exogenous forcing by weather and vector control in the module `GeRM` 
-#' 
-#' @note This model is not capable of being extended to 
-#' handle exogenous forcing by weather or vector control. Please 
-#' use the `GeRM` model. 
+#' exogenous forcing by weather and vector control in the module `GeRM`
+#'
+#' @note This model is not capable of being extended to
+#' handle exogenous forcing by weather or vector control. Please
+#' use the `GeRM` model.
 #' @inheritParams dMYdt
 #' @return a [numeric] vector
 #' @importFrom deSolve lagvalue
@@ -326,17 +326,17 @@ make_MY_inits_macdonald = function(nPatches, options = list(),
 
 #' @title change initial values for the macdonald model
 #' @description Implements [change_MY_inits] for the macdonald model
-#' 
+#'
 #' @inheritParams change_MY_inits
-#' 
+#'
 #' @return a [list]
 #' @export
 change_MY_inits.macdonald = function(xds_obj, s, options=list()){
-  inits = with(get_MY_inits(xds_obj, s), 
-            with(options,{ 
+  inits = with(get_MY_inits(xds_obj, s),
+            with(options,{
               list(M=M, P=P, Y=Y, Z=Z, dk_ix=dk_ix)
            }))
-  xds_obj$MY_obj[[s]]$inits=inits 
+  xds_obj$MY_obj[[s]]$inits=inits
   return(xds_obj)
 }
 
@@ -360,9 +360,8 @@ steady_state_MY.macdonald = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$M
 
 
 
-#' @title macdonald-style adult mosquito bionomics
-#' @description Reset the effect sizes for static models
-#' @description
+#' @title Macdonald-style adult mosquito bionomics
+#' @description Reset the effect sizes for static models.
 #' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store
 #' an effect size. The total effect size is the
@@ -376,9 +375,8 @@ MBaseline.macdonald <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title macdonald-style adult mosquito bionomics
-#' @description Reset the effect sizes for static models
-#' @description
+#' @title Macdonald-style adult mosquito bionomics
+#' @description Reset the effect sizes for static models.
 #' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store
 #' an effect size. The total effect size is the

@@ -29,4 +29,4 @@ setup_XH_inits(xds_obj, H, i = 1, options = list())
 
 ## Value
 
-a **`ramp.xds`** object
+an **`xds`** object

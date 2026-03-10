@@ -16,7 +16,7 @@
 \item{options}{model options as a named list}
 }
 \value{
-a \link{list} vectord
+an \strong{\code{xds}} object
 }
 \description{
 Implements \link{setup_XH_obj} for the trivial model

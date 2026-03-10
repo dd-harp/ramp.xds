@@ -31,4 +31,4 @@ MBaseline(t, y, xds_obj, s)
 
 ## Value
 
-the model as a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** object

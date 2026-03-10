@@ -16,4 +16,4 @@ check_XY_interface(xds_obj)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

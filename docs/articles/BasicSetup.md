@@ -116,7 +116,7 @@ aquatic habitats for **L**-component. In **`ramp.xds`** it is
 comparatively simple to configure a model with multiple strata, patches,
 and habitats.
 
-## Basic Setup
+## Overview
 
 *For our purposes, **Basic Setup** encompasses the configurable options
 in `xds_setup().`* Each model returned by `xds_setup` is characterized

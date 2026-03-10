@@ -99,7 +99,7 @@ dts_update.full <- function(t, y, xds_obj) {
 #' @keywords internal
 #' @export
 dts_update.human <- function(t, y, xds_obj) {
-  
+
   xds_obj <- xds_compute_terms(t, y, xds_obj)
 
   # state derivatives
@@ -121,7 +121,7 @@ dts_update.human <- function(t, y, xds_obj) {
 dts_update.mosy <- function(t, y, xds_obj) {
 
   xds_obj <- xds_compute_terms(t, y, xds_obj)
-  
+
   # compute derivatives
   Lt <- dts_update_Lt(t, y, xds_obj, 1)
   if(xds_obj$nVectors > 1)
@@ -147,7 +147,7 @@ dts_update.mosy <- function(t, y, xds_obj) {
 dts_update.aquatic <- function(t, y, xds_obj) {
 
   xds_obj <- xds_compute_terms(t, y, xds_obj)
-  
+
   # compute derivatives
   Lt <- dts_update_Lt(t, y, xds_obj, 1)
   if(xds_obj$nVectors > 1)
@@ -165,12 +165,12 @@ dts_update.aquatic <- function(t, y, xds_obj) {
 #' @keywords internal
 #' @export
 dts_update.eir <- function(t, y, xds_obj) {
-  
+
   xds_obj <- xds_compute_terms(t, y, xds_obj)
-  
+
   # state derivatives
   XHt <- dts_update_XHt(t, y, xds_obj, 1)
-  
+
   return(list(c(XHt)))
 }
 

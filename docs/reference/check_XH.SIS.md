@@ -21,4 +21,4 @@ check_XH(xds_obj, i)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

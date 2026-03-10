@@ -14,7 +14,7 @@ compute_EIR_full(t, y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 This function computes the EIR from each vector species for each stratum of each host species

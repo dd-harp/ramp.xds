@@ -42,7 +42,7 @@ xds_setup_human(
 \item{model_name}{a name for the model}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 \loadmathjax

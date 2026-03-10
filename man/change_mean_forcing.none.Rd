@@ -14,7 +14,7 @@
 \item{s}{the vector species index}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+an \strong{\code{xds}} object
 }
 \description{
 Implement \code{change_mean_forcing} for a model

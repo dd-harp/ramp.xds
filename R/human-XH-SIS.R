@@ -1,62 +1,62 @@
 # specialized methods for the human SIS module
 
 #' @title `SIS` Derivatives Function (an **XH** Module)
-#'  
-#' @description 
-#' 
+#'
+#' @description
+#'
 #' Computes the derivatives for SIS compartmental model with variables:
-#' 
+#'
 #' + \eqn{I} - the density of infected humans (or hosts)
 #' + \eqn{S} - the density of susceptible humans (or hosts)
 #' + \eqn{H} - human (or host) population density
-#' 
-#' The model assumes \eqn{S+I=H.} This function computes 
-#' computes \eqn{dH/dt} and \eqn{dI/dt}. 
-#' For convenience, \eqn{S} is also computed 
-#' by [get_XH_vars.SIS] 
+#'
+#' The model assumes \eqn{S+I=H.} This function computes
+#' computes \eqn{dH/dt} and \eqn{dI/dt}.
+#' For convenience, \eqn{S} is also computed
+#' by [get_XH_vars.SIS]
 #' and [parse_XH_orbits.SIS].
-#'  
+#'
 #' The force of infection or "happenings" rate is \eqn{h}. It is computed
-#' upstream and used here.  
-#' 
-#' The clearance rate for infections is \eqn{r}, and by assumption, 
+#' upstream and used here.
+#'
+#' The clearance rate for infections is \eqn{r}, and by assumption,
 #' individuals are assumed to be susceptible to infection after clearing
 #' infections.
-#' 
+#'
 #' The module includes a port to model mass treatment, \eqn{\xi(t)}.
-#'  
+#'
 #' **Human Demographic**  change is modeled with two functions:
-#' 
-#' + \eqn{B(t, H)} is the time-dependent population birth rate; 
-#' 
-#' + \eqn{D} is a linear operator, a matrix describing mortality, migration, aging, 
-#' and dynamical transfers among population strata. 
+#'
+#' + \eqn{B(t, H)} is the time-dependent population birth rate;
+#'
+#' + \eqn{D} is a linear operator, a matrix describing mortality, migration, aging,
+#' and dynamical transfers among population strata.
 #'
 #' The
 #' derivatives computed are:
-#' 
+#'
 #' \deqn{
 #' \begin{array}{rl}
 #' dH/dt = & B(t,H)  + D \cdot H \\
 #' dI/dt = & h (H-I) - r I - \xi(t) +  D \cdot I
 #' \end{array}
 #' }
-#' 
+#'
 #' @inheritParams dXHdt
-#' 
+#'
 #' @seealso [SIS Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
-#' @return the derivatives, as a vector 
-#' 
+#' @return the derivatives, as a vector
+#'
 #' @export
 dXHdt.SIS <- function(t, y, xds_obj, i) {
 
   foi <- xds_obj$terms$FoI[[i]]
-  
+
   with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]], {
       dH <- Births(t, H, births) + D_matrix %*% H
-      dI <- foi*(H-I) - r*I + D_matrix %*% I 
-      dI <- dI - mda(t)*I - msat(t)*I 
+      dI <- foi*(H-I) - r*I + D_matrix %*% I
+      dI <- dI - mda(t)*I - msat(t)*I
       return(c(dH, dI))
     })
   })
@@ -65,15 +65,15 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 
 
 #' @title Setup `SIS` (**XH** component)
-#' 
-#' @description Set up an `SIS` model object 
-#' for the **XH** component 
-#' 
-#' @inheritParams setup_XH_obj
-#' 
-#' @return the **`xds`** model object
-#' @noRd
 #'
+#' @description Set up an `SIS` model object
+#' for the **XH** component
+#'
+#' @inheritParams setup_XH_obj
+#'
+#' @return an **`xds`** object
+#'
+#' @keywords internal
 #' @export
 setup_XH_obj.SIS = function(Xname, xds_obj, i, options=list()){
   xds_obj$XH_obj[[i]] = make_XH_obj_SIS(xds_obj$nStrata[1], options)
@@ -81,20 +81,20 @@ setup_XH_obj.SIS = function(Xname, xds_obj, i, options=list()){
   return(xds_obj)
 }
 
-#' @title Make an SIS **XH** model object 
-#' 
+#' @title Make an SIS **XH** model object
+#'
 #' @param nStrata is the number of population strata
 #' @param options a named list with parameter values to overwrite defaults
 #' @param b transmission probability (efficiency) from mosquito to human
 #' @param c transmission probability (efficiency) from human to mosquito
 #' @param r recovery rate
-#' @param q_lm detection by light microscopy  
-#' @param q_rdt detection by RDT 
-#' @param q_pcr detection by pcr 
-#' 
+#' @param q_lm detection by light microscopy
+#' @param q_rdt detection by RDT
+#' @param q_pcr detection by pcr
+#'
 #' @return an **XH** model object
-#' @keywords internal 
-#' 
+#' @keywords internal
+#'
 #' @export
 make_XH_obj_SIS = function(nStrata, options=list(),
                              b=0.55, r=1/180, c=0.15,
@@ -102,46 +102,46 @@ make_XH_obj_SIS = function(nStrata, options=list(),
   with(options,{
     XH_obj = list()
     class(XH_obj) <- "SIS"
-    
+
     XH_obj$b = checkIt(b, nStrata)
     XH_obj$c = checkIt(c, nStrata)
     XH_obj$r = checkIt(r, nStrata)
     XH_obj$q_lm = checkIt(q_lm, nStrata)
     XH_obj$q_rdt = checkIt(q_rdt, nStrata)
     XH_obj$q_pcr = checkIt(q_pcr, nStrata)
-    
+
     # Ports for demographic models
-    XH_obj$D_matrix = diag(0, nStrata) 
+    XH_obj$D_matrix = diag(0, nStrata)
     births = "zero"
     class(births) = births
-    XH_obj$births = births 
-    XH_obj$mda = F_zero 
-    XH_obj$msat = F_zero 
-    
+    XH_obj$births = births
+    XH_obj$mda = F_zero
+    XH_obj$msat = F_zero
+
     return(XH_obj)
   })}
 
 
-#' @title Set new values for the SIS model 
-#' 
+#' @title Set new values for the SIS model
+#'
 #' @description A utility to change parameters
 #' values for the SIS model (**XH** component)
-#' 
-#' `options` is a named list, and: 
-#' 
+#'
+#' `options` is a named list, and:
+#'
 #' + \eqn{b} is set to `options$b`
 #' + \eqn{c} is set to `options$c`
 #' + \eqn{r} is set to `options$r`
 #' + \eqn{q_lm} is set to `options$q_lm`
 #' + \eqn{q_rdt} is set to `options$q_rdt`
 #' + \eqn{q_pcr} is set to `options$q_pcr`
-#'  
-#' @inheritParams change_XH_pars 
-#' 
+#'
+#' @inheritParams change_XH_pars
+#'
 #' @seealso [get_XH_pars.SIS()] and the github.io essay on [SIS Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
-#' 
-#' @return an **`xds`** model object
-#' 
+#'
+#' @return an **`xds`** object
+#'
 #' @export
 change_XH_pars.SIS <- function(xds_obj, i=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
@@ -155,22 +155,22 @@ change_XH_pars.SIS <- function(xds_obj, i=1, options=list()) {
     return(xds_obj)
   }))}
 
-#' @title Get *SIS* module parameters 
-#' 
-#' @description 
+#' @title Get *SIS* module parameters
+#'
+#' @description
 #' Returns the stored parameter
-#' values as a list. 
-#' 
+#' values as a list.
+#'
 #' @note
 #' Parameter values for the \eqn{i^{th}} host are
-#' stored as `xds_obj$XH_obj[[i]]`. 
-#' 
+#' stored as `xds_obj$XH_obj[[i]]`.
+#'
 #' @inheritParams get_XH_pars
-#' 
-#' @return SIS model parameters 
+#'
+#' @return SIS model parameters
 #' @export
 get_XH_pars.SIS <- function(xds_obj, i=1) {
-  with(xds_obj$XH_obj[[i]],list(b=b, c=c, r=r, 
+  with(xds_obj$XH_obj[[i]],list(b=b, c=c, r=r,
                                 q_lm=q_lm, q_rdt=q_rdt, q_pcr=q_pcr))
 }
 
@@ -179,30 +179,30 @@ get_XH_pars.SIS <- function(xds_obj, i=1) {
 #' @inheritParams setup_XH_ix
 #' @return none
 #' @importFrom utils tail
-#' @noRd
+#' @keywords internal
 #' @export
 setup_XH_ix.SIS <- function(xds_obj, i) {with(xds_obj,{
-  
+
   H_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(H_ix, 1)
-  
+
   I_ix <- seq(from = max_ix+1, length.out=nStrata[i])
   max_ix <- tail(I_ix, 1)
-  
+
   xds_obj$XH_obj[[i]]$ix = list(H_ix=H_ix, I_ix=I_ix)
   xds_obj$max_ix = max_ix
-  
+
   return(xds_obj)
 })}
 
-#' @title Get Variables by Name 
-#' 
-#' @description Get the the value of variables 
-#' from the flat state variable 
-#' vector \eqn{y}, and return 
-#' the values as a named list 
-#' 
-#' @inheritParams get_XH_vars 
+#' @title Get Variables by Name
+#'
+#' @description Get the the value of variables
+#' from the flat state variable
+#' vector \eqn{y}, and return
+#' the values as a named list
+#'
+#' @inheritParams get_XH_vars
 #' @keywords internal
 #' @return a [list]
 #' @export
@@ -227,17 +227,17 @@ parse_XH_orbits.SIS <- function(outputs, xds_obj, i) {
     H <- outputs[,H_ix]
     I <- outputs[,I_ix]
     S <- H-I
-    vars <- list(S=S, I=I, H=H) 
+    vars <- list(S=S, I=I, H=H)
     return(vars)
 })}
 
 
 #' @title Setup initial values for *SIS*
-#' 
+#'
 #' @inheritParams setup_XH_inits
-#' 
-#' @return a **`ramp.xds`** object 
-#' @noRd 
+#'
+#' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_XH_inits.SIS = function(xds_obj, H, i=1, options=list()){
   xds_obj$XH_obj[[i]]$inits = make_XH_inits_SIS(xds_obj$nStrata[i], H, options)
@@ -245,16 +245,16 @@ setup_XH_inits.SIS = function(xds_obj, H, i=1, options=list()){
 }
 
 #' @title Make initial values for the SIS xde human model, with defaults
-#' 
-#' @description Set the initial values  
-#' 
+#'
+#' @description Set the initial values
+#'
 #' @param nStrata the number of strata in the model
 #' @param H the initial human population density
 #' @param options a [list] to overwrite defaults
 #' @param I the initial values of the parameter I
-#' 
-#' @keywords internal 
-#' 
+#'
+#' @keywords internal
+#'
 #' @return a [list]
 #' @export
 make_XH_inits_SIS = function(nStrata, H, options=list(), I=1){
@@ -264,27 +264,27 @@ make_XH_inits_SIS = function(nStrata, H, options=list(), I=1){
     return(list(H=H, I=I))
 })}
 
-#' @title `SIS` - Change Initial Values 
-#' 
-#' @description 
-#' 
+#' @title `SIS` - Change Initial Values
+#'
+#' @description
+#'
 #' For the **XH** module, `SIS,`
-#' change the initial value(s) for the variable \eqn{I}. 
-#' 
-#' The argument 
-#' passed as `options` should be a named list, and the 
+#' change the initial value(s) for the variable \eqn{I}.
+#'
+#' The argument
+#' passed as `options` should be a named list, and the
 #' new initial value(s) are set to `options$I`
-#' 
-#' @note Initial values for human population size, 
+#'
+#' @note Initial values for human population size,
 #' the variable \eqn{H}, must be set using [change_H]
-#' 
-#' @inheritParams change_XH_inits 
-#' 
-#' @seealso The variable names are returned by calling [get_XH_inits]. 
-#' The function [make_XH_inits_SIS] is called during setup. 
-#' 
+#'
+#' @inheritParams change_XH_inits
+#'
+#' @seealso The variable names are returned by calling [get_XH_inits].
+#' The function [make_XH_inits_SIS] is called during setup.
+#'
 #' @return an **`xds`** object
-#' 
+#'
 #' @export
 change_XH_inits.SIS <- function(xds_obj, i=1, options=list()) {
   with(get_XH_inits(xds_obj, i), with(options,{
@@ -292,14 +292,14 @@ change_XH_inits.SIS <- function(xds_obj, i=1, options=list()) {
     return(xds_obj)
   }))}
 
-#' @title Compute Infectious Density 
-#' 
+#' @title Compute Infectious Density
+#'
 #' @description In the *SIS* model family, infectious
-#' density is \eqn{cI}. 
-#' 
+#' density is \eqn{cI}.
+#'
 #' @inheritParams F_I
 #' @keywords internal
-#' @return Infectious density 
+#' @return Infectious density
 #' @export
 F_I.SIS <- function(t, y, xds_obj, i) {
   I = y[xds_obj$XH_obj[[i]]$ix$I_ix]
@@ -307,39 +307,39 @@ F_I.SIS <- function(t, y, xds_obj, i) {
   return(X)
 }
 
-#' @title Compute Population Density 
-#' 
+#' @title Compute Population Density
+#'
 #' @description Implements [F_H] for the *SIS* module
-#' 
+#'
 #' @inheritParams F_H
 #' @keywords internal
-#' 
-#' @return Human (host) population density, \eqn{H} 
-#' 
+#'
+#' @return Human (host) population density, \eqn{H}
+#'
 #' @export
 F_H.SIS <- function(t, y, xds_obj, i){
   with(get_XH_vars(y, xds_obj, i), return(H))
 }
 
-#' @title Compute Infectivity 
-#' 
-#' @description  
-#' This function computes the fraction of infectious 
+#' @title Compute Infectivity
+#'
+#' @description
+#' This function computes the fraction of infectious
 #' bites that cause an infection. The SIS model,
-#' assumes a constant fraction causes infection, \eqn{b}.  
-#' 
+#' assumes a constant fraction causes infection, \eqn{b}.
+#'
 #' @inheritParams F_infectivity
 #' @keywords internal
-#' 
-#' @return The constant \eqn{b} 
-#' 
+#'
+#' @return The constant \eqn{b}
+#'
 #' @export
 F_infectivity.SIS <- function(y, xds_obj, i) {
   with(xds_obj$XH_obj[[i]], b)
 }
 
 
-#' @title Compute the prevalence of infection 
+#' @title Compute the prevalence of infection
 #' @description Implements [F_prevalence] for the SIS model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
@@ -368,34 +368,34 @@ F_ni.SIS <- function(vars, XH_obj) {
 HTC.SIS <- function(xds_obj, i) {
   with(xds_obj$XH_obj[[i]], return(c/r))}
 
-#' @title The **XH** Module Skill Set 
-#' 
-#' @description The **XH** skill set is a list of 
-#' an module's capabilities. 
-#' 
-#' @note This method dispatches on `class(xds_obj$XH_obj)` 
+#' @title The **XH** Module Skill Set
+#'
+#' @description The **XH** skill set is a list of
+#' an module's capabilities.
+#'
+#' @note This method dispatches on `class(xds_obj$XH_obj)`
 #'
 #' @inheritParams skill_set_XH
-#' 
-#' @return the skill set, as a list 
+#'
+#' @return the skill set, as a list
 #' @keywords internal
-#' 
+#'
 #' @export
 skill_set_XH.SIS = function(Xname = "SIS"){
   return(list(
-    demography  = TRUE, 
-    prevalence  = TRUE, 
-    malaria     = TRUE, 
-    diagnostics = FALSE 
+    demography  = TRUE,
+    prevalence  = TRUE,
+    malaria     = TRUE,
+    diagnostics = FALSE
   ))
 }
 
-#' Check / update before solving 
+#' Check / update before solving
 #'
 #' @inheritParams check_XH
 #' @keywords internal
 #'
-#' @returns an **`xds`** model object 
+#' @return an **`xds`** object
 #' @export
 check_XH.SIS = function(xds_obj, i){
   return(xds_obj)
@@ -418,7 +418,7 @@ F_pfpr_by_lm.SIS <- function(vars, XH_obj) {
   return(pr)
 }
 
-#' @title Compute *Pf*PR by RDT 
+#' @title Compute *Pf*PR by RDT
 #' @description Implements [F_prevalence] for the SIS model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
@@ -429,7 +429,7 @@ F_pfpr_by_rdt.SIS <- function(vars, XH_obj) {
   return(pr)
 }
 
-#' @title Compute *Pf*PR by PCR 
+#' @title Compute *Pf*PR by PCR
 #' @description Implements [F_prevalence] for the SIS model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`

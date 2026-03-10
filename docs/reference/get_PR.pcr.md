@@ -6,22 +6,22 @@ Return the *Pf*PR by PCR
 
 ``` r
 # S3 method for class 'pcr'
-get_PR(xds_obj, i = 1, method = "pcr")
+get_PR(xds_obj, method = "pcr", i = 1)
 ```
 
 ## Arguments
 
 - xds_obj:
 
-  an **`xds`** object
-
-- i:
-
-  the host species index
+  an **`xds`** model object
 
 - method:
 
   the method used for computing *Pf*PR
+
+- i:
+
+  the host species index
 
 ## Value
 

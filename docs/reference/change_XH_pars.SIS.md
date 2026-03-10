@@ -40,7 +40,7 @@ change_XH_pars(xds_obj, i = 1, options = list())
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object
 
 ## See also
 

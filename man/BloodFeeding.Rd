@@ -14,7 +14,7 @@ BloodFeeding(t, y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Compute and store host available, \eqn{W},

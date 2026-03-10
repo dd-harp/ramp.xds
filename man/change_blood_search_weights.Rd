@@ -16,7 +16,7 @@ change_blood_search_weights(wts, xds_obj, s = 1, i = 1)
 \item{i}{the host species index}
 }
 \value{
-an \code{xds} object
+an \strong{\code{xds}} object
 }
 \description{
 Change the blood feeding search weights, \eqn{\omega},

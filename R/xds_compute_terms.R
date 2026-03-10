@@ -1,17 +1,17 @@
 
 #' @title Compute Derivatives
-#' 
+#'
 #' @description The function to compute the derivatives dispatches on `class(frame)`
 #'
 #' @seealso [xds_solve]
-#' 
+#'
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' 
+#'
 #' @return a [list] containing the vector of all state derivatives
 #' @keywords internal
-#' 
+#'
 #' @export
 xds_compute_terms <- function(t, y, xds_obj) {
   UseMethod("xds_compute_terms", xds_obj$frame)
@@ -20,9 +20,9 @@ xds_compute_terms <- function(t, y, xds_obj) {
 #' @title Generalized spatial differential equation model
 #' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
 #' generic methods for each model component.
-#' 
+#'
 #' @inheritParams xds_compute_terms
-#' 
+#'
 #' @return a [list] containing the vector of all state derivatives
 #' @keywords internal
 #' @export
@@ -31,9 +31,9 @@ xds_compute_terms.full <- function(t, y, xds_obj) {
   xds_obj <- Forcing(t, xds_obj)
   # implement malaria control
   xds_obj <- Health(t, y, xds_obj)
-  # implement vector control 
+  # implement vector control
   xds_obj <- VectorControl1(t, y, xds_obj)
-  # set the values of resource variables -- 
+  # set the values of resource variables --
   xds_obj <- Resources(t, y, xds_obj)
   # blood feeding: available blood hosts, TaR, relative biting rates
   xds_obj <- BloodFeeding(t, y, xds_obj)
@@ -96,7 +96,7 @@ xds_compute_terms.human <- function(t, y, xds_obj) {
 #' @keywords internal
 #' @export
 xds_compute_terms.mosy <- function(t, y, xds_obj){
-  
+
   # set the values of Exogenous forcing variables
   xds_obj <- Forcing(t, xds_obj)
   # vector control
@@ -117,7 +117,7 @@ xds_compute_terms.mosy <- function(t, y, xds_obj){
   xds_obj <- ModifiedBionomics(t, y, xds_obj)
   # emergence: compute Lambda
   xds_obj <- Emergence(t, y, xds_obj)
-  return(xds_obj)  
+  return(xds_obj)
 }
 
 #' @title Differential equation models for aquatic mosquito populations
@@ -143,7 +143,7 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
   xds_obj <- ModifiedBionomics(t, y, xds_obj)
   # egg laying: compute eta
   xds_obj$eggs_laid[[1]] = F_eggs(t, y, xds_obj, 1)
-  return(xds_obj)  
+  return(xds_obj)
 }
 
 #' @title Differential equation models for aquatic mosquito populations
@@ -155,8 +155,8 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
 #' @export
 xds_compute_terms.eir <- function(t, y, xds_obj) {
   # EIR: entomological inoculation rate trace
-  xds_obj$terms$EIR[[1]] <- with(xds_obj$EIR_obj, eir*F_season(t)*F_trend(t)*F_age(t)*F_shock(t)) 
+  xds_obj$terms$EIR[[1]] <- with(xds_obj$EIR_obj, eir*F_season(t)*F_trend(t)*F_age(t)*F_shock(t))
   # FoI: force of infection
   xds_obj <- Exposure(t, y, xds_obj)
-  return(xds_obj)  
-}  
+  return(xds_obj)
+}

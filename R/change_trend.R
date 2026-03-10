@@ -1,62 +1,62 @@
 
-#' @title Set the interpolating points  
-#' 
+#' @title Set the interpolating points
+#'
 #' @description
-#' Set the interpolating points for F_trend 
-#' 
-#' @param X the new interpolating points 
+#' Set the interpolating points for F_trend
+#'
+#' @param X the new interpolating points
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return a **`ramp.xds`** model object
-#' 
+#' @return an **`xds`** object
+#'
 #' @export
 change_trend = function(X, xds_obj, s=1){
   change_spline(X, xds_obj, s)
-} 
+}
 
-#' @title Set the interpolating points  
-#' 
+#' @title Set the interpolating points
+#'
 #' @description
-#' Set the interpolating points for F_trend 
-#' 
+#' Set the interpolating points for F_trend
+#'
 #' @param X new interpolation points, as a list
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return a **`ramp.xds`** model object
-#' 
+#' @return an **`xds`** object
+#'
 #' @export
 change_spline = function(X, xds_obj, s=1){
-  UseMethod("change_spline", xds_obj$forced_by) 
+  UseMethod("change_spline", xds_obj$forced_by)
 }
 
-#' @title Set yy 
-#' 
+#' @title Set yy
+#'
 #' @description
 #' Implement `change_spline` for a model
 #' with no forcing
-#' 
+#'
 #' @inheritParams change_spline
-#' 
-#' @return a **`ramp.xds`** model object
-#' 
+#'
+#' @return an **`xds`** object
+#'
 #' @export
 change_spline.none = function(X, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set the \eqn{y} value for interpolating points  
-#' 
+#' @title Set the \eqn{y} value for interpolating points
+#'
 #' @description
-#' Set the yy for the seasonal pattern for the 
+#' Set the yy for the seasonal pattern for the
 #' \eqn{s^{th}} species
 #' and return the **`ramp.xds`** model object
-#' 
+#'
 #' @inheritParams change_spline
-#' 
-#' @return the **`ramp.xds`** model object
-#' 
+#'
+#' @return an **`xds`** object
+#'
 #' @export
 change_spline.Lambda = function(X, xds_obj, s=1){
   xds_obj$L_obj[[s]]$trend_par$yy = X$yy
@@ -65,17 +65,17 @@ change_spline.Lambda = function(X, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set yy 
-#' 
-#' @description 
-#' Set the yy for the seasonal pattern for 
-#' an `eir` model 
+#' @title Set yy
+#'
+#' @description
+#' Set the yy for the seasonal pattern for
+#' an `eir` model
 #' and return the **`ramp.xds`** model object
-#' 
+#'
 #' @inheritParams change_spline
-#' 
-#' @return a **`ramp.xds`** model object
-#' 
+#'
+#' @return an **`xds`** object
+#'
 #' @export
 change_spline.eir = function(X, xds_obj, s=1){
   xds_obj$EIR_obj$trend_par$yy = X$yy
@@ -84,49 +84,49 @@ change_spline.eir = function(X, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set yy 
-#' 
+#' @title Set yy
+#'
 #' @description
-#' Set new \eqn{y}-values for the spline interpolating points 
+#' Set new \eqn{y}-values for the spline interpolating points
 #' and update `F_trend`
-#' 
-#' @param yy new y values for the interpolation points 
+#'
+#' @param yy new y values for the interpolation points
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return a **`ramp.xds`** model object
-#' 
+#' @return an **`xds`** object
+#'
 #' @export
 change_spline_y = function(yy, xds_obj, s=1){
-  UseMethod("change_spline_y", xds_obj$forced_by) 
+  UseMethod("change_spline_y", xds_obj$forced_by)
 }
 
-#' @title Set yy 
-#' 
+#' @title Set yy
+#'
 #' @description
 #' Implement `change_spline_y` for a model
 #' with no forcing
-#' 
+#'
 #' @inheritParams change_spline_y
-#' 
-#' @return a **`ramp.xds`** model object
-#' 
+#'
+#' @return an **`xds`** object
+#'
 #' @export
 change_spline_y.none = function(yy, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set the \eqn{y} value for interpolating points  
-#' 
+#' @title Set the \eqn{y} value for interpolating points
+#'
 #' @description
-#' Set the yy for the seasonal pattern for the 
+#' Set the yy for the seasonal pattern for the
 #' \eqn{s^{th}} species
 #' and return the **`ramp.xds`** model object
-#' 
+#'
 #' @inheritParams change_spline_y
-#' 
-#' @return the **`ramp.xds`** model object
-#' 
+#'
+#' @return an **`xds`** object
+#'
 #' @export
 change_spline_y.Lambda = function(yy, xds_obj, s=1){
   stopifnot(length(yy) == length(xds_obj$L_obj[[s]]$trend_par$tt))
@@ -135,17 +135,17 @@ change_spline_y.Lambda = function(yy, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set yy 
-#' 
-#' @description 
-#' Set the yy for the seasonal pattern for 
-#' an `eir` model 
+#' @title Set yy
+#'
+#' @description
+#' Set the yy for the seasonal pattern for
+#' an `eir` model
 #' and return the **`ramp.xds`** model object
-#' 
+#'
 #' @inheritParams change_spline_y
-#' 
-#' @return a **`ramp.xds`** model object
-#' 
+#'
+#' @return an **`xds`** object
+#'
 #' @export
 change_spline_y.eir = function(yy, xds_obj, s=1){
   stopifnot(length(yy) == length(xds_obj$EIR_obj$trend_par$tt))
