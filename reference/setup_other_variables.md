@@ -16,4 +16,4 @@ setup_other_variables(xds_obj)
 
 ## Value
 
-the `xds` object
+an **`xds`** object

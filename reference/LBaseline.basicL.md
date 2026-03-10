@@ -29,4 +29,4 @@ LBaseline(t, y, xds_obj, s)
 
 ## Value
 
-a **`ramp.xds`** object
+an **`xds`** object

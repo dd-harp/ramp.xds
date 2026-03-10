@@ -31,4 +31,4 @@ setup_F_bad_habitat(mod_name, xds_obj, s, options = list())
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

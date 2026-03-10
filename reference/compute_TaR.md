@@ -21,4 +21,4 @@ compute_TaR(xds_obj, t = 0)
 
 ## Value
 
-an `xds` object
+an **`xds`** object

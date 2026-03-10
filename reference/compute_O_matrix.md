@@ -18,4 +18,4 @@ compute_O_matrix(xds_obj)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

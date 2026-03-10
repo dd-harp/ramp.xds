@@ -31,4 +31,4 @@ setup_F_habitat_weights(mod_name, xds_obj, s, options = list())
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

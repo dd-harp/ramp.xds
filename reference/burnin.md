@@ -21,7 +21,7 @@ burnin(xds_obj, t_neg_inf = -3650)
 
 ## Value
 
-a **`ramp.xds`** xds_obj object
+an **`xds`** object
 
 ## Note
 

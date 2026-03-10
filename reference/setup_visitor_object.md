@@ -16,4 +16,4 @@ setup_visitor_object(xds_obj)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

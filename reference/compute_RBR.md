@@ -24,4 +24,4 @@ compute_RBR(t, xds_obj, y)
 
 ## Value
 
-an `xds` object
+an **`xds`** object

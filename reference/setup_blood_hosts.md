@@ -29,4 +29,4 @@ setup_blood_hosts(mod_name, xds_obj, s, options)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

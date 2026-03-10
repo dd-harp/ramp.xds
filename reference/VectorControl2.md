@@ -24,4 +24,4 @@ VectorControl2(t, y, xds_obj)
 
 ## Value
 
-a **`ramp.xds`** model object
+an **`xds`** object

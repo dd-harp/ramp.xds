@@ -29,4 +29,4 @@ setup_F_travel(setup_name, xds_obj, i, options = list())
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

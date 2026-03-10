@@ -24,4 +24,4 @@ change_habitat_weights(wts, xds_obj, s = 1)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

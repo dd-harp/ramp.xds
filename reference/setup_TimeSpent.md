@@ -28,4 +28,4 @@ setup_TimeSpent(TimeSpent, xds_obj, i, options = list())
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

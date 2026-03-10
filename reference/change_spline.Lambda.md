@@ -26,4 +26,4 @@ change_spline(X, xds_obj, s = 1)
 
 ## Value
 
-the **`ramp.xds`** model object
+an **`xds`** object

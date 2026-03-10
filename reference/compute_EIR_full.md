@@ -25,4 +25,4 @@ compute_EIR_full(t, y, xds_obj)
 
 ## Value
 
-an `xds` object
+an **`xds`** object

@@ -109,7 +109,37 @@
 
     
     
-
+<p>In <strong><code>ramp.xds,</code></strong> some mosquito bionomic
+parameters are handled as <em>ports.</em> This includes some adult
+mosquito modules (<strong>MY</strong> Component) and some aquatic
+modules (<strong>L</strong> Component). These ports share some common
+features:</p>
+<ul>
+<li><p>During <em>basic setup,</em> these parameters are set to constant
+values; basic setup and the port are set up in
+<strong><code>ramp.xds</code></strong></p></li>
+<li><p>Forcing is an <em>advanced setup</em> option: the value of these
+parameters can vary over time in response to other variables, such as
+temperature, wind, or soil moisture levels. Advanced setup options are
+in <strong><code>ramp.forcing</code></strong></p></li>
+<li>
+<p>Various modes of vector control are handled as another set of
+<em>advanced setup</em> options: advanced setup options for vector
+control are in <strong><code>ramp.control.</code></strong> Vector
+control effects can be handled in one of two ways:</p>
+<ul>
+<li><p>vector control can affect the availability of resources, with
+effects that are handled through</p></li>
+<li><p>vector control effect sizes can be computed.</p></li>
+</ul>
+</li>
+</ul>
+<p>The module <code>macdonald</code> is an exception: it was not set up
+to handle either forcing or vector control. We would say that it is a
+strictly autonomous model: those capabilities are not in its <em>skill
+set.</em> To handle forcing and vector control, we developed
+<code>GeRM.</code></p>
+<p>The flexible implementation</p>
   </main>
 </div>
 

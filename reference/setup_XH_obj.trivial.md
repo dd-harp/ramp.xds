@@ -31,4 +31,4 @@ setup_XH_obj(Xname, xds_obj, i, options = list())
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) vectord
+an **`xds`** object

@@ -10,7 +10,7 @@ non-autonomous Ross-Macdonald module `GeRM.`
 
 ## Differential Equations
 
-### Macdonald’s Model
+### Macdonald’s Equations
 
 Macdonald’s model for the sporozoite rate, published in 1952[¹](#fn1)
 has played an important role in studies of malaria. Later that same

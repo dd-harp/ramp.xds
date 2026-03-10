@@ -20,7 +20,7 @@ get_PR(xds_obj, method = "true", i = 1)
 
 - xds_obj:
 
-  an **`xds`** object
+  an **`xds`** model object
 
 - method:
 

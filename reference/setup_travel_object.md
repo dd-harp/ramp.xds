@@ -25,4 +25,4 @@ setup_travel_object(xds_obj)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

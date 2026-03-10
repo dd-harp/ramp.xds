@@ -21,7 +21,7 @@ setup_V_ix(xds_obj, i)
 
 ## Value
 
-an `xds` object
+an **`xds`** object
 
 ## Note
 

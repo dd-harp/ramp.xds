@@ -24,4 +24,4 @@ change_MY_inits(xds_obj, s = 1, options = list())
 
 ## Value
 
-an `xds` object
+an **`xds`** object
