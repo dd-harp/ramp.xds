@@ -1,9 +1,6 @@
 # Prerequisites
 .fuse*
 *.d
-*.Rd
-*/*.Rd
-*/*/*.Rd
 *.html
 */*.html
 *.html

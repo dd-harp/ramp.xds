@@ -225,7 +225,7 @@ By default, the model is implemented with static population dynamics:
 
 Other functions can be configured as advanced options in `ramp.demog.`
 
-## The `SIS` Module
+## Module Implementation
 
 ### Variables
 
