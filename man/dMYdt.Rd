@@ -25,3 +25,4 @@ a reference to relevant papers in the literature.
 \note{
 This is the \code{S3} generic. Methods dispatch on \code{MY_obj[[s]]}
 }
+\keyword{internal}

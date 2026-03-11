@@ -44,6 +44,7 @@ F_season = function(tm, xds_obj){
 #'
 #' @importFrom graphics plot lines
 #'
+#' @keywords internal
 #' @export
 F_season.none = function(tm, xds_obj){
   return(c())
@@ -60,6 +61,7 @@ F_season.none = function(tm, xds_obj){
 #'
 #' @importFrom graphics plot lines
 #'
+#' @keywords internal
 #' @export
 F_season.Lambda = function(tm, xds_obj){
   return(xds_obj$L_obj[[1]]$F_season(tm))
@@ -74,6 +76,7 @@ F_season.Lambda = function(tm, xds_obj){
 #'
 #' @return the seasonal pattern, invisibly
 #'
+#' @keywords internal
 #' @export
 F_season.eir= function(tm, xds_obj){
   return(xds_obj$EIR_obj$F_season(tm))

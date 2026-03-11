@@ -77,6 +77,7 @@ change_travel_EIR = function(teir, xds_obj,  i){
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Travel <- function(t, y, xds_obj) {
   UseMethod("Travel", xds_obj$XY_interface$travel_obj)
@@ -87,6 +88,7 @@ Travel <- function(t, y, xds_obj) {
 #' does not update anything.
 #' @inheritParams Travel
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Travel.static <- function(t, y, xds_obj) {
   return(xds_obj)
@@ -100,6 +102,7 @@ Travel.static <- function(t, y, xds_obj) {
 #' and used to compute availability. It is also used in [Exposure]
 #' @inheritParams Travel
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Travel.setup <- function(t, y, xds_obj) {
   class(xds_obj$XY_interface$travel_obj) <- "static"
@@ -113,6 +116,7 @@ Travel.setup <- function(t, y, xds_obj) {
 #' and used to compute availability. It is also used in [Exposure]
 #' @inheritParams Travel
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Travel.dynamic <- function(t, y, xds_obj) {
   return(travel_dynamics(t, y, xds_obj))

@@ -21,3 +21,4 @@ a \link{numeric} vector of length \code{nPatches}
 \description{
 Implements \link{F_eggs} for the trivial model.
 }
+\keyword{internal}

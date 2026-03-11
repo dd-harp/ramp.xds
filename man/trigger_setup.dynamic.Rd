@@ -16,3 +16,4 @@ the \code{obj}
 For various \code{S3} functions, change
 leave the class of the dispatching object as \code{dynamic}
 }
+\keyword{internal}

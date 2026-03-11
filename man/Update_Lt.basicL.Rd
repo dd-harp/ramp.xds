@@ -21,3 +21,4 @@ a \link{numeric} vector
 \description{
 Implements \link{Update_Lt} for the \code{basicL} competition model.
 }
+\keyword{internal}

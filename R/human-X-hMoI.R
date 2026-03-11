@@ -47,6 +47,7 @@ check_XH.hMoI = function(xds_obj, i){
 #' @description Implements [dXHdt] for the hybrid MoI model.
 #' @inheritParams dXHdt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 dXHdt.hMoI <- function(t, y, xds_obj, i) {
 
@@ -183,6 +184,7 @@ change_XH_pars.hMoI <- function(xds_obj, i=1, options=list()) {
 #' @inheritParams F_I
 #' @return a [numeric] vector of length `nStrata`
 #' @importFrom stats pexp
+#' @keywords internal
 #' @export
 F_I.hMoI <- function(t, y, xds_obj, i) {
   with(get_XH_vars(y, xds_obj, i),{
@@ -198,6 +200,7 @@ F_I.hMoI <- function(t, y, xds_obj, i) {
 #' @description Implements [F_H] for the hybrid MoI model.
 #' @inheritParams F_H
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_H.hMoI <- function(t, y, xds_obj, i) {
   xds_obj$XH_obj[[i]]$H
@@ -208,6 +211,7 @@ F_H.hMoI <- function(t, y, xds_obj, i) {
 #' @description Implements [F_infectivity] for the hMoI model.
 #' @inheritParams F_infectivity
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_infectivity.hMoI <- function(y, xds_obj,i) {
   with(xds_obj$XH_obj[[i]], b)
@@ -255,12 +259,13 @@ change_XH_inits.hMoI <- function(xds_obj, i=1, options=list()) {
 }))}
 
 
-#' @title Compute the HTC for the hMoI model
-#' @description Implements [HTC] for the hMoI model with demography.
-#' @inheritParams HTC
+#' @title Compute the get_HTC for the hMoI model
+#' @description Implements \code{get_HTC} for the hMoI model with demography.
+#' @inheritParams get_HTC
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
-HTC.hMoI <- function(xds_obj, i) {
+get_HTC.hMoI <- function(xds_obj, i) {
   with(xds_obj$XH_obj[[i]],
        return(c2/r2 + c1*(1/r1 - 1/r2))
   )
@@ -271,6 +276,7 @@ HTC.hMoI <- function(xds_obj, i) {
 #' @description Implements [parse_XH_orbits] for the hMoI model
 #' @inheritParams parse_XH_orbits
 #' @return none
+#' @keywords internal
 #' @export
 parse_XH_orbits.hMoI <- function(outputs, xds_obj, i){
   with(xds_obj$XH_obj[[i]]$ix, {
@@ -285,6 +291,7 @@ parse_XH_orbits.hMoI <- function(outputs, xds_obj, i){
 #' @description Implements [F_ni] for the hMoI model.
 #' @inheritParams F_ni
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_ni.hMoI<- function(vars, XH_obj) {with(XH_obj,{
   x1 <- 1 - exp(-vars$m1)
@@ -307,6 +314,7 @@ F_prevalence.hMoI<- function(vars, XH_obj) {
 #' @description Implements [F_prevalence] for the hMoI model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_pfpr_by_lm.hMoI<- function(vars, XH_obj) {
   pr = with(vars, 1-exp(-m2))
@@ -317,6 +325,7 @@ F_pfpr_by_lm.hMoI<- function(vars, XH_obj) {
 #' @description Implements [F_prevalence] for the hMoI model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @export
 F_pfpr_by_rdt.hMoI<- function(vars, XH_obj) {
   pr = with(vars, 1-exp(-m1))

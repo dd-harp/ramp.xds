@@ -7,6 +7,7 @@
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Health = function(t, y, xds_obj){
   UseMethod("Health", xds_obj$health_obj)
@@ -18,6 +19,7 @@ Health = function(t, y, xds_obj){
 #' the **`ramp.xds`** model object without modification
 #' @inheritParams Health
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Health.none = function(t, y, xds_obj){
   return(xds_obj)

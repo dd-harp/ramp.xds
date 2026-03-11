@@ -9,6 +9,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @param i the i^th auxiliary variable
 #' @return derivatives for the \eqn{\cal MYZ} component as a [vector]
+#' @keywords internal
 #' @export
 dVdt <- function(t, y, xds_obj, i) {
   UseMethod("dVdt", xds_obj$V_obj[[i]])
@@ -95,6 +96,7 @@ get_V_ix <- function(xds_obj, i=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
+#' @keywords internal
 #' @export
 parse_V_orbits <- function(outputs, xds_obj, i) {
   UseMethod("parse_V_orbits", xds_obj$V_obj[[i]])

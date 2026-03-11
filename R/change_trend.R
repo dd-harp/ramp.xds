@@ -41,6 +41,7 @@ change_spline = function(X, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_spline.none = function(X, xds_obj, s=1){
   return(xds_obj)
@@ -57,6 +58,7 @@ change_spline.none = function(X, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_spline.Lambda = function(X, xds_obj, s=1){
   xds_obj$L_obj[[s]]$trend_par$yy = X$yy
@@ -76,6 +78,7 @@ change_spline.Lambda = function(X, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_spline.eir = function(X, xds_obj, s=1){
   xds_obj$EIR_obj$trend_par$yy = X$yy
@@ -111,6 +114,7 @@ change_spline_y = function(yy, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_spline_y.none = function(yy, xds_obj, s=1){
   return(xds_obj)
@@ -127,6 +131,7 @@ change_spline_y.none = function(yy, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_spline_y.Lambda = function(yy, xds_obj, s=1){
   stopifnot(length(yy) == length(xds_obj$L_obj[[s]]$trend_par$tt))
@@ -146,6 +151,7 @@ change_spline_y.Lambda = function(yy, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_spline_y.eir = function(yy, xds_obj, s=1){
   stopifnot(length(yy) == length(xds_obj$EIR_obj$trend_par$tt))

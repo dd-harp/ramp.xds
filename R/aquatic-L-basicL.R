@@ -73,6 +73,7 @@ check_L.basicL = function(xds_obj, s){
 #' @return a [numeric] vector
 #' @references{\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
 #' @seealso [make_L_obj_basicL]
+#' @keywords internal
 #' @export
 dLdt.basicL <- function(t, y, xds_obj, s) {
   eta <- as.vector(xds_obj$terms$eta[[s]])
@@ -89,6 +90,7 @@ dLdt.basicL <- function(t, y, xds_obj, s) {
 #' @description Implements [Update_Lt] for the `basicL` competition model.
 #' @inheritParams Update_Lt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 Update_Lt.basicL <- function(t, y, xds_obj, s) {
   eta <- xds_obj$eggs_laid[[s]]
@@ -317,6 +319,7 @@ setup_L_ix.basicL <- function(xds_obj, s) {with(xds_obj,{
 #' The variable is returned as a named list.
 #' @inheritParams parse_L_orbits
 #' @return a named [list]
+#' @keywords internal
 #' @export
 parse_L_orbits.basicL <- function(outputs, xds_obj, s) {
   L = outputs[,xds_obj$L_obj[[s]]$ix$L_ix]

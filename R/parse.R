@@ -3,6 +3,7 @@
 #' @param y a [vector] with the variables
 #' @param xds_obj an **`xds`** model object
 #' @return a named [list]
+#' @keywords internal
 #' @export
 parse_y <- function(y, xds_obj){
 
@@ -35,6 +36,7 @@ parse_y <- function(y, xds_obj){
 #' @param xds_obj an **`xds`** model object
 #' @param outputs a [matrix] of _orbits returned by deSolve
 #' @return a named [list]
+#' @keywords internal
 #' @export
 parse_orbits <- function(outputs, xds_obj){
   varslist = list()
@@ -64,6 +66,8 @@ parse_orbits <- function(outputs, xds_obj){
 }
 
 
+#' @keywords internal
+#' @export
 #' @title Make Outputs
 #' @param xds_obj an **`xds`** model object
 #' @param de_vars the solutions [matrix]
@@ -73,6 +77,8 @@ parse_outputs = function(xds_obj, de_vars, tm){
   UseMethod("parse_outputs", xds_obj$frame)
 }
 
+#' @keywords internal
+#' @export
 #' @title Make Outputs
 #' @inheritParams parse_outputs
 #' @return an **`xds`** object
@@ -87,6 +93,8 @@ parse_outputs.full = function(xds_obj, de_vars, tm){
   return(xds_obj)
 }
 
+#' @keywords internal
+#' @export
 #' @title Make Outputs
 #' @inheritParams parse_outputs
 #' @return an **`xds`** object
@@ -100,6 +108,8 @@ parse_outputs.mosy = function(xds_obj, de_vars, tm){
   return(xds_obj)
 }
 
+#' @keywords internal
+#' @export
 #' @title Make Outputs
 #' @inheritParams parse_outputs
 #' @return an **`xds`** object
@@ -111,6 +121,8 @@ parse_outputs.aquatic = function(xds_obj, de_vars, tm){
   return(xds_obj)
 }
 
+#' @keywords internal
+#' @export
 #' @title Make Outputs
 #' @inheritParams parse_outputs
 #' @return an **`xds`** object
@@ -123,6 +135,8 @@ parse_outputs.human = function(xds_obj, de_vars, tm){
   return(xds_obj)
 }
 
+#' @keywords internal
+#' @export
 #' @title Make Outputs
 #' @inheritParams parse_outputs
 #' @return an **`xds`** object
@@ -144,6 +158,7 @@ parse_outputs.eir = function(xds_obj, de_vars, tm){
 #' @param i host species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 parse_XH_terms <- function(xds_obj, i=1) {
   eir = c()
@@ -176,6 +191,7 @@ parse_XH_terms <- function(xds_obj, i=1) {
 #' @param s vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 parse_MY_terms <- function(xds_obj, s=1) {
 
@@ -216,6 +232,7 @@ parse_MY_terms <- function(xds_obj, s=1) {
 #' @param s vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 parse_bionomics <- function(xds_obj, s=1) {
   ft = c()
@@ -256,6 +273,7 @@ parse_bionomics <- function(xds_obj, s=1) {
 #' @param s vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 parse_L_terms <- function(xds_obj, s=1) {
   alpha = c()

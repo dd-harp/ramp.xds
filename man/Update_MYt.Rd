@@ -21,3 +21,4 @@ Updated states for an adult mosquito model, a \link{vector}
 \description{
 This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}.
 }
+\keyword{internal}

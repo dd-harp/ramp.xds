@@ -66,3 +66,4 @@ dY/dt = & f q \kappa (M-Y) - \Omega \cdot Y
 \seealso{
 \link{F_fqZ.SI} and \link{F_eggs.SI}
 }
+\keyword{internal}

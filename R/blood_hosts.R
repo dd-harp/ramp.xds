@@ -49,6 +49,7 @@ change_blood_hosts = function(blood_hosts, xds_obj,  s){
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 BloodHosts <- function(t, y, xds_obj) {
   UseMethod("BloodHosts", xds_obj$XY_interface$blood_host_obj)
@@ -59,6 +60,7 @@ BloodHosts <- function(t, y, xds_obj) {
 #' does not update anything.
 #' @inheritParams BloodHosts
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 BloodHosts.static <- function(t, y, xds_obj) {
   return(xds_obj)
@@ -72,6 +74,7 @@ BloodHosts.static <- function(t, y, xds_obj) {
 #' and used to compute availability. It is also used in [Exposure]
 #' @inheritParams BloodHosts
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 BloodHosts.setup <- function(t, y, xds_obj) {
   class(xds_obj$XY_interface$blood_host_obj) <- "static"
@@ -86,6 +89,7 @@ BloodHosts.setup <- function(t, y, xds_obj) {
 #' and used to compute availability. It is also used in [Exposure]
 #' @inheritParams BloodHosts
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 BloodHosts.dynamic <- function(t, y, xds_obj) {
   return(blood_hosts_dynamics(t, y, xds_obj))

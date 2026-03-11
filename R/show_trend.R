@@ -81,6 +81,7 @@ F_trend = function(tm, xds_obj){
 #'
 #' @importFrom graphics plot lines
 #'
+#' @keywords internal
 #' @export
 F_trend.none = function(tm, xds_obj){
   return(c())
@@ -97,6 +98,7 @@ F_trend.none = function(tm, xds_obj){
 #'
 #' @importFrom graphics plot lines
 #'
+#' @keywords internal
 #' @export
 F_trend.Lambda = function(tm, xds_obj){
   return(with(xds_obj$L_obj[[1]], F_trend(tm)))
@@ -111,6 +113,7 @@ F_trend.Lambda = function(tm, xds_obj){
 #'
 #' @return the temporal trend, invisibly
 #'
+#' @keywords internal
 #' @export
 F_trend.eir= function(tm, xds_obj){
   return(with(xds_obj$EIR_obj,F_trend(tm)))
@@ -142,6 +145,7 @@ F_shock = function(tm, xds_obj){
 #'
 #' @importFrom graphics plot lines
 #'
+#' @keywords internal
 #' @export
 F_shock.none = function(tm, xds_obj){
   return(c())
@@ -158,6 +162,7 @@ F_shock.none = function(tm, xds_obj){
 #'
 #' @importFrom graphics plot lines
 #'
+#' @keywords internal
 #' @export
 F_shock.Lambda = function(tm, xds_obj){
   return(with(xds_obj$L_obj[[1]], F_shock(tm)))
@@ -172,6 +177,7 @@ F_shock.Lambda = function(tm, xds_obj){
 #'
 #' @return the temporal trend, invisibly
 #'
+#' @keywords internal
 #' @export
 F_shock.eir= function(tm, xds_obj){
   return(with(xds_obj$EIR_obj,F_shock(tm)))

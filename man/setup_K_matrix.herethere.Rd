@@ -22,3 +22,4 @@ a \link{matrix}
 Implements \link{setup_K_matrix} for the herethere model:
 dispersal to every other patch, with equal probability
 }
+\keyword{internal}

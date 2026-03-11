@@ -18,3 +18,4 @@ an \strong{\code{xds}} object
 Pull the stored values of the
 Lambda, G, fqZ, and kappa
 }
+\keyword{internal}

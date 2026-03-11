@@ -20,6 +20,7 @@ get_mean_forcing = function(xds_obj){
 #'
 #' @param xds_obj an **`xds`** model object
 #'
+#' @keywords internal
 #' @export
 get_mean_forcing.none = function(xds_obj){
   return(c())
@@ -34,6 +35,7 @@ get_mean_forcing.none = function(xds_obj){
 #'
 #' @param xds_obj an **`xds`** model object
 #'
+#' @keywords internal
 #' @export
 get_mean_forcing.Lambda = function(xds_obj){
   if(xds_obj$nVectorSpecies == 1){
@@ -53,6 +55,7 @@ get_mean_forcing.Lambda = function(xds_obj){
 #'
 #' @param xds_obj an **`xds`** model object
 #'
+#' @keywords internal
 #' @export
 get_mean_forcing.eir = function(xds_obj){
   return(xds_obj$EIR_obj$eir)

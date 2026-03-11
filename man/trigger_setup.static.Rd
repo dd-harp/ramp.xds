@@ -17,3 +17,4 @@ For various \code{S3} functions, change
 the class of the dispatching object from \code{static}
 to \code{setup}
 }
+\keyword{internal}

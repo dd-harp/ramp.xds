@@ -14,3 +14,4 @@ Get \code{Lambda}, the mean emergence
 rate(s) \eqn{\Lambda}, for a model
 forced by adult mosquito emergence
 }
+\keyword{internal}

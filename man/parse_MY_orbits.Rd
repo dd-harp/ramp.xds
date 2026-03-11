@@ -20,3 +20,4 @@ parse_MY_orbits(outputs, xds_obj, s)
 This method dispatches on the type of \code{xds_obj$MY_obj}.
 It computes the variables by name and returns a named list.
 }
+\keyword{internal}

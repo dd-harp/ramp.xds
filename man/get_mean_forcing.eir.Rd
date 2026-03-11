@@ -12,3 +12,4 @@
 \description{
 Get the mean daily EIR for an \code{eir} model
 }
+\keyword{internal}

@@ -23,3 +23,4 @@ return the variables by name in a list.
 \note{
 This method dispatches on the class of \code{xds_obj$L_obj[[s]]}
 }
+\keyword{internal}

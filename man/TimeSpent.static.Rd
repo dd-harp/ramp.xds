@@ -19,3 +19,4 @@ an \strong{\code{xds}} object
 \description{
 Return the time spent objects unmodified
 }
+\keyword{internal}

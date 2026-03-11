@@ -24,3 +24,4 @@ for mosquito sugar
 Mosquito trap models are in
 \code{ramp.control}
 }
+\keyword{internal}

@@ -17,3 +17,4 @@ none
 \description{
 Implements \link{get_MY_inits} for the GeRM model.
 }
+\keyword{internal}

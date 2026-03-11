@@ -21,3 +21,4 @@ a null vector
 \description{
 Implements \link{Update_MYt} for the trivial (forced emergence) model.
 }
+\keyword{internal}

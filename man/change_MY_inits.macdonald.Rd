@@ -19,3 +19,4 @@ a \link{list}
 \description{
 Implements \link{change_MY_inits} for the macdonald model
 }
+\keyword{internal}

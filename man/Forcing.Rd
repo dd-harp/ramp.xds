@@ -20,3 +20,4 @@ by weather and hydrology. Non-trivial
 examples are in the satellite package
 \code{ramp.forcing}
 }
+\keyword{internal}

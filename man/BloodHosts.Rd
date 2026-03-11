@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 This function sets the value of a term
 describing the availability of ovi traps
 }
+\keyword{internal}

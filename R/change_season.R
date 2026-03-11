@@ -25,6 +25,7 @@ change_season = function(X, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_season.none = function(X, xds_obj, s=1){
   return(xds_obj)
@@ -41,6 +42,7 @@ change_season.none = function(X, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_season.Lambda = function(X, xds_obj, s=1){
   with(xds_obj$L_obj[[s]]$season_par,
@@ -63,6 +65,7 @@ change_season.Lambda = function(X, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_season.eir = function(X, xds_obj, s=1){
   with(xds_obj$EIR_obj$season_par,

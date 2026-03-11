@@ -12,6 +12,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 Forcing = function(t, xds_obj){
   UseMethod("Forcing", xds_obj$forcing_obj)
@@ -27,6 +28,7 @@ Forcing = function(t, xds_obj){
 #' @param t current simulation time
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Forcing.none = function(t, xds_obj){
   return(xds_obj)

@@ -19,3 +19,4 @@ After basic setup, no exogenous
 variables are set up. \code{Forcing} returns
 the unmodified \strong{\code{xds}} object.
 }
+\keyword{internal}

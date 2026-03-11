@@ -26,3 +26,4 @@ the solution matrix is returned by \link[deSolve:deSolve]{deSolve::deSolve}.
 Discrete time systems return a matrix
 that has the same shape.
 }
+\keyword{internal}

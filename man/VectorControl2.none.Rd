@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 Do no vector control:
 the \strong{\code{xds}} object is returned unmodified
 }
+\keyword{internal}

@@ -18,3 +18,4 @@ the seasonal pattern, invisibly
 For a model forced by emergence,
 show the seasonal pattern
 }
+\keyword{internal}

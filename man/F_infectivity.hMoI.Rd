@@ -19,3 +19,4 @@ a \link{numeric} vector of length \code{nStrata}
 \description{
 Implements \link{F_infectivity} for the hMoI model.
 }
+\keyword{internal}

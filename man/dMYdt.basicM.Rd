@@ -24,3 +24,4 @@ Implements \link{dMYdt} for the basicM xde ODE model.
 \details{
 \deqn{\begin{array}{rl}dM/dt &= \Lambda(t) - \Omega \cdot M \\ dP/dt &= f(M-P) - \Omega\cdot P\end{array}}
 }
+\keyword{internal}

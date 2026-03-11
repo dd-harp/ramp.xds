@@ -33,6 +33,7 @@ check_MY.basicM = function(xds_obj, s){
 #' @details \deqn{\begin{array}{rl}dM/dt &= \Lambda(t) - \Omega \cdot M \\ dP/dt &= f(M-P) - \Omega\cdot P\end{array}}
 #' @inheritParams dMYdt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 dMYdt.basicM <- function(t, y, xds_obj, s){
 
@@ -54,6 +55,7 @@ dMYdt.basicM <- function(t, y, xds_obj, s){
 #' @description Implements [MBaseline] for models with no forcing on the baseline
 #' @inheritParams MBaseline
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBaseline.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   # Baseline parameters
@@ -78,6 +80,7 @@ MBaseline.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
 #' @description Implements [MBionomics] for models with no forcing on the baseline
 #' @inheritParams MBionomics
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 MBionomics.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$f     <- es_f*f_t
@@ -122,6 +125,7 @@ steady_state_M.basicM_dts = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[
 #' @description Implements [Update_MYt] for the basicM model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @export
 Update_MYt.basicM <- function(t, y, xds_obj, s) {
 
@@ -230,6 +234,7 @@ change_MY_pars.basicM <- function(xds_obj, s=1, options=list()) {
 #' @description Implements [F_fqZ] for the basicM xde model.
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqZ.basicM <- function(t, y, xds_obj, s) {
   0*y[xds_obj$ix$MY[[s]]$M_ix]
@@ -251,6 +256,7 @@ F_fqM.basicM <- function(t, y, xds_obj, s) {
 #' @description Implements [F_eggs] for the basic ecology model
 #' @inheritParams F_eggs
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_eggs.basicM <- function(t, y, xds_obj, s) {
   M <- y[xds_obj$ix$MY[[s]]$M_ix]
@@ -275,6 +281,7 @@ setup_MY_inits.basicM = function(xds_obj, s, options){
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_MY_inits.basicM <- function(xds_obj, s=1, options=list()) {
   with(xds_obj$MY_obj[[s]], with(options,{
@@ -302,6 +309,7 @@ make_MY_inits_basicM = function(nPatches, options, M=5, P=1){
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_vars.basicM <- function(y, xds_obj, s){
   with(xds_obj$ix$MY[[s]],
@@ -357,6 +365,7 @@ setup_MY_ix.basicM <- function(xds_obj, s) {with(xds_obj,{
 #' @description Implements [parse_MY_orbits] for the basicM model.
 #' @inheritParams parse_MY_orbits
 #' @return [list]
+#' @keywords internal
 #' @export
 parse_MY_orbits.basicM <- function(outputs, xds_obj, s) {
   with(xds_obj$ix$MY[[s]],{
@@ -371,6 +380,7 @@ parse_MY_orbits.basicM <- function(outputs, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_f.basicM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f)
@@ -380,6 +390,7 @@ get_f.basicM = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_q.basicM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q)
@@ -389,6 +400,7 @@ get_q.basicM = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_g.basicM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], g)
@@ -398,6 +410,7 @@ get_g.basicM = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_sigma.basicM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], sigma)

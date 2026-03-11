@@ -25,3 +25,4 @@ for the \strong{L} Component modules
 \note{
 Dispatches on the class of \code{xds_obj$L_obj[[s]]}
 }
+\keyword{internal}

@@ -24,3 +24,4 @@ stage one vector control functions.
 Non-trivial vector control modules are in
 \href{https://github.com/dd-harp/ramp.control}{\strong{\code{ramp.control}}}.
 }
+\keyword{internal}

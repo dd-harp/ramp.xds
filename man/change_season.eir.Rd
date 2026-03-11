@@ -19,3 +19,4 @@ an \strong{\code{xds}} object
 \description{
 Get the parameters set the seasonal pattern
 }
+\keyword{internal}

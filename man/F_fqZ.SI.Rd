@@ -35,3 +35,4 @@ so
 \deqn{fqZ = fq (\Upsilon \cdot Y)}
 The daily EIR for the population strata is \eqn{\beta \cdot fqZ}
 }
+\keyword{internal}

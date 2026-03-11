@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 This function sets the value of a parameter
 describing the availability of visitors.
 }
+\keyword{internal}

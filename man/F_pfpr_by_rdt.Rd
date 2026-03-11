@@ -18,3 +18,4 @@ a \link{numeric} vector of length \code{nStrata}
 A function that translates the state variables into
 the predicted \emph{Pf}PR by rapid diagnostic test (RDT)
 }
+\keyword{internal}

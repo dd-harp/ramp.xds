@@ -36,6 +36,7 @@ setup_visitor_object = function(xds_obj){
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Visitors <- function(t, y, xds_obj) {
   UseMethod("Visitors", xds_obj$XY_interface$visitor_obj)
@@ -46,6 +47,7 @@ Visitors <- function(t, y, xds_obj) {
 #' does not update anything.
 #' @inheritParams Visitors
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Visitors.static <- function(t, y, xds_obj) {
   return(xds_obj)
@@ -59,6 +61,7 @@ Visitors.static <- function(t, y, xds_obj) {
 #' and used to compute availability. It is also used in [Exposure]
 #' @inheritParams Visitors
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Visitors.setup <- function(t, y, xds_obj) {
   class(xds_obj$XY_interface$visitor_obj) <- "static"
@@ -75,6 +78,7 @@ Visitors.setup <- function(t, y, xds_obj) {
 #' @inheritParams Visitors
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 Visitors.dynamic <- function(t, y, xds_obj) {
   xds_obj <- visitor_dynamics(t, y, xds_obj)
