@@ -303,8 +303,9 @@ Each module must output a few key quantities:
     \rightarrow X/H.\\ The function gets called after solving, and the
     NI is attached as a term for inspection and visualization.
 
-17. `HTC.Xname` - compute the human transmitting capacity. This is used
-    by functions in **`ramp.work`** that compute threshold conditions.
+17. `get_HTC.Xname` - compute the human transmitting capacity. This is
+    used by functions in **`ramp.work`** that compute threshold
+    conditions.
 
 ### Consistency Checks
 

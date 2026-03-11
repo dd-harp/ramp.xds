@@ -173,9 +173,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Forcing.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Forcing.none.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/HTC.SIS.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/HTC.hMoI.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/HTC.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/HabitatDynamics.dynamic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/HabitatDynamics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/HabitatDynamics.setup.html</loc></url>
@@ -369,6 +366,9 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/foi2eir.pois.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_EIR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_H.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_HTC.SIS.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_HTC.hMoI.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_HTC.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_inits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_out.html</loc></url>
