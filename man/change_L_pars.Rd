@@ -19,3 +19,4 @@ an \strong{\code{xds}} object
 \description{
 Set \strong{L} Component Parameters
 }
+\keyword{internal}

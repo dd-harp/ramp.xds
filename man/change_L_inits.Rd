@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 This sets initial values for an \strong{L} Component
 module from a named list
 }
+\keyword{internal}

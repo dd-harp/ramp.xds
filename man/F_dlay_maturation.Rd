@@ -20,3 +20,4 @@ a \link{numeric} vector oxi length \code{nPatches}
 This method dispatches on the type of \code{xi_obj}. It should
 set the values oxi the bionomic parameters to baseline values
 }
+\keyword{internal}

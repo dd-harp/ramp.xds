@@ -93,6 +93,7 @@ makepar_F_zero = function(){
 #' @description Return [F_zero]
 #' @inheritParams make_function
 #' @return a function that is the sum of two other functions
+#' @keywords internal
 #' @export
 make_function.zero = function(opts){
   return(F_zero)
@@ -121,6 +122,7 @@ makepar_F_one = function(){
 #' other functions.
 #' @inheritParams make_function
 #' @return a function that is the sum of two other functions
+#' @keywords internal
 #' @export
 make_function.one = function(opts){
   return(F_one)
@@ -132,6 +134,7 @@ make_function.one = function(opts){
 #' @inheritParams make_function
 #' @keywords internal
 #' @return a function that is the sum of two other functions
+#' @keywords internal
 #' @export
 make_function.list = function(opts){
   return(F_one)
@@ -155,6 +158,7 @@ makepar_F_val = function(val){
 #' @description Build a function that returns a constant value
 #' @inheritParams make_function
 #' @return a function that returns a constant value
+#' @keywords internal
 #' @export
 make_function.val = function(opts){
   Fv = function(t){return(0*t + opts$val)}
@@ -183,6 +187,7 @@ F_flat = function(t){return(0*t+1)}
 #' @importFrom stats integrate
 #' @seealso [makepar_F_sin]
 #' @return a function for seasonality
+#' @keywords internal
 #' @export
 make_function.sin = function(opts){
   opts$normit = with(opts, rep(norm, N))
@@ -228,6 +233,7 @@ makepar_F_sin = function(phase=0, bottom=0, pw=1, norm=365, N=1){
 #' @importFrom stats integrate
 #' @seealso [makepar_F_type2]
 #' @return a function for seasonality
+#' @keywords internal
 #' @export
 make_function.type2 = function(opts){with(opts,{
   F = function(a){
@@ -265,6 +271,7 @@ makepar_F_type2 = function(shift=30, A=1.8, B=5, N=1){
 #' @inheritParams make_function
 #' @importFrom stats integrate
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.sigmoid = function(opts){
   opts$normit = rep(1, opts$N)
@@ -303,6 +310,7 @@ makepar_F_sigmoid = function(k=1/7, D=100, Tl=0, N=1){
 #' other functions.
 #' @inheritParams make_function
 #' @return a function that is the sum of two other functions
+#' @keywords internal
 #' @export
 make_function.sum = function(opts){
   F1 = make_function(opts$opts1)
@@ -331,6 +339,7 @@ makepar_F_sum = function(opts1, opts2){
 #' product of two other functions
 #' @inheritParams make_function
 #' @return a function that is the product of two other functions
+#' @keywords internal
 #' @export
 make_function.product = function(opts){
   F1 = make_function(opts$opts1)
@@ -359,6 +368,7 @@ makepar_F_product = function(opts1, opts2){
 #' product of two other functions
 #' @inheritParams make_function
 #' @return a function that is the product of two other functions
+#' @keywords internal
 #' @export
 make_function.nproduct = function(opts){
   F1 = make_function(opts$opts1)
@@ -392,6 +402,7 @@ makepar_F_nproduct = function(opts1, opts2){
 #' For the default values, the function looks like a shark fin.
 #' @inheritParams make_function
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.sharkfin = function(opts){
   siggy <- function(t, k=1, D=1){
@@ -443,6 +454,7 @@ makepar_F_sharkfin = function(D=100, L=180, uk = 1/7, dk=1/40, pw=1, mx=1, N=1){
 #' For the default values, the function looks like a shark fin.
 #' @inheritParams make_function
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.sharkbite = function(opts){
   siggy <- function(t, k=1, D=1){
@@ -490,6 +502,7 @@ makepar_F_sharkbite = function(D=100, L=180, uk = 1/7, dk=1/40, pw=1, mx=1, N=1)
 #' associated values `yy` and returns a spline function
 #' @inheritParams make_function
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.splinef = function(opts){
   ff <- function(t){
@@ -503,6 +516,7 @@ make_function.splinef = function(opts){
 #' associated values `yy` and returns a spline function
 #' @inheritParams make_function
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.splineX = function(opts){
   ff <- function(t){
@@ -516,6 +530,7 @@ make_function.splineX = function(opts){
 #' associated values `yy` and returns a spline function
 #' @inheritParams make_function
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.spline2 = function(opts){
   ff <- function(t){

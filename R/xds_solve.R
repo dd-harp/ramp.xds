@@ -66,13 +66,13 @@ xds_solve.ode = function(xds_obj, Tmax=365, dt=1, times=NULL){
 xds_solve.dde = function(xds_obj, Tmax=365, dt=1, times=NULL){
 
   xds_obj <- check_models(xds_obj)
-
+ 
   deSolve::dede(y      = get_inits(xds_obj, flatten=TRUE),
                 times  = make_times_xde(Tmax, dt, times),
                 func   = xde_derivatives,
                 parms  = xds_obj,
                 method = "lsoda") -> deout
-
+  
   xds_obj$outputs$deout <- deout
   tm <- deout[,1]
   xds_obj <- parse_outputs(xds_obj, as.matrix(deout[,-1]), tm)

@@ -21,3 +21,4 @@ a \link{list}
 \description{
 Make inits for \code{SI} adult mosquito model
 }
+\keyword{internal}

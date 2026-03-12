@@ -20,3 +20,4 @@ steady states
 Compute the steady states as a function of the daily FoI for a
 static value of human population density
 }
+\keyword{internal}

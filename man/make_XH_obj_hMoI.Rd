@@ -35,3 +35,4 @@ none
 \description{
 MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
 }
+\keyword{internal}

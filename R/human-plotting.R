@@ -6,7 +6,7 @@
 #'
 #' @export
 get_EIR = function(xds_obj, i=1){
-  get_XH_out(xds_obj, i)$eir
+  get_XH_orbits(xds_obj, i)$eir
 }
 
 #' Plot the EIR *vs.* time
@@ -26,7 +26,7 @@ get_EIR = function(xds_obj, i=1){
 xds_plot_EIR <- function(xds_obj, i=1, clrs="black", lty=1, add=FALSE, annual=TRUE){
   ylb = ifelse(annual==TRUE, "aEIR", "dEIR")
   if(add==FALSE)
-    with(get_XH_out(xds_obj, i),{
+    with(get_XH_orbits(xds_obj, i),{
       fac = ifelse(annual==TRUE, 365, 1)
       plot(time, 0*time, type="n", ylim=range(0, fac*eir),
            xlab = "Time", ylab = ylb)
@@ -53,7 +53,7 @@ xds_lines_EIR <- function(xds_obj, i=1, clrs="black", lty=1, annual=TRUE){
   n = xds_obj$nStrata[i]
   if(length(clrs) != n) clrs=rep(clrs, n)
   if(length(lty) != n) lty=rep(lty, n)
-  with(get_XH_out(xds_obj, i),{
+  with(get_XH_orbits(xds_obj, i),{
     fac = ifelse(annual==TRUE, 365, 1)
     for(j in 1:n) lines(time, fac*eir[,j], col=clrs[j], lty = lty)
     return(invisible(eir))

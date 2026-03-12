@@ -21,3 +21,4 @@ a \link{numeric} vector of length \code{nPatches}
 \description{
 This method dispatches on the type of \code{xds_obj$MY_obj}.
 }
+\keyword{internal}

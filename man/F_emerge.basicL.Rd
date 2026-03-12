@@ -26,3 +26,4 @@ per day, is:
 \seealso{
 \link{dLdt.basicL}
 }
+\keyword{internal}

@@ -20,3 +20,4 @@ a \link{numeric} vector ophi length \code{nPatches}
 This method dispatches on the type of \code{phi_obj}. It should
 set the values ophi the bionomic parameters to baseline values
 }
+\keyword{internal}

@@ -22,3 +22,4 @@ values as a list.
 Parameter values for the \eqn{i^{th}} host are
 stored as \code{xds_obj$XH_obj[[i]]}.
 }
+\keyword{internal}

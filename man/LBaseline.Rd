@@ -21,3 +21,4 @@ an \strong{\code{xds}} object
 \description{
 Handle immature mosquito bionomic parameters as a baseline modified by control
 }
+\keyword{internal}

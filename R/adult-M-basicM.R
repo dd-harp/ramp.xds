@@ -1,5 +1,38 @@
 # specialized methods for a basic adult mosquito model
 
+#' @title The `basicM` Module for the MY Component
+#' @description
+#' Implements the **MY** component using a basic model of adult mosquito
+#' ecology without explicit infection dynamics.
+#'
+#' @section State Variables:
+#' \describe{
+#'   \item{`M`}{density of adult mosquitoes}
+#'   \item{`P`}{density of adult mosquitoes that have fed at least once}
+#' }
+#'
+#' @section Parameters:
+#' \describe{
+#'   \item{`f`}{blood feeding rate}
+#'   \item{`g`}{mosquito mortality rate}
+#'   \item{`sigma`}{emigration rate}
+#'   \item{`mu`}{emigration loss rate}
+#'   \item{`K`}{mosquito dispersal matrix}
+#'   \item{`Omega`}{adult mosquito demographic matrix (mortality + migration)}
+#' }
+#'
+#' @section Dynamics:
+#' \deqn{
+#' \begin{array}{rl}
+#' dM/dt &= \Lambda - \Omega \cdot M \\
+#' dP/dt &= f(M-P) - \Omega \cdot P \\
+#' \end{array}}
+#'
+#' @name basicM
+#' @rdname basicM
+NULL
+
+
 #' @title The **MY** Module Skill Set
 #'
 #' @description The **MY** skill set is a list of
@@ -11,6 +44,7 @@
 #'
 #' @return *MY* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_MY.basicM = function(MYname){
   return(list())
@@ -22,6 +56,7 @@ skill_set_MY.basicM = function(MYname){
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_MY.basicM = function(xds_obj, s){
   return(xds_obj)
@@ -99,6 +134,7 @@ MBionomics.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 #' @description This method dispatches on the type of `MY_obj`
 #' @inheritParams steady_state_M
 #' @return none
+#' @keywords internal
 #' @export
 steady_state_M.basicM_ode = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[s]],{
   Omega_inv <- solve(Omega)
@@ -111,6 +147,7 @@ steady_state_M.basicM_ode = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[
 #' @description This method dispatches on the type of `MY_obj`
 #' @inheritParams steady_state_M
 #' @return none
+#' @keywords internal
 #' @export
 steady_state_M.basicM_dts = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[s]],{
   Omega_inv <- solve(Omega)
@@ -168,6 +205,7 @@ setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
 #' @param nu oviposition rate, per mosquito
 #' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
+#' @keywords internal
 #' @export
 make_M_obj_basicM = function(nPatches, options=list(),
                             g=1/12,  sigma=1/8,  mu=0,
@@ -203,6 +241,7 @@ make_M_obj_basicM = function(nPatches, options=list(),
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_pars.basicM <- function(xds_obj, s=1) {
   with(xds_obj$MY_obj[[s]], list(
@@ -210,25 +249,6 @@ get_MY_pars.basicM <- function(xds_obj, s=1) {
     nu=nu_t, eggsPerBatch=eggsPerBatch, K_matrix=K_matrix
   ))
 }
-
-
-#' @title Return the parameters as a list
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
-#' @inheritParams change_MY_pars
-#' @return an **`xds`** object
-#' @export
-change_MY_pars.basicM <- function(xds_obj, s=1, options=list()) {
-  nHabitats <- xds_obj$nHabitats
-  with(xds_obj$MY_obj[[s]], with(options,{
-    xds_obj$MY_obj[[s]]$f_obj$f <- f
-    xds_obj$MY_obj[[s]]$q_obj$q <- q
-    xds_obj$MY_obj[[s]]$g_obj$g <- g
-    xds_obj$MY_obj[[s]]$sigma_obj$sigma <- sigma
-    xds_obj$MY_obj[[s]]$mu_obj$mu <- mu
-    xds_obj$MY_obj[[s]]$nu_obj$nu <- nu
-    xds_obj$MY_obj[[s]]$eggsPerBatch <- eggsPerBatch
-    return(xds_obj)
-  }))}
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
 #' @description Implements [F_fqZ] for the basicM xde model.
@@ -244,6 +264,7 @@ F_fqZ.basicM <- function(t, y, xds_obj, s) {
 #' @description Implements [F_fqM] for the basicM xde model.
 #' @inheritParams F_fqM
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqM.basicM <- function(t, y, xds_obj, s) {
   f = get_f(xds_obj, s)
@@ -296,6 +317,7 @@ change_MY_inits.basicM <- function(xds_obj, s=1, options=list()) {
 #' @param M total mosquito density at each patch
 #' @param P total parous mosquito density at each patch
 #' @return none
+#' @keywords internal
 #' @export
 make_MY_inits_basicM = function(nPatches, options, M=5, P=1){
   with(options,{
@@ -323,6 +345,7 @@ get_MY_vars.basicM <- function(y, xds_obj, s){
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_MY_pars.basicM <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats

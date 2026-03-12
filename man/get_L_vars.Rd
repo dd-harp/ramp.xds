@@ -23,3 +23,4 @@ states for the \eqn{s^{th}} species and return them as a named list
 \note{
 This method dispatches on the class of \code{xds_obj$L_obj[[s]]}.
 }
+\keyword{internal}

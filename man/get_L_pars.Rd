@@ -17,3 +17,4 @@ a \link{list}
 \description{
 Get parameters for the \strong{L} Component module
 }
+\keyword{internal}

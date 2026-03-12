@@ -18,3 +18,4 @@ the initial values, as a named list
 Get and display the stored
 set of initial values.
 }
+\keyword{internal}

@@ -19,3 +19,4 @@ the timing, frequency, and relative intensity
 over the season. The function is normalized
 to have an annual value set by \code{norm}
 }
+\keyword{internal}

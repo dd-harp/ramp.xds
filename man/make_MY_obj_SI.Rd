@@ -44,3 +44,4 @@ a \link{list}
 \description{
 Make parameters for SI ODE adult mosquito model
 }
+\keyword{internal}

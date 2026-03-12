@@ -16,3 +16,4 @@ a list describing the skill set
 The \strong{XH} skill set is a list of
 an module's capabilities
 }
+\keyword{internal}

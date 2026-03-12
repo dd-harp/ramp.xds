@@ -115,6 +115,7 @@ BloodHosts.dynamic <- function(t, y, xds_obj) {
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 blood_hosts_dynamics <- function(t, y, xds_obj){
   for(s in 1:xds_obj$nVectorSpecies){

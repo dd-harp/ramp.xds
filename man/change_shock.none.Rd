@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 Implement \code{change_shock} for a model
 with no forcing
 }
+\keyword{internal}

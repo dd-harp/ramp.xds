@@ -21,3 +21,4 @@ an \strong{\code{xds}} object
 \description{
 Implements \link{LBionomics} for the \code{basicL}
 }
+\keyword{internal}

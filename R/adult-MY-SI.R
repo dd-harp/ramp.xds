@@ -1,5 +1,42 @@
 # specialized methods for the adult mosquito SI model
 
+#' @title The `SI` Module for the MY Component
+#' @description
+#' Implements the **MY** component using a simple SI (Susceptible-Infected)
+#' model of adult mosquito infection dynamics.
+#'
+#' @section State Variables:
+#' \describe{
+#'   \item{`M`}{density of adult mosquitoes}
+#'   \item{`Y`}{density of infected adult mosquitoes}
+#' }
+#'
+#' @section Parameters:
+#' \describe{
+#'   \item{`f`}{blood feeding rate}
+#'   \item{`q`}{human blood fraction}
+#'   \item{`eip`}{extrinsic incubation period (\eqn{\tau})}
+#'   \item{`g`}{mosquito mortality rate}
+#'   \item{`sigma`}{emigration rate}
+#'   \item{`mu`}{emigration loss rate}
+#'   \item{`K`}{mosquito dispersal matrix}
+#'   \item{`Omega`}{adult mosquito demographic matrix (mortality + migration)}
+#' }
+#'
+#' @section Dynamics:
+#' The density of infectious mosquitoes is given by:
+#' \deqn{Z = e^{-\Omega \tau} \cdot Y}
+#' \deqn{
+#' \begin{array}{rl}
+#' dM/dt &= \Lambda - \Omega \cdot M \\
+#' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
+#' \end{array}}
+#'
+#' @name SI
+#' @rdname SI
+NULL
+
+
 #' @title The **SI** Module Skill Set
 #'
 #' @description The **MY** skill set is a list of
@@ -11,6 +48,7 @@
 #'
 #' @return *MY* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_MY.SI = function(MYname){
   return(list())
@@ -22,6 +60,7 @@ skill_set_MY.SI = function(MYname){
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_MY.SI = function(xds_obj, s){
   return(xds_obj)
@@ -140,6 +179,7 @@ F_fqZ.SI <- function(t, y, xds_obj, s) {
 #' The daily HBR for the human / host population strata is \eqn{\beta \cdot fqM}
 #' @inheritParams F_fqM
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqM.SI <- function(t, y, xds_obj, s){
   M = y[xds_obj$MY_obj[[s]]$ix$M_ix]
@@ -226,6 +266,7 @@ MBionomics.SI <- function(t, y, xds_obj, s) {
 #' @inheritParams setup_MY_obj
 #' @keywords internal
 #' @return a [list] vector
+#' @keywords internal
 #' @export
 setup_MY_obj.SI = function(MYname, xds_obj, s, options=list()){
   MY_obj <- make_MY_obj_SI(xds_obj$nPatches, options)
@@ -246,6 +287,7 @@ setup_MY_obj.SI = function(MYname, xds_obj, s, options=list()){
 #' @param nu ovipoSItion rate, per mosquito
 #' @param eggsPerBatch eggs laid per ovipoSItion
 #' @return a [list]
+#' @keywords internal
 #' @export
 make_MY_obj_SI = function(nPatches, options=list(), eip=12,
                           g=1/12, sigma=1/8, mu=0, f=0.3, q=0.95,
@@ -282,6 +324,7 @@ make_MY_obj_SI = function(nPatches, options=list(), eip=12,
 #' @return a [list]
 #' @keywords internal
 #' @importFrom utils tail
+#' @keywords internal
 #' @export
 setup_MY_ix.SI <- function(xds_obj, s) {with(xds_obj,{
 
@@ -334,6 +377,7 @@ parse_MY_orbits.SI <- function(outputs, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_pars.SI <- function(xds_obj, s=1) {
   with(xds_obj$MY_obj[[s]], list(
@@ -346,6 +390,7 @@ get_MY_pars.SI <- function(xds_obj, s=1) {
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_MY_pars.SI <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
@@ -380,6 +425,7 @@ setup_MY_inits.SI = function(xds_obj, s, options=list()){
 #' @param M total mosquito density at each patch
 #' @param Y infectious mosquito density at each patch
 #' @return a [list]
+#' @keywords internal
 #' @export
 make_MY_inits_SI = function(nPatches, options = list(),
                             M=5, Y=1){
@@ -449,6 +495,7 @@ get_sigma.SI = function(xds_obj, s=1){
 #' @description This method dispatches on the type of `MY_obj`.
 #' @inheritParams steady_state_MY
 #' @return none
+#' @keywords internal
 #' @export
 steady_state_MY.SI_ode = function(Lambda, kappa, xds_obj, s=1){
   with(xds_obj$MY_obj[[s]],{

@@ -21,3 +21,4 @@ Set the yy for the seasonal pattern for
 an \code{eir} model
 and return the \strong{\code{ramp.xds}} model object
 }
+\keyword{internal}

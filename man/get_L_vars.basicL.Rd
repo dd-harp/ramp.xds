@@ -20,3 +20,4 @@ a named \link{list}
 Extract the \strong{L} component variables from the
 vector of state variables (\code{y}) and return them as a named list
 }
+\keyword{internal}

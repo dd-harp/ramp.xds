@@ -1,4 +1,52 @@
 
+
+#' @title Mosquito Dispersal
+#'   
+#' @section Mosquito Dispersal Matrix, \eqn{K}: 
+#' 
+#' In adult mosquito modules, mosquito dispersal is described by 
+#' a square matrix \eqn{K} with `nPatches` \eqn{(=n)} rows and columns. By convention,
+#' all \eqn{K} matrices have the form:
+#' \deqn{
+#'  K = \left[ \begin{array}{ccccc}
+#'  -1 & k_{1,2} & k_{1,3} & \cdots & k_{1, n} \\
+#'  k_{2,1} & -1 & k_{2,3} & \cdots & k_{2, n} \\
+#'  k_{3,1} & k_{3,2} & -1 & \cdots & k_{3, n} \\
+#'  \vdots & \vdots & \vdots & \ddots  & \vdots \\
+#'  k_{n,1} & k_{n,2} & k_{n,3} & \cdots & -1 \\
+#'  \end{array} \right]
+#' }
+#' We interpret \eqn{K} as the destinations of 
+#' emigrating mosquitoes that survive and stay in the system.
+#' The values of the elements \eqn{k_{i,j}} are thus 
+#' constrained such that there is no net dispersal loss from the system: \eqn{\forall i,}
+#' \deqn{\sum_j k_{i,j} = 1.} 
+#' The columns of \eqn{K} sum up to zero.
+#' 
+#' Emigration-related loss (including mortality and emigration from the spatial domain)
+#' is modeled with another parameter (see [mosquito_demography]).  
+#' 
+#' @section Basic Setup: 
+#' \describe{
+#'   \item{`K_matrix`}{a matrix or a named list: options that set up \eqn{K}}
+#' }
+#' 
+#' There are several ways to configure  \eqn{K} during basic setup. 
+#' 
+#' By **default:** `K_matrix` is an empty list. When the `MY_obj` is set up, the \eqn{K} 
+#' matrix is set to `diag(g)`, a model with no dispersal. That is not changed unless one of the
+#' following holds: 
+#' 
+#' + `is.matrix(K_matrix)`: if the user to passes a proper \eqn{K} matrix, then it is used as-is
+#' 
+#' + `with(Kmatrix, exists("Kname"))`: If a string in the named list passed as `K_matrix` is called `Kname`, then basic setup calls [setup_K_matrix] with `options=K_matrix` 
+#'
+#' @seealso [setup_K_matrix]
+#'  
+#' @name mosquito_dispersal 
+NULL
+
+
 #' @title Get the Mosquito Dispersal Matrix
 #'
 #' @param xds_obj an **`xds`** model object
@@ -35,7 +83,7 @@ change_K_matrix = function(K_matrix, xds_obj, s=1){
 #' @param MY_obj an **`MY`** model object
 #'
 #' @return a **`MY`** model object
-#'
+#' @keywords internal
 #' @export
 setup_K_obj = function(nPatches, MY_obj){
   MY_obj$K_matrix = diag(nPatches)
@@ -50,13 +98,11 @@ setup_K_obj = function(nPatches, MY_obj){
 #' set the values of the bionomic parameters to baseline values
 #'
 #' @note This method dispatches on the type of `f_obj` attached to the `MY_obj`.
-#'
 #' @param t current simulation time
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
-#'
 #' @return a [numeric] vector of length `nPatches`
-#'
+#' @keywords internal
 #' @export
 F_K_matrix = function(t, xds_obj, s) {
   UseMethod("F_K_matrix", xds_obj$MY_obj[[s]]$K_obj)
@@ -71,6 +117,7 @@ F_K_matrix = function(t, xds_obj, s) {
 #' @inheritParams F_feeding_rate
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 F_K_matrix.static = function(t, xds_obj, s){
   return(xds_obj)
@@ -128,7 +175,7 @@ setup_K_matrix.herethere = function(Kname, s, xds_obj, options = list()){
 #' @export
 make_K_matrix_herethere = function(nPatches) {
   K_matrix <- matrix(1/(nPatches-1), nPatches, nPatches)
-  diag(K_matrix) <- 0
+  diag(K_matrix) <- -1 
   return(K_matrix)
 }
 
@@ -160,5 +207,6 @@ make_K_matrix_xy = function(xy, ker = F_exp) {
   K_matrix <- ker(dmat)
   diag(K_matrix) <- 0
   K_matrix = K_matrix %*% diag(1/rowSums(K_matrix))
+  diag(K_matrix) <- -1 
   return(K_matrix)
 }

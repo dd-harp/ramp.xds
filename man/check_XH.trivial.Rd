@@ -17,3 +17,4 @@ an \strong{\code{xds}} object
 \description{
 Check / update before solving
 }
+\keyword{internal}

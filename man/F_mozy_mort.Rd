@@ -20,3 +20,4 @@ a \link{numeric} vector og length \code{nPatches}
 This method dispatches on the type of \code{g_obj}. It should
 set the values og the bionomic parameters to baseline values
 }
+\keyword{internal}

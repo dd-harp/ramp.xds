@@ -32,3 +32,4 @@ the variable \eqn{H}, must be set using \link{change_H}
 The variable names are returned by calling \link{get_XH_inits}.
 The function \link{make_XH_inits_SIS} is called during setup.
 }
+\keyword{internal}

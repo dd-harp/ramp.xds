@@ -20,3 +20,4 @@ a \link{numeric} vector otheta length \code{nPatches}
 This method dispatches on the type of \code{theta_obj}. It should
 set the values otheta the bionomic parameters to baseline values
 }
+\keyword{internal}

@@ -17,3 +17,4 @@ get_MY_inits(xds_obj, s = 1)
 \description{
 This method dispatches on the type of \code{xds_obj$MY_obj}.
 }
+\keyword{internal}

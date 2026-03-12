@@ -10,6 +10,7 @@
 #'
 #' @return *L* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_L = function(Lname){
   class(Lname) <- Lname
@@ -22,6 +23,7 @@ skill_set_L = function(Lname){
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_L = function(xds_obj, s){
   UseMethod("check_L", xds_obj$L_obj[[s]])
@@ -39,6 +41,7 @@ check_L = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return the derivatives, a [numeric] vector of length \eqn{n_q=}`nHabitats`
+#' @keywords internal
 #' @keywords internal
 #' @export
 dLdt <- function(t, y, xds_obj, s) {
@@ -70,6 +73,8 @@ Update_Lt <- function(t, y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return an **`xds`** object
+#' @keywords internal
+#' @keywords internal
 #' @export
 LBaseline <- function(t, y, xds_obj, s) {
   UseMethod("LBaseline", xds_obj$L_obj[[s]])
@@ -83,6 +88,7 @@ LBaseline <- function(t, y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 LBionomics <- function(t, y, xds_obj, s) {
   UseMethod("LBionomics", xds_obj$L_obj[[s]])
@@ -97,6 +103,7 @@ LBionomics <- function(t, y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [numeric] vector of length `nHabitats`
+#' @keywords internal
 #' @export
 F_emerge <- function(t, y, xds_obj, s) {
   UseMethod("F_emerge", xds_obj$L_obj[[s]])
@@ -117,6 +124,7 @@ F_emerge <- function(t, y, xds_obj, s) {
 #'
 #' @return an **`xds`** object
 #' @keywords internal
+#' @keywords internal
 #' @export
 setup_L_obj = function(Lname, xds_obj, s, options=list()){
   class(Lname) <- Lname
@@ -127,6 +135,7 @@ setup_L_obj = function(Lname, xds_obj, s, options=list()){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_L_pars <- function(xds_obj, s=1) {
   UseMethod("get_L_pars", xds_obj$L_obj[[s]])
@@ -137,6 +146,7 @@ get_L_pars <- function(xds_obj, s=1) {
 #' @param s the vector species index
 #' @param options a named list
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_L_pars <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_L_pars", xds_obj$L_obj[[s]])
@@ -150,6 +160,7 @@ change_L_pars <- function(xds_obj, s=1, options=list()) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a named [list]: the variables of \eqn{\cal L} by name
+#' @keywords internal
 #' @export
 get_L_vars <- function(y, xds_obj, s) {
   UseMethod("get_L_vars", xds_obj$L_obj[[s]])
@@ -162,6 +173,7 @@ get_L_vars <- function(y, xds_obj, s) {
 #' @param options a [list]
 #' @return an **`xds`** object
 #' @keywords internal
+#' @keywords internal
 #' @export
 setup_L_inits = function(xds_obj, s, options=list()){
   UseMethod("setup_L_inits", xds_obj$L_obj[[s]])
@@ -172,6 +184,7 @@ setup_L_inits = function(xds_obj, s, options=list()){
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a named [list]
+#' @keywords internal
 #' @export
 get_L_inits <- function(xds_obj, s=1) {
   xds_obj$L_obj[[s]]$inits
@@ -185,6 +198,7 @@ get_L_inits <- function(xds_obj, s=1) {
 #' @param s the vector species index
 #' @param options a named list
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_L_inits <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_L_inits", xds_obj$L_obj[[s]])
@@ -194,6 +208,7 @@ change_L_inits <- function(xds_obj, s=1, options=list()) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return an **`xds`** object
+#' @keywords internal
 #' @keywords internal
 #' @export
 setup_L_ix <- function(xds_obj, s) {
@@ -208,6 +223,7 @@ setup_L_ix <- function(xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [list]
+#' @keywords internal
 #' @keywords internal
 #' @export
 parse_L_orbits <- function(outputs, xds_obj, s) {
@@ -226,6 +242,7 @@ parse_L_orbits <- function(outputs, xds_obj, s) {
 #' @param s the species index
 #'
 #' @return a named [list]: values of the state variables at the steady state
+#' @keywords internal
 #' @export
 steady_state_L = function(eta, xds_obj, s=1){
   UseMethod("steady_state_L", xds_obj$L_obj[[s]])
@@ -244,8 +261,9 @@ steady_state_L = function(eta, xds_obj, s=1){
 #'
 #' @return the orbits for the **L** component
 #'
+#' @keywords internal
 #' @export
-get_L_out = function(xds_obj, s=1){
+get_L_orbits = function(xds_obj, s=1){
 
   got = xds_obj$outputs$orbits$L[[s]]
   got$time = xds_obj$outputs$time

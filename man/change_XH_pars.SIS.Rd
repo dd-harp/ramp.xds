@@ -33,3 +33,4 @@ values for the SIS model (\strong{XH} component)
 \seealso{
 \code{\link[=get_XH_pars.SIS]{get_XH_pars.SIS()}} and the github.io essay on \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Dynamics}
 }
+\keyword{internal}

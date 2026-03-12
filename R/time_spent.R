@@ -1,3 +1,26 @@
+#' @title Time Spent 
+#' 
+#' @description
+#' The risk of exposure to mosquito-borne pathogens
+#' is related to time spent in places where vectors are
+#' blood feeding. In **`ramp.xds`,** this is implemented 
+#' through the concepts of **time spent** and **time at risk** 
+#' (see [time_at_risk]) 
+#'  
+#' @name time_spent 
+NULL
+
+#' @title Time at Risk
+#' 
+#' @description
+#' Mosquitoes have a daily activity pattern. 
+#' If people spend time in different locations at different 
+#' times of the day, biting risk in a location is weighted by the 
+#' mosquitoes relative activity patterns while there. 
+#' 
+#'  
+#' @name time_at_risk
+NULL
 
 #' @title Set up (or change) a Time Spent matrix
 #'

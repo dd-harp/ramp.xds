@@ -51,7 +51,7 @@ xde_derivatives.full <- function(t, y, xds_obj) {
   if(xds_obj$nOtherVariables > 1)
     for(i in 2:length(xds_obj$nOtherVariables))
       dV <- c(dV, dVdt(t, y, xds_obj, i))
-
+  
   return(list(c(dL, dMY, dXH, dV)))
 }
 

@@ -18,3 +18,4 @@ an \strong{\code{xds}} object
 Get and display the values of the indices
 for the variables
 }
+\keyword{internal}

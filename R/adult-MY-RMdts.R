@@ -1,5 +1,38 @@
 # specialized methods for the adult mosquito RMdts model
 
+#' @title The `RMdts` Module for the MY Component
+#' @description
+#' Implements the **MY** component using a discrete-time Ross-Macdonald
+#' model of adult mosquito ecology and infection dynamics.
+#'
+#' @section State Variables:
+#' \describe{
+#'   \item{`M`}{density of adult mosquitoes}
+#'   \item{`Y`}{density of infected adult mosquitoes}
+#'   \item{`Z`}{density of infectious adult mosquitoes}
+#' }
+#'
+#' @section Parameters:
+#' \describe{
+#'   \item{`f`}{blood feeding rate}
+#'   \item{`q`}{human blood fraction}
+#'   \item{`eip`}{extrinsic incubation period (time steps)}
+#'   \item{`g`}{mosquito mortality rate}
+#'   \item{`sigma`}{emigration rate}
+#'   \item{`mu`}{emigration loss rate}
+#'   \item{`K`}{mosquito dispersal matrix}
+#'   \item{`Omega`}{adult mosquito demographic matrix (mortality + migration)}
+#'   \item{`Upsilon`}{survival and dispersal through the eip}
+#' }
+#'
+#' @section Dynamics:
+#' State is updated each time step via [Update_MYt.RMdts].
+#'
+#' @name RMdts
+#' @rdname RMdts
+NULL
+
+
 #' @title The **RMdts** Module Skill Set
 #'
 #' @description The **MY** skill set is a list of
@@ -11,6 +44,7 @@
 #'
 #' @return *MY* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_MY.RMdts = function(MYname){
   return(list())
@@ -22,6 +56,7 @@ skill_set_MY.RMdts = function(MYname){
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_MY.RMdts = function(xds_obj, s){
   return(xds_obj)
@@ -75,6 +110,7 @@ F_fqZ.RMdts <- function(t, y, xds_obj, s) {
 #' @description Implements [F_fqM] for the RMdts model.
 #' @inheritParams F_fqM
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqM.RMdts <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]], f*q)*y[xds_obj$ix$MY[[s]]$M_ix]
@@ -115,6 +151,7 @@ setup_MY_inits.RMdts = function(xds_obj, s, options=list()){
 #' @param Y infected mosquito density at each patch
 #' @param Z infectious mosquito density at each patch
 #' @return a [list]
+#' @keywords internal
 #' @export
 make_MY_inits_RMdts = function(nPatches, max_eip, options = list(),
                                   M=5, P=1, U=0, Y=1, Z=1){

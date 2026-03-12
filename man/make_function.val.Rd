@@ -15,3 +15,4 @@ a function that returns a constant value
 \description{
 Build a function that returns a constant value
 }
+\keyword{internal}

@@ -20,3 +20,4 @@ a \link{numeric} vector opsi length \code{nPatches}
 This method dispatches on the type of \code{psi_obj}. It should
 set the values opsi the bionomic parameters to baseline values
 }
+\keyword{internal}

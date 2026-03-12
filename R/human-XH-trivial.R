@@ -1,3 +1,24 @@
+
+#' @title The `trivial` Module for the XH Component
+#' @description
+#' Implements the **XH** component using a trivial (trace) model where
+#' net infectiousness \eqn{\kappa} is specified as a forced function of
+#' time rather than computed from dynamic infection states.
+#' This module has no state variables.
+#'
+#' @section State Variables:
+#' None — \eqn{\kappa} is supplied as a trace function.
+#'
+#' @section Parameters:
+#' \describe{
+#'   \item{`kappa`}{net infectiousness of the human population (trace function)}
+#'   \item{`HPop`}{human population density}
+#' }
+#'
+#' @name trivial_XH
+#' @rdname trivial_XH
+NULL
+
 # specialized methods for a human trivial model
 
 #' @title The **XH** Module Skill Set
@@ -10,6 +31,8 @@
 #'
 #' @return a list describing the skill set
 #'
+#' @keywords internal
+#' @keywords internal
 #' @export
 skill_set_XH.trivial = function(Xname){
   list(
@@ -24,6 +47,8 @@ skill_set_XH.trivial = function(Xname){
 #' @inheritParams check_XH
 #'
 #' @return an **`xds`** object
+#' @keywords internal
+#' @keywords internal
 #' @export
 check_XH.trivial = function(xds_obj, i){
   return(xds_obj)
@@ -33,6 +58,7 @@ check_XH.trivial = function(xds_obj, i){
 #' @description Implements [F_I] for the trivial model
 #' @inheritParams F_I
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @keywords internal
 #' @export
 F_I.trivial <- function(t, y, xds_obj, i) {
@@ -46,6 +72,7 @@ F_I.trivial <- function(t, y, xds_obj, i) {
 #' @inheritParams F_H
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
+#' @keywords internal
 #' @export
 F_H.trivial <- function(t, y, xds_obj, i) {
   xds_obj$XH_obj[[i]]$H
@@ -55,6 +82,7 @@ F_H.trivial <- function(t, y, xds_obj, i) {
 #' @description Implements [F_infectivity] for the trivial model.
 #' @inheritParams F_infectivity
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @keywords internal
 #' @export
 F_infectivity.trivial <- function(y, xds_obj, i) {
@@ -69,6 +97,8 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' @param season_par parameters to configure a `F_season` using [make_function]
 #' @param trend_par parameters to configure `F_trend` using [make_function]
 #' @return a [list]
+#' @keywords internal
+#' @keywords internal
 #' @export
 make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
                               season_par = makepar_F_one(),
@@ -94,6 +124,7 @@ make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
 #' @inheritParams dXHdt
 #' @return a [numeric] vector
 #' @keywords internal
+#' @keywords internal
 #' @export
 dXHdt.trivial <- function(t, y, xds_obj, i) {
   numeric(0)
@@ -105,6 +136,7 @@ dXHdt.trivial <- function(t, y, xds_obj, i) {
 #' @inheritParams Update_XHt
 #' @return a [numeric] vector
 #' @keywords internal
+#' @keywords internal
 #' @export
 Update_XHt.trivial <- function(t, y, xds_obj, i) {
   numeric(0)
@@ -114,6 +146,8 @@ Update_XHt.trivial <- function(t, y, xds_obj, i) {
 #' @description Implements [F_prevalence] for the trivial model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector numeric(0)
+#' @keywords internal
+#' @keywords internal
 #' @export
 F_prevalence.trivial <- function(vars, XH_obj) {
   return(numeric(0))
@@ -124,6 +158,7 @@ F_prevalence.trivial <- function(vars, XH_obj) {
 #' @inheritParams F_ni
 #' @return a [numeric] vector numeric(0)
 #' @keywords internal
+#' @keywords internal
 #' @export
 F_ni.trivial <- function(vars, XH_obj) {
   return(numeric(0))
@@ -133,6 +168,7 @@ F_ni.trivial <- function(vars, XH_obj) {
 #' @description Implements [F_prevalence] for the trivial model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector numeric(0)
+#' @keywords internal
 #' @keywords internal
 #' @export
 F_pfpr_by_lm.trivial <- function(vars, XH_obj) {
@@ -145,6 +181,7 @@ F_pfpr_by_lm.trivial <- function(vars, XH_obj) {
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector numeric(0)
 #' @keywords internal
+#' @keywords internal
 #' @export
 F_pfpr_by_rdt.trivial <- function(vars, XH_obj) {
   return(numeric(0))
@@ -155,6 +192,8 @@ F_pfpr_by_rdt.trivial <- function(vars, XH_obj) {
 #' @description Implements [F_prevalence] for the trivial model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector numeric(0)
+#' @keywords internal
+#' @keywords internal
 #' @export
 F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
   return(numeric(0))
@@ -165,6 +204,7 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 #' @description Implements [setup_XH_obj] for the trivial model
 #' @inheritParams setup_XH_obj
 #' @return an **`xds`** object
+#' @keywords internal
 #' @keywords internal
 #' @export
 setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
@@ -178,6 +218,7 @@ setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
 #' @inheritParams setup_XH_inits
 #' @return a [list] vector
 #' @keywords internal
+#' @keywords internal
 #' @export
 setup_XH_inits.trivial = function(xds_obj, H, i=1, options=list()){
   return(xds_obj)
@@ -189,6 +230,7 @@ setup_XH_inits.trivial = function(xds_obj, H, i=1, options=list()){
 #' @return none
 #' @importFrom utils tail
 #' @keywords internal
+#' @keywords internal
 #' @export
 setup_XH_ix.trivial <- function(xds_obj, i) {
   return(xds_obj)
@@ -198,6 +240,7 @@ setup_XH_ix.trivial <- function(xds_obj, i) {
 #' @description Implements [parse_XH_orbits] for the trivial model
 #' @inheritParams parse_XH_orbits
 #' @return none
+#' @keywords internal
 #' @keywords internal
 #' @export
 parse_XH_orbits.trivial <- function(outputs, xds_obj,i) {
@@ -211,6 +254,8 @@ parse_XH_orbits.trivial <- function(outputs, xds_obj,i) {
 #'
 #' @inheritParams get_XH_vars
 #' @return a [list]
+#' @keywords internal
+#' @keywords internal
 #' @export
 get_XH_vars.trivial<- function(y, xds_obj, i) {
     return(list())
@@ -222,6 +267,8 @@ get_XH_vars.trivial<- function(y, xds_obj, i) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [list]
+#' @keywords internal
+#' @keywords internal
 #' @export
 get_XH_pars.trivial <- function(xds_obj, i=1) {
   with(xds_obj$XH_obj[[i]], list(
@@ -235,6 +282,8 @@ get_XH_pars.trivial <- function(xds_obj, i=1) {
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
 #' @inheritParams change_XH_pars
 #' @return an **`xds`** object
+#' @keywords internal
+#' @keywords internal
 #' @export
 change_XH_pars.trivial <- function(xds_obj, i=1, options=list()) {
   nHabitats <- xds_obj$nHabitats

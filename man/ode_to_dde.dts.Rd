@@ -15,3 +15,4 @@ an \strong{\code{xds}} object
 \description{
 If \code{class(xds_obj$xde) == "dts"} don't change anything
 }
+\keyword{internal}

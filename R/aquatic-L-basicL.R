@@ -1,3 +1,35 @@
+
+#' @title The `basicL` Module for the L Component
+#' @description
+#' Implements the **L** component using a basic model of aquatic mosquito
+#' ecology with density-dependent mortality and delayed maturation, based
+#' on Smith DL, *et al.* (2013).
+#'
+#' @section State Variables:
+#' \describe{
+#'   \item{`L`}{density of mosquito larvae in each habitat}
+#' }
+#'
+#' @section Parameters:
+#' \describe{
+#'   \item{`psi`}{maturation rate (\eqn{\psi})}
+#'   \item{`xi`}{delayed maturation parameter in response to mean crowding (\eqn{\xi})}
+#'   \item{`phi`}{density-independent death rate (\eqn{\phi})}
+#'   \item{`theta`}{slope of density-dependent mortality (\eqn{\theta})}
+#' }
+#'
+#' @section Dynamics:
+#' \deqn{dL/dt = \eta - (\psi e^{-\xi L} + \phi + \theta L) L}
+#'
+#' Emergence rate: \deqn{\alpha = \psi e^{-\xi L} L}
+#'
+#' Setting \eqn{\xi = 0} recovers the model of Smith DL, *et al.* (2013).
+#'
+#' @references Smith DL, *et al.* (2013)
+#' @name basicL
+#' @rdname basicL
+NULL
+
 # the aquatic mosquito `basicL` competition model
 
 #' @title The **L** Module Skill Set
@@ -9,6 +41,7 @@
 #'
 #' @return *L* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_L.basicL = function(Lname = "basicL"){
   list(trivial=FALSE)
@@ -20,6 +53,7 @@ skill_set_L.basicL = function(Lname = "basicL"){
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_L.basicL = function(xds_obj, s){
   return(xds_obj)
@@ -74,6 +108,7 @@ check_L.basicL = function(xds_obj, s){
 #' @references{\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
 #' @seealso [make_L_obj_basicL]
 #' @keywords internal
+#' @keywords internal
 #' @export
 dLdt.basicL <- function(t, y, xds_obj, s) {
   eta <- as.vector(xds_obj$terms$eta[[s]])
@@ -90,6 +125,7 @@ dLdt.basicL <- function(t, y, xds_obj, s) {
 #' @description Implements [Update_Lt] for the `basicL` competition model.
 #' @inheritParams Update_Lt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @keywords internal
 #' @export
 Update_Lt.basicL <- function(t, y, xds_obj, s) {
@@ -110,6 +146,7 @@ Update_Lt.basicL <- function(t, y, xds_obj, s) {
 #' @inheritParams F_emerge
 #' @return a [numeric] vector of length `nHabitats`
 #' @seealso [dLdt.basicL]
+#' @keywords internal
 #' @export
 F_emerge.basicL <- function(t, y, xds_obj, s) {
   L <- y[xds_obj$L_obj[[s]]$ix$L_ix]
@@ -125,6 +162,8 @@ F_emerge.basicL <- function(t, y, xds_obj, s) {
 #' @inheritParams LBaseline
 #'
 #' @return an **`xds`** object
+#' @keywords internal
+#' @keywords internal
 #' @export
 LBaseline.basicL <- function(t, y, xds_obj, s) {
 
@@ -145,6 +184,8 @@ LBaseline.basicL <- function(t, y, xds_obj, s) {
 #' @description Implements [LBionomics] for the `basicL`
 #' @inheritParams LBionomics
 #' @return an **`xds`** object
+#' @keywords internal
+#' @keywords internal
 #' @export
 LBionomics.basicL <- function(t, y, xds_obj, s) {
   with(xds_obj$L_obj[[s]],{
@@ -162,6 +203,7 @@ LBionomics.basicL <- function(t, y, xds_obj, s) {
 #' @inheritParams setup_L_obj
 #' @return an **`xds`** object
 #' @seealso [make_L_obj_basicL]
+#' @keywords internal
 #' @keywords internal
 #' @export
 setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
@@ -191,6 +233,7 @@ setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
 #'
 #' @seealso Called by: [setup_L_obj.basicL]. Related: [dLdt.basicL] & [Update_Lt.basicL]
 #' @return **`L_obj`** an **L** component object
+#' @keywords internal
 #' @export
 make_L_obj_basicL = function(nHabitats, options=list(), psi=1/8, xi=0, phi=1/8, theta=1/100){
   with(options,{
@@ -213,6 +256,7 @@ make_L_obj_basicL = function(nHabitats, options=list(), psi=1/8, xi=0, phi=1/8, 
 #' @param s the vector species index
 #' @return a [list]
 #' @seealso [dLdt.basicL] or [change_L_pars.basicL]
+#' @keywords internal
 #' @export
 get_L_pars.basicL <- function(xds_obj, s=1) {
   with(xds_obj$L_obj[[s]], list(
@@ -229,6 +273,7 @@ get_L_pars.basicL <- function(xds_obj, s=1) {
 #' @inheritParams change_L_pars
 #' @seealso [dLdt.basicL] or [make_L_obj_basicL]
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_L_pars.basicL <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
@@ -250,6 +295,7 @@ change_L_pars.basicL <- function(xds_obj, s=1, options=list()) {
 #' @seealso [make_L_inits_basicL]
 #' @return a [list]
 #' @keywords internal
+#' @keywords internal
 #' @export
 setup_L_inits.basicL = function(xds_obj, s, options=list()){
   xds_obj$L_obj[[s]]$inits = make_L_inits_basicL(xds_obj$nHabitats, options)
@@ -262,6 +308,7 @@ setup_L_inits.basicL = function(xds_obj, s, options=list()){
 #' @param options a [list] that overwrites default values
 #' @param L initial conditions
 #' @return a [list] with Linits added
+#' @keywords internal
 #' @export
 make_L_inits_basicL = function(nHabitats, options=list(), L=1){with(options,{
   L = checkIt(L, nHabitats)
@@ -273,6 +320,7 @@ make_L_inits_basicL = function(nHabitats, options=list(), L=1){with(options,{
 #' vector of state variables (`y`) and return them as a named list
 #' @inheritParams get_L_vars
 #' @return a named [list]
+#' @keywords internal
 #' @export
 get_L_vars.basicL <- function(y, xds_obj, s){
   with(xds_obj$L_obj[[s]]$ix,
@@ -286,6 +334,7 @@ get_L_vars.basicL <- function(y, xds_obj, s){
 #' passed as a named component of `options`
 #' @inheritParams change_L_inits
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_L_inits.basicL <- function(xds_obj, s=1, options=list()) {
   with(xds_obj$L_obj[[s]]$inits, with(options,{
@@ -299,6 +348,7 @@ change_L_inits.basicL <- function(xds_obj, s=1, options=list()) {
 #' @inheritParams setup_L_ix
 #' @return an **`xds`** object
 #' @importFrom utils tail
+#' @keywords internal
 #' @keywords internal
 #' @export
 setup_L_ix.basicL <- function(xds_obj, s) {with(xds_obj,{
@@ -320,6 +370,7 @@ setup_L_ix.basicL <- function(xds_obj, s) {with(xds_obj,{
 #' @inheritParams parse_L_orbits
 #' @return a named [list]
 #' @keywords internal
+#' @keywords internal
 #' @export
 parse_L_orbits.basicL <- function(outputs, xds_obj, s) {
   L = outputs[,xds_obj$L_obj[[s]]$ix$L_ix]
@@ -333,6 +384,7 @@ parse_L_orbits.basicL <- function(outputs, xds_obj, s) {
 #' @inheritParams steady_state_L
 #' @return the values of \eqn{L} at the steady state
 #' @importFrom stats nlm
+#' @keywords internal
 #' @export
 steady_state_L.basicL_ode = function(eta, xds_obj, s=1){
   with(xds_obj$L_obj[[s]],{

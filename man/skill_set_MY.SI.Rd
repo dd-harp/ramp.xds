@@ -19,3 +19,4 @@ an module's capabilities:
 \item \code{demography} is
 }
 }
+\keyword{internal}

@@ -13,6 +13,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 ode_to_dde = function(xds_obj){
   UseMethod("ode_to_dde", xds_obj$xde)
@@ -22,6 +23,7 @@ ode_to_dde = function(xds_obj){
 #' @description If `class(xds_obj$xde) == "dde"` don't change anything
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 ode_to_dde.dde = function(xds_obj){
   return(xds_obj)
@@ -31,6 +33,7 @@ ode_to_dde.dde = function(xds_obj){
 #' @description If `class(xds_obj$xde) == "dts"` don't change anything
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 ode_to_dde.dts = function(xds_obj){
   return(xds_obj)
@@ -40,6 +43,7 @@ ode_to_dde.dts = function(xds_obj){
 #' @description If `class(xds_obj$xde) == "ode"` change it to `dde`
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 ode_to_dde.ode = function(xds_obj){
   xds_obj$xde = 'dde'

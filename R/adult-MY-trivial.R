@@ -1,3 +1,22 @@
+
+#' @title The `trivial` Module for the MY Component
+#' @description
+#' Implements the **MY** component using a trivial (trace) model where
+#' the density of infectious mosquitoes \eqn{Z} is specified as a
+#' forced function of time rather than computed dynamically.
+#'
+#' @section State Variables:
+#' No dynamic state variables — \eqn{Z} is supplied as a trace function.
+#'
+#' @section Parameters:
+#' \describe{
+#'   \item{`F_Z`}{a function of time returning the density of infectious mosquitoes}
+#' }
+#'
+#' @name trivial_MY
+#' @rdname trivial_MY
+NULL
+
 # SPECIALIZED METHODS FOR THE ADULT MOSQUITO TRIVIAL MODEL
 
 #' Run a check before solving
@@ -6,6 +25,7 @@
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_MY.trivial = function(xds_obj, s){
   return(xds_obj)
@@ -39,6 +59,7 @@ F_eggs.trivial <- function(t, y, xds_obj, s) {
 #' @description Implements [F_fqM] for the trivial model.
 #' @inheritParams F_fqM
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqM.trivial <- function(t, y, xds_obj, s){
   return(numeric(0))
@@ -138,6 +159,7 @@ setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
 #' @param trend_par parameters to configure `F_trend` using [make_function]
 #' @param shock_par parameters to configure `F_shock` using [make_function]
 #' @return none
+#' @keywords internal
 #' @export
 make_MY_obj_trivial = function(nPatches, options,
                                f = 1, q = 1, Z=1, eggs=1,
@@ -194,6 +216,7 @@ get_MY_vars.trivial <- function(y, xds_obj, s){
 #'
 #' @return the parameters as a named list
 #'
+#' @keywords internal
 #' @export
 #'
 get_MY_pars.trivial <- function(xds_obj, s=1) {
@@ -223,6 +246,7 @@ change_MY_inits.trivial <- function(xds_obj, s=1, options=list()) {
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
@@ -259,6 +283,7 @@ change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
 #'
 #' @return *MY* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_MY.trivial = function(MYname){
   return(list())

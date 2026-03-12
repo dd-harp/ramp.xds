@@ -1,6 +1,10 @@
-# Habitat Availability and Egg Laying. Also see
-# + habitats.R
-# + ovitraps.R
+#' @title Egg Laying 
+#' 
+#' @description
+#' The egg laying interface gu  
+#'  
+#' @name egg_laying 
+NULL
 
 #' @title Compute eggs laid
 #'

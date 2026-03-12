@@ -21,3 +21,4 @@ the predicted \emph{Pf}PR by PCR
 \note{
 This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}.
 }
+\keyword{internal}

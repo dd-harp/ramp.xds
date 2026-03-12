@@ -23,3 +23,4 @@ return a steady state value for the equations in \link{dLdt.basicL}
 \note{
 This function does not use deSolve
 }
+\keyword{internal}

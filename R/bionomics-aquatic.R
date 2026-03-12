@@ -32,6 +32,7 @@ setup_psi_obj = function(psi, L_obj){
 #'
 #' @return a [numeric] vector opsi length `nPatches`
 #'
+#' @keywords internal
 #' @export
 F_maturation <- function(t, xds_obj, s) {
   UseMethod("F_maturation", xds_obj$L_obj[[s]]$psi_obj)
@@ -41,6 +42,7 @@ F_maturation <- function(t, xds_obj, s) {
 #' @description Implements [F_maturation] for a static model
 #' @inheritParams F_maturation
 #' @return \eqn{psi}, the baseline human fraction
+#' @keywords internal
 #' @export
 F_maturation.static <- function(t, xds_obj, s){
   return(xds_obj$L_obj[[s]]$psi_obj$psi)
@@ -77,6 +79,7 @@ setup_phi_obj = function(phi, L_obj){
 #'
 #' @return a [numeric] vector ophi length `nPatches`
 #'
+#' @keywords internal
 #' @export
 F_larval_mort <- function(t, xds_obj, s) {
   UseMethod("F_larval_mort", xds_obj$L_obj[[s]]$phi_obj)
@@ -86,6 +89,7 @@ F_larval_mort <- function(t, xds_obj, s) {
 #' @description Implements [F_larval_mort] for a static model
 #' @inheritParams F_larval_mort
 #' @return \eqn{phi}, the baseline human fraction
+#' @keywords internal
 #' @export
 F_larval_mort.static <- function(t, xds_obj, s){
   return(xds_obj$L_obj[[s]]$phi_obj$phi)
@@ -121,6 +125,7 @@ setup_xi_obj = function(xi, L_obj){
 #'
 #' @return a [numeric] vector oxi length `nPatches`
 #'
+#' @keywords internal
 #' @export
 F_dlay_maturation <- function(t, xds_obj, s) {
   UseMethod("F_dlay_maturation", xds_obj$L_obj[[s]]$xi_obj)
@@ -130,6 +135,7 @@ F_dlay_maturation <- function(t, xds_obj, s) {
 #' @description Implements [F_dlay_maturation] for a static model
 #' @inheritParams F_dlay_maturation
 #' @return \eqn{xi}, the baseline human fraction
+#' @keywords internal
 #' @export
 F_dlay_maturation.static <- function(t, xds_obj, s){
   return(xds_obj$L_obj[[s]]$xi_obj$xi)
@@ -165,6 +171,7 @@ setup_theta_obj = function(theta, L_obj){
 #'
 #' @return a [numeric] vector otheta length `nPatches`
 #'
+#' @keywords internal
 #' @export
 F_larval_dd_mort <- function(t, xds_obj, s) {
   UseMethod("F_larval_dd_mort", xds_obj$L_obj[[s]]$theta_obj)
@@ -174,6 +181,7 @@ F_larval_dd_mort <- function(t, xds_obj, s) {
 #' @description Implements [F_larval_dd_mort] for a static model
 #' @inheritParams F_larval_dd_mort
 #' @return \eqn{theta}, the baseline human fraction
+#' @keywords internal
 #' @export
 F_larval_dd_mort.static <- function(t, xds_obj, s){
   return(xds_obj$L_obj[[s]]$theta_obj$theta)

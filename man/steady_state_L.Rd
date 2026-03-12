@@ -23,3 +23,4 @@ steady states as a function of daily eggs laid, \eqn{\eta}
 \note{
 This method dispatches on the class of \code{L_obj}.
 }
+\keyword{internal}

@@ -18,6 +18,7 @@
 #'
 #' @return *XH* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_XH = function(Xname){
   class(Xname) <- Xname
@@ -30,6 +31,7 @@ skill_set_XH = function(Xname){
 #' @param i host species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_XH = function(xds_obj,i){
   UseMethod("check_XH", xds_obj$XH_obj[[i]])
@@ -51,6 +53,7 @@ check_XH = function(xds_obj,i){
 #' @return the derivatives as a [numeric] vector
 #'
 #' @keywords internal
+#' @keywords internal
 #' @export
 dXHdt <- function(t, y, xds_obj, i) {
   UseMethod("dXHdt", xds_obj$XH_obj[[i]])
@@ -63,6 +66,7 @@ dXHdt <- function(t, y, xds_obj, i) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector
+#' @keywords internal
 #' @keywords internal
 #' @export
 Update_XHt <- function(t, y, xds_obj, i) {
@@ -79,6 +83,7 @@ Update_XHt <- function(t, y, xds_obj, i) {
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
+#' @keywords internal
 #' @export
 F_I <- function(t, y, xds_obj, i) {
   UseMethod("F_I", xds_obj$XH_obj[[i]])
@@ -92,6 +97,7 @@ F_I <- function(t, y, xds_obj, i) {
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
+#' @keywords internal
 #' @export
 F_H <- function(t, y, xds_obj, i) {
   UseMethod("F_H", xds_obj$XH_obj[[i]])
@@ -103,6 +109,7 @@ F_H <- function(t, y, xds_obj, i) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @keywords internal
 #' @export
 F_infectivity <- function(y, xds_obj, i) {
@@ -121,6 +128,7 @@ F_infectivity <- function(y, xds_obj, i) {
 #' @return an **`xds`** object
 #' @keywords internal
 #'
+#' @keywords internal
 #' @export
 setup_XH_obj = function(Xname, xds_obj, i, options=list()){
   class(Xname) <- Xname
@@ -140,6 +148,7 @@ setup_XH_obj = function(Xname, xds_obj, i, options=list()){
 #'
 #' @return Variables as a named list
 #'
+#' @keywords internal
 #' @export
 get_XH_vars <- function(y, xds_obj, i=1) {
   UseMethod("get_XH_vars", xds_obj$XH_obj[[i]])
@@ -150,6 +159,7 @@ get_XH_vars <- function(y, xds_obj, i=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [list]
+#' @keywords internal
 #' @export
 change_H = function(H, xds_obj, i=1){
   stopifnot(length(H) == xds_obj$nStrata[i])
@@ -169,6 +179,7 @@ change_H = function(H, xds_obj, i=1){
 #' @param i the host species index
 #' @return an **`xds`** object
 #' @keywords internal
+#' @keywords internal
 #' @export
 setup_XH_ix <- function(xds_obj, i) {
   UseMethod("setup_XH_ix", xds_obj$XH_obj[[i]])
@@ -183,6 +194,7 @@ setup_XH_ix <- function(xds_obj, i) {
 #' @param i the host species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 get_XH_ix <- function(xds_obj, i=1) {
   xds_obj$XH_obj[[i]]$ix
@@ -208,6 +220,7 @@ get_XH_ix <- function(xds_obj, i=1) {
 #' @param i the host species index
 #'
 #' @keywords internal
+#' @keywords internal
 #' @export
 parse_XH_orbits <- function(outputs, xds_obj, i) {
   UseMethod("parse_XH_orbits", xds_obj$XH_obj[[i]])
@@ -219,6 +232,7 @@ parse_XH_orbits <- function(outputs, xds_obj, i) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_XH_pars <- function(xds_obj, i=1) {
   UseMethod("get_XH_pars", xds_obj$XH_obj[[i]])
@@ -230,6 +244,7 @@ get_XH_pars <- function(xds_obj, i=1) {
 #' @param i the vector species index
 #' @param options a named list
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_XH_pars <- function(xds_obj, i=1, options=list()) {
   UseMethod("change_XH_pars", xds_obj$XH_obj[[i]])
@@ -245,6 +260,7 @@ change_XH_pars <- function(xds_obj, i=1, options=list()) {
 #' @param i the host species index
 #' @param options a [list]
 #' @return an **`xds`** object
+#' @keywords internal
 #' @keywords internal
 #' @export
 setup_XH_inits = function(xds_obj, H, i=1, options=list()){
@@ -262,6 +278,8 @@ setup_XH_inits = function(xds_obj, H, i=1, options=list()){
 #'
 #' @return the initial values, as a named list
 #'
+#' @keywords internal
+#' @keywords internal
 #' @export
 get_XH_inits = function(xds_obj, i=1){
   xds_obj$XH_obj[[i]]$inits
@@ -274,6 +292,8 @@ get_XH_inits = function(xds_obj, i=1){
 #' @param i the vector species index
 #' @param options a named list
 #' @return an **`xds`** object
+#' @keywords internal
+#' @keywords internal
 #' @export
 change_XH_inits <- function(xds_obj, i=1, options=list()) {
   UseMethod("change_XH_inits", xds_obj$XH_obj[[i]])
@@ -286,6 +306,7 @@ change_XH_inits <- function(xds_obj, i=1, options=list()) {
 #' @param XH_obj a list defining a model for human
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
+#' @keywords internal
 #' @export
 F_ni <- function(vars, XH_obj) {
   UseMethod("F_ni", XH_obj)
@@ -297,6 +318,8 @@ F_ni <- function(vars, XH_obj) {
 #' @param vars a list with the variables attached by name
 #' @param XH_obj a list defining a model for human
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
+#' @keywords internal
 #' @export
 F_prevalence <- function(vars, XH_obj) {
   UseMethod("F_prevalence", XH_obj)
@@ -306,6 +329,7 @@ F_prevalence <- function(vars, XH_obj) {
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
 #' @keywords internal
 #' @export
 F_pfpr_by_lm <- function(vars, XH_obj) {
@@ -318,6 +342,7 @@ F_pfpr_by_lm <- function(vars, XH_obj) {
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
+#' @keywords internal
 #' @export
 F_pfpr_by_rdt <- function(vars, XH_obj) {
   UseMethod("F_prevalence", XH_obj)
@@ -329,6 +354,8 @@ F_pfpr_by_rdt <- function(vars, XH_obj) {
 #' @note This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
+#' @keywords internal
 #' @export
 F_pfpr_by_pcr <- function(vars, XH_obj) {
   UseMethod("F_prevalence", XH_obj)
@@ -340,6 +367,7 @@ F_pfpr_by_pcr <- function(vars, XH_obj) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return none
+#' @keywords internal
 #' @export
 get_HTC <- function(xds_obj, i) {
   UseMethod("get_HTC", xds_obj$XH_obj[[i]])
@@ -356,6 +384,7 @@ get_HTC <- function(xds_obj, i) {
 #' @param i the vector species index
 #'
 #' @return steady states
+#' @keywords internal
 #' @export
 steady_state_X = function(foi, H, xds_obj, i=1){
   UseMethod("steady_state_X", xds_obj$XH_obj[[i]])
@@ -371,6 +400,7 @@ steady_state_X = function(foi, H, xds_obj, i=1){
 #' @param i the vector species index
 #'
 #' @return steady states
+#' @keywords internal
 #' @export
 steady_state_XH = function(foi, xds_obj, i=1){
   UseMethod("steady_state_XH", xds_obj$XH_obj[[i]])
@@ -384,6 +414,7 @@ steady_state_XH = function(foi, xds_obj, i=1){
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #' @param add plot axes only if FALSE
 #'
+#' @keywords internal
 #' @export
 xds_plot_XH = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
   UseMethod("xds_plot_X", xds_obj$XH_obj[[i]])
@@ -397,6 +428,7 @@ xds_plot_XH = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #' @param add plot axes only if FALSE
 #'
+#' @keywords internal
 #' @export
 xds_plot_X = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
   UseMethod("xds_plot_X", xds_obj$XH_obj[[i]])
