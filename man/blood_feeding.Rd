@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{blood_feeding}
 \alias{blood_feeding}
-\title{Blood Feeding}
+\title{Blood Feeding Overview}
 \description{
 Blood feeding is an interaction among humans and mosquitoes:
 in this model, humans are spending time, and

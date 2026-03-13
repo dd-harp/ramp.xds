@@ -1,3 +1,10 @@
+#' @title Vector Control 
+#' 
+#' @description
+#' Vector Control is a [junction] 
+#'  
+#' @name Vector_Control 
+NULL
 
 #' @title Setup the Vector Control Junction
 #'
@@ -15,7 +22,7 @@
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
-#'
+#' @keywords internal
 #' @export
 setup_vector_control_object = function(xds_obj){
   vector_control <- list()

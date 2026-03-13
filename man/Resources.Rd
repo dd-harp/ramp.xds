@@ -17,6 +17,8 @@ Resources(t, y, xds_obj)
 an \strong{\code{xds}} object
 }
 \description{
+Resources is a \link{junction}. The function is called in \link{xds_compute_terms}.
+
 Computes availability of resources potentially
 affecting adult mosquito bionomics: blood hosts,
 aquatic habitats, and sugar. There are ports to

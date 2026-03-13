@@ -1,4 +1,4 @@
-# Blood Feeding
+# Blood Feeding Overview
 
 Blood feeding is an interaction among humans and mosquitoes: in this
 model, humans are spending time, and mosquitoes are searching. To model

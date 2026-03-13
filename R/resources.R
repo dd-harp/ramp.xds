@@ -1,4 +1,11 @@
-
+#' @title Resources 
+#' 
+#' @description
+#' Resources is a [junction]. The function is called in [xds_compute_terms]. 
+#' 
+#'  
+#' @name Resources 
+NULL
 
 #' @title Setup Resources Object
 #'
@@ -9,7 +16,7 @@
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
-#'
+#' @keywords internal
 #' @export
 setup_resources_object = function(xds_obj){
   xds_obj <- setup_sugar_object(xds_obj)

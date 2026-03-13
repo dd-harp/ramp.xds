@@ -16,3 +16,11 @@ patch.
 - `HPop`:
 
   human population size: `length(HPop) = nStrata`
+
+## Human Population Size, \\H\\
+
+write me.
+
+## The Residency Matrix
+
+write me.

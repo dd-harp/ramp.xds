@@ -4,6 +4,7 @@
 #' @param t an arbitrary input
 #' @param V an arbitrary input
 #' @return a vector of ones of length x
+#' @keywords internal
 #' @export
 Zero_tV = function(t, V=list()){return(0*t)}
 
@@ -12,6 +13,7 @@ Zero_tV = function(t, V=list()){return(0*t)}
 #' @param t an arbitrary input
 #' @param V an arbitrary input
 #' @return a vector of ones of length x
+#' @keywords internal
 #' @export
 One_tV= function(t, V=list()){return(0*t+1)}
 
@@ -56,6 +58,7 @@ get_variables.na = function(t, y, func, xds_obj){
 #'
 #' @return a [numeric] vector of length d
 #'
+#' @keywords internal
 #' @export
 F_exp = function(d){return(exp(-d))}
 
@@ -74,6 +77,7 @@ make_function = function(opts){
 #' @description A function that returns 0
 #' @param t an arbitrary input
 #' @return a vector of ones of length x
+#' @keywords internal
 #' @export
 F_zero = function(t){return(0*t)}
 
@@ -103,6 +107,7 @@ make_function.zero = function(opts){
 #' @description A function that returns 1
 #' @param t an arbitrary input
 #' @return a vector of ones of length x
+#' @keywords internal
 #' @export
 F_one = function(t){return(0*t+1)}
 
@@ -169,6 +174,7 @@ make_function.val = function(opts){
 #' @description A function that returns 1
 #' @param t an arbitrary input
 #' @return a vector of ones of length x
+#' @keywords internal
 #' @export
 F_flat = function(t){return(0*t+1)}
 
@@ -557,34 +563,3 @@ makepar_F_spline = function(tt, yy, X=FALSE){
   return(pars)
 }
 
-#' Make a Time Series Function
-#'
-#' @param options configurable options
-#' @param N the length of the return value
-#' @param scale scale parameter, usually the average
-#' @param season_par seasonality function parameters
-#' @param trend_par trend function parameters
-#'
-#' @return a function
-#' @export
-make_ts_function = function(options=list(),
-                            N=1,
-                            scale=1,
-                            season_par = list(),
-                            trend_par = list()){
-  with(options,{
-    scale = checkIt(scale, N)
-    if(length(season_par) == 0){
-      F_season = F_one
-    } else {
-      season_par$N = N
-      F_season <- make_function(season_par)
-    }
-    if(length(trend_par) == 0){
-      F_trend = F_one
-    } else {
-      trend_par$N = N
-      F_trend <- make_function(trend_par)
-    }
-    return(function(t, V=list()){scale*F_season(t)*F_trend(t)})
-})}

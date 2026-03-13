@@ -1,5 +1,10 @@
 # Resources
 
+Resources is a
+[junction](https://dd-harp.github.io/ramp.xds/reference/junction.md).
+The function is called in
+[xds_compute_terms](https://dd-harp.github.io/ramp.xds/reference/xds_compute_terms.md).
+
 Computes availability of resources potentially affecting adult mosquito
 bionomics: blood hosts, aquatic habitats, and sugar. There are ports to
 compute variables that are part of the blood feeding, egg laying, or

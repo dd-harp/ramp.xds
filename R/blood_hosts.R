@@ -137,6 +137,7 @@ blood_hosts_dynamics <- function(t, y, xds_obj){
 #' @param options a list to configure `F_blood_hosts`
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_blood_hosts = function(mod_name, xds_obj, s, options){
   class(mod_name) = mod_name
@@ -151,6 +152,7 @@ setup_blood_hosts = function(mod_name, xds_obj, s, options){
 #' @inheritParams setup_blood_hosts
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_blood_hosts.ts_func = function(mod_name, xds_obj, s, options){
   class(xds_obj$XY_interface$blood_host_obj) <- 'dynamic'

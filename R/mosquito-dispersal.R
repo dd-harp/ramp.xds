@@ -1,5 +1,4 @@
 
-
 #' @title Mosquito Dispersal
 #'   
 #' @section Mosquito Dispersal Matrix, \eqn{K}: 

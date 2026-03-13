@@ -1,3 +1,43 @@
+#' @title Exposure 
+#' 
+#' @description
+#' The EIR computed by [Transmission] is a measure of *local* risk: it is 
+#' the expected number of infected
+#' bites, per person, and it is computed for every population stratum. The 
+#' exposure module handles two aspects of exposure: travel and environmental
+#' heterogeneity. Exposure transforms the EIR into the FoI 
+#' 
+#' @section (Environmental Heterogeneity)[environmental_heterogeneity]:
+#' While EIR is an expected value, the expected value can have a distribution
+#' in a human population stratum. For example, if the expectation has a Gamma
+#' distribution, then the expected number of bites per person would be negatively
+#' binomially distributed.   
+#' 
+#'  
+#' @section Travel Malaria:
+#' Write me. 
+#' @section Pre-Erythrocytic Immunity:
+#' Depending on the X module, a parameter called \eqn{b} describes the probability
+#' of infection per infectious bite.  
+#'  
+#' @name Exposure
+NULL
+
+#' @title Environmental Heterogeneity 
+#' 
+#' @description
+#' Humans can be exposed to malaria at home or as they move around. 
+#' The number of infectious bites can vary by chance, depending on 
+#' where and when humans encounter mosquitoes.  
+#' Environmental heterogeneity models 
+#' exposure for homogeneous population strata under a model for the distribution
+#' of the expectation. In simple terrms, it models super-spreading without super-spreaders. 
+#' 
+#' + Poisson
+#'   
+#' @name environmental_heterogeneity 
+NULL
+
 #' @title Set Up Exposure
 #'
 #' @description Set up the model for
@@ -38,9 +78,9 @@ setup_exposure <- function(EHname, xds_obj, i=1, options=list()){
 #' @param y the state variables
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
-#' @seealso Cases: [Exposure.xde] & [Exposure.dts]. Related: [F_ar] & [F_foi]
-#' @export
 #' @keywords internal
+#' @rdname Exposure
+#' @export
 Exposure <- function(t, y, xds_obj){
   UseMethod("Exposure", xds_obj$xds)
 }

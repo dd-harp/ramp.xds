@@ -15,3 +15,4 @@ an \strong{\code{xds}} object
 \description{
 Make indices for all the model variables
 }
+\keyword{internal}

@@ -60,7 +60,7 @@ navbar:
       href: articles/aqua_trace.html
     - text: basicL
       href: articles/aqua_basic.html
-  - text: Functions
+  - text: Reference 
     href: reference/index.html
   right:
   - icon: fa-github
@@ -76,31 +76,43 @@ home:
     - authors
     - dev
 reference:
-- title: Basic Setup  
-- subtitle: Model Building 
+- title: Model Building 
+- subtitle: Basic Setup 
   desc: | 
-    Build a model
+    Build an xds model object
   contents:
   - xds_setup
   - xds_setup_mosy
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_eir
+  - dynamical_components 
 - subtitle: Model Structure 
   desc: | 
-    Structural Parameters 
+    Setting the value of structural parameters 
   contents:
   - patch_dynamics
   - human_populations 
   - aquatic_habitats 
-- subtitle: Basic Options 
+- subtitle: Setup Options 
   desc: | 
     Heterogeneous Biting & Spatial Dynamics
   contents:
+  - trivial_forcing
   - search_weights 
   - mosquito_dispersal 
   - time_spent
-- title: Modules 
+- subtitle: Adding Features 
+  desc: | 
+    Forcing 
+  contents:
+  - port
+  - junction
+- subtitle: The xds model object 
+  contents:
+  - xds_object 
+  - xds_object_frame
+- title: Dynamics Modules 
 - subtitle: XH Modules 
   desc: |
     Human / host epidemiology & demography  
@@ -129,10 +141,17 @@ reference:
     Methods to numerically solve differential equations and get the outputs
   contents:
   - xds_solve
-  - burnin 
+  - make_times_dts 
+  - make_times_xde 
+  - burnin
+  - get_inits
+  - get_last
+  - last_to_inits
   - get_XH_orbits
   - get_MY_orbits
   - get_L_orbits
+  - get_EIR 
+  - get_PR
 - subtitle: Stable Orbits 
   desc: | 
     Compute Stable Orbits
@@ -180,6 +199,7 @@ reference:
   contents:
   - show_season
   - show_trend
+  - show_shock
 - title: Get  
   desc: |
     Inspect elements of the xds object 
@@ -190,6 +210,8 @@ reference:
   - get_XH_orbits
   - get_MY_orbits
   - get_L_orbits
+  - get_H
+  - get_PR
 - subtitle: Get Parameters 
   desc: |
     Get model parameters  
@@ -197,12 +219,16 @@ reference:
   - get_XH_pars 
   - get_TimeSpent_matrix
   - get_MY_pars 
+  - get_f 
+  - get_g 
+  - get_q 
+  - get_sigma 
   - get_K_matrix 
+  - get_L_pars 
+  - get_V_pars 
   - get_mean_forcing
   - get_season
   - get_trend
-  - get_spline
-  - get_spline_s
 - subtitle: Get Variables 
   desc: |
     Get initial values and indices   
@@ -213,6 +239,19 @@ reference:
   - get_MY_inits
   - get_L_vars
   - get_L_inits
+  - get_variables 
+- subtitle: Get Trace Functions 
+  desc: |
+    Get XX 
+  contents:
+  - get_mean_forcing
+  - get_season
+  - get_season_phase
+  - get_season_bottom
+  - get_season_pw
+  - get_trend
+  - get_spline
+  - get_spline_s
 - title: Change 
   desc: |
     Change parameters 
@@ -231,97 +270,34 @@ reference:
     Build and store **`xds`** model objects
   contents:
   - saveXDS 
-  - readXDS 
-- title: Advanced Setup 
-  desc: |
-    Add  
+  - readXDS
+- title: Habitats & Egg Laying
+  desc: Mosquito Population Dynamic Interface 
   contents:
-  - ports
-  - junctions 
-  - setup_exposure
-  - setup_travel_object
-  - setup_TimeSpent
-  - change_K_matrix 
-  - change_TimeSpent_matrix
-  - add_variable 
-- subtitle: Blood Feeding, Exposure, & Transmission
-  desc: |
-    Methods to compute terms describing blood feeding and transmission
+  - aquatic_habitats 
+  - egg_laying
+  - view_habitat_matrix 
+  - change_habitat_weights
+  - change_bad_habitat
+- title: Blood Feeding & Transmission
+  desc:  
   contents:
   - blood_feeding
+  - Transmission
   - check_XY_interface
   - make_residency_matrix
   - view_residency_matrix
-- subtitle: Time Spent
+- title: Exposure 
   desc: |
-    Utilities for Time Spent Matrices
+    Compute the FoI from local EIR and travel
   contents:
-  - time_spent
-  - time_at_risk
-  - setup_TimeSpent
-  - change_TimeSpent_matrix
-  - make_TimeSpent_athome
-  - make_TimeSpent_xy
-- subtitle: Exposure
-  desc: Environmental Heterogeneity 
-  contents:
+  - Exposure 
+  - environmental_heterogeneity
   - setup_exposure 
   - foi2eir
   - ar2eir
   - make_exposure_pois 
   - make_exposure_nb 
-- title: Habitats & Egg Laying
-  desc: Mosquito Population Dynamic Interface 
-  contents:
-  - egg_laying
-  - view_habitat_matrix 
-  - change_habitat_weights
-  - change_bad_habitat
-- title: XH Component 
-  desc: |
-    Models of human / host infection dynamics - immunity - disease - infectiousness - diagnostics and detection 
-  contents:
-  - change_XH_inits
-  - get_XH_pars
-  - change_XH_pars
-  - get_HTC
-  - xds_plot_X
-  - xds_plot_XH
-  - steady_state_X
-  - steady_state_XH
-- subtitle: Modules
-  desc: |
-    XH component module implementations
-  contents:
-  - trivial_XH
-  - SIS
-  - hMoI
-- title: Adult Mosquitoes 
-  desc: |
-    The MY Component 
-- subtitle: Modules 
-  contents:
-  - trivial_MY
-  - basicM
-  - SI
-  - macdonald
-  - GeRM
-  - RMdts
-- title: L Component (Immature Mosquitoes)
-  desc: |
-    Generic methods for the aquatic (immature) mosquito component.
-  contents:
-  - skill_set_L
-  - check_L
-  - get_L_pars
-  - change_L_pars
-  - change_L_inits
-- subtitle: Modules 
-  desc: | 
-    Models for aquatic mosquito development and maturation in aquatic habitats
-  contents:
-  - trivial_L
-  - basicL
 - title: Mosquito Bionomics
   desc: |
     Methods to compute or update mosquito bionomic parameters
@@ -363,52 +339,13 @@ reference:
   - get_K_matrix 
   - make_K_matrix_herethere
   - make_K_matrix_xy
-- title: Other Dynamic Variables 
+- title: Malaria Importation 
   desc: |
-    Compute the derivatives for other variables 
-- subtitle: Other Dynamic Variables 
-  desc: |
-    Compute the derivatives for other variables 
-  contents:
-  - add_variable 
-  - setup_other_variables
-  - setup_V_ix.setup
-  - setup_V_obj
-  - get_V_vars 
-  - setup_V_ix
-  - get_V_pars 
-  - get_V_ix 
-  - change_V_pars 
-  - setup_V_inits 
-  - get_V_inits
-  - change_V_inits 
-- title: Ports & Junctions
-- subtitle: Forcing
-  desc: Exogenous forcing (see `ramp.control`)
-  contents:
-  - setup_forcing_object
-- subtitle: Vector Control
-  desc: "The ports for vector control \n"
-  contents:
-  - setup_vector_control_object
-- subtitle: Health
-  desc: "The ports for malaria control \n"
-  contents:
-  - setup_health_object
-- subtitle: Resources 
-  desc: "The ports for resources\n"
-  contents:
-  - setup_resources_object
-  - setup_sugar_object 
-  - setup_traps_object 
-  - setup_blood_host_object 
-  - setup_blood_hosts 
+    Functions to model travel & visitors
 - subtitle: Travel 
   desc: |
     Time spent traveling & the travel EIR
   contents:
-  - time_spent 
-  - time_at_risk
   - setup_travel_object
   - change_time_at_home 
   - change_travel_EIR
@@ -426,83 +363,108 @@ reference:
   - setup_F_visitors 
   - setup_F_visitors.ts_func 
   - setup_visitor_object 
-  - visitor_dynamics
-- title: Solving
-  desc: "Methods to compute the derivatives and dynamical systems \n"
-- subtitle: Solve 
+  - visitor_dynamics 
+- title: Forcing 
   contents:
-  - make_times_dts 
-  - make_times_xde 
-- subtitle: Solving
-  desc: |
-    Wrappers around the derivatives functions that handle time and parse outputs
+  - trivial_forcing
+  - Forcing
+  - Vector_Control
+  - Resources 
+  - setup_forcing_object
+  - setup_vector_control_object
+  - setup_health_object
+- subtitle: Resources 
+  desc: "The ports for resources\n"
   contents:
-  - xds_solve
-  - xds_stable_orbit
-  - xds_steady
-  - dts_stable_orbit
-  - dts_steady
-- title: Analysis and Visualization
+  - setup_resources_object
+  - setup_sugar_object 
+  - setup_traps_object 
+  - setup_blood_host_object 
+  - change_blood_hosts
+- title: Humans / Hosts (XH) 
   desc: |
-    Methods to compute and output terms
-- subtitle: Compute terms
-  desc: |
-    Methods to compute and transmission terms
+    Models of human / host infection dynamics - immunity - disease - infectiousness - diagnostics and detection 
   contents:
-  - average_PR_true
-  - average_EIR
-- subtitle: Get and plot terms
+  - change_XH_inits
+  - get_XH_pars
+  - change_XH_pars
+  - get_HTC
+  - xds_plot_X
+  - xds_plot_XH
+  - steady_state_X
+  - steady_state_XH
+- subtitle: Modules
   desc: |
-    Basic visualization of the transmission terms
+    XH component module implementations
   contents:
-  - get_H
-  - get_PR
-  - get_XH_orbits
-  - get_MY_orbits
-  - get_L_orbits
-  - xds_plot_EIR
-  - xds_lines_EIR
-  - xds_plot_PR
-  - xds_lines_PR
-- title: Functions and Utilities
+  - trivial_XH
+  - SIS
+  - hMoI
+- subtitle: Time Spent
   desc: |
-    stuff that is generally useful
-- subtitle: Utilities
-  desc: |
-    Utilities
+    Utilities for Time Spent Matrices
   contents:
-  - print.xds_obj
-  - diag_inverse
-  - approx_equal
-  - checkIt
-  - shapeIt
-  - list_vars
-  - xds_flatten
-  - ode_to_dde
-  - ode_to_dde.ode
-  - ode_to_dde.dde
-  - ode_to_dde.dts
-- subtitle: Change Parameters & Initial Values
+  - time_spent
+  - time_at_risk
+  - setup_TimeSpent
+  - change_TimeSpent_matrix
+  - make_TimeSpent_athome
+  - make_TimeSpent_xy
+- title: Adult Mosquitoes (MY) 
   desc: |
-    Methods to set up basic models
+    The MY Component 
+- subtitle: Modules 
   contents:
-  - change_H
-  - update_inits
-  - last_to_inits
-  - get_inits
-  - get_last
-  - make_indices
-- subtitle: Functions
+  - trivial_MY
+  - basicM
+  - SI
+  - macdonald
+  - GeRM
+  - RMdts
+- title: Aquatic Mosquitoes (L) 
   desc: |
-    Basic visualization of the transmission terms
+    Generic methods for the aquatic (immature) mosquito component.
+  contents:
+  - skill_set_L
+  - check_L
+  - get_L_pars
+  - change_L_pars
+  - change_L_inits
+- subtitle: Modules 
+  desc: | 
+    Models for aquatic mosquito development and maturation in aquatic habitats
+  contents:
+  - trivial_L
+  - basicL
+- subtitle: Other State Variables 
+  desc: |
+    Compute the derivatives for other variables 
+  contents:
+  - variables
+  - Other_State_Variables 
+  - add_variable 
+  - setup_other_variables
+  - setup_V_ix.setup
+  - setup_V_obj
+  - get_V_vars 
+  - setup_V_ix
+  - get_V_ix 
+  - change_V_pars 
+  - setup_V_inits 
+  - get_V_inits
+  - change_V_inits 
+  - change_spline
+  - change_spline_y
+  - change_shock
+- title: Functions Library
+  desc: |
+    A function maker 
   contents:
   - make_function
-  - F_zero
+  - make_ts_function 
   - makepar_F_zero
-  - F_one
   - makepar_F_one
   - makepar_F_val
-  - F_flat
   - makepar_F_sin
   - makepar_F_sum
   - makepar_F_product
@@ -512,53 +474,4 @@ reference:
   - makepar_F_sharkbite
   - makepar_F_type2
   - makepar_F_spline
-- subtitle: Update Forcing 
-  desc: |
-    Methods to get - set - and update forcing functions 
-  contents: 
-  - show_season 
-  - F_season 
-  - show_trend
-  - F_trend 
-  - show_shock
-  - F_shock 
-- subtitle: Get and Set for Mean Forcing 
-  desc: |
-    Functions to change Forcing 
-  contents: 
-  - get_mean_forcing
-  - change_mean_forcing
-- subtitle: Get and Set for Seasonality 
-  desc: |
-    Utilities to change  
-  contents: 
-  - get_season
-  - get_season_phase
-  - get_season_bottom
-  - get_season_pw
-  - change_season
-- subtitle: Get and Set for Spline Trend Functions
-  desc: |
-    Utilities to change the interpolation points
-  contents:   
-  - get_trend
-  - change_spline
-  - change_spline_y
-  - change_shock
-- title: New  
-  desc: Move  
-  contents:   
-  - F_exp 
-  - check_models 
-  - get_EIR 
-  - get_XH_ix 
-  - get_f 
-  - get_g 
-  - get_q 
-  - get_sigma 
-  - get_variables 
   - make_ts_function 
-  - One_tV 
-  - Zero_tV 
-  - setup_blood_hosts.ts_func 
-  - change_blood_hosts 

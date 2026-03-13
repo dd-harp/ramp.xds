@@ -16,3 +16,4 @@ a \link{numeric} vector of length d
 An exponential
 function.
 }
+\keyword{internal}

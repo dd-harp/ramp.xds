@@ -49,5 +49,5 @@ where
 }
 
 \seealso{
-\link{blood_feeding}, \link{transmission}, and \link{egg_laying}
+\link{blood_feeding}, \link{Transmission}, and \link{egg_laying}
 }

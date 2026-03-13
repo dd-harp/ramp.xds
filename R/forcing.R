@@ -1,4 +1,10 @@
-# The forcing library is found in ramp.forcing
+#' @title Forcing 
+#' 
+#' @description
+#' Forcing is a [junction] that called by [xds_compute_terms]. 
+#'  
+#' @name Forcing 
+NULL
 
 #' @title Exogenous Forcing
 #'

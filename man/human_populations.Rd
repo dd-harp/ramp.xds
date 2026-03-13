@@ -15,10 +15,12 @@ the patch dynamics: each stratum resides in some patch.
 }
 }
 \section{Human Population Size, \eqn{H}}{
-NA
+
+write me.
 }
 
 \section{The Residency Matrix}{
 
+write me.
 }
 

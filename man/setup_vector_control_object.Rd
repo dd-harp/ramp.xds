@@ -25,3 +25,4 @@ in a companion package called
 \seealso{
 \link{VectorControl1.none}
 }
+\keyword{internal}

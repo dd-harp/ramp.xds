@@ -11,10 +11,10 @@
 #'   \item{`HPop`}{human population size: `length(HPop) = nStrata`}
 #' }
 #' 
-#' @section Human Population Size, \eqn{H} 
-#' 
+#' @section Human Population Size, \eqn{H}: 
+#' write me. 
 #' @section The Residency Matrix: 
-#' 
+#' write me. 
 #' @name human_populations
 NULL
 

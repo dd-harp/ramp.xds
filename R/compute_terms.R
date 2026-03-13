@@ -16,6 +16,7 @@
 #' @param i the human species index
 #' @param members a membership matrix
 #' @return a PfPR
+#' @keywords internal
 #' @export
 average_PR_true = function(xds_obj, i=1, members=NULL){
   if(is.null(members)) members = matrix(1, nrow=xds_obj$nStrata[i], ncol=1)
@@ -44,6 +45,7 @@ average_PR_true = function(xds_obj, i=1, members=NULL){
 #' @param i the human species index
 #' @param members a membership matrix
 #' @return a PfPR
+#' @keywords internal
 #' @export
 average_EIR = function(xds_obj, i=1, members=NULL){
   if(is.null(members)) members = matrix(1, nrow=xds_obj$nStrata[i], ncol=1)

@@ -18,3 +18,4 @@ the temporal trend, invisibly
 For a model with temporal forcing,
 show the temporal trend
 }
+\keyword{internal}

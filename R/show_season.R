@@ -28,6 +28,7 @@ show_season= function(xds_obj, tm = seq(0, 730, by=5), add=FALSE){
 #'
 #' @return the seasonal pattern, invisibly
 #'
+#' @keywords internal
 #' @export
 F_season = function(tm, xds_obj){
   UseMethod("F_season", xds_obj$forced_by)

@@ -39,11 +39,11 @@
 #' @section Habitat Search Weights:  
 #' where
 #'  
-#' @seealso [blood_feeding], [transmission], and [egg_laying]
+#' @seealso [blood_feeding], [Transmission], and [egg_laying]
 #' @name search_weights 
 NULL
 
-#' @title Blood Feeding 
+#' @title Blood Feeding Overview
 #' 
 #' @description
 #' Blood feeding is an interaction among humans and mosquitoes: 

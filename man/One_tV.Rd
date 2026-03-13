@@ -17,3 +17,4 @@ a vector of ones of length x
 \description{
 A function that returns 0
 }
+\keyword{internal}

@@ -1,5 +1,3 @@
-# function make_xds_template and supporting function F_H.setup
-
 #' @title Make an **`xds`** model object template
 #'
 #' @description

@@ -17,3 +17,4 @@ the seasonal pattern, invisibly
 \description{
 Plot the seasonal pattern
 }
+\keyword{internal}

@@ -1,3 +1,14 @@
+#' @title Transmission 
+#' 
+#' @description
+#' Transmission computes:
+#' + `beta` -- the bite distribution matrix  
+#' + `eir` -- the daily EIR 
+#' + `kappa` -- the net infectiousness 
+#'  
+#' @name Transmission 
+NULL
+
 # Methods to compute mixing and parasite / pathogen transmission during bloood feeding
 
 #' @title Setup the interface for parasite / pathogen transmission
@@ -242,6 +253,7 @@ compute_local_frac <- function(xds_obj){with(xds_obj$XY_interface,{
 #' @return an **`xds`** object
 #' @export
 #' @keywords internal
+#' @rdname Transmission
 Transmission <- function(t, y, xds_obj){
   UseMethod('Transmission', xds_obj$terms$beta)
 }
