@@ -1,0 +1,88 @@
+
+#' @title Generic Methods for the MY Component
+#'
+#' @description
+#'
+#' \itemize{
+#'   \item \code{\link{dMYdt}} -- compute derivatives
+#'   \item \code{\link{Update_MYt}} -- update state variables
+#'   \item \code{\link{MBaseline}} -- set baseline bionomic parameters
+#'   \item \code{\link{MBionomics}} -- compute bionomic parameters
+#'   \item \code{\link{F_fqZ}} -- compute infective biting density
+#'   \item \code{\link{F_fqM}} -- compute total biting density
+#'   \item \code{\link{F_eggs}} -- compute eggs laid
+#'   \item \code{\link{setup_MY_obj}} -- set up the MY module object
+#'   \item \code{\link{setup_MY_ix}} -- set index values
+#'   \item \code{\link{setup_MY_inits}} -- set up initial values
+#'   \item \code{\link{get_MY_inits}} -- get initial values
+#'   \item \code{\link{change_MY_inits}} -- change initial values
+#'   \item \code{\link{get_MY_vars}} -- list state variables
+#'   \item \code{\link{get_MY_ix}} -- get variable indices
+#'   \item \code{\link{get_MY_pars}} -- get parameters
+#'   \item \code{\link{change_MY_pars}} -- change parameters
+#'   \item \code{\link{get_f}} -- get blood feeding rate
+#'   \item \code{\link{get_q}} -- get human fraction
+#'   \item \code{\link{get_g}} -- get mosquito mortality rate
+#'   \item \code{\link{get_sigma}} -- get emigration rate
+#'   \item \code{\link{get_M}} -- get mosquito population density
+#'   \item \code{\link{get_Z}} -- get infective mosquito density
+#'   \item \code{\link{parse_MY_orbits}} -- parse outputs
+#'   \item \code{\link{get_MY_orbits}} -- get saved orbits
+#'   \item \code{\link{steady_state_MY}} -- compute full MY steady state
+#'   \item \code{\link{steady_state_M}} -- compute M steady state
+#'   \item \code{\link{steady_state_Y}} -- compute Y steady state
+#'   \item \code{\link{check_MY}} -- run consistency checks
+#'   \item \code{\link{skill_set_MY}} -- return module skill set
+#' }
+#'
+#' @name MY_functions
+NULL
+
+#' @title Get Functions for the MY Component
+#'
+#' @description
+#' write me.
+#'
+#' \itemize{
+#'   \item \code{\link{get_MY_vars}} -- get state variables from \eqn{y}
+#'   \item \code{\link{get_MY_ix}} -- get variable indices
+#'   \item \code{\link{get_MY_inits}} -- get initial values
+#'   \item \code{\link{get_MY_pars}} -- get parameters
+#'   \item \code{\link{get_MY_orbits}} -- get saved orbits
+#'   \item \code{\link{get_f}} -- get blood feeding rate
+#'   \item \code{\link{get_q}} -- get human fraction
+#'   \item \code{\link{get_g}} -- get mosquito mortality rate
+#'   \item \code{\link{get_sigma}} -- get emigration rate
+#'   \item \code{\link{get_M}} -- get mosquito population density
+#'   \item \code{\link{get_Z}} -- get infective mosquito density
+#' }
+#'
+#' @name MY_get
+NULL
+
+#' @title Change Functions for the MY Component
+#'
+#' @description
+#' write me.
+#'
+#' \itemize{
+#'   \item \code{\link{change_MY_inits}} -- change initial values
+#'   \item \code{\link{change_MY_pars}} -- change parameters
+#' }
+#'
+#' @name MY_change
+NULL
+
+#' @title Setup Functions for the MY Component
+#'
+#' @description
+#' write me.
+#'
+#' \itemize{
+#'   \item \code{\link{setup_MY_obj}} -- set up the MY module object
+#'   \item \code{\link{setup_MY_ix}} -- set up variable indices
+#'   \item \code{\link{setup_MY_inits}} -- set up initial values
+#' }
+#'
+#' @name MY_setup
+NULL

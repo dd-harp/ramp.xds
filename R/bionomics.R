@@ -1,3 +1,10 @@
+#' @title Mosquito Bionomics 
+#' 
+#' @description
+#' Mosquito bionomics includes all the parameters 
+#'  
+#' @name mosquito_bionomics 
+NULL
 
 #' @title Set bionomic parameter rates relative to baseline
 #' @description This calls MBaseline and LBaseline for each species.

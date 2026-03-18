@@ -20,3 +20,4 @@ Get Initial Values for the \strong{L} Component
 \note{
 This method dispatches on the class of \code{xds_obj$L_obj}.
 }
+\keyword{internal}

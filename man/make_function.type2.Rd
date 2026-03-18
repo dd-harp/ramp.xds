@@ -21,3 +21,4 @@ and \eqn{A} and \eqn{B} are shape parameters
 \seealso{
 \link{makepar_F_type2}
 }
+\keyword{internal}

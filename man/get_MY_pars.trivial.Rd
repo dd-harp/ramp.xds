@@ -19,3 +19,4 @@ Return the parameters
 in the trivial \strong{MY}-Component
 model as a named list
 }
+\keyword{internal}

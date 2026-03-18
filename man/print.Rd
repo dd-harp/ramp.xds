@@ -17,3 +17,4 @@ a description of the model
 \description{
 Print the \strong{\code{xds}} model object
 }
+\keyword{internal}

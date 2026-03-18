@@ -19,3 +19,4 @@ shapeIt(obj, d1, d2)
 \description{
 Check the shape and dimensions of an model object
 }
+\keyword{internal}

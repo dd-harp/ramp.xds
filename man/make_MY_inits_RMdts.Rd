@@ -38,3 +38,4 @@ a \link{list}
 \description{
 Make inits for RMdts adult mosquito model
 }
+\keyword{internal}

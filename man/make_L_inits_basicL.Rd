@@ -19,3 +19,4 @@ a \link{list} with Linits added
 \description{
 Initial values of the variable \eqn{L} can be set
 }
+\keyword{internal}

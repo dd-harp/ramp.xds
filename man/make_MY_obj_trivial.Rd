@@ -41,3 +41,4 @@ none
 \description{
 Make parameters for trivial aquatic mosquito model
 }
+\keyword{internal}

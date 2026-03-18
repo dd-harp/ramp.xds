@@ -1,5 +1,3 @@
-
-
 #' @title Setup Resources Object
 #'
 #' @description Resources is a junction with
@@ -9,7 +7,7 @@
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
-#'
+#' @keywords internal
 #' @export
 setup_resources_object = function(xds_obj){
   xds_obj <- setup_sugar_object(xds_obj)

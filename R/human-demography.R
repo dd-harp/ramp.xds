@@ -8,6 +8,7 @@
 #' @param births the birth function object
 #'
 #' @return see help pages for specific methods
+#' @keywords internal
 #' @export
 Births <- function(t, H, births){
   UseMethod("Births", births)
@@ -20,6 +21,7 @@ Births <- function(t, H, births){
 #' @inheritParams Births
 #'
 #' @return see help pages for specific methods
+#' @keywords internal
 #' @export
 Births.zero <- function(t, H, births="zero"){return(0*t)}
 

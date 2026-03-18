@@ -27,3 +27,4 @@ The model blood feeding \strong{parameters} are:
 The daily HBR for the human / host population strata is \eqn{\beta \cdot fqM}
 }
 }
+\keyword{internal}

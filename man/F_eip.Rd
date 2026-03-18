@@ -20,3 +20,4 @@ a \link{numeric} vector oeip length \code{nPatches}
 This method dispatches on the type of \code{eip_obj}. It
 sets the values the EIP
 }
+\keyword{internal}

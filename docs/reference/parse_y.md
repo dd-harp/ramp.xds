@@ -1,6 +1,6 @@
-# parse the output of an object returned by deSolve
+# Parse a state variable vector
 
-parse the output of an object returned by deSolve
+Parse a state variable vector
 
 ## Usage
 

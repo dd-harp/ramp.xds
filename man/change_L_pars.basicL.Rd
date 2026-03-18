@@ -28,3 +28,4 @@ Set the values of \strong{L} component parameters
 \seealso{
 \link{dLdt.basicL} or \link{make_L_obj_basicL}
 }
+\keyword{internal}

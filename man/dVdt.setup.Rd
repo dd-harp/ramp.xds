@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the i^th auxiliary variable}
+\item{i}{the i\eqn{^{th}} set of auxiliary variables}
 }
 \value{
 Derivatives for auxiliary variables as a \link{vector}

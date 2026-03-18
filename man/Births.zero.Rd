@@ -19,3 +19,4 @@ see help pages for specific methods
 \description{
 a function
 }
+\keyword{internal}

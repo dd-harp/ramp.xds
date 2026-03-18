@@ -1,6 +1,3 @@
-# The ML-interface. Also see:
-# + egg_laying.R
-# + emergence.R
 
 #' @title Check the ML Interface
 #'

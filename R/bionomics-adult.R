@@ -129,6 +129,7 @@ setup_g_obj = function(g, MY_obj){
 #'
 #' @return a [numeric] vector og length `nPatches`
 #'
+#' @keywords internal
 #' @export
 F_mozy_mort = function(t, xds_obj, s) {
   UseMethod("F_mozy_mort", xds_obj$MY_obj[[s]]$g_obj)
@@ -138,6 +139,7 @@ F_mozy_mort = function(t, xds_obj, s) {
 #' @description Implements [F_mozy_mort] for a static model
 #' @inheritParams F_mozy_mort
 #' @return \eqn{g}, the baseline human fraction
+#' @keywords internal
 #' @export
 F_mozy_mort.static = function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$g_obj$g)
@@ -173,6 +175,7 @@ setup_sigma_obj = function(sigma, MY_obj){
 #'
 #' @return a [numeric] vector osigma length `nPatches`
 #'
+#' @keywords internal
 #' @export
 F_emigrate = function(t, xds_obj, s){
   UseMethod("F_emigrate", xds_obj$MY_obj[[s]]$sigma_obj)
@@ -185,6 +188,7 @@ F_emigrate = function(t, xds_obj, s){
 #' @inheritParams F_emigrate
 #'
 #' @return \eqn{sigma}, the patch emigration rate
+#' @keywords internal
 #' @export
 F_emigrate.static = function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$sigma_obj$sigma)
@@ -220,6 +224,7 @@ setup_mu_obj = function(mu, MY_obj){
 #'
 #' @return a [numeric] vector omu length `nPatches`
 #'
+#' @keywords internal
 #' @export
 F_dispersal_loss <- function(t, xds_obj, s){
   UseMethod("F_dispersal_loss", xds_obj$MY_obj[[s]]$mu_obj)
@@ -229,6 +234,7 @@ F_dispersal_loss <- function(t, xds_obj, s){
 #' @description Implements [F_dispersal_loss] for a static model
 #' @inheritParams F_dispersal_loss
 #' @return \eqn{mu}, the baseline human fraction
+#' @keywords internal
 #' @export
 F_dispersal_loss.static <- function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$mu_obj$mu)
@@ -265,6 +271,7 @@ setup_nu_obj = function(nu, MY_obj){
 #'
 #' @return a [numeric] vector onu length `nPatches`
 #'
+#' @keywords internal
 #' @export
 F_batch_rate = function(t, xds_obj, s){
   UseMethod("F_batch_rate", xds_obj$MY_obj[[s]]$nu_obj)
@@ -277,6 +284,7 @@ F_batch_rate = function(t, xds_obj, s){
 #' @inheritParams F_batch_rate
 #'
 #' @return \eqn{nu}, the patch emigration rate
+#' @keywords internal
 #' @export
 F_batch_rate.static = function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$nu_obj$nu)
@@ -364,6 +372,7 @@ setup_sigma_obj_BQS = function(MY_obj, options=list(),
 #' @description Implements [F_emigrate] for a static model
 #' @inheritParams F_emigrate
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_emigrate.BQS = function(t, xds_obj, s){
   B <- xds_obj$XY_interface$B
@@ -435,6 +444,7 @@ setup_nu_obj_Q2 = function(MY_obj, options=list(), nux=0.35, snu=1){
 #'
 #' @inheritParams F_feeding_rate
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_batch_rate.Q2 = function(t, xds_obj, s){
   Q <- xds_obj$ML_interface$Q[[s]]

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{get_XH_ix}
 \alias{get_XH_ix}
-\title{Add indices for human population to parameter list}
+\title{Get XH indices}
 \usage{
 get_XH_ix(xds_obj, i = 1)
 }
@@ -18,3 +18,4 @@ an \strong{\code{xds}} object
 Get and display the values of the indices
 for the variables
 }
+\keyword{internal}

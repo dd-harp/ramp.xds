@@ -19,3 +19,4 @@ a \link{numeric} vector of length \code{nPatches}
 \description{
 Implements \link{F_emigrate} for a static model
 }
+\keyword{internal}

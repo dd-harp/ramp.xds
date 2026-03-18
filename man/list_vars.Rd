@@ -18,3 +18,4 @@ list_vars(xds_obj, y0 = NULL, s = 1, i = 1)
 \description{
 Set the initial values to the last values of the last simulation
 }
+\keyword{internal}

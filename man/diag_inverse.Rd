@@ -16,3 +16,4 @@ a diagonal \link{matrix}
 Invert a diagonal matrix which is passed as a vector. If any
 elements are zero, set them to one.
 }
+\keyword{internal}

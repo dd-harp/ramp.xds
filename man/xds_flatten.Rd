@@ -15,3 +15,4 @@ xds_flatten(vars)
 \description{
 Set the initial values to the last values of the last simulation
 }
+\keyword{internal}

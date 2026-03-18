@@ -22,3 +22,4 @@ an \strong{\code{xds}} object
 Set \strong{L} component parameters
 to baseline values for \code{basicL}
 }
+\keyword{internal}

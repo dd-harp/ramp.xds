@@ -1,6 +1,6 @@
-# parse the outputs of an object created by xde_solve or dts_solve
+# Parse outputs after solving
 
-parse the outputs of an object created by xde_solve or dts_solve
+Parse outputs after solving
 
 ## Usage
 

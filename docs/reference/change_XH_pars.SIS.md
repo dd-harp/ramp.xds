@@ -11,11 +11,11 @@ component)
 
 - \\r\\ is set to `options$r`
 
-- \\q_lm\\ is set to `options$q_lm`
+- \\q\_{lm}\\ is set to `options$q_lm`
 
-- \\q_rdt\\ is set to `options$q_rdt`
+- \\q\_{rdt}\\ is set to `options$q_rdt`
 
-- \\q_pcr\\ is set to `options$q_pcr`
+- \\q\_{pcr}\\ is set to `options$q_pcr`
 
 ## Usage
 

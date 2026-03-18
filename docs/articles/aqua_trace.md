@@ -68,7 +68,7 @@ MYo = list(
 
 ``` r
 
-K_matrix <- matrix(0, nPatches, nPatches)
+K_matrix <- diag(-1, nPatches) 
 K_matrix[1, 2:3] <- c(0.2, 0.8)
 K_matrix[2, c(1,3)] <- c(0.5, 0.5)
 K_matrix[3, 1:2] <- c(0.7, 0.3)
@@ -142,7 +142,7 @@ xds_obj$terms$kappa[[1]] = kappa
 
 ``` r
 
-xds_obj <- change_K_matrix(K_matrix, xds_obj)
+xds_obj <- setup_K_matrix(K_matrix, xds_obj)
 ```
 
 ``` r
@@ -216,7 +216,8 @@ MYo = list(
 
 xds_setup_mosy(MYname = "basicM", Lname = "trivial", 
                nPatches = 3, membership = c(1,2,3,3), 
-               MYoptions = MYo, K_matrix = K_matrix, HPop=HPop, Loptions = Lo, 
+               MYoptions = MYo, Koptions = K_matrix, 
+               HPop=HPop, Loptions = Lo, 
                kappa = c(0.1, 0.075, 0.025))->mosy1
 ```
 

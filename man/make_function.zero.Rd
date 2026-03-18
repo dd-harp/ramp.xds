@@ -15,3 +15,4 @@ a function that is the sum of two other functions
 \description{
 Return \link{F_zero}
 }
+\keyword{internal}

@@ -27,3 +27,4 @@ Otherwise, it returns a sequence from \code{0} to \code{Tmax} by \code{dt.}
 If values in \code{times} are not a sequence, the function checks that
 all its values are in the sequence of time points when solutions are returned.
 }
+\keyword{internal}

@@ -28,3 +28,4 @@ which takes the matrix over the whole population. If \code{members} is a
 matrix with 1 column and \code{nStrata} rows, with only some elements set to one,
 then it returns the average over those strata.
 }
+\keyword{internal}

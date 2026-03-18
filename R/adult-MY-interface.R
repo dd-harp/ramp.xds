@@ -11,6 +11,7 @@
 #'
 #' @return *MY* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_MY = function(MYname){
   class(MYname) <- MYname
@@ -23,6 +24,7 @@ skill_set_MY = function(MYname){
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_MY = function(xds_obj, s){
   UseMethod("check_MY", xds_obj$MY_obj[[s]])
@@ -87,6 +89,7 @@ F_fqZ <- function(t, y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqM <- function(t, y, xds_obj, s) {
   UseMethod("F_fqM", xds_obj$MY_obj[[s]])
@@ -175,6 +178,7 @@ setup_MY_ix <- function(xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_vars <- function(y, xds_obj, s) {
   UseMethod("get_MY_vars", xds_obj$MY_obj[[s]])
@@ -185,6 +189,7 @@ get_MY_vars <- function(y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return [list]
+#' @keywords internal
 #' @export
 get_MY_ix <- function(xds_obj, s) {
   xds_obj$MY_obj[[s]]$ix
@@ -208,6 +213,7 @@ parse_MY_orbits <- function(outputs, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_pars <- function(xds_obj, s=1) {
   UseMethod("get_MY_pars", xds_obj$MY_obj[[s]])
@@ -242,6 +248,7 @@ setup_MY_inits = function(xds_obj, s, options=list()){
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return [numeric]
+#' @keywords internal
 #' @export
 get_MY_inits <- function(xds_obj, s=1) {
   xds_obj$MY_obj[[s]]$inits
@@ -253,6 +260,7 @@ get_MY_inits <- function(xds_obj, s=1) {
 #' @param s the vector species index
 #' @param options a named list
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_MY_inits <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_MY_inits", xds_obj$MY_obj[[s]])
@@ -298,6 +306,7 @@ get_sigma = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_M = function(xds_obj, s=1){
   UseMethod("get_M", xds_obj$MY_obj[[s]])
@@ -307,6 +316,7 @@ get_M = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
+#' @keywords internal
 #' @export
 get_Z = function(xds_obj, s=1){
   UseMethod("get_Z", xds_obj$MY_obj[[s]])

@@ -26,3 +26,4 @@ an module's capabilities:
 \item \strong{\code{pf_pcr}}: if FALSE, the model outputs a value for prevalence by PCR
 }
 }
+\keyword{internal}

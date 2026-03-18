@@ -19,3 +19,4 @@
 \description{
 Implements \link{F_batch_rate} for a static model
 }
+\keyword{internal}

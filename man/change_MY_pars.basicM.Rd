@@ -5,8 +5,6 @@
 \title{Return the parameters as a list}
 \usage{
 \method{change_MY_pars}{basicM}(xds_obj, s = 1, options = list())
-
-\method{change_MY_pars}{basicM}(xds_obj, s = 1, options = list())
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
@@ -17,11 +15,8 @@
 }
 \value{
 an \strong{\code{xds}} object
-
-an \strong{\code{xds}} object
 }
 \description{
 This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}.
-
-This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}.
 }
+\keyword{internal}

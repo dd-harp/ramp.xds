@@ -25,3 +25,4 @@ rate for differential equations, or a number for difference equations.
 \note{
 This method dispatches on the class of \code{xds_obj$L_obj[[s]]}
 }
+\keyword{internal}

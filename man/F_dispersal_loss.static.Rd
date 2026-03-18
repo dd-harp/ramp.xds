@@ -19,3 +19,4 @@
 \description{
 Implements \link{F_dispersal_loss} for a static model
 }
+\keyword{internal}

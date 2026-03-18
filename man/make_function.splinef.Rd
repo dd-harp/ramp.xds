@@ -16,3 +16,4 @@ a function
 A spline function passes time points \code{tt} and
 associated values \code{yy} and returns a spline function
 }
+\keyword{internal}

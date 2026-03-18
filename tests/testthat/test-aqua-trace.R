@@ -22,7 +22,7 @@ test_that("forced emergence works with equilibrium", {
   nu <- 1/2
   eggsPerBatch <- 30
 
-  K_matrix <- matrix(0, nPatches, nPatches)
+  K_matrix <- matrix(-1, nPatches, nPatches)
   K_matrix[1, 2:3] <- c(0.2, 0.8)
   K_matrix[2, c(1,3)] <- c(0.5, 0.5)
   K_matrix[3, 1:2] <- c(0.7, 0.3)
@@ -32,7 +32,7 @@ test_that("forced emergence works with equilibrium", {
 
   MYo <- list(nPatches=nPatches, f=f, q=q, g=g, sigma=sigma,
                mu=mu, eip=eip, nu=nu, eggsPerBatch=eggsPerBatch,
-               K_matrix=K_matrix, Omega=Omega, Upsilon=Upsilon)
+               Koptions=K_matrix, Omega=Omega, Upsilon=Upsilon)
 
   Omega_inv <- ginv(Omega)
   M_eq <- as.vector(Omega_inv %*% Lambda)
@@ -49,7 +49,7 @@ test_that("forced emergence works with equilibrium", {
 
   Lo = list(Lambda=c(5, 10, 4, 4))
 
-  params <- xds_setup(MYname = "macdonald", Lname="trivial", Xname="trivial", K_matrix=K_matrix,
+  params <- xds_setup(MYname = "macdonald", Lname="trivial", Xname="trivial", Koptions=K_matrix,
                       MYoptions = MYo, Loptions = Lo, XHoptions = Xo, residence=residence,
                       nPatches=nPatches, membership=membership, HPop = rep(1000, nPatches))
 

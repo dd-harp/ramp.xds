@@ -10,6 +10,7 @@
 #'
 #' @return a **`MY`** model object
 #'
+#' @keywords internal
 #' @export
 setup_eip_obj = function(eip, MY_obj){
   MY_obj$eip = eip
@@ -31,6 +32,7 @@ setup_eip_obj = function(eip, MY_obj){
 #'
 #' @return a [numeric] vector oeip length `nPatches`
 #'
+#' @keywords internal
 #' @export
 F_eip <- function(t, xds_obj, s){
   UseMethod("F_eip", xds_obj$MY_obj[[s]]$eip_obj)
@@ -43,6 +45,7 @@ F_eip <- function(t, xds_obj, s){
 #' @inheritParams F_eip
 #'
 #' @return \eqn{eip}, the patch emigration rate
+#' @keywords internal
 #' @export
 F_eip.static <- function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$eip_obj$eip)

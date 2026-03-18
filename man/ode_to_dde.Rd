@@ -22,3 +22,4 @@ is set to \code{ode} by default. This utility gets called by delay
 differential equation modules to change
 \code{xds_obj$xde} from \code{ode} to \code{dde}
 }
+\keyword{internal}

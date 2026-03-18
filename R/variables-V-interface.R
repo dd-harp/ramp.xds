@@ -1,5 +1,5 @@
 
-#' @title Compute Other Variables
+#' @title Compute Other State Variables
 #' @description
 #' The description for each method should include the equations.
 #'
@@ -7,7 +7,7 @@
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @param i the i^th auxiliary variable
+#' @param i the i\eqn{^{th}} set of auxiliary variables
 #' @return derivatives for the \eqn{\cal MYZ} component as a [vector]
 #' @keywords internal
 #' @export

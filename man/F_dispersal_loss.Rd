@@ -20,3 +20,4 @@ a \link{numeric} vector omu length \code{nPatches}
 This method dispatches on the type of \code{mu_obj}. It should
 set the values omu the bionomic parameters to baseline values
 }
+\keyword{internal}

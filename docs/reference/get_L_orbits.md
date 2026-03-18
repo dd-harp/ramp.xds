@@ -13,7 +13,7 @@ get_L_orbits(xds_obj, s = 1)
 
 - xds_obj:
 
-  an **`xds`** object
+  an **`xds`** model object
 
 - s:
 

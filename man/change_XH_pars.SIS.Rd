@@ -25,11 +25,12 @@ values for the SIS model (\strong{XH} component)
 \item \eqn{b} is set to \code{options$b}
 \item \eqn{c} is set to \code{options$c}
 \item \eqn{r} is set to \code{options$r}
-\item \eqn{q_lm} is set to \code{options$q_lm}
-\item \eqn{q_rdt} is set to \code{options$q_rdt}
-\item \eqn{q_pcr} is set to \code{options$q_pcr}
+\item \eqn{q_{lm}} is set to \code{options$q_lm}
+\item \eqn{q_{rdt}} is set to \code{options$q_rdt}
+\item \eqn{q_{pcr}} is set to \code{options$q_pcr}
 }
 }
 \seealso{
 \code{\link[=get_XH_pars.SIS]{get_XH_pars.SIS()}} and the github.io essay on \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Dynamics}
 }
+\keyword{internal}

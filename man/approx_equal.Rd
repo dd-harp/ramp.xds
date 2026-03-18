@@ -19,3 +19,4 @@ a \link{logical} value
 \description{
 Check if two numeric values are approximately equal
 }
+\keyword{internal}

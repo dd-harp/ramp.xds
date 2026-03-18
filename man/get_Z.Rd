@@ -17,3 +17,4 @@ y a \link{numeric} vector assigned the class "dynamic"
 \description{
 Get the density of infectious, blood feeding mosquitoes
 }
+\keyword{internal}

@@ -1,4 +1,5 @@
 
+
 #' @title Compute Other Variables
 #' @description
 #' The description for each method should include the equations.

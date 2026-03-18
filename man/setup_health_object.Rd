@@ -16,3 +16,4 @@ an \strong{\code{xds}} object
 This sets up the \code{none} option
 for exogenous health: no health.
 }
+\keyword{internal}

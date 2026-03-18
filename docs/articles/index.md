@@ -30,6 +30,7 @@
   Junctions](https://dd-harp.github.io/ramp.xds/articles/Forcing.md):
 - [Getting
   Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.md):
+- [Glossary](https://dd-harp.github.io/ramp.xds/articles/Glossary.md):
 - [RAMP Software: A
   History](https://dd-harp.github.io/ramp.xds/articles/History.md):
 - [Hybrid MoI (Multiplicity of Infection) Human

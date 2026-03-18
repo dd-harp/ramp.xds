@@ -16,6 +16,9 @@ library(ggplot2)
 library(deSolve)
 ```
 
+```{r,echo=F}
+#devtools::load_all()
+```
 
 # Introduction
 
@@ -78,7 +81,7 @@ nPatches = 3
 
 ## Aquatic Habitat Membership Matrix
 
-For computation, `ramp.xds` uses an $n_p \times n_q$ matrix called $\cal{N}.$ It is specified by the habitat vector. In the matrix, ${N}_{i,j}$ is $1$ if the $i^{th}$ patch contains the $j^{th}$ habitat:  
+For computation, `ramp.xds` uses an $n_p \times n_q$ matrix called $N.$ It is specified by the habitat vector. In the matrix, $N_{i,j}$ is $1$ if the $i^{th}$ patch contains the $j^{th}$ habitat:  
 
 \begin{equation}
 {N} = \left[
@@ -241,9 +244,9 @@ It also uses the Ross-Macdonald model (see more [here](adult_RM.html)). Part of 
 The parameter values are: 
 
 ```{r MYZ parameters}
-g <- 1/12 
-sigma <- 1/12/2 
-mu <- 0 
+g <- rep(1/12, nPatches) 
+sigma <- rep(1/12/2, nPatches) 
+mu <- rep(0, nPatches) 
 f <- 1/3 
 q <- 0.9 
 nu <- c(1/3,1/3,0)  
@@ -261,13 +264,13 @@ Mosquito dispersal among the patches is described by a matrix, $K.$  Each column
 
 ```{r Kmatrix}
 Kmatrix <- t(matrix(
- c(c(0, .6, .3), 
-  c(.4, 0, .7), 
-  c(.6, .4, 0)), 3, 3))
+ c(c(-1, .6, .3), 
+  c(.4, -1, .7), 
+  c(.6, .4, -1)), 3, 3))
 ```
 
 We construct the demographic matrix $\Omega$ given by the formula 
-$$\Omega = \mbox{diag}\left(g\right) - \left[\mbox{diag}\left(1-\mu\right) - {K} \right] \cdot \mbox{diag}\left(\sigma\right)$$
+$$\Omega = \mbox{diag}\left(g\right) - K \cdot \mbox{diag}\left(\sigma\right)\left(1-\mu\right)$$
 It is computed by `compute_Omega_xde`:
 
 ```{r Omega}
@@ -469,15 +472,17 @@ xds_obj$XY_interface$W[[1]]
 
 
 ```{r change_K_matrix}
-xds_obj <- change_K_matrix(Kmatrix, xds_obj)
+xds_obj <- setup_K_matrix(Kmatrix, xds_obj)
 xds_obj$MY_obj[[1]]$K_matrix
 ```
 
 ```{r}
+xds_obj$MY_obj[[1]]$Omega <- make_Omega(xds_obj, 1)
 get_Omega(xds_obj, 1) 
 ```
 
 ```{r}
+xds_obj$MY_obj[[1]]$Upsilon <- make_Upsilon(xds_obj, 1)
 get_Upsilon(xds_obj, 1) 
 ```
 
@@ -523,19 +528,25 @@ out1 <- out
 
 With a small amount of data wrangling made easier by the `data.table` package, we can plot the output.
 
-```{r, out.width = "100%"}
-colnames(out)[xds_obj$ix$L[[1]]$L_ix+1] <- paste0('L_', 1:xds_obj$nHabitats)
-colnames(out)[xds_obj$ix$MYZ[[1]]$M_ix+1] <- paste0('M_', 1:xds_obj$nPatches)
-colnames(out)[xds_obj$ix$MYZ[[1]]$P_ix+1] <- paste0('P_', 1:xds_obj$nPatches)
-colnames(out)[xds_obj$ix$MYZ[[1]]$Y_ix+1] <- paste0('Y_', 1:xds_obj$nPatches)
-colnames(out)[xds_obj$ix$MYZ[[1]]$Z_ix+1] <- paste0('Z_', 1:xds_obj$nPatches)
-colnames(out)[xds_obj$ix$X[[1]]$X_ix+1] <- paste0('X_', 1:xds_obj$nStrata)
+```{r}
+out <- out1
+colnames(out)[1] <- "time" 
+colnames(out)[xds_obj$L_obj[[1]]$ix$L_ix+1] <- paste0('L_', 1:xds_obj$nHabitats)
+colnames(out)[xds_obj$MY_obj[[1]]$ix$M_ix+1] <- paste0('M_', 1:xds_obj$nPatches)
+colnames(out)[xds_obj$MY_obj[[1]]$ix$P_ix+1] <- paste0('P_', 1:xds_obj$nPatches)
+colnames(out)[xds_obj$MY_obj[[1]]$ix$Y_ix+1] <- paste0('Y_', 1:xds_obj$nPatches)
+colnames(out)[xds_obj$MY_obj[[1]]$ix$Z_ix+1] <- paste0('Z_', 1:xds_obj$nPatches)
+colnames(out)[xds_obj$XH_obj[[1]]$ix$I_ix+1] <- paste0('X_', 1:xds_obj$nStrata)
+out <- out[,-c(19:25)]
+```
 
+```{r, out.width = "100%", echo=F}
 out <- as.data.table(out)
 out <- melt(out, id.vars = 'time')
 out[, c("Component", "Stratification") := tstrsplit(variable, '_', fixed = TRUE)]
-out[, variable := NULL]
+```
 
+```{r, out.width = "100%"}
 ggplot(data = out, mapping = aes(x = time, y = value, color = Stratification)) +
  geom_line() +
  facet_wrap(. ~ Component, scales = 'free') +
@@ -548,7 +559,8 @@ We create lists with all our parameters values:
 
 ```{r}
 MYZo = list(
- g = 1/12, sigma = 1/12/2,
+ g = rep(1/12, nPatches), sigma = rep(1/12/2, nPatches),
+ mu = rep(0, nPatches),
  f = 1/3, q=0.9, nu=c(1/3,1/3,0),
  eggsPerBatch = 30, 
  eip = 12, 
@@ -579,7 +591,7 @@ Xo = list(
 xds_setup(MYname="macdonald", Xname="SIS", Lname="basicL", 
   nPatches = 3, HPop=c(10, 90, 100, 900), 
   membership=c(1,1,1,2,2), 
-  MYoptions=MYZo, K_matrix=Kmatrix, XHoptions=Xo, Loptions = Lo,
+  MYoptions=MYZo, Koptions=Kmatrix, XHoptions=Xo, Loptions = Lo,
   residence=c(2,2,3,3), searchB=searchWtsH, 
   TimeSpent=TaR, searchQ = c(7,2,1,8,2)) -> mod534
 ```
@@ -589,7 +601,10 @@ We solve and take the differences to check:
 
 ```{r}
 mod534 <- xds_solve(mod534, Tmax=735, dt=15)
-mod534$outputs$orbits$deout -> out2
+```
+
+```{r}
+mod534$outputs$deout -> out2
 ```
 
 ```{r}

@@ -20,3 +20,4 @@ xds_plot_X(xds_obj, i = 1, clrs = "black", llty = 1, add = FALSE)
 \description{
 Basic plotting for epidemiological models
 }
+\keyword{internal}

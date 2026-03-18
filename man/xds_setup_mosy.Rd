@@ -11,10 +11,10 @@ xds_setup_mosy(
   nPatches = 1,
   membership = 1,
   HPop = 1000,
-  K_matrix = list(),
   searchQ = 1,
   kappa = 0,
   MYoptions = list(),
+  Koptions = list(Kname = "no_setup"),
   Loptions = list(),
   model_name = "unnamed"
 )
@@ -32,13 +32,13 @@ xds_setup_mosy(
 
 \item{HPop}{is the human / host population density}
 
-\item{K_matrix}{is either a K_matrix matrix or a string that defines how to set it up}
-
 \item{searchQ}{is a vector of search weights for egg laying}
 
 \item{kappa}{is a vector describing net infectiousness}
 
 \item{MYoptions}{a list to configure the \strong{MY} Component module}
+
+\item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (see \link{mosquito_dispersal})}
 
 \item{Loptions}{a list to configure the \strong{L} Component module}
 

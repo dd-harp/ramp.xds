@@ -1,5 +1,24 @@
 # specialized methods for the aquatic mosquito trivial model
 
+#' @title The `trivial` Module for the L Component
+#' @description
+#' Implements the **L** component using a trivial (trace) model where
+#' the emergence rate \eqn{\alpha} is specified as a forced function of
+#' time rather than computed dynamically. This module has no state variables.
+#'
+#' @section State Variables:
+#' None — \eqn{\alpha} is supplied as a trace function.
+#'
+#' @section Parameters:
+#' \describe{
+#'   \item{`F_alpha`}{a function of time returning the emergence rate}
+#' }
+#'
+#' @name trivial_L
+#' @rdname trivial_L
+NULL
+
+
 #' @title The **L** Module Skill Set
 #'
 #' @description The **L** skill set is a list of
@@ -9,6 +28,7 @@
 #'
 #' @return *L* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_L.trivial = function(Lname="trivial"){
   list(trivial=TRUE)
@@ -20,6 +40,7 @@ skill_set_L.trivial = function(Lname="trivial"){
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_L.trivial = function(xds_obj, s){
   return(xds_obj)
@@ -30,6 +51,7 @@ check_L.trivial = function(xds_obj, s){
 #' @inheritParams dLdt
 #' @return an empty [list]
 #' @keywords internal
+#' @keywords internal
 #' @export
 dLdt.trivial <- function(t, y, xds_obj, s) {
   return(numeric(0))
@@ -39,6 +61,7 @@ dLdt.trivial <- function(t, y, xds_obj, s) {
 #' @description Implements [Update_Lt] for the trivial (forced emergence) model.
 #' @inheritParams Update_Lt
 #' @return a [numeric] vector
+#' @keywords internal
 #' @keywords internal
 #' @export
 Update_Lt.trivial <- function(t, y, xds_obj, s) {
@@ -53,6 +76,7 @@ Update_Lt.trivial <- function(t, y, xds_obj, s) {
 #' + \eqn{P(t)} or `F_shock` is a function describing a perturbation (by default, set to 1)
 #' @inheritParams F_emerge
 #' @return a [numeric] vector of length `nHabitats`
+#' @keywords internal
 #' @export
 F_emerge.trivial <- function(t, y, xds_obj, s) {
   with(xds_obj$L_obj[[s]],{
@@ -64,6 +88,8 @@ F_emerge.trivial <- function(t, y, xds_obj, s) {
 #' @inheritParams LBaseline
 #' @return a named [list]
 #' @keywords internal
+#' @keywords internal
+#' @keywords internal
 #' @export
 LBaseline.trivial<- function(t, y, xds_obj, s) {
   return(xds_obj)
@@ -73,6 +99,8 @@ LBaseline.trivial<- function(t, y, xds_obj, s) {
 #' @description Implements [LBionomics] for the RM model
 #' @inheritParams LBionomics
 #' @return an **`xds`** object
+#' @keywords internal
+#' @keywords internal
 #' @keywords internal
 #' @export
 LBionomics.trivial <- function(t, y, xds_obj, s) {
@@ -84,6 +112,7 @@ LBionomics.trivial <- function(t, y, xds_obj, s) {
 #' @inheritParams setup_L_obj
 #' @keywords internal
 #' @return a [list] vector
+#' @keywords internal
 #' @keywords internal
 #' @export
 setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
@@ -109,6 +138,7 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
 #' @param trend_par an object to configure a trends function using [make_function]
 #' @param shock_par an object to configure a shocks function using [make_function]
 #' @return none
+#' @keywords internal
 #' @export
 make_L_obj_trivial = function(nHabitats, options=list(),
                              Lambda=1000,
@@ -134,6 +164,7 @@ make_L_obj_trivial = function(nHabitats, options=list(),
 #' @param s the vector species index
 #' @keywords internal
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_L_pars.trivial <- function(xds_obj, s=1) {
   with(xds_obj$L_obj[[s]], list(
@@ -152,6 +183,7 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
 #' @inheritParams change_L_pars
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
@@ -169,6 +201,7 @@ change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
 #' @inheritParams setup_L_inits
 #' @return a [list]
 #' @keywords internal
+#' @keywords internal
 #' @export
 setup_L_inits.trivial = function(xds_obj, s, options=list()){
   xds_obj$L_obj[[s]]$inits = list()
@@ -179,6 +212,7 @@ setup_L_inits.trivial = function(xds_obj, s, options=list()){
 #' @description This method dispatches on the type of `xds_obj$L_obj[[s]]`
 #' @inheritParams get_L_vars
 #' @return an empty [list]
+#' @keywords internal
 #' @keywords internal
 #' @export
 get_L_vars.trivial <- function(y, xds_obj, s){
@@ -191,6 +225,7 @@ get_L_vars.trivial <- function(y, xds_obj, s){
 #' @inheritParams change_L_inits
 #' @return an **`xds`** object
 #' @keywords internal
+#' @keywords internal
 #' @export
 change_L_inits.trivial <- function(xds_obj, s=1, options=list()) {
   return(xds_obj)
@@ -201,6 +236,7 @@ change_L_inits.trivial <- function(xds_obj, s=1, options=list()) {
 #' @inheritParams setup_L_ix
 #' @return an **`xds`** object
 #' @keywords internal
+#' @keywords internal
 #' @export
 setup_L_ix.trivial <- function(xds_obj, s) {
   return(xds_obj)
@@ -210,6 +246,7 @@ setup_L_ix.trivial <- function(xds_obj, s) {
 #' @description Return a numeric vector of length 0
 #' @inheritParams parse_L_orbits
 #' @return none
+#' @keywords internal
 #' @keywords internal
 #' @export
 parse_L_orbits.trivial <- function(outputs, xds_obj, s) {

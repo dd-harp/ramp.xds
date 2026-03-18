@@ -20,3 +20,4 @@ a \link{numeric} vector osigma length \code{nPatches}
 This method dispatches on the type of \code{sigma_obj}. It should
 set the values the patch emigration rate, \eqn{\sigma}
 }
+\keyword{internal}

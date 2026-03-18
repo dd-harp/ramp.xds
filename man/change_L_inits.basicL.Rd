@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 Initial values of the variable \eqn{L} are reset if they are
 passed as a named component of \code{options}
 }
+\keyword{internal}

@@ -18,3 +18,4 @@ a \strong{\code{MY}} model object
 Set up an object
 to compute the EIP
 }
+\keyword{internal}

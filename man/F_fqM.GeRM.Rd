@@ -21,3 +21,4 @@ a \link{numeric} vector of length \code{nPatches}
 \description{
 Implements \link{F_fqM} for the GeRM model.
 }
+\keyword{internal}

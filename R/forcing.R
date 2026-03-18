@@ -1,4 +1,19 @@
-# The forcing library is found in ramp.forcing
+#' @title **`ramp.xds`**: Forcing 
+#' 
+#' @description
+#' + [trivial_forcing] 
+#' + [xds_junction_forcing] 
+#'  
+#' @name xds_forcing 
+NULL
+
+#' @title Junction: Forcing 
+#' 
+#' @description
+#' Forcing is a [junction] that called by [xds_compute_terms]. 
+#'  
+#' @name xds_junction_forcing 
+NULL
 
 #' @title Exogenous Forcing
 #'
@@ -39,6 +54,7 @@ Forcing.none = function(t, xds_obj){
 #' for exogenous forcing: no forcing.
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_forcing_object = function(xds_obj){
   forcing <- list()

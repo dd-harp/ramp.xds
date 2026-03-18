@@ -65,6 +65,7 @@ show_trend = function(xds_obj, tm=10*c(0:365), add=FALSE, clr="black", rng=NULL,
 #'
 #' @return the temporal trend, invisibly
 #'
+#' @keywords internal
 #' @export
 F_trend = function(tm, xds_obj){
   UseMethod("F_trend", xds_obj$forced_by)
@@ -129,6 +130,7 @@ F_trend.eir= function(tm, xds_obj){
 #'
 #' @return the temporal trend, invisibly
 #'
+#' @keywords internal
 #' @export
 F_shock = function(tm, xds_obj){
   UseMethod("F_shock", xds_obj$forced_by)

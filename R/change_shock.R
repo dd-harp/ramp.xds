@@ -25,6 +25,7 @@ change_shock = function(shock_par, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_shock.none = function(shock_par, xds_obj, s=1){
   return(xds_obj)
@@ -40,6 +41,7 @@ change_shock.none = function(shock_par, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_shock.Lambda = function(shock_par, xds_obj, s=1){
   xds_obj$L_obj[[s]]$shock_par <- shock_par
@@ -58,6 +60,7 @@ change_shock.Lambda = function(shock_par, xds_obj, s=1){
 #'
 #' @return an **`xds`** object
 #'
+#' @keywords internal
 #' @export
 change_shock.eir = function(shock_par, xds_obj, s=1){
   xds_obj$EIR_obj$shock_par <- shock_par

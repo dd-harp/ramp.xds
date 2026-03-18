@@ -4,6 +4,7 @@
 #' @param t an arbitrary input
 #' @param V an arbitrary input
 #' @return a vector of ones of length x
+#' @keywords internal
 #' @export
 Zero_tV = function(t, V=list()){return(0*t)}
 
@@ -12,6 +13,7 @@ Zero_tV = function(t, V=list()){return(0*t)}
 #' @param t an arbitrary input
 #' @param V an arbitrary input
 #' @return a vector of ones of length x
+#' @keywords internal
 #' @export
 One_tV= function(t, V=list()){return(0*t+1)}
 
@@ -56,6 +58,7 @@ get_variables.na = function(t, y, func, xds_obj){
 #'
 #' @return a [numeric] vector of length d
 #'
+#' @keywords internal
 #' @export
 F_exp = function(d){return(exp(-d))}
 
@@ -74,6 +77,7 @@ make_function = function(opts){
 #' @description A function that returns 0
 #' @param t an arbitrary input
 #' @return a vector of ones of length x
+#' @keywords internal
 #' @export
 F_zero = function(t){return(0*t)}
 
@@ -93,6 +97,7 @@ makepar_F_zero = function(){
 #' @description Return [F_zero]
 #' @inheritParams make_function
 #' @return a function that is the sum of two other functions
+#' @keywords internal
 #' @export
 make_function.zero = function(opts){
   return(F_zero)
@@ -102,6 +107,7 @@ make_function.zero = function(opts){
 #' @description A function that returns 1
 #' @param t an arbitrary input
 #' @return a vector of ones of length x
+#' @keywords internal
 #' @export
 F_one = function(t){return(0*t+1)}
 
@@ -121,6 +127,7 @@ makepar_F_one = function(){
 #' other functions.
 #' @inheritParams make_function
 #' @return a function that is the sum of two other functions
+#' @keywords internal
 #' @export
 make_function.one = function(opts){
   return(F_one)
@@ -132,6 +139,7 @@ make_function.one = function(opts){
 #' @inheritParams make_function
 #' @keywords internal
 #' @return a function that is the sum of two other functions
+#' @keywords internal
 #' @export
 make_function.list = function(opts){
   return(F_one)
@@ -155,6 +163,7 @@ makepar_F_val = function(val){
 #' @description Build a function that returns a constant value
 #' @inheritParams make_function
 #' @return a function that returns a constant value
+#' @keywords internal
 #' @export
 make_function.val = function(opts){
   Fv = function(t){return(0*t + opts$val)}
@@ -165,6 +174,7 @@ make_function.val = function(opts){
 #' @description A function that returns 1
 #' @param t an arbitrary input
 #' @return a vector of ones of length x
+#' @keywords internal
 #' @export
 F_flat = function(t){return(0*t+1)}
 
@@ -183,6 +193,7 @@ F_flat = function(t){return(0*t+1)}
 #' @importFrom stats integrate
 #' @seealso [makepar_F_sin]
 #' @return a function for seasonality
+#' @keywords internal
 #' @export
 make_function.sin = function(opts){
   opts$normit = with(opts, rep(norm, N))
@@ -228,6 +239,7 @@ makepar_F_sin = function(phase=0, bottom=0, pw=1, norm=365, N=1){
 #' @importFrom stats integrate
 #' @seealso [makepar_F_type2]
 #' @return a function for seasonality
+#' @keywords internal
 #' @export
 make_function.type2 = function(opts){with(opts,{
   F = function(a){
@@ -265,6 +277,7 @@ makepar_F_type2 = function(shift=30, A=1.8, B=5, N=1){
 #' @inheritParams make_function
 #' @importFrom stats integrate
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.sigmoid = function(opts){
   opts$normit = rep(1, opts$N)
@@ -303,6 +316,7 @@ makepar_F_sigmoid = function(k=1/7, D=100, Tl=0, N=1){
 #' other functions.
 #' @inheritParams make_function
 #' @return a function that is the sum of two other functions
+#' @keywords internal
 #' @export
 make_function.sum = function(opts){
   F1 = make_function(opts$opts1)
@@ -331,6 +345,7 @@ makepar_F_sum = function(opts1, opts2){
 #' product of two other functions
 #' @inheritParams make_function
 #' @return a function that is the product of two other functions
+#' @keywords internal
 #' @export
 make_function.product = function(opts){
   F1 = make_function(opts$opts1)
@@ -359,6 +374,7 @@ makepar_F_product = function(opts1, opts2){
 #' product of two other functions
 #' @inheritParams make_function
 #' @return a function that is the product of two other functions
+#' @keywords internal
 #' @export
 make_function.nproduct = function(opts){
   F1 = make_function(opts$opts1)
@@ -392,6 +408,7 @@ makepar_F_nproduct = function(opts1, opts2){
 #' For the default values, the function looks like a shark fin.
 #' @inheritParams make_function
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.sharkfin = function(opts){
   siggy <- function(t, k=1, D=1){
@@ -443,6 +460,7 @@ makepar_F_sharkfin = function(D=100, L=180, uk = 1/7, dk=1/40, pw=1, mx=1, N=1){
 #' For the default values, the function looks like a shark fin.
 #' @inheritParams make_function
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.sharkbite = function(opts){
   siggy <- function(t, k=1, D=1){
@@ -490,6 +508,7 @@ makepar_F_sharkbite = function(D=100, L=180, uk = 1/7, dk=1/40, pw=1, mx=1, N=1)
 #' associated values `yy` and returns a spline function
 #' @inheritParams make_function
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.splinef = function(opts){
   ff <- function(t){
@@ -503,6 +522,7 @@ make_function.splinef = function(opts){
 #' associated values `yy` and returns a spline function
 #' @inheritParams make_function
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.splineX = function(opts){
   ff <- function(t){
@@ -516,6 +536,7 @@ make_function.splineX = function(opts){
 #' associated values `yy` and returns a spline function
 #' @inheritParams make_function
 #' @return a function
+#' @keywords internal
 #' @export
 make_function.spline2 = function(opts){
   ff <- function(t){
@@ -542,34 +563,3 @@ makepar_F_spline = function(tt, yy, X=FALSE){
   return(pars)
 }
 
-#' Make a Time Series Function
-#'
-#' @param options configurable options
-#' @param N the length of the return value
-#' @param scale scale parameter, usually the average
-#' @param season_par seasonality function parameters
-#' @param trend_par trend function parameters
-#'
-#' @return a function
-#' @export
-make_ts_function = function(options=list(),
-                            N=1,
-                            scale=1,
-                            season_par = list(),
-                            trend_par = list()){
-  with(options,{
-    scale = checkIt(scale, N)
-    if(length(season_par) == 0){
-      F_season = F_one
-    } else {
-      season_par$N = N
-      F_season <- make_function(season_par)
-    }
-    if(length(trend_par) == 0){
-      F_trend = F_one
-    } else {
-      trend_par$N = N
-      F_trend <- make_function(trend_par)
-    }
-    return(function(t, V=list()){scale*F_season(t)*F_trend(t)})
-})}

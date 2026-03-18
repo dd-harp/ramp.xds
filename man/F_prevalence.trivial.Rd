@@ -17,3 +17,4 @@ a \link{numeric} vector numeric(0)
 \description{
 Implements \link{F_prevalence} for the trivial model.
 }
+\keyword{internal}

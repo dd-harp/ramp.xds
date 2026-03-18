@@ -16,3 +16,4 @@ a function that is the product of two other functions
 Build a function that is the
 product of two other functions
 }
+\keyword{internal}

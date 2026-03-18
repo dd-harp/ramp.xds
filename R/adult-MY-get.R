@@ -7,7 +7,7 @@
 #' @return the orbits for the **MY** component
 #'
 #' @export
-get_MY_out = function(xds_obj, s=1){
+get_MY_orbits = function(xds_obj, s=1){
 
   got = xds_obj$outputs$orbits$MY[[s]]
   got$time = xds_obj$outputs$time

@@ -41,3 +41,4 @@ a \link{list}
 \description{
 Make parameters for GeRM ODE adult mosquito model
 }
+\keyword{internal}

@@ -19,3 +19,4 @@
 \description{
 Implements \link{F_larval_mort} for a static model
 }
+\keyword{internal}

@@ -183,6 +183,7 @@ setup_F_travel = function(setup_name, xds_obj, i, options=list()){
 #' @inheritParams setup_F_travel
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_F_travel.static = function(setup_name, xds_obj, i, options=list()){
   F_travel <- Zero_tV
@@ -199,6 +200,7 @@ setup_F_travel.static = function(setup_name, xds_obj, i, options=list()){
 #' @inheritParams setup_F_travel
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_F_travel.ts_func = function(setup_name, xds_obj, i, options=list()){
   class(xds_obj$XY_interface$travel_obj) = 'dynamic'

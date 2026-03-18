@@ -21,3 +21,4 @@ none
 \description{
 Make inits for basicM adult mosquito model
 }
+\keyword{internal}

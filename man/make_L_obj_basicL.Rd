@@ -42,3 +42,4 @@ The following parameters will be set to the values in
 \seealso{
 Called by: \link{setup_L_obj.basicL}. Related: \link{dLdt.basicL} & \link{Update_Lt.basicL}
 }
+\keyword{internal}

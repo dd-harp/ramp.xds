@@ -37,6 +37,7 @@ Traps.none = function(t, y, xds_obj){
 #' for exogenous traps: no traps.
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_traps_object = function(xds_obj){
   traps <- list()

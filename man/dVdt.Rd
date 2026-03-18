@@ -2,7 +2,7 @@
 % Please edit documentation in R/variables-V-interface.R
 \name{dVdt}
 \alias{dVdt}
-\title{Compute Other Variables}
+\title{Compute Other State Variables}
 \usage{
 dVdt(t, y, xds_obj, i)
 }
@@ -13,7 +13,7 @@ dVdt(t, y, xds_obj, i)
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the i^th auxiliary variable}
+\item{i}{the i\eqn{^{th}} set of auxiliary variables}
 }
 \value{
 derivatives for the \eqn{\cal MYZ} component as a \link{vector}

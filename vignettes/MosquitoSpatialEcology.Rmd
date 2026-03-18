@@ -53,7 +53,7 @@ K_matrix
 ```
 
 ```{r}
-model5 <- xds_setup(nPatches=5, membership=membership, searchQ=searchQ, K_matrix=K_matrix)
+model5 <- xds_setup(nPatches=5, membership=membership, searchQ=searchQ, Koptions=K_matrix)
 ```
 
 ```{r}

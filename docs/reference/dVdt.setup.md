@@ -25,7 +25,7 @@ dVdt(t, y, xds_obj, i)
 
 - i:
 
-  the i^th auxiliary variable
+  the i\\^{th}\\ set of auxiliary variables
 
 ## Value
 

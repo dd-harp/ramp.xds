@@ -1,5 +1,44 @@
 # specialized methods for the adult mosquito GeRM model
 
+#' @title The `GeRM` Module for the MY Component
+#' @description
+#' Implements the **MY** component using a generalized, non-autonomous
+#' Ross-Macdonald model of adult mosquito ecology and infection dynamics,
+#' capable of handling exogenous forcing by weather and vector control.
+#'
+#' @section State Variables:
+#' \describe{
+#'   \item{`M`}{density of adult mosquitoes}
+#'   \item{`Y`}{density of infected adult mosquitoes}
+#'   \item{`Z`}{density of infectious adult mosquitoes}
+#' }
+#'
+#' @section Parameters:
+#' \describe{
+#'   \item{`f`}{blood feeding rate}
+#'   \item{`q`}{human blood fraction}
+#'   \item{`eip`}{extrinsic incubation period (\eqn{\tau})}
+#'   \item{`g`}{mosquito mortality rate}
+#'   \item{`sigma`}{emigration rate}
+#'   \item{`mu`}{emigration loss rate}
+#'   \item{`K`}{mosquito dispersal matrix}
+#'   \item{`Omega`}{adult mosquito demographic matrix (mortality + migration)}
+#'   \item{`Upsilon`}{survival and dispersal through the eip: \eqn{\Upsilon = e^{-\Omega\tau}}}
+#' }
+#'
+#' @section Dynamics:
+#' \deqn{
+#' \begin{array}{rl}
+#' dM/dt &= \Lambda - \Omega \cdot M \\
+#' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
+#' dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Z \\
+#' \end{array}}
+#'
+#' @name GeRM
+#' @rdname GeRM
+NULL
+
+
 #' @title The **GeRM** Module Skill Set
 #'
 #' @description The **MY** skill set is a list of
@@ -11,6 +50,7 @@
 #'
 #' @return *MY* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_MY.GeRM = function(MYname){
   return(list())
@@ -22,6 +62,7 @@ skill_set_MY.GeRM = function(MYname){
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_MY.GeRM = function(xds_obj, s){
 
@@ -93,6 +134,7 @@ F_fqZ.GeRM <- function(t, y, xds_obj, s) {
 #' @description Implements [F_fqM] for the GeRM model.
 #' @inheritParams F_fqM
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqM.GeRM <- function(t, y, xds_obj, s) {
   f = get_f(xds_obj, s)
@@ -141,6 +183,7 @@ setup_MY_obj.GeRM = function(MYname, xds_obj, s, options=list()){
 #' @param nu oviposition rate, per mosquito
 #' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
+#' @keywords internal
 #' @export
 make_MY_obj_GeRM = function(nPatches, options=list(), eip =12,
                               g=1/12,  sigma=1/8,  mu=0,
@@ -261,6 +304,7 @@ parse_MY_orbits.GeRM <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[[s]]$
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_pars.GeRM <- function(xds_obj, s=1) {
   with(xds_obj$MY_obj[[s]], list(
@@ -273,6 +317,7 @@ get_MY_pars.GeRM <- function(xds_obj, s=1) {
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_MY_pars.GeRM <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
@@ -422,6 +467,7 @@ setup_MY_inits.GeRM = function(xds_obj, s, options=list()){with(xds_obj$MY_obj[[
 #' @param Y infected mosquito density at each patch
 #' @param Z infectious mosquito density at each patch
 #' @return a [list]
+#' @keywords internal
 #' @export
 make_MY_inits_GeRM = function(nPatches, Upsilon, options = list(),
                              M=5, P=1, Y=1, Z=1){
@@ -460,6 +506,7 @@ change_MY_inits.GeRM <- function(xds_obj, s=1, options=list()) {
 #' @inheritParams steady_state_MY
 #' @return none
 #' @importFrom MASS ginv
+#' @keywords internal
 #' @export
 steady_state_MY.GeRM = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$MY_obj[[s]],{
   kappa = as.vector(kappa); Lambda = as.vector(Lambda)

@@ -9,7 +9,7 @@
 #'
 #' @export
 xds_plot_M = function(xds_obj, s=1, clrs="darkblue", llty=1, add=FALSE){
-  MY = get_MY_out(xds_obj, s)
+  MY = get_MY_orbits(xds_obj, s)
 
   if(add == FALSE)
     with(MY, plot(time, 0*time, type = "n", ylim = range(0,M),
@@ -49,7 +49,7 @@ xds_lines_M = function(MY, xds_obj, clrs="darkblue", llty=1){
 #'
 #' @export
 xds_plot_Y = function(xds_obj, s=1, clrs = "purple", llty=1, add=FALSE){
-  MY = get_MY_out(xds_obj, s)
+  MY = get_MY_orbits(xds_obj, s)
 
   if(add == FALSE)
     with(MY, plot(time, 0*time, type = "n", ylim = range(0,Y),
@@ -91,7 +91,7 @@ xds_lines_Y = function(MY, xds_obj, clrs="purple", llty=1){
 #'
 #' @export
 xds_plot_Z = function(xds_obj, s=1,  clrs="darkred", llty=1, add=FALSE){
-  MY = get_MY_out(xds_obj, s)
+  MY = get_MY_orbits(xds_obj, s)
 
   if(add == FALSE)
     with(MY,
@@ -134,7 +134,7 @@ xds_lines_Z = function(MY, xds_obj, clrs = "darkred", llty=1){
 #'
 #' @export
 xds_plot_Y_fracs = function(xds_obj, s=1, clrs = "purple", llty=1,  add=FALSE){
-  MY = get_MY_out(xds_obj, s)
+  MY = get_MY_orbits(xds_obj, s)
 
   if(add == FALSE)
     with(MY, plot(time, 0*time, type = "n", ylim = range(0,y),
@@ -177,7 +177,7 @@ xds_lines_Y_fracs = function(MY, xds_obj, clrs="purple", llty=1){
 #'
 #' @export
 xds_plot_Z_fracs = function(xds_obj, s=1, clrs = "darkred", llty=1, add=FALSE){
-  MY = get_MY_out(xds_obj, s)
+  MY = get_MY_orbits(xds_obj, s)
 
   if(add == FALSE)
     with(MY,

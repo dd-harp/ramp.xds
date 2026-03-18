@@ -1,5 +1,63 @@
 # specialized methods for the adult mosquito macdonald model
 
+#' @title The `macdonald` Module (MY Component)
+#' 
+#' @description
+#' 
+#' Implements a Macdonald-style delay differential
+#' equation model of adult mosquito ecology and infection dynamics, consistent
+#' with the model published by George Macdonald in 1952. This formulation is 
+#' actually closer to one published by 
+#'
+#' @section State Variables:
+#' \describe{
+#'   \item{`M`}{density of adult mosquitoes}
+#'   \item{`Y`}{density of infected adult mosquitoes}
+#'   \item{`Z`}{density of infectious adult mosquitoes}
+#' }
+#'
+#' @section Parameters:
+#' \describe{
+#'   \item{`f`}{blood feeding rate}
+#'   \item{`q`}{human blood fraction}
+#'   \item{`g`}{mortality rate}
+#'   \item{`sigma`}{patch emigration}
+#'   \item{`mu`}{emigration-related loss}
+#'   \item{`K`}{the dispersal matrix}
+#'   \item{`tau`}{extrinsic incubation period (\eqn{\tau})}
+#' }
+#' 
+#' The *demographic matrix* \eqn{\Omega} is formulated as 
+#' \deqn{
+#'  \Omega = \mbox{diag} \left( g \right) + K \cdot \mbox{diag} \left( \sigma \left(1-\mu\right) \right)
+#' } 
+#' Survival and dispersal through the EIP is 
+#' \deqn{
+#'  \Upsilon = e^{-\Omega \tau} 
+#' } 
+#'
+#' @section Dynamics:
+#' The dynamical system is described 
+#' by a coupled set of delay differential equations. 
+#' In these equations, a sub-scripted variable or term denotes its 
+#' lagged value: \eqn{M_\tau = M(t-\tau)}. 
+#'
+#' \deqn{
+#' \begin{array}{rl}
+#' dM/dt &= \Lambda - \Omega \cdot M \\\\
+#' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\\\
+#' dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Z \\\\
+#' \end{array}
+#' }
+#'
+#' @section Note:
+#' This model is not capable of handling exogenous forcing by weather or
+#' vector control. Use the `GeRM` module instead.
+#'
+#' @name macdonald
+NULL
+
+
 #' @title The **macdonald** Module Skill Set
 #'
 #' @description The **MY** skill set is a list of
@@ -11,6 +69,7 @@
 #'
 #' @return *MY* module skill set, as a list
 #'
+#' @keywords internal
 #' @export
 skill_set_MY.macdonald = function(MYname){
   return(list())
@@ -22,6 +81,7 @@ skill_set_MY.macdonald = function(MYname){
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_MY.macdonald = function(xds_obj, s){
   Omega <- with(xds_obj$MY_obj[[s]], make_Omega_xde(g, sigma, mu, K_matrix))
@@ -94,7 +154,7 @@ dMYdt.macdonald <- function(t, y, xds_obj, s){
         Y_eip <- lagvalue(t=t-eip, nr = ix$Y_ix)
         kappa_eip <- lagderiv(t=t-eip, nr = ix$kappa_ix)
       }
-
+      
       dMdt <- Lambda - (Omega %*% M)
       dPdt <- f*(M - P) - (Omega %*% P)
       dYdt <- f*q*kappa*(M - Y) - (Omega %*% Y)
@@ -121,6 +181,7 @@ F_fqZ.macdonald <- function(t, y, xds_obj, s) {
 #' @description Implements [F_fqM] for the macdonald model.
 #' @inheritParams F_fqM
 #' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
 #' @export
 F_fqM.macdonald <- function(t, y, xds_obj, s) {
   f = get_f(xds_obj, s)
@@ -169,6 +230,7 @@ setup_MY_obj.macdonald = function(MYname, xds_obj, s, options=list()){
 #' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
 #' @importFrom expm expm
+#' @keywords internal
 #' @export
 make_MY_obj_macdonald = function(nPatches, options=list(), eip=12,
                                    g=1/12, sigma=1/8, mu=0, f=0.3, q=0.95,
@@ -269,11 +331,12 @@ parse_MY_orbits.macdonald <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
+#' @keywords internal
 #' @export
 get_MY_pars.macdonald <- function(xds_obj, s=1) {
   with(xds_obj$MY_obj[[s]], list(
     f=f, q=q, g=g, sigma=sigma, eip=eip, mu=mu,
-    nu=nu, eggsPerBatch=eggsPerBatch, calK=calK
+    nu=nu, eggsPerBatch=eggsPerBatch, K_matrix=K_matrix
   ))
 }
 
@@ -281,6 +344,7 @@ get_MY_pars.macdonald <- function(xds_obj, s=1) {
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_MY_pars.macdonald <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
@@ -317,6 +381,7 @@ setup_MY_inits.macdonald = function(xds_obj, s, options=list()){with(xds_obj$MY_
 #' @param Y infected mosquito density at each patch
 #' @param Z infectious mosquito density at each patch
 #' @return a [list]
+#' @keywords internal
 #' @export
 make_MY_inits_macdonald = function(nPatches, options = list(),
                                    M=5, P=1, Y=1, Z=1){
@@ -352,6 +417,7 @@ change_MY_inits.macdonald = function(xds_obj, s, options=list()){
 #' @return none
 #' @importFrom MASS ginv
 #' @importFrom expm expm
+#' @keywords internal
 #' @export
 steady_state_MY.macdonald = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$MY_obj[[s]],{
   kappa = as.vector(kappa); Lambda = as.vector(Lambda)

@@ -3,6 +3,7 @@
 #'
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 make_indices <- function(xds_obj) {
   xds_obj$max_ix <- 0
@@ -60,6 +61,7 @@ get_inits <- function(xds_obj, flatten=FALSE){
 #' elements are zero, set them to one.
 #' @param x a [numeric] vector
 #' @return a diagonal [matrix]
+#' @keywords internal
 #' @export
 diag_inverse <- function(x) {
   x <- as.vector(x)
@@ -75,6 +77,7 @@ diag_inverse <- function(x) {
 #' @param b a [numeric] model object
 #' @param tol the numeric tolerance
 #' @return a [logical] value
+#' @keywords internal
 #' @export
 approx_equal <- function(a, b, tol = sqrt(.Machine$double.eps)) {
   abs(a - b) < tol
@@ -86,6 +89,7 @@ approx_equal <- function(a, b, tol = sqrt(.Machine$double.eps)) {
 #' @param type a [character] string specifying required typeof
 #' @param fixit a [logical] value, if TRUE force length to lng
 #' @return a [numeric] model object
+#' @keywords internal
 #' @export
 checkIt = function(x, lng, type = "numeric", fixit=TRUE){
   stopifnot(is.numeric(x))
@@ -103,6 +107,7 @@ checkIt = function(x, lng, type = "numeric", fixit=TRUE){
 #'
 #' @return [matrix]
 #'
+#' @keywords internal
 #' @export
 shapeIt = function(obj, d1, d2){
   Obj = as.matrix(obj)
@@ -119,6 +124,7 @@ shapeIt = function(obj, d1, d2){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param i the host species index
+#' @keywords internal
 #' @export
 list_vars <- function(xds_obj, y0=NULL, s=1, i=1){
   if(is.null(y0)) y0=get_inits(xds_obj)
@@ -133,6 +139,7 @@ list_vars <- function(xds_obj, y0=NULL, s=1, i=1){
 #' @param xds_obj an **`xds`** model object
 #' @param y0 a [vector] of initial values
 #' @return y a [numeric] vector
+#' @keywords internal
 #' @export
 update_inits <- function(xds_obj, y0=NULL){
   if(is.null(y0)) y0 = get_last(xds_obj)
@@ -184,6 +191,7 @@ last_to_inits <- function(xds_obj){
 #' @title Set the initial values to the last values of the last simulation
 #' @param vars a [list]
 #' @return `vars` as an unnamed [vector]
+#' @keywords internal
 #' @export
 xds_flatten <- function(vars){
   return(unname(as.vector(unlist(vars))))
@@ -193,6 +201,7 @@ xds_flatten <- function(vars){
 #'
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 check_models <- function(xds_obj) {
   for(i in 1:xds_obj$nHostSpecies)
@@ -210,6 +219,7 @@ check_models <- function(xds_obj) {
 #' @inheritParams base::print
 #' @rdname print
 #' @return a description of the model
+#' @keywords internal
 #' @export print.xds_obj
 #' @export
 print.xds_obj = function(x, ...){

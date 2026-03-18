@@ -32,3 +32,4 @@ a \link{list}
 \description{
 Make parameters for trivial human model
 }
+\keyword{internal}

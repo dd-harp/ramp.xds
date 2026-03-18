@@ -35,3 +35,4 @@ a \link{list}
 \description{
 Make inits for GeRM adult mosquito model
 }
+\keyword{internal}

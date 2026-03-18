@@ -20,3 +20,4 @@ a \link{numeric} vector onu length \code{nPatches}
 This method dispatches on the type of \code{nu_obj}. It should
 set the values the patch emigration rate, \eqn{\nu}
 }
+\keyword{internal}

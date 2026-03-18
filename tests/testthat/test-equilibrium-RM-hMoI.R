@@ -34,6 +34,7 @@ test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", 
   K_matrix[upper.tri(K_matrix)] <- rexp(sum(1:(nPatches-1)))
   K_matrix[lower.tri(K_matrix)] <- rexp(sum(1:(nPatches-1)))
   K_matrix <- K_matrix/rowSums(K_matrix)
+  diag(K_matrix) <- -1 
   K_matrix <- t(K_matrix)
 
   # omega matrix
@@ -42,7 +43,7 @@ test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", 
 
   MYo <- list(nPatches=nPatches,
                f=f, q=q, g=g, sigma=sigma, mu=mu, nu=nu, eggsPerBatch=eggsPerBatch,
-               eip=eip, Omega=Omega, Upsilon=Upsilon, K_matrix=K_matrix)
+               eip=eip, Omega=Omega, Upsilon=Upsilon, Koptions=K_matrix)
 
 
   # human PfPR and H
@@ -88,7 +89,7 @@ test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", 
   Lo = list(Lambda=Lambda)
 
   # parameters for exDE
-  params <- xds_setup(MYname = "macdonald", MYoptions=MYo, Lname = "trivial", Loptions=Lo, TimeSpent = TaR, K_matrix=K_matrix,
+  params <- xds_setup(MYname = "macdonald", MYoptions=MYo, Lname = "trivial", Loptions=Lo, TimeSpent = TaR, Koptions=K_matrix,
                       Xname = "hMoI", XHoptions=Xo, HPop=H, membership=membership, nPatches=nPatches, residence=residence)
 
   steady_state_MY(Lambda, kappa, params, 1) -> ss
