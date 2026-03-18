@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse.R
 \name{parse_orbits}
 \alias{parse_orbits}
-\title{parse the outputs of an object created by xde_solve or dts_solve}
+\title{Parse outputs after solving}
 \usage{
 parse_orbits(outputs, xds_obj)
 }
@@ -15,6 +15,6 @@ parse_orbits(outputs, xds_obj)
 a named \link{list}
 }
 \description{
-parse the outputs of an object created by xde_solve or dts_solve
+Parse outputs after solving
 }
 \keyword{internal}

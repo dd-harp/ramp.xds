@@ -4,8 +4,26 @@
 \alias{mosquito_dispersal}
 \title{Mosquito Dispersal}
 \description{
-Mosquito Dispersal
+Mosquito dispersal is handled
+in a standard way across all \strong{MY} modules.
+\itemize{
+\item A mosquito dispersal matrix, called \eqn{K} or \code{K_matrix}, is set up using \link{setup_K_matrix};
+\item \eqn{K} is used to make a mosquito demographic matrix, called \eqn{\Omega} or \code{Omega} (see \link{mosquito_demography}).
 }
+}
+\section{Setup}{
+
+\describe{
+\item{\code{K_matrix}}{either a \eqn{K} matrix: or options for \link{setup_K_matrix}}
+}
+
+There are several ways to configure  \eqn{K} during basic setup.
+
+By \strong{default:} \code{K_matrix} is an empty list. When the \code{MY_obj} is set up, the \eqn{K}
+matrix is set to \code{diag(g)}, a model with no dispersal. That is not changed unless one of the
+following holds:
+}
+
 \section{Mosquito Dispersal Matrix, \eqn{K}}{
 
 
@@ -21,34 +39,17 @@ all \eqn{K} matrices have the form:
  k_{n,1} & k_{n,2} & k_{n,3} & \cdots & -1 \\
  \end{array} \right]
 }
-We interpret \eqn{K} as the destinations of
-emigrating mosquitoes that survive and stay in the system.
 The values of the elements \eqn{k_{i,j}} are thus
 constrained such that there is no net dispersal loss from the system: \eqn{\forall i,}
 \deqn{\sum_j k_{i,j} = 1.}
 The columns of \eqn{K} sum up to zero.
+\eqn{K} thus describes the destinations of
+emigrating mosquitoes that survive and stay in the system.
 
-Emigration-related loss (including mortality and emigration from the spatial domain)
-is modeled with another parameter (see \link{mosquito_demography}).
-}
-
-\section{Basic Setup}{
-
-\describe{
-\item{\code{K_matrix}}{a matrix or a named list: options that set up \eqn{K}}
-}
-
-There are several ways to configure  \eqn{K} during basic setup.
-
-By \strong{default:} \code{K_matrix} is an empty list. When the \code{MY_obj} is set up, the \eqn{K}
-matrix is set to \code{diag(g)}, a model with no dispersal. That is not changed unless one of the
-following holds:
-\itemize{
-\item \code{is.matrix(K_matrix)}: if the user to passes a proper \eqn{K} matrix, then it is used as-is
-\item \code{with(Kmatrix, exists("Kname"))}: If a string in the named list passed as \code{K_matrix} is called \code{Kname}, then basic setup calls \link{setup_K_matrix} with \code{options=K_matrix}
-}
+Emigration rates and emigration-related loss -- emigration from the spatial domain and mortality that is conditioned on emigration --
+are handled separately (see \link{mosquito_demography}).
 }
 
 \seealso{
-\link{setup_K_matrix}
+\link{setup_K_matrix}, \link{change_K_matrix} & \link{mosquito_demography}
 }

@@ -22,6 +22,7 @@ Transmission computes:
 \item \code{beta} -- the bite distribution matrix
 \item \code{eir} -- the daily EIR
 \item \code{kappa} -- the net infectiousness
+\item \link{local_frac}
 }
 
 This method dispatches on the type of \code{xds_obj$beta}

@@ -4,24 +4,36 @@
 \alias{dynamical_components}
 \title{Dynamical Components}
 \description{
-Dynamical systems for malaria and other mosquito-borne diseases
-are made up of three core \strong{dynamical components:}
-\itemize{
-\item \strong{XH} - a system of equations describing the dynamics of host infection and immunity (\strong{X}) and demography (\strong{H})
-\item \strong{MY} - a system of equations describing adult mosquito ecology (\strong{M}) and infection dynamics (\strong{Y})
-\item \strong{L} - a system of equations describing immature mosquito ecology
-}
-
-During setup, modules are selected by passing their names:
+In basic setup, modules are selected by passing the name as a character string:
 
 \describe{
-\item{\code{Xname}}{a character string: module name for \strong{X} Component module}
-\item{\code{MYname}}{a character string: module name for \strong{MY} Component module}
-\item{\code{Lname}}{a character string: module name for \strong{L} Component module}
+\item{\code{Xname}}{\strong{X} Component module name: see \link{XH_module_list}}
+\item{\code{MYname}}{\strong{MY} Component module name: see \link{MY_module_list}}
+\item{\code{Lname}}{\strong{L} Component module name: see \link{L_module_list}}
+}
+}
+\section{Modules}{
+
+
+Dynamical systems for malaria and other mosquito-borne diseases
+are made up of three core \strong{dynamical components} that describe
+five core processes. There is also a generic interface to add other variables:
+\itemize{
+\item \strong{XH} - a system of equations describing two inextricably linked processes:
+\itemize{
+\item \strong{X} - the dynamics of host infection and immunity
+\item \strong{H} - human / host demography and behavior
+}
+\item \strong{MY} - a system of equations describing two inextricably linked processes:
+\itemize{
+\item \strong{M} - adult mosquito ecology
+\item \strong{Y} - parasite / pathogen infection dynamics in mosquitoes
+}
+\item \strong{L} - a system of equations describing immature mosquito ecology
+\item \strong{V} - other dynamical components: see \link{Other_State_Variables}
+}
 }
 
-Other variables can also be added to the dynamical system (see \link{Other_State_Variables}).
-}
 \seealso{
-\link{xds_object_frame}
+\link{xds_help_basic_setup}
 }

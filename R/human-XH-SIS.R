@@ -169,9 +169,9 @@ make_XH_obj_SIS = function(nStrata, options=list(),
 #' + \eqn{b} is set to `options$b`
 #' + \eqn{c} is set to `options$c`
 #' + \eqn{r} is set to `options$r`
-#' + \eqn{q_lm} is set to `options$q_lm`
-#' + \eqn{q_rdt} is set to `options$q_rdt`
-#' + \eqn{q_pcr} is set to `options$q_pcr`
+#' + \eqn{q_{lm}} is set to `options$q_lm`
+#' + \eqn{q_{rdt}} is set to `options$q_rdt`
+#' + \eqn{q_{pcr}} is set to `options$q_pcr`
 #'
 #' @inheritParams change_XH_pars
 #'

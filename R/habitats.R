@@ -1,10 +1,3 @@
-#' @title Aquatic Habitats
-#' 
-#' @description
-#' Aquatic habitats are distributed on a landscape. 
-#'  
-#' @name aquatic_habitats 
-NULL
 
 #' @title Check the ML Interface
 #'

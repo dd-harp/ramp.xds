@@ -4,6 +4,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
+#' @concept EIR
 #' @export
 get_EIR = function(xds_obj, i=1){
   get_XH_orbits(xds_obj, i)$eir
@@ -22,6 +23,7 @@ get_EIR = function(xds_obj, i=1){
 #'
 #' @return eir, invisibly
 #'
+#' @concept EIR
 #' @export
 xds_plot_EIR <- function(xds_obj, i=1, clrs="black", lty=1, add=FALSE, annual=TRUE){
   ylb = ifelse(annual==TRUE, "aEIR", "dEIR")

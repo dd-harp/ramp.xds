@@ -14,3 +14,4 @@ get_EIR(xds_obj, i = 1)
 \description{
 Get the EIR
 }
+\concept{EIR}

@@ -10,6 +10,7 @@
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_blood_host_object = function(xds_obj){
   blood <- list()

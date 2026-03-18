@@ -215,6 +215,22 @@ setup_L_ix <- function(xds_obj, s) {
   UseMethod("setup_L_ix", xds_obj$L_obj[[s]])
 }
 
+#' @title Get L indices 
+#'
+#' @description Get and display the 
+#' values of the indices
+#' for the **L** variables
+#'
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#'
+#' @return an **`xds`** object
+#' @keywords internal
+#' @export
+get_L_ix <- function(xds_obj, s=1) {
+  xds_obj$L_obj[[s]]$ix
+}
+
 #' @title parse **L** Component Outputs
 #' @description After solving a dynamical system, parse the outputs and
 #' return the variables by name in a list.

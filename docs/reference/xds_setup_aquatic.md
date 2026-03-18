@@ -2,9 +2,8 @@
 
 A modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-that streamlines setup for an **L** Component when the **MY** Component
-is set to `trivial.` The model also sets **X** Component to the
-`trivial` module.
+that streamlines setup for an **L** Component and egg laying for a
+`trivial` **MY** Component.
 
 The **`xds`** object defines `frame = class(frame) = 'aquatic'` to
 dispatch functions that compute derivatives (`xde`), update variables
@@ -54,6 +53,11 @@ xds_setup_aquatic(
 ## Value
 
 an **`xds`** object
+
+## Note
+
+The **XH** model is never used, but it is setup as the default `trivial`
+module.
 
 ## See also
 

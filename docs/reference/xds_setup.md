@@ -2,39 +2,44 @@
 
 Make an **`xds`** *model object*:
 
-- Define the dynamical components:
+- Define a module for each dynamical component (see
+  [dynamical_components](https://dd-harp.github.io/ramp.xds/reference/dynamical_components.md)):
 
-  - **XH** - Component modules for human / host infection dynamics of
-    class **`Xname`** with trivial demographics
+  - **XH** Component – human / host infection dynamics
 
-  - **MY** - Component modules for adult mosquito ecology and infection
-    dynamics of class **`MYname`**
+  - **MY** Component – adult mosquito ecology and infection dynamics
 
-  - **L** Component modules for aquatic mosquito ecology of class
-    **`Lname`**
+  - **L** Component – aquatic mosquito ecology
 
 - Define basic structural parameters for a single host and vector
   population:
 
-  - \\n_p\\ or `nPatches` - the number of patches
+  - `nPatches` - the number of patches (see
+    [patch_dynamics](https://dd-harp.github.io/ramp.xds/reference/patch_dynamics.md))
 
-  - \\n_q\\ or `nHabitats = length(membership)` - the numer and
-    locations of aquatic habitats
+  - `membership` - the habitat membership vector (see
+    [aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/aquatic_habitats.md))
 
-  - \\n_h\\ or `nStrata = length(residence)` - the number of human /
-    host population strata and basic demographic information
+  - `nHabitats = length(membership)`
 
-- Configure some of the basic elements
+  - `residence` - the human residence vector (see
+    [human_populations](https://dd-harp.github.io/ramp.xds/reference/human_populations.md))
 
-  - Search weights for human population strata
+  - `HPop` - the human population size (see
+    [human_populations](https://dd-harp.github.io/ramp.xds/reference/human_populations.md))
 
-  - Search weights for aquatic habitats
+  - `nStrata = length(residence) = length(HPop)`
 
-  - The mosquito dispersal matrix, \\K\\
+- Configure some of the basic elements:
 
-  - The time spent matrix \\\Theta\\
+  - Search Weights (see
+    [search_weights](https://dd-harp.github.io/ramp.xds/reference/search_weights.md))
 
-Advanced options can be configured after basic setup.
+  - Mosquito Dispersal matrix (if `nPatches>1`; see
+    [mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md))
+
+  - Time Spent matrix (if `nPatches>`; see
+    [time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent.md))
 
 ## Usage
 
@@ -50,10 +55,10 @@ xds_setup(
   nPatches = 1,
   HPop = 1000,
   residence = 1,
-  membership = 1,
-  searchB = 1,
   TimeSpent = list(),
-  K_matrix = list(),
+  searchB = 1,
+  membership = 1,
+  Koptions = list(Kname = "no_setup"),
   searchQ = 1,
   BFopts = list(),
   model_name = "unnamed"
@@ -103,23 +108,26 @@ xds_setup(
 
   is a vector that describes the patch where each human stratum lives
 
-- membership:
-
-  is a vector that describes the patch where each aquatic habitat is
-  found
-
-- searchB:
-
-  is a vector of search weights for blood feeding
-
 - TimeSpent:
 
   is either a TimeSpent matrix or a string to call a function that sets
   it up
 
-- K_matrix:
+- searchB:
 
-  is either a K_matrix matrix or a string that defines how to set it up
+  is a vector of search weights for blood feeding
+
+- membership:
+
+  is a vector that describes the patch where each aquatic habitat is
+  found
+
+- Koptions:
+
+  a K matrix, or options for
+  [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
+  (see
+  [mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md))
 
 - searchQ:
 
@@ -139,61 +147,54 @@ an **`xds`** object
 
 ## Details
 
-1.  Using the basic structural parameters, a basic template is created
-    by
-    [make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)
-    with a properly configured interface for blood feeding and egg
-    laying, and `xds_obj$frame = class(xds_obj$frame) = 'full'` .
+1.  [make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)
+    returns an object template with a properly configured interface for
+    blood feeding and egg laying (see
+    [xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)):
 
     - `nPatches` is passed as a parameter
 
-    - `nHabitats` is configured by passing the habitat `membership`
-      vector, and `nHabitats = length(membership)`
+    - `nHabitats = length(membership)`
 
-    - `nStrata` is configured by passing a vector of human population
-      densities and a residence vector, and
-      `nStrata = length(residence) = length(HPop)`
+    - `nStrata = length(residence) = length(HPop)`
 
     - `nHostSpecies=1` (basic setup handles only the first host species)
 
     - `nVectorSpecies=1` (basic setup handles only the first vector
       species)
 
-. 2. Each one of the dynamical components is configured.
+    - `class(xds_obj$frame) = 'full'`
 
-- **`xds_obj$XH_obj[[1]]`** defines a model for human / host infection
-  dynamics of class `Xname` (the **X** component). The parameter values
-  passed in a named list, `XHoptions.`
+2.  Each one of the dynamical components is configured.
 
-- **`xds_obj$MY_obj[[1]]`** defines a model for adult mosquito ecology &
-  infection dynamics of class `MYname` (the **MY** Component). The
-  parameter values are passed in a named list, `MYoptions.`
+    - **`xds_obj$XH_obj[[1]]`** defines a model for human / host
+      infection dynamics of class `Xname` (the **X** component). The
+      parameter values passed in a named list, `XHoptions.`
 
-- **`xds_obj$L_obj[[1]]`** defines a model for aquatic mosquito ecology
-  of class `Lname` (The **L** Component). The parameter values are
-  passed in a named list, `Loptions.`
+    - **`xds_obj$MY_obj[[1]]`** defines a model for adult mosquito
+      ecology & infection dynamics of class `MYname` (the **MY**
+      Component). The parameter values are passed in a named list,
+      `MYoptions.`
 
-1.  After configuring the dynamical components, several structural
+    - **`xds_obj$L_obj[[1]]`** defines a model for aquatic mosquito
+      ecology of class `Lname` (The **L** Component). The parameter
+      values are passed in a named list, `Loptions.`
+
+3.  After configuring the dynamical components, several structural
     parameters can be configured at the command line:
 
     - Habitat search weights can be set
 
     - Host population search weights can be set
 
-    - A mosquito dispersal matrix, \\\cal K\\, can be set
+    - A mosquito dispersal matrix, \\\cal Koptions\\, can be set
 
     - A time spent matrix, \\\Theta\\, can be set
 
-Advanced features must be configured later, including:
-
-- multiple-host species or multiple-vector species
-
-- exogenous forcing by weather, resources, or other factors
-
-- vector control, vaccines, or other mass
-
 ## Note
 
+Other options can be configured after basic setup (see
+[xds_help_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_help_setup_options.md)).
 If the **MY** Component is the `trivial` module, consider using
 [xds_setup_aquatic](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
 or
@@ -206,4 +207,5 @@ status (see
 
 ## See also
 
-[make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)
+[make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md),
+[xds_help_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.md)

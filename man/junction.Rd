@@ -9,7 +9,8 @@ into a \strong{junction.} A junction is a structural element,
 a function that is designed to handle one or more \link{port}s.
 \itemize{
 \item \link{Other_State_Variables} -- a junction to add new state variables, effectively extending the dynamical system
-\item \link{Forcing} -- a junction to handle exogenous forcing by weather, \emph{etc.}
-\item \link{Vector_Control} -- a junction to handle vector control
+\item \link{xds_forcing} -- a junction to handle exogenous forcing by weather, \emph{etc.}
+\item \link{xds_junction_vector_control} -- a junction to handle vector control
+\item \link{xds_junction_health} -- a junction to handle vector control
 }
 }

@@ -34,6 +34,7 @@ test_that("test equilibrium with macdonald adults (DDE), basic competition", {
   K_matrix[upper.tri(K_matrix)] <- rexp(sum(1:(nPatches-1)))
   K_matrix[lower.tri(K_matrix)] <- rexp(sum(1:(nPatches-1)))
   K_matrix <- K_matrix/rowSums(K_matrix)
+  diag(K_matrix) <- -1
   K_matrix <- t(K_matrix)
 
   # omega matrix
@@ -42,7 +43,7 @@ test_that("test equilibrium with macdonald adults (DDE), basic competition", {
 
   MYo <- list(nPatches=nPatches,
                f=f, q=q, g=g, sigma=sigma, mu=mu, nu=nu, eggsPerBatch=eggsPerBatch,
-               eip=eip, Omega=Omega, Upsilon=Upsilon, K_matrix=K_matrix)
+               eip=eip, Omega=Omega, Upsilon=Upsilon, Koptions=K_matrix)
 
 
   # human PfPR and H
@@ -91,7 +92,7 @@ test_that("test equilibrium with macdonald adults (DDE), basic competition", {
 
   Xo = list(kappa=kappa, HPop=H)
   # parameters for exDE
-  params <- xds_setup_mosy(MYname = "macdonald", MYoptions=MYo, Lname = "basicL", Loptions=Lo, K_matrix=K_matrix, kappa=kappa,
+  params <- xds_setup_mosy(MYname = "macdonald", MYoptions=MYo, Lname = "basicL", Loptions=Lo, Koptions=K_matrix, kappa=kappa,
                        HPop=H, membership=membership, nPatches=nPatches)
 
   params$terms$kappa[[1]] = kappa

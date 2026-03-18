@@ -33,12 +33,15 @@ an \strong{\code{xds}} object
 \loadmathjax
 
 A modified version of \link{xds_setup} that streamlines setup for an \strong{L} Component
-when the \strong{MY} Component is set to \code{trivial.} The model
-also sets \strong{X} Component to the \code{trivial} module.
+and egg laying for a \code{trivial} \strong{MY} Component.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'aquatic'}
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
 and parse outputs
+}
+\note{
+The \strong{XH} model
+is never used, but it is setup as the default \code{trivial} module.
 }
 \seealso{
 \link{xds_setup}

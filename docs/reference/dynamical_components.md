@@ -1,33 +1,48 @@
 # Dynamical Components
 
-Dynamical systems for malaria and other mosquito-borne diseases are made
-up of three core **dynamical components:**
-
-- **XH** - a system of equations describing the dynamics of host
-  infection and immunity (**X**) and demography (**H**)
-
-- **MY** - a system of equations describing adult mosquito ecology
-  (**M**) and infection dynamics (**Y**)
-
-- **L** - a system of equations describing immature mosquito ecology
-
-During setup, modules are selected by passing their names:
+In basic setup, modules are selected by passing the name as a character
+string:
 
 - `Xname`:
 
-  a character string: module name for **X** Component module
+  **X** Component module name: see
+  [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md)
 
 - `MYname`:
 
-  a character string: module name for **MY** Component module
+  **MY** Component module name: see
+  [MY_module_list](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.md)
 
 - `Lname`:
 
-  a character string: module name for **L** Component module
+  **L** Component module name: see
+  [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md)
 
-Other variables can also be added to the dynamical system (see
-[Other_State_Variables](https://dd-harp.github.io/ramp.xds/reference/Other_State_Variables.md)).
+## Modules
+
+Dynamical systems for malaria and other mosquito-borne diseases are made
+up of three core **dynamical components** that describe five core
+processes. There is also a generic interface to add other variables:
+
+- **XH** - a system of equations describing two inextricably linked
+  processes:
+
+  - **X** - the dynamics of host infection and immunity
+
+  - **H** - human / host demography and behavior
+
+- **MY** - a system of equations describing two inextricably linked
+  processes:
+
+  - **M** - adult mosquito ecology
+
+  - **Y** - parasite / pathogen infection dynamics in mosquitoes
+
+- **L** - a system of equations describing immature mosquito ecology
+
+- **V** - other dynamical components: see
+  [Other_State_Variables](https://dd-harp.github.io/ramp.xds/reference/Other_State_Variables.md)
 
 ## See also
 
-[xds_object_frame](https://dd-harp.github.io/ramp.xds/reference/xds_object_frame.md)
+[xds_help_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.md)

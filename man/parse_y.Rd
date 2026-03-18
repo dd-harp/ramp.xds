@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse.R
 \name{parse_y}
 \alias{parse_y}
-\title{parse the output of an object returned by deSolve}
+\title{Parse a state variable vector}
 \usage{
 parse_y(y, xds_obj)
 }
@@ -15,6 +15,6 @@ parse_y(y, xds_obj)
 a named \link{list}
 }
 \description{
-parse the output of an object returned by deSolve
+Parse a state variable vector
 }
 \keyword{internal}

@@ -1,9 +1,8 @@
 # The Human Population
 
-The human population (or other host population) and its structure, size
-and behavior are critical aspects of transmission. A human population is
-stratified to match the patch dynamics: each stratum resides in some
-patch.
+A human (or host) population is sub-divided into *strata.* The human
+population (or other host population) and its structure, size and
+behavior are critical aspects of transmission.
 
 - `residence`:
 
@@ -15,7 +14,7 @@ patch.
 
 - `HPop`:
 
-  human population size: `length(HPop) = nStrata`
+  initial human population size: `length(HPop) = nStrata`
 
 ## Human Population Size, \\H\\
 

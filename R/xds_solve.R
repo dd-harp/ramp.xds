@@ -129,6 +129,7 @@ xds_solve.dts = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' @param times the times
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 make_times_xde = function(Tmax, dt, times=NULL){
   if(!is.null(times)) return(times)
@@ -154,6 +155,7 @@ make_times_xde = function(Tmax, dt, times=NULL){
 #' @param times the times
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 make_times_dts = function(Tmax=365, dt=1, times=NULL){
   maxT = ifelse(!is.null(times), max(times), Tmax)

@@ -29,3 +29,4 @@ It returns a sequence from \code{0} to \code{maxT} by \code{dt.}
 A check
 values of \code{times} should be some integer multiple of \code{dt}
 }
+\keyword{internal}

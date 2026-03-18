@@ -5,35 +5,37 @@
 #' @description
 #' \loadmathjax
 #' Make an **`xds`** *model object*:
-#' - Define the dynamical components:
-#'    - **XH** - Component modules for human / host infection dynamics of class **`Xname`** with trivial demographics
-#'    - **MY** - Component modules for adult mosquito ecology and infection dynamics of class **`MYname`**
-#'    - **L** Component modules for aquatic mosquito ecology of class **`Lname`**
+#' - Define a module for each dynamical component (see [dynamical_components]):
+#'    - **XH** Component -- human / host infection dynamics 
+#'    - **MY** Component -- adult mosquito ecology and infection dynamics 
+#'    - **L** Component -- aquatic mosquito ecology 
 #' - Define basic structural parameters for a single host and vector population:
-#'    - \eqn{n_p} or `nPatches` - the number of patches
-#'    - \eqn{n_q} or `nHabitats = length(membership)` - the numer and locations of aquatic habitats
-#'    - \eqn{n_h} or `nStrata = length(residence)` - the number of human / host population strata and basic demographic information
-#' - Configure some of the basic elements
-#'    - Search weights for human population strata
-#'    - Search weights for aquatic habitats
-#'    - The mosquito dispersal matrix, \eqn{K}
-#'    - The time spent matrix \eqn{\Theta}
+#'    - `nPatches` - the number of patches (see [patch_dynamics])
+#'    - `membership` - the habitat membership vector (see [aquatic_habitats])
+#'    - `nHabitats = length(membership)` 
+#'    - `residence` - the human residence vector (see [human_populations])
+#'    - `HPop` - the human population size (see [human_populations])
+#'    - `nStrata = length(residence) = length(HPop)` 
+#' - Configure some of the basic elements:
+#'    - Search Weights (see [search_weights])
+#'    - Mosquito Dispersal matrix (if `nPatches>1`; see [mosquito_dispersal])
+#'    - Time Spent matrix (if `nPatches>`; see [time_spent])
 #'
-#' Advanced options can be configured after basic setup.
-#'
-#' @note If the **MY** Component is the `trivial` module, consider using [xds_setup_aquatic] or [xds_setup_human] or [xds_setup_eir]. Models for mosquito
+#' @note Other options can be configured after basic setup (see [xds_help_setup_options]). If the **MY** Component is the `trivial` module, consider using [xds_setup_aquatic] or [xds_setup_human] or [xds_setup_eir]. Models for mosquito
 #' ecology need not include states describing infection status (see [xds_setup_mosy]).
+#' 
 #' @details
-#' 1. Using the basic structural parameters, a basic template is created by [make_xds_object_template] with
-#' a properly configured interface for blood feeding and egg laying, and `xds_obj$frame = class(xds_obj$frame) = 'full'` .
+#' 1. [make_xds_object_template] returns an object template with
+#' a properly configured interface for blood feeding 
+#' and egg laying (see [xds_object]): 
 #'
 #'    - `nPatches` is passed as a parameter
-#'    - `nHabitats` is configured by passing the habitat `membership` vector, and `nHabitats = length(membership)`
-#'    - `nStrata` is configured by passing a vector of human population densities and a residence vector, and `nStrata = length(residence) = length(HPop)`
+#'    - `nHabitats = length(membership)`
+#'    - `nStrata = length(residence) = length(HPop)`
 #'    - `nHostSpecies=1` (basic setup handles only the first host species)
 #'    - `nVectorSpecies=1` (basic setup handles only the first vector species)
+#'    - `class(xds_obj$frame) = 'full'`
 #'
-#'.
 #' 2. Each one of the dynamical components is configured.
 #'
 #'    - **`xds_obj$XH_obj[[1]]`** defines a model for human / host infection dynamics of class `Xname` (the **X** component). The parameter values passed in a named list, `XHoptions.`
@@ -44,14 +46,10 @@
 #'
 #'    - Habitat search weights can be set
 #'    - Host population search weights can be set
-#'    - A mosquito dispersal matrix, \eqn{\cal K}, can be set
+#'    - A mosquito dispersal matrix, \eqn{\cal Koptions}, can be set
 #'    - A time spent matrix, \eqn{\Theta}, can be set
 #'
-#' Advanced features must be configured later, including:
-#' - multiple-host species or multiple-vector species
-#' - exogenous forcing by weather, resources, or other factors
-#' - vector control, vaccines, or other mass
-#' @seealso [make_xds_object_template]
+#' @seealso [make_xds_object_template], [xds_help_basic_setup]
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname a character string defining a **X** Component module
 #' @param XHoptions a list to configure the **X** Component module
@@ -62,11 +60,11 @@
 #' @param nPatches is the number of patches
 #' @param HPop is the number of humans in each patch
 #' @param residence is a vector that describes the patch where each human stratum lives
-#' @param membership is a vector that describes the patch where each aquatic habitat is found
 #' @param searchB is a vector of search weights for blood feeding
 #' @param TimeSpent is either a TimeSpent matrix or a string to call a function that sets it up
-#' @param K_matrix is either a K_matrix matrix or a string that defines how to set it up
+#' @param membership is a vector that describes the patch where each aquatic habitat is found
 #' @param searchQ is a vector of search weights for egg laying
+#' @param Koptions a K matrix, or options for [setup_K_matrix] (see [mosquito_dispersal])
 #' @param BFopts a list to configure the blood feeding model
 #' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
@@ -81,10 +79,10 @@ xds_setup = function(xds = 'ode',
                      nPatches = 1,
                      HPop = 1000,
                      residence = 1,
-                     membership = 1,
-                     searchB = 1,
                      TimeSpent = list(),
-                     K_matrix = list(),
+                     searchB = 1,
+                     membership = 1,
+                     Koptions = list(Kname = "no_setup"),
                      searchQ = 1,
                      BFopts = list(),
                      model_name = "unnamed"
@@ -121,9 +119,11 @@ xds_setup = function(xds = 'ode',
   if(is.matrix(TimeSpent))
     xds_obj <- change_TimeSpent_matrix(TimeSpent, xds_obj, 1)
 
-
-  if(is.matrix(K_matrix))
-    xds_obj <- change_K_matrix(K_matrix, xds_obj, 1)
+  if(is.matrix(Koptions)){
+    xds_obj <- setup_K_matrix(Koptions, xds_obj)
+  } else {
+    xds_obj <- setup_K_matrix(Koptions$Kname, xds_obj, Koptions, 1)
+  } 
 
 
   # Probably Not Necessary
@@ -155,10 +155,10 @@ xds_setup = function(xds = 'ode',
 #' @param nPatches is the number of patches
 #' @param membership is a vector that describes the patch where each aquatic habitat is found
 #' @param HPop is the human / host population density
-#' @param K_matrix is either a K_matrix matrix or a string that defines how to set it up
 #' @param searchQ is a vector of search weights for egg laying
 #' @param kappa is a vector describing net infectiousness
 #' @param MYoptions a list to configure the **MY** Component module
+#' @param Koptions a K matrix, or options for [setup_K_matrix] (see [mosquito_dispersal])
 #' @param Loptions a list to configure the **L** Component module
 #' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
@@ -172,11 +172,11 @@ xds_setup_mosy = function(xds = 'ode',
                           membership=1,
                           HPop = 1000,
                           ### Setup Parameters
-                          K_matrix = list(),
                           searchQ = 1,
                           kappa = 0,
                           ### Options
                           MYoptions = list(),
+                          Koptions = list(Kname = "no_setup"),
                           Loptions = list(),
                           ### Name
                           model_name = "unnamed"
@@ -202,10 +202,13 @@ xds_setup_mosy = function(xds = 'ode',
   xds_obj = make_indices(xds_obj)
 
   Qwts       <- with(Loptions, checkIt(searchQ, xds_obj$nHabitats))
-  xds_obj       <- change_habitat_weights(Qwts, xds_obj, 1)
-
-  if(is.matrix(K_matrix))
-    xds_obj <- change_K_matrix(K_matrix, xds_obj,1)
+  xds_obj    <- change_habitat_weights(Qwts, xds_obj, 1)
+ 
+  if(is.matrix(Koptions)){
+    xds_obj <- setup_K_matrix(Koptions, xds_obj)
+  } else {
+    xds_obj <- setup_K_matrix(Koptions$Kname, xds_obj, Koptions, 1)
+  } 
 
   xds_obj$terms$kappa[[1]] = checkIt(kappa, nPatches)
 
@@ -221,12 +224,15 @@ xds_setup_mosy = function(xds = 'ode',
 #' \loadmathjax
 #'
 #' A modified version of [xds_setup] that streamlines setup for an **L** Component
-#' when the **MY** Component is set to `trivial.` The model
-#' also sets **X** Component to the `trivial` module.
-#'
+#' and egg laying for a `trivial` **MY** Component. 
+#' 
 #' The **`xds`** object defines `frame = class(frame) = 'aquatic'`
 #' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs
+#' 
+#' @note The **XH** model 
+#' is never used, but it is setup as the default `trivial` module.
+#'
 #'
 #' @seealso [xds_setup]
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations

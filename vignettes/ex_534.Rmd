@@ -16,6 +16,9 @@ library(ggplot2)
 library(deSolve)
 ```
 
+```{r,echo=F}
+#devtools::load_all()
+```
 
 # Introduction
 
@@ -78,7 +81,7 @@ nPatches = 3
 
 ## Aquatic Habitat Membership Matrix
 
-For computation, `ramp.xds` uses an $n_p \times n_q$ matrix called $\cal{N}.$ It is specified by the habitat vector. In the matrix, ${N}_{i,j}$ is $1$ if the $i^{th}$ patch contains the $j^{th}$ habitat:  
+For computation, `ramp.xds` uses an $n_p \times n_q$ matrix called $N.$ It is specified by the habitat vector. In the matrix, $N_{i,j}$ is $1$ if the $i^{th}$ patch contains the $j^{th}$ habitat:  
 
 \begin{equation}
 {N} = \left[
@@ -469,7 +472,7 @@ xds_obj$XY_interface$W[[1]]
 
 
 ```{r change_K_matrix}
-xds_obj <- change_K_matrix(Kmatrix, xds_obj)
+xds_obj <- setup_K_matrix(Kmatrix, xds_obj)
 xds_obj$MY_obj[[1]]$K_matrix
 ```
 
@@ -588,7 +591,7 @@ Xo = list(
 xds_setup(MYname="macdonald", Xname="SIS", Lname="basicL", 
   nPatches = 3, HPop=c(10, 90, 100, 900), 
   membership=c(1,1,1,2,2), 
-  MYoptions=MYZo, K_matrix=Kmatrix, XHoptions=Xo, Loptions = Lo,
+  MYoptions=MYZo, Koptions=Kmatrix, XHoptions=Xo, Loptions = Lo,
   residence=c(2,2,3,3), searchB=searchWtsH, 
   TimeSpent=TaR, searchQ = c(7,2,1,8,2)) -> mod534
 ```

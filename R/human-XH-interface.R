@@ -185,7 +185,7 @@ setup_XH_ix <- function(xds_obj, i) {
   UseMethod("setup_XH_ix", xds_obj$XH_obj[[i]])
 }
 
-#' @title Add indices for human population to parameter list
+#' @title Get XH indices 
 #'
 #' @description Get and display the values of the indices
 #' for the variables

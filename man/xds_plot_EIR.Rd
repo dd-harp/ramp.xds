@@ -32,3 +32,4 @@ eir, invisibly
 \description{
 Plot the EIR \emph{vs.} time
 }
+\concept{EIR}

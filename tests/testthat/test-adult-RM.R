@@ -19,7 +19,7 @@ test_that("macdonald models reach equilibrium", {
 
   MYo = list(f=f,q=q,g=g,sigma=sigma,mu=mu,eip=eip,nu=nu,eggsPerBatch=eggsPerBatch)
 
-  K_matrix <- matrix(0, nPatches, nPatches)
+  K_matrix <- matrix(-1, nPatches, nPatches)
   K_matrix[1, 2:3] <- c(0.2, 0.8)
   K_matrix[2, c(1,3)] <- c(0.5, 0.5)
   K_matrix[3, 1:2] <- c(0.7, 0.3)
@@ -45,7 +45,7 @@ test_that("macdonald models reach equilibrium", {
   MYo$Y=Y_eq
   MYo$Z=Z_eq
 
-  params <- xds_setup(MYname= "macdonald", Xname = "trivial", Lname = "trivial", nPatches=nPatches, membership = c(1:nPatches), XHoptions=Xo, MYoptions=MYo, Loptions=Lo, K_matrix = K_matrix)
+  params <- xds_setup(MYname= "macdonald", Xname = "trivial", Lname = "trivial", nPatches=nPatches, membership = c(1:nPatches), XHoptions=Xo, MYoptions=MYo, Loptions=Lo, Koptions = K_matrix)
 
   params$terms$Lambda[[1]] = Lambda
   params$terms$kappa[[1]] = kappa

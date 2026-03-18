@@ -1,10 +1,4 @@
-#' @title Egg Laying 
-#' 
-#' @description
-#' The egg laying interface gu  
-#'  
-#' @name egg_laying 
-NULL
+
 
 #' @title Compute eggs laid
 #'

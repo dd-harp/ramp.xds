@@ -15,10 +15,10 @@ xds_setup(
   nPatches = 1,
   HPop = 1000,
   residence = 1,
-  membership = 1,
-  searchB = 1,
   TimeSpent = list(),
-  K_matrix = list(),
+  searchB = 1,
+  membership = 1,
+  Koptions = list(Kname = "no_setup"),
   searchQ = 1,
   BFopts = list(),
   model_name = "unnamed"
@@ -45,13 +45,13 @@ xds_setup(
 
 \item{residence}{is a vector that describes the patch where each human stratum lives}
 
-\item{membership}{is a vector that describes the patch where each aquatic habitat is found}
+\item{TimeSpent}{is either a TimeSpent matrix or a string to call a function that sets it up}
 
 \item{searchB}{is a vector of search weights for blood feeding}
 
-\item{TimeSpent}{is either a TimeSpent matrix or a string to call a function that sets it up}
+\item{membership}{is a vector that describes the patch where each aquatic habitat is found}
 
-\item{K_matrix}{is either a K_matrix matrix or a string that defines how to set it up}
+\item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (see \link{mosquito_dispersal})}
 
 \item{searchQ}{is a vector of search weights for egg laying}
 
@@ -66,70 +66,61 @@ an \strong{\code{xds}} object
 \loadmathjax
 Make an \strong{\code{xds}} \emph{model object}:
 \itemize{
-\item Define the dynamical components:
+\item Define a module for each dynamical component (see \link{dynamical_components}):
 \itemize{
-\item \strong{XH} - Component modules for human / host infection dynamics of class \strong{\code{Xname}} with trivial demographics
-\item \strong{MY} - Component modules for adult mosquito ecology and infection dynamics of class \strong{\code{MYname}}
-\item \strong{L} Component modules for aquatic mosquito ecology of class \strong{\code{Lname}}
+\item \strong{XH} Component -- human / host infection dynamics
+\item \strong{MY} Component -- adult mosquito ecology and infection dynamics
+\item \strong{L} Component -- aquatic mosquito ecology
 }
 \item Define basic structural parameters for a single host and vector population:
 \itemize{
-\item \eqn{n_p} or \code{nPatches} - the number of patches
-\item \eqn{n_q} or \code{nHabitats = length(membership)} - the numer and locations of aquatic habitats
-\item \eqn{n_h} or \code{nStrata = length(residence)} - the number of human / host population strata and basic demographic information
+\item \code{nPatches} - the number of patches (see \link{patch_dynamics})
+\item \code{membership} - the habitat membership vector (see \link{aquatic_habitats})
+\item \code{nHabitats = length(membership)}
+\item \code{residence} - the human residence vector (see \link{human_populations})
+\item \code{HPop} - the human population size (see \link{human_populations})
+\item \code{nStrata = length(residence) = length(HPop)}
 }
-\item Configure some of the basic elements
+\item Configure some of the basic elements:
 \itemize{
-\item Search weights for human population strata
-\item Search weights for aquatic habitats
-\item The mosquito dispersal matrix, \eqn{K}
-\item The time spent matrix \eqn{\Theta}
+\item Search Weights (see \link{search_weights})
+\item Mosquito Dispersal matrix (if \code{nPatches>1}; see \link{mosquito_dispersal})
+\item Time Spent matrix (if \verb{nPatches>}; see \link{time_spent})
 }
 }
-
-Advanced options can be configured after basic setup.
 }
 \details{
 \enumerate{
-\item Using the basic structural parameters, a basic template is created by \link{make_xds_object_template} with
-a properly configured interface for blood feeding and egg laying, and \code{xds_obj$frame = class(xds_obj$frame) = 'full'} .
+\item \link{make_xds_object_template} returns an object template with
+a properly configured interface for blood feeding
+and egg laying (see \link{xds_object}):
 \itemize{
 \item \code{nPatches} is passed as a parameter
-\item \code{nHabitats} is configured by passing the habitat \code{membership} vector, and \code{nHabitats = length(membership)}
-\item \code{nStrata} is configured by passing a vector of human population densities and a residence vector, and \code{nStrata = length(residence) = length(HPop)}
+\item \code{nHabitats = length(membership)}
+\item \code{nStrata = length(residence) = length(HPop)}
 \item \code{nHostSpecies=1} (basic setup handles only the first host species)
 \item \code{nVectorSpecies=1} (basic setup handles only the first vector species)
+\item \code{class(xds_obj$frame) = 'full'}
 }
-}
-
-.
-2. Each one of the dynamical components is configured.
+\item Each one of the dynamical components is configured.
 \itemize{
 \item \strong{\code{xds_obj$XH_obj[[1]]}} defines a model for human / host infection dynamics of class \code{Xname} (the \strong{X} component). The parameter values passed in a named list, \code{XHoptions.}
 \item \strong{\code{xds_obj$MY_obj[[1]]}} defines a model for adult mosquito ecology & infection dynamics of class \code{MYname} (the \strong{MY} Component). The parameter values are passed in a named list, \code{MYoptions.}
 \item \strong{\code{xds_obj$L_obj[[1]]}} defines a model for aquatic mosquito ecology of class \code{Lname} (The \strong{L} Component). The parameter values are passed in a named list, \code{Loptions.}
 }
-\enumerate{
 \item After configuring the dynamical components, several structural parameters can be configured at the command line:
 \itemize{
 \item Habitat search weights can be set
 \item Host population search weights can be set
-\item A mosquito dispersal matrix, \eqn{\cal K}, can be set
+\item A mosquito dispersal matrix, \eqn{\cal Koptions}, can be set
 \item A time spent matrix, \eqn{\Theta}, can be set
 }
 }
-
-Advanced features must be configured later, including:
-\itemize{
-\item multiple-host species or multiple-vector species
-\item exogenous forcing by weather, resources, or other factors
-\item vector control, vaccines, or other mass
-}
 }
 \note{
-If the \strong{MY} Component is the \code{trivial} module, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_eir}. Models for mosquito
+Other options can be configured after basic setup (see \link{xds_help_setup_options}). If the \strong{MY} Component is the \code{trivial} module, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_eir}. Models for mosquito
 ecology need not include states describing infection status (see \link{xds_setup_mosy}).
 }
 \seealso{
-\link{make_xds_object_template}
+\link{make_xds_object_template}, \link{xds_help_basic_setup}
 }

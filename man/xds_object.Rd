@@ -11,7 +11,7 @@ a compound \link{list} with
 a specific set of features.
 
 A properly constructed xds object is
-returned by \link{xds_setup} or one of its variants (see \link{xds_object_frame}).
+returned by \link{xds_setup} or one of its variants (see \link{xds_help_basic_setup}).
 The object is created in several steps:
 \itemize{
 \item a basic template for an xds object is returned by
@@ -25,6 +25,11 @@ The object is created in several steps:
 \item the values of a few modifiable parameters affecting transmission are set.
 }
 
-Use functions to set up (\verb{setup_*}), inspect (\verb{get_*}), and modify (`change_*) various
+While xds object internals are useful for developers,
+functions have been developed to
+set up (\verb{setup_*}), inspect (\verb{get_*}), and modify (`change_*) various
 aspects of xds objects.
+}
+\seealso{
+Vignettes: \href{https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html}{Getting Started}, \href{https://dd-harp.github.io/ramp.xds/articles/Working.html}{Working}, and \href{https://dd-harp.github.io/ramp.xds/articles/ex_534.html}{The 5-3-4 Model}
 }

@@ -1,3 +1,11 @@
+#' @title Health  
+#' 
+#' @description
+#' Health is a [junction] to implement health-based interventions.
+#'  
+#' @name xds_junction_health  
+NULL
+
 # Functions to setup malaria control are found in ramp.control
 
 #' @title Set the values variables for health-based malaria control
@@ -30,6 +38,7 @@ Health.none = function(t, y, xds_obj){
 #' for exogenous health: no health.
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_health_object = function(xds_obj){
   health <- list()

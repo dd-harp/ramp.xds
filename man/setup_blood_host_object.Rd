@@ -17,3 +17,4 @@ Setup the object to handle
 other blood_hosts -- potential blood hosts
 that are not hosts for the pathogen
 }
+\keyword{internal}

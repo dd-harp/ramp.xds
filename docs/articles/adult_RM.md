@@ -204,11 +204,10 @@ MYo = list(f=f,q=q,g=g,sigma=sigma,mu=mu,eip=eip,nu=nu,eggsPerBatch=eggsPerBatch
 
 ``` r
 
-K_matrix <- matrix(0, nPatches, nPatches)
-K_matrix[1, 2:3] <- c(0.2, 0.8)
-K_matrix[2, c(1,3)] <- c(0.5, 0.5)
-K_matrix[3, 1:2] <- c(0.7, 0.3)
-K_matrix <- t(K_matrix)
+K_matrix <- diag(-1, nPatches) 
+K_matrix[2:3, 1] <- c(0.2, 0.8)
+K_matrix[c(1,3), 2] <- c(0.5, 0.5)
+K_matrix[1:2, 3] <- c(0.7, 0.3)
 
 Omega <- make_Omega_xde(g, sigma, mu, K_matrix)
 Upsilon <- expm::expm(-Omega * eip)
@@ -385,7 +384,7 @@ Otherwise, setup takes care of all the internals:
 ``` r
 
 xds_setup(MYname = "macdonald", Xname = "trivial", Lname = "trivial",  
-    nPatches=3, K_matrix=K_matrix, membership = c(1:3), 
+    nPatches=3, Koptions=K_matrix, membership = c(1:3), 
     residence = c(1:3), HPop = HPop,
     MYoptions = MYo, XHoptions = Xo, Loptions = Lo) -> MYeg
 ```
@@ -406,10 +405,10 @@ sum(abs(out1-out2))==0
 
 rbind(tail(out2,1)[1 + 1:12],
 c(M_eq, P_eq, Y_eq, Z_eq))
-#>           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]    [,7]  [,8]
-#> [1,] -223.4043 -19.57447 -217.0213 -249.0755 -52.47786 -250.4466 59.9822 58.55
+#>         [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
+#> [1,] 157.868 123.4518 178.6802 140.3517 98.87622 155.0578 48.09598 27.56429
 #>          [,9]    [,10]    [,11]    [,12]
-#> [1,] 110.3292 153.9818 89.71304 173.3179
+#> [1,] 41.03339 24.96933 13.31699 25.75651
 ```
 
 [^1]: The analysis of the sporozoite rate. Macdonald G (1952). Trop Dis

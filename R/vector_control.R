@@ -3,7 +3,7 @@
 #' @description
 #' Vector Control is a [junction] 
 #'  
-#' @name Vector_Control 
+#' @name xds_junction_vector_control
 NULL
 
 #' @title Setup the Vector Control Junction

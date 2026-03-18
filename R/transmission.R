@@ -5,8 +5,18 @@
 #' + `beta` -- the bite distribution matrix  
 #' + `eir` -- the daily EIR 
 #' + `kappa` -- the net infectiousness 
+#' + [local_frac] 
 #'  
 #' @name Transmission 
+NULL
+
+#' @title The Local Fraction 
+#' 
+#' @description
+#' The fraction of human blood meals  
+#' 
+#'  
+#' @name local_frac 
 NULL
 
 # Methods to compute mixing and parasite / pathogen transmission during bloood feeding
@@ -97,6 +107,7 @@ compute_beta <- function(t, y, xds_obj){
 #' @param beta the mixing matrix
 #' @param local_frac is the fraction of bites occurring on residents
 #' @return [numeric] vector of length `nStrata`
+#' @concept EIR
 #' @export
 #' @keywords internal
 F_eir <- function(fqZ, beta, local_frac){
@@ -111,6 +122,7 @@ F_eir <- function(fqZ, beta, local_frac){
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @concept EIR
 #' @export
 #' @keywords internal
 compute_EIR <- function(t, y, xds_obj){
@@ -140,6 +152,7 @@ compute_EIR <- function(t, y, xds_obj){
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
+#' @concept EIR
 #' @export
 #' @keywords internal
 compute_EIR_full <- function(t, y, xds_obj){

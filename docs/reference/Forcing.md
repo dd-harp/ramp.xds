@@ -1,9 +1,4 @@
-# Forcing
-
-Forcing is a
-[junction](https://dd-harp.github.io/ramp.xds/reference/junction.md)
-that called by
-[xds_compute_terms](https://dd-harp.github.io/ramp.xds/reference/xds_compute_terms.md).
+# Exogenous Forcing
 
 Set up a junction for exogenous forcing by weather and hydrology.
 Non-trivial examples are in the satellite package `ramp.forcing`

@@ -19,4 +19,5 @@ an \strong{\code{xds}} object
 \description{
 This function computes the EIR from each vector species for each stratum of each host species
 }
+\concept{EIR}
 \keyword{internal}

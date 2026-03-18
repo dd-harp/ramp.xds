@@ -4,16 +4,16 @@
 \alias{setup_K_matrix.herethere}
 \title{Setup a Here-There Dispersal Matrix}
 \usage{
-\method{setup_K_matrix}{herethere}(Kname, s, xds_obj, options = list())
+\method{setup_K_matrix}{herethere}(Kname, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{Kname}{a matrix or a string}
 
-\item{s}{the vector species index}
-
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{a list of options to configure K_matrix}
+
+\item{s}{the vector species index}
 }
 \value{
 a \link{matrix}
