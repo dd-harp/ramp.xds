@@ -2,14 +2,14 @@
 
 Implements
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-for the herethere model: dispersal to every other patch, with equal
+for the here and there model: dispersal to every other patch, with equal
 probability
 
 ## Usage
 
 ``` r
 # S3 method for class 'as_matrix'
-setup_K_matrix(Kname, s, xds_obj, options = list())
+setup_K_matrix(Kname, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
@@ -18,10 +18,6 @@ setup_K_matrix(Kname, s, xds_obj, options = list())
 
   a matrix or a string
 
-- s:
-
-  the vector species index
-
 - xds_obj:
 
   an **`xds`** model object
@@ -29,6 +25,10 @@ setup_K_matrix(Kname, s, xds_obj, options = list())
 - options:
 
   a list of options to configure K_matrix
+
+- s:
+
+  the vector species index
 
 ## Value
 

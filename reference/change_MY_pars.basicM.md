@@ -2,14 +2,9 @@
 
 This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
-
 ## Usage
 
 ``` r
-# S3 method for class 'basicM'
-change_MY_pars(xds_obj, s = 1, options = list())
-
 # S3 method for class 'basicM'
 change_MY_pars(xds_obj, s = 1, options = list())
 ```
@@ -29,7 +24,5 @@ change_MY_pars(xds_obj, s = 1, options = list())
   a named list
 
 ## Value
-
-an **`xds`** object
 
 an **`xds`** object

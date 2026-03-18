@@ -347,12 +347,12 @@ xds_plot_PR(test_SIS, clr=clrs)
 
 ![](human_sis_files/figure-html/unnamed-chunk-13-1.png)
 
-Or we can use the `get_XH_out` function to get the values of the orbits.
-This gets the return values and pulls of the the values of \\I\\ at the
-last time step:
+Or we can use the `get_XH_orbits` function to get the values of the
+orbits. This gets the return values and pulls of the the values of \\I\\
+at the last time step:
 
 ``` r
-get_XH_out(test_SIS, 1) -> XH2
+get_XH_orbits(test_SIS, 1) -> XH2
 I_last <- tail(XH2$I, 1)
 I_last
 ```
@@ -376,7 +376,7 @@ conditions and solve the system of differential equations:
 ``` r
 test_SIS <- change_XH_inits(test_SIS, options = list(I=rep(0,3)))
 xds_solve(test_SIS)-> test_SIS 
-Itest = get_XH_out(test_SIS, 1)$I 
+Itest = get_XH_orbits(test_SIS, 1)$I 
 xds_plot_PR(test_SIS, clr=clrs)
 ```
 
@@ -385,7 +385,7 @@ xds_plot_PR(test_SIS, clr=clrs)
 …and we can compute the exact solutions for the same values of \\t\\:
 
 ``` r
-t = get_XH_out(test_SIS, 1)$time
+t = get_XH_orbits(test_SIS, 1)$time
 It = matrix(0, 366, 3)
 ss = H*foi/(r+foi)
 for(i in 1:3){

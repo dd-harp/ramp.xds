@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.6-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +83,8 @@
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
 </li>
-<li class="nav-item"><a class="nav-link" href="../reference/index.html">Functions</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/dd-harp/ramp.xds/" aria-label="GitHub"><span class="fa fa-github"></span></a></li>
@@ -147,14 +148,14 @@ weights.</p>
 <span><span class="va">ker</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">d</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="va">K_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_K_matrix_xy.html">make_K_matrix_xy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span>, ker<span class="op">=</span><span class="va">ker</span><span class="op">)</span></span>
 <span><span class="va">K_matrix</span></span></code></pre></div>
-<pre><code><span><span class="co">##        [,1]      [,2]      [,3]      [,4]      [,5]</span></span>
-<span><span class="co">## 1 0.0000000 0.1718465 0.2682655 0.2862690 0.1655605</span></span>
-<span><span class="co">## 2 0.1754472 0.0000000 0.1413541 0.1436189 0.5330968</span></span>
-<span><span class="co">## 3 0.3151158 0.1626328 0.0000000 0.4509289 0.1450906</span></span>
-<span><span class="co">## 4 0.3534971 0.1737070 0.4740391 0.0000000 0.1562521</span></span>
-<span><span class="co">## 5 0.1559399 0.4918137 0.1163413 0.1191831 0.0000000</span></span></code></pre>
+<pre><code><span><span class="co">##         [,1]       [,2]       [,3]       [,4]       [,5]</span></span>
+<span><span class="co">## 1 -1.0000000  0.1718465  0.2682655  0.2862690  0.1655605</span></span>
+<span><span class="co">## 2  0.1754472 -1.0000000  0.1413541  0.1436189  0.5330968</span></span>
+<span><span class="co">## 3  0.3151158  0.1626328 -1.0000000  0.4509289  0.1450906</span></span>
+<span><span class="co">## 4  0.3534971  0.1737070  0.4740391 -1.0000000  0.1562521</span></span>
+<span><span class="co">## 5  0.1559399  0.4918137  0.1163413  0.1191831 -1.0000000</span></span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>nPatches<span class="op">=</span><span class="fl">5</span>, membership<span class="op">=</span><span class="va">membership</span>, searchQ<span class="op">=</span><span class="va">searchQ</span>, K_matrix<span class="op">=</span><span class="va">K_matrix</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">model5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>nPatches<span class="op">=</span><span class="fl">5</span>, membership<span class="op">=</span><span class="va">membership</span>, searchQ<span class="op">=</span><span class="va">searchQ</span>, Koptions<span class="op">=</span><span class="va">K_matrix</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">model5</span><span class="op">$</span><span class="va">ML_interface</span><span class="op">$</span><span class="va">habitat_matrix</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">*</span><span class="fl">1000</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 1</span></span></code></pre>

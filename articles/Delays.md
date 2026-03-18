@@ -3,7 +3,7 @@
 ------------------------------------------------------------------------
 
 In this short vignette, we explain how **`ramp.xds`** computes lagged
-parameters and terms while solving delay differential equations.
+parameters and terms to solve delay differential equations.
 
 ------------------------------------------------------------------------
 

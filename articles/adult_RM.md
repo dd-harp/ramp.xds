@@ -200,11 +200,10 @@ MYo = list(f=f,q=q,g=g,sigma=sigma,mu=mu,eip=eip,nu=nu,eggsPerBatch=eggsPerBatch
 ```
 
 ``` r
-K_matrix <- matrix(0, nPatches, nPatches)
-K_matrix[1, 2:3] <- c(0.2, 0.8)
-K_matrix[2, c(1,3)] <- c(0.5, 0.5)
-K_matrix[3, 1:2] <- c(0.7, 0.3)
-K_matrix <- t(K_matrix)
+K_matrix <- diag(-1, nPatches) 
+K_matrix[2:3, 1] <- c(0.2, 0.8)
+K_matrix[c(1,3), 2] <- c(0.5, 0.5)
+K_matrix[1:2, 3] <- c(0.7, 0.3)
 
 Omega <- make_Omega_xde(g, sigma, mu, K_matrix)
 Upsilon <- expm::expm(-Omega * eip)
@@ -368,7 +367,7 @@ Otherwise, setup takes care of all the internals:
 
 ``` r
 xds_setup(MYname = "macdonald", Xname = "trivial", Lname = "trivial",  
-    nPatches=3, K_matrix=K_matrix, membership = c(1:3), 
+    nPatches=3, Koptions=K_matrix, membership = c(1:3), 
     residence = c(1:3), HPop = HPop,
     MYoptions = MYo, XHoptions = Xo, Loptions = Lo) -> MYeg
 ```

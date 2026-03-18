@@ -1,4 +1,4 @@
-# Add indices for human population to parameter list
+# Get XH indices
 
 Get and display the values of the indices for the variables
 

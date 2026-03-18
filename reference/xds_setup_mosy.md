@@ -23,10 +23,10 @@ xds_setup_mosy(
   nPatches = 1,
   membership = 1,
   HPop = 1000,
-  K_matrix = list(),
   searchQ = 1,
   kappa = 0,
   MYoptions = list(),
+  Koptions = list(Kname = "no_setup"),
   Loptions = list(),
   model_name = "unnamed"
 )
@@ -60,10 +60,6 @@ xds_setup_mosy(
 
   is the human / host population density
 
-- K_matrix:
-
-  is either a K_matrix matrix or a string that defines how to set it up
-
 - searchQ:
 
   is a vector of search weights for egg laying
@@ -75,6 +71,13 @@ xds_setup_mosy(
 - MYoptions:
 
   a list to configure the **MY** Component module
+
+- Koptions:
+
+  a K matrix, or options for
+  [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
+  (see
+  [mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md))
 
 - Loptions:
 
