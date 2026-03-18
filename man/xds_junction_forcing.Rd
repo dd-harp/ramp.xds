@@ -4,5 +4,5 @@
 \alias{xds_junction_forcing}
 \title{Junction: Forcing}
 \description{
-Forcing is a \link{junction} that called by \link{xds_compute_terms}.
+Forcing is a junction that called by \link{xds_compute_terms}.
 }

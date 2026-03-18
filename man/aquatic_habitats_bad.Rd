@@ -4,7 +4,7 @@
 \alias{aquatic_habitats_bad}
 \title{Unproductive Aquatic Habitats}
 \description{
-To model egg laying, a \link{port}
+To model egg laying, a port
 was developed to model availability
 of unproductive aquatic habitats: water
 where mosquitoes

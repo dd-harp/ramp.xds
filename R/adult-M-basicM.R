@@ -194,7 +194,7 @@ setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
   return(xds_obj)
 }
 
-#' @title Make parameters for GeRM ODE adult mosquito model
+#' @title Make parameters for GeM ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer
 #' @param options a named list: named values overwrite defaults
 #' @param g mosquito mortality rate
@@ -217,9 +217,9 @@ make_M_obj_basicM = function(nPatches, options=list(),
 
     MY_obj$nPatches <- nPatches
 
-    MY_obj <- setup_f_obj(checkIt(f, nPatches), MY_obj)
-    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj)
-    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj)
+    MY_obj <- setup_feeding_rate(checkIt(f, nPatches), MY_obj)
+    MY_obj <- setup_human_frac(checkIt(q, nPatches), MY_obj)
+    MY_obj <- setup_mozy_mort(checkIt(g, nPatches), MY_obj)
     MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj)
     MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj)
     MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)

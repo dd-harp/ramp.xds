@@ -4,7 +4,7 @@
 \alias{basicL}
 \title{The \code{basicL} Module for the L Component}
 \description{
-Implements the \strong{L} component using a basic model of aquatic mosquito
+A basic model of aquatic mosquito
 ecology with density-dependent mortality and delayed maturation, based
 on Smith DL, \emph{et al.} (2013).
 }
@@ -25,15 +25,32 @@ on Smith DL, \emph{et al.} (2013).
 }
 }
 
+\section{Egg Laying}{
+
+
+\describe{
+\item{\code{eta}}{the egg laying rate, (\eqn{\eta})}
+}
+}
+
 \section{Dynamics}{
 
-\deqn{dL/dt = \eta - (\psi e^{-\xi L} + \phi + \theta L) L}
 
-Emergence rate: \deqn{\alpha = \psi e^{-\xi L} L}
+\deqn{dL/dt = \eta - (\psi e^{-\xi L} + \phi + \theta L) L}
+}
+
+\section{Emergence}{
+
+
+The emergence rate of adult, female mosquitoes from each patch is:
+\deqn{\alpha = \psi e^{-\xi L} L}
+}
+
+\section{Notes}{
 
 Setting \eqn{\xi = 0} recovers the model of Smith DL, \emph{et al.} (2013).
 }
 
 \references{
-Smith DL, \emph{et al.} (2013)
+Smith DL, Perkins TA, Tusting LS, Scott TW, Lindsay SW (2013) Mosquito Population Regulation and Larval Source Management in Heterogeneous Environments. PLOS ONE 8(8): e71247. \href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0071247}{https://doi.org/10.1371/journal.pone.0071247}.
 }

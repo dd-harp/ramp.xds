@@ -1,58 +1,4 @@
-# Functions to compute adult mosquito bionomic parameters:
-# f, g, q, sigma, mu, nu
 
-#' @title Setup Blood Feeding Bionomic Object
-#'
-#' @description Set up an object
-#' to compute dynamic blood feeding rates
-#'
-#' @param f the blood feeding rate
-#' @param MY_obj an **`MY`** model object
-#'
-#' @return a **`MY`** model object
-#'
-#' @export
-setup_f_obj = function(f, MY_obj){
-  MY_obj$f = f
-  MY_obj$f_t = f
-  MY_obj$es_f = 1
-  MY_obj$f_obj <- list()
-  class(MY_obj$f_obj) <- "static"
-  MY_obj$f_obj$f <- f
-  return(MY_obj)
-}
-
-#' @title Compute the blood feeding rate, f
-#'
-#' @description  It should
-#' set the values of the bionomic parameters to baseline values
-#'
-#' @note This method dispatches on the type of `f_obj` attached to the `MY_obj`.
-#'
-#' @param t current simulation time
-#' @param xds_obj an **`xds`** model object
-#' @param s vector species index
-#'
-#' @return a [numeric] vector of length `nPatches`
-#'
-#' @export
-F_feeding_rate = function(t, xds_obj, s) {
-  UseMethod("F_feeding_rate", xds_obj$MY_obj[[s]]$f_obj)
-}
-
-#' @title Constant baseline blood feeding rate
-#'
-#' @description Implements [F_feeding_rate] for a static model
-#'
-#' @note This method dispatches on the type of `f_obj` attached to the `MY_obj`.
-#'
-#' @inheritParams F_feeding_rate
-#'
-#' @return \eqn{f}, the baseline blood feeding rate
-#' @export
-F_feeding_rate.static = function(t, xds_obj, s){
-  return(xds_obj$MY_obj[[s]]$f_obj$f)
-}
 
 
 #' @title Setup a Human Fraction Bionomic Object
@@ -66,7 +12,7 @@ F_feeding_rate.static = function(t, xds_obj, s){
 #' @return a **`MY`** model object
 #'
 #' @export
-setup_q_obj = function(q, MY_obj){
+setup_human_frac = function(q, MY_obj){
   MY_obj$q = q
   MY_obj$q_t = q
   MY_obj$es_q = 1
@@ -97,52 +43,6 @@ F_human_frac = function(t, xds_obj, s) {
 #' @export
 F_human_frac.static = function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$q_obj$q)
-}
-
-#' @title Setup a Mosquito Mortality Bionomic Object
-#'
-#' @description Set up an object to return a
-#' constant baseline mosquito mortality rate, \eqn{g}
-#'
-#' @param g the mosquito mortality rate
-#' @param MY_obj an **`MY`** model object
-#'
-#' @return a **`MY`** model object
-#'
-#' @export
-setup_g_obj = function(g, MY_obj){
-  MY_obj$g = g
-  MY_obj$g_t = g
-  MY_obj$es_g = 1
-  MY_obj$g_obj <- list()
-  class(MY_obj$g_obj) <- "static"
-  MY_obj$g_obj$g <- g
-  return(MY_obj)
-}
-
-#' @title Compute the blood geeding rate, g
-#'
-#' @description This method dispatches on the type of `g_obj`. It should
-#' set the values og the bionomic parameters to baseline values
-#'
-#' @inheritParams F_feeding_rate
-#'
-#' @return a [numeric] vector og length `nPatches`
-#'
-#' @keywords internal
-#' @export
-F_mozy_mort = function(t, xds_obj, s) {
-  UseMethod("F_mozy_mort", xds_obj$MY_obj[[s]]$g_obj)
-}
-
-#' @title Static model for the blood feeding rate
-#' @description Implements [F_mozy_mort] for a static model
-#' @inheritParams F_mozy_mort
-#' @return \eqn{g}, the baseline human fraction
-#' @keywords internal
-#' @export
-F_mozy_mort.static = function(t, xds_obj, s){
-  return(xds_obj$MY_obj[[s]]$g_obj$g)
 }
 
 #' @title Setup a Patch Emigration Bionomic Object
@@ -304,7 +204,7 @@ F_batch_rate.static = function(t, xds_obj, s){
 #' @return a **`MY`** model object
 #'
 #' @export
-setup_f_obj_B2 = function(MY_obj, options=list(), fx=0.35, sf=1){
+setup_feeding_rate_B2 = function(MY_obj, options=list(), fx=0.35, sf=1){
   with(options,{
     MY_obj$f = fx
     MY_obj$f_t = fx
@@ -398,7 +298,7 @@ F_emigrate.BQS = function(t, xds_obj, s){
 #' @return a **`MY`** model object
 #'
 #' @export
-setup_f_obj_B2 = function(MY_obj, options=list(), fx=0.35, sf=1){
+setup_feeding_rate_B2 = function(MY_obj, options=list(), fx=0.35, sf=1){
   with(options,{
     MY_obj$f = fx
     MY_obj$f_t = fx

@@ -20,18 +20,38 @@
 #'   \item{`sigma`}{emigration rate}
 #'   \item{`mu`}{emigration loss rate}
 #'   \item{`K`}{mosquito dispersal matrix}
-#'   \item{`Omega`}{adult mosquito demographic matrix (mortality + migration)}
 #' }
 #'
+#' @section Demography:
+#' 
+#' The demographic matrix, \eqn{\Omega} is computed as
+#' \deqn{\Omega = \mbox{diag}\left(g + \sigma \mu \right) - K \cdot \mbox{diag}\left(\sigma \left(1-\mu\right)\right)}
+#' 
+#' @section Inputs:
+#' 
+#' **Emergence** -- `Lambda` or \eqn{\Lambda}, is computed 
+#' by the **ML**-Interface using outputs of the **L** Component
+#' 
+#' 
+#' **Net Infectiousness** -- `kappa` or \eqn{\kappa}, is computed 
+#' by the **XY**-Interface using outputs of the **XH** Component 
+#' 
 #' @section Dynamics:
-#' The density of infectious mosquitoes is given by:
-#' \deqn{Z = e^{-\Omega \tau} \cdot Y}
+#' 
+#' 
 #' \deqn{
 #' \begin{array}{rl}
 #' dM/dt &= \Lambda - \Omega \cdot M \\
 #' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
 #' \end{array}}
 #'
+#' @section Net Infective Biting:
+#' This model incorporates mortality and dispersal through the EIP, 
+#' but it ignores the delay. The density of infectious mosquitoes
+#' is thus: 
+#' \deqn{Z = e^{-\Omega \tau} \cdot Y}
+#' so net infective biting, the `fqZ` term, is given by:
+#' \deqn{fqZ = fq \left(e^{-\Omega \tau} \cdot Y\right)}
 #' @name SI
 #' @rdname SI
 NULL
@@ -301,9 +321,9 @@ make_MY_obj_SI = function(nPatches, options=list(), eip=12,
     class(eip_par) <- 'static'
 
     MY_obj <- setup_eip_obj(checkIt(eip, nPatches), MY_obj)
-    MY_obj <- setup_f_obj(checkIt(f, nPatches), MY_obj)
-    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj)
-    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj)
+    MY_obj <- setup_feeding_rate(checkIt(f, nPatches), MY_obj)
+    MY_obj <- setup_human_frac(checkIt(q, nPatches), MY_obj)
+    MY_obj <- setup_mozy_mort(checkIt(g, nPatches), MY_obj)
     MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj)
     MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj)
     MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)

@@ -29,7 +29,7 @@
 #' 
 #' The *demographic matrix* \eqn{\Omega} is formulated as 
 #' \deqn{
-#'  \Omega = \mbox{diag} \left( g \right) + K \cdot \mbox{diag} \left( \sigma \left(1-\mu\right) \right)
+#'  \Omega = \mbox{diag} \left( g + \sigma \mu \right) + K \cdot \mbox{diag} \left( \sigma \left(1-\mu\right) \right)
 #' } 
 #' Survival and dispersal through the EIP is 
 #' \deqn{
@@ -52,7 +52,7 @@
 #'
 #' @section Note:
 #' This model is not capable of handling exogenous forcing by weather or
-#' vector control. Use the `GeRM` module instead.
+#' vector control. Use the `GeM` module instead.
 #'
 #' @name macdonald
 NULL
@@ -94,7 +94,7 @@ check_MY.macdonald = function(xds_obj, s){
 #' @description
 #' This implements a delay differential equation model for adult mosquito ecology and
 #' infection dynamics that is consistent with the model published by George
-#' Macdonald in 1952. A generalized version of this model, the **MY** module `GeRM`,
+#' Macdonald in 1952. A generalized version of this model, the **MY** module `GeM`,
 #' was developed to handle exogenous forcing by weather and vector control. This model
 #' should be used only for educational purposes.
 #'
@@ -126,11 +126,11 @@ check_MY.macdonald = function(xds_obj, s){
 #' \end{array}}
 #'
 #' This model was included mainly for the historical interest. It has been updated to handle
-#' exogenous forcing by weather and vector control in the module `GeRM`
+#' exogenous forcing by weather and vector control in the module `GeM`
 #'
 #' @note This model is not capable of being extended to
 #' handle exogenous forcing by weather or vector control. Please
-#' use the `GeRM` model.
+#' use the `GeM` model.
 #' @inheritParams dMYdt
 #' @return a [numeric] vector
 #' @importFrom deSolve lagvalue

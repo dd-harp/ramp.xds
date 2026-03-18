@@ -15,7 +15,7 @@
 #' 
 #'      + sets the value of structural parameters;
 #'      + creates empty lists to hold the module objects: `XH_obj` `MY_obj,` and `L_obj`;   
-#'      + sets up empty [port]s and [junction]s;
+#'      + sets up empty ports and junctions;
 #' 
 #' + the core dynamical components are setup; and 
 #'

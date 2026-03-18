@@ -12,9 +12,9 @@ A List of Available Modules for the \strong{MY}-Component from \strong{\code{ram
 \item \code{trivial} - the trivial module: see \link{trivial_MY}
 \item \code{SI} - an \emph{SI} compartmental model: see \link{SI}
 \item \code{macdonald} - an implementation Macdonald's model: see \link{macdonald}
-\item \code{GeRM} - A Generalized Ross-Macdonald model: see \link{GeRM}
-\item \code{basicM} - A Basic Model for mosquito ecology: see \link{basicM}
-\item \code{RMdts} - A Discrete Time Ross-Macdonald model: see \link{RMdts}
+\item \code{GeM} - A generalized Macdonald model: see \link{GeM}
+\item \code{basicM} - A basic model for mosquito ecology: see \link{basicM}
+\item \code{RMdts} - A Discrete Time Macdonald model: see \link{RMdts}
 }
 }
 

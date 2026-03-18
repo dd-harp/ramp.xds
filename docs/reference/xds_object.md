@@ -19,9 +19,7 @@ The object is created in several steps:
   - creates empty lists to hold the module objects: `XH_obj` `MY_obj,`
     and `L_obj`;
 
-  - sets up empty
-    [port](https://dd-harp.github.io/ramp.xds/reference/port.md)s and
-    [junction](https://dd-harp.github.io/ramp.xds/reference/junction.md)s;
+  - sets up empty ports and junctions;
 
 - the core dynamical components are setup; and
 

@@ -21,7 +21,7 @@ a \link{numeric} vector
 \description{
 This implements a delay differential equation model for adult mosquito ecology and
 infection dynamics that is consistent with the model published by George
-Macdonald in 1952. A generalized version of this model, the \strong{MY} module \code{GeRM},
+Macdonald in 1952. A generalized version of this model, the \strong{MY} module \code{GeM},
 was developed to handle exogenous forcing by weather and vector control. This model
 should be used only for educational purposes.
 
@@ -54,11 +54,11 @@ dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Y \\
 \end{array}}
 
 This model was included mainly for the historical interest. It has been updated to handle
-exogenous forcing by weather and vector control in the module \code{GeRM}
+exogenous forcing by weather and vector control in the module \code{GeM}
 }
 \note{
 This model is not capable of being extended to
 handle exogenous forcing by weather or vector control. Please
-use the \code{GeRM} model.
+use the \code{GeM} model.
 }
 \keyword{internal}

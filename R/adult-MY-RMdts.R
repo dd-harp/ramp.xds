@@ -2,7 +2,7 @@
 
 #' @title The `RMdts` Module for the MY Component
 #' @description
-#' Implements the **MY** component using a discrete-time Ross-Macdonald
+#' Implements the **MY** component using a discrete-time Macdonald
 #' model of adult mosquito ecology and infection dynamics.
 #'
 #' @section State Variables:
