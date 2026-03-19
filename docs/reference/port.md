@@ -1,79 +1,115 @@
 # Ports
 
-**port** : a parameter or variable whose value is set by a function call
-with a standardized, flexible implementation
+- **port** – a parameter or variable whose value is set by a function
+  call with a standardized, flexible implementation
 
-The port is a design template that facilitates nimble model building by
-establishing a protocol for adding model *features,* including aspects
-of heterogeneous transmission, exogenous forcing (*eg* weather), malaria
-control, malaria importation, and habitat dynamics. Ports add
-functionality to an
-[xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md):
+- [junction](https://dd-harp.github.io/ramp.xds/reference/junction.md) –
+  a function that handles a bundle of ports
+
+The implementation of a port follows a design template. That template
+establishes a protocol for writing modules with *features* that could be
+implemented in several ways to add realism: heterogeneous transmission,
+exogenous forcing (*eg* weather), malaria control, malaria importation,
+habitat dynamics, or something else.
+
+By implementing a parameter or variable as a port, a module or other
+component becomes extensible with negligible computational costs:
 default values assigned during
 [xds_help_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.md)
-have no effect; features can be configured after basic setup (see
+have no effect; but features can be configured after basic setup (see
 [xds_help_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_help_setup_options.md)).
 
-In some cases, ports were added to
-[dynamical_components](https://dd-harp.github.io/ramp.xds/reference/dynamical_components.md)
-or the the blood feeding or egg laying interfaces (see
-[xds_interfaces](https://dd-harp.github.io/ramp.xds/reference/xds_interfaces.md)).
-In some cases, a
-[junction](https://dd-harp.github.io/ramp.xds/reference/junction.md) is
-added to handle bundles of ports (*eg* Vector Control).
+In developing ports, the mathematical consequences *ought to be* fully
+considered. If some implementations of a port could be mathematically
+inconsistent, the port documentation should include warnings.
 
-## Value
+## Port Value
 
 Each port is a flexible method for assigning a value parameter or
-variable. The current value of the parameter or variable has a location
-on some object or module object, and it is always retrieved from that
-location:
+variable (`par`). The current value of the parameter or variable has a
+location on a base object (`base_obj`), and it is always retrieved from
+that location:
 
-`xds_obj$...$value`
+`xds_obj$base_obj$par`
 
-## Functional Response
+## Port Object
+
+A port is set up and implemented through an object (`par_obj`) that is
+located on the same base object:
+
+`xds_obj$base_obj$par_obj`
+
+The main purpose of `class(par_obj)` is to dispatch the port function,
+so `par_obj` could be an empty list. If an empty list would do, it's
+more useful for it to be informative. For example:
+
+`par_obj <- this_case`
+
+where `this_case = class(par_obj)`
+
+In some cases, `par_obj` is a named list that holds other parameter
+values.
+
+## Port Function
 
 The value of the parameter is set by a function call with a standard
 form:
 
-`xds_obj <- this_case_port(t, xds_obj)`
+`xds_obj <- this_port(t, xds_obj, ...)`
 
-where `t` is time. The `xds_obj` is passed, modified, and returned.
+where
 
-Inside `this_case_port` functions can use any variables that have been
-defined. The value is set by a function call:
+- `t` is time
 
-`xds_obj$...$value <- F_this_case(t, vars)`
+- The `xds_obj` is passed,
 
-where `F_this_case` is an `S3` object that dispatches on `class(value)`.
+- `this_port` dispatches on `class(xds_obj$base_obj$par_obj).`
+
+- `...` other arguments often include the index of the host or vector
+  species.
+
+Inside `this_port.this_case`, the parameter value can be set by a
+function call:
+
+`xds_obj$base_obj$par <- F_this_port(t, ...)`
+
+where `F_this_port` is not constrained. Since `xds_obj` is passed to
+`this_port`, functions can use any variables that have been defined
+anywhere on the `xds_obj`.
 
 ## Default Case
 
-The default case for `F_this_case` is a pair of methods that set a
-constant value for the parameter:
+The default case is:
 
-- `this_case_port.setup`
+`class(xds_obj$base_obj$par_obj) = "static"`
 
-  - assigns a static value to `xds_obj$...$value`
+and `this_port.static` returns `xds_obj` unmodified.
 
-  - sets `class(xds_obj$...$value) = "static"`
+## Trace Function Case
 
-- `this_case_port.static` returns `xds_obj` unmodified
-
-## Trace Case
-
-For most ports, an alternative case sets the value by a call to a trace
-function, configured using the package standard decomposable time series
-trace function (see
+For most ports, an alternative case is to configure a trace function
+using package standard *multiplicative decomposable time series* trace
+function (see
 [make_ts_function](https://dd-harp.github.io/ramp.xds/reference/make_ts_function.md)).
 
 ## Setup
 
 All methods should have well-defined setup functions:
 
-`xds_obj <- setup_this_case(case_name, xds_obj, options, s)`
+`xds_obj <- setup_this_port(case_name, xds_obj, options, ...)`
 
-should work.
+where `case_name` is used to dispatch `setup_this_port`
+
+In cases where changing `par` should trigger function calls to change
+other parameters that depend on it, `setup_this_port.static` should set
+
+`class(xds_obj$base_obj$par_obj) = "setup"`
+
+The "setup" method
+
+- calls those other functions
+
+- sets `class(par_obj) = "static"`
 
 ## Extensibility
 
@@ -95,8 +131,8 @@ the bionomic parameters are assigned constant values: those parameters
 are not ports. That module does not have the *skill set* to handle
 exogenous forcing.
 
-In the generalized Ross-Macdonald
-[GeRM](https://dd-harp.github.io/ramp.xds/reference/GeRM.md), several
+In the generalized Macdonald
+[GeM](https://dd-harp.github.io/ramp.xds/reference/GeM.md), several
 bionomic parameters are set by calling an `S3` function. In this case,
 the equations have been set up to handle time-varying survival through a
 time-varying EIP (see
@@ -104,5 +140,5 @@ time-varying EIP (see
 
 ## See also
 
-[xds_help_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_help_setup_options.md),
-[junction](https://dd-harp.github.io/ramp.xds/reference/junction.md)
+[xds_help_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_help_setup_options.md)
+\| [junction](https://dd-harp.github.io/ramp.xds/reference/junction.md)

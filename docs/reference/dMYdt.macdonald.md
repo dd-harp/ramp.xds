@@ -3,7 +3,7 @@
 This implements a delay differential equation model for adult mosquito
 ecology and infection dynamics that is consistent with the model
 published by George Macdonald in 1952. A generalized version of this
-model, the **MY** module `GeRM`, was developed to handle exogenous
+model, the **MY** module `GeM`, was developed to handle exogenous
 forcing by weather and vector control. This model should be used only
 for educational purposes.
 
@@ -41,7 +41,7 @@ fq\kappa(M-Y) - \Omega \cdot Y \\ dZ/dt &= \Upsilon \cdot
 
 This model was included mainly for the historical interest. It has been
 updated to handle exogenous forcing by weather and vector control in the
-module `GeRM`
+module `GeM`
 
 ## Usage
 
@@ -75,4 +75,4 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector
 ## Note
 
 This model is not capable of being extended to handle exogenous forcing
-by weather or vector control. Please use the `GeRM` model.
+by weather or vector control. Please use the `GeM` model.

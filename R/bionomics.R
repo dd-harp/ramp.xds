@@ -1,9 +1,20 @@
 #' @title Mosquito Bionomics 
 #' 
 #' @description
-#' Mosquito bionomics includes all the parameters 
-#'  
-#' @name mosquito_bionomics 
+#' The value of a mosquito bionomic parameters gets computed in two stages:
+#' 
+#' + [BaselineBionomics] computes a *baseline* parameter value; 
+#' 
+#' + [ModifiedBionomics] is the product of the *baseline* and an *effect size*
+#' 
+#' @section Baseline:
+#' The concept of a *baseline* here is not exactly corre 
+#'   
+#' @section Modified by Control:
+#' The concept of a *baseline* is 
+#' The value of a parameter 
+#' 
+#' @name xds_info_mosquito_bionomics
 NULL
 
 #' @title Set bionomic parameter rates relative to baseline

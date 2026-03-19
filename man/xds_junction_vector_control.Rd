@@ -4,5 +4,5 @@
 \alias{xds_junction_vector_control}
 \title{Vector Control}
 \description{
-Vector Control is a \link{junction}
+Vector Control is a junction
 }

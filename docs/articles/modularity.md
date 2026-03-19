@@ -1,12 +1,15 @@
-# Nimble Model Building
+# Modular Computation
+
+Dynamical systems describing mosquito-borne pathogens are naturally
+modular. In [Modular
+Forms](https://dd-harp.github.io/ramp.xds/articles/modularity.html), we
+introduce the idea of *formalism* for writing down dynamical systems
+that emphasize the modular nature.
 
 This software supports nimble model building with functions to set up,
 solve, and analyze dynamical systems models for mosquito ecology and
 mosquito-borne pathogen transmission formulated as dynamical systems in
-continuous or discrete time. The systems are naturally modular: an
-intermediate step in developing a model for **`ramp.xds`** is to rewrite
-the equations using [Modular
-Forms](https://dd-harp.github.io/ramp.xds/articles/modularity.html).
+continuous or discrete time.
 
 The mathematical framework and software have a modular design developed
 around an algorithm to model mosquito blood feeding on vertebrate hosts

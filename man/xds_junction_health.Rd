@@ -4,5 +4,5 @@
 \alias{xds_junction_health}
 \title{Health}
 \description{
-Health is a \link{junction} to implement health-based interventions.
+Health is a junction to implement health-based interventions.
 }

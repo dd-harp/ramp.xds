@@ -18,7 +18,7 @@ NULL
 #' @title Unproductive Aquatic Habitats 
 #' 
 #' @description
-#' To model egg laying, a [port]
+#' To model egg laying, a port
 #' was developed to model availability
 #' of unproductive aquatic habitats: water
 #' where mosquitoes
@@ -31,7 +31,7 @@ NULL
 #' @title Ovitraps 
 #' 
 #' @description
-#' To simulate ovitraps, a [port]
+#' To simulate ovitraps, a port
 #' was developed to model availability
 #' of the ovitraps. 
 #'  

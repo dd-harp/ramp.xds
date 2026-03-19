@@ -2,7 +2,7 @@
 
 Implements
 [get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)
-for the GeRM model.
+for the GeM model.
 
 ## Usage
 

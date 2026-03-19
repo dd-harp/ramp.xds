@@ -5,10 +5,10 @@
 \title{\strong{\code{ramp.xds}}: Getting Help}
 \description{
 \strong{\code{ramp.xds}} concepts and functions are well documented.
-These help guides are designed to find what you need.
+Use these guides to find a concept or function.
 \itemize{
-\item \link{xds_help_basic_setup} is an overview of basic setup
-\item \link{xds_help_setup_options} is an overview of other options
+\item \link{xds_help_basic_setup} -- an overview of basic setup
+\item \link{xds_help_setup_options} -- setup for other features
 \item \strong{\code{get_}} functions inspect a model component or outputs
 \item \strong{\code{change_}} functions modify part of a model component
 \item \strong{\code{setup_}} functions replace a model component
@@ -16,8 +16,9 @@ These help guides are designed to find what you need.
 }
 \section{XH Component}{
 
-Type \code{?XH_} to find a list of help guides for human / host demography, infection, & immunity.
+Help guides for human / host demography, infection, & immunity.
 
+\code{?XH_}
 \itemize{
 \item \code{\link{XH_module_list}} -- list of \strong{XH} Modules
 \item \code{\link{XH_functions}} -- list of functions for \strong{XH} Modules
@@ -29,9 +30,10 @@ Type \code{?XH_} to find a list of help guides for human / host demography, infe
 
 \section{MY Component}{
 
-Type \code{?MY_} to find a list of help guides
+Help guides
 for adult mosquito ecology & infection dynamics.
 
+\code{?MY_}
 \itemize{
 \item \code{\link{MY_module_list}} -- list of \strong{MY} Modules
 \item \code{\link{MY_functions}} -- list of functions for \strong{MY} Modules
@@ -43,9 +45,10 @@ for adult mosquito ecology & infection dynamics.
 
 \section{L Component}{
 
-Type \code{?L_} to find a list of help guides
+Help guides
 for immature mosquito ecology.
 
+\code{?L_}
 \itemize{
 \item \code{\link{L_module_list}} -- list of \strong{L} Modules
 \item \code{\link{L_functions}} -- list of functions for \strong{L} Modules
@@ -53,5 +56,10 @@ for immature mosquito ecology.
 \item \code{\link{L_change}} -- list of \code{change_} functions for \strong{L} Modules
 \item \code{\link{L_setup}} -- list of \code{setup_} functions for \strong{L} Modules
 }
+}
+
+\section{Internals}{
+
+Information about the \link{xds_object}
 }
 

@@ -43,12 +43,28 @@ model of adult mosquito infection dynamics.
 
   mosquito dispersal matrix
 
-- `Omega`:
+## Demography
 
-  adult mosquito demographic matrix (mortality + migration)
+The demographic matrix, \\\Omega\\ is computed as \$\$\Omega =
+\mbox{diag}\left(g + \sigma \mu \right) - K \cdot
+\mbox{diag}\left(\sigma \left(1-\mu\right)\right)\$\$
+
+## Inputs
+
+**Emergence** – `Lambda` or \\\Lambda\\, is computed by the
+**ML**-Interface using outputs of the **L** Component
+
+**Net Infectiousness** – `kappa` or \\\kappa\\, is computed by the
+**XY**-Interface using outputs of the **XH** Component
 
 ## Dynamics
 
-The density of infectious mosquitoes is given by: \$\$Z = e^{-\Omega
-\tau} \cdot Y\$\$ \$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot
-M \\ dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\ \end{array}\$\$
+\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\ dY/dt &=
+fq\kappa(M-Y) - \Omega \cdot Y \\ \end{array}\$\$
+
+## Net Infective Biting
+
+This model incorporates mortality and dispersal through the EIP, but it
+ignores the delay. The density of infectious mosquitoes is thus: \$\$Z =
+e^{-\Omega \tau} \cdot Y\$\$ so net infective biting, the `fqZ` term, is
+given by: \$\$fqZ = fq \left(e^{-\Omega \tau} \cdot Y\right)\$\$

@@ -320,7 +320,7 @@ parse_MY_orbits.trivial <- function(outputs, xds_obj, s) {
 }
 
 #' @title Return initial values as a vector
-#' @description Implements [get_MY_inits] for the GeRM model.
+#' @description Implements [get_MY_inits] for the GeM model.
 #' @inheritParams get_MY_inits
 #' @return none
 #' @keywords internal

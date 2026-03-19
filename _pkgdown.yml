@@ -14,6 +14,8 @@ navbar:
       href: articles/Working.html
     - text: The 5-3-4 Model 
       href: articles/ex_534.html
+    - text: Modular Forms 
+      href: articles/modular_forms.html
     - text: Delay Equations 
       href: articles/Delays.html
     - text: Ports & Junctions 
@@ -48,10 +50,10 @@ navbar:
       href: articles/MY-interface.html
     - text: Macdonald's Model
       href: articles/adult_RM.html
-    - text: Ross-Macdonald - discrete time
+    - text: Macdonald - discrete time
       href: articles/RM-dts-Mosquito.html
-    - text: Generalized Ross-Macdonald model
-      href: articles/adult_GeRM.html
+    - text: Generalized Macdonald model
+      href: articles/adult_GeM.html
   - text: Immature Mosquitoes 
     menu:
     - text: The L Component 
@@ -94,7 +96,7 @@ reference:
   - xds_setup_human
   - xds_setup_eir
   - xds_help_basic_setup
-- subtitle: Dynamic Modules 
+- subtitle: Dynamical Modules 
   desc: | 
     Setting the value of structural parameters 
   contents:
@@ -121,14 +123,14 @@ reference:
   desc: | 
     Forcing, Malaria Control 
   contents:
-  - port
-  - junction
+  - xds_info_port
+  - xds_info_junction
   - xds_help_setup_options
 - subtitle: The xds model object
   contents:
   - xds_object 
   - dynamical_components 
-  - xds_interfaces
+  - xds_info_interfaces
 - title: Solve 
   desc: |
     Methods to numerically solve differential equations and get the outputs
@@ -261,7 +263,7 @@ reference:
   contents:
   - saveXDS 
   - readXDS
-- title: Humans / Hosts (XH) 
+- title: XH Component 
   desc: |
     Models of human / host infection dynamics - immunity - disease - infectiousness - diagnostics and detection 
   contents:
@@ -299,9 +301,9 @@ reference:
   - xds_plot_XH
   - steady_state_X
   - steady_state_XH
-- title: Adult Mosquitoes (MY) 
+- title: MY Component 
   desc: |
-    The MY Component 
+    Adult mosquito ecology and infection dynamics 
   contents:
   - MY_module_list
   - MY_functions
@@ -314,11 +316,11 @@ reference:
   - basicM
   - SI
   - macdonald
-  - GeRM
+  - GeM
   - RMdts
-- title: Aquatic Mosquitoes (L) 
+- title: L Component 
   desc: |
-    Generic methods for the aquatic (immature) mosquito component.
+    Immagure mosquito ecology in aquatic habitats 
   contents:
   - L_functions
   - L_module_list
@@ -405,23 +407,23 @@ reference:
   desc: |
     Methods to compute or update mosquito bionomic parameters
   contents:
-  - mosquito_bionomics 
+  - xds_info_mosquito_bionomics 
   - blood_feeding 
   - mosquito_dispersal
   - mosquito_demography 
-- subtitle: Dynamic Parameters 
+- subtitle: Dynamical Parameters 
   desc: |
     Compute bionomic parameters as functional responses to resource availability
   contents:
-  - setup_f_obj
-  - F_feeding_rate 
+  - setup_feeding_rate
+  - F_feeding_rate
   - F_feeding_rate.static
-  - setup_f_obj_B2
+  - setup_feeding_rate_B2
   - F_feeding_rate.B2
-  - setup_q_obj
+  - setup_human_frac
   - F_human_frac 
   - F_human_frac.static
-  - setup_g_obj
+  - setup_mozy_mort
   - setup_sigma_obj
   - setup_sigma_obj_BQS
   - setup_mu_obj
@@ -464,7 +466,7 @@ reference:
   - bad_habitats
   - change_blood_hosts
 - title: Habitats & Egg Laying
-  desc: Mosquito Population Dynamic Interface 
+  desc: Mosquito Population Dynamical Interface 
   contents:
   - aquatic_habitats 
   - habitat_search_weights 

@@ -4,5 +4,5 @@
 \alias{xds_junction_resources}
 \title{Resources}
 \description{
-Resources is a \link{junction}. The function is called in \link{xds_compute_terms}.
+Resources is a junction. The function is called in \link{xds_compute_terms}.
 }

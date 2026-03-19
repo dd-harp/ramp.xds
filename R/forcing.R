@@ -10,7 +10,7 @@ NULL
 #' @title Junction: Forcing 
 #' 
 #' @description
-#' Forcing is a [junction] that called by [xds_compute_terms]. 
+#' Forcing is a junction that called by [xds_compute_terms].
 #'  
 #' @name xds_junction_forcing 
 NULL

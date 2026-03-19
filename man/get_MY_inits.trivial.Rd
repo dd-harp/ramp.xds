@@ -15,6 +15,6 @@ get_MY_inits.trivial(xds_obj, s)
 none
 }
 \description{
-Implements \link{get_MY_inits} for the GeRM model.
+Implements \link{get_MY_inits} for the GeM model.
 }
 \keyword{internal}

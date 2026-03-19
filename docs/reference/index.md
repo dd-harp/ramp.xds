@@ -36,7 +36,7 @@ Build an xds model object
 
   **`ramp.xds`**: Guide to Basic Setup
 
-### Dynamic Modules
+### Dynamical Modules
 
 Setting the value of structural parameters
 
@@ -77,9 +77,10 @@ Search Weights, Mosquito Dispersal, Time Spent
 
 Forcing, Malaria Control
 
-- [`port`](https://dd-harp.github.io/ramp.xds/reference/port.md) : Ports
+- [`xds_info_port`](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md)
+  : Ports
 
-- [`junction`](https://dd-harp.github.io/ramp.xds/reference/junction.md)
+- [`xds_info_junction`](https://dd-harp.github.io/ramp.xds/reference/xds_info_junction.md)
   : Junctions
 
 - [`xds_help_setup_options`](https://dd-harp.github.io/ramp.xds/reference/xds_help_setup_options.md)
@@ -97,7 +98,7 @@ Forcing, Malaria Control
 - [`dynamical_components`](https://dd-harp.github.io/ramp.xds/reference/dynamical_components.md)
   : Dynamical Components
 
-- [`xds_interfaces`](https://dd-harp.github.io/ramp.xds/reference/xds_interfaces.md)
+- [`xds_info_interfaces`](https://dd-harp.github.io/ramp.xds/reference/xds_info_interfaces.md)
   : Dynamical Interfaces
 
 ## Solve
@@ -416,7 +417,7 @@ Build and store **`xds`** model objects
 
   readRDS for `xds` Objects
 
-## Humans / Hosts (XH)
+## XH Component
 
 Models of human / host infection dynamics - immunity - disease -
 infectiousness - diagnostics and detection
@@ -496,9 +497,9 @@ Utilities for Time Spent Matrices
 
   Steady States for **XH**
 
-## Adult Mosquitoes (MY)
+## MY Component
 
-The MY Component
+Adult mosquito ecology and infection dynamics
 
 - [`MY_module_list`](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.md)
   : MY Modules
@@ -531,17 +532,17 @@ The MY Component
 
   The `macdonald` Module (MY Component)
 
-- [`GeRM`](https://dd-harp.github.io/ramp.xds/reference/GeRM.md) :
+- [`GeM`](https://dd-harp.github.io/ramp.xds/reference/GeM.md) :
 
-  The `GeRM` Module for the MY Component
+  The `GeM` Module for the MY Component
 
 - [`RMdts`](https://dd-harp.github.io/ramp.xds/reference/RMdts.md) :
 
   The `RMdts` Module for the MY Component
 
-## Aquatic Mosquitoes (L)
+## L Component
 
-Generic methods for the aquatic (immature) mosquito component.
+Immagure mosquito ecology in aquatic habitats
 
 - [`L_functions`](https://dd-harp.github.io/ramp.xds/reference/L_functions.md)
   : Generic Methods for the L Component
@@ -714,7 +715,7 @@ Blood Feeding on non-Residents
 
 Methods to compute or update mosquito bionomic parameters
 
-- [`mosquito_bionomics`](https://dd-harp.github.io/ramp.xds/reference/mosquito_bionomics.md)
+- [`xds_info_mosquito_bionomics`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_bionomics.md)
   : Mosquito Bionomics
 - [`blood_feeding`](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)
   : Blood Feeding Overview
@@ -723,28 +724,28 @@ Methods to compute or update mosquito bionomic parameters
 - [`mosquito_demography`](https://dd-harp.github.io/ramp.xds/reference/mosquito_demography.md)
   : Mosquito Demography
 
-### Dynamic Parameters
+### Dynamical Parameters
 
 Compute bionomic parameters as functional responses to resource
 availability
 
-- [`setup_f_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_f_obj.md)
-  : Setup Blood Feeding Bionomic Object
+- [`setup_feeding_rate()`](https://dd-harp.github.io/ramp.xds/reference/setup_feeding_rate.md)
+  : Setup Blood Feeding Rate
 - [`F_feeding_rate()`](https://dd-harp.github.io/ramp.xds/reference/F_feeding_rate.md)
   : Compute the blood feeding rate, f
 - [`F_feeding_rate(`*`<static>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_feeding_rate.static.md)
   : Constant baseline blood feeding rate
-- [`setup_f_obj_B2()`](https://dd-harp.github.io/ramp.xds/reference/setup_f_obj_B2.md)
+- [`setup_feeding_rate_B2()`](https://dd-harp.github.io/ramp.xds/reference/setup_feeding_rate_B2.md)
   : Setup Blood Feeding Bionomic Object
 - [`F_feeding_rate(`*`<B2>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_feeding_rate.B2.md)
   : Type 2 functional response for the blood feeding rate
-- [`setup_q_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_q_obj.md)
+- [`setup_human_frac()`](https://dd-harp.github.io/ramp.xds/reference/setup_human_frac.md)
   : Setup a Human Fraction Bionomic Object
 - [`F_human_frac()`](https://dd-harp.github.io/ramp.xds/reference/F_human_frac.md)
   : Compute the blood qeeding rate, q
 - [`F_human_frac(`*`<static>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_human_frac.static.md)
   : Static model for the blood feeding rate
-- [`setup_g_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_g_obj.md)
+- [`setup_mozy_mort()`](https://dd-harp.github.io/ramp.xds/reference/setup_mozy_mort.md)
   : Setup a Mosquito Mortality Bionomic Object
 - [`setup_sigma_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_sigma_obj.md)
   : Setup a Patch Emigration Bionomic Object
@@ -832,7 +833,7 @@ The ports for resources
 
 ## Habitats & Egg Laying
 
-Mosquito Population Dynamic Interface
+Mosquito Population Dynamical Interface
 
 - [`aquatic_habitats`](https://dd-harp.github.io/ramp.xds/reference/aquatic_habitats.md)
   : Aquatic Habitats

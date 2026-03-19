@@ -1,7 +1,7 @@
 #' @title Resources 
 #' 
 #' @description
-#' Resources is a [junction]. The function is called in [xds_compute_terms]. 
+#' Resources is a junction. The function is called in [xds_compute_terms].
 #' 
 #'  
 #' @name xds_junction_resources 

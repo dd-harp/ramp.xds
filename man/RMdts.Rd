@@ -4,7 +4,7 @@
 \alias{RMdts}
 \title{The \code{RMdts} Module for the MY Component}
 \description{
-Implements the \strong{MY} component using a discrete-time Ross-Macdonald
+Implements the \strong{MY} component using a discrete-time Macdonald
 model of adult mosquito ecology and infection dynamics.
 }
 \section{State Variables}{

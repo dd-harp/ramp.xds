@@ -4,7 +4,7 @@
 \alias{ovitraps}
 \title{Ovitraps}
 \description{
-To simulate ovitraps, a \link{port}
+To simulate ovitraps, a port
 was developed to model availability
 of the ovitraps.
 }

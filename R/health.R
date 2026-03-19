@@ -1,7 +1,7 @@
 #' @title Health  
 #' 
 #' @description
-#' Health is a [junction] to implement health-based interventions.
+#' Health is a junction to implement health-based interventions.
 #'  
 #' @name xds_junction_health  
 NULL

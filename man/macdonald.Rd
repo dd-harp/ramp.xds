@@ -32,7 +32,7 @@ actually closer to one published by
 
 The \emph{demographic matrix} \eqn{\Omega} is formulated as
 \deqn{
- \Omega = \mbox{diag} \left( g \right) + K \cdot \mbox{diag} \left( \sigma \left(1-\mu\right) \right)
+ \Omega = \mbox{diag} \left( g + \sigma \mu \right) + K \cdot \mbox{diag} \left( \sigma \left(1-\mu\right) \right)
 }
 Survival and dispersal through the EIP is
 \deqn{
@@ -59,6 +59,6 @@ dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Z \\\\
 \section{Note}{
 
 This model is not capable of handling exogenous forcing by weather or
-vector control. Use the \code{GeRM} module instead.
+vector control. Use the \code{GeM} module instead.
 }
 

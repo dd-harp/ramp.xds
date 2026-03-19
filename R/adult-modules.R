@@ -11,11 +11,11 @@
 #' 
 #' + `macdonald` - an implementation Macdonald's model: see [macdonald]
 #'
-#' + `GeRM` - A Generalized Ross-Macdonald model: see [GeRM]
+#' + `GeM` - A generalized Macdonald model: see [GeM]
 #' 
-#' + `basicM` - A Basic Model for mosquito ecology: see [basicM]
+#' + `basicM` - A basic model for mosquito ecology: see [basicM]
 #' 
-#' + `RMdts` - A Discrete Time Ross-Macdonald model: see [RMdts]
+#' + `RMdts` - A Discrete Time Macdonald model: see [RMdts]
 #'
 #' @section In **`ramp.library`**: 
 #' 

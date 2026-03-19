@@ -1,7 +1,7 @@
 #' @title Vector Control 
 #' 
 #' @description
-#' Vector Control is a [junction] 
+#' Vector Control is a junction
 #'  
 #' @name xds_junction_vector_control
 NULL
