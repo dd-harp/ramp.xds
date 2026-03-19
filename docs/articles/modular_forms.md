@@ -1,11 +1,12 @@
-# Modular Forms for Disease Dynamics
+# Modular Forms
 
-A **modular form** is a stylized way of writing down a dynamical systems
-that emphasizes the structure of the underlying process. The modular
-structure of **`ramp.xds`** can be understood through the use of these
-forms. The forms we describe here rewrite models so that they closely
-resemble their implementation in `ramp.xds`, which makes it possible to
-relate written equations and computed code.
+The modular structure for computation implemented in **`ramp.xds`** can
+be understood by rewriting the equations in **modular form,** a stylized
+way of presenting a dynamical system that emphasizes the biological
+agents involved in the underlying process. Here, we rewrite a simple
+dynamical system in modular form, so the equations mirror the
+implementation in `ramp.xds.` For a longer discussion and examples, see
+[Modularity](https://dd-harp.github.io/ramp.xds/articles/modularity.md)
 
 ## A Standard Form
 
@@ -16,12 +17,12 @@ Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.
 and that framework has been implemented in `ramp.xds.`
 
 There is no *standard form* for writing down systems of differential
-equations, but many forms are used, depending on context. For
-comparison, we writing down a system of equations that does not
-emphasize the modularity, or *not a modular form.*
+equations, but some forms are preferred by scientists or mathematicians,
+depending on training and context.
 
-To illustrate the modular form, we start with the *Ross-Macdonald*-style
-model in Box 1.
+We start by writing one version of a Ross-Macdonald model as a system of
+equations that does not emphasize the modularity, or *not a modular
+form* (Box 1).
 
 ------------------------------------------------------------------------
 
@@ -30,102 +31,79 @@ model in Box 1.
 - Let the dependent variable \\I(t)\\ denote the density of infected
   humans, and the parameter \\H\\ the density of all humans
 
-- Let the dependent variable \\Y(t)\\ denote the density of infected
-  mosquitoes, and the parameter \\M\\ the density of all mosquitoes
+- Let the dependent variable \\M(t)\\ denote the density of mosquitoes,
+  and \\Y(t)\\ the density of infectious mosquitoes.
 
-- Let \\b\\ denote the fraction of bites by infective mosquitoes that
-  infect a human, and let \\r\\ denote the rate that infections clear
+- Human Infections:
 
-- Let \\c\\ denote the fraction of blood meals on infectious humans
-  infect a mosquito, and let \\g\\ denote the mosquito death rate
+  - \\b\\ denotes the fraction of bites by infectious mosquitoes that
+    infect a human; and
 
-- Let \\f\\ denote the overall blood feeding rate, and \\q\\ the human
-  fraction
+  - \\r\\ denotes the rate that infections clear.
 
-- Let \\\tau\\ denote the EIP.
+- Mosquito Ecology:
 
-In this set of equations, we ignore the delay for sporogony, but we
-count the mortality, so infections occur at the rate \\b e^{-g \tau}
-fqY/H.\\ We assume that the daily FoI is linearly proportional to the
-daily EIR, consistent with a Poisson model for exposure, so \\h = bE.\\
+  - \\\Lambda\\ denotes the emergence rate of adult, female mosquitoes;
 
-\\ \begin{array}{rl} dI/dt &= b e^{-gn}fq \frac YH (H-I) - r I \\ dY/dt
-&= fq c \frac IH (M-Y) - g Y \end{array}\\
+  - \\g\\ denotes the mosquito death rate;
+
+- Mosquito Blood Feeding & Infection Dynamics:
+
+  - \\c\\ denotes the fraction of blood meals on infectious humans that
+    infect a mosquito;
+
+  - \\f\\ denotes the overall blood feeding rate; and
+
+  - \\q\\ denotes the human blood fraction.
+
+In this set of equations, human infections occur at the rate \\fqbY/H,\\
+and mosquito infections at the rate \\fqcI/H.\\
+
+\\ \begin{array}{rl} dI/dt &= fq b \frac {Y}{H} (H-I) - r I \\ dM/dt &=
+\Lambda - g M \\ dY/dt &= fq c \frac {I}{H} (M-Y) - g Y \end{array} \\
+Written in this way, it is in a *standard form.*
 
 ------------------------------------------------------------------------
 
-## …in Modular Form
+## …in a Modular Form
 
-We illustrate by writing a Ross-Macdonald model in its modular form
-(Figure 1). In the modular form, we identify the terms in one equation
-that depend on the other variable. First, we focus on the equation
-describing human infection dynamics. We note that it depends on a term
-involving the variable \\Y.\\ The term is epidemiologically meaningful –
-it is called the force of infection (FoI). We let \\h\\ denote the FoI:
-\\h=b e^{-gn}fq \frac YH,\\
+We illustrate by rewriting this model in its modular form (Figure 1). In
+the modular form, we identify the terms in one equation that depend on
+the other variable. First, we focus on the equation describing human
+infection dynamics. We note that it depends on a term involving the
+variable \\Y.\\ The term is called the force of infection (FoI, Ross
+called it the *happenings* rate). We let \\h\\ denote the FoI:
 
-and now we can rewrite the equation
+\\h=fq b\frac {Y}{H}.\\
 
-\\ dI/dt = h (H-I) - r I \\
+Now, the first equation can be rewritten:
 
-Next, we isolate the equation describing mosquito infection dynamics, we
-note that it depends on a term that we will call the net infectiousness
-(NI).
+\\ dI/dt = h (H-I) - r I \\ Next, we isolate the equation describing
+mosquito infection dynamics. Mosquito infections depend on a term that
+we will call the net infectiousness (NI).
 
-\\\kappa = \frac XH\\
-
-The term \\ X = c I\\ is the density of infected humans, weighted by
-their infectiousness.
+\\\kappa = c\frac{I}{H}\\
 
 We note that \\fq\kappa\\ is the FoI for mosquito infections, and now we
-can rewrite the equation for mosquitoes:
+can rewrite the third equation for mosquitoes:
 
-\\ dY/dt = fq\kappa (M-Y) - g Y \\
+\\ dY/dt = fq\kappa\frac {I}{H} (M-Y) - g Y \\
 
-Since we also want to make this model extensible, we want to draw
-attention to the term \\h.\\ We note that the number of infective bites,
-per human, per day – called the daily entomological inoculation rate
-(EIR) – is
+\\ dM/dt = \Lambda - g M \\
 
-\\E = f q e^{-g\tau} \frac YH \\
-
-We assume that exposure is Poisson distributed:
-
-\\h = b E\\
-
-We emphasize that this is the same set
+With these four elements, the system has a modular form. In this modular
+form, there are three components (the SIS human model; the SI model; and
+mosquito population dynamics) and two dynamical terms (\\h\\ and
+\\\kappa\\).
 
 ------------------------------------------------------------------------
 
 ![Figure 1 - Diagram of a Ross-Macdonald model in Box 1, rewritten in a
-modular form.](RossMacdonald3b.png)
+modular form.](RossMacdonaldFormal.png)
 
 **Figure 1** - Diagram of a Ross-Macdonald model in Box 1, rewritten in
 a modular form.
 
 ------------------------------------------------------------------------
 
-## Computation
-
-To solve these equations, we need to write functions that compute the
-derivatives. We are using the R package `deSolve.` A properly formed
-derivative function implementing the
-
-``` r
-
-RMv1 <- function(t, y, pars) {
-  with(pars,{
-      eir = exp(-g*n)*Y/H
-      foi = b*eir
-      kappa = c*I/H
-      dX = foi*(H-I) - r*I
-      dY = a*kappa*(M-Y) - g*Y 
-      return(list(dX, dY))
-  })
-}
-```
-
-## Full Modularity
-
-For a longer discussion of modularity, see the vignette
-[modularity](https://dd-harp.github.io/ramp.xds/articles/modularity.md)
+## Dynamical Terms

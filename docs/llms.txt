@@ -967,7 +967,7 @@ Blood Feeding on non-Residents
 
 Methods to compute or update mosquito bionomic parameters
 
-- [`mosquito_bionomics`](https://dd-harp.github.io/ramp.xds/reference/mosquito_bionomics.md)
+- [`xds_info_mosquito_bionomics`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_bionomics.md)
   : Mosquito Bionomics
 - [`blood_feeding`](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)
   : Blood Feeding Overview
@@ -1182,10 +1182,10 @@ A function maker
   Component](https://dd-harp.github.io/ramp.xds/articles/L-interface.md):
 - [Progressive Model
   Building](https://dd-harp.github.io/ramp.xds/articles/ModelBuilding.md):
-- [Modular Forms for Disease
-  Dynamics](https://dd-harp.github.io/ramp.xds/articles/modular_forms.md):
-- [Nimble Model
-  Building](https://dd-harp.github.io/ramp.xds/articles/modularity.md):
+- [Modular
+  Forms](https://dd-harp.github.io/ramp.xds/articles/modular_forms.md):
+- [Modular
+  Computation](https://dd-harp.github.io/ramp.xds/articles/modularity.md):
 - [Mosquito Spatial Ecology with
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/MosquitoSpatialEcology.md):
 - [The MY

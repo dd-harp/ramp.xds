@@ -136,7 +136,7 @@ In the generalized Macdonald
 bionomic parameters are set by calling an `S3` function. In this case,
 the equations have been set up to handle time-varying survival through a
 time-varying EIP (see
-[mosquito_bionomics](https://dd-harp.github.io/ramp.xds/reference/mosquito_bionomics.md)).
+[xds_info_mosquito_bionomics](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_bionomics.md)).
 
 ## See also
 

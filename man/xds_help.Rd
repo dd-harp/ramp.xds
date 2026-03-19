@@ -58,3 +58,8 @@ for immature mosquito ecology.
 }
 }
 
+\section{Internals}{
+
+Information about the \link{xds_object}
+}
+

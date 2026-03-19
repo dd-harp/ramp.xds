@@ -81,7 +81,6 @@ NULL
 #' @return the derivatives, as a vector
 #'
 #' @keywords internal
-#' @keywords internal
 #' @export
 dXHdt.SIS <- function(t, y, xds_obj, i) {
 

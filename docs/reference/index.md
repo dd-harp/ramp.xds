@@ -715,7 +715,7 @@ Blood Feeding on non-Residents
 
 Methods to compute or update mosquito bionomic parameters
 
-- [`mosquito_bionomics`](https://dd-harp.github.io/ramp.xds/reference/mosquito_bionomics.md)
+- [`xds_info_mosquito_bionomics`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_bionomics.md)
   : Mosquito Bionomics
 - [`blood_feeding`](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)
   : Blood Feeding Overview

@@ -112,12 +112,14 @@ e^{-\Omega(t_0)}\$\$
 
 ## Dynamics
 
-In the following we use the subscript \\\tau\\ to mean the value of a
-parameter, term, or variable at time \\t-\tau'(t)\\: *e.g.*, \\M\_\tau =
-M(t-\tau'(t)\\. \$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M
-\\ dP/dt &= f(M-P) - \Omega \cdot P \\ dY/dt &= fq\kappa(M-Y) - \Omega
-\cdot Y \\ dZ/dt &= \Upsilon \cdot (fq\kappa)\_\tau(M\_\tau-Y\_\tau) -
-\Omega \cdot Z \\ \end{array}\$\$
+In the following we use the subscript \\\tau\\ to denote the value of a
+parameter, term, or variable at time \\t-\tau'(t)\\: \$\$X\_\tau =
+X(t-\tau'(t))\$\$.
+
+The derivatives of the state variables are: \$\$ \begin{array}{rl} dM/dt
+&= \Lambda - \Omega \cdot M \\ dP/dt &= f(M-P) - \Omega \cdot P \\ dY/dt
+&= fq\kappa(M-Y) - \Omega \cdot Y \\ dZ/dt &= \Upsilon \cdot
+(fq\kappa)\_\tau(M\_\tau-Y\_\tau) - \Omega \cdot Z \\ \end{array}\$\$
 
 The function
 [dMYdt.GeM](https://dd-harp.github.io/ramp.xds/reference/dMYdt.GeM.md)

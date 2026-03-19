@@ -6,12 +6,15 @@ header-includes:
 --- 
 
 # **`ramp.xds`** - e**X**tensible **D**ynamical **S**ystems 
-## *Nimble model building and computation for mosquito-borne disease dynamics.*
+## *Nimble model building and computation for mosquito-borne disease dynamics*
 
 
 <!-- badges: start -->
 [![PLoS Computational Biology](https://img.shields.io/badge/doi%3A10.1371%2Fjournal.pcbi.1010684-cornflowerblue?style=for-the-badge&logoColor=cornflowerblue&label=PLoS%20Comp%20Bio&labelColor=slategrey&link=https%3A%2F%2Fjournals.plos.org%2Fploscompbiol%2Farticle%3Fid%3D10.1371%2Fjournal.pcbi.1010684)](https://doi.org/10.1371/journal.pcbi.1010684)
 <!-- badges: end -->
+
+**`ramp.xds`** is an R software package that supports **Sim**ulation-**B**ased **A**nalytics ([**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html))
+and **R**obust **A**nalytics for **M**alaria **P**olicy ([**RAMP**](https://faculty.washington.edu/smitdave/ramp/index.html)). 
 
 ## Install **`ramp.xds`** 
 
@@ -26,24 +29,24 @@ To get started, see the vignette [*Getting Started*](https://dd-harp.github.io/r
 
 ***
 
-**`ramp.xds`** is an R software package that supports **Sim**ulation-**B**ased **A**nalytics ([**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)) and **R**obust **A**nalytics for **M**alaria **P**olicy ([**RAMP**](https://faculty.washington.edu/smitdave/ramp/index.html)). 
 
 ## What is RAMP?
 
-Malaria analytics is the systematic analysis of data for decision support or to guide malaria policies. Simulation-based malaria analytics is malaria analytics that uses dynamical systems. **RAMP** is short acronym for a big 
-idea about how to use simulation based analytics to support iterative malaria analytics and adaptive malaria control.
+Malaria analytics is the systematic analysis of data for decision support or to guide malaria policies.
+Given the complexity, we often turn to simulation-based analytics (*e.g.,* analysis that involves building and solving dynamical systems).
+**RAMP** is an acronym for a big idea about how to use simulation-based analytics for iterative policy support and adaptive malaria control.
 
 Malaria involves non-linear interactions among humans, mosquitoes, parasites, and malaria managers that are constantly changing in response to control: it is a kind of complex adaptive system. 
 Lewis Hackett compared malaria to a game of chess:
 
 > …malaria is so moulded and altered by local conditions that it becomes a thousand different diseases and epidemiological puzzles. Like chess, it is played with a few pieces, but is capable of an infinite variety of situations.
 
-In other words, malaria systems are locally peculiar: small differences, such as the behaviors of local humans and mosquitoes, can affect blood feeding patterns, transmission, and the responses to control.
-Malaria complexity, local peculiarity, and systematic changes in response to control create enormous needs for policy, but our ability to fill those needs is limited. 
-Malaria analytics must make the most of limited data. Malaria research & analytics need a systematic way of dealing with complexity, local peculariaty, and uncertainty. This was the seed crystal for RAMP.  
+Malaria systems are locally peculiar: small differences, such as the behaviors of local humans and mosquitoes, can affect blood feeding patterns, transmission, and the responses to control.
+Malaria complexity, peculiarity, and modification of the systems by malaria control create enormous needs for information to guide malaria policies, but our ability to fill those needs is limited. 
+Malaria analytics must make the most of limited data. Malaria research & analytics need a systematic way of dealing with complexity and uncertainty in context.
 
-RAMP was developed as a way of dealing with the uncertainty. We can't wish away the uncertainty, but we can do our best to characterize and quantify uncertainty and propagate the uncertainty through analytics pipelines
-we use to develop policy. Robust analytics have gone to great lengths to ensure that the advice would not change if the analysis had been done in another reasonable way.  
+RAMP was developed as a way of dealing with the uncertainty. We can't wish it away, but we can do our best to characterize and quantify uncertainty and propagate it through the analytics pipelines we use to develop policy. 
+Robust analytics have gone to great lengths to ensure that the advice would not change if the analysis had been done in another reasonable way.  
 
 This software, called **SimBA** (short for **Sim**ulation-**B**ased **A**nalytics),
 was developed as a practical way of developing robust, simulation-based analytics for malaria. 
@@ -51,18 +54,18 @@ Managing malaria involves a large set of linked activities, and some of these co
 a heavy computational or quantitative load: 
 data processing and curation; conventional statistical analysis; scenario planning; 
 and strategic planning.
-*Simulation based analytics* 
--- the application of dynamical systems models of malaria transmission dynamics and control in malaria analytics -- 
+*Simulation-based analytics*
+--- the application of dynamical systems models of malaria transmission dynamics and control in malaria analytics ---
 play a key role through seamless integration of retrospective data analysis, real-time decision support, and evidence-based 
 approaches to setting rational expectations about the future. 
 SimBA lowers the costs of doing all this robustly.  
 
-The [**SimBA** project](https://faculty.washington.edu/smitdave/simba/index.html) (**Sim**ultation-**B**ased **A**nalytics) is a
+The [**SimBA** project](https://faculty.washington.edu/smitdave/simba/index.html) (**Sim**ulation-**B**ased **A**nalytics) is a
 suite of software packages that have the goal of supporting routine malaria analytics: 
 
 + It was designed to enable nimble model building.  
 
-+ The models play a role in developing **malaria intelligence** -- a quantitative assessment of malaria built for policy evaluation.
++ The models play a role in developing **malaria intelligence** --- a quantitative assessment of malaria built for policy evaluation.
 
 + The software was designed for iterative engagement: the models can be reused and they can be modified. 
 
@@ -76,36 +79,36 @@ A core goal is to understand malaria transmission in terms of a *changing baseli
 
 ## What is SimBA? 
 
-This package, **`ramp.xds`** handles core computation for a suite of six software packages that support simulation-based analytics. SimBA describes the collection. 
+This package, **`ramp.xds`**, handles core computation for a suite of six software packages that support simulation-based analytics. SimBA describes the collection. 
 
 SimBA includes **`ramp.xds`** and all its satellite packages (below). 
 
-SimBA has been designed to serve the needs of malaria programs, where mathematical models are used for decision support and adaptive malaria control in a defined geographical area. Mechanistic models that have been fitted to data describing malaria in a place provide a synthesis of *malaria intelligence.* These models can facilitate complex analysis, extending our innate mental capabilities. By characterizing and quantifying uncertainty, and then propagating the uncertainty through the analysis, simulation-based analytics serve as a platform for giving robust policy advice and for adaptive malaria control. As the needs of a malaria program changes, the models can be modified -- simplified or extended -- to serve the tasks at hand.
+SimBA has been designed to serve the needs of malaria programs, where mathematical models are used for decision support and adaptive malaria control in a defined geographical area. Mechanistic models that have been fitted to data describing malaria in a place provide a synthesis of *malaria intelligence.* These models can facilitate complex analysis, extending our innate mental capabilities. By characterizing and quantifying uncertainty, and then propagating the uncertainty through the analysis, simulation-based analytics serve as a platform for giving robust policy advice and for adaptive malaria control. As the needs of a malaria program change, the models can be modified --- simplified or extended --- to serve the tasks at hand.
 
-**`ramp.xds`** does core copmutation: the software makes it easy to build and solves dynamical systems and outputs the predicted values of standard, observable malaria metrics. 
-It also provides some computational support for qualitative analysis: it computes steady states, stable orbits. In [**`ramp.work`**](https://dd-harp.github.io/ramp.work/), we developed algorithms that fit models and evaluate vector control; that develope short term forecasts; and that enable scenario planning and strategic planning.
+**`ramp.xds`** does core computation: the software makes it easy to build and solve dynamical systems and outputs the predicted values of standard, observable malaria metrics. 
+It also provides some computational support for qualitative analysis: it computes steady states, stable orbits. In [**`ramp.work`**](https://dd-harp.github.io/ramp.work/), we developed algorithms that fit models and evaluate vector control; that develop short-term forecasts; and that enable scenario planning and strategic planning.
 
 Originally, **`ramp.xds`** was a single program, but it made sense to split the software into several R packages. 
-When it split, we started using calling the software development project **SimBA**. 
+When it split, we started calling the software development project **SimBA**. 
 In the narrow sense, **SimBA** software includes six distinct R packages: 
 
 1. **`ramp.xds`** handles setup, solving, plotting, and some analysis. 
 It was developed to build and solve dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens based on a well-defined mathematical framework.
-It includes a basic set of models -- enough to design, verify, and demonstrate the basic features of modular software. 
+It includes a basic set of models --- enough to design, verify, and demonstrate the basic features of modular software.
 
-2. [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an extended library of models -- stable code that has been tested and verified. It includes a large set of model families published in peer review that are not included in **`ramp.xds`** The ability to reuse code reduces the costs of replicating studies. Through this library, **`ramp.xds`** also supports nimble model building and analytics for other mosquito-borne pathogens. 
+2. [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an extended library of models --- stable code that has been tested and verified. It includes a large set of model families published in peer review that are not included in **`ramp.xds`**. The ability to reuse code reduces the costs of replicating studies. Through this library, **`ramp.xds`** also supports nimble model building and analytics for other mosquito-borne pathogens. 
 
-3. [**`ramp.control`**](https://dd-harp.github.io/ramp.control/) is a collection of disease control models for **`ramp.xds`** 
+3. [**`ramp.control`**](https://dd-harp.github.io/ramp.control/) is a collection of disease control models for **`ramp.xds`**.
 
-4. [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a collection of utilities to model exogenous forcing in models for **`ramp.xds`** 
+4. [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a collection of utilities to model exogenous forcing in models for **`ramp.xds`**.
 
-5. [**`ramp.demog`**](ramp.demog.html) is is a supplementary code library for **`ramp.xds`** that handles human demography and stratification, including vital dynamics and age structure.
+5. [**`ramp.demog`**](ramp.demog.html) is a supplementary code library for **`ramp.xds`** that handles human demography and stratification, including vital dynamics and age structure.
 
-6. [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) includes algorithms to apply the framework, include code to fit models to data and to do constrained optimization 
+6. [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) includes algorithms to apply the framework, including code to fit models to data and to do constrained optimization.
 
-**`ramp.xds`**  is under active development. It supersedes two other software packages, no longer under active development: [**`exDE`**](https://dd-harp.github.io/exDE/) and [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB/). The history of development of RAMP simulation software has been memorialized in a [vignette](https://dd-harp.github.io/ramp.xds/articles/History.html).
+**`ramp.xds`** is under active development. It supersedes two other software packages, no longer under active development: [**`exDE`**](https://dd-harp.github.io/exDE/) and [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB/). The history of development of RAMP simulation software has been memorialized in a [vignette](https://dd-harp.github.io/ramp.xds/articles/History.html).
 
-The material in this website supports **`ramp.xds`** development and a basic introduction. 
+The material in this website supports development and use of **`ramp.xds`**. 
 
 
 ## Contributing
@@ -123,11 +126,11 @@ We welcome issues and encourage contribution regardless of experience; the lengt
 + Support for *Adaptive Vector Control* is funded by grant **Spatial Targeting and Adaptive Vector Control for Residual Transmission and Malaria Elimination in Urban African Settings** (R01 AI163398, PI = David L Smith), from US National Institute of Allergies and Infectious Diseases (NIAID).
 
 + Development of SimBA, RAMP and Adaptive Malaria Control was supported through collaboration with the [**Bioko Island Malaria Elimination Program**](https://www.mcd.org/focus-areas/featured-projects/bioko-island-malaria-elimination-project) and
-Uganda's **National Malaria Control Division** and **Department of Health Information** in the [Uganda Ministry of Health](https://www.health.go.ug/)
+Uganda's **National Malaria Control Division** and **Department of Health Information** in the [Uganda Ministry of Health](https://www.health.go.ug/).
 
 + Development of this software benefited from funding and collaboration with the NIAID grant **Program for Resistance, Immunology, Surveillance & Modeling of Malaria in Uganda** (PRISM) (2U19AI089674, PIs = Grant Dorsey, University of California San Francisco; and Moses Kamya, Infectious Diseases Research Collaboration), which was part of the **International Centers of Excellence in Malaria Research** (ICEMR) program.
 
-+ Funding to develop models of West Nile Virus to support Harris County Public Health was funded by the NSF as part of a project, Computing the Biome (PI = Janos Sztipanovits). The project was part of the Convergence Accelerator program of the National Science Foundation, Directorate for Technology, Innovation, and Partnerships (TIP) ([NSF 2040688](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2040688) and [NSF 2040688](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2134862), PI=Janos Sztipanovits, Vanderbilt University).
++ Models of West Nile Virus to support Harris County Public Health were developed as part of an NSF-funded project, Computing the Biome (PI = Janos Sztipanovits, Vanderbilt University, [NSF 2040688](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2040688)). The project was part of the Convergence Accelerator program of the National Science Foundation, Directorate for Technology, Innovation, and Partnerships (TIP). 
 
 + We also acknowledge the importance of the mosquito working groups of **RAPIDD** (Research and Policy for Infectious Disease Dynamics), which was sponsored by the Fogarty International Center, NIH, and the Department of Homeland Security. The mosquito working groups were led by Professor Thomas Scott. RAPIDD was directed by F. Ellis McKenzie. 
 

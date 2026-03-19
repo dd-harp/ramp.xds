@@ -51,6 +51,9 @@
 #'   \item \code{\link{L_change}} -- list of `change_` functions for **L** Modules
 #'   \item \code{\link{L_setup}} -- list of `setup_` functions for **L** Modules
 #' }  
+
+#' @section Internals:
+#' Information about the [xds_object]
 #'
 #' @name xds_help 
 NULL

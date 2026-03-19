@@ -72,7 +72,7 @@ configure: `Xoptions,` `MYoptions,` & `Loptions.`
 
 ## Mosquito Bionomics
 
-[mosquito_bionomics](https://dd-harp.github.io/ramp.xds/reference/mosquito_bionomics.md)
+[xds_info_mosquito_bionomics](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_bionomics.md)
 
 ## Forcing
 

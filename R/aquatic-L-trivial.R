@@ -69,11 +69,11 @@ Update_Lt.trivial <- function(t, y, xds_obj, s) {
 }
 
 #' @title Compute Emergent Adults for `trivial` (**L** Component)
-#' @description The number of emerging adults is a function \deqn{\Lambda S(t) T(t)} where
+#' @description The number of emerging adults is a function \deqn{\Lambda S(t) T(t) K(t)} where
 #' + \eqn{\Lambda} or `Lambda` is the mean number of adult female mosquitoes emerging per day
 #' + \eqn{S(t)} or `F_season` is a seasonal signal (ideally, with an average annual mean of 1)
 #' + \eqn{T(t)} or `F_trend` is a function returning a trend (ideally, with an average value of 1)
-#' + \eqn{P(t)} or `F_shock` is a function describing a perturbation (by default, set to 1)
+#' + \eqn{K(t)} or `F_shock` is a function describing a perturbation (by default, set to 1)
 #' @inheritParams F_emerge
 #' @return a [numeric] vector of length `nHabitats`
 #' @keywords internal

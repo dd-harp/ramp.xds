@@ -41,10 +41,10 @@
   Component](https://dd-harp.github.io/ramp.xds/articles/L-interface.md):
 - [Progressive Model
   Building](https://dd-harp.github.io/ramp.xds/articles/ModelBuilding.md):
-- [Modular Forms for Disease
-  Dynamics](https://dd-harp.github.io/ramp.xds/articles/modular_forms.md):
-- [Nimble Model
-  Building](https://dd-harp.github.io/ramp.xds/articles/modularity.md):
+- [Modular
+  Forms](https://dd-harp.github.io/ramp.xds/articles/modular_forms.md):
+- [Modular
+  Computation](https://dd-harp.github.io/ramp.xds/articles/modularity.md):
 - [Mosquito Spatial Ecology with
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/MosquitoSpatialEcology.md):
 - [The MY
