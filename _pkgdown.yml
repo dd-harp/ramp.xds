@@ -14,6 +14,8 @@ navbar:
       href: articles/Working.html
     - text: The 5-3-4 Model 
       href: articles/ex_534.html
+    - text: Modular Forms 
+      href: articles/modular_forms.html
     - text: Delay Equations 
       href: articles/Delays.html
     - text: Ports & Junctions 
@@ -405,7 +407,7 @@ reference:
   desc: |
     Methods to compute or update mosquito bionomic parameters
   contents:
-  - mosquito_bionomics 
+  - xds_info_mosquito_bionomics 
   - blood_feeding 
   - mosquito_dispersal
   - mosquito_demography 

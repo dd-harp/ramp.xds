@@ -132,7 +132,7 @@
 #' In the generalized Macdonald [GeM], several bionomic parameters 
 #' are set by calling an `S3` function. In this case, the equations have 
 #' been set up to handle time-varying survival through a time-varying EIP 
-#' (see [mosquito_bionomics]).
+#' (see [xds_info_mosquito_bionomics]).
 #' 
 #' @seealso [xds_help_setup_options] | [xds_info_junction]
 #' 

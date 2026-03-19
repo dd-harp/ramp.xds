@@ -78,8 +78,10 @@
 #' **Net Infectiousness** -- `kappa` or \eqn{\kappa}, is computed 
 #' by the **XY**-Interface using outputs of the **XH** Component   
 #' @section Dynamics:
-#' In the following we use the subscript \eqn{\tau} to mean the value of 
-#' a parameter, term, or variable at time \eqn{t-\tau'(t)}: *e.g.*, \eqn{M_\tau = M(t-\tau'(t)}.
+#' In the following we use the subscript \eqn{\tau} to denote the value of 
+#' a parameter, term, or variable at time \eqn{t-\tau'(t)}: \deqn{X_\tau = X(t-\tau'(t))}.
+#' 
+#' The derivatives of the state variables are:
 #' \deqn{
 #' \begin{array}{rl}
 #' dM/dt &= \Lambda - \Omega \cdot M \\

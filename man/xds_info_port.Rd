@@ -153,7 +153,7 @@ to handle exogenous forcing.
 In the generalized Macdonald \link{GeM}, several bionomic parameters
 are set by calling an \code{S3} function. In this case, the equations have
 been set up to handle time-varying survival through a time-varying EIP
-(see \link{mosquito_bionomics}).
+(see \link{xds_info_mosquito_bionomics}).
 }
 
 \seealso{

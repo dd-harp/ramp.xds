@@ -53,7 +53,7 @@
 #' 
 #' @section Mosquito Bionomics: 
 #' 
-#' [mosquito_bionomics] 
+#' [xds_info_mosquito_bionomics] 
 #' 
 #' @section Forcing:
 #' 

@@ -76,7 +76,7 @@ about how to configure:
 \section{Mosquito Bionomics}{
 
 
-\link{mosquito_bionomics}
+\link{xds_info_mosquito_bionomics}
 }
 
 \section{Forcing}{
