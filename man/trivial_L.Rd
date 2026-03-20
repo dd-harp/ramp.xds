@@ -2,21 +2,66 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{trivial_L}
 \alias{trivial_L}
-\title{The \code{trivial} Module for the L Component}
+\title{\code{trivial} --- \strong{L} Module}
 \description{
-Implements the \strong{L} component using a trivial (trace) model where
-the emergence rate \eqn{\alpha} is specified as a forced function of
-time rather than computed dynamically. This module has no state variables.
+The trivial module outputs the emergence
+rate of adult mosquitoes by calling a
+\emph{trace function,}
+\deqn{F_\alpha(t) = \Lambda S(t) T(t) K(t)}
+where
+\itemize{
+\item \eqn{\Lambda} or \code{Lambda} is the mean number of adult female mosquitoes emerging per day
+\item \eqn{S(t)} or \code{F_season} is a seasonal pattern
+\item \eqn{T(t)} or \code{F_trend} is a trend pattern
+\item \eqn{K(t)} or \code{F_shock} is a perturbation
 }
-\section{State Variables}{
-
-None — \eqn{\alpha} is supplied as a trace function.
 }
-
 \section{Parameters}{
 
 \describe{
-\item{\code{F_alpha}}{a function of time returning the emergence rate}
+\item{\code{Lambda}}{the mean annual emergence rate}
+\item{\code{season_par}}{parameters for \link{make_function}: \verb{F_season=make_par(season_par})}
+\item{\code{trend_par}}{parameters for \link{make_function}: \code{F_trend=make_par(trend_par)}}
+\item{\code{shock_par}}{parameters for \link{make_function}: \code{F_shock=make_par(shock_par)}}
+}
+
+The default setup option is \code{season_par = trend_par = shock_par = makepar_F_one()}.
+}
+
+\section{Get}{
+
+\itemize{
+\item \code{get_L_pars} --- the \code{trivial} method returns all the parameters
+\item \code{get_mean_forcing} --- get \code{Lambda}
+\item \code{get_season} --- returns \code{season_par}
+\item \code{get_trend}  --- returns \code{trend_par}
+\item \code{get_shock}  --- returns \code{shock_par}
+}
+}
+
+\section{Change}{
+
+\itemize{
+\item \code{change_L_pars} --- change parameters by name
+\item \code{change_mean_forcing} --- changes \code{Lambda}
+\item \code{change_season} --- changes elements of \code{season_par}
+\item \code{change_trend}  --- changes elements of \code{trend_par}
+\item \code{change_shock}  --- changes elements of \code{shock_par}
+}
+}
+
+\section{Notes}{
+
+\enumerate{
+\item The module has no state variables.
+\item The size of an object saved by \code{saveRDS} balloons if it saves a function,
+so \code{saveXDS} function strips the functions and \code{readRDS} remakes the function
+from the stored parameters.
+\code{F_season}, \code{F_trend}, and \code{F_shock} can be set up manually by passing any
+user defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
+rather than \code{saveXDS} and \code{readXDS}
+\item Setup expects that \verb{membership= c(1:nPatches),} but any membership vector
+works.
 }
 }
 

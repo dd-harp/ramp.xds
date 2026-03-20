@@ -2,7 +2,7 @@
 
 Implements
 [LBionomics](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md)
-for the RM model
+for the `trivial` module
 
 ## Usage
 

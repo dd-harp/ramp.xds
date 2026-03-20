@@ -31,4 +31,4 @@ LBaseline(t, y, xds_obj, s)
 
 ## Value
 
-a named [list](https://rdrr.io/r/base/list.html)
+an **`xds`** object

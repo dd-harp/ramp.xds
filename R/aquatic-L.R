@@ -204,11 +204,10 @@ change_L_inits <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_L_inits", xds_obj$L_obj[[s]])
 }
 
-#' @title Set the Values of the Indices for **L** Component Modules
+#' @title Set up Indices for **L** Component Variables 
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return an **`xds`** object
-#' @keywords internal
 #' @keywords internal
 #' @export
 setup_L_ix <- function(xds_obj, s) {

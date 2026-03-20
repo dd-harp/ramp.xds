@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{check_L.trivial}
 \alias{check_L.trivial}
-\title{Run a check before solving}
+\title{Check the \code{trivial} module}
 \usage{
 \method{check_L}{trivial}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-Run a check before solving
+Run no consistency checks
 }
 \keyword{internal}

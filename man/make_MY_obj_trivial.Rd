@@ -25,9 +25,9 @@ make_MY_obj_trivial(
 
 \item{q}{the human fraction}
 
-\item{Z}{the human fraction}
+\item{Z}{the density of infectious mosquitoes}
 
-\item{eggs}{the human fraction}
+\item{eggs}{the mean egg laying rate}
 
 \item{season_par}{parameters to configure a \code{F_season} using \link{make_function}}
 
@@ -36,7 +36,7 @@ make_MY_obj_trivial(
 \item{shock_par}{parameters to configure \code{F_shock} using \link{make_function}}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 Make parameters for trivial aquatic mosquito model

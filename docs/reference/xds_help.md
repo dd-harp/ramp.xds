@@ -77,3 +77,8 @@ Help guides for immature mosquito ecology.
 
 - [`L_setup`](https://dd-harp.github.io/ramp.xds/reference/L_setup.md) –
   list of `setup_` functions for **L** Modules
+
+## Internals
+
+Information about the
+[xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)

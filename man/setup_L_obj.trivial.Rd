@@ -16,7 +16,7 @@
 \item{options}{a named list to configure \strong{\code{L_obj}}}
 }
 \value{
-a \link{list} vector
+an \strong{\code{xds}} object
 }
 \description{
 Implements \link{setup_L_obj} for the trivial model

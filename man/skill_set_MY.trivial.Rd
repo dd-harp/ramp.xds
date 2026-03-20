@@ -14,9 +14,6 @@
 }
 \description{
 The \strong{MY} skill set is a list of
-an module's capabilities:
-\itemize{
-\item \code{demography} is
-}
+a module's capabilities
 }
 \keyword{internal}

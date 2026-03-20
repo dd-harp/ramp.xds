@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{setup_L_ix}
 \alias{setup_L_ix}
-\title{Set the Values of the Indices for \strong{L} Component Modules}
+\title{Set up Indices for \strong{L} Component Variables}
 \usage{
 setup_L_ix(xds_obj, s)
 }
@@ -15,6 +15,6 @@ setup_L_ix(xds_obj, s)
 an \strong{\code{xds}} object
 }
 \description{
-Set the Values of the Indices for \strong{L} Component Modules
+Set up Indices for \strong{L} Component Variables
 }
 \keyword{internal}

@@ -31,4 +31,4 @@ Update_MYt(t, y, xds_obj, s)
 
 ## Value
 
-a null vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length 0

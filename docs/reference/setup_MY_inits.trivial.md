@@ -1,8 +1,6 @@
-# Setup the trivial model
+# Setup Inits for `trivial` (**MY**)
 
-Implements
-[setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)
-for the trivial model
+Return the **`xds`** object unmodified
 
 ## Usage
 
@@ -27,4 +25,4 @@ setup_MY_inits(xds_obj, s, options = list())
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) vector
+an **`xds`** object

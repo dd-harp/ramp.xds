@@ -1,6 +1,6 @@
-# Get the feeding rate
+# Get the mortality rate
 
-Get the feeding rate
+Get the mortality rate
 
 ## Usage
 

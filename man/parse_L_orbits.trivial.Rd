@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{parse_L_orbits.trivial}
 \alias{parse_L_orbits.trivial}
-\title{parse \strong{L} Component Variables for \code{basicL}}
+\title{Parse for \code{trivial} (\strong{L})}
 \usage{
 \method{parse_L_orbits}{trivial}(outputs, xds_obj, s)
 }
@@ -14,9 +14,9 @@
 \item{s}{the species index}
 }
 \value{
-none
+an empty \link{list}
 }
 \description{
-Return a numeric vector of length 0
+Returns an empty list
 }
 \keyword{internal}

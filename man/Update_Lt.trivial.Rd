@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{Update_Lt.trivial}
 \alias{Update_Lt.trivial}
-\title{Update State Variables for \code{trivial} (\strong{L} Component)}
+\title{Update State Variables for \code{trivial} (\strong{L})}
 \usage{
 \method{Update_Lt}{trivial}(t, y, xds_obj, s)
 }
@@ -16,9 +16,9 @@
 \item{s}{the species index}
 }
 \value{
-a \link{numeric} vector
+a \link{numeric} vector of length 0
 }
 \description{
-Implements \link{Update_Lt} for the trivial (forced emergence) model.
+Returns a numeric vector of length 0
 }
 \keyword{internal}

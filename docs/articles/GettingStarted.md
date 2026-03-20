@@ -72,10 +72,10 @@ model <- xds_setup()
 
 The object returned by
 [`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-is called a **xds model** object: it is a fully defined model that can
+is called an **xds model** object: it is a fully defined model that can
 be solved by
 [`xds_solve()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md).
-Here, called it `model.`
+Here, we called it `model`.
 
 The arguments are stored and can be easily retrieved. The name of the
 module for human / host infection and immune dynamics is stored as
@@ -88,8 +88,8 @@ model$Xname
 
     ## [1] "SIS"
 
-`SIS` was set up with default parameter values, that can be viewed with
-the function `get_XH_obj`:
+`SIS` was set up with default parameter values that can be viewed with
+the function `get_XH_pars`:
 
 ``` r
 
@@ -115,19 +115,18 @@ get_XH_pars(model)
     ## [1] 0.9
 
 Functions like `get_XH_pars` are designed to help users get to know the
-model oject. In this case, the parameters are stored as
-`model$Xpar[[i]],` for the \\i^{th}\\ species. Knowing the names, the
-parameters can then be viewed (or changed):
+model object. In this case, the parameters are stored as
+`model$XH_obj[[i]],` for the \\i^{th}\\ species. Knowing the names, the
+parameters can then be viewed (or changed). For example, this would
+change `r` for the first species:
 
 ``` r
 
-model$XH_obj[[1]]$r
+model$XH_obj[[1]]$r <- 1/150
 ```
 
-    ## [1] 0.005555556
-
 To make it easy to change parameters, we also wrote the `change_XH_pars`
-by passing the new values to be changed in a named list.
+function, which takes new values in a named list.
 
 ``` r
 
@@ -139,7 +138,7 @@ get_XH_pars(model)$r
 
 Similarly, initial values were assigned default values at setup. In
 **`ramp.xds,`** human/host demography is treated as a distinct process,
-so the intial values for :
+so the initial values are:
 
 ``` r
 
@@ -152,27 +151,27 @@ get_XH_inits(model, 1)
     ## $I
     ## [1] 1
 
-The default parameters and initial values can be over-written at setup
-by passing `options = list(...)` with different values. Since
-`xds_setup` calls functions to set up several model objects, each
-component has its own options name. For the `XH` component, setup
-options for the **XH** component are passed in `XHoptions`:
+The default parameters and initial values can be overwritten at setup by
+passing `options = list(...)` with different values. Since `xds_setup`
+calls functions to set up several model objects, each component has its
+own options name. For the **XH** component, options are passed in
+`XHoptions`:
 
 ``` r
 
-Xo = list(b=1/150, c=0.2, b=0.6, I=2)
+Xo = list(r=1/150, c=0.2, b=0.6, I=2)
 model1 <- xds_setup(XHoptions = Xo)
 get_XH_pars(model1)
 ```
 
     ## $b
-    ## [1] 0.006666667
+    ## [1] 0.6
     ## 
     ## $c
     ## [1] 0.2
     ## 
     ## $r
-    ## [1] 0.005555556
+    ## [1] 0.006666667
     ## 
     ## $q_lm
     ## [1] 0.8
@@ -186,7 +185,7 @@ get_XH_pars(model1)
 In the `SIS` model, we set \\H=S+I,\\ so the software computes \\dH/dt\\
 and \\dI/dt\\ and sets \\S=H-I.\\ By policy, the software computes the
 total population size, \\H,\\ dynamically and treats it differently.
-This is because plays an important role in setting up the *Blood
+This is because it plays an important role in setting up the *Blood
 Feeding* interface, so it is not possible to set \\S.\\ Instead, \\S\\
 is computed after solving and parsing.
 
@@ -225,12 +224,12 @@ model$MYname
 
     ## [1] "macdonald"
 
-The design pattern is followed: once again, parameters can be viewed
-with `get_MY_pars` and the method for setting parameter values by
-passing a named list of values to `MYoptions` in
-[`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-or changing the parameter values by passing new values by name in a list
-to `change_MY_pars.`
+The design pattern is followed. Parameters can be viewed with
+`get_MY_pars`. Parameter values can be set by passing a named list to
+`MYoptions` in
+[`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md),
+and changed after setup by passing new values in a named list to
+`change_MY_pars`.
 
 The name of the default module for aquatic mosquito ecology is called
 `Lname.` The default module is the `trivial` module:
@@ -246,7 +245,7 @@ For the `trivial` module, arguments passed at the command line configure
 functions that pass values to other dynamical components.
 
 The design pattern is followed: parameters can be viewed with
-`get_L_pars` and the method for setting parameter values by passing a
+`get_L_pars` and the method for setting parameter values is to pass a
 named list of values to `Loptions` in `xds_setup().` After setup, the
 `change_L_pars` works in the same way as the other `change_` functions.
 
@@ -278,10 +277,6 @@ supplied. All four of the following do the same thing:
 model <- xds_solve(model, times=0:365) 
 model <- xds_solve(model, times=0:365, Tmax=730, dt=5) 
 model <- xds_solve(model, Tmax=365, dt=1) 
-```
-
-``` r
-
 model <- xds_solve(model) 
 ```
 
@@ -311,9 +306,8 @@ The outputs from solving a system of equations include:
   terms parsed by name, accessible separately for each dynamical
   component
 
-Note that the `time` holds the default values of the independent
-variable time where we solved the initial value problem for the
-dependent variables.
+Note that `time` is the set of time points where we output the values of
+the dependent variables.
 
 ``` r
 
@@ -341,8 +335,9 @@ it.
 ## Outputs
 
 To make it easy to deal with the outputs, the dependent variables are
-parsed and returned in named lists. `xde_solve()` also computes some
-standard *terms* that are likely to be of interest.
+parsed and returned in named lists.
+[`xds_solve()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
+also computes some standard *terms* that are likely to be of interest.
 
 Functions like
 [`get_EIR()`](https://dd-harp.github.io/ramp.xds/reference/get_EIR.md)
@@ -392,7 +387,7 @@ xds_plot_EIR(model)
 ```
 
 ![\*\*Figure 1:\*\* Plotting standard
-outputs](GettingStarted_files/figure-html/unnamed-chunk-21-1.png)
+outputs](GettingStarted_files/figure-html/unnamed-chunk-20-1.png)
 
 **Figure 1:** Plotting standard outputs
 
@@ -400,8 +395,8 @@ outputs](GettingStarted_files/figure-html/unnamed-chunk-21-1.png)
 
 The software was designed to be fully modular, so that any module for
 one dynamical component can be replaced with another. The models
-included in **`ramp.xds`** are just enough to illustrate its the
-features ensure that the software is working as it should.
+included in **`ramp.xds`** illustrate its features and ensure that the
+software is working as designed.
 
 A basic requirement for full modularity is that every dynamical
 component must include a *trivial* module. In the `trivial` module, no
@@ -415,26 +410,24 @@ mean*F_season(t)*F_trend(t)
 ```
 
 The default for the aquatic mosquito dynamical component is the
-`trivial` module, where the `mean` is is called `Lambda.`
+`trivial` module, where the `mean` is called `Lambda`.
 
 It is easy to change the `trace` function. First, we define `F_season`
-and change the mean value of `Lambda.` The generic format for seasonal
-functions is `F_season(t, phase, season_opts),` where `phase` sets the
-phase (time of year), and `season_opts` is a set of configurable
-parameter values:
+and change the mean value of `Lambda.` To set up a seasonality function,
+we pass a parameter set from `makepar_F_sin` as `season_par`.
 
 ``` r
 
- F_sp = function(t){(1+sin(2*pi*t/365))} 
+ sp = makepar_F_sin()
 ```
 
-Having defined `F_sp,` we now configure a list of options:
+Having defined `sp,` we now configure a list of options:
 
 ``` r
 
 Lo = list(
-       Lambda=500, 
-       F_season=F_sp
+       Lambda=400, 
+       season_par=sp
       )
 ```
 
@@ -456,14 +449,15 @@ we can use a function `last_to_inits` to set the initial values.
 model_1 <- last_to_inits(model_1)
 ```
 
-Now, we solve it over a three year period
+Now, we solve to get the orbits every five days over a three-year
+period.
 
 ``` r
 
 model_1 <- xds_solve(model_1, Tmax=365*3, dt=5) 
 ```
 
-and plot the results.
+After solving, we can plot the orbits.
 
 ``` r
 
@@ -475,7 +469,13 @@ xds_plot_Z(model_1, add=T)
 ```
 
 ![\*\*Figure 2:\*\* Outputs with Seasonal Forced Emergence using a Trace
-Function](GettingStarted_files/figure-html/unnamed-chunk-28-1.png)
+Function](GettingStarted_files/figure-html/unnamed-chunk-27-1.png)
 
 **Figure 2:** Outputs with Seasonal Forced Emergence using a Trace
 Function
+
+## Next Steps
+
+A good next step is the [Basic
+Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html)
+vignette.

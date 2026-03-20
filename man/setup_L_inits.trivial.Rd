@@ -14,7 +14,7 @@
 \item{options}{a \link{list}}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 The \code{trivial} module initial values are an empty list

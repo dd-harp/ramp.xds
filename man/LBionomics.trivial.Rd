@@ -19,6 +19,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{LBionomics} for the RM model
+Implements \link{LBionomics} for the \code{trivial} module
 }
 \keyword{internal}

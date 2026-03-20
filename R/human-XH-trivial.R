@@ -1,19 +1,50 @@
 
-#' @title The `trivial` Module for the XH Component
+#' @title `trivial` --- **XH** Module 
 #' @description
-#' Implements the **XH** component using a trivial (trace) model where
-#' net infectiousness \eqn{\kappa} is specified as a forced function of
-#' time rather than computed from dynamic infection states.
-#' This module has no state variables.
-#'
-#' @section State Variables:
-#' None — \eqn{\kappa} is supplied as a trace function.
-#'
+#' The trivial module outputs the net infectiousness, \eqn{\kappa},
+#' by calling a
+#' *trace function,* 
+#' \deqn{F_\kappa(t) = \kappa S(t) T(t) K(t)} 
+#' where
+#' + \eqn{\kappa} or `kappa` is the mean net infectiousness 
+#' + \eqn{S(t)} or `F_season` is a seasonal pattern 
+#' + \eqn{T(t)} or `F_trend` is a trend pattern 
+#' + \eqn{K(t)} or `F_shock` is a perturbation 
+#' 
+#' Note: \eqn{0 \leq F_\kappa(t) \leq 1} 
+#' 
 #' @section Parameters:
 #' \describe{
-#'   \item{`kappa`}{net infectiousness of the human population (trace function)}
-#'   \item{`HPop`}{human population density}
+#'   \item{`kappa`}{the net infectiousness}
+#'   \item{`season_par`}{parameters for [make_function]: `F_season=make_par(season_par`)}
+#'   \item{`trend_par`}{parameters for [make_function]: `F_trend=make_par(trend_par)`}
+#'   \item{`shock_par`}{parameters for [make_function]: `F_shock=make_par(shock_par)`}
 #' }
+#'  
+#' The default setup option is `season_par = trend_par = shock_par = makepar_F_one()`. 
+#' 
+#' @section Get: 
+#' 
+#' + `get_XH_pars` --- the `trivial` method returns all the parameters
+#' 
+#' @section Change: 
+#' 
+#' + `change_XH_pars` --- change parameters by name 
+#' 
+#' @section Notes:
+#' 
+#' 1. The module has no state variables.
+#'   
+#' 2. The size of an object saved by `saveRDS` balloons if it saves a function,
+#' so `saveXDS` function strips the functions and `readRDS` remakes the function
+#' from the stored parameters.
+#' `F_season`, `F_trend`, and `F_shock` can be set up manually by passing any
+#' user defined function. If so, the user should use `saveRDS` and `readRDS` 
+#' rather than `saveXDS` and `readXDS` 
+#' 
+#' 3. Setup expects that `membership= c(1:nPatches),` but any membership vector 
+#' works.  
+#' 
 #'
 #' @name trivial_XH
 #' @rdname trivial_XH

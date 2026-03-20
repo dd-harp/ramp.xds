@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{get_g.trivial}
 \alias{get_g.trivial}
-\title{Get the feeding rate}
+\title{Get the mortality rate}
 \usage{
 \method{get_g}{trivial}(xds_obj, s = 1)
 }
@@ -15,6 +15,6 @@
 y a \link{numeric} vector assigned the class "dynamic"
 }
 \description{
-Get the feeding rate
+Get the mortality rate
 }
 \keyword{internal}

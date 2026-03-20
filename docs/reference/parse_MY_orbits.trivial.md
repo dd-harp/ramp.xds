@@ -27,4 +27,4 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 ## Value
 
-[list](https://rdrr.io/r/base/list.html)
+an empty [list](https://rdrr.io/r/base/list.html)

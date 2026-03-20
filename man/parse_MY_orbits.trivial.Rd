@@ -14,7 +14,7 @@
 \item{s}{the species index}
 }
 \value{
-\link{list}
+an empty \link{list}
 }
 \description{
 Implements \link{parse_MY_orbits} for trivial

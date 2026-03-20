@@ -16,6 +16,8 @@ navbar:
       href: articles/ex_534.html
     - text: Modular Forms 
       href: articles/modular_forms.html
+    - text: Modular Computation 
+      href: articles/modularity.html
     - text: Delay Equations 
       href: articles/Delays.html
     - text: Ports & Junctions 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{setup_MY_inits.trivial}
 \alias{setup_MY_inits.trivial}
-\title{Setup the trivial model}
+\title{Setup Inits for \code{trivial} (\strong{MY})}
 \usage{
 \method{setup_MY_inits}{trivial}(xds_obj, s, options = list())
 }
@@ -14,9 +14,9 @@
 \item{options}{a \link{list}}
 }
 \value{
-a \link{list} vector
+an \strong{\code{xds}} object
 }
 \description{
-Implements \link{setup_MY_inits} for the trivial model
+Return the \strong{\code{xds}} object unmodified
 }
 \keyword{internal}
