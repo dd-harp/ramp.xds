@@ -1,6 +1,7 @@
 # Get L indices
 
-Get and display the values of the indices for the **L** variables
+The indices are stored on the **L** object as a named list called `ix`;
+`get_L_ix` returns that list.
 
 ## Usage
 
@@ -20,4 +21,5 @@ get_L_ix(xds_obj, s = 1)
 
 ## Value
 
-an **`xds`** object
+a named [list](https://rdrr.io/r/base/list.html) of indices for the
+**L** variables

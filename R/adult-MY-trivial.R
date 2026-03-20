@@ -22,9 +22,9 @@
 #'   \item{`Z`}{the mean density of infectious mosquitoes}
 #'   \item{`f`}{the blood feeding rate}
 #'   \item{`q`}{the human fraction}
-#'   \item{`season_par`}{parameters for [make_function]: `F_season=make_par(season_par`)}
-#'   \item{`trend_par`}{parameters for [make_function]: `F_trend=make_par(trend_par)`}
-#'   \item{`shock_par`}{parameters for [make_function]: `F_shock=make_par(shock_par)`}
+#'   \item{`season_par`}{parameters for [make_function]: `F_season=make_function(season_par)`}
+#'   \item{`trend_par`}{parameters for [make_function]: `F_trend=make_function(trend_par)`}
+#'   \item{`shock_par`}{parameters for [make_function]: `F_shock=make_function(shock_par)`}
 #' }
 #'  
 #' The default setup options: 
@@ -235,14 +235,8 @@ make_MY_obj_trivial = function(nPatches, options,
     MY_obj$nPatches <- nPatches
 
     MY_obj$eip <- 0
-    MY_obj$f_t  <- checkIt(f, nPatches)
-    MY_obj$es_f <- rep(1, nPatches)
-    MY_obj$q_t  <- checkIt(q, nPatches)
-    MY_obj$es_q <- rep(1, nPatches)
-    MY_obj$g_t  <- rep(0, nPatches)
-    MY_obj$es_g <- rep(1, nPatches)
-    MY_obj$sigma_t  <- rep(0, nPatches)
-    MY_obj$es_sigma <- rep(1, nPatches)
+    MY_obj$f  <- checkIt(f, nPatches)
+    MY_obj$q  <- checkIt(q, nPatches)
 
     base = list()
     class(base) <- c('static', 'trivial')
@@ -371,8 +365,8 @@ setup_MY_ix.trivial <- function(xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title parse the output of deSolve and return variables for the trivial model
-#' @description Implements [parse_MY_orbits] for trivial
+#' @title Parse for `trivial` (MY)
+#' @description Return an empty list
 #' @inheritParams parse_MY_orbits
 #' @return an empty [list]
 #' @keywords internal
@@ -381,8 +375,8 @@ parse_MY_orbits.trivial <- function(outputs, xds_obj, s) {
   return(list())
 }
 
-#' @title Return initial values as a vector
-#' @description Implements [get_MY_inits] for the trivial model.
+#' @title Get Inits for `trivial` (MY) 
+#' @description Return a [numeric] vector of length 0
 #' @inheritParams get_MY_inits
 #' @return a [numeric] vector of length 0
 #' @keywords internal
@@ -400,7 +394,7 @@ get_MY_inits.trivial <- function(xds_obj, s) {
 #' @keywords internal
 #' @export
 get_f.trivial = function(xds_obj, s=1){
-  with(xds_obj$MY_obj[[s]], f_t*es_f)
+  with(xds_obj$MY_obj[[s]], f)
 }
 
 #' @title Get the human fraction 
@@ -410,7 +404,7 @@ get_f.trivial = function(xds_obj, s=1){
 #' @keywords internal
 #' @export
 get_q.trivial = function(xds_obj, s=1){
-  with(xds_obj$MY_obj[[s]], q_t*es_q)
+  with(xds_obj$MY_obj[[s]], q)
 }
 
 #' @title Get the mortality rate

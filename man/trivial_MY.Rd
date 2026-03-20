@@ -28,9 +28,9 @@ where
 \item{\code{Z}}{the mean density of infectious mosquitoes}
 \item{\code{f}}{the blood feeding rate}
 \item{\code{q}}{the human fraction}
-\item{\code{season_par}}{parameters for \link{make_function}: \verb{F_season=make_par(season_par})}
-\item{\code{trend_par}}{parameters for \link{make_function}: \code{F_trend=make_par(trend_par)}}
-\item{\code{shock_par}}{parameters for \link{make_function}: \code{F_shock=make_par(shock_par)}}
+\item{\code{season_par}}{parameters for \link{make_function}: \code{F_season=make_function(season_par)}}
+\item{\code{trend_par}}{parameters for \link{make_function}: \code{F_trend=make_function(trend_par)}}
+\item{\code{shock_par}}{parameters for \link{make_function}: \code{F_shock=make_function(shock_par)}}
 }
 
 The default setup options:

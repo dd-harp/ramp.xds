@@ -1,6 +1,6 @@
-# Adult Mosquito Bionomics - Modified by Control
+# Adult Mosquito Bionomics
 
-Modify the baseline adult mosquito bionomic parameters
+Compute the adult mosquito bionomic parameter values
 
 ## Usage
 

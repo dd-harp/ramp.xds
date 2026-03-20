@@ -14,10 +14,10 @@
 #' 
 #' @section Parameters:
 #' \describe{
-#'   \item{`Lambda`}{the mean annual emergence rate}
-#'   \item{`season_par`}{parameters for [make_function]: `F_season=make_par(season_par`)}
-#'   \item{`trend_par`}{parameters for [make_function]: `F_trend=make_par(trend_par)`}
-#'   \item{`shock_par`}{parameters for [make_function]: `F_shock=make_par(shock_par)`}
+#'   \item{`Lambda`}{the mean daily emergence rate}
+#'   \item{`season_par`}{parameters for [make_function]: `F_season=make_function(season_par)`}
+#'   \item{`trend_par`}{parameters for [make_function]: `F_trend=make_function(trend_par)`}
+#'   \item{`shock_par`}{parameters for [make_function]: `F_shock=make_function(shock_par)`}
 #' }
 #'  
 #' The default setup option is `season_par = trend_par = shock_par = makepar_F_one()`. 
@@ -124,7 +124,7 @@ F_emerge.trivial <- function(t, y, xds_obj, s) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-LBionomics.trivial<- function(t, y, xds_obj, s) {
+LBionomics.trivial <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
@@ -206,8 +206,11 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
 
 #' @title Set **L** Component parameters for `trivial`
 #'
-#' @description If `Lambda` or `F_season` or `F_trend` or `F_shock`
-#' are named in a list `options`, the old value is replaced
+#' @description If `Lambda`, `season_par`, `trend_par`, or `shock_par`
+#' are named in `options`, the old value is replaced. After updating
+#' the parameter objects, `F_season`, `F_trend`, and `F_shock` are
+#' recompiled by calling [make_function] on the updated parameters
+#' via [rebuild_forcing_functions].
 #'
 #' @inheritParams change_L_pars
 #'
@@ -215,12 +218,12 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
 #' @keywords internal
 #' @export
 change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
-  nHabitats <- xds_obj$nHabitats
   with(xds_obj$L_obj[[s]], with(options,{
     xds_obj$L_obj[[s]]$Lambda = Lambda
-    xds_obj$L_obj[[s]]$F_season = F_season
-    xds_obj$L_obj[[s]]$F_trend = F_trend
-    xds_obj$L_obj[[s]]$F_shock = F_shock
+    xds_obj$L_obj[[s]]$season_par = season_par
+    xds_obj$L_obj[[s]]$trend_par = trend_par
+    xds_obj$L_obj[[s]]$shock_par = shock_par
+    xds_obj = rebuild_forcing_functions(xds_obj, s)
     return(xds_obj)
   }))}
 
@@ -237,7 +240,7 @@ setup_L_inits.trivial = function(xds_obj, s, options=list()){
 }
 
 #' @title List **L** Component Variables for `trivial`
-#' @description This method dispatches on the type of `xds_obj$L_obj[[s]]`
+#' @description Returns an empty list; the `trivial` module has no state variables
 #' @inheritParams get_L_vars
 #' @return an empty [list]
 #' @keywords internal

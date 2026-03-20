@@ -1,8 +1,14 @@
-# Number of eggs laid by adult mosquitoes
+# Net Egg Laying Rate
 
-Implements
-[F_eggs](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md) for the
-trivial model.
+Returns \$\$F\_{G}(t) = G S(t) T(t) K(t)\$\$ where
+
+- \\G\\ is the number of eggs laid, per patch, per day
+
+- \\S(t)\\ or `F_season` is a seasonal pattern
+
+- \\T(t)\\ or `F_trend` is a trend pattern
+
+- \\K(t)\\ or `F_shock` is a perturbation
 
 ## Usage
 

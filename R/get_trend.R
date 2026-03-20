@@ -63,6 +63,21 @@ get_trend.eir= function(xds_obj, s=1){
   return(xds_obj$EIR_obj$trend_par)
 }
 
+#' @title Get the trend parameters
+#'
+#' @description
+#' Get the trend parameters for an **MY** trivial model
+#'
+#' @inheritParams get_trend
+#'
+#' @return trend parameters
+#'
+#' @keywords internal
+#' @export
+get_trend.MY = function(xds_obj, s=1){
+  return(xds_obj$MY_obj[[s]]$trend_par)
+}
+
 #' @title Get spline interpolation points
 #'
 #' @description

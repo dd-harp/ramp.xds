@@ -1,7 +1,7 @@
-# Bionomics for an **L** Component Module
+# Immature Mosquito Bionomics
 
-Handle immature mosquito bionomic parameters as a baseline modified by
-control
+Compute the values of bionomic parameter values for an **L** Component
+module
 
 ## Usage
 

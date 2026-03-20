@@ -1,8 +1,8 @@
-# Set mosquito bionomics to baseline
+# Compute mosquito bionomic parameters
 
 Implements
 [MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)
-for models with no forcing on the baseline
+for models with no exogenous forcing
 
 ## Usage
 

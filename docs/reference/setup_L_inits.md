@@ -1,6 +1,7 @@
 # Setup Initial Values for the **L** Component
 
-This method dispatches on `Lname`.
+Sets the initial values of the **L** Component variables from `options`,
+a named list.
 
 ## Usage
 
@@ -20,7 +21,7 @@ setup_L_inits(xds_obj, s, options = list())
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  a named [list](https://rdrr.io/r/base/list.html)
 
 ## Value
 

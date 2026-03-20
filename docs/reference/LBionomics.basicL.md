@@ -1,8 +1,6 @@
 # Bionomics for `basicL` (**L** Component)
 
-Implements
-[LBionomics](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md)
-for the `basicL`
+Set **L** component parameters to baseline values for `basicL`
 
 ## Usage
 

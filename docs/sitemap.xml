@@ -191,6 +191,9 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.basicL.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/L_change.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/L_functions.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/L_get.html</loc></url>
@@ -210,12 +213,19 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.macdonald.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.GeM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.SI.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.basicM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.macdonald.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MY_change.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MY_functions.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MY_get.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MY_module_list.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MY_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/ModifiedBionomics.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/MosquitoBionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/One_tV.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Other_State_Variables.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/RMdts.html</loc></url>
@@ -253,6 +263,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControl1.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControl2.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControl2.none.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControlEffectSizes.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Vector_Control.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Visitors.dynamic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Visitors.html</loc></url>

@@ -288,7 +288,7 @@ model. Normally these values would be computed within
 
 y0 = get_MY_inits(params, 1) 
 y0 = as.vector(unlist(y0))
-params <- MBionomics(0,y0,params, 1)
+params <- MEffectSizes(0,y0,params, 1)
 
 dMYdt_local = func=function(t, y, pars) {
   list(dMYdt(t, y, pars, 1))

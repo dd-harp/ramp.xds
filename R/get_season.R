@@ -107,3 +107,19 @@ get_season.Lambda = function(xds_obj, s=1){
 get_season.eir= function(xds_obj, s=1){
   xds_obj$EIR_obj$season_par
 }
+
+#' @title Get seasonal pattern
+#'
+#' @description
+#' Get the parameters that set the seasonal pattern
+#' for an **MY** trivial model
+#'
+#' @inheritParams get_season
+#'
+#' @return seasonal pattern parameters
+#'
+#' @keywords internal
+#' @export
+get_season.MY = function(xds_obj, s=1){
+  xds_obj$MY_obj[[s]]$season_par
+}

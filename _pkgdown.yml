@@ -40,7 +40,7 @@ navbar:
       href: articles/MosquitoBionomics.html
   - text: XH 
     menu:
-    - text: XH Component -- Humans / Hosts 
+    - text: XH Component: Humans / Hosts 
       href: articles/XH-interface.html
     - text: The SIS Module 
       href: articles/human_sis.html
@@ -48,7 +48,7 @@ navbar:
       href: articles/human_hmoi.html
   - text: MY 
     menu:
-    - text: MY Component -- Adult Mosquitoes 
+    - text: MY Component: Adult Mosquitoes 
       href: articles/MY-interface.html
     - text: Macdonald's Model
       href: articles/adult_RM.html
@@ -58,7 +58,7 @@ navbar:
       href: articles/adult_GeM.html
   - text: L 
     menu:
-    - text: L Component -- Aquatic Mosquitoes
+    - text: L Component: Aquatic Mosquitoes
       href: articles/L-interface.html
     - text: Emergence (the trivial module) 
       href: articles/aqua_trace.html
@@ -244,6 +244,7 @@ reference:
   - get_season_bottom
   - get_season_pw
   - get_trend
+  - get_shock
   - get_spline
   - get_spline_s
 - title: Change 

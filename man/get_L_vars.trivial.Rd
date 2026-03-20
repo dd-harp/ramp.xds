@@ -17,6 +17,6 @@
 an empty \link{list}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$L_obj[[s]]}
+Returns an empty list; the \code{trivial} module has no state variables
 }
 \keyword{internal}

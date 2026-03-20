@@ -17,7 +17,7 @@
 the values of \eqn{L} at the steady state
 }
 \description{
-Given an egg deposition rate \verb{eta,}
+Given an egg deposition rate \code{eta},
 return a steady state value for the equations in \link{dLdt.basicL}
 }
 \note{

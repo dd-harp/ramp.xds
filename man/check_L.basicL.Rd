@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{check_L.basicL}
 \alias{check_L.basicL}
-\title{Run a check before solving}
+\title{Check the \code{basicL} Module}
 \usage{
 \method{check_L}{basicL}(xds_obj, s)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{parse_MY_orbits.trivial}
 \alias{parse_MY_orbits.trivial}
-\title{parse the output of deSolve and return variables for the trivial model}
+\title{Parse for \code{trivial} (MY)}
 \usage{
 \method{parse_MY_orbits}{trivial}(outputs, xds_obj, s)
 }
@@ -17,6 +17,6 @@
 an empty \link{list}
 }
 \description{
-Implements \link{parse_MY_orbits} for trivial
+Return an empty list
 }
 \keyword{internal}

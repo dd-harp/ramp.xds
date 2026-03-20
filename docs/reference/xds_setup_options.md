@@ -3,7 +3,7 @@
 **Basic Setup** uses
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 or one of its variants (see
-[xds_help_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.md))
+[xds_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md))
 to create an xds object.
 
 The following is a list of configurable options and where to look for

@@ -47,7 +47,7 @@ NULL
 #' @title The **L** Module Skill Set
 #'
 #' @description The **L** skill set is a list of
-#' an module's capabilities
+#' a module's capabilities
 #'
 #' @param Lname the name of the **L** module
 #'
@@ -59,7 +59,8 @@ skill_set_L.basicL = function(Lname = "basicL"){
   list(trivial=FALSE)
 }
 
-#' Run a check before solving
+#' @title Check the `basicL` Module
+#' @description Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -120,7 +121,6 @@ check_L.basicL = function(xds_obj, s){
 #' @references{\insertRef{SmithDL2013LarvalDynamics}{ramp.xds} }
 #' @seealso [make_L_obj_basicL]
 #' @keywords internal
-#' @keywords internal
 #' @export
 dLdt.basicL <- function(t, y, xds_obj, s) {
   eta <- as.vector(xds_obj$terms$eta[[s]])
@@ -137,7 +137,6 @@ dLdt.basicL <- function(t, y, xds_obj, s) {
 #' @description Implements [Update_Lt] for the `basicL` competition model.
 #' @inheritParams Update_Lt
 #' @return a [numeric] vector
-#' @keywords internal
 #' @keywords internal
 #' @export
 Update_Lt.basicL <- function(t, y, xds_obj, s) {
@@ -175,7 +174,6 @@ F_emerge.basicL <- function(t, y, xds_obj, s) {
 #'
 #' @return an **`xds`** object
 #' @keywords internal
-#' @keywords internal
 #' @export
 LBionomics.basicL <- function(t, y, xds_obj, s) {
 
@@ -197,7 +195,6 @@ LBionomics.basicL <- function(t, y, xds_obj, s) {
 #' @inheritParams LEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
-#' @keywords internal
 #' @export
 LEffectSizes.basicL <- function(t, y, xds_obj, s) {
   with(xds_obj$L_obj[[s]],{
@@ -215,7 +212,6 @@ LEffectSizes.basicL <- function(t, y, xds_obj, s) {
 #' @inheritParams setup_L_obj
 #' @return an **`xds`** object
 #' @seealso [make_L_obj_basicL]
-#' @keywords internal
 #' @keywords internal
 #' @export
 setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
@@ -305,8 +301,7 @@ change_L_pars.basicL <- function(xds_obj, s=1, options=list()) {
 #' are passed in `options` by name (*i.e.* `options$L`)
 #' @inheritParams setup_L_inits
 #' @seealso [make_L_inits_basicL]
-#' @return a [list]
-#' @keywords internal
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 setup_L_inits.basicL = function(xds_obj, s, options=list()){
@@ -361,7 +356,6 @@ change_L_inits.basicL <- function(xds_obj, s=1, options=list()) {
 #' @return an **`xds`** object
 #' @importFrom utils tail
 #' @keywords internal
-#' @keywords internal
 #' @export
 setup_L_ix.basicL <- function(xds_obj, s) {with(xds_obj,{
 
@@ -382,7 +376,6 @@ setup_L_ix.basicL <- function(xds_obj, s) {with(xds_obj,{
 #' @inheritParams parse_L_orbits
 #' @return a named [list]
 #' @keywords internal
-#' @keywords internal
 #' @export
 parse_L_orbits.basicL <- function(outputs, xds_obj, s) {
   L = outputs[,xds_obj$L_obj[[s]]$ix$L_ix]
@@ -390,7 +383,7 @@ parse_L_orbits.basicL <- function(outputs, xds_obj, s) {
 }
 
 #' @title Compute the Steady State of `dLdt.basicL` (**L** Component)
-#' @description Given an egg deposition rate `eta,`
+#' @description Given an egg deposition rate `eta`,
 #' return a steady state value for the equations in [dLdt.basicL]
 #' @note This function does not use deSolve
 #' @inheritParams steady_state_L

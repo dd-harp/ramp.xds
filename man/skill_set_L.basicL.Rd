@@ -14,6 +14,6 @@
 }
 \description{
 The \strong{L} skill set is a list of
-an module's capabilities
+a module's capabilities
 }
 \keyword{internal}

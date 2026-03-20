@@ -61,3 +61,24 @@ get_mean_forcing.eir = function(xds_obj){
   return(xds_obj$EIR_obj$eir)
 }
 
+#' @title Get mean forcing
+#'
+#' @description
+#' Get `Z`, the mean density of infectious mosquitoes,
+#' for an **MY** trivial model
+#'
+#' @param xds_obj an **`xds`** model object
+#'
+#' @keywords internal
+#' @export
+get_mean_forcing.MY = function(xds_obj){
+  if(xds_obj$nVectorSpecies == 1){
+    return(xds_obj$MY_obj[[1]]$Z)
+  } else {
+    Z = list()
+    for(s in 1:length(xds_obj$nVectorSpecies))
+      Z[[s]] <- xds_obj$MY_obj[[s]]$Z
+    return(Z)
+  }
+}
+

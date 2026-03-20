@@ -1,8 +1,18 @@
-# Blood feeding rate of the infective mosquito population
+# Net Infectious Biting Rate
 
-Implements
-[F_fqZ](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.md) for the
-trivial model.
+Returns \$\$F\_{fqZ}(t) = fqZ S(t) T(t) K(t)\$\$ where
+
+- \\f\\ is the feeding rate
+
+- \\q\\ the human fraction
+
+- \\Z\\ is the density of infectious mosquitoes, per patch
+
+- \\S(t)\\ or `F_season` is a seasonal pattern
+
+- \\T(t)\\ or `F_trend` is a trend pattern
+
+- \\K(t)\\ or `F_shock` is a perturbation
 
 ## Usage
 

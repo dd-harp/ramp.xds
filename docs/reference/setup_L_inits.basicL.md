@@ -24,7 +24,7 @@ setup_L_inits(xds_obj, s, options = list())
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  a named [list](https://rdrr.io/r/base/list.html)
 
 ## Value
 

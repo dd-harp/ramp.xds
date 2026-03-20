@@ -14,7 +14,7 @@
 \item{options}{a named \link{list}}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 This sets initial values of the variable \eqn{L} by

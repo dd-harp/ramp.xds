@@ -78,9 +78,9 @@ interface.
 
 Some parameters can be ports. In these cases, the
 
-- `LBaseline`
-
 - `LBionomics`
+
+- `LEffectSizes`
 
 ## Model Object
 
