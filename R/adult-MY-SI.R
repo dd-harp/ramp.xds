@@ -235,11 +235,11 @@ F_eggs.SI <- function(t, y, xds_obj, s) {
 #' product of the effect sizes for each intervention.
 #' Since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
-#' @inheritParams MBionomics
+#' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBaseline.SI <- function(t, y, xds_obj, s) {
+MBionomics.SI <- function(t, y, xds_obj, s) {
 
   xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s)
   xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s)
@@ -265,11 +265,11 @@ MBaseline.SI <- function(t, y, xds_obj, s) {
 #' product of the effect sizes for each intervention.
 #' Since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
-#' @inheritParams MBionomics
+#' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBionomics.SI <- function(t, y, xds_obj, s) {
+MEffectSizes.SI <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]],{
     xds_obj$MY_obj[[s]]$f <- es_f*f_t
     xds_obj$MY_obj[[s]]$q <- es_q*q_t

@@ -86,13 +86,13 @@ dMYdt.basicM <- function(t, y, xds_obj, s){
 }
 
 
-#' @title Set mosquito bionomics to baseline
-#' @description Implements [MBaseline] for models with no forcing on the baseline
-#' @inheritParams MBaseline
+#' @title Compute mosquito bionomic parameters
+#' @description Implements [MBionomics] for models with no exogenous forcing
+#' @inheritParams MBionomics
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBaseline.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
+MBionomics.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   # Baseline parameters
   xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s)
   xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s)
@@ -111,13 +111,13 @@ MBaseline.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   return(xds_obj)
 })}
 
-#' @title Set mosquito bionomics to baseline
-#' @description Implements [MBionomics] for models with no forcing on the baseline
-#' @inheritParams MBionomics
+#' @title Apply vector control effect sizes
+#' @description Implements [MEffectSizes] for models with no exogenous forcing
+#' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBionomics.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
+MEffectSizes.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$f     <- es_f*f_t
   xds_obj$MY_obj[[s]]$q     <- es_q*q_t
   xds_obj$MY_obj[[s]]$g     <- es_g*g_t

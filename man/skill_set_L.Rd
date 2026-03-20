@@ -14,7 +14,7 @@ skill_set_L(Lname)
 }
 \description{
 The skill set for an \strong{L} module
-is a list of that summarizes capabilities and
-compatabilities
+is a list that summarizes capabilities and
+compatibilities
 }
 \keyword{internal}

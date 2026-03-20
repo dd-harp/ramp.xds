@@ -118,23 +118,23 @@ F_emerge.trivial <- function(t, y, xds_obj, s) {
     return(Lambda*F_season(t)*F_trend(t)*F_shock(t))
 })}
 
-#' @title Baseline Bionomics for `trivial` (**L** Component)
-#' @description Implements [LBaseline] for the `trivial` module
-#' @inheritParams LBaseline
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-LBaseline.trivial<- function(t, y, xds_obj, s) {
-  return(xds_obj)
-}
-
 #' @title Bionomics for `trivial` (**L** Component)
 #' @description Implements [LBionomics] for the `trivial` module
 #' @inheritParams LBionomics
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-LBionomics.trivial <- function(t, y, xds_obj, s) {
+LBionomics.trivial<- function(t, y, xds_obj, s) {
+  return(xds_obj)
+}
+
+#' @title Bionomics for `trivial` (**L** Component)
+#' @description Implements [LEffectSizes] for the `trivial` module
+#' @inheritParams LEffectSizes
+#' @return an **`xds`** object
+#' @keywords internal
+#' @export
+LEffectSizes.trivial <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 

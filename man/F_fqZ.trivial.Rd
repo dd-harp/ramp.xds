@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{F_fqZ.trivial}
 \alias{F_fqZ.trivial}
-\title{Blood feeding rate of the infective mosquito population}
+\title{Net Infectious Biting Rate}
 \usage{
 \method{F_fqZ}{trivial}(t, y, xds_obj, s)
 }
@@ -19,6 +19,16 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_fqZ} for the trivial model.
+Returns
+\deqn{F_{fqZ}(t) = fqZ S(t) T(t) K(t)}
+where
+\itemize{
+\item \eqn{f} is the feeding rate
+\item \eqn{q} the human fraction
+\item \eqn{Z} is the density of infectious mosquitoes, per patch
+\item \eqn{S(t)} or \code{F_season} is a seasonal pattern
+\item \eqn{T(t)} or \code{F_trend} is a trend pattern
+\item \eqn{K(t)} or \code{F_shock} is a perturbation
+}
 }
 \keyword{internal}

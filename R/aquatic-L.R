@@ -3,8 +3,8 @@
 #' @title The skill set (**L** module)
 #'
 #' @description The skill set for an **L** module
-#' is a list of that summarizes capabilities and
-#' compatabilities
+#' is a list that summarizes capabilities and
+#' compatibilities
 #'
 #' @param Lname the **L** module name
 #'
@@ -17,7 +17,7 @@ skill_set_L = function(Lname){
   UseMethod("skill_set_L", Lname)
 }
 
-#' Run a check before solving
+#' @title Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -42,7 +42,6 @@ check_L = function(xds_obj, s){
 #' @param s the species index
 #' @return the derivatives, a [numeric] vector of length \eqn{n_q=}`nHabitats`
 #' @keywords internal
-#' @keywords internal
 #' @export
 dLdt <- function(t, y, xds_obj, s) {
   UseMethod("dLdt", xds_obj$L_obj[[s]])
@@ -66,23 +65,9 @@ Update_Lt <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Baseline Bionomics for an **L** Component Module
-#' @description Handle immature mosquito bionomic parameters as a baseline modified by control
-#' @param t current simulation time
-#' @param y state vector
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
-#' @return an **`xds`** object
-#' @keywords internal
-#' @keywords internal
-#' @export
-LBaseline <- function(t, y, xds_obj, s) {
-  UseMethod("LBaseline", xds_obj$L_obj[[s]])
-}
-
-
-#' @title Bionomics for an **L** Component Module
-#' @description Handle immature mosquito bionomic parameters as a baseline modified by control
+#' @title Immature Mosquito Bionomics
+#' @description Compute the values of bionomic parameter 
+#' values for an **L** Component module
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
@@ -92,6 +77,20 @@ LBaseline <- function(t, y, xds_obj, s) {
 #' @export
 LBionomics <- function(t, y, xds_obj, s) {
   UseMethod("LBionomics", xds_obj$L_obj[[s]])
+}
+
+
+#' @title Immature Mosquito Bionomics - Vector Control Effect Sizes
+#' @description Apply vector control effect sizes to immature mosquito bionomic parameters
+#' @param t current simulation time
+#' @param y state vector
+#' @param xds_obj an **`xds`** model object
+#' @param s the species index
+#' @return an **`xds`** object
+#' @keywords internal
+#' @export
+LEffectSizes <- function(t, y, xds_obj, s) {
+  UseMethod("LEffectSizes", xds_obj$L_obj[[s]])
 }
 
 #' @title Compute Emergent Adults
@@ -123,7 +122,6 @@ F_emerge <- function(t, y, xds_obj, s) {
 #' @param options a named list to configure **`L_obj`**
 #'
 #' @return an **`xds`** object
-#' @keywords internal
 #' @keywords internal
 #' @export
 setup_L_obj = function(Lname, xds_obj, s, options=list()){
@@ -167,12 +165,12 @@ get_L_vars <- function(y, xds_obj, s) {
 }
 
 #' @title Setup Initial Values for the **L** Component
-#' @description This method dispatches on `Lname`.
+#' @description Sets the initial values of the **L** Component
+#' variables from `options`, a named list.
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @param options a [list]
+#' @param options a named [list]
 #' @return an **`xds`** object
-#' @keywords internal
 #' @keywords internal
 #' @export
 setup_L_inits = function(xds_obj, s, options=list()){
@@ -180,7 +178,8 @@ setup_L_inits = function(xds_obj, s, options=list()){
 }
 
 #' @title Get Initial Values for the **L** Component
-#' @note This method dispatches on the class of `xds_obj$L_obj`.
+#' @description The initial values are stored on the **L** object as a
+#' named list called `inits`; `get_L_inits` returns that list.
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a named [list]
@@ -214,16 +213,15 @@ setup_L_ix <- function(xds_obj, s) {
   UseMethod("setup_L_ix", xds_obj$L_obj[[s]])
 }
 
-#' @title Get L indices 
+#' @title Get L indices
 #'
-#' @description Get and display the 
-#' values of the indices
-#' for the **L** variables
+#' @description The indices are stored on the **L** object as a
+#' named list called `ix`; `get_L_ix` returns that list.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return a named [list] of indices for the **L** variables
 #' @keywords internal
 #' @export
 get_L_ix <- function(xds_obj, s=1) {
@@ -238,7 +236,6 @@ get_L_ix <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [list]
-#' @keywords internal
 #' @keywords internal
 #' @export
 parse_L_orbits <- function(outputs, xds_obj, s) {

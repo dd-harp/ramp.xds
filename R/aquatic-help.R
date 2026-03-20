@@ -6,8 +6,8 @@
 #' \itemize{
 #'   \item \code{\link{dLdt}} -- compute derivatives
 #'   \item \code{\link{Update_Lt}} -- update state variables
-#'   \item \code{\link{LBaseline}} -- set baseline bionomic parameters
 #'   \item \code{\link{LBionomics}} -- compute bionomic parameters
+#'   \item \code{\link{LEffectSizes}} -- apply vector control effect sizes
 #'   \item \code{\link{F_emerge}} -- compute emergent adults
 #'   \item \code{\link{setup_L_obj}} -- set up the L module object
 #'   \item \code{\link{setup_L_ix}} -- set index values

@@ -11,7 +11,7 @@
 
 \item{s}{the species index}
 
-\item{options}{a \link{list}}
+\item{options}{a named \link{list}}
 }
 \value{
 an \strong{\code{xds}} object

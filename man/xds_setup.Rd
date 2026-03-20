@@ -8,7 +8,7 @@ xds_setup(
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
-  MYname = "macdonald",
+  MYname = "SI",
   MYoptions = list(),
   Lname = "trivial",
   Loptions = list(),

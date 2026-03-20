@@ -440,11 +440,11 @@ steady_state_MY.macdonald = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$M
 #' product of the effect sizes for each intervention.
 #' Since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
-#' @inheritParams MBionomics
+#' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBaseline.macdonald <- function(t, y, xds_obj, s) {
+MBionomics.macdonald <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
@@ -456,11 +456,11 @@ MBaseline.macdonald <- function(t, y, xds_obj, s) {
 #' product of the effect sizes for each intervention.
 #' Since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
-#' @inheritParams MBionomics
+#' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBionomics.macdonald <- function(t, y, xds_obj, s) {
+MEffectSizes.macdonald <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 

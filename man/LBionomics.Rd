@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{LBionomics}
 \alias{LBionomics}
-\title{Bionomics for an \strong{L} Component Module}
+\title{Immature Mosquito Bionomics}
 \usage{
 LBionomics(t, y, xds_obj, s)
 }
@@ -19,6 +19,7 @@ LBionomics(t, y, xds_obj, s)
 an \strong{\code{xds}} object
 }
 \description{
-Handle immature mosquito bionomic parameters as a baseline modified by control
+Compute the values of bionomic parameter
+values for an \strong{L} Component module
 }
 \keyword{internal}

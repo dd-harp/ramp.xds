@@ -39,13 +39,13 @@ xds_compute_terms.full <- function(t, y, xds_obj) {
   xds_obj <- BloodFeeding(t, y, xds_obj)
   # egg laying: available habitat, egg distribution matrix
   xds_obj <- EggLaying(t, y, xds_obj)
-  # Compute baseline mosquito bionomic parameters
+  # Compute mosquito bionomic parameters
   # (including available sugar)
-  xds_obj <- BaselineBionomics(t, y, xds_obj)
+  xds_obj <- MosquitoBionomics(t, y, xds_obj)
   # Compute  "independent effect sizes"
   xds_obj <- VectorControl2(t, y, xds_obj)
-  # Modify the baseline
-  xds_obj <- ModifiedBionomics(t, y, xds_obj)
+  # Apply vector control effect sizes
+  xds_obj <- VectorControlEffectSizes(t, y, xds_obj)
   # emergence: Lambda
   xds_obj <- Emergence(t, y, xds_obj)
   # transmission: beta, EIR, and kappa
@@ -73,14 +73,14 @@ xds_compute_terms.human <- function(t, y, xds_obj) {
   xds_obj <- Resources(t, y, xds_obj)
   # blood feeding: available blood hosts, TaR, relative biting rates
   xds_obj <- BloodFeeding(t, y, xds_obj)
-  # Compute baseline mosquito bionomic parameters
+  # Compute mosquito bionomic parameters
   # (including available sugar)
-  xds_obj <- BaselineBionomics(t, y, xds_obj)
+  xds_obj <- MosquitoBionomics(t, y, xds_obj)
   # Compute total effect size assuming
   # "independent effect sizes"
   xds_obj <- VectorControl2(t, y, xds_obj)
-  # Modify the baseline
-  xds_obj <- ModifiedBionomics(t, y, xds_obj)
+  # Apply vector control effect sizes
+  xds_obj <- VectorControlEffectSizes(t, y, xds_obj)
   # compute beta, EIR, and kappa
   xds_obj <- Transmission(t, y, xds_obj)
   # compute the FoI
@@ -107,14 +107,14 @@ xds_compute_terms.mosy <- function(t, y, xds_obj){
   xds_obj <- BloodFeeding(t, y, xds_obj)
   # egg laying: available habitat, egg distribution matrix
   xds_obj <- EggLaying(t, y, xds_obj)
-  # Compute baseline mosquito bionomic parameters
+  # Compute mosquito bionomic parameters
   # (including available sugar)
-  xds_obj <- BaselineBionomics(t, y, xds_obj)
+  xds_obj <- MosquitoBionomics(t, y, xds_obj)
   # Compute total effect size assuming
   # "independent effect sizes"
   xds_obj <- VectorControl2(t, y, xds_obj)
-  # Modify the baseline
-  xds_obj <- ModifiedBionomics(t, y, xds_obj)
+  # Apply vector control effect sizes
+  xds_obj <- VectorControlEffectSizes(t, y, xds_obj)
   # emergence: compute Lambda
   xds_obj <- Emergence(t, y, xds_obj)
   return(xds_obj)
@@ -134,13 +134,13 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
   xds_obj <- Resources(t, y, xds_obj)
   # vector control
   xds_obj <- VectorControl1(t, y, xds_obj)
-  # Compute baseline mosquito bionomic parameters
-  xds_obj <- BaselineBionomics(t, y, xds_obj)
+  # Compute mosquito bionomic parameters
+  xds_obj <- MosquitoBionomics(t, y, xds_obj)
   # Compute total effect size assuming
   # "independent effect sizes"
   xds_obj <- VectorControl2(t, y, xds_obj)
-  # Modify the baseline
-  xds_obj <- ModifiedBionomics(t, y, xds_obj)
+  # Apply vector control effect sizes
+  xds_obj <- VectorControlEffectSizes(t, y, xds_obj)
   # egg laying: compute eta
   xds_obj$eggs_laid[[1]] = F_eggs(t, y, xds_obj, 1)
   return(xds_obj)

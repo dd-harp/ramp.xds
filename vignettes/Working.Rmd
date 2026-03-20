@@ -12,13 +12,17 @@ Also, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)
 
 ***
 
+**`ramp.xds`** was designed to reduce the costs of using models. Here, we introduce the utilities we developed to work with models. 
 
-# 
++ **Getting Started:** A brief review 
 
-**`ramp.xds`** was designed to reduce the costs of model building and computation for malaria and other mosquito-transmitted pathogens. One of the core challenges for the software was to provide users with a set of utilities that would make it easy to do work with models after they've been built. 
++ **Parameters:** how to inspect and change parameter values 
 
-## Set Up
++ **Initial Values:** some utilities for changing initial values
 
+## Getting Started 
+
+Go get started, we load **`ramp.xds`**, build a model, and solve it. 
 
 ```{r}
 library(ramp.xds)
@@ -27,6 +31,8 @@ library(ramp.xds)
 ```{r, echo=F}
 #devtools::load_all)
 ```
+
+### Basic Setup 
 
 The function `xds_setup` was discussed in [Getting Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html). 
 
@@ -38,7 +44,7 @@ mod <- xds_setup(Xname = "SIS", MYname = "SI", Lname = "basicL")
 mod$MYname
 ```
 
-## Solving 
+### Solving 
 
 The functions `xds_solve` can be called to solve dynamical systems. In these systems, *time* is the independent variable. Given a set of initial values, `xds_solve` or `dts_solve` compute the values of the dependent variables at those time points. Other functions return stable orbits for models with a canonical seasonal signal.  
 
@@ -46,7 +52,7 @@ The functions `xds_solve` can be called to solve dynamical systems. In these sys
 mod <- xds_solve(mod)
 ```
 
-## Outputs 
+### Get Orbits 
 
 The variables and terms are returned as raw and parsed outputs:  
 
@@ -60,13 +66,17 @@ The variables and terms are returned as raw and parsed outputs:
 names(mod$outputs)
 ```
 
-## Visualize 
+### Plot 
 
 a family of functions makes it easy to plot basic outputs of the models.
 
 ```{r, fig.height=3.5, fig.width=6}
 xds_plot_M(mod)
 ```
+
+## Parameters 
+
+Another set of utilities was developed to change parameter values through a function call. 
 
 ## Initial Values 
 
@@ -81,17 +91,15 @@ With the default, `flatten=FALSE`, `get_inits` returns a named list that is easy
 ```{r}
 get_inits(mod)
 ```
+
 Since it is a named list, it's easy to examine a specific element in that list: 
 
 ```{r}
 get_inits(mod)$MY
 ```
 
-## Parameters 
 
-Another set of utilities was developed to change parameter values through a function call. 
-
-## Analyze
+## Computing for Qualitative Analysis 
 
 The software includes functions that perform various analytical tasks: 
 
@@ -125,9 +133,6 @@ From the user perspective, using these **`change_`** functions will make it easy
 + Changing initial values, except human / host population density: 
 
 + Changing parameter values. 
-
-
-
 
 
 **Modification** of any features of a model, but some of these features are: 

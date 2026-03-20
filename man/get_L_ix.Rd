@@ -12,11 +12,10 @@ get_L_ix(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+a named \link{list} of indices for the \strong{L} variables
 }
 \description{
-Get and display the
-values of the indices
-for the \strong{L} variables
+The indices are stored on the \strong{L} object as a
+named list called \code{ix}; \code{get_L_ix} returns that list.
 }
 \keyword{internal}

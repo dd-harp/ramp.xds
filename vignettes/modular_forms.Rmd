@@ -8,11 +8,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-The modular structure for computation implemented in **`ramp.xds`** can be understood by rewriting the equations in **modular form,** a stylized way of presenting a dynamical system that emphasizes the biological agents involved in the underlying process. Here, we rewrite a simple dynamical system in modular form, so the equations mirror the implementation in `ramp.xds.` For a longer discussion and examples, see [Modularity](modularity.html).
+The modular structure for computation implemented in **`ramp.xds`** can be understood by rewriting the equations in **modular form,** a stylized way of presenting a dynamical system that emphasizes the biological agents involved in the underlying process. Here, we rewrite a simple dynamical system in modular form, so the equations mirror the implementation in `ramp.xds`. For a longer discussion and examples, see [Modularity](modularity.html).
 
 ## A Standard Form
 
-A mathematical framework for building modular models of malaria dynamics and control (and other mosquito-borne pathogens) was described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}, and that framework has been implemented in `ramp.xds.` 
+A mathematical framework for building modular models of malaria dynamics and control (and other mosquito-borne pathogens) was described in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}, and that framework has been implemented in `ramp.xds`. 
 
 There is no *standard form* for writing down systems of differential equations, but some forms are preferred by scientists or mathematicians, depending on training and context. 
 

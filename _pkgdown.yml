@@ -38,17 +38,17 @@ navbar:
       href: articles/Exposure.html
     - text: Bionomics 
       href: articles/MosquitoBionomics.html
-  - text: Human / Host
+  - text: XH 
     menu:
-    - text: XH Component 
+    - text: XH Component -- Humans / Hosts 
       href: articles/XH-interface.html
     - text: The SIS Module 
       href: articles/human_sis.html
     - text: MoI hybrid model
       href: articles/human_hmoi.html
-  - text: Adult Mosquitoes 
+  - text: MY 
     menu:
-    - text: The MY Component 
+    - text: MY Component -- Adult Mosquitoes 
       href: articles/MY-interface.html
     - text: Macdonald's Model
       href: articles/adult_RM.html
@@ -56,9 +56,9 @@ navbar:
       href: articles/RM-dts-Mosquito.html
     - text: Generalized Macdonald model
       href: articles/adult_GeM.html
-  - text: Immature Mosquitoes 
+  - text: L 
     menu:
-    - text: The L Component 
+    - text: L Component -- Aquatic Mosquitoes
       href: articles/L-interface.html
     - text: Emergence (the trivial module) 
       href: articles/aqua_trace.html

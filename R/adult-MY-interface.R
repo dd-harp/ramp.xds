@@ -109,21 +109,8 @@ F_eggs <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Adult Mosquito Bionomics - Baseline
-#' @description Compute the baseline adult mosquito bionomic parameter values
-#' @param t current simulation time
-#' @param y state vector
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-MBaseline <- function(t, y, xds_obj, s) {
-  UseMethod("MBaseline", xds_obj$MY_obj[[s]])
-}
-
-#' @title Adult Mosquito Bionomics - Modified by Control
-#' @description Modify the baseline adult mosquito bionomic parameters
+#' @title Adult Mosquito Bionomics
+#' @description Compute the adult mosquito bionomic parameter values
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
@@ -133,6 +120,19 @@ MBaseline <- function(t, y, xds_obj, s) {
 #' @export
 MBionomics <- function(t, y, xds_obj, s) {
   UseMethod("MBionomics", xds_obj$MY_obj[[s]])
+}
+
+#' @title Adult Mosquito Bionomics - Vector Control Effect Sizes
+#' @description Apply vector control effect sizes to adult mosquito bionomic parameters
+#' @param t current simulation time
+#' @param y state vector
+#' @param xds_obj an **`xds`** model object
+#' @param s the species index
+#' @return an **`xds`** object
+#' @keywords internal
+#' @export
+MEffectSizes <- function(t, y, xds_obj, s) {
+  UseMethod("MEffectSizes", xds_obj$MY_obj[[s]])
 }
 
 #' @title Setup an **MY** Model Object

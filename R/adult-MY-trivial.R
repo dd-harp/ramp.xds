@@ -79,8 +79,17 @@ check_MY.trivial = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Blood feeding rate of the infective mosquito population
-#' @description Implements [F_fqZ] for the trivial model.
+#' @title Net Infectious Biting Rate 
+#' @description Returns 
+#' \deqn{F_{fqZ}(t) = fqZ S(t) T(t) K(t)}
+#' where 
+#' + \eqn{f} is the feeding rate 
+#' + \eqn{q} the human fraction 
+#' + \eqn{Z} is the density of infectious mosquitoes, per patch 
+#' + \eqn{S(t)} or `F_season` is a seasonal pattern 
+#' + \eqn{T(t)} or `F_trend` is a trend pattern 
+#' + \eqn{K(t)} or `F_shock` is a perturbation 
+#' 
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
@@ -92,8 +101,15 @@ F_fqZ.trivial <- function(t, y, xds_obj, s) {
   return(f*q*Z)
 }
 
-#' @title Number of eggs laid by adult mosquitoes
-#' @description Implements [F_eggs] for the trivial model.
+#' @title Net Egg Laying Rate 
+#' @description Returns 
+#' \deqn{F_{G}(t) = G S(t) T(t) K(t)}
+#' where 
+#' + \eqn{G} is the number of eggs laid, per patch, per day 
+#' + \eqn{S(t)} or `F_season` is a seasonal pattern 
+#' + \eqn{T(t)} or `F_trend` is a trend pattern 
+#' + \eqn{K(t)} or `F_shock` is a perturbation 
+#' 
 #' @inheritParams F_eggs
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
@@ -122,11 +138,11 @@ F_fqM.trivial <- function(t, y, xds_obj, s){
 #' product of the effect sizes for each intervention.
 #' Since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
-#' @inheritParams MBionomics
+#' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBaseline.trivial <- function(t, y, xds_obj, s) {
+MBionomics.trivial <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
@@ -138,11 +154,11 @@ MBaseline.trivial <- function(t, y, xds_obj, s) {
 #' product of the effect sizes for each intervention.
 #' Since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
-#' @inheritParams MBionomics
+#' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBionomics.trivial <- function(t, y, xds_obj, s) {
+MEffectSizes.trivial <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 

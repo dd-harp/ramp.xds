@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{MBionomics}
 \alias{MBionomics}
-\title{Adult Mosquito Bionomics - Modified by Control}
+\title{Adult Mosquito Bionomics}
 \usage{
 MBionomics(t, y, xds_obj, s)
 }
@@ -19,6 +19,6 @@ MBionomics(t, y, xds_obj, s)
 an \strong{\code{xds}} object
 }
 \description{
-Modify the baseline adult mosquito bionomic parameters
+Compute the adult mosquito bionomic parameter values
 }
 \keyword{internal}

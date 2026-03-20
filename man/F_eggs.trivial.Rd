@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{F_eggs.trivial}
 \alias{F_eggs.trivial}
-\title{Number of eggs laid by adult mosquitoes}
+\title{Net Egg Laying Rate}
 \usage{
 \method{F_eggs}{trivial}(t, y, xds_obj, s)
 }
@@ -19,6 +19,14 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_eggs} for the trivial model.
+Returns
+\deqn{F_{G}(t) = G S(t) T(t) K(t)}
+where
+\itemize{
+\item \eqn{G} is the number of eggs laid, per patch, per day
+\item \eqn{S(t)} or \code{F_season} is a seasonal pattern
+\item \eqn{T(t)} or \code{F_trend} is a trend pattern
+\item \eqn{K(t)} or \code{F_shock} is a perturbation
+}
 }
 \keyword{internal}

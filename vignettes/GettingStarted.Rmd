@@ -20,7 +20,7 @@ This vignette gives a basic introduction to **`ramp.xds`** and a quick demonstra
     
     + Solve it
 
-Next: [Basic Setup](BasicSetup.html). 
+Next: [Working with Models](Working.html)
 
 Additional documentation is available in the [**SimBA** Project](https://faculty.washington.edu/smitdave/simba/index.html) website.
 
@@ -120,7 +120,7 @@ model1 <- change_H(1004, model1)
 get_XH_inits(model1)
 ```
 
-The module for adult mosquito ecology and infection dynamics is called `MYname.` The default module is Macdonald's model: 
+The module for adult mosquito ecology and infection dynamics is called `MYname.` The default module is an SI model: 
 
 ```{r}
 model$MYname
@@ -219,31 +219,24 @@ xds_plot_PR(model)
 xds_plot_EIR(model)
 ```
 
-## Trivial Models and Trace Functions
+## Trace 
 
 The software was designed to be fully modular, so that any module for one dynamical component can be replaced with another. The models included in **`ramp.xds`** illustrate its features and ensure that the software is working as designed.
 
-A basic requirement for full modularity is that every dynamical component must include a *trivial* module. In the `trivial` module, no variables are defined, but the dynamical terms needed by related dynamical components are passed by a configurable *trace* function with a generic form:
+A basic requirement for full modularity is that every dynamical component must include a *trivial* module. In the `trivial` module, no variables are defined, but the dynamical terms needed by related dynamical components are passed by a configurable *trace function* with a generic form:
 
 ```{r, eval=F}
-mean*F_season(t)*F_trend(t)
+mean*F_season(t)*F_trend(t)*F_shock(t)
 ```
 
 The default for the aquatic mosquito dynamical component is the `trivial` module, where the `mean` is called `Lambda`.
 
-It is easy to change the `trace` function. First, we define `F_season` and change the mean value of `Lambda.` 
-To set up a seasonality function, we pass a parameter set from `makepar_F_sin` as `season_par`.
-
-```{r}
- sp = makepar_F_sin()
-```
-
-Having defined `sp,` we now configure a list of options:
+It is easy to change the `trace` function. First, we define `F_season` and change the mean value of `Lambda.` To set up a seasonality function, we pass a parameter set from `makepar_F_sin`: 
 
 ```{r}
 Lo = list(
        Lambda=400, 
-       season_par=sp
+       season_par=makepar_F_sin()
       )
 ```
 
@@ -277,4 +270,6 @@ xds_plot_Z(model_1, add=T)
 
 ## Next Steps
 
-A good next step is the [Basic Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html) vignette.
+Two good next steps are the vignettes: 
++ [Working with Models](https://dd-harp.github.io/ramp.xds/articles/Working.html).
++ [Basic Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html).

@@ -63,9 +63,9 @@ These functions compute dynamical terms -- the outputs passed to an interface.
 
 Some parameters can be ports. In these cases, the 
 
-+ `LBaseline`
-
 + `LBionomics`
+
++ `LEffectSizes`
 
 ## Model Object
 

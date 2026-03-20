@@ -79,7 +79,6 @@ NULL
 #'
 #' @seealso [SIS Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
 #' @return the derivatives, as a vector
-#'
 #' @keywords internal
 #' @export
 dXHdt.SIS <- function(t, y, xds_obj, i) {

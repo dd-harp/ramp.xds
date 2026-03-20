@@ -167,17 +167,17 @@ F_emerge.basicL <- function(t, y, xds_obj, s) {
   })
 }
 
-#' @title Baseline Bionomics for `basicL` (**L** Component)
+#' @title Bionomics for `basicL` (**L** Component)
 #'
 #' @description Set **L** component parameters
 #' to baseline values for `basicL`
-#' @inheritParams LBaseline
+#' @inheritParams LBionomics
 #'
 #' @return an **`xds`** object
 #' @keywords internal
 #' @keywords internal
 #' @export
-LBaseline.basicL <- function(t, y, xds_obj, s) {
+LBionomics.basicL <- function(t, y, xds_obj, s) {
 
   with(xds_obj$L_obj[[s]],{
     xds_obj$L_obj[[s]]$psi_t      <- F_maturation(t, xds_obj, s)
@@ -193,13 +193,13 @@ LBaseline.basicL <- function(t, y, xds_obj, s) {
 })}
 
 #' @title Bionomics for `basicL` (**L** Component)
-#' @description Implements [LBionomics] for the `basicL`
-#' @inheritParams LBionomics
+#' @description Implements [LEffectSizes] for the `basicL`
+#' @inheritParams LEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @keywords internal
 #' @export
-LBionomics.basicL <- function(t, y, xds_obj, s) {
+LEffectSizes.basicL <- function(t, y, xds_obj, s) {
   with(xds_obj$L_obj[[s]],{
     xds_obj$L_obj[[s]]$psi   <- psi_t*es_psi
     xds_obj$L_obj[[s]]$phi   <- phi_t*es_phi
@@ -222,7 +222,7 @@ setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
   L_obj <- make_L_obj_basicL(xds_obj$nHabitats, options)
   class(L_obj) <- c("basicL", paste("basicL_", xds_obj$xds, sep=""))
   xds_obj$L_obj[[s]] = L_obj
-  xds_obj <- LBaseline(0, 0, xds_obj, 1)
+  xds_obj <- LBionomics(0, 0, xds_obj, 1)
   return(xds_obj)
 }
 

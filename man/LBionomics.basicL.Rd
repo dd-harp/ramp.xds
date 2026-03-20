@@ -19,6 +19,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{LBionomics} for the \code{basicL}
+Set \strong{L} component parameters
+to baseline values for \code{basicL}
 }
 \keyword{internal}

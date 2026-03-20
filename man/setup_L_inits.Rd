@@ -11,12 +11,13 @@ setup_L_inits(xds_obj, s, options = list())
 
 \item{s}{the species index}
 
-\item{options}{a \link{list}}
+\item{options}{a named \link{list}}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on \code{Lname}.
+Sets the initial values of the \strong{L} Component
+variables from \code{options}, a named list.
 }
 \keyword{internal}
