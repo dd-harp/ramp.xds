@@ -50,9 +50,9 @@ closer to one published by
   extrinsic incubation period (\\\tau\\)
 
 The *demographic matrix* \\\Omega\\ is formulated as \$\$ \Omega =
-\mbox{diag} \left( g \right) + K \cdot \mbox{diag} \left( \sigma
-\left(1-\mu\right) \right) \$\$ Survival and dispersal through the EIP
-is \$\$ \Upsilon = e^{-\Omega \tau} \$\$
+\mbox{diag} \left( g + \sigma \mu \right) + K \cdot \mbox{diag} \left(
+\sigma \left(1-\mu\right) \right) \$\$ Survival and dispersal through
+the EIP is \$\$ \Upsilon = e^{-\Omega \tau} \$\$
 
 ## Dynamics
 
@@ -67,4 +67,4 @@ fq\kappa(M-Y) - \Omega \cdot Y \\\\ dZ/dt &= \Upsilon \cdot
 ## Note
 
 This model is not capable of handling exogenous forcing by weather or
-vector control. Use the `GeRM` module instead.
+vector control. Use the `GeM` module instead.

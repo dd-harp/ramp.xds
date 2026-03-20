@@ -1,13 +1,13 @@
 # **`ramp.xds`**: Getting Help
 
-**`ramp.xds`** concepts and functions are well documented. These help
-guides are designed to find what you need.
+**`ramp.xds`** concepts and functions are well documented. Use these
+guides to find a concept or function.
 
 - [xds_help_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.md)
-  is an overview of basic setup
+  – an overview of basic setup
 
 - [xds_help_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_help_setup_options.md)
-  is an overview of other options
+  – setup for other features
 
 - **`get_`** functions inspect a model component or outputs
 
@@ -17,8 +17,9 @@ guides are designed to find what you need.
 
 ## XH Component
 
-Type `?XH_` to find a list of help guides for human / host demography,
-infection, & immunity.
+Help guides for human / host demography, infection, & immunity.
+
+`?XH_`
 
 - [`XH_module_list`](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md)
   – list of **XH** Modules
@@ -37,8 +38,9 @@ infection, & immunity.
 
 ## MY Component
 
-Type `?MY_` to find a list of help guides for adult mosquito ecology &
-infection dynamics.
+Help guides for adult mosquito ecology & infection dynamics.
+
+`?MY_`
 
 - [`MY_module_list`](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.md)
   – list of **MY** Modules
@@ -57,7 +59,9 @@ infection dynamics.
 
 ## L Component
 
-Type `?L_` to find a list of help guides for immature mosquito ecology.
+Help guides for immature mosquito ecology.
+
+`?L_`
 
 - [`L_module_list`](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md)
   – list of **L** Modules
@@ -73,3 +77,8 @@ Type `?L_` to find a list of help guides for immature mosquito ecology.
 
 - [`L_setup`](https://dd-harp.github.io/ramp.xds/reference/L_setup.md) –
   list of `setup_` functions for **L** Modules
+
+## Internals
+
+Information about the
+[xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)

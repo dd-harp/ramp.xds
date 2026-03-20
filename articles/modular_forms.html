@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Modular Forms for Disease Dynamics • ramp.xds</title>
+<title>Modular Forms • ramp.xds</title>
 <!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
   window.MathJax = {
     chtml: {
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Modular Forms for Disease Dynamics">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Modular Forms">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -35,20 +35,21 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item dropdown">
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/GettingStarted.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/BasicSetup.html">Basic Setup</a></li>
     <li><a class="dropdown-item" href="../articles/Working.html">The xds Model Object</a></li>
     <li><a class="dropdown-item" href="../articles/ex_534.html">The 5-3-4 Model</a></li>
+    <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
     <li><a class="dropdown-item" href="../articles/Delays.html">Delay Equations</a></li>
     <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
     <li><a class="dropdown-item" href="../articles/DTS.html">Discrete Time Systems</a></li>
     <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Functions</a></li>
   </ul>
 </li>
-<li class="active nav-item dropdown">
+<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
 <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
@@ -71,8 +72,8 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
 <li><a class="dropdown-item" href="../articles/MY-interface.html">The MY Component</a></li>
     <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
-    <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Ross-Macdonald - discrete time</a></li>
-    <li><a class="dropdown-item" href="../articles/adult_GeRM.html">Generalized Ross-Macdonald model</a></li>
+    <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Macdonald - discrete time</a></li>
+    <li><a class="dropdown-item" href="../articles/adult_GeM.html">Generalized Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -101,7 +102,9 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Modular Forms for Disease Dynamics</h1>
+      <h1>Modular Forms</h1>
+            <h3 data-toc-skip class="subtitle">Developing a Formalism
+for Mosquito-borne Disease Dynamics</h3>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/modular_forms.Rmd" class="external-link"><code>vignettes/modular_forms.Rmd</code></a></small>
@@ -110,13 +113,13 @@
 
     
     
-<p>A <strong>modular form</strong> is a stylized way of writing down a
-dynamical systems that emphasizes the structure of the underlying
-process. The modular structure of <strong><code>ramp.xds</code></strong>
-can be understood through the use of these forms. The forms we describe
-here rewrite models so that they closely resemble their implementation
-in <code>ramp.xds</code>, which makes it possible to relate written
-equations and computed code.</p>
+<p>The modular structure for computation implemented in
+<strong><code>ramp.xds</code></strong> can be understood by rewriting
+the equations in <strong>modular form,</strong> a stylized way of
+presenting a dynamical system that emphasizes the biological agents
+involved in the underlying process. Here, we rewrite a simple dynamical
+system in modular form, so the equations mirror the implementation in
+<code>ramp.xds.</code> For a longer discussion and examples, see <a href="modularity.html">Modularity</a>.</p>
 <div class="section level2">
 <h2 id="a-standard-form">A Standard Form<a class="anchor" aria-label="anchor" href="#a-standard-form"></a>
 </h2>
@@ -125,108 +128,237 @@ dynamics and control (and other mosquito-borne pathogens) was described
 in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" target="_blank" class="external-link">Spatial Dynamics of Malaria Transmission</a>, and that
 framework has been implemented in <code>ramp.xds.</code></p>
 <p>There is no <em>standard form</em> for writing down systems of
-differential equations, but many forms are used, depending on context.
-For comparison, we writing down a system of equations that does not
-emphasize the modularity, or <em>not a modular form.</em></p>
-<p>To illustrate the modular form, we start with the
-<em>Ross-Macdonald</em>-style model in Box 1.</p>
+differential equations, but some forms are preferred by scientists or
+mathematicians, depending on training and context.</p>
+<p>We start by writing one version of a Ross-Macdonald model as a system
+of equations that does not emphasize the modularity, or <em>not a
+modular form</em> (Box 1).</p>
 <hr>
 <p><strong>Box 1: A Ross-Macdonald Model</strong></p>
 <ul>
-<li><p>Let the dependent variable <span class="math inline">\(I(t)\)</span> denote the density of infected
+<li><p>Let the dependent variable <span class="math inline">\(X(t)\)</span> denote the density of infected
 humans, and the parameter <span class="math inline">\(H\)</span> the
-density of all humans</p></li>
-<li><p>Let the dependent variable <span class="math inline">\(Y(t)\)</span> denote the density of infected
-mosquitoes, and the parameter <span class="math inline">\(M\)</span> the
-density of all mosquitoes</p></li>
-<li><p>Let <span class="math inline">\(b\)</span> denote the fraction of
-bites by infective mosquitoes that infect a human, and let <span class="math inline">\(r\)</span> denote the rate that infections
-clear</p></li>
-<li><p>Let <span class="math inline">\(c\)</span> denote the fraction of
-blood meals on infectious humans infect a mosquito, and let <span class="math inline">\(g\)</span> denote the mosquito death rate</p></li>
-<li><p>Let <span class="math inline">\(f\)</span> denote the overall
-blood feeding rate, and <span class="math inline">\(q\)</span> the human
-fraction</p></li>
-<li><p>Let <span class="math inline">\(\tau\)</span> denote the
-EIP.</p></li>
+density of humans.</p></li>
+<li><p>Let the dependent variable <span class="math inline">\(M(t)\)</span> denote the density of mosquitoes,
+and <span class="math inline">\(Y(t)\)</span> the density of infectious
+mosquitoes.</p></li>
+<li>
+<p>Human Infections:</p>
+<ul>
+<li><p><span class="math inline">\(b\)</span> denotes the fraction of
+bites by infectious mosquitoes that infect a human; and</p></li>
+<li><p><span class="math inline">\(r\)</span> denotes the rate that
+infections clear.</p></li>
 </ul>
-<p>In this set of equations, we ignore the delay for sporogony, but we
-count the mortality, so infections occur at the rate <span class="math inline">\(b e^{-g \tau} fqY/H.\)</span> We assume that the
-daily FoI is linearly proportional to the daily EIR, consistent with a
-Poisson model for exposure, so <span class="math inline">\(h =
-bE.\)</span></p>
-<p><span class="math display">\[ \begin{array}{rl}
-dI/dt &amp;= b e^{-gn}fq \frac YH (H-I) - r I \\
-dY/dt &amp;= fq c \frac IH (M-Y) - g Y
-\end{array}\]</span></p>
+</li>
+<li>
+<p>Mosquito Ecology:</p>
+<ul>
+<li><p><span class="math inline">\(\Lambda\)</span> denotes the
+emergence rate of adult, female mosquitoes;</p></li>
+<li><p><span class="math inline">\(g\)</span> denotes the mosquito death
+rate;</p></li>
+</ul>
+</li>
+<li>
+<p>Mosquito Blood Feeding &amp; Infection Dynamics:</p>
+<ul>
+<li>
+<span class="math inline">\(c\)</span> denotes the fraction of blood
+meals on infectious humans that infect a mosquito;</li>
+<li>
+<span class="math inline">\(f\)</span> denotes the overall blood
+feeding rate;</li>
+<li>
+<span class="math inline">\(q\)</span> denotes the human blood
+fraction; and</li>
+<li>
+<span class="math inline">\(n\)</span> denotes the EIP.</li>
+</ul>
+</li>
+</ul>
+<p>We introduce a term <span class="math inline">\(Z=e^{-gn}Y\)</span>
+to model survival through the EIP, such that human infections occur at
+the rate <span class="math inline">\(fqbZ/H,\)</span> and mosquito
+infections at the rate <span class="math inline">\(fqcX/H.\)</span></p>
+<p><span class="math display">\[
+\begin{array}{rl}
+dX/dt &amp;= fq b e^{-gn} \frac {Y}{H} (H-X) - r X \\
+dM/dt &amp;= \Lambda - g M \\
+dY/dt &amp;= fq c \frac {X}{H} (M-Y) - g Y
+\end{array}
+\]</span> Written in this way, it is in a <em>standard form.</em></p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="in-modular-form">…in Modular Form<a class="anchor" aria-label="anchor" href="#in-modular-form"></a>
+<h2 id="a-modular-form">A Modular Form<a class="anchor" aria-label="anchor" href="#a-modular-form"></a>
 </h2>
-<p>We illustrate by writing a Ross-Macdonald model in its modular form
-(Figure 1). In the modular form, we identify the terms in one equation
-that depend on the other variable. First, we focus on the equation
-describing human infection dynamics. We note that it depends on a term
-involving the variable <span class="math inline">\(Y.\)</span> The term
-is epidemiologically meaningful – it is called the force of infection
-(FoI). We let <span class="math inline">\(h\)</span> denote the FoI:
-<span class="math display">\[h=b e^{-gn}fq \frac YH,\]</span></p>
-<p>and now we can rewrite the equation</p>
+<p>We illustrate by rewriting this model in its modular form (Figure 1).
+In the modular form, we identify the terms in one equation that depend
+on the other variable. First, we focus on the equation describing human
+infection dynamics. We note that it depends on a term involving the
+variable <span class="math inline">\(Y.\)</span> The term is called the
+force of infection (FoI, Ross called it the <em>happenings</em> rate).
+We let <span class="math inline">\(h\)</span> denote the FoI:</p>
+<p><span class="math display">\[h=fq b e^{-gn} \frac
+{Y}{H}.\]</span></p>
+<p>Now, the first equation can be rewritten:</p>
 <p><span class="math display">\[
-dI/dt = h  (H-I) - r I
+dX/dt = h  (H-X) - r X
 \]</span></p>
-<p>Next, we isolate the equation describing mosquito infection dynamics,
-we note that it depends on a term that we will call the net
-infectiousness (NI).</p>
-<p><span class="math display">\[\kappa = \frac XH\]</span></p>
-<p>The term <span class="math display">\[ X = c I\]</span> is the
-density of infected humans, weighted by their infectiousness.</p>
-<p>We note that <span class="math inline">\(fq\kappa\)</span> is the FoI
-for mosquito infections, and now we can rewrite the equation for
-mosquitoes:</p>
+<p>Mosquito population dynamics are self-contained. We could model
+mosquito ecology without infection dynamics, but not <em>vice
+versa.</em> (<span class="math inline">\(M\)</span> appears in <span class="math inline">\(dY/dt,\)</span> but <span class="math inline">\(Y\)</span> does not appear in <span class="math inline">\(dM/dt.\)</span>)</p>
+<p><span class="math display">\[
+dM/dt = \Lambda - g M
+\]</span></p>
+<p>Mosquito infections depend on the probability a mosquito becomes
+infected after blood feeding on a human, a term that we will call the
+net infectiousness (NI or <span class="math inline">\(\kappa\)</span>):</p>
+<p><span class="math display">\[\kappa = c\frac{X}{H}\]</span></p>
+<p>The force of infection for mosquitoes is <span class="math inline">\(fq\kappa,\)</span> so we can rewrite the equation
+for parasite infection dynamics in mosquitoes:</p>
 <p><span class="math display">\[
 dY/dt = fq\kappa (M-Y) - g Y
 \]</span></p>
-<p>Since we also want to make this model extensible, we want to draw
-attention to the term <span class="math inline">\(h.\)</span> We note
-that the number of infective bites, per human, per day – called the
-daily entomological inoculation rate (EIR) – is</p>
-<p><span class="math display">\[E = f q e^{-g\tau} \frac YH
-\]</span></p>
-<p>We assume that exposure is Poisson distributed:</p>
-<p><span class="math display">\[h = b E\]</span></p>
-<p>We emphasize that this is the same set</p>
+<p>With these five elements, the system has a modular form. In this
+modular form, there are three components:</p>
+<ul>
+<li><p><strong>X</strong> - the human SIS model;</p></li>
+<li><p><strong>Y</strong> - the mosquito SI model; and</p></li>
+<li><p><strong>M</strong> - mosquito population dynamics.</p></li>
+</ul>
+<p>There are two dynamical terms:</p>
+<ul>
+<li><p>the FoI, describing parasite transmission from mosquitoes to
+humans; and</p></li>
+<li><p>net infectiousness (NI), describing parasite transmission from
+humans to mosquitoes.</p></li>
+</ul>
+<p>The modular form is not as compact, but it draws more attention to
+model structure. The formalism makes it easier to compare different
+models.</p>
 <hr>
 <div class="float">
-<img src="RossMacdonald3b.png" alt="Figure 1 - Diagram of a Ross-Macdonald model in Box 1, rewritten in a modular form."><div class="figcaption">
+<img src="RossMacdonaldFormal.png" style="width:100.0%" alt="Figure 1 - Diagram of a Ross-Macdonald model in Box 1, rewritten in a modular form."><div class="figcaption">
 <strong>Figure 1</strong> - Diagram of a
 Ross-Macdonald model in Box 1, rewritten in a modular form.</div>
 </div>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="computation">Computation<a class="anchor" aria-label="anchor" href="#computation"></a>
+<h2 id="dynamical-terms">Dynamical Terms<a class="anchor" aria-label="anchor" href="#dynamical-terms"></a>
 </h2>
-<p>To solve these equations, we need to write functions that compute the
-derivatives. We are using the R package <code>deSolve.</code> A properly
-formed derivative function implementing the</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">RMv1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">pars</span>,<span class="op">{</span></span>
-<span>      <span class="va">eir</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">g</span><span class="op">*</span><span class="va">n</span><span class="op">)</span><span class="op">*</span><span class="va">Y</span><span class="op">/</span><span class="va">H</span></span>
-<span>      <span class="va">foi</span> <span class="op">=</span> <span class="va">b</span><span class="op">*</span><span class="va">eir</span></span>
-<span>      <span class="va">kappa</span> <span class="op">=</span> <span class="va">c</span><span class="op">*</span><span class="va">I</span><span class="op">/</span><span class="va">H</span></span>
-<span>      <span class="va">dX</span> <span class="op">=</span> <span class="va">foi</span><span class="op">*</span><span class="op">(</span><span class="va">H</span><span class="op">-</span><span class="va">I</span><span class="op">)</span> <span class="op">-</span> <span class="va">r</span><span class="op">*</span><span class="va">I</span></span>
-<span>      <span class="va">dY</span> <span class="op">=</span> <span class="va">a</span><span class="op">*</span><span class="va">kappa</span><span class="op">*</span><span class="op">(</span><span class="va">M</span><span class="op">-</span><span class="va">Y</span><span class="op">)</span> <span class="op">-</span> <span class="va">g</span><span class="op">*</span><span class="va">Y</span> </span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">dX</span>, <span class="va">dY</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<p>By identifying the dynamical terms — input involving variables from
+another module — it is possible to write the model in a modular form. In
+<strong><code>ramp.xds,</code></strong> because the framework handles
+spatial dynamics, these dynamical terms — <span class="math inline">\(h\)</span> and <span class="math inline">\(\kappa\)</span> — are computed as part of an
+interface that handles blood feeding, transmission, and human exposure
+in a way that is both flexible and mathematically rigorous.</p>
+<p>In the spatial modeling framework, mosquitoes blood feed in patches.
+Humans reside in a patch, but they spend time in other patches. The
+interface guarantees that the number of bites and blood meals taken by
+mosquitoes matches the number of bites and blood meals received by
+humans. To do this in a flexible way, the interface uses a concept of
+<em>available blood hosts.</em> Part of that interface includes a
+general way of modeling human <em>exposure</em> and <em>infection,</em>
+including models for travel malaria, partial immunity, and environmental
+heterogeneity.</p>
+<p>We can illustrate using this model without explaining how the full
+interface works. The FoI is computed in three steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>compute the total infectious biting rate by the mosquito
+population, <span class="math inline">\(fqZ = fq
+e^{-gn}Y;\)</span></p></li>
+<li><p>compute the daily entomological inoculation rate (dEIR), the
+number of infectious bites, per person, per day (<span class="math inline">\(E=fqZ/H\)</span>);</p></li>
+<li><p>compute the FoI, given the EIR (<span class="math inline">\(h=bE\)</span>).</p></li>
+</ol>
+<p>The NI is computed in two steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>compute the <em>infective density</em> of the human population
+(<span class="math inline">\(I=cX\)</span>).</p></li>
+<li><p>compute the NI (<span class="math inline">\(\kappa =
+I/H\)</span>).</p></li>
+</ol>
+<p>While these steps add complexity to this simple model, they are
+essential to the modular implementation that enables richer, more
+realistic models.</p>
+<p>For a longer discussion of modularity, see <a href="https://dd-harp.github.io/ramp.xds/articles/modularity.html">Modularity</a>.</p>
+<div class="float">
+<img src="RossMacdonaldFormal2.png" style="width:100.0%" alt="Figure 2 - Diagram of a Ross-Macdonald model that shows how the dynamical terms are computed, step-by-step, to enable models with spatial dynamics and realism."><div class="figcaption">
+<strong>Figure 2</strong> - Diagram of a
+Ross-Macdonald model that shows how the dynamical terms are computed,
+step-by-step, to enable models with spatial dynamics and realism.</div>
+</div>
 </div>
 <div class="section level2">
-<h2 id="full-modularity">Full Modularity<a class="anchor" aria-label="anchor" href="#full-modularity"></a>
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>For a longer discussion of modularity, see the vignette <a href="modularity.html">modularity</a></p>
+<p>Basic setup returns this model during setup, but it can also be
+configured by naming the modules and passing options to set <span class="math inline">\(\Lambda\)</span>:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, MYname <span class="op">=</span> <span class="st">"SI"</span>, </span>
+<span>                 Lname <span class="op">=</span> <span class="st">"trivial"</span>, <span class="fu">Loptions</span><span class="op">(</span>Lambda<span class="op">=</span><span class="fl">80</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>In solving the system, derivatives for the human “SIS” model are
+computed by a function <code>dXHdt.SIS</code>. Documentation is
+available through help in two ways: <code><a href="../reference/SIS.html">?SIS</a></code> or
+<code><a href="../reference/dXHdt.SIS.html">?dXHdt.SIS</a></code>. The full implementation includes human
+demography and ports for mass treatment. The code looks like this:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/getS3method.html" class="external-link">getS3method</a></span><span class="op">(</span><span class="st">"dXHdt"</span>, <span class="st">"SIS"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## function (t, y, xds_obj, i) </span></span>
+<span><span class="co">## {</span></span>
+<span><span class="co">##     foi &lt;- xds_obj$terms$FoI[[i]]</span></span>
+<span><span class="co">##     with(get_XH_vars(y, xds_obj, i), {</span></span>
+<span><span class="co">##         with(xds_obj$XH_obj[[i]], {</span></span>
+<span><span class="co">##             dH &lt;- Births(t, H, births) + D_matrix %*% H</span></span>
+<span><span class="co">##             dI &lt;- foi * (H - I) - r * I + D_matrix %*% I</span></span>
+<span><span class="co">##             dI &lt;- dI - mda(t) * I - msat(t) * I</span></span>
+<span><span class="co">##             return(c(dH, dI))</span></span>
+<span><span class="co">##         })</span></span>
+<span><span class="co">##     })</span></span>
+<span><span class="co">## }</span></span>
+<span><span class="co">## &lt;bytecode: 0x562173a2f8d8&gt;</span></span>
+<span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
+<p>Derivatives for the mosquito ecology and “SI” model are computed by
+<code>dMYdt.SI</code>. Documentation is available through help in two
+ways: <code><a href="../reference/SI.html">?SI</a></code> or <code><a href="../reference/dMYdt.SI.html">?dMYdt.SI</a></code>. In the full
+implementation, a mosquito demographic matrix (called <code>Omega</code>
+or <span class="math inline">\(\Omega\)</span>) combines mortality
+(<span class="math inline">\(g\)</span>) and dispersal. The code looks
+like this:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/getS3method.html" class="external-link">getS3method</a></span><span class="op">(</span><span class="st">"dMYdt"</span>, <span class="st">"SI"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## function (t, y, xds_obj, s) </span></span>
+<span><span class="co">## {</span></span>
+<span><span class="co">##     Lambda = xds_obj$terms$Lambda[[s]]</span></span>
+<span><span class="co">##     kappa = xds_obj$terms$kappa[[s]]</span></span>
+<span><span class="co">##     with(get_MY_vars(y, xds_obj, s), {</span></span>
+<span><span class="co">##         with(xds_obj$MY_obj[[s]], {</span></span>
+<span><span class="co">##             dM &lt;- Lambda - (Omega %*% M)</span></span>
+<span><span class="co">##             dY &lt;- f * q * kappa * (M - Y) - (Omega %*% Y)</span></span>
+<span><span class="co">##             return(c(dM, dY))</span></span>
+<span><span class="co">##         })</span></span>
+<span><span class="co">##     })</span></span>
+<span><span class="co">## }</span></span>
+<span><span class="co">## &lt;bytecode: 0x562173c16a40&gt;</span></span>
+<span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
+<p>The term <span class="math inline">\(\Lambda\)</span> is passed from
+the trace function <code>F_emerge.trivial</code>. Documentation is
+available through help in two ways: <code><a href="../reference/trivial_L.html">?trivial_L</a></code> or
+<code><a href="../reference/F_emerge.trivial.html">?F_emerge.trivial</a></code>. The implementation looks like this:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/getS3method.html" class="external-link">getS3method</a></span><span class="op">(</span><span class="st">"F_emerge"</span>, <span class="st">"trivial"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## function (t, y, xds_obj, s) </span></span>
+<span><span class="co">## {</span></span>
+<span><span class="co">##     with(xds_obj$L_obj[[s]], {</span></span>
+<span><span class="co">##         return(Lambda * F_season(t) * F_trend(t) * F_shock(t))</span></span>
+<span><span class="co">##     })</span></span>
+<span><span class="co">## }</span></span>
+<span><span class="co">## &lt;bytecode: 0x562173df6808&gt;</span></span>
+<span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

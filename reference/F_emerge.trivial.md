@@ -1,7 +1,7 @@
 # Compute Emergent Adults for `trivial` (**L** Component)
 
-The number of emerging adults is a function \$\$\Lambda S(t) T(t)\$\$
-where
+The number of emerging adults is a function \$\$\Lambda S(t) T(t)
+K(t)\$\$ where
 
 - \\\Lambda\\ or `Lambda` is the mean number of adult female mosquitoes
   emerging per day
@@ -12,7 +12,7 @@ where
 - \\T(t)\\ or `F_trend` is a function returning a trend (ideally, with
   an average value of 1)
 
-- \\P(t)\\ or `F_shock` is a function describing a perturbation (by
+- \\K(t)\\ or `F_shock` is a function describing a perturbation (by
   default, set to 1)
 
 ## Usage

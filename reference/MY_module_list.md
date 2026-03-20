@@ -14,13 +14,13 @@ and **`ramp.library.`**
 - `macdonald` - an implementation Macdonald's model: see
   [macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md)
 
-- `GeRM` - A Generalized Ross-Macdonald model: see
-  [GeRM](https://dd-harp.github.io/ramp.xds/reference/GeRM.md)
+- `GeM` - A generalized Macdonald model: see
+  [GeM](https://dd-harp.github.io/ramp.xds/reference/GeM.md)
 
-- `basicM` - A Basic Model for mosquito ecology: see
+- `basicM` - A basic model for mosquito ecology: see
   [basicM](https://dd-harp.github.io/ramp.xds/reference/basicM.md)
 
-- `RMdts` - A Discrete Time Ross-Macdonald model: see
+- `RMdts` - A Discrete Time Macdonald model: see
   [RMdts](https://dd-harp.github.io/ramp.xds/reference/RMdts.md)
 
 ## In **`ramp.library`**
