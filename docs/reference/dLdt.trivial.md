@@ -1,4 +1,4 @@
-# Derivatives for the `trivial` **L** module
+# Derivatives for `trivial` (**L**)
 
 Returns a numeric vector of length 0
 
@@ -29,4 +29,4 @@ dLdt(t, y, xds_obj, s)
 
 ## Value
 
-an empty [list](https://rdrr.io/r/base/list.html)
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length 0

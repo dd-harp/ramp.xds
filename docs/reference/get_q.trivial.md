@@ -1,6 +1,6 @@
-# Get the feeding rate
+# Get the human fraction
 
-Get the feeding rate
+Get the human fraction
 
 ## Usage
 

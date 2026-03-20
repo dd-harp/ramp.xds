@@ -1,8 +1,6 @@
-# Update State Variables for `trivial` (**L** Component)
+# Update State Variables for `trivial` (**L**)
 
-Implements
-[Update_Lt](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.md)
-for the trivial (forced emergence) model.
+Returns a numeric vector of length 0
 
 ## Usage
 
@@ -31,4 +29,4 @@ Update_Lt(t, y, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length 0

@@ -1,6 +1,6 @@
 # Get **L** Component Parameters for `trivial`
 
-Show the trace function
+Get \\\Lambda\\ and parameters that construct the forcing functions
 
 ## Usage
 

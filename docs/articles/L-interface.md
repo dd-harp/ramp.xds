@@ -1,87 +1,123 @@
 # The L Component
 
 The **L** component was designed to model adult mosquito ecology and
-infection dynamics.
+infection dynamics. This vignette takes an overview of of the functions
+in the **L** component. It is useful for anyone who wants to learn more
+about how the code works.
 
-This vignette takes a deep dive into the design and structure of the
-**L** component. It is useful for anyone who wants to learn more about
-how the code works.
+In context, an **L** modules get the egg laying rate, \\\eta\\ from the
+**ML**-interface. It is the dot product of the total mosquito egg laying
+rate in a patch \\G\\ and the egg laying matrix \\U\\ (Figure 1). The
+core functions compute either
 
-## Required Functions
+- a set of derivatives, generically denoted \\dL/dt\\
 
-Each **L** module includes XX required functions and some optional ones.
+- or a function that updates the state variables.
 
-Some of these required functions are `S3` class functions in
-[adult-L-interface.R](https://github.com/dd-harp/ramp.xds/blob/main/R/adult-L-interface.R).
-Others are defined for each module.
+It outputs the habitat emergence rate \\\alpha,\\ the number of adult
+female mosquitoes emerging from a patch, per day.
 
-One good example is the `SI` module, posted in the `ramp.xds` github
-repository
-[human-L-SI.R](https://github.com/dd-harp/ramp.xds/blob/main/R/human-L-SIS.R).
+------------------------------------------------------------------------
 
-The required functions deal with various tasks for model building and
-solving: constructing the **L** model object; the dynamics; the
-parameters; the variables and their initial values; computing terms and
-standard outputs; and consistency checks. Optional outputs include other
-metrics; functions to compute steady states; and module specific
-functions to visualize the outputs.
+![Figure 1 - A diagram of the L Component in context](L_component.png)
+
+**Figure 1** - A diagram of the **L** Component in context
+
+------------------------------------------------------------------------
+
+## Functions
+
+To get a list of the `S3` generic function definitions from help, type:
+
+    ?L_functions
+
+To inspect a method for a specific function, use `getS3method`
+
+------------------------------------------------------------------------
+
+The **L** Component defines 18 generic functions in
+[aquatic-L.R](https://github.com/dd-harp/ramp.xds/blob/main/R/adult-L.R).
+Most of these are `S3` class functions, but a few work generically. Each
+module defines two functions: one makes the L object and the other sets
+up the initial values for the variables.
+
+The required functions deal with various tasks required to build or
+solve a model, inspect or change the parameters or initial values,
+compute terms or outputs, and run consistency checks.
 
 Each module is defined by a string, generically called `Lname,` that
-identifies the module: *e.g.* `SI.`
+identifies the module: *e.g.* `basicL.`
 
 ### Dynamics
 
-1.  The dynamics are defined by at least one of the following is
-    required, depending on whether the model family is a system of
-    differential equations or a discrete time system:
+The dynamics are defined by at least one of the following is required,
+depending on whether the model family is a system of differential
+equations or a discrete time system:
 
-    - `dLdt.Lname` :: differential equations are defined by a function
-      that computes the derivatives. In `ramp.xds` these are encoded in
-      a function called `dLdt.` The function is set up to be solved by
-      [`deSolve::ode`](https://rdrr.io/pkg/deSolve/man/ode.html) or
-      `deSolve::dede.`
+- `dLdt.Lname` :: differential equations are defined by a function that
+  computes the derivatives. In `ramp.xds` these are encoded in a
+  function called `dLdt.` The function is set up to be solved by
+  [`deSolve::ode`](https://rdrr.io/pkg/deSolve/man/ode.html) or
+  `deSolve::dede.`
 
-    - `Update_Lt.Lname` :: discrete time systems are defined by the
-      function that updates the state variables in one time step. In
-      `ramp.xds` these are encoded in a function called `Update_Lt` that
-      computes and returns the **state variables.** The forms mimic the
-      ones used for differential equations.
+- `Update_Lt.Lname` :: discrete time systems are defined by the function
+  that updates the state variables in one time step. In `ramp.xds` these
+  are encoded in a function called `Update_Lt` that computes and returns
+  the **state variables.** The forms mimic the ones used for
+  differential equations.
 
-## L Model Object
+### Output Terms
+
+These functions compute dynamical terms – the outputs passed to an
+interface.
+
+- `F_emerge.Lname` - the function computes the habitat specific
+  emergence rate, \\\alpha\\
+
+## Bionomics
+
+Some parameters can be ports. In these cases, the
+
+- `LBaseline`
+
+- `LBionomics`
+
+## Model Object
 
 Each module has a pair of functions that set up a structured list called
-the **L** model object. The object is a list that is assigned to a
-`class` that dispatches the `S3` functions described below. It is a
-compound list, where some of the sub-lists are assigned their own
-`class` that dispatch other `S3` functions.
+the **L** model object, or `L_obj`.
 
-2.  `make_L_obj_Lname` :: returns a structured list called an **L**
-    model object:
+The object is a list that is assigned to a `class` that dispatches the
+`S3` functions described below. It is a compound list, where some of the
+sub-lists are assigned their own `class` that dispatch other `S3`
+functions.
 
-    - bionomic parameter values or bionomic parameter objects. In most
-      models, the value of baseline bionomic parameters are functions of
-      time, or exogenous variables that vary with time.
+- `setup_L_obj.Lname` is a wrapper that calls `make_L_obj_Lname` and
+  (for the \\i^{th}\\ species) attaches the object as
+  `xds_obj$L_obj[[i]]`
 
-    - `class(L_obj)` = `Lname`
+- `make_L_obj_Lname` :: returns a structured list called an **L** model
+  object:
 
-    - the indices for the model variables are stored as `L_obj$ix`
+  - bionomic parameter values and objects. In most models, the value of
+    baseline bionomic parameters are functions of time, or exogenous
+    variables that vary with time.
 
-    - the initial values are stored as `L_obj$inits`
+  - `class(L_obj)` = `Lname`
 
-    - anything else that is needed can be configured here
+  - the indices for the model variables are stored as `L_obj$ix`
 
-3.  `setup_L_obj.Lname` is a wrapper that calls `make_L_obj_Lname` and
-    (for the \\i^{th}\\ species) attaches the object as
-    `xds_obj$L_obj[[i]]`
+  - the initial values are stored as `L_obj$inits`
+
+  - anything else that is needed can be configured here
 
 ### Parameters
 
-4.  `change_L_pars.Lname` changes the values of some parameters. It is
-    designed to be used after setup. New parameter values are passed by
-    name in a list called `options.`
+- `get_L_pars.Lname` returns a named list of the parameter values.
 
-5.  `get_L_pars.Lname` is a utility to inspect the values of the
-    parameters.
+- `change_L_pars.Lname` changes the values of some parameters by passing
+  a named list. Use is designed to be used after setup. New parameter
+  values are passed by name in a list called `options.`
 
 ### Variables
 
@@ -112,25 +148,20 @@ to make it easy to inspect or use.
 A set of functions is sets up or changes the initial values for the
 state variables.
 
-9.  `make_L_inits_Lname` - each model must include a function that makes
-    a set of initial values as a named list. This function does not
-    belong to any `S3` class, so it can take any form. The function
-    should supply default initial values for all the variables. These
-    can be overwritten by passing new initial values in `options.`
+- `setup_L_inits.Lname` - is a wrapper, that gets called by `xds_setup`
+  and that calls `make_L_inits_Lname.` The setup `options` are passed to
+  overwrite default values. The initial values are stored as
+  `L_obj$inits.`
 
-10. `setup_L_inits.Lname` - is a wrapper, that gets called by
-    `xds_setup` and that calls `make_L_inits_Lname.` The setup `options`
-    are passed to overwrite default values. The initial values are
-    stored as `L_obj$inits.`
+- `make_L_inits_Lname` - each model must include a function that makes a
+  set of initial values as a named list. This function does not belong
+  to any `S3` class, so it can take any form. The function should supply
+  default initial values for all the variables. These can be overwritten
+  by passing new initial values in `options.`
 
-11. `change_L_inits.Lname` - a utility to change the initial values.
+- \[get_L_inits.Lname\] -
 
-### Dynamical Terms
-
-These functions compute dynamical terms – the outputs passed to an
-interface.
-
-12. `F_emerge.Lname` -
+- `change_L_inits.Lname` - a utility to change the initial values.
 
 ### Standard Outputs
 

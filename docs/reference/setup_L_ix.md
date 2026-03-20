@@ -1,6 +1,6 @@
-# Set the Values of the Indices for **L** Component Modules
+# Set up Indices for **L** Component Variables
 
-Set the Values of the Indices for **L** Component Modules
+Set up Indices for **L** Component Variables
 
 ## Usage
 

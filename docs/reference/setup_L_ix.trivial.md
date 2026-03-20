@@ -1,8 +1,6 @@
-# Setup Variable Indices for `trivial` (**L** Component)
+# Set up Indices for `trivial` (**L**)
 
-Implements
-[setup_L_ix](https://dd-harp.github.io/ramp.xds/reference/setup_L_ix.md)
-for trivial (forced emergence) model.
+Return the **`xds`** object unmodified
 
 ## Usage
 
@@ -24,3 +22,7 @@ setup_L_ix(xds_obj, s)
 ## Value
 
 an **`xds`** object
+
+## See also
+
+[trivial_L](https://dd-harp.github.io/ramp.xds/reference/trivial_L.md)
