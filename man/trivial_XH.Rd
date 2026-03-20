@@ -2,23 +2,60 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{trivial_XH}
 \alias{trivial_XH}
-\title{The \code{trivial} Module for the XH Component}
+\title{\code{trivial} --- \strong{XH} Module}
 \description{
-Implements the \strong{XH} component using a trivial (trace) model where
-net infectiousness \eqn{\kappa} is specified as a forced function of
-time rather than computed from dynamic infection states.
-This module has no state variables.
+The trivial module outputs the net infectiousness, \eqn{\kappa},
+by calling a
+\emph{trace function,}
+\deqn{F_\kappa(t) = \kappa S(t) T(t) K(t)}
+where
+\itemize{
+\item \eqn{\kappa} or \code{kappa} is the mean net infectiousness
+\item \eqn{S(t)} or \code{F_season} is a seasonal pattern
+\item \eqn{T(t)} or \code{F_trend} is a trend pattern
+\item \eqn{K(t)} or \code{F_shock} is a perturbation
 }
-\section{State Variables}{
 
-None — \eqn{\kappa} is supplied as a trace function.
+Note: \eqn{0 \leq F_\kappa(t) \leq 1}
 }
-
 \section{Parameters}{
 
 \describe{
-\item{\code{kappa}}{net infectiousness of the human population (trace function)}
-\item{\code{HPop}}{human population density}
+\item{\code{kappa}}{the net infectiousness}
+\item{\code{season_par}}{parameters for \link{make_function}: \verb{F_season=make_par(season_par})}
+\item{\code{trend_par}}{parameters for \link{make_function}: \code{F_trend=make_par(trend_par)}}
+\item{\code{shock_par}}{parameters for \link{make_function}: \code{F_shock=make_par(shock_par)}}
+}
+
+The default setup option is \code{season_par = trend_par = shock_par = makepar_F_one()}.
+}
+
+\section{Get}{
+
+\itemize{
+\item \code{get_XH_pars} --- the \code{trivial} method returns all the parameters
+}
+}
+
+\section{Change}{
+
+\itemize{
+\item \code{change_XH_pars} --- change parameters by name
+}
+}
+
+\section{Notes}{
+
+\enumerate{
+\item The module has no state variables.
+\item The size of an object saved by \code{saveRDS} balloons if it saves a function,
+so \code{saveXDS} function strips the functions and \code{readRDS} remakes the function
+from the stored parameters.
+\code{F_season}, \code{F_trend}, and \code{F_shock} can be set up manually by passing any
+user defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
+rather than \code{saveXDS} and \code{readXDS}
+\item Setup expects that \verb{membership= c(1:nPatches),} but any membership vector
+works.
 }
 }
 

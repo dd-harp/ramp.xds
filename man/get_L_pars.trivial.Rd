@@ -15,6 +15,7 @@
 a \link{list}
 }
 \description{
-Show the trace function
+Get \eqn{\Lambda} and parameters that construct
+the forcing functions
 }
 \keyword{internal}

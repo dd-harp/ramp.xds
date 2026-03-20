@@ -9,9 +9,6 @@
 #' population stratum is assigned a *search weight,* a  
 #' number used to weigh *time spent* and get a measure of 
 #' *availability.* 
-#' 
-#' 
-#'  
 #'  
 #' @name blood_feeding 
 NULL

@@ -16,7 +16,7 @@
 \item{s}{the species index}
 }
 \value{
-a \link{numeric} vector of length \code{nPatches}
+a \link{numeric} vector of length 0
 }
 \description{
 Implements \link{F_fqM} for the trivial model.

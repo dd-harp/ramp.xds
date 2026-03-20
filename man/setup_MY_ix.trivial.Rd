@@ -12,7 +12,7 @@
 \item{s}{the species index}
 }
 \value{
-none
+an \strong{\code{xds}} object
 }
 \description{
 Implements \link{setup_MY_ix} for trivial (forced emergence) model.

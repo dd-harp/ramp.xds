@@ -12,9 +12,9 @@ get_MY_inits.trivial(xds_obj, s)
 \item{s}{the species index}
 }
 \value{
-none
+a \link{numeric} vector of length 0
 }
 \description{
-Implements \link{get_MY_inits} for the GeM model.
+Implements \link{get_MY_inits} for the trivial model.
 }
 \keyword{internal}

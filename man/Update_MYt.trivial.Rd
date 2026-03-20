@@ -16,7 +16,7 @@
 \item{s}{the species index}
 }
 \value{
-a null vector
+a \link{numeric} vector of length 0
 }
 \description{
 Implements \link{Update_MYt} for the trivial (forced emergence) model.

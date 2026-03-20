@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{check_MY.trivial}
 \alias{check_MY.trivial}
-\title{Run a check before solving}
+\title{Check the \code{trivial} module (\strong{M})}
 \usage{
 \method{check_MY}{trivial}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-Run a check before solving
+Run no consistency checks
 }
 \keyword{internal}

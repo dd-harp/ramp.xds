@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{dLdt.trivial}
 \alias{dLdt.trivial}
-\title{Derivatives for the \code{trivial} \strong{L} module}
+\title{Derivatives for \code{trivial} (\strong{L})}
 \usage{
 \method{dLdt}{trivial}(t, y, xds_obj, s)
 }
@@ -16,7 +16,7 @@
 \item{s}{the species index}
 }
 \value{
-an empty \link{list}
+a \link{numeric} vector of length 0
 }
 \description{
 Returns a numeric vector of length 0

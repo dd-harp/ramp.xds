@@ -27,15 +27,15 @@ make_L_obj_trivial(
 \item{shock_par}{an object to configure a shocks function using \link{make_function}}
 }
 \value{
-none
+a \link{list}: an L module object
 }
 \description{
-The number of emerging adults is a function \deqn{\Lambda S(t) T(t)} where
+The number of emerging adults is a function \deqn{\Lambda S(t) T(t) K(t)} where
 \itemize{
 \item \eqn{\Lambda} or \code{Lambda} is the mean number of adult female mosquitoes emerging per day
 \item \eqn{S(t)} or \code{F_season} is a seasonal signal (ideally, with an average annual mean of 1)
 \item \eqn{T(t)} or \code{F_trend} is a function returning a trend (ideally, with an average value of 1)
-\item \eqn{P(t)} or \code{F_shock} is a function returning a perturbation (by default, set to 1)
+\item \eqn{K(t)} or \code{F_shock} is a function returning a perturbation (by default, set to 1)
 }
 }
 \keyword{internal}

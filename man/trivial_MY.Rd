@@ -2,21 +2,82 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{trivial_MY}
 \alias{trivial_MY}
-\title{The \code{trivial} Module for the MY Component}
+\title{\code{trivial} --- \strong{MY} Module}
 \description{
-Implements the \strong{MY} component using a trivial (trace) model where
-the density of infectious mosquitoes \eqn{Z} is specified as a
-forced function of time rather than computed dynamically.
+The trivial \strong{MY} module configures two trace functions:
+\itemize{
+\item infectious biting:
+\deqn{F_{fqZ}(t) = fqZ S(t) T(t) K(t)}
+\item egg laying:
+\deqn{F_G(t) = G S(t) T(t) K(t)}
 }
-\section{State Variables}{
 
-No dynamic state variables — \eqn{Z} is supplied as a trace function.
+where
+\itemize{
+\item \eqn{G} or \code{eggs} is the mean egg laying rate
+\item \eqn{fqZ} or \code{fqZ} is the mean number of infectious bites on humans, per patch
+\item \eqn{S(t)} or \code{F_season} is a seasonal pattern
+\item \eqn{T(t)} or \code{F_trend} is a trend pattern
+\item \eqn{K(t)} or \code{F_shock} is a perturbation
 }
-
+}
 \section{Parameters}{
 
 \describe{
-\item{\code{F_Z}}{a function of time returning the density of infectious mosquitoes}
+\item{\code{eggs}}{the mean number of eggs laid, per day}
+\item{\code{Z}}{the mean density of infectious mosquitoes}
+\item{\code{f}}{the blood feeding rate}
+\item{\code{q}}{the human fraction}
+\item{\code{season_par}}{parameters for \link{make_function}: \verb{F_season=make_par(season_par})}
+\item{\code{trend_par}}{parameters for \link{make_function}: \code{F_trend=make_par(trend_par)}}
+\item{\code{shock_par}}{parameters for \link{make_function}: \code{F_shock=make_par(shock_par)}}
+}
+
+The default setup options:
+\itemize{
+\item for the \link{make_function} parameters, \code{season_par = trend_par = shock_par = makepar_F_one()}.
+\item for the bionomic parameters, \code{f=q=Z=eggs=1}.
+}
+}
+
+\section{Get}{
+
+\itemize{
+\item \code{get_MY_pars} --- the \code{trivial} method returns all the parameters
+\item \code{get_mean_forcing} --- returns \code{Z}
+\item \code{get_f} --- returns \code{f}
+\item \code{get_q} --- returns \code{q}
+\item \code{get_season} --- returns \code{season_par}
+\item \code{get_trend}  --- returns \code{trend_par}
+\item \code{get_shock}  --- returns \code{shock_par}
+}
+
+Note: use \code{get_MY_pars} to inspect \code{eggs}
+}
+
+\section{Change}{
+
+\itemize{
+\item \code{change_MY_pars} --- change parameters by name
+\item \code{change_mean_forcing} --- changes \code{Z}
+\item \code{change_season} --- changes elements of \code{season_par}
+\item \code{change_trend}  --- changes elements of \code{trend_par}
+\item \code{change_shock}  --- changes elements of \code{shock_par}
+}
+
+Note: use \code{change_MY_pars} to change \code{eggs}
+}
+
+\section{Notes}{
+
+\enumerate{
+\item The module has no state variables.
+\item The size of an object saved by \code{saveRDS} balloons if it saves a function,
+so \code{saveXDS} function strips the functions and \code{readRDS} remakes the function
+from the stored parameters.
+\code{F_season}, \code{F_trend}, and \code{F_shock} can be set up manually by passing any
+user defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
+rather than \code{saveXDS} and \code{readXDS}
 }
 }
 

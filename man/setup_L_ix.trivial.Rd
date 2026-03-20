@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{setup_L_ix.trivial}
 \alias{setup_L_ix.trivial}
-\title{Setup Variable Indices for \code{trivial} (\strong{L} Component)}
+\title{Set up Indices for \code{trivial} (\strong{L})}
 \usage{
 \method{setup_L_ix}{trivial}(xds_obj, s)
 }
@@ -15,6 +15,9 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{setup_L_ix} for trivial (forced emergence) model.
+Return the \strong{\code{xds}} object unmodified
+}
+\seealso{
+\link{trivial_L}
 }
 \keyword{internal}

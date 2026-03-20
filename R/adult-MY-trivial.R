@@ -1,29 +1,77 @@
 
-#' @title The `trivial` Module for the MY Component
+
+#' @title `trivial` --- **MY** Module 
+#' 
 #' @description
-#' Implements the **MY** component using a trivial (trace) model where
-#' the density of infectious mosquitoes \eqn{Z} is specified as a
-#' forced function of time rather than computed dynamically.
-#'
-#' @section State Variables:
-#' No dynamic state variables — \eqn{Z} is supplied as a trace function.
-#'
+#' The trivial **MY** module configures two trace functions:
+#' + infectious biting:  
+#' \deqn{F_{fqZ}(t) = fqZ S(t) T(t) K(t)} 
+#' + egg laying: 
+#' \deqn{F_G(t) = G S(t) T(t) K(t)} 
+#'  
+#' where
+#' + \eqn{G} or `eggs` is the mean egg laying rate 
+#' + \eqn{fqZ} or `fqZ` is the mean number of infectious bites on humans, per patch 
+#' + \eqn{S(t)} or `F_season` is a seasonal pattern 
+#' + \eqn{T(t)} or `F_trend` is a trend pattern 
+#' + \eqn{K(t)} or `F_shock` is a perturbation 
+#' 
 #' @section Parameters:
 #' \describe{
-#'   \item{`F_Z`}{a function of time returning the density of infectious mosquitoes}
+#'   \item{`eggs`}{the mean number of eggs laid, per day}
+#'   \item{`Z`}{the mean density of infectious mosquitoes}
+#'   \item{`f`}{the blood feeding rate}
+#'   \item{`q`}{the human fraction}
+#'   \item{`season_par`}{parameters for [make_function]: `F_season=make_par(season_par`)}
+#'   \item{`trend_par`}{parameters for [make_function]: `F_trend=make_par(trend_par)`}
+#'   \item{`shock_par`}{parameters for [make_function]: `F_shock=make_par(shock_par)`}
 #' }
+#'  
+#' The default setup options: 
+#' + for the [make_function] parameters, `season_par = trend_par = shock_par = makepar_F_one()`. 
+#' + for the bionomic parameters, `f=q=Z=eggs=1`. 
+#' 
+#' @section Get: 
+#' 
+#' + `get_MY_pars` --- the `trivial` method returns all the parameters
+#' + `get_mean_forcing` --- returns `Z`
+#' + `get_f` --- returns `f`
+#' + `get_q` --- returns `q`
+#' + `get_season` --- returns `season_par` 
+#' + `get_trend`  --- returns `trend_par` 
+#' + `get_shock`  --- returns `shock_par`
+#' 
+#' Note: use `get_MY_pars` to inspect `eggs`
+#' 
+#' @section Change: 
+#' 
+#' + `change_MY_pars` --- change parameters by name 
+#' + `change_mean_forcing` --- changes `Z`
+#' + `change_season` --- changes elements of `season_par` 
+#' + `change_trend`  --- changes elements of `trend_par` 
+#' + `change_shock`  --- changes elements of `shock_par`
+#' 
+#' Note: use `change_MY_pars` to change `eggs`
+#' 
+#' @section Notes:
+#' 
+#' 1. The module has no state variables.
+#'   
+#' 2. The size of an object saved by `saveRDS` balloons if it saves a function,
+#' so `saveXDS` function strips the functions and `readRDS` remakes the function
+#' from the stored parameters.
+#' `F_season`, `F_trend`, and `F_shock` can be set up manually by passing any
+#' user defined function. If so, the user should use `saveRDS` and `readRDS` 
+#' rather than `saveXDS` and `readXDS` 
 #'
 #' @name trivial_MY
 #' @rdname trivial_MY
 NULL
 
-# SPECIALIZED METHODS FOR THE ADULT MOSQUITO TRIVIAL MODEL
-
-#' Run a check before solving
-#'
+#' @title Check the `trivial` module (**M**)
+#' @description Run no consistency checks
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#'
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
@@ -58,7 +106,7 @@ F_eggs.trivial <- function(t, y, xds_obj, s) {
 #' @title Blood feeding rate of the infective mosquito population
 #' @description Implements [F_fqM] for the trivial model.
 #' @inheritParams F_fqM
-#' @return a [numeric] vector of length `nPatches`
+#' @return a [numeric] vector of length 0
 #' @keywords internal
 #' @export
 F_fqM.trivial <- function(t, y, xds_obj, s){
@@ -102,7 +150,7 @@ MBionomics.trivial <- function(t, y, xds_obj, s) {
 #' @title Handle derivatives for the `trivial` **MY** module
 #' @description Implements [dMYdt] for the trivial (forced emergence) model.
 #' @inheritParams dMYdt
-#' @return a null value
+#' @return a [numeric] vector of length 0
 #' @keywords internal
 #' @export
 dMYdt.trivial <- function(t, y, xds_obj, s){
@@ -112,7 +160,7 @@ dMYdt.trivial <- function(t, y, xds_obj, s){
 #' @title Handle state updates for the `trivial` **MY** module
 #' @description Implements [Update_MYt] for the trivial (forced emergence) model.
 #' @inheritParams Update_MYt
-#' @return a null vector
+#' @return a [numeric] vector of length 0
 #' @keywords internal
 #' @export
 Update_MYt.trivial <- function(t, y, xds_obj, s){
@@ -153,12 +201,12 @@ setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
 #' @param options a [list] of values that overwrites the defaults
 #' @param f the blood feeding rate
 #' @param q the human fraction
-#' @param Z the human fraction
-#' @param eggs the human fraction
+#' @param Z the density of infectious mosquitoes
+#' @param eggs the mean egg laying rate
 #' @param season_par parameters to configure a `F_season` using [make_function]
 #' @param trend_par parameters to configure `F_trend` using [make_function]
 #' @param shock_par parameters to configure `F_shock` using [make_function]
-#' @return none
+#' @return a [list]
 #' @keywords internal
 #' @export
 make_MY_obj_trivial = function(nPatches, options,
@@ -242,7 +290,7 @@ change_MY_inits.trivial <- function(xds_obj, s=1, options=list()) {
   return(xds_obj)
 }
 
-#' @title Return the parameters as a list
+#' @title Set **MY** Component parameters for `trivial`
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
@@ -252,7 +300,7 @@ change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$MY_obj[[s]], with(options,{
     xds_obj$MY_obj[[s]]$F_season = F_season
-    if(exits("season_par")){
+    if(exists("season_par")){
       MY_obj[[s]]$F_season <- make_function(season_par)
       MY_obj[[s]]$season_par <- season_par
     }
@@ -275,9 +323,7 @@ change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
 #' @title The **trivial** Module Skill Set
 #'
 #' @description The **MY** skill set is a list of
-#' an module's capabilities:
-#'
-#' + `demography` is
+#' a module's capabilities
 #'
 #' @inheritParams skill_set_MY
 #'
@@ -289,10 +335,10 @@ skill_set_MY.trivial = function(MYname){
   return(list())
 }
 
-#' @title Setup the trivial model
-#' @description Implements [setup_MY_inits] for the trivial model
+#' @title Setup Inits for `trivial` (**MY**) 
+#' @description Return the **`xds`** object unmodified
 #' @inheritParams setup_MY_inits
-#' @return a [list] vector
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 setup_MY_inits.trivial = function(xds_obj, s, options=list()){
@@ -302,7 +348,7 @@ setup_MY_inits.trivial = function(xds_obj, s, options=list()){
 #' @title Add indices for aquatic stage mosquitoes to parameter list
 #' @description Implements [setup_MY_ix] for trivial (forced emergence) model.
 #' @inheritParams setup_MY_ix
-#' @return none
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 setup_MY_ix.trivial <- function(xds_obj, s) {
@@ -312,7 +358,7 @@ setup_MY_ix.trivial <- function(xds_obj, s) {
 #' @title parse the output of deSolve and return variables for the trivial model
 #' @description Implements [parse_MY_orbits] for trivial
 #' @inheritParams parse_MY_orbits
-#' @return [list]
+#' @return an empty [list]
 #' @keywords internal
 #' @export
 parse_MY_orbits.trivial <- function(outputs, xds_obj, s) {
@@ -320,13 +366,13 @@ parse_MY_orbits.trivial <- function(outputs, xds_obj, s) {
 }
 
 #' @title Return initial values as a vector
-#' @description Implements [get_MY_inits] for the GeM model.
+#' @description Implements [get_MY_inits] for the trivial model.
 #' @inheritParams get_MY_inits
-#' @return none
+#' @return a [numeric] vector of length 0
 #' @keywords internal
 #' @export
-get_MY_inits.trivial <- function(xds_obj, s){
-  return(c())
+get_MY_inits.trivial <- function(xds_obj, s) {
+  return(numeric(0))
 }
 
 
@@ -341,7 +387,7 @@ get_f.trivial = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f_t*es_f)
 }
 
-#' @title Get the feeding rate
+#' @title Get the human fraction 
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
@@ -351,7 +397,7 @@ get_q.trivial = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q_t*es_q)
 }
 
-#' @title Get the feeding rate
+#' @title Get the mortality rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"
@@ -361,7 +407,7 @@ get_g.trivial = function(xds_obj, s=1){
   numeric(0)
 }
 
-#' @title Get the feeding rate
+#' @title Get the patch emigration rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return y a [numeric] vector assigned the class "dynamic"

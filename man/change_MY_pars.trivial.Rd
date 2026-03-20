@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{change_MY_pars.trivial}
 \alias{change_MY_pars.trivial}
-\title{Return the parameters as a list}
+\title{Set \strong{MY} Component parameters for \code{trivial}}
 \usage{
 \method{change_MY_pars}{trivial}(xds_obj, s = 1, options = list())
 }
