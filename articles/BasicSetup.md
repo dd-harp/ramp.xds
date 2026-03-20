@@ -243,11 +243,13 @@ for help in R:
 
 - If `nPatches >1` then other setup-configurable options are to pass:
 
-  - a matrix \\K\\ or `K_matrix` describing mosquito dispersal among the
-    patches.
+  - Values for the search weights (see \[search_weights\])
 
-  - a matrix \\\Theta\\ or `TimeSpent` can be passed to configure human
-    time spent
+  - Options to set up the mosquito dispersal matrix, \\K\\ (see
+    \[mosquito_dispersal\])
+
+  - Options to set up a time spent matrix, \\\Theta\\ (see
+    \[time_spent\])
 
 To learn more, we suggest taking a look at the [5-3-4
 Vignette](https://faculty.washington.edu/smitdave/simba/model534.html),

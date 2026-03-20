@@ -43,6 +43,7 @@
     <li><a class="dropdown-item" href="../articles/Working.html">The xds Model Object</a></li>
     <li><a class="dropdown-item" href="../articles/ex_534.html">The 5-3-4 Model</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
+    <li><a class="dropdown-item" href="../articles/modularity.html">Modular Computation</a></li>
     <li><a class="dropdown-item" href="../articles/Delays.html">Delay Equations</a></li>
     <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
     <li><a class="dropdown-item" href="../articles/DTS.html">Discrete Time Systems</a></li>
@@ -114,34 +115,49 @@ Mosquito Ecology</h3>
     
     
 <p>The <strong>L</strong> component was designed to model adult mosquito
-ecology and infection dynamics.</p>
-<p>This vignette takes a deep dive into the design and structure of the
-<strong>L</strong> component. It is useful for anyone who wants to learn
-more about how the code works.</p>
+ecology and infection dynamics. This vignette takes an overview of of
+the functions in the <strong>L</strong> component. It is useful for
+anyone who wants to learn more about how the code works.</p>
+<p>In context, an <strong>L</strong> modules get the egg laying rate,
+<span class="math inline">\(\eta\)</span> from the
+<strong>ML</strong>-interface. It is the dot product of the total
+mosquito egg laying rate in a patch <span class="math inline">\(G\)</span> and the egg laying matrix <span class="math inline">\(U\)</span> (Figure 1). The core functions compute
+either</p>
+<ul>
+<li><p>a set of derivatives, generically denoted <span class="math inline">\(dL/dt\)</span></p></li>
+<li><p>or a function that updates the state variables.</p></li>
+</ul>
+<p>It outputs the habitat emergence rate <span class="math inline">\(\alpha,\)</span> the number of adult female
+mosquitoes emerging from a patch, per day.</p>
+<hr>
+<div class="float">
+<img src="L_component.png" style="width:100.0%" alt="Figure 1 - A diagram of the L Component in context"><div class="figcaption">
+<strong>Figure 1</strong> - A diagram of the
+<strong>L</strong> Component in context</div>
+</div>
+<hr>
 <div class="section level2">
-<h2 id="required-functions">Required Functions<a class="anchor" aria-label="anchor" href="#required-functions"></a>
+<h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
 </h2>
-<p>Each <strong>L</strong> module includes XX required functions and
-some optional ones.</p>
-<p>Some of these required functions are <code>S3</code> class functions
-in <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/adult-L-interface.R" target="_blank" class="external-link">adult-L-interface.R</a>. Others are defined for each
-module.</p>
-<p>One good example is the <code>SI</code> module, posted in the
-<code>ramp.xds</code> github repository <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/human-L-SIS.R" target="_blank" class="external-link">human-L-SI.R</a>.</p>
-<p>The required functions deal with various tasks for model building and
-solving: constructing the <strong>L</strong> model object; the dynamics;
-the parameters; the variables and their initial values; computing terms
-and standard outputs; and consistency checks. Optional outputs include
-other metrics; functions to compute steady states; and module specific
-functions to visualize the outputs.</p>
+<p>To get a list of the <code>S3</code> generic function definitions
+from help, type:</p>
+<pre><code><span><span class="op">?</span><span class="va">L_functions</span></span></code></pre>
+<p>To inspect a method for a specific function, use
+<code>getS3method</code></p>
+<hr>
+<p>The <strong>L</strong> Component defines 18 generic functions in <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/adult-L.R" target="_blank" class="external-link">aquatic-L.R</a>. Most of these are <code>S3</code> class
+functions, but a few work generically. Each module defines two
+functions: one makes the L object and the other sets up the initial
+values for the variables.</p>
+<p>The required functions deal with various tasks required to build or
+solve a model, inspect or change the parameters or initial values,
+compute terms or outputs, and run consistency checks.</p>
 <p>Each module is defined by a string, generically called
 <code>Lname,</code> that identifies the module: <em>e.g.</em>
-<code>SI.</code></p>
+<code>basicL.</code></p>
 <div class="section level3">
 <h3 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a>
 </h3>
-<ol style="list-style-type: decimal">
-<li>
 <p>The dynamics are defined by at least one of the following is
 required, depending on whether the model family is a system of
 differential equations or a discrete time system:</p>
@@ -158,27 +174,49 @@ by the function that updates the state variables in one time step. In
 variables.</strong> The forms mimic the ones used for differential
 equations.</p></li>
 </ul>
+</div>
+<div class="section level3">
+<h3 id="output-terms">Output Terms<a class="anchor" aria-label="anchor" href="#output-terms"></a>
+</h3>
+<p>These functions compute dynamical terms – the outputs passed to an
+interface.</p>
+<ul>
+<li>
+<code>F_emerge.Lname</code> - the function computes the habitat
+specific emergence rate, <span class="math inline">\(\alpha\)</span>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 <div class="section level2">
-<h2 id="l-model-object">L Model Object<a class="anchor" aria-label="anchor" href="#l-model-object"></a>
+<h2 id="bionomics">Bionomics<a class="anchor" aria-label="anchor" href="#bionomics"></a>
+</h2>
+<p>Some parameters can be ports. In these cases, the</p>
+<ul>
+<li><p><code>LBaseline</code></p></li>
+<li><p><code>LBionomics</code></p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="model-object">Model Object<a class="anchor" aria-label="anchor" href="#model-object"></a>
 </h2>
 <p>Each module has a pair of functions that set up a structured list
-called the <strong>L</strong> model object. The object is a list that is
-assigned to a <code>class</code> that dispatches the <code>S3</code>
-functions described below. It is a compound list, where some of the
-sub-lists are assigned their own <code>class</code> that dispatch other
-<code>S3</code> functions.</p>
-<ol start="2" style="list-style-type: decimal">
+called the <strong>L</strong> model object, or <code>L_obj</code>.</p>
+<p>The object is a list that is assigned to a <code>class</code> that
+dispatches the <code>S3</code> functions described below. It is a
+compound list, where some of the sub-lists are assigned their own
+<code>class</code> that dispatch other <code>S3</code> functions.</p>
+<ul>
+<li><p><code>setup_L_obj.Lname</code> is a wrapper that calls
+<code>make_L_obj_Lname</code> and (for the <span class="math inline">\(i^{th}\)</span> species) attaches the object as
+<code>xds_obj$L_obj[[i]]</code></p></li>
 <li>
 <p><code>make_L_obj_Lname</code> :: returns a structured list called
 an <strong>L</strong> model object:</p>
 <ul>
-<li><p>bionomic parameter values or bionomic parameter objects. In most
-models, the value of baseline bionomic parameters are functions of time,
-or exogenous variables that vary with time.</p></li>
+<li><p>bionomic parameter values and objects. In most models, the value
+of baseline bionomic parameters are functions of time, or exogenous
+variables that vary with time.</p></li>
 <li><p><code>class(L_obj)</code> = <code>Lname</code></p></li>
 <li><p>the indices for the model variables are stored as
 <code>L_obj$ix</code></p></li>
@@ -187,20 +225,18 @@ or exogenous variables that vary with time.</p></li>
 <li><p>anything else that is needed can be configured here</p></li>
 </ul>
 </li>
-<li><p><code>setup_L_obj.Lname</code> is a wrapper that calls
-<code>make_L_obj_Lname</code> and (for the <span class="math inline">\(i^{th}\)</span> species) attaches the object as
-<code>xds_obj$L_obj[[i]]</code></p></li>
-</ol>
+</ul>
 <div class="section level3">
 <h3 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
 </h3>
-<ol start="4" style="list-style-type: decimal">
+<ul>
+<li><p><code>get_L_pars.Lname</code> returns a named list of the
+parameter values.</p></li>
 <li><p><code>change_L_pars.Lname</code> changes the values of some
-parameters. It is designed to be used after setup. New parameter values
-are passed by name in a list called <code>options.</code></p></li>
-<li><p><code>get_L_pars.Lname</code> is a utility to inspect the values
-of the parameters.</p></li>
-</ol>
+parameters by passing a named list. Use is designed to be used after
+setup. New parameter values are passed by name in a list called
+<code>options.</code></p></li>
+</ul>
 </div>
 <div class="section level3">
 <h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
@@ -234,31 +270,22 @@ contexts.</p></li>
 </h3>
 <p>A set of functions is sets up or changes the initial values for the
 state variables.</p>
-<ol start="9" style="list-style-type: decimal">
+<ul>
+<li><p><code>setup_L_inits.Lname</code> - is a wrapper, that gets called
+by <code>xds_setup</code> and that calls
+<code>make_L_inits_Lname.</code> The setup <code>options</code> are
+passed to overwrite default values. The initial values are stored as
+<code>L_obj$inits.</code></p></li>
 <li><p><code>make_L_inits_Lname</code> - each model must include a
 function that makes a set of initial values as a named list. This
 function does not belong to any <code>S3</code> class, so it can take
 any form. The function should supply default initial values for all the
 variables. These can be overwritten by passing new initial values in
 <code>options.</code></p></li>
-<li><p><code>setup_L_inits.Lname</code> - is a wrapper, that gets called
-by <code>xds_setup</code> and that calls
-<code>make_L_inits_Lname.</code> The setup <code>options</code> are
-passed to overwrite default values. The initial values are stored as
-<code>L_obj$inits.</code></p></li>
+<li><p>[get_L_inits.Lname] -</p></li>
 <li><p><code>change_L_inits.Lname</code> - a utility to change the
 initial values.</p></li>
-</ol>
-</div>
-<div class="section level3">
-<h3 id="dynamical-terms">Dynamical Terms<a class="anchor" aria-label="anchor" href="#dynamical-terms"></a>
-</h3>
-<p>These functions compute dynamical terms – the outputs passed to an
-interface.</p>
-<ol start="12" style="list-style-type: decimal">
-<li>
-<code>F_emerge.Lname</code> -</li>
-</ol>
+</ul>
 </div>
 <div class="section level3">
 <h3 id="standard-outputs">Standard Outputs<a class="anchor" aria-label="anchor" href="#standard-outputs"></a>

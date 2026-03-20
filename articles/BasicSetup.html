@@ -43,6 +43,7 @@
     <li><a class="dropdown-item" href="../articles/Working.html">The xds Model Object</a></li>
     <li><a class="dropdown-item" href="../articles/ex_534.html">The 5-3-4 Model</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
+    <li><a class="dropdown-item" href="../articles/modularity.html">Modular Computation</a></li>
     <li><a class="dropdown-item" href="../articles/Delays.html">Delay Equations</a></li>
     <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
     <li><a class="dropdown-item" href="../articles/DTS.html">Discrete Time Systems</a></li>
@@ -345,12 +346,9 @@ found by asking for help in R:</p>
 <p>If <code>nPatches &gt;1</code> then other setup-configurable
 options are to pass:</p>
 <ul>
-<li><p>a matrix <span class="math inline">\(K\)</span> or
-<code>K_matrix</code> describing mosquito dispersal among the
-patches.</p></li>
-<li><p>a matrix <span class="math inline">\(\Theta\)</span> or
-<code>TimeSpent</code> can be passed to configure human time
-spent</p></li>
+<li><p>Values for the search weights (see [search_weights])</p></li>
+<li><p>Options to set up the mosquito dispersal matrix, <span class="math inline">\(K\)</span> (see [mosquito_dispersal])</p></li>
+<li><p>Options to set up a time spent matrix, <span class="math inline">\(\Theta\)</span> (see [time_spent])</p></li>
 </ul>
 </li>
 </ul>

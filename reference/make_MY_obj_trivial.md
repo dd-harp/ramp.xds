@@ -39,11 +39,11 @@ make_MY_obj_trivial(
 
 - Z:
 
-  the human fraction
+  the density of infectious mosquitoes
 
 - eggs:
 
-  the human fraction
+  the mean egg laying rate
 
 - season_par:
 
@@ -62,4 +62,4 @@ make_MY_obj_trivial(
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

@@ -1,6 +1,6 @@
-# Run a check before solving
+# Check the `trivial` module (**M**)
 
-Run a check before solving
+Run no consistency checks
 
 ## Usage
 

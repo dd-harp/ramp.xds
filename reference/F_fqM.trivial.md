@@ -31,5 +31,4 @@ F_fqM(t, y, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
-`nPatches`
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length 0

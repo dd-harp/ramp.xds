@@ -23,4 +23,4 @@ setup_MY_ix(xds_obj, s)
 
 ## Value
 
-none
+an **`xds`** object

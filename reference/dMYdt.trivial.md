@@ -31,4 +31,4 @@ dMYdt(t, y, xds_obj, s)
 
 ## Value
 
-a null value
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length 0

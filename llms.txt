@@ -690,7 +690,7 @@ XH component module implementations
 - [`trivial_XH`](https://dd-harp.github.io/ramp.xds/reference/trivial_XH.md)
   :
 
-  The `trivial` Module for the XH Component
+  `trivial` — **XH** Module
 
 - [`SIS`](https://dd-harp.github.io/ramp.xds/reference/SIS.md) :
 
@@ -767,7 +767,7 @@ Adult mosquito ecology and infection dynamics
 - [`trivial_MY`](https://dd-harp.github.io/ramp.xds/reference/trivial_MY.md)
   :
 
-  The `trivial` Module for the MY Component
+  `trivial` — **MY** Module
 
 - [`basicM`](https://dd-harp.github.io/ramp.xds/reference/basicM.md) :
 
@@ -813,7 +813,7 @@ habitats
 - [`trivial_L`](https://dd-harp.github.io/ramp.xds/reference/trivial_L.md)
   :
 
-  The `trivial` Module for the L Component
+  `trivial` — **L** Module
 
 - [`basicL`](https://dd-harp.github.io/ramp.xds/reference/basicL.md) :
 

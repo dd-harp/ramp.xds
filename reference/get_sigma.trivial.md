@@ -1,6 +1,6 @@
-# Get the feeding rate
+# Get the patch emigration rate
 
-Get the feeding rate
+Get the patch emigration rate
 
 ## Usage
 

@@ -1,6 +1,6 @@
-# parse **L** Component Variables for `basicL`
+# Parse for `trivial` (**L**)
 
-Return a numeric vector of length 0
+Returns an empty list
 
 ## Usage
 
@@ -26,4 +26,4 @@ parse_L_orbits(outputs, xds_obj, s)
 
 ## Value
 
-none
+an empty [list](https://rdrr.io/r/base/list.html)
