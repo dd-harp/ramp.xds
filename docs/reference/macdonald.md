@@ -1,9 +1,9 @@
-# The `macdonald` Module (MY Component)
+# The `macdonald` module (MY component)
 
 Implements a Macdonald-style delay differential equation model of adult
 mosquito ecology and infection dynamics, consistent with the model
 published by George Macdonald in 1952. This formulation is actually
-closer to one published by
+closer to one published by Aron & May (1982).
 
 ## State Variables
 
@@ -68,3 +68,12 @@ fq\kappa(M-Y) - \Omega \cdot Y \\\\ dZ/dt &= \Upsilon \cdot
 
 This model is not capable of handling exogenous forcing by weather or
 vector control. Use the `GeM` module instead.
+
+## References
+
+- Macdonald G (1952) The analysis of the sporozoite rate. Tropical
+  Diseases Bulletin 49:569-586.
+
+- Aron JL, May RM (1982) The population dynamics of malaria. Chapter 5
+  in *The Population Dynamics of Infectious Diseases: Theory and
+  Applications,* Springer, Boston, MA.

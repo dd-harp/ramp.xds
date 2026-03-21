@@ -12,7 +12,7 @@
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector asSIgned the class "dynamic"
+y a \link{numeric} vector assigned the class "dynamic"
 }
 \description{
 Get the feeding rate

@@ -12,7 +12,7 @@
 \item{i}{the host species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 Implements \link{setup_XH_ix} for the SIS model.

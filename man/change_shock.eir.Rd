@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_shock.R
 \name{change_shock.eir}
 \alias{change_shock.eir}
-\title{Set yy}
+\title{Change shock parameters}
 \usage{
 \method{change_shock}{eir}(shock_par, xds_obj, s = 1)
 }
@@ -17,8 +17,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-Set the yy for the seasonal pattern for
-an \code{eir} model
-and return the \strong{\code{ramp.xds}} model object
+Change parameters for the shock function
+when \code{forced_by = "eir"}
 }
 \keyword{internal}

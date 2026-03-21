@@ -5,18 +5,18 @@ Add lines for the fraction of infected and infective mosquitoes
 ## Usage
 
 ``` r
-xds_lines_Y_fracs(MY, xds_obj, clrs = "purple", llty = 1)
+xds_lines_Y_fracs(xds_obj, s = 1, clrs = "purple", llty = 1)
 ```
 
 ## Arguments
 
-- MY:
-
-  xds_objed ouptuts
-
 - xds_obj:
 
   an **`xds`** model object
+
+- s:
+
+  the vector species index
 
 - clrs:
 

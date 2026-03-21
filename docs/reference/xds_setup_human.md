@@ -2,13 +2,13 @@
 
 A modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-that streamlines setup for models with a trival **MY** Component.
+that streamlines setup for models with a trivial **MY** Component.
 
 The **`xds`** object defines `frame = class(frame) = 'human'` to
 dispatch functions that compute derivatives (`xde`), update variables
 (`dts`), and parse outputs
 
-The **MY** Component module is set to `trivial.` The funcion
+The **MY** Component module is set to `trivial`. The function
 [F_fqZ.trivial](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.trivial.md)
 is called to compute passes the density of infectious adult mosquitoes,
 and \\f\\ and \\q\\ can still be configured. In this case, the daily EIR

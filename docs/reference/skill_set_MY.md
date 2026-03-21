@@ -1,8 +1,6 @@
 # The **MY** module skill set
 
-The **MY** skill set is a list of a module's capabilities:
-
-- `demography` is
+The **MY** skill set is a list of a module's capabilities.
 
 ## Usage
 

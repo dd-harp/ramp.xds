@@ -1,4 +1,4 @@
-# Derivatives for adult mosquitoes
+# Update state variables for `basicM` (**MY**)
 
 Implements
 [Update_MYt](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.md)

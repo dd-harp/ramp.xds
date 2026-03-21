@@ -9,7 +9,7 @@
 #'      - an **MY** Component 
 #'      - an **L** Component 
 #'      
-#' + [xds_setup_human] sets up a models to study human epidemiology, given exposure: 
+#' + [xds_setup_human] sets up models to study human epidemiology, given exposure: 
 #'      - an **XH** component
 #'      - a trivial **MY** component is configured for infectious biting in patches 
 #'      - the time spent matrix is used

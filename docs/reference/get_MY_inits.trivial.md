@@ -1,4 +1,4 @@
-# Get Inits for `trivial` (MY)
+# Get inits for `trivial` (MY)
 
 Return a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 0

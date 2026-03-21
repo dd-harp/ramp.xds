@@ -1,4 +1,4 @@
-# A function to set up adult mosquito models
+# Setup initial values (**MY**)
 
 This method dispatches on `MYname`.
 

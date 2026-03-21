@@ -38,11 +38,11 @@ any of the component model objects.
 }
 \details{
 This function sets up the interfaces and the
-core objects used by \strong{\code{ramp.xds.}}
+core objects used by \strong{\code{ramp.xds}}.
 
 First, the function sets up some
 short text strings (assigned to the same \code{S3} class)
-to dispatch various \strong{cases} of of various \code{S3} functions:
+to dispatch various \strong{cases} of various \code{S3} functions:
 \itemize{
 \item \strong{\code{xds}} is either "xde"  for differential equations, or "dts" for discrete time systems
 \item \strong{\code{xde}} is either "ode"  for ordinary differential equations; "dde" for delay differential equations; or "dts" for discrete time systems
@@ -50,7 +50,7 @@ to dispatch various \strong{cases} of of various \code{S3} functions:
 \itemize{
 \item "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}.
 in some form (possibly the trivial case) (see \code{\link[=xds_setup]{xds_setup()}})
-\item "mozy" is for mosquito ecology models (see \code{\link[=xds_setup_mosy]{xds_setup_mosy()}}), including models without pathogen infection dynamics in mosquitoes
+\item "mosy" is for mosquito ecology models (see \code{\link[=xds_setup_mosy]{xds_setup_mosy()}}), including models without pathogen infection dynamics in mosquitoes
 \item "aquatic" is for aquatic mosquito ecology models (see \code{\link[=xds_setup_aquatic]{xds_setup_aquatic()}}), forced by a function describing egg laying
 \item "human" is for human/host infection dynamics(see \code{\link[=xds_setup_human]{xds_setup_human()}}), forced by the infective density of adult mosquitoes, \eqn{fqZ}
 \item "eir" is for human/host cohort infection dynamics (see \code{\link[=xds_setup_eir]{xds_setup_eir()}}), forced by a function \code{F_eir}
@@ -67,14 +67,6 @@ Second, the function sets the values of the \strong{structural parameters}:
 \item \strong{\code{nHostSpecies}} or \eqn{N_i}, the number of host species is set to 1;
 }
 
-Next, the function sets up empty lists to hold the model objects that define components:
-\itemize{
-\item \code{XH_obj}
-\item 
-\item \strong{Transmission}  calls \code{\link[=setup_transmission]{setup_transmission()}}
-}
-
-model for the availability of visitors; by default, there are no visitors
 Next, the function sets up egg laying, blood feeding, and transmission:
 \itemize{
 \item \strong{Egg Laying} calls \code{\link[=make_habitat_matrix]{make_habitat_matrix()}}, then \code{\link[=setup_ML_interface]{setup_ML_interface()}}
@@ -83,15 +75,14 @@ Next, the function sets up egg laying, blood feeding, and transmission:
 model for the availability of visitors; by default, there are no visitors
 }
 
-Finally, the function sets up a few other miscellaneous options:
+Next, the function sets up empty lists to hold the model objects for all three dynamical components:
 \itemize{
-\item \link{Exposure} is called \emph{after} \link{Transmission} to compute environmentally heterogeneous exposure
-and malaria importation through travel:
-\itemize{
-\item \link{setup_exposure} sets up a Poisson model for environmental heterogeneity
-\item \link{setup_travel_object} sets up a model with no exposure through travel
+\item \code{XH_obj}
+\item \code{MY_obj}
+\item \code{L_obj}
 }
-}
+
+Finally, the function sets up some junctions.
 }
 \note{
 \code{xds} stands for extensible differential equation

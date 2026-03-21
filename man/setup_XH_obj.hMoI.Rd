@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{setup_XH_obj.hMoI}
 \alias{setup_XH_obj.hMoI}
-\title{Setup XH_obj.hMoI}
+\title{Set up \code{hMoI} (\strong{XH})}
 \usage{
 \method{setup_XH_obj}{hMoI}(Xname, xds_obj, i, options = list())
 }

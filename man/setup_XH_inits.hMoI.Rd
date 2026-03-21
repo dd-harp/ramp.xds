@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{setup_XH_inits.hMoI}
 \alias{setup_XH_inits.hMoI}
-\title{Setup Xinits.hMoI}
+\title{Setup initial values for \code{hMoI} (\strong{XH})}
 \usage{
 \method{setup_XH_inits}{hMoI}(xds_obj, H, i = 1, options = list())
 }

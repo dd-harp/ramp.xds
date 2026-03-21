@@ -1,4 +1,4 @@
-# Adult mosquito bionomics
+# Mosquito bionomics (**MY**)
 
 Compute the adult mosquito bionomic parameter values
 

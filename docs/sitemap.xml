@@ -875,6 +875,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_junction_resources.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_junction_vector_control.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_lines_EIR.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_lines_L.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_lines_M.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_lines_PR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_lines_Y.html</loc></url>
@@ -884,6 +885,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_object_frame.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_plot_EIR.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_plot_L.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_plot_M.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_plot_X.SIS.html</loc></url>

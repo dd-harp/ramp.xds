@@ -1,4 +1,4 @@
-# Get L indices
+# Get indices (**L**)
 
 The indices are stored on the **L** object as a named list called `ix`;
 `get_L_ix` returns that list.

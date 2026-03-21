@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{change_MY_pars.basicM}
 \alias{change_MY_pars.basicM}
-\title{Return the parameters as a list}
+\title{Change parameters for \code{basicM} (\strong{MY})}
 \usage{
 \method{change_MY_pars}{basicM}(xds_obj, s = 1, options = list())
 }

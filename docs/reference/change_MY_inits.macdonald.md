@@ -1,4 +1,4 @@
-# change initial values for the macdonald model
+# Change initial values for `macdonald` (**MY**)
 
 Implements
 [change_MY_inits](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.md)

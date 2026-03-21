@@ -1,4 +1,4 @@
-# Adult mosquito bionomics - vector control effect sizes
+# Apply effect sizes (**MY**)
 
 Apply vector control effect sizes to adult mosquito bionomic parameters
 

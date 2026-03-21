@@ -1,4 +1,4 @@
-# Compute derivatives (**L** module)
+# Compute derivatives (**L**)
 
 This method computes and returns the derivatives for the **L** Component
 modules

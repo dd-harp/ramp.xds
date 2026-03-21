@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{change_MY_inits.RMdts}
 \alias{change_MY_inits.RMdts}
-\title{Make inits for RMdts adult mosquito model}
+\title{Change initial values for \code{RMdts} (\strong{MY})}
 \usage{
 \method{change_MY_inits}{RMdts}(xds_obj, s, options)
 }
@@ -17,6 +17,6 @@
 a \link{list}
 }
 \description{
-Make inits for RMdts adult mosquito model
+Change initial values for \code{RMdts} (\strong{MY})
 }
 \keyword{internal}

@@ -4,7 +4,7 @@
 \alias{L_module_list}
 \title{L modules}
 \description{
-A List of Modules for the \strong{L}-Component
+A list of modules for the \strong{L}-Component
 }
 \section{In \strong{\code{ramp.xds}}}{
 

@@ -15,9 +15,6 @@ xds_solve(xds_obj, Tmax = 365, dt = 1, times = NULL)
 
 \item{times}{the times}
 }
-\value{
-an \strong{\code{xds}} object
-}
 \description{
 Besides solving, this function does several housekeeping tasks:
 \itemize{

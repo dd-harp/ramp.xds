@@ -1,4 +1,4 @@
-# Return the variables as a list
+# List variables for `trivial` (**MY**)
 
 This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 

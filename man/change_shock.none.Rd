@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_shock.R
 \name{change_shock.none}
 \alias{change_shock.none}
-\title{Set yy}
+\title{Change shock parameters}
 \usage{
 \method{change_shock}{none}(shock_par, xds_obj, s = 1)
 }
@@ -17,7 +17,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implement \code{change_shock} for a model
-with no forcing
+Change parameters for the shock function
+when \code{forced_by = "none"}
 }
 \keyword{internal}

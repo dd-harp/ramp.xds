@@ -10,6 +10,7 @@ get_EIR = function(xds_obj, i=1){
   get_XH_orbits(xds_obj, i)$eir
 }
 
+
 #' Plot the EIR *vs.* time
 #'
 #' @param xds_obj an **`xds`** model object

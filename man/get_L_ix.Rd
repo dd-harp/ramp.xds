@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{get_L_ix}
 \alias{get_L_ix}
-\title{Get L indices}
+\title{Get indices (\strong{L})}
 \usage{
 get_L_ix(xds_obj, s = 1)
 }

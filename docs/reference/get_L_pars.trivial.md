@@ -1,4 +1,4 @@
-# Get **L** Component Parameters for `trivial`
+# Get parameters for `trivial` (**L**)
 
 Get \\\Lambda\\ and parameters that construct the forcing functions
 

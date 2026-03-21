@@ -1,6 +1,7 @@
-# Set yy
+# Change spline interpolation points
 
-Implement `change_spline` for a model with no forcing
+Change the interpolation points for a spline function. when
+`forced_by = "none"`
 
 ## Usage
 

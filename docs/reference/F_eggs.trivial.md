@@ -1,4 +1,4 @@
-# Net Egg Laying Rate
+# Net egg laying rate
 
 Returns \$\$F\_{G}(t) = G S(t) T(t) K(t)\$\$ where
 

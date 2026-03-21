@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{setup_MY_obj}
 \alias{setup_MY_obj}
-\title{Setup an \strong{MY} model object}
+\title{Set up \strong{MY} model object}
 \usage{
 setup_MY_obj(MYname, xds_obj, s, options = list())
 }

@@ -1,4 +1,4 @@
-# Bionomics for `basicL` (**L** Component)
+# Apply effect sizes for `basicL` (**L**)
 
 Implements
 [LEffectSizes](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md)

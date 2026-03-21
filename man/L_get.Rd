@@ -2,9 +2,9 @@
 % Please edit documentation in R/aquatic-help.R
 \name{L_get}
 \alias{L_get}
-\title{Get functions for the L component}
+\title{Get functions (\strong{L})}
 \description{
-write me.
+A list of get functions for aquatic mosquito modules.
 
 \itemize{
 \item \code{\link{get_L_vars}} -- get state variables from \eqn{y}

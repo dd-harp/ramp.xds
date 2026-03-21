@@ -1,5 +1,5 @@
 
-#' @title Get **MY** outputs
+#' @title Get orbits (**MY**)
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index

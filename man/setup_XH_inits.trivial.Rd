@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{setup_XH_inits.trivial}
 \alias{setup_XH_inits.trivial}
-\title{Setup Xinits.trivial}
+\title{Setup initial values for \code{trivial} (\strong{XH})}
 \usage{
 \method{setup_XH_inits}{trivial}(xds_obj, H, i = 1, options = list())
 }

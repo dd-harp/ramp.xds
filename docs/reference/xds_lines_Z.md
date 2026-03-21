@@ -1,22 +1,22 @@
-# Add lines for the density of infected and infective mosquitoes
+# Add lines for the density of infective mosquitoes
 
-Add lines for the density of infected and infective mosquitoes
+Add lines for the density of infective mosquitoes
 
 ## Usage
 
 ``` r
-xds_lines_Z(MY, xds_obj, clrs = "darkred", llty = 1)
+xds_lines_Z(xds_obj, s = 1, clrs = "darkred", llty = 1)
 ```
 
 ## Arguments
 
-- MY:
-
-  xds_objed ouptuts
-
 - xds_obj:
 
   an **`xds`** model object
+
+- s:
+
+  the vector species index
 
 - clrs:
 

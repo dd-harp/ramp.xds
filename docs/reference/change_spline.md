@@ -1,6 +1,6 @@
-# Set the interpolating points
+# Change spline interpolation points
 
-Set the interpolating points for F_trend
+Change the interpolation points for a spline function.
 
 ## Usage
 

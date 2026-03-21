@@ -1,4 +1,4 @@
-# Setup the trivial model for an adult mosquito model
+# Set up `trivial` (**MY**)
 
 Set up the trivial adult mosquito model. In general, this should be used
 for aquatic mosquito ecology or human / host epidemiology. In the former

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{Update_MYt.basicM}
 \alias{Update_MYt.basicM}
-\title{Derivatives for adult mosquitoes}
+\title{Update state variables for \code{basicM} (\strong{MY})}
 \usage{
 \method{Update_MYt}{basicM}(t, y, xds_obj, s)
 }

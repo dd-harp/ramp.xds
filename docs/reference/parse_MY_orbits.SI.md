@@ -1,4 +1,4 @@
-# parse the output of deSolve and return variables for the `SI` model
+# Parse outputs for `SI` (**MY**)
 
 Implements
 [parse_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.md)

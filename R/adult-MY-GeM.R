@@ -43,7 +43,7 @@
 #' Let \eqn{\tau(t)} denote the EIP for a mosquito, if infected at time \eqn{t}: 
 #' the mosquito would become infectious at time \eqn{t+\tau(t).} 
 #' Similarly, let \eqn{\tau'(t)} denote the lag for a mosquito that became *infectious* at time \eqn{t}.
-#' it was infected at time \eqn{t-\tau'(t).}  The two are related by the identities 
+#' It was infected at time \eqn{t-\tau'(t).}  The two are related by the identities 
 #' \deqn{\tau(t) = \tau'(t+\tau(t))} and 
 #' \deqn{\tau'(t) = \tau(t-\tau'(t)).}
 #' In the implementation, a function `F_eip` returns \eqn{\tau'(t)}. Implementation of dynamically
@@ -53,7 +53,7 @@
 #' @section The Accessory Variables, \eqn{\Upsilon}: 
 #' 
 #' To compute time-varying survival and dispersal through a time-varying EIP, 
-#' we a set of accessory variables, called \eqn{\Upsilon}. To motivate the 
+#' we use a set of accessory variables, called \eqn{\Upsilon}. To motivate the 
 #' algorithm used to compute it, we introduce a new variable, 
 #' \eqn{U} that integrates \eqn{\Omega} over time: 
 #' \deqn{dU/dt = \Omega(t).}
@@ -115,7 +115,7 @@ NULL
 #' @title The **GeM** module skill set
 #'
 #' @description The **MY** skill set is a list of
-#' an module's capabilities:
+#' a module's capabilities:
 #'
 #' + `demography` is
 #'
@@ -230,7 +230,7 @@ F_eggs.GeM <- function(t, y, xds_obj, s) {
 
 
 
-#' @title Setup MY_obj for the GeM model
+#' @title Set up `GeM` (**MY**)
 #' @description Implements [setup_MY_obj] for the GeM model
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
@@ -278,11 +278,6 @@ make_MY_obj_GeM = function(nPatches, options=list(), eip =12,
     MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)
 
     MY_obj <- setup_K_obj(nPatches, MY_obj)
-
-    Omega <- diag(g, nPatches)
-    MY_obj$Omega <- Omega
-    MY_obj$Upsilon <- expm::expm(-Omega*eip)
-    MY_obj$nPatches <- nPatches
 
     Omega <- diag(g, nPatches)
     MY_obj$Omega <- Omega
@@ -372,7 +367,7 @@ parse_MY_orbits.GeM <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[[s]]$i
   return(list(M=M, P=P, Y=Y, Z=Z, y=y, z=z, parous=parous, fqZ=f*q*Z, fqM=f*q*M))
 })}
 
-#' @title Return the parameters as a list
+#' @title Get parameters for `GeM` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -386,7 +381,7 @@ get_MY_pars.GeM <- function(xds_obj, s=1) {
   ))
 }
 
-#' @title Return the parameters as a list
+#' @title Change parameters for `GeM` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
@@ -450,7 +445,7 @@ MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 })}
 
 #' @title Update state variables for `GeM` (**MY**)
-#' @description Implements [Update_MYt] for the GeM_dts model.
+#' @description Implements [Update_MYt] for the GeM model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector
 #' @keywords internal
@@ -458,7 +453,6 @@ MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 Update_MYt.GeM <- function(t, y, xds_obj, s) {
   Lambda = xds_obj$Lambda[[s]]*xds_obj$MYday
   kappa = xds_obj$kappa[[s]]
-  xds_obj <- update_Omega(xds_obj, s)
 
   with(get_MY_vars(y, xds_obj, s),{
     with(MY_obj,{
@@ -483,41 +477,7 @@ Update_MYt.GeM <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Update state variables for `GeM` (**MY**)
-#' @description Implements [Update_MYt] for the GeM_dts model.
-#' @inheritParams Update_MYt
-#' @return a [numeric] vector
-#' @keywords internal
-#' @export
-Update_MYt.GeM <- function(t, y, xds_obj, s) {
-  Lambda = xds_obj$Lambda[[s]]*xds_obj$MYday
-  kappa = xds_obj$kappa[[s]]
-
-  with(get_MY_vars(y, xds_obj, s),{
-    with(xds_obj$MY_obj[[s]],{
-
-      eip_day_ix = (t %% max_eip) + 1
-      eip_yday_ix = ((t-1) %% max_eip) + 1
-      Gix = c(t-1:max_eip) %% max_eip + 1
-      Gt <- G[Gix]
-
-      Mt <- Lambda + Omega %*% M
-      Pt <- ff*(M-P) + Omega %*% P
-      Ut <- Lambda + Omega %*% (exp(-ff*q*kappa)*U)
-      Yt <- Omega %*% (Y %*% diag(1-Gt))
-      Zt <- Omega %*% (Y%*%Gt)  + (Omega %*% Z)
-
-      Yt[,eip_yday_ix]  <- Yt[,eip_yday_ix] + Yt[,eip_day_ix]
-      Yt[,eip_day_ix] <- Omega %*% ((1-exp(-f*q*kappa))*U)
-
-      return(list(M=unname(Mt), P=unname(Pt), U=unname(Ut), Y=unname(as.vector(Yt)), Z=unname(Zt)))
-    })
-  })
-}
-
-
-
-#' @title Setup initial values for the GeM model
+#' @title Setup initial values for `GeM` (**MY**)
 #' @description Implements [setup_MY_inits] for the GeM model
 #' @inheritParams setup_MY_inits
 #' @return a [list]
@@ -556,7 +516,7 @@ make_MY_inits_GeM = function(nPatches, Upsilon, options = list(),
   })
 }
 
-#' @title Set new MY parameter values
+#' @title Change initial values for `GeM` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
@@ -577,7 +537,7 @@ change_MY_inits.GeM <- function(xds_obj, s=1, options=list()) {
 #' @title Compute the steady states as a function of the daily EIR
 #' @description This method dispatches on the type of `MY_obj`.
 #' @inheritParams steady_state_MY
-#' @return none
+#' @return a [list]
 #' @importFrom MASS ginv
 #' @keywords internal
 #' @export

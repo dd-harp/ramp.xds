@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{get_L_orbits}
 \alias{get_L_orbits}
-\title{Get \strong{L} outputs}
+\title{Get orbits (\strong{L})}
 \usage{
 get_L_orbits(xds_obj, s = 1)
 }

@@ -11,7 +11,10 @@
 
 \item{s}{the vector species index}
 }
+\value{
+a list, the value of \code{trend_par}
+}
 \description{
-Return the
+Get spline interpolation points when \code{forced_by} = "eir"
 }
 \keyword{internal}

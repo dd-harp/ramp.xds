@@ -12,7 +12,7 @@
 \item{s}{the vector species index}
 }
 \value{
-shock parameters
+an empty vector
 }
 \description{
 Get the parameters for the perturbation function

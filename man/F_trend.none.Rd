@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_trend.R
 \name{F_trend.none}
 \alias{F_trend.none}
-\title{Plot the temporal trend}
+\title{Compute the temporal trend}
 \usage{
 \method{F_trend}{none}(tm, xds_obj)
 }
@@ -12,10 +12,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a null result
+an empty vector
 }
 \description{
-The \code{F_trend} case for models
-with no forcing.
+Evaluate the function \code{F_trend} for a forced model when \code{forced_by} is "none"
 }
 \keyword{internal}

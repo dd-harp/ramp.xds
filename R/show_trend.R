@@ -1,5 +1,5 @@
 
-#' @title Plot the Temporal shock
+#' @title Plot the temporal shock
 #'
 #' @description For a model with temporal forcing,
 #' show the temporal shock
@@ -36,7 +36,7 @@ show_shock = function(xds_obj, tm=10*c(0:365), add=FALSE, clr="black", rng=NULL)
 #' @param add add to existing plot
 #' @param clr the line color
 #' @param rng if not NULL, range limits for plotting
-#' @param shock if 0,
+#' @param shock if TRUE, compute the trend with a shock 
 #'
 #' @return the temporal trend, invisibly
 #'
@@ -55,10 +55,10 @@ show_trend = function(xds_obj, tm=10*c(0:365), add=FALSE, clr="black", rng=NULL,
 
 }
 
-#' @title Plot the Temporal Trend
+#' @title Compute the temporal trend
 #'
-#' @description For a model with temporal forcing,
-#' show the temporal trend
+#' @description
+#' Evaluate the function `F_trend` for a forced model.
 #'
 #' @param tm the time points
 #' @param xds_obj an **`xds`** model object
@@ -71,14 +71,14 @@ F_trend = function(tm, xds_obj){
   UseMethod("F_trend", xds_obj$forced_by)
 }
 
-#' @title Plot the temporal trend
+#' @title Compute the temporal trend
 #'
-#' @description The `F_trend` case for models
-#' with no forcing.
+#' @description
+#' Evaluate the function `F_trend` for a forced model when `forced_by` is "none"
 #'
 #' @inheritParams F_trend
 #'
-#' @return a null result
+#' @return an empty vector
 #'
 #' @importFrom graphics plot lines
 #'
@@ -88,10 +88,10 @@ F_trend.none = function(tm, xds_obj){
   return(c())
 }
 
-#' @title Plot the temporal trend
+#' @title Compute the temporal trend
 #'
-#' @description For a model forced by emergence,
-#' show the temporal trend
+#' @description
+#' Evaluate the function `F_trend` for a forced model when `forced_by` is "Lambda"
 #'
 #' @inheritParams F_trend
 #'
@@ -105,10 +105,10 @@ F_trend.Lambda = function(tm, xds_obj){
   return(with(xds_obj$L_obj[[1]], F_trend(tm)))
 }
 
-#' @title Plot the temporal trend
+#' @title Compute the temporal trend
 #'
-#' @description For a model forced by the EIR
-#' plot the temporal trend
+#' @description
+#' Evaluate the function `F_trend` for a forced model when `forced_by` is "eir"
 #'
 #' @inheritParams F_trend
 #'
@@ -120,15 +120,15 @@ F_trend.eir= function(tm, xds_obj){
   return(with(xds_obj$EIR_obj,F_trend(tm)))
 }
 
-#' @title Plot the Temporal Trend
+#' @title Compute the temporal shock
 #'
-#' @description For a model with temporal forcing,
-#' show the temporal trend
+#' @description
+#' Evaluate the function `F_shock` for a forced model.
 #'
 #' @param tm the time points
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return the temporal trend, invisibly
+#' @return the temporal shock, invisibly
 #'
 #' @keywords internal
 #' @export
@@ -136,14 +136,14 @@ F_shock = function(tm, xds_obj){
   UseMethod("F_shock", xds_obj$forced_by)
 }
 
-#' @title Plot the temporal trend
+#' @title Compute the temporal shock
 #'
-#' @description The `F_shock` case for models
-#' with no forcing.
+#' @description
+#' Evaluate the function `F_shock` for a forced model when `forced_by` is "none"
 #'
 #' @inheritParams F_shock
 #'
-#' @return a null result
+#' @return an empty vector
 #'
 #' @importFrom graphics plot lines
 #'
@@ -153,14 +153,14 @@ F_shock.none = function(tm, xds_obj){
   return(c())
 }
 
-#' @title Plot the temporal trend
+#' @title Compute the temporal shock
 #'
-#' @description For a model forced by emergence,
-#' show the temporal trend
+#' @description
+#' Evaluate the function `F_shock` for a forced model when `forced_by` is "Lambda"
 #'
 #' @inheritParams F_shock
 #'
-#' @return the temporal trend
+#' @return the temporal shock
 #'
 #' @importFrom graphics plot lines
 #'
@@ -170,14 +170,14 @@ F_shock.Lambda = function(tm, xds_obj){
   return(with(xds_obj$L_obj[[1]], F_shock(tm)))
 }
 
-#' @title Plot the temporal trend
+#' @title Compute the temporal shock
 #'
-#' @description For a model forced by the EIR
-#' plot the temporal trend
+#' @description
+#' Evaluate the function `F_shock` for a forced model when `forced_by` is "eir"
 #'
 #' @inheritParams F_shock
 #'
-#' @return the temporal trend, invisibly
+#' @return the temporal shock, invisibly
 #'
 #' @keywords internal
 #' @export

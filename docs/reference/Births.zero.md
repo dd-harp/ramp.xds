@@ -1,4 +1,4 @@
-# Human (or Host) Population Birth Rate
+# Human (or Host) population birth rate
 
 a function
 

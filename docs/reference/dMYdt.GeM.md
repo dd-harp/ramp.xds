@@ -1,4 +1,4 @@
-# Compute Derivatives for **MY** module `GeM`
+# Compute derivatives for `GeM` (**MY**)
 
 Compute the derivatives for the generalized, non-autonomous Macdonald
 model for mosquito ecology and infection dynamics. See

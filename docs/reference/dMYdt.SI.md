@@ -1,4 +1,4 @@
-# Compute Derivatives for **MY** module `SI`
+# Compute derivatives for `SI` (**MY**)
 
 The `SI` model for mosquito infection dynamics has the defined
 **variable** classes:

@@ -1,8 +1,6 @@
-# Bionomics for `trivial` (**L** Component)
+# Apply effect sizes for `trivial` (**L**)
 
-Implements
-[LEffectSizes](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md)
-for the `trivial` module
+Return the **`xds`** object unmodified
 
 ## Usage
 

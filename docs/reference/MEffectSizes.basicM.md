@@ -1,4 +1,4 @@
-# Apply vector control effect sizes
+# Apply effect sizes for `basicM` (**MY**)
 
 Implements
 [MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md)

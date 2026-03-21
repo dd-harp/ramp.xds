@@ -1,4 +1,4 @@
-# parse the output of deSolve and return variables for the SIS model
+# Parse outputs for `SIS` (**XH**)
 
 Implements
 [parse_XH_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.md)
@@ -28,4 +28,4 @@ parse_XH_orbits(outputs, xds_obj, i)
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

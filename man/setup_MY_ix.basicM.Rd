@@ -12,7 +12,7 @@
 \item{s}{the vector species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 Implements \link{setup_MY_ix} for the basic M model.

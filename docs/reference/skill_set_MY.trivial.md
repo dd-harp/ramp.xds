@@ -1,4 +1,4 @@
-# The **trivial** Module Skill Set
+# The **trivial** module skill set
 
 The **MY** skill set is a list of a module's capabilities
 

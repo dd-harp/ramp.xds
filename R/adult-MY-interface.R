@@ -132,7 +132,7 @@ MEffectSizes <- function(t, y, xds_obj, s) {
   UseMethod("MEffectSizes", xds_obj$MY_obj[[s]])
 }
 
-#' @title Setup an **MY** model object
+#' @title Set up **MY** model object
 #'
 #' @description
 #' This function is a structured interface, a way
@@ -205,7 +205,7 @@ parse_MY_orbits <- function(outputs, xds_obj, s) {
   UseMethod("parse_MY_orbits", xds_obj$MY_obj[[s]])
 }
 
-#' @title Return the parameters as a list
+#' @title Get parameters (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -216,7 +216,7 @@ get_MY_pars <- function(xds_obj, s=1) {
   UseMethod("get_MY_pars", xds_obj$MY_obj[[s]])
 }
 
-#' @title Set new MY parameter values
+#' @title Change parameters (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -227,7 +227,7 @@ change_MY_pars <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_MY_pars", xds_obj$MY_obj[[s]])
 }
 
-#' @title A function to set up adult mosquito models
+#' @title Setup initial values (**MY**)
 #' @description This method dispatches on `MYname`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -251,7 +251,7 @@ get_MY_inits <- function(xds_obj, s=1) {
   xds_obj$MY_obj[[s]]$inits
 }
 
-#' @title Set new MY initial values
+#' @title Change initial values (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index

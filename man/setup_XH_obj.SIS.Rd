@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{setup_XH_obj.SIS}
 \alias{setup_XH_obj.SIS}
-\title{Setup \code{SIS} (\strong{XH} component)}
+\title{Set up \code{SIS} (\strong{XH})}
 \usage{
 \method{setup_XH_obj}{SIS}(Xname, xds_obj, i, options = list())
 }

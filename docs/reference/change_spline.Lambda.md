@@ -1,7 +1,7 @@
-# Set the \\y\\ value for interpolating points
+# Change spline interpolation points
 
-Set the yy for the seasonal pattern for the \\s^{th}\\ species and
-return the **`ramp.xds`** model object
+Change the interpolation points for a spline function. when
+`forced_by = "Lambda"`
 
 ## Usage
 

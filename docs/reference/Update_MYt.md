@@ -1,4 +1,4 @@
-# Update states for an adult mosquito model
+# Update states (**MY**)
 
 This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 

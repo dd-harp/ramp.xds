@@ -1,6 +1,6 @@
-# Set the interpolating points
+# Change shock parameters
 
-Set the interpolating points for F_trend
+Change parameters for the shock function
 
 ## Usage
 

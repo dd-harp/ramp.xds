@@ -1,4 +1,4 @@
-# Immature Mosquito Bionomics
+# Mosquito bionomics (**L**)
 
 Compute the values of bionomic parameter values for an **L** Component
 module

@@ -27,7 +27,7 @@ The object is created in several steps:
 
 While xds object internals are useful for developers,
 functions have been developed to
-set up (\verb{setup_*}), inspect (\verb{get_*}), and modify (`change_*) various
+set up (\verb{setup_*}), inspect (\verb{get_*}), and modify (\verb{change_*}) various
 aspects of xds objects.
 }
 \seealso{

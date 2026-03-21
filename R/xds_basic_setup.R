@@ -26,13 +26,13 @@
 #' 
 #' [xds_setup] sets up a model  
 #' that has all three components. Functions were developed to setup and solve systems that 
-#  trivialized or replaced replaced some aspect of the adult mosquito populations, 
-#' making at least one of the other components completely unnecessary. 
+#  trivialized the adult mosquito component, 
+#' making another component completely unnecessary. 
 #' 
 #' All `xds_setup_*` functions define `xds_obj$frame` 
 #' and the functions used to solve and parse differential equations  
 #' use the `S3` system, with methods
-#' that dispatch on `class(xds_obj$frame).` 
+#' that dispatch on `class(xds_obj$frame)`. 
 #'
 #' + [xds_setup] (`frame="full"`) sets up all three components.
 #' 

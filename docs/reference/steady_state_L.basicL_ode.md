@@ -1,4 +1,4 @@
-# Compute the Steady State of `dLdt.basicL` (**L** Component)
+# Compute the steady state of `dLdt.basicL` (**L** component)
 
 Given an egg deposition rate `eta`, return a steady state value for the
 equations in

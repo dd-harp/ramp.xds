@@ -1,6 +1,6 @@
 # Get spline interpolation points
 
-Return the
+Get spline interpolation points when `forced_by` = "Lambda"
 
 ## Usage
 
@@ -21,4 +21,4 @@ get_spline_s(xds_obj, s = 1)
 
 ## Value
 
-the interpolation points, as a list
+a list, the value of `trend_par`

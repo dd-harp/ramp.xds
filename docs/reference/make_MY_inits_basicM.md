@@ -29,4 +29,4 @@ make_MY_inits_basicM(nPatches, options, M = 5, P = 1)
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{change_L_pars}
 \alias{change_L_pars}
-\title{Set \strong{L} component parameters}
+\title{Change parameters (\strong{L})}
 \usage{
 change_L_pars(xds_obj, s = 1, options = list())
 }
@@ -17,6 +17,6 @@ change_L_pars(xds_obj, s = 1, options = list())
 an \strong{\code{xds}} object
 }
 \description{
-Set \strong{L} component parameters
+Change parameters (\strong{L})
 }
 \keyword{internal}

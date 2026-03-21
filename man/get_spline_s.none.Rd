@@ -11,8 +11,10 @@
 
 \item{s}{the vector species index}
 }
+\value{
+an empty vector
+}
 \description{
-Return the value that sets mean forcing
-for forced models.
+Get spline interpolation points when \code{forced_by} = "none"
 }
 \keyword{internal}

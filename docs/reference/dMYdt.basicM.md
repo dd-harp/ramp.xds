@@ -1,4 +1,4 @@
-# Compute Derivatives for **M** module `basicM`
+# Compute derivatives for `basicM` (**MY**)
 
 Implements
 [dMYdt](https://dd-harp.github.io/ramp.xds/reference/dMYdt.md) for the

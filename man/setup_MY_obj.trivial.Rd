@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{setup_MY_obj.trivial}
 \alias{setup_MY_obj.trivial}
-\title{Setup the trivial model for an adult mosquito model}
+\title{Set up \code{trivial} (\strong{MY})}
 \usage{
 \method{setup_MY_obj}{trivial}(MYname, xds_obj, s, options = list())
 }

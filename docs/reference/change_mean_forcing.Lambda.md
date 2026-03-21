@@ -1,7 +1,6 @@
-# Set mean forcing
+# Change mean forcing
 
-Set `Lambda` to `X` for the \\s^{th}\\ species and return the
-**`ramp.xds`** model object
+Change `Lambda` for when `forced_by` = "Lambda"
 
 ## Usage
 

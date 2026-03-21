@@ -52,7 +52,7 @@ The \emph{demographic matrix} \eqn{\Omega} is:
 Let \eqn{\tau(t)} denote the EIP for a mosquito, if infected at time \eqn{t}:
 the mosquito would become infectious at time \eqn{t+\tau(t).}
 Similarly, let \eqn{\tau'(t)} denote the lag for a mosquito that became \emph{infectious} at time \eqn{t}.
-it was infected at time \eqn{t-\tau'(t).}  The two are related by the identities
+It was infected at time \eqn{t-\tau'(t).}  The two are related by the identities
 \deqn{\tau(t) = \tau'(t+\tau(t))} and
 \deqn{\tau'(t) = \tau(t-\tau'(t)).}
 In the implementation, a function \code{F_eip} returns \eqn{\tau'(t)}. Implementation of dynamically
@@ -64,7 +64,7 @@ the derivative \code{dF_eip} (below).
 
 
 To compute time-varying survival and dispersal through a time-varying EIP,
-we a set of accessory variables, called \eqn{\Upsilon}. To motivate the
+we use a set of accessory variables, called \eqn{\Upsilon}. To motivate the
 algorithm used to compute it, we introduce a new variable,
 \eqn{U} that integrates \eqn{\Omega} over time:
 \deqn{dU/dt = \Omega(t).}

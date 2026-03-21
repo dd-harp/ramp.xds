@@ -14,7 +14,7 @@
 \item{i}{the host species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 Return the PR by light microscopy

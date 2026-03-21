@@ -31,7 +31,7 @@ make_L_obj_basicL(
 }
 \description{
 The following parameters will be set to the values in
-\code{options.} If they are not found, default values will be used.
+\code{options}. If they are not found, default values will be used.
 \itemize{
 \item \eqn{\psi} or \code{psi}: maturation rate
 \item \eqn{\xi} or \code{xi}: delayed maturation response due to mean crowding

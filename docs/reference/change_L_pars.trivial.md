@@ -1,4 +1,4 @@
-# Set **L** Component parameters for `trivial`
+# Change parameters for `trivial` (**L**)
 
 If `Lambda`, `season_par`, `trend_par`, or `shock_par` are named in
 `options`, the old value is replaced. After updating the parameter

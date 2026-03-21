@@ -1,4 +1,4 @@
-# Get Initial Values for the **L** Component
+# Get initial values (**L**)
 
 The initial values are stored on the **L** object as a named list called
 `inits`; `get_L_inits` returns that list.

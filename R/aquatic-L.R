@@ -108,7 +108,7 @@ F_emerge <- function(t, y, xds_obj, s) {
   UseMethod("F_emerge", xds_obj$L_obj[[s]])
 }
 
-#' @title Set up `L_obj` for **L** component modules
+#' @title Set up **L** model object 
 #' @description
 #' Each instance of `setup_L_obj.*` calls a function `create_L_obj_*` that
 #' creates an object **`L_obj`.**
@@ -129,7 +129,7 @@ setup_L_obj = function(Lname, xds_obj, s, options=list()){
   UseMethod("setup_L_obj", Lname)
 }
 
-#' @title Get parameters for the **L** component module
+#' @title Get parameters (**L**)
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
@@ -139,7 +139,7 @@ get_L_pars <- function(xds_obj, s=1) {
   UseMethod("get_L_pars", xds_obj$L_obj[[s]])
 }
 
-#' @title Set **L** component parameters
+#' @title Change parameters (**L**)
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list
@@ -164,7 +164,7 @@ get_L_vars <- function(y, xds_obj, s) {
   UseMethod("get_L_vars", xds_obj$L_obj[[s]])
 }
 
-#' @title Setup initial values for the **L** component
+#' @title Setup initial values (**L**)
 #' @description Sets the initial values of the **L** Component
 #' variables from `options`, a named list.
 #' @param xds_obj an **`xds`** model object
@@ -177,7 +177,7 @@ setup_L_inits = function(xds_obj, s, options=list()){
   UseMethod("setup_L_inits", xds_obj$L_obj[[s]])
 }
 
-#' @title Get initial values for the **L** component
+#' @title Get initial values (**L**) 
 #' @description The initial values are stored on the **L** object as a
 #' named list called `inits`; `get_L_inits` returns that list.
 #' @param xds_obj an **`xds`** model object
@@ -189,7 +189,7 @@ get_L_inits <- function(xds_obj, s=1) {
   xds_obj$L_obj[[s]]$inits
 }
 
-#' @title Set **L** component initial values
+#' @title Change initial values (**L**)
 #' @description
 #' This sets initial values for an **L** Component
 #' module from a named list
@@ -213,7 +213,7 @@ setup_L_ix <- function(xds_obj, s) {
   UseMethod("setup_L_ix", xds_obj$L_obj[[s]])
 }
 
-#' @title Get L indices
+#' @title Get indices (**L**)
 #'
 #' @description The indices are stored on the **L** object as a
 #' named list called `ix`; `get_L_ix` returns that list.
@@ -261,7 +261,7 @@ steady_state_L = function(eta, xds_obj, s=1){
 }
 
 
-#' @title Get **L** outputs
+#' @title Get orbits (**L**)
 #'
 #' @description
 #' Pull the saved, parsed orbits for the **L**

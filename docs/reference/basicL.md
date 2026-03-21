@@ -1,4 +1,4 @@
-# The `basicL` Module for the L Component
+# The `basicL` module for the L component
 
 A basic model of aquatic mosquito ecology with density-dependent
 mortality and delayed maturation, based on Smith DL, *et al.* (2013).

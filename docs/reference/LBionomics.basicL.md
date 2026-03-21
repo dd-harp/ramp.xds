@@ -1,4 +1,4 @@
-# Bionomics for `basicL` (**L** Component)
+# Mosquito bionomics for `basicL` (**L**)
 
 Compute the bionomic parameter values for `basicL` by calling the
 forcing functions for each parameter. Also resets all effect sizes

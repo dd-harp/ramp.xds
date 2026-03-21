@@ -21,4 +21,4 @@ get_shock(xds_obj, s = 1)
 
 ## Value
 
-shock parameters
+a list, the value of `shock_par`

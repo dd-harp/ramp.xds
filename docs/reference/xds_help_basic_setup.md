@@ -17,7 +17,7 @@ or one of its variants.
   - an **L** Component
 
 - [xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
-  sets up a models to study human epidemiology, given exposure:
+  sets up models to study human epidemiology, given exposure:
 
   - an **XH** component
 
@@ -84,12 +84,12 @@ component is configured to pass known inputs (see
 
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 sets up a model that has all three components. Functions were developed
-to setup and solve systems that making at least one of the other
-components completely unnecessary.
+to setup and solve systems that making another component completely
+unnecessary.
 
 All `xds_setup_*` functions define `xds_obj$frame` and the functions
 used to solve and parse differential equations use the `S3` system, with
-methods that dispatch on `class(xds_obj$frame).`
+methods that dispatch on `class(xds_obj$frame)`.
 
 - [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
   (`frame="full"`) sets up all three components.

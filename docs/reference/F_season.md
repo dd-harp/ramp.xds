@@ -1,6 +1,6 @@
-# Plot the seasonal pattern
+# Compute the seasonal pattern
 
-Plot the seasonal pattern
+Evaluate the function `F_season` for a forced model.
 
 ## Usage
 

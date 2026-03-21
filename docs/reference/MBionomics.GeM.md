@@ -1,4 +1,4 @@
-# Compute mosquito bionomic parameters
+# Mosquito bionomics for `GeM` (**MY**)
 
 Implements
 [MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)

@@ -1,6 +1,6 @@
-# **XH** Skill Set
+# **XH** skill set
 
-The **XH** skill set is a list of an module's capabilities:
+The **XH** skill set is a list of a module's capabilities:
 
 - **`H_dynamics`** - if FALSE, \\H\\ is static. The module doesn't have
   a port for demographic change
@@ -20,8 +20,7 @@ The **XH** skill set is a list of an module's capabilities:
 - **`pf_lm`**: if TRUE, the model outputs a value for prevalence by
   light microscopy
 
-- **`pf_pcr`**: if FALSE, the model outputs a value for prevalence by
-  PCR
+- **`pf_pcr`**: if TRUE, the model outputs a value for prevalence by PCR
 
 ## Usage
 

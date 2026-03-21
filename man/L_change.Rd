@@ -2,9 +2,9 @@
 % Please edit documentation in R/aquatic-help.R
 \name{L_change}
 \alias{L_change}
-\title{Change functions for the L component}
+\title{Change functions (\strong{L})}
 \description{
-write me.
+A list of change functions for aquatic mosquito modules.
 
 \itemize{
 \item \code{\link{change_L_inits}} -- change initial values

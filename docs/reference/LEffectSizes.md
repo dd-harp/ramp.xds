@@ -1,4 +1,4 @@
-# Immature Mosquito Bionomics - Vector Control Effect Sizes
+# Apply effect sizes (**L**)
 
 Apply vector control effect sizes to immature mosquito bionomic
 parameters

@@ -1,4 +1,4 @@
-# Setup Inits for `trivial` (**MY**)
+# Setup initial values for `trivial` (**MY**)
 
 Return the **`xds`** object unmodified
 

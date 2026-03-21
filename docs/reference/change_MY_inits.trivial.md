@@ -1,4 +1,4 @@
-# Set new MY parameter values
+# Change initial values for `trivial` (**MY**)
 
 This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 

@@ -1,6 +1,7 @@
-# Plot the temporal trend
+# Compute the temporal shock
 
-The `F_shock` case for models with no forcing.
+Evaluate the function `F_shock` for a forced model when `forced_by` is
+"none"
 
 ## Usage
 
@@ -21,4 +22,4 @@ F_shock(tm, xds_obj)
 
 ## Value
 
-a null result
+an empty vector

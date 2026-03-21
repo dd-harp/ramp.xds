@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_mean_forcing.R
 \name{change_mean_forcing.eir}
 \alias{change_mean_forcing.eir}
-\title{Set mean forcing}
+\title{Change mean forcing}
 \usage{
 \method{change_mean_forcing}{eir}(X, xds_obj, s = 1)
 }
@@ -17,6 +17,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-Set the mean daily EIR for an \code{eir} model
+Change the mean daily EIR for an \code{eir} model
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_compute_terms.R
 \name{xds_compute_terms.human}
 \alias{xds_compute_terms.human}
-\title{Differential equations isolating the humans, forced with Ztrace}
+\title{Differential equations isolating the humans, forced by infectious biting}
 \usage{
 \method{xds_compute_terms}{human}(t, y, xds_obj)
 }

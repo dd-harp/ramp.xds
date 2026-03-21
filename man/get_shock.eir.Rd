@@ -12,7 +12,7 @@
 \item{s}{the vector species index}
 }
 \value{
-shock parameters
+a list, the value of \code{shock_par}
 }
 \description{
 Get the shock parameters for an EIR forced model

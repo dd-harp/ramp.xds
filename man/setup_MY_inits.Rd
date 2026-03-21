@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{setup_MY_inits}
 \alias{setup_MY_inits}
-\title{A function to set up adult mosquito models}
+\title{Setup initial values (\strong{MY})}
 \usage{
 setup_MY_inits(xds_obj, s, options = list())
 }

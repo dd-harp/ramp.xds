@@ -1,4 +1,4 @@
-# Get Functions for XH
+# Get functions for XH
 
 A list of functions to inspect XH objects.
 

@@ -1,6 +1,6 @@
-# Set up Indices for **L** Component Variables
+# Set up indices for **L** component variables
 
-Set up Indices for **L** Component Variables
+Set up indices for **L** component variables
 
 ## Usage
 

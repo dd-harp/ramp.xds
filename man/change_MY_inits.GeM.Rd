@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{change_MY_inits.GeM}
 \alias{change_MY_inits.GeM}
-\title{Set new MY parameter values}
+\title{Change initial values for \code{GeM} (\strong{MY})}
 \usage{
 \method{change_MY_inits}{GeM}(xds_obj, s = 1, options = list())
 }

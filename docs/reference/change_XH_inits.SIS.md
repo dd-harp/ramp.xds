@@ -1,6 +1,6 @@
-# `SIS` - Change Initial Values
+# Change initial values for `SIS` (**XH**)
 
-For the **XH** module, `SIS,` change the initial value(s) for the
+For the **XH** module, `SIS`, change the initial value(s) for the
 variable \\I\\.
 
 The argument passed as `options` should be a named list, and the new

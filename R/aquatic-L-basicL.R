@@ -207,7 +207,7 @@ LEffectSizes.basicL <- function(t, y, xds_obj, s) {
 })}
 
 
-#' @title Setup `L_obj` for `basicL` (**L** component)
+#' @title Set up `basicL` (**L**)
 #' @description The function sets up `L_obj` for the \eqn{s^{th}} species
 #' by calling [make_L_obj_basicL]
 #' @inheritParams setup_L_obj
@@ -225,7 +225,7 @@ setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
 
 #' @title Make `L_obj` for `basicL` (**L** component)
 #' @description The following parameters will be set to the values in
-#' `options.` If they are not found, default values will be used.
+#' `options`. If they are not found, default values will be used.
 #'
 #' - \eqn{\psi} or `psi`: maturation rate
 #' - \eqn{\xi} or `xi`: delayed maturation response due to mean crowding
@@ -259,7 +259,7 @@ make_L_obj_basicL = function(nHabitats, options=list(), psi=1/8, xi=0, phi=1/8, 
   })
 }
 
-#' @title Get **L** component parameters for `basicL`
+#' @title Get parameters for `basicL` (**L**)
 #' @description Get the **L** component parameters
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -273,7 +273,7 @@ get_L_pars.basicL <- function(xds_obj, s=1) {
   ))
 }
 
-#' @title Set **L** component parameters for `basicL`
+#' @title Change parameters for `basicL` (**L**)
 #' @description Set the values of **L** component parameters
 #' - `psi` or \eqn{\psi}
 #' - `xi`  or \eqn{\xi}
@@ -296,7 +296,7 @@ change_L_pars.basicL <- function(xds_obj, s=1, options=list()) {
 
 
 
-#' @title Setup initial values for `basicL` (**L** component)
+#' @title Setup initial values for `basicL` (**L**)
 #' @description This sets initial values of the variable \eqn{L} by
 #' calling [make_L_inits_basicL]. Default values are used unless other values
 #' are passed in `options` by name (*i.e.* `options$L`)
@@ -338,7 +338,7 @@ get_L_vars.basicL <- function(y, xds_obj, s){
        )))
 }
 
-#' @title Set the initial values for `basicL` (**L** component)
+#' @title Change initial values for `basicL` (**L**)
 #' @description Initial values of the variable \eqn{L} are reset if they are
 #' passed as a named component of `options`
 #' @inheritParams change_L_inits

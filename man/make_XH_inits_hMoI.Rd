@@ -16,7 +16,7 @@ make_XH_inits_hMoI(nStrata, options = list(), m1 = 2, m2 = 1)
 \item{m2}{mean MoI among patent human infections}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 MoI stands for Multiplicity of Infection, and refers to malarial superinfection.

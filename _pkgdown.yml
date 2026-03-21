@@ -173,9 +173,9 @@ reference:
   - xds_lines_PR
   - xds_plot_EIR
   - xds_lines_EIR
-- subtitle: Mosquito 
+- subtitle: Adult Mosquito 
   desc: | 
-    Compute Steady States & Stable Orbits
+    Plot common variables and terms 
   contents:
   - xds_plot_M
   - xds_lines_M
@@ -187,6 +187,12 @@ reference:
   - xds_lines_Y_fracs
   - xds_plot_Z_fracs
   - xds_lines_Z_fracs
+- subtitle: Aquatic Mosquito 
+  desc: | 
+    Plot common variables and terms 
+  contents:
+  - xds_plot_L
+  - xds_lines_L
 - subtitle: Show Forcing 
   desc: |
     Show patterns for forced systems

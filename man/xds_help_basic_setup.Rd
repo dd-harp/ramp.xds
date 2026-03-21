@@ -16,7 +16,7 @@
 \item an \strong{MY} Component
 \item an \strong{L} Component
 }
-\item \link{xds_setup_human} sets up a models to study human epidemiology, given exposure:
+\item \link{xds_setup_human} sets up models to study human epidemiology, given exposure:
 \itemize{
 \item an \strong{XH} component
 \item a trivial \strong{MY} component is configured for infectious biting in patches
@@ -70,12 +70,12 @@ the trivial \emph{upstream} component is configured to pass known inputs (see \l
 
 \link{xds_setup} sets up a model
 that has all three components. Functions were developed to setup and solve systems that
-making at least one of the other components completely unnecessary.
+making another component completely unnecessary.
 
 All \verb{xds_setup_*} functions define \code{xds_obj$frame}
 and the functions used to solve and parse differential equations
 use the \code{S3} system, with methods
-that dispatch on \verb{class(xds_obj$frame).}
+that dispatch on \code{class(xds_obj$frame)}.
 \itemize{
 \item \link{xds_setup} (\code{frame="full"}) sets up all three components.
 \item \link{xds_setup_mosy} (\code{frame="mosy"}) sets up models for mosquito ecology:

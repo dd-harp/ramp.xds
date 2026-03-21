@@ -1,4 +1,4 @@
-# Compute Emergent Adults for `basicL` (**L** Component)
+# Compute emergent adults for `basicL` (**L** component)
 
 The number of adults emerging from the habitats, per day, is: \$\$\psi
 e^{-\xi L} L.\$\$

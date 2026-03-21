@@ -1,4 +1,4 @@
-# xde_setup XH_obj.trivial
+# Set up `trivial` (**XH**)
 
 Implements
 [setup_XH_obj](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)

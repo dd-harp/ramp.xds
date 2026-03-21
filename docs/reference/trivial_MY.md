@@ -1,4 +1,4 @@
-# `trivial` — **MY** Module
+# `trivial` — **MY** module
 
 The trivial **MY** module configures two trace functions:
 

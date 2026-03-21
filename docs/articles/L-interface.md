@@ -1,14 +1,13 @@
 # The L Component
 
-The **L** component was designed to model aquatic mosquito ecology and
-infection dynamics. This vignette takes an overview of of the functions
-in the **L** component. It is useful for anyone who wants to learn more
-about how the code works.
+The **L** component was designed to model aquatic mosquito ecology. This
+vignette takes an overview of the functions in the **L** component. It
+is useful for anyone who wants to learn more about how the code works.
 
-In context, an **L** modules get the egg laying rate, \\\eta\\ from the
+In context, an **L** module gets the egg laying rate, \\\eta\\ from the
 **ML**-interface. It is the dot product of the total mosquito egg laying
-rate in a patch \\G\\ and the egg laying matrix \\U\\ (Figure 1). Each
-The core functions compute either
+rate in a patch \\G\\ and the egg laying matrix \\U\\ (Figure 1). The
+core functions compute either
 
 - `xde` — a set of derivatives, generically denoted \\dL/dt\\
 
@@ -44,26 +43,37 @@ The required functions deal with various tasks required to build or
 solve a model, inspect or change the parameters or initial values,
 compute terms or outputs, and run consistency checks.
 
-Each module is defined by a string, generically called `Lname,` that
-identifies the module: *e.g.* `basicL.`
+Each module is defined by a string, generically called `Lname`, that
+identifies the module: *e.g.* `basicL`.
 
 ### Dynamics
 
-The dynamics are defined by at least one of the following is required,
-depending on whether the model family is a system of differential
-equations or a discrete time system:
+At least one of the following is required, depending on whether the
+model family is a system of differential equations or a discrete time
+system:
 
 - `dLdt.Lname` :: differential equations are defined by a function that
   computes the derivatives. In `ramp.xds` these are encoded in a
-  function called `dLdt.` The function is set up to be solved by
+  function called `dLdt`. The function is set up to be solved by
   [`deSolve::ode`](https://rdrr.io/pkg/deSolve/man/ode.html) or
-  `deSolve::dede.`
+  [`deSolve::dede`](https://rdrr.io/pkg/deSolve/man/dede.html).
 
 - `Update_Lt.Lname` :: discrete time systems are defined by the function
   that updates the state variables in one time step. In `ramp.xds` these
   are encoded in a function called `Update_Lt` that computes and returns
   the **state variables.** The forms mimic the ones used for
   differential equations.
+
+### Bionomics
+
+Two functions update bionomic parameter values at each time step, called
+in sequence before the dynamics are computed.
+
+- `LBionomics.Lname` – computes the current bionomic parameter values
+  for parameters that are ports. It also resets all effect sizes to 1.
+
+- `LEffectSizes.Lname` – applies vector control effect sizes to the
+  bionomic parameters set by `LBionomics`.
 
 ### Output Terms
 
@@ -90,25 +100,26 @@ functions.
 - `make_L_obj_Lname` :: returns a structured list called an **L** model
   object:
 
-  - bionomic parameter values and objects. In most models, the value of
-    bionomic parameters are functions of time, or exogenous variables
-    that vary with time.
-
   - `class(L_obj)` = `Lname`
 
   - the indices for the model variables are stored as `L_obj$ix`
 
   - the initial values are stored as `L_obj$inits`
 
+  - bionomic parameter values
+
   - anything else that is needed can be configured here
+
+In some cases, bionomic parameters are set up as ports (see
+\[xds_info_port\]); the value is set by a call to a function.
 
 ### Parameters
 
 - `get_L_pars.Lname` returns a named list of the parameter values.
 
 - `change_L_pars.Lname` changes the values of some parameters by passing
-  a named list. Use is designed to be used after setup. New parameter
-  values are passed by name in a list called `options.`
+  a named list. It is designed to be used after setup. New parameter
+  values are passed by name in a list called `options`.
 
 ### Variables
 
@@ -117,44 +128,44 @@ indices for all the variables in a model.
 
 Two other functions use those indices: one pulls the variables from the
 state variable vector \\y\\; the other one pulls the variables by name
-from an output matrix returned by `xds_solve.`
+from an output matrix returned by `xds_solve`.
 
-After pulling, both functions return the variables in by name in a list
-to make it easy to inspect or use.
+After pulling, both functions return the variables by name in a list to
+make it easy to inspect or use.
 
-6.  `setup_L_ix.Lname` - is the function that assigns an index to each
-    variable in the model, and stores them as a named list at
-    `xds_obj$L_obj[[s]]$ix.` The indices can be retrieved with
-    `get_L_ix`.
+- `setup_L_ix.Lname` - is the function that assigns an index to each
+  variable in the model, and stores them as a named list at
+  `xds_obj$L_obj[[s]]$ix`. The indices can be retrieved with `get_L_ix`.
 
-7.  `get_L_vars.Lname` - retrieves the value of variables from the state
-    variables vector \\y\\ at a point in time and returns the values by
-    name in a list; the function gets called by `dLdt` and it can be
-    useful in other contexts.
+- `get_L_ix` – returns the indices stored at `L_obj[[s]]$ix`
 
-8.  `parse_L_orbits.Lname` - this function is like `get_L_vars` but it
-    parses the matrix of outputs returned by `xds_solve.`
+- `get_L_vars.Lname` - retrieves the value of variables from the state
+  variables vector \\y\\ at a point in time and returns the values by
+  name in a list; the function gets called by `dLdt` and it can be
+  useful in other contexts.
+
+- `parse_L_orbits.Lname` - this function is like `get_L_vars` but it
+  parses the matrix of outputs returned by `xds_solve`.
 
 ### Initial Values
 
-A set of functions is sets up or changes the initial values for the
-state variables.
+A set of functions sets up or changes the initial values for the state
+variables.
 
 - `setup_L_inits.Lname` - is a wrapper, that gets called by `xds_setup`
-  and that calls `make_L_inits_Lname.` The setup `options` are passed to
+  and that calls `make_L_inits_Lname`. The setup `options` are passed to
   overwrite default values. The initial values are stored as
-  `L_obj$inits.`
+  `L_obj$inits`.
 
 - `make_L_inits_Lname` - each model must include a function that makes a
   set of initial values as a named list. This function does not belong
   to any `S3` class, so it can take any form. The function should supply
   default initial values for all the variables. These can be overwritten
-  by passing new initial values in `options.`
+  by passing new initial values in `options`.
 
-- `get_L_inits` - returns the initial values stored at
-  `L_obj[[s]]$inits`
+- `get_L_inits` – returns the initial values
 
-- `change_L_inits.Lname` - a utility to change the initial values.
+- `change_L_inits.Lname` - changes the initial values.
 
 ### Consistency Checks
 
@@ -163,34 +174,23 @@ for various reasons. Not all of those models are capable of being
 extended. To help users avoid using models in ways that are not
 appropriate, we developed two function classes:
 
-18. `skill_set_L.Lname` :: describes model capabilities and limitations
+- `skill_set_L.Lname` :: describes model capabilities and limitations
 
-19. `check_L.Lname` :: at the end of `xds_setup` and at the beginning of
-    `xds_solve,` this function gets run to ensure that some quantities
-    have been properly updated, and to see if anything has been added to
-    a model that is not in its skill set.
+- `check_L.Lname` :: at the end of `xds_setup` and at the beginning of
+  `xds_solve,` this function gets run to ensure that some quantities
+  have been properly updated, and to see if anything has been added to a
+  model that is not in its skill set.
 
-## Optional Functions
+## Solving
 
-The **L** interface also sets up `S3` classes for some optional
-functions, but these might not be appropriate for all models. If a
-function is not in the *skill set* of the module, then the limitation
-should be noted in the documentation of `skill_set_L.Lname` with
-information in the list.
+Functions to get steady states, orbits, and plot outputs:
 
-### Steady States
+- `get_L_orbits` – retrieves the saved, parsed orbits for the **L**
+  component from an **`xds`** object
 
-Methods are defined to compute various steady states under static
-parameter values.
+- `steady_state_L.Lname` :: pass the egg laying rate and compute steady
+  states for the **L** component.
 
-- `steady_state_L.Lname` :: pass the egg laying rate of and compute
-  steady states for the **L** component.
+- `xds_plot_L` is a wrapper that calls `xds_lines_L`
 
-### Visualization
-
-Functions have been developed to plot the standard terms, but each
-module can define its own method for plotting:
-
-- `xds_plot_L.Lname` is a wrapper that calls `xds_lines_X`
-
-- `xds_lines_L.Lname` defines a default method for plotting orbits
+- `xds_lines_L` plots larval density

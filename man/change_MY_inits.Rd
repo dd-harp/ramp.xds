@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{change_MY_inits}
 \alias{change_MY_inits}
-\title{Set new MY initial values}
+\title{Change initial values (\strong{MY})}
 \usage{
 change_MY_inits(xds_obj, s = 1, options = list())
 }

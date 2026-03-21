@@ -1,4 +1,4 @@
-# Set up `L_obj` for **L** Component modules
+# Set up **L** model object
 
 Each instance of `setup_L_obj.*` calls a function `create_L_obj_*` that
 creates an object **`L_obj`.** It is attached the **`xds`** object as

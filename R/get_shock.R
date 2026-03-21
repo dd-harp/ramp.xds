@@ -24,7 +24,7 @@ get_shock = function(xds_obj, s=1){
 #'
 #' @inheritParams get_shock
 #'
-#' @return shock parameters
+#' @return an empty vector
 #'
 #' @keywords internal
 #' @export
@@ -35,11 +35,11 @@ get_shock.none = function(xds_obj, s=1){
 #' @title Get the shock parameters
 #'
 #' @description
-#' Get the shock parameters for a model forced by emergence 
+#' Get the shock parameters for a model forced by emergence
 #'
 #' @inheritParams get_shock
 #'
-#' @return shock parameters
+#' @return a list, the value of `shock_par`
 #'
 #' @keywords internal
 #' @export
@@ -50,11 +50,11 @@ get_shock.Lambda = function(xds_obj, s=1){
 #' @title Get the shock parameters
 #'
 #' @description
-#' Get the shock parameters for an EIR forced model 
+#' Get the shock parameters for an EIR forced model
 #'
 #' @inheritParams get_shock
 #'
-#' @return shock parameters
+#' @return a list, the value of `shock_par`
 #'
 #' @keywords internal
 #' @export
@@ -65,11 +65,11 @@ get_shock.eir = function(xds_obj, s=1){
 #' @title Get the shock parameters
 #'
 #' @description
-#' Get the shock parameters for a model forced by infectious biting 
+#' Get the shock parameters for a model forced by infectious biting
 #'
 #' @inheritParams get_shock
 #'
-#' @return shock parameters
+#' @return a list, the value of `shock_par`
 #'
 #' @keywords internal
 #' @export

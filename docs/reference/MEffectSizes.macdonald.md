@@ -1,4 +1,4 @@
-# Macdonald-style adult mosquito bionomics
+# Apply effect sizes for `macdonald` (**MY**)
 
 Reset the effect sizes for static models. When modules are added to
 compute effect sizes from baseline parameters, those functions store an

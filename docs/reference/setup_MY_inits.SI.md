@@ -1,4 +1,4 @@
-# Setup initial values for the `SI` model
+# Setup initial values for `SI` (**MY**)
 
 Implements
 [setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)

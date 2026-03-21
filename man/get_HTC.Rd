@@ -12,7 +12,7 @@ get_HTC(xds_obj, i)
 \item{i}{the host species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}.

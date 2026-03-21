@@ -1,4 +1,4 @@
-# `trivial` — **L** Module
+# `trivial` — **L** module
 
 The trivial module outputs the emergence rate of adult mosquitoes by
 calling a *trace function,* \$\$F\_\alpha(t) = \Lambda S(t) T(t)

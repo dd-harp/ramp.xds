@@ -1,4 +1,4 @@
-# Compute Component Egg Laying Rates for `SI`
+# Compute component egg laying rates for `SI`
 
 The density of adult mosquitoes is \\M\\. The **parameters** describing
 egg laying by adult mosquitoes are:

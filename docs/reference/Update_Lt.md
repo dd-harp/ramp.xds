@@ -1,4 +1,4 @@
-# Update state variables (**L** module)
+# Update state variables (**L**)
 
 This method updates the state variables for **L** Component modules
 

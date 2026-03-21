@@ -17,6 +17,8 @@ This folder contains an R package. It implements a mathematical framework for bu
 - Flag any suspicious technical terms for the author to decide.
 - Change list format: always show before → after.
 - Clear grammar errors (wrong articles, double words, punctuation): auto-fix without asking.
+- Punctuation inside backtick code spans (e.g. `` `ramp.library.` `` → `` `ramp.library` ``): auto-fix without asking.
+- Plotting function titles: `xds_plot_Z` / `xds_lines_Z` describe infective mosquitoes (not "infected and infective") — auto-fix to "infective" without asking.
 
 ## Title Alignment Rules
 - `MEffectSizes` module titles: `Apply effect sizes for \`module\` (**MY**)` — apply without asking.

@@ -1,6 +1,6 @@
-# Set mean forcing
+# Change mean forcing
 
-Set the mean daily EIR for an `eir` model
+Change the mean daily EIR for an `eir` model
 
 ## Usage
 

@@ -24,7 +24,7 @@ show_trend(
 
 \item{rng}{if not NULL, range limits for plotting}
 
-\item{shock}{if 0,}
+\item{shock}{if TRUE, compute the trend with a shock}
 }
 \value{
 the temporal trend, invisibly

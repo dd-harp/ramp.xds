@@ -30,7 +30,7 @@ make_XH_obj_hMoI(
 \item{c2}{transmission probability (efficiency) from patent human infections to mosquito}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 MoI stands for Multiplicity of Infection, and refers to malarial superinfection.

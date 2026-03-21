@@ -1,4 +1,4 @@
-# Compute Emergent Adults
+# Compute emergent adults
 
 This function computes the rate or number of emerging adults: a rate for
 differential equations, or a number for difference equations.

@@ -1,4 +1,4 @@
-# parse the output of deSolve and return variables for the macdonald model
+# Parse outputs for `macdonald` (**MY**)
 
 Implements
 [parse_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.md)

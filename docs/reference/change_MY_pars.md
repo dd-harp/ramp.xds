@@ -1,4 +1,4 @@
-# Set new MY parameter values
+# Change parameters (**MY**)
 
 This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 

@@ -1,4 +1,4 @@
-# The `hMoI` Module for the XH Component
+# The `hMoI` module for the XH component
 
 Implements the **XH** component using a hybrid model that tracks the
 mean Multiplicity of Infection (MoI) for total and apparent infections.

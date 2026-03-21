@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{get_MY_pars.SI}
 \alias{get_MY_pars.SI}
-\title{Return the parameters as a list}
+\title{Get parameters for \code{SI} (\strong{MY})}
 \usage{
 \method{get_MY_pars}{SI}(xds_obj, s = 1)
 }

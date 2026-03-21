@@ -17,7 +17,7 @@ get_XH_vars(y, xds_obj, i = 1)
 Variables as a named list
 }
 \description{
-Get the the values
+Get the values
 of variables from the flat state
 variable vector \eqn{y}, and return
 the values as a named list

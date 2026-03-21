@@ -1,7 +1,6 @@
-# Get seasonal pattern
+# Get seasonality parameters
 
-Get the parameters that set the seasonal pattern for an **MY** trivial
-model
+Get seasonality parameters when `forced_by` = "MY"
 
 ## Usage
 
@@ -22,4 +21,4 @@ get_season(xds_obj, s = 1)
 
 ## Value
 
-seasonal pattern parameters
+a list, the value of `season_par`

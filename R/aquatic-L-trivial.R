@@ -119,7 +119,7 @@ F_emerge.trivial <- function(t, y, xds_obj, s) {
 })}
 
 #' @title Mosquito bionomics for `trivial` (**L**)
-#' @description Implements [LBionomics] for the `trivial` module
+#' @description Return the **`xds`** object unmodified 
 #' @inheritParams LBionomics
 #' @return an **`xds`** object
 #' @keywords internal
@@ -129,7 +129,7 @@ LBionomics.trivial <- function(t, y, xds_obj, s) {
 }
 
 #' @title Apply effect sizes for `trivial` (**L**)
-#' @description Implements [LEffectSizes] for the `trivial` module
+#' @description Return the **`xds`** object unmodified 
 #' @inheritParams LEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
@@ -138,8 +138,9 @@ LEffectSizes.trivial <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title Setup `L_obj` for the `trivial` module
-#' @description Implements [setup_L_obj] for the trivial model
+#' @title Set up `trivial` (**L**)
+#' @description Call [make_L_obj_trivial] and set 
+#' `class(xds_obj$forced_by) = "Lambda"` 
 #' @inheritParams setup_L_obj
 #' @return an **`xds`** object
 #' @keywords internal
@@ -187,7 +188,7 @@ make_L_obj_trivial = function(nHabitats, options=list(),
 })}
 
 
-#' @title Get **L** component parameters for `trivial`
+#' @title Get parameters for `trivial` (**L**)
 #' @description Get \eqn{\Lambda} and parameters that construct
 #' the forcing functions  
 #' @param xds_obj an **`xds`** model object
@@ -204,7 +205,7 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
   ))
 }
 
-#' @title Set **L** component parameters for `trivial`
+#' @title Change parameters for `trivial` (**L**)
 #'
 #' @description If `Lambda`, `season_par`, `trend_par`, or `shock_par`
 #' are named in `options`, the old value is replaced. After updating
@@ -228,7 +229,7 @@ change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
   }))}
 
 
-#' @title Setup initial values for the **L** component `trivial` module
+#' @title Setup initial values for `trivial` (**L**)
 #' @description The `trivial` module initial values are an empty list
 #' @inheritParams setup_L_inits
 #' @return an **`xds`** object
@@ -250,7 +251,7 @@ get_L_vars.trivial <- function(y, xds_obj, s){
 }
 
 
-#' @title Set the initial values for `trivial` (**L**)
+#' @title Change initial values for `trivial` (**L**)
 #' @description Returns the unmodified **`xds`** object
 #' @inheritParams change_L_inits
 #' @return an **`xds`** object

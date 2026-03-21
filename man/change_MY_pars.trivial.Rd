@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{change_MY_pars.trivial}
 \alias{change_MY_pars.trivial}
-\title{Set \strong{MY} component parameters for \code{trivial}}
+\title{Change parameters for \code{trivial} (\strong{MY})}
 \usage{
 \method{change_MY_pars}{trivial}(xds_obj, s = 1, options = list())
 }

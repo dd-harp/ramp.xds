@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_mean_forcing.R
 \name{change_mean_forcing.Lambda}
 \alias{change_mean_forcing.Lambda}
-\title{Set mean forcing}
+\title{Change mean forcing}
 \usage{
 \method{change_mean_forcing}{Lambda}(X, xds_obj, s = 1)
 }
@@ -17,7 +17,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-Set \code{Lambda} to \code{X} for the \eqn{s^{th}} species
-and return the \strong{\code{ramp.xds}} model object
+Change \code{Lambda} for when \code{forced_by} = "Lambda"
 }
 \keyword{internal}

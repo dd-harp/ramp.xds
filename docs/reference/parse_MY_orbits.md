@@ -1,4 +1,4 @@
-# Parse the outputs and return the variables by name in a list
+# Parse outputs (**MY**)
 
 This method dispatches on the type of `xds_obj$MY_obj`. It computes the
 variables by name and returns a named list.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{change_L_pars.basicL}
 \alias{change_L_pars.basicL}
-\title{Set \strong{L} component parameters for \code{basicL}}
+\title{Change parameters for \code{basicL} (\strong{L})}
 \usage{
 \method{change_L_pars}{basicL}(xds_obj, s = 1, options = list())
 }

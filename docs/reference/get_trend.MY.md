@@ -21,4 +21,4 @@ get_trend(xds_obj, s = 1)
 
 ## Value
 
-trend parameters
+a list, the value of `trend_par`

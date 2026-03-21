@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{setup_MY_obj.macdonald}
 \alias{setup_MY_obj.macdonald}
-\title{Setup MY_obj for the macdonald model}
+\title{Set up \code{macdonald} (\strong{MY})}
 \usage{
 \method{setup_MY_obj}{macdonald}(MYname, xds_obj, s, options = list())
 }

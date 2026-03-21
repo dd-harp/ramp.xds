@@ -36,7 +36,7 @@ NULL
 #' @title The **RMdts** module skill set
 #'
 #' @description The **MY** skill set is a list of
-#' an module's capabilities:
+#' a module's capabilities:
 #'
 #' + `demography` is
 #'
@@ -130,7 +130,7 @@ F_eggs.RMdts <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Setup initial values for the RMdts model
+#' @title Setup initial values for `RMdts` (**MY**)
 #' @description Implements [setup_MY_inits] for the RMdts model
 #' @inheritParams setup_MY_inits
 #' @return a [list]
@@ -232,7 +232,7 @@ parse_MY_orbits.RMdts <- function(outputs, xds_obj, s) {with(xds_obj$ix$MY[[s]],
   return(list(M=M, P=P, U=U, Y=Y, Z=Z, y=y, z=z, parous=parous))
 })}
 
-#' @title Make inits for RMdts adult mosquito model
+#' @title Change initial values for `RMdts` (**MY**)
 #' @inheritParams change_MY_inits
 #' @return a [list]
 #' @keywords internal

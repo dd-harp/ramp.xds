@@ -1,6 +1,6 @@
-# Make `L_obj` for `basicL` (**L** Component)
+# Make `L_obj` for `basicL` (**L** component)
 
-The following parameters will be set to the values in `options.` If they
+The following parameters will be set to the values in `options`. If they
 are not found, default values will be used.
 
 - \\\psi\\ or `psi`: maturation rate

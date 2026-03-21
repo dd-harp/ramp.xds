@@ -27,10 +27,10 @@
 #' @name L_functions
 NULL
 
-#' @title Get functions for the L component
+#' @title Get functions (**L**)
 #'
 #' @description
-#' write me.
+#' A list of get functions for aquatic mosquito modules.
 #'
 #' \itemize{
 #'   \item \code{\link{get_L_vars}} -- get state variables from \eqn{y}
@@ -43,10 +43,10 @@ NULL
 #' @name L_get
 NULL
 
-#' @title Change functions for the L component
+#' @title Change functions (**L**)
 #'
 #' @description
-#' write me.
+#' A list of change functions for aquatic mosquito modules.
 #'
 #' \itemize{
 #'   \item \code{\link{change_L_inits}} -- change initial values
@@ -56,10 +56,10 @@ NULL
 #' @name L_change
 NULL
 
-#' @title Setup functions for the L component
+#' @title Setup functions (**L**)
 #'
 #' @description
-#' write me.
+#' A list of setup functions for aquatic mosquito modules.
 #'
 #' \itemize{
 #'   \item \code{\link{setup_L_obj}} -- set up the L module object

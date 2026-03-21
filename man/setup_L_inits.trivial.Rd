@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{setup_L_inits.trivial}
 \alias{setup_L_inits.trivial}
-\title{Setup initial values for the \strong{L} component \code{trivial} module}
+\title{Setup initial values for \code{trivial} (\strong{L})}
 \usage{
 \method{setup_L_inits}{trivial}(xds_obj, s, options = list())
 }

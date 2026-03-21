@@ -1,10 +1,10 @@
-# Net Infectious Biting Rate
+# Net infectious biting rate
 
 Returns \$\$F\_{fqZ}(t) = fqZ S(t) T(t) K(t)\$\$ where
 
 - \\f\\ is the feeding rate
 
-- \\q\\ the human fraction
+- \\q\\ is the human fraction
 
 - \\Z\\ is the density of infectious mosquitoes, per patch
 

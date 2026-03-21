@@ -1,5 +1,5 @@
 
-#' @title Get the initial values as a vector
+#' @title Get human population density 
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the human species index
@@ -11,7 +11,7 @@ get_H = function(xds_obj, i=1){
   F_H(0, y, xds_obj, i)
 }
 
-#' @title Get **XH** outputs
+#' @title Get orbits (**XH**)
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
@@ -38,7 +38,7 @@ get_XH_orbits = function(xds_obj, i=1){
 #' @param xds_obj an **`xds`** model object
 #' @param method the method used for computing *Pf*PR
 #' @param i the host species index
-#' @return none
+#' @return a [list]
 #' @export
 get_PR <- function(xds_obj, method="true", i=1) {
   class(method) = method
@@ -59,7 +59,7 @@ get_PR.true <- function(xds_obj, method="true", i=1) {
 #' @title Get the *Pf*PR from a malaria model
 #' @description Return the *Pf*PR by PCR
 #' @inheritParams get_PR
-#' @return none
+#' @return a [list]
 #' @keywords internal
 #' @export
 get_PR.pcr<- function(xds_obj, method="pcr", i=1) {
@@ -71,7 +71,7 @@ get_PR.pcr<- function(xds_obj, method="pcr", i=1) {
 #' @title Get the *Pf*PR from a malaria model
 #' @description Return the PR by light microscopy
 #' @inheritParams get_PR
-#' @return none
+#' @return a [list]
 #' @keywords internal
 #' @export
 get_PR.lm<- function(xds_obj, method = "lm", i=1) {
@@ -83,7 +83,7 @@ get_PR.lm<- function(xds_obj, method = "lm", i=1) {
 #' @title Get the *Pf*PR from a malaria model
 #' @description Return the PR by RDT
 #' @inheritParams get_PR
-#' @return none
+#' @return a [list]
 #' @keywords internal
 #' @export
 get_PR.rdt<- function(xds_obj, method = "rdt", i=1) {

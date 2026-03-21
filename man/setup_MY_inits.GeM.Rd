@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{setup_MY_inits.GeM}
 \alias{setup_MY_inits.GeM}
-\title{Setup initial values for the GeM model}
+\title{Setup initial values for \code{GeM} (\strong{MY})}
 \usage{
 \method{setup_MY_inits}{GeM}(xds_obj, s, options = list())
 }

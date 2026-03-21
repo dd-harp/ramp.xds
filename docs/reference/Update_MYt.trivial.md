@@ -1,4 +1,4 @@
-# Handle state updates for the `trivial` **MY** module
+# Update state variables for `trivial` (**MY**)
 
 Implements
 [Update_MYt](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.md)

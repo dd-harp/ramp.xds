@@ -1,4 +1,4 @@
-# Setup Initial Values for the **L** Component
+# Setup initial values (**L**)
 
 Sets the initial values of the **L** Component variables from `options`,
 a named list.

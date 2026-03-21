@@ -19,6 +19,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{LEffectSizes} for the \code{trivial} module
+Return the \strong{\code{xds}} object unmodified
 }
 \keyword{internal}

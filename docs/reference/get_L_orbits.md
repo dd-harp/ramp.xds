@@ -1,4 +1,4 @@
-# Get **L** outputs
+# Get orbits (**L**)
 
 Pull the saved, parsed orbits for the **L** component from an **`xds`**
 object

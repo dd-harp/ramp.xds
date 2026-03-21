@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{change_MY_inits.basicM}
 \alias{change_MY_inits.basicM}
-\title{Set new MY parameter values}
+\title{Change initial values for \code{basicM} (\strong{MY})}
 \usage{
 \method{change_MY_inits}{basicM}(xds_obj, s = 1, options = list())
 }

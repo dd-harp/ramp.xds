@@ -1,4 +1,4 @@
-# Compute derivatives for an adult mosquito model
+# Compute derivatives (**MY**)
 
 In the description, each method should include the equations and a
 reference to relevant papers in the literature.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_steady.R
 \name{xds_steady.ode}
 \alias{xds_steady.ode}
-\title{Solve for the steady state of a system of equations using \link[rootSolve:steady]{rootSolve::steady}}
+\title{Compute the steady state for ODEs}
 \usage{
 \method{xds_steady}{ode}(xds_obj)
 }
@@ -13,9 +13,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-Solve for the steady state of a system of equations using \link[rootSolve:steady]{rootSolve::steady}
-}
-\note{
-This method dispatches on \code{class(dlay)}
+Call \code{rootSolve} to get the steady state of a
+system of ordinary differential equations.
 }
 \keyword{internal}

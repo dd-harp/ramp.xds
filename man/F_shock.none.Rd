@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_trend.R
 \name{F_shock.none}
 \alias{F_shock.none}
-\title{Plot the temporal trend}
+\title{Compute the temporal shock}
 \usage{
 \method{F_shock}{none}(tm, xds_obj)
 }
@@ -12,10 +12,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a null result
+an empty vector
 }
 \description{
-The \code{F_shock} case for models
-with no forcing.
+Evaluate the function \code{F_shock} for a forced model when \code{forced_by} is "none"
 }
 \keyword{internal}

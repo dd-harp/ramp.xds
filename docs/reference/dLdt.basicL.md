@@ -1,4 +1,4 @@
-# Compute Derivatives for **L** module `basicL`
+# Compute derivatives for `basicL` (**L**)
 
 This implements differential equation model for aquatic mosquito
 ecology. The equations have been modified slightly from a version

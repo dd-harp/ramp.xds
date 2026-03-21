@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_trend.R
 \name{change_spline}
 \alias{change_spline}
-\title{Set the interpolating points}
+\title{Change spline interpolation points}
 \usage{
 change_spline(X, xds_obj, s = 1)
 }
@@ -17,5 +17,5 @@ change_spline(X, xds_obj, s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set the interpolating points for F_trend
+Change the interpolation points for a spline function.
 }

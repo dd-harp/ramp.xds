@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{change_L_pars.trivial}
 \alias{change_L_pars.trivial}
-\title{Set \strong{L} component parameters for \code{trivial}}
+\title{Change parameters for \code{trivial} (\strong{L})}
 \usage{
 \method{change_L_pars}{trivial}(xds_obj, s = 1, options = list())
 }

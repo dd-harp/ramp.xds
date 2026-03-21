@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_compute_terms.R
 \name{xds_compute_terms.eir}
 \alias{xds_compute_terms.eir}
-\title{Differential equation models for aquatic mosquito populations}
+\title{Differential equation models for human epidemiology forced by the EIR}
 \usage{
 \method{xds_compute_terms}{eir}(t, y, xds_obj)
 }

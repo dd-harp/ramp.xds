@@ -14,7 +14,7 @@ get_PR(xds_obj, method = "true", i = 1)
 \item{i}{the host species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 \code{'method'} should be

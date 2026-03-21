@@ -11,11 +11,11 @@
 #' any of the component model objects.
 #'
 #' @details This function sets up the interfaces and the
-#' core objects used by **`ramp.xds.`**
+#' core objects used by **`ramp.xds`**.
 #'
 #' First, the function sets up some
 #' short text strings (assigned to the same `S3` class)
-#' to dispatch various **cases** of of various `S3` functions:
+#' to dispatch various **cases** of various `S3` functions:
 #'
 #' - **`xds`** is either "xde"  for differential equations, or "dts" for discrete time systems
 #'
@@ -24,7 +24,7 @@
 #' - **`frame`** is one of several cases:
 #'      - "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}.
 #' in some form (possibly the trivial case) (see [xds_setup()])
-#'      - "mozy" is for mosquito ecology models (see [xds_setup_mosy()]), including models without pathogen infection dynamics in mosquitoes
+#'      - "mosy" is for mosquito ecology models (see [xds_setup_mosy()]), including models without pathogen infection dynamics in mosquitoes
 #'      - "aquatic" is for aquatic mosquito ecology models (see [xds_setup_aquatic()]), forced by a function describing egg laying
 #'      - "human" is for human/host infection dynamics(see [xds_setup_human()]), forced by the infective density of adult mosquitoes, \eqn{fqZ}
 #'      - "eir" is for human/host cohort infection dynamics (see [xds_setup_eir()]), forced by a function `F_eir`
@@ -38,23 +38,18 @@
 #' - **`nVectorSpecies`** or \eqn{N_s}, the number of vector species is set to 1;
 #' - **`nHostSpecies`** or \eqn{N_i}, the number of host species is set to 1;
 #'
-#' Next, the function sets up empty lists to hold the model objects that define components:
-#' - `XH_obj`
-#' -
-#' - **Transmission**  calls [setup_transmission()]
-#'
-#' model for the availability of visitors; by default, there are no visitors
 #' Next, the function sets up egg laying, blood feeding, and transmission:
 #' - **Egg Laying** calls [make_habitat_matrix()], then [setup_ML_interface()]
 #' - **Blood Feeding** calls [make_residency_matrix()], then [setup_XY_interface()]
 #' - **Transmission**  calls [setup_transmission()] sets up a static
 #' model for the availability of visitors; by default, there are no visitors
 #'
-#' Finally, the function sets up a few other miscellaneous options:
-#' - [Exposure] is called *after* [Transmission] to compute environmentally heterogeneous exposure
-#' and malaria importation through travel:
-#'      - [setup_exposure] sets up a Poisson model for environmental heterogeneity
-#'      - [setup_travel_object] sets up a model with no exposure through travel
+#' Next, the function sets up empty lists to hold the model objects for all three dynamical components:
+#' - `XH_obj`
+#' - `MY_obj`
+#' - `L_obj`
+#' 
+#' Finally, the function sets up some junctions.
 #'
 #' @note `xds` stands for extensible differential equation
 #'

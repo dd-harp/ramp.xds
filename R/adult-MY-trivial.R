@@ -172,7 +172,7 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 }
 
 
-#' @title Setup the trivial model for an adult mosquito model
+#' @title Set up `trivial` (**MY**)
 #'
 #' @description Set up the trivial adult mosquito model.
 #' In general, this should be used for aquatic mosquito
@@ -250,7 +250,7 @@ get_MY_vars.trivial <- function(y, xds_obj, s){
   return(list())
 }
 
-#' @title Return the parameters as a list
+#' @title Get parameters for `trivial` (**MY**)
 #'
 #' @description Return the parameters
 #' in the trivial **MY**-Component
@@ -277,7 +277,7 @@ get_MY_pars.trivial <- function(xds_obj, s=1) {
 }
 
 
-#' @title Set new MY initial values
+#' @title Change initial values for `trivial` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
@@ -287,7 +287,7 @@ change_MY_inits.trivial <- function(xds_obj, s=1, options=list()) {
   return(xds_obj)
 }
 
-#' @title Set **MY** component parameters for `trivial`
+#' @title Change parameters for `trivial` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
@@ -332,7 +332,7 @@ skill_set_MY.trivial = function(MYname){
   return(list())
 }
 
-#' @title Setup inits for `trivial` (**MY**)
+#' @title Setup initial values for `trivial` (**MY**)
 #' @description Return the **`xds`** object unmodified
 #' @inheritParams setup_MY_inits
 #' @return an **`xds`** object

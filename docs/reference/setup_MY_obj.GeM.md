@@ -1,4 +1,4 @@
-# Setup MY_obj for the GeM model
+# Set up `GeM` (**MY**)
 
 Implements
 [setup_MY_obj](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)

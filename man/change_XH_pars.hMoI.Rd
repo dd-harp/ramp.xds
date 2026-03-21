@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{change_XH_pars.hMoI}
 \alias{change_XH_pars.hMoI}
-\title{Return the parameters as a list}
+\title{Change parameters for \code{hMoI} (\strong{XH})}
 \usage{
 \method{change_XH_pars}{hMoI}(xds_obj, i = 1, options = list())
 }

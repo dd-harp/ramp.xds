@@ -1,4 +1,4 @@
-# Setup Initial Values for the **L** Component `trivial` Module
+# Setup initial values for `trivial` (**L**)
 
 The `trivial` module initial values are an empty list
 

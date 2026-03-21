@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{setup_L_inits.basicL}
 \alias{setup_L_inits.basicL}
-\title{Setup initial values for \code{basicL} (\strong{L} component)}
+\title{Setup initial values for \code{basicL} (\strong{L})}
 \usage{
 \method{setup_L_inits}{basicL}(xds_obj, s, options = list())
 }

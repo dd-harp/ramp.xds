@@ -1,4 +1,4 @@
-# Generic Methods for the L Component
+# Generic methods for the L component
 
 A list of generic
 

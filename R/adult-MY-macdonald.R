@@ -206,7 +206,7 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Setup MY_obj for the macdonald model
+#' @title Set up `macdonald` (**MY**)
 #' @description Implements [setup_MY_obj] for the macdonald model
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
@@ -329,7 +329,7 @@ parse_MY_orbits.macdonald <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[
 
 
 
-#' @title Return the parameters as a list
+#' @title Get parameters for `macdonald` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -343,7 +343,7 @@ get_MY_pars.macdonald <- function(xds_obj, s=1) {
   ))
 }
 
-#' @title Return the parameters as a list
+#' @title Change parameters for `macdonald` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
@@ -364,7 +364,7 @@ change_MY_pars.macdonald <- function(xds_obj, s=1, options=list()) {
   }))}
 
 
-#' @title Setup initial values for the macdonald model
+#' @title Setup initial values for `macdonald` (**MY**)
 #' @description Implements [setup_MY_inits] for the macdonald model
 #' @inheritParams setup_MY_inits
 #' @return a [list]
@@ -397,7 +397,7 @@ make_MY_inits_macdonald = function(nPatches, options = list(),
     return(list(M=M, P=P, Y=Y, Z=Z, dk_ix=dk_ix))
 })}
 
-#' @title Change initial values for the macdonald model
+#' @title Change initial values for `macdonald` (**MY**)
 #' @description Implements [change_MY_inits] for the macdonald model
 #'
 #' @inheritParams change_MY_inits

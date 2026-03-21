@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{make_M_obj_basicM}
 \alias{make_M_obj_basicM}
-\title{Make parameters for GeM ODE adult mosquito model}
+\title{Make parameters for basicM adult mosquito model}
 \usage{
 make_M_obj_basicM(
   nPatches,
@@ -39,6 +39,6 @@ make_M_obj_basicM(
 a \link{list}
 }
 \description{
-Make parameters for GeM ODE adult mosquito model
+Make parameters for basicM adult mosquito model
 }
 \keyword{internal}

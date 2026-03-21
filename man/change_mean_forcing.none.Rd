@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_mean_forcing.R
 \name{change_mean_forcing.none}
 \alias{change_mean_forcing.none}
-\title{Set mean forcing}
+\title{Change mean forcing}
 \usage{
 \method{change_mean_forcing}{none}(X, xds_obj, s = 1)
 }

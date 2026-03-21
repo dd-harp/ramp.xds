@@ -13,7 +13,8 @@ xds_stable_orbit = function(xds_obj, options=list()){
 }
 
 #' @title Compute stable orbit for a system of differential equations
-#' @description This method dispatches on the type of `xds_obj$xde`.
+#' @description 
+#' Run a system of differential equations for 10 years, and save the last year's orbits.
 #' @inheritParams xds_stable_orbit
 #' @return an **`xds`** object
 #' @keywords internal
@@ -32,7 +33,8 @@ xds_stable_orbit.xde = function(xds_obj, options=list()){
 }
 
 #' @title Compute the stable orbit for a discrete time system
-#' @description This method dispatches on the type of `xds_obj$xde`.
+#' @description 
+#' Run a discrete time system for 10 years, and save the last year's orbits.
 #' @inheritParams xds_stable_orbit
 #' @return an **`xds`** object
 #' @keywords internal
@@ -43,8 +45,9 @@ xds_stable_orbit.dts = function(xds_obj, options=list()){
 }
 
 
-#' @title Solve for the steady state of a system of equations using [rootSolve::steady]
-#' @description This method dispatches on the type of `xds_obj$xde`
+#' @title Solve for the steady state 
+#' @description Compute the steady state for a 
+#' system of differential equations.  
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @export
@@ -52,8 +55,9 @@ xds_steady = function(xds_obj){
   UseMethod("xds_steady", xds_obj$xde)
 }
 
-#' @title Solve for the steady state of a system of equations using [rootSolve::steady]
-#' @note This method dispatches on `class(dlay)`
+#' @title Compute the steady state for ODEs
+#' @description Call `rootSolve` to get the steady state of a
+#' system of ordinary differential equations.
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @keywords internal
@@ -65,8 +69,9 @@ xds_steady.ode = function(xds_obj){
   return(xds_obj)
 }
 
-#' @title Solve for the steady state of a system of equations using [rootSolve::steady]
-#' @description This method dispatches on the type of `xds_obj$xde`
+#' @title Compute the steady state for DDEs
+#' @description Call `runsteady` to get the steady state of a
+#' system of delay differential equations.
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
 #' @keywords internal
@@ -78,14 +83,13 @@ xds_steady.dde = function(xds_obj){
   return(xds_obj)
 }
 
-
-
-#' @title Solve for the steady state or stable orbit of a system of equations
-#' @description This method dispatches on the type of `xds_obj$dts`.
+#' @title Compute the stable orbit for a discrete time system
+#' @description Run a discrete time system for `Tburn` years
+#' to get the stable orbit
 #' @param xds_obj an **`xds`** model object
 #' @param Tburn the number of steps to burn
 #' @param yr the number of time steps in a year
-#' @return a [list]
+#' @return an **`xds`** object
 #' @export
 dts_stable_orbit = function(xds_obj, Tburn=10, yr=365){
   yt = get_inits(xds_obj)
@@ -104,11 +108,11 @@ dts_stable_orbit = function(xds_obj, Tburn=10, yr=365){
   return(xds_obj)
 }
 
-#' @title Solve for the steady state of a system of equations
-#' @description This method dispatches on the type of `xds_obj$dts`
+#' @title Compute the steady state of a discrete time system
+#' @description Run a discrete time system for `Tx` time steps to get the steady state
 #' @param xds_obj an **`xds`** model object
 #' @param Tx the number of steps to equilibrium
-#' @return a [list]
+#' @return an **`xds`** object
 #' @export
 dts_steady = function(xds_obj, Tx=1000){
   tt = seq(0, Tx, by=xds_obj$Dday)

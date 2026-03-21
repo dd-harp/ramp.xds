@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{change_MY_inits.trivial}
 \alias{change_MY_inits.trivial}
-\title{Set new MY initial values}
+\title{Change initial values for \code{trivial} (\strong{MY})}
 \usage{
 \method{change_MY_inits}{trivial}(xds_obj, s = 1, options = list())
 }

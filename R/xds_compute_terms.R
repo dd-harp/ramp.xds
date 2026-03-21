@@ -55,7 +55,7 @@ xds_compute_terms.full <- function(t, y, xds_obj) {
   return(xds_obj)
 }
 
-#' @title Differential equations isolating the humans, forced with Ztrace
+#' @title Differential equations isolating the humans, forced by infectious biting 
 #' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
 #' generic methods for each model component.
 #' @inheritParams xds_compute_terms
@@ -146,7 +146,7 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
   return(xds_obj)
 }
 
-#' @title Differential equation models for aquatic mosquito populations
+#' @title Differential equation models for human epidemiology forced by the EIR
 #' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
 #' generic methods for each model component.
 #' @inheritParams xds_compute_terms

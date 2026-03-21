@@ -1,7 +1,7 @@
-# Set yy
+# Change spline interpolation points
 
-Set the yy for the seasonal pattern for an `eir` model and return the
-**`ramp.xds`** model object
+Change the interpolation points for a spline function. when
+`forced_by = "eir"`
 
 ## Usage
 

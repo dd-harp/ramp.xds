@@ -10,7 +10,7 @@ get_mean_forcing(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the mean parameter for forcing
+a vector, the mean parameter for forcing
 }
 \description{
 Get the parameter(s) that set mean forcing

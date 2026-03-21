@@ -27,7 +27,7 @@ Computes the derivatives for SIS compartmental model with variables:
 }
 
 The model assumes \eqn{S+I=H.} This function computes
-computes \eqn{dH/dt} and \eqn{dI/dt}.
+\eqn{dH/dt} and \eqn{dI/dt}.
 For convenience, \eqn{S} is also computed
 by \link{get_XH_vars.SIS}
 and \link{parse_XH_orbits.SIS}.

@@ -1,6 +1,6 @@
-# Make inits for RMdts adult mosquito model
+# Change initial values for `RMdts` (**MY**)
 
-Make inits for RMdts adult mosquito model
+Change initial values for `RMdts` (**MY**)
 
 ## Usage
 

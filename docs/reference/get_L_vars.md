@@ -1,4 +1,4 @@
-# List **L** Component Variables
+# List variables (**L**)
 
 Extract the variables describing **L** Component states for the
 \\s^{th}\\ species and return them as a named list

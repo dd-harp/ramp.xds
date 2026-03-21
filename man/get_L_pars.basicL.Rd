@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{get_L_pars.basicL}
 \alias{get_L_pars.basicL}
-\title{Get \strong{L} component parameters for \code{basicL}}
+\title{Get parameters for \code{basicL} (\strong{L})}
 \usage{
 \method{get_L_pars}{basicL}(xds_obj, s = 1)
 }

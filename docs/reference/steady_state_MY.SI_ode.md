@@ -1,4 +1,4 @@
-# Steady States: MY-SI
+# Steady states: MY-SI
 
 This method dispatches on the type of `MY_obj`.
 
@@ -29,4 +29,4 @@ steady_state_MY(Lambda, kappa, xds_obj, s = 1)
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

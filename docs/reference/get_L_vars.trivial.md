@@ -1,4 +1,4 @@
-# List **L** Component Variables for `trivial`
+# List variables for `trivial` (**L**)
 
 Returns an empty list; the `trivial` module has no state variables
 

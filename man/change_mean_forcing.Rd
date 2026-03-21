@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_mean_forcing.R
 \name{change_mean_forcing}
 \alias{change_mean_forcing}
-\title{Set mean forcing}
+\title{Change mean forcing}
 \usage{
 change_mean_forcing(X, xds_obj, s = 1)
 }
@@ -17,5 +17,5 @@ change_mean_forcing(X, xds_obj, s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set the mean forcing parameter to \code{X}
+Change the mean forcing parameter to \code{X}
 }

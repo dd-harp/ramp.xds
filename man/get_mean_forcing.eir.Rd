@@ -9,6 +9,9 @@
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
+\value{
+a vector, the value of \code{eir}
+}
 \description{
 Get the mean daily EIR for an \code{eir} model
 }

@@ -25,7 +25,7 @@ make_MY_inits_SI(nPatches, options = list(), M = 5, Y = 1)
 
 - Y:
 
-  infectious mosquito density at each patch
+  infected mosquito density at each patch
 
 ## Value
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_season.R
 \name{get_season_bottom}
 \alias{get_season_bottom}
-\title{Get phase}
+\title{Get seasonality parameter \code{bottom}}
 \usage{
 get_season_bottom(xds_obj, s = 1)
 }
@@ -12,9 +12,8 @@ get_season_bottom(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the phase parameter(s)
+the bottom parameter(s)
 }
 \description{
-Get the parameter that sets the phase
-for a seasonally forced model
+Get the \code{bottom} parameter for the seasonality function
 }

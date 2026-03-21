@@ -1,4 +1,4 @@
-# Return the parameters as a list
+# Change parameters for `trivial` (**XH**)
 
 This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
 

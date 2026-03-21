@@ -9,6 +9,9 @@
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
+\value{
+a vector, the value of \code{Lambda}
+}
 \description{
 Get \code{Lambda}, the mean emergence
 rate(s) \eqn{\Lambda}, for a model

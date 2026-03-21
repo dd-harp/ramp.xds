@@ -1,19 +1,12 @@
-# Derivatives for adult mosquitoes
+# Update state variables for `GeM` (**MY**)
 
 Implements
 [Update_MYt](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.md)
-for the GeM_dts model.
-
-Implements
-[Update_MYt](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.md)
-for the GeM_dts model.
+for the GeM model.
 
 ## Usage
 
 ``` r
-# S3 method for class 'GeM'
-Update_MYt(t, y, xds_obj, s)
-
 # S3 method for class 'GeM'
 Update_MYt(t, y, xds_obj, s)
 ```
@@ -37,7 +30,5 @@ Update_MYt(t, y, xds_obj, s)
   the vector species index
 
 ## Value
-
-a [numeric](https://rdrr.io/r/base/numeric.html) vector
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector

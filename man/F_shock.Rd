@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_trend.R
 \name{F_shock}
 \alias{F_shock}
-\title{Plot the Temporal Trend}
+\title{Compute the temporal shock}
 \usage{
 F_shock(tm, xds_obj)
 }
@@ -12,10 +12,9 @@ F_shock(tm, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the temporal trend, invisibly
+the temporal shock, invisibly
 }
 \description{
-For a model with temporal forcing,
-show the temporal trend
+Evaluate the function \code{F_shock} for a forced model.
 }
 \keyword{internal}

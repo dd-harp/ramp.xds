@@ -60,7 +60,7 @@ NULL
 #' @title The **SI** module skill set
 #'
 #' @description The **MY** skill set is a list of
-#' an module's capabilities:
+#' a module's capabilities:
 #'
 #' + `demography` is
 #'
@@ -105,7 +105,7 @@ check_MY.SI = function(xds_obj, s){
 #' - \eqn{\nu} is the egg laying rate
 #' - \eqn{\xi} is the number of eggs per batch
 #'
-#'The model demographic **parameters** are:
+#' The model demographic **parameters** are:
 #' - \eqn{g} is the mortality rate
 #' - \eqn{\sigma} is the emigration rate
 #' - \eqn{\mu} is the emigration loss rate
@@ -281,10 +281,9 @@ MEffectSizes.SI <- function(t, y, xds_obj, s) {
 
 
 
-#' @title Setup MY_obj for the SI model
+#' @title Set up `SI` (**MY**)
 #' @description Implements [setup_MY_obj] for the SI model
 #' @inheritParams setup_MY_obj
-#' @keywords internal
 #' @return a [list] vector
 #' @keywords internal
 #' @export
@@ -298,14 +297,14 @@ setup_MY_obj.SI = function(MYname, xds_obj, s, options=list()){
 #' @title Make parameters for SI ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer
 #' @param options a named list: named values overwrite defaults
-#' @param eip the extrinSIc incubation period
+#' @param eip the extrinsic incubation period
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
 #' @param mu fraction lost during emigration
 #' @param f feeding rate
 #' @param q human blood fraction
-#' @param nu ovipoSItion rate, per mosquito
-#' @param eggsPerBatch eggs laid per ovipoSItion
+#' @param nu oviposition rate, per mosquito
+#' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
 #' @keywords internal
 #' @export
@@ -344,7 +343,6 @@ make_MY_obj_SI = function(nPatches, options=list(), eip=12,
 #' @return a [list]
 #' @keywords internal
 #' @importFrom utils tail
-#' @keywords internal
 #' @export
 setup_MY_ix.SI <- function(xds_obj, s) {with(xds_obj,{
 
@@ -392,7 +390,7 @@ parse_MY_orbits.SI <- function(outputs, xds_obj, s) {
 })}
 
 
-#' @title Return the parameters as a list
+#' @title Get parameters for `SI` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -406,7 +404,7 @@ get_MY_pars.SI <- function(xds_obj, s=1) {
   ))
 }
 
-#' @title Return the parameters as a list
+#' @title Change parameters for `SI` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
@@ -427,7 +425,7 @@ change_MY_pars.SI <- function(xds_obj, s=1, options=list()) {
   }))}
 
 
-#' @title Setup initial values for the `SI` model
+#' @title Setup initial values for `SI` (**MY**)
 #' @description Implements [setup_MY_inits] for the `SI` model
 #' @inheritParams setup_MY_inits
 #' @return a [list]
@@ -443,7 +441,7 @@ setup_MY_inits.SI = function(xds_obj, s, options=list()){
 #' @param nPatches the number of patches in the model
 #' @param options a [list] of values that overwrites the defaults
 #' @param M total mosquito density at each patch
-#' @param Y infectious mosquito density at each patch
+#' @param Y infected mosquito density at each patch
 #' @return a [list]
 #' @keywords internal
 #' @export
@@ -456,8 +454,8 @@ make_MY_inits_SI = function(nPatches, options = list(),
   })
 }
 
-#' @title Change initial values for the macdonald model
-#' @description Implements [change_MY_inits] for the macdonald model
+#' @title Change initial values for `SI` (**MY**)
+#' @description Implements [change_MY_inits] for the SI model
 #'
 #' @inheritParams change_MY_inits
 #'
@@ -474,7 +472,7 @@ change_MY_inits.SI = function(xds_obj, s, options=list()){
 #' @title Get the feeding rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @keywords internal
 #' @export
 get_f.SI = function(xds_obj, s=1){
@@ -484,7 +482,7 @@ get_f.SI = function(xds_obj, s=1){
 #' @title Get the feeding rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @keywords internal
 #' @export
 get_q.SI = function(xds_obj, s=1){
@@ -494,7 +492,7 @@ get_q.SI = function(xds_obj, s=1){
 #' @title Get the feeding rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @keywords internal
 #' @export
 get_g.SI = function(xds_obj, s=1){
@@ -504,7 +502,7 @@ get_g.SI = function(xds_obj, s=1){
 #' @title Get the feeding rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @keywords internal
 #' @export
 get_sigma.SI = function(xds_obj, s=1){
@@ -514,7 +512,7 @@ get_sigma.SI = function(xds_obj, s=1){
 #' @title Steady states: MY-SI
 #' @description This method dispatches on the type of `MY_obj`.
 #' @inheritParams steady_state_MY
-#' @return none
+#' @return a [list]
 #' @keywords internal
 #' @export
 steady_state_MY.SI_ode = function(Lambda, kappa, xds_obj, s=1){

@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_trend.R
 \name{change_spline_y}
 \alias{change_spline_y}
-\title{Set yy}
+\title{Change y values for spline interpolation points}
 \usage{
 change_spline_y(yy, xds_obj, s = 1)
 }

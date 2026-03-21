@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_season.R
 \name{get_season_phase}
 \alias{get_season_phase}
-\title{Get phase}
+\title{Get seasonality parameter \code{phase}}
 \usage{
 get_season_phase(xds_obj, s = 1)
 }
@@ -15,6 +15,5 @@ get_season_phase(xds_obj, s = 1)
 the phase parameter(s)
 }
 \description{
-Get the parameter that sets the phase
-for a seasonally forced model
+Get the \code{phase} parameter for the seasonality function
 }

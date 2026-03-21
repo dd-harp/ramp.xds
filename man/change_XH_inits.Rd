@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{change_XH_inits}
 \alias{change_XH_inits}
-\title{Set new X parameter values}
+\title{Change initial values (\strong{XH})}
 \usage{
 change_XH_inits(xds_obj, i = 1, options = list())
 }

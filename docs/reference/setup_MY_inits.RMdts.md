@@ -1,4 +1,4 @@
-# Setup initial values for the RMdts model
+# Setup initial values for `RMdts` (**MY**)
 
 Implements
 [setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)

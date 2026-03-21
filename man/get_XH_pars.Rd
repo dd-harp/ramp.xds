@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{get_XH_pars}
 \alias{get_XH_pars}
-\title{Return the parameters as a list}
+\title{Get parameters (\strong{XH})}
 \usage{
 get_XH_pars(xds_obj, i = 1)
 }

@@ -14,7 +14,7 @@ the skill set, as a list
 }
 \description{
 The \strong{XH} skill set is a list of
-an module's capabilities.
+a module's capabilities.
 }
 \note{
 This method dispatches on \code{class(xds_obj$XH_obj)}

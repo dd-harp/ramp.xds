@@ -1,4 +1,4 @@
-# Parse for `trivial` (MY)
+# Parse outputs for `trivial` (**MY**)
 
 Return an empty list
 

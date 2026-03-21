@@ -51,10 +51,10 @@ an **`xds`** object
 ## Details
 
 This function sets up the interfaces and the core objects used by
-**`ramp.xds.`**
+**`ramp.xds`**.
 
 First, the function sets up some short text strings (assigned to the
-same `S3` class) to dispatch various **cases** of of various `S3`
+same `S3` class) to dispatch various **cases** of various `S3`
 functions:
 
 - **`xds`** is either "xde" for differential equations, or "dts" for
@@ -71,7 +71,7 @@ functions:
     component, \\\cal L\\. in some form (possibly the trivial case) (see
     [`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md))
 
-  - "mozy" is for mosquito ecology models (see
+  - "mosy" is for mosquito ecology models (see
     [`xds_setup_mosy()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)),
     including models without pathogen infection dynamics in mosquitoes
 
@@ -104,19 +104,7 @@ Second, the function sets the values of the **structural parameters**:
 
 - **`nHostSpecies`** or \\N_i\\, the number of host species is set to 1;
 
-Next, the function sets up empty lists to hold the model objects that
-define components:
-
-- `XH_obj`
-
-- 
-
-- **Transmission** calls
-  [`setup_transmission()`](https://dd-harp.github.io/ramp.xds/reference/setup_transmission.md)
-
-model for the availability of visitors; by default, there are no
-visitors Next, the function sets up egg laying, blood feeding, and
-transmission:
+Next, the function sets up egg laying, blood feeding, and transmission:
 
 - **Egg Laying** calls
   [`make_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md),
@@ -133,19 +121,16 @@ transmission:
   sets up a static model for the availability of visitors; by default,
   there are no visitors
 
-Finally, the function sets up a few other miscellaneous options:
+Next, the function sets up empty lists to hold the model objects for all
+three dynamical components:
 
-- [Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)
-  is called *after*
-  [Transmission](https://dd-harp.github.io/ramp.xds/reference/Transmission.md)
-  to compute environmentally heterogeneous exposure and malaria
-  importation through travel:
+- `XH_obj`
 
-  - [setup_exposure](https://dd-harp.github.io/ramp.xds/reference/setup_exposure.md)
-    sets up a Poisson model for environmental heterogeneity
+- `MY_obj`
 
-  - [setup_travel_object](https://dd-harp.github.io/ramp.xds/reference/setup_travel_object.md)
-    sets up a model with no exposure through travel
+- `L_obj`
+
+Finally, the function sets up some junctions.
 
 ## Note
 

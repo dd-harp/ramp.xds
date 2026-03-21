@@ -1,7 +1,7 @@
-# The **XH** Module Skill Set
+# The **XH** module skill set
 
 The `hMoI` module is an example of a model that is not extensible. There
-is now way to add either dynamic human population density or mass
+is no way to add either dynamic human population density or mass
 treatment without violating the model assumptions.
 
 The model does output observed population density and here it is

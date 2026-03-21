@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_season.R
 \name{get_season_pw}
 \alias{get_season_pw}
-\title{Get pw for seasonality}
+\title{Get seasonality parameter \code{pw}}
 \usage{
 get_season_pw(xds_obj, s = 1)
 }
@@ -12,9 +12,8 @@ get_season_pw(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the phase parameter(s)
+the pw parameter(s)
 }
 \description{
-Get the parameter that sets the phase
-for a seasonally forced model
+Get the \code{pw} parameter for the seasonality function
 }

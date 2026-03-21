@@ -1,6 +1,6 @@
-# Setup initial values for *SIS*
+# Setup initial values for `SIS` (**XH**)
 
-Setup initial values for *SIS*
+Setup initial values for `SIS` (**XH**)
 
 ## Usage
 
