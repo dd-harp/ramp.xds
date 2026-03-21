@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{LEffectSizes.basicL}
 \alias{LEffectSizes.basicL}
-\title{Bionomics for \code{basicL} (\strong{L} Component)}
+\title{Apply effect sizes for \code{basicL} (\strong{L})}
 \usage{
 \method{LEffectSizes}{basicL}(t, y, xds_obj, s)
 }

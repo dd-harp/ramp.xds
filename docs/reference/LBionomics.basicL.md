@@ -1,6 +1,8 @@
 # Bionomics for `basicL` (**L** Component)
 
-Set **L** component parameters to baseline values for `basicL`
+Compute the bionomic parameter values for `basicL` by calling the
+forcing functions for each parameter. Also resets all effect sizes
+(`es_psi`, `es_phi`, `es_xi`, `es_theta`) to 1.
 
 ## Usage
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{make_L_obj_basicL}
 \alias{make_L_obj_basicL}
-\title{Make \code{L_obj} for \code{basicL} (\strong{L} Component)}
+\title{Make \code{L_obj} for \code{basicL} (\strong{L} component)}
 \usage{
 make_L_obj_basicL(
   nHabitats,

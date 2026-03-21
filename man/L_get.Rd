@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-help.R
 \name{L_get}
 \alias{L_get}
-\title{Get Functions for the L Component}
+\title{Get functions for the L component}
 \description{
 write me.
 

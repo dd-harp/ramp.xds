@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{Update_XHt}
 \alias{Update_XHt}
-\title{Update X states for a discrete time system}
+\title{Update state variables (\strong{XH})}
 \usage{
 Update_XHt(t, y, xds_obj, i)
 }

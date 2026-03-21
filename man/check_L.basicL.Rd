@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{check_L.basicL}
 \alias{check_L.basicL}
-\title{Check the \code{basicL} Module}
+\title{Check the \code{basicL} module}
 \usage{
 \method{check_L}{basicL}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-Run a check before solving
+Run no consistency checks
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{parse_MY_orbits.GeM}
 \alias{parse_MY_orbits.GeM}
-\title{parse the output of deSolve and return variables for the GeM model}
+\title{Parse outputs for \code{GeM} (\strong{MY})}
 \usage{
 \method{parse_MY_orbits}{GeM}(outputs, xds_obj, s)
 }
@@ -11,7 +11,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{list}

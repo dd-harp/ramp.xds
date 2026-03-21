@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{LEffectSizes.trivial}
 \alias{LEffectSizes.trivial}
-\title{Bionomics for \code{trivial} (\strong{L} Component)}
+\title{Apply effect sizes for \code{trivial} (\strong{L})}
 \usage{
 \method{LEffectSizes}{trivial}(t, y, xds_obj, s)
 }

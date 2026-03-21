@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{steady_state_X.hMoI}
 \alias{steady_state_X.hMoI}
-\title{Compute Steady States for \code{hMoI} (\strong{X}-Model)}
+\title{Compute steady states for \code{hMoI} (\strong{X}-model)}
 \usage{
 \method{steady_state_X}{hMoI}(foi, H, xds_obj, i = 1)
 }

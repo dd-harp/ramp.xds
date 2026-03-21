@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-modules.R
 \name{L_module_list}
 \alias{L_module_list}
-\title{L Modules}
+\title{L modules}
 \description{
 A List of Modules for the \strong{L}-Component
 }

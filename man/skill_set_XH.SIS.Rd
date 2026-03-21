@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{skill_set_XH.SIS}
 \alias{skill_set_XH.SIS}
-\title{The \strong{XH} Module Skill Set}
+\title{The \strong{XH} module skill set}
 \usage{
 \method{skill_set_XH}{SIS}(Xname = "SIS")
 }

@@ -1,6 +1,6 @@
 # List **L** Component Variables for `trivial`
 
-This method dispatches on the type of `xds_obj$L_obj[[s]]`
+Returns an empty list; the `trivial` module has no state variables
 
 ## Usage
 

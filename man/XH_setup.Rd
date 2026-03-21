@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-help.R
 \name{XH_setup}
 \alias{XH_setup}
-\title{Setup Functions for the XH Component}
+\title{Setup functions for the XH component}
 \description{
 write me.
 

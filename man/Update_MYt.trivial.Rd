@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{Update_MYt.trivial}
 \alias{Update_MYt.trivial}
-\title{Handle state updates for the \code{trivial} \strong{MY} module}
+\title{Update state variables for \code{trivial} (\strong{MY})}
 \usage{
 \method{Update_MYt}{trivial}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector of length 0

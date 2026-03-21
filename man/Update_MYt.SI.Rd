@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{Update_MYt.SI}
 \alias{Update_MYt.SI}
-\title{Derivatives for adult mosquitoes}
+\title{Update state variables for \code{SI} (\strong{MY})}
 \usage{
 \method{Update_MYt}{SI}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector

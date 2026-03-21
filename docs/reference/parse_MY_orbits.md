@@ -1,4 +1,4 @@
-# parse the outputs and return the variables by name in a list
+# Parse the outputs and return the variables by name in a list
 
 This method dispatches on the type of `xds_obj$MY_obj`. It computes the
 variables by name and returns a named list.
@@ -21,7 +21,7 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

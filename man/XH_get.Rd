@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-help.R
 \name{XH_get}
 \alias{XH_get}
-\title{Get Functions for XH}
+\title{Get functions for XH}
 \description{
 A list of functions to inspect XH objects.
 }

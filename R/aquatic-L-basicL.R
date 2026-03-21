@@ -1,5 +1,5 @@
 
-#' @title The `basicL` Module for the L Component
+#' @title The `basicL` module for the L component
 #' @description
 #' A basic model of aquatic mosquito
 #' ecology with density-dependent mortality and delayed maturation, based
@@ -44,7 +44,7 @@ NULL
 
 # the aquatic mosquito `basicL` competition model
 
-#' @title The **L** Module Skill Set
+#' @title The **L** module skill set
 #'
 #' @description The **L** skill set is a list of
 #' a module's capabilities
@@ -59,8 +59,8 @@ skill_set_L.basicL = function(Lname = "basicL"){
   list(trivial=FALSE)
 }
 
-#' @title Check the `basicL` Module
-#' @description Run a check before solving
+#' @title Check the `basicL` module
+#' @description Run no consistency checks
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -72,7 +72,7 @@ check_L.basicL = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Compute Derivatives for **L** module `basicL`
+#' @title Compute derivatives for `basicL` (**L**)
 #'
 #' @description
 #' This implements differential equation model for aquatic mosquito ecology.
@@ -133,7 +133,7 @@ dLdt.basicL <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Update State Variables for `basicL` (**L** Component)
+#' @title Update state variables for `basicL` (**L**)
 #' @description Implements [Update_Lt] for the `basicL` competition model.
 #' @inheritParams Update_Lt
 #' @return a [numeric] vector
@@ -150,7 +150,7 @@ Update_Lt.basicL <- function(t, y, xds_obj, s) {
   })
 }
 
-#' @title Compute Emergent Adults for `basicL` (**L** Component)
+#' @title Compute emergent adults for `basicL` (**L** component)
 #' @description The number of adults emerging from the habitats,
 #' per day, is:
 #' \deqn{\psi e^{-\xi L} L.}
@@ -166,10 +166,11 @@ F_emerge.basicL <- function(t, y, xds_obj, s) {
   })
 }
 
-#' @title Bionomics for `basicL` (**L** Component)
+#' @title Bionomics for `basicL` (**L** component)
 #'
-#' @description Set **L** component parameters
-#' to baseline values for `basicL`
+#' @description Compute the bionomic parameter values for `basicL`
+#' by calling the forcing functions for each parameter. Also resets
+#' all effect sizes (`es_psi`, `es_phi`, `es_xi`, `es_theta`) to 1.
 #' @inheritParams LBionomics
 #'
 #' @return an **`xds`** object
@@ -190,7 +191,7 @@ LBionomics.basicL <- function(t, y, xds_obj, s) {
     return(xds_obj)
 })}
 
-#' @title Bionomics for `basicL` (**L** Component)
+#' @title Apply effect sizes for `basicL` (**L**)
 #' @description Implements [LEffectSizes] for the `basicL`
 #' @inheritParams LEffectSizes
 #' @return an **`xds`** object
@@ -206,7 +207,7 @@ LEffectSizes.basicL <- function(t, y, xds_obj, s) {
 })}
 
 
-#' @title Setup `L_obj` for `basicL` (**L** Component)
+#' @title Setup `L_obj` for `basicL` (**L** component)
 #' @description The function sets up `L_obj` for the \eqn{s^{th}} species
 #' by calling [make_L_obj_basicL]
 #' @inheritParams setup_L_obj
@@ -222,7 +223,7 @@ setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
   return(xds_obj)
 }
 
-#' @title Make `L_obj` for `basicL` (**L** Component)
+#' @title Make `L_obj` for `basicL` (**L** component)
 #' @description The following parameters will be set to the values in
 #' `options.` If they are not found, default values will be used.
 #'
@@ -258,7 +259,7 @@ make_L_obj_basicL = function(nHabitats, options=list(), psi=1/8, xi=0, phi=1/8, 
   })
 }
 
-#' @title Get **L** Component Parameters for `basicL`
+#' @title Get **L** component parameters for `basicL`
 #' @description Get the **L** component parameters
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -272,7 +273,7 @@ get_L_pars.basicL <- function(xds_obj, s=1) {
   ))
 }
 
-#' @title Set **L** Component parameters for `basicL`
+#' @title Set **L** component parameters for `basicL`
 #' @description Set the values of **L** component parameters
 #' - `psi` or \eqn{\psi}
 #' - `xi`  or \eqn{\xi}
@@ -286,16 +287,16 @@ get_L_pars.basicL <- function(xds_obj, s=1) {
 change_L_pars.basicL <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$L_obj[[s]], with(options,{
-    xds_obj$L_obj[[s]]$psi_t = checkIt(psi, nHabitats)
-    xds_obj$L_obj[[s]]$xi = checkIt(xi, nHabitats)
-    xds_obj$L_obj[[s]]$phi_t = checkIt(phi, nHabitats)
-    xds_obj$L_obj[[s]]$theta = checkIt(theta, nHabitats)
+    xds_obj$L_obj[[s]]$psi_t   = checkIt(psi, nHabitats)
+    xds_obj$L_obj[[s]]$xi_t    = checkIt(xi, nHabitats)
+    xds_obj$L_obj[[s]]$phi_t   = checkIt(phi, nHabitats)
+    xds_obj$L_obj[[s]]$theta_t = checkIt(theta, nHabitats)
     return(xds_obj)
   }))}
 
 
 
-#' @title Setup Initial Values for `basicL` (**L** Component)
+#' @title Setup initial values for `basicL` (**L** component)
 #' @description This sets initial values of the variable \eqn{L} by
 #' calling [make_L_inits_basicL]. Default values are used unless other values
 #' are passed in `options` by name (*i.e.* `options$L`)
@@ -309,8 +310,9 @@ setup_L_inits.basicL = function(xds_obj, s, options=list()){
   return(xds_obj)
 }
 
-#' @title Make Initial Values for `basicL` (**L** Component)
+#' @title Make initial values for `basicL` (**L** component)
 #' @description Initial values of the variable \eqn{L} can be set
+#' by passing `L` in `options`
 #' @param nHabitats the number of habitats in the model
 #' @param options a [list] that overwrites default values
 #' @param L initial conditions
@@ -322,7 +324,7 @@ make_L_inits_basicL = function(nHabitats, options=list(), L=1){with(options,{
   return(list(L=L))
 })}
 
-#' @title List **L** Component Variables for `basicL`
+#' @title List variables for `basicL` (**L**)
 #' @description Extract the **L** component variables from the
 #' vector of state variables (`y`) and return them as a named list
 #' @inheritParams get_L_vars
@@ -336,7 +338,7 @@ get_L_vars.basicL <- function(y, xds_obj, s){
        )))
 }
 
-#' @title Set the Initial Values for `basicL` (**L** Component)
+#' @title Set the initial values for `basicL` (**L** component)
 #' @description Initial values of the variable \eqn{L} are reset if they are
 #' passed as a named component of `options`
 #' @inheritParams change_L_inits
@@ -349,7 +351,7 @@ change_L_inits.basicL <- function(xds_obj, s=1, options=list()) {
     return(xds_obj)
 }))}
 
-#' @title Setup Variable Indices for `basicL` (**L** Component)
+#' @title Setup variable indices for `basicL` (**L** component)
 #' @description Set the values of the indices for the **L** component variables
 #' for the `basicL` module
 #' @inheritParams setup_L_ix
@@ -369,7 +371,7 @@ setup_L_ix.basicL <- function(xds_obj, s) {with(xds_obj,{
   return(xds_obj)
 })}
 
-#' @title parse **L** Component Variables for `basicL`
+#' @title Parse outputs for `basicL` (**L**)
 #' @description The function returns the column representing
 #' the variable \eqn{L} from a matrix where each row is a state variable.
 #' The variable is returned as a named list.
@@ -382,7 +384,7 @@ parse_L_orbits.basicL <- function(outputs, xds_obj, s) {
   return(list(L=L))
 }
 
-#' @title Compute the Steady State of `dLdt.basicL` (**L** Component)
+#' @title Compute the steady state of `dLdt.basicL` (**L** component)
 #' @description Given an egg deposition rate `eta`,
 #' return a steady state value for the equations in [dLdt.basicL]
 #' @note This function does not use deSolve

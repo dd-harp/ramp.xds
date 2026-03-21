@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-demography.R
 \name{Births}
 \alias{Births}
-\title{Human (or Host) Population Birth Rate}
+\title{Human (or Host) population birth rate}
 \usage{
 Births(t, H, births)
 }

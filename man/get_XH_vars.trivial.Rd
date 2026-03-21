@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{get_XH_vars.trivial}
 \alias{get_XH_vars.trivial}
-\title{Get Variables by Name}
+\title{List variables for \code{trivial} (\strong{XH})}
 \usage{
 \method{get_XH_vars}{trivial}(y, xds_obj, i)
 }

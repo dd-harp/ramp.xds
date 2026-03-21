@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-get.R
 \name{get_PR.true}
 \alias{get_PR.true}
-\title{Get the \emph{Pf}PR from a Malaria Model}
+\title{Get the \emph{Pf}PR from a malaria model}
 \usage{
 \method{get_PR}{true}(xds_obj, method = "true", i = 1)
 }

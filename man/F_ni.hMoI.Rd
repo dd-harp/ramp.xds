@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{F_ni.hMoI}
 \alias{F_ni.hMoI}
-\title{Compute the "true" nievalence of infection / parasite rate}
+\title{Compute the "true" prevalence of infection / parasite rate}
 \usage{
 \method{F_ni}{hMoI}(vars, XH_obj)
 }

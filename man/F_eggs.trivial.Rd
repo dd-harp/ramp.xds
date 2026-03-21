@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{F_eggs.trivial}
 \alias{F_eggs.trivial}
-\title{Net Egg Laying Rate}
+\title{Net egg laying rate}
 \usage{
 \method{F_eggs}{trivial}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector of length \code{nPatches}

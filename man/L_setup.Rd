@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-help.R
 \name{L_setup}
 \alias{L_setup}
-\title{Setup Functions for the L Component}
+\title{Setup functions for the L component}
 \description{
 write me.
 

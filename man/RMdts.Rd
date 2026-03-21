@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{RMdts}
 \alias{RMdts}
-\title{The \code{RMdts} Module for the MY Component}
+\title{The \code{RMdts} module for the MY component}
 \description{
 Implements the \strong{MY} component using a discrete-time Macdonald
 model of adult mosquito ecology and infection dynamics.

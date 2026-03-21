@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{get_MY_vars.RMdts}
 \alias{get_MY_vars.RMdts}
-\title{Return the variables as a list}
+\title{List variables for \code{RMdts} (\strong{MY})}
 \usage{
 \method{get_MY_vars}{RMdts}(y, xds_obj, s)
 }

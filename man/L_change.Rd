@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-help.R
 \name{L_change}
 \alias{L_change}
-\title{Change Functions for the L Component}
+\title{Change functions for the L component}
 \description{
 write me.
 

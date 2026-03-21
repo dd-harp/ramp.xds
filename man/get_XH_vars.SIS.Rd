@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{get_XH_vars.SIS}
 \alias{get_XH_vars.SIS}
-\title{Get Variables by Name}
+\title{List variables for \code{SIS} (\strong{XH})}
 \usage{
 \method{get_XH_vars}{SIS}(y, xds_obj, i)
 }

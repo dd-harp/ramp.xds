@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{parse_MY_orbits.trivial}
 \alias{parse_MY_orbits.trivial}
-\title{Parse for \code{trivial} (MY)}
+\title{Parse outputs for \code{trivial} (\strong{MY})}
 \usage{
 \method{parse_MY_orbits}{trivial}(outputs, xds_obj, s)
 }
@@ -11,7 +11,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 an empty \link{list}

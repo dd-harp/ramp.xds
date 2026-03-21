@@ -1,6 +1,6 @@
 # a hybrid model tracking mean MoI for all and apparent infections
 
-#' @title The `hMoI` Module for the XH Component
+#' @title The `hMoI` module for the XH component
 #' @description
 #' Implements the **XH** component using a hybrid model that tracks the
 #' mean Multiplicity of Infection (MoI) for total and apparent infections.
@@ -33,7 +33,7 @@
 NULL
 
 
-#' @title The **XH** Module Skill Set
+#' @title The **XH** module skill set
 #'
 #' @description The `hMoI` module is an example
 #' of a model that is not extensible. There is now
@@ -79,7 +79,7 @@ check_XH.hMoI = function(xds_obj, i){
   return(xds_obj)
 }
 
-#' @title Compute Derivatives for `hMoI` (**X** Module)
+#' @title Compute derivatives for `hMoI` (**XH**)
 #'
 #' @description Implements [dXHdt] for the hybrid MoI model.
 #' @inheritParams dXHdt
@@ -100,7 +100,7 @@ dXHdt.hMoI <- function(t, y, xds_obj, i) {
   })
 }
 
-#' @title Get Variables by Name
+#' @title List variables for `hMoI` (**XH**)
 #'
 #' @description Get the the value of variables from the flat state variable vector \eqn{y}, and return
 #' the values as a named list
@@ -329,7 +329,7 @@ get_HTC.hMoI <- function(xds_obj, i) {
 }
 
 
-#' @title parse the output of deSolve and return variables for the hMoI model
+#' @title Parse outputs for `hMoI` (**XH**)
 #' @description Implements [parse_XH_orbits] for the hMoI model
 #' @inheritParams parse_XH_orbits
 #' @return none
@@ -345,7 +345,7 @@ parse_XH_orbits.hMoI <- function(outputs, xds_obj, i){
 })}
 
 
-#' @title Compute the "true" nievalence of infection / parasite rate
+#' @title Compute the "true" prevalence of infection / parasite rate
 #' @description Implements [F_ni] for the hMoI model.
 #' @inheritParams F_ni
 #' @return a [numeric] vector of length `nStrata`
@@ -407,7 +407,7 @@ F_pfpr_by_pcr.hMoI<- function(vars, XH_obj) {
   return(pr)
 }
 
-#' @title Compute Steady States for `hMoI` (**X**-Model)
+#' @title Compute steady states for `hMoI` (**X**-model)
 #'
 #' @description Compute the steady state of the hMoI model as a function of the daily foi
 #' @inheritParams steady_state_X

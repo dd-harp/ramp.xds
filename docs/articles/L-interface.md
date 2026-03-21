@@ -1,18 +1,18 @@
 # The L Component
 
-The **L** component was designed to model adult mosquito ecology and
+The **L** component was designed to model aquatic mosquito ecology and
 infection dynamics. This vignette takes an overview of of the functions
 in the **L** component. It is useful for anyone who wants to learn more
 about how the code works.
 
 In context, an **L** modules get the egg laying rate, \\\eta\\ from the
 **ML**-interface. It is the dot product of the total mosquito egg laying
-rate in a patch \\G\\ and the egg laying matrix \\U\\ (Figure 1). The
-core functions compute either
+rate in a patch \\G\\ and the egg laying matrix \\U\\ (Figure 1). Each
+The core functions compute either
 
-- a set of derivatives, generically denoted \\dL/dt\\
+- `xde` — a set of derivatives, generically denoted \\dL/dt\\
 
-- or a function that updates the state variables.
+- `dts` — a function that updates the state variables.
 
 It outputs the habitat emergence rate \\\alpha,\\ the number of adult
 female mosquitoes emerging from a patch, per day.
@@ -35,11 +35,10 @@ To inspect a method for a specific function, use `getS3method`
 
 ------------------------------------------------------------------------
 
-The **L** Component defines 18 generic functions in
-[aquatic-L.R](https://github.com/dd-harp/ramp.xds/blob/main/R/adult-L.R).
+The **L** Component defines 16 S3 generic functions in
+[aquatic-L.R](https://github.com/dd-harp/ramp.xds/blob/main/R/aquatic-L.R).
 Most of these are `S3` class functions, but a few work generically. Each
-module defines two functions: one makes the L object and the other sets
-up the initial values for the variables.
+module defines two functions to set up an **L** object.
 
 The required functions deal with various tasks required to build or
 solve a model, inspect or change the parameters or initial values,
@@ -74,14 +73,6 @@ interface.
 - `F_emerge.Lname` - the function computes the habitat specific
   emergence rate, \\\alpha\\
 
-## Bionomics
-
-Some parameters can be ports. In these cases, the
-
-- `LBionomics`
-
-- `LEffectSizes`
-
 ## Model Object
 
 Each module has a pair of functions that set up a structured list called
@@ -100,8 +91,8 @@ functions.
   object:
 
   - bionomic parameter values and objects. In most models, the value of
-    baseline bionomic parameters are functions of time, or exogenous
-    variables that vary with time.
+    bionomic parameters are functions of time, or exogenous variables
+    that vary with time.
 
   - `class(L_obj)` = `Lname`
 
@@ -132,13 +123,14 @@ After pulling, both functions return the variables in by name in a list
 to make it easy to inspect or use.
 
 6.  `setup_L_ix.Lname` - is the function that assigns an index to each
-    variable in the model, and stores it as `xds_obj$L_obj[[i]]$ix.` The
-    indices are returned as a named list.
+    variable in the model, and stores them as a named list at
+    `xds_obj$L_obj[[s]]$ix.` The indices can be retrieved with
+    `get_L_ix`.
 
 7.  `get_L_vars.Lname` - retrieves the value of variables from the state
     variables vector \\y\\ at a point in time and returns the values by
-    name in a list; the function gets called by `dLdt` and by
-    `change_L_inits` and it can be useful in other contexts.
+    name in a list; the function gets called by `dLdt` and it can be
+    useful in other contexts.
 
 8.  `parse_L_orbits.Lname` - this function is like `get_L_vars` but it
     parses the matrix of outputs returned by `xds_solve.`
@@ -159,18 +151,10 @@ state variables.
   default initial values for all the variables. These can be overwritten
   by passing new initial values in `options.`
 
-- \[get_L_inits.Lname\] -
+- `get_L_inits` - returns the initial values stored at
+  `L_obj[[s]]$inits`
 
 - `change_L_inits.Lname` - a utility to change the initial values.
-
-### Standard Outputs
-
-Each module must output a few key quantities:
-
-15. `F_larvae.Lname` - compute the density of all larvae
-
-16. `F_capacity.Lname` - compute the *carrying capacity* for each
-    habitat
 
 ### Consistency Checks
 

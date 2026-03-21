@@ -1,6 +1,6 @@
 
 
-#' @title `trivial` --- **MY** Module 
+#' @title `trivial` --- **MY** module
 #' 
 #' @description
 #' The trivial **MY** module configures two trace functions:
@@ -79,12 +79,12 @@ check_MY.trivial = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Net Infectious Biting Rate 
+#' @title Net infectious biting rate
 #' @description Returns 
 #' \deqn{F_{fqZ}(t) = fqZ S(t) T(t) K(t)}
 #' where 
 #' + \eqn{f} is the feeding rate 
-#' + \eqn{q} the human fraction 
+#' + \eqn{q} is the human fraction
 #' + \eqn{Z} is the density of infectious mosquitoes, per patch 
 #' + \eqn{S(t)} or `F_season` is a seasonal pattern 
 #' + \eqn{T(t)} or `F_trend` is a trend pattern 
@@ -101,7 +101,7 @@ F_fqZ.trivial <- function(t, y, xds_obj, s) {
   return(f*q*Z)
 }
 
-#' @title Net Egg Laying Rate 
+#' @title Net egg laying rate
 #' @description Returns 
 #' \deqn{F_{G}(t) = G S(t) T(t) K(t)}
 #' where 
@@ -130,14 +130,8 @@ F_fqM.trivial <- function(t, y, xds_obj, s){
 }
 
 
-#' @title Macdonald-style adult mosquito bionomics
-#' @description Reset the effect sizes for static models.
-#' When modules are added to compute effect sizes
-#' from baseline parameters, those functions store
-#' an effect size. The total effect size is the
-#' product of the effect sizes for each intervention.
-#' Since coverage could be changing dynamically, these
-#' must be reset each time the derivatives are computed.
+#' @title Bionomics for `trivial` (**MY**)
+#' @description Implements [MBionomics] for the `trivial` module
 #' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
@@ -146,14 +140,8 @@ MBionomics.trivial <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title Macdonald-style adult mosquito bionomics
-#' @description Reset the effect sizes for static models.
-#' When modules are added to compute effect sizes
-#' from baseline parameters, those functions store
-#' an effect size. The total effect size is the
-#' product of the effect sizes for each intervention.
-#' Since coverage could be changing dynamically, these
-#' must be reset each time the derivatives are computed.
+#' @title Apply effect sizes for `trivial` (**MY**)
+#' @description Implements [MEffectSizes] for the `trivial` module
 #' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
@@ -163,7 +151,7 @@ MEffectSizes.trivial <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Handle derivatives for the `trivial` **MY** module
+#' @title Compute derivatives for `trivial` (**MY**)
 #' @description Implements [dMYdt] for the trivial (forced emergence) model.
 #' @inheritParams dMYdt
 #' @return a [numeric] vector of length 0
@@ -173,7 +161,7 @@ dMYdt.trivial <- function(t, y, xds_obj, s){
   numeric(0)
 }
 
-#' @title Handle state updates for the `trivial` **MY** module
+#' @title Update state variables for `trivial` (**MY**)
 #' @description Implements [Update_MYt] for the trivial (forced emergence) model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector of length 0
@@ -198,7 +186,6 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #' @keywords internal
 #'
 #' @export
-#'
 setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
   MY = "MY"
   class(MY) = "MY"
@@ -253,7 +240,7 @@ make_MY_obj_trivial = function(nPatches, options,
     return(MY_obj)
 })}
 
-#' @title Return the variables as a list
+#' @title List variables for `trivial` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
@@ -290,7 +277,7 @@ get_MY_pars.trivial <- function(xds_obj, s=1) {
 }
 
 
-#' @title Set new MY parameter values
+#' @title Set new MY initial values
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
@@ -300,7 +287,7 @@ change_MY_inits.trivial <- function(xds_obj, s=1, options=list()) {
   return(xds_obj)
 }
 
-#' @title Set **MY** Component parameters for `trivial`
+#' @title Set **MY** component parameters for `trivial`
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
@@ -330,7 +317,7 @@ change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
   }))}
 
 
-#' @title The **trivial** Module Skill Set
+#' @title The **trivial** module skill set
 #'
 #' @description The **MY** skill set is a list of
 #' a module's capabilities
@@ -345,7 +332,7 @@ skill_set_MY.trivial = function(MYname){
   return(list())
 }
 
-#' @title Setup Inits for `trivial` (**MY**) 
+#' @title Setup inits for `trivial` (**MY**)
 #' @description Return the **`xds`** object unmodified
 #' @inheritParams setup_MY_inits
 #' @return an **`xds`** object
@@ -365,7 +352,7 @@ setup_MY_ix.trivial <- function(xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title Parse for `trivial` (MY)
+#' @title Parse outputs for `trivial` (**MY**)
 #' @description Return an empty list
 #' @inheritParams parse_MY_orbits
 #' @return an empty [list]
@@ -375,7 +362,7 @@ parse_MY_orbits.trivial <- function(outputs, xds_obj, s) {
   return(list())
 }
 
-#' @title Get Inits for `trivial` (MY) 
+#' @title Get inits for `trivial` (MY)
 #' @description Return a [numeric] vector of length 0
 #' @inheritParams get_MY_inits
 #' @return a [numeric] vector of length 0

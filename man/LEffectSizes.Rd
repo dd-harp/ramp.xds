@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{LEffectSizes}
 \alias{LEffectSizes}
-\title{Immature Mosquito Bionomics - Vector Control Effect Sizes}
+\title{Apply effect sizes (\strong{L})}
 \usage{
 LEffectSizes(t, y, xds_obj, s)
 }

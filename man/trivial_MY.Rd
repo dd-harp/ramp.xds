@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{trivial_MY}
 \alias{trivial_MY}
-\title{\code{trivial} --- \strong{MY} Module}
+\title{\code{trivial} --- \strong{MY} module}
 \description{
 The trivial \strong{MY} module configures two trace functions:
 \itemize{

@@ -28,8 +28,6 @@ navbar:
       href: articles/TraceFunctions.html
   - text: Interfaces 
     menu:
-    - text: Modular Forms
-      href: articles/modular_forms.html
     - text: Habitats & Mosquito Ecology 
       href: articles/EggLaying.html
     - text: Blood Feeding & Transmission 
@@ -40,7 +38,7 @@ navbar:
       href: articles/MosquitoBionomics.html
   - text: XH 
     menu:
-    - text: XH Component: Humans / Hosts 
+    - text: Human / Host Component (XH) 
       href: articles/XH-interface.html
     - text: The SIS Module 
       href: articles/human_sis.html
@@ -48,7 +46,7 @@ navbar:
       href: articles/human_hmoi.html
   - text: MY 
     menu:
-    - text: MY Component: Adult Mosquitoes 
+    - text: Adult Mosquito Component (MY)
       href: articles/MY-interface.html
     - text: Macdonald's Model
       href: articles/adult_RM.html
@@ -58,7 +56,7 @@ navbar:
       href: articles/adult_GeM.html
   - text: L 
     menu:
-    - text: L Component: Aquatic Mosquitoes
+    - text: Aquatic Mosquito Component (L)
       href: articles/L-interface.html
     - text: Emergence (the trivial module) 
       href: articles/aqua_trace.html

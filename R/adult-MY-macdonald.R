@@ -1,13 +1,13 @@
 # specialized methods for the adult mosquito macdonald model
 
-#' @title The `macdonald` Module (MY Component)
+#' @title The `macdonald` module (MY component)
 #' 
 #' @description
 #' 
 #' Implements a Macdonald-style delay differential
 #' equation model of adult mosquito ecology and infection dynamics, consistent
 #' with the model published by George Macdonald in 1952. This formulation is 
-#' actually closer to one published by 
+#' actually closer to one published by Aron & May (1982). 
 #'
 #' @section State Variables:
 #' \describe{
@@ -54,14 +54,17 @@
 #' This model is not capable of handling exogenous forcing by weather or
 #' vector control. Use the `GeM` module instead.
 #'
+#' @references
+#' + Macdonald G (1952) The analysis of the sporozoite rate. Tropical Diseases Bulletin 49:569-586.
+#' + Aron JL, May RM (1982) The population dynamics of malaria. Chapter 5 in *The Population Dynamics of Infectious Diseases: Theory and Applications,* Springer, Boston, MA.
 #' @name macdonald
 NULL
 
 
-#' @title The **macdonald** Module Skill Set
+#' @title The **macdonald** module skill set
 #'
 #' @description The **MY** skill set is a list of
-#' an module's capabilities:
+#' a module's capabilities:
 #'
 #' + `demography` is
 #'
@@ -90,7 +93,7 @@ check_MY.macdonald = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Compute derivatives for the **MY** module `macdonald`
+#' @title Compute derivatives for `macdonald` (**MY**)
 #' @description
 #' This implements a delay differential equation model for adult mosquito ecology and
 #' infection dynamics that is consistent with the model published by George
@@ -108,7 +111,7 @@ check_MY.macdonald = function(xds_obj, s){
 #'
 #' - \eqn{\Lambda} or `Lambda`: the emergence rate of adult mosquitoes (from `F_emerge`)
 #' - \eqn{f} or `f`: the blood feeding rate
-#' - \eqn{q} or `q`: maturation rate
+#' - \eqn{q} or `q`: human blood fraction
 #' - \eqn{\tau} or `eip`: the extrinsic incubation period
 #' - \eqn{\Omega} or `Omega`: an adult mosquito demographic matrix, including mortality and migration
 #' - \eqn{\Upsilon} or `Upsilon`: survival and dispersal through the eip, \eqn{\Upsilon= e^{-\Omega \tau}}
@@ -292,7 +295,7 @@ setup_MY_ix.macdonald <- function(xds_obj, s) {with(xds_obj,{
   return(xds_obj)
 })}
 
-#' @title Return the variables as a list
+#' @title List variables for `macdonald` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
@@ -307,7 +310,7 @@ get_MY_vars.macdonald <- function(y, xds_obj, s){
          Z = y[Z_ix]
 )))}
 
-#' @title parse the output of deSolve and return variables for the macdonald model
+#' @title Parse outputs for `macdonald` (**MY**)
 #' @description Implements [parse_MY_orbits] for the macdonald model
 #' @inheritParams parse_MY_orbits
 #' @return a [list]
@@ -394,7 +397,7 @@ make_MY_inits_macdonald = function(nPatches, options = list(),
     return(list(M=M, P=P, Y=Y, Z=Z, dk_ix=dk_ix))
 })}
 
-#' @title change initial values for the macdonald model
+#' @title Change initial values for the macdonald model
 #' @description Implements [change_MY_inits] for the macdonald model
 #'
 #' @inheritParams change_MY_inits
@@ -414,7 +417,7 @@ change_MY_inits.macdonald = function(xds_obj, s, options=list()){
 #' @title Compute the steady states as a function of the daily EIR
 #' @description This method dispatches on the type of `MY_obj`.
 #' @inheritParams steady_state_MY
-#' @return none
+#' @return a [list]
 #' @importFrom MASS ginv
 #' @importFrom expm expm
 #' @keywords internal
@@ -448,7 +451,7 @@ MBionomics.macdonald <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title Macdonald-style adult mosquito bionomics
+#' @title Apply effect sizes for `macdonald` (**MY**)
 #' @description Reset the effect sizes for static models.
 #' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{LBionomics.trivial}
 \alias{LBionomics.trivial}
-\title{Bionomics for \code{trivial} (\strong{L} Component)}
+\title{Bionomics for \code{trivial} (\strong{L})}
 \usage{
 \method{LBionomics}{trivial}(t, y, xds_obj, s)
 }

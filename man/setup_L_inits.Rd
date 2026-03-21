@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{setup_L_inits}
 \alias{setup_L_inits}
-\title{Setup Initial Values for the \strong{L} Component}
+\title{Setup initial values for the \strong{L} component}
 \usage{
 setup_L_inits(xds_obj, s, options = list())
 }

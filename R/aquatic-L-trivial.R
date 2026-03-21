@@ -1,6 +1,6 @@
 # specialized methods for the aquatic mosquito trivial model
 
-#' @title `trivial` --- **L** Module 
+#' @title `trivial` --- **L** module
 #' @description
 #' The trivial module outputs the emergence 
 #' rate of adult mosquitoes by calling a
@@ -56,7 +56,7 @@
 #' @name trivial_L
 NULL
 
-#' @title The **L** Module Skill Set
+#' @title The **L** module skill set
 #'
 #' @description The **L** skill set is a list of
 #' a module's capabilities
@@ -83,7 +83,7 @@ check_L.trivial = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Derivatives for `trivial` (**L**) 
+#' @title Compute derivatives for `trivial` (**L**)
 #' @description Returns a numeric vector of length 0
 #' @inheritParams dLdt
 #' @return a [numeric] vector of length 0
@@ -93,7 +93,7 @@ dLdt.trivial <- function(t, y, xds_obj, s) {
   return(numeric(0))
 }
 
-#' @title Update State Variables for `trivial` (**L**) 
+#' @title Update state variables for `trivial` (**L**)
 #' @description Returns a numeric vector of length 0
 #' @inheritParams Update_Lt
 #' @return a [numeric] vector of length 0
@@ -103,7 +103,7 @@ Update_Lt.trivial <- function(t, y, xds_obj, s) {
   return(numeric(0))
 }
 
-#' @title Compute Emergent Adults for `trivial` (**L** Component)
+#' @title Compute emergent adults for `trivial` (**L** component)
 #' @description The number of emerging adults is a function \deqn{\Lambda S(t) T(t) K(t)} where
 #' + \eqn{\Lambda} or `Lambda` is the mean number of adult female mosquitoes emerging per day
 #' + \eqn{S(t)} or `F_season` is a seasonal signal (ideally, with an average annual mean of 1)
@@ -118,7 +118,7 @@ F_emerge.trivial <- function(t, y, xds_obj, s) {
     return(Lambda*F_season(t)*F_trend(t)*F_shock(t))
 })}
 
-#' @title Bionomics for `trivial` (**L** Component)
+#' @title Bionomics for `trivial` (**L**)
 #' @description Implements [LBionomics] for the `trivial` module
 #' @inheritParams LBionomics
 #' @return an **`xds`** object
@@ -128,7 +128,7 @@ LBionomics.trivial <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title Bionomics for `trivial` (**L** Component)
+#' @title Apply effect sizes for `trivial` (**L**)
 #' @description Implements [LEffectSizes] for the `trivial` module
 #' @inheritParams LEffectSizes
 #' @return an **`xds`** object
@@ -154,7 +154,7 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
 }
 
 
-#' @title Make `L_obj` for `trivial` (**L** Component)
+#' @title Make `L_obj` for `trivial` (**L** component)
 #' @description The number of emerging adults is a function \deqn{\Lambda S(t) T(t) K(t)} where
 #' + \eqn{\Lambda} or `Lambda` is the mean number of adult female mosquitoes emerging per day
 #' + \eqn{S(t)} or `F_season` is a seasonal signal (ideally, with an average annual mean of 1)
@@ -187,7 +187,7 @@ make_L_obj_trivial = function(nHabitats, options=list(),
 })}
 
 
-#' @title Get **L** Component Parameters for `trivial`
+#' @title Get **L** component parameters for `trivial`
 #' @description Get \eqn{\Lambda} and parameters that construct
 #' the forcing functions  
 #' @param xds_obj an **`xds`** model object
@@ -204,7 +204,7 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
   ))
 }
 
-#' @title Set **L** Component parameters for `trivial`
+#' @title Set **L** component parameters for `trivial`
 #'
 #' @description If `Lambda`, `season_par`, `trend_par`, or `shock_par`
 #' are named in `options`, the old value is replaced. After updating
@@ -228,7 +228,7 @@ change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
   }))}
 
 
-#' @title Setup Initial Values for the **L** Component `trivial` Module
+#' @title Setup initial values for the **L** component `trivial` module
 #' @description The `trivial` module initial values are an empty list
 #' @inheritParams setup_L_inits
 #' @return an **`xds`** object
@@ -239,7 +239,7 @@ setup_L_inits.trivial = function(xds_obj, s, options=list()){
   return(xds_obj)
 }
 
-#' @title List **L** Component Variables for `trivial`
+#' @title List variables for `trivial` (**L**)
 #' @description Returns an empty list; the `trivial` module has no state variables
 #' @inheritParams get_L_vars
 #' @return an empty [list]
@@ -250,7 +250,7 @@ get_L_vars.trivial <- function(y, xds_obj, s){
 }
 
 
-#' @title Set the Initial Values for `trivial` (**L**) 
+#' @title Set the initial values for `trivial` (**L**)
 #' @description Returns the unmodified **`xds`** object
 #' @inheritParams change_L_inits
 #' @return an **`xds`** object
@@ -260,7 +260,7 @@ change_L_inits.trivial <- function(xds_obj, s=1, options=list()) {
   return(xds_obj)
 }
 
-#' @title Set up Indices for `trivial` (**L**)
+#' @title Set up indices for `trivial` (**L**)
 #' @description Return the **`xds`** object unmodified 
 #' @inheritParams setup_L_ix
 #' @return an **`xds`** object
@@ -271,7 +271,7 @@ setup_L_ix.trivial <- function(xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title Parse for `trivial` (**L**)
+#' @title Parse outputs for `trivial` (**L**)
 #' @description Returns an empty list
 #' @inheritParams parse_L_orbits
 #' @return an empty [list]

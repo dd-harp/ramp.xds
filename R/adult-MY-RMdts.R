@@ -1,6 +1,6 @@
 # specialized methods for the adult mosquito RMdts model
 
-#' @title The `RMdts` Module for the MY Component
+#' @title The `RMdts` module for the MY component
 #' @description
 #' Implements the **MY** component using a discrete-time Macdonald
 #' model of adult mosquito ecology and infection dynamics.
@@ -33,7 +33,7 @@
 NULL
 
 
-#' @title The **RMdts** Module Skill Set
+#' @title The **RMdts** module skill set
 #'
 #' @description The **MY** skill set is a list of
 #' an module's capabilities:
@@ -63,7 +63,7 @@ check_MY.RMdts = function(xds_obj, s){
 }
 
 
-#' @title Derivatives for adult mosquitoes
+#' @title Update state variables for `RMdts` (**MY**)
 #' @description Implements [Update_MYt] for the RMdts model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector
@@ -196,7 +196,7 @@ setup_MY_ix.RMdts <- function(xds_obj, s) {with(xds_obj,{
 })}
 
 
-#' @title Return the variables as a list
+#' @title List variables for `RMdts` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
@@ -214,7 +214,7 @@ get_MY_vars.RMdts <- function(y, xds_obj, s){
 }
 
 
-#' @title parse the output of deSolve and return variables for the RMdts model
+#' @title Parse outputs for `RMdts` (**MY**)
 #' @description Implements [parse_MY_orbits] for the RMdts model
 #' @inheritParams parse_MY_orbits
 #' @return a [list]

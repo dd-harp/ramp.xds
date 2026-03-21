@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{LBionomics}
 \alias{LBionomics}
-\title{Immature Mosquito Bionomics}
+\title{Immature mosquito bionomics}
 \usage{
 LBionomics(t, y, xds_obj, s)
 }

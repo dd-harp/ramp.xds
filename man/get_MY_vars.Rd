@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_MY_vars}
 \alias{get_MY_vars}
-\title{Return the variables as a list}
+\title{List variables (\strong{MY})}
 \usage{
 get_MY_vars(y, xds_obj, s)
 }

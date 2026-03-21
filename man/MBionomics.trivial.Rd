@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{MBionomics.trivial}
 \alias{MBionomics.trivial}
-\title{Macdonald-style adult mosquito bionomics}
+\title{Bionomics for \code{trivial} (\strong{MY})}
 \usage{
 \method{MBionomics}{trivial}(t, y, xds_obj, s)
 }
@@ -13,18 +13,12 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-Reset the effect sizes for static models.
-When modules are added to compute effect sizes
-from baseline parameters, those functions store
-an effect size. The total effect size is the
-product of the effect sizes for each intervention.
-Since coverage could be changing dynamically, these
-must be reset each time the derivatives are computed.
+Implements \link{MBionomics} for the \code{trivial} module
 }
 \keyword{internal}

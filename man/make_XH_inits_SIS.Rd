@@ -19,6 +19,6 @@ make_XH_inits_SIS(nStrata, H, options = list(), I = 1)
 a \link{list}
 }
 \description{
-Set the initial values
+Make a named list of initial values
 }
 \keyword{internal}

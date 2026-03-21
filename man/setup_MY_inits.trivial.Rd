@@ -2,14 +2,14 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{setup_MY_inits.trivial}
 \alias{setup_MY_inits.trivial}
-\title{Setup Inits for \code{trivial} (\strong{MY})}
+\title{Setup inits for \code{trivial} (\strong{MY})}
 \usage{
 \method{setup_MY_inits}{trivial}(xds_obj, s, options = list())
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 
 \item{options}{a \link{list}}
 }

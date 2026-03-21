@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{skill_set_MY.trivial}
 \alias{skill_set_MY.trivial}
-\title{The \strong{trivial} Module Skill Set}
+\title{The \strong{trivial} module skill set}
 \usage{
 \method{skill_set_MY}{trivial}(MYname)
 }

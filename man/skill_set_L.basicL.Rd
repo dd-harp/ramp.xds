@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{skill_set_L.basicL}
 \alias{skill_set_L.basicL}
-\title{The \strong{L} Module Skill Set}
+\title{The \strong{L} module skill set}
 \usage{
 \method{skill_set_L}{basicL}(Lname = "basicL")
 }

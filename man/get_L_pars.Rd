@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{get_L_pars}
 \alias{get_L_pars}
-\title{Get parameters for the \strong{L} Component module}
+\title{Get parameters for the \strong{L} component module}
 \usage{
 get_L_pars(xds_obj, s = 1)
 }
@@ -15,6 +15,6 @@ get_L_pars(xds_obj, s = 1)
 a \link{list}
 }
 \description{
-Get parameters for the \strong{L} Component module
+Get parameters for the \strong{L} component module
 }
 \keyword{internal}

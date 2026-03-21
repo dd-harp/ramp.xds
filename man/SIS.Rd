@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{SIS}
 \alias{SIS}
-\title{The \code{SIS} Module for the XH Component}
+\title{The \code{SIS} module for the XH component}
 \description{
 Implements the \strong{XH} component using a Susceptible-Infected-Susceptible
 (SIS) compartmental model of human infection dynamics.

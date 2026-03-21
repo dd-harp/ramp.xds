@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{skill_set_MY}
 \alias{skill_set_MY}
-\title{The \strong{MY} Module Skill Set}
+\title{The \strong{MY} module skill set}
 \usage{
 skill_set_MY(MYname)
 }
@@ -14,9 +14,6 @@ skill_set_MY(MYname)
 }
 \description{
 The \strong{MY} skill set is a list of
-an module's capabilities:
-\itemize{
-\item \code{demography} is
-}
+a module's capabilities.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{parse_MY_orbits}
 \alias{parse_MY_orbits}
-\title{parse the outputs and return the variables by name in a list}
+\title{Parse outputs (\strong{MY})}
 \usage{
 parse_MY_orbits(outputs, xds_obj, s)
 }
@@ -11,7 +11,7 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 \link{list}

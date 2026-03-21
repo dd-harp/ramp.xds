@@ -1,5 +1,5 @@
 
-#' @title Generic Methods for the XH Component
+#' @title Generic methods for the XH component
 #'
 #' @description
 #' write me.
@@ -40,7 +40,7 @@
 #' @name XH_functions
 NULL
 
-#' @title Get Functions for XH 
+#' @title Get functions for XH
 #'
 #' @description
 #' A list of functions to inspect XH objects. 
@@ -70,7 +70,7 @@ NULL
 #' @name XH_get
 NULL
 
-#' @title A List of Functions to Change the XH Component
+#' @title A list of functions to change the XH component
 #'
 #' @description
 #' write me.
@@ -84,7 +84,7 @@ NULL
 #' @name XH_change
 NULL
 
-#' @title Setup Functions for the XH Component
+#' @title Setup functions for the XH component
 #'
 #' @description
 #' write me.

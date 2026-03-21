@@ -1,4 +1,4 @@
-# Adult Mosquito Bionomics
+# Adult mosquito bionomics
 
 Compute the adult mosquito bionomic parameter values
 
@@ -24,7 +24,7 @@ MBionomics(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

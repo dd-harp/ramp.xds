@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{setup_L_obj}
 \alias{setup_L_obj}
-\title{Set up \code{L_obj} for \strong{L} Component modules}
+\title{Set up \code{L_obj} for \strong{L} component modules}
 \usage{
 setup_L_obj(Lname, xds_obj, s, options = list())
 }

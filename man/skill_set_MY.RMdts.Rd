@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{skill_set_MY.RMdts}
 \alias{skill_set_MY.RMdts}
-\title{The \strong{RMdts} Module Skill Set}
+\title{The \strong{RMdts} module skill set}
 \usage{
 \method{skill_set_MY}{RMdts}(MYname)
 }

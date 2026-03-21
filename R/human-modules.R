@@ -1,4 +1,4 @@
-#' @title XH Modules 
+#' @title XH modules
 #' 
 #' @description
 #' A List of Modules for the **XH**-Component 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{get_L_vars}
 \alias{get_L_vars}
-\title{List \strong{L} Component Variables}
+\title{List variables (\strong{L})}
 \usage{
 get_L_vars(y, xds_obj, s)
 }

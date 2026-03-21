@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{SI}
 \alias{SI}
-\title{The \code{SI} Module for the MY Component}
+\title{The \code{SI} module for the MY component}
 \description{
 Implements the \strong{MY} component using a simple SI (Susceptible-Infected)
 model of adult mosquito infection dynamics.

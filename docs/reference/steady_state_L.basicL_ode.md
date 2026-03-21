@@ -1,6 +1,6 @@
 # Compute the Steady State of `dLdt.basicL` (**L** Component)
 
-Given an egg deposition rate `eta,` return a steady state value for the
+Given an egg deposition rate `eta`, return a steady state value for the
 equations in
 [dLdt.basicL](https://dd-harp.github.io/ramp.xds/reference/dLdt.basicL.md)
 

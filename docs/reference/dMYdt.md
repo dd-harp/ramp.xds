@@ -1,4 +1,4 @@
-# Compute Derivatives for an Adult Mosquito Model
+# Compute derivatives for an adult mosquito model
 
 In the description, each method should include the equations and a
 reference to relevant papers in the literature.
@@ -25,7 +25,7 @@ dMYdt(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

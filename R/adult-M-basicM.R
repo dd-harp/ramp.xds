@@ -111,7 +111,7 @@ MBionomics.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   return(xds_obj)
 })}
 
-#' @title Apply vector control effect sizes
+#' @title Apply effect sizes for `basicM` (**MY**)
 #' @description Implements [MEffectSizes] for models with no exogenous forcing
 #' @inheritParams MEffectSizes
 #' @return an **`xds`** object

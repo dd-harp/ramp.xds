@@ -41,19 +41,19 @@ where
 
   parameters for
   [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md):
-  `F_season=make_par(season_par`)
+  `F_season=make_function(season_par)`
 
 - `trend_par`:
 
   parameters for
   [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md):
-  `F_trend=make_par(trend_par)`
+  `F_trend=make_function(trend_par)`
 
 - `shock_par`:
 
   parameters for
   [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md):
-  `F_shock=make_par(shock_par)`
+  `F_shock=make_function(shock_par)`
 
 The default setup options:
 

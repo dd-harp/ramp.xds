@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-help.R
 \name{XH_change}
 \alias{XH_change}
-\title{A List of Functions to Change the XH Component}
+\title{A list of functions to change the XH component}
 \description{
 write me.
 

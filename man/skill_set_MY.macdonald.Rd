@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{skill_set_MY.macdonald}
 \alias{skill_set_MY.macdonald}
-\title{The \strong{macdonald} Module Skill Set}
+\title{The \strong{macdonald} module skill set}
 \usage{
 \method{skill_set_MY}{macdonald}(MYname)
 }
@@ -14,7 +14,7 @@
 }
 \description{
 The \strong{MY} skill set is a list of
-an module's capabilities:
+a module's capabilities:
 \itemize{
 \item \code{demography} is
 }

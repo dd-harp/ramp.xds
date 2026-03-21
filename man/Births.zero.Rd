@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-demography.R
 \name{Births.zero}
 \alias{Births.zero}
-\title{Human (or Host) Population Birth Rate}
+\title{Human (or Host) population birth rate}
 \usage{
 \method{Births}{zero}(t, H, births = "zero")
 }

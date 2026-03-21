@@ -1,6 +1,7 @@
 # Make Initial Values for `basicL` (**L** Component)
 
-Initial values of the variable \\L\\ can be set
+Initial values of the variable \\L\\ can be set by passing `L` in
+`options`
 
 ## Usage
 

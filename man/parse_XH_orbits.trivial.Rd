@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{parse_XH_orbits.trivial}
 \alias{parse_XH_orbits.trivial}
-\title{parse the output of deSolve and return variables for the trivial model}
+\title{Parse outputs for \code{trivial} (\strong{XH})}
 \usage{
 \method{parse_XH_orbits}{trivial}(outputs, xds_obj, i)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{F_emerge}
 \alias{F_emerge}
-\title{Compute Emergent Adults}
+\title{Compute emergent adults}
 \usage{
 F_emerge(t, y, xds_obj, s)
 }

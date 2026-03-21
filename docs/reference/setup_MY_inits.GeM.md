@@ -19,7 +19,7 @@ setup_MY_inits(xds_obj, s, options = list())
 
 - s:
 
-  the species index
+  the vector species index
 
 - options:
 

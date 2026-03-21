@@ -1,5 +1,5 @@
 
-#' @title Generic Methods for the L Component
+#' @title Generic methods for the L component
 #'
 #' @description
 #' A list of generic 
@@ -27,7 +27,7 @@
 #' @name L_functions
 NULL
 
-#' @title Get Functions for the L Component
+#' @title Get functions for the L component
 #'
 #' @description
 #' write me.
@@ -43,7 +43,7 @@ NULL
 #' @name L_get
 NULL
 
-#' @title Change Functions for the L Component
+#' @title Change functions for the L component
 #'
 #' @description
 #' write me.
@@ -56,7 +56,7 @@ NULL
 #' @name L_change
 NULL
 
-#' @title Setup Functions for the L Component
+#' @title Setup functions for the L component
 #'
 #' @description
 #' write me.

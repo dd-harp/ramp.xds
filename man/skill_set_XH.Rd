@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{skill_set_XH}
 \alias{skill_set_XH}
-\title{\strong{XH} Skill Set}
+\title{\strong{XH} skill set}
 \usage{
 skill_set_XH(Xname)
 }

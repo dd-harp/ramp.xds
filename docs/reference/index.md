@@ -365,6 +365,8 @@ Get the parameters from trace functions
   : Get pw for seasonality
 - [`get_trend()`](https://dd-harp.github.io/ramp.xds/reference/get_trend.md)
   : Get the trend parameters
+- [`get_shock()`](https://dd-harp.github.io/ramp.xds/reference/get_shock.md)
+  : Get the shock parameters
 - [`get_spline()`](https://dd-harp.github.io/ramp.xds/reference/get_spline.md)
   : Get spline interpolation points
 - [`get_spline_s()`](https://dd-harp.github.io/ramp.xds/reference/get_spline_s.md)

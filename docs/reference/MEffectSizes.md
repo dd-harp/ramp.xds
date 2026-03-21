@@ -1,4 +1,4 @@
-# Adult Mosquito Bionomics - Vector Control Effect Sizes
+# Adult mosquito bionomics - vector control effect sizes
 
 Apply vector control effect sizes to adult mosquito bionomic parameters
 
@@ -24,7 +24,7 @@ MEffectSizes(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

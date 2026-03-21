@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{steady_state_X}
 \alias{steady_state_X}
-\title{Steady States for \strong{X}}
+\title{Steady states for \strong{X}}
 \usage{
 steady_state_X(foi, H, xds_obj, i = 1)
 }

@@ -1,4 +1,4 @@
-# Get **MY** Variable Indices
+# Get **MY** variable indices
 
 This method dispatches on the type of `xds_obj$MY_obj`.
 
@@ -16,7 +16,7 @@ get_MY_ix(xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

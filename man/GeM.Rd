@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{GeM}
 \alias{GeM}
-\title{The \code{GeM} Module for the MY Component}
+\title{The \code{GeM} module for the MY component}
 \description{
 \code{GeM} is a system of delay differential equation model for mosquito ecology
 and infection dynamics. The core dynamics trace back to Macdonald's

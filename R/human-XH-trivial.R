@@ -1,5 +1,5 @@
 
-#' @title `trivial` --- **XH** Module 
+#' @title `trivial` --- **XH** module
 #' @description
 #' The trivial module outputs the net infectiousness, \eqn{\kappa},
 #' by calling a
@@ -52,7 +52,7 @@ NULL
 
 # specialized methods for a human trivial model
 
-#' @title The **XH** Module Skill Set
+#' @title The **XH** module skill set
 #'
 #' @description The **XH** skill set is a list of
 #' an module's capabilities
@@ -149,7 +149,7 @@ make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
     return(XH_obj)
   })}
 
-#' @title Handle Derivatives for the `trivial` **X**-Module
+#' @title Compute derivatives for `trivial` (**XH**)
 #' @description The trivial model has no state variables so it returns
 #' a numeric vector of length 0
 #' @inheritParams dXHdt
@@ -161,7 +161,7 @@ dXHdt.trivial <- function(t, y, xds_obj, i) {
   numeric(0)
 }
 
-#' @title Handle State Updating for the `trivial` **X**-Module
+#' @title Handle state updating for the `trivial` **X**-module
 #' @description The trivial model has no state variables so it returns
 #' a numeric vector of length 0
 #' @inheritParams Update_XHt
@@ -267,7 +267,7 @@ setup_XH_ix.trivial <- function(xds_obj, i) {
   return(xds_obj)
 }
 
-#' @title parse the output of deSolve and return variables for the trivial model
+#' @title Parse outputs for `trivial` (**XH**)
 #' @description Implements [parse_XH_orbits] for the trivial model
 #' @inheritParams parse_XH_orbits
 #' @return none
@@ -279,7 +279,7 @@ parse_XH_orbits.trivial <- function(outputs, xds_obj,i) {
 }
 
 
-#' @title Get Variables by Name
+#' @title List variables for `trivial` (**XH**)
 #'
 #' @description Return an empty list
 #'

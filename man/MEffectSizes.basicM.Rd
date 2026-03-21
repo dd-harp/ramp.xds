@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{MEffectSizes.basicM}
 \alias{MEffectSizes.basicM}
-\title{Apply vector control effect sizes}
+\title{Apply effect sizes for \code{basicM} (\strong{MY})}
 \usage{
 \method{MEffectSizes}{basicM}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object

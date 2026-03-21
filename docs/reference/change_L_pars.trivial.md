@@ -1,7 +1,11 @@
 # Set **L** Component parameters for `trivial`
 
-If `Lambda` or `F_season` or `F_trend` or `F_shock` are named in a list
-`options`, the old value is replaced
+If `Lambda`, `season_par`, `trend_par`, or `shock_par` are named in
+`options`, the old value is replaced. After updating the parameter
+objects, `F_season`, `F_trend`, and `F_shock` are recompiled by calling
+[make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+on the updated parameters via
+[rebuild_forcing_functions](https://dd-harp.github.io/ramp.xds/reference/rebuild_forcing_functions.md).
 
 ## Usage
 

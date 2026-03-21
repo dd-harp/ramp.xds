@@ -1,6 +1,6 @@
 # specialized methods for the human SIS module
 
-#' @title The `SIS` Module for the XH Component
+#' @title The `SIS` module for the XH component
 #' @description
 #' Implements the **XH** component using a Susceptible-Infected-Susceptible
 #' (SIS) compartmental model of human infection dynamics.
@@ -33,7 +33,7 @@
 NULL
 
 
-#' @title `SIS` Derivatives Function (an **XH** Module)
+#' @title Compute derivatives for `SIS` (**XH**)
 #'
 #' @description
 #'
@@ -235,7 +235,7 @@ setup_XH_ix.SIS <- function(xds_obj, i) {with(xds_obj,{
   return(xds_obj)
 })}
 
-#' @title Get Variables by Name
+#' @title List variables for `SIS` (**XH**)
 #'
 #' @description Get the the value of variables
 #' from the flat state variable
@@ -257,7 +257,7 @@ get_XH_vars.SIS <- function(y, xds_obj, i) {
 }
 
 
-#' @title parse the output of deSolve and return variables for the SIS model
+#' @title Parse outputs for `SIS` (**XH**)
 #' @description Implements [parse_XH_orbits] for the SIS model
 #' @inheritParams parse_XH_orbits
 #' @keywords internal
@@ -290,7 +290,7 @@ setup_XH_inits.SIS = function(xds_obj, H, i=1, options=list()){
 
 #' @title Make initial values for the SIS xde human model, with defaults
 #'
-#' @description Set the initial values
+#' @description Make a named list of initial values
 #'
 #' @param nStrata the number of strata in the model
 #' @param H the initial human population density
@@ -309,7 +309,7 @@ make_XH_inits_SIS = function(nStrata, H, options=list(), I=1){
     return(list(H=H, I=I))
 })}
 
-#' @title `SIS` - Change Initial Values
+#' @title `SIS` - change initial values
 #'
 #' @description
 #'
@@ -339,7 +339,7 @@ change_XH_inits.SIS <- function(xds_obj, i=1, options=list()) {
     return(xds_obj)
   }))}
 
-#' @title Compute Infectious Density
+#' @title Compute infectious density for `SIS`
 #'
 #' @description In the *SIS* model family, infectious
 #' density is \eqn{cI}.
@@ -355,7 +355,7 @@ F_I.SIS <- function(t, y, xds_obj, i) {
   return(X)
 }
 
-#' @title Compute Population Density
+#' @title Compute population density
 #'
 #' @description Implements [F_H] for the *SIS* module
 #'
@@ -370,7 +370,7 @@ F_H.SIS <- function(t, y, xds_obj, i){
   with(get_XH_vars(y, xds_obj, i), return(H))
 }
 
-#' @title Compute Infectivity
+#' @title Compute infectivity
 #'
 #' @description
 #' This function computes the fraction of infectious
@@ -422,7 +422,7 @@ F_ni.SIS <- function(vars, XH_obj) {
 get_HTC.SIS <- function(xds_obj, i) {
   with(xds_obj$XH_obj[[i]], return(c/r))}
 
-#' @title The **XH** Module Skill Set
+#' @title The **XH** module skill set
 #'
 #' @description The **XH** skill set is a list of
 #' an module's capabilities.

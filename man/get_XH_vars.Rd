@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{get_XH_vars}
 \alias{get_XH_vars}
-\title{Get Variables by Name}
+\title{List variables (\strong{XH})}
 \usage{
 get_XH_vars(y, xds_obj, i = 1)
 }

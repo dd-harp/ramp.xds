@@ -27,7 +27,7 @@ get_XH_orbits = function(xds_obj, i=1){
   return(got)
 }
 
-#' @title Get the *Pf*PR from a Malaria Model
+#' @title Get the *Pf*PR from a malaria model
 #' @description `'method'` should be
 #' + `true` for the true *Pf*PR (default)
 #' + `lm` for the *Pf*PR by light microscopy
@@ -45,7 +45,7 @@ get_PR <- function(xds_obj, method="true", i=1) {
   UseMethod("get_PR", method)
 }
 
-#' @title Get the *Pf*PR from a Malaria Model
+#' @title Get the *Pf*PR from a malaria model
 #' @description  Return the true *Pf*PR
 #'
 #' @inheritParams get_PR
@@ -56,7 +56,7 @@ get_PR.true <- function(xds_obj, method="true", i=1) {
   with(get_XH_orbits(xds_obj, i), return(list(time=time, pr=true_pr, method = "true")))
 }
 
-#' @title Get the *Pf*PR from a MalariasModel
+#' @title Get the *Pf*PR from a malaria model
 #' @description Return the *Pf*PR by PCR
 #' @inheritParams get_PR
 #' @return none
@@ -68,7 +68,7 @@ get_PR.pcr<- function(xds_obj, method="pcr", i=1) {
   return(list(time=XH$time, pr=pr, method="pcr"))
 }
 
-#' @title Get the *Pf*PR from a Malaria Model
+#' @title Get the *Pf*PR from a malaria model
 #' @description Return the PR by light microscopy
 #' @inheritParams get_PR
 #' @return none
@@ -80,7 +80,7 @@ get_PR.lm<- function(xds_obj, method = "lm", i=1) {
   return(list(time=XH$time, pr=pr, method="lm"))
 }
 
-#' @title Get the *Pf*PR from a Malaria Model
+#' @title Get the *Pf*PR from a malaria model
 #' @description Return the PR by RDT
 #' @inheritParams get_PR
 #' @return none

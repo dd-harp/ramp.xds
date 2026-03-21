@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-help.R
 \name{XH_functions}
 \alias{XH_functions}
-\title{Generic Methods for the XH Component}
+\title{Generic methods for the XH component}
 \description{
 write me.
 

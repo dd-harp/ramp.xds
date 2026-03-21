@@ -1,6 +1,6 @@
 # generic methods for human component
 
-#' @title **XH** Skill Set
+#' @title **XH** skill set
 #'
 #' @description The **XH** skill set is a list of
 #' an module's capabilities:
@@ -37,7 +37,7 @@ check_XH = function(xds_obj,i){
   UseMethod("check_XH", xds_obj$XH_obj[[i]])
 }
 
-#' @title Compute **XH** Component Derivatives
+#' @title Compute derivatives (**XH**) 
 #'
 #' @description Using the stored values
 #' of the daily FoI, compute the derivatives and
@@ -59,7 +59,7 @@ dXHdt <- function(t, y, xds_obj, i) {
   UseMethod("dXHdt", xds_obj$XH_obj[[i]])
 }
 
-#' @title Update X states for a discrete time system
+#' @title Update state variables (**XH**) 
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #' @param t current simulation time
 #' @param y state vector
@@ -116,7 +116,7 @@ F_infectivity <- function(y, xds_obj, i) {
   UseMethod("F_infectivity", xds_obj$XH_obj[[i]])
 }
 
-#' @title Setup an **XH** Module (Human / Host Epidemiology & Demography)
+#' @title Setup an **XH** module (human / host epidemiology & demography)
 #' @description Set the parameter values and configure a model
 #' for the **X** Component
 #'
@@ -135,7 +135,7 @@ setup_XH_obj = function(Xname, xds_obj, i, options=list()){
   UseMethod("setup_XH_obj", Xname)
 }
 
-#' @title Get Variables by Name
+#' @title List variables (**XH**)
 #'
 #' @description Get the the values
 #' of variables from the flat state
@@ -185,7 +185,7 @@ setup_XH_ix <- function(xds_obj, i) {
   UseMethod("setup_XH_ix", xds_obj$XH_obj[[i]])
 }
 
-#' @title Get XH indices 
+#' @title Get XH indices
 #'
 #' @description Get and display the values of the indices
 #' for the variables
@@ -201,7 +201,7 @@ get_XH_ix <- function(xds_obj, i=1) {
 }
 
 
-#' @title Parse **XH** Outputs
+#' @title Parse outputs (**XH**)
 #'
 #' @description After solving, this function extracts
 #' the values of the dependent variables for the **XH**
@@ -251,7 +251,7 @@ change_XH_pars <- function(xds_obj, i=1, options=list()) {
 }
 
 
-#' @title Setup Initial Values for **XH** Modules
+#' @title Setup initial values for **XH** modules
 #'
 #' @description This method dispatches on `xds_obj$XH_obj[[i]]`.
 #'
@@ -300,7 +300,7 @@ change_XH_inits <- function(xds_obj, i=1, options=list()) {
 }
 
 
-#' @title Compute Net Infectiousness (NI)
+#' @title Compute net infectiousness (NI)
 #' @description A function to compute NI as an output
 #' @param vars a list with the variables attached by name
 #' @param XH_obj a list defining a model for human
@@ -373,7 +373,7 @@ get_HTC <- function(xds_obj, i) {
   UseMethod("get_HTC", xds_obj$XH_obj[[i]])
 }
 
-#' @title Steady States for **X**
+#' @title Steady states for **X**
 #'
 #' @description Compute the steady states as a function of the daily FoI for a
 #' static value of human population density
@@ -390,7 +390,7 @@ steady_state_X = function(foi, H, xds_obj, i=1){
   UseMethod("steady_state_X", xds_obj$XH_obj[[i]])
 }
 
-#' @title Steady States for **XH**
+#' @title Steady states for **XH**
 #'
 #' @description Compute the steady states as a function of the daily FoI for a
 #' static value of human population density

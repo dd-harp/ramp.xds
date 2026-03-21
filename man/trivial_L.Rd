@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{trivial_L}
 \alias{trivial_L}
-\title{\code{trivial} --- \strong{L} Module}
+\title{\code{trivial} --- \strong{L} module}
 \description{
 The trivial module outputs the emergence
 rate of adult mosquitoes by calling a

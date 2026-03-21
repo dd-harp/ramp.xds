@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{skill_set_L.trivial}
 \alias{skill_set_L.trivial}
-\title{The \strong{L} Module Skill Set}
+\title{The \strong{L} module skill set}
 \usage{
 \method{skill_set_L}{trivial}(Lname = "trivial")
 }

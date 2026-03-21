@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{skill_set_MY.SI}
 \alias{skill_set_MY.SI}
-\title{The \strong{SI} Module Skill Set}
+\title{The \strong{SI} module skill set}
 \usage{
 \method{skill_set_MY}{SI}(MYname)
 }

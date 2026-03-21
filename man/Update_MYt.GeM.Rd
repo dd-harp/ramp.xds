@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{Update_MYt.GeM}
 \alias{Update_MYt.GeM}
-\title{Derivatives for adult mosquitoes}
+\title{Update state variables for \code{GeM} (\strong{MY})}
 \usage{
 \method{Update_MYt}{GeM}(t, y, xds_obj, s)
 
@@ -15,7 +15,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector

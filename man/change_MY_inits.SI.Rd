@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{change_MY_inits.SI}
 \alias{change_MY_inits.SI}
-\title{change initial values for the macdonald model}
+\title{Change initial values for the macdonald model}
 \usage{
 \method{change_MY_inits}{SI}(xds_obj, s, options = list())
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-modules.R
 \name{XH_module_list}
 \alias{XH_module_list}
-\title{XH Modules}
+\title{XH modules}
 \description{
 A List of Modules for the \strong{XH}-Component
 }

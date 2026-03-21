@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{get_L_inits}
 \alias{get_L_inits}
-\title{Get Initial Values for the \strong{L} Component}
+\title{Get initial values for the \strong{L} component}
 \usage{
 get_L_inits(xds_obj, s = 1)
 }

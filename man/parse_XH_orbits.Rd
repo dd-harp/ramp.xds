@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{parse_XH_orbits}
 \alias{parse_XH_orbits}
-\title{Parse \strong{XH} Outputs}
+\title{Parse outputs (\strong{XH})}
 \usage{
 parse_XH_orbits(outputs, xds_obj, i)
 }

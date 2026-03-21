@@ -23,7 +23,7 @@ setup_MY_obj(MYname, xds_obj, s, options = list())
 
 - s:
 
-  the species index
+  the vector species index
 
 - options:
 

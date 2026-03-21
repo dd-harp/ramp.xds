@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{setup_L_ix.trivial}
 \alias{setup_L_ix.trivial}
-\title{Set up Indices for \code{trivial} (\strong{L})}
+\title{Set up indices for \code{trivial} (\strong{L})}
 \usage{
 \method{setup_L_ix}{trivial}(xds_obj, s)
 }

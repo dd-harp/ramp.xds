@@ -1,6 +1,6 @@
 # specialized methods for the adult mosquito GeM model
 
-#' @title The `GeM` Module for the MY Component
+#' @title The `GeM` module for the MY component
 #' @description
 #' `GeM` is a system of delay differential equation model for mosquito ecology
 #' and infection dynamics. The core dynamics trace back to Macdonald's 
@@ -112,7 +112,7 @@
 NULL
 
 
-#' @title The **GeM** Module Skill Set
+#' @title The **GeM** module skill set
 #'
 #' @description The **MY** skill set is a list of
 #' an module's capabilities:
@@ -143,7 +143,7 @@ check_MY.GeM = function(xds_obj, s){
 }
 
 
-#' @title Compute Derivatives for **MY** module `GeM`
+#' @title Compute derivatives for `GeM` (**MY**)
 #'
 #' @description Compute the derivatives for the generalized, non-autonomous Macdonald model
 #' for mosquito ecology and infection dynamics. See [GeM].
@@ -338,7 +338,7 @@ setup_MY_ix.GeM <- function(xds_obj, s) {with(xds_obj,{
   return(xds_obj)
 })}
 
-#' @title Return the variables as a list
+#' @title List variables for `GeM` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
@@ -353,7 +353,7 @@ get_MY_vars.GeM <- function(y, xds_obj, s){
     U = matrix(y[U_ix], xds_obj$nPatches, xds_obj$nPatches)
 )))}
 
-#' @title parse the output of deSolve and return variables for the GeM model
+#' @title Parse outputs for `GeM` (**MY**)
 #' @description Implements [parse_MY_orbits] for the GeM model
 #' @inheritParams parse_MY_orbits
 #' @return a [list]
@@ -434,7 +434,7 @@ MBionomics.GeM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   return(xds_obj)
 })}
 
-#' @title Apply vector control effect sizes
+#' @title Apply effect sizes for `GeM` (**MY**)
 #' @description Implements [MEffectSizes] for models with no exogenous forcing
 #' @inheritParams MEffectSizes
 #' @return an **`xds`** object
@@ -449,7 +449,7 @@ MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   return(xds_obj)
 })}
 
-#' @title Derivatives for adult mosquitoes
+#' @title Update state variables for `GeM` (**MY**)
 #' @description Implements [Update_MYt] for the GeM_dts model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector
@@ -483,7 +483,7 @@ Update_MYt.GeM <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Derivatives for adult mosquitoes
+#' @title Update state variables for `GeM` (**MY**)
 #' @description Implements [Update_MYt] for the GeM_dts model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector

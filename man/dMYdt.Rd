@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{dMYdt}
 \alias{dMYdt}
-\title{Compute Derivatives for an Adult Mosquito Model}
+\title{Compute derivatives (\strong{MY})}
 \usage{
 dMYdt(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@ dMYdt(t, y, xds_obj, s)
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 Derivatives for an adult mosquito model, a \link{vector}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{get_L_vars.trivial}
 \alias{get_L_vars.trivial}
-\title{List \strong{L} Component Variables for \code{trivial}}
+\title{List variables for \code{trivial} (\strong{L})}
 \usage{
 \method{get_L_vars}{trivial}(y, xds_obj, s)
 }

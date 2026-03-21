@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{MEffectSizes}
 \alias{MEffectSizes}
-\title{Adult Mosquito Bionomics - Vector Control Effect Sizes}
+\title{Apply effect sizes (\strong{MY})}
 \usage{
 MEffectSizes(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@ MEffectSizes(t, y, xds_obj, s)
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-help.R
 \name{L_functions}
 \alias{L_functions}
-\title{Generic Methods for the L Component}
+\title{Generic methods for the L component}
 \description{
 A list of generic
 \itemize{

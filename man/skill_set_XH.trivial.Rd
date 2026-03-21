@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{skill_set_XH.trivial}
 \alias{skill_set_XH.trivial}
-\title{The \strong{XH} Module Skill Set}
+\title{The \strong{XH} module skill set}
 \usage{
 \method{skill_set_XH}{trivial}(Xname)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{F_fqZ.trivial}
 \alias{F_fqZ.trivial}
-\title{Net Infectious Biting Rate}
+\title{Net infectious biting rate}
 \usage{
 \method{F_fqZ}{trivial}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector of length \code{nPatches}
@@ -24,7 +24,7 @@ Returns
 where
 \itemize{
 \item \eqn{f} is the feeding rate
-\item \eqn{q} the human fraction
+\item \eqn{q} is the human fraction
 \item \eqn{Z} is the density of infectious mosquitoes, per patch
 \item \eqn{S(t)} or \code{F_season} is a seasonal pattern
 \item \eqn{T(t)} or \code{F_trend} is a trend pattern

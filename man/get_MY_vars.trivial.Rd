@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{get_MY_vars.trivial}
 \alias{get_MY_vars.trivial}
-\title{Return the variables as a list}
+\title{List variables for \code{trivial} (\strong{MY})}
 \usage{
 \method{get_MY_vars}{trivial}(y, xds_obj, s)
 }

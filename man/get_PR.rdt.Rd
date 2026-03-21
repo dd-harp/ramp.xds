@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-get.R
 \name{get_PR.rdt}
 \alias{get_PR.rdt}
-\title{Get the \emph{Pf}PR from a Malaria Model}
+\title{Get the \emph{Pf}PR from a malaria model}
 \usage{
 \method{get_PR}{rdt}(xds_obj, method = "rdt", i = 1)
 }

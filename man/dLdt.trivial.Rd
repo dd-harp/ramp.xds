@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{dLdt.trivial}
 \alias{dLdt.trivial}
-\title{Derivatives for \code{trivial} (\strong{L})}
+\title{Compute derivatives for \code{trivial} (\strong{L})}
 \usage{
 \method{dLdt}{trivial}(t, y, xds_obj, s)
 }

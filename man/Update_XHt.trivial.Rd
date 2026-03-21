@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{Update_XHt.trivial}
 \alias{Update_XHt.trivial}
-\title{Handle State Updating for the \code{trivial} \strong{X}-Module}
+\title{Handle state updating for the \code{trivial} \strong{X}-module}
 \usage{
 \method{Update_XHt}{trivial}(t, y, xds_obj, i)
 }

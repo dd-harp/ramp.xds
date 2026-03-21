@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{make_L_obj_trivial}
 \alias{make_L_obj_trivial}
-\title{Make \code{L_obj} for \code{trivial} (\strong{L} Component)}
+\title{Make \code{L_obj} for \code{trivial} (\strong{L} component)}
 \usage{
 make_L_obj_trivial(
   nHabitats,

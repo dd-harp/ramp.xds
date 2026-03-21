@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{F_I.SIS}
 \alias{F_I.SIS}
-\title{Compute Infectious Density}
+\title{Compute infectious density for \code{SIS}}
 \usage{
 \method{F_I}{SIS}(t, y, xds_obj, i)
 }
