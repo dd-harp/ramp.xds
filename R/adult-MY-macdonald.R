@@ -435,7 +435,7 @@ steady_state_MY.macdonald = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$M
 
 
 
-#' @title Macdonald-style adult mosquito bionomics
+#' @title Mosquito bionomics for `macdonald` (**MY**)
 #' @description Reset the effect sizes for static models.
 #' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store

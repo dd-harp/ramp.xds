@@ -118,7 +118,7 @@ F_emerge.trivial <- function(t, y, xds_obj, s) {
     return(Lambda*F_season(t)*F_trend(t)*F_shock(t))
 })}
 
-#' @title Bionomics for `trivial` (**L**)
+#' @title Mosquito bionomics for `trivial` (**L**)
 #' @description Implements [LBionomics] for the `trivial` module
 #' @inheritParams LBionomics
 #' @return an **`xds`** object

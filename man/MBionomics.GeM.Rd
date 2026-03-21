@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{MBionomics.GeM}
 \alias{MBionomics.GeM}
-\title{Compute mosquito bionomic parameters}
+\title{Mosquito bionomics for \code{GeM} (\strong{MY})}
 \usage{
 \method{MBionomics}{GeM}(t, y, xds_obj, s)
 }

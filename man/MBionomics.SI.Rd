@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{MBionomics.SI}
 \alias{MBionomics.SI}
-\title{Macdonald-style adult mosquito bionomics}
+\title{Mosquito bionomics for \code{SI} (\strong{MY})}
 \usage{
 \method{MBionomics}{SI}(t, y, xds_obj, s)
 }

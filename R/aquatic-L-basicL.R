@@ -166,7 +166,7 @@ F_emerge.basicL <- function(t, y, xds_obj, s) {
   })
 }
 
-#' @title Bionomics for `basicL` (**L** component)
+#' @title Mosquito bionomics for `basicL` (**L**)
 #'
 #' @description Compute the bionomic parameter values for `basicL`
 #' by calling the forcing functions for each parameter. Also resets

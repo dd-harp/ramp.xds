@@ -408,7 +408,7 @@ change_MY_pars.GeM <- function(xds_obj, s=1, options=list()) {
   }))}
 
 
-#' @title Compute mosquito bionomic parameters
+#' @title Mosquito bionomics for `GeM` (**MY**)
 #' @description Implements [MBionomics] for models with no exogenous forcing
 #' @inheritParams MBionomics
 #' @return an **`xds`** object

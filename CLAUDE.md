@@ -21,4 +21,6 @@ This folder contains an R package. It implements a mathematical framework for bu
 ## Title Alignment Rules
 - `MEffectSizes` module titles: `Apply effect sizes for \`module\` (**MY**)` — apply without asking.
 - `LEffectSizes` module titles: `Apply effect sizes for \`module\` (**L**)` — apply without asking.
-- Interface generic titles follow the same pattern without "for `module`": e.g., `Apply effect sizes (**MY**)`.
+- `MBionomics` module titles: `Mosquito bionomics for \`module\` (**MY**)` — apply without asking.
+- `LBionomics` module titles: `Mosquito bionomics for \`module\` (**L**)` — apply without asking.
+- Interface generic titles follow the same pattern without "for `module`": e.g., `Apply effect sizes (**MY**)` or `Mosquito bionomics (**MY**)`.

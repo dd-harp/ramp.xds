@@ -130,7 +130,7 @@ F_fqM.trivial <- function(t, y, xds_obj, s){
 }
 
 
-#' @title Bionomics for `trivial` (**MY**)
+#' @title Mosquito bionomics for `trivial` (**MY**)
 #' @description Implements [MBionomics] for the `trivial` module
 #' @inheritParams MEffectSizes
 #' @return an **`xds`** object

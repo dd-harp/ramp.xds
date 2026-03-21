@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{MBionomics.trivial}
 \alias{MBionomics.trivial}
-\title{Bionomics for \code{trivial} (\strong{MY})}
+\title{Mosquito bionomics for \code{trivial} (\strong{MY})}
 \usage{
 \method{MBionomics}{trivial}(t, y, xds_obj, s)
 }

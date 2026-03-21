@@ -227,7 +227,7 @@ F_eggs.SI <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Macdonald-style adult mosquito bionomics
+#' @title Mosquito bionomics for `SI` (**MY**)
 #' @description Reset the effect sizes for static models.
 #' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store

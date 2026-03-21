@@ -86,7 +86,7 @@ dMYdt.basicM <- function(t, y, xds_obj, s){
 }
 
 
-#' @title Compute mosquito bionomic parameters
+#' @title Mosquito bionomics for `basicM` (**MY**)
 #' @description Implements [MBionomics] for models with no exogenous forcing
 #' @inheritParams MBionomics
 #' @return an **`xds`** object

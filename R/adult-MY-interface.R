@@ -106,7 +106,7 @@ F_eggs <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Adult mosquito bionomics
+#' @title Mosquito bionomics (**MY**)
 #' @description Compute the adult mosquito bionomic parameter values
 #' @param t current simulation time
 #' @param y state vector

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{MBionomics}
 \alias{MBionomics}
-\title{Adult mosquito bionomics}
+\title{Mosquito bionomics (\strong{MY})}
 \usage{
 MBionomics(t, y, xds_obj, s)
 }

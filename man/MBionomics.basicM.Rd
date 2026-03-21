@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{MBionomics.basicM}
 \alias{MBionomics.basicM}
-\title{Compute mosquito bionomic parameters}
+\title{Mosquito bionomics for \code{basicM} (\strong{MY})}
 \usage{
 \method{MBionomics}{basicM}(t, y, xds_obj, s)
 }

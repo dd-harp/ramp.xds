@@ -65,7 +65,7 @@ Update_Lt <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Immature mosquito bionomics
+#' @title Mosquito bionomics (**L**)
 #' @description Compute the values of bionomic parameter 
 #' values for an **L** Component module
 #' @param t current simulation time
