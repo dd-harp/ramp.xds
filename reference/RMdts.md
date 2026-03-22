@@ -1,4 +1,4 @@
-# The `RMdts` Module for the MY Component
+# The `RMdts` module for the MY component
 
 Implements the **MY** component using a discrete-time Macdonald model of
 adult mosquito ecology and infection dynamics.

@@ -1,4 +1,4 @@
-# Return the parameters as a list
+# Get parameters for `hMoI` (**XH**)
 
 Parameter values for the \\i^{th}\\ host are stored as
 `xds_obj$XH_obj[[i]]`. This returns the stored parameter values as a

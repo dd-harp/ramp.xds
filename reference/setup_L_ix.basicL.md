@@ -1,4 +1,4 @@
-# Setup Variable Indices for `basicL` (**L** Component)
+# Setup variable indices for `basicL` (**L** component)
 
 Set the values of the indices for the **L** component variables for the
 `basicL` module

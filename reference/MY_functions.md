@@ -6,11 +6,11 @@
 - [`Update_MYt`](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.md)
   – update state variables
 
-- [`MBaseline`](https://dd-harp.github.io/ramp.xds/reference/MBaseline.md)
-  – set baseline bionomic parameters
-
 - [`MBionomics`](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)
   – compute bionomic parameters
+
+- [`MEffectSizes`](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md)
+  – apply vector control effect sizes
 
 - [`F_fqZ`](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.md) –
   compute infective biting density

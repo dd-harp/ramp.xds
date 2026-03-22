@@ -1,4 +1,4 @@
-# Update States for a Adult Mosquito Model
+# Update states (**MY**)
 
 This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 
@@ -24,7 +24,7 @@ Update_MYt(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

@@ -1,6 +1,6 @@
-# L Modules
+# L modules
 
-A List of Modules for the **L**-Component
+A list of modules for the **L**-Component
 
 ## In **`ramp.xds`**
 

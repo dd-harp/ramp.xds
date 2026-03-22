@@ -1,7 +1,7 @@
-# Solve for the steady state of a system of equations using [rootSolve::steady](https://rdrr.io/pkg/rootSolve/man/steady.html)
+# Compute the steady state for ODEs
 
-Solve for the steady state of a system of equations using
-[rootSolve::steady](https://rdrr.io/pkg/rootSolve/man/steady.html)
+Call `rootSolve` to get the steady state of a system of ordinary
+differential equations.
 
 ## Usage
 
@@ -19,7 +19,3 @@ xds_steady(xds_obj)
 ## Value
 
 an **`xds`** object
-
-## Note
-
-This method dispatches on `class(dlay)`

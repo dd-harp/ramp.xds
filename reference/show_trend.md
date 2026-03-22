@@ -39,7 +39,7 @@ show_trend(
 
 - shock:
 
-  if 0,
+  if TRUE, compute the trend with a shock
 
 ## Value
 

@@ -1,4 +1,4 @@
-# Setup `SIS` (**XH** component)
+# Set up `SIS` (**XH**)
 
 Set up an `SIS` model object for the **XH** component
 

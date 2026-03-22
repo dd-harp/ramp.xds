@@ -19,8 +19,8 @@ setup_MY_ix(xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

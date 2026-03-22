@@ -1,6 +1,6 @@
-# Get **XH** outputs
+# Get orbits (**XH**)
 
-Get **XH** outputs
+Get orbits (**XH**)
 
 ## Usage
 

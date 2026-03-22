@@ -1,8 +1,8 @@
-# Setup `L_obj` for the `trivial` module
+# Set up `trivial` (**L**)
 
-Implements
-[setup_L_obj](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)
-for the trivial model
+Call
+[make_L_obj_trivial](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_trivial.md)
+and set `class(xds_obj$forced_by) = "Lambda"`
 
 ## Usage
 

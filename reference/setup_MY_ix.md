@@ -16,7 +16,7 @@ setup_MY_ix(xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

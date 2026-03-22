@@ -16,7 +16,7 @@ get_MY_inits(xds_obj, s = 1)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

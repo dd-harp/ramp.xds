@@ -1,4 +1,4 @@
-# Get the *Pf*PR from a MalariasModel
+# Get the *Pf*PR from a malaria model
 
 Return the *Pf*PR by PCR
 
@@ -25,4 +25,4 @@ get_PR(xds_obj, method = "pcr", i = 1)
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

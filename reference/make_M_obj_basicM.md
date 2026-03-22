@@ -1,6 +1,6 @@
-# Make parameters for GeM ODE adult mosquito model
+# Make parameters for basicM adult mosquito model
 
-Make parameters for GeM ODE adult mosquito model
+Make parameters for basicM adult mosquito model
 
 ## Usage
 

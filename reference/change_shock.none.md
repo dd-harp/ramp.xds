@@ -1,6 +1,6 @@
-# Set yy
+# Change shock parameters
 
-Implement `change_shock` for a model with no forcing
+Change parameters for the shock function when `forced_by = "none"`
 
 ## Usage
 

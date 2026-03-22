@@ -38,7 +38,7 @@ Make an **`xds`** *model object*:
   - Mosquito Dispersal matrix (if `nPatches>1`; see
     [mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md))
 
-  - Time Spent matrix (if `nPatches>`; see
+  - Time Spent matrix (if `nPatches>1`; see
     [time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent.md))
 
 ## Usage
@@ -48,7 +48,7 @@ xds_setup(
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
-  MYname = "macdonald",
+  MYname = "SI",
   MYoptions = list(),
   Lname = "trivial",
   Loptions = list(),

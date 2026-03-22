@@ -1,4 +1,4 @@
-# Set the Initial Values for `basicL` (**L** Component)
+# Change initial values for `basicL` (**L**)
 
 Initial values of the variable \\L\\ are reset if they are passed as a
 named component of `options`

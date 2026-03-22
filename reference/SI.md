@@ -1,4 +1,4 @@
-# The `SI` Module for the MY Component
+# The `SI` module for the MY component
 
 Implements the **MY** component using a simple SI (Susceptible-Infected)
 model of adult mosquito infection dynamics.

@@ -1,4 +1,4 @@
-# Derivatives for adult mosquitoes
+# Update state variables for `RMdts` (**MY**)
 
 Implements
 [Update_MYt](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.md)
@@ -27,7 +27,7 @@ Update_MYt(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

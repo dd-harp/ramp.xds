@@ -1,6 +1,6 @@
-# Get pw for seasonality
+# Get seasonality parameter `pw`
 
-Get the parameter that sets the phase for a seasonally forced model
+Get the `pw` parameter for the seasonality function
 
 ## Usage
 
@@ -20,4 +20,4 @@ get_season_pw(xds_obj, s = 1)
 
 ## Value
 
-the phase parameter(s)
+the pw parameter(s)

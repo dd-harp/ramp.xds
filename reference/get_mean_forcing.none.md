@@ -14,3 +14,7 @@ get_mean_forcing(xds_obj)
 - xds_obj:
 
   an **`xds`** model object
+
+## Value
+
+an empty vector

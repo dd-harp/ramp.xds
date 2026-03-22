@@ -52,4 +52,4 @@ make_XH_obj_hMoI(
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

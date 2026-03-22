@@ -53,34 +53,33 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
-<li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
+<li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-human-host">
-<li><a class="dropdown-item" href="../articles/XH-interface.html">XH Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-xh">
+<li><a class="dropdown-item" href="../articles/XH-interface.html">Human / Host Component (XH)</a></li>
     <li><a class="dropdown-item" href="../articles/human_sis.html">The SIS Module</a></li>
     <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
-<li><a class="dropdown-item" href="../articles/MY-interface.html">The MY Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-my" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">MY</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-my">
+<li><a class="dropdown-item" href="../articles/MY-interface.html">Adult Mosquito Component (MY)</a></li>
     <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeM.html">Generalized Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
-<li><a class="dropdown-item" href="../articles/L-interface.html">The L Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-l" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">L</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-l">
+<li><a class="dropdown-item" href="../articles/L-interface.html">Aquatic Mosquito Component (L)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
@@ -112,249 +111,444 @@
 
     
     
-<p>Previous: <a href="GettingStarted.html"><em>Getting Started.</em></a>
-Next: <a href="Working.html"><em>Working with Models</em>.</a> Also, see
-<a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong></a></p>
+<p>Previous: <a href="GettingStarted.html"><em>Getting Started</em></a>
+&amp; <a href="Working.html"><em>Working with Models</em></a></p>
+<p>Also, see <a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong></a></p>
 <hr>
+<p>In the vignette <a href="GettingStarted.html">Getting Started</a>, we
+introduced <a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a>.
+In this vignette, we take a deeper dive into <strong>Basic
+Setup</strong> (also, see the help documentation <a href="https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.html">xds_help_basic_setup</a>).</p>
 <p><strong><code>ramp.xds</code></strong> is based on a mathematical
 framework for model building that is modular, flexible and extensible.
-Using the built-in functions, it’s comparatively easy to build highly
+Using setup functions, it’s comparatively easy to build highly
 <em>realistic</em> models by starting simple and adding features one at
 a time. We call this <em>progressive model building.</em></p>
-<p>In the vignette <a href="GettingStarted.html">Getting Started</a>, we
-introduced the function <code>xds_setup().</code> From a software design
-perspective, a setup interface can’t possibly anticipate the needs of
-every end user without constraining possibilities. The point of
-<code><a href="../reference/xds_setup.html">xds_setup()</a></code> is to help build models up to a certain level
-of complexity. After that, features get added using the <em>advanced
-setup</em> functions. Together, basic and advanced setup functions make
-up a system for <em>progressive model building</em> based on a
-mathematical framework and the idea of <em>scaling complexity.</em></p>
-<p>Progressive model building is a practical method for building complex
-models in two phases:</p>
-<ul>
-<li><p><strong>Basic Setup</strong> is handled by the function
-<code>xds_setup().</code> It’s designed to help a user get started with
-a properly formulated interface that can handle spatial dynamics,
-structured aquatic habitats, and a stratified human population.</p></li>
-<li><p><strong>Advanced Setup</strong> handles advanced features,
-including exogenous forcing, vector control, and other modes of malaria
-control, human demography and aging, and host population stratification.
-Advanced setup is described in <a href="https://faculty.washington.edu/smitdave/simba/advanced_setup.html" class="external-link"><strong>SimBA
-:: Advanced Setup.</strong></a></p></li>
-</ul>
-<p>Here, we cover <strong>Basic Setup</strong></p>
 <div class="section level2">
-<h2 id="modularity-and-etensibility">Modularity and Etensibility<a class="anchor" aria-label="anchor" href="#modularity-and-etensibility"></a>
+<h2 id="overview-of-setup">Overview of Setup<a class="anchor" aria-label="anchor" href="#overview-of-setup"></a>
 </h2>
-<p><strong><code>ramp.xds</code></strong> was developed around a
-mathematically rigorous framework that takes advantage of the natural
-modularity of mosquito-transmitted pathogens. The core functions handle
-<a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" class="external-link"><strong>spatial
-dynamics</strong></a>, and the software was designed to model malaria as
-a <em>changing baseline modified by control.</em> The model was
-developed to handle patch-based models, stratified human/host
-populations with demography and aging, and structured habitats. The
-framework does not constrain the model structure, and the software built
-in <em>ports</em> and <em>junctions</em> to add new variables or
-features.</p>
-<p><strong>Basic setup</strong> creates a model that sets up the
-dynamical modules and basic structural elements for spatial dynamics. A
-model returned by basic setup is designed to be modified with the
-potential to develop models of unbounded realism and complexity. To make
-this work, the software built in ports and junctions that could handle a
-large set of advanced features, but most of these features would be
-turned off for basic setup.</p>
+<p>Progressive model building starts with basic setup. To set up a
+model, the user needs to:</p>
+<ul>
+<li><p>Frame the Problem</p></li>
+<li><p>Set up the Model Structure</p></li>
+<li><p>Configure the Dynamical Components</p></li>
+<li><p>Spatial Dynamics</p></li>
+<li><p>Scalable Complexity</p></li>
+</ul>
 <div class="section level3">
-<h3 id="modularity">Modularity<a class="anchor" aria-label="anchor" href="#modularity"></a>
+<h3 id="the-xds-model-object">The <strong><code>xds</code></strong> Model Object<a class="anchor" aria-label="anchor" href="#the-xds-model-object"></a>
 </h3>
-<p>The framework is designed around five dynamical components organized
-into three chunks:</p>
-<ol style="list-style-type: decimal">
-<li>
-<p>Human / vertebrate host ecology, infection and immunity, called
-the <strong>XH</strong>-component</p>
+<p>To use <strong><code>ramp.xds</code></strong> a dynamical system is
+encoded in the <strong><code>xds</code></strong> object. Basic setup
+builds an <strong><code>xds</code></strong> object, or
+<code>xds_obj</code>:</p>
 <ul>
-<li><p>human (or host) demography (<strong>H</strong>-component)
-including births, deaths, aging and migration;</p></li>
-<li><p>malaria epidemiology (<strong>X</strong>-component), in the
-narrow sense; or more generally, the dynamics of infection and immunity
-in the host population;</p></li>
+<li><p><code>xds_obj</code> is a compound [list], and
+<code>class(xds_obj) == "xds_obj"</code></p></li>
+<li>
+<p>Other objects are attached to <code>xds_obj</code>:</p>
+<ul>
+<li><p>objects that define the dynamical system, including parameter
+values, indices for the variables, and initial values of the
+variables</p></li>
+<li><p>objects that define the dynamical interfaces that pass
+information among components</p></li>
+<li><p>the dynamical terms computed by the interfaces</p></li>
+<li><p>the orbits and other outputs of solving the system</p></li>
+<li><p>ports and junctions to add new features</p></li>
 </ul>
 </li>
-<li>
-<p>Adult mosquito ecology and infection dynamics, called the
-<strong>MY</strong>-component</p>
-<ul>
-<li><p>mosquito ecology: the <strong>M</strong>-component</p></li>
-<li><p>mosquito infection dynamics: the
-<strong>Y</strong>-component</p></li>
-<li><p>parasite development: the <strong>Z</strong>-component</p></li>
 </ul>
-</li>
-<li><p>Aquatic mosquito ecology, called the
-<strong>L</strong>-component</p></li>
-</ol>
-<p>These three chunks are connected by two interfaces. The first two
-chunks are connected through the rigid interface describing blood
-feeding and transmission. The last two chunks are connected through egg
-laying and emergence.</p>
-<p>In general, A <em>module</em> describes an element in the model
-library that executes all the functions in one of the core chunks. Since
-the parameter values can be changed, each <em>module</em> defines a
-<em>model family</em> in the form of a system of differential or
-difference equations. A model family is defined by a set of states and
-state transitions (<em>i.e.</em> by the topology of the graph) for a
-single population (<code>nStrata=1</code>).</p>
-<p>For example, the <code>SIS</code> module for the
-<strong>X</strong>-component is the <em>SIS</em> compartmental model
-family for human infections. It’s called a model family because each
-unique set of parameters would define a different <em>model.</em></p>
-<p>In its simplest form, each model family represents the state of a
-single population, but any model can replicate those states and
-sub-divide a single population into sub-populations with different
-parameters. These are population strata for the
-<strong>X</strong>-component; adult mosquitoes are found in patches for
-the <strong>MY</strong>-component; immature mosquitoes in aquatic
-habitats for <strong>L</strong>-component. In
-<strong><code>ramp.xds</code></strong> it is comparatively simple to
-configure a model with multiple strata, patches, and habitats.</p>
+</div>
+<div class="section level3">
+<h3 id="build-a-model">Build a Model<a class="anchor" aria-label="anchor" href="#build-a-model"></a>
+</h3>
+<p>To use <strong><code>ramp.xds</code></strong> at all, the
+<strong><code>xds</code></strong> object must be properly formatted and
+configured, but it was not feasible to do this all at once. Instead, the
+software envisioned model building in two phases: basic and
+advanced.</p>
+<p><strong>Basic Setup</strong> is defined by <a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a>,
+a function that builds a fully defined <strong><code>xds</code></strong>
+object and configures a minimal set of elements. Various partially
+defined models are also built through basic setup (see <a href="#framing-the-problem">Framing the Problem</a>).</p>
+<p><strong>Advanced Setup</strong> handles advanced features, including
+exogenous forcing, vector control, and other modes of malaria control,
+human demography and aging, and host population stratification (see <a href="#scalable-complexity">Scalable Complexity</a>).</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+<h2 id="framing-the-problem">Framing the Problem<a class="anchor" aria-label="anchor" href="#framing-the-problem"></a>
 </h2>
-<p><em>For our purposes, <strong>Basic Setup</strong> encompasses the
-configurable options in <code>xds_setup().</code></em> Each model
-returned by <code>xds_setup</code> is characterized by:</p>
-<ul>
-<li><p>A <em>model family</em> for each dynamical component, including
-model parameters. The model object also stores initial values.</p></li>
-<li><p>The <em>model structure,</em> including the number of patches,
-the number of habitats and their membership in the patches, and the
-number of human population strata and their residency within the
-strata.</p></li>
-<li><p>Functions that define exogenous variables and functional
-responses that drive exogenous forcing by weather and malaria
-control.</p></li>
-</ul>
-<p>The software supports a modular framework for model building that is
-highly flexible and extensible. It’s capable of building very realistic
-models, but progressive setup embraces a model-building philosophy of
-starting simple and adding realism or complexity one step at a time.</p>
-<p>The demo in <a href="GettingStarted.html">Getting Started</a> sets up
-one version of the Ross-Macdonald model. It illustrates how the software
-has streamlined the process of building fairly simple models. The
-following sections describe how to make
-<strong><code>ramp.xds</code></strong> build models that are much more
-complicated and realistic.</p>
-<p>As described in <a href="GettingStarted.html">Getting Started</a>,
-the <code><a href="../reference/xds_setup.html">xds_setup()</a></code> function
-<strong><code>ramp.xds</code></strong> has assigned default options for
-everything. Each model must configure three dynamical components: human
-epidemiology; adult mosquito ecology and infection dynamics; and aquatic
-mosquito ecology. Each one of these three dynamical component is
-configured by specifying a model name (as a string) and options, passed
-as a named list, to override the defaults for the model:</p>
-<ul>
-<li><p><code>Xname</code> dispatches a module for the <strong>X</strong>
-component. The setup default model is <code>Xname="SIS"</code> and
-default parameters for the <code>SIS</code> model are defined in
-<code>make_XH_obj_SIS.</code> To replace the default values at setup, a
-named list can be passed as <code>XHoptions = list(...)</code> and the
-named values in <code>XHoptions</code> will be he values of named
-parameters and the initial values of named variables instead of the
-defaults. (Human demogaphy – the <strong>H</strong>-component – is set
-up as an advanced option.)</p></li>
-<li><p><code>MYname</code> dispatches a module for the
-<strong>MY</strong> component. The setup default model is
-<code>MYname="macdonald"</code> and default parameters for the
-<code>macdonald</code> model are defined in
-<code>make_MY_obj_macdonald.</code> To replace the default values at
-setup, a named list can be passed as <code>MYoptions = list(...)</code>
-and the named values in <code>MYoptions</code> will set the values of
-named parameters and the initial values of named variables instead of
-the defaults.</p></li>
-<li><p><code>Lname</code> dispatches a module for the <strong>L</strong>
-component. The setup default model is the trivial model
-<code>Lname = "trivial"</code>. It has no variables, but it passes the
-outputs – emerging adults – as a parameter. To replace the default
-values at setup, a named list can be passed as
-<code>Loptions = list(...)</code> and the values in
-<code>Loptions</code> will set the values of named parameters and the
-initial values of named variables instead of the defaults.</p></li>
-</ul>
+<p>The first step in any study is to frame the problem. When that
+problem involves building and solving a dynamical system, framing the
+problem involves an iterative process of asking and reasking a question
+until it is in a form that can actually be answered. The starting point
+is often a general question that could spark broad philosophical
+discussions. Framing involves refining the question until the shape of
+the answer is well-defined.</p>
+<p><strong><code>ramp.xds</code></strong> was designed to lower the
+costs of answering questions that would benefit from building and
+solving a dynamical system model of a mosquito-borne pathogen dynamics
+in populations. To understand the process of translating a question into
+a basic setup algorithm, it’s useful to know a little about modular
+computation in <strong><code>ramp.xds</code></strong>, the concepts of
+<em>modularity</em> and <code>trivial</code> modules, and the
+<em>dynamical frame.</em></p>
 <div class="section level3">
-<h3 id="defaults">Defaults<a class="anchor" aria-label="anchor" href="#defaults"></a>
+<h3 id="dynamical-components">Dynamical Components<a class="anchor" aria-label="anchor" href="#dynamical-components"></a>
 </h3>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
-<p>Thu function call:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model1</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>returns the same values as the function call:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model2</span> <span class="op">=</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, </span>
-<span>                   MYname <span class="op">=</span> <span class="st">"macdonald"</span>, </span>
-<span>                   Lname <span class="op">=</span> <span class="st">"trivial"</span><span class="op">)</span></span></code></pre></div>
+<p>Dynamical systems for malaria and other mosquito-borne diseases are
+made up of three core <strong>dynamical components</strong> that
+describe five core processes.</p>
+<ul>
+<li>
+<p><strong>XH</strong> - a system of equations describing two
+inextricably linked processes:</p>
+<ul>
+<li><p><strong>X</strong> - the dynamics of host infection and
+immunity</p></li>
+<li><p><strong>H</strong> - human / host demography and
+behavior</p></li>
+</ul>
+</li>
+<li>
+<p><strong>MY</strong> - a system of equations describing two
+inextricably linked processes:</p>
+<ul>
+<li><p><strong>M</strong> - adult mosquito ecology</p></li>
+<li><p><strong>Y</strong> - parasite / pathogen infection dynamics in
+mosquitoes</p></li>
+</ul>
+</li>
+<li><p><strong>L</strong> - a system of equations describing immature
+mosquito ecology</p></li>
+</ul>
+<p>A generic interface makes it possible to add other variables (see
+<strong>Scalable Complexity,</strong> below)</p>
 </div>
+<div class="section level3">
+<h3 id="dynamical-interfaces">Dynamical Interfaces<a class="anchor" aria-label="anchor" href="#dynamical-interfaces"></a>
+</h3>
+<p>Information is passed among components by two interfaces:</p>
+<ul>
+<li>
+<p>The <strong>X</strong> and <strong>Y</strong> components interact
+through the <strong>XY</strong> Interface. It handles:</p>
+<ul>
+<li><p>blood feeding,</p></li>
+<li><p>parasite transmission; and</p></li>
+<li><p>exposure.</p></li>
+</ul>
+</li>
+<li>
+<p>The <strong>M</strong> and <strong>L</strong> components interact
+through the <strong>ML</strong> Interface. It handles:</p>
+<ul>
+<li><p>the locations of the aquatic habitats,</p></li>
+<li><p>emergence of adult mosquitoes from aquatic habitats; and</p></li>
+<li><p>egg laying.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="trivial-modules">Trivial Modules<a class="anchor" aria-label="anchor" href="#trivial-modules"></a>
+</h3>
+<p>Each one of the dynamical components can be implemented by one of
+several different modules. For each component, one of those modules is
+called the <code>trivial</code> module. The <code>trivial</code> modules
+ignore the inputs that come from other dynamical components, and they
+pass the component’s outputs from a <em>trace function.</em> To focus on
+one component, the <code>trivial</code> modules are configured to pass
+inputs.</p>
+<p>Using <code>trivial</code> modules, it is possible to develop models
+that isolate and study part of a full system.</p>
+</div>
+<div class="section level3">
+<h3 id="the-dynamical-frame">The Dynamical Frame<a class="anchor" aria-label="anchor" href="#the-dynamical-frame"></a>
+</h3>
+<p>If the <strong>MY</strong> component is not trivial, then it will
+need inputs from the other two components, so a full system will need to
+be configured. If, on the other hand, the <strong>M</strong> or
+<strong>Y</strong> component is <code>trivial</code> or unnecessary,
+then either the <strong>L</strong> Component or the <strong>XH</strong>
+component is completely redundant.</p>
+<p>To set up and solve partial systems, the
+<strong><code>xds</code></strong> object defines a <code>frame</code>,
+and <code>class(frame)</code> dispatches functions that solve the
+systems and parse the outputs.</p>
+<p>The <em>dynamical frame</em> is the All <code>xds_setup_*</code>
+functions define <code>xds_obj$frame</code> and the functions used to
+solve and parse differential equations use the <code>S3</code> system,
+with methods that dispatch on <code>class(xds_obj$frame)</code>.</p>
+<ul>
+<li><p><code>xds_setup</code> (<code>frame="full"</code>) sets up all
+three components.</p></li>
+<li>
+<p><code>xds_setup_mosy</code> (<code>frame="mosy"</code>) sets up
+models for mosquito ecology:</p>
+<ul>
+<li>the model includes an <strong>L</strong> component</li>
+<li>the model has an <strong>M</strong> component but no
+<strong>Y</strong> component (<em>eg</em> <a href="https://dd-harp.github.io/ramp.xds/reference/basicM.html">basicM</a>)</li>
+<li>a trivial <strong>H</strong> module can be configured</li>
+<li>the <strong>X</strong> component is not used</li>
+</ul>
+</li>
+<li>
+<p><code>xds_setup_aquatic</code> (<code>frame="aquatic"</code>)
+sets up models of aquatic mosquito ecology:</p>
+<ul>
+<li>a trivial <strong>MY</strong> component is configured for egg
+laying</li>
+<li>the <strong>XH</strong> component is not used</li>
+</ul>
+</li>
+<li>
+<p><code>xds_setup_human</code> (<code>frame="human"</code>) sets up
+models to study epidemiology</p>
+<ul>
+<li>a trivial <strong>MY</strong> component is configured for infectious
+biting in patches</li>
+<li>the <strong>L</strong> component is not used</li>
+</ul>
+</li>
+<li>
+<p><code>xds_setup_eir</code> (<code>frame="eir"</code>) sets up
+models to study epidemiology</p>
+<ul>
+<li>a trace function computes the EIR, denoted </li>
+<li>the <strong>MY</strong> component is not used</li>
+<li>the <strong>XH</strong> component is not used</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2 id="model-structure">Model Structure<a class="anchor" aria-label="anchor" href="#model-structure"></a>
+</h2>
+<p>Model structure has two main parts:</p>
+<ul>
+<li><p><strong>Malaria Landscapes</strong> — a spatial domain is
+subdivided into patches that define adult mosquito populations and the
+aquatic habitats to handle ecological heterogeneity and parasite
+transmission</p></li>
+<li><p><strong>Stratification</strong> — the process of segmenting a
+human population into strata to handle epidemiological heterogeneity.
+Some degree of stratification is made necessary to deal with features of
+the malaria landscape.</p></li>
+</ul>
 <div class="section level3">
 <h3 id="structural-parameters">Structural Parameters<a class="anchor" aria-label="anchor" href="#structural-parameters"></a>
 </h3>
-<p>Structural parameters describe things like the number of patches, the
-number of population strata, the number of aquatic habitats, the number
-of host species, and the number of vector species.
-<code>xds_setup</code> sets up models with one host species and one
-vector species, users can configure a malaria landscape with <em>spatial
-dynamics,</em> structured <em>aquatic habitats,</em> and <em>multiple
-human / host</em> population strata. Basic setup was developed to ensure
-that all interfaces are set up properly when there are multiple patches,
-multiple habitats, multiple population strata, and malaria importation.
-The software and documentation follow the mathematical framework
-formulas and (with small changes) the notation in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" class="external-link">Wu
-SL, <em>et. al.</em> 2023</a>. The following structural parameters can
-be set through <code>xds_setup:</code></p>
+<p>The model <em>structure</em> is characterized by several core
+parameters. The values of these parameters are set during basic
+setup:</p>
 <ul>
-<li><p><strong><code>nPatches</code></strong> or <span class="math inline">\(n_p\)</span> is the number of patches in the
+<li><p><strong><code>nPatches</code></strong> or <span class="math inline">\(n_p\)</span> — the number of patches in the
 model.</p></li>
-<li><p><strong><code>membership</code></strong> is set up by passing a
-vector with the identity of patch where each habitat can be found, and
-it sets up the habitat membership matrix, <span class="math inline">\(N\)</span>. Setup sets the value of a variable
-describing the number of habitats, <span class="math inline">\(n_q\)</span> =
-<strong><code>nHabitats &lt;- length(membership)</code>.</strong> One
-configurable option is <strong><code>searchQ</code></strong> with the
-habitat search weights.</p></li>
-<li><p><strong><code>HPop</code></strong> is a vector with human
-population density, and <strong><code>residence</code></strong> is a
-vector describing the location of the patch where each stratum resides.
-Setup checks that <code>length(HPop) == length(residence)</code> and
-sets the number of strata, <span class="math inline">\(n_h\)</span> or
-<strong><code>nStrata &lt;- length(residence)</code>.</strong> It is
-also possible to configure heterogeneous biting at the command line by
-passing <strong><code>searchH</code></strong></p></li>
+<li><p><strong><code>nHabitats</code></strong> or <span class="math inline">\(n_q\)</span> — the number of habitats in the
+model</p></li>
+<li><p><strong><code>membership</code></strong> — a vector describing
+patch membership of the habitats</p></li>
+<li><p><strong><code>nStrata</code></strong> or <span class="math inline">\(n_h\)</span> — is the number of human / host
+population strata</p></li>
+<li><p><strong><code>residence</code></strong> — a vector describing the
+index of the patch where a stratum resides</p></li>
+<li><p><strong><code>nVectorSpecies</code></strong> — the number of
+vector species</p></li>
+<li><p><strong><code>nHostSpecies</code></strong> — the number of host
+species</p></li>
 </ul>
-<p>The full list of configurable options for <code>xds_setup</code> is
-found by asking for help in R:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">?</span><span class="va">xds_setup</span></span></code></pre></div>
+<p>The following discusses how these are configured during setup.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="dynamical-components-1">Dynamical Components<a class="anchor" aria-label="anchor" href="#dynamical-components-1"></a>
+</h2>
+<p>The modules for the dynamical components are assigned by three
+arguments:</p>
+<ul>
+<li><p><code>Xname</code> — the name of an <strong>X</strong> module
+(see <a href="https://dd-harp.github.io/ramp.xds/reference/XH_module_list.html">XH_module_list</a>)</p></li>
+<li><p><code>MYname</code> — the name of an <strong>MY</strong> module
+(see <a href="https://dd-harp.github.io/ramp.xds/reference/MY_module_list.html">MY_module_list</a>)</p></li>
+<li><p><code>Lname</code> — the name of a <strong>L</strong> module (see
+<a href="https://dd-harp.github.io/ramp.xds/reference/L_module_list.html">L_module_list</a>)</p></li>
+</ul>
+<div class="section level3">
+<h3 id="xh-component">XH Component<a class="anchor" aria-label="anchor" href="#xh-component"></a>
+</h3>
+<p>The <strong>XH</strong> component handles both the <strong>X</strong>
+and <strong>H</strong> components. They are designed to handle different
+processes, so they are handled differently.</p>
+<div class="section level4">
+<h4 id="x">
+<strong>X</strong><a class="anchor" aria-label="anchor" href="#x"></a>
+</h4>
+<p>The <strong>X</strong> component defines a set of state variables to
+model disease dynamics: the base model is developed for a single
+homogeneous population.</p>
+<ul>
+<li><p><code>Xname</code> dispatches setup functions that configure the
+<strong>X</strong> component ( See <a href="https://dd-harp.github.io/ramp.xds/reference/XH_module_list.html">XH_module_list</a>
+for a list of modules).</p></li>
+<li><p>the default is <code>Xname = "SIS"</code></p></li>
+<li><p><code>HPop</code> is a required argument</p></li>
+<li>
+<p>If <code>nPatches&gt;1</code>, a <code>residence</code> vector
+should be passed:</p>
+<ul>
+<li><p><code>length(HPop) = length(residence)</code></p></li>
+<li><p>a time spent matrix should be set up</p></li>
+<li><p>blood search weights can be set by argument .</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level4">
+<h4 id="h">
+<strong>H</strong><a class="anchor" aria-label="anchor" href="#h"></a>
+</h4>
+<p>The <strong>H</strong> Component is defined by two ports:</p>
+<ul>
+<li><p><code>Births</code> – a function that adds individuals to the
+population.</p></li>
+<li><p><code>D</code> – a linear demographic operator that handles
+mortality and flows among strata</p></li>
+</ul>
+<p>Basic Setup sets up <em>no effect</em> models by default (no births
+or deaths), and trivial forcing.</p>
+<p>Complexity and realism are added through a process called
+<em>principled stratification.</em> The state variable vector is
+replicated across multiple strata to handle:</p>
+<ul>
+<li><p>epidemiological heterogeneous parameters</p></li>
+<li><p>human age and cohort dynamics</p></li>
+<li><p>migration</p></li>
+</ul>
+<p>Advanced setup options for the <strong>H</strong> component,
+including <em>principled stratification</em> are in <a href="https://dd-harp.github.io/ramp.demog/" class="external-link"><strong><code>ramp.demog</code></strong></a>.</p>
+</div>
 </div>
 <div class="section level3">
-<h3 id="spatial-dynamics">Spatial Dynamics<a class="anchor" aria-label="anchor" href="#spatial-dynamics"></a>
+<h3 id="my-component">MY Component<a class="anchor" aria-label="anchor" href="#my-component"></a>
 </h3>
+<p>Basic setup for the <strong>MY</strong> component</p>
+<ul>
+<li><p><code>MYname</code> dispatches setup functions that configure the
+<strong>MY</strong> component ( See <a href="https://dd-harp.github.io/ramp.xds/reference/MY_module_list.html">MY_module_list</a>
+for a list of modules).</p></li>
+<li><p>the default is <code>MYname = "SI"</code></p></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="l-component">L Component<a class="anchor" aria-label="anchor" href="#l-component"></a>
+</h3>
+<p>Basic setup for the <strong>L</strong> component</p>
+<ul>
+<li><p><code>Lname</code> dispatches setup functions that configure the
+<strong>L</strong> component ( See <a href="https://dd-harp.github.io/ramp.xds/reference/L_module_list.html">L_module_list</a>
+for a list of modules).</p></li>
+<li><p>the default is <code>Lname = "trivial"</code></p></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="trivial-modules-1">Trivial Modules<a class="anchor" aria-label="anchor" href="#trivial-modules-1"></a>
+</h3>
+<p>The trivial modules configure <em>trace functions</em> to pass
+outputs. The trace functions are designed around the concept of a
+<em>constructed time series</em> with the form: <span class="math display">\[ m\; S(t)\;  T(t) \; K(t)\]</span> where + <span class="math inline">\(m\)</span> - is the mean + <span class="math inline">\(S(t)\)</span> or <code>F_season</code> outputs a
+seasonal pattern + <span class="math inline">\(T(t)\)</span> or
+<code>F_trend</code> outputs a trend + <span class="math inline">\(K(t)\)</span> or <code>F_shock</code> outputs a
+perturbation</p>
+<p>These functions are set up using a built-in function maker called <a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html">make_function</a>.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="spatial-dynamics">Spatial Dynamics<a class="anchor" aria-label="anchor" href="#spatial-dynamics"></a>
+</h2>
 <ul>
 <li>
 <p>If <code>nPatches &gt;1</code> then other setup-configurable
 options are to pass:</p>
 <ul>
-<li><p>Values for the search weights (see [search_weights])</p></li>
-<li><p>Options to set up the mosquito dispersal matrix, <span class="math inline">\(K\)</span> (see [mosquito_dispersal])</p></li>
-<li><p>Options to set up a time spent matrix, <span class="math inline">\(\Theta\)</span> (see [time_spent])</p></li>
+<li><p>Values for the search weights (see <a href="https://dd-harp.github.io/ramp.xds/reference/search_weights.html">search_weights</a>)</p></li>
+<li><p>Options to set up the mosquito dispersal matrix, <span class="math inline">\(K\)</span> (see <a href="https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.html">mosquito_dispersal</a>)</p></li>
+<li><p>Options to set up a time spent matrix, <span class="math inline">\(\Theta\)</span> (see <a href="https://dd-harp.github.io/ramp.xds/reference/time_spent.html">time_spent</a>)</p></li>
 </ul>
 </li>
 </ul>
 <p>To learn more, we suggest taking a look at the <a href="https://faculty.washington.edu/smitdave/simba/model534.html" class="external-link">5-3-4
 Vignette</a>, a model with 5 aquatic habitats, 3 patches, and 4 human
 population strata.</p>
+</div>
+<div class="section level2">
+<h2 id="nimble-model-building-scalable-complexity">Nimble Model Building &amp; Scalable Complexity<a class="anchor" aria-label="anchor" href="#nimble-model-building-scalable-complexity"></a>
+</h2>
+<p><strong>Nimble Model Building</strong> and <strong>Scalable
+complexity</strong> are concepts that guided development of
+<strong><code>ramp.xds</code></strong>.</p>
+<div class="section level3">
+<h3 id="scalable-complexity">Scalable Complexity<a class="anchor" aria-label="anchor" href="#scalable-complexity"></a>
+</h3>
+<p>Motivating the concept of scalable complexity was that simple models
+tend to work just fine most of the time, and there was sometimes a need
+for models that were vastly more realistic. The point of
+<strong><code>ramp.xds</code></strong> was to help users build models
+that were <em>fit for purpose,</em> but what is the right level of
+complexity? A famous quote, that <a href="https://quoteinvestigator.com/2011/05/13/einstein-simple/" class="external-link">maybe
+wasn’t Einstein</a>:</p>
+<blockquote>
+<p><em>Everything should be made as simple as possible, but not
+simpler.</em></p>
+</blockquote>
+<p>The quote conveys an important idea — no matter who said it — but it
+does not offer any practical guidelines. How would you ever know without
+building some models that have clearly gone too far?</p>
+<p>Model building was thus designed to construct models with a high
+degree of realism one step at a time.</p>
+</div>
+<div class="section level3">
+<h3 id="nimble-model-building">Nimble Model Building<a class="anchor" aria-label="anchor" href="#nimble-model-building"></a>
+</h3>
+<p>Analysts who work with malaria programs will need to modify their
+models to suit the changing priorities of the malaria program.</p>
+</div>
+<div class="section level3">
+<h3 id="human-demography">Human Demography<a class="anchor" aria-label="anchor" href="#human-demography"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="principled-stratification">Principled Stratification<a class="anchor" aria-label="anchor" href="#principled-stratification"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="adding-species">Adding Species<a class="anchor" aria-label="anchor" href="#adding-species"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="mosquito-bionomics">Mosquito Bionomics<a class="anchor" aria-label="anchor" href="#mosquito-bionomics"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="blood-feeding">Blood Feeding<a class="anchor" aria-label="anchor" href="#blood-feeding"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="malaria-importation">Malaria Importation<a class="anchor" aria-label="anchor" href="#malaria-importation"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="weather">Weather<a class="anchor" aria-label="anchor" href="#weather"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
+</h3>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

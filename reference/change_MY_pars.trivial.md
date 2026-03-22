@@ -1,4 +1,4 @@
-# Set **MY** Component parameters for `trivial`
+# Change parameters for `trivial` (**MY**)
 
 This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 

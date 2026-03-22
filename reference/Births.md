@@ -1,4 +1,4 @@
-# Human (or Host) Population Birth Rate
+# Human (or Host) population birth rate
 
 This method dispatches on the type of xds_obj\$Hpar\$Births
 

@@ -53,34 +53,33 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
-<li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
+<li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-human-host">
-<li><a class="dropdown-item" href="../articles/XH-interface.html">XH Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-xh">
+<li><a class="dropdown-item" href="../articles/XH-interface.html">Human / Host Component (XH)</a></li>
     <li><a class="dropdown-item" href="../articles/human_sis.html">The SIS Module</a></li>
     <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
-<li><a class="dropdown-item" href="../articles/MY-interface.html">The MY Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-my" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">MY</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-my">
+<li><a class="dropdown-item" href="../articles/MY-interface.html">Adult Mosquito Component (MY)</a></li>
     <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeM.html">Generalized Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
-<li><a class="dropdown-item" href="../articles/L-interface.html">The L Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-l" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">L</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-l">
+<li><a class="dropdown-item" href="../articles/L-interface.html">Aquatic Mosquito Component (L)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
@@ -120,14 +119,14 @@ the equations in <strong>modular form,</strong> a stylized way of
 presenting a dynamical system that emphasizes the biological agents
 involved in the underlying process. Here, we rewrite a simple dynamical
 system in modular form, so the equations mirror the implementation in
-<code>ramp.xds.</code> For a longer discussion and examples, see <a href="modularity.html">Modularity</a>.</p>
+<code>ramp.xds</code>. For a longer discussion and examples, see <a href="modularity.html">Modularity</a>.</p>
 <div class="section level2">
 <h2 id="a-standard-form">A Standard Form<a class="anchor" aria-label="anchor" href="#a-standard-form"></a>
 </h2>
 <p>A mathematical framework for building modular models of malaria
 dynamics and control (and other mosquito-borne pathogens) was described
 in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" target="_blank" class="external-link">Spatial Dynamics of Malaria Transmission</a>, and that
-framework has been implemented in <code>ramp.xds.</code></p>
+framework has been implemented in <code>ramp.xds</code>.</p>
 <p>There is no <em>standard form</em> for writing down systems of
 differential equations, but some forms are preferred by scientists or
 mathematicians, depending on training and context.</p>
@@ -321,7 +320,7 @@ demography and ports for mass treatment. The code looks like this:</p>
 <span><span class="co">##         })</span></span>
 <span><span class="co">##     })</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x55f30d487640&gt;</span></span>
+<span><span class="co">## &lt;bytecode: 0x55d2045e70a0&gt;</span></span>
 <span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
 <p>Derivatives for the mosquito ecology and “SI” model are computed by
 <code>dMYdt.SI</code>. Documentation is available through help in two
@@ -344,7 +343,7 @@ like this:</p>
 <span><span class="co">##         })</span></span>
 <span><span class="co">##     })</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x55f30d6741a8&gt;</span></span>
+<span><span class="co">## &lt;bytecode: 0x55d2047cdeb8&gt;</span></span>
 <span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
 <p>The term <span class="math inline">\(\Lambda\)</span> is passed from
 the trace function <code>F_emerge.trivial</code>. Documentation is
@@ -358,7 +357,7 @@ available through help in two ways: <code><a href="../reference/trivial_L.html">
 <span><span class="co">##         return(Lambda * F_season(t) * F_trend(t) * F_shock(t))</span></span>
 <span><span class="co">##     })</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x55f30d855ab0&gt;</span></span>
+<span><span class="co">## &lt;bytecode: 0x55d2049af7c0&gt;</span></span>
 <span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

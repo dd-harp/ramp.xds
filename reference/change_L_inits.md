@@ -1,4 +1,4 @@
-# Set **L** Component Initial Values
+# Change initial values (**L**)
 
 This sets initial values for an **L** Component module from a named list
 

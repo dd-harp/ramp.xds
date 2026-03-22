@@ -1,4 +1,4 @@
-# Get the Seasonal Pattern
+# Get seasonality parameters
 
 Get the parameters for the seasonal pattern forcing the model
 

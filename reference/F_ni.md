@@ -1,4 +1,4 @@
-# Compute Net Infectiousness (NI)
+# Compute net infectiousness (NI)
 
 A function to compute NI as an output
 

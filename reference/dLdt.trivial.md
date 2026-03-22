@@ -1,4 +1,4 @@
-# Derivatives for `trivial` (**L**)
+# Compute derivatives for `trivial` (**L**)
 
 Returns a numeric vector of length 0
 

@@ -5,7 +5,7 @@ be understood by rewriting the equations in **modular form,** a stylized
 way of presenting a dynamical system that emphasizes the biological
 agents involved in the underlying process. Here, we rewrite a simple
 dynamical system in modular form, so the equations mirror the
-implementation in `ramp.xds.` For a longer discussion and examples, see
+implementation in `ramp.xds`. For a longer discussion and examples, see
 [Modularity](https://dd-harp.github.io/ramp.xds/articles/modularity.md).
 
 ## A Standard Form
@@ -14,7 +14,7 @@ A mathematical framework for building modular models of malaria dynamics
 and control (and other mosquito-borne pathogens) was described in
 [Spatial Dynamics of Malaria
 Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684),
-and that framework has been implemented in `ramp.xds.`
+and that framework has been implemented in `ramp.xds`.
 
 There is no *standard form* for writing down systems of differential
 equations, but some forms are preferred by scientists or mathematicians,
@@ -212,7 +212,7 @@ getS3method("dXHdt", "SIS")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x55f30d487640>
+    ## <bytecode: 0x55d2045e70a0>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -239,7 +239,7 @@ getS3method("dMYdt", "SI")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x55f30d6741a8>
+    ## <bytecode: 0x55d2047cdeb8>
     ## <environment: namespace:ramp.xds>
 
 The term \\\Lambda\\ is passed from the trace function
@@ -259,5 +259,5 @@ getS3method("F_emerge", "trivial")
     ##         return(Lambda * F_season(t) * F_trend(t) * F_shock(t))
     ##     })
     ## }
-    ## <bytecode: 0x55f30d855ab0>
+    ## <bytecode: 0x55d2049af7c0>
     ## <environment: namespace:ramp.xds>

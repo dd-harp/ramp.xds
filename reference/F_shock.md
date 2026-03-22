@@ -1,6 +1,6 @@
-# Plot the Temporal Trend
+# Compute the temporal shock
 
-For a model with temporal forcing, show the temporal trend
+Evaluate the function `F_shock` for a forced model.
 
 ## Usage
 
@@ -20,4 +20,4 @@ F_shock(tm, xds_obj)
 
 ## Value
 
-the temporal trend, invisibly
+the temporal shock, invisibly

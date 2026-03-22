@@ -36,28 +36,27 @@
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-human-host"><li><a class="dropdown-item" href="../articles/XH-interface.html">XH Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-xh"><li><a class="dropdown-item" href="../articles/XH-interface.html">Human / Host Component (XH)</a></li>
     <li><a class="dropdown-item" href="../articles/human_sis.html">The SIS Module</a></li>
     <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes"><li><a class="dropdown-item" href="../articles/MY-interface.html">The MY Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-my" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">MY</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-my"><li><a class="dropdown-item" href="../articles/MY-interface.html">Adult Mosquito Component (MY)</a></li>
     <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeM.html">Generalized Macdonald model</a></li>
   </ul></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes"><li><a class="dropdown-item" href="../articles/L-interface.html">The L Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-l" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">L</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-l"><li><a class="dropdown-item" href="../articles/L-interface.html">Aquatic Mosquito Component (L)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul></li>
@@ -146,7 +145,7 @@
           <code><a href="xds_help_basic_setup.html">xds_help_basic_setup</a></code>
 
         </dt>
-        <dd><strong><code>ramp.xds</code></strong>: Guide to Basic Setup</dd>
+        <dd><strong><code>ramp.xds</code></strong>: Basic Setup</dd>
       </dl></div><div class="section level2">
 
       <h3 id="dynamical-modules">Dynamical Modules<a class="anchor" aria-label="anchor" href="#dynamical-modules"></a></h3>
@@ -169,7 +168,7 @@
           <code><a href="XH_module_list.html">XH_module_list</a></code>
 
         </dt>
-        <dd>XH Modules</dd>
+        <dd>XH modules</dd>
 
         <dt>
 
@@ -183,7 +182,7 @@
           <code><a href="L_module_list.html">L_module_list</a></code>
 
         </dt>
-        <dd>L Modules</dd>
+        <dd>L modules</dd>
       </dl></div><div class="section level2">
 
       <h3 id="model-structure">Model Structure<a class="anchor" aria-label="anchor" href="#model-structure"></a></h3>
@@ -206,7 +205,7 @@
           <code><a href="human_populations.html">human_populations</a></code>
 
         </dt>
-        <dd>The Human Population</dd>
+        <dd>The human population</dd>
 
         <dt>
 
@@ -340,7 +339,7 @@
           <code><a href="dts_stable_orbit.html">dts_stable_orbit()</a></code>
 
         </dt>
-        <dd>Solve for the steady state or stable orbit of a system of equations</dd>
+        <dd>Compute the stable orbit for a discrete time system</dd>
 
         <dt>
 
@@ -400,21 +399,21 @@
           <code><a href="get_XH_orbits.html">get_XH_orbits()</a></code>
 
         </dt>
-        <dd>Get <strong>XH</strong> outputs</dd>
+        <dd>Get orbits (<strong>XH</strong>)</dd>
 
         <dt>
 
           <code><a href="get_MY_orbits.html">get_MY_orbits()</a></code>
 
         </dt>
-        <dd>Get <strong>MY</strong> outputs</dd>
+        <dd>Get orbits (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="get_L_orbits.html">get_L_orbits()</a></code>
 
         </dt>
-        <dd>Get <strong>L</strong> outputs</dd>
+        <dd>Get orbits (<strong>L</strong>)</dd>
 
         <dt>
 
@@ -428,7 +427,7 @@
           <code><a href="get_PR.html">get_PR()</a></code>
 
         </dt>
-        <dd>Get the <em>Pf</em>PR from a Malaria Model</dd>
+        <dd>Get the <em>Pf</em>PR from a malaria model</dd>
       </dl></div><div class="section level2">
 
       <h3 id="compute-steady-states">Compute Steady States<a class="anchor" aria-label="anchor" href="#compute-steady-states"></a></h3>
@@ -444,28 +443,28 @@
           <code><a href="xds_steady.html">xds_steady()</a></code>
 
         </dt>
-        <dd>Solve for the steady state of a system of equations using <a href="https://rdrr.io/pkg/rootSolve/man/steady.html" class="external-link">rootSolve::steady</a></dd>
+        <dd>Solve for the steady state</dd>
 
         <dt>
 
           <code><a href="dts_steady.html">dts_steady()</a></code>
 
         </dt>
-        <dd>Solve for the steady state of a system of equations</dd>
+        <dd>Compute the steady state of a discrete time system</dd>
 
         <dt>
 
           <code><a href="steady_state_X.html">steady_state_X()</a></code>
 
         </dt>
-        <dd>Steady States for <strong>X</strong></dd>
+        <dd>Steady states for <strong>X</strong></dd>
 
         <dt>
 
           <code><a href="steady_state_XH.html">steady_state_XH()</a></code>
 
         </dt>
-        <dd>Steady States for <strong>XH</strong></dd>
+        <dd>Steady states for <strong>XH</strong></dd>
 
         <dt>
 
@@ -493,7 +492,7 @@
           <code><a href="steady_state_L.html">steady_state_L()</a></code>
 
         </dt>
-        <dd>Compute steady states for <strong>L</strong> Component Modules</dd>
+        <dd>Compute steady states for <strong>L</strong> component modules</dd>
       </dl></div><div class="section level2">
       <h2 id="plot">Plot<a class="anchor" aria-label="anchor" href="#plot"></a></h2>
 
@@ -538,8 +537,8 @@
         <dd>Add lines for the EIR <em>vs.</em> time</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="mosquito">Mosquito<a class="anchor" aria-label="anchor" href="#mosquito"></a></h3>
-      <div class="section-desc"><p>Compute Steady States &amp; Stable Orbits</p></div>
+      <h3 id="adult-mosquito">Adult Mosquito<a class="anchor" aria-label="anchor" href="#adult-mosquito"></a></h3>
+      <div class="section-desc"><p>Plot common variables and terms</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -579,14 +578,14 @@
           <code><a href="xds_plot_Z.html">xds_plot_Z()</a></code>
 
         </dt>
-        <dd>Plot the density of infected and infective mosquitoes</dd>
+        <dd>Plot the density of infective mosquitoes</dd>
 
         <dt>
 
           <code><a href="xds_lines_Z.html">xds_lines_Z()</a></code>
 
         </dt>
-        <dd>Add lines for the density of infected and infective mosquitoes</dd>
+        <dd>Add lines for the density of infective mosquitoes</dd>
 
         <dt>
 
@@ -617,6 +616,29 @@
         <dd>Add lines for the fraction of infected and infective mosquitoes</dd>
       </dl></div><div class="section level2">
 
+      <h3 id="aquatic-mosquito">Aquatic Mosquito<a class="anchor" aria-label="anchor" href="#aquatic-mosquito"></a></h3>
+      <div class="section-desc"><p>Plot common variables and terms</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_plot_L.html">xds_plot_L()</a></code>
+
+        </dt>
+        <dd>Plot aquatic mosquito population density</dd>
+
+        <dt>
+
+          <code><a href="xds_lines_L.html">xds_lines_L()</a></code>
+
+        </dt>
+        <dd>Add lines for aquatic mosquito population density</dd>
+      </dl></div><div class="section level2">
+
       <h3 id="show-forcing">Show Forcing<a class="anchor" aria-label="anchor" href="#show-forcing"></a></h3>
       <div class="section-desc"><p>Show patterns for forced systems</p></div>
 
@@ -644,7 +666,7 @@
           <code><a href="show_shock.html">show_shock()</a></code>
 
         </dt>
-        <dd>Plot the Temporal shock</dd>
+        <dd>Plot the temporal shock</dd>
       </dl></div><div class="section level2">
       <h2 id="get">Get<a class="anchor" aria-label="anchor" href="#get"></a></h2>
 
@@ -665,21 +687,21 @@
           <code><a href="get_XH_orbits.html">get_XH_orbits()</a></code>
 
         </dt>
-        <dd>Get <strong>XH</strong> outputs</dd>
+        <dd>Get orbits (<strong>XH</strong>)</dd>
 
         <dt>
 
           <code><a href="get_L_orbits.html">get_L_orbits()</a></code>
 
         </dt>
-        <dd>Get <strong>L</strong> outputs</dd>
+        <dd>Get orbits (<strong>L</strong>)</dd>
 
         <dt>
 
           <code><a href="get_PR.html">get_PR()</a></code>
 
         </dt>
-        <dd>Get the <em>Pf</em>PR from a Malaria Model</dd>
+        <dd>Get the <em>Pf</em>PR from a malaria model</dd>
 
         <dt>
 
@@ -693,7 +715,7 @@
           <code><a href="get_H.html">get_H()</a></code>
 
         </dt>
-        <dd>Get the initial values as a vector</dd>
+        <dd>Get human population density</dd>
 
         <dt>
 
@@ -716,7 +738,7 @@
           <code><a href="get_XH_pars.html">get_XH_pars()</a></code>
 
         </dt>
-        <dd>Return the parameters as a list</dd>
+        <dd>Get parameters (<strong>XH</strong>)</dd>
 
         <dt>
 
@@ -730,7 +752,7 @@
           <code><a href="get_MY_pars.html">get_MY_pars()</a></code>
 
         </dt>
-        <dd>Return the parameters as a list</dd>
+        <dd>Get parameters (<strong>MY</strong>)</dd>
 
         <dt>
 
@@ -772,7 +794,7 @@
           <code><a href="get_L_pars.html">get_L_pars()</a></code>
 
         </dt>
-        <dd>Get parameters for the <strong>L</strong> Component module</dd>
+        <dd>Get parameters (<strong>L</strong>)</dd>
 
         <dt>
 
@@ -795,7 +817,7 @@
           <code><a href="get_XH_vars.html">get_XH_vars()</a></code>
 
         </dt>
-        <dd>Get Variables by Name</dd>
+        <dd>List variables (<strong>XH</strong>)</dd>
 
         <dt>
 
@@ -809,7 +831,7 @@
           <code><a href="get_MY_vars.html">get_MY_vars()</a></code>
 
         </dt>
-        <dd>Return the variables as a list</dd>
+        <dd>List variables (<strong>MY</strong>)</dd>
 
         <dt>
 
@@ -823,14 +845,14 @@
           <code><a href="get_L_vars.html">get_L_vars()</a></code>
 
         </dt>
-        <dd>List <strong>L</strong> Component Variables</dd>
+        <dd>List variables (<strong>L</strong>)</dd>
 
         <dt>
 
           <code><a href="get_L_inits.html">get_L_inits()</a></code>
 
         </dt>
-        <dd>Get Initial Values for the <strong>L</strong> Component</dd>
+        <dd>Get initial values (<strong>L</strong>)</dd>
 
         <dt>
 
@@ -860,28 +882,28 @@
           <code><a href="get_season.html">get_season()</a></code>
 
         </dt>
-        <dd>Get the Seasonal Pattern</dd>
+        <dd>Get seasonality parameters</dd>
 
         <dt>
 
           <code><a href="get_season_phase.html">get_season_phase()</a></code>
 
         </dt>
-        <dd>Get phase</dd>
+        <dd>Get seasonality parameter <code>phase</code></dd>
 
         <dt>
 
           <code><a href="get_season_bottom.html">get_season_bottom()</a></code>
 
         </dt>
-        <dd>Get phase</dd>
+        <dd>Get seasonality parameter <code>bottom</code></dd>
 
         <dt>
 
           <code><a href="get_season_pw.html">get_season_pw()</a></code>
 
         </dt>
-        <dd>Get pw for seasonality</dd>
+        <dd>Get seasonality parameter <code>pw</code></dd>
 
         <dt>
 
@@ -889,6 +911,13 @@
 
         </dt>
         <dd>Get the trend parameters</dd>
+
+        <dt>
+
+          <code><a href="get_shock.html">get_shock()</a></code>
+
+        </dt>
+        <dd>Get the shock parameters</dd>
 
         <dt>
 
@@ -918,21 +947,21 @@
           <code><a href="change_XH_pars.html">change_XH_pars()</a></code>
 
         </dt>
-        <dd>Set new X parameter values</dd>
+        <dd>Change parameters (<strong>XH</strong>)</dd>
 
         <dt>
 
           <code><a href="change_MY_pars.html">change_MY_pars()</a></code>
 
         </dt>
-        <dd>Set new MY parameter values</dd>
+        <dd>Change parameters (<strong>MY</strong>)</dd>
 
         <dt>
 
           <code><a href="change_L_pars.html">change_L_pars()</a></code>
 
         </dt>
-        <dd>Set <strong>L</strong> Component Parameters</dd>
+        <dd>Change parameters (<strong>L</strong>)</dd>
 
         <dt>
 
@@ -946,14 +975,14 @@
           <code><a href="change_mean_forcing.html">change_mean_forcing()</a></code>
 
         </dt>
-        <dd>Set mean forcing</dd>
+        <dd>Change mean forcing</dd>
 
         <dt>
 
           <code><a href="change_season.html">change_season()</a></code>
 
         </dt>
-        <dd>Get seasonal pattern</dd>
+        <dd>Change season parameters</dd>
 
         <dt>
 
@@ -1013,35 +1042,35 @@
           <code><a href="XH_module_list.html">XH_module_list</a></code>
 
         </dt>
-        <dd>XH Modules</dd>
+        <dd>XH modules</dd>
 
         <dt>
 
           <code><a href="XH_functions.html">XH_functions</a></code>
 
         </dt>
-        <dd>Generic Methods for the XH Component</dd>
+        <dd>Generic methods for the XH component</dd>
 
         <dt>
 
           <code><a href="XH_get.html">XH_get</a></code>
 
         </dt>
-        <dd>Get Functions for XH</dd>
+        <dd>Get functions for XH</dd>
 
         <dt>
 
           <code><a href="XH_change.html">XH_change</a></code>
 
         </dt>
-        <dd>A List of Functions to Change the XH Component</dd>
+        <dd>A list of functions to change the XH component</dd>
 
         <dt>
 
           <code><a href="XH_setup.html">XH_setup</a></code>
 
         </dt>
-        <dd>Setup Functions for the XH Component</dd>
+        <dd>Setup functions for the XH component</dd>
       </dl></div><div class="section level2">
 
       <h3 id="modules">Modules<a class="anchor" aria-label="anchor" href="#modules"></a></h3>
@@ -1057,21 +1086,21 @@
           <code><a href="trivial_XH.html">trivial_XH</a></code>
 
         </dt>
-        <dd><code>trivial</code> — <strong>XH</strong> Module</dd>
+        <dd><code>trivial</code> — <strong>XH</strong> module</dd>
 
         <dt>
 
           <code><a href="SIS.html">SIS</a></code>
 
         </dt>
-        <dd>The <code>SIS</code> Module for the XH Component</dd>
+        <dd>The <code>SIS</code> module for the XH component</dd>
 
         <dt>
 
           <code><a href="hMoI.html">hMoI</a></code>
 
         </dt>
-        <dd>The <code>hMoI</code> Module for the XH Component</dd>
+        <dd>The <code>hMoI</code> module for the XH component</dd>
       </dl></div><div class="section level2">
 
       <h3 id="time-spent">Time Spent<a class="anchor" aria-label="anchor" href="#time-spent"></a></h3>
@@ -1138,21 +1167,21 @@
           <code><a href="change_XH_inits.html">change_XH_inits()</a></code>
 
         </dt>
-        <dd>Set new X parameter values</dd>
+        <dd>Change initial values (<strong>XH</strong>)</dd>
 
         <dt>
 
           <code><a href="get_XH_pars.html">get_XH_pars()</a></code>
 
         </dt>
-        <dd>Return the parameters as a list</dd>
+        <dd>Get parameters (<strong>XH</strong>)</dd>
 
         <dt>
 
           <code><a href="change_XH_pars.html">change_XH_pars()</a></code>
 
         </dt>
-        <dd>Set new X parameter values</dd>
+        <dd>Change parameters (<strong>XH</strong>)</dd>
 
         <dt>
 
@@ -1180,14 +1209,14 @@
           <code><a href="steady_state_X.html">steady_state_X()</a></code>
 
         </dt>
-        <dd>Steady States for <strong>X</strong></dd>
+        <dd>Steady states for <strong>X</strong></dd>
 
         <dt>
 
           <code><a href="steady_state_XH.html">steady_state_XH()</a></code>
 
         </dt>
-        <dd>Steady States for <strong>XH</strong></dd>
+        <dd>Steady states for <strong>XH</strong></dd>
       </dl></div><div class="section level2">
       <h2 id="my-component">MY Component<a class="anchor" aria-label="anchor" href="#my-component"></a></h2>
 
@@ -1247,7 +1276,7 @@
           <code><a href="trivial_MY.html">trivial_MY</a></code>
 
         </dt>
-        <dd><code>trivial</code> — <strong>MY</strong> Module</dd>
+        <dd><code>trivial</code> — <strong>MY</strong> module</dd>
 
         <dt>
 
@@ -1261,28 +1290,28 @@
           <code><a href="SI.html">SI</a></code>
 
         </dt>
-        <dd>The <code>SI</code> Module for the MY Component</dd>
+        <dd>The <code>SI</code> module for the MY component</dd>
 
         <dt>
 
           <code><a href="macdonald.html">macdonald</a></code>
 
         </dt>
-        <dd>The <code>macdonald</code> Module (MY Component)</dd>
+        <dd>The <code>macdonald</code> module (MY component)</dd>
 
         <dt>
 
           <code><a href="GeM.html">GeM</a></code>
 
         </dt>
-        <dd>The <code>GeM</code> Module for the MY Component</dd>
+        <dd>The <code>GeM</code> module for the MY component</dd>
 
         <dt>
 
           <code><a href="RMdts.html">RMdts</a></code>
 
         </dt>
-        <dd>The <code>RMdts</code> Module for the MY Component</dd>
+        <dd>The <code>RMdts</code> module for the MY component</dd>
       </dl></div><div class="section level2">
       <h2 id="l-component">L Component<a class="anchor" aria-label="anchor" href="#l-component"></a></h2>
 
@@ -1298,35 +1327,35 @@
           <code><a href="L_functions.html">L_functions</a></code>
 
         </dt>
-        <dd>Generic Methods for the L Component</dd>
+        <dd>Generic methods for the L component</dd>
 
         <dt>
 
           <code><a href="L_module_list.html">L_module_list</a></code>
 
         </dt>
-        <dd>L Modules</dd>
+        <dd>L modules</dd>
 
         <dt>
 
           <code><a href="L_get.html">L_get</a></code>
 
         </dt>
-        <dd>Get Functions for the L Component</dd>
+        <dd>Get functions (<strong>L</strong>)</dd>
 
         <dt>
 
           <code><a href="L_change.html">L_change</a></code>
 
         </dt>
-        <dd>Change Functions for the L Component</dd>
+        <dd>Change functions (<strong>L</strong>)</dd>
 
         <dt>
 
           <code><a href="L_setup.html">L_setup</a></code>
 
         </dt>
-        <dd>Setup Functions for the L Component</dd>
+        <dd>Setup functions (<strong>L</strong>)</dd>
       </dl></div><div class="section level2">
 
       <h3 id="l-modules">L Modules<a class="anchor" aria-label="anchor" href="#l-modules"></a></h3>
@@ -1342,14 +1371,14 @@
           <code><a href="trivial_L.html">trivial_L</a></code>
 
         </dt>
-        <dd><code>trivial</code> — <strong>L</strong> Module</dd>
+        <dd><code>trivial</code> — <strong>L</strong> module</dd>
 
         <dt>
 
           <code><a href="basicL.html">basicL</a></code>
 
         </dt>
-        <dd>The <code>basicL</code> Module for the L Component</dd>
+        <dd>The <code>basicL</code> module for the L component</dd>
       </dl></div><div class="section level2">
 
       <h3 id="other-state-variables">Other State Variables<a class="anchor" aria-label="anchor" href="#other-state-variables"></a></h3>
@@ -1456,21 +1485,21 @@
           <code><a href="change_spline.html">change_spline()</a></code>
 
         </dt>
-        <dd>Set the interpolating points</dd>
+        <dd>Change spline interpolation points</dd>
 
         <dt>
 
           <code><a href="change_spline_y.html">change_spline_y()</a></code>
 
         </dt>
-        <dd>Set yy</dd>
+        <dd>Change y values for spline interpolation points</dd>
 
         <dt>
 
           <code><a href="change_shock.html">change_shock()</a></code>
 
         </dt>
-        <dd>Set the interpolating points</dd>
+        <dd>Change shock parameters</dd>
       </dl></div><div class="section level2">
       <h2 id="blood-feeding-transmission">Blood Feeding &amp; Transmission<a class="anchor" aria-label="anchor" href="#blood-feeding-transmission"></a></h2>
 

@@ -1,4 +1,4 @@
-# Setup an **XH** Module (Human / Host Epidemiology & Demography)
+# Set up **XH** model object
 
 Set the parameter values and configure a model for the **X** Component
 

@@ -1,4 +1,4 @@
-# Return the parameters as a list
+# Get parameters (**XH**)
 
 This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 

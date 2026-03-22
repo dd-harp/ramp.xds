@@ -1,6 +1,7 @@
 # Compute the stable orbit for a discrete time system
 
-This method dispatches on the type of `xds_obj$xde`.
+Run a discrete time system for 10 years, and save the last year's
+orbits.
 
 ## Usage
 

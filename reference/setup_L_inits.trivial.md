@@ -1,4 +1,4 @@
-# Setup Initial Values for the **L** Component `trivial` Module
+# Setup initial values for `trivial` (**L**)
 
 The `trivial` module initial values are an empty list
 
@@ -21,7 +21,7 @@ setup_L_inits(xds_obj, s, options = list())
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  a named [list](https://rdrr.io/r/base/list.html)
 
 ## Value
 

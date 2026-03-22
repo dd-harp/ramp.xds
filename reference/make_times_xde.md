@@ -33,4 +33,4 @@ make_times_xde(Tmax, dt, times = NULL)
 
 ## Value
 
-an **`xds`** object
+a vector of time points

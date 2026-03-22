@@ -1,6 +1,7 @@
 # Compute stable orbit for a system of differential equations
 
-This method dispatches on the type of `xds_obj$xde`.
+Run a system of differential equations for 10 years, and save the last
+year's orbits.
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# Plot the Temporal shock
+# Plot the temporal shock
 
 For a model with temporal forcing, show the temporal shock
 

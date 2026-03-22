@@ -1,4 +1,4 @@
-# Setup Xinits.trivial
+# Setup initial values for `trivial` (**XH**)
 
 Implements
 [setup_XH_inits](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.md)

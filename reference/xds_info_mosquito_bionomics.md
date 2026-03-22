@@ -2,11 +2,11 @@
 
 The value of a mosquito bionomic parameters gets computed in two stages:
 
-- [BaselineBionomics](https://dd-harp.github.io/ramp.xds/reference/BaselineBionomics.md)
-  computes a *baseline* parameter value;
+- [MosquitoBionomics](https://dd-harp.github.io/ramp.xds/reference/MosquitoBionomics.md)
+  computes the bionomic parameter values;
 
-- [ModifiedBionomics](https://dd-harp.github.io/ramp.xds/reference/ModifiedBionomics.md)
-  is the product of the *baseline* and an *effect size*
+- [VectorControlEffectSizes](https://dd-harp.github.io/ramp.xds/reference/VectorControlEffectSizes.md)
+  applies the effect sizes of vector control
 
 ## Baseline
 

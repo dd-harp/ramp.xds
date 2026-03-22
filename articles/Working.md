@@ -7,19 +7,24 @@ Also, see
 
 ------------------------------------------------------------------------
 
-## 
+**`ramp.xds`** was designed to reduce the costs of using models. Here,
+we introduce the utilities we developed to work with models.
 
-**`ramp.xds`** was designed to reduce the costs of model building and
-computation for malaria and other mosquito-transmitted pathogens. One of
-the core challenges for the software was to provide users with a set of
-utilities that would make it easy to do work with models after they’ve
-been built.
+- **Getting Started:** A brief review
 
-### Set Up
+- **Parameters:** how to inspect and change parameter values
+
+- **Initial Values:** some utilities for changing initial values
+
+## Getting Started
+
+Go get started, we load **`ramp.xds`**, build a model, and solve it.
 
 ``` r
 library(ramp.xds)
 ```
+
+### Basic Setup
 
 The function `xds_setup` was discussed in [Getting
 Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
@@ -46,7 +51,7 @@ orbits for models with a canonical seasonal signal.
 mod <- xds_solve(mod)
 ```
 
-### Outputs
+### Get Orbits
 
 The variables and terms are returned as raw and parsed outputs:
 
@@ -63,7 +68,7 @@ names(mod$outputs)
 
     ## [1] "deout"  "time"   "last_y" "orbits"
 
-### Visualize
+### Plot
 
 a family of functions makes it easy to plot basic outputs of the models.
 
@@ -73,7 +78,12 @@ xds_plot_M(mod)
 
 ![](Working_files/figure-html/unnamed-chunk-7-1.png)
 
-### Initial Values
+## Parameters
+
+Another set of utilities was developed to change parameter values
+through a function call.
+
+## Initial Values
 
 A set of utilities was developed to work with initial values, making it
 easy to change the intitial values through a function call. In solving,
@@ -125,12 +135,7 @@ get_inits(mod)$MY
     ## $Y
     ## [1] 1
 
-### Parameters
-
-Another set of utilities was developed to change parameter values
-through a function call.
-
-### Analyze
+## Computing for Qualitative Analysis
 
 The software includes functions that perform various analytical tasks:
 
@@ -144,7 +149,7 @@ The software includes functions that perform various analytical tasks:
   human transmitting capacity and its spatial-temporal dispersion, and
   malaria reproductive numbers as pseudo-threshold conditions.
 
-### Modifying Models
+## Modifying Models
 
 **`ramp.xds`** has built-in utilities to make it easy to work with the
 models, including functions to visualize the outputs, to examine and
@@ -198,7 +203,7 @@ To build a model with the features you want. The goal of software design
 was to make it possible to do almost anything, but there were some
 important constraints.
 
-### Structural Parameters
+## Structural Parameters
 
 Some changes affect the model’s *structure.* These are considered
 **advanced options** for model building, and they are dealt with in

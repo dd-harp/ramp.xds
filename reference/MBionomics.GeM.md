@@ -1,8 +1,8 @@
-# Set mosquito bionomics to baseline
+# Mosquito bionomics for `GeM` (**MY**)
 
 Implements
 [MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md)
-for models with no forcing on the baseline
+for models with no exogenous forcing
 
 ## Usage
 
@@ -27,7 +27,7 @@ MBionomics(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

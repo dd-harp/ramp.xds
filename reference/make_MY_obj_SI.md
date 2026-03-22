@@ -31,7 +31,7 @@ make_MY_obj_SI(
 
 - eip:
 
-  the extrinSIc incubation period
+  the extrinsic incubation period
 
 - g:
 
@@ -55,11 +55,11 @@ make_MY_obj_SI(
 
 - nu:
 
-  ovipoSItion rate, per mosquito
+  oviposition rate, per mosquito
 
 - eggsPerBatch:
 
-  eggs laid per ovipoSItion
+  eggs laid per oviposition
 
 ## Value
 

@@ -1,6 +1,6 @@
-# Solve for the steady state of a system of equations using [rootSolve::steady](https://rdrr.io/pkg/rootSolve/man/steady.html)
+# Solve for the steady state
 
-This method dispatches on the type of `xds_obj$xde`
+Compute the steady state for a system of differential equations.
 
 ## Usage
 

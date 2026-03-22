@@ -1,4 +1,4 @@
-# Compute **XH** Component Derivatives
+# Compute derivatives (**XH**)
 
 Using the stored values of the daily FoI, compute the derivatives and
 return the derivatives as a numeric vector.

@@ -1,4 +1,4 @@
-# Setup Functions for the XH Component
+# Setup functions for the XH component
 
 write me.
 

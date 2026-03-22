@@ -9,7 +9,7 @@ Otherwise it sets `maxT=Tmax.`
 
 It returns a sequence from `0` to `maxT` by `dt.`
 
-A check values of `times` should be some integer multiple of `dt`
+Values of `times` should be some integer multiple of `dt`
 
 ## Usage
 
@@ -33,4 +33,4 @@ make_times_dts(Tmax = 365, dt = 1, times = NULL)
 
 ## Value
 
-an **`xds`** object
+a vector of time points

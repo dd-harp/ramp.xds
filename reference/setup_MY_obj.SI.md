@@ -1,4 +1,4 @@
-# Setup MY_obj for the SI model
+# Set up `SI` (**MY**)
 
 Implements
 [setup_MY_obj](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)
@@ -23,7 +23,7 @@ setup_MY_obj(MYname, xds_obj, s, options = list())
 
 - s:
 
-  the species index
+  the vector species index
 
 - options:
 

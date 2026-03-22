@@ -53,34 +53,33 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
-<li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
-    <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
+<li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-human-host" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Human / Host</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-human-host">
-<li><a class="dropdown-item" href="../articles/XH-interface.html">XH Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-xh">
+<li><a class="dropdown-item" href="../articles/XH-interface.html">Human / Host Component (XH)</a></li>
     <li><a class="dropdown-item" href="../articles/human_sis.html">The SIS Module</a></li>
     <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-adult-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Adult Mosquitoes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-adult-mosquitoes">
-<li><a class="dropdown-item" href="../articles/MY-interface.html">The MY Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-my" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">MY</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-my">
+<li><a class="dropdown-item" href="../articles/MY-interface.html">Adult Mosquito Component (MY)</a></li>
     <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeM.html">Generalized Macdonald model</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-immature-mosquitoes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Immature Mosquitoes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-immature-mosquitoes">
-<li><a class="dropdown-item" href="../articles/L-interface.html">The L Component</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-l" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">L</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-l">
+<li><a class="dropdown-item" href="../articles/L-interface.html">Aquatic Mosquito Component (L)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
   </ul>
@@ -123,7 +122,7 @@ differential equations or discrete-time systems.</p>
 modular. To emphasize the modular nature, we can write the equations
 using modular forms (see the vignette: <a href="https://dd-harp.github.io/ramp.xds/articles/modularity.html">Modular
 Forms</a>). This software implements a modular framework, and it was
-developed to model exogneous forcing by weather, vector control, health
+developed to model exogenous forcing by weather, vector control, health
 systems, and the environment (Figure 1).</p>
 <p>Transmission dynamics in the software was developed around an
 algorithm to model mosquito blood feeding on vertebrate hosts and
@@ -232,7 +231,7 @@ found in <strong><code>ramp.forcing</code></strong>.</p>
 <h2 id="computation">Computation<a class="anchor" aria-label="anchor" href="#computation"></a>
 </h2>
 <p>The following code block illustrates how the derivatives get
-computed. The actual code has been implemented to</p>
+computed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">modular_example</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">xds_obj</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">xds_obj</span>,<span class="op">{</span></span>
@@ -279,7 +278,7 @@ including</p>
 </ul>
 </li>
 <li>
-<p>Compute the deriviatives</p>
+<p>Compute the derivatives</p>
 <ul>
 <li><p><code>dXHdt</code> computes the <strong>XH</strong> Component
 derivatives</p></li>
@@ -292,7 +291,7 @@ variables</p></li>
 </ul>
 </li>
 </ul>
-<p>The derivatives are returned to be used by <code>deSolve.</code></p>
+<p>The derivatives are returned to be used by <code>deSolve</code>.</p>
 <p>The function that updates the states for discrete time systems has
 the same structure.</p>
 </div>

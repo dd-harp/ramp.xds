@@ -1,6 +1,6 @@
-# Get phase
+# Get seasonality parameter `bottom`
 
-Get the parameter that sets the phase for a seasonally forced model
+Get the `bottom` parameter for the seasonality function
 
 ## Usage
 
@@ -20,4 +20,4 @@ get_season_bottom(xds_obj, s = 1)
 
 ## Value
 
-the phase parameter(s)
+the bottom parameter(s)

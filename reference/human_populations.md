@@ -1,4 +1,4 @@
-# The Human Population
+# The human population
 
 A human (or host) population is sub-divided into *strata.* The human
 population (or other host population) and its structure, size and

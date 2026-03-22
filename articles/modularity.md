@@ -10,7 +10,7 @@ modular. To emphasize the modular nature, we can write the equations
 using modular forms (see the vignette: [Modular
 Forms](https://dd-harp.github.io/ramp.xds/articles/modularity.html)).
 This software implements a modular framework, and it was developed to
-model exogneous forcing by weather, vector control, health systems, and
+model exogenous forcing by weather, vector control, health systems, and
 the environment (Figure 1).
 
 Transmission dynamics in the software was developed around an algorithm
@@ -110,7 +110,6 @@ but mechanistic models are found in **`ramp.forcing`**.
 ## Computation
 
 The following code block illustrates how the derivatives get computed.
-The actual code has been implemented to
 
 ``` r
 modular_example <- function(t, y, xds_obj) {
@@ -160,7 +159,7 @@ modular_example <- function(t, y, xds_obj) {
 
   - partial immunity
 
-- Compute the deriviatives
+- Compute the derivatives
 
   - `dXHdt` computes the **XH** Component derivatives
 
@@ -170,7 +169,7 @@ modular_example <- function(t, y, xds_obj) {
 
   - `dVdt` computes the derivatives for any other variables
 
-The derivatives are returned to be used by `deSolve.`
+The derivatives are returned to be used by `deSolve`.
 
 The function that updates the states for discrete time systems has the
 same structure.

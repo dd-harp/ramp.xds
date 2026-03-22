@@ -1,4 +1,4 @@
-# Setup initial values for the `SI` model
+# Setup initial values for `SI` (**MY**)
 
 Implements
 [setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)
@@ -19,7 +19,7 @@ setup_MY_inits(xds_obj, s, options = list())
 
 - s:
 
-  the species index
+  the vector species index
 
 - options:
 

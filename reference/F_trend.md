@@ -1,6 +1,6 @@
-# Plot the Temporal Trend
+# Compute the temporal trend
 
-For a model with temporal forcing, show the temporal trend
+Evaluate the function `F_trend` for a forced model.
 
 ## Usage
 

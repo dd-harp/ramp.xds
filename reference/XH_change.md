@@ -1,4 +1,4 @@
-# A List of Functions to Change the XH Component
+# A list of functions to change the XH component
 
 write me.
 

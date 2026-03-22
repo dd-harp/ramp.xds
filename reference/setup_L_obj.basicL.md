@@ -1,4 +1,4 @@
-# Setup `L_obj` for `basicL` (**L** Component)
+# Set up `basicL` (**L**)
 
 The function sets up `L_obj` for the \\s^{th}\\ species by calling
 [make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md)

@@ -1,7 +1,7 @@
 # The skill set (**L** module)
 
-The skill set for an **L** module is a list of that summarizes
-capabilities and compatabilities
+The skill set for an **L** module is a list that summarizes capabilities
+and compatibilities
 
 ## Usage
 

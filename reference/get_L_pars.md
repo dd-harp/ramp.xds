@@ -1,6 +1,6 @@
-# Get parameters for the **L** Component module
+# Get parameters (**L**)
 
-Get parameters for the **L** Component module
+Get parameters (**L**)
 
 ## Usage
 

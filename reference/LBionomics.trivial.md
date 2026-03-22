@@ -1,8 +1,6 @@
-# Bionomics for `trivial` (**L** Component)
+# Mosquito bionomics for `trivial` (**L**)
 
-Implements
-[LBionomics](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md)
-for the `trivial` module
+Return the **`xds`** object unmodified
 
 ## Usage
 

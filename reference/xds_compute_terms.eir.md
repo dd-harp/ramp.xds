@@ -1,4 +1,4 @@
-# Differential equation models for aquatic mosquito populations
+# Differential equation models for human epidemiology forced by the EIR
 
 Compute derivatives for
 [deSolve::ode](https://rdrr.io/pkg/deSolve/man/ode.html) or

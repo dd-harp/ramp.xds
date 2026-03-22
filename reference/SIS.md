@@ -1,4 +1,4 @@
-# The `SIS` Module for the XH Component
+# The `SIS` module for the XH component
 
 Implements the **XH** component using a Susceptible-Infected-Susceptible
 (SIS) compartmental model of human infection dynamics.

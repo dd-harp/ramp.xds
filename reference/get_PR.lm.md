@@ -1,4 +1,4 @@
-# Get the *Pf*PR from a Malaria Model
+# Get the *Pf*PR from a malaria model
 
 Return the PR by light microscopy
 
@@ -25,4 +25,4 @@ get_PR(xds_obj, method = "lm", i = 1)
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

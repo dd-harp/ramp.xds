@@ -1,6 +1,6 @@
-# Set **L** Component Parameters
+# Change parameters (**L**)
 
-Set **L** Component Parameters
+Change parameters (**L**)
 
 ## Usage
 

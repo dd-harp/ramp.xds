@@ -1,6 +1,6 @@
-# Get seasonal pattern
+# Get seasonality parameters
 
-Get the parameters set the seasonal pattern
+Get seasonality parameters when `forced_by` = "none"
 
 ## Usage
 
@@ -21,4 +21,4 @@ get_season(xds_obj, s = 1)
 
 ## Value
 
-seasonal pattern parameters
+an empty vector

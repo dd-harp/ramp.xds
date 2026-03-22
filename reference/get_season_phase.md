@@ -1,6 +1,6 @@
-# Get phase
+# Get seasonality parameter `phase`
 
-Get the parameter that sets the phase for a seasonally forced model
+Get the `phase` parameter for the seasonality function
 
 ## Usage
 

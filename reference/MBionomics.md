@@ -1,6 +1,6 @@
-# Adult Mosquito Bionomics - Modified by Control
+# Mosquito bionomics (**MY**)
 
-Modify the baseline adult mosquito bionomic parameters
+Compute the adult mosquito bionomic parameter values
 
 ## Usage
 
@@ -24,7 +24,7 @@ MBionomics(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

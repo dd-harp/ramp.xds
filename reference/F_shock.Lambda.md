@@ -1,6 +1,7 @@
-# Plot the temporal trend
+# Compute the temporal shock
 
-For a model forced by emergence, show the temporal trend
+Evaluate the function `F_shock` for a forced model when `forced_by` is
+"Lambda"
 
 ## Usage
 
@@ -21,4 +22,4 @@ F_shock(tm, xds_obj)
 
 ## Value
 
-the temporal trend
+the temporal shock

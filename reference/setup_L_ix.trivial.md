@@ -1,4 +1,4 @@
-# Set up Indices for `trivial` (**L**)
+# Set up indices for `trivial` (**L**)
 
 Return the **`xds`** object unmodified
 

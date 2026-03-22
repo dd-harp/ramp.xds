@@ -1,4 +1,4 @@
-# Setup Initial Values for **XH** Modules
+# Setup initial values (**XH**)
 
 This method dispatches on `xds_obj$XH_obj[[i]]`.
 

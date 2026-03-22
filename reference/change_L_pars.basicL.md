@@ -1,4 +1,4 @@
-# Set **L** Component parameters for `basicL`
+# Change parameters for `basicL` (**L**)
 
 Set the values of **L** component parameters
 

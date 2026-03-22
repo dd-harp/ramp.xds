@@ -1,4 +1,4 @@
-# Handle derivatives for the `trivial` **MY** module
+# Compute derivatives for `trivial` (**MY**)
 
 Implements
 [dMYdt](https://dd-harp.github.io/ramp.xds/reference/dMYdt.md) for the
@@ -27,7 +27,7 @@ dMYdt(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

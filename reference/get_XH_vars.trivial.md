@@ -1,4 +1,4 @@
-# Get Variables by Name
+# List variables for `trivial` (**XH**)
 
 Return an empty list
 

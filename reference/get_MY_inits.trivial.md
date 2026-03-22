@@ -1,8 +1,7 @@
-# Return initial values as a vector
+# Get inits for `trivial` (MY)
 
-Implements
-[get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)
-for the trivial model.
+Return a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+0
 
 ## Usage
 
@@ -18,7 +17,7 @@ get_MY_inits.trivial(xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

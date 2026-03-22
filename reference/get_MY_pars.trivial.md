@@ -1,4 +1,4 @@
-# Return the parameters as a list
+# Get parameters for `trivial` (**MY**)
 
 Return the parameters in the trivial **MY**-Component model as a named
 list

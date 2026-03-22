@@ -1,4 +1,4 @@
-# Compute Infectious Density
+# Compute infectious density for `SIS`
 
 In the *SIS* model family, infectious density is \\cI\\.
 

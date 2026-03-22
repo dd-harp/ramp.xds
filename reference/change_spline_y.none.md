@@ -1,6 +1,7 @@
-# Set yy
+# Change y values for spline interpolation points
 
-Implement `change_spline_y` for a model with no forcing
+Set new \\y\\-values for the spline interpolating points and update
+`F_trend` when `forced_by = "none"`
 
 ## Usage
 
