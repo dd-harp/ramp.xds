@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{F_emerge.trivial}
 \alias{F_emerge.trivial}
-\title{Compute Emergent Adults for \code{trivial} (\strong{L} Component)}
+\title{Compute emergent adults for \code{trivial} (\strong{L} component)}
 \usage{
 \method{F_emerge}{trivial}(t, y, xds_obj, s)
 }

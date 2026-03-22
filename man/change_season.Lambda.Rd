@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_season.R
 \name{change_season.Lambda}
 \alias{change_season.Lambda}
-\title{Get seasonal pattern}
+\title{Change season parameters}
 \usage{
 \method{change_season}{Lambda}(X, xds_obj, s = 1)
 }
@@ -17,6 +17,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-Get the parameters set the seasonal pattern
+Change parameters for the seasonality function
+when \code{forced_by = "Lambda"}
 }
 \keyword{internal}

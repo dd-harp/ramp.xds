@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{MBionomics.macdonald}
 \alias{MBionomics.macdonald}
-\title{Macdonald-style adult mosquito bionomics}
+\title{Mosquito bionomics for \code{macdonald} (\strong{MY})}
 \usage{
 \method{MBionomics}{macdonald}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object

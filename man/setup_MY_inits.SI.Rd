@@ -2,14 +2,14 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{setup_MY_inits.SI}
 \alias{setup_MY_inits.SI}
-\title{Setup initial values for the \code{SI} model}
+\title{Setup initial values for \code{SI} (\strong{MY})}
 \usage{
 \method{setup_MY_inits}{SI}(xds_obj, s, options = list())
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 
 \item{options}{a \link{list}}
 }

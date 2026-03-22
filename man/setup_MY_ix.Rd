@@ -9,7 +9,7 @@ setup_MY_ix(xds_obj, s)
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 \link{list}

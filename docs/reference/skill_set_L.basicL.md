@@ -1,6 +1,6 @@
-# The **L** Module Skill Set
+# The **L** module skill set
 
-The **L** skill set is a list of an module's capabilities
+The **L** skill set is a list of a module's capabilities
 
 ## Usage
 

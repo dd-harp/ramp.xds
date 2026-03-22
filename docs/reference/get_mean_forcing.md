@@ -16,4 +16,4 @@ get_mean_forcing(xds_obj)
 
 ## Value
 
-the mean parameter for forcing
+a vector, the mean parameter for forcing

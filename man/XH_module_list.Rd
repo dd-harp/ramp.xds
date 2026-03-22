@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-modules.R
 \name{XH_module_list}
 \alias{XH_module_list}
-\title{XH Modules}
+\title{XH modules}
 \description{
 A List of Modules for the \strong{XH}-Component
 }
@@ -22,7 +22,7 @@ A List of Modules for the \strong{XH}-Component
 \itemize{
 \item \code{garki} - an implementation of the Garki Model for malaria
 \item \code{SIP}   - a compartmental model with treatment and chemoprotection
-\item \code{SIPd}  - an implementation of the Garki Model for malari
+\item \code{SIPd}  - an implementation of the Garki Model for malaria
 }
 \item \strong{Compartmental Models}
 \itemize{
@@ -35,6 +35,6 @@ A List of Modules for the \strong{XH}-Component
 }
 }
 
-**\code{ramp.library} -- ** \href{https://github.com/dd-harp/ramp.library}{source code} & \href{https://github.com/dd-harp/ramp.library}{github.io}
+\strong{\code{ramp.library}} --- \href{https://github.com/dd-harp/ramp.library}{source code} & \href{https://dd-harp.github.io/ramp.library}{github.io}
 }
 

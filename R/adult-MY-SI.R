@@ -1,6 +1,6 @@
 # specialized methods for the adult mosquito SI model
 
-#' @title The `SI` Module for the MY Component
+#' @title The `SI` module for the MY component
 #' @description
 #' Implements the **MY** component using a simple SI (Susceptible-Infected)
 #' model of adult mosquito infection dynamics.
@@ -57,10 +57,10 @@
 NULL
 
 
-#' @title The **SI** Module Skill Set
+#' @title The **SI** module skill set
 #'
 #' @description The **MY** skill set is a list of
-#' an module's capabilities:
+#' a module's capabilities:
 #'
 #' + `demography` is
 #'
@@ -86,7 +86,7 @@ check_MY.SI = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Compute Derivatives for **MY** module `SI`
+#' @title Compute derivatives for `SI` (**MY**)
 #'
 #' @description The `SI` model for mosquito infection
 #' dynamics has the defined **variable** classes:
@@ -105,7 +105,7 @@ check_MY.SI = function(xds_obj, s){
 #' - \eqn{\nu} is the egg laying rate
 #' - \eqn{\xi} is the number of eggs per batch
 #'
-#'The model demographic **parameters** are:
+#' The model demographic **parameters** are:
 #' - \eqn{g} is the mortality rate
 #' - \eqn{\sigma} is the emigration rate
 #' - \eqn{\mu} is the emigration loss rate
@@ -144,7 +144,7 @@ dMYdt.SI <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Derivatives for adult mosquitoes
+#' @title Update state variables for `SI` (**MY**)
 #' @description Implements [Update_MYt] for the SI model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector
@@ -165,7 +165,7 @@ Update_MYt.SI <- function(t, y, xds_obj, s) {
   })
 }
 
-#' @title Net Blood Feeding by Infectious Mosquitoes - `SI` Mosquito Model
+#' @title Net blood feeding by infectious mosquitoes - `SI` mosquito model
 #' @description The variable \eqn{Y} is the density of *infected* mosquitoes.
 #' The model blood feeding **parameters** are:
 #' - \eqn{f} is the overall blood feeding rate
@@ -191,7 +191,7 @@ F_fqZ.SI <- function(t, y, xds_obj, s) {
   return(fqZ)
 }
 
-#' @title Compute Net Blood Feeding by Mosquitoes for `SI`
+#' @title Compute net blood feeding by mosquitoes for `SI`
 #' @description  The variable \eqn{M} is the density of  mosquitoes.
 #' The model blood feeding **parameters** are:
 #' - \eqn{f} is the overall blood feeding rate
@@ -207,7 +207,7 @@ F_fqM.SI <- function(t, y, xds_obj, s){
   return(fqM)
 }
 
-#' @title Compute Component Egg Laying Rates for `SI`
+#' @title Compute component egg laying rates for `SI`
 #' @description The density of adult mosquitoes is \eqn{M}.
 #' The **parameters** describing egg laying by adult mosquitoes are:
 #' - \eqn{\nu} or `nu` is the egg laying rate
@@ -227,7 +227,7 @@ F_eggs.SI <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Macdonald-style adult mosquito bionomics
+#' @title Mosquito bionomics for `SI` (**MY**)
 #' @description Reset the effect sizes for static models.
 #' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store
@@ -235,11 +235,11 @@ F_eggs.SI <- function(t, y, xds_obj, s) {
 #' product of the effect sizes for each intervention.
 #' Since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
-#' @inheritParams MBionomics
+#' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBaseline.SI <- function(t, y, xds_obj, s) {
+MBionomics.SI <- function(t, y, xds_obj, s) {
 
   xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s)
   xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s)
@@ -257,7 +257,7 @@ MBaseline.SI <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title Macdonald-style adult mosquito bionomics
+#' @title Apply effect sizes for `SI` (**MY**)
 #' @description Reset the effect sizes for static models.
 #' When modules are added to compute effect sizes
 #' from baseline parameters, those functions store
@@ -265,11 +265,11 @@ MBaseline.SI <- function(t, y, xds_obj, s) {
 #' product of the effect sizes for each intervention.
 #' Since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
-#' @inheritParams MBionomics
+#' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBionomics.SI <- function(t, y, xds_obj, s) {
+MEffectSizes.SI <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]],{
     xds_obj$MY_obj[[s]]$f <- es_f*f_t
     xds_obj$MY_obj[[s]]$q <- es_q*q_t
@@ -281,10 +281,9 @@ MBionomics.SI <- function(t, y, xds_obj, s) {
 
 
 
-#' @title Setup MY_obj for the SI model
+#' @title Set up `SI` (**MY**)
 #' @description Implements [setup_MY_obj] for the SI model
 #' @inheritParams setup_MY_obj
-#' @keywords internal
 #' @return a [list] vector
 #' @keywords internal
 #' @export
@@ -298,14 +297,14 @@ setup_MY_obj.SI = function(MYname, xds_obj, s, options=list()){
 #' @title Make parameters for SI ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer
 #' @param options a named list: named values overwrite defaults
-#' @param eip the extrinSIc incubation period
+#' @param eip the extrinsic incubation period
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
 #' @param mu fraction lost during emigration
 #' @param f feeding rate
 #' @param q human blood fraction
-#' @param nu ovipoSItion rate, per mosquito
-#' @param eggsPerBatch eggs laid per ovipoSItion
+#' @param nu oviposition rate, per mosquito
+#' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
 #' @keywords internal
 #' @export
@@ -344,7 +343,6 @@ make_MY_obj_SI = function(nPatches, options=list(), eip=12,
 #' @return a [list]
 #' @keywords internal
 #' @importFrom utils tail
-#' @keywords internal
 #' @export
 setup_MY_ix.SI <- function(xds_obj, s) {with(xds_obj,{
 
@@ -360,7 +358,7 @@ setup_MY_ix.SI <- function(xds_obj, s) {with(xds_obj,{
 })}
 
 
-#' @title Return the variables as a list
+#' @title List variables for `SI` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
@@ -375,7 +373,7 @@ get_MY_vars.SI <- function(y, xds_obj, s){
 }
 
 
-#' @title parse the output of deSolve and return variables for the `SI` model
+#' @title Parse outputs for `SI` (**MY**)
 #' @description Implements [parse_MY_orbits] for the `SI` model
 #' @inheritParams parse_MY_orbits
 #' @return a [list]
@@ -392,7 +390,7 @@ parse_MY_orbits.SI <- function(outputs, xds_obj, s) {
 })}
 
 
-#' @title Return the parameters as a list
+#' @title Get parameters for `SI` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -406,7 +404,7 @@ get_MY_pars.SI <- function(xds_obj, s=1) {
   ))
 }
 
-#' @title Return the parameters as a list
+#' @title Change parameters for `SI` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
@@ -427,7 +425,7 @@ change_MY_pars.SI <- function(xds_obj, s=1, options=list()) {
   }))}
 
 
-#' @title Setup initial values for the `SI` model
+#' @title Setup initial values for `SI` (**MY**)
 #' @description Implements [setup_MY_inits] for the `SI` model
 #' @inheritParams setup_MY_inits
 #' @return a [list]
@@ -443,7 +441,7 @@ setup_MY_inits.SI = function(xds_obj, s, options=list()){
 #' @param nPatches the number of patches in the model
 #' @param options a [list] of values that overwrites the defaults
 #' @param M total mosquito density at each patch
-#' @param Y infectious mosquito density at each patch
+#' @param Y infected mosquito density at each patch
 #' @return a [list]
 #' @keywords internal
 #' @export
@@ -456,8 +454,8 @@ make_MY_inits_SI = function(nPatches, options = list(),
   })
 }
 
-#' @title change initial values for the macdonald model
-#' @description Implements [change_MY_inits] for the macdonald model
+#' @title Change initial values for `SI` (**MY**)
+#' @description Implements [change_MY_inits] for the SI model
 #'
 #' @inheritParams change_MY_inits
 #'
@@ -474,7 +472,7 @@ change_MY_inits.SI = function(xds_obj, s, options=list()){
 #' @title Get the feeding rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @keywords internal
 #' @export
 get_f.SI = function(xds_obj, s=1){
@@ -484,7 +482,7 @@ get_f.SI = function(xds_obj, s=1){
 #' @title Get the feeding rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @keywords internal
 #' @export
 get_q.SI = function(xds_obj, s=1){
@@ -494,7 +492,7 @@ get_q.SI = function(xds_obj, s=1){
 #' @title Get the feeding rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @keywords internal
 #' @export
 get_g.SI = function(xds_obj, s=1){
@@ -504,17 +502,17 @@ get_g.SI = function(xds_obj, s=1){
 #' @title Get the feeding rate
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector asSIgned the class "dynamic"
+#' @return y a [numeric] vector assigned the class "dynamic"
 #' @keywords internal
 #' @export
 get_sigma.SI = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], sigma)
 }
 
-#' @title Steady States: MY-SI
+#' @title Steady states: MY-SI
 #' @description This method dispatches on the type of `MY_obj`.
 #' @inheritParams steady_state_MY
-#' @return none
+#' @return a [list]
 #' @keywords internal
 #' @export
 steady_state_MY.SI_ode = function(Lambda, kappa, xds_obj, s=1){

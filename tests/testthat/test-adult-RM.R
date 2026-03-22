@@ -51,7 +51,7 @@ test_that("macdonald models reach equilibrium", {
   params$terms$kappa[[1]] = kappa
 
   y0 = unname(as.vector(unlist(get_MY_inits(params, 1))))
-  params <- MBionomics(0,y0,params, 1)
+  params <- MEffectSizes(0,y0,params, 1)
 
   # solve ODEs
   out <- deSolve::dede(y = y0, times = c(0, 730), func = function(t, y, pars, s) {

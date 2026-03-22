@@ -4,12 +4,12 @@
 \alias{xds_lines_M}
 \title{Add lines for adult mosquito population density}
 \usage{
-xds_lines_M(MY, xds_obj, clrs = "darkblue", llty = 1)
+xds_lines_M(xds_obj, s = 1, clrs = "darkblue", llty = 1)
 }
 \arguments{
-\item{MY}{xds_objed ouptuts}
-
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{s}{the vector species index}
 
 \item{clrs}{a vector of colors}
 

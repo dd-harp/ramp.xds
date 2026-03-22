@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{dMYdt.macdonald}
 \alias{dMYdt.macdonald}
-\title{Compute derivatives for the \strong{MY} module \code{macdonald}}
+\title{Compute derivatives for \code{macdonald} (\strong{MY})}
 \usage{
 \method{dMYdt}{macdonald}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector
@@ -36,7 +36,7 @@ should be used only for educational purposes.
 \itemize{
 \item \eqn{\Lambda} or \code{Lambda}: the emergence rate of adult mosquitoes (from \code{F_emerge})
 \item \eqn{f} or \code{f}: the blood feeding rate
-\item \eqn{q} or \code{q}: maturation rate
+\item \eqn{q} or \code{q}: human blood fraction
 \item \eqn{\tau} or \code{eip}: the extrinsic incubation period
 \item \eqn{\Omega} or \code{Omega}: an adult mosquito demographic matrix, including mortality and migration
 \item \eqn{\Upsilon} or \code{Upsilon}: survival and dispersal through the eip, \eqn{\Upsilon= e^{-\Omega \tau}}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{change_MY_inits.macdonald}
 \alias{change_MY_inits.macdonald}
-\title{change initial values for the macdonald model}
+\title{Change initial values for \code{macdonald} (\strong{MY})}
 \usage{
 \method{change_MY_inits}{macdonald}(xds_obj, s, options = list())
 }

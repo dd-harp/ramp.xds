@@ -1,4 +1,4 @@
-# `trivial` — **XH** Module
+# `trivial` — **XH** module
 
 The trivial module outputs the net infectiousness, \\\kappa\\, by
 calling a *trace function,* \$\$F\_\kappa(t) = \kappa S(t) T(t) K(t)\$\$

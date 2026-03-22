@@ -2,12 +2,12 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{macdonald}
 \alias{macdonald}
-\title{The \code{macdonald} Module (MY Component)}
+\title{The \code{macdonald} module (MY component)}
 \description{
 Implements a Macdonald-style delay differential
 equation model of adult mosquito ecology and infection dynamics, consistent
 with the model published by George Macdonald in 1952. This formulation is
-actually closer to one published by
+actually closer to one published by Aron & May (1982).
 }
 \section{State Variables}{
 
@@ -62,3 +62,9 @@ This model is not capable of handling exogenous forcing by weather or
 vector control. Use the \code{GeM} module instead.
 }
 
+\references{
+\itemize{
+\item Macdonald G (1952) The analysis of the sporozoite rate. Tropical Diseases Bulletin 49:569-586.
+\item Aron JL, May RM (1982) The population dynamics of malaria. Chapter 5 in \emph{The Population Dynamics of Infectious Diseases: Theory and Applications,} Springer, Boston, MA.
+}
+}

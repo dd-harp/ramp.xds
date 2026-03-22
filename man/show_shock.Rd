@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_trend.R
 \name{show_shock}
 \alias{show_shock}
-\title{Plot the Temporal shock}
+\title{Plot the temporal shock}
 \usage{
 show_shock(xds_obj, tm = 10 * c(0:365), add = FALSE, clr = "black", rng = NULL)
 }

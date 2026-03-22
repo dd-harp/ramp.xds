@@ -1,8 +1,8 @@
-# Bionomics for `basicL` (**L** Component)
+# Mosquito bionomics for `basicL` (**L**)
 
-Implements
-[LBionomics](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md)
-for the `basicL`
+Compute the bionomic parameter values for `basicL` by calling the
+forcing functions for each parameter. Also resets all effect sizes
+(`es_psi`, `es_phi`, `es_xi`, `es_theta`) to 1.
 
 ## Usage
 

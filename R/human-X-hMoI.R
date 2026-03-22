@@ -1,6 +1,6 @@
 # a hybrid model tracking mean MoI for all and apparent infections
 
-#' @title The `hMoI` Module for the XH Component
+#' @title The `hMoI` module for the XH component
 #' @description
 #' Implements the **XH** component using a hybrid model that tracks the
 #' mean Multiplicity of Infection (MoI) for total and apparent infections.
@@ -33,10 +33,10 @@
 NULL
 
 
-#' @title The **XH** Module Skill Set
+#' @title The **XH** module skill set
 #'
 #' @description The `hMoI` module is an example
-#' of a model that is not extensible. There is now
+#' of a model that is not extensible. There is no
 #' way to add either dynamic human population density
 #' or mass treatment without violating the model
 #' assumptions.
@@ -51,7 +51,6 @@ NULL
 #'
 #' @return the `hMoI` *XH* module skill set, a list
 #'
-#' @keywords internal
 #' @keywords internal
 #' @export
 skill_set_XH.hMoI = function(Xname = "hMoI"){
@@ -73,18 +72,16 @@ skill_set_XH.hMoI = function(Xname = "hMoI"){
 #'
 #' @return an **`xds`** object
 #' @keywords internal
-#' @keywords internal
 #' @export
 check_XH.hMoI = function(xds_obj, i){
   return(xds_obj)
 }
 
-#' @title Compute Derivatives for `hMoI` (**X** Module)
+#' @title Compute derivatives for `hMoI` (**XH**)
 #'
 #' @description Implements [dXHdt] for the hybrid MoI model.
 #' @inheritParams dXHdt
 #' @return a [numeric] vector
-#' @keywords internal
 #' @keywords internal
 #' @export
 dXHdt.hMoI <- function(t, y, xds_obj, i) {
@@ -100,14 +97,13 @@ dXHdt.hMoI <- function(t, y, xds_obj, i) {
   })
 }
 
-#' @title Get Variables by Name
+#' @title List variables for `hMoI` (**XH**)
 #'
-#' @description Get the the value of variables from the flat state variable vector \eqn{y}, and return
+#' @description Get the value of variables from the flat state variable vector \eqn{y}, and return
 #' the values as a named list
 #'
 #' @inheritParams get_XH_vars
 #' @return a [list]
-#' @keywords internal
 #' @keywords internal
 #' @export
 get_XH_vars.hMoI <- function(y, xds_obj, i) {
@@ -121,9 +117,8 @@ get_XH_vars.hMoI <- function(y, xds_obj, i) {
 #' @title Add indices for human population to parameter list
 #' @description Implements [setup_XH_ix] for the hybrid MoI model.
 #' @inheritParams setup_XH_ix
-#' @return none
+#' @return a [list]
 #' @importFrom utils tail
-#' @keywords internal
 #' @keywords internal
 #' @export
 setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
@@ -140,11 +135,10 @@ setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
   return(xds_obj)
 })}
 
-#' @title Setup XH_obj.hMoI
+#' @title Set up `hMoI` (**XH**)
 #' @description Implements [setup_XH_obj] for the hMoI model
 #' @inheritParams setup_XH_obj
 #' @return a [list] vector
-#' @keywords internal
 #' @keywords internal
 #' @export
 setup_XH_obj.hMoI = function(Xname, xds_obj, i, options=list()){
@@ -163,8 +157,7 @@ setup_XH_obj.hMoI = function(Xname, xds_obj, i, options=list()){
 #' @param r1 recovery rate from inapparent infections
 #' @param r2 recovery rate from patent infections
 #'
-#' @return none
-#' @keywords internal
+#' @return a [list]
 #' @keywords internal
 #' @export
 make_XH_obj_hMoI = function(nStrata, options=list(),
@@ -183,7 +176,7 @@ make_XH_obj_hMoI = function(nStrata, options=list(),
     return(XH_obj)
   })}
 
-#' @title Return the parameters as a list
+#' @title Get parameters for `hMoI` (**XH**)
 #'
 #' @description Parameter values for the \eqn{i^{th}} host are
 #' stored as `xds_obj$XH_obj[[i]]`. This returns the stored parameter
@@ -195,13 +188,12 @@ make_XH_obj_hMoI = function(nStrata, options=list(),
 #'
 #' @seealso [make_XH_obj_hMoI]
 #' @keywords internal
-#' @keywords internal
 #' @export
 get_XH_pars.hMoI<- function(xds_obj, i=1) {
   with(xds_obj$XH_obj[[i]],list(b=b, c1=c1, c2=c2, r1=r1, r2=r2))
 }
 
-#' @title Return the parameters as a list
+#' @title Change parameters for `hMoI` (**XH**)
 #'
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #'
@@ -209,7 +201,6 @@ get_XH_pars.hMoI<- function(xds_obj, i=1) {
 #'
 #' @return an **`xds`** object
 #'
-#' @keywords internal
 #' @keywords internal
 #' @export
 change_XH_pars.hMoI <- function(xds_obj, i=1, options=list()) {
@@ -233,7 +224,6 @@ change_XH_pars.hMoI <- function(xds_obj, i=1, options=list()) {
 #' @return a [numeric] vector of length `nStrata`
 #' @importFrom stats pexp
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_I.hMoI <- function(t, y, xds_obj, i) {
   with(get_XH_vars(y, xds_obj, i),{
@@ -250,7 +240,6 @@ F_I.hMoI <- function(t, y, xds_obj, i) {
 #' @inheritParams F_H
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_H.hMoI <- function(t, y, xds_obj, i) {
   xds_obj$XH_obj[[i]]$H
@@ -262,7 +251,6 @@ F_H.hMoI <- function(t, y, xds_obj, i) {
 #' @inheritParams F_infectivity
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_infectivity.hMoI <- function(y, xds_obj,i) {
   with(xds_obj$XH_obj[[i]], b)
@@ -271,11 +259,10 @@ F_infectivity.hMoI <- function(y, xds_obj,i) {
 
 
 
-#' @title Setup Xinits.hMoI
+#' @title Setup initial values for `hMoI` (**XH**)
 #' @description Implements [setup_XH_inits] for the hMoI model
 #' @inheritParams setup_XH_inits
 #' @return a [list] vector
-#' @keywords internal
 #' @keywords internal
 #' @export
 setup_XH_inits.hMoI = function(xds_obj, H, i=1, options=list()){
@@ -290,8 +277,7 @@ setup_XH_inits.hMoI = function(xds_obj, H, i=1, options=list()){
 #' @param options a [list] that overwrites default values
 #' @param m1 mean MoI among inapparent human infections
 #' @param m2 mean MoI among patent human infections
-#' @return none
-#' @keywords internal
+#' @return a [list]
 #' @keywords internal
 #' @export
 make_XH_inits_hMoI = function(nStrata, options = list(), m1=2, m2=1){with(options,{
@@ -300,11 +286,10 @@ make_XH_inits_hMoI = function(nStrata, options = list(), m1=2, m2=1){with(option
   return(list(m1=m1, m2=m2))
 })}
 
-#' @title Return the parameters as a list
+#' @title Change initial values for `hMoI` (**XH**)
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #' @inheritParams change_XH_inits
 #' @return an **`xds`** object
-#' @keywords internal
 #' @keywords internal
 #' @export
 change_XH_inits.hMoI <- function(xds_obj, i=1, options=list()) {
@@ -320,7 +305,6 @@ change_XH_inits.hMoI <- function(xds_obj, i=1, options=list()) {
 #' @inheritParams get_HTC
 #' @return a [numeric] vector
 #' @keywords internal
-#' @keywords internal
 #' @export
 get_HTC.hMoI <- function(xds_obj, i) {
   with(xds_obj$XH_obj[[i]],
@@ -329,11 +313,10 @@ get_HTC.hMoI <- function(xds_obj, i) {
 }
 
 
-#' @title parse the output of deSolve and return variables for the hMoI model
+#' @title Parse outputs for `hMoI` (**XH**)
 #' @description Implements [parse_XH_orbits] for the hMoI model
 #' @inheritParams parse_XH_orbits
-#' @return none
-#' @keywords internal
+#' @return a [list]
 #' @keywords internal
 #' @export
 parse_XH_orbits.hMoI <- function(outputs, xds_obj, i){
@@ -345,11 +328,10 @@ parse_XH_orbits.hMoI <- function(outputs, xds_obj, i){
 })}
 
 
-#' @title Compute the "true" nievalence of infection / parasite rate
+#' @title Compute the "true" prevalence of infection / parasite rate
 #' @description Implements [F_ni] for the hMoI model.
 #' @inheritParams F_ni
 #' @return a [numeric] vector of length `nStrata`
-#' @keywords internal
 #' @keywords internal
 #' @export
 F_ni.hMoI<- function(vars, XH_obj) {with(XH_obj,{
@@ -364,7 +346,6 @@ F_ni.hMoI<- function(vars, XH_obj) {with(XH_obj,{
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_prevalence.hMoI<- function(vars, XH_obj) {
   pr = with(vars, 1-exp(-m1))
@@ -375,7 +356,6 @@ F_prevalence.hMoI<- function(vars, XH_obj) {
 #' @description Implements [F_prevalence] for the hMoI model.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
-#' @keywords internal
 #' @keywords internal
 #' @export
 F_pfpr_by_lm.hMoI<- function(vars, XH_obj) {
@@ -388,7 +368,6 @@ F_pfpr_by_lm.hMoI<- function(vars, XH_obj) {
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_pfpr_by_rdt.hMoI<- function(vars, XH_obj) {
   pr = with(vars, 1-exp(-m1))
@@ -400,19 +379,17 @@ F_pfpr_by_rdt.hMoI<- function(vars, XH_obj) {
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_pfpr_by_pcr.hMoI<- function(vars, XH_obj) {
   pr = with(vars, 1-exp(-m1))
   return(pr)
 }
 
-#' @title Compute Steady States for `hMoI` (**X**-Model)
+#' @title Compute steady states for `hMoI` (**X**-model)
 #'
 #' @description Compute the steady state of the hMoI model as a function of the daily foi
 #' @inheritParams steady_state_X
 #' @return the steady states as a named vector
-#' @keywords internal
 #' @keywords internal
 #' @export
 steady_state_X.hMoI = function(foi, H, xds_obj, i=1){

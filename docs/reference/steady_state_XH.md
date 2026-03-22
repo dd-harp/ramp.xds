@@ -1,4 +1,4 @@
-# Steady States for **XH**
+# Steady states for **XH**
 
 Compute the steady states as a function of the daily FoI for a static
 value of human population density

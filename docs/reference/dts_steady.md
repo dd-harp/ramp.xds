@@ -1,6 +1,6 @@
-# Solve for the steady state of a system of equations
+# Compute the steady state of a discrete time system
 
-This method dispatches on the type of `xds_obj$dts`
+Run a discrete time system for `Tx` time steps to get the steady state
 
 ## Usage
 
@@ -20,4 +20,4 @@ dts_steady(xds_obj, Tx = 1000)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** object

@@ -1,9 +1,9 @@
 # generic methods for human component
 
-#' @title **XH** Skill Set
+#' @title **XH** skill set
 #'
 #' @description The **XH** skill set is a list of
-#' an module's capabilities:
+#' a module's capabilities:
 #'
 #' + **`H_dynamics`** - if FALSE, \eqn{H} is static. The module doesn't have a port for demographic change
 #' + **`mda`**:  if FALSE, the module doesn't have an `mda` port for mass drug administration
@@ -12,7 +12,7 @@
 #' + **`pr_obs`**: if TRUE, the model outputs a value for observed PR
 #' + **`pf_rdt`**: if TRUE, the model outputs a value for prevalence by RDT
 #' + **`pf_lm`**: if TRUE, the model outputs a value for prevalence by light microscopy
-#' + **`pf_pcr`**: if FALSE, the model outputs a value for prevalence by PCR
+#' + **`pf_pcr`**: if TRUE, the model outputs a value for prevalence by PCR
 #'
 #' @param Xname the **XH** module name
 #'
@@ -37,7 +37,7 @@ check_XH = function(xds_obj,i){
   UseMethod("check_XH", xds_obj$XH_obj[[i]])
 }
 
-#' @title Compute **XH** Component Derivatives
+#' @title Compute derivatives (**XH**) 
 #'
 #' @description Using the stored values
 #' of the daily FoI, compute the derivatives and
@@ -53,20 +53,18 @@ check_XH = function(xds_obj,i){
 #' @return the derivatives as a [numeric] vector
 #'
 #' @keywords internal
-#' @keywords internal
 #' @export
 dXHdt <- function(t, y, xds_obj, i) {
   UseMethod("dXHdt", xds_obj$XH_obj[[i]])
 }
 
-#' @title Update X states for a discrete time system
+#' @title Update state variables (**XH**) 
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector
-#' @keywords internal
 #' @keywords internal
 #' @export
 Update_XHt <- function(t, y, xds_obj, i) {
@@ -83,7 +81,6 @@ Update_XHt <- function(t, y, xds_obj, i) {
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_I <- function(t, y, xds_obj, i) {
   UseMethod("F_I", xds_obj$XH_obj[[i]])
@@ -97,7 +94,6 @@ F_I <- function(t, y, xds_obj, i) {
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_H <- function(t, y, xds_obj, i) {
   UseMethod("F_H", xds_obj$XH_obj[[i]])
@@ -110,13 +106,12 @@ F_H <- function(t, y, xds_obj, i) {
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_infectivity <- function(y, xds_obj, i) {
   UseMethod("F_infectivity", xds_obj$XH_obj[[i]])
 }
 
-#' @title Setup an **XH** Module (Human / Host Epidemiology & Demography)
+#' @title Set up **XH** model object
 #' @description Set the parameter values and configure a model
 #' for the **X** Component
 #'
@@ -128,16 +123,15 @@ F_infectivity <- function(y, xds_obj, i) {
 #' @return an **`xds`** object
 #' @keywords internal
 #'
-#' @keywords internal
 #' @export
 setup_XH_obj = function(Xname, xds_obj, i, options=list()){
   class(Xname) <- Xname
   UseMethod("setup_XH_obj", Xname)
 }
 
-#' @title Get Variables by Name
+#' @title List variables (**XH**)
 #'
-#' @description Get the the values
+#' @description Get the values
 #' of variables from the flat state
 #' variable vector \eqn{y}, and return
 #' the values as a named list
@@ -179,13 +173,12 @@ change_H = function(H, xds_obj, i=1){
 #' @param i the host species index
 #' @return an **`xds`** object
 #' @keywords internal
-#' @keywords internal
 #' @export
 setup_XH_ix <- function(xds_obj, i) {
   UseMethod("setup_XH_ix", xds_obj$XH_obj[[i]])
 }
 
-#' @title Get XH indices 
+#' @title Get XH indices
 #'
 #' @description Get and display the values of the indices
 #' for the variables
@@ -201,7 +194,7 @@ get_XH_ix <- function(xds_obj, i=1) {
 }
 
 
-#' @title Parse **XH** Outputs
+#' @title Parse outputs (**XH**)
 #'
 #' @description After solving, this function extracts
 #' the values of the dependent variables for the **XH**
@@ -220,14 +213,13 @@ get_XH_ix <- function(xds_obj, i=1) {
 #' @param i the host species index
 #'
 #' @keywords internal
-#' @keywords internal
 #' @export
 parse_XH_orbits <- function(outputs, xds_obj, i) {
   UseMethod("parse_XH_orbits", xds_obj$XH_obj[[i]])
 }
 
 
-#' @title Return the parameters as a list
+#' @title Get parameters (**XH**)
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
@@ -238,7 +230,7 @@ get_XH_pars <- function(xds_obj, i=1) {
   UseMethod("get_XH_pars", xds_obj$XH_obj[[i]])
 }
 
-#' @title Set new X parameter values
+#' @title Change parameters (**XH**)
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
@@ -251,7 +243,7 @@ change_XH_pars <- function(xds_obj, i=1, options=list()) {
 }
 
 
-#' @title Setup Initial Values for **XH** Modules
+#' @title Setup initial values (**XH**)
 #'
 #' @description This method dispatches on `xds_obj$XH_obj[[i]]`.
 #'
@@ -260,7 +252,6 @@ change_XH_pars <- function(xds_obj, i=1, options=list()) {
 #' @param i the host species index
 #' @param options a [list]
 #' @return an **`xds`** object
-#' @keywords internal
 #' @keywords internal
 #' @export
 setup_XH_inits = function(xds_obj, H, i=1, options=list()){
@@ -279,20 +270,18 @@ setup_XH_inits = function(xds_obj, H, i=1, options=list()){
 #' @return the initial values, as a named list
 #'
 #' @keywords internal
-#' @keywords internal
 #' @export
 get_XH_inits = function(xds_obj, i=1){
   xds_obj$XH_obj[[i]]$inits
 }
 
 
-#' @title Set new X parameter values
+#' @title Change initial values (**XH**)
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param i the vector species index
 #' @param options a named list
 #' @return an **`xds`** object
-#' @keywords internal
 #' @keywords internal
 #' @export
 change_XH_inits <- function(xds_obj, i=1, options=list()) {
@@ -300,12 +289,11 @@ change_XH_inits <- function(xds_obj, i=1, options=list()) {
 }
 
 
-#' @title Compute Net Infectiousness (NI)
+#' @title Compute net infectiousness (NI)
 #' @description A function to compute NI as an output
 #' @param vars a list with the variables attached by name
 #' @param XH_obj a list defining a model for human
 #' @return a [numeric] vector of length `nStrata`
-#' @keywords internal
 #' @keywords internal
 #' @export
 F_ni <- function(vars, XH_obj) {
@@ -319,7 +307,6 @@ F_ni <- function(vars, XH_obj) {
 #' @param XH_obj a list defining a model for human
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_prevalence <- function(vars, XH_obj) {
   UseMethod("F_prevalence", XH_obj)
@@ -329,7 +316,6 @@ F_prevalence <- function(vars, XH_obj) {
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
-#' @keywords internal
 #' @keywords internal
 #' @export
 F_pfpr_by_lm <- function(vars, XH_obj) {
@@ -341,7 +327,6 @@ F_pfpr_by_lm <- function(vars, XH_obj) {
 #' the predicted *Pf*PR by rapid diagnostic test (RDT)
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
-#' @keywords internal
 #' @keywords internal
 #' @export
 F_pfpr_by_rdt <- function(vars, XH_obj) {
@@ -355,7 +340,6 @@ F_pfpr_by_rdt <- function(vars, XH_obj) {
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
-#' @keywords internal
 #' @export
 F_pfpr_by_pcr <- function(vars, XH_obj) {
   UseMethod("F_prevalence", XH_obj)
@@ -366,14 +350,14 @@ F_pfpr_by_pcr <- function(vars, XH_obj) {
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' @return none
+#' @return a [list]
 #' @keywords internal
 #' @export
 get_HTC <- function(xds_obj, i) {
   UseMethod("get_HTC", xds_obj$XH_obj[[i]])
 }
 
-#' @title Steady States for **X**
+#' @title Steady states for **X**
 #'
 #' @description Compute the steady states as a function of the daily FoI for a
 #' static value of human population density
@@ -390,7 +374,7 @@ steady_state_X = function(foi, H, xds_obj, i=1){
   UseMethod("steady_state_X", xds_obj$XH_obj[[i]])
 }
 
-#' @title Steady States for **XH**
+#' @title Steady states for **XH**
 #'
 #' @description Compute the steady states as a function of the daily FoI for a
 #' static value of human population density
@@ -405,6 +389,7 @@ steady_state_X = function(foi, H, xds_obj, i=1){
 steady_state_XH = function(foi, xds_obj, i=1){
   UseMethod("steady_state_XH", xds_obj$XH_obj[[i]])
 }
+
 
 #' Basic plotting for epidemiological models
 #'
@@ -433,3 +418,4 @@ xds_plot_XH = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
 xds_plot_X = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
   UseMethod("xds_plot_X", xds_obj$XH_obj[[i]])
 }
+

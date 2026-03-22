@@ -1,6 +1,6 @@
-# Get **MY** outputs
+# Get orbits (**MY**)
 
-Get **MY** outputs
+Get orbits (**MY**)
 
 ## Usage
 

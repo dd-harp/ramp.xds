@@ -36,7 +36,7 @@ NULL
 #' @title The **MY** Module Skill Set
 #'
 #' @description The **MY** skill set is a list of
-#' an module's capabilities:
+#' a module's capabilities:
 #'
 #' + `demography` is
 #'
@@ -63,7 +63,7 @@ check_MY.basicM = function(xds_obj, s){
 }
 
 
-#' @title Compute Derivatives for **M** module `basicM`
+#' @title Compute derivatives for `basicM` (**MY**)
 #' @description Implements [dMYdt] for the basicM xde ODE model.
 #' @details \deqn{\begin{array}{rl}dM/dt &= \Lambda(t) - \Omega \cdot M \\ dP/dt &= f(M-P) - \Omega\cdot P\end{array}}
 #' @inheritParams dMYdt
@@ -86,13 +86,13 @@ dMYdt.basicM <- function(t, y, xds_obj, s){
 }
 
 
-#' @title Set mosquito bionomics to baseline
-#' @description Implements [MBaseline] for models with no forcing on the baseline
-#' @inheritParams MBaseline
+#' @title Mosquito bionomics for `basicM` (**MY**)
+#' @description Implements [MBionomics] for models with no exogenous forcing
+#' @inheritParams MBionomics
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBaseline.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
+MBionomics.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   # Baseline parameters
   xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s)
   xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s)
@@ -111,13 +111,13 @@ MBaseline.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   return(xds_obj)
 })}
 
-#' @title Set mosquito bionomics to baseline
-#' @description Implements [MBionomics] for models with no forcing on the baseline
-#' @inheritParams MBionomics
+#' @title Apply effect sizes for `basicM` (**MY**)
+#' @description Implements [MEffectSizes] for models with no exogenous forcing
+#' @inheritParams MEffectSizes
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-MBionomics.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
+MEffectSizes.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$f     <- es_f*f_t
   xds_obj$MY_obj[[s]]$q     <- es_q*q_t
   xds_obj$MY_obj[[s]]$g     <- es_g*g_t
@@ -133,7 +133,7 @@ MBionomics.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 #' @title Compute the steady states as a function of the daily EIR
 #' @description This method dispatches on the type of `MY_obj`
 #' @inheritParams steady_state_M
-#' @return none
+#' @return a [list]
 #' @keywords internal
 #' @export
 steady_state_M.basicM_ode = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[s]],{
@@ -146,7 +146,7 @@ steady_state_M.basicM_ode = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[
 #' @title Compute the steady states as a function of the daily EIR
 #' @description This method dispatches on the type of `MY_obj`
 #' @inheritParams steady_state_M
-#' @return none
+#' @return a [list]
 #' @keywords internal
 #' @export
 steady_state_M.basicM_dts = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[s]],{
@@ -158,7 +158,7 @@ steady_state_M.basicM_dts = function(Lambda, xds_obj, s=1){with(xds_obj$MY_obj[[
 
 # specialized methods for the adult mosquito basicM model
 
-#' @title Derivatives for adult mosquitoes
+#' @title Update state variables for `basicM` (**MY**)
 #' @description Implements [Update_MYt] for the basicM model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector
@@ -181,7 +181,7 @@ Update_MYt.basicM <- function(t, y, xds_obj, s) {
 
 
 
-#' @title Setup MY_obj for the basicM xde model
+#' @title Set up `basicM` (**MY**)
 #' @description Implements [setup_MY_obj] for the basicM xde model
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
@@ -194,7 +194,7 @@ setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
   return(xds_obj)
 }
 
-#' @title Make parameters for GeM ODE adult mosquito model
+#' @title Make parameters for basicM adult mosquito model
 #' @param nPatches is the number of patches, an integer
 #' @param options a named list: named values overwrite defaults
 #' @param g mosquito mortality rate
@@ -236,7 +236,7 @@ make_M_obj_basicM = function(nPatches, options=list(),
     return(MY_obj)
 })}
 
-#' @title Return the parameters as a list
+#' @title Get parameters for `basicM` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -286,7 +286,7 @@ F_eggs.basicM <- function(t, y, xds_obj, s) {
   })
 }
 
-#' @title Setup the basicM model
+#' @title Setup initial values for `basicM` (**MY**)
 #' @description Implements [setup_MY_inits] for the basicM model
 #' @inheritParams setup_MY_inits
 #' @return a [list] vector
@@ -298,7 +298,7 @@ setup_MY_inits.basicM = function(xds_obj, s, options){
 }
 
 
-#' @title Set new MY parameter values
+#' @title Change initial values for `basicM` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
@@ -316,7 +316,7 @@ change_MY_inits.basicM <- function(xds_obj, s=1, options=list()) {
 #' @param options a [list] of values that overwrites the defaults
 #' @param M total mosquito density at each patch
 #' @param P total parous mosquito density at each patch
-#' @return none
+#' @return a [list]
 #' @keywords internal
 #' @export
 make_MY_inits_basicM = function(nPatches, options, M=5, P=1){
@@ -341,7 +341,7 @@ get_MY_vars.basicM <- function(y, xds_obj, s){
        )))
 }
 
-#' @title Return the parameters as a list
+#' @title Change parameters for `basicM` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
@@ -365,7 +365,7 @@ change_MY_pars.basicM <- function(xds_obj, s=1, options=list()) {
 #' @title Add indices for adult mosquitoes to parameter list
 #' @description Implements [setup_MY_ix] for the basic M model.
 #' @inheritParams setup_MY_ix
-#' @return none
+#' @return a [list]
 #' @importFrom utils tail
 #' @keywords internal
 #' @export
@@ -384,10 +384,10 @@ setup_MY_ix.basicM <- function(xds_obj, s) {with(xds_obj,{
   return(xds_obj)
 })}
 
-#' @title parse outputs for basicM
+#' @title Parse outputs for `basicM` (**MY**)
 #' @description Implements [parse_MY_orbits] for the basicM model.
 #' @inheritParams parse_MY_orbits
-#' @return [list]
+#' @return a [list]
 #' @keywords internal
 #' @export
 parse_MY_orbits.basicM <- function(outputs, xds_obj, s) {

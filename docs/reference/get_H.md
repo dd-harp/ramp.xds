@@ -1,6 +1,6 @@
-# Get the initial values as a vector
+# Get human population density
 
-Get the initial values as a vector
+Get human population density
 
 ## Usage
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{parse_L_orbits}
 \alias{parse_L_orbits}
-\title{parse \strong{L} Component Outputs}
+\title{Parse outputs (\strong{L})}
 \usage{
 parse_L_orbits(outputs, xds_obj, s)
 }

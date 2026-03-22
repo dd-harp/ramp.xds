@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{setup_XH_obj.trivial}
 \alias{setup_XH_obj.trivial}
-\title{xde_setup XH_obj.trivial}
+\title{Set up \code{trivial} (\strong{XH})}
 \usage{
 \method{setup_XH_obj}{trivial}(Xname, xds_obj, i, options = list())
 }

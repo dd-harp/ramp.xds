@@ -1,6 +1,8 @@
-# Vector control effect sizes
+# Apply vector control effect sizes
 
-This method dispatches on the type of `xds_obj$VECTOR_CONTROL`.
+This calls MEffectSizes and LEffectSizes for each species. This function
+applies the effect sizes of vector control to the bionomic parameters
+for each vector species.
 
 ## Usage
 
@@ -24,4 +26,4 @@ VectorControlEffectSizes(t, y, xds_obj)
 
 ## Value
 
-a **`ramp.xds`** model object
+a [list](https://rdrr.io/r/base/list.html)

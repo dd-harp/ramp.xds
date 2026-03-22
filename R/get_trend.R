@@ -23,7 +23,7 @@ get_trend = function(xds_obj, s=1){
 #'
 #' @inheritParams get_trend
 #'
-#' @return trend parameters
+#' @return an empty vector
 #'
 #' @keywords internal
 #' @export
@@ -39,7 +39,7 @@ get_trend.none = function(xds_obj, s=1){
 #'
 #' @inheritParams get_trend
 #'
-#' @return trend parameters
+#' @return a list, the value of `trend_par`
 #'
 #' @keywords internal
 #' @export
@@ -55,12 +55,27 @@ get_trend.Lambda= function(xds_obj, s=1){
 #'
 #' @inheritParams get_trend
 #'
-#' @return trend parameters
+#' @return a list, the value of `trend_par`
 #'
 #' @keywords internal
 #' @export
 get_trend.eir= function(xds_obj, s=1){
   return(xds_obj$EIR_obj$trend_par)
+}
+
+#' @title Get the trend parameters
+#'
+#' @description
+#' Get the trend parameters for an **MY** trivial model
+#'
+#' @inheritParams get_trend
+#'
+#' @return a list, the value of `trend_par`
+#'
+#' @keywords internal
+#' @export
+get_trend.MY = function(xds_obj, s=1){
+  return(xds_obj$MY_obj[[s]]$trend_par)
 }
 
 #' @title Get spline interpolation points
@@ -100,11 +115,13 @@ get_spline_s = function(xds_obj, s){
 #' @title Get spline interpolation points
 #'
 #' @description
-#' Return the value that sets mean forcing
-#' for forced models.
+#' Get spline interpolation points when `forced_by` = "none"
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
+#'
+#' @return an empty vector
+#'
 #' @keywords internal
 #' @export
 get_spline_s.none = function(xds_obj, s){
@@ -115,12 +132,12 @@ get_spline_s.none = function(xds_obj, s){
 #' @title Get spline interpolation points
 #'
 #' @description
-#' Return the
+#' Get spline interpolation points when `forced_by` = "Lambda"
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return the interpolation points, as a list
+#' @return a list, the value of `trend_par`
 #'
 #' @keywords internal
 #' @export
@@ -133,10 +150,12 @@ get_spline_s.Lambda = function(xds_obj, s=1){
 #' @title Get spline interpolation points
 #'
 #' @description
-#' Return the
+#' Get spline interpolation points when `forced_by` = "eir"
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
+#'
+#' @return a list, the value of `trend_par`
 #'
 #' @keywords internal
 #' @export

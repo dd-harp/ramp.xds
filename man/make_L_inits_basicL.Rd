@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{make_L_inits_basicL}
 \alias{make_L_inits_basicL}
-\title{Make Initial Values for \code{basicL} (\strong{L} Component)}
+\title{Make initial values for \code{basicL} (\strong{L} component)}
 \usage{
 make_L_inits_basicL(nHabitats, options = list(), L = 1)
 }
@@ -18,5 +18,6 @@ a \link{list} with Linits added
 }
 \description{
 Initial values of the variable \eqn{L} can be set
+by passing \code{L} in \code{options}
 }
 \keyword{internal}

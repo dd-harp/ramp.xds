@@ -1,8 +1,8 @@
 
-#' @title Set mean forcing
+#' @title Change mean forcing
 #'
 #' @description
-#' Set the mean forcing parameter to `X`
+#' Change the mean forcing parameter to `X`
 #'
 #' @param X the new mean forcing parameter
 #' @param xds_obj an **`xds`** model object
@@ -15,7 +15,7 @@ change_mean_forcing = function(X, xds_obj, s=1){
   UseMethod("change_mean_forcing", xds_obj$forced_by)
 }
 
-#' @title Set mean forcing
+#' @title Change mean forcing
 #'
 #' @description
 #' Implement `change_mean_forcing` for a model
@@ -31,11 +31,10 @@ change_mean_forcing.none = function(X, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set mean forcing
+#' @title Change mean forcing
 #'
 #' @description
-#' Set `Lambda` to `X` for the \eqn{s^{th}} species
-#' and return the **`ramp.xds`** model object
+#' Change `Lambda` for when `forced_by` = "Lambda"
 #'
 #' @inheritParams change_mean_forcing
 #'
@@ -49,10 +48,10 @@ change_mean_forcing.Lambda = function(X, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set mean forcing
+#' @title Change mean forcing
 #'
 #' @description
-#' Set the mean daily EIR for an `eir` model
+#' Change the mean daily EIR for an `eir` model
 #'
 #' @inheritParams change_mean_forcing
 #'

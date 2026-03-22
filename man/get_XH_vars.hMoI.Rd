@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{get_XH_vars.hMoI}
 \alias{get_XH_vars.hMoI}
-\title{Get Variables by Name}
+\title{List variables for \code{hMoI} (\strong{XH})}
 \usage{
 \method{get_XH_vars}{hMoI}(y, xds_obj, i)
 }
@@ -17,7 +17,7 @@
 a \link{list}
 }
 \description{
-Get the the value of variables from the flat state variable vector \eqn{y}, and return
+Get the value of variables from the flat state variable vector \eqn{y}, and return
 the values as a named list
 }
 \keyword{internal}

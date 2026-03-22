@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{get_XH_pars.SIS}
 \alias{get_XH_pars.SIS}
-\title{Get \emph{SIS} module parameters}
+\title{Get parameters for \code{SIS} (\strong{XH})}
 \usage{
 \method{get_XH_pars}{SIS}(xds_obj, i = 1)
 }

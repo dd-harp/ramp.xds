@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{get_XH_pars.hMoI}
 \alias{get_XH_pars.hMoI}
-\title{Return the parameters as a list}
+\title{Get parameters for \code{hMoI} (\strong{XH})}
 \usage{
 \method{get_XH_pars}{hMoI}(xds_obj, i = 1)
 }

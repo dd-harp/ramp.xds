@@ -21,7 +21,10 @@ show_season= function(xds_obj, tm = seq(0, 730, by=5), add=FALSE){
 }
 
 
-#' @title Plot the seasonal pattern
+#' @title Compute the seasonal pattern
+#'
+#' @description
+#' Evaluate the function `F_season` for a forced model.
 #'
 #' @param tm the time points
 #' @param xds_obj an **`xds`** model object
@@ -34,14 +37,14 @@ F_season = function(tm, xds_obj){
   UseMethod("F_season", xds_obj$forced_by)
 }
 
-#' @title Plot the seasonal pattern
+#' @title Compute the seasonal pattern
 #'
-#' @description The `F_season` case for models
-#' with no forcing.
+#' @description
+#' Evaluate the function `F_season` for a forced model when `forced_by` is "none"
 #'
 #' @inheritParams F_season
 #'
-#' @return a null result
+#' @return an empty vector
 #'
 #' @importFrom graphics plot lines
 #'
@@ -51,10 +54,10 @@ F_season.none = function(tm, xds_obj){
   return(c())
 }
 
-#' @title Plot the seasonal pattern
+#' @title Compute the seasonal pattern
 #'
-#' @description For a model forced by emergence,
-#' show the seasonal pattern
+#' @description
+#' Evaluate the function `F_season` for a forced model when `forced_by` is "Lambda"
 #'
 #' @inheritParams F_season
 #'
@@ -68,10 +71,10 @@ F_season.Lambda = function(tm, xds_obj){
   return(xds_obj$L_obj[[1]]$F_season(tm))
 }
 
-#' @title Plot the seasonal pattern
+#' @title Compute the seasonal pattern
 #'
-#' @description For a model forced by the EIR
-#' plot the seasonal pattern
+#' @description
+#' Evaluate the function `F_season` for a forced model when `forced_by` is "eir"
 #'
 #' @inheritParams F_season
 #'

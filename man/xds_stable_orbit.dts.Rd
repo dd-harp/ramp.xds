@@ -15,6 +15,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$xde}.
+Run a discrete time system for 10 years, and save the last year's orbits.
 }
 \keyword{internal}

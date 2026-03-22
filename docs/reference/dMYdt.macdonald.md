@@ -1,4 +1,4 @@
-# Compute derivatives for the **MY** module `macdonald`
+# Compute derivatives for `macdonald` (**MY**)
 
 This implements a delay differential equation model for adult mosquito
 ecology and infection dynamics that is consistent with the model
@@ -22,7 +22,7 @@ for educational purposes.
 
 - \\f\\ or `f`: the blood feeding rate
 
-- \\q\\ or `q`: maturation rate
+- \\q\\ or `q`: human blood fraction
 
 - \\\tau\\ or `eip`: the extrinsic incubation period
 
@@ -66,7 +66,7 @@ dMYdt(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

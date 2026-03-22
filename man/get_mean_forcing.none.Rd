@@ -9,6 +9,9 @@
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
+\value{
+an empty vector
+}
 \description{
 Return null for models without forcing
 }

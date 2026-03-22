@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_season.R
 \name{F_season.none}
 \alias{F_season.none}
-\title{Plot the seasonal pattern}
+\title{Compute the seasonal pattern}
 \usage{
 \method{F_season}{none}(tm, xds_obj)
 }
@@ -12,10 +12,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a null result
+an empty vector
 }
 \description{
-The \code{F_season} case for models
-with no forcing.
+Evaluate the function \code{F_season} for a forced model when \code{forced_by} is "none"
 }
 \keyword{internal}

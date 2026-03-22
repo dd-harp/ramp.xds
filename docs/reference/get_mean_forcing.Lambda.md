@@ -15,3 +15,7 @@ get_mean_forcing(xds_obj)
 - xds_obj:
 
   an **`xds`** model object
+
+## Value
+
+a vector, the value of `Lambda`

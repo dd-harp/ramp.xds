@@ -10,14 +10,14 @@
         <mxCell id="E-gPgUU8CswqxeNStXfN-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacing=2;" value="\(L\) -&amp;nbsp;Aquatic Mosquito Ecology&lt;hr&gt;&lt;div style=&quot;line-height: 110%;&quot;&gt;\(\frac{d {L}}{dt} = F_{L}(\eta, {L})&amp;nbsp; \)&amp;nbsp;&lt;/div&gt;" vertex="1">
           <mxGeometry height="86" width="220" x="338.73" y="90" as="geometry" />
         </mxCell>
-        <mxCell id="E-gPgUU8CswqxeNStXfN-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacing=1;fontSize=12;" value="&lt;p style=&quot;line-height: 105%; font-size: 12px;&quot;&gt;Emergence&lt;/p&gt;&lt;hr style=&quot;font-size: 12px;&quot;&gt;&lt;p style=&quot;line-height: 105%; font-size: 12px;&quot;&gt;&lt;u style=&quot;background-color: initial; font-size: 12px;&quot;&gt;\(\alpha = F_\alpha (L) \)&lt;/u&gt;&lt;br style=&quot;font-size: 12px;&quot;&gt;&lt;/p&gt;" vertex="1">
-          <mxGeometry height="70" width="120" x="570" y="160" as="geometry" />
+        <mxCell id="E-gPgUU8CswqxeNStXfN-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacing=1;fontSize=12;" value="&lt;p style=&quot;line-height: 105%; font-size: 12px;&quot;&gt;Emergence&lt;/p&gt;&lt;hr style=&quot;font-size: 12px;&quot;&gt;&lt;p style=&quot;line-height: 105%; font-size: 12px;&quot;&gt;&lt;u style=&quot;background-color: initial; font-size: 12px;&quot;&gt;\(\alpha = F_\alpha (L) \)&lt;/u&gt;&lt;br style=&quot;font-size: 12px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;line-height: 105%; font-size: 12px;&quot;&gt;&lt;u style=&quot;background-color: initial;&quot;&gt;\(\Lambda = N \cdot \alpha&amp;nbsp; \)&lt;/u&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="100" width="120" x="570" y="160" as="geometry" />
         </mxCell>
-        <mxCell id="E-gPgUU8CswqxeNStXfN-12" edge="1" parent="1" source="E-gPgUU8CswqxeNStXfN-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="E-gPgUU8CswqxeNStXfN-2">
+        <mxCell id="Z12VVn53PhqMLlmVgfT4-1" edge="1" parent="1" source="E-gPgUU8CswqxeNStXfN-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="E-gPgUU8CswqxeNStXfN-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="E-gPgUU8CswqxeNStXfN-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacing=1;fontSize=12;" value="&lt;p style=&quot;line-height: 105%; font-size: 12px;&quot;&gt;Egg Laying&lt;/p&gt;&lt;hr style=&quot;font-size: 12px;&quot;&gt;&lt;p style=&quot;line-height: 105%; font-size: 12px;&quot;&gt;&lt;u style=&quot;background-color: initial; font-size: 12px;&quot;&gt;\(\eta = U\cdot G \)&lt;/u&gt;&lt;br style=&quot;font-size: 12px;&quot;&gt;&lt;/p&gt;" vertex="1">
-          <mxGeometry height="70" width="120" x="210" y="40" as="geometry" />
+          <mxGeometry height="70" width="120" x="200" y="160" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{Update_Lt.basicL}
 \alias{Update_Lt.basicL}
-\title{Update State Variables for \code{basicL} (\strong{L} Component)}
+\title{Update state variables for \code{basicL} (\strong{L})}
 \usage{
 \method{Update_Lt}{basicL}(t, y, xds_obj, s)
 }

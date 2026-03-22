@@ -1,4 +1,4 @@
-# List **L** Component Variables for `basicL`
+# List variables for `basicL` (**L**)
 
 Extract the **L** component variables from the vector of state variables
 (`y`) and return them as a named list

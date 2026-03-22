@@ -6,7 +6,7 @@
 #'
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return the mean parameter for forcing
+#' @return a vector, the mean parameter for forcing
 #'
 #' @export
 get_mean_forcing = function(xds_obj){
@@ -19,6 +19,8 @@ get_mean_forcing = function(xds_obj){
 #' Return null for models without forcing
 #'
 #' @param xds_obj an **`xds`** model object
+#'
+#' @return an empty vector 
 #'
 #' @keywords internal
 #' @export
@@ -34,6 +36,8 @@ get_mean_forcing.none = function(xds_obj){
 #' forced by adult mosquito emergence
 #'
 #' @param xds_obj an **`xds`** model object
+#'
+#' @return a vector, the value of `Lambda`
 #'
 #' @keywords internal
 #' @export
@@ -55,9 +59,32 @@ get_mean_forcing.Lambda = function(xds_obj){
 #'
 #' @param xds_obj an **`xds`** model object
 #'
+#' @return a vector, the value of `eir`
+#'
 #' @keywords internal
 #' @export
 get_mean_forcing.eir = function(xds_obj){
   return(xds_obj$EIR_obj$eir)
+}
+
+#' @title Get mean forcing
+#'
+#' @description
+#' Get `Z`, the mean density of infectious mosquitoes,
+#' for an **MY** trivial model
+#'
+#' @param xds_obj an **`xds`** model object
+#'
+#' @keywords internal
+#' @export
+get_mean_forcing.MY = function(xds_obj){
+  if(xds_obj$nVectorSpecies == 1){
+    return(xds_obj$MY_obj[[1]]$Z)
+  } else {
+    Z = list()
+    for(s in 1:length(xds_obj$nVectorSpecies))
+      Z[[s]] <- xds_obj$MY_obj[[s]]$Z
+    return(Z)
+  }
 }
 

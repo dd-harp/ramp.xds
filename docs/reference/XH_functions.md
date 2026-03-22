@@ -1,4 +1,4 @@
-# Generic Methods for the XH Component
+# Generic methods for the XH component
 
 write me.
 

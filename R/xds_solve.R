@@ -18,7 +18,7 @@
 #' @param dt the time step
 #' @param times the times
 #'
-#' @return an **`xds`** object
+
 #' @export
 xds_solve = function(xds_obj, Tmax=365, dt=1, times=NULL){
   UseMethod("xds_solve", xds_obj$xde)
@@ -36,7 +36,7 @@ xds_solve = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #'   - [deSolve::dede] if `class(dlay) == 'dde'`
 #'
 #' @inheritParams xds_solve
-#' @return an **`xds`** object
+
 #' @keywords internal
 #' @export
 xds_solve.ode = function(xds_obj, Tmax=365, dt=1, times=NULL){
@@ -60,7 +60,7 @@ xds_solve.ode = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #'
 #' @description Implements [xds_solve] for delay differential equations
 #' @inheritParams xds_solve
-#' @return an **`xds`** object
+
 #' @keywords internal
 #' @export
 xds_solve.dde = function(xds_obj, Tmax=365, dt=1, times=NULL){
@@ -128,7 +128,7 @@ xds_solve.dts = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' @param dt the time interval for outputs
 #' @param times the times
 #'
-#' @return an **`xds`** object
+#' @return a vector of time points
 #' @keywords internal
 #' @export
 make_times_xde = function(Tmax, dt, times=NULL){
@@ -147,14 +147,13 @@ make_times_xde = function(Tmax, dt, times=NULL){
 #'
 #' It returns a sequence from `0` to `maxT` by `dt.`
 #'
-#' A check
-#' values of `times` should be some integer multiple of `dt`
+#' Values of `times` should be some integer multiple of `dt`
 #'
 #' @param Tmax the last time point, run from 0...Tmax
 #' @param dt the time interval for outputs
 #' @param times the times
 #'
-#' @return an **`xds`** object
+#' @return a vector of time points
 #' @keywords internal
 #' @export
 make_times_dts = function(Tmax=365, dt=1, times=NULL){

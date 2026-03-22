@@ -1,4 +1,4 @@
-# A function to set up adult mosquito models
+# Setup initial values (**MY**)
 
 This method dispatches on `MYname`.
 
@@ -16,7 +16,7 @@ setup_MY_inits(xds_obj, s, options = list())
 
 - s:
 
-  the species index
+  the vector species index
 
 - options:
 

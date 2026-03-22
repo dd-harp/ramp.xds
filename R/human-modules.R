@@ -1,4 +1,4 @@
-#' @title XH Modules 
+#' @title XH modules
 #' 
 #' @description
 #' A List of Modules for the **XH**-Component 
@@ -19,7 +19,7 @@
 #'      
 #'      + `SIP`   - a compartmental model with treatment and chemoprotection 
 #'      
-#'      + `SIPd`  - an implementation of the Garki Model for malari
+#'      + `SIPd`  - an implementation of the Garki Model for malaria
 #'
 #' + **Compartmental Models** 
 #' 
@@ -31,7 +31,7 @@
 #'      + `SEISd` - an **SEIS** compartmental model, as a delay differential equation
 #' 
 #' 
-#'  **`ramp.library` -- ** [source code](https://github.com/dd-harp/ramp.library) & [github.io](https://github.com/dd-harp/ramp.library)
+#'  **`ramp.library`** --- [source code](https://github.com/dd-harp/ramp.library) & [github.io](https://dd-harp.github.io/ramp.library)
 #' 
 #' @name XH_module_list 
 NULL

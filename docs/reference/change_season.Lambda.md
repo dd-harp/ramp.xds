@@ -1,6 +1,7 @@
-# Get seasonal pattern
+# Change season parameters
 
-Get the parameters set the seasonal pattern
+Change parameters for the seasonality function when
+`forced_by = "Lambda"`
 
 ## Usage
 

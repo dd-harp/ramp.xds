@@ -1,4 +1,4 @@
-# Compute steady states for **L** Component Modules
+# Compute steady states for **L** component modules
 
 For differential equation models, compute steady states as a function of
 daily eggs laid, \\\eta\\

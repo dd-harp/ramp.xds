@@ -12,7 +12,7 @@
 \item{s}{the vector species index}
 }
 \value{
-trend parameters
+a list, the value of \code{trend_par}
 }
 \description{
 Get the interpolating points

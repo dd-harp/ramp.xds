@@ -16,7 +16,7 @@ make_MY_inits_basicM(nPatches, options, M = 5, P = 1)
 \item{P}{total parous mosquito density at each patch}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 Make inits for basicM adult mosquito model

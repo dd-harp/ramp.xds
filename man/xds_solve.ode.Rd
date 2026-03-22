@@ -15,9 +15,6 @@
 
 \item{times}{the times}
 }
-\value{
-an \strong{\code{xds}} object
-}
 \description{
 Implements \link{xds_solve} for ordinary differential equations.
 This method solves a system of equations and computes the values of

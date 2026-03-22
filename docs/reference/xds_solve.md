@@ -42,10 +42,6 @@ xds_solve(xds_obj, Tmax = 365, dt = 1, times = NULL)
 
   the times
 
-## Value
-
-an **`xds`** object
-
 ## Note
 
 The function `xds_solve()` dispatches on `xds_obj$xde`

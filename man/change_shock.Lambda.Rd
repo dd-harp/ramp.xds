@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_shock.R
 \name{change_shock.Lambda}
 \alias{change_shock.Lambda}
-\title{Set the \eqn{y} value for interpolating points}
+\title{Change shock parameters}
 \usage{
 \method{change_shock}{Lambda}(shock_par, xds_obj, s = 1)
 }
@@ -17,6 +17,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-and return the \strong{\code{ramp.xds}} model object
+Change parameters for the shock function
+when \code{forced_by = "Lambda"}
 }
 \keyword{internal}

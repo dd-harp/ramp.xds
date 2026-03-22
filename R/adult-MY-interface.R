@@ -1,11 +1,8 @@
-# generic methods for adult component
 
-#' @title The **MY** Module Skill Set
+#' @title The **MY** module skill set
 #'
 #' @description The **MY** skill set is a list of
-#' an module's capabilities:
-#'
-#' + `demography` is
+#' a module's capabilities.
 #'
 #' @param MYname  the **MY** module name
 #'
@@ -30,7 +27,7 @@ check_MY = function(xds_obj, s){
   UseMethod("check_MY", xds_obj$MY_obj[[s]])
 }
 
-#' @title Compute Derivatives for an Adult Mosquito Model
+#' @title Compute derivatives (**MY**)
 #'
 #' @description
 #'
@@ -42,7 +39,7 @@ check_MY = function(xds_obj, s){
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #'
 #' @return Derivatives for an adult mosquito model, a [vector]
 #'
@@ -52,13 +49,13 @@ dMYdt <- function(t, y, xds_obj, s) {
   UseMethod("dMYdt", xds_obj$MY_obj[[s]])
 }
 
-#' @title Update States for a Adult Mosquito Model
+#' @title Update states (**MY**) 
 #'
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #'
 #' @return Updated states for an adult mosquito model, a [vector]
 #'
@@ -74,7 +71,7 @@ Update_MYt <- function(t, y, xds_obj, s) {
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -87,7 +84,7 @@ F_fqZ <- function(t, y, xds_obj, s) {
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -100,7 +97,7 @@ F_fqM <- function(t, y, xds_obj, s) {
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -109,25 +106,12 @@ F_eggs <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Adult Mosquito Bionomics - Baseline
-#' @description Compute the baseline adult mosquito bionomic parameter values
+#' @title Mosquito bionomics (**MY**)
+#' @description Compute the adult mosquito bionomic parameter values
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-MBaseline <- function(t, y, xds_obj, s) {
-  UseMethod("MBaseline", xds_obj$MY_obj[[s]])
-}
-
-#' @title Adult Mosquito Bionomics - Modified by Control
-#' @description Modify the baseline adult mosquito bionomic parameters
-#' @param t current simulation time
-#' @param y state vector
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
@@ -135,23 +119,36 @@ MBionomics <- function(t, y, xds_obj, s) {
   UseMethod("MBionomics", xds_obj$MY_obj[[s]])
 }
 
-#' @title Setup an **MY** Model Object
+#' @title Apply effect sizes (**MY**)
+#' @description Apply vector control effect sizes to adult mosquito bionomic parameters
+#' @param t current simulation time
+#' @param y state vector
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#' @return an **`xds`** object
+#' @keywords internal
+#' @export
+MEffectSizes <- function(t, y, xds_obj, s) {
+  UseMethod("MEffectSizes", xds_obj$MY_obj[[s]])
+}
+
+#' @title Set up **MY** model object
 #'
 #' @description
 #' This function is a structured interface, a way
-#' of building a model objects describing adult mosquito
+#' of building model objects describing adult mosquito
 #' ecology & infection dynamics. The string *MYname*
 #' is assigned its own class (`class(MYname) <- MYname`).
 #'
 #' Since each model will require different arguments,
 #' the dispatched function `setup_MY_obj.MYname`
-#' calls `make_MY_obj_MYname,` passing
+#' calls `make_MY_obj_MYname`, passing
 #' the `options` to set the values of parameters or
 #' terms.
 #'
 #' @param MYname the name of the model
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #' @param options a [list]
 #' @return [list]
 #' @keywords internal
@@ -164,7 +161,7 @@ setup_MY_obj = function(MYname, xds_obj, s, options=list()){
 #' @title Add indices for adult mosquitoes to parameter list
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #' @return [list]
 #' @keywords internal
 #' @export
@@ -172,7 +169,7 @@ setup_MY_ix <- function(xds_obj, s) {
   UseMethod("setup_MY_ix", xds_obj$MY_obj[[s]])
 }
 
-#' @title Return the variables as a list
+#' @title List variables (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param y the variables
 #' @param xds_obj an **`xds`** model object
@@ -184,10 +181,10 @@ get_MY_vars <- function(y, xds_obj, s) {
   UseMethod("get_MY_vars", xds_obj$MY_obj[[s]])
 }
 
-#' @title Get **MY** Variable Indices
+#' @title Get **MY** variable indices
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #' @return [list]
 #' @keywords internal
 #' @export
@@ -195,12 +192,12 @@ get_MY_ix <- function(xds_obj, s) {
   xds_obj$MY_obj[[s]]$ix
 }
 
-#' @title parse the outputs and return the variables by name in a list
+#' @title Parse outputs (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
 #' It computes the variables by name and returns a named list.
 #' @param outputs a [matrix] of outputs from deSolve
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #' @return [list]
 #' @keywords internal
 #' @export
@@ -208,7 +205,7 @@ parse_MY_orbits <- function(outputs, xds_obj, s) {
   UseMethod("parse_MY_orbits", xds_obj$MY_obj[[s]])
 }
 
-#' @title Return the parameters as a list
+#' @title Get parameters (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -219,7 +216,7 @@ get_MY_pars <- function(xds_obj, s=1) {
   UseMethod("get_MY_pars", xds_obj$MY_obj[[s]])
 }
 
-#' @title Set new MY parameter values
+#' @title Change parameters (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -230,10 +227,10 @@ change_MY_pars <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_MY_pars", xds_obj$MY_obj[[s]])
 }
 
-#' @title A function to set up adult mosquito models
+#' @title Setup initial values (**MY**)
 #' @description This method dispatches on `MYname`.
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #' @param options a [list]
 #' @return [list]
 #' @keywords internal
@@ -246,7 +243,7 @@ setup_MY_inits = function(xds_obj, s, options=list()){
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s the vector species index
 #' @return [numeric]
 #' @keywords internal
 #' @export
@@ -254,7 +251,7 @@ get_MY_inits <- function(xds_obj, s=1) {
   xds_obj$MY_obj[[s]]$inits
 }
 
-#' @title Set new MY parameter values
+#' @title Change initial values (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index

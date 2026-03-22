@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-get.R
 \name{get_H}
 \alias{get_H}
-\title{Get the initial values as a vector}
+\title{Get human population density}
 \usage{
 get_H(xds_obj, i = 1)
 }
@@ -15,5 +15,5 @@ get_H(xds_obj, i = 1)
 y a \link{numeric} vector assigned the class "dynamic"
 }
 \description{
-Get the initial values as a vector
+Get human population density
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_season.R
 \name{change_season}
 \alias{change_season}
-\title{Get seasonal pattern}
+\title{Change season parameters}
 \usage{
 change_season(X, xds_obj, s = 1)
 }
@@ -17,5 +17,5 @@ change_season(X, xds_obj, s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Get the parameters set the seasonal pattern
+Change parameters for the seasonality function
 }

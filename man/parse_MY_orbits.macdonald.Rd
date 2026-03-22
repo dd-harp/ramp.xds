@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{parse_MY_orbits.macdonald}
 \alias{parse_MY_orbits.macdonald}
-\title{parse the output of deSolve and return variables for the macdonald model}
+\title{Parse outputs for \code{macdonald} (\strong{MY})}
 \usage{
 \method{parse_MY_orbits}{macdonald}(outputs, xds_obj, s)
 }
@@ -11,7 +11,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{list}

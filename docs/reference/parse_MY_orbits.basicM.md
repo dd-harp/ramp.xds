@@ -1,4 +1,4 @@
-# parse outputs for basicM
+# Parse outputs for `basicM` (**MY**)
 
 Implements
 [parse_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.md)
@@ -23,8 +23,8 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 
-[list](https://rdrr.io/r/base/list.html)
+a [list](https://rdrr.io/r/base/list.html)

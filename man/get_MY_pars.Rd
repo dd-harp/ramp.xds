@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_MY_pars}
 \alias{get_MY_pars}
-\title{Return the parameters as a list}
+\title{Get parameters (\strong{MY})}
 \usage{
 get_MY_pars(xds_obj, s = 1)
 }

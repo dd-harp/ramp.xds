@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-get.R
 \name{get_XH_orbits}
 \alias{get_XH_orbits}
-\title{Get \strong{XH} outputs}
+\title{Get orbits (\strong{XH})}
 \usage{
 get_XH_orbits(xds_obj, i = 1)
 }
@@ -15,5 +15,5 @@ get_XH_orbits(xds_obj, i = 1)
 the orbits for the \strong{XH} component
 }
 \description{
-Get \strong{XH} outputs
+Get orbits (\strong{XH})
 }

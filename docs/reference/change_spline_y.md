@@ -1,4 +1,4 @@
-# Set yy
+# Change y values for spline interpolation points
 
 Set new \\y\\-values for the spline interpolating points and update
 `F_trend`

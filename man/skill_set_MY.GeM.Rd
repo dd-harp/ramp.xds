@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{skill_set_MY.GeM}
 \alias{skill_set_MY.GeM}
-\title{The \strong{GeM} Module Skill Set}
+\title{The \strong{GeM} module skill set}
 \usage{
 \method{skill_set_MY}{GeM}(MYname)
 }
@@ -14,7 +14,7 @@
 }
 \description{
 The \strong{MY} skill set is a list of
-an module's capabilities:
+a module's capabilities:
 \itemize{
 \item \code{demography} is
 }

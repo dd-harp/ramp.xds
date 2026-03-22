@@ -1,8 +1,7 @@
-#' @title Get seasonal pattern
+#' @title Change season parameters
 #'
 #' @description
-#' Get the parameters set the seasonal pattern
-#'
+#' Change parameters for the seasonality function
 #' @param X a list with new parameters for bottom, phase, and pw
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -14,11 +13,11 @@ change_season = function(X, xds_obj, s=1){
   UseMethod("change_season", xds_obj$forced_by)
 }
 
-#' @title Get seasonal pattern
+#' @title Change season parameters
 #'
 #' @description
-#' Get the parameters set the seasonal pattern
-#'
+#' Change parameters for the seasonality function
+#' when `forced_by = "none"`
 #' @param X a list with new parameters for bottom, phase, and pw
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -31,11 +30,11 @@ change_season.none = function(X, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Get seasonal pattern
+#' @title Change season parameters
 #'
 #' @description
-#' Get the parameters set the seasonal pattern
-#'
+#' Change parameters for the seasonality function
+#' when `forced_by = "Lambda"`
 #' @param X a list with new parameters for bottom, phase, and pw
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -54,11 +53,11 @@ change_season.Lambda = function(X, xds_obj, s=1){
   return(xds_obj)
 }))}
 
-#' @title Get seasonal pattern
+#' @title Change season parameters
 #'
 #' @description
-#' Get the parameters set the seasonal pattern
-#'
+#' Change parameters for the seasonality function
+#' when `forced_by = "eir"`
 #' @param X a list with new parameters for bottom, phase, and pw
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index

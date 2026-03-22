@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{change_XH_pars}
 \alias{change_XH_pars}
-\title{Set new X parameter values}
+\title{Change parameters (\strong{XH})}
 \usage{
 change_XH_pars(xds_obj, i = 1, options = list())
 }

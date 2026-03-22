@@ -1,4 +1,4 @@
-# parse **L** Component Outputs
+# Parse outputs (**L**)
 
 After solving a dynamical system, parse the outputs and return the
 variables by name in a list.

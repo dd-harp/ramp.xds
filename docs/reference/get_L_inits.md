@@ -1,6 +1,7 @@
-# Get Initial Values for the **L** Component
+# Get initial values (**L**)
 
-Get Initial Values for the **L** Component
+The initial values are stored on the **L** object as a named list called
+`inits`; `get_L_inits` returns that list.
 
 ## Usage
 
@@ -21,7 +22,3 @@ get_L_inits(xds_obj, s = 1)
 ## Value
 
 a named [list](https://rdrr.io/r/base/list.html)
-
-## Note
-
-This method dispatches on the class of `xds_obj$L_obj`.

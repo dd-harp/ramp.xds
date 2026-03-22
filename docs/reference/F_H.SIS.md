@@ -1,4 +1,4 @@
-# Compute Population Density
+# Compute population density
 
 Implements [F_H](https://dd-harp.github.io/ramp.xds/reference/F_H.md)
 for the *SIS* module

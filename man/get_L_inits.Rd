@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{get_L_inits}
 \alias{get_L_inits}
-\title{Get Initial Values for the \strong{L} Component}
+\title{Get initial values (\strong{L})}
 \usage{
 get_L_inits(xds_obj, s = 1)
 }
@@ -15,9 +15,7 @@ get_L_inits(xds_obj, s = 1)
 a named \link{list}
 }
 \description{
-Get Initial Values for the \strong{L} Component
-}
-\note{
-This method dispatches on the class of \code{xds_obj$L_obj}.
+The initial values are stored on the \strong{L} object as a
+named list called \code{inits}; \code{get_L_inits} returns that list.
 }
 \keyword{internal}

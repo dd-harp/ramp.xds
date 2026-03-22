@@ -1,6 +1,6 @@
-# The **macdonald** Module Skill Set
+# The **macdonald** module skill set
 
-The **MY** skill set is a list of an module's capabilities:
+The **MY** skill set is a list of a module's capabilities:
 
 - `demography` is
 

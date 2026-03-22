@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{get_XH_pars.trivial}
 \alias{get_XH_pars.trivial}
-\title{Return the parameters as a list}
+\title{Get parameters for \code{trivial} (\strong{XH})}
 \usage{
 \method{get_XH_pars}{trivial}(xds_obj, i = 1)
 }

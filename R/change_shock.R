@@ -1,9 +1,8 @@
 
-#' @title Set the interpolating points
+#' @title Change shock parameters
 #'
 #' @description
-#' Set the interpolating points for F_trend
-#'
+#' Change parameters for the shock function
 #' @param shock_par parameters for [make_function]
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -15,12 +14,11 @@ change_shock = function(shock_par, xds_obj, s=1){
   UseMethod("change_shock", xds_obj$forced_by)
 }
 
-#' @title Set yy
+#' @title Change shock parameters
 #'
 #' @description
-#' Implement `change_shock` for a model
-#' with no forcing
-#'
+#' Change parameters for the shock function
+#' when `forced_by = "none"`
 #' @inheritParams change_shock
 #'
 #' @return an **`xds`** object
@@ -31,12 +29,11 @@ change_shock.none = function(shock_par, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set the \eqn{y} value for interpolating points
+#' @title Change shock parameters
 #'
 #' @description
-#'
-#' and return the **`ramp.xds`** model object
-#'
+#' Change parameters for the shock function
+#' when `forced_by = "Lambda"`
 #' @inheritParams change_shock
 #'
 #' @return an **`xds`** object
@@ -49,13 +46,11 @@ change_shock.Lambda = function(shock_par, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set yy
+#' @title Change shock parameters
 #'
 #' @description
-#' Set the yy for the seasonal pattern for
-#' an `eir` model
-#' and return the **`ramp.xds`** model object
-#'
+#' Change parameters for the shock function
+#' when `forced_by = "eir"`
 #' @inheritParams change_shock
 #'
 #' @return an **`xds`** object

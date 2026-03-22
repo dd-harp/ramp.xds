@@ -1,6 +1,7 @@
-# Solve for the steady state of a system of equations using [rootSolve::steady](https://rdrr.io/pkg/rootSolve/man/steady.html)
+# Compute the steady state for DDEs
 
-This method dispatches on the type of `xds_obj$xde`
+Call `runsteady` to get the steady state of a system of delay
+differential equations.
 
 ## Usage
 

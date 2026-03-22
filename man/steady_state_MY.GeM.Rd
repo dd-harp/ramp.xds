@@ -16,7 +16,7 @@
 \item{s}{the vector species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 This method dispatches on the type of \code{MY_obj}.

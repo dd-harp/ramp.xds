@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{dMYdt.basicM}
 \alias{dMYdt.basicM}
-\title{Compute Derivatives for \strong{M} module \code{basicM}}
+\title{Compute derivatives for \code{basicM} (\strong{MY})}
 \usage{
 \method{dMYdt}{basicM}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector

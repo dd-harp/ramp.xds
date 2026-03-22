@@ -2,14 +2,14 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_MY_ix}
 \alias{get_MY_ix}
-\title{Get \strong{MY} Variable Indices}
+\title{Get \strong{MY} variable indices}
 \usage{
 get_MY_ix(xds_obj, s)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 \link{list}

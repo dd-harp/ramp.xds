@@ -1,4 +1,4 @@
-# Compute Steady States for `hMoI` (**X**-Model)
+# Compute steady states for `hMoI` (**X**-model)
 
 Compute the steady state of the hMoI model as a function of the daily
 foi

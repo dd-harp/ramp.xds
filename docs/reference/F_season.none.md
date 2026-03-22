@@ -1,6 +1,7 @@
-# Plot the seasonal pattern
+# Compute the seasonal pattern
 
-The `F_season` case for models with no forcing.
+Evaluate the function `F_season` for a forced model when `forced_by` is
+"none"
 
 ## Usage
 
@@ -21,4 +22,4 @@ F_season(tm, xds_obj)
 
 ## Value
 
-a null result
+an empty vector

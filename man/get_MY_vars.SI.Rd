@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{get_MY_vars.SI}
 \alias{get_MY_vars.SI}
-\title{Return the variables as a list}
+\title{List variables for \code{SI} (\strong{MY})}
 \usage{
 \method{get_MY_vars}{SI}(y, xds_obj, s)
 }

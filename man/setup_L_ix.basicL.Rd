@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{setup_L_ix.basicL}
 \alias{setup_L_ix.basicL}
-\title{Setup Variable Indices for \code{basicL} (\strong{L} Component)}
+\title{Setup variable indices for \code{basicL} (\strong{L} component)}
 \usage{
 \method{setup_L_ix}{basicL}(xds_obj, s)
 }

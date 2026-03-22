@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{change_MY_pars.SI}
 \alias{change_MY_pars.SI}
-\title{Return the parameters as a list}
+\title{Change parameters for \code{SI} (\strong{MY})}
 \usage{
 \method{change_MY_pars}{SI}(xds_obj, s = 1, options = list())
 }

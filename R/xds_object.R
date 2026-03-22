@@ -23,7 +23,7 @@
 #' 
 #' While xds object internals are useful for developers, 
 #' functions have been developed to 
-#' set up (`setup_*`), inspect (`get_*`), and modify (`change_*) various
+#' set up (`setup_*`), inspect (`get_*`), and modify (`change_*`) various
 #' aspects of xds objects. 
 #' 
 #' @seealso Vignettes: [Getting Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html), [Working](https://dd-harp.github.io/ramp.xds/articles/Working.html), and [The 5-3-4 Model](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)

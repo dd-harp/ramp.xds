@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{hMoI}
 \alias{hMoI}
-\title{The \code{hMoI} Module for the XH Component}
+\title{The \code{hMoI} module for the XH component}
 \description{
 Implements the \strong{XH} component using a hybrid model that tracks the
 mean Multiplicity of Infection (MoI) for total and apparent infections.

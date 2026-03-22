@@ -1,4 +1,4 @@
-# Set the Initial Values for `trivial` (**L**)
+# Change initial values for `trivial` (**L**)
 
 Returns the unmodified **`xds`** object
 

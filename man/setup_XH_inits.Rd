@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{setup_XH_inits}
 \alias{setup_XH_inits}
-\title{Setup Initial Values for \strong{XH} Modules}
+\title{Setup initial values (\strong{XH})}
 \usage{
 setup_XH_inits(xds_obj, H, i = 1, options = list())
 }

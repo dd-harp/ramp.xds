@@ -1,6 +1,6 @@
-# Plot the density of infected and infective mosquitoes
+# Plot the density of infective mosquitoes
 
-Plot the density of infected and infective mosquitoes
+Plot the density of infective mosquitoes
 
 ## Usage
 

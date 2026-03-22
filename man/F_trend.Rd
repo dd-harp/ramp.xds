@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_trend.R
 \name{F_trend}
 \alias{F_trend}
-\title{Plot the Temporal Trend}
+\title{Compute the temporal trend}
 \usage{
 F_trend(tm, xds_obj)
 }
@@ -15,7 +15,6 @@ F_trend(tm, xds_obj)
 the temporal trend, invisibly
 }
 \description{
-For a model with temporal forcing,
-show the temporal trend
+Evaluate the function \code{F_trend} for a forced model.
 }
 \keyword{internal}

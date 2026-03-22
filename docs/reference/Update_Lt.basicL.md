@@ -1,4 +1,4 @@
-# Update State Variables for `basicL` (**L** Component)
+# Update state variables for `basicL` (**L**)
 
 Implements
 [Update_Lt](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.md)

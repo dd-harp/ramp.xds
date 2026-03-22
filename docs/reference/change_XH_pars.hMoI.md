@@ -1,4 +1,4 @@
-# Return the parameters as a list
+# Change parameters for `hMoI` (**XH**)
 
 This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 

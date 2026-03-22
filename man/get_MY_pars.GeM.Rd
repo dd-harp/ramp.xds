@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{get_MY_pars.GeM}
 \alias{get_MY_pars.GeM}
-\title{Return the parameters as a list}
+\title{Get parameters for \code{GeM} (\strong{MY})}
 \usage{
 \method{get_MY_pars}{GeM}(xds_obj, s = 1)
 }

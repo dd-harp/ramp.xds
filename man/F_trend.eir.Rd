@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_trend.R
 \name{F_trend.eir}
 \alias{F_trend.eir}
-\title{Plot the temporal trend}
+\title{Compute the temporal trend}
 \usage{
 \method{F_trend}{eir}(tm, xds_obj)
 }
@@ -15,7 +15,6 @@
 the temporal trend, invisibly
 }
 \description{
-For a model forced by the EIR
-plot the temporal trend
+Evaluate the function \code{F_trend} for a forced model when \code{forced_by} is "eir"
 }
 \keyword{internal}

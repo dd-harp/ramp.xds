@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{F_infectivity.SIS}
 \alias{F_infectivity.SIS}
-\title{Compute Infectivity}
+\title{Compute infectivity}
 \usage{
 \method{F_infectivity}{SIS}(y, xds_obj, i)
 }

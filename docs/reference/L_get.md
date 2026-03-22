@@ -1,6 +1,6 @@
-# Get Functions for the L Component
+# Get functions (**L**)
 
-write me.
+A list of get functions for aquatic mosquito modules.
 
 - [`get_L_vars`](https://dd-harp.github.io/ramp.xds/reference/get_L_vars.md)
   – get state variables from \\y\\

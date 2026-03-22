@@ -1,4 +1,4 @@
-# Setup Initial Values for `basicL` (**L** Component)
+# Setup initial values for `basicL` (**L**)
 
 This sets initial values of the variable \\L\\ by calling
 [make_L_inits_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_inits_basicL.md).
@@ -24,11 +24,11 @@ setup_L_inits(xds_obj, s, options = list())
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  a named [list](https://rdrr.io/r/base/list.html)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** object
 
 ## See also
 

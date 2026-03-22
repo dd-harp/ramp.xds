@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{trivial_L}
 \alias{trivial_L}
-\title{\code{trivial} --- \strong{L} Module}
+\title{\code{trivial} --- \strong{L} module}
 \description{
 The trivial module outputs the emergence
 rate of adult mosquitoes by calling a
@@ -19,10 +19,10 @@ where
 \section{Parameters}{
 
 \describe{
-\item{\code{Lambda}}{the mean annual emergence rate}
-\item{\code{season_par}}{parameters for \link{make_function}: \verb{F_season=make_par(season_par})}
-\item{\code{trend_par}}{parameters for \link{make_function}: \code{F_trend=make_par(trend_par)}}
-\item{\code{shock_par}}{parameters for \link{make_function}: \code{F_shock=make_par(shock_par)}}
+\item{\code{Lambda}}{the mean daily emergence rate}
+\item{\code{season_par}}{parameters for \link{make_function}: \code{F_season=make_function(season_par)}}
+\item{\code{trend_par}}{parameters for \link{make_function}: \code{F_trend=make_function(trend_par)}}
+\item{\code{shock_par}}{parameters for \link{make_function}: \code{F_shock=make_function(shock_par)}}
 }
 
 The default setup option is \code{season_par = trend_par = shock_par = makepar_F_one()}.

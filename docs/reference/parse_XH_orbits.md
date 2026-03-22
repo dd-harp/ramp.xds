@@ -1,4 +1,4 @@
-# Parse **XH** Outputs
+# Parse outputs (**XH**)
 
 After solving, this function extracts the values of the dependent
 variables for the **XH** module from the matrix of solutions, often

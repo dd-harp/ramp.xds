@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{parse_XH_orbits.hMoI}
 \alias{parse_XH_orbits.hMoI}
-\title{parse the output of deSolve and return variables for the hMoI model}
+\title{Parse outputs for \code{hMoI} (\strong{XH})}
 \usage{
 \method{parse_XH_orbits}{hMoI}(outputs, xds_obj, i)
 }
@@ -14,7 +14,7 @@
 \item{i}{the host species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 Implements \link{parse_XH_orbits} for the hMoI model

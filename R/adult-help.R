@@ -6,8 +6,8 @@
 #' \itemize{
 #'   \item \code{\link{dMYdt}} -- compute derivatives
 #'   \item \code{\link{Update_MYt}} -- update state variables
-#'   \item \code{\link{MBaseline}} -- set baseline bionomic parameters
 #'   \item \code{\link{MBionomics}} -- compute bionomic parameters
+#'   \item \code{\link{MEffectSizes}} -- apply vector control effect sizes
 #'   \item \code{\link{F_fqZ}} -- compute infective biting density
 #'   \item \code{\link{F_fqM}} -- compute total biting density
 #'   \item \code{\link{F_eggs}} -- compute eggs laid

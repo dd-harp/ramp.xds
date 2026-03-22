@@ -2,19 +2,19 @@
 % Please edit documentation in R/adult-plotting.R
 \name{xds_lines_Z}
 \alias{xds_lines_Z}
-\title{Add lines for the density of infected and infective mosquitoes}
+\title{Add lines for the density of infective mosquitoes}
 \usage{
-xds_lines_Z(MY, xds_obj, clrs = "darkred", llty = 1)
+xds_lines_Z(xds_obj, s = 1, clrs = "darkred", llty = 1)
 }
 \arguments{
-\item{MY}{xds_objed ouptuts}
-
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{s}{the vector species index}
 
 \item{clrs}{a vector of colors}
 
 \item{llty}{an integer (or integers) to set the \code{lty} for plotting}
 }
 \description{
-Add lines for the density of infected and infective mosquitoes
+Add lines for the density of infective mosquitoes
 }

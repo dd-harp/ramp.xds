@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{setup_MY_obj.GeM}
 \alias{setup_MY_obj.GeM}
-\title{Setup MY_obj for the GeM model}
+\title{Set up \code{GeM} (\strong{MY})}
 \usage{
 \method{setup_MY_obj}{GeM}(MYname, xds_obj, s, options = list())
 }
@@ -11,7 +11,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 
 \item{options}{a \link{list}}
 }

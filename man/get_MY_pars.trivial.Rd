@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{get_MY_pars.trivial}
 \alias{get_MY_pars.trivial}
-\title{Return the parameters as a list}
+\title{Get parameters for \code{trivial} (\strong{MY})}
 \usage{
 \method{get_MY_pars}{trivial}(xds_obj, s = 1)
 }

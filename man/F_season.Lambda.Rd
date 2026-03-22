@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_season.R
 \name{F_season.Lambda}
 \alias{F_season.Lambda}
-\title{Plot the seasonal pattern}
+\title{Compute the seasonal pattern}
 \usage{
 \method{F_season}{Lambda}(tm, xds_obj)
 }
@@ -15,7 +15,6 @@
 the seasonal pattern, invisibly
 }
 \description{
-For a model forced by emergence,
-show the seasonal pattern
+Evaluate the function \code{F_season} for a forced model when \code{forced_by} is "Lambda"
 }
 \keyword{internal}

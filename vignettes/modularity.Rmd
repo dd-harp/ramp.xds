@@ -13,7 +13,7 @@ vignette: >
 
 This software supports nimble model building with functions to set up, solve, and analyze dynamical systems models for mosquito ecology and mosquito-borne pathogen transmission formulated as dynamical systems as differential equations or discrete-time systems. 
 
-Dynamical systems describing mosquito-borne pathogens are naturally modular. To emphasize the modular nature, we can write the equations using modular forms (see the vignette: [Modular Forms](https://dd-harp.github.io/ramp.xds/articles/modularity.html)). This software implements a modular framework, and it was developed to model exogneous forcing by weather, vector control, health systems, and the environment (Figure 1). 
+Dynamical systems describing mosquito-borne pathogens are naturally modular. To emphasize the modular nature, we can write the equations using modular forms (see the vignette: [Modular Forms](https://dd-harp.github.io/ramp.xds/articles/modularity.html)). This software implements a modular framework, and it was developed to model exogenous forcing by weather, vector control, health systems, and the environment (Figure 1). 
 
 Transmission dynamics in the software was developed around an algorithm to model mosquito blood feeding on vertebrate hosts and parasite / pathogen transmission, including patch-based spatial dynamics within a defined geographical domain. The blood feeding algorithm provides a rigorous computational interface linking dynamical components describing parasite/pathogen linking infection dynamics in mosquito and vertebrate host populations. It guarantees mathematical consistency in computing blood feeding rates and habits and in allocating bites and blood meals with heterogeneous vertebrate host population densities, including models with dynamically changing availability of host populations or other vertebrate animals. 
 
@@ -82,7 +82,7 @@ The software was designed to build models of malaria transmission that is forced
 
 ## Computation
 
-The following code block illustrates how the derivatives get computed. The actual code has been implemented to 
+The following code block illustrates how the derivatives get computed.
 
 ```{r}
 modular_example <- function(t, y, xds_obj) {
@@ -126,7 +126,7 @@ modular_example <- function(t, y, xds_obj) {
     
     - partial immunity 
 
-+ Compute the deriviatives 
++ Compute the derivatives
 
     - `dXHdt` computes the **XH** Component derivatives
     
@@ -136,7 +136,7 @@ modular_example <- function(t, y, xds_obj) {
     
     - `dVdt` computes the derivatives for any other variables 
 
-The derivatives are returned to be used by `deSolve.` 
+The derivatives are returned to be used by `deSolve`.
 
 The function that updates the states for discrete time systems has the same structure. 
 

@@ -1,6 +1,6 @@
-# Setup Functions for the L Component
+# Setup functions (**L**)
 
-write me.
+A list of setup functions for aquatic mosquito modules.
 
 - [`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)
   – set up the L module object

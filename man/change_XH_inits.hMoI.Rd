@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{change_XH_inits.hMoI}
 \alias{change_XH_inits.hMoI}
-\title{Return the parameters as a list}
+\title{Change initial values for \code{hMoI} (\strong{XH})}
 \usage{
 \method{change_XH_inits}{hMoI}(xds_obj, i = 1, options = list())
 }

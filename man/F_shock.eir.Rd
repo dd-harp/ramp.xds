@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_trend.R
 \name{F_shock.eir}
 \alias{F_shock.eir}
-\title{Plot the temporal trend}
+\title{Compute the temporal shock}
 \usage{
 \method{F_shock}{eir}(tm, xds_obj)
 }
@@ -12,10 +12,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the temporal trend, invisibly
+the temporal shock, invisibly
 }
 \description{
-For a model forced by the EIR
-plot the temporal trend
+Evaluate the function \code{F_shock} for a forced model when \code{forced_by} is "eir"
 }
 \keyword{internal}

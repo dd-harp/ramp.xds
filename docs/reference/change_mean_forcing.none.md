@@ -1,4 +1,4 @@
-# Set mean forcing
+# Change mean forcing
 
 Implement `change_mean_forcing` for a model with no forcing
 

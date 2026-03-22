@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{F_eggs.SI}
 \alias{F_eggs.SI}
-\title{Compute Component Egg Laying Rates for \code{SI}}
+\title{Compute component egg laying rates for \code{SI}}
 \usage{
 \method{F_eggs}{SI}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector of length \code{nPatches}

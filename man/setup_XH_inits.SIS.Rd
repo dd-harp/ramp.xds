@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{setup_XH_inits.SIS}
 \alias{setup_XH_inits.SIS}
-\title{Setup initial values for \emph{SIS}}
+\title{Setup initial values for \code{SIS} (\strong{XH})}
 \usage{
 \method{setup_XH_inits}{SIS}(xds_obj, H, i = 1, options = list())
 }
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} object
 }
 \description{
-Setup initial values for \emph{SIS}
+Setup initial values for \code{SIS} (\strong{XH})
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{skill_set_XH}
 \alias{skill_set_XH}
-\title{\strong{XH} Skill Set}
+\title{\strong{XH} skill set}
 \usage{
 skill_set_XH(Xname)
 }
@@ -14,7 +14,7 @@ skill_set_XH(Xname)
 }
 \description{
 The \strong{XH} skill set is a list of
-an module's capabilities:
+a module's capabilities:
 \itemize{
 \item \strong{\code{H_dynamics}} - if FALSE, \eqn{H} is static. The module doesn't have a port for demographic change
 \item \strong{\code{mda}}:  if FALSE, the module doesn't have an \code{mda} port for mass drug administration
@@ -23,7 +23,7 @@ an module's capabilities:
 \item \strong{\code{pr_obs}}: if TRUE, the model outputs a value for observed PR
 \item \strong{\code{pf_rdt}}: if TRUE, the model outputs a value for prevalence by RDT
 \item \strong{\code{pf_lm}}: if TRUE, the model outputs a value for prevalence by light microscopy
-\item \strong{\code{pf_pcr}}: if FALSE, the model outputs a value for prevalence by PCR
+\item \strong{\code{pf_pcr}}: if TRUE, the model outputs a value for prevalence by PCR
 }
 }
 \keyword{internal}

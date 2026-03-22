@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{trivial_XH}
 \alias{trivial_XH}
-\title{\code{trivial} --- \strong{XH} Module}
+\title{\code{trivial} --- \strong{XH} module}
 \description{
 The trivial module outputs the net infectiousness, \eqn{\kappa},
 by calling a

@@ -28,8 +28,6 @@ navbar:
       href: articles/TraceFunctions.html
   - text: Interfaces 
     menu:
-    - text: Modular Forms
-      href: articles/modular_forms.html
     - text: Habitats & Mosquito Ecology 
       href: articles/EggLaying.html
     - text: Blood Feeding & Transmission 
@@ -38,17 +36,17 @@ navbar:
       href: articles/Exposure.html
     - text: Bionomics 
       href: articles/MosquitoBionomics.html
-  - text: Human / Host
+  - text: XH 
     menu:
-    - text: XH Component 
+    - text: Human / Host Component (XH) 
       href: articles/XH-interface.html
     - text: The SIS Module 
       href: articles/human_sis.html
     - text: MoI hybrid model
       href: articles/human_hmoi.html
-  - text: Adult Mosquitoes 
+  - text: MY 
     menu:
-    - text: The MY Component 
+    - text: Adult Mosquito Component (MY)
       href: articles/MY-interface.html
     - text: Macdonald's Model
       href: articles/adult_RM.html
@@ -56,9 +54,9 @@ navbar:
       href: articles/RM-dts-Mosquito.html
     - text: Generalized Macdonald model
       href: articles/adult_GeM.html
-  - text: Immature Mosquitoes 
+  - text: L 
     menu:
-    - text: The L Component 
+    - text: Aquatic Mosquito Component (L)
       href: articles/L-interface.html
     - text: Emergence (the trivial module) 
       href: articles/aqua_trace.html
@@ -175,9 +173,9 @@ reference:
   - xds_lines_PR
   - xds_plot_EIR
   - xds_lines_EIR
-- subtitle: Mosquito 
+- subtitle: Adult Mosquito 
   desc: | 
-    Compute Steady States & Stable Orbits
+    Plot common variables and terms 
   contents:
   - xds_plot_M
   - xds_lines_M
@@ -189,6 +187,12 @@ reference:
   - xds_lines_Y_fracs
   - xds_plot_Z_fracs
   - xds_lines_Z_fracs
+- subtitle: Aquatic Mosquito 
+  desc: | 
+    Plot common variables and terms 
+  contents:
+  - xds_plot_L
+  - xds_lines_L
 - subtitle: Show Forcing 
   desc: |
     Show patterns for forced systems
@@ -244,6 +248,7 @@ reference:
   - get_season_bottom
   - get_season_pw
   - get_trend
+  - get_shock
   - get_spline
   - get_spline_s
 - title: Change 

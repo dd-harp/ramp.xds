@@ -2,9 +2,9 @@
 % Please edit documentation in R/aquatic-help.R
 \name{L_setup}
 \alias{L_setup}
-\title{Setup Functions for the L Component}
+\title{Setup functions (\strong{L})}
 \description{
-write me.
+A list of setup functions for aquatic mosquito modules.
 
 \itemize{
 \item \code{\link{setup_L_obj}} -- set up the L module object

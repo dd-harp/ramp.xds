@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_trend.R
 \name{change_spline.Lambda}
 \alias{change_spline.Lambda}
-\title{Set the \eqn{y} value for interpolating points}
+\title{Change spline interpolation points}
 \usage{
 \method{change_spline}{Lambda}(X, xds_obj, s = 1)
 }
@@ -17,8 +17,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-Set the yy for the seasonal pattern for the
-\eqn{s^{th}} species
-and return the \strong{\code{ramp.xds}} model object
+Change the interpolation points for a spline function.
+when \code{forced_by = "Lambda"}
 }
 \keyword{internal}

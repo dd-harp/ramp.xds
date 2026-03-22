@@ -20,4 +20,4 @@ get_HTC(xds_obj, i)
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

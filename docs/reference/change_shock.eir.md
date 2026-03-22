@@ -1,7 +1,6 @@
-# Set yy
+# Change shock parameters
 
-Set the yy for the seasonal pattern for an `eir` model and return the
-**`ramp.xds`** model object
+Change parameters for the shock function when `forced_by = "eir"`
 
 ## Usage
 

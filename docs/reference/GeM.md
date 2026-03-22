@@ -1,4 +1,4 @@
-# The `GeM` Module for the MY Component
+# The `GeM` module for the MY component
 
 `GeM` is a system of delay differential equation model for mosquito
 ecology and infection dynamics. The core dynamics trace back to
@@ -77,7 +77,7 @@ The *demographic matrix* \\\Omega\\ is: \$\$ \Omega(t) = \mbox{diag}
 Let \\\tau(t)\\ denote the EIP for a mosquito, if infected at time
 \\t\\: the mosquito would become infectious at time \\t+\tau(t).\\
 Similarly, let \\\tau'(t)\\ denote the lag for a mosquito that became
-*infectious* at time \\t\\. it was infected at time \\t-\tau'(t).\\ The
+*infectious* at time \\t\\. It was infected at time \\t-\tau'(t).\\ The
 two are related by the identities \$\$\tau(t) = \tau'(t+\tau(t))\$\$ and
 \$\$\tau'(t) = \tau(t-\tau'(t)).\$\$ In the implementation, a function
 `F_eip` returns \\\tau'(t)\\. Implementation of dynamically changing EIP
@@ -86,9 +86,9 @@ also requires a function to compute the derivative `dF_eip` (below).
 ## The Accessory Variables, \\\Upsilon\\
 
 To compute time-varying survival and dispersal through a time-varying
-EIP, we a set of accessory variables, called \\\Upsilon\\. To motivate
-the algorithm used to compute it, we introduce a new variable, \\U\\
-that integrates \\\Omega\\ over time: \$\$dU/dt = \Omega(t).\$\$
+EIP, we use a set of accessory variables, called \\\Upsilon\\. To
+motivate the algorithm used to compute it, we introduce a new variable,
+\\U\\ that integrates \\\Omega\\ over time: \$\$dU/dt = \Omega(t).\$\$
 
 Cumulative mortality from time \\t\\ to time \\t+s\\ is: \$\$\gamma(t,s)
 = U(t+s) - U(t).\$\$ Survival and dispersal for the mosquitoes that

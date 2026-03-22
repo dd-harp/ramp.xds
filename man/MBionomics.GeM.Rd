@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{MBionomics.GeM}
 \alias{MBionomics.GeM}
-\title{Set mosquito bionomics to baseline}
+\title{Mosquito bionomics for \code{GeM} (\strong{MY})}
 \usage{
 \method{MBionomics}{GeM}(t, y, xds_obj, s)
 }
@@ -13,12 +13,12 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{MBionomics} for models with no forcing on the baseline
+Implements \link{MBionomics} for models with no exogenous forcing
 }
 \keyword{internal}

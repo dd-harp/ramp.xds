@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{dMYdt.SI}
 \alias{dMYdt.SI}
-\title{Compute Derivatives for \strong{MY} module \code{SI}}
+\title{Compute derivatives for \code{SI} (\strong{MY})}
 \usage{
 \method{dMYdt}{SI}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a vector with the derivatives

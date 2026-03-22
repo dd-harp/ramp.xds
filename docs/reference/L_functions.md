@@ -1,4 +1,4 @@
-# Generic Methods for the L Component
+# Generic methods for the L component
 
 A list of generic
 
@@ -8,11 +8,11 @@ A list of generic
 - [`Update_Lt`](https://dd-harp.github.io/ramp.xds/reference/Update_Lt.md)
   – update state variables
 
-- [`LBaseline`](https://dd-harp.github.io/ramp.xds/reference/LBaseline.md)
-  – set baseline bionomic parameters
-
 - [`LBionomics`](https://dd-harp.github.io/ramp.xds/reference/LBionomics.md)
   – compute bionomic parameters
+
+- [`LEffectSizes`](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md)
+  – apply vector control effect sizes
 
 - [`F_emerge`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.md)
   – compute emergent adults

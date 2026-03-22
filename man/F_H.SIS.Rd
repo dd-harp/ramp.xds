@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{F_H.SIS}
 \alias{F_H.SIS}
-\title{Compute Population Density}
+\title{Compute population density}
 \usage{
 \method{F_H}{SIS}(t, y, xds_obj, i)
 }

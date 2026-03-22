@@ -1,4 +1,4 @@
-# Compute Derivatives for **MY** module `GeM`
+# Compute derivatives for `GeM` (**MY**)
 
 Compute the derivatives for the generalized, non-autonomous Macdonald
 model for mosquito ecology and infection dynamics. See
@@ -27,7 +27,7 @@ dMYdt(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

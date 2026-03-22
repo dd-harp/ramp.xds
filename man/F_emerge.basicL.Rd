@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{F_emerge.basicL}
 \alias{F_emerge.basicL}
-\title{Compute Emergent Adults for \code{basicL} (\strong{L} Component)}
+\title{Compute emergent adults for \code{basicL} (\strong{L} component)}
 \usage{
 \method{F_emerge}{basicL}(t, y, xds_obj, s)
 }

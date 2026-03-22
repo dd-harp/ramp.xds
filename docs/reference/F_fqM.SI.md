@@ -1,4 +1,4 @@
-# Compute Net Blood Feeding by Mosquitoes for `SI`
+# Compute net blood feeding by mosquitoes for `SI`
 
 The variable \\M\\ is the density of mosquitoes. The model blood feeding
 **parameters** are:
@@ -31,7 +31,7 @@ F_fqM(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-get.R
 \name{get_PR.pcr}
 \alias{get_PR.pcr}
-\title{Get the \emph{Pf}PR from a MalariasModel}
+\title{Get the \emph{Pf}PR from a malaria model}
 \usage{
 \method{get_PR}{pcr}(xds_obj, method = "pcr", i = 1)
 }
@@ -14,7 +14,7 @@
 \item{i}{the host species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 Return the \emph{Pf}PR by PCR

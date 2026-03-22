@@ -1,4 +1,4 @@
-#' @title The Human Population 
+#' @title The human population
 #' 
 #' @description
 #' A human (or host) population is sub-divided into *strata.* 

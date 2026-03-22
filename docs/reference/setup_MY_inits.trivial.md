@@ -1,4 +1,4 @@
-# Setup Inits for `trivial` (**MY**)
+# Setup initial values for `trivial` (**MY**)
 
 Return the **`xds`** object unmodified
 
@@ -17,7 +17,7 @@ setup_MY_inits(xds_obj, s, options = list())
 
 - s:
 
-  the species index
+  the vector species index
 
 - options:
 

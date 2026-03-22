@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{get_MY_vars.macdonald}
 \alias{get_MY_vars.macdonald}
-\title{Return the variables as a list}
+\title{List variables for \code{macdonald} (\strong{MY})}
 \usage{
 \method{get_MY_vars}{macdonald}(y, xds_obj, s)
 }

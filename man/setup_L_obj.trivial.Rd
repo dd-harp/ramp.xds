@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{setup_L_obj.trivial}
 \alias{setup_L_obj.trivial}
-\title{Setup \code{L_obj} for the \code{trivial} module}
+\title{Set up \code{trivial} (\strong{L})}
 \usage{
 \method{setup_L_obj}{trivial}(Lname, xds_obj, s, options = list())
 }
@@ -19,6 +19,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{setup_L_obj} for the trivial model
+Call \link{make_L_obj_trivial} and set
+\code{class(xds_obj$forced_by) = "Lambda"}
 }
 \keyword{internal}

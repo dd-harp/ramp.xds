@@ -8,7 +8,7 @@ xds_setup(
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
-  MYname = "macdonald",
+  MYname = "SI",
   MYoptions = list(),
   Lname = "trivial",
   Loptions = list(),
@@ -85,7 +85,7 @@ Make an \strong{\code{xds}} \emph{model object}:
 \itemize{
 \item Search Weights (see \link{search_weights})
 \item Mosquito Dispersal matrix (if \code{nPatches>1}; see \link{mosquito_dispersal})
-\item Time Spent matrix (if \verb{nPatches>}; see \link{time_spent})
+\item Time Spent matrix (if \code{nPatches>1}; see \link{time_spent})
 }
 }
 }

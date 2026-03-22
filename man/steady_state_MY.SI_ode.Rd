@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{steady_state_MY.SI_ode}
 \alias{steady_state_MY.SI_ode}
-\title{Steady States: MY-SI}
+\title{Steady states: MY-SI}
 \usage{
 \method{steady_state_MY}{SI_ode}(Lambda, kappa, xds_obj, s = 1)
 }
@@ -16,7 +16,7 @@
 \item{s}{the vector species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 This method dispatches on the type of \code{MY_obj}.

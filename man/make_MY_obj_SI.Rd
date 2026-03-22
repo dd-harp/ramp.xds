@@ -22,7 +22,7 @@ make_MY_obj_SI(
 
 \item{options}{a named list: named values overwrite defaults}
 
-\item{eip}{the extrinSIc incubation period}
+\item{eip}{the extrinsic incubation period}
 
 \item{g}{mosquito mortality rate}
 
@@ -34,9 +34,9 @@ make_MY_obj_SI(
 
 \item{q}{human blood fraction}
 
-\item{nu}{ovipoSItion rate, per mosquito}
+\item{nu}{oviposition rate, per mosquito}
 
-\item{eggsPerBatch}{eggs laid per ovipoSItion}
+\item{eggsPerBatch}{eggs laid per oviposition}
 }
 \value{
 a \link{list}

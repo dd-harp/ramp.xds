@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{dXHdt.SIS}
 \alias{dXHdt.SIS}
-\title{\code{SIS} Derivatives Function (an \strong{XH} Module)}
+\title{Compute derivatives for \code{SIS} (\strong{XH})}
 \usage{
 \method{dXHdt}{SIS}(t, y, xds_obj, i)
 }
@@ -27,7 +27,7 @@ Computes the derivatives for SIS compartmental model with variables:
 }
 
 The model assumes \eqn{S+I=H.} This function computes
-computes \eqn{dH/dt} and \eqn{dI/dt}.
+\eqn{dH/dt} and \eqn{dI/dt}.
 For convenience, \eqn{S} is also computed
 by \link{get_XH_vars.SIS}
 and \link{parse_XH_orbits.SIS}.

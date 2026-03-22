@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_season.R
 \name{get_season.none}
 \alias{get_season.none}
-\title{Get seasonal pattern}
+\title{Get seasonality parameters}
 \usage{
 \method{get_season}{none}(xds_obj, s = 1)
 }
@@ -12,9 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-seasonal pattern parameters
+an empty vector
 }
 \description{
-Get the parameters set the seasonal pattern
+Get seasonality parameters when \code{forced_by} = "none"
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{get_MY_vars.GeM}
 \alias{get_MY_vars.GeM}
-\title{Return the variables as a list}
+\title{List variables for \code{GeM} (\strong{MY})}
 \usage{
 \method{get_MY_vars}{GeM}(y, xds_obj, s)
 }

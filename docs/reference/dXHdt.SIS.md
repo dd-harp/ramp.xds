@@ -1,4 +1,4 @@
-# `SIS` Derivatives Function (an **XH** Module)
+# Compute derivatives for `SIS` (**XH**)
 
 Computes the derivatives for SIS compartmental model with variables:
 
@@ -8,8 +8,8 @@ Computes the derivatives for SIS compartmental model with variables:
 
 - \\H\\ - human (or host) population density
 
-The model assumes \\S+I=H.\\ This function computes computes \\dH/dt\\
-and \\dI/dt\\. For convenience, \\S\\ is also computed by
+The model assumes \\S+I=H.\\ This function computes \\dH/dt\\ and
+\\dI/dt\\. For convenience, \\S\\ is also computed by
 [get_XH_vars.SIS](https://dd-harp.github.io/ramp.xds/reference/get_XH_vars.SIS.md)
 and
 [parse_XH_orbits.SIS](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.SIS.md).

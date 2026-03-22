@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{steady_state_L}
 \alias{steady_state_L}
-\title{Compute steady states for \strong{L} Component Modules}
+\title{Compute steady states for \strong{L} component modules}
 \usage{
 steady_state_L(eta, xds_obj, s = 1)
 }

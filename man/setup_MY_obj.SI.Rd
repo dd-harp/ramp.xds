@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{setup_MY_obj.SI}
 \alias{setup_MY_obj.SI}
-\title{Setup MY_obj for the SI model}
+\title{Set up \code{SI} (\strong{MY})}
 \usage{
 \method{setup_MY_obj}{SI}(MYname, xds_obj, s, options = list())
 }
@@ -11,7 +11,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 
 \item{options}{a \link{list}}
 }

@@ -2,19 +2,19 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{get_MY_inits.trivial}
 \alias{get_MY_inits.trivial}
-\title{Return initial values as a vector}
+\title{Get inits for \code{trivial} (MY)}
 \usage{
 get_MY_inits.trivial(xds_obj, s)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector of length 0
 }
 \description{
-Implements \link{get_MY_inits} for the trivial model.
+Return a \link{numeric} vector of length 0
 }
 \keyword{internal}

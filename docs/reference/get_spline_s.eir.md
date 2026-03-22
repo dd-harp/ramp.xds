@@ -1,6 +1,6 @@
 # Get spline interpolation points
 
-Return the
+Get spline interpolation points when `forced_by` = "eir"
 
 ## Usage
 
@@ -18,3 +18,7 @@ get_spline_s(xds_obj, s = 1)
 - s:
 
   the vector species index
+
+## Value
+
+a list, the value of `trend_par`

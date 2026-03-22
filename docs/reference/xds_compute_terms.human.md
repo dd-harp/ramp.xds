@@ -1,4 +1,4 @@
-# Differential equations isolating the humans, forced with Ztrace
+# Differential equations isolating the humans, forced by infectious biting
 
 Compute derivatives for
 [deSolve::ode](https://rdrr.io/pkg/deSolve/man/ode.html) or

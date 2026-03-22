@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_steady.R
 \name{dts_stable_orbit}
 \alias{dts_stable_orbit}
-\title{Solve for the steady state or stable orbit of a system of equations}
+\title{Compute the stable orbit for a discrete time system}
 \usage{
 dts_stable_orbit(xds_obj, Tburn = 10, yr = 365)
 }
@@ -14,8 +14,9 @@ dts_stable_orbit(xds_obj, Tburn = 10, yr = 365)
 \item{yr}{the number of time steps in a year}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$dts}.
+Run a discrete time system for \code{Tburn} years
+to get the stable orbit
 }

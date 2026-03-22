@@ -1,4 +1,4 @@
-# Setup XH_obj.hMoI
+# Set up `hMoI` (**XH**)
 
 Implements
 [setup_XH_obj](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)

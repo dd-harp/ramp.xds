@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{parse_XH_orbits.SIS}
 \alias{parse_XH_orbits.SIS}
-\title{parse the output of deSolve and return variables for the SIS model}
+\title{Parse outputs for \code{SIS} (\strong{XH})}
 \usage{
 \method{parse_XH_orbits}{SIS}(outputs, xds_obj, i)
 }
@@ -14,7 +14,7 @@
 \item{i}{the host species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 Implements \link{parse_XH_orbits} for the SIS model

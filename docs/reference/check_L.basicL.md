@@ -1,6 +1,6 @@
-# Run a check before solving
+# Check the `basicL` module
 
-Run a check before solving
+Run no consistency checks
 
 ## Usage
 

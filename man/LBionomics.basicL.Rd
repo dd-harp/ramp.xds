@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{LBionomics.basicL}
 \alias{LBionomics.basicL}
-\title{Bionomics for \code{basicL} (\strong{L} Component)}
+\title{Mosquito bionomics for \code{basicL} (\strong{L})}
 \usage{
 \method{LBionomics}{basicL}(t, y, xds_obj, s)
 }
@@ -19,6 +19,8 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{LBionomics} for the \code{basicL}
+Compute the bionomic parameter values for \code{basicL}
+by calling the forcing functions for each parameter. Also resets
+all effect sizes (\code{es_psi}, \code{es_phi}, \code{es_xi}, \code{es_theta}) to 1.
 }
 \keyword{internal}

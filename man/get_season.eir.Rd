@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_season.R
 \name{get_season.eir}
 \alias{get_season.eir}
-\title{Get seasonal pattern}
+\title{Get seasonality parameters}
 \usage{
 \method{get_season}{eir}(xds_obj, s = 1)
 }
@@ -12,10 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-seasonal pattern parameters
+a list, the value of \code{season_par}
 }
 \description{
-Get the parameters that set
-the seasonal pattern
+Get seasonality parameters when \code{forced_by} = "eir"
 }
 \keyword{internal}

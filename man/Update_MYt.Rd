@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{Update_MYt}
 \alias{Update_MYt}
-\title{Update States for a Adult Mosquito Model}
+\title{Update states (\strong{MY})}
 \usage{
 Update_MYt(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@ Update_MYt(t, y, xds_obj, s)
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 Updated states for an adult mosquito model, a \link{vector}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_season.R
 \name{get_season}
 \alias{get_season}
-\title{Get the Seasonal Pattern}
+\title{Get seasonality parameters}
 \usage{
 get_season(xds_obj, s = 1)
 }

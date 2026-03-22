@@ -1,4 +1,4 @@
-# Compute Emergent Adults for `trivial` (**L** Component)
+# Compute emergent adults for `trivial` (**L** component)
 
 The number of emerging adults is a function \$\$\Lambda S(t) T(t)
 K(t)\$\$ where

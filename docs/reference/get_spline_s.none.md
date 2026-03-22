@@ -1,6 +1,6 @@
 # Get spline interpolation points
 
-Return the value that sets mean forcing for forced models.
+Get spline interpolation points when `forced_by` = "none"
 
 ## Usage
 
@@ -18,3 +18,7 @@ get_spline_s(xds_obj, s)
 - s:
 
   the vector species index
+
+## Value
+
+an empty vector

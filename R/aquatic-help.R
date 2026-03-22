@@ -1,13 +1,13 @@
 
-#' @title Generic Methods for the L Component
+#' @title Generic methods for the L component
 #'
 #' @description
 #' A list of generic 
 #' \itemize{
 #'   \item \code{\link{dLdt}} -- compute derivatives
 #'   \item \code{\link{Update_Lt}} -- update state variables
-#'   \item \code{\link{LBaseline}} -- set baseline bionomic parameters
 #'   \item \code{\link{LBionomics}} -- compute bionomic parameters
+#'   \item \code{\link{LEffectSizes}} -- apply vector control effect sizes
 #'   \item \code{\link{F_emerge}} -- compute emergent adults
 #'   \item \code{\link{setup_L_obj}} -- set up the L module object
 #'   \item \code{\link{setup_L_ix}} -- set index values
@@ -27,10 +27,10 @@
 #' @name L_functions
 NULL
 
-#' @title Get Functions for the L Component
+#' @title Get functions (**L**)
 #'
 #' @description
-#' write me.
+#' A list of get functions for aquatic mosquito modules.
 #'
 #' \itemize{
 #'   \item \code{\link{get_L_vars}} -- get state variables from \eqn{y}
@@ -43,10 +43,10 @@ NULL
 #' @name L_get
 NULL
 
-#' @title Change Functions for the L Component
+#' @title Change functions (**L**)
 #'
 #' @description
-#' write me.
+#' A list of change functions for aquatic mosquito modules.
 #'
 #' \itemize{
 #'   \item \code{\link{change_L_inits}} -- change initial values
@@ -56,10 +56,10 @@ NULL
 #' @name L_change
 NULL
 
-#' @title Setup Functions for the L Component
+#' @title Setup functions (**L**)
 #'
 #' @description
-#' write me.
+#' A list of setup functions for aquatic mosquito modules.
 #'
 #' \itemize{
 #'   \item \code{\link{setup_L_obj}} -- set up the L module object

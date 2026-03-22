@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{get_XH_vars.SIS}
 \alias{get_XH_vars.SIS}
-\title{Get Variables by Name}
+\title{List variables for \code{SIS} (\strong{XH})}
 \usage{
 \method{get_XH_vars}{SIS}(y, xds_obj, i)
 }
@@ -17,7 +17,7 @@
 a \link{list}
 }
 \description{
-Get the the value of variables
+Get the value of variables
 from the flat state variable
 vector \eqn{y}, and return
 the values as a named list

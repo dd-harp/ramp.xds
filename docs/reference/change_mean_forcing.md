@@ -1,6 +1,6 @@
-# Set mean forcing
+# Change mean forcing
 
-Set the mean forcing parameter to `X`
+Change the mean forcing parameter to `X`
 
 ## Usage
 

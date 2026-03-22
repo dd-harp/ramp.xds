@@ -21,4 +21,4 @@ get_trend(xds_obj, s = 1)
 
 ## Value
 
-trend parameters
+an empty vector

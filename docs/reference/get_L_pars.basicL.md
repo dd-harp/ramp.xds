@@ -1,4 +1,4 @@
-# Get **L** Component Parameters for `basicL`
+# Get parameters for `basicL` (**L**)
 
 Get the **L** component parameters
 

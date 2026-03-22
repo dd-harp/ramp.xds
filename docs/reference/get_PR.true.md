@@ -1,4 +1,4 @@
-# Get the *Pf*PR from a Malaria Model
+# Get the *Pf*PR from a malaria model
 
 Return the true *Pf*PR
 

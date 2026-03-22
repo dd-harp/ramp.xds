@@ -1,6 +1,6 @@
-# Solve for the steady state or stable orbit of a system of equations
+# Compute the stable orbit for a discrete time system
 
-This method dispatches on the type of `xds_obj$dts`.
+Run a discrete time system for `Tburn` years to get the stable orbit
 
 ## Usage
 
@@ -24,4 +24,4 @@ dts_stable_orbit(xds_obj, Tburn = 10, yr = 365)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** object

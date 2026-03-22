@@ -4,12 +4,12 @@
 \alias{xds_lines_Z_fracs}
 \title{Add lines for the fraction of infected and infective mosquitoes}
 \usage{
-xds_lines_Z_fracs(MY, xds_obj, clrs = "darkred", llty = 1)
+xds_lines_Z_fracs(xds_obj, s, clrs = "darkred", llty = 1)
 }
 \arguments{
-\item{MY}{xds_objed outputs}
-
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{s}{the vector species index}
 
 \item{clrs}{a vector of colors for infective mosquitoes}
 

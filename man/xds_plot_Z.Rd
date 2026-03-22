@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-plotting.R
 \name{xds_plot_Z}
 \alias{xds_plot_Z}
-\title{Plot the density of infected and infective mosquitoes}
+\title{Plot the density of infective mosquitoes}
 \usage{
 xds_plot_Z(xds_obj, s = 1, clrs = "darkred", llty = 1, add = FALSE)
 }
@@ -18,5 +18,5 @@ xds_plot_Z(xds_obj, s = 1, clrs = "darkred", llty = 1, add = FALSE)
 \item{add}{do not plot axes if TRUE}
 }
 \description{
-Plot the density of infected and infective mosquitoes
+Plot the density of infective mosquitoes
 }

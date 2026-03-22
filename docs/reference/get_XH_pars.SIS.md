@@ -1,4 +1,4 @@
-# Get *SIS* module parameters
+# Get parameters for `SIS` (**XH**)
 
 Returns the stored parameter values as a list.
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_trend.R
 \name{change_spline_y.none}
 \alias{change_spline_y.none}
-\title{Set yy}
+\title{Change y values for spline interpolation points}
 \usage{
 \method{change_spline_y}{none}(yy, xds_obj, s = 1)
 }
@@ -17,7 +17,8 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implement \code{change_spline_y} for a model
-with no forcing
+Set new \eqn{y}-values for the spline interpolating points
+and update \code{F_trend}
+when \code{forced_by = "none"}
 }
 \keyword{internal}

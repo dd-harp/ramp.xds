@@ -3,9 +3,9 @@
 #' @description
 #' The value of a mosquito bionomic parameters gets computed in two stages:
 #' 
-#' + [BaselineBionomics] computes a *baseline* parameter value; 
+#' + [MosquitoBionomics] computes the bionomic parameter values;
 #' 
-#' + [ModifiedBionomics] is the product of the *baseline* and an *effect size*
+#' + [VectorControlEffectSizes] applies the effect sizes of vector control
 #' 
 #' @section Baseline:
 #' The concept of a *baseline* here is not exactly corre 
@@ -17,42 +17,41 @@
 #' @name xds_info_mosquito_bionomics
 NULL
 
-#' @title Set bionomic parameter rates relative to baseline
-#' @description This calls MBaseline and LBaseline for each species.
+#' @title Compute mosquito bionomic parameters
+#' @description This calls MBionomics and LBionomics for each species.
 #'
-#' This function sets bionomic parameters to their pre-control baseline value, which can later be
-#' modified by vector control. In some models, the pre-control baseline is computed in
-#' here as a function of resource availability.
+#' This function computes the bionomic parameters for each vector species,
+#' before any vector control effect sizes are applied. In some models, these
+#' parameters are computed as a function of resource availability.
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @return a [list]
 #' @keywords internal
 #' @export
-BaselineBionomics <- function(t, y, xds_obj){
+MosquitoBionomics <- function(t, y, xds_obj){
   for(s in 1:xds_obj$nVectorSpecies){
-    xds_obj <- MBaseline(t, y, xds_obj, s)
-    xds_obj <- LBaseline(t, y, xds_obj, s)
+    xds_obj <- MBionomics(t, y, xds_obj, s)
+    xds_obj <- LBionomics(t, y, xds_obj, s)
   }
   return(xds_obj)
 }
 
-#' @title Set bionomic parameter rates relative to baseline
-#' @description This calls Mbionomics and Lbionmics for each species. This function
-#' resets bionomic parameters to their pre-control baseline value, which can later be
-#' modified by vector control. In some models, the pre-control baseline is computed in
-#' here as a function of resource availability.
+#' @title Apply vector control effect sizes
+#' @description This calls MEffectSizes and LEffectSizes for each species.
+#' This function applies the effect sizes of vector control to the bionomic
+#' parameters for each vector species.
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @return a [list]
 #' @keywords internal
 #' @export
-ModifiedBionomics <- function(t, y, xds_obj){
+VectorControlEffectSizes <- function(t, y, xds_obj){
 
   for(s in 1:xds_obj$nVectorSpecies){
-    xds_obj <- MBionomics(t, y, xds_obj, s)
-    xds_obj <- LBionomics(t, y, xds_obj, s)
+    xds_obj <- MEffectSizes(t, y, xds_obj, s)
+    xds_obj <- LEffectSizes(t, y, xds_obj, s)
   }
   return(xds_obj)
 }

@@ -15,18 +15,19 @@ xds_plot_M = function(xds_obj, s=1, clrs="darkblue", llty=1, add=FALSE){
     with(MY, plot(time, 0*time, type = "n", ylim = range(0,M),
                   ylab = "Mosquito Density", xlab = "Time"))
 
-  xds_lines_M(MY, xds_obj, clrs, llty)
+  xds_lines_M(xds_obj, s, clrs, llty)
 }
 
 #' Add lines for adult mosquito population density
 #'
-#' @param MY xds_objed ouptuts
 #' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
 #' @export
-xds_lines_M = function(MY, xds_obj, clrs="darkblue", llty=1){
+xds_lines_M = function(xds_obj, s=1, clrs="darkblue", llty=1){
+  MY = get_MY_orbits(xds_obj, s)
   with(MY,{
     if(xds_obj$nPatches==1) lines(time, M, col=clrs[1], lty = llty[1])
     if(xds_obj$nPatches>1){
@@ -55,18 +56,19 @@ xds_plot_Y = function(xds_obj, s=1, clrs = "purple", llty=1, add=FALSE){
     with(MY, plot(time, 0*time, type = "n", ylim = range(0,Y),
               ylab = "Mosquito Density", xlab = "time"))
 
-  xds_lines_Y(MY, xds_obj, clrs, llty)
+  xds_lines_Y(xds_obj, s, clrs, llty)
 }
 
 #' Add lines for the density of infected and infective mosquitoes
 #'
-#' @param MY xds_objed ouptuts
 #' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
 #' @export
-xds_lines_Y = function(MY, xds_obj, clrs="purple", llty=1){
+xds_lines_Y = function(xds_obj, s=1, clrs="purple", llty=1){
+  MY = get_MY_orbits(xds_obj, s)
   with(MY,{
     if(xds_obj$nPatches==1){
       lines(time, Y, col=clrs[1], lty = llty[1])
@@ -81,7 +83,7 @@ xds_lines_Y = function(MY, xds_obj, clrs="purple", llty=1){
     }
   })}
 
-#' Plot the density of infected and infective mosquitoes
+#' Plot the density of infective mosquitoes
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -98,18 +100,20 @@ xds_plot_Z = function(xds_obj, s=1,  clrs="darkred", llty=1, add=FALSE){
          plot(time, 0*time, type = "n", ylim = range(0,Z),
               ylab = "Mosquito Density", xlab = "time"))
 
-  xds_lines_Z(MY, xds_obj, clrs, llty)
+  xds_lines_Z(xds_obj, s, clrs, llty)
 }
 
-#' Add lines for the density of infected and infective mosquitoes
+#' Add lines for the density of infective mosquitoes
 #'
-#' @param MY xds_objed ouptuts
 #' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
 #' @param clrs a vector of colors
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
 #' @export
-xds_lines_Z = function(MY, xds_obj, clrs = "darkred", llty=1){
+xds_lines_Z = function(xds_obj, s=1, clrs = "darkred", llty=1){
+  MY = get_MY_orbits(xds_obj, s)
+  
   with(MY,{
     if(xds_obj$nPatches==1){
       lines(time, Z, col=clrs[1], lty = llty[1])
@@ -140,18 +144,19 @@ xds_plot_Y_fracs = function(xds_obj, s=1, clrs = "purple", llty=1,  add=FALSE){
     with(MY, plot(time, 0*time, type = "n", ylim = range(0,y),
                   ylab = "Fraction Infected", xlab = "time"))
 
-  xds_lines_Y_fracs(MY, xds_obj, clrs, llty)
+  xds_lines_Y_fracs(xds_obj, s, clrs, llty)
 }
 
 #' Add lines for the fraction of infected and infective mosquitoes
 #'
-#' @param MY xds_objed ouptuts
 #' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
 #' @param clrs a vector of colors for infected mosquitoes
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
 #' @export
-xds_lines_Y_fracs = function(MY, xds_obj, clrs="purple", llty=1){
+xds_lines_Y_fracs = function(xds_obj, s=1, clrs="purple", llty=1){
+  MY = get_MY_orbits(xds_obj, s)
   with(MY,{
     if(xds_obj$nPatches==1) {
       lines(time, y, col=clrs, lty = llty[1])
@@ -184,18 +189,19 @@ xds_plot_Z_fracs = function(xds_obj, s=1, clrs = "darkred", llty=1, add=FALSE){
          plot(time, 0*time, type = "n", ylim = range(0,z),
               ylab = "Fraction Infected", xlab = "time"))
 
-  xds_lines_Z_fracs(MY, xds_obj, clrs, llty)
+  xds_lines_Z_fracs(xds_obj, s, clrs, llty)
 }
 
 #' Add lines for the fraction of infected and infective mosquitoes
 #'
-#' @param MY xds_objed outputs
 #' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
 #' @param clrs a vector of colors for infective mosquitoes
 #' @param llty an integer (or integers) to set the `lty` for plotting
 #'
 #' @export
-xds_lines_Z_fracs = function(MY, xds_obj, clrs="darkred", llty=1){
+xds_lines_Z_fracs = function(xds_obj, s, clrs="darkred", llty=1){
+  MY = get_MY_orbits(xds_obj, s)
   with(MY,{
     if(xds_obj$nPatches==1) {
       lines(time, z, col=clrs, lty = llty[1])
@@ -208,5 +214,4 @@ xds_lines_Z_fracs = function(MY, xds_obj, clrs="darkred", llty=1){
         lines(time, z[,i], col=clrs[i], lty = llty[i])
       }
     }
-  })}
-
+})}

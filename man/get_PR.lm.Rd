@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-get.R
 \name{get_PR.lm}
 \alias{get_PR.lm}
-\title{Get the \emph{Pf}PR from a Malaria Model}
+\title{Get the \emph{Pf}PR from a malaria model}
 \usage{
 \method{get_PR}{lm}(xds_obj, method = "lm", i = 1)
 }
@@ -14,7 +14,7 @@
 \item{i}{the host species index}
 }
 \value{
-none
+a \link{list}
 }
 \description{
 Return the PR by light microscopy

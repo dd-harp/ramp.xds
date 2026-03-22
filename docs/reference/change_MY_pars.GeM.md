@@ -1,4 +1,4 @@
-# Return the parameters as a list
+# Change parameters for `GeM` (**MY**)
 
 This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 

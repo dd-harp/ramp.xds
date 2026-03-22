@@ -73,7 +73,7 @@ suite of software packages that have the goal of supporting routine malaria anal
 
 + The software was designed for accountability; the analysis is transparent.   
 
-By nimble, we mean a lot of things. One of them is that software lowers the costs of setting up, solving, analyzing, and applying dynamical systems to model the mosquito ecology or the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. 
+By nimble, we mean a lot of things. One of them is that the software lowers the costs of setting up, solving, analyzing, and applying dynamical systems to model the mosquito ecology or the epidemiology, spatial transmission dynamics, and control of malaria and other mosquito-transmitted pathogens. 
 
 A core goal is to understand malaria transmission in terms of a *changing baseline* (using [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) to model the effects of weather, hydrology, ...) that is *modified by vector control* (using [**`ramp.control`**](https://dd-harp.github.io/ramp.control/)).
 
@@ -96,7 +96,7 @@ In the narrow sense, **SimBA** software includes six distinct R packages:
 It was developed to build and solve dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens based on a well-defined mathematical framework.
 It includes a basic set of models --- enough to design, verify, and demonstrate the basic features of modular software.
 
-2. [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an extended library of models --- stable code that has been tested and verified. It includes a large set of model families published in peer review that are not included in **`ramp.xds`**. The ability to reuse code reduces the costs of replicating studies. Through this library, **`ramp.xds`** also supports nimble model building and analytics for other mosquito-borne pathogens. 
+2. [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an extended library of models --- stable code that has been tested and verified. It includes a large set of model families published in the peer-reviewed literature that are not included in **`ramp.xds`**. The ability to reuse code reduces the costs of replicating studies. Through this library, **`ramp.xds`** also supports nimble model building and analytics for other mosquito-borne pathogens. 
 
 3. [**`ramp.control`**](https://dd-harp.github.io/ramp.control/) is a collection of disease control models for **`ramp.xds`**.
 
@@ -113,7 +113,7 @@ The material in this website supports development and use of **`ramp.xds`**.
 
 ## Contributing
 
-**ramp.xds** aims to provide stable, reliable, reusable code for the study of mosquito-borne pathogen dynamics and control using dynamical systems. For information about how to contribute to the development of ramp.xds, please read our article on [Contributing](https://dd-harp.github.io/ramp.xds/articles/Contributing.html). 
+**`ramp.xds`** aims to provide stable, reliable, reusable code for the study of mosquito-borne pathogen dynamics and control using dynamical systems. For information about how to contribute to the development of **`ramp.xds`**, please read our article on [Contributing](https://dd-harp.github.io/ramp.xds/articles/Contributing.html). 
 
 If you have any questions, comments, bug reports, or suggestions, the first point of contact with the development team is through [GitHub Issues](https://github.com/dd-harp/ramp.xds/issues). If you are specifically submitting a bug report, please check out our [bug reporting guide](https://dd-harp.github.io/ramp.xds/articles/Contributing.html#sec8). If you are interested in collaborating in extensive model development (e.g. new mosquito model), please do not hesitate to contact the authors, whose email addresses can be found in the `DESCRIPTION` file.
 
@@ -123,7 +123,7 @@ We welcome issues and encourage contribution regardless of experience; the lengt
 
 + This project was supported by a grant from the Bill and Melinda Gates Foundation, **Modeling for Adaptive Malaria Control** (INV 030600, PI = David L Smith, University of Washington).
 
-+ Support for *Adaptive Vector Control* is funded by grant **Spatial Targeting and Adaptive Vector Control for Residual Transmission and Malaria Elimination in Urban African Settings** (R01 AI163398, PI = David L Smith), from US National Institute of Allergies and Infectious Diseases (NIAID).
++ Support for *Adaptive Vector Control* is funded by grant **Spatial Targeting and Adaptive Vector Control for Residual Transmission and Malaria Elimination in Urban African Settings** (R01 AI163398, PI = David L Smith), from US National Institute of Allergy and Infectious Diseases (NIAID).
 
 + Development of SimBA, RAMP and Adaptive Malaria Control was supported through collaboration with the [**Bioko Island Malaria Elimination Program**](https://www.mcd.org/focus-areas/featured-projects/bioko-island-malaria-elimination-project) and
 Uganda's **National Malaria Control Division** and **Department of Health Information** in the [Uganda Ministry of Health](https://www.health.go.ug/).

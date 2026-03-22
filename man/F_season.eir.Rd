@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_season.R
 \name{F_season.eir}
 \alias{F_season.eir}
-\title{Plot the seasonal pattern}
+\title{Compute the seasonal pattern}
 \usage{
 \method{F_season}{eir}(tm, xds_obj)
 }
@@ -15,7 +15,6 @@
 the seasonal pattern, invisibly
 }
 \description{
-For a model forced by the EIR
-plot the seasonal pattern
+Evaluate the function \code{F_season} for a forced model when \code{forced_by} is "eir"
 }
 \keyword{internal}

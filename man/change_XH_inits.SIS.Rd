@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{change_XH_inits.SIS}
 \alias{change_XH_inits.SIS}
-\title{\code{SIS} - Change Initial Values}
+\title{Change initial values for \code{SIS} (\strong{XH})}
 \usage{
 \method{change_XH_inits}{SIS}(xds_obj, i = 1, options = list())
 }
@@ -17,7 +17,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-For the \strong{XH} module, \verb{SIS,}
+For the \strong{XH} module, \code{SIS},
 change the initial value(s) for the variable \eqn{I}.
 
 The argument

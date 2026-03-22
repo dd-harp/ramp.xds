@@ -14,7 +14,7 @@ make_times_xde(Tmax, dt, times = NULL)
 \item{times}{the times}
 }
 \value{
-an \strong{\code{xds}} object
+a vector of time points
 }
 \description{
 This method sets up the time points for the

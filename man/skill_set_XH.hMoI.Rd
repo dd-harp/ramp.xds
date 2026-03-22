@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{skill_set_XH.hMoI}
 \alias{skill_set_XH.hMoI}
-\title{The \strong{XH} Module Skill Set}
+\title{The \strong{XH} module skill set}
 \usage{
 \method{skill_set_XH}{hMoI}(Xname = "hMoI")
 }
@@ -14,7 +14,7 @@ the \code{hMoI} \emph{XH} module skill set, a list
 }
 \description{
 The \code{hMoI} module is an example
-of a model that is not extensible. There is now
+of a model that is not extensible. There is no
 way to add either dynamic human population density
 or mass treatment without violating the model
 assumptions.

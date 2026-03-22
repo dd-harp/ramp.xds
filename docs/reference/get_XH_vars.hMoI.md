@@ -1,7 +1,7 @@
-# Get Variables by Name
+# List variables for `hMoI` (**XH**)
 
-Get the the value of variables from the flat state variable vector
-\\y\\, and return the values as a named list
+Get the value of variables from the flat state variable vector \\y\\,
+and return the values as a named list
 
 ## Usage
 

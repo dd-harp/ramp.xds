@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{F_fqM.SI}
 \alias{F_fqM.SI}
-\title{Compute Net Blood Feeding by Mosquitoes for \code{SI}}
+\title{Compute net blood feeding by mosquitoes for \code{SI}}
 \usage{
 \method{F_fqM}{SI}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector of length \code{nPatches}

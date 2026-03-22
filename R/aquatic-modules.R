@@ -1,7 +1,7 @@
-#' @title L Modules 
+#' @title L modules
 #' 
 #' @description
-#' A List of Modules for the **L**-Component 
+#' A list of modules for the **L**-Component
 #' 
 #' @section In **`ramp.xds`**: 
 #'  

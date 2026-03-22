@@ -1,4 +1,4 @@
-# Set new X parameter values
+# Change initial values (**XH**)
 
 This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
 

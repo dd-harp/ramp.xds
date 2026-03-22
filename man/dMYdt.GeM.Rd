@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{dMYdt.GeM}
 \alias{dMYdt.GeM}
-\title{Compute Derivatives for \strong{MY} module \code{GeM}}
+\title{Compute derivatives for \code{GeM} (\strong{MY})}
 \usage{
 \method{dMYdt}{GeM}(t, y, xds_obj, s)
 }
@@ -13,7 +13,7 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
 a \link{numeric} vector

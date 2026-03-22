@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-get.R
 \name{get_MY_orbits}
 \alias{get_MY_orbits}
-\title{Get \strong{MY} outputs}
+\title{Get orbits (\strong{MY})}
 \usage{
 get_MY_orbits(xds_obj, s = 1)
 }
@@ -15,5 +15,5 @@ get_MY_orbits(xds_obj, s = 1)
 the orbits for the \strong{MY} component
 }
 \description{
-Get \strong{MY} outputs
+Get orbits (\strong{MY})
 }

@@ -25,4 +25,4 @@ steady_state_M(Lambda, xds_obj, s = 1)
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

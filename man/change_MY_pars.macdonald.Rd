@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{change_MY_pars.macdonald}
 \alias{change_MY_pars.macdonald}
-\title{Return the parameters as a list}
+\title{Change parameters for \code{macdonald} (\strong{MY})}
 \usage{
 \method{change_MY_pars}{macdonald}(xds_obj, s = 1, options = list())
 }

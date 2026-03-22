@@ -48,13 +48,13 @@ an \strong{\code{xds}} object
 \loadmathjax
 
 A modified version of \link{xds_setup} that
-streamlines setup for models with a trival \strong{MY} Component.
+streamlines setup for models with a trivial \strong{MY} Component.
 
 The \strong{\code{xds}} object defines \code{frame = class(frame) = 'human'}
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
 and parse outputs
 
-The \strong{MY} Component module is set to \code{trivial.} The funcion \link{F_fqZ.trivial} is called to compute passes the
+The \strong{MY} Component module is set to \code{trivial}. The function \link{F_fqZ.trivial} is called to compute passes the
 density of infectious adult mosquitoes, and \eqn{f} and \eqn{q} can still be
 configured. In this case, the daily EIR is computed using the blood feeding
 interface, including \link{Exposure}, in the same way as a model with a non-trivial

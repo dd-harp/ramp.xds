@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_steady.R
 \name{dts_steady}
 \alias{dts_steady}
-\title{Solve for the steady state of a system of equations}
+\title{Compute the steady state of a discrete time system}
 \usage{
 dts_steady(xds_obj, Tx = 1000)
 }
@@ -12,8 +12,8 @@ dts_steady(xds_obj, Tx = 1000)
 \item{Tx}{the number of steps to equilibrium}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$dts}
+Run a discrete time system for \code{Tx} time steps to get the steady state
 }

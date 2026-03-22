@@ -12,7 +12,7 @@
 \item{s}{the vector species index}
 }
 \value{
-trend parameters
+an empty vector
 }
 \description{
 Get the interpolating points

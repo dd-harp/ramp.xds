@@ -13,7 +13,7 @@ make_MY_inits_SI(nPatches, options = list(), M = 5, Y = 1)
 
 \item{M}{total mosquito density at each patch}
 
-\item{Y}{infectious mosquito density at each patch}
+\item{Y}{infected mosquito density at each patch}
 }
 \value{
 a \link{list}

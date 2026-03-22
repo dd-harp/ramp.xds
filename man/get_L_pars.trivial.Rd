@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{get_L_pars.trivial}
 \alias{get_L_pars.trivial}
-\title{Get \strong{L} Component Parameters for \code{trivial}}
+\title{Get parameters for \code{trivial} (\strong{L})}
 \usage{
 \method{get_L_pars}{trivial}(xds_obj, s = 1)
 }

@@ -1,7 +1,7 @@
 # MY Modules
 
 A List of Available Modules for the **MY**-Component from **`ramp.xds`**
-and **`ramp.library.`**
+and **`ramp.library`**
 
 ## In **`ramp.xds`**
 
@@ -11,7 +11,7 @@ and **`ramp.library.`**
 - `SI` - an *SI* compartmental model: see
   [SI](https://dd-harp.github.io/ramp.xds/reference/SI.md)
 
-- `macdonald` - an implementation Macdonald's model: see
+- `macdonald` - an implementation of Macdonald's model: see
   [macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md)
 
 - `GeM` - A generalized Macdonald model: see
@@ -26,7 +26,7 @@ and **`ramp.library.`**
 ## In **`ramp.library`**
 
 `ramp.library` [source code](https://github.com/dd-harp/ramp.library) &
-[github.io](https://github.com/dd-harp/ramp.library)
+[github.io](https://dd-harp.github.io/ramp.library)
 
 - `SEI` - A compartmental model
 

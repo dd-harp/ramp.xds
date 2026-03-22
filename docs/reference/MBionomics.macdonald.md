@@ -1,4 +1,4 @@
-# Macdonald-style adult mosquito bionomics
+# Mosquito bionomics for `macdonald` (**MY**)
 
 Reset the effect sizes for static models. When modules are added to
 compute effect sizes from baseline parameters, those functions store an
@@ -29,7 +29,7 @@ MBionomics(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

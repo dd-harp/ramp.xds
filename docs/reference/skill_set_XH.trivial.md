@@ -1,6 +1,6 @@
-# The **XH** Module Skill Set
+# The **XH** module skill set
 
-The **XH** skill set is a list of an module's capabilities
+The **XH** skill set is a list of a module's capabilities
 
 ## Usage
 

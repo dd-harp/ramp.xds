@@ -6,8 +6,8 @@
 \description{
 The value of a mosquito bionomic parameters gets computed in two stages:
 \itemize{
-\item \link{BaselineBionomics} computes a \emph{baseline} parameter value;
-\item \link{ModifiedBionomics} is the product of the \emph{baseline} and an \emph{effect size}
+\item \link{MosquitoBionomics} computes the bionomic parameter values;
+\item \link{VectorControlEffectSizes} applies the effect sizes of vector control
 }
 }
 \section{Baseline}{

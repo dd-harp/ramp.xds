@@ -37,7 +37,3 @@ xds_solve(xds_obj, Tmax = 365, dt = 1, times = NULL)
 - times:
 
   the times
-
-## Value
-
-an **`xds`** object

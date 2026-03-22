@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{parse_L_orbits.trivial}
 \alias{parse_L_orbits.trivial}
-\title{Parse for \code{trivial} (\strong{L})}
+\title{Parse outputs for \code{trivial} (\strong{L})}
 \usage{
 \method{parse_L_orbits}{trivial}(outputs, xds_obj, s)
 }

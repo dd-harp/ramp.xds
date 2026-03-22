@@ -1,6 +1,7 @@
-# Plot the temporal trend
+# Compute the temporal trend
 
-For a model forced by emergence, show the temporal trend
+Evaluate the function `F_trend` for a forced model when `forced_by` is
+"Lambda"
 
 ## Usage
 

@@ -1,6 +1,6 @@
-# Change Functions for the L Component
+# Change functions (**L**)
 
-write me.
+A list of change functions for aquatic mosquito modules.
 
 - [`change_L_inits`](https://dd-harp.github.io/ramp.xds/reference/change_L_inits.md)
   – change initial values

@@ -1,5 +1,5 @@
 
-#' @title Human (or Host) Population Birth Rate
+#' @title Human (or Host) population birth rate
 #'
 #' @description This method dispatches on the type of xds_obj$Hpar$Births
 #'
@@ -14,7 +14,7 @@ Births <- function(t, H, births){
   UseMethod("Births", births)
 }
 
-#' @title Human (or Host) Population Birth Rate
+#' @title Human (or Host) population birth rate
 #'
 #' @description a function
 #'

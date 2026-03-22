@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{basicL}
 \alias{basicL}
-\title{The \code{basicL} Module for the L Component}
+\title{The \code{basicL} module for the L component}
 \description{
 A basic model of aquatic mosquito
 ecology with density-dependent mortality and delayed maturation, based

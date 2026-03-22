@@ -19,7 +19,7 @@
 #' - Configure some of the basic elements:
 #'    - Search Weights (see [search_weights])
 #'    - Mosquito Dispersal matrix (if `nPatches>1`; see [mosquito_dispersal])
-#'    - Time Spent matrix (if `nPatches>`; see [time_spent])
+#'    - Time Spent matrix (if `nPatches>1`; see [time_spent])
 #'
 #' @note Other options can be configured after basic setup (see [xds_help_setup_options]). If the **MY** Component is the `trivial` module, consider using [xds_setup_aquatic] or [xds_setup_human] or [xds_setup_eir]. Models for mosquito
 #' ecology need not include states describing infection status (see [xds_setup_mosy]).
@@ -72,7 +72,7 @@
 xds_setup = function(xds = 'ode',
                      Xname = "SIS",
                      XHoptions = list(),
-                     MYname = "macdonald",
+                     MYname = "SI",
                      MYoptions = list(),
                      Lname = "trivial",
                      Loptions = list(),
@@ -279,13 +279,13 @@ xds_setup_aquatic = function(xds = 'ode',
 #' \loadmathjax
 #'
 #' A modified version of [xds_setup] that
-#' streamlines setup for models with a trival **MY** Component.
+#' streamlines setup for models with a trivial **MY** Component.
 #'
 #' The **`xds`** object defines `frame = class(frame) = 'human'`
 #' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs
 #'
-#' The **MY** Component module is set to `trivial.` The funcion [F_fqZ.trivial] is called to compute passes the
+#' The **MY** Component module is set to `trivial`. The function [F_fqZ.trivial] is called to compute passes the
 #' density of infectious adult mosquitoes, and \eqn{f} and \eqn{q} can still be
 #' configured. In this case, the daily EIR is computed using the blood feeding
 #' interface, including [Exposure], in the same way as a model with a non-trivial

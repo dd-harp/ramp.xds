@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{get_MY_pars.basicM}
 \alias{get_MY_pars.basicM}
-\title{Return the parameters as a list}
+\title{Get parameters for \code{basicM} (\strong{MY})}
 \usage{
 \method{get_MY_pars}{basicM}(xds_obj, s = 1)
 }

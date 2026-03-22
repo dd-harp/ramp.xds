@@ -1,8 +1,8 @@
-# change initial values for the macdonald model
+# Change initial values for `SI` (**MY**)
 
 Implements
 [change_MY_inits](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.md)
-for the macdonald model
+for the SI model
 
 ## Usage
 

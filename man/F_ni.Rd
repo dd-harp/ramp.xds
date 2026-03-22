@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{F_ni}
 \alias{F_ni}
-\title{Compute Net Infectiousness (NI)}
+\title{Compute net infectiousness (NI)}
 \usage{
 F_ni(vars, XH_obj)
 }

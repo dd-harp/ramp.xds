@@ -2,7 +2,7 @@
 % Please edit documentation in R/change_shock.R
 \name{change_shock}
 \alias{change_shock}
-\title{Set the interpolating points}
+\title{Change shock parameters}
 \usage{
 change_shock(shock_par, xds_obj, s = 1)
 }
@@ -17,5 +17,5 @@ change_shock(shock_par, xds_obj, s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set the interpolating points for F_trend
+Change parameters for the shock function
 }

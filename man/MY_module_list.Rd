@@ -4,14 +4,14 @@
 \alias{MY_module_list}
 \title{MY Modules}
 \description{
-A List of Available Modules for the \strong{MY}-Component from \strong{\code{ramp.xds}} and \strong{\code{ramp.library.}}
+A List of Available Modules for the \strong{MY}-Component from \strong{\code{ramp.xds}} and \strong{\code{ramp.library}}
 }
 \section{In \strong{\code{ramp.xds}}}{
 
 \itemize{
 \item \code{trivial} - the trivial module: see \link{trivial_MY}
 \item \code{SI} - an \emph{SI} compartmental model: see \link{SI}
-\item \code{macdonald} - an implementation Macdonald's model: see \link{macdonald}
+\item \code{macdonald} - an implementation of Macdonald's model: see \link{macdonald}
 \item \code{GeM} - A generalized Macdonald model: see \link{GeM}
 \item \code{basicM} - A basic model for mosquito ecology: see \link{basicM}
 \item \code{RMdts} - A Discrete Time Macdonald model: see \link{RMdts}
@@ -21,7 +21,7 @@ A List of Available Modules for the \strong{MY}-Component from \strong{\code{ram
 \section{In \strong{\code{ramp.library}}}{
 
 
-\code{ramp.library} \href{https://github.com/dd-harp/ramp.library}{source code} & \href{https://github.com/dd-harp/ramp.library}{github.io}
+\code{ramp.library} \href{https://github.com/dd-harp/ramp.library}{source code} & \href{https://dd-harp.github.io/ramp.library}{github.io}
 \itemize{
 \item \code{SEI} - A compartmental model
 \item \code{BQ} - A behavioral state model with blood feeding, egg laying, and infection dynamics

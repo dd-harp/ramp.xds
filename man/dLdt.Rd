@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{dLdt}
 \alias{dLdt}
-\title{Compute derivatives (\strong{L} module)}
+\title{Compute derivatives (\strong{L})}
 \usage{
 dLdt(t, y, xds_obj, s)
 }

@@ -1,6 +1,6 @@
-# Set the \\y\\ value for interpolating points
+# Change shock parameters
 
-and return the **`ramp.xds`** model object
+Change parameters for the shock function when `forced_by = "Lambda"`
 
 ## Usage
 

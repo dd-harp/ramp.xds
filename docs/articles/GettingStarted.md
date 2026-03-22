@@ -11,8 +11,8 @@ demonstration.
 
   - Solve it
 
-Next: [Basic
-Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.md).
+Next: [Working with
+Models](https://dd-harp.github.io/ramp.xds/articles/Working.md)
 
 Additional documentation is available in the [**SimBA**
 Project](https://faculty.washington.edu/smitdave/simba/index.html)
@@ -215,14 +215,14 @@ get_XH_inits(model1)
     ## [1] 2
 
 The module for adult mosquito ecology and infection dynamics is called
-`MYname.` The default module is Macdonald’s model:
+`MYname.` The default module is an SI model:
 
 ``` r
 
 model$MYname
 ```
 
-    ## [1] "macdonald"
+    ## [1] "SI"
 
 The design pattern is followed. Parameters can be viewed with
 `get_MY_pars`. Parameter values can be set by passing a named list to
@@ -350,9 +350,9 @@ head(get_EIR(model), 3)
 ```
 
     ##              [,1]
-    ## [1,] 0.0002850000
-    ## [2,] 0.0002622311
-    ## [3,] 0.0002412851
+    ## [1,] 1.048456e-04
+    ## [2,] 9.866984e-05
+    ## [3,] 9.732900e-05
 
 ## Visualization
 
@@ -391,7 +391,7 @@ outputs](GettingStarted_files/figure-html/unnamed-chunk-20-1.png)
 
 **Figure 1:** Plotting standard outputs
 
-## Trivial Models and Trace Functions
+## Trace
 
 The software was designed to be fully modular, so that any module for
 one dynamical component can be replaced with another. The models
@@ -401,12 +401,12 @@ software is working as designed.
 A basic requirement for full modularity is that every dynamical
 component must include a *trivial* module. In the `trivial` module, no
 variables are defined, but the dynamical terms needed by related
-dynamical components are passed by a configurable *trace* function with
+dynamical components are passed by a configurable *trace function* with
 a generic form:
 
 ``` r
 
-mean*F_season(t)*F_trend(t)
+mean*F_season(t)*F_trend(t)*F_shock(t)
 ```
 
 The default for the aquatic mosquito dynamical component is the
@@ -414,20 +414,13 @@ The default for the aquatic mosquito dynamical component is the
 
 It is easy to change the `trace` function. First, we define `F_season`
 and change the mean value of `Lambda.` To set up a seasonality function,
-we pass a parameter set from `makepar_F_sin` as `season_par`.
-
-``` r
-
- sp = makepar_F_sin()
-```
-
-Having defined `sp,` we now configure a list of options:
+we pass a parameter set from `makepar_F_sin`:
 
 ``` r
 
 Lo = list(
        Lambda=400, 
-       season_par=sp
+       season_par=makepar_F_sin()
       )
 ```
 
@@ -469,13 +462,14 @@ xds_plot_Z(model_1, add=T)
 ```
 
 ![\*\*Figure 2:\*\* Outputs with Seasonal Forced Emergence using a Trace
-Function](GettingStarted_files/figure-html/unnamed-chunk-27-1.png)
+Function](GettingStarted_files/figure-html/unnamed-chunk-26-1.png)
 
 **Figure 2:** Outputs with Seasonal Forced Emergence using a Trace
 Function
 
 ## Next Steps
 
-A good next step is the [Basic
-Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html)
-vignette.
+Two good next steps are the vignettes: + [Working with
+Models](https://dd-harp.github.io/ramp.xds/articles/Working.html). +
+[Basic
+Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html).

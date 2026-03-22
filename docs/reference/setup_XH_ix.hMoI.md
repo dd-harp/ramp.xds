@@ -23,4 +23,4 @@ setup_XH_ix(xds_obj, i)
 
 ## Value
 
-none
+a [list](https://rdrr.io/r/base/list.html)

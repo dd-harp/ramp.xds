@@ -2,14 +2,14 @@
 % Please edit documentation in R/aquatic-help.R
 \name{L_functions}
 \alias{L_functions}
-\title{Generic Methods for the L Component}
+\title{Generic methods for the L component}
 \description{
 A list of generic
 \itemize{
 \item \code{\link{dLdt}} -- compute derivatives
 \item \code{\link{Update_Lt}} -- update state variables
-\item \code{\link{LBaseline}} -- set baseline bionomic parameters
 \item \code{\link{LBionomics}} -- compute bionomic parameters
+\item \code{\link{LEffectSizes}} -- apply vector control effect sizes
 \item \code{\link{F_emerge}} -- compute emergent adults
 \item \code{\link{setup_L_obj}} -- set up the L module object
 \item \code{\link{setup_L_ix}} -- set index values

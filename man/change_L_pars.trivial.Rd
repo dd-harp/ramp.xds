@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{change_L_pars.trivial}
 \alias{change_L_pars.trivial}
-\title{Set \strong{L} Component parameters for \code{trivial}}
+\title{Change parameters for \code{trivial} (\strong{L})}
 \usage{
 \method{change_L_pars}{trivial}(xds_obj, s = 1, options = list())
 }
@@ -17,7 +17,10 @@
 an \strong{\code{xds}} object
 }
 \description{
-If \code{Lambda} or \code{F_season} or \code{F_trend} or \code{F_shock}
-are named in a list \code{options}, the old value is replaced
+If \code{Lambda}, \code{season_par}, \code{trend_par}, or \code{shock_par}
+are named in \code{options}, the old value is replaced. After updating
+the parameter objects, \code{F_season}, \code{F_trend}, and \code{F_shock} are
+recompiled by calling \link{make_function} on the updated parameters
+via \link{rebuild_forcing_functions}.
 }
 \keyword{internal}

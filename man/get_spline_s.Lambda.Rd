@@ -12,9 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-the interpolation points, as a list
+a list, the value of \code{trend_par}
 }
 \description{
-Return the
+Get spline interpolation points when \code{forced_by} = "Lambda"
 }
 \keyword{internal}

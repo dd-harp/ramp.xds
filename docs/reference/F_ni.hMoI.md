@@ -1,4 +1,4 @@
-# Compute the "true" nievalence of infection / parasite rate
+# Compute the "true" prevalence of infection / parasite rate
 
 Implements [F_ni](https://dd-harp.github.io/ramp.xds/reference/F_ni.md)
 for the hMoI model.

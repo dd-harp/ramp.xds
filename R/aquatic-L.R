@@ -3,8 +3,8 @@
 #' @title The skill set (**L** module)
 #'
 #' @description The skill set for an **L** module
-#' is a list of that summarizes capabilities and
-#' compatabilities
+#' is a list that summarizes capabilities and
+#' compatibilities
 #'
 #' @param Lname the **L** module name
 #'
@@ -17,7 +17,7 @@ skill_set_L = function(Lname){
   UseMethod("skill_set_L", Lname)
 }
 
-#' Run a check before solving
+#' @title Run a check before solving
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -29,7 +29,7 @@ check_L = function(xds_obj, s){
   UseMethod("check_L", xds_obj$L_obj[[s]])
 }
 
-#' @title Compute derivatives (**L** module)
+#' @title Compute derivatives (**L**)
 #'
 #' @description This method computes and returns the derivatives
 #' for the **L** Component modules
@@ -42,13 +42,12 @@ check_L = function(xds_obj, s){
 #' @param s the species index
 #' @return the derivatives, a [numeric] vector of length \eqn{n_q=}`nHabitats`
 #' @keywords internal
-#' @keywords internal
 #' @export
 dLdt <- function(t, y, xds_obj, s) {
   UseMethod("dLdt", xds_obj$L_obj[[s]])
 }
 
-#' @title Update state variables (**L** module)
+#' @title Update state variables (**L**)
 #'
 #' @description This method updates the state variables
 #' for **L** Component modules
@@ -66,23 +65,9 @@ Update_Lt <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Baseline Bionomics for an **L** Component Module
-#' @description Handle immature mosquito bionomic parameters as a baseline modified by control
-#' @param t current simulation time
-#' @param y state vector
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
-#' @return an **`xds`** object
-#' @keywords internal
-#' @keywords internal
-#' @export
-LBaseline <- function(t, y, xds_obj, s) {
-  UseMethod("LBaseline", xds_obj$L_obj[[s]])
-}
-
-
-#' @title Bionomics for an **L** Component Module
-#' @description Handle immature mosquito bionomic parameters as a baseline modified by control
+#' @title Mosquito bionomics (**L**)
+#' @description Compute the values of bionomic parameter 
+#' values for an **L** Component module
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
@@ -94,7 +79,21 @@ LBionomics <- function(t, y, xds_obj, s) {
   UseMethod("LBionomics", xds_obj$L_obj[[s]])
 }
 
-#' @title Compute Emergent Adults
+
+#' @title Apply effect sizes (**L**)
+#' @description Apply vector control effect sizes to immature mosquito bionomic parameters
+#' @param t current simulation time
+#' @param y state vector
+#' @param xds_obj an **`xds`** model object
+#' @param s the species index
+#' @return an **`xds`** object
+#' @keywords internal
+#' @export
+LEffectSizes <- function(t, y, xds_obj, s) {
+  UseMethod("LEffectSizes", xds_obj$L_obj[[s]])
+}
+
+#' @title Compute emergent adults
 #' @description This function computes the rate or number of emerging adults: a
 #' rate for differential equations, or a number for difference equations.
 #' @note This method dispatches on the class of `xds_obj$L_obj[[s]]`
@@ -109,7 +108,7 @@ F_emerge <- function(t, y, xds_obj, s) {
   UseMethod("F_emerge", xds_obj$L_obj[[s]])
 }
 
-#' @title Set up `L_obj` for **L** Component modules
+#' @title Set up **L** model object 
 #' @description
 #' Each instance of `setup_L_obj.*` calls a function `create_L_obj_*` that
 #' creates an object **`L_obj`.**
@@ -124,14 +123,13 @@ F_emerge <- function(t, y, xds_obj, s) {
 #'
 #' @return an **`xds`** object
 #' @keywords internal
-#' @keywords internal
 #' @export
 setup_L_obj = function(Lname, xds_obj, s, options=list()){
   class(Lname) <- Lname
   UseMethod("setup_L_obj", Lname)
 }
 
-#' @title Get parameters for the **L** Component module
+#' @title Get parameters (**L**)
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
@@ -141,7 +139,7 @@ get_L_pars <- function(xds_obj, s=1) {
   UseMethod("get_L_pars", xds_obj$L_obj[[s]])
 }
 
-#' @title Set **L** Component Parameters
+#' @title Change parameters (**L**)
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @param options a named list
@@ -152,7 +150,7 @@ change_L_pars <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_L_pars", xds_obj$L_obj[[s]])
 }
 
-#' @title List **L** Component Variables
+#' @title List variables (**L**)
 #' @description Extract the variables describing **L** Component
 #' states for the \eqn{s^{th}} species and return them as a named list
 #' @note This method dispatches on the class of `xds_obj$L_obj[[s]]`.
@@ -166,21 +164,22 @@ get_L_vars <- function(y, xds_obj, s) {
   UseMethod("get_L_vars", xds_obj$L_obj[[s]])
 }
 
-#' @title Setup Initial Values for the **L** Component
-#' @description This method dispatches on `Lname`.
+#' @title Setup initial values (**L**)
+#' @description Sets the initial values of the **L** Component
+#' variables from `options`, a named list.
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @param options a [list]
+#' @param options a named [list]
 #' @return an **`xds`** object
-#' @keywords internal
 #' @keywords internal
 #' @export
 setup_L_inits = function(xds_obj, s, options=list()){
   UseMethod("setup_L_inits", xds_obj$L_obj[[s]])
 }
 
-#' @title Get Initial Values for the **L** Component
-#' @note This method dispatches on the class of `xds_obj$L_obj`.
+#' @title Get initial values (**L**) 
+#' @description The initial values are stored on the **L** object as a
+#' named list called `inits`; `get_L_inits` returns that list.
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a named [list]
@@ -190,7 +189,7 @@ get_L_inits <- function(xds_obj, s=1) {
   xds_obj$L_obj[[s]]$inits
 }
 
-#' @title Set **L** Component Initial Values
+#' @title Change initial values (**L**)
 #' @description
 #' This sets initial values for an **L** Component
 #' module from a named list
@@ -204,7 +203,7 @@ change_L_inits <- function(xds_obj, s=1, options=list()) {
   UseMethod("change_L_inits", xds_obj$L_obj[[s]])
 }
 
-#' @title Set up Indices for **L** Component Variables 
+#' @title Set up indices for **L** component variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return an **`xds`** object
@@ -214,23 +213,22 @@ setup_L_ix <- function(xds_obj, s) {
   UseMethod("setup_L_ix", xds_obj$L_obj[[s]])
 }
 
-#' @title Get L indices 
+#' @title Get indices (**L**)
 #'
-#' @description Get and display the 
-#' values of the indices
-#' for the **L** variables
+#' @description The indices are stored on the **L** object as a
+#' named list called `ix`; `get_L_ix` returns that list.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return a named [list] of indices for the **L** variables
 #' @keywords internal
 #' @export
 get_L_ix <- function(xds_obj, s=1) {
   xds_obj$L_obj[[s]]$ix
 }
 
-#' @title parse **L** Component Outputs
+#' @title Parse outputs (**L**)
 #' @description After solving a dynamical system, parse the outputs and
 #' return the variables by name in a list.
 #' @note This method dispatches on the class of `xds_obj$L_obj[[s]]`
@@ -239,13 +237,12 @@ get_L_ix <- function(xds_obj, s=1) {
 #' @param s the species index
 #' @return a [list]
 #' @keywords internal
-#' @keywords internal
 #' @export
 parse_L_orbits <- function(outputs, xds_obj, s) {
   UseMethod("parse_L_orbits", xds_obj$L_obj[[s]])
 }
 
-#' @title Compute steady states for **L** Component Modules
+#' @title Compute steady states for **L** component modules
 #'
 #' @description For differential equation models, compute
 #' steady states as a function of daily eggs laid, \eqn{\eta}
@@ -264,7 +261,7 @@ steady_state_L = function(eta, xds_obj, s=1){
 }
 
 
-#' @title Get **L** outputs
+#' @title Get orbits (**L**)
 #'
 #' @description
 #' Pull the saved, parsed orbits for the **L**

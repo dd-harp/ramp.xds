@@ -1,4 +1,4 @@
-# Net Blood Feeding by Infectious Mosquitoes - `SI` Mosquito Model
+# Net blood feeding by infectious mosquitoes - `SI` mosquito model
 
 The variable \\Y\\ is the density of *infected* mosquitoes. The model
 blood feeding **parameters** are:
@@ -40,7 +40,7 @@ F_fqZ(t, y, xds_obj, s)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 

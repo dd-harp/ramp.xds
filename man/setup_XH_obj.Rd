@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{setup_XH_obj}
 \alias{setup_XH_obj}
-\title{Setup an \strong{XH} Module (Human / Host Epidemiology & Demography)}
+\title{Set up \strong{XH} model object}
 \usage{
 setup_XH_obj(Xname, xds_obj, i, options = list())
 }

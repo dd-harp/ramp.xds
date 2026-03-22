@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{change_MY_pars}
 \alias{change_MY_pars}
-\title{Set new MY parameter values}
+\title{Change parameters (\strong{MY})}
 \usage{
 change_MY_pars(xds_obj, s = 1, options = list())
 }

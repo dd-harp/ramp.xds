@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-concepts.R
 \name{human_populations}
 \alias{human_populations}
-\title{The Human Population}
+\title{The human population}
 \description{
 A human (or host) population is sub-divided into \emph{strata.}
 The human population (or other host population) and its structure, size and behavior

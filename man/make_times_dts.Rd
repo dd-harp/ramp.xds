@@ -14,7 +14,7 @@ make_times_dts(Tmax = 365, dt = 1, times = NULL)
 \item{times}{the times}
 }
 \value{
-an \strong{\code{xds}} object
+a vector of time points
 }
 \description{
 This method sets up the time points when output is wanted.
@@ -26,7 +26,6 @@ Otherwise it sets \code{maxT=Tmax.}
 
 It returns a sequence from \code{0} to \code{maxT} by \code{dt.}
 
-A check
-values of \code{times} should be some integer multiple of \code{dt}
+Values of \code{times} should be some integer multiple of \code{dt}
 }
 \keyword{internal}
