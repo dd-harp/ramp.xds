@@ -88,6 +88,6 @@ get_PR.lm<- function(xds_obj, method = "lm", i=1) {
 #' @export
 get_PR.rdt<- function(xds_obj, method = "rdt", i=1) {
   XH <- get_XH_orbits(xds_obj, i)
-  pr = F_pfpr_by_lm(XH, xds_obj$XH_obj[[i]])
+  pr = F_pfpr_by_rdt(XH, xds_obj$XH_obj[[i]])
   return(list(time=XH$time, pr=pr, method="rdt"))
 }

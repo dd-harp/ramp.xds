@@ -772,10 +772,9 @@ Utilities for Time Spent Matrices
   : Compute the human transmitting capacity
 
 - [`xds_plot_X()`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_X.md)
-  : Basic plotting for epidemiological models
+  :
 
-- [`xds_plot_XH()`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_XH.md)
-  : Basic plotting for epidemiological models
+  Default plotting for epidemiology (**X**)
 
 - [`steady_state_X()`](https://dd-harp.github.io/ramp.xds/reference/steady_state_X.md)
   :

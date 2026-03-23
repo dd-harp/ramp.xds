@@ -1,6 +1,8 @@
 # A list of functions to change the XH component
 
-write me.
+Change functions for **XH**
+
+`?change_XH`
 
 - [`change_H`](https://dd-harp.github.io/ramp.xds/reference/change_H.md)
   – change host population density

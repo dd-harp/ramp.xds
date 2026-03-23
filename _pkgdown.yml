@@ -305,7 +305,6 @@ reference:
   - change_XH_pars
   - get_HTC
   - xds_plot_X
-  - xds_plot_XH
   - steady_state_X
   - steady_state_XH
 - title: MY Component 

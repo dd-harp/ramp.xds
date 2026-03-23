@@ -34,10 +34,10 @@ To inspect a method for a specific function, use `getS3method`
 
 ------------------------------------------------------------------------
 
-The **L** Component defines 16 S3 generic functions in
-[aquatic-L.R](https://github.com/dd-harp/ramp.xds/blob/main/R/aquatic-L.R).
-Most of these are `S3` class functions, but a few work generically. Each
-module defines two functions to set up an **L** object.
+The **L** Component defines 16 `S3` generic functions in
+[aquatic-L.R](https://github.com/dd-harp/ramp.xds/blob/main/R/aquatic-L.R),
+and 3 that work generically. Each module defines two additional
+functions to set up an **L** object and the initial values.
 
 The required functions deal with various tasks required to build or
 solve a model, inspect or change the parameters or initial values,

@@ -4,8 +4,9 @@
 \alias{XH_setup}
 \title{Setup functions for the XH component}
 \description{
-write me.
+Set up functions for \strong{XH}
 
+\code{?setup_XH}
 \itemize{
 \item \code{\link{setup_XH_obj}} -- set up the XH module object
 \item \code{\link{setup_XH_ix}} -- set up variable indices

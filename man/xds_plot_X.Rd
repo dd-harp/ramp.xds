@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{xds_plot_X}
 \alias{xds_plot_X}
-\title{Basic plotting for epidemiological models}
+\title{Default plotting for epidemiology (\strong{X})}
 \usage{
 xds_plot_X(xds_obj, i = 1, clrs = "black", llty = 1, add = FALSE)
 }
@@ -18,6 +18,7 @@ xds_plot_X(xds_obj, i = 1, clrs = "black", llty = 1, add = FALSE)
 \item{add}{plot axes only if FALSE}
 }
 \description{
-Basic plotting for epidemiological models
+Each module can define a plotting method
+for the epidemiology
 }
 \keyword{internal}

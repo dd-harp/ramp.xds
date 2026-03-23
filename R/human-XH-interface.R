@@ -25,7 +25,7 @@ skill_set_XH = function(Xname){
   UseMethod("skill_set_XH", Xname)
 }
 
-#' Check / update before solving
+#' @title Run checks before solving (**XH**) 
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i host species index
@@ -212,6 +212,7 @@ get_XH_ix <- function(xds_obj, i=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
+#' @return a named [list] of parsed output variables
 #' @keywords internal
 #' @export
 parse_XH_orbits <- function(outputs, xds_obj, i) {
@@ -319,7 +320,7 @@ F_prevalence <- function(vars, XH_obj) {
 #' @keywords internal
 #' @export
 F_pfpr_by_lm <- function(vars, XH_obj) {
-  UseMethod("F_prevalence", XH_obj)
+  UseMethod("F_pfpr_by_lm", XH_obj)
 }
 
 #' @title Compute the prevalence of infection by RDT
@@ -330,7 +331,7 @@ F_pfpr_by_lm <- function(vars, XH_obj) {
 #' @keywords internal
 #' @export
 F_pfpr_by_rdt <- function(vars, XH_obj) {
-  UseMethod("F_prevalence", XH_obj)
+  UseMethod("F_pfpr_by_rdt", XH_obj)
 }
 
 #' @title Compute infection prevalence by PCR
@@ -342,7 +343,7 @@ F_pfpr_by_rdt <- function(vars, XH_obj) {
 #' @keywords internal
 #' @export
 F_pfpr_by_pcr <- function(vars, XH_obj) {
-  UseMethod("F_prevalence", XH_obj)
+  UseMethod("F_pfpr_by_pcr", XH_obj)
 }
 
 
@@ -390,22 +391,10 @@ steady_state_XH = function(foi, xds_obj, i=1){
   UseMethod("steady_state_XH", xds_obj$XH_obj[[i]])
 }
 
-
-#' Basic plotting for epidemiological models
+#' @title Default plotting for epidemiology (**X**)
 #'
-#' @param xds_obj an **`xds`** model object
-#' @param i the host species index
-#' @param clrs a vector of colors
-#' @param llty an integer (or integers) to set the `lty` for plotting
-#' @param add plot axes only if FALSE
-#'
-#' @keywords internal
-#' @export
-xds_plot_XH = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
-  UseMethod("xds_plot_X", xds_obj$XH_obj[[i]])
-}
-
-#' Basic plotting for epidemiological models
+#' @description Each module can define a plotting method
+#' for the epidemiology
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index

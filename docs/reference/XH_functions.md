@@ -1,6 +1,6 @@
 # Generic methods for the XH component
 
-write me.
+The functions that define **XH**:
 
 - [`dXHdt`](https://dd-harp.github.io/ramp.xds/reference/dXHdt.md) –
   compute derivatives
@@ -80,8 +80,7 @@ write me.
 - [`steady_state_XH`](https://dd-harp.github.io/ramp.xds/reference/steady_state_XH.md)
   – compute XH steady state given FoI
 
-- [`xds_plot_XH`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_XH.md)
-  – plot XH outputs
+- `xds_plot_XH` – plot XH outputs
 
 - [`xds_plot_X`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_X.md)
   – plot X outputs

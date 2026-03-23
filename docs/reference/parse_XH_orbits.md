@@ -29,3 +29,8 @@ parse_XH_orbits(outputs, xds_obj, i)
 - i:
 
   the host species index
+
+## Value
+
+a named [list](https://rdrr.io/r/base/list.html) of parsed output
+variables

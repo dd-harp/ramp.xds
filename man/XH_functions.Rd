@@ -4,7 +4,7 @@
 \alias{XH_functions}
 \title{Generic methods for the XH component}
 \description{
-write me.
+The functions that define \strong{XH}:
 
 \itemize{
 \item \code{\link{dXHdt}} -- compute derivatives

@@ -13,6 +13,9 @@ parse_XH_orbits(outputs, xds_obj, i)
 
 \item{i}{the host species index}
 }
+\value{
+a named \link{list} of parsed output variables
+}
 \description{
 After solving, this function extracts
 the values of the dependent variables for the \strong{XH}

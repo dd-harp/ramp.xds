@@ -2,7 +2,7 @@
 #' @title Generic methods for the XH component
 #'
 #' @description
-#' write me.
+#' The functions that define **XH**: 
 #'
 #' \itemize{
 #'   \item \code{\link{dXHdt}} -- compute derivatives
@@ -43,8 +43,9 @@ NULL
 #' @title Get functions for XH
 #'
 #' @description
-#' A list of functions to inspect XH objects. 
+#' Get functions for **XH** 
 #' 
+#' `?get_XH`
 #' @section Outputs: 
 #' \itemize{
 #'   \item \code{\link{get_XH_orbits}} -- get the XH orbits
@@ -73,8 +74,9 @@ NULL
 #' @title A list of functions to change the XH component
 #'
 #' @description
-#' write me.
-#'
+#' Change functions for **XH** 
+#' 
+#' `?change_XH`
 #' \itemize{
 #'   \item \code{\link{change_H}} -- change host population density
 #'   \item \code{\link{change_XH_inits}} -- change initial values
@@ -87,8 +89,9 @@ NULL
 #' @title Setup functions for the XH component
 #'
 #' @description
-#' write me.
-#'
+#' Set up functions for **XH** 
+#' 
+#' `?setup_XH`
 #' \itemize{
 #'   \item \code{\link{setup_XH_obj}} -- set up the XH module object
 #'   \item \code{\link{setup_XH_ix}} -- set up variable indices
