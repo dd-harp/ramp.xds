@@ -8,45 +8,45 @@
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Build a Model and Configure All Components — xds_setup"><meta name="description" content='MathJax = {output: {font: "mathjax-newcm", fontPath: "../../mathjaxr/doc/mathjax/font",}};
 
 Make an xds model object:
-Define a module for each dynamical component (see dynamical_components):
+Define a module for each dynamical component (see xds_info_dynamical_components):
 XH Component – human / host infection dynamics
 MY Component – adult mosquito ecology and infection dynamics
 L Component – aquatic mosquito ecology
 
 Define basic structural parameters for a single host and vector population:
-nPatches - the number of patches (see patch_dynamics)
-membership - the habitat membership vector (see aquatic_habitats)
+nPatches - the number of patches (see xds_info_patch_dynamics)
+membership - the habitat membership vector (see xds_info_aquatic_habitats)
 nHabitats = length(membership)
-residence - the human residence vector (see human_populations)
-HPop - the human population size (see human_populations)
+residence - the human residence vector (see xds_info_human_populations)
+HPop - the human population size (see xds_info_human_populations)
 nStrata = length(residence) = length(HPop)
 
 Configure some of the basic elements:
-Search Weights (see search_weights)
-Mosquito Dispersal matrix (if nPatches&amp;gt;1; see mosquito_dispersal)
-Time Spent matrix (if nPatches&amp;gt;1; see time_spent)
+Search Weights (see xds_info_search_weights)
+Mosquito Dispersal matrix (if nPatches&amp;gt;1; see xds_info_mosquito_dispersal)
+Time Spent matrix (if nPatches&amp;gt;1; see xds_info_time_spent)
 
 
 '><meta property="og:description" content='MathJax = {output: {font: "mathjax-newcm", fontPath: "../../mathjaxr/doc/mathjax/font",}};
 
 Make an xds model object:
-Define a module for each dynamical component (see dynamical_components):
+Define a module for each dynamical component (see xds_info_dynamical_components):
 XH Component – human / host infection dynamics
 MY Component – adult mosquito ecology and infection dynamics
 L Component – aquatic mosquito ecology
 
 Define basic structural parameters for a single host and vector population:
-nPatches - the number of patches (see patch_dynamics)
-membership - the habitat membership vector (see aquatic_habitats)
+nPatches - the number of patches (see xds_info_patch_dynamics)
+membership - the habitat membership vector (see xds_info_aquatic_habitats)
 nHabitats = length(membership)
-residence - the human residence vector (see human_populations)
-HPop - the human population size (see human_populations)
+residence - the human residence vector (see xds_info_human_populations)
+HPop - the human population size (see xds_info_human_populations)
 nStrata = length(residence) = length(HPop)
 
 Configure some of the basic elements:
-Search Weights (see search_weights)
-Mosquito Dispersal matrix (if nPatches&amp;gt;1; see mosquito_dispersal)
-Time Spent matrix (if nPatches&amp;gt;1; see time_spent)
+Search Weights (see xds_info_search_weights)
+Mosquito Dispersal matrix (if nPatches&amp;gt;1; see xds_info_mosquito_dispersal)
+Time Spent matrix (if nPatches&amp;gt;1; see xds_info_time_spent)
 
 
 '></head><body>
@@ -123,20 +123,20 @@ Time Spent matrix (if nPatches&amp;gt;1; see time_spent)
     <div class="ref-description section level2">
     <p><script>MathJax = {output: {font: "mathjax-newcm", fontPath: "../../mathjaxr/doc/mathjax/font",}};</script><script defer src="../../mathjaxr/doc/mathjax/tex-chtml.js"></script>
 
-Make an <strong><code>xds</code></strong> <em>model object</em>:</p><ul><li><p>Define a module for each dynamical component (see <a href="dynamical_components.html">dynamical_components</a>):</p><ul><li><p><strong>XH</strong> Component – human / host infection dynamics</p></li>
+Make an <strong><code>xds</code></strong> <em>model object</em>:</p><ul><li><p>Define a module for each dynamical component (see <a href="xds_info_dynamical_components.html">xds_info_dynamical_components</a>):</p><ul><li><p><strong>XH</strong> Component – human / host infection dynamics</p></li>
 <li><p><strong>MY</strong> Component – adult mosquito ecology and infection dynamics</p></li>
 <li><p><strong>L</strong> Component – aquatic mosquito ecology</p></li>
 </ul></li>
-<li><p>Define basic structural parameters for a single host and vector population:</p><ul><li><p><code>nPatches</code> - the number of patches (see <a href="patch_dynamics.html">patch_dynamics</a>)</p></li>
-<li><p><code>membership</code> - the habitat membership vector (see <a href="aquatic_habitats.html">aquatic_habitats</a>)</p></li>
+<li><p>Define basic structural parameters for a single host and vector population:</p><ul><li><p><code>nPatches</code> - the number of patches (see <a href="xds_info_patch_dynamics.html">xds_info_patch_dynamics</a>)</p></li>
+<li><p><code>membership</code> - the habitat membership vector (see <a href="xds_info_aquatic_habitats.html">xds_info_aquatic_habitats</a>)</p></li>
 <li><p><code>nHabitats = length(membership)</code></p></li>
-<li><p><code>residence</code> - the human residence vector (see <a href="human_populations.html">human_populations</a>)</p></li>
-<li><p><code>HPop</code> - the human population size (see <a href="human_populations.html">human_populations</a>)</p></li>
+<li><p><code>residence</code> - the human residence vector (see <a href="xds_info_human_populations.html">xds_info_human_populations</a>)</p></li>
+<li><p><code>HPop</code> - the human population size (see <a href="xds_info_human_populations.html">xds_info_human_populations</a>)</p></li>
 <li><p><code>nStrata = length(residence) = length(HPop)</code></p></li>
 </ul></li>
-<li><p>Configure some of the basic elements:</p><ul><li><p>Search Weights (see <a href="search_weights.html">search_weights</a>)</p></li>
-<li><p>Mosquito Dispersal matrix (if <code>nPatches&gt;1</code>; see <a href="mosquito_dispersal.html">mosquito_dispersal</a>)</p></li>
-<li><p>Time Spent matrix (if <code>nPatches&gt;1</code>; see <a href="time_spent.html">time_spent</a>)</p></li>
+<li><p>Configure some of the basic elements:</p><ul><li><p>Search Weights (see <a href="xds_info_search_weights.html">xds_info_search_weights</a>)</p></li>
+<li><p>Mosquito Dispersal matrix (if <code>nPatches&gt;1</code>; see <a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a>)</p></li>
+<li><p>Time Spent matrix (if <code>nPatches&gt;1</code>; see <a href="xds_info_time_spent.html">xds_info_time_spent</a>)</p></li>
 </ul></li>
 </ul></div>
 
@@ -220,7 +220,7 @@ Make an <strong><code>xds</code></strong> <em>model object</em>:</p><ul><li><p>D
 
 
 <dt id="arg-koptions">Koptions<a class="anchor" aria-label="anchor" href="#arg-koptions"></a></dt>
-<dd><p>a K matrix, or options for <a href="setup_K_matrix.html">setup_K_matrix</a> (see <a href="mosquito_dispersal.html">mosquito_dispersal</a>)</p></dd>
+<dd><p>a K matrix, or options for <a href="setup_K_matrix.html">setup_K_matrix</a> (see <a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a>)</p></dd>
 
 
 <dt id="arg-searchq">searchQ<a class="anchor" aria-label="anchor" href="#arg-searchq"></a></dt>
@@ -263,12 +263,12 @@ and egg laying (see <a href="xds_object.html">xds_object</a>):</p><ul><li><p><co
 </ol></div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>Other options can be configured after basic setup (see <a href="xds_help_setup_options.html">xds_help_setup_options</a>). If the <strong>MY</strong> Component is the <code>trivial</code> module, consider using <a href="xds_setup_aquatic.html">xds_setup_aquatic</a> or <a href="xds_setup_human.html">xds_setup_human</a> or <a href="xds_setup_eir.html">xds_setup_eir</a>. Models for mosquito
+    <p>Other options can be configured after basic setup (see <a href="xds_info_setup_options.html">xds_info_setup_options</a>). If the <strong>MY</strong> Component is the <code>trivial</code> module, consider using <a href="xds_setup_aquatic.html">xds_setup_aquatic</a> or <a href="xds_setup_human.html">xds_setup_human</a> or <a href="xds_setup_eir.html">xds_setup_eir</a>. Models for mosquito
 ecology need not include states describing infection status (see <a href="xds_setup_mosy.html">xds_setup_mosy</a>).</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="make_xds_object_template.html">make_xds_object_template</a>, <a href="xds_help_basic_setup.html">xds_help_basic_setup</a></p></div>
+    <div class="dont-index"><p><a href="make_xds_object_template.html">make_xds_object_template</a>, <a href="xds_info_basic_setup.html">xds_info_basic_setup</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

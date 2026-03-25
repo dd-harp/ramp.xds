@@ -4,7 +4,9 @@
 \alias{XH_get}
 \title{Get functions for XH}
 \description{
-A list of functions to inspect XH objects.
+Get functions for \strong{XH}
+
+\code{?get_XH}
 }
 \section{Outputs}{
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/transmission.R
 \name{Transmission}
 \alias{Transmission}
-\title{Transmission}
+\title{Compute the mixing matrix and transmission terms}
 \usage{
 Transmission(t, y, xds_obj)
 }
@@ -17,14 +17,6 @@ Transmission(t, y, xds_obj)
 an \strong{\code{xds}} object
 }
 \description{
-Transmission computes:
-\itemize{
-\item \code{beta} -- the bite distribution matrix
-\item \code{eir} -- the daily EIR
-\item \code{kappa} -- the net infectiousness
-\item \link{local_frac}
-}
-
 This method dispatches on the type of \code{xds_obj$beta}
 }
 \keyword{internal}

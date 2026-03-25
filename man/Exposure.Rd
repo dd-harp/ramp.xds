@@ -2,7 +2,7 @@
 % Please edit documentation in R/exposure.R
 \name{Exposure}
 \alias{Exposure}
-\title{Exposure}
+\title{Compute Infection Rates}
 \usage{
 Exposure(t, y, xds_obj)
 }
@@ -17,34 +17,9 @@ Exposure(t, y, xds_obj)
 an \strong{\code{xds}} object
 }
 \description{
-The EIR computed by \link{Transmission} is a measure of \emph{local} risk: it is
-the expected number of infected
-bites, per person, and it is computed for every population stratum. The
-exposure module handles two aspects of exposure: travel and environmental
-heterogeneity. Exposure transforms the EIR into the FoI
-
 Compute the force of infection (FoI) or
 attack rates (AR) as a function of the local
 daily entomological inoculation rate (dEIR),
 immunity, and exposure to malaria while traveling.
 }
-\section{(Environmental Heterogeneity)\link{environmental_heterogeneity}}{
-
-While EIR is an expected value, the expected value can have a distribution
-in a human population stratum. For example, if the expectation has a Gamma
-distribution, then the expected number of bites per person would be negatively
-binomially distributed.
-}
-
-\section{Travel Malaria}{
-
-Write me.
-}
-
-\section{Pre-Erythrocytic Immunity}{
-
-Depending on the X module, a parameter called \eqn{b} describes the probability
-of infection per infectious bite.
-}
-
 \keyword{internal}

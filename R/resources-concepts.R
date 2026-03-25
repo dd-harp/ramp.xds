@@ -4,17 +4,9 @@
 #' Resources is a junction. The function is called in [xds_compute_terms].
 #' 
 #'  
-#' @name xds_junction_resources 
+#' @name xds_info_resources 
 NULL
 
-#' @title Resource Availability 
-#' 
-#' @description
-#' Write me.  
-#' 
-#'  
-#' @name availability
-NULL
 
 #' @title Sugar Availability 
 #' 
@@ -22,7 +14,7 @@ NULL
 #' Write me.  
 #' 
 #'  
-#' @name available_sugar
+#' @name xds_info_available_sugar
 NULL
 
 #' @title Habitat Availability 
@@ -31,16 +23,7 @@ NULL
 #' Write me.  
 #' 
 #'  
-#' @name available_habitats
-NULL
-
-#' @title Bad Habitats 
-#' 
-#' @description
-#' Write me.  
-#' 
-#'  
-#' @name bad_habitats
+#' @name xds_info_available_habitats
 NULL
 
 #' @title Available Blood 
@@ -49,5 +32,14 @@ NULL
 #' Write me.  
 #' 
 #'  
-#' @name available_blood_hosts
+#' @name xds_info_available_blood_hosts
+NULL
+
+#' @title Available Blood 
+#' 
+#' @description
+#' Write me.  
+#' 
+#'  
+#' @name xds_info_mosquito_traps
 NULL

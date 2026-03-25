@@ -19,9 +19,9 @@ malaria control, malaria importation, habitat dynamics, or something else.
 By implementing a parameter or variable as a port, a module or
 other component becomes extensible with negligible computational costs:
 default
-values assigned during \link{xds_help_basic_setup} have no effect;
+values assigned during \link{xds_info_basic_setup} have no effect;
 but features can be
-configured after basic setup (see \link{xds_help_setup_options}).
+configured after basic setup (see \link{xds_info_setup_options}).
 
 In developing ports, the mathematical consequences
 \emph{ought to be} fully considered. If some implementations
@@ -157,6 +157,6 @@ been set up to handle time-varying survival through a time-varying EIP
 }
 
 \seealso{
-\link{xds_help_setup_options} | \link{xds_info_junction}
+\link{xds_info_setup_options} | \link{xds_info_junction}
 }
 \concept{port}

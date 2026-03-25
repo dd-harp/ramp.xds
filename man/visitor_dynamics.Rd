@@ -31,3 +31,4 @@ The quantity \code{TiSp_frac_here} is part of the \code{XY_interface}
 It is used to compute the Time at Risk matrix, and it is also
 used to weight local exposure \emph{vs.}  visitorsing exposure.
 }
+\keyword{internal}

@@ -8,7 +8,7 @@
 #'   \item{`g`}{mortality rate}
 #'   \item{`sigma`}{patch emigration}
 #'   \item{`mu`}{emigration-related loss}
-#'   \item{`K`}{a dispersal matrix (see [mosquito_dispersal])}
+#'   \item{`K`}{a dispersal matrix (see [xds_info_mosquito_dispersal])}
 #' } 
 #' 
 #' The matrix is computed as:
@@ -24,7 +24,7 @@
 #' }
 #'  
 #' 
-#' @name mosquito_demography
+#' @name xds_info_mosquito_demography
 NULL
 
 #' @title Make the mosquito demography matrix

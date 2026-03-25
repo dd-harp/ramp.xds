@@ -1,24 +1,23 @@
 #' @title **`ramp.xds`**: Forcing 
 #' 
 #' @description
-#' + [trivial_forcing] 
-#' + [xds_junction_forcing] 
-#'  
-#' @name xds_forcing 
-NULL
-
-#' @title Junction: Forcing 
+#' In **`ramp.xds`**, forcing is implemented in several ways:
+#' + through `trivial` modules: see [xds_info_trivial_forcing]
+#' + a library of modulesas functional responses to other variables: models are 
+#' developed by activiting the [Forcing] junction 
+#' + through malaria control: 
+#'    - see [xds_info_vector_control] 
+#'    - see [xds_info_health] 
 #' 
-#' @description
-#' Forcing is a junction that called by [xds_compute_terms].
-#'  
-#' @name xds_junction_forcing 
+#' 
+#' @seealso [xds_info_trivial_forcing] 
+#' @name xds_info_forcing 
 NULL
 
 #' @title Exogenous Forcing
 #'
 #' @description
-#' Set up a junction for exogenous forcing
+#' A junction for exogenous forcing
 #' by weather and hydrology. Non-trivial
 #' examples are in the satellite package
 #' `ramp.forcing`

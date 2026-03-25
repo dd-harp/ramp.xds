@@ -1,22 +1,27 @@
 #' @title Transmission 
 #' 
 #' @description
-#' Transmission computes:
+#' In transmission, a quantity called the *local fraction* gets computed, and then
+#' the model computes terms describing parasite transmission: 
 #' + `beta` -- the bite distribution matrix  
-#' + `eir` -- the daily EIR 
+#' + `eir` -- the daily EIR  
 #' + `kappa` -- the net infectiousness 
-#' + [local_frac] 
-#'  
-#' @name Transmission 
+#' 
+#' @seealso [xds_info_local_fraction]
+#' @name xds_info_transmission 
 NULL
 
 #' @title The Local Fraction 
 #' 
 #' @description
-#' The fraction of human blood meals  
+#' The blood feeding and transmission interface is set up to ensure 
+#' mathematical consistency: all mosquito blood feeding should
+#' be accounted for. In models with visitors, the visitor population
+#' contributes to local host availability and absorbs a fraction of 
+#' blood feeding. The fraction on local hosts is computed as `local_frac` 
 #' 
 #'  
-#' @name local_frac 
+#' @name xds_info_local_fraction 
 NULL
 
 # Methods to compute mixing and parasite / pathogen transmission during bloood feeding

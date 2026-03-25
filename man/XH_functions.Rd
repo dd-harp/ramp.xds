@@ -4,7 +4,7 @@
 \alias{XH_functions}
 \title{Generic methods for the XH component}
 \description{
-write me.
+The functions that define \strong{XH}:
 
 \itemize{
 \item \code{\link{dXHdt}} -- compute derivatives
@@ -33,7 +33,6 @@ write me.
 \item \code{\link{get_PR}} -- get prevalence from orbits
 \item \code{\link{steady_state_X}} -- compute X steady state given FoI and H
 \item \code{\link{steady_state_XH}} -- compute XH steady state given FoI
-\item \code{\link{xds_plot_XH}} -- plot XH outputs
 \item \code{\link{xds_plot_X}} -- plot X outputs
 \item \code{\link{check_XH}} -- run consistency checks
 \item \code{\link{skill_set_XH}} -- return module skill set

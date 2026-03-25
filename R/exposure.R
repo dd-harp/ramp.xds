@@ -1,42 +1,37 @@
 #' @title Exposure 
 #' 
 #' @description
-#' The EIR computed by [Transmission] is a measure of *local* risk: it is 
+#' The EIR computed by [xds_info_transmission] is a measure of *local* risk: it is 
 #' the expected number of infected
-#' bites, per person, and it is computed for every population stratum. The 
-#' exposure module handles two aspects of exposure: travel and environmental
-#' heterogeneity. Exposure transforms the EIR into the FoI 
+#' bites, per person, and it is computed for every population stratum. In 
+#' **exposure,** the daily local EIR is computed into a measure 
+#' of the population FoI in three steps: 
+#' + the total EIR is the weighted sum of local exposure and travel exposure, using
+#' the concept of time here *vs.* time away;
+#' + the distribution of the number of bites per person is computed under a 
+#' model of environmental heterogeneity ; 
+#' + the number of infections is computed under a model of partial immunity.  
 #' 
-#' @section (Environmental Heterogeneity)[environmental_heterogeneity]:
+#' @section Environmental Heterogeneity:
 #' While EIR is an expected value, the expected value can have a distribution
 #' in a human population stratum. For example, if the expectation has a Gamma
 #' distribution, then the expected number of bites per person would be negatively
-#' binomially distributed.   
-#' 
+#' binomially distributed. For more, see [xds_info_environmental_heterogeneity].
 #'  
 #' @section Travel Malaria:
-#' Write me. 
+#' Travel malaria is defined by exposure to malaria while spending
+#' time outside of the spatial domain represented by the patches.
+#' See [xds_info_travel_malaria]   
+#' 
 #' @section Pre-Erythrocytic Immunity:
 #' Depending on the X module, a parameter called \eqn{b} describes the probability
 #' of infection per infectious bite.  
 #'  
-#' @name Exposure
+#' @seealso [xds_info_environmental_heterogeneity] | [xds_info_travel_malaria] 
+#' 
+#' @name xds_info_exposure
 NULL
 
-#' @title Environmental Heterogeneity 
-#' 
-#' @description
-#' Humans can be exposed to malaria at home or as they move around. 
-#' The number of infectious bites can vary by chance, depending on 
-#' where and when humans encounter mosquitoes.  
-#' Environmental heterogeneity models 
-#' exposure for homogeneous population strata under a model for the distribution
-#' of the expectation. In simple terrms, it models super-spreading without super-spreaders. 
-#' 
-#' + Poisson
-#'   
-#' @name environmental_heterogeneity 
-NULL
 
 #' @title Set Up Exposure
 #'

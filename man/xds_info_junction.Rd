@@ -9,9 +9,9 @@ into a \strong{junction} (see \link{xds_info_port}). A junction is a structural 
 a function that is designed to handle one or more ports.
 \itemize{
 \item \link{Other_State_Variables} -- a junction to add new state variables, effectively extending the dynamical system
-\item \link{xds_forcing} -- a junction to handle exogenous forcing by weather, \emph{etc.}
-\item \link{xds_junction_vector_control} -- a junction to handle vector control
-\item \link{xds_junction_health} -- a junction to handle vector control
+\item \link{xds_info_forcing} -- a junction to handle exogenous forcing by weather, \emph{etc.}
+\item \link{xds_info_vector_control} -- a junction to handle vector control
+\item \link{xds_info_health} -- a junction to handle vector control
 }
 }
 \seealso{

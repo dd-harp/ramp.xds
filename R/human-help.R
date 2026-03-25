@@ -2,7 +2,7 @@
 #' @title Generic methods for the XH component
 #'
 #' @description
-#' write me.
+#' The functions that define **XH**: 
 #'
 #' \itemize{
 #'   \item \code{\link{dXHdt}} -- compute derivatives
@@ -31,7 +31,6 @@
 #'   \item \code{\link{get_PR}} -- get prevalence from orbits
 #'   \item \code{\link{steady_state_X}} -- compute X steady state given FoI and H
 #'   \item \code{\link{steady_state_XH}} -- compute XH steady state given FoI
-#'   \item \code{\link{xds_plot_XH}} -- plot XH outputs
 #'   \item \code{\link{xds_plot_X}} -- plot X outputs
 #'   \item \code{\link{check_XH}} -- run consistency checks
 #'   \item \code{\link{skill_set_XH}} -- return module skill set
@@ -43,8 +42,9 @@ NULL
 #' @title Get functions for XH
 #'
 #' @description
-#' A list of functions to inspect XH objects. 
+#' Get functions for **XH** 
 #' 
+#' `?get_XH`
 #' @section Outputs: 
 #' \itemize{
 #'   \item \code{\link{get_XH_orbits}} -- get the XH orbits
@@ -73,8 +73,9 @@ NULL
 #' @title A list of functions to change the XH component
 #'
 #' @description
-#' write me.
-#'
+#' Change functions for **XH** 
+#' 
+#' `?change_XH`
 #' \itemize{
 #'   \item \code{\link{change_H}} -- change host population density
 #'   \item \code{\link{change_XH_inits}} -- change initial values
@@ -87,8 +88,9 @@ NULL
 #' @title Setup functions for the XH component
 #'
 #' @description
-#' write me.
-#'
+#' Set up functions for **XH** 
+#' 
+#' `?setup_XH`
 #' \itemize{
 #'   \item \code{\link{setup_XH_obj}} -- set up the XH module object
 #'   \item \code{\link{setup_XH_ix}} -- set up variable indices

@@ -2,7 +2,7 @@
 #'
 #' @description
 #'  
-#' **Basic Setup** uses [xds_setup] or one of its variants (see [xds_help_basic_setup])
+#' **Basic Setup** uses [xds_setup] or one of its variants (see [xds_info_basic_setup])
 #' to create an xds object. 
 #' 
 #' The following is a list of configurable options 
@@ -10,9 +10,9 @@
 #'  
 #' @section Structural Parameters: 
 #' 
-#' + `nPatches` -- see [patch_dynamics]
-#' + `nStrata` -- see [human_populations] 
-#' + `nHabitats` -- see [aquatic_habitats] 
+#' + `nPatches` -- see [xds_info_patch_dynamics]
+#' + `nStrata` -- see [xds_info_human_populations] 
+#' + `nHabitats` -- see [xds_info_aquatic_habitats] 
 #' 
 #' @section Modules: 
 #' 
@@ -28,28 +28,26 @@
 #' `Loptions.` 
 #'
 #' @section Basic options:  
-#' 
-#' + `Koptions` see [mosquito_dispersal] and [setup_K_matrix]
-#' + [search_weights]
-#' + [time_spent]
+#' + `Koptions` see [xds_info_mosquito_dispersal] and [setup_K_matrix]
+#' + [xds_info_search_weights]
+#' + [xds_info_time_spent]
 #' 
 #' @section Blood Feeding and Transmission: 
 #' 
-#' + [available_blood_hosts]
-#'    + [blood_search_weights]
-#'    + [other_blood_hosts]
-#'    + [blood_traps]
-#' + [local_frac]
+#' + [xds_info_available_blood_hosts]
+#'    + [xds_info_search_weights_blood]
+#'    + [xds_port_other_blood_hosts]
+#'    + [xds_port_blood_traps]
+#' + [xds_info_local_fraction]
 #' 
 #' @section Exposure:
-#' 
-#' + [environmental_heterogeneity] 
-#' + [travel_malaria] 
+#' + [xds_info_environmental_heterogeneity] 
+#' + [xds_info_travel_malaria] 
 #' 
 #' @section Malaria Importation:
-#' 
-#' + [time_spent_here] 
-#' + [travel_malaria] 
+#' + [xds_info_malaria_importation] 
+#' + [xds_info_travel_malaria] 
+#' + [xds_info_visitors] 
 #' 
 #' @section Mosquito Bionomics: 
 #' 
@@ -57,18 +55,17 @@
 #' 
 #' @section Forcing:
 #' 
-#' [xds_forcing] 
-#' [trivial_forcing] 
-#' [xds_junction_forcing] 
+#' [xds_info_forcing] 
+#' [xds_info_trivial_forcing] 
 #' 
 #' @section Resources:
 #' 
-#' [xds_junction_resources]
+#' [xds_info_resources]
 #' 
 #' @section Habitats and Egg Laying: 
 #' 
-#' + [bad_habitats]
-#' + [ovitraps]
+#' + [xds_info_aquatic_habitats]
+#' + [xds_port_ovitraps]
 #' 
-#' @name xds_help_setup_options
+#' @name xds_info_setup_options
 NULL

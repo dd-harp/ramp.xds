@@ -1,7 +1,7 @@
 # Exogenous Forcing
 
-Set up a junction for exogenous forcing by weather and hydrology.
-Non-trivial examples are in the satellite package `ramp.forcing`
+A junction for exogenous forcing by weather and hydrology. Non-trivial
+examples are in the satellite package `ramp.forcing`
 
 ## Usage
 

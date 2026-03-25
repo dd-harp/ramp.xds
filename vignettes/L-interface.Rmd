@@ -24,7 +24,7 @@ It outputs the habitat emergence rate $\alpha,$ the number of adult female mosqu
 
 *** 
 
-## Functions 
+# Functions 
 
 To get a list of the `S3` generic function definitions from help, type:
 
@@ -36,15 +36,14 @@ To inspect a method for a specific function, use `getS3method`
 
 *** 
 
-The **L** Component defines 16 S3 generic functions in
-[aquatic-L.R](https://github.com/dd-harp/ramp.xds/blob/main/R/aquatic-L.R){target="_blank"}.
-Most of these are `S3` class functions, but a few work generically. Each module defines two functions to set up an **L** object.  
+The **L** Component defines 16 `S3` generic functions in
+[aquatic-L.R](https://github.com/dd-harp/ramp.xds/blob/main/R/aquatic-L.R){target="_blank"}, and 3 that work generically. Each module defines two additional functions to set up an **L** object and the initial values.
 
 The required functions deal with various tasks required to build or solve a model, inspect or change the parameters or initial values, compute terms or outputs, and run consistency checks. 
 
 Each module is defined by a string, generically called `Lname`, that identifies the module: *e.g.* `basicL`. 
 
-### Dynamics 
+## Dynamics 
 
 At least one of the following is required, depending on whether the model family is a system of differential equations or a discrete time system:  
 
@@ -52,7 +51,7 @@ At least one of the following is required, depending on whether the model family
 
 + `Update_Lt.Lname` :: discrete time systems are defined by the function that updates the state variables in one time step. In `ramp.xds` these are encoded in a function called `Update_Lt` that computes and returns the **state variables.** The forms mimic the ones used for differential equations. 
 
-### Bionomics
+## Bionomics
 
 Two functions update bionomic parameter values at each time step, called in sequence before the dynamics are computed.
 
@@ -61,7 +60,7 @@ Two functions update bionomic parameter values at each time step, called in sequ
 + `LEffectSizes.Lname` -- applies vector control effect sizes to the bionomic parameters set by `LBionomics`.
 
 
-### Output Terms 
+## Output Terms 
 
 These functions compute dynamical terms -- the outputs passed to an interface.  
 
@@ -69,7 +68,7 @@ These functions compute dynamical terms -- the outputs passed to an interface.
 
 
 
-## Model Object
+# Model Object
 
 Each module has a pair of functions that set up a structured list called the **L** model object, or `L_obj`. 
 
@@ -93,14 +92,14 @@ It is a compound list, where some of the sub-lists are assigned their own `class
     
 In some cases, bionomic parameters are set up as ports (see [xds_info_port]); the value is set by a call to a function.
 
-### Parameters
+## Parameters
 
 + `get_L_pars.Lname` returns a named list of the parameter values.  
 
 + `change_L_pars.Lname` changes the values of some parameters by passing a named list. It is designed to be used after setup. New parameter values are passed by name in a list called `options`.
 
 
-### Variables
+## Variables
 
 Since the **L** component is one of three, a function sets up the indices for all the variables in a model.
 
@@ -116,7 +115,7 @@ After pulling, both functions return the variables by name in a list to make it 
 
 + `parse_L_orbits.Lname` - this function is like `get_L_vars` but it parses the matrix of outputs returned by `xds_solve`. 
 
-### Initial Values
+## Initial Values
 
 A set of functions sets up or changes the initial values for the state variables.  
 
@@ -129,8 +128,7 @@ A set of functions sets up or changes the initial values for the state variables
 + `change_L_inits.Lname` - changes the initial values. 
 
 
-
-### Consistency Checks
+## Consistency Checks
 
 Some modules in **`ramp.xds`** or **`ramp.library`** have been included for various reasons. Not all of those models are capable of being extended. To help users avoid using models in ways that are not appropriate, we developed two function classes:  
 
@@ -139,7 +137,7 @@ Some modules in **`ramp.xds`** or **`ramp.library`** have been included for vari
 + `check_L.Lname` :: at the end of `xds_setup` and at the beginning of `xds_solve,` this function gets run to ensure that some quantities have been properly updated, and to see if anything has been added to a model that is not in its skill set.
 
 
-## Solving
+# Solving
 
 Functions to get steady states, orbits, and plot outputs:  
 

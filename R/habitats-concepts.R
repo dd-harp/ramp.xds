@@ -37,5 +37,5 @@
 #' In models where there are patches with no available habitat, \eqn{(Q+B+O)^{-1}} is computed using the function [diag_inverse], which 
 #' fixes the divide-by-zero problem.  
 #' 
-#' @name aquatic_habitats 
+#' @name xds_info_aquatic_habitats 
 NULL

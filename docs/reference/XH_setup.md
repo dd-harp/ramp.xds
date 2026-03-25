@@ -1,6 +1,8 @@
 # Setup functions for the XH component
 
-write me.
+Set up functions for **XH**
+
+`?setup_XH`
 
 - [`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)
   – set up the XH module object

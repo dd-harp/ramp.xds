@@ -30,5 +30,5 @@ In models with multiple species, use \code{s} to
 specify the species to update.
 }
 \seealso{
-\link{mosquito_dispersal}; \link{setup_K_matrix}
+\link{xds_info_mosquito_dispersal}; \link{setup_K_matrix}
 }

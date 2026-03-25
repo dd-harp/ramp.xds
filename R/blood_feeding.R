@@ -1,6 +1,6 @@
 
 
-#' @title Blood Feeding Overview
+#' @title Blood Feeding 
 #' 
 #' @description
 #' Blood feeding is an interaction among humans and mosquitoes: 
@@ -10,7 +10,7 @@
 #' number used to weigh *time spent* and get a measure of 
 #' *availability.* 
 #'  
-#' @name blood_feeding 
+#' @name xds_info_blood_feeding 
 NULL
 
 #' @title Check the XY Interface

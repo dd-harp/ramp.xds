@@ -10,7 +10,7 @@
 #' **`ramp.xds`** is designed for modular computation. The
 #' mathematical framework has 
 #' five core biological processes organized
-#' into three chunks called **dynamical components** (see [dynamical_components]).  
+#' into three chunks called **dynamical components** (see [xds_info_dynamical_components]).  
 #' The modular design  
 #' makes it possible to build models that fully define all 
 #' components (using [xds_setup]), or to 
@@ -20,7 +20,7 @@
 #' To implement *plug-and-play* modularity, a trivial module was developed
 #' for each component: 
 #' a *trace function* in 
-#' the trivial *upstream* component is configured to pass known inputs (see [trivial_forcing]). 
+#' the trivial *upstream* component is configured to pass known inputs (see [xds_info_trivial_forcing]). 
 #'
 #' @section The Frame: 
 #' 
@@ -55,7 +55,7 @@
 #'      - the **MY** component is not used 
 #'      - the **XH** component is not used 
 #' 
-#' @seealso [dynamical_components], [trivial_forcing] and [xds_object] 
+#' @seealso [xds_info_dynamical_components], [xds_info_trivial_forcing] and [xds_object] 
 #' 
-#' @name xds_help_basic_setup
+#' @name xds_info_basic_setup
 NULL

@@ -5,9 +5,9 @@
 #' is related to time spent in places where vectors are
 #' blood feeding. In **`ramp.xds`,** this is implemented 
 #' through the concepts of **time spent** and **time at risk** 
-#' (see [time_at_risk]) 
+#' (see [xds_info_time_at_risk]) 
 #'  
-#' @name time_spent 
+#' @name xds_info_time_spent 
 NULL
 
 #' @title Time at Risk
@@ -19,7 +19,7 @@ NULL
 #' mosquitoes relative activity patterns while there. 
 #' 
 #'  
-#' @name time_at_risk
+#' @name xds_info_time_at_risk
 NULL
 
 #' @title Set up (or change) a Time Spent matrix

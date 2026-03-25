@@ -15,7 +15,7 @@ Forcing(t, xds_obj)
 an \strong{\code{xds}} object
 }
 \description{
-Set up a junction for exogenous forcing
+A junction for exogenous forcing
 by weather and hydrology. Non-trivial
 examples are in the satellite package
 \code{ramp.forcing}

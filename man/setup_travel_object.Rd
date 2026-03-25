@@ -22,3 +22,4 @@ is returned by \link{get_variables} dispatching on \code{class(F_travel)}
 is returned by \link{get_variables} dispatching on \code{class(F_travel)}
 }
 }
+\keyword{internal}

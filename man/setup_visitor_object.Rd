@@ -13,7 +13,8 @@ setup_visitor_object(xds_obj)
 an \strong{\code{xds}} object
 }
 \description{
-Setup a an object
+Setup an object
 to model blood feeding and importation
 from visitors
 }
+\keyword{internal}

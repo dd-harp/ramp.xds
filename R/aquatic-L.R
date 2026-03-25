@@ -17,7 +17,7 @@ skill_set_L = function(Lname){
   UseMethod("skill_set_L", Lname)
 }
 
-#' @title Run a check before solving
+#' @title Run checks before solving (**L**)
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
