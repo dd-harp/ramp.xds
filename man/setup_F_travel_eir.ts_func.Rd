@@ -22,3 +22,4 @@ an \strong{\code{xds}} object
 Setup a model for no time spent traveling
 and no exposure while traveling
 }
+\keyword{internal}

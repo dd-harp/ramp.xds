@@ -80,8 +80,6 @@ The functions that define **XH**:
 - [`steady_state_XH`](https://dd-harp.github.io/ramp.xds/reference/steady_state_XH.md)
   – compute XH steady state given FoI
 
-- `xds_plot_XH` – plot XH outputs
-
 - [`xds_plot_X`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_X.md)
   – plot X outputs
 

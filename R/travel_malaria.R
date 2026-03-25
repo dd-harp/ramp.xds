@@ -1,17 +1,55 @@
 #' @title Travel Malaria 
 #' 
 #' @description
-#' write me.  
+#' Travel malaria is defined as exposure to malaria
+#' acquired outside of the spatial domain represented
+#' by the patches. The user can configure two ports:  
 #' 
-#'  
-#' @name travel_malaria 
+#' + time spent away / here: see [xds_port_time_spent_here]
+#' + the travel EIR: see [xds_port_travel_eir] 
+#' 
+#' Travel malaria is implemented in the **Exposure**
+#' 
+#' @seealso [xds_port_travel_eir] | [xds_port_time_spent_here] | [xds_info_exposure] | [xds_info_malaria_importation]
+#' 
+#' @name xds_info_travel_malaria 
 NULL
 
-#' @title Time Spent Here (in the Spatial Domain)
+#' @title Travel EIR 
 #' 
 #' @description
-#' write me.  
+#' Travel malaria is defined as exposure to malaria
+#' acquired outside of the spatial domain represented
+#' by the patches. The user can configure two ports:  
+#' + time spent away / here 
+#' + the travel EIR 
+#'  
+#' @name xds_port_travel_eir
+#' 
+NULL
+
+#' @title Time Spent Here 
+#' 
+#' @description
+#' A variable `time_spent_here` is used in computing 
+#' [Transmission] to weight
+#' `time_spent` and in [Exposure] to weight the local *vs.* 
+#' travel EIR  
 #' 
 #'  
-#' @name time_spent_here 
+#' @name xds_port_time_spent_here 
+NULL
+
+#' @title Malaria Importation 
+#' 
+#' @description
+#' Importation of malaria in **`ramp.xds`** is defined as any
+#' malaria acquired outside the spatial domain represented by
+#' the patches. Imported malaria can be modeled in two ways:
+#' + residents of the spatial domain acquire malaria while
+#' traveling; 
+#' + infected visitors  
+#' 
+#'  
+#' @name xds_info_malaria_importation
 NULL

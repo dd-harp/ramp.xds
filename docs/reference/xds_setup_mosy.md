@@ -76,8 +76,8 @@ xds_setup_mosy(
 
   a K matrix, or options for
   [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-  (see
-  [mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md))
+  (also see
+  [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
 
 - Loptions:
 

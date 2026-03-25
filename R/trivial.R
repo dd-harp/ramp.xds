@@ -26,5 +26,5 @@
 #' For a discussion of mechanistic approaches to forcing, see [Forcing]
 #' 
 #' @seealso [trivial_XH], [trivial_MY], [trivial_L], [xds_setup_eir], [make_ts_function], and [Forcing]
-#' @name trivial_forcing
+#' @name xds_info_trivial_forcing
 NULL

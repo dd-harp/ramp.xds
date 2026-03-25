@@ -16,9 +16,9 @@
 #' By implementing a parameter or variable as a port, a module or 
 #' other component becomes extensible with negligible computational costs:
 #' default
-#' values assigned during [xds_help_basic_setup] have no effect;
+#' values assigned during [xds_info_basic_setup] have no effect;
 #' but features can be
-#' configured after basic setup (see [xds_help_setup_options]).
+#' configured after basic setup (see [xds_info_setup_options]).
 #' 
 #' In developing ports, the mathematical consequences 
 #' *ought to be* fully considered. If some implementations 
@@ -134,7 +134,7 @@
 #' been set up to handle time-varying survival through a time-varying EIP 
 #' (see [xds_info_mosquito_bionomics]).
 #' 
-#' @seealso [xds_help_setup_options] | [xds_info_junction]
+#' @seealso [xds_info_setup_options] | [xds_info_junction]
 #' 
 #' @name xds_info_port
 NULL

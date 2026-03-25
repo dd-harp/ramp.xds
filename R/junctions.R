@@ -7,9 +7,9 @@
 #' a function that is designed to handle one or more ports.
 #' 
 #' + [Other_State_Variables] -- a junction to add new state variables, effectively extending the dynamical system  
-#' + [xds_forcing] -- a junction to handle exogenous forcing by weather, *etc.*  
-#' + [xds_junction_vector_control] -- a junction to handle vector control  
-#' + [xds_junction_health] -- a junction to handle vector control  
+#' + [xds_info_forcing] -- a junction to handle exogenous forcing by weather, *etc.*  
+#' + [xds_info_vector_control] -- a junction to handle vector control  
+#' + [xds_info_health] -- a junction to handle vector control  
 #' 
 #' @seealso [xds_info_port] 
 #' 

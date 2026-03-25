@@ -38,7 +38,7 @@ xds_setup_mosy(
 
 \item{MYoptions}{a list to configure the \strong{MY} Component module}
 
-\item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (see \link{mosquito_dispersal})}
+\item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (also see \link{xds_info_mosquito_dispersal})}
 
 \item{Loptions}{a list to configure the \strong{L} Component module}
 

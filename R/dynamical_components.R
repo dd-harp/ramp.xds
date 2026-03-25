@@ -32,8 +32,8 @@
 #' 
 #' + **V** - other dynamical components: see [Other_State_Variables] 
 #' 
-#' @seealso [xds_help_basic_setup]
+#' @seealso [xds_info_basic_setup]
 #' 
-#' @name dynamical_components 
+#' @name xds_info_dynamical_components 
 NULL
 

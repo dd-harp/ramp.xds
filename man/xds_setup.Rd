@@ -51,7 +51,7 @@ xds_setup(
 
 \item{membership}{is a vector that describes the patch where each aquatic habitat is found}
 
-\item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (see \link{mosquito_dispersal})}
+\item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (see \link{xds_info_mosquito_dispersal})}
 
 \item{searchQ}{is a vector of search weights for egg laying}
 
@@ -66,7 +66,7 @@ an \strong{\code{xds}} object
 \loadmathjax
 Make an \strong{\code{xds}} \emph{model object}:
 \itemize{
-\item Define a module for each dynamical component (see \link{dynamical_components}):
+\item Define a module for each dynamical component (see \link{xds_info_dynamical_components}):
 \itemize{
 \item \strong{XH} Component -- human / host infection dynamics
 \item \strong{MY} Component -- adult mosquito ecology and infection dynamics
@@ -74,18 +74,18 @@ Make an \strong{\code{xds}} \emph{model object}:
 }
 \item Define basic structural parameters for a single host and vector population:
 \itemize{
-\item \code{nPatches} - the number of patches (see \link{patch_dynamics})
-\item \code{membership} - the habitat membership vector (see \link{aquatic_habitats})
+\item \code{nPatches} - the number of patches (see \link{xds_info_patch_dynamics})
+\item \code{membership} - the habitat membership vector (see \link{xds_info_aquatic_habitats})
 \item \code{nHabitats = length(membership)}
-\item \code{residence} - the human residence vector (see \link{human_populations})
-\item \code{HPop} - the human population size (see \link{human_populations})
+\item \code{residence} - the human residence vector (see \link{xds_info_human_populations})
+\item \code{HPop} - the human population size (see \link{xds_info_human_populations})
 \item \code{nStrata = length(residence) = length(HPop)}
 }
 \item Configure some of the basic elements:
 \itemize{
-\item Search Weights (see \link{search_weights})
-\item Mosquito Dispersal matrix (if \code{nPatches>1}; see \link{mosquito_dispersal})
-\item Time Spent matrix (if \code{nPatches>1}; see \link{time_spent})
+\item Search Weights (see \link{xds_info_search_weights})
+\item Mosquito Dispersal matrix (if \code{nPatches>1}; see \link{xds_info_mosquito_dispersal})
+\item Time Spent matrix (if \code{nPatches>1}; see \link{xds_info_time_spent})
 }
 }
 }
@@ -118,9 +118,9 @@ and egg laying (see \link{xds_object}):
 }
 }
 \note{
-Other options can be configured after basic setup (see \link{xds_help_setup_options}). If the \strong{MY} Component is the \code{trivial} module, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_eir}. Models for mosquito
+Other options can be configured after basic setup (see \link{xds_info_setup_options}). If the \strong{MY} Component is the \code{trivial} module, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_eir}. Models for mosquito
 ecology need not include states describing infection status (see \link{xds_setup_mosy}).
 }
 \seealso{
-\link{make_xds_object_template}, \link{xds_help_basic_setup}
+\link{make_xds_object_template}, \link{xds_info_basic_setup}
 }

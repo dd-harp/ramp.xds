@@ -12,7 +12,7 @@
 #' + Bad Habitats 
 #' + Ovitraps 
 #'  
-#' @name egg_laying 
+#' @name xds_info_egg_laying 
 NULL
 
 #' @title Unproductive Aquatic Habitats 
@@ -25,7 +25,7 @@ NULL
 #' lay eggs, but no mature adults ever emerge.  
 #'  
 #'  
-#' @name aquatic_habitats_bad 
+#' @name xds_port_bad_habitats 
 NULL
 
 #' @title Ovitraps 
@@ -36,5 +36,5 @@ NULL
 #' of the ovitraps. 
 #'  
 #'  
-#' @name ovitraps 
+#' @name xds_port_ovitraps 
 NULL

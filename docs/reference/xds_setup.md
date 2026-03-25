@@ -3,7 +3,7 @@
 Make an **`xds`** *model object*:
 
 - Define a module for each dynamical component (see
-  [dynamical_components](https://dd-harp.github.io/ramp.xds/reference/dynamical_components.md)):
+  [xds_info_dynamical_components](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md)):
 
   - **XH** Component – human / host infection dynamics
 
@@ -15,31 +15,31 @@ Make an **`xds`** *model object*:
   population:
 
   - `nPatches` - the number of patches (see
-    [patch_dynamics](https://dd-harp.github.io/ramp.xds/reference/patch_dynamics.md))
+    [xds_info_patch_dynamics](https://dd-harp.github.io/ramp.xds/reference/xds_info_patch_dynamics.md))
 
   - `membership` - the habitat membership vector (see
-    [aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/aquatic_habitats.md))
+    [xds_info_aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md))
 
   - `nHabitats = length(membership)`
 
   - `residence` - the human residence vector (see
-    [human_populations](https://dd-harp.github.io/ramp.xds/reference/human_populations.md))
+    [xds_info_human_populations](https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.md))
 
   - `HPop` - the human population size (see
-    [human_populations](https://dd-harp.github.io/ramp.xds/reference/human_populations.md))
+    [xds_info_human_populations](https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.md))
 
   - `nStrata = length(residence) = length(HPop)`
 
 - Configure some of the basic elements:
 
   - Search Weights (see
-    [search_weights](https://dd-harp.github.io/ramp.xds/reference/search_weights.md))
+    [xds_info_search_weights](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights.md))
 
   - Mosquito Dispersal matrix (if `nPatches>1`; see
-    [mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md))
+    [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
 
   - Time Spent matrix (if `nPatches>1`; see
-    [time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent.md))
+    [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
 
 ## Usage
 
@@ -127,7 +127,7 @@ xds_setup(
   a K matrix, or options for
   [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
   (see
-  [mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md))
+  [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
 
 - searchQ:
 
@@ -194,7 +194,7 @@ an **`xds`** object
 ## Note
 
 Other options can be configured after basic setup (see
-[xds_help_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_help_setup_options.md)).
+[xds_info_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_info_setup_options.md)).
 If the **MY** Component is the `trivial` module, consider using
 [xds_setup_aquatic](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
 or
@@ -208,4 +208,4 @@ status (see
 ## See also
 
 [make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md),
-[xds_help_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.md)
+[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)

@@ -4,9 +4,11 @@
 #' **`ramp.xds`** concepts and functions are well documented. 
 #' Use these guides to find a concept or function. 
 #'
-#' + [xds_help_basic_setup] -- an overview of basic setup 
+#' + [xds_help_info] -- a guide to help functions for **`ramp.xds`** concepts
 #' 
-#' + [xds_help_setup_options] -- setup for other features 
+#' + [xds_info_basic_setup] -- an overview of basic setup 
+#' 
+#' + [xds_info_setup_options] -- setup for other features 
 #' 
 #' + **`get_`** functions inspect a model component or outputs
 #'  
@@ -55,5 +57,5 @@
 #' @section Internals:
 #' Information about the [xds_object]
 #'
-#' @name xds_help 
+#' @name xds_help_guide 
 NULL

@@ -14,6 +14,7 @@
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_travel_object = function(xds_obj){
 
@@ -142,6 +143,7 @@ Travel.dynamic <- function(t, y, xds_obj) {
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 travel_dynamics <- function(t, y, xds_obj){
   for(s in 1:xds_obj$nHostSpecies){
@@ -235,6 +237,7 @@ setup_F_travel_eir = function(setup_name, xds_obj, i, options){
 #' @inheritParams setup_F_travel_eir
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_F_travel_eir.static = function(setup_name, xds_obj, i, options){
   F_travel_eir <- Zero_tV
@@ -254,6 +257,7 @@ setup_F_travel_eir.static = function(setup_name, xds_obj, i, options){
 #' @param options options list to set up `F_travel_eir`
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_F_travel_eir.ts_func = function(setup_name, xds_obj, i, options){
   xds_obj$XY_interface$travel_obj[[i]]$F_travel_eir = make_ts_function(options)

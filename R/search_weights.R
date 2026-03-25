@@ -25,7 +25,7 @@
 #' to mosquitoes and relative biting rates or relative laying rates.
 #' The value of these search weights are configurable during basic setup.
 #' 
-#' @name search_weights
+#' @name xds_info_search_weights
 NULL
 
 
@@ -39,9 +39,10 @@ NULL
 #' population stratum is assigned a *search weight,* a  
 #' number used to weigh *time spent* and get a measure of 
 #' *availability.*
-#' Search weights for blood feeding thus play a key role in blood feeding (see [blood_feeding])
+#' Search weights for blood feeding thus play a key role in modeling blood feeding. 
 #' 
-#' @name blood_search_weights
+#' @seealso [xds_info_blood_feeding] 
+#' @name xds_info_search_weights_blood
 NULL
 
 #' @title Habitat Search Weights 
@@ -49,6 +50,6 @@ NULL
 #' @description 
 #' where
 #'  
-#' @seealso [blood_feeding], [Transmission], and [egg_laying]
-#' @name habitat_search_weights
+#' @seealso [xds_info_blood_feeding], [xds_info_transmission], and [xds_info_egg_laying]
+#' @name xds_info_search_weights_habitat
 NULL

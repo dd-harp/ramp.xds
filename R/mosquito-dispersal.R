@@ -5,7 +5,7 @@
 #' Mosquito dispersal is handled 
 #' in a standard way across all **MY** modules.
 #' + A mosquito dispersal matrix, called \eqn{K} or `K_matrix`, is set up using [setup_K_matrix]; 
-#' + \eqn{K} is used to make a mosquito demographic matrix, called \eqn{\Omega} or `Omega` (see [mosquito_demography]).
+#' + \eqn{K} is used to make a mosquito demographic matrix, called \eqn{\Omega} or `Omega` (see [xds_info_mosquito_demography]).
 #'  
 #' @section Setup: 
 #' \describe{
@@ -40,11 +40,11 @@
 #' emigrating mosquitoes that survive and stay in the system.
 #'  
 #' Emigration rates and emigration-related loss -- emigration from the spatial domain and mortality that is conditioned on emigration -- 
-#' are handled separately (see [mosquito_demography]).  
+#' are handled separately (see [xds_info_mosquito_demography]).  
 #' 
-#' @seealso [setup_K_matrix], [change_K_matrix] & [mosquito_demography] 
+#' @seealso [setup_K_matrix], [change_K_matrix] & [xds_info_mosquito_demography] 
 #'  
-#' @name mosquito_dispersal 
+#' @name xds_info_mosquito_dispersal 
 NULL
 
 
@@ -77,7 +77,7 @@ get_K_matrix = function(xds_obj, s=1){
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
-#' @seealso [mosquito_dispersal]; [setup_K_matrix]
+#' @seealso [xds_info_mosquito_dispersal]; [setup_K_matrix]
 #' @export
 change_K_matrix = function(K_matrix, xds_obj, s=1){
   stopifnot(is.matrix(K_matrix))

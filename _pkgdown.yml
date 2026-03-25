@@ -84,7 +84,8 @@ reference:
   desc: |
     How to get help for **`ramp.xds`** 
   contents:
-  - xds_help 
+  - xds_help_guide 
+  - xds_help_info
 - title: Model Building
 - subtitle: Basic Setup 
   desc: | 
@@ -95,41 +96,46 @@ reference:
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_eir
-  - xds_help_basic_setup
+  - xds_info_basic_setup
+  - xds_info_setup_options
 - subtitle: Dynamical Modules 
   desc: | 
     Setting the value of structural parameters 
   contents:
-  - dynamical_components
   - XH_module_list 
   - MY_module_list 
   - L_module_list
+  - xds_info_dynamical_components
 - subtitle: Model Structure 
   desc: | 
     Setting the value of structural parameters 
   contents:
-  - patch_dynamics
-  - human_populations
-  - aquatic_habitats 
+  - xds_info_patch_dynamics
+  - xds_info_strata
+  - xds_info_human_populations
+  - xds_info_aquatic_habitats 
 - subtitle: Basic Setup Options 
   desc: | 
     Search Weights, Mosquito Dispersal, Time Spent 
   contents:
-  - trivial_forcing
-  - search_weights 
-  - mosquito_dispersal 
-  - time_spent
+  - xds_info_search_weights 
+  - xds_info_heterogeneous_biting_rates
+  - xds_info_mosquito_dispersal 
+  - xds_info_time_spent
 - subtitle: Adding Features 
   desc: | 
     Forcing, Malaria Control 
   contents:
+  - xds_info_trivial_forcing
+  - xds_info_forcing
   - xds_info_port
   - xds_info_junction
-  - xds_help_setup_options
+  - xds_info_heterogeneity
+  - xds_info_environmental_heterogeneity
 - subtitle: The xds model object
   contents:
   - xds_object 
-  - dynamical_components 
+  - xds_info_dynamical_components 
   - xds_info_interfaces
 - title: Solve 
   desc: |
@@ -290,8 +296,8 @@ reference:
   desc: |
     Utilities for Time Spent Matrices
   contents:
-  - time_spent
-  - time_at_risk
+  - xds_info_time_spent
+  - xds_info_time_at_risk
   - setup_TimeSpent
   - change_TimeSpent_matrix
   - make_TimeSpent_athome
@@ -362,12 +368,12 @@ reference:
 - title: Blood Feeding & Transmission
   desc:  
   contents:
-  - blood_feeding
-  - local_frac 
-  - available_blood_hosts 
-  - search_weights 
-  - relative_biting_rates 
-  - Transmission
+  - xds_info_blood_feeding
+  - xds_info_local_fraction 
+  - xds_info_available_blood_hosts 
+  - xds_info_search_weights 
+  - xds_info_relative_biting_rates 
+  - xds_info_transmission
   - check_XY_interface
   - make_residency_matrix
   - view_residency_matrix
@@ -375,8 +381,8 @@ reference:
   desc: |
     Compute the FoI from local EIR and travel
   contents:
-  - Exposure 
-  - environmental_heterogeneity
+  - xds_info_exposure 
+  - xds_info_environmental_heterogeneity
   - setup_exposure 
   - foi2eir
   - ar2eir
@@ -385,38 +391,36 @@ reference:
 - title: Malaria Importation 
   desc: |
     Functions to model travel & visitors
+  contents:
+  - xds_info_malaria_importation
 - subtitle: Travel 
   desc: |
     Time spent traveling & the travel EIR
   contents:
-  - travel_malaria 
-  - time_spent_here 
-  - setup_travel_object
+  - xds_info_travel_malaria 
+  - xds_port_travel_eir
+  - xds_port_time_spent_here
   - change_time_at_home 
-  - change_travel_EIR
   - setup_F_travel
   - setup_F_travel_eir
-  - setup_F_travel_eir.static
-  - setup_F_travel_eir.ts_func
-  - travel_dynamics
+  - change_travel_EIR
 - subtitle: Visitors 
   desc: |
     Blood Feeding on non-Residents 
   contents:
+  - xds_info_visitors
+  - xds_port_visitors
+  - xds_port_visitors_kappa
   - setup_F_vis_kappa 
-  - setup_F_vis_kappa.ts_func 
   - setup_F_visitors 
-  - setup_F_visitors.ts_func 
-  - setup_visitor_object 
-  - visitor_dynamics 
 - title: Mosquito Bionomics
   desc: |
     Methods to compute or update mosquito bionomic parameters
   contents:
   - xds_info_mosquito_bionomics 
-  - blood_feeding 
-  - mosquito_dispersal
-  - mosquito_demography 
+  - xds_info_blood_feeding 
+  - xds_info_mosquito_dispersal
+  - xds_info_mosquito_demography 
 - subtitle: Dynamical Parameters 
   desc: |
     Compute bionomic parameters as functional responses to resource availability
@@ -443,8 +447,8 @@ reference:
   desc: |
     Specialized methods to set up mosquito dispersal matrices
   contents:
-  - mosquito_dispersal
-  - mosquito_demography
+  - xds_info_mosquito_dispersal
+  - xds_info_mosquito_demography
   - setup_K_matrix
   - change_K_matrix
   - get_K_matrix 
@@ -452,35 +456,34 @@ reference:
   - make_K_matrix_xy
 - title: Forcing 
   contents:
-  - xds_forcing 
-  - trivial_forcing
-  - xds_junction_forcing 
-  - xds_junction_vector_control 
-  - xds_junction_health
+  - xds_info_forcing 
+  - xds_info_trivial_forcing
+  - xds_info_vector_control 
+  - xds_info_health
 - title: Resources 
   desc: "The ports for resources\n"
   contents:
-  - xds_junction_resources 
-  - availability 
-  - available_blood_hosts
-  - blood_search_weights 
-  - other_blood_hosts
-  - blood_traps
-  - available_habitats
-  - habitat_search_weights 
-  - available_sugar 
-  - bad_habitats
+  - xds_info_resources
+  - xds_info_availability 
+  - xds_info_available_blood_hosts
+  - xds_info_search_weights_blood
+  - xds_port_other_blood_hosts
+  - xds_port_blood_traps
+  - xds_info_available_habitats
+  - xds_info_search_weights_habitat
+  - xds_info_available_sugar 
+  - xds_info_mosquito_traps
   - change_blood_hosts
 - title: Habitats & Egg Laying
   desc: Mosquito Population Dynamical Interface 
   contents:
-  - aquatic_habitats 
-  - habitat_search_weights 
-  - available_habitats
-  - egg_laying
-  - available_habitats
-  - aquatic_habitats_bad 
-  - ovitraps 
+  - xds_info_aquatic_habitats 
+  - xds_info_search_weights_habitat
+  - xds_info_available_habitats
+  - xds_info_egg_laying
+  - xds_info_available_habitats
+  - xds_port_bad_habitats 
+  - xds_port_ovitraps 
   - view_habitat_matrix
   - change_habitat_weights
   - change_bad_habitat

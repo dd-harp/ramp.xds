@@ -5,23 +5,23 @@
 #' @description
 #' \loadmathjax
 #' Make an **`xds`** *model object*:
-#' - Define a module for each dynamical component (see [dynamical_components]):
+#' - Define a module for each dynamical component (see [xds_info_dynamical_components]):
 #'    - **XH** Component -- human / host infection dynamics 
 #'    - **MY** Component -- adult mosquito ecology and infection dynamics 
 #'    - **L** Component -- aquatic mosquito ecology 
 #' - Define basic structural parameters for a single host and vector population:
-#'    - `nPatches` - the number of patches (see [patch_dynamics])
-#'    - `membership` - the habitat membership vector (see [aquatic_habitats])
+#'    - `nPatches` - the number of patches (see [xds_info_patch_dynamics])
+#'    - `membership` - the habitat membership vector (see [xds_info_aquatic_habitats])
 #'    - `nHabitats = length(membership)` 
-#'    - `residence` - the human residence vector (see [human_populations])
-#'    - `HPop` - the human population size (see [human_populations])
+#'    - `residence` - the human residence vector (see [xds_info_human_populations])
+#'    - `HPop` - the human population size (see [xds_info_human_populations])
 #'    - `nStrata = length(residence) = length(HPop)` 
 #' - Configure some of the basic elements:
-#'    - Search Weights (see [search_weights])
-#'    - Mosquito Dispersal matrix (if `nPatches>1`; see [mosquito_dispersal])
-#'    - Time Spent matrix (if `nPatches>1`; see [time_spent])
+#'    - Search Weights (see [xds_info_search_weights])
+#'    - Mosquito Dispersal matrix (if `nPatches>1`; see [xds_info_mosquito_dispersal])
+#'    - Time Spent matrix (if `nPatches>1`; see [xds_info_time_spent])
 #'
-#' @note Other options can be configured after basic setup (see [xds_help_setup_options]). If the **MY** Component is the `trivial` module, consider using [xds_setup_aquatic] or [xds_setup_human] or [xds_setup_eir]. Models for mosquito
+#' @note Other options can be configured after basic setup (see [xds_info_setup_options]). If the **MY** Component is the `trivial` module, consider using [xds_setup_aquatic] or [xds_setup_human] or [xds_setup_eir]. Models for mosquito
 #' ecology need not include states describing infection status (see [xds_setup_mosy]).
 #' 
 #' @details
@@ -49,7 +49,7 @@
 #'    - A mosquito dispersal matrix, \eqn{\cal Koptions}, can be set
 #'    - A time spent matrix, \eqn{\Theta}, can be set
 #'
-#' @seealso [make_xds_object_template], [xds_help_basic_setup]
+#' @seealso [make_xds_object_template], [xds_info_basic_setup]
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname a character string defining a **X** Component module
 #' @param XHoptions a list to configure the **X** Component module
@@ -64,7 +64,7 @@
 #' @param TimeSpent is either a TimeSpent matrix or a string to call a function that sets it up
 #' @param membership is a vector that describes the patch where each aquatic habitat is found
 #' @param searchQ is a vector of search weights for egg laying
-#' @param Koptions a K matrix, or options for [setup_K_matrix] (see [mosquito_dispersal])
+#' @param Koptions a K matrix, or options for [setup_K_matrix] (see [xds_info_mosquito_dispersal])
 #' @param BFopts a list to configure the blood feeding model
 #' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
@@ -158,7 +158,7 @@ xds_setup = function(xds = 'ode',
 #' @param searchQ is a vector of search weights for egg laying
 #' @param kappa is a vector describing net infectiousness
 #' @param MYoptions a list to configure the **MY** Component module
-#' @param Koptions a K matrix, or options for [setup_K_matrix] (see [mosquito_dispersal])
+#' @param Koptions a K matrix, or options for [setup_K_matrix] (also see [xds_info_mosquito_dispersal])
 #' @param Loptions a list to configure the **L** Component module
 #' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object

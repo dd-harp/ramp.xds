@@ -1,13 +1,47 @@
+#' @title Visitors 
+#' 
+#' @description
+#' Malaria can be imported into a spatial domain 
+#' visitors. To set up visitors, the  
+#' 
+#' + the availability of visitors is a port: [xds_port_visitors]
+#' + the infectiousness of visitors is a port: [xds_port_visitors_kappa] 
+#' 
+#' @seealso [xds_info_malaria_importation]
+#' 
+#' @name xds_info_visitors
+NULL
+
+#' @title Visitors 
+#' 
+#' @description
+#' The availability of visitors is a port.  
+#' 
+#' @seealso [xds_info_visitors]
+#' 
+#' @name xds_port_visitors
+NULL
+
+#' @title Infectiousness of Visitors 
+#' 
+#' @description
+#' The infectiousness of visitors is set up as a port.  
+#' 
+#' @seealso [xds_info_visitors]
+#' 
+#' @name xds_port_visitors_kappa
+NULL
 
 #' @title Setup the Visitors Object
 #'
-#' @description Setup a an object
+#' @description Setup an object
 #' to model blood feeding and importation
 #' from visitors
 #'
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_visitor_object = function(xds_obj){
   vis <- list()
@@ -106,6 +140,7 @@ Visitors.dynamic <- function(t, y, xds_obj) {
 #'
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 visitor_dynamics <- function(t, y, xds_obj){
   for(s in 1:xds_obj$nHostSpecies){
@@ -146,6 +181,7 @@ setup_F_visitors = function(mod_name, xds_obj, s, options){
 #' @inheritParams setup_F_visitors
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_F_visitors.ts_func = function(mod_name, xds_obj, s, options){
   class(xds_obj$XY_interface$visitor_obj) <- 'dynamic'
@@ -181,6 +217,7 @@ setup_F_vis_kappa = function(mod_name, xds_obj, s, options){
 #' @inheritParams setup_F_vis_kappa
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 setup_F_vis_kappa.ts_func = function(mod_name, xds_obj, s, options){
   class(xds_obj$XY_interface$visitor_obj) <- 'dynamic'

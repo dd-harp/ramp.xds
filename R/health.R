@@ -3,7 +3,7 @@
 #' @description
 #' Health is a junction to implement health-based interventions.
 #'  
-#' @name xds_junction_health  
+#' @name xds_info_health  
 NULL
 
 # Functions to setup malaria control are found in ramp.control

@@ -7,7 +7,7 @@ features.
 A properly constructed xds object is returned by
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 or one of its variants (see
-[xds_help_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.md)).
+[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)).
 The object is created in several steps:
 
 - a basic template for an xds object is returned by
