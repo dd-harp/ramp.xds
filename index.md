@@ -38,10 +38,10 @@ parasites, and malaria managers that are constantly changing in response
 to control: it is a kind of complex adaptive system. Lewis Hackett
 compared malaria to a game of chess:
 
-> …malaria is so moulded and altered by local conditions that it becomes
-> a thousand different diseases and epidemiological puzzles. Like chess,
-> it is played with a few pieces, but is capable of an infinite variety
-> of situations.
+> *…malaria is so moulded and altered by local conditions that it
+> becomes a thousand different diseases and epidemiological puzzles.
+> Like chess, it is played with a few pieces, but is capable of an
+> infinite variety of situations.*
 
 Malaria systems are locally peculiar: small differences, such as the
 behaviors of local humans and mosquitoes, can affect blood feeding

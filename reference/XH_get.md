@@ -1,6 +1,8 @@
 # Get functions for XH
 
-A list of functions to inspect XH objects.
+Get functions for **XH**
+
+`?get_XH`
 
 ## Outputs
 

@@ -16,7 +16,7 @@ we introduced
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html).
 In this vignette, we take a deeper dive into **Basic Setup** (also, see
 the help documentation
-[xds_help_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.html)).
+[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html)).
 
 **`ramp.xds`** is based on a mathematical framework for model building
 that is modular, flexible and extensible. Using setup functions, it’s

@@ -4,10 +4,15 @@
 
 How to get help for **`ramp.xds`**
 
-- [`xds_help`](https://dd-harp.github.io/ramp.xds/reference/xds_help.md)
+- [`xds_help_guide`](https://dd-harp.github.io/ramp.xds/reference/xds_help_guide.md)
   :
 
   **`ramp.xds`**: Getting Help
+
+- [`xds_help_info`](https://dd-harp.github.io/ramp.xds/reference/xds_help_info.md)
+  :
+
+  **`ramp.xds`**: Info Pages
 
 ## Model Building
 
@@ -31,51 +36,66 @@ Build an xds model object
   : Build a Model for a single Human / Host Epidemiology forced by the
   EIR
 
-- [`xds_help_basic_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.md)
+- [`xds_info_basic_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
   :
 
   **`ramp.xds`**: Basic Setup
+
+- [`xds_info_setup_options`](https://dd-harp.github.io/ramp.xds/reference/xds_info_setup_options.md)
+  :
+
+  **`ramp.xds`**: All Setup Options
 
 ### Dynamical Modules
 
 Setting the value of structural parameters
 
-- [`dynamical_components`](https://dd-harp.github.io/ramp.xds/reference/dynamical_components.md)
-  : Dynamical Components
 - [`XH_module_list`](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md)
   : XH modules
 - [`MY_module_list`](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.md)
   : MY Modules
 - [`L_module_list`](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md)
   : L modules
+- [`xds_info_dynamical_components`](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md)
+  : Dynamical Components
 
 ### Model Structure
 
 Setting the value of structural parameters
 
-- [`patch_dynamics`](https://dd-harp.github.io/ramp.xds/reference/patch_dynamics.md)
+- [`xds_info_patch_dynamics`](https://dd-harp.github.io/ramp.xds/reference/xds_info_patch_dynamics.md)
   : Patch Dynamics
-- [`human_populations`](https://dd-harp.github.io/ramp.xds/reference/human_populations.md)
+- [`xds_info_strata`](https://dd-harp.github.io/ramp.xds/reference/xds_info_strata.md)
+  : Population Strata
+- [`xds_info_human_populations`](https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.md)
   : The human population
-- [`aquatic_habitats`](https://dd-harp.github.io/ramp.xds/reference/aquatic_habitats.md)
+- [`xds_info_aquatic_habitats`](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md)
   : Aquatic Habitats
 
 ### Basic Setup Options
 
 Search Weights, Mosquito Dispersal, Time Spent
 
-- [`trivial_forcing`](https://dd-harp.github.io/ramp.xds/reference/trivial_forcing.md)
-  : Forcing with Trivial Modules
-- [`search_weights`](https://dd-harp.github.io/ramp.xds/reference/search_weights.md)
+- [`xds_info_search_weights`](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights.md)
   : Search Weights
-- [`mosquito_dispersal`](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md)
+- [`xds_info_heterogeneous_biting_rates`](https://dd-harp.github.io/ramp.xds/reference/xds_info_heterogeneous_biting_rates.md)
+  : Heterogeneous Biting Rates
+- [`xds_info_mosquito_dispersal`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md)
   : Mosquito Dispersal
-- [`time_spent`](https://dd-harp.github.io/ramp.xds/reference/time_spent.md)
+- [`xds_info_time_spent`](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
   : Time Spent
 
 ### Adding Features
 
 Forcing, Malaria Control
+
+- [`xds_info_trivial_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_trivial_forcing.md)
+  : Forcing with Trivial Modules
+
+- [`xds_info_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_forcing.md)
+  :
+
+  **`ramp.xds`**: Forcing
 
 - [`xds_info_port`](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md)
   : Ports
@@ -83,10 +103,11 @@ Forcing, Malaria Control
 - [`xds_info_junction`](https://dd-harp.github.io/ramp.xds/reference/xds_info_junction.md)
   : Junctions
 
-- [`xds_help_setup_options`](https://dd-harp.github.io/ramp.xds/reference/xds_help_setup_options.md)
-  :
+- [`xds_info_heterogeneity`](https://dd-harp.github.io/ramp.xds/reference/xds_info_heterogeneity.md)
+  : Heterogeneity
 
-  **`ramp.xds`**: All Setup Options
+- [`xds_info_environmental_heterogeneity`](https://dd-harp.github.io/ramp.xds/reference/xds_info_environmental_heterogeneity.md)
+  : Environmental Heterogeneity
 
 ### The xds model object
 
@@ -95,7 +116,7 @@ Forcing, Malaria Control
 
   The **`xds`** Model Object
 
-- [`dynamical_components`](https://dd-harp.github.io/ramp.xds/reference/dynamical_components.md)
+- [`xds_info_dynamical_components`](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md)
   : Dynamical Components
 
 - [`xds_info_interfaces`](https://dd-harp.github.io/ramp.xds/reference/xds_info_interfaces.md)
@@ -488,9 +509,9 @@ XH component module implementations
 
 Utilities for Time Spent Matrices
 
-- [`time_spent`](https://dd-harp.github.io/ramp.xds/reference/time_spent.md)
+- [`xds_info_time_spent`](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
   : Time Spent
-- [`time_at_risk`](https://dd-harp.github.io/ramp.xds/reference/time_at_risk.md)
+- [`xds_info_time_at_risk`](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_at_risk.md)
   : Time at Risk
 - [`setup_TimeSpent()`](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.md)
   : Make a time spent matrix, called TimeSpent
@@ -522,10 +543,9 @@ Utilities for Time Spent Matrices
   : Compute the human transmitting capacity
 
 - [`xds_plot_X()`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_X.md)
-  : Basic plotting for epidemiological models
+  :
 
-- [`xds_plot_XH()`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_XH.md)
-  : Basic plotting for epidemiological models
+  Default plotting for epidemiology (**X**)
 
 - [`steady_state_X()`](https://dd-harp.github.io/ramp.xds/reference/steady_state_X.md)
   :
@@ -675,17 +695,17 @@ Compute the derivatives for other variables
 
 ## Blood Feeding & Transmission
 
-- [`blood_feeding`](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)
-  : Blood Feeding Overview
-- [`local_frac`](https://dd-harp.github.io/ramp.xds/reference/local_frac.md)
+- [`xds_info_blood_feeding`](https://dd-harp.github.io/ramp.xds/reference/xds_info_blood_feeding.md)
+  : Blood Feeding
+- [`xds_info_local_fraction`](https://dd-harp.github.io/ramp.xds/reference/xds_info_local_fraction.md)
   : The Local Fraction
-- [`available_blood_hosts`](https://dd-harp.github.io/ramp.xds/reference/available_blood_hosts.md)
+- [`xds_info_available_blood_hosts`](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_blood_hosts.md)
   : Available Blood
-- [`search_weights`](https://dd-harp.github.io/ramp.xds/reference/search_weights.md)
+- [`xds_info_search_weights`](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights.md)
   : Search Weights
-- [`relative_biting_rates`](https://dd-harp.github.io/ramp.xds/reference/relative_biting_rates.md)
+- [`xds_info_relative_biting_rates`](https://dd-harp.github.io/ramp.xds/reference/xds_info_relative_biting_rates.md)
   : Relative Biting Rate
-- [`Transmission()`](https://dd-harp.github.io/ramp.xds/reference/Transmission.md)
+- [`xds_info_transmission`](https://dd-harp.github.io/ramp.xds/reference/xds_info_transmission.md)
   : Transmission
 - [`check_XY_interface()`](https://dd-harp.github.io/ramp.xds/reference/check_XY_interface.md)
   : Check the XY Interface
@@ -698,9 +718,9 @@ Compute the derivatives for other variables
 
 Compute the FoI from local EIR and travel
 
-- [`Exposure()`](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)
+- [`xds_info_exposure`](https://dd-harp.github.io/ramp.xds/reference/xds_info_exposure.md)
   : Exposure
-- [`environmental_heterogeneity`](https://dd-harp.github.io/ramp.xds/reference/environmental_heterogeneity.md)
+- [`xds_info_environmental_heterogeneity`](https://dd-harp.github.io/ramp.xds/reference/xds_info_environmental_heterogeneity.md)
   : Environmental Heterogeneity
 - [`setup_exposure()`](https://dd-harp.github.io/ramp.xds/reference/setup_exposure.md)
   : Set Up Exposure
@@ -717,47 +737,42 @@ Compute the FoI from local EIR and travel
 
 Functions to model travel & visitors
 
+- [`xds_info_malaria_importation`](https://dd-harp.github.io/ramp.xds/reference/xds_info_malaria_importation.md)
+  : Malaria Importation
+
 ### Travel
 
 Time spent traveling & the travel EIR
 
-- [`travel_malaria`](https://dd-harp.github.io/ramp.xds/reference/travel_malaria.md)
+- [`xds_info_travel_malaria`](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md)
   : Travel Malaria
-- [`time_spent_here`](https://dd-harp.github.io/ramp.xds/reference/time_spent_here.md)
-  : Time Spent Here (in the Spatial Domain)
-- [`setup_travel_object()`](https://dd-harp.github.io/ramp.xds/reference/setup_travel_object.md)
-  : Setup the Travel Object
+- [`xds_port_travel_eir`](https://dd-harp.github.io/ramp.xds/reference/xds_port_travel_eir.md)
+  : Travel EIR
+- [`xds_port_time_spent_here`](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_spent_here.md)
+  : Time Spent Here
 - [`change_time_at_home()`](https://dd-harp.github.io/ramp.xds/reference/change_time_at_home.md)
-  : Change the travel EIR
-- [`change_travel_EIR()`](https://dd-harp.github.io/ramp.xds/reference/change_travel_EIR.md)
   : Change the travel EIR
 - [`setup_F_travel()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_travel.md)
   : Set up no travel
 - [`setup_F_travel_eir()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_travel_eir.md)
   : Setup the Travel EIR
-- [`setup_F_travel_eir(`*`<static>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_F_travel_eir.static.md)
-  : Set up no travel
-- [`setup_F_travel_eir(`*`<ts_func>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_F_travel_eir.ts_func.md)
-  : Setup the Travel EIR
-- [`travel_dynamics()`](https://dd-harp.github.io/ramp.xds/reference/travel_dynamics.md)
-  : Time Spent Here
+- [`change_travel_EIR()`](https://dd-harp.github.io/ramp.xds/reference/change_travel_EIR.md)
+  : Change the travel EIR
 
 ### Visitors
 
 Blood Feeding on non-Residents
 
+- [`xds_info_visitors`](https://dd-harp.github.io/ramp.xds/reference/xds_info_visitors.md)
+  : Visitors
+- [`xds_port_visitors`](https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors.md)
+  : Visitors
+- [`xds_port_visitors_kappa`](https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors_kappa.md)
+  : Infectiousness of Visitors
 - [`setup_F_vis_kappa()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_vis_kappa.md)
   : Set up no visitors
-- [`setup_F_vis_kappa(`*`<ts_func>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_F_vis_kappa.ts_func.md)
-  : Set
 - [`setup_F_visitors()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_visitors.md)
   : Set up no visitors
-- [`setup_F_visitors(`*`<ts_func>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_F_visitors.ts_func.md)
-  : Set up no visitors
-- [`setup_visitor_object()`](https://dd-harp.github.io/ramp.xds/reference/setup_visitor_object.md)
-  : Setup the Visitors Object
-- [`visitor_dynamics()`](https://dd-harp.github.io/ramp.xds/reference/visitor_dynamics.md)
-  : Availabilit of Visitors
 
 ## Mosquito Bionomics
 
@@ -765,11 +780,11 @@ Methods to compute or update mosquito bionomic parameters
 
 - [`xds_info_mosquito_bionomics`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_bionomics.md)
   : Mosquito Bionomics
-- [`blood_feeding`](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md)
-  : Blood Feeding Overview
-- [`mosquito_dispersal`](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md)
+- [`xds_info_blood_feeding`](https://dd-harp.github.io/ramp.xds/reference/xds_info_blood_feeding.md)
+  : Blood Feeding
+- [`xds_info_mosquito_dispersal`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md)
   : Mosquito Dispersal
-- [`mosquito_demography`](https://dd-harp.github.io/ramp.xds/reference/mosquito_demography.md)
+- [`xds_info_mosquito_demography`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_demography.md)
   : Mosquito Demography
 
 ### Dynamical Parameters
@@ -818,9 +833,9 @@ availability
 
 Specialized methods to set up mosquito dispersal matrices
 
-- [`mosquito_dispersal`](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md)
+- [`xds_info_mosquito_dispersal`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md)
   : Mosquito Dispersal
-- [`mosquito_demography`](https://dd-harp.github.io/ramp.xds/reference/mosquito_demography.md)
+- [`xds_info_mosquito_demography`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_demography.md)
   : Mosquito Demography
 - [`setup_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
   : Setup Mosquito Dispersal Matrix
@@ -835,47 +850,44 @@ Specialized methods to set up mosquito dispersal matrices
 
 ## Forcing
 
-- [`xds_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_forcing.md)
+- [`xds_info_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_forcing.md)
   :
 
   **`ramp.xds`**: Forcing
 
-- [`trivial_forcing`](https://dd-harp.github.io/ramp.xds/reference/trivial_forcing.md)
+- [`xds_info_trivial_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_trivial_forcing.md)
   : Forcing with Trivial Modules
 
-- [`xds_junction_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_junction_forcing.md)
-  : Junction: Forcing
-
-- [`xds_junction_vector_control`](https://dd-harp.github.io/ramp.xds/reference/xds_junction_vector_control.md)
+- [`xds_info_vector_control`](https://dd-harp.github.io/ramp.xds/reference/xds_info_vector_control.md)
   : Vector Control
 
-- [`xds_junction_health`](https://dd-harp.github.io/ramp.xds/reference/xds_junction_health.md)
+- [`xds_info_health`](https://dd-harp.github.io/ramp.xds/reference/xds_info_health.md)
   : Health
 
 ## Resources
 
 The ports for resources
 
-- [`xds_junction_resources`](https://dd-harp.github.io/ramp.xds/reference/xds_junction_resources.md)
+- [`xds_info_resources`](https://dd-harp.github.io/ramp.xds/reference/xds_info_resources.md)
   : Resources
-- [`availability`](https://dd-harp.github.io/ramp.xds/reference/availability.md)
+- [`xds_info_availability`](https://dd-harp.github.io/ramp.xds/reference/xds_info_availability.md)
   : Resource Availability
-- [`available_blood_hosts`](https://dd-harp.github.io/ramp.xds/reference/available_blood_hosts.md)
+- [`xds_info_available_blood_hosts`](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_blood_hosts.md)
   : Available Blood
-- [`blood_search_weights`](https://dd-harp.github.io/ramp.xds/reference/blood_search_weights.md)
+- [`xds_info_search_weights_blood`](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_blood.md)
   : Blood Search Weights
-- [`other_blood_hosts`](https://dd-harp.github.io/ramp.xds/reference/other_blood_hosts.md)
+- [`xds_port_other_blood_hosts`](https://dd-harp.github.io/ramp.xds/reference/xds_port_other_blood_hosts.md)
   : Other Blood Hosts
-- [`blood_traps`](https://dd-harp.github.io/ramp.xds/reference/blood_traps.md)
+- [`xds_port_blood_traps`](https://dd-harp.github.io/ramp.xds/reference/xds_port_blood_traps.md)
   : Blood Traps
-- [`available_habitats`](https://dd-harp.github.io/ramp.xds/reference/available_habitats.md)
+- [`xds_info_available_habitats`](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_habitats.md)
   : Habitat Availability
-- [`habitat_search_weights`](https://dd-harp.github.io/ramp.xds/reference/habitat_search_weights.md)
+- [`xds_info_search_weights_habitat`](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_habitat.md)
   : Habitat Search Weights
-- [`available_sugar`](https://dd-harp.github.io/ramp.xds/reference/available_sugar.md)
+- [`xds_info_available_sugar`](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_sugar.md)
   : Sugar Availability
-- [`bad_habitats`](https://dd-harp.github.io/ramp.xds/reference/bad_habitats.md)
-  : Bad Habitats
+- [`xds_info_mosquito_traps`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_traps.md)
+  : Available Blood
 - [`change_blood_hosts()`](https://dd-harp.github.io/ramp.xds/reference/change_blood_hosts.md)
   : Set static blood feeding search weights
 
@@ -883,17 +895,17 @@ The ports for resources
 
 Mosquito Population Dynamical Interface
 
-- [`aquatic_habitats`](https://dd-harp.github.io/ramp.xds/reference/aquatic_habitats.md)
+- [`xds_info_aquatic_habitats`](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md)
   : Aquatic Habitats
-- [`habitat_search_weights`](https://dd-harp.github.io/ramp.xds/reference/habitat_search_weights.md)
+- [`xds_info_search_weights_habitat`](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_habitat.md)
   : Habitat Search Weights
-- [`available_habitats`](https://dd-harp.github.io/ramp.xds/reference/available_habitats.md)
+- [`xds_info_available_habitats`](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_habitats.md)
   : Habitat Availability
-- [`egg_laying`](https://dd-harp.github.io/ramp.xds/reference/egg_laying.md)
+- [`xds_info_egg_laying`](https://dd-harp.github.io/ramp.xds/reference/xds_info_egg_laying.md)
   : Egg Laying
-- [`aquatic_habitats_bad`](https://dd-harp.github.io/ramp.xds/reference/aquatic_habitats_bad.md)
+- [`xds_port_bad_habitats`](https://dd-harp.github.io/ramp.xds/reference/xds_port_bad_habitats.md)
   : Unproductive Aquatic Habitats
-- [`ovitraps`](https://dd-harp.github.io/ramp.xds/reference/ovitraps.md)
+- [`xds_port_ovitraps`](https://dd-harp.github.io/ramp.xds/reference/xds_port_ovitraps.md)
   : Ovitraps
 - [`view_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/view_habitat_matrix.md)
   : View habitat membership, \\N\\

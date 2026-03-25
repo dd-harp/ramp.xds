@@ -1,14 +1,4 @@
-# Transmission
-
-Transmission computes:
-
-- `beta` – the bite distribution matrix
-
-- `eir` – the daily EIR
-
-- `kappa` – the net infectiousness
-
-- [local_frac](https://dd-harp.github.io/ramp.xds/reference/local_frac.md)
+# Compute the mixing matrix and transmission terms
 
 This method dispatches on the type of `xds_obj$beta`
 

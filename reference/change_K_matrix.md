@@ -39,5 +39,5 @@ an **`xds`** object
 
 ## See also
 
-[mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.md);
+[xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md);
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)

@@ -130,13 +130,15 @@ define and solve a dynamical system for malaria transmission. Built by
 </dd>
 <dt><strong>Dynamical Component</strong></dt>
 <dd>
-One of the three parts of an <strong><code>xds</code></strong> model:
-the human / host component (<strong>XH</strong>), the adult mosquito
-component (<strong>MY</strong>), and the aquatic / immature mosquito
-component (<strong>L</strong>). Each component defines a set of state
-variables and dynamics.
+Each component defines a set of state variables and dynamics to model a
+set of linked biological processes. There are three core components in
+an <strong><code>xds</code></strong> model and one optional component: +
+the human / host component (<strong>XH</strong>), + the adult mosquito
+component (<strong>MY</strong>), + the aquatic / immature mosquito
+component (<strong>L</strong>), and + an optional component to compute
+other dynamic variables (<strong>V</strong>).
 </dd>
-<dt><strong>module</strong></dt>
+<dt><strong>Module</strong></dt>
 <dd>
 A specific implementation of a component. For example,
 <code>macdonald</code>, <code>GeRM</code>, and <code>SI</code> are
@@ -144,61 +146,68 @@ modules for the MY component; <code>SIS</code> and <code>hMoI</code> are
 modules for the XH component. Each module is implemented as a set of S3
 methods dispatching on the module class name.
 </dd>
-<dt><strong>patch</strong></dt>
+<dt><strong>Patch</strong></dt>
 <dd>
 The basic spatial unit for mosquito ecology and transmission. A model
 has <code>nPatches</code> patches. Adult mosquitoes live in patches,
 which are connected by dispersal. Blood feeding, egg laying, and
 transmission are computed at the patch level.
 </dd>
-<dt><strong>stratum</strong></dt>
+<dt><strong>Stratum</strong></dt>
 <dd>
 The basic unit of human / host population structure. A model has
 <code>nStrata</code> strata within each host species. Strata represent
 sub-populations that may differ in location, risk, age, or other
 attributes. Transmission exposure is computed for each stratum.
 </dd>
-<dt><strong>habitat</strong></dt>
+<dt><strong>Habitat</strong></dt>
 <dd>
-The basic spatial unit for immature mosquito ecology. A model has
-<code>nHabitats</code> habitats. Aquatic mosquito populations develop in
-habitats, which are distributed across patches according to the habitat
-membership matrix.
+The basic unit for immature mosquito ecology. A model has
+<code>nHabitats</code> habitats, which are distributed across patches
+according to a habitat membership matrix. Immature mosquito populations
+develop in aquatic habitats: eggs are laid by adults that hatch into the
+first larval instar; there are four distinct instars before pupation;
+and aduls emerge from the pupae.
 </dd>
 </dl>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="mosquito-bionomics">Mosquito Bionomics<a class="anchor" aria-label="anchor" href="#mosquito-bionomics"></a>
+<h2 id="adult-mosquito-bionomics">Adult Mosquito Bionomics<a class="anchor" aria-label="anchor" href="#adult-mosquito-bionomics"></a>
 </h2>
+<p>In the <strong>MY</strong> component, adult mosquito bionomic
+parameters include parameters that describe mosquito life-history traits
+that govern transmission potential, and the parasite’s extrinsic
+incubation period (EIP). In <strong><code>ramp.xds</code></strong>, we
+use a standard naming convention for core bionomic parameters, listed
+below</p>
 <dl>
-<dt><strong>bionomics</strong></dt>
-<dd>
-The set of mosquito life-history traits that govern transmission
-potential. In <strong><code>ramp.xds</code></strong>, the core bionomic
-parameters are the blood feeding rate (<span class="math inline">\(f\)</span>), the human blood feeding fraction
-(<span class="math inline">\(q\)</span>), the mosquito mortality rate
-(<span class="math inline">\(g\)</span>), and the emigration rate (<span class="math inline">\(\sigma\)</span>).
-</dd>
 <dt><strong><span class="math inline">\(f\)</span> — blood feeding
 rate</strong></dt>
 <dd>
 The per-capita rate at which a mosquito takes blood meals per day.
 Together with <span class="math inline">\(q\)</span>, it determines the
-rate of contact between mosquitoes and humans.
+human blood feeding rate, the number of human blood meals, per mosquito,
+per day.
 </dd>
 <dt><strong><span class="math inline">\(q\)</span> — human blood feeding
 fraction</strong></dt>
 <dd>
 The fraction of blood meals taken on humans (as opposed to other
-vertebrate hosts). The product <span class="math inline">\(fq\)</span>
-gives the human biting rate per mosquito per day.
+vertebrate hosts).
+</dd>
+<dt><strong><span class="math inline">\(\nu\)</span> — egg laying
+rate</strong></dt>
+<dd>
+The per-capita daily rate at which mosquitoes lay eggs. Since the eggs
+are laid in a batch, another parameter sets the total number of eggs
+laid
 </dd>
 <dt><strong><span class="math inline">\(g\)</span> — mosquito mortality
 rate</strong></dt>
 <dd>
-The per-capita daily mortality rate of adult mosquitoes. The daily
-survival probability is <span class="math inline">\(e^{-g}\)</span>.
+The per-capita daily mortality rate of adult mosquitoes while in a
+patch. The daily survival probability is <span class="math inline">\(e^{-g}\)</span>.
 </dd>
 <dt><strong><span class="math inline">\(\sigma\)</span> — emigration
 rate</strong></dt>
@@ -207,17 +216,36 @@ The per-capita daily rate at which mosquitoes leave a patch. Together
 with the dispersal kernel, <span class="math inline">\(\sigma\)</span>
 determines the spatial redistribution of mosquitoes.
 </dd>
+<dt><strong><span class="math inline">\(\mu\)</span> — emigration
+loss</strong></dt>
+<dd>
+The fraction of emigrating mosquitoes that are lost: it includes
+mortality conditioned on emigration, and loss of emigrating mosquitoes
+from the system.
+</dd>
+<dt><strong><span class="math inline">\(\tau\)</span> — extrinsic
+incubation period (EIP)</strong></dt>
+<dd>
+The time lag between the bite that infects a mosquito and the moment
+when it becomes infective.
+</dd>
+<dt><strong><span class="math inline">\(K\)</span> — mosquito dispersal
+matrix</strong></dt>
+<dd>
+A matrix that describes how mosquitoes move around with a standard form:
+the diagonal terms are , and the columns sum to .
+</dd>
 <dt><strong><span class="math inline">\(\Omega\)</span> — mosquito
 mortality matrix</strong></dt>
 <dd>
-A matrix that combines mortality and emigration to describe the net loss
-of mosquitoes from each patch. Used in computing steady states.
+A matrix that combines mortality and emigration to describe mosquito
+mortality and dispersal.
 </dd>
 <dt><strong><span class="math inline">\(\Upsilon\)</span> — mosquito
-survival / transition matrix</strong></dt>
+survival through the EIP</strong></dt>
 <dd>
-A matrix describing survival and dispersal over the extrinsic incubation
-period (EIP). It is used to compute the proportion of mosquitoes that
+A matrix describing survival and dispersal through a fixed EIP. It is
+used in delay differential to compute the proportion of mosquitoes that
 survive to become infectious.
 </dd>
 </dl>

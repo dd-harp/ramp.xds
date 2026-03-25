@@ -1,6 +1,6 @@
-# Basic plotting for epidemiological models
+# Default plotting for epidemiology (**X**)
 
-Basic plotting for epidemiological models
+Each module can define a plotting method for the epidemiology
 
 ## Usage
 

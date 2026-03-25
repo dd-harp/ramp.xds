@@ -15,9 +15,9 @@ habitat dynamics, or something else.
 By implementing a parameter or variable as a port, a module or other
 component becomes extensible with negligible computational costs:
 default values assigned during
-[xds_help_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_help_basic_setup.md)
+[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
 have no effect; but features can be configured after basic setup (see
-[xds_help_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_help_setup_options.md)).
+[xds_info_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_info_setup_options.md)).
 
 In developing ports, the mathematical consequences *ought to be* fully
 considered. If some implementations of a port could be mathematically
@@ -140,6 +140,6 @@ time-varying EIP (see
 
 ## See also
 
-[xds_help_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_help_setup_options.md)
+[xds_info_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_info_setup_options.md)
 \|
 [xds_info_junction](https://dd-harp.github.io/ramp.xds/reference/xds_info_junction.md)

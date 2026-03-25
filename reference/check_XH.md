@@ -1,6 +1,6 @@
-# Check / update before solving
+# Run checks before solving (**XH**)
 
-Check / update before solving
+Run checks before solving (**XH**)
 
 ## Usage
 

@@ -1,6 +1,6 @@
 # Setup the Visitors Object
 
-Setup a an object to model blood feeding and importation from visitors
+Setup an object to model blood feeding and importation from visitors
 
 ## Usage
 

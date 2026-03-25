@@ -1,6 +1,6 @@
-# Run a check before solving
+# Run checks before solving (**L**)
 
-Run a check before solving
+Run checks before solving (**L**)
 
 ## Usage
 

@@ -5,30 +5,58 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Dynamical Interfaces — xds_info_interfaces"><meta name="description" content="In the modular design, the dynamical_components interact through
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Dynamical Interfaces — xds_info_interfaces"><meta name="description" content="In the modular design, the xds_info_dynamical_components interact through
 two well-designed interfaces:
 Infection Dynamics: the X and Y components communicate through an interface with three parts:
-Blood Feeding –
-Transmission –
-Exposure –
+Blood Feeding – a coherent framework for modeling blood feeding based on the concept of blood host availability. Models can set
+blood feeding rates without using it, but the parameter values should satisfy some constraints:
+the blood feeding rate is 0 (\(f=0\)) if there are no hosts available;
+the human fraction is 0 (\(q=0\)) if there are no humans available;
+the human fraction is 1 (\(q=1\)) if only humans are available;
+
+Transmission – under the blood feeding model, compute the biting
+distribution matrix (\(\beta\)) that guarantees every bite and blood meal
+is accounted for: it updates the local fraction (if there are visitors),
+and then outputs the local
+daily entomological inoculation rate (EIR or \(E\)) for
+all the strata; and the net infectiousness (NI or \(\kappa\)) in each patch.
+Exposure – compute the force of infection (FoI) from:
+the local daily EIR (\(E\))
+the travel EIR (\(\delta\))
+a model of partial immunity (\(b\)) from the X component
+
 
 Mosquito Ecology: the L and M components communicate through an interface with three parts:
-Patch Dynamics – adult mosquito populations are distributed in patches (see patch_dynamics)
-Aquatic Habitats – aquatic habitats are located in patches (see aquatic_habitats)
-Egg Laying –
+Patch Dynamics – adult mosquito populations are distributed in patches (see xds_info_patch_dynamics)
+Aquatic Habitats – aquatic habitats are located in patches (see xds_info_aquatic_habitats)
+Egg Laying – The egg laying interface uses search weights to distribute eggs laid by adults in a patch to the aquatic habitats in that patch
 
 
-"><meta property="og:description" content="In the modular design, the dynamical_components interact through
+"><meta property="og:description" content="In the modular design, the xds_info_dynamical_components interact through
 two well-designed interfaces:
 Infection Dynamics: the X and Y components communicate through an interface with three parts:
-Blood Feeding –
-Transmission –
-Exposure –
+Blood Feeding – a coherent framework for modeling blood feeding based on the concept of blood host availability. Models can set
+blood feeding rates without using it, but the parameter values should satisfy some constraints:
+the blood feeding rate is 0 (\(f=0\)) if there are no hosts available;
+the human fraction is 0 (\(q=0\)) if there are no humans available;
+the human fraction is 1 (\(q=1\)) if only humans are available;
+
+Transmission – under the blood feeding model, compute the biting
+distribution matrix (\(\beta\)) that guarantees every bite and blood meal
+is accounted for: it updates the local fraction (if there are visitors),
+and then outputs the local
+daily entomological inoculation rate (EIR or \(E\)) for
+all the strata; and the net infectiousness (NI or \(\kappa\)) in each patch.
+Exposure – compute the force of infection (FoI) from:
+the local daily EIR (\(E\))
+the travel EIR (\(\delta\))
+a model of partial immunity (\(b\)) from the X component
+
 
 Mosquito Ecology: the L and M components communicate through an interface with three parts:
-Patch Dynamics – adult mosquito populations are distributed in patches (see patch_dynamics)
-Aquatic Habitats – aquatic habitats are located in patches (see aquatic_habitats)
-Egg Laying –
+Patch Dynamics – adult mosquito populations are distributed in patches (see xds_info_patch_dynamics)
+Aquatic Habitats – aquatic habitats are located in patches (see xds_info_aquatic_habitats)
+Egg Laying – The egg laying interface uses search weights to distribute eggs laid by adults in a patch to the aquatic habitats in that patch
 
 
 "></head><body>
@@ -98,19 +126,31 @@ Egg Laying –
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Dynamical Interfaces</h1>
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/xds_info_interfaces.R" class="external-link"><code>R/xds_info_interfaces.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/xds_info-interfaces.R" class="external-link"><code>R/xds_info-interfaces.R</code></a></small>
       <div class="d-none name"><code>xds_info_interfaces.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
-    <p>In the modular design, the <a href="dynamical_components.html">dynamical_components</a> interact through
-two well-designed interfaces:</p><ul><li><p><strong>Infection Dynamics:</strong> the <strong>X</strong> and <strong>Y</strong> components communicate through an interface with three parts:</p><ul><li><p><strong>Blood Feeding</strong> –</p></li>
-<li><p><strong>Transmission</strong> –</p></li>
-<li><p><strong>Exposure</strong> –</p></li>
+    <p>In the modular design, the <a href="xds_info_dynamical_components.html">xds_info_dynamical_components</a> interact through
+two well-designed interfaces:</p><ul><li><p><strong>Infection Dynamics:</strong> the <strong>X</strong> and <strong>Y</strong> components communicate through an interface with three parts:</p><ul><li><p><strong>Blood Feeding</strong> – a coherent framework for modeling blood feeding based on the concept of blood host availability. Models can set
+blood feeding rates without using it, but the parameter values should satisfy some constraints:</p><ul><li><p>the blood feeding rate is 0 (\(f=0\)) if there are no hosts available;</p></li>
+<li><p>the human fraction is 0 (\(q=0\)) if there are no humans available;</p></li>
+<li><p>the human fraction is 1 (\(q=1\)) if only humans are available;</p></li>
 </ul></li>
-<li><p><strong>Mosquito Ecology:</strong> the <strong>L</strong> and <strong>M</strong> components communicate through an interface with three parts:</p><ul><li><p><strong>Patch Dynamics</strong> – adult mosquito populations are distributed in patches (see <a href="patch_dynamics.html">patch_dynamics</a>)</p></li>
-<li><p><strong>Aquatic Habitats</strong> – aquatic habitats are located in patches (see <a href="aquatic_habitats.html">aquatic_habitats</a>)</p></li>
-<li><p><strong>Egg Laying</strong> –</p></li>
+<li><p><strong>Transmission</strong> – under the blood feeding model, compute the biting
+distribution matrix (\(\beta\)) that guarantees every bite and blood meal
+is accounted for: it updates the local fraction (if there are visitors),
+and then outputs the local
+daily entomological inoculation rate (EIR or \(E\)) for
+all the strata; and the net infectiousness (NI or \(\kappa\)) in each patch.</p></li>
+<li><p><strong>Exposure</strong> – compute the force of infection (FoI) from:</p><ul><li><p>the local daily EIR (\(E\))</p></li>
+<li><p>the travel EIR (\(\delta\))</p></li>
+<li><p>a model of partial immunity (\(b\)) from the <strong>X</strong> component</p></li>
+</ul></li>
+</ul></li>
+<li><p><strong>Mosquito Ecology:</strong> the <strong>L</strong> and <strong>M</strong> components communicate through an interface with three parts:</p><ul><li><p><strong>Patch Dynamics</strong> – adult mosquito populations are distributed in patches (see <a href="xds_info_patch_dynamics.html">xds_info_patch_dynamics</a>)</p></li>
+<li><p><strong>Aquatic Habitats</strong> – aquatic habitats are located in patches (see <a href="xds_info_aquatic_habitats.html">xds_info_aquatic_habitats</a>)</p></li>
+<li><p><strong>Egg Laying</strong> – The egg laying interface uses search weights to distribute eggs laid by adults in a patch to the aquatic habitats in that patch</p></li>
 </ul></li>
 </ul></div>
 
