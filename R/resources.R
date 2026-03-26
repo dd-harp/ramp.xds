@@ -25,10 +25,11 @@ setup_resources_object = function(xds_obj){
 #'
 #' + [BloodHosts] availability of alternative blood hosts
 #' + [HabitatDynamics] to modify habitat search weights
-#' + [Travel] to compute variables associated with exposure while traveling
-#' + [Visitors] to compute parasite/pathogen blood feeding on visitors
 #' + [Traps] to compute availability of oviposition traps
 #' + [Sugar] availability of sugar
+#'
+#' @note [Travel] and [Visitors] are called separately in
+#' [xds_compute_terms], not inside [Resources].
 #'
 #' @param t the time
 #' @param y the state variables
@@ -41,8 +42,6 @@ setup_resources_object = function(xds_obj){
 Resources = function(t, y, xds_obj){
   xds_obj <- BloodHosts(t, y, xds_obj)
   xds_obj <- HabitatDynamics(t, y, xds_obj)
-  xds_obj <- Travel(t, y, xds_obj)
-  xds_obj <- Visitors(t, y, xds_obj)
   xds_obj <- Traps(t, y, xds_obj)
   xds_obj <- Sugar(t, y, xds_obj)
   return(xds_obj)
