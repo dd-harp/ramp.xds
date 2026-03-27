@@ -987,6 +987,8 @@ Compute the FoI from local EIR and travel
 
 Functions to model travel & visitors
 
+- [`xds_info_importation`](https://dd-harp.github.io/ramp.xds/reference/xds_info_importation.md)
+  : Malaria Importation
 - [`xds_info_malaria_importation`](https://dd-harp.github.io/ramp.xds/reference/xds_info_malaria_importation.md)
   : Malaria Importation
 
@@ -1001,11 +1003,7 @@ Time spent traveling & the travel EIR
 - [`xds_port_time_spent_here`](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_spent_here.md)
   : Time Spent Here
 - [`change_time_at_home()`](https://dd-harp.github.io/ramp.xds/reference/change_time_at_home.md)
-  : Change the travel EIR
-- [`setup_F_travel()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_travel.md)
-  : Set up no travel
-- [`setup_F_travel_eir()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_travel_eir.md)
-  : Setup the Travel EIR
+  : Change the time at home
 - [`change_travel_EIR()`](https://dd-harp.github.io/ramp.xds/reference/change_travel_EIR.md)
   : Change the travel EIR
 
@@ -1017,12 +1015,8 @@ Blood Feeding on non-Residents
   : Visitors
 - [`xds_port_visitors`](https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors.md)
   : Visitors
-- [`xds_port_visitors_kappa`](https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors_kappa.md)
-  : Infectiousness of Visitors
-- [`setup_F_vis_kappa()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_vis_kappa.md)
-  : Set up no visitors
-- [`setup_F_visitors()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_visitors.md)
-  : Set up no visitors
+- [`xds_port_visitor_kappa`](https://dd-harp.github.io/ramp.xds/reference/xds_port_visitor_kappa.md)
+  : Visitors Infectiousness
 
 ## Mosquito Bionomics
 

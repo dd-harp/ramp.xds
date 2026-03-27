@@ -116,8 +116,8 @@ Next, the function sets up egg laying, blood feeding, and transmission:
   [`make_residency_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_residency_matrix.md),
   then
   [`setup_XY_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_XY_interface.md);
-  resource parameters (`blood_hosts`, `Btraps`) are zero-initialized by
-  default
+  resource parameters (`other_blood_hosts`, `Btraps`) are
+  zero-initialized by default
 
 - **Transmission** calls
   [`setup_transmission()`](https://dd-harp.github.io/ramp.xds/reference/setup_TRANSMISSION.md)

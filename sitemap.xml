@@ -174,6 +174,8 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/GeM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Health.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Health.none.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/Importation.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/Importation.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.trivial.html</loc></url>
@@ -217,10 +219,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Transmission.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Transmission.setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Transmission.static.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Travel.dynamic.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Travel.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Travel.setup.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Travel.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_Lt.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_Lt.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_Lt.trivial.html</loc></url>
@@ -237,10 +235,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControl2.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControl2.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControlEffectSizes.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Visitors.dynamic.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Visitors.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Visitors.setup.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Visitors.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/XH_change.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/XH_functions.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/XH_get.html</loc></url>
@@ -605,16 +599,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.XH.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_travel.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_travel.static.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_travel.ts_func.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_travel_eir.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_travel_eir.static.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_travel_eir.ts_func.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_vis_kappa.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_vis_kappa.ts_func.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_visitors.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_visitors.ts_func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.as_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.herethere.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.html</loc></url>
@@ -685,6 +669,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_forcing_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_health_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_human_frac.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_importation_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_mozy_mort.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_mu_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_nu_obj.html</loc></url>
@@ -696,9 +681,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_sigma_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_sigma_obj_BQS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_theta_obj.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_travel_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_vector_control_object.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_visitor_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_xi_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/shapeIt.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/show_season.html</loc></url>
@@ -733,7 +716,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/steady_state_XH.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/steady_state_Y.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/transmission_dynamics.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/travel_dynamics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/trigger_setup.dynamic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/trigger_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/trigger_setup.setup.html</loc></url>
@@ -745,7 +727,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/variables.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/view_habitat_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/view_residency_matrix.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/visitor_dynamics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.aquatic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.full.html</loc></url>
@@ -777,6 +758,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_heterogeneity.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_heterogeneous_biting_rates.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_importation.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_interfaces.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_junction.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_local_fraction.html</loc></url>
@@ -827,8 +809,8 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_ovitraps.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_time_spent_here.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_travel_eir.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_visitor_kappa.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors_kappa.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.html</loc></url>

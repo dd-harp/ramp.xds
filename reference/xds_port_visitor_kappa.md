@@ -1,4 +1,4 @@
-# Visitors
+# Visitors Infectiousness
 
 There are two parameters built into the transmission interface to handle
 biting on non-resident humans:

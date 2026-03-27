@@ -1,7 +1,8 @@
 # Visitors
 
-The availability of visitors is a port.
+There are two parameters built into the transmission interface to handle
+biting on non-resident humans:
 
-## See also
+- `visitors` is the availability of non-resident humans
 
-[xds_info_visitors](https://dd-harp.github.io/ramp.xds/reference/xds_info_visitors.md)
+- `visitor_kappa` is the net infectiousness of the visitors
