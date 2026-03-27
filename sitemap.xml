@@ -286,7 +286,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_bad_habitat.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_blood_search_weights.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_habitat_weights.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_habitat_search_weights.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.html</loc></url>
@@ -308,9 +308,11 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_spline_y.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_spline_y.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_spline_y.none.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_time_at_home.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_time_away.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_travel_EIR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_trend.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_visitor_kappa.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_visitors.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/checkIt.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_L.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_L.html</loc></url>
@@ -807,7 +809,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_blood_traps.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_other_blood_hosts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_ovitraps.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_time_spent_here.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_time_away.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_travel_eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_visitor_kappa.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors.html</loc></url>

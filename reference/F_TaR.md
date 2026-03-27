@@ -5,7 +5,7 @@ Computes available all vertebrate hosts to blood feeding mosquitoes
 ## Usage
 
 ``` r
-F_TaR(t, TiSp, F_circadian, time_at_home)
+F_TaR(t, TiSp, F_circadian, time_away)
 ```
 
 ## Arguments
@@ -22,7 +22,7 @@ F_TaR(t, TiSp, F_circadian, time_at_home)
 
   a function to compute relative activity rates by time of day
 
-- time_at_home:
+- time_away:
 
   the fraction of time spent at home
 
