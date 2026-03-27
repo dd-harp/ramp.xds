@@ -35,9 +35,8 @@ xds_compute_terms.full <- function(t, y, xds_obj) {
   xds_obj <- VectorControl1(t, y, xds_obj)
   # set the values of resource variables --
   xds_obj <- Resources(t, y, xds_obj)
-  # travel and visitors
-  xds_obj <- Travel(t, y, xds_obj)
-  xds_obj <- Visitors(t, y, xds_obj)
+  # importation: travel and visitors
+  xds_obj <- Importation(t, y, xds_obj)
   # blood feeding: available blood hosts, TaR, relative biting rates
   xds_obj <- BloodFeeding(t, y, xds_obj)
   # egg laying: available habitat, egg distribution matrix
@@ -74,9 +73,8 @@ xds_compute_terms.human <- function(t, y, xds_obj) {
   xds_obj <- VectorControl1(t, y, xds_obj)
   # set the values of resource variables
   xds_obj <- Resources(t, y, xds_obj)
-  # travel and visitors
-  xds_obj <- Travel(t, y, xds_obj)
-  xds_obj <- Visitors(t, y, xds_obj)
+  # importation: travel and visitors
+  xds_obj <- Importation(t, y, xds_obj)
   # blood feeding: available blood hosts, TaR, relative biting rates
   xds_obj <- BloodFeeding(t, y, xds_obj)
   # Compute mosquito bionomic parameters
@@ -109,9 +107,8 @@ xds_compute_terms.mosy <- function(t, y, xds_obj){
   xds_obj <- VectorControl1(t, y, xds_obj)
   # set the values of resource variables
   xds_obj <- Resources(t, y, xds_obj)
-  # travel and visitors
-  xds_obj <- Travel(t, y, xds_obj)
-  xds_obj <- Visitors(t, y, xds_obj)
+  # importation: travel and visitors
+  xds_obj <- Importation(t, y, xds_obj)
   # blood feeding: available blood hosts, TaR, relative biting rates
   xds_obj <- BloodFeeding(t, y, xds_obj)
   # egg laying: available habitat, egg distribution matrix
@@ -141,9 +138,8 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
   xds_obj <- Forcing(t, xds_obj)
   # set the values of resource variables
   xds_obj <- Resources(t, y, xds_obj)
-  # travel and visitors
-  xds_obj <- Travel(t, y, xds_obj)
-  xds_obj <- Visitors(t, y, xds_obj)
+  # importation: travel and visitors
+  xds_obj <- Importation(t, y, xds_obj)
   # vector control
   xds_obj <- VectorControl1(t, y, xds_obj)
   # Compute mosquito bionomic parameters

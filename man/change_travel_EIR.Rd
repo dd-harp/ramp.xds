@@ -7,7 +7,7 @@
 change_travel_EIR(teir, xds_obj, i)
 }
 \arguments{
-\item{teir}{availability of other blood hosts}
+\item{teir}{the travel entomological inoculation rate}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,5 +17,5 @@ change_travel_EIR(teir, xds_obj, i)
 an \strong{\code{xds}} object
 }
 \description{
-Set a new \emph{static} value for travel EIR
+Set a new \emph{static} value for the travel EIR
 }

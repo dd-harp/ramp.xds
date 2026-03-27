@@ -1,6 +1,7 @@
-# Change the travel EIR
+# Change the time at home
 
-Set a new *static* value for travel EIR
+Set a new *static* value for the fraction of time spent in the spatial
+domain (*i.e.* in the patches)
 
 ## Usage
 
@@ -12,7 +13,7 @@ change_time_at_home(time_at_home, xds_obj, i)
 
 - time_at_home:
 
-  time spent in spatial domain (*i.e.* in the patches)
+  time spent in spatial domain
 
 - xds_obj:
 

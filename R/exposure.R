@@ -96,7 +96,7 @@ Exposure <- function(t, y, xds_obj){
 #' computed from the the travel EIR, \eqn{E_T}:
 #' \deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_T, b,t)}
 #' @inheritParams Exposure
-#' @seealso Related: [Exposure] & [F_foi.pois] & [F_foi.nb] & [Travel]
+#' @seealso Related: [Exposure] & [F_foi.pois] & [F_foi.nb] & [xds_info_travel_malaria] 
 #' @return an **`xds`** object
 #' @export
 #' @keywords internal
@@ -131,7 +131,7 @@ Exposure.xde <- function(t, y, xds_obj){
 #' \deqn{\alpha = 1-((1-\delta) \; F_\alpha(E, b))(1-\delta\; T_\alpha(b))}
 #' @inheritParams Exposure
 #' @return an **`xds`** object
-#' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [Travel]
+#' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [xds_info_travel_malaria]
 #' @export
 #' @keywords internal
 Exposure.dts <- function(t, y, xds_obj){

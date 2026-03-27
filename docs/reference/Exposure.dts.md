@@ -45,4 +45,4 @@ Related:
 [Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md) &
 [F_ar.pois](https://dd-harp.github.io/ramp.xds/reference/F_ar.pois.md) &
 [F_ar.nb](https://dd-harp.github.io/ramp.xds/reference/F_ar.nb.md) &
-[Travel](https://dd-harp.github.io/ramp.xds/reference/Travel.md)
+[xds_info_travel_malaria](https://dd-harp.github.io/ramp.xds/reference/xds_info_travel_malaria.md)

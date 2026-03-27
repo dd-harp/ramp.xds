@@ -10,6 +10,8 @@
 #' + [xds_info_forcing] -- a junction to handle exogenous forcing by weather, *etc.*  
 #' + [xds_info_vector_control] -- a junction to handle vector control  
 #' + [xds_info_health] -- a junction to handle vector control  
+#' + [xds_info_resources] -- a junction to handle resource dynamics 
+#' + [xds_info_importation] -- a junction to handle resource dynamics 
 #' 
 #' @seealso [xds_info_port] 
 #' 

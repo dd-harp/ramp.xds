@@ -392,6 +392,7 @@ reference:
   desc: |
     Functions to model travel & visitors
   contents:
+  - xds_info_importation
   - xds_info_malaria_importation
 - subtitle: Travel 
   desc: |
@@ -401,8 +402,6 @@ reference:
   - xds_port_travel_eir
   - xds_port_time_spent_here
   - change_time_at_home 
-  - setup_F_travel
-  - setup_F_travel_eir
   - change_travel_EIR
 - subtitle: Visitors 
   desc: |
@@ -410,9 +409,7 @@ reference:
   contents:
   - xds_info_visitors
   - xds_port_visitors
-  - xds_port_visitors_kappa
-  - setup_F_vis_kappa 
-  - setup_F_visitors 
+  - xds_port_visitor_kappa
 - title: Mosquito Bionomics
   desc: |
     Methods to compute or update mosquito bionomic parameters

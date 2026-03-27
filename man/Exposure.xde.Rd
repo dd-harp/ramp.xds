@@ -32,6 +32,6 @@ computed from the the travel EIR, \eqn{E_T}:
 \deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_T, b,t)}
 }
 \seealso{
-Related: \link{Exposure} & \link{F_foi.pois} & \link{F_foi.nb} & \link{Travel}
+Related: \link{Exposure} & \link{F_foi.pois} & \link{F_foi.nb} & \link{xds_info_travel_malaria}
 }
 \keyword{internal}
