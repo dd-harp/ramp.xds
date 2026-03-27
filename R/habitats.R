@@ -81,6 +81,9 @@ setup_ML_interface = function(xds_obj, membership){
   interface$Qall=list()
   interface$Qall[[1]] <- Q
 
+  # Static default for oviposition traps port managed by Resources
+  interface$Qtraps = list()
+  interface$Qtraps[[1]] <- rep(0, xds_obj$nPatches)
 
   xds_obj$ML_interface <- interface
 
@@ -136,6 +139,36 @@ view_habitat_matrix = function(xds_obj){
   which(t(xds_obj$ML_interface$habitat_matrix)==1, arr.ind=TRUE) -> membership
   member <- list(habitat_index = as.vector(membership[,1]), patch_membership = as.vector(membership[,2]))
   return(member)
+}
+
+#' @title Change Habitat Search Weights
+#' @description Set the search weights, \eqn{\omega}, for a set of aquatic habitats
+#'
+#' @param wts habitat search weights
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#'
+#' @return an **`xds`** object
+#' @export
+change_habitat_weights = function(wts, xds_obj, s=1){
+  stopifnot(length(wts) == xds_obj$nHabitats)
+  xds_obj$ML_interface$search_weights[[s]] = wts
+  xds_obj$ML_interface = trigger_setup(xds_obj$ML_interface)
+  return(xds_obj)
+}
+
+#' @title Change Bad Habitat Availability
+#' @description Set the availability of bad habitat
+#' @param Qbad availability of bad habitat
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#' @return an **`xds`** object
+#' @export
+change_bad_habitat = function(Qbad, xds_obj, s=1){
+  stopifnot(length(Qbad) == xds_obj$nHabitats)
+  xds_obj$ML_interface$Qbad[[s]] = Qbad
+  xds_obj$ML_interface = trigger_setup(xds_obj$ML_interface)
+  return(xds_obj)
 }
 
 

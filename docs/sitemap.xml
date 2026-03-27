@@ -22,6 +22,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/ModelBuilding.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/MosquitoSpatialEcology.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/RM-dts-Mosquito.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/articles/ScalableComplexity.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Understanding_ramp.xds.html</loc></url>
@@ -231,6 +232,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Other_State_Variables.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Resources.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/Resources.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/SIS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Sugar.html</loc></url>
@@ -341,6 +343,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.none.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_other_blood_hosts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_season.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_season.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_season.html</loc></url>

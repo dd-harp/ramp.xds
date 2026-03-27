@@ -51,6 +51,8 @@
   Component](https://dd-harp.github.io/ramp.xds/articles/MY-interface.md):
 - [Basic Mosquito Infection Dynamics in Discrete
   Time](https://dd-harp.github.io/ramp.xds/articles/RM-dts-Mosquito.md):
+- [Beyond Basic
+  Setup](https://dd-harp.github.io/ramp.xds/articles/ScalableComplexity.md):
 - [Spatial Transmission Dynamics with
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.md):
 - [Trace

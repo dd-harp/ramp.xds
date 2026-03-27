@@ -1,7 +1,9 @@
 # Setup Resources Object
 
-Resources is a junction with ports for several objects that are part of
-the blood feeding or habitat interface.
+Resources is a junction. When set to its default class (`none`), all
+resource parameters (blood hosts, habitat weights, traps, sugar) retain
+their static zero-initialized defaults. Dynamic port machinery is
+provided by satellite packages (e.g., `ramp.forcing`).
 
 ## Usage
 
