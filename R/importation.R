@@ -11,8 +11,11 @@ NULL
 #' @title Setup the Importation Object
 #'
 #' @description Setup an object to handle malaria importation
-#' through travel and visitors. Initializes the junction and
-#' zero-initializes the importation parameters on the `XY_interface`.
+#' through travel and visitors. The parameters describing
+#' available visitors and their infectiousness, and time away 
+#' are initialized during setup of the **XY**-interfracte. 
+#' This initializes the junction and
+#' zero-initializes travel_EIR. 
 #'
 #' @param xds_obj an **`xds`** model object
 #'
@@ -25,17 +28,8 @@ setup_importation_object = function(xds_obj){
   importation$name <- "Junction: Importation"
   xds_obj$importation_obj <- importation
 
-  xds_obj$XY_interface$time_at_home = list()
-  xds_obj$XY_interface$time_at_home[[1]] = rep(1, xds_obj$nStrata)
-
   xds_obj$terms$travel_EIR <- list()
   xds_obj$terms$travel_EIR[[1]] <- rep(0, xds_obj$nStrata)
-
-  xds_obj$XY_interface$visitors = list()
-  xds_obj$XY_interface$visitors[[1]] = rep(0, xds_obj$nPatches)
-
-  xds_obj$XY_interface$vis_kappa = list()
-  xds_obj$XY_interface$vis_kappa[[1]] = rep(0, xds_obj$nPatches)
 
   return(xds_obj)
 }

@@ -174,7 +174,7 @@ setup_XY_interface <- function(xds_obj, residency){
     interface$TimeSpent = list()
     interface$TimeSpent = list()
     interface$TimeSpent[[1]] = residency_matrix[[1]]
-
+    
     # Time at Risk (TaR): For each TiSp,
     # one for each Vector Species, s
     # TaR[[s]][[i]]
@@ -191,12 +191,17 @@ setup_XY_interface <- function(xds_obj, residency){
     interface$W = list()
     interface$W[[1]] = W
 
-
     interface$B = list()
     interface$B[[1]] = W
 
-    interface$rbr = list()
-    interface$rbr[[1]] = wts
+    interface$time_away = list()
+    interface$time_away[[1]] =  rep(0, nStrata) 
+    
+    interface$visitors = list()
+    interface$visitors[[1]] =  rep(0, nPatches) 
+    
+    interface$vis_kappa = list()
+    interface$vis_kappa[[1]] =  rep(0, nPatches) 
 
     # Static defaults for ports managed by Resources
     interface$other_blood_hosts = list()
@@ -348,13 +353,13 @@ compute_RBR = function(t, xds_obj, y){
 #' @param t the time
 #' @param TiSp a time spent matrix
 #' @param F_circadian a function to compute relative activity rates by time of day
-#' @param time_at_home the fraction of time spent at home
+#' @param time_away the fraction of time spent at home
 #' @return a TaR [matrix]
 #' @export
 #' @keywords internal
-F_TaR = function(t, TiSp, F_circadian, time_at_home){
+F_TaR = function(t, TiSp, F_circadian, time_away){
   d = 24*floor(t%%1)
-  TaR = F_circadian(d)*(TiSp %*% diag(time_at_home))
+  TaR = F_circadian(d)*(TiSp %*% diag(1-time_away))
   return(TaR)
 }
 
@@ -369,7 +374,7 @@ compute_TaR <- function(xds_obj, t=0){
   with(xds_obj$XY_interface,{
     for(s in 1:xds_obj$nVectorSpecies)
       for(i in 1:xds_obj$nHostSpecies){
-        TaR = F_TaR(t, TimeSpent[[i]], F_circadian[[s]], time_at_home[[i]])
+        TaR = F_TaR(t, TimeSpent[[i]], F_circadian[[s]], time_away[[i]])
         xds_obj$XY_interface$TaR[[i]][[s]] = TaR
       }
   return(xds_obj)

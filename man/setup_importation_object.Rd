@@ -14,7 +14,10 @@ an \strong{\code{xds}} object
 }
 \description{
 Setup an object to handle malaria importation
-through travel and visitors. Initializes the junction and
-zero-initializes the importation parameters on the \code{XY_interface}.
+through travel and visitors. The parameters describing
+available visitors and their infectiousness, and time away
+are initialized during setup of the \strong{XY}-interfracte.
+This initializes the junction and
+zero-initializes travel_EIR.
 }
 \keyword{internal}

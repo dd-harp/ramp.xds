@@ -434,7 +434,7 @@ xds_obj = make_indices(xds_obj)
 To assign new values for the habitat search weights, we use a function called `set_habitat_wts_static.` After setting the values of the habitat search weights, we need to update habitat availability and the egg distribution matrix. The functions `makeQ` and `make_Umatrix` do this.  
 
 ```{r change_habitat_weights}
-xds_obj <- change_habitat_weights(searchWtsQ, xds_obj)
+xds_obj <- change_habitat_search_weights(searchWtsQ, xds_obj)
 ```
 
 We can check to see

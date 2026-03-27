@@ -41,6 +41,11 @@ Build an xds model object
 
   **`ramp.xds`**: Basic Setup
 
+- [`xds_object`](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)
+  :
+
+  The **`xds`** Model Object
+
 - [`xds_info_setup_options`](https://dd-harp.github.io/ramp.xds/reference/xds_info_setup_options.md)
   :
 
@@ -750,9 +755,9 @@ Time spent traveling & the travel EIR
   : Travel Malaria
 - [`xds_port_travel_eir`](https://dd-harp.github.io/ramp.xds/reference/xds_port_travel_eir.md)
   : Travel EIR
-- [`xds_port_time_spent_here`](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_spent_here.md)
-  : Time Spent Here
-- [`change_time_at_home()`](https://dd-harp.github.io/ramp.xds/reference/change_time_at_home.md)
+- [`xds_port_time_away`](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_away.md)
+  : Time Away
+- [`change_time_away()`](https://dd-harp.github.io/ramp.xds/reference/change_time_away.md)
   : Change the time at home
 - [`change_travel_EIR()`](https://dd-harp.github.io/ramp.xds/reference/change_travel_EIR.md)
   : Change the travel EIR
@@ -763,8 +768,12 @@ Blood Feeding on non-Residents
 
 - [`xds_info_visitors`](https://dd-harp.github.io/ramp.xds/reference/xds_info_visitors.md)
   : Visitors
+- [`change_visitors()`](https://dd-harp.github.io/ramp.xds/reference/change_visitors.md)
+  : Change Availability of Visitors
 - [`xds_port_visitors`](https://dd-harp.github.io/ramp.xds/reference/xds_port_visitors.md)
   : Visitors
+- [`change_visitor_kappa()`](https://dd-harp.github.io/ramp.xds/reference/change_visitor_kappa.md)
+  : Change Visitor's NI
 - [`xds_port_visitor_kappa`](https://dd-harp.github.io/ramp.xds/reference/xds_port_visitor_kappa.md)
   : Visitors Infectiousness
 
@@ -903,7 +912,7 @@ Mosquito Population Dynamical Interface
   : Ovitraps
 - [`view_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/view_habitat_matrix.md)
   : View habitat membership, \\N\\
-- [`change_habitat_weights()`](https://dd-harp.github.io/ramp.xds/reference/change_habitat_weights.md)
+- [`change_habitat_search_weights()`](https://dd-harp.github.io/ramp.xds/reference/change_habitat_search_weights.md)
   : Change Habitat Search Weights
 - [`change_bad_habitat()`](https://dd-harp.github.io/ramp.xds/reference/change_bad_habitat.md)
   : Change Bad Habitat Availability

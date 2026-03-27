@@ -4,7 +4,7 @@
 \alias{F_TaR}
 \title{Compute blood feeding available of all vertebrate hosts}
 \usage{
-F_TaR(t, TiSp, F_circadian, time_at_home)
+F_TaR(t, TiSp, F_circadian, time_away)
 }
 \arguments{
 \item{t}{the time}
@@ -13,7 +13,7 @@ F_TaR(t, TiSp, F_circadian, time_at_home)
 
 \item{F_circadian}{a function to compute relative activity rates by time of day}
 
-\item{time_at_home}{the fraction of time spent at home}
+\item{time_away}{the fraction of time spent at home}
 }
 \value{
 a TaR \link{matrix}

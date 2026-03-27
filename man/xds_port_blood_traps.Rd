@@ -4,8 +4,11 @@
 \alias{xds_port_blood_traps}
 \title{Blood Traps}
 \description{
-The \strong{XY} - interface has a port to handle mosquito traps designed for
-blood feeding mosquitoes. The port sets up a variable for
+The \strong{XY} - interface has a port to handle the availability of traps
+that catch
+blood feeding mosquitoes. The port sets up a variable for the availability
+of mosquito traps, but it is set to zero (no effect). It can not be
+used in \strong{\code{ramp.xds}}, but there are
 }
 \seealso{
 \link{xds_info_available_blood_hosts} | \link{xds_info_mosquito_traps}
