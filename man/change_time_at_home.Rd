@@ -2,12 +2,12 @@
 % Please edit documentation in R/travel.R
 \name{change_time_at_home}
 \alias{change_time_at_home}
-\title{Change the travel EIR}
+\title{Change the time at home}
 \usage{
 change_time_at_home(time_at_home, xds_obj, i)
 }
 \arguments{
-\item{time_at_home}{time spent in spatial domain (\emph{i.e.} in the patches)}
+\item{time_at_home}{time spent in spatial domain}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,5 +17,6 @@ change_time_at_home(time_at_home, xds_obj, i)
 an \strong{\code{xds}} object
 }
 \description{
-Set a new \emph{static} value for travel EIR
+Set a new \emph{static} value for the fraction of time spent
+in the spatial domain (\emph{i.e.} in the patches)
 }

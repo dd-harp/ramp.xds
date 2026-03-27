@@ -42,7 +42,7 @@
 #' - **Egg Laying** calls [make_habitat_matrix()], then [setup_ML_interface()];
 #' resource parameters (`Qtraps`, etc.) are zero-initialized by default
 #' - **Blood Feeding** calls [make_residency_matrix()], then [setup_XY_interface()];
-#' resource parameters (`blood_hosts`, `Btraps`) are zero-initialized by default
+#' resource parameters (`other_blood_hosts`, `Btraps`) are zero-initialized by default
 #' - **Transmission**  calls [setup_transmission()] sets up a static
 #' model for the availability of visitors; by default, there are no visitors
 #'
@@ -110,8 +110,7 @@ make_xds_object_template = function(xds='ode', frame='full',
   xds_obj <- setup_ML_interface(xds_obj, membership)
 
   xds_obj <- setup_XY_interface(xds_obj, residency)
-  xds_obj <- setup_travel_object(xds_obj)
-  xds_obj <- setup_visitor_object(xds_obj)
+  xds_obj <- setup_importation_object(xds_obj)
   xds_obj <- setup_transmission(xds_obj)
   xds_obj <- setup_exposure("pois", xds_obj)
   xds_obj$variables = list()

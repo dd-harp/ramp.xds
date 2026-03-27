@@ -12,6 +12,8 @@ a function that is designed to handle one or more ports.
 \item \link{xds_info_forcing} -- a junction to handle exogenous forcing by weather, \emph{etc.}
 \item \link{xds_info_vector_control} -- a junction to handle vector control
 \item \link{xds_info_health} -- a junction to handle vector control
+\item \link{xds_info_resources} -- a junction to handle resource dynamics
+\item \link{xds_info_importation} -- a junction to handle resource dynamics
 }
 }
 \seealso{

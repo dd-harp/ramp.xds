@@ -1,6 +1,6 @@
 # Change the travel EIR
 
-Set a new *static* value for travel EIR
+Set a new *static* value for the travel EIR
 
 ## Usage
 
@@ -12,7 +12,7 @@ change_travel_EIR(teir, xds_obj, i)
 
 - teir:
 
-  availability of other blood hosts
+  the travel entomological inoculation rate
 
 - xds_obj:
 

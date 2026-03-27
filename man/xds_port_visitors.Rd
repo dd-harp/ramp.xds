@@ -4,8 +4,10 @@
 \alias{xds_port_visitors}
 \title{Visitors}
 \description{
-The availability of visitors is a port.
+There are two parameters built into the transmission interface to handle
+biting on non-resident humans:
+\itemize{
+\item \code{visitors} is the availability of non-resident humans
+\item \code{visitor_kappa} is the net infectiousness of the visitors
 }
-\seealso{
-\link{xds_info_visitors}
 }
