@@ -888,7 +888,7 @@ The ports for resources
   : Sugar Availability
 - [`xds_info_mosquito_traps`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_traps.md)
   : Available Blood
-- [`change_blood_hosts()`](https://dd-harp.github.io/ramp.xds/reference/change_blood_hosts.md)
+- [`change_other_blood_hosts()`](https://dd-harp.github.io/ramp.xds/reference/change_other_blood_hosts.md)
   : Set static blood feeding search weights
 
 ## Habitats & Egg Laying
@@ -912,7 +912,7 @@ Mosquito Population Dynamical Interface
 - [`change_habitat_weights()`](https://dd-harp.github.io/ramp.xds/reference/change_habitat_weights.md)
   : Change Habitat Search Weights
 - [`change_bad_habitat()`](https://dd-harp.github.io/ramp.xds/reference/change_bad_habitat.md)
-  : Change Habitat Search Weights
+  : Change Bad Habitat Availability
 
 ## Functions
 

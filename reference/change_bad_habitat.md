@@ -1,6 +1,6 @@
-# Change Habitat Search Weights
+# Change Bad Habitat Availability
 
-Set the search weights, \\\omega\\, for a set of aquatic habitats
+Set the availability of bad habitat
 
 ## Usage
 

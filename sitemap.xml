@@ -22,6 +22,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/ModelBuilding.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/MosquitoSpatialEcology.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/RM-dts-Mosquito.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/articles/ScalableComplexity.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Understanding_ramp.xds.html</loc></url>
@@ -44,10 +45,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BloodFeeding.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BloodFeeding.setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BloodFeeding.static.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/BloodHosts.dynamic.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/BloodHosts.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/BloodHosts.setup.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/BloodHosts.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/EggLaying.dynamic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/EggLaying.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/EggLaying.setup.html</loc></url>
@@ -175,10 +172,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Forcing.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Forcing.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/GeM.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/HabitatDynamics.dynamic.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/HabitatDynamics.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/HabitatDynamics.setup.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/HabitatDynamics.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Health.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Health.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LBionomics.basicL.html</loc></url>
@@ -214,10 +207,9 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Other_State_Variables.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Resources.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/Resources.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/SIS.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Sugar.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Sugar.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/TimeSpent.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/TimeSpent.setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/TimeSpent.static.html</loc></url>
@@ -225,8 +217,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Transmission.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Transmission.setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Transmission.static.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Traps.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/Traps.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Travel.dynamic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Travel.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Travel.setup.html</loc></url>
@@ -268,7 +258,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/basicM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/blood_feeding_dynamics.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/blood_hosts_dynamics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/burnin.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_H.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.html</loc></url>
@@ -302,13 +291,13 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_bad_habitat.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_blood_hosts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_blood_search_weights.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_habitat_weights.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.none.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_other_blood_hosts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_season.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_season.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_season.html</loc></url>
@@ -502,7 +491,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_variables.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_variables.na.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/hMoI.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/habitat_dynamics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/index.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/last_to_inits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/list_vars.html</loc></url>
@@ -617,12 +605,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.XH.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_bad_habitat.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_bad_habitat.static.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_bad_habitat.ts_func.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_habitat_weights.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_habitat_weights.static.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_habitat_weights.ts_func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_travel.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_travel.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_travel.ts_func.html</loc></url>
@@ -694,9 +676,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_XY_interface.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_host_object.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_hosts.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_hosts.ts_func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_eip_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_exposure.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_exposure.nb.html</loc></url>
@@ -704,7 +683,6 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_feeding_rate.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_feeding_rate_B2.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_forcing_object.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_habitat_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_health_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_human_frac.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_mozy_mort.html</loc></url>
@@ -717,9 +695,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_resources_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_sigma_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_sigma_obj_BQS.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_sugar_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_theta_obj.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_traps_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_travel_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_vector_control_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_visitor_object.html</loc></url>
