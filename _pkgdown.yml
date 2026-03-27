@@ -473,7 +473,7 @@ reference:
   - xds_info_search_weights_habitat
   - xds_info_available_sugar 
   - xds_info_mosquito_traps
-  - change_blood_hosts
+  - change_other_blood_hosts
 - title: Habitats & Egg Laying
   desc: Mosquito Population Dynamical Interface 
   contents:

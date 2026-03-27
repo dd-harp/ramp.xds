@@ -198,6 +198,13 @@ setup_XY_interface <- function(xds_obj, residency){
     interface$rbr = list()
     interface$rbr[[1]] = wts
 
+    # Static defaults for ports managed by Resources
+    interface$other_blood_hosts = list()
+    interface$other_blood_hosts[[1]] = rep(0, nPatches)
+
+    interface$Btraps = list()
+    interface$Btraps[[1]] = rep(0, nPatches)
+
     # Mosquito
     xds_obj$XY_interface <- interface
 
@@ -293,7 +300,7 @@ compute_WB <- function(t, y, xds_obj){
         W = W + Wi
       }
       xds_obj$XY_interface$W[[s]] = W
-      xds_obj$XY_interface$B[[s]] = F_B_available(W, visitors[[s]], blood_hosts[[s]], Btraps[[s]])
+      xds_obj$XY_interface$B[[s]] = F_B_available(W, visitors[[s]], other_blood_hosts[[s]], Btraps[[s]])
     }
     return(xds_obj)
 })}
@@ -456,3 +463,16 @@ view_residency_matrix = function(xds_obj, i=1){
 }
 
 
+#' @title Set static blood feeding search weights
+#' @description Set the blood feeding search weights, \eqn{\omega}, for a set of host strata
+#' @param other_blood_hosts availability of other blood hosts
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#' @return an **`xds`** object
+#' @export
+change_other_blood_hosts = function(other_blood_hosts, xds_obj, s){
+  stopifnot(length(other_blood_hosts) == xds_obj$nPatches)
+  xds_obj$XY_interface$other_blood_hosts[[s]] = other_blood_hosts
+  xds_obj$XY_interface = trigger_setup(xds_obj$XY_interface)
+  return(xds_obj)
+}

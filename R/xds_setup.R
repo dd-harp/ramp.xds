@@ -109,7 +109,7 @@ xds_setup = function(xds = 'ode',
   xds_obj = make_indices(xds_obj)
 
   Qwts       <- with(Loptions, checkIt(searchQ, xds_obj$nHabitats))
-  xds_obj       <- change_habitat_weights(Qwts, xds_obj, 1)
+  xds_obj    <- change_habitat_weights(Qwts, xds_obj, 1)
 
 
   wts        <- with(BFopts, checkIt(searchB, xds_obj$nStrata))

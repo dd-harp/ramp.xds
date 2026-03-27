@@ -109,12 +109,15 @@ Next, the function sets up egg laying, blood feeding, and transmission:
 - **Egg Laying** calls
   [`make_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md),
   then
-  [`setup_ML_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_ML_interface.md)
+  [`setup_ML_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_ML_interface.md);
+  resource parameters (`Qtraps`, etc.) are zero-initialized by default
 
 - **Blood Feeding** calls
   [`make_residency_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_residency_matrix.md),
   then
-  [`setup_XY_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_XY_interface.md)
+  [`setup_XY_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_XY_interface.md);
+  resource parameters (`blood_hosts`, `Btraps`) are zero-initialized by
+  default
 
 - **Transmission** calls
   [`setup_transmission()`](https://dd-harp.github.io/ramp.xds/reference/setup_transmission.md)

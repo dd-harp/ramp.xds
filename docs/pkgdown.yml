@@ -29,12 +29,13 @@ articles:
   MosquitoSpatialEcology: MosquitoSpatialEcology.html
   MY-interface: MY-interface.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
+  ScalableComplexity: ScalableComplexity.html
   SpatialTransmissionDynamics: SpatialTransmissionDynamics.html
   TraceFunctions: TraceFunctions.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   Working: Working.html
   XH-interface: XH-interface.html
-last_built: 2026-03-25T18:15Z
+last_built: 2026-03-27T15:07Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles
