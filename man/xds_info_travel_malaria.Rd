@@ -8,12 +8,12 @@ Travel malaria is defined as exposure to malaria
 acquired outside of the spatial domain represented
 by the patches. The user can configure two ports:
 \itemize{
-\item time spent away / here: see \link{xds_port_time_spent_here}
+\item time spent away / here: see \link{xds_port_time_away}
 \item the travel EIR: see \link{xds_port_travel_eir}
 }
 
 Travel malaria is implemented in the \strong{Exposure}
 }
 \seealso{
-\link{xds_port_travel_eir} | \link{xds_port_time_spent_here} | \link{xds_info_exposure} | \link{xds_info_malaria_importation}
+\link{xds_port_travel_eir} | \link{xds_port_time_away} | \link{xds_info_exposure} | \link{xds_info_malaria_importation}
 }

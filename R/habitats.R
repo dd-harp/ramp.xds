@@ -150,7 +150,7 @@ view_habitat_matrix = function(xds_obj){
 #'
 #' @return an **`xds`** object
 #' @export
-change_habitat_weights = function(wts, xds_obj, s=1){
+change_habitat_search_weights = function(wts, xds_obj, s=1){
   stopifnot(length(wts) == xds_obj$nHabitats)
   xds_obj$ML_interface$search_weights[[s]] = wts
   xds_obj$ML_interface = trigger_setup(xds_obj$ML_interface)

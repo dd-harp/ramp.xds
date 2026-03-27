@@ -97,6 +97,7 @@ reference:
   - xds_setup_human
   - xds_setup_eir
   - xds_info_basic_setup
+  - xds_object 
   - xds_info_setup_options
 - subtitle: Dynamical Modules 
   desc: | 
@@ -400,15 +401,17 @@ reference:
   contents:
   - xds_info_travel_malaria 
   - xds_port_travel_eir
-  - xds_port_time_spent_here
-  - change_time_at_home 
+  - xds_port_time_away
+  - change_time_away 
   - change_travel_EIR
 - subtitle: Visitors 
   desc: |
     Blood Feeding on non-Residents 
   contents:
   - xds_info_visitors
+  - change_visitors
   - xds_port_visitors
+  - change_visitor_kappa
   - xds_port_visitor_kappa
 - title: Mosquito Bionomics
   desc: |
@@ -482,7 +485,7 @@ reference:
   - xds_port_bad_habitats 
   - xds_port_ovitraps 
   - view_habitat_matrix
-  - change_habitat_weights
+  - change_habitat_search_weights
   - change_bad_habitat
 - title: Functions 
   desc: |

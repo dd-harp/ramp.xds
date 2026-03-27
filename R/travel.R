@@ -4,15 +4,15 @@
 #' @description Set a new *static* value for the fraction of time spent
 #' in the spatial domain (*i.e.* in the patches)
 #'
-#' @param time_at_home time spent in spatial domain
+#' @param time_away time spent outside the spatial domain
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
 #' @return an **`xds`** object
 #' @export
-change_time_at_home = function(time_at_home, xds_obj, i){
-  stopifnot(length(time_at_home) == xds_obj$nStrata[[i]])
-  xds_obj$XY_interface$time_at_home[[i]] = time_at_home
+change_time_away = function(time_away, xds_obj, i){
+  stopifnot(length(time_away) == xds_obj$nStrata[[i]])
+  xds_obj$XY_interface$time_away[[i]] = time_away
   xds_obj$XY_interface = trigger_setup(xds_obj$XY_interface)
   return(xds_obj)
 }

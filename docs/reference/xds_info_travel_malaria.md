@@ -5,7 +5,7 @@ spatial domain represented by the patches. The user can configure two
 ports:
 
 - time spent away / here: see
-  [xds_port_time_spent_here](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_spent_here.md)
+  [xds_port_time_away](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_away.md)
 
 - the travel EIR: see
   [xds_port_travel_eir](https://dd-harp.github.io/ramp.xds/reference/xds_port_travel_eir.md)
@@ -16,7 +16,7 @@ Travel malaria is implemented in the **Exposure**
 
 [xds_port_travel_eir](https://dd-harp.github.io/ramp.xds/reference/xds_port_travel_eir.md)
 \|
-[xds_port_time_spent_here](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_spent_here.md)
+[xds_port_time_away](https://dd-harp.github.io/ramp.xds/reference/xds_port_time_away.md)
 \|
 [xds_info_exposure](https://dd-harp.github.io/ramp.xds/reference/xds_info_exposure.md)
 \|
