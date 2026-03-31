@@ -51,15 +51,6 @@
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
-<li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
-    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
-    <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
-  </ul>
-</li>
-<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-xh">
 <li><a class="dropdown-item" href="../articles/XH-interface.html">Human / Host Component (XH)</a></li>
@@ -82,6 +73,15 @@
 <li><a class="dropdown-item" href="../articles/L-interface.html">Aquatic Mosquito Component (L)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
+  </ul>
+</li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
+<li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
+    <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
@@ -171,7 +171,7 @@ patch.</p>
 <span><span class="va">K_matrix</span><span class="op">[</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.3</span><span class="op">)</span></span>
 <span><span class="va">K_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">K_matrix</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_Omega_xde.html">make_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">K_matrix</span><span class="op">)</span></span>
+<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_Omega_xde.html">compute_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">K_matrix</span><span class="op">)</span></span>
 <span><span class="va">Upsilon</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="op">-</span><span class="va">Omega</span> <span class="op">*</span> <span class="va">eip</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">kappa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.075</span>, <span class="fl">0.025</span><span class="op">)</span></span>

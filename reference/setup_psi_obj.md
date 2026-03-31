@@ -1,8 +1,6 @@
-# Setup a Human Fraction Bionomic Object
+# Setup psi object (maturation rate)
 
-Set up an object to compute
-[F_maturation](https://dd-harp.github.io/ramp.xds/reference/F_maturation.md),
-the maximum maturation rate \\psi\\
+Set up an object to compute the maturation rate \\psi\\
 
 ## Usage
 
@@ -14,12 +12,12 @@ setup_psi_obj(psi, L_obj)
 
 - psi:
 
-  the human fraction
+  the maturation rate
 
 - L_obj:
 
-  an **`MY`** model object
+  an **`L`** model object
 
 ## Value
 
-a **`MY`** model object
+a **`L`** model object

@@ -54,7 +54,7 @@ The membership matrix \\N\\ is computed by
 [make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
 
 Total habitat availability, \\\cal Q\\, is computed by
-[F_Q](https://dd-harp.github.io/ramp.xds/reference/F_q.md)
+[F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md)
 
 The availability of ovitraps and bad habitats is setup in
 [setup_ML_interface](https://dd-harp.github.io/ramp.xds/reference/setup_ML_interface.md)

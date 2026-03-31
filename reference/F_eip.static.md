@@ -1,4 +1,4 @@
-# Static model patch emigration
+# Static model for the EIP
 
 Implements
 [F_eip](https://dd-harp.github.io/ramp.xds/reference/F_eip.md) for a

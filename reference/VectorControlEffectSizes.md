@@ -1,8 +1,11 @@
 # Apply vector control effect sizes
 
-This calls MEffectSizes and LEffectSizes for each species. This function
-applies the effect sizes of vector control to the bionomic parameters
-for each vector species.
+This calls
+[MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md)
+and
+[LEffectSizes](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md)
+for each species. This function applies the effect sizes of vector
+control to the bionomic parameters for each vector species.
 
 ## Usage
 

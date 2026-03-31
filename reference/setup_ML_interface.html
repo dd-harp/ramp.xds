@@ -35,13 +35,6 @@
     <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Functions</a></li>
   </ul></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
-    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
-    <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
-  </ul></li>
-<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-xh"><li><a class="dropdown-item" href="../articles/XH-interface.html">Human / Host Component (XH)</a></li>
     <li><a class="dropdown-item" href="../articles/human_sis.html">The SIS Module</a></li>
@@ -59,6 +52,13 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-l"><li><a class="dropdown-item" href="../articles/L-interface.html">Aquatic Mosquito Component (L)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
+  </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
+    <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
@@ -111,7 +111,7 @@ attached to the <code>xds</code> object <code>xds_obj</code> as <code>xds_obj$ML
 The interface includes</p><ul><li><p>a habitat membership matrix, \(N\) made by <a href="make_habitat_matrix.html">make_habitat_matrix</a></p></li>
 <li><p>the habitat search weights</p></li>
 <li><p>a quantity that is motivated by mosquito searching for resources, called
-habitat availability \(Q\), computed by <a href="F_q.html">F_Q</a>;</p></li>
+habitat availability \(Q\), computed by <a href="F_available_habitat.html">F_available_habitat</a>;</p></li>
 <li><p>the availability of ovitraps</p></li>
 <li><p>the availability of unsuitable habitats</p></li>
 <li><p>the availability of anything that attracts egg laying mosquitoes, including ovitraps and unsuitable habitats</p></li>

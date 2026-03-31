@@ -1,6 +1,6 @@
-# Setup a Human Fraction Bionomic Object
+# Setup xi object (maturation delay)
 
-Set up an object to compute the human fraction, \\xi\\
+Set up an object to compute the delayed maturation parameter, \\xi\\
 
 ## Usage
 
@@ -16,8 +16,8 @@ setup_xi_obj(xi, L_obj)
 
 - L_obj:
 
-  an **`MY`** model object
+  an **`L`** model object
 
 ## Value
 
-a **`MY`** model object
+a **`L`** model object

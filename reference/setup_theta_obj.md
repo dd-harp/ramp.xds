@@ -1,6 +1,7 @@
-# Setup a Human Fraction Bionomic Object
+# Setup theta object (density dependent larval mortality)
 
-Set up an object to compute the human fraction, \\theta\\
+Set up an object to compute excess mortality as a function of to mean
+crowding, \\theta\\
 
 ## Usage
 
@@ -16,8 +17,8 @@ setup_theta_obj(theta, L_obj)
 
 - L_obj:
 
-  an **`MY`** model object
+  an **`L`** model object
 
 ## Value
 
-a **`MY`** model object
+a **`L`** model object
