@@ -1,6 +1,6 @@
-# Setup a Human Fraction Bionomic Object
+# Setup phi object (density independent mortality)
 
-Set up an object to compute the human fraction, \\phi\\
+Set up an object to compute the density independent death rate, \\phi\\
 
 ## Usage
 
@@ -16,8 +16,8 @@ setup_phi_obj(phi, L_obj)
 
 - L_obj:
 
-  an **`MY`** model object
+  an **`L`** model object
 
 ## Value
 
-a **`MY`** model object
+a **`L`** model object

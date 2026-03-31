@@ -21,6 +21,6 @@ It should
 set the values of the bionomic parameters to baseline values
 }
 \note{
-This method dispatches on the type of \code{f_obj} attached to the \code{MY_obj}.
+This method dispatches on the type of \code{K_obj} attached to the \code{MY_obj}.
 }
 \keyword{internal}

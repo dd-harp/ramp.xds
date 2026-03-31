@@ -1,6 +1,7 @@
-# Make the mosquito demography matrix
+# Get Upsilon
 
-This method dispatches on the type of `MY_obj`.
+Return \\\Upsilon\\, a matrix describing survival and dispersal through
+the EIP.
 
 ## Usage
 
@@ -16,8 +17,12 @@ get_Upsilon(xds_obj, s = 1)
 
 - s:
 
-  the species index
+  the vector species index
 
 ## Value
 
-the derivatives a [vector](https://rdrr.io/r/base/vector.html)
+the demographic matrix
+
+## See also
+
+[xds_info_mosquito_demography](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_demography.md)

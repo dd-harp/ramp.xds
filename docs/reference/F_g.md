@@ -1,12 +1,12 @@
-# Compute mosguito survival
+# Compute the blood geeding rate, g
 
-This method dispatches on the type of `q_par$g_par`. It should set the
-values of g to (possibly changing) baseline values.
+This method dispatches on the type of `g_obj`. It should set the values
+og the bionomic parameters to baseline values
 
 ## Usage
 
 ``` r
-F_g(t, vars, g_par)
+F_g(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -15,15 +15,15 @@ F_g(t, vars, g_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- g_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector og length
 `nPatches`

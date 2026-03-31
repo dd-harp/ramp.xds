@@ -1,4 +1,4 @@
-# Static model for the blood feeding rate
+# Constant baseline blood feeding rate
 
 Implements [F_f](https://dd-harp.github.io/ramp.xds/reference/F_f.md)
 for a static model
@@ -6,8 +6,8 @@ for a static model
 ## Usage
 
 ``` r
-# S3 method for static
-F_f(t, vars, f_par)
+# S3 method for class 'static'
+F_f(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -16,15 +16,18 @@ F_f(t, vars, f_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- f_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
-`nPatches`
+\\f\\, the baseline blood feeding rate
+
+## Note
+
+This method dispatches on the type of `f_obj` attached to the `MY_obj`.

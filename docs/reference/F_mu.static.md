@@ -1,4 +1,4 @@
-# Static model for mosquito survival
+# Static model for the blood feeding rate
 
 Implements [F_mu](https://dd-harp.github.io/ramp.xds/reference/F_mu.md)
 for a static model
@@ -6,8 +6,8 @@ for a static model
 ## Usage
 
 ``` r
-# S3 method for static
-F_mu(t, vars, mu_par)
+# S3 method for class 'static'
+F_mu(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -16,15 +16,14 @@ F_mu(t, vars, mu_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- mu_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
-`nPatches`
+\\mu\\, the baseline human fraction

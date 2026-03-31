@@ -1,12 +1,12 @@
-# Compute the egg laying rate
+# Compute the Mosquito Patch Emigration Rate
 
-This method dispatches on the type of `q_par`. It should set the values
-of nu to (possibly changing) baseline value(s).
+This method dispatches on the type of `nu_obj`. It should set the values
+the patch emigration rate, \\\nu\\
 
 ## Usage
 
 ``` r
-F_nu(t, vars, nu_par)
+F_nu(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -15,15 +15,15 @@ F_nu(t, vars, nu_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- nu_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector onu length
 `nPatches`

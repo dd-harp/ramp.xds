@@ -1,4 +1,4 @@
-# Setup an EIP Bionomic Object
+# Setup the eEIP object
 
 Set up an object to compute the EIP
 

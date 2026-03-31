@@ -1,6 +1,7 @@
 # Get orbits (**MY**)
 
-Get orbits (**MY**)
+After solving, the orbits are parsed and stored. Get orbits retrieves
+the parsed outputs for the **MY** module
 
 ## Usage
 

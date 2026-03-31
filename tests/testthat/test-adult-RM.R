@@ -24,8 +24,8 @@ test_that("macdonald models reach equilibrium", {
   K_matrix[2, c(1,3)] <- c(0.5, 0.5)
   K_matrix[3, 1:2] <- c(0.7, 0.3)
   K_matrix <- t(K_matrix)
-
-  Omega <- make_Omega_xde(g, sigma, mu, K_matrix)
+  
+  Omega <- compute_Omega_xde(g, sigma, mu, K_matrix)
   Upsilon <- expm::expm(-Omega * eip)
 
   kappa <- c(0.1, 0.075, 0.025)
@@ -45,7 +45,7 @@ test_that("macdonald models reach equilibrium", {
   MYo$Y=Y_eq
   MYo$Z=Z_eq
 
-  params <- xds_setup(MYname= "macdonald", Xname = "trivial", Lname = "trivial", nPatches=nPatches, membership = c(1:nPatches), XHoptions=Xo, MYoptions=MYo, Loptions=Lo, Koptions = K_matrix)
+  params <- xds_setup(MYname= "macdonald", Xname = "trivial", Lname = "trivial", HPop=HPop, residence = c(1:nPatches), nPatches=nPatches, membership = c(1:nPatches), XHoptions=Xo, MYoptions=MYo, Loptions=Lo, Koptions = K_matrix)
 
   params$terms$Lambda[[1]] = Lambda
   params$terms$kappa[[1]] = kappa

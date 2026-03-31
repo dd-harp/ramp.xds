@@ -214,7 +214,7 @@ getS3method("dXHdt", "SIS")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x114d822a8>
+    ## <bytecode: 0x1273e2d68>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -242,7 +242,7 @@ getS3method("dMYdt", "SI")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x114ab5e08>
+    ## <bytecode: 0x113649b30>
     ## <environment: namespace:ramp.xds>
 
 The term \\\Lambda\\ is passed from the trace function
@@ -263,5 +263,5 @@ getS3method("F_emerge", "trivial")
     ##         return(Lambda * F_season(t) * F_trend(t) * F_shock(t))
     ##     })
     ## }
-    ## <bytecode: 0x1073c8ef0>
+    ## <bytecode: 0x107f4a718>
     ## <environment: namespace:ramp.xds>

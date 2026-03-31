@@ -2,19 +2,20 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_xi_obj}
 \alias{setup_xi_obj}
-\title{Setup a Human Fraction Bionomic Object}
+\title{Setup xi object (maturation delay)}
 \usage{
 setup_xi_obj(xi, L_obj)
 }
 \arguments{
 \item{xi}{the human fraction}
 
-\item{L_obj}{an \strong{\code{MY}} model object}
+\item{L_obj}{an \strong{\code{L}} model object}
 }
 \value{
-a \strong{\code{MY}} model object
+a \strong{\code{L}} model object
 }
 \description{
 Set up an object
-to compute the human fraction, \eqn{xi}
+to compute the delayed maturation parameter, \eqn{xi}
 }
+\keyword{internal}

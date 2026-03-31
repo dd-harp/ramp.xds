@@ -10,7 +10,7 @@ computed using several parameters:
 \item{\code{g}}{mortality rate}
 \item{\code{sigma}}{patch emigration}
 \item{\code{mu}}{emigration-related loss}
-\item{\code{K}}{a dispersal matrix (see \link{xds_info_mosquito_dispersal})}
+\item{\code{K}}{a dispersal matrix}
 }
 
 The matrix is computed as:
@@ -24,4 +24,7 @@ survival and dispersal through the EIP is given by:
 \deqn{
  \Upsilon = e^{-\Omega \tau} 
 }
+}
+\seealso{
+\link{xds_info_mosquito_dispersal}
 }

@@ -38,7 +38,8 @@ MosquitoBionomics <- function(t, y, xds_obj){
 }
 
 #' @title Apply vector control effect sizes
-#' @description This calls MEffectSizes and LEffectSizes for each species.
+#' @description This calls [MEffectSizes] and [LEffectSizes]
+#' for each species.
 #' This function applies the effect sizes of vector control to the bionomic
 #' parameters for each vector species.
 #' @param t current simulation time

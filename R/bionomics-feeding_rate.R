@@ -1,6 +1,3 @@
-# Functions to compute adult mosquito bionomic parameters:
-# f, g, q, sigma, mu, nu
-
 #' @title Setup Blood Feeding Rate
 #'
 #' @description Set up an object
@@ -11,8 +8,9 @@
 #'
 #' @return a **`MY`** model object
 #'
+#' @keywords internal
 #' @export
-setup_feeding_rate = function(f, MY_obj){
+setup_f_obj = function(f, MY_obj){
   MY_obj$f = f
   MY_obj$f_t = f
   MY_obj$es_f = 1
@@ -21,6 +19,8 @@ setup_feeding_rate = function(f, MY_obj){
   MY_obj$f_obj$f <- f
   return(MY_obj)
 }
+
+
 
 #' @title Compute the blood feeding rate, f
 #'
@@ -35,21 +35,24 @@ setup_feeding_rate = function(f, MY_obj){
 #'
 #' @return a [numeric] vector of length `nPatches`
 #'
+#' @keywords internal
 #' @export
-F_feeding_rate = function(t, xds_obj, s) {
-  UseMethod("F_feeding_rate", xds_obj$MY_obj[[s]]$f_obj)
+F_f = function(t, xds_obj, s) {
+  UseMethod("F_f", xds_obj$MY_obj[[s]]$f_obj)
 }
 
 #' @title Constant baseline blood feeding rate
 #'
-#' @description Implements [F_feeding_rate] for a static model
+#' @description Implements [F_f] for a static model
 #'
 #' @note This method dispatches on the type of `f_obj` attached to the `MY_obj`.
 #'
-#' @inheritParams F_feeding_rate
+#' @inheritParams F_f
 #'
 #' @return \eqn{f}, the baseline blood feeding rate
+#' @keywords internal
 #' @export
-F_feeding_rate.static = function(t, xds_obj, s){
+F_f.static = function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$f_obj$f)
 }
+

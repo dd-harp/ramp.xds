@@ -41,7 +41,7 @@ includes
 
 - a quantity that is motivated by mosquito searching for resources,
   called habitat availability \\Q\\, computed by
-  [F_Q](https://dd-harp.github.io/ramp.xds/reference/F_Q.md);
+  [F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md);
 
 - the availability of ovitraps
 

@@ -2,19 +2,20 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_phi_obj}
 \alias{setup_phi_obj}
-\title{Setup a Human Fraction Bionomic Object}
+\title{Setup phi object (density independent mortality)}
 \usage{
 setup_phi_obj(phi, L_obj)
 }
 \arguments{
 \item{phi}{the human fraction}
 
-\item{L_obj}{an \strong{\code{MY}} model object}
+\item{L_obj}{an \strong{\code{L}} model object}
 }
 \value{
-a \strong{\code{MY}} model object
+a \strong{\code{L}} model object
 }
 \description{
 Set up an object
-to compute the human fraction, \eqn{phi}
+to compute the density independent death rate, \eqn{phi}
 }
+\keyword{internal}

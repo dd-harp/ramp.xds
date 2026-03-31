@@ -2,19 +2,21 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_theta_obj}
 \alias{setup_theta_obj}
-\title{Setup a Human Fraction Bionomic Object}
+\title{Setup theta object (density dependent larval mortality)}
 \usage{
 setup_theta_obj(theta, L_obj)
 }
 \arguments{
 \item{theta}{the human fraction}
 
-\item{L_obj}{an \strong{\code{MY}} model object}
+\item{L_obj}{an \strong{\code{L}} model object}
 }
 \value{
-a \strong{\code{MY}} model object
+a \strong{\code{L}} model object
 }
 \description{
 Set up an object
-to compute the human fraction, \eqn{theta}
+to compute excess mortality as a function of
+to mean crowding, \eqn{theta}
 }
+\keyword{internal}

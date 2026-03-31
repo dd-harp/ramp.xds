@@ -1,12 +1,12 @@
-# Compute mosquito emigration rates
+# Compute the Mosquito Patch Emigration Rate
 
-This method dispatches on the type of `q_par$sigma_par`. It should set
-the values of sigma to (possibly changing) baseline value(s).
+This method dispatches on the type of `sigma_obj`. It should set the
+values the patch emigration rate, \\\sigma\\
 
 ## Usage
 
 ``` r
-F_sigma(t, vars, sigma_par)
+F_sigma(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -15,15 +15,15 @@ F_sigma(t, vars, sigma_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- sigma_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector osigma length
 `nPatches`

@@ -17,7 +17,8 @@ VectorControlEffectSizes(t, y, xds_obj)
 a \link{list}
 }
 \description{
-This calls MEffectSizes and LEffectSizes for each species.
+This calls \link{MEffectSizes} and \link{LEffectSizes}
+for each species.
 This function applies the effect sizes of vector control to the bionomic
 parameters for each vector species.
 }

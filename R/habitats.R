@@ -26,7 +26,7 @@ check_ML_interface = function(xds_obj){
 #' - a habitat membership matrix, \eqn{N} made by [make_habitat_matrix]
 #' - the habitat search weights
 #' - a quantity that is motivated by mosquito searching for resources, called
-#' habitat availability \eqn{Q}, computed by [F_Q];
+#' habitat availability \eqn{Q}, computed by [F_available_habitat];
 #' - the availability of ovitraps
 #' - the availability of unsuitable habitats
 #' - the availability of anything that attracts egg laying mosquitoes, including ovitraps and unsuitable habitats
@@ -67,7 +67,7 @@ setup_ML_interface = function(xds_obj, membership){
   interface$search_weights = list()
   interface$search_weights[[1]] <- wts
 
-  Q = F_Q(habitat_matrix, wts)
+  Q = F_available_habitat(habitat_matrix, wts)
 
   interface$laying_matrix = list()
   interface$laying_matrix[[1]] <- make_O_matrix(wts, habitat_matrix, Q)

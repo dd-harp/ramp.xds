@@ -17,6 +17,6 @@ Set the value of a variable, \eqn{Q}, that describes the availability of any hab
 or device that would attract mosquitoes and induce them to lay eggs.
 }
 \seealso{
-\link{F_Q}
+\link{F_available_habitat}
 }
 \keyword{internal}

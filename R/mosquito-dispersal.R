@@ -85,6 +85,10 @@ change_K_matrix = function(K_matrix, xds_obj, s=1){
   stopifnot(dim(K_matrix) == rep(xds_obj$nPatches,2))
   stopifnot(colSums(K_matrix) < 1e-7) 
   xds_obj$MY_obj[[s]]$K_matrix <- K_matrix
+  xds_obj$MY_obj[[s]]$Omega_obj <- trigger_setup(xds_obj$MY_obj[[s]]$Omega_obj)
+  xds_obj <- update_Omega_xde(xds_obj, s)
+  xds_obj$MY_obj[[s]]$Upsilon_obj <- trigger_setup(xds_obj$MY_obj[[s]]$Upsilon_obj)
+  xds_obj <- update_Upsilon_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -111,7 +115,7 @@ setup_K_obj = function(nPatches, MY_obj){
 #' @description  It should
 #' set the values of the bionomic parameters to baseline values
 #'
-#' @note This method dispatches on the type of `f_obj` attached to the `MY_obj`.
+#' @note This method dispatches on the type of `K_obj` attached to the `MY_obj`.
 #' @param t current simulation time
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
@@ -126,9 +130,9 @@ F_K_matrix = function(t, xds_obj, s) {
 #'
 #' @description Implements [F_K_matrix] for a static model
 #'
-#' @note This method dispatches on the type of `f_obj` attached to the `MY_obj`.
+#' @note This method dispatches on the type of `K_obj` attached to the `MY_obj`.
 #'
-#' @inheritParams F_feeding_rate
+#' @inheritParams F_f
 #'
 #' @return an **`xds`** object
 #' @keywords internal

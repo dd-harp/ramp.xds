@@ -15,5 +15,7 @@ get_MY_orbits(xds_obj, s = 1)
 the orbits for the \strong{MY} component
 }
 \description{
-Get orbits (\strong{MY})
+After solving, the orbits
+are parsed and stored. Get orbits retrieves
+the parsed outputs for the \strong{MY} module
 }

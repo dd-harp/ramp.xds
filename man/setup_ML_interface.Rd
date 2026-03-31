@@ -29,7 +29,7 @@ The interface includes
 \item a habitat membership matrix, \eqn{N} made by \link{make_habitat_matrix}
 \item the habitat search weights
 \item a quantity that is motivated by mosquito searching for resources, called
-habitat availability \eqn{Q}, computed by \link{F_Q};
+habitat availability \eqn{Q}, computed by \link{F_available_habitat};
 \item the availability of ovitraps
 \item the availability of unsuitable habitats
 \item the availability of anything that attracts egg laying mosquitoes, including ovitraps and unsuitable habitats
