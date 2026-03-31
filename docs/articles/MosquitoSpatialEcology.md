@@ -23,7 +23,7 @@ membership
 
 ``` r
 
-calJ = make_residency_matrix(5, membership)
+N = make_habitat_matrix(5, membership)
 ```
 
 The model for egg-laying is motivated by the notion of mosquito
@@ -46,7 +46,7 @@ searchQ
 
 ``` r
 
-Q <- F_Q(calJ, searchQ)
+Q <- F_available_habitat(N, searchQ)
 ```
 
 ``` r

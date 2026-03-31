@@ -94,12 +94,12 @@ dMYdt.basicM <- function(t, y, xds_obj, s){
 #' @export
 MBionomics.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   # Baseline parameters
-  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$f_t      <- F_f(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$q_t      <- F_q(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$g_t      <- F_g(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$sigma_t  <- F_sigma(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$mu       <- F_mu(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$nu       <- F_nu(t, xds_obj, s)
   xds_obj                     <- F_K_matrix(t, xds_obj, s)
 
   # Reset Effect Sizes
@@ -124,7 +124,7 @@ MEffectSizes.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$sigma <- es_sigma*sigma_t
   xds_obj$MY_obj[[s]]$mu    <- es_mu*mu_t
 
-  xds_obj$MY_obj[[s]]$Omega <- make_Omega(xds_obj, s)
+  xds_obj <- update_Omega_xde(xds_obj, s)
 
   return(xds_obj)
 })}
@@ -191,6 +191,7 @@ setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
   MY_obj <- make_M_obj_basicM(xds_obj$nPatches, options)
   class(MY_obj) <- c("basicM", paste("basicM_", xds_obj$xds, sep=""))
   xds_obj$MY_obj[[s]]= MY_obj
+  xds_obj <- update_Omega_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -217,20 +218,19 @@ make_M_obj_basicM = function(nPatches, options=list(),
 
     MY_obj$nPatches <- nPatches
 
-    MY_obj <- setup_feeding_rate(checkIt(f, nPatches), MY_obj)
-    MY_obj <- setup_human_frac(checkIt(q, nPatches), MY_obj)
-    MY_obj <- setup_mozy_mort(checkIt(g, nPatches), MY_obj)
+    MY_obj <- setup_f_obj(checkIt(f, nPatches), MY_obj)
+    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj)
+    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj)
     MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj)
     MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj)
     MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)
 
     MY_obj <- setup_K_obj(nPatches, MY_obj)
+    MY_obj <- setup_Omega_obj(MY_obj)
 
 
     MY_obj$K_matrix <- diag(nPatches)
 
-    MY_obj$Omega <- diag(g, nPatches)
-    MY_obj$nPatches <- nPatches
     MY_obj$eggsPerBatch <- eggsPerBatch
 
     return(MY_obj)

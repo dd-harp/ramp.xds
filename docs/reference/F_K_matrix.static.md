@@ -31,4 +31,4 @@ an **`xds`** object
 
 ## Note
 
-This method dispatches on the type of `f_obj` attached to the `MY_obj`.
+This method dispatches on the type of `K_obj` attached to the `MY_obj`.

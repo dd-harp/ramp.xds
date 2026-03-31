@@ -2,7 +2,7 @@
 % Please edit documentation in R/eip.R
 \name{F_eip.static}
 \alias{F_eip.static}
-\title{Static model patch emigration}
+\title{Static model for the EIP}
 \usage{
 \method{F_eip}{static}(t, xds_obj, s)
 }

@@ -22,4 +22,4 @@ an **`xds`** object
 
 ## See also
 
-[F_Q](https://dd-harp.github.io/ramp.xds/reference/F_Q.md)
+[F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md)

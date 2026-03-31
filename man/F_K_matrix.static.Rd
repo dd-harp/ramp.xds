@@ -20,6 +20,6 @@ an \strong{\code{xds}} object
 Implements \link{F_K_matrix} for a static model
 }
 \note{
-This method dispatches on the type of \code{f_obj} attached to the \code{MY_obj}.
+This method dispatches on the type of \code{K_obj} attached to the \code{MY_obj}.
 }
 \keyword{internal}

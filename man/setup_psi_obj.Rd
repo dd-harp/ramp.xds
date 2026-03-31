@@ -2,20 +2,21 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_psi_obj}
 \alias{setup_psi_obj}
-\title{Setup a Human Fraction Bionomic Object}
+\title{Setup psi object (maturation rate)}
 \usage{
 setup_psi_obj(psi, L_obj)
 }
 \arguments{
-\item{psi}{the human fraction}
+\item{psi}{the maturation rate}
 
-\item{L_obj}{an \strong{\code{MY}} model object}
+\item{L_obj}{an \strong{\code{L}} model object}
 }
 \value{
-a \strong{\code{MY}} model object
+a \strong{\code{L}} model object
 }
 \description{
 Set up an object
-to compute \link{F_maturation}, the maximum
-maturation rate \eqn{psi}
+to compute the maturation
+rate \eqn{psi}
 }
+\keyword{internal}

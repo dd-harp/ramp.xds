@@ -27,7 +27,7 @@ test_that("forced emergence works with equilibrium", {
   K_matrix[2, c(1,3)] <- c(0.5, 0.5)
   K_matrix[3, 1:2] <- c(0.7, 0.3)
   K_matrix <- t(K_matrix)
-  Omega <- make_Omega_xde(g, sigma, mu, K_matrix)
+  Omega <- compute_Omega_xde(g, sigma, mu, K_matrix)
   Upsilon <- expm(-Omega*eip)
 
   MYo <- list(nPatches=nPatches, f=f, q=q, g=g, sigma=sigma,

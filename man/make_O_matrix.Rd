@@ -44,7 +44,7 @@ To avoid dividing by zero, the zero elements in \eqn{Q} are set to an arbitrary 
 \seealso{
 The membership matrix \eqn{N} is computed by \link{make_habitat_matrix}
 
-Total habitat availability, \eqn{\cal Q}, is computed by \link{F_Q}
+Total habitat availability, \eqn{\cal Q}, is computed by \link{F_available_habitat}
 
 The availability of ovitraps and bad habitats is setup in \link{setup_ML_interface}
 }

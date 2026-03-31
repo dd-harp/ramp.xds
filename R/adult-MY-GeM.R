@@ -241,6 +241,8 @@ setup_MY_obj.GeM = function(MYname, xds_obj, s, options=list()){
   MY_obj <- make_MY_obj_GeM(xds_obj$nPatches, options)
   class(MY_obj) <- 'GeM'
   xds_obj$MY_obj[[s]] = MY_obj
+  xds_obj <- update_Omega_xde(xds_obj, s)
+  xds_obj <- update_Upsilon_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -270,18 +272,15 @@ make_MY_obj_GeM = function(nPatches, options=list(), eip =12,
     MY_obj$nPatches <- nPatches
 
     MY_obj <- setup_eip_obj(checkIt(f, nPatches), MY_obj)
-    MY_obj <- setup_feeding_rate(checkIt(f, nPatches), MY_obj)
-    MY_obj <- setup_human_frac(checkIt(q, nPatches), MY_obj)
-    MY_obj <- setup_mozy_mort(checkIt(g, nPatches), MY_obj)
+    MY_obj <- setup_f_obj(checkIt(f, nPatches), MY_obj)
+    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj)
+    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj)
     MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj)
     MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj)
     MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)
 
     MY_obj <- setup_K_obj(nPatches, MY_obj)
-
-    Omega <- diag(g, nPatches)
-    MY_obj$Omega <- Omega
-    MY_obj$Upsilon <- expm::expm(-Omega*eip)
+    MY_obj <- setup_Omega_obj(MY_obj)
     MY_obj$nPatches <- nPatches
 
     MY_obj$eggs_per_batch <- eggs_per_batch
@@ -412,12 +411,12 @@ change_MY_pars.GeM <- function(xds_obj, s=1, options=list()) {
 MBionomics.GeM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   vars = xds_obj$vars
   # Baseline parameters
-  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$f_t      <- F_f(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$q_t      <- F_q(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$g_t      <- F_g(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$sigma_t  <- F_sigma(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$mu       <- F_mu(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$nu       <- F_nu(t, xds_obj, s)
   xds_obj$MY_obj[[s]]$eip      <- F_eip(t, xds_obj, s)
   xds_obj                      <- F_K_matrix(t, xds_obj, s)
 
@@ -440,42 +439,10 @@ MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$q <- es_q*q_t
   xds_obj$MY_obj[[s]]$g <- es_g*g_t
   xds_obj$MY_obj[[s]]$sigma <- es_sigma*sigma_t
-  xds_obj <- make_Omega(xds_obj, s)
+  xds_obj <- update_Omega_xde(xds_obj, s)
+  xds_obj <- update_Upsilon_xde(xds_obj, s)
   return(xds_obj)
 })}
-
-#' @title Update state variables for `GeM` (**MY**)
-#' @description Implements [Update_MYt] for the GeM model.
-#' @inheritParams Update_MYt
-#' @return a [numeric] vector
-#' @keywords internal
-#' @export
-Update_MYt.GeM <- function(t, y, xds_obj, s) {
-  Lambda = xds_obj$Lambda[[s]]*xds_obj$MYday
-  kappa = xds_obj$kappa[[s]]
-
-  with(get_MY_vars(y, xds_obj, s),{
-    with(MY_obj,{
-
-      eip_day_ix = (t %% max_eip) + 1
-      eip_yday_ix = ((t-1) %% max_eip) + 1
-      Gix = c(t-1:max_eip) %% max_eip + 1
-      Gt <- G[Gix]
-
-      Mt <- Lambda + Omega %*% M
-      Pt <- f*(M-P) + Omega %*% P
-      Ut <- Lambda + Omega %*% (exp(-f*q*kappa)*U)
-      Yt <- Omega %*% (Y %*% diag(1-Gt))
-      Zt <- Omega %*% (Y%*%Gt)  + (Omega %*% Z)
-
-      Yt[,eip_yday_ix]  <- Yt[,eip_yday_ix] + Yt[,eip_day_ix]
-      Yt[,eip_day_ix] <- Omega %*% ((1-exp(-f*q*kappa))*U)
-
-      return(list(M=unname(Mt), P=unname(Pt), U=unname(Ut), Y=unname(as.vector(Yt)), Z=unname(Zt)))
-    })
-  })
-}
-
 
 #' @title Setup initial values for `GeM` (**MY**)
 #' @description Implements [setup_MY_inits] for the GeM model

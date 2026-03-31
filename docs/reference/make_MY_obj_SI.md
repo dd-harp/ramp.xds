@@ -8,7 +8,7 @@ Make parameters for SI ODE adult mosquito model
 make_MY_obj_SI(
   nPatches,
   options = list(),
-  eip = 12,
+  eip = 0,
   g = 1/12,
   sigma = 1/8,
   mu = 0,

@@ -99,7 +99,7 @@ egg_laying_dynamics = function(t, y, xds_obj){
 #' @seealso The availability of ovitraps and bad habitats is setup in [setup_ML_interface]
 #' @export
 #' @keywords internal
-F_Q = function(habitat_matrix, search_weights){
+F_available_habitat = function(habitat_matrix, search_weights){
   Q <- habitat_matrix %*% search_weights
   return(as.vector(Q))
 }
@@ -133,7 +133,7 @@ F_Q = function(habitat_matrix, search_weights){
 #' @seealso The availability of traps and bad habitats is setup in [setup_ML_interface]
 #' @export
 #' @keywords internal
-F_Qall = function(Q, Q_traps, Q_bad){
+F_all_available_water = function(Q, Q_traps, Q_bad){
   Qall <- Q + Q_traps + Q_bad
   return(as.vector(Qall))
 }
@@ -169,7 +169,7 @@ F_Qall = function(Q, Q_traps, Q_bad){
 #' @param Q the availability of egg-laying habitats
 #' @return a `nHabitats` \eqn{\times} `nPatches` [matrix] describing egg distribution, \eqn{O}
 #' @seealso The membership matrix \eqn{N} is computed by [make_habitat_matrix]
-#' @seealso Total habitat availability, \eqn{\cal Q}, is computed by [F_Q]
+#' @seealso Total habitat availability, \eqn{\cal Q}, is computed by [F_available_habitat]
 #' @seealso The availability of ovitraps and bad habitats is setup in [setup_ML_interface]
 #' @export
 #' @keywords internal
@@ -185,14 +185,14 @@ make_O_matrix= function(search_weights, habitat_matrix, Q){
 #' or device that would attract mosquitoes and induce them to lay eggs.
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** object
-#' @seealso [F_Q]
+#' @seealso [F_available_habitat]
 #' @export
 #' @keywords internal
 compute_Qall = function(xds_obj){with(xds_obj$ML_interface,{
   for(s in 1:xds_obj$nVectorSpecies){
-    Q = F_Q(habitat_matrix, search_weights[[s]])
+    Q = F_available_habitat(habitat_matrix, search_weights[[s]])
     xds_obj$ML_interface$Q[[s]] = Q
-    Qall = F_Qall(Q, Qbad[[s]], Qtraps[[s]])
+    Qall = F_all_available_water(Q, Qbad[[s]], Qtraps[[s]])
     xds_obj$ML_interface$Qall[[s]] = Qall
   }
   return(xds_obj)

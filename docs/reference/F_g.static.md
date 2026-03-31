@@ -1,4 +1,4 @@
-# Static model for mosquito survival
+# Static model for the blood feeding rate
 
 Implements [F_g](https://dd-harp.github.io/ramp.xds/reference/F_g.md)
 for a static model
@@ -6,8 +6,8 @@ for a static model
 ## Usage
 
 ``` r
-# S3 method for static
-F_g(t, vars, g_par)
+# S3 method for class 'static'
+F_g(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -16,15 +16,14 @@ F_g(t, vars, g_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- g_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
-`nPatches`
+\\g\\, the baseline human fraction

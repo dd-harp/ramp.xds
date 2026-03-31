@@ -1,12 +1,11 @@
 # Compute the blood feeding rate, f
 
-This method dispatches on the type of `q_par$f_par`. It should set the
-values of the bionomic parameters to baseline values.
+It should set the values of the bionomic parameters to baseline values
 
 ## Usage
 
 ``` r
-F_f(t, vars, f_par)
+F_f(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -15,15 +14,19 @@ F_f(t, vars, f_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- f_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`
+
+## Note
+
+This method dispatches on the type of `f_obj` attached to the `MY_obj`.

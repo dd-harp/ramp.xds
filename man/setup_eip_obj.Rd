@@ -2,7 +2,7 @@
 % Please edit documentation in R/eip.R
 \name{setup_eip_obj}
 \alias{setup_eip_obj}
-\title{Setup an EIP Bionomic Object}
+\title{Setup the eEIP object}
 \usage{
 setup_eip_obj(eip, MY_obj)
 }

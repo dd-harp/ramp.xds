@@ -209,7 +209,7 @@ K_matrix[2:3, 1] <- c(0.2, 0.8)
 K_matrix[c(1,3), 2] <- c(0.5, 0.5)
 K_matrix[1:2, 3] <- c(0.7, 0.3)
 
-Omega <- make_Omega_xde(g, sigma, mu, K_matrix)
+Omega <- compute_Omega_xde(g, sigma, mu, K_matrix)
 Upsilon <- expm::expm(-Omega * eip)
 ```
 

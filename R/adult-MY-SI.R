@@ -241,12 +241,12 @@ F_eggs.SI <- function(t, y, xds_obj, s) {
 #' @export
 MBionomics.SI <- function(t, y, xds_obj, s) {
 
-  xds_obj$MY_obj[[s]]$f_t      <- F_feeding_rate(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$q_t      <- F_human_frac(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$g_t      <- F_mozy_mort(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$sigma_t  <- F_emigrate(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$mu       <- F_dispersal_loss(t, xds_obj, s)
-  xds_obj$MY_obj[[s]]$nu       <- F_batch_rate(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$f_t      <- F_f(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$q_t      <- F_q(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$g_t      <- F_g(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$sigma_t  <- F_sigma(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$mu       <- F_mu(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$nu       <- F_nu(t, xds_obj, s)
   xds_obj$MY_obj[[s]]$eip      <- F_eip(t, xds_obj, s)
   xds_obj                      <- F_K_matrix(t, xds_obj, s)
 
@@ -275,7 +275,8 @@ MEffectSizes.SI <- function(t, y, xds_obj, s) {
     xds_obj$MY_obj[[s]]$q <- es_q*q_t
     xds_obj$MY_obj[[s]]$g <- es_g*g_t
     xds_obj$MY_obj[[s]]$sigma <- es_sigma*sigma_t
-    xds_obj <- setup_Omega(xds_obj, s)
+    xds_obj <- update_Omega_xde(xds_obj, s)
+    xds_obj <- update_Upsilon_xde(xds_obj, s)
     return(xds_obj)
   })}
 
@@ -291,6 +292,8 @@ setup_MY_obj.SI = function(MYname, xds_obj, s, options=list()){
   MY_obj <- make_MY_obj_SI(xds_obj$nPatches, options)
   class(MY_obj) <- c("SI", paste("SI_", xds_obj$xds, sep=""))
   xds_obj$MY_obj[[s]] <- MY_obj
+  xds_obj <- update_Omega_xde(xds_obj, s)
+  xds_obj <- update_Upsilon_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -308,7 +311,7 @@ setup_MY_obj.SI = function(MYname, xds_obj, s, options=list()){
 #' @return a [list]
 #' @keywords internal
 #' @export
-make_MY_obj_SI = function(nPatches, options=list(), eip=12,
+make_MY_obj_SI = function(nPatches, options=list(), eip=0,
                           g=1/12, sigma=1/8, mu=0, f=0.3, q=0.95,
                           nu=1, eggsPerBatch=60){
 
@@ -320,18 +323,16 @@ make_MY_obj_SI = function(nPatches, options=list(), eip=12,
     class(eip_par) <- 'static'
 
     MY_obj <- setup_eip_obj(checkIt(eip, nPatches), MY_obj)
-    MY_obj <- setup_feeding_rate(checkIt(f, nPatches), MY_obj)
-    MY_obj <- setup_human_frac(checkIt(q, nPatches), MY_obj)
-    MY_obj <- setup_mozy_mort(checkIt(g, nPatches), MY_obj)
+    MY_obj <- setup_f_obj(checkIt(f, nPatches), MY_obj)
+    MY_obj <- setup_q_obj(checkIt(q, nPatches), MY_obj)
+    MY_obj <- setup_g_obj(checkIt(g, nPatches), MY_obj)
     MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj)
     MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj)
     MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)
 
     MY_obj$eggsPerBatch <- eggsPerBatch
     MY_obj <- setup_K_obj(nPatches, MY_obj)
-
-    MY_obj$Omega <- diag(MY_obj$g, nPatches)
-    MY_obj$Upsilon <- with(MY_obj, expm::expm(-Omega*eip))
+    MY_obj <- setup_Omega_obj(MY_obj)
 
     return(MY_obj)
   })}

@@ -35,13 +35,6 @@
     <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Functions</a></li>
   </ul></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
-    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
-    <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
-  </ul></li>
-<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-xh"><li><a class="dropdown-item" href="../articles/XH-interface.html">Human / Host Component (XH)</a></li>
     <li><a class="dropdown-item" href="../articles/human_sis.html">The SIS Module</a></li>
@@ -59,6 +52,13 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-l"><li><a class="dropdown-item" href="../articles/L-interface.html">Aquatic Mosquito Component (L)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_trace.html">Emergence (the trivial module)</a></li>
     <li><a class="dropdown-item" href="../articles/aqua_basic.html">basicL</a></li>
+  </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
+    <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
@@ -840,10 +840,52 @@
 
         <dt>
 
+          <code><a href="get_Omega.html">get_Omega()</a></code>
+
+        </dt>
+        <dd>Get Omega</dd>
+
+        <dt>
+
+          <code><a href="get_Upsilon.html">get_Upsilon()</a></code>
+
+        </dt>
+        <dd>Get Upsilon</dd>
+
+        <dt>
+
           <code><a href="get_L_pars.html">get_L_pars()</a></code>
 
         </dt>
         <dd>Get parameters (<strong>L</strong>)</dd>
+
+        <dt>
+
+          <code><a href="get_phi.html">get_phi()</a></code>
+
+        </dt>
+        <dd>Get phi, density independent mortality</dd>
+
+        <dt>
+
+          <code><a href="get_psi.html">get_psi()</a></code>
+
+        </dt>
+        <dd>Get psi, the maturation rate</dd>
+
+        <dt>
+
+          <code><a href="get_xi.html">get_xi()</a></code>
+
+        </dt>
+        <dd>Get xi, delayed maturation</dd>
+
+        <dt>
+
+          <code><a href="get_theta.html">get_theta()</a></code>
+
+        </dt>
+        <dd>Get theta, density dependent mortality</dd>
 
         <dt>
 
@@ -988,6 +1030,11 @@
 
       <dl></dl></div><div class="section level2">
 
+      <h3 id="change-for-xh">Change for XH<a class="anchor" aria-label="anchor" href="#change-for-xh"></a></h3>
+      <div class="section-desc"><p>Change parameters</p></div>
+
+      <dl></dl></div><div class="section level2">
+
 
 
 
@@ -1000,12 +1047,100 @@
 
         <dt>
 
+          <code><a href="change_H.html">change_H()</a></code>
+
+        </dt>
+        <dd>Change human population density</dd>
+
+        <dt>
+
+          <code><a href="change_TimeSpent_matrix.html">change_TimeSpent_matrix()</a></code>
+
+        </dt>
+        <dd>Set up (or change) a Time Spent matrix</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="change-for-my">Change for MY<a class="anchor" aria-label="anchor" href="#change-for-my"></a></h3>
+      <div class="section-desc"><p>Change parameters</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
           <code><a href="change_MY_pars.html">change_MY_pars()</a></code>
 
         </dt>
         <dd>Change parameters (<strong>MY</strong>)</dd>
 
         <dt>
+
+          <code><a href="change_K_matrix.html">change_K_matrix()</a></code>
+
+        </dt>
+        <dd>Change Mosquito Dispersal Matrix</dd>
+
+        <dt>
+
+          <code><a href="change_f.html">change_f()</a></code>
+
+        </dt>
+        <dd>Change the blood feeding rate</dd>
+
+        <dt>
+
+          <code><a href="change_g.html">change_g()</a></code>
+
+        </dt>
+        <dd>Change the mosquito mortality rate</dd>
+
+        <dt>
+
+          <code><a href="change_q.html">change_q()</a></code>
+
+        </dt>
+        <dd>Change the human fraction</dd>
+
+        <dt>
+
+          <code><a href="change_sigma.html">change_sigma()</a></code>
+
+        </dt>
+        <dd>Change the mosquito patch emigration rate</dd>
+
+        <dt>
+
+          <code><a href="change_mu.html">change_mu()</a></code>
+
+        </dt>
+        <dd>Change the emigration loss fraction</dd>
+
+        <dt>
+
+          <code><a href="change_nu.html">change_nu()</a></code>
+
+        </dt>
+        <dd>Change the egg laying rate</dd>
+
+        <dt>
+
+          <code><a href="change_eip.html">change_eip()</a></code>
+
+        </dt>
+        <dd>Change the EIP</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="change-for-l">Change for L<a class="anchor" aria-label="anchor" href="#change-for-l"></a></h3>
+      <div class="section-desc"><p>Change parameters</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
 
           <code><a href="change_L_pars.html">change_L_pars()</a></code>
 
@@ -1014,12 +1149,42 @@
 
         <dt>
 
-          <code><a href="change_H.html">change_H()</a></code>
+          <code><a href="change_phi.html">change_phi()</a></code>
 
         </dt>
-        <dd>Change human population density</dd>
+        <dd>Change phi</dd>
 
         <dt>
+
+          <code><a href="change_psi.html">change_psi()</a></code>
+
+        </dt>
+        <dd>Change psi</dd>
+
+        <dt>
+
+          <code><a href="change_xi.html">change_xi()</a></code>
+
+        </dt>
+        <dd>Change xi, the maturation delay parameter</dd>
+
+        <dt>
+
+          <code><a href="change_theta.html">change_theta()</a></code>
+
+        </dt>
+        <dd>Change theta, density dependent mortality</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="change-for-trivial-forcing">Change for trivial forcing<a class="anchor" aria-label="anchor" href="#change-for-trivial-forcing"></a></h3>
+      <div class="section-desc"><p>Change parameters</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
 
           <code><a href="change_mean_forcing.html">change_mean_forcing()</a></code>
 
@@ -1042,17 +1207,10 @@
 
         <dt>
 
-          <code><a href="change_TimeSpent_matrix.html">change_TimeSpent_matrix()</a></code>
+          <code><a href="change_shock.html">change_shock()</a></code>
 
         </dt>
-        <dd>Set up (or change) a Time Spent matrix</dd>
-
-        <dt>
-
-          <code><a href="change_K_matrix.html">change_K_matrix()</a></code>
-
-        </dt>
-        <dd>Change Mosquito Dispersal Matrix</dd>
+        <dd>Change shock parameters</dd>
       </dl></div><div class="section level2">
       <h2 id="save-read">Save &amp; Read<a class="anchor" aria-label="anchor" href="#save-read"></a></h2>
 
@@ -1820,141 +1978,6 @@
 
         </dt>
         <dd>Mosquito Demography</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="dynamical-parameters">Dynamical Parameters<a class="anchor" aria-label="anchor" href="#dynamical-parameters"></a></h3>
-      <div class="section-desc"><p>Compute bionomic parameters as functional responses to resource availability</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="setup_feeding_rate.html">setup_feeding_rate()</a></code>
-
-        </dt>
-        <dd>Setup Blood Feeding Rate</dd>
-
-        <dt>
-
-          <code><a href="F_feeding_rate.html">F_feeding_rate()</a></code>
-
-        </dt>
-        <dd>Compute the blood feeding rate, f</dd>
-
-        <dt>
-
-          <code><a href="F_feeding_rate.static.html">F_feeding_rate(<i>&lt;static&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Constant baseline blood feeding rate</dd>
-
-        <dt>
-
-          <code><a href="setup_feeding_rate_B2.html">setup_feeding_rate_B2()</a></code>
-
-        </dt>
-        <dd>Setup Blood Feeding Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="F_feeding_rate.B2.html">F_feeding_rate(<i>&lt;B2&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Type 2 functional response for the blood feeding rate</dd>
-
-        <dt>
-
-          <code><a href="setup_human_frac.html">setup_human_frac()</a></code>
-
-        </dt>
-        <dd>Setup a Human Fraction Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="F_human_frac.html">F_human_frac()</a></code>
-
-        </dt>
-        <dd>Compute the blood qeeding rate, q</dd>
-
-        <dt>
-
-          <code><a href="F_human_frac.static.html">F_human_frac(<i>&lt;static&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Static model for the blood feeding rate</dd>
-
-        <dt>
-
-          <code><a href="setup_mozy_mort.html">setup_mozy_mort()</a></code>
-
-        </dt>
-        <dd>Setup a Mosquito Mortality Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="setup_sigma_obj.html">setup_sigma_obj()</a></code>
-
-        </dt>
-        <dd>Setup a Patch Emigration Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="setup_sigma_obj_BQS.html">setup_sigma_obj_BQS()</a></code>
-
-        </dt>
-        <dd>Setup Blood Feeding Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="setup_mu_obj.html">setup_mu_obj()</a></code>
-
-        </dt>
-        <dd>Setup a Dispersal Loss Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="setup_nu_obj.html">setup_nu_obj()</a></code>
-
-        </dt>
-        <dd>Setup Laying Rate Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="setup_nu_obj_Q2.html">setup_nu_obj_Q2()</a></code>
-
-        </dt>
-        <dd>Setup Blood Feeding Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="setup_psi_obj.html">setup_psi_obj()</a></code>
-
-        </dt>
-        <dd>Setup a Human Fraction Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="setup_phi_obj.html">setup_phi_obj()</a></code>
-
-        </dt>
-        <dd>Setup a Human Fraction Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="setup_xi_obj.html">setup_xi_obj()</a></code>
-
-        </dt>
-        <dd>Setup a Human Fraction Bionomic Object</dd>
-
-        <dt>
-
-          <code><a href="setup_theta_obj.html">setup_theta_obj()</a></code>
-
-        </dt>
-        <dd>Setup a Human Fraction Bionomic Object</dd>
       </dl></div><div class="section level2">
 
       <h3 id="mosquito-dispersal">Mosquito Dispersal<a class="anchor" aria-label="anchor" href="#mosquito-dispersal"></a></h3>

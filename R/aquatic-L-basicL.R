@@ -179,10 +179,10 @@ F_emerge.basicL <- function(t, y, xds_obj, s) {
 LBionomics.basicL <- function(t, y, xds_obj, s) {
 
   with(xds_obj$L_obj[[s]],{
-    xds_obj$L_obj[[s]]$psi_t      <- F_maturation(t, xds_obj, s)
-    xds_obj$L_obj[[s]]$phi_t      <- F_larval_mort(t, xds_obj, s)
-    xds_obj$L_obj[[s]]$xi_t       <- F_dlay_maturation(t, xds_obj, s)
-    xds_obj$L_obj[[s]]$theta_t    <- F_larval_dd_mort(t, xds_obj, s)
+    xds_obj$L_obj[[s]]$psi_t      <- F_psi(t, xds_obj, s)
+    xds_obj$L_obj[[s]]$phi_t      <- F_phi(t, xds_obj, s)
+    xds_obj$L_obj[[s]]$xi_t       <- F_xi(t, xds_obj, s)
+    xds_obj$L_obj[[s]]$theta_t    <- F_theta(t, xds_obj, s)
 
     xds_obj$L_obj[[s]]$es_psi   <- rep(1, nHabitats)
     xds_obj$L_obj[[s]]$es_phi   <- rep(1, nHabitats)

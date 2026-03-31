@@ -1,4 +1,4 @@
-# Static model for mosquito emigration
+# Static model patch emigration
 
 Implements
 [F_sigma](https://dd-harp.github.io/ramp.xds/reference/F_sigma.md) for a
@@ -7,8 +7,8 @@ static model
 ## Usage
 
 ``` r
-# S3 method for static
-F_sigma(t, vars, sigma_par)
+# S3 method for class 'static'
+F_sigma(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -17,15 +17,14 @@ F_sigma(t, vars, sigma_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- sigma_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
-`nPatches`
+\\sigma\\, the patch emigration rate

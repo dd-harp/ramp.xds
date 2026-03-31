@@ -1,11 +1,12 @@
-# Compute the emigration loss
+# Compute the emigration loss fraction
 
-Compute the fraction lost to emigration
+This method dispatches on the type of `mu_obj`. It should set the values
+omu the bionomic parameters to baseline values
 
 ## Usage
 
 ``` r
-F_mu(t, vars, mu_par)
+F_mu(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -14,15 +15,15 @@ F_mu(t, vars, mu_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- mu_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector omu length
 `nPatches`

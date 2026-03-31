@@ -1,42 +1,29 @@
-# Compute Habitat Availability
+# Compute the blood qeeding rate, q
 
-Compute the availability of aquatic habitats.
+This method dispatches on the type of `q_obj`. It should set the values
+oq the bionomic parameters to baseline values
 
 ## Usage
 
 ``` r
-F_Q(habitat_matrix, search_weights)
+F_q(t, xds_obj, s)
 ```
 
 ## Arguments
 
-- habitat_matrix:
+- t:
 
-  the membership matrix, \\N\\
+  current simulation time
 
-- search_weights:
+- xds_obj:
 
-  the habitat search weights, \\\omega_q\\
+  an **`xds`** model object
+
+- s:
+
+  vector species index
 
 ## Value
 
-a [vector](https://rdrr.io/r/base/vector.html) of describing habitat
-availability, \\Q\\, of length `nPatches`
-
-## Details
-
-The availability of the habitats that we have defined in the model,
-denoted \\Q\\, sums search weights, \\\omega_q\\, by patch using the
-habitat membership matrix, \\N\\, and we can compute \$\$Q = {N} \cdot
-\omega_q.\$\$
-
-## See also
-
-This function is called by
-[compute_Qall](https://dd-harp.github.io/ramp.xds/reference/compute_Qall.md)
-
-[make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
-discusses \\N\\
-
-The availability of ovitraps and bad habitats is setup in
-[setup_ML_interface](https://dd-harp.github.io/ramp.xds/reference/setup_ML_interface.md)
+a [numeric](https://rdrr.io/r/base/numeric.html) vector oq length
+`nPatches`

@@ -598,10 +598,28 @@ Get model parameters
 - [`get_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.md)
   : Get the Mosquito Dispersal Matrix
 
+- [`get_Omega()`](https://dd-harp.github.io/ramp.xds/reference/get_Omega.md)
+  : Get Omega
+
+- [`get_Upsilon()`](https://dd-harp.github.io/ramp.xds/reference/get_Upsilon.md)
+  : Get Upsilon
+
 - [`get_L_pars()`](https://dd-harp.github.io/ramp.xds/reference/get_L_pars.md)
   :
 
   Get parameters (**L**)
+
+- [`get_phi()`](https://dd-harp.github.io/ramp.xds/reference/get_phi.md)
+  : Get phi, density independent mortality
+
+- [`get_psi()`](https://dd-harp.github.io/ramp.xds/reference/get_psi.md)
+  : Get psi, the maturation rate
+
+- [`get_xi()`](https://dd-harp.github.io/ramp.xds/reference/get_xi.md) :
+  Get xi, delayed maturation
+
+- [`get_theta()`](https://dd-harp.github.io/ramp.xds/reference/get_theta.md)
+  : Get theta, density dependent mortality
 
 - [`get_V_pars()`](https://dd-harp.github.io/ramp.xds/reference/get_V_pars.md)
   : Return the parameters as a list
@@ -680,38 +698,87 @@ Get the parameters from trace functions
 
 Change parameters
 
+### Change for XH
+
+Change parameters
+
 - [`change_XH_pars()`](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.md)
   :
 
   Change parameters (**XH**)
+
+- [`change_H()`](https://dd-harp.github.io/ramp.xds/reference/change_H.md)
+  : Change human population density
+
+- [`change_TimeSpent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_TimeSpent_matrix.md)
+  : Set up (or change) a Time Spent matrix
+
+### Change for MY
+
+Change parameters
 
 - [`change_MY_pars()`](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.md)
   :
 
   Change parameters (**MY**)
 
+- [`change_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.md)
+  : Change Mosquito Dispersal Matrix
+
+- [`change_f()`](https://dd-harp.github.io/ramp.xds/reference/change_f.md)
+  : Change the blood feeding rate
+
+- [`change_g()`](https://dd-harp.github.io/ramp.xds/reference/change_g.md)
+  : Change the mosquito mortality rate
+
+- [`change_q()`](https://dd-harp.github.io/ramp.xds/reference/change_q.md)
+  : Change the human fraction
+
+- [`change_sigma()`](https://dd-harp.github.io/ramp.xds/reference/change_sigma.md)
+  : Change the mosquito patch emigration rate
+
+- [`change_mu()`](https://dd-harp.github.io/ramp.xds/reference/change_mu.md)
+  : Change the emigration loss fraction
+
+- [`change_nu()`](https://dd-harp.github.io/ramp.xds/reference/change_nu.md)
+  : Change the egg laying rate
+
+- [`change_eip()`](https://dd-harp.github.io/ramp.xds/reference/change_eip.md)
+  : Change the EIP
+
+### Change for L
+
+Change parameters
+
 - [`change_L_pars()`](https://dd-harp.github.io/ramp.xds/reference/change_L_pars.md)
   :
 
   Change parameters (**L**)
 
-- [`change_H()`](https://dd-harp.github.io/ramp.xds/reference/change_H.md)
-  : Change human population density
+- [`change_phi()`](https://dd-harp.github.io/ramp.xds/reference/change_phi.md)
+  : Change phi
+
+- [`change_psi()`](https://dd-harp.github.io/ramp.xds/reference/change_psi.md)
+  : Change psi
+
+- [`change_xi()`](https://dd-harp.github.io/ramp.xds/reference/change_xi.md)
+  : Change xi, the maturation delay parameter
+
+- [`change_theta()`](https://dd-harp.github.io/ramp.xds/reference/change_theta.md)
+  : Change theta, density dependent mortality
+
+### Change for trivial forcing
+
+Change parameters
 
 - [`change_mean_forcing()`](https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.md)
   : Change mean forcing
-
 - [`change_season()`](https://dd-harp.github.io/ramp.xds/reference/change_season.md)
   : Change season parameters
-
 - [`change_trend()`](https://dd-harp.github.io/ramp.xds/reference/change_trend.md)
   : Set the interpolating points
-
-- [`change_TimeSpent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_TimeSpent_matrix.md)
-  : Set up (or change) a Time Spent matrix
-
-- [`change_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.md)
-  : Change Mosquito Dispersal Matrix
+- [`change_shock()`](https://dd-harp.github.io/ramp.xds/reference/change_shock.md)
+  : Change shock parameters
 
 ## Save & Read
 
@@ -1039,48 +1106,6 @@ Methods to compute or update mosquito bionomic parameters
   : Mosquito Dispersal
 - [`xds_info_mosquito_demography`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_demography.md)
   : Mosquito Demography
-
-### Dynamical Parameters
-
-Compute bionomic parameters as functional responses to resource
-availability
-
-- [`setup_feeding_rate()`](https://dd-harp.github.io/ramp.xds/reference/setup_feeding_rate.md)
-  : Setup Blood Feeding Rate
-- [`F_feeding_rate()`](https://dd-harp.github.io/ramp.xds/reference/F_feeding_rate.md)
-  : Compute the blood feeding rate, f
-- [`F_feeding_rate(`*`<static>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_feeding_rate.static.md)
-  : Constant baseline blood feeding rate
-- [`setup_feeding_rate_B2()`](https://dd-harp.github.io/ramp.xds/reference/setup_feeding_rate_B2.md)
-  : Setup Blood Feeding Bionomic Object
-- [`F_feeding_rate(`*`<B2>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_feeding_rate.B2.md)
-  : Type 2 functional response for the blood feeding rate
-- [`setup_human_frac()`](https://dd-harp.github.io/ramp.xds/reference/setup_human_frac.md)
-  : Setup a Human Fraction Bionomic Object
-- [`F_human_frac()`](https://dd-harp.github.io/ramp.xds/reference/F_human_frac.md)
-  : Compute the blood qeeding rate, q
-- [`F_human_frac(`*`<static>`*`)`](https://dd-harp.github.io/ramp.xds/reference/F_human_frac.static.md)
-  : Static model for the blood feeding rate
-- [`setup_mozy_mort()`](https://dd-harp.github.io/ramp.xds/reference/setup_mozy_mort.md)
-  : Setup a Mosquito Mortality Bionomic Object
-- [`setup_sigma_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_sigma_obj.md)
-  : Setup a Patch Emigration Bionomic Object
-- [`setup_sigma_obj_BQS()`](https://dd-harp.github.io/ramp.xds/reference/setup_sigma_obj_BQS.md)
-  : Setup Blood Feeding Bionomic Object
-- [`setup_mu_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_mu_obj.md)
-  : Setup a Dispersal Loss Bionomic Object
-- [`setup_nu_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_nu_obj.md)
-  : Setup Laying Rate Bionomic Object
-- [`setup_nu_obj_Q2()`](https://dd-harp.github.io/ramp.xds/reference/setup_nu_obj_Q2.md)
-  : Setup Blood Feeding Bionomic Object
-- [`setup_psi_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_psi_obj.md)
-  : Setup a Human Fraction Bionomic Object
-- [`setup_phi_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_phi_obj.md)
-  : Setup a Human Fraction Bionomic Object
-- [`setup_xi_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_xi_obj.md)
-  : Setup a Human Fraction Bionomic Object
-- [`setup_theta_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_theta_obj.md)
-  : Setup a Human Fraction Bionomic Object
 
 ### Mosquito Dispersal
 

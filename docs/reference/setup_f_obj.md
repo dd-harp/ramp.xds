@@ -1,4 +1,4 @@
-# Setup Blood Feeding Bionomic Object
+# Setup Blood Feeding Rate
 
 Set up an object to compute dynamic blood feeding rates
 

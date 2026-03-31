@@ -1,4 +1,4 @@
-# Static model for the egg laying rate
+# Static model patch emigration
 
 Implements [F_nu](https://dd-harp.github.io/ramp.xds/reference/F_nu.md)
 for a static model
@@ -6,8 +6,8 @@ for a static model
 ## Usage
 
 ``` r
-# S3 method for static
-F_nu(t, vars, nu_par)
+# S3 method for class 'static'
+F_nu(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -16,15 +16,14 @@ F_nu(t, vars, nu_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- nu_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
-`nPatches`
+\\nu\\, the patch emigration rate

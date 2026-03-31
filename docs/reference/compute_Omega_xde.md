@@ -6,7 +6,7 @@ time
 ## Usage
 
 ``` r
-compute_Omega_xde(g, sigma, mu, calK)
+compute_Omega_xde(g, sigma, mu, K_matrix)
 ```
 
 ## Arguments
@@ -23,7 +23,7 @@ compute_Omega_xde(g, sigma, mu, calK)
 
   emigration loss, a vector of length `nPatches`
 
-- calK:
+- K_matrix:
 
   a [matrix](https://rdrr.io/r/base/matrix.html) of dimensions
   `nPatches` by `nPatches`

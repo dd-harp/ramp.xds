@@ -87,9 +87,8 @@ skill_set_MY.macdonald = function(MYname){
 #' @keywords internal
 #' @export
 check_MY.macdonald = function(xds_obj, s){
-  Omega <- with(xds_obj$MY_obj[[s]], make_Omega_xde(g, sigma, mu, K_matrix))
-  xds_obj$MY_obj[[s]]$Omega <- Omega
-  xds_obj$MY_obj[[s]]$Upsilon <- expm::expm(-Omega*xds_obj$MY_obj[[s]]$eip)
+  xds_obj <- update_Omega_xde(xds_obj, s)
+  xds_obj <- update_Upsilon_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -215,8 +214,11 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
 setup_MY_obj.macdonald = function(MYname, xds_obj, s, options=list()){
   xds_obj = ode_to_dde(xds_obj)
   MY_obj <- make_MY_obj_macdonald(xds_obj$nPatches, options)
+  MY_obj <- setup_Omega_obj(MY_obj)
   class(MY_obj) <- 'macdonald'
   xds_obj$MY_obj[[s]] = MY_obj
+  xds_obj <- update_Omega_xde(xds_obj, s)
+  xds_obj <- update_Upsilon_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -253,10 +255,7 @@ make_MY_obj_macdonald = function(nPatches, options=list(), eip=12,
 
     MY_obj$eggsPerBatch <- eggsPerBatch
     MY_obj$K_matrix <- diag(nPatches)
-
-    Omega <- diag(g, nPatches)
-    MY_obj$Omega <- Omega
-    MY_obj$Upsilon <- expm::expm(-Omega*eip)
+    MY_obj <- setup_Omega_obj(MY_obj)
 
     MY_obj$baseline <- 'macdonald'
     class(MY_obj$baseline) <- 'macdonald'

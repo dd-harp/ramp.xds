@@ -1,4 +1,4 @@
-# Static model for human blood fraction
+# Static model for the blood feeding rate
 
 Implements [F_q](https://dd-harp.github.io/ramp.xds/reference/F_q.md)
 for a static model
@@ -6,8 +6,8 @@ for a static model
 ## Usage
 
 ``` r
-# S3 method for static
-F_q(t, vars, q_par)
+# S3 method for class 'static'
+F_q(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -16,15 +16,14 @@ F_q(t, vars, q_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- q_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
-`nPatches`
+\\q\\, the baseline human fraction

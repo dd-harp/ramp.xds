@@ -1,6 +1,6 @@
 # generic methods to compute the extrinsic incubation period (EIP)
 
-#' @title Setup an EIP Bionomic Object
+#' @title Setup the eEIP object 
 #'
 #' @description Set up an object
 #' to compute the EIP
@@ -38,7 +38,7 @@ F_eip <- function(t, xds_obj, s){
   UseMethod("F_eip", xds_obj$MY_obj[[s]]$eip_obj)
 }
 
-#' @title Static model patch emigration
+#' @title Static model for the EIP 
 #'
 #' @description Implements [F_eip] for a static model
 #'

@@ -26,16 +26,6 @@ navbar:
       href: articles/DTS.html
     - text: Functions 
       href: articles/TraceFunctions.html
-  - text: Interfaces 
-    menu:
-    - text: Habitats & Mosquito Ecology 
-      href: articles/EggLaying.html
-    - text: Blood Feeding & Transmission 
-      href: articles/BloodFeeding.html
-    - text: Exposure
-      href: articles/Exposure.html
-    - text: Bionomics 
-      href: articles/MosquitoBionomics.html
   - text: XH 
     menu:
     - text: Human / Host Component (XH) 
@@ -62,6 +52,16 @@ navbar:
       href: articles/aqua_trace.html
     - text: basicL
       href: articles/aqua_basic.html
+  - text: Interfaces 
+    menu:
+    - text: Habitats & Mosquito Ecology 
+      href: articles/EggLaying.html
+    - text: Blood Feeding & Transmission 
+      href: articles/BloodFeeding.html
+    - text: Exposure
+      href: articles/Exposure.html
+    - text: Bionomics 
+      href: articles/MosquitoBionomics.html
   - text: Glossary
     href: articles/Glossary.html
   - text: Reference
@@ -232,7 +232,13 @@ reference:
   - get_q 
   - get_sigma 
   - get_K_matrix 
+  - get_Omega
+  - get_Upsilon
   - get_L_pars 
+  - get_phi
+  - get_psi
+  - get_xi
+  - get_theta
   - get_V_pars 
 - subtitle: Get Variables 
   desc: |
@@ -258,19 +264,46 @@ reference:
   - get_shock
   - get_spline
   - get_spline_s
-- title: Change 
+- title: Change
   desc: |
-    Change parameters 
+    Change parameters
+- subtitle: Change for XH
+  desc: |
+    Change parameters
   contents:
   - change_XH_pars
-  - change_MY_pars
-  - change_L_pars
   - change_H
+  - change_TimeSpent_matrix
+- subtitle: Change for MY 
+  desc: |
+    Change parameters
+  contents:
+  - change_MY_pars
+  - change_K_matrix
+  - change_f
+  - change_g
+  - change_q
+  - change_sigma
+  - change_mu
+  - change_nu
+  - change_eip
+- subtitle: Change for L 
+  desc: |
+    Change parameters
+  contents:
+  - change_L_pars
+  - change_phi
+  - change_psi
+  - change_xi
+  - change_theta
+- subtitle: Change for trivial forcing 
+  desc: |
+    Change parameters
+  contents:
   - change_mean_forcing
   - change_season
   - change_trend
-  - change_TimeSpent_matrix
-  - change_K_matrix
+  - change_shock
 - title: Save & Read 
   desc: | 
     Build and store **`xds`** model objects
@@ -421,28 +454,6 @@ reference:
   - xds_info_blood_feeding 
   - xds_info_mosquito_dispersal
   - xds_info_mosquito_demography 
-- subtitle: Dynamical Parameters 
-  desc: |
-    Compute bionomic parameters as functional responses to resource availability
-  contents:
-  - setup_feeding_rate
-  - F_feeding_rate
-  - F_feeding_rate.static
-  - setup_feeding_rate_B2
-  - F_feeding_rate.B2
-  - setup_human_frac
-  - F_human_frac 
-  - F_human_frac.static
-  - setup_mozy_mort
-  - setup_sigma_obj
-  - setup_sigma_obj_BQS
-  - setup_mu_obj
-  - setup_nu_obj
-  - setup_nu_obj_Q2
-  - setup_psi_obj
-  - setup_phi_obj
-  - setup_xi_obj
-  - setup_theta_obj
 - subtitle: Mosquito Dispersal
   desc: |
     Specialized methods to set up mosquito dispersal matrices

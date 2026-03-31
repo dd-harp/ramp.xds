@@ -8,7 +8,7 @@
 #'   \item{`g`}{mortality rate}
 #'   \item{`sigma`}{patch emigration}
 #'   \item{`mu`}{emigration-related loss}
-#'   \item{`K`}{a dispersal matrix (see [xds_info_mosquito_dispersal])}
+#'   \item{`K`}{a dispersal matrix}
 #' } 
 #' 
 #' The matrix is computed as:
@@ -23,65 +23,30 @@
 #'  \Upsilon = e^{-\Omega \tau} 
 #' }
 #'  
+#' @seealso [xds_info_mosquito_dispersal] 
 #' 
 #' @name xds_info_mosquito_demography
 NULL
 
-#' @title Make the mosquito demography matrix
-#' @description This method dispatches on the type of `MY_obj`.
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
-#' @return an **`xds`** object
+#' @title Setup the Omega object 
+#'
+#' @description Set up an object
+#' to dispatch updating for the mosquito demographic
+#' object, \eqn{\Omega} 
+#'
+#' @param MY_obj an **`MY`** model object
+#'
+#' @return a **`MY`** model object
+#'
 #' @keywords internal
 #' @export
-setup_Omega <- function(xds_obj, s){
-  UseMethod("setup_Omega", xds_obj$xds)
+setup_Omega_obj = function(MY_obj){
+  Omega_obj = list()
+  class(Omega_obj) = "setup"
+  MY_obj$Omega_obj <- Omega_obj
+  MY_obj$Upsilon_obj <- Omega_obj
+  return(MY_obj)
 }
-
-#' @title Make the mosquito demography matrix
-#' @description This method dispatches on the type of `MY_obj`.
-#' @inheritParams setup_Omega
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-setup_Omega.xde <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
-  g = get_g(xds_obj, s)
-  sigma = get_sigma(xds_obj, s)
-  Omega = make_Omega_xde(g, sigma, mu, K_matrix)
-  xds_obj$MY_obj[[s]]$Omega = Omega
-  xds_obj$MY_obj[[s]]$Upsilon = expm::expm(-Omega*eip)
-  return(xds_obj)
-})}
-
-#' @title Make the mosquito demography matrix
-#' @note This method dispatches on the type of `xds_obj$MY_obj[[s]]`
-#' @inheritParams setup_Omega
-#' @return the derivatives a [vector]
-#' @keywords internal
-#' @export
-setup_Omega.dts <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
-  xds_obj$MY_obj[[s]]$Omega = make_Omega_dts(p, ssigma, mu, K_matrix)
-  return(xds_obj)
-})}
-
-
-#' @title Make the mosquito demography matrix for spatial RM model in continuous time
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
-#' @keywords internal
-#' @export
-make_Omega <- function(xds_obj, s){
-  UseMethod("make_Omega", xds_obj$xds)
-}
-
-#' @title Make the mosquito demography matrix for spatial RM model in continuous time
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
-#' @keywords internal
-#' @export
-make_Omega.xde <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
-  make_Omega_xde(g, sigma, mu, K_matrix)
-})}
 
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
 #' @param g mosquito death rate, a vector of length `nPatches`
@@ -91,7 +56,7 @@ make_Omega.xde <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
 #' @return a [matrix] of dimensions `nPatches` by `nPatches`
 #' @keywords internal
 #' @export
-make_Omega_xde <- function(g, sigma, mu, K_matrix){
+compute_Omega_xde <- function(g, sigma, mu, K_matrix){
   if(length(g)==1){
     Omega = matrix(g,1,1)
   } else {
@@ -100,14 +65,17 @@ make_Omega_xde <- function(g, sigma, mu, K_matrix){
   return(Omega)
 }
 
+
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param eip the extrinsic incubation period 
+#' @param Omega the demographic matrix 
+#' @return a [matrix] of dimensions `nPatches` by `nPatches`
 #' @keywords internal
 #' @export
-make_Omega.dts <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
-   make_Omega_dts(p, ssigma, mu, K_matrix)
-})}
+compute_Upsilon_xde <- function(eip, Omega){
+  Upsilon = expm::expm(-Omega*eip)
+  return(Upsilon)
+}
 
 #' @title Make the mosquito demography matrix for spatial RM model in discrete time
 #' @param p mosquito daily survival, a vector of length `nPatches`
@@ -117,7 +85,7 @@ make_Omega.dts <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
 #' @return a [matrix] of dimensions `nPatches` by `nPatches`
 #' @keywords internal
 #' @export
-make_Omega_dts <- function(p, ssigma, mu, K_matrix){
+compute_Omega_dts <- function(p, ssigma, mu, K_matrix){
   if(length(p)==1){
     Omega = matrix(p,1,1)
   } else {
@@ -127,45 +95,189 @@ make_Omega_dts <- function(p, ssigma, mu, K_matrix){
 }
 
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param eip the extrinsic incubation period 
+#' @param Omega the demographic matrix 
+#' @return a [matrix] of dimensions `nPatches` by `nPatches`
 #' @keywords internal
 #' @export
-make_Upsilon <- function(xds_obj, s){
-  UseMethod("make_Upsilon", xds_obj$xds)
+compute_Upsilon_dts <- function(eip, Omega){
+  expm::expm(-Omega*eip)
+  return(Omega)
 }
 
-#' @title Make the mosquito demography matrix for spatial RM model in continuous time
+#' @title Update Omega for xde 
+#' @description Update the demographic matrix
+#' for differential equations, if needed 
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
+#' @param s vector species index
+#' @return an **xds** model object 
 #' @keywords internal
 #' @export
-make_Upsilon.xde <- function(xds_obj, s){with(xds_obj$MY_obj[[s]],{
-  Omega = make_Omega_xde(g, sigma, mu, K_matrix)
-  Upsilon = expm(-Omega*eip)
-  return(Upsilon)
-})}
-
-
-#' @title Make the mosquito demography matrix
-#' @description This method dispatches on the type of `MY_obj`.
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
-#' @return the derivatives a [vector]
-#' @keywords internal
-#' @export
-get_Omega <- function(xds_obj, s=1){
-  xds_obj$MY_obj[[s]]$Omega
+update_Omega_xde <- function(xds_obj, s){
+  UseMethod("update_Omega_xde", xds_obj$MY_obj[[s]]$Omega_obj)
 }
 
-#' @title Make the mosquito demography matrix
-#' @description This method dispatches on the type of `MY_obj`.
-#' @param xds_obj an **`xds`** model object
-#' @param s the species index
-#' @return the derivatives a [vector]
+#' @title Update Omega for xde 
+#' @description The static case for [update_Omega_xde] 
+#' @inheritParams update_Omega_xde
+#' @return an **xds** model object 
 #' @keywords internal
 #' @export
-get_Upsilon <- function(xds_obj, s=1){
-  xds_obj$MY_obj[[s]]$Upsilon
+update_Omega_xde.static<- function(xds_obj, s){return(xds_obj)}
+
+#' @title Update Omega for xde 
+#' @description Compute \eqn{\Omega} and change the class to "setup"
+#' @inheritParams update_Omega_xde
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Omega_xde.setup<- function(xds_obj, s=1){
+ Omega <- with(xds_obj$MY_obj[[s]], compute_Omega_xde(g, sigma, mu, K_matrix))
+ xds_obj$MY_obj[[s]]$Omega <- Omega 
+ class(xds_obj$MY_obj[[s]]$Omega_obj) = "static"
+ class(xds_obj$MY_obj[[s]]$Upsilon_obj) = "setup"
+ return(xds_obj)
 }
 
+#' @title Update Omega for xde 
+#' @description Compute \eqn{\Omega} 
+#' @inheritParams update_Omega_xde
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Omega_xde.dynamic <- function(xds_obj, s){
+ Omega <- with(xds_obj$MY_obj[[s]], compute_Omega_xde(g, sigma, mu, K_matrix))
+ xds_obj$MY_obj[[s]]$Omega <- Omega 
+ browser() 
+ return(xds_obj)
+}
+
+#' @title Update Omega for dts 
+#' @description Update the demographic matrix
+#' for differential equations, if needed 
+#' @param xds_obj an **`xds`** model object
+#' @param s vector species index
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Omega_dts <- function(xds_obj, s){
+  UseMethod("update_Omega_dts", xds_obj$MY_obj[[s]]$Omega_obj)
+}
+
+#' @title Update Omega for dts 
+#' @description The static case for [update_Omega_dts] 
+#' @inheritParams update_Omega_dts
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Omega_dts.static<- function(xds_obj, s){return(xds_obj)}
+
+#' @title Update Omega for dts 
+#' @description Compute \eqn{\Omega} and change the class to "setup"
+#' @inheritParams update_Omega_dts
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Omega_dts.setup<- function(xds_obj, s){
+ xds_obj$MY_obj[[s]]$Omega <- with(xds_obj$MY_obj[[s]], compute_Omega_dts(g, sigma, mu, K_matrix))
+ class(xds_obj$MY_obj[[s]]$Omega_obj) = "static"
+ class(xds_obj$MY_obj[[s]]$Upsilon_obj) = "setup"
+ return(xds_obj)
+}
+
+#' @title Update Omega for dts 
+#' @description Compute \eqn{\Omega} 
+#' @inheritParams update_Omega_dts
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Omega_dts.dynamic <- function(xds_obj, s){
+ xds_obj$MY_obj[[s]]$Omega <- with(xds_obj$MY_obj[[s]], compute_Omega_dts(g, sigma, mu, K_matrix))
+ return(xds_obj)
+}
+
+#' @title Update Upsilon for xde 
+#' @description Update the demographic matrix
+#' for differential equations, if needed 
+#' @param xds_obj an **`xds`** model object
+#' @param s vector species index
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Upsilon_xde <- function(xds_obj, s){
+  UseMethod("update_Upsilon_xde", xds_obj$MY_obj[[s]]$Upsilon_obj)
+}
+
+#' @title Update Upsilon for xde 
+#' @description The static case for [update_Upsilon_xde] 
+#' @inheritParams update_Upsilon_xde
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Upsilon_xde.static<- function(xds_obj, s){return(xds_obj)}
+
+#' @title Update Upsilon for xde 
+#' @description Compute \eqn{\Upsilon} and change the class to "setup"
+#' @inheritParams update_Upsilon_xde
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Upsilon_xde.setup<- function(xds_obj, s){
+ xds_obj$MY_obj[[s]]$Upsilon <- with(xds_obj$MY_obj[[s]], compute_Upsilon_xde(eip, Omega))
+ class(xds_obj$MY_obj[[s]]$Upsilon_obj) = "static"
+ return(xds_obj)
+}
+
+#' @title Update Upsilon for xde 
+#' @description Compute \eqn{\Upsilon} 
+#' @inheritParams update_Upsilon_xde
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Upsilon_xde.dynamic <- function(xds_obj, s){
+ xds_obj$MY_obj[[s]]$Upsilon <- with(xds_obj$MY_obj[[s]], compute_Upsilon_xde(eip, Omega))
+ return(xds_obj)
+}
+
+#' @title Update Upsilon for dts 
+#' @description Update the demographic matrix
+#' for differential equations, if needed 
+#' @param xds_obj an **`xds`** model object
+#' @param s vector species index
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Upsilon_dts <- function(xds_obj, s){
+  UseMethod("update_Upsilon_dts", xds_obj$MY_obj[[s]]$Upsilon_obj)
+}
+
+#' @title Update Upsilon for dts 
+#' @description The static case for [update_Upsilon_dts] 
+#' @inheritParams update_Upsilon_dts
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Upsilon_dts.static<- function(xds_obj, s){return(xds_obj)}
+
+#' @title Update Upsilon for dts 
+#' @description Compute \eqn{\Upsilon} and change the class to "setup"
+#' @inheritParams update_Upsilon_dts
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Upsilon_dts.setup<- function(xds_obj, s){
+ xds_obj$MY_obj[[s]]$Upsilon <- with(xds_obj$MY_obj[[s]], compute_Upsilon_dts(eip, Omega))
+ class(xds_obj$MY_obj[[s]]$Upsilon_obj) = "static"
+ return(xds_obj)
+}
+
+#' @title Update Upsilon for dts 
+#' @description Compute \eqn{\Upsilon} 
+#' @inheritParams update_Upsilon_dts
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+update_Upsilon_dts.dynamic <- function(xds_obj, s){
+ xds_obj$MY_obj[[s]]$Upsilon <- with(xds_obj$MY_obj[[s]], compute_Upsilon_dts(eip, Omega))
+ return(xds_obj)
+}
