@@ -108,7 +108,6 @@ make_xds_object_template = function(xds='ode', frame='full',
   xds_obj$terms <- list()
 
   xds_obj <- setup_ML_interface(xds_obj, membership)
-
   xds_obj <- setup_XY_interface(xds_obj, residency)
   xds_obj <- setup_importation_object(xds_obj)
   xds_obj <- setup_transmission(xds_obj)

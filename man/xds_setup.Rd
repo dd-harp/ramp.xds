@@ -5,6 +5,7 @@
 \title{Build a Model and Configure All Components}
 \usage{
 xds_setup(
+  model_name = "unnamed",
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
@@ -20,11 +21,12 @@ xds_setup(
   membership = 1,
   Koptions = list(Kname = "no_setup"),
   searchQ = 1,
-  BFopts = list(),
-  model_name = "unnamed"
+  BFopts = list()
 )
 }
 \arguments{
+\item{model_name}{is a name for the model (arbitrary)}
+
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
 \item{Xname}{a character string defining a \strong{X} Component module}
@@ -56,8 +58,6 @@ xds_setup(
 \item{searchQ}{is a vector of search weights for egg laying}
 
 \item{BFopts}{a list to configure the blood feeding model}
-
-\item{model_name}{is a name for the model (arbitrary)}
 }
 \value{
 an \strong{\code{xds}} object

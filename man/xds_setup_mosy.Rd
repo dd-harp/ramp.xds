@@ -5,6 +5,7 @@
 \title{Build a Model of Mosquito Ecology}
 \usage{
 xds_setup_mosy(
+  model_name = "unnamed",
   xds = "ode",
   MYname = "basicM",
   Lname = "basicL",
@@ -15,11 +16,12 @@ xds_setup_mosy(
   kappa = 0,
   MYoptions = list(),
   Koptions = list(Kname = "no_setup"),
-  Loptions = list(),
-  model_name = "unnamed"
+  Loptions = list()
 )
 }
 \arguments{
+\item{model_name}{is a name for the model}
+
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
 \item{MYname}{is a character string defining a \strong{MY} Component module}
@@ -41,8 +43,6 @@ xds_setup_mosy(
 \item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (also see \link{xds_info_mosquito_dispersal})}
 
 \item{Loptions}{a list to configure the \strong{L} Component module}
-
-\item{model_name}{is a name for the model (arbitrary)}
 }
 \value{
 an \strong{\code{xds}} object

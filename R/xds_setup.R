@@ -50,6 +50,7 @@
 #'    - A time spent matrix, \eqn{\Theta}, can be set
 #'
 #' @seealso [make_xds_object_template], [xds_info_basic_setup]
+#' @param model_name is a name for the model (arbitrary)
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname a character string defining a **X** Component module
 #' @param XHoptions a list to configure the **X** Component module
@@ -66,26 +67,26 @@
 #' @param searchQ is a vector of search weights for egg laying
 #' @param Koptions a K matrix, or options for [setup_K_matrix] (see [xds_info_mosquito_dispersal])
 #' @param BFopts a list to configure the blood feeding model
-#' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
 #' @export
-xds_setup = function(xds = 'ode',
-                     Xname = "SIS",
-                     XHoptions = list(),
-                     MYname = "SI",
-                     MYoptions = list(),
-                     Lname = "trivial",
-                     Loptions = list(),
-                     nPatches = 1,
-                     HPop = 1000,
-                     residence = 1,
-                     TimeSpent = list(),
-                     searchB = 1,
-                     membership = 1,
-                     Koptions = list(Kname = "no_setup"),
-                     searchQ = 1,
-                     BFopts = list(),
-                     model_name = "unnamed"
+xds_setup = function(
+     model_name = "unnamed",
+     xds = 'ode',
+     Xname = "SIS",
+     XHoptions = list(),
+     MYname = "SI",
+     MYoptions = list(),
+     Lname = "trivial",
+     Loptions = list(),
+     nPatches = 1,
+     HPop = 1000,
+     residence = 1,
+     TimeSpent = list(),
+     searchB = 1,
+     membership = 1,
+     Koptions = list(Kname = "no_setup"),
+     searchQ = 1,
+     BFopts = list()
 ){
   stopifnot(length(HPop) == length(residence))
   xds_obj <- make_xds_object_template('ode', 'full', nPatches, membership, residence)
@@ -130,6 +131,8 @@ xds_setup = function(xds = 'ode',
   y0 <- as.vector(unlist(get_inits(xds_obj)))
 
   xds_obj <- check_models(xds_obj)
+  
+  xds_obj$model_name <- model_name 
 
   return(xds_obj)
 }
@@ -149,6 +152,7 @@ xds_setup = function(xds = 'ode',
 #' The **X** Component module is `trivial`, but since humans / vertebrate hosts can be a
 #' resource, `HPop` must be set.
 #' @seealso [xds_setup] and [dMYdt.basicM]
+#' @param model_name is a name for the model 
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param MYname is a character string defining a **MY** Component module
 #' @param Lname is a character string defining a **L** Component module
@@ -160,27 +164,25 @@ xds_setup = function(xds = 'ode',
 #' @param MYoptions a list to configure the **MY** Component module
 #' @param Koptions a K matrix, or options for [setup_K_matrix] (also see [xds_info_mosquito_dispersal])
 #' @param Loptions a list to configure the **L** Component module
-#' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
 #' @export
-xds_setup_mosy = function(xds = 'ode',
-                          ### Dynamical Components
-                          MYname = "basicM",
-                          Lname = "basicL",
-                          ### Model Structure
-                          nPatches = 1,
-                          membership=1,
-                          HPop = 1000,
-                          ### Setup Parameters
-                          searchQ = 1,
-                          kappa = 0,
-                          ### Options
-                          MYoptions = list(),
-                          Koptions = list(Kname = "no_setup"),
-                          Loptions = list(),
-                          ### Name
-                          model_name = "unnamed"
-
+xds_setup_mosy = function(
+     model_name = "unnamed",
+     xds = 'ode',
+     ### Dynamical Components
+     MYname = "basicM",
+     Lname = "basicL",
+     ### Model Structure
+     nPatches = 1,
+     membership=1,
+     HPop = 1000,
+     ### Setup Parameters
+     searchQ = 1,
+     kappa = 0,
+     ### Options
+     MYoptions = list(),
+     Koptions = list(Kname = "no_setup"),
+     Loptions = list()
 ){
   residence = 1:nPatches
   HPop = checkIt(HPop, nPatches)
@@ -235,21 +237,20 @@ xds_setup_mosy = function(xds = 'ode',
 #'
 #'
 #' @seealso [xds_setup]
+#' @param model_name is a name for the model (arbitrary)
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param nHabitats is the number of habitats
 #' @param Lname is a character string defining a **L** Component module
 #' @param Loptions a list to configure the **L** Component module
 #' @param MYoptions a list to configure [F_eggs.trivial]
-#' @param model_name is a name for the model (arbitrary)
 #' @return an **`xds`** object
 #' @export
-xds_setup_aquatic = function(xds = 'ode',
+xds_setup_aquatic = function(model_name = "unnamed",
+                             xds = 'ode',
                              nHabitats=1,
                              Lname = "basicL",
                              Loptions = list(),
-                             MYoptions = list(),
-                             model_name = "unnamed"){
-
+                             MYoptions = list()){
   nPatches= nHabitats
   membership = 1:nHabitats
   xds_obj <- make_xds_object_template(xds, 'aquatic', nPatches, membership)
@@ -296,6 +297,7 @@ xds_setup_aquatic = function(xds = 'ode',
 #'
 #' @seealso [xds_setup] and [xds_setup_eir]
 #'
+#' @param model_name a name for the model
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname a character string defining a **X** Component module
 #' @param nPatches the number of patches
@@ -306,11 +308,11 @@ xds_setup_aquatic = function(xds = 'ode',
 #' @param MYoptions list to configure the **MY** Component module
 #' @param XHoptions a named list to configure the **X** Component module
 #' @param BFopts list to configure the blood feeding model
-#' @param model_name a name for the model
 #'
 #' @return an **`xds`** object
 #' @export
-xds_setup_human = function(Xname = "SIS",
+xds_setup_human = function(model_name = "unnamed",
+                           Xname = "SIS",
                            XHoptions = list(),
 
                            xds = 'ode',
@@ -324,9 +326,7 @@ xds_setup_human = function(Xname = "SIS",
                            TimeSpent = list(),
                            ### Options
                            MYoptions = list(),
-                           BFopts = list(),
-                           ### Name
-                           model_name = "unnamed"
+                           BFopts = list()
 ){
   stopifnot(length(HPop) == length(residence))
   membership=1
@@ -387,6 +387,7 @@ xds_setup_human = function(Xname = "SIS",
 #'
 #' @seealso [xds_setup] and [xds_setup_human]
 #'
+#' @param model_name is a name for the model (arbitrary)
 #' @param eir is the entomological inoculation rate
 #' @param season_par parameters to configure a seasonality function using [make_function]
 #' @param trend_par parameters to configure a trends function using [make_function]
@@ -397,10 +398,11 @@ xds_setup_human = function(Xname = "SIS",
 #' @param XHoptions a list to configure the **X** Component module
 #' @param HPop is the number of humans in each stratum
 #' @param searchB is a vector of search weights for blood feeding
-#' @param model_name is a name for the model (arbitrary)
+#' 
 #' @return an **`xds`** object
 #' @export
-xds_setup_eir = function(eir=1,
+xds_setup_eir = function(model_name = "unnamed",
+                         eir=1,
                          season_par = makepar_F_one(),
                          trend_par = makepar_F_one(),
                          age_par = makepar_F_one(),
@@ -413,10 +415,7 @@ xds_setup_eir = function(eir=1,
 
                          # Model Structure
                          HPop=1000,
-                         searchB = 1,
-
-                         # Human Strata / Options
-                         model_name = "unnamed"
+                         searchB = 1
 ){
   nPatches = length(HPop)
   residence = rep(1, length(HPop))
@@ -456,7 +455,7 @@ xds_setup_eir = function(eir=1,
   y0 <- as.vector(unlist(get_inits(xds_obj)))
   xds_obj <- BloodFeeding(0, y0, xds_obj)
 
-  xds_obj$model_name <- model_name
+  xds_obj$model_name = model_name
 
   return(xds_obj)
 }

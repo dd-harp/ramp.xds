@@ -4,8 +4,24 @@
 \alias{SIS}
 \title{The \code{SIS} module for the XH component}
 \description{
-Implements the \strong{XH} component using a Susceptible-Infected-Susceptible
-(SIS) compartmental model of human infection dynamics.
+In the SIS compartmental model,
+infected individuals are either susceptible (S), or infected and
+infectious (I). Susceptible individuals become infected at the per-capita
+rate \eqn{h}. Infected individuals clear infections at the per-capita rate \eqn{r},
+and then they become
+susceptible to infection again.
+
+Human/host population size (H) is a state variable that can be configured.
+
+and \eqn{H=S+I}: the model computes \eqn{dH/dt} and \eqn{dI/dt}. When outputs
+are parsed, S is computed as
+\eqn{S=H-I}.
+
+This module also includes:
+\itemize{
+\item a model for human demographic changes; and
+\item a port for mass treatment, \eqn{\xi(t)}.
+}
 }
 \section{State Variables}{
 
@@ -13,16 +29,17 @@ Implements the \strong{XH} component using a Susceptible-Infected-Susceptible
 \item{\code{H}}{total human (or host) population density}
 \item{\code{I}}{density of infected humans}
 }
-Note: susceptible density \eqn{S = H - I}.
+
+During parsing, the density of susceptibles is computed as: \deqn{S = H - I}.
 }
 
 \section{Parameters}{
 
 \describe{
 \item{\code{r}}{clearance rate for infections}
-\item{\code{xi}}{mass treatment rate (\eqn{\xi(t)})}
+\item{\code{xi}}{mass treatment rate}
 \item{\code{B}}{time-dependent birth rate function \eqn{B(t, H)}}
-\item{\code{D}}{linear operator (matrix) for mortality, migration, aging, and transfers}
+\item{\code{D}}{human demographic matrix}
 }
 }
 

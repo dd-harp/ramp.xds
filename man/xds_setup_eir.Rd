@@ -5,6 +5,7 @@
 \title{Build a Model for a single Human / Host Epidemiology forced by the EIR}
 \usage{
 xds_setup_eir(
+  model_name = "unnamed",
   eir = 1,
   season_par = makepar_F_one(),
   trend_par = makepar_F_one(),
@@ -14,11 +15,12 @@ xds_setup_eir(
   Xname = "SIS",
   XHoptions = list(),
   HPop = 1000,
-  searchB = 1,
-  model_name = "unnamed"
+  searchB = 1
 )
 }
 \arguments{
+\item{model_name}{is a name for the model (arbitrary)}
+
 \item{eir}{is the entomological inoculation rate}
 
 \item{season_par}{parameters to configure a seasonality function using \link{make_function}}
@@ -38,8 +40,6 @@ xds_setup_eir(
 \item{HPop}{is the number of humans in each stratum}
 
 \item{searchB}{is a vector of search weights for blood feeding}
-
-\item{model_name}{is a name for the model (arbitrary)}
 }
 \value{
 an \strong{\code{xds}} object

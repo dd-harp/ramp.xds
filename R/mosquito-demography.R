@@ -148,7 +148,6 @@ update_Omega_xde.setup<- function(xds_obj, s=1){
 update_Omega_xde.dynamic <- function(xds_obj, s){
  Omega <- with(xds_obj$MY_obj[[s]], compute_Omega_xde(g, sigma, mu, K_matrix))
  xds_obj$MY_obj[[s]]$Omega <- Omega 
- browser() 
  return(xds_obj)
 }
 

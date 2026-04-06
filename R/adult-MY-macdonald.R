@@ -254,7 +254,7 @@ make_MY_obj_macdonald = function(nPatches, options=list(), eip=12,
     MY_obj$nu     <- checkIt(nu, nPatches)
 
     MY_obj$eggsPerBatch <- eggsPerBatch
-    MY_obj$K_matrix <- diag(nPatches)
+    MY_obj <- setup_K_obj(nPatches, MY_obj)
     MY_obj <- setup_Omega_obj(MY_obj)
 
     MY_obj$baseline <- 'macdonald'

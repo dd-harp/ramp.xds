@@ -5,15 +5,17 @@
 \title{Build a Model of Immature Mosquito Ecology}
 \usage{
 xds_setup_aquatic(
+  model_name = "unnamed",
   xds = "ode",
   nHabitats = 1,
   Lname = "basicL",
   Loptions = list(),
-  MYoptions = list(),
-  model_name = "unnamed"
+  MYoptions = list()
 )
 }
 \arguments{
+\item{model_name}{is a name for the model (arbitrary)}
+
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
 \item{nHabitats}{is the number of habitats}
@@ -23,8 +25,6 @@ xds_setup_aquatic(
 \item{Loptions}{a list to configure the \strong{L} Component module}
 
 \item{MYoptions}{a list to configure \link{F_eggs.trivial}}
-
-\item{model_name}{is a name for the model (arbitrary)}
 }
 \value{
 an \strong{\code{xds}} object

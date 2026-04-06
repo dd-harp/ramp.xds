@@ -104,7 +104,7 @@ change_K_matrix = function(K_matrix, xds_obj, s=1){
 #' @keywords internal
 #' @export
 setup_K_obj = function(nPatches, MY_obj){
-  MY_obj$K_matrix = diag(nPatches)
+  MY_obj$K_matrix = diag(0, nPatches)
   MY_obj$K_obj <- list()
   class(MY_obj$K_obj) <- "static"
   return(MY_obj)

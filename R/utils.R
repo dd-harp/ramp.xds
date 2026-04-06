@@ -223,7 +223,8 @@ check_models <- function(xds_obj) {
 #' @export print.xds_obj
 #' @export
 print.xds_obj = function(x, ...){
-  cat(c("\nModules:\n")) 
+  cat(paste("\nmodel_name - ", x$model_name, "\n\n", sep=""))
+  cat(c("Modules:\n")) 
   cat(paste("  Xname  - ", x$Xname, "\n", sep=""))
   cat(paste("  MYname - ", x$MYname, "\n", sep=""))
   cat(paste("  Lname  - ", x$Lname, "\n\n", sep=""))
@@ -234,5 +235,5 @@ print.xds_obj = function(x, ...){
   cat(paste("  nHostSpecies     = ", x$nHostSpecies, "\n", sep=""))
   cat(paste("  nVectorSpecies   = ", x$nVectorSpecies, "\n\n", sep=""))
   cat(paste("frame - ", x$frame, "\n", sep=""))
-  cat(paste("xds   - ", x$xds, "\n\n", sep=""))
+  cat(paste("xds   - ", x$xds, "\n", sep=""))
 }
