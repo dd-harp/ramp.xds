@@ -25,8 +25,6 @@ Go get started, we load **`ramp.xds`**, build a model, and solve it.
 library(ramp.xds)
 ```
 
-    ## ℹ Loading ramp.xds
-
 ### Basic Setup
 
 The function `xds_setup` was discussed in [Getting

@@ -10,6 +10,10 @@ setup_timespent(name, xds_obj, i, options = list())
 
 ## Arguments
 
+- name:
+
+  a matrix or setup function name
+
 - xds_obj:
 
   an **`xds`** model object
@@ -21,10 +25,6 @@ setup_timespent(name, xds_obj, i, options = list())
 - options:
 
   configuration options
-
-- timespent:
-
-  a matrix or a setup function name
 
 ## Value
 

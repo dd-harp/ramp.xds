@@ -43,8 +43,6 @@ Then load **`ramp.xds`**:
 library(ramp.xds)
 ```
 
-    ## ℹ Loading ramp.xds
-
 Additional modules and functionality are available in companion
 R-packages, including
 [**`ramp.library`**](https://dd-harp.github.io/ramp.library/),
