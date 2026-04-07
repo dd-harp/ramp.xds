@@ -5,9 +5,35 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The SIS module for the XH component — SIS"><meta name="description" content="Implements the XH component using a Susceptible-Infected-Susceptible
-(SIS) compartmental model of human infection dynamics."><meta property="og:description" content="Implements the XH component using a Susceptible-Infected-Susceptible
-(SIS) compartmental model of human infection dynamics."></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The SIS module for the XH component — SIS"><meta name="description" content="In the SIS compartmental model,
+infected individuals are either susceptible (S), or infected and
+infectious (I). Susceptible individuals become infected at the per-capita
+rate \(h\). Infected individuals clear infections at the per-capita rate \(r\),
+and then they become
+susceptible to infection again.
+Human/host population size (H) is a state variable that can be configured.
+and \(H=S+I\): the model computes \(dH/dt\) and \(dI/dt\). When outputs
+are parsed, S is computed as
+\(S=H-I\).
+This module also includes:
+a model for human demographic changes; and
+a port for mass treatment, \(\xi(t)\).
+
+"><meta property="og:description" content="In the SIS compartmental model,
+infected individuals are either susceptible (S), or infected and
+infectious (I). Susceptible individuals become infected at the per-capita
+rate \(h\). Infected individuals clear infections at the per-capita rate \(r\),
+and then they become
+susceptible to infection again.
+Human/host population size (H) is a state variable that can be configured.
+and \(H=S+I\): the model computes \(dH/dt\) and \(dI/dt\). When outputs
+are parsed, S is computed as
+\(S=H-I\).
+This module also includes:
+a model for human demographic changes; and
+a port for mass treatment, \(\xi(t)\).
+
+"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -79,9 +105,19 @@
     </div>
 
     <div class="ref-description section level2">
-    <p>Implements the <strong>XH</strong> component using a Susceptible-Infected-Susceptible
-(SIS) compartmental model of human infection dynamics.</p>
-    </div>
+    <p>In the SIS compartmental model,
+infected individuals are either susceptible (S), or infected and
+infectious (I). Susceptible individuals become infected at the per-capita
+rate \(h\). Infected individuals clear infections at the per-capita rate \(r\),
+and then they become
+susceptible to infection again.</p>
+<p>Human/host population size (H) is a state variable that can be configured.</p>
+<p>and \(H=S+I\): the model computes \(dH/dt\) and \(dI/dt\). When outputs
+are parsed, S is computed as
+\(S=H-I\).</p>
+<p>This module also includes:</p><ul><li><p>a model for human demographic changes; and</p></li>
+<li><p>a port for mass treatment, \(\xi(t)\).</p></li>
+</ul></div>
 
 
     <div class="section level2">
@@ -95,7 +131,7 @@
 <dd><p>density of infected humans</p></dd>
 
 
-</dl><p>Note: susceptible density \(S = H - I\).</p>
+</dl><p>During parsing, the density of susceptibles is computed as: $$S = H - I$$.</p>
     </div>
     <div class="section level2">
     <h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a></h2>
@@ -105,13 +141,13 @@
 <dd><p>clearance rate for infections</p></dd>
 
 <dt><code>xi</code></dt>
-<dd><p>mass treatment rate (\(\xi(t)\))</p></dd>
+<dd><p>mass treatment rate</p></dd>
 
 <dt><code>B</code></dt>
 <dd><p>time-dependent birth rate function \(B(t, H)\)</p></dd>
 
 <dt><code>D</code></dt>
-<dd><p>linear operator (matrix) for mortality, migration, aging, and transfers</p></dd>
+<dd><p>human demographic matrix</p></dd>
 
 
 </dl></div>

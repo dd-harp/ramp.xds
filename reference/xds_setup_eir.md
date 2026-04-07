@@ -19,6 +19,7 @@ modify exposure by age.
 
 ``` r
 xds_setup_eir(
+  model_name = "unnamed",
   eir = 1,
   season_par = makepar_F_one(),
   trend_par = makepar_F_one(),
@@ -28,12 +29,15 @@ xds_setup_eir(
   Xname = "SIS",
   XHoptions = list(),
   HPop = 1000,
-  searchB = 1,
-  model_name = "unnamed"
+  searchB = 1
 )
 ```
 
 ## Arguments
+
+- model_name:
+
+  is a name for the model (arbitrary)
 
 - eir:
 
@@ -79,10 +83,6 @@ xds_setup_eir(
 - searchB:
 
   is a vector of search weights for blood feeding
-
-- model_name:
-
-  is a name for the model (arbitrary)
 
 ## Value
 

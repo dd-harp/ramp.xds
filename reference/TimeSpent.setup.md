@@ -8,7 +8,7 @@ for static models.
 
 ``` r
 # S3 method for class 'setup'
-TimeSpent(t, y, xds_obj)
+timespent(t, y, xds_obj)
 ```
 
 ## Arguments

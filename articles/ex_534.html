@@ -230,7 +230,7 @@ is <span class="math inline">\(1\)</span> if the <span class="math inline">\(j^{
 <p>The matrix is created by a function
 <code>make_residency_matrix</code>:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">residence_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_residency_matrix.html">make_residency_matrix</a></span><span class="op">(</span><span class="va">nPatches</span>, <span class="va">residence</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">residence_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_residence_matrix.html">make_residence_matrix</a></span><span class="op">(</span><span class="va">nPatches</span>, <span class="va">residence</span><span class="op">)</span></span>
 <span><span class="va">residence_matrix</span></span></code></pre></div>
 <pre><code><span><span class="co">##      [,1] [,2] [,3] [,4]</span></span>
 <span><span class="co">## [1,]    0    0    0    0</span></span>
@@ -431,7 +431,7 @@ parameters that have been modified by control.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">MY_obj</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  [1] "nPatches"     "eip"          "f"            "q"            "g"           </span></span>
 <span><span class="co">##  [6] "sigma"        "mu"           "nu"           "eggsPerBatch" "K_matrix"    </span></span>
-<span><span class="co">## [11] "Omega_obj"    "Upsilon_obj"  "baseline"</span></span></code></pre>
+<span><span class="co">## [11] "K_obj"        "Omega_obj"    "Upsilon_obj"  "baseline"</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="human-infection-dynamics">Human Infection Dynamics<a class="anchor" aria-label="anchor" href="#human-infection-dynamics"></a>
@@ -548,25 +548,19 @@ above.</p></li>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">xds_obj</span><span class="op">$</span><span class="va">nHabitats</span>, <span class="va">xds_obj</span><span class="op">$</span><span class="va">nPatches</span>, <span class="va">xds_obj</span><span class="op">$</span><span class="va">nStrata</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 5 3 4</span></span></code></pre>
-<p>This was created by <code>make_xds_object_template</code> and stored
-as <code>xds_obj$habitat_matrix</code></p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">habitat_matrix</span></span></code></pre></div>
-<pre><code><span><span class="co">## NULL</span></span></code></pre>
 <p>If we want to retrieve the membership matrix, we can call
-<code>view_habitat_matrix</code></p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/view_habitat_matrix.html">view_habitat_matrix</a></span><span class="op">(</span><span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## $habitat_index</span></span>
-<span><span class="co">## [1] 1 2 3 4 5</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $patch_membership</span></span>
-<span><span class="co">## [1] 1 1 1 2 2</span></span></code></pre>
+<code>get_habitat_matrix</code></p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_habitat_matrix.html">get_habitat_matrix</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##      [,1] [,2] [,3] [,4] [,5]</span></span>
+<span><span class="co">## [1,]    1    1    1    0    0</span></span>
+<span><span class="co">## [2,]    0    0    0    1    1</span></span>
+<span><span class="co">## [3,]    0    0    0    0    0</span></span></code></pre>
 <p>The function <code>make_xds_object_template</code> was designed to
 create a scaffolding. So <code>Q</code> and <code>Umatrix</code> get
 created with default values: Iall patches are assumed to have the same
 biting weights.</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">vars</span><span class="op">$</span><span class="va">Q</span></span></code></pre></div>
 <pre><code><span><span class="co">## NULL</span></span></code></pre>
 <p>A little detail to note is that an <code>xds</code> object is
@@ -574,7 +568,7 @@ designed to handle multiple vector and multiple host species. The
 function <code>make_xds_object_template</code> only sets up the first
 species. Similarly, we can view the egg distribution matrix for the
 first species:</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">Umatrix</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## NULL</span></span></code></pre>
 <p>While this is a reasonable way to start, we don’t want to get stuck
@@ -590,21 +584,23 @@ them.</p>
 <div class="section level4">
 <h4 id="building-the-object">Building the Object<a class="anchor" aria-label="anchor" href="#building-the-object"></a>
 </h4>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">L_obj</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span> </span>
-<span><span class="va">xds_obj</span><span class="op">$</span><span class="va">L_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">L_obj</span> </span>
+<span><span class="va">xds_obj</span><span class="op">$</span><span class="va">L_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">L_obj</span></span>
 <span><span class="va">xds_obj</span><span class="op">$</span><span class="va">MY_obj</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span> </span>
 <span><span class="va">xds_obj</span><span class="op">$</span><span class="va">MY_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">MY_obj</span> </span>
 <span><span class="va">xds_obj</span><span class="op">$</span><span class="va">XH_obj</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span> </span>
 <span><span class="va">xds_obj</span><span class="op">$</span><span class="va">XH_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">XH_obj</span> </span></code></pre></div>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_L_inits.html">setup_L_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span>, <span class="va">Linits</span><span class="op">)</span></span>
+<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_L_ports.html">setup_L_ports</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_MY_inits.html">setup_MY_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span>, <span class="va">MYZinits</span><span class="op">)</span></span>
-<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_XH_inits.html">setup_XH_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="va">HPop</span>, <span class="fl">1</span>, <span class="va">Xinits</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_XH_inits.html">setup_XH_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="va">HPop</span>, <span class="fl">1</span>, <span class="va">Xinits</span><span class="op">)</span></span>
+<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_XH_ports.html">setup_XH_ports</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p>After the parameters for <code>5-3-4</code> have been specified, we
 can generate the indices for the model and attach them to the parameter
 list.</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -615,25 +611,21 @@ function called <code>set_habitat_wts_static.</code> After setting the
 values of the habitat search weights, we need to update habitat
 availability and the egg distribution matrix. The functions
 <code>makeQ</code> and <code>make_Umatrix</code> do this.</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_habitat_search_weights.html">change_habitat_search_weights</a></span><span class="op">(</span><span class="va">searchWtsQ</span>, <span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
 <p>We can check to see</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">ML_interface</span><span class="op">$</span><span class="va">Q</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 3 2 0</span></span></code></pre>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">ML_interface</span><span class="op">$</span><span class="va">O_matrix</span></span></code></pre></div>
 <pre><code><span><span class="co">## NULL</span></span></code></pre>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_TimeSpent_matrix.html">change_TimeSpent_matrix</a></span><span class="op">(</span><span class="va">TaR</span>, <span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_TimeSpent_matrix.html">change_timespent_matrix</a></span><span class="op">(</span><span class="va">TaR</span>, <span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">XY_interface</span><span class="op">$</span><span class="va">TimeSpent</span></span></code></pre></div>
-<pre><code><span><span class="co">## [[1]]</span></span>
-<span><span class="co">##      [,1] [,2]  [,3]  [,4]</span></span>
-<span><span class="co">## [1,] 0.01 0.01 0.001 0.001</span></span>
-<span><span class="co">## [2,] 0.95 0.92 0.040 0.020</span></span>
-<span><span class="co">## [3,] 0.04 0.02 0.959 0.929</span></span></code></pre>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<pre><code><span><span class="co">## NULL</span></span></code></pre>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_TaR.html">compute_TaR</a></span><span class="op">(</span><span class="va">xds_obj</span>,<span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">xds_obj</span><span class="op">$</span><span class="va">XY_interface</span><span class="op">$</span><span class="va">TaR</span></span></code></pre></div>
 <pre><code><span><span class="co">## [[1]]</span></span>
@@ -642,21 +634,21 @@ availability and the egg distribution matrix. The functions
 <span><span class="co">## [1,] 0.01 0.01 0.001 0.001</span></span>
 <span><span class="co">## [2,] 0.95 0.92 0.040 0.020</span></span>
 <span><span class="co">## [3,] 0.04 0.02 0.959 0.929</span></span></code></pre>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_blood_search_weights.html">change_blood_search_weights</a></span><span class="op">(</span><span class="va">searchWtsH</span>, <span class="va">xds_obj</span><span class="op">)</span></span>
 <span><span class="va">y0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">xds_obj</span><span class="op">)</span></span>
 <span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_WB.html">compute_WB</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">y0</span>, <span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">XY_interface</span><span class="op">$</span><span class="va">W</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1]   2.0 114.3 934.2</span></span></code></pre>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_K_matrix.html">setup_K_matrix</a></span><span class="op">(</span><span class="va">Kmatrix</span>, <span class="va">xds_obj</span><span class="op">)</span></span>
 <span><span class="va">xds_obj</span><span class="op">$</span><span class="va">MY_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">K_matrix</span></span></code></pre></div>
 <pre><code><span><span class="co">##      [,1] [,2] [,3]</span></span>
 <span><span class="co">## [1,] -1.0  0.6  0.3</span></span>
 <span><span class="co">## [2,]  0.4 -1.0  0.7</span></span>
 <span><span class="co">## [3,]  0.6  0.4 -1.0</span></span></code></pre>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">MY_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Omega_obj.html">setup_Omega_obj</a></span><span class="op">(</span><span class="va">xds_obj</span><span class="op">$</span><span class="va">MY_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/update_Omega_xde.html">update_Omega_xde</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_Omega.html">get_Omega</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
@@ -664,7 +656,7 @@ availability and the egg distribution matrix. The functions
 <span><span class="co">## [1,]  0.12500000 -0.02500000 -0.01250000</span></span>
 <span><span class="co">## [2,] -0.01666667  0.12500000 -0.02916667</span></span>
 <span><span class="co">## [3,] -0.02500000 -0.01666667  0.12500000</span></span></code></pre>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/update_Upsilon_xde.html">update_Upsilon_xde</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_Upsilon.html">get_Upsilon</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
 <pre><code><span><span class="co">##            [,1]       [,2]       [,3]</span></span>
@@ -697,7 +689,7 @@ class to <code>static.</code></p>
 <h3 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
 </h3>
 <p>Now we can get the initial conditions of the model.</p>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_indices.html">make_indices</a></span><span class="op">(</span><span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -712,14 +704,14 @@ The classes of <code>XH_obj</code>, <code>MY_obj</code>, and
 methods are invoked (dispatched) to solve your model.</p>
 <p>We need to get the stored initial values, but by default these are
 returned as a named list, to make it easy to examine.</p>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">xds_obj</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">y0</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "L"  "MY" "X"</span></span></code></pre>
 <p>We want to pass an unnamed vector to the solver so:</p>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y0</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_inits.html">get_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, flatten<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">deSolve</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/deSolve/man/dede.html" class="external-link">dede</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">y0</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">735</span>, by <span class="op">=</span><span class="fl">15</span><span class="op">)</span>,</span>
 <span>                    func <span class="op">=</span> <span class="va">xde_derivatives</span>, parms <span class="op">=</span> <span class="va">xds_obj</span><span class="op">)</span></span>
 <span><span class="va">out1</span> <span class="op">&lt;-</span> <span class="va">out</span></span></code></pre></div>
@@ -729,7 +721,7 @@ returned as a named list, to make it easy to examine.</p>
 </h3>
 <p>With a small amount of data wrangling made easier by the
 <code>data.table</code> package, we can plot the output.</p>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">out1</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"time"</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">xds_obj</span><span class="op">$</span><span class="va">L_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">ix</span><span class="op">$</span><span class="va">L_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'L_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">xds_obj</span><span class="op">$</span><span class="va">nHabitats</span><span class="op">)</span></span>
@@ -739,19 +731,19 @@ returned as a named list, to make it easy to examine.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">xds_obj</span><span class="op">$</span><span class="va">MY_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">ix</span><span class="op">$</span><span class="va">Z_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'Z_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">xds_obj</span><span class="op">$</span><span class="va">nPatches</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="va">xds_obj</span><span class="op">$</span><span class="va">XH_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">ix</span><span class="op">$</span><span class="va">I_ix</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'X_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">xds_obj</span><span class="op">$</span><span class="va">nStrata</span><span class="op">)</span></span>
 <span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">out</span><span class="op">[</span>,<span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">19</span><span class="op">:</span><span class="fl">25</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">out</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">value</span>, color <span class="op">=</span> <span class="va">Stratification</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">Component</span>, scales <span class="op">=</span> <span class="st">'free'</span><span class="op">)</span> <span class="op">+</span></span>
 <span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ex_534_files/figure-html/unnamed-chunk-29-1.png" class="r-plt" alt="" width="100%"></p>
+<p><img src="ex_534_files/figure-html/unnamed-chunk-28-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="using-xde_setup">Using <code>xde_setup</code><a class="anchor" aria-label="anchor" href="#using-xde_setup"></a>
 </h2>
 <p>We create lists with all our parameters values:</p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span> g <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">12</span>, <span class="va">nPatches</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">12</span><span class="op">/</span><span class="fl">2</span>, <span class="va">nPatches</span><span class="op">)</span>,</span>
 <span> mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">nPatches</span><span class="op">)</span>,</span>
@@ -760,39 +752,39 @@ returned as a named list, to make it easy to examine.</p>
 <span> eip <span class="op">=</span> <span class="fl">12</span>, </span>
 <span> M <span class="op">=</span> <span class="fl">100</span>,  P <span class="op">=</span> <span class="fl">10</span>,  Y <span class="op">=</span> <span class="fl">1</span>, Z <span class="op">=</span> <span class="fl">0</span> </span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span> L <span class="op">=</span> <span class="fl">1</span>,  </span>
 <span> psi <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">8</span>, phi <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">8</span>, </span>
 <span> theta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">40</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">10</span><span class="op">)</span> </span>
 <span><span class="op">)</span> </span></code></pre></div>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span> I <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fl">0.2</span><span class="op">*</span><span class="va">HPop</span><span class="op">)</span>,</span>
 <span> r <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">200</span>,</span>
 <span> b <span class="op">=</span> <span class="fl">0.55</span>,</span>
 <span> c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">.02</span>, <span class="fl">.1</span>, <span class="fl">.02</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYname<span class="op">=</span><span class="st">"macdonald"</span>, Xname<span class="op">=</span><span class="st">"SIS"</span>, Lname<span class="op">=</span><span class="st">"basicL"</span>, </span>
 <span>  nPatches <span class="op">=</span> <span class="fl">3</span>, HPop<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">90</span>, <span class="fl">100</span>, <span class="fl">900</span><span class="op">)</span>, </span>
 <span>  membership<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>, </span>
 <span>  MYoptions<span class="op">=</span><span class="va">MYZo</span>, Koptions<span class="op">=</span><span class="va">Kmatrix</span>, XHoptions<span class="op">=</span><span class="va">Xo</span>, Loptions <span class="op">=</span> <span class="va">Lo</span>,</span>
 <span>  residence<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>, searchB<span class="op">=</span><span class="va">searchWtsH</span>, </span>
-<span>  TimeSpent<span class="op">=</span><span class="va">TaR</span>, searchQ <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">8</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod534</span></span></code></pre></div>
+<span>  TSoptions<span class="op">=</span><span class="va">TaR</span>, searchQ <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">8</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod534</span></span></code></pre></div>
 <p>We solve and take the differences to check:</p>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod534</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">mod534</span>, Tmax<span class="op">=</span><span class="fl">735</span>, dt<span class="op">=</span><span class="fl">15</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod534</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">deout</span> <span class="op">-&gt;</span> <span class="va">out2</span></span></code></pre></div>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">mod534</span>, llty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ex_534_files/figure-html/unnamed-chunk-36-1.png" class="r-plt" alt="" width="700"></p>
+<p><img src="ex_534_files/figure-html/unnamed-chunk-35-1.png" class="r-plt" alt="" width="700"></p>
 <p>Interestingly, the differences are small:</p>
-<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">out2</span>,<span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">out1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0</span></span></code></pre>
-<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/approx_equal.html">approx_equal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">out2</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">out1</span>,<span class="fl">1</span><span class="op">)</span>, tol <span class="op">=</span> <span class="fl">1e-5</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##       time    1    2    3    4    5    6    7    8    9   10   11   12   13</span></span>
 <span><span class="co">## [50,] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>

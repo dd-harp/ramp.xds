@@ -16,7 +16,7 @@ make_xds_object_template(
   frame = "full",
   nPatches = 1,
   membership = 1,
-  residency = 1
+  residence = 1
 )
 ```
 
@@ -40,9 +40,9 @@ make_xds_object_template(
 
   is the habitat membership vector
 
-- residency:
+- residence:
 
-  is the strata residency vector
+  is the strata residence vector
 
 ## Value
 
@@ -113,7 +113,7 @@ Next, the function sets up egg laying, blood feeding, and transmission:
   resource parameters (`Qtraps`, etc.) are zero-initialized by default
 
 - **Blood Feeding** calls
-  [`make_residency_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_residency_matrix.md),
+  [`make_residence_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_residence_matrix.md),
   then
   [`setup_XY_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_XY_interface.md);
   resource parameters (`other_blood_hosts`, `Btraps`) are

@@ -338,7 +338,7 @@ Search Weights, Mosquito Dispersal, Time Spent
 - [`xds_info_mosquito_dispersal`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md)
   : Mosquito Dispersal
 - [`xds_info_time_spent`](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
-  : Time Spent
+  : time spent
 
 ### Adding Features
 
@@ -575,8 +575,20 @@ Get model parameters
 
   Get parameters (**XH**)
 
-- [`get_TimeSpent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_TimeSpent_matrix.md)
+- [`get_timespent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_TimeSpent_matrix.md)
   : Get the Time Spent Matrix
+
+- [`get_time_away()`](https://dd-harp.github.io/ramp.xds/reference/get_time_away.md)
+  : Get the Time Away Vector
+
+- [`get_residence()`](https://dd-harp.github.io/ramp.xds/reference/get_residence.md)
+  : Get residence vector
+
+- [`get_residence_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_residence_matrix.md)
+  : Create the residence Matrix
+
+- [`get_search_weights_blood()`](https://dd-harp.github.io/ramp.xds/reference/get_search_weights_blood.md)
+  : Get Blood Feeding Search Weights
 
 - [`get_MY_pars()`](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.md)
   :
@@ -710,8 +722,14 @@ Change parameters
 - [`change_H()`](https://dd-harp.github.io/ramp.xds/reference/change_H.md)
   : Change human population density
 
-- [`change_TimeSpent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_TimeSpent_matrix.md)
-  : Set up (or change) a Time Spent matrix
+- [`change_timespent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_TimeSpent_matrix.md)
+  : Set up (or change) a time spent matrix
+
+- [`change_time_away()`](https://dd-harp.github.io/ramp.xds/reference/change_time_away.md)
+  : Change the time at home
+
+- [`change_blood_search_weights()`](https://dd-harp.github.io/ramp.xds/reference/change_blood_search_weights.md)
+  : Change Blood Search Weights
 
 ### Change for MY
 
@@ -832,17 +850,17 @@ XH component module implementations
 Utilities for Time Spent Matrices
 
 - [`xds_info_time_spent`](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
-  : Time Spent
+  : time spent
 - [`xds_info_time_at_risk`](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_at_risk.md)
   : Time at Risk
-- [`setup_TimeSpent()`](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.md)
-  : Make a time spent matrix, called TimeSpent
-- [`change_TimeSpent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_TimeSpent_matrix.md)
-  : Set up (or change) a Time Spent matrix
-- [`make_TimeSpent_athome()`](https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent_athome.md)
-  : Make a mosquito dispersal matrix, called TimeSpent
-- [`make_TimeSpent_xy()`](https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent_xy.md)
-  : Make a mosquito dispersal matrix, called TimeSpent
+- [`setup_timespent()`](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.md)
+  : Make a time spent matrix, called timespent
+- [`change_timespent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_TimeSpent_matrix.md)
+  : Set up (or change) a time spent matrix
+- [`make_timespent_athome()`](https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent_athome.md)
+  : Make a time spent matrix, called timespent
+- [`make_timespent_xy()`](https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent_xy.md)
+  : Make a time spent matrix, called timespent
 
 Utilities for Time Spent Matrices
 
@@ -1031,10 +1049,6 @@ Compute the derivatives for other variables
   : Transmission
 - [`check_XY_interface()`](https://dd-harp.github.io/ramp.xds/reference/check_XY_interface.md)
   : Check the XY Interface
-- [`make_residency_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_residency_matrix.md)
-  : Create the Residency Matrix
-- [`view_residency_matrix()`](https://dd-harp.github.io/ramp.xds/reference/view_residency_matrix.md)
-  : View residence membership
 
 ## Exposure
 
@@ -1185,10 +1199,12 @@ Mosquito Population Dynamical Interface
   : Unproductive Aquatic Habitats
 - [`xds_port_ovitraps`](https://dd-harp.github.io/ramp.xds/reference/xds_port_ovitraps.md)
   : Ovitraps
-- [`view_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/view_habitat_matrix.md)
-  : View habitat membership, \\N\\
+- [`get_habitats()`](https://dd-harp.github.io/ramp.xds/reference/get_habitats.md)
+  : Get the habitat membership vector
+- [`get_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_habitat_matrix.md)
+  : Get habitat matrix, \\N\\
 - [`change_habitat_search_weights()`](https://dd-harp.github.io/ramp.xds/reference/change_habitat_search_weights.md)
-  : Change Habitat Search Weights
+  : Change habitat search weights
 - [`change_bad_habitat()`](https://dd-harp.github.io/ramp.xds/reference/change_bad_habitat.md)
   : Change Bad Habitat Availability
 

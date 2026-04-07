@@ -119,6 +119,7 @@ consider using <a href="xds_setup_eir.html">xds_setup_eir</a>.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xds_setup_human</span><span class="op">(</span></span>
+<span>  model_name <span class="op">=</span> <span class="st">"unnamed"</span>,</span>
 <span>  Xname <span class="op">=</span> <span class="st">"SIS"</span>,</span>
 <span>  XHoptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  xds <span class="op">=</span> <span class="st">"ode"</span>,</span>
@@ -126,10 +127,9 @@ consider using <a href="xds_setup_eir.html">xds_setup_eir</a>.</p>
 <span>  residence <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  HPop <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  searchB <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  TimeSpent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  TSoptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"no_setup"</span><span class="op">)</span>,</span>
 <span>  MYoptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  BFopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  model_name <span class="op">=</span> <span class="st">"unnamed"</span></span>
+<span>  BFopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -137,7 +137,11 @@ consider using <a href="xds_setup_eir.html">xds_setup_eir</a>.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-xname">Xname<a class="anchor" aria-label="anchor" href="#arg-xname"></a></dt>
+<dl><dt id="arg-model-name">model_name<a class="anchor" aria-label="anchor" href="#arg-model-name"></a></dt>
+<dd><p>a name for the model</p></dd>
+
+
+<dt id="arg-xname">Xname<a class="anchor" aria-label="anchor" href="#arg-xname"></a></dt>
 <dd><p>a character string defining a <strong>X</strong> Component module</p></dd>
 
 
@@ -165,7 +169,7 @@ consider using <a href="xds_setup_eir.html">xds_setup_eir</a>.</p>
 <dd><p>a vector of search weights for blood feeding</p></dd>
 
 
-<dt id="arg-timespent">TimeSpent<a class="anchor" aria-label="anchor" href="#arg-timespent"></a></dt>
+<dt id="arg-tsoptions">TSoptions<a class="anchor" aria-label="anchor" href="#arg-tsoptions"></a></dt>
 <dd><p>either a TimeSpent matrix or a string to call a function that sets it up</p></dd>
 
 
@@ -175,10 +179,6 @@ consider using <a href="xds_setup_eir.html">xds_setup_eir</a>.</p>
 
 <dt id="arg-bfopts">BFopts<a class="anchor" aria-label="anchor" href="#arg-bfopts"></a></dt>
 <dd><p>list to configure the blood feeding model</p></dd>
-
-
-<dt id="arg-model-name">model_name<a class="anchor" aria-label="anchor" href="#arg-model-name"></a></dt>
-<dd><p>a name for the model</p></dd>
 
 </dl></div>
     <div class="section level2">

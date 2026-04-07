@@ -5,7 +5,7 @@ Get the Time Spent Matrix
 ## Usage
 
 ``` r
-get_TimeSpent_matrix(xds_obj, i = 1)
+get_timespent_matrix(xds_obj, i = 1)
 ```
 
 ## Arguments
@@ -20,4 +20,4 @@ get_TimeSpent_matrix(xds_obj, i = 1)
 
 ## Value
 
-an **`xds`** object
+a [matrix](https://rdrr.io/r/base/matrix.html)

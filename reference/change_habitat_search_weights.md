@@ -1,6 +1,7 @@
-# Change Habitat Search Weights
+# Change habitat search weights
 
-Set the search weights, \\\omega\\, for a set of aquatic habitats
+Change the habitat feeding search weights, \\\omega\\, for a set of host
+strata
 
 ## Usage
 
@@ -12,7 +13,7 @@ change_habitat_search_weights(wts, xds_obj, s = 1)
 
 - wts:
 
-  habitat search weights
+  the habitat feeding search weights
 
 - xds_obj:
 

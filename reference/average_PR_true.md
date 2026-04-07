@@ -3,7 +3,7 @@
 This is a generic way of computing the average PR for some subset(s) of
 the population. The object `members` is a membership matrix, like the
 residence matrix (see
-[make_residency_matrix](https://dd-harp.github.io/ramp.xds/reference/make_residency_matrix.md)).
+[get_residence_matrix](https://dd-harp.github.io/ramp.xds/reference/get_residence_matrix.md)).
 If the residence matrix were passed to members, average_PR_true returns
 the average PR for each patch by residency.
 

@@ -13,16 +13,20 @@ dispatch functions that compute derivatives (`xde`), update variables
 
 ``` r
 xds_setup_aquatic(
+  model_name = "unnamed",
   xds = "ode",
   nHabitats = 1,
   Lname = "basicL",
   Loptions = list(),
-  MYoptions = list(),
-  model_name = "unnamed"
+  MYoptions = list()
 )
 ```
 
 ## Arguments
+
+- model_name:
+
+  is a name for the model (arbitrary)
 
 - xds:
 
@@ -45,10 +49,6 @@ xds_setup_aquatic(
 
   a list to configure
   [F_eggs.trivial](https://dd-harp.github.io/ramp.xds/reference/F_eggs.trivial.md)
-
-- model_name:
-
-  is a name for the model (arbitrary)
 
 ## Value
 
