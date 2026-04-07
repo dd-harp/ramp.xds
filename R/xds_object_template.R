@@ -41,7 +41,7 @@
 #' Next, the function sets up egg laying, blood feeding, and transmission:
 #' - **Egg Laying** calls [make_habitat_matrix()], then [setup_ML_interface()];
 #' resource parameters (`Qtraps`, etc.) are zero-initialized by default
-#' - **Blood Feeding** calls [make_residency_matrix()], then [setup_XY_interface()];
+#' - **Blood Feeding** calls [make_residence_matrix()], then [setup_XY_interface()];
 #' resource parameters (`other_blood_hosts`, `Btraps`) are zero-initialized by default
 #' - **Transmission**  calls [setup_transmission()] sets up a static
 #' model for the availability of visitors; by default, there are no visitors
@@ -59,7 +59,7 @@
 #' @param frame model component subset
 #' @param nPatches is the number of patches
 #' @param membership is the habitat membership vector
-#' @param residency is the strata residency vector
+#' @param residence is the strata residence vector
 #'
 #' @keywords internal
 #'
@@ -69,7 +69,7 @@
 #'
 #' @export
 make_xds_object_template = function(xds='ode', frame='full',
-                           nPatches=1, membership=1, residency=1){
+                           nPatches=1, membership=1, residence=1){
 
   xds_obj = list()
   class(xds_obj) <- 'xds_obj'
@@ -101,26 +101,38 @@ make_xds_object_template = function(xds='ode', frame='full',
   xds_obj$nVectorSpecies  = 1
   xds_obj$nHostSpecies    = 1
   xds_obj$nPatches  = nPatches
+  xds_obj$patches = list() 
+  
   xds_obj$nHabitats = length(membership)
-  xds_obj$nStrata   = length(residency)
-  xds_obj$nOtherVariables = 0
+  xds_obj$habitats = list() 
+  xds_obj$habitats[[1]] = membership 
+  
+  xds_obj$nStrata   = length(residence)
+  xds_obj$residence = list() 
+  xds_obj$residence[[1]] = residence 
+  
 
   xds_obj$terms <- list()
 
-  xds_obj <- setup_ML_interface(xds_obj, membership)
-  xds_obj <- setup_XY_interface(xds_obj, residency)
+  # Egg Laying Interface 
+  xds_obj <- setup_ML_interface(xds_obj)
+  
+  # Blood Feeding Interface 
+  xds_obj <- setup_XY_interface(xds_obj)
   xds_obj <- setup_importation_object(xds_obj)
   xds_obj <- setup_transmission(xds_obj)
   xds_obj <- setup_exposure("pois", xds_obj)
-  xds_obj$variables = list()
 
-  xds_obj$Xname       <- 'unspecified'
+  xds_obj$Xname       <- 'none'
   xds_obj$XH_obj      <- xdlst
-  xds_obj$MYname      <- 'unspecified'
+  xds_obj$MYname      <- 'none'
   xds_obj$MY_obj      <- xdlst
-  xds_obj$Lname       <- 'unspecified'
+  xds_obj$Lname       <- 'none'
   xds_obj$L_obj       <- xdlst
-  xds_obj             <- setup_other_variables(xds_obj)
+  
+  xds_obj$variables = list()
+  xds_obj$nOtherVariables = 0
+  xds_obj <- setup_other_variables(xds_obj)
 
   # Junctions
   xds_obj <- setup_resources_object(xds_obj)

@@ -1,7 +1,22 @@
 # The `SIS` module for the XH component
 
-Implements the **XH** component using a Susceptible-Infected-Susceptible
-(SIS) compartmental model of human infection dynamics.
+In the SIS compartmental model, infected individuals are either
+susceptible (S), or infected and infectious (I). Susceptible individuals
+become infected at the per-capita rate \\h\\. Infected individuals clear
+infections at the per-capita rate \\r\\, and then they become
+susceptible to infection again.
+
+Human/host population size (H) is a state variable that can be
+configured.
+
+and \\H=S+I\\: the model computes \\dH/dt\\ and \\dI/dt\\. When outputs
+are parsed, S is computed as \\S=H-I\\.
+
+This module also includes:
+
+- a model for human demographic changes; and
+
+- a port for mass treatment, \\\xi(t)\\.
 
 ## State Variables
 
@@ -13,7 +28,8 @@ Implements the **XH** component using a Susceptible-Infected-Susceptible
 
   density of infected humans
 
-Note: susceptible density \\S = H - I\\.
+During parsing, the density of susceptibles is computed as: \$\$S = H -
+I\$\$.
 
 ## Parameters
 
@@ -23,7 +39,7 @@ Note: susceptible density \\S = H - I\\.
 
 - `xi`:
 
-  mass treatment rate (\\\xi(t)\\)
+  mass treatment rate
 
 - `B`:
 
@@ -31,8 +47,7 @@ Note: susceptible density \\S = H - I\\.
 
 - `D`:
 
-  linear operator (matrix) for mortality, migration, aging, and
-  transfers
+  human demographic matrix
 
 ## Dynamics
 

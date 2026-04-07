@@ -42,6 +42,6 @@ make_habitat_matrix(3, c(1,1,2,2,2))
 \seealso{
 compute_habitat matrix is called by \code{\link[=make_xds_object_template]{make_xds_object_template()}} and \code{\link[=setup_ML_interface]{setup_ML_interface()}}
 
-see \code{\link[=view_habitat_matrix]{view_habitat_matrix()}}
+see \code{\link[=get_habitat_matrix]{get_habitat_matrix()}}
 }
 \keyword{internal}

@@ -5,6 +5,8 @@
 library(ramp.xds)
 ```
 
+    ## ℹ Loading ramp.xds
+
 In **`ramp.xds`,** there are three different ways of simulating malaria
 epidemiology in isolation. These are set up using different setup
 functions:

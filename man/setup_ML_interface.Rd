@@ -4,12 +4,10 @@
 \alias{setup_ML_interface}
 \title{Setup the Habitat Interface for Egg Laying and Emergence}
 \usage{
-setup_ML_interface(xds_obj, membership)
+setup_ML_interface(xds_obj)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
-
-\item{membership}{is the habitat membership vector}
 }
 \value{
 an \strong{\code{xds}} object

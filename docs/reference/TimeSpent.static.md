@@ -6,7 +6,7 @@ Return the time spent objects unmodified
 
 ``` r
 # S3 method for class 'static'
-TimeSpent(t, y, xds_obj)
+timespent(t, y, xds_obj)
 ```
 
 ## Arguments

@@ -1,18 +1,14 @@
-# Make a time spent matrix, called TimeSpent
+# Make a time spent matrix, called timespent
 
-Make a time spent matrix, called TimeSpent
+Make a time spent matrix, called timespent
 
 ## Usage
 
 ``` r
-setup_TimeSpent(TimeSpent, xds_obj, i, options = list())
+setup_timespent(name, xds_obj, i, options = list())
 ```
 
 ## Arguments
-
-- TimeSpent:
-
-  a matrix or a setup function name
 
 - xds_obj:
 
@@ -25,6 +21,10 @@ setup_TimeSpent(TimeSpent, xds_obj, i, options = list())
 - options:
 
   configuration options
+
+- timespent:
+
+  a matrix or a setup function name
 
 ## Value
 

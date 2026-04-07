@@ -34,5 +34,5 @@ Get functions for **XH**
 - [`get_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)
   – get parameters
 
-- [`get_TimeSpent_matrix`](https://dd-harp.github.io/ramp.xds/reference/get_TimeSpent_matrix.md)
+- [`get_timespent_matrix`](https://dd-harp.github.io/ramp.xds/reference/get_timespent_matrix.md)
   – get the Time Spent Matrix

@@ -4,12 +4,10 @@
 \alias{setup_XY_interface}
 \title{Setup the Blood Feeding Interface}
 \usage{
-setup_XY_interface(xds_obj, residency)
+setup_XY_interface(xds_obj)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
-
-\item{residency}{the residency vector}
 }
 \value{
 an \strong{\code{xds}} object
@@ -31,8 +29,7 @@ attached to the \strong{\code{xds}} model object as \code{xds_obj$XY_interface.}
 
 The blood feeding interface sets up several objects:
 \itemize{
-\item the residency matrix \eqn{J} (see \link{make_residency_matrix})
-\item a time spent (TiSp) matrix \eqn{\Theta} (see \link{setup_TimeSpent})
+\item a time spent (TiSp) matrix \eqn{\Theta} (see \link{xds_info_time_spent})
 \item a circadian function \code{F_circadian} for each vector species
 \item a time at risk (TaR) matrix \eqn{\Psi,} the product of the TiSp matrix and the circadian function
 \item blood feeding search weights \eqn{\omega}

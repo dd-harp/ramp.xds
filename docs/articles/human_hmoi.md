@@ -178,5 +178,5 @@ xds_setup_eir(eir, Xname="hMoI", HPop=H, XHoptions = Xo) ->test_hMoI
 xds_solve(test_hMoI)-> test_hMoI 
 XH2 <- test_hMoI$outputs$orbits$XH[[1]]
 sum((XH$m1-XH2$m1)^2)
-#> [1] 0
+#> [1] 5336478
 ```

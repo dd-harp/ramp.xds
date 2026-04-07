@@ -45,6 +45,7 @@ Make an **`xds`** *model object*:
 
 ``` r
 xds_setup(
+  model_name = "unnamed",
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
@@ -55,17 +56,20 @@ xds_setup(
   nPatches = 1,
   HPop = 1000,
   residence = 1,
-  TimeSpent = list(),
   searchB = 1,
+  TSoptions = list(name = "no_setup"),
   membership = 1,
-  Koptions = list(Kname = "no_setup"),
   searchQ = 1,
-  BFopts = list(),
-  model_name = "unnamed"
+  Koptions = list(Kname = "no_setup"),
+  BFopts = list()
 )
 ```
 
 ## Arguments
+
+- model_name:
+
+  is a name for the model (arbitrary)
 
 - xds:
 
@@ -108,19 +112,23 @@ xds_setup(
 
   is a vector that describes the patch where each human stratum lives
 
-- TimeSpent:
-
-  is either a TimeSpent matrix or a string to call a function that sets
-  it up
-
 - searchB:
 
   is a vector of search weights for blood feeding
+
+- TSoptions:
+
+  is either a TimeSpent matrix or a string to call a function that sets
+  it up
 
 - membership:
 
   is a vector that describes the patch where each aquatic habitat is
   found
+
+- searchQ:
+
+  is a vector of search weights for egg laying
 
 - Koptions:
 
@@ -129,17 +137,9 @@ xds_setup(
   (see
   [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
 
-- searchQ:
-
-  is a vector of search weights for egg laying
-
 - BFopts:
 
   a list to configure the blood feeding model
-
-- model_name:
-
-  is a name for the model (arbitrary)
 
 ## Value
 

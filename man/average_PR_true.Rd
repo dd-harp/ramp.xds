@@ -19,7 +19,7 @@ a PfPR
 \description{
 This is a generic way of computing the average PR
 for some subset(s) of the population. The object \code{members} is a
-membership matrix, like the residence matrix (see \link{make_residency_matrix}).
+membership matrix, like the residence matrix (see \link{get_residence_matrix}).
 If the residence matrix were passed to members, average_PR_true returns
 the average PR for each patch by residency.
 

@@ -13,7 +13,7 @@ xds_setup_human(
   residence = 1,
   HPop = 1000,
   searchB = 1,
-  TimeSpent = list(),
+  TSoptions = list(name = "no_setup"),
   MYoptions = list(),
   BFopts = list()
 )
@@ -35,7 +35,7 @@ xds_setup_human(
 
 \item{searchB}{a vector of search weights for blood feeding}
 
-\item{TimeSpent}{either a TimeSpent matrix or a string to call a function that sets it up}
+\item{TSoptions}{either a TimeSpent matrix or a string to call a function that sets it up}
 
 \item{MYoptions}{list to configure the \strong{MY} Component module}
 

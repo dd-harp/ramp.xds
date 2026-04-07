@@ -186,7 +186,7 @@ configured by naming the modules and passing options to set \\\Lambda\\:
 
 library(ramp.xds)
 mod <- xds_setup(Xname = "SIS", MYname = "SI", 
-                 Lname = "trivial", Loptions(Lambda=80))
+                 Lname = "trivial", Loptions = list(Lambda=80))
 ```
 
 In solving the system, derivatives for the human “SIS” model are
@@ -214,7 +214,7 @@ getS3method("dXHdt", "SIS")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x1273e2d68>
+    ## <bytecode: 0x109f838c0>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -242,7 +242,7 @@ getS3method("dMYdt", "SI")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x113649b30>
+    ## <bytecode: 0x10c00c978>
     ## <environment: namespace:ramp.xds>
 
 The term \\\Lambda\\ is passed from the trace function
@@ -263,5 +263,5 @@ getS3method("F_emerge", "trivial")
     ##         return(Lambda * F_season(t) * F_trend(t) * F_shock(t))
     ##     })
     ## }
-    ## <bytecode: 0x107f4a718>
+    ## <bytecode: 0x10a57b210>
     ## <environment: namespace:ramp.xds>

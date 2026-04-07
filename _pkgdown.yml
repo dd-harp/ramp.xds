@@ -225,7 +225,11 @@ reference:
     Get model parameters  
   contents:
   - get_XH_pars 
-  - get_TimeSpent_matrix
+  - get_timespent_matrix
+  - get_time_away
+  - get_residence
+  - get_residence_matrix
+  - get_search_weights_blood
   - get_MY_pars 
   - get_f 
   - get_g 
@@ -273,7 +277,9 @@ reference:
   contents:
   - change_XH_pars
   - change_H
-  - change_TimeSpent_matrix
+  - change_timespent_matrix
+  - change_time_away
+  - change_blood_search_weights
 - subtitle: Change for MY 
   desc: |
     Change parameters
@@ -332,10 +338,10 @@ reference:
   contents:
   - xds_info_time_spent
   - xds_info_time_at_risk
-  - setup_TimeSpent
-  - change_TimeSpent_matrix
-  - make_TimeSpent_athome
-  - make_TimeSpent_xy
+  - setup_timespent
+  - change_timespent_matrix
+  - make_timespent_athome
+  - make_timespent_xy
 - subtitle:  
   desc: |
     Utilities for Time Spent Matrices
@@ -409,8 +415,6 @@ reference:
   - xds_info_relative_biting_rates 
   - xds_info_transmission
   - check_XY_interface
-  - make_residency_matrix
-  - view_residency_matrix
 - title: Exposure 
   desc: |
     Compute the FoI from local EIR and travel
@@ -495,7 +499,8 @@ reference:
   - xds_info_available_habitats
   - xds_port_bad_habitats 
   - xds_port_ovitraps 
-  - view_habitat_matrix
+  - get_habitats
+  - get_habitat_matrix
   - change_habitat_search_weights
   - change_bad_habitat
 - title: Functions 

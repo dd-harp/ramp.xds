@@ -6,7 +6,7 @@ mosquitoes
 ## Usage
 
 ``` r
-F_B_available(W, visitors, other_blood, Btraps)
+F_B_available(W, visitors, other_blood, traps)
 ```
 
 ## Arguments
@@ -23,7 +23,7 @@ F_B_available(W, visitors, other_blood, Btraps)
 
   available of other vertebrate hosts
 
-- Btraps:
+- traps:
 
   blood feeding trap availability
 

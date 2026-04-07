@@ -4,7 +4,7 @@
 \alias{F_B_available}
 \title{Compute Vertebrate Host available for Blood Feeding}
 \usage{
-F_B_available(W, visitors, other_blood, Btraps)
+F_B_available(W, visitors, other_blood, traps)
 }
 \arguments{
 \item{W}{available of the parasite's / pathogen' local hosts}
@@ -13,7 +13,7 @@ F_B_available(W, visitors, other_blood, Btraps)
 
 \item{other_blood}{available of other vertebrate hosts}
 
-\item{Btraps}{blood feeding trap availability}
+\item{traps}{blood feeding trap availability}
 }
 \value{
 host available, a \link{vector}

@@ -128,6 +128,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 setup_XH_obj.SIS = function(Xname, xds_obj, i, options=list()){
   xds_obj$XH_obj[[i]] = make_XH_obj_SIS(xds_obj$nStrata[1], options)
   xds_obj$XH_obj[[i]]$skill_set <- skill_set_XH("SIS")
+  xds_obj <- setup_XH_ports(xds_obj, i)
   return(xds_obj)
 }
 
@@ -167,6 +168,7 @@ make_XH_obj_SIS = function(nStrata, options=list(),
     XH_obj$births = births
     XH_obj$mda = F_zero
     XH_obj$msat = F_zero
+    XH_obj$time_away = rep(0, nStrata)
 
     return(XH_obj)
   })}

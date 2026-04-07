@@ -1,9 +1,8 @@
-# Setup a Here-There Dispersal Matrix
+# Setup no dispersal matrix
 
 Implements
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-for the here and there model: dispersal to every other patch, with equal
-probability
+for the "no_setup" case
 
 ## Usage
 

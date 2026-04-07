@@ -19,7 +19,7 @@ a PfPR
 \description{
 This is a generic way of computing the average EIR
 for some subset(s) of the population strata. The object members is a
-membership matrix, like the residence matrix (see \link{make_residency_matrix}).
+membership matrix, like the residence matrix (see \link{get_residence_matrix}).
 If the residence matrix were passed to members, average_EIR returns
 the average EIR for the residents of each patch, which is could be different
 from what would be computed.

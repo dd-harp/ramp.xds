@@ -168,10 +168,9 @@ setup_K_matrix = function(Kname, xds_obj, options = list(), s=1){
   UseMethod("setup_K_matrix", options)
 }
 
-#' @title Setup a Here-There Dispersal Matrix
+#' @title Setup no dispersal matrix
 #'
-#' @description Implements [setup_K_matrix] for the here and there model:
-#' dispersal to every other patch, with equal probability
+#' @description Implements [setup_K_matrix] for the "no_setup" case
 #'
 #' @inheritParams setup_K_matrix
 #'

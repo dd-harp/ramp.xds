@@ -16,11 +16,11 @@ xds_setup(
   nPatches = 1,
   HPop = 1000,
   residence = 1,
-  TimeSpent = list(),
   searchB = 1,
+  TSoptions = list(name = "no_setup"),
   membership = 1,
-  Koptions = list(Kname = "no_setup"),
   searchQ = 1,
+  Koptions = list(Kname = "no_setup"),
   BFopts = list()
 )
 }
@@ -47,15 +47,15 @@ xds_setup(
 
 \item{residence}{is a vector that describes the patch where each human stratum lives}
 
-\item{TimeSpent}{is either a TimeSpent matrix or a string to call a function that sets it up}
-
 \item{searchB}{is a vector of search weights for blood feeding}
+
+\item{TSoptions}{is either a TimeSpent matrix or a string to call a function that sets it up}
 
 \item{membership}{is a vector that describes the patch where each aquatic habitat is found}
 
-\item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (see \link{xds_info_mosquito_dispersal})}
-
 \item{searchQ}{is a vector of search weights for egg laying}
+
+\item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (see \link{xds_info_mosquito_dispersal})}
 
 \item{BFopts}{a list to configure the blood feeding model}
 }

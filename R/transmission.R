@@ -96,7 +96,7 @@ compute_beta <- function(t, y, xds_obj){
     H = F_H(t, y, xds_obj, i)
     for(s in 1:xds_obj$nVectorSpecies){
       W = xds_obj$XY_interface$W[[s]]
-      wts = xds_obj$XY_interface$search_weights[[s]][[i]]
+      wts = xds_obj$XH_obj[[i]]$search_weights[[s]]
       TaR = xds_obj$XY_interface$TaR[[s]][[i]]
       xds_obj$terms$beta[[s]][[i]] <- F_beta(H, W, wts, TaR)
     }

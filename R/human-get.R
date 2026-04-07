@@ -1,4 +1,38 @@
 
+#' @title Get the Time Spent Matrix
+#'
+#' @param xds_obj an **`xds`** model object
+#' @param i the host species index
+#'
+#' @return a [matrix]
+#' @export
+get_timespent_matrix = function(xds_obj, i=1){
+  return(xds_obj$XH_obj[[i]]$timespent)
+}
+
+#' @title Get the Time Away Vector
+#'
+#' @param xds_obj an **`xds`** model object
+#' @param i the host species index
+#'
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+get_time_away = function(xds_obj, i=1){
+  return(xds_obj$XH_obj[[i]]$time_away)
+}
+
+#' @title Get Blood Feeding Search Weights
+#'
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#' @param i the host species index
+#'
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+get_search_weights_blood = function(xds_obj, s=1, i=1){
+  return(xds_obj$XH_obj[[i]]$search_weights[[s]])
+}
+
 #' @title Get human population density 
 #'
 #' @param xds_obj an **`xds`** model object

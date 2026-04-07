@@ -62,7 +62,7 @@
 #' @param HPop is the number of humans in each patch
 #' @param residence is a vector that describes the patch where each human stratum lives
 #' @param searchB is a vector of search weights for blood feeding
-#' @param TimeSpent is either a TimeSpent matrix or a string to call a function that sets it up
+#' @param TSoptions is either a TimeSpent matrix or a string to call a function that sets it up
 #' @param membership is a vector that describes the patch where each aquatic habitat is found
 #' @param searchQ is a vector of search weights for egg laying
 #' @param Koptions a K matrix, or options for [setup_K_matrix] (see [xds_info_mosquito_dispersal])
@@ -81,11 +81,11 @@ xds_setup = function(
      nPatches = 1,
      HPop = 1000,
      residence = 1,
-     TimeSpent = list(),
      searchB = 1,
+     TSoptions = list(name = "no_setup"),
      membership = 1,
-     Koptions = list(Kname = "no_setup"),
      searchQ = 1,
+     Koptions = list(Kname = "no_setup"),
      BFopts = list()
 ){
   stopifnot(length(HPop) == length(residence))
@@ -117,15 +117,17 @@ xds_setup = function(
   xds_obj    <- change_blood_search_weights(wts, xds_obj, 1, 1)
 
 
-  if(is.matrix(TimeSpent))
-    xds_obj <- change_TimeSpent_matrix(TimeSpent, xds_obj, 1)
+  if(is.matrix(TSoptions)){
+    xds_obj <- change_timespent_matrix(TSoptions, xds_obj, 1)
+  } else {
+    xds_obj <- setup_timespent(TSoptions$name, xds_obj, TSoptions, 1)
+  } 
 
   if(is.matrix(Koptions)){
     xds_obj <- setup_K_matrix(Koptions, xds_obj)
   } else {
     xds_obj <- setup_K_matrix(Koptions$Kname, xds_obj, Koptions, 1)
   } 
-
 
   # Probably Not Necessary
   y0 <- as.vector(unlist(get_inits(xds_obj)))
@@ -304,7 +306,7 @@ xds_setup_aquatic = function(model_name = "unnamed",
 #' @param residence a vector that describes the patch where each human stratum lives
 #' @param HPop the number of humans in each patch
 #' @param searchB  a vector of search weights for blood feeding
-#' @param TimeSpent  either a TimeSpent matrix or a string to call a function that sets it up
+#' @param TSoptions either a TimeSpent matrix or a string to call a function that sets it up
 #' @param MYoptions list to configure the **MY** Component module
 #' @param XHoptions a named list to configure the **X** Component module
 #' @param BFopts list to configure the blood feeding model
@@ -323,7 +325,7 @@ xds_setup_human = function(model_name = "unnamed",
                            HPop=1000,
                            ### Setup Parameters
                            searchB = 1,
-                           TimeSpent = list(),
+                           TSoptions = list(name = "no_setup"),
                            ### Options
                            MYoptions = list(),
                            BFopts = list()
@@ -350,8 +352,11 @@ xds_setup_human = function(model_name = "unnamed",
   wts          <- with(BFopts, checkIt(searchB, xds_obj$nStrata))
   xds_obj      <- change_blood_search_weights(wts, xds_obj, 1, 1)
 
-  if(is.matrix(TimeSpent))
-    xds_obj <- change_TimeSpent_matrix(TimeSpent, xds_obj, 1)
+  if(is.matrix(TSoptions)){
+    xds_obj <- change_timespent_matrix(TSoptions, xds_obj, 1)
+  } else {
+    xds_obj <- setup_timespent(TSoptions$name, xds_obj, TSoptions, 1)
+  } 
 
   # Probably Not Necessary
   y0 <- as.vector(unlist(get_inits(xds_obj)))

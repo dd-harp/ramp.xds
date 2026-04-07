@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{setup_K_matrix.no_setup}
 \alias{setup_K_matrix.no_setup}
-\title{Setup a Here-There Dispersal Matrix}
+\title{Setup no dispersal matrix}
 \usage{
 \method{setup_K_matrix}{no_setup}(Kname, xds_obj, options = list(), s = 1)
 }
@@ -19,7 +19,6 @@
 a \link{matrix}
 }
 \description{
-Implements \link{setup_K_matrix} for the here and there model:
-dispersal to every other patch, with equal probability
+Implements \link{setup_K_matrix} for the "no_setup" case
 }
 \keyword{internal}

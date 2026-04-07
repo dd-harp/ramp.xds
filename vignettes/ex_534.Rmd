@@ -122,7 +122,7 @@ residence vector. The element ${\cal J}_{i,j}$ is $1$ if the $j^{th}$ stratum re
 The matrix is created by a function `make_residency_matrix`:
 
 ```{r make_residency_matrix}
-residence_matrix = make_residency_matrix(nPatches, residence)
+residence_matrix = make_residence_matrix(nPatches, residence)
 residence_matrix
 ```
 The number of strata per patch is: 
@@ -381,15 +381,10 @@ After being set up:
 c(xds_obj$nHabitats, xds_obj$nPatches, xds_obj$nStrata)
 ```
 
-This was created by `make_xds_object_template` and stored as `xds_obj$habitat_matrix` 
+If we want to retrieve the membership matrix, we can call `get_habitat_matrix`
 
 ```{r}
-xds_obj$habitat_matrix
-```
-If we want to retrieve the membership matrix, we can call `view_habitat_matrix`
-
-```{r}
-view_habitat_matrix(xds_obj)
+get_habitat_matrix(xds_obj, 1)
 ```
 
 The function `make_xds_object_template` was designed to create a scaffolding. So `Q` and `Umatrix` get created with default values: Iall patches are assumed to have the same biting weights. 
@@ -410,7 +405,7 @@ To make a modular system that works as expected, we need to adopt some conventio
 
 ```{r}
 xds_obj$L_obj = list() 
-xds_obj$L_obj[[1]] = L_obj 
+xds_obj$L_obj[[1]] = L_obj
 xds_obj$MY_obj = list() 
 xds_obj$MY_obj[[1]] = MY_obj 
 xds_obj$XH_obj = list() 
@@ -419,8 +414,10 @@ xds_obj$XH_obj[[1]] = XH_obj
 
 ```{r}
 xds_obj <- setup_L_inits(xds_obj, 1, Linits)
+xds_obj <- setup_L_ports(xds_obj, 1)
 xds_obj <- setup_MY_inits(xds_obj, 1, MYZinits)
 xds_obj <- setup_XH_inits(xds_obj, HPop, 1, Xinits)
+xds_obj <- setup_XH_ports(xds_obj, 1)
 ```
 
 After the parameters for `5-3-4` have been specified, we can generate the indices for the model and attach them to the parameter list.
@@ -448,7 +445,7 @@ xds_obj$ML_interface$O_matrix
 ```
 
 ```{r change_TimeSpent}
-xds_obj <- change_TimeSpent_matrix(TaR, xds_obj)
+xds_obj <- change_timespent_matrix(TaR, xds_obj)
 ```
 
 ```{r}
@@ -594,7 +591,7 @@ xds_setup(MYname="macdonald", Xname="SIS", Lname="basicL",
   membership=c(1,1,1,2,2), 
   MYoptions=MYZo, Koptions=Kmatrix, XHoptions=Xo, Loptions = Lo,
   residence=c(2,2,3,3), searchB=searchWtsH, 
-  TimeSpent=TaR, searchQ = c(7,2,1,8,2)) -> mod534
+  TSoptions=TaR, searchQ = c(7,2,1,8,2)) -> mod534
 ```
 
 

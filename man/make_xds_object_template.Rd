@@ -9,7 +9,7 @@ make_xds_object_template(
   frame = "full",
   nPatches = 1,
   membership = 1,
-  residency = 1
+  residence = 1
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ make_xds_object_template(
 
 \item{membership}{is the habitat membership vector}
 
-\item{residency}{is the strata residency vector}
+\item{residence}{is the strata residence vector}
 }
 \value{
 an \strong{\code{xds}} object
@@ -71,7 +71,7 @@ Next, the function sets up egg laying, blood feeding, and transmission:
 \itemize{
 \item \strong{Egg Laying} calls \code{\link[=make_habitat_matrix]{make_habitat_matrix()}}, then \code{\link[=setup_ML_interface]{setup_ML_interface()}};
 resource parameters (\code{Qtraps}, etc.) are zero-initialized by default
-\item \strong{Blood Feeding} calls \code{\link[=make_residency_matrix]{make_residency_matrix()}}, then \code{\link[=setup_XY_interface]{setup_XY_interface()}};
+\item \strong{Blood Feeding} calls \code{\link[=make_residence_matrix]{make_residence_matrix()}}, then \code{\link[=setup_XY_interface]{setup_XY_interface()}};
 resource parameters (\code{other_blood_hosts}, \code{Btraps}) are zero-initialized by default
 \item \strong{Transmission}  calls \code{\link[=setup_transmission]{setup_transmission()}} sets up a static
 model for the availability of visitors; by default, there are no visitors

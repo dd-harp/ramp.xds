@@ -142,7 +142,7 @@ Basic setup returns this model during setup, but it can also be configured by na
 ```{r, fig.height=4, fig.width=7}
 library(ramp.xds)
 mod <- xds_setup(Xname = "SIS", MYname = "SI", 
-                 Lname = "trivial", Loptions(Lambda=80))
+                 Lname = "trivial", Loptions = list(Lambda=80))
 ```
 
 In solving the system, derivatives for the human "SIS" model are computed by a function `dXHdt.SIS`. Documentation is available through help in two ways: `?SIS` or `?dXHdt.SIS`. The full implementation includes human demography and ports for mass treatment. The code looks like this:  
