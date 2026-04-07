@@ -219,6 +219,7 @@ setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
   L_obj <- make_L_obj_basicL(xds_obj$nHabitats, options)
   class(L_obj) <- c("basicL", paste("basicL_", xds_obj$xds, sep=""))
   xds_obj$L_obj[[s]] = L_obj
+  xds_obj = setup_L_ports(xds_obj, s)
   xds_obj <- LBionomics(0, 0, xds_obj, 1)
   return(xds_obj)
 }

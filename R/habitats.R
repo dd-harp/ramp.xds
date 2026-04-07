@@ -37,13 +37,13 @@ check_ML_interface = function(xds_obj){
 #' the variables it might depend on.
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 #' @param xds_obj an **`xds`** model object
-#' @param membership is the habitat membership vector
+#' 
 #' @return an **`xds`** object
 #' @importFrom Rdpack reprompt
 #' @seealso The habitat membership matrix is created by [make_habitat_matrix()]
 #' @keywords internal
 #' @export
-setup_ML_interface = function(xds_obj, membership){
+setup_ML_interface = function(xds_obj){
   #Egg Laying Terms
   xds_obj$terms$G <- list()
   xds_obj$terms$G[[1]] <- rep(0, xds_obj$nPatches)
@@ -59,7 +59,7 @@ setup_ML_interface = function(xds_obj, membership){
   interface <- list()
   class(interface) <- "setup"
 
-  habitat_matrix = make_habitat_matrix(xds_obj$nPatches, membership)
+  habitat_matrix = make_habitat_matrix(xds_obj$nPatches, xds_obj$habitats[[1]])
 
   interface$habitat_matrix <- habitat_matrix
 
@@ -117,7 +117,7 @@ setup_ML_interface = function(xds_obj, membership){
 #' @param membership a vector describing the patch index for each habitat
 #' @return the habitat membership [matrix], denoted \eqn{N} where \eqn{\left|N\right|= n_p \times n_q}
 #' @seealso compute_habitat matrix is called by [make_xds_object_template()] and [setup_ML_interface()]
-#' @seealso see [view_habitat_matrix()]
+#' @seealso see [get_habitat_matrix()]
 #' @examples
 #' make_habitat_matrix(3, c(1,1,2,2,2))
 #' @export
@@ -129,33 +129,31 @@ make_habitat_matrix = function(nPatches, membership){
   return(habitat_matrix)
 }
 
-#' @title View habitat membership, \eqn{N}
+#' @title Get the habitat membership vector 
 #' @description Output the habitat membership information as a list
 #' @param xds_obj an **`xds`** model object
+#' @param s the vector species index 
 #' @return a [list]
 #' @seealso [make_habitat_matrix()]
 #' @export
-view_habitat_matrix = function(xds_obj){
-  which(t(xds_obj$ML_interface$habitat_matrix)==1, arr.ind=TRUE) -> membership
-  member <- list(habitat_index = as.vector(membership[,1]), patch_membership = as.vector(membership[,2]))
-  return(member)
+get_habitats = function(xds_obj, s){
+  return(xds_obj$habitats[[s]])
 }
 
-#' @title Change Habitat Search Weights
-#' @description Set the search weights, \eqn{\omega}, for a set of aquatic habitats
-#'
-#' @param wts habitat search weights
+
+#' @title Get habitat matrix, \eqn{N}
+#' @description Output the habitat membership information as a list
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#'
-#' @return an **`xds`** object
+#' @param s the vector species index 
+#' @return a [matrix]
+#' @seealso [make_habitat_matrix()]
 #' @export
-change_habitat_search_weights = function(wts, xds_obj, s=1){
-  stopifnot(length(wts) == xds_obj$nHabitats)
-  xds_obj$ML_interface$search_weights[[s]] = wts
-  xds_obj$ML_interface = trigger_setup(xds_obj$ML_interface)
-  return(xds_obj)
+get_habitat_matrix = function(xds_obj, s){
+  habs <- get_habitats(xds_obj, s) 
+  hab_matrix <- make_habitat_matrix(xds_obj$nPatches, habs)
+  return(hab_matrix)
 }
+
 
 #' @title Change Bad Habitat Availability
 #' @description Set the availability of bad habitat

@@ -1,16 +1,16 @@
-# Set up (or change) a Time Spent matrix
+# Set up (or change) a time spent matrix
 
-Set up (or change) a Time Spent matrix
+Set up (or change) a time spent matrix
 
 ## Usage
 
 ``` r
-change_TimeSpent_matrix(TimeSpent, xds_obj, i = 1)
+change_timespent_matrix(timespent, xds_obj, i = 1)
 ```
 
 ## Arguments
 
-- TimeSpent:
+- timespent:
 
   a time spent matrix
 

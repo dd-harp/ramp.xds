@@ -151,6 +151,7 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
   xds_obj$forced_by = forced_by
   xds_obj$L_obj[[s]] = make_L_obj_trivial(xds_obj$nHabitats, options)
   xds_obj = rebuild_forcing_functions(xds_obj, s)
+  xds_obj <- setup_L_ports(xds_obj, s)
   return(xds_obj)
 }
 

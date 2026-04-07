@@ -1,21 +1,21 @@
-# Pass a pre-configured TimeSpent
+# Pass a pre-configured timespent
 
 Implements
-[setup_TimeSpent](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.md)
+[setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.md)
 for as_matrix
 
 ## Usage
 
 ``` r
 # S3 method for class 'as_matrix'
-setup_TimeSpent(TimeSpent, xds_obj, i, options = list())
+setup_timespent(name, xds_obj, i, options = list())
 ```
 
 ## Arguments
 
-- TimeSpent:
+- name:
 
-  a matrix or a setup function name
+  a matrix or setup function name
 
 - xds_obj:
 
@@ -31,4 +31,4 @@ setup_TimeSpent(TimeSpent, xds_obj, i, options = list())
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** object

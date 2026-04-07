@@ -63,7 +63,7 @@ NULL
 #' @section Parameters:  
 #' \itemize{
 #'   \item \code{\link{get_XH_pars}} -- get parameters
-#'   \item \code{\link{get_TimeSpent_matrix}} -- get the Time Spent Matrix 
+#'   \item \code{\link{get_timespent_matrix}} -- get the Time Spent Matrix 
 #' }
 #'
 #'

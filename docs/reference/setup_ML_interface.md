@@ -6,7 +6,7 @@ laying
 ## Usage
 
 ``` r
-setup_ML_interface(xds_obj, membership)
+setup_ML_interface(xds_obj)
 ```
 
 ## Arguments
@@ -14,10 +14,6 @@ setup_ML_interface(xds_obj, membership)
 - xds_obj:
 
   an **`xds`** model object
-
-- membership:
-
-  is the habitat membership vector
 
 ## Value
 

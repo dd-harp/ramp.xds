@@ -7,7 +7,7 @@ sets up the blood feeding interface, `xds_obj$XY_interface.`
 ## Usage
 
 ``` r
-setup_XY_interface(xds_obj, residency)
+setup_XY_interface(xds_obj)
 ```
 
 ## Arguments
@@ -15,10 +15,6 @@ setup_XY_interface(xds_obj, residency)
 - xds_obj:
 
   an **`xds`** model object
-
-- residency:
-
-  the residency vector
 
 ## Value
 
@@ -39,11 +35,8 @@ The interface for blood feeding is defined by an object called
 
 The blood feeding interface sets up several objects:
 
-- the residency matrix \\J\\ (see
-  [make_residency_matrix](https://dd-harp.github.io/ramp.xds/reference/make_residency_matrix.md))
-
 - a time spent (TiSp) matrix \\\Theta\\ (see
-  [setup_TimeSpent](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.md))
+  [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
 
 - a circadian function `F_circadian` for each vector species
 

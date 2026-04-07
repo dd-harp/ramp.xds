@@ -1,11 +1,11 @@
-# Make a mosquito dispersal matrix, called TimeSpent
+# Make a time spent matrix, called timespent
 
-Make a mosquito dispersal matrix, called TimeSpent
+Make a time spent matrix, called timespent
 
 ## Usage
 
 ``` r
-make_TimeSpent_athome(
+make_timespent_athome(
   nPatches,
   residence,
   options = list(),

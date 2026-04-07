@@ -7,7 +7,7 @@ Compute and store host available, \\W\\, total blood host available,
 ## Usage
 
 ``` r
-TimeSpent(t, y, xds_obj)
+timespent(t, y, xds_obj)
 ```
 
 ## Arguments

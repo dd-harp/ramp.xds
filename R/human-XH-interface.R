@@ -148,6 +148,7 @@ get_XH_vars <- function(y, xds_obj, i=1) {
   UseMethod("get_XH_vars", xds_obj$XH_obj[[i]])
 }
 
+
 #' @title Change human population density
 #' @param H human population density
 #' @param xds_obj an **`xds`** model object

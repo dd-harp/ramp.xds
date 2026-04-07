@@ -78,6 +78,8 @@ EggLaying.dynamic = function(t, y, xds_obj){
 #' @export
 #' @keywords internal
 egg_laying_dynamics = function(t, y, xds_obj){
+  for(s in 1:xds_obj$nVectorSpecies)
+    xds_obj = update_habitat_search_weights(xds_obj,s) 
   xds_obj = compute_Qall(xds_obj)
   xds_obj = compute_O_matrix(xds_obj)
   xds_obj = compute_eggs_laid(t, y, xds_obj)

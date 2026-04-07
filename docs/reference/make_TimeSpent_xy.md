@@ -1,11 +1,11 @@
-# Make a mosquito dispersal matrix, called TimeSpent
+# Make a time spent matrix, called timespent
 
-Make a mosquito dispersal matrix, called TimeSpent
+Make a time spent matrix, called timespent
 
 ## Usage
 
 ``` r
-make_TimeSpent_xy(xy, residence, kern, stay, travel)
+make_timespent_xy(xy, residence, kern, stay, travel)
 ```
 
 ## Arguments

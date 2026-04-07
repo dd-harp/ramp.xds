@@ -51,7 +51,7 @@ and
 [`setup_ML_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_ML_interface.md)
 
 see
-[`view_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/view_habitat_matrix.md)
+[`get_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_habitat_matrix.md)
 
 ## Examples
 

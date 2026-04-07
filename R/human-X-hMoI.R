@@ -143,6 +143,7 @@ setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
 #' @export
 setup_XH_obj.hMoI = function(Xname, xds_obj, i, options=list()){
   xds_obj$XH_obj[[i]] = make_XH_obj_hMoI(xds_obj$nStrata[i], options)
+  xds_obj <- setup_XH_ports(xds_obj, i)
   return(xds_obj)
 }
 
@@ -174,7 +175,7 @@ make_XH_obj_hMoI = function(nStrata, options=list(),
     XH_obj$r2 = checkIt(r2, nStrata)
 
     return(XH_obj)
-  })}
+})}
 
 #' @title Get parameters for `hMoI` (**XH**)
 #'

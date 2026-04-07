@@ -24,6 +24,7 @@ daily EIR, consider using
 
 ``` r
 xds_setup_human(
+  model_name = "unnamed",
   Xname = "SIS",
   XHoptions = list(),
   xds = "ode",
@@ -31,14 +32,17 @@ xds_setup_human(
   residence = 1,
   HPop = 1000,
   searchB = 1,
-  TimeSpent = list(),
+  TSoptions = list(name = "no_setup"),
   MYoptions = list(),
-  BFopts = list(),
-  model_name = "unnamed"
+  BFopts = list()
 )
 ```
 
 ## Arguments
+
+- model_name:
+
+  a name for the model
 
 - Xname:
 
@@ -69,7 +73,7 @@ xds_setup_human(
 
   a vector of search weights for blood feeding
 
-- TimeSpent:
+- TSoptions:
 
   either a TimeSpent matrix or a string to call a function that sets it
   up
@@ -81,10 +85,6 @@ xds_setup_human(
 - BFopts:
 
   list to configure the blood feeding model
-
-- model_name:
-
-  a name for the model
 
 ## Value
 

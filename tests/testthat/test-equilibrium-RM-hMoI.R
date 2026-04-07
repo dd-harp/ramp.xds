@@ -89,7 +89,7 @@ test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", 
   Lo = list(Lambda=Lambda)
 
   # parameters for exDE
-  params <- xds_setup(MYname = "macdonald", MYoptions=MYo, Lname = "trivial", Loptions=Lo, TimeSpent = TaR, Koptions=K_matrix,
+  params <- xds_setup(MYname = "macdonald", MYoptions=MYo, Lname = "trivial", Loptions=Lo, TSoptions = TaR, Koptions=K_matrix,
                       Xname = "hMoI", XHoptions=Xo, HPop=H, membership=membership, nPatches=nPatches, residence=residence)
 
   steady_state_MY(Lambda, kappa, params, 1) -> ss
@@ -99,6 +99,7 @@ test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", 
   MYo$Y=ss$Y
   MYo$Z=ss$Z
   
+  params <- change_timespent_matrix(TaR, params, 1)
   params <- change_MY_inits(params, 1, MYo)
 
   params <- xds_solve(params, 730, 1)

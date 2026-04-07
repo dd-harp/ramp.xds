@@ -17,6 +17,7 @@ hosts can be a resource, `HPop` must be set.
 
 ``` r
 xds_setup_mosy(
+  model_name = "unnamed",
   xds = "ode",
   MYname = "basicM",
   Lname = "basicL",
@@ -27,12 +28,15 @@ xds_setup_mosy(
   kappa = 0,
   MYoptions = list(),
   Koptions = list(Kname = "no_setup"),
-  Loptions = list(),
-  model_name = "unnamed"
+  Loptions = list()
 )
 ```
 
 ## Arguments
+
+- model_name:
+
+  is a name for the model
 
 - xds:
 
@@ -82,10 +86,6 @@ xds_setup_mosy(
 - Loptions:
 
   a list to configure the **L** Component module
-
-- model_name:
-
-  is a name for the model (arbitrary)
 
 ## Value
 

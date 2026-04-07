@@ -104,7 +104,7 @@ change_K_matrix = function(K_matrix, xds_obj, s=1){
 #' @keywords internal
 #' @export
 setup_K_obj = function(nPatches, MY_obj){
-  MY_obj$K_matrix = diag(nPatches)
+  MY_obj$K_matrix = diag(0, nPatches)
   MY_obj$K_obj <- list()
   class(MY_obj$K_obj) <- "static"
   return(MY_obj)
@@ -168,10 +168,9 @@ setup_K_matrix = function(Kname, xds_obj, options = list(), s=1){
   UseMethod("setup_K_matrix", options)
 }
 
-#' @title Setup a Here-There Dispersal Matrix
+#' @title Setup no dispersal matrix
 #'
-#' @description Implements [setup_K_matrix] for the here and there model:
-#' dispersal to every other patch, with equal probability
+#' @description Implements [setup_K_matrix] for the "no_setup" case
 #'
 #' @inheritParams setup_K_matrix
 #'

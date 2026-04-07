@@ -1,23 +1,40 @@
 # specialized methods for the human SIS module
 
 #' @title The `SIS` module for the XH component
+#' 
 #' @description
-#' Implements the **XH** component using a Susceptible-Infected-Susceptible
-#' (SIS) compartmental model of human infection dynamics.
+#' In the SIS compartmental model, 
+#' infected individuals are either susceptible (S), or infected and 
+#' infectious (I). Susceptible individuals become infected at the per-capita
+#' rate \eqn{h}. Infected individuals clear infections at the per-capita rate \eqn{r}, 
+#' and then they become
+#' susceptible to infection again. 
+#' 
+#' Human/host population size (H) is a state variable that can be configured.  
+#' 
+#' and \eqn{H=S+I}: the model computes \eqn{dH/dt} and \eqn{dI/dt}. When outputs
+#' are parsed, S is computed as 
+#' \eqn{S=H-I}.
+#' 
+#' This module also includes:  
+#' + a model for human demographic changes; and
+#' + a port for mass treatment, \eqn{\xi(t)}. 
+#' 
 #'
 #' @section State Variables:
 #' \describe{
 #'   \item{`H`}{total human (or host) population density}
 #'   \item{`I`}{density of infected humans}
 #' }
-#' Note: susceptible density \eqn{S = H - I}.
+#' 
+#' During parsing, the density of susceptibles is computed as: \deqn{S = H - I}.
 #'
 #' @section Parameters:
 #' \describe{
 #'   \item{`r`}{clearance rate for infections}
-#'   \item{`xi`}{mass treatment rate (\eqn{\xi(t)})}
+#'   \item{`xi`}{mass treatment rate}
 #'   \item{`B`}{time-dependent birth rate function \eqn{B(t, H)}}
-#'   \item{`D`}{linear operator (matrix) for mortality, migration, aging, and transfers}
+#'   \item{`D`}{human demographic matrix}
 #' }
 #'
 #' @section Dynamics:
@@ -111,6 +128,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 setup_XH_obj.SIS = function(Xname, xds_obj, i, options=list()){
   xds_obj$XH_obj[[i]] = make_XH_obj_SIS(xds_obj$nStrata[1], options)
   xds_obj$XH_obj[[i]]$skill_set <- skill_set_XH("SIS")
+  xds_obj <- setup_XH_ports(xds_obj, i)
   return(xds_obj)
 }
 
@@ -142,7 +160,7 @@ make_XH_obj_SIS = function(nStrata, options=list(),
     XH_obj$q_lm = checkIt(q_lm, nStrata)
     XH_obj$q_rdt = checkIt(q_rdt, nStrata)
     XH_obj$q_pcr = checkIt(q_pcr, nStrata)
-
+    
     # Ports for demographic models
     XH_obj$D_matrix = diag(0, nStrata)
     births = "zero"
@@ -150,6 +168,7 @@ make_XH_obj_SIS = function(nStrata, options=list(),
     XH_obj$births = births
     XH_obj$mda = F_zero
     XH_obj$msat = F_zero
+    XH_obj$time_away = rep(0, nStrata)
 
     return(XH_obj)
   })}

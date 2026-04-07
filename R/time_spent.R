@@ -1,11 +1,22 @@
-#' @title Time Spent 
+#' @title time spent 
 #' 
 #' @description
 #' The risk of exposure to mosquito-borne pathogens
 #' is related to time spent in places where vectors are
-#' blood feeding. In **`ramp.xds`,** this is implemented 
-#' through the concepts of **time spent** and **time at risk** 
-#' (see [xds_info_time_at_risk]) 
+#' blood feeding. Each human / host population resides
+#' in a patch. Let \eqn{N_p} denote the number of patches
+#' and \eqn{N_h} the number of strata. 
+#' The time spent matrix, \eqn{\Theta}, is an \eqn{N_p \times N_h} matrix:
+#' each columns describes the fraction of time spent by a single
+#' population stratum in each patch. 
+#' It is expected that most 
+#' time is spent in the patch where
+#' the stratum resides.  
+#' 
+#' In **`ramp.xds`,** the time spent matrix is static. In **`xds.forcing`**, 
+#' time spent can have a daily pattern, and time at risk weights 
+#' time spent by a function describing mosquito daily activity rates  
+#' (see [xds_info_time_at_risk]).
 #'  
 #' @name xds_info_time_spent 
 NULL
@@ -22,36 +33,60 @@ NULL
 #' @name xds_info_time_at_risk
 NULL
 
-#' @title Set up (or change) a Time Spent matrix
-#'
-#' @param TimeSpent a time spent matrix
+#' @title Update the time spent Matrix
+#' @description Port function for the time spent matrix, \eqn{\Theta}.
+#' Dispatches on `class(xds_obj$XY_interface$timespent_obj[[i]])`.
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#'
 #' @return an **`xds`** object
 #' @export
-change_TimeSpent_matrix = function(TimeSpent, xds_obj, i=1){
-  stopifnot(dim(TimeSpent) == dim(xds_obj$XY_interface$residency_matrix[[i]]))
-  xds_obj$XY_interface$TimeSpent[[i]] <- TimeSpent
-  xds_obj$XY_interface <- trigger_setup(xds_obj$XY_interface)
+#' @keywords internal
+update_timespent <- function(xds_obj, i) {
+  UseMethod("update_timespent", xds_obj$XH_obj[[i]]$timespent_obj)
+}
+
+#' @title Update the time spent Matrix (static)
+#' @description Returns `xds_obj` unmodified; the time spent matrix is static.
+#' @inheritParams update_timespent
+#' @return an **`xds`** object
+#' @export
+#' @keywords internal
+update_timespent.static <- function(xds_obj, i) { return(xds_obj) }
+
+#' @title Update the time spent Matrix (setup)
+#' @description Acknowledges a one-time update to the time spent matrix
+#' and sets the port back to `"static"`.
+#' @inheritParams update_timespent
+#' @return an **`xds`** object
+#' @export
+#' @keywords internal
+update_timespent.setup <- function(xds_obj, i) {
+  xds_obj$XY_interface = trigger_setup(xds_obj$XY_interface)
+  class(xds_obj$XH_obj[[i]]$timespent_obj) <- "static"
   return(xds_obj)
 }
 
-#' @title Get the Time Spent Matrix
+#' @title Set up (or change) a time spent matrix
 #'
+#' @param timespent a time spent matrix
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
 #' @return an **`xds`** object
 #' @export
-get_TimeSpent_matrix = function(xds_obj, i=1){
-  return(xds_obj$XY_interface$TimeSpent[[i]])
+change_timespent_matrix = function(timespent, xds_obj, i=1){
+  residency_matrix <- get_residence_matrix(xds_obj, 1)
+  stopifnot(dim(timespent) == dim(residency_matrix))
+  xds_obj$XH_obj[[i]]$timespent <- timespent
+  xds_obj$XH_obj[[i]]$timespent_obj = trigger_setup(xds_obj$XH_obj[[i]]$timespent_obj)
+  xds_obj$XY_interface = trigger_setup(xds_obj$XY_interface)
+  return(xds_obj)
 }
 
 
-#' @title Make a time spent matrix, called TimeSpent
+#' @title Make a time spent matrix, called timespent
 #'
-#' @param TimeSpent a matrix or a setup function name
+#' @param name a matrix or setup function name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options configuration options
@@ -59,25 +94,35 @@ get_TimeSpent_matrix = function(xds_obj, i=1){
 #' @return an **`xds`** object
 #'
 #' @export
-setup_TimeSpent = function(TimeSpent, xds_obj, i, options = list()){
-  if(is.matrix(TimeSpent)) class(options) <- "as_matrix"
-  if(is.character(TimeSpent)) class(options) <- TimeSpent
-  UseMethod("setup_TimeSpent", options)
+setup_timespent = function(name, xds_obj, i, options = list()){
+  if(is.matrix(name)) class(options) <- "as_matrix"
+  if(is.character(name)) class(options) <- name
+  UseMethod("setup_timespent", options)
 }
 
-#' @title Make a mosquito dispersal matrix, called TimeSpent with a here / away
-#' @description Implements [setup_TimeSpent] for as_matrix
-#' @inheritParams setup_TimeSpent
-#' @return a [list]
+#' @title Setup no time spent matrix 
+#' @description Don't change anything 
+#' @inheritParams setup_timespent
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_TimeSpent.athome = function(TimeSpent, xds_obj, i, options = list()){
-  residence = xds_obj$residence[[i]]
-  TimeSpent = make_TimeSpent_athome(xds_obj$nPatches, residence, options)
-  change_TimeSpent_matrix(TimeSpent, xds_obj, i)
+setup_timespent.no_setup = function(name, xds_obj, i, options = list()){
+  return(xds_obj)
 }
 
-#' @title Make a mosquito dispersal matrix, called TimeSpent
+#' @title Make a time spent matrix, called timespent with a here / away
+#' @description Implements [setup_timespent] for as_matrix
+#' @inheritParams setup_timespent
+#' @return an **`xds`** object
+#' @keywords internal
+#' @export
+setup_timespent.athome = function(name, xds_obj, i, options = list()){
+  residence = xds_obj$residence[[i]]
+  timespent = make_timespent_athome(xds_obj$nPatches, residence, options)
+  change_timespent_matrix(timespent, xds_obj, i)
+}
+
+#' @title Make a time spent matrix, called timespent
 #' @param nPatches is the number of patches
 #' @param residence is the home patch for each stratum
 #' @param atHome is the fraction of time spent at home
@@ -85,38 +130,39 @@ setup_TimeSpent.athome = function(TimeSpent, xds_obj, i, options = list()){
 #' @param travel is the fraction of time spent traveling
 #' @return a [matrix]
 #' @export
-make_TimeSpent_athome = function(nPatches, residence, options=list(), atHome=1, travel=0) {with(options,{
+make_timespent_athome = function(nPatches, residence, options=list(), atHome=1, travel=0) {with(options,{
   nStrata = length(residence)
   away = ifelse(nPatches == 1, 0, (1-atHome-travel)/(nPatches-1))
   atHome = ifelse(nPatches == 1, 1-travel, atHome)
-  TimeSpent <- matrix(away, nPatches, length(residence))
-  TimeSpent[cbind(residence, c(1:nStrata))] <- atHome
-  return(TimeSpent)
+  timespent <- matrix(away, nPatches, length(residence))
+  timespent[cbind(residence, c(1:nStrata))] <- atHome
+  return(timespent)
 })}
 
-#' @title Pass a pre-configured TimeSpent
-#' @description Implements [setup_TimeSpent] for as_matrix
-#' @inheritParams setup_TimeSpent
-#' @return a [list]
+#' @title Pass a pre-configured timespent
+#' @description Implements [setup_timespent] for as_matrix
+#' @inheritParams setup_timespent
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_TimeSpent.as_matrix = function(TimeSpent, xds_obj, i, options=list()){
-  change_TimeSpent_matrix(TimeSpent, xds_obj, i)
+setup_timespent.as_matrix = function(name, xds_obj, i, options=list()){
+  timespent = name
+  change_timespent_matrix(timespent, xds_obj, i)
 }
 
-#' @title Develop a mosquito dispersal matrix from a kernel and xy-coordinates
-#' @description Implements [setup_TimeSpent] for kernels
-#' @inheritParams setup_TimeSpent
-#' @return a [list]
+#' @title Develop a time spent matrix from a kernel and xy-coordinates
+#' @description Implements [setup_timespent] for kernels
+#' @inheritParams setup_timespent
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_TimeSpent.xy = function(TimeSpent, xds_obj, i, options=list()) {
+setup_timespent.xy = function(name, xds_obj, i, options=list()) {
   residence = xds_obj$B_interface[[i]]$residence
-  TimeSpent = with(options, make_TimeSpent_xy(xy, residence, kern, stay, travel))
-  change_TimeSpent_matrix(TimeSpent, xds_obj, i)
+  timespent = with(options, make_timespent_xy(xy, residence, kern, stay, travel))
+  change_timespent_matrix(timespent, xds_obj, i)
 }
 
-#' @title Make a mosquito dispersal matrix, called TimeSpent
+#' @title Make a time spent matrix, called timespent
 #' @param xy is the xy-locations of the patches
 #' @param residence is the home patch for each stratum
 #' @param kern is a function that gives weight by distance
@@ -124,12 +170,12 @@ setup_TimeSpent.xy = function(TimeSpent, xds_obj, i, options=list()) {
 #' @param travel is the fraction of time spent traveling
 #' @return a [matrix]
 #' @export
-make_TimeSpent_xy = function(xy, residence, kern, stay, travel) {
+make_timespent_xy = function(xy, residence, kern, stay, travel) {
   nPatches = dim(xy)[1]
   nStrata = length(residence)
   stopifnot(length(stay)==nStrata)
   stopifnot(length(travel)==nStrata)
-  TimeSpent = matrix(0, nPatches, nStrata)
+  timespent = matrix(0, nPatches, nStrata)
   for(i in 1:nStrata){
     j = residence[i]
     dd = sqrt((xy[j,1] - xy[,1])^2 + (xy[j,2] - xy[,2])^2)
@@ -137,9 +183,9 @@ make_TimeSpent_xy = function(xy, residence, kern, stay, travel) {
     wts[j] = 0
     wts = (1-stay[i]-travel[i])*wts/sum(wts[-j])
     wts[j] = stay[i]
-    TimeSpent[,i] = wts
+    timespent[,i] = wts
   }
-  return(TimeSpent)
+  return(timespent)
 }
 
 #' @title time spent
@@ -152,8 +198,8 @@ make_TimeSpent_xy = function(xy, residence, kern, stay, travel) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-TimeSpent = function(t, y, xds_obj){
-  UseMethod("TimeSpent", xds_obj$XY_interface)
+timespent = function(t, y, xds_obj){
+  UseMethod("timespent", xds_obj$XY_interface)
 }
 
 #' @title Compute time spent objects: setup for static models
@@ -164,11 +210,11 @@ TimeSpent = function(t, y, xds_obj){
 #' @details The mixing matrix, \eqn{\beta}, depends on
 #' time spent terms, so the class of `xds_obj$beta` must also
 #' be updated, if they are not dynamic, so [trigger_setup] is called.
-#' @inheritParams TimeSpent
+#' @inheritParams timespent
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-TimeSpent.setup = function(t, y, xds_obj){
+timespent.setup = function(t, y, xds_obj){
   class(xds_obj$XY_interface) <- 'static'
   xds_obj$beta <- trigger_setup(xds_obj$beta)
   xds_obj <- blood_feeding_dynamics(t, y, xds_obj)
@@ -177,11 +223,11 @@ TimeSpent.setup = function(t, y, xds_obj){
 
 #' @title Compute time spent objects: static models
 #' @description Return the time spent objects unmodified
-#' @inheritParams TimeSpent
+#' @inheritParams timespent
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-TimeSpent.static = function(t, y, xds_obj){
+timespent.static = function(t, y, xds_obj){
   return(xds_obj)
 }
 

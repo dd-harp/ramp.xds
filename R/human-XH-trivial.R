@@ -102,7 +102,8 @@ F_I.trivial <- function(t, y, xds_obj, i) {
 #' @keywords internal
 #' @export
 F_H.trivial <- function(t, y, xds_obj, i) {
-  xds_obj$XH_obj[[i]]$H
+  H = with(xds_obj$XH_obj[[i]],  H)
+  return(H) 
 }
 
 #' @title Infection blocking pre-erythrocytic immunity
@@ -226,6 +227,7 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 #' @export
 setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nPatches, options)
+  xds_obj <- setup_XH_ports(xds_obj, i)
   return(xds_obj)
 }
 
