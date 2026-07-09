@@ -108,6 +108,7 @@ xds_setup = function(
   xds_obj       <- setup_XH_inits(xds_obj, HPop, 1, XHoptions)
 
   xds_obj = make_indices(xds_obj)
+  
 
   Qwts       <- with(Loptions, checkIt(searchQ, xds_obj$nHabitats))
   xds_obj    <- change_habitat_search_weights(Qwts, xds_obj, 1)
@@ -118,9 +119,9 @@ xds_setup = function(
 
 
   if(is.matrix(TSoptions)){
-    xds_obj <- change_timespent_matrix(TSoptions, xds_obj, 1)
+    xds_obj <- change_timespent_matrix(TSoptions, xds_obj, i=1)
   } else {
-    xds_obj <- setup_timespent(TSoptions$name, xds_obj, TSoptions, 1)
+    xds_obj <- setup_timespent(TSoptions$name, xds_obj, options=TSoptions, i=1)
   } 
 
   if(is.matrix(Koptions)){

@@ -22,7 +22,12 @@ make_indices <- function(xds_obj) {
   if(i>0)
     for(ix in 1:i)
       xds_obj = setup_XH_ix(xds_obj, ix)
-
+  
+  i = length(xds_obj$V_obj)
+  if(i>0)
+    for(ix in 1:i)
+      xds_obj = setup_V_ix(xds_obj, ix)
+  
   return(xds_obj)
 }
 
@@ -50,7 +55,14 @@ get_inits <- function(xds_obj, flatten=FALSE){
   if(i>0)
     for(ix in 1:i)
       Xi = c(Xi, get_XH_inits(xds_obj, ix))
-  y = list(L=Li, MY=MYi, X=Xi)
+  
+  Vi = c()
+  i = length(xds_obj$V_obj)
+  if(i>0)
+    for(ix in 1:i)
+      Vi = c(Vi, get_V_inits(xds_obj, ix))
+  
+  y = list(L=Li, MY=MYi, X=Xi, V=Vi)
   if(flatten) y <- xds_flatten(y)
 
   return(y)

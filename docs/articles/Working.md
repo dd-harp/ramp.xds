@@ -129,6 +129,10 @@ get_inits(mod)
     ## 
     ## $X$I
     ## [1] 1
+    ## 
+    ## 
+    ## $V
+    ## NULL
 
 Since it is a named list, it’s easy to examine a specific element in
 that list:

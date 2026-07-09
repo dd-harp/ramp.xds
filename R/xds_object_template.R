@@ -104,7 +104,7 @@ make_xds_object_template = function(xds='ode', frame='full',
   xds_obj$patches = list() 
   
   xds_obj$nHabitats = length(membership)
-  xds_obj$habitats = list() 
+  xds_obj$habitats = list()
   xds_obj$habitats[[1]] = membership 
   
   xds_obj$nStrata   = length(residence)
@@ -141,6 +141,7 @@ make_xds_object_template = function(xds='ode', frame='full',
   xds_obj <- setup_vector_control_object(xds_obj)
 
   xds_obj$outputs = list()
+  xds_obj$analysis = list()
 
   return(xds_obj)
 }

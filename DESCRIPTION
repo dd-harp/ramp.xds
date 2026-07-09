@@ -19,7 +19,6 @@ BugReports: https://github.com/dd-harp/ramp.xds/issues
 Roxygen: list(markdown = TRUE)
 Imports: 
   deSolve,
-  rootSolve,
   expm,
   graphics,
   Rdpack,

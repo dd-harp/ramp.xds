@@ -161,7 +161,7 @@ dMYdt.GeM <- function(t, y, xds_obj, s){
   with(get_MY_vars(y, xds_obj, s),{
     with(xds_obj$MY_obj[[s]],{
 
-      deip_dt = dF_eip(t, xds_obj, s)
+      deip_dt = eip_obj$dF_eip(t) 
 
       if (t <= eip) {
         M_eip <- xds_obj$MYinits[[s]]$M
@@ -452,7 +452,7 @@ MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 setup_MY_inits.GeM = function(xds_obj, s, options=list()){with(xds_obj$MY_obj[[s]], {
   Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
   Upsilon = expm(-Omega*eip)
-  xds_obj$MYinits[[s]] = make_MY_inits_GeM(nPatches, Upsilon, options)
+  xds_obj$MY_obj[[s]]$inits = make_MY_inits_GeM(nPatches, Upsilon, options)
   return(xds_obj)
 })}
 
@@ -519,42 +519,62 @@ steady_state_MY.GeM = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$MY_obj[
 
 
 
-#' @title Get the feeding rate
+#' @title Get the feeding rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the feeding rate, as a vector
 #' @keywords internal
 #' @export
 get_f.GeM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f)
 }
 
-#' @title Get the feeding rate
+#' @title Get the human fractions
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the human fraction, as a vector
 #' @keywords internal
 #' @export
 get_q.GeM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q)
 }
 
-#' @title Get the feeding rate
+#' @title Get the mortality rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the mortality rate, as a vector
 #' @keywords internal
 #' @export
 get_g.GeM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], g)
 }
 
-#' @title Get the feeding rate
+#' @title Get the patch emigration rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the patch emigration rates, as a vector
 #' @keywords internal
 #' @export
 get_sigma.GeM = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], sigma)
+}
+
+#' @title Get the initial mosquito population density 
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#' @return the initial mosquito population density 
+#' @keywords internal
+#' @export
+get_M.GeM = function(xds_obj, s=1){
+  get_MY_inits(xds_obj, s)$M
+}
+
+#' @title Get the initial infective mosquito density 
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#' @return the initial infective mosquito population density 
+#' @keywords internal
+#' @export
+get_Z.GeM = function(xds_obj, s=1){
+  get_MY_inits(xds_obj, s)$Z
 }

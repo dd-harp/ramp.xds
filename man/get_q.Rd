@@ -12,7 +12,7 @@ get_q(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+the human fraction, as a vector
 }
 \description{
 Get the human fraction(s)

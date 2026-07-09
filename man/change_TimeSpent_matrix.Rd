@@ -17,5 +17,6 @@ change_timespent_matrix(timespent, xds_obj, i = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set up (or change) a time spent matrix
+Update the time spent matrix for the \eqn{i^{th}} host species, and
+trigger updates for the \code{XY} interface.
 }

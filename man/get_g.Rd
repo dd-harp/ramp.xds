@@ -12,7 +12,7 @@ get_g(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+the mortality rate, as a vector
 }
 \description{
 Get the adult mosquito mortality rate(s)

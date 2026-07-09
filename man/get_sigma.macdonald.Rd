@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{get_sigma.macdonald}
 \alias{get_sigma.macdonald}
-\title{Get the feeding rate}
+\title{Get the patch emigration rates}
 \usage{
 \method{get_sigma}{macdonald}(xds_obj, s = 1)
 }
@@ -12,9 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+the patch emigration rates, as a vector
 }
 \description{
-Get the feeding rate
+Get the patch emigration rates
 }
 \keyword{internal}

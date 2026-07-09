@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{get_sigma.trivial}
 \alias{get_sigma.trivial}
-\title{Get the patch emigration rate}
+\title{Get the patch emigration rates}
 \usage{
 \method{get_sigma}{trivial}(xds_obj, s = 1)
 }
@@ -12,9 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+the patch emigration rates, as a vector
 }
 \description{
-Get the patch emigration rate
+Get the patch emigration rates
 }
 \keyword{internal}

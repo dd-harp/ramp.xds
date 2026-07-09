@@ -4,12 +4,14 @@
 \alias{xds_stable_orbit}
 \title{Compute stable orbits}
 \usage{
-xds_stable_orbit(xds_obj, options = list())
+xds_stable_orbit(xds_obj, Y = 10, tol = 1e-05)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{options}{a list of configurable options}
+\item{Y}{the number of years to run once}
+
+\item{tol}{the desired accuracy}
 }
 \value{
 an \strong{\code{xds}} object

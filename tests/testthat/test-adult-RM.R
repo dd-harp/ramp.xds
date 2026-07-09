@@ -32,27 +32,27 @@ test_that("macdonald models reach equilibrium", {
   Xo = list(kappa=kappa)
   Lambda <- c(5, 10, 8)
   Lo = list(Lambda=Lambda)
-
+  
   Omega_inv <- solve(Omega)
   M_eq <- as.vector(Omega_inv %*% Lambda)
   P_eq <- as.vector(solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
   Y_eq <- as.vector(solve(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
   Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
-
-
+  
+  
   MYo$M=M_eq
   MYo$P=P_eq
   MYo$Y=Y_eq
   MYo$Z=Z_eq
-
+  
   params <- xds_setup(MYname= "macdonald", Xname = "trivial", Lname = "trivial", HPop=HPop, residence = c(1:nPatches), nPatches=nPatches, membership = c(1:nPatches), XHoptions=Xo, MYoptions=MYo, Loptions=Lo, Koptions = K_matrix)
-
+  
   params$terms$Lambda[[1]] = Lambda
   params$terms$kappa[[1]] = kappa
-
+  
   y0 = unname(as.vector(unlist(get_MY_inits(params, 1))))
   params <- MEffectSizes(0,y0,params, 1)
-
+  
   # solve ODEs
   out <- deSolve::dede(y = y0, times = c(0, 730), func = function(t, y, pars, s) {
     list(dMYdt(t, y, pars, s))

@@ -60,6 +60,14 @@
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-analysis" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Analysis</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-analysis"><li><a class="dropdown-item" href="../articles/Qualitative.html">Qualitative Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/Steady.html">Steady States &amp; Stable Orbits</a></li>
+    <li><a class="dropdown-item" href="../articles/Thresholds.html">Thresholds</a></li>
+    <li><a class="dropdown-item" href="../articles/Connectivity.html">Connectivity</a></li>
+    <li><a class="dropdown-item" href="../articles/Scaling.html">Scaling Relationships</a></li>
+  </ul></li>
 <li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><a class="external-link nav-link" href="https://github.com/dd-harp/ramp.xds/" aria-label="GitHub"><span class="fa fa-github"></span></a></li>
@@ -378,17 +386,17 @@
 
         <dt>
 
+          <code><a href="xds_steady.html">xds_steady()</a></code>
+
+        </dt>
+        <dd>Solve for the steady state</dd>
+
+        <dt>
+
           <code><a href="xds_stable_orbit.html">xds_stable_orbit()</a></code>
 
         </dt>
         <dd>Compute stable orbits</dd>
-
-        <dt>
-
-          <code><a href="dts_stable_orbit.html">dts_stable_orbit()</a></code>
-
-        </dt>
-        <dd>Compute the stable orbit for a discrete time system</dd>
 
         <dt>
 
@@ -478,6 +486,11 @@
         </dt>
         <dd>Get the <em>Pf</em>PR from a malaria model</dd>
       </dl></div><div class="section level2">
+      <h2 id="qualitative-analysis">Qualitative Analysis<a class="anchor" aria-label="anchor" href="#qualitative-analysis"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
 
       <h3 id="compute-steady-states">Compute Steady States<a class="anchor" aria-label="anchor" href="#compute-steady-states"></a></h3>
 
@@ -496,10 +509,10 @@
 
         <dt>
 
-          <code><a href="dts_steady.html">dts_steady()</a></code>
+          <code><a href="xds_stable_orbit.html">xds_stable_orbit()</a></code>
 
         </dt>
-        <dd>Compute the steady state of a discrete time system</dd>
+        <dd>Compute stable orbits</dd>
 
         <dt>
 
@@ -542,6 +555,29 @@
 
         </dt>
         <dd>Compute steady states for <strong>L</strong> component modules</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="vectorial-capacity">Vectorial Capacity<a class="anchor" aria-label="anchor" href="#vectorial-capacity"></a></h3>
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="compute_VC.html">compute_VC()</a></code>
+
+        </dt>
+        <dd>Compute the VC Matrix</dd>
+
+        <dt>
+
+          <code><a href="make_VC.html">make_VC()</a></code>
+
+        </dt>
+        <dd>Make VC</dd>
       </dl></div><div class="section level2">
       <h2 id="plot">Plot<a class="anchor" aria-label="anchor" href="#plot"></a></h2>
 

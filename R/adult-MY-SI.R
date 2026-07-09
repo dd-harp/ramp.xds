@@ -289,9 +289,7 @@ MEffectSizes.SI <- function(t, y, xds_obj, s) {
 #' @keywords internal
 #' @export
 setup_MY_obj.SI = function(MYname, xds_obj, s, options=list()){
-  MY_obj <- make_MY_obj_SI(xds_obj$nPatches, options)
-  class(MY_obj) <- c("SI", paste("SI_", xds_obj$xds, sep=""))
-  xds_obj$MY_obj[[s]] <- MY_obj
+  xds_obj$MY_obj[[s]] <- make_MY_obj_SI(xds_obj$nPatches, options)
   xds_obj <- update_Omega_xde(xds_obj, s)
   xds_obj <- update_Upsilon_xde(xds_obj, s)
   return(xds_obj)
@@ -333,6 +331,8 @@ make_MY_obj_SI = function(nPatches, options=list(), eip=0,
     MY_obj$eggsPerBatch <- eggsPerBatch
     MY_obj <- setup_K_obj(nPatches, MY_obj)
     MY_obj <- setup_Omega_obj(MY_obj)
+    
+    class(MY_obj) = "SI" 
 
     return(MY_obj)
   })}
@@ -470,44 +470,64 @@ change_MY_inits.SI = function(xds_obj, s, options=list()){
   return(xds_obj)
 }
 
-#' @title Get the feeding rate
+#' @title Get the feeding rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the feeding rate, as a vector
 #' @keywords internal
 #' @export
 get_f.SI = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f)
 }
 
-#' @title Get the feeding rate
+#' @title Get the human fractions
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the human fraction, as a vector
 #' @keywords internal
 #' @export
 get_q.SI = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q)
 }
 
-#' @title Get the feeding rate
+#' @title Get the mortality rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the mortality rate, as a vector
 #' @keywords internal
 #' @export
 get_g.SI = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], g)
 }
 
-#' @title Get the feeding rate
+#' @title Get the patch emigration rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the patch emigration rates, as a vector
 #' @keywords internal
 #' @export
 get_sigma.SI = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], sigma)
+}
+
+#' @title Get the initial mosquito population density 
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#' @return the initial mosquito population density 
+#' @keywords internal
+#' @export
+get_M.SI = function(xds_obj, s=1){
+  get_MY_inits(xds_obj, s)$M
+}
+
+#' @title Get the initial infective mosquito density 
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#' @return the initial infective mosquito population density 
+#' @keywords internal
+#' @export
+get_Z.SI = function(xds_obj, s=1){
+  get_MY_inits(xds_obj, s)$Z
 }
 
 #' @title Steady states: MY-SI

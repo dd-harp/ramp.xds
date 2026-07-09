@@ -4,16 +4,16 @@
 \alias{setup_timespent.xy}
 \title{Develop a time spent matrix from a kernel and xy-coordinates}
 \usage{
-\method{setup_timespent}{xy}(name, xds_obj, i, options = list())
+\method{setup_timespent}{xy}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{name}{a matrix or setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
-
 \item{options}{configuration options}
+
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object

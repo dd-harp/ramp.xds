@@ -5,7 +5,7 @@ Run the system for 10 years, and save the last year's orbits.
 ## Usage
 
 ``` r
-xds_stable_orbit(xds_obj, options = list())
+xds_stable_orbit(xds_obj, Y = 10, tol = 1e-05)
 ```
 
 ## Arguments
@@ -14,9 +14,13 @@ xds_stable_orbit(xds_obj, options = list())
 
   an **`xds`** model object
 
-- options:
+- Y:
 
-  a list of configurable options
+  the number of years to run once
+
+- tol:
+
+  the desired accuracy
 
 ## Value
 

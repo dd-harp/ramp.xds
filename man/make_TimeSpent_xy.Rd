@@ -4,18 +4,20 @@
 \alias{make_timespent_xy}
 \title{Make a time spent matrix, called timespent}
 \usage{
-make_timespent_xy(xy, residence, kern, stay, travel)
+make_timespent_xy(xds_obj, xy, residence, stay, kern, kopts = list())
 }
 \arguments{
+\item{xds_obj}{the \strong{\code{xds}} model object}
+
 \item{xy}{is the xy-locations of the patches}
 
 \item{residence}{is the home patch for each stratum}
 
-\item{kern}{is a function that gives weight by distance}
-
 \item{stay}{is the fraction of time spent at home}
 
-\item{travel}{is the fraction of time spent traveling}
+\item{kern}{is a function to compute time spent away from home}
+
+\item{kopts}{options to pass to the kernel}
 }
 \value{
 a \link{matrix}

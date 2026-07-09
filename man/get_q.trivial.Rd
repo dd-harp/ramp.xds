@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{get_q.trivial}
 \alias{get_q.trivial}
-\title{Get the human fraction}
+\title{Get the human fractions}
 \usage{
 \method{get_q}{trivial}(xds_obj, s = 1)
 }
@@ -12,9 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+the human fraction, as a vector
 }
 \description{
-Get the human fraction
+Get the human fractions
 }
 \keyword{internal}

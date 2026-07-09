@@ -4,7 +4,7 @@
 \alias{update_timespent.setup}
 \title{Update the time spent Matrix (setup)}
 \usage{
-\method{update_timespent}{setup}(xds_obj, i)
+\method{update_timespent}{setup}(xds_obj, i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}

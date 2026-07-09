@@ -60,14 +60,17 @@ update_timespent.static <- function(xds_obj, i) { return(xds_obj) }
 #' @return an **`xds`** object
 #' @export
 #' @keywords internal
-update_timespent.setup <- function(xds_obj, i) {
+update_timespent.setup <- function(xds_obj, i=1) {
   xds_obj$XY_interface = trigger_setup(xds_obj$XY_interface)
   class(xds_obj$XH_obj[[i]]$timespent_obj) <- "static"
   return(xds_obj)
 }
 
 #' @title Set up (or change) a time spent matrix
-#'
+#' @description
+#' Update the time spent matrix for the \eqn{i^{th}} host species, and 
+#' trigger updates for the `XY` interface. 
+#' 
 #' @param timespent a time spent matrix
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
@@ -75,7 +78,7 @@ update_timespent.setup <- function(xds_obj, i) {
 #' @return an **`xds`** object
 #' @export
 change_timespent_matrix = function(timespent, xds_obj, i=1){
-  residency_matrix <- get_residence_matrix(xds_obj, 1)
+  residency_matrix <- get_residence_matrix(xds_obj, i)
   stopifnot(dim(timespent) == dim(residency_matrix))
   xds_obj$XH_obj[[i]]$timespent <- timespent
   xds_obj$XH_obj[[i]]$timespent_obj = trigger_setup(xds_obj$XH_obj[[i]]$timespent_obj)
@@ -94,7 +97,7 @@ change_timespent_matrix = function(timespent, xds_obj, i=1){
 #' @return an **`xds`** object
 #'
 #' @export
-setup_timespent = function(name, xds_obj, i, options = list()){
+setup_timespent = function(name, xds_obj, options = list(), i=1){
   if(is.matrix(name)) class(options) <- "as_matrix"
   if(is.character(name)) class(options) <- name
   UseMethod("setup_timespent", options)
@@ -106,7 +109,7 @@ setup_timespent = function(name, xds_obj, i, options = list()){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_timespent.no_setup = function(name, xds_obj, i, options = list()){
+setup_timespent.no_setup = function(name, xds_obj, options = list(), i=1){
   return(xds_obj)
 }
 
@@ -116,26 +119,27 @@ setup_timespent.no_setup = function(name, xds_obj, i, options = list()){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_timespent.athome = function(name, xds_obj, i, options = list()){
+setup_timespent.at_home = function(name, xds_obj, options = list(), i=1){
   residence = xds_obj$residence[[i]]
-  timespent = make_timespent_athome(xds_obj$nPatches, residence, options)
-  change_timespent_matrix(timespent, xds_obj, i)
+  timespent = make_timespent_at_home(xds_obj$nPatches, residence, options)
+  xds_obj <- change_timespent_matrix(timespent, xds_obj, i)
+  return(xds_obj)
 }
 
 #' @title Make a time spent matrix, called timespent
 #' @param nPatches is the number of patches
 #' @param residence is the home patch for each stratum
-#' @param atHome is the fraction of time spent at home
+#' @param at_home is the fraction of time spent at home
 #' @param options is a set of options that overwrites the defaults
-#' @param travel is the fraction of time spent traveling
+#' @param not_at_risk is the fraction of time not at risk
 #' @return a [matrix]
 #' @export
-make_timespent_athome = function(nPatches, residence, options=list(), atHome=1, travel=0) {with(options,{
+make_timespent_at_home = function(nPatches, residence, options=list(), at_home=1, not_at_risk=0) {with(options,{
   nStrata = length(residence)
-  away = ifelse(nPatches == 1, 0, (1-atHome-travel)/(nPatches-1))
-  atHome = ifelse(nPatches == 1, 1-travel, atHome)
+  away = ifelse(nPatches == 1, 0, (1-at_home-not_at_risk)/(nPatches-1))
+  at_home = ifelse(nPatches == 1, 1-not_at_risk, at_home)
   timespent <- matrix(away, nPatches, length(residence))
-  timespent[cbind(residence, c(1:nStrata))] <- atHome
+  timespent[cbind(residence, c(1:nStrata))] <- at_home
   return(timespent)
 })}
 
@@ -145,9 +149,10 @@ make_timespent_athome = function(nPatches, residence, options=list(), atHome=1, 
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_timespent.as_matrix = function(name, xds_obj, i, options=list()){
+setup_timespent.as_matrix = function(name, xds_obj, options=list(), i=1){
   timespent = name
-  change_timespent_matrix(timespent, xds_obj, i)
+  xds_obj <- change_timespent_matrix(timespent, xds_obj, i)
+  return(xds_obj)
 }
 
 #' @title Develop a time spent matrix from a kernel and xy-coordinates
@@ -156,32 +161,33 @@ setup_timespent.as_matrix = function(name, xds_obj, i, options=list()){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_timespent.xy = function(name, xds_obj, i, options=list()) {
-  residence = xds_obj$B_interface[[i]]$residence
-  timespent = with(options, make_timespent_xy(xy, residence, kern, stay, travel))
-  change_timespent_matrix(timespent, xds_obj, i)
+setup_timespent.xy = function(name, xds_obj, options=list(), i=1) {
+  residence = get_residence(xds_obj, i)
+  timespent = with(options, make_timespent_xy(xds_obj, xy, residence, stay, kern, options))
+  xds_obj <- change_timespent_matrix(timespent, xds_obj, i)
+  return(xds_obj)
 }
 
 #' @title Make a time spent matrix, called timespent
+#' @param xds_obj the **`xds`** model object
 #' @param xy is the xy-locations of the patches
 #' @param residence is the home patch for each stratum
-#' @param kern is a function that gives weight by distance
 #' @param stay is the fraction of time spent at home
-#' @param travel is the fraction of time spent traveling
+#' @param kern is a function to compute time spent away from home
+#' @param kopts options to pass to the kernel
 #' @return a [matrix]
 #' @export
-make_timespent_xy = function(xy, residence, kern, stay, travel) {
+make_timespent_xy = function(xds_obj, xy, residence, stay, kern, kopts=list()) {
   nPatches = dim(xy)[1]
   nStrata = length(residence)
   stopifnot(length(stay)==nStrata)
-  stopifnot(length(travel)==nStrata)
   timespent = matrix(0, nPatches, nStrata)
   for(i in 1:nStrata){
     j = residence[i]
     dd = sqrt((xy[j,1] - xy[,1])^2 + (xy[j,2] - xy[,2])^2)
-    wts = kern(dd)
+    wts = kern(dd, xds_obj, kopts)
     wts[j] = 0
-    wts = (1-stay[i]-travel[i])*wts/sum(wts[-j])
+    wts = (1-stay[i])*wts/sum(wts[-j])
     wts[j] = stay[i]
     timespent[,i] = wts
   }

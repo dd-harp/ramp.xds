@@ -34,7 +34,7 @@ The \emph{demographic matrix} \eqn{\Omega} is formulated as
 \deqn{
  \Omega = \mbox{diag} \left( g + \sigma \mu \right) + K \cdot \mbox{diag} \left( \sigma \left(1-\mu\right) \right)
 }
-Survival and dispersal through the EIP is
+survival and dispersal through the EIP is
 \deqn{
  \Upsilon = e^{-\Omega \tau} 
 }

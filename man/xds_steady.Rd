@@ -4,10 +4,14 @@
 \alias{xds_steady}
 \title{Solve for the steady state}
 \usage{
-xds_steady(xds_obj)
+xds_steady(xds_obj, Y = 10, tol = 1e-05)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{Y}{the number of years to run once}
+
+\item{tol}{the desired accuracy}
 }
 \value{
 an \strong{\code{xds}} object
@@ -15,4 +19,9 @@ an \strong{\code{xds}} object
 \description{
 Compute the steady state for a
 system of differential equations.
+\itemize{
+\item Run for \eqn{Y} years
+\item Check the sun of squared differences in the final state is less than \code{tol}
+\item If not
+}
 }
