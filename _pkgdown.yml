@@ -178,12 +178,15 @@ reference:
   contents:
   - xds_steady
   - xds_stable_orbit
+  - xds_analyze
   - steady_state_X
   - steady_state_XH
   - steady_state_M
   - steady_state_MY
   - steady_state_Y
   - steady_state_L
+  - get_VC
+  - get_VC_matrix 
 - subtitle: Transmission Matrices
   contents:
   - compute_VC
