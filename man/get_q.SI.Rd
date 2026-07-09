@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{get_q.SI}
 \alias{get_q.SI}
-\title{Get the feeding rate}
+\title{Get the human fractions}
 \usage{
 \method{get_q}{SI}(xds_obj, s = 1)
 }
@@ -12,9 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+the human fraction, as a vector
 }
 \description{
-Get the feeding rate
+Get the human fractions
 }
 \keyword{internal}

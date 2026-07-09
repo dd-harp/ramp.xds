@@ -31,7 +31,7 @@
 #' \deqn{
 #'  \Omega = \mbox{diag} \left( g + \sigma \mu \right) + K \cdot \mbox{diag} \left( \sigma \left(1-\mu\right) \right)
 #' } 
-#' Survival and dispersal through the EIP is 
+#' survival and dispersal through the EIP is 
 #' \deqn{
 #'  \Upsilon = e^{-\Omega \tau} 
 #' } 
@@ -161,10 +161,13 @@ dMYdt.macdonald <- function(t, y, xds_obj, s){
       dPdt <- f*(M - P) - (Omega %*% P)
       dYdt <- f*q*kappa*(M - Y) - (Omega %*% Y)
       dZdt <- Upsilon %*% (f*q*kappa_eip * (M_eip - Y_eip)) - (Omega %*% Z)
+      
       return(c(dMdt, dPdt, dYdt, dZdt, kappa))
     })
   })
 }
+
+
 
 
 #' @title The net blood feeding rate of the infective mosquito population in a patch
@@ -205,7 +208,7 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Set up `macdonald` (**MY**)
+#' @title set up `macdonald` (**MY**)
 #' @description Implements [setup_MY_obj] for the macdonald model
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
@@ -287,7 +290,6 @@ setup_MY_ix.macdonald <- function(xds_obj, s) {with(xds_obj,{
   kappa_ix <- seq(from = max_ix+1, length.out = nPatches)
   max_ix <- tail(kappa_ix, 1)
 
-
   xds_obj$max_ix = max_ix
   xds_obj$MY_obj[[s]]$ix = list(M_ix=M_ix, P_ix=P_ix, Y_ix=Y_ix, Z_ix=Z_ix,
                           kappa_ix=kappa_ix)
@@ -363,7 +365,7 @@ change_MY_pars.macdonald <- function(xds_obj, s=1, options=list()) {
   }))}
 
 
-#' @title Setup initial values for `macdonald` (**MY**)
+#' @title setup initial values for `macdonald` (**MY**)
 #' @description Implements [setup_MY_inits] for the macdonald model
 #' @inheritParams setup_MY_inits
 #' @return a [list]
@@ -440,7 +442,7 @@ steady_state_MY.macdonald = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$M
 #' from baseline parameters, those functions store
 #' an effect size. The total effect size is the
 #' product of the effect sizes for each intervention.
-#' Since coverage could be changing dynamically, these
+#' since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MEffectSizes
 #' @return an **`xds`** object
@@ -456,7 +458,7 @@ MBionomics.macdonald <- function(t, y, xds_obj, s) {
 #' from baseline parameters, those functions store
 #' an effect size. The total effect size is the
 #' product of the effect sizes for each intervention.
-#' Since coverage could be changing dynamically, these
+#' since coverage could be changing dynamically, these
 #' must be reset each time the derivatives are computed.
 #' @inheritParams MEffectSizes
 #' @return an **`xds`** object
@@ -466,43 +468,62 @@ MEffectSizes.macdonald <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
-
-#' @title Get the feeding rate
+#' @title Get the feeding rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the feeding rate, as a vector 
 #' @keywords internal
 #' @export
 get_f.macdonald = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f)
 }
 
-#' @title Get the feeding rate
+#' @title Get the human fractions 
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the human fraction, as a vector 
 #' @keywords internal
 #' @export
 get_q.macdonald = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q)
 }
 
-#' @title Get the feeding rate
+#' @title Get the mortality rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the mortality rate, as a vector 
 #' @keywords internal
 #' @export
 get_g.macdonald = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], g)
 }
 
-#' @title Get the feeding rate
+#' @title Get the patch emigration rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the patch emigration rates, as a vector 
 #' @keywords internal
 #' @export
 get_sigma.macdonald = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], sigma)
+}
+
+#' @title Get the initial mosquito population density 
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#' @return the initial mosquito population density 
+#' @keywords internal
+#' @export
+get_M.macdonald = function(xds_obj, s=1){
+  get_MY_inits(xds_obj, s)$M
+}
+
+#' @title Get the initial infective mosquito density 
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species index
+#' @return the initial infective mosquito population density 
+#' @keywords internal
+#' @export
+get_Z.macdonald = function(xds_obj, s=1){
+  get_MY_inits(xds_obj, s)$Z
 }

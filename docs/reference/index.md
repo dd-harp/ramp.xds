@@ -133,10 +133,10 @@ Methods to numerically solve differential equations and get the outputs
 
 - [`xds_solve()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
   : Solve a Dynamical System
+- [`xds_steady()`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.md)
+  : Solve for the steady state
 - [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
   : Compute stable orbits
-- [`dts_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/dts_stable_orbit.md)
-  : Compute the stable orbit for a discrete time system
 - [`burnin()`](https://dd-harp.github.io/ramp.xds/reference/burnin.md) :
   Burn In
 - [`xds_info_parsing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_parsing.md)
@@ -178,13 +178,15 @@ values.
 
   Get the *Pf*PR from a malaria model
 
+## Qualitative Analysis
+
 ### Compute Steady States
 
 - [`xds_steady()`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.md)
   : Solve for the steady state
 
-- [`dts_steady()`](https://dd-harp.github.io/ramp.xds/reference/dts_steady.md)
-  : Compute the steady state of a discrete time system
+- [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
+  : Compute stable orbits
 
 - [`steady_state_X()`](https://dd-harp.github.io/ramp.xds/reference/steady_state_X.md)
   :
@@ -215,6 +217,13 @@ values.
   :
 
   Compute steady states for **L** component modules
+
+### Vectorial Capacity
+
+- [`compute_VC()`](https://dd-harp.github.io/ramp.xds/reference/compute_VC.md)
+  : Compute the VC Matrix
+- [`make_VC()`](https://dd-harp.github.io/ramp.xds/reference/make_VC.md)
+  : Make VC
 
 ## Plot
 

@@ -1,0 +1,14 @@
+---
+title: "Scaling Relationships"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Scaling Relationships}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+library(ramp.xds)
+```
+
+Scaling relationships 

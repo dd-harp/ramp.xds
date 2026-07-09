@@ -18,7 +18,6 @@
 #' @param dt the time step
 #' @param times the times
 #'
-
 #' @export
 xds_solve = function(xds_obj, Tmax=365, dt=1, times=NULL){
   UseMethod("xds_solve", xds_obj$xde)

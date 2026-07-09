@@ -266,7 +266,7 @@ change_MY_inits <- function(xds_obj, s=1, options=list()) {
 #' @title Get the feeding rate(s)
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the feeding rate, as a vector
 #' @export
 get_f = function(xds_obj, s=1){
   UseMethod("get_f", xds_obj$MY_obj[[s]])
@@ -275,7 +275,7 @@ get_f = function(xds_obj, s=1){
 #' @title Get the human fraction(s)
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the human fraction, as a vector
 #' @export
 get_q = function(xds_obj, s=1){
   UseMethod("get_q", xds_obj$MY_obj[[s]])
@@ -284,7 +284,7 @@ get_q = function(xds_obj, s=1){
 #' @title Get the adult mosquito mortality rate(s)
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the mortality rate, as a vector
 #' @export
 get_g = function(xds_obj, s=1){
   UseMethod("get_g", xds_obj$MY_obj[[s]])
@@ -293,7 +293,7 @@ get_g = function(xds_obj, s=1){
 #' @title Get the patch emigration rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the patch emigration rates, as a vector
 #' @export
 get_sigma = function(xds_obj, s=1){
   UseMethod("get_sigma", xds_obj$MY_obj[[s]])

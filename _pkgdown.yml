@@ -62,6 +62,18 @@ navbar:
       href: articles/Exposure.html
     - text: Bionomics 
       href: articles/MosquitoBionomics.html
+  - text: Analysis
+    menu:
+    - text: Qualitative Analysis
+      href: articles/Qualitative.html
+    - text: Steady States & Stable Orbits
+      href: articles/Steady.html
+    - text: Thresholds
+      href: articles/Thresholds.html
+    - text: Connectivity
+      href: articles/Connectivity.html
+    - text: Scaling Relationships
+      href: articles/Scaling.html
   - text: Glossary
     href: articles/Glossary.html
   - text: Reference
@@ -143,8 +155,8 @@ reference:
     Methods to numerically solve differential equations and get the outputs
   contents:
   - xds_solve
+  - xds_steady
   - xds_stable_orbit
-  - dts_stable_orbit
   - burnin
   - xds_info_parsing
 - subtitle: Variable 
@@ -161,16 +173,23 @@ reference:
   - get_L_orbits
   - get_EIR 
   - get_PR
+- title: Qualitative Analysis 
 - subtitle: Compute Steady States   
   contents:
   - xds_steady
-  - dts_steady
+  - xds_stable_orbit
   - steady_state_X
   - steady_state_XH
   - steady_state_M
   - steady_state_MY
   - steady_state_Y
   - steady_state_L
+- subtitle: Transmission Matrices
+  contents:
+  - compute_VC
+  - make_VC
+  - make_VC_gem
+  - compute_HTC
 - title: Plot  
 - subtitle: PR & EIR 
   desc: | 
@@ -210,6 +229,11 @@ reference:
 - title: Get  
   desc: |
     Inspect elements of the xds object 
+- subtitle: Get Terms
+  desc: |
+    Get terms  
+  contents:
+  - get_beta 
 - subtitle: Get Orbits 
   desc: |
     Get orbits  
@@ -340,7 +364,7 @@ reference:
   - xds_info_time_at_risk
   - setup_timespent
   - change_timespent_matrix
-  - make_timespent_athome
+  - make_timespent_at_home
   - make_timespent_xy
 - subtitle:  
   desc: |

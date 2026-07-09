@@ -12,7 +12,7 @@ get_sigma(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+the patch emigration rates, as a vector
 }
 \description{
 Get the patch emigration rates

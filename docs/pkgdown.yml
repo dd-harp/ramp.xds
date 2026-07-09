@@ -9,6 +9,7 @@ articles:
   Bionomics: Bionomics.html
   BloodFeeding: BloodFeeding.html
   Cohorts: Cohorts.html
+  Connectivity: Connectivity.html
   Contributing: Contributing.html
   Delays: Delays.html
   Diagnostics: Diagnostics.html
@@ -28,14 +29,18 @@ articles:
   modularity: modularity.html
   MosquitoSpatialEcology: MosquitoSpatialEcology.html
   MY-interface: MY-interface.html
+  Qualitiative: Qualitiative.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
   ScalableComplexity: ScalableComplexity.html
+  Scaling: Scaling.html
   SpatialTransmissionDynamics: SpatialTransmissionDynamics.html
+  Steady: Steady.html
+  Thresholds: Thresholds.html
   TraceFunctions: TraceFunctions.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   Working: Working.html
   XH-interface: XH-interface.html
-last_built: 2026-04-07T14:52Z
+last_built: 2026-05-19T21:30Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

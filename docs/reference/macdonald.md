@@ -51,7 +51,7 @@ closer to one published by Aron & May (1982).
 
 The *demographic matrix* \\\Omega\\ is formulated as \$\$ \Omega =
 \mbox{diag} \left( g + \sigma \mu \right) + K \cdot \mbox{diag} \left(
-\sigma \left(1-\mu\right) \right) \$\$ Survival and dispersal through
+\sigma \left(1-\mu\right) \right) \$\$ survival and dispersal through
 the EIP is \$\$ \Upsilon = e^{-\Omega \tau} \$\$
 
 ## Dynamics

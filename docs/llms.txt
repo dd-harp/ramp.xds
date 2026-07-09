@@ -383,10 +383,10 @@ Methods to numerically solve differential equations and get the outputs
 
 - [`xds_solve()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
   : Solve a Dynamical System
+- [`xds_steady()`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.md)
+  : Solve for the steady state
 - [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
   : Compute stable orbits
-- [`dts_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/dts_stable_orbit.md)
-  : Compute the stable orbit for a discrete time system
 - [`burnin()`](https://dd-harp.github.io/ramp.xds/reference/burnin.md) :
   Burn In
 - [`xds_info_parsing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_parsing.md)
@@ -428,13 +428,15 @@ values.
 
   Get the *Pf*PR from a malaria model
 
+## Qualitative Analysis
+
 ### Compute Steady States
 
 - [`xds_steady()`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.md)
   : Solve for the steady state
 
-- [`dts_steady()`](https://dd-harp.github.io/ramp.xds/reference/dts_steady.md)
-  : Compute the steady state of a discrete time system
+- [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
+  : Compute stable orbits
 
 - [`steady_state_X()`](https://dd-harp.github.io/ramp.xds/reference/steady_state_X.md)
   :
@@ -465,6 +467,13 @@ values.
   :
 
   Compute steady states for **L** component modules
+
+### Vectorial Capacity
+
+- [`compute_VC()`](https://dd-harp.github.io/ramp.xds/reference/compute_VC.md)
+  : Compute the VC Matrix
+- [`make_VC()`](https://dd-harp.github.io/ramp.xds/reference/make_VC.md)
+  : Make VC
 
 ## Plot
 
@@ -1257,6 +1266,7 @@ A function maker
   Transmission](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md):
 - [Cohort
   Dynamics](https://dd-harp.github.io/ramp.xds/articles/Cohorts.md):
+- [Connectivity](https://dd-harp.github.io/ramp.xds/articles/Connectivity.md):
 - [Contributing](https://dd-harp.github.io/ramp.xds/articles/Contributing.md):
 - [Delay
   Equations](https://dd-harp.github.io/ramp.xds/articles/Delays.md):
@@ -1292,12 +1302,20 @@ A function maker
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/MosquitoSpatialEcology.md):
 - [The MY
   Component](https://dd-harp.github.io/ramp.xds/articles/MY-interface.md):
+- [Qualitative
+  Analysis](https://dd-harp.github.io/ramp.xds/articles/Qualitiative.md):
 - [Basic Mosquito Infection Dynamics in Discrete
   Time](https://dd-harp.github.io/ramp.xds/articles/RM-dts-Mosquito.md):
 - [Beyond Basic
   Setup](https://dd-harp.github.io/ramp.xds/articles/ScalableComplexity.md):
+- [Scaling
+  Relationships](https://dd-harp.github.io/ramp.xds/articles/Scaling.md):
 - [Spatial Transmission Dynamics with
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.md):
+- [Steady States & Stable
+  Orbits](https://dd-harp.github.io/ramp.xds/articles/Steady.md):
+- [Computing
+  Thresholds](https://dd-harp.github.io/ramp.xds/articles/Thresholds.md):
 - [Trace
   Functions](https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.md):
 - [Understanding

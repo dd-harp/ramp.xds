@@ -119,3 +119,7 @@ ramp.xds.Rproj
 *.Rproj
 *.bkp
 
+1
+tests/testthat/tmp.rds
+tests/testthat/tmp.rds
+.positai

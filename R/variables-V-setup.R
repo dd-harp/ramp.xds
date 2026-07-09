@@ -12,9 +12,10 @@
 setup_V_ix.setup <- function(xds_obj, i){
   var_ix = xds_obj$max_ix + c(1:xds_obj$V_obj[[i]]$nVars)
   xds_obj$V_obj[[i]]$ix <- var_ix
-  xds_obj$max_ix = max(var_ix)
   return(xds_obj)
-}#' @title Compute Other Variables
+}
+
+#' @title Compute Other Variables
 #' @description
 #' The description for each method should include the equations.
 #'
@@ -39,6 +40,7 @@ setup_other_variables = function(xds_obj){
   class(setup) <- "setup"
   xds_obj$V_obj = list()
   xds_obj$V_obj[[1]] = setup
+  xds_obj$V_obj[[1]]$nVars = 0 
   return(xds_obj)
 }
 
@@ -64,6 +66,7 @@ add_variable = function(var_object, xds_obj){
   i <- xds_obj$nOtherVariables + 1
   xds_obj$nOtherVariables = i
   xds_obj$V_obj[[i]] <- var_object
-  xds_obj <- setup_V_ix(xds_obj, i)
+  xds_obj$V_obj[[i]]$V_i <- i 
+  xds_obj <- setup_V_ix(xds_obj)
   return(xds_obj)
 }

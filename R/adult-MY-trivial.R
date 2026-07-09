@@ -374,40 +374,40 @@ get_MY_inits.trivial <- function(xds_obj, s) {
 
 
 
-#' @title Get the feeding rate
+#' @title Get the feeding rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the feeding rate, as a vector
 #' @keywords internal
 #' @export
 get_f.trivial = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f)
 }
 
-#' @title Get the human fraction 
+#' @title Get the human fractions
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the human fraction, as a vector
 #' @keywords internal
 #' @export
 get_q.trivial = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q)
 }
 
-#' @title Get the mortality rate
+#' @title Get the mortality rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the mortality rate, as a vector
 #' @keywords internal
 #' @export
 get_g.trivial = function(xds_obj, s=1){
   numeric(0)
 }
 
-#' @title Get the patch emigration rate
+#' @title Get the patch emigration rates
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return the patch emigration rates, as a vector
 #' @keywords internal
 #' @export
 get_sigma.trivial = function(xds_obj, s=1){

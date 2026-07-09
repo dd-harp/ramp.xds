@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{get_g.SI}
 \alias{get_g.SI}
-\title{Get the feeding rate}
+\title{Get the mortality rates}
 \usage{
 \method{get_g}{SI}(xds_obj, s = 1)
 }
@@ -12,9 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+the mortality rate, as a vector
 }
 \description{
-Get the feeding rate
+Get the mortality rates
 }
 \keyword{internal}

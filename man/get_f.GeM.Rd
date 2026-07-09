@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{get_f.GeM}
 \alias{get_f.GeM}
-\title{Get the feeding rate}
+\title{Get the feeding rates}
 \usage{
 \method{get_f}{GeM}(xds_obj, s = 1)
 }
@@ -12,9 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+the feeding rate, as a vector
 }
 \description{
-Get the feeding rate
+Get the feeding rates
 }
 \keyword{internal}
