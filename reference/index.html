@@ -5,7 +5,7 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Package index"></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Package index"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -59,6 +59,14 @@
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
     <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
+  </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-analysis" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Analysis</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-analysis"><li><a class="dropdown-item" href="../articles/Qualitative.html">Qualitative Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/Steady.html">Steady States &amp; Stable Orbits</a></li>
+    <li><a class="dropdown-item" href="../articles/Thresholds.html">Thresholds</a></li>
+    <li><a class="dropdown-item" href="../articles/Connectivity.html">Connectivity</a></li>
+    <li><a class="dropdown-item" href="../articles/Scaling.html">Scaling Relationships</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
@@ -378,17 +386,17 @@
 
         <dt>
 
+          <code><a href="xds_steady.html">xds_steady()</a></code>
+
+        </dt>
+        <dd>Solve for the steady state</dd>
+
+        <dt>
+
           <code><a href="xds_stable_orbit.html">xds_stable_orbit()</a></code>
 
         </dt>
         <dd>Compute stable orbits</dd>
-
-        <dt>
-
-          <code><a href="dts_stable_orbit.html">dts_stable_orbit()</a></code>
-
-        </dt>
-        <dd>Compute the stable orbit for a discrete time system</dd>
 
         <dt>
 
@@ -478,6 +486,11 @@
         </dt>
         <dd>Get the <em>Pf</em>PR from a malaria model</dd>
       </dl></div><div class="section level2">
+      <h2 id="qualitative-analysis">Qualitative Analysis<a class="anchor" aria-label="anchor" href="#qualitative-analysis"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
 
       <h3 id="compute-steady-states">Compute Steady States<a class="anchor" aria-label="anchor" href="#compute-steady-states"></a></h3>
 
@@ -496,10 +509,17 @@
 
         <dt>
 
-          <code><a href="dts_steady.html">dts_steady()</a></code>
+          <code><a href="xds_stable_orbit.html">xds_stable_orbit()</a></code>
 
         </dt>
-        <dd>Compute the steady state of a discrete time system</dd>
+        <dd>Compute stable orbits</dd>
+
+        <dt>
+
+          <code><a href="xds_analyze.html">xds_analyze()</a></code>
+
+        </dt>
+        <dd>Analyze a Dynamical System</dd>
 
         <dt>
 
@@ -542,6 +562,57 @@
 
         </dt>
         <dd>Compute steady states for <strong>L</strong> component modules</dd>
+
+        <dt>
+
+          <code><a href="get_VC.html">get_VC()</a></code>
+
+        </dt>
+        <dd>Get VC</dd>
+
+        <dt>
+
+          <code><a href="get_VC_matrix.html">get_VC_matrix()</a></code>
+
+        </dt>
+        <dd>Get VC</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="transmission-matrices">Transmission Matrices<a class="anchor" aria-label="anchor" href="#transmission-matrices"></a></h3>
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="compute_VC.html">compute_VC()</a></code>
+
+        </dt>
+        <dd>Compute the VC Matrix</dd>
+
+        <dt>
+
+          <code><a href="make_VC.html">make_VC()</a></code>
+
+        </dt>
+        <dd>Make VC</dd>
+
+        <dt>
+
+          <code><a href="make_VC_gem.html">make_VC(<i>&lt;macdonald&gt;</i>)</a></code> <code><a href="make_VC_gem.html">make_VC_gem()</a></code>
+
+        </dt>
+        <dd>Make the VC Matrix</dd>
+
+        <dt>
+
+          <code><a href="compute_HTC.html">compute_HTC()</a></code>
+
+        </dt>
+        <dd>Compute the HTC Matrix</dd>
       </dl></div><div class="section level2">
       <h2 id="plot">Plot<a class="anchor" aria-label="anchor" href="#plot"></a></h2>
 
@@ -722,6 +793,22 @@
       <div class="section-desc"><p>Inspect elements of the xds object</p></div>
 
       <dl></dl></div><div class="section level2">
+
+      <h3 id="get-terms">Get Terms<a class="anchor" aria-label="anchor" href="#get-terms"></a></h3>
+      <div class="section-desc"><p>Get terms</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="get_beta.html">get_beta()</a></code>
+
+        </dt>
+        <dd>Get xi, delayed maturation</dd>
+      </dl></div><div class="section level2">
 
       <h3 id="get-orbits">Get Orbits<a class="anchor" aria-label="anchor" href="#get-orbits"></a></h3>
       <div class="section-desc"><p>Get orbits</p></div>
@@ -1390,7 +1477,7 @@
 
         <dt>
 
-          <code><a href="make_TimeSpent_athome.html">make_timespent_athome()</a></code>
+          <code><a href="make_timespent_at_home.html">make_timespent_at_home()</a></code>
 
         </dt>
         <dd>Make a time spent matrix, called timespent</dd>
@@ -2383,7 +2470,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

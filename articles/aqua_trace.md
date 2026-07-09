@@ -3,6 +3,7 @@
 ## A forced model
 
 ``` r
+
 library(ramp.xds)
 library(MASS)
 library(expm)
@@ -25,6 +26,7 @@ equilibrium when using unequal numbers of aquatic habitats per patch.
 First, we set the parameter values.
 
 ``` r
+
 nPatches <- 3
 nHabitats <- 4
 membership = c(1,2,3,3)
@@ -32,6 +34,7 @@ HPop = 1000
 ```
 
 ``` r
+
 calN <- matrix(0, nPatches, nHabitats)
 calN[1,1] <- 1
 calN[2,2] <- 1
@@ -45,6 +48,7 @@ calU[3:4,3] <- 0.5
 ```
 
 ``` r
+
 f <- rep(0.3, nPatches)
 q <- rep(0.9, nPatches)
 g <- rep(1/20, nPatches)
@@ -56,12 +60,14 @@ eggsPerBatch <- 30
 ```
 
 ``` r
+
 MYo = list(
   g=g, sigma=sigma, mu=mu, f=f, q=q, nu=nu, eggsPerBatch = eggsPerBatch
 )
 ```
 
 ``` r
+
 K_matrix <- diag(-1, nPatches) 
 K_matrix[1, 2:3] <- c(0.2, 0.8)
 K_matrix[2, c(1,3)] <- c(0.5, 0.5)
@@ -86,6 +92,7 @@ generalized inverse of \\\mathcal{N}\\ to get \\\alpha\\ required at
 equilibrium.
 
 ``` r
+
 # equilibrium solutions
 Omega_inv <- solve(Omega)
 
@@ -105,6 +112,7 @@ use `ramp.xds::MosquitoBehavior` to pass the equilibrium values of those
 bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 
 ``` r
+
 xds_obj <- make_xds_object_template("ode", "mosy", nPatches, membership)
 
 xds_obj = setup_L_obj("trivial", xds_obj, 1, options = list(Lambda=alpha))
@@ -117,23 +125,28 @@ xds_obj = setup_MY_inits(xds_obj, 1, list(M=M_eq, P=P_eq))
 ```
 
 ``` r
+
 xds_obj = setup_XH_obj("trivial", xds_obj, 1, list(HPop=HPop))
 ```
 
 ``` r
+
 xds_obj = make_indices(xds_obj)
 ```
 
 ``` r
+
 xds_obj$terms$kappa = list()
 xds_obj$terms$kappa[[1]] = kappa  
 ```
 
 ``` r
+
 xds_obj <- setup_K_matrix(K_matrix, xds_obj)
 ```
 
 ``` r
+
 y0 <- get_inits(xds_obj)
 y0
 #> $L
@@ -149,14 +162,19 @@ y0
 #> 
 #> $X
 #> NULL
+#> 
+#> $V
+#> NULL
 ```
 
 ``` r
+
 out <- deSolve::ode(y = get_inits(xds_obj, flatten=TRUE), times = seq(0,50, by=10), func = xde_derivatives, parms = xds_obj, method = 'lsoda')
 out1 <- out
 ```
 
 ``` r
+
 colnames(out)[xds_obj$MY_obj[[1]]$ix$M_ix+1] <- paste0('M_', 1:xds_obj$nPatches)
 colnames(out)[xds_obj$MY_obj[[1]]$ix$P_ix+1] <- paste0('P_', 1:xds_obj$nPatches)
 
@@ -176,12 +194,14 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
 ### Using Setup
 
 ``` r
+
 Lo = list(
   Lambda = alpha 
 )
 ```
 
 ``` r
+
 MYo = list(
   f = 0.3,
   q = 0.9,
@@ -196,6 +216,7 @@ MYo = list(
 ```
 
 ``` r
+
 xds_setup_mosy(MYname = "basicM", Lname = "trivial", 
                nPatches = 3, membership = c(1,2,3,3), 
                MYoptions = MYo, Koptions = K_matrix, 
@@ -204,10 +225,12 @@ xds_setup_mosy(MYname = "basicM", Lname = "trivial",
 ```
 
 ``` r
+
 xds_solve(mosy1,Tmax=50,dt=10)$outputs$deout -> out2
 ```
 
 ``` r
+
 sum(abs(out2-out1))
 #> [1] 0
 ```

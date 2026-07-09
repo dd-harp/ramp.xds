@@ -1,5 +1,5 @@
-pandoc: 3.1.11
-pkgdown: 2.2.0
+pandoc: 3.8.3
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   adult_RM: adult_RM.html
@@ -9,6 +9,7 @@ articles:
   Bionomics: Bionomics.html
   BloodFeeding: BloodFeeding.html
   Cohorts: Cohorts.html
+  Connectivity: Connectivity.html
   Contributing: Contributing.html
   Delays: Delays.html
   Diagnostics: Diagnostics.html
@@ -28,14 +29,18 @@ articles:
   modularity: modularity.html
   MosquitoSpatialEcology: MosquitoSpatialEcology.html
   MY-interface: MY-interface.html
+  Qualitative: Qualitative.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
   ScalableComplexity: ScalableComplexity.html
+  Scaling: Scaling.html
   SpatialTransmissionDynamics: SpatialTransmissionDynamics.html
+  Steady: Steady.html
+  Thresholds: Thresholds.html
   TraceFunctions: TraceFunctions.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   Working: Working.html
   XH-interface: XH-interface.html
-last_built: 2026-04-07T19:45Z
+last_built: 2026-07-09T22:26Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

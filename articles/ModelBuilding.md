@@ -1,6 +1,7 @@
 # Progressive Model Building
 
 ``` r
+
 library(ramp.xds)
 ```
 
@@ -178,12 +179,14 @@ as a named list, to override the defaults for the model:
 Thu function call:
 
 ``` r
+
 model1 = xds_setup()
 ```
 
 returns the same values as the function call:
 
 ``` r
+
 model2 = xds_setup(Xname = "SIS", 
                    MYZname = "macdonald", 
                    Lname = "trivial")
@@ -244,6 +247,7 @@ In **`ramp.xds`,** malaria spatial dynamics are implemented through a
 model of blood feeding in a patch-based simulation model.
 
 ``` r
+
 model5 <- xds_setup(nPatches=4)
 ```
 

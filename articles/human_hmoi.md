@@ -36,6 +36,7 @@ to feed into the other components.
 ## Example
 
 ``` r
+
 library(ramp.xds)
 library(deSolve)
 library(viridisLite)
@@ -58,6 +59,7 @@ compute consistent values.
 Here, we build a model step-by-step.
 
 ``` r
+
 nStrata <- 3
 H <- c(100, 500, 250)
 residence = rep(1,3) 
@@ -65,6 +67,7 @@ xds_obj <- make_xds_object_template("ode", "eir", 1, 1, residence)
 ```
 
 ``` r
+
 b <- 0.55
 c1 <- 0.05
 c2 <- 0.25
@@ -73,6 +76,7 @@ r2 <- 1/50
 ```
 
 ``` r
+
 m2 <- rlnorm(3, .2, .5) 
 h <- r2*m2
 m1 <- h/r1
@@ -80,26 +84,31 @@ Xo = list(b = b, c1 = c1, c2 = c2, r1 = r1, r2 = r2, m1=m1, m2=m2)
 ```
 
 ``` r
+
 eir <- h/b
 ```
 
 ``` r
+
 xds_obj = setup_XH_obj("hMoI", xds_obj, 1, Xo)
 xds_obj = setup_XH_inits(xds_obj, H, 1, Xo) 
 ```
 
 ``` r
+
 xds_obj = setup_MY_obj("trivial", xds_obj, 1)
 xds_obj = setup_L_obj("trivial", xds_obj, 1)
 ```
 
 ``` r
+
 F_season = function(t){0*t+1}
 F_trend = function(t){0*t+1}
 F_shock = function(t){0*t+1}
 ```
 
 ``` r
+
 xds_obj$EIR_obj = list() 
 xds_obj$EIR_obj$eir <- as.vector(eir)
 xds_obj$EIR_obj$scale <- 1 
@@ -114,10 +123,12 @@ xds_obj$EIR_obj$age_par<- list()
 ```
 
 ``` r
+
 xds_obj = make_indices(xds_obj)
 ```
 
 ``` r
+
 y0 <- get_inits(xds_obj)
 y0
 #> $L
@@ -132,15 +143,21 @@ y0
 #> 
 #> $X$m2
 #> [1] 0.6065175 1.3877150 0.3610886
+#> 
+#> 
+#> $V
+#> NULL
 ```
 
 ``` r
+
 xds_obj <- xds_solve(xds_obj) 
 XH <- xds_obj$outputs$orbits$XH[[1]]
 time <- xds_obj$outputs$time
 ```
 
 ``` r
+
 clrs = turbo(5)
 plot(time, XH$m1[,1], col = clrs[1], ylim = range(XH$m1), type = "l")
 lines(time, XH$m1[,2], col = clrs[2])
@@ -156,10 +173,12 @@ lines(time, XH$m2[,3], col =clrs[5], lty=2)
 ## Using Setup
 
 ``` r
+
 xds_setup_eir(eir, Xname="hMoI", HPop=H, XHoptions = Xo) ->test_hMoI
 ```
 
 ``` r
+
 xds_solve(test_hMoI)-> test_hMoI 
 XH2 <- test_hMoI$outputs$orbits$XH[[1]]
 sum((XH$m1-XH2$m1)^2)

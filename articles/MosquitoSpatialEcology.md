@@ -1,6 +1,7 @@
 # Mosquito Spatial Ecology with \`ramp.xds\`
 
 ``` r
+
 library(ramp.xds)
 ```
 
@@ -13,6 +14,7 @@ habitats in patch 2; 3 habitats in patch 3; and 4 habitats in patch 4;
 and 2 habitats in patch 5.
 
 ``` r
+
 membership = c(rep(1,5), rep(3, 3), rep(4,5), rep(5,2))
 membership
 ```
@@ -20,6 +22,7 @@ membership
     ##  [1] 1 1 1 1 1 3 3 3 4 4 4 4 4 5 5
 
 ``` r
+
 N = make_habitat_matrix(5, membership)
 ```
 
@@ -31,6 +34,7 @@ habitat availability in the patch, the sum of the patch’s habitat search
 weights.
 
 ``` r
+
 set.seed(23)
 searchQ = rlnorm(15, log(0.5), 1.2)
 searchQ
@@ -41,14 +45,17 @@ searchQ
     ## [15] 0.1161586
 
 ``` r
+
 Q <- F_available_habitat(N, searchQ)
 ```
 
 ``` r
+
 sigma <- exp(-Q/2)
 ```
 
 ``` r
+
 x = runif(5, -1, 1)
 y = runif(5, -1, 1)
 ker = function(d){exp(-d)}
@@ -64,10 +71,12 @@ K_matrix
     ## 5  0.1559399  0.4918137  0.1163413  0.1191831 -1.0000000
 
 ``` r
+
 model5 <- xds_setup(nPatches=5, membership=membership, searchQ=searchQ, Koptions=K_matrix)
 ```
 
 ``` r
+
 round(model5$ML_interface$habitat_matrix[[1]]*1000)/1000
 ```
 

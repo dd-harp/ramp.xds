@@ -1,6 +1,7 @@
 # Trace Functions
 
 ``` r
+
 library(ramp.xds)
 library(viridisLite)
 ```
@@ -116,6 +117,7 @@ with the associated `makepar_F_sin` that returns functions of the form:
 - \\p \geq 0\\ or `pw` is a shape parameter.
 
 ``` r
+
 p1 = makepar_F_sin()
 S1 <- make_function(p1)
 ```
@@ -125,12 +127,14 @@ multiplied by some other constant, \\m,\\ the average daily value of the
 function over a year is \\1.\\
 
 ``` r
+
 integrate(S1, 0, 365)$val
 ```
 
     ## [1] 365
 
 ``` r
+
 tt <- seq(0, 3*365, by=5)
 plot(tt, S1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(S(t)))
 ```
@@ -138,11 +142,13 @@ plot(tt, S1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(S(t)))
 ![](TraceFunctions_files/figure-html/unnamed-chunk-5-1.png)
 
 ``` r
+
 p2 = makepar_F_sin(phase=120)
 S2 <- make_function(p2)
 ```
 
 ``` r
+
 plot(tt, S1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(S(t)))
 lines(tt, S2(tt), col = "blue")
 ```
@@ -153,11 +159,13 @@ The function can return a vector of \\N\\ functions, each one configured
 as if \\N=1\\
 
 ``` r
+
 p3 = makepar_F_sin(phase = c(0,120), N=2)
 S3 <- make_function(p3)
 ```
 
 ``` r
+
 s3 <- S3(tt) 
 plot(tt, s3[1,], type ="l", xlab = "Time (in Days)", ylab = expression(S(t)))
 lines(tt, S1(tt), col = "yellow", lty=2)
@@ -168,6 +176,7 @@ lines(tt, S2(tt), col = "orange", lty=2)
 ![](TraceFunctions_files/figure-html/unnamed-chunk-9-1.png)
 
 ``` r
+
 p4 <- makepar_F_sin(bottom=.5)
 p5 <- makepar_F_sin(bottom=2)
 p6 <- makepar_F_sin(pw=3)
@@ -175,6 +184,7 @@ p7 <- makepar_F_sin(pw=6)
 ```
 
 ``` r
+
 S4 <- make_function(p4)
 S5 <- make_function(p5)
 S6 <- make_function(p6)
@@ -185,6 +195,7 @@ The shape parameters make it easy to configure a seasonality function
 with a range of features:
 
 ``` r
+
 clrs = turbo(7)
 plot(tt, S7(tt), type ="n", xlab = "Time (in Days)", ylab = expression(S(t)))
 lines(tt, S1(tt), col = clrs[1])
@@ -203,11 +214,13 @@ text(1000, 2, expression(epsilon==2), col=clrs[3])
 ### `sigmoid`
 
 ``` r
+
 ps1 <- makepar_F_sigmoid()
 Fs1 <- make_function(ps1)
 ```
 
 ``` r
+
 tt <- seq(0, 365, by=5)
 plot(tt, Fs1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(Fs1(t)))
 ```
@@ -217,11 +230,13 @@ plot(tt, Fs1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(Fs1(t)))
 ### `sharkfin`
 
 ``` r
+
 c1 <- makepar_F_sharkfin()
 C1<- make_function(c1)
 ```
 
 ``` r
+
 tt <- seq(0, 565, by=5)
 plot(tt, C1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(Fs1(t)))
 ```
@@ -229,23 +244,28 @@ plot(tt, C1(tt), type ="l", xlab = "Time (in Days)", ylab = expression(Fs1(t)))
 ![](TraceFunctions_files/figure-html/unnamed-chunk-16-1.png)
 
 ``` r
+
 c2a <- makepar_F_sharkfin(L = 90, dk = 1/110)
 c2b <- makepar_F_sharkfin(L = 180, dk = 1/40)
 ```
 
 ``` r
+
 c2 <- makepar_F_sharkfin(L = c(90, 180), dk = c(1/110, 1/40), pw=c(2,1), N=2)
 ```
 
 ``` r
+
 C2<- make_function(c2)
 ```
 
 ``` r
+
 C2t <- C2(tt)
 ```
 
 ``` r
+
 plot(tt, C2t[1,], type ="l", xlab = "Time (in Days)", ylab = expression(Fs1(t)))
 lines(tt, C2t[2,])
 ```
@@ -255,16 +275,19 @@ lines(tt, C2t[2,])
 ### Spline
 
 ``` r
+
 tv = c(-1:6)*365/4
 yv = c(1/2, 1, 2, 1, 1/3, 1, 3, 1) 
 sp0 <- makepar_F_spline(tv, yv)
 ```
 
 ``` r
+
 ff <- make_function(sp0)
 ```
 
 ``` r
+
 plot(tt, ff(tt), type = "l")
 ```
 

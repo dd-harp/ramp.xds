@@ -112,6 +112,7 @@ but mechanistic models are found in **`ramp.forcing`**.
 The following code block illustrates how the derivatives get computed.
 
 ``` r
+
 modular_example <- function(t, y, xds_obj) {
   with(xds_obj,{
       xds_obj = Forcing(t, y, xds_obj)

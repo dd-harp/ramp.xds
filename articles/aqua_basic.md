@@ -41,6 +41,7 @@ and solve such that:
 ## Example
 
 ``` r
+
 library(ramp.xds)
 library(deSolve)
 library(data.table)
@@ -57,6 +58,7 @@ example](https://dd-harp.github.io/ramp.xds/articles/ex_534.md) to run a
 full simulation.
 
 ``` r
+
 nHabitats <- 3
 nPatches=nHabitats
 membership=1:nPatches
@@ -64,6 +66,7 @@ params <- make_xds_object_template("ode", "aquatic", nPatches, membership)
 ```
 
 ``` r
+
 alpha <- c(10, 50, 20)
 eta <- c(250, 500, 170)
 psi <- 1/10
@@ -75,6 +78,7 @@ MYZo = list(MYZm <- eta)
 ```
 
 ``` r
+
 params$eggs_laid = eta 
 F_eta = function(t, pars){
   pars$eggs_laid
@@ -88,6 +92,7 @@ params = make_indices(params)
 ```
 
 ``` r
+
 xDE_aquatic = function(t, y, pars, F_eta) {
   pars$terms$eta[[1]] <- F_eta(t, pars)
   dL <- dLdt(t, y, pars, 1)
@@ -96,6 +101,7 @@ xDE_aquatic = function(t, y, pars, F_eta) {
 ```
 
 ``` r
+
 y0 <- get_inits(params, flatten=TRUE) 
 
 out <- deSolve::ode(y = as.vector(unlist(y0)), times = seq(0,50,by=10), xDE_aquatic, parms = params, method = 'lsoda', F_eta = F_eta) 
@@ -103,6 +109,7 @@ out1 <- out
 ```
 
 ``` r
+
 colnames(out)[params$L_obj[[1]]$ix$L_ix+1] <- paste0('L_', 1:params$nHabitats)
 
 out <- as.data.table(out)
@@ -129,6 +136,7 @@ We configure the aquatic model: `Lo` is a list with the parameter values
 attached.
 
 ``` r
+
 Lo = list(
   psi = 1/10, 
   phi = 1/12
@@ -141,10 +149,12 @@ Lo$theta = with(Lo, (eta - psi*L - phi*L)/(L^2))
 We use the MYZ model `trivial` to configure egg laying.
 
 ``` r
+
 Mo = list(MYZm = c(250, 500, 170))
 ```
 
 ``` r
+
 xds_setup_aquatic(nHabitats=3, Lname = "basicL", Loptions = Lo, MYoptions = Mo) -> aqbasicL_xde
 xds_solve(aqbasicL_xde, Tmax=50, dt=10)$output$orbits$deout -> out2
 sum(abs(out1-out2)) == 0

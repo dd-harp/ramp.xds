@@ -133,10 +133,10 @@ Methods to numerically solve differential equations and get the outputs
 
 - [`xds_solve()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
   : Solve a Dynamical System
+- [`xds_steady()`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.md)
+  : Solve for the steady state
 - [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
   : Compute stable orbits
-- [`dts_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/dts_stable_orbit.md)
-  : Compute the stable orbit for a discrete time system
 - [`burnin()`](https://dd-harp.github.io/ramp.xds/reference/burnin.md) :
   Burn In
 - [`xds_info_parsing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_parsing.md)
@@ -178,13 +178,18 @@ values.
 
   Get the *Pf*PR from a malaria model
 
+## Qualitative Analysis
+
 ### Compute Steady States
 
 - [`xds_steady()`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.md)
   : Solve for the steady state
 
-- [`dts_steady()`](https://dd-harp.github.io/ramp.xds/reference/dts_steady.md)
-  : Compute the steady state of a discrete time system
+- [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
+  : Compute stable orbits
+
+- [`xds_analyze()`](https://dd-harp.github.io/ramp.xds/reference/xds_analyze.md)
+  : Analyze a Dynamical System
 
 - [`steady_state_X()`](https://dd-harp.github.io/ramp.xds/reference/steady_state_X.md)
   :
@@ -215,6 +220,24 @@ values.
   :
 
   Compute steady states for **L** component modules
+
+- [`get_VC()`](https://dd-harp.github.io/ramp.xds/reference/get_VC.md) :
+  Get VC
+
+- [`get_VC_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_VC_matrix.md)
+  : Get VC
+
+### Transmission Matrices
+
+- [`compute_VC()`](https://dd-harp.github.io/ramp.xds/reference/compute_VC.md)
+  : Compute the VC Matrix
+- [`make_VC()`](https://dd-harp.github.io/ramp.xds/reference/make_VC.md)
+  : Make VC
+- [`make_VC(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/make_VC_gem.md)
+  [`make_VC_gem()`](https://dd-harp.github.io/ramp.xds/reference/make_VC_gem.md)
+  : Make the VC Matrix
+- [`compute_HTC()`](https://dd-harp.github.io/ramp.xds/reference/compute_HTC.md)
+  : Compute the HTC Matrix
 
 ## Plot
 
@@ -288,6 +311,13 @@ Show patterns for forced systems
 ## Get
 
 Inspect elements of the xds object
+
+### Get Terms
+
+Get terms
+
+- [`get_beta()`](https://dd-harp.github.io/ramp.xds/reference/get_beta.md)
+  : Get xi, delayed maturation
 
 ### Get Orbits
 
@@ -607,7 +637,7 @@ Utilities for Time Spent Matrices
   : Make a time spent matrix, called timespent
 - [`change_timespent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_TimeSpent_matrix.md)
   : Set up (or change) a time spent matrix
-- [`make_timespent_athome()`](https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent_athome.md)
+- [`make_timespent_at_home()`](https://dd-harp.github.io/ramp.xds/reference/make_timespent_at_home.md)
   : Make a time spent matrix, called timespent
 - [`make_timespent_xy()`](https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent_xy.md)
   : Make a time spent matrix, called timespent

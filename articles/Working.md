@@ -21,6 +21,7 @@ we introduce the utilities we developed to work with models.
 Go get started, we load **`ramp.xds`**, build a model, and solve it.
 
 ``` r
+
 library(ramp.xds)
 ```
 
@@ -30,10 +31,12 @@ The function `xds_setup` was discussed in [Getting
 Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
 
 ``` r
+
 mod <- xds_setup(Xname = "SIS", MYname = "SI", Lname = "basicL")
 ```
 
 ``` r
+
 mod$MYname
 ```
 
@@ -48,6 +51,7 @@ dependent variables at those time points. Other functions return stable
 orbits for models with a canonical seasonal signal.
 
 ``` r
+
 mod <- xds_solve(mod)
 ```
 
@@ -63,6 +67,7 @@ The variables and terms are returned as raw and parsed outputs:
 - dynamical terms are computed and returned.
 
 ``` r
+
 names(mod$outputs)
 ```
 
@@ -73,6 +78,7 @@ names(mod$outputs)
 a family of functions makes it easy to plot basic outputs of the models.
 
 ``` r
+
 xds_plot_M(mod)
 ```
 
@@ -90,6 +96,7 @@ easy to change the intitial values through a function call. In solving,
 `xds_solve` calls `get_inits` with a `flatten=TRUE`
 
 ``` r
+
 get_inits(mod, flatten=TRUE)
 ```
 
@@ -99,6 +106,7 @@ With the default, `flatten=FALSE`, `get_inits` returns a named list that
 is easy to read:
 
 ``` r
+
 get_inits(mod)
 ```
 
@@ -121,11 +129,16 @@ get_inits(mod)
     ## 
     ## $X$I
     ## [1] 1
+    ## 
+    ## 
+    ## $V
+    ## NULL
 
 Since it is a named list, it’s easy to examine a specific element in
 that list:
 
 ``` r
+
 get_inits(mod)$MY
 ```
 

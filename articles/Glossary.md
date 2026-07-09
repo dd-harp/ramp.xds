@@ -21,10 +21,12 @@ are grouped by theme. For functions related to a given concept, see
 
   Each component defines a set of state variables and dynamics to model
   a set of linked biological processes. There are three core components
-  in an **`xds`** model and one optional component: + the human / host
-  component (**XH**), + the adult mosquito component (**MY**), + the
-  aquatic / immature mosquito component (**L**), and + an optional
-  component to compute other dynamic variables (**V**).
+  in an **`xds`** model and one optional component:
+
+  - the human / host component (**XH**),
+  - the adult mosquito component (**MY**),
+  - the aquatic / immature mosquito component (**L**), and
+  - an optional component to compute other dynamic variables (**V**).
 
 - **Module**:
 

@@ -20,5 +20,4 @@ get_sigma(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+the patch emigration rates, as a vector

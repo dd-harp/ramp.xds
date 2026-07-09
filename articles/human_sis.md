@@ -20,6 +20,7 @@ Dynamics](https://faculty.washington.edu/smitdave/malaria_theory/sis.html)
 At basic setup, the **SIS** module with defaults is specified like this:
 
 ``` r
+
 library(ramp.xds)
 mod <- xds_setup(Xname = "SIS") 
 ```
@@ -130,6 +131,7 @@ To inspect the parameters, use `get_XH_pars.` We already set up `mod`
 using the default values:
 
 ``` r
+
 get_XH_pars(mod)$r
 ```
 
@@ -138,6 +140,7 @@ get_XH_pars(mod)$r
 To overwrite the defaults at setup, pass a named list to `xds_setup.`
 
 ``` r
+
 mod1 <- xds_setup(Xname = "SIS", XHoptions = list(r=1/200))
 get_XH_pars(mod1)$r
 ```
@@ -148,6 +151,7 @@ To change a parameter value after setup, pass a named list to
 `change_XH_pars.`
 
 ``` r
+
 mod <- change_XH_pars(mod, options = list(r=1/100))
 get_XH_pars(mod)$r
 ```
@@ -268,6 +272,7 @@ example](https://dd-harp.github.io/ramp.xds/articles/ex_534.md).
 First, we define the size of three population strata:
 
 ``` r
+
 H <- c(100, 500, 250)
 nStrata <- length(H) 
 ```
@@ -279,6 +284,7 @@ Next, we define the parameter values for all three strata as a named
 list:
 
 ``` r
+
 b <- rep(0.55, nStrata) 
 c <- rep(0.15, nStrata) 
 r <- rep(1/200, nStrata)
@@ -287,6 +293,7 @@ r <- rep(1/200, nStrata)
 To use these values to build our model, we create a named list:
 
 ``` r
+
 Xo = list(b=b, c=c, r=r)
 ```
 
@@ -296,6 +303,7 @@ we get them back. First, we set the values of the FoI, and then we
 compute the EIR:
 
 ``` r
+
 foi = c(1:3)/365 
 eir <- foi/b 
 ```
@@ -304,6 +312,7 @@ The equilibrium values we should get back after running the equations to
 steady state are \\I = H h /(h+r)\\
 
 ``` r
+
 I_eq = H*foi/(foi+r) 
 I_eq
 ```
@@ -317,18 +326,21 @@ First, we use `xds_setup` and next, we do it the long way
 To set up the model, we simply do this:
 
 ``` r
+
 xds_setup_eir(eir, Xname="SIS", HPop=H, XHoptions = Xo) -> test_SIS
 ```
 
 To solve it, we do this:
 
 ``` r
+
 xds_solve(test_SIS)-> test_SIS 
 ```
 
 We plot the prevalence over time:
 
 ``` r
+
 clrs = viridisLite::turbo(5)[c(1,2,5)]
 xds_plot_PR(test_SIS, clr=clrs)
 ```
@@ -340,6 +352,7 @@ variables shouldn’t change at all. To change the values, we simply add
 them to the list
 
 ``` r
+
 test_SIS <- change_XH_inits(test_SIS, options = list(I=I_eq))
 xds_solve(test_SIS)-> test_SIS 
 xds_plot_PR(test_SIS, clr=clrs)
@@ -352,6 +365,7 @@ orbits. This gets the return values and pulls of the the values of \\I\\
 at the last time step:
 
 ``` r
+
 get_XH_orbits(test_SIS, 1) -> XH2
 I_last <- tail(XH2$I, 1)
 I_last
@@ -361,6 +375,7 @@ I_last
     ## [366,] 99.0991 495.4955 247.7477
 
 ``` r
+
 sum(tail(XH2$I, 1) - I_eq)
 ```
 
@@ -374,6 +389,7 @@ If we set \\I(0) = 0\\, the simple model has a closed form solution:
 conditions and solve the system of differential equations:
 
 ``` r
+
 test_SIS <- change_XH_inits(test_SIS, options = list(I=rep(0,3)))
 xds_solve(test_SIS)-> test_SIS 
 Itest = get_XH_orbits(test_SIS, 1)$I 
@@ -385,6 +401,7 @@ xds_plot_PR(test_SIS, clr=clrs)
 …and we can compute the exact solutions for the same values of \\t\\:
 
 ``` r
+
 t = get_XH_orbits(test_SIS, 1)$time
 It = matrix(0, 366, 3)
 ss = H*foi/(r+foi)
@@ -396,6 +413,7 @@ for(i in 1:3){
 The summing over all the squared differences is less than \\10^{-6}.\\
 
 ``` r
+
 sum((It-Itest)^2) < 1e-6
 ```
 

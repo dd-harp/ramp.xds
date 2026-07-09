@@ -31,6 +31,7 @@ The software was developed in RStudio. To download the R package, run
 these commands:
 
 ``` r
+
 library(devtools)
 devtools::install_github("dd-harp/ramp.xds")
 ```
@@ -38,6 +39,7 @@ devtools::install_github("dd-harp/ramp.xds")
 Then load **`ramp.xds`**:
 
 ``` r
+
 library(ramp.xds)
 ```
 
@@ -64,6 +66,7 @@ with no arguments returns a fully configured model with all the default
 settings.
 
 ``` r
+
 model <- xds_setup()
 ```
 
@@ -79,6 +82,7 @@ module for human / host infection and immune dynamics is stored as
 `Xname.` The default module is the `SIS` compartmental model:
 
 ``` r
+
 model$Xname
 ```
 
@@ -88,6 +92,7 @@ model$Xname
 the function `get_XH_pars`:
 
 ``` r
+
 get_XH_pars(model)
 ```
 
@@ -116,6 +121,7 @@ parameters can then be viewed (or changed). For example, this would
 change `r` for the first species:
 
 ``` r
+
 model$XH_obj[[1]]$r <- 1/150
 ```
 
@@ -123,6 +129,7 @@ To make it easy to change parameters, we also wrote the `change_XH_pars`
 function, which takes new values in a named list.
 
 ``` r
+
 model <- change_XH_pars(model, 1, list(r=1/150))
 get_XH_pars(model)$r
 ```
@@ -134,6 +141,7 @@ Similarly, initial values were assigned default values at setup. In
 so the initial values are:
 
 ``` r
+
 get_XH_inits(model, 1)
 ```
 
@@ -150,6 +158,7 @@ own options name. For the **XH** component, options are passed in
 `XHoptions`:
 
 ``` r
+
 Xo = list(r=1/150, c=0.2, b=0.6, I=2)
 model1 <- xds_setup(XHoptions = Xo)
 get_XH_pars(model1)
@@ -181,6 +190,7 @@ Feeding* interface, so it is not possible to set \\S.\\ Instead, \\S\\
 is computed after solving and parsing.
 
 ``` r
+
 get_XH_inits(model1)
 ```
 
@@ -193,6 +203,7 @@ get_XH_inits(model1)
 To change the human population density, use the `change_H` function.
 
 ``` r
+
 model1 <- change_H(1004, model1)
 get_XH_inits(model1)
 ```
@@ -207,6 +218,7 @@ The module for adult mosquito ecology and infection dynamics is called
 `MYname.` The default module is an SI model:
 
 ``` r
+
 model$MYname
 ```
 
@@ -223,6 +235,7 @@ The name of the default module for aquatic mosquito ecology is called
 `Lname.` The default module is the `trivial` module:
 
 ``` r
+
 model$Lname
 ```
 
@@ -241,6 +254,7 @@ named list of values to `Loptions` in `xds_setup().` After setup, the
 After setting up, `model` has an empty placeholder for outputs:
 
 ``` r
+
 model$outputs 
 ```
 
@@ -259,6 +273,7 @@ arguments are passed for time, then it uses the defaults `Tmax=365` and
 supplied. All four of the following do the same thing:
 
 ``` r
+
 model <- xds_solve(model, times=0:365) 
 model <- xds_solve(model, times=0:365, Tmax=730, dt=5) 
 model <- xds_solve(model, Tmax=365, dt=1) 
@@ -276,6 +291,7 @@ returns an **`xds`** *model object.* In this case, the function passes
 as `model$outputs`:
 
 ``` r
+
 names(model$outputs)
 ```
 
@@ -294,12 +310,14 @@ Note that `time` is the set of time points where we output the values of
 the dependent variables.
 
 ``` r
+
 head(model$outputs$time, 5)
 ```
 
     ## [1] 0 1 2 3 4
 
 ``` r
+
 tail(model$outputs$time, 3)
 ```
 
@@ -327,6 +345,7 @@ make it easy to examine or save a set of standard outputs without
 delving into the details.
 
 ``` r
+
 head(get_EIR(model), 3)
 ```
 
@@ -357,6 +376,7 @@ head(get_EIR(model), 3)
   population strata
 
 ``` r
+
 par(mfrow = c(2,2))
 xds_plot_X(model)
 xds_plot_M(model)
@@ -385,6 +405,7 @@ dynamical components are passed by a configurable *trace function* with
 a generic form:
 
 ``` r
+
 mean*F_season(t)*F_trend(t)*F_shock(t)
 ```
 
@@ -396,6 +417,7 @@ and change the mean value of `Lambda.` To set up a seasonality function,
 we pass a parameter set from `makepar_F_sin`:
 
 ``` r
+
 Lo = list(
        Lambda=400, 
        season_par=makepar_F_sin()
@@ -407,6 +429,7 @@ the return value a new name `model_1` so that the original one still
 exists:
 
 ``` r
+
 model_1 <- setup_L_obj("trivial", model, 1, options=Lo)
 ```
 
@@ -415,6 +438,7 @@ copied from `model,` the last values from solving it are available, and
 we can use a function `last_to_inits` to set the initial values.
 
 ``` r
+
 model_1 <- last_to_inits(model_1)
 ```
 
@@ -422,12 +446,14 @@ Now, we solve to get the orbits every five days over a three-year
 period.
 
 ``` r
+
 model_1 <- xds_solve(model_1, Tmax=365*3, dt=5) 
 ```
 
 After solving, we can plot the orbits.
 
 ``` r
+
 par(mfrow = c(1,2))
 xds_plot_X(model_1)
 xds_plot_M(model_1)

@@ -12,13 +12,13 @@ non-autonomous Ross-Macdonald module `GeRM.`
 
 ### Macdonald’s Equations
 
-Macdonald’s model for the sporozoite rate, published in 1952[¹](#fn1)
-has played an important role in studies of malaria. Later that same
-year, Macdonald introduced a formula for the basic reproductive rate,
-now called \\R_0.\\[²](#fn2) Macdonald gives credit to his colleague
-Armitage for the mathematics. Armitage’s paper would be published the
-next year,[³](#fn3) but that paper does not present the model as a
-system of differential equations.
+Macdonald’s model for the sporozoite rate, published in 1952[^1] has
+played an important role in studies of malaria. Later that same year,
+Macdonald introduced a formula for the basic reproductive rate, now
+called \\R_0.\\[^2] Macdonald gives credit to his colleague Armitage for
+the mathematics. Armitage’s paper would be published the next year,[^3]
+but that paper does not present the model as a system of differential
+equations.
 
 A simple system of differential equations that is consistent with
 Macdonald’s model for the sporozoite rate has three parameters and one
@@ -66,7 +66,7 @@ In this form, the model is difficult to use or extend.
 ### Aron & May
 
 The mosquito module in **`ramp.xds`** called `macdonald` is based on a
-model first published in 1982 by Joan Aron and Robert May[⁴](#fn4). It
+model first published in 1982 by Joan Aron and Robert May[^4]. It
 includes state variables for total mosquito density \\M\\, infected
 mosquito density \\Y\\, and infectious mosquito density \\Z\\. In this
 model, the blood feeding rate is split into an overall blood feeding
@@ -104,10 +104,10 @@ We note that the module `SI` provides a reasonably simple approximating
 model that has no delay, but in computing \\fqZ,\\ it includes mortality
 and dispersal that would have occurred during the EIP: \\ Z = e^{-\Omega
 \tau} \cdot Y \\ The implementation of `SI` is similar in spirit to the
-simple model presented in Smith & McKenzie (2004)[⁵](#fn5). in that
-mortality and dispersal over the EIP is accounted for, but the time lag
-is not. While transient dynamics of the ODE model will not equal the DDE
-model, they have the same equilibrium values, and so for numerical work
+simple model presented in Smith & McKenzie (2004)[^5]. in that mortality
+and dispersal over the EIP is accounted for, but the time lag is not.
+While transient dynamics of the ODE model will not equal the DDE model,
+they have the same equilibrium values, and so for numerical work
 requiring finding equilibrium points, the faster ODE model can be safely
 substituted.
 
@@ -158,6 +158,7 @@ above.
 ## Example
 
 ``` r
+
 library(ramp.xds)
 library(expm)
 library(deSolve)
@@ -183,6 +184,7 @@ e^{-g\tau} q \kappa\_\tau \left\[1 - y\_\tau \right\] - g z \end{array}
 Here we set up some parameters for a simulation with 3 patches.
 
 ``` r
+
 HPop = rep(1, 3)
 nPatches <- 3
 f <- rep(0.3, nPatches)
@@ -196,10 +198,12 @@ eggsPerBatch <- 30
 ```
 
 ``` r
+
 MYo = list(f=f,q=q,g=g,sigma=sigma,mu=mu,eip=eip,nu=nu,eggsPerBatch=eggsPerBatch)
 ```
 
 ``` r
+
 K_matrix <- diag(-1, nPatches) 
 K_matrix[2:3, 1] <- c(0.2, 0.8)
 K_matrix[c(1,3), 2] <- c(0.5, 0.5)
@@ -217,6 +221,7 @@ Now we set the values of \\\kappa\\ and \\\Lambda\\ and solve for the
 equilibrium values.
 
 ``` r
+
 kappa <- c(0.1, 0.075, 0.025)
 Xo = list(kappa=kappa)
 Lambda <- c(5, 10, 8)
@@ -224,6 +229,7 @@ Lo = list(Lambda=Lambda)
 ```
 
 ``` r
+
 Omega_inv <- solve(Omega)
 M_eq <- as.vector(Omega_inv %*% Lambda)
 P_eq <- as.vector(solve(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
@@ -232,6 +238,7 @@ Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
 ```
 
 ``` r
+
 MYo$M=M_eq
 MYo$P=P_eq
 MYo$Y=Y_eq
@@ -243,6 +250,7 @@ These equations have been implemented to compute \\\Upsilon\\
 dynamically, so we attach `Upsilon` as initial values:
 
 ``` r
+
 params <- make_xds_object_template("dde", "mosy", nPatches, 1:3, 1:3)
 params <- setup_MY_obj("macdonald", params, 1, MYo)  
 params <- setup_MY_inits(params, 1, MYo)
@@ -256,14 +264,17 @@ We set the indices with
 [`ramp.xds::make_indices`](https://dd-harp.github.io/ramp.xds/reference/make_indices.md).
 
 ``` r
+
 params = make_indices(params)
 ```
 
 ``` r
+
 params <- change_K_matrix(K_matrix, params, 1)
 ```
 
 ``` r
+
 params$terms$Lambda[[1]] = Lambda
 params$terms$kappa[[1]] = kappa 
 ```
@@ -274,6 +285,7 @@ model. Normally these values would be computed within
 `ramp.xds::xDE_diffeqn`. Here, we set up a local version:
 
 ``` r
+
 y0 = get_MY_inits(params, 1) 
 y0 = as.vector(unlist(y0))
 params <- MEffectSizes(0,y0,params, 1)
@@ -292,6 +304,7 @@ that the steady state solutions that we computed above match the steady
 states computed by solving the equations:
 
 ``` r
+
 out = out[, 1:13]
 colnames(out)[params$MY_obj$M_ix+1] <- paste0('M_', 1:params$nPatches)
 colnames(out)[params$MY_obj$P_ix+1] <- paste0('P_', 1:params$nPatches)
@@ -312,6 +325,7 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
 ![](adult_RM_files/figure-html/unnamed-chunk-12-1.png)
 
 ``` r
+
 
 #| fig.alt: >
 #|   Plottin orbits for the variables  
@@ -338,6 +352,7 @@ parameter (see `human-trivial.R`. To configure `Xpar,` we attach the
 values of `kappa` to a list:
 
 ``` r
+
 Xo = list(kappa =  c(0.1, 0.075, 0.025))
 ```
 
@@ -345,6 +360,7 @@ Similarly, we configure the *trivial* algorithm for aquatic mosquitoes
 (see `aquatic-trivial.R`).
 
 ``` r
+
 Lo = list(Lambda = c(5, 10, 8))
 ```
 
@@ -366,6 +382,7 @@ To set up the model, we call `xds_setup` with
 Otherwise, setup takes care of all the internals:
 
 ``` r
+
 xds_setup(MYname = "macdonald", Xname = "trivial", Lname = "trivial",  
     nPatches=3, Koptions=K_matrix, membership = c(1:3), 
     residence = c(1:3), HPop = HPop,
@@ -377,6 +394,7 @@ to what we got above. If they are identical, the two objects should be
 identical, so can simply add the absolute value of their differences:
 
 ``` r
+
 xds_solve(MYeg, Tmax=50, dt=1) -> MYeg 
 out2 <- MYeg$outputs$orbits$deout
 sum(abs(out1-out2))==0 
@@ -384,6 +402,7 @@ sum(abs(out1-out2))==0
 ```
 
 ``` r
+
 rbind(tail(out2,1)[1 + 1:12],
 c(M_eq, P_eq, Y_eq, Z_eq))
 #>         [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
@@ -392,22 +411,20 @@ c(M_eq, P_eq, Y_eq, Z_eq))
 #> [1,] 41.03339 24.96933 13.31699 25.75651
 ```
 
-------------------------------------------------------------------------
-
-1.  The analysis of the sporozoite rate. Macdonald G (1952). Trop Dis
+[^1]: The analysis of the sporozoite rate. Macdonald G (1952). Trop Dis
     Bull 49(6):569-86.
 
-2.  The analysis of equilibrium in malaria. Macdonald G (1952). Trop Dis
-    Bull 49(9):813-29.
+[^2]: The analysis of equilibrium in malaria. Macdonald G (1952). Trop
+    Dis Bull 49(9):813-29.
 
-3.  A note on the epidemiology of malaria. Armitage P (1953). Trop Dis
+[^3]: A note on the epidemiology of malaria. Armitage P (1953). Trop Dis
     Bull 50(10):890-2
 
-4.  The population dynamics of malaria. In *The Population Dynamics of
+[^4]: The population dynamics of malaria. In *The Population Dynamics of
     Infectious Diseases: Theory and Applications,* R. M. Anderson,
     ed. (Springer US), pp. 139–179.
     [online](https://link.springer.com/chapter/10.1007/978-1-4899-2901-3_5)
 
-5.  Smith, D.L., Ellis McKenzie, F. Statics and dynamics of malaria
+[^5]: Smith, D.L., Ellis McKenzie, F. Statics and dynamics of malaria
     infection in Anopheles mosquitoes. Malar J 3, 13 (2004).
     [online](https://doi.org/10.1186/1475-2875-3-13)

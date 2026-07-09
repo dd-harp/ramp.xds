@@ -1,6 +1,7 @@
 # Basic Mosquito Infection Dynamics in Discrete Time
 
 ``` r
+
 library(ramp.xds)
 ```
 
@@ -145,22 +146,27 @@ For \\1 \< i \< \tau,\\ we get a recursive relationship:
 ## Demo
 
 ``` r
+
 rm1 <- xds_setup(MYZname = "RM", Xname = "trivial", xds = 'dts')
 ```
 
 ``` r
+
 Om <- with(rm1$MYZpar[[1]], compute_Omega_dts(pp, ssigma, mmu, calK))
 ```
 
 ``` r
+
 dts_solve(rm1, 200) -> rm1
 ```
 
 ``` r
+
 #dts_steady(rm1) -> rm1
 ```
 
 ``` r
+
 with(rm1$outputs$orbits$MYZ[[1]], {
   plot(time, M, type = "l") 
   lines(time, U, col = "darkblue") 
@@ -170,10 +176,12 @@ with(rm1$outputs$orbits$MYZ[[1]], {
 ```
 
 ``` r
+
 xds_plot_YZ(rm1)
 ```
 
 ``` r
+
 compute_MYZ_equil = function(pars, Lambda, kappa, i=1){
   with(pars$MYZpar[[i]],{
 
@@ -196,10 +204,12 @@ compute_MYZ_equil = function(pars, Lambda, kappa, i=1){
 ```
 
 ``` r
+
 compute_MYZ_equil(rm1, 1000, .1) 
 ```
 
 ``` r
+
 c(
 M = tail(rm1$outputs$orbits$MYZ[[1]]$M, 1), 
 P = tail(rm1$outputs$orbits$MYZ[[1]]$P, 1), 
@@ -210,15 +220,18 @@ Z = tail(rm1$outputs$orbits$MYZ[[1]]$Z, 1)
 ```
 
 ``` r
+
 rm10 <- dts_setup(Xname = "trivial", nPatches = 10, membership = 1:10)
 rm10$Lpar[[1]]$scale = 1.5^c(1:10) 
 ```
 
 ``` r
+
 dts_solve(rm10, 200) -> rm10
 ```
 
 ``` r
+
 with(rm10$outputs$orbits$MYZ[[1]], {
   plot(time, M[,10], type = "l")
   for(i in 2:10)

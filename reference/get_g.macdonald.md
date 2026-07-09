@@ -1,6 +1,6 @@
-# Get the feeding rate
+# Get the mortality rates
 
-Get the feeding rate
+Get the mortality rates
 
 ## Usage
 
@@ -21,5 +21,4 @@ get_g(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+the mortality rate, as a vector
