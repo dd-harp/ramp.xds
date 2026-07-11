@@ -124,12 +124,12 @@ mod <- xds_setup(nPatches=5, Koptions=K)
 get_K_matrix(mod)
 ```
 
-### `no_setup` 
+### `zero` 
 
-Internally, the default $K$ matrix is set up with the option `no_setup,` which sets the $K$ matrix to all zeros. 
+An option is `zero` which sets the $K$ matrix to all zeros. 
 
 ```{r}
-mod <- setup_K_matrix("no_setup", mod)
+mod <- setup_K_matrix("zero", mod)
 get_K_matrix(mod)
 ```
 

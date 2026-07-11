@@ -237,6 +237,7 @@ setup_K_matrix.no_setup = function(Kname, xds_obj, options = list(), s=1){
 #' @keywords internal
 #' @export
 setup_K_matrix.zero = function(Kname, xds_obj, options = list(), s=1){
+  options$behave = with(options, ifelse(exists("behave"), behave, "0"))
   K_matrix = with(xds_obj, matrix(0, nPatches, nPatches))
   change_K_matrix(K_matrix, xds_obj, options$behave, s)
 }
