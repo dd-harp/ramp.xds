@@ -5,7 +5,7 @@ Get the Mosquito Dispersal Matrix
 ## Usage
 
 ``` r
-get_K_matrix(xds_obj, s = 1)
+get_K_matrix(xds_obj, behave = "0", s = 1)
 ```
 
 ## Arguments
@@ -13,6 +13,10 @@ get_K_matrix(xds_obj, s = 1)
 - xds_obj:
 
   an **`xds`** model object
+
+- behave:
+
+  the behavioral state
 
 - s:
 

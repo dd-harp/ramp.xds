@@ -1,4 +1,4 @@
-# Thresholds & Connectivity
+# Computing Thresholds
 
 In 1952, Macdonald published a threshold condition for endemic malaria
 based on a formula that is now known as the basic reproductive number,

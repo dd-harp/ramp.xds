@@ -255,6 +255,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/blood_feeding_dynamics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/burnin.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_H.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.0.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_L_inits.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_L_inits.html</loc></url>
@@ -398,6 +399,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_HTC.SIS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_HTC.hMoI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_HTC.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.0.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_inits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_ix.html</loc></url>
@@ -641,6 +643,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.no_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.xy.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.html</loc></url>

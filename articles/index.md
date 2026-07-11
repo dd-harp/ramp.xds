@@ -62,8 +62,8 @@
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.md):
 - [Steady States & Stable
   Orbits](https://dd-harp.github.io/ramp.xds/articles/Steady.md):
-- [Thresholds &
-  Connectivity](https://dd-harp.github.io/ramp.xds/articles/Thresholds.md):
+- [Computing
+  Thresholds](https://dd-harp.github.io/ramp.xds/articles/Thresholds.md):
 - [Trace
   Functions](https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.md):
 - [Understanding

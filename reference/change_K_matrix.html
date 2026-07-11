@@ -59,6 +59,7 @@ specify the species to update."></head><body>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-my" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">MY</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-my"><li><a class="dropdown-item" href="../articles/MY-interface.html">Adult Mosquito Component (MY)</a></li>
+    <li><a class="dropdown-item" href="../articles/Bionomics.html">Mosquito Bionomics</a></li>
     <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeM.html">Generalized Macdonald model</a></li>
@@ -74,7 +75,6 @@ specify the species to update."></head><body>
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-analysis" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Analysis</button>
@@ -111,7 +111,7 @@ specify the species to update.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">change_K_matrix</span><span class="op">(</span><span class="va">K_matrix</span>, <span class="va">xds_obj</span>, s <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">change_K_matrix</span><span class="op">(</span><span class="va">K_matrix</span>, <span class="va">xds_obj</span>, behave <span class="op">=</span> <span class="st">"0"</span>, s <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -124,6 +124,10 @@ specify the species to update.</p>
 
 <dt id="arg-xds-obj">xds_obj<a class="anchor" aria-label="anchor" href="#arg-xds-obj"></a></dt>
 <dd><p>an <strong><code>xds</code></strong> model object</p></dd>
+
+
+<dt id="arg-behave">behave<a class="anchor" aria-label="anchor" href="#arg-behave"></a></dt>
+<dd><p>the behavioral state</p></dd>
 
 
 <dt id="arg-s">s<a class="anchor" aria-label="anchor" href="#arg-s"></a></dt>

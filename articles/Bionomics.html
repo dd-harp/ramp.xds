@@ -58,10 +58,11 @@
     <li><a class="dropdown-item" href="../articles/human_hmoi.html">MoI hybrid model</a></li>
   </ul>
 </li>
-<li class="nav-item dropdown">
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-my" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">MY</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-my">
 <li><a class="dropdown-item" href="../articles/MY-interface.html">Adult Mosquito Component (MY)</a></li>
+    <li><a class="dropdown-item" href="../articles/Bionomics.html">Mosquito Bionomics</a></li>
     <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeM.html">Generalized Macdonald model</a></li>
@@ -81,7 +82,6 @@
 <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -121,38 +121,209 @@
 
     
     
-<p>In <strong><code>ramp.xds,</code></strong> some mosquito bionomic
-parameters are handled as <em>ports.</em> This includes some adult
-mosquito modules (<strong>MY</strong> Component) and some aquatic
-modules (<strong>L</strong> Component). These ports share some common
-features:</p>
+<p>In <strong><code>ramp.xds,</code></strong> mosquito bionomics are
+handled as a junction: each parameter describing adult mosquito ecology
+or infection dynamics is handled as a <em>port:</em></p>
 <ul>
-<li><p>During <em>basic setup,</em> these parameters are set to constant
-values; basic setup and the port are set up in
-<strong><code>ramp.xds</code></strong></p></li>
-<li><p>Forcing is an <em>advanced setup</em> option: the value of these
-parameters can vary over time in response to other variables, such as
-temperature, wind, or soil moisture levels. Advanced setup options are
-in <strong><code>ramp.forcing</code></strong></p></li>
+<li><p>During <em>basic setup,</em> in
+<strong><code>ramp.xds</code></strong>, the parameters are assigned
+constant values.</p></li>
+<li><p>Some parameters can be time-dependent to model forcing by weather
+or resource availability. Forcing is an <em>advanced setup</em> option.
+Advanced setup options are in
+<strong><code>ramp.forcing</code></strong></p></li>
 <li>
 <p>Various modes of vector control are handled as another set of
 <em>advanced setup</em> options: advanced setup options for vector
 control are in <strong><code>ramp.control.</code></strong> Vector
 control effects can be handled in one of two ways:</p>
 <ul>
-<li><p>vector control can affect the availability of resources, with
-effects that are handled through</p></li>
+<li><p>vector control can affect the availability of resources, and the
+effects are computed through functional forms in response to available
+resources</p></li>
 <li><p>vector control effect sizes can be computed.</p></li>
 </ul>
 </li>
 </ul>
-<p>The module <code>macdonald</code> is an exception: it was not set up
-to handle either forcing or vector control. We would say that it is a
+<p>Each module in <strong><code>ramp.xds</code></strong> or in the
+satellite package <strong><code>ramp.library</code></strong> must be
+capable of handling time-varying parameters, or it should report that
+does not. For example, the module <code>macdonald</code> is not capable
+of handling either forcing or vector control. We would say that it is a
 strictly autonomous model: those capabilities are not in its <em>skill
 set.</em> To handle forcing and vector control, we developed
-<code>GeRM.</code></p>
-<p>The flexible implementation</p>
-  </main>
+<code>GeM.</code></p>
+<div class="section level2">
+<h2 id="mosquito-dispersal">Mosquito Dispersal<a class="anchor" aria-label="anchor" href="#mosquito-dispersal"></a>
+</h2>
+<p>In <strong><code>ramp.xds</code></strong>, mosquito dispersal is
+understood conceptually as the result of a single flight bout.
+Regardless of how well a mosquito can fly without the help of wind, wind
+ends up being an important factor affecting mosquito dispersal, and it
+is possible for a mosquito to travel reasonably long distances with the
+help of the wind.</p>
+<p>In adult mosquito modules, mosquito dispersal is described by a
+square matrix with <code>nPatches</code> rows and columns. By
+convention, all matrices have the form: <span class="math display">\[
+  K = \left[ \begin{array}{ccccc}
+  -1 &amp; k_{1,2} &amp; k_{1,3} &amp; \cdots &amp; k_{1, n} \\
+  k_{2,1} &amp; -1 &amp; k_{2,3} &amp; \cdots &amp; k_{2, n} \\
+  k_{3,1} &amp; k_{3,2} &amp; -1 &amp; \cdots &amp; k_{3, n} \\
+  \vdots &amp; \vdots &amp; \vdots &amp; \ddots  &amp; \vdots \\
+  k_{n,1} &amp; k_{n,2} &amp; k_{n,3} &amp; \cdots &amp; -1 \\
+  \end{array} \right]
+\]</span> The values of the elements are thus constrained such that
+there is no net dispersal loss from the system: <span class="math display">\[\sum_j k_{i,j} = 1.\]</span> The columns of sum
+up to zero. A dispersal matrix, <span class="math inline">\(K,\)</span>
+thus describes the destinations of emigrating mosquitoes that survive
+and stay in the system. Mosquito loss from a system due to emigration is
+handled elsewhere.</p>
+</div>
+<div class="section level2">
+<h2 id="mosquito-demography">Mosquito Demography<a class="anchor" aria-label="anchor" href="#mosquito-demography"></a>
+</h2>
+<p>Mosquito survival and dispersal is described by a <em>demographic
+matrix,</em> denoted It is computed using several parameters:</p>
+<ul>
+<li>
+<span class="math inline">\(g\)</span> — the daily mosquito
+mortality rate</li>
+<li>
+<span class="math inline">\(\sigma\)</span> — the patch emigration
+rate</li>
+<li>
+<span class="math inline">\(\mu\)</span> — the rate of
+emigration-related loss</li>
+<li>
+<span class="math inline">\(K\)</span> — a dispersal matrix (see
+above)</li>
+</ul>
+<p>These terms were designed to make it possible to develop and
+calibrate models for mosquito mortality that make it easy to specify
+<em>how</em> mosquitoes are lost from a system. The term <span class="math inline">\(\mu\)</span> describes loss from a system that is
+associated with emigration: The emigration rate is <span class="math inline">\(\sigma,\)</span> but only a fraction <span class="math inline">\(\sigma(1-\mu)\)</span> land in an other patch. The
+remaining <span class="math inline">\(\sigma \mu\)</span> are lost from
+the system. Mosquito mortality and migration are computed as a single
+object, <span class="math inline">\(\Omega,\)</span> where</p>
+<p><span class="math display">\[
+\Omega = \mbox{diag} \left( g + \sigma \mu \right) - K \cdot \mbox{diag}
+\left( \sigma \left(1-\mu\right) \right)
+\]</span> and in general:</p>
+<p><span class="math display">\[ \frac{dM}{dt} = \Lambda - \Omega \cdot
+M\]</span></p>
+<p>In delay differential equations with a constant EIP (<span class="math inline">\(\tau\)</span>), survival and dispersal through the
+EIP is given by: <span class="math display">\[
+\Upsilon = e^{-\Omega \tau}
+\]</span> which can be computed in R using <code>expm.</code></p>
+</div>
+<div class="section level2">
+<h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
+</h2>
+<p>See <code>mosquito_dispersal.R</code></p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
+<p>By default, <span class="math inline">\(\sigma=\mu=0\)</span> and
+<span class="math inline">\(K\)</span> is a matrix of all zeros.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>nPatches<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_K_matrix.html">get_K_matrix</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##      [,1] [,2] [,3]</span></span>
+<span><span class="co">## [1,]    0    0    0</span></span>
+<span><span class="co">## [2,]    0    0    0</span></span>
+<span><span class="co">## [3,]    0    0    0</span></span></code></pre>
+<div class="section level3">
+<h3 id="herethere">
+<code>herethere</code><a class="anchor" aria-label="anchor" href="#herethere"></a>
+</h3>
+<p>Another simple option is <code>herethere</code> that distributes
+mosquitoes to every other patch with equal probability. The <span class="math inline">\(K\)</span> matrix can be reconfigured after setup
+using <code>setup_K_matrix</code></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_K_matrix.html">setup_K_matrix</a></span><span class="op">(</span><span class="st">"herethere"</span>, <span class="va">mod</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="../reference/get_K_matrix.html">get_K_matrix</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##      [,1] [,2] [,3]</span></span>
+<span><span class="co">## [1,] -1.0  0.5  0.5</span></span>
+<span><span class="co">## [2,]  0.5 -1.0  0.5</span></span>
+<span><span class="co">## [3,]  0.5  0.5 -1.0</span></span></code></pre>
+<p>The same options can be passed as a named list <code>Koptions</code>
+during basic setup:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>nPatches<span class="op">=</span><span class="fl">6</span>, Koptions <span class="op">=</span> <span class="st">"herethere"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_K_matrix.html">get_K_matrix</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##      [,1] [,2] [,3] [,4] [,5] [,6]</span></span>
+<span><span class="co">## [1,] -1.0  0.2  0.2  0.2  0.2  0.2</span></span>
+<span><span class="co">## [2,]  0.2 -1.0  0.2  0.2  0.2  0.2</span></span>
+<span><span class="co">## [3,]  0.2  0.2 -1.0  0.2  0.2  0.2</span></span>
+<span><span class="co">## [4,]  0.2  0.2  0.2 -1.0  0.2  0.2</span></span>
+<span><span class="co">## [5,]  0.2  0.2  0.2  0.2 -1.0  0.2</span></span>
+<span><span class="co">## [6,]  0.2  0.2  0.2  0.2  0.2 -1.0</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="xy">
+<code>xy</code><a class="anchor" aria-label="anchor" href="#xy"></a>
+</h3>
+<p>If the patches have locations, given by a pair of vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y,\)</span> each one of length
+<code>nPatches</code> and passed concatenated as <code>xy</code>, then a
+dispersal matrix <span class="math inline">\(K\)</span> is computed by
+passing a <em>kernel</em> function that weights by distance. Setup calls
+<code>make_K_matrix</code></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">=</span> <span class="va">y</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">xy</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>,y<span class="op">=</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="va">F_d</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">d</span><span class="op">^</span><span class="fl">1.8</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="va">K</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_K_matrix_xy.html">make_K_matrix_xy</a></span><span class="op">(</span><span class="va">xy</span>, <span class="va">F_d</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">K</span><span class="op">*</span><span class="fl">1000</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span></span></code></pre></div>
+<pre><code><span><span class="co">##    [,1]   [,2]   [,3]   [,4]  [,5]</span></span>
+<span><span class="co">## 1 -1.00  0.498  0.005  0.000  0.00</span></span>
+<span><span class="co">## 2  0.99 -1.000  0.495  0.005  0.00</span></span>
+<span><span class="co">## 3  0.01  0.498 -1.000  0.498  0.01</span></span>
+<span><span class="co">## 4  0.00  0.005  0.495 -1.000  0.99</span></span>
+<span><span class="co">## 5  0.00  0.000  0.005  0.498 -1.00</span></span></code></pre>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>nPatches<span class="op">=</span><span class="fl">5</span>, Koptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"xy"</span>, xy<span class="op">=</span><span class="va">xy</span>, ker<span class="op">=</span><span class="va">F_d</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_K_matrix.html">get_K_matrix</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##            [,1]          [,2]         [,3]          [,4]          [,5]</span></span>
+<span><span class="co">## 1 -1.000000e+00  4.975756e-01  0.004820927  4.489989e-06  9.533409e-10</span></span>
+<span><span class="co">## 2  9.903493e-01 -1.000000e+00  0.495179073  4.844259e-03  8.936647e-06</span></span>
+<span><span class="co">## 3  9.641768e-03  4.975756e-01 -1.000000000  4.975756e-01  9.641768e-03</span></span>
+<span><span class="co">## 4  8.936647e-06  4.844259e-03  0.495179073 -1.000000e+00  9.903493e-01</span></span>
+<span><span class="co">## 5  9.533409e-10  4.489989e-06  0.004820927  4.975756e-01 -1.000000e+00</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="as_matrix">
+<code>as_matrix</code><a class="anchor" aria-label="anchor" href="#as_matrix"></a>
+</h3>
+<p>Finally, if the user wants to form some other kind of matrix, it can
+be passed directly as <code>Koptions</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>nPatches<span class="op">=</span><span class="fl">5</span>, Koptions<span class="op">=</span><span class="va">K</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_K_matrix.html">get_K_matrix</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##            [,1]          [,2]         [,3]          [,4]          [,5]</span></span>
+<span><span class="co">## 1 -1.000000e+00  4.975756e-01  0.004820927  4.489989e-06  9.533409e-10</span></span>
+<span><span class="co">## 2  9.903493e-01 -1.000000e+00  0.495179073  4.844259e-03  8.936647e-06</span></span>
+<span><span class="co">## 3  9.641768e-03  4.975756e-01 -1.000000000  4.975756e-01  9.641768e-03</span></span>
+<span><span class="co">## 4  8.936647e-06  4.844259e-03  0.495179073 -1.000000e+00  9.903493e-01</span></span>
+<span><span class="co">## 5  9.533409e-10  4.489989e-06  0.004820927  4.975756e-01 -1.000000e+00</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="no_setup">
+<code>no_setup</code><a class="anchor" aria-label="anchor" href="#no_setup"></a>
+</h3>
+<p>Internally, the default <span class="math inline">\(K\)</span> matrix
+is set up with the option <code>no_setup,</code> which sets the <span class="math inline">\(K\)</span> matrix to all zeros.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_K_matrix.html">setup_K_matrix</a></span><span class="op">(</span><span class="st">"no_setup"</span>, <span class="va">mod</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_K_matrix.html">get_K_matrix</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##            [,1]          [,2]         [,3]          [,4]          [,5]</span></span>
+<span><span class="co">## 1 -1.000000e+00  4.975756e-01  0.004820927  4.489989e-06  9.533409e-10</span></span>
+<span><span class="co">## 2  9.903493e-01 -1.000000e+00  0.495179073  4.844259e-03  8.936647e-06</span></span>
+<span><span class="co">## 3  9.641768e-03  4.975756e-01 -1.000000000  4.975756e-01  9.641768e-03</span></span>
+<span><span class="co">## 4  8.936647e-06  4.844259e-03  0.495179073 -1.000000e+00  9.903493e-01</span></span>
+<span><span class="co">## 5  9.533409e-10  4.489989e-06  0.004820927  4.975756e-01 -1.000000e+00</span></span></code></pre>
+</div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
