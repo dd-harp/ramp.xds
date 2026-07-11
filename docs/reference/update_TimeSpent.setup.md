@@ -7,7 +7,7 @@ port back to `"static"`.
 
 ``` r
 # S3 method for class 'setup'
-update_timespent(xds_obj, i)
+update_timespent(xds_obj, i = 1)
 ```
 
 ## Arguments

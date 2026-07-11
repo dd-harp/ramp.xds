@@ -202,19 +202,20 @@ treatment. The code looks like this:
 getS3method("dXHdt", "SIS")
 ```
 
-    ## function (t, y, xds_obj, i) 
-    ## {
-    ##     foi <- xds_obj$terms$FoI[[i]]
-    ##     with(get_XH_vars(y, xds_obj, i), {
-    ##         with(xds_obj$XH_obj[[i]], {
-    ##             dH <- Births(t, H, births) + D_matrix %*% H
-    ##             dI <- foi * (H - I) - r * I + D_matrix %*% I
-    ##             dI <- dI - mda(t) * I - msat(t) * I
-    ##             return(c(dH, dI))
-    ##         })
+    ## function(t, y, xds_obj, i) {
+    ## 
+    ##   foi <- xds_obj$terms$FoI[[i]]
+    ## 
+    ##   with(get_XH_vars(y, xds_obj, i),{
+    ##     with(xds_obj$XH_obj[[i]], {
+    ##       dH <- Births(t, H, births) + D_matrix %*% H
+    ##       dI <- foi*(H-I) - r*I + D_matrix %*% I
+    ##       dI <- dI - mda(t)*I - msat(t)*I
+    ##       return(c(dH, dI))
     ##     })
+    ##   })
     ## }
-    ## <bytecode: 0x126f20998>
+    ## <bytecode: 0x10f13dea8>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -230,19 +231,20 @@ code looks like this:
 getS3method("dMYdt", "SI")
 ```
 
-    ## function (t, y, xds_obj, s) 
-    ## {
-    ##     Lambda = xds_obj$terms$Lambda[[s]]
-    ##     kappa = xds_obj$terms$kappa[[s]]
-    ##     with(get_MY_vars(y, xds_obj, s), {
-    ##         with(xds_obj$MY_obj[[s]], {
-    ##             dM <- Lambda - (Omega %*% M)
-    ##             dY <- f * q * kappa * (M - Y) - (Omega %*% Y)
-    ##             return(c(dM, dY))
-    ##         })
+    ## function(t, y, xds_obj, s) {
+    ##   Lambda = xds_obj$terms$Lambda[[s]]
+    ##   kappa = xds_obj$terms$kappa[[s]]
+    ## 
+    ##   with(get_MY_vars(y, xds_obj, s),{
+    ##     with(xds_obj$MY_obj[[s]],{
+    ## 
+    ##       dM <- Lambda - (Omega %*% M)
+    ##       dY <- f*q*kappa*(M-Y) - (Omega %*% Y)
+    ##       return(c(dM, dY))
     ##     })
+    ##   })
     ## }
-    ## <bytecode: 0x126d27be8>
+    ## <bytecode: 0x10f353ea8>
     ## <environment: namespace:ramp.xds>
 
 The term \\\Lambda\\ is passed from the trace function
@@ -257,11 +259,9 @@ The implementation looks like this:
 getS3method("F_emerge", "trivial")
 ```
 
-    ## function (t, y, xds_obj, s) 
-    ## {
-    ##     with(xds_obj$L_obj[[s]], {
-    ##         return(Lambda * F_season(t) * F_trend(t) * F_shock(t))
-    ##     })
-    ## }
-    ## <bytecode: 0x1266e7a78>
+    ## function(t, y, xds_obj, s) {
+    ##   with(xds_obj$L_obj[[s]],{
+    ##     return(Lambda*F_season(t)*F_trend(t)*F_shock(t))
+    ## })}
+    ## <bytecode: 0x10f54a180>
     ## <environment: namespace:ramp.xds>

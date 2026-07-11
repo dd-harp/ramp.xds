@@ -16,7 +16,7 @@ setup_K_matrix(Kname, xds_obj, options = list(), s = 1)
 
 - Kname:
 
-  a matrix or a string
+  a name, a matrix, or a list
 
 - xds_obj:
 
@@ -32,4 +32,4 @@ setup_K_matrix(Kname, xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+an **`xds`** object

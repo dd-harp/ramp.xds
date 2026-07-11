@@ -27,7 +27,7 @@ xds_setup_mosy(
   searchQ = 1,
   kappa = 0,
   MYoptions = list(),
-  Koptions = list(Kname = "no_setup"),
+  Koptions = list(),
   Loptions = list()
 )
 ```

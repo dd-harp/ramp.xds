@@ -7,7 +7,7 @@
 \method{setup_K_matrix}{as_matrix}(Kname, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{Kname}{a matrix or a string}
+\item{Kname}{a name, a matrix, or a list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

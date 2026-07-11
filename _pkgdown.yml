@@ -38,6 +38,8 @@ navbar:
     menu:
     - text: Adult Mosquito Component (MY)
       href: articles/MY-interface.html
+    - text: Mosquito Bionomics 
+      href: articles/Bionomics.html
     - text: Macdonald's Model
       href: articles/adult_RM.html
     - text: Macdonald - discrete time
@@ -60,8 +62,6 @@ navbar:
       href: articles/BloodFeeding.html
     - text: Exposure
       href: articles/Exposure.html
-    - text: Bionomics 
-      href: articles/MosquitoBionomics.html
   - text: Analysis
     menu:
     - text: Qualitative Analysis

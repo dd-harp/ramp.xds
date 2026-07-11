@@ -6,7 +6,7 @@ To compute vectorial capacity, we need to
 
 ``` r
 # S3 method for class 'SI'
-setup_V_ix(xds_obj, s)
+setup_V_ix(xds_obj, i)
 ```
 
 ## Arguments
@@ -15,7 +15,7 @@ setup_V_ix(xds_obj, s)
 
   a **`ramp.xds`** model object
 
-- s:
+- i:
 
   the vector species index
 

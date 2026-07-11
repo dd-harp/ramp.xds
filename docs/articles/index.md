@@ -51,7 +51,7 @@
 - [The MY
   Component](https://dd-harp.github.io/ramp.xds/articles/MY-interface.md):
 - [Qualitative
-  Analysis](https://dd-harp.github.io/ramp.xds/articles/Qualitiative.md):
+  Analysis](https://dd-harp.github.io/ramp.xds/articles/Qualitative.md):
 - [Basic Mosquito Infection Dynamics in Discrete
   Time](https://dd-harp.github.io/ramp.xds/articles/RM-dts-Mosquito.md):
 - [Beyond Basic

@@ -85,7 +85,7 @@ xds_setup = function(
      TSoptions = list(name = "no_setup"),
      membership = 1,
      searchQ = 1,
-     Koptions = list(Kname = "no_setup"),
+     Koptions = list(),
      BFopts = list()
 ){
   stopifnot(length(HPop) == length(residence))
@@ -123,12 +123,8 @@ xds_setup = function(
   } else {
     xds_obj <- setup_timespent(TSoptions$name, xds_obj, options=TSoptions, i=1)
   } 
-
-  if(is.matrix(Koptions)){
-    xds_obj <- setup_K_matrix(Koptions, xds_obj)
-  } else {
-    xds_obj <- setup_K_matrix(Koptions$Kname, xds_obj, Koptions, 1)
-  } 
+  
+  xds_obj <- setup_K_matrix(Koptions, xds_obj, Koptions, s=1)
 
   # Probably Not Necessary
   y0 <- as.vector(unlist(get_inits(xds_obj)))
@@ -184,7 +180,7 @@ xds_setup_mosy = function(
      kappa = 0,
      ### Options
      MYoptions = list(),
-     Koptions = list(Kname = "no_setup"),
+     Koptions = list(),
      Loptions = list()
 ){
   residence = 1:nPatches
@@ -208,12 +204,8 @@ xds_setup_mosy = function(
 
   Qwts       <- with(Loptions, checkIt(searchQ, xds_obj$nHabitats))
   xds_obj    <- change_habitat_search_weights(Qwts, xds_obj, 1)
- 
-  if(is.matrix(Koptions)){
-    xds_obj <- setup_K_matrix(Koptions, xds_obj)
-  } else {
-    xds_obj <- setup_K_matrix(Koptions$Kname, xds_obj, Koptions, 1)
-  } 
+  
+  xds_obj <- setup_K_matrix(Koptions, xds_obj, Koptions, s=1)
 
   xds_obj$terms$kappa[[1]] = checkIt(kappa, nPatches)
 

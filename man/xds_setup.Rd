@@ -20,7 +20,7 @@ xds_setup(
   TSoptions = list(name = "no_setup"),
   membership = 1,
   searchQ = 1,
-  Koptions = list(Kname = "no_setup"),
+  Koptions = list(),
   BFopts = list()
 )
 }

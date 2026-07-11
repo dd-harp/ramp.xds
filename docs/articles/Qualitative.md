@@ -1,0 +1,79 @@
+# Qualitative Analysis
+
+``` r
+
+library(ramp.xds)
+```
+
+------------------------------------------------------------------------
+
+***`ramp.xds`** includes computational support for qualitative analysis
+of dynamical systems describing malaria and other mosquito-transmitted
+pathogens. This vignette provides an overview.*
+
+------------------------------------------------------------------------
+
+**`ramp.xds`** includes algorithms to compute:
+
+- steady states and stable orbits;
+
+- next generation matrices and \\R_0\\ / threshold or quasi-threshold
+  criteria;
+
+- analysis of connectivity;
+
+- scaling relationships.
+
+Through qualitative analysis, we seek to develop an understanding of
+these models, to become better at judging whether they are fit for
+purpose, and to make it easier to compare and benchmark different
+models.
+
+The algorithms are used in the related sites:
+
+- [Malaria
+  Theory](https://faculty.washington.edu/smitdave/malaria_theory/);
+
+- [Adaptive Malaria
+  Control](https://faculty.washington.edu/smitdave/ramp/), including a
+  discussion of robust analytics for malaria policy (RAMP).
+
+## Steady States & Stable Orbits
+
+Most autonomous systems describing malaria have a trivial steady state
+(no malaria) and a non-trivial, globally attractive steady state
+describing endemic malaria. Each one of the modules includes functions
+to compute its steady state as a function of one or more inputs. Steady
+states for the whole system are computed by calling `xds_steady.` The
+function `burnin` accomplishes essentially the same thing, but it also
+copies the final state to the initial state.
+
+Stable orbits are computed for malaria in systems with seasonal
+canonical forcing from a trivial module. After a long burnin, the orbits
+from the last full year are stored. The orbits are used to compute the
+average annual values of key metrics.
+
+See [Steady States & Stable
+Orbits](https://dd-harp.github.io/ramp.xds/articles/Steady.md)
+
+## Thresholds & Connectivity
+
+**`ramp.xds`** takes a computational approach to computing thresholds
+using a *next generation* matrix approach for autonomous systems, and a
+next generation matrix function approach for non-autonomous systems. See
+[Thresholds](https://dd-harp.github.io/ramp.xds/articles/Thresholds.md)
+
+Using these same next generation approaches, we compute various measures
+of connectivity: tracing transmission back through one full parasite
+generation, and it outputs a matrix describing parasite movement among
+patches. See
+[Connectivity](https://dd-harp.github.io/ramp.xds/articles/Connectivity.md)
+
+## Scaling Relationships
+
+Scaling relationships look at relationships among various malaria
+metrics across the spectrum of malaria transmission intensity. The
+scaling functions create a mesh over the mean forcing parameter for a
+model and compute stable orbits for every value of that mesh. The mean
+annual values and the orbits are stored for analysis. See [Scaling
+Relationships](https://dd-harp.github.io/ramp.xds/articles/Scaling.md)
