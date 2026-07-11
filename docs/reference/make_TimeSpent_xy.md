@@ -5,10 +5,14 @@ Make a time spent matrix, called timespent
 ## Usage
 
 ``` r
-make_timespent_xy(xy, residence, kern, stay, travel)
+make_timespent_xy(xds_obj, xy, residence, stay, kern, kopts = list())
 ```
 
 ## Arguments
+
+- xds_obj:
+
+  the **`xds`** model object
 
 - xy:
 
@@ -18,17 +22,17 @@ make_timespent_xy(xy, residence, kern, stay, travel)
 
   is the home patch for each stratum
 
-- kern:
-
-  is a function that gives weight by distance
-
 - stay:
 
   is the fraction of time spent at home
 
-- travel:
+- kern:
 
-  is the fraction of time spent traveling
+  is a function to compute time spent away from home
+
+- kopts:
+
+  options to pass to the kernel
 
 ## Value
 

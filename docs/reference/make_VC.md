@@ -1,8 +1,9 @@
 # Make VC
 
-Compute the \\N_p \times N_p\\ matrix \\\mathcal{V}\\ whose columns
-describe the number of infective bites arising in each patch from all
-the mosquitoes biting a single human on a single day in each patch.
+Using formulas, compute the \\N_p \times N_p\\ matrix \\\[V\]\\ whose
+columns describe the number of infective bites arising in each patch
+from all the mosquitoes biting a single human on a single day in each
+patch.
 
 ## Usage
 

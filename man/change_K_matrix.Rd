@@ -4,12 +4,14 @@
 \alias{change_K_matrix}
 \title{Change Mosquito Dispersal Matrix}
 \usage{
-change_K_matrix(K_matrix, xds_obj, s = 1)
+change_K_matrix(K_matrix, xds_obj, behave = "0", s = 1)
 }
 \arguments{
 \item{K_matrix}{a mosquito dispersal \link{matrix}}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{behave}{the behavioral state}
 
 \item{s}{the vector species index}
 }

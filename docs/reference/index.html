@@ -43,6 +43,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-my" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">MY</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-my"><li><a class="dropdown-item" href="../articles/MY-interface.html">Adult Mosquito Component (MY)</a></li>
+    <li><a class="dropdown-item" href="../articles/Bionomics.html">Mosquito Bionomics</a></li>
     <li><a class="dropdown-item" href="../articles/adult_RM.html">Macdonald's Model</a></li>
     <li><a class="dropdown-item" href="../articles/RM-dts-Mosquito.html">Macdonald - discrete time</a></li>
     <li><a class="dropdown-item" href="../articles/adult_GeM.html">Generalized Macdonald model</a></li>
@@ -58,7 +59,6 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-    <li><a class="dropdown-item" href="../articles/MosquitoBionomics.html">Bionomics</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-analysis" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Analysis</button>
@@ -516,6 +516,13 @@
 
         <dt>
 
+          <code><a href="xds_analyze.html">xds_analyze()</a></code>
+
+        </dt>
+        <dd>Analyze a Dynamical System</dd>
+
+        <dt>
+
           <code><a href="steady_state_X.html">steady_state_X()</a></code>
 
         </dt>
@@ -555,9 +562,23 @@
 
         </dt>
         <dd>Compute steady states for <strong>L</strong> component modules</dd>
+
+        <dt>
+
+          <code><a href="get_VC.html">get_VC()</a></code>
+
+        </dt>
+        <dd>Get VC</dd>
+
+        <dt>
+
+          <code><a href="get_VC_matrix.html">get_VC_matrix()</a></code>
+
+        </dt>
+        <dd>Get VC</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="vectorial-capacity">Vectorial Capacity<a class="anchor" aria-label="anchor" href="#vectorial-capacity"></a></h3>
+      <h3 id="transmission-matrices">Transmission Matrices<a class="anchor" aria-label="anchor" href="#transmission-matrices"></a></h3>
 
 
       <dl></dl></div><div class="section level2">
@@ -578,6 +599,20 @@
 
         </dt>
         <dd>Make VC</dd>
+
+        <dt>
+
+          <code><a href="make_VC_gem.html">make_VC(<i>&lt;macdonald&gt;</i>)</a></code> <code><a href="make_VC_gem.html">make_VC_gem()</a></code>
+
+        </dt>
+        <dd>Make the VC Matrix</dd>
+
+        <dt>
+
+          <code><a href="compute_HTC.html">compute_HTC()</a></code>
+
+        </dt>
+        <dd>Compute the HTC Matrix</dd>
       </dl></div><div class="section level2">
       <h2 id="plot">Plot<a class="anchor" aria-label="anchor" href="#plot"></a></h2>
 
@@ -758,6 +793,22 @@
       <div class="section-desc"><p>Inspect elements of the xds object</p></div>
 
       <dl></dl></div><div class="section level2">
+
+      <h3 id="get-terms">Get Terms<a class="anchor" aria-label="anchor" href="#get-terms"></a></h3>
+      <div class="section-desc"><p>Get terms</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="get_beta.html">get_beta()</a></code>
+
+        </dt>
+        <dd>Get xi, delayed maturation</dd>
+      </dl></div><div class="section level2">
 
       <h3 id="get-orbits">Get Orbits<a class="anchor" aria-label="anchor" href="#get-orbits"></a></h3>
       <div class="section-desc"><p>Get orbits</p></div>
@@ -1426,7 +1477,7 @@
 
         <dt>
 
-          <code><a href="make_timespent_athome.html">make_timespent_athome()</a></code>
+          <code><a href="make_timespent_at_home.html">make_timespent_at_home()</a></code>
 
         </dt>
         <dd>Make a time spent matrix, called timespent</dd>

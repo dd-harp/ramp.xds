@@ -7,7 +7,7 @@
 \method{setup_K_matrix}{herethere}(Kname, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{Kname}{a matrix or a string}
+\item{Kname}{a name, a matrix, or a list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -16,7 +16,7 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+an \strong{\code{xds}} object
 }
 \description{
 Implements \link{setup_K_matrix} for the herethere model:

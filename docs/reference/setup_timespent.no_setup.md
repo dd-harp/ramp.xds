@@ -6,7 +6,7 @@ Don't change anything
 
 ``` r
 # S3 method for class 'no_setup'
-setup_timespent(name, xds_obj, i, options = list())
+setup_timespent(name, xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -19,13 +19,13 @@ setup_timespent(name, xds_obj, i, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the host species index
-
 - options:
 
   configuration options
+
+- i:
+
+  the host species index
 
 ## Value
 

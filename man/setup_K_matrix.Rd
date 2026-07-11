@@ -7,7 +7,7 @@
 setup_K_matrix(Kname, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{Kname}{a matrix or a string}
+\item{Kname}{a name, a matrix, or a list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -20,13 +20,21 @@ an \strong{\code{xds}} object
 }
 \description{
 A flexible setup function for mosquito dispersal. The first
-argument \code{Kname} dispatches a method: \code{Kname} is used to set the \code{class} of \verb{options,} and
+argument \code{Kname} can be either a matrix, the name of a method, or a list of options that
+includes a method name:
+\itemize{
+\item if \code{Kname} is a string of characters, it dispatches the method
+\item if \code{Kname} is a matrix, then a matrix is set up
+\item if \code{Kname} is a list of options, then dispatching is on \code{Kname$name}
+}
+
 the method  dispatches on \code{class(options)}
 
 Options for \code{Kname} are:
 \itemize{
 \item \code{is.matrix(Kname)}: if the user passes a matrix, then \code{class(Kname) <- "as_matrix"}
 \item \code{Kname = "no_setup"} -- the \strong{\code{xds}} object is returned unmodified
+\item \code{Kname = "zero"} -- set up a matrix of all zeros
 \item \code{Kname = "as_matrix"} -- calls \link{change_K_matrix} and passes \code{K_matrix}
 \item \code{Kname = "herethere"} -- calls \link{make_K_matrix_herethere}
 \item \code{Kname = "xy"} -- calls \link{make_K_matrix_xy}

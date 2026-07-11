@@ -261,7 +261,7 @@ params = make_indices(params)
 ```
 
 ```{r}
-params <- change_K_matrix(K_matrix, params, 1)
+params <- change_K_matrix(K_matrix, params, "0", 1)
 ```
 
 ```{r}

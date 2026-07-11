@@ -15,7 +15,7 @@ setup_K_matrix(Kname, xds_obj, options = list(), s = 1)
 
 - Kname:
 
-  a matrix or a string
+  a name, a matrix, or a list
 
 - xds_obj:
 

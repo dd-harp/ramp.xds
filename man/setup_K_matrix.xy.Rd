@@ -4,10 +4,10 @@
 \alias{setup_K_matrix.xy}
 \title{Setup a Kernel-Based Mosquito Dispersal Matrix}
 \usage{
-\method{setup_K_matrix}{xy}(Kname = "xy", xds_obj, options = list(), s = 1)
+\method{setup_K_matrix}{xy}(Kname, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{Kname}{a matrix or a string}
+\item{Kname}{a name, a matrix, or a list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

@@ -4,10 +4,12 @@
 \alias{get_K_matrix}
 \title{Get the Mosquito Dispersal Matrix}
 \usage{
-get_K_matrix(xds_obj, s = 1)
+get_K_matrix(xds_obj, behave = "0", s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{behave}{the behavioral state}
 
 \item{s}{the vector species index}
 }
