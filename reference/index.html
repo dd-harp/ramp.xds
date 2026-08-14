@@ -1059,13 +1059,6 @@
 
         </dt>
         <dd>Get initial values (<strong>L</strong>)</dd>
-
-        <dt>
-
-          <code><a href="get_variables.html">get_variables()</a></code>
-
-        </dt>
-        <dd>Get Variables</dd>
       </dl></div><div class="section level2">
 
       <h3 id="get-forcing">Get Forcing<a class="anchor" aria-label="anchor" href="#get-forcing"></a></h3>
@@ -1322,28 +1315,28 @@
 
         <dt>
 
-          <code><a href="change_season.html">change_season()</a></code>
+          <code><a href="change_F_season.html">change_F_season()</a></code>
 
         </dt>
-        <dd>Change season parameters</dd>
+        <dd>Change F_season</dd>
 
         <dt>
 
-          <code><a href="change_trend.html">change_trend()</a></code>
+          <code><a href="change_F_trend.html">change_F_trend()</a></code>
 
         </dt>
-        <dd>Set the interpolating points</dd>
+        <dd>Change F_trend</dd>
 
         <dt>
 
-          <code><a href="change_shock.html">change_shock()</a></code>
+          <code><a href="change_F_shock.html">change_F_shock()</a></code>
 
         </dt>
-        <dd>Change shock parameters</dd>
+        <dd>Change F_shock</dd>
       </dl></div><div class="section level2">
       <h2 id="save-read">Save &amp; Read<a class="anchor" aria-label="anchor" href="#save-read"></a></h2>
 
-      <div class="section-desc"><p>Build and store <strong><code>xds</code></strong> model objects</p></div>
+      <div class="section-desc"><p>Store <strong><code>xds</code></strong> model objects</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -1356,13 +1349,6 @@
 
         </dt>
         <dd>saveRDS for <code>xds</code> Objects</dd>
-
-        <dt>
-
-          <code><a href="readXDS.html">readXDS()</a></code>
-
-        </dt>
-        <dd>readRDS for <code>xds</code> Objects</dd>
       </dl></div><div class="section level2">
       <h2 id="xh-component">XH Component<a class="anchor" aria-label="anchor" href="#xh-component"></a></h2>
 
@@ -1808,27 +1794,6 @@
 
         </dt>
         <dd>Set new X parameter values</dd>
-
-        <dt>
-
-          <code><a href="change_spline.html">change_spline()</a></code>
-
-        </dt>
-        <dd>Change spline interpolation points</dd>
-
-        <dt>
-
-          <code><a href="change_spline_y.html">change_spline_y()</a></code>
-
-        </dt>
-        <dd>Change y values for spline interpolation points</dd>
-
-        <dt>
-
-          <code><a href="change_shock.html">change_shock()</a></code>
-
-        </dt>
-        <dd>Change shock parameters</dd>
       </dl></div><div class="section level2">
       <h2 id="blood-feeding-transmission">Blood Feeding &amp; Transmission<a class="anchor" aria-label="anchor" href="#blood-feeding-transmission"></a></h2>
 
@@ -2353,113 +2318,6 @@
 
         </dt>
         <dd>Change Bad Habitat Availability</dd>
-      </dl></div><div class="section level2">
-      <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
-
-      <div class="section-desc"><p>A function maker</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="make_function.html">make_function()</a></code>
-
-        </dt>
-        <dd>Make a Function</dd>
-
-        <dt>
-
-          <code><a href="make_ts_function.html">make_ts_function()</a></code>
-
-        </dt>
-        <dd>Make a Time Series Function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_zero.html">makepar_F_zero()</a></code>
-
-        </dt>
-        <dd>parameters for make_function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_one.html">makepar_F_one()</a></code>
-
-        </dt>
-        <dd>parameters for make_function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_val.html">makepar_F_val()</a></code>
-
-        </dt>
-        <dd>parameters for make_function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_sin.html">makepar_F_sin()</a></code>
-
-        </dt>
-        <dd>parameters for make_function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_sum.html">makepar_F_sum()</a></code>
-
-        </dt>
-        <dd>parameters for make_function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_product.html">makepar_F_product()</a></code>
-
-        </dt>
-        <dd>parameters for make_function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_nproduct.html">makepar_F_nproduct()</a></code>
-
-        </dt>
-        <dd>parameters for make_function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_sigmoid.html">makepar_F_sigmoid()</a></code>
-
-        </dt>
-        <dd>Make Parameters for a Sigmoidal Function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_sharkfin.html">makepar_F_sharkfin()</a></code>
-
-        </dt>
-        <dd>Make Parameters for a Sharkfin Function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_sharkbite.html">makepar_F_sharkbite()</a></code>
-
-        </dt>
-        <dd>Make Parameters for a sharkbite Function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_type2.html">makepar_F_type2()</a></code>
-
-        </dt>
-        <dd>parameters for make_function</dd>
-
-        <dt>
-
-          <code><a href="makepar_F_spline.html">makepar_F_spline()</a></code>
-
-        </dt>
-        <dd>Make Parameters for a Spline</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

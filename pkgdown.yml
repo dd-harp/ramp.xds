@@ -8,7 +8,6 @@ articles:
   BasicSetup: BasicSetup.html
   Bionomics: Bionomics.html
   BloodFeeding: BloodFeeding.html
-  Cohorts: Cohorts.html
   Connectivity: Connectivity.html
   Contributing: Contributing.html
   Delays: Delays.html
@@ -36,11 +35,10 @@ articles:
   SpatialTransmissionDynamics: SpatialTransmissionDynamics.html
   Steady: Steady.html
   Thresholds: Thresholds.html
-  TraceFunctions: TraceFunctions.html
   Understanding_ramp.xds: Understanding_ramp.xds.html
   Working: Working.html
   XH-interface: XH-interface.html
-last_built: 2026-07-11T02:46Z
+last_built: 2026-08-14T18:16Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

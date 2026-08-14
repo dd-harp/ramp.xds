@@ -1,11 +1,6 @@
 # Change parameters for `trivial` (**L**)
 
-If `Lambda`, `season_par`, `trend_par`, or `shock_par` are named in
-`options`, the old value is replaced. After updating the parameter
-objects, `F_season`, `F_trend`, and `F_shock` are recompiled by calling
-[make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
-on the updated parameters via
-[rebuild_forcing_functions](https://dd-harp.github.io/ramp.xds/reference/rebuild_forcing_functions.md).
+Change `Lambda`, `F_season`, `F_trend`, or `F_shock`
 
 ## Usage
 
@@ -31,3 +26,7 @@ change_L_pars(xds_obj, s = 1, options = list())
 ## Value
 
 an **`xds`** object
+
+## Note
+
+Utilities for trace functions are in `ramp.trace`

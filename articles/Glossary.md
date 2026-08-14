@@ -224,11 +224,9 @@ bionomic parameters, listed below
 - **trace function**:
 
   A function of time \\t\\ used to specify an exogenous input to the
-  model. Built using
-  [`make_function()`](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
-  and parameterised with `makepar_*` helpers. Trace functions can
-  represent constant, seasonal, trend-driven, or spline-interpolated
-  signals.
+  model. Built using `make_function()` and parameterised with
+  `makepar_*` helpers. Trace functions can represent constant, seasonal,
+  trend-driven, or spline-interpolated signals.
 
 - **seasonality**:
 

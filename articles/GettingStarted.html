@@ -437,46 +437,10 @@ terms needed by related dynamical components are passed by a
 configurable <em>trace function</em> with a generic form:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mean</span><span class="op">*</span><span class="fu"><a href="../reference/F_season.html">F_season</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="../reference/F_trend.html">F_trend</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="../reference/F_shock.html">F_shock</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span></code></pre></div>
-<p>The default for the aquatic mosquito dynamical component is the
-<code>trivial</code> module, where the <code>mean</code> is called
-<code>Lambda</code>.</p>
-<p>It is easy to change the <code>trace</code> function. First, we
-define <code>F_season</code> and change the mean value of
-<code>Lambda.</code> To set up a seasonality function, we pass a
-parameter set from <code>makepar_F_sin</code>:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>       Lambda<span class="op">=</span><span class="fl">400</span>, </span>
-<span>       season_par<span class="op">=</span><span class="fu"><a href="../reference/makepar_F_sin.html">makepar_F_sin</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>      <span class="op">)</span></span></code></pre></div>
-<p>We use the first model as a template for the new model, but we assign
-the return value a new name <code>model_1</code> so that the original
-one still exists:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_L_obj.html">setup_L_obj</a></span><span class="op">(</span><span class="st">"trivial"</span>, <span class="va">model</span>, <span class="fl">1</span>, options<span class="op">=</span><span class="va">Lo</span><span class="op">)</span></span></code></pre></div>
-<p>We want to change the initial values of <code>model_1.</code> Since
-<code>model_1</code> was copied from <code>model,</code> the last values
-from solving it are available, and we can use a function
-<code>last_to_inits</code> to set the initial values.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/last_to_inits.html">last_to_inits</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span></code></pre></div>
-<p>Now, we solve to get the orbits every five days over a three-year
-period.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">model_1</span>, Tmax<span class="op">=</span><span class="fl">365</span><span class="op">*</span><span class="fl">3</span>, dt<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span></code></pre></div>
-<p>After solving, we can plot the orbits.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/xds_plot_X.html">xds_plot_X</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/xds_plot_M.html">xds_plot_M</a></span><span class="op">(</span><span class="va">model_1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">model_1</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<div class="figure">
-<img src="GettingStarted_files/figure-html/unnamed-chunk-26-1.png" class="r-plt" alt="**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace Function" width="576"><p class="caption">
-<strong>Figure 2:</strong> Outputs with Seasonal Forced Emergence using
-a Trace Function
-</p>
-</div>
+<p>It is easy to change the <code>trace</code> function. A trace
+function library for <code>ramp.xds</code> is found in <a href="https://github.com/dd-harp/ramp.trace" class="external-link"><code>ramp.trace</code></a>.
+For more information about configuring trace functions for
+<code>ramp.xds</code></p>
 </div>
 <div class="section level2">
 <h2 id="next-steps">Next Steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>

@@ -141,19 +141,21 @@ $$F_G(t) = G S(t) T(t) K(t)$$</p></li>
 <dt><code>q</code></dt>
 <dd><p>the human fraction</p></dd>
 
-<dt><code>season_par</code></dt>
-<dd><p>parameters for <a href="make_function.html">make_function</a>: <code>F_season=make_function(season_par)</code></p></dd>
+<dt><code>F_season</code></dt>
+<dd><p>a seasonal pattern function, \({S(t)}\)</p></dd>
 
-<dt><code>trend_par</code></dt>
-<dd><p>parameters for <a href="make_function.html">make_function</a>: <code>F_trend=make_function(trend_par)</code></p></dd>
+<dt><code>F_trend</code></dt>
+<dd><p>a trend function, \(T(t)\)</p></dd>
 
-<dt><code>shock_par</code></dt>
-<dd><p>parameters for <a href="make_function.html">make_function</a>: <code>F_shock=make_function(shock_par)</code></p></dd>
+<dt><code>F_shock</code></dt>
+<dd><p>a shock function, \(K(t)\)</p></dd>
 
 
-</dl><p>The default setup options:</p><ul><li><p>for the <a href="make_function.html">make_function</a> parameters, <code>season_par = trend_par = shock_par = makepar_F_one()</code>.</p></li>
-<li><p>for the bionomic parameters, <code>f=q=Z=eggs=1</code>.</p></li>
-</ul></div>
+</dl><p>The default values are <code>F_season=F_trend=F_shock=F_one</code></p>
+<p>Setup also adds the objects <code>season_par</code> and <code>trend_par</code> and <code>shock_par</code> for
+use by <code>ramp.trace</code></p>
+<p>For the bionomic parameters, <code>f=q=Z=eggs=1</code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="get">Get<a class="anchor" aria-label="anchor" href="#get"></a></h2>
 
@@ -171,13 +173,12 @@ $$F_G(t) = G S(t) T(t) K(t)$$</p></li>
     <h2 id="change">Change<a class="anchor" aria-label="anchor" href="#change"></a></h2>
 
 
-<ul><li><p><code>change_MY_pars</code> — change parameters by name</p></li>
+<ul><li><p><code>change_MY_pars</code> — change bionomic parameters by name</p></li>
 <li><p><code>change_mean_forcing</code> — changes <code>Z</code></p></li>
-<li><p><code>change_season</code> — changes elements of <code>season_par</code></p></li>
-<li><p><code>change_trend</code>  — changes elements of <code>trend_par</code></p></li>
-<li><p><code>change_shock</code>  — changes elements of <code>shock_par</code></p></li>
-</ul><p>Note: use <code>change_MY_pars</code> to change <code>eggs</code></p>
-    </div>
+<li><p><code>change_F_season</code> — changes <code>F_season</code></p></li>
+<li><p><code>change_F_trend</code>  — changes <code>F_trend</code></p></li>
+<li><p><code>change_F_shock</code>  — changes <code>F_shock</code></p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a></h2>
 
@@ -185,11 +186,11 @@ $$F_G(t) = G S(t) T(t) K(t)$$</p></li>
 <ol><li><p>The module has no state variables.</p></li>
 <li><p>The size of an object saved by <code>saveRDS</code> balloons if it saves a function,
 so <code>saveXDS</code> function strips the functions and <code>readRDS</code> remakes the function
-from the stored parameters.
-<code>F_season</code>, <code>F_trend</code>, and <code>F_shock</code> can be set up manually by passing any
+from the stored parameters.</p></li>
+</ol><p><code>F_season</code>, <code>F_trend</code>, and <code>F_shock</code> can be set up manually by passing any
 user defined function. If so, the user should use <code>saveRDS</code> and <code>readRDS</code>
-rather than <code>saveXDS</code> and <code>readXDS</code></p></li>
-</ol></div>
+rather than <code>saveXDS</code> and <code>readXDS</code></p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

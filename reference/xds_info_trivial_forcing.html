@@ -21,33 +21,10 @@ as a product of four configurable elements:
 
 $$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$
 In the trivial modules, the functions are specified by
-passing parameters generated for make_function.
-season_par creates \(S(t)\) or F_season (eg, using makepar_F_sin)
-trend_par creates \(T(t)\) or F_trend (eg, using makepar_F_spline)
-shock_par creates \(K(t)\) or F_shock (eg, using makepar_F_sharkbite)
-
-
-For a discussion of mechanistic approaches to forcing, see Forcing
-Trivial modules were developed for each one
-of the three dynamical components, making it
-possible to develop studies of some focal process
-with known inputs: a trace function approach.
-Three trivial modules and EIR forcing xds_setup_eir
-construct trace functions as decomposable time series. The
-value of a forced variable \(x(t)\) is computed
-as a product of four configurable elements:
-\(\bar x\): a mean value
-\(S(t)\): a seasonal pattern
-\(T(t)\): a trend
-\(K(t)\): a shock
-
-
-$$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$
-In the trivial modules, the functions are specified by
-passing parameters generated for make_function.
-season_par creates \(S(t)\) or F_season (eg, using makepar_F_sin)
-trend_par creates \(T(t)\) or F_trend (eg, using makepar_F_spline)
-shock_par creates \(K(t)\) or F_shock (eg, using makepar_F_sharkbite)
+passing parameters generated for ramp.func::make_function.
+season_par creates \(S(t)\) or F_season (eg, using ramp.func::makepar_F_sin)
+trend_par creates \(T(t)\) or F_trend (eg, using ramp.func::makepar_F_spline)
+shock_par creates \(K(t)\) or F_shock (eg, using ramp.func::makepar_F_sharkbite)
 
 
 For a discussion of mechanistic approaches to forcing, see Forcing"><meta property="og:description" content="Trivial modules were developed for each one
@@ -66,33 +43,10 @@ as a product of four configurable elements:
 
 $$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$
 In the trivial modules, the functions are specified by
-passing parameters generated for make_function.
-season_par creates \(S(t)\) or F_season (eg, using makepar_F_sin)
-trend_par creates \(T(t)\) or F_trend (eg, using makepar_F_spline)
-shock_par creates \(K(t)\) or F_shock (eg, using makepar_F_sharkbite)
-
-
-For a discussion of mechanistic approaches to forcing, see Forcing
-Trivial modules were developed for each one
-of the three dynamical components, making it
-possible to develop studies of some focal process
-with known inputs: a trace function approach.
-Three trivial modules and EIR forcing xds_setup_eir
-construct trace functions as decomposable time series. The
-value of a forced variable \(x(t)\) is computed
-as a product of four configurable elements:
-\(\bar x\): a mean value
-\(S(t)\): a seasonal pattern
-\(T(t)\): a trend
-\(K(t)\): a shock
-
-
-$$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$
-In the trivial modules, the functions are specified by
-passing parameters generated for make_function.
-season_par creates \(S(t)\) or F_season (eg, using makepar_F_sin)
-trend_par creates \(T(t)\) or F_trend (eg, using makepar_F_spline)
-shock_par creates \(K(t)\) or F_shock (eg, using makepar_F_sharkbite)
+passing parameters generated for ramp.func::make_function.
+season_par creates \(S(t)\) or F_season (eg, using ramp.func::makepar_F_sin)
+trend_par creates \(T(t)\) or F_trend (eg, using ramp.func::makepar_F_spline)
+shock_par creates \(K(t)\) or F_shock (eg, using ramp.func::makepar_F_sharkbite)
 
 
 For a discussion of mechanistic approaches to forcing, see Forcing"></head><body>
@@ -170,7 +124,7 @@ For a discussion of mechanistic approaches to forcing, see Forcing"></head><body
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Forcing with Trivial Modules</h1>
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/functions.R" class="external-link"><code>R/functions.R</code></a>, <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/trivial.R" class="external-link"><code>R/trivial.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/trivial.R" class="external-link"><code>R/trivial.R</code></a></small>
       <div class="d-none name"><code>xds_info_trivial_forcing.Rd</code></div>
     </div>
 
@@ -188,34 +142,16 @@ as a product of four configurable elements:</p><ul><li><p>\(\bar x\): a mean val
 <li><p>\(K(t)\): a shock</p></li>
 </ul><p>$$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$</p>
 <p>In the trivial modules, the functions are specified by
-passing parameters generated for <a href="make_function.html">make_function</a>.</p><ul><li><p><code>season_par</code> creates \(S(t)\) or <code>F_season</code> (<em>eg,</em> using <a href="makepar_F_sin.html">makepar_F_sin</a>)</p></li>
-<li><p><code>trend_par</code> creates \(T(t)\) or <code>F_trend</code> (<em>eg,</em> using <a href="makepar_F_spline.html">makepar_F_spline</a>)</p></li>
-<li><p><code>shock_par</code> creates \(K(t)\) or <code>F_shock</code> (<em>eg,</em> using <a href="makepar_F_sharkbite.html">makepar_F_sharkbite</a>)</p></li>
-</ul><p>For a discussion of mechanistic approaches to forcing, see <a href="Forcing.html">Forcing</a></p>
-<p>Trivial modules were developed for each one
-of the three dynamical components, making it
-possible to develop studies of some focal process
-with known inputs: a <em>trace function</em> approach.</p>
-<p>Three trivial modules and EIR forcing <a href="xds_setup_eir.html">xds_setup_eir</a>
-construct trace functions as decomposable time series. The
-value of a forced variable \(x(t)\) is computed
-as a product of four configurable elements:</p><ul><li><p>\(\bar x\): a mean value</p></li>
-<li><p>\(S(t)\): a seasonal pattern</p></li>
-<li><p>\(T(t)\): a trend</p></li>
-<li><p>\(K(t)\): a shock</p></li>
-</ul><p>$$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$</p>
-<p>In the trivial modules, the functions are specified by
-passing parameters generated for <a href="make_function.html">make_function</a>.</p><ul><li><p><code>season_par</code> creates \(S(t)\) or <code>F_season</code> (<em>eg,</em> using <a href="makepar_F_sin.html">makepar_F_sin</a>)</p></li>
-<li><p><code>trend_par</code> creates \(T(t)\) or <code>F_trend</code> (<em>eg,</em> using <a href="makepar_F_spline.html">makepar_F_spline</a>)</p></li>
-<li><p><code>shock_par</code> creates \(K(t)\) or <code>F_shock</code> (<em>eg,</em> using <a href="makepar_F_sharkbite.html">makepar_F_sharkbite</a>)</p></li>
+passing parameters generated for ramp.func::make_function.</p><ul><li><p><code>season_par</code> creates \(S(t)\) or <code>F_season</code> (<em>eg,</em> using ramp.func::makepar_F_sin)</p></li>
+<li><p><code>trend_par</code> creates \(T(t)\) or <code>F_trend</code> (<em>eg,</em> using ramp.func::makepar_F_spline)</p></li>
+<li><p><code>shock_par</code> creates \(K(t)\) or <code>F_shock</code> (<em>eg,</em> using ramp.func::makepar_F_sharkbite)</p></li>
 </ul><p>For a discussion of mechanistic approaches to forcing, see <a href="Forcing.html">Forcing</a></p>
     </div>
 
 
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="trivial_XH.html">trivial_XH</a>, <a href="trivial_MY.html">trivial_MY</a>, <a href="trivial_L.html">trivial_L</a>, <a href="xds_setup_eir.html">xds_setup_eir</a>, <a href="make_ts_function.html">make_ts_function</a>, and <a href="Forcing.html">Forcing</a></p>
-<p><a href="trivial_XH.html">trivial_XH</a>, <a href="trivial_MY.html">trivial_MY</a>, <a href="trivial_L.html">trivial_L</a>, <a href="xds_setup_eir.html">xds_setup_eir</a>, <a href="make_ts_function.html">make_ts_function</a>, and <a href="Forcing.html">Forcing</a></p></div>
+    <div class="dont-index"><p><a href="trivial_XH.html">trivial_XH</a>, <a href="trivial_MY.html">trivial_MY</a>, <a href="trivial_L.html">trivial_L</a>, <a href="xds_setup_eir.html">xds_setup_eir</a>, ramp.func::make_ts_function, and <a href="Forcing.html">Forcing</a></p></div>
     </div>
 
   </main></div>

@@ -21,10 +21,10 @@ modify exposure by age.
 xds_setup_eir(
   model_name = "unnamed",
   eir = 1,
-  season_par = makepar_F_one(),
-  trend_par = makepar_F_one(),
-  age_par = makepar_F_one(),
-  shock_par = makepar_F_one(),
+  F_season = F_one,
+  F_trend = F_one,
+  F_shock = F_one,
+  F_age = F_one,
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
@@ -43,25 +43,21 @@ xds_setup_eir(
 
   is the entomological inoculation rate
 
-- season_par:
+- F_season:
 
-  parameters to configure a seasonality function using
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+  the seasonal pattern function
 
-- trend_par:
+- F_trend:
 
-  parameters to configure a trends function using
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+  the trend function
 
-- age_par:
+- F_shock:
 
-  parameters to configure an age weights function using
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+  the shock function
 
-- shock_par:
+- F_age:
 
-  parameters to configure a shock using
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+  the relative biting rate by age
 
 - xds:
 

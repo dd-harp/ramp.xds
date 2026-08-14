@@ -126,17 +126,17 @@ where</p><ul><li><p>\(\kappa\) or <code>kappa</code> is the mean net infectiousn
 <dl><dt><code>kappa</code></dt>
 <dd><p>the net infectiousness</p></dd>
 
-<dt><code>season_par</code></dt>
-<dd><p>parameters for <a href="make_function.html">make_function</a>: <code>F_season=make_par(season_par</code>)</p></dd>
+<dt><code>F_season</code></dt>
+<dd><p>a seasonal pattern function, \({S(t)}\)</p></dd>
 
-<dt><code>trend_par</code></dt>
-<dd><p>parameters for <a href="make_function.html">make_function</a>: <code>F_trend=make_par(trend_par)</code></p></dd>
+<dt><code>F_trend</code></dt>
+<dd><p>a trend function, \(T(t)\)</p></dd>
 
-<dt><code>shock_par</code></dt>
-<dd><p>parameters for <a href="make_function.html">make_function</a>: <code>F_shock=make_par(shock_par)</code></p></dd>
-
-
-</dl><p>The default setup option is <code>season_par = trend_par = shock_par = makepar_F_one()</code>.</p>
+<dt><code>F_shock</code></dt>
+<dd><p>a shock function, \(K(t)\)</p></dd>
+#'
+</dl><p>Setup also adds the objects <code>season_par</code> and <code>trend_par</code> and <code>shock_par</code> for
+use by <code>ramp.trace</code></p>
     </div>
     <div class="section level2">
     <h2 id="get">Get<a class="anchor" aria-label="anchor" href="#get"></a></h2>
@@ -157,8 +157,8 @@ where</p><ul><li><p>\(\kappa\) or <code>kappa</code> is the mean net infectiousn
 <ol><li><p>The module has no state variables.</p></li>
 <li><p>The size of an object saved by <code>saveRDS</code> balloons if it saves a function,
 so <code>saveXDS</code> function strips the functions and <code>readRDS</code> remakes the function
-from the stored parameters.
-<code>F_season</code>, <code>F_trend</code>, and <code>F_shock</code> can be set up manually by passing any
+from the stored parameters.</p></li>
+<li><p><code>F_season</code>, <code>F_trend</code>, and <code>F_shock</code> can be set up manually by passing any
 user defined function. If so, the user should use <code>saveRDS</code> and <code>readRDS</code>
 rather than <code>saveXDS</code> and <code>readXDS</code></p></li>
 <li><p>Setup expects that <code>membership= c(1:nPatches),</code> but any membership vector

@@ -15,10 +15,6 @@ get_XH_pars(xds_obj, i = 1)
 
   an **`xds`** model object
 
-- i:
-
-  the host species index
-
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
