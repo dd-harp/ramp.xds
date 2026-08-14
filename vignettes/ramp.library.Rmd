@@ -1,0 +1,9 @@
+---
+title: "ramp.library"
+subtitle: "The RAMP Dynamic Model Library"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ramp.library}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---

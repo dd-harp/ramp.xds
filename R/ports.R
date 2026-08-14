@@ -85,11 +85,11 @@
 #' unmodified.
 #' 
 #'  
-#' @section Trace Function Case: 
+#' @section Trace Function Case:
 #' For most ports, an alternative case is to configure 
-#' a trace function using package standard *multiplicative 
-#' decomposable time 
-#' series* trace function (see [make_ts_function]).
+#' a trace function using package standard
+#' *composable time 
+#' series* trace function (see `ramp.trace` amd `ramp.forcing`).
 #'
 #' @section Setup: 
 #' All methods should have well-defined setup functions:

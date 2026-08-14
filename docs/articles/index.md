@@ -12,7 +12,6 @@
   Bionomics](https://dd-harp.github.io/ramp.xds/articles/Bionomics.md):
 - [Blood Feeding &
   Transmission](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md):
-- [Connectivity](https://dd-harp.github.io/ramp.xds/articles/Connectivity.md):
 - [Contributing](https://dd-harp.github.io/ramp.xds/articles/Contributing.md):
 - [Delay
   Equations](https://dd-harp.github.io/ramp.xds/articles/Delays.md):
@@ -48,20 +47,17 @@
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/MosquitoSpatialEcology.md):
 - [The MY
   Component](https://dd-harp.github.io/ramp.xds/articles/MY-interface.md):
-- [Qualitative
-  Analysis](https://dd-harp.github.io/ramp.xds/articles/Qualitative.md):
+- [ramp.forcing](https://dd-harp.github.io/ramp.xds/articles/ramp.forcing.md):
+- [RAMP](https://dd-harp.github.io/ramp.xds/articles/RAMP.md):
+- [ramp.library](https://dd-harp.github.io/ramp.xds/articles/ramp.library.md):
+- [ramp.trace](https://dd-harp.github.io/ramp.xds/articles/ramp.trace.md):
+- [ramp.work](https://dd-harp.github.io/ramp.xds/articles/ramp.work.md):
 - [Basic Mosquito Infection Dynamics in Discrete
   Time](https://dd-harp.github.io/ramp.xds/articles/RM-dts-Mosquito.md):
 - [Beyond Basic
   Setup](https://dd-harp.github.io/ramp.xds/articles/ScalableComplexity.md):
-- [Scaling
-  Relationships](https://dd-harp.github.io/ramp.xds/articles/Scaling.md):
 - [Spatial Transmission Dynamics with
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.md):
-- [Steady States & Stable
-  Orbits](https://dd-harp.github.io/ramp.xds/articles/Steady.md):
-- [Computing
-  Thresholds](https://dd-harp.github.io/ramp.xds/articles/Thresholds.md):
 - [Understanding
   ramp.xds](https://dd-harp.github.io/ramp.xds/articles/Understanding_ramp.xds.md):
 - [Working with

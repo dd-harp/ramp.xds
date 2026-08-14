@@ -157,12 +157,13 @@ calling the software development project **SimBA**. In the narrow sense,
     Through this library, **`ramp.xds`** also supports nimble model
     building and analytics for other mosquito-borne pathogens.
 
-3.  [**`ramp.control`**](https://dd-harp.github.io/ramp.control/) is a
-    collection of disease control models for **`ramp.xds`**.
+3.  [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a
+    collection of utilities to model exogenous forcing, vector control,
+    and other forms of disease control in models for **`ramp.xds`**.
 
-4.  [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a
-    collection of utilities to model exogenous forcing in models for
-    **`ramp.xds`**.
+4.  [**`ramp.qa`**](https://dd-harp.github.io/ramp.qa/) has method for
+    qualitative analysis, including thresholds, scaling relationships,
+    and connectivity
 
 5.  [**`ramp.demog`**](https://dd-harp.github.io/ramp.xds/ramp.demog.md)
     is a supplementary code library for **`ramp.xds`** that handles
@@ -438,9 +439,6 @@ values.
 - [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
   : Compute stable orbits
 
-- [`xds_analyze()`](https://dd-harp.github.io/ramp.xds/reference/xds_analyze.md)
-  : Analyze a Dynamical System
-
 - [`steady_state_X()`](https://dd-harp.github.io/ramp.xds/reference/steady_state_X.md)
   :
 
@@ -470,24 +468,6 @@ values.
   :
 
   Compute steady states for **L** component modules
-
-- [`get_VC()`](https://dd-harp.github.io/ramp.xds/reference/get_VC.md) :
-  Get VC
-
-- [`get_VC_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_VC_matrix.md)
-  : Get VC
-
-### Transmission Matrices
-
-- [`compute_VC()`](https://dd-harp.github.io/ramp.xds/reference/compute_VC.md)
-  : Compute the VC Matrix
-- [`make_VC()`](https://dd-harp.github.io/ramp.xds/reference/make_VC.md)
-  : Make VC
-- [`make_VC(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/make_VC_gem.md)
-  [`make_VC_gem()`](https://dd-harp.github.io/ramp.xds/reference/make_VC_gem.md)
-  : Make the VC Matrix
-- [`compute_HTC()`](https://dd-harp.github.io/ramp.xds/reference/compute_HTC.md)
-  : Compute the HTC Matrix
 
 ## Plot
 
@@ -1235,7 +1215,6 @@ Mosquito Population Dynamical Interface
   Bionomics](https://dd-harp.github.io/ramp.xds/articles/Bionomics.md):
 - [Blood Feeding &
   Transmission](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md):
-- [Connectivity](https://dd-harp.github.io/ramp.xds/articles/Connectivity.md):
 - [Contributing](https://dd-harp.github.io/ramp.xds/articles/Contributing.md):
 - [Delay
   Equations](https://dd-harp.github.io/ramp.xds/articles/Delays.md):
@@ -1271,20 +1250,17 @@ Mosquito Population Dynamical Interface
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/MosquitoSpatialEcology.md):
 - [The MY
   Component](https://dd-harp.github.io/ramp.xds/articles/MY-interface.md):
-- [Qualitative
-  Analysis](https://dd-harp.github.io/ramp.xds/articles/Qualitative.md):
+- [ramp.forcing](https://dd-harp.github.io/ramp.xds/articles/ramp.forcing.md):
+- [RAMP](https://dd-harp.github.io/ramp.xds/articles/RAMP.md):
+- [ramp.library](https://dd-harp.github.io/ramp.xds/articles/ramp.library.md):
+- [ramp.trace](https://dd-harp.github.io/ramp.xds/articles/ramp.trace.md):
+- [ramp.work](https://dd-harp.github.io/ramp.xds/articles/ramp.work.md):
 - [Basic Mosquito Infection Dynamics in Discrete
   Time](https://dd-harp.github.io/ramp.xds/articles/RM-dts-Mosquito.md):
 - [Beyond Basic
   Setup](https://dd-harp.github.io/ramp.xds/articles/ScalableComplexity.md):
-- [Scaling
-  Relationships](https://dd-harp.github.io/ramp.xds/articles/Scaling.md):
 - [Spatial Transmission Dynamics with
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.md):
-- [Steady States & Stable
-  Orbits](https://dd-harp.github.io/ramp.xds/articles/Steady.md):
-- [Computing
-  Thresholds](https://dd-harp.github.io/ramp.xds/articles/Thresholds.md):
 - [Understanding
   ramp.xds](https://dd-harp.github.io/ramp.xds/articles/Understanding_ramp.xds.md):
 - [Working with

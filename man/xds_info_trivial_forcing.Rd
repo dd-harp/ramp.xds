@@ -21,17 +21,13 @@ as a product of four configurable elements:
 }
 
 \deqn{x(t) = \bar x \times S(t) \times T(t) \times K(t)}
-
-In the trivial modules, the functions are specified by
-passing parameters generated for \link[ramp.func:make_function]{ramp.func::make_function}.
 \itemize{
-\item \code{season_par} creates \eqn{S(t)} or \code{F_season} (\emph{eg,} using \link[ramp.func:makepar_F_sin]{ramp.func::makepar_F_sin})
-\item \code{trend_par} creates \eqn{T(t)} or \code{F_trend} (\emph{eg,} using \link[ramp.func:makepar_F_spline]{ramp.func::makepar_F_spline})
-\item \code{shock_par} creates \eqn{K(t)} or \code{F_shock} (\emph{eg,} using \link[ramp.func:makepar_F_sharkbite]{ramp.func::makepar_F_sharkbite})
+\item A trace function library for RAMP is in \code{ramp.trace}
+\item Functions that integrate \code{ramp.trace} and \code{ramp.xds} are found in \code{ramp.forcing}
 }
 
 For a discussion of mechanistic approaches to forcing, see \link{Forcing}
 }
 \seealso{
-\link{trivial_XH}, \link{trivial_MY}, \link{trivial_L}, \link{xds_setup_eir}, \link[ramp.func:make_ts_function]{ramp.func::make_ts_function}, and \link{Forcing}
+\link{trivial_XH}, \link{trivial_MY}, \link{trivial_L}, \link{xds_setup_eir}, and \link{Forcing}
 }

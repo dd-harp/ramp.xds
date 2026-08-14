@@ -49,7 +49,17 @@
     <li><a class="dropdown-item" href="articles/Delays.html">Delay Equations</a></li>
     <li><a class="dropdown-item" href="articles/Forcing.html">Ports &amp; Junctions</a></li>
     <li><a class="dropdown-item" href="articles/DTS.html">Discrete Time Systems</a></li>
-    <li><a class="dropdown-item" href="articles/TraceFunctions.html">Functions</a></li>
+  </ul>
+</li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-supporting-software" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Supporting Software</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-supporting-software">
+<li><a class="dropdown-item" href="articles/RAMP.html">RAMP &amp; SimBA</a></li>
+    <li><a class="dropdown-item" href="articles/ramp.library.html">ramp.library - Model Library</a></li>
+    <li><a class="dropdown-item" href="articles/ramp.trace.html">ramp.trace - Trace Functions</a></li>
+    <li><a class="dropdown-item" href="articles/ramp.forcing.html">ramp.forcing - Exogenous Forcing</a></li>
+    <li><a class="dropdown-item" href="articles/ramp.qa.html">ramp.qa - Qualitative Analysis</a></li>
+    <li><a class="dropdown-item" href="articles/ramp.work.html">ramp.work - Model Fitting</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -84,16 +94,6 @@
 <li><a class="dropdown-item" href="articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="articles/Exposure.html">Exposure</a></li>
-  </ul>
-</li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-analysis" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Analysis</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-analysis">
-<li><a class="dropdown-item" href="articles/Qualitative.html">Qualitative Analysis</a></li>
-    <li><a class="dropdown-item" href="articles/Steady.html">Steady States &amp; Stable Orbits</a></li>
-    <li><a class="dropdown-item" href="articles/Thresholds.html">Thresholds</a></li>
-    <li><a class="dropdown-item" href="articles/Connectivity.html">Connectivity</a></li>
-    <li><a class="dropdown-item" href="articles/Scaling.html">Scaling Relationships</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="articles/Glossary.html">Glossary</a></li>
@@ -163,8 +163,8 @@
 <ol style="list-style-type: decimal">
 <li><p><strong><code>ramp.xds</code></strong> handles setup, solving, plotting, and some analysis. It was developed to build and solve dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens based on a well-defined mathematical framework. It includes a basic set of models — enough to design, verify, and demonstrate the basic features of modular software.</p></li>
 <li><p><a href="https://dd-harp.github.io/ramp.library/" class="external-link"><strong><code>ramp.library</code></strong></a> is an extended library of models — stable code that has been tested and verified. It includes a large set of model families published in the peer-reviewed literature that are not included in <strong><code>ramp.xds</code></strong>. The ability to reuse code reduces the costs of replicating studies. Through this library, <strong><code>ramp.xds</code></strong> also supports nimble model building and analytics for other mosquito-borne pathogens.</p></li>
-<li><p><a href="https://dd-harp.github.io/ramp.control/" class="external-link"><strong><code>ramp.control</code></strong></a> is a collection of disease control models for <strong><code>ramp.xds</code></strong>.</p></li>
-<li><p><a href="https://dd-harp.github.io/ramp.forcing/" class="external-link"><strong><code>ramp.forcing</code></strong></a> is a collection of utilities to model exogenous forcing in models for <strong><code>ramp.xds</code></strong>.</p></li>
+<li><p><a href="https://dd-harp.github.io/ramp.forcing/" class="external-link"><strong><code>ramp.forcing</code></strong></a> is a collection of utilities to model exogenous forcing, vector control, and other forms of disease control in models for <strong><code>ramp.xds</code></strong>.</p></li>
+<li><p><a href="https://dd-harp.github.io/ramp.qa/" class="external-link"><strong><code>ramp.qa</code></strong></a> has method for qualitative analysis, including thresholds, scaling relationships, and connectivity</p></li>
 <li><p><a href="ramp.demog.html"><strong><code>ramp.demog</code></strong></a> is a supplementary code library for <strong><code>ramp.xds</code></strong> that handles human demography and stratification, including vital dynamics and age structure.</p></li>
 <li><p><a href="https://dd-harp.github.io/ramp.work/" class="external-link"><strong><code>ramp.work</code></strong></a> includes algorithms to apply the framework, including code to fit models to data and to do constrained optimization.</p></li>
 </ol>
