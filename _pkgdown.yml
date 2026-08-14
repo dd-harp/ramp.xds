@@ -24,8 +24,20 @@ navbar:
       href: articles/Forcing.html
     - text: Discrete Time Systems 
       href: articles/DTS.html
-    - text: Functions 
-      href: articles/TraceFunctions.html
+  - text: Supporting Software
+    menu:
+    - text: RAMP & SimBA
+      href: articles/RAMP.html
+    - text: ramp.library - Model Library
+      href: articles/ramp.library.html
+    - text: ramp.trace - Trace Functions
+      href: articles/ramp.trace.html
+    - text: ramp.forcing - Exogenous Forcing
+      href: articles/ramp.forcing.html
+    - text: ramp.qa - Qualitative Analysis
+      href: articles/ramp.qa.html
+    - text: ramp.work - Model Fitting
+      href: articles/ramp.work.html
   - text: XH 
     menu:
     - text: Human / Host Component (XH) 
@@ -62,18 +74,6 @@ navbar:
       href: articles/BloodFeeding.html
     - text: Exposure
       href: articles/Exposure.html
-  - text: Analysis
-    menu:
-    - text: Qualitative Analysis
-      href: articles/Qualitative.html
-    - text: Steady States & Stable Orbits
-      href: articles/Steady.html
-    - text: Thresholds
-      href: articles/Thresholds.html
-    - text: Connectivity
-      href: articles/Connectivity.html
-    - text: Scaling Relationships
-      href: articles/Scaling.html
   - text: Glossary
     href: articles/Glossary.html
   - text: Reference
@@ -178,21 +178,12 @@ reference:
   contents:
   - xds_steady
   - xds_stable_orbit
-  - xds_analyze
   - steady_state_X
   - steady_state_XH
   - steady_state_M
   - steady_state_MY
   - steady_state_Y
   - steady_state_L
-  - get_VC
-  - get_VC_matrix 
-- subtitle: Transmission Matrices
-  contents:
-  - compute_VC
-  - make_VC
-  - make_VC_gem
-  - compute_HTC
 - title: Plot  
 - subtitle: PR & EIR 
   desc: | 
@@ -202,7 +193,7 @@ reference:
   - xds_lines_PR
   - xds_plot_EIR
   - xds_lines_EIR
-- subtitle: Adult Mosquito 
+- subtitle: Adult Mosquito
   desc: | 
     Plot common variables and terms 
   contents:

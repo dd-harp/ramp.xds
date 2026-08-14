@@ -98,9 +98,9 @@ It includes a basic set of models --- enough to design, verify, and demonstrate 
 
 2. [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an extended library of models --- stable code that has been tested and verified. It includes a large set of model families published in the peer-reviewed literature that are not included in **`ramp.xds`**. The ability to reuse code reduces the costs of replicating studies. Through this library, **`ramp.xds`** also supports nimble model building and analytics for other mosquito-borne pathogens. 
 
-3. [**`ramp.control`**](https://dd-harp.github.io/ramp.control/) is a collection of disease control models for **`ramp.xds`**.
+3. [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a collection of utilities to model exogenous forcing, vector control, and other forms of disease control in models for **`ramp.xds`**.
 
-4. [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a collection of utilities to model exogenous forcing in models for **`ramp.xds`**.
+4. [**`ramp.qa`**](https://dd-harp.github.io/ramp.qa/) has method for qualitative analysis, including thresholds, scaling relationships, and connectivity
 
 5. [**`ramp.demog`**](ramp.demog.html) is a supplementary code library for **`ramp.xds`** that handles human demography and stratification, including vital dynamics and age structure.
 
@@ -109,7 +109,6 @@ It includes a basic set of models --- enough to design, verify, and demonstrate 
 **`ramp.xds`** is under active development. It supersedes two other software packages, no longer under active development: [**`exDE`**](https://dd-harp.github.io/exDE/) and [**`MicroMoB`**](https://dd-harp.github.io/MicroMoB/). The history of development of RAMP simulation software has been memorialized in a [vignette](https://dd-harp.github.io/ramp.xds/articles/History.html).
 
 The material in this website supports development and use of **`ramp.xds`**. 
-
 
 ## Contributing
 

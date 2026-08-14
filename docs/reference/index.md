@@ -188,9 +188,6 @@ values.
 - [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
   : Compute stable orbits
 
-- [`xds_analyze()`](https://dd-harp.github.io/ramp.xds/reference/xds_analyze.md)
-  : Analyze a Dynamical System
-
 - [`steady_state_X()`](https://dd-harp.github.io/ramp.xds/reference/steady_state_X.md)
   :
 
@@ -220,24 +217,6 @@ values.
   :
 
   Compute steady states for **L** component modules
-
-- [`get_VC()`](https://dd-harp.github.io/ramp.xds/reference/get_VC.md) :
-  Get VC
-
-- [`get_VC_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_VC_matrix.md)
-  : Get VC
-
-### Transmission Matrices
-
-- [`compute_VC()`](https://dd-harp.github.io/ramp.xds/reference/compute_VC.md)
-  : Compute the VC Matrix
-- [`make_VC()`](https://dd-harp.github.io/ramp.xds/reference/make_VC.md)
-  : Make VC
-- [`make_VC(`*`<macdonald>`*`)`](https://dd-harp.github.io/ramp.xds/reference/make_VC_gem.md)
-  [`make_VC_gem()`](https://dd-harp.github.io/ramp.xds/reference/make_VC_gem.md)
-  : Make the VC Matrix
-- [`compute_HTC()`](https://dd-harp.github.io/ramp.xds/reference/compute_HTC.md)
-  : Compute the HTC Matrix
 
 ## Plot
 

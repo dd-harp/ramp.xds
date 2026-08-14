@@ -17,14 +17,12 @@
 #' 
 #' \deqn{x(t) = \bar x \times S(t) \times T(t) \times K(t)} 
 #' 
-#' In the trivial modules, the functions are specified by 
-#' passing parameters generated for [make_function]. 
-#' + `season_par` creates \eqn{S(t)} or `F_season` (*eg,* using [makepar_F_sin])
-#' + `trend_par` creates \eqn{T(t)} or `F_trend` (*eg,* using [makepar_F_spline])
-#' + `shock_par` creates \eqn{K(t)} or `F_shock` (*eg,* using [makepar_F_sharkbite])
+#' + A trace function library for RAMP is in `ramp.trace`
+#' 
+#' + Functions that integrate `ramp.trace` and `ramp.xds` are found in `ramp.forcing`
 #'
 #' For a discussion of mechanistic approaches to forcing, see [Forcing]
 #' 
-#' @seealso [trivial_XH], [trivial_MY], [trivial_L], [xds_setup_eir], [make_ts_function], and [Forcing]
+#' @seealso [trivial_XH], [trivial_MY], [trivial_L], [xds_setup_eir], and [Forcing]
 #' @name xds_info_trivial_forcing
 NULL

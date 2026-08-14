@@ -1,0 +1,9 @@
+---
+title: "ramp.forcing"
+subtitle: "Exogenous Forcing by Weather and Disease Control"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ramp.forcing}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---

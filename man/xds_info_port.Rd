@@ -100,9 +100,9 @@ unmodified.
 \section{Trace Function Case}{
 
 For most ports, an alternative case is to configure
-a trace function using package standard \emph{multiplicative
-decomposable time
-series} trace function (see \link[ramp.func:make_ts_function]{ramp.func::make_ts_function}).
+a trace function using package standard
+\emph{composable time
+series} trace function (see \code{ramp.trace} amd \code{ramp.forcing}).
 }
 
 \section{Setup}{

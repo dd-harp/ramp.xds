@@ -1,0 +1,9 @@
+---
+title: "ramp.work"
+subtitle: "Model Fitting"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ramp.work}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
