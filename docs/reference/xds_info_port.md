@@ -90,7 +90,7 @@ and `this_port.static` returns `xds_obj` unmodified.
 For most ports, an alternative case is to configure a trace function
 using package standard *multiplicative decomposable time series* trace
 function (see
-[make_ts_function](https://dd-harp.github.io/ramp.xds/reference/make_ts_function.md)).
+[ramp.func::make_ts_function](https://rdrr.io/pkg/ramp.func/man/make_ts_function.html)).
 
 ## Setup
 

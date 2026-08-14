@@ -387,10 +387,10 @@ xds_setup_human = function(model_name = "unnamed",
 #'
 #' @param model_name is a name for the model (arbitrary)
 #' @param eir is the entomological inoculation rate
-#' @param season_par parameters to configure a seasonality function using [make_function]
-#' @param trend_par parameters to configure a trends function using [make_function]
-#' @param age_par parameters to configure an age weights function using [make_function]
-#' @param shock_par parameters to configure a shock using [make_function]
+#' @param F_season the seasonal pattern function
+#' @param F_trend the trend function
+#' @param F_age the relative biting rate by age 
+#' @param F_shock the shock function
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname is a character string specifying an **X** Component module
 #' @param XHoptions a list to configure the **X** Component module
@@ -401,10 +401,10 @@ xds_setup_human = function(model_name = "unnamed",
 #' @export
 xds_setup_eir = function(model_name = "unnamed",
                          eir=1,
-                         season_par = makepar_F_one(),
-                         trend_par = makepar_F_one(),
-                         age_par = makepar_F_one(),
-                         shock_par = makepar_F_one(),
+                         F_season = F_one, 
+                         F_trend = F_one, 
+                         F_shock = F_one,
+                         F_age = F_one, 
                          xds = 'ode',
 
                          # Dynamical Components
@@ -424,11 +424,10 @@ xds_setup_eir = function(model_name = "unnamed",
   xds_obj$EIR_obj <- list()
   xds_obj$EIR_obj$eir <- eir
   xds_obj$EIR_obj$scale <- 1
-  xds_obj$EIR_obj$season_par <- season_par
-  xds_obj$EIR_obj$trend_par <- trend_par
-  xds_obj$EIR_obj$age_par <- age_par
-  xds_obj$EIR_obj$shock_par <- shock_par
-  xds_obj = rebuild_forcing_functions(xds_obj, 1)
+  xds_obj$EIR_obj$F_season <- F_season
+  xds_obj$EIR_obj$F_trend <- F_trend
+  xds_obj$EIR_obj$F_age <- F_age
+  xds_obj$EIR_obj$F_shock <- F_shock
 
   # Aquatic Mosquito Dynamics
   xds_obj       <- setup_L_obj("trivial", xds_obj, 1, list())

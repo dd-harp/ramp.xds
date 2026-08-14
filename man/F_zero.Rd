@@ -2,17 +2,17 @@
 % Please edit documentation in R/functions.R
 \name{F_zero}
 \alias{F_zero}
-\title{The trivial function}
+\title{F_zero}
 \usage{
 F_zero(t)
 }
 \arguments{
-\item{t}{an arbitrary input}
+\item{t}{time}
 }
 \value{
-a vector of ones of length x
+0
 }
 \description{
-A function that returns 0
+F_zero
 }
 \keyword{internal}

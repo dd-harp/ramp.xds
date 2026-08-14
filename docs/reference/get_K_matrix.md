@@ -25,3 +25,8 @@ get_K_matrix(xds_obj, behave = "0", s = 1)
 ## Value
 
 an **`xds`** object
+
+## Note
+
+The `behave` argument is used for behavioral state models in
+`ramp.library`

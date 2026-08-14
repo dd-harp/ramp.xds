@@ -37,31 +37,24 @@ where
 
   the human fraction
 
-- `season_par`:
+- `F_season`:
 
-  parameters for
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md):
-  `F_season=make_function(season_par)`
+  a seasonal pattern function, \\{S(t)}\\
 
-- `trend_par`:
+- `F_trend`:
 
-  parameters for
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md):
-  `F_trend=make_function(trend_par)`
+  a trend function, \\T(t)\\
 
-- `shock_par`:
+- `F_shock`:
 
-  parameters for
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md):
-  `F_shock=make_function(shock_par)`
+  a shock function, \\K(t)\\
 
-The default setup options:
+The default values are `F_season=F_trend=F_shock=F_one`
 
-- for the
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
-  parameters, `season_par = trend_par = shock_par = makepar_F_one()`.
+Setup also adds the objects `season_par` and `trend_par` and `shock_par`
+for use by `ramp.trace`
 
-- for the bionomic parameters, `f=q=Z=eggs=1`.
+For the bionomic parameters, `f=q=Z=eggs=1`.
 
 ## Get
 
@@ -83,17 +76,15 @@ Note: use `get_MY_pars` to inspect `eggs`
 
 ## Change
 
-- `change_MY_pars` — change parameters by name
+- `change_MY_pars` — change bionomic parameters by name
 
 - `change_mean_forcing` — changes `Z`
 
-- `change_season` — changes elements of `season_par`
+- `change_F_season` — changes `F_season`
 
-- `change_trend` — changes elements of `trend_par`
+- `change_F_trend` — changes `F_trend`
 
-- `change_shock` — changes elements of `shock_par`
-
-Note: use `change_MY_pars` to change `eggs`
+- `change_F_shock` — changes `F_shock`
 
 ## Notes
 
@@ -101,7 +92,8 @@ Note: use `change_MY_pars` to change `eggs`
 
 2.  The size of an object saved by `saveRDS` balloons if it saves a
     function, so `saveXDS` function strips the functions and `readRDS`
-    remakes the function from the stored parameters. `F_season`,
-    `F_trend`, and `F_shock` can be set up manually by passing any user
-    defined function. If so, the user should use `saveRDS` and `readRDS`
-    rather than `saveXDS` and `readXDS`
+    remakes the function from the stored parameters.
+
+`F_season`, `F_trend`, and `F_shock` can be set up manually by passing
+any user defined function. If so, the user should use `saveRDS` and
+`readRDS` rather than `saveXDS` and `readXDS`

@@ -1,6 +1,6 @@
-# The trivial function
+# F_one
 
-A function that returns 1
+F_one
 
 ## Usage
 
@@ -12,8 +12,8 @@ F_one(t)
 
 - t:
 
-  an arbitrary input
+  time
 
 ## Value
 
-a vector of ones of length x
+1

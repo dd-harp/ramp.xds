@@ -8,8 +8,6 @@
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
-
-\item{i}{the host species index}
 }
 \value{
 a \link{list}

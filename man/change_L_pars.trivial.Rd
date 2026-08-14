@@ -17,10 +17,9 @@
 an \strong{\code{xds}} object
 }
 \description{
-If \code{Lambda}, \code{season_par}, \code{trend_par}, or \code{shock_par}
-are named in \code{options}, the old value is replaced. After updating
-the parameter objects, \code{F_season}, \code{F_trend}, and \code{F_shock} are
-recompiled by calling \link{make_function} on the updated parameters
-via \link{rebuild_forcing_functions}.
+Change \code{Lambda}, \code{F_season}, \code{F_trend}, or \code{F_shock}
+}
+\note{
+Utilities for trace functions are in \code{ramp.trace}
 }
 \keyword{internal}

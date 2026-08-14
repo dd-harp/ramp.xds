@@ -11,9 +11,9 @@ make_MY_obj_trivial(
   q = 1,
   Z = 1,
   eggs = 1,
-  season_par = makepar_F_one(),
-  trend_par = makepar_F_one(),
-  shock_par = makepar_F_one()
+  F_season = F_one,
+  F_trend = F_one,
+  F_shock = F_one
 )
 }
 \arguments{
@@ -29,11 +29,11 @@ make_MY_obj_trivial(
 
 \item{eggs}{the mean egg laying rate}
 
-\item{season_par}{parameters to configure a \code{F_season} using \link{make_function}}
+\item{F_season}{the seasonal pattern function}
 
-\item{trend_par}{parameters to configure \code{F_trend} using \link{make_function}}
+\item{F_trend}{the trend function}
 
-\item{shock_par}{parameters to configure \code{F_shock} using \link{make_function}}
+\item{F_shock}{the shock function}
 }
 \value{
 a \link{list}

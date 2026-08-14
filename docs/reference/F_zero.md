@@ -1,6 +1,6 @@
-# The trivial function
+# F_zero
 
-A function that returns 0
+F_zero
 
 ## Usage
 
@@ -12,8 +12,8 @@ F_zero(t)
 
 - t:
 
-  an arbitrary input
+  time
 
 ## Value
 
-a vector of ones of length x
+0

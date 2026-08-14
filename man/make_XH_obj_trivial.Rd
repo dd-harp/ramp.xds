@@ -9,8 +9,9 @@ make_XH_obj_trivial(
   options,
   kappa = 0.1,
   HPop = 1,
-  season_par = makepar_F_one(),
-  trend_par = makepar_F_one()
+  F_season = F_one,
+  F_trend = F_one,
+  F_shock = F_one
 )
 }
 \arguments{
@@ -22,9 +23,11 @@ make_XH_obj_trivial(
 
 \item{HPop}{initial human population density}
 
-\item{season_par}{parameters to configure a \code{F_season} using \link{make_function}}
+\item{F_season}{the seasonal pattern function}
 
-\item{trend_par}{parameters to configure \code{F_trend} using \link{make_function}}
+\item{F_trend}{the trend function}
+
+\item{F_shock}{the shock function}
 }
 \value{
 a \link{list}

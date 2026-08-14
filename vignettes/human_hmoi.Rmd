@@ -117,9 +117,9 @@ xds_obj = setup_L_obj("trivial", xds_obj, 1)
 
 
 ```{r}
-F_season = function(t){0*t+1}
-F_trend = function(t){0*t+1}
-F_shock = function(t){0*t+1}
+F_season = F_one
+F_trend = F_one
+F_shock = F_one
 ```
 
 
@@ -131,7 +131,11 @@ xds_obj$EIR_obj$scale <- 1
 xds_obj$EIR_obj$F_season <- F_season
 xds_obj$EIR_obj$F_trend <- F_trend
 xds_obj$EIR_obj$F_shock <- F_shock
-xds_obj$EIR_obj$F_age <- F_flat
+```
+
+
+```{r}
+xds_obj$EIR_obj$F_age <- F_one
 xds_obj$EIR_obj$season_par <- list() 
 xds_obj$EIR_obj$trend_par<- list() 
 xds_obj$EIR_obj$shock_par<- list() 

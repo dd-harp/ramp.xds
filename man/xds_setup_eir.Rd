@@ -7,10 +7,10 @@
 xds_setup_eir(
   model_name = "unnamed",
   eir = 1,
-  season_par = makepar_F_one(),
-  trend_par = makepar_F_one(),
-  age_par = makepar_F_one(),
-  shock_par = makepar_F_one(),
+  F_season = F_one,
+  F_trend = F_one,
+  F_shock = F_one,
+  F_age = F_one,
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
@@ -23,13 +23,13 @@ xds_setup_eir(
 
 \item{eir}{is the entomological inoculation rate}
 
-\item{season_par}{parameters to configure a seasonality function using \link{make_function}}
+\item{F_season}{the seasonal pattern function}
 
-\item{trend_par}{parameters to configure a trends function using \link{make_function}}
+\item{F_trend}{the trend function}
 
-\item{age_par}{parameters to configure an age weights function using \link{make_function}}
+\item{F_shock}{the shock function}
 
-\item{shock_par}{parameters to configure a shock using \link{make_function}}
+\item{F_age}{the relative biting rate by age}
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 

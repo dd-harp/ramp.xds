@@ -28,16 +28,17 @@ where
 \item{\code{Z}}{the mean density of infectious mosquitoes}
 \item{\code{f}}{the blood feeding rate}
 \item{\code{q}}{the human fraction}
-\item{\code{season_par}}{parameters for \link{make_function}: \code{F_season=make_function(season_par)}}
-\item{\code{trend_par}}{parameters for \link{make_function}: \code{F_trend=make_function(trend_par)}}
-\item{\code{shock_par}}{parameters for \link{make_function}: \code{F_shock=make_function(shock_par)}}
+\item{\code{F_season}}{a seasonal pattern function, \eqn{{S(t)}}}
+\item{\code{F_trend}}{a trend function, \eqn{T(t)}}
+\item{\code{F_shock}}{a shock function, \eqn{K(t)}}
 }
 
-The default setup options:
-\itemize{
-\item for the \link{make_function} parameters, \code{season_par = trend_par = shock_par = makepar_F_one()}.
-\item for the bionomic parameters, \code{f=q=Z=eggs=1}.
-}
+The default values are \code{F_season=F_trend=F_shock=F_one}
+
+Setup also adds the objects \code{season_par} and \code{trend_par} and \code{shock_par} for
+use by \code{ramp.trace}
+
+For the bionomic parameters, \code{f=q=Z=eggs=1}.
 }
 
 \section{Get}{
@@ -58,14 +59,12 @@ Note: use \code{get_MY_pars} to inspect \code{eggs}
 \section{Change}{
 
 \itemize{
-\item \code{change_MY_pars} --- change parameters by name
+\item \code{change_MY_pars} --- change bionomic parameters by name
 \item \code{change_mean_forcing} --- changes \code{Z}
-\item \code{change_season} --- changes elements of \code{season_par}
-\item \code{change_trend}  --- changes elements of \code{trend_par}
-\item \code{change_shock}  --- changes elements of \code{shock_par}
+\item \code{change_F_season} --- changes \code{F_season}
+\item \code{change_F_trend}  --- changes \code{F_trend}
+\item \code{change_F_shock}  --- changes \code{F_shock}
 }
-
-Note: use \code{change_MY_pars} to change \code{eggs}
 }
 
 \section{Notes}{
@@ -75,9 +74,10 @@ Note: use \code{change_MY_pars} to change \code{eggs}
 \item The size of an object saved by \code{saveRDS} balloons if it saves a function,
 so \code{saveXDS} function strips the functions and \code{readRDS} remakes the function
 from the stored parameters.
+}
+
 \code{F_season}, \code{F_trend}, and \code{F_shock} can be set up manually by passing any
 user defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
 rather than \code{saveXDS} and \code{readXDS}
-}
 }
 

@@ -4,7 +4,12 @@
 \alias{make_K_matrix_xy}
 \title{make a Kernel-Based Mosquito Dispersal Matrix}
 \usage{
-make_K_matrix_xy(xy, ker = F_exp)
+make_K_matrix_xy(
+  xy,
+  ker = function(x) {
+     exp(-x)
+ }
+)
 }
 \arguments{
 \item{xy}{is a vector of the xy-coordinates of patch locations}

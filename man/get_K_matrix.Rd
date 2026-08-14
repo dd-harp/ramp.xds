@@ -19,3 +19,7 @@ an \strong{\code{xds}} object
 \description{
 Get the Mosquito Dispersal Matrix
 }
+\note{
+The \code{behave} argument is used for
+behavioral state models in \code{ramp.library}
+}

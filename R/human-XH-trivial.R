@@ -16,12 +16,12 @@
 #' @section Parameters:
 #' \describe{
 #'   \item{`kappa`}{the net infectiousness}
-#'   \item{`season_par`}{parameters for [make_function]: `F_season=make_par(season_par`)}
-#'   \item{`trend_par`}{parameters for [make_function]: `F_trend=make_par(trend_par)`}
-#'   \item{`shock_par`}{parameters for [make_function]: `F_shock=make_par(shock_par)`}
-#' }
+#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t)}}}
+#'   \item{`F_trend`}{a trend function, \eqn{T(t)}}
+#'   \item{`F_shock`}{a shock function, \eqn{K(t)}}#' }
 #'  
-#' The default setup option is `season_par = trend_par = shock_par = makepar_F_one()`. 
+#' Setup also adds the objects `season_par` and `trend_par` and `shock_par` for
+#' use by `ramp.trace`
 #' 
 #' @section Get: 
 #' 
@@ -38,11 +38,12 @@
 #' 2. The size of an object saved by `saveRDS` balloons if it saves a function,
 #' so `saveXDS` function strips the functions and `readRDS` remakes the function
 #' from the stored parameters.
-#' `F_season`, `F_trend`, and `F_shock` can be set up manually by passing any
+#' 
+#' 3. `F_season`, `F_trend`, and `F_shock` can be set up manually by passing any
 #' user defined function. If so, the user should use `saveRDS` and `readRDS` 
 #' rather than `saveXDS` and `readXDS` 
 #' 
-#' 3. Setup expects that `membership= c(1:nPatches),` but any membership vector 
+#' 4. Setup expects that `membership= c(1:nPatches),` but any membership vector 
 #' works.  
 #' 
 #'
@@ -91,7 +92,7 @@ check_XH.trivial = function(xds_obj, i){
 #' @export
 F_I.trivial <- function(t, y, xds_obj, i) {
   H = F_H(t, y, xds_obj, i)
-  X = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t))
+  X = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t)*F_shock(t))
   return(X)
 }
 
@@ -121,26 +122,30 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' @param options a [list]
 #' @param kappa net infectiousness
 #' @param HPop initial human population density
-#' @param season_par parameters to configure a `F_season` using [make_function]
-#' @param trend_par parameters to configure `F_trend` using [make_function]
+#' @param F_season the seasonal pattern function
+#' @param F_trend the trend function
+#' @param F_shock the shock function
 #' @return a [list]
 #' @keywords internal
 #' @export
 make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
-                              season_par = makepar_F_one(),
-                              trend_par = makepar_F_one()){
+                                F_season = F_one, 
+                                F_trend = F_one, 
+                                F_shock = F_one){
   with(options,{
     XH_obj <- list()
     class(XH_obj) <- c('trivial')
     XH_obj$H = checkIt(HPop, nPatches)
     XH_obj$kappa= checkIt(kappa, nPatches)
-
-    XH_obj$season_par <- season_par
-    XH_obj$F_season <- make_function(season_par)
-
-    XH_obj$trend_par <- trend_par
-    XH_obj$F_trend <- make_function(trend_par)
-
+    
+    XH_obj$F_season = F_season
+    XH_obj$F_trend = F_trend
+    XH_obj$F_shock = F_shock
+    
+    XH_obj$season_par = list() 
+    XH_obj$trend_par = list()
+    XH_obj$shock_par = list()
+    
     return(XH_obj)
   })}
 
@@ -280,7 +285,6 @@ get_XH_vars.trivial<- function(y, xds_obj, i) {
 #' @title Get parameters for `trivial` (**XH**)
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
 #' @return a [list]
 #' @keywords internal
 #' @export

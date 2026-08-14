@@ -22,12 +22,12 @@ Note: \eqn{0 \leq F_\kappa(t) \leq 1}
 
 \describe{
 \item{\code{kappa}}{the net infectiousness}
-\item{\code{season_par}}{parameters for \link{make_function}: \verb{F_season=make_par(season_par})}
-\item{\code{trend_par}}{parameters for \link{make_function}: \code{F_trend=make_par(trend_par)}}
-\item{\code{shock_par}}{parameters for \link{make_function}: \code{F_shock=make_par(shock_par)}}
-}
+\item{\code{F_season}}{a seasonal pattern function, \eqn{{S(t)}}}
+\item{\code{F_trend}}{a trend function, \eqn{T(t)}}
+\item{\code{F_shock}}{a shock function, \eqn{K(t)}}#' }
 
-The default setup option is \code{season_par = trend_par = shock_par = makepar_F_one()}.
+Setup also adds the objects \code{season_par} and \code{trend_par} and \code{shock_par} for
+use by \code{ramp.trace}
 }
 
 \section{Get}{
@@ -51,7 +51,7 @@ The default setup option is \code{season_par = trend_par = shock_par = makepar_F
 \item The size of an object saved by \code{saveRDS} balloons if it saves a function,
 so \code{saveXDS} function strips the functions and \code{readRDS} remakes the function
 from the stored parameters.
-\code{F_season}, \code{F_trend}, and \code{F_shock} can be set up manually by passing any
+\item \code{F_season}, \code{F_trend}, and \code{F_shock} can be set up manually by passing any
 user defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
 rather than \code{saveXDS} and \code{readXDS}
 \item Setup expects that \verb{membership= c(1:nPatches),} but any membership vector

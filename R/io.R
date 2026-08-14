@@ -5,21 +5,22 @@
 #' Removes forcing functions (to reduce the file size)
 #' and stores the `xds` object using `saveRDS`
 #'
-#' @seealso [readXDS()]
 #' @note
 #' Forcing functions (*e.g.* F_trend) are stored
 #' on the `xds` object in a form that
-#' takes up enormous space.
-#'
-#' Since they are created
-#' by calling [make_function()] from the
-#' stored *function objects*
-#' (*e.g.* `trend_par`),
-#' they are redundant.
+#' takes up enormous space. This removes the functions
+#' before saving. 
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param filename the file name
-#'
+#' 
+#' @note The function `readRDS` in `ramp.trace` 
+#' provides one method for saving the parameter
+#' sets for trace functions, and rebuilds the 
+#' functions
+#' 
+#' @seealso `ramp.trace`
+#' 
 #' @return invisible()
 #' @export
 saveXDS = function(xds_obj, filename){
@@ -109,19 +110,3 @@ saveXDS.MY = function(xds_obj, filename){
   return(invisible())
 }
 
-
-#' readRDS for `xds` Objects
-#'
-#' @description
-#' Read the `xds` object using `readRDS` and rebuild the forcing functions
-#'
-#' @param filename the file name
-#'
-#' @return an **`xds`** object
-#' @export
-readXDS = function(filename){
-  xds_obj <- readRDS(filename)
-  for(s in 1:xds_obj$nVectorSpecies)
-    xds_obj <- rebuild_forcing_functions(xds_obj, s)
-  return(xds_obj)
-}

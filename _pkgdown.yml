@@ -281,7 +281,6 @@ reference:
   - get_MY_inits
   - get_L_vars
   - get_L_inits
-  - get_variables 
 - subtitle: Get Forcing
   desc: |
     Get the parameters from trace functions
@@ -334,15 +333,14 @@ reference:
     Change parameters
   contents:
   - change_mean_forcing
-  - change_season
-  - change_trend
-  - change_shock
+  - change_F_season
+  - change_F_trend
+  - change_F_shock
 - title: Save & Read 
   desc: | 
-    Build and store **`xds`** model objects
+    Store **`xds`** model objects
   contents:
   - saveXDS 
-  - readXDS
 - title: XH Component 
   desc: |
     Models of human / host infection dynamics - immunity - disease - infectiousness - diagnostics and detection 
@@ -429,9 +427,6 @@ reference:
   - setup_V_inits 
   - get_V_inits
   - change_V_inits 
-  - change_spline
-  - change_spline_y
-  - change_shock
 - title: Blood Feeding & Transmission
   desc:  
   contents:
@@ -530,22 +525,3 @@ reference:
   - get_habitat_matrix
   - change_habitat_search_weights
   - change_bad_habitat
-- title: Functions 
-  desc: |
-    A function maker 
-  contents:
-  - make_function
-  - make_ts_function 
-  - makepar_F_zero
-  - makepar_F_one
-  - makepar_F_val
-  - makepar_F_sin
-  - makepar_F_sum
-  - makepar_F_product
-  - makepar_F_nproduct
-  - makepar_F_sigmoid
-  - makepar_F_sharkfin
-  - makepar_F_sharkbite
-  - makepar_F_type2
-  - makepar_F_spline
-  - make_ts_function 

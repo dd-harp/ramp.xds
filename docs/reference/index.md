@@ -446,9 +446,6 @@ Get initial values and indices
 
   Get initial values (**L**)
 
-- [`get_variables()`](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  : Get Variables
-
 ### Get Forcing
 
 Get the parameters from trace functions
@@ -571,26 +568,21 @@ Change parameters
 
 - [`change_mean_forcing()`](https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.md)
   : Change mean forcing
-- [`change_season()`](https://dd-harp.github.io/ramp.xds/reference/change_season.md)
-  : Change season parameters
-- [`change_trend()`](https://dd-harp.github.io/ramp.xds/reference/change_trend.md)
-  : Set the interpolating points
-- [`change_shock()`](https://dd-harp.github.io/ramp.xds/reference/change_shock.md)
-  : Change shock parameters
+- [`change_F_season()`](https://dd-harp.github.io/ramp.xds/reference/change_F_season.md)
+  : Change F_season
+- [`change_F_trend()`](https://dd-harp.github.io/ramp.xds/reference/change_F_trend.md)
+  : Change F_trend
+- [`change_F_shock()`](https://dd-harp.github.io/ramp.xds/reference/change_F_shock.md)
+  : Change F_shock
 
 ## Save & Read
 
-Build and store **`xds`** model objects
+Store **`xds`** model objects
 
 - [`saveXDS()`](https://dd-harp.github.io/ramp.xds/reference/saveXDS.md)
   :
 
   saveRDS for `xds` Objects
-
-- [`readXDS()`](https://dd-harp.github.io/ramp.xds/reference/readXDS.md)
-  :
-
-  readRDS for `xds` Objects
 
 ## XH Component
 
@@ -804,15 +796,6 @@ Compute the derivatives for other variables
 - [`change_V_inits()`](https://dd-harp.github.io/ramp.xds/reference/change_V_inits.md)
   : Set new X parameter values
 
-- [`change_spline()`](https://dd-harp.github.io/ramp.xds/reference/change_spline.md)
-  : Change spline interpolation points
-
-- [`change_spline_y()`](https://dd-harp.github.io/ramp.xds/reference/change_spline_y.md)
-  : Change y values for spline interpolation points
-
-- [`change_shock()`](https://dd-harp.github.io/ramp.xds/reference/change_shock.md)
-  : Change shock parameters
-
 ## Blood Feeding & Transmission
 
 - [`xds_info_blood_feeding`](https://dd-harp.github.io/ramp.xds/reference/xds_info_blood_feeding.md)
@@ -987,36 +970,3 @@ Mosquito Population Dynamical Interface
   : Change habitat search weights
 - [`change_bad_habitat()`](https://dd-harp.github.io/ramp.xds/reference/change_bad_habitat.md)
   : Change Bad Habitat Availability
-
-## Functions
-
-A function maker
-
-- [`make_function()`](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
-  : Make a Function
-- [`make_ts_function()`](https://dd-harp.github.io/ramp.xds/reference/make_ts_function.md)
-  : Make a Time Series Function
-- [`makepar_F_zero()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_zero.md)
-  : parameters for make_function
-- [`makepar_F_one()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_one.md)
-  : parameters for make_function
-- [`makepar_F_val()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_val.md)
-  : parameters for make_function
-- [`makepar_F_sin()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_sin.md)
-  : parameters for make_function
-- [`makepar_F_sum()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_sum.md)
-  : parameters for make_function
-- [`makepar_F_product()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_product.md)
-  : parameters for make_function
-- [`makepar_F_nproduct()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_nproduct.md)
-  : parameters for make_function
-- [`makepar_F_sigmoid()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_sigmoid.md)
-  : Make Parameters for a Sigmoidal Function
-- [`makepar_F_sharkfin()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_sharkfin.md)
-  : Make Parameters for a Sharkfin Function
-- [`makepar_F_sharkbite()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_sharkbite.md)
-  : Make Parameters for a sharkbite Function
-- [`makepar_F_type2()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_type2.md)
-  : parameters for make_function
-- [`makepar_F_spline()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_spline.md)
-  : Make Parameters for a Spline

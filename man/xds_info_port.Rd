@@ -102,7 +102,7 @@ unmodified.
 For most ports, an alternative case is to configure
 a trace function using package standard \emph{multiplicative
 decomposable time
-series} trace function (see \link{make_ts_function}).
+series} trace function (see \link[ramp.func:make_ts_function]{ramp.func::make_ts_function}).
 }
 
 \section{Setup}{
