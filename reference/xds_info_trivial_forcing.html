@@ -20,11 +20,8 @@ as a product of four configurable elements:
 
 
 $$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$
-In the trivial modules, the functions are specified by
-passing parameters generated for ramp.func::make_function.
-season_par creates \(S(t)\) or F_season (eg, using ramp.func::makepar_F_sin)
-trend_par creates \(T(t)\) or F_trend (eg, using ramp.func::makepar_F_spline)
-shock_par creates \(K(t)\) or F_shock (eg, using ramp.func::makepar_F_sharkbite)
+A trace function library for RAMP is in ramp.trace
+Functions that integrate ramp.trace and ramp.xds are found in ramp.forcing
 
 
 For a discussion of mechanistic approaches to forcing, see Forcing"><meta property="og:description" content="Trivial modules were developed for each one
@@ -42,11 +39,8 @@ as a product of four configurable elements:
 
 
 $$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$
-In the trivial modules, the functions are specified by
-passing parameters generated for ramp.func::make_function.
-season_par creates \(S(t)\) or F_season (eg, using ramp.func::makepar_F_sin)
-trend_par creates \(T(t)\) or F_trend (eg, using ramp.func::makepar_F_spline)
-shock_par creates \(K(t)\) or F_shock (eg, using ramp.func::makepar_F_sharkbite)
+A trace function library for RAMP is in ramp.trace
+Functions that integrate ramp.trace and ramp.xds are found in ramp.forcing
 
 
 For a discussion of mechanistic approaches to forcing, see Forcing"></head><body>
@@ -76,7 +70,15 @@ For a discussion of mechanistic approaches to forcing, see Forcing"></head><body
     <li><a class="dropdown-item" href="../articles/Delays.html">Delay Equations</a></li>
     <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
     <li><a class="dropdown-item" href="../articles/DTS.html">Discrete Time Systems</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Functions</a></li>
+  </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-supporting-software" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Supporting Software</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-supporting-software"><li><a class="dropdown-item" href="../articles/RAMP.html">RAMP &amp; SimBA</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.library.html">ramp.library - Model Library</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.trace.html">ramp.trace - Trace Functions</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.forcing.html">ramp.forcing - Exogenous Forcing</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.qa.html">ramp.qa - Qualitative Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.work.html">ramp.work - Model Fitting</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
@@ -103,14 +105,6 @@ For a discussion of mechanistic approaches to forcing, see Forcing"></head><body
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-  </ul></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-analysis" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Analysis</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-analysis"><li><a class="dropdown-item" href="../articles/Qualitative.html">Qualitative Analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/Steady.html">Steady States &amp; Stable Orbits</a></li>
-    <li><a class="dropdown-item" href="../articles/Thresholds.html">Thresholds</a></li>
-    <li><a class="dropdown-item" href="../articles/Connectivity.html">Connectivity</a></li>
-    <li><a class="dropdown-item" href="../articles/Scaling.html">Scaling Relationships</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
@@ -140,18 +134,15 @@ as a product of four configurable elements:</p><ul><li><p>\(\bar x\): a mean val
 <li><p>\(S(t)\): a seasonal pattern</p></li>
 <li><p>\(T(t)\): a trend</p></li>
 <li><p>\(K(t)\): a shock</p></li>
-</ul><p>$$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$</p>
-<p>In the trivial modules, the functions are specified by
-passing parameters generated for ramp.func::make_function.</p><ul><li><p><code>season_par</code> creates \(S(t)\) or <code>F_season</code> (<em>eg,</em> using ramp.func::makepar_F_sin)</p></li>
-<li><p><code>trend_par</code> creates \(T(t)\) or <code>F_trend</code> (<em>eg,</em> using ramp.func::makepar_F_spline)</p></li>
-<li><p><code>shock_par</code> creates \(K(t)\) or <code>F_shock</code> (<em>eg,</em> using ramp.func::makepar_F_sharkbite)</p></li>
+</ul><p>$$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$</p><ul><li><p>A trace function library for RAMP is in <code>ramp.trace</code></p></li>
+<li><p>Functions that integrate <code>ramp.trace</code> and <code>ramp.xds</code> are found in <code>ramp.forcing</code></p></li>
 </ul><p>For a discussion of mechanistic approaches to forcing, see <a href="Forcing.html">Forcing</a></p>
     </div>
 
 
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="trivial_XH.html">trivial_XH</a>, <a href="trivial_MY.html">trivial_MY</a>, <a href="trivial_L.html">trivial_L</a>, <a href="xds_setup_eir.html">xds_setup_eir</a>, ramp.func::make_ts_function, and <a href="Forcing.html">Forcing</a></p></div>
+    <div class="dont-index"><p><a href="trivial_XH.html">trivial_XH</a>, <a href="trivial_MY.html">trivial_MY</a>, <a href="trivial_L.html">trivial_L</a>, <a href="xds_setup_eir.html">xds_setup_eir</a>, and <a href="Forcing.html">Forcing</a></p></div>
     </div>
 
   </main></div>

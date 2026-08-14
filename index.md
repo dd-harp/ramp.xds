@@ -157,12 +157,13 @@ calling the software development project **SimBA**. In the narrow sense,
     Through this library, **`ramp.xds`** also supports nimble model
     building and analytics for other mosquito-borne pathogens.
 
-3.  [**`ramp.control`**](https://dd-harp.github.io/ramp.control/) is a
-    collection of disease control models for **`ramp.xds`**.
+3.  [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a
+    collection of utilities to model exogenous forcing, vector control,
+    and other forms of disease control in models for **`ramp.xds`**.
 
-4.  [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a
-    collection of utilities to model exogenous forcing in models for
-    **`ramp.xds`**.
+4.  [**`ramp.qa`**](https://dd-harp.github.io/ramp.qa/) has method for
+    qualitative analysis, including thresholds, scaling relationships,
+    and connectivity
 
 5.  [**`ramp.demog`**](https://dd-harp.github.io/ramp.xds/ramp.demog.md)
     is a supplementary code library for **`ramp.xds`** that handles

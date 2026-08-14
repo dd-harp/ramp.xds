@@ -74,7 +74,15 @@ documentation should include warnings."></head><body>
     <li><a class="dropdown-item" href="../articles/Delays.html">Delay Equations</a></li>
     <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
     <li><a class="dropdown-item" href="../articles/DTS.html">Discrete Time Systems</a></li>
-    <li><a class="dropdown-item" href="../articles/TraceFunctions.html">Functions</a></li>
+  </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-supporting-software" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Supporting Software</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-supporting-software"><li><a class="dropdown-item" href="../articles/RAMP.html">RAMP &amp; SimBA</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.library.html">ramp.library - Model Library</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.trace.html">ramp.trace - Trace Functions</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.forcing.html">ramp.forcing - Exogenous Forcing</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.qa.html">ramp.qa - Qualitative Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.work.html">ramp.work - Model Fitting</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
@@ -101,14 +109,6 @@ documentation should include warnings."></head><body>
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces"><li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
-  </ul></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-analysis" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Analysis</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-analysis"><li><a class="dropdown-item" href="../articles/Qualitative.html">Qualitative Analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/Steady.html">Steady States &amp; Stable Orbits</a></li>
-    <li><a class="dropdown-item" href="../articles/Thresholds.html">Thresholds</a></li>
-    <li><a class="dropdown-item" href="../articles/Connectivity.html">Connectivity</a></li>
-    <li><a class="dropdown-item" href="../articles/Scaling.html">Scaling Relationships</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
@@ -211,9 +211,9 @@ unmodified.</p>
 
 
 <p>For most ports, an alternative case is to configure
-a trace function using package standard <em>multiplicative
-decomposable time
-series</em> trace function (see ramp.func::make_ts_function).</p>
+a trace function using package standard
+<em>composable time
+series</em> trace function (see <code>ramp.trace</code> amd <code>ramp.forcing</code>).</p>
     </div>
     <div class="section level2">
     <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h2>
