@@ -10,8 +10,9 @@ make_XH_obj_trivial(
   options,
   kappa = 0.1,
   HPop = 1,
-  season_par = makepar_F_one(),
-  trend_par = makepar_F_one()
+  F_season = F_one,
+  F_trend = F_one,
+  F_shock = F_one
 )
 ```
 
@@ -33,15 +34,17 @@ make_XH_obj_trivial(
 
   initial human population density
 
-- season_par:
+- F_season:
 
-  parameters to configure a `F_season` using
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+  the seasonal pattern function
 
-- trend_par:
+- F_trend:
 
-  parameters to configure `F_trend` using
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+  the trend function
+
+- F_shock:
+
+  the shock function
 
 ## Value
 

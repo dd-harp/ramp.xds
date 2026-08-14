@@ -6,14 +6,14 @@ K(t)\$\$ where
 - \\\Lambda\\ or `Lambda` is the mean number of adult female mosquitoes
   emerging per day
 
-- \\S(t)\\ or `F_season` is a seasonal signal (ideally, with an average
-  annual mean of 1)
+- \\S(t)\\ or `F_season` is a seasonal pattern function (ideally, with
+  an average annual mean of 1)
 
-- \\T(t)\\ or `F_trend` is a function returning a trend (ideally, with
-  an average value of 1)
+- \\T(t)\\ or `F_trend` is a trend pattern function (ideally, with an
+  average value of 1)
 
-- \\K(t)\\ or `F_shock` is a function returning a perturbation (by
-  default, set to 1)
+- \\K(t)\\ or `F_shock` is a perturbation function (by default, it is
+  set to `F_one`)
 
 ## Usage
 
@@ -22,9 +22,9 @@ make_L_obj_trivial(
   nHabitats,
   options = list(),
   Lambda = 1000,
-  season_par = makepar_F_one(),
-  trend_par = makepar_F_one(),
-  shock_par = makepar_F_one()
+  F_season = F_one,
+  F_trend = F_one,
+  F_shock = F_one
 )
 ```
 
@@ -43,20 +43,17 @@ make_L_obj_trivial(
 
   vector of mean emergence rates from each aquatic habitat
 
-- season_par:
+- F_season:
 
-  an object to configure a seasonality function using
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+  the seasonal pattern function
 
-- trend_par:
+- F_trend:
 
-  an object to configure a trends function using
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+  the trend function
 
-- shock_par:
+- F_shock:
 
-  an object to configure a shocks function using
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+  the shock function
 
 ## Value
 

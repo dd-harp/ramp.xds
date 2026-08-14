@@ -12,8 +12,6 @@
   Bionomics](https://dd-harp.github.io/ramp.xds/articles/Bionomics.md):
 - [Blood Feeding &
   Transmission](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md):
-- [Cohort
-  Dynamics](https://dd-harp.github.io/ramp.xds/articles/Cohorts.md):
 - [Connectivity](https://dd-harp.github.io/ramp.xds/articles/Connectivity.md):
 - [Contributing](https://dd-harp.github.io/ramp.xds/articles/Contributing.md):
 - [Delay
@@ -64,8 +62,6 @@
   Orbits](https://dd-harp.github.io/ramp.xds/articles/Steady.md):
 - [Computing
   Thresholds](https://dd-harp.github.io/ramp.xds/articles/Thresholds.md):
-- [Trace
-  Functions](https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.md):
 - [Understanding
   ramp.xds](https://dd-harp.github.io/ramp.xds/articles/Understanding_ramp.xds.md):
 - [Working with

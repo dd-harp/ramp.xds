@@ -409,63 +409,10 @@ a generic form:
 mean*F_season(t)*F_trend(t)*F_shock(t)
 ```
 
-The default for the aquatic mosquito dynamical component is the
-`trivial` module, where the `mean` is called `Lambda`.
-
-It is easy to change the `trace` function. First, we define `F_season`
-and change the mean value of `Lambda.` To set up a seasonality function,
-we pass a parameter set from `makepar_F_sin`:
-
-``` r
-
-Lo = list(
-       Lambda=400, 
-       season_par=makepar_F_sin()
-      )
-```
-
-We use the first model as a template for the new model, but we assign
-the return value a new name `model_1` so that the original one still
-exists:
-
-``` r
-
-model_1 <- setup_L_obj("trivial", model, 1, options=Lo)
-```
-
-We want to change the initial values of `model_1.` Since `model_1` was
-copied from `model,` the last values from solving it are available, and
-we can use a function `last_to_inits` to set the initial values.
-
-``` r
-
-model_1 <- last_to_inits(model_1)
-```
-
-Now, we solve to get the orbits every five days over a three-year
-period.
-
-``` r
-
-model_1 <- xds_solve(model_1, Tmax=365*3, dt=5) 
-```
-
-After solving, we can plot the orbits.
-
-``` r
-
-par(mfrow = c(1,2))
-xds_plot_X(model_1)
-xds_plot_M(model_1)
-xds_plot_Y(model_1, add=T)
-xds_plot_Z(model_1, add=T)
-```
-
-![\*\*Figure 2:\*\* Outputs with Seasonal Forced Emergence using a Trace
-Function](GettingStarted_files/figure-html/unnamed-chunk-26-1.png)
-
-**Figure 2:** Outputs with Seasonal Forced Emergence using a Trace
-Function
+It is easy to change the `trace` function. A trace function library for
+`ramp.xds` is found in
+[`ramp.trace`](https://github.com/dd-harp/ramp.trace). For more
+information about configuring trace functions for `ramp.xds`
 
 ## Next Steps
 

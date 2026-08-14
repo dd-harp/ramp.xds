@@ -9,23 +9,18 @@ rate of adult mosquitoes by calling a
 \emph{trace function,}
 \deqn{F_\alpha(t) = \Lambda S(t) T(t) K(t)}
 where
-\itemize{
-\item \eqn{\Lambda} or \code{Lambda} is the mean number of adult female mosquitoes emerging per day
-\item \eqn{S(t)} or \code{F_season} is a seasonal pattern
-\item \eqn{T(t)} or \code{F_trend} is a trend pattern
-\item \eqn{K(t)} or \code{F_shock} is a perturbation
-}
 }
 \section{Parameters}{
 
 \describe{
 \item{\code{Lambda}}{the mean daily emergence rate}
-\item{\code{season_par}}{parameters for \link{make_function}: \code{F_season=make_function(season_par)}}
-\item{\code{trend_par}}{parameters for \link{make_function}: \code{F_trend=make_function(trend_par)}}
-\item{\code{shock_par}}{parameters for \link{make_function}: \code{F_shock=make_function(shock_par)}}
+\item{\code{F_season}}{a seasonal pattern function, \eqn{{S(t)}}}
+\item{\code{F_trend}}{a trend function, \eqn{T(t)}}
+\item{\code{F_shock}}{a shock function, \eqn{K(t)}}
 }
 
-The default setup option is \code{season_par = trend_par = shock_par = makepar_F_one()}.
+Setup also adds the objects \code{season_par} and \code{trend_par} and \code{shock_par} for
+use by \code{ramp.trace}
 }
 
 \section{Get}{

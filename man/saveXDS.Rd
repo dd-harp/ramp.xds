@@ -21,14 +21,14 @@ and stores the \code{xds} object using \code{saveRDS}
 \note{
 Forcing functions (\emph{e.g.} F_trend) are stored
 on the \code{xds} object in a form that
-takes up enormous space.
+takes up enormous space. This removes the functions
+before saving.
 
-Since they are created
-by calling \code{\link[=make_function]{make_function()}} from the
-stored \emph{function objects}
-(\emph{e.g.} \code{trend_par}),
-they are redundant.
+The function \code{readRDS} in \code{ramp.trace}
+provides one method for saving the parameter
+sets for trace functions, and rebuilds the
+functions
 }
 \seealso{
-\code{\link[=readXDS]{readXDS()}}
+\code{ramp.trace}
 }

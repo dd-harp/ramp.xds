@@ -5,7 +5,12 @@ make a Kernel-Based Mosquito Dispersal Matrix
 ## Usage
 
 ``` r
-make_K_matrix_xy(xy, ker = F_exp)
+make_K_matrix_xy(
+  xy,
+  ker = function(x) {
+     exp(-x)
+ }
+)
 ```
 
 ## Arguments

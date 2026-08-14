@@ -1,0 +1,64 @@
+#' @title Change F_season
+#'
+#' @description
+#' Change  the seasonality function
+#' @param F a seasonal pattern function
+#' @param xds_obj an **`xds`** model object
+#' @param s the vector species indeF
+#'
+#' @return an **`xds`** object
+#'
+#' @export
+change_F_season = function(F, xds_obj, s=1){
+  UseMethod("change_F_season", xds_obj$forced_by)
+}
+
+#' @title Change F_season
+#'
+#' @description
+#' Change  the seasonality function
+#' when `forced_by = "none"`
+#' 
+#' @inheritParams change_F_season
+#'
+#' @return an **`xds`** object
+#'
+#' @keywords internal
+#' @export
+change_F_season.none = function(F, xds_obj, s=1){
+  return(xds_obj)
+}
+
+#' @title Change F_season
+#'
+#' @description
+#' Change  the seasonality function
+#' when `forced_by = "Lambda"`
+#' 
+#' @inheritParams change_F_season
+#'
+#' @return an **`xds`** object
+#'
+#' @keywords internal
+#' @export
+change_F_season.Lambda = function(F, xds_obj, s=1){
+  xds_obj$L_obj[[s]]$F_season = F
+  return(xds_obj)
+}
+
+#' @title Change F_season
+#'
+#' @description
+#' Change  the seasonality function
+#' when `forced_by = "eir"`
+#' 
+#' @inheritParams change_F_season
+#' 
+#' @return an **`xds`** object
+#'
+#' @keywords internal
+#' @export
+change_F_season.eir = function(F, xds_obj, s=1){
+  xds_obj$EIR_obj$season_par = F
+  return(xds_obj)
+}

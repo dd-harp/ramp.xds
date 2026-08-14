@@ -4,41 +4,26 @@ The trivial module outputs the emergence rate of adult mosquitoes by
 calling a *trace function,* \$\$F\_\alpha(t) = \Lambda S(t) T(t)
 K(t)\$\$ where
 
-- \\\Lambda\\ or `Lambda` is the mean number of adult female mosquitoes
-  emerging per day
-
-- \\S(t)\\ or `F_season` is a seasonal pattern
-
-- \\T(t)\\ or `F_trend` is a trend pattern
-
-- \\K(t)\\ or `F_shock` is a perturbation
-
 ## Parameters
 
 - `Lambda`:
 
   the mean daily emergence rate
 
-- `season_par`:
+- `F_season`:
 
-  parameters for
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md):
-  `F_season=make_function(season_par)`
+  a seasonal pattern function, \\{S(t)}\\
 
-- `trend_par`:
+- `F_trend`:
 
-  parameters for
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md):
-  `F_trend=make_function(trend_par)`
+  a trend function, \\T(t)\\
 
-- `shock_par`:
+- `F_shock`:
 
-  parameters for
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md):
-  `F_shock=make_function(shock_par)`
+  a shock function, \\K(t)\\
 
-The default setup option is
-`season_par = trend_par = shock_par = makepar_F_one()`.
+Setup also adds the objects `season_par` and `trend_par` and `shock_par`
+for use by `ramp.trace`
 
 ## Get
 

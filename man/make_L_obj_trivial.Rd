@@ -8,9 +8,9 @@ make_L_obj_trivial(
   nHabitats,
   options = list(),
   Lambda = 1000,
-  season_par = makepar_F_one(),
-  trend_par = makepar_F_one(),
-  shock_par = makepar_F_one()
+  F_season = F_one,
+  F_trend = F_one,
+  F_shock = F_one
 )
 }
 \arguments{
@@ -20,11 +20,11 @@ make_L_obj_trivial(
 
 \item{Lambda}{vector of mean emergence rates from each aquatic habitat}
 
-\item{season_par}{an object to configure a seasonality function using \link{make_function}}
+\item{F_season}{the seasonal pattern function}
 
-\item{trend_par}{an object to configure a trends function using \link{make_function}}
+\item{F_trend}{the trend function}
 
-\item{shock_par}{an object to configure a shocks function using \link{make_function}}
+\item{F_shock}{the shock function}
 }
 \value{
 a \link{list}: an L module object
@@ -33,9 +33,9 @@ a \link{list}: an L module object
 The number of emerging adults is a function \deqn{\Lambda S(t) T(t) K(t)} where
 \itemize{
 \item \eqn{\Lambda} or \code{Lambda} is the mean number of adult female mosquitoes emerging per day
-\item \eqn{S(t)} or \code{F_season} is a seasonal signal (ideally, with an average annual mean of 1)
-\item \eqn{T(t)} or \code{F_trend} is a function returning a trend (ideally, with an average value of 1)
-\item \eqn{K(t)} or \code{F_shock} is a function returning a perturbation (by default, set to 1)
+\item \eqn{S(t)} or \code{F_season} is a seasonal pattern function (ideally, with an average annual mean of 1)
+\item \eqn{T(t)} or \code{F_trend} is a trend pattern function (ideally, with an average value of 1)
+\item \eqn{K(t)} or \code{F_shock} is a perturbation function (by default, it is set to \code{F_one})
 }
 }
 \keyword{internal}

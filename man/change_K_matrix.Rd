@@ -22,7 +22,6 @@ an \strong{\code{xds}} object
 Check that \code{K_matrix}
 \itemize{
 \item is an \code{nPatches} \eqn{\times} \code{nPatches} matrix;
-\item diagonal elements are -1;
 \item and columns sum to 0.
 }
 

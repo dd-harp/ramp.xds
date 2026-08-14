@@ -22,14 +22,17 @@
 #'   \item{`Z`}{the mean density of infectious mosquitoes}
 #'   \item{`f`}{the blood feeding rate}
 #'   \item{`q`}{the human fraction}
-#'   \item{`season_par`}{parameters for [make_function]: `F_season=make_function(season_par)`}
-#'   \item{`trend_par`}{parameters for [make_function]: `F_trend=make_function(trend_par)`}
-#'   \item{`shock_par`}{parameters for [make_function]: `F_shock=make_function(shock_par)`}
+#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t)}}}
+#'   \item{`F_trend`}{a trend function, \eqn{T(t)}}
+#'   \item{`F_shock`}{a shock function, \eqn{K(t)}}
 #' }
+#' 
+#' The default values are `F_season=F_trend=F_shock=F_one`
+#' 
+#' Setup also adds the objects `season_par` and `trend_par` and `shock_par` for
+#' use by `ramp.trace`
 #'  
-#' The default setup options: 
-#' + for the [make_function] parameters, `season_par = trend_par = shock_par = makepar_F_one()`. 
-#' + for the bionomic parameters, `f=q=Z=eggs=1`. 
+#' For the bionomic parameters, `f=q=Z=eggs=1`. 
 #' 
 #' @section Get: 
 #' 
@@ -45,13 +48,12 @@
 #' 
 #' @section Change: 
 #' 
-#' + `change_MY_pars` --- change parameters by name 
+#' + `change_MY_pars` --- change bionomic parameters by name
 #' + `change_mean_forcing` --- changes `Z`
-#' + `change_season` --- changes elements of `season_par` 
-#' + `change_trend`  --- changes elements of `trend_par` 
-#' + `change_shock`  --- changes elements of `shock_par`
+#' + `change_F_season` --- changes `F_season`
+#' + `change_F_trend`  --- changes `F_trend`
+#' + `change_F_shock`  --- changes `F_shock`
 #' 
-#' Note: use `change_MY_pars` to change `eggs`
 #' 
 #' @section Notes:
 #' 
@@ -60,6 +62,7 @@
 #' 2. The size of an object saved by `saveRDS` balloons if it saves a function,
 #' so `saveXDS` function strips the functions and `readRDS` remakes the function
 #' from the stored parameters.
+#' 
 #' `F_season`, `F_trend`, and `F_shock` can be set up manually by passing any
 #' user defined function. If so, the user should use `saveRDS` and `readRDS` 
 #' rather than `saveXDS` and `readXDS` 
@@ -194,7 +197,6 @@ setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
   MY_obj <- make_MY_obj_trivial(xds_obj$nPatches, options)
   class(MY_obj) <- 'trivial'
   xds_obj$MY_obj[[s]] <- MY_obj
-  xds_obj <- rebuild_forcing_functions(xds_obj, s)
   return(xds_obj)
 }
 
@@ -206,17 +208,17 @@ setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
 #' @param q the human fraction
 #' @param Z the density of infectious mosquitoes
 #' @param eggs the mean egg laying rate
-#' @param season_par parameters to configure a `F_season` using [make_function]
-#' @param trend_par parameters to configure `F_trend` using [make_function]
-#' @param shock_par parameters to configure `F_shock` using [make_function]
+#' @param F_season the seasonal pattern function
+#' @param F_trend the trend function
+#' @param F_shock the shock function
 #' @return a [list]
 #' @keywords internal
 #' @export
 make_MY_obj_trivial = function(nPatches, options,
                                f = 1, q = 1, Z=1, eggs=1,
-                               season_par = makepar_F_one(),
-                               trend_par = makepar_F_one(),
-                               shock_par = makepar_F_one()){
+                               F_season = F_one, 
+                               F_trend = F_one, 
+                               F_shock = F_one){
   with(options,{
     MY_obj <- list()
     MY_obj$nPatches <- nPatches
@@ -232,9 +234,9 @@ make_MY_obj_trivial = function(nPatches, options,
     MY_obj$Z <- checkIt(Z, nPatches)
     MY_obj$eggs <- checkIt(eggs, nPatches)
 
-    MY_obj$season_par <- season_par
-    MY_obj$trend_par <- trend_par
-    MY_obj$shock_par <- shock_par
+    MY_obj$F_season = F_season
+    MY_obj$F_trend = F_trend
+    MY_obj$F_shock = F_shock
 
 
     return(MY_obj)
@@ -297,22 +299,8 @@ change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$MY_obj[[s]], with(options,{
     xds_obj$MY_obj[[s]]$F_season = F_season
-    if(exists("season_par")){
-      MY_obj[[s]]$F_season <- make_function(season_par)
-      MY_obj[[s]]$season_par <- season_par
-    }
     xds_obj$MY_obj[[s]]$F_trend = F_trend
-    if(exists("trend_par")){
-      MY_obj[[s]]$F_trend <- make_function(trend_par)
-      MY_obj[[s]]$trend_par <- trend_par
-    }
-
     xds_obj$MY_obj[[s]]$F_shock = F_shock
-    if(exists("shock_par")){
-      MY_obj[[s]]$F_shock <- make_function(shock_par)
-      MY_obj[[s]]$shock_par <- shock_par
-    }
-
     return(xds_obj)
   }))}
 

@@ -26,13 +26,12 @@ invisible()
 ## Note
 
 Forcing functions (*e.g.* F_trend) are stored on the `xds` object in a
-form that takes up enormous space.
+form that takes up enormous space. This removes the functions before
+saving.
 
-Since they are created by calling
-[`make_function()`](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
-from the stored *function objects* (*e.g.* `trend_par`), they are
-redundant.
+The function `readRDS` in `ramp.trace` provides one method for saving
+the parameter sets for trace functions, and rebuilds the functions
 
 ## See also
 
-[`readXDS()`](https://dd-harp.github.io/ramp.xds/reference/readXDS.md)
+`ramp.trace`

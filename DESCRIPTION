@@ -25,13 +25,14 @@ Imports:
   mathjaxr,
   MASS
 Suggests:
+  ramp.func,
   DescTools,
-    ggplot2,
-    viridisLite,
-    data.table,
-    knitr,
-    rmarkdown,
-    testthat (>= 3.0.0)
+  ggplot2,
+  viridisLite,
+  data.table,
+  knitr,
+  rmarkdown,
+  testthat (>= 3.0.0)
 VignetteBuilder: knitr
 RdMacros: 
   Rdpack,

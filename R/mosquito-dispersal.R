@@ -48,7 +48,12 @@
 NULL
 
 #' @title Get the Mosquito Dispersal Matrix
-#'
+#' 
+#' @note
+#' The `behave` argument is used for 
+#' behavioral state models in `ramp.library`
+#' 
+#' 
 #' @param xds_obj an **`xds`** model object
 #' @param behave the behavioral state 
 #' @param s the vector species index
@@ -77,7 +82,6 @@ get_K_matrix.0 = function(xds_obj, behave="0", s=1){
 #' @description
 #' Check that `K_matrix` 
 #' + is an `nPatches` \eqn{\times} `nPatches` matrix;
-#' + diagonal elements are -1;
 #' + and columns sum to 0. 
 #' 
 #' After passing checks, `xds_obj` is updated.  
@@ -322,7 +326,7 @@ setup_K_matrix.xy = function(Kname, xds_obj, options=list(), s=1) {
 #' @param xy is a vector of the xy-coordinates of patch locations
 #' @param ker is a function that weights putative locations by distance
 #' @export
-make_K_matrix_xy = function(xy, ker = F_exp) {
+make_K_matrix_xy = function(xy, ker = function(x){exp(-x)}) {
   dmat <- as.matrix(stats::dist(xy), upper=T)
   K_matrix <- ker(dmat)
   diag(K_matrix) <- 0

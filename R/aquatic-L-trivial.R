@@ -7,22 +7,19 @@
 #' *trace function,* 
 #' \deqn{F_\alpha(t) = \Lambda S(t) T(t) K(t)} 
 #' where
-#' + \eqn{\Lambda} or `Lambda` is the mean number of adult female mosquitoes emerging per day
-#' + \eqn{S(t)} or `F_season` is a seasonal pattern 
-#' + \eqn{T(t)} or `F_trend` is a trend pattern 
-#' + \eqn{K(t)} or `F_shock` is a perturbation 
 #' 
 #' @section Parameters:
 #' \describe{
 #'   \item{`Lambda`}{the mean daily emergence rate}
-#'   \item{`season_par`}{parameters for [make_function]: `F_season=make_function(season_par)`}
-#'   \item{`trend_par`}{parameters for [make_function]: `F_trend=make_function(trend_par)`}
-#'   \item{`shock_par`}{parameters for [make_function]: `F_shock=make_function(shock_par)`}
+#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t)}}}
+#'   \item{`F_trend`}{a trend function, \eqn{T(t)}}
+#'   \item{`F_shock`}{a shock function, \eqn{K(t)}}
 #' }
 #'  
-#' The default setup option is `season_par = trend_par = shock_par = makepar_F_one()`. 
+#' Setup also adds the objects `season_par` and `trend_par` and `shock_par` for
+#' use by `ramp.trace`
 #' 
-#' @section Get: 
+#' @section Get:
 #' 
 #' + `get_L_pars` --- the `trivial` method returns all the parameters
 #' + `get_mean_forcing` --- get `Lambda`
@@ -150,7 +147,6 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
   class(forced_by) = "Lambda"
   xds_obj$forced_by = forced_by
   xds_obj$L_obj[[s]] = make_L_obj_trivial(xds_obj$nHabitats, options)
-  xds_obj = rebuild_forcing_functions(xds_obj, s)
   xds_obj <- setup_L_ports(xds_obj, s)
   return(xds_obj)
 }
@@ -159,31 +155,35 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
 #' @title Make `L_obj` for `trivial` (**L** component)
 #' @description The number of emerging adults is a function \deqn{\Lambda S(t) T(t) K(t)} where
 #' + \eqn{\Lambda} or `Lambda` is the mean number of adult female mosquitoes emerging per day
-#' + \eqn{S(t)} or `F_season` is a seasonal signal (ideally, with an average annual mean of 1)
-#' + \eqn{T(t)} or `F_trend` is a function returning a trend (ideally, with an average value of 1)
-#' + \eqn{K(t)} or `F_shock` is a function returning a perturbation (by default, set to 1)
+#' + \eqn{S(t)} or `F_season` is a seasonal pattern function (ideally, with an average annual mean of 1)
+#' + \eqn{T(t)} or `F_trend` is a trend pattern function (ideally, with an average value of 1)
+#' + \eqn{K(t)} or `F_shock` is a perturbation function (by default, it is set to `F_one`)
 #' @param nHabitats the number of habitats in the model
 #' @param options a [list] that overwrites default values
 #' @param Lambda vector of mean emergence rates from each aquatic habitat
-#' @param season_par an object to configure a seasonality function using [make_function]
-#' @param trend_par an object to configure a trends function using [make_function]
-#' @param shock_par an object to configure a shocks function using [make_function]
+#' @param F_season the seasonal pattern function
+#' @param F_trend the trend function
+#' @param F_shock the shock function
 #' @return a [list]: an L module object 
 #' @keywords internal
 #' @export
 make_L_obj_trivial = function(nHabitats, options=list(),
                              Lambda=1000,
-                             season_par = makepar_F_one(),
-                             trend_par = makepar_F_one(),
-                             shock_par = makepar_F_one()){
+                             F_season = F_one, 
+                             F_trend = F_one, 
+                             F_shock = F_one){
   with(options,{
     L_obj = list()
     class(L_obj) <- "trivial"
     L_obj$Lambda = checkIt(Lambda, nHabitats)
 
-    L_obj$season_par <- season_par
-    L_obj$trend_par <- trend_par
-    L_obj$shock_par <- shock_par
+    L_obj$F_season = F_season
+    L_obj$F_trend = F_trend
+    L_obj$F_shock = F_shock
+  
+    L_obj$season_par = list() 
+    L_obj$trend_par = list()
+    L_obj$shock_par = list()
 
     return(L_obj)
 })}
@@ -208,24 +208,21 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
 
 #' @title Change parameters for `trivial` (**L**)
 #'
-#' @description If `Lambda`, `season_par`, `trend_par`, or `shock_par`
-#' are named in `options`, the old value is replaced. After updating
-#' the parameter objects, `F_season`, `F_trend`, and `F_shock` are
-#' recompiled by calling [make_function] on the updated parameters
-#' via [rebuild_forcing_functions].
+#' @description Change `Lambda`, `F_season`, `F_trend`, or `F_shock`
 #'
 #' @inheritParams change_L_pars
-#'
+#' 
+#' @note Utilities for trace functions are in `ramp.trace`
+#' 
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
 change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
   with(xds_obj$L_obj[[s]], with(options,{
     xds_obj$L_obj[[s]]$Lambda = Lambda
-    xds_obj$L_obj[[s]]$season_par = season_par
-    xds_obj$L_obj[[s]]$trend_par = trend_par
-    xds_obj$L_obj[[s]]$shock_par = shock_par
-    xds_obj = rebuild_forcing_functions(xds_obj, s)
+    xds_obj$L_obj[[s]]$F_season = F_season
+    xds_obj$L_obj[[s]]$F_trend = F_trend
+    xds_obj$L_obj[[s]]$F_shock = F_shock
     return(xds_obj)
   }))}
 

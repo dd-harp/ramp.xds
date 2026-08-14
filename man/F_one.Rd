@@ -2,17 +2,17 @@
 % Please edit documentation in R/functions.R
 \name{F_one}
 \alias{F_one}
-\title{The trivial function}
+\title{F_one}
 \usage{
 F_one(t)
 }
 \arguments{
-\item{t}{an arbitrary input}
+\item{t}{time}
 }
 \value{
-a vector of ones of length x
+1
 }
 \description{
-A function that returns 1
+F_one
 }
 \keyword{internal}

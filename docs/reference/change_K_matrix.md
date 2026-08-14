@@ -4,8 +4,6 @@ Check that `K_matrix`
 
 - is an `nPatches` \\\times\\ `nPatches` matrix;
 
-- diagonal elements are -1;
-
 - and columns sum to 0.
 
 After passing checks, `xds_obj` is updated.

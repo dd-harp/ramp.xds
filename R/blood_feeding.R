@@ -183,7 +183,7 @@ setup_XY_interface <- function(xds_obj){
 
     # Relative activity rates for mosquitoes
     interface$F_circadian = list()
-    interface$F_circadian[[1]] = F_flat
+    interface$F_circadian[[1]] = F_one
 
     # Time at Risk (TaR): computed from XH_obj[[i]]$timespent
     # TaR[[s]][[i]]
