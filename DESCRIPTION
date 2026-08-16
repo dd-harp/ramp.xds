@@ -25,6 +25,8 @@ Imports:
   mathjaxr,
   MASS
 Suggests:
+  ramp.trace,
+  ramp.library,
   DescTools,
   ggplot2,
   viridisLite,
