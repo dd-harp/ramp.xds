@@ -25,6 +25,8 @@ Imports:
   mathjaxr,
   MASS
 Suggests:
+  ramp.trace,
+  ramp.library,
   DescTools,
   ggplot2,
   viridisLite,
@@ -32,6 +34,9 @@ Suggests:
   knitr,
   rmarkdown,
   testthat (>= 3.0.0)
+Remotes:
+    dd-harp/ramp.trace,
+    dd-harp/ramp.library
 VignetteBuilder: knitr
 RdMacros: 
   Rdpack,
