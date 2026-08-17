@@ -11,6 +11,10 @@ xds_setup_eir(
   F_trend = F_one,
   F_shock = F_one,
   F_age = F_one,
+  season_par = list(name = "F_one"),
+  trend_par = list(name = "F_one"),
+  age_par = list(name = "F_one"),
+  shock_par = list(name = "F_one"),
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
@@ -30,6 +34,14 @@ xds_setup_eir(
 \item{F_shock}{the shock function}
 
 \item{F_age}{the relative biting rate by age}
+
+\item{season_par}{a list of options for F_season}
+
+\item{trend_par}{a list of options for F_trend}
+
+\item{age_par}{a list of options for F_age}
+
+\item{shock_par}{a list of options for F_shock}
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 

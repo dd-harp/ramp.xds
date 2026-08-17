@@ -206,7 +206,7 @@ make_L_obj_trivial = function(nHabitats, options=list(),
     L_obj$season_par = season_par
     L_obj$trend_par = trend_par
     L_obj$shock_par = shock_par
-
+    
     return(L_obj)
 })}
 
