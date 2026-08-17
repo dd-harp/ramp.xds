@@ -4,31 +4,36 @@
 #' The trivial module outputs the net infectiousness, \eqn{\kappa},
 #' by calling a
 #' *trace function,* 
-#' \deqn{F_\kappa(t) = \kappa S(t) T(t) K(t)} 
+#' \deqn{F_\kappa(t) = \kappa \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)} 
 #' where
 #' + \eqn{\kappa} or `kappa` is the mean net infectiousness 
-#' + \eqn{S(t)} or `F_season` is a seasonal pattern 
-#' + \eqn{T(t)} or `F_trend` is a trend pattern 
-#' + \eqn{K(t)} or `F_shock` is a perturbation 
+#' + \eqn{S(t,V_s)} or `F_season` is a seasonal pattern function
+#' + \eqn{T(t,V_t)} or `F_trend` is a trend pattern function
+#' + \eqn{K(t,V_k)} or `F_shock` is a perturbation function
+#' 
+#' The variables \eqn{V_s}, \eqn{V_t}, and \eqn{V_t} are  
+#' called by [get_variables], which dispatches on the class of 
+#' `season_par` or `trend_par` or `shock_par`.
 #' 
 #' Note: \eqn{0 \leq F_\kappa(t) \leq 1} 
 #' 
 #' @section Parameters:
 #' \describe{
 #'   \item{`kappa`}{the net infectiousness}
-#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t)}}}
-#'   \item{`F_trend`}{a trend function, \eqn{T(t)}}
-#'   \item{`F_shock`}{a shock function, \eqn{K(t)}}#' }
+#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
+#'   \item{`F_trend`}{a trend function, \eqn{T(t,V_t)}}
+#'   \item{`F_shock`}{a shock function, \eqn{K(t,V_k)}}
+#'   \item{`season_par`}{dispatches [get_variables] to get \eqn{V_s}}
+#'   \item{`trend_par`}{dispatches [get_variables] to get \eqn{V_t}}
+#'   \item{`shock_par`}{dispatches [get_variables] to get \eqn{V_k}}
+#' }
 #'  
 #' Setup also adds the objects `season_par` and `trend_par` and `shock_par` for
 #' use by `ramp.trace`
 #' 
-#' @section Get: 
+#' @section Get and Change:
 #' 
 #' + `get_XH_pars` --- the `trivial` method returns all the parameters
-#' 
-#' @section Change: 
-#' 
 #' + `change_XH_pars` --- change parameters by name 
 #' 
 #' @section Notes:
@@ -92,9 +97,13 @@ check_XH.trivial = function(xds_obj, i){
 #' @export
 F_I.trivial <- function(t, y, xds_obj, i) {
   H = F_H(t, y, xds_obj, i)
-  X = with(xds_obj$XH_obj[[i]],  H*kappa*F_season(t)*F_trend(t)*F_shock(t))
-  return(X)
-}
+  with(xds_obj$XH_obj[[i]],{
+    V_s = get_variables(season_par, t, y, xds_obj, i)
+    V_t = get_variables(trend_par, t, y, xds_obj, i)
+    V_k = get_variables(shock_par, t, y, xds_obj, i)
+    X = H*kappa*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k)
+    return(X)
+})}
 
 #' @title Size of the human population
 #' @description Implements [F_H] for the trivial model.
@@ -125,13 +134,19 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' @param F_season the seasonal pattern function
 #' @param F_trend the trend function
 #' @param F_shock the shock function
-#' @return a [list]
+#' @param season_par a list of options for F_season
+#' @param trend_par a list of options for F_trend
+#' @param shock_par a list of options for F_shock
+#' #' @return a [list]
 #' @keywords internal
 #' @export
 make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
                                 F_season = F_one, 
                                 F_trend = F_one, 
-                                F_shock = F_one){
+                                F_shock = F_one,
+                                season_par = list(name = "F_one"),
+                                trend_par = list(name = "F_one"),
+                                shock_par = list(name = "F_one")){
   with(options,{
     XH_obj <- list()
     class(XH_obj) <- c('trivial')
@@ -142,9 +157,9 @@ make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
     XH_obj$F_trend = F_trend
     XH_obj$F_shock = F_shock
     
-    XH_obj$season_par = list() 
-    XH_obj$trend_par = list()
-    XH_obj$shock_par = list()
+    XH_obj$season_par = season_par
+    XH_obj$trend_par = trend_par
+    XH_obj$shock_par = shock_par
     
     return(XH_obj)
   })}

@@ -11,7 +11,10 @@ make_XH_obj_trivial(
   HPop = 1,
   F_season = F_one,
   F_trend = F_one,
-  F_shock = F_one
+  F_shock = F_one,
+  season_par = list(name = "F_one"),
+  trend_par = list(name = "F_one"),
+  shock_par = list(name = "F_one")
 )
 }
 \arguments{
@@ -28,9 +31,13 @@ make_XH_obj_trivial(
 \item{F_trend}{the trend function}
 
 \item{F_shock}{the shock function}
-}
-\value{
-a \link{list}
+
+\item{season_par}{a list of options for F_season}
+
+\item{trend_par}{a list of options for F_trend}
+
+\item{shock_par}{a list of options for F_shock
+#' @return a \link{list}}
 }
 \description{
 Make parameters for trivial human model
