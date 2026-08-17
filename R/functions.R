@@ -30,6 +30,7 @@ F_zero = function(t, V=list()){0*t}
 #' @param ix the species index
 #'
 #' @returns a list of named variables
+#' @keywords internal
 #' @export
 get_variables = function(opts, t, y, xds_obj, ix){
   UseMethod("get_variables", opts) 
@@ -44,6 +45,7 @@ get_variables = function(opts, t, y, xds_obj, ix){
 #' @inheritParams get_variables
 #' 
 #' @returns an empty list 
+#' @keywords internal
 #' @export
 get_variables.list = function(opts, t, y, xds_obj, ix){
   list() 

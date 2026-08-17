@@ -23,3 +23,4 @@ an empty list
 \description{
 The NULL case for \link{get_variables}
 }
+\keyword{internal}

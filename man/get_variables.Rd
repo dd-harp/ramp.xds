@@ -23,3 +23,4 @@ a list of named variables
 \description{
 A generic function to retrieve variables from the \strong{\code{xds}} model object
 }
+\keyword{internal}

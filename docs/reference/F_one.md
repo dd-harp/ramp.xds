@@ -5,7 +5,7 @@ F_one
 ## Usage
 
 ``` r
-F_one(t)
+F_one(t, V = list())
 ```
 
 ## Arguments

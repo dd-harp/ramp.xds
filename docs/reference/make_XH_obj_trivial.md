@@ -12,7 +12,10 @@ make_XH_obj_trivial(
   HPop = 1,
   F_season = F_one,
   F_trend = F_one,
-  F_shock = F_one
+  F_shock = F_one,
+  season_par = list(name = "F_one"),
+  trend_par = list(name = "F_one"),
+  shock_par = list(name = "F_one")
 )
 ```
 
@@ -46,6 +49,15 @@ make_XH_obj_trivial(
 
   the shock function
 
-## Value
+- season_par:
 
-a [list](https://rdrr.io/r/base/list.html)
+  a list of options for F_season
+
+- trend_par:
+
+  a list of options for F_trend
+
+- shock_par:
+
+  a list of options for F_shock \#' @return a
+  [list](https://rdrr.io/r/base/list.html)
