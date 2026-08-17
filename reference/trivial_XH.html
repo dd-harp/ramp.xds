@@ -8,25 +8,31 @@
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="trivial — XH module — trivial_XH"><meta name="description" content="The trivial module outputs the net infectiousness, \(\kappa\),
 by calling a
 trace function,
-$$F_\kappa(t) = \kappa S(t) T(t) K(t)$$
+$$F_\kappa(t) = \kappa \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)$$
 where
 \(\kappa\) or kappa is the mean net infectiousness
-\(S(t)\) or F_season is a seasonal pattern
-\(T(t)\) or F_trend is a trend pattern
-\(K(t)\) or F_shock is a perturbation
+\(S(t,V_s)\) or F_season is a seasonal pattern function
+\(T(t,V_t)\) or F_trend is a trend pattern function
+\(K(t,V_k)\) or F_shock is a perturbation function
 
 
+The variables \(V_s\), \(V_t\), and \(V_t\) are
+called by get_variables, which dispatches on the class of
+season_par or trend_par or shock_par.
 Note: \(0 \leq F_\kappa(t) \leq 1\)"><meta property="og:description" content="The trivial module outputs the net infectiousness, \(\kappa\),
 by calling a
 trace function,
-$$F_\kappa(t) = \kappa S(t) T(t) K(t)$$
+$$F_\kappa(t) = \kappa \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)$$
 where
 \(\kappa\) or kappa is the mean net infectiousness
-\(S(t)\) or F_season is a seasonal pattern
-\(T(t)\) or F_trend is a trend pattern
-\(K(t)\) or F_shock is a perturbation
+\(S(t,V_s)\) or F_season is a seasonal pattern function
+\(T(t,V_t)\) or F_trend is a trend pattern function
+\(K(t,V_k)\) or F_shock is a perturbation function
 
 
+The variables \(V_s\), \(V_t\), and \(V_t\) are
+called by get_variables, which dispatches on the class of
+season_par or trend_par or shock_par.
 Note: \(0 \leq F_\kappa(t) \leq 1\)"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
@@ -110,12 +116,15 @@ Note: \(0 \leq F_\kappa(t) \leq 1\)"></head><body>
     <p>The trivial module outputs the net infectiousness, \(\kappa\),
 by calling a
 <em>trace function,</em>
-$$F_\kappa(t) = \kappa S(t) T(t) K(t)$$
+$$F_\kappa(t) = \kappa \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)$$
 where</p><ul><li><p>\(\kappa\) or <code>kappa</code> is the mean net infectiousness</p></li>
-<li><p>\(S(t)\) or <code>F_season</code> is a seasonal pattern</p></li>
-<li><p>\(T(t)\) or <code>F_trend</code> is a trend pattern</p></li>
-<li><p>\(K(t)\) or <code>F_shock</code> is a perturbation</p></li>
-</ul><p>Note: \(0 \leq F_\kappa(t) \leq 1\)</p>
+<li><p>\(S(t,V_s)\) or <code>F_season</code> is a seasonal pattern function</p></li>
+<li><p>\(T(t,V_t)\) or <code>F_trend</code> is a trend pattern function</p></li>
+<li><p>\(K(t,V_k)\) or <code>F_shock</code> is a perturbation function</p></li>
+</ul><p>The variables \(V_s\), \(V_t\), and \(V_t\) are
+called by <a href="get_variables.html">get_variables</a>, which dispatches on the class of
+<code>season_par</code> or <code>trend_par</code> or <code>shock_par</code>.</p>
+<p>Note: \(0 \leq F_\kappa(t) \leq 1\)</p>
     </div>
 
 
@@ -127,28 +136,33 @@ where</p><ul><li><p>\(\kappa\) or <code>kappa</code> is the mean net infectiousn
 <dd><p>the net infectiousness</p></dd>
 
 <dt><code>F_season</code></dt>
-<dd><p>a seasonal pattern function, \({S(t)}\)</p></dd>
+<dd><p>a seasonal pattern function, \({S(t,V_s)}\)</p></dd>
 
 <dt><code>F_trend</code></dt>
-<dd><p>a trend function, \(T(t)\)</p></dd>
+<dd><p>a trend function, \(T(t,V_t)\)</p></dd>
 
 <dt><code>F_shock</code></dt>
-<dd><p>a shock function, \(K(t)\)</p></dd>
-#'
+<dd><p>a shock function, \(K(t,V_k)\)</p></dd>
+
+<dt><code>season_par</code></dt>
+<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_s\)</p></dd>
+
+<dt><code>trend_par</code></dt>
+<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_t\)</p></dd>
+
+<dt><code>shock_par</code></dt>
+<dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_k\)</p></dd>
+
+
 </dl><p>Setup also adds the objects <code>season_par</code> and <code>trend_par</code> and <code>shock_par</code> for
 use by <code>ramp.trace</code></p>
     </div>
     <div class="section level2">
-    <h2 id="get">Get<a class="anchor" aria-label="anchor" href="#get"></a></h2>
+    <h2 id="get-and-change">Get and Change<a class="anchor" aria-label="anchor" href="#get-and-change"></a></h2>
 
 
 <ul><li><p><code>get_XH_pars</code> — the <code>trivial</code> method returns all the parameters</p></li>
-</ul></div>
-    <div class="section level2">
-    <h2 id="change">Change<a class="anchor" aria-label="anchor" href="#change"></a></h2>
-
-
-<ul><li><p><code>change_XH_pars</code> — change parameters by name</p></li>
+<li><p><code>change_XH_pars</code> — change parameters by name</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a></h2>

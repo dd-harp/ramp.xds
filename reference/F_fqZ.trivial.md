@@ -14,6 +14,12 @@ Returns \$\$F\_{fqZ}(t) = fqZ S(t) T(t) K(t)\$\$ where
 
 - \\K(t)\\ or `F_shock` is a perturbation
 
+- \\season_par\\ a list to dispatch options for
+
+- \\trend_par\\ or `F_season` is a seasonal pattern
+
+- \\shock_par\\ or `F_season` is a seasonal pattern
+
 ## Usage
 
 ``` r

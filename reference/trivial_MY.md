@@ -2,9 +2,11 @@
 
 The trivial **MY** module configures two trace functions:
 
-- infectious biting: \$\$F\_{fqZ}(t) = fqZ S(t) T(t) K(t)\$\$
+- infectious biting: \$\$F\_{fqZ}(t, V) = fqZ \times S(t, V_s) \times
+  T(t, V_t) \times K(t, V_k)\$\$
 
-- egg laying: \$\$F_G(t) = G S(t) T(t) K(t)\$\$
+- egg laying: \$\$F_G(t, V) = G \times S(t,V_s) \times T(t, V_t) \times
+  K(t, V_k)\$\$
 
 where
 
@@ -13,11 +15,18 @@ where
 - \\fqZ\\ or `fqZ` is the mean number of infectious bites on humans, per
   patch
 
-- \\S(t)\\ or `F_season` is a seasonal pattern
+- \\S(t,V_s)\\ or `F_season` is a seasonal pattern function
 
-- \\T(t)\\ or `F_trend` is a trend pattern
+- \\T(t,V_t)\\ or `F_trend` is a trend pattern function
 
-- \\K(t)\\ or `F_shock` is a perturbation
+- \\K(t,V_k)\\ or `F_shock` is a perturbation function
+
+The variables \\V_s\\, \\V_t\\, and \\V_t\\ are called by
+[get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md),
+which dispatches on the class of `season_par` or `trend_par` or
+`shock_par`.
+
+The implementation assumes that only one of these functions gets used.
 
 ## Parameters
 
@@ -39,20 +48,37 @@ where
 
 - `F_season`:
 
-  a seasonal pattern function, \\{S(t)}\\
+  a seasonal pattern function, \\{S(t,V_s)}\\
 
 - `F_trend`:
 
-  a trend function, \\T(t)\\
+  a trend function, \\T(t,V_t)\\
 
 - `F_shock`:
 
-  a shock function, \\K(t)\\
+  a shock function, \\K(t,V_k)\\
 
-The default values are `F_season=F_trend=F_shock=F_one`
+- `season_par`:
 
-Setup also adds the objects `season_par` and `trend_par` and `shock_par`
-for use by `ramp.trace`
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_s\\
+
+- `trend_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_t\\
+
+- `shock_par`:
+
+  dispatches
+  [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+  to get \\V_k\\
+
+The default values are `F_season=F_trend=F_shock=F_one` and the classes
+of the objects `season_par` and `trend_par` and `shock_par` are all
+'list'
 
 For the bionomic parameters, `f=q=Z=eggs=1`.
 
