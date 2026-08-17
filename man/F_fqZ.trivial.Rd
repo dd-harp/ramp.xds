@@ -29,6 +29,9 @@ where
 \item \eqn{S(t)} or \code{F_season} is a seasonal pattern
 \item \eqn{T(t)} or \code{F_trend} is a trend pattern
 \item \eqn{K(t)} or \code{F_shock} is a perturbation
+\item \eqn{season_par} a list to dispatch options for
+\item \eqn{trend_par} or \code{F_season} is a seasonal pattern
+\item \eqn{shock_par} or \code{F_season} is a seasonal pattern
 }
 }
 \keyword{internal}

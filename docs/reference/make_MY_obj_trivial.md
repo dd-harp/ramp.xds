@@ -14,7 +14,10 @@ make_MY_obj_trivial(
   eggs = 1,
   F_season = F_one,
   F_trend = F_one,
-  F_shock = F_one
+  F_shock = F_one,
+  season_par = list(name = "F_one"),
+  trend_par = list(name = "F_one"),
+  shock_par = list(name = "F_one")
 )
 ```
 
@@ -56,6 +59,18 @@ make_MY_obj_trivial(
 - F_shock:
 
   the shock function
+
+- season_par:
+
+  a list of options for F_season
+
+- trend_par:
+
+  a list of options for F_trend
+
+- shock_par:
+
+  a list of options for F_shock
 
 ## Value
 

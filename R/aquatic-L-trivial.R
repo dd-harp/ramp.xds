@@ -5,19 +5,32 @@
 #' The trivial module outputs the emergence 
 #' rate of adult mosquitoes by calling a
 #' *trace function,* 
-#' \deqn{F_\alpha(t) = \Lambda S(t) T(t) K(t)} 
+#' \deqn{F_\alpha(t) = \Lambda \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)} 
 #' where
+#' 
+#' + \eqn{\Lambda} is the mean daily emergence rate of adult mosquitoes
+#' + \eqn{S(t,V_s)} or `F_season` is a seasonal pattern function
+#' + \eqn{T(t,V_t)} or `F_trend` is a trend pattern function
+#' + \eqn{K(t,V_k)} or `F_shock` is a perturbation function
+#' 
+#' The variables \eqn{V_s}, \eqn{V_t}, and \eqn{V_t} are  
+#' called by [get_variables], which dispatches on the class of 
+#' `season_par` or `trend_par` or `shock_par`.
+#' 
 #' 
 #' @section Parameters:
 #' \describe{
 #'   \item{`Lambda`}{the mean daily emergence rate}
-#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t)}}}
-#'   \item{`F_trend`}{a trend function, \eqn{T(t)}}
-#'   \item{`F_shock`}{a shock function, \eqn{K(t)}}
+#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
+#'   \item{`F_trend`}{a trend function, \eqn{T(t,V_t)}}
+#'   \item{`F_shock`}{a shock function, \eqn{K(t,V_k)}}
+#'   \item{`season_par`}{dispatches [get_variables] to get \eqn{V_s}}
+#'   \item{`trend_par`}{dispatches [get_variables] to get \eqn{V_t}}
+#'   \item{`shock_par`}{dispatches [get_variables] to get \eqn{V_k}}
 #' }
 #'  
-#' Setup also adds the objects `season_par` and `trend_par` and `shock_par` for
-#' use by `ramp.trace`
+#' The default values are `F_season=F_trend=F_shock=F_one` and the classes of the
+#' objects `season_par` and `trend_par` and `shock_par` are all `list` 
 #' 
 #' @section Get:
 #' 
@@ -112,7 +125,10 @@ Update_Lt.trivial <- function(t, y, xds_obj, s) {
 #' @export
 F_emerge.trivial <- function(t, y, xds_obj, s) {
   with(xds_obj$L_obj[[s]],{
-    return(Lambda*F_season(t)*F_trend(t)*F_shock(t))
+    V_s = get_variables(season_par, t, y, xds_obj, s)
+    V_t = get_variables(trend_par, t, y, xds_obj, s)
+    V_k = get_variables(shock_par, t, y, xds_obj, s)
+    return(Lambda*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
 })}
 
 #' @title Mosquito bionomics for `trivial` (**L**)
@@ -164,6 +180,9 @@ setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
 #' @param F_season the seasonal pattern function
 #' @param F_trend the trend function
 #' @param F_shock the shock function
+#' @param season_par a list of options for F_season
+#' @param trend_par a list of options for F_trend
+#' @param shock_par a list of options for F_shock
 #' @return a [list]: an L module object 
 #' @keywords internal
 #' @export
@@ -171,7 +190,10 @@ make_L_obj_trivial = function(nHabitats, options=list(),
                              Lambda=1000,
                              F_season = F_one, 
                              F_trend = F_one, 
-                             F_shock = F_one){
+                             F_shock = F_one,
+                             season_par = list(name = "F_one"),
+                             trend_par = list(name = "F_one"),
+                             shock_par = list(name = "F_one")){
   with(options,{
     L_obj = list()
     class(L_obj) <- "trivial"
@@ -181,9 +203,9 @@ make_L_obj_trivial = function(nHabitats, options=list(),
     L_obj$F_trend = F_trend
     L_obj$F_shock = F_shock
   
-    L_obj$season_par = list() 
-    L_obj$trend_par = list()
-    L_obj$shock_par = list()
+    L_obj$season_par = season_par
+    L_obj$trend_par = trend_par
+    L_obj$shock_par = shock_par
 
     return(L_obj)
 })}

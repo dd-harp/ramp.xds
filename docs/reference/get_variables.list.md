@@ -1,10 +1,12 @@
 # Get Variables
 
-A generic function to retrieve variables from the **`xds`** model object
+The NULL case for
+[get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
 
 ## Usage
 
 ``` r
+# S3 method for class 'list'
 get_variables(opts, t, y, xds_obj, ix)
 ```
 
@@ -32,4 +34,4 @@ get_variables(opts, t, y, xds_obj, ix)
 
 ## Value
 
-a list of named variables
+an empty list

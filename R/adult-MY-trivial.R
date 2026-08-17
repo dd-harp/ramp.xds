@@ -5,16 +5,23 @@
 #' @description
 #' The trivial **MY** module configures two trace functions:
 #' + infectious biting:  
-#' \deqn{F_{fqZ}(t) = fqZ S(t) T(t) K(t)} 
+#' \deqn{F_{fqZ}(t, V) = fqZ \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)} 
 #' + egg laying: 
-#' \deqn{F_G(t) = G S(t) T(t) K(t)} 
-#'  
+#' \deqn{F_G(t, V) = G \times S(t,V_s) \times T(t, V_t) \times K(t, V_k)} 
+#'
 #' where
+#' 
 #' + \eqn{G} or `eggs` is the mean egg laying rate 
 #' + \eqn{fqZ} or `fqZ` is the mean number of infectious bites on humans, per patch 
-#' + \eqn{S(t)} or `F_season` is a seasonal pattern 
-#' + \eqn{T(t)} or `F_trend` is a trend pattern 
-#' + \eqn{K(t)} or `F_shock` is a perturbation 
+#' + \eqn{S(t,V_s)} or `F_season` is a seasonal pattern function
+#' + \eqn{T(t,V_t)} or `F_trend` is a trend pattern function
+#' + \eqn{K(t,V_k)} or `F_shock` is a perturbation function
+#' 
+#' The variables \eqn{V_s}, \eqn{V_t}, and \eqn{V_t} are  
+#' called by [get_variables], which dispatches on the class of 
+#' `season_par` or `trend_par` or `shock_par`.
+#' 
+#' The implementation assumes that only one of these functions gets used.
 #' 
 #' @section Parameters:
 #' \describe{
@@ -22,16 +29,18 @@
 #'   \item{`Z`}{the mean density of infectious mosquitoes}
 #'   \item{`f`}{the blood feeding rate}
 #'   \item{`q`}{the human fraction}
-#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t)}}}
-#'   \item{`F_trend`}{a trend function, \eqn{T(t)}}
-#'   \item{`F_shock`}{a shock function, \eqn{K(t)}}
+#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
+#'   \item{`F_trend`}{a trend function, \eqn{T(t,V_t)}}
+#'   \item{`F_shock`}{a shock function, \eqn{K(t,V_k)}}
+#'   \item{`season_par`}{dispatches [get_variables] to get \eqn{V_s}}
+#'   \item{`trend_par`}{dispatches [get_variables] to get \eqn{V_t}}
+#'   \item{`shock_par`}{dispatches [get_variables] to get \eqn{V_k}}
 #' }
 #' 
-#' The default values are `F_season=F_trend=F_shock=F_one`
+#' The default values are `F_season=F_trend=F_shock=F_one` and the 
+#' classes of the objects `season_par` and `trend_par` and `shock_par` are all 
+#' 'list'
 #' 
-#' Setup also adds the objects `season_par` and `trend_par` and `shock_par` for
-#' use by `ramp.trace`
-#'  
 #' For the bionomic parameters, `f=q=Z=eggs=1`. 
 #' 
 #' @section Get: 
@@ -92,6 +101,9 @@ check_MY.trivial = function(xds_obj, s){
 #' + \eqn{S(t)} or `F_season` is a seasonal pattern 
 #' + \eqn{T(t)} or `F_trend` is a trend pattern 
 #' + \eqn{K(t)} or `F_shock` is a perturbation 
+#' + \eqn{season_par} a list to dispatch options for 
+#' + \eqn{trend_par} or `F_season` is a seasonal pattern 
+#' + \eqn{shock_par} or `F_season` is a seasonal pattern 
 #' 
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
@@ -100,9 +112,13 @@ check_MY.trivial = function(xds_obj, s){
 F_fqZ.trivial <- function(t, y, xds_obj, s) {
   f = get_f(xds_obj, s)
   q = get_q(xds_obj, s)
-  Z = with(xds_obj$MY_obj[[s]], Z*F_season(t)*F_trend(t)*F_shock(t))
-  return(f*q*Z)
-}
+  with(xds_obj$MY_obj[[s]],{
+    V_s = get_variables(season_par, t, y, xds_obj, s)
+    V_t = get_variables(trend_par, t, y, xds_obj, s)
+    V_k = get_variables(shock_par, t, y, xds_obj, s)
+    Z =  Z*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k)
+    return(f*q*Z)
+})}
 
 #' @title Net egg laying rate
 #' @description Returns 
@@ -118,9 +134,12 @@ F_fqZ.trivial <- function(t, y, xds_obj, s) {
 #' @keywords internal
 #' @export
 F_eggs.trivial <- function(t, y, xds_obj, s) {
-  with(xds_obj$MY_obj[[s]],
-       return(eggs*F_season(t)*F_trend(t)*F_shock(t))
-  )}
+  with(xds_obj$MY_obj[[s]],{
+    V_s = get_variables(season_par, t, y, xds_obj, s)
+    V_t = get_variables(trend_par, t, y, xds_obj, s)
+    V_k = get_variables(shock_par, t, y, xds_obj, s)
+    return(eggs*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
+})}
 
 #' @title Blood feeding rate of the infective mosquito population
 #' @description Implements [F_fqM] for the trivial model.
@@ -211,6 +230,9 @@ setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
 #' @param F_season the seasonal pattern function
 #' @param F_trend the trend function
 #' @param F_shock the shock function
+#' @param season_par a list of options for F_season
+#' @param trend_par a list of options for F_trend
+#' @param shock_par a list of options for F_shock
 #' @return a [list]
 #' @keywords internal
 #' @export
@@ -218,7 +240,10 @@ make_MY_obj_trivial = function(nPatches, options,
                                f = 1, q = 1, Z=1, eggs=1,
                                F_season = F_one, 
                                F_trend = F_one, 
-                               F_shock = F_one){
+                               F_shock = F_one,
+                               season_par = list(name = "F_one"),
+                               trend_par = list(name = "F_one"),
+                               shock_par = list(name = "F_one")){
   with(options,{
     MY_obj <- list()
     MY_obj$nPatches <- nPatches
@@ -238,7 +263,10 @@ make_MY_obj_trivial = function(nPatches, options,
     MY_obj$F_trend = F_trend
     MY_obj$F_shock = F_shock
 
-
+    MY_obj$season_par = season_par
+    MY_obj$trend_par = trend_par
+    MY_obj$shock_par = shock_par
+    
     return(MY_obj)
 })}
 

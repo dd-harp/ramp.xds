@@ -7,14 +7,18 @@
 The trivial module outputs the net infectiousness, \eqn{\kappa},
 by calling a
 \emph{trace function,}
-\deqn{F_\kappa(t) = \kappa S(t) T(t) K(t)}
+\deqn{F_\kappa(t) = \kappa \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)}
 where
 \itemize{
 \item \eqn{\kappa} or \code{kappa} is the mean net infectiousness
-\item \eqn{S(t)} or \code{F_season} is a seasonal pattern
-\item \eqn{T(t)} or \code{F_trend} is a trend pattern
-\item \eqn{K(t)} or \code{F_shock} is a perturbation
+\item \eqn{S(t,V_s)} or \code{F_season} is a seasonal pattern function
+\item \eqn{T(t,V_t)} or \code{F_trend} is a trend pattern function
+\item \eqn{K(t,V_k)} or \code{F_shock} is a perturbation function
 }
+
+The variables \eqn{V_s}, \eqn{V_t}, and \eqn{V_t} are
+called by \link{get_variables}, which dispatches on the class of
+\code{season_par} or \code{trend_par} or \code{shock_par}.
 
 Note: \eqn{0 \leq F_\kappa(t) \leq 1}
 }
@@ -22,24 +26,22 @@ Note: \eqn{0 \leq F_\kappa(t) \leq 1}
 
 \describe{
 \item{\code{kappa}}{the net infectiousness}
-\item{\code{F_season}}{a seasonal pattern function, \eqn{{S(t)}}}
-\item{\code{F_trend}}{a trend function, \eqn{T(t)}}
-\item{\code{F_shock}}{a shock function, \eqn{K(t)}}#' }
+\item{\code{F_season}}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
+\item{\code{F_trend}}{a trend function, \eqn{T(t,V_t)}}
+\item{\code{F_shock}}{a shock function, \eqn{K(t,V_k)}}
+\item{\code{season_par}}{dispatches \link{get_variables} to get \eqn{V_s}}
+\item{\code{trend_par}}{dispatches \link{get_variables} to get \eqn{V_t}}
+\item{\code{shock_par}}{dispatches \link{get_variables} to get \eqn{V_k}}
+}
 
 Setup also adds the objects \code{season_par} and \code{trend_par} and \code{shock_par} for
 use by \code{ramp.trace}
 }
 
-\section{Get}{
+\section{Get and Change}{
 
 \itemize{
 \item \code{get_XH_pars} --- the \code{trivial} method returns all the parameters
-}
-}
-
-\section{Change}{
-
-\itemize{
 \item \code{change_XH_pars} --- change parameters by name
 }
 }

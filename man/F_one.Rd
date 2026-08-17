@@ -4,7 +4,7 @@
 \alias{F_one}
 \title{F_one}
 \usage{
-F_one(t)
+F_one(t, V = list())
 }
 \arguments{
 \item{t}{time}

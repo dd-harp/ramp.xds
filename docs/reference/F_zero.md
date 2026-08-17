@@ -5,7 +5,7 @@ F_zero
 ## Usage
 
 ``` r
-F_zero(t)
+F_zero(t, V = list())
 ```
 
 ## Arguments
