@@ -391,6 +391,10 @@ xds_setup_human = function(model_name = "unnamed",
 #' @param F_trend the trend function
 #' @param F_age the relative biting rate by age 
 #' @param F_shock the shock function
+#' @param season_par a list of options for F_season
+#' @param trend_par a list of options for F_trend
+#' @param age_par a list of options for F_age
+#' @param shock_par a list of options for F_shock
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname is a character string specifying an **X** Component module
 #' @param XHoptions a list to configure the **X** Component module
@@ -405,6 +409,12 @@ xds_setup_eir = function(model_name = "unnamed",
                          F_trend = F_one, 
                          F_shock = F_one,
                          F_age = F_one, 
+                         
+                         season_par = list(name = "F_one"),
+                         trend_par = list(name = "F_one"),
+                         age_par = list(name = "F_one"),
+                         shock_par = list(name = "F_one"),
+                         
                          xds = 'ode',
 
                          # Dynamical Components
@@ -428,6 +438,10 @@ xds_setup_eir = function(model_name = "unnamed",
   xds_obj$EIR_obj$F_trend <- F_trend
   xds_obj$EIR_obj$F_age <- F_age
   xds_obj$EIR_obj$F_shock <- F_shock
+  xds_obj$EIR_obj$season_par <- season_par
+  xds_obj$EIR_obj$trend_par <- trend_par
+  xds_obj$EIR_obj$age_par <- age_par
+  xds_obj$EIR_obj$shock_par <- shock_par
 
   # Aquatic Mosquito Dynamics
   xds_obj       <- setup_L_obj("trivial", xds_obj, 1, list())
