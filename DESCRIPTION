@@ -25,7 +25,7 @@ Imports:
   mathjaxr,
   MASS
 Suggests:
-  ramp.trace,
+  ramp.func,
   ramp.library,
   DescTools,
   ggplot2,
@@ -35,7 +35,7 @@ Suggests:
   rmarkdown,
   testthat (>= 3.0.0)
 Remotes:
-    dd-harp/ramp.trace,
+    dd-harp/ramp.func,
     dd-harp/ramp.library
 VignetteBuilder: knitr
 RdMacros: 
