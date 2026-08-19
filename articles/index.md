@@ -47,10 +47,12 @@
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/MosquitoSpatialEcology.md):
 - [The MY
   Component](https://dd-harp.github.io/ramp.xds/articles/MY-interface.md):
+- [ramp.demog](https://dd-harp.github.io/ramp.xds/articles/ramp.demog.md):
 - [ramp.forcing](https://dd-harp.github.io/ramp.xds/articles/ramp.forcing.md):
-- [RAMP](https://dd-harp.github.io/ramp.xds/articles/RAMP.md):
+- [ramp.func](https://dd-harp.github.io/ramp.xds/articles/ramp.func.md):
+- [RAMP and SimBA](https://dd-harp.github.io/ramp.xds/articles/RAMP.md):
 - [ramp.library](https://dd-harp.github.io/ramp.xds/articles/ramp.library.md):
-- [ramp.trace](https://dd-harp.github.io/ramp.xds/articles/ramp.trace.md):
+- [ramp.qa](https://dd-harp.github.io/ramp.xds/articles/ramp.qa.md):
 - [ramp.work](https://dd-harp.github.io/ramp.xds/articles/ramp.work.md):
 - [Basic Mosquito Infection Dynamics in Discrete
   Time](https://dd-harp.github.io/ramp.xds/articles/RM-dts-Mosquito.md):

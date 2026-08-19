@@ -50,17 +50,6 @@
   </ul>
 </li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-supporting-software" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Supporting Software</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-supporting-software">
-<li><a class="dropdown-item" href="../articles/RAMP.html">RAMP &amp; SimBA</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.library.html">ramp.library - Model Library</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.trace.html">ramp.trace - Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.forcing.html">ramp.forcing - Exogenous Forcing</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.qa.html">ramp.qa - Qualitative Analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.work.html">ramp.work - Model Fitting</a></li>
-  </ul>
-</li>
-<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-xh">
 <li><a class="dropdown-item" href="../articles/XH-interface.html">Human / Host Component (XH)</a></li>
@@ -92,6 +81,18 @@
 <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+  </ul>
+</li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-supporting-software" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Supporting Software</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-supporting-software">
+<li><a class="dropdown-item" href="../articles/RAMP.html">RAMP &amp; SimBA</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.func.html">ramp.func - Function Library</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.library.html">ramp.library - Model Library</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.forcing.html">ramp.forcing - Exogenous Forcing</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.demog.html">ramp.demography - Human / Host Demography</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.qa.html">ramp.qa - Qualitative Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.work.html">ramp.work - Model Fitting</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
@@ -434,11 +435,12 @@ features and ensure that the software is working as designed.</p>
 component must include a <em>trivial</em> module. In the
 <code>trivial</code> module, no variables are defined, but the dynamical
 terms needed by related dynamical components are passed by a
-configurable <em>trace function</em> with a generic form:</p>
+configurable <strong><em>composed time series function</em></strong>
+with a generic form:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mean</span><span class="op">*</span><span class="fu"><a href="../reference/F_season.html">F_season</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="../reference/F_trend.html">F_trend</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="../reference/F_shock.html">F_shock</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span></code></pre></div>
-<p>It is easy to change the <code>trace</code> function. A trace
-function library for <code>ramp.xds</code> is found in <a href="https://github.com/dd-harp/ramp.trace" class="external-link"><code>ramp.trace</code></a>.
+<p>It is easy to change the forcing function. A function library for
+<code>ramp.xds</code> is found in <a href="https://github.com/dd-harp/ramp.func" class="external-link"><code>ramp.func</code></a>.
 For more information about configuring trace functions for
 <code>ramp.xds</code></p>
 </div>

@@ -20,9 +20,9 @@ elements:
 
 \$\$x(t) = \bar x \times S(t) \times T(t) \times K(t)\$\$
 
-- A trace function library for RAMP is in `ramp.trace`
+- A trace function library for RAMP is in `ramp.func`
 
-- Functions that integrate `ramp.trace` and `ramp.xds` are found in
+- Functions that integrate `ramp.func` and `ramp.xds` are found in
   `ramp.forcing`
 
 For a discussion of mechanistic approaches to forcing, see

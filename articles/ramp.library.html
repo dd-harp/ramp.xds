@@ -49,17 +49,6 @@
     <li><a class="dropdown-item" href="../articles/DTS.html">Discrete Time Systems</a></li>
   </ul>
 </li>
-<li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-supporting-software" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Supporting Software</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-supporting-software">
-<li><a class="dropdown-item" href="../articles/RAMP.html">RAMP &amp; SimBA</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.library.html">ramp.library - Model Library</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.trace.html">ramp.trace - Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.forcing.html">ramp.forcing - Exogenous Forcing</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.qa.html">ramp.qa - Qualitative Analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.work.html">ramp.work - Model Fitting</a></li>
-  </ul>
-</li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-xh" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">XH</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-xh">
@@ -94,6 +83,18 @@
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
   </ul>
 </li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-supporting-software" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Supporting Software</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-supporting-software">
+<li><a class="dropdown-item" href="../articles/RAMP.html">RAMP &amp; SimBA</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.func.html">ramp.func - Function Library</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.library.html">ramp.library - Model Library</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.forcing.html">ramp.forcing - Exogenous Forcing</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.demog.html">ramp.demography - Human / Host Demography</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.qa.html">ramp.qa - Qualitative Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.work.html">ramp.work - Model Fitting</a></li>
+  </ul>
+</li>
 <li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul>
@@ -123,7 +124,28 @@ Library</h3>
 
     
     
-
+<p><strong><code>ramp.library</code></strong> includes new modules for
+three dynamical components:</p>
+<ul>
+<li><p><strong>X</strong> component – modules describing the
+epidemiology of malaria and other mosquito-transmitted
+pathogens.</p></li>
+<li><p><strong>MY</strong> component – modules describing adult mosquito
+ecology and infection dynamics</p></li>
+<li><p><strong>L</strong> component – modules describing aquatic
+mosquito ecology</p></li>
+</ul>
+<p><strong>GitHub</strong></p>
+<ul>
+<li><p><a href="https://github.com/dd-harp/ramp.library" class="external-link">code
+repository</a></p></li>
+<li><p><a href="https://dd-harp.github.io/ramp.library/" class="external-link">github.io</a></p></li>
+</ul>
+<p>To install the latest version from GitHub, run the following lines of
+code in an R session.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dd-harp/ramp.library"</span><span class="op">)</span></span></code></pre></div>
   </main>
 </div>
 

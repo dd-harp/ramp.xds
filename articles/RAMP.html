@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>RAMP • ramp.xds</title>
+<title>RAMP and SimBA • ramp.xds</title>
 <!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
   window.MathJax = {
     chtml: {
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="RAMP">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="RAMP and SimBA">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -47,17 +47,6 @@
     <li><a class="dropdown-item" href="../articles/Delays.html">Delay Equations</a></li>
     <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
     <li><a class="dropdown-item" href="../articles/DTS.html">Discrete Time Systems</a></li>
-  </ul>
-</li>
-<li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-supporting-software" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Supporting Software</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-supporting-software">
-<li><a class="dropdown-item" href="../articles/RAMP.html">RAMP &amp; SimBA</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.library.html">ramp.library - Model Library</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.trace.html">ramp.trace - Trace Functions</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.forcing.html">ramp.forcing - Exogenous Forcing</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.qa.html">ramp.qa - Qualitative Analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/ramp.work.html">ramp.work - Model Fitting</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -94,6 +83,18 @@
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
   </ul>
 </li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-supporting-software" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Supporting Software</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-supporting-software">
+<li><a class="dropdown-item" href="../articles/RAMP.html">RAMP &amp; SimBA</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.func.html">ramp.func - Function Library</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.library.html">ramp.library - Model Library</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.forcing.html">ramp.forcing - Exogenous Forcing</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.demog.html">ramp.demography - Human / Host Demography</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.qa.html">ramp.qa - Qualitative Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/ramp.work.html">ramp.work - Model Fitting</a></li>
+  </ul>
+</li>
 <li class="nav-item"><a class="nav-link" href="../articles/Glossary.html">Glossary</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul>
@@ -112,9 +113,9 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>RAMP</h1>
-            <h3 data-toc-skip class="subtitle">Robust Analytics for
-Malaria Policy</h3>
+      <h1>RAMP and SimBA</h1>
+            <h3 data-toc-skip class="subtitle">Robust, Simulation-Based
+Analytics for Malaria Policy</h3>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/RAMP.Rmd" class="external-link"><code>vignettes/RAMP.Rmd</code></a></small>
@@ -123,39 +124,148 @@ Malaria Policy</h3>
 
     
     
-<div class="section level2">
-<h2 id="satellite-packages">Satellite Packages<a class="anchor" aria-label="anchor" href="#satellite-packages"></a>
-</h2>
-<p><strong><code>ramp.xds</code></strong> handles all core computation,
-but its utility is extended by several satellite packages:</p>
+<p><strong>R</strong>obust <strong>A</strong>nalytics for
+<strong>M</strong>alaria <strong>P</strong>olicy (RAMP) was developed as
+an inferential system bespoke for malaria policy. Managing malaria is
+challenging because it is a set of loosely coupled, locally peculiar,
+complex adaptive systems. Mathematical models are a useful way of
+understanding the non-linear interactions among humans, mosquitoes,
+parasites, and malaria managers that make up these malaria systems. The
+goal of <strong>Sim</strong>ulation-<strong>B</strong>ased
+<strong>A</strong>nalytics (<strong>SimBA</strong>) is to use dynamical
+systems describing malaria in populations well enough to develop policy
+advice to help managers make effective policies. The goal of RAMP is to
+develop advice that is robust to uncertainty — in practical terms, this
+involves going to great lengths to characterize and quantify uncertainty
+and then to propagate the uncertainty through analytics pipelines.</p>
+<p>The stem name <strong><code>ramp</code></strong> was adopted for a
+suite of <strong>R</strong> packages:</p>
 <ul>
+<li><p><strong>SimBA</strong> is a suite of packages designed to support
+robust, simulation-based analytics. Core computation is handled in
+<strong><code>ramp.xds</code></strong>, but it is supported by six
+satellite packages.</p></li>
+<li><p>Two packages that take deep dives.</p></li>
+</ul>
+<p><a href="https://dd-harp.github.io/ramp.func/" class="external-link"><strong><code>ramp.func</code></strong></a>
+— a function library — supports SimBA and both deep dive packages.</p>
+<hr>
+<div class="float">
+<embed src="ramp_packages.html" width="624" height="380"></embed><div class="figcaption">A diagram of the R packages and their
+dependencies. Clicking on the package icon takes you to its
+<code>github.io</code> page</div>
+</div>
+<hr>
+<div class="section level2">
+<h2 id="simba">SimBA<a class="anchor" aria-label="anchor" href="#simba"></a>
+</h2>
+<p>To support development of professional analytics in malaria-endemic
+countries, we developed a new mathematical framework that would
+facilitate <em>nimble model building</em> by analysts embedded in
+malaria programs in endemic countries.</p>
+<p>To be nimble:</p>
+<ul>
+<li><p>The software would need to be capable of building models with
+arbitrary levels of <em>realism</em> and <em>complexity,</em> a feature
+called <em>scalable complexity.</em></p></li>
+<li><p>It should be possible for a malaria analyst to solve most models
+in a reasonable amount of time using their work computer.</p></li>
+<li><p>It should be straightforward to modify a model — to make it
+simpler or more elaborate — or to build a new model, as needed, to suit
+the changing needs of a malaria program.</p></li>
+<li><p>All analysis should be transparent and replicable.</p></li>
+</ul>
+<p>The software implements a mathematical framework that was developed
+in two phases. In the first phase, we developed a mathematical framework
+for modular, spatial dynamics with a focus on <em>autonomous</em>
+systems. In the second phase, we extended the framework to handle
+<em>non-autonomous</em> systems with exogenous forcing by weather,
+vector control, and mass health interventions.</p>
+<p>SimBA is the set of <strong>seven R packages</strong></p>
+<ul>
+<li><p><strong><code>ramp.xds</code></strong> handles all core
+computation, but its utility is extended by several satellite
+packages:</p></li>
 <li><p><a href="https://dd-harp.github.io/ramp.library/" class="external-link"><strong><code>ramp.library</code></strong></a>
-is an extended <strong>library of dynamical systems</strong> — stable
-code that has been tested and verified. It includes a large set of model
+is a <strong>dynamic module library.</strong> Each module implements a
+dynamical system describing the epidemiology of malaria or another
+mosquito-transmitted pathogen, adult mosquito ecology and infection
+dynamics, or aquatic mosquito ecology. It includes a large set of model
 families published in the peer-reviewed literature that are not included
 in <strong><code>ramp.xds</code></strong>. The ability to reuse code
 reduces the costs of replicating studies. Through this library,
 <strong><code>ramp.xds</code></strong> also supports nimble model
 building and analytics for other mosquito-borne pathogens.</p></li>
+<li><p><a href="https://dd-harp.github.io/ramp.func/" class="external-link"><strong><code>ramp.func</code></strong></a>
+is a <strong>function</strong> library for
+<strong>RAMP</strong>.</p></li>
 <li><p><a href="https://dd-harp.github.io/ramp.forcing/" class="external-link"><strong><code>ramp.forcing</code></strong></a>
-is a collection of utilities to model <strong>exogenous forcing, vector
-control, and other forms of disease control</strong> in models for
-<strong><code>ramp.xds</code></strong>.</p></li>
-<li><p><a href="https://dd-harp.github.io/ramp.trace/" class="external-link"><strong><code>ramp.trace</code></strong></a>
-is a <strong>trace function</strong> library for
-<strong>RAMP</strong></p></li>
-<li><p><a href="https://dd-harp.github.io/ramp.qa/" class="external-link"><strong><code>ramp.demog</code></strong></a>
-is a supplementary code library for
-<strong><code>ramp.xds</code></strong> that handles <strong>human
-demography and stratification</strong>, including vital dynamics and age
-structure.</p></li>
+is a collection of utilities to model <strong>exogenous forcing</strong>
+by weather, vector control, and or mass health interventions.</p></li>
+<li><p><a href="https://dd-harp.github.io/ramp.demog/" class="external-link"><strong><code>ramp.demog</code></strong></a>
+handles <strong>human demography and stratification</strong>, including
+vital dynamics and age structure.</p></li>
 <li><p><a href="https://dd-harp.github.io/ramp.work/" class="external-link"><strong><code>ramp.work</code></strong></a>
-includes algorithms to apply the framework, including code to fit models
-to data and to do constrained optimization.</p></li>
+includes algorithms to apply the framework, including code to
+<strong>fit models</strong> to data.</p></li>
 <li><p><a href="https://dd-harp.github.io/ramp.qa/" class="external-link"><strong><code>ramp.qa</code></strong></a>
 has method for <strong>qualitative analysis</strong>, including
-thresholds, scaling relationships, and connectivity</p></li>
+thresholds, scaling relationships, and connectivity.</p></li>
 </ul>
+<p><strong>Also See</strong></p>
+<ul>
+<li>Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J,
+Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission.
+PLoS Comput Biol 19(6): e1010684. <a href="https://doi.org/10.1371/journal.pcbi.1010684" class="external-link uri">https://doi.org/10.1371/journal.pcbi.1010684</a>.</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="deep-dives">Deep Dives<a class="anchor" aria-label="anchor" href="#deep-dives"></a>
+</h2>
+<p>Two packages take deep dives into malaria epidemiology and mosquito
+ecology.</p>
+<div class="section level3">
+<h3 id="ramp-falciparum-falciparm-malaria-epidemiology">
+<a href="https://dd-harp.github.io/ramp.falciparum/" class="external-link"><strong><code>ramp.falciparum</code></strong></a>
+— Falciparm Malaria Epidemiology<a class="anchor" aria-label="anchor" href="#ramp-falciparum-falciparm-malaria-epidemiology"></a>
+</h3>
+<p>Falciparum malaria epidemiology is extremely complex, even without
+considering transmission. Models must handle exposure, the complex time
+course of an infection (including parasite densities), superinfection,
+infectiousness, disease, treatment and chemoprotection with antimalarial
+drugs, immunity, and diagnostics and detection. This is a sandbox for
+falciparum malaria epidemiology with a mix of old and new models,
+including a probabilistic approach to falciparum malaria epidemiology,
+several queueing models describing malaria superinfection dynamics,
+development of hybrid variables and enhanced compartmental models, and
+some new models.</p>
+<p><strong>Also See</strong></p>
+<ul>
+<li>Henry JM, Carter AR, Wu SL, Smith DL (2025). A Probabilistic
+Synthesis of Malaria Epidemiology: Exposure, Infection, Parasite
+Densities, and Detection. medRxiv. <a href="https://www.medrxiv.org/content/10.1101/2025.03.24.25324561v1" class="external-link uri">https://www.medrxiv.org/content/10.1101/2025.03.24.25324561v1</a>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="ramp-micro-microsimulation">
+<a href="https://dd-harp.github.io/ramp.falciparum/" class="external-link"><strong><code>ramp.micro</code></strong></a>
+— Microsimulation<a class="anchor" aria-label="anchor" href="#ramp-micro-microsimulation"></a>
+</h3>
+<p>While <strong><code>ramp.xds</code></strong> was developed to handle
+patchy spatial (<em>i.e.</em> metapopulations), we developed <a href="https://dd-harp.github.io/ramp.micro/" class="external-link"><strong><code>ramp.micro</code></strong></a>
+to explore models for mosquito ecology and pathogen transmission
+dynamics on point sets.</p>
+<p><strong>Also See</strong></p>
+<ul>
+<li><p>Perkins TA, Scott TW, Le Menach A, Smith DL (2013) Heterogeneity,
+Mixing, and the Spatial Scales of Mosquito-Borne Pathogen Transmission.
+PLoS Comput Biol 9(12): e1003327. <a href="https://doi.org/10.1371/journal.pcbi.1003327" class="external-link uri">https://doi.org/10.1371/journal.pcbi.1003327</a></p></li>
+<li><p>Sánchez C HM, Wu SL, Henry JM, Guerra CA, Galick DS, Garcia GA,
+et al. (2026) Mosquito dispersal in context. PLOS Complex Syst 3(6):
+e0000108. <a href="https://doi.org/10.1371/journal.pcsy.0000108" class="external-link uri">https://doi.org/10.1371/journal.pcsy.0000108</a></p></li>
+</ul>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
