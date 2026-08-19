@@ -54,7 +54,7 @@ These three chunks are connected by two interfaces. The first two chunks are con
 
 ***
 
-![**Figure 2** Modular dynamic components that form the core of **`ramp.xds`**](notation1.png)
+![**Figure 2** Modular dynamic components that form the core of **`ramp.xds`**](../inst/notation1.png)
 
 ***
 

@@ -104,7 +104,7 @@ The modular form is not as compact, but it draws more attention to model structu
 
 *** 
 
-![**Figure 1** - Diagram of a Ross-Macdonald model in Box 1, rewritten in a modular form.](RossMacdonaldFormal.png){width=100%}
+![**Figure 1** - Diagram of a Ross-Macdonald model in Box 1, rewritten in a modular form.](images/RossMacdonaldFormal.png){width=100%}
 
 *** 
 
@@ -132,7 +132,7 @@ While these steps add complexity to this simple model, they are essential to the
 
 For a longer discussion of modularity, see [Modularity](https://dd-harp.github.io/ramp.xds/articles/modularity.html).
 
-![**Figure 2** - Diagram of a Ross-Macdonald model that shows how the dynamical terms are computed, step-by-step, to enable models with spatial dynamics and realism.](RossMacdonaldFormal2.png){width=100%}
+![**Figure 2** - Diagram of a Ross-Macdonald model that shows how the dynamical terms are computed, step-by-step, to enable models with spatial dynamics and realism.](images/RossMacdonaldFormal2.png){width=100%}
 
 
 ## Example

@@ -37,7 +37,7 @@ Our workflow is designed around branches. The `main`, `dev`, and `gh-pages` bran
   
 Some of our branches use [GitHub's branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches) to enforce these rules. Core dev team members can access these by going to Settings -> Branches. Both `main` and `dev` are protected from deletion. PRs made to `dev` must be reviewed and approved by at least 1 reviewer before they are allowed to be merged.
 
-![](GitFlow.png)
+![](images/GitFlow.png)
 
 
 We show an example of our workflow above. 

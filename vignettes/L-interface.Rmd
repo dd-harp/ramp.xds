@@ -20,7 +20,7 @@ It outputs the habitat emergence rate $\alpha,$ the number of adult female mosqu
 
 
 ***
-![**Figure 1** - A diagram of the **L** Component in context](L_component.png){width=100%}
+![**Figure 1** - A diagram of the **L** Component in context](images/L_component.png){width=100%}
 
 *** 
 

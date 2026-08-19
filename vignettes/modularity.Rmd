@@ -29,7 +29,7 @@ With these interfaces in place, we developed a code library with the goal of bei
 
 ***
 
-![**Figure 1:** A diagram of the modular design of **`ramp.xds`**](ModularGeneralized.png){width=100%}
+![**Figure 1:** A diagram of the modular design of **`ramp.xds`**](images/ModularGeneralized.png){width=100%}
 
 ***
 
