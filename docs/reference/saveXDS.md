@@ -29,9 +29,9 @@ Forcing functions (*e.g.* F_trend) are stored on the `xds` object in a
 form that takes up enormous space. This removes the functions before
 saving.
 
-The function `readRDS` in `ramp.trace` provides one method for saving
-the parameter sets for trace functions, and rebuilds the functions
+The function `readRDS` in `ramp.func` provides one method for saving the
+parameter sets for trace functions, and rebuilds the functions
 
 ## See also
 
-`ramp.trace`
+`ramp.func`

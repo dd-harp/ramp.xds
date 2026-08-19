@@ -1,1 +1,18 @@
 # ramp.work
+
+The package **`ramp.work`** was developed to fit models to data.
+
+**GitHub**
+
+- [code repository](https://github.com/dd-harp/ramp.work)
+
+- [github.io](https://dd-harp.github.io/ramp.work/)
+
+To install the latest version from GitHub, run the following lines of
+code in an R session.
+
+``` r
+
+library(devtools)
+devtools::install_github("dd-harp/ramp.work")
+```

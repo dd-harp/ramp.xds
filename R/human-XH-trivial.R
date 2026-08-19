@@ -29,7 +29,7 @@
 #' }
 #'  
 #' Setup also adds the objects `season_par` and `trend_par` and `shock_par` for
-#' use by `ramp.trace`
+#' use by `ramp.func`
 #' 
 #' @section Get and Change:
 #' 

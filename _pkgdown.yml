@@ -24,20 +24,6 @@ navbar:
       href: articles/Forcing.html
     - text: Discrete Time Systems 
       href: articles/DTS.html
-  - text: Supporting Software
-    menu:
-    - text: RAMP & SimBA
-      href: articles/RAMP.html
-    - text: ramp.library - Model Library
-      href: articles/ramp.library.html
-    - text: ramp.trace - Trace Functions
-      href: articles/ramp.trace.html
-    - text: ramp.forcing - Exogenous Forcing
-      href: articles/ramp.forcing.html
-    - text: ramp.qa - Qualitative Analysis
-      href: articles/ramp.qa.html
-    - text: ramp.work - Model Fitting
-      href: articles/ramp.work.html
   - text: XH 
     menu:
     - text: Human / Host Component (XH) 
@@ -74,6 +60,22 @@ navbar:
       href: articles/BloodFeeding.html
     - text: Exposure
       href: articles/Exposure.html
+  - text: Supporting Software
+    menu:
+    - text: RAMP & SimBA
+      href: articles/RAMP.html
+    - text: ramp.func - Function Library
+      href: articles/ramp.func.html
+    - text: ramp.library - Model Library
+      href: articles/ramp.library.html
+    - text: ramp.forcing - Exogenous Forcing
+      href: articles/ramp.forcing.html
+    - text: ramp.demography - Human / Host Demography
+      href: articles/ramp.demog.html
+    - text: ramp.qa - Qualitative Analysis
+      href: articles/ramp.qa.html
+    - text: ramp.work - Model Fitting
+      href: articles/ramp.work.html
   - text: Glossary
     href: articles/Glossary.html
   - text: Reference

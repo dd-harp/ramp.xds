@@ -27,10 +27,12 @@ articles:
   modularity: modularity.html
   MosquitoSpatialEcology: MosquitoSpatialEcology.html
   MY-interface: MY-interface.html
+  ramp.demog: ramp.demog.html
   ramp.forcing: ramp.forcing.html
+  ramp.func: ramp.func.html
   RAMP: RAMP.html
   ramp.library: ramp.library.html
-  ramp.trace: ramp.trace.html
+  ramp.qa: ramp.qa.html
   ramp.work: ramp.work.html
   RM-dts-Mosquito: RM-dts-Mosquito.html
   ScalableComplexity: ScalableComplexity.html
@@ -38,7 +40,7 @@ articles:
   Understanding_ramp.xds: Understanding_ramp.xds.html
   Working: Working.html
   XH-interface: XH-interface.html
-last_built: 2026-08-17T23:21Z
+last_built: 2026-08-19T19:43Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

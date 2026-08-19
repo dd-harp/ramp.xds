@@ -56,7 +56,7 @@ Note: \\0 \leq F\_\kappa(t) \leq 1\\
   to get \\V_k\\
 
 Setup also adds the objects `season_par` and `trend_par` and `shock_par`
-for use by `ramp.trace`
+for use by `ramp.func`
 
 ## Get and Change
 

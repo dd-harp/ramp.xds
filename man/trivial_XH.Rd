@@ -35,7 +35,7 @@ Note: \eqn{0 \leq F_\kappa(t) \leq 1}
 }
 
 Setup also adds the objects \code{season_par} and \code{trend_par} and \code{shock_par} for
-use by \code{ramp.trace}
+use by \code{ramp.func}
 }
 
 \section{Get and Change}{

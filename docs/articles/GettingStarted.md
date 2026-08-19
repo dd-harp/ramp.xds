@@ -401,17 +401,17 @@ software is working as designed.
 A basic requirement for full modularity is that every dynamical
 component must include a *trivial* module. In the `trivial` module, no
 variables are defined, but the dynamical terms needed by related
-dynamical components are passed by a configurable *trace function* with
-a generic form:
+dynamical components are passed by a configurable ***composed time
+series function*** with a generic form:
 
 ``` r
 
 mean*F_season(t)*F_trend(t)*F_shock(t)
 ```
 
-It is easy to change the `trace` function. A trace function library for
+It is easy to change the forcing function. A function library for
 `ramp.xds` is found in
-[`ramp.trace`](https://github.com/dd-harp/ramp.trace). For more
+[`ramp.func`](https://github.com/dd-harp/ramp.func). For more
 information about configuring trace functions for `ramp.xds`
 
 ## Next Steps

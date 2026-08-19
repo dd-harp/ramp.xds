@@ -1,9 +1,0 @@
----
-title: "ramp.trace"
-subtitle: "The RAMP Trace Function Library"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{ramp.trace}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----

@@ -22,8 +22,8 @@ as a product of four configurable elements:
 
 \deqn{x(t) = \bar x \times S(t) \times T(t) \times K(t)}
 \itemize{
-\item A trace function library for RAMP is in \code{ramp.trace}
-\item Functions that integrate \code{ramp.trace} and \code{ramp.xds} are found in \code{ramp.forcing}
+\item A trace function library for RAMP is in \code{ramp.func}
+\item Functions that integrate \code{ramp.func} and \code{ramp.xds} are found in \code{ramp.forcing}
 }
 
 For a discussion of mechanistic approaches to forcing, see \link{Forcing}
