@@ -14,12 +14,12 @@
 #' @param xds_obj an **`xds`** model object
 #' @param filename the file name
 #' 
-#' @note The function `readRDS` in `ramp.trace` 
+#' @note The function `readRDS` in `ramp.func` 
 #' provides one method for saving the parameter
 #' sets for trace functions, and rebuilds the 
 #' functions
 #' 
-#' @seealso `ramp.trace`
+#' @seealso `ramp.func`
 #' 
 #' @return invisible()
 #' @export

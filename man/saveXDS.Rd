@@ -24,11 +24,11 @@ on the \code{xds} object in a form that
 takes up enormous space. This removes the functions
 before saving.
 
-The function \code{readRDS} in \code{ramp.trace}
+The function \code{readRDS} in \code{ramp.func}
 provides one method for saving the parameter
 sets for trace functions, and rebuilds the
 functions
 }
 \seealso{
-\code{ramp.trace}
+\code{ramp.func}
 }

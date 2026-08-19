@@ -89,7 +89,7 @@
 #' For most ports, an alternative case is to configure 
 #' a trace function using package standard
 #' *composable time 
-#' series* trace function (see `ramp.trace` amd `ramp.forcing`).
+#' series* trace function (see `ramp.func` amd `ramp.forcing`).
 #'
 #' @section Setup: 
 #' All methods should have well-defined setup functions:

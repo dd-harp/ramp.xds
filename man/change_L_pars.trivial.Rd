@@ -20,6 +20,6 @@ an \strong{\code{xds}} object
 Change \code{Lambda}, \code{F_season}, \code{F_trend}, or \code{F_shock}
 }
 \note{
-Utilities for trace functions are in \code{ramp.trace}
+Utilities for trace functions are in \code{ramp.func}
 }
 \keyword{internal}

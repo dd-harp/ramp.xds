@@ -89,7 +89,7 @@ and `this_port.static` returns `xds_obj` unmodified.
 
 For most ports, an alternative case is to configure a trace function
 using package standard *composable time series* trace function (see
-`ramp.trace` amd `ramp.forcing`).
+`ramp.func` amd `ramp.forcing`).
 
 ## Setup
 

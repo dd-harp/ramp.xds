@@ -234,7 +234,7 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
 #'
 #' @inheritParams change_L_pars
 #' 
-#' @note Utilities for trace functions are in `ramp.trace`
+#' @note Utilities for trace functions are in `ramp.func`
 #' 
 #' @return an **`xds`** object
 #' @keywords internal

@@ -29,4 +29,4 @@ an **`xds`** object
 
 ## Note
 
-Utilities for trace functions are in `ramp.trace`
+Utilities for trace functions are in `ramp.func`

@@ -1,6 +1,6 @@
 ---
-title: "RAMP"
-subtitle: "Robust Analytics for Malaria Policy"
+title: "RAMP and SimBA"
+subtitle: "Robust, Simulation-Based Analytics for Malaria Policy"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{RAMP}
@@ -8,18 +8,82 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Satellite Packages 
+**R**obust **A**nalytics for **M**alaria **P**olicy (RAMP) was developed as an inferential system bespoke for malaria policy.
+Managing malaria is challenging because it is a set of loosely coupled, locally peculiar, complex adaptive systems.
+Mathematical models are a useful way of understanding the non-linear interactions among humans, mosquitoes, parasites, and malaria managers that make up these malaria systems. 
+The goal of **Sim**ulation-**B**ased **A**nalytics (**SimBA**) is to use dynamical systems describing malaria in populations well enough to develop policy advice to help managers make effective policies.
+The goal of RAMP is to develop advice that is robust to uncertainty --- in practical terms, this involves going to great lengths to characterize and quantify uncertainty and then to propagate the uncertainty through analytics pipelines. 
 
-**`ramp.xds`** handles all core computation, but its utility is extended by several satellite packages: 
+The stem name **`ramp`** was adopted for a suite of **R** packages: 
 
-+ [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an extended **library of dynamical systems** --- stable code that has been tested and verified. It includes a large set of model families published in the peer-reviewed literature that are not included in **`ramp.xds`**. The ability to reuse code reduces the costs of replicating studies. Through this library, **`ramp.xds`** also supports nimble model building and analytics for other mosquito-borne pathogens. 
++ **SimBA** is a suite of packages designed to support robust, simulation-based analytics. Core computation is handled in **`ramp.xds`**, but it is supported by six satellite packages. 
 
-+ [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a collection of utilities to model **exogenous forcing, vector control, and other forms of disease control** in models for **`ramp.xds`**.
++ Two packages that take deep dives. 
 
-+ [**`ramp.trace`**](https://dd-harp.github.io/ramp.trace/) is a **trace function** library for **RAMP**
+[**`ramp.func`**](https://dd-harp.github.io/ramp.func/) --- a function library --- supports SimBA and both deep dive packages.
 
-+ [**`ramp.demog`**](https://dd-harp.github.io/ramp.qa/) is a supplementary code library for **`ramp.xds`** that handles **human demography and stratification**, including vital dynamics and age structure.
+*** 
 
-+ [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) includes algorithms to apply the framework, including code to fit models to data and to do constrained optimization.
+![A diagram of the R packages and their dependencies. Clicking on the package icon takes you to its `github.io` page](ramp_packages.html){width=624px height=380px}
 
-+ [**`ramp.qa`**](https://dd-harp.github.io/ramp.qa/) has method for **qualitative analysis**, including thresholds, scaling relationships, and connectivity
+*** 
+
+# SimBA
+
+To support development of professional analytics in malaria-endemic countries, we developed a new mathematical framework that would facilitate *nimble model building* by analysts embedded in malaria programs in endemic countries.
+
+To be nimble:
+
++ The software would need to be capable of building models with arbitrary levels of *realism* and *complexity,* a feature called *scalable complexity.*
+
++ It should be possible for a malaria analyst to solve most models in a reasonable amount of time using their work computer.
+
++ It should be straightforward to modify a model --- to make it simpler or more elaborate --- or to build a new model, as needed, to suit the changing needs of a malaria program.
+
++ All analysis should be transparent and replicable. 
+
+The software implements a mathematical framework that was developed in two phases. In the first phase, we developed a mathematical framework for modular, spatial dynamics with a focus on *autonomous* systems. In the second phase, we extended the framework to handle *non-autonomous* systems with exogenous forcing by weather, vector control, and mass health interventions. 
+
+
+SimBA is the set of **seven R packages**  
+
++ **`ramp.xds`** handles all core computation, but its utility is extended by several satellite packages: 
+
++ [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is a **dynamic module library.** Each module implements a dynamical system describing the epidemiology of malaria or another mosquito-transmitted pathogen, adult mosquito ecology and infection dynamics, or aquatic mosquito ecology. It includes a large set of model families published in the peer-reviewed literature that are not included in **`ramp.xds`**. The ability to reuse code reduces the costs of replicating studies. Through this library, **`ramp.xds`** also supports nimble model building and analytics for other mosquito-borne pathogens. 
+
++ [**`ramp.func`**](https://dd-harp.github.io/ramp.func/) is a **function** library for **RAMP**.
+
++ [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a collection of utilities to model **exogenous forcing** by weather, vector control, and or mass health interventions.
+
++ [**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/) handles **human demography and stratification**, including vital dynamics and age structure.
+
++ [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) includes algorithms to apply the framework, including code to **fit models** to data.
+
++ [**`ramp.qa`**](https://dd-harp.github.io/ramp.qa/) has method for **qualitative analysis**, including thresholds, scaling relationships, and connectivity.
+
+**Also See**
+
++ Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684. 
+
+# Deep Dives
+
+Two packages take deep dives into malaria epidemiology and mosquito ecology. 
+
+## [**`ramp.falciparum`**](https://dd-harp.github.io/ramp.falciparum/) --- Falciparm Malaria Epidemiology
+
+Falciparum malaria epidemiology is extremely complex, even without considering transmission.  Models must handle exposure, the complex time course of an infection (including parasite densities), superinfection, infectiousness, disease, treatment and chemoprotection with antimalarial drugs, immunity, and diagnostics and detection. This is a sandbox for falciparum malaria epidemiology with a mix of old and new models, including a probabilistic approach to falciparum malaria epidemiology, several queueing models describing malaria superinfection dynamics, development of hybrid variables and enhanced compartmental models, and some new models. 
+
+**Also See**
+
++ Henry JM, Carter AR, Wu SL, Smith DL (2025). A Probabilistic Synthesis of Malaria Epidemiology: Exposure, Infection, Parasite Densities, and Detection. medRxiv. https://www.medrxiv.org/content/10.1101/2025.03.24.25324561v1 
+
+## [**`ramp.micro`**](https://dd-harp.github.io/ramp.falciparum/) --- Microsimulation
+
+While **`ramp.xds`** was developed to handle patchy spatial (*i.e.* metapopulations), we developed [**`ramp.micro`**](https://dd-harp.github.io/ramp.micro/) to explore models for mosquito ecology and pathogen transmission dynamics on point sets. 
+
+**Also See**
+
++ Perkins TA, Scott TW, Le Menach A, Smith DL (2013) Heterogeneity, Mixing, and the Spatial Scales of Mosquito-Borne Pathogen Transmission. PLoS Comput Biol 9(12): e1003327. https://doi.org/10.1371/journal.pcbi.1003327
+
++ Sánchez C HM, Wu SL, Henry JM, Guerra CA, Galick DS, Garcia GA, et al. (2026) Mosquito dispersal in context. PLOS Complex Syst 3(6): e0000108. https://doi.org/10.1371/journal.pcsy.0000108
+

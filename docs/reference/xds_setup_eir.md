@@ -25,6 +25,10 @@ xds_setup_eir(
   F_trend = F_one,
   F_shock = F_one,
   F_age = F_one,
+  season_par = list(name = "F_one"),
+  trend_par = list(name = "F_one"),
+  age_par = list(name = "F_one"),
+  shock_par = list(name = "F_one"),
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
@@ -58,6 +62,22 @@ xds_setup_eir(
 - F_age:
 
   the relative biting rate by age
+
+- season_par:
+
+  a list of options for F_season
+
+- trend_par:
+
+  a list of options for F_trend
+
+- age_par:
+
+  a list of options for F_age
+
+- shock_par:
+
+  a list of options for F_shock
 
 - xds:
 

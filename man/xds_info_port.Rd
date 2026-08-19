@@ -102,7 +102,7 @@ unmodified.
 For most ports, an alternative case is to configure
 a trace function using package standard
 \emph{composable time
-series} trace function (see \code{ramp.trace} amd \code{ramp.forcing}).
+series} trace function (see \code{ramp.func} amd \code{ramp.forcing}).
 }
 
 \section{Setup}{
