@@ -11,7 +11,7 @@ Dynamics](https://faculty.washington.edu/smitdave/malaria_theory/sis.html)
 
 ------------------------------------------------------------------------
 
-![Figure 1: A Diagram of the SIS Model](SIS.png)
+![Figure 1: A Diagram of the SIS Model](../inst/SIS.png)
 
 **Figure 1**: A Diagram of the SIS Model
 

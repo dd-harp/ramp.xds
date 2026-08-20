@@ -13,21 +13,35 @@ Also, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)
 
 *** 
 
-In the vignette [Getting Started](GettingStarted.html), we introduced [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html). In this vignette, we take a deeper dive into **Basic Setup** (also, see the help documentation [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html)).
+In the previous vignette [Getting Started](GettingStarted.html), we introduced [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html). Here, we take a deeper dive into **Basic Setup.** 
 
+Inline help is also available through:
+```{r, eval=F}
+?xds_basic_info
+``` 
+which is also viewable as [html](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html).
+ 
 **`ramp.xds`** is based on a mathematical framework for model building that is modular, flexible and extensible. Using setup functions, it's comparatively easy to build highly *realistic* models by starting simple and adding features one at a time. We call this *progressive model building.* 
 
 ## Overview of Setup  
 
 Progressive model building starts with basic setup. To set up a model, the user needs to:
 
-+ Frame the Problem 
++ Frame the Model
 
 + Set up the Model Structure 
 
 + Configure the Dynamical Components
 
-+ Spatial Dynamics 
+Other options we consider as an extension of basic setup are:
+
++ Set up or modify forcing for any Trivial Components 
+
++ For spatial models, configure
+
+    + Mosquito Dispersal
+    
+    + Time Spent / Time at Risk
 
 + Scalable Complexity 
 
@@ -62,7 +76,7 @@ To use **`ramp.xds`** at all, the **`xds`** object must be properly formatted an
 
 The first step in any study is to frame the problem. When that problem involves building and solving a dynamical system, framing the problem involves an iterative process of asking and reasking a question until it is in a form that can actually be answered. The starting point is often a general question that could spark broad philosophical discussions. Framing involves refining the question until the shape of the answer is well-defined.  
 
-**`ramp.xds`** was designed to lower the costs of answering questions that would benefit from building and solving a dynamical system model of a mosquito-borne pathogen dynamics in populations. To understand the process of translating a question into a basic setup algorithm, it's useful to know a little about modular computation in **`ramp.xds`**, the concepts of *modularity* and `trivial` modules, and the *dynamical frame.*
+**`ramp.xds`** was designed to lower the costs of answering questions that would benefit from building and solving a dynamical system model of a mosquito-borne pathogen dynamics in populations. To understand the process of translating a question into a basic setup algorithm, it's useful to know a little about modular computation in **`ramp.xds`**, the concepts of *modularity* and `trivial` modules, and the *dynamical frame.* 
 
 ### Dynamical Components 
 
@@ -108,9 +122,35 @@ Information is passed among components by two interfaces:
 
 ### Trivial Modules
 
-Each one of the dynamical components can be implemented by one of several different modules. For each component, one of those modules is called the `trivial` module.  The `trivial` modules ignore the inputs that come from other dynamical components, and they pass the component's outputs from a *trace function.* To focus on one component, the `trivial` modules are configured to pass inputs. 
+For each component, it is possible to set up choose the `trivial` module. The `trivial` modules ignore the inputs that come from other dynamical components, and they pass the component's outputs from a *trace function.* Using `trivial` modules, it is possible to develop models that isolate and study part of a full system.
 
-Using `trivial` modules, it is possible to develop models that isolate and study part of a full system. 
+
+
++ The trivial **L** module outputs the daily emergence rate of adult, female mosquitoes in each patch ($\Lambda$)
+
++ The trivial **MY** module outputs either:
+
+    - The egg laying rate by the mosquito population in each patch ($G$); or
+    
+    - The net human blood feeding rate of the adult mosquito population ($fqZ$)
+
++ The trivial **X** module outputs net infectiousness ($\kappa$)
+
+Using `xds_setup_eir()`, it is possible to set up a trace function that passes the EIR to the **XH** component.
+
+### Trace Functions 
+
+The functions that output these terms are **composed time series functions,** with four components:
+
++ a mean (or scaling) parameter whose name depends on the forcing term
+
++ a seasonality pattern, `F_season(t, V)` 
+
++ a trend, `F_trend(t, V)` 
+
++ a shock function, `F_shock(t, V)` 
+
+Each function requires a second argument, `V`, from the function `get_variables` that dispatches on `season_par`, `trend_par` or `shock_par.` By default, these are empty lists, and `get.variables.list` returns an empty list. The default functions `F_season`, `F_trend`, and `F_shock` ignore `V` and return a constant value $1.$ The packages **`ramp.func`** and **`ramp.forcing`** have utilities that make it easy to set up forcing. 
 
 ### The Dynamical Frame
 
@@ -145,15 +185,13 @@ that dispatch on `class(xds_obj$frame)`.
      - the **MY** component is not used 
      - the **XH** component is not used 
 
-## Model Structure 
+## Structural Parameters
 
 Model structure has two main parts: 
 
 + **Malaria Landscapes** --- a spatial domain is subdivided into patches that define adult mosquito populations and the aquatic habitats to handle ecological heterogeneity and parasite transmission
 
 + **Stratification** --- the process of segmenting a human population into strata to handle epidemiological heterogeneity. Some degree of stratification is made necessary to deal with features of the malaria landscape. 
-
-### Structural Parameters 
 
 The model *structure* is characterized by several core parameters. The values of
 these parameters are set during basic setup: 

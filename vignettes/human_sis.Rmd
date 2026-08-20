@@ -16,7 +16,7 @@ For a more mathematical introduction, see [**Malaria Theory** -- SIS Dynamics](h
 
 *** 
 
-![**Figure 1**: A Diagram of the SIS Model](SIS.png)
+![**Figure 1**: A Diagram of the SIS Model](../inst/SIS.png)
 
 ***
 
