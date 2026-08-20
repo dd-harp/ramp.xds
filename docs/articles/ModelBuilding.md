@@ -82,7 +82,7 @@ through egg laying and emergence, \\\mathcal {N, U}\\.
 ------------------------------------------------------------------------
 
 ![Figure 2 Modular dynamic components that form the core of
-ramp.xds](notation1.png)
+ramp.xds](../inst/notation1.png)
 
 **Figure 2** Modular dynamic components that form the core of
 **`ramp.xds`**

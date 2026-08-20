@@ -24,7 +24,7 @@ The stem name **`ramp`** was adopted for a suite of **R** packages:
 
 *** 
 
-![A diagram of the R packages and their dependencies. Clicking on the package icon takes you to its `github.io` page](images/ramp_packages.htm){width=624px height=380px}
+![A diagram of the R packages and their dependencies. Clicking on the package icon takes you to its `github.io` page](ramp_packages.html){width=624px height=380px}
 
 *** 
 
