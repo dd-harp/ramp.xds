@@ -10,13 +10,21 @@ Also, see
 
 ------------------------------------------------------------------------
 
-In the vignette [Getting
+In the previous vignette [Getting
 Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.md),
 we introduced
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html).
-In this vignette, we take a deeper dive into **Basic Setup** (also, see
-the help documentation
-[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html)).
+Here, we take a deeper dive into **Basic Setup.**
+
+Inline help is also available through:
+
+``` r
+
+?xds_basic_info
+```
+
+which is also viewable as
+[html](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html).
 
 **`ramp.xds`** is based on a mathematical framework for model building
 that is modular, flexible and extensible. Using setup functions, it’s
@@ -29,13 +37,21 @@ building.*
 Progressive model building starts with basic setup. To set up a model,
 the user needs to:
 
-- Frame the Problem
+- Frame the Model
 
 - Set up the Model Structure
 
 - Configure the Dynamical Components
 
-- Spatial Dynamics
+Other options we consider as an extension of basic setup are:
+
+- Set up or modify forcing for any Trivial Components
+
+- For spatial models, configure
+
+  - Mosquito Dispersal
+
+  - Time Spent / Time at Risk
 
 - Scalable Complexity
 
@@ -146,15 +162,50 @@ Information is passed among components by two interfaces:
 
 ### Trivial Modules
 
-Each one of the dynamical components can be implemented by one of
-several different modules. For each component, one of those modules is
-called the `trivial` module. The `trivial` modules ignore the inputs
-that come from other dynamical components, and they pass the component’s
-outputs from a *trace function.* To focus on one component, the
-`trivial` modules are configured to pass inputs.
+For each component, it is possible to set up choose the `trivial`
+module. The `trivial` modules ignore the inputs that come from other
+dynamical components, and they pass the component’s outputs from a
+*trace function.* Using `trivial` modules, it is possible to develop
+models that isolate and study part of a full system.
 
-Using `trivial` modules, it is possible to develop models that isolate
-and study part of a full system.
+- The trivial **L** module outputs the daily emergence rate of adult,
+  female mosquitoes in each patch (\\\Lambda\\)
+
+- The trivial **MY** module outputs either:
+
+  - The egg laying rate by the mosquito population in each patch
+    (\\G\\); or
+
+  - The net human blood feeding rate of the adult mosquito population
+    (\\fqZ\\)
+
+- The trivial **X** module outputs net infectiousness (\\\kappa\\)
+
+Using
+[`xds_setup_eir()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md),
+it is possible to set up a trace function that passes the EIR to the
+**XH** component.
+
+### Trace Functions
+
+The functions that output these terms are **composed time series
+functions,** with four components:
+
+- a mean (or scaling) parameter whose name depends on the forcing term
+
+- a seasonality pattern, `F_season(t, V)`
+
+- a trend, `F_trend(t, V)`
+
+- a shock function, `F_shock(t, V)`
+
+Each function requires a second argument, `V`, from the function
+`get_variables` that dispatches on `season_par`, `trend_par` or
+`shock_par.` By default, these are empty lists, and `get.variables.list`
+returns an empty list. The default functions `F_season`, `F_trend`, and
+`F_shock` ignore `V` and return a constant value \\1.\\ The packages
+**`ramp.func`** and **`ramp.forcing`** have utilities that make it easy
+to set up forcing.
 
 ### The Dynamical Frame
 
@@ -202,7 +253,7 @@ equations use the `S3` system, with methods that dispatch on
   - the **MY** component is not used
   - the **XH** component is not used
 
-## Model Structure
+## Structural Parameters
 
 Model structure has two main parts:
 
@@ -214,8 +265,6 @@ Model structure has two main parts:
   strata to handle epidemiological heterogeneity. Some degree of
   stratification is made necessary to deal with features of the malaria
   landscape.
-
-### Structural Parameters
 
 The model *structure* is characterized by several core parameters. The
 values of these parameters are set during basic setup:

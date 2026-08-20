@@ -126,10 +126,13 @@
 &amp; <a href="Working.html"><em>Working with Models</em></a></p>
 <p>Also, see <a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong></a></p>
 <hr>
-<p>In the vignette <a href="GettingStarted.html">Getting Started</a>, we
-introduced <a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a>.
-In this vignette, we take a deeper dive into <strong>Basic
-Setup</strong> (also, see the help documentation <a href="https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html">xds_info_basic_setup</a>).</p>
+<p>In the previous vignette <a href="GettingStarted.html">Getting
+Started</a>, we introduced <a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a>.
+Here, we take a deeper dive into <strong>Basic Setup.</strong></p>
+<p>Inline help is also available through:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">xds_basic_info</span></span></code></pre></div>
+<p>which is also viewable as <a href="https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html">html</a>.</p>
 <p><strong><code>ramp.xds</code></strong> is based on a mathematical
 framework for model building that is modular, flexible and extensible.
 Using setup functions, it’s comparatively easy to build highly
@@ -141,10 +144,20 @@ a time. We call this <em>progressive model building.</em></p>
 <p>Progressive model building starts with basic setup. To set up a
 model, the user needs to:</p>
 <ul>
-<li><p>Frame the Problem</p></li>
+<li><p>Frame the Model</p></li>
 <li><p>Set up the Model Structure</p></li>
 <li><p>Configure the Dynamical Components</p></li>
-<li><p>Spatial Dynamics</p></li>
+</ul>
+<p>Other options we consider as an extension of basic setup are:</p>
+<ul>
+<li><p>Set up or modify forcing for any Trivial Components</p></li>
+<li>
+<p>For spatial models, configure</p>
+<ul>
+<li><p>Mosquito Dispersal</p></li>
+<li><p>Time Spent / Time at Risk</p></li>
+</ul>
+</li>
 <li><p>Scalable Complexity</p></li>
 </ul>
 <div class="section level3">
@@ -267,15 +280,53 @@ through the <strong>ML</strong> Interface. It handles:</p>
 <div class="section level3">
 <h3 id="trivial-modules">Trivial Modules<a class="anchor" aria-label="anchor" href="#trivial-modules"></a>
 </h3>
-<p>Each one of the dynamical components can be implemented by one of
-several different modules. For each component, one of those modules is
-called the <code>trivial</code> module. The <code>trivial</code> modules
-ignore the inputs that come from other dynamical components, and they
-pass the component’s outputs from a <em>trace function.</em> To focus on
-one component, the <code>trivial</code> modules are configured to pass
-inputs.</p>
-<p>Using <code>trivial</code> modules, it is possible to develop models
-that isolate and study part of a full system.</p>
+<p>For each component, it is possible to set up choose the
+<code>trivial</code> module. The <code>trivial</code> modules ignore the
+inputs that come from other dynamical components, and they pass the
+component’s outputs from a <em>trace function.</em> Using
+<code>trivial</code> modules, it is possible to develop models that
+isolate and study part of a full system.</p>
+<ul>
+<li><p>The trivial <strong>L</strong> module outputs the daily emergence
+rate of adult, female mosquitoes in each patch (<span class="math inline">\(\Lambda\)</span>)</p></li>
+<li>
+<p>The trivial <strong>MY</strong> module outputs either:</p>
+<ul>
+<li><p>The egg laying rate by the mosquito population in each patch
+(<span class="math inline">\(G\)</span>); or</p></li>
+<li><p>The net human blood feeding rate of the adult mosquito population
+(<span class="math inline">\(fqZ\)</span>)</p></li>
+</ul>
+</li>
+<li><p>The trivial <strong>X</strong> module outputs net infectiousness
+(<span class="math inline">\(\kappa\)</span>)</p></li>
+</ul>
+<p>Using <code><a href="../reference/xds_setup_eir.html">xds_setup_eir()</a></code>, it is possible to set up a trace
+function that passes the EIR to the <strong>XH</strong> component.</p>
+</div>
+<div class="section level3">
+<h3 id="trace-functions">Trace Functions<a class="anchor" aria-label="anchor" href="#trace-functions"></a>
+</h3>
+<p>The functions that output these terms are <strong>composed time
+series functions,</strong> with four components:</p>
+<ul>
+<li><p>a mean (or scaling) parameter whose name depends on the forcing
+term</p></li>
+<li><p>a seasonality pattern, <code>F_season(t, V)</code></p></li>
+<li><p>a trend, <code>F_trend(t, V)</code></p></li>
+<li><p>a shock function, <code>F_shock(t, V)</code></p></li>
+</ul>
+<p>Each function requires a second argument, <code>V</code>, from the
+function <code>get_variables</code> that dispatches on
+<code>season_par</code>, <code>trend_par</code> or
+<code>shock_par.</code> By default, these are empty lists, and
+<code>get.variables.list</code> returns an empty list. The default
+functions <code>F_season</code>, <code>F_trend</code>, and
+<code>F_shock</code> ignore <code>V</code> and return a constant value
+<span class="math inline">\(1.\)</span> The packages
+<strong><code>ramp.func</code></strong> and
+<strong><code>ramp.forcing</code></strong> have utilities that make it
+easy to set up forcing.</p>
 </div>
 <div class="section level3">
 <h3 id="the-dynamical-frame">The Dynamical Frame<a class="anchor" aria-label="anchor" href="#the-dynamical-frame"></a>
@@ -339,7 +390,7 @@ models to study epidemiology</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="model-structure">Model Structure<a class="anchor" aria-label="anchor" href="#model-structure"></a>
+<h2 id="structural-parameters">Structural Parameters<a class="anchor" aria-label="anchor" href="#structural-parameters"></a>
 </h2>
 <p>Model structure has two main parts:</p>
 <ul>
@@ -352,9 +403,6 @@ human population into strata to handle epidemiological heterogeneity.
 Some degree of stratification is made necessary to deal with features of
 the malaria landscape.</p></li>
 </ul>
-<div class="section level3">
-<h3 id="structural-parameters">Structural Parameters<a class="anchor" aria-label="anchor" href="#structural-parameters"></a>
-</h3>
 <p>The model <em>structure</em> is characterized by several core
 parameters. The values of these parameters are set during basic
 setup:</p>
@@ -375,7 +423,6 @@ vector species</p></li>
 species</p></li>
 </ul>
 <p>The following discusses how these are configured during setup.</p>
-</div>
 </div>
 <div class="section level2">
 <h2 id="dynamical-components-1">Dynamical Components<a class="anchor" aria-label="anchor" href="#dynamical-components-1"></a>
