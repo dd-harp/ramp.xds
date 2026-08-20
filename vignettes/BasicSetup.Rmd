@@ -78,6 +78,8 @@ The first step in any study is to frame the problem. When that problem involves 
 
 **`ramp.xds`** was designed to lower the costs of answering questions that would benefit from building and solving a dynamical system model of a mosquito-borne pathogen dynamics in populations. To understand the process of translating a question into a basic setup algorithm, it's useful to know a little about modular computation in **`ramp.xds`**, the concepts of *modularity* and `trivial` modules, and the *dynamical frame.* 
 
+
+
 ### Dynamical Components 
 
 Dynamical systems for malaria and other mosquito-borne diseases
@@ -153,6 +155,10 @@ The functions that output these terms are **composed time series functions,** wi
 Each function requires a second argument, `V`, from the function `get_variables` that dispatches on `season_par`, `trend_par` or `shock_par.` By default, these are empty lists, and `get.variables.list` returns an empty list. The default functions `F_season`, `F_trend`, and `F_shock` ignore `V` and return a constant value $1.$ The packages **`ramp.func`** and **`ramp.forcing`** have utilities that make it easy to set up forcing. 
 
 ### The Dynamical Frame
+
+![A flowchart to determine which version of `xds_setup` to use. ](xds_frame.drawio.html){width=624px height=380px}
+
+***
 
 If the **MY** component is not trivial, then it will need inputs from the other two components, so a full system will need to be configured. If, on the other hand, the **M** or **Y** component is `trivial` or unnecessary, then either the **L** Component or the **XH** component is completely redundant. 
 
