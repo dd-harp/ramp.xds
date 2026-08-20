@@ -209,6 +209,10 @@ to set up forcing.
 
 ### The Dynamical Frame
 
+A flowchart to determine which version of `xds_setup` to use.
+
+------------------------------------------------------------------------
+
 If the **MY** component is not trivial, then it will need inputs from
 the other two components, so a full system will need to be configured.
 If, on the other hand, the **M** or **Y** component is `trivial` or
