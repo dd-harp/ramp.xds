@@ -5,39 +5,55 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Setup Mosquito Dispersal Matrix — setup_K_matrix"><meta name="description" content='A flexible setup function for mosquito dispersal. The first
-argument Kname can be either a matrix, the name of a method, or a list of options that
-includes a method name:
-if Kname is a string of characters, it dispatches the method
-if Kname is a matrix, then a matrix is set up
-if Kname is a list of options, then dispatching is on Kname$name
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Setup Mosquito Dispersal Matrix — setup_K_matrix"><meta name="description" content='A flexible function to set up or change the mosquito dispersal matrix (see xds_info_mosquito_dispersal).
+The function was designed to dispatch on the first argument, name:
+name is a method name
+options is a named list that sets the parameters in a function make_K_matrix_name
+Before dispatching, the function sets class(option) = "name"
 
 
-the method  dispatches on class(options)
-Options for Kname are:
-is.matrix(Kname): if the user passes a matrix, then class(Kname) &amp;lt;- "as_matrix"
-Kname = "no_setup" – the xds object is returned unmodified
-Kname = "zero" – set up a matrix of all zeros
-Kname = "as_matrix" – calls change_K_matrix and passes K_matrix
-Kname = "herethere" – calls make_K_matrix_herethere
-Kname = "xy" – calls make_K_matrix_xy
-
-'><meta property="og:description" content='A flexible setup function for mosquito dispersal. The first
-argument Kname can be either a matrix, the name of a method, or a list of options that
-includes a method name:
-if Kname is a string of characters, it dispatches the method
-if Kname is a matrix, then a matrix is set up
-if Kname is a list of options, then dispatching is on Kname$name
+Pre-dispatch cases were developed to make the function call more flexible: any
+matrix can be passed as the first argument: or the user could set up an options list
+and pass it
+(e.g. Koptions is passed to setup_K_matrix in xds_setup). The pre-dispatch
+parsing:
+if name is a method name, set class(options) = "name"
+if name is a matrix, set class(options) = "as_matrix"
+if name is a list of options,
 
 
-the method  dispatches on class(options)
-Options for Kname are:
-is.matrix(Kname): if the user passes a matrix, then class(Kname) &amp;lt;- "as_matrix"
-Kname = "no_setup" – the xds object is returned unmodified
-Kname = "zero" – set up a matrix of all zeros
-Kname = "as_matrix" – calls change_K_matrix and passes K_matrix
-Kname = "herethere" – calls make_K_matrix_herethere
-Kname = "xy" – calls make_K_matrix_xy
+Available methods are:
+"as_matrix" — sets up the matrix
+"herethere" — calls make_K_matrix_herethere
+"xy" – calls make_K_matrix_xy
+"list" — for options lists
+"zero" — sets up the zero matrix
+"no_setup" — returns the xds object without modification
+
+'><meta property="og:description" content='A flexible function to set up or change the mosquito dispersal matrix (see xds_info_mosquito_dispersal).
+The function was designed to dispatch on the first argument, name:
+name is a method name
+options is a named list that sets the parameters in a function make_K_matrix_name
+Before dispatching, the function sets class(option) = "name"
+
+
+Pre-dispatch cases were developed to make the function call more flexible: any
+matrix can be passed as the first argument: or the user could set up an options list
+and pass it
+(e.g. Koptions is passed to setup_K_matrix in xds_setup). The pre-dispatch
+parsing:
+if name is a method name, set class(options) = "name"
+if name is a matrix, set class(options) = "as_matrix"
+if name is a list of options,
+
+
+Available methods are:
+"as_matrix" — sets up the matrix
+"herethere" — calls make_K_matrix_herethere
+"xy" – calls make_K_matrix_xy
+"list" — for options lists
+"zero" — sets up the zero matrix
+"no_setup" — returns the xds object without modification
 
 '></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -120,31 +136,36 @@ Kname = "xy" – calls make_K_matrix_xy
     </div>
 
     <div class="ref-description section level2">
-    <p>A flexible setup function for mosquito dispersal. The first
-argument <code>Kname</code> can be either a matrix, the name of a method, or a list of options that
-includes a method name:</p><ul><li><p>if <code>Kname</code> is a string of characters, it dispatches the method</p></li>
-<li><p>if <code>Kname</code> is a matrix, then a matrix is set up</p></li>
-<li><p>if <code>Kname</code> is a list of options, then dispatching is on <code>Kname$name</code></p></li>
-</ul><p>the method  dispatches on <code>class(options)</code></p>
-<p>Options for <code>Kname</code> are:</p><ul><li><p><code>is.matrix(Kname)</code>: if the user passes a matrix, then <code>class(Kname) &lt;- "as_matrix"</code></p></li>
-<li><p><code>Kname = "no_setup"</code> – the <strong><code>xds</code></strong> object is returned unmodified</p></li>
-<li><p><code>Kname = "zero"</code> – set up a matrix of all zeros</p></li>
-<li><p><code>Kname = "as_matrix"</code> – calls <a href="change_K_matrix.html">change_K_matrix</a> and passes <code>K_matrix</code></p></li>
-<li><p><code>Kname = "herethere"</code> – calls <a href="make_K_matrix_herethere.html">make_K_matrix_herethere</a></p></li>
-<li><p><code>Kname = "xy"</code> – calls <a href="make_K_matrix_xy.html">make_K_matrix_xy</a></p></li>
+    <p>A flexible function to set up or change the mosquito dispersal matrix (see <a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a>).</p>
+<p>The function was designed to dispatch on the first argument, <code>name</code>:</p><ul><li><p><code>name</code> is a method name</p></li>
+<li><p><code>options</code> is a named list that sets the parameters in a function <code>make_K_matrix_name</code></p></li>
+<li><p>Before dispatching, the function sets <code>class(option) = "name"</code></p></li>
+</ul><p>Pre-dispatch cases were developed to make the function call more flexible: any
+matrix can be passed as the first argument: or the user could set up an options list
+and pass it
+(<em>e.g.</em> <code>Koptions</code> is passed to <code>setup_K_matrix</code> in <code>xds_setup</code>). The pre-dispatch
+parsing:</p><ul><li><p>if <code>name</code> is a method name, set <code>class(options) = "name"</code></p></li>
+<li><p>if <code>name</code> is a matrix, set <code>class(options) = "as_matrix"</code></p></li>
+<li><p>if <code>name</code> is a list of options,</p></li>
+</ul><p>Available methods are:</p><ul><li><p>"as_matrix" — sets up the matrix</p></li>
+<li><p>"herethere" — calls <a href="make_K_matrix_herethere.html">make_K_matrix_herethere</a></p></li>
+<li><p>"xy" – calls <a href="make_K_matrix_xy.html">make_K_matrix_xy</a></p></li>
+<li><p>"list" — for options lists</p></li>
+<li><p>"zero" — sets up the zero matrix</p></li>
+<li><p>"no_setup" — returns the <strong><code>xds</code></strong> object without modification</p></li>
 </ul></div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">setup_K_matrix</span><span class="op">(</span><span class="va">Kname</span>, <span class="va">xds_obj</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, s <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">setup_K_matrix</span><span class="op">(</span><span class="va">name</span>, <span class="va">xds_obj</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, s <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-kname">Kname<a class="anchor" aria-label="anchor" href="#arg-kname"></a></dt>
-<dd><p>a name, a matrix, or a list</p></dd>
+<dl><dt id="arg-name">name<a class="anchor" aria-label="anchor" href="#arg-name"></a></dt>
+<dd><p>a method name: or a matrix, or a list</p></dd>
 
 
 <dt id="arg-xds-obj">xds_obj<a class="anchor" aria-label="anchor" href="#arg-xds-obj"></a></dt>

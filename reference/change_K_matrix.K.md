@@ -1,7 +1,8 @@
-# Change a Mosquito Dispersal Matrix
+# Change Mosquito Dispersal Matrix
 
 Run
 [check_K_matrix](https://dd-harp.github.io/ramp.xds/reference/check_K_matrix.md)
+then
 
 After passing checks, `xds_obj` is updated.
 
@@ -11,6 +12,7 @@ update.
 ## Usage
 
 ``` r
+# S3 method for class 'K'
 change_K_matrix(K_matrix, xds_obj, which_K = "K", s = 1)
 ```
 
@@ -35,12 +37,6 @@ change_K_matrix(K_matrix, xds_obj, which_K = "K", s = 1)
 ## Value
 
 an **`xds`** object
-
-## Note
-
-The argument `which_K` is used to retrieve state-dependent mosquito
-dispersal arguments for behavioral state models. The default "K" changes
-`K_matrix`
 
 ## See also
 

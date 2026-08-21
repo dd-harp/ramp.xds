@@ -1,4 +1,4 @@
-# Constant baseline blood feeding rate
+# Dynamically update a K Matrix
 
 Implements
 [F_K_matrix](https://dd-harp.github.io/ramp.xds/reference/F_K_matrix.md)
@@ -28,7 +28,3 @@ F_K_matrix(t, xds_obj, s)
 ## Value
 
 an **`xds`** object
-
-## Note
-
-This method dispatches on the type of `K_obj` attached to the `MY_obj`.

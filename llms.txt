@@ -748,7 +748,7 @@ Change parameters
   Change parameters (**MY**)
 
 - [`change_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.md)
-  : Change Mosquito Dispersal Matrix
+  : Change a Mosquito Dispersal Matrix
 
 - [`change_f()`](https://dd-harp.github.io/ramp.xds/reference/change_f.md)
   : Change the blood feeding rate
@@ -1124,8 +1124,10 @@ Specialized methods to set up mosquito dispersal matrices
   : Mosquito Demography
 - [`setup_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
   : Setup Mosquito Dispersal Matrix
+- [`check_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/check_K_matrix.md)
+  : Check K Matrix
 - [`change_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.md)
-  : Change Mosquito Dispersal Matrix
+  : Change a Mosquito Dispersal Matrix
 - [`get_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.md)
   : Get the Mosquito Dispersal Matrix
 - [`make_K_matrix_herethere()`](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_herethere.md)

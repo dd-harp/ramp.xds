@@ -265,7 +265,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_F_trend.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_F_trend.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_H.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.0.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.K.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_L_inits.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_L_inits.html</loc></url>
@@ -320,6 +320,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_visitors.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_xi.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/checkIt.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/check_K_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_L.basicL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_L.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_L.trivial.html</loc></url>
@@ -386,7 +387,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_HTC.SIS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_HTC.hMoI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_HTC.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.0.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.K.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_inits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_ix.html</loc></url>
@@ -585,9 +586,11 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.XH.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/saveXDS.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.N.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.as_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.herethere.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.list.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.no_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.xy.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.zero.html</loc></url>
