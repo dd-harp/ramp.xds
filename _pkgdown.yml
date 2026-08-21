@@ -480,6 +480,7 @@ reference:
   - xds_info_mosquito_dispersal
   - xds_info_mosquito_demography
   - setup_K_matrix
+  - check_K_matrix
   - change_K_matrix
   - get_K_matrix 
   - make_K_matrix_herethere

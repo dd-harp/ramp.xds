@@ -47,23 +47,47 @@
 #' @name xds_info_mosquito_dispersal 
 NULL
 
+#' @title Check K Matrix
+#' 
+#' @description
+#' Check that 
+#' + \eqn{M} is a \eqn{N_p \times N_p} matrix
+#' + if not zero, the diagonal elements are all \eqn{-1}
+#' + the columns sum to 0: tolerance is set by `tol`
+#' 
+#' @param M a mosquito dispersal matrix
+#' @param Np the number of patches
+#' @param tol tolerance
+#' 
+#' @export
+check_K_matrix = function(M, Np, tol=1e-12){
+  stopifnot(is.matrix(M))
+  stopifnot(dim(M)==c(Np, Np))
+  dM = diag(M)
+  stopifnot(dM == -1 | dM==0)
+  stopifnot(abs(colSums(M)) < tol)
+}
+
 #' @title Get the Mosquito Dispersal Matrix
 #' 
-#' @note
-#' The `behave` argument is used for 
-#' behavioral state models in `ramp.library`
+#' @description
+#' Get (inspect) a mosquito dispersal matrix.
 #' 
+#' @note
+#' The argument `K` is used to retrieve state-dependent
+#' mosquito dispersal arguments for behavioral state models.
+#' The default "K" returns `K_matrix`
 #' 
 #' @param xds_obj an **`xds`** model object
-#' @param behave the behavioral state 
+#' @param which_K which K_matrix
 #' @param s the vector species index
 #' 
 #' @return an **`xds`** object
 #'
 #' @export
-get_K_matrix = function(xds_obj, behave="0", s=1){
-  class(behave) <- behave
-  UseMethod("get_K_matrix", behave)
+get_K_matrix = function(xds_obj, which_K="K", s=1){
+  class(which_K) = which_K
+  UseMethod("get_K_matrix", which_K)
 }
 
 #' @title Get the Mosquito Dispersal Matrix
@@ -74,40 +98,41 @@ get_K_matrix = function(xds_obj, behave="0", s=1){
 #' @keywords internal
 #' 
 #' @export
-get_K_matrix.0 = function(xds_obj, behave="0", s=1){
+get_K_matrix.K = function(xds_obj, which_K="K", s=1){
   return(xds_obj$MY_obj[[s]]$K_matrix)
 }
 
-#' @title Change Mosquito Dispersal Matrix
+#' @title Change a Mosquito Dispersal Matrix
+#' 
 #' @description
-#' Check that `K_matrix` 
-#' + is an `nPatches` \eqn{\times} `nPatches` matrix;
-#' + and columns sum to 0. 
+#' Run [check_K_matrix] 
 #' 
 #' After passing checks, `xds_obj` is updated.  
 #' 
 #' In models with multiple species, use `s` to 
 #' specify the species to update. 
 #' 
+#' @note
+#' The argument `which_K` is used to retrieve state-dependent
+#' mosquito dispersal arguments for behavioral state models.
+#' The default "K" changes `K_matrix`
+#' 
 #' @param K_matrix a mosquito dispersal [matrix]
 #' @param xds_obj an **`xds`** model object
-#' @param behave the behavioral state 
+#' @param which_K which K_matrix
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
 #' @seealso [xds_info_mosquito_dispersal]; [setup_K_matrix]
 #' @export
-change_K_matrix = function(K_matrix, xds_obj, behave="0", s=1){
-  class(behave) <- behave
-  UseMethod("change_K_matrix", behave)
+change_K_matrix = function(K_matrix, xds_obj, which_K="K", s=1){
+  class(which_K) = which_K
+  UseMethod("change_K_matrix", which_K)
 }
 
 #' @title Change Mosquito Dispersal Matrix
 #' @description
-#' Check that `K_matrix` 
-#' + is an `nPatches` \eqn{\times} `nPatches` matrix;
-#' + diagonal elements are -1;
-#' + and columns sum to 0. 
+#' Run [check_K_matrix] then 
 #' 
 #' After passing checks, `xds_obj` is updated.  
 #' 
@@ -120,10 +145,8 @@ change_K_matrix = function(K_matrix, xds_obj, behave="0", s=1){
 #' @keywords internal
 #' @seealso [xds_info_mosquito_dispersal]; [setup_K_matrix]
 #' @export
-change_K_matrix.0 = function(K_matrix, xds_obj, behave="0", s=1){
-  stopifnot(is.matrix(K_matrix))
-  stopifnot(dim(K_matrix) == rep(xds_obj$nPatches,2))
-  stopifnot(colSums(K_matrix) < 1e-7) 
+change_K_matrix.K = function(K_matrix, xds_obj, which_K="K", s=1){
+  check_K_matrix(K_matrix, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$K_matrix <- K_matrix
   xds_obj$MY_obj[[s]]$Omega_obj <- trigger_setup(xds_obj$MY_obj[[s]]$Omega_obj)
   xds_obj <- update_Omega_xde(xds_obj, s)
@@ -132,47 +155,48 @@ change_K_matrix.0 = function(K_matrix, xds_obj, behave="0", s=1){
   return(xds_obj)
 }
 
-#' @title Setup a Human Fraction Bionomic Object
+#' @title Setup K_obj
 #'
-#' @description Set up an object
-#' to compute the human fraction, \eqn{K}
+#' @description Set up a port object
+#' for mosquito dispersal
 #'
-#' @param nPatches the number of patches in the model
 #' @param MY_obj an **`MY`** model object
 #'
-#' @return a **`MY`** model object
+#' @return an **`MY`** model object
 #' @keywords internal
 #' @export
-setup_K_obj = function(nPatches, MY_obj){
-  MY_obj$K_matrix = diag(0, nPatches)
-  MY_obj$K_obj <- list()
-  class(MY_obj$K_obj) <- "static"
+setup_K_obj = function(MY_obj){
+  K_obj <- list() 
+  class(K_obj) = "static"
+  MY_obj$K_obj = K_obj 
   return(MY_obj)
 }
 
-#' @title Compute the blood feeding rate, f
+#' @title Dynamically update a K Matrix
 #'
-#' @description  It should
-#' set the values of the bionomic parameters to baseline values
-#'
-#' @note This method dispatches on the type of `K_obj` attached to the `MY_obj`.
+#' @description A port function to 
+#' updates the mosquito dispersal 
+#' matrix dynamically. 
+#' 
+#' @note The port object is called `K_obj`
+#' 
 #' @param t current simulation time
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
+#' 
 #' @return a [numeric] vector of length `nPatches`
+
 #' @keywords internal
 #' @export
 F_K_matrix = function(t, xds_obj, s) {
   UseMethod("F_K_matrix", xds_obj$MY_obj[[s]]$K_obj)
 }
 
-#' @title Constant baseline blood feeding rate
+#' @title Dynamically update a K Matrix
 #'
 #' @description Implements [F_K_matrix] for a static model
 #'
-#' @note This method dispatches on the type of `K_obj` attached to the `MY_obj`.
-#'
-#' @inheritParams F_f
+#' @inheritParams F_K_matrix
 #'
 #' @return an **`xds`** object
 #' @keywords internal
@@ -183,51 +207,89 @@ F_K_matrix.static = function(t, xds_obj, s){
 
 #' @title Setup Mosquito Dispersal Matrix
 #' @description
-#' A flexible setup function for mosquito dispersal. The first
-#' argument `Kname` can be either a matrix, the name of a method, or a list of options that
-#' includes a method name: 
-#' + if `Kname` is a string of characters, it dispatches the method
-#' + if `Kname` is a matrix, then a matrix is set up 
-#' + if `Kname` is a list of options, then dispatching is on `Kname$name`
+#' A flexible function to set up or change the mosquito dispersal matrix (see [xds_info_mosquito_dispersal]).
 #' 
-#' the method  dispatches on `class(options)`
-#' 
-#' Options for `Kname` are:
+#' The function was designed to dispatch on the first argument, `name`:
 #'  
-#' + `is.matrix(Kname)`: if the user passes a matrix, then `class(Kname) <- "as_matrix"`
-#' + `Kname = "no_setup"` -- the **`xds`** object is returned unmodified 
-#' + `Kname = "zero"` -- set up a matrix of all zeros 
-#' + `Kname = "as_matrix"` -- calls [change_K_matrix] and passes `K_matrix`
-#' + `Kname = "herethere"` -- calls [make_K_matrix_herethere] 
-#' + `Kname = "xy"` -- calls [make_K_matrix_xy] 
+#' + `name` is a method name 
 #' 
-#' @param Kname a name, a matrix, or a list
+#' + `options` is a named list that sets the parameters in a function `make_K_matrix_name`
+#' 
+#' + Before dispatching, the function sets `class(option) = "name"`
+#' 
+#' Pre-dispatch cases were developed to make the function call more flexible: any
+#' matrix can be passed as the first argument: or the user could set up an options list
+#' and pass it
+#' (*e.g.* `Koptions` is passed to `setup_K_matrix` in `xds_setup`). The pre-dispatch
+#' parsing: 
+#' + if `name` is a method name, set `class(options) = "name"`
+#' + if `name` is a matrix, set `class(options) = "as_matrix"`
+#' + if `name` is a list of options, 
+#' 
+#' Available methods are: 
+#'
+#' + "as_matrix" --- sets up the matrix
+#' + "herethere" --- calls [make_K_matrix_herethere] 
+#' + "xy" -- calls [make_K_matrix_xy]
+#' + "list" --- for options lists
+#' + "zero" --- sets up the zero matrix
+#' + "no_setup" --- returns the **`xds`** object without modification
+#' 
+#' @param name a method name: or a matrix, or a list
 #' @param xds_obj an **`xds`** model object
 #' @param options a list of options to configure K_matrix
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object 
 #' @export
-setup_K_matrix = function(Kname, xds_obj, options=list(), s=1){
-  if(is.matrix(Kname)) class(options) <- "as_matrix"
-  if(is.character(Kname)) class(options) <- Kname
-  if(is.list(Kname)){
-    options$name = with(options, ifelse(exists("name"), name, "no_setup"))
-    class(options) <- options$name
+setup_K_matrix = function(name, xds_obj, options=list(), s=1){
+  if(is.matrix(name)){
+    class(options) = "as_matrix"
   }
+  if(is.character(name)) class(options) <- name
+  
   UseMethod("setup_K_matrix", options)
 }
 
-#' @title Setup no dispersal matrix
+#' @title Setup K_matrix 
 #'
-#' @description Implements [setup_K_matrix] for the "no_setup" case
+#' @description If the options list is passed
+#' as the first argument, the set 
+#' + `Kname = name$name` 
+#' + `options = name`
+#' and call `setup_K_matrix(Kname, xds_obj, options, s)` 
 #'
 #' @inheritParams setup_K_matrix
 #'
 #' @return a [matrix]
 #' @keywords internal
 #' @export
-setup_K_matrix.no_setup = function(Kname, xds_obj, options = list(), s=1){
+setup_K_matrix.list = function(name, xds_obj, options=list(), s=1){
+  options = name
+  Kname = name$name
+  if(is.null(Kname)) Kname = "no_setup"
+  xds_obj <- setup_K_matrix(Kname, xds_obj, options, s)
+  return(xds_obj)
+}
+
+#' @title Setup K_matrix 
+#'
+#' @description Call [setup_K_matrix] \eqn{N} times. 
+#' The options for the \eqn{i^{th}} call are `options[[i]]` 
+#' 
+#' 
+#' of options 
+#'
+#' @inheritParams setup_K_matrix
+#'
+#' @return a [matrix]
+#' @keywords internal
+#' @export
+setup_K_matrix.N = function(name, xds_obj, options=list(), s=1){
+  for(i in 1:length(options)){
+    opts <- options[[i]]
+    xds_obj <- setup_K_matrix(opts, xds_obj, list(), s)  
+  }
   return(xds_obj)
 }
 
@@ -240,10 +302,23 @@ setup_K_matrix.no_setup = function(Kname, xds_obj, options = list(), s=1){
 #' @return a [matrix]
 #' @keywords internal
 #' @export
-setup_K_matrix.zero = function(Kname, xds_obj, options = list(), s=1){
-  options$behave = with(options, ifelse(exists("behave"), behave, "0"))
+setup_K_matrix.no_setup = function(name, xds_obj, options = list(), s=1){
+  return(xds_obj)
+}
+
+#' @title Setup no dispersal matrix
+#'
+#' @description Implements [setup_K_matrix] for the "no_setup" case
+#'
+#' @inheritParams setup_K_matrix
+#'
+#' @return a [matrix]
+#' @keywords internal
+#' @export
+setup_K_matrix.zero = function(name, xds_obj, options = list(), s=1){
+  which_K = with(options, ifelse(exists("which_K"), which_K, "K"))
   K_matrix = with(xds_obj, matrix(0, nPatches, nPatches))
-  change_K_matrix(K_matrix, xds_obj, options$behave, s)
+  change_K_matrix(K_matrix, xds_obj, which_K, s)
 }
 
 #' @title Setup a Here-There Dispersal Matrix
@@ -256,11 +331,9 @@ setup_K_matrix.zero = function(Kname, xds_obj, options = list(), s=1){
 #' @return a [matrix]
 #' @keywords internal
 #' @export
-setup_K_matrix.as_matrix = function(Kname, xds_obj, options = list(), s=1){
-  if(is.matrix(options)) options = list() 
-  behave = with(options, ifelse(exists("behave"), behave, "0"))
-  K_matrix = Kname
-  change_K_matrix(K_matrix, xds_obj, behave, s)
+setup_K_matrix.as_matrix = function(name, xds_obj, options=list(), s=1){
+  which_K = with(options, ifelse(exists("which_K"), which_K, "K"))
+  change_K_matrix(name, xds_obj, which_K, s)
 }
 
 #' @title Setup a Here-There Dispersal Matrix
@@ -273,13 +346,10 @@ setup_K_matrix.as_matrix = function(Kname, xds_obj, options = list(), s=1){
 #' @return an **`xds`** object 
 #' @keywords internal
 #' @export
-setup_K_matrix.herethere = function(Kname, xds_obj, options=list(), s=1){
-  if(is.character(options)) options = list() 
-  options$behave = with(options, ifelse(exists("behave"), behave, "0"))
+setup_K_matrix.herethere = function(name, xds_obj, options=list(), s=1){
+  which_K = with(options, ifelse(exists("which_K"), which_K, "K"))
   K_matrix <- make_K_matrix_herethere(xds_obj$nPatches)
-  for(ix in 1:length(options$behave))
-    xds_obj <- change_K_matrix(K_matrix, xds_obj, options$behave[ix], s)
-  return(xds_obj)
+  change_K_matrix(K_matrix, xds_obj, which_K, s)
 }
 
 #' @title Make a Here-There Dispersal Matrix
@@ -306,20 +376,11 @@ make_K_matrix_herethere = function(nPatches) {
 #' @return a [matrix]
 #' @keywords internal
 #' @export
-setup_K_matrix.xy = function(Kname, xds_obj, options=list(), s=1) {
-  options$behave = with(options, ifelse(exists("behave"), behave, "0"))
-  with(options,{
-  if(length(behave) == 1){
-    K_matrix <- make_K_matrix_xy(xy, ker)
-    xds_obj <- change_K_matrix(K_matrix, xds_obj, behave, s)
-  } else {
-    for(ix in 1:length(behave)){
-      K_matrix <- make_K_matrix_xy(xy, ker[ix])
-      xds_obj <- change_K_matrix(K_matrix, xds_obj, behave[ix], s)
-    }
-  }
-  return(xds_obj)
-})}
+setup_K_matrix.xy = function(name, xds_obj, options=list(), s=1) {
+  which_K = with(options, ifelse(exists("which_K"), which_K, "K"))
+  K_matrix <- with(options, make_K_matrix_xy(xy, ker))
+  change_K_matrix(K_matrix, xds_obj, which_K, s)
+}
 
 #' @title make a Kernel-Based Mosquito Dispersal Matrix
 #'

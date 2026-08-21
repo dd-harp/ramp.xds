@@ -98,9 +98,9 @@ xds_setup = function(
 
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- MYname
-  xds_obj           <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
-  xds_obj           <- setup_MY_inits(xds_obj, 1, MYoptions)
-
+  xds_obj          <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
+  xds_obj          <- setup_MY_inits(xds_obj, 1, MYoptions)
+  xds_obj          <- setup_K_matrix(Koptions, xds_obj, s=1)
 
   # Human Dynamics
   xds_obj$Xname <- Xname
@@ -123,8 +123,7 @@ xds_setup = function(
   } else {
     xds_obj <- setup_timespent(TSoptions$name, xds_obj, options=TSoptions, i=1)
   } 
-  
-  xds_obj <- setup_K_matrix(Koptions, xds_obj, Koptions, s=1)
+
 
   # Probably Not Necessary
   y0 <- as.vector(unlist(get_inits(xds_obj)))
@@ -189,8 +188,9 @@ xds_setup_mosy = function(
 
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- MYname
-  xds_obj           <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
-  xds_obj           <- setup_MY_inits(xds_obj, 1, MYoptions)
+  xds_obj          <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
+  xds_obj         <- setup_MY_inits(xds_obj, 1, MYoptions)
+  xds_obj          <- setup_K_matrix(Koptions, xds_obj, s=1)
 
   # Aquatic Mosquito Dynamics
   xds_obj$Lname <- Lname
@@ -205,7 +205,7 @@ xds_setup_mosy = function(
   Qwts       <- with(Loptions, checkIt(searchQ, xds_obj$nHabitats))
   xds_obj    <- change_habitat_search_weights(Qwts, xds_obj, 1)
   
-  xds_obj <- setup_K_matrix(Koptions, xds_obj, Koptions, s=1)
+
 
   xds_obj$terms$kappa[[1]] = checkIt(kappa, nPatches)
 

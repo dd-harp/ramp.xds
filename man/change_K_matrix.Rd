@@ -2,16 +2,16 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{change_K_matrix}
 \alias{change_K_matrix}
-\title{Change Mosquito Dispersal Matrix}
+\title{Change a Mosquito Dispersal Matrix}
 \usage{
-change_K_matrix(K_matrix, xds_obj, behave = "0", s = 1)
+change_K_matrix(K_matrix, xds_obj, which_K = "K", s = 1)
 }
 \arguments{
 \item{K_matrix}{a mosquito dispersal \link{matrix}}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{behave}{the behavioral state}
+\item{which_K}{which K_matrix}
 
 \item{s}{the vector species index}
 }
@@ -19,16 +19,17 @@ change_K_matrix(K_matrix, xds_obj, behave = "0", s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Check that \code{K_matrix}
-\itemize{
-\item is an \code{nPatches} \eqn{\times} \code{nPatches} matrix;
-\item and columns sum to 0.
-}
+Run \link{check_K_matrix}
 
 After passing checks, \code{xds_obj} is updated.
 
 In models with multiple species, use \code{s} to
 specify the species to update.
+}
+\note{
+The argument \code{which_K} is used to retrieve state-dependent
+mosquito dispersal arguments for behavioral state models.
+The default "K" changes \code{K_matrix}
 }
 \seealso{
 \link{xds_info_mosquito_dispersal}; \link{setup_K_matrix}

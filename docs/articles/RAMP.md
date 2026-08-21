@@ -28,7 +28,8 @@ library — supports SimBA and both deep dive packages.
 ------------------------------------------------------------------------
 
 A diagram of the R packages and their dependencies. Clicking on the
-package icon takes you to its `github.io` page
+package icon takes you to its `github.io` page. SimBA is also a website
+(grey) with material to support model building.
 
 ------------------------------------------------------------------------
 

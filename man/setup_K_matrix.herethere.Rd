@@ -4,10 +4,10 @@
 \alias{setup_K_matrix.herethere}
 \title{Setup a Here-There Dispersal Matrix}
 \usage{
-\method{setup_K_matrix}{herethere}(Kname, xds_obj, options = list(), s = 1)
+\method{setup_K_matrix}{herethere}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{Kname}{a name, a matrix, or a list}
+\item{name}{a method name: or a matrix, or a list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

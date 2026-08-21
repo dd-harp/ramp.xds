@@ -4,10 +4,10 @@
 \alias{setup_K_matrix}
 \title{Setup Mosquito Dispersal Matrix}
 \usage{
-setup_K_matrix(Kname, xds_obj, options = list(), s = 1)
+setup_K_matrix(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{Kname}{a name, a matrix, or a list}
+\item{name}{a method name: or a matrix, or a list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,24 +19,33 @@ setup_K_matrix(Kname, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-A flexible setup function for mosquito dispersal. The first
-argument \code{Kname} can be either a matrix, the name of a method, or a list of options that
-includes a method name:
+A flexible function to set up or change the mosquito dispersal matrix (see \link{xds_info_mosquito_dispersal}).
+
+The function was designed to dispatch on the first argument, \code{name}:
 \itemize{
-\item if \code{Kname} is a string of characters, it dispatches the method
-\item if \code{Kname} is a matrix, then a matrix is set up
-\item if \code{Kname} is a list of options, then dispatching is on \code{Kname$name}
+\item \code{name} is a method name
+\item \code{options} is a named list that sets the parameters in a function \code{make_K_matrix_name}
+\item Before dispatching, the function sets \code{class(option) = "name"}
 }
 
-the method  dispatches on \code{class(options)}
-
-Options for \code{Kname} are:
+Pre-dispatch cases were developed to make the function call more flexible: any
+matrix can be passed as the first argument: or the user could set up an options list
+and pass it
+(\emph{e.g.} \code{Koptions} is passed to \code{setup_K_matrix} in \code{xds_setup}). The pre-dispatch
+parsing:
 \itemize{
-\item \code{is.matrix(Kname)}: if the user passes a matrix, then \code{class(Kname) <- "as_matrix"}
-\item \code{Kname = "no_setup"} -- the \strong{\code{xds}} object is returned unmodified
-\item \code{Kname = "zero"} -- set up a matrix of all zeros
-\item \code{Kname = "as_matrix"} -- calls \link{change_K_matrix} and passes \code{K_matrix}
-\item \code{Kname = "herethere"} -- calls \link{make_K_matrix_herethere}
-\item \code{Kname = "xy"} -- calls \link{make_K_matrix_xy}
+\item if \code{name} is a method name, set \code{class(options) = "name"}
+\item if \code{name} is a matrix, set \code{class(options) = "as_matrix"}
+\item if \code{name} is a list of options,
+}
+
+Available methods are:
+\itemize{
+\item "as_matrix" --- sets up the matrix
+\item "herethere" --- calls \link{make_K_matrix_herethere}
+\item "xy" -- calls \link{make_K_matrix_xy}
+\item "list" --- for options lists
+\item "zero" --- sets up the zero matrix
+\item "no_setup" --- returns the \strong{\code{xds}} object without modification
 }
 }

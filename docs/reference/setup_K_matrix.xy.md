@@ -9,14 +9,14 @@ normalized weights.
 
 ``` r
 # S3 method for class 'xy'
-setup_K_matrix(Kname, xds_obj, options = list(), s = 1)
+setup_K_matrix(name, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
 
-- Kname:
+- name:
 
-  a name, a matrix, or a list
+  a method name: or a matrix, or a list
 
 - xds_obj:
 

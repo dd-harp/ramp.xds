@@ -1,10 +1,11 @@
 # Get the Mosquito Dispersal Matrix
 
-Get (inspect) a mosquito dispersal matrix.
+Get the Mosquito Dispersal Matrix
 
 ## Usage
 
 ``` r
+# S3 method for class 'K'
 get_K_matrix(xds_obj, which_K = "K", s = 1)
 ```
 
@@ -25,9 +26,3 @@ get_K_matrix(xds_obj, which_K = "K", s = 1)
 ## Value
 
 an **`xds`** object
-
-## Note
-
-The argument `K` is used to retrieve state-dependent mosquito dispersal
-arguments for behavioral state models. The default "K" returns
-`K_matrix`
