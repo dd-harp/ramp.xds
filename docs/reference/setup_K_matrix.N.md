@@ -1,14 +1,15 @@
-# Setup a Here-There Dispersal Matrix
+# Setup K_matrix
 
-Implements
+Call
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-for the here and there model: dispersal to every other patch, with equal
-probability
+\\N\\ times. The options for the \\i^{th}\\ call are `options[[i]]`
+
+of options
 
 ## Usage
 
 ``` r
-# S3 method for class 'as_matrix'
+# S3 method for class 'N'
 setup_K_matrix(name, xds_obj, options = list(), s = 1)
 ```
 

@@ -2,20 +2,18 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{setup_K_obj}
 \alias{setup_K_obj}
-\title{Setup a Human Fraction Bionomic Object}
+\title{Setup K_obj}
 \usage{
-setup_K_obj(nPatches, MY_obj)
+setup_K_obj(MY_obj)
 }
 \arguments{
-\item{nPatches}{the number of patches in the model}
-
 \item{MY_obj}{an \strong{\code{MY}} model object}
 }
 \value{
-a \strong{\code{MY}} model object
+an \strong{\code{MY}} model object
 }
 \description{
-Set up an object
-to compute the human fraction, \eqn{K}
+Set up a port object
+for mosquito dispersal
 }
 \keyword{internal}

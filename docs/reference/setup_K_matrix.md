@@ -1,47 +1,56 @@
 # Setup Mosquito Dispersal Matrix
 
-A flexible setup function for mosquito dispersal. The first argument
-`Kname` can be either a matrix, the name of a method, or a list of
-options that includes a method name:
+A flexible function to set up or change the mosquito dispersal matrix
+(see
+[xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md)).
 
-- if `Kname` is a string of characters, it dispatches the method
+The function was designed to dispatch on the first argument, `name`:
 
-- if `Kname` is a matrix, then a matrix is set up
+- `name` is a method name
 
-- if `Kname` is a list of options, then dispatching is on `Kname$name`
+- `options` is a named list that sets the parameters in a function
+  `make_K_matrix_name`
 
-the method dispatches on `class(options)`
+- Before dispatching, the function sets `class(option) = "name"`
 
-Options for `Kname` are:
+Pre-dispatch cases were developed to make the function call more
+flexible: any matrix can be passed as the first argument: or the user
+could set up an options list and pass it (*e.g.* `Koptions` is passed to
+`setup_K_matrix` in `xds_setup`). The pre-dispatch parsing:
 
-- `is.matrix(Kname)`: if the user passes a matrix, then
-  `class(Kname) <- "as_matrix"`
+- if `name` is a method name, set `class(options) = "name"`
 
-- `Kname = "no_setup"` – the **`xds`** object is returned unmodified
+- if `name` is a matrix, set `class(options) = "as_matrix"`
 
-- `Kname = "zero"` – set up a matrix of all zeros
+- if `name` is a list of options,
 
-- `Kname = "as_matrix"` – calls
-  [change_K_matrix](https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.md)
-  and passes `K_matrix`
+Available methods are:
 
-- `Kname = "herethere"` – calls
+- "as_matrix" — sets up the matrix
+
+- "herethere" — calls
   [make_K_matrix_herethere](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_herethere.md)
 
-- `Kname = "xy"` – calls
+- "xy" – calls
   [make_K_matrix_xy](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_xy.md)
+
+- "list" — for options lists
+
+- "zero" — sets up the zero matrix
+
+- "no_setup" — returns the **`xds`** object without modification
 
 ## Usage
 
 ``` r
-setup_K_matrix(Kname, xds_obj, options = list(), s = 1)
+setup_K_matrix(name, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
 
-- Kname:
+- name:
 
-  a name, a matrix, or a list
+  a method name: or a matrix, or a list
 
 - xds_obj:
 

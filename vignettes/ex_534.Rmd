@@ -22,9 +22,15 @@ library(deSolve)
 
 # Introduction
 
-This vignette illustrates how to setup, solve, and analyze models of mosquito-borne pathogen transmission dynamics and control using modular software. It serves several purposes: 
+This vignette illustrates how to setup, solve, and analyze models of mosquito-borne pathogen transmission dynamics and control using modular software. Modularity, with flexible structural parameters, illustrated by constructing a model with 
 
-+ Modular notation is illustrated by constructing a model with five aquatic habitats ($n_q=5$), three patches ($n_p=3$), and four human population strata ($n_h=4$). We call it `5-3-4`.
++ five aquatic habitats ($N_q=5$); 
+
++ three patches ($N_p=3$); and
+
++ four human population strata ($N_h=4$). 
+
+We call it `5-3-4`.
 
 ## Diagram 
 

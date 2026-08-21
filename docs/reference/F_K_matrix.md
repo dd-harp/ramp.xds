@@ -1,6 +1,6 @@
-# Compute the blood feeding rate, f
+# Dynamically update a K Matrix
 
-It should set the values of the bionomic parameters to baseline values
+A port function to updates the mosquito dispersal matrix dynamically.
 
 ## Usage
 
@@ -29,4 +29,4 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Note
 
-This method dispatches on the type of `K_obj` attached to the `MY_obj`.
+The port object is called `K_obj`

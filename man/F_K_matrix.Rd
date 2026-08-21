@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{F_K_matrix}
 \alias{F_K_matrix}
-\title{Compute the blood feeding rate, f}
+\title{Dynamically update a K Matrix}
 \usage{
 F_K_matrix(t, xds_obj, s)
 }
@@ -17,10 +17,11 @@ F_K_matrix(t, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-It should
-set the values of the bionomic parameters to baseline values
+A port function to
+updates the mosquito dispersal
+matrix dynamically.
 }
 \note{
-This method dispatches on the type of \code{K_obj} attached to the \code{MY_obj}.
+The port object is called \code{K_obj}
 }
 \keyword{internal}

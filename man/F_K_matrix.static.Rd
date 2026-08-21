@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{F_K_matrix.static}
 \alias{F_K_matrix.static}
-\title{Constant baseline blood feeding rate}
+\title{Dynamically update a K Matrix}
 \usage{
 \method{F_K_matrix}{static}(t, xds_obj, s)
 }
@@ -18,8 +18,5 @@ an \strong{\code{xds}} object
 }
 \description{
 Implements \link{F_K_matrix} for a static model
-}
-\note{
-This method dispatches on the type of \code{K_obj} attached to the \code{MY_obj}.
 }
 \keyword{internal}

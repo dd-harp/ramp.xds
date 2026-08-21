@@ -160,7 +160,7 @@ round(K*1000)/1000
 
 ``` r
 
-mod <- xds_setup(nPatches=5, Koptions = list(name = "xy", xy=xy, ker=F_d))
+mod <- xds_setup(nPatches=5, Koptions = list(name="xy", xy=xy, ker=F_d))
 get_K_matrix(mod)
 ```
 

@@ -279,7 +279,8 @@ make_MY_obj_GeM = function(nPatches, options=list(), eip =12,
     MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj)
     MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)
 
-    MY_obj <- setup_K_obj(nPatches, MY_obj)
+    MY_obj$K_matrix <- matrix(0, nPatches, nPatches)
+    MY_obj <- setup_K_obj(MY_obj)
     MY_obj <- setup_Omega_obj(MY_obj)
 
     MY_obj$eggs_per_batch <- eggs_per_batch

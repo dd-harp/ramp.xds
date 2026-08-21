@@ -1,18 +1,14 @@
-# Setup a Human Fraction Bionomic Object
+# Setup K_obj
 
-Set up an object to compute the human fraction, \\K\\
+Set up a port object for mosquito dispersal
 
 ## Usage
 
 ``` r
-setup_K_obj(nPatches, MY_obj)
+setup_K_obj(MY_obj)
 ```
 
 ## Arguments
-
-- nPatches:
-
-  the number of patches in the model
 
 - MY_obj:
 
@@ -20,4 +16,4 @@ setup_K_obj(nPatches, MY_obj)
 
 ## Value
 
-a **`MY`** model object
+an **`MY`** model object

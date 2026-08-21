@@ -4,12 +4,12 @@
 \alias{get_K_matrix}
 \title{Get the Mosquito Dispersal Matrix}
 \usage{
-get_K_matrix(xds_obj, behave = "0", s = 1)
+get_K_matrix(xds_obj, which_K = "K", s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{behave}{the behavioral state}
+\item{which_K}{which K_matrix}
 
 \item{s}{the vector species index}
 }
@@ -17,9 +17,10 @@ get_K_matrix(xds_obj, behave = "0", s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Get the Mosquito Dispersal Matrix
+Get (inspect) a mosquito dispersal matrix.
 }
 \note{
-The \code{behave} argument is used for
-behavioral state models in \code{ramp.library}
+The argument \code{K} is used to retrieve state-dependent
+mosquito dispersal arguments for behavioral state models.
+The default "K" returns \code{K_matrix}
 }
