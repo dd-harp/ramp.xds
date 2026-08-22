@@ -48,8 +48,8 @@ sigma <- exp(-Q/2)
 ```{r}
 x = runif(5, -1, 1)
 y = runif(5, -1, 1)
-ker = function(d){exp(-d)}
-K_matrix = make_K_matrix_xy(cbind(x,y), ker=ker)
+FkV = function(d, V=list()){exp(-d)}
+K_matrix = make_K_matrix_xy(cbind(x,y), F_K=FkV)
 K_matrix
 ```
 
