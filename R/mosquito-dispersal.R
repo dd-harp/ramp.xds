@@ -285,9 +285,10 @@ setup_K_matrix.list = function(name, xds_obj, options=list(), s=1){
 #' @return a [matrix]
 #' @keywords internal
 #' @export
+#' 
 setup_K_matrix.N = function(name, xds_obj, options=list(), s=1){
-  for(i in 1:length(options)){
-    opts <- options[[i]]
+  for(i in 1:options$N){
+    opts <- options$opts[[i]]
     xds_obj <- setup_K_matrix(opts, xds_obj, list(), s)  
   }
   return(xds_obj)
