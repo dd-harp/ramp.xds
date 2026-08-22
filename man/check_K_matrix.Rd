@@ -4,10 +4,10 @@
 \alias{check_K_matrix}
 \title{Check K Matrix}
 \usage{
-check_K_matrix(M, Np, tol = 1e-12)
+check_K_matrix(K, Np, tol = 1e-12)
 }
 \arguments{
-\item{M}{a mosquito dispersal matrix}
+\item{K}{a mosquito dispersal matrix}
 
 \item{Np}{the number of patches}
 
@@ -16,8 +16,11 @@ check_K_matrix(M, Np, tol = 1e-12)
 \description{
 Check that
 \itemize{
-\item \eqn{M} is a \eqn{N_p \times N_p} matrix
+\item \eqn{K} is a \eqn{N_p \times N_p} matrix
 \item if not zero, the diagonal elements are all \eqn{-1}
 \item the columns sum to 0: tolerance is set by \code{tol}
 }
+}
+\seealso{
+\link{xds_info_mosquito_dispersal}
 }

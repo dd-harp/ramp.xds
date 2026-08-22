@@ -17,6 +17,14 @@ F_one = function(t, V=list()){0*t+1}
 #' @export
 F_zero = function(t, V=list()){0*t}
 
+#' F_exp
+#'
+#' @param d distance
+#'
+#' @returns 0
+#' @keywords internal
+#' @export
+F_exp = function(d, V=list()){exp(-d)}
 
 #' Get Variables
 #' 

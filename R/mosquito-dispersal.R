@@ -51,21 +51,22 @@ NULL
 #' 
 #' @description
 #' Check that 
-#' + \eqn{M} is a \eqn{N_p \times N_p} matrix
+#' + \eqn{K} is a \eqn{N_p \times N_p} matrix
 #' + if not zero, the diagonal elements are all \eqn{-1}
 #' + the columns sum to 0: tolerance is set by `tol`
 #' 
-#' @param M a mosquito dispersal matrix
+#' @param K a mosquito dispersal matrix
 #' @param Np the number of patches
 #' @param tol tolerance
 #' 
+#' @seealso [xds_info_mosquito_dispersal]
 #' @export
-check_K_matrix = function(M, Np, tol=1e-12){
-  stopifnot(is.matrix(M))
-  stopifnot(dim(M)==c(Np, Np))
-  dM = diag(M)
-  stopifnot(dM == -1 | dM==0)
-  stopifnot(abs(colSums(M)) < tol)
+check_K_matrix = function(K, Np, tol=1e-12){
+  stopifnot(is.matrix(K))
+  stopifnot(dim(K)==c(Np, Np))
+  diagK = diag(K)
+  stopifnot(diagK == -1 | diagK == 0)
+  stopifnot(abs(colSums(K)) < tol)
 }
 
 #' @title Get the Mosquito Dispersal Matrix
@@ -285,9 +286,10 @@ setup_K_matrix.list = function(name, xds_obj, options=list(), s=1){
 #' @return a [matrix]
 #' @keywords internal
 #' @export
+#' 
 setup_K_matrix.N = function(name, xds_obj, options=list(), s=1){
-  for(i in 1:length(options)){
-    opts <- options[[i]]
+  for(i in 1:options$N){
+    opts <- options$opts[[i]]
     xds_obj <- setup_K_matrix(opts, xds_obj, list(), s)  
   }
   return(xds_obj)
@@ -332,8 +334,14 @@ setup_K_matrix.zero = function(name, xds_obj, options = list(), s=1){
 #' @keywords internal
 #' @export
 setup_K_matrix.as_matrix = function(name, xds_obj, options=list(), s=1){
+
+  if(is.list(options)) 
+    K_matrix = options$K_matrix
+  if(is.matrix(name))
+    K_matrix = name
+
   which_K = with(options, ifelse(exists("which_K"), which_K, "K"))
-  change_K_matrix(name, xds_obj, which_K, s)
+  change_K_matrix(K_matrix, xds_obj, which_K, s)
 }
 
 #' @title Setup a Here-There Dispersal Matrix
@@ -378,18 +386,21 @@ make_K_matrix_herethere = function(nPatches) {
 #' @export
 setup_K_matrix.xy = function(name, xds_obj, options=list(), s=1) {
   which_K = with(options, ifelse(exists("which_K"), which_K, "K"))
-  K_matrix <- with(options, make_K_matrix_xy(xy, ker))
+  if(with(options, !exists("V"))) options$V = list()
+  K_matrix <- with(options, make_K_matrix_xy(xy, F_K, V))
   change_K_matrix(K_matrix, xds_obj, which_K, s)
 }
 
 #' @title make a Kernel-Based Mosquito Dispersal Matrix
 #'
 #' @param xy is a vector of the xy-coordinates of patch locations
-#' @param ker is a function that weights putative locations by distance
+#' @param F_K is a function that weights putative locations by distance
+#' @param V variables
+#' 
 #' @export
-make_K_matrix_xy = function(xy, ker = function(x){exp(-x)}) {
+make_K_matrix_xy = function(xy, F_K = F_exp, V=list()) {
   dmat <- as.matrix(stats::dist(xy), upper=T)
-  K_matrix <- ker(dmat)
+  K_matrix <- F_K(dmat, V)
   diag(K_matrix) <- 0
   K_matrix = K_matrix %*% diag(1/rowSums(K_matrix))
   diag(K_matrix) <- -1 
