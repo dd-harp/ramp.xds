@@ -5,12 +5,7 @@ make a Kernel-Based Mosquito Dispersal Matrix
 ## Usage
 
 ``` r
-make_K_matrix_xy(
-  xy,
-  ker = function(x) {
-     exp(-x)
- }
-)
+make_K_matrix_xy(xy, F_K = F_exp, V = list())
 ```
 
 ## Arguments
@@ -19,6 +14,10 @@ make_K_matrix_xy(
 
   is a vector of the xy-coordinates of patch locations
 
-- ker:
+- F_K:
 
   is a function that weights putative locations by distance
+
+- V:
+
+  variables
