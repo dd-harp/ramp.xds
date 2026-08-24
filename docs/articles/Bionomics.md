@@ -146,8 +146,8 @@ that weights by distance. Setup calls `make_K_matrix`
 
 x = y = c(1:5)
 xy = cbind(x=x,y=y)
-F_d = function(d){exp(-d^1.8)}
-K <- make_K_matrix_xy(xy, F_d)
+FdV = function(d, V){exp(-d^1.8)}
+K <- make_K_matrix_xy(xy, FdV)
 round(K*1000)/1000
 ```
 
@@ -160,7 +160,7 @@ round(K*1000)/1000
 
 ``` r
 
-mod <- xds_setup(nPatches=5, Koptions = list(name="xy", xy=xy, ker=F_d))
+mod <- xds_setup(nPatches=5, Koptions = list(name="xy", xy=xy, F_K=FdV))
 get_K_matrix(mod)
 ```
 

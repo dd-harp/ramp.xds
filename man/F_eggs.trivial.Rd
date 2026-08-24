@@ -20,13 +20,13 @@ a \link{numeric} vector of length \code{nPatches}
 }
 \description{
 Returns
-\deqn{F_{G}(t) = G S(t) T(t) K(t)}
+\deqn{F_{G}(t) = G F_S(t) F_T(t) F_K(t)}
 where
 \itemize{
 \item \eqn{G} is the number of eggs laid, per patch, per day
-\item \eqn{S(t)} or \code{F_season} is a seasonal pattern
-\item \eqn{T(t)} or \code{F_trend} is a trend pattern
-\item \eqn{K(t)} or \code{F_shock} is a perturbation
+\item \eqn{F_S(t)} or \code{F_season} is a seasonal pattern
+\item \eqn{F_T(t)} or \code{F_trend} is a trend pattern
+\item \eqn{F_K(t)} or \code{F_shock} is a perturbation
 }
 }
 \keyword{internal}

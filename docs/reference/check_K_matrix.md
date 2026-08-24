@@ -2,7 +2,7 @@
 
 Check that
 
-- \\M\\ is a \\N_p \times N_p\\ matrix
+- \\K\\ is a \\N_p \times N_p\\ matrix
 
 - if not zero, the diagonal elements are all \\-1\\
 
@@ -11,12 +11,12 @@ Check that
 ## Usage
 
 ``` r
-check_K_matrix(M, Np, tol = 1e-12)
+check_K_matrix(K, Np, tol = 1e-12)
 ```
 
 ## Arguments
 
-- M:
+- K:
 
   a mosquito dispersal matrix
 
@@ -27,3 +27,7 @@ check_K_matrix(M, Np, tol = 1e-12)
 - tol:
 
   tolerance
+
+## See also
+
+[xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md)

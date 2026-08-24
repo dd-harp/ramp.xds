@@ -1,19 +1,19 @@
-# Exponential Function
+# F_exp
 
-An exponential function.
+F_exp
 
 ## Usage
 
 ``` r
-F_exp(d)
+F_exp(d, V = list())
 ```
 
 ## Arguments
 
 - d:
 
-  an arbitrary input
+  distance
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length d
+0

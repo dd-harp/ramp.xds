@@ -5,13 +5,13 @@
 #' The trivial module outputs the emergence 
 #' rate of adult mosquitoes by calling a
 #' *trace function,* 
-#' \deqn{F_\alpha(t) = \Lambda \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)} 
+#' \deqn{F_\alpha(t) = \Lambda \times F_S(t, V_s) \times F_T(t, V_t) \times F_K(t, V_k)} 
 #' where
 #' 
 #' + \eqn{\Lambda} is the mean daily emergence rate of adult mosquitoes
-#' + \eqn{S(t,V_s)} or `F_season` is a seasonal pattern function
-#' + \eqn{T(t,V_t)} or `F_trend` is a trend pattern function
-#' + \eqn{K(t,V_k)} or `F_shock` is a perturbation function
+#' + \eqn{F_S(t,V_s)} or `F_season` is a seasonal pattern function
+#' + \eqn{F_T(t,V_t)} or `F_trend` is a trend pattern function
+#' + \eqn{F_K(t,V_k)} or `F_shock` is a perturbation function
 #' 
 #' The variables \eqn{V_s}, \eqn{V_t}, and \eqn{V_t} are  
 #' called by [get_variables], which dispatches on the class of 
@@ -21,9 +21,9 @@
 #' @section Parameters:
 #' \describe{
 #'   \item{`Lambda`}{the mean daily emergence rate}
-#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
-#'   \item{`F_trend`}{a trend function, \eqn{T(t,V_t)}}
-#'   \item{`F_shock`}{a shock function, \eqn{K(t,V_k)}}
+#'   \item{`F_season`}{a seasonal pattern function, \eqn{{F_S(t,V_s)}}}
+#'   \item{`F_trend`}{a trend function, \eqn{F_T(t,V_t)}}
+#'   \item{`F_shock`}{a shock function, \eqn{F_K(t,V_k)}}
 #'   \item{`season_par`}{dispatches [get_variables] to get \eqn{V_s}}
 #'   \item{`trend_par`}{dispatches [get_variables] to get \eqn{V_t}}
 #'   \item{`shock_par`}{dispatches [get_variables] to get \eqn{V_k}}
@@ -114,11 +114,11 @@ Update_Lt.trivial <- function(t, y, xds_obj, s) {
 }
 
 #' @title Compute emergent adults for `trivial` (**L** component)
-#' @description The number of emerging adults is a function \deqn{\Lambda S(t) T(t) K(t)} where
+#' @description The number of emerging adults is a function \deqn{\Lambda F_S(t) F_T(t) F_K(t)} where
 #' + \eqn{\Lambda} or `Lambda` is the mean number of adult female mosquitoes emerging per day
-#' + \eqn{S(t)} or `F_season` is a seasonal signal (ideally, with an average annual mean of 1)
-#' + \eqn{T(t)} or `F_trend` is a function returning a trend (ideally, with an average value of 1)
-#' + \eqn{K(t)} or `F_shock` is a function describing a perturbation (by default, set to 1)
+#' + \eqn{F_S(t)} or `F_season` is a seasonal signal (ideally, with an average annual mean of 1)
+#' + \eqn{F_T(t)} or `F_trend` is a function returning a trend (ideally, with an average value of 1)
+#' + \eqn{F_K(t)} or `F_shock` is a function describing a perturbation (by default, set to 1)
 #' @inheritParams F_emerge
 #' @return a [numeric] vector of length `nHabitats`
 #' @keywords internal
