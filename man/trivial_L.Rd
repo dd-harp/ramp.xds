@@ -7,13 +7,13 @@
 The trivial module outputs the emergence
 rate of adult mosquitoes by calling a
 \emph{trace function,}
-\deqn{F_\alpha(t) = \Lambda \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)}
+\deqn{F_\alpha(t) = \Lambda \times F_S(t, V_s) \times F_T(t, V_t) \times F_K(t, V_k)}
 where
 \itemize{
 \item \eqn{\Lambda} is the mean daily emergence rate of adult mosquitoes
-\item \eqn{S(t,V_s)} or \code{F_season} is a seasonal pattern function
-\item \eqn{T(t,V_t)} or \code{F_trend} is a trend pattern function
-\item \eqn{K(t,V_k)} or \code{F_shock} is a perturbation function
+\item \eqn{F_S(t,V_s)} or \code{F_season} is a seasonal pattern function
+\item \eqn{F_T(t,V_t)} or \code{F_trend} is a trend pattern function
+\item \eqn{F_K(t,V_k)} or \code{F_shock} is a perturbation function
 }
 
 The variables \eqn{V_s}, \eqn{V_t}, and \eqn{V_t} are
@@ -24,9 +24,9 @@ called by \link{get_variables}, which dispatches on the class of
 
 \describe{
 \item{\code{Lambda}}{the mean daily emergence rate}
-\item{\code{F_season}}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
-\item{\code{F_trend}}{a trend function, \eqn{T(t,V_t)}}
-\item{\code{F_shock}}{a shock function, \eqn{K(t,V_k)}}
+\item{\code{F_season}}{a seasonal pattern function, \eqn{{F_S(t,V_s)}}}
+\item{\code{F_trend}}{a trend function, \eqn{F_T(t,V_t)}}
+\item{\code{F_shock}}{a shock function, \eqn{F_K(t,V_k)}}
 \item{\code{season_par}}{dispatches \link{get_variables} to get \eqn{V_s}}
 \item{\code{trend_par}}{dispatches \link{get_variables} to get \eqn{V_t}}
 \item{\code{shock_par}}{dispatches \link{get_variables} to get \eqn{V_k}}

@@ -5,17 +5,17 @@
 #' @description
 #' The trivial **MY** module configures two trace functions:
 #' + infectious biting:  
-#' \deqn{F_{fqZ}(t, V) = fqZ \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)} 
+#' \deqn{F_{fqZ}(t, V) = fqZ \times F_S(t, V_s) \times F_T(t, V_t) \times F_K(t, V_k)} 
 #' + egg laying: 
-#' \deqn{F_G(t, V) = G \times S(t,V_s) \times T(t, V_t) \times K(t, V_k)} 
+#' \deqn{F_G(t, V) = G \times F_S(t,V_s) \times F_T(t, V_t) \times F_K(t, V_k)} 
 #'
 #' where
 #' 
 #' + \eqn{G} or `eggs` is the mean egg laying rate 
 #' + \eqn{fqZ} or `fqZ` is the mean number of infectious bites on humans, per patch 
-#' + \eqn{S(t,V_s)} or `F_season` is a seasonal pattern function
-#' + \eqn{T(t,V_t)} or `F_trend` is a trend pattern function
-#' + \eqn{K(t,V_k)} or `F_shock` is a perturbation function
+#' + \eqn{F_S(t,V_s)} or `F_season` is a seasonal pattern function
+#' + \eqn{F_T(t,V_t)} or `F_trend` is a trend pattern function
+#' + \eqn{F_K(t,V_k)} or `F_shock` is a perturbation function
 #' 
 #' The variables \eqn{V_s}, \eqn{V_t}, and \eqn{V_t} are  
 #' called by [get_variables], which dispatches on the class of 
@@ -29,9 +29,9 @@
 #'   \item{`Z`}{the mean density of infectious mosquitoes}
 #'   \item{`f`}{the blood feeding rate}
 #'   \item{`q`}{the human fraction}
-#'   \item{`F_season`}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
-#'   \item{`F_trend`}{a trend function, \eqn{T(t,V_t)}}
-#'   \item{`F_shock`}{a shock function, \eqn{K(t,V_k)}}
+#'   \item{`F_season`}{a seasonal pattern function, \eqn{{F_S(t,V_s)}}}
+#'   \item{`F_trend`}{a trend function, \eqn{F_T(t,V_t)}}
+#'   \item{`F_shock`}{a shock function, \eqn{F_K(t,V_k)}}
 #'   \item{`season_par`}{dispatches [get_variables] to get \eqn{V_s}}
 #'   \item{`trend_par`}{dispatches [get_variables] to get \eqn{V_t}}
 #'   \item{`shock_par`}{dispatches [get_variables] to get \eqn{V_k}}
@@ -93,14 +93,14 @@ check_MY.trivial = function(xds_obj, s){
 
 #' @title Net infectious biting rate
 #' @description Returns 
-#' \deqn{F_{fqZ}(t) = fqZ S(t) T(t) K(t)}
+#' \deqn{F_{fqZ}(t) = fqZ F_S(t) F_T(t) F_K(t)}
 #' where 
 #' + \eqn{f} is the feeding rate 
 #' + \eqn{q} is the human fraction
 #' + \eqn{Z} is the density of infectious mosquitoes, per patch 
-#' + \eqn{S(t)} or `F_season` is a seasonal pattern 
-#' + \eqn{T(t)} or `F_trend` is a trend pattern 
-#' + \eqn{K(t)} or `F_shock` is a perturbation 
+#' + \eqn{F_S(t)} or `F_season` is a seasonal pattern 
+#' + \eqn{F_T(t)} or `F_trend` is a trend pattern 
+#' + \eqn{F_K(t)} or `F_shock` is a perturbation 
 #' + \eqn{season_par} a list to dispatch options for 
 #' + \eqn{trend_par} or `F_season` is a seasonal pattern 
 #' + \eqn{shock_par} or `F_season` is a seasonal pattern 
@@ -122,12 +122,12 @@ F_fqZ.trivial <- function(t, y, xds_obj, s) {
 
 #' @title Net egg laying rate
 #' @description Returns 
-#' \deqn{F_{G}(t) = G S(t) T(t) K(t)}
+#' \deqn{F_{G}(t) = G F_S(t) F_T(t) F_K(t)}
 #' where 
 #' + \eqn{G} is the number of eggs laid, per patch, per day 
-#' + \eqn{S(t)} or `F_season` is a seasonal pattern 
-#' + \eqn{T(t)} or `F_trend` is a trend pattern 
-#' + \eqn{K(t)} or `F_shock` is a perturbation 
+#' + \eqn{F_S(t)} or `F_season` is a seasonal pattern 
+#' + \eqn{F_T(t)} or `F_trend` is a trend pattern 
+#' + \eqn{F_K(t)} or `F_shock` is a perturbation 
 #' 
 #' @inheritParams F_eggs
 #' @return a [numeric] vector of length `nPatches`

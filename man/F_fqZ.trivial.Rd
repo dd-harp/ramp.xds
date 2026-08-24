@@ -20,15 +20,15 @@ a \link{numeric} vector of length \code{nPatches}
 }
 \description{
 Returns
-\deqn{F_{fqZ}(t) = fqZ S(t) T(t) K(t)}
+\deqn{F_{fqZ}(t) = fqZ F_S(t) F_T(t) F_K(t)}
 where
 \itemize{
 \item \eqn{f} is the feeding rate
 \item \eqn{q} is the human fraction
 \item \eqn{Z} is the density of infectious mosquitoes, per patch
-\item \eqn{S(t)} or \code{F_season} is a seasonal pattern
-\item \eqn{T(t)} or \code{F_trend} is a trend pattern
-\item \eqn{K(t)} or \code{F_shock} is a perturbation
+\item \eqn{F_S(t)} or \code{F_season} is a seasonal pattern
+\item \eqn{F_T(t)} or \code{F_trend} is a trend pattern
+\item \eqn{F_K(t)} or \code{F_shock} is a perturbation
 \item \eqn{season_par} a list to dispatch options for
 \item \eqn{trend_par} or \code{F_season} is a seasonal pattern
 \item \eqn{shock_par} or \code{F_season} is a seasonal pattern
