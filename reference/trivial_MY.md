@@ -2,11 +2,11 @@
 
 The trivial **MY** module configures two trace functions:
 
-- infectious biting: \$\$F\_{fqZ}(t, V) = fqZ \times S(t, V_s) \times
-  T(t, V_t) \times K(t, V_k)\$\$
+- infectious biting: \$\$F\_{fqZ}(t, V) = fqZ \times F_S(t, V_s) \times
+  F_T(t, V_t) \times F_K(t, V_k)\$\$
 
-- egg laying: \$\$F_G(t, V) = G \times S(t,V_s) \times T(t, V_t) \times
-  K(t, V_k)\$\$
+- egg laying: \$\$F_G(t, V) = G \times F_S(t,V_s) \times F_T(t, V_t)
+  \times F_K(t, V_k)\$\$
 
 where
 
@@ -15,11 +15,11 @@ where
 - \\fqZ\\ or `fqZ` is the mean number of infectious bites on humans, per
   patch
 
-- \\S(t,V_s)\\ or `F_season` is a seasonal pattern function
+- \\F_S(t,V_s)\\ or `F_season` is a seasonal pattern function
 
-- \\T(t,V_t)\\ or `F_trend` is a trend pattern function
+- \\F_T(t,V_t)\\ or `F_trend` is a trend pattern function
 
-- \\K(t,V_k)\\ or `F_shock` is a perturbation function
+- \\F_K(t,V_k)\\ or `F_shock` is a perturbation function
 
 The variables \\V_s\\, \\V_t\\, and \\V_t\\ are called by
 [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md),
@@ -48,15 +48,15 @@ The implementation assumes that only one of these functions gets used.
 
 - `F_season`:
 
-  a seasonal pattern function, \\{S(t,V_s)}\\
+  a seasonal pattern function, \\{F_S(t,V_s)}\\
 
 - `F_trend`:
 
-  a trend function, \\T(t,V_t)\\
+  a trend function, \\F_T(t,V_t)\\
 
 - `F_shock`:
 
-  a shock function, \\K(t,V_k)\\
+  a shock function, \\F_K(t,V_k)\\
 
 - `season_par`:
 

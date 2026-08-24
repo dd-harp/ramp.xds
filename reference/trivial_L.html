@@ -8,12 +8,12 @@
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="trivial — L module — trivial_L"><meta name="description" content="The trivial module outputs the emergence
 rate of adult mosquitoes by calling a
 trace function,
-$$F_\alpha(t) = \Lambda \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)$$
+$$F_\alpha(t) = \Lambda \times F_S(t, V_s) \times F_T(t, V_t) \times F_K(t, V_k)$$
 where
 \(\Lambda\) is the mean daily emergence rate of adult mosquitoes
-\(S(t,V_s)\) or F_season is a seasonal pattern function
-\(T(t,V_t)\) or F_trend is a trend pattern function
-\(K(t,V_k)\) or F_shock is a perturbation function
+\(F_S(t,V_s)\) or F_season is a seasonal pattern function
+\(F_T(t,V_t)\) or F_trend is a trend pattern function
+\(F_K(t,V_k)\) or F_shock is a perturbation function
 
 
 The variables \(V_s\), \(V_t\), and \(V_t\) are
@@ -21,12 +21,12 @@ called by get_variables, which dispatches on the class of
 season_par or trend_par or shock_par."><meta property="og:description" content="The trivial module outputs the emergence
 rate of adult mosquitoes by calling a
 trace function,
-$$F_\alpha(t) = \Lambda \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)$$
+$$F_\alpha(t) = \Lambda \times F_S(t, V_s) \times F_T(t, V_t) \times F_K(t, V_k)$$
 where
 \(\Lambda\) is the mean daily emergence rate of adult mosquitoes
-\(S(t,V_s)\) or F_season is a seasonal pattern function
-\(T(t,V_t)\) or F_trend is a trend pattern function
-\(K(t,V_k)\) or F_shock is a perturbation function
+\(F_S(t,V_s)\) or F_season is a seasonal pattern function
+\(F_T(t,V_t)\) or F_trend is a trend pattern function
+\(F_K(t,V_k)\) or F_shock is a perturbation function
 
 
 The variables \(V_s\), \(V_t\), and \(V_t\) are
@@ -115,11 +115,11 @@ season_par or trend_par or shock_par."></head><body>
     <p>The trivial module outputs the emergence
 rate of adult mosquitoes by calling a
 <em>trace function,</em>
-$$F_\alpha(t) = \Lambda \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)$$
+$$F_\alpha(t) = \Lambda \times F_S(t, V_s) \times F_T(t, V_t) \times F_K(t, V_k)$$
 where</p><ul><li><p>\(\Lambda\) is the mean daily emergence rate of adult mosquitoes</p></li>
-<li><p>\(S(t,V_s)\) or <code>F_season</code> is a seasonal pattern function</p></li>
-<li><p>\(T(t,V_t)\) or <code>F_trend</code> is a trend pattern function</p></li>
-<li><p>\(K(t,V_k)\) or <code>F_shock</code> is a perturbation function</p></li>
+<li><p>\(F_S(t,V_s)\) or <code>F_season</code> is a seasonal pattern function</p></li>
+<li><p>\(F_T(t,V_t)\) or <code>F_trend</code> is a trend pattern function</p></li>
+<li><p>\(F_K(t,V_k)\) or <code>F_shock</code> is a perturbation function</p></li>
 </ul><p>The variables \(V_s\), \(V_t\), and \(V_t\) are
 called by <a href="get_variables.html">get_variables</a>, which dispatches on the class of
 <code>season_par</code> or <code>trend_par</code> or <code>shock_par</code>.</p>
@@ -134,13 +134,13 @@ called by <a href="get_variables.html">get_variables</a>, which dispatches on th
 <dd><p>the mean daily emergence rate</p></dd>
 
 <dt><code>F_season</code></dt>
-<dd><p>a seasonal pattern function, \({S(t,V_s)}\)</p></dd>
+<dd><p>a seasonal pattern function, \({F_S(t,V_s)}\)</p></dd>
 
 <dt><code>F_trend</code></dt>
-<dd><p>a trend function, \(T(t,V_t)\)</p></dd>
+<dd><p>a trend function, \(F_T(t,V_t)\)</p></dd>
 
 <dt><code>F_shock</code></dt>
-<dd><p>a shock function, \(K(t,V_k)\)</p></dd>
+<dd><p>a shock function, \(F_K(t,V_k)\)</p></dd>
 
 <dt><code>season_par</code></dt>
 <dd><p>dispatches <a href="get_variables.html">get_variables</a> to get \(V_s\)</p></dd>

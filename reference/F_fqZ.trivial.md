@@ -1,6 +1,6 @@
 # Net infectious biting rate
 
-Returns \$\$F\_{fqZ}(t) = fqZ S(t) T(t) K(t)\$\$ where
+Returns \$\$F\_{fqZ}(t) = fqZ F_S(t) F_T(t) F_K(t)\$\$ where
 
 - \\f\\ is the feeding rate
 
@@ -8,11 +8,11 @@ Returns \$\$F\_{fqZ}(t) = fqZ S(t) T(t) K(t)\$\$ where
 
 - \\Z\\ is the density of infectious mosquitoes, per patch
 
-- \\S(t)\\ or `F_season` is a seasonal pattern
+- \\F_S(t)\\ or `F_season` is a seasonal pattern
 
-- \\T(t)\\ or `F_trend` is a trend pattern
+- \\F_T(t)\\ or `F_trend` is a trend pattern
 
-- \\K(t)\\ or `F_shock` is a perturbation
+- \\F_K(t)\\ or `F_shock` is a perturbation
 
 - \\season_par\\ a list to dispatch options for
 
