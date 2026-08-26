@@ -4,14 +4,14 @@
 \alias{change_F_trend.eir}
 \title{Change F_trend}
 \usage{
-\method{change_F_trend}{eir}(F, xds_obj, s = 1)
+\method{change_F_trend}{eir}(F, xds_obj, ix = 1)
 }
 \arguments{
 \item{F}{new trend function}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species indeF}
+\item{ix}{the species index}
 }
 \value{
 an \strong{\code{xds}} object

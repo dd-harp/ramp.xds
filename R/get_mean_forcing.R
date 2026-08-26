@@ -70,21 +70,68 @@ get_mean_forcing.eir = function(xds_obj){
 #' @title Get mean forcing
 #'
 #' @description
-#' Get `Z`, the mean density of infectious mosquitoes,
-#' for an **MY** trivial model
+#' Get mean egg deposition rates
+#' for a trivial **MY** model
 #'
 #' @param xds_obj an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
-get_mean_forcing.MY = function(xds_obj){
+get_mean_forcing.eggs = function(xds_obj){
   if(xds_obj$nVectorSpecies == 1){
-    return(xds_obj$MY_obj[[1]]$Z)
+    return(xds_obj$MY_obj[[1]]$eggs)
   } else {
-    Z = list()
+    eggs = list()
     for(s in 1:length(xds_obj$nVectorSpecies))
-      Z[[s]] <- xds_obj$MY_obj[[s]]$Z
+      eggs[[s]] <- xds_obj$MY_obj[[s]]$eggs
+    return(eggs)
+  }
+}
+
+
+#' @title Get mean forcing
+#'
+#' @description
+#' Get the mean density of infectious mosquitoes,
+#' for a trivial **MY**  model
+#'
+#' @param xds_obj an **`xds`** model object
+#'
+#' @keywords internal
+#' @export
+get_mean_forcing.fqZ = function(xds_obj){
+  if(xds_obj$nVectorSpecies == 1){
+    f = get_f(xds_obj)
+    q = get_q(xds_obj)
+    Z = xds_obj$MY_obj[[1]]$Z
+    return(f*q*Z)
+  } else {
+    fqZ = rep(0, xds_obj$nVectorSpecies)
+    for(s in 1:length(xds_obj$nVectorSpecies)){
+      f = get_f(xds_obj, s)
+      q = get_q(xds_obj, s)
+      fqZ[s] <- f*q*xds_obj$MY_obj[[s]]$Z  
+    }
     return(Z)
   }
 }
 
+#' @title Get mean forcing
+#'
+#' @description
+#' Get net infectiousness
+#'
+#' @param xds_obj an **`xds`** model object
+#'
+#' @keywords internal
+#' @export
+get_mean_forcing.kappa = function(xds_obj){
+  if(xds_obj$nHostSpecies == 1){
+    return(xds_obj$XH_obj[[1]]$kappa)
+  } else {
+    kappa = list()
+    for(i in 1:length(xds_obj$nHostSpecies))
+      kappa[[i]] <- xds_obj$XH_obj[[i]]$kappa
+    return(kappa)
+  }
+}

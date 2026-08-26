@@ -20,7 +20,6 @@ show_season= function(xds_obj, tm = seq(0, 730, by=5), add=FALSE){
   return(invisible(season))
 }
 
-
 #' @title Compute the seasonal pattern
 #'
 #' @description
@@ -86,3 +85,37 @@ F_season.eir= function(tm, xds_obj){
   return(xds_obj$EIR_obj$F_season(tm))
 }
 
+
+#' @title Compute the seasonal pattern
+#'
+#' @description
+#' Evaluate the function `F_season` for a trivial **MY** model
+#'
+#' @inheritParams F_season
+#'
+#' @return the seasonal pattern, invisibly
+#'
+#' @importFrom graphics plot lines
+#'
+#' @keywords internal
+#' @export
+F_season.MY = function(tm, xds_obj){
+  return(xds_obj$MY_obj[[1]]$F_season(tm))
+}
+
+#' @title Compute the seasonal pattern
+#'
+#' @description
+#' Evaluate the function `F_season` for a forced model when `forced_by` is `kappa`
+#'
+#' @inheritParams F_season
+#'
+#' @return the seasonal pattern, invisibly
+#'
+#' @importFrom graphics plot lines
+#'
+#' @keywords internal
+#' @export
+F_season.kappa = function(tm, xds_obj){
+  return(xds_obj$XH_obj[[1]]$F_season(tm))
+}

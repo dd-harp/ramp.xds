@@ -1,6 +1,6 @@
-# Plot the temporal shock
+# Plot the shock
 
-For a model with temporal forcing, show the temporal shock
+For a model with temporal forcing, show the perturbation function
 
 ## Usage
 

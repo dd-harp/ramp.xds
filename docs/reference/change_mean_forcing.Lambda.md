@@ -1,12 +1,12 @@
 # Change mean forcing
 
-Change `Lambda` for when `forced_by` = "Lambda"
+Change the mean emergence rate
 
 ## Usage
 
 ``` r
 # S3 method for class 'Lambda'
-change_mean_forcing(X, xds_obj, s = 1)
+change_mean_forcing(X, xds_obj, ix = 1)
 ```
 
 ## Arguments
@@ -19,9 +19,9 @@ change_mean_forcing(X, xds_obj, s = 1)
 
   an **`xds`** model object
 
-- s:
+- ix:
 
-  the vector species index
+  the species index
 
 ## Value
 

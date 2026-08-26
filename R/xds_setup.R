@@ -258,10 +258,13 @@ xds_setup_aquatic = function(model_name = "unnamed",
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- "trivial"
   xds_obj           <- setup_MY_obj("trivial", xds_obj, 1, MYoptions)
-
+  xds_obj$forced_by = c("MY", "eggs")
+  class(xds_obj$forced_by) = c("MY", "eggs")
+  
   # Human Dynamics
   xds_obj$Xname <- "trivial"
   xds_obj <- setup_XH_obj("trivial", xds_obj, 1, list())
+ 
 
   xds_obj = make_indices(xds_obj)
   xds_obj$model_name <- model_name
@@ -338,6 +341,8 @@ xds_setup_human = function(model_name = "unnamed",
   xds_obj$Xname <- Xname
   xds_obj       <- setup_XH_obj(Xname, xds_obj,  1, XHoptions)
   xds_obj       <- setup_XH_inits(xds_obj, HPop, 1, XHoptions)
+  xds_obj$forced_by = c(xds_obj$forced_by, "fqZ")
+  class(xds_obj$forced_by) = c("MY", "fqZ")
 
   xds_obj = make_indices(xds_obj)
 

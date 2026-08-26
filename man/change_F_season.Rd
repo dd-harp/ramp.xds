@@ -4,18 +4,22 @@
 \alias{change_F_season}
 \title{Change F_season}
 \usage{
-change_F_season(F, xds_obj, s = 1)
+change_F_season(F, xds_obj, ix = 1)
 }
 \arguments{
 \item{F}{a seasonal pattern function}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species indeF}
+\item{ix}{the species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-Change  the seasonality function
+Change  the seasonality function. The function \code{F} should have the form
+\eqn{F(t,V)}.  If the variable \eqn{V} is not used, it's default value should be set to an empty list.
+}
+\seealso{
+\link{F_one}
 }

@@ -6,7 +6,7 @@ Change the seasonality function when `forced_by = "eir"`
 
 ``` r
 # S3 method for class 'eir'
-change_F_season(F, xds_obj, s = 1)
+change_F_season(F, xds_obj, ix = 1)
 ```
 
 ## Arguments
@@ -19,9 +19,9 @@ change_F_season(F, xds_obj, s = 1)
 
   an **`xds`** model object
 
-- s:
+- ix:
 
-  the vector species indeF
+  the species index
 
 ## Value
 
