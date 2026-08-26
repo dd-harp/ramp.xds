@@ -6,7 +6,7 @@ Implement `change_mean_forcing` for a model with no forcing
 
 ``` r
 # S3 method for class 'none'
-change_mean_forcing(X, xds_obj, s = 1)
+change_mean_forcing(X, xds_obj, ix = 1)
 ```
 
 ## Arguments
@@ -19,9 +19,9 @@ change_mean_forcing(X, xds_obj, s = 1)
 
   an **`xds`** model object
 
-- s:
+- ix:
 
-  the vector species index
+  the species index
 
 ## Value
 

@@ -4,14 +4,14 @@
 \alias{change_mean_forcing}
 \title{Change mean forcing}
 \usage{
-change_mean_forcing(X, xds_obj, s = 1)
+change_mean_forcing(X, xds_obj, ix = 1)
 }
 \arguments{
 \item{X}{the new mean forcing parameter}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
+\item{ix}{the species index}
 }
 \value{
 an \strong{\code{xds}} object

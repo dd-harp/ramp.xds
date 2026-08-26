@@ -4,18 +4,22 @@
 \alias{change_F_shock}
 \title{Change F_shock}
 \usage{
-change_F_shock(F, xds_obj, s = 1)
+change_F_shock(F, xds_obj, ix = 1)
 }
 \arguments{
 \item{F}{new shock function}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species indeF}
+\item{ix}{the species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-Change  the shock function
+Change  the shock function. The function \code{F} should have the form
+\eqn{F(t,V)}.  If the variable \eqn{V} is not used, it's default value should be set to an empty list.
+}
+\seealso{
+\link{F_one}
 }

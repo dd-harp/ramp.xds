@@ -3,7 +3,7 @@ title: "RAMP and SimBA"
 subtitle: "Robust, Simulation-Based Analytics for Malaria Policy"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{RAMP}
+  %\VignetteIndexEntry{RAMP and SimBA}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

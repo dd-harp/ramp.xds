@@ -219,6 +219,7 @@ reference:
   desc: |
     Show patterns for forced systems
   contents:
+  - show_forcing
   - show_season
   - show_trend
   - show_shock
