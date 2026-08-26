@@ -531,12 +531,14 @@ Plot common variables and terms
 
 Show patterns for forced systems
 
+- [`show_forcing()`](https://dd-harp.github.io/ramp.xds/reference/show_forcing.md)
+  : Plot the forcing pattern
 - [`show_season()`](https://dd-harp.github.io/ramp.xds/reference/show_season.md)
   : Plot the seasonal pattern
 - [`show_trend()`](https://dd-harp.github.io/ramp.xds/reference/show_trend.md)
   : Plot the Temporal Trend
 - [`show_shock()`](https://dd-harp.github.io/ramp.xds/reference/show_shock.md)
-  : Plot the temporal shock
+  : Plot the shock
 
 ## Get
 

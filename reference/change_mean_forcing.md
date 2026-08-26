@@ -5,7 +5,7 @@ Change the mean forcing parameter to `X`
 ## Usage
 
 ``` r
-change_mean_forcing(X, xds_obj, s = 1)
+change_mean_forcing(X, xds_obj, ix = 1)
 ```
 
 ## Arguments
@@ -18,9 +18,9 @@ change_mean_forcing(X, xds_obj, s = 1)
 
   an **`xds`** model object
 
-- s:
+- ix:
 
-  the vector species index
+  the species index
 
 ## Value
 

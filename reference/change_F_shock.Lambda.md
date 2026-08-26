@@ -6,7 +6,7 @@ Change the shock function when `forced_by = "Lambda"`
 
 ``` r
 # S3 method for class 'Lambda'
-change_F_shock(F, xds_obj, s = 1)
+change_F_shock(F, xds_obj, ix = 1)
 ```
 
 ## Arguments
@@ -19,9 +19,9 @@ change_F_shock(F, xds_obj, s = 1)
 
   an **`xds`** model object
 
-- s:
+- ix:
 
-  the vector species indeF
+  the species index
 
 ## Value
 
