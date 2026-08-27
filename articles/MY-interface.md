@@ -9,11 +9,11 @@ how the code works.
 
 ## Overview
 
-The **MY** component models adult mosquito ecology and infection
-dynamics. We let **M** describe a state space describing mosquito
-ecology, and **Y** an embedded state space describing parasite or
-pathogen infection dynamics. Since **Y** is embedded within **M,** the
-two processes are handled together.
+The **MY** component includes processes related to adult mosquito
+ecology and infection dynamics. We let **M** describe a state space
+describing mosquito ecology, and **Y** an embedded state space
+describing parasite or pathogen infection dynamics. Since **Y** is
+embedded within **M,** the two processes are handled together.
 
 The **Y** component interacts with **X** through blood feeding and
 transmission:
@@ -39,6 +39,26 @@ emergence.
   habitats in a patch.  
   A function `dMYdt` computes the derivatives for differential equation
   modules. `Update_MYt` updates the variables for discrete time systems.
+
+------------------------------------------------------------------------
+
+![Figure 1: A diagram of the MY Component. For parasite transmission,
+blood feeding on humans infects the fractions \kappa (per patch) and
+after surviving the EIP, infectious mosquitoes blood feed on humans
+again (at the patch rates fqZ). For mosquito ecology, emergent adult
+mosquitoes enter the population as they mature in aquatic habitats (from
+the L Component) and adult mosquitoes lay eggs in those aquatic
+habitats.](MY_component.drawio.png)
+
+***Figure 1:** A diagram of the **MY** Component. For parasite
+transmission, blood feeding on humans infects the fractions \\\kappa\\
+(per patch) and after surviving the EIP, infectious mosquitoes blood
+feed on humans again (at the patch rates* \\fqZ\\*). For mosquito
+ecology, emergent adult mosquitoes enter the population as they mature
+in aquatic habitats (from the **L** Component) and adult mosquitoes lay
+eggs in those aquatic habitats.*
+
+------------------------------------------------------------------------
 
 Two important issues for **MY** components are adult mosquito
 demography, including mortality and dispersal and the method for
