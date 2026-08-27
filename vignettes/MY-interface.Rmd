@@ -12,9 +12,10 @@ The **MY** component was designed to model adult mosquito ecology and infection 
 
 This vignette takes a deep dive into the design and structure of the **MY** component. It is useful for anyone who wants to learn more about how the code works.  
 
+
 ## Overview 
 
-The **MY** component models adult mosquito ecology and infection dynamics. We let **M** describe a state space describing mosquito ecology, and **Y** an embedded state space describing parasite or pathogen infection dynamics. Since **Y** is embedded within **M,** the two processes are handled together. 
+The **MY** component includes processes related to adult mosquito ecology and infection dynamics. We let **M** describe a state space describing mosquito ecology, and **Y** an embedded state space describing parasite or pathogen infection dynamics. Since **Y** is embedded within **M,** the two processes are handled together. 
 
 The **Y** component interacts with **X** through blood feeding and transmission: 
 
@@ -28,6 +29,12 @@ The **M** component interacts with **L** through egg laying and emergence.
 
 + Each **M** component must supply a function $F_G$ that computes the number of eggs laid by the adult mosquito population in a patch. The **ML**-interface determines how the eggs are apportioned among all the habitats in a patch.  
 A function `dMYdt` computes the derivatives for differential equation modules. `Update_MYt` updates the variables for discrete time systems.
+
+*** 
+
+![***Figure 1:** A diagram of the **MY** Component. For parasite transmission, blood feeding on humans infects the fractions $\kappa$ (per patch) and after surviving the EIP, infectious mosquitoes blood feed on humans again (at the patch rates* $fqZ$*). For mosquito ecology, emergent adult mosquitoes enter the population as they mature in aquatic habitats (from the **L** Component) and adult mosquitoes lay eggs in those aquatic habitats.*](MY_component.drawio.png)
+
+*** 
 
 Two important issues for **MY** components are adult mosquito demography, including mortality and dispersal and the method for handling mosquito bionomics as a baseline that is modified by control.
 
