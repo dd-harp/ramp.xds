@@ -6,7 +6,7 @@
 #' possible to develop studies of some focal process
 #' with known inputs: a *trace function* approach.
 #' 
-#' Three trivial modules and EIR forcing (see [xds_setup_eir])
+#' The trivial modules and EIR forcing (see [xds_setup_eir])
 #' construct trace functions as composed time series functions. The 
 #' value of a forced variable \eqn{x(t)} is computed
 #' as a product of four configurable elements:

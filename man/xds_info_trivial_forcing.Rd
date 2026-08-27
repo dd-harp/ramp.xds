@@ -9,8 +9,8 @@ of the three dynamical components, making it
 possible to develop studies of some focal process
 with known inputs: a \emph{trace function} approach.
 
-Three trivial modules and EIR forcing \link{xds_setup_eir}
-construct trace functions as decomposable time series. The
+The trivial modules and EIR forcing (see \link{xds_setup_eir})
+construct trace functions as composed time series functions. The
 value of a forced variable \eqn{x(t)} is computed
 as a product of four configurable elements:
 \itemize{
@@ -29,5 +29,5 @@ as a product of four configurable elements:
 For a discussion of mechanistic approaches to forcing, see \href{https://faculty.washington.edu/smitdave/simba/trace.html}{SimBA: Trace Functions}
 }
 \seealso{
-\link{trivial_XH}, \link{trivial_MY}, \link{trivial_L}, \link{xds_setup_eir}, and \link{Forcing}
+\link{trivial_XH}, \link{trivial_MY}, \link{trivial_L}, \link{xds_setup_eir}
 }
