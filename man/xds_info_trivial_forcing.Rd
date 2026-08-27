@@ -15,18 +15,18 @@ value of a forced variable \eqn{x(t)} is computed
 as a product of four configurable elements:
 \itemize{
 \item \eqn{\bar x}: a mean value
-\item \eqn{S(t)}: a seasonal pattern
-\item \eqn{T(t)}: a trend
-\item \eqn{K(t)}: a shock
+\item \eqn{F_S(t, V)}: a seasonal pattern
+\item \eqn{F_T(t, V)}: a trend
+\item \eqn{F_K(t, V)}: a shock
 }
 
-\deqn{x(t) = \bar x \times S(t) \times T(t) \times K(t)}
+\deqn{x(t) = \bar x \times F_S(t, V) \times F_T(t,V) \times F_K(t, V)}
 \itemize{
 \item A trace function library for RAMP is in \code{ramp.func}
 \item Functions that integrate \code{ramp.func} and \code{ramp.xds} are found in \code{ramp.forcing}
 }
 
-For a discussion of mechanistic approaches to forcing, see \link{Forcing}
+For a discussion of mechanistic approaches to forcing, see \href{https://faculty.washington.edu/smitdave/simba/trace.html}{SimBA: Trace Functions}
 }
 \seealso{
 \link{trivial_XH}, \link{trivial_MY}, \link{trivial_L}, \link{xds_setup_eir}, and \link{Forcing}
