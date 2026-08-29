@@ -447,6 +447,7 @@ xds_setup_eir = function(model_name = "unnamed",
   xds_obj$EIR_obj$trend_par <- trend_par
   xds_obj$EIR_obj$age_par <- age_par
   xds_obj$EIR_obj$shock_par <- shock_par
+  xds_obj$EIR_obj$bday <- 0
 
   # Aquatic Mosquito Dynamics
   xds_obj       <- setup_L_obj("trivial", xds_obj, 1, list())

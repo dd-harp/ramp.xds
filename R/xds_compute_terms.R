@@ -164,11 +164,12 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
 xds_compute_terms.eir <- function(t, y, xds_obj) {
   with(xds_obj$EIR_obj, {
   # EIR: entomological inoculation rate trace
+    age = t-bday
     V_s = get_variables(season_par, t, y, xds_obj, 1)
     V_t = get_variables(trend_par, t, y, xds_obj, 1)
     V_k = get_variables(shock_par, t, y, xds_obj, 1)
     V_a = get_variables(age_par, t, y, xds_obj, 1)
-    xds_obj$terms$EIR[[1]] <- eir*F_season(t, V_s)*F_trend(t, V_t)*F_age(t, V_a)*F_shock(t, V_k)
+    xds_obj$terms$EIR[[1]] <- eir*F_season(t, V_s)*F_trend(t, V_t)*F_age(age, V_a)*F_shock(t, V_k)
     xds_obj <- Exposure(t, y, xds_obj)
     return(xds_obj)
 })}

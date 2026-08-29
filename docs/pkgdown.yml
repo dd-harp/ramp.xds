@@ -22,7 +22,6 @@ articles:
   human_hmoi: human_hmoi.html
   human_sis: human_sis.html
   L-interface: L-interface.html
-  ModelBuilding: ModelBuilding.html
   modular_forms: modular_forms.html
   modularity: modularity.html
   MosquitoSpatialEcology: MosquitoSpatialEcology.html
@@ -40,7 +39,7 @@ articles:
   Understanding_ramp.xds: Understanding_ramp.xds.html
   Working: Working.html
   XH-interface: XH-interface.html
-last_built: 2026-08-26T21:58Z
+last_built: 2026-08-27T23:43Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles
