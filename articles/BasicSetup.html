@@ -524,11 +524,19 @@ for a list of modules).</p></li>
 </h3>
 <p>The trivial modules configure <em>trace functions</em> to pass
 outputs. The trace functions are designed around the concept of a
-<em>constructed time series</em> with the form: <span class="math display">\[ m\; S(t)\;  T(t) \; K(t)\]</span> where + <span class="math inline">\(m\)</span> - is the mean + <span class="math inline">\(S(t)\)</span> or <code>F_season</code> outputs a
-seasonal pattern + <span class="math inline">\(T(t)\)</span> or
-<code>F_trend</code> outputs a trend + <span class="math inline">\(K(t)\)</span> or <code>F_shock</code> outputs a
-perturbation</p>
-<p>These functions are set up using a built-in function maker called <a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html">make_function</a>.</p>
+<em>constructed time series</em> with the form: <span class="math display">\[ m\; F_S(t)\;  F_T(t) \; F_K(t)\]</span>
+where</p>
+<ul>
+<li><p><span class="math inline">\(m\)</span> - is the mean</p></li>
+<li><p><span class="math inline">\(F_S(t)\)</span> or
+<code>F_season</code> outputs a seasonal pattern</p></li>
+<li><p><span class="math inline">\(F_T(t)\)</span> or
+<code>F_trend</code> outputs a trend</p></li>
+<li><p><span class="math inline">\(F_K(t)\)</span> or
+<code>F_shock</code> outputs a perturbation</p></li>
+</ul>
+<p>For a longer introduction, see <a href="https://faculty.washington.edu/smitdave/simba/trace.html" class="external-link"><strong>SimBA</strong>:Trace
+Functions</a></p>
 </div>
 </div>
 <div class="section level2">

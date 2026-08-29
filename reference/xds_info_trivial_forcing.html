@@ -9,41 +9,41 @@
 of the three dynamical components, making it
 possible to develop studies of some focal process
 with known inputs: a trace function approach.
-Three trivial modules and EIR forcing xds_setup_eir
-construct trace functions as decomposable time series. The
+The trivial modules and EIR forcing (see xds_setup_eir)
+construct trace functions as composed time series functions. The
 value of a forced variable \(x(t)\) is computed
 as a product of four configurable elements:
 \(\bar x\): a mean value
-\(S(t)\): a seasonal pattern
-\(T(t)\): a trend
-\(K(t)\): a shock
+\(F_S(t, V)\): a seasonal pattern
+\(F_T(t, V)\): a trend
+\(F_K(t, V)\): a shock
 
 
-$$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$
+$$x(t) = \bar x \times F_S(t, V) \times F_T(t,V) \times F_K(t, V)$$
 A trace function library for RAMP is in ramp.func
 Functions that integrate ramp.func and ramp.xds are found in ramp.forcing
 
 
-For a discussion of mechanistic approaches to forcing, see Forcing"><meta property="og:description" content="Trivial modules were developed for each one
+For a discussion of mechanistic approaches to forcing, see SimBA: Trace Functions"><meta property="og:description" content="Trivial modules were developed for each one
 of the three dynamical components, making it
 possible to develop studies of some focal process
 with known inputs: a trace function approach.
-Three trivial modules and EIR forcing xds_setup_eir
-construct trace functions as decomposable time series. The
+The trivial modules and EIR forcing (see xds_setup_eir)
+construct trace functions as composed time series functions. The
 value of a forced variable \(x(t)\) is computed
 as a product of four configurable elements:
 \(\bar x\): a mean value
-\(S(t)\): a seasonal pattern
-\(T(t)\): a trend
-\(K(t)\): a shock
+\(F_S(t, V)\): a seasonal pattern
+\(F_T(t, V)\): a trend
+\(F_K(t, V)\): a shock
 
 
-$$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$
+$$x(t) = \bar x \times F_S(t, V) \times F_T(t,V) \times F_K(t, V)$$
 A trace function library for RAMP is in ramp.func
 Functions that integrate ramp.func and ramp.xds are found in ramp.forcing
 
 
-For a discussion of mechanistic approaches to forcing, see Forcing"></head><body>
+For a discussion of mechanistic approaches to forcing, see SimBA: Trace Functions"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -128,22 +128,22 @@ For a discussion of mechanistic approaches to forcing, see Forcing"></head><body
 of the three dynamical components, making it
 possible to develop studies of some focal process
 with known inputs: a <em>trace function</em> approach.</p>
-<p>Three trivial modules and EIR forcing <a href="xds_setup_eir.html">xds_setup_eir</a>
-construct trace functions as decomposable time series. The
+<p>The trivial modules and EIR forcing (see <a href="xds_setup_eir.html">xds_setup_eir</a>)
+construct trace functions as composed time series functions. The
 value of a forced variable \(x(t)\) is computed
 as a product of four configurable elements:</p><ul><li><p>\(\bar x\): a mean value</p></li>
-<li><p>\(S(t)\): a seasonal pattern</p></li>
-<li><p>\(T(t)\): a trend</p></li>
-<li><p>\(K(t)\): a shock</p></li>
-</ul><p>$$x(t) = \bar x \times S(t) \times T(t) \times K(t)$$</p><ul><li><p>A trace function library for RAMP is in <code>ramp.func</code></p></li>
+<li><p>\(F_S(t, V)\): a seasonal pattern</p></li>
+<li><p>\(F_T(t, V)\): a trend</p></li>
+<li><p>\(F_K(t, V)\): a shock</p></li>
+</ul><p>$$x(t) = \bar x \times F_S(t, V) \times F_T(t,V) \times F_K(t, V)$$</p><ul><li><p>A trace function library for RAMP is in <code>ramp.func</code></p></li>
 <li><p>Functions that integrate <code>ramp.func</code> and <code>ramp.xds</code> are found in <code>ramp.forcing</code></p></li>
-</ul><p>For a discussion of mechanistic approaches to forcing, see <a href="Forcing.html">Forcing</a></p>
+</ul><p>For a discussion of mechanistic approaches to forcing, see <a href="https://faculty.washington.edu/smitdave/simba/trace.html" class="external-link">SimBA: Trace Functions</a></p>
     </div>
 
 
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="trivial_XH.html">trivial_XH</a>, <a href="trivial_MY.html">trivial_MY</a>, <a href="trivial_L.html">trivial_L</a>, <a href="xds_setup_eir.html">xds_setup_eir</a>, and <a href="Forcing.html">Forcing</a></p></div>
+    <div class="dont-index"><p><a href="trivial_XH.html">trivial_XH</a>, <a href="trivial_MY.html">trivial_MY</a>, <a href="trivial_L.html">trivial_L</a>, <a href="xds_setup_eir.html">xds_setup_eir</a></p></div>
     </div>
 
   </main></div>
