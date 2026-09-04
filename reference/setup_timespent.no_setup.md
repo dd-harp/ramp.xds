@@ -1,4 +1,4 @@
-# Setup no time spent matrix
+# Set up no time spent matrix
 
 Don't change anything
 

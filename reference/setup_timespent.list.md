@@ -1,14 +1,16 @@
 # Set up a time spent matrix
 
-Implements
-[setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.md)
-from a set of xy coordinates and a spatial kernel. See
-[make_timespent_xy](https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent_xy.md)
+If an options list is passed as the first argument, then set
+
+- `TSname = name$name`
+
+- `options = name` and call
+  `setup_timespent(TSname, xds_obj, options, s)`
 
 ## Usage
 
 ``` r
-# S3 method for class 'xy'
+# S3 method for class 'list'
 setup_timespent(name, xds_obj, options = list(), i = 1)
 ```
 
@@ -32,4 +34,4 @@ setup_timespent(name, xds_obj, options = list(), i = 1)
 
 ## Value
 
-an **`xds`** object
+a [matrix](https://rdrr.io/r/base/matrix.html)

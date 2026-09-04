@@ -1,8 +1,10 @@
-# Pass a pre-configured timespent
+# Set up a time spent matrix
 
-Implements
-[setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.md)
-for as_matrix
+Pass a pre-configured time spent matrix. If it passes the checks, it
+replaces the current timespent matrix.
+
+If called with `name = "as_matrix"`, the time spent matrix must be at
+`options$timespent_matrix`
 
 ## Usage
 
