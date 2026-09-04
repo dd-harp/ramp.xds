@@ -1,6 +1,7 @@
-# Make a time spent matrix, called timespent
+# Make a time spent matrix
 
-Make a time spent matrix, called timespent
+A fraction of time is spent at home. The remaining time is divided
+equally among the other patches.
 
 ## Usage
 

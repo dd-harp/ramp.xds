@@ -37,8 +37,6 @@
   Module](https://dd-harp.github.io/ramp.xds/articles/human_sis.md):
 - [The L
   Component](https://dd-harp.github.io/ramp.xds/articles/L-interface.md):
-- [Progressive Model
-  Building](https://dd-harp.github.io/ramp.xds/articles/ModelBuilding.md):
 - [Modular
   Forms](https://dd-harp.github.io/ramp.xds/articles/modular_forms.md):
 - [Modular

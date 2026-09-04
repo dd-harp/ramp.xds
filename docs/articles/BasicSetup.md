@@ -387,13 +387,18 @@ Basic setup for the **L** component
 
 The trivial modules configure *trace functions* to pass outputs. The
 trace functions are designed around the concept of a *constructed time
-series* with the form: \\ m\\ S(t)\\ T(t) \\ K(t)\\ where + \\m\\ - is
-the mean + \\S(t)\\ or `F_season` outputs a seasonal pattern + \\T(t)\\
-or `F_trend` outputs a trend + \\K(t)\\ or `F_shock` outputs a
-perturbation
+series* with the form: \\ m\\ F_S(t)\\ F_T(t) \\ F_K(t)\\ where
 
-These functions are set up using a built-in function maker called
-[make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.html).
+- \\m\\ - is the mean
+
+- \\F_S(t)\\ or `F_season` outputs a seasonal pattern
+
+- \\F_T(t)\\ or `F_trend` outputs a trend
+
+- \\F_K(t)\\ or `F_shock` outputs a perturbation
+
+For a longer introduction, see [**SimBA**:Trace
+Functions](https://faculty.washington.edu/smitdave/simba/trace.html)
 
 ## Spatial Dynamics
 

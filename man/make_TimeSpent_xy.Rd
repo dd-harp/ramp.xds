@@ -2,7 +2,7 @@
 % Please edit documentation in R/time_spent.R
 \name{make_timespent_xy}
 \alias{make_timespent_xy}
-\title{Make a time spent matrix, called timespent}
+\title{Make a time spent matrix using location data}
 \usage{
 make_timespent_xy(xds_obj, xy, residence, stay, kern, kopts = list())
 }
@@ -23,5 +23,5 @@ make_timespent_xy(xds_obj, xy, residence, stay, kern, kopts = list())
 a \link{matrix}
 }
 \description{
-Make a time spent matrix, called timespent
+Make a time spent matrix using location data
 }

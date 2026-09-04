@@ -69,39 +69,6 @@ check_K_matrix = function(K, Np, tol=1e-12){
   stopifnot(abs(colSums(K)) < tol)
 }
 
-#' @title Get the Mosquito Dispersal Matrix
-#' 
-#' @description
-#' Get (inspect) a mosquito dispersal matrix.
-#' 
-#' @note
-#' The argument `K` is used to retrieve state-dependent
-#' mosquito dispersal arguments for behavioral state models.
-#' The default "K" returns `K_matrix`
-#' 
-#' @param xds_obj an **`xds`** model object
-#' @param which_K which K_matrix
-#' @param s the vector species index
-#' 
-#' @return an **`xds`** object
-#'
-#' @export
-get_K_matrix = function(xds_obj, which_K="K", s=1){
-  class(which_K) = which_K
-  UseMethod("get_K_matrix", which_K)
-}
-
-#' @title Get the Mosquito Dispersal Matrix
-#'
-#' @inheritParams get_K_matrix
-#'
-#' @return an **`xds`** object
-#' @keywords internal
-#' 
-#' @export
-get_K_matrix.K = function(xds_obj, which_K="K", s=1){
-  return(xds_obj$MY_obj[[s]]$K_matrix)
-}
 
 #' @title Change a Mosquito Dispersal Matrix
 #' 
@@ -156,6 +123,41 @@ change_K_matrix.K = function(K_matrix, xds_obj, which_K="K", s=1){
   return(xds_obj)
 }
 
+#' @title Get the Mosquito Dispersal Matrix
+#' 
+#' @description
+#' Get (inspect) a mosquito dispersal matrix.
+#' 
+#' @note
+#' The argument `K` is used to retrieve state-dependent
+#' mosquito dispersal arguments for behavioral state models.
+#' The default "K" returns `K_matrix`
+#' 
+#' @param xds_obj an **`xds`** model object
+#' @param which_K which K_matrix
+#' @param s the vector species index
+#' 
+#' @return an **`xds`** object
+#'
+#' @export
+get_K_matrix = function(xds_obj, which_K="K", s=1){
+  class(which_K) = which_K
+  UseMethod("get_K_matrix", which_K)
+}
+
+#' @title Get the Mosquito Dispersal Matrix
+#'
+#' @inheritParams get_K_matrix
+#'
+#' @return an **`xds`** object
+#' @keywords internal
+#' 
+#' @export
+get_K_matrix.K = function(xds_obj, which_K="K", s=1){
+  return(xds_obj$MY_obj[[s]]$K_matrix)
+}
+
+
 #' @title Setup K_obj
 #'
 #' @description Set up a port object
@@ -173,38 +175,7 @@ setup_K_obj = function(MY_obj){
   return(MY_obj)
 }
 
-#' @title Dynamically update a K Matrix
-#'
-#' @description A port function to 
-#' updates the mosquito dispersal 
-#' matrix dynamically. 
-#' 
-#' @note The port object is called `K_obj`
-#' 
-#' @param t current simulation time
-#' @param xds_obj an **`xds`** model object
-#' @param s vector species index
-#' 
-#' @return a [numeric] vector of length `nPatches`
 
-#' @keywords internal
-#' @export
-F_K_matrix = function(t, xds_obj, s) {
-  UseMethod("F_K_matrix", xds_obj$MY_obj[[s]]$K_obj)
-}
-
-#' @title Dynamically update a K Matrix
-#'
-#' @description Implements [F_K_matrix] for a static model
-#'
-#' @inheritParams F_K_matrix
-#'
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-F_K_matrix.static = function(t, xds_obj, s){
-  return(xds_obj)
-}
 
 #' @title Setup Mosquito Dispersal Matrix
 #' @description
@@ -244,11 +215,8 @@ F_K_matrix.static = function(t, xds_obj, s){
 #' @return an **`xds`** object 
 #' @export
 setup_K_matrix = function(name, xds_obj, options=list(), s=1){
-  if(is.matrix(name)){
-    class(options) = "as_matrix"
-  }
-  if(is.character(name)) class(options) <- name
-  
+  if(is.matrix(name)) class(options) = "as_matrix"
+  if(is.character(name)) class(options) = name
   UseMethod("setup_K_matrix", options)
 }
 
@@ -405,4 +373,37 @@ make_K_matrix_xy = function(xy, F_K = F_exp, V=list()) {
   K_matrix = K_matrix %*% diag(1/rowSums(K_matrix))
   diag(K_matrix) <- -1 
   return(K_matrix)
+}
+
+#' @title Dynamically update a K Matrix
+#'
+#' @description A port function to 
+#' updates the mosquito dispersal 
+#' matrix dynamically. 
+#' 
+#' @note The port object is called `K_obj`
+#' 
+#' @param t current simulation time
+#' @param xds_obj an **`xds`** model object
+#' @param s vector species index
+#' 
+#' @return a [numeric] vector of length `nPatches`
+
+#' @keywords internal
+#' @export
+F_K_matrix = function(t, xds_obj, s) {
+  UseMethod("F_K_matrix", xds_obj$MY_obj[[s]]$K_obj)
+}
+
+#' @title Dynamically update a K Matrix
+#'
+#' @description Implements [F_K_matrix] for a static model
+#'
+#' @inheritParams F_K_matrix
+#'
+#' @return an **`xds`** object
+#' @keywords internal
+#' @export
+F_K_matrix.static = function(t, xds_obj, s){
+  return(xds_obj)
 }

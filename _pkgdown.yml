@@ -157,6 +157,7 @@ reference:
     Methods to numerically solve differential equations and get the outputs
   contents:
   - xds_solve
+  - xds_solve_cohort
   - xds_steady
   - xds_stable_orbit
   - burnin
@@ -330,6 +331,7 @@ reference:
   - change_F_season
   - change_F_trend
   - change_F_shock
+  - change_F_age
 - title: Save & Read 
   desc: | 
     Store **`xds`** model objects
@@ -358,6 +360,7 @@ reference:
   - xds_info_time_spent
   - xds_info_time_at_risk
   - setup_timespent
+  - check_timespent_matrix
   - change_timespent_matrix
   - make_timespent_at_home
   - make_timespent_xy
