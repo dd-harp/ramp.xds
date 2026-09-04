@@ -347,6 +347,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/blood_search_weights.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/blood_traps.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/burnin.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_F_age.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_F_season.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_F_season.MY.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_F_season.eir.html</loc></url>
@@ -466,6 +467,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_XH.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_XY_interface.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_models.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/check_timespent_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_EIR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_EIR_full.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_HTC.html</loc></url>
@@ -929,6 +931,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_sugar_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_theta_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_timespent.at_home.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_timespent.list.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_timespent.no_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_transmission.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_traps_object.html</loc></url>
@@ -1131,6 +1134,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve.dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve.ode.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_solve_cohort.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.xde.html</loc></url>

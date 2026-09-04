@@ -1,6 +1,6 @@
-# Make a time spent matrix, called timespent
+# Set up a time spent matrix
 
-Make a time spent matrix, called timespent
+Set up a time spent matrix
 
 ## Usage
 

@@ -1,8 +1,9 @@
-# Make a time spent matrix, called timespent with a here / away
+# Set up a time spent matrix
 
-Implements
-[setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.md)
-for as_matrix
+Implements the "at_home" case for
+[setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.md).
+See
+[make_timespent_at_home](https://dd-harp.github.io/ramp.xds/reference/make_timespent_at_home.md)
 
 ## Usage
 

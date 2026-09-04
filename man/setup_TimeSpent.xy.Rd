@@ -2,7 +2,7 @@
 % Please edit documentation in R/time_spent.R
 \name{setup_timespent.xy}
 \alias{setup_timespent.xy}
-\title{Develop a time spent matrix from a kernel and xy-coordinates}
+\title{Set up a time spent matrix}
 \usage{
 \method{setup_timespent}{xy}(name, xds_obj, options = list(), i = 1)
 }
@@ -19,6 +19,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{setup_timespent} for kernels
+Implements \link{setup_timespent} from a set of xy coordinates
+and a spatial kernel. See \link{make_timespent_xy}
 }
 \keyword{internal}

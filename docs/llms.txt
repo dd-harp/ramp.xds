@@ -339,7 +339,7 @@ Search Weights, Mosquito Dispersal, Time Spent
 - [`xds_info_mosquito_dispersal`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md)
   : Mosquito Dispersal
 - [`xds_info_time_spent`](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
-  : time spent
+  : Time Spent
 
 ### Adding Features
 
@@ -384,6 +384,8 @@ Methods to numerically solve differential equations and get the outputs
 
 - [`xds_solve()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
   : Solve a Dynamical System
+- [`xds_solve_cohort()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve_cohort.md)
+  : Solve Cohort Dynamics
 - [`xds_steady()`](https://dd-harp.github.io/ramp.xds/reference/xds_steady.md)
   : Solve for the steady state
 - [`xds_stable_orbit()`](https://dd-harp.github.io/ramp.xds/reference/xds_stable_orbit.md)
@@ -732,7 +734,7 @@ Change parameters
   : Change human population density
 
 - [`change_timespent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_timespent_matrix.md)
-  : Set up (or change) a time spent matrix
+  : Change the time spent matrix
 
 - [`change_time_away()`](https://dd-harp.github.io/ramp.xds/reference/change_time_away.md)
   : Change the time at home
@@ -806,6 +808,8 @@ Change parameters
   : Change F_trend
 - [`change_F_shock()`](https://dd-harp.github.io/ramp.xds/reference/change_F_shock.md)
   : Change F_shock
+- [`change_F_age()`](https://dd-harp.github.io/ramp.xds/reference/change_F_age.md)
+  : Change F_age
 
 ## Save & Read
 
@@ -854,17 +858,19 @@ XH component module implementations
 Utilities for Time Spent Matrices
 
 - [`xds_info_time_spent`](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md)
-  : time spent
+  : Time Spent
 - [`xds_info_time_at_risk`](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_at_risk.md)
   : Time at Risk
 - [`setup_timespent()`](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.md)
-  : Make a time spent matrix, called timespent
+  : Set up a time spent matrix
+- [`check_timespent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/check_timespent_matrix.md)
+  : Check Time Spent Matrix
 - [`change_timespent_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_timespent_matrix.md)
-  : Set up (or change) a time spent matrix
+  : Change the time spent matrix
 - [`make_timespent_at_home()`](https://dd-harp.github.io/ramp.xds/reference/make_timespent_at_home.md)
-  : Make a time spent matrix, called timespent
+  : Make a time spent matrix
 - [`make_timespent_xy()`](https://dd-harp.github.io/ramp.xds/reference/make_timespent_xy.md)
-  : Make a time spent matrix, called timespent
+  : Make a time spent matrix using location data
 
 Utilities for Time Spent Matrices
 

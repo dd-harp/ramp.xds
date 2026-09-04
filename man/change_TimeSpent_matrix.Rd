@@ -2,7 +2,7 @@
 % Please edit documentation in R/time_spent.R
 \name{change_timespent_matrix}
 \alias{change_timespent_matrix}
-\title{Set up (or change) a time spent matrix}
+\title{Change the time spent matrix}
 \usage{
 change_timespent_matrix(timespent, xds_obj, i = 1)
 }

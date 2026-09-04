@@ -1,12 +1,25 @@
-# Cohort dynamics for a human / host model
+# Solve Cohort Dynamics
 
-Compute the states for a model \\\cal X\\ in a cohort of humans / hosts
-as it ages, up to age \\A\\ years of age
+Given a trace function describing the average EIR in a population over
+time, simulate malaria in a cohort as it ages: the independent variable
+is age \\(a)\\ and not time \\(t)\\.
+
+Relative biting rates by age are set by \\F\_\omega(a)\\ or `F_age` with
+associated parameters `age_par`.
+
+To solve, the argument `birthday` sets the birthday for a cohort,
+\\(d)\\. The user ether passes `ages` or `Amax` and `da` to configure a
+vector of ages at which output is wanted \\(a_i)\\, at times
+\\t_i=a_i+d\\.
+
+In effect, since \\a = t-d\\, the function solves the solves the system
+for for an exposure function with the pattern: \$\$F_w(a) \times
+F_S(t-d) \times F_T(t-d) \times F_K(t-d)\$\$
 
 ## Usage
 
 ``` r
-xds_solve_cohort(xds_obj, bday = 0, A = 10, da = 10)
+xds_solve_cohort(xds_obj, birthday = 0, Amax = 365, da = 1, ages = NULL)
 ```
 
 ## Arguments
@@ -15,37 +28,25 @@ xds_solve_cohort(xds_obj, bday = 0, A = 10, da = 10)
 
   an **`xds`** model object
 
-- bday:
+- birthday:
 
-  the cohort birthday
+  a cohort's birthday
 
-- A:
+- Amax:
 
-  the maximum age to compute (in years)
+  the oldest year, run from 0...Amax
 
 - da:
 
-  the output interval (age, in days)
+  the age interval
 
-## Value
+- ages:
 
-an **`xds`** object
+  a set of ages
 
-## Details
+## Note
 
-This method substitutes age for time: a model \$\$\cal X(t)\$\$ is
-solved with respect to age \\a\\: \$\$\cal X(a),\$\$ where the daily EIR
-is computed by a *trace* function with four elements:
+Use `xds_setup_eir` to set up a model for cohort dynamics.
 
-- \\\bar E\\ or `eir`, the mean daily EIR,
-
-- \\\omega(a)\\ or `F_age,` a function of age
-
-- \\S(t)\\ or `F_season,` a function of time of year
-
-- \\T(t)\\ or `F_trend,` a function describing a trend
-
-For a cohort born on day \\B\\, the function creates a mesh on age /
-time, where time and age are related by the formula: \$\$t = B + a\$\$
-and the trace function is: \$\$E(a, t) = \hat E \\ \omega(a) \\ S(t)\\
-T(t) \$\$ The output is returned as `xds_obj$outputs$cohort`
+During setup, the variable `xds_obj$EIR_obj$bday` is set to 0, and
+`F_age` is set to `F_one`.

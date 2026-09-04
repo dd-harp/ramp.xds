@@ -1,6 +1,6 @@
-# Make a time spent matrix, called timespent
+# Make a time spent matrix using location data
 
-Make a time spent matrix, called timespent
+Make a time spent matrix using location data
 
 ## Usage
 

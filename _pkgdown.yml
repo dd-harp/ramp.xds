@@ -360,6 +360,7 @@ reference:
   - xds_info_time_spent
   - xds_info_time_at_risk
   - setup_timespent
+  - check_timespent_matrix
   - change_timespent_matrix
   - make_timespent_at_home
   - make_timespent_xy

@@ -2,7 +2,7 @@
 % Please edit documentation in R/time_spent.R
 \name{setup_timespent}
 \alias{setup_timespent}
-\title{Make a time spent matrix, called timespent}
+\title{Set up a time spent matrix}
 \usage{
 setup_timespent(name, xds_obj, options = list(), i = 1)
 }
@@ -19,5 +19,5 @@ setup_timespent(name, xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Make a time spent matrix, called timespent
+Set up a time spent matrix
 }

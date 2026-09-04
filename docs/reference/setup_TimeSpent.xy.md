@@ -1,8 +1,9 @@
-# Develop a time spent matrix from a kernel and xy-coordinates
+# Set up a time spent matrix
 
 Implements
 [setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.md)
-for kernels
+from a set of xy coordinates and a spatial kernel. See
+[make_timespent_xy](https://dd-harp.github.io/ramp.xds/reference/make_timespent_xy.md)
 
 ## Usage
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/time_spent.R
 \name{setup_timespent.no_setup}
 \alias{setup_timespent.no_setup}
-\title{Setup no time spent matrix}
+\title{Set up no time spent matrix}
 \usage{
 \method{setup_timespent}{no_setup}(name, xds_obj, options = list(), i = 1)
 }

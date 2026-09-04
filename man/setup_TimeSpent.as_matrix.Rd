@@ -2,7 +2,7 @@
 % Please edit documentation in R/time_spent.R
 \name{setup_timespent.as_matrix}
 \alias{setup_timespent.as_matrix}
-\title{Pass a pre-configured timespent}
+\title{Set up a time spent matrix}
 \usage{
 \method{setup_timespent}{as_matrix}(name, xds_obj, options = list(), i = 1)
 }
@@ -19,6 +19,10 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{setup_timespent} for as_matrix
+Pass a pre-configured time spent matrix. If it passes
+the checks, it replaces the current timespent matrix.
+
+If called with \code{name = "as_matrix"}, the time spent
+matrix must be at \code{options$timespent_matrix}
 }
 \keyword{internal}

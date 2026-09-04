@@ -129,7 +129,7 @@ some new models.
   Detection. medRxiv.
   <https://www.medrxiv.org/content/10.1101/2025.03.24.25324561v1>
 
-### [**`ramp.micro`**](https://dd-harp.github.io/ramp.falciparum/) — Microsimulation
+### [**`ramp.micro`**](https://dd-harp.github.io/ramp.micro/) — Microsimulation
 
 While **`ramp.xds`** was developed to handle patchy spatial (*i.e.*
 metapopulations), we developed

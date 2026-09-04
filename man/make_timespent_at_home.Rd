@@ -2,7 +2,7 @@
 % Please edit documentation in R/time_spent.R
 \name{make_timespent_at_home}
 \alias{make_timespent_at_home}
-\title{Make a time spent matrix, called timespent}
+\title{Make a time spent matrix}
 \usage{
 make_timespent_at_home(
   nPatches,
@@ -27,5 +27,6 @@ make_timespent_at_home(
 a \link{matrix}
 }
 \description{
-Make a time spent matrix, called timespent
+A fraction of time is spent at home. The remaining time
+is divided equally among the other patches.
 }
