@@ -95,8 +95,10 @@ NULL
 #' @export
 check_timespent_matrix = function(TS, Np, Nh){
   stopifnot(is.matrix(TS))
+  stopifnot(TS>=0)
   stopifnot(dim(TS)==c(Np, Nh))
-  stopifnot(abs(colSums(TS)) <= 1)
+  cs <- colSums(TS)
+  stopifnot(cs <= 1)
 }
 
 #' @title Change the time spent matrix
