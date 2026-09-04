@@ -77,7 +77,7 @@ Falciparum malaria epidemiology is extremely complex, even without considering t
 
 + Henry JM, Carter AR, Wu SL, Smith DL (2025). A Probabilistic Synthesis of Malaria Epidemiology: Exposure, Infection, Parasite Densities, and Detection. medRxiv. https://www.medrxiv.org/content/10.1101/2025.03.24.25324561v1 
 
-## [**`ramp.micro`**](https://dd-harp.github.io/ramp.falciparum/) --- Microsimulation
+## [**`ramp.micro`**](https://dd-harp.github.io/ramp.micro/) --- Microsimulation
 
 While **`ramp.xds`** was developed to handle patchy spatial (*i.e.* metapopulations), we developed [**`ramp.micro`**](https://dd-harp.github.io/ramp.micro/) to explore models for mosquito ecology and pathogen transmission dynamics on point sets. 
 

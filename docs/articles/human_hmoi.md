@@ -124,6 +124,7 @@ xds_obj$EIR_obj$season_par <- list()
 xds_obj$EIR_obj$trend_par<- list() 
 xds_obj$EIR_obj$shock_par<- list() 
 xds_obj$EIR_obj$age_par<- list() 
+xds_obj$EIR_obj$bday <-0
 ```
 
 ``` r

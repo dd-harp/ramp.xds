@@ -46,7 +46,7 @@ published models.
 ------------------------------------------------------------------------
 
 ![Figure 1: A diagram of the modular design of
-ramp.xds](ModularGeneralized.png)
+ramp.xds](ModularGeneralized.drawio.png)
 
 **Figure 1:** A diagram of the modular design of **`ramp.xds`**
 
