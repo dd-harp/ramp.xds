@@ -33,21 +33,20 @@
 NULL
 
 
-#' @title The **RMdts** module skill set
+#' @title The skill set
 #'
-#' @description The **MY** skill set is a list of
-#' a module's capabilities:
+#' @inheritParams setup_skillset_MY
 #'
-#' + `demography` is
-#'
-#' @inheritParams skill_set_MY
-#'
-#' @return *MY* module skill set, as a list
+#' @return the **`xds`** object
 #'
 #' @keywords internal
 #' @export
-skill_set_MY.RMdts = function(MYname){
-  return(list())
+setup_skillset_MY.RMdts = function(xds_obj, s){
+  skills = list(
+    not_implemented = TRUE
+  )
+  xds_obj$MY_obj[[s]]$skill_set = skills
+  return(xds_obj) 
 }
 
 #' Run a check before solving

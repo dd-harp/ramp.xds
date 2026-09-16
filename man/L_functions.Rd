@@ -23,6 +23,6 @@ A list of generic
 \item \code{\link{get_L_orbits}} -- get saved orbits
 \item \code{\link{steady_state_L}} -- compute steady states
 \item \code{\link{check_L}} -- run consistency checks
-\item \code{\link{skill_set_L}} -- return module skill set
+\item \code{\link{setup_skillset_L}} -- return module skill set
 }
 }

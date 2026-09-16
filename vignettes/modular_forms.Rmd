@@ -139,8 +139,9 @@ For a longer discussion of modularity, see [Modularity](https://dd-harp.github.i
 
 Basic setup returns this model during setup, but it can also be configured by naming the modules and passing options to set $\Lambda$:  
 
-```{r, fig.height=4, fig.width=7}
+```{r}
 library(ramp.xds)
+# devtools::load_all()
 mod <- xds_setup(Xname = "SIS", MYname = "SI", 
                  Lname = "trivial", Loptions = list(Lambda=80))
 ```

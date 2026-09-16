@@ -86,5 +86,5 @@ The functions that define **XH**:
 - [`check_XH`](https://dd-harp.github.io/ramp.xds/reference/check_XH.md)
   – run consistency checks
 
-- [`skill_set_XH`](https://dd-harp.github.io/ramp.xds/reference/skill_set_XH.md)
+- [`setup_skillset_XH`](https://dd-harp.github.io/ramp.xds/reference/setup_skillset_XH.md)
   – return module skill set

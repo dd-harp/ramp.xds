@@ -4,15 +4,13 @@
 \alias{get_habitats}
 \title{Get the habitat membership vector}
 \usage{
-get_habitats(xds_obj, s)
+get_habitats(xds_obj)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
-
-\item{s}{the vector species index}
 }
 \value{
-a \link{list}
+the patch membership for aquatic habitats, a numeric vector
 }
 \description{
 Output the habitat membership information as a list

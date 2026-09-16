@@ -1,18 +1,19 @@
 
-#' @title The **MY** module skill set
+#' @title Setup the skill set
 #'
-#' @description The **MY** skill set is a list of
-#' a module's capabilities.
+#' @description The skill set for an **MY** module
+#' is a list that summarizes capabilities and
+#' compatibilities
 #'
-#' @param MYname  the **MY** module name
+#' @param xds_obj an **`xds`** model object
+#' @param s the species index
 #'
-#' @return *MY* module skill set, as a list
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
-skill_set_MY = function(MYname){
-  class(MYname) <- MYname
-  UseMethod("skill_set_MY", MYname)
+setup_skillset_MY = function(xds_obj, s){
+  UseMethod("setup_skillset_MY", xds_obj$MY_obj[[s]])
 }
 
 #' Run a check before solving

@@ -24,8 +24,8 @@ xds_setup_mosy(
   nPatches = 1,
   membership = 1,
   HPop = 1000,
-  searchQ = 1,
-  kappa = 0,
+  searchQ = list(),
+  kappa = list(),
   MYoptions = list(),
   Koptions = list(),
   Loptions = list()
@@ -53,7 +53,7 @@ xds_setup_mosy(
 
 - nPatches:
 
-  is the number of patches
+  the number of patches in the model
 
 - membership:
 

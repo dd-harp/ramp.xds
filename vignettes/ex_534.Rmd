@@ -17,7 +17,7 @@ library(deSolve)
 ```
 
 ```{r,echo=F}
-#devtools::load_all()
+# devtools::load_all()
 ```
 
 # Introduction
@@ -390,18 +390,18 @@ c(xds_obj$nHabitats, xds_obj$nPatches, xds_obj$nStrata)
 If we want to retrieve the membership matrix, we can call `get_habitat_matrix`
 
 ```{r}
-get_habitat_matrix(xds_obj, 1)
+get_habitat_matrix(xds_obj)
 ```
 
-The function `make_xds_object_template` was designed to create a scaffolding. So `Q` and `Umatrix` get created with default values: Iall patches are assumed to have the same biting weights. 
+The function `make_xds_object_template` was designed to create a scaffolding. So `Q` gets created with default values: all patches are assumed to have the same biting weights. 
 
 ```{r}
-xds_obj$vars$Q
+xds_obj$terms$Q
 ```
 A little detail to note is that an `xds` object is designed to handle multiple vector and multiple host species. The function `make_xds_object_template` only sets up the first species. Similarly, we can view the egg distribution matrix for the first species: 
 
 ```{r}
-xds_obj$Umatrix[[1]]
+xds_obj$habitats$laying_matrix
 ```
 While this is a reasonable way to start, we don't want to get stuck using the default values. 
 
@@ -420,10 +420,10 @@ xds_obj$XH_obj[[1]] = XH_obj
 
 ```{r}
 xds_obj <- setup_L_inits(xds_obj, 1, Linits)
-xds_obj <- setup_L_ports(xds_obj, 1)
+#xds_obj <- setup_L_ports(xds_obj, 1)
 xds_obj <- setup_MY_inits(xds_obj, 1, MYZinits)
 xds_obj <- setup_XH_inits(xds_obj, HPop, 1, Xinits)
-xds_obj <- setup_XH_ports(xds_obj, 1)
+#xds_obj <- setup_XH_ports(xds_obj, 1)
 ```
 
 After the parameters for `5-3-4` have been specified, we can generate the indices for the model and attach them to the parameter list.
@@ -437,40 +437,49 @@ xds_obj = make_indices(xds_obj)
 To assign new values for the habitat search weights, we use a function called `set_habitat_wts_static.` After setting the values of the habitat search weights, we need to update habitat availability and the egg distribution matrix. The functions `makeQ` and `make_Umatrix` do this.  
 
 ```{r change_habitat_weights}
-xds_obj <- change_habitat_search_weights(searchWtsQ, xds_obj)
+xds_obj <- setup_habitat_search_weights(searchWtsQ, xds_obj)
 ```
 
 We can check to see
 
 ```{r}
-xds_obj$ML_interface$Q[[1]]
+xds_obj$terms$Q[[1]]
 ```
 
 ```{r}
-xds_obj$ML_interface$O_matrix
+xds_obj$habitats$laying_matrix[[1]]
 ```
 
 ```{r change_TimeSpent}
-xds_obj <- change_timespent_matrix(TaR, xds_obj)
+xds_obj <- setup_timespent(TaR, xds_obj)
+xds_obj <- setup_F_circadian(F_one, xds_obj)
 ```
 
 ```{r}
-xds_obj$XY_interface$TimeSpent
+xds_obj$XH_obj[[1]]$timespent
 ```
+```{r}
+xds_obj$XH_obj[[1]]$time_away=rep(0, 4)
+get_time_away(xds_obj)
+```
+
 
 ```{r}
 xds_obj <- compute_TaR(xds_obj,0)
-xds_obj$XY_interface$TaR
+xds_obj$terms$TaR
 ```
 
 ```{r change_blood_weights}
-xds_obj <- change_blood_search_weights(searchWtsH, xds_obj)
+xds_obj <- setup_blood_search_weights(searchWtsH, xds_obj)
+xds_obj <- setup_other_blood_hosts(rep(0, nPatches), xds_obj)
+xds_obj <- setup_blood_traps(rep(0, nPatches), xds_obj)
+xds_obj <- setup_travel_eir("no_travel", xds_obj)
 y0 <- get_inits(xds_obj)
 xds_obj <- compute_WB(0, y0, xds_obj)
 ```
 
 ```{r}
-xds_obj$XY_interface$W[[1]]
+xds_obj$terms$W[[1]]
 ```
 
 
@@ -495,6 +504,11 @@ Functions like `set_habitat_wts_static` are designed to modify parameters to gua
 The software was designed to handled more complex situations than the one we've illustrated here. In some models, we might want to make the habitat search weights change dynamically. For example, we might want to simulate habitat dynamics with some ephemeral habitats that dry up and can't be found. That would be called a *non-autonomous* system, and we would need to recompute the $Q$ and $U$ each time step. The egg laying object is assigned a class `dynamic` for dispatching by R's S3 object system. If none of the values affecting egg laying are time dependent -- we would call the resulting system *autonomous* -- then we assign the objects a class `static` so they don't get updated. To guarantee that we are recomputing things correctly, whenever the software updates the values of static parameters, it assigns the class `setup.` Whenever `EggLaying.setup` gets called, it runs `EggLaying.dynamic` once and then changes the class to `static.` 
 
 
+```{r}
+xds_obj <- setup_births("zero", xds_obj)
+xds_obj <- setup_mortality_matrix("default", xds_obj)
+xds_obj <- setup_mass_treatment(xds_obj)
+```
 
 ## Solving 
 

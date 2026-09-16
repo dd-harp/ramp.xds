@@ -20,6 +20,6 @@ an \strong{\code{xds}} object
 Compute eggs laid at time \eqn{t}
 }
 \seealso{
-\code{\link[=setup_ML_interface]{setup_ML_interface()}}
+\code{\link[=setup_egg_laying]{setup_egg_laying()}}
 }
 \keyword{internal}

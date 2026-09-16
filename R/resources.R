@@ -39,8 +39,8 @@ Resources = function(t, y, xds_obj){
 #' @title Resources (none)
 #'
 #' @description The default no-op for Resources. All resource parameters
-#' retain their static defaults (zero-initialized by [setup_XY_interface]
-#' and [setup_ML_interface]).
+#' retain their static defaults (zero-initialized by [setup_blood_feeding]
+#' and [setup_egg_laying]).
 #'
 #' @inheritParams Resources
 #'

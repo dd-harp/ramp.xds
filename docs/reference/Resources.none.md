@@ -2,9 +2,9 @@
 
 The default no-op for Resources. All resource parameters retain their
 static defaults (zero-initialized by
-[setup_XY_interface](https://dd-harp.github.io/ramp.xds/reference/setup_XY_interface.md)
+[setup_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/setup_blood_feeding.md)
 and
-[setup_ML_interface](https://dd-harp.github.io/ramp.xds/reference/setup_ML_interface.md)).
+[setup_egg_laying](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying.md)).
 
 ## Usage
 

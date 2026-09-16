@@ -1,10 +1,32 @@
-# Habitat Search Weights
+# habitat_search_weights
 
-where
+The `S3` definition for the function that computes
+habitat_search_weights
 
-## See also
+## Usage
 
-[blood_feeding](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md),
-[Transmission](https://dd-harp.github.io/ramp.xds/reference/Transmission.md),
-and
-[egg_laying](https://dd-harp.github.io/ramp.xds/reference/egg_laying.md)
+``` r
+habitat_search_weights(t, y, xds_obj, s)
+```
+
+## Arguments
+
+- t:
+
+  the time
+
+- y:
+
+  the state variables
+
+- xds_obj:
+
+  an **`xds`** model object
+
+- s:
+
+  the vector species index
+
+## Value
+
+an **`xds`** object

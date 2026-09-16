@@ -38,11 +38,11 @@ make_xds_object_template(
 
 - membership:
 
-  is the habitat membership vector
+  the patch where each aquatic habitat is found
 
 - residence:
 
-  is the strata residence vector
+  the patch where each stratum resides
 
 ## Value
 
@@ -104,25 +104,8 @@ Second, the function sets the values of the **structural parameters**:
 
 - **`nHostSpecies`** or \\N_i\\, the number of host species is set to 1;
 
-Next, the function sets up egg laying, blood feeding, and transmission:
-
-- **Egg Laying** calls
-  [`make_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md),
-  then
-  [`setup_ML_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_ML_interface.md);
-  resource parameters (`Qtraps`, etc.) are zero-initialized by default
-
-- **Blood Feeding** calls
-  [`make_residence_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_residence_matrix.md),
-  then
-  [`setup_XY_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_XY_interface.md);
-  resource parameters (`other_blood_hosts`, `Btraps`) are
-  zero-initialized by default
-
-- **Transmission** calls
-  [`setup_transmission()`](https://dd-harp.github.io/ramp.xds/reference/setup_transmission.md)
-  sets up a static model for the availability of visitors; by default,
-  there are no visitors
+Next, the function sets up egg laying, blood feeding, importation,
+transmission, and exposure.
 
 Next, the function sets up empty lists to hold the model objects for all
 three dynamical components:

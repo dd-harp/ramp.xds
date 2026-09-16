@@ -4,12 +4,10 @@
 \alias{get_habitat_matrix}
 \title{Get habitat matrix, \eqn{N}}
 \usage{
-get_habitat_matrix(xds_obj, s)
+get_habitat_matrix(xds_obj)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
-
-\item{s}{the vector species index}
 }
 \value{
 a \link{matrix}

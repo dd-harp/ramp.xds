@@ -8,7 +8,7 @@ and set `class(xds_obj$forced_by) = "Lambda"`
 
 ``` r
 # S3 method for class 'trivial'
-setup_L_obj(Lname, xds_obj, s, options = list())
+setup_L_obj(Lname, membership, xds_obj, s, options = list())
 ```
 
 ## Arguments
@@ -16,6 +16,10 @@ setup_L_obj(Lname, xds_obj, s, options = list())
 - Lname:
 
   the class name of the **L** module
+
+- membership:
+
+  the habitats' patch membership vector
 
 - xds_obj:
 

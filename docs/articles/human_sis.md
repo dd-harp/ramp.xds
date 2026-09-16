@@ -201,7 +201,8 @@ host) vital dynamics.
 require us to update the derivatives for \\S\\ and \\I.\\ Since newborns
 are susceptible, we get:
 
-\\ \frac{dS}{dt} = B(t, H) - h S + r I - \mu S \\
+\\ \frac{dS}{dt} = B(t, H) - h S + r I - \mu S \\xds_obj \<-
+setup_F_circadian(F_one, xds_obj)
 
 The dynamics for infected individuals are:
 
@@ -345,7 +346,7 @@ clrs = viridisLite::turbo(5)[c(1,2,5)]
 xds_plot_PR(test_SIS, clr=clrs)
 ```
 
-![](human_sis_files/figure-html/unnamed-chunk-12-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-13-1.png)
 
 If we set the initial values of \\I\\ to the steady state values, the
 variables shouldn’t change at all. To change the values, we simply add
@@ -358,7 +359,7 @@ xds_solve(test_SIS)-> test_SIS
 xds_plot_PR(test_SIS, clr=clrs)
 ```
 
-![](human_sis_files/figure-html/unnamed-chunk-13-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-14-1.png)
 
 Or we can use the `get_XH_orbits` function to get the values of the
 orbits. This gets the return values and pulls of the the values of \\I\\
@@ -396,7 +397,7 @@ Itest = get_XH_orbits(test_SIS, 1)$I
 xds_plot_PR(test_SIS, clr=clrs)
 ```
 
-![](human_sis_files/figure-html/unnamed-chunk-16-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-17-1.png)
 
 …and we can compute the exact solutions for the same values of \\t\\:
 

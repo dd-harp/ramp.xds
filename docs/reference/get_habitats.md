@@ -5,7 +5,7 @@ Output the habitat membership information as a list
 ## Usage
 
 ``` r
-get_habitats(xds_obj, s)
+get_habitats(xds_obj)
 ```
 
 ## Arguments
@@ -14,13 +14,9 @@ get_habitats(xds_obj, s)
 
   an **`xds`** model object
 
-- s:
-
-  the vector species index
-
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+the patch membership for aquatic habitats, a numeric vector
 
 ## See also
 

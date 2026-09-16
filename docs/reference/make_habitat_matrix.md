@@ -48,7 +48,7 @@ has summed \\w\\ by patch, and \\\left\|W\right\|= n_p\\.
 compute_habitat matrix is called by
 [`make_xds_object_template()`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)
 and
-[`setup_ML_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_ML_interface.md)
+[`setup_egg_laying()`](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying.md)
 
 see
 [`get_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_habitat_matrix.md)

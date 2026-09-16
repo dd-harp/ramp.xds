@@ -1,4 +1,4 @@
-# Setup Egg Laying
+# Setup the Habitat Interface for Egg Laying and Emergence
 
 Set up a part of the `xds` object that defines the interface for egg
 laying
@@ -6,22 +6,18 @@ laying
 ## Usage
 
 ``` r
-setup_EGG_LAYING(pars, membership)
+setup_egg_laying(xds_obj)
 ```
 
 ## Arguments
 
-- pars:
+- xds_obj:
 
-  an `xds` object
-
-- membership:
-
-  is the habitat membership vector
+  an **`xds`** model object
 
 ## Value
 
-an `xds` object
+an **`xds`** object
 
 ## Details
 
@@ -30,35 +26,34 @@ This implements a model for egg laying described by Wu SL, *et al.*,
 
 Modular computation in **`ramp.xds`** requires a rigid interface to
 guarantee mathematical consistency for egg laying and emergence. The
-interface is defined by an object called `EGGpar` that is attached to
-the `xds` object `pars` as `pars$EGGpar`. The interface includes
+interface is defined by an object called `egg_laying` that is attached
+to the `xds` object `xds_obj` as `xds_obj$egg_laying`. The interface
+includes
 
 - a habitat membership matrix, \\N\\ made by
-  [create_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/create_habitat_matrix.md)
+  [make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
 
 - the habitat search weights
 
 - a quantity that is motivated by mosquito searching for resources,
-  called habitat availability \\Q\\ made by
-  [compute_Q](https://dd-harp.github.io/ramp.xds/reference/compute_Q.md);
+  called habitat availability \\Q\\, computed by
+  [F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md);
 
 - the availability of ovitraps
 
 - the availability of unsuitable habitats
 
-- the availability of anything that is like a habitat, but that is an
-  aquatic habitat in the model, including ovitraps and unsuitable
-  habitats, \\Q\_{tot}\\ made by
-  [compute_Qtot](https://dd-harp.github.io/ramp.xds/reference/compute_Qtot.md);
+- the availability of anything that attracts egg laying mosquitoes,
+  including ovitraps and unsuitable habitats
 
-- the egg distribution matrix \\U\\, made by
-  [compute_Umatrix](https://dd-harp.github.io/ramp.xds/reference/compute_Umatrix.md)
+- the egg distribution matrix \\O\\, made by
+  [make_O_matrix](https://dd-harp.github.io/ramp.xds/reference/make_O_matrix.md)
 
 - a vector that stores eggs laid
 
-This function is called by `make_xds_object_template` to set up `EGGpar`
-and the variables and parameters with all the variables it might depend
-on.
+This function is called by `compute_xds_object_template` to set up
+`egg_laying` and the variables and parameters with all the variables it
+might depend on.
 
 ## References
 
@@ -71,8 +66,5 @@ transmission.” *PLoS Computational Biology*, **19**(6), e1010684.
 
 ## See also
 
-For a discussion of habitat availability, see
-[`compute_Q()`](https://dd-harp.github.io/ramp.xds/reference/compute_Q.md)
-
 The habitat membership matrix is created by
-[`create_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/create_habitat_matrix.md)
+[`make_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)

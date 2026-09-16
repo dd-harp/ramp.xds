@@ -7,7 +7,7 @@ The function sets up `L_obj` for the \\s^{th}\\ species by calling
 
 ``` r
 # S3 method for class 'basicL'
-setup_L_obj(Lname, xds_obj, s, options = list())
+setup_L_obj(Lname, membership, xds_obj, s, options = list())
 ```
 
 ## Arguments
@@ -15,6 +15,10 @@ setup_L_obj(Lname, xds_obj, s, options = list())
 - Lname:
 
   the class name of the **L** module
+
+- membership:
+
+  the habitats' patch membership vector
 
 - xds_obj:
 

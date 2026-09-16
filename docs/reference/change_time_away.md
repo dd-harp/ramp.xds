@@ -1,19 +1,19 @@
-# Change the time at home
+# Change the time spent
 
-Set a new *static* value for the fraction of time spent in the spatial
-domain (*i.e.* in the patches)
+Update the time spent for the \\i^{th}\\ host species, and trigger
+updates for the `XY` interface.
 
 ## Usage
 
 ``` r
-change_time_away(time_away, xds_obj, i)
+change_time_away(time_away, xds_obj, i = 1)
 ```
 
 ## Arguments
 
 - time_away:
 
-  time spent outside the spatial domain
+  a time spent vector
 
 - xds_obj:
 

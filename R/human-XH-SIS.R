@@ -104,15 +104,13 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 
   with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]], {
-      dH <- Births(t, H, births) + D_matrix %*% H
+      dH <- Births(t, xds_obj, i) + D_matrix %*% H
       dI <- foi*(H-I) - r*I + D_matrix %*% I
       dI <- dI - mda(t)*I - msat(t)*I
       return(c(dH, dI))
     })
   })
 }
-
-
 
 #' @title Set up `SIS` (**XH**)
 #'
@@ -125,10 +123,17 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 #'
 #' @keywords internal
 #' @export
-setup_XH_obj.SIS = function(Xname, xds_obj, i, options=list()){
+setup_XH_obj.SIS = function(Xname, residence, HPop, xds_obj, i, options=list()){
   xds_obj$XH_obj[[i]] = make_XH_obj_SIS(xds_obj$nStrata[1], options)
-  xds_obj$XH_obj[[i]]$skill_set <- skill_set_XH("SIS")
-  xds_obj <- setup_XH_ports(xds_obj, i)
+  xds_obj <- setup_XH_inits(xds_obj, HPop, i, options)
+  xds_obj <- setup_skillset_XH(xds_obj, i)
+  xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
+  xds_obj <- setup_mass_treatment(xds_obj, i=i)
+  xds_obj <- setup_births("zero", xds_obj, i)
+  xds_obj <- setup_mortality_matrix("default", xds_obj, i=i)
+  xds_obj <- setup_blood_search_weights("default", xds_obj, i=i)
+  xds_obj <- setup_time_away("no_travel", xds_obj, i=i)
+  xds_obj <- setup_travel_eir("no_travel", xds_obj, i=i)
   return(xds_obj)
 }
 
@@ -160,15 +165,6 @@ make_XH_obj_SIS = function(nStrata, options=list(),
     XH_obj$q_lm = checkIt(q_lm, nStrata)
     XH_obj$q_rdt = checkIt(q_rdt, nStrata)
     XH_obj$q_pcr = checkIt(q_pcr, nStrata)
-    
-    # Ports for demographic models
-    XH_obj$D_matrix = diag(0, nStrata)
-    births = "zero"
-    class(births) = births
-    XH_obj$births = births
-    XH_obj$mda = F_zero
-    XH_obj$msat = F_zero
-    XH_obj$time_away = rep(0, nStrata)
 
     return(XH_obj)
   })}
@@ -430,19 +426,21 @@ get_HTC.SIS <- function(xds_obj, i) {
 #'
 #' @note This method dispatches on `class(xds_obj$XH_obj)`
 #'
-#' @inheritParams skill_set_XH
+#' @inheritParams setup_skillset_XH
 #'
-#' @return the skill set, as a list
+#' @return the **`xds`** object
 #' @keywords internal
 #'
 #' @export
-skill_set_XH.SIS = function(Xname = "SIS"){
-  return(list(
+setup_skillset_XH.SIS = function(xds_obj,i){
+  skills =   list(
     demography  = TRUE,
     prevalence  = TRUE,
     malaria     = TRUE,
-    diagnostics = FALSE
-  ))
+    diagnostics = "linear"
+  )
+  xds_obj$XH_obj[[i]]$skill_set = skills
+  return(xds_obj) 
 }
 
 #' Check / update before solving

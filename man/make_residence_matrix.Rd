@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{make_residence_matrix}
 \alias{make_residence_matrix}
-\title{Make a residence Matrix}
+\title{Make the residence matrix}
 \usage{
 make_residence_matrix(nPatches, residence)
 }

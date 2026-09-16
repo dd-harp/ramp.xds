@@ -11,7 +11,7 @@ If an options list is passed as the first argument, then set
 
 ``` r
 # S3 method for class 'list'
-setup_timespent(name, xds_obj, options = list(), s = 1)
+setup_timespent(name, xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -27,6 +27,10 @@ setup_timespent(name, xds_obj, options = list(), s = 1)
 - options:
 
   configuration options
+
+- i:
+
+  the host species index
 
 ## Value
 

@@ -7,7 +7,7 @@
 make_XH_obj_trivial(
   nPatches,
   options,
-  kappa = 0.1,
+  kappa = 0,
   HPop = 1,
   F_season = F_one,
   F_trend = F_one,

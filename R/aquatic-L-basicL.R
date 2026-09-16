@@ -49,14 +49,18 @@ NULL
 #' @description The **L** skill set is a list of
 #' a module's capabilities
 #'
-#' @param Lname the name of the **L** module
+#' @inheritParams setup_skillset_L
 #'
-#' @return *L* module skill set, as a list
+#' @return the **`xds`** object
 #'
 #' @keywords internal
 #' @export
-skill_set_L.basicL = function(Lname = "basicL"){
-  list(trivial=FALSE)
+setup_skillset_L.basicL = function(xds_obj, s){
+  skills = list(
+    not_implemented = TRUE
+  )
+  xds_obj$L_obj[[s]]$skill_set = skills
+  return(xds_obj) 
 }
 
 #' @title Check the `basicL` module
@@ -215,12 +219,12 @@ LEffectSizes.basicL <- function(t, y, xds_obj, s) {
 #' @seealso [make_L_obj_basicL]
 #' @keywords internal
 #' @export
-setup_L_obj.basicL = function(Lname, xds_obj, s, options=list()){
+setup_L_obj.basicL = function(Lname, membership, xds_obj, s, options=list()){
   L_obj <- make_L_obj_basicL(xds_obj$nHabitats, options)
   class(L_obj) <- c("basicL", paste("basicL_", xds_obj$xds, sep=""))
   xds_obj$L_obj[[s]] = L_obj
-  xds_obj = setup_L_ports(xds_obj, s)
-  xds_obj <- LBionomics(0, 0, xds_obj, 1)
+  xds_obj <- setup_L_inits(xds_obj, s, options)
+  xds_obj <- setup_habitat_search_weights("setup", xds_obj, list(membership=membership), s=s)
   return(xds_obj)
 }
 

@@ -209,6 +209,7 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #'
 #' @export
 setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
+  xds_obj$MYname = "trivial"
   MY = "MY"
   class(MY) = "MY"
   xds_obj$forced_by = MY
@@ -216,6 +217,7 @@ setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
   MY_obj <- make_MY_obj_trivial(xds_obj$nPatches, options)
   class(MY_obj) <- 'trivial'
   xds_obj$MY_obj[[s]] <- MY_obj
+  xds_obj <- setup_F_circadian(F_one, xds_obj, s)
   return(xds_obj)
 }
 
@@ -333,19 +335,21 @@ change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
   }))}
 
 
-#' @title The **trivial** module skill set
+
+#' @title The skill set
 #'
-#' @description The **MY** skill set is a list of
-#' a module's capabilities
+#' @inheritParams setup_skillset_MY
 #'
-#' @inheritParams skill_set_MY
-#'
-#' @return *MY* module skill set, as a list
+#' @return the **`xds`** object
 #'
 #' @keywords internal
 #' @export
-skill_set_MY.trivial = function(MYname){
-  return(list())
+setup_skillset_MY.trivial = function(xds_obj, s){
+  skills = list(
+    not_implemented = TRUE
+  )
+  xds_obj$MY_obj[[s]]$skill_set = skills
+  return(xds_obj) 
 }
 
 #' @title Setup initial values for `trivial` (**MY**)

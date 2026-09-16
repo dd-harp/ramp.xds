@@ -12,8 +12,8 @@ xds_setup_mosy(
   nPatches = 1,
   membership = 1,
   HPop = 1000,
-  searchQ = 1,
-  kappa = 0,
+  searchQ = list(),
+  kappa = list(),
   MYoptions = list(),
   Koptions = list(),
   Loptions = list()
@@ -28,7 +28,7 @@ xds_setup_mosy(
 
 \item{Lname}{is a character string defining a \strong{L} Component module}
 
-\item{nPatches}{is the number of patches}
+\item{nPatches}{the number of patches in the model}
 
 \item{membership}{is a vector that describes the patch where each aquatic habitat is found}
 

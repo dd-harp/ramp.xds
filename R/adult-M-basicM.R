@@ -32,23 +32,22 @@
 #' @rdname basicM
 NULL
 
-
-#' @title The **MY** Module Skill Set
+#' @title The skill set
 #'
-#' @description The **MY** skill set is a list of
-#' a module's capabilities:
+#' @inheritParams setup_skillset_MY
 #'
-#' + `demography` is
-#'
-#' @inheritParams skill_set_MY
-#'
-#' @return *MY* module skill set, as a list
+#' @return the **`xds`** object
 #'
 #' @keywords internal
 #' @export
-skill_set_MY.basicM = function(MYname){
-  return(list())
+setup_skillset_MY.basicM = function(xds_obj, s){
+  skills = list(
+    not_implemented = TRUE
+  )
+  xds_obj$MY_obj[[s]]$skill_set = skills
+  return(xds_obj) 
 }
+
 
 #' Run a check before solving
 #'
@@ -188,9 +187,13 @@ Update_MYt.basicM <- function(t, y, xds_obj, s) {
 #' @keywords internal
 #' @export
 setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
+  xds_obj$MYname = "basicM"
   MY_obj <- make_M_obj_basicM(xds_obj$nPatches, options)
   class(MY_obj) <- c("basicM", paste("basicM_", xds_obj$xds, sep=""))
   xds_obj$MY_obj[[s]]= MY_obj
+  xds_obj <- setup_F_circadian(F_one, xds_obj, s=s)
+  xds_obj <- setup_K_matrix("zero", xds_obj, s=s)
+  xds_obj <- setup_MY_inits(xds_obj, s, options)
   xds_obj <- update_Omega_xde(xds_obj, s)
   return(xds_obj)
 }
@@ -224,11 +227,6 @@ make_M_obj_basicM = function(nPatches, options=list(),
     MY_obj <- setup_mu_obj(checkIt(mu, nPatches), MY_obj)
     MY_obj <- setup_nu_obj(checkIt(nu, nPatches), MY_obj)
     MY_obj <- setup_sigma_obj(checkIt(sigma, nPatches), MY_obj)
-
-    MY_obj$K_matrix <- matrix(0, nPatches, nPatches)
-    MY_obj <- setup_K_obj(MY_obj)
-    MY_obj <- setup_Omega_obj(MY_obj)
-
 
     MY_obj$eggsPerBatch <- eggsPerBatch
 

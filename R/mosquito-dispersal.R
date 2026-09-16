@@ -116,10 +116,9 @@ change_K_matrix = function(K_matrix, xds_obj, which_K="K", s=1){
 change_K_matrix.K = function(K_matrix, xds_obj, which_K="K", s=1){
   check_K_matrix(K_matrix, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$K_matrix <- K_matrix
-  xds_obj$MY_obj[[s]]$Omega_obj <- trigger_setup(xds_obj$MY_obj[[s]]$Omega_obj)
-  xds_obj <- update_Omega_xde(xds_obj, s)
-  xds_obj$MY_obj[[s]]$Upsilon_obj <- trigger_setup(xds_obj$MY_obj[[s]]$Upsilon_obj)
-  xds_obj <- update_Upsilon_xde(xds_obj, s)
+  xds_obj$MY_obj[[s]]$K_obj <- make_static_obj()
+  xds_obj$MY_obj[[s]]$Omega_obj <- make_static_obj()
+  xds_obj <- F_Omega_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -156,25 +155,6 @@ get_K_matrix = function(xds_obj, which_K="K", s=1){
 get_K_matrix.K = function(xds_obj, which_K="K", s=1){
   return(xds_obj$MY_obj[[s]]$K_matrix)
 }
-
-
-#' @title Setup K_obj
-#'
-#' @description Set up a port object
-#' for mosquito dispersal
-#'
-#' @param MY_obj an **`MY`** model object
-#'
-#' @return an **`MY`** model object
-#' @keywords internal
-#' @export
-setup_K_obj = function(MY_obj){
-  K_obj <- list() 
-  class(K_obj) = "static"
-  MY_obj$K_obj = K_obj 
-  return(MY_obj)
-}
-
 
 
 #' @title Setup Mosquito Dispersal Matrix
@@ -258,7 +238,7 @@ setup_K_matrix.list = function(name, xds_obj, options=list(), s=1){
 setup_K_matrix.N = function(name, xds_obj, options=list(), s=1){
   for(i in 1:options$N){
     opts <- options$opts[[i]]
-    xds_obj <- setup_K_matrix(opts, xds_obj, list(), s)  
+    xds_obj <- setup_K_matrix(opts, xds_obj, list(), s) 
   }
   return(xds_obj)
 }

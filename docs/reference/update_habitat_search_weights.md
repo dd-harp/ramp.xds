@@ -1,15 +1,23 @@
-# Update habitat search weights
+# Update the habitat_search_weights Matrix
 
-Port function for habitat feeding search weights, \\\omega\\. Dispatches
-on `class(xds_obj$L_obj[[s]]$search_obj)`.
+Port function for the habitat_search_weights, \\w\\. Dispatches on
+`xds_obj$L_obj[[s]]$habitat_search_obj`.
 
 ## Usage
 
 ``` r
-update_habitat_search_weights(xds_obj, s)
+update_habitat_search_weights(t, y, xds_obj, s)
 ```
 
 ## Arguments
+
+- t:
+
+  the time
+
+- y:
+
+  the state variables
 
 - xds_obj:
 
@@ -17,7 +25,7 @@ update_habitat_search_weights(xds_obj, s)
 
 - s:
 
-  the vector species index
+  the species index
 
 ## Value
 

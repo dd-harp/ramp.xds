@@ -1,4 +1,79 @@
 
+#' @title Setup the Habitat Interface for Egg Laying and Emergence
+#'
+#' @description Set up a part of the `xds` object that defines the interface for egg laying
+#' @details
+#' This implements a model for egg laying described by Wu SL, *et al.*, (2023).
+#'
+#' Modular computation in **`ramp.xds`** requires a rigid interface
+#' to guarantee mathematical consistency for egg laying and emergence.
+#' The interface is defined by an object called `egg_laying` that is
+#' attached to the `xds` object `xds_obj` as `xds_obj$egg_laying`.
+#' The interface includes
+#' - a habitat membership matrix, \eqn{N} made by [make_habitat_matrix]
+#' - the habitat search weights
+#' - a quantity that is motivated by mosquito searching for resources, called
+#' habitat availability \eqn{Q}, computed by [F_available_habitat];
+#' - the availability of ovitraps
+#' - the availability of unsuitable habitats
+#' - the availability of anything that attracts egg laying mosquitoes, including ovitraps and unsuitable habitats
+#' - the egg distribution matrix \eqn{O}, made by [make_O_matrix]
+#' - a vector that stores eggs laid
+#'
+#' This function is called by `compute_xds_object_template` to set up `egg_laying` and the variables and parameters with all
+#' the variables it might depend on.
+#' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
+#' @param xds_obj an **`xds`** model object
+#' 
+#' @return an **`xds`** object
+#' @importFrom Rdpack reprompt
+#' @seealso The habitat membership matrix is created by [make_habitat_matrix()]
+#' @keywords internal
+#' @export
+setup_egg_laying = function(xds_obj){
+  
+  # Eggs Laid x Patch
+  xds_obj$terms$G <- list()
+  xds_obj$terms$G[[1]] <- rep(0, xds_obj$nPatches)
+  
+  # Eggs Laid x Habitat
+  xds_obj$terms$eta <- list()
+  xds_obj$terms$eta[[1]] <- rep(0, xds_obj$nHabitats)
+  
+  # Emergence x Habitat
+  xds_obj$terms$alpha <- list()
+  xds_obj$terms$alpha[[1]] <- rep(0, xds_obj$nHabitats)
+  
+  # Emergence x Patch
+  xds_obj$terms$Lambda <- list()
+  xds_obj$terms$Lambda[[1]] <- rep(0, xds_obj$nPatches)
+  
+  # Habitat Availability
+  xds_obj$terms$Q <- list()
+  xds_obj$terms$Q[[1]] <- rep(1, xds_obj$nPatches)
+  
+  xds_obj$terms$Qall <- list()
+  xds_obj$terms$Qall[[1]] <- rep(1, xds_obj$nPatches)
+  
+  # Bad Habitats
+  xds_obj$patches$bad_habitats_obj = list()
+  xds_obj$patches$bad_habitats_obj[[1]] = make_static_obj()
+  
+  xds_obj$patches$bad_habitats = list()
+  xds_obj$patches$bad_habitats[[1]] = rep(0, xds_obj$nPatches)
+  
+  # Ovitraps
+  
+  xds_obj$patches$ovitraps_obj = list()
+  xds_obj$patches$ovitraps_obj[[1]] = make_static_obj()
+  
+  xds_obj$patches$ovitraps = list()
+  xds_obj$patches$ovitraps[[1]] = rep(0, xds_obj$nPatches)
+  
+  return(xds_obj)
+}
+
+
 
 #' @title Compute eggs laid
 #'
@@ -9,11 +84,11 @@
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
-#' @seealso [setup_ML_interface()]
+#' @seealso [setup_egg_laying()]
 #' @export
 #' @keywords internal
 EggLaying = function(t, y, xds_obj){
-  UseMethod("EggLaying", xds_obj$ML_interface)
+  UseMethod("EggLaying", xds_obj$habitats)
 }
 
 #' @title Compute eggs laid, the first time
@@ -44,7 +119,7 @@ EggLaying = function(t, y, xds_obj){
 #' @keywords internal
 EggLaying.setup = function(t, y, xds_obj){
   xds_obj <- egg_laying_dynamics(t, y, xds_obj)
-  class(xds_obj$ML_interface) <- 'static'
+  class(xds_obj$habitats) <- 'static'
   return(xds_obj)
 }
 
@@ -78,8 +153,11 @@ EggLaying.dynamic = function(t, y, xds_obj){
 #' @export
 #' @keywords internal
 egg_laying_dynamics = function(t, y, xds_obj){
-  for(s in 1:xds_obj$nVectorSpecies)
-    xds_obj = update_habitat_search_weights(xds_obj,s) 
+  for(s in 1:xds_obj$nVectorSpecies){
+    xds_obj = update_habitat_search_weights(t, y, xds_obj, s) 
+    xds_obj = update_bad_habitats(t, y, xds_obj, s)
+    xds_obj = update_ovitraps(t, y, xds_obj, s)
+  }
   xds_obj = compute_Qall(xds_obj)
   xds_obj = compute_O_matrix(xds_obj)
   xds_obj = compute_eggs_laid(t, y, xds_obj)
@@ -98,7 +176,7 @@ egg_laying_dynamics = function(t, y, xds_obj){
 #' @return a [vector] of describing habitat availability, \eqn{Q}, of length `nPatches`
 #' @seealso This function is called by [compute_Qall]
 #' @seealso [make_habitat_matrix] discusses \eqn{N}
-#' @seealso The availability of ovitraps and bad habitats is setup in [setup_ML_interface]
+#' @seealso The availability of ovitraps and bad habitats is setup in [setup_egg_laying]
 #' @export
 #' @keywords internal
 F_available_habitat = function(habitat_matrix, search_weights){
@@ -132,13 +210,13 @@ F_available_habitat = function(habitat_matrix, search_weights){
 #' @seealso This function is called by [compute_Qall]
 #' @seealso [make_habitat_matrix] discusses \eqn{N}
 #'
-#' @seealso The availability of traps and bad habitats is setup in [setup_ML_interface]
+#' @seealso The availability of traps and bad habitats is setup in [setup_egg_laying]
 #' @export
 #' @keywords internal
 F_all_available_water = function(Q, Q_traps, Q_bad){
   Qall <- Q + Q_traps + Q_bad
   return(as.vector(Qall))
-}
+} 
 
 
 
@@ -172,7 +250,7 @@ F_all_available_water = function(Q, Q_traps, Q_bad){
 #' @return a `nHabitats` \eqn{\times} `nPatches` [matrix] describing egg distribution, \eqn{O}
 #' @seealso The membership matrix \eqn{N} is computed by [make_habitat_matrix]
 #' @seealso Total habitat availability, \eqn{\cal Q}, is computed by [F_available_habitat]
-#' @seealso The availability of ovitraps and bad habitats is setup in [setup_ML_interface]
+#' @seealso The availability of ovitraps and bad habitats is setup in [setup_egg_laying]
 #' @export
 #' @keywords internal
 make_O_matrix= function(search_weights, habitat_matrix, Q){
@@ -190,12 +268,12 @@ make_O_matrix= function(search_weights, habitat_matrix, Q){
 #' @seealso [F_available_habitat]
 #' @export
 #' @keywords internal
-compute_Qall = function(xds_obj){with(xds_obj$ML_interface,{
+compute_Qall = function(xds_obj){with(xds_obj,{
   for(s in 1:xds_obj$nVectorSpecies){
-    Q = F_available_habitat(habitat_matrix, search_weights[[s]])
-    xds_obj$ML_interface$Q[[s]] = Q
-    Qall = F_all_available_water(Q, Qbad[[s]], Qtraps[[s]])
-    xds_obj$ML_interface$Qall[[s]] = Qall
+    Q = F_available_habitat(habitats$matrix, L_obj[[s]]$search_weights)
+    xds_obj$terms$Q[[s]] = Q
+    Qall = F_all_available_water(Q, patches$bad_habitats[[s]], patches$ovitraps[[s]])
+    xds_obj$terms$Qall[[s]] = Qall
   }
   return(xds_obj)
 })}
@@ -211,15 +289,15 @@ compute_Qall = function(xds_obj){with(xds_obj$ML_interface,{
 #' @return an **`xds`** object
 #' @export
 #' @keywords internal
-compute_O_matrix = function(xds_obj){
-  for(s in 1:xds_obj$nVectorSpecies){
-    wts = xds_obj$ML_interface$search_weights[[s]]
-    N = xds_obj$ML_interface$habitat_matrix
-    Q = xds_obj$ML_interface$Q[[s]]
-    xds_obj$ML_interface$laying_matrix[[s]] = make_O_matrix(wts, N, Q)
+compute_O_matrix = function(xds_obj){with(xds_obj,{
+  for(s in 1:nVectorSpecies){
+    wts = L_obj[[s]]$search_weights
+    N = habitats$matrix
+    Q = terms$Q[[s]]
+    xds_obj$habitats$laying_matrix[[s]] = make_O_matrix(wts, N, Q)
   }
   return(xds_obj)
-}
+})}
 
 #' @title Eggs Laying in Habitats
 #'
@@ -252,11 +330,12 @@ F_eta = function(eggs_laid, O_matrix, Q, Qall){
 #' @export
 #' @keywords internal
 compute_eggs_laid = function(t, y, xds_obj){
-  with(xds_obj$ML_interface,{
-    for(s in 1:xds_obj$nVectorSpecies){
+  with(xds_obj, {
+    for(s in 1:nVectorSpecies){
       G = F_eggs(t, y, xds_obj, s)
       xds_obj$terms$G[[s]] = G
-      eta = F_eta(G, laying_matrix[[s]], Q[[s]], Qall[[s]])
+      Omatrix = habitats$laying_matrix[[s]]
+      eta = F_eta(G, Omatrix, terms$Q[[s]], terms$Qall[[s]])
       xds_obj$terms$eta[[s]] = eta
       return(xds_obj)
     }

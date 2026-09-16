@@ -1,18 +1,18 @@
-# Change the travel EIR
+# Change the travel eir
 
-Set a new *static* value for the travel EIR
+Update the travel eir for the \\i^{th}\\ host species
 
 ## Usage
 
 ``` r
-change_travel_EIR(teir, xds_obj, i)
+change_travel_eir(travel_eir, xds_obj, i = 1)
 ```
 
 ## Arguments
 
-- teir:
+- travel_eir:
 
-  the travel entomological inoculation rate
+  a travel eir vector
 
 - xds_obj:
 

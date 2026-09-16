@@ -1,31 +1,27 @@
-# Change Blood Search Weights
+# Change the blood_search_weights
 
-Change the blood feeding search weights, \\\omega\\, for a set of host
-strata
+Update the blood_search_weights for the \\i^{th}\\ host species, and
+trigger updates for the `XY` interface.
 
 ## Usage
 
 ``` r
-change_blood_search_weights(wts, xds_obj, s = 1, i = 1)
+change_blood_search_weights(blood_search_weights, xds_obj, i = 1)
 ```
 
 ## Arguments
 
-- wts:
+- blood_search_weights:
 
-  the blood feeding search weights
+  a blood_search_weights
 
 - xds_obj:
 
   an **`xds`** model object
 
-- s:
-
-  the vector species index
-
 - i:
 
-  the host species index
+  the species index
 
 ## Value
 

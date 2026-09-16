@@ -64,18 +64,18 @@ NULL
 #' a module's capabilities
 #'
 #'
-#' @inheritParams skill_set_XH
+#' @inheritParams setup_skillset_XH
 #'
-#' @return a list describing the skill set
+#' @return the **`xds`** object
 #'
 #' @keywords internal
 #' @export
-skill_set_XH.trivial = function(Xname){
-  list(
-    demography = FALSE,
-    prevalence = FALSE,
-    malaria    = FALSE
+setup_skillset_XH.trivial = function(xds_obj, i){
+  skills = list(
+   not_implemented = TRUE
   )
+  xds_obj$XH_obj[[i]]$skill_set = skills
+  return(xds_obj) 
 }
 
 #' Check / update before solving
@@ -140,7 +140,7 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' #' @return a [list]
 #' @keywords internal
 #' @export
-make_XH_obj_trivial <- function(nPatches, options, kappa=.1, HPop=1,
+make_XH_obj_trivial <- function(nPatches, options, kappa=0, HPop=1,
                                 F_season = F_one, 
                                 F_trend = F_one, 
                                 F_shock = F_one,
@@ -238,16 +238,23 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
   return(numeric(0))
 }
 
-
 #' @title Set up `trivial` (**XH**)
 #' @description Implements [setup_XH_obj] for the trivial model
 #' @inheritParams setup_XH_obj
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_XH_obj.trivial = function(Xname, xds_obj, i, options=list()){
+setup_XH_obj.trivial = function(Xname, residence, HPop, xds_obj, i, options=list()){
+  xds_obj$Xname = "trivial"
+  HPop = checkIt(HPop, xds_obj$nStrata)
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nPatches, options)
-  xds_obj <- setup_XH_ports(xds_obj, i)
+  xds_obj <- setup_XH_inits(xds_obj, HPop, i, options)
+  xds_obj <- setup_skillset_XH(xds_obj, i)
+  xds_obj$nStrata = xds_obj$nPatches
+  xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
+  xds_obj <- setup_blood_search_weights("default", xds_obj, i=i)
+  xds_obj <- setup_time_away("no_travel", xds_obj, i=i)
+  xds_obj <- setup_travel_eir("no_travel", xds_obj, i=i)
   return(xds_obj)
 }
 

@@ -4,10 +4,12 @@
 \alias{setup_L_obj}
 \title{Set up \strong{L} model object}
 \usage{
-setup_L_obj(Lname, xds_obj, s, options = list())
+setup_L_obj(Lname, membership, xds_obj, s, options = list())
 }
 \arguments{
 \item{Lname}{the class name of the \strong{L} module}
+
+\item{membership}{the habitats' patch membership vector}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

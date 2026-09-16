@@ -37,4 +37,4 @@ transmission.” *PLoS Computational Biology*, **19**(6), e1010684.
 
 [make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)
 
-[setup_XY_interface](https://dd-harp.github.io/ramp.xds/reference/setup_XY_interface.md)
+[setup_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/setup_blood_feeding.md)

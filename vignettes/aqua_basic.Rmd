@@ -52,7 +52,7 @@ library(ggplot2)
 
 
 ```{r, echo=F}
-#devtools::load_all()
+# devtools::load_all()
 ```
 
 ## The long way 
@@ -62,9 +62,9 @@ set up parameters. Please note that this only runs the aquatic mosquito componen
 
 ```{r}
 nHabitats <- 3
-nPatches=nHabitats
-membership=1:nPatches
-params <- make_xds_object_template("ode", "aquatic", nPatches, membership)
+nPatches <- nHabitats
+membership <- 1:nPatches
+params <- make_xds_object_template("ode", "aquatic", nPatches,  membership, 1)
 ```
 
 
@@ -85,8 +85,7 @@ F_eta = function(t, pars){
   pars$eggs_laid
 }
 
-params = setup_L_obj("basicL", params, 1, Lo)
-params = setup_L_inits(params, 1, Lo)
+params = setup_L_obj("basicL", membership, params, 1, Lo)
 params = setup_MY_obj("trivial", params, 1, MYZo)
 
 params = make_indices(params)

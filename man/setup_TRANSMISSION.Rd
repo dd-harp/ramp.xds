@@ -24,6 +24,6 @@ This implements a model for egg laying described by Wu SL, \emph{et al.}, (2023)
 \seealso{
 \link{make_xds_object_template}
 
-\link{setup_XY_interface}
+\link{setup_blood_feeding}
 }
 \keyword{internal}

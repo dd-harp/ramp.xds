@@ -185,6 +185,7 @@ configured by naming the modules and passing options to set \\\Lambda\\:
 ``` r
 
 library(ramp.xds)
+# devtools::load_all()
 mod <- xds_setup(Xname = "SIS", MYname = "SI", 
                  Lname = "trivial", Loptions = list(Lambda=80))
 ```
@@ -208,14 +209,14 @@ getS3method("dXHdt", "SIS")
     ## 
     ##   with(get_XH_vars(y, xds_obj, i),{
     ##     with(xds_obj$XH_obj[[i]], {
-    ##       dH <- Births(t, H, births) + D_matrix %*% H
+    ##       dH <- Births(t, xds_obj, i) + D_matrix %*% H
     ##       dI <- foi*(H-I) - r*I + D_matrix %*% I
     ##       dI <- dI - mda(t)*I - msat(t)*I
     ##       return(c(dH, dI))
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x1204e07b8>
+    ## <bytecode: 0x113056668>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -240,11 +241,14 @@ getS3method("dMYdt", "SI")
     ## 
     ##       dM <- Lambda - (Omega %*% M)
     ##       dY <- f*q*kappa*(M-Y) - (Omega %*% Y)
+    ##       
+    ##      
+    ##       
     ##       return(c(dM, dY))
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x11718a400>
+    ## <bytecode: 0x1132ffcb0>
     ## <environment: namespace:ramp.xds>
 
 The term \\\Lambda\\ is passed from the trace function
@@ -266,5 +270,5 @@ getS3method("F_emerge", "trivial")
     ##     V_k = get_variables(shock_par, t, y, xds_obj, s)
     ##     return(Lambda*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
     ## })}
-    ## <bytecode: 0x1173826d8>
+    ## <bytecode: 0x1136aa468>
     ## <environment: namespace:ramp.xds>

@@ -61,21 +61,20 @@
 NULL
 
 
-#' @title The **macdonald** module skill set
+#' @title The skill set
 #'
-#' @description The **MY** skill set is a list of
-#' a module's capabilities:
+#' @inheritParams setup_skillset_MY
 #'
-#' + `demography` is
-#'
-#' @inheritParams skill_set_MY
-#'
-#' @return *MY* module skill set, as a list
+#' @return the **`xds`** object
 #'
 #' @keywords internal
 #' @export
-skill_set_MY.macdonald = function(MYname){
-  return(list())
+setup_skillset_MY.macdonald = function(xds_obj, s){
+  skills = list(
+    not_implemented = TRUE
+  )
+  xds_obj$MY_obj[[s]]$skill_set = skills
+  return(xds_obj) 
 }
 
 #' Run a check before solving
@@ -220,8 +219,12 @@ setup_MY_obj.macdonald = function(MYname, xds_obj, s, options=list()){
   MY_obj <- setup_Omega_obj(MY_obj)
   class(MY_obj) <- 'macdonald'
   xds_obj$MY_obj[[s]] = MY_obj
-  xds_obj <- update_Omega_xde(xds_obj, s)
-  xds_obj <- update_Upsilon_xde(xds_obj, s)
+  xds_obj <- setup_F_circadian(F_one, xds_obj, s=s)
+  xds_obj <- setup_K_matrix("zero", xds_obj, s=s)
+  xds_obj <- setup_MY_inits(xds_obj, s, options)
+  xds_obj <- F_Omega_xde(xds_obj, s)
+  xds_obj <- setup_Upsilon_obj(xds_obj, s)
+  xds_obj <- F_Upsilon_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -256,9 +259,6 @@ make_MY_obj_macdonald = function(nPatches, options=list(), eip=12,
     MY_obj$mu     <- checkIt(mu, nPatches)
     MY_obj$nu     <- checkIt(nu, nPatches)
     MY_obj$eggsPerBatch <- eggsPerBatch
-    MY_obj$K_matrix <- matrix(0, nPatches, nPatches)
-    MY_obj <- setup_K_obj(MY_obj)
-    MY_obj <- setup_Omega_obj(MY_obj)
 
     MY_obj$baseline <- 'macdonald'
     class(MY_obj$baseline) <- 'macdonald'

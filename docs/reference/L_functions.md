@@ -53,5 +53,5 @@ A list of generic
 - [`check_L`](https://dd-harp.github.io/ramp.xds/reference/check_L.md) –
   run consistency checks
 
-- [`skill_set_L`](https://dd-harp.github.io/ramp.xds/reference/skill_set_L.md)
+- [`setup_skillset_L`](https://dd-harp.github.io/ramp.xds/reference/setup_skillset_L.md)
   – return module skill set

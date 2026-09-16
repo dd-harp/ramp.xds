@@ -1,28 +1,31 @@
-# Visitors
+# Compute availability of visitors
 
-For a static model for time spent F_visitors, the function does not
-update anything.
+This sets up...
 
 ## Usage
 
 ``` r
 # S3 method for class 'static'
-Visitors(t, y, xds_obj)
+visitors(t, y, xds_obj, s)
 ```
 
 ## Arguments
 
 - t:
 
-  current time
+  the time
 
 - y:
 
-  the state variable vector
+  the state variables
 
 - xds_obj:
 
   an **`xds`** model object
+
+- s:
+
+  the vector species index
 
 ## Value
 

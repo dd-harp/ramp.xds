@@ -1,15 +1,24 @@
-# Update Time Away (static)
+# Update time_away
 
-Returns `xds_obj` unmodified; `time_away` is static.
+A utility to ensure that the time_away is updated properly after a
+change
 
 ## Usage
 
 ``` r
 # S3 method for class 'static'
-update_time_away(xds_obj, i)
+update_time_away(t, y, xds_obj, i)
 ```
 
 ## Arguments
+
+- t:
+
+  the time
+
+- y:
+
+  the state variables
 
 - xds_obj:
 
@@ -17,7 +26,7 @@ update_time_away(xds_obj, i)
 
 - i:
 
-  the host species index
+  the species index
 
 ## Value
 

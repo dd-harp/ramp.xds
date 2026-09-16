@@ -17,7 +17,7 @@ Importation(t, y, xds_obj)
 an \strong{\code{xds}} object
 }
 \description{
-Dispatches on \code{class(xds_obj$importation_obj)} to update
+Dispatches on \code{class(xds_obj$import_obj)} to update
 importation-related parameters: time at home, travel EIR,
 visitor availability, and visitor infectiousness.
 }

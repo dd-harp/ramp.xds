@@ -60,9 +60,9 @@ full simulation.
 ``` r
 
 nHabitats <- 3
-nPatches=nHabitats
-membership=1:nPatches
-params <- make_xds_object_template("ode", "aquatic", nPatches, membership)
+nPatches <- nHabitats
+membership <- 1:nPatches
+params <- make_xds_object_template("ode", "aquatic", nPatches,  membership, 1)
 ```
 
 ``` r
@@ -84,8 +84,7 @@ F_eta = function(t, pars){
   pars$eggs_laid
 }
 
-params = setup_L_obj("basicL", params, 1, Lo)
-params = setup_L_inits(params, 1, Lo)
+params = setup_L_obj("basicL", membership, params, 1, Lo)
 params = setup_MY_obj("trivial", params, 1, MYZo)
 
 params = make_indices(params)

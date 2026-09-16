@@ -81,52 +81,35 @@ xds_setup = function(
      nPatches = 1,
      HPop = 1000,
      residence = 1,
-     searchB = 1,
-     TSoptions = list(name = "no_setup"),
+     searchB = list(),
+     TSoptions = list(),
      membership = 1,
-     searchQ = 1,
+     searchQ = list(),
      Koptions = list(),
      BFopts = list()
 ){
-  stopifnot(length(HPop) == length(residence))
-  xds_obj <- make_xds_object_template('ode', 'full', nPatches, membership, residence)
+  xds_obj <- make_xds_object_template(xds, 'full', nPatches, membership, residence)
 
   # Aquatic Mosquito Dynamics
-  xds_obj$Lname <- Lname
-  xds_obj       <- setup_L_obj(Lname, xds_obj, 1, Loptions)
-  xds_obj       <- setup_L_inits(xds_obj, 1, Loptions)
-
-  # Adult Mosquito Dynamics
-  xds_obj$MYname   <- MYname
-  xds_obj          <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
-  xds_obj          <- setup_MY_inits(xds_obj, 1, MYoptions)
-  xds_obj          <- setup_K_matrix(Koptions, xds_obj, s=1)
-
-  # Human Dynamics
-  xds_obj$Xname <- Xname
-  xds_obj       <- setup_XH_obj(Xname, xds_obj,  1, XHoptions)
-  xds_obj       <- setup_XH_inits(xds_obj, HPop, 1, XHoptions)
-
-  xds_obj = make_indices(xds_obj)
+  xds_obj$Lname = Lname
+  xds_obj <- setup_L_obj(Lname, membership, xds_obj, 1, Loptions)
+  xds_obj <- setup_habitat_search_weights(searchQ, xds_obj, searchQ, 1)
+ 
   
-
-  Qwts       <- with(Loptions, checkIt(searchQ, xds_obj$nHabitats))
-  xds_obj    <- change_habitat_search_weights(Qwts, xds_obj, 1)
-
-
-  wts        <- with(BFopts, checkIt(searchB, xds_obj$nStrata))
-  xds_obj    <- change_blood_search_weights(wts, xds_obj, 1, 1)
-
-
-  if(is.matrix(TSoptions)){
-    xds_obj <- change_timespent_matrix(TSoptions, xds_obj, i=1)
-  } else {
-    xds_obj <- setup_timespent(TSoptions$name, xds_obj, options=TSoptions, i=1)
-  } 
-
-
-  # Probably Not Necessary
-  y0 <- as.vector(unlist(get_inits(xds_obj)))
+  # Adult Mosquito Dynamics
+  xds_obj$MYname = MYname
+  xds_obj <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
+  xds_obj <- setup_K_matrix(Koptions, xds_obj, list(), 1)
+  
+  # Human Dynamics
+  xds_obj$Xname = Xname
+  xds_obj <- setup_XH_obj(Xname, residence, HPop, xds_obj, 1, XHoptions)
+  xds_obj <- setup_timespent(TSoptions, xds_obj, TSoptions, 1)
+  xds_obj <- setup_blood_search_weights(searchB, xds_obj, searchB, 1)
+  
+  xds_obj <- make_indices(xds_obj)
+   
+  xds_obj <- update_interfaces(xds_obj)
 
   xds_obj <- check_models(xds_obj)
   
@@ -154,7 +137,7 @@ xds_setup = function(
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param MYname is a character string defining a **MY** Component module
 #' @param Lname is a character string defining a **L** Component module
-#' @param nPatches is the number of patches
+#' @param nPatches the number of patches in the model
 #' @param membership is a vector that describes the patch where each aquatic habitat is found
 #' @param HPop is the human / host population density
 #' @param searchQ is a vector of search weights for egg laying
@@ -175,39 +158,37 @@ xds_setup_mosy = function(
      membership=1,
      HPop = 1000,
      ### Setup Parameters
-     searchQ = 1,
-     kappa = 0,
+     searchQ = list(),
+     kappa = list(),
      ### Options
      MYoptions = list(),
      Koptions = list(),
      Loptions = list()
 ){
+  nPatches = max(membership, nPatches)
   residence = 1:nPatches
-  HPop = checkIt(HPop, nPatches)
   xds_obj <- make_xds_object_template(xds, 'mosy', nPatches, membership, residence)
+  
+  # Aquatic Mosquito Dynamics
+  xds_obj$Lname <- Lname
+  xds_obj <- setup_L_obj(xds_obj$Lname, membership, xds_obj, 1, Loptions)
+  xds_obj <- setup_habitat_search_weights(searchQ, xds_obj, searchQ, 1)
 
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- MYname
-  xds_obj          <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
-  xds_obj         <- setup_MY_inits(xds_obj, 1, MYoptions)
-  xds_obj          <- setup_K_matrix(Koptions, xds_obj, s=1)
+  xds_obj <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
+  xds_obj <- setup_K_matrix(Koptions, xds_obj, list(), 1)
 
-  # Aquatic Mosquito Dynamics
-  xds_obj$Lname <- Lname
-  xds_obj       <- setup_L_obj(Lname, xds_obj, 1, Loptions)
-  xds_obj       <- setup_L_inits(xds_obj, 1, Loptions)
-
-  Xo <- list(kappa=kappa, HPop=HPop)
-  xds_obj <- setup_XH_obj("trivial", xds_obj, 1, list())
-
+  # Human / Host Dynamics
+  xds_obj$Xname   <- "trivial"
+  XHoptions <- list(HPop=HPop, kappa=kappa)
+  xds_obj <- setup_XH_obj(xds_obj$Xname, residence, HPop, xds_obj, 1, XHoptions) 
+  
   xds_obj = make_indices(xds_obj)
 
-  Qwts       <- with(Loptions, checkIt(searchQ, xds_obj$nHabitats))
-  xds_obj    <- change_habitat_search_weights(Qwts, xds_obj, 1)
-  
+  xds_obj <- update_interfaces(xds_obj)
 
-
-  xds_obj$terms$kappa[[1]] = checkIt(kappa, nPatches)
+#  xds_obj$terms$kappa[[1]] = checkIt(kappa, nPatches)
 
   xds_obj$model_name <- model_name
 
@@ -246,27 +227,30 @@ xds_setup_aquatic = function(model_name = "unnamed",
                              Lname = "basicL",
                              Loptions = list(),
                              MYoptions = list()){
-  nPatches= nHabitats
-  membership = 1:nHabitats
-  xds_obj <- make_xds_object_template(xds, 'aquatic', nPatches, membership)
-
+  nPatches <- nHabitats
+  membership <- 1:nPatches
+  residence <- 1:nPatches
+  xds_obj <- make_xds_object_template(xds, 'aquatic', nPatches, membership, residence)
+  
   # Aquatic Mosquito Dynamics
   xds_obj$Lname <- Lname
-  xds_obj       <- setup_L_obj(Lname, xds_obj, 1, Loptions)
-  xds_obj       <- setup_L_inits(xds_obj, 1, Loptions)
+  xds_obj <- setup_L_obj(xds_obj$Lname, membership, xds_obj, 1, Loptions)
 
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- "trivial"
-  xds_obj           <- setup_MY_obj("trivial", xds_obj, 1, MYoptions)
+  xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, 1, MYoptions)
+  
   xds_obj$forced_by = c("MY", "eggs")
   class(xds_obj$forced_by) = c("MY", "eggs")
   
-  # Human Dynamics
-  xds_obj$Xname <- "trivial"
-  xds_obj <- setup_XH_obj("trivial", xds_obj, 1, list())
- 
-
+  # Human / Host Dynamics
+  xds_obj$Xname   <- "trivial"
+  xds_obj <- setup_XH_obj("trivial", residence, 1, xds_obj, i=1, list()) 
+  
   xds_obj = make_indices(xds_obj)
+  y <- as.vector(unlist(get_inits(xds_obj)))
+  xds_obj <- egg_laying_dynamics(0, y, xds_obj)
+
   xds_obj$model_name <- model_name
   return(xds_obj)
 }
@@ -298,13 +282,13 @@ xds_setup_aquatic = function(model_name = "unnamed",
 #' @param model_name a name for the model
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname a character string defining a **X** Component module
+#' @param XHoptions a named list to configure the **X** Component module
 #' @param nPatches the number of patches
 #' @param residence a vector that describes the patch where each human stratum lives
 #' @param HPop the number of humans in each patch
 #' @param searchB  a vector of search weights for blood feeding
 #' @param TSoptions either a TimeSpent matrix or a string to call a function that sets it up
 #' @param MYoptions list to configure the **MY** Component module
-#' @param XHoptions a named list to configure the **X** Component module
 #' @param BFopts list to configure the blood feeding model
 #'
 #' @return an **`xds`** object
@@ -312,7 +296,6 @@ xds_setup_aquatic = function(model_name = "unnamed",
 xds_setup_human = function(model_name = "unnamed",
                            Xname = "SIS",
                            XHoptions = list(),
-
                            xds = 'ode',
                            ### Dynamical Components
                            ### Model Structure
@@ -320,46 +303,37 @@ xds_setup_human = function(model_name = "unnamed",
                            residence=1,
                            HPop=1000,
                            ### Setup Parameters
-                           searchB = 1,
+                           searchB = list(),
                            TSoptions = list(name = "no_setup"),
                            ### Options
                            MYoptions = list(),
                            BFopts = list()
 ){
-  stopifnot(length(HPop) == length(residence))
+  nStrata=length(residence)
+  HPop = checkIt(HPop, nStrata)
   membership=1
   xds_obj <- make_xds_object_template(xds, 'human', nPatches, membership, residence)
 
   # Aquatic Mosquito Dynamics
-  xds_obj       <- setup_L_obj("trivial", xds_obj, 1, list())
-  xds_obj       <- setup_L_inits(xds_obj, 1)
+  xds_obj$Lname <- "trivial" 
+  xds_obj <- setup_L_obj(xds_obj$Lname, 1, xds_obj, membership, list())
 
-  # Mosquito Dynamics
-  xds_obj           <- setup_MY_obj("trivial", xds_obj, 1, MYoptions)
+  # Adult Mosquito Dynamics
+  xds_obj$MYname   <- "trivial" 
+  xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, 1, MYoptions)
 
   # Human Dynamics
   xds_obj$Xname <- Xname
-  xds_obj       <- setup_XH_obj(Xname, xds_obj,  1, XHoptions)
-  xds_obj       <- setup_XH_inits(xds_obj, HPop, 1, XHoptions)
+  xds_obj <- setup_XH_obj(xds_obj$Xname, residence, HPop, xds_obj, 1, XHoptions) 
+  xds_obj <- setup_timespent(TSoptions, xds_obj, TSoptions, 1)
+  xds_obj <- setup_blood_search_weights(searchB, xds_obj, searchB, 1)
+  
   xds_obj$forced_by = c(xds_obj$forced_by, "fqZ")
   class(xds_obj$forced_by) = c("MY", "fqZ")
 
   xds_obj = make_indices(xds_obj)
 
-
-  wts          <- with(BFopts, checkIt(searchB, xds_obj$nStrata))
-  xds_obj      <- change_blood_search_weights(wts, xds_obj, 1, 1)
-
-  if(is.matrix(TSoptions)){
-    xds_obj <- change_timespent_matrix(TSoptions, xds_obj, 1)
-  } else {
-    xds_obj <- setup_timespent(TSoptions$name, xds_obj, TSoptions, 1)
-  } 
-
-  # Probably Not Necessary
-  y0 <- as.vector(unlist(get_inits(xds_obj)))
-  xds_obj <- BloodFeeding(0, y0, xds_obj)
-  xds_obj <- Transmission(0, y0, xds_obj)
+  xds_obj <- update_interfaces(xds_obj)
 
   xds_obj$model_name <- model_name
 
@@ -430,10 +404,9 @@ xds_setup_eir = function(model_name = "unnamed",
                          HPop=1000,
                          searchB = 1
 ){
-  nPatches = length(HPop)
-  residence = rep(1, length(HPop))
-  membership = 1
-  xds_obj <- make_xds_object_template(xds, 'eir', nPatches, membership, residence)
+  residence  = rep(1, length(HPop))
+  membership = 1 
+  xds_obj <- make_xds_object_template(xds, 'eir', length(HPop), membership, residence)
   xds_obj$forced_by = xds_obj$frame
 
   xds_obj$EIR_obj <- list()
@@ -450,29 +423,40 @@ xds_setup_eir = function(model_name = "unnamed",
   xds_obj$EIR_obj$bday <- 0
 
   # Aquatic Mosquito Dynamics
-  xds_obj       <- setup_L_obj("trivial", xds_obj, 1, list())
-  xds_obj       <- setup_L_inits(xds_obj, 1)
-
+  xds_obj$Lname <- "trivial" 
+  xds_obj <- setup_L_obj(xds_obj$Lname, 1, xds_obj, membership, list())
+  
   # Adult Mosquito Dynamics
-  xds_obj           <- setup_MY_obj("trivial", xds_obj, 1, list())
-
+  xds_obj$MYname   <- "trivial" 
+  xds_obj <- xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, 1, list())
+  
   # Human Dynamics
   xds_obj$Xname <- Xname
-  xds_obj       <- setup_XH_obj(Xname, xds_obj,  1, XHoptions)
-  xds_obj       <- setup_XH_inits(xds_obj, HPop, 1, XHoptions)
-
+  xds_obj <- setup_XH_obj(xds_obj$Xname, residence, HPop, xds_obj, 1, XHoptions) 
+  
   xds_obj$forced_by = xds_obj$frame
 
-  xds_obj       = make_indices(xds_obj)
-
-  wts        <- checkIt(searchB, xds_obj$nStrata)
-  xds_obj    <- change_blood_search_weights(wts, xds_obj, 1, 1)
-
-  # Probably Not Necessary
-  y0 <- as.vector(unlist(get_inits(xds_obj)))
-  xds_obj <- BloodFeeding(0, y0, xds_obj)
+  xds_obj = make_indices(xds_obj)
 
   xds_obj$model_name = model_name
 
   return(xds_obj)
 }
+
+#' Update interfaces
+#'
+#' @param xds_obj an **`xds`** model object
+#'
+#' @return an **`xds`** object
+#' 
+#' @export
+update_interfaces = function(xds_obj){
+  y <- as.vector(unlist(get_inits(xds_obj)))
+  xds_obj <- importation_dynamics(0, y, xds_obj)
+  xds_obj <- egg_laying_dynamics(0, y, xds_obj)
+  xds_obj <- blood_feeding_dynamics(0, y, xds_obj)
+  xds_obj <- transmission_dynamics(0, y, xds_obj)
+  return(xds_obj)
+}
+
+
