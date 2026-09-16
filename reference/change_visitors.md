@@ -1,18 +1,18 @@
-# Change Availability of Visitors
+# Change the visitors
 
-Set the value of the parameter describing available visitors
+Update the visitors for the \\s^{th}\\ vector species.
 
 ## Usage
 
 ``` r
-change_visitors(visitors, xds_obj, s)
+change_visitors(visitors, xds_obj, s = 1)
 ```
 
 ## Arguments
 
 - visitors:
 
-  availability of visitors
+  a visitors
 
 - xds_obj:
 

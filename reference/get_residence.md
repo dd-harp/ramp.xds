@@ -1,4 +1,4 @@
-# Get residence vector
+# Get residence
 
 Get the residence vector
 

@@ -27,7 +27,7 @@ any of the component model objects."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -138,11 +138,11 @@ any of the component model objects.</p>
 
 
 <dt id="arg-membership">membership<a class="anchor" aria-label="anchor" href="#arg-membership"></a></dt>
-<dd><p>is the habitat membership vector</p></dd>
+<dd><p>the patch where each aquatic habitat is found</p></dd>
 
 
 <dt id="arg-residence">residence<a class="anchor" aria-label="anchor" href="#arg-residence"></a></dt>
-<dd><p>is the strata residence vector</p></dd>
+<dd><p>the patch where each stratum resides</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -170,13 +170,8 @@ in some form (possibly the trivial case) (see <code><a href="xds_setup.html">xds
 <li><p><strong><code>nStrata</code></strong> or \(N_h\), the number of human/ host population strata, is set to <code>length(HPop)</code></p></li>
 <li><p><strong><code>nVectorSpecies</code></strong> or \(N_s\), the number of vector species is set to 1;</p></li>
 <li><p><strong><code>nHostSpecies</code></strong> or \(N_i\), the number of host species is set to 1;</p></li>
-</ul><p>Next, the function sets up egg laying, blood feeding, and transmission:</p><ul><li><p><strong>Egg Laying</strong> calls <code><a href="make_habitat_matrix.html">make_habitat_matrix()</a></code>, then <code><a href="setup_ML_interface.html">setup_ML_interface()</a></code>;
-resource parameters (<code>Qtraps</code>, etc.) are zero-initialized by default</p></li>
-<li><p><strong>Blood Feeding</strong> calls <code><a href="make_residence_matrix.html">make_residence_matrix()</a></code>, then <code><a href="setup_XY_interface.html">setup_XY_interface()</a></code>;
-resource parameters (<code>other_blood_hosts</code>, <code>Btraps</code>) are zero-initialized by default</p></li>
-<li><p><strong>Transmission</strong>  calls <code><a href="setup_TRANSMISSION.html">setup_transmission()</a></code> sets up a static
-model for the availability of visitors; by default, there are no visitors</p></li>
-</ul><p>Next, the function sets up empty lists to hold the model objects for all three dynamical components:</p><ul><li><p><code>XH_obj</code></p></li>
+</ul><p>Next, the function sets up egg laying, blood feeding, importation, transmission, and exposure.</p>
+<p>Next, the function sets up empty lists to hold the model objects for all three dynamical components:</p><ul><li><p><code>XH_obj</code></p></li>
 <li><p><code>MY_obj</code></p></li>
 <li><p><code>L_obj</code></p></li>
 </ul><p>Finally, the function sets up some junctions.</p>

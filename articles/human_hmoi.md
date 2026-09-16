@@ -63,7 +63,7 @@ Here, we build a model step-by-step.
 nStrata <- 3
 H <- c(100, 500, 250)
 residence = rep(1,3) 
-xds_obj <- make_xds_object_template("ode", "eir", 1, 1, residence)
+xds_obj <- make_xds_object_template("ode", "eir", 1, 0, residence)
 ```
 
 ``` r
@@ -90,14 +90,13 @@ eir <- h/b
 
 ``` r
 
-xds_obj = setup_XH_obj("hMoI", xds_obj, 1, Xo)
-xds_obj = setup_XH_inits(xds_obj, H, 1, Xo) 
+xds_obj = setup_XH_obj("hMoI", residence, H, xds_obj, 1, Xo)
 ```
 
 ``` r
 
 xds_obj = setup_MY_obj("trivial", xds_obj, 1)
-xds_obj = setup_L_obj("trivial", xds_obj, 1)
+xds_obj = setup_L_obj("trivial", 1, xds_obj, 1)
 ```
 
 ``` r

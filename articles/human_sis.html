@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,7 +133,7 @@ This vignette describes the model and its implementation in
 introduction, see <a href="https://faculty.washington.edu/smitdave/malaria_theory/sis.html" target="_blank" class="external-link"><strong>Malaria Theory</strong> – SIS Dynamics</a></p>
 <hr>
 <div class="float">
-<img src="../inst/SIS.png" alt="Figure 1: A Diagram of the SIS Model"><div class="figcaption">
+<img src="SIS.png" alt="Figure 1: A Diagram of the SIS Model"><div class="figcaption">
 <strong>Figure 1</strong>: A Diagram of the SIS
 Model</div>
 </div>
@@ -311,7 +311,7 @@ for <span class="math inline">\(S\)</span> and <span class="math inline">\(I.\)<
 get:</p>
 <p><span class="math display">\[
 \frac{dS}{dt} = B(t, H) - h S + r I  - \mu S  
-\]</span></p>
+\]</span>xds_obj &lt;- setup_F_circadian(F_one, xds_obj)</p>
 <p>The dynamics for infected individuals are:</p>
 <p><span class="math display">\[
 \frac{dI}{dt} = h S - r I  - \mu I  
@@ -435,7 +435,7 @@ way</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clrs</span> <span class="op">=</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS</span>, clr<span class="op">=</span><span class="va">clrs</span><span class="op">)</span></span></code></pre></div>
-<p><img src="human_sis_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="672"></p>
+<p><img src="human_sis_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="672"></p>
 <p>If we set the initial values of <span class="math inline">\(I\)</span> to the steady state values, the
 variables shouldn’t change at all. To change the values, we simply add
 them to the list</p>
@@ -443,7 +443,7 @@ them to the list</p>
 <code class="sourceCode R"><span><span class="va">test_SIS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_XH_inits.html">change_XH_inits</a></span><span class="op">(</span><span class="va">test_SIS</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>I<span class="op">=</span><span class="va">I_eq</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS</span> </span>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS</span>, clr<span class="op">=</span><span class="va">clrs</span><span class="op">)</span></span></code></pre></div>
-<p><img src="human_sis_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="672"></p>
+<p><img src="human_sis_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="672"></p>
 <p>Or we can use the <code>get_XH_orbits</code> function to get the
 values of the orbits. This gets the return values and pulls of the the
 values of <span class="math inline">\(I\)</span> at the last time
@@ -472,7 +472,7 @@ differential equations:</p>
 <span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS</span> </span>
 <span><span class="va">Itest</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_XH_orbits.html">get_XH_orbits</a></span><span class="op">(</span><span class="va">test_SIS</span>, <span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">I</span> </span>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS</span>, clr<span class="op">=</span><span class="va">clrs</span><span class="op">)</span></span></code></pre></div>
-<p><img src="human_sis_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="" width="672"></p>
+<p><img src="human_sis_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="" width="672"></p>
 <p>…and we can compute the exact solutions for the same values of <span class="math inline">\(t\)</span>:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">t</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_XH_orbits.html">get_XH_orbits</a></span><span class="op">(</span><span class="va">test_SIS</span>, <span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">time</span></span>

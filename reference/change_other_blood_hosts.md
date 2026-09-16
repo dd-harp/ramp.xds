@@ -1,19 +1,19 @@
-# Set static blood feeding search weights
+# Change the other_blood_hosts
 
-Set the blood feeding search weights, \\\omega\\, for a set of host
-strata
+Update the other_blood_hosts for the \\i^{th}\\ host species, and
+trigger updates for the `XY` interface.
 
 ## Usage
 
 ``` r
-change_other_blood_hosts(other_blood_hosts, xds_obj, s)
+change_other_blood_hosts(other_blood_hosts, xds_obj, s = 1)
 ```
 
 ## Arguments
 
 - other_blood_hosts:
 
-  availability of other blood hosts
+  a other_blood_hosts
 
 - xds_obj:
 

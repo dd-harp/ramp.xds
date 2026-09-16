@@ -1,13 +1,11 @@
 # time spent
 
-Compute and store host available, \\W\\, total blood host available,
-\\B\\, the time spent matrix \\\Theta\\, and the time-at-risk matrix
-\\\Psi\\,
+Compute and store a time spent matrix
 
 ## Usage
 
 ``` r
-timespent(t, y, xds_obj)
+timespent(t, y, xds_obj, i)
 ```
 
 ## Arguments
@@ -23,6 +21,10 @@ timespent(t, y, xds_obj)
 - xds_obj:
 
   an **`xds`** model object
+
+- i:
+
+  the species index
 
 ## Value
 

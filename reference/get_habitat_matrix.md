@@ -5,7 +5,7 @@ Output the habitat membership information as a list
 ## Usage
 
 ``` r
-get_habitat_matrix(xds_obj, s)
+get_habitat_matrix(xds_obj)
 ```
 
 ## Arguments
@@ -13,10 +13,6 @@ get_habitat_matrix(xds_obj, s)
 - xds_obj:
 
   an **`xds`** model object
-
-- s:
-
-  the vector species index
 
 ## Value
 

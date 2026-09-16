@@ -1,23 +1,27 @@
-# Update Blood Search Weights (static)
+# Update the blood_search_weights
 
-Returns `xds_obj` unmodified; search weights are static.
+The `static` method returns `xds_obj` unmodified
 
 ## Usage
 
 ``` r
 # S3 method for class 'static'
-update_blood_search_weights(xds_obj, s, i)
+update_blood_search_weights(t, y, xds_obj, i)
 ```
 
 ## Arguments
 
+- t:
+
+  the time
+
+- y:
+
+  the state variables
+
 - xds_obj:
 
   an **`xds`** model object
-
-- s:
-
-  the vector species index
 
 - i:
 

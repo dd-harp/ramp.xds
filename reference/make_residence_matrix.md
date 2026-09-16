@@ -1,4 +1,4 @@
-# Make a residence Matrix
+# Make the residence matrix
 
 This function creates the residence matrix (see
 [get_residence_matrix](https://dd-harp.github.io/ramp.xds/reference/get_residence_matrix.md)).
