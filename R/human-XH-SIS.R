@@ -124,6 +124,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 #' @keywords internal
 #' @export
 setup_XH_obj.SIS = function(Xname, residence, HPop, xds_obj, i, options=list()){
+  xds_obj$Xname = "SIS"
   xds_obj$XH_obj[[i]] = make_XH_obj_SIS(xds_obj$nStrata[1], options)
   xds_obj <- setup_XH_inits(xds_obj, HPop, i, options)
   xds_obj <- setup_skillset_XH(xds_obj, i)
