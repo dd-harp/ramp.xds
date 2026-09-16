@@ -8,8 +8,8 @@
 #' @export
 #' @keywords internal
 Emergence = function(t, y, xds_obj){
-  N = xds_obj$ML_interface$habitat_matrix
   for(s in 1:xds_obj$nVectorSpecies)
+    N = xds_obj$habitats$matrix
     alpha = F_emerge(t, y, xds_obj, s)
     xds_obj$terms$alpha[[s]] = alpha
     xds_obj$terms$Lambda[[s]] = N %*% alpha

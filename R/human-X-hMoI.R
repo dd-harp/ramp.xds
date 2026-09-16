@@ -47,14 +47,14 @@ NULL
 #'
 #' @note This method dispatches on `class(xds_obj$XH_obj)`
 #'
-#' @inheritParams skill_set_XH
+#' @inheritParams setup_skillset_XH
 #'
-#' @return the `hMoI` *XH* module skill set, a list
+#' @return the **`xds`** object
 #'
 #' @keywords internal
 #' @export
-skill_set_XH.hMoI = function(Xname = "hMoI"){
-  return(list(
+setup_skillset_XH.hMoI = function(xds_obj, i){
+  skills = list(
     H_dynamics = FALSE,
     mda        = FALSE,
     msat       = FALSE,
@@ -63,7 +63,9 @@ skill_set_XH.hMoI = function(Xname = "hMoI"){
     pf_lm      = FALSE,
     pf_rdt     = FALSE,
     pf_pcr     = FALSE
-  ))
+  )
+  xds_obj$XH_obj[[i]]$skill_set = skills
+  return(xds_obj) 
 }
 
 #' Check / update before solving
@@ -141,9 +143,15 @@ setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_XH_obj.hMoI = function(Xname, xds_obj, i, options=list()){
+setup_XH_obj.hMoI = function(Xname, residence, HPop, xds_obj, i, options=list()){
+  xds_obj$Xname = "hMoI"
   xds_obj$XH_obj[[i]] = make_XH_obj_hMoI(xds_obj$nStrata[i], options)
-  xds_obj <- setup_XH_ports(xds_obj, i)
+  xds_obj <- setup_XH_inits(xds_obj, HPop, i, options)
+  xds_obj <- setup_skillset_XH(xds_obj, i)
+  xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
+  xds_obj <- setup_blood_search_weights("default", xds_obj, i=i)
+  xds_obj <- setup_time_away("no_travel", xds_obj, i=i)
+  xds_obj <- setup_travel_eir("no_travel", xds_obj, i=i)
   return(xds_obj)
 }
 

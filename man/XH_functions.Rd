@@ -35,6 +35,6 @@ The functions that define \strong{XH}:
 \item \code{\link{steady_state_XH}} -- compute XH steady state given FoI
 \item \code{\link{xds_plot_X}} -- plot X outputs
 \item \code{\link{check_XH}} -- run consistency checks
-\item \code{\link{skill_set_XH}} -- return module skill set
+\item \code{\link{setup_skillset_XH}} -- return module skill set
 }
 }

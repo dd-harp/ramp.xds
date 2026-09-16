@@ -1,4 +1,4 @@
-# Compute time spent objects: static models
+# Compute time spent
 
 Return the time spent objects unmodified
 
@@ -6,7 +6,7 @@ Return the time spent objects unmodified
 
 ``` r
 # S3 method for class 'static'
-timespent(t, y, xds_obj)
+timespent(t, y, xds_obj, i)
 ```
 
 ## Arguments
@@ -22,6 +22,10 @@ timespent(t, y, xds_obj)
 - xds_obj:
 
   an **`xds`** model object
+
+- i:
+
+  the species index
 
 ## Value
 

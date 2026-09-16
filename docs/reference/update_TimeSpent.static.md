@@ -1,15 +1,24 @@
-# Update the time spent Matrix (static)
+# Update timespent
 
-Returns `xds_obj` unmodified; the time spent matrix is static.
+A utility to ensure that the timespent is updated properly after a
+change
 
 ## Usage
 
 ``` r
 # S3 method for class 'static'
-update_timespent(xds_obj, i)
+update_timespent(t, y, xds_obj, i)
 ```
 
 ## Arguments
+
+- t:
+
+  the time
+
+- y:
+
+  the state variables
 
 - xds_obj:
 
@@ -17,7 +26,7 @@ update_timespent(xds_obj, i)
 
 - i:
 
-  the host species index
+  the species index
 
 ## Value
 

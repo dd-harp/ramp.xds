@@ -71,14 +71,18 @@ NULL
 #' @description The **L** skill set is a list of
 #' a module's capabilities
 #'
-#' @param Lname  the name of the **L** module
+#' @inheritParams setup_skillset_L
 #'
-#' @return *L* module skill set, as a list
+#' @return the **`xds`** object
 #'
 #' @keywords internal
 #' @export
-skill_set_L.trivial = function(Lname="trivial"){
-  list(trivial=TRUE)
+setup_skillset_L.trivial = function(xds_obj, s){
+  skills = list(
+    not_implemented = TRUE
+  )
+  xds_obj$L_obj[[s]]$skill_set = skills
+  return(xds_obj) 
 }
 
 #' @title Check the `trivial` module
@@ -158,12 +162,15 @@ LEffectSizes.trivial <- function(t, y, xds_obj, s) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_L_obj.trivial = function(Lname, xds_obj, s, options=list()){
-  forced_by = "Lambda"
+setup_L_obj.trivial = function(Lname, membership, xds_obj, s, options=list()){
+  xds_obj$Lname = "trivial"
+  forced_by = list()
+  forced_by$what = "Lambda"
   class(forced_by) = "Lambda"
   xds_obj$forced_by = forced_by
-  xds_obj$L_obj[[s]] = make_L_obj_trivial(xds_obj$nHabitats, options)
-  xds_obj <- setup_L_ports(xds_obj, s)
+  xds_obj$L_obj[[s]] = make_L_obj_trivial(length(membership), options)
+  if(length(membership)!= xds_obj$nHabitats) xds_obj <- setup_habitats(xds_obj, membership)
+  xds_obj <- setup_habitat_search_weights("setup", xds_obj, options=list(membership=membership), s=s)
   return(xds_obj)
 }
 

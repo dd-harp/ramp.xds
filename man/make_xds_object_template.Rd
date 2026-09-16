@@ -19,9 +19,9 @@ make_xds_object_template(
 
 \item{nPatches}{is the number of patches}
 
-\item{membership}{is the habitat membership vector}
+\item{membership}{the patch where each aquatic habitat is found}
 
-\item{residence}{is the strata residence vector}
+\item{residence}{the patch where each stratum resides}
 }
 \value{
 an \strong{\code{xds}} object
@@ -67,15 +67,7 @@ Second, the function sets the values of the \strong{structural parameters}:
 \item \strong{\code{nHostSpecies}} or \eqn{N_i}, the number of host species is set to 1;
 }
 
-Next, the function sets up egg laying, blood feeding, and transmission:
-\itemize{
-\item \strong{Egg Laying} calls \code{\link[=make_habitat_matrix]{make_habitat_matrix()}}, then \code{\link[=setup_ML_interface]{setup_ML_interface()}};
-resource parameters (\code{Qtraps}, etc.) are zero-initialized by default
-\item \strong{Blood Feeding} calls \code{\link[=make_residence_matrix]{make_residence_matrix()}}, then \code{\link[=setup_XY_interface]{setup_XY_interface()}};
-resource parameters (\code{other_blood_hosts}, \code{Btraps}) are zero-initialized by default
-\item \strong{Transmission}  calls \code{\link[=setup_transmission]{setup_transmission()}} sets up a static
-model for the availability of visitors; by default, there are no visitors
-}
+Next, the function sets up egg laying, blood feeding, importation, transmission, and exposure.
 
 Next, the function sets up empty lists to hold the model objects for all three dynamical components:
 \itemize{

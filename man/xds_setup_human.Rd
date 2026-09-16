@@ -12,7 +12,7 @@ xds_setup_human(
   nPatches = 1,
   residence = 1,
   HPop = 1000,
-  searchB = 1,
+  searchB = list(),
   TSoptions = list(name = "no_setup"),
   MYoptions = list(),
   BFopts = list()

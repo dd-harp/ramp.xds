@@ -49,4 +49,4 @@ This function is called by
 discusses \\N\\
 
 The availability of traps and bad habitats is setup in
-[setup_ML_interface](https://dd-harp.github.io/ramp.xds/reference/setup_ML_interface.md)
+[setup_egg_laying](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying.md)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding.R
 \name{get_residence}
 \alias{get_residence}
-\title{Get residence vector}
+\title{Get residence}
 \usage{
 get_residence(xds_obj, i = 1)
 }

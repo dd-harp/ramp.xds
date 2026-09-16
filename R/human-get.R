@@ -1,14 +1,5 @@
 
-#' @title Get the Time Spent Matrix
-#'
-#' @param xds_obj an **`xds`** model object
-#' @param i the host species index
-#'
-#' @return a [matrix]
-#' @export
-get_timespent_matrix = function(xds_obj, i=1){
-  return(xds_obj$XH_obj[[i]]$timespent)
-}
+
 
 #' @title Get the Time Away Vector
 #'

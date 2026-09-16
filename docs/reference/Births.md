@@ -5,7 +5,7 @@ This method dispatches on the type of xds_obj\$Hpar\$Births
 ## Usage
 
 ``` r
-Births(t, H, births)
+Births(t, xds_obj, i)
 ```
 
 ## Arguments
@@ -14,13 +14,13 @@ Births(t, H, births)
 
   current simulation time
 
-- H:
+- xds_obj:
 
-  population density
+  an **`xds`** model object
 
-- births:
+- i:
 
-  the birth function object
+  the species index
 
 ## Value
 

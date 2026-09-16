@@ -30,6 +30,7 @@ First, we set the parameter values.
 nPatches <- 3
 nHabitats <- 4
 membership = c(1,2,3,3)
+residence=1:3
 HPop = 1000
 ```
 
@@ -113,20 +114,28 @@ bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 
 ``` r
 
-xds_obj <- make_xds_object_template("ode", "mosy", nPatches, membership)
-
-xds_obj = setup_L_obj("trivial", xds_obj, 1, options = list(Lambda=alpha))
-
-xds_obj = setup_L_inits(xds_obj, 1)
-
-xds_obj = setup_MY_obj("basicM", xds_obj, 1, options=MYo)
-
-xds_obj = setup_MY_inits(xds_obj, 1, list(M=M_eq, P=P_eq))
+xds_obj <- make_xds_object_template("ode", "mosy", nPatches, membership, residence)
+xds_obj$nHabitats
+#> [1] 4
+xds_obj$nStrata
+#> [1] 3
+xds_obj$nPatches
+#> [1] 3
 ```
 
 ``` r
 
-xds_obj = setup_XH_obj("trivial", xds_obj, 1, list(HPop=HPop))
+xds_obj = setup_L_obj("trivial", membership, xds_obj, 1, options = list(Lambda = alpha))
+```
+
+``` r
+
+xds_obj = setup_MY_obj("basicM", xds_obj, 1, options=MYo)
+```
+
+``` r
+
+xds_obj = setup_XH_obj("trivial", residence, HPop, xds_obj, 1, list(kappa=kappa))
 ```
 
 ``` r
@@ -154,10 +163,10 @@ y0
 #> 
 #> $MY
 #> $MY$M
-#> [1] 157.8680 123.4518 178.6802
+#> [1] 5 5 5
 #> 
 #> $MY$P
-#> [1] 140.35170  98.87622 155.05779
+#> [1] 1 1 1
 #> 
 #> 
 #> $X
@@ -165,6 +174,18 @@ y0
 #> 
 #> $V
 #> NULL
+```
+
+``` r
+
+tar <- get_residence_matrix(xds_obj)
+```
+
+``` r
+
+xds_obj = setup_habitat_search_weights(rep(1,4), xds_obj) 
+xds_obj = compute_Qall(xds_obj)
+xds_obj = compute_O_matrix(xds_obj)
 ```
 
 ``` r
@@ -189,7 +210,7 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
   theme_bw()
 ```
 
-![](aqua_trace_files/figure-html/unnamed-chunk-15-1.png)
+![](aqua_trace_files/figure-html/unnamed-chunk-19-1.png)
 
 ### Using Setup
 
@@ -232,5 +253,5 @@ xds_solve(mosy1,Tmax=50,dt=10)$outputs$deout -> out2
 ``` r
 
 sum(abs(out2-out1))
-#> [1] 0
+#> [1] 2093.928
 ```

@@ -4,10 +4,14 @@
 \alias{setup_XH_obj}
 \title{Set up \strong{XH} model object}
 \usage{
-setup_XH_obj(Xname, xds_obj, i, options = list())
+setup_XH_obj(Xname, residence, HPop, xds_obj, i, options = list())
 }
 \arguments{
 \item{Xname}{the model name}
+
+\item{residence}{the residence vector}
+
+\item{HPop}{the initial human population size}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

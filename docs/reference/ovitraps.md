@@ -1,4 +1,31 @@
 # Ovitraps
 
-To simulate ovitraps, a port was developed to model availability of the
-ovitraps.
+The `S3` definition for the function that computes ovitraps
+
+## Usage
+
+``` r
+ovitraps(t, y, xds_obj, s)
+```
+
+## Arguments
+
+- t:
+
+  the time
+
+- y:
+
+  the state variables
+
+- xds_obj:
+
+  an **`xds`** model object
+
+- s:
+
+  the vector species index
+
+## Value
+
+an **`xds`** object

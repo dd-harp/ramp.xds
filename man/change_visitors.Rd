@@ -2,12 +2,12 @@
 % Please edit documentation in R/visitors.R
 \name{change_visitors}
 \alias{change_visitors}
-\title{Change Availability of Visitors}
+\title{Change the visitors}
 \usage{
-change_visitors(visitors, xds_obj, s)
+change_visitors(visitors, xds_obj, s = 1)
 }
 \arguments{
-\item{visitors}{availability of visitors}
+\item{visitors}{a visitors}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,6 +17,5 @@ change_visitors(visitors, xds_obj, s)
 an \strong{\code{xds}} object
 }
 \description{
-Set the value of the parameter describing
-available visitors
+Update the visitors for the \eqn{s^{th}} vector species.
 }

@@ -185,8 +185,12 @@ Here we set up some parameters for a simulation with 3 patches.
 
 ``` r
 
-HPop = rep(1, 3)
 nPatches <- 3
+nStrata <- 3
+nHabitats <- 3 
+
+HPop = rep(1, nStrata)
+
 f <- rep(0.3, nPatches)
 q <- rep(0.9, nPatches)
 g <- rep(1/20, nPatches)
@@ -253,11 +257,8 @@ dynamically, so we attach `Upsilon` as initial values:
 
 params <- make_xds_object_template("dde", "mosy", nPatches, 1:3, 1:3)
 params <- setup_MY_obj("macdonald", params, 1, MYo)  
-params <- setup_MY_inits(params, 1, MYo)
-params <- setup_XH_obj("trivial", params, 1, Xo) 
-params <- setup_XH_inits(params, HPop, 1)
-params <- setup_L_obj("trivial", params, 1, Lo)
-params <- setup_L_inits(params, 1, Lo)
+params <- setup_XH_obj("trivial", 1:3, HPop, params, 1, Xo) 
+params <- setup_L_obj("trivial", 1:3, params, 1, Lo)
 ```
 
 We set the indices with

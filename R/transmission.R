@@ -34,29 +34,30 @@ NULL
 #' @return an **`xds`** object
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @seealso [make_xds_object_template]
-#' @seealso [setup_XY_interface]
+#' @seealso [setup_blood_feeding]
 #' @keywords internal
 #' @export
 setup_transmission <- function(xds_obj){
-
+  
   # Mixing Matrix: beta[[s]][[i]]
   xds_obj$terms$beta = list()
   xds_obj$terms$beta[[1]] = list()
-  xds_obj$terms$beta[[1]][[1]] = diag(1)
+  xds_obj$terms$beta[[1]][[1]] = with(xds_obj, matrix(0, nStrata, nPatches))
   class(xds_obj$terms$beta) <- 'setup'
 
   # Entomological Inoculation Rate: EIR[[i]]
   # eir[[s]][[i]]
   xds_obj$terms$eir = list()
   xds_obj$terms$eir[[1]] = list()
-  xds_obj$terms$eir[[1]][[1]] = diag(1)
+  xds_obj$terms$eir[[1]][[1]] = rep(0, xds_obj$nStrata)
   xds_obj$terms$EIR = list()
-  xds_obj$terms$EIR[[1]] = diag(1)
+  xds_obj$terms$EIR[[1]] = rep(0, xds_obj$nStrata)
 
   # Net Infectiousness: ni[[s]][[i]]
   xds_obj$terms$ni = list()
   xds_obj$terms$ni[[1]] = list()
-  xds_obj$terms$ni[[1]][[1]] = diag(1)
+  xds_obj$terms$ni[[1]][[1]] = rep(0, xds_obj$nPatches)
+  
   xds_obj$terms$kappa = list()
 
   # Local Fraction: local_frac[[s]]
@@ -91,19 +92,18 @@ F_beta = function(H, W, wts_f, TaR){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-compute_beta <- function(t, y, xds_obj){
-  for(i in 1:xds_obj$nHostSpecies){
+compute_beta <- function(t, y, xds_obj){with(xds_obj,{
+  for(i in 1:nHostSpecies){
     H = F_H(t, y, xds_obj, i)
-    for(s in 1:xds_obj$nVectorSpecies){
-      W = xds_obj$XY_interface$W[[s]]
-      wts = xds_obj$XH_obj[[i]]$search_weights[[s]]
-      TaR = xds_obj$XY_interface$TaR[[s]][[i]]
+    for(s in 1:nVectorSpecies){
+      W = terms$W[[s]]
+      wts = XH_obj[[i]]$search_weights[[s]]
+      TaR = xds_obj$terms$TaR[[s]][[i]]
       xds_obj$terms$beta[[s]][[i]] <- F_beta(H, W, wts, TaR)
     }
   }
-
   return(xds_obj)
-}
+})}
 
 #' @title Compute the daily Entomological Inoculation Rate (EIR)
 #' @description Compute the daily EIR for a set of human population
@@ -211,8 +211,8 @@ F_kappa <- function(Wi, W, beta, X) {
 #' @keywords internal
 compute_kappa <- function(t, y, xds_obj){
   for(s in 1:xds_obj$nVectorSpecies){
-    Wi = xds_obj$XY_interface$Wi[[s]][[1]]
-    W = xds_obj$XY_interface$W[[s]]
+    Wi = xds_obj$terms$Wi[[s]][[1]]
+    W = xds_obj$terms$W[[s]]
     beta = xds_obj$terms$beta[[s]][[1]]
     X = F_I(t, y, xds_obj, 1)
 
@@ -222,13 +222,14 @@ compute_kappa <- function(t, y, xds_obj){
     if(xds_obj$nHostSpecies>1)
       for(i in 2:xds_obj$nHostSpecies){
         beta = xds_obj$terms$beta[[s]][[i]]
-        Wi = xds_obj$XY_interface$Wi[[s]][[i]]
-        W = xds_obj$XY_interface$W[[s]]
+        Wi = xds_obj$terms$Wi[[s]][[i]]
+        W = xds_obj$terms$W[[s]]
         kappa <- kappa + F_kappa(Wi, W, beta, X)
       }
 
     lf = xds_obj$terms$local_frac[[s]]
-    kappa_visitors = xds_obj$XY_interface$vis_kappa[[s]]
+    
+    kappa_visitors = xds_obj$patches$vis_kappa[[s]]
     kappa = lf*kappa + (1-lf)*kappa_visitors
     xds_obj$terms$kappa[[s]] = kappa
   }
@@ -256,9 +257,9 @@ F_local_frac <- function(W, Visitors){
 #' @return an **`xds`** object
 #' @export
 #' @keywords internal
-compute_local_frac <- function(xds_obj){with(xds_obj$XY_interface,{
-  for(s in 1:xds_obj$nVectorSpecies){
-    xds_obj$vars$local_frac[[s]] = F_local_frac(W[[s]], visitors[[s]])
+compute_local_frac <- function(xds_obj){with(xds_obj,{
+  for(s in 1:nVectorSpecies){
+    xds_obj$terms$local_frac[[s]] = F_local_frac(terms$W[[s]], patches$visitors[[s]])
   }
   return(xds_obj)
 })}
@@ -307,7 +308,7 @@ Transmission.dynamic <- function(t, y, xds_obj){
 #' @export
 #' @keywords internal
 Transmission.setup <- function(t, y, xds_obj){
-  class(xds_obj$XY_interface) <- 'static'
+  class(xds_obj$terms) <- 'static'
   xds_obj <- transmission_dynamics(t, y, xds_obj)
   return(xds_obj)
 }

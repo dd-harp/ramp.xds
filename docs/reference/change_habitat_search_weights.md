@@ -1,19 +1,19 @@
-# Change habitat search weights
+# Change the habitat_search_weights
 
-Change the habitat feeding search weights, \\\omega\\, for a set of host
-strata
+Update the habitat_search_weights for the \\i^{th}\\ host species, and
+trigger updates for the `XY` interface.
 
 ## Usage
 
 ``` r
-change_habitat_search_weights(wts, xds_obj, s = 1)
+change_habitat_search_weights(search_weights, xds_obj, s = 1)
 ```
 
 ## Arguments
 
-- wts:
+- search_weights:
 
-  the habitat feeding search weights
+  habitat search weights
 
 - xds_obj:
 
@@ -21,7 +21,7 @@ change_habitat_search_weights(wts, xds_obj, s = 1)
 
 - s:
 
-  the vector species index
+  the species index
 
 ## Value
 

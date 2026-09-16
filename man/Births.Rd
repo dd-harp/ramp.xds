@@ -4,14 +4,14 @@
 \alias{Births}
 \title{Human (or Host) population birth rate}
 \usage{
-Births(t, H, births)
+Births(t, xds_obj, i)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{H}{population density}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{births}{the birth function object}
+\item{i}{the species index}
 }
 \value{
 see help pages for specific methods

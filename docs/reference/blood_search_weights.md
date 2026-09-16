@@ -1,9 +1,35 @@
-# Blood Search Weights
+# blood_search_weights
 
-Blood feeding is an interaction among humans and mosquitoes: in this
-model, humans are spending time, and mosquitoes are searching. To model
-exposure, each human (or host) population stratum is assigned a *search
-weight,* a number used to weigh *time spent* and get a measure of
-*availability.* Search weights for blood feeding thus play a key role in
-blood feeding (see
-[blood_feeding](https://dd-harp.github.io/ramp.xds/reference/blood_feeding.md))
+The `S3` definition for the function that computes blood_search_weights
+
+## Usage
+
+``` r
+blood_search_weights(t, y, xds_obj, i, s)
+```
+
+## Arguments
+
+- t:
+
+  the time
+
+- y:
+
+  the state variables
+
+- xds_obj:
+
+  an **`xds`** model object
+
+- i:
+
+  the host species index
+
+- s:
+
+  the vector species index
+
+## Value
+
+an **`xds`** object

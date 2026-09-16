@@ -38,14 +38,8 @@
 #' - **`nVectorSpecies`** or \eqn{N_s}, the number of vector species is set to 1;
 #' - **`nHostSpecies`** or \eqn{N_i}, the number of host species is set to 1;
 #'
-#' Next, the function sets up egg laying, blood feeding, and transmission:
-#' - **Egg Laying** calls [make_habitat_matrix()], then [setup_ML_interface()];
-#' resource parameters (`Qtraps`, etc.) are zero-initialized by default
-#' - **Blood Feeding** calls [make_residence_matrix()], then [setup_XY_interface()];
-#' resource parameters (`other_blood_hosts`, `Btraps`) are zero-initialized by default
-#' - **Transmission**  calls [setup_transmission()] sets up a static
-#' model for the availability of visitors; by default, there are no visitors
-#'
+#' Next, the function sets up egg laying, blood feeding, importation, transmission, and exposure. 
+#' 
 #' Next, the function sets up empty lists to hold the model objects for all three dynamical components:
 #' - `XH_obj`
 #' - `MY_obj`
@@ -58,8 +52,8 @@
 #' @param xds is used to dispatch various functions to set up and solve systems of differential equations. 'xde' for ordinary or delay differential equations; 'dts' for "discrete time systems"
 #' @param frame model component subset
 #' @param nPatches is the number of patches
-#' @param membership is the habitat membership vector
-#' @param residence is the strata residence vector
+#' @param membership the patch where each aquatic habitat is found
+#' @param residence the patch where each stratum resides
 #'
 #' @keywords internal
 #'
@@ -72,6 +66,14 @@ make_xds_object_template = function(xds='ode', frame='full',
                            nPatches=1, membership=1, residence=1){
 
   xds_obj = list()
+  xds_obj$membership=membership
+  xds_obj$residence=residence
+  xds_obj$nPatches = nPatches
+  xds_obj$nHabitats = length(membership)
+  xds_obj$nStrata = length(residence)
+  xds_obj$nVectorSpecies  = 1
+  xds_obj$nHostSpecies    = 1
+  
   class(xds_obj) <- 'xds_obj'
 
   xds_obj$model_name  <- 'unnamed'
@@ -98,28 +100,19 @@ make_xds_object_template = function(xds='ode', frame='full',
   class(forced_by) <- "none"
   xds_obj$forced_by <- forced_by
 
-  xds_obj$nVectorSpecies  = 1
-  xds_obj$nHostSpecies    = 1
-  xds_obj$nPatches  = nPatches
-  xds_obj$patches = list() 
-  
-  xds_obj$nHabitats = length(membership)
-  xds_obj$habitats = list()
-  xds_obj$habitats[[1]] = membership 
-  
-  xds_obj$nStrata   = length(residence)
-  xds_obj$residence = list() 
-  xds_obj$residence[[1]] = residence 
-  
+  xds_obj$patches = list()
 
-  xds_obj$terms <- list()
+  xds_obj$habitats = make_static_obj()
+  
+  xds_obj$terms = list() 
 
-  # Egg Laying Interface 
-  xds_obj <- setup_ML_interface(xds_obj)
+  # Egg Laying Interface
+  xds_obj <- setup_habitats(xds_obj, membership)
+  xds_obj <- setup_egg_laying(xds_obj)
   
   # Blood Feeding Interface 
-  xds_obj <- setup_XY_interface(xds_obj)
-  xds_obj <- setup_importation_object(xds_obj)
+  xds_obj <- setup_blood_feeding(xds_obj, residence)
+  xds_obj <- setup_importation(xds_obj)
   xds_obj <- setup_transmission(xds_obj)
   xds_obj <- setup_exposure("pois", xds_obj)
 

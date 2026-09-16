@@ -1,4 +1,15 @@
 
+#' @title Set up a static object
+#' 
+#' @return an empty list with `class` set to `static`
+#' @keywords internal
+#' @export
+make_static_obj = function(){
+  obj <- list()
+  class(obj) <- "static"
+  return(obj)
+}
+
 #' @title Make indices for all the model variables
 #'
 #' @param xds_obj an **`xds`** model object

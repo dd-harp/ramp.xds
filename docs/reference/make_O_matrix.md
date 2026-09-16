@@ -57,4 +57,4 @@ Total habitat availability, \\\cal Q\\, is computed by
 [F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md)
 
 The availability of ovitraps and bad habitats is setup in
-[setup_ML_interface](https://dd-harp.github.io/ramp.xds/reference/setup_ML_interface.md)
+[setup_egg_laying](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying.md)

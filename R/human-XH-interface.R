@@ -14,15 +14,16 @@
 #' + **`pf_lm`**: if TRUE, the model outputs a value for prevalence by light microscopy
 #' + **`pf_pcr`**: if TRUE, the model outputs a value for prevalence by PCR
 #'
-#' @param Xname the **XH** module name
+#' @param xds_obj an **`xds`** model object
+#' @param i the species index
+#' 
 #'
 #' @return *XH* module skill set, as a list
 #'
 #' @keywords internal
 #' @export
-skill_set_XH = function(Xname){
-  class(Xname) <- Xname
-  UseMethod("skill_set_XH", Xname)
+setup_skillset_XH = function(xds_obj, i){
+  UseMethod("setup_skillset_XH", xds_obj$XH_obj[[i]])
 }
 
 #' @title Run checks before solving (**XH**) 
@@ -116,6 +117,8 @@ F_infectivity <- function(y, xds_obj, i) {
 #' for the **X** Component
 #'
 #' @param Xname the model name
+#' @param residence the residence vector
+#' @param HPop the initial human population size
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options model options as a named list
@@ -124,7 +127,7 @@ F_infectivity <- function(y, xds_obj, i) {
 #' @keywords internal
 #'
 #' @export
-setup_XH_obj = function(Xname, xds_obj, i, options=list()){
+setup_XH_obj = function(Xname, residence, HPop, xds_obj, i, options=list()){
   class(Xname) <- Xname
   UseMethod("setup_XH_obj", Xname)
 }
@@ -161,10 +164,8 @@ change_H = function(H, xds_obj, i=1){
   vars <- get_XH_inits(xds_obj,i)
   vars$H <- H
   xds_obj <- change_XH_inits(xds_obj, i, vars)
-  xds_obj$XY_interface <- trigger_setup(xds_obj$XY_interface)
   return(xds_obj)
 }
-
 
 #' @title Add indices for human population to parameter list
 #'

@@ -18,7 +18,7 @@ an \strong{\code{xds}} object
 }
 \description{
 The default no-op for Resources. All resource parameters
-retain their static defaults (zero-initialized by \link{setup_XY_interface}
-and \link{setup_ML_interface}).
+retain their static defaults (zero-initialized by \link{setup_blood_feeding}
+and \link{setup_egg_laying}).
 }
 \keyword{internal}

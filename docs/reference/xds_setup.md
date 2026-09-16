@@ -56,10 +56,10 @@ xds_setup(
   nPatches = 1,
   HPop = 1000,
   residence = 1,
-  searchB = 1,
-  TSoptions = list(name = "no_setup"),
+  searchB = list(),
+  TSoptions = list(),
   membership = 1,
-  searchQ = 1,
+  searchQ = list(),
   Koptions = list(),
   BFopts = list()
 )

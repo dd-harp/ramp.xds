@@ -6,10 +6,18 @@ Port function for the time spent matrix, \\\Theta\\. Dispatches on
 ## Usage
 
 ``` r
-update_timespent(xds_obj, i)
+update_timespent(t, y, xds_obj, i)
 ```
 
 ## Arguments
+
+- t:
+
+  the time
+
+- y:
+
+  the state variables
 
 - xds_obj:
 
@@ -17,7 +25,7 @@ update_timespent(xds_obj, i)
 
 - i:
 
-  the host species index
+  the species index
 
 ## Value
 

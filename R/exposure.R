@@ -108,11 +108,11 @@ Exposure.xde <- function(t, y, xds_obj){
       away = get_time_away(xds_obj, i)
       at_home = 1 - away
       local_foi  = F_foi(eir, b, env_het_obj[[i]])
-      tEIR = xds_obj$terms$travel_EIR[[i]]
-      travel_foi = F_foi(tEIR, b, env_het_obj[[i]])
+      teir= xds_obj$XH_obj[[i]]$travel_eir
+      travel_foi = F_foi(teir, b, env_het_obj[[i]])
       xds_obj$terms$FoI[[i]] = local_foi*at_home + travel_foi*away
   }
-
+  
   return(xds_obj)
 })}
 
@@ -140,9 +140,11 @@ Exposure.dts <- function(t, y, xds_obj){
     for(i in 1:xds_obj$nHostSpecies){
       b = as.vector(F_infectivity(y, xds_obj, i))
       eir = xds_obj$terms$EIR[[i]]
+      
       away = get_time_away(xds_obj, i)
       at_home = 1 - away
       local_ar  = F_ar(eir, b, env_het_obj[[i]])
+      
       tEIR = xds_obj$terms$travel_EIR[[i]]
       travel_ar = F_ar(tEIR, b, env_het_obj[[i]])
       xds_obj$ar[[i]] = 1-(1-local_ar*at_home)*(1-travel_ar*away)

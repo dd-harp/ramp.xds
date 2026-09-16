@@ -32,7 +32,7 @@
 #'   \item \code{\link{steady_state_M}} -- compute M steady state
 #'   \item \code{\link{steady_state_Y}} -- compute Y steady state
 #'   \item \code{\link{check_MY}} -- run consistency checks
-#'   \item \code{\link{skill_set_MY}} -- return module skill set
+#'   \item \code{\link{setup_skillset_MY}} -- return module skill set
 #' }
 #'
 #' @name MY_functions

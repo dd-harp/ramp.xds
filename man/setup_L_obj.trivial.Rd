@@ -4,10 +4,12 @@
 \alias{setup_L_obj.trivial}
 \title{Set up \code{trivial} (\strong{L})}
 \usage{
-\method{setup_L_obj}{trivial}(Lname, xds_obj, s, options = list())
+\method{setup_L_obj}{trivial}(Lname, membership, xds_obj, s, options = list())
 }
 \arguments{
 \item{Lname}{the class name of the \strong{L} module}
+
+\item{membership}{the habitats' patch membership vector}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

@@ -1,20 +1,20 @@
 # generic methods for aquatic component
 
-#' @title The skill set (**L** module)
+#' @title Setup the skill set
 #'
 #' @description The skill set for an **L** module
 #' is a list that summarizes capabilities and
 #' compatibilities
 #'
-#' @param Lname the **L** module name
+#' @param xds_obj an **`xds`** model object
+#' @param s the species index
 #'
-#' @return *L* module skill set, as a list
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
-skill_set_L = function(Lname){
-  class(Lname) <- Lname
-  UseMethod("skill_set_L", Lname)
+setup_skillset_L = function(xds_obj, s){
+  UseMethod("setup_skillset_L", xds_obj$L_obj[[s]])
 }
 
 #' @title Run checks before solving (**L**)
@@ -117,6 +117,7 @@ F_emerge <- function(t, y, xds_obj, s) {
 #' @note This method assigns `Lname` to class(`Lname`) and dispatches on `Lname`.
 #'
 #' @param Lname the class name of the **L** module
+#' @param membership the habitats' patch membership vector
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @param options a named list to configure **`L_obj`**
@@ -124,7 +125,7 @@ F_emerge <- function(t, y, xds_obj, s) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_L_obj = function(Lname, xds_obj, s, options=list()){
+setup_L_obj = function(Lname, membership, xds_obj, s, options=list()){
   class(Lname) <- Lname
   UseMethod("setup_L_obj", Lname)
 }

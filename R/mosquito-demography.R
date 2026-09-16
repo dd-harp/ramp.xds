@@ -48,6 +48,26 @@ setup_Omega_obj = function(MY_obj){
   return(MY_obj)
 }
 
+#' @title Set up an Upsilon object
+#'
+#' @description Set up an object
+#' to dispatch updating for the
+#' object, \eqn{\Upsilon} 
+#'
+#' @param xds_obj an **`xds`** model object
+#' @param s the species index
+#' 
+#' @return an **`xds`** model object
+#'
+#' @keywords internal
+#' @export
+setup_Upsilon_obj = function(xds_obj, s){
+  Upsilon_obj = list()
+  class(Upsilon_obj) = "setup"
+  xds_obj$MY_obj[[s]]$Upsilon_obj <- Upsilon_obj
+  return(xds_obj)
+}
+
 #' @title Make the mosquito demography matrix for spatial RM model in continuous time
 #' @param g mosquito death rate, a vector of length `nPatches`
 #' @param sigma mosquito emigration rate, a vector of length `nPatches`
@@ -146,9 +166,18 @@ update_Omega_xde.setup<- function(xds_obj, s=1){
 #' @keywords internal
 #' @export
 update_Omega_xde.dynamic <- function(xds_obj, s){
- Omega <- with(xds_obj$MY_obj[[s]], compute_Omega_xde(g, sigma, mu, K_matrix))
- xds_obj$MY_obj[[s]]$Omega <- Omega 
- return(xds_obj)
+ F_Omega_xde(xds_obj, s)
+}
+
+#' @title Update Upsilon for xde 
+#' @description Compute \eqn{\Upsilon} 
+#' @inheritParams update_Upsilon_xde
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+F_Omega_xde <- function(xds_obj, s){
+  xds_obj$MY_obj[[s]]$Omega <- with(xds_obj$MY_obj[[s]], compute_Omega_xde(g, sigma, mu, K_matrix))
+  return(xds_obj)
 }
 
 #' @title Update Omega for dts 
@@ -234,8 +263,18 @@ update_Upsilon_xde.setup<- function(xds_obj, s){
 #' @keywords internal
 #' @export
 update_Upsilon_xde.dynamic <- function(xds_obj, s){
- xds_obj$MY_obj[[s]]$Upsilon <- with(xds_obj$MY_obj[[s]], compute_Upsilon_xde(eip, Omega))
- return(xds_obj)
+ F_Upsilon_xde(xds_obj, s)
+}
+
+#' @title Update Upsilon for xde 
+#' @description Compute \eqn{\Upsilon} 
+#' @inheritParams update_Upsilon_xde
+#' @return an **xds** model object 
+#' @keywords internal
+#' @export
+F_Upsilon_xde <- function(xds_obj, s){
+  xds_obj$MY_obj[[s]]$Upsilon <- with(xds_obj$MY_obj[[s]], compute_Upsilon_xde(eip, Omega))
+  return(xds_obj)
 }
 
 #' @title Update Upsilon for dts 

@@ -110,6 +110,7 @@ reference:
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_eir
+  - update_interfaces
   - xds_info_basic_setup
   - xds_object 
   - xds_info_setup_options
@@ -224,6 +225,7 @@ reference:
   - show_season
   - show_trend
   - show_shock
+  - show_F_circadian
 - title: Get  
   desc: |
     Inspect elements of the xds object 
@@ -252,6 +254,14 @@ reference:
   - get_residence
   - get_residence_matrix
   - get_search_weights_blood
+  - get_bad_habitats
+  - get_blood_search_weights
+  - get_blood_traps
+  - get_habitat_search_weights
+  - get_other_blood_hosts
+  - get_ovitraps
+  - get_vis_kappa
+  - get_visitors
   - get_MY_pars 
   - get_f 
   - get_g 
@@ -298,9 +308,9 @@ reference:
   contents:
   - change_XH_pars
   - change_H
-  - change_timespent_matrix
+  - setup_timespent
   - change_time_away
-  - change_blood_search_weights
+  - setup_blood_search_weights
 - subtitle: Change for MY 
   desc: |
     Change parameters
@@ -346,6 +356,9 @@ reference:
   - XH_get
   - XH_change
   - XH_setup
+  - setup_births
+  - setup_mortality_matrix
+  - setup_mass_treatment
 - subtitle: Modules
   desc: |
     XH component module implementations
@@ -364,6 +377,12 @@ reference:
   - change_timespent_matrix
   - make_timespent_at_home
   - make_timespent_xy
+- subtitle: Circadian Patterns
+  desc: |
+    Adult daily activity patterns
+  contents:
+  - setup_F_circadian
+  - check_F_circadian
 - subtitle:  
   desc: |
     Utilities for Time Spent Matrices
@@ -433,7 +452,6 @@ reference:
   - xds_info_search_weights 
   - xds_info_relative_biting_rates 
   - xds_info_transmission
-  - check_XY_interface
 - title: Exposure 
   desc: |
     Compute the FoI from local EIR and travel
@@ -451,24 +469,47 @@ reference:
   contents:
   - xds_info_importation
   - xds_info_malaria_importation
-- subtitle: Travel 
-  desc: |
-    Time spent traveling & the travel EIR
-  contents:
   - xds_info_travel_malaria 
-  - xds_port_travel_eir
+- subtitle: Time Away
+  desc: |
+    Time spent traveling
+  contents:
   - xds_port_time_away
-  - change_time_away 
-  - change_travel_EIR
+  - setup_time_away
+  - change_time_away
+  - check_time_away
+  - make_time_away_random
+  - get_time_away
+- subtitle: Travel EIR
+  desc: |
+    Exposure while traveling
+  contents:
+  - xds_port_travel_eir
+  - setup_travel_eir
+  - change_travel_eir
+  - check_travel_eir
+  - make_travel_eir_random
+  - get_travel_eir
 - subtitle: Visitors 
   desc: |
     Blood Feeding on non-Residents 
   contents:
-  - xds_info_visitors
-  - change_visitors
   - xds_port_visitors
-  - change_visitor_kappa
+  - xds_info_visitors
+  - setup_visitors
+  - change_visitors
+  - check_visitors
+  - make_visitors_random
+- subtitle: Infectiousness 
+  desc: |
+    Infectiousness of Visitors
+  contents:
   - xds_port_visitor_kappa
+  - setup_vis_kappa
+  - setup_vis_kappa
+  - change_vis_kappa
+  - check_vis_kappa
+  - make_vis_kappa_random
 - title: Mosquito Bionomics
   desc: |
     Methods to compute or update mosquito bionomic parameters
@@ -495,31 +536,71 @@ reference:
   - xds_info_trivial_forcing
   - xds_info_vector_control 
   - xds_info_health
-- title: Resources 
+- title: Blood Feeding
   desc: "The ports for resources\n"
   contents:
   - xds_info_resources
   - xds_info_availability 
   - xds_info_available_blood_hosts
-  - xds_info_search_weights_blood
-  - xds_port_other_blood_hosts
-  - xds_port_blood_traps
   - xds_info_available_habitats
   - xds_info_search_weights_habitat
   - xds_info_available_sugar 
   - xds_info_mosquito_traps
+- subtitle: Search Weights
+  desc: "The ports for resources\n"
+  contents:
+  - xds_info_search_weights_blood
+  - setup_blood_search_weights
+  - change_blood_search_weights
+  - check_blood_search_weights
+  - make_blood_search_weights_random
+- subtitle: Other blood hosts
+  desc: "The ports for resources\n"
+  contents:
+  - xds_port_other_blood_hosts
+  - setup_other_blood_hosts
+  - setup_other_blood_hosts
   - change_other_blood_hosts
+  - check_other_blood_hosts
+  - make_other_blood_hosts_random
+- subtitle: Traps
+  desc: "The ports for resources\n"
+  contents:
+  - xds_port_blood_traps
+  - setup_blood_traps
+  - setup_blood_traps
+  - change_blood_traps
+  - check_blood_traps
+  - make_blood_traps_random
 - title: Habitats & Egg Laying
-  desc: Mosquito Population Dynamical Interface 
+  desc: Aquatic habitats and egg laying
   contents:
   - xds_info_aquatic_habitats 
-  - xds_info_search_weights_habitat
   - xds_info_available_habitats
   - xds_info_egg_laying
-  - xds_info_available_habitats
-  - xds_port_bad_habitats 
-  - xds_port_ovitraps 
   - get_habitats
   - get_habitat_matrix
+- subtitle: Habitat Search Weights
+  desc: Searching for Habitats
+  contents:
+  - xds_info_search_weights_habitat
+  - setup_habitat_search_weights
   - change_habitat_search_weights
-  - change_bad_habitat
+  - check_habitat_search_weights
+  - make_habitat_search_weights_random
+- subtitle: Bad Habitats
+  desc: Water where mosquitoes lay eggs that won't mature
+  contents:
+  - xds_port_bad_habitats 
+  - setup_bad_habitats
+  - change_bad_habitats
+  - check_bad_habitats 
+  - make_bad_habitats_random
+- subtitle: Ovitraps
+  desc: Traps that attract and catch egg laying mosquitoes
+  contents:
+  - xds_port_ovitraps 
+  - setup_ovitraps
+  - change_ovitraps
+  - check_ovitraps
+  - make_ovitraps_random

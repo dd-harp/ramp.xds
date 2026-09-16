@@ -6,7 +6,7 @@ a function
 
 ``` r
 # S3 method for class 'zero'
-Births(t, H, births = "zero")
+Births(t, xds_obj, i)
 ```
 
 ## Arguments
@@ -15,13 +15,13 @@ Births(t, H, births = "zero")
 
   current simulation time
 
-- H:
+- xds_obj:
 
-  population density
+  an **`xds`** model object
 
-- births:
+- i:
 
-  the birth function object
+  the species index
 
 ## Value
 
