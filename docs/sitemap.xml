@@ -85,6 +85,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_I.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_K_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_K_matrix.static.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/F_Omega_dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_Omega_xde.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_Q.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_Qall.html</loc></url>
@@ -398,7 +399,13 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.macdonald.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_Omega.dts.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_Omega.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_Omega.xde.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_TimeSpent_matrix.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_Upsilon.dde.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_Upsilon.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_Upsilon.na.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_V_inits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_V_pars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.SIS.html</loc></url>
@@ -1120,6 +1127,9 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/trivial_MY.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/trivial_XH.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/trivial_forcing.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/update_Omega.dynamic.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/update_Omega.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/update_Omega.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/update_Omega_dts.dynamic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/update_Omega_dts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/update_Omega_dts.setup.html</loc></url>

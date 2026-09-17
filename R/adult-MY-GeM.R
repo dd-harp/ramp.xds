@@ -176,7 +176,7 @@ dMYdt.GeM <- function(t, y, xds_obj, s){
         sigma_eip <- lagderiv(t=t-eip, nr = xds_obj$ix$MY[[s]]$sigma_ix)
       }
 
-      Omega_eip <- compute_Omega_xde(g_eip, sigma_eip, mu, calK)
+      Omega_eip <- F_Omega_xde(g_eip, sigma_eip, mu, calK)
 
       dMdt <- Lambda - (Omega %*% M)
       dPdt <- f*(M - P) - (Omega %*% P)
@@ -242,10 +242,10 @@ setup_MY_obj.GeM = function(MYname, xds_obj, s, options=list()){
   class(MY_obj) <- 'GeM'
   xds_obj$MY_obj[[s]] = MY_obj
   xds_obj <- setup_F_circadian(F_one, xds_obj, s=s)
+  xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
+  xds_obj <- setup_Upsilon_obj(xds_obj, s=s, TRUE)
   xds_obj <- setup_K_matrix("zero", xds_obj, s=s)
   xds_obj <- setup_MY_inits(xds_obj, s, options)
-  xds_obj <- update_Omega_xde(xds_obj, s)
-  xds_obj <- update_Upsilon_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -438,8 +438,7 @@ MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$q <- es_q*q_t
   xds_obj$MY_obj[[s]]$g <- es_g*g_t
   xds_obj$MY_obj[[s]]$sigma <- es_sigma*sigma_t
-  xds_obj <- update_Omega_xde(xds_obj, s)
-  xds_obj <- update_Upsilon_xde(xds_obj, s)
+  xds_obj <- update_Omega(xds_obj, s)
   return(xds_obj)
 })}
 

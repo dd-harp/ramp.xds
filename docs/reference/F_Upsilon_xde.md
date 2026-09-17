@@ -1,23 +1,24 @@
-# Update Upsilon for xde
+# F_Upsilon for dts
 
-Compute \\\Upsilon\\
+F_Upsilon for dts
 
 ## Usage
 
 ``` r
-F_Upsilon_xde(xds_obj, s)
+F_Upsilon_xde(eip, Omega)
 ```
 
 ## Arguments
 
-- xds_obj:
+- eip:
 
-  an **`xds`** model object
+  the extrinsic incubation period
 
-- s:
+- Omega:
 
-  vector species index
+  the demographic matrix
 
 ## Value
 
-an **xds** model object
+a [matrix](https://rdrr.io/r/base/matrix.html) of dimensions `nPatches`
+by `nPatches`

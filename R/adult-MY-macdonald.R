@@ -86,8 +86,6 @@ setup_skillset_MY.macdonald = function(xds_obj, s){
 #' @keywords internal
 #' @export
 check_MY.macdonald = function(xds_obj, s){
-  xds_obj <- update_Omega_xde(xds_obj, s)
-  xds_obj <- update_Upsilon_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -214,17 +212,14 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
 #' @keywords internal
 #' @export
 setup_MY_obj.macdonald = function(MYname, xds_obj, s, options=list()){
+  xds_obj$MYname = "macdonald"
   xds_obj = ode_to_dde(xds_obj)
-  MY_obj <- make_MY_obj_macdonald(xds_obj$nPatches, options)
-  MY_obj <- setup_Omega_obj(MY_obj)
-  class(MY_obj) <- 'macdonald'
-  xds_obj$MY_obj[[s]] = MY_obj
+  xds_obj$MY_obj[[s]] = make_MY_obj_macdonald(xds_obj$nPatches, options)
   xds_obj <- setup_F_circadian(F_one, xds_obj, s=s)
+  xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
+  xds_obj <- setup_Upsilon_obj(xds_obj, s=s, TRUE)
   xds_obj <- setup_K_matrix("zero", xds_obj, s=s)
   xds_obj <- setup_MY_inits(xds_obj, s, options)
-  xds_obj <- F_Omega_xde(xds_obj, s)
-  xds_obj <- setup_Upsilon_obj(xds_obj, s)
-  xds_obj <- F_Upsilon_xde(xds_obj, s)
   return(xds_obj)
 }
 
@@ -249,6 +244,7 @@ make_MY_obj_macdonald = function(nPatches, options=list(), eip=12,
 
   with(options,{
     MY_obj <- list()
+    class(MY_obj) <- 'macdonald'
     MY_obj$nPatches <- nPatches
 
     MY_obj$eip    <- checkIt(eip, 1)
@@ -259,10 +255,7 @@ make_MY_obj_macdonald = function(nPatches, options=list(), eip=12,
     MY_obj$mu     <- checkIt(mu, nPatches)
     MY_obj$nu     <- checkIt(nu, nPatches)
     MY_obj$eggsPerBatch <- eggsPerBatch
-
-    MY_obj$baseline <- 'macdonald'
-    class(MY_obj$baseline) <- 'macdonald'
-
+    
     return(MY_obj)
   })}
 

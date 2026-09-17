@@ -2,19 +2,19 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{F_Upsilon_xde}
 \alias{F_Upsilon_xde}
-\title{Update Upsilon for xde}
+\title{F_Upsilon for dts}
 \usage{
-F_Upsilon_xde(xds_obj, s)
+F_Upsilon_xde(eip, Omega)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} model object}
+\item{eip}{the extrinsic incubation period}
 
-\item{s}{vector species index}
+\item{Omega}{the demographic matrix}
 }
 \value{
-an \strong{xds} model object
+a \link{matrix} of dimensions \code{nPatches} by \code{nPatches}
 }
 \description{
-Compute \eqn{\Upsilon}
+F_Upsilon for dts
 }
 \keyword{internal}

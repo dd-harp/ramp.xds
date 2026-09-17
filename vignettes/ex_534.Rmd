@@ -280,7 +280,7 @@ $$\Omega = \mbox{diag}\left(g\right) - K \cdot \mbox{diag}\left(\sigma\right)\le
 It is computed by `compute_Omega_xde`:
 
 ```{r Omega}
-Omega <- compute_Omega_xde(g, sigma, mu, Kmatrix)
+Omega <- F_Omega_xde(g, sigma, mu, Kmatrix)
 ```
 
 Survival and dispersal through the EIP in this model, denoted $\Upsilon,$  is computed using matrix exponentiation: 
@@ -484,18 +484,17 @@ xds_obj$terms$W[[1]]
 
 
 ```{r change_K_matrix}
+xds_obj <- setup_Omega_obj("xde", "static", xds_obj, 1)
+xds_obj <- setup_Upsilon_obj(xds_obj, 1, TRUE)
 xds_obj <- setup_K_matrix(Kmatrix, xds_obj)
 xds_obj$MY_obj[[1]]$K_matrix
 ```
 
 ```{r}
-xds_obj$MY_obj[[1]] <- setup_Omega_obj(xds_obj$MY_obj[[1]])
-xds_obj <- update_Omega_xde(xds_obj, 1)
 get_Omega(xds_obj, 1) 
 ```
 
 ```{r}
-xds_obj <- update_Upsilon_xde(xds_obj, 1)
 get_Upsilon(xds_obj, 1) 
 ```
 
