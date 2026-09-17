@@ -1,11 +1,11 @@
-# Set up an Upsilon object
+# Set up the Upsilon object
 
-Set up an object to dispatch updating for the object, \\\Upsilon\\
+Set to `dde` if **MY** is a delay differential equation
 
 ## Usage
 
 ``` r
-setup_Upsilon_obj(xds_obj, s)
+setup_Upsilon_obj(xds_obj, s = 1, dede = FALSE)
 ```
 
 ## Arguments
@@ -16,8 +16,12 @@ setup_Upsilon_obj(xds_obj, s)
 
 - s:
 
-  the species index
+  vector species index
+
+- dede:
+
+  is it a delay differential equation that needs \\\Upsilon\\
 
 ## Value
 
-an **`xds`** model object
+an **xds** model object

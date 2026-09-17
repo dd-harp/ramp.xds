@@ -425,7 +425,7 @@ mosquitoes that go to every other patch. The diagonal elements are all
 \mbox{diag}\left(\sigma\right)\left(1-\mu\right)\]</span> It is computed
 by <code>compute_Omega_xde</code>:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_Omega_xde.html">compute_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">Kmatrix</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/F_Omega_xde.html">F_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">Kmatrix</span><span class="op">)</span></span></code></pre></div>
 <p>Survival and dispersal through the EIP in this model, denoted <span class="math inline">\(\Upsilon,\)</span> is computed using matrix
 exponentiation:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
@@ -441,8 +441,8 @@ that it can be stored and used to compute the values of bionomic
 parameters that have been modified by control.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">MY_obj</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##  [1] "nPatches"     "eip"          "f"            "q"            "g"           </span></span>
-<span><span class="co">##  [6] "sigma"        "mu"           "nu"           "eggsPerBatch" "baseline"</span></span></code></pre>
+<pre><code><span><span class="co">## [1] "nPatches"     "eip"          "f"            "q"            "g"           </span></span>
+<span><span class="co">## [6] "sigma"        "mu"           "nu"           "eggsPerBatch"</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="human-infection-dynamics">Human Infection Dynamics<a class="anchor" aria-label="anchor" href="#human-infection-dynamics"></a>
@@ -669,23 +669,22 @@ availability and the egg distribution matrix. The functions
 <code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">terms</span><span class="op">$</span><span class="va">W</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1]   2.0 114.3 934.2</span></span></code></pre>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_K_matrix.html">setup_K_matrix</a></span><span class="op">(</span><span class="va">Kmatrix</span>, <span class="va">xds_obj</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Omega_obj.html">setup_Omega_obj</a></span><span class="op">(</span><span class="st">"xde"</span>, <span class="st">"static"</span>, <span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Upsilon_obj.html">setup_Upsilon_obj</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span>, <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_K_matrix.html">setup_K_matrix</a></span><span class="op">(</span><span class="va">Kmatrix</span>, <span class="va">xds_obj</span><span class="op">)</span></span>
 <span><span class="va">xds_obj</span><span class="op">$</span><span class="va">MY_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">K_matrix</span></span></code></pre></div>
 <pre><code><span><span class="co">##      [,1] [,2] [,3]</span></span>
 <span><span class="co">## [1,] -1.0  0.6  0.3</span></span>
 <span><span class="co">## [2,]  0.4 -1.0  0.7</span></span>
 <span><span class="co">## [3,]  0.6  0.4 -1.0</span></span></code></pre>
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">MY_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_Omega_obj.html">setup_Omega_obj</a></span><span class="op">(</span><span class="va">xds_obj</span><span class="op">$</span><span class="va">MY_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/update_Omega_xde.html">update_Omega_xde</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/get_Omega.html">get_Omega</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_Omega.html">get_Omega</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
 <pre><code><span><span class="co">##             [,1]        [,2]        [,3]</span></span>
 <span><span class="co">## [1,]  0.12500000 -0.02500000 -0.01250000</span></span>
 <span><span class="co">## [2,] -0.01666667  0.12500000 -0.02916667</span></span>
 <span><span class="co">## [3,] -0.02500000 -0.01666667  0.12500000</span></span></code></pre>
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/update_Upsilon_xde.html">update_Upsilon_xde</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/get_Upsilon.html">get_Upsilon</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_Upsilon.html">get_Upsilon</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
 <pre><code><span><span class="co">##            [,1]       [,2]       [,3]</span></span>
 <span><span class="co">## [1,] 0.23643097 0.07241259 0.04640076</span></span>
 <span><span class="co">## [2,] 0.05790317 0.23926276 0.08391499</span></span>

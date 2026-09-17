@@ -212,8 +212,15 @@ K_matrix <- diag(-1, nPatches)
 K_matrix[2:3, 1] <- c(0.2, 0.8)
 K_matrix[c(1,3), 2] <- c(0.5, 0.5)
 K_matrix[1:2, 3] <- c(0.7, 0.3)
+```
 
-Omega <- compute_Omega_xde(g, sigma, mu, K_matrix)
+``` r
+
+Omega <- F_Omega_xde(g, sigma, mu, K_matrix)
+```
+
+``` r
+
 Upsilon <- expm::expm(-Omega * eip)
 ```
 
@@ -256,7 +263,7 @@ dynamically, so we attach `Upsilon` as initial values:
 ``` r
 
 params <- make_xds_object_template("dde", "mosy", nPatches, 1:3, 1:3)
-params <- setup_MY_obj("macdonald", params, 1, MYo)  
+params <- setup_MY_obj("macdonald", params, 1, MYo)
 params <- setup_XH_obj("trivial", 1:3, HPop, params, 1, Xo) 
 params <- setup_L_obj("trivial", 1:3, params, 1, Lo)
 ```
@@ -323,7 +330,7 @@ ggplot(data = out, mapping = aes(x = time, y = value, color = Patch)) +
   theme_bw()
 ```
 
-![](adult_RM_files/figure-html/unnamed-chunk-12-1.png)
+![](adult_RM_files/figure-html/unnamed-chunk-14-1.png)
 
 ``` r
 
