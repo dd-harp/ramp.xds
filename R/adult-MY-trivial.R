@@ -208,7 +208,7 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #' @keywords internal
 #'
 #' @export
-setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
+ setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
   xds_obj$MYname = "trivial"
   MY = "MY"
   class(MY) = "MY"

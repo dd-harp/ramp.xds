@@ -123,7 +123,7 @@ MEffectSizes.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$sigma <- es_sigma*sigma_t
   xds_obj$MY_obj[[s]]$mu    <- es_mu*mu_t
 
-  xds_obj <- update_Omega_xde(xds_obj, s)
+  xds_obj <- update_Omega(xds_obj, s)
 
   return(xds_obj)
 })}
@@ -192,9 +192,10 @@ setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
   class(MY_obj) <- c("basicM", paste("basicM_", xds_obj$xds, sep=""))
   xds_obj$MY_obj[[s]]= MY_obj
   xds_obj <- setup_F_circadian(F_one, xds_obj, s=s)
+  xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
+  xds_obj <- setup_Upsilon_obj(xds_obj, s=s, FALSE)
   xds_obj <- setup_K_matrix("zero", xds_obj, s=s)
   xds_obj <- setup_MY_inits(xds_obj, s, options)
-  xds_obj <- update_Omega_xde(xds_obj, s)
   return(xds_obj)
 }
 

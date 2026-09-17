@@ -2,21 +2,22 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{setup_Upsilon_obj}
 \alias{setup_Upsilon_obj}
-\title{Set up an Upsilon object}
+\title{Set up the Upsilon object}
 \usage{
-setup_Upsilon_obj(xds_obj, s)
+setup_Upsilon_obj(xds_obj, s = 1, dede = FALSE)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{vector species index}
+
+\item{dede}{is it a delay differential equation that needs \eqn{\Upsilon}}
 }
 \value{
-an \strong{\code{xds}} model object
+an \strong{xds} model object
 }
 \description{
-Set up an object
-to dispatch updating for the
-object, \eqn{\Upsilon}
+Set to \code{dde} if \strong{MY} is a
+delay differential equation
 }
 \keyword{internal}

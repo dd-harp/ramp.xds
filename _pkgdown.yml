@@ -517,7 +517,7 @@ reference:
   - xds_info_mosquito_bionomics 
   - xds_info_blood_feeding 
   - xds_info_mosquito_dispersal
-  - xds_info_mosquito_demography 
+  - xds_info_mosquito_demography
 - subtitle: Mosquito Dispersal
   desc: |
     Specialized methods to set up mosquito dispersal matrices

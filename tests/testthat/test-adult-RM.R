@@ -25,7 +25,7 @@ test_that("macdonald models reach equilibrium", {
   K_matrix[3, 1:2] <- c(0.7, 0.3)
   K_matrix <- t(K_matrix)
   
-  Omega <- compute_Omega_xde(g, sigma, mu, K_matrix)
+  Omega <- F_Omega_xde(g, sigma, mu, K_matrix)
   Upsilon <- expm::expm(-Omega * eip)
 
   kappa <- c(0.1, 0.075, 0.025)

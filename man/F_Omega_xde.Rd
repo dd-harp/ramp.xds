@@ -2,19 +2,29 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{F_Omega_xde}
 \alias{F_Omega_xde}
-\title{Update Upsilon for xde}
+\title{F_Omega for xde}
 \usage{
-F_Omega_xde(xds_obj, s)
+F_Omega_xde(g, sigma, mu, K_matrix)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} model object}
+\item{g}{mosquito death rate, a vector of length \code{nPatches}}
 
-\item{s}{vector species index}
+\item{sigma}{mosquito emigration rate, a vector of length \code{nPatches}}
+
+\item{mu}{emigration loss, a vector of length \code{nPatches}}
+
+\item{K_matrix}{a \link{matrix} of dimensions \code{nPatches} by \code{nPatches}}
 }
 \value{
-an \strong{xds} model object
+a \link{matrix} of dimensions \code{nPatches} by \code{nPatches}
 }
 \description{
-Compute \eqn{\Upsilon}
+Computes the mosquito demographic matrix:
+\deqn{
+ \Omega = \mbox{diag} \left( g + \sigma \mu \right) - K \cdot \mbox{diag} \left( \sigma \left(1-\mu\right) \right)
+}
+}
+\seealso{
+\link{xds_info_mosquito_demography}
 }
 \keyword{internal}

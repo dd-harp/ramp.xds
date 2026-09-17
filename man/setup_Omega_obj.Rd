@@ -2,19 +2,38 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{setup_Omega_obj}
 \alias{setup_Omega_obj}
-\title{Setup the Omega object}
+\title{Setup the Omega obj}
 \usage{
-setup_Omega_obj(MY_obj)
+setup_Omega_obj(ch, up, xds_obj, s = 1)
 }
 \arguments{
-\item{MY_obj}{an \strong{\code{MY}} model object}
+\item{ch}{is \code{xde}, \code{dts}}
+
+\item{up}{is \code{static} or \code{dynamic}}
+
+\item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{s}{vector species index}
 }
 \value{
-a \strong{\code{MY}} model object
+an \strong{xds} model object
 }
 \description{
-Set up an object
-to dispatch updating for the mosquito demographic
-object, \eqn{\Omega}
+The Omega object handles
+dispatching for \code{change_Omega} and \code{update_Omega}
+
+Options for \code{change_Omega} are:
+\itemize{
+\item \code{xde} --- for most differential equation systems
+\item \code{dts} --- for most discrete time systems
+}
+
+Options for behavioral state models are in \code{ramp.library}
+
+Options for \code{update_Omega} are:
+\itemize{
+\item \code{static} --- for autonomous systems
+\item \code{dynamic} --- for non-autonomous systems
+}
 }
 \keyword{internal}
