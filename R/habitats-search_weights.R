@@ -181,36 +181,7 @@ update_habitat_search_weights <- function(t, y, xds_obj, s){
 #' @keywords internal
 update_habitat_search_weights.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 
-#' @title habitat_search_weights
-#' 
-#' @description The `S3` definition for the
-#' function that computes habitat_search_weights
-#' 
-#' @param t the time
-#' @param y the state variables
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#'  
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-habitat_search_weights = function(t, y, xds_obj, s){
-  UseMethod("habitat_search_weights", xds_obj$L_obj[[s]]$search_obj)
-}
 
-#' @title Compute availability of habitat search weights 
-#'
-#' @description This sets up... 
-#' 
-#' @inheritParams habitat_search_weights
-#' 
-#' @return an **`xds`** object
-#'
-#' @keywords internal
-#' @export
-habitat_search_weights.static = function(t, y, xds_obj, s){
-  return(return(xds_obj))
-}
 
 #' @title Get availability of habitat search weights
 #'

@@ -1,4 +1,4 @@
-# Show Circadian
+# Setup a circadian pattern function
 
 Update the circadian for the \\s^{th}\\ host species
 
@@ -12,7 +12,7 @@ setup_F_circadian(F_circadian, xds_obj, s = 1)
 
 - F_circadian:
 
-  a circadian function
+  a circadian function or a method name (*e.g.* "setup")
 
 - xds_obj:
 

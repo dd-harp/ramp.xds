@@ -252,8 +252,8 @@ setup_XH_obj.trivial = function(Xname, residence, HPop, xds_obj, i, options=list
   xds_obj <- setup_skillset_XH(xds_obj, i)
   xds_obj$nStrata = xds_obj$nPatches
   xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
-  xds_obj <- setup_blood_search_weights("default", xds_obj, i=i)
-  xds_obj <- setup_time_away("no_travel", xds_obj, i=i)
+  xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
+  xds_obj <- setup_time_away("setup", xds_obj, i=i)
   xds_obj <- setup_travel_eir("no_travel", xds_obj, i=i)
   return(xds_obj)
 }

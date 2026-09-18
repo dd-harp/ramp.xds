@@ -93,22 +93,26 @@ xds_setup = function(
   # Aquatic Mosquito Dynamics
   xds_obj$Lname = Lname
   xds_obj <- setup_L_obj(Lname, membership, xds_obj, 1, Loptions)
-  xds_obj <- setup_habitat_search_weights(searchQ, xds_obj, searchQ, 1)
+
  
   
   # Adult Mosquito Dynamics
   xds_obj$MYname = MYname
   xds_obj <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
-  xds_obj <- setup_K_matrix(Koptions, xds_obj, list(), 1)
+  
   
   # Human Dynamics
   xds_obj$Xname = Xname
   xds_obj <- setup_XH_obj(Xname, residence, HPop, xds_obj, 1, XHoptions)
-  xds_obj <- setup_timespent(TSoptions, xds_obj, TSoptions, 1)
-  xds_obj <- setup_blood_search_weights(searchB, xds_obj, searchB, 1)
+  
   
   xds_obj <- make_indices(xds_obj)
-   
+
+  xds_obj <- setup_K_matrix(Koptions, xds_obj, list(), 1)
+  xds_obj <- setup_habitat_search_weights(searchQ, xds_obj, searchQ, 1)
+  xds_obj <- setup_blood_search_weights(searchB, xds_obj, searchB, 1)
+  xds_obj <- setup_timespent(TSoptions, xds_obj, TSoptions, 1)
+  
   xds_obj <- update_interfaces(xds_obj)
 
   xds_obj <- check_models(xds_obj)
@@ -172,19 +176,21 @@ xds_setup_mosy = function(
   # Aquatic Mosquito Dynamics
   xds_obj$Lname <- Lname
   xds_obj <- setup_L_obj(xds_obj$Lname, membership, xds_obj, 1, Loptions)
-  xds_obj <- setup_habitat_search_weights(searchQ, xds_obj, searchQ, 1)
+ 
 
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- MYname
   xds_obj <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
-  xds_obj <- setup_K_matrix(Koptions, xds_obj, list(), 1)
-
+  
   # Human / Host Dynamics
   xds_obj$Xname   <- "trivial"
   XHoptions <- list(HPop=HPop, kappa=kappa)
   xds_obj <- setup_XH_obj(xds_obj$Xname, residence, HPop, xds_obj, 1, XHoptions) 
   
   xds_obj = make_indices(xds_obj)
+  
+  xds_obj <- setup_habitat_search_weights(searchQ, xds_obj, searchQ, 1)
+  xds_obj <- setup_K_matrix(Koptions, xds_obj, list(), 1)
 
   xds_obj <- update_interfaces(xds_obj)
 
@@ -325,14 +331,16 @@ xds_setup_human = function(model_name = "unnamed",
   # Human Dynamics
   xds_obj$Xname <- Xname
   xds_obj <- setup_XH_obj(xds_obj$Xname, residence, HPop, xds_obj, 1, XHoptions) 
-  xds_obj <- setup_timespent(TSoptions, xds_obj, TSoptions, 1)
-  xds_obj <- setup_blood_search_weights(searchB, xds_obj, searchB, 1)
+
   
   xds_obj$forced_by = c(xds_obj$forced_by, "fqZ")
   class(xds_obj$forced_by) = c("MY", "fqZ")
 
   xds_obj = make_indices(xds_obj)
 
+  xds_obj <- setup_timespent(TSoptions, xds_obj, TSoptions, 1)
+  xds_obj <- setup_blood_search_weights(searchB, xds_obj, searchB, 1)
+  
   xds_obj <- update_interfaces(xds_obj)
 
   xds_obj$model_name <- model_name

@@ -210,14 +210,13 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #' @export
  setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
   xds_obj$MYname = "trivial"
+  
   MY = "MY"
   class(MY) = "MY"
   xds_obj$forced_by = MY
 
-  MY_obj <- make_MY_obj_trivial(xds_obj$nPatches, options)
-  class(MY_obj) <- 'trivial'
-  xds_obj$MY_obj[[s]] <- MY_obj
-  xds_obj <- setup_F_circadian(F_one, xds_obj, s)
+  xds_obj$MY_obj[[s]] <- make_MY_obj_trivial(xds_obj$nPatches, options)
+  xds_obj <- setup_F_circadian("setup", xds_obj, s)
   return(xds_obj)
 }
 
@@ -248,6 +247,7 @@ make_MY_obj_trivial = function(nPatches, options,
                                shock_par = list(name = "F_one")){
   with(options,{
     MY_obj <- list()
+    class(MY_obj) <- 'trivial'
     MY_obj$nPatches <- nPatches
 
     MY_obj$eip <- 0

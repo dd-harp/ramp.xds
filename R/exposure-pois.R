@@ -9,7 +9,7 @@
 #' @seealso Also, see [F_foi.pois] and [F_ar.pois]
 #'
 setup_exposure.pois <- function(EHname, xds_obj, i=1, options = list()) {
-  xds_obj$XY_interface$env_het_obj[[i]] = make_exposure_pois()
+  xds_obj$env_het_obj[[i]] = make_exposure_pois()
   xds_obj$terms$FoI = list()
   xds_obj$terms$FoI[[1]] = list()
   xds_obj$terms$AR = list()

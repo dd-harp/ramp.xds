@@ -9,7 +9,7 @@
 #' @keywords internal
 #'
 setup_exposure.nb <- function(EHname, xds_obj, i=1, options=list()) {
-  xds_obj$XY_interface$env_het_obj[[i]] = make_exposure_nb(xds_obj$nStrata, options)
+  xds_obj$env_het_obj[[i]] = make_exposure_nb(xds_obj$nStrata, options)
   return(xds_obj)
 }
 

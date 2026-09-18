@@ -164,37 +164,6 @@ update_other_blood_hosts <- function(t, y, xds_obj, s){
 #' @keywords internal
 update_other_blood_hosts.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 
-#' @title Other blood hosts
-#' 
-#' @description The `S3` definition for the
-#' function that computes other_blood_hosts
-#' 
-#' @param t the time
-#' @param y the state variables
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' 
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-other_blood_hosts = function(t, y, xds_obj, s){
-  UseMethod("other_blood_hosts", xds_obj$XY_interface$other_blood_hosts_obj[[s]])
-}
-
-#' @title Compute availability of other blood hosts 
-#'
-#' @description This sets up... 
-#' 
-#' @inheritParams other_blood_hosts
-#' 
-#' @return an **`xds`** object
-#'
-#' @keywords internal
-#' @export
-other_blood_hosts.static = function(t, y, xds_obj, s){
-  return(return(xds_obj))
-}
-
 #' @title Get availability of other blood hosts
 #'
 #' @param xds_obj an **`xds`** model object

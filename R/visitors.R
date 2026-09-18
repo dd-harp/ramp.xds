@@ -33,6 +33,11 @@ change_visitors = function(visitors, xds_obj, s=1){
   check_visitors(visitors, xds_obj$nPatches)
   xds_obj$patches$visitors[[s]] <- visitors
   xds_obj$patches$visitors_obj[[s]] <- make_static_obj()
+  y <- get_inits(xds_obj, flatten=TRUE)
+  xds_obj <- compute_local_frac(xds_obj)
+  xds_obj <- compute_beta(0, y, xds_obj)
+  xds_obj <- compute_EIR(0, y, xds_obj)
+  xds_obj <- compute_kappa(0, y, xds_obj)
   return(xds_obj)
 }
 
@@ -160,37 +165,6 @@ update_visitors <- function(t, y, xds_obj, s){
 #' @export
 #' @keywords internal
 update_visitors.static <- function(t, y, xds_obj, s) { return(xds_obj) }
-
-#' @title visitors
-#' 
-#' @description The `S3` definition for the
-#' function that computes visitors
-#' 
-#' @param t the time
-#' @param y the state variables
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' 
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-visitors = function(t, y, xds_obj, s){
-  UseMethod("visitors", xds_obj$patches$visitors_obj[[s]])
-}
-
-#' @title Compute availability of visitors 
-#'
-#' @description This sets up... 
-#' 
-#' @inheritParams visitors
-#' 
-#' @return an **`xds`** object
-#'
-#' @keywords internal
-#' @export
-visitors.static = function(t, y, xds_obj, s){
-  return(return(xds_obj))
-}
 
 #' @title Get availability of visitors
 #'

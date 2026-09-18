@@ -20,6 +20,6 @@ an \strong{\code{xds}} object
 }
 \description{
 Port function for the blood_traps, \eqn{\Theta}.
-Dispatches on \code{class(xds_obj$XY_interface$traps_obj[[s]])}.
+Dispatches on \code{class(xds_obj$patches$blood_traps_obj[[s]])}.
 }
 \keyword{internal}

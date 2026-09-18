@@ -166,36 +166,6 @@ update_bad_habitats <- function(t, y, xds_obj, s){
 #' @keywords internal
 update_bad_habitats.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 
-#' @title Other blood hosts
-#' 
-#' @description The `S3` definition for the
-#' function that computes bad_habitats
-#' 
-#' @param t the time
-#' @param y the state variables
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' 
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-bad_habitats = function(t, y, xds_obj, s){
-  UseMethod("bad_habitats", xds_obj$patches$bad_habitats_obj[[s]])
-}
-
-#' @title Compute availability of other blood hosts 
-#'
-#' @description This sets up... 
-#' 
-#' @inheritParams bad_habitats
-#' 
-#' @return an **`xds`** object
-#'
-#' @keywords internal
-#' @export
-bad_habitats.static = function(t, y, xds_obj, s){
-  return(return(xds_obj))
-}
 
 #' @title Get availability of other blood hosts
 #'
