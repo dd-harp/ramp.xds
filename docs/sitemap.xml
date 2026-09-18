@@ -866,6 +866,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_bad_habitat.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_bad_habitat.ts_func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_circadian.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_circadian.setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_habitat_weights.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_habitat_weights.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_habitat_weights.ts_func.html</loc></url>
@@ -972,6 +973,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.list.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.no_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.random.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_traps.as_is.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_traps.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_traps.list.html</loc></url>
@@ -1046,6 +1048,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_time_away.no_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_time_away.no_travel.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_time_away.random.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_time_away.setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_timespent.at_home.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_timespent.list.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_timespent.no_setup.html</loc></url>

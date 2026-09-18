@@ -90,7 +90,7 @@ library(ramp.xds)
 
 ``` r
 
-# devtools::load_all()
+#devtools::load_all()
 ```
 
 By default, \\\sigma=\mu=0\\ and \\K\\ is a matrix of all zeros.

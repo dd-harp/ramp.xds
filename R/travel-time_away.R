@@ -33,6 +33,13 @@ change_time_away = function(time_away, xds_obj, i=1){
   check_time_away(time_away, xds_obj$nStrata[i])
   xds_obj$XH_obj[[i]]$time_away <- time_away
   xds_obj$XH_obj[[i]]$time_away_obj <- make_static_obj()
+  y <- get_inits(xds_obj, flatten=TRUE)
+  xds_obj <- compute_TaR(xds_obj,0)
+  xds_obj <- compute_WB(0, y, xds_obj)
+  xds_obj <- compute_local_frac(xds_obj)
+  xds_obj <- compute_beta(0, y, xds_obj)
+  xds_obj <- compute_EIR(0, y, xds_obj)
+  xds_obj <- compute_kappa(0, y, xds_obj)
   return(xds_obj)
 }
 
@@ -83,6 +90,24 @@ setup_time_away.no_setup = function(name, xds_obj, options = list(), i=1){
   return(xds_obj)
 }
 
+#' @title Set up a time spent 
+#' @description 
+#' Pass a pre-configured time spent . If it passes 
+#' the checks, it replaces the current time_away .
+#' 
+#' If called with `name = "as_is"`, the time spent
+#'  must be at `options$time_away` 
+#' 
+#' @inheritParams setup_time_away
+#' @return an **`xds`** object
+#' @keywords internal
+#' @export
+setup_time_away.setup = function(name, xds_obj, options=list(), i=1){
+  time_away <- rep(0, xds_obj$nStrata[i])
+  xds_obj$XH_obj[[i]]$time_away <- time_away
+  xds_obj$XH_obj[[i]]$time_away_obj <- make_static_obj()
+  return(xds_obj)
+}
 
 #' @title Set up a time spent 
 #' @description 
@@ -183,45 +208,6 @@ update_time_away <- function(t, y, xds_obj, i) {
 #' @keywords internal
 update_time_away.static <- function(t, y, xds_obj, i) {return(xds_obj)}
 
-
-#' @title Update time_away
-#' 
-#' @description Update time_away when it changes dynamically
-#' 
-#' @inheritParams update_time_away
-#' @return an **`xds`** object
-#' @export
-#' @keywords internal
-update_time_away.dynamic <- function(t, y, xds_obj, i) { 
-  time_away(t, y, xds_obj, i)
-}
-
-#' @title time spent
-#'
-#' @description Compute and store a 
-#' time spent  
-#' 
-#' @param t the time
-#' @param y the state variables
-#' @param xds_obj an **`xds`** model object
-#' @param i the species index
-#'
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-time_away = function(t, y, xds_obj, i){
-  UseMethod("time_away", xds_obj$XH_obj[[i]]$time_away_obj)
-}
-
-#' @title Compute time spent
-#' @description Return the time spent objecTA unmodified
-#' @inheritParams time_away
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-time_away.static = function(t, y, xds_obj, i){
-  return(xds_obj)
-}
 
 #' @title Get the Time Spent 
 #'

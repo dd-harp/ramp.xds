@@ -117,7 +117,7 @@ importation_dynamics = function(t, y, xds_obj){
   for(i in 1:xds_obj$nHostSpecies){
     xds_obj <- update_visitors(t, y, xds_obj, i)
     xds_obj <- update_vis_kappa(t, y, xds_obj, i)
-    xds_obj <- update_travel_eir(t, y, xds_obj, i)
+
     xds_obj <- update_time_away(t, y, xds_obj, i)
   }
   return(xds_obj)

@@ -34,6 +34,12 @@ change_blood_search_weights = function(blood_search_weights, xds_obj, i=1){
   check_blood_search_weights(blood_search_weights, xds_obj$nStrata[i])
   xds_obj$XH_obj[[i]]$search_weights <- blood_search_weights
   xds_obj$XH_obj[[i]]$search_weights_obj <- make_static_obj()
+  y <- get_inits(xds_obj, flatten=TRUE)
+  xds_obj <- compute_WB(0, y, xds_obj)
+  xds_obj <- compute_local_frac(xds_obj)
+  xds_obj <- compute_beta(0, y, xds_obj)
+  xds_obj <- compute_EIR(0, y, xds_obj)
+  xds_obj <- compute_kappa(0, y, xds_obj)
   return(xds_obj)
 }
 
@@ -81,9 +87,10 @@ setup_blood_search_weights.list = function(name, xds_obj, options=list(), i=1){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_blood_search_weights.default = function(name, xds_obj, options = list(), i=1){
+setup_blood_search_weights.setup = function(name, xds_obj, options = list(), i=1){
   blood_search_weights = rep(1, xds_obj$nStrata[i])
-  xds_obj <- change_blood_search_weights(blood_search_weights, xds_obj, i)
+  xds_obj$XH_obj[[i]]$search_weights <- blood_search_weights
+  xds_obj$XH_obj[[i]]$search_weights_obj <- make_static_obj()
   return(xds_obj)
 }
 
@@ -174,38 +181,6 @@ update_blood_search_weights <- function(t, y, xds_obj, i){
 #' @export
 #' @keywords internal
 update_blood_search_weights.static <- function(t, y, xds_obj, i) { return(xds_obj) }
-
-#' @title blood_search_weights
-#' 
-#' @description The `S3` definition for the
-#' function that computes blood_search_weights
-#' 
-#' @param t the time
-#' @param y the state variables
-#' @param xds_obj an **`xds`** model object
-#' @param i the host species index
-#' @param s the vector species index
-#'  
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-blood_search_weights = function(t, y, xds_obj, i, s){
-  UseMethod("blood_search_weights", xds_obj$XH_obj[[i]]$search_weights_obj)
-}
-
-#' @title Compute blood search weights 
-#'
-#' @description This sets up... 
-#' 
-#' @inheritParams blood_search_weights
-#' 
-#' @return an **`xds`** object
-#'
-#' @keywords internal
-#' @export
-blood_search_weights.static = function(t, y, xds_obj, i, s){
-  return(return(xds_obj))
-}
 
 #' @title Get availability of blood search weights
 #'

@@ -101,20 +101,19 @@ Exposure <- function(t, y, xds_obj){
 #' @export
 #' @keywords internal
 Exposure.xde <- function(t, y, xds_obj){
-  with(xds_obj$XY_interface,{
-    for(i in 1:xds_obj$nHostSpecies){
-      b = as.vector(F_infectivity(y, xds_obj, i))
-      eir = xds_obj$terms$EIR[[i]]
-      away = get_time_away(xds_obj, i)
-      at_home = 1 - away
-      local_foi  = F_foi(eir, b, env_het_obj[[i]])
-      teir= xds_obj$XH_obj[[i]]$travel_eir
-      travel_foi = F_foi(teir, b, env_het_obj[[i]])
-      xds_obj$terms$FoI[[i]] = local_foi*at_home + travel_foi*away
-  }
+  for(i in 1:xds_obj$nHostSpecies){
+    xds_obj <- update_travel_eir(t, y, xds_obj, i) 
+    b = as.vector(F_infectivity(y, xds_obj, i))
+    eir = xds_obj$terms$EIR[[i]]
+    away = get_time_away(xds_obj, i)
+    at_home = 1 - away
+    local_foi  = F_foi(eir, b, xds_obj$env_het_obj[[i]])
+    teir= xds_obj$XH_obj[[i]]$travel_eir
+    travel_foi = F_foi(teir, b, xds_obj$env_het_obj[[i]])
+    xds_obj$terms$FoI[[i]] = local_foi*at_home + travel_foi*away
   
   return(xds_obj)
-})}
+}}
 
 #' @title Compute Attack Rates
 #' @description For `dts` models, compute
@@ -136,21 +135,19 @@ Exposure.xde <- function(t, y, xds_obj){
 #' @export
 #' @keywords internal
 Exposure.dts <- function(t, y, xds_obj){
-  with(xds_obj$XY_interface,{
-    for(i in 1:xds_obj$nHostSpecies){
-      b = as.vector(F_infectivity(y, xds_obj, i))
-      eir = xds_obj$terms$EIR[[i]]
-      
-      away = get_time_away(xds_obj, i)
-      at_home = 1 - away
-      local_ar  = F_ar(eir, b, env_het_obj[[i]])
-      
-      tEIR = xds_obj$terms$travel_EIR[[i]]
-      travel_ar = F_ar(tEIR, b, env_het_obj[[i]])
-      xds_obj$ar[[i]] = 1-(1-local_ar*at_home)*(1-travel_ar*away)
-  }
-  return(xds_obj)
-})}
+  for(i in 1:xds_obj$nHostSpecies){
+    xds_obj <- update_travel_eir(t, y, xds_obj, i) 
+    b = as.vector(F_infectivity(y, xds_obj, i))
+    eir = xds_obj$terms$EIR[[i]]
+    away = get_time_away(xds_obj, i)
+    at_home = 1 - away
+    local_foi  = F_foi(eir, b, xds_obj$env_het_obj[[i]])
+    teir= xds_obj$XH_obj[[i]]$travel_eir
+    travel_foi = F_ar(teir, b, xds_obj$env_het_obj[[i]])
+    xds_obj$terms$FoI[[i]] = local_foi*at_home + travel_foi*away
+    
+    return(xds_obj)
+  }}
 
 #' @title Compute the Local FoI
 #' @description Compute the daily local FoI as a function

@@ -32,8 +32,8 @@ check_blood_traps = function(blood_traps, nP){
 #' @export
 change_blood_traps = function(blood_traps, xds_obj, s=1){
   check_blood_traps(blood_traps, xds_obj$nPatches)
-  xds_obj$patches$traps[[s]] <- blood_traps
-  xds_obj$patches$traps_obj[[s]] <- make_static_obj()
+  xds_obj$patches$blood_traps[[s]] <- blood_traps
+  xds_obj$patches$blood_traps_obj[[s]] <- make_static_obj()
   return(xds_obj)
 }
 
@@ -143,7 +143,7 @@ setup_blood_traps.as_is = function(name, xds_obj, options=list(), s=1){
 
 #' @title Update the blood_traps
 #' @description Port function for the blood_traps, \eqn{\Theta}.
-#' Dispatches on `class(xds_obj$XY_interface$traps_obj[[s]])`.
+#' Dispatches on `class(xds_obj$patches$blood_traps_obj[[s]])`.
 #' 
 #' @param t the time
 #' @param y the state variables
@@ -154,7 +154,7 @@ setup_blood_traps.as_is = function(name, xds_obj, options=list(), s=1){
 #' @export
 #' @keywords internal
 update_blood_traps <- function(t, y, xds_obj, s){
-  UseMethod("update_blood_traps",  xds_obj$patches$traps_obj[[s]])
+  UseMethod("update_blood_traps",  xds_obj$patches$blood_traps_obj[[s]])
 }
 
 #' @title Update the blood_traps
@@ -179,7 +179,7 @@ update_blood_traps.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 #' @keywords internal
 #' @export
 blood_traps = function(t, y, xds_obj, s){
-  UseMethod("blood_traps", xds_obj$XY_interface$traps_obj[[s]])
+  UseMethod("blood_traps", xds_obj$patches$blood_traps_obj[[s]])
 }
 
 #' @title Compute availability of other blood hosts 
@@ -204,7 +204,7 @@ blood_traps.static = function(t, y, xds_obj, s){
 #' @return a numeric vector
 #' @export
 get_blood_traps = function(xds_obj, s=1){
-  return(xds_obj$XY_interface$traps[[s]])
+  return(xds_obj$patches$blood_traps[[s]])
 }
 
 

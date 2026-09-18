@@ -38,6 +38,8 @@ NULL
 #' @keywords internal
 #' @export
 setup_transmission <- function(xds_obj){
+
+  xds_obj$transmission_obj = make_static_obj()
   
   # Mixing Matrix: beta[[s]][[i]]
   xds_obj$terms$beta = list()
@@ -274,7 +276,7 @@ compute_local_frac <- function(xds_obj){with(xds_obj,{
 #' @keywords internal
 #' @rdname Transmission
 Transmission <- function(t, y, xds_obj){
-  UseMethod('Transmission', xds_obj$terms$beta)
+  UseMethod('Transmission', xds_obj$transmission_obj)
 }
 
 #' @title Compute transmission terms with a static mixing matrix
@@ -297,20 +299,6 @@ Transmission.static <- function(t, y, xds_obj){
 #' @keywords internal
 Transmission.dynamic <- function(t, y, xds_obj){
   return(transmission_dynamics(t, y, xds_obj))
-}
-
-#' @title Compute transmission, the static case
-#' @description Set up and compute transmission terms with a static mixing matrix
-#' @details The `setup` case is called whenever any parameter affecting the mixing matrix
-#' in a static model is changed
-#' @inheritParams Transmission
-#' @return an **`xds`** object
-#' @export
-#' @keywords internal
-Transmission.setup <- function(t, y, xds_obj){
-  class(xds_obj$terms) <- 'static'
-  xds_obj <- transmission_dynamics(t, y, xds_obj)
-  return(xds_obj)
 }
 
 #' @title Compute transmission, the dynamic case

@@ -225,7 +225,6 @@ reference:
   - show_season
   - show_trend
   - show_shock
-  - show_F_circadian
 - title: Get  
   desc: |
     Inspect elements of the xds object 
@@ -382,7 +381,6 @@ reference:
     Adult daily activity patterns
   contents:
   - setup_F_circadian
-  - check_F_circadian
 - subtitle:  
   desc: |
     Utilities for Time Spent Matrices

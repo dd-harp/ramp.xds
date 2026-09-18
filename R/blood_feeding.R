@@ -201,11 +201,11 @@ setup_blood_feeding <- function(xds_obj, residence){
     xds_obj$patches$other_blood_hosts = list()
     xds_obj$patches$other_blood_hosts[[1]] = rep(0, nPatches)
   
-    xds_obj$patches$traps_obj = list()
-    xds_obj$patches$traps_obj[[1]] = make_static_obj()
+    xds_obj$patches$blood_traps_obj = list()
+    xds_obj$patches$blood_traps_obj[[1]] = make_static_obj()
     
-    xds_obj$patches$traps = list()
-    xds_obj$patches$traps[[1]] = rep(0, nPatches)
+    xds_obj$patches$blood_traps = list()
+    xds_obj$patches$blood_traps[[1]] = rep(0, nPatches)
 
     return(xds_obj)
 })}
@@ -276,7 +276,7 @@ compute_WB <- function(t, y, xds_obj){
         W = W + Wi
       }
       xds_obj$terms$W[[s]] = W
-      xds_obj$terms$B[[s]] = with(patches, F_B_available(W, visitors[[s]], other_blood_hosts[[s]], traps[[s]]))
+      xds_obj$terms$B[[s]] = with(patches, F_B_available(W, visitors[[s]], other_blood_hosts[[s]], blood_traps[[s]]))
     }
     return(xds_obj)
 })}
@@ -365,25 +365,6 @@ compute_TaR <- function(xds_obj, t=0){
 #' @keywords internal
 BloodFeeding = function(t, y, xds_obj){
   UseMethod("BloodFeeding", xds_obj$blood_feeding_obj)
-}
-
-#' @title Compute blood feeding objects: setup for static models
-#' @description This sets up host available, \eqn{W},
-#' total blood host available, \eqn{B},
-#' the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi}
-#' for static models.
-#' @details The mixing matrix, \eqn{\beta}, depends on
-#' blood feeding terms, so the class of `xds_obj$beta` must also
-#' be updated, if they are not dynamic, so [trigger_setup] is called.
-#' @inheritParams BloodFeeding
-#' @return an **`xds`** object
-#' @export
-#' @keywords internal
-BloodFeeding.setup = function(t, y, xds_obj){
-  class(xds_obj$blood_feeding) <- 'static'
-  xds_obj$terms$beta <- trigger_setup(xds_obj$terms$beta)
-  xds_obj <- blood_feeding_dynamics(t, y, xds_obj)
-  return(return(xds_obj))
 }
 
 #' @title Compute blood feeding objects: static models

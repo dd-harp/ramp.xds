@@ -32,6 +32,9 @@ check_vis_kappa = function(vis_kappa, nP){
 change_vis_kappa = function(vis_kappa, xds_obj, s=1){
   check_vis_kappa(vis_kappa, xds_obj$nPatches)
   xds_obj$patches$vis_kappa[[s]] <- vis_kappa
+  xds_obj$patches$vis_kappa_obj <- make_static_obj()
+  y <- get_inits(xds_obj, flatten=TRUE)
+  xds_obj <- compute_kappa(0, y, xds_obj)
   return(xds_obj)
 }
 
@@ -161,37 +164,6 @@ update_vis_kappa <- function(t, y, xds_obj, s){
 #' @export
 #' @keywords internal
 update_vis_kappa.static <- function(t, y, xds_obj, s) { return(xds_obj) }
-
-#' @title Compute NI of visitors
-#' 
-#' @description The `S3` definition for the
-#' function that computes vis_kappa
-#' 
-#' @param t the time
-#' @param y the state variables
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' 
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-vis_kappa = function(t, y, xds_obj, s){
-  UseMethod("vis_kappa", xds_obj$patches$vis_kappa_obj[[s]])
-}
-
-#' @title Compute NI of visitors
-#'
-#' @description This sets up... 
-#' 
-#' @inheritParams vis_kappa
-#' 
-#' @return an **`xds`** object
-#'
-#' @keywords internal
-#' @export
-vis_kappa.static = function(t, y, xds_obj, s){
-  return(return(xds_obj))
-}
 
 #' @title Get availability of vis_kappa
 #'

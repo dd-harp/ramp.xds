@@ -166,36 +166,6 @@ update_ovitraps <- function(t, y, xds_obj, s){
 #' @keywords internal
 update_ovitraps.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 
-#' @title Ovitraps
-#' 
-#' @description The `S3` definition for the
-#' function that computes ovitraps
-#' 
-#' @param t the time
-#' @param y the state variables
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' 
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-ovitraps = function(t, y, xds_obj, s){
-  UseMethod("ovitraps", xds_obj$patches$ovitraps_obj[[s]])
-}
-
-#' @title Compute availability of ovitraps
-#' 
-#' @description Update nothing
-#' 
-#' @inheritParams ovitraps
-#' 
-#' @return an **`xds`** object
-#'
-#' @keywords internal
-#' @export
-ovitraps.static = function(t, y, xds_obj, s){
-  return(return(xds_obj))
-}
 
 #' @title Get availability of ovitraps
 #'

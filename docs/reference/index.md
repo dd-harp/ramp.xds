@@ -293,8 +293,6 @@ Show patterns for forced systems
   : Plot the Temporal Trend
 - [`show_shock()`](https://dd-harp.github.io/ramp.xds/reference/show_shock.md)
   : Plot the shock
-- [`show_F_circadian()`](https://dd-harp.github.io/ramp.xds/reference/show_F_circadian.md)
-  : Get availability of circadian
 
 ## Get
 
@@ -661,9 +659,7 @@ Utilities for Time Spent Matrices
 Adult daily activity patterns
 
 - [`setup_F_circadian()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_circadian.md)
-  : Show Circadian
-- [`check_F_circadian()`](https://dd-harp.github.io/ramp.xds/reference/check_F_circadian.md)
-  : Check circadian
+  : Setup a circadian pattern function
 
 Utilities for Time Spent Matrices
 

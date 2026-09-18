@@ -36,6 +36,12 @@ change_timespent_matrix = function(timespent, xds_obj, i=1){
   check_timespent_matrix(timespent, xds_obj$nPatches, xds_obj$nStrata[i])
   xds_obj$XH_obj[[i]]$timespent <- timespent
   xds_obj$XH_obj[[i]]$timespent_obj <- make_static_obj()
+  y <- get_inits(xds_obj, flatten=TRUE)
+  xds_obj <- compute_WB(0, y, xds_obj)
+  xds_obj <- compute_local_frac(xds_obj)
+  xds_obj <- compute_beta(0, y, xds_obj)
+  xds_obj <- compute_EIR(0, y, xds_obj)
+  xds_obj <- compute_kappa(0, y, xds_obj)
   return(xds_obj)
 }
 
@@ -100,9 +106,11 @@ setup_timespent.list = function(name, xds_obj, options=list(), i=1){
 #' @export
 setup_timespent.setup = function(name, xds_obj, options = list(), i=1){
   stopifnot(with(options, exists("residence")))
-  xds_obj$XH_obj[[i]]$residence = options$residence
+  xds_obj$XH_obj[[i]]$residence = xds_obj$residence
+  xds_obj$residence = NULL 
   res_mat <- get_residence_matrix(xds_obj, i)
-  xds_obj <- change_timespent_matrix(res_mat, xds_obj, i)
+  xds_obj$XH_obj[[i]]$timespent <- res_mat
+  xds_obj$XH_obj[[i]]$timespent_obj <- make_static_obj()
   return(xds_obj)
 }
 

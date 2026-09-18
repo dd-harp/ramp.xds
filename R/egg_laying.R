@@ -91,38 +91,6 @@ EggLaying = function(t, y, xds_obj){
   UseMethod("EggLaying", xds_obj$habitats)
 }
 
-#' @title Compute eggs laid, the first time
-#'
-#' @description In autonomous models, this
-#' function gets called after the `ML_interface`
-#' is set up, or after any structural element in
-#' the ML_interface changes
-#'
-#' describing host availability (\eqn{Q}) and
-#' the egg distribution matrix (\eqn{O}).
-#'
-#' @details If conditions are time, invariant,
-#' then [EggLaying.static] computes eggs laid. The functions that
-#' compute \eqn{N} and \eqn{O} are called *once* after setup.
-#' The class of `ML_interface` is set to `static` and the function
-#' is never called again. If any parameters are changed that would
-#' affect egg laying, then the class of `ML_interface` should
-#' get reset to `setup` to reconfigure \eqn{N} and \eqn{O}.
-#'
-#' @inheritParams EggLaying
-#'
-#' @return an **`xds`** object
-#'
-#' @seealso For \eqn{Q}, see [compute_Qall]
-#' @seealso For \eqn{N}, see [make_habitat_matrix]
-#' @export
-#' @keywords internal
-EggLaying.setup = function(t, y, xds_obj){
-  xds_obj <- egg_laying_dynamics(t, y, xds_obj)
-  class(xds_obj$habitats) <- 'static'
-  return(xds_obj)
-}
-
 #' @title Compute eggs laid
 #' @description Computes eggs laid for an autonomous model
 #' @inheritParams EggLaying

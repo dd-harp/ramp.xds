@@ -182,45 +182,6 @@ update_travel_eir <- function(t, y, xds_obj, i) {
 update_travel_eir.static <- function(t, y, xds_obj, i) {return(xds_obj)}
 
 
-#' @title Update travel_eir
-#' 
-#' @description Update travel_eir when it changes dynamically
-#' 
-#' @inheritParams update_travel_eir
-#' @return an **`xds`** object
-#' @export
-#' @keywords internal
-update_travel_eir.dynamic <- function(t, y, xds_obj, i) { 
-  travel_eir(t, y, xds_obj, i)
-}
-
-#' @title travel eir
-#'
-#' @description Compute and store a 
-#' travel eir  
-#' 
-#' @param t the time
-#' @param y the state variables
-#' @param xds_obj an **`xds`** model object
-#' @param i the species index
-#'
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-travel_eir = function(t, y, xds_obj, i){
-  UseMethod("travel_eir", xds_obj$XH_obj[[i]]$travel_eir_obj)
-}
-
-#' @title Compute travel eir
-#' @description Return the travel eir objecTeir unmodified
-#' @inheritParams travel_eir
-#' @return an **`xds`** object
-#' @keywords internal
-#' @export
-travel_eir.static = function(t, y, xds_obj, i){
-  return(xds_obj)
-}
-
 #' @title Get the travel eir 
 #'
 #' @param xds_obj an **`xds`** model object
