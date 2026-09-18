@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.xds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -389,7 +389,8 @@ parameter list with name <code>L_obj</code>.</p>
 <span><span class="va">phi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span>, <span class="va">nHabitats</span><span class="op">)</span></span>
 <span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">40</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">10</span><span class="op">)</span> </span>
 <span></span>
-<span><span class="va">L_obj</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_L_obj_basicL.html">make_L_obj_basicL</a></span><span class="op">(</span><span class="va">nHabitats</span>, psi<span class="op">=</span><span class="va">psi</span>, phi<span class="op">=</span><span class="va">phi</span>, theta <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">L_obj</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_L_obj_basicL.html">make_L_obj_basicL</a></span><span class="op">(</span><span class="va">nHabitats</span>, psi<span class="op">=</span><span class="va">psi</span>, phi<span class="op">=</span><span class="va">phi</span>, theta <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span>
+<span><span class="va">L_obj</span><span class="op">$</span><span class="va">membership</span> <span class="op">=</span> <span class="va">membership</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="adult-mosquito-dynamics">Adult Mosquito Dynamics<a class="anchor" aria-label="anchor" href="#adult-mosquito-dynamics"></a>
@@ -459,7 +460,8 @@ model for the human component (see more <a href="human_sis.html">here</a>). It c
 <p>The model is configured and assigned the name
 <code>XH_obj</code>:</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">XH_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_XH_obj_SIS.html">make_XH_obj_SIS</a></span><span class="op">(</span><span class="va">nStrata</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">b</span>, <span class="va">r</span>, <span class="va">c</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">XH_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_XH_obj_SIS.html">make_XH_obj_SIS</a></span><span class="op">(</span><span class="va">nStrata</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">b</span>, <span class="va">r</span>, <span class="va">c</span><span class="op">)</span></span>
+<span><span class="va">XH_obj</span><span class="op">$</span><span class="va">residence</span> <span class="op">=</span> <span class="va">residence</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="initial-conditions">Initial Conditions<a class="anchor" aria-label="anchor" href="#initial-conditions"></a>
@@ -604,10 +606,8 @@ them.</p>
 <span><span class="va">xds_obj</span><span class="op">$</span><span class="va">XH_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">XH_obj</span> </span></code></pre></div>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_L_inits.html">setup_L_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span>, <span class="va">Linits</span><span class="op">)</span></span>
-<span><span class="co">#xds_obj &lt;- setup_L_ports(xds_obj, 1)</span></span>
 <span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_MY_inits.html">setup_MY_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span>, <span class="va">MYZinits</span><span class="op">)</span></span>
-<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_XH_inits.html">setup_XH_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="va">HPop</span>, <span class="fl">1</span>, <span class="va">Xinits</span><span class="op">)</span></span>
-<span><span class="co">#xds_obj &lt;- setup_XH_ports(xds_obj, 1)</span></span></code></pre></div>
+<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_XH_inits.html">setup_XH_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="va">HPop</span>, <span class="fl">1</span>, <span class="va">Xinits</span><span class="op">)</span></span></code></pre></div>
 <p>After the parameters for <code>5-3-4</code> have been specified, we
 can generate the indices for the model and attach them to the parameter
 list.</p>
@@ -637,8 +637,10 @@ availability and the egg distribution matrix. The functions
 <span><span class="co">## [4,]  0.0  0.8    0</span></span>
 <span><span class="co">## [5,]  0.0  0.2    0</span></span></code></pre>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_TimeSpent.html">setup_timespent</a></span><span class="op">(</span><span class="va">TaR</span>, <span class="va">xds_obj</span><span class="op">)</span></span>
-<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_F_circadian.html">setup_F_circadian</a></span><span class="op">(</span><span class="va">F_one</span>, <span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">XH_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">timespent</span> <span class="op">=</span> <span class="va">TaR</span></span>
+<span><span class="va">xds_obj</span><span class="op">$</span><span class="va">XH_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">timespent_obj</span> <span class="op">=</span> <span class="va">make_static_obj</span></span>
+<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_time_away.html">setup_time_away</a></span><span class="op">(</span><span class="st">"setup"</span>, <span class="va">xds_obj</span><span class="op">)</span></span>
+<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_F_circadian.html">setup_F_circadian</a></span><span class="op">(</span><span class="st">"setup"</span>, <span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span><span class="op">$</span><span class="va">XH_obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">timespent</span></span></code></pre></div>
 <pre><code><span><span class="co">##      [,1] [,2]  [,3]  [,4]</span></span>
