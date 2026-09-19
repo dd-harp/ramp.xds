@@ -396,6 +396,10 @@ S3method(setup_visitors,as_is)
 S3method(setup_visitors,list)
 S3method(setup_visitors,no_setup)
 S3method(setup_visitors,random)
+S3method(skills,L)
+S3method(skills,MY)
+S3method(skills,XH)
+S3method(skills,all)
 S3method(steady_state_L,basicL_ode)
 S3method(steady_state_M,basicM_dts)
 S3method(steady_state_M,basicM_ode)
@@ -773,6 +777,7 @@ export(show_forcing)
 export(show_season)
 export(show_shock)
 export(show_trend)
+export(skills)
 export(steady_state_L)
 export(steady_state_M)
 export(steady_state_MY)
@@ -827,11 +832,17 @@ export(xds_steady)
 import(mathjaxr)
 importFrom(MASS,ginv)
 importFrom(Rdpack,reprompt)
-importFrom(deSolve,lagderiv)
-importFrom(deSolve,lagvalue)
+importFrom(deSolve,
+  lagderiv,
+  lagvalue
+)
 importFrom(expm,expm)
-importFrom(graphics,lines)
-importFrom(graphics,plot)
-importFrom(stats,nlm)
-importFrom(stats,pexp)
+importFrom(graphics,
+  lines,
+  plot
+)
+importFrom(stats,
+  nlm,
+  pexp
+)
 importFrom(utils,tail)

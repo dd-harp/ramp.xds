@@ -150,6 +150,7 @@ make_XH_obj_trivial <- function(nPatches, options, kappa=0, HPop=1,
   with(options,{
     XH_obj <- list()
     class(XH_obj) <- c('trivial')
+
     XH_obj$H = checkIt(HPop, nPatches)
     XH_obj$kappa= checkIt(kappa, nPatches)
     
@@ -250,7 +251,6 @@ setup_XH_obj.trivial = function(Xname, residence, HPop, xds_obj, i, options=list
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nPatches, options)
   xds_obj <- setup_XH_inits(xds_obj, HPop, i, options)
   xds_obj <- setup_skillset_XH(xds_obj, i)
-  xds_obj$nStrata = xds_obj$nPatches
   xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
   xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
   xds_obj <- setup_time_away("setup", xds_obj, i=i)
