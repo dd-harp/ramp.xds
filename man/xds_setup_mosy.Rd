@@ -13,7 +13,7 @@ xds_setup_mosy(
   membership = 1,
   HPop = 1000,
   searchQ = list(),
-  kappa = list(),
+  kappa = 1,
   MYoptions = list(),
   Koptions = list(),
   Loptions = list()

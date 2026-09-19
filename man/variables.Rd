@@ -17,7 +17,7 @@ In \strong{\verb{ramp.xds,}}  there are several kinds of variables and terms:
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{- **other state variables** are not can be set up and computed along with state variables (see [Other_State_Variables])
 }\if{html}{\out{</div>}}
-\item \strong{accessory variables} are computed for other reasons. For example, accessory variables are used in delay differential equations to internalize computation of lagged terms using \link[deSolve:timelags]{deSolve::lagderiv} (see \href{https://dd-harp.github.io/ramp.xds/articles/Delays.html}{Delay Equations})
+\item \strong{accessory variables} are computed for other reasons. For example, accessory variables are used in delay differential equations to internalize computation of lagged terms using \link[deSolve:lagderiv]{lagderiv} (see \href{https://dd-harp.github.io/ramp.xds/articles/Delays.html}{Delay Equations})
 }
 }
 

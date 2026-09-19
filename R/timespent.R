@@ -132,7 +132,7 @@ setup_timespent.no_setup = function(name, xds_obj, options = list(), i=1){
 #' @keywords internal
 #' @export
 setup_timespent.at_home = function(name, xds_obj, options = list(), i=1){
-  residence = xds_obj$residence[[i]]
+  residence = get_residence(xds_obj, i)
   timespent = make_timespent_at_home(xds_obj$nPatches, residence, options)
   xds_obj <- change_timespent_matrix(timespent, xds_obj, i)
   return(xds_obj)
@@ -155,6 +155,7 @@ make_timespent_at_home = function(nPatches, residence, options=list(), at_home=1
   at_home = ifelse(nPatches == 1, 1-not_at_risk, at_home)
   timespent <- matrix(away, nPatches, length(residence))
   timespent[cbind(residence, c(1:nStrata))] <- at_home
+  timespent = as.matrix(timespent)
   return(timespent)
 })}
 
