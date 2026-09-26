@@ -1,0 +1,9 @@
+---
+title: "Transmission"
+subtitle: "The Interface for Blood Feeding"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Transmission}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
