@@ -183,6 +183,9 @@ values.
 
   Get the *Pf*PR from a malaria model
 
+- [`get_skills()`](https://dd-harp.github.io/ramp.xds/reference/get_skills.md)
+  : Get the skill set
+
 ## Qualitative Analysis
 
 ### Compute Steady States

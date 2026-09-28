@@ -56,8 +56,10 @@ navbar:
     menu:
     - text: Habitats & Mosquito Ecology 
       href: articles/EggLaying.html
-    - text: Blood Feeding & Transmission 
+    - text: Blood Feeding
       href: articles/BloodFeeding.html
+    - text: Transmission
+      href: articles/Transmission.html
     - text: Exposure
       href: articles/Exposure.html
   - text: Supporting Software
@@ -177,6 +179,7 @@ reference:
   - get_L_orbits
   - get_EIR 
   - get_PR
+  - get_skills
 - title: Qualitative Analysis 
 - subtitle: Compute Steady States   
   contents:

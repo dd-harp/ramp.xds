@@ -1,0 +1,25 @@
+# Compute and store availability of egg-laying habitats
+
+Set the value of a variable, \\Q\\, that describes the availability of
+any habitat or device that would attract mosquitoes and induce them to
+lay eggs.
+
+## Usage
+
+``` r
+compute_all_available_water(xds_obj)
+```
+
+## Arguments
+
+- xds_obj:
+
+  an **`xds`** model object
+
+## Value
+
+an **`xds`** object
+
+## See also
+
+[F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md)

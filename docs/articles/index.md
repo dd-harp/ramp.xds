@@ -10,8 +10,8 @@
   Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.md):
 - [Mosquito
   Bionomics](https://dd-harp.github.io/ramp.xds/articles/Bionomics.md):
-- [Blood Feeding &
-  Transmission](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md):
+- [Blood
+  Feeding](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md):
 - [Contributing](https://dd-harp.github.io/ramp.xds/articles/Contributing.md):
 - [Delay
   Equations](https://dd-harp.github.io/ramp.xds/articles/Delays.md):
@@ -58,6 +58,7 @@
   Setup](https://dd-harp.github.io/ramp.xds/articles/ScalableComplexity.md):
 - [Spatial Transmission Dynamics with
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.md):
+- [Transmission](https://dd-harp.github.io/ramp.xds/articles/Transmission.md):
 - [Understanding
   ramp.xds](https://dd-harp.github.io/ramp.xds/articles/Understanding_ramp.xds.md):
 - [Working with

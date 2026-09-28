@@ -117,6 +117,4 @@ which dispatches the \code{S3} methods that solve and parse differential equatio
 
 \seealso{
 \link{xds_info_dynamical_components}, \link{xds_info_trivial_forcing} and \link{xds_object}
-
-\link{xds_info_dynamical_components}, \link{xds_info_trivial_forcing} and \link{xds_object}
 }

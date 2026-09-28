@@ -13,7 +13,7 @@ xds_setup_human(
   residence = 1,
   HPop = 1000,
   searchB = list(),
-  TSoptions = list(name = "no_setup"),
+  TSoptions = list(),
   MYoptions = list(),
   BFopts = list()
 )

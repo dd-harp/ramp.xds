@@ -163,7 +163,7 @@ xds_setup_mosy = function(
      HPop = 1000,
      ### Setup Parameters
      searchQ = list(),
-     kappa = list(),
+     kappa = 1,
      ### Options
      MYoptions = list(),
      Koptions = list(),
@@ -181,7 +181,7 @@ xds_setup_mosy = function(
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- MYname
   xds_obj <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
-  
+
   # Human / Host Dynamics
   xds_obj$Xname   <- "trivial"
   XHoptions <- list(HPop=HPop, kappa=kappa)
@@ -310,7 +310,7 @@ xds_setup_human = function(model_name = "unnamed",
                            HPop=1000,
                            ### Setup Parameters
                            searchB = list(),
-                           TSoptions = list(name = "no_setup"),
+                           TSoptions = list(),
                            ### Options
                            MYoptions = list(),
                            BFopts = list()

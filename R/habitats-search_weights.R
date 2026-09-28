@@ -34,8 +34,8 @@ change_habitat_search_weights = function(search_weights, xds_obj, s=1){
   check_habitat_search_weights(search_weights, xds_obj$nHabitats)
   xds_obj$L_obj[[s]]$search_weights <- search_weights
   xds_obj$L_obj[[s]]$search_obj <- make_static_obj()
-  xds_obj <- compute_Qall(xds_obj)
-  xds_obj <- compute_O_matrix(xds_obj)
+  xds_obj <- compute_all_available_water(xds_obj)
+  xds_obj <- compute_U_matrix(xds_obj)
   return(xds_obj)
 }
 

@@ -23,7 +23,7 @@ using the habitat membership matrix, \eqn{N}, and we can compute
 \deqn{Q = {N} \cdot \omega_q.}
 }
 \seealso{
-This function is called by \link{compute_Qall}
+This function is called by \link{compute_all_available_water}
 
 \link{make_habitat_matrix} discusses \eqn{N}
 

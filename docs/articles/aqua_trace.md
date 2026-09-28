@@ -184,8 +184,8 @@ tar <- get_residence_matrix(xds_obj)
 ``` r
 
 xds_obj = setup_habitat_search_weights(rep(1,4), xds_obj) 
-xds_obj = compute_Qall(xds_obj)
-xds_obj = compute_O_matrix(xds_obj)
+xds_obj = compute_all_available_water(xds_obj)
+xds_obj = compute_U_matrix(xds_obj)
 ```
 
 ``` r
