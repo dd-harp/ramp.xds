@@ -33,7 +33,7 @@ habitat membership matrix, \\N\\, and we can compute \$\$Q = {N} \cdot
 ## See also
 
 This function is called by
-[compute_Qall](https://dd-harp.github.io/ramp.xds/reference/compute_Qall.md)
+[compute_all_available_water](https://dd-harp.github.io/ramp.xds/reference/compute_all_available_water.md)
 
 [make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
 discusses \\N\\

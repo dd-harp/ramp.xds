@@ -34,7 +34,7 @@ also available, then total availability of laying sites is
 The availability of habitats, ovitraps and bad_habitats are computed elsewhere and stored on \code{xds_obj$vars}.
 }
 \seealso{
-This function is called by \link{compute_Qall}
+This function is called by \link{compute_all_available_water}
 
 \link{make_habitat_matrix} discusses \eqn{N}
 

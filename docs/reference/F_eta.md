@@ -5,7 +5,7 @@ Computes egg distribution for the aquatic habitats
 ## Usage
 
 ``` r
-F_eta(eggs_laid, O_matrix, Q, Qall)
+F_eta(eggs_laid, U_matrix, Q, Qall)
 ```
 
 ## Arguments
@@ -14,7 +14,7 @@ F_eta(eggs_laid, O_matrix, Q, Qall)
 
   the number of eggs laid in each patch, a vector of length `nPatches`
 
-- O_matrix:
+- U_matrix:
 
   the egg laying matrix
 
@@ -33,4 +33,4 @@ a [vector](https://rdrr.io/r/base/vector.html), \\\eta\\ where
 
 ## See also
 
-[compute_O_matrix](https://dd-harp.github.io/ramp.xds/reference/compute_O_matrix.md)
+[compute_U_matrix](https://dd-harp.github.io/ramp.xds/reference/compute_U_matrix.md)

@@ -155,8 +155,3 @@ parse differential equations:
 [xds_info_trivial_forcing](https://dd-harp.github.io/ramp.xds/reference/xds_info_trivial_forcing.md)
 and
 [xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)
-
-[xds_info_dynamical_components](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md),
-[xds_info_trivial_forcing](https://dd-harp.github.io/ramp.xds/reference/xds_info_trivial_forcing.md)
-and
-[xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)

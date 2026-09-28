@@ -16,7 +16,7 @@
 #' - the availability of ovitraps
 #' - the availability of unsuitable habitats
 #' - the availability of anything that attracts egg laying mosquitoes, including ovitraps and unsuitable habitats
-#' - the egg distribution matrix \eqn{O}, made by [make_O_matrix]
+#' - the egg distribution matrix \eqn{O}, made by [make_U_matrix]
 #' - a vector that stores eggs laid
 #'
 #' This function is called by `compute_xds_object_template` to set up `egg_laying` and the variables and parameters with all

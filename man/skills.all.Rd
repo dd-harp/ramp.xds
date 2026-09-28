@@ -6,6 +6,13 @@
 \usage{
 skills.all(module, xds_obj, ix = 1)
 }
+\arguments{
+\item{module}{"all" or "XY" or "MY" or "L"}
+
+\item{xds_obj}{an \strong{\code{xds}} object}
+
+\item{ix}{the species index}
+}
 \value{
 the skill set, a list
 }

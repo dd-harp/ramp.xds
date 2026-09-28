@@ -1,5 +1,5 @@
 
-#' @title: Get the skill set
+#' @title Get the skill set
 #' 
 #' @param module "all" or "XY" or "MY" or "L"
 #' @param xds_obj an **`xds`** object
@@ -7,13 +7,12 @@
 #' 
 #' @returns the skill set, a list
 #' @export
-get_get_skills = function(module, xds_obj, ix){
+get_skills = function(module, xds_obj, ix){
   class(module) = module
   UseMethod("get_skills", module)
 }
 
-#' @title: Get the skill set
-#' 
+#' @title Get the skill set
 #'
 #' @inheritParams get_skills
 #'
@@ -26,21 +25,21 @@ get_skills.XH = function(module, xds_obj, ix=1){
   return(get_skills)
 }
 
-#' @title: Get the skill set
-#' 
+
+#'@title Get the skill set
 #'
-#' @inheritParams get_skills 
+#'@inheritParams get_skills 
 #'
-#' @returns the skill set, a list
-#' @keywords internal
-#' @export
+#'@returns the skill set, a list
+#'@keywords internal
+#'@export
 get_skills.MY = function(module, xds_obj, ix=1){
   skills = xds_obj$MY_obj[[ix]]$skill_set
   skills$Lname = xds_obj$MYname 
   return(get_skills)
 }
 
-#' @title: Get the skill set
+#' @title Get the skill set
 #' 
 #' @inheritParams get_skills
 #'

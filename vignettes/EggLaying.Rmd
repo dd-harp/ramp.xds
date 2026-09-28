@@ -8,29 +8,76 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-During setup, the location of each habitat is in the patch `membership` vector. From this, the habitat matrix $N$ is created. If $\alpha$ describes emergence of adults from aquatic habitats, then the number emerging per patch is $$\Lambda = N \cdot \alpha$$ 
+```{r, message=F}
+require(ramp.xds)
+```
 
-**Egg Laying** in aquatic habitats is assumed to the outcome of searching: 
+![**Figure** --- The habitat interface as a diagram.](xds_egg_laying.drawio.png){width=95%}
 
-+ $w$ --- finding a habitat while searching within a patch is modeled with search weights $w.$ It can be set up using `setup_habitat_search_weights`. 
+*** 
 
-+ $Q$ --- Availability of habitats, per patch, is a simple sum:$$Q = N\cdot w$$ 
+# The Habitat Matrix 
 
-+ $B$ --- The term *habitats* is synonymous with *productive habitats,* or any habitat that could potentially foster development of mosquitoes from egg, through all larval instars and into the pupal stage. A variable is set up to model the availability of **bad habitats,** or any habitat that attracts egg laying adults but that would never produce any adults. It is set to $0$ by default, but it can be set to some other value using `setup_bad_habitats`. 
+During setup, the location of each habitat is in the patch `membership` vector (see Figure). From this, the habitat matrix $N$ is created. 
 
-+ $O$ --- a variable `ovitraps` is also available to simulate traps that attract egg-laying mosquitoes. it is setup by `setup_ovitraps`
 
-The egg laying rates can be set to any value, but the interface makes it possible to compute these rates as a function of available resources:
+```{r}
+membership <- c(1,1,1,2,2)
+ramp.xds::make_habitat_matrix(3, membership) -> N
+N
+```
+Any quantity that must sum quantites in habitats to patches can use $N.$ In particular, it is used for emergence. 
+If $\alpha$ describes emergence of adults from aquatic habitats, then the number emerging per patch is $$\Lambda = N \cdot \alpha$$ 
 
-+ $\nu$ --- the egg laying rate, the number of oviposition events, per adult mosquito,  is a function of all available habitats: $$\nu = F_\nu(Q+B+O)$$ 
+# Searching
 
-+ the fraction of eggs laid in productive habitats is $$\frac{Q}{Q+B+O}$$
+**Egg Laying** in aquatic habitats is assumed to the outcome of searching, and searching for aquatic habitats is something adult mosquitoes do in the patches. To model searching we introduce the habitat search weight $w,$ and then we compute habitat availability: 
 
-+ the fraction of eggs laid in the $j^{th}$ patch by adults that go into the $i^{th}$ habitat in that patch is $$w_i/Q_j$$ 
++ $w$ --- finding a habitat while searching within a patch is modeled with search weights $w.$ 
 
-+ the patch emigration rate may also be related to searching for habitats $$\sigma = F_\sigma(Q, ...)$$ 
+    - By default, the search weights are all set to 1. 
+    
+    - Search weights can be changed using `setup_habitat_search_weights`.
 
++ $Q$ --- Availability of habitats, per patch, is a simple sum: $$Q = N\cdot w$$ 
+
+```{r}
+weights = c(1,2,7,.5,2)
+Q <- N%*% weights
+Q
+```
+
++ **Bad Habitats** ---The term *habitats* is synonymous with *productive habitats,* or any habitat that could potentially foster development of mosquitoes from egg, through all larval instars and into the pupal stage. A variable is set up to model the availability of **bad habitats,** or any habitat that attracts egg laying adults but that would never produce any adults.
+
+    - By default, available bad habitat is set to 0. 
+    
+    - Search weights can be changed using `setup_bad_habitats`.
+
++ **Ovitraps** --- A variable `ovitraps` is also available to simulate traps that attract egg-laying mosquitoes. 
+
+    - By default, no ovitraps are available. 
+    
+    - Search weights can be changed using `setup_ovitraps`.
+
++ The total availability of all water is the availability of habitats plus bad habitats or ovitraps: $$Q_* = Q + \ldots$$ 
+
++ $\nu$ --- the egg laying rate, the number of oviposition events, per adult mosquito,  is a function of all available habitats and the availability of other things that compete with aquatic habitats for adult mosquito attention while egg laying: $$\nu = F_\nu(Q_*)$$ 
+
++ $\sigma$ --- the patch emigration rate can be computed using habitat availability (and the availability of other resources a mosquito needs): $$\sigma = F_\sigma(Q_*, ...)$$ 
+
+We note that egg laying rates and patch emigration rates can be set up without using the concept of searching. 
+
+# Egg Laying
+
+Having set up an interface to describe adult mosquito egg laying behaviors, we must now use it to distribute the eggs laid by adults in each patch among all the habitats. 
+
++ the fraction of eggs laid in the $j^{th}$ patch by adults that go into the $i^{th}$ habitat in that patch is $w_i/Q_j.$ These are found in the laying matrix. To avoid divide by zero errors, we add a very small $\epsilon$ when normalizing. Finally, we use $\left<w\right>$ to denote a diagonal matrix made from the vector $w$, and: 
+$$U = \left(N \cdot \left<w\right>\right)^T \cdot \left<\frac 1 {Q+ \epsilon} \right>$$ 
+```{r}
+ramp.xds::make_U_matrix(weights, N, Q)
+```
+
++ the fraction of eggs laid in productive habitats is $Q/Q_*.$
 
 ***
 
-![](xds_egg_laying.drawio.png)

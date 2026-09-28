@@ -34,8 +34,8 @@ change_bad_habitats = function(bad_habitats, xds_obj, s=1){
   check_bad_habitats(bad_habitats, xds_obj$nPatches)
   xds_obj$patches$bad_habitats[[s]] <- bad_habitats
   xds_obj$patches$bad_habitats_obj[[s]] <- make_static_obj()
-  xds_obj <- compute_Qall(xds_obj)
-  xds_obj <- compute_O_matrix(xds_obj)
+  xds_obj <- compute_all_available_water(xds_obj)
+  xds_obj <- compute_U_matrix(xds_obj)
   return(xds_obj)
 }
 

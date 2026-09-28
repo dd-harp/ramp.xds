@@ -31,7 +31,7 @@ habitat availability \eqn{Q}, computed by \link{F_available_habitat};
 \item the availability of ovitraps
 \item the availability of unsuitable habitats
 \item the availability of anything that attracts egg laying mosquitoes, including ovitraps and unsuitable habitats
-\item the egg distribution matrix \eqn{O}, made by \link{make_O_matrix}
+\item the egg distribution matrix \eqn{O}, made by \link{make_U_matrix}
 \item a vector that stores eggs laid
 }
 

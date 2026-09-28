@@ -4,12 +4,12 @@
 \alias{F_eta}
 \title{Eggs Laying in Habitats}
 \usage{
-F_eta(eggs_laid, O_matrix, Q, Qall)
+F_eta(eggs_laid, U_matrix, Q, Qall)
 }
 \arguments{
 \item{eggs_laid}{the number of eggs laid in each patch, a vector of length \code{nPatches}}
 
-\item{O_matrix}{the egg laying matrix}
+\item{U_matrix}{the egg laying matrix}
 
 \item{Q}{larval habitat availability}
 
@@ -22,6 +22,6 @@ a \link{vector}, \eqn{\eta} where \eqn{\left|\eta\right|=}\code{nHabitats}
 Computes egg distribution for the aquatic habitats
 }
 \seealso{
-\link{compute_O_matrix}
+\link{compute_U_matrix}
 }
 \keyword{internal}

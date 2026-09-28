@@ -17,7 +17,7 @@
 #' - the availability of ovitraps
 #' - the availability of unsuitable habitats
 #' - the availability of anything that attracts egg laying mosquitoes, including ovitraps and unsuitable habitats
-#' - the egg distribution matrix \eqn{O}, made by [make_O_matrix]
+#' - the egg distribution matrix \eqn{O}, made by [make_U_matrix]
 #' - a vector that stores eggs laid
 #'
 #' This function is called by `compute_xds_object_template` to set up `egg_laying` and the variables and parameters with all
@@ -126,8 +126,8 @@ egg_laying_dynamics = function(t, y, xds_obj){
     xds_obj = update_bad_habitats(t, y, xds_obj, s)
     xds_obj = update_ovitraps(t, y, xds_obj, s)
   }
-  xds_obj = compute_Qall(xds_obj)
-  xds_obj = compute_O_matrix(xds_obj)
+  xds_obj = compute_all_available_water(xds_obj)
+  xds_obj = compute_U_matrix(xds_obj)
   xds_obj = compute_eggs_laid(t, y, xds_obj)
   return(xds_obj)
 }
@@ -142,7 +142,7 @@ egg_laying_dynamics = function(t, y, xds_obj){
 #' @param habitat_matrix the membership matrix, \eqn{N}
 #' @param search_weights the habitat search weights, \eqn{\omega_q}
 #' @return a [vector] of describing habitat availability, \eqn{Q}, of length `nPatches`
-#' @seealso This function is called by [compute_Qall]
+#' @seealso This function is called by [compute_all_available_water]
 #' @seealso [make_habitat_matrix] discusses \eqn{N}
 #' @seealso The availability of ovitraps and bad habitats is setup in [setup_egg_laying]
 #' @export
@@ -175,7 +175,7 @@ F_available_habitat = function(habitat_matrix, search_weights){
 #'
 #' @return  Availability laying sites, \eqn{O}
 #'
-#' @seealso This function is called by [compute_Qall]
+#' @seealso This function is called by [compute_all_available_water]
 #' @seealso [make_habitat_matrix] discusses \eqn{N}
 #'
 #' @seealso The availability of traps and bad habitats is setup in [setup_egg_laying]
@@ -221,10 +221,10 @@ F_all_available_water = function(Q, Q_traps, Q_bad){
 #' @seealso The availability of ovitraps and bad habitats is setup in [setup_egg_laying]
 #' @export
 #' @keywords internal
-make_O_matrix= function(search_weights, habitat_matrix, Q){
-  ix = which(Q == 0)
-  if(length(ix) > 0) Q[ix]=1
-  lay_matrix = diag(search_weights) %*% t(habitat_matrix) %*% diag(1/as.vector(Q))
+make_U_matrix= function(search_weights, habitat_matrix, Q){
+  wts <- diag(as.vector(search_weights), length(search_weights))
+  Qinv <- diag(1/as.vector(Q+1e-14), length(Q)) 
+  lay_matrix = t(habitat_matrix %*% wts) %*% Qinv
   return(lay_matrix)
 }
 
@@ -236,7 +236,7 @@ make_O_matrix= function(search_weights, habitat_matrix, Q){
 #' @seealso [F_available_habitat]
 #' @export
 #' @keywords internal
-compute_Qall = function(xds_obj){with(xds_obj,{
+compute_all_available_water = function(xds_obj){with(xds_obj,{
   for(s in 1:xds_obj$nVectorSpecies){
     Q = F_available_habitat(habitats$matrix, L_obj[[s]]$search_weights)
     xds_obj$terms$Q[[s]] = Q
@@ -257,12 +257,12 @@ compute_Qall = function(xds_obj){with(xds_obj,{
 #' @return an **`xds`** object
 #' @export
 #' @keywords internal
-compute_O_matrix = function(xds_obj){with(xds_obj,{
+compute_U_matrix = function(xds_obj){with(xds_obj,{
   for(s in 1:nVectorSpecies){
     wts = L_obj[[s]]$search_weights
     N = habitats$matrix
     Q = terms$Q[[s]]
-    xds_obj$habitats$laying_matrix[[s]] = make_O_matrix(wts, N, Q)
+    xds_obj$habitats$laying_matrix[[s]] = make_U_matrix(wts, N, Q)
   }
   return(xds_obj)
 })}
@@ -272,19 +272,19 @@ compute_O_matrix = function(xds_obj){with(xds_obj,{
 #' @description Computes egg distribution for the aquatic habitats
 #'
 #' @param eggs_laid the number of eggs laid in each patch, a vector of length `nPatches`
-#' @param O_matrix the egg laying matrix
+#' @param U_matrix the egg laying matrix
 #' @param Q larval habitat availability
 #' @param Qall total availability
 #'
 #' @return a [vector], \eqn{\eta} where \eqn{\left|\eta\right|=}`nHabitats`
 #'
-#' @seealso [compute_O_matrix]
+#' @seealso [compute_U_matrix]
 #' @export
 #' @keywords internal
-F_eta = function(eggs_laid, O_matrix, Q, Qall){
+F_eta = function(eggs_laid, U_matrix, Q, Qall){
   ix = which(Qall == 0)
   if(length(ix) > 0) Qall[ix]=1
-  return(as.vector(O_matrix %*% (eggs_laid*Q/Qall)))
+  return(as.vector(U_matrix %*% (eggs_laid*Q/Qall)))
 }
 
 #' @title Compute eggs laid

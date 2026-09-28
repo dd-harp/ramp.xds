@@ -2,14 +2,21 @@
 % Please edit documentation in R/skillsets.R
 \name{get_skills.L}
 \alias{get_skills.L}
-\title{: Get the skill set}
+\title{Get the skill set}
 \usage{
-get_skills.L(module, xds_obj, ix = 1)
+\method{get_skills}{L}(module, xds_obj, ix = 1)
+}
+\arguments{
+\item{module}{"all" or "XY" or "MY" or "L"}
+
+\item{xds_obj}{an \strong{\code{xds}} object}
+
+\item{ix}{the species index}
 }
 \value{
 the skill set, a list
 }
 \description{
-: Get the skill set
+Get the skill set
 }
 \keyword{internal}
