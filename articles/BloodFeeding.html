@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Blood Feeding &amp; Transmission • ramp.xds</title>
+<title>Blood Feeding • ramp.xds</title>
 <!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
   window.MathJax = {
     chtml: {
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Blood Feeding &amp; Transmission">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Blood Feeding">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -79,7 +79,8 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
 <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
-    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a></li>
+    <li><a class="dropdown-item" href="../articles/Transmission.html">Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
   </ul>
 </li>
@@ -113,9 +114,9 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Blood Feeding &amp; Transmission</h1>
-            <h3 data-toc-skip class="subtitle">The <strong>XY</strong>
-Interface for Blood Feeding, Mixing, and Transmission</h3>
+      <h1>Blood Feeding</h1>
+            <h3 data-toc-skip class="subtitle">The Interface for Blood
+Feeding</h3>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/BloodFeeding.Rmd" class="external-link"><code>vignettes/BloodFeeding.Rmd</code></a></small>
@@ -124,8 +125,180 @@ Interface for Blood Feeding, Mixing, and Transmission</h3>
 
     
     
-
-  </main>
+<p>In <strong><code>ramp.xds</code></strong>, blood feeding is
+understood as an interaction between mosquitoes and humans. An interface
+was designed to model blood feeding in a way that was mathematically
+sound. For most <strong>MY</strong> modules, the default set up option
+passes the value of bionomic parameters making it possible to build
+models that are not mathematically sound. Three potential issues
+are:</p>
+<ul>
+<li><p><span class="math inline">\(f\)</span> is positive when no blood
+hosts are present;</p></li>
+<li><p><span class="math inline">\(q \neq 0\)</span> when no humans are
+present; or</p></li>
+<li><p><span class="math inline">\(q \neq 1\)</span> when only humans
+are present</p></li>
+</ul>
+<p>To handle these issues, and meanwhile to guarantee that blood feeding
+and transmission are consistent, an interface was developed to compute
+mosquito bionomic parameters in relation to resource availability. This
+was also used to develop the <a href="Transmission.html">Transmission
+Interface</a></p>
+<hr>
+<p><img src="xds_blood_feeding.drawio.png" style="width:100.0%"></p>
+<hr>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
+<p>The human population is segmented into strata by residency: the patch
+where each stratum resides is passed as a vector called
+<code>residence</code>. Information about residency is passed in a
+vector during basic setup, and <code>nStrata = length(residence).</code>
+The residence matrix, <span class="math inline">\(J\)</span> is used to
+do sums by patch. It gets created from the residence vector, and the
+number of patches:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">residence</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/make_residence_matrix.html">make_residence_matrix</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">residence</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">J</span></span>
+<span><span class="va">J</span></span></code></pre></div>
+<pre><code><span><span class="co">##      [,1] [,2] [,3] [,4]</span></span>
+<span><span class="co">## [1,]    1    1    0    0</span></span>
+<span><span class="co">## [2,]    0    0    1    1</span></span>
+<span><span class="co">## [3,]    0    0    0    0</span></span></code></pre>
+<p>The user must also pass human population density <span class="math inline">\(H.\)</span> The total resident population of the
+patches</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">H</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">100</span>, <span class="fl">100</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">J</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">H</span></span></code></pre></div>
+<pre><code><span><span class="co">##      [,1]</span></span>
+<span><span class="co">## [1,] 1100</span></span>
+<span><span class="co">## [2,]  110</span></span>
+<span><span class="co">## [3,]    0</span></span></code></pre>
+<div class="section level2">
+<h2 id="available-humans">Available Humans<a class="anchor" aria-label="anchor" href="#available-humans"></a>
+</h2>
+<p>The model for blood feeding is motivated by a simple concept of
+<strong>availability</strong>: mosquitoes search for humans; the humans
+are found in places where they spend time when mosquitoes are active.
+Availability is based on a measure of weighted, ambient population.</p>
+<p><strong>Humans</strong> spend time.</p>
+<ul>
+<li>
+<p><span class="math inline">\(\Theta\)</span> — A matrix describes
+how humans spend their time. There is one column for each stratum. Each
+column should sum to a number that is less than or equal to one. If the
+column does not sum to 1, then humans are spending some time <em>not at
+risk</em> when they are not traveling.</p>
+<ul>
+<li><p>During basic setup, the time spent is initialized to be the same
+as the residence matrix.</p></li>
+<li><p>Models for time spent are set up by
+<code>setup_timespent</code></p></li>
+</ul>
+</li>
+<li>
+<p><span class="math inline">\(w\)</span> — Each human population
+stratum has a <strong>search weight</strong>.</p>
+<ul>
+<li><p>During basic setup, the search weights are set to 1 by default
+for all strata</p></li>
+<li><p>The search weights can be modified using
+<code>setup_blood_search_weights</code></p></li>
+</ul>
+</li>
+<li>
+<p><span class="math inline">\(\zeta\)</span> — Humans sometimes
+<em>travel.</em> In this model, it means they spend some time outside
+the spatial domain.</p>
+<ul>
+<li><p>By default, time away for all the strata is set to 0.</p></li>
+<li><p>Time away can be changed by <code>setup_time_away</code></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Mosquitoes</strong> search for blood hosts, and there is a
+daily activity pattern.</p>
+<ul>
+<li>
+<p>The daily mosquito activity pattern is described by a circadian
+function <span class="math inline">\(F_c(d),\)</span> a function that is
+constrained such that <span class="math display">\[\int_0^1 F_c(d)
+dd=1\]</span></p>
+<ul>
+<li><p>During setup, mosquitoes are equally active at all times of
+day.</p></li>
+<li><p>An alternative circadian function can be set up using
+<code>setup_F_circadian</code></p></li>
+</ul>
+</li>
+</ul>
+<p>Using these, we can compute ambient population density: <span class="math display">\[A = \Theta \cdot (\zeta H)\]</span></p>
+<p>Availability is the ambient population density weighted by search
+weights: <span class="math display">\[W = \Theta \cdot (w \zeta
+H)\]</span></p>
+<p>Time at risk is ambient population density weighted by mosquito
+activity: <span class="math display">\[\Psi = F_c(d) \zeta
+\Theta\]</span></p>
+</div>
+<div class="section level2">
+<h2 id="searching">Searching<a class="anchor" aria-label="anchor" href="#searching"></a>
+</h2>
+<p>Mosquito searching for blood hosts can often lead them to find
+something that isn’t a resident human:</p>
+<ul>
+<li>
+<p>Other blood hosts</p>
+<ul>
+<li><p>The availability of other blood hosts is set to 0.</p></li>
+<li><p>Other values can be configured using
+<code>setup_other_blood_hosts</code></p></li>
+</ul>
+</li>
+<li>
+<p>Traps — some traps are designed to capture blood feeding
+mosquitoes</p>
+<ul>
+<li><p>The availability of blood traps is set to 0.</p></li>
+<li><p>Other values can be configured using
+<code>setup_other_blood_traps</code></p></li>
+</ul>
+</li>
+<li>
+<p>Visitors (<span class="math inline">\(V\)</span>) are non
+resident humans</p>
+<ul>
+<li><p>The availability of visitors is set up to 0.</p></li>
+<li><p>Other values can be configured using
+<code>setup_visitors</code></p></li>
+</ul>
+</li>
+</ul>
+<p>Total availability of all resources that would attract blood feeding
+mosquitoes is <span class="math display">\[B= W + V +
+\ldots\]</span></p>
+</div>
+<div class="section level2">
+<h2 id="bionomics">Bionomics<a class="anchor" aria-label="anchor" href="#bionomics"></a>
+</h2>
+<p>Users can set up resources to motivate heterogeneous mosquito
+behaviors in a way that guarantees there are no mathematical
+inconsistencies like the ones listed at the top of this document.</p>
+<p>The mosquito bionomic parameters describing <strong>blood
+feeding</strong> — blood feeding rates <span class="math inline">\(f\)</span>, the human fraction <span class="math inline">\(q\)</span>, and possibly emigration rates, <span class="math inline">\(\sigma\)</span> — can be computed as a function of
+available resources. We call these <em>functional responses.</em></p>
+<ul>
+<li><p>The blood feeding rate is a function of the total available blood
+<span class="math display">\[f = F_f(B, ...)\]</span></p></li>
+<li><p>The human fraction is <span class="math display">\[q = F_q(t,
+V(t), W(t), B(t))= \frac{V+W}{B}\]</span></p></li>
+<li><p>Emigration is a result of searching for resources, including
+blood: <span class="math display">\[\sigma = F_\sigma(t,
+B(t),...)\]</span></p></li>
+</ul>
+<hr>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

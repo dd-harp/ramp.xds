@@ -434,6 +434,9 @@ values.
 
   Get the *Pf*PR from a malaria model
 
+- [`get_skills()`](https://dd-harp.github.io/ramp.xds/reference/get_skills.md)
+  : Get the skill set
+
 ## Qualitative Analysis
 
 ### Compute Steady States
@@ -1371,8 +1374,8 @@ Traps that attract and catch egg laying mosquitoes
   Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.md):
 - [Mosquito
   Bionomics](https://dd-harp.github.io/ramp.xds/articles/Bionomics.md):
-- [Blood Feeding &
-  Transmission](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md):
+- [Blood
+  Feeding](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md):
 - [Contributing](https://dd-harp.github.io/ramp.xds/articles/Contributing.md):
 - [Delay
   Equations](https://dd-harp.github.io/ramp.xds/articles/Delays.md):
@@ -1419,6 +1422,7 @@ Traps that attract and catch egg laying mosquitoes
   Setup](https://dd-harp.github.io/ramp.xds/articles/ScalableComplexity.md):
 - [Spatial Transmission Dynamics with
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.md):
+- [Transmission](https://dd-harp.github.io/ramp.xds/articles/Transmission.md):
 - [Understanding
   ramp.xds](https://dd-harp.github.io/ramp.xds/articles/Understanding_ramp.xds.md):
 - [Working with

@@ -51,7 +51,7 @@ includes
   including ovitraps and unsuitable habitats
 
 - the egg distribution matrix \\O\\, made by
-  [make_O_matrix](https://dd-harp.github.io/ramp.xds/reference/make_O_matrix.md)
+  [make_U_matrix](https://dd-harp.github.io/ramp.xds/reference/make_U_matrix.md)
 
 - a vector that stores eggs laid
 

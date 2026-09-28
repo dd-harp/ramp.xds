@@ -1,26 +1,32 @@
 # Exposure
 
-In **`ramp.xds`** exposure to infective bites is handled in several
-steps:
+The model for the force of infection (FoI), the rate of infection by
+stratum (called \\h\\ or `foi`) is computed from
 
-1.  The number of infective bites, per patch, is computed by a function
-    `F_fqZ.`
+- the local daily EIR, which is computed by the [transmission
+  interface](https://dd-harp.github.io/ramp.xds/articles/Transmission.md)
 
-2.  These bites are allocated to the local human population strata and
-    to visitors according to their *availability,* which returns the
-    daily `EIR` as a vector. Whereas `F_fqz` is a vector of length
-    \\n_p\\ or `nPatches,` the EIR is a vector of length \\n_h\\ or
-    `nStrata.`
+- the *time away* parameter, \\\zeta\\ (see the discussion in the [blood
+  feeding
+  interface](https://dd-harp.github.io/ramp.xds/articles/BloodFeeding.md))
 
-3.  Total exposure is transformed into a measure of the *local* FoI or
-    AR under a model of environmental heterogeneity.
+- a model for pre-erythrocytic immunity, the probability of an infection
+  per infectious bite that could use information from **XH** component.
 
-4.  A separate model estimates the *travel* FoI or AR.
+  - By default, \\F_b\\ returns a constant \\b\\
 
-5.  The *total* FoI is the sum of expected time spent traveling.
+  - Alternatives are defined in various **XH** modules
 
-## Availability
+- a model for environmental heterogeneity, which assumes that \\E\\ is
+  the mean rate of exposure, but in each one of these homogenous strata,
+  the expectation could have a distribution. For example, if the
+  expectation has a *gamma* distribution, then the expected number of
+  bites per person would follow a negative binomial distribution.
 
-## Environmental Heterogeneity
+  - By default, \\F_h\\ returns \\bE,\\ consistent with a Poisson model
+    of exposure.
 
-## Travel
+  - Alternative models pass the method name as the first argument to
+    `setup_exposure`
+
+![](xds_exposure.png)

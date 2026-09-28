@@ -6,8 +6,8 @@ called the "orbits." The orbits are parsed and attached by name to the
 **`xds`** model object.
 
 For differential equations the solution matrix is returned by
-[deSolve::deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html).
-Discrete time systems return a matrix that has the same shape.
+[deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html). Discrete time
+systems return a matrix that has the same shape.
 
 ## Usage
 
@@ -20,7 +20,7 @@ parse_XH_orbits(outputs, xds_obj, i)
 - outputs:
 
   an output matrix returned by
-  [deSolve::deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html)
+  [deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html)
 
 - xds_obj:
 

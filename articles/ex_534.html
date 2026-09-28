@@ -79,7 +79,8 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
 <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
-    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a></li>
+    <li><a class="dropdown-item" href="../articles/Transmission.html">Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
   </ul>
 </li>
@@ -297,11 +298,11 @@ U = \left[
 0 &amp; .2 &amp; 0\\
 \end{array} \right]
 \end{equation}\]</span></p>
-<p>It is computed using the function <code>make_O_matrix</code> that
+<p>It is computed using the function <code>make_U_matrix</code> that
 takes care of a problem that could arise from having empty patches, like
 patch 3 in this model.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">O_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_O_matrix.html">make_O_matrix</a></span><span class="op">(</span><span class="va">searchWtsQ</span>, <span class="va">habitat_matrix</span>, <span class="va">Q</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">O_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/make_U_matrix.html">make_U_matrix</a></span><span class="op">(</span><span class="va">searchWtsQ</span>, <span class="va">habitat_matrix</span>, <span class="va">Q</span><span class="op">)</span></span>
 <span><span class="va">O_matrix</span></span></code></pre></div>
 <pre><code><span><span class="co">##      [,1] [,2] [,3]</span></span>
 <span><span class="co">## [1,]  0.7  0.0    0</span></span>

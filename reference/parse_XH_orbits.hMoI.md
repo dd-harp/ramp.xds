@@ -16,7 +16,7 @@ parse_XH_orbits(outputs, xds_obj, i)
 - outputs:
 
   an output matrix returned by
-  [deSolve::deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html)
+  [deSolve](https://rdrr.io/pkg/deSolve/man/deSolve.html)
 
 - xds_obj:
 

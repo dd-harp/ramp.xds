@@ -79,7 +79,8 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
 <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
-    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a></li>
+    <li><a class="dropdown-item" href="../articles/Transmission.html">Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
   </ul>
 </li>
@@ -122,38 +123,40 @@
 
     
     
-<p>In <strong><code>ramp.xds</code></strong> exposure to infective bites
-is handled in several steps:</p>
-<ol style="list-style-type: decimal">
-<li><p>The number of infective bites, per patch, is computed by a
-function <code>F_fqZ.</code></p></li>
-<li><p>These bites are allocated to the local human population strata
-and to visitors according to their <em>availability,</em> which returns
-the daily <code>EIR</code> as a vector. Whereas <code>F_fqz</code> is a
-vector of length <span class="math inline">\(n_p\)</span> or
-<code>nPatches,</code> the EIR is a vector of length <span class="math inline">\(n_h\)</span> or <code>nStrata.</code></p></li>
-<li><p>Total exposure is transformed into a measure of the
-<em>local</em> FoI or AR under a model of environmental
-heterogeneity.</p></li>
-<li><p>A separate model estimates the <em>travel</em> FoI or
-AR.</p></li>
-<li><p>The <em>total</em> FoI is the sum of expected time spent
-traveling.</p></li>
-</ol>
-<div class="section level2">
-<h2 id="availability">Availability<a class="anchor" aria-label="anchor" href="#availability"></a>
-</h2>
-</div>
-<div class="section level2">
-<h2 id="environmental-heterogeneity">Environmental Heterogeneity<a class="anchor" aria-label="anchor" href="#environmental-heterogeneity"></a>
-</h2>
-</div>
-<div class="section level2">
-<h2 id="travel">Travel<a class="anchor" aria-label="anchor" href="#travel"></a>
-</h2>
-</div>
-  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
-    </nav></aside>
+<p>The model for the force of infection (FoI), the rate of infection by
+stratum (called <span class="math inline">\(h\)</span> or
+<code>foi</code>) is computed from</p>
+<ul>
+<li><p>the local daily EIR, which is computed by the <a href="Transmission.html">transmission interface</a></p></li>
+<li><p>the <em>time away</em> parameter, <span class="math inline">\(\zeta\)</span> (see the discussion in the <a href="BloodFeeding.html">blood feeding interface</a>)</p></li>
+<li>
+<p>a model for pre-erythrocytic immunity, the probability of an
+infection per infectious bite that could use information from
+<strong>XH</strong> component.</p>
+<ul>
+<li><p>By default, <span class="math inline">\(F_b\)</span> returns a
+constant <span class="math inline">\(b\)</span></p></li>
+<li><p>Alternatives are defined in various <strong>XH</strong>
+modules</p></li>
+</ul>
+</li>
+<li>
+<p>a model for environmental heterogeneity, which assumes that <span class="math inline">\(E\)</span> is the mean rate of exposure, but in
+each one of these homogenous strata, the expectation could have a
+distribution. For example, if the expectation has a <em>gamma</em>
+distribution, then the expected number of bites per person would follow
+a negative binomial distribution.</p>
+<ul>
+<li><p>By default, <span class="math inline">\(F_h\)</span> returns
+<span class="math inline">\(bE,\)</span> consistent with a Poisson model
+of exposure.</p></li>
+<li><p>Alternative models pass the method name as the first argument to
+<code>setup_exposure</code></p></li>
+</ul>
+</li>
+</ul>
+<p><img src="xds_exposure.png" style="width:100.0%"></p>
+  </main>
 </div>
 
 

@@ -79,7 +79,8 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-interfaces" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interfaces</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-interfaces">
 <li><a class="dropdown-item" href="../articles/EggLaying.html">Habitats &amp; Mosquito Ecology</a></li>
-    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding &amp; Transmission</a></li>
+    <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a></li>
+    <li><a class="dropdown-item" href="../articles/Transmission.html">Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
   </ul>
 </li>
@@ -114,8 +115,8 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Habitats &amp; Mosquito Ecology</h1>
-            <h3 data-toc-skip class="subtitle">The <strong>ML</strong>
-Interface for Egg Laying and Emergence</h3>
+            <h3 data-toc-skip class="subtitle">The Habitat Interface for
+Egg Laying and Emergence</h3>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/EggLaying.Rmd" class="external-link"><code>vignettes/EggLaying.Rmd</code></a></small>
@@ -124,8 +125,136 @@ Interface for Egg Laying and Emergence</h3>
 
     
     
-
-  </main>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
+<div class="float">
+<img src="xds_egg_laying.drawio.png" style="width:95.0%" alt="Figure — The habitat interface as a diagram."><div class="figcaption">
+<strong>Figure</strong> — The habitat interface
+as a diagram.</div>
+</div>
+<hr>
+<div class="section level2">
+<h2 id="the-habitat-matrix">The Habitat Matrix<a class="anchor" aria-label="anchor" href="#the-habitat-matrix"></a>
+</h2>
+<p>During setup, the location of each habitat is in the patch
+<code>membership</code> vector (see Figure). From this, the habitat
+matrix <span class="math inline">\(N\)</span> is created.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">membership</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu">ramp.xds</span><span class="fu">::</span><span class="fu"><a href="../reference/make_habitat_matrix.html">make_habitat_matrix</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">membership</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">N</span></span>
+<span><span class="va">N</span></span></code></pre></div>
+<pre><code><span><span class="co">##      [,1] [,2] [,3] [,4] [,5]</span></span>
+<span><span class="co">## [1,]    1    1    1    0    0</span></span>
+<span><span class="co">## [2,]    0    0    0    1    1</span></span>
+<span><span class="co">## [3,]    0    0    0    0    0</span></span></code></pre>
+<p>Any quantity that must sum quantites in habitats to patches can use
+<span class="math inline">\(N.\)</span> In particular, it is used for
+emergence. If <span class="math inline">\(\alpha\)</span> describes
+emergence of adults from aquatic habitats, then the number emerging per
+patch is <span class="math display">\[\Lambda = N \cdot
+\alpha\]</span></p>
+</div>
+<div class="section level2">
+<h2 id="searching">Searching<a class="anchor" aria-label="anchor" href="#searching"></a>
+</h2>
+<p><strong>Egg Laying</strong> in aquatic habitats is assumed to the
+outcome of searching, and searching for aquatic habitats is something
+adult mosquitoes do in the patches. To model searching we introduce the
+habitat search weight <span class="math inline">\(w,\)</span> and then
+we compute habitat availability:</p>
+<ul>
+<li>
+<p><span class="math inline">\(w\)</span> — finding a habitat while
+searching within a patch is modeled with search weights <span class="math inline">\(w.\)</span></p>
+<ul>
+<li><p>By default, the search weights are all set to 1.</p></li>
+<li><p>Search weights can be changed using
+<code>setup_habitat_search_weights</code>.</p></li>
+</ul>
+</li>
+<li><p><span class="math inline">\(Q\)</span> — Availability of
+habitats, per patch, is a simple sum: <span class="math display">\[Q =
+N\cdot w\]</span></p></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">weights</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">7</span>,<span class="fl">.5</span>,<span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="va">N</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">weights</span></span>
+<span><span class="va">Q</span></span></code></pre></div>
+<pre><code><span><span class="co">##      [,1]</span></span>
+<span><span class="co">## [1,] 10.0</span></span>
+<span><span class="co">## [2,]  2.5</span></span>
+<span><span class="co">## [3,]  0.0</span></span></code></pre>
+<ul>
+<li>
+<p><strong>Bad Habitats</strong> —The term <em>habitats</em> is
+synonymous with <em>productive habitats,</em> or any habitat that could
+potentially foster development of mosquitoes from egg, through all
+larval instars and into the pupal stage. A variable is set up to model
+the availability of <strong>bad habitats,</strong> or any habitat that
+attracts egg laying adults but that would never produce any adults.</p>
+<ul>
+<li><p>By default, available bad habitat is set to 0.</p></li>
+<li><p>Search weights can be changed using
+<code>setup_bad_habitats</code>.</p></li>
+</ul>
+</li>
+<li>
+<p><strong>Ovitraps</strong> — A variable <code>ovitraps</code> is
+also available to simulate traps that attract egg-laying mosquitoes.</p>
+<ul>
+<li><p>By default, no ovitraps are available.</p></li>
+<li><p>Search weights can be changed using
+<code>setup_ovitraps</code>.</p></li>
+</ul>
+</li>
+<li><p>The total availability of all water is the availability of
+habitats plus bad habitats or ovitraps: <span class="math display">\[Q_*
+= Q + \ldots\]</span></p></li>
+<li><p><span class="math inline">\(\nu\)</span> — the egg laying rate,
+the number of oviposition events, per adult mosquito, is a function of
+all available habitats and the availability of other things that compete
+with aquatic habitats for adult mosquito attention while egg laying:
+<span class="math display">\[\nu = F_\nu(Q_*)\]</span></p></li>
+<li><p><span class="math inline">\(\sigma\)</span> — the patch
+emigration rate can be computed using habitat availability (and the
+availability of other resources a mosquito needs): <span class="math display">\[\sigma = F_\sigma(Q_*, ...)\]</span></p></li>
+</ul>
+<p>We note that egg laying rates and patch emigration rates can be set
+up without using the concept of searching.</p>
+</div>
+<div class="section level2">
+<h2 id="egg-laying">Egg Laying<a class="anchor" aria-label="anchor" href="#egg-laying"></a>
+</h2>
+<p>Having set up an interface to describe adult mosquito egg laying
+behaviors, we must now use it to distribute the eggs laid by adults in
+each patch among all the habitats.</p>
+<ul>
+<li>the fraction of eggs laid in the <span class="math inline">\(j^{th}\)</span> patch by adults that go into the
+<span class="math inline">\(i^{th}\)</span> habitat in that patch is
+<span class="math inline">\(w_i/Q_j.\)</span> These are found in the
+laying matrix. To avoid divide by zero errors, we add a very small <span class="math inline">\(\epsilon\)</span> when normalizing. Finally, we
+use <span class="math inline">\(\left&lt;w\right&gt;\)</span> to denote
+a diagonal matrix made from the vector <span class="math inline">\(w\)</span>, and: <span class="math display">\[U =
+\left(N \cdot \left&lt;w\right&gt;\right)^T \cdot \left&lt;\frac 1 {Q+
+\epsilon} \right&gt;\]</span>
+</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ramp.xds</span><span class="fu">::</span><span class="fu"><a href="../reference/make_U_matrix.html">make_U_matrix</a></span><span class="op">(</span><span class="va">weights</span>, <span class="va">N</span>, <span class="va">Q</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##      [,1] [,2] [,3]</span></span>
+<span><span class="co">## [1,]  0.1  0.0    0</span></span>
+<span><span class="co">## [2,]  0.2  0.0    0</span></span>
+<span><span class="co">## [3,]  0.7  0.0    0</span></span>
+<span><span class="co">## [4,]  0.0  0.2    0</span></span>
+<span><span class="co">## [5,]  0.0  0.8    0</span></span></code></pre>
+<ul>
+<li>the fraction of eggs laid in productive habitats is <span class="math inline">\(Q/Q_*.\)</span>
+</li>
+</ul>
+<hr>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

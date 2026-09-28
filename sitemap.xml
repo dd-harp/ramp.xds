@@ -23,6 +23,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/RM-dts-Mosquito.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/ScalableComplexity.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/articles/Transmission.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Understanding_ramp.xds.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Working.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/XH-interface.html</loc></url>
@@ -376,11 +377,11 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/check_visitors.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_EIR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_EIR_full.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_O_matrix.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_Qall.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_RBR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_TaR.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_U_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_WB.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_all_available_water.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_beta.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_eggs_laid.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_kappa.html</loc></url>
@@ -538,6 +539,10 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.macdonald.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skills.L.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skills.MY.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skills.XH.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skills.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_spline.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_s.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_s.eir.html</loc></url>
@@ -577,8 +582,8 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_macdonald.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_M_obj_basicM.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_O_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_TimeSpent_xy.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/make_U_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_SIS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_hMoI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_SIS.html</loc></url>
@@ -807,6 +812,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/show_season.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/show_shock.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/show_trend.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/skills.all.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/steady_state_L.basicL_ode.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/steady_state_L.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/steady_state_M.basicM_dts.html</loc></url>
