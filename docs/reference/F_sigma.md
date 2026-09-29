@@ -1,7 +1,7 @@
-# Compute the Mosquito Patch Emigration Rate
+# Compute the mosquito patch emigration rate
 
-This method dispatches on the type of `sigma_obj`. It should set the
-values the patch emigration rate, \\\sigma\\
+This method dispatches on the type of `sigma_obj` and computes the patch
+emigration rate, \\\sigma\\.
 
 ## Usage
 
@@ -25,5 +25,5 @@ F_sigma(t, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector osigma length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`

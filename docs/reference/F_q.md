@@ -1,7 +1,7 @@
-# Compute the blood qeeding rate, q
+# Compute the human feeding fraction, q
 
-This method dispatches on the type of `q_obj`. It should set the values
-oq the bionomic parameters to baseline values
+This method dispatches on the type of `q_obj` and computes the human
+feeding fraction, \\q\\.
 
 ## Usage
 
@@ -25,5 +25,5 @@ F_q(t, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector oq length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`

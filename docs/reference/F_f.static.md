@@ -1,7 +1,7 @@
 # Constant baseline blood feeding rate
 
-Implements [F_f](https://dd-harp.github.io/ramp.xds/reference/F_f.md)
-for a static model
+Set or reset the baseline value of the feeding rate, \\f\\, to a static
+value
 
 ## Usage
 
@@ -27,7 +27,3 @@ F_f(t, xds_obj, s)
 ## Value
 
 \\f\\, the baseline blood feeding rate
-
-## Note
-
-This method dispatches on the type of `f_obj` attached to the `MY_obj`.

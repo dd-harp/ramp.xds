@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{setup_q_obj}
 \alias{setup_q_obj}
-\title{Setup a Human Fraction Bionomic Object}
+\title{Set up a human fraction bionomic object}
 \usage{
 setup_q_obj(q, MY_obj)
 }

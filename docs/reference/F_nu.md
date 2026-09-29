@@ -1,7 +1,7 @@
-# Compute the Mosquito Patch Emigration Rate
+# Compute the Egg Laying Rate
 
 This method dispatches on the type of `nu_obj`. It should set the values
-the patch emigration rate, \\\nu\\
+of the egg laying rate, \\\nu\\
 
 ## Usage
 
@@ -25,5 +25,5 @@ F_nu(t, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector onu length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`

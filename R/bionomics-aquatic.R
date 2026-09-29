@@ -1,5 +1,5 @@
 
-#' @title Setup psi object (maturation rate) 
+#' @title Set up psi object (maturation rate)
 #'
 #' @description Set up an object
 #' to compute the maturation  
@@ -22,7 +22,7 @@ setup_psi_obj = function(psi, L_obj){
   return(L_obj)
 }
 
-#' @title Setup for  
+#' @title Set up for
 #'
 #' @description Set up an object
 #' to compute 
@@ -50,7 +50,7 @@ F_psi.static <- function(t, xds_obj, s){
 }
 
 
-#' @title Setup phi object (density independent mortality) 
+#' @title Set up phi object (density independent mortality)
 #'
 #' @description Set up an object
 #' to compute the density independent death rate, \eqn{phi}
@@ -97,7 +97,7 @@ F_phi.static <- function(t, xds_obj, s){
   return(xds_obj$L_obj[[s]]$phi_obj$phi)
 }
 
-#' @title Setup xi object (maturation delay) 
+#' @title Set up xi object (maturation delay)
 #'
 #' @description Set up an object
 #' to compute the delayed maturation parameter, \eqn{xi}
@@ -143,7 +143,7 @@ F_xi.static <- function(t, xds_obj, s){
   return(xds_obj$L_obj[[s]]$xi_obj$xi)
 }
 
-#' @title Setup theta object (density dependent larval mortality) 
+#' @title Set up theta object (density dependent larval mortality)
 #'
 #' @description Set up an object
 #' to compute excess mortality as a function of 

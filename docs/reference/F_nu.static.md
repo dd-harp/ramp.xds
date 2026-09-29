@@ -1,4 +1,4 @@
-# Static model patch emigration
+# Static model egg laying rate
 
 Implements [F_nu](https://dd-harp.github.io/ramp.xds/reference/F_nu.md)
 for a static model
@@ -26,4 +26,4 @@ F_nu(t, xds_obj, s)
 
 ## Value
 
-\\nu\\, the patch emigration rate
+\\nu\\, the egg laying rate

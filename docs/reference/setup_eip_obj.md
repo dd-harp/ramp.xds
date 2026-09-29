@@ -1,4 +1,4 @@
-# Setup the eEIP object
+# Set up the extrinsic incubation period object
 
 Set up an object to compute the EIP
 
@@ -12,7 +12,7 @@ setup_eip_obj(eip, MY_obj)
 
 - eip:
 
-  the mosquito patch emigration rate
+  the extrinsic incubation period in days
 
 - MY_obj:
 

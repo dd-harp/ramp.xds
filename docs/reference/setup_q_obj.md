@@ -1,4 +1,4 @@
-# Setup a Human Fraction Bionomic Object
+# Set up a human fraction bionomic object
 
 Set up an object to compute the human fraction, \\q\\
 

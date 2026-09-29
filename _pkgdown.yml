@@ -531,6 +531,54 @@ reference:
   - get_K_matrix 
   - make_K_matrix_herethere
   - make_K_matrix_xy
+- subtitle: Mosquito Demography 
+  desc: |
+    Specialized methods to set up mosquito mortality and emigration 
+  contents:
+  - setup_g
+  - setup_F_g
+  - check_g
+  - make_F_g_random
+  - setup_sigma
+  - setup_F_sigma
+  - check_sigma
+  - make_F_sigma_random
+  - make_F_sigma_type2
+  - setup_mu
+  - setup_F_mu
+  - check_mu
+  - make_F_mu_random
+- subtitle: Blood Feeding 
+  desc: |
+    Specialized methods to set up blood feeding rates and the human fraction 
+  contents:
+  - setup_f
+  - setup_F_f
+  - check_f
+  - make_F_f_random
+  - make_F_f_type2
+  - setup_q
+  - setup_F_q
+  - check_q
+  - make_F_q_random
+  - make_F_q_WVB
+- subtitle: The EIP 
+  desc: |
+    Specialized methods to set up the extrinsic incubation period (EIP) model 
+  contents:
+  - setup_eip
+  - setup_F_eip
+  - check_eip
+  - make_F_eip_random
+- subtitle: Egg Laying 
+  desc: |
+    Specialized methods to set up the egg laying model 
+  contents:
+  - setup_nu
+  - setup_F_nu
+  - check_nu
+  - make_F_nu_random
+  - make_F_nu_type2
 - title: Forcing 
   contents:
   - xds_info_forcing 

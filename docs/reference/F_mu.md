@@ -1,7 +1,7 @@
 # Compute the emigration loss fraction
 
-This method dispatches on the type of `mu_obj`. It should set the values
-omu the bionomic parameters to baseline values
+This method dispatches on the type of `mu_obj`. It should compute the
+baseline emigration-loss fraction, \\\mu\\
 
 ## Usage
 
@@ -25,5 +25,5 @@ F_mu(t, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector omu length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`

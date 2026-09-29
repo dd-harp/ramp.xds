@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{F_psi}
 \alias{F_psi}
-\title{Setup for}
+\title{Set up for}
 \usage{
 F_psi(t, xds_obj, s)
 }

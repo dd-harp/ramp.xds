@@ -17,8 +17,7 @@ F_f(t, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-It should
-set the values of the bionomic parameters to baseline values
+Set the baseline value of the feeding rate, \eqn{f}.
 }
 \note{
 This method dispatches on the type of \code{f_obj} attached to the \code{MY_obj}.

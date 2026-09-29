@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{setup_g_obj}
 \alias{setup_g_obj}
-\title{Setup a Mosquito Mortality Bionomic Object}
+\title{Set up a mosquito mortality bionomic object}
 \usage{
 setup_g_obj(g, MY_obj)
 }

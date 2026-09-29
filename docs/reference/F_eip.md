@@ -1,7 +1,7 @@
 # Compute the EIP
 
-This method dispatches on the type of `eip_obj`. It sets the values the
-EIP
+This method dispatches on the type of `eip_obj` and computes the
+extrinsic incubation period.
 
 ## Usage
 
@@ -25,5 +25,5 @@ F_eip(t, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector oeip length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`

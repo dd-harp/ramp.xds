@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{F_g}
 \alias{F_g}
-\title{Compute the blood geeding rate, g}
+\title{Compute mosquito mortality}
 \usage{
 F_g(t, xds_obj, s)
 }
@@ -14,10 +14,10 @@ F_g(t, xds_obj, s)
 \item{s}{vector species index}
 }
 \value{
-a \link{numeric} vector og length \code{nPatches}
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
 This method dispatches on the type of \code{g_obj}. It should
-set the values og the bionomic parameters to baseline values
+compute the baseline mosquito mortality rate, \eqn{g}
 }
 \keyword{internal}

@@ -1,18 +1,14 @@
-# Change the human fraction
+# Change human feeding fraction
 
-Change the human fraction for a static model
+Update the human feeding fraction for the \\s^{th}\\ vector species.
 
 ## Usage
 
 ``` r
-change_q(q, xds_obj, s)
+change_q(xds_obj, s = 1)
 ```
 
 ## Arguments
-
-- q:
-
-  the human fraction
 
 - xds_obj:
 
@@ -24,4 +20,4 @@ change_q(q, xds_obj, s)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

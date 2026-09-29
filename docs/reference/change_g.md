@@ -1,18 +1,15 @@
-# Change the mosquito mortality rate
+# Change mosquito mortality rate
 
-Change the mosquito mortality rate for a static model
+Update the mosquito mortality rate for the \\s^{th}\\ vector species and
+refresh the demographic matrix.
 
 ## Usage
 
 ``` r
-change_g(g, xds_obj, s)
+change_g(xds_obj, s = 1)
 ```
 
 ## Arguments
-
-- g:
-
-  the mosquito mortality rate
 
 - xds_obj:
 
@@ -24,4 +21,4 @@ change_g(g, xds_obj, s)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

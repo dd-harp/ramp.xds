@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{setup_sigma_obj}
 \alias{setup_sigma_obj}
-\title{Setup a Patch Emigration Bionomic Object}
+\title{Set up a patch emigration bionomic object}
 \usage{
 setup_sigma_obj(sigma, MY_obj)
 }
@@ -16,6 +16,6 @@ a \strong{\code{MY}} model object
 }
 \description{
 Set up an object
-to compute the human fraction, \eqn{sigma}
+to compute the patch emigration rate, \eqn{\sigma}
 }
 \keyword{internal}

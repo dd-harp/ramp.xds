@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{F_sigma.static}
 \alias{F_sigma.static}
-\title{Static model patch emigration}
+\title{Static model patch emigration rate}
 \usage{
 \method{F_sigma}{static}(t, xds_obj, s)
 }
