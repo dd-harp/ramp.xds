@@ -1,4 +1,4 @@
-# Setup Blood Feeding Rate
+# Set up blood feeding rates
 
 Set up an object to compute dynamic blood feeding rates
 

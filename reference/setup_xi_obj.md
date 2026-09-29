@@ -1,4 +1,4 @@
-# Setup xi object (maturation delay)
+# Set up xi object (maturation delay)
 
 Set up an object to compute the delayed maturation parameter, \\xi\\
 

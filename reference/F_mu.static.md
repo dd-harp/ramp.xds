@@ -1,4 +1,4 @@
-# Static model for the blood feeding rate
+# Static model emigration-loss fraction
 
 Implements [F_mu](https://dd-harp.github.io/ramp.xds/reference/F_mu.md)
 for a static model
@@ -26,4 +26,4 @@ F_mu(t, xds_obj, s)
 
 ## Value
 
-\\mu\\, the baseline human fraction
+\\mu\\, the baseline emigration-loss fraction

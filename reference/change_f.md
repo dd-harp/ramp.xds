@@ -1,18 +1,15 @@
 # Change the blood feeding rate
 
-Change the blood feeding rate for a static model
+For models where the baseline value is constant, update the blood
+feeding rate.
 
 ## Usage
 
 ``` r
-change_f(f, xds_obj, s)
+change_f(xds_obj, s = 1)
 ```
 
 ## Arguments
-
-- f:
-
-  the blood feeding rate
 
 - xds_obj:
 
@@ -24,4 +21,4 @@ change_f(f, xds_obj, s)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

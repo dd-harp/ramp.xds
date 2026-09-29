@@ -1,4 +1,4 @@
-# Setup for
+# Set up for
 
 Set up an object to compute
 

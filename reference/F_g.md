@@ -1,7 +1,7 @@
-# Compute the blood geeding rate, g
+# Compute mosquito mortality
 
-This method dispatches on the type of `g_obj`. It should set the values
-og the bionomic parameters to baseline values
+This method dispatches on the type of `g_obj`. It should compute the
+baseline mosquito mortality rate, \\g\\
 
 ## Usage
 
@@ -25,5 +25,5 @@ F_g(t, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector og length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`

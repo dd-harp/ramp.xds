@@ -1,4 +1,4 @@
-# Setup psi object (maturation rate)
+# Set up psi object (maturation rate)
 
 Set up an object to compute the maturation rate \\psi\\
 

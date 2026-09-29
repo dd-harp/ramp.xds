@@ -1,18 +1,15 @@
-# Change the mosquito patch emigration rate
+# Change the patch emigration rate
 
-Change the mosquito patch emigration rate for a static model
+Update and validate the patch emigration rate for the \\s^{th}\\ vector
+species, then update the demographic matrix.
 
 ## Usage
 
 ``` r
-change_sigma(sigma, xds_obj, s)
+change_sigma(xds_obj, s = 1)
 ```
 
 ## Arguments
-
-- sigma:
-
-  the mosquito patch emigration rate
 
 - xds_obj:
 
@@ -24,4 +21,4 @@ change_sigma(sigma, xds_obj, s)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

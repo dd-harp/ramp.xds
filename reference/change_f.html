@@ -5,9 +5,9 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Change the blood feeding rate — change_f"><meta name="description" content="Change the blood feeding
-rate for a static model"><meta property="og:description" content="Change the blood feeding
-rate for a static model"></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Change the blood feeding rate — change_f"><meta name="description" content="For models where the baseline value is constant,
+update the blood feeding rate."><meta property="og:description" content="For models where the baseline value is constant,
+update the blood feeding rate."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -84,29 +84,25 @@ rate for a static model"></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Change the blood feeding rate</h1>
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/bionomics-change.R" class="external-link"><code>R/bionomics-change.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/bionomics-feeding_rate.R" class="external-link"><code>R/bionomics-feeding_rate.R</code></a></small>
       <div class="d-none name"><code>change_f.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
-    <p>Change the blood feeding
-rate for a static model</p>
+    <p>For models where the baseline value is constant,
+update the blood feeding rate.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">change_f</span><span class="op">(</span><span class="va">f</span>, <span class="va">xds_obj</span>, <span class="va">s</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">change_f</span><span class="op">(</span><span class="va">xds_obj</span>, s <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-f">f<a class="anchor" aria-label="anchor" href="#arg-f"></a></dt>
-<dd><p>the blood feeding rate</p></dd>
-
-
-<dt id="arg-xds-obj">xds_obj<a class="anchor" aria-label="anchor" href="#arg-xds-obj"></a></dt>
+<dl><dt id="arg-xds-obj">xds_obj<a class="anchor" aria-label="anchor" href="#arg-xds-obj"></a></dt>
 <dd><p>an <strong><code>xds</code></strong> model object</p></dd>
 
 
@@ -116,7 +112,7 @@ rate for a static model</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>an <strong><code>xds</code></strong> model object</p>
+    <p>an <strong><code>xds</code></strong> object</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

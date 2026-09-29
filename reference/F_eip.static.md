@@ -27,4 +27,4 @@ F_eip(t, xds_obj, s)
 
 ## Value
 
-\\eip\\, the patch emigration rate
+\\eip\\, the extrinsic incubation period in days
