@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_xi_obj}
 \alias{setup_xi_obj}
-\title{Setup xi object (maturation delay)}
+\title{Set up xi object (maturation delay)}
 \usage{
 setup_xi_obj(xi, L_obj)
 }

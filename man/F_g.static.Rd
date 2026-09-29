@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{F_g.static}
 \alias{F_g.static}
-\title{Static model for the blood feeding rate}
+\title{Static model mosquito mortality rate}
 \usage{
 \method{F_g}{static}(t, xds_obj, s)
 }
@@ -14,7 +14,7 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{g}, the baseline human fraction
+\eqn{g}, the baseline mosquito mortality rate
 }
 \description{
 Implements \link{F_g} for a static model

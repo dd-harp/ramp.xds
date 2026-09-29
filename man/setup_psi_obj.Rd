@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_psi_obj}
 \alias{setup_psi_obj}
-\title{Setup psi object (maturation rate)}
+\title{Set up psi object (maturation rate)}
 \usage{
 setup_psi_obj(psi, L_obj)
 }

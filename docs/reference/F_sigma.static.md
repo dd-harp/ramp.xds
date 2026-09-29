@@ -1,4 +1,4 @@
-# Static model patch emigration
+# Static model patch emigration rate
 
 Implements
 [F_sigma](https://dd-harp.github.io/ramp.xds/reference/F_sigma.md) for a

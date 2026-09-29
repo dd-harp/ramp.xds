@@ -788,22 +788,22 @@ Change parameters
   : Change the blood feeding rate
 
 - [`change_g()`](https://dd-harp.github.io/ramp.xds/reference/change_g.md)
-  : Change the mosquito mortality rate
+  : Change mosquito mortality rate
 
 - [`change_q()`](https://dd-harp.github.io/ramp.xds/reference/change_q.md)
-  : Change the human fraction
+  : Change human feeding fraction
 
 - [`change_sigma()`](https://dd-harp.github.io/ramp.xds/reference/change_sigma.md)
-  : Change the mosquito patch emigration rate
+  : Change the patch emigration rate
 
 - [`change_mu()`](https://dd-harp.github.io/ramp.xds/reference/change_mu.md)
-  : Change the emigration loss fraction
+  : Change emigration-loss fraction
 
 - [`change_nu()`](https://dd-harp.github.io/ramp.xds/reference/change_nu.md)
-  : Change the egg laying rate
+  : Change F_nu
 
 - [`change_eip()`](https://dd-harp.github.io/ramp.xds/reference/change_eip.md)
-  : Change the EIP
+  : Change the extrinsic incubation period
 
 ### Change for L
 
@@ -1221,6 +1221,91 @@ Specialized methods to set up mosquito dispersal matrices
   : Make a Here-There Dispersal Matrix
 - [`make_K_matrix_xy()`](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_xy.md)
   : make a Kernel-Based Mosquito Dispersal Matrix
+
+### Mosquito Demography
+
+Specialized methods to set up mosquito mortality and emigration
+
+- [`setup_g()`](https://dd-harp.github.io/ramp.xds/reference/setup_g.md)
+  : Set up mosquito mortality rate
+- [`setup_F_g()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_g.md)
+  : Set up F_g
+- [`check_g()`](https://dd-harp.github.io/ramp.xds/reference/check_g.md)
+  : Check mosquito mortality rate
+- [`make_F_g_random()`](https://dd-harp.github.io/ramp.xds/reference/make_F_g_random.md)
+  : Make random mosquito mortality rates
+- [`setup_sigma()`](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  : Set up patch emigration rate
+- [`setup_F_sigma()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_sigma.md)
+  : Set up F_sigma
+- [`check_sigma()`](https://dd-harp.github.io/ramp.xds/reference/check_sigma.md)
+  : Check patch emigration rate
+- [`make_F_sigma_random()`](https://dd-harp.github.io/ramp.xds/reference/make_F_sigma_random.md)
+  : Make random patch emigration rates
+- [`make_F_sigma_type2()`](https://dd-harp.github.io/ramp.xds/reference/make_F_sigma_type2.md)
+  : Make a patch emigration configuration
+- [`setup_mu()`](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
+  : Set up emigration-loss fraction
+- [`setup_F_mu()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_mu.md)
+  : Set up F_mu
+- [`check_mu()`](https://dd-harp.github.io/ramp.xds/reference/check_mu.md)
+  : Check emigration-loss fraction
+- [`make_F_mu_random()`](https://dd-harp.github.io/ramp.xds/reference/make_F_mu_random.md)
+  : Make random emigration-loss fractions
+
+### Blood Feeding
+
+Specialized methods to set up blood feeding rates and the human fraction
+
+- [`setup_f()`](https://dd-harp.github.io/ramp.xds/reference/setup_f.md)
+  : Set up constant blood feeding rate
+- [`setup_F_f()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_f.md)
+  : Set up blood feeding rates
+- [`check_f()`](https://dd-harp.github.io/ramp.xds/reference/check_f.md)
+  : Check blood feeding rate
+- [`make_F_f_random()`](https://dd-harp.github.io/ramp.xds/reference/make_F_f_random.md)
+  : Make random blood feeding rate object
+- [`make_F_f_type2()`](https://dd-harp.github.io/ramp.xds/reference/make_F_f_type2.md)
+  : Make type 2 blood feeding rate configuration
+- [`setup_q()`](https://dd-harp.github.io/ramp.xds/reference/setup_q.md)
+  : Set up human feeding fraction
+- [`setup_F_q()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_q.md)
+  : Set up F_q
+- [`check_q()`](https://dd-harp.github.io/ramp.xds/reference/check_q.md)
+  : Check human feeding fraction
+- [`make_F_q_random()`](https://dd-harp.github.io/ramp.xds/reference/make_F_q_random.md)
+  : Make random human feeding fractions
+- [`make_F_q_WVB()`](https://dd-harp.github.io/ramp.xds/reference/make_F_q_WVB.md)
+  : Make a WVB human feeding fraction configuration
+
+### The EIP
+
+Specialized methods to set up the extrinsic incubation period (EIP)
+model
+
+- [`setup_eip()`](https://dd-harp.github.io/ramp.xds/reference/setup_eip.md)
+  : Set up the extrinsic incubation period
+- [`setup_F_eip()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_eip.md)
+  : Set up F_eip
+- [`check_eip()`](https://dd-harp.github.io/ramp.xds/reference/check_eip.md)
+  : Check the extrinsic incubation period
+- [`make_F_eip_random()`](https://dd-harp.github.io/ramp.xds/reference/make_F_eip_random.md)
+  : Make random EIP configuration
+
+### Egg Laying
+
+Specialized methods to set up the egg laying model
+
+- [`setup_nu()`](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
+  : Setup nu
+- [`setup_F_nu()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_nu.md)
+  : Set up F_nu
+- [`check_nu()`](https://dd-harp.github.io/ramp.xds/reference/check_nu.md)
+  : Check egg laying rate
+- [`make_F_nu_random()`](https://dd-harp.github.io/ramp.xds/reference/make_F_nu_random.md)
+  : Make random laying rates
+- [`make_F_nu_type2()`](https://dd-harp.github.io/ramp.xds/reference/make_F_nu_type2.md)
+  : Make type2 egg laying rates
 
 ## Forcing
 

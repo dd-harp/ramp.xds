@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{setup_f_obj}
 \alias{setup_f_obj}
-\title{Setup Blood Feeding Rate}
+\title{Set up blood feeding rates}
 \usage{
 setup_f_obj(f, MY_obj)
 }

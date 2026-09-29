@@ -16,6 +16,6 @@ a \strong{\code{MY}} model object
 }
 \description{
 Set up an object
-to compute the human fraction, \eqn{nu}
+to compute the egg laying rate, \eqn{nu}
 }
 \keyword{internal}

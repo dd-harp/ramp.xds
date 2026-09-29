@@ -1,4 +1,4 @@
-# Static model for the blood feeding rate
+# Static model human feeding fraction
 
 Implements [F_q](https://dd-harp.github.io/ramp.xds/reference/F_q.md)
 for a static model
@@ -26,4 +26,4 @@ F_q(t, xds_obj, s)
 
 ## Value
 
-\\q\\, the baseline human fraction
+\\q\\, the baseline human feeding fraction

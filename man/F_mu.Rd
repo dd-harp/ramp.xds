@@ -14,10 +14,10 @@ F_mu(t, xds_obj, s)
 \item{s}{vector species index}
 }
 \value{
-a \link{numeric} vector omu length \code{nPatches}
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
 This method dispatches on the type of \code{mu_obj}. It should
-set the values omu the bionomic parameters to baseline values
+compute the baseline emigration-loss fraction, \eqn{\mu}
 }
 \keyword{internal}

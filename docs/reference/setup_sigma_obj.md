@@ -1,6 +1,6 @@
-# Setup a Patch Emigration Bionomic Object
+# Set up a patch emigration bionomic object
 
-Set up an object to compute the human fraction, \\sigma\\
+Set up an object to compute the patch emigration rate, \\\sigma\\
 
 ## Usage
 

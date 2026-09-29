@@ -1,4 +1,4 @@
-# Setup phi object (density independent mortality)
+# Set up phi object (density independent mortality)
 
 Set up an object to compute the density independent death rate, \\phi\\
 

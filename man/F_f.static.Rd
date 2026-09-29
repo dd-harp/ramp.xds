@@ -17,9 +17,7 @@
 \eqn{f}, the baseline blood feeding rate
 }
 \description{
-Implements \link{F_f} for a static model
-}
-\note{
-This method dispatches on the type of \code{f_obj} attached to the \code{MY_obj}.
+Set or reset the baseline value of the feeding rate, \eqn{f}, to a static
+value
 }
 \keyword{internal}

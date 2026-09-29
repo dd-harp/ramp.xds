@@ -1,13 +1,14 @@
-# Type 2 functional response for the blood feeding rate
+# Compute the blood feeding rate, f
 
-Implements [F_f](https://dd-harp.github.io/ramp.xds/reference/F_f.md)
-for a static model
+Implements a type2 functional response to compute blood feeding rates as
+a functional response to resource availability: \$\$F_f(B)= f_x
+\frac{s_f B}{1+s_f B}\$\$.
 
 ## Usage
 
 ``` r
-# S3 method for type2
-F_f(t, vars, f_par)
+# S3 method for class 'type2'
+F_f(t, xds_obj, s)
 ```
 
 ## Arguments
@@ -16,15 +17,14 @@ F_f(t, vars, f_par)
 
   current simulation time
 
-- vars:
+- xds_obj:
 
-  exogenous variables
+  an **`xds`** model object
 
-- f_par:
+- s:
 
-  a [list](https://rdrr.io/r/base/list.html)
+  vector species index
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
-`nPatches`
+\\f\\, the baseline blood feeding rate

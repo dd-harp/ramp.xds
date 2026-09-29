@@ -1,23 +1,31 @@
-# Set up the fixed model for control forcing (do nothing)
+# Set up the extrinsic incubation period
 
-Set up the fixed model for control forcing (do nothing)
+Configure and validate the EIP strategy.
 
 ## Usage
 
 ``` r
-setup_EIP(EIPopts, MYZpar)
+setup_eip(name, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
 
-- EIPopts:
+- name:
 
-  a list with options to setup EIPmod; must include EIPmod\$EIPname
+  an EIP value or setup method name
 
-- MYZpar:
+- xds_obj:
 
-  the MYZ parameters
+  an **`xds`** model object
+
+- options:
+
+  configuration options
+
+- s:
+
+  the vector species index
 
 ## Value
 
-[list](https://rdrr.io/r/base/list.html) MYZpar with the EIPmod attached
+an **`xds`** model object

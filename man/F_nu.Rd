@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{F_nu}
 \alias{F_nu}
-\title{Compute the Mosquito Patch Emigration Rate}
+\title{Compute the Egg Laying Rate}
 \usage{
 F_nu(t, xds_obj, s)
 }
@@ -14,10 +14,10 @@ F_nu(t, xds_obj, s)
 \item{s}{vector species index}
 }
 \value{
-a \link{numeric} vector onu length \code{nPatches}
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
 This method dispatches on the type of \code{nu_obj}. It should
-set the values the patch emigration rate, \eqn{\nu}
+set the values of the egg laying rate, \eqn{\nu}
 }
 \keyword{internal}

@@ -1,6 +1,6 @@
 # Setup Laying Rate Bionomic Object
 
-Set up an object to compute the human fraction, \\nu\\
+Set up an object to compute the egg laying rate, \\nu\\
 
 ## Usage
 

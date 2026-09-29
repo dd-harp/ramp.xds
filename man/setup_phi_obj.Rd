@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_phi_obj}
 \alias{setup_phi_obj}
-\title{Setup phi object (density independent mortality)}
+\title{Set up phi object (density independent mortality)}
 \usage{
 setup_phi_obj(phi, L_obj)
 }

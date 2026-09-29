@@ -1,18 +1,15 @@
-# Change the EIP
+# Change the extrinsic incubation period
 
-Change the extrinsic incubation period for a static model
+Update the extrinsic incubation period for the \\s^{th}\\ vector
+species.
 
 ## Usage
 
 ``` r
-change_eip(eip, xds_obj, s)
+change_eip(xds_obj, s = 1)
 ```
 
 ## Arguments
-
-- eip:
-
-  the extrinsic incubation period
 
 - xds_obj:
 

@@ -1,18 +1,15 @@
-# Change the emigration loss fraction
+# Change emigration-loss fraction
 
-Change the emigration loss fraction for a static model
+Update the emigration-loss fraction for the \\s^{th}\\ vector species
+and refresh the demographic matrix.
 
 ## Usage
 
 ``` r
-change_mu(mu, xds_obj, s)
+change_mu(xds_obj, s = 1)
 ```
 
 ## Arguments
-
-- mu:
-
-  the emigration loss fraction
 
 - xds_obj:
 
@@ -24,4 +21,4 @@ change_mu(mu, xds_obj, s)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

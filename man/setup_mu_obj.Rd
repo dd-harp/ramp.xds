@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{setup_mu_obj}
 \alias{setup_mu_obj}
-\title{Setup a Dispersal Loss Bionomic Object}
+\title{Set up a dispersal loss bionomic object}
 \usage{
 setup_mu_obj(mu, MY_obj)
 }

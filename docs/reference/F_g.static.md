@@ -1,4 +1,4 @@
-# Static model for the blood feeding rate
+# Static model mosquito mortality rate
 
 Implements [F_g](https://dd-harp.github.io/ramp.xds/reference/F_g.md)
 for a static model
@@ -26,4 +26,4 @@ F_g(t, xds_obj, s)
 
 ## Value
 
-\\g\\, the baseline human fraction
+\\g\\, the baseline mosquito mortality rate

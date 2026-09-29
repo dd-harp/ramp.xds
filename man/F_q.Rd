@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{F_q}
 \alias{F_q}
-\title{Compute the blood qeeding rate, q}
+\title{Compute the human feeding fraction, q}
 \usage{
 F_q(t, xds_obj, s)
 }
@@ -14,10 +14,10 @@ F_q(t, xds_obj, s)
 \item{s}{vector species index}
 }
 \value{
-a \link{numeric} vector oq length \code{nPatches}
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This method dispatches on the type of \code{q_obj}. It should
-set the values oq the bionomic parameters to baseline values
+This method dispatches on the type of \code{q_obj} and computes
+the human feeding fraction, \eqn{q}.
 }
 \keyword{internal}

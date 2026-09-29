@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{F_mu.static}
 \alias{F_mu.static}
-\title{Static model for the blood feeding rate}
+\title{Static model emigration-loss fraction}
 \usage{
 \method{F_mu}{static}(t, xds_obj, s)
 }
@@ -14,7 +14,7 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{mu}, the baseline human fraction
+\eqn{mu}, the baseline emigration-loss fraction
 }
 \description{
 Implements \link{F_mu} for a static model

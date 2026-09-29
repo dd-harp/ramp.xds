@@ -1,18 +1,14 @@
-# Change the egg laying rate
+# Change F_nu
 
-Change the egg laying rate for a static model
+Update F_nu for the \\s^{th}\\ vector species.
 
 ## Usage
 
 ``` r
-change_nu(nu, xds_obj, s)
+change_nu(xds_obj, s = 1)
 ```
 
 ## Arguments
-
-- nu:
-
-  the egg laying rate (# batches, per mosquito, per day)
 
 - xds_obj:
 
@@ -24,4 +20,4 @@ change_nu(nu, xds_obj, s)
 
 ## Value
 
-an **`xds`** model object
+an **`xds`** object

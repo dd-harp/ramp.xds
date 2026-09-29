@@ -1,6 +1,6 @@
 # Compute the blood feeding rate, f
 
-It should set the values of the bionomic parameters to baseline values
+Set the baseline value of the feeding rate, \\f\\.
 
 ## Usage
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_theta_obj}
 \alias{setup_theta_obj}
-\title{Setup theta object (density dependent larval mortality)}
+\title{Set up theta object (density dependent larval mortality)}
 \usage{
 setup_theta_obj(theta, L_obj)
 }

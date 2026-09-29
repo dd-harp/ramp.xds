@@ -1,4 +1,4 @@
-# Setup theta object (density dependent larval mortality)
+# Set up theta object (density dependent larval mortality)
 
 Set up an object to compute excess mortality as a function of to mean
 crowding, \\theta\\
