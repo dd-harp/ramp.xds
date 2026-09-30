@@ -19,6 +19,12 @@ how the code works.
 
 ------------------------------------------------------------------------
 
+![A diagram of the XH component.](XH_component.drawio.png)
+
+A diagram of the **XH** component.
+
+------------------------------------------------------------------------
+
 ## Overview
 
 The **XH** component handles demography and epidemiology. The software
