@@ -16,6 +16,10 @@ A library of **XH** modules can be found in [**`ramp.library`**](https://dd-harp
 
 This vignette takes a deep dive into the design and structure of the **XH** component. It is useful for anyone who wants to learn more about how the code works.  
 
+*** 
+
+![A diagram of the **XH** component.](XH_component.drawio.png){width=100%}
+
 ***
 
 ## Overview  
