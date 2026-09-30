@@ -29,8 +29,7 @@
     <li><a class="dropdown-item" href="../articles/ex_534.html">The 5-3-4 Model</a></li>
     <li><a class="dropdown-item" href="../articles/modular_forms.html">Modular Forms</a></li>
     <li><a class="dropdown-item" href="../articles/modularity.html">Modular Computation</a></li>
-    <li><a class="dropdown-item" href="../articles/Delays.html">Delay Equations</a></li>
-    <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
+    <li><a class="dropdown-item" href="../articles/Delays.html">Internalizing Lagged Terms</a></li>
     <li><a class="dropdown-item" href="../articles/DTS.html">Discrete Time Systems</a></li>
   </ul></li>
 <li class="nav-item dropdown">
@@ -59,6 +58,7 @@
     <li><a class="dropdown-item" href="../articles/BloodFeeding.html">Blood Feeding</a></li>
     <li><a class="dropdown-item" href="../articles/Transmission.html">Transmission</a></li>
     <li><a class="dropdown-item" href="../articles/Exposure.html">Exposure</a></li>
+    <li><a class="dropdown-item" href="../articles/Forcing.html">Ports &amp; Junctions</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-supporting-software" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Supporting Software</button>
@@ -377,9 +377,14 @@
         </dt>
         <dd>Dynamical Interfaces</dd>
       </dl></div><div class="section level2">
-      <h2 id="solve">Solve<a class="anchor" aria-label="anchor" href="#solve"></a></h2>
+      <h2 id="solve-and-analyze">Solve and Analyze<a class="anchor" aria-label="anchor" href="#solve-and-analyze"></a></h2>
 
-      <div class="section-desc"><p>Methods to numerically solve differential equations and get the outputs</p></div>
+      <div class="section-desc"><p>Methods to numerically solve and analyzed differential equations</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+      <h3 id="solve">Solve<a class="anchor" aria-label="anchor" href="#solve"></a></h3>
+
 
       <dl></dl></div><div class="section level2">
 
@@ -429,7 +434,7 @@
         <dd>Parsing</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="variable">Variable<a class="anchor" aria-label="anchor" href="#variable"></a></h3>
+      <h3 id="change-variables">Change Variables<a class="anchor" aria-label="anchor" href="#change-variables"></a></h3>
       <div class="section-desc"><p>Inspect initial values. Get the final state. Copy final state to initial values.</p></div>
 
       <dl></dl></div><div class="section level2">
@@ -1385,7 +1390,7 @@
         </dt>
         <dd>saveRDS for <code>xds</code> Objects</dd>
       </dl></div><div class="section level2">
-      <h2 id="xh-component">XH Component<a class="anchor" aria-label="anchor" href="#xh-component"></a></h2>
+      <h2 id="humans-hosts-xh-">Humans / Hosts (XH)<a class="anchor" aria-label="anchor" href="#humans-hosts-xh-"></a></h2>
 
       <div class="section-desc"><p>Models of human / host infection dynamics - immunity - disease - infectiousness - diagnostics and detection</p></div>
 
@@ -1428,30 +1433,9 @@
 
         </dt>
         <dd>Setup functions for the XH component</dd>
-
-        <dt>
-
-          <code><a href="setup_births.html">setup_births()</a></code>
-
-        </dt>
-        <dd>Setup births</dd>
-
-        <dt>
-
-          <code><a href="setup_mortality_matrix.html">setup_mortality_matrix()</a></code>
-
-        </dt>
-        <dd>Setup demographic matrix</dd>
-
-        <dt>
-
-          <code><a href="setup_mass_treatment.html">setup_mass_treatment()</a></code>
-
-        </dt>
-        <dd>Setup mass treatment</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="modules">Modules<a class="anchor" aria-label="anchor" href="#modules"></a></h3>
+      <h3 id="x-modules">X Modules<a class="anchor" aria-label="anchor" href="#x-modules"></a></h3>
       <div class="section-desc"><p>XH component module implementations</p></div>
 
       <dl></dl></div><div class="section level2">
@@ -1479,6 +1463,36 @@
 
         </dt>
         <dd>The <code>hMoI</code> module for the XH component</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="human-host-demography-h-">Human / Host Demography (H)<a class="anchor" aria-label="anchor" href="#human-host-demography-h-"></a></h3>
+      <div class="section-desc"><p>Human / Host Demography</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="setup_births.html">setup_births()</a></code>
+
+        </dt>
+        <dd>Setup births</dd>
+
+        <dt>
+
+          <code><a href="setup_mortality_matrix.html">setup_mortality_matrix()</a></code>
+
+        </dt>
+        <dd>Setup demographic matrix</dd>
+
+        <dt>
+
+          <code><a href="setup_mass_treatment.html">setup_mass_treatment()</a></code>
+
+        </dt>
+        <dd>Setup mass treatment</dd>
       </dl></div><div class="section level2">
 
       <h3 id="time-spent">Time Spent<a class="anchor" aria-label="anchor" href="#time-spent"></a></h3>
@@ -1539,22 +1553,6 @@
         <dd>Make a time spent matrix using location data</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="circadian-patterns">Circadian Patterns<a class="anchor" aria-label="anchor" href="#circadian-patterns"></a></h3>
-      <div class="section-desc"><p>Adult daily activity patterns</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="setup_F_circadian.html">setup_F_circadian()</a></code>
-
-        </dt>
-        <dd>Setup a circadian pattern function</dd>
-      </dl></div><div class="section level2">
-
 
       <div class="section-desc"><p>Utilities for Time Spent Matrices</p></div>
 
@@ -1612,7 +1610,248 @@
         </dt>
         <dd>Steady states for <strong>XH</strong></dd>
       </dl></div><div class="section level2">
-      <h2 id="my-component">MY Component<a class="anchor" aria-label="anchor" href="#my-component"></a></h2>
+
+      <h3 id="exposure">Exposure<a class="anchor" aria-label="anchor" href="#exposure"></a></h3>
+      <div class="section-desc"><p>Compute the FoI from local EIR and travel</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_info_exposure.html">xds_info_exposure</a></code>
+
+        </dt>
+        <dd>Exposure</dd>
+
+        <dt>
+
+          <code><a href="xds_info_environmental_heterogeneity.html">xds_info_environmental_heterogeneity</a></code>
+
+        </dt>
+        <dd>Environmental Heterogeneity</dd>
+
+        <dt>
+
+          <code><a href="setup_exposure.html">setup_exposure()</a></code>
+
+        </dt>
+        <dd>Set Up Exposure</dd>
+
+        <dt>
+
+          <code><a href="foi2eir.html">foi2eir()</a></code>
+
+        </dt>
+        <dd>Convert FoI to EIR</dd>
+
+        <dt>
+
+          <code><a href="ar2eir.html">ar2eir()</a></code>
+
+        </dt>
+        <dd>Convert AR to EIR</dd>
+
+        <dt>
+
+          <code><a href="make_exposure_pois.html">make_exposure_pois()</a></code>
+
+        </dt>
+        <dd>Make a Poisson Exposure Model Object</dd>
+
+        <dt>
+
+          <code><a href="make_exposure_nb.html">make_exposure_nb()</a></code>
+
+        </dt>
+        <dd>Make a nbson Exposure Model Object</dd>
+      </dl></div><div class="section level2">
+      <h2 id="malaria-landscapes-xy-">Malaria Landscapes (XY)<a class="anchor" aria-label="anchor" href="#malaria-landscapes-xy-"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_info_blood_feeding.html">xds_info_blood_feeding</a></code>
+
+        </dt>
+        <dd>Blood Feeding</dd>
+
+        <dt>
+
+          <code><a href="xds_info_local_fraction.html">xds_info_local_fraction</a></code>
+
+        </dt>
+        <dd>The Local Fraction</dd>
+
+        <dt>
+
+          <code><a href="xds_info_available_blood_hosts.html">xds_info_available_blood_hosts</a></code>
+
+        </dt>
+        <dd>Available Blood</dd>
+
+        <dt>
+
+          <code><a href="xds_info_search_weights.html">xds_info_search_weights</a></code>
+
+        </dt>
+        <dd>Search Weights</dd>
+
+        <dt>
+
+          <code><a href="xds_info_relative_biting_rates.html">xds_info_relative_biting_rates</a></code>
+
+        </dt>
+        <dd>Relative Biting Rate</dd>
+
+        <dt>
+
+          <code><a href="xds_info_transmission.html">xds_info_transmission</a></code>
+
+        </dt>
+        <dd>Transmission</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="search-weights">Search Weights<a class="anchor" aria-label="anchor" href="#search-weights"></a></h3>
+      <div class="section-desc"><p>The ports for resources</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_info_search_weights_blood.html">xds_info_search_weights_blood</a></code>
+
+        </dt>
+        <dd>Blood Search Weights</dd>
+
+        <dt>
+
+          <code><a href="setup_blood_search_weights.html">setup_blood_search_weights()</a></code>
+
+        </dt>
+        <dd>Set up a blood_search_weights</dd>
+
+        <dt>
+
+          <code><a href="change_blood_search_weights.html">change_blood_search_weights()</a></code>
+
+        </dt>
+        <dd>Change the blood_search_weights</dd>
+
+        <dt>
+
+          <code><a href="check_blood_search_weights.html">check_blood_search_weights()</a></code>
+
+        </dt>
+        <dd>Check blood search weights</dd>
+
+        <dt>
+
+          <code><a href="make_blood_search_weights_random.html">make_blood_search_weights_random()</a></code>
+
+        </dt>
+        <dd>Make blood search weights</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="other-blood-hosts">Other blood hosts<a class="anchor" aria-label="anchor" href="#other-blood-hosts"></a></h3>
+      <div class="section-desc"><p>The ports for resources</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_port_other_blood_hosts.html">xds_port_other_blood_hosts</a></code>
+
+        </dt>
+        <dd>Other Blood Hosts</dd>
+
+        <dt>
+
+          <code><a href="setup_other_blood_hosts.html">setup_other_blood_hosts()</a></code>
+
+        </dt>
+        <dd>Set up a other_blood_hosts</dd>
+
+        <dt>
+
+          <code><a href="change_other_blood_hosts.html">change_other_blood_hosts()</a></code>
+
+        </dt>
+        <dd>Change the other_blood_hosts</dd>
+
+        <dt>
+
+          <code><a href="check_other_blood_hosts.html">check_other_blood_hosts()</a></code>
+
+        </dt>
+        <dd>Check other blood hosts</dd>
+
+        <dt>
+
+          <code><a href="make_other_blood_hosts_random.html">make_other_blood_hosts_random()</a></code>
+
+        </dt>
+        <dd>Make other blood hosts</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="traps">Traps<a class="anchor" aria-label="anchor" href="#traps"></a></h3>
+      <div class="section-desc"><p>The ports for resources</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_port_blood_traps.html">xds_port_blood_traps</a></code>
+
+        </dt>
+        <dd>Blood Traps</dd>
+
+        <dt>
+
+          <code><a href="setup_blood_traps.html">setup_blood_traps()</a></code>
+
+        </dt>
+        <dd>Set up a blood_traps</dd>
+
+        <dt>
+
+          <code><a href="change_blood_traps.html">change_blood_traps()</a></code>
+
+        </dt>
+        <dd>Change the blood_traps</dd>
+
+        <dt>
+
+          <code><a href="check_blood_traps.html">check_blood_traps()</a></code>
+
+        </dt>
+        <dd>Check other blood hosts</dd>
+
+        <dt>
+
+          <code><a href="make_blood_traps_random.html">make_blood_traps_random()</a></code>
+
+        </dt>
+        <dd>Make other blood hosts</dd>
+      </dl></div><div class="section level2">
+      <h2 id="adult-mosquitoes-my-">Adult Mosquitoes (MY)<a class="anchor" aria-label="anchor" href="#adult-mosquitoes-my-"></a></h2>
 
       <div class="section-desc"><p>Adult mosquito ecology and infection dynamics</p></div>
 
@@ -1655,9 +1894,16 @@
 
         </dt>
         <dd>Setup Functions for the MY Component</dd>
+
+        <dt>
+
+          <code><a href="xds_info_mosquito_bionomics.html">xds_info_mosquito_bionomics</a></code>
+
+        </dt>
+        <dd>Mosquito Bionomics</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="modules-1">Modules<a class="anchor" aria-label="anchor" href="#modules-1"></a></h3>
+      <h3 id="modules">Modules<a class="anchor" aria-label="anchor" href="#modules"></a></h3>
 
 
       <dl></dl></div><div class="section level2">
@@ -1707,7 +1953,522 @@
         </dt>
         <dd>The <code>RMdts</code> module for the MY component</dd>
       </dl></div><div class="section level2">
-      <h2 id="l-component">L Component<a class="anchor" aria-label="anchor" href="#l-component"></a></h2>
+
+      <h3 id="mosquito-dispersal">Mosquito Dispersal<a class="anchor" aria-label="anchor" href="#mosquito-dispersal"></a></h3>
+      <div class="section-desc"><p>Specialized methods to set up mosquito dispersal matrices</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a></code>
+
+        </dt>
+        <dd>Mosquito Dispersal</dd>
+
+        <dt>
+
+          <code><a href="xds_info_mosquito_demography.html">xds_info_mosquito_demography</a></code>
+
+        </dt>
+        <dd>Mosquito Demography</dd>
+
+        <dt>
+
+          <code><a href="setup_K_matrix.html">setup_K_matrix()</a></code>
+
+        </dt>
+        <dd>Setup Mosquito Dispersal Matrix</dd>
+
+        <dt>
+
+          <code><a href="check_K_matrix.html">check_K_matrix()</a></code>
+
+        </dt>
+        <dd>Check K Matrix</dd>
+
+        <dt>
+
+          <code><a href="change_K_matrix.html">change_K_matrix()</a></code>
+
+        </dt>
+        <dd>Change a Mosquito Dispersal Matrix</dd>
+
+        <dt>
+
+          <code><a href="get_K_matrix.html">get_K_matrix()</a></code>
+
+        </dt>
+        <dd>Get the Mosquito Dispersal Matrix</dd>
+
+        <dt>
+
+          <code><a href="make_K_matrix_herethere.html">make_K_matrix_herethere()</a></code>
+
+        </dt>
+        <dd>Make a Here-There Dispersal Matrix</dd>
+
+        <dt>
+
+          <code><a href="make_K_matrix_xy.html">make_K_matrix_xy()</a></code>
+
+        </dt>
+        <dd>make a Kernel-Based Mosquito Dispersal Matrix</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="mosquito-demography">Mosquito Demography<a class="anchor" aria-label="anchor" href="#mosquito-demography"></a></h3>
+      <div class="section-desc"><p>Specialized methods to set up mosquito mortality and emigration</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="setup_g.html">setup_g()</a></code>
+
+        </dt>
+        <dd>Set up mosquito mortality rate</dd>
+
+        <dt>
+
+          <code><a href="setup_F_g.html">setup_F_g()</a></code>
+
+        </dt>
+        <dd>Set up F_g</dd>
+
+        <dt>
+
+          <code><a href="check_g.html">check_g()</a></code>
+
+        </dt>
+        <dd>Check mosquito mortality rate</dd>
+
+        <dt>
+
+          <code><a href="make_F_g_random.html">make_F_g_random()</a></code>
+
+        </dt>
+        <dd>Make random mosquito mortality rates</dd>
+
+        <dt>
+
+          <code><a href="setup_sigma.html">setup_sigma()</a></code>
+
+        </dt>
+        <dd>Set up patch emigration rate</dd>
+
+        <dt>
+
+          <code><a href="setup_F_sigma.html">setup_F_sigma()</a></code>
+
+        </dt>
+        <dd>Set up F_sigma</dd>
+
+        <dt>
+
+          <code><a href="check_sigma.html">check_sigma()</a></code>
+
+        </dt>
+        <dd>Check patch emigration rate</dd>
+
+        <dt>
+
+          <code><a href="make_F_sigma_random.html">make_F_sigma_random()</a></code>
+
+        </dt>
+        <dd>Make random patch emigration rates</dd>
+
+        <dt>
+
+          <code><a href="make_F_sigma_type2.html">make_F_sigma_type2()</a></code>
+
+        </dt>
+        <dd>Make a patch emigration configuration</dd>
+
+        <dt>
+
+          <code><a href="setup_mu.html">setup_mu()</a></code>
+
+        </dt>
+        <dd>Set up emigration-loss fraction</dd>
+
+        <dt>
+
+          <code><a href="setup_F_mu.html">setup_F_mu()</a></code>
+
+        </dt>
+        <dd>Set up F_mu</dd>
+
+        <dt>
+
+          <code><a href="check_mu.html">check_mu()</a></code>
+
+        </dt>
+        <dd>Check emigration-loss fraction</dd>
+
+        <dt>
+
+          <code><a href="make_F_mu_random.html">make_F_mu_random()</a></code>
+
+        </dt>
+        <dd>Make random emigration-loss fractions</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="blood-feeding">Blood Feeding<a class="anchor" aria-label="anchor" href="#blood-feeding"></a></h3>
+      <div class="section-desc"><p>Specialized methods to set up blood feeding rates and the human fraction</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_info_blood_feeding.html">xds_info_blood_feeding</a></code>
+
+        </dt>
+        <dd>Blood Feeding</dd>
+
+        <dt>
+
+          <code><a href="setup_F_circadian.html">setup_F_circadian()</a></code>
+
+        </dt>
+        <dd>Setup a circadian pattern function</dd>
+
+        <dt>
+
+          <code><a href="setup_f.html">setup_f()</a></code>
+
+        </dt>
+        <dd>Set up constant blood feeding rate</dd>
+
+        <dt>
+
+          <code><a href="setup_F_f.html">setup_F_f()</a></code>
+
+        </dt>
+        <dd>Set up blood feeding rates</dd>
+
+        <dt>
+
+          <code><a href="check_f.html">check_f()</a></code>
+
+        </dt>
+        <dd>Check blood feeding rate</dd>
+
+        <dt>
+
+          <code><a href="make_F_f_random.html">make_F_f_random()</a></code>
+
+        </dt>
+        <dd>Make random blood feeding rate object</dd>
+
+        <dt>
+
+          <code><a href="make_F_f_type2.html">make_F_f_type2()</a></code>
+
+        </dt>
+        <dd>Make type 2 blood feeding rate configuration</dd>
+
+        <dt>
+
+          <code><a href="setup_q.html">setup_q()</a></code>
+
+        </dt>
+        <dd>Set up human feeding fraction</dd>
+
+        <dt>
+
+          <code><a href="setup_F_q.html">setup_F_q()</a></code>
+
+        </dt>
+        <dd>Set up F_q</dd>
+
+        <dt>
+
+          <code><a href="check_q.html">check_q()</a></code>
+
+        </dt>
+        <dd>Check human feeding fraction</dd>
+
+        <dt>
+
+          <code><a href="make_F_q_random.html">make_F_q_random()</a></code>
+
+        </dt>
+        <dd>Make random human feeding fractions</dd>
+
+        <dt>
+
+          <code><a href="make_F_q_WVB.html">make_F_q_WVB()</a></code>
+
+        </dt>
+        <dd>Make a WVB human feeding fraction configuration</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="the-eip">The EIP<a class="anchor" aria-label="anchor" href="#the-eip"></a></h3>
+      <div class="section-desc"><p>Specialized methods to set up the extrinsic incubation period (EIP) model</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="setup_eip.html">setup_eip()</a></code>
+
+        </dt>
+        <dd>Set up the extrinsic incubation period</dd>
+
+        <dt>
+
+          <code><a href="setup_F_eip.html">setup_F_eip()</a></code>
+
+        </dt>
+        <dd>Set up F_eip</dd>
+
+        <dt>
+
+          <code><a href="check_eip.html">check_eip()</a></code>
+
+        </dt>
+        <dd>Check the extrinsic incubation period</dd>
+
+        <dt>
+
+          <code><a href="make_F_eip_random.html">make_F_eip_random()</a></code>
+
+        </dt>
+        <dd>Make random EIP configuration</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="egg-laying">Egg Laying<a class="anchor" aria-label="anchor" href="#egg-laying"></a></h3>
+      <div class="section-desc"><p>Specialized methods to set up the egg laying model</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="setup_nu.html">setup_nu()</a></code>
+
+        </dt>
+        <dd>Setup nu</dd>
+
+        <dt>
+
+          <code><a href="setup_F_nu.html">setup_F_nu()</a></code>
+
+        </dt>
+        <dd>Set up F_nu</dd>
+
+        <dt>
+
+          <code><a href="check_nu.html">check_nu()</a></code>
+
+        </dt>
+        <dd>Check egg laying rate</dd>
+
+        <dt>
+
+          <code><a href="make_F_nu_random.html">make_F_nu_random()</a></code>
+
+        </dt>
+        <dd>Make random laying rates</dd>
+
+        <dt>
+
+          <code><a href="make_F_nu_type2.html">make_F_nu_type2()</a></code>
+
+        </dt>
+        <dd>Make type2 egg laying rates</dd>
+      </dl></div><div class="section level2">
+      <h2 id="habitats-egg-laying-ml-">Habitats &amp; Egg Laying (ML)<a class="anchor" aria-label="anchor" href="#habitats-egg-laying-ml-"></a></h2>
+
+      <div class="section-desc"><p>Aquatic habitats and egg laying</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_info_aquatic_habitats.html">xds_info_aquatic_habitats</a></code>
+
+        </dt>
+        <dd>Aquatic Habitats</dd>
+
+        <dt>
+
+          <code><a href="xds_info_available_habitats.html">xds_info_available_habitats</a></code>
+
+        </dt>
+        <dd>Habitat Availability</dd>
+
+        <dt>
+
+          <code><a href="xds_info_egg_laying.html">xds_info_egg_laying</a></code>
+
+        </dt>
+        <dd>Egg Laying</dd>
+
+        <dt>
+
+          <code><a href="get_habitats.html">get_habitats()</a></code>
+
+        </dt>
+        <dd>Get the habitat membership vector</dd>
+
+        <dt>
+
+          <code><a href="get_habitat_matrix.html">get_habitat_matrix()</a></code>
+
+        </dt>
+        <dd>Get habitat matrix, \(N\)</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="habitat-search-weights">Habitat Search Weights<a class="anchor" aria-label="anchor" href="#habitat-search-weights"></a></h3>
+      <div class="section-desc"><p>Searching for Habitats</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_info_search_weights_habitat.html">xds_info_search_weights_habitat</a></code>
+
+        </dt>
+        <dd>Habitat Search Weights</dd>
+
+        <dt>
+
+          <code><a href="setup_habitat_search_weights.html">setup_habitat_search_weights()</a></code>
+
+        </dt>
+        <dd>Set up a habitat_search_weights</dd>
+
+        <dt>
+
+          <code><a href="change_habitat_search_weights.html">change_habitat_search_weights()</a></code>
+
+        </dt>
+        <dd>Change the habitat_search_weights</dd>
+
+        <dt>
+
+          <code><a href="check_habitat_search_weights.html">check_habitat_search_weights()</a></code>
+
+        </dt>
+        <dd>Check habitat search weights</dd>
+
+        <dt>
+
+          <code><a href="make_habitat_search_weights_random.html">make_habitat_search_weights_random()</a></code>
+
+        </dt>
+        <dd>Make habitat search weights</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="bad-habitats">Bad Habitats<a class="anchor" aria-label="anchor" href="#bad-habitats"></a></h3>
+      <div class="section-desc"><p>Water where mosquitoes lay eggs that won’t mature</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_port_bad_habitats.html">xds_port_bad_habitats</a></code>
+
+        </dt>
+        <dd>Unproductive Aquatic Habitats</dd>
+
+        <dt>
+
+          <code><a href="setup_bad_habitats.html">setup_bad_habitats()</a></code>
+
+        </dt>
+        <dd>Set up bad habitats</dd>
+
+        <dt>
+
+          <code><a href="change_bad_habitats.html">change_bad_habitats()</a></code>
+
+        </dt>
+        <dd>Change the bad_habitats</dd>
+
+        <dt>
+
+          <code><a href="check_bad_habitats.html">check_bad_habitats()</a></code>
+
+        </dt>
+        <dd>Check other blood hosts</dd>
+
+        <dt>
+
+          <code><a href="make_bad_habitats_random.html">make_bad_habitats_random()</a></code>
+
+        </dt>
+        <dd>Make other blood hosts</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="ovitraps">Ovitraps<a class="anchor" aria-label="anchor" href="#ovitraps"></a></h3>
+      <div class="section-desc"><p>Traps that attract and catch egg laying mosquitoes</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="xds_port_ovitraps.html">xds_port_ovitraps</a></code>
+
+        </dt>
+        <dd>Ovitraps</dd>
+
+        <dt>
+
+          <code><a href="setup_ovitraps.html">setup_ovitraps()</a></code>
+
+        </dt>
+        <dd>Set up ovitraps</dd>
+
+        <dt>
+
+          <code><a href="change_ovitraps.html">change_ovitraps()</a></code>
+
+        </dt>
+        <dd>Change ovitrap availability</dd>
+
+        <dt>
+
+          <code><a href="check_ovitraps.html">check_ovitraps()</a></code>
+
+        </dt>
+        <dd>Check ovitraps</dd>
+
+        <dt>
+
+          <code><a href="make_ovitraps_random.html">make_ovitraps_random()</a></code>
+
+        </dt>
+        <dd>Random ovitrap availability</dd>
+      </dl></div><div class="section level2">
+      <h2 id="immature-mosquitoes-l-">Immature Mosquitoes (L)<a class="anchor" aria-label="anchor" href="#immature-mosquitoes-l-"></a></h2>
 
       <div class="section-desc"><p>Immagure mosquito ecology in aquatic habitats</p></div>
 
@@ -1874,9 +2635,9 @@
         </dt>
         <dd>Set new X parameter values</dd>
       </dl></div><div class="section level2">
-      <h2 id="blood-feeding-transmission">Blood Feeding &amp; Transmission<a class="anchor" aria-label="anchor" href="#blood-feeding-transmission"></a></h2>
+      <h2 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a></h2>
 
-
+      <div class="section-desc"><p>The ports for resources</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -1885,17 +2646,17 @@
 
       <dl><dt>
 
-          <code><a href="xds_info_blood_feeding.html">xds_info_blood_feeding</a></code>
+          <code><a href="xds_info_resources.html">xds_info_resources</a></code>
 
         </dt>
-        <dd>Blood Feeding</dd>
+        <dd>Resources</dd>
 
         <dt>
 
-          <code><a href="xds_info_local_fraction.html">xds_info_local_fraction</a></code>
+          <code><a href="xds_info_availability.html">xds_info_availability</a></code>
 
         </dt>
-        <dd>The Local Fraction</dd>
+        <dd>Resource Availability</dd>
 
         <dt>
 
@@ -1906,28 +2667,35 @@
 
         <dt>
 
-          <code><a href="xds_info_search_weights.html">xds_info_search_weights</a></code>
+          <code><a href="xds_info_available_habitats.html">xds_info_available_habitats</a></code>
 
         </dt>
-        <dd>Search Weights</dd>
+        <dd>Habitat Availability</dd>
 
         <dt>
 
-          <code><a href="xds_info_relative_biting_rates.html">xds_info_relative_biting_rates</a></code>
+          <code><a href="xds_info_search_weights_habitat.html">xds_info_search_weights_habitat</a></code>
 
         </dt>
-        <dd>Relative Biting Rate</dd>
+        <dd>Habitat Search Weights</dd>
 
         <dt>
 
-          <code><a href="xds_info_transmission.html">xds_info_transmission</a></code>
+          <code><a href="xds_info_available_sugar.html">xds_info_available_sugar</a></code>
 
         </dt>
-        <dd>Transmission</dd>
+        <dd>Sugar Availability</dd>
+
+        <dt>
+
+          <code><a href="xds_info_mosquito_traps.html">xds_info_mosquito_traps</a></code>
+
+        </dt>
+        <dd>Available Blood</dd>
       </dl></div><div class="section level2">
-      <h2 id="exposure">Exposure<a class="anchor" aria-label="anchor" href="#exposure"></a></h2>
+      <h2 id="forcing">Forcing<a class="anchor" aria-label="anchor" href="#forcing"></a></h2>
 
-      <div class="section-desc"><p>Compute the FoI from local EIR and travel</p></div>
+
 
       <dl></dl></div><div class="section level2">
 
@@ -1936,52 +2704,31 @@
 
       <dl><dt>
 
-          <code><a href="xds_info_exposure.html">xds_info_exposure</a></code>
+          <code><a href="xds_info_forcing.html">xds_info_forcing</a></code>
 
         </dt>
-        <dd>Exposure</dd>
+        <dd><strong><code>ramp.xds</code></strong>: Forcing</dd>
 
         <dt>
 
-          <code><a href="xds_info_environmental_heterogeneity.html">xds_info_environmental_heterogeneity</a></code>
+          <code><a href="xds_info_trivial_forcing.html">xds_info_trivial_forcing</a></code>
 
         </dt>
-        <dd>Environmental Heterogeneity</dd>
+        <dd>Forcing with Trivial Modules</dd>
 
         <dt>
 
-          <code><a href="setup_exposure.html">setup_exposure()</a></code>
+          <code><a href="xds_info_vector_control.html">xds_info_vector_control</a></code>
 
         </dt>
-        <dd>Set Up Exposure</dd>
+        <dd>Vector Control</dd>
 
         <dt>
 
-          <code><a href="foi2eir.html">foi2eir()</a></code>
+          <code><a href="xds_info_health.html">xds_info_health</a></code>
 
         </dt>
-        <dd>Convert FoI to EIR</dd>
-
-        <dt>
-
-          <code><a href="ar2eir.html">ar2eir()</a></code>
-
-        </dt>
-        <dd>Convert AR to EIR</dd>
-
-        <dt>
-
-          <code><a href="make_exposure_pois.html">make_exposure_pois()</a></code>
-
-        </dt>
-        <dd>Make a Poisson Exposure Model Object</dd>
-
-        <dt>
-
-          <code><a href="make_exposure_nb.html">make_exposure_nb()</a></code>
-
-        </dt>
-        <dd>Make a nbson Exposure Model Object</dd>
+        <dd>Health</dd>
       </dl></div><div class="section level2">
       <h2 id="malaria-importation">Malaria Importation<a class="anchor" aria-label="anchor" href="#malaria-importation"></a></h2>
 
@@ -2209,771 +2956,6 @@
 
         </dt>
         <dd>Make random values for vis_kappa</dd>
-      </dl></div><div class="section level2">
-      <h2 id="mosquito-bionomics">Mosquito Bionomics<a class="anchor" aria-label="anchor" href="#mosquito-bionomics"></a></h2>
-
-      <div class="section-desc"><p>Methods to compute or update mosquito bionomic parameters</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_info_mosquito_bionomics.html">xds_info_mosquito_bionomics</a></code>
-
-        </dt>
-        <dd>Mosquito Bionomics</dd>
-
-        <dt>
-
-          <code><a href="xds_info_blood_feeding.html">xds_info_blood_feeding</a></code>
-
-        </dt>
-        <dd>Blood Feeding</dd>
-
-        <dt>
-
-          <code><a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a></code>
-
-        </dt>
-        <dd>Mosquito Dispersal</dd>
-
-        <dt>
-
-          <code><a href="xds_info_mosquito_demography.html">xds_info_mosquito_demography</a></code>
-
-        </dt>
-        <dd>Mosquito Demography</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="mosquito-dispersal">Mosquito Dispersal<a class="anchor" aria-label="anchor" href="#mosquito-dispersal"></a></h3>
-      <div class="section-desc"><p>Specialized methods to set up mosquito dispersal matrices</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a></code>
-
-        </dt>
-        <dd>Mosquito Dispersal</dd>
-
-        <dt>
-
-          <code><a href="xds_info_mosquito_demography.html">xds_info_mosquito_demography</a></code>
-
-        </dt>
-        <dd>Mosquito Demography</dd>
-
-        <dt>
-
-          <code><a href="setup_K_matrix.html">setup_K_matrix()</a></code>
-
-        </dt>
-        <dd>Setup Mosquito Dispersal Matrix</dd>
-
-        <dt>
-
-          <code><a href="check_K_matrix.html">check_K_matrix()</a></code>
-
-        </dt>
-        <dd>Check K Matrix</dd>
-
-        <dt>
-
-          <code><a href="change_K_matrix.html">change_K_matrix()</a></code>
-
-        </dt>
-        <dd>Change a Mosquito Dispersal Matrix</dd>
-
-        <dt>
-
-          <code><a href="get_K_matrix.html">get_K_matrix()</a></code>
-
-        </dt>
-        <dd>Get the Mosquito Dispersal Matrix</dd>
-
-        <dt>
-
-          <code><a href="make_K_matrix_herethere.html">make_K_matrix_herethere()</a></code>
-
-        </dt>
-        <dd>Make a Here-There Dispersal Matrix</dd>
-
-        <dt>
-
-          <code><a href="make_K_matrix_xy.html">make_K_matrix_xy()</a></code>
-
-        </dt>
-        <dd>make a Kernel-Based Mosquito Dispersal Matrix</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="mosquito-demography">Mosquito Demography<a class="anchor" aria-label="anchor" href="#mosquito-demography"></a></h3>
-      <div class="section-desc"><p>Specialized methods to set up mosquito mortality and emigration</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="setup_g.html">setup_g()</a></code>
-
-        </dt>
-        <dd>Set up mosquito mortality rate</dd>
-
-        <dt>
-
-          <code><a href="setup_F_g.html">setup_F_g()</a></code>
-
-        </dt>
-        <dd>Set up F_g</dd>
-
-        <dt>
-
-          <code><a href="check_g.html">check_g()</a></code>
-
-        </dt>
-        <dd>Check mosquito mortality rate</dd>
-
-        <dt>
-
-          <code><a href="make_F_g_random.html">make_F_g_random()</a></code>
-
-        </dt>
-        <dd>Make random mosquito mortality rates</dd>
-
-        <dt>
-
-          <code><a href="setup_sigma.html">setup_sigma()</a></code>
-
-        </dt>
-        <dd>Set up patch emigration rate</dd>
-
-        <dt>
-
-          <code><a href="setup_F_sigma.html">setup_F_sigma()</a></code>
-
-        </dt>
-        <dd>Set up F_sigma</dd>
-
-        <dt>
-
-          <code><a href="check_sigma.html">check_sigma()</a></code>
-
-        </dt>
-        <dd>Check patch emigration rate</dd>
-
-        <dt>
-
-          <code><a href="make_F_sigma_random.html">make_F_sigma_random()</a></code>
-
-        </dt>
-        <dd>Make random patch emigration rates</dd>
-
-        <dt>
-
-          <code><a href="make_F_sigma_type2.html">make_F_sigma_type2()</a></code>
-
-        </dt>
-        <dd>Make a patch emigration configuration</dd>
-
-        <dt>
-
-          <code><a href="setup_mu.html">setup_mu()</a></code>
-
-        </dt>
-        <dd>Set up emigration-loss fraction</dd>
-
-        <dt>
-
-          <code><a href="setup_F_mu.html">setup_F_mu()</a></code>
-
-        </dt>
-        <dd>Set up F_mu</dd>
-
-        <dt>
-
-          <code><a href="check_mu.html">check_mu()</a></code>
-
-        </dt>
-        <dd>Check emigration-loss fraction</dd>
-
-        <dt>
-
-          <code><a href="make_F_mu_random.html">make_F_mu_random()</a></code>
-
-        </dt>
-        <dd>Make random emigration-loss fractions</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="blood-feeding">Blood Feeding<a class="anchor" aria-label="anchor" href="#blood-feeding"></a></h3>
-      <div class="section-desc"><p>Specialized methods to set up blood feeding rates and the human fraction</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="setup_f.html">setup_f()</a></code>
-
-        </dt>
-        <dd>Set up constant blood feeding rate</dd>
-
-        <dt>
-
-          <code><a href="setup_F_f.html">setup_F_f()</a></code>
-
-        </dt>
-        <dd>Set up blood feeding rates</dd>
-
-        <dt>
-
-          <code><a href="check_f.html">check_f()</a></code>
-
-        </dt>
-        <dd>Check blood feeding rate</dd>
-
-        <dt>
-
-          <code><a href="make_F_f_random.html">make_F_f_random()</a></code>
-
-        </dt>
-        <dd>Make random blood feeding rate object</dd>
-
-        <dt>
-
-          <code><a href="make_F_f_type2.html">make_F_f_type2()</a></code>
-
-        </dt>
-        <dd>Make type 2 blood feeding rate configuration</dd>
-
-        <dt>
-
-          <code><a href="setup_q.html">setup_q()</a></code>
-
-        </dt>
-        <dd>Set up human feeding fraction</dd>
-
-        <dt>
-
-          <code><a href="setup_F_q.html">setup_F_q()</a></code>
-
-        </dt>
-        <dd>Set up F_q</dd>
-
-        <dt>
-
-          <code><a href="check_q.html">check_q()</a></code>
-
-        </dt>
-        <dd>Check human feeding fraction</dd>
-
-        <dt>
-
-          <code><a href="make_F_q_random.html">make_F_q_random()</a></code>
-
-        </dt>
-        <dd>Make random human feeding fractions</dd>
-
-        <dt>
-
-          <code><a href="make_F_q_WVB.html">make_F_q_WVB()</a></code>
-
-        </dt>
-        <dd>Make a WVB human feeding fraction configuration</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="the-eip">The EIP<a class="anchor" aria-label="anchor" href="#the-eip"></a></h3>
-      <div class="section-desc"><p>Specialized methods to set up the extrinsic incubation period (EIP) model</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="setup_eip.html">setup_eip()</a></code>
-
-        </dt>
-        <dd>Set up the extrinsic incubation period</dd>
-
-        <dt>
-
-          <code><a href="setup_F_eip.html">setup_F_eip()</a></code>
-
-        </dt>
-        <dd>Set up F_eip</dd>
-
-        <dt>
-
-          <code><a href="check_eip.html">check_eip()</a></code>
-
-        </dt>
-        <dd>Check the extrinsic incubation period</dd>
-
-        <dt>
-
-          <code><a href="make_F_eip_random.html">make_F_eip_random()</a></code>
-
-        </dt>
-        <dd>Make random EIP configuration</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="egg-laying">Egg Laying<a class="anchor" aria-label="anchor" href="#egg-laying"></a></h3>
-      <div class="section-desc"><p>Specialized methods to set up the egg laying model</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="setup_nu.html">setup_nu()</a></code>
-
-        </dt>
-        <dd>Setup nu</dd>
-
-        <dt>
-
-          <code><a href="setup_F_nu.html">setup_F_nu()</a></code>
-
-        </dt>
-        <dd>Set up F_nu</dd>
-
-        <dt>
-
-          <code><a href="check_nu.html">check_nu()</a></code>
-
-        </dt>
-        <dd>Check egg laying rate</dd>
-
-        <dt>
-
-          <code><a href="make_F_nu_random.html">make_F_nu_random()</a></code>
-
-        </dt>
-        <dd>Make random laying rates</dd>
-
-        <dt>
-
-          <code><a href="make_F_nu_type2.html">make_F_nu_type2()</a></code>
-
-        </dt>
-        <dd>Make type2 egg laying rates</dd>
-      </dl></div><div class="section level2">
-      <h2 id="forcing">Forcing<a class="anchor" aria-label="anchor" href="#forcing"></a></h2>
-
-
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_info_forcing.html">xds_info_forcing</a></code>
-
-        </dt>
-        <dd><strong><code>ramp.xds</code></strong>: Forcing</dd>
-
-        <dt>
-
-          <code><a href="xds_info_trivial_forcing.html">xds_info_trivial_forcing</a></code>
-
-        </dt>
-        <dd>Forcing with Trivial Modules</dd>
-
-        <dt>
-
-          <code><a href="xds_info_vector_control.html">xds_info_vector_control</a></code>
-
-        </dt>
-        <dd>Vector Control</dd>
-
-        <dt>
-
-          <code><a href="xds_info_health.html">xds_info_health</a></code>
-
-        </dt>
-        <dd>Health</dd>
-      </dl></div><div class="section level2">
-      <h2 id="blood-feeding-1">Blood Feeding<a class="anchor" aria-label="anchor" href="#blood-feeding-1"></a></h2>
-
-      <div class="section-desc"><p>The ports for resources</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_info_resources.html">xds_info_resources</a></code>
-
-        </dt>
-        <dd>Resources</dd>
-
-        <dt>
-
-          <code><a href="xds_info_availability.html">xds_info_availability</a></code>
-
-        </dt>
-        <dd>Resource Availability</dd>
-
-        <dt>
-
-          <code><a href="xds_info_available_blood_hosts.html">xds_info_available_blood_hosts</a></code>
-
-        </dt>
-        <dd>Available Blood</dd>
-
-        <dt>
-
-          <code><a href="xds_info_available_habitats.html">xds_info_available_habitats</a></code>
-
-        </dt>
-        <dd>Habitat Availability</dd>
-
-        <dt>
-
-          <code><a href="xds_info_search_weights_habitat.html">xds_info_search_weights_habitat</a></code>
-
-        </dt>
-        <dd>Habitat Search Weights</dd>
-
-        <dt>
-
-          <code><a href="xds_info_available_sugar.html">xds_info_available_sugar</a></code>
-
-        </dt>
-        <dd>Sugar Availability</dd>
-
-        <dt>
-
-          <code><a href="xds_info_mosquito_traps.html">xds_info_mosquito_traps</a></code>
-
-        </dt>
-        <dd>Available Blood</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="search-weights">Search Weights<a class="anchor" aria-label="anchor" href="#search-weights"></a></h3>
-      <div class="section-desc"><p>The ports for resources</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_info_search_weights_blood.html">xds_info_search_weights_blood</a></code>
-
-        </dt>
-        <dd>Blood Search Weights</dd>
-
-        <dt>
-
-          <code><a href="setup_blood_search_weights.html">setup_blood_search_weights()</a></code>
-
-        </dt>
-        <dd>Set up a blood_search_weights</dd>
-
-        <dt>
-
-          <code><a href="change_blood_search_weights.html">change_blood_search_weights()</a></code>
-
-        </dt>
-        <dd>Change the blood_search_weights</dd>
-
-        <dt>
-
-          <code><a href="check_blood_search_weights.html">check_blood_search_weights()</a></code>
-
-        </dt>
-        <dd>Check blood search weights</dd>
-
-        <dt>
-
-          <code><a href="make_blood_search_weights_random.html">make_blood_search_weights_random()</a></code>
-
-        </dt>
-        <dd>Make blood search weights</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="other-blood-hosts">Other blood hosts<a class="anchor" aria-label="anchor" href="#other-blood-hosts"></a></h3>
-      <div class="section-desc"><p>The ports for resources</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_port_other_blood_hosts.html">xds_port_other_blood_hosts</a></code>
-
-        </dt>
-        <dd>Other Blood Hosts</dd>
-
-        <dt>
-
-          <code><a href="setup_other_blood_hosts.html">setup_other_blood_hosts()</a></code>
-
-        </dt>
-        <dd>Set up a other_blood_hosts</dd>
-
-        <dt>
-
-          <code><a href="change_other_blood_hosts.html">change_other_blood_hosts()</a></code>
-
-        </dt>
-        <dd>Change the other_blood_hosts</dd>
-
-        <dt>
-
-          <code><a href="check_other_blood_hosts.html">check_other_blood_hosts()</a></code>
-
-        </dt>
-        <dd>Check other blood hosts</dd>
-
-        <dt>
-
-          <code><a href="make_other_blood_hosts_random.html">make_other_blood_hosts_random()</a></code>
-
-        </dt>
-        <dd>Make other blood hosts</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="traps">Traps<a class="anchor" aria-label="anchor" href="#traps"></a></h3>
-      <div class="section-desc"><p>The ports for resources</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_port_blood_traps.html">xds_port_blood_traps</a></code>
-
-        </dt>
-        <dd>Blood Traps</dd>
-
-        <dt>
-
-          <code><a href="setup_blood_traps.html">setup_blood_traps()</a></code>
-
-        </dt>
-        <dd>Set up a blood_traps</dd>
-
-        <dt>
-
-          <code><a href="change_blood_traps.html">change_blood_traps()</a></code>
-
-        </dt>
-        <dd>Change the blood_traps</dd>
-
-        <dt>
-
-          <code><a href="check_blood_traps.html">check_blood_traps()</a></code>
-
-        </dt>
-        <dd>Check other blood hosts</dd>
-
-        <dt>
-
-          <code><a href="make_blood_traps_random.html">make_blood_traps_random()</a></code>
-
-        </dt>
-        <dd>Make other blood hosts</dd>
-      </dl></div><div class="section level2">
-      <h2 id="habitats-egg-laying">Habitats &amp; Egg Laying<a class="anchor" aria-label="anchor" href="#habitats-egg-laying"></a></h2>
-
-      <div class="section-desc"><p>Aquatic habitats and egg laying</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_info_aquatic_habitats.html">xds_info_aquatic_habitats</a></code>
-
-        </dt>
-        <dd>Aquatic Habitats</dd>
-
-        <dt>
-
-          <code><a href="xds_info_available_habitats.html">xds_info_available_habitats</a></code>
-
-        </dt>
-        <dd>Habitat Availability</dd>
-
-        <dt>
-
-          <code><a href="xds_info_egg_laying.html">xds_info_egg_laying</a></code>
-
-        </dt>
-        <dd>Egg Laying</dd>
-
-        <dt>
-
-          <code><a href="get_habitats.html">get_habitats()</a></code>
-
-        </dt>
-        <dd>Get the habitat membership vector</dd>
-
-        <dt>
-
-          <code><a href="get_habitat_matrix.html">get_habitat_matrix()</a></code>
-
-        </dt>
-        <dd>Get habitat matrix, \(N\)</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="habitat-search-weights">Habitat Search Weights<a class="anchor" aria-label="anchor" href="#habitat-search-weights"></a></h3>
-      <div class="section-desc"><p>Searching for Habitats</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_info_search_weights_habitat.html">xds_info_search_weights_habitat</a></code>
-
-        </dt>
-        <dd>Habitat Search Weights</dd>
-
-        <dt>
-
-          <code><a href="setup_habitat_search_weights.html">setup_habitat_search_weights()</a></code>
-
-        </dt>
-        <dd>Set up a habitat_search_weights</dd>
-
-        <dt>
-
-          <code><a href="change_habitat_search_weights.html">change_habitat_search_weights()</a></code>
-
-        </dt>
-        <dd>Change the habitat_search_weights</dd>
-
-        <dt>
-
-          <code><a href="check_habitat_search_weights.html">check_habitat_search_weights()</a></code>
-
-        </dt>
-        <dd>Check habitat search weights</dd>
-
-        <dt>
-
-          <code><a href="make_habitat_search_weights_random.html">make_habitat_search_weights_random()</a></code>
-
-        </dt>
-        <dd>Make habitat search weights</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="bad-habitats">Bad Habitats<a class="anchor" aria-label="anchor" href="#bad-habitats"></a></h3>
-      <div class="section-desc"><p>Water where mosquitoes lay eggs that won’t mature</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_port_bad_habitats.html">xds_port_bad_habitats</a></code>
-
-        </dt>
-        <dd>Unproductive Aquatic Habitats</dd>
-
-        <dt>
-
-          <code><a href="setup_bad_habitats.html">setup_bad_habitats()</a></code>
-
-        </dt>
-        <dd>Set up bad habitats</dd>
-
-        <dt>
-
-          <code><a href="change_bad_habitats.html">change_bad_habitats()</a></code>
-
-        </dt>
-        <dd>Change the bad_habitats</dd>
-
-        <dt>
-
-          <code><a href="check_bad_habitats.html">check_bad_habitats()</a></code>
-
-        </dt>
-        <dd>Check other blood hosts</dd>
-
-        <dt>
-
-          <code><a href="make_bad_habitats_random.html">make_bad_habitats_random()</a></code>
-
-        </dt>
-        <dd>Make other blood hosts</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="ovitraps">Ovitraps<a class="anchor" aria-label="anchor" href="#ovitraps"></a></h3>
-      <div class="section-desc"><p>Traps that attract and catch egg laying mosquitoes</p></div>
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="xds_port_ovitraps.html">xds_port_ovitraps</a></code>
-
-        </dt>
-        <dd>Ovitraps</dd>
-
-        <dt>
-
-          <code><a href="setup_ovitraps.html">setup_ovitraps()</a></code>
-
-        </dt>
-        <dd>Set up ovitraps</dd>
-
-        <dt>
-
-          <code><a href="change_ovitraps.html">change_ovitraps()</a></code>
-
-        </dt>
-        <dd>Change ovitrap availability</dd>
-
-        <dt>
-
-          <code><a href="check_ovitraps.html">check_ovitraps()</a></code>
-
-        </dt>
-        <dd>Check ovitraps</dd>
-
-        <dt>
-
-          <code><a href="make_ovitraps_random.html">make_ovitraps_random()</a></code>
-
-        </dt>
-        <dd>Random ovitrap availability</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
