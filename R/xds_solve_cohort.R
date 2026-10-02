@@ -31,7 +31,7 @@
 #'
 #' @export
 xds_solve_cohort = function(xds_obj, birthday=0, Amax=365, da=1, ages=NULL){
-  stopifnot(class(xds_obj) == "eir")
+  stopifnot(class(xds_obj$frame) == "eir")
   xds_obj$EIR_obj$bday = birthday
   xds_obj <- xds_solve(xds_obj, Tmax=birthday+Amax, dt=da, times=ages+birthday)
   return(xds_obj)

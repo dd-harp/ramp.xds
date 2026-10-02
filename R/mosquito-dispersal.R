@@ -117,6 +117,7 @@ change_K_matrix.K = function(K_matrix, xds_obj, which_K="K", s=1){
   check_K_matrix(K_matrix, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$K_matrix <- K_matrix
   xds_obj$MY_obj[[s]]$K_obj <- make_static_obj()
+  xds_obj$MY_obj[[s]]$K_obj$K_matrix <- K_matrix
   xds_obj <- change_Omega(xds_obj, s)
   return(xds_obj)
 }
@@ -384,5 +385,6 @@ F_K_matrix = function(t, xds_obj, s) {
 #' @keywords internal
 #' @export
 F_K_matrix.static = function(t, xds_obj, s){
+  xds_obj$MY_obj[[s]]$K_obj$K_matrix
   return(xds_obj)
 }
