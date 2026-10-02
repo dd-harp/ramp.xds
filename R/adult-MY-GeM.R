@@ -388,15 +388,18 @@ get_MY_pars.GeM <- function(xds_obj, s=1) {
 change_MY_pars.GeM <- function(xds_obj, s=1, options=list()) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$MY_obj[[s]], with(options,{
-    xds_obj$MY_obj[[s]]$f_par <- f_par
-    xds_obj$MY_obj[[s]]$q_par <- q_par
-    xds_obj$MY_obj[[s]]$g_par <- g_par
-    xds_obj$MY_obj[[s]]$sigma_par <- sigma_par
-    xds_obj$MY_obj[[s]]$mu_par <- mu_par
-    xds_obj$MY_obj[[s]]$nu_par <- nu_par
-    xds_obj$MY_obj[[s]]$eip_par <- eip_par
-    xds_obj$MY_obj[[s]]$calK_par <- calK_par
-    xds_obj$MY_obj[[s]]$eggs_per_batch <- eggs_per_batch
+    xds_obj$MY_obj[[s]]$f_obj$f = f
+    xds_obj$MY_obj[[s]]$q_obj$q = q
+    xds_obj$MY_obj[[s]]$g_obj$g = g
+    xds_obj$MY_obj[[s]]$sigma_obj$sigma = sigma
+    xds_obj$MY_obj[[s]]$eip_obj$eip = eip
+    xds_obj$MY_obj[[s]]$mu_obj$mu = mu
+    xds_obj$MY_obj[[s]]$nu_obj$nu = nu
+    xds_obj$MY_obj[[s]]$eggsPerBatch = eggsPerBatch
+    
+    y <- get_inits(xds_obj, flatten=TRUE)
+    xds_obj <- MBionomics(0, y, xds_obj, s)
+    xds_obj <- MEffectSizes(0, y, xds_obj, s)
     return(xds_obj)
   }))}
 
@@ -417,7 +420,7 @@ MBionomics.GeM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
   xds_obj$MY_obj[[s]]$mu       <- F_mu(t, xds_obj, s)
   xds_obj$MY_obj[[s]]$nu       <- F_nu(t, xds_obj, s)
   xds_obj$MY_obj[[s]]$eip      <- F_eip(t, xds_obj, s)
-  xds_obj                      <- F_K_matrix(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$K_matrix <- F_K_matrix(t, xds_obj, s)
 
   # Reset Effect Sizes
   xds_obj$MY_obj[[s]]$es_f     <- rep(1, xds_obj$nPatches)

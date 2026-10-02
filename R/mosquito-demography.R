@@ -202,7 +202,7 @@ update_Omega.static = function(xds_obj, s){
 #' @keywords internal
 #' @export
 update_Omega.dynamic = function(xds_obj, s){
-  change_Omega(xds_obj, s)
+  return(change_Omega(xds_obj, s))
 }
 
 #' @title Set up the Upsilon object

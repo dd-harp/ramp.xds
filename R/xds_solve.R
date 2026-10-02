@@ -131,7 +131,7 @@ xds_solve.dts = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' @keywords internal
 #' @export
 make_times_xde = function(Tmax, dt, times=NULL){
-  if(!is.null(times)) return(times)
+  if(length(times)>0) return(times)
   return(seq(0, Tmax, by=dt))
 }
 
