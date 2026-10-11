@@ -14,7 +14,7 @@
 \item{s}{vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+a mosquito dispersal matrix
 }
 \description{
 Implements \link{F_K_matrix} for a static model

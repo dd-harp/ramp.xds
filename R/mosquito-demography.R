@@ -128,7 +128,7 @@ setup_Omega_obj = function(ch, up, xds_obj, s=1){
 #' @keywords internal
 #' @export
 change_Omega = function(xds_obj, s){
-  UseMethod("change_Omega", xds_obj$MY_obj[[s]]$Omega_obj)
+  UseMethod("change_Omega", xds_obj$xds)
 }
 
 
@@ -146,6 +146,7 @@ change_Omega = function(xds_obj, s){
 change_Omega.xde = function(xds_obj, s){
   with(xds_obj$MY_obj[[s]],{
     xds_obj$MY_obj[[s]]$Omega <- F_Omega_xde(g, sigma, mu, K_matrix)
+
     xds_obj <- change_Upsilon(xds_obj, s)
     return(xds_obj)
   })}
@@ -202,7 +203,8 @@ update_Omega.static = function(xds_obj, s){
 #' @keywords internal
 #' @export
 update_Omega.dynamic = function(xds_obj, s){
-  return(change_Omega(xds_obj, s))
+  xds_obj <- change_Omega(xds_obj, s)
+  return(xds_obj)
 }
 
 #' @title Set up the Upsilon object
@@ -269,6 +271,6 @@ change_Upsilon.dde = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]],{
     xds_obj$MY_obj[[s]]$Upsilon <- F_Upsilon_xde(eip, Omega)
     return(xds_obj)
-  })}
+})}
 
 

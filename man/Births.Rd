@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-demography.R
 \name{Births}
 \alias{Births}
-\title{Human (or Host) population birth rate}
+\title{Human/host births}
 \usage{
 Births(t, xds_obj, i)
 }
@@ -17,6 +17,6 @@ Births(t, xds_obj, i)
 see help pages for specific methods
 }
 \description{
-This method dispatches on the type of xds_obj$Hpar$Births
+Human/host births
 }
 \keyword{internal}

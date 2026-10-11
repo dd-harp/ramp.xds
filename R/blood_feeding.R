@@ -411,4 +411,21 @@ blood_feeding_dynamics = function(t, y, xds_obj){
   return(xds_obj)
 }
 
- 
+#' @title Update the XY interface 
+#' @description Recompute and store 
+#' all the terms 
+#' 
+#' @param xds_obj an **`xds`** model object
+#' 
+#' @return an **`xds`** object
+#' @export
+#' @keywords internal
+update_XY_interface = function(xds_obj){
+  y <- get_inits(xds_obj, flatten=TRUE)
+  xds_obj <- compute_WB(0, y, xds_obj)
+  xds_obj <- compute_local_frac(xds_obj)
+  xds_obj <- compute_beta(0, y, xds_obj)
+  xds_obj <- compute_EIR(0, y, xds_obj)
+  xds_obj <- compute_kappa(0, y, xds_obj)
+  return(xds_obj)
+}

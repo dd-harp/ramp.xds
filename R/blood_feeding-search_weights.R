@@ -34,12 +34,7 @@ change_blood_search_weights = function(blood_search_weights, xds_obj, i=1){
   check_blood_search_weights(blood_search_weights, xds_obj$nStrata[i])
   xds_obj$XH_obj[[i]]$search_weights <- blood_search_weights
   xds_obj$XH_obj[[i]]$search_weights_obj <- make_static_obj()
-  y <- get_inits(xds_obj, flatten=TRUE)
-  xds_obj <- compute_WB(0, y, xds_obj)
-  xds_obj <- compute_local_frac(xds_obj)
-  xds_obj <- compute_beta(0, y, xds_obj)
-  xds_obj <- compute_EIR(0, y, xds_obj)
-  xds_obj <- compute_kappa(0, y, xds_obj)
+  xds_obj <- update_XY_interface(xds_obj)
   return(xds_obj)
 }
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-demography.R
 \name{Births.zero}
 \alias{Births.zero}
-\title{Human (or Host) population birth rate}
+\title{Human/host births}
 \usage{
 \method{Births}{zero}(t, xds_obj, i)
 }
@@ -17,6 +17,6 @@
 see help pages for specific methods
 }
 \description{
-a function
+No births
 }
 \keyword{internal}

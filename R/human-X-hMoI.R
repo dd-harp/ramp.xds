@@ -55,7 +55,7 @@ NULL
 #' @export
 setup_skillset_XH.hMoI = function(xds_obj, i){
   skills = list(
-    H_dynamics = FALSE,
+    demog      = FALSE,
     mda        = FALSE,
     msat       = FALSE,
     malaria    = TRUE,

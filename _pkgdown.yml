@@ -371,8 +371,11 @@ reference:
     Human / Host Demography 
   contents:
   - setup_births
-  - setup_mortality_matrix
-  - setup_mass_treatment
+  - get_birth_rates
+  - check_births
+  - setup_deaths
+  - get_death_rates
+  - check_deaths
 - subtitle: Time Spent
   desc: |
     Utilities for Time Spent Matrices

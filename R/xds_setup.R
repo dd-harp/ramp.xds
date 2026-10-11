@@ -107,7 +107,7 @@ xds_setup = function(
   
   
   xds_obj <- make_indices(xds_obj)
-
+  
   xds_obj <- setup_K_matrix(Koptions, xds_obj, list(), 1)
   xds_obj <- setup_habitat_search_weights(searchQ, xds_obj, searchQ, 1)
   xds_obj <- setup_blood_search_weights(searchB, xds_obj, searchB, 1)
@@ -376,12 +376,12 @@ xds_setup_human = function(model_name = "unnamed",
 #' @param eir is the entomological inoculation rate
 #' @param F_season the seasonal pattern function
 #' @param F_trend the trend function
-#' @param F_age the relative biting rate by age 
 #' @param F_shock the shock function
+#' @param F_age the relative biting rate by age 
 #' @param season_par a list of options for F_season
 #' @param trend_par a list of options for F_trend
-#' @param age_par a list of options for F_age
 #' @param shock_par a list of options for F_shock
+#' @param age_par a list of options for F_age
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param Xname is a character string specifying an **X** Component module
 #' @param XHoptions a list to configure the **X** Component module
@@ -391,16 +391,16 @@ xds_setup_human = function(model_name = "unnamed",
 #' @return an **`xds`** object
 #' @export
 xds_setup_eir = function(model_name = "unnamed",
-                         eir=1,
+                         eir=1/365,
                          F_season = F_one, 
                          F_trend = F_one, 
                          F_shock = F_one,
-                         F_age = F_one, 
-                         
+                         F_age = F_one,
+
                          season_par = list(name = "F_one"),
                          trend_par = list(name = "F_one"),
-                         age_par = list(name = "F_one"),
                          shock_par = list(name = "F_one"),
+                         age_par = list(name = "F_one"),
                          
                          xds = 'ode',
 
@@ -422,12 +422,14 @@ xds_setup_eir = function(model_name = "unnamed",
   xds_obj$EIR_obj$scale <- 1
   xds_obj$EIR_obj$F_season <- F_season
   xds_obj$EIR_obj$F_trend <- F_trend
-  xds_obj$EIR_obj$F_age <- F_age
   xds_obj$EIR_obj$F_shock <- F_shock
+  xds_obj$EIR_obj$F_age <- F_age
+  
   xds_obj$EIR_obj$season_par <- season_par
   xds_obj$EIR_obj$trend_par <- trend_par
-  xds_obj$EIR_obj$age_par <- age_par
   xds_obj$EIR_obj$shock_par <- shock_par
+  xds_obj$EIR_obj$age_par <- age_par
+  
   xds_obj$EIR_obj$bday <- 0
 
   # Aquatic Mosquito Dynamics
