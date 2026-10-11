@@ -19,7 +19,14 @@ F_S(t-d) \times F_T(t-d) \times F_K(t-d)\$\$
 ## Usage
 
 ``` r
-xds_solve_cohort(xds_obj, birthday = 0, Amax = 365, da = 1, ages = NULL)
+xds_solve_cohort(
+  xds_obj,
+  birthday = 0,
+  eir = c(),
+  Amax = 365,
+  da = 1,
+  ages = NULL
+)
 ```
 
 ## Arguments
@@ -31,6 +38,10 @@ xds_solve_cohort(xds_obj, birthday = 0, Amax = 365, da = 1, ages = NULL)
 - birthday:
 
   a cohort's birthday
+
+- eir:
+
+  the mean eir
 
 - Amax:
 

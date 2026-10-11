@@ -122,7 +122,14 @@ $$F_w(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xds_solve_cohort</span><span class="op">(</span><span class="va">xds_obj</span>, birthday <span class="op">=</span> <span class="fl">0</span>, Amax <span class="op">=</span> <span class="fl">365</span>, da <span class="op">=</span> <span class="fl">1</span>, ages <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xds_solve_cohort</span><span class="op">(</span></span>
+<span>  <span class="va">xds_obj</span>,</span>
+<span>  birthday <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  eir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  Amax <span class="op">=</span> <span class="fl">365</span>,</span>
+<span>  da <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  ages <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -135,6 +142,10 @@ $$F_w(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$</p>
 
 <dt id="arg-birthday">birthday<a class="anchor" aria-label="anchor" href="#arg-birthday"></a></dt>
 <dd><p>a cohort's birthday</p></dd>
+
+
+<dt id="arg-eir">eir<a class="anchor" aria-label="anchor" href="#arg-eir"></a></dt>
+<dd><p>the mean eir</p></dd>
 
 
 <dt id="arg-amax">Amax<a class="anchor" aria-label="anchor" href="#arg-amax"></a></dt>

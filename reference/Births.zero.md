@@ -1,6 +1,6 @@
-# Human (or Host) population birth rate
+# Human/host births
 
-a function
+No births
 
 ## Usage
 

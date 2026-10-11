@@ -1,26 +1,30 @@
-# Setup births
+# Set up births
 
-Configure the births function
+Set up births
 
 ## Usage
 
 ``` r
-setup_births(name, xds_obj, i = 1)
+setup_births(name, xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
 
 - name:
 
-  the name of the births function
+  a or setup function name
 
 - xds_obj:
 
   an **`xds`** model object
 
+- options:
+
+  configuration options
+
 - i:
 
-  the species index
+  the host species index
 
 ## Value
 
