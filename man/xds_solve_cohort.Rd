@@ -4,12 +4,21 @@
 \alias{xds_solve_cohort}
 \title{Solve Cohort Dynamics}
 \usage{
-xds_solve_cohort(xds_obj, birthday = 0, Amax = 365, da = 1, ages = NULL)
+xds_solve_cohort(
+  xds_obj,
+  birthday = 0,
+  eir = c(),
+  Amax = 365,
+  da = 1,
+  ages = NULL
+)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{birthday}{a cohort's birthday}
+
+\item{eir}{the mean eir}
 
 \item{Amax}{the oldest year, run from 0...Amax}
 

@@ -138,8 +138,6 @@ dMYdt.SI <- function(t, y, xds_obj, s) {
       dM <- Lambda - (Omega %*% M)
       dY <- f*q*kappa*(M-Y) - (Omega %*% Y)
       
-     
-      
       return(c(dM, dY))
     })
   })

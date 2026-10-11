@@ -25,13 +25,15 @@
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param birthday a cohort's birthday
+#' @param eir the mean eir
 #' @param Amax the oldest year, run from 0...Amax
 #' @param da the age interval
 #' @param ages a set of ages
 #'
 #' @export
-xds_solve_cohort = function(xds_obj, birthday=0, Amax=365, da=1, ages=NULL){
+xds_solve_cohort = function(xds_obj, birthday=0, eir = c(), Amax=365, da=1, ages=NULL){
   stopifnot(class(xds_obj$frame) == "eir")
+  if(length(eir)>0) xds_obj$EIR_obj$eir = eir 
   xds_obj$EIR_obj$bday = birthday
   xds_obj <- xds_solve(xds_obj, Tmax=birthday+Amax, dt=da, times=ages+birthday)
   return(xds_obj)

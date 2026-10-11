@@ -507,8 +507,7 @@ The software was designed to handled more complex situations than the one we've 
 
 
 ```{r}
-xds_obj <- setup_births("zero", xds_obj)
-xds_obj <- setup_mortality_matrix("default", xds_obj)
+xds_obj <- setup_demog_obj(xds_obj)
 xds_obj <- setup_mass_treatment(xds_obj)
 ```
 

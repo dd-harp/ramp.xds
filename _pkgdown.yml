@@ -370,8 +370,7 @@ reference:
   desc: |
     Human / Host Demography 
   contents:
-  - setup_births
-  - setup_mortality_matrix
+  - setup_demog_obj
   - setup_mass_treatment
 - subtitle: Time Spent
   desc: |

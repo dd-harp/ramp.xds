@@ -33,13 +33,7 @@ change_time_away = function(time_away, xds_obj, i=1){
   check_time_away(time_away, xds_obj$nStrata[i])
   xds_obj$XH_obj[[i]]$time_away <- time_away
   xds_obj$XH_obj[[i]]$time_away_obj <- make_static_obj()
-  y <- get_inits(xds_obj, flatten=TRUE)
-  xds_obj <- compute_TaR(xds_obj,0)
-  xds_obj <- compute_WB(0, y, xds_obj)
-  xds_obj <- compute_local_frac(xds_obj)
-  xds_obj <- compute_beta(0, y, xds_obj)
-  xds_obj <- compute_EIR(0, y, xds_obj)
-  xds_obj <- compute_kappa(0, y, xds_obj)
+  xds_obj <- update_XY_interface(xds_obj)
   return(xds_obj)
 }
 

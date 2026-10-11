@@ -6,15 +6,15 @@
 \usage{
 xds_setup_eir(
   model_name = "unnamed",
-  eir = 1,
+  eir = 1/365,
   F_season = F_one,
   F_trend = F_one,
   F_shock = F_one,
   F_age = F_one,
   season_par = list(name = "F_one"),
   trend_par = list(name = "F_one"),
-  age_par = list(name = "F_one"),
   shock_par = list(name = "F_one"),
+  age_par = list(name = "F_one"),
   xds = "ode",
   Xname = "SIS",
   XHoptions = list(),
@@ -39,9 +39,9 @@ xds_setup_eir(
 
 \item{trend_par}{a list of options for F_trend}
 
-\item{age_par}{a list of options for F_age}
-
 \item{shock_par}{a list of options for F_shock}
+
+\item{age_par}{a list of options for F_age}
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 

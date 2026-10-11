@@ -251,18 +251,6 @@ update_timespent <- function(t, y, xds_obj, i) {
 update_timespent.static <- function(t, y, xds_obj, i) {return(xds_obj)}
 
 
-#' @title Update timespent
-#' 
-#' @description Update timespent when it changes dynamically
-#' 
-#' @inheritParams update_timespent
-#' @return an **`xds`** object
-#' @export
-#' @keywords internal
-update_timespent.dynamic <- function(t, y, xds_obj, i) { 
-  timespent(t, y, xds_obj, i)
-}
-
 #' @title time spent
 #'
 #' @description Compute and store a 

@@ -381,10 +381,10 @@ F_K_matrix = function(t, xds_obj, s) {
 #'
 #' @inheritParams F_K_matrix
 #'
-#' @return an **`xds`** object
+#' @return a mosquito dispersal matrix
+#' 
 #' @keywords internal
 #' @export
 F_K_matrix.static = function(t, xds_obj, s){
-  xds_obj$MY_obj[[s]]$K_obj$K_matrix
-  return(xds_obj)
+  return(xds_obj$MY_obj[[s]]$K_obj$K_matrix)
 }
