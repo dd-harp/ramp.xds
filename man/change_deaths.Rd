@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 Modify the death rates for a model with static population
 rates. The birth rate gets adjusted to ensure the \eqn{dH/dt=0}
 }
+\keyword{internal}

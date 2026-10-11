@@ -29,6 +29,7 @@ check_births = function(birth_rates, Nh){
 #' @param i the host species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_births = function(birth_rates, xds_obj, i=1){
   check_births(birth_rates, xds_obj$nStrata[i])

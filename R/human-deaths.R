@@ -7,7 +7,7 @@
 #' + the death rate is not negative
 #' + the death rates length is the number of strata
 #' 
-#' @param death_rate death rates
+#' @param death_rates death rates
 #' @param Nh the number of population strata
 #' 
 #' @seealso [xds_info_time_spent]
@@ -30,6 +30,7 @@ check_deaths = function(death_rates, Nh){
 #' @param i the host species index
 #'
 #' @return an **`xds`** object
+#' @keywords internal
 #' @export
 change_deaths = function(death_rates, xds_obj, i=1){
   check_deaths(death_rates, xds_obj$nStrata[i])

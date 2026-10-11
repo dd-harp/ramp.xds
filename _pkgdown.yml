@@ -370,8 +370,12 @@ reference:
   desc: |
     Human / Host Demography 
   contents:
-  - setup_demog_obj
-  - setup_mass_treatment
+  - setup_births
+  - get_birth_rates
+  - check_births
+  - setup_deaths
+  - get_death_rates
+  - check_deaths
 - subtitle: Time Spent
   desc: |
     Utilities for Time Spent Matrices

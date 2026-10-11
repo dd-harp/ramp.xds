@@ -7,9 +7,9 @@
 check_deaths(death_rates, Nh)
 }
 \arguments{
-\item{Nh}{the number of population strata}
+\item{death_rates}{death rates}
 
-\item{death_rate}{death rates}
+\item{Nh}{the number of population strata}
 }
 \description{
 Check that

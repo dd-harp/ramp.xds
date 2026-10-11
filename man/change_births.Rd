@@ -20,3 +20,4 @@ an \strong{\code{xds}} object
 Modify the birth rates for a model with static population
 rates.
 }
+\keyword{internal}
