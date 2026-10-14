@@ -2,20 +2,20 @@
 % Please edit documentation in R/blood_feeding-search_weights.R
 \name{check_blood_search_weights}
 \alias{check_blood_search_weights}
-\title{Check blood search weights}
+\title{Check the blood search weights}
 \usage{
-check_blood_search_weights(blood_search_weights, nS)
+check_blood_search_weights(blood_search_weights, nStrata)
 }
 \arguments{
 \item{blood_search_weights}{search weights for hosts}
 
-\item{nS}{the number of population strata}
+\item{nStrata}{the number of population strata}
 }
 \description{
 Check that
 \itemize{
 \item all elements are non-negative
-\item length(blood_search_weights) == nPatches
+\item length(blood_search_weights) == nStrata
 }
 }
 \seealso{

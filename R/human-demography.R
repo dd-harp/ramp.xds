@@ -13,11 +13,10 @@ setup_demog_obj = function(xds_obj, i=1){
   demog = list() 
   class(demog) = "zero"
   demog$name = "zero"
-  demog$birth_rates = 0
-  demog$death_rates = 0
   xds_obj$XH_obj[[i]]$birth_obj = demog
-  xds_obj$XH_obj[[i]]$death_obj = demog
   xds_obj <- setup_births("zero", xds_obj, i=i)
+  xds_obj$XH_obj[[i]]$death_obj = demog
+  xds_obj <- setup_deaths("zero", xds_obj, i=i)
   return(xds_obj)
 }
 

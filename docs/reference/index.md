@@ -639,11 +639,17 @@ XH component module implementations
 Human / Host Demography
 
 - [`setup_births()`](https://dd-harp.github.io/ramp.xds/reference/setup_births.md)
-  : Setup births
-- [`setup_mortality_matrix()`](https://dd-harp.github.io/ramp.xds/reference/setup_mortality_matrix.md)
-  : Setup demographic matrix
-- [`setup_mass_treatment()`](https://dd-harp.github.io/ramp.xds/reference/setup_mass_treatment.md)
-  : Setup mass treatment
+  : Set up births
+- [`get_birth_rates()`](https://dd-harp.github.io/ramp.xds/reference/get_birth_rates.md)
+  : Get the births
+- [`check_births()`](https://dd-harp.github.io/ramp.xds/reference/check_births.md)
+  : Check births
+- [`setup_deaths()`](https://dd-harp.github.io/ramp.xds/reference/setup_deaths.md)
+  : Set up deaths
+- [`get_death_rates()`](https://dd-harp.github.io/ramp.xds/reference/get_death_rates.md)
+  : Get the deaths
+- [`check_deaths()`](https://dd-harp.github.io/ramp.xds/reference/check_deaths.md)
+  : Check deaths
 
 ### Time Spent
 

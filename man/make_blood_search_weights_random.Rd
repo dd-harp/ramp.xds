@@ -5,17 +5,17 @@
 \title{Make blood search weights}
 \usage{
 make_blood_search_weights_random(
-  nPatches,
-  options = list(),
+  nStrata,
+  optionStrata = list(),
   f_rand = stats::rlnorm,
   p1 = 0,
   p2 = 0.5
 )
 }
 \arguments{
-\item{nPatches}{is the number of patches}
+\item{nStrata}{is the number of population strata}
 
-\item{options}{is a set of options that overwrites the defaults}
+\item{optionStrata}{is a set of optionStrata that overwrites the defaults}
 
 \item{f_rand}{a random number generator}
 

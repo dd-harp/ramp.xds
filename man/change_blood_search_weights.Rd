@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-search_weights.R
 \name{change_blood_search_weights}
 \alias{change_blood_search_weights}
-\title{Change the blood_search_weights}
+\title{Change the blood search weights}
 \usage{
 change_blood_search_weights(blood_search_weights, xds_obj, i = 1)
 }
@@ -17,6 +17,5 @@ change_blood_search_weights(blood_search_weights, xds_obj, i = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Update the blood_search_weights for the \eqn{i^{th}} host species, and
-trigger updates for the \code{XY} interface.
+Change the \emph{static} blood search weights
 }

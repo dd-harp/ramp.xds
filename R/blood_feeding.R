@@ -422,6 +422,7 @@ blood_feeding_dynamics = function(t, y, xds_obj){
 #' @keywords internal
 update_XY_interface = function(xds_obj){
   y <- get_inits(xds_obj, flatten=TRUE)
+  xds_obj <- compute_TaR(xds_obj, 0)
   xds_obj <- compute_WB(0, y, xds_obj)
   xds_obj <- compute_local_frac(xds_obj)
   xds_obj <- compute_beta(0, y, xds_obj)
