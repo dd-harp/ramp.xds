@@ -7,14 +7,13 @@ If the first argument to `setup_blood_search_weights` is a numeric
 vector, the `"as_is"` method is used.
 
 The conventional way to call this method is `name = "as_is"`, and the
-new blood search weights are passed as
-`optionStrata$blood_search_weights`
+new blood search weights are passed as `options$blood_search_weights`
 
 ## Usage
 
 ``` r
 # S3 method for class 'as_is'
-setup_blood_search_weights(name, xds_obj, optionStrata = list(), i = 1)
+setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -27,9 +26,9 @@ setup_blood_search_weights(name, xds_obj, optionStrata = list(), i = 1)
 
   an **`xds`** model object
 
-- optionStrata:
+- options:
 
-  configuration optionStrata
+  configuration options
 
 - i:
 

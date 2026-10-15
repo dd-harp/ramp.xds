@@ -5,17 +5,17 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set up a blood_search_weights — setup_blood_search_weights.list"><meta name="description" content="If an optionStrata list is passed
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set up a blood_search_weights — setup_blood_search_weights.list"><meta name="description" content="If an options list is passed
 as the first argument, then set
 BSWname = name$name
-optionStrata = name
-and call setup_blood_search_weights(BSWname, xds_obj, optionStrata, i)
+options = name
+and call setup_blood_search_weights(BSWname, xds_obj, options, i)
 
-"><meta property="og:description" content="If an optionStrata list is passed
+"><meta property="og:description" content="If an options list is passed
 as the first argument, then set
 BSWname = name$name
-optionStrata = name
-and call setup_blood_search_weights(BSWname, xds_obj, optionStrata, i)
+options = name
+and call setup_blood_search_weights(BSWname, xds_obj, options, i)
 
 "></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -99,16 +99,16 @@ and call setup_blood_search_weights(BSWname, xds_obj, optionStrata, i)
     </div>
 
     <div class="ref-description section level2">
-    <p>If an optionStrata list is passed
+    <p>If an options list is passed
 as the first argument, then set</p><ul><li><p><code>BSWname = name$name</code></p></li>
-<li><p><code>optionStrata = name</code>
-and call <code>setup_blood_search_weights(BSWname, xds_obj, optionStrata, i)</code></p></li>
+<li><p><code>options = name</code>
+and call <code>setup_blood_search_weights(BSWname, xds_obj, options, i)</code></p></li>
 </ul></div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'list'</span></span>
-<span><span class="fu"><a href="setup_blood_search_weights.html">setup_blood_search_weights</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">xds_obj</span>, optionStrata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, i <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="setup_blood_search_weights.html">setup_blood_search_weights</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">xds_obj</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, i <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -123,8 +123,8 @@ and call <code>setup_blood_search_weights(BSWname, xds_obj, optionStrata, i)</co
 <dd><p>an <strong><code>xds</code></strong> model object</p></dd>
 
 
-<dt id="arg-optionstrata">optionStrata<a class="anchor" aria-label="anchor" href="#arg-optionstrata"></a></dt>
-<dd><p>configuration optionStrata</p></dd>
+<dt id="arg-options">options<a class="anchor" aria-label="anchor" href="#arg-options"></a></dt>
+<dd><p>configuration options</p></dd>
 
 
 <dt id="arg-i">i<a class="anchor" aria-label="anchor" href="#arg-i"></a></dt>

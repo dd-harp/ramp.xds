@@ -5,7 +5,7 @@ This method dispatches on `xds_obj$XH_obj[[i]]`.
 ## Usage
 
 ``` r
-setup_XH_inits(xds_obj, H, i = 1, options = list())
+setup_XH_inits(xds_obj, i = 1, options = list())
 ```
 
 ## Arguments
@@ -13,10 +13,6 @@ setup_XH_inits(xds_obj, H, i = 1, options = list())
 - xds_obj:
 
   an **`xds`** model object
-
-- H:
-
-  initial host population density
 
 - i:
 

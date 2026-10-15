@@ -5,7 +5,7 @@ Set the parameter values and configure a model for the **X** Component
 ## Usage
 
 ``` r
-setup_XH_obj(Xname, residence, HPop, xds_obj, i, options = list())
+setup_XH_obj(Xname, residence, xds_obj, i, options = list())
 ```
 
 ## Arguments
@@ -17,10 +17,6 @@ setup_XH_obj(Xname, residence, HPop, xds_obj, i, options = list())
 - residence:
 
   the residence vector
-
-- HPop:
-
-  the initial human population size
 
 - xds_obj:
 

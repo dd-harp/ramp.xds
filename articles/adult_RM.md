@@ -234,7 +234,7 @@ equilibrium values.
 ``` r
 
 kappa <- c(0.1, 0.075, 0.025)
-Xo = list(kappa=kappa)
+Xo = list(kappa=kappa, H=HPop)
 Lambda <- c(5, 10, 8)
 Lo = list(Lambda=Lambda)
 ```
@@ -264,7 +264,7 @@ dynamically, so we attach `Upsilon` as initial values:
 
 params <- make_xds_object_template("dde", "mosy", nPatches, 1:3, 1:3)
 params <- setup_MY_obj("macdonald", params, 1, MYo)
-params <- setup_XH_obj("trivial", 1:3, HPop, params, 1, Xo) 
+params <- setup_XH_obj("trivial", 1:3, params, 1, Xo) 
 params <- setup_L_obj("trivial", 1:3, params, 1, Lo)
 ```
 

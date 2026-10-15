@@ -483,7 +483,7 @@ aquatic model:</p>
 <span><span class="op">)</span></span></code></pre></div>
 <p>For the human model:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Xinits</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>I <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fl">0.2</span><span class="op">*</span><span class="va">HPop</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Xinits</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>I <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fl">0.2</span><span class="op">*</span><span class="va">HPop</span><span class="op">)</span>, H<span class="op">=</span><span class="va">HPop</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="the-xds-template">The <code>xds</code> Template<a class="anchor" aria-label="anchor" href="#the-xds-template"></a>
@@ -608,7 +608,7 @@ them.</p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_L_inits.html">setup_L_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span>, <span class="va">Linits</span><span class="op">)</span></span>
 <span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_MY_inits.html">setup_MY_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span>, <span class="va">MYZinits</span><span class="op">)</span></span>
-<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_XH_inits.html">setup_XH_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="va">HPop</span>, <span class="fl">1</span>, <span class="va">Xinits</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">xds_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_XH_inits.html">setup_XH_inits</a></span><span class="op">(</span><span class="va">xds_obj</span>, <span class="fl">1</span>, <span class="va">Xinits</span><span class="op">)</span></span></code></pre></div>
 <p>After the parameters for <code>5-3-4</code> have been specified, we
 can generate the indices for the model and attach them to the parameter
 list.</p>
