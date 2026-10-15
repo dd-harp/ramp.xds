@@ -4,14 +4,14 @@
 \alias{make_XH_inits_SIS}
 \title{Make initial values for the SIS xde human model, with defaults}
 \usage{
-make_XH_inits_SIS(nStrata, H, options = list(), I = 1)
+make_XH_inits_SIS(nStrata, options = list(), H = 1000, I = 1)
 }
 \arguments{
 \item{nStrata}{the number of strata in the model}
 
-\item{H}{the initial human population density}
-
 \item{options}{a \link{list} to overwrite defaults}
+
+\item{H}{the initial human population density}
 
 \item{I}{the initial values of the parameter I}
 }

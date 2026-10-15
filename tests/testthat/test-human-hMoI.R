@@ -20,7 +20,7 @@ test_that("human hybrid MoI model remains at equilibrium", {
   foi <- r2*m2
   m1 <- foi/r1
 
-  Xo = list(b=b,c1=c1,c2=c2,r1=r1,r2=r2, m2=m2, m1=m1)
+  Xo = list(b=b,c1=c1,c2=c2,r1=r1,r2=r2, m2=m2, m1=m1, H=H)
 
   params <- xds_setup_human(Xname ="hMoI", XHoptions =Xo, nPatches=nPatches, HPop=H, residence=residence)
   params$terms$FoI[[1]] <- foi

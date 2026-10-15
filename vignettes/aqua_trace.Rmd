@@ -141,7 +141,7 @@ xds_obj = setup_MY_obj("basicM", xds_obj, 1, options=MYo)
 
 
 ```{r}
-xds_obj = setup_XH_obj("trivial", residence, HPop, xds_obj, 1, list(kappa=kappa))
+xds_obj = setup_XH_obj("trivial", residence, xds_obj, 1, list(kappa=kappa, H=HPop))
 ```
 
 

@@ -103,7 +103,8 @@ xds_setup = function(
   
   # Human Dynamics
   xds_obj$Xname = Xname
-  xds_obj <- setup_XH_obj(Xname, residence, HPop, xds_obj, 1, XHoptions)
+  XHoptions$H = HPop
+  xds_obj <- setup_XH_obj(Xname, residence, xds_obj, 1, XHoptions)
   
   
   xds_obj <- make_indices(xds_obj)
@@ -184,8 +185,8 @@ xds_setup_mosy = function(
 
   # Human / Host Dynamics
   xds_obj$Xname   <- "trivial"
-  XHoptions <- list(HPop=HPop, kappa=kappa)
-  xds_obj <- setup_XH_obj(xds_obj$Xname, residence, HPop, xds_obj, 1, XHoptions) 
+  XHoptions <- list(H=HPop, kappa=kappa)
+  xds_obj <- setup_XH_obj(xds_obj$Xname, residence, xds_obj, 1, XHoptions) 
   
   xds_obj = make_indices(xds_obj)
   
@@ -251,7 +252,7 @@ xds_setup_aquatic = function(model_name = "unnamed",
   
   # Human / Host Dynamics
   xds_obj$Xname   <- "trivial"
-  xds_obj <- setup_XH_obj("trivial", residence, 1, xds_obj, i=1, list()) 
+  xds_obj <- setup_XH_obj("trivial", residence, xds_obj, i=1, options=list(H=1)) 
   
   xds_obj = make_indices(xds_obj)
   y <- as.vector(unlist(get_inits(xds_obj)))
@@ -330,7 +331,8 @@ xds_setup_human = function(model_name = "unnamed",
 
   # Human Dynamics
   xds_obj$Xname <- Xname
-  xds_obj <- setup_XH_obj(xds_obj$Xname, residence, HPop, xds_obj, 1, XHoptions) 
+  XHoptions$H = HPop
+  xds_obj <- setup_XH_obj(xds_obj$Xname, residence, xds_obj, 1, XHoptions) 
 
   
   xds_obj$forced_by = c(xds_obj$forced_by, "fqZ")
@@ -414,7 +416,7 @@ xds_setup_eir = function(model_name = "unnamed",
 ){
   residence  = rep(1, length(HPop))
   membership = 1 
-  xds_obj <- make_xds_object_template(xds, 'eir', length(HPop), membership, residence)
+  xds_obj <- make_xds_object_template(xds, 'eir', 1, membership, residence)
   xds_obj$forced_by = xds_obj$frame
 
   xds_obj$EIR_obj <- list()
@@ -442,7 +444,8 @@ xds_setup_eir = function(model_name = "unnamed",
   
   # Human Dynamics
   xds_obj$Xname <- Xname
-  xds_obj <- setup_XH_obj(xds_obj$Xname, residence, HPop, xds_obj, 1, XHoptions) 
+  XHoptions$H = HPop
+  xds_obj <- setup_XH_obj(xds_obj$Xname, residence, xds_obj, 1, XHoptions) 
   
   xds_obj$forced_by = xds_obj$frame
 

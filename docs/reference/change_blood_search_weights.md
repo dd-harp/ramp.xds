@@ -1,7 +1,6 @@
-# Change the blood_search_weights
+# Change the blood search weights
 
-Update the blood_search_weights for the \\i^{th}\\ host species, and
-trigger updates for the `XY` interface.
+Change the *static* blood search weights
 
 ## Usage
 

@@ -6,7 +6,7 @@
 \usage{
 make_blood_search_weights_random(
   nStrata,
-  optionStrata = list(),
+  options = list(),
   f_rand = stats::rlnorm,
   p1 = 0,
   p2 = 0.5
@@ -15,7 +15,7 @@ make_blood_search_weights_random(
 \arguments{
 \item{nStrata}{is the number of population strata}
 
-\item{optionStrata}{is a set of optionStrata that overwrites the defaults}
+\item{options}{is a set of options that overwrites the defaults}
 
 \item{f_rand}{a random number generator}
 

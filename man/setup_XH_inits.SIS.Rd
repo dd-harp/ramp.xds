@@ -4,12 +4,10 @@
 \alias{setup_XH_inits.SIS}
 \title{Setup initial values for \code{SIS} (\strong{XH})}
 \usage{
-\method{setup_XH_inits}{SIS}(xds_obj, H, i = 1, options = list())
+\method{setup_XH_inits}{SIS}(xds_obj, i = 1, options = list())
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
-
-\item{H}{initial host population density}
 
 \item{i}{the host species index}
 

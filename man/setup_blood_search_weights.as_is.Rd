@@ -4,14 +4,14 @@
 \alias{setup_blood_search_weights.as_is}
 \title{Set up a blood_search_weights}
 \usage{
-\method{setup_blood_search_weights}{as_is}(name, xds_obj, optionStrata = list(), i = 1)
+\method{setup_blood_search_weights}{as_is}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{name}{a or setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{optionStrata}{configuration optionStrata}
+\item{options}{configuration options}
 
 \item{i}{the host species index}
 }
@@ -27,6 +27,6 @@ numeric vector, the \code{"as_is"} method is used.
 
 The conventional way to call this method is \code{name = "as_is"},
 and the new blood search weights are passed as
-\code{optionStrata$blood_search_weights}
+\code{options$blood_search_weights}
 }
 \keyword{internal}

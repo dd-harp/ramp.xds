@@ -31,6 +31,7 @@ change_travel_eir = function(travel_eir, xds_obj, i=1){
   check_travel_eir(travel_eir, xds_obj$nStrata[i])
   xds_obj$XH_obj[[i]]$travel_eir <- travel_eir
   xds_obj$XH_obj[[i]]$travel_eir_obj <- make_static_obj()
+  xds_obj$XH_obj[[i]]$travel_eir_obj$travel_eir <- travel_eir
   return(xds_obj)
 }
 

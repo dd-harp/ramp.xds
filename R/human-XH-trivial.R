@@ -130,7 +130,7 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' @param nPatches the number of patches
 #' @param options a [list]
 #' @param kappa net infectiousness
-#' @param HPop initial human population density
+#' @param H initial human population density
 #' @param F_season the seasonal pattern function
 #' @param F_trend the trend function
 #' @param F_shock the shock function
@@ -140,7 +140,9 @@ F_infectivity.trivial <- function(y, xds_obj, i) {
 #' #' @return a [list]
 #' @keywords internal
 #' @export
-make_XH_obj_trivial <- function(nPatches, options, kappa=0, HPop=1,
+make_XH_obj_trivial <- function(nPatches, options, 
+                                kappa=0, 
+                                H=1,
                                 F_season = F_one, 
                                 F_trend = F_one, 
                                 F_shock = F_one,
@@ -151,7 +153,7 @@ make_XH_obj_trivial <- function(nPatches, options, kappa=0, HPop=1,
     XH_obj <- list()
     class(XH_obj) <- c('trivial')
 
-    XH_obj$H = checkIt(HPop, nPatches)
+    XH_obj$H = checkIt(H, nPatches)
     XH_obj$kappa= checkIt(kappa, nPatches)
     
     XH_obj$F_season = F_season
@@ -245,11 +247,10 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_XH_obj.trivial = function(Xname, residence, HPop, xds_obj, i, options=list()){
+setup_XH_obj.trivial = function(Xname, residence, xds_obj, i, options=list()){
   xds_obj$Xname = "trivial"
-  HPop = checkIt(HPop, xds_obj$nStrata)
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nPatches, options)
-  xds_obj <- setup_XH_inits(xds_obj, HPop, i, options)
+  xds_obj <- setup_XH_inits(xds_obj, i, options)
   xds_obj <- setup_skillset_XH(xds_obj, i)
   xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
   xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
@@ -265,7 +266,7 @@ setup_XH_obj.trivial = function(Xname, residence, HPop, xds_obj, i, options=list
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_XH_inits.trivial = function(xds_obj, H, i=1, options=list()){
+setup_XH_inits.trivial = function(xds_obj, i=1, options=list()){
   return(xds_obj)
 }
 
@@ -277,6 +278,7 @@ setup_XH_inits.trivial = function(xds_obj, H, i=1, options=list()){
 #' @keywords internal
 #' @export
 setup_XH_ix.trivial <- function(xds_obj, i) {
+  
   return(xds_obj)
 }
 

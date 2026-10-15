@@ -34,6 +34,7 @@ change_blood_traps = function(blood_traps, xds_obj, s=1){
   check_blood_traps(blood_traps, xds_obj$nPatches)
   xds_obj$patches$blood_traps[[s]] <- blood_traps
   xds_obj$patches$blood_traps_obj[[s]] <- make_static_obj()
+  xds_obj$patches$blood_traps_obj[[s]]$blood_traps <- blood_traps
   return(xds_obj)
 }
 

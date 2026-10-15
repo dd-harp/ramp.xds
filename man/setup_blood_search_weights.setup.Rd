@@ -4,14 +4,14 @@
 \alias{setup_blood_search_weights.setup}
 \title{Set up no blood_search_weights}
 \usage{
-\method{setup_blood_search_weights}{setup}(name, xds_obj, optionStrata = list(), i = 1)
+\method{setup_blood_search_weights}{setup}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{name}{a or setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{optionStrata}{configuration optionStrata}
+\item{options}{configuration options}
 
 \item{i}{the host species index}
 }

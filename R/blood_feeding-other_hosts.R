@@ -34,6 +34,7 @@ change_other_blood_hosts = function(other_blood_hosts, xds_obj, s=1){
   check_other_blood_hosts(other_blood_hosts, xds_obj$nPatches)
   xds_obj$patches$other_blood_hosts[[s]] <- other_blood_hosts
   xds_obj$patches$other_blood_hosts_obj[[s]] <- make_static_obj()
+  xds_obj$patches$other_blood_hosts_obj[[s]]$other_blood_hosts <- other_blood_hosts
   return(xds_obj)
 }
 

@@ -123,10 +123,10 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 #'
 #' @keywords internal
 #' @export
-setup_XH_obj.SIS = function(Xname, residence, HPop, xds_obj, i, options=list()){
+setup_XH_obj.SIS = function(Xname, residence, xds_obj, i, options=list()){
   xds_obj$Xname = "SIS"
   xds_obj$XH_obj[[i]] = make_XH_obj_SIS(xds_obj$nStrata[1], options)
-  xds_obj <- setup_XH_inits(xds_obj, HPop, i, options)
+  xds_obj <- setup_XH_inits(xds_obj, i, options)
   xds_obj <- setup_skillset_XH(xds_obj, i)
   xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
   xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
@@ -289,8 +289,8 @@ parse_XH_orbits.SIS <- function(outputs, xds_obj, i) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_XH_inits.SIS = function(xds_obj, H, i=1, options=list()){
-  xds_obj$XH_obj[[i]]$inits = make_XH_inits_SIS(xds_obj$nStrata[i], H, options)
+setup_XH_inits.SIS = function(xds_obj, i=1, options=list()){
+  xds_obj$XH_obj[[i]]$inits = make_XH_inits_SIS(xds_obj$nStrata[i], options)
   return(xds_obj)
 }
 
@@ -299,15 +299,15 @@ setup_XH_inits.SIS = function(xds_obj, H, i=1, options=list()){
 #' @description Make a named list of initial values
 #'
 #' @param nStrata the number of strata in the model
-#' @param H the initial human population density
 #' @param options a [list] to overwrite defaults
+#' @param H the initial human population density
 #' @param I the initial values of the parameter I
 #'
 #' @keywords internal
 #'
 #' @return a [list]
 #' @export
-make_XH_inits_SIS = function(nStrata, H, options=list(), I=1){
+make_XH_inits_SIS = function(nStrata, options=list(), H=1000, I=1){
   with(options,{
     H = unname(as.vector(checkIt(H, nStrata)))
     I = unname(as.vector(checkIt(I, nStrata)))

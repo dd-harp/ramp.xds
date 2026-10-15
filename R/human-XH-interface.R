@@ -118,7 +118,6 @@ F_infectivity <- function(y, xds_obj, i) {
 #'
 #' @param Xname the model name
 #' @param residence the residence vector
-#' @param HPop the initial human population size
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options model options as a named list
@@ -127,7 +126,7 @@ F_infectivity <- function(y, xds_obj, i) {
 #' @keywords internal
 #'
 #' @export
-setup_XH_obj = function(Xname, residence, HPop, xds_obj, i, options=list()){
+setup_XH_obj = function(Xname, residence, xds_obj, i, options=list()){
   class(Xname) <- Xname
   UseMethod("setup_XH_obj", Xname)
 }
@@ -236,13 +235,12 @@ change_XH_pars <- function(xds_obj, i=1, options=list()) {
 #' @description This method dispatches on `xds_obj$XH_obj[[i]]`.
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param H initial host population density
 #' @param i the host species index
 #' @param options a [list]
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_XH_inits = function(xds_obj, H, i=1, options=list()){
+setup_XH_inits = function(xds_obj, i=1, options=list()){
   UseMethod("setup_XH_inits", xds_obj$XH_obj[[i]])
 }
 

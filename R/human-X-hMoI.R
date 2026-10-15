@@ -143,10 +143,10 @@ setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_XH_obj.hMoI = function(Xname, residence, HPop, xds_obj, i, options=list()){
+setup_XH_obj.hMoI = function(Xname, residence, xds_obj, i, options=list()){
   xds_obj$Xname = "hMoI"
   xds_obj$XH_obj[[i]] = make_XH_obj_hMoI(xds_obj$nStrata[i], options)
-  xds_obj <- setup_XH_inits(xds_obj, HPop, i, options)
+  xds_obj <- setup_XH_inits(xds_obj, i, options)
   xds_obj <- setup_skillset_XH(xds_obj, i)
   xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
   xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
@@ -165,13 +165,14 @@ setup_XH_obj.hMoI = function(Xname, residence, HPop, xds_obj, i, options=list())
 #' @param c2 transmission probability (efficiency) from patent human infections to mosquito
 #' @param r1 recovery rate from inapparent infections
 #' @param r2 recovery rate from patent infections
+#' @param H human population density
 #'
 #' @return a [list]
 #' @keywords internal
 #' @export
 make_XH_obj_hMoI = function(nStrata, options=list(),
                             b=0.55, r1=1/180, r2 = 1/70,
-                            c1=0.015, c2=0.15){
+                            c1=0.015, c2=0.15, H=1){
   with(options,{
     XH_obj = list()
     class(XH_obj) <- "hMoI"
@@ -181,6 +182,7 @@ make_XH_obj_hMoI = function(nStrata, options=list(),
     XH_obj$c2 = checkIt(c2, nStrata)
     XH_obj$r1 = checkIt(r1, nStrata)
     XH_obj$r2 = checkIt(r2, nStrata)
+    XH_obj$H = checkIt(H, nStrata)
 
     return(XH_obj)
 })}
@@ -265,20 +267,17 @@ F_infectivity.hMoI <- function(y, xds_obj,i) {
   with(xds_obj$XH_obj[[i]], b)
 }
 
-
-
-
 #' @title Setup initial values for `hMoI` (**XH**)
 #' @description Implements [setup_XH_inits] for the hMoI model
 #' @inheritParams setup_XH_inits
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_XH_inits.hMoI = function(xds_obj, H, i=1, options=list()){
-  xds_obj$XH_obj[[i]]$H = H
-  xds_obj$XH_obj[[i]]$inits = make_XH_inits_hMoI(xds_obj$nStrata[i], options)
+setup_XH_inits.hMoI = function(xds_obj,  i=1, options=list()){
+  with(options,{
+    xds_obj$XH_obj[[i]]$inits = make_XH_inits_hMoI(xds_obj$nStrata[i], options)
   return(xds_obj)
-}
+  })}
 
 #' @title Make inits for hybrid MoI human model
 #' @description MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
@@ -289,10 +288,11 @@ setup_XH_inits.hMoI = function(xds_obj, H, i=1, options=list()){
 #' @return a [list]
 #' @keywords internal
 #' @export
-make_XH_inits_hMoI = function(nStrata, options = list(), m1=2, m2=1){with(options,{
-  m1 = checkIt(m1, nStrata)
-  m2 = checkIt(m2, nStrata)
-  return(list(m1=m1, m2=m2))
+make_XH_inits_hMoI = function(nStrata, options = list(), m1=2, m2=1){
+  with(options,{
+    m1 = checkIt(m1, nStrata)
+    m2 = checkIt(m2, nStrata)
+    return(list(m1=m1, m2=m2))
 })}
 
 #' @title Change initial values for `hMoI` (**XH**)

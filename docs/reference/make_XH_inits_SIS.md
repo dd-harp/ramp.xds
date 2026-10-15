@@ -5,7 +5,7 @@ Make a named list of initial values
 ## Usage
 
 ``` r
-make_XH_inits_SIS(nStrata, H, options = list(), I = 1)
+make_XH_inits_SIS(nStrata, options = list(), H = 1000, I = 1)
 ```
 
 ## Arguments
@@ -14,13 +14,13 @@ make_XH_inits_SIS(nStrata, H, options = list(), I = 1)
 
   the number of strata in the model
 
-- H:
-
-  the initial human population density
-
 - options:
 
   a [list](https://rdrr.io/r/base/list.html) to overwrite defaults
+
+- H:
+
+  the initial human population density
 
 - I:
 

@@ -8,7 +8,7 @@ for the trivial model
 
 ``` r
 # S3 method for class 'trivial'
-setup_XH_inits(xds_obj, H, i = 1, options = list())
+setup_XH_inits(xds_obj, i = 1, options = list())
 ```
 
 ## Arguments
@@ -16,10 +16,6 @@ setup_XH_inits(xds_obj, H, i = 1, options = list())
 - xds_obj:
 
   an **`xds`** model object
-
-- H:
-
-  initial host population density
 
 - i:
 

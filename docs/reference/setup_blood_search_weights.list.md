@@ -5,7 +5,7 @@ If an options list is passed as the first argument, then set
 - `BSWname = name$name`
 
 - `options = name` and call
-  `setup_blood_search_weights(BSWname, xds_obj, options, s)`
+  `setup_blood_search_weights(BSWname, xds_obj, options, i)`
 
 ## Usage
 
