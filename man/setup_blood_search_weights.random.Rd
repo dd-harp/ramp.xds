@@ -4,14 +4,14 @@
 \alias{setup_blood_search_weights.random}
 \title{Set up a blood_search_weights}
 \usage{
-\method{setup_blood_search_weights}{random}(name, xds_obj, options = list(), i = 1)
+\method{setup_blood_search_weights}{random}(name, xds_obj, optionStrata = list(), i = 1)
 }
 \arguments{
 \item{name}{a or setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{options}{configuration options}
+\item{optionStrata}{configuration optionStrata}
 
 \item{i}{the host species index}
 }

@@ -335,7 +335,7 @@ To solve it, we do this:
 
 ``` r
 
-xds_solve(test_SIS)-> test_SIS 
+xds_solve(test_SIS)-> test_SIS
 ```
 
 We plot the prevalence over time:
@@ -372,15 +372,15 @@ I_last <- tail(XH2$I, 1)
 I_last
 ```
 
-    ##              4        5        6
-    ## [366,] 99.0991 495.4955 247.7477
+    ##               4        5       6
+    ## [366,] 24.29642 129.3369 66.9679
 
 ``` r
 
 sum(tail(XH2$I, 1) - I_eq)
 ```
 
-    ## [1] 390.0658
+    ## [1] -231.6753
 
 ### Another Test
 

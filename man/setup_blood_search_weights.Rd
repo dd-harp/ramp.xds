@@ -2,16 +2,16 @@
 % Please edit documentation in R/blood_feeding-search_weights.R
 \name{setup_blood_search_weights}
 \alias{setup_blood_search_weights}
-\title{Set up a blood_search_weights}
+\title{Set up blood search weights}
 \usage{
-setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
+setup_blood_search_weights(name, xds_obj, optionStrata = list(), i = 1)
 }
 \arguments{
 \item{name}{a or setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{options}{configuration options}
+\item{optionStrata}{configuration optionStrata}
 
 \item{i}{the host species index}
 }
@@ -19,5 +19,9 @@ setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set up a blood_search_weights
+Advanced setup for heterogeneous biting. Useful methods include:
+\itemize{
+\item "as_is" changes the values to a vector of values
+\item "random" sets random search weights (see \link{make_blood_search_weights_random})
+}
 }

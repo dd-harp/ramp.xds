@@ -4,14 +4,12 @@
 \alias{get_blood_search_weights}
 \title{Get availability of blood search weights}
 \usage{
-get_blood_search_weights(xds_obj, i = 1, s = 1)
+get_blood_search_weights(xds_obj, i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the host species index}
-
-\item{s}{the vector species index}
 }
 \value{
 a vector

@@ -27,4 +27,4 @@ F_K_matrix(t, xds_obj, s)
 
 ## Value
 
-an **`xds`** object
+a mosquito dispersal matrix

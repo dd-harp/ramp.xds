@@ -2,7 +2,7 @@
 % Please edit documentation in R/blood_feeding-search_weights.R
 \name{update_blood_search_weights}
 \alias{update_blood_search_weights}
-\title{Update the blood_search_weights Matrix}
+\title{Update the blood search weights}
 \usage{
 update_blood_search_weights(t, y, xds_obj, i)
 }
@@ -19,7 +19,6 @@ update_blood_search_weights(t, y, xds_obj, i)
 an \strong{\code{xds}} object
 }
 \description{
-Port function for the blood_search_weights, \eqn{w}.
-Dispatches on \code{xds_obj$XH_obj[[i]]$blood_search_weights_obj}.
+This is called to update dy
 }
 \keyword{internal}
