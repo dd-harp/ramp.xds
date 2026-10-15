@@ -1,15 +1,15 @@
-# Check blood search weights
+# Check the blood search weights
 
 Check that
 
 - all elements are non-negative
 
-- length(blood_search_weights) == nPatches
+- length(blood_search_weights) == nStrata
 
 ## Usage
 
 ``` r
-check_blood_search_weights(blood_search_weights, nS)
+check_blood_search_weights(blood_search_weights, nStrata)
 ```
 
 ## Arguments
@@ -18,7 +18,7 @@ check_blood_search_weights(blood_search_weights, nS)
 
   search weights for hosts
 
-- nS:
+- nStrata:
 
   the number of population strata
 

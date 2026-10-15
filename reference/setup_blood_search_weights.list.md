@@ -1,17 +1,17 @@
 # Set up a blood_search_weights
 
-If an options list is passed as the first argument, then set
+If an optionStrata list is passed as the first argument, then set
 
 - `BSWname = name$name`
 
-- `options = name` and call
-  `setup_blood_search_weights(BSWname, xds_obj, options, s)`
+- `optionStrata = name` and call
+  `setup_blood_search_weights(BSWname, xds_obj, optionStrata, i)`
 
 ## Usage
 
 ``` r
 # S3 method for class 'list'
-setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
+setup_blood_search_weights(name, xds_obj, optionStrata = list(), i = 1)
 ```
 
 ## Arguments
@@ -24,9 +24,9 @@ setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 
   an **`xds`** model object
 
-- options:
+- optionStrata:
 
-  configuration options
+  configuration optionStrata
 
 - i:
 

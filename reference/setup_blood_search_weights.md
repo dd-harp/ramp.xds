@@ -1,11 +1,16 @@
-# Set up a blood_search_weights
+# Set up blood search weights
 
-Set up a blood_search_weights
+Advanced setup for heterogeneous biting. Useful methods include:
+
+- "as_is" changes the values to a vector of values
+
+- "random" sets random search weights (see
+  [make_blood_search_weights_random](https://dd-harp.github.io/ramp.xds/reference/make_blood_search_weights_random.md))
 
 ## Usage
 
 ``` r
-setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
+setup_blood_search_weights(name, xds_obj, optionStrata = list(), i = 1)
 ```
 
 ## Arguments
@@ -18,9 +23,9 @@ setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 
   an **`xds`** model object
 
-- options:
+- optionStrata:
 
-  configuration options
+  configuration optionStrata
 
 - i:
 

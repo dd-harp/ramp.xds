@@ -93,8 +93,8 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_blood_search_weights_random</span><span class="op">(</span></span>
-<span>  <span class="va">nPatches</span>,</span>
-<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="va">nStrata</span>,</span>
+<span>  optionStrata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  f_rand <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span>,</span>
 <span>  p1 <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  p2 <span class="op">=</span> <span class="fl">0.5</span></span>
@@ -105,12 +105,12 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-npatches">nPatches<a class="anchor" aria-label="anchor" href="#arg-npatches"></a></dt>
-<dd><p>is the number of patches</p></dd>
+<dl><dt id="arg-nstrata">nStrata<a class="anchor" aria-label="anchor" href="#arg-nstrata"></a></dt>
+<dd><p>is the number of population strata</p></dd>
 
 
-<dt id="arg-options">options<a class="anchor" aria-label="anchor" href="#arg-options"></a></dt>
-<dd><p>is a set of options that overwrites the defaults</p></dd>
+<dt id="arg-optionstrata">optionStrata<a class="anchor" aria-label="anchor" href="#arg-optionstrata"></a></dt>
+<dd><p>is a set of optionStrata that overwrites the defaults</p></dd>
 
 
 <dt id="arg-f-rand">f_rand<a class="anchor" aria-label="anchor" href="#arg-f-rand"></a></dt>

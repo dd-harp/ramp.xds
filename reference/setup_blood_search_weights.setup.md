@@ -6,7 +6,7 @@ Don't change anything
 
 ``` r
 # S3 method for class 'setup'
-setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
+setup_blood_search_weights(name, xds_obj, optionStrata = list(), i = 1)
 ```
 
 ## Arguments
@@ -19,9 +19,9 @@ setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 
   an **`xds`** model object
 
-- options:
+- optionStrata:
 
-  configuration options
+  configuration optionStrata
 
 - i:
 

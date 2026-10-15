@@ -1,6 +1,6 @@
 # Update the blood_search_weights
 
-The `static` method returns `xds_obj` unmodified
+The `static` method returnStrata `xds_obj` unmodified
 
 ## Usage
 

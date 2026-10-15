@@ -6,8 +6,8 @@ Set up a random vector
 
 ``` r
 make_blood_search_weights_random(
-  nPatches,
-  options = list(),
+  nStrata,
+  optionStrata = list(),
   f_rand = stats::rlnorm,
   p1 = 0,
   p2 = 0.5
@@ -16,13 +16,13 @@ make_blood_search_weights_random(
 
 ## Arguments
 
-- nPatches:
+- nStrata:
 
-  is the number of patches
+  is the number of population strata
 
-- options:
+- optionStrata:
 
-  is a set of options that overwrites the defaults
+  is a set of optionStrata that overwrites the defaults
 
 - f_rand:
 

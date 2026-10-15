@@ -123,16 +123,74 @@
 
     
     
-<p>The model for the force of infection (FoI), the rate of infection by
-stratum (called <span class="math inline">\(h\)</span> or
-<code>foi</code>) is computed from</p>
+<p>This vignette covers exposure in
+<strong><code>ramp.xds</code></strong> in two ways:</p>
+<ol style="list-style-type: decimal">
+<li><p>First, we give an overview of <em>heterogeneous
+exposure</em></p></li>
+<li><p>Next, we describe the <code>Exposure</code> interface in
+<strong><code>ramp.xds</code></strong>, which describes how
+heterogeneous exposure was implemented</p></li>
+</ol>
+<hr>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
+<p>The number of mosquito bites or blood meals per person is highly
+heterogeneous among individuals, a fact that is important for malaria
+transmission dynamics and control:</p>
+<ol style="list-style-type: decimal">
+<li><p>Exposure includes local exposure and exposure while
+travel.</p></li>
+<li><p>Local exposure is heterogeneous because mosquito populations are
+heterogenously distributed among patches, and because people spend
+different amounts of time at risk because of where they live and where
+they go. These differences in exposure are handled through the <em>time
+spent</em> matrix, and the associated concept of <em>time at
+risk.</em></p></li>
+<li><p>There are important differences among individuals in exposure
+even after accounting for differences in time at risk. These have been
+attributed to factors such as age or body size; odors in breath or sweat
+that attract mosquitoes; and propensity to wear protective clothing. In
+<strong><code>ramp.xds</code></strong>, these differences are called
+<em>heterogeneous biting,</em> and they are modeled by assigning
+<em>search weights</em> to different population strata. These search
+weights are one reason why there is heterogeneity in the expected number
+of infective bites per person in a stratified population. Heterogeneous
+biting is a kind of <em>frailty,</em> a multiplicative difference in the
+expected number of bites, per person, in some stratum.</p></li>
+<li><p>The expectation for a homogenous stratum could have a
+distribution. If, for example, the expected number of bites per person
+is <em>gamma</em> distributed, then the number of bites per person would
+follow a negative binomial distrbibution. In SimBA, this is called
+<em>environmental heterogeneity.</em></p></li>
+<li><p>Exposure could be heterogeneous because of differences in the
+frequency of travel or the destinations.</p></li>
+<li><p>All else equal, individuals might be differentially susceptible
+to exposure because of immunity.</p></li>
+</ol>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="exposure">
+<code>Exposure</code><a class="anchor" aria-label="anchor" href="#exposure"></a>
+</h2>
 <ul>
-<li><p>the local daily EIR, which is computed by the <a href="Transmission.html">transmission interface</a></p></li>
-<li><p>the <em>time away</em> parameter, <span class="math inline">\(\zeta\)</span> (see the discussion in the <a href="BloodFeeding.html">blood feeding interface</a>)</p></li>
+<li><p>In <a href="Transmission.html"><code>Transmission</code></a>, the
+local EIR <span class="math inline">\((E_\ell)\)</span> is computed and
+stored for every population stratum using using the search weights and
+time at risk.</p></li>
 <li>
-<p>a model for pre-erythrocytic immunity, the probability of an
-infection per infectious bite that could use information from
-<strong>XH</strong> component.</p>
+<p>In <code>Exposure</code>, the model comptues and stores the force
+of infection (FoI), the rate of infection by stratum (called <span class="math inline">\(h\)</span> or <code>foi</code>)</p>
+<ul>
+<li><p>The local EIR is transformed into a measure of the total EIR
+using the concepts of <em>time away</em> <span class="math inline">\((\zeta)\)</span> and <em>travel EIR</em> <span class="math inline">\((E_\zeta)\)</span>;</p></li>
+<li>
+<p>The total EIR is modified by a function that computes the
+expected number of infections per infectious bite (<span class="math inline">\(b\)</span>) using a function (<span class="math inline">\(F_b\)</span> or <code>F_infectivity</code>) from
+the <strong>XH</strong> component. In some modules, this quantity is a
+function of <em>pre-erythrocytic</em> immunity.</p>
 <ul>
 <li><p>By default, <span class="math inline">\(F_b\)</span> returns a
 constant <span class="math inline">\(b\)</span></p></li>
@@ -141,11 +199,14 @@ modules</p></li>
 </ul>
 </li>
 <li>
-<p>a model for environmental heterogeneity, which assumes that <span class="math inline">\(E\)</span> is the mean rate of exposure, but in
-each one of these homogenous strata, the expectation could have a
-distribution. For example, if the expectation has a <em>gamma</em>
-distribution, then the expected number of bites per person would follow
-a negative binomial distribution.</p>
+<p>The FoI is computed from expected number of infectious bites
+<span class="math inline">\(bE\)</span> under a model of
+<em>environmental heterogeneity.</em> The expected number of infective
+bites is <span class="math inline">\(bE,\)</span> but in each one of
+these homogenous strata, the expectation could have a distribution. For
+example, if the expectation has a <em>gamma</em> distribution, then the
+expected number of bites per person would follow a negative binomial
+distribution.</p>
 <ul>
 <li><p>By default, <span class="math inline">\(F_h\)</span> returns
 <span class="math inline">\(bE,\)</span> consistent with a Poisson model
@@ -155,8 +216,13 @@ of exposure.</p></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+<hr>
 <p><img src="xds_exposure.png" style="width:100.0%"></p>
-  </main>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
