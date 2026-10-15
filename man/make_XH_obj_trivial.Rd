@@ -8,7 +8,7 @@ make_XH_obj_trivial(
   nPatches,
   options,
   kappa = 0,
-  HPop = 1,
+  H = 1,
   F_season = F_one,
   F_trend = F_one,
   F_shock = F_one,
@@ -24,7 +24,7 @@ make_XH_obj_trivial(
 
 \item{kappa}{net infectiousness}
 
-\item{HPop}{initial human population density}
+\item{H}{initial human population density}
 
 \item{F_season}{the seasonal pattern function}
 

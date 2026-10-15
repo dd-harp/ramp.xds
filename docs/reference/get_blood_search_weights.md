@@ -5,7 +5,7 @@ Get availability of blood search weights
 ## Usage
 
 ``` r
-get_blood_search_weights(xds_obj, i = 1, s = 1)
+get_blood_search_weights(xds_obj, i = 1)
 ```
 
 ## Arguments
@@ -17,10 +17,6 @@ get_blood_search_weights(xds_obj, i = 1, s = 1)
 - i:
 
   the host species index
-
-- s:
-
-  the vector species index
 
 ## Value
 

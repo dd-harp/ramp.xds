@@ -44,24 +44,24 @@ change_blood_search_weights = function(blood_search_weights, xds_obj, i=1){
 #' @param name a or setup function name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' @param optionStrata configuration optionStrata
+#' @param options configuration options
 #'
 #' @return an **`xds`** object
 #'
 #' @export
-setup_blood_search_weights = function(name, xds_obj, optionStrata = list(), i=1){
-  if(is.numeric(name)) class(optionStrata) = "as_is"
-  if(is.character(name)) class(optionStrata) = name
-  UseMethod("setup_blood_search_weights", optionStrata)
+setup_blood_search_weights = function(name, xds_obj, options = list(), i=1){
+  if(is.numeric(name)) class(options) = "as_is"
+  if(is.character(name)) class(options) = name
+  UseMethod("setup_blood_search_weights", options)
 }
 
 #' @title Set up a blood_search_weights
 #'
-#' @description If an optionStrata list is passed
+#' @description If an options list is passed
 #' as the first argument, then set 
 #' + `BSWname = name$name` 
-#' + `optionStrata = name`
-#' and call `setup_blood_search_weights(BSWname, xds_obj, optionStrata, i)` 
+#' + `options = name`
+#' and call `setup_blood_search_weights(BSWname, xds_obj, options, i)` 
 #'
 #' @inheritParams setup_blood_search_weights
 #'
@@ -69,11 +69,11 @@ setup_blood_search_weights = function(name, xds_obj, optionStrata = list(), i=1)
 #' 
 #' @keywords internal
 #' @export
-setup_blood_search_weights.list = function(name, xds_obj, optionStrata=list(), i=1){
-  optionStrata = name
+setup_blood_search_weights.list = function(name, xds_obj, options=list(), i=1){
+  options = name
   BSWname = name$name
   if(is.null(BSWname)) BSWname = "no_setup"
-  xds_obj <- setup_blood_search_weights(BSWname, xds_obj, optionStrata, i)
+  xds_obj <- setup_blood_search_weights(BSWname, xds_obj, options, i)
   return(xds_obj)
 }
 
@@ -83,10 +83,11 @@ setup_blood_search_weights.list = function(name, xds_obj, optionStrata=list(), i
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_blood_search_weights.setup = function(name, xds_obj, optionStrata = list(), i=1){
+setup_blood_search_weights.setup = function(name, xds_obj, options = list(), i=1){
   blood_search_weights = rep(1, xds_obj$nStrata[i])
   xds_obj$XH_obj[[i]]$search_weights <- blood_search_weights
   xds_obj$XH_obj[[i]]$search_weights_obj <- make_static_obj()
+  xds_obj$XH_obj[[i]]$search_weights_obj$search_weights <- blood_search_weights
   return(xds_obj)
 }
 
@@ -96,7 +97,7 @@ setup_blood_search_weights.setup = function(name, xds_obj, optionStrata = list()
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_blood_search_weights.no_setup = function(name, xds_obj, optionStrata = list(), i=1){
+setup_blood_search_weights.no_setup = function(name, xds_obj, options = list(), i=1){
   return(xds_obj)
 }
 
@@ -108,8 +109,8 @@ setup_blood_search_weights.no_setup = function(name, xds_obj, optionStrata = lis
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_blood_search_weights.random = function(name, xds_obj, optionStrata = list(), i=1){
-  blood_search_weights = make_blood_search_weights_random(xds_obj$nStrata[i], optionStrata)
+setup_blood_search_weights.random = function(name, xds_obj, options = list(), i=1){
+  blood_search_weights = make_blood_search_weights_random(xds_obj$nStrata[i], options)
   xds_obj <- change_blood_search_weights(blood_search_weights, xds_obj, i)
   return(xds_obj)
 }
@@ -119,13 +120,13 @@ setup_blood_search_weights.random = function(name, xds_obj, optionStrata = list(
 #' @description Set up a random vector 
 #' 
 #' @param nStrata is the number of population strata
-#' @param optionStrata is a set of optionStrata that overwrites the defaults
+#' @param options is a set of options that overwrites the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
 #' @return a numeric vector
 #' @export
-make_blood_search_weights_random = function(nStrata, optionStrata=list(), f_rand = stats::rlnorm, p1=0, p2=.5) {with(optionStrata,{
+make_blood_search_weights_random = function(nStrata, options=list(), f_rand = stats::rlnorm, p1=0, p2=.5) {with(options,{
   blood_search_weights <- f_rand(nStrata, p1, p2)
   return(blood_search_weights)
 })}
@@ -140,16 +141,16 @@ make_blood_search_weights_random = function(nStrata, optionStrata=list(), f_rand
 #' 
 #' The conventional way to call this method is `name = "as_is"`, 
 #' and the new blood search weights are passed as
-#' `optionStrata$blood_search_weights` 
+#' `options$blood_search_weights` 
 #' 
 #' @inheritParams setup_blood_search_weights
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_blood_search_weights.as_is = function(name, xds_obj, optionStrata=list(), i=1){
+setup_blood_search_weights.as_is = function(name, xds_obj, options=list(), i=1){
   
-  if(is.list(optionStrata)) 
-    blood_search_weights_as_is = optionStrata$weights
+  if(is.list(options)) 
+    blood_search_weights_as_is = options$weights
   if(is.numeric(name))
     blood_search_weights_as_is = as.vector(name)
   

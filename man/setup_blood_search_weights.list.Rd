@@ -4,14 +4,14 @@
 \alias{setup_blood_search_weights.list}
 \title{Set up a blood_search_weights}
 \usage{
-\method{setup_blood_search_weights}{list}(name, xds_obj, optionStrata = list(), i = 1)
+\method{setup_blood_search_weights}{list}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{name}{a or setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{optionStrata}{configuration optionStrata}
+\item{options}{configuration options}
 
 \item{i}{the host species index}
 }
@@ -19,12 +19,12 @@
 a numeric vector
 }
 \description{
-If an optionStrata list is passed
+If an options list is passed
 as the first argument, then set
 \itemize{
 \item \code{BSWname = name$name}
-\item \code{optionStrata = name}
-and call \code{setup_blood_search_weights(BSWname, xds_obj, optionStrata, i)}
+\item \code{options = name}
+and call \code{setup_blood_search_weights(BSWname, xds_obj, options, i)}
 }
 }
 \keyword{internal}

@@ -1,7 +1,6 @@
-# Update the blood_search_weights Matrix
+# Update the blood search weights
 
-Port function for the blood_search_weights, \\w\\. Dispatches on
-`xds_obj$XH_obj[[i]]$blood_search_weights_obj`.
+This is called to update dy
 
 ## Usage
 

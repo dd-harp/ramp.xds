@@ -33,6 +33,7 @@ change_time_away = function(time_away, xds_obj, i=1){
   check_time_away(time_away, xds_obj$nStrata[i])
   xds_obj$XH_obj[[i]]$time_away <- time_away
   xds_obj$XH_obj[[i]]$time_away_obj <- make_static_obj()
+  xds_obj$XH_obj[[i]]$time_away_obj$time_away <- time_away
   xds_obj <- update_XY_interface(xds_obj)
   return(xds_obj)
 }

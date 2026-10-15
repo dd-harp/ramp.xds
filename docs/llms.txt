@@ -772,7 +772,7 @@ Change parameters
   : Change the time spent
 
 - [`setup_blood_search_weights()`](https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.md)
-  : Set up a blood_search_weights
+  : Set up blood search weights
 
 ### Change for MY
 
@@ -997,11 +997,11 @@ The ports for resources
 - [`xds_info_search_weights_blood`](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_blood.md)
   : Blood Search Weights
 - [`setup_blood_search_weights()`](https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.md)
-  : Set up a blood_search_weights
+  : Set up blood search weights
 - [`change_blood_search_weights()`](https://dd-harp.github.io/ramp.xds/reference/change_blood_search_weights.md)
-  : Change the blood_search_weights
+  : Change the blood search weights
 - [`check_blood_search_weights()`](https://dd-harp.github.io/ramp.xds/reference/check_blood_search_weights.md)
-  : Check blood search weights
+  : Check the blood search weights
 - [`make_blood_search_weights_random()`](https://dd-harp.github.io/ramp.xds/reference/make_blood_search_weights_random.md)
   : Make blood search weights
 

@@ -36,6 +36,8 @@ change_timespent_matrix = function(timespent, xds_obj, i=1){
   check_timespent_matrix(timespent, xds_obj$nPatches, xds_obj$nStrata[i])
   xds_obj$XH_obj[[i]]$timespent <- timespent
   xds_obj$XH_obj[[i]]$timespent_obj <- make_static_obj()
+  xds_obj$XH_obj[[i]]$timespent_obj$timespent <- timespent
+  
   y <- get_inits(xds_obj, flatten=TRUE)
   xds_obj <- compute_WB(0, y, xds_obj)
   xds_obj <- compute_local_frac(xds_obj)

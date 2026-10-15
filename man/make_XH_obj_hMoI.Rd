@@ -11,7 +11,8 @@ make_XH_obj_hMoI(
   r1 = 1/180,
   r2 = 1/70,
   c1 = 0.015,
-  c2 = 0.15
+  c2 = 0.15,
+  H = 1
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ make_XH_obj_hMoI(
 \item{c1}{transmission probability (efficiency) from inapparent human infections to mosquito}
 
 \item{c2}{transmission probability (efficiency) from patent human infections to mosquito}
+
+\item{H}{human population density}
 }
 \value{
 a \link{list}

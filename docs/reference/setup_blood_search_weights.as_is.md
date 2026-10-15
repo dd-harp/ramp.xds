@@ -3,8 +3,11 @@
 Pass a pre-configured blood_search_weights. If it passes the checks, it
 replaces the current blood_search_weights.
 
-If called with `name = "as_is"`, the blood_search_weights must be at
-`options$blood_search_weights`
+If the first argument to `setup_blood_search_weights` is a numeric
+vector, the `"as_is"` method is used.
+
+The conventional way to call this method is `name = "as_is"`, and the
+new blood search weights are passed as `options$blood_search_weights`
 
 ## Usage
 

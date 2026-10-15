@@ -347,7 +347,7 @@ MYZinits = list(
 For the human model:
 
 ```{r I0}
-Xinits = list(I = as.vector(0.2*HPop))
+Xinits = list(I = as.vector(0.2*HPop), H=HPop)
 ```
 
 ## The `xds` Template 
@@ -423,7 +423,7 @@ xds_obj$XH_obj[[1]] = XH_obj
 ```{r}
 xds_obj <- setup_L_inits(xds_obj, 1, Linits)
 xds_obj <- setup_MY_inits(xds_obj, 1, MYZinits)
-xds_obj <- setup_XH_inits(xds_obj, HPop, 1, Xinits)
+xds_obj <- setup_XH_inits(xds_obj, 1, Xinits)
 ```
 
 After the parameters for `5-3-4` have been specified, we can generate the indices for the model and attach them to the parameter list.

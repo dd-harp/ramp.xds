@@ -80,7 +80,7 @@ r2 <- 1/50
 m2 <- rlnorm(3, .2, .5) 
 h <- r2*m2
 m1 <- h/r1
-Xo = list(b = b, c1 = c1, c2 = c2, r1 = r1, r2 = r2, m1=m1, m2=m2)
+Xo = list(b = b, c1 = c1, c2 = c2, r1 = r1, r2 = r2, m1=m1, m2=m2, H=H)
 ```
 
 ``` r
@@ -90,7 +90,7 @@ eir <- h/b
 
 ``` r
 
-xds_obj = setup_XH_obj("hMoI", residence, H, xds_obj, 1, Xo)
+xds_obj = setup_XH_obj("hMoI", residence, xds_obj, 1, Xo)
 ```
 
 ``` r
@@ -186,5 +186,5 @@ xds_setup_eir(eir, Xname="hMoI", HPop=H, XHoptions = Xo) ->test_hMoI
 xds_solve(test_hMoI)-> test_hMoI 
 XH2 <- test_hMoI$outputs$orbits$XH[[1]]
 sum((XH$m1-XH2$m1)^2)
-#> [1] 5198.155
+#> [1] 5198.142
 ```

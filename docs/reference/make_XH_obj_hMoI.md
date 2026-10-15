@@ -13,7 +13,8 @@ make_XH_obj_hMoI(
   r1 = 1/180,
   r2 = 1/70,
   c1 = 0.015,
-  c2 = 0.15
+  c2 = 0.15,
+  H = 1
 )
 ```
 
@@ -49,6 +50,10 @@ make_XH_obj_hMoI(
 
   transmission probability (efficiency) from patent human infections to
   mosquito
+
+- H:
+
+  human population density
 
 ## Value
 
