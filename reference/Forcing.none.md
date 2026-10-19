@@ -1,7 +1,6 @@
-# Exogenous Forcing
+# Forcing
 
-After basic setup, no exogenous variables are set up. `Forcing` returns
-the unmodified **`xds`** object.
+Implements no `Forcing`, the default.
 
 ## Usage
 
@@ -23,3 +22,7 @@ Forcing(t, xds_obj)
 ## Value
 
 an **`xds`** object
+
+## Note
+
+Dynamic forcing is implemented in **`ramp.forcing`**

@@ -24,7 +24,7 @@
 - [5-3-4
   Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.md):
 - [Exposure](https://dd-harp.github.io/ramp.xds/articles/Exposure.md):
-- [Ports &
+- [Forcing: Ports &
   Junctions](https://dd-harp.github.io/ramp.xds/articles/Forcing.md):
 - [Getting
   Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.md):

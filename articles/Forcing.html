@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Ports &amp; Junctions • ramp.xds</title>
+<title>Forcing: Ports &amp; Junctions • ramp.xds</title>
 <!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
   window.MathJax = {
     chtml: {
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Ports &amp; Junctions">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Forcing: Ports &amp; Junctions">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -114,7 +114,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Ports &amp; Junctions</h1>
+      <h1>Forcing: Ports &amp; Junctions</h1>
             <h3 data-toc-skip class="subtitle">Exogenous Forcing: A
 Changing Baseline Modified by Control</h3>
             
@@ -125,14 +125,18 @@ Changing Baseline Modified by Control</h3>
 
     
     
-<p>The design of <strong><code>ramp.xds</code></strong> facilitates
-modeling malaria as a changing baseline that has been modified by
-control. Most of the functionality is found in the satellite packages,
-but <strong><code>ramp.xds</code></strong> sets this up by adding
+<p><strong><code>ramp.xds</code></strong> is designed for model building
+with <em>progressive elaboration.</em> To enable progressive
+elaboration, model object must include structures that can handle
+advanced set up options and functions to run the algorithms.<br>
+Most of these features will not be used most of the time, so they must
+be designed in and present for the software to work at all. In most
+cases, the features are turned off. This was handled by adding
 <em>ports</em> and <em>junctions.</em></p>
-<ul>
-<li>
-<p>a <strong><em>port</em></strong> in
+<div class="section level2">
+<h2 id="ports">Ports<a class="anchor" aria-label="anchor" href="#ports"></a>
+</h2>
+<p>A <strong><em>port</em></strong> in
 <strong><code>ramp.xds</code></strong> or one of the satellite packages
 is an object that handles a term or parameter, such as temperature,
 other blood hosts, or search weights. Each <em>port</em> is defined
@@ -143,10 +147,24 @@ by:</p>
 <li><p>advanced setup functions</p></li>
 <li><p>an updating function</p></li>
 </ul>
+<p>There are four classes of ports in SimBA.</p>
+<ul>
+<li>
+<p>Structural ports handle terms on an interface:</p>
+<ul>
+<li><p>parameters or variables affecting the search for blood, blood
+feeding, transmission or exposure;</p></li>
+<li><p>parameters or variables affecting the search for aquatic habitats
+and egg laying, and emergence;</p></li>
+</ul>
 </li>
-<li><p>a <strong><em>junction</em></strong> in
-<strong><code>ramp.xds</code></strong> is a function that implements
-several <em>ports.</em></p></li>
+<li><p><a href="articles/Bionomics.html">Mosquito bionomics</a> ports
+are designed to model malaria transmission by mosquitoes as a baseline
+that has been modified by control; these ports are handled by an
+<strong>MY</strong> module or an <strong>L</strong> module.</p></li>
+<li><p>Epidemiology ports handle mass treatment; these ports are handled
+by an <strong>XH</strong> module</p></li>
+<li><p>All other po</p></li>
 </ul>
 <hr>
 <div class="float">
@@ -162,115 +180,166 @@ object; and a function <code>update_port,</code> called by a
 value.</div>
 </div>
 <hr>
+</div>
 <div class="section level2">
 <h2 id="junctions">Junctions<a class="anchor" aria-label="anchor" href="#junctions"></a>
 </h2>
-<p>The junctions in <strong><code>ramp.xds</code></strong> get called in
-a specific order to minimize <em>conflicts</em> that could arise. The
-junctions are all functions that get implemented in
-<code>xds_compute_terms.</code> They are:</p>
+<p>A <strong><em>junction</em></strong> in
+<strong><code>ramp.xds</code></strong> is a function that implements
+several <em>ports.</em> The <em>Junctions</em> are called in
+<strong><code>xds_compute_terms</code></strong>, sandwiched between
+<strong><em>Interface Functions</em></strong> that set the values of
+terms that computed internally to handle transmission and exposure, or
+egg laying and emergence.</p>
+<p>The order is designed to handle dependencies and minimize
+conflicts.</p>
 <ul>
 <li>
-<p><strong>Forcing</strong> — <span class="math inline">\(\emptyset
-\in\)</span> <code>ramp.xds</code></p>
+<p><em>Forcing</em> is a junction that handles weather, hydrology,
+shocks and development.</p>
 <ul>
 <li>
-<p><strong>Weather</strong> <span class="math inline">\(\in\)</span>
+<p><em>Weather</em> <span class="math inline">\(\in\)</span>
 <code>ramp.forcing</code></p>
 <ul>
-<li><p><code>update_temperature</code></p></li>
-<li><p><code>update_rainfall</code></p></li>
-<li><p><code>update_humidity</code></p></li>
-</ul>
-</li>
-<li><p><strong>Weather</strong> <span class="math inline">\(\in\)</span>
-`ramp.forcing</p></li>
+<li><p><code>temperature</code></p></li>
+<li><p><code>rainfall</code></p></li>
+<li><p><code>humidity</code></p></li>
 </ul>
 </li>
 <li>
-<p><strong>Resources</strong></p>
+<p><em>Hydrology</em> <span class="math inline">\(\in\)</span>
+<code>ramp.forcing</code> may depend on <code>rainfall</code> and
+<code>temperature</code></p>
 <ul>
-<li><p><code>update_blood_search_weights</code></p></li>
-<li><p><code>update_other_blood</code></p></li>
+<li><p><code>water_level</code></p></li>
+<li><p><code>water_temperature</code></p></li>
 </ul>
 </li>
-<li><p><strong>Health</strong> - functions to setup mass treatment, mass
-vaccination, and more</p></li>
-<li><p><strong>Vector Control</strong> - functions to
-<em>distribute</em> vector control commodities.</p></li>
-</ul>
-</div>
-<div class="section level2">
-<h2 id="forcing">Forcing<a class="anchor" aria-label="anchor" href="#forcing"></a>
-</h2>
-<p><code>Forcing</code> :: <strong><code>ramp.xds</code></strong> sets
-up an empty <em>junction</em> handle exogenous forcing by weather and
-hydrology. Models to implement forcing are in
-<strong><code>ramp.forcing</code></strong></p>
-</div>
-<div class="section level2">
-<h2 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
-</h2>
-</div>
-<div class="section level2">
-<h2 id="blood-feeding">Blood Feeding<a class="anchor" aria-label="anchor" href="#blood-feeding"></a>
-</h2>
-<p>Several ports handle blood feeding:</p>
+<li>
+<p><em>Shock</em> <span class="math inline">\(\in\)</span>
+<code>ramp.forcing</code></p>
 <ul>
-<li><p>search weights</p></li>
-<li><p>other blood hosts</p></li>
-<li><p>traps</p></li>
+<li><p><code>quarantine</code></p></li>
+<li><p><code>conflict</code></p></li>
 </ul>
-</div>
-<div class="section level2">
-<h2 id="egg-laying">Egg Laying<a class="anchor" aria-label="anchor" href="#egg-laying"></a>
-</h2>
+</li>
+<li>
+<p><em>Development</em> <span class="math inline">\(\in\)</span>
+<code>ramp.forcing</code></p>
 <ul>
-<li><p>search weights</p></li>
-<li><p>bad habitats</p></li>
-<li><p>ovitraps</p></li>
+<li><p><code>gdp</code></p></li>
+<li><p><code>housing</code></p></li>
 </ul>
-</div>
-<div class="section level2">
-<h2 id="forcing-1">Forcing<a class="anchor" aria-label="anchor" href="#forcing-1"></a>
-</h2>
-</div>
-<div class="section level2">
-<h2 id="mosquito-bionomics">Mosquito Bionomics<a class="anchor" aria-label="anchor" href="#mosquito-bionomics"></a>
-</h2>
-<p>Depending on the module, many of the bionomic parameters are set up
-as ports.</p>
-<ul>
-<li><p>Some variables are set up in the first phase of
-<code>VectorControl</code></p></li>
-<li><p>The values of</p></li>
-<li><p>The values of parameters or functions stored on the object set
-the <em>baseline</em> values, which are set in a call to
-<code>MBionomics</code> or <code>LBionomics</code>.</p></li>
-<li><p>The</p></li>
+</li>
 </ul>
-<p><code>VectorControl</code> and
-<code>VectorControlEffectSizes</code>::
-<strong><code>ramp.xds</code></strong> sets up an empty
-<em>junction</em> to handle various aspects of vector control. Models to
-implement vector control are in
-<strong><code>ramp.control</code></strong></p>
-</div>
-<div class="section level2">
-<h2 id="health">Health<a class="anchor" aria-label="anchor" href="#health"></a>
-</h2>
-<p><code>Health</code>:: <strong><code>ramp.xds</code></strong> sets up
-an empty <em>junctions</em> to handle various aspects of health systems
-interventions.</p>
-</div>
-<div class="section level2">
-<h2 id="importation">Importation<a class="anchor" aria-label="anchor" href="#importation"></a>
-</h2>
+</li>
+<li>
+<p><em>Health</em> implements variables associated with health
+systems, which may depend on <code>quarantine</code> or
+<code>conflict</code></p>
 <ul>
-<li><p>time away</p></li>
-<li><p>travel eir</p></li>
-<li><p>visitors</p></li>
-<li><p>vis_kappa</p></li>
+<li><p><code>nutrition</code></p></li>
+<li><p><code>awareness</code></p></li>
+<li><p><code>other_disease</code></p></li>
+</ul>
+</li>
+<li><p><em>Vector Control,</em> part 1 (<span class="math inline">\(\in\)</span> <code>ramp.forcing</code>) sets up
+variables associated with vector control, which may depend on weather
+variables.</p></li>
+<li>
+<p><em>Resources</em> (<span class="math inline">\(\in\)</span>
+<code>ramp.forcing</code>) handles ports associated with mosquito
+ecology that are not already part of one of the interfaces, which may
+depend on weather variables.</p>
+<ul>
+<li><p><em>Availability of Sugar</em></p></li>
+<li><p><em>Availability of Sugar Traps</em></p></li>
+</ul>
+</li>
+<li>
+<p><em>Importation</em> sets up the ports associated with malaria
+importation, which may depend on <code>conflict</code> or
+<code>quarantine</code></p>
+<ul>
+<li><p><code>time_away</code> (<span class="math inline">\(\in\)</span>
+<code>XH_obj</code>)</p></li>
+<li><p><code>travel_eir</code> (<span class="math inline">\(\in\)</span>
+<code>XH_obj</code>)</p></li>
+<li><p><code>visitors</code> (<span class="math inline">\(\in\)</span>
+<code>patches</code>)</p></li>
+<li><p><code>vis_kappa</code> (<span class="math inline">\(\in\)</span>
+<code>patches</code>)</p></li>
+</ul>
+</li>
+<li>
+<p><strong><em>Blood Feeding</em></strong> handles all the ports
+that are part of the <strong>XY</strong> interface.</p>
+<ul>
+<li><p><code>blood_search_weights</code> (<span class="math inline">\(\in\)</span> <code>XH_obj</code>)</p></li>
+<li><p><code>time_spent</code> (<span class="math inline">\(\in\)</span>
+<code>XH_obj</code>)</p></li>
+<li><p><code>other_blood_hosts</code> (<span class="math inline">\(\in\)</span> <code>patches</code>)</p></li>
+<li><p><code>blood_traps</code> (<span class="math inline">\(\in\)</span> <code>patches</code>)</p></li>
+<li>
+<p><strong>Compute Availability:</strong></p>
+<ul>
+<li><p><code>available_hosts</code> — <span class="math inline">\(W\)</span></p></li>
+<li><p><code>available_blood_hosts</code> — <span class="math inline">\(B\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><em>Aquatic Habitats</em></strong> handles all the ports
+that are part of the <strong>MY</strong> interface.</p>
+<ul>
+<li><p><code>habitat_search_weights</code> (<span class="math inline">\(\in\)</span> <code>L_obj</code>)</p></li>
+<li><p><code>bad_habitats</code> (<span class="math inline">\(\in\)</span> <code>patches</code>)</p></li>
+<li><p><code>ovitraps</code> (<span class="math inline">\(\in\)</span>
+<code>patches</code>)</p></li>
+<li>
+<p><strong>Compute Availability:</strong></p>
+<ul>
+<li><p><code>available_habitats</code> — <span class="math inline">\(Q\)</span></p></li>
+<li><p><code>available_water</code> — <span class="math inline">\(W\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Mosquito Bionomics,</em> part 1: <em>a baseline</em> —
+handles mosquito bionomics ports. Part 1 sets the value of a baseline as
+well as models for vector control that integrate the effects through
+resource availability.</p>
+<ul>
+<li><p><code>MBionomics</code> sets the value for adult mosquitoes
+(<span class="math inline">\(\in\)</span> <code>MY_obj</code>)</p></li>
+<li><p><code>LBionomics</code> sets the value for immature mosquitoes
+(<span class="math inline">\(\in\)</span> <code>L_obj</code>)</p></li>
+</ul>
+</li>
+<li><p><em>Vector Control,</em> part 2 computes coverage and effect
+sizes of vector control, given the baseline.</p></li>
+<li>
+<p><em>Mosquito Bionomics,</em> part 2: <em>modified by control</em>
+— handles effect sizes for mosquito bionomics ports</p>
+<ul>
+<li><p><code>MEffectSizes</code> applies effect sizes to bionomic
+parameters for adult mosquitoes (<span class="math inline">\(\in\)</span> <code>MY_obj</code>)</p></li>
+<li><p><code>LEffectSizes</code> applies effect sizes to bionomic
+parameters for immature mosquitoes (<span class="math inline">\(\in\)</span> <code>L_obj</code>)</p></li>
+</ul>
+</li>
+<li>
+<p><strong><em>ML Interface</em></strong></p>
+<ul>
+<li><p><strong><em>Emergence</em></strong></p></li>
+<li><p><strong><em>EggLaying</em></strong></p></li>
+</ul>
+</li>
+<li><p><strong><em>Transmission</em></strong></p></li>
+<li><p><strong><em>Exposure</em></strong></p></li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

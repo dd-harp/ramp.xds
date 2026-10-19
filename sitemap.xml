@@ -46,6 +46,9 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/xds_frame.drawio.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/authors.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/index.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/AquaticHabitats.dynamic.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/AquaticHabitats.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/AquaticHabitats.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Births.constant.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Births.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Births.zero.html</loc></url>
@@ -225,6 +228,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.macdonald.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/ML_interface.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MY_change.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MY_functions.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MY_get.html</loc></url>
@@ -593,6 +597,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_visitors.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_xi.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/hMoI.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/habitat_dynamics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/importation_dynamics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/index.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/last_to_inits.html</loc></url>

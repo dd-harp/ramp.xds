@@ -1,6 +1,6 @@
-# Setup the Junction for Exogenous Forcing
+# Set up forcing
 
-This sets up the `none` option for exogenous forcing: no forcing.
+Set up the `Forcing` junction and turn it off.
 
 ## Usage
 

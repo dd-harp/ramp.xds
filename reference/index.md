@@ -103,7 +103,7 @@ Forcing, Malaria Control
 - [`xds_info_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_forcing.md)
   :
 
-  **`ramp.xds`**: Forcing
+  Forcing in **`ramp.xds`**
 
 - [`xds_info_port`](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md)
   : Ports
@@ -1107,7 +1107,7 @@ The ports for resources
 - [`xds_info_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_forcing.md)
   :
 
-  **`ramp.xds`**: Forcing
+  Forcing in **`ramp.xds`**
 
 - [`xds_info_trivial_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_trivial_forcing.md)
   : Forcing with Trivial Modules

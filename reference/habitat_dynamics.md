@@ -1,7 +1,7 @@
-# Habitats Dynamics
+# Compute eggs laid
 
-A function `F_habitat_weights` computes `TiSp_frac_searching` and this
-function sets `TiSp_frac_here.`
+Computes eggs laid with exogenous forcing on parameter affecting host
+availability.
 
 ## Usage
 
@@ -13,11 +13,11 @@ habitat_dynamics(t, y, xds_obj)
 
 - t:
 
-  current time
+  the time
 
 - y:
 
-  state variables
+  the state variables
 
 - xds_obj:
 
@@ -26,9 +26,3 @@ habitat_dynamics(t, y, xds_obj)
 ## Value
 
 an **`xds`** object
-
-## Note
-
-The quantity `TiSp_frac_here` is part of the `ML_interface` It is used
-to compute the Time at Risk matrix, and it is also used to weight local
-exposure *vs.* searching exposure.
