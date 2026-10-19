@@ -2,7 +2,7 @@
 % Please edit documentation in R/forcing.R
 \name{Forcing.none}
 \alias{Forcing.none}
-\title{Exogenous Forcing}
+\title{Forcing}
 \usage{
 \method{Forcing}{none}(t, xds_obj)
 }
@@ -15,8 +15,9 @@
 an \strong{\code{xds}} object
 }
 \description{
-After basic setup, no exogenous
-variables are set up. \code{Forcing} returns
-the unmodified \strong{\code{xds}} object.
+Implements no \code{Forcing}, the default.
+}
+\note{
+Dynamic forcing is implemented in \strong{\code{ramp.forcing}}
 }
 \keyword{internal}

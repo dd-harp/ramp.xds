@@ -2,20 +2,30 @@
 % Please edit documentation in R/forcing.R
 \name{xds_info_forcing}
 \alias{xds_info_forcing}
-\title{\strong{\code{ramp.xds}}: Forcing}
+\title{Forcing in \strong{\code{ramp.xds}}}
 \description{
-In \strong{\code{ramp.xds}}, forcing is implemented in several ways:
+In \strong{\code{ramp.xds}}, forcing is implemented through \emph{ports} and \emph{junctions,} or through exogenous
+forcing of dynamical terms by \code{trivial} modules (see \link{xds_info_trivial_forcing}).
 \itemize{
-\item through \code{trivial} modules: see \link{xds_info_trivial_forcing}
-\item a library of modulesas functional responses to other variables: models are
-developed by activiting the \link{Forcing} junction
-\item through malaria control:
+\item Parameter or terms that could be time-varying are implemented as \emph{ports.} There are several
+kinds of ports:
 \itemize{
-\item see \link{xds_info_vector_control}
-\item see \link{xds_info_health}
+\item mosquito bionomic ports set a baseline that can be modified by vector control;
+\item pharmaceutical ports are used to model mass treatment;
+\item terms and parameters affecting blood feeding, transmission, exposure or habitat dynamics are implemented as ports; and
+\item other exogenous variables are implemented as ports.
+}
+\item Junctions are functions that activate ports (see \link{xds_info_port}):
+\itemize{
+\item \code{\link{Forcing}} handles weather, hydrology, system shocks, and development;
+\item \code{\link{Importation}}  sets up time away, the travel EIR, visitors, and their infectiousness;
+\item \code{\link{Health}} sets up variables associated with health systems;
+\item Vector control is implemented in two parts;
+\item \code{\link{Resources}} sets up variables associated with mosquito ecology that are not part of blood feeding or egg laying;
+\item Four junctions implement mosquito bionomics: two set the baseline (for adult and immature mosquitoes) and two modify the baseline with vector control \emph{effect sizes.}
 }
 }
 }
 \seealso{
-\link{xds_info_trivial_forcing}
+\link{xds_info_trivial_forcing}; \link{xds_info_vector_control}; \link{xds_info_health}
 }

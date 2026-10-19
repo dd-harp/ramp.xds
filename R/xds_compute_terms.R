@@ -40,7 +40,7 @@ xds_compute_terms.full <- function(t, y, xds_obj) {
   # blood feeding: available blood hosts, TaR, relative biting rates
   xds_obj <- BloodFeeding(t, y, xds_obj)
   # egg laying: available habitat, egg distribution matrix
-  xds_obj <- EggLaying(t, y, xds_obj)
+  xds_obj <- AquaticHabitats(t, y, xds_obj)
   # Compute mosquito bionomic parameters
   # (including available sugar)
   xds_obj <- MosquitoBionomics(t, y, xds_obj)
@@ -48,8 +48,8 @@ xds_compute_terms.full <- function(t, y, xds_obj) {
   xds_obj <- VectorControl2(t, y, xds_obj)
   # Apply vector control effect sizes
   xds_obj <- VectorControlEffectSizes(t, y, xds_obj)
-  # emergence: Lambda
-  xds_obj <- Emergence(t, y, xds_obj)
+  # ML_interface: egg laying and emergence
+  xds_obj <- ML_interface(t, y, xds_obj)
   # transmission: beta, EIR, and kappa
   xds_obj <- Transmission(t, y, xds_obj)
   # compute the FoI
@@ -112,7 +112,7 @@ xds_compute_terms.mosy <- function(t, y, xds_obj){
   # blood feeding: available blood hosts, TaR, relative biting rates
   xds_obj <- BloodFeeding(t, y, xds_obj)
   # egg laying: available habitat, egg distribution matrix
-  xds_obj <- EggLaying(t, y, xds_obj)
+  xds_obj <- AquaticHabitats(t, y, xds_obj)
   # Compute mosquito bionomic parameters
   # (including available sugar)
   xds_obj <- MosquitoBionomics(t, y, xds_obj)
@@ -121,8 +121,8 @@ xds_compute_terms.mosy <- function(t, y, xds_obj){
   xds_obj <- VectorControl2(t, y, xds_obj)
   # Apply vector control effect sizes
   xds_obj <- VectorControlEffectSizes(t, y, xds_obj)
-  # emergence: compute Lambda
-  xds_obj <- Emergence(t, y, xds_obj)
+  # ML_interface: compute Lambda
+  xds_obj <- ML_interface(t, y, xds_obj)
   return(xds_obj)
 }
 

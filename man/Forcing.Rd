@@ -2,7 +2,7 @@
 % Please edit documentation in R/forcing.R
 \name{Forcing}
 \alias{Forcing}
-\title{Exogenous Forcing}
+\title{Forcing}
 \usage{
 Forcing(t, xds_obj)
 }
@@ -15,9 +15,11 @@ Forcing(t, xds_obj)
 an \strong{\code{xds}} object
 }
 \description{
-A junction for exogenous forcing
-by weather and hydrology. Non-trivial
-examples are in the satellite package
-\code{ramp.forcing}
+A junction for weather, hydrology, system shocks,
+and development. In \strong{\code{ramp.xds}}, the junction is
+turned off.
+}
+\note{
+For advanced setup options, see \href{https://dd-harp.github.io/ramp.forcing/}{\strong{\code{ramp.forcing}}}
 }
 \keyword{internal}

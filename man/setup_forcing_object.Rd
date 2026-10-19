@@ -2,7 +2,7 @@
 % Please edit documentation in R/forcing.R
 \name{setup_forcing_object}
 \alias{setup_forcing_object}
-\title{Setup the Junction for Exogenous Forcing}
+\title{Set up forcing}
 \usage{
 setup_forcing_object(xds_obj)
 }
@@ -13,7 +13,6 @@ setup_forcing_object(xds_obj)
 an \strong{\code{xds}} object
 }
 \description{
-This sets up the \code{none} option
-for exogenous forcing: no forcing.
+Set up the \code{Forcing} junction and turn it off.
 }
 \keyword{internal}
