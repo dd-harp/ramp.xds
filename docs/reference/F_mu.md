@@ -1,7 +1,7 @@
 # Compute the emigration loss fraction
 
 This method dispatches on the type of `mu_obj`. It should compute the
-baseline emigration-loss fraction, \\\mu\\
+baseline emigration-loss fraction, \\(\mu\\)
 
 ## Usage
 

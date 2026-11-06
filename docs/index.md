@@ -157,20 +157,23 @@ calling the software development project **SimBA**. In the narrow sense,
     Through this library, **`ramp.xds`** also supports nimble model
     building and analytics for other mosquito-borne pathogens.
 
-3.  [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a
+3.  [**`ramp.func`**](https://dd-harp.github.io/ramp.func/) has function
+    *factories*: functions that build other functions to specification.
+
+4.  [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a
     collection of utilities to model exogenous forcing, vector control,
     and other forms of disease control in models for **`ramp.xds`**.
 
-4.  [**`ramp.qa`**](https://dd-harp.github.io/ramp.qa/) has method for
+5.  [**`ramp.qa`**](https://dd-harp.github.io/ramp.qa/) has method for
     qualitative analysis, including thresholds, scaling relationships,
     and connectivity
 
-5.  [**`ramp.demog`**](https://dd-harp.github.io/ramp.xds/ramp.demog.md)
+6.  [**`ramp.demog`**](https://dd-harp.github.io/ramp.xds/ramp.demog.md)
     is a supplementary code library for **`ramp.xds`** that handles
     human demography and stratification, including vital dynamics and
     age structure.
 
-6.  [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) includes
+7.  [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) includes
     algorithms to apply the framework, including code to fit models to
     data and to do constrained optimization.
 

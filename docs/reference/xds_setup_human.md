@@ -11,8 +11,8 @@ dispatch functions that compute derivatives (`xde`), update variables
 The **MY** Component module is set to `trivial`. The function
 [F_fqZ.trivial](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.trivial.md)
 is called to compute passes the density of infectious adult mosquitoes,
-and \\f\\ and \\q\\ can still be configured. In this case, the daily EIR
-is computed using the blood feeding interface, including
+and \\(f\\) and \\(q\\) can still be configured. In this case, the daily
+EIR is computed using the blood feeding interface, including
 [Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md), in
 the same way as a model with a non-trivial **MY** Component module.
 
@@ -46,11 +46,13 @@ xds_setup_human(
 
 - Xname:
 
-  a character string defining a **X** Component module
+  the name of an **XH** module (see
+  [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md))
 
 - XHoptions:
 
-  a named list to configure the **X** Component module
+  a named list to set parameter values and initial conditions for the
+  **XH** module
 
 - xds:
 

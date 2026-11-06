@@ -1,6 +1,6 @@
 # Change F_nu
 
-Update F_nu for the \\s^{th}\\ vector species.
+Update F_nu for the \\(s^{th}\\) vector species.
 
 ## Usage
 

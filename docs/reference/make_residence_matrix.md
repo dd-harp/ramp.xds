@@ -21,4 +21,4 @@ make_residence_matrix(nPatches, residence)
 
 ## Value
 
-a `nPatches` \\\times\\ `nStrata` matrix
+a `nPatches` \\(\times\\) `nStrata` matrix

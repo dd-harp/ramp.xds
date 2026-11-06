@@ -1,11 +1,11 @@
 # Compute component egg laying rates for `SI`
 
-The density of adult mosquitoes is \\M\\. The **parameters** describing
-egg laying by adult mosquitoes are:
+The density of adult mosquitoes is \\(M\\). The **parameters**
+describing egg laying by adult mosquitoes are:
 
-- \\\nu\\ or `nu` is the egg laying rate
+- \\(\nu\\) or `nu` is the egg laying rate
 
-- \\\xi\\ or `eggsPerBatch` is the number of eggs per batch
+- \\(\xi\\) or `eggsPerBatch` is the number of eggs per batch
 
 The egg laying rate, per patch, is \$\$\nu \xi M\$\$
 

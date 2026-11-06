@@ -27,4 +27,4 @@ F_theta(t, xds_obj, s)
 
 ## Value
 
-\\theta\\, slope of density-dependent mortality
+\\(theta\\), slope of density-dependent mortality

@@ -1,6 +1,6 @@
 # Change the blood_traps
 
-Update the blood_traps for the \\s^{th}\\ vector species, and trigger
+Update the blood_traps for the \\(s^{th}\\) vector species, and trigger
 updates for the `XY` interface.
 
 ## Usage

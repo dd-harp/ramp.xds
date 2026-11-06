@@ -27,5 +27,8 @@ make_habitat_search_weights_random(
 a numeric vector
 }
 \description{
-Set up a random vector
+Set up a random vector of habitat search weights
+}
+\seealso{
+\link{setup_habitat_search_weights}
 }

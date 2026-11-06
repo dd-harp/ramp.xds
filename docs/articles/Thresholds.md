@@ -2,25 +2,25 @@
 
 In 1952, Macdonald published a threshold condition for endemic malaria
 based on a formula that is now known as the basic reproductive number,
-\\R_0.\\ In taking a more general approach, we are guided by the general
-formula: \\R_0 = b V D\\ where:
+\\(R_0.\\) In taking a more general approach, we are guided by the
+general formula: \\\[R_0 = b V D\\\] where:
 
-- \\b\\ is the number of infections per infective bite in an
+- \\(b\\) is the number of infections per infective bite in an
   immunologically naive population;
 
-- \\V\\ is vectorial capacity, the number of infective bites arising
+- \\(V\\) is vectorial capacity, the number of infective bites arising
   from all the mosquitoes blood feeding on a single person in a single
   day;
 
-- \\D\\ is human transmitting capacity, the net infectious of a human to
-  mosquitoes over the course of a simple infection, expressed as a
+- \\(D\\) is human transmitting capacity, the net infectious of a human
+  to mosquitoes over the course of a simple infection, expressed as a
   number of fully infectious days.
 
 In autonomous models with spatial dynamics (*i.e.*, `nPatches > 1`), we
-also output the patch vec torial capacity (denoted \\V\\) and the
-vectorial capacity matrix, \\\[V\]\\; human transmitting capacity; human
-transmitting by residency, and the human transmitting matrix; and local
-reproductive numbers. Threshold conditions (or quasi-threshold
+also output the patch vec torial capacity (denoted \\(V\\)) and the
+vectorial capacity matrix, \\(\[V\]\\); human transmitting capacity;
+human transmitting by residency, and the human transmitting matrix; and
+local reproductive numbers. Threshold conditions (or quasi-threshold
 conditions for models with some malaria importation) are computed as the
 spectral average.
 
@@ -39,7 +39,7 @@ number of infective bites arising from all the mosquitoes biting in a
 single patch…) the VC matrix (the number of infective bites arising in
 each patch from all the mosquitoes biting in a single patch…). In
 spatial models, the VC matrix is used to compute threshold conditions,
-\\R_0,\\ and to describe connectivity.
+\\(R_0,\\) and to describe connectivity.
 
 In **`ramp.xds`**, the function `compute_VC` is for autonomous systems.
 The function accepts an `xds` model object. Inside the function, a copy
@@ -55,24 +55,20 @@ arising in all patches.
 In some models, a formula for the VC matrix can be computed
 analytically. It is:
 
-\\fq \Omega^{-1} \cdot e^{-\Omega \tau} \cdot \mbox{diag}\left(
-\frac{fqM}W\right)\\ For models where the VC matrix can be computed
+\\\[fq \Omega^{-1} \cdot e^{-\Omega \tau} \cdot \mbox{diag}\left(
+\frac{fqM}W\right)\\\] For models where the VC matrix can be computed
 analytically, it is computed at setup and attached as
 `xds_obj$analysis$VC.`
 
-``` r
+\
+`devtoolk``::``load_all``(``)`\
+`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``MYname ``=`` ``"GeM"``)`\
+`mod`` ``<-`` ``make_VC``(``mod``)`\
+`mod``$``analysis``$``VC`
 
-devtoolk::load_all()
-mod <- xds_setup(MYname = "GeM")
-mod <- make_VC(mod)
-mod$analysis$VC
-```
-
-``` r
-
-mod <- compute_VC(mod, tol=1e-7)
-mod$outputs$VC
-```
+\
+`mod`` ``<-`` ``compute_VC``(``mod``, tol``=``1e-7``)`\
+`mod``$``outputs``$``VC`
 
 The algorithm for computing VC for any model is through a call to
 `compute_VC_matrix` which:
@@ -80,11 +76,11 @@ The algorithm for computing VC for any model is through a call to
 - derives a new model that has has set emergence rate to zero;
 
 - calls `setup_VC_inits` to set the initial conditions: the number of
-  infected mosquitoes in the cohort is \\fqM/W\\ at the steady state (or
-  its equivalent);
+  infected mosquitoes in the cohort is \\(fqM/W\\) at the steady state
+  (or its equivalent);
 
 - sets up a new set of variables, the VC matrix, that add up infectious
-  biting \\fqZ\\;
+  biting \\(fqZ\\);
 
 - solves the system of equations long enough for the number of
   mosquitoes in the cohort to be less than `tol` (an argument).

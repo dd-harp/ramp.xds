@@ -250,7 +250,7 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 setup_XH_obj.trivial = function(Xname, residence, xds_obj, i, options=list()){
   xds_obj$Xname = "trivial"
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nPatches, options)
-  xds_obj <- setup_XH_inits(xds_obj, i, options)
+  xds_obj <- setup_XH_inits(xds_obj, options=options, i=i)
   xds_obj <- setup_skillset_XH(xds_obj, i)
   xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
   xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
@@ -266,7 +266,7 @@ setup_XH_obj.trivial = function(Xname, residence, xds_obj, i, options=list()){
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_XH_inits.trivial = function(xds_obj, i=1, options=list()){
+setup_XH_inits.trivial = function(xds_obj, options=list(), i=1){
   return(xds_obj)
 }
 
@@ -326,7 +326,7 @@ get_XH_pars.trivial <- function(xds_obj, i=1) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_XH_pars.trivial <- function(xds_obj, i=1, options=list()) {
+change_XH_pars.trivial <- function(xds_obj, options=list(), i=1) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$XH_obj[[i]], with(options,{
     xds_obj$XH_obj[[i]]$kappa = kappa
@@ -334,4 +334,3 @@ change_XH_pars.trivial <- function(xds_obj, i=1, options=list()) {
     xds_obj$XH_obj[[i]]$F_trend = F_trend
     return(xds_obj)
 }))}
-

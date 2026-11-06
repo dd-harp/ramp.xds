@@ -32,9 +32,9 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Details
 
-Compute the daily AR, \\h\\, given the daily EIR, \\E\\, under a
+Compute the daily AR, \\(h\\), given the daily EIR, \\(E\\), under a
 negative binomial model for the distribution of bites per person, and
-\\b\\, the probability of infection per infective bite: \$\$\alpha =
+\\(b\\), the probability of infection per infective bite: \$\$\alpha =
 \left(e^{h/\phi} -1\right) \frac \phi b \$\$
 
 ## See also

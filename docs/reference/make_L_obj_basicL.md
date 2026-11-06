@@ -3,13 +3,13 @@
 The following parameters will be set to the values in `options`. If they
 are not found, default values will be used.
 
-- \\\psi\\ or `psi`: maturation rate
+- \\(\psi\\) or `psi`: maturation rate
 
-- \\\xi\\ or `xi`: delayed maturation response due to mean crowding
+- \\(\xi\\) or `xi`: delayed maturation response due to mean crowding
 
-- \\\phi\\ or `phi`: density-independent death rate
+- \\(\phi\\) or `phi`: density-independent death rate
 
-- \\\theta\\ or `theta`: density dependence in mortality: the slope of
+- \\(\theta\\) or `theta`: density dependence in mortality: the slope of
   the response to mean crowding
 
 ## Usage

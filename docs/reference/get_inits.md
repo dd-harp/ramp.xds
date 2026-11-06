@@ -1,6 +1,6 @@
-# Get the stored initial values, \\y_0\\
+# Get the stored initial values, \\(y_0\\)
 
-Get the stored initial values, \\y_0\\
+Get the stored initial values, \\(y_0\\)
 
 ## Usage
 

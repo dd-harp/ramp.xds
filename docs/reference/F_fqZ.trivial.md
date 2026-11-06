@@ -2,23 +2,23 @@
 
 Returns \$\$F\_{fqZ}(t) = fqZ F_S(t) F_T(t) F_K(t)\$\$ where
 
-- \\f\\ is the feeding rate
+- \\(f\\) is the feeding rate
 
-- \\q\\ is the human fraction
+- \\(q\\) is the human fraction
 
-- \\Z\\ is the density of infectious mosquitoes, per patch
+- \\(Z\\) is the density of infectious mosquitoes, per patch
 
-- \\F_S(t)\\ or `F_season` is a seasonal pattern
+- \\(F_S(t)\\) or `F_season` is a seasonal pattern
 
-- \\F_T(t)\\ or `F_trend` is a trend pattern
+- \\(F_T(t)\\) or `F_trend` is a trend pattern
 
-- \\F_K(t)\\ or `F_shock` is a perturbation
+- \\(F_K(t)\\) or `F_shock` is a perturbation
 
-- \\season_par\\ a list to dispatch options for
+- \\(season_par\\) a list to dispatch options for
 
-- \\trend_par\\ or `F_season` is a seasonal pattern
+- \\(trend_par\\) or `F_season` is a seasonal pattern
 
-- \\shock_par\\ or `F_season` is a seasonal pattern
+- \\(shock_par\\) or `F_season` is a seasonal pattern
 
 ## Usage
 

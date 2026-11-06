@@ -2,13 +2,13 @@
 
 Returns \$\$F\_{G}(t) = G F_S(t) F_T(t) F_K(t)\$\$ where
 
-- \\G\\ is the number of eggs laid, per patch, per day
+- \\(G\\) is the number of eggs laid, per patch, per day
 
-- \\F_S(t)\\ or `F_season` is a seasonal pattern
+- \\(F_S(t)\\) or `F_season` is a seasonal pattern
 
-- \\F_T(t)\\ or `F_trend` is a trend pattern
+- \\(F_T(t)\\) or `F_trend` is a trend pattern
 
-- \\F_K(t)\\ or `F_shock` is a perturbation
+- \\(F_K(t)\\) or `F_shock` is a perturbation
 
 ## Usage
 

@@ -1,6 +1,6 @@
 # Show Circadian
 
-Update the circadian for the \\s^{th}\\ host species
+Update the circadian for the \\(s^{th}\\) host species
 
 ## Usage
 

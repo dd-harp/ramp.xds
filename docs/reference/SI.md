@@ -25,7 +25,7 @@ model of adult mosquito infection dynamics.
 
 - `eip`:
 
-  extrinsic incubation period (\\\tau\\)
+  extrinsic incubation period (\\(\tau\\))
 
 - `g`:
 
@@ -45,22 +45,22 @@ model of adult mosquito infection dynamics.
 
 ## Demography
 
-The demographic matrix, \\\Omega\\ is computed as \$\$\Omega =
+The demographic matrix, \\(\Omega\\) is computed as \$\$\Omega =
 \mbox{diag}\left(g + \sigma \mu \right) - K \cdot
 \mbox{diag}\left(\sigma \left(1-\mu\right)\right)\$\$
 
 ## Inputs
 
-**Emergence** – `Lambda` or \\\Lambda\\, is computed by the
+**Emergence** – `Lambda` or \\(\Lambda\\), is computed by the
 **ML**-Interface using outputs of the **L** Component
 
-**Net Infectiousness** – `kappa` or \\\kappa\\, is computed by the
+**Net Infectiousness** – `kappa` or \\(\kappa\\), is computed by the
 **XY**-Interface using outputs of the **XH** Component
 
 ## Dynamics
 
-\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\ dY/dt &=
-fq\kappa(M-Y) - \Omega \cdot Y \\ \end{array}\$\$
+\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\\\ dY/dt &=
+fq\kappa(M-Y) - \Omega \cdot Y \\\\ \end{array}\$\$
 
 ## Net Infective Biting
 

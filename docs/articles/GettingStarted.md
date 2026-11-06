@@ -1,5 +1,12 @@
 # Getting Started
 
+**`ramp.xds`** was developed to reduce the costs of building, solving,
+analyzing, and using models describing the epidemiology, transmission
+dynamics and control of malaria and other mosquito-transmitted
+pathogens.
+
+------------------------------------------------------------------------
+
 This vignette gives a basic introduction to **`ramp.xds`** and a quick
 demonstration.
 
@@ -11,7 +18,9 @@ demonstration.
 
   - Solve it
 
-Next: [Working with
+Next: [Basic
+Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.md) or
+[Working with
 Models](https://dd-harp.github.io/ramp.xds/articles/Working.md)
 
 Additional documentation is available in the [**SimBA**
@@ -20,36 +29,32 @@ website.
 
 ------------------------------------------------------------------------
 
-**`ramp.xds`** was developed to reduce the costs of building, solving,
-analyzing, and using models describing the epidemiology, transmission
-dynamics and control of malaria and other mosquito-transmitted
-pathogens.
-
 ## Installation
 
-The software was developed in RStudio. To download the R package, run
+The R package is available from github. To download the R package, run
 these commands:
 
-``` r
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`devtools`](https://devtools.r-lib.org/)`)`\
+`devtools``::`[`install_github`](https://devtools.r-lib.org/reference/install-deprecated.html)`(``"dd-harp/ramp.xds"``)`
 
-library(devtools)
-devtools::install_github("dd-harp/ramp.xds")
-```
+Next, load **`ramp.xds`**:
 
-Then load **`ramp.xds`**:
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`
 
-``` r
+Additional modules and functionality are available in related
+R-packages, including:
 
-library(ramp.xds)
-```
+- [**`ramp.func`**](https://dd-harp.github.io/ramp.func/),
+- [**`ramp.library`**](https://dd-harp.github.io/ramp.library/),
+- [**`ramp.control`**](https://dd-harp.github.io/ramp.control/),
+- [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/),
+- [**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/),
+- [**`ramp.qa`**](https://dd-harp.github.io/ramp.qa/), and
+- [**`ramp.work`**](https://dd-harp.github.io/ramp.work/).
 
-Additional modules and functionality are available in companion
-R-packages, including
-[**`ramp.library`**](https://dd-harp.github.io/ramp.library/),
-[**`ramp.control`**](https://dd-harp.github.io/ramp.control/),
-[**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/), and
-[**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/). For more
-information, see the [**SimBA**
+For more information, see the [**SimBA**
 Project](https://faculty.washington.edu/smitdave/simba/index.html)
 website.
 
@@ -65,36 +70,74 @@ are assigned default values, so calling
 with no arguments returns a fully configured model with all the default
 settings.
 
-``` r
-
-model <- xds_setup()
-```
+\
+`model`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``)`
 
 The object returned by
 [`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-is called an **xds model** object: it is a fully defined model that can
-be solved by
+is called an **xds model object** or an **xds object**: it fully defines
+a model that can be solved by
 [`xds_solve()`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md).
-Here, we called it `model`.
+In the code chuck, we called it `model`. If you type it, the function
+`print.xds_obj` gives a basic report.
 
-The arguments are stored and can be easily retrieved. The name of the
-module for human / host infection and immune dynamics is stored as
-`Xname.` The default module is the `SIS` compartmental model:
+\
+`model`
 
-``` r
+    ## 
+    ## model_name - unnamed
+    ## 
+    ## Modules:
+    ##   Xname  - SIS
+    ##   MYname - SI
+    ##   Lname  - trivial
+    ## 
+    ## Structure:
+    ##   nPatches         = 1
+    ##   nHabitats        = 1
+    ##   nStrata          = 1
+    ##   nHostSpecies     = 1
+    ##   nVectorSpecies   = 1
+    ## 
+    ## frame - full
+    ## xds   - ode
 
-model$Xname
-```
+We can see from the returned value that `Xname` is `SIS`, which is the
+name of the module for human / host infection and immune dynamics.
+
+The **xds object** is a compound list. One way to inspect it is to ask
+for its names.
+
+\
+[`names`](https://rdrr.io/r/base/names.html)`(``model``)`
+
+    ##  [1] "membership"         "nPatches"           "nHabitats"         
+    ##  [4] "nStrata"            "nVectorSpecies"     "nHostSpecies"      
+    ##  [7] "model_name"         "xde"                "xds"               
+    ## [10] "frame"              "forced_by"          "patches"           
+    ## [13] "habitats"           "terms"              "blood_feeding_obj" 
+    ## [16] "import_obj"         "transmission_obj"   "env_het_obj"       
+    ## [19] "Xname"              "XH_obj"             "MYname"            
+    ## [22] "MY_obj"             "Lname"              "L_obj"             
+    ## [25] "variables"          "nOtherVariables"    "V_obj"             
+    ## [28] "resources_obj"      "forcing_obj"        "health_obj"        
+    ## [31] "vector_control_obj" "outputs"            "analysis"          
+    ## [34] "max_ix"
+
+The \\(19^{th}\\) item is `Xname`:
+
+\
+`model``$``Xname`
 
     ## [1] "SIS"
 
-`SIS` was set up with default parameter values that can be viewed with
-the function `get_XH_pars`:
+To inspect information, **`ramp.xds`** has functions with intuitive
+names that show what information is stored there. `SIS` was set up with
+default parameter values that can be viewed with the function
+`get_XH_pars`:
 
-``` r
-
-get_XH_pars(model)
-```
+\
+[`get_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)`(``model``)`
 
     ## $b
     ## [1] 0.55
@@ -114,36 +157,30 @@ get_XH_pars(model)
     ## $q_pcr
     ## [1] 0.9
 
-Functions like `get_XH_pars` are designed to help users get to know the
-model object. In this case, the parameters are stored as
-`model$XH_obj[[i]],` for the \\i^{th}\\ species. Knowing the names, the
-parameters can then be viewed (or changed). For example, this would
+Functions like `get_XH_pars` are designed to help users work with **xds
+model object**. In this case, the parameters are stored as
+`model$XH_obj[[i]],` for the \\(i^{th}\\) species. Knowing the names,
+the parameters can then be viewed (or changed). For example, this would
 change `r` for the first species:
 
-``` r
-
-model$XH_obj[[1]]$r <- 1/150
-```
+\
+`model``$``XH_obj``[[``1``]``]``$``r`` ``<-`` ``1``/``150`
 
 To make it easy to change parameters, we also wrote the `change_XH_pars`
 function, which takes new values in a named list.
 
-``` r
+\
+`model`` ``<-`` `[`change_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.md)`(``model``, options``=`[`list`](https://rdrr.io/r/base/list.html)`(``r``=``1``/``100``)``, i``=``1``)`\
+[`get_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)`(``model``)``$``r`
 
-model <- change_XH_pars(model, 1, list(r=1/150))
-get_XH_pars(model)$r
-```
-
-    ## [1] 0.006666667
+    ## [1] 0.01
 
 Similarly, initial values were assigned default values at setup. In
 **`ramp.xds,`** human/host demography is treated as a distinct process,
 so the initial values are:
 
-``` r
-
-get_XH_inits(model, 1)
-```
+\
+[`get_XH_inits`](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)`(``model``)`
 
     ## $H
     ## [1] 1000
@@ -151,18 +188,18 @@ get_XH_inits(model, 1)
     ## $I
     ## [1] 1
 
-The default parameters and initial values can be overwritten at setup by
-passing `options = list(...)` with different values. Since `xds_setup`
-calls functions to set up several model objects, each component has its
-own options name. For the **XH** component, options are passed in
-`XHoptions`:
+We already changed the value of parameter from its default after
+`xds_setup` (above), but we could have set the parameter values when we
+called `xds_setup`. The default parameters and initial values can be
+overwritten at setup by passing a named list, as `options = list(...)`
+with different values. Since `xds_setup` calls functions to set up
+several model objects, each component has its own options name. For the
+**XH** component, options are passed in `XHoptions`:
 
-``` r
-
-Xo = list(r=1/150, c=0.2, b=0.6, I=2)
-model1 <- xds_setup(XHoptions = Xo)
-get_XH_pars(model1)
-```
+\
+`Xo`` ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``r``=``1``/``100``, c``=``0.2``, b``=``0.6``, I``=``2``)`\
+`model1`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHoptions ``=`` ``Xo``)`\
+[`get_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)`(``model1``)`
 
     ## $b
     ## [1] 0.6
@@ -171,7 +208,7 @@ get_XH_pars(model1)
     ## [1] 0.2
     ## 
     ## $r
-    ## [1] 0.006666667
+    ## [1] 0.01
     ## 
     ## $q_lm
     ## [1] 0.8
@@ -182,17 +219,15 @@ get_XH_pars(model1)
     ## $q_pcr
     ## [1] 0.9
 
-In the `SIS` model, we set \\H=S+I,\\ so the software computes \\dH/dt\\
-and \\dI/dt\\ and sets \\S=H-I.\\ By policy, the software computes the
-total population size, \\H,\\ dynamically and treats it differently.
-This is because it plays an important role in setting up the *Blood
-Feeding* interface, so it is not possible to set \\S.\\ Instead, \\S\\
-is computed after solving and parsing.
+In the `SIS` model, we set \\(H_0,\\) and \\(I_0.\\) The software
+computes \\(dH/dt\\) and \\(dI/dt\\) and sets \\(S=H-I.\\) By policy,
+the software computes the total population size, \\(H,\\) dynamically
+and treats it differently. This is because it plays an important role in
+setting up the *Blood Feeding* interface, so it is not possible to set
+\\(S.\\) Instead, \\(S\\) is computed after solving and parsing.
 
-``` r
-
-get_XH_inits(model1)
-```
+\
+[`get_XH_inits`](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)`(``model1``)`
 
     ## $H
     ## [1] 1000
@@ -200,16 +235,15 @@ get_XH_inits(model1)
     ## $I
     ## [1] 2
 
+You can set new values of `H` using `change_XH_inits` or\
 To change the human population density, use the `change_H` function.
 
-``` r
-
-model1 <- change_H(1004, model1)
-get_XH_inits(model1)
-```
+\
+`model1`` ``<-`` `[`change_H`](https://dd-harp.github.io/ramp.xds/reference/change_H.md)`(``1004``, ``model1``)`\
+[`get_XH_inits`](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)`(``model1``)`
 
     ## $H
-    ## [1] 1000
+    ## [1] 1004
     ## 
     ## $I
     ## [1] 2
@@ -217,10 +251,8 @@ get_XH_inits(model1)
 The module for adult mosquito ecology and infection dynamics is called
 `MYname.` The default module is an SI model:
 
-``` r
-
-model$MYname
-```
+\
+`model``$``MYname`
 
     ## [1] "SI"
 
@@ -234,10 +266,8 @@ and changed after setup by passing new values in a named list to
 The name of the default module for aquatic mosquito ecology is called
 `Lname.` The default module is the `trivial` module:
 
-``` r
-
-model$Lname
-```
+\
+`model``$``Lname`
 
     ## [1] "trivial"
 
@@ -253,10 +283,8 @@ named list of values to `Loptions` in `xds_setup().` After setup, the
 
 After setting up, `model` has an empty placeholder for outputs:
 
-``` r
-
-model$outputs 
-```
+\
+`model``$``outputs`` `
 
     ## list()
 
@@ -272,28 +300,23 @@ arguments are passed for time, then it uses the defaults `Tmax=365` and
 `dt=1;` third, `deSolve` will use the optional argument `times` if it is
 supplied. All four of the following do the same thing:
 
-``` r
-
-model <- xds_solve(model, times=0:365) 
-model <- xds_solve(model, times=0:365, Tmax=730, dt=5) 
-model <- xds_solve(model, Tmax=365, dt=1) 
-model <- xds_solve(model) 
-```
+\
+`model`` ``<-`` `[`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``model``, times``=``0``:``365``)`` `\
+`model`` ``<-`` `[`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``model``, times``=``0``:``365``, Tmax``=``730``, dt``=``5``)`` `\
+`model`` ``<-`` `[`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``model``, Tmax``=``365``, dt``=``1``)`` `\
+`model`` ``<-`` `[`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``model``)`` `
 
 Internally, these are handled by the function `make_times_xde` for
 systems of differential equations, and `make_times_dts` for discrete
 time systems.
 
-Note `xds_solve` requires an **`xds`** *model object* and that it
-returns an **`xds`** *model object.* In this case, the function passes
-`model` and the return value replaces `model.` Before `xds_solve,`
-`model$outputs` was an empty list. After solving, the outputs are stored
-as `model$outputs`:
+Note `xds_solve` requires an **xds model object** and that it returns an
+**xds model object.** In this case, the function passes `model` and the
+return value replaces `model.` Before `xds_solve,` `model$outputs` was
+an empty list. After solving, the outputs are stored as `model$outputs`:
 
-``` r
-
-names(model$outputs)
-```
+\
+[`names`](https://rdrr.io/r/base/names.html)`(``model``$``outputs``)`
 
     ## [1] "deout"  "time"   "last_y" "orbits"
 
@@ -309,17 +332,13 @@ The outputs from solving a system of equations include:
 Note that `time` is the set of time points where we output the values of
 the dependent variables.
 
-``` r
-
-head(model$outputs$time, 5)
-```
+\
+[`head`](https://rdrr.io/r/utils/head.html)`(``model``$``outputs``$``time``, ``5``)`
 
     ## [1] 0 1 2 3 4
 
-``` r
-
-tail(model$outputs$time, 3)
-```
+\
+[`tail`](https://rdrr.io/r/utils/head.html)`(``model``$``outputs``$``time``, ``3``)`
 
     ## [1] 363 364 365
 
@@ -344,15 +363,13 @@ Functions like
 make it easy to examine or save a set of standard outputs without
 delving into the details.
 
-``` r
-
-head(get_EIR(model), 3)
-```
+\
+[`head`](https://rdrr.io/r/utils/head.html)`(`[`get_EIR`](https://dd-harp.github.io/ramp.xds/reference/get_EIR.md)`(``model``)``, ``3``)`
 
     ##              [,1]
     ## [1,] 0.0002850000
-    ## [2,] 0.0002685853
-    ## [3,] 0.0002673418
+    ## [2,] 0.0002628915
+    ## [3,] 0.0002439230
 
 ## Visualization
 
@@ -375,19 +392,17 @@ head(get_EIR(model), 3)
 - `xds_plot_EIR` plots the EIR for each one of the human / host
   population strata
 
-``` r
-
-par(mfrow = c(2,2))
-xds_plot_X(model)
-xds_plot_M(model)
-xds_plot_Y(model, add=T)
-xds_plot_Z(model, add=T)
-xds_plot_PR(model)
-xds_plot_EIR(model)
-```
+\
+[`par`](https://rdrr.io/r/graphics/par.html)`(``mfrow ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``2``,``2``)``)`\
+[`xds_plot_X`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_X.md)`(``model``)`\
+[`xds_plot_M`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_M.md)`(``model``)`\
+[`xds_plot_Y`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_Y.md)`(``model``, add``=``T``)`\
+[`xds_plot_Z`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_Z.md)`(``model``, add``=``T``)`\
+[`xds_plot_PR`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.md)`(``model``)`\
+[`xds_plot_EIR`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_EIR.md)`(``model``)`
 
 ![\*\*Figure 1:\*\* Plotting standard
-outputs](GettingStarted_files/figure-html/unnamed-chunk-20-1.png)
+outputs](GettingStarted_files/figure-html/unnamed-chunk-22-1.png)
 
 **Figure 1:** Plotting standard outputs
 
@@ -404,10 +419,8 @@ variables are defined, but the dynamical terms needed by related
 dynamical components are passed by a configurable ***composed time
 series function*** with a generic form:
 
-``` r
-
-mean*F_season(t)*F_trend(t)*F_shock(t)
-```
+\
+`mean``*`[`F_season`](https://dd-harp.github.io/ramp.xds/reference/F_season.md)`(``t``)``*`[`F_trend`](https://dd-harp.github.io/ramp.xds/reference/F_trend.md)`(``t``)``*`[`F_shock`](https://dd-harp.github.io/ramp.xds/reference/F_shock.md)`(``t``)`
 
 It is easy to change the forcing function. A function library for
 `ramp.xds` is found in
@@ -416,7 +429,10 @@ information about configuring trace functions for `ramp.xds`
 
 ## Next Steps
 
-Two good next steps are the vignettes: + [Working with
-Models](https://dd-harp.github.io/ramp.xds/articles/Working.html). +
-[Basic
-Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html).
+Two good next steps are the vignettes:
+
+- [Basic
+  Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html).
+
+- [Working with
+  Models](https://dd-harp.github.io/ramp.xds/articles/Working.html).

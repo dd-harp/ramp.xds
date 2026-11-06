@@ -1,6 +1,6 @@
 # Change human feeding fraction
 
-Update the human feeding fraction for the \\s^{th}\\ vector species.
+Update the human feeding fraction for the \\(s^{th}\\) vector species.
 
 ## Usage
 

@@ -1,6 +1,6 @@
 # Setup a Human Fraction Bionomic Object
 
-Set up an object to compute the human fraction, \\q\\
+Set up an object to compute the human fraction, \\(q\\)
 
 ## Usage
 

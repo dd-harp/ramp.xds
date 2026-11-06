@@ -1,6 +1,6 @@
 # Get Omega
 
-Return the demographic matrix, called \\\Omega\\.
+Return the demographic matrix, called \\(\Omega\\).
 
 ## Usage
 

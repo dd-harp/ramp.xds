@@ -2,21 +2,23 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{change_XH_inits}
 \alias{change_XH_inits}
-\title{Change initial values (\strong{XH})}
+\title{Change \strong{XH} initial values}
 \usage{
-change_XH_inits(xds_obj, i = 1, options = list())
+change_XH_inits(xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the vector species index}
-
 \item{options}{a named list}
+
+\item{i}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$XH_obj[[s]]}.
+Replace the initial values for the dependent
+variables with new values named in
+the list \code{options}.
 }
 \keyword{internal}

@@ -1,6 +1,6 @@
 # Compute eggs laid
 
-Compute eggs laid at time \\t\\
+Compute eggs laid at time \\(t\\)
 
 ## Usage
 

@@ -22,11 +22,11 @@ make_F_f_type2(nPatches, options = list(), fx = 0.3, sf = 0.1)
 
 - fx:
 
-  the maximum blood feeding rate, \\f_x\\
+  the maximum blood feeding rate, \\(f_x\\)
 
 - sf:
 
-  the shape parameter, \\s_f\\
+  the shape parameter, \\(s_f\\)
 
 ## Value
 

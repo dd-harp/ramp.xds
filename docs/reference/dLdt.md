@@ -30,7 +30,7 @@ dLdt(t, y, xds_obj, s)
 ## Value
 
 the derivatives, a [numeric](https://rdrr.io/r/base/numeric.html) vector
-of length \\n_q=\\`nHabitats`
+of length \\(n_q=\\)`nHabitats`
 
 ## Note
 

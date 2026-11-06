@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{setup_K_matrix.herethere}
 \alias{setup_K_matrix.herethere}
-\title{Setup a Here-There Dispersal Matrix}
+\title{Setup a here-and-there dispersal matrix}
 \usage{
 \method{setup_K_matrix}{herethere}(name, xds_obj, options = list(), s = 1)
 }
@@ -19,7 +19,10 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{setup_K_matrix} for the herethere model:
-dispersal to every other patch, with equal probability
+Implements \link{setup_K_matrix} for the \code{herethere} method.
+See \link{make_K_matrix_herethere}.
+}
+\seealso{
+\link{make_K_matrix_herethere} and \link{setup_K_matrix}
 }
 \keyword{internal}

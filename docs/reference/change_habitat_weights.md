@@ -1,6 +1,6 @@
 # Change Habitat Search Weights
 
-Set the search weights, \\\omega\\, for a set of aquatic habitats
+Set the search weights, \\(\omega\\), for a set of aquatic habitats
 
 ## Usage
 

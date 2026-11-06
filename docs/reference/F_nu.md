@@ -1,7 +1,7 @@
 # Compute the Egg Laying Rate
 
 This method dispatches on the type of `nu_obj`. It should set the values
-of the egg laying rate, \\\nu\\
+of the egg laying rate, \\(\nu\\)
 
 ## Usage
 

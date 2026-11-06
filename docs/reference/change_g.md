@@ -1,7 +1,7 @@
 # Change mosquito mortality rate
 
-Update the mosquito mortality rate for the \\s^{th}\\ vector species and
-refresh the demographic matrix.
+Update the mosquito mortality rate for the \\(s^{th}\\) vector species
+and refresh the demographic matrix.
 
 ## Usage
 

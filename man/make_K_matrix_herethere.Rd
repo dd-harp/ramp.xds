@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{make_K_matrix_herethere}
 \alias{make_K_matrix_herethere}
-\title{Make a Here-There Dispersal Matrix}
+\title{Make a here-and-there dispersal matrix}
 \usage{
 make_K_matrix_herethere(nPatches)
 }
@@ -10,5 +10,9 @@ make_K_matrix_herethere(nPatches)
 \item{nPatches}{is the number of patches in the model}
 }
 \description{
-Make a Here-There Dispersal Matrix
+Mosquitoes disperse to every other patch
+with equal probability.
+}
+\seealso{
+\link{setup_K_matrix}
 }

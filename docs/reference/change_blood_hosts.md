@@ -1,6 +1,6 @@
 # Set static blood feeding search weights
 
-Set the blood feeding search weights, \\\omega\\, for a set of host
+Set the blood feeding search weights, \\(\omega\\), for a set of host
 strata
 
 ## Usage

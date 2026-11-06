@@ -1,6 +1,6 @@
 # Compute and store availability of egg-laying habitats
 
-Set the value of a variable, \\Q\\, that describes the availability of
+Set the value of a variable, \\(Q\\), that describes the availability of
 any habitat or device that would attract mosquitoes and induce them to
 lay eggs.
 

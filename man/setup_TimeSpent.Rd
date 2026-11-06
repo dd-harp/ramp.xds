@@ -19,5 +19,12 @@ setup_timespent(name, xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set up a time spent matrix
+Available methods are:
+\itemize{
+\item \code{as_matrix} --- use a matrix provided
+\item \code{at_home} --- a fraction at home, or evenly among the rest (see \link{make_timespent_at_home})
+\item \code{xy} --- use patch locations and a kernel function (see \link{make_timespent_xy})
+}
+
+If the first argument is a matrix, the \code{as_matrix} method is used.
 }

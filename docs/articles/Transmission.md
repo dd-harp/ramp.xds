@@ -10,8 +10,8 @@ The transmission interface was developed to compute two terms:
   which can also use information about travel malaria, environmental
   heterogeneity, and pre-erythrocytic immunity.
 
-- the net infectiousness (\\\kappa\\), the probability a mosquito would
-  become infected after blood feeding on a human.
+- the net infectiousness (\\(\kappa\\)), the probability a mosquito
+  would become infected after blood feeding on a human.
 
 By design, it uses the same quantities that were defined in the [blood
 feeding

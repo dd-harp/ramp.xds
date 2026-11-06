@@ -27,5 +27,8 @@ make_blood_search_weights_random(
 a numeric vector
 }
 \description{
-Set up a random vector
+Set up a random vector of blood search weights
+}
+\seealso{
+\link{setup_blood_search_weights}
 }

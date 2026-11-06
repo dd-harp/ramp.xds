@@ -17,3 +17,23 @@ change_F_age = function(F, xds_obj, ix=1){
   xds_obj$EIR_obj[[ix]]$F_age = F
   return(xds_obj)
 }
+
+#' @title Change age 
+#'
+#' @description
+#' Change parameters for the relative biting rates
+#' by age and rebuild the function 
+#'
+#' @param X a list with new parameters
+#' @param xds_obj an **`xds`** model object
+#' @param ix the vector species index
+#'
+#' @return an **`xds`** object
+#'
+#' @export
+#' @keywords internal
+change_age = function(X, xds_obj, ix=1){
+  xds_obj$EIR_obj[[ix]]$age_par = X 
+  xds_obj$EIR_obj[[ix]]$F_age = make_function(X)
+  return(xds_obj)
+}

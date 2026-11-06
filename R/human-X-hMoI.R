@@ -146,7 +146,7 @@ setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
 setup_XH_obj.hMoI = function(Xname, residence, xds_obj, i, options=list()){
   xds_obj$Xname = "hMoI"
   xds_obj$XH_obj[[i]] = make_XH_obj_hMoI(xds_obj$nStrata[i], options)
-  xds_obj <- setup_XH_inits(xds_obj, i, options)
+  xds_obj <- setup_XH_inits(xds_obj, options=options, i=i)
   xds_obj <- setup_skillset_XH(xds_obj, i)
   xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
   xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
@@ -214,7 +214,7 @@ get_XH_pars.hMoI<- function(xds_obj, i=1) {
 #'
 #' @keywords internal
 #' @export
-change_XH_pars.hMoI <- function(xds_obj, i=1, options=list()) {
+change_XH_pars.hMoI <- function(xds_obj, options=list(), i=1) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$XH_obj[[i]], with(options,{
     xds_obj$XH_obj[[i]]$b <- b
@@ -273,9 +273,10 @@ F_infectivity.hMoI <- function(y, xds_obj,i) {
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_XH_inits.hMoI = function(xds_obj,  i=1, options=list()){
+setup_XH_inits.hMoI = function(xds_obj, options=list(), i=1){
   with(options,{
     xds_obj$XH_obj[[i]]$inits = make_XH_inits_hMoI(xds_obj$nStrata[i], options)
+    xds_obj$XH_obj[[i]]$H = H
   return(xds_obj)
   })}
 
@@ -301,10 +302,11 @@ make_XH_inits_hMoI = function(nStrata, options = list(), m1=2, m2=1){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_XH_inits.hMoI <- function(xds_obj, i=1, options=list()) {
+change_XH_inits.hMoI <- function(xds_obj, options=list(), i=1) {
   with(xds_obj$XH_obj[[i]], with(options,{
-    xds_obj$Xinits[[i]]$m1 = m1
-    xds_obj$Xinits[[i]]$m2 = m2
+    xds_obj$XH_obj[[i]]$H = H
+    xds_obj$inits[[i]]$m1 = m1
+    xds_obj$inits[[i]]$m2 = m2
     return(xds_obj)
 }))}
 
@@ -320,7 +322,6 @@ get_HTC.hMoI <- function(xds_obj, i) {
        return(c2/r2 + c1*(1/r1 - 1/r2))
   )
 }
-
 
 #' @title Parse outputs for `hMoI` (**XH**)
 #' @description Implements [parse_XH_orbits] for the hMoI model

@@ -9,35 +9,35 @@ for educational purposes.
 
 **Variables:**
 
-- \\M\\: the density of adult mosquitoes
+- \\(M\\): the density of adult mosquitoes
 
-- \\Y\\: the density of infected adult mosquitoes
+- \\(Y\\): the density of infected adult mosquitoes
 
-- \\Z\\: the density of infectious adult mosquitoes
+- \\(Z\\): the density of infectious adult mosquitoes
 
 **Parameters and Terms:**
 
-- \\\Lambda\\ or `Lambda`: the emergence rate of adult mosquitoes (from
-  `F_emerge`)
+- \\(\Lambda\\) or `Lambda`: the emergence rate of adult mosquitoes
+  (from `F_emerge`)
 
-- \\f\\ or `f`: the blood feeding rate
+- \\(f\\) or `f`: the blood feeding rate
 
-- \\q\\ or `q`: human blood fraction
+- \\(q\\) or `q`: human blood fraction
 
-- \\\tau\\ or `eip`: the extrinsic incubation period
+- \\(\tau\\) or `eip`: the extrinsic incubation period
 
-- \\\Omega\\ or `Omega`: an adult mosquito demographic matrix, including
-  mortality and migration
+- \\(\Omega\\) or `Omega`: an adult mosquito demographic matrix,
+  including mortality and migration
 
-- \\\Upsilon\\ or `Upsilon`: survival and dispersal through the eip,
-  \\\Upsilon= e^{-\Omega \tau}\\
+- \\(\Upsilon\\) or `Upsilon`: survival and dispersal through the eip,
+  \\(\Upsilon= e^{-\Omega \tau}\\)
 
 **Dynamics:** In the delay equation, we use the subscript to denote the
-lagged value of a variable or term: *e.g.*, \\M\_\tau = M(t-\tau)\\.
+lagged value of a variable or term: *e.g.*, \\(M\_\tau = M(t-\tau)\\).
 
-\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\ dY/dt &=
-fq\kappa(M-Y) - \Omega \cdot Y \\ dZ/dt &= \Upsilon \cdot
-(fq\kappa)\_\tau(M\_\tau-Y\_\tau) - \Omega \cdot Y \\ \end{array}\$\$
+\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\\\ dY/dt &=
+fq\kappa(M-Y) - \Omega \cdot Y \\\\ dZ/dt &= \Upsilon \cdot
+(fq\kappa)\_\tau(M\_\tau-Y\_\tau) - \Omega \cdot Y \\\\ \end{array}\$\$
 
 This model was included mainly for the historical interest. It has been
 updated to handle exogenous forcing by weather and vector control in the

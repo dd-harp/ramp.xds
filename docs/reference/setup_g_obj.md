@@ -1,7 +1,7 @@
 # Set up a mosquito mortality bionomic object
 
 Set up an object to return a constant baseline mosquito mortality rate,
-\\g\\
+\\(g\\)
 
 ## Usage
 

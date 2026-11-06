@@ -1,8 +1,9 @@
-pandoc: '3.10'
+pandoc: '3.13'
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   adult_RM: adult_RM.html
+  AdvancedSetup: AdvancedSetup.html
   aqua_basic: aqua_basic.html
   aqua_trace: aqua_trace.html
   BasicSetup: BasicSetup.html
@@ -10,6 +11,7 @@ articles:
   BloodFeeding: BloodFeeding.html
   Contributing: Contributing.html
   Delays: Delays.html
+  Demography: Demography.html
   Diagnostics: Diagnostics.html
   DTS: DTS.html
   EggLaying: EggLaying.html
@@ -40,7 +42,7 @@ articles:
   Understanding_ramp.xds: Understanding_ramp.xds.html
   Working: Working.html
   XH-interface: XH-interface.html
-last_built: 2026-10-15T22:29Z
+last_built: 2026-11-06T21:02Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

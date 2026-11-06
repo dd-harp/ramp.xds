@@ -3,16 +3,16 @@
 The number of emerging adults is a function \$\$\Lambda F_S(t) F_T(t)
 F_K(t)\$\$ where
 
-- \\\Lambda\\ or `Lambda` is the mean number of adult female mosquitoes
-  emerging per day
+- \\(\Lambda\\) or `Lambda` is the mean number of adult female
+  mosquitoes emerging per day
 
-- \\F_S(t)\\ or `F_season` is a seasonal signal (ideally, with an
+- \\(F_S(t)\\) or `F_season` is a seasonal signal (ideally, with an
   average annual mean of 1)
 
-- \\F_T(t)\\ or `F_trend` is a function returning a trend (ideally, with
-  an average value of 1)
+- \\(F_T(t)\\) or `F_trend` is a function returning a trend (ideally,
+  with an average value of 1)
 
-- \\F_K(t)\\ or `F_shock` is a function describing a perturbation (by
+- \\(F_K(t)\\) or `F_shock` is a function describing a perturbation (by
   default, set to 1)
 
 ## Usage

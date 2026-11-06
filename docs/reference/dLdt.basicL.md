@@ -6,48 +6,48 @@ published by Smith DL, *et al.* (2013).
 
 **Variables:**
 
-- \\L\\: the density of mosquito larvae in each habitat
+- \\(L\\): the density of mosquito larvae in each habitat
 
 **Input Term:**
 
-- \\\eta\\ or `eta`: egg deposition rate (from
+- \\(\eta\\) or `eta`: egg deposition rate (from
   [F_eggs](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md))
 
 **Parameters:**
 
-- \\\psi\\ or `psi`: maturation rate
+- \\(\psi\\) or `psi`: maturation rate
 
-- \\\xi\\ or `xi`: delayed maturation parameter in response to mean
+- \\(\xi\\) or `xi`: delayed maturation parameter in response to mean
   crowding
 
-- \\\phi\\ or `phi`: density-independent death rate
+- \\(\phi\\) or `phi`: density-independent death rate
 
-- \\\theta\\ or `theta`: the slope of the mortality rate in response to
-  mean crowding
+- \\(\theta\\) or `theta`: the slope of the mortality rate in response
+  to mean crowding
 
 **Dynamical System:**
 
-\$\$dL/dt = \eta - (\psi\\e^{-\xi L} + \phi + \theta L)L\$\$
+\$\$dL/dt = \eta - (\psi\\;e^{-\xi L} + \phi + \theta L)L\$\$
 
 **Output Term:**
 
 - The function
   [F_emerge](https://dd-harp.github.io/ramp.xds/reference/F_emerge.md)
-  computes the net emergence rate (\\\alpha\\):
+  computes the net emergence rate (\\(\alpha\\)):
 
 \$\$\alpha = \psi e^{-\xi L} L \$\$
 
 **Regulation:**
 
 In this model, population is regulated in two ways. First, per-capita
-mortality increases with mean crowding; per-capita mortality is \\\phi +
-\theta L.\\ Second, maturation is delayed in response to mean crowding
-\\\psi\\e^{-\xi L.}\\ Depending on the values of \\\xi,\\ productivity
-in some habitats might not be a monotonically increasing function of egg
-laying.
+mortality increases with mean crowding; per-capita mortality is
+\\(\phi + \theta L.\\) Second, maturation is delayed in response to mean
+crowding \\(\psi\\;e^{-\xi L.}\\) Depending on the values of \\(\xi,\\)
+productivity in some habitats might not be a monotonically increasing
+function of egg laying.
 
 The model by Smith DL, *et al.* (2013) did not include delayed
-maturation; that model is recovered by setting \\\xi=0.\\
+maturation; that model is recovered by setting \\(\xi=0.\\)
 
 ## Usage
 

@@ -1,6 +1,6 @@
 # Compute the blood feeding rate, f
 
-Set the baseline value of the feeding rate, \\f\\.
+Set the baseline value of the feeding rate, \\(f\\).
 
 ## Usage
 

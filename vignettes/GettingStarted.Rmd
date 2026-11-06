@@ -9,6 +9,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+**`ramp.xds`** was developed to reduce the costs of building, solving, analyzing, and using models describing the epidemiology, transmission dynamics and control of malaria and other mosquito-transmitted pathogens.
+
+***
 
 This vignette gives a basic introduction to **`ramp.xds`** and a quick demonstration. 
 
@@ -20,24 +23,22 @@ This vignette gives a basic introduction to **`ramp.xds`** and a quick demonstra
     
     + Solve it
 
-Next: [Working with Models](Working.html)
+Next: [Basic Setup](BasicSetup.html) or [Working with Models](Working.html)
 
 Additional documentation is available in the [**SimBA** Project](https://faculty.washington.edu/smitdave/simba/index.html) website.
 
 *** 
 
-**`ramp.xds`** was developed to reduce the costs of building, solving, analyzing, and using models describing the epidemiology, transmission dynamics and control of malaria and other mosquito-transmitted pathogens.
-
 ## Installation 
 
-The software was developed in RStudio. To download the R package, run these commands: 
+The R package is available from github. To download the R package, run these commands: 
 
 ```{r, eval=F}
 library(devtools)
 devtools::install_github("dd-harp/ramp.xds")
 ```
 
-Then load **`ramp.xds`**: 
+Next, load **`ramp.xds`**: 
 
 ```{r}
 library(ramp.xds)
@@ -47,11 +48,16 @@ library(ramp.xds)
 #devtools::load_all()
 ```
 
-Additional modules and functionality are available in companion R-packages, including 
-[**`ramp.library`**](https://dd-harp.github.io/ramp.library/),
-[**`ramp.control`**](https://dd-harp.github.io/ramp.control/),
-[**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/), and
-[**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/).
+Additional modules and functionality are available in related R-packages, including:
+
++ [**`ramp.func`**](https://dd-harp.github.io/ramp.func/),
++ [**`ramp.library`**](https://dd-harp.github.io/ramp.library/),
++ [**`ramp.control`**](https://dd-harp.github.io/ramp.control/),
++ [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/), 
++ [**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/),
++ [**`ramp.qa`**](https://dd-harp.github.io/ramp.qa/), and
++ [**`ramp.work`**](https://dd-harp.github.io/ramp.work/). 
+
 For more information, see the [**SimBA** Project](https://faculty.washington.edu/smitdave/simba/index.html) website.
 
 ## Setup 
@@ -65,21 +71,34 @@ All arguments in `xds_setup()` are assigned default values, so calling `xds_setu
 model <- xds_setup()
 ```
 
-The object returned by `xds_setup()` is called an **xds model** object: it is a fully defined model that can be solved by `xds_solve()`. Here, we called it `model`.
+The object returned by `xds_setup()` is called an **xds model object** or an **xds object**: it fully defines a model that can be solved by `xds_solve()`. In the code chuck, we called it `model`. If you type it, the function `print.xds_obj` gives a basic report.    
 
-The arguments are stored and can be easily retrieved. The name of the module for human / host infection and immune dynamics is stored as `Xname.` The default module is the `SIS` compartmental model:
+```{r}
+model
+```
+
+We can see from the returned value that `Xname` is `SIS`, which is the name of the module for human / host infection and immune dynamics.
+
+The **xds object** is a compound list. One way to inspect it is to ask for its names. 
+
+```{r}
+names(model)
+```
+
+The $19^{th}$ item is `Xname`:
 
 ```{r}
 model$Xname
 ```
 
+To inspect information, **`ramp.xds`** has functions with intuitive names that show what information is stored there.
 `SIS` was set up with default parameter values that can be viewed with the function `get_XH_pars`:
 
 ```{r}
 get_XH_pars(model)
 ```
 
-Functions like `get_XH_pars` are designed to help users get to know the model object. In this case, the parameters are stored as `model$XH_obj[[i]],` for the $i^{th}$ species. Knowing the names, the parameters can then be viewed (or changed). For example, this would change `r` for the first species:
+Functions like `get_XH_pars` are designed to help users work with **xds model object**. In this case, the parameters are stored as `model$XH_obj[[i]],` for the $i^{th}$ species. Knowing the names, the parameters can then be viewed (or changed). For example, this would change `r` for the first species:
 
 ```{r}
 model$XH_obj[[1]]$r <- 1/150
@@ -88,31 +107,30 @@ model$XH_obj[[1]]$r <- 1/150
 To make it easy to change parameters, we also wrote the `change_XH_pars` function, which takes new values in a named list.
 
 ```{r}
-model <- change_XH_pars(model, 1, list(r=1/150))
+model <- change_XH_pars(model, options=list(r=1/100), i=1)
 get_XH_pars(model)$r
 ```
 
 Similarly, initial values were assigned default values at setup. In **`ramp.xds,`** human/host demography is treated as a distinct process, so the initial values are:
 
 ```{r}
-get_XH_inits(model, 1)
+get_XH_inits(model)
 ```
-
-The default parameters and initial values can be overwritten at setup by passing `options = list(...)` 
-with different values. Since `xds_setup` calls functions to set up several model objects, each component has its own options name. For the **XH** component, options are passed in `XHoptions`:
+We already changed the value of parameter from its default after `xds_setup` (above), but we could have set the parameter values when we called `xds_setup`. 
+The default parameters and initial values can be overwritten at setup by passing a named list, as `options = list(...)` with different values. Since `xds_setup` calls functions to set up several model objects, each component has its own options name. For the **XH** component, options are passed in `XHoptions`:
 
 ```{r}
-Xo = list(r=1/150, c=0.2, b=0.6, I=2)
+Xo = list(r=1/100, c=0.2, b=0.6, I=2)
 model1 <- xds_setup(XHoptions = Xo)
 get_XH_pars(model1)
 ```
 
-In the `SIS` model, we set $H=S+I,$ so the software computes $dH/dt$ and $dI/dt$ and sets $S=H-I.$ By policy, the software computes the total population size, $H,$ dynamically and treats it differently. This is because it plays an important role in setting up the *Blood Feeding* interface, so it is not possible to set $S.$ Instead, $S$ is computed after solving and parsing. 
+In the `SIS` model, we set $H_0,$ and $I_0.$ The software computes $dH/dt$ and $dI/dt$ and sets $S=H-I.$ By policy, the software computes the total population size, $H,$ dynamically and treats it differently. This is because it plays an important role in setting up the *Blood Feeding* interface, so it is not possible to set $S.$ Instead, $S$ is computed after solving and parsing. 
 
 ```{r}
 get_XH_inits(model1)
 ```
-
+You can set new values of `H` using `change_XH_inits` or  
 To change the human population density, use the `change_H` function. 
 
 ```{r}
@@ -146,7 +164,7 @@ After setting up, `model` has an empty placeholder for outputs:
 model$outputs 
 ```
 
-Calling `xds_solve(model)` returns solutions to the *initial value problem(s):* `xds_solve` calls `deSolve,` and the values of the dependent variables at a set of time points are attached as `model$outputs.` 
+Calling `xds_solve(model)` returns solutions to the *initial value problem(s):* `xds_solve` calls `deSolve,` and the values of the dependent variables at a set of time points are attached as `model$outputs.`
 
 There are three ways to pass the argument `time` to `deSolve`: first, `xds_solve` can set up a vector of time points `seq(0, Tmax, by = dt)` that are configurable with the arguments `Tmax` and `dt;` second, if no arguments are passed for time, then it uses the defaults `Tmax=365` and `dt=1;` third, `deSolve` will use the optional argument `times` if it is supplied. All four of the following do the same thing: 
 
@@ -159,7 +177,7 @@ model <- xds_solve(model)
 
 Internally, these are handled by the function `make_times_xde` for systems of differential equations, and `make_times_dts` for discrete time systems. 
 
-Note `xds_solve` requires an **`xds`** *model object* and that it returns an **`xds`** *model object.* In this case, the function passes `model` and the return value replaces `model.` Before `xds_solve,` `model$outputs` was an empty list. After solving, the outputs are stored as `model$outputs`: 
+Note `xds_solve` requires an **xds model object** and that it returns an **xds model object.** In this case, the function passes `model` and the return value replaces `model.` Before `xds_solve,` `model$outputs` was an empty list. After solving, the outputs are stored as `model$outputs`: 
 
 ```{r}
 names(model$outputs)
@@ -234,5 +252,9 @@ It is easy to change the forcing function. A function library for `ramp.xds` is 
 ## Next Steps
 
 Two good next steps are the vignettes: 
-+ [Working with Models](https://dd-harp.github.io/ramp.xds/articles/Working.html).
+
 + [Basic Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html).
+
++ [Working with Models](https://dd-harp.github.io/ramp.xds/articles/Working.html).
+
+

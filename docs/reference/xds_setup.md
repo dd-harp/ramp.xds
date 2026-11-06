@@ -1,45 +1,61 @@
 # Build a Model and Configure All Components
 
-Make an **`xds`** *model object*:
+Make an **`xds`** *model object* from a set of input parameters.
 
-- Define a module for each dynamical component (see
-  [xds_info_dynamical_components](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md)):
+The first set of arguments chooses a module to use for each dynamical
+component (see
+[xds_info_dynamical_components](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md)):
 
-  - **XH** Component – human / host infection dynamics
+- `Xname` — human / host infection dynamics (see
+  [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md))
 
-  - **MY** Component – adult mosquito ecology and infection dynamics
+- `MYname` – adult mosquito ecology and infection dynamics (see
+  [MY_module_list](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.md))
 
-  - **L** Component – aquatic mosquito ecology
+- `Lname` – aquatic mosquito ecology (see
+  [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md))
 
-- Define basic structural parameters for a single host and vector
-  population:
+The second set of arguments sets up the model structure
 
-  - `nPatches` - the number of patches (see
-    [xds_info_patch_dynamics](https://dd-harp.github.io/ramp.xds/reference/xds_info_patch_dynamics.md))
+- `nPatches` - the number of patches (see
+  [xds_info_patch_dynamics](https://dd-harp.github.io/ramp.xds/reference/xds_info_patch_dynamics.md))
 
-  - `membership` - the habitat membership vector (see
-    [xds_info_aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md))
+- `membership` - the habitat membership vector (see
+  [xds_info_aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md)).
 
-  - `nHabitats = length(membership)`
+- `residence` - the human residence vector (see
+  [xds_info_human_populations](https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.md))
 
-  - `residence` - the human residence vector (see
-    [xds_info_human_populations](https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.md))
+Note that:
 
-  - `HPop` - the human population size (see
-    [xds_info_human_populations](https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.md))
+- The structural parameter `nHabitats` is set to `length(membership)`
 
-  - `nStrata = length(residence) = length(HPop)`
+- The structural parameter `nStrata` is set to `length(residence)`
 
-- Configure some of the basic elements:
+Configure some of the basic elements:
 
-  - Search Weights (see
-    [xds_info_search_weights](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights.md))
+- `XHoptions` sets parameter values and initial conditions for the
+  **XH** module
 
-  - Mosquito Dispersal matrix (if `nPatches>1`; see
-    [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
+- `MYoptions` sets parameter values and initial conditions for the
+  **MY** module
 
-  - Time Spent matrix (if `nPatches>1`; see
-    [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
+- `Loptions` sets parameter values and initial conditions for the **L**
+  module
+
+- `HPop` is the human population density
+
+- `searchQ` the habitat search weights (see
+  [xds_info_search_weights_habitat](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_habitat.md))
+
+- `searchB` the blood feeding search weights (see
+  [xds_info_search_weights_blood](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_blood.md))
+
+- `Koptions` sets up a mosquito dispersal matrix (if `nPatches>1`, see
+  [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
+
+- `TSoptions` sets up a time spent matrix (if `nPatches>1`; see
+  [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
 
 ## Usage
 
@@ -60,8 +76,7 @@ xds_setup(
   TSoptions = list(),
   membership = 1,
   searchQ = list(),
-  Koptions = list(),
-  BFopts = list()
+  Koptions = list()
 )
 ```
 
@@ -69,77 +84,77 @@ xds_setup(
 
 - model_name:
 
-  is a name for the model (arbitrary)
+  a name for the model
 
 - xds:
 
-  is `ode` or `dde` or `dts` for ordinary OR delay differential OR
-  difference equations
+  is `xde` for differential equations or `dts` for discrete time systems
 
 - Xname:
 
-  a character string defining a **X** Component module
+  the name of an **XH** module (see
+  [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md))
 
 - XHoptions:
 
-  a list to configure the **X** Component module
+  a named list to set parameter values and initial conditions for the
+  **XH** module
 
 - MYname:
 
-  a character string defining an **MY** module
+  the name of an **MY** module (see
+  [MY_module_list](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.md))
 
 - MYoptions:
 
-  options to set up the **MY** component
+  a named list to set parameter values and initial conditions for the
+  **MY** component
 
 - Lname:
 
-  a character string defining a **L** Component module
+  the name of an **L** module (see
+  [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md))
 
 - Loptions:
 
-  a list to configure the **L** Component module
+  a named list to set parameter values and initial conditions for the
+  **L** component
 
 - nPatches:
 
-  is the number of patches
+  the number of patches
 
 - HPop:
 
-  is the number of humans in each patch
+  the human population density in each patch
 
 - residence:
 
-  is a vector that describes the patch where each human stratum lives
+  the index of the patch where each human population stratum resides
 
 - searchB:
 
-  is a vector of search weights for blood feeding
+  a vector of blood search weights or setup options (see
+  [setup_blood_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.md))
 
 - TSoptions:
 
-  is either a TimeSpent matrix or a string to call a function that sets
-  it up
+  a time spent matrix or setup options (see
+  [setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.md))
 
 - membership:
 
-  is a vector that describes the patch where each aquatic habitat is
-  found
+  the index of the patch where each aquatic habitat is found
 
 - searchQ:
 
-  is a vector of search weights for egg laying
+  a vector of habitat search weights or setup options (see
+  [setup_habitat_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.md))
 
 - Koptions:
 
-  a K matrix, or options for
-  [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-  (see
-  [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
-
-- BFopts:
-
-  a list to configure the blood feeding model
+  a mosquito dispersal matrix (\\(K\\)) or setup options (see
+  [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md))
 
 ## Value
 
@@ -150,7 +165,8 @@ an **`xds`** object
 1.  [make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)
     returns an object template with a properly configured interface for
     blood feeding and egg laying (see
-    [xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)):
+    [xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)).
+    The structural parameters are:
 
     - `nPatches` is passed as a parameter
 
@@ -179,17 +195,6 @@ an **`xds`** object
     - **`xds_obj$L_obj[[1]]`** defines a model for aquatic mosquito
       ecology of class `Lname` (The **L** Component). The parameter
       values are passed in a named list, `Loptions.`
-
-3.  After configuring the dynamical components, several structural
-    parameters can be configured at the command line:
-
-    - Habitat search weights can be set
-
-    - Host population search weights can be set
-
-    - A mosquito dispersal matrix, \\\cal Koptions\\, can be set
-
-    - A time spent matrix, \\\Theta\\, can be set
 
 ## Note
 

@@ -22,13 +22,13 @@ xds_setup_mosy(
 \arguments{
 \item{model_name}{is a name for the model}
 
-\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
+\item{xds}{is \code{xde} for differential equations or \code{dts} for discrete time systems}
 
-\item{MYname}{is a character string defining a \strong{MY} Component module}
+\item{MYname}{the name of an \strong{MY} module (see \link{MY_module_list})}
 
-\item{Lname}{is a character string defining a \strong{L} Component module}
+\item{Lname}{the name of an \strong{L} module (see \link{L_module_list})}
 
-\item{nPatches}{the number of patches in the model}
+\item{nPatches}{the number of patches}
 
 \item{membership}{is a vector that describes the patch where each aquatic habitat is found}
 
@@ -40,7 +40,7 @@ xds_setup_mosy(
 
 \item{MYoptions}{a list to configure the \strong{MY} Component module}
 
-\item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (also see \link{xds_info_mosquito_dispersal})}
+\item{Koptions}{a mosquito dispersal matrix (\eqn{K}) or setup options (see \link{setup_K_matrix})}
 
 \item{Loptions}{a list to configure the \strong{L} Component module}
 }

@@ -124,7 +124,7 @@ methods that dispatch on `class(xds_obj$frame)`.
 - [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
   (`frame="eir"`) sets up models to study epidemiology
 
-  - a trace function computes the EIR, denoted \\F_E(t)\\
+  - a trace function computes the EIR, denoted \\(F_E(t)\\)
 
   - the **MY** component is not used
 

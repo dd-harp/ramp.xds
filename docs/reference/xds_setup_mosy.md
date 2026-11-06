@@ -40,20 +40,21 @@ xds_setup_mosy(
 
 - xds:
 
-  is `ode` or `dde` or `dts` for ordinary OR delay differential OR
-  difference equations
+  is `xde` for differential equations or `dts` for discrete time systems
 
 - MYname:
 
-  is a character string defining a **MY** Component module
+  the name of an **MY** module (see
+  [MY_module_list](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.md))
 
 - Lname:
 
-  is a character string defining a **L** Component module
+  the name of an **L** module (see
+  [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md))
 
 - nPatches:
 
-  the number of patches in the model
+  the number of patches
 
 - membership:
 
@@ -78,10 +79,8 @@ xds_setup_mosy(
 
 - Koptions:
 
-  a K matrix, or options for
-  [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-  (also see
-  [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
+  a mosquito dispersal matrix (\\(K\\)) or setup options (see
+  [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md))
 
 - Loptions:
 

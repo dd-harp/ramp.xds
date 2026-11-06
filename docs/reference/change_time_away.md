@@ -1,6 +1,6 @@
 # Change the time spent
 
-Update the time spent for the \\i^{th}\\ host species, and trigger
+Update the time spent for the \\(i^{th}\\) host species, and trigger
 updates for the `XY` interface.
 
 ## Usage

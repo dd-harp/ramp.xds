@@ -1,6 +1,6 @@
 # List variables for `SIS` (**XH**)
 
-Get the value of variables from the flat state variable vector \\y\\,
+Get the value of variables from the flat state variable vector \\(y\\),
 and return the values as a named list
 
 ## Usage

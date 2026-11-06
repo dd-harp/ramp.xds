@@ -1,7 +1,7 @@
 # Change initial values for `SIS` (**XH**)
 
 For the **XH** module, `SIS`, change the initial value(s) for the
-variable \\I\\.
+variable \\(I\\).
 
 The argument passed as `options` should be a named list, and the new
 initial value(s) are set to `options$I`
@@ -10,7 +10,7 @@ initial value(s) are set to `options$I`
 
 ``` r
 # S3 method for class 'SIS'
-change_XH_inits(xds_obj, i = 1, options = list())
+change_XH_inits(xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -19,13 +19,13 @@ change_XH_inits(xds_obj, i = 1, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the vector species index
-
 - options:
 
   a named list
+
+- i:
+
+  the vector species index
 
 ## Value
 
@@ -33,7 +33,7 @@ an **`xds`** object
 
 ## Note
 
-Initial values for human population size, the variable \\H\\, must be
+Initial values for human population size, the variable \\(H\\), must be
 set using
 [change_H](https://dd-harp.github.io/ramp.xds/reference/change_H.md)
 

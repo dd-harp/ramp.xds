@@ -31,10 +31,10 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Details
 
-This function computes the daily FoI (\\h\\) as function of the local
-daily EIR (\\E\\) under a Poisson model for the distribution of bites
-per person, and the probability of infection per infective bite (\\b\\):
-\$\$h = b E\$\$
+This function computes the daily FoI (\\(h\\)) as function of the local
+daily EIR (\\(E\\)) under a Poisson model for the distribution of bites
+per person, and the probability of infection per infective bite
+(\\(b\\)): \$\$h = b E\$\$
 
 ## See also
 

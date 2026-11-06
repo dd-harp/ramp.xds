@@ -1,6 +1,6 @@
 # Parse outputs for `basicL` (**L**)
 
-The function returns the column representing the variable \\L\\ from a
+The function returns the column representing the variable \\(L\\) from a
 matrix where each row is a state variable. The variable is returned as a
 named list.
 

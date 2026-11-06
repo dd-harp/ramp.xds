@@ -27,4 +27,4 @@ F_batch_rate(t, xds_obj, s)
 
 ## Value
 
-\\nu\\, the patch emigration rate
+\\(nu\\), the patch emigration rate

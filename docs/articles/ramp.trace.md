@@ -16,8 +16,6 @@ is coupled to some other complex process.
 To install the latest version from GitHub, run the following lines of
 code in an R session.
 
-``` r
-
-library(devtools)
-devtools::install_github("dd-harp/ramp.trace")
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`devtools`](https://devtools.r-lib.org/)`)`\
+`devtools``::`[`install_github`](https://remotes.r-lib.org/reference/install_github.html)`(``"dd-harp/ramp.trace"``)`

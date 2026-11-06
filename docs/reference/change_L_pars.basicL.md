@@ -2,13 +2,13 @@
 
 Set the values of **L** component parameters
 
-- `psi` or \\\psi\\
+- `psi` or \\(\psi\\)
 
-- `xi` or \\\xi\\
+- `xi` or \\(\xi\\)
 
-- `phi` or \\\phi\\
+- `phi` or \\(\phi\\)
 
-- `theta` or \\\theta\\
+- `theta` or \\(\theta\\)
 
 ## Usage
 

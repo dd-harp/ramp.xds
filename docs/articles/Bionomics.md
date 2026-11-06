@@ -1,26 +1,21 @@
 # Mosquito Bionomics
 
-In **`ramp.xds,`** mosquito bionomics are handled as a junction: each
-parameter describing adult mosquito ecology or infection dynamics is
-handled as a *port:*
+In **`ramp.xds,`** mosquito bionomic parameters are designed to model *a
+changing baseline modified by control.* To implement this, exogenous
+forcing variables, mosquito bionomics and vector control are handled
+through several junction. The parameters are handled as *ports*
 
-- During *basic setup,* in **`ramp.xds`**, the parameters are assigned
-  constant values.
+- During *basic setup,* in **`ramp.xds`**, a bionomic port is set up as
+  an object that stores the original, constant values. The role of the
+  bionomic object is to set the baseline value of the parameter.
 
-- Some parameters can be time-dependent to model forcing by weather or
-  resource availability. Forcing is an *advanced setup* option. Advanced
-  setup options are in **`ramp.forcing`**
+- The port object can be configured so that some parameters can be
+  time-dependent to model forcing by weather or resource availability.
+  Forcing is an *advanced setup* option (in **`ramp.forcing`**).
 
-- Various modes of vector control are handled as another set of
-  *advanced setup* options: advanced setup options for vector control
-  are in **`ramp.control.`** Vector control effects can be handled in
-  one of two ways:
-
-  - vector control can affect the availability of resources, and the
-    effects are computed through functional forms in response to
-    available resources
-
-  - vector control effect sizes can be computed.
+- Vector control can be implemented by computing *effect sizes.* These
+  are stored and the final value is the product of the baseline and the
+  effect size.
 
 Each module in **`ramp.xds`** or in the satellite package
 **`ramp.library`** must be capable of handling time-varying parameters,
@@ -40,14 +35,14 @@ travel reasonably long distances with the help of the wind.
 
 In adult mosquito modules, mosquito dispersal is described by a square
 matrix with `nPatches` rows and columns. By convention, all matrices
-have the form: \\ K = \left\[ \begin{array}{ccccc} -1 & k\_{1,2} &
-k\_{1,3} & \cdots & k\_{1, n} \\ k\_{2,1} & -1 & k\_{2,3} & \cdots &
-k\_{2, n} \\ k\_{3,1} & k\_{3,2} & -1 & \cdots & k\_{3, n} \\ \vdots &
-\vdots & \vdots & \ddots & \vdots \\ k\_{n,1} & k\_{n,2} & k\_{n,3} &
-\cdots & -1 \\ \end{array} \right\] \\ The values of the elements are
-thus constrained such that there is no net dispersal loss from the
-system: \\\sum_j k\_{i,j} = 1.\\ The columns of sum up to zero. A
-dispersal matrix, \\K,\\ thus describes the destinations of emigrating
+have the form: \\\[K = \left\[ \begin{array}{ccccc} -1 & k\_{1,2} &
+k\_{1,3} & \cdots & k\_{1, n} \\\\ k\_{2,1} & -1 & k\_{2,3} & \cdots &
+k\_{2, n} \\\\ k\_{3,1} & k\_{3,2} & -1 & \cdots & k\_{3, n} \\\\ \vdots
+& \vdots & \vdots & \ddots & \vdots \\\\ k\_{n,1} & k\_{n,2} & k\_{n,3}
+& \cdots & -1 \\\\ \end{array} \right\]\\\] The values of the elements
+are thus constrained such that there is no net dispersal loss from the
+system: \\\[\sum_j k\_{i,j} = 1.\\\] The columns of sum up to zero. A
+dispersal matrix, \\(K,\\) thus describes the destinations of emigrating
 mosquitoes that survive and stay in the system. Mosquito loss from a
 system due to emigration is handled elsewhere.
 
@@ -56,50 +51,44 @@ system due to emigration is handled elsewhere.
 Mosquito survival and dispersal is described by a *demographic matrix,*
 denoted It is computed using several parameters:
 
-- \\g\\ — the daily mosquito mortality rate
-- \\\sigma\\ — the patch emigration rate
-- \\\mu\\ — the rate of emigration-related loss
-- \\K\\ — a dispersal matrix (see above)
+- \\(g\\) — the daily mosquito mortality rate
+- \\(\sigma\\) — the patch emigration rate
+- \\(\mu\\) — the rate of emigration-related loss
+- \\(K\\) — a dispersal matrix (see above)
 
 These terms were designed to make it possible to develop and calibrate
 models for mosquito mortality that make it easy to specify *how*
-mosquitoes are lost from a system. The term \\\mu\\ describes loss from
-a system that is associated with emigration: The emigration rate is
-\\\sigma,\\ but only a fraction \\\sigma(1-\mu)\\ land in an other
-patch. The remaining \\\sigma \mu\\ are lost from the system. Mosquito
-mortality and migration are computed as a single object, \\\Omega,\\
+mosquitoes are lost from a system. The term \\(\mu\\) describes loss
+from a system that is associated with emigration: The emigration rate is
+\\(\sigma,\\) but only a fraction \\(\sigma(1-\mu)\\) land in an other
+patch. The remaining \\(\sigma \mu\\) are lost from the system. Mosquito
+mortality and migration are computed as a single object, \\(\Omega,\\)
 where
 
-\\ \Omega = \mbox{diag} \left( g + \sigma \mu \right) - K \cdot
-\mbox{diag} \left( \sigma \left(1-\mu\right) \right) \\ and in general:
+\\\[\Omega = \mbox{diag} \left( g + \sigma \mu \right) - K \cdot
+\mbox{diag} \left( \sigma \left(1-\mu\right) \right)\\\] and in general:
 
-\\ \frac{dM}{dt} = \Lambda - \Omega \cdot M\\
+\\\[\frac{dM}{dt} = \Lambda - \Omega \cdot M\\\]
 
-In delay differential equations with a constant EIP (\\\tau\\), survival
-and dispersal through the EIP is given by: \\ \Upsilon = e^{-\Omega
-\tau} \\ which can be computed in R using `expm.`
+In delay differential equations with a constant EIP (\\(\tau\\)),
+survival and dispersal through the EIP is given by: \\\[\Upsilon =
+e^{-\Omega \tau}\\\] which can be computed in R using `expm.`
 
 ## Setup
 
 See `mosquito_dispersal.R`
 
-``` r
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`
 
-library(ramp.xds)
-```
+\
+`#devtools::load_all()`
 
-``` r
+By default, \\(\sigma=\mu=0\\) and \\(K\\) is a matrix of all zeros.
 
-#devtools::load_all()
-```
-
-By default, \\\sigma=\mu=0\\ and \\K\\ is a matrix of all zeros.
-
-``` r
-
-mod <- xds_setup(nPatches=3)
-get_K_matrix(mod)
-```
+\
+`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``nPatches``=``3``)`\
+[`get_K_matrix`](https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.md)`(``mod``)`
 
     ##      [,1] [,2] [,3]
     ## [1,]    0    0    0
@@ -109,14 +98,12 @@ get_K_matrix(mod)
 ### `herethere`
 
 Another simple option is `herethere` that distributes mosquitoes to
-every other patch with equal probability. The \\K\\ matrix can be
+every other patch with equal probability. The \\(K\\) matrix can be
 reconfigured after setup using `setup_K_matrix`
 
-``` r
-
-mod <- setup_K_matrix("herethere", mod) 
-get_K_matrix(mod)
-```
+\
+`mod`` ``<-`` `[`setup_K_matrix`](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)`(``"herethere"``, ``mod``)`` `\
+[`get_K_matrix`](https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.md)`(``mod``)`
 
     ##      [,1] [,2] [,3]
     ## [1,] -1.0  0.5  0.5
@@ -126,11 +113,9 @@ get_K_matrix(mod)
 The same options can be passed as a named list `Koptions` during basic
 setup:
 
-``` r
-
-mod <- xds_setup(nPatches=6, Koptions = "herethere")
-get_K_matrix(mod)
-```
+\
+`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``nPatches``=``6``, Koptions ``=`` ``"herethere"``)`\
+[`get_K_matrix`](https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.md)`(``mod``)`
 
     ##      [,1] [,2] [,3] [,4] [,5] [,6]
     ## [1,] -1.0  0.2  0.2  0.2  0.2  0.2
@@ -142,19 +127,17 @@ get_K_matrix(mod)
 
 ### `xy`
 
-If the patches have locations, given by a pair of vectors \\x\\ and
-\\y,\\ each one of length `nPatches` and passed concatenated as `xy`,
-then a dispersal matrix \\K\\ is computed by passing a *kernel* function
-that weights by distance. Setup calls `make_K_matrix`
+If the patches have locations, given by a pair of vectors \\(x\\) and
+\\(y,\\) each one of length `nPatches` and passed concatenated as `xy`,
+then a dispersal matrix \\(K\\) is computed by passing a *kernel*
+function that weights by distance. Setup calls `make_K_matrix`
 
-``` r
-
-x = y = c(1:5)
-xy = cbind(x=x,y=y)
-FdV = function(d, V){exp(-d^1.8)}
-K <- make_K_matrix_xy(xy, FdV)
-round(K*1000)/1000
-```
+\
+`x`` ``=`` ``y`` ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``:``5``)`\
+`xy`` ``=`` `[`cbind`](https://rdrr.io/r/base/cbind.html)`(``x``=``x``,y``=``y``)`\
+`FdV`` ``=`` ``function``(``d``, ``V``)``{`[`exp`](https://rdrr.io/r/base/Log.html)`(``-``d``^``1.8``)``}`\
+`K`` ``<-`` `[`make_K_matrix_xy`](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_xy.md)`(``xy``, ``FdV``)`\
+[`round`](https://rdrr.io/r/base/Round.html)`(``K``*``1000``)``/``1000`
 
     ##    [,1]   [,2]   [,3]   [,4]  [,5]
     ## 1 -1.00  0.498  0.005  0.000  0.00
@@ -163,11 +146,9 @@ round(K*1000)/1000
     ## 4  0.00  0.005  0.495 -1.000  0.99
     ## 5  0.00  0.000  0.005  0.498 -1.00
 
-``` r
-
-mod <- xds_setup(nPatches=5, Koptions = list(name="xy", xy=xy, F_K=FdV))
-get_K_matrix(mod)
-```
+\
+`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``nPatches``=``5``, Koptions ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``name``=``"xy"``, xy``=``xy``, F_K``=``FdV``)``)`\
+[`get_K_matrix`](https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.md)`(``mod``)`
 
     ##            [,1]          [,2]         [,3]          [,4]          [,5]
     ## 1 -1.000000e+00  4.975756e-01  0.004820927  4.489989e-06  9.533409e-10
@@ -181,11 +162,9 @@ get_K_matrix(mod)
 Finally, if the user wants to form some other kind of matrix, it can be
 passed directly as `Koptions`:
 
-``` r
-
-mod <- xds_setup(nPatches=5, Koptions=K)
-get_K_matrix(mod)
-```
+\
+`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``nPatches``=``5``, Koptions``=``K``)`\
+[`get_K_matrix`](https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.md)`(``mod``)`
 
     ##            [,1]          [,2]         [,3]          [,4]          [,5]
     ## 1 -1.000000e+00  4.975756e-01  0.004820927  4.489989e-06  9.533409e-10
@@ -196,13 +175,11 @@ get_K_matrix(mod)
 
 ### `zero`
 
-An option is `zero` which sets the \\K\\ matrix to all zeros.
+An option is `zero` which sets the \\(K\\) matrix to all zeros.
 
-``` r
-
-mod <- setup_K_matrix("zero", mod)
-get_K_matrix(mod)
-```
+\
+`mod`` ``<-`` `[`setup_K_matrix`](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)`(``"zero"``, ``mod``)`\
+[`get_K_matrix`](https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.md)`(``mod``)`
 
     ##      [,1] [,2] [,3] [,4] [,5]
     ## [1,]    0    0    0    0    0

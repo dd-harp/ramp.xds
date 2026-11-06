@@ -1,6 +1,6 @@
 # Update other blood hosts
 
-Port function for the other_blood_hosts, \\\Theta\\. Dispatches on
+Port function for the other_blood_hosts, \\(\Theta\\). Dispatches on
 `class(xds_obj$XY_interface$other_blood_hosts_obj[[s]])`.
 
 ## Usage

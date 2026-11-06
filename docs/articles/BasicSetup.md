@@ -13,29 +13,29 @@ Also, see
 In the previous vignette [Getting
 Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.md),
 we introduced
-[xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html).
-Here, we take a deeper dive into **Basic Setup.**
+[xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html),
+the function that defines **Basic Setup.** Here, we take a deeper dive
+into **Basic Setup.**
 
 Inline help is also available through:
 
-``` r
+\
+`?``xds_setup`\
+`?``xds_info_basic_setup`
 
-?xds_basic_info
-```
-
-which is also viewable as
+The latter is viewable as
 [html](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html).
 
 **`ramp.xds`** is based on a mathematical framework for model building
 that is modular, flexible and extensible. Using setup functions, it’s
 comparatively easy to build highly *realistic* models by starting simple
-and adding features one at a time. We call this *progressive model
-building.*
+and adding features one at a time. We call this *progressive
+elaboration.*
 
 ## Overview of Setup
 
-Progressive model building starts with basic setup. To set up a model,
-the user needs to:
+Progressive elaboration starts with basic setup. To set up a model, the
+user needs to:
 
 - Frame the Model
 
@@ -60,13 +60,13 @@ Other options we consider as an extension of basic setup are:
 To use **`ramp.xds`** a dynamical system is encoded in the **`xds`**
 object. Basic setup builds an **`xds`** object, or `xds_obj`:
 
-- `xds_obj` is a compound \[list\], and `class(xds_obj) == "xds_obj"`
+- `xds_obj` is a compound \[list\], and `class(xds_obj) = "xds_obj"`
 
 - Other objects are attached to `xds_obj`:
 
-  - objects that define the dynamical system, including parameter
-    values, indices for the variables, and initial values of the
-    variables
+  - objects that define the modules that make up the dynamical system,
+    including parameter values, indices for the variables, and initial
+    values of the variables
 
   - objects that define the dynamical interfaces that pass information
     among components
@@ -79,10 +79,10 @@ object. Basic setup builds an **`xds`** object, or `xds_obj`:
 
 ### Build a Model
 
-To use **`ramp.xds`** at all, the **`xds`** object must be properly
-formatted and configured, but it was not feasible to do this all at
-once. Instead, the software envisioned model building in two phases:
-basic and advanced.
+To use **`ramp.xds`** at all, the **xds object** must be properly
+formatted and configured, but it was not feasible to write a setup
+function that could do everything all at once. Instead, the software
+envisioned model building in two phases: basic and advanced.
 
 **Basic Setup** is defined by
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html),
@@ -92,8 +92,7 @@ through basic setup (see [Framing the Problem](#framing-the-problem)).
 
 **Advanced Setup** handles advanced features, including exogenous
 forcing, vector control, and other modes of malaria control, human
-demography and aging, and host population stratification (see [Scalable
-Complexity](#scalable-complexity)).
+demography and aging, and host population stratification.
 
 ## Framing the Problem
 
@@ -106,12 +105,12 @@ Framing involves refining the question until the shape of the answer is
 well-defined.
 
 **`ramp.xds`** was designed to lower the costs of answering questions
-that would benefit from building and solving a dynamical system model of
-a mosquito-borne pathogen dynamics in populations. To understand the
-process of translating a question into a basic setup algorithm, it’s
-useful to know a little about modular computation in **`ramp.xds`**, the
-concepts of *modularity* and `trivial` modules, and the *dynamical
-frame.*
+that would benefit from building and solving a dynamical system
+describing mosquito-borne pathogen dynamics in populations. To
+understand the process of translating a question into a basic setup
+algorithm, it’s useful to know a little about modular computation in
+**`ramp.xds`**, the concepts of *modularity* and `trivial` modules, and
+the *dynamical frame.*
 
 ### Dynamical Components
 
@@ -135,8 +134,7 @@ processes.
 
 - **L** - a system of equations describing immature mosquito ecology
 
-A generic interface makes it possible to add other variables (see
-**Scalable Complexity,** below)
+A generic interface makes it possible to add other variables.
 
 ### Dynamical Interfaces
 
@@ -169,17 +167,18 @@ dynamical components, and they pass the component’s outputs from a
 models that isolate and study part of a full system.
 
 - The trivial **L** module outputs the daily emergence rate of adult,
-  female mosquitoes in each patch (\\\Lambda\\)
+  female mosquitoes in each patch (\\(\Lambda\\))
 
 - The trivial **MY** module outputs either:
 
   - The egg laying rate by the mosquito population in each patch
-    (\\G\\); or
+    (\\(G\\)); or
 
   - The net human blood feeding rate of the adult mosquito population
-    (\\fqZ\\)
+    (\\(fqZ\\))
 
-- The trivial **X** module outputs net infectiousness (\\\kappa\\)
+- The trivial **XH** module outputs net infectiousness (\\(\kappa\\))
+  and/or human population density (\\(H\\))
 
 Using
 [`xds_setup_eir()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md),
@@ -203,11 +202,16 @@ Each function requires a second argument, `V`, from the function
 `get_variables` that dispatches on `season_par`, `trend_par` or
 `shock_par.` By default, these are empty lists, and `get.variables.list`
 returns an empty list. The default functions `F_season`, `F_trend`, and
-`F_shock` ignore `V` and return a constant value \\1.\\ The packages
+`F_shock` ignore `V` and return a constant value \\(1.\\) The packages
 **`ramp.func`** and **`ramp.forcing`** have utilities that make it easy
-to set up forcing.
+to set up forcing using advanced setup.
 
 ### The Dynamical Frame
+
+To decide whether it’s worth using one of the alternative versions of
+`xds_setup`, use the following diagram:
+
+------------------------------------------------------------------------
 
 A flowchart to determine which version of `xds_setup` to use.
 
@@ -273,18 +277,19 @@ Model structure has two main parts:
 The model *structure* is characterized by several core parameters. The
 values of these parameters are set during basic setup:
 
-- **`nPatches`** or \\n_p\\ — the number of patches in the model.
-
-- **`nHabitats`** or \\n_q\\ — the number of habitats in the model
+- **`nPatches`** or \\(n_p\\) — the number of patches in the model.
 
 - **`membership`** — a vector describing patch membership of the
   habitats
 
-- **`nStrata`** or \\n_h\\ — is the number of human / host population
-  strata
+- **`nHabitats`** or \\(n_q\\) (`=length(membership)`) — the number of
+  habitats in the model
 
 - **`residence`** — a vector describing the index of the patch where a
   stratum resides
+
+- **`nStrata`** or \\(n_h\\) (`=length(residence)`) — is the number of
+  human / host population strata
 
 - **`nVectorSpecies`** — the number of vector species
 
@@ -341,23 +346,23 @@ The **H** Component is defined by two ports:
 
 - `Births` – a function that adds individuals to the population.
 
-- `D` – a linear demographic operator that handles mortality and flows
-  among strata
+- `Deaths` – a function that handles mortality and other demographic
+  changes, including flows among strata
 
-Basic Setup sets up *no effect* models by default (no births or deaths),
-and trivial forcing.
+Basic Setup sets up *no change* models by default (birth and death rates
+are set to \\(0\\)), and trivial forcing.
 
-Complexity and realism are added through a process called *principled
-stratification.* The state variable vector is replicated across multiple
-strata to handle:
+Complexity and realism can be added through a process called
+*progressive stratification.* The state variable vector is replicated
+across multiple strata to handle:
 
-- epidemiological heterogeneous parameters
+- epidemiologically relevant heterogeneity
 
 - human age and cohort dynamics
 
 - migration
 
-Advanced setup options for the **H** component, including *principled
+Advanced setup options for the **H** component, including *progressive
 stratification* are in
 [**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/).
 
@@ -387,15 +392,15 @@ Basic setup for the **L** component
 
 The trivial modules configure *trace functions* to pass outputs. The
 trace functions are designed around the concept of a *constructed time
-series* with the form: \\ m\\ F_S(t)\\ F_T(t) \\ F_K(t)\\ where
+series* with the form: \\\[m\\; F_S(t)\\; F_T(t) \\; F_K(t)\\\] where
 
-- \\m\\ - is the mean
+- \\(m\\) - is the mean
 
-- \\F_S(t)\\ or `F_season` outputs a seasonal pattern
+- \\(F_S(t)\\) or `F_season` outputs a seasonal pattern
 
-- \\F_T(t)\\ or `F_trend` outputs a trend
+- \\(F_T(t)\\) or `F_trend` outputs a trend
 
-- \\F_K(t)\\ or `F_shock` outputs a perturbation
+- \\(F_K(t)\\) or `F_shock` outputs a perturbation
 
 For a longer introduction, see [**SimBA**:Trace
 Functions](https://faculty.washington.edu/smitdave/simba/trace.html)
@@ -407,10 +412,10 @@ Functions](https://faculty.washington.edu/smitdave/simba/trace.html)
   - Values for the search weights (see
     [search_weights](https://dd-harp.github.io/ramp.xds/reference/search_weights.html))
 
-  - Options to set up the mosquito dispersal matrix, \\K\\ (see
+  - Options to set up the mosquito dispersal matrix, \\(K\\) (see
     [mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/mosquito_dispersal.html))
 
-  - Options to set up a time spent matrix, \\\Theta\\ (see
+  - Options to set up a time spent matrix, \\(\Theta\\) (see
     [time_spent](https://dd-harp.github.io/ramp.xds/reference/time_spent.html))
 
 To learn more, we suggest taking a look at the [5-3-4

@@ -111,24 +111,22 @@ but mechanistic models are found in **`ramp.forcing`**.
 
 The following code block illustrates how the derivatives get computed.
 
-``` r
-
-modular_example <- function(t, y, xds_obj) {
-  with(xds_obj,{
-      xds_obj = Forcing(t, y, xds_obj)
-      xds_obj = Emergence(t, y, xds_obj)
-      xds_obj = EggLaying(t, y, xds_obj)
-      xds_obj = BloodFeeding(t, y, xds_obj)
-      xds_obj = Transmission(t, y, xds_obj)
-      xds_obj = Exposure(t, y, xds_obj)
-      dL = dLdt(t, y, xds_obj) 
-      dXH = dXHdt(t, y, xds_obj) 
-      dMY = dMYdt(t, y, xds_obj) 
-      dV = dVdt(t, y, xds_obj) 
-      return(list(dL, dXH, dMY, dV))
-  })
-}
-```
+\
+`modular_example`` ``<-`` ``function``(``t``, ``y``, ``xds_obj``)`` ``{`\
+`  `[`with`](https://rdrr.io/r/base/with.html)`(``xds_obj``,``{`\
+`      ``xds_obj`` ``=`` `[`Forcing`](https://dd-harp.github.io/ramp.xds/reference/Forcing.md)`(``t``, ``y``, ``xds_obj``)`\
+`      ``xds_obj`` ``=`` `[`Emergence`](https://dd-harp.github.io/ramp.xds/reference/Emergence.md)`(``t``, ``y``, ``xds_obj``)`\
+`      ``xds_obj`` ``=`` `[`EggLaying`](https://dd-harp.github.io/ramp.xds/reference/EggLaying.md)`(``t``, ``y``, ``xds_obj``)`\
+`      ``xds_obj`` ``=`` `[`BloodFeeding`](https://dd-harp.github.io/ramp.xds/reference/BloodFeeding.md)`(``t``, ``y``, ``xds_obj``)`\
+`      ``xds_obj`` ``=`` `[`Transmission`](https://dd-harp.github.io/ramp.xds/reference/Transmission.md)`(``t``, ``y``, ``xds_obj``)`\
+`      ``xds_obj`` ``=`` `[`Exposure`](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)`(``t``, ``y``, ``xds_obj``)`\
+`      ``dL`` ``=`` `[`dLdt`](https://dd-harp.github.io/ramp.xds/reference/dLdt.md)`(``t``, ``y``, ``xds_obj``)`` `\
+`      ``dXH`` ``=`` `[`dXHdt`](https://dd-harp.github.io/ramp.xds/reference/dXHdt.md)`(``t``, ``y``, ``xds_obj``)`` `\
+`      ``dMY`` ``=`` `[`dMYdt`](https://dd-harp.github.io/ramp.xds/reference/dMYdt.md)`(``t``, ``y``, ``xds_obj``)`` `\
+`      ``dV`` ``=`` `[`dVdt`](https://dd-harp.github.io/ramp.xds/reference/dVdt.md)`(``t``, ``y``, ``xds_obj``)`` `\
+`      `[`return`](https://rdrr.io/r/base/function.html)`(`[`list`](https://rdrr.io/r/base/list.html)`(``dL``, ``dXH``, ``dMY``, ``dV``)``)`\
+`  ``}``)`\
+`}`
 
 - Forcing sets the value of any exogenous variables.
 

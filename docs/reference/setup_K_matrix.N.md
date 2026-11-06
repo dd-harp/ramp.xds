@@ -2,7 +2,7 @@
 
 Call
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-\\N\\ times. The options for the \\i^{th}\\ call are `options[[i]]`
+\\(N\\) times. The options for the \\(i^{th}\\) call are `options[[i]]`
 
 of options
 

@@ -1,7 +1,7 @@
 # Setup Blood Feeding Bionomic Object
 
 Set up an object to compute dynamic blood feeding rates as a type 2
-functional response to availability of blood hosts, \\B\\
+functional response to availability of blood hosts, \\(B\\)
 
 ## Usage
 

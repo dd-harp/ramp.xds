@@ -1,6 +1,6 @@
 # Change the habitat_search_weights
 
-Update the habitat_search_weights for the \\i^{th}\\ host species, and
+Update the habitat_search_weights for the \\(i^{th}\\) host species, and
 trigger updates for the `XY` interface.
 
 ## Usage

@@ -27,4 +27,4 @@ F_dlay_maturation(t, xds_obj, s)
 
 ## Value
 
-\\xi\\, the baseline human fraction
+\\(xi\\), the baseline human fraction

@@ -1,6 +1,6 @@
 # Set up a patch emigration bionomic object
 
-Set up an object to compute the patch emigration rate, \\\sigma\\
+Set up an object to compute the patch emigration rate, \\(\sigma\\)
 
 ## Usage
 

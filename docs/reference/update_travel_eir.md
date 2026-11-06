@@ -1,6 +1,6 @@
 # Update the travel eir
 
-Port function for the travel eir , \\\Theta\\. Dispatches on
+Port function for the travel eir , \\(\Theta\\). Dispatches on
 `class(xds_obj$XY_interface$travel_eir_obj[[i]])`.
 
 ## Usage

@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats-search_weights.R
 \name{setup_habitat_search_weights}
 \alias{setup_habitat_search_weights}
-\title{Set up a habitat_search_weights}
+\title{Set up habitat search weights}
 \usage{
 setup_habitat_search_weights(name, xds_obj, options = list(), s = 1)
 }
@@ -19,5 +19,14 @@ setup_habitat_search_weights(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set up a habitat_search_weights
+The advanced set up function for habitat search weights
+
+Available methods are:
+\itemize{
+\item \code{as_is} -- user generated
+\item \code{random} -- generate a random vector (see \link{make_habitat_search_weights_random})
+}
+}
+\seealso{
+\link{xds_setup}, \link{xds_info_search_weights_habitat}
 }

@@ -34,8 +34,8 @@ This function computes the daily local attack rates (ARs) as a function
 of the daily EIR under a probabilistic model for environmentally
 heterogeneous exposure – the distribution of bites per person.
 
-The model for human / host infection (\\\cal X\\) provide a term \\b\\,
-from
+The model for human / host infection (\\(\cal X\\)) provide a term
+\\(b\\), from
 [F_infectivity](https://dd-harp.github.io/ramp.xds/reference/F_infectivity.md)
 that describe the probability of infection per infectious bite, possibly
 affected by pre-erythrocytic immunity

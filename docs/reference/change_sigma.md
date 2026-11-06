@@ -1,7 +1,7 @@
 # Change the patch emigration rate
 
-Update and validate the patch emigration rate for the \\s^{th}\\ vector
-species, then update the demographic matrix.
+Update and validate the patch emigration rate for the \\(s^{th}\\)
+vector species, then update the demographic matrix.
 
 ## Usage
 

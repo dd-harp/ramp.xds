@@ -11,19 +11,6 @@ in a standard way across all \strong{MY} modules.
 \item \eqn{K} is used to make a mosquito demographic matrix, called \eqn{\Omega} or \code{Omega} (see \link{xds_info_mosquito_demography}).
 }
 }
-\section{Setup}{
-
-\describe{
-\item{\code{K_matrix}}{either a \eqn{K} matrix: or options for \link{setup_K_matrix}}
-}
-
-There are several ways to configure  \eqn{K} during basic setup.
-
-By \strong{default:} \code{K_matrix} is an empty list. When the \code{MY_obj} is set up, the \eqn{K}
-matrix is set to \code{diag(g)}, a model with no dispersal. That is not changed unless one of the
-following holds:
-}
-
 \section{Mosquito Dispersal Matrix, \eqn{K}}{
 
 
@@ -51,5 +38,5 @@ are handled separately (see \link{xds_info_mosquito_demography}).
 }
 
 \seealso{
-\link{setup_K_matrix}, \link{change_K_matrix} & \link{xds_info_mosquito_demography}
+\link{setup_K_matrix} | \link{check_K_matrix} | \link{xds_info_mosquito_demography}
 }

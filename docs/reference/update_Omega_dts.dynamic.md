@@ -1,6 +1,6 @@
 # Update Omega for dts
 
-Compute \\\Omega\\
+Compute \\(\Omega\\)
 
 ## Usage
 

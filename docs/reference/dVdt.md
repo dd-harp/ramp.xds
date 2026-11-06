@@ -24,11 +24,11 @@ dVdt(t, y, xds_obj, i)
 
 - i:
 
-  the i\\^{th}\\ set of auxiliary variables
+  the i\\(^{th}\\) set of auxiliary variables
 
 ## Value
 
-derivatives for the \\\cal MYZ\\ component as a
+derivatives for the \\(\cal MYZ\\) component as a
 [vector](https://rdrr.io/r/base/vector.html)
 
 ## Note

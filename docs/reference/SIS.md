@@ -2,21 +2,21 @@
 
 In the SIS compartmental model, infected individuals are either
 susceptible (S), or infected and infectious (I). Susceptible individuals
-become infected at the per-capita rate \\h\\. Infected individuals clear
-infections at the per-capita rate \\r\\, and then they become
+become infected at the per-capita rate \\(h\\). Infected individuals
+clear infections at the per-capita rate \\(r\\), and then they become
 susceptible to infection again.
 
 Human/host population size (H) is a state variable that can be
 configured.
 
-and \\H=S+I\\: the model computes \\dH/dt\\ and \\dI/dt\\. When outputs
-are parsed, S is computed as \\S=H-I\\.
+and \\(H=S+I\\): the model computes \\(dH/dt\\) and \\(dI/dt\\). When
+outputs are parsed, S is computed as \\(S=H-I\\).
 
 This module also includes:
 
 - a model for human demographic changes; and
 
-- a port for mass treatment, \\\xi(t)\\.
+- a port for mass treatment, \\(\xi(t)\\).
 
 ## State Variables
 
@@ -43,7 +43,7 @@ I\$\$.
 
 - `B`:
 
-  time-dependent birth rate function \\B(t, H)\\
+  time-dependent birth rate function \\(B(t, H)\\)
 
 - `D`:
 
@@ -51,6 +51,6 @@ I\$\$.
 
 ## Dynamics
 
-\$\$ \begin{array}{rl} dH/dt &= B(t,H) + D \cdot H \\ dI/dt &= h(H-I) -
-rI - \xi(t) + D \cdot I \\ \end{array}\$\$ where \\h\\ is the force of
-infection computed upstream.
+\$\$ \begin{array}{rl} dH/dt &= B(t,H) + D \cdot H \\\\ dI/dt &=
+h(H-I) - rI - \xi(t) + D \cdot I \\\\ \end{array}\$\$ where \\(h\\) is
+the force of infection computed upstream.

@@ -2,7 +2,7 @@
 
 Check that
 
-- there ar \\N_p\\ columns and \\N_h\\ rows
+- there ar \\(N_p\\) columns and \\(N_h\\) rows
 
 - the column sums are at most 1\`
 

@@ -2,7 +2,7 @@
 
 The inverse of
 [F_foi.pois](https://dd-harp.github.io/ramp.xds/reference/F_foi.pois.md)
-is \\E=h/b\\
+is \\(E=h/b\\)
 
 ## Usage
 
@@ -28,7 +28,7 @@ foi2eir(foi, b, env_het_obj)
 ## Value
 
 dEIR as a [numeric](https://rdrr.io/r/base/numeric.html) vector of
-length \\n_h=\\`nStrata`
+length \\(n_h=\\)`nStrata`
 
 ## See also
 

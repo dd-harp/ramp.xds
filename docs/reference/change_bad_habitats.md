@@ -1,6 +1,6 @@
 # Change the bad_habitats
 
-Update the bad habitats for the \\s^{th}\\ vector species, and trigger
+Update the bad habitats for the \\(s^{th}\\) vector species, and trigger
 updates for the `ML` interface.
 
 ## Usage

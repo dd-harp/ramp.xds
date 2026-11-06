@@ -1,23 +1,23 @@
 # `trivial` — **XH** module
 
-The trivial module outputs the net infectiousness, \\\kappa\\, by
+The trivial module outputs the net infectiousness, \\(\kappa\\), by
 calling a *trace function,* \$\$F\_\kappa(t) = \kappa \times S(t, V_s)
 \times T(t, V_t) \times K(t, V_k)\$\$ where
 
-- \\\kappa\\ or `kappa` is the mean net infectiousness
+- \\(\kappa\\) or `kappa` is the mean net infectiousness
 
-- \\S(t,V_s)\\ or `F_season` is a seasonal pattern function
+- \\(S(t,V_s)\\) or `F_season` is a seasonal pattern function
 
-- \\T(t,V_t)\\ or `F_trend` is a trend pattern function
+- \\(T(t,V_t)\\) or `F_trend` is a trend pattern function
 
-- \\K(t,V_k)\\ or `F_shock` is a perturbation function
+- \\(K(t,V_k)\\) or `F_shock` is a perturbation function
 
-The variables \\V_s\\, \\V_t\\, and \\V_t\\ are called by
+The variables \\(V_s\\), \\(V_t\\), and \\(V_t\\) are called by
 [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md),
 which dispatches on the class of `season_par` or `trend_par` or
 `shock_par`.
 
-Note: \\0 \leq F\_\kappa(t) \leq 1\\
+Note: \\(0 \leq F\_\kappa(t) \leq 1\\)
 
 ## Parameters
 
@@ -27,33 +27,33 @@ Note: \\0 \leq F\_\kappa(t) \leq 1\\
 
 - `F_season`:
 
-  a seasonal pattern function, \\{S(t,V_s)}\\
+  a seasonal pattern function, \\({S(t,V_s)}\\)
 
 - `F_trend`:
 
-  a trend function, \\T(t,V_t)\\
+  a trend function, \\(T(t,V_t)\\)
 
 - `F_shock`:
 
-  a shock function, \\K(t,V_k)\\
+  a shock function, \\(K(t,V_k)\\)
 
 - `season_par`:
 
   dispatches
   [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_s\\
+  to get \\(V_s\\)
 
 - `trend_par`:
 
   dispatches
   [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_t\\
+  to get \\(V_t\\)
 
 - `shock_par`:
 
   dispatches
   [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
-  to get \\V_k\\
+  to get \\(V_k\\)
 
 Setup also adds the objects `season_par` and `trend_par` and `shock_par`
 for use by `ramp.func`

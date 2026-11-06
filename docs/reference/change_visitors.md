@@ -1,6 +1,6 @@
 # Change the visitors
 
-Update the visitors for the \\s^{th}\\ vector species.
+Update the visitors for the \\(s^{th}\\) vector species.
 
 ## Usage
 

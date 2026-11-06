@@ -3,7 +3,7 @@
 write me.
 
 - [`get_MY_vars`](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.md)
-  – get state variables from \\y\\
+  – get state variables from \\(y\\)
 
 - [`get_MY_ix`](https://dd-harp.github.io/ramp.xds/reference/get_MY_ix.md)
   – get variable indices

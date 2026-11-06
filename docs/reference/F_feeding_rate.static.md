@@ -27,7 +27,7 @@ F_feeding_rate(t, xds_obj, s)
 
 ## Value
 
-\\f\\, the baseline blood feeding rate
+\\(f\\), the baseline blood feeding rate
 
 ## Note
 

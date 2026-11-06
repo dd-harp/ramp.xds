@@ -2,21 +2,22 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{change_XH_pars}
 \alias{change_XH_pars}
-\title{Change parameters (\strong{XH})}
+\title{Change \strong{XH} parameters}
 \usage{
-change_XH_pars(xds_obj, i = 1, options = list())
+change_XH_pars(xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the vector species index}
-
 \item{options}{a named list}
+
+\item{i}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$XH_obj[[s]]}.
+Replace the parameters with new values named in
+the list \code{options}.
 }
 \keyword{internal}

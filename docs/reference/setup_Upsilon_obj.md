@@ -20,7 +20,7 @@ setup_Upsilon_obj(xds_obj, s = 1, dede = FALSE)
 
 - dede:
 
-  is it a delay differential equation that needs \\\Upsilon\\
+  is it a delay differential equation that needs \\(\Upsilon\\)
 
 ## Value
 

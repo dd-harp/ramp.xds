@@ -1,11 +1,12 @@
-# Change initial values (**XH**)
+# Change **XH** initial values
 
-This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
+Replace the initial values for the dependent variables with new values
+named in the list `options`.
 
 ## Usage
 
 ``` r
-change_XH_inits(xds_obj, i = 1, options = list())
+change_XH_inits(xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -14,13 +15,13 @@ change_XH_inits(xds_obj, i = 1, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the vector species index
-
 - options:
 
   a named list
+
+- i:
+
+  the vector species index
 
 ## Value
 

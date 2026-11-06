@@ -1,12 +1,12 @@
 # Compute net blood feeding by mosquitoes for `SI`
 
-The variable \\M\\ is the density of mosquitoes. The model blood feeding
-**parameters** are:
+The variable \\(M\\) is the density of mosquitoes. The model blood
+feeding **parameters** are:
 
-- \\f\\ is the overall blood feeding rate
+- \\(f\\) is the overall blood feeding rate
 
-- \\q\\ is the human fraction for blood feeding The daily HBR for the
-  human / host population strata is \\\beta \cdot fqM\\
+- \\(q\\) is the human fraction for blood feeding The daily HBR for the
+  human / host population strata is \\(\beta \cdot fqM\\)
 
 ## Usage
 

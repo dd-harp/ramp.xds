@@ -66,9 +66,10 @@ functions:
 - **`frame`** is one of several cases:
 
   - "full" includes all three dynamical components: a human/host
-    dynamical component, \\\cal XH\\; and adult mosquito dynamical
-    component, \\\cal MYZ\\; and an aquatic mosquito dynamical
-    component, \\\cal L\\. in some form (possibly the trivial case) (see
+    dynamical component, \\(\cal XH\\); and adult mosquito dynamical
+    component, \\(\cal MYZ\\); and an aquatic mosquito dynamical
+    component, \\(\cal L\\). in some form (possibly the trivial case)
+    (see
     [`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md))
 
   - "mosy" is for mosquito ecology models (see
@@ -81,7 +82,7 @@ functions:
 
   - "human" is for human/host infection dynamics(see
     [`xds_setup_human()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)),
-    forced by the infective density of adult mosquitoes, \\fqZ\\
+    forced by the infective density of adult mosquitoes, \\(fqZ\\)
 
   - "eir" is for human/host cohort infection dynamics (see
     [`xds_setup_eir()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)),
@@ -91,18 +92,19 @@ functions:
 
 Second, the function sets the values of the **structural parameters**:
 
-- **`nPatches`** or \\N_p\\ is the number of patches
+- **`nPatches`** or \\(N_p\\) is the number of patches
 
-- **`nHabitats`** or \\N_q\\, the number of aquatic habitats, is set to
-  `length(membership)`
+- **`nHabitats`** or \\(N_q\\), the number of aquatic habitats, is set
+  to `length(membership)`
 
-- **`nStrata`** or \\N_h\\, the number of human/ host population strata,
-  is set to `length(HPop)`
+- **`nStrata`** or \\(N_h\\), the number of human/ host population
+  strata, is set to `length(HPop)`
 
-- **`nVectorSpecies`** or \\N_s\\, the number of vector species is set
+- **`nVectorSpecies`** or \\(N_s\\), the number of vector species is set
   to 1;
 
-- **`nHostSpecies`** or \\N_i\\, the number of host species is set to 1;
+- **`nHostSpecies`** or \\(N_i\\), the number of host species is set to
+  1;
 
 Next, the function sets up egg laying, blood feeding, importation,
 transmission, and exposure.

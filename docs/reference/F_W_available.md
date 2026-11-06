@@ -30,11 +30,11 @@ host available, a [vector](https://rdrr.io/r/base/vector.html)
 ## Details
 
 Host available to blood searching mosquitoes in patches is the sum of
-search weights of the human strata, a vector \\\omega\\, weighted by
-time at risk, defined by a matrix \\\Psi\\ that is \\N_p \times N_h\\.
-The search weight is a *per-capita* measure so we weight it by human
-population density, \\H\\. available, \\W\\ is computed as \$\$\Psi
-\cdot (\omega H).\$\$
+search weights of the human strata, a vector \\(\omega\\), weighted by
+time at risk, defined by a matrix \\(\Psi\\) that is \\(N_p \times
+N_h\\). The search weight is a *per-capita* measure so we weight it by
+human population density, \\(H\\). available, \\(W\\) is computed as
+\$\$\Psi \cdot (\omega H).\$\$
 
 ## References
 

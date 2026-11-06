@@ -1,8 +1,9 @@
 # Make a type2 function for age
 
-Return an age pattern \\\omega(a)\\, a function of the form
-\$\$\omega(a) = \frac{A(a+\tau)}{B+a+\tau}\$\$ where \\\tau\\ is a shift
-so that \\\omega(0) \> 0\\ and \\A\\ and \\B\\ are shape parameters
+Return an age pattern \\(\omega(a)\\), a function of the form
+\$\$\omega(a) = \frac{A(a+\tau)}{B+a+\tau}\$\$ where \\(\tau\\) is a
+shift so that \\(\omega(0) \> 0\\) and \\(A\\) and \\(B\\) are shape
+parameters
 
 ## Usage
 

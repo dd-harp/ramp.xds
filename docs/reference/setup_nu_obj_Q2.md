@@ -1,7 +1,7 @@
 # Setup Blood Feeding Bionomic Object
 
 Set up an object to compute dynamic egg laying rates as a type 2
-functional response to available habitat, \\Q\\
+functional response to available habitat, \\(Q\\)
 
 ## Usage
 

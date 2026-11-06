@@ -2,9 +2,9 @@
 
 In **`ramp.xds`**, heterogeneous biting rates are handled by assigning
 *search weights* to various population strata. The *relative biting
-rate* for a stratum is a value \\\omega\\ such that if the population
-average daily EIR is \\E\\, then the daily EIR for the stratum is
-\\\omega E\\.
+rate* for a stratum is a value \\(\omega\\) such that if the population
+average daily EIR is \\(E\\), then the daily EIR for the stratum is
+\\(\omega E\\).
 
 Relative biting rates are handled in two ways, depending on the frame:
 

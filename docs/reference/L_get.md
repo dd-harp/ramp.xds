@@ -3,7 +3,7 @@
 A list of get functions for aquatic mosquito modules.
 
 - [`get_L_vars`](https://dd-harp.github.io/ramp.xds/reference/get_L_vars.md)
-  – get state variables from \\y\\
+  – get state variables from \\(y\\)
 
 - [`get_L_ix`](https://dd-harp.github.io/ramp.xds/reference/get_L_ix.md)
   – get variable indices

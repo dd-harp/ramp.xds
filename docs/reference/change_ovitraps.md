@@ -1,6 +1,6 @@
 # Change ovitrap availability
 
-Update the ovitraps for the \\s^{th}\\ vector species
+Update the ovitraps for the \\(s^{th}\\) vector species
 
 ## Usage
 

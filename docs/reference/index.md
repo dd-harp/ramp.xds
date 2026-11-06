@@ -103,7 +103,7 @@ Forcing, Malaria Control
 - [`xds_info_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_forcing.md)
   :
 
-  **`ramp.xds`**: Forcing
+  Forcing in **`ramp.xds`**
 
 - [`xds_info_port`](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md)
   : Ports
@@ -155,7 +155,7 @@ Inspect initial values. Get the final state. Copy final state to initial
 values.
 
 - [`get_inits()`](https://dd-harp.github.io/ramp.xds/reference/get_inits.md)
-  : Get the stored initial values, \\y_0\\
+  : Get the stored initial values, \\(y_0\\)
 - [`get_last()`](https://dd-harp.github.io/ramp.xds/reference/get_last.md)
   : Get the last state
 - [`last_to_inits()`](https://dd-harp.github.io/ramp.xds/reference/last_to_inits.md)
@@ -509,7 +509,7 @@ Change parameters
 - [`change_XH_pars()`](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.md)
   :
 
-  Change parameters (**XH**)
+  Change **XH** parameters
 
 - [`change_H()`](https://dd-harp.github.io/ramp.xds/reference/change_H.md)
   : Change human population density
@@ -583,14 +583,24 @@ Change parameters
 
 - [`change_mean_forcing()`](https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.md)
   : Change mean forcing
+- [`change_season()`](https://dd-harp.github.io/ramp.xds/reference/change_season.md)
+  : Change season parameters
 - [`change_F_season()`](https://dd-harp.github.io/ramp.xds/reference/change_F_season.md)
   : Change F_season
+- [`change_trend()`](https://dd-harp.github.io/ramp.xds/reference/change_trend.md)
+  : Set the interpolating points
 - [`change_F_trend()`](https://dd-harp.github.io/ramp.xds/reference/change_F_trend.md)
   : Change F_trend
+- [`change_shock()`](https://dd-harp.github.io/ramp.xds/reference/change_shock.md)
+  : Change shock parameters
 - [`change_F_shock()`](https://dd-harp.github.io/ramp.xds/reference/change_F_shock.md)
   : Change F_shock
+- [`change_age()`](https://dd-harp.github.io/ramp.xds/reference/change_age.md)
+  : Change age
 - [`change_F_age()`](https://dd-harp.github.io/ramp.xds/reference/change_F_age.md)
   : Change F_age
+- [`rebuild_forcing_functions()`](https://dd-harp.github.io/ramp.xds/reference/rebuild_forcing_functions.md)
+  : Rebuild Forcing Functions
 
 ## Save & Read
 
@@ -675,7 +685,7 @@ Utilities for Time Spent Matrices
 - [`change_XH_inits()`](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.md)
   :
 
-  Change initial values (**XH**)
+  Change **XH** initial values
 
 - [`get_XH_pars()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)
   :
@@ -685,7 +695,7 @@ Utilities for Time Spent Matrices
 - [`change_XH_pars()`](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.md)
   :
 
-  Change parameters (**XH**)
+  Change **XH** parameters
 
 - [`get_HTC()`](https://dd-harp.github.io/ramp.xds/reference/get_HTC.md)
   : Compute the human transmitting capacity
@@ -838,7 +848,7 @@ Specialized methods to set up mosquito dispersal matrices
 - [`xds_info_mosquito_demography`](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_demography.md)
   : Mosquito Demography
 - [`setup_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-  : Setup Mosquito Dispersal Matrix
+  : Setup a mosquito dispersal matrix
 - [`check_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/check_K_matrix.md)
   : Check K Matrix
 - [`change_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.md)
@@ -846,9 +856,9 @@ Specialized methods to set up mosquito dispersal matrices
 - [`get_K_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_K_matrix.md)
   : Get the Mosquito Dispersal Matrix
 - [`make_K_matrix_herethere()`](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_herethere.md)
-  : Make a Here-There Dispersal Matrix
+  : Make a here-and-there dispersal matrix
 - [`make_K_matrix_xy()`](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_xy.md)
-  : make a Kernel-Based Mosquito Dispersal Matrix
+  : Make a mosquito dispersal matrix using patch locations
 
 ### Mosquito Demography
 
@@ -952,7 +962,7 @@ Aquatic habitats and egg laying
 - [`get_habitats()`](https://dd-harp.github.io/ramp.xds/reference/get_habitats.md)
   : Get the habitat membership vector
 - [`get_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_habitat_matrix.md)
-  : Get habitat matrix, \\N\\
+  : Get habitat matrix, \\(N\\)
 
 ### Habitat Search Weights
 
@@ -961,7 +971,7 @@ Searching for Habitats
 - [`xds_info_search_weights_habitat`](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_habitat.md)
   : Habitat Search Weights
 - [`setup_habitat_search_weights()`](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.md)
-  : Set up a habitat_search_weights
+  : Set up habitat search weights
 - [`change_habitat_search_weights()`](https://dd-harp.github.io/ramp.xds/reference/change_habitat_search_weights.md)
   : Change the habitat_search_weights
 - [`check_habitat_search_weights()`](https://dd-harp.github.io/ramp.xds/reference/check_habitat_search_weights.md)
@@ -1107,7 +1117,7 @@ The ports for resources
 - [`xds_info_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_forcing.md)
   :
 
-  **`ramp.xds`**: Forcing
+  Forcing in **`ramp.xds`**
 
 - [`xds_info_trivial_forcing`](https://dd-harp.github.io/ramp.xds/reference/xds_info_trivial_forcing.md)
   : Forcing with Trivial Modules

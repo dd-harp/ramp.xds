@@ -1,6 +1,6 @@
 # Change the vis_kappa
 
-Update the vis_kappa for the \\s^{th}\\ vector species, and trigger
+Update the vis_kappa for the \\(s^{th}\\) vector species, and trigger
 updates for the `XY` interface.
 
 ## Usage

@@ -24,7 +24,7 @@ Get functions for **XH**
   – get initial values
 
 - [`get_XH_vars`](https://dd-harp.github.io/ramp.xds/reference/get_XH_vars.md)
-  – get state variables from \\y\\
+  – get state variables from \\(y\\)
 
 - [`get_XH_ix`](https://dd-harp.github.io/ramp.xds/reference/get_XH_ix.md)
   – get variable indices

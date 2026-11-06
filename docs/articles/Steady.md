@@ -22,8 +22,8 @@ Steady states are computed in two ways.
 
     - `steady_state_MY` – given a static emergence rate of adult
       mosquitoes from aquatic habitats, and given a static net
-      infectiousness (\\\kappa\\), compute the steady states of an adult
-      population model
+      infectiousness (\\(\kappa\\)), compute the steady states of an
+      adult population model
 
     - `steady_state_X` – given a static human population size, compute
       the steady states of a model for infection and immunity in the

@@ -10,7 +10,7 @@ change_H = function(H, xds_obj, i=1){
   stopifnot(length(H) == xds_obj$nStrata[i])
   vars <- get_XH_inits(xds_obj,i)
   vars$H <- H
-  xds_obj <- change_XH_inits(xds_obj, i, vars)
+  xds_obj <- change_XH_inits(xds_obj, options=vars, i=i)
   xds_obj <- update_XY_interface(xds_obj)
   return(xds_obj)
 }

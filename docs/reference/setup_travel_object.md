@@ -2,12 +2,13 @@
 
 Setup the object to handle travel
 
-- `F_travel` should have the form \\F(t,V)\\ where \\V\\ is returned by
+- `F_travel` should have the form \\(F(t,V)\\) where \\(V\\) is returned
+  by
   [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
   dispatching on `class(F_travel)`
 
-- `F_travel_eir` should have the form \\F(t,V)\\ where \\V\\ is returned
-  by
+- `F_travel_eir` should have the form \\(F(t,V)\\) where \\(V\\) is
+  returned by
   [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
   dispatching on `class(F_travel)`
 

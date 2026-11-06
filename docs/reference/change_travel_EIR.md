@@ -1,6 +1,6 @@
 # Change the travel eir
 
-Update the travel eir for the \\i^{th}\\ host species
+Update the travel eir for the \\(i^{th}\\) host species
 
 ## Usage
 

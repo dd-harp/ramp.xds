@@ -1,7 +1,7 @@
 # Get mean forcing
 
-Get `Lambda`, the mean emergence rate(s) \\\Lambda\\, for a model forced
-by adult mosquito emergence
+Get `Lambda`, the mean emergence rate(s) \\(\Lambda\\), for a model
+forced by adult mosquito emergence
 
 ## Usage
 

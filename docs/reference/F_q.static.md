@@ -26,4 +26,4 @@ F_q(t, xds_obj, s)
 
 ## Value
 
-\\q\\, the baseline human feeding fraction
+\\(q\\), the baseline human feeding fraction

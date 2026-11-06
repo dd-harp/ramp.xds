@@ -2,9 +2,9 @@
 
 Check that
 
-- \\K\\ is a \\N_p \times N_p\\ matrix
+- \\(K\\) is a \\(N_p \times N_p\\) matrix
 
-- if not zero, the diagonal elements are all \\-1\\
+- if not zero, the diagonal elements are all \\(-1\\)
 
 - the columns sum to 0: tolerance is set by `tol`
 

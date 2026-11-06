@@ -1,4 +1,4 @@
-# View habitat membership, \\N\\
+# View habitat membership, \\(N\\)
 
 Output the habitat membership information as a list
 

@@ -41,5 +41,5 @@ ecology without explicit infection dynamics.
 
 ## Dynamics
 
-\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\ dP/dt &=
-f(M-P) - \Omega \cdot P \\ \end{array}\$\$
+\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\\\ dP/dt &=
+f(M-P) - \Omega \cdot P \\\\ \end{array}\$\$

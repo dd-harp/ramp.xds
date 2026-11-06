@@ -2,7 +2,7 @@
 
 Check that `K_matrix`
 
-- is an `nPatches` \\\times\\ `nPatches` matrix;
+- is an `nPatches` \\(\times\\) `nPatches` matrix;
 
 - diagonal elements are -1;
 

@@ -20,80 +20,86 @@ xds_setup(
   TSoptions = list(),
   membership = 1,
   searchQ = list(),
-  Koptions = list(),
-  BFopts = list()
+  Koptions = list()
 )
 }
 \arguments{
-\item{model_name}{is a name for the model (arbitrary)}
+\item{model_name}{a name for the model}
 
-\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
+\item{xds}{is \code{xde} for differential equations or \code{dts} for discrete time systems}
 
-\item{Xname}{a character string defining a \strong{X} Component module}
+\item{Xname}{the name of an \strong{XH} module (see \link{XH_module_list})}
 
-\item{XHoptions}{a list to configure the \strong{X} Component module}
+\item{XHoptions}{a named list to set parameter values and initial conditions for the \strong{XH} module}
 
-\item{MYname}{a character string defining an \strong{MY} module}
+\item{MYname}{the name of an \strong{MY} module (see \link{MY_module_list})}
 
-\item{MYoptions}{options to set up the \strong{MY} component}
+\item{MYoptions}{a named list to set parameter values and initial conditions for the \strong{MY} component}
 
-\item{Lname}{a character string defining a \strong{L} Component module}
+\item{Lname}{the name of an \strong{L} module (see \link{L_module_list})}
 
-\item{Loptions}{a list to configure the \strong{L} Component module}
+\item{Loptions}{a named list to set parameter values and initial conditions for the \strong{L} component}
 
-\item{nPatches}{is the number of patches}
+\item{nPatches}{the number of patches}
 
-\item{HPop}{is the number of humans in each patch}
+\item{HPop}{the human population density in each patch}
 
-\item{residence}{is a vector that describes the patch where each human stratum lives}
+\item{residence}{the index of the patch where each human population stratum resides}
 
-\item{searchB}{is a vector of search weights for blood feeding}
+\item{searchB}{a vector of blood search weights or setup options (see \link{setup_blood_search_weights})}
 
-\item{TSoptions}{is either a TimeSpent matrix or a string to call a function that sets it up}
+\item{TSoptions}{a time spent matrix or setup options (see \link{setup_timespent})}
 
-\item{membership}{is a vector that describes the patch where each aquatic habitat is found}
+\item{membership}{the index of the patch where each aquatic habitat is found}
 
-\item{searchQ}{is a vector of search weights for egg laying}
+\item{searchQ}{a vector of habitat search weights or setup options (see \link{setup_habitat_search_weights})}
 
-\item{Koptions}{a K matrix, or options for \link{setup_K_matrix} (see \link{xds_info_mosquito_dispersal})}
-
-\item{BFopts}{a list to configure the blood feeding model}
+\item{Koptions}{a mosquito dispersal matrix (\eqn{K}) or setup options (see \link{setup_K_matrix})}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
 \loadmathjax
-Make an \strong{\code{xds}} \emph{model object}:
+Make an \strong{\code{xds}} \emph{model object} from a set of input parameters.
+
+The first set of arguments chooses a module to use for each dynamical component (see \link{xds_info_dynamical_components}):
 \itemize{
-\item Define a module for each dynamical component (see \link{xds_info_dynamical_components}):
-\itemize{
-\item \strong{XH} Component -- human / host infection dynamics
-\item \strong{MY} Component -- adult mosquito ecology and infection dynamics
-\item \strong{L} Component -- aquatic mosquito ecology
+\item \code{Xname} --- human / host infection dynamics (see \link{XH_module_list})
+\item \code{MYname} -- adult mosquito ecology and infection dynamics (see \link{MY_module_list})
+\item \code{Lname} -- aquatic mosquito ecology (see \link{L_module_list})
 }
-\item Define basic structural parameters for a single host and vector population:
+
+The second set of arguments sets up the model structure
 \itemize{
 \item \code{nPatches} - the number of patches (see \link{xds_info_patch_dynamics})
-\item \code{membership} - the habitat membership vector (see \link{xds_info_aquatic_habitats})
-\item \code{nHabitats = length(membership)}
+\item \code{membership} - the habitat membership vector (see \link{xds_info_aquatic_habitats}).
 \item \code{residence} - the human residence vector (see \link{xds_info_human_populations})
-\item \code{HPop} - the human population size (see \link{xds_info_human_populations})
-\item \code{nStrata = length(residence) = length(HPop)}
 }
-\item Configure some of the basic elements:
+
+Note that:
 \itemize{
-\item Search Weights (see \link{xds_info_search_weights})
-\item Mosquito Dispersal matrix (if \code{nPatches>1}; see \link{xds_info_mosquito_dispersal})
-\item Time Spent matrix (if \code{nPatches>1}; see \link{xds_info_time_spent})
+\item The structural parameter \code{nHabitats} is set to \code{length(membership)}
+\item The structural parameter \code{nStrata} is set to  \code{length(residence)}
 }
+
+Configure some of the basic elements:
+\itemize{
+\item \code{XHoptions} sets parameter values and initial conditions for the \strong{XH} module
+\item \code{MYoptions} sets parameter values and initial conditions for the \strong{MY} module
+\item \code{Loptions} sets parameter values and initial conditions for the \strong{L} module
+\item \code{HPop} is the human population density
+\item \code{searchQ} the habitat search weights (see \link{xds_info_search_weights_habitat})
+\item \code{searchB} the blood feeding search weights (see \link{xds_info_search_weights_blood})
+\item \code{Koptions} sets up a mosquito dispersal matrix (if \code{nPatches>1}, see \link{xds_info_mosquito_dispersal})
+\item \code{TSoptions} sets up a time spent matrix (if \code{nPatches>1}; see \link{xds_info_time_spent})
 }
 }
 \details{
 \enumerate{
 \item \link{make_xds_object_template} returns an object template with
 a properly configured interface for blood feeding
-and egg laying (see \link{xds_object}):
+and egg laying (see \link{xds_object}). The structural parameters are:
 \itemize{
 \item \code{nPatches} is passed as a parameter
 \item \code{nHabitats = length(membership)}
@@ -107,13 +113,6 @@ and egg laying (see \link{xds_object}):
 \item \strong{\code{xds_obj$XH_obj[[1]]}} defines a model for human / host infection dynamics of class \code{Xname} (the \strong{X} component). The parameter values passed in a named list, \code{XHoptions.}
 \item \strong{\code{xds_obj$MY_obj[[1]]}} defines a model for adult mosquito ecology & infection dynamics of class \code{MYname} (the \strong{MY} Component). The parameter values are passed in a named list, \code{MYoptions.}
 \item \strong{\code{xds_obj$L_obj[[1]]}} defines a model for aquatic mosquito ecology of class \code{Lname} (The \strong{L} Component). The parameter values are passed in a named list, \code{Loptions.}
-}
-\item After configuring the dynamical components, several structural parameters can be configured at the command line:
-\itemize{
-\item Habitat search weights can be set
-\item Host population search weights can be set
-\item A mosquito dispersal matrix, \eqn{\cal Koptions}, can be set
-\item A time spent matrix, \eqn{\Theta}, can be set
 }
 }
 }

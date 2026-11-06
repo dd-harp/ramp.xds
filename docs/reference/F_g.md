@@ -1,7 +1,7 @@
 # Compute mosquito mortality
 
 This method dispatches on the type of `g_obj`. It should compute the
-baseline mosquito mortality rate, \\g\\
+baseline mosquito mortality rate, \\(g\\)
 
 ## Usage
 

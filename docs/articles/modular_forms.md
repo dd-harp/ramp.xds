@@ -28,40 +28,41 @@ form* (Box 1).
 
 **Box 1: A Ross-Macdonald Model**
 
-- Let the dependent variable \\X(t)\\ denote the density of infected
-  humans, and the parameter \\H\\ the density of humans.
+- Let the dependent variable \\(X(t)\\) denote the density of infected
+  humans, and the parameter \\(H\\) the density of humans.
 
-- Let the dependent variable \\M(t)\\ denote the density of mosquitoes,
-  and \\Y(t)\\ the density of infectious mosquitoes.
+- Let the dependent variable \\(M(t)\\) denote the density of
+  mosquitoes, and \\(Y(t)\\) the density of infectious mosquitoes.
 
 - Human Infections:
 
-  - \\b\\ denotes the fraction of bites by infectious mosquitoes that
+  - \\(b\\) denotes the fraction of bites by infectious mosquitoes that
     infect a human; and
 
-  - \\r\\ denotes the rate that infections clear.
+  - \\(r\\) denotes the rate that infections clear.
 
 - Mosquito Ecology:
 
-  - \\\Lambda\\ denotes the emergence rate of adult, female mosquitoes;
+  - \\(\Lambda\\) denotes the emergence rate of adult, female
+    mosquitoes;
 
-  - \\g\\ denotes the mosquito death rate;
+  - \\(g\\) denotes the mosquito death rate;
 
 - Mosquito Blood Feeding & Infection Dynamics:
 
-  - \\c\\ denotes the fraction of blood meals on infectious humans that
-    infect a mosquito;
-  - \\f\\ denotes the overall blood feeding rate;
-  - \\q\\ denotes the human blood fraction; and
-  - \\n\\ denotes the EIP.
+  - \\(c\\) denotes the fraction of blood meals on infectious humans
+    that infect a mosquito;
+  - \\(f\\) denotes the overall blood feeding rate;
+  - \\(q\\) denotes the human blood fraction; and
+  - \\(n\\) denotes the EIP.
 
-We introduce a term \\Z=e^{-gn}Y\\ to model survival through the EIP,
-such that human infections occur at the rate \\fqbZ/H,\\ and mosquito
-infections at the rate \\fqcX/H.\\
+We introduce a term \\(Z=e^{-gn}Y\\) to model survival through the EIP,
+such that human infections occur at the rate \\(fqbZ/H,\\) and mosquito
+infections at the rate \\(fqcX/H.\\)
 
-\\ \begin{array}{rl} dX/dt &= fq b e^{-gn} \frac {Y}{H} (H-X) - r X \\
-dM/dt &= \Lambda - g M \\ dY/dt &= fq c \frac {X}{H} (M-Y) - g Y
-\end{array} \\ Written in this way, it is in a *standard form.*
+\\\[\begin{array}{rl} dX/dt &= fq b e^{-gn} \frac {Y}{H} (H-X) - r X
+\\\\ dM/dt &= \Lambda - g M \\\\ dY/dt &= fq c \frac {X}{H} (M-Y) - g Y
+\end{array}\\\] Written in this way, it is in a *standard form.*
 
 ------------------------------------------------------------------------
 
@@ -71,31 +72,31 @@ We illustrate by rewriting this model in its modular form (Figure 1). In
 the modular form, we identify the terms in one equation that depend on
 the other variable. First, we focus on the equation describing human
 infection dynamics. We note that it depends on a term involving the
-variable \\Y.\\ The term is called the force of infection (FoI, Ross
-called it the *happenings* rate). We let \\h\\ denote the FoI:
+variable \\(Y.\\) The term is called the force of infection (FoI, Ross
+called it the *happenings* rate). We let \\(h\\) denote the FoI:
 
-\\h=fq b e^{-gn} \frac {Y}{H}.\\
+\\\[h=fq b e^{-gn} \frac {Y}{H}.\\\]
 
 Now, the first equation can be rewritten:
 
-\\ dX/dt = h (H-X) - r X \\
+\\\[dX/dt = h (H-X) - r X\\\]
 
 Mosquito population dynamics are self-contained. We could model mosquito
-ecology without infection dynamics, but not *vice versa.* (\\M\\ appears
-in \\dY/dt,\\ but \\Y\\ does not appear in \\dM/dt.\\)
+ecology without infection dynamics, but not *vice versa.* (\\(M\\)
+appears in \\(dY/dt,\\) but \\(Y\\) does not appear in \\(dM/dt.\\))
 
-\\ dM/dt = \Lambda - g M \\
+\\\[dM/dt = \Lambda - g M\\\]
 
 Mosquito infections depend on the probability a mosquito becomes
 infected after blood feeding on a human, a term that we will call the
-net infectiousness (NI or \\\kappa\\):
+net infectiousness (NI or \\(\kappa\\)):
 
-\\\kappa = c\frac{X}{H}\\
+\\\[\kappa = c\frac{X}{H}\\\]
 
-The force of infection for mosquitoes is \\fq\kappa,\\ so we can rewrite
-the equation for parasite infection dynamics in mosquitoes:
+The force of infection for mosquitoes is \\(fq\kappa,\\) so we can
+rewrite the equation for parasite infection dynamics in mosquitoes:
 
-\\ dY/dt = fq\kappa (M-Y) - g Y \\
+\\\[dY/dt = fq\kappa (M-Y) - g Y\\\]
 
 With these five elements, the system has a modular form. In this modular
 form, there are three components:
@@ -132,7 +133,7 @@ a modular form.
 By identifying the dynamical terms — input involving variables from
 another module — it is possible to write the model in a modular form. In
 **`ramp.xds,`** because the framework handles spatial dynamics, these
-dynamical terms — \\h\\ and \\\kappa\\ — are computed as part of an
+dynamical terms — \\(h\\) and \\(\kappa\\) — are computed as part of an
 interface that handles blood feeding, transmission, and human exposure
 in a way that is both flexible and mathematically rigorous.
 
@@ -149,18 +150,19 @@ We can illustrate using this model without explaining how the full
 interface works. The FoI is computed in three steps:
 
 1.  compute the total infectious biting rate by the mosquito population,
-    \\fqZ = fq e^{-gn}Y;\\
+    \\(fqZ = fq e^{-gn}Y;\\)
 
 2.  compute the daily entomological inoculation rate (dEIR), the number
-    of infectious bites, per person, per day (\\E=fqZ/H\\);
+    of infectious bites, per person, per day (\\(E=fqZ/H\\));
 
-3.  compute the FoI, given the EIR (\\h=bE\\).
+3.  compute the FoI, given the EIR (\\(h=bE\\)).
 
 The NI is computed in two steps:
 
-1.  compute the *infective density* of the human population (\\I=cX\\).
+1.  compute the *infective density* of the human population
+    (\\(I=cX\\)).
 
-2.  compute the NI (\\\kappa = I/H\\).
+2.  compute the NI (\\(\kappa = I/H\\)).
 
 While these steps add complexity to this simple model, they are
 essential to the modular implementation that enables richer, more
@@ -180,15 +182,14 @@ spatial dynamics and realism.
 ## Example
 
 Basic setup returns this model during setup, but it can also be
-configured by naming the modules and passing options to set \\\Lambda\\:
+configured by naming the modules and passing options to set
+\\(\Lambda\\):
 
-``` r
-
-library(ramp.xds)
-# devtools::load_all()
-mod <- xds_setup(Xname = "SIS", MYname = "SI", 
-                 Lname = "trivial", Loptions = list(Lambda=80))
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`\
+`# devtools::load_all()`\
+`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``Xname ``=`` ``"SIS"``, MYname ``=`` ``"SI"``, `\
+`                 Lname ``=`` ``"trivial"``, Loptions ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``Lambda``=``80``)``)`
 
 In solving the system, derivatives for the human “SIS” model are
 computed by a function `dXHdt.SIS`. Documentation is available through
@@ -198,10 +199,8 @@ help in two ways:
 The full implementation includes human demography and ports for mass
 treatment. The code looks like this:
 
-``` r
-
-getS3method("dXHdt", "SIS")
-```
+\
+[`getS3method`](https://rdrr.io/r/utils/getS3method.html)`(``"dXHdt"``, ``"SIS"``)`
 
     ## function(t, y, xds_obj, i) {
     ## 
@@ -216,7 +215,7 @@ getS3method("dXHdt", "SIS")
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x10f66b5a8>
+    ## <bytecode: 0x129c91a00>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -224,13 +223,11 @@ Derivatives for the mosquito ecology and “SI” model are computed by
 [`?SI`](https://dd-harp.github.io/ramp.xds/reference/SI.md) or
 [`?dMYdt.SI`](https://dd-harp.github.io/ramp.xds/reference/dMYdt.SI.md).
 In the full implementation, a mosquito demographic matrix (called
-`Omega` or \\\Omega\\) combines mortality (\\g\\) and dispersal. The
+`Omega` or \\(\Omega\\)) combines mortality (\\(g\\)) and dispersal. The
 code looks like this:
 
-``` r
-
-getS3method("dMYdt", "SI")
-```
+\
+[`getS3method`](https://rdrr.io/r/utils/getS3method.html)`(``"dMYdt"``, ``"SI"``)`
 
     ## function(t, y, xds_obj, s) {
     ##   Lambda = xds_obj$terms$Lambda[[s]]
@@ -246,20 +243,18 @@ getS3method("dMYdt", "SI")
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x11ca6b010>
+    ## <bytecode: 0x129766b30>
     ## <environment: namespace:ramp.xds>
 
-The term \\\Lambda\\ is passed from the trace function
+The term \\(\Lambda\\) is passed from the trace function
 `F_emerge.trivial`. Documentation is available through help in two ways:
 [`?trivial_L`](https://dd-harp.github.io/ramp.xds/reference/trivial_L.md)
 or
 [`?F_emerge.trivial`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.trivial.md).
 The implementation looks like this:
 
-``` r
-
-getS3method("F_emerge", "trivial")
-```
+\
+[`getS3method`](https://rdrr.io/r/utils/getS3method.html)`(``"F_emerge"``, ``"trivial"``)`
 
     ## function(t, y, xds_obj, s) {
     ##   with(xds_obj$L_obj[[s]],{
@@ -268,5 +263,5 @@ getS3method("F_emerge", "trivial")
     ##     V_k = get_variables(shock_par, t, y, xds_obj, s)
     ##     return(Lambda*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
     ## })}
-    ## <bytecode: 0x11cdcde60>
+    ## <bytecode: 0x12a95c588>
     ## <environment: namespace:ramp.xds>

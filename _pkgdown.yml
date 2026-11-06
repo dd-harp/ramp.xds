@@ -341,10 +341,15 @@ reference:
     Change parameters
   contents:
   - change_mean_forcing
+  - change_season
   - change_F_season
+  - change_trend
   - change_F_trend
+  - change_shock
   - change_F_shock
+  - change_age
   - change_F_age
+  - rebuild_forcing_functions
 - title: Save & Read 
   desc: | 
     Store **`xds`** model objects

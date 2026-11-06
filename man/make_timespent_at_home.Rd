@@ -27,6 +27,12 @@ make_timespent_at_home(
 a \link{matrix}
 }
 \description{
-A fraction of time is spent at home. The remaining time
-is divided equally among the other patches.
+Construct a time spent matrix, where a fraction of time \code{at_home} is spent at home.
+
+The remaining time is divided equally among the other patches.
+
+An optional argument allows for some time to be spent \code{not_at_risk}
+}
+\seealso{
+\link{setup_timespent}
 }

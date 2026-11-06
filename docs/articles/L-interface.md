@@ -4,16 +4,16 @@ The **L** component was designed to model aquatic mosquito ecology. This
 vignette takes an overview of the functions in the **L** component. It
 is useful for anyone who wants to learn more about how the code works.
 
-In context, an **L** module gets the egg laying rate, \\\eta\\ from the
-**ML**-interface. It is the dot product of the total mosquito egg laying
-rate in a patch \\G\\ and the egg laying matrix \\U\\ (Figure 1). The
-core functions compute either
+In context, an **L** module gets the egg laying rate, \\(\eta\\) from
+the **ML**-interface. It is the dot product of the total mosquito egg
+laying rate in a patch \\(G\\) and the egg laying matrix \\(U\\) (Figure
+1). The core functions compute either
 
-- `xde` — a set of derivatives, generically denoted \\dL/dt\\
+- `xde` — a set of derivatives, generically denoted \\(dL/dt\\)
 
 - `dts` — a function that updates the state variables.
 
-It outputs the habitat emergence rate \\\alpha,\\ the number of adult
+It outputs the habitat emergence rate \\(\alpha,\\) the number of adult
 female mosquitoes emerging from a patch, per day.
 
 ------------------------------------------------------------------------
@@ -81,7 +81,7 @@ These functions compute dynamical terms – the outputs passed to an
 interface.
 
 - `F_emerge.Lname` - the function computes the habitat specific
-  emergence rate, \\\alpha\\
+  emergence rate, \\(\alpha\\)
 
 ## Model Object
 
@@ -94,7 +94,7 @@ sub-lists are assigned their own `class` that dispatch other `S3`
 functions.
 
 - `setup_L_obj.Lname` is a wrapper that calls `make_L_obj_Lname` and
-  (for the \\i^{th}\\ species) attaches the object as
+  (for the \\(i^{th}\\) species) attaches the object as
   `xds_obj$L_obj[[i]]`
 
 - `make_L_obj_Lname` :: returns a structured list called an **L** model
@@ -127,7 +127,7 @@ Since the **L** component is one of three, a function sets up the
 indices for all the variables in a model.
 
 Two other functions use those indices: one pulls the variables from the
-state variable vector \\y\\; the other one pulls the variables by name
+state variable vector \\(y\\); the other one pulls the variables by name
 from an output matrix returned by `xds_solve`.
 
 After pulling, both functions return the variables by name in a list to
@@ -140,7 +140,7 @@ make it easy to inspect or use.
 - `get_L_ix` – returns the indices stored at `L_obj[[s]]$ix`
 
 - `get_L_vars.Lname` - retrieves the value of variables from the state
-  variables vector \\y\\ at a point in time and returns the values by
+  variables vector \\(y\\) at a point in time and returns the values by
   name in a list; the function gets called by `dLdt` and it can be
   useful in other contexts.
 

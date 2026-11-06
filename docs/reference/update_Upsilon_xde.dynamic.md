@@ -1,6 +1,6 @@
 # Update Upsilon for xde
 
-Compute \\\Upsilon\\
+Compute \\(\Upsilon\\)
 
 ## Usage
 

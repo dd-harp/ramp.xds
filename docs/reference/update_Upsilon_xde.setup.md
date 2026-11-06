@@ -1,6 +1,6 @@
 # Update Upsilon for xde
 
-Compute \\\Upsilon\\ and change the class to "setup"
+Compute \\(\Upsilon\\) and change the class to "setup"
 
 ## Usage
 

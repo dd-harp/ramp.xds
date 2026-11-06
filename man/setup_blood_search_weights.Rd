@@ -25,3 +25,6 @@ Advanced setup for heterogeneous biting. Useful methods include:
 \item "random" sets random search weights (see \link{make_blood_search_weights_random})
 }
 }
+\seealso{
+\link{xds_setup}, \link{xds_info_search_weights_blood}
+}

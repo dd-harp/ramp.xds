@@ -53,33 +53,34 @@ transmission dynamics and control:
 
 - In
   [`Transmission`](https://dd-harp.github.io/ramp.xds/articles/Transmission.md),
-  the local EIR \\(E\_\ell)\\ is computed and stored for every
+  the local EIR \\((E\_\ell)\\) is computed and stored for every
   population stratum using using the search weights and time at risk.
 
 - In `Exposure`, the model comptues and stores the force of infection
-  (FoI), the rate of infection by stratum (called \\h\\ or `foi`)
+  (FoI), the rate of infection by stratum (called \\(h\\) or `foi`)
 
   - The local EIR is transformed into a measure of the total EIR using
-    the concepts of *time away* \\(\zeta)\\ and *travel EIR*
-    \\(E\_\zeta)\\;
+    the concepts of *time away* \\((\zeta)\\) and *travel EIR*
+    \\((E\_\zeta)\\);
 
   - The total EIR is modified by a function that computes the expected
-    number of infections per infectious bite (\\b\\) using a function
-    (\\F_b\\ or `F_infectivity`) from the **XH** component. In some
+    number of infections per infectious bite (\\(b\\)) using a function
+    (\\(F_b\\) or `F_infectivity`) from the **XH** component. In some
     modules, this quantity is a function of *pre-erythrocytic* immunity.
 
-    - By default, \\F_b\\ returns a constant \\b\\
+    - By default, \\(F_b\\) returns a constant \\(b\\)
 
     - Alternatives are defined in various **XH** modules
 
-  - The FoI is computed from expected number of infectious bites \\bE\\
-    under a model of *environmental heterogeneity.* The expected number
-    of infective bites is \\bE,\\ but in each one of these homogenous
-    strata, the expectation could have a distribution. For example, if
-    the expectation has a *gamma* distribution, then the expected number
-    of bites per person would follow a negative binomial distribution.
+  - The FoI is computed from expected number of infectious bites
+    \\(bE\\) under a model of *environmental heterogeneity.* The
+    expected number of infective bites is \\(bE,\\) but in each one of
+    these homogenous strata, the expectation could have a distribution.
+    For example, if the expectation has a *gamma* distribution, then the
+    expected number of bites per person would follow a negative binomial
+    distribution.
 
-    - By default, \\F_h\\ returns \\bE,\\ consistent with a Poisson
+    - By default, \\(F_h\\) returns \\(bE,\\) consistent with a Poisson
       model of exposure.
 
     - Alternative models pass the method name as the first argument to

@@ -1,7 +1,11 @@
 # Make a time spent matrix
 
-A fraction of time is spent at home. The remaining time is divided
-equally among the other patches.
+Construct a time spent matrix, where a fraction of time `at_home` is
+spent at home.
+
+The remaining time is divided equally among the other patches.
+
+An optional argument allows for some time to be spent `not_at_risk`
 
 ## Usage
 
@@ -40,3 +44,7 @@ make_timespent_at_home(
 ## Value
 
 a [matrix](https://rdrr.io/r/base/matrix.html)
+
+## See also
+
+[setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.md)

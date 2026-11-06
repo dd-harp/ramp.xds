@@ -1,6 +1,6 @@
 # Update Omega for xde
 
-Compute \\\Omega\\
+Compute \\(\Omega\\)
 
 ## Usage
 

@@ -1,6 +1,6 @@
 # Set up a dispersal loss bionomic object
 
-Set up an object to compute the dispersal loss fraction, \\\mu\\
+Set up an object to compute the dispersal loss fraction, \\(\mu\\)
 
 ## Usage
 

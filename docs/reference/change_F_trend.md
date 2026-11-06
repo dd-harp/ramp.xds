@@ -1,8 +1,8 @@
 # Change F_trend
 
 Change the trend function. The function `F` should have the form
-\\F(t,V)\\. If the variable \\V\\ is not used, it's default value should
-be set to an empty list.
+\\(F(t,V)\\). If the variable \\(V\\) is not used, it's default value
+should be set to an empty list.
 
 ## Usage
 

@@ -5,23 +5,23 @@ component)
 
 `options` is a named list, and:
 
-- \\b\\ is set to `options$b`
+- \\(b\\) is set to `options$b`
 
-- \\c\\ is set to `options$c`
+- \\(c\\) is set to `options$c`
 
-- \\r\\ is set to `options$r`
+- \\(r\\) is set to `options$r`
 
-- \\q\_{lm}\\ is set to `options$q_lm`
+- \\(q\_{lm}\\) is set to `options$q_lm`
 
-- \\q\_{rdt}\\ is set to `options$q_rdt`
+- \\(q\_{rdt}\\) is set to `options$q_rdt`
 
-- \\q\_{pcr}\\ is set to `options$q_pcr`
+- \\(q\_{pcr}\\) is set to `options$q_pcr`
 
 ## Usage
 
 ``` r
 # S3 method for class 'SIS'
-change_XH_pars(xds_obj, i = 1, options = list())
+change_XH_pars(xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -30,13 +30,13 @@ change_XH_pars(xds_obj, i = 1, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the vector species index
-
 - options:
 
   a named list
+
+- i:
+
+  the vector species index
 
 ## Value
 

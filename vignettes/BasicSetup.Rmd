@@ -13,19 +13,20 @@ Also, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)
 
 *** 
 
-In the previous vignette [Getting Started](GettingStarted.html), we introduced [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html). Here, we take a deeper dive into **Basic Setup.** 
+In the previous vignette [Getting Started](GettingStarted.html), we introduced [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html), the function that defines **Basic Setup.** Here, we take a deeper dive into **Basic Setup.** 
 
 Inline help is also available through:
 ```{r, eval=F}
-?xds_basic_info
+?xds_setup
+?xds_info_basic_setup
 ``` 
-which is also viewable as [html](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html).
+The latter is viewable as [html](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html).
  
-**`ramp.xds`** is based on a mathematical framework for model building that is modular, flexible and extensible. Using setup functions, it's comparatively easy to build highly *realistic* models by starting simple and adding features one at a time. We call this *progressive model building.* 
+**`ramp.xds`** is based on a mathematical framework for model building that is modular, flexible and extensible. Using setup functions, it's comparatively easy to build highly *realistic* models by starting simple and adding features one at a time. We call this *progressive elaboration.* 
 
 ## Overview of Setup  
 
-Progressive model building starts with basic setup. To set up a model, the user needs to:
+Progressive elaboration starts with basic setup. To set up a model, the user needs to:
 
 + Frame the Model
 
@@ -50,11 +51,11 @@ Other options we consider as an extension of basic setup are:
 To use **`ramp.xds`** a dynamical system is encoded in the **`xds`** object.
 Basic setup builds an **`xds`** object, or `xds_obj`: 
 
-+ `xds_obj` is a compound [list], and `class(xds_obj) == "xds_obj"` 
++ `xds_obj` is a compound [list], and `class(xds_obj) = "xds_obj"` 
 
 + Other objects are attached to `xds_obj`:
 
-    + objects that define the dynamical system, including parameter values,  indices for the variables, and initial values of the variables 
+    + objects that define the modules that make up the dynamical system, including parameter values, indices for the variables, and initial values of the variables 
 
     + objects that define the dynamical interfaces that pass information among components 
 
@@ -66,19 +67,17 @@ Basic setup builds an **`xds`** object, or `xds_obj`:
 
 ### Build a Model 
 
-To use **`ramp.xds`** at all, the **`xds`** object must be properly formatted and configured, but it was not feasible to do this all at once. Instead, the software envisioned model building in two phases: basic and advanced. 
+To use **`ramp.xds`** at all, the **xds object** must be properly formatted and configured, but it was not feasible to write a setup function that could do everything all at once. Instead, the software envisioned model building in two phases: basic and advanced. 
 
 **Basic Setup** is defined by [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html), a function that builds a fully defined **`xds`** object and configures a minimal set of elements. Various partially defined models are also built through basic setup (see [Framing the Problem](#framing-the-problem)).
 
-**Advanced Setup** handles advanced features, including exogenous forcing, vector control, and other modes of malaria control, human demography and aging, and host population stratification (see [Scalable Complexity](#scalable-complexity)).
+**Advanced Setup** handles advanced features, including exogenous forcing, vector control, and other modes of malaria control, human demography and aging, and host population stratification.
 
 ## Framing the Problem 
 
-The first step in any study is to frame the problem. When that problem involves building and solving a dynamical system, framing the problem involves an iterative process of asking and reasking a question until it is in a form that can actually be answered. The starting point is often a general question that could spark broad philosophical discussions. Framing involves refining the question until the shape of the answer is well-defined.  
+The first step in any study is to frame the problem. When that problem involves building and solving a dynamical system, framing the problem involves an iterative process of asking and reasking a question until it is in a form that can actually be answered. The starting point is often a general question that could spark broad philosophical discussions. Framing involves refining the question until the shape of the answer is well-defined. 
 
-**`ramp.xds`** was designed to lower the costs of answering questions that would benefit from building and solving a dynamical system model of a mosquito-borne pathogen dynamics in populations. To understand the process of translating a question into a basic setup algorithm, it's useful to know a little about modular computation in **`ramp.xds`**, the concepts of *modularity* and `trivial` modules, and the *dynamical frame.* 
-
-
+**`ramp.xds`** was designed to lower the costs of answering questions that would benefit from building and solving a dynamical system describing mosquito-borne pathogen dynamics in populations. To understand the process of translating a question into a basic setup algorithm, it's useful to know a little about modular computation in **`ramp.xds`**, the concepts of *modularity* and `trivial` modules, and the *dynamical frame.* 
 
 ### Dynamical Components 
 
@@ -100,7 +99,7 @@ five core processes.
 
 + **L** - a system of equations describing immature mosquito ecology 
 
-A generic interface makes it possible to add other variables (see **Scalable Complexity,** below)
+A generic interface makes it possible to add other variables.
 
 ### Dynamical Interfaces 
 
@@ -136,7 +135,7 @@ For each component, it is possible to set up choose the `trivial` module. The `t
     
     - The net human blood feeding rate of the adult mosquito population ($fqZ$)
 
-+ The trivial **X** module outputs net infectiousness ($\kappa$)
++ The trivial **XH** module outputs net infectiousness ($\kappa$) and/or human population density ($H$)
 
 Using `xds_setup_eir()`, it is possible to set up a trace function that passes the EIR to the **XH** component.
 
@@ -152,9 +151,13 @@ The functions that output these terms are **composed time series functions,** wi
 
 + a shock function, `F_shock(t, V)` 
 
-Each function requires a second argument, `V`, from the function `get_variables` that dispatches on `season_par`, `trend_par` or `shock_par.` By default, these are empty lists, and `get.variables.list` returns an empty list. The default functions `F_season`, `F_trend`, and `F_shock` ignore `V` and return a constant value $1.$ The packages **`ramp.func`** and **`ramp.forcing`** have utilities that make it easy to set up forcing. 
+Each function requires a second argument, `V`, from the function `get_variables` that dispatches on `season_par`, `trend_par` or `shock_par.` By default, these are empty lists, and `get.variables.list` returns an empty list. The default functions `F_season`, `F_trend`, and `F_shock` ignore `V` and return a constant value $1.$ The packages **`ramp.func`** and **`ramp.forcing`** have utilities that make it easy to set up forcing using advanced setup. 
 
 ### The Dynamical Frame
+
+To decide whether it's worth using one of the alternative versions of `xds_setup`, use the following diagram:
+
+*** 
 
 ![A flowchart to determine which version of `xds_setup` to use. ](xds_frame.drawio.html){width=624px height=380px}
 
@@ -204,13 +207,15 @@ these parameters are set during basic setup:
 
 - **`nPatches`** or $n_p$ --- the number of patches in the model. 
 
-- **`nHabitats`** or $n_q$ --- the number of habitats in the model  
-
 - **`membership`** --- a vector describing patch membership of the habitats 
 
-- **`nStrata`** or $n_h$ --- is the number of human / host population strata 
+- **`nHabitats`** or $n_q$ (`=length(membership)`) --- the number of habitats in the model  
 
 - **`residence`** --- a vector describing the index of the patch where a stratum resides 
+
+- **`nStrata`** or $n_h$ (`=length(residence)`) --- is the number of human / host population strata 
+
+
 
 - **`nVectorSpecies`** --- the number of vector species
 
@@ -257,19 +262,19 @@ The **H** Component is defined by two ports:
 
 - `Births` -- a function that adds individuals to the population. 
 
-- `D` -- a linear demographic operator that handles mortality and flows among strata 
+- `Deaths` -- a function that handles mortality and other demographic changes, including flows among strata
 
-Basic Setup sets up *no effect* models by default (no births or deaths), and trivial forcing. 
+Basic Setup sets up *no change* models by default (birth and death rates are set to $0$), and trivial forcing. 
 
-Complexity and realism are added through a process called *principled stratification.* The state variable vector is replicated across multiple strata to handle: 
+Complexity and realism can be added through a process called *progressive stratification.* The state variable vector is replicated across multiple strata to handle: 
 
-+ epidemiological heterogeneous parameters
++ epidemiologically relevant heterogeneity
 
 + human age and cohort dynamics 
 
 + migration 
 
-Advanced setup options for the **H** component, including *principled stratification* are in [**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/).
+Advanced setup options for the **H** component, including *progressive stratification* are in [**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/).
 
 ### MY Component
 

@@ -19,8 +19,6 @@
 To install the latest version from GitHub, run the following lines of
 code in an R session.
 
-``` r
-
-library(devtools)
-devtools::install_github("dd-harp/ramp.library")
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`devtools`](https://devtools.r-lib.org/)`)`\
+`devtools``::`[`install_github`](https://devtools.r-lib.org/reference/install-deprecated.html)`(``"dd-harp/ramp.library"``)`

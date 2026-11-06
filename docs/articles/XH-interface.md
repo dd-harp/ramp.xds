@@ -43,19 +43,19 @@ Each **XH** module is defined by:
 
 - An **X** component - disease dynamics
 
-  - \\X\\: a state space describing infection and immune states, and
+  - \\(X\\): a state space describing infection and immune states, and
     possibly other variables
 
   - *dynamics:* a system of equations describing the state transitions
 
-  - *infectivity:* a function \\F_b(X)\\ to compute partial immunity
+  - *infectivity:* a function \\(F_b(X)\\) to compute partial immunity
 
-  - *infectiousness:* a function \\F_I(X)\\ describing the effective
+  - *infectiousness:* a function \\(F_I(X)\\) describing the effective
     infectious density
 
 - An **H** component - demography
 
-  - *births:* a population birth rate, \\F_B(t, H)\\
+  - *births:* a population birth rate, \\(F_B(t, H)\\)
 
   - *deaths & etc.* matrix describing mortality and possibly aging,
     migration, and stratum dynamics
@@ -67,13 +67,13 @@ processes are handled together.
 
 Models for disease dynamics are developed around a general notion of
 exposure defined by two metrics: daily entomological inoculation rates
-(dEIR or \\E\\) and either
+(dEIR or \\(E\\)) and either
 
-- the daily force of infection (dFoI or \\h\\), the hazard rate for
+- the daily force of infection (dFoI or \\(h\\)), the hazard rate for
   infection for humans / hosts who are susceptible to infection.
 
-- the daily attack rate (dAR or \\1-e^{-h}\\), the daily probability of
-  infection for humans / hosts who are susceptible to infection.
+- the daily attack rate (dAR or \\(1-e^{-h}\\)), the daily probability
+  of infection for humans / hosts who are susceptible to infection.
 
 Some of the **X** component is handled in the *exposure* interface that
 translates local dEIR into a measure of the total dFoI.
@@ -81,18 +81,18 @@ translates local dEIR into a measure of the total dFoI.
 Disease dynamics are specified by a function:
 
 - for systems of differential equations, `dXHdt` requires the dFoI and
-  computes the derivatives, denoted \\d X/dt\\ and \\d H/dt.\\
+  computes the derivatives, denoted \\(d X/dt\\) and \\(d H/dt.\\)
 
 - for discrete time systems `Update_XHt` requires the dAR and updates
-  the states, either \\X\_{t+1} = X_t + \Delta X\\ and \\H\_{t+1} =
-  H_t + \Delta {H}.\\
+  the states, either \\(X\_{t+1} = X_t + \Delta X\\) and \\(H\_{t+1} =
+  H_t + \Delta {H}.\\)
 
 All **XH** modules must include a function that computes the infectious
-density \\I = F_I(X, H),\\ where \\I/H\\ is the fraction of bites that
-would infect a perfectly competent mosquito.
+density \\(I = F_I(X, H),\\) where \\(I/H\\) is the fraction of bites
+that would infect a perfectly competent mosquito.
 
 All **XH** modules must include a function that computes true prevalence
-\\x\\, from the states, \\x=F_x(X, H)\\.
+\\(x\\), from the states, \\(x=F_x(X, H)\\).
 
 Malaria models must include functions that compute predicted observed
 prevalence by three diagnostic methods: by light microscopy, by rapid
@@ -123,29 +123,29 @@ module *must* either:
 
 Models in **`ramp.xds`** (and in the satellite package
 **`ramp.library`**) follow a convention in modeling demographic changes.
-If **X** had \\N_X\\ mutually exclusive and collectively exhaustive
-states, the modules implement \\N_X-1\\ equations for the state
+If **X** had \\(N_X\\) mutually exclusive and collectively exhaustive
+states, the modules implement \\(N_X-1\\) equations for the state
 variables. The compartment not computed is the class that receives
-newborns, denoted \\{X}\_0\\ (or one of these, if two or more classes
+newborns, denoted \\({X}\_0\\) (or one of these, if two or more classes
 get newborns.)
 
-These models generally use \\H\\ to denote the human / host population
-density, and the models are formulated to handle demography. Let \\B(t,
-H)\\ denote a population birth rate. Mortality and aging are handled by
-the demographic matrix, denoted \\D.\\ The models assume that \\H\\
-could be a vector, so \\D\\ is a matrix: the diagonal includes
+These models generally use \\(H\\) to denote the human / host population
+density, and the models are formulated to handle demography. Let \\(B(t,
+H)\\) denote a population birth rate. Mortality and aging are handled by
+the demographic matrix, denoted \\(D.\\) The models assume that \\(H\\)
+could be a vector, so \\(D\\) is a matrix: the diagonal includes
 per-capita death rates. For differential equations, the models compute:\
-% \\\frac{dH}{dt} = B(t) - D \cdot H - F\_\mu(X)\\ where \\F\_\mu(X)\\
-is a set of terms describing disease-induced mortality.
+% \\\[\frac{dH}{dt} = B(t) - D \cdot H - F\_\mu(X)\\\] where
+\\(F\_\mu(X)\\) is a set of terms describing disease-induced mortality.
 
-The matrix \\D\\ is also applied to every state variable:
+The matrix \\(D\\) is also applied to every state variable:
 
-\\\frac{d X_i}{dt} = F_i({X}) - {D} \cdot {X}\_i\\ The value of
-\\{X}\_0\\ is computed and assigned a name using:
+\\\[\frac{d X_i}{dt} = F_i({X}) - {D} \cdot {X}\_i\\\] The value of
+\\({X}\_0\\) is computed and assigned a name using:
 
-\\X_0 = H - \sum\_{i\>0} X_i.\\
+\\\[X_0 = H - \sum\_{i\>0} X_i.\\\]
 
-By default, the software sets \\B = D = F\_\mu(X) = 0;\\ models with
+By default, the software sets \\(B = D = F\_\mu(X) = 0;\\) models with
 non-trivial demographic processes are handled as an advanced setup
 option.
 
@@ -218,7 +218,7 @@ compound list, where some of the sub-lists are assigned their own
   - anything else that is needed can be configured here
 
 - `setup_XH_obj.Xname` is a wrapper that calls `make_XH_obj_Xname` and
-  (for the \\i^{th}\\ species) attaches the object as
+  (for the \\(i^{th}\\) species) attaches the object as
   `xds_obj$XH_obj[[i]]`
 
 ### Parameters
@@ -236,7 +236,7 @@ Since the **XH** component is one of three, a function sets up the
 indices for all the variables in a model.
 
 Two other functions use those indices: one pulls the variables from the
-state variable vector \\y\\; the other one pulls the variables by name
+state variable vector \\(y\\); the other one pulls the variables by name
 from an output matrix returned by `xds_solve`.
 
 After pulling, both functions return the variables by name in a list to
@@ -247,7 +247,7 @@ make it easy to inspect or use.
   indices are returned as a named list.
 
 - `get_XH_vars.Xname` - retrieves the value of variables from the state
-  variables vector \\y\\ at a point in time and returns the values by
+  variables vector \\(y\\) at a point in time and returns the values by
   name in a list; the function gets called by `dXHdt` and by
   `change_XH_inits` and it can be useful in other contexts.
 
@@ -279,7 +279,7 @@ interface.
 
 - `F_I.Xname` - compute the effective infectious density of the
   vertebrate hosts. This gets computed and passed through the blood
-  feeding and transmission interface to compute \\\kappa.\\
+  feeding and transmission interface to compute \\(\kappa.\\)
 
 - `F_H.Xname` - get the human/host population density
 
@@ -296,8 +296,8 @@ Each module must output a few key quantities:
 - `F_prevalence.Xname` - compute prevalence
 
 - `F_ni.Xname` - compute net infectiousness (NI) for each stratum. If
-  \\F_X \rightarrow X\\ and \\F_H \rightarrow H\\, then \\F\_{ni}
-  \rightarrow X/H.\\ The function gets called after solving, and the NI
+  \\(F_X \rightarrow X\\) and \\(F_H \rightarrow H\\), then \\(F\_{ni}
+  \rightarrow X/H.\\) The function gets called after solving, and the NI
   is attached as a term for inspection and visualization.
 
 - `get_HTC.Xname` - compute the human transmitting capacity. This is

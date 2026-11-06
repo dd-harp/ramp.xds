@@ -1,6 +1,6 @@
 # Update the habitat_search_weights Matrix
 
-Port function for the habitat_search_weights, \\w\\. Dispatches on
+Port function for the habitat_search_weights, \\(w\\). Dispatches on
 `xds_obj$L_obj[[s]]$habitat_search_obj`.
 
 ## Usage

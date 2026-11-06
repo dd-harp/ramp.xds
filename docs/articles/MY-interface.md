@@ -19,24 +19,24 @@ The **Y** component interacts with **X** through blood feeding and
 transmission:
 
 - All **Y** components are developed around net-infectiousness, or
-  \\\kappa,\\ the probability of becoming infected after blood feeding
+  \\(\kappa,\\) the probability of becoming infected after blood feeding
   on a human.
 
-- Each module must supply a function \\F_Z\\ that computes the expected
-  number of infectious bites on humans. This is processed by the **XY**
-  interface and transformed into the daily EIR for all the **XH**
-  component strata.
+- Each module must supply a function \\(F_Z\\) that computes the
+  expected number of infectious bites on humans. This is processed by
+  the **XY** interface and transformed into the daily EIR for all the
+  **XH** component strata.
 
 The **M** component interacts with **L** through egg laying and
 emergence.
 
 - The **M** component is developed around the net emergence rate of
-  adult mosquitoes, or \\\Lambda.\\
+  adult mosquitoes, or \\(\Lambda.\\)
 
-- Each **M** component must supply a function \\F_G\\ that computes the
-  number of eggs laid by the adult mosquito population in a patch. The
-  **ML**-interface determines how the eggs are apportioned among all the
-  habitats in a patch.\
+- Each **M** component must supply a function \\(F_G\\) that computes
+  the number of eggs laid by the adult mosquito population in a patch.
+  The **ML**-interface determines how the eggs are apportioned among all
+  the habitats in a patch.\
   A function `dMYdt` computes the derivatives for differential equation
   modules. `Update_MYt` updates the variables for discrete time systems.
 
@@ -51,9 +51,9 @@ the L Component) and adult mosquitoes lay eggs in those aquatic
 habitats.](MY_component.drawio.png)
 
 ***Figure 1:** A diagram of the **MY** Component. For parasite
-transmission, blood feeding on humans infects the fractions \\\kappa\\
+transmission, blood feeding on humans infects the fractions \\(\kappa\\)
 (per patch) and after surviving the EIP, infectious mosquitoes blood
-feed on humans again (at the patch rates* \\fqZ\\*). For mosquito
+feed on humans again (at the patch rates* \\(fqZ\\)*). For mosquito
 ecology, emergent adult mosquitoes enter the population as they mature
 in aquatic habitats (from the **L** Component) and adult mosquitoes lay
 eggs in those aquatic habitats.*
@@ -67,10 +67,11 @@ handling mosquito bionomics as a baseline that is modified by control.
 ### Mosquito Demography
 
 There are some built-in functions to compute a mosquito demographic
-matrix, \\\Omega,\\ and a matrix that computes survival and dispersal
-through the EIP: \\\Upsilon = e^{-\Omega \tau}\\
+matrix, \\(\Omega,\\) and a matrix that computes survival and dispersal
+through the EIP: \\\[\Upsilon = e^{-\Omega \tau}\\\]
 
-For most of these models: \\\Omega = -g - \sigma + (1-\mu) \sigma K\\
+For most of these models: \\\[\Omega = -g - \sigma + (1-\mu) \sigma
+K\\\]
 
 ### Mosquito Bionomics
 
@@ -151,7 +152,7 @@ compound list, where some of the sub-lists are assigned their own
   - anything else that is needed can be configured here
 
 - `setup_MY_obj.MYname` is a wrapper that calls `make_MY_obj_MYname` and
-  (for the \\i^{th}\\ species) attaches the object as
+  (for the \\(i^{th}\\) species) attaches the object as
   `xds_obj$MY_obj[[i]]`
 
 ### Parameters
@@ -169,7 +170,7 @@ Since the **MY** component is one of three, a function sets up the
 indices for all the variables in a model.
 
 Two other functions use those indices: one pulls the variables from the
-state variable vector \\y\\; the other one pulls the variables by name
+state variable vector \\(y\\); the other one pulls the variables by name
 from an output matrix returned by `xds_solve`.
 
 After pulling, both functions return the variables by name in a list to
@@ -180,7 +181,7 @@ make it easy to inspect or use.
   indices are returned as a named list.
 
 - `get_MY_vars.MYname` - retrieves the value of variables from the state
-  variables vector \\y\\ at a point in time and returns the values by
+  variables vector \\(y\\) at a point in time and returns the values by
   name in a list; the function gets called by `dMYdt` and by
   `change_MY_inits` and it can be useful in other contexts.
 
@@ -226,8 +227,8 @@ Each module must output a few key quantities:
 - `F_prevalence.MYname` - compute prevalence
 
 - `F_ni.MYname` - compute net infectiousness (NI) for each stratum. If
-  \\F_X \rightarrow X\\ and \\F_H \rightarrow H\\, then \\F\_{ni}
-  \rightarrow X/H.\\ The function gets called after solving, and the NI
+  \\(F_X \rightarrow X\\) and \\(F_H \rightarrow H\\), then \\(F\_{ni}
+  \rightarrow X/H.\\) The function gets called after solving, and the NI
   is attached as a term for inspection and visualization.
 
 - `get_HTC.MYname` - compute the human transmitting capacity. This is

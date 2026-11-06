@@ -31,6 +31,6 @@ treatment.
 
 ## Dynamics
 
-\$\$ \begin{array}{rl} dm_1/dt &= h - r_1 m_1 \\ dm_2/dt &= h e^{-m_1}
-(e^{m_2} - 1) - r_2 m_2 \\ \end{array}\$\$ where \\h\\ is the force of
-infection computed upstream.
+\$\$ \begin{array}{rl} dm_1/dt &= h - r_1 m_1 \\\\ dm_2/dt &= h e^{-m_1}
+(e^{m_2} - 1) - r_2 m_2 \\\\ \end{array}\$\$ where \\(h\\) is the force
+of infection computed upstream.

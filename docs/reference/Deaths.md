@@ -28,4 +28,4 @@ Deaths(t, X, xds_obj, i)
 
 ## Value
 
-mortality rate for \\X\\
+mortality rate for \\(X\\)

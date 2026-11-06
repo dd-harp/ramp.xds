@@ -27,7 +27,7 @@ steady_state_L(eta, xds_obj, s = 1)
 
 ## Value
 
-the values of \\L\\ at the steady state
+the values of \\(L\\) at the steady state
 
 ## Note
 

@@ -32,7 +32,7 @@ outside of the spatial domain represented by the patches. See
 
 ## Pre-Erythrocytic Immunity
 
-Depending on the X module, a parameter called \\b\\ describes the
+Depending on the X module, a parameter called \\(b\\) describes the
 probability of infection per infectious bite.
 
 ## See also

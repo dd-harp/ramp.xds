@@ -2,8 +2,8 @@
 
 The **XH** skill set is a list of a module's capabilities:
 
-- **`H_dynamics`** - if FALSE, \\H\\ is static. The module doesn't have
-  a port for demographic change
+- **`H_dynamics`** - if FALSE, \\(H\\) is static. The module doesn't
+  have a port for demographic change
 
 - **`mda`**: if FALSE, the module doesn't have an `mda` port for mass
   drug administration

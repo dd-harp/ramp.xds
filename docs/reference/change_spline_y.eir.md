@@ -1,6 +1,6 @@
 # Change y values for spline interpolation points
 
-Set new \\y\\-values for the spline interpolating points and update
+Set new \\(y\\)-values for the spline interpolating points and update
 `F_trend` when `forced_by = "eir"`
 
 ## Usage

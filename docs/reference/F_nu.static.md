@@ -26,4 +26,4 @@ F_nu(t, xds_obj, s)
 
 ## Value
 
-\\nu\\, the egg laying rate
+\\(nu\\), the egg laying rate

@@ -35,5 +35,5 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector
 
 ## Details
 
-\$\$\begin{array}{rl}dM/dt &= \Lambda(t) - \Omega \cdot M \\ dP/dt &=
+\$\$\begin{array}{rl}dM/dt &= \Lambda(t) - \Omega \cdot M \\\\ dP/dt &=
 f(M-P) - \Omega\cdot P\end{array}\$\$
