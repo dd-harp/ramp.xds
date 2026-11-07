@@ -123,7 +123,8 @@
 
     
     
-<p>Previous: <a href="BasicSetup.html"><em>Basic Setup.</em></a> Also,
+<p>Previous: <a href="GettingStarted.html"><em>Getting Started</em></a>
+and possibly <a href="BasicSetup.html"><em>Basic Setup.</em></a> Also,
 see <a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong></a></p>
 <hr>
 <p><strong><code>ramp.xds</code></strong> was designed to reduce the
@@ -244,18 +245,21 @@ that list:</p>
 <span><span class="co">## [1] 1</span></span></code></pre>
 </div>
 <div class="section level2">
-<h2 id="computing-for-qualitative-analysis">Computing for Qualitative Analysis<a class="anchor" aria-label="anchor" href="#computing-for-qualitative-analysis"></a>
+<h2 id="qualitative-analysis">Qualitative Analysis<a class="anchor" aria-label="anchor" href="#qualitative-analysis"></a>
 </h2>
-<p>The software includes functions that perform various analytical
-tasks:</p>
+<p>A related package, called <strong><code>ramp.qa</code></strong>, does
+<em>qualitative analysis.</em> This includes a variety of methods that
+are used to understand dynamical systems without solving them. Some of
+the core functions live in <strong><code>ramp.xds</code></strong></p>
 <ul>
 <li><p>Compute the steady states of model components using a method that
 does not involve simulation. These functions also provide a way of
 independently verifying the code.</p></li>
-<li><p>Compute stable orbits.</p></li>
+<li><p>Compute stable orbits and scaling relationships.</p></li>
 <li><p>Compute vectorial capacity and its spatial-temporal dispersion,
 the human transmitting capacity and its spatial-temporal dispersion, and
 malaria reproductive numbers as pseudo-threshold conditions.</p></li>
+<li><p>Malaria connectivity.</p></li>
 </ul>
 </div>
 <div class="section level2">
@@ -265,15 +269,14 @@ malaria reproductive numbers as pseudo-threshold conditions.</p></li>
 it easy to work with the models, including functions to visualize the
 outputs, to examine and change initial values and parameters, and to
 analyze the models.</p>
-<p>The <strong><code>xds</code> model object</strong> – any object that
-can be solved by <code>xds_solve</code> or <code>dts_solve</code> – is a
-compound list in R. If you’re already familiar with the format of the
-<strong><code>xds</code></strong> model object, it’s possible examine
-any part of it, or change any of the parameter values or initial
-conditions. While that might be the way to go in the long run, the
-<strong><code>xds</code> model object</strong> includes a set of
-utilities to retrieve initial values, parameters, and some other values
-of interests.</p>
+<p>The <strong>xds model object</strong> – any object that can be solved
+by <code>xds_solve</code> – is a compound list in R. If you’re already
+familiar with the format of the <strong><code>xds</code></strong> model
+object, it’s possible examine any part of it, or change any of the
+parameter values or initial conditions. While that might be the way to
+go in the long run, the <strong><code>xds</code> model object</strong>
+includes a set of utilities to retrieve initial values, parameters, and
+some other values of interests.</p>
 <p>The code and documentation for these utilities is designed to be
 instructive, and a goal for <strong><code>ramp.xds</code></strong> has
 been to provide detailed documentation, include references to peer

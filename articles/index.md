@@ -4,6 +4,8 @@
 
 - [Macdonald's
   Model](https://dd-harp.github.io/ramp.xds/articles/adult_RM.md):
+- [Advanced
+  Setup](https://dd-harp.github.io/ramp.xds/articles/AdvancedSetup.md):
 - [Basic L](https://dd-harp.github.io/ramp.xds/articles/aqua_basic.md):
 - [Emergence](https://dd-harp.github.io/ramp.xds/articles/aqua_trace.md):
 - [Basic
@@ -15,6 +17,8 @@
 - [Contributing](https://dd-harp.github.io/ramp.xds/articles/Contributing.md):
 - [Delay
   Equations](https://dd-harp.github.io/ramp.xds/articles/Delays.md):
+- [Human
+  Demography](https://dd-harp.github.io/ramp.xds/articles/Demography.md):
 - [Diagnostics, Detection, &
   Prevalence](https://dd-harp.github.io/ramp.xds/articles/Diagnostics.md):
 - [Discrete Time
@@ -24,8 +28,7 @@
 - [5-3-4
   Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.md):
 - [Exposure](https://dd-harp.github.io/ramp.xds/articles/Exposure.md):
-- [Forcing: Ports &
-  Junctions](https://dd-harp.github.io/ramp.xds/articles/Forcing.md):
+- [Forcing](https://dd-harp.github.io/ramp.xds/articles/Forcing.md):
 - [Getting
   Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.md):
 - [Glossary](https://dd-harp.github.io/ramp.xds/articles/Glossary.md):

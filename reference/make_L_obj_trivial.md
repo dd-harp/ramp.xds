@@ -21,7 +21,7 @@ K(t)\$\$ where
 make_L_obj_trivial(
   nHabitats,
   options = list(),
-  Lambda = 1000,
+  Lambda = 100,
   F_season = F_one,
   F_trend = F_one,
   F_shock = F_one,

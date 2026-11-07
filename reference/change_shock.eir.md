@@ -14,7 +14,7 @@ change_shock(shock_par, xds_obj, s = 1)
 - shock_par:
 
   parameters for
-  [make_function](https://dd-harp.github.io/ramp.xds/reference/make_function.md)
+  [ramp.func::make_function](https://dd-harp.github.io/ramp.func/reference/make_function.html)
 
 - xds_obj:
 

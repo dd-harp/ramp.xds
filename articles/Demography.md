@@ -1,0 +1,98 @@
+# Human Demography
+
+This vignette describes how **`ramp.xds`** handles human demography:
+
+- **Demographic Change** describes the policy for computing \\dH/dt\\
+  for most models, including:
+
+  - Death Rates; and
+
+  - Birth Rates
+
+- Models with **Cohort Dynamics** are the exception.
+
+- The variable \\H\\ gets special treatment in the `trivial` **XH**
+  module
+
+- In **Etcetera,** we discuss some interesting special cases and point
+  to documentation where they are relevant.
+
+Of interest, an advanced setup option `ramp.demog::stratify_by_age` can
+be used to create an age-structured population model. (See
+[**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/).)
+
+## Demographic Change
+
+Many **XH** modules are compartmental models: a population \\(H)\\ is
+subdivided into a set of dependent variables that represent mutually
+exclusive and collectively exhaustive states, denoted \\\mathbf{X}\\,
+and \\H= \sum {\mathbf X}.\\ One of these states, called \\X_1,\\ is for
+newborns. In **`ramp.xds`** modules, the implementation computes
+\\dH/dt\\ and \\dX_i/dt\\ for all the state variables except \\X_1.\\
+The value of \\X_1\\ is computed and stored as \\X_1 = H-\sum{\mathbf
+X}\_{-1}.\\
+
+For most models, human population dynamics are modeled directly as:
+
+\\ \frac{dH}{dt} = F_B(t, H) - F_D({\mathbf X}) - \mathbf{D} \cdot H, \\
+
+where
+
+- \\F_B\\ describes births
+
+- \\\mathbf D\\ is the mortality matrix.
+
+- \\F_D({\mathbf X})\\ describes disease induced mortality terms.
+
+The mortality function is applied to each one of the dependent state
+variables:
+
+\\ \frac{dX_i}{dt} = F_i\left(h, {\mathbf X} \right) - \mathbf{D} \cdot
+X_i \\
+
+**Defaults** — During basic setup, \\F_B = \mathbf{D} = 0,\\ a model
+with *no demographic change.*
+
+### Death Rates
+
+The advanced setup option for deaths is `setup_deaths`
+
+The **`ramp.xds`** methods are:
+
+- “zero” sets all the death rates to zero
+
+- “constant” sets the death rates to `options$death_rates`
+
+- “cohort”
+
+**`ramp.forcing`** includes the methods:
+
+- “func”
+
+### Birth Rates
+
+The advanced setup option for births is `setup_births`
+
+The **`ramp.xds`** methods are:
+
+- “zero” sets all the death rates to zero
+
+- “constant” sets the birth rates to `options$death_rates`
+
+**`ramp.forcing`** includes the methods:
+
+- “func”
+
+## Cohort Dynamics
+
+The notable exception is for `xds_solve_cohort` where mortality can be
+an age specific function \\F\_\mu(a),\\ in which case \\ \frac{dH}{da} =
+F_B(t, H) - F_D({\mathbf X}) - F\_\mu(a) H \\
+
+## Trivial **H**
+
+## Etcetera
+
+- For some model families, the state space includes . These
+  non-compartmental state variables must include functions that are
+  analogous to the demographic matrix **D.**

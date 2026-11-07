@@ -1,6 +1,7 @@
 # Make a time spent matrix using location data
 
-Make a time spent matrix using location data
+Build a time spent matrix from a set of patch locations and a kernel
+function that weights by distance.
 
 ## Usage
 
@@ -37,3 +38,7 @@ make_timespent_xy(xds_obj, xy, residence, stay, kern, kopts = list())
 ## Value
 
 a [matrix](https://rdrr.io/r/base/matrix.html)
+
+## See also
+
+[setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.md)

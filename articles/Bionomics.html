@@ -123,29 +123,23 @@
 
     
     
-<p>In <strong><code>ramp.xds,</code></strong> mosquito bionomics are
-handled as a junction: each parameter describing adult mosquito ecology
-or infection dynamics is handled as a <em>port:</em></p>
+<p>In <strong><code>ramp.xds,</code></strong> mosquito bionomic
+parameters are designed to model <em>a changing baseline modified by
+control.</em> To implement this, exogenous forcing variables, mosquito
+bionomics and vector control are handled through several junction. The
+parameters are handled as <em>ports</em></p>
 <ul>
 <li><p>During <em>basic setup,</em> in
-<strong><code>ramp.xds</code></strong>, the parameters are assigned
-constant values.</p></li>
-<li><p>Some parameters can be time-dependent to model forcing by weather
-or resource availability. Forcing is an <em>advanced setup</em> option.
-Advanced setup options are in
-<strong><code>ramp.forcing</code></strong></p></li>
-<li>
-<p>Various modes of vector control are handled as another set of
-<em>advanced setup</em> options: advanced setup options for vector
-control are in <strong><code>ramp.control.</code></strong> Vector
-control effects can be handled in one of two ways:</p>
-<ul>
-<li><p>vector control can affect the availability of resources, and the
-effects are computed through functional forms in response to available
-resources</p></li>
-<li><p>vector control effect sizes can be computed.</p></li>
-</ul>
-</li>
+<strong><code>ramp.xds</code></strong>, a bionomic port is set up as an
+object that stores the original, constant values. The role of the
+bionomic object is to set the baseline value of the parameter.</p></li>
+<li><p>The port object can be configured so that some parameters can be
+time-dependent to model forcing by weather or resource availability.
+Forcing is an <em>advanced setup</em> option (in
+<strong><code>ramp.forcing</code></strong>).</p></li>
+<li><p>Vector control can be implemented by computing <em>effect
+sizes.</em> These are stored and the final value is the product of the
+baseline and the effect size.</p></li>
 </ul>
 <p>Each module in <strong><code>ramp.xds</code></strong> or in the
 satellite package <strong><code>ramp.library</code></strong> must be

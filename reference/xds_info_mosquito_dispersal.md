@@ -11,19 +11,6 @@ modules.
   or `Omega` (see
   [xds_info_mosquito_demography](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_demography.md)).
 
-## Setup
-
-- `K_matrix`:
-
-  either a \\K\\ matrix: or options for
-  [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-
-There are several ways to configure \\K\\ during basic setup.
-
-By **default:** `K_matrix` is an empty list. When the `MY_obj` is set
-up, the \\K\\ matrix is set to `diag(g)`, a model with no dispersal.
-That is not changed unless one of the following holds:
-
 ## Mosquito Dispersal Matrix, \\K\\
 
 In adult mosquito modules, mosquito dispersal is described by a square
@@ -46,7 +33,8 @@ handled separately (see
 
 ## See also
 
-[setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md),
-[change_K_matrix](https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.md)
-&
+[setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
+\|
+[check_K_matrix](https://dd-harp.github.io/ramp.xds/reference/check_K_matrix.md)
+\|
 [xds_info_mosquito_demography](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_demography.md)

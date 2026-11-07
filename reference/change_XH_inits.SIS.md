@@ -10,7 +10,7 @@ initial value(s) are set to `options$I`
 
 ``` r
 # S3 method for class 'SIS'
-change_XH_inits(xds_obj, i = 1, options = list())
+change_XH_inits(xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -19,13 +19,13 @@ change_XH_inits(xds_obj, i = 1, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the vector species index
-
 - options:
 
   a named list
+
+- i:
+
+  the vector species index
 
 ## Value
 

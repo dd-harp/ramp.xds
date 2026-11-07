@@ -128,22 +128,24 @@
 <p>Also, see <a href="https://faculty.washington.edu/smitdave/simba/index.html" class="external-link"><strong>SimBA</strong></a></p>
 <hr>
 <p>In the previous vignette <a href="GettingStarted.html">Getting
-Started</a>, we introduced <a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a>.
-Here, we take a deeper dive into <strong>Basic Setup.</strong></p>
+Started</a>, we introduced <a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a>,
+the function that defines <strong>Basic Setup.</strong> Here, we take a
+deeper dive into <strong>Basic Setup.</strong></p>
 <p>Inline help is also available through:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">?</span><span class="va">xds_basic_info</span></span></code></pre></div>
-<p>which is also viewable as <a href="https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html">html</a>.</p>
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">xds_setup</span></span>
+<span><span class="op">?</span><span class="va">xds_info_basic_setup</span></span></code></pre></div>
+<p>The latter is viewable as <a href="https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html">html</a>.</p>
 <p><strong><code>ramp.xds</code></strong> is based on a mathematical
 framework for model building that is modular, flexible and extensible.
 Using setup functions, it’s comparatively easy to build highly
 <em>realistic</em> models by starting simple and adding features one at
-a time. We call this <em>progressive model building.</em></p>
+a time. We call this <em>progressive elaboration.</em></p>
 <div class="section level2">
 <h2 id="overview-of-setup">Overview of Setup<a class="anchor" aria-label="anchor" href="#overview-of-setup"></a>
 </h2>
-<p>Progressive model building starts with basic setup. To set up a
-model, the user needs to:</p>
+<p>Progressive elaboration starts with basic setup. To set up a model,
+the user needs to:</p>
 <ul>
 <li><p>Frame the Model</p></li>
 <li><p>Set up the Model Structure</p></li>
@@ -170,13 +172,13 @@ builds an <strong><code>xds</code></strong> object, or
 <code>xds_obj</code>:</p>
 <ul>
 <li><p><code>xds_obj</code> is a compound [list], and
-<code>class(xds_obj) == "xds_obj"</code></p></li>
+<code>class(xds_obj) = "xds_obj"</code></p></li>
 <li>
 <p>Other objects are attached to <code>xds_obj</code>:</p>
 <ul>
-<li><p>objects that define the dynamical system, including parameter
-values, indices for the variables, and initial values of the
-variables</p></li>
+<li><p>objects that define the modules that make up the dynamical
+system, including parameter values, indices for the variables, and
+initial values of the variables</p></li>
 <li><p>objects that define the dynamical interfaces that pass
 information among components</p></li>
 <li><p>the dynamical terms computed by the interfaces</p></li>
@@ -189,18 +191,18 @@ information among components</p></li>
 <div class="section level3">
 <h3 id="build-a-model">Build a Model<a class="anchor" aria-label="anchor" href="#build-a-model"></a>
 </h3>
-<p>To use <strong><code>ramp.xds</code></strong> at all, the
-<strong><code>xds</code></strong> object must be properly formatted and
-configured, but it was not feasible to do this all at once. Instead, the
-software envisioned model building in two phases: basic and
-advanced.</p>
+<p>To use <strong><code>ramp.xds</code></strong> at all, the <strong>xds
+object</strong> must be properly formatted and configured, but it was
+not feasible to write a setup function that could do everything all at
+once. Instead, the software envisioned model building in two phases:
+basic and advanced.</p>
 <p><strong>Basic Setup</strong> is defined by <a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a>,
 a function that builds a fully defined <strong><code>xds</code></strong>
 object and configures a minimal set of elements. Various partially
 defined models are also built through basic setup (see <a href="#framing-the-problem">Framing the Problem</a>).</p>
 <p><strong>Advanced Setup</strong> handles advanced features, including
 exogenous forcing, vector control, and other modes of malaria control,
-human demography and aging, and host population stratification (see <a href="#scalable-complexity">Scalable Complexity</a>).</p>
+human demography and aging, and host population stratification.</p>
 </div>
 </div>
 <div class="section level2">
@@ -215,7 +217,7 @@ discussions. Framing involves refining the question until the shape of
 the answer is well-defined.</p>
 <p><strong><code>ramp.xds</code></strong> was designed to lower the
 costs of answering questions that would benefit from building and
-solving a dynamical system model of a mosquito-borne pathogen dynamics
+solving a dynamical system describing mosquito-borne pathogen dynamics
 in populations. To understand the process of translating a question into
 a basic setup algorithm, it’s useful to know a little about modular
 computation in <strong><code>ramp.xds</code></strong>, the concepts of
@@ -250,8 +252,7 @@ mosquitoes</p></li>
 <li><p><strong>L</strong> - a system of equations describing immature
 mosquito ecology</p></li>
 </ul>
-<p>A generic interface makes it possible to add other variables (see
-<strong>Scalable Complexity,</strong> below)</p>
+<p>A generic interface makes it possible to add other variables.</p>
 </div>
 <div class="section level3">
 <h3 id="dynamical-interfaces">Dynamical Interfaces<a class="anchor" aria-label="anchor" href="#dynamical-interfaces"></a>
@@ -299,8 +300,9 @@ rate of adult, female mosquitoes in each patch (<span class="math inline">\(\Lam
 (<span class="math inline">\(fqZ\)</span>)</p></li>
 </ul>
 </li>
-<li><p>The trivial <strong>X</strong> module outputs net infectiousness
-(<span class="math inline">\(\kappa\)</span>)</p></li>
+<li><p>The trivial <strong>XH</strong> module outputs net infectiousness
+(<span class="math inline">\(\kappa\)</span>) and/or human population
+density (<span class="math inline">\(H\)</span>)</p></li>
 </ul>
 <p>Using <code><a href="../reference/xds_setup_eir.html">xds_setup_eir()</a></code>, it is possible to set up a trace
 function that passes the EIR to the <strong>XH</strong> component.</p>
@@ -327,11 +329,14 @@ functions <code>F_season</code>, <code>F_trend</code>, and
 <span class="math inline">\(1.\)</span> The packages
 <strong><code>ramp.func</code></strong> and
 <strong><code>ramp.forcing</code></strong> have utilities that make it
-easy to set up forcing.</p>
+easy to set up forcing using advanced setup.</p>
 </div>
 <div class="section level3">
 <h3 id="the-dynamical-frame">The Dynamical Frame<a class="anchor" aria-label="anchor" href="#the-dynamical-frame"></a>
 </h3>
+<p>To decide whether it’s worth using one of the alternative versions of
+<code>xds_setup</code>, use the following diagram:</p>
+<hr>
 <div class="float">
 <embed src="xds_frame.drawio.html" width="624" height="380"></embed><div class="figcaption">A flowchart to determine which version of
 <code>xds_setup</code> to use.</div>
@@ -415,14 +420,14 @@ setup:</p>
 <ul>
 <li><p><strong><code>nPatches</code></strong> or <span class="math inline">\(n_p\)</span> — the number of patches in the
 model.</p></li>
-<li><p><strong><code>nHabitats</code></strong> or <span class="math inline">\(n_q\)</span> — the number of habitats in the
-model</p></li>
 <li><p><strong><code>membership</code></strong> — a vector describing
 patch membership of the habitats</p></li>
-<li><p><strong><code>nStrata</code></strong> or <span class="math inline">\(n_h\)</span> — is the number of human / host
-population strata</p></li>
+<li><p><strong><code>nHabitats</code></strong> or <span class="math inline">\(n_q\)</span> (<code>=length(membership)</code>) —
+the number of habitats in the model</p></li>
 <li><p><strong><code>residence</code></strong> — a vector describing the
 index of the patch where a stratum resides</p></li>
+<li><p><strong><code>nStrata</code></strong> or <span class="math inline">\(n_h\)</span> (<code>=length(residence)</code>) —
+is the number of human / host population strata</p></li>
 <li><p><strong><code>nVectorSpecies</code></strong> — the number of
 vector species</p></li>
 <li><p><strong><code>nHostSpecies</code></strong> — the number of host
@@ -481,21 +486,22 @@ should be passed:</p>
 <ul>
 <li><p><code>Births</code> – a function that adds individuals to the
 population.</p></li>
-<li><p><code>D</code> – a linear demographic operator that handles
-mortality and flows among strata</p></li>
+<li><p><code>Deaths</code> – a function that handles mortality and other
+demographic changes, including flows among strata</p></li>
 </ul>
-<p>Basic Setup sets up <em>no effect</em> models by default (no births
-or deaths), and trivial forcing.</p>
-<p>Complexity and realism are added through a process called
-<em>principled stratification.</em> The state variable vector is
+<p>Basic Setup sets up <em>no change</em> models by default (birth and
+death rates are set to <span class="math inline">\(0\)</span>), and
+trivial forcing.</p>
+<p>Complexity and realism can be added through a process called
+<em>progressive stratification.</em> The state variable vector is
 replicated across multiple strata to handle:</p>
 <ul>
-<li><p>epidemiological heterogeneous parameters</p></li>
+<li><p>epidemiologically relevant heterogeneity</p></li>
 <li><p>human age and cohort dynamics</p></li>
 <li><p>migration</p></li>
 </ul>
 <p>Advanced setup options for the <strong>H</strong> component,
-including <em>principled stratification</em> are in <a href="https://dd-harp.github.io/ramp.demog/" class="external-link"><strong><code>ramp.demog</code></strong></a>.</p>
+including <em>progressive stratification</em> are in <a href="https://dd-harp.github.io/ramp.demog/" class="external-link"><strong><code>ramp.demog</code></strong></a>.</p>
 </div>
 </div>
 <div class="section level3">

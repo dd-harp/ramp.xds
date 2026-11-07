@@ -1,6 +1,6 @@
 # Make habitat search weights
 
-Set up a random vector
+Set up a random vector of habitat search weights
 
 ## Usage
 
@@ -39,3 +39,7 @@ make_habitat_search_weights_random(
 ## Value
 
 a numeric vector
+
+## See also
+
+[setup_habitat_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.md)

@@ -1,19 +1,22 @@
-# Forcing: Ports & Junctions
+# Forcing
 
 **`ramp.xds`** is designed for model building with *progressive
 elaboration.* To enable progressive elaboration, model object must
 include structures that can handle advanced set up options and functions
-to run the algorithms.  
-Most of these features will not be used most of the time, so they must
-be designed in and present for the software to work at all. In most
-cases, the features are turned off. This was handled by adding *ports*
-and *junctions.*
+that run the algorithms. Most of these features will not be used most of
+the time, so they must be designed in and present for the software to
+work at all, but they will often not get used. In particular, any
+parameter or term that *could be* time dependent must be handled
+differently than parameters that are always *fixed.* Parameters that
+could become time-varying are handled as *ports.* A *junctions*
+activates a set of ports.
 
 ## Ports
 
 A ***port*** in **`ramp.xds`** or one of the satellite packages is an
-object that handles a term or parameter, such as temperature, other
-blood hosts, or search weights. Each *port* is defined by:
+object that handles a term or parameter that could be time varying, such
+as temperature, other blood hosts, or search weights. Each *port* is
+defined by:
 
 - the port object
 
@@ -42,27 +45,7 @@ There are four classes of ports in SimBA.
 - Epidemiology ports handle mass treatment; these ports are handled by
   an **XH** module
 
-- All other po
-
-------------------------------------------------------------------------
-
-![Ports — The design of a port and junction includes default setup of an
-object during xds_setup on the relevant object with parameter values set
-to have no effect; an advanced setup function setup_port that replaces
-the old default parameter, evaluates the port function and checks the
-returned value, and then rebuilds and replaces the port object; and a
-function update_port, called by a Junction, that evalutes the function
-and stores the updated value.](Ports.drawio.png)
-
-**Ports** — The design of a port and junction includes default setup of
-an object during `xds_setup` on the relevant object with parameter
-values set to have no effect; an advanced setup function `setup_port`
-that replaces the old default parameter, evaluates the port function and
-checks the returned value, and then rebuilds and replaces the port
-object; and a function `update_port,` called by a `Junction`, that
-evalutes the function and stores the updated value.
-
-------------------------------------------------------------------------
+- Generic ports handle other exogenous variables.
 
 ## Junctions
 
@@ -77,63 +60,16 @@ The order is designed to handle dependencies and minimize conflicts.
 - *Forcing* is a junction that handles weather, hydrology, shocks and
   development.
 
-  - *Weather* \\\in\\ `ramp.forcing`
+- *Health* implements variables associated with health or health systems
 
-    - `temperature`
+- *Vector Control,* part 1 sets up variables associated with vector
+  control
 
-    - `rainfall`
+- *Resources* handles ports associated with mosquito ecology that are
+  not on an interface
 
-    - `humidity`
-
-  - *Hydrology* \\\in\\ `ramp.forcing` may depend on `rainfall` and
-    `temperature`
-
-    - `water_level`
-
-    - `water_temperature`
-
-  - *Shock* \\\in\\ `ramp.forcing`
-
-    - `quarantine`
-
-    - `conflict`
-
-  - *Development* \\\in\\ `ramp.forcing`
-
-    - `gdp`
-
-    - `housing`
-
-- *Health* implements variables associated with health systems, which
-  may depend on `quarantine` or `conflict`
-
-  - `nutrition`
-
-  - `awareness`
-
-  - `other_disease`
-
-- *Vector Control,* part 1 (\\\in\\ `ramp.forcing`) sets up variables
-  associated with vector control, which may depend on weather variables.
-
-- *Resources* (\\\in\\ `ramp.forcing`) handles ports associated with
-  mosquito ecology that are not already part of one of the interfaces,
-  which may depend on weather variables.
-
-  - *Availability of Sugar*
-
-  - *Availability of Sugar Traps*
-
-- *Importation* sets up the ports associated with malaria importation,
-  which may depend on `conflict` or `quarantine`
-
-  - `time_away` (\\\in\\ `XH_obj`)
-
-  - `travel_eir` (\\\in\\ `XH_obj`)
-
-  - `visitors` (\\\in\\ `patches`)
-
-  - `vis_kappa` (\\\in\\ `patches`)
+- ***Importation*** sets up the ports associated with travel and
+  importation
 
 - ***Blood Feeding*** handles all the ports that are part of the **XY**
   interface.
@@ -198,3 +134,25 @@ The order is designed to handle dependencies and minimize conflicts.
 - ***Transmission***
 
 - ***Exposure***
+
+## Advanced Set Up
+
+------------------------------------------------------------------------
+
+![Ports — The design of a port and junction includes default setup of an
+object during xds_setup on the relevant object with parameter values set
+to have no effect; an advanced setup function setup_port that replaces
+the old default parameter, evaluates the port function and checks the
+returned value, and then rebuilds and replaces the port object; and a
+function update_port, called by a Junction, that evalutes the function
+and stores the updated value.](Ports.drawio.png)
+
+**Ports** — The design of a port and junction includes default setup of
+an object during `xds_setup` on the relevant object with parameter
+values set to have no effect; an advanced setup function `setup_port`
+that replaces the old default parameter, evaluates the port function and
+checks the returned value, and then rebuilds and replaces the port
+object; and a function `update_port,` called by a `Junction`, that
+evalutes the function and stores the updated value.
+
+------------------------------------------------------------------------

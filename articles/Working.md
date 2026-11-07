@@ -1,6 +1,8 @@
 # Working with Models
 
-Previous: [*Basic
+Previous: [*Getting
+Started*](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.md)
+and possibly [*Basic
 Setup.*](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.md)
 Also, see
 [**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)
@@ -148,19 +150,24 @@ get_inits(mod)$MY
     ## $Y
     ## [1] 1
 
-## Computing for Qualitative Analysis
+## Qualitative Analysis
 
-The software includes functions that perform various analytical tasks:
+A related package, called **`ramp.qa`**, does *qualitative analysis.*
+This includes a variety of methods that are used to understand dynamical
+systems without solving them. Some of the core functions live in
+**`ramp.xds`**
 
 - Compute the steady states of model components using a method that does
   not involve simulation. These functions also provide a way of
   independently verifying the code.
 
-- Compute stable orbits.
+- Compute stable orbits and scaling relationships.
 
 - Compute vectorial capacity and its spatial-temporal dispersion, the
   human transmitting capacity and its spatial-temporal dispersion, and
   malaria reproductive numbers as pseudo-threshold conditions.
+
+- Malaria connectivity.
 
 ## Modifying Models
 
@@ -168,13 +175,13 @@ The software includes functions that perform various analytical tasks:
 models, including functions to visualize the outputs, to examine and
 change initial values and parameters, and to analyze the models.
 
-The **`xds` model object** – any object that can be solved by
-`xds_solve` or `dts_solve` – is a compound list in R. If you’re already
-familiar with the format of the **`xds`** model object, it’s possible
-examine any part of it, or change any of the parameter values or initial
-conditions. While that might be the way to go in the long run, the
-**`xds` model object** includes a set of utilities to retrieve initial
-values, parameters, and some other values of interests.
+The **xds model object** – any object that can be solved by `xds_solve`
+– is a compound list in R. If you’re already familiar with the format of
+the **`xds`** model object, it’s possible examine any part of it, or
+change any of the parameter values or initial conditions. While that
+might be the way to go in the long run, the **`xds` model object**
+includes a set of utilities to retrieve initial values, parameters, and
+some other values of interests.
 
 The code and documentation for these utilities is designed to be
 instructive, and a goal for **`ramp.xds`** has been to provide detailed

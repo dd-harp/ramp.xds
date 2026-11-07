@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Forcing: Ports &amp; Junctions • ramp.xds</title>
+<title>Forcing • ramp.xds</title>
 <!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
   window.MathJax = {
     chtml: {
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Forcing: Ports &amp; Junctions">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Forcing">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -114,9 +114,9 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Forcing: Ports &amp; Junctions</h1>
-            <h3 data-toc-skip class="subtitle">Exogenous Forcing: A
-Changing Baseline Modified by Control</h3>
+      <h1>Forcing</h1>
+            <h3 data-toc-skip class="subtitle">Extensibility and
+Flexibility with Ports and Junctions</h3>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/vignettes/Forcing.Rmd" class="external-link"><code>vignettes/Forcing.Rmd</code></a></small>
@@ -128,19 +128,22 @@ Changing Baseline Modified by Control</h3>
 <p><strong><code>ramp.xds</code></strong> is designed for model building
 with <em>progressive elaboration.</em> To enable progressive
 elaboration, model object must include structures that can handle
-advanced set up options and functions to run the algorithms.<br>
-Most of these features will not be used most of the time, so they must
-be designed in and present for the software to work at all. In most
-cases, the features are turned off. This was handled by adding
-<em>ports</em> and <em>junctions.</em></p>
+advanced set up options and functions that run the algorithms. Most of
+these features will not be used most of the time, so they must be
+designed in and present for the software to work at all, but they will
+often not get used. In particular, any parameter or term that <em>could
+be</em> time dependent must be handled differently than parameters that
+are always <em>fixed.</em> Parameters that could become time-varying are
+handled as <em>ports.</em> A <em>junctions</em> activates a set of
+ports.</p>
 <div class="section level2">
 <h2 id="ports">Ports<a class="anchor" aria-label="anchor" href="#ports"></a>
 </h2>
 <p>A <strong><em>port</em></strong> in
 <strong><code>ramp.xds</code></strong> or one of the satellite packages
-is an object that handles a term or parameter, such as temperature,
-other blood hosts, or search weights. Each <em>port</em> is defined
-by:</p>
+is an object that handles a term or parameter that could be time
+varying, such as temperature, other blood hosts, or search weights. Each
+<em>port</em> is defined by:</p>
 <ul>
 <li><p>the port object</p></li>
 <li><p>the value for the port and a function that returns it</p></li>
@@ -164,22 +167,8 @@ that has been modified by control; these ports are handled by an
 <strong>MY</strong> module or an <strong>L</strong> module.</p></li>
 <li><p>Epidemiology ports handle mass treatment; these ports are handled
 by an <strong>XH</strong> module</p></li>
-<li><p>All other po</p></li>
+<li><p>Generic ports handle other exogenous variables.</p></li>
 </ul>
-<hr>
-<div class="float">
-<img src="Ports.drawio.png" style="width:100.0%" alt="Ports — The design of a port and junction includes default setup of an object during xds_setup on the relevant object with parameter values set to have no effect; an advanced setup function setup_port that replaces the old default parameter, evaluates the port function and checks the returned value, and then rebuilds and replaces the port object; and a function update_port, called by a Junction, that evalutes the function and stores the updated value."><div class="figcaption">
-<strong>Ports</strong> — The design of a port
-and junction includes default setup of an object during
-<code>xds_setup</code> on the relevant object with parameter values set
-to have no effect; an advanced setup function <code>setup_port</code>
-that replaces the old default parameter, evaluates the port function and
-checks the returned value, and then rebuilds and replaces the port
-object; and a function <code>update_port,</code> called by a
-<code>Junction</code>, that evalutes the function and stores the updated
-value.</div>
-</div>
-<hr>
 </div>
 <div class="section level2">
 <h2 id="junctions">Junctions<a class="anchor" aria-label="anchor" href="#junctions"></a>
@@ -194,84 +183,16 @@ egg laying and emergence.</p>
 <p>The order is designed to handle dependencies and minimize
 conflicts.</p>
 <ul>
-<li>
-<p><em>Forcing</em> is a junction that handles weather, hydrology,
-shocks and development.</p>
-<ul>
-<li>
-<p><em>Weather</em> <span class="math inline">\(\in\)</span>
-<code>ramp.forcing</code></p>
-<ul>
-<li><p><code>temperature</code></p></li>
-<li><p><code>rainfall</code></p></li>
-<li><p><code>humidity</code></p></li>
-</ul>
-</li>
-<li>
-<p><em>Hydrology</em> <span class="math inline">\(\in\)</span>
-<code>ramp.forcing</code> may depend on <code>rainfall</code> and
-<code>temperature</code></p>
-<ul>
-<li><p><code>water_level</code></p></li>
-<li><p><code>water_temperature</code></p></li>
-</ul>
-</li>
-<li>
-<p><em>Shock</em> <span class="math inline">\(\in\)</span>
-<code>ramp.forcing</code></p>
-<ul>
-<li><p><code>quarantine</code></p></li>
-<li><p><code>conflict</code></p></li>
-</ul>
-</li>
-<li>
-<p><em>Development</em> <span class="math inline">\(\in\)</span>
-<code>ramp.forcing</code></p>
-<ul>
-<li><p><code>gdp</code></p></li>
-<li><p><code>housing</code></p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><em>Health</em> implements variables associated with health
-systems, which may depend on <code>quarantine</code> or
-<code>conflict</code></p>
-<ul>
-<li><p><code>nutrition</code></p></li>
-<li><p><code>awareness</code></p></li>
-<li><p><code>other_disease</code></p></li>
-</ul>
-</li>
-<li><p><em>Vector Control,</em> part 1 (<span class="math inline">\(\in\)</span> <code>ramp.forcing</code>) sets up
-variables associated with vector control, which may depend on weather
-variables.</p></li>
-<li>
-<p><em>Resources</em> (<span class="math inline">\(\in\)</span>
-<code>ramp.forcing</code>) handles ports associated with mosquito
-ecology that are not already part of one of the interfaces, which may
-depend on weather variables.</p>
-<ul>
-<li><p><em>Availability of Sugar</em></p></li>
-<li><p><em>Availability of Sugar Traps</em></p></li>
-</ul>
-</li>
-<li>
-<p><em>Importation</em> sets up the ports associated with malaria
-importation, which may depend on <code>conflict</code> or
-<code>quarantine</code></p>
-<ul>
-<li><p><code>time_away</code> (<span class="math inline">\(\in\)</span>
-<code>XH_obj</code>)</p></li>
-<li><p><code>travel_eir</code> (<span class="math inline">\(\in\)</span>
-<code>XH_obj</code>)</p></li>
-<li><p><code>visitors</code> (<span class="math inline">\(\in\)</span>
-<code>patches</code>)</p></li>
-<li><p><code>vis_kappa</code> (<span class="math inline">\(\in\)</span>
-<code>patches</code>)</p></li>
-</ul>
-</li>
+<li><p><em>Forcing</em> is a junction that handles weather, hydrology,
+shocks and development.</p></li>
+<li><p><em>Health</em> implements variables associated with health or
+health systems</p></li>
+<li><p><em>Vector Control,</em> part 1 sets up variables associated with
+vector control</p></li>
+<li><p><em>Resources</em> handles ports associated with mosquito ecology
+that are not on an interface</p></li>
+<li><p><strong><em>Importation</em></strong> sets up the ports
+associated with travel and importation</p></li>
 <li>
 <p><strong><em>Blood Feeding</em></strong> handles all the ports
 that are part of the <strong>XY</strong> interface.</p>
@@ -341,6 +262,24 @@ parameters for immature mosquitoes (<span class="math inline">\(\in\)</span> <co
 <li><p><strong><em>Transmission</em></strong></p></li>
 <li><p><strong><em>Exposure</em></strong></p></li>
 </ul>
+</div>
+<div class="section level2">
+<h2 id="advanced-set-up">Advanced Set Up<a class="anchor" aria-label="anchor" href="#advanced-set-up"></a>
+</h2>
+<hr>
+<div class="float">
+<img src="Ports.drawio.png" style="width:100.0%" alt="Ports — The design of a port and junction includes default setup of an object during xds_setup on the relevant object with parameter values set to have no effect; an advanced setup function setup_port that replaces the old default parameter, evaluates the port function and checks the returned value, and then rebuilds and replaces the port object; and a function update_port, called by a Junction, that evalutes the function and stores the updated value."><div class="figcaption">
+<strong>Ports</strong> — The design of a port
+and junction includes default setup of an object during
+<code>xds_setup</code> on the relevant object with parameter values set
+to have no effect; an advanced setup function <code>setup_port</code>
+that replaces the old default parameter, evaluates the port function and
+checks the returned value, and then rebuilds and replaces the port
+object; and a function <code>update_port,</code> called by a
+<code>Junction</code>, that evalutes the function and stores the updated
+value.</div>
+</div>
+<hr>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

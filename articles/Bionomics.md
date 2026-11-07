@@ -1,26 +1,21 @@
 # Mosquito Bionomics
 
-In **`ramp.xds,`** mosquito bionomics are handled as a junction: each
-parameter describing adult mosquito ecology or infection dynamics is
-handled as a *port:*
+In **`ramp.xds,`** mosquito bionomic parameters are designed to model *a
+changing baseline modified by control.* To implement this, exogenous
+forcing variables, mosquito bionomics and vector control are handled
+through several junction. The parameters are handled as *ports*
 
-- During *basic setup,* in **`ramp.xds`**, the parameters are assigned
-  constant values.
+- During *basic setup,* in **`ramp.xds`**, a bionomic port is set up as
+  an object that stores the original, constant values. The role of the
+  bionomic object is to set the baseline value of the parameter.
 
-- Some parameters can be time-dependent to model forcing by weather or
-  resource availability. Forcing is an *advanced setup* option. Advanced
-  setup options are in **`ramp.forcing`**
+- The port object can be configured so that some parameters can be
+  time-dependent to model forcing by weather or resource availability.
+  Forcing is an *advanced setup* option (in **`ramp.forcing`**).
 
-- Various modes of vector control are handled as another set of
-  *advanced setup* options: advanced setup options for vector control
-  are in **`ramp.control.`** Vector control effects can be handled in
-  one of two ways:
-
-  - vector control can affect the availability of resources, and the
-    effects are computed through functional forms in response to
-    available resources
-
-  - vector control effect sizes can be computed.
+- Vector control can be implemented by computing *effect sizes.* These
+  are stored and the final value is the product of the baseline and the
+  effect size.
 
 Each module in **`ramp.xds`** or in the satellite package
 **`ramp.library`** must be capable of handling time-varying parameters,

@@ -1,0 +1,355 @@
+# Advanced Setup
+
+## Progressive Elaboration
+
+Advanced setup for SimBA is how SimBA implements *progressive
+elaboration*: complex models are derived from simpler ones through
+elaboration. Each advanced setup function modifies a single feature.
+These setup functions have the form:
+
+    setup_feature(name, xds_obj, options, ix)
+
+where
+
+- *name* is the setup method;
+- `xds_obj` is an xds model object;
+- `options` are setup options, a named list;
+- `ix` is the species index.
+
+The setup function modifies *xds_obj* and returns the modified object.
+
+Each section this gives an list of advanced setup options by area, a
+brief description, and links to other documentation. In these lists,
+some of the setup options are listed in more than one location.
+
+## The **XY** jInterface
+
+Information about parasite transmission between mosquitoes (**X**) and
+humans (**Y**) through blood feeding has three parts: blood feeding,
+exposure, and transmission. Transmission is an emergent feature of blood
+feeding, but malaria importation through visitors is also handled
+
+### Blood Feeding
+
+In SimBA, blood feeding is understood as the result of mosquitoes
+*searching* for blood hosts. Each blood host has a *search weight,*
+which is used to compute *availability*.
+
+- [blood_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.html)
+  — set up or change the search weights for the human (or host)
+  population strata
+- [other_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/setup_other_blood_hosts.html)
+  – set up the of other blood hosts as a variable.
+- [blood_traps](https://dd-harp.github.io/ramp.xds/reference/setup_blood_traps.html)
+  – set up the of traps that capture blood feeding mosquitoes as a
+  variable
+- [setup_F_circadian](https://dd-harp.github.io/ramp.xds/reference/setup_F_circadian.html)
+  – set up a circadian function, the mosquito part of a function
+  translates spent into at risk.
+- [setup_f](https://dd-harp.github.io/ramp.xds/reference/setup_f.html) –
+  by default, blood feeding rates (\\f\\) are not computed as a
+  functional response to *available blood hosts*, but it is an advanced
+  setup option.
+- [setup_q](https://dd-harp.github.io/ramp.xds/reference/setup_q.html) –
+  by default, the human fractions (\\q\\) are not computed as a
+  functional response to *availabile blood hosts*, but it is an advanced
+  setup option.
+
+### Exposure
+
+Exposure is a core concept in malaria epidemiology, and it is a part of
+the blood feeding and transmission interface.
+
+- Local Exposure
+
+  - [setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_timespent.html)
+    – set up or modify the time spent matrix.
+  - [setup_blood_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.html)
+    – set up or modify the blood search weights for each population
+    stratum.
+  - [split_base_by_search_weights](https://dd-harp.github.io/ramp.demog/reference/split_base_by_search_weights.html)
+    – a utility to stratify the model by biting
+
+- Travel Malaria
+
+  - [setup_time_away](https://dd-harp.github.io/ramp.xds/reference/setup_time_away.html)
+    – the parameter describes time spent by each population stratum
+    outside the spatial domain defined by the patches
+  - [setup_travel_eir](https://dd-harp.github.io/ramp.xds/reference/setup_travel_eir.html)
+    – the average daily EIR experienced by each population stratum while
+    traveling
+  - [split_base_by_travel](https://dd-harp.github.io/ramp.demog/reference/split_base_by_travel.html)
+    – a stratification utility. It segments the population and modifies
+    the blood search weights.
+
+- Environmental Heterogeneity:
+  [setup_exposure](https://dd-harp.github.io/ramp.xds/reference/setup_exposure.html)
+  — this changes the model about the distribution of the expectation for
+  infectious biting.
+
+- Pre-erythrocytic immunity is defined by the **XH** modules. Parameters
+  can be changed using
+  [change_XH_pars](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.html)
+
+### Visitors
+
+Information about visitors is used by the transmission module.
+
+- [setup_visitors](https://dd-harp.github.io/ramp.xds/reference/visitors.html)
+  — modify the variable to describing the of human visitors, who get are
+  bitten by mosquitoes. During setup, the variable is set to zero.
+- [setup_vis_kappa](https://dd-harp.github.io/ramp.xds/reference/vis_kappa.html)
+  — modify the interface variable that describes the of visitors. During
+  setup, it is set to zero.
+
+## The **ML** Interface
+
+The **ML** interface manages the habitats, egg laying and emergence. At
+basic setup, the habitat **membership** vector is used to construct the
+habitat matrix that \\N\\ sums adults emerging from aquatic habitats by
+patch.
+
+To build models,
+
+- add_habitat_buffer
+
+### Habitats and Egg Laying
+
+- [setup_habitat_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.html)
+  – set up or modify the habitat search weights.
+- [setup_bad_habitats](https://dd-harp.github.io/ramp.xds/reference/setup_bad_habitats.html)
+  – modify the availability of habitats, water where mosquitoes would
+  lay eggs but that would never support development of adults. During
+  setup, the variable is set to zero.
+- [setup_ovitraps](https://dd-harp.github.io/ramp.xds/reference/setup_ovitraps.html)
+  – modify the availability of habitats, water where mosquitoes would
+  lay eggs but that would never support development of adults. During
+  setup, the variable is set to zero.
+- [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.html)
+  – by default, egg laying rates (\\\nu\\) are not computed as a
+  functional response to available, but it is an advanced setup option.
+
+## Adult Mosquitoes
+
+### Bionomics
+
+Some of the parameters describing mosquito behavior or ecology are set
+up to be computed as a *baseline* that is *modified by control*. This is
+slightly misleading, because some models can compute the effects and
+effect sizes of control as a functional response to contact with some
+kind of vector control. By default, these parameters are set to constant
+values and checked, but they can be modified using advanced setup
+options:
+
+- [setup_f](https://dd-harp.github.io/ramp.xds/reference/setup_f.html) –
+  set up or modify blood feeding rates or the way they are computed
+- [setup_q](https://dd-harp.github.io/ramp.xds/reference/setup_q.html) –
+  set up or modify the human fractions or the way they are computed
+- [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.html)
+  – set up or modify egg laying rates or the way they are computed
+- [setup_g](https://dd-harp.github.io/ramp.xds/reference/setup_g.html) –
+  set up or modify mosquito mortality rates or the way they are computed
+- [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.html)
+  – set up or modify patch emigration rates or the way they are computed
+- [setup_mu](https://dd-harp.github.io/ramp.xds/reference/setup_mu.html)
+  – set up or modify emigration loss fractions or the way they are
+  computed
+- [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.html)
+  – set up or modify the mosquito dispersal matrix or the way it is
+  computed
+- [setup_eip](https://dd-harp.github.io/ramp.xds/reference/setup_eip.html)
+  – set up or modify the EIP or the way they are computed
+
+For more information, see Supplement 7.
+
+## Malaria Importation
+
+- Travel Malaria (also see Exposure, above)
+
+  - [setup_time_away](https://dd-harp.github.io/ramp.xds/reference/setup_time_away.html)
+    – the parameter describes time spent by each population stratum
+    outside the spatial domain defined by the patches
+  - [setup_travel_eir](https://dd-harp.github.io/ramp.xds/reference/setup_travel_eir.html)
+    – the average daily EIR experienced by each population stratum while
+    traveling
+  - [split_base_by_travel](https://dd-harp.github.io/ramp.demog/reference/setup_q.html)
+    – a stratification utility to segment populations to model
+    heterogeneous travel.
+
+- Visitors
+
+  - [setup_visitors](https://dd-harp.github.io/ramp.xds/reference/visitors.html)
+    — modify the variable to describing the of human visitors, who get
+    are bitten by mosquitoes. During setup, the variable is set to zero.
+  - [setup_vis_kappa](https://dd-harp.github.io/ramp.xds/reference/vis_kappa.html)
+    — modify the interface variable that describes the of visitors.
+    During setup, it is set to zero.
+
+### Immature Mosquito Ecology
+
+- setup_capacity
+
+### Malaria Epidemiology
+
+### Demography
+
+- [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.html)
+  – set up or modify the birth rates for the human or host population
+- [setup_deaths](https://dd-harp.github.io/ramp.xds/reference/setup_deaths.html)
+  – set up or modify the death rates for the human or host population
+- [setup_migration](https://dd-harp.github.io/ramp.demog/reference/setup_migration.html)
+  – set up migration: individuals move among strata
+- [stratify_by_age](https://dd-harp.github.io/ramp.demog/reference/stratify_by_age.html)
+  – set up an age-structured model, a stratifiction utility
+
+### Mass Treatment
+
+- [setup_mda](https://dd-harp.github.io/ramp.forcing/reference/setup_mda.html)
+  – set up mass drug administration
+- [setup_msat](https://dd-harp.github.io/ramp.forcint/reference/setup_msat.html)
+  – set up mass screen and treat
+
+### Progressive Stratification
+
+- [setup_stratify_by_age](https://dd-harp.github.io/ramp.demog/reference/stratify_by_age.html)
+  – set up an age-structured model with aging and age-specific mortality
+- [split_base_by_travel](https://dd-harp.github.io/ramp.demog/reference/split_base_by_travel.html)
+  – segment the existing strata for heterogeneous travel malaria
+- [split_base_by_care_seeking](https://dd-harp.github.io/ramp.demog/reference/split_base_by_care_seeking.html)
+  – segment the existing strata for heterogeneous care seeking
+- [split_base_by_search_weights](https://dd-harp.github.io/ramp.demog/reference/split_base_by_search_weights.html)
+  – segment existing strata for heterogeneous biting
+
+## Exogenous Forcing
+
+In SimBA, exogenous forcing can be implemented in several ways.
+
+- Any dynamical term can be used to force the system by configuring a
+  trivial module.
+- The mosquito bionomic parameters can be set up to be computed as a
+  function of resource availability or weather variables (see above)
+- Vector control
+
+### Trivial Modules
+
+Trivial modules set up *forced_by*, so
+
+- [change_mean_forcing](https://dd-harp.github.io/ramp.xds/reference/change_mean_forcing.html)
+  – changes the value of the mean forcing function
+
+- The Seasonal Pattern Function, \\S(t)\\
+
+  - [change_F_season](https://dd-harp.github.io/ramp.xds/reference/change_F_season.html)
+    – replaces the seasonal pattern function with a new function
+  - [change_season](https://dd-harp.github.io/ramp.forcing/reference/change_season.html)
+    – replace \_par and rebuild the seasonal pattern function
+
+- The Trend Pattern Function, \\T(t)\\
+
+  - [change_F_trend](https://dd-harp.github.io/ramp.xds/reference/change_F_trend.html)
+    – replaces the trend pattern function with a new function
+  - [change_trend](https://dd-harp.github.io/ramp.forcing/reference/change_trend.html)
+    – replace \_par and rebuild the trend pattern function
+
+- The Shock Function, \\K(t)\\
+
+  - [change_F_shock](https://dd-harp.github.io/ramp.xds/reference/change_F_shock.html)
+    – replaces the shock function with a new function
+  - [change_shock](https://dd-harp.github.io/ramp.forcing/reference/change_shock.html)
+    – replace \_par and rebuild the pattern function
+
+- Relative Biting by Age
+
+  - [change_F_age](https://dd-harp.github.io/ramp.xds/reference/change_F_age.html)
+    – replaces the function to compute relative biting rates by age with
+    a new function
+  - [change_age](https://dd-harp.github.io/ramp.forcing/reference/change_age.html)
+    – replace \_par and rebuild the function that computes relative
+    biting rates by age
+
+- [rebuild_forcing_functions](https://dd-harp.github.io/ramp.forcing/reference/rebuild_forcing_functions.html)
+
+### Weather Variables
+
+Several variables
+
+- [setup_rainfall](https://dd-harp.github.io/ramp.forcint/reference/setup_rainfall.html)
+  – add an exogenous variable describing rainfall
+
+- [setup_temperature](https://dd-harp.github.io/ramp.forcing/reference/setup_temperature.html)
+  – add an exogenous variable describing temperature
+
+- [setup_humidity](https://dd-harp.github.io/ramp.forcing/reference/setup_humidity.html)
+  – add an exogenous variable describing humidity
+
+### Resources
+
+- [setup_blood_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.html)
+  – modify the blood search weights
+- [setup_other_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/setup_other_blood_hosts.html)
+  – modify the availability of alternative blood hosts
+- [setup_blood_traps](https://dd-harp.github.io/ramp.xds/reference/setup_blood_traps.html)
+  – modify the availability of traps that capture blood feeding
+  mosquitoes
+- [setup_habitat_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.html)
+  – modify the habitat search weights
+- [setup_bad_habitats](https://dd-harp.github.io/ramp.xds/reference/setup_bad_habitats.html)
+  – modify the availability of bad habitats, water where mosquitoes
+  would lay eggs but that would never support development of adults.
+  During setup, the variable is set to zero.
+- [setup_ovitraps](https://dd-harp.github.io/ramp.xds/reference/setup_ovitraps.html)
+  – modify the availability of ovitraps
+- [setup_sugar](https://dd-harp.github.io/ramp.xds/reference/setup_sugar.html)
+  – set up a variable for the availability of sugar
+
+## Vector Control
+
+### Bed Nets
+
+- [setup_bed_nets](https://dd-harp.github.io/ramp.forcing/reference/setup_bed_nets.html)
+  –
+
+### IRS
+
+- [setup_irs](https://dd-harp.github.io/ramp.forcing/reference/setup_irs.html)
+  –
+
+### LSM
+
+- [setup_lsm](https://dd-harp.github.io/ramp.forcing/reference/setup_lsm.html)
+  –
+
+## Multi-Species Models
+
+- setup_vector_species
+- setup_host_species
+
+## Spatial Utilities
+
+- setup_indoor_spaces
+- setup_habitat_buffer
+
+## Internals
+
+### Ports and Junctions
+
+To enable progressive elaboration, **xds** model object must include
+structures to handle the advanced options.
+
+Most of these features will not be used most of the time, but they must
+be designed in and present for the software to work at all.
+
+Extensibility for variables involved in one of the interfaces or part of
+a dynamical component are handled through *ports* and *junctions:*
+objects designed to handle heterogeneity and exogenous forcing.
+
+A port is an object that makes any parameter or term extensible: most
+ports are set up by default to have no effect, but it can be modified to
+have an effect through advanced setup.
+
+A junction activates a set of ports.
+
+Junctions handle weather variables, intervention coverage, resource
+dynamics, baseline mosquito bionomics, vector control effect sizes, mass
+pharmaceutical interventions, and malaria importation. Advanced setup
+options to configure ports are discussed in the following sections.

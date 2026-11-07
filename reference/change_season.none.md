@@ -6,7 +6,7 @@ Change parameters for the seasonality function when `forced_by = "none"`
 
 ``` r
 # S3 method for class 'none'
-change_season(X, xds_obj, s = 1)
+change_season(X, xds_obj, ix = 1)
 ```
 
 ## Arguments
@@ -19,7 +19,7 @@ change_season(X, xds_obj, s = 1)
 
   an **`xds`** model object
 
-- s:
+- ix:
 
   the vector species index
 
