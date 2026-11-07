@@ -1,24 +1,142 @@
-# Ports & Junctions
+# Forcing
 
-The design of **`ramp.xds`** facilitates modeling malaria as a changing
-baseline that has been modified by control. Most of the functionality is
-found in the satellite packages, but **`ramp.xds`** sets this up by
-adding *ports* and *junctions.*
+**`ramp.xds`** is designed for model building with *progressive
+elaboration.* To enable progressive elaboration, model object must
+include structures that can handle advanced set up options and functions
+that run the algorithms. Most of these features will not be used most of
+the time, so they must be designed in and present for the software to
+work at all, but they will often not get used. In particular, any
+parameter or term that *could be* time dependent must be handled
+differently than parameters that are always *fixed.* Parameters that
+could become time-varying are handled as *ports.* A *junctions*
+activates a set of ports.
 
-- a ***port*** in **`ramp.xds`** or one of the satellite packages is an
-  object that handles a term or parameter, such as temperature, other
-  blood hosts, or search weights. Each *port* is defined by:
+## Ports
 
-  - the port object
+A ***port*** in **`ramp.xds`** or one of the satellite packages is an
+object that handles a term or parameter that could be time varying, such
+as temperature, other blood hosts, or search weights. Each *port* is
+defined by:
 
-  - the value for the port and a function that returns it
+- the port object
 
-  - advanced setup functions
+- the value for the port and a function that returns it
 
-  - an updating function
+- advanced setup functions
 
-- a ***junction*** in **`ramp.xds`** is a function that implements
-  several *ports.*
+- an updating function
+
+There are four classes of ports in SimBA.
+
+- Structural ports handle terms on an interface:
+
+  - parameters or variables affecting the search for blood, blood
+    feeding, transmission or exposure;
+
+  - parameters or variables affecting the search for aquatic habitats
+    and egg laying, and emergence;
+
+- [Mosquito
+  bionomics](https://dd-harp.github.io/ramp.xds/articles/articles/Bionomics.md)
+  ports are designed to model malaria transmission by mosquitoes as a
+  baseline that has been modified by control; these ports are handled by
+  an **MY** module or an **L** module.
+
+- Epidemiology ports handle mass treatment; these ports are handled by
+  an **XH** module
+
+- Generic ports handle other exogenous variables.
+
+## Junctions
+
+A ***junction*** in **`ramp.xds`** is a function that implements several
+*ports.* The *Junctions* are called in **`xds_compute_terms`**,
+sandwiched between ***Interface Functions*** that set the values of
+terms that computed internally to handle transmission and exposure, or
+egg laying and emergence.
+
+The order is designed to handle dependencies and minimize conflicts.
+
+- *Forcing* is a junction that handles weather, hydrology, shocks and
+  development.
+
+- *Health* implements variables associated with health or health systems
+
+- *Vector Control,* part 1 sets up variables associated with vector
+  control
+
+- *Resources* handles ports associated with mosquito ecology that are
+  not on an interface
+
+- ***Importation*** sets up the ports associated with travel and
+  importation
+
+- ***Blood Feeding*** handles all the ports that are part of the **XY**
+  interface.
+
+  - `blood_search_weights` (\\(\in\\) `XH_obj`)
+
+  - `time_spent` (\\(\in\\) `XH_obj`)
+
+  - `other_blood_hosts` (\\(\in\\) `patches`)
+
+  - `blood_traps` (\\(\in\\) `patches`)
+
+  - **Compute Availability:**
+
+    - `available_hosts` — \\(W\\)
+
+    - `available_blood_hosts` — \\(B\\)
+
+- ***Aquatic Habitats*** handles all the ports that are part of the
+  **MY** interface.
+
+  - `habitat_search_weights` (\\(\in\\) `L_obj`)
+
+  - `bad_habitats` (\\(\in\\) `patches`)
+
+  - `ovitraps` (\\(\in\\) `patches`)
+
+  - **Compute Availability:**
+
+    - `available_habitats` — \\(Q\\)
+
+    - `available_water` — \\(W\\)
+
+- *Mosquito Bionomics,* part 1: *a baseline* — handles mosquito
+  bionomics ports. Part 1 sets the value of a baseline as well as models
+  for vector control that integrate the effects through resource
+  availability.
+
+  - `MBionomics` sets the value for adult mosquitoes (\\(\in\\)
+    `MY_obj`)
+
+  - `LBionomics` sets the value for immature mosquitoes (\\(\in\\)
+    `L_obj`)
+
+- *Vector Control,* part 2 computes coverage and effect sizes of vector
+  control, given the baseline.
+
+- *Mosquito Bionomics,* part 2: *modified by control* — handles effect
+  sizes for mosquito bionomics ports
+
+  - `MEffectSizes` applies effect sizes to bionomic parameters for adult
+    mosquitoes (\\(\in\\) `MY_obj`)
+
+  - `LEffectSizes` applies effect sizes to bionomic parameters for
+    immature mosquitoes (\\(\in\\) `L_obj`)
+
+- ***ML Interface***
+
+  - ***Emergence***
+
+  - ***EggLaying***
+
+- ***Transmission***
+
+- ***Exposure***
+
+## Advanced Set Up
 
 ------------------------------------------------------------------------
 
@@ -39,95 +157,3 @@ object; and a function `update_port,` called by a `Junction`, that
 evalutes the function and stores the updated value.
 
 ------------------------------------------------------------------------
-
-## Junctions
-
-The junctions in **`ramp.xds`** get called in a specific order to
-minimize *conflicts* that could arise. The junctions are all functions
-that get implemented in `xds_compute_terms.` They are:
-
-- **Forcing** — \\\emptyset \in\\ `ramp.xds`
-
-  - **Weather** \\\in\\ `ramp.forcing`
-
-    - `update_temperature`
-
-    - `update_rainfall`
-
-    - `update_humidity`
-
-  - **Weather** \\\in\\ \`ramp.forcing
-
-- **Resources**
-
-  - `update_blood_search_weights`
-
-  - `update_other_blood`
-
-- **Health** - functions to setup mass treatment, mass vaccination, and
-  more
-
-- **Vector Control** - functions to *distribute* vector control
-  commodities.
-
-## Forcing
-
-`Forcing` :: **`ramp.xds`** sets up an empty *junction* handle exogenous
-forcing by weather and hydrology. Models to implement forcing are in
-**`ramp.forcing`**
-
-## Resources
-
-## Blood Feeding
-
-Several ports handle blood feeding:
-
-- search weights
-
-- other blood hosts
-
-- traps
-
-## Egg Laying
-
-- search weights
-
-- bad habitats
-
-- ovitraps
-
-## Forcing
-
-## Mosquito Bionomics
-
-Depending on the module, many of the bionomic parameters are set up as
-ports.
-
-- Some variables are set up in the first phase of `VectorControl`
-
-- The values of
-
-- The values of parameters or functions stored on the object set the
-  *baseline* values, which are set in a call to `MBionomics` or
-  `LBionomics`.
-
-- The
-
-`VectorControl` and `VectorControlEffectSizes`:: **`ramp.xds`** sets up
-an empty *junction* to handle various aspects of vector control. Models
-to implement vector control are in **`ramp.control`**
-
-## Health
-
-`Health`:: **`ramp.xds`** sets up an empty *junctions* to handle various
-aspects of health systems interventions.
-
-## Importation
-
-- time away
-
-- travel eir
-
-- visitors
-
-- vis_kappa

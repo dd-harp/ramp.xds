@@ -1,17 +1,17 @@
 # Make a Sine-based Seasonality Function
 
-Return a seasonal pattern \\S(t)\\, a function of the form \$\$S(t) = c
-\left(1+\epsilon + \sin\left(\frac{2 \pi
-(t-\tau)}{365}\right)\right)^p\$\$ where \\c\\ is a normalizing
+Return a seasonal pattern \\(S(t)\\), a function of the form \$\$S(t) =
+c \left(1+\epsilon + \sin\left(\frac{2 \pi
+(t-\tau)}{365}\right)\right)^p\$\$ where \\(c\\) is a normalizing
 constant, and
 
-- \\\epsilon \geq 0\\ or `bottom`
+- \\(\epsilon \geq 0\\) or `bottom`
 
-- \\\tau\\ or `phase`
+- \\(\tau\\) or `phase`
 
-- \\p\\ or `pw`
+- \\(p\\) or `pw`
 
-The algorithm sets the constant \\c\\ or `norm` such that
+The algorithm sets the constant \\(c\\) or `norm` such that
 \$\$\int_0^{365} S(t) dt=c\$\$ where the default is `norm=365.`
 
 ## Usage

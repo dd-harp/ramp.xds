@@ -13,25 +13,25 @@ mortality and delayed maturation, based on Smith DL, *et al.* (2013).
 
 - `psi`:
 
-  maturation rate (\\\psi\\)
+  maturation rate (\\(\psi\\))
 
 - `xi`:
 
-  delayed maturation parameter in response to mean crowding (\\\xi\\)
+  delayed maturation parameter in response to mean crowding (\\(\xi\\))
 
 - `phi`:
 
-  density-independent death rate (\\\phi\\)
+  density-independent death rate (\\(\phi\\))
 
 - `theta`:
 
-  slope of density-dependent mortality (\\\theta\\)
+  slope of density-dependent mortality (\\(\theta\\))
 
 ## Egg Laying
 
 - `eta`:
 
-  the egg laying rate, (\\\eta\\)
+  the egg laying rate, (\\(\eta\\))
 
 ## Dynamics
 
@@ -44,7 +44,7 @@ The emergence rate of adult, female mosquitoes from each patch is:
 
 ## Notes
 
-Setting \\\xi = 0\\ recovers the model of Smith DL, *et al.* (2013).
+Setting \\(\xi = 0\\) recovers the model of Smith DL, *et al.* (2013).
 
 ## References
 

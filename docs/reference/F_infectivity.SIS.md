@@ -2,7 +2,7 @@
 
 This function computes the fraction of infectious bites that cause an
 infection. The SIS model, assumes a constant fraction causes infection,
-\\b\\.
+\\(b\\).
 
 ## Usage
 
@@ -27,4 +27,4 @@ F_infectivity(y, xds_obj, i)
 
 ## Value
 
-The constant \\b\\
+The constant \\(b\\)

@@ -4,14 +4,14 @@
 \alias{setup_XH_inits}
 \title{Setup initial values (\strong{XH})}
 \usage{
-setup_XH_inits(xds_obj, i = 1, options = list())
+setup_XH_inits(xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
-
 \item{options}{a \link{list}}
+
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object

@@ -68,46 +68,46 @@ transmission potential, and the parasite’s extrinsic incubation period
 (EIP). In **`ramp.xds`**, we use a standard naming convention for core
 bionomic parameters, listed below
 
-- **\\f\\ — blood feeding rate**:
+- **\\(f\\) — blood feeding rate**:
 
   The per-capita rate at which a mosquito takes blood meals per day.
-  Together with \\q\\, it determines the human blood feeding rate, the
+  Together with \\(q\\), it determines the human blood feeding rate, the
   number of human blood meals, per mosquito, per day.
 
-- **\\q\\ — human blood feeding fraction**: The fraction of blood meals
-  taken on humans (as opposed to other vertebrate hosts).
+- **\\(q\\) — human blood feeding fraction**: The fraction of blood
+  meals taken on humans (as opposed to other vertebrate hosts).
 
-- **\\\nu\\ — egg laying rate**: The per-capita daily rate at which
+- **\\(\nu\\) — egg laying rate**: The per-capita daily rate at which
   mosquitoes lay eggs. Since the eggs are laid in a batch, another
   parameter sets the total number of eggs laid
 
-- **\\g\\ — mosquito mortality rate**:
+- **\\(g\\) — mosquito mortality rate**:
 
   The per-capita daily mortality rate of adult mosquitoes while in a
-  patch. The daily survival probability is \\e^{-g}\\.
+  patch. The daily survival probability is \\(e^{-g}\\).
 
-- **\\\sigma\\ — emigration rate**:
+- **\\(\sigma\\) — emigration rate**:
 
   The per-capita daily rate at which mosquitoes leave a patch. Together
-  with the dispersal kernel, \\\sigma\\ determines the spatial
+  with the dispersal kernel, \\(\sigma\\) determines the spatial
   redistribution of mosquitoes.
 
-- **\\\mu\\ — emigration loss**: The fraction of emigrating mosquitoes
+- **\\(\mu\\) — emigration loss**: The fraction of emigrating mosquitoes
   that are lost: it includes mortality conditioned on emigration, and
   loss of emigrating mosquitoes from the system.
 
-- **\\\tau\\ — extrinsic incubation period (EIP)**: The time lag between
-  the bite that infects a mosquito and the moment when it becomes
-  infective.
+- **\\(\tau\\) — extrinsic incubation period (EIP)**: The time lag
+  between the bite that infects a mosquito and the moment when it
+  becomes infective.
 
-- **\\K\\ — mosquito dispersal matrix**: A matrix that describes how
+- **\\(K\\) — mosquito dispersal matrix**: A matrix that describes how
   mosquitoes move around with a standard form: the diagonal terms are ,
   and the columns sum to .
 
-- **\\\Omega\\ — mosquito mortality matrix**: A matrix that combines
+- **\\(\Omega\\) — mosquito mortality matrix**: A matrix that combines
   mortality and emigration to describe mosquito mortality and dispersal.
 
-- **\\\Upsilon\\ — mosquito survival through the EIP**: A matrix
+- **\\(\Upsilon\\) — mosquito survival through the EIP**: A matrix
   describing survival and dispersal through a fixed EIP. It is used in
   delay differential to compute the proportion of mosquitoes that
   survive to become infectious.
@@ -124,39 +124,40 @@ bionomic parameters, listed below
   from mosquitoes to humans. Use
   `help.search("EIR", fields = "concept")` to find related functions.
 
-- **\\\beta\\ — blood feeding / mixing matrix**:
+- **\\(\beta\\) — blood feeding / mixing matrix**:
 
   A matrix of dimension `nStrata` × `nPatches` that describes the
   distribution of bites from mosquitoes in each patch onto human strata.
   It reflects both the spatial distribution of humans and their relative
   attractiveness to mosquitoes.
 
-- **\\\kappa\\ — net infectiousness**:
+- **\\(\kappa\\) — net infectiousness**:
 
   The probability that a mosquito taking a blood meal on a human
   population becomes infected, averaged over all strata. Computed as a
-  weighted sum of per-stratum infectiousness \\c_i\\ weighted by human
+  weighted sum of per-stratum infectiousness \\(c_i\\) weighted by human
   population size.
 
-- **\\b\\ — mosquito-to-human transmission efficiency**: The probability
-  that an infectious bite results in a human infection. Also called the
-  sporozoite transmission efficiency.
+- **\\(b\\) — mosquito-to-human transmission efficiency**: The
+  probability that an infectious bite results in a human infection. Also
+  called the sporozoite transmission efficiency.
 
-- **\\c\\ — human-to-mosquito transmission efficiency**: The probability
-  that a mosquito becomes infected when taking a blood meal on an
-  infectious human. Also called the gametocyte transmission efficiency.
+- **\\(c\\) — human-to-mosquito transmission efficiency**: The
+  probability that a mosquito becomes infected when taking a blood meal
+  on an infectious human. Also called the gametocyte transmission
+  efficiency.
 
-- **\\Z\\ — infective mosquito density**:
+- **\\(Z\\) — infective mosquito density**:
 
   The density of infectious (sporozoite-positive) adult mosquitoes per
-  patch. Combined with \\fq\\ and \\\beta\\, \\Z\\ determines the EIR
-  experienced by each human stratum.
+  patch. Combined with \\(fq\\) and \\(\beta\\), \\(Z\\) determines the
+  EIR experienced by each human stratum.
 
-- **\\fqZ\\ — infective biting density**:
+- **\\(fqZ\\) — infective biting density**:
 
-  The product of the human biting rate (\\fq\\) and the infective
-  mosquito density (\\Z\\), giving the rate of infectious bites per unit
-  area per day in each patch.
+  The product of the human biting rate (\\(fq\\)) and the infective
+  mosquito density (\\(Z\\)), giving the rate of infectious bites per
+  unit area per day in each patch.
 
 - **FoI — Force of Infection**: The per-capita rate at which susceptible
   humans become infected per unit time. The FoI depends on the EIR and
@@ -201,8 +202,8 @@ bionomic parameters, listed below
 - **dde — delay differential equation**:
 
   An **`xde`** model in which the right-hand side depends on the state
-  at earlier times, specifically at the lagged time \\t - \tau\\ where
-  \\\tau\\ is the extrinsic incubation period (EIP). Used by modules
+  at earlier times, specifically at the lagged time \\(t - \tau\\) where
+  \\(\tau\\) is the extrinsic incubation period (EIP). Used by modules
   such as `GeRM`.
 
 - **dts — discrete time system**:
@@ -223,7 +224,7 @@ bionomic parameters, listed below
 
 - **trace function**:
 
-  A function of time \\t\\ used to specify an exogenous input to the
+  A function of time \\(t\\) used to specify an exogenous input to the
   model. Built using `make_function()` and parameterised with
   `makepar_*` helpers. Trace functions can represent constant, seasonal,
   trend-driven, or spline-interpolated signals.

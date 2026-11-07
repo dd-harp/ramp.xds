@@ -20,7 +20,7 @@ xds_setup_aquatic(
 
 \item{nHabitats}{is the number of habitats}
 
-\item{Lname}{is a character string defining a \strong{L} Component module}
+\item{Lname}{the name of an \strong{L} module (see \link{L_module_list})}
 
 \item{Loptions}{a list to configure the \strong{L} Component module}
 

@@ -30,4 +30,4 @@ F_H(t, y, xds_obj, i)
 
 ## Value
 
-Human (host) population density, \\H\\
+Human (host) population density, \\(H\\)

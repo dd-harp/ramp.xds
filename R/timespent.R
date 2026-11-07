@@ -62,7 +62,14 @@ NULL
 
 
 #' @title Set up a time spent matrix
+#' 
+#' @description Available methods are:
+#' - `as_matrix` --- use a matrix provided
+#' - `at_home` --- a fraction at home, or evenly among the rest (see [make_timespent_at_home])
+#' - `xy` --- use patch locations and a kernel function (see [make_timespent_xy])
 #'
+#' If the first argument is a matrix, the `as_matrix` method is used.
+#' 
 #' @param name a matrix or setup function name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
@@ -142,8 +149,14 @@ setup_timespent.at_home = function(name, xds_obj, options = list(), i=1){
 
 #' @title Make a time spent matrix 
 #' @description 
-#' A fraction of time is spent at home. The remaining time 
-#' is divided equally among the other patches. 
+#' Construct a time spent matrix, where a fraction of time `at_home` is spent at home. 
+#' 
+#' The remaining time is divided equally among the other patches. 
+#' 
+#' An optional argument allows for some time to be spent `not_at_risk`
+#' 
+#' @seealso [setup_timespent]
+#' 
 #' @param nPatches is the number of patches
 #' @param residence is the home patch for each stratum
 #' @param options is a set of options that overwrites the defaults
@@ -200,6 +213,10 @@ setup_timespent.xy = function(name, xds_obj, options=list(), i=1) {
 }
 
 #' @title Make a time spent matrix using location data
+#' 
+#' @description Build a time spent matrix from a set of patch locations
+#' and a kernel function that weights by distance. 
+#' 
 #' @param xds_obj the **`xds`** model object
 #' @param xy is the xy-locations of the patches
 #' @param residence is the home patch for each stratum
@@ -207,6 +224,7 @@ setup_timespent.xy = function(name, xds_obj, options=list(), i=1) {
 #' @param kern is a function to compute time spent away from home
 #' @param kopts options to pass to the kernel
 #' @return a [matrix]
+#' @seealso [setup_timespent]
 #' @export
 make_timespent_xy = function(xds_obj, xy, residence, stay, kern, kopts=list()) {
   nPatches = dim(xy)[1]

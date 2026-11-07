@@ -47,9 +47,9 @@ closer to one published by Aron & May (1982).
 
 - `tau`:
 
-  extrinsic incubation period (\\\tau\\)
+  extrinsic incubation period (\\(\tau\\))
 
-The *demographic matrix* \\\Omega\\ is formulated as \$\$ \Omega =
+The *demographic matrix* \\(\Omega\\) is formulated as \$\$ \Omega =
 \mbox{diag} \left( g + \sigma \mu \right) + K \cdot \mbox{diag} \left(
 \sigma \left(1-\mu\right) \right) \$\$ survival and dispersal through
 the EIP is \$\$ \Upsilon = e^{-\Omega \tau} \$\$
@@ -58,11 +58,12 @@ the EIP is \$\$ \Upsilon = e^{-\Omega \tau} \$\$
 
 The dynamical system is described by a coupled set of delay differential
 equations. In these equations, a sub-scripted variable or term denotes
-its lagged value: \\M\_\tau = M(t-\tau)\\.
+its lagged value: \\(M\_\tau = M(t-\tau)\\).
 
-\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\\\ dY/dt &=
-fq\kappa(M-Y) - \Omega \cdot Y \\\\ dZ/dt &= \Upsilon \cdot
-(fq\kappa)\_\tau(M\_\tau-Y\_\tau) - \Omega \cdot Z \\\\ \end{array} \$\$
+\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\\\\\\\ dY/dt
+&= fq\kappa(M-Y) - \Omega \cdot Y \\\\\\\\ dZ/dt &= \Upsilon \cdot
+(fq\kappa)\_\tau(M\_\tau-Y\_\tau) - \Omega \cdot Z \\\\\\\\ \end{array}
+\$\$
 
 ## Note
 

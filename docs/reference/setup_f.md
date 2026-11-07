@@ -3,7 +3,7 @@
 Configure and validate models with constant blood feeding rates. This
 calls
 [setup_F_f](https://dd-harp.github.io/ramp.xds/reference/setup_F_f.md)
-to configure a function \\F_f\\, and call
+to configure a function \\(F_f\\), and call
 [change_f](https://dd-harp.github.io/ramp.xds/reference/change_f.md).
 
 ## Usage
@@ -38,7 +38,7 @@ an **`xds`** model object
 
 Use
 [setup_F_f](https://dd-harp.github.io/ramp.xds/reference/setup_F_f.md)
-and not setup_f if the baseline values of \\f\\ will vary over time.
+and not setup_f if the baseline values of \\(f\\) will vary over time.
 
 ## See also
 

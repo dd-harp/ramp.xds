@@ -4,14 +4,14 @@
 \alias{change_XH_pars.hMoI}
 \title{Change parameters for \code{hMoI} (\strong{XH})}
 \usage{
-\method{change_XH_pars}{hMoI}(xds_obj, i = 1, options = list())
+\method{change_XH_pars}{hMoI}(xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the vector species index}
-
 \item{options}{a named list}
+
+\item{i}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object

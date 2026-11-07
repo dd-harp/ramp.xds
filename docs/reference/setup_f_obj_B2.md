@@ -5,7 +5,7 @@ functional response to availability of blood hosts,
 \$\$f=F_feeding_rate(B) = \frac{f_x s_f B}{1+s_f B}\$\$
 
 Set up an object to compute dynamic blood feeding rates as a type 2
-functional response to availability of blood hosts, \\B\\
+functional response to availability of blood hosts, \\(B\\)
 
 ## Usage
 

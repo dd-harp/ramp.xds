@@ -27,4 +27,4 @@ F_mozy_mort(t, xds_obj, s)
 
 ## Value
 
-\\g\\, the baseline human fraction
+\\(g\\), the baseline human fraction

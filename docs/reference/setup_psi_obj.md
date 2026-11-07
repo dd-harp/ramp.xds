@@ -1,6 +1,6 @@
 # Set up psi object (maturation rate)
 
-Set up an object to compute the maturation rate \\psi\\
+Set up an object to compute the maturation rate \\(psi\\)
 
 ## Usage
 

@@ -1,6 +1,6 @@
 # Update Blood Search Weights
 
-Port function for blood feeding search weights, \\\omega\\. Dispatches
+Port function for blood feeding search weights, \\(\omega\\). Dispatches
 on `class(xds_obj$XH_obj[[i]]$search_obj)`.
 
 ## Usage

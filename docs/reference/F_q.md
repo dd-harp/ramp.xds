@@ -1,7 +1,7 @@
 # Compute the human feeding fraction, q
 
 This method dispatches on the type of `q_obj` and computes the human
-feeding fraction, \\q\\.
+feeding fraction, \\(q\\).
 
 ## Usage
 

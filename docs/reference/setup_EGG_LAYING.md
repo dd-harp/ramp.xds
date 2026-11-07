@@ -30,13 +30,13 @@ interface is defined by an object called `egg_laying` that is attached
 to the `xds` object `xds_obj` as `xds_obj$egg_laying`. The interface
 includes
 
-- a habitat membership matrix, \\N\\ made by
+- a habitat membership matrix, \\(N\\) made by
   [make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
 
 - the habitat search weights
 
 - a quantity that is motivated by mosquito searching for resources,
-  called habitat availability \\Q\\, computed by
+  called habitat availability \\(Q\\), computed by
   [F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md);
 
 - the availability of ovitraps
@@ -46,7 +46,7 @@ includes
 - the availability of anything that attracts egg laying mosquitoes,
   including ovitraps and unsuitable habitats
 
-- the egg distribution matrix \\O\\, made by
+- the egg distribution matrix \\(O\\), made by
   [make_U_matrix](https://dd-harp.github.io/ramp.xds/reference/make_U_matrix.md)
 
 - a vector that stores eggs laid

@@ -86,11 +86,13 @@ xds_setup_eir(
 
 - Xname:
 
-  is a character string specifying an **X** Component module
+  the name of an **XH** module (see
+  [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md))
 
 - XHoptions:
 
-  a list to configure the **X** Component module
+  a named list to set parameter values and initial conditions for the
+  **XH** module
 
 - HPop:
 

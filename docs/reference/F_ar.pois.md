@@ -30,11 +30,12 @@ for the population strata
 
 ## Details
 
-This function computes the daily attack rates (\\\alpha\\), the fraction
-of a cohort that gets infected in a day, as a function of the daily EIR
-(\\E\\) under a Poisson model for the distribution of bites per person,
-and the probability of infection per infective bite (\\b\\): \$\$\alpha
-= 1 - e^{- b E}\$\$ The expression is equivalent to
+This function computes the daily attack rates (\\(\alpha\\)), the
+fraction of a cohort that gets infected in a day, as a function of the
+daily EIR (\\(E\\)) under a Poisson model for the distribution of bites
+per person, and the probability of infection per infective bite
+(\\(b\\)): \$\$\alpha = 1 - e^{- b E}\$\$ The expression is equivalent
+to
 
 `ppois(0, b*eir, lower.tail=FALSE)`
 

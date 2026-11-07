@@ -194,7 +194,7 @@ setup_L_obj.trivial = function(Lname, membership, xds_obj, s, options=list()){
 #' @keywords internal
 #' @export
 make_L_obj_trivial = function(nHabitats, options=list(),
-                             Lambda=1000,
+                             Lambda=100,
                              F_season = F_one, 
                              F_trend = F_one, 
                              F_shock = F_one,

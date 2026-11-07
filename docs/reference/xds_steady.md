@@ -2,7 +2,7 @@
 
 Compute the steady state for a system of differential equations.
 
-- Run for \\Y\\ years
+- Run for \\(Y\\) years
 
 - Check the sun of squared differences in the final state is less than
   `tol`

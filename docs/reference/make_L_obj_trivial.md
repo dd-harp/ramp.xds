@@ -3,16 +3,16 @@
 The number of emerging adults is a function \$\$\Lambda S(t) T(t)
 K(t)\$\$ where
 
-- \\\Lambda\\ or `Lambda` is the mean number of adult female mosquitoes
-  emerging per day
+- \\(\Lambda\\) or `Lambda` is the mean number of adult female
+  mosquitoes emerging per day
 
-- \\S(t)\\ or `F_season` is a seasonal pattern function (ideally, with
+- \\(S(t)\\) or `F_season` is a seasonal pattern function (ideally, with
   an average annual mean of 1)
 
-- \\T(t)\\ or `F_trend` is a trend pattern function (ideally, with an
+- \\(T(t)\\) or `F_trend` is a trend pattern function (ideally, with an
   average value of 1)
 
-- \\K(t)\\ or `F_shock` is a perturbation function (by default, it is
+- \\(K(t)\\) or `F_shock` is a perturbation function (by default, it is
   set to `F_one`)
 
 ## Usage
@@ -21,7 +21,7 @@ K(t)\$\$ where
 make_L_obj_trivial(
   nHabitats,
   options = list(),
-  Lambda = 1000,
+  Lambda = 100,
   F_season = F_one,
   F_trend = F_one,
   F_shock = F_one,

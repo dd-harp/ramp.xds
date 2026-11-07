@@ -30,7 +30,7 @@ capable of handling exogenous forcing by weather and vector control.
 
 - `eip`:
 
-  extrinsic incubation period (\\\tau\\)
+  extrinsic incubation period (\\(\tau\\))
 
 - `g`:
 
@@ -54,10 +54,11 @@ capable of handling exogenous forcing by weather and vector control.
 
 - `Upsilon`:
 
-  survival and dispersal through the eip: \\\Upsilon = e^{-\Omega\tau}\\
+  survival and dispersal through the eip: \\(\Upsilon =
+  e^{-\Omega\tau}\\)
 
 ## Dynamics
 
-\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\ dY/dt &=
-fq\kappa(M-Y) - \Omega \cdot Y \\ dZ/dt &= \Upsilon \cdot
-(fq\kappa)\_\tau(M\_\tau-Y\_\tau) - \Omega \cdot Z \\ \end{array}\$\$
+\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\\\ dY/dt &=
+fq\kappa(M-Y) - \Omega \cdot Y \\\\ dZ/dt &= \Upsilon \cdot
+(fq\kappa)\_\tau(M\_\tau-Y\_\tau) - \Omega \cdot Z \\\\ \end{array}\$\$

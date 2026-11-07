@@ -35,53 +35,53 @@ The interface for blood feeding is defined by an object called
 
 The blood feeding interface sets up several objects:
 
-- a time spent (TiSp) matrix \\\Theta\\ (see
+- a time spent (TiSp) matrix \\(\Theta\\) (see
   [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
 
 - a circadian function `F_circadian` for each vector species
 
-- a time at risk (TaR) matrix \\\Psi,\\ the product of the TiSp matrix
+- a time at risk (TaR) matrix \\(\Psi,\\) the product of the TiSp matrix
   and the circadian function
 
-- blood feeding search weights \\\omega\\
+- blood feeding search weights \\(\omega\\)
 
-- a vector describing the available of humans (or hosts), \\W\\ (see
+- a vector describing the available of humans (or hosts), \\(W\\) (see
   [F_W_available](https://dd-harp.github.io/ramp.xds/reference/F_W_available.md))
 
-- a vector describing the available of visitors, \\V\\
+- a vector describing the available of visitors, \\(V\\)
 
-- a vector describing the available of other blood hosts, \\O\\
+- a vector describing the available of other blood hosts, \\(O\\)
 
-- a vector describing the total available of blood hosts, \\B\\ (see
+- a vector describing the total available of blood hosts, \\(B\\) (see
   [F_B_available](https://dd-harp.github.io/ramp.xds/reference/F_B_available.md))
 
-These quantities are used to compute the transmission matrix, \\\beta\\,
-to models transmission (see
+These quantities are used to compute the transmission matrix,
+\\(\beta\\), to models transmission (see
 [`setup_transmission()`](https://dd-harp.github.io/ramp.xds/reference/setup_transmission.md)).
 
 Mosquito bionomic parameters *ought* to be constrained. If bionomic
 parameters are assigned, there's no guarantee they are internally
 mathematically consistent or sensible. To guarantee internal
 consistency, the the concept of resource available should be used to
-compute the blood feeding rates (\\f\\) using *functional responses.*
-The human fraction ought to be \\q=W/B\\. available can also be used to
-model mosquito movement.
+compute the blood feeding rates (\\(f\\)) using *functional responses.*
+The human fraction ought to be \\(q=W/B\\). available can also be used
+to model mosquito movement.
 
 **Mulit-Host Models**
 
-In models with multiple host species, let \\W_i\\ denote the available
-of the \\i^{th}\\ host species. Total availablity of blood hosts is
+In models with multiple host species, let \\(W_i\\) denote the available
+of the \\(i^{th}\\) host species. Total availablity of blood hosts is
 \$\$B = \sum_i W_i + O + V,\$\$ so the the fraction of bites on each
-host species is \\W_i/B\\.
+host species is \\(W_i/B\\).
 
 In models with multiple vector species and one host species, each vector
 species could have different search habits and preferences. so blood
-feeding available is computed for each species, denoted \\B_s\\ and
-\\W\_{s}\\.
+feeding available is computed for each species, denoted \\(B_s\\) and
+\\(W\_{s}\\).
 
-In models with multiple vector and multiple host species, \\W\_{i,s}\\
-is the available of the \\i^{th}\\ host species to the \\s^{th}\\ vector
-species.
+In models with multiple vector and multiple host species, \\(W\_{i,s}\\)
+is the available of the \\(i^{th}\\) host species to the \\(s^{th}\\)
+vector species.
 
 For hosts, available is based on *time spent* in each patch, and *time
 at risk,* or time spent by time of day weighted by mosquito

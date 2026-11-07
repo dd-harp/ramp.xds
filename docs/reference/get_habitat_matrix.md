@@ -1,4 +1,4 @@
-# Get habitat matrix, \\N\\
+# Get habitat matrix, \\(N\\)
 
 Output the habitat membership information as a list
 

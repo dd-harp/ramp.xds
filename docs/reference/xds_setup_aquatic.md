@@ -39,7 +39,8 @@ xds_setup_aquatic(
 
 - Lname:
 
-  is a character string defining a **L** Component module
+  the name of an **L** module (see
+  [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md))
 
 - Loptions:
 

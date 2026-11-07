@@ -1,6 +1,6 @@
 # Change the extrinsic incubation period
 
-Update the extrinsic incubation period for the \\s^{th}\\ vector
+Update the extrinsic incubation period for the \\(s^{th}\\) vector
 species.
 
 ## Usage

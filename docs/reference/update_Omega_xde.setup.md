@@ -1,6 +1,6 @@
 # Update Omega for xde
 
-Compute \\\Omega\\ and change the class to "setup"
+Compute \\(\Omega\\) and change the class to "setup"
 
 ## Usage
 

@@ -1,6 +1,6 @@
 # Compute transmission terms with a static mixing matrix
 
-In the static case, \\\beta\\ is not updated
+In the static case, \\(\beta\\) is not updated
 
 ## Usage
 

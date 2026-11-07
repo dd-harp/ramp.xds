@@ -7,16 +7,6 @@
 #' + A mosquito dispersal matrix, called \eqn{K} or `K_matrix`, is set up using [setup_K_matrix]; 
 #' + \eqn{K} is used to make a mosquito demographic matrix, called \eqn{\Omega} or `Omega` (see [xds_info_mosquito_demography]).
 #'  
-#' @section Setup: 
-#' \describe{
-#'   \item{`K_matrix`}{either a \eqn{K} matrix: or options for [setup_K_matrix]}
-#' }
-#' 
-#' There are several ways to configure  \eqn{K} during basic setup. 
-#' 
-#' By **default:** `K_matrix` is an empty list. When the `MY_obj` is set up, the \eqn{K} 
-#' matrix is set to `diag(g)`, a model with no dispersal. That is not changed unless one of the
-#' following holds: 
 #' 
 #' @section Mosquito Dispersal Matrix, \eqn{K}: 
 #' 
@@ -42,7 +32,7 @@
 #' Emigration rates and emigration-related loss -- emigration from the spatial domain and mortality that is conditioned on emigration -- 
 #' are handled separately (see [xds_info_mosquito_demography]).  
 #' 
-#' @seealso [setup_K_matrix], [change_K_matrix] & [xds_info_mosquito_demography] 
+#' @seealso [setup_K_matrix] | [check_K_matrix] | [xds_info_mosquito_demography] 
 #'  
 #' @name xds_info_mosquito_dispersal 
 NULL
@@ -157,32 +147,39 @@ get_K_matrix.K = function(xds_obj, which_K="K", s=1){
 }
 
 
-#' @title Setup Mosquito Dispersal Matrix
+#' @title Setup a mosquito dispersal matrix
+#' 
 #' @description
-#' A flexible function to set up or change the mosquito dispersal matrix (see [xds_info_mosquito_dispersal]).
+#' The advanced set up function for the mosquito dispersal matrix (see [xds_info_mosquito_dispersal]).
 #' 
-#' The function was designed to dispatch on the first argument, `name`:
+#' Available methods are:
+#' + "as_matrix" --- sets up a passed matrix
+#' + "herethere" --- calls [make_K_matrix_herethere] 
+#' + "xy" -- calls [make_K_matrix_xy]
+#' 
+#' @seealso [xds_info_mosquito_dispersal]
+#' 
+#' @note 
+#' The function was designed to work using arguments passed to [xds_setup]:
+#' 
+#' + if `name` is a string, then it is handled as a method name
 #'  
-#' + `name` is a method name 
+#' + if `name` is a matrix, then `as_matrix` is dispatched
 #' 
-#' + `options` is a named list that sets the parameters in a function `make_K_matrix_name`
+#' + `options` is a named list that sets method-specific parameters
 #' 
-#' + Before dispatching, the function sets `class(option) = "name"`
+
 #' 
 #' Pre-dispatch cases were developed to make the function call more flexible: any
 #' matrix can be passed as the first argument: or the user could set up an options list
-#' and pass it
+#' ansd pass it
 #' (*e.g.* `Koptions` is passed to `setup_K_matrix` in `xds_setup`). The pre-dispatch
 #' parsing: 
 #' + if `name` is a method name, set `class(options) = "name"`
 #' + if `name` is a matrix, set `class(options) = "as_matrix"`
-#' + if `name` is a list of options, 
+#' + if `name` is a list of options, then `list` is dispatched
 #' 
-#' Available methods are: 
-#'
-#' + "as_matrix" --- sets up the matrix
-#' + "herethere" --- calls [make_K_matrix_herethere] 
-#' + "xy" -- calls [make_K_matrix_xy]
+#' Several methods are used during basic setup:
 #' + "list" --- for options lists
 #' + "zero" --- sets up the zero matrix
 #' + "no_setup" --- returns the **`xds`** object without modification
@@ -292,13 +289,13 @@ setup_K_matrix.as_matrix = function(name, xds_obj, options=list(), s=1){
   change_K_matrix(K_matrix, xds_obj, which_K, s)
 }
 
-#' @title Setup a Here-There Dispersal Matrix
+#' @title Setup a here-and-there dispersal matrix
 #'
-#' @description Implements [setup_K_matrix] for the herethere model:
-#' dispersal to every other patch, with equal probability
+#' @description Implements [setup_K_matrix] for the `herethere` method.
+#' See [make_K_matrix_herethere]. 
 #'
 #' @inheritParams setup_K_matrix
-#'
+#' @seealso [make_K_matrix_herethere] and [setup_K_matrix]
 #' @return an **`xds`** object 
 #' @keywords internal
 #' @export
@@ -308,10 +305,15 @@ setup_K_matrix.herethere = function(name, xds_obj, options=list(), s=1){
   change_K_matrix(K_matrix, xds_obj, which_K, s)
 }
 
-#' @title Make a Here-There Dispersal Matrix
-#'
+#' @title Make a here-and-there dispersal matrix
+#' 
+#' @description Mosquitoes disperse to every other patch
+#' with equal probability. 
+#' 
 #' @param nPatches is the number of patches in the model
-#'
+#' 
+#' @seealso [setup_K_matrix] 
+#' 
 #' @export
 make_K_matrix_herethere = function(nPatches) {
   K_matrix <- matrix(1/(nPatches-1), nPatches, nPatches)
@@ -339,12 +341,18 @@ setup_K_matrix.xy = function(name, xds_obj, options=list(), s=1) {
   change_K_matrix(K_matrix, xds_obj, which_K, s)
 }
 
-#' @title make a Kernel-Based Mosquito Dispersal Matrix
-#'
+#' @title Make a mosquito dispersal matrix using patch locations
+#' 
+#' @description
+#' Build a mosquito dispersal matrix using the \eqn{x} and \eqn{y} locations and
+#' a function \eqn{F_K(d,V)} that weights by distance and perhaps some other variables.
+#' 
+#' 
 #' @param xy is a vector of the xy-coordinates of patch locations
 #' @param F_K is a function that weights putative locations by distance
 #' @param V variables
 #' 
+#' @seealso [setup_K_matrix], [xds_info_mosquito_dispersal]
 #' @export
 make_K_matrix_xy = function(xy, F_K = F_exp, V=list()) {
   dmat <- as.matrix(stats::dist(xy), upper=T)

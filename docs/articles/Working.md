@@ -1,6 +1,8 @@
 # Working with Models
 
-Previous: [*Basic
+Previous: [*Getting
+Started*](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.md)
+and possibly [*Basic
 Setup.*](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.md)
 Also, see
 [**SimBA**](https://faculty.washington.edu/smitdave/simba/index.html)
@@ -20,25 +22,19 @@ we introduce the utilities we developed to work with models.
 
 Go get started, we load **`ramp.xds`**, build a model, and solve it.
 
-``` r
-
-library(ramp.xds)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`
 
 ### Basic Setup
 
 The function `xds_setup` was discussed in [Getting
 Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
 
-``` r
+\
+`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``Xname ``=`` ``"SIS"``, MYname ``=`` ``"SI"``, Lname ``=`` ``"basicL"``)`
 
-mod <- xds_setup(Xname = "SIS", MYname = "SI", Lname = "basicL")
-```
-
-``` r
-
-mod$MYname
-```
+\
+`mod``$``MYname`
 
     ## [1] "SI"
 
@@ -50,10 +46,8 @@ initial values, `xds_solve` or `dts_solve` compute the values of the
 dependent variables at those time points. Other functions return stable
 orbits for models with a canonical seasonal signal.
 
-``` r
-
-mod <- xds_solve(mod)
-```
+\
+`mod`` ``<-`` `[`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``mod``)`
 
 ### Get Orbits
 
@@ -66,10 +60,8 @@ The variables and terms are returned as raw and parsed outputs:
 
 - dynamical terms are computed and returned.
 
-``` r
-
-names(mod$outputs)
-```
+\
+[`names`](https://rdrr.io/r/base/names.html)`(``mod``$``outputs``)`
 
     ## [1] "deout"  "time"   "last_y" "orbits"
 
@@ -77,10 +69,8 @@ names(mod$outputs)
 
 a family of functions makes it easy to plot basic outputs of the models.
 
-``` r
-
-xds_plot_M(mod)
-```
+\
+[`xds_plot_M`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_M.md)`(``mod``)`
 
 ![](Working_files/figure-html/unnamed-chunk-7-1.png)
 
@@ -95,20 +85,16 @@ A set of utilities was developed to work with initial values, making it
 easy to change the intitial values through a function call. In solving,
 `xds_solve` calls `get_inits` with a `flatten=TRUE`
 
-``` r
-
-get_inits(mod, flatten=TRUE)
-```
+\
+[`get_inits`](https://dd-harp.github.io/ramp.xds/reference/get_inits.md)`(``mod``, flatten``=``TRUE``)`
 
     ## [1]    1    5    1 1000    1
 
 With the default, `flatten=FALSE`, `get_inits` returns a named list that
 is easy to read:
 
-``` r
-
-get_inits(mod)
-```
+\
+[`get_inits`](https://dd-harp.github.io/ramp.xds/reference/get_inits.md)`(``mod``)`
 
     ## $L
     ## $L$L
@@ -137,10 +123,8 @@ get_inits(mod)
 Since it is a named list, it’s easy to examine a specific element in
 that list:
 
-``` r
-
-get_inits(mod)$MY
-```
+\
+[`get_inits`](https://dd-harp.github.io/ramp.xds/reference/get_inits.md)`(``mod``)``$``MY`
 
     ## $M
     ## [1] 5
@@ -148,19 +132,24 @@ get_inits(mod)$MY
     ## $Y
     ## [1] 1
 
-## Computing for Qualitative Analysis
+## Qualitative Analysis
 
-The software includes functions that perform various analytical tasks:
+A related package, called **`ramp.qa`**, does *qualitative analysis.*
+This includes a variety of methods that are used to understand dynamical
+systems without solving them. Some of the core functions live in
+**`ramp.xds`**
 
 - Compute the steady states of model components using a method that does
   not involve simulation. These functions also provide a way of
   independently verifying the code.
 
-- Compute stable orbits.
+- Compute stable orbits and scaling relationships.
 
 - Compute vectorial capacity and its spatial-temporal dispersion, the
   human transmitting capacity and its spatial-temporal dispersion, and
   malaria reproductive numbers as pseudo-threshold conditions.
+
+- Malaria connectivity.
 
 ## Modifying Models
 
@@ -168,13 +157,13 @@ The software includes functions that perform various analytical tasks:
 models, including functions to visualize the outputs, to examine and
 change initial values and parameters, and to analyze the models.
 
-The **`xds` model object** – any object that can be solved by
-`xds_solve` or `dts_solve` – is a compound list in R. If you’re already
-familiar with the format of the **`xds`** model object, it’s possible
-examine any part of it, or change any of the parameter values or initial
-conditions. While that might be the way to go in the long run, the
-**`xds` model object** includes a set of utilities to retrieve initial
-values, parameters, and some other values of interests.
+The **xds model object** – any object that can be solved by `xds_solve`
+– is a compound list in R. If you’re already familiar with the format of
+the **`xds`** model object, it’s possible examine any part of it, or
+change any of the parameter values or initial conditions. While that
+might be the way to go in the long run, the **`xds` model object**
+includes a set of utilities to retrieve initial values, parameters, and
+some other values of interests.
 
 The code and documentation for these utilities is designed to be
 instructive, and a goal for **`ramp.xds`** has been to provide detailed

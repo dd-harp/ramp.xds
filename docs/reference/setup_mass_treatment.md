@@ -22,11 +22,11 @@ setup_mass_treatment(
 
 - mda:
 
-  a function of the form \\F(t,V)\\
+  a function of the form \\(F(t,V)\\)
 
 - msat:
 
-  a function of the form \\F(t,V)\\
+  a function of the form \\(F(t,V)\\)
 
 - options:
 

@@ -1,9 +1,7 @@
 # Progressive Model Building
 
-``` r
-
-library(ramp.xds)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`
 
 **`ramp.xds`** is based on a mathematical framework for model building
 that is modular, flexible and extensible. Using the built-in functions,
@@ -57,27 +55,27 @@ would be turned off for basic setup.
 The framework is designed around five dynamical components organized
 into three chunks:
 
-1.  The vertebrate host population, denoted \\\mathcal{XH}\\:
+1.  The vertebrate host population, denoted \\(\mathcal{XH}\\):
 
-    - human (or host) demography (\\\mathcal H\\) including births,
+    - human (or host) demography (\\(\mathcal H\\)) including births,
       deaths, aging and migration;
 
-    - malaria epidemiology (\\\mathcal X\\), in the narrow sense; or
+    - malaria epidemiology (\\(\mathcal X\\)), in the narrow sense; or
       more generally, the dynamics of infection and immunity in the host
       population;
 
-2.  The adult mosquito population, denoted \\\mathcal {MYZ}\\:
+2.  The adult mosquito population, denoted \\(\mathcal {MYZ}\\):
 
-    - mosquito ecology (\\\mathcal M\\)
+    - mosquito ecology (\\(\mathcal M\\))
 
-    - mosquito infection dynamics (\\\mathcal Y\\)
+    - mosquito infection dynamics (\\(\mathcal Y\\))
 
-3.  Aquatic mosquito ecology, denoted \\\mathcal L\\
+3.  Aquatic mosquito ecology, denoted \\(\mathcal L\\)
 
 These three chunks are connected by two interfaces. The first two chunks
 are connected through the rigid interface describing blood feeding and
-transmission, denoted \\\mathcal B\\. The last two chunks are connected
-through egg laying and emergence, \\\mathcal {N, U}\\.
+transmission, denoted \\(\mathcal B\\). The last two chunks are
+connected through egg laying and emergence, \\(\mathcal {N, U}\\).
 
 ------------------------------------------------------------------------
 
@@ -96,7 +94,7 @@ difference equations. Each family is defined by a set of states and
 state transitions (*i.e.* by the topology of the graph) for a single
 population (`nStrata=1`).
 
-For example, the `SIS` module for the \\\mathcal X\\ component is the
+For example, the `SIS` module for the \\(\mathcal X\\) component is the
 *SIS* compartmental model family for human infections. It’s called a
 model family because each unique set of parameters would define a
 different *model.*
@@ -104,9 +102,9 @@ different *model.*
 In its simplest form, each model family represents the state of a single
 population, but any model can replicate those states and sub-divide a
 single population into sub-populations with different parameters. These
-are population strata for \\\mathcal X\\; adult mosquitoes in patches
-for \\\mathcal {MYZ}\\; immature mosquitoes in aquatic habitats for
-\\\mathcal L\\. In **`ramp.xds`** it is comparatively simple to
+are population strata for \\(\mathcal X\\); adult mosquitoes in patches
+for \\(\mathcal {MYZ}\\); immature mosquitoes in aquatic habitats for
+\\(\mathcal L\\). In **`ramp.xds`** it is comparatively simple to
 configure a model with multiple strata, patches, and habitats.
 
 ## Basic Setup
@@ -149,16 +147,16 @@ configured by specifying a model name (as a string) and options, passed
 as a named list, to override the defaults for the model:
 
 - `Xname` dispatches a model family for parasitic infections and
-  immunity in the human population, called \\\mathcal X.\\ The setup
+  immunity in the human population, called \\(\mathcal X.\\) The setup
   default model is `Xname="SIS"` and default parameters for the `SIS`
   model are defined in `create_Xpar_SIS.` To replace the default values
   at setup, a named list can be passed as `Xopts = list(...)` and the
   named values in `Xopts` will be he values of named parameters and the
   initial values of named variables instead of the defaults. (The human
-  demographic model, \\\mathcal H\\ is set up as an advanced option.)
+  demographic model, \\(\mathcal H\\) is set up as an advanced option.)
 
 - `MYZname` dispatches a model family for adult mosquito ecology and
-  parasite infection dynamics, \\\mathcal {MYZ}.\\ The setup default
+  parasite infection dynamics, \\(\mathcal {MYZ}.\\) The setup default
   model is `MYZname="macdonald"` and default parameters for the
   `macdonald` model are defined in `make_MYZpar_macdonald.` To replace
   the default values at setup, a named list can be passed as
@@ -167,7 +165,7 @@ as a named list, to override the defaults for the model:
   instead of the defaults.
 
 - `Lname` specifies a model family for aquatic mosquito ecology,
-  \\\mathcal L.\\ The setup default model is the trivial model
+  \\(\mathcal L.\\) The setup default model is the trivial model
   `Lname = "trivial"`. It has no variables, but it passes the outputs –
   emerging adults – as a parameter. To replace the default values at
   setup, a named list can be passed as `Lopts = list(...)` and the
@@ -178,19 +176,15 @@ as a named list, to override the defaults for the model:
 
 Thu function call:
 
-``` r
-
-model1 = xds_setup()
-```
+\
+`model1`` ``=`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``)`
 
 returns the same values as the function call:
 
-``` r
-
-model2 = xds_setup(Xname = "SIS", 
-                   MYZname = "macdonald", 
-                   Lname = "trivial")
-```
+\
+`model2`` ``=`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``Xname ``=`` ``"SIS"``, `\
+`                   MYZname ``=`` ``"macdonald"``, `\
+`                   Lname ``=`` ``"trivial"``)`
 
 ### Structural Parameters
 
@@ -208,12 +202,12 @@ notation in [Wu SL, *et. al.*
 2023](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684).
 The following structural parameters can be set through `xds_setup:`
 
-- **`nPatches`** or \\n_p\\ is the number of patches in the model.
+- **`nPatches`** or \\(n_p\\) is the number of patches in the model.
 
 - **`membership`** is set up by passing a vector with the identity of
   patch where each habitat can be found, and it sets up the habitat
-  matrix, \\\mathcal N\\. Setup sets the value of a variable describing
-  the number of habitats, \\n_q\\ =
+  matrix, \\(\mathcal N\\). Setup sets the value of a variable
+  describing the number of habitats, \\(n_q\\) =
   **`nHabitats <- length(membership)`.** One configurable option is
   **`searchQ`** with the habitat search weights.
 
@@ -221,8 +215,8 @@ The following structural parameters can be set through `xds_setup:`
   **`residence`** is a vector describing the location of the patch where
   each stratum resides. Setup checks that
   `length(HPop) == length(residence)` and sets the number of strata,
-  \\n_h\\ or **`nStrata <- length(residence)`.** It is also possible to
-  configure heterogeneous biting at the command line by passing
+  \\(n_h\\) or **`nStrata <- length(residence)`.** It is also possible
+  to configure heterogeneous biting at the command line by passing
   **`searchH`**
 
 - If `nPatches >1` then other setup-configurable options are to pass:
@@ -246,10 +240,8 @@ patches; and each patch contains an arbitrary number of habitats.
 In **`ramp.xds`,** malaria spatial dynamics are implemented through a
 model of blood feeding in a patch-based simulation model.
 
-``` r
-
-model5 <- xds_setup(nPatches=4)
-```
+\
+`model5`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``nPatches``=``4``)`
 
 ### Human / Host Population Strata
 

@@ -1,7 +1,7 @@
 # Change F_age
 
 Change the age function. The function `F` should have the form
-\\F_a(a,V)\\. If the variable \\V\\ is not used, it's default value
+\\(F_a(a,V)\\). If the variable \\(V\\) is not used, it's default value
 should be set to an empty list.
 
 ## Usage

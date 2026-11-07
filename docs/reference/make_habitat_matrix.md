@@ -1,9 +1,9 @@
-# Create the habitat membership matrix, \\N\\
+# Create the habitat membership matrix, \\(N\\)
 
-The habitat membership matrix, \\N\\, holds information about the patch
-location of each habitat. It is part of the egg-laying and emergence
-interface, making it possible to compute egg laying from patches to
-habitats; and emergence from habitats to patches.
+The habitat membership matrix, \\(N\\), holds information about the
+patch location of each habitat. It is part of the egg-laying and
+emergence interface, making it possible to compute egg laying from
+patches to habitats; and emergence from habitats to patches.
 
 ## Usage
 
@@ -15,7 +15,7 @@ make_habitat_matrix(nPatches, membership)
 
 - nPatches:
 
-  the number of patches, \\n_p\\
+  the number of patches, \\(n_p\\)
 
 - membership:
 
@@ -24,24 +24,24 @@ make_habitat_matrix(nPatches, membership)
 ## Value
 
 the habitat membership [matrix](https://rdrr.io/r/base/matrix.html),
-denoted \\N\\ where \\\left\|N\right\|= n_p \times n_q\\
+denoted \\(N\\) where \\(\left\|N\right\|= n_p \times n_q\\)
 
 ## Details
 
 Information about the patch location of each habitat is passed as the
-membership vector, an ordered list of patch locations. If the \\i^{th}\\
-habitat is in the \\j^{th}\\ patch, then \\{N}\_{j,i}=1.\\ Otherwise,
-\\{N}\_{j,i}=0.\\
+membership vector, an ordered list of patch locations. If the
+\\(i^{th}\\) habitat is in the \\(j^{th}\\) patch, then
+\\({N}\_{j,i}=1.\\) Otherwise, \\({N}\_{j,i}=0.\\)
 
-Since \\N\\ is a matrix, it is readily used for computation. Let:
+Since \\(N\\) is a matrix, it is readily used for computation. Let:
 
-- \\n_q = \\ `nHabitats`, the number of habitats;
+- \\(n_q = \\) `nHabitats`, the number of habitats;
 
-- \\n_p = \\ `nPatches`, the number of patches.
+- \\(n_p = \\) `nPatches`, the number of patches.
 
-If \\w\\ is any vector describing a quantity in habitats (*i.e.*,
-\\\left\|w\right\|= n_q\\), then \$\$W={N}\cdot w\$\$ is a vector that
-has summed \\w\\ by patch, and \\\left\|W\right\|= n_p\\.
+If \\(w\\) is any vector describing a quantity in habitats (*i.e.*,
+\\(\left\|w\right\|= n_q\\)), then \$\$W={N}\cdot w\$\$ is a vector that
+has summed \\(w\\) by patch, and \\(\left\|W\right\|= n_p\\).
 
 ## See also
 

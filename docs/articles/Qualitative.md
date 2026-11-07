@@ -1,9 +1,7 @@
 # Qualitative Analysis
 
-``` r
-
-library(ramp.xds)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`
 
 ------------------------------------------------------------------------
 
@@ -17,7 +15,7 @@ pathogens. This vignette provides an overview.*
 
 - steady states and stable orbits;
 
-- next generation matrices and \\R_0\\ / threshold or quasi-threshold
+- next generation matrices and \\(R_0\\) / threshold or quasi-threshold
   criteria;
 
 - analysis of connectivity;

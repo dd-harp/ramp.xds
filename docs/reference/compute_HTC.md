@@ -1,6 +1,6 @@
 # Compute the HTC Matrix
 
-Compute the \\N_p \times N_p\\ matrix \\\[D\]\\.
+Compute the \\(N_p \times N_p\\) matrix \\(\[D\]\\).
 
 ## Usage
 

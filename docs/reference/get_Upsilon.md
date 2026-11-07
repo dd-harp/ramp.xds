@@ -1,7 +1,7 @@
 # Get Upsilon
 
-Return \\\Upsilon\\, a matrix describing survival and dispersal through
-the EIP.
+Return \\(\Upsilon\\), a matrix describing survival and dispersal
+through the EIP.
 
 ## Usage
 

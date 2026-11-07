@@ -27,4 +27,4 @@ F_human_frac(t, xds_obj, s)
 
 ## Value
 
-\\q\\, the baseline human fraction
+\\(q\\), the baseline human fraction

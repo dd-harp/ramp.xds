@@ -27,4 +27,4 @@ F_larval_mort(t, xds_obj, s)
 
 ## Value
 
-\\phi\\, the baseline human fraction
+\\(phi\\), the baseline human fraction

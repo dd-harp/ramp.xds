@@ -1,6 +1,6 @@
 # Update Upsilon for dts
 
-Compute \\\Upsilon\\
+Compute \\(\Upsilon\\)
 
 ## Usage
 

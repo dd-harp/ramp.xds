@@ -39,7 +39,13 @@ change_habitat_search_weights = function(search_weights, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set up a habitat_search_weights
+#' @title Set up habitat search weights
+#' 
+#' @description The advanced set up function for habitat search weights
+#' 
+#' Available methods are:
+#' + `as_is` -- user generated
+#' + `random` -- generate a random vector (see [make_habitat_search_weights_random])
 #'
 #' @param name a or setup function name
 #' @param xds_obj an **`xds`** model object
@@ -47,7 +53,7 @@ change_habitat_search_weights = function(search_weights, xds_obj, s=1){
 #' @param options configuration options
 #'
 #' @return an **`xds`** object
-#'
+#' @seealso [xds_setup], [xds_info_search_weights_habitat]
 #' @export
 setup_habitat_search_weights = function(name, xds_obj, options = list(), s=1){
   if(is.numeric(name)) class(options) = "as_is"
@@ -119,7 +125,7 @@ setup_habitat_search_weights.random = function(name, xds_obj, options = list(), 
 
 #' @title Make habitat search weights 
 #' 
-#' @description Set up a random vector 
+#' @description Set up a random vector of habitat search weights
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overwrites the defaults
@@ -127,6 +133,9 @@ setup_habitat_search_weights.random = function(name, xds_obj, options = list(), 
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
 #' @return a numeric vector
+#' 
+#' @seealso [setup_habitat_search_weights]
+#' 
 #' @export
 make_habitat_search_weights_random = function(nPatches, options=list(), f_rand = stats::rlnorm, p1=0, p2=.5) {with(options,{
   habitat_search_weights <- f_rand(nPatches, p1, p2)

@@ -8,7 +8,7 @@ If the residence matrix were passed to members, average_EIR returns the
 average EIR for the residents of each patch, which is could be different
 from what would be computed.
 
-The default, `members=NULL,` creates a \\1 \times\\ `nStrata` matrix,
+The default, `members=NULL,` creates a \\(1 \times\\) `nStrata` matrix,
 which takes the matrix over the whole population. If `members` is a
 matrix with 1 column and `nStrata` rows, with only some elements set to
 one, then it returns the average over those strata.

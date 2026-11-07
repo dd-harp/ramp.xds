@@ -17,6 +17,7 @@ URL: https://dd-harp.github.io/ramp.xds/
 BugReports: https://github.com/dd-harp/ramp.xds/issues
 Roxygen: list(markdown = TRUE)
 Imports: 
+  ramp.func,
   deSolve,
   expm,
   graphics,
@@ -24,7 +25,6 @@ Imports:
   mathjaxr,
   MASS
 Suggests:
-  ramp.func,
   DescTools,
   ggplot2,
   viridisLite,

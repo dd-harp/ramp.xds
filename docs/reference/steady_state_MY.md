@@ -1,7 +1,7 @@
 # Compute steady states for **MY**
 
-Given the emergence rate of adult mosquitoes (\\\Lambda\\ or `Lambda`)
-and the net infectiousness of humans (\\\kappa\\ or `kappa`), compute
+Given the emergence rate of adult mosquitoes (\\(\Lambda\\) or `Lambda`)
+and the net infectiousness of humans (\\(\kappa\\) or `kappa`), compute
 the steady states for the system
 
 ## Usage

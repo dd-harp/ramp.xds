@@ -33,9 +33,9 @@ a TaR [matrix](https://rdrr.io/r/base/matrix.html)
 ## Details
 
 The available of other vertebrate hosts is a sum of available local
-hosts \\W\\, and visitors \\W\_\delta\\, and other available vertebrate
-hosts, \\O\\. Total available is a simple sum: \$\$B = W + W\_\delta +
-O\$\$
+hosts \\(W\\), and visitors \\(W\_\delta\\), and other available
+vertebrate hosts, \\(O\\). Total available is a simple sum: \$\$B = W +
+W\_\delta + O\$\$
 
 ## References
 

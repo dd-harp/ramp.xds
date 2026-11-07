@@ -1,6 +1,6 @@
 # Setup nu
 
-Set up the egg laying rate (\\\nu\\) for static systems
+Set up the egg laying rate (\\(\nu\\)) for static systems
 
 ## Usage
 

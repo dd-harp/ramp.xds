@@ -2,7 +2,7 @@
 title: "5-3-4 Example"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{5-3-4 Example}
+ %\VignetteIndexEntry{"5-3-4 Example"}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---
@@ -423,7 +423,7 @@ xds_obj$XH_obj[[1]] = XH_obj
 ```{r}
 xds_obj <- setup_L_inits(xds_obj, 1, Linits)
 xds_obj <- setup_MY_inits(xds_obj, 1, MYZinits)
-xds_obj <- setup_XH_inits(xds_obj, 1, Xinits)
+xds_obj <- setup_XH_inits(xds_obj, options=Xinits, i=1)
 ```
 
 After the parameters for `5-3-4` have been specified, we can generate the indices for the model and attach them to the parameter list.

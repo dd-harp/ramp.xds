@@ -26,4 +26,4 @@ F_g(t, xds_obj, s)
 
 ## Value
 
-\\g\\, the baseline mosquito mortality rate
+\\(g\\), the baseline mosquito mortality rate

@@ -8,7 +8,7 @@ for the hMoI model
 
 ``` r
 # S3 method for class 'hMoI'
-setup_XH_inits(xds_obj, i = 1, options = list())
+setup_XH_inits(xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -17,13 +17,13 @@ setup_XH_inits(xds_obj, i = 1, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the host species index
-
 - options:
 
   a [list](https://rdrr.io/r/base/list.html)
+
+- i:
+
+  the host species index
 
 ## Value
 

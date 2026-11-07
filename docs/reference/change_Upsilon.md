@@ -1,6 +1,6 @@
 # Change Upsilon
 
-Update \\\Upsilon\\, the matrix describing mosquito survival and
+Update \\(\Upsilon\\), the matrix describing mosquito survival and
 dispersal through an EIP in delay equations
 
 ## Usage

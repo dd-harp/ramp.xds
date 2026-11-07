@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{setup_K_matrix}
 \alias{setup_K_matrix}
-\title{Setup Mosquito Dispersal Matrix}
+\title{Setup a mosquito dispersal matrix}
 \usage{
 setup_K_matrix(name, xds_obj, options = list(), s = 1)
 }
@@ -19,33 +19,41 @@ setup_K_matrix(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-A flexible function to set up or change the mosquito dispersal matrix (see \link{xds_info_mosquito_dispersal}).
+The advanced set up function for the mosquito dispersal matrix (see \link{xds_info_mosquito_dispersal}).
 
-The function was designed to dispatch on the first argument, \code{name}:
+Available methods are:
 \itemize{
-\item \code{name} is a method name
-\item \code{options} is a named list that sets the parameters in a function \code{make_K_matrix_name}
-\item Before dispatching, the function sets \code{class(option) = "name"}
+\item "as_matrix" --- sets up a passed matrix
+\item "herethere" --- calls \link{make_K_matrix_herethere}
+\item "xy" -- calls \link{make_K_matrix_xy}
+}
+}
+\note{
+The function was designed to work using arguments passed to \link{xds_setup}:
+\itemize{
+\item if \code{name} is a string, then it is handled as a method name
+\item if \code{name} is a matrix, then \code{as_matrix} is dispatched
+\item \code{options} is a named list that sets method-specific parameters
 }
 
 Pre-dispatch cases were developed to make the function call more flexible: any
 matrix can be passed as the first argument: or the user could set up an options list
-and pass it
+ansd pass it
 (\emph{e.g.} \code{Koptions} is passed to \code{setup_K_matrix} in \code{xds_setup}). The pre-dispatch
 parsing:
 \itemize{
 \item if \code{name} is a method name, set \code{class(options) = "name"}
 \item if \code{name} is a matrix, set \code{class(options) = "as_matrix"}
-\item if \code{name} is a list of options,
+\item if \code{name} is a list of options, then \code{list} is dispatched
 }
 
-Available methods are:
+Several methods are used during basic setup:
 \itemize{
-\item "as_matrix" --- sets up the matrix
-\item "herethere" --- calls \link{make_K_matrix_herethere}
-\item "xy" -- calls \link{make_K_matrix_xy}
 \item "list" --- for options lists
 \item "zero" --- sets up the zero matrix
 \item "no_setup" --- returns the \strong{\code{xds}} object without modification
 }
+}
+\seealso{
+\link{xds_info_mosquito_dispersal}
 }

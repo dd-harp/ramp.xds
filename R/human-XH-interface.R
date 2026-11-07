@@ -217,30 +217,36 @@ get_XH_pars <- function(xds_obj, i=1) {
   UseMethod("get_XH_pars", xds_obj$XH_obj[[i]])
 }
 
-#' @title Change parameters (**XH**)
-#' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
+#' @title Change **XH** parameters 
+#' 
+#' @description 
+#' Replace the parameters with new values named in 
+#' the list `options`. 
+#' 
 #' @param xds_obj an **`xds`** model object
-#' @param i the vector species index
 #' @param options a named list
+#' @param i the vector species index
+#' 
 #' @return an **`xds`** object
+#' 
 #' @keywords internal
 #' @export
-change_XH_pars <- function(xds_obj, i=1, options=list()) {
+change_XH_pars <- function(xds_obj, options=list(), i=1) {
   UseMethod("change_XH_pars", xds_obj$XH_obj[[i]])
 }
-
 
 #' @title Setup initial values (**XH**)
 #'
 #' @description This method dispatches on `xds_obj$XH_obj[[i]]`.
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
 #' @param options a [list]
+#' @param i the host species index
+#' 
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_XH_inits = function(xds_obj, i=1, options=list()){
+setup_XH_inits = function(xds_obj, options=list(), i=1){
   UseMethod("setup_XH_inits", xds_obj$XH_obj[[i]])
 }
 
@@ -262,15 +268,20 @@ get_XH_inits = function(xds_obj, i=1){
 }
 
 
-#' @title Change initial values (**XH**)
-#' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
+#' @title Change **XH** initial values
+#' 
+#' @description Replace the initial values for the dependent 
+#' variables with new values named in 
+#' the list `options`.
+#'   
 #' @param xds_obj an **`xds`** model object
-#' @param i the vector species index
 #' @param options a named list
+#' @param i the vector species index
+#' 
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_XH_inits <- function(xds_obj, i=1, options=list()) {
+change_XH_inits <- function(xds_obj, options=list(), i=1) {
   UseMethod("change_XH_inits", xds_obj$XH_obj[[i]])
 }
 

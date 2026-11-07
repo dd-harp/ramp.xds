@@ -1,7 +1,7 @@
 # Get Variables by Name
 
 Get the the values of variables from the flat state variable vector
-\\y\\, and return the values as a named list
+\\(y\\), and return the values as a named list
 
 ## Usage
 

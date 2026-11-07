@@ -23,5 +23,9 @@ make_timespent_xy(xds_obj, xy, residence, stay, kern, kopts = list())
 a \link{matrix}
 }
 \description{
-Make a time spent matrix using location data
+Build a time spent matrix from a set of patch locations
+and a kernel function that weights by distance.
+}
+\seealso{
+\link{setup_timespent}
 }

@@ -1,7 +1,7 @@
 # Mosquito Demography
 
 Mosquito survival and dispersal is described by a *demographic matrix,*
-denoted \\\Omega.\\ It is computed using several parameters:
+denoted \\(\Omega.\\) It is computed using several parameters:
 
 - `g`:
 
@@ -24,9 +24,9 @@ The matrix is computed as:
 \$\$ \Omega = \mbox{diag} \left( g + \sigma \mu \right) - K \cdot
 \mbox{diag} \left( \sigma \left(1-\mu\right) \right) \$\$
 
-In delay differential equations with a constant EIP (\\\tau\\), survival
-and dispersal through the EIP is given by: \$\$ \Upsilon = e^{-\Omega
-\tau} \$\$
+In delay differential equations with a constant EIP (\\(\tau\\)),
+survival and dispersal through the EIP is given by: \$\$ \Upsilon =
+e^{-\Omega \tau} \$\$
 
 ## See also
 

@@ -31,13 +31,13 @@ an **`xds`** object
 
 ## Details
 
-Local attack rates (AR or \\\alpha\\) are a function of local daily
-entomological inoculation rates (dEIR or \\E\\), and a model for the
-probability of infection per infectious bite, \\b\\ (from
-\\F_infectivity\\, as defined by an \\\cal X\\ model). The total attack
-rates also consider exposure to malaria while traveling,
-(\\T\_\delta\\): \$\$\alpha = 1-((1-\delta) \\ F\_\alpha(E,
-b))(1-\delta\\ T\_\alpha(b))\$\$
+Local attack rates (AR or \\(\alpha\\)) are a function of local daily
+entomological inoculation rates (dEIR or \\(E\\)), and a model for the
+probability of infection per infectious bite, \\(b\\) (from
+\\(F_infectivity\\), as defined by an \\(\cal X\\) model). The total
+attack rates also consider exposure to malaria while traveling,
+(\\(T\_\delta\\)): \$\$\alpha = 1-((1-\delta) \\; F\_\alpha(E,
+b))(1-\delta\\; T\_\alpha(b))\$\$
 
 ## See also
 

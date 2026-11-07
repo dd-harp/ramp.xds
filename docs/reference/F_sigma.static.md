@@ -27,4 +27,4 @@ F_sigma(t, xds_obj, s)
 
 ## Value
 
-\\sigma\\, the patch emigration rate
+\\(sigma\\), the patch emigration rate

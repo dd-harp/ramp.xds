@@ -1,21 +1,21 @@
 # Net blood feeding by infectious mosquitoes - `SI` mosquito model
 
-The variable \\Y\\ is the density of *infected* mosquitoes. The model
+The variable \\(Y\\) is the density of *infected* mosquitoes. The model
 blood feeding **parameters** are:
 
-- \\f\\ is the overall blood feeding rate
+- \\(f\\) is the overall blood feeding rate
 
-- \\q\\ is the human fraction for blood feeding
+- \\(q\\) is the human fraction for blood feeding
 
-- \\\Omega\\ is the demographic matrix
+- \\(\Omega\\) is the demographic matrix
 
-- \\\tau\\ is the EIP
+- \\(\tau\\) is the EIP
 
 The net blood feeding rate by infectious mosquitoes is computed by
 accounting for survival and dispersal that would occur in a delay
 differential equation: \$\$\Upsilon = e^{-\Omega \tau}\$\$ so \$\$fqZ =
 fq (\Upsilon \cdot Y)\$\$ The daily EIR for the population strata is
-\\\beta \cdot fqZ\\
+\\(\beta \cdot fqZ\\)
 
 ## Usage
 

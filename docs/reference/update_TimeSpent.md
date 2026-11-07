@@ -1,6 +1,6 @@
 # Update the time spent Matrix
 
-Port function for the time spent matrix, \\\Theta\\. Dispatches on
+Port function for the time spent matrix, \\(\Theta\\). Dispatches on
 `class(xds_obj$XY_interface$timespent_obj[[i]])`.
 
 ## Usage

@@ -2,37 +2,37 @@
 
 Computes the derivatives for SIS compartmental model with variables:
 
-- \\I\\ - the density of infected humans (or hosts)
+- \\(I\\) - the density of infected humans (or hosts)
 
-- \\S\\ - the density of susceptible humans (or hosts)
+- \\(S\\) - the density of susceptible humans (or hosts)
 
-- \\H\\ - human (or host) population density
+- \\(H\\) - human (or host) population density
 
-The model assumes \\S+I=H.\\ This function computes \\dH/dt\\ and
-\\dI/dt\\. For convenience, \\S\\ is also computed by
+The model assumes \\(S+I=H.\\) This function computes \\(dH/dt\\) and
+\\(dI/dt\\). For convenience, \\(S\\) is also computed by
 [get_XH_vars.SIS](https://dd-harp.github.io/ramp.xds/reference/get_XH_vars.SIS.md)
 and
 [parse_XH_orbits.SIS](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.SIS.md).
 
-The force of infection or "happenings" rate is \\h\\. It is computed
+The force of infection or "happenings" rate is \\(h\\). It is computed
 upstream and used here.
 
-The clearance rate for infections is \\r\\, and by assumption,
+The clearance rate for infections is \\(r\\), and by assumption,
 individuals are assumed to be susceptible to infection after clearing
 infections.
 
-The module includes a port to model mass treatment, \\\xi(t)\\.
+The module includes a port to model mass treatment, \\(\xi(t)\\).
 
 **Human Demographic** change is modeled with two functions:
 
-- \\B(t, H)\\ is the time-dependent population birth rate;
+- \\(B(t, H)\\) is the time-dependent population birth rate;
 
-- \\D\\ is a linear operator, a matrix describing mortality, migration,
-  aging, and dynamical transfers among population strata.
+- \\(D\\) is a linear operator, a matrix describing mortality,
+  migration, aging, and dynamical transfers among population strata.
 
 The derivatives computed are:
 
-\$\$ \begin{array}{rl} dH/dt = & B(t,H) + D \cdot H \\ dI/dt = & h
+\$\$ \begin{array}{rl} dH/dt = & B(t,H) + D \cdot H \\\\ dI/dt = & h
 (H-I) - r I - \xi(t) + D \cdot I \end{array} \$\$
 
 ## Usage

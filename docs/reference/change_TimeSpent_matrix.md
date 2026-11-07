@@ -1,6 +1,6 @@
 # Change the time spent matrix
 
-Update the time spent matrix for the \\i^{th}\\ host species, and
+Update the time spent matrix for the \\(i^{th}\\) host species, and
 trigger updates for the `XY` interface.
 
 ## Usage

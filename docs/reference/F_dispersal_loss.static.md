@@ -27,4 +27,4 @@ F_dispersal_loss(t, xds_obj, s)
 
 ## Value
 
-\\mu\\, the baseline human fraction
+\\(mu\\), the baseline human fraction

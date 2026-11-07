@@ -1,7 +1,7 @@
 # Compute steady states for **Y**
 
-Given adult mosquito population density (\\M\\ or `M`) and the net
-infectiousness of humans (\\\kappa\\ or `kappa`), compute the steady
+Given adult mosquito population density (\\(M\\) or `M`) and the net
+infectiousness of humans (\\(\kappa\\) or `kappa`), compute the steady
 states for the other states
 
 ## Usage

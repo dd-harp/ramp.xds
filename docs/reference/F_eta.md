@@ -28,8 +28,8 @@ F_eta(eggs_laid, U_matrix, Q, Qall)
 
 ## Value
 
-a [vector](https://rdrr.io/r/base/vector.html), \\\eta\\ where
-\\\left\|\eta\right\|=\\`nHabitats`
+a [vector](https://rdrr.io/r/base/vector.html), \\(\eta\\) where
+\\(\left\|\eta\right\|=\\)`nHabitats`
 
 ## See also
 

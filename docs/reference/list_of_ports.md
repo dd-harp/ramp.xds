@@ -9,17 +9,17 @@ ports.
 
 **Check**
 
-- \\f\\ - the blood feeding rate
+- \\(f\\) - the blood feeding rate
 
-- \\q\\ - the human fraction
+- \\(q\\) - the human fraction
 
-- \\g\\ - the mosquito mortality rate
+- \\(g\\) - the mosquito mortality rate
 
-- \\\sigma\\ - the patch emigration rates
+- \\(\sigma\\) - the patch emigration rates
 
-- \\\mu\\ - emigration loss
+- \\(\mu\\) - emigration loss
 
-- \\\nu\\ - emigration loss
+- \\(\nu\\) - emigration loss
 
 ## Egg Laying
 

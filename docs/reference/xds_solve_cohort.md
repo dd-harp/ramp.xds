@@ -2,18 +2,18 @@
 
 Given a trace function describing the average EIR in a population over
 time, simulate malaria in a cohort as it ages: the independent variable
-is age \\(a)\\ and not time \\(t)\\.
+is age \\((a)\\) and not time \\((t)\\).
 
-Relative biting rates by age are set by \\F\_\omega(a)\\ or `F_age` with
-associated parameters `age_par`.
+Relative biting rates by age are set by \\(F\_\omega(a)\\) or `F_age`
+with associated parameters `age_par`.
 
 To solve, the argument `birthday` sets the birthday for a cohort,
-\\(d)\\. The user ether passes `ages` or `Amax` and `da` to configure a
-vector of ages at which output is wanted \\(a_i)\\, at times
-\\t_i=a_i+d\\.
+\\((d)\\). The user ether passes `ages` or `Amax` and `da` to configure
+a vector of ages at which output is wanted \\((a_i)\\), at times
+\\(t_i=a_i+d\\).
 
-In effect, since \\a = t-d\\, the function solves the solves the system
-for for an exposure function with the pattern: \$\$F_w(a) \times
+In effect, since \\(a = t-d\\), the function solves the solves the
+system for for an exposure function with the pattern: \$\$F_w(a) \times
 F_S(t-d) \times F_T(t-d) \times F_K(t-d)\$\$
 
 ## Usage

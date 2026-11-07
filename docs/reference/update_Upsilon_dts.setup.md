@@ -1,6 +1,6 @@
 # Update Upsilon for dts
 
-Compute \\\Upsilon\\ and change the class to "setup"
+Compute \\(\Upsilon\\) and change the class to "setup"
 
 ## Usage
 

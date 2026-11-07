@@ -47,7 +47,8 @@ change_blood_search_weights = function(blood_search_weights, xds_obj, i=1){
 #' @param options configuration options
 #'
 #' @return an **`xds`** object
-#'
+#' 
+#' @seealso [xds_setup], [xds_info_search_weights_blood]
 #' @export
 setup_blood_search_weights = function(name, xds_obj, options = list(), i=1){
   if(is.numeric(name)) class(options) = "as_is"
@@ -117,14 +118,18 @@ setup_blood_search_weights.random = function(name, xds_obj, options = list(), i=
 
 #' @title Make blood search weights 
 #' 
-#' @description Set up a random vector 
+#' @description Set up a random vector of blood search weights
 #' 
 #' @param nStrata is the number of population strata
 #' @param options is a set of options that overwrites the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
+#' 
 #' @return a numeric vector
+#' 
+#' @seealso [setup_blood_search_weights]
+#' 
 #' @export
 make_blood_search_weights_random = function(nStrata, options=list(), f_rand = stats::rlnorm, p1=0, p2=.5) {with(options,{
   blood_search_weights <- f_rand(nStrata, p1, p2)

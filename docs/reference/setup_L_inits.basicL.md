@@ -1,6 +1,6 @@
 # Setup initial values for `basicL` (**L**)
 
-This sets initial values of the variable \\L\\ by calling
+This sets initial values of the variable \\(L\\) by calling
 [make_L_inits_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_inits_basicL.md).
 Default values are used unless other values are passed in `options` by
 name (*i.e.* `options$L`)

@@ -1,6 +1,6 @@
 # Change the other_blood_hosts
 
-Update the other_blood_hosts for the \\i^{th}\\ host species, and
+Update the other_blood_hosts for the \\(i^{th}\\) host species, and
 trigger updates for the `XY` interface.
 
 ## Usage

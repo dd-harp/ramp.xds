@@ -1,7 +1,7 @@
 # Change the deaths
 
 Modify the death rates for a model with static population rates. The
-birth rate gets adjusted to ensure the \\dH/dt=0\\
+birth rate gets adjusted to ensure the \\(dH/dt=0\\)
 
 ## Usage
 

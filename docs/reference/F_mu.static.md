@@ -26,4 +26,4 @@ F_mu(t, xds_obj, s)
 
 ## Value
 
-\\mu\\, the baseline emigration-loss fraction
+\\(mu\\), the baseline emigration-loss fraction

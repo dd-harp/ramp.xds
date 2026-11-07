@@ -45,9 +45,9 @@ xds_setup_eir(
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
-\item{Xname}{is a character string specifying an \strong{X} Component module}
+\item{Xname}{the name of an \strong{XH} module (see \link{XH_module_list})}
 
-\item{XHoptions}{a list to configure the \strong{X} Component module}
+\item{XHoptions}{a named list to set parameter values and initial conditions for the \strong{XH} module}
 
 \item{HPop}{is the number of humans in each stratum}
 

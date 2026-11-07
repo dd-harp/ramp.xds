@@ -182,7 +182,7 @@ update_inits <- function(xds_obj, y0=NULL){
   ii = length(xds_obj$XH_obj)
   if(ii>0) for(ix in 1:ii){
     vars = get_XH_vars(y0, xds_obj, ix)
-    xds_obj = change_XH_inits(xds_obj, ix, vars)
+    xds_obj = change_XH_inits(xds_obj, options=vars, i=ix)
   }
 
   return(xds_obj)

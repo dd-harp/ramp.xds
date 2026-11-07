@@ -4,14 +4,14 @@
 \alias{setup_XH_inits.trivial}
 \title{Setup initial values for \code{trivial} (\strong{XH})}
 \usage{
-\method{setup_XH_inits}{trivial}(xds_obj, i = 1, options = list())
+\method{setup_XH_inits}{trivial}(xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
-
 \item{options}{a \link{list}}
+
+\item{i}{the host species index}
 }
 \value{
 a \link{list} vector

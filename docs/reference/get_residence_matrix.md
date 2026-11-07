@@ -28,31 +28,31 @@ get_residence_matrix(xds_obj, i = 1)
 
 ## Value
 
-a `nPatches` \\\times\\ `nStrata` matrix
+a `nPatches` \\(\times\\) `nStrata` matrix
 
 ## Details
 
-The residence matrix, herein denoted \\J\\, holds information about
+The residence matrix, herein denoted \\(J\\), holds information about
 residence for each human (or host) population stratum.
 
 Information about residence in a patch location for each stratum is
 passed as the residence vector, an ordered list of patch locations. If
-the \\i^{th}\\ stratum lives in the \\j^{th}\\ patch, then
-\\{J}\_{j,i}=1.\\ Otherwise, \\{J}\_{j,i}=0.\\
+the \\(i^{th}\\) stratum lives in the \\(j^{th}\\) patch, then
+\\({J}\_{j,i}=1.\\) Otherwise, \\({J}\_{j,i}=0.\\)
 
 Let:
 
-- \\N_h = \\ `nStrata`, the number of population strata;
+- \\(N_h = \\) `nStrata`, the number of population strata;
 
-- \\N_p = \\ `nPatches`, the number of patches.
+- \\(N_p = \\) `nPatches`, the number of patches.
 
-\\J\\ is an \\N_p \times N_h\\ matrix that is used to map information
-about human (or host) populations onto patches.
+\\(J\\) is an \\(N_p \times N_h\\) matrix that is used to map
+information about human (or host) populations onto patches.
 
-If \\w\\ is any vector describing a quantity in strata (*i.e.*,
-\\\left\|w\right\|=N_h\\), then \$\$W={J}\cdot w\$\$ computes a vector
-that sums \\w\\ by residence for the strata, and \\\left\|W\right\|=
-N_p\\.
+If \\(w\\) is any vector describing a quantity in strata (*i.e.*,
+\\(\left\|w\right\|=N_h\\)), then \$\$W={J}\cdot w\$\$ computes a vector
+that sums \\(w\\) by residence for the strata, and \\(\left\|W\right\|=
+N_p\\).
 
 It is a template for the time spent and time at risk matrices, making it
 possible to compute mosquito parameters describing blood feeding, the

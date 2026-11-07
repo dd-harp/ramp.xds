@@ -4,8 +4,8 @@ Implements
 [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
 for ordinary differential equations. This method solves a system of
 equations and computes the values of the dependent variables at times
-\\t=0, dt, 2dt, ... Tmax\\. The function dispatches on `xds_obj$dlay` to
-call:
+\\(t=0, dt, 2dt, ... Tmax\\). The function dispatches on `xds_obj$dlay`
+to call:
 
 - [deSolve::ode](https://rdrr.io/pkg/deSolve/man/ode.html) if
   `class(dlay) == 'ode'`

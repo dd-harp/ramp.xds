@@ -44,10 +44,10 @@ habitats in a buffer around the places where humans live.
 
 ## Residency Matrix
 
-The residence vector is used to construct a residency matrix, \\J\\,
+The residence vector is used to construct a residency matrix, \\(J\\),
 that is the same shape as the time spent and time at risk matrices. It
-can be used to sum quantities by patch. For example, if \\X\\ is the
-density of infected individuals, then \\J \cdot X\\ is the number of
+can be used to sum quantities by patch. For example, if \\(X\\) is the
+density of infected individuals, then \\(J \cdot X\\) is the number of
 infected individuals by patch, so true prevalence would be \$\$\frac{J
 \cdot X}{J \cdot H}\$\$.
 

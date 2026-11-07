@@ -10,7 +10,7 @@ Besides solving, this function does several housekeeping tasks:
   or
   [make_times_dts](https://dd-harp.github.io/ramp.xds/reference/make_times_dts.md)
 
-- sets up \\y_0,\\ the initial values vector (see
+- sets up \\(y_0,\\) the initial values vector (see
   [get_inits](https://dd-harp.github.io/ramp.xds/reference/get_inits.md))
 
 - solves the system

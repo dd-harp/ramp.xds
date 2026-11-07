@@ -1,7 +1,7 @@
 # Compute the mosquito patch emigration rate
 
 This method dispatches on the type of `sigma_obj` and computes the patch
-emigration rate, \\\sigma\\.
+emigration rate, \\(\sigma\\).
 
 ## Usage
 

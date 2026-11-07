@@ -1,7 +1,7 @@
-# Exogenous Forcing
+# Forcing
 
-A junction for exogenous forcing by weather and hydrology. Non-trivial
-examples are in the satellite package `ramp.forcing`
+A junction for weather, hydrology, system shocks, and development. In
+**`ramp.xds`**, the junction is turned off.
 
 ## Usage
 
@@ -22,3 +22,8 @@ Forcing(t, xds_obj)
 ## Value
 
 an **`xds`** object
+
+## Note
+
+For advanced setup options, see
+[**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/)

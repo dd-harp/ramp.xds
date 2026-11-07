@@ -27,4 +27,4 @@ F_maturation(t, xds_obj, s)
 
 ## Value
 
-\\psi\\, the baseline human fraction
+\\(psi\\), the baseline human fraction

@@ -29,7 +29,7 @@ Update_Lt(t, y, xds_obj, s)
 ## Value
 
 the states, a [numeric](https://rdrr.io/r/base/numeric.html) vector of
-length \\n_q=\\`nHabitats`
+length \\(n_q=\\)`nHabitats`
 
 ## Note
 

@@ -1,6 +1,6 @@
-# Make a Here-There Dispersal Matrix
+# Make a here-and-there dispersal matrix
 
-Make a Here-There Dispersal Matrix
+Mosquitoes disperse to every other patch with equal probability.
 
 ## Usage
 
@@ -13,3 +13,7 @@ make_K_matrix_herethere(nPatches)
 - nPatches:
 
   is the number of patches in the model
+
+## See also
+
+[setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)

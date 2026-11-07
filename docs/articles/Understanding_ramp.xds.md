@@ -113,30 +113,30 @@ We identified five kinds of processes grouped into three inseparable
 chunks, the core dynamical components. The chunks represented five
 distinct processes:
 
-- \\\cal XH\\ - Human demography and parasite infection dynamics,
+- \\(\cal XH\\) - Human demography and parasite infection dynamics,
   including immunity and disease, diagnostics and treatment,
 
-  - \\\cal X\\ - The dynamical process describing the dynamics of human
-    infection and immunity
+  - \\(\cal X\\) - The dynamical process describing the dynamics of
+    human infection and immunity
 
-  - \\\cal H\\ - A dynamical model describing human demography
+  - \\(\cal H\\) - A dynamical model describing human demography
 
-- \\\cal MYZ\\ - Adult mosquito ecology and behavior, and parasite
+- \\(\cal MYZ\\) - Adult mosquito ecology and behavior, and parasite
   infection dynamics
 
-  - \\\cal M\\ - The model for adult mosquito ecology
+  - \\(\cal M\\) - The model for adult mosquito ecology
 
-  - \\\cal YZ\\ - The model for adult mosquito infection dynmics,
-    consistent with \\\cal M\\
+  - \\(\cal YZ\\) - The model for adult mosquito infection dynmics,
+    consistent with \\(\cal M\\)
 
-- \\\cal L\\ - Aquatic mosquito ecology
+- \\(\cal L\\) - Aquatic mosquito ecology
 
 The three core dynamical components were connected by two rigid
 interfaces, discussed at greater length below:
 
-- \\\cal B\\ - Blood Feeding
+- \\(\cal B\\) - Blood Feeding
 
-- \\\cal U\\ - Egg laying and emergence
+- \\(\cal U\\) - Egg laying and emergence
 
 Exogenous forcing was implemented largely through a flexible set of
 processes that set the value of *exogenous variables* and functions to
@@ -148,18 +148,18 @@ Each model has several parameters that describe the structure of a
 model:
 
 - **Malaria Epidemiology** or the model for infection dynamics and
-  immunity in humans (\\\cal X\\) is specified by passing `Xname` – a
+  immunity in humans (\\(\cal X\\)) is specified by passing `Xname` – a
   string, corresponding to a model from the `ramp.xds` library, that
   specifies the model family for human infection dynamics that gets
-  dispatched by the S3 function implementing \\\cal X\\ tasks.
+  dispatched by the S3 function implementing \\(\cal X\\) tasks.
 
 - How many **host species** are there? The number of distinct
   *vertebrate host* species (or types) in a model is `pars$nHosts`
 
-  - The model for the human population for the \\i^{th}\\ species is
+  - The model for the human population for the \\(i^{th}\\) species is
     defined by `pars$Xpar[[i]]`
 
-  - The demographic model for the \\i^{th}\\ species is defined by
+  - The demographic model for the \\(i^{th}\\) species is defined by
     `pars$Hpar[[i]]`
 
   - A vector passed at setup, `HPop,` defines the population density for
@@ -183,10 +183,10 @@ model:
   *mosquito vector* species (or type) in a model is `pars$nVectors` Each
   vector species is defined by a two sets of parameters:
 
-  - The model for the adult population for the \\s^{th}\\ species is
+  - The model for the adult population for the \\(s^{th}\\) species is
     defined by `pars$MYZpar[[s]]`
 
-  - The model for the aquatic population for the \\s^{th}\\ species is
+  - The model for the aquatic population for the \\(s^{th}\\) species is
     defined by `pars$Lpar[[s]]`
 
 - **Spatial dynamics** are implemented through patch-based
@@ -198,74 +198,76 @@ model:
   model. Additional information is needed to configure the model for
   *egg laying* (see below):
 
-  - a `membership` vector is required: the \\i^{th}\\ element of the
-    membership matrix, \\\cal N,\\ identifies the patch to which it
+  - a `membership` vector is required: the \\(i^{th}\\) element of the
+    membership matrix, \\(\cal N,\\) identifies the patch to which it
     belongs.
 
-  - a `searchQ` vector is required: the \\i^{th}\\ element gives the
-    habitat *search weight* to compute the egg laying matrix, \\\cal U\\
+  - a `searchQ` vector is required: the \\(i^{th}\\) element gives the
+    habitat *search weight* to compute the egg laying matrix, \\(\cal
+    U\\)
 
 ## Dynamics
 
 - Models for human ecology and parasite / pathogen infection dynamics
   would appear in one dynamical component. The part that computes the
-  dynamics of infection and immunity was called \\\cal X\\, and the part
-  that describes human demography was called \\\cal H.\\ These two
-  components can’t be separated in any easy way, so we call this chunk
-  \\\cal XH\\.
+  dynamics of infection and immunity was called \\(\cal X\\), and the
+  part that describes human demography was called \\(\cal H.\\) These
+  two components can’t be separated in any easy way, so we call this
+  chunk \\(\cal XH\\).
 
-  - The derivatives for a model of class \\\cal X\\ for the \\i^{th}\\
-    species is computed by a `S3` function `dXdt(t, y, pars, i)`
+  - The derivatives for a model of class \\(\cal X\\) for the
+    \\(i^{th}\\) species is computed by a `S3` function
+    `dXdt(t, y, pars, i)`
 
-  - The updating function for a model of class \\\cal X\\ for the
-    \\i^{th}\\ species is computed by a `S3` function
+  - The updating function for a model of class \\(\cal X\\) for the
+    \\(i^{th}\\) species is computed by a `S3` function
     `DT_Xt(t, y, pars, i)`
 
   - The parameters for the model are in an object called `Xpar` and
     `dXdt` dispatches on `class(Xpar)`
 
   - Since there could be multiple host species, `Xpar` for the
-    \\i^{th}\\ species is `pars$Xpar[[i]].`
+    \\(i^{th}\\) species is `pars$Xpar[[i]].`
 
-  - The demographic model, \\\cal H\\, configured as a birth process,
-    \\B(t)\\, and a linear tranformation among strata (including
+  - The demographic model, \\(\cal H\\), configured as a birth process,
+    \\(B(t)\\), and a linear tranformation among strata (including
     mortality), `dHdt(y, pars)` called from `dXdt`
 
 - Models for adult mosquito ecology and parasite / pathogen infection
   dynamics would appear in a second dynamical component. The part that
-  computes the dynamics of infection was called \\\cal YZ\\, and the
-  part that computes mosquito population dynamics was called \\\cal M\\.
-  These two components can’t be separated in any easy way, so we call
-  this chunk \\\cal MYZ\\.
+  computes the dynamics of infection was called \\(\cal YZ\\), and the
+  part that computes mosquito population dynamics was called \\(\cal
+  M\\). These two components can’t be separated in any easy way, so we
+  call this chunk \\(\cal MYZ\\).
 
   - The derivatives for a model of this type are computed by a `S3`
     function `dMYZdt(t, y, pars, s)` or `dMdt(t, y, pars, s)` for the
-    \\s^{th}\\ vector species
+    \\(s^{th}\\) vector species
 
-  - The updating function for a model of class \\\cal MYZ\\ for the
-    \\i^{th}\\ species is computed by a `S3` function
+  - The updating function for a model of class \\(\cal MYZ\\) for the
+    \\(i^{th}\\) species is computed by a `S3` function
     `DT_MYZt(t, y, pars, s)`
 
   - The parameters for the model are in an object called `MYZpar` and
     `dMYZdt` and `DT_MYZt` dispatch on `class(MYZpar)`
 
   - Since there could be multiple host species, `MYZpar` for the
-    \\i^{th}\\ species is `pars$MYZpar[[i]].`
+    \\(i^{th}\\) species is `pars$MYZpar[[i]].`
 
-- Models for aquatic mosquito ecology were called \\\cal L\\.
+- Models for aquatic mosquito ecology were called \\(\cal L\\).
 
   - The derivatives for a model of this type are computed by a `S3`
     function `dLdt(t, y, pars, s)` or `DT_Lt(t, y, pars, s)`
 
-  - The updating function for a model of class \\\cal MYZ\\ for the
-    \\i^{th}\\ species is computed by a `S3` function
+  - The updating function for a model of class \\(\cal MYZ\\) for the
+    \\(i^{th}\\) species is computed by a `S3` function
     `DT_MYZt(t, y, pars, s)`
 
   - The parameters for the model are in an object called `Lpar` and
     `dLdt` and `DT_Lt` dispatch on `class(Lpar)`
 
   - Since there could be multiple host species, `Lpar` for the
-    \\i^{th}\\ species is `pars$Lpar[[i]].`
+    \\(i^{th}\\) species is `pars$Lpar[[i]].`
 
 ## Interfaces
 
@@ -288,21 +290,21 @@ we introduce a fully defined blood feeding module that constrains the
 blood feeding rate and the human fraction using the concept of *resource
 availability.*
 
-If `nPatches`\\\>1\\ or if `nStrata`\\\>1\\, then it is necessary to
+If `nPatches`\\(\>1\\) or if `nStrata`\\(\>1\\), then it is necessary to
 supply some additional information to configure the mixing matrix,
-\\\beta\\, which is attached as `pars$beta[[i]][[s]]` for the \\i^{th}\\
-host and \\s^{th}\\ vector species.
+\\(\beta\\), which is attached as `pars$beta[[i]][[s]]` for the
+\\(i^{th}\\) host and \\(s^{th}\\) vector species.
 
 - A *time spent* matrix must be configured for each host species
 
 - A vector of *blood feeding search weights* must be provided for each
-  stratum, and for each species. The \\i^{th}\\ element of the
-  \\s^{th}\\ vector is used to compute its *availability* to hosts for
+  stratum, and for each species. The \\(i^{th}\\) element of the
+  \\(s^{th}\\) vector is used to compute its *availability* to hosts for
   blood feeding.
 
 - A *circadian weighting function* is required for each vector species,
-  which is used to transform the \\i^{th}\\ time spent matrix into a set
-  of `nVectors` matrices describing *time at risk.*
+  which is used to transform the \\(i^{th}\\) time spent matrix into a
+  set of `nVectors` matrices describing *time at risk.*
 
 - A *demographic* matrix must be configured for each mosquito species
   that describes mosquito survival and dispersal in the patches.
@@ -312,8 +314,8 @@ host and \\s^{th}\\ vector species.
 A description of the locations of aquatic habitats and a *model* for
 **egg laying** and **emergence.**
 
-- A *membership* vector must be provided: the \\i^{th}\\ element is the
-  index of the patch where the habitat is found
+- A *membership* vector must be provided: the \\(i^{th}\\) element is
+  the index of the patch where the habitat is found
 
-- A *search* vector must be provided: the \\i^{th}\\ element is the
+- A *search* vector must be provided: the \\(i^{th}\\) element is the
   index of the patch where the habitat is found

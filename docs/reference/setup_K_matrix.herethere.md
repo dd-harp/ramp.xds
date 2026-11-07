@@ -1,9 +1,9 @@
-# Setup a Here-There Dispersal Matrix
+# Setup a here-and-there dispersal matrix
 
 Implements
 [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-for the herethere model: dispersal to every other patch, with equal
-probability
+for the `herethere` method. See
+[make_K_matrix_herethere](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_herethere.md).
 
 ## Usage
 
@@ -33,3 +33,9 @@ setup_K_matrix(name, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** object
+
+## See also
+
+[make_K_matrix_herethere](https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_herethere.md)
+and
+[setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)

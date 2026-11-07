@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{make_K_matrix_xy}
 \alias{make_K_matrix_xy}
-\title{make a Kernel-Based Mosquito Dispersal Matrix}
+\title{Make a mosquito dispersal matrix using patch locations}
 \usage{
 make_K_matrix_xy(xy, F_K = F_exp, V = list())
 }
@@ -14,5 +14,9 @@ make_K_matrix_xy(xy, F_K = F_exp, V = list())
 \item{V}{variables}
 }
 \description{
-make a Kernel-Based Mosquito Dispersal Matrix
+Build a mosquito dispersal matrix using the \eqn{x} and \eqn{y} locations and
+a function \eqn{F_K(d,V)} that weights by distance and perhaps some other variables.
+}
+\seealso{
+\link{setup_K_matrix}, \link{xds_info_mosquito_dispersal}
 }

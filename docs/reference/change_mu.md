@@ -1,6 +1,6 @@
 # Change emigration-loss fraction
 
-Update the emigration-loss fraction for the \\s^{th}\\ vector species
+Update the emigration-loss fraction for the \\(s^{th}\\) vector species
 and refresh the demographic matrix.
 
 ## Usage

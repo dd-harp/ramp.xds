@@ -34,3 +34,8 @@ setup_blood_search_weights(name, xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** object
+
+## See also
+
+[xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md),
+[xds_info_search_weights_blood](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_blood.md)

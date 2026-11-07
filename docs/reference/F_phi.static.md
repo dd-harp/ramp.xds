@@ -27,4 +27,4 @@ F_phi(t, xds_obj, s)
 
 ## Value
 
-\\phi\\, the baseline human fraction
+\\(phi\\), the baseline human fraction
