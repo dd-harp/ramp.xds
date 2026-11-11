@@ -275,19 +275,19 @@ How to get help for **`ramp.xds`**
 Build an xds model object
 
 - [`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-  : Build a Model and Configure All Components
+  : Basic setup
 
 - [`xds_setup_mosy()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)
-  : Build a Model of Mosquito Ecology
+  : Basic setup for mosquito ecology models
 
 - [`xds_setup_aquatic()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
-  : Build a Model of Immature Mosquito Ecology
+  : Basic setup for aquatic mosquito ecology models
 
 - [`xds_setup_human()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
-  : Build a Model of Human / Host Epidemiology
+  : Basic setup for models of human/host disease dynamics
 
 - [`xds_setup_eir()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
-  : Build a Model for a single Human / Host Epidemiology forced by the
+  : Basic setup for models of human/host disease dynamics forced by the
   EIR
 
 - [`update_interfaces()`](https://dd-harp.github.io/ramp.xds/reference/update_interfaces.md)

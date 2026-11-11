@@ -1,6 +1,6 @@
 # The SIS Module
 
-    Xname = "SIS"
+    XHname = "SIS"
 
 For the **XH** component, the **SIS** module implements a basic system
 of differential equations, that is often called the **SIS** compartment
@@ -22,7 +22,7 @@ At basic setup, the **SIS** module with defaults is specified like this:
 ``` r
 
 library(ramp.xds)
-mod <- xds_setup(Xname = "SIS") 
+mod <- xds_setup(XHname = "SIS") 
 ```
 
 ------------------------------------------------------------------------
@@ -141,7 +141,7 @@ To overwrite the defaults at setup, pass a named list to `xds_setup.`
 
 ``` r
 
-mod1 <- xds_setup(Xname = "SIS", XHoptions = list(r=1/200))
+mod1 <- xds_setup(XHname = "SIS", XHoptions = list(r=1/200))
 get_XH_pars(mod1)$r
 ```
 
@@ -328,7 +328,7 @@ To set up the model, we simply do this:
 
 ``` r
 
-xds_setup_eir(eir, Xname="SIS", HPop=H, XHoptions = Xo) -> test_SIS
+xds_setup_eir(eir, XHname="SIS", HPop=H, XHoptions = Xo) -> test_SIS
 ```
 
 To solve it, we do this:

@@ -1,13 +1,30 @@
-# Build a Model of Immature Mosquito Ecology
+# Basic setup for aquatic mosquito ecology models
 
 A modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-that streamlines setup for an **L** Component and egg laying for a
-`trivial` **MY** Component.
+that streamlines setup for the **L** Component and egg laying for a
+`trivial` **MY** Component. This sets `class(xds_obj$frame) = 'aquatic'`
+to dispatch functions that compute derivatives (`xde`), update variables
+(`dts`), and parse outputs.
 
-The **`xds`** object defines `frame = class(frame) = 'aquatic'` to
-dispatch functions that compute derivatives (`xde`), update variables
-(`dts`), and parse outputs
+Choose a module:
+
+- `Lname` – aquatic mosquito ecology (see
+  [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md))
+
+Set up the model structure:
+
+- `nHabitats` – sets the number of habitats
+
+- `nPatches` is set to `nHabitats`
+
+Set parameter values and initial conditions using setup options (named
+lists):
+
+- `MYoptions` sets up egg laying using the `trivial` **MY** module
+
+- `Loptions` sets parameter values and initial conditions for the **L**
+  module
 
 ## Usage
 
@@ -48,8 +65,7 @@ xds_setup_aquatic(
 
 - MYoptions:
 
-  a list to configure
-  [F_eggs.trivial](https://dd-harp.github.io/ramp.xds/reference/F_eggs.trivial.md)
+  options to configure egg laying
 
 ## Value
 
@@ -57,8 +73,8 @@ an **`xds`** object
 
 ## Note
 
-The **XH** model is never used, but it is setup as the default `trivial`
-module.
+The **XH** model is never used, but it is set up as the default
+`trivial` module.
 
 ## See also
 

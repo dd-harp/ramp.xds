@@ -1,12 +1,12 @@
-# Build a Model and Configure All Components
+# Basic setup
 
-Make an **`xds`** *model object* from a set of input parameters.
+Build a basic model that defines all three components from a set of
+input parameters.
 
-The first set of arguments chooses a module to use for each dynamical
-component (see
+Choose a module to use for each dynamical component (see
 [xds_info_dynamical_components](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md)):
 
-- `Xname` — human / host infection dynamics (see
+- `XHname` — human / host infection dynamics (see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md))
 
 - `MYname` – adult mosquito ecology and infection dynamics (see
@@ -15,24 +15,27 @@ component (see
 - `Lname` – aquatic mosquito ecology (see
   [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md))
 
-The second set of arguments sets up the model structure
+Set up the model structure:
 
 - `nPatches` - the number of patches (see
   [xds_info_patch_dynamics](https://dd-harp.github.io/ramp.xds/reference/xds_info_patch_dynamics.md))
 
 - `membership` - the habitat membership vector (see
-  [xds_info_aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md)).
+  [xds_info_aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md))
 
 - `residence` - the human residence vector (see
   [xds_info_human_populations](https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.md))
 
-Note that:
+During setup:
 
 - The structural parameter `nHabitats` is set to `length(membership)`
 
 - The structural parameter `nStrata` is set to `length(residence)`
 
-Configure some of the basic elements:
+- `nPatches` is checked and set to `max(membership, nPatches)`
+
+Set parameter values and initial conditions using setup options (named
+lists):
 
 - `XHoptions` sets parameter values and initial conditions for the
   **XH** module
@@ -45,29 +48,30 @@ Configure some of the basic elements:
 
 - `HPop` is the human population density
 
+If `nPatches`\\\>1\\, set up some basic aspects of egg laying, blood
+feeding, mosquito spatial dynamics, and exposure:
+
 - `searchQ` the habitat search weights (see
   [xds_info_search_weights_habitat](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_habitat.md))
 
 - `searchB` the blood feeding search weights (see
   [xds_info_search_weights_blood](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_blood.md))
 
-- `Koptions` sets up a mosquito dispersal matrix (if `nPatches>1`, see
+- `Koptions` sets up a mosquito dispersal matrix (see
   [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
 
-- `TSoptions` sets up a time spent matrix (if `nPatches>1`; see
+- `TSoptions` sets up a time spent matrix (see
   [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
 
 ## Usage
 
 ``` r
 xds_setup(
-  model_name = "unnamed",
-  xds = "ode",
-  Xname = "SIS",
-  XHoptions = list(),
+  XHname = "SIS",
   MYname = "SI",
-  MYoptions = list(),
   Lname = "trivial",
+  XHoptions = list(),
+  MYoptions = list(),
   Loptions = list(),
   nPatches = 1,
   HPop = 1000,
@@ -76,44 +80,38 @@ xds_setup(
   TSoptions = list(),
   membership = 1,
   searchQ = list(),
-  Koptions = list()
+  Koptions = list(),
+  model_name = "unnamed",
+  xds = "ode"
 )
 ```
 
 ## Arguments
 
-- model_name:
-
-  a name for the model
-
-- xds:
-
-  is `xde` for differential equations or `dts` for discrete time systems
-
-- Xname:
+- XHname:
 
   the name of an **XH** module (see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md))
-
-- XHoptions:
-
-  a named list to set parameter values and initial conditions for the
-  **XH** module
 
 - MYname:
 
   the name of an **MY** module (see
   [MY_module_list](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.md))
 
-- MYoptions:
-
-  a named list to set parameter values and initial conditions for the
-  **MY** component
-
 - Lname:
 
   the name of an **L** module (see
   [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md))
+
+- XHoptions:
+
+  a named list to set parameter values and initial conditions for the
+  **XH** module
+
+- MYoptions:
+
+  a named list to set parameter values and initial conditions for the
+  **MY** component
 
 - Loptions:
 
@@ -126,7 +124,7 @@ xds_setup(
 
 - HPop:
 
-  the human population density in each patch
+  the initial human population density for each stratum
 
 - residence:
 
@@ -156,15 +154,24 @@ xds_setup(
   a mosquito dispersal matrix (\\K\\) or setup options (see
   [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md))
 
+- model_name:
+
+  a name for the model
+
+- xds:
+
+  is `xde` for differential equations or `dts` for discrete time systems
+
 ## Value
 
 an **`xds`** object
 
 ## Details
 
-1.  [make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)
-    returns an object template with a properly configured interface for
-    blood feeding and egg laying (see
+1.  xds_setup calls
+    [make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md),
+    which returns an object template with a properly configured
+    interface for blood feeding and egg laying (see
     [xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)).
     The structural parameters are:
 
@@ -172,7 +179,7 @@ an **`xds`** object
 
     - `nHabitats = length(membership)`
 
-    - `nStrata = length(residence) = length(HPop)`
+    - `nStrata = length(residence)`
 
     - `nHostSpecies=1` (basic setup handles only the first host species)
 
@@ -181,20 +188,20 @@ an **`xds`** object
 
     - `class(xds_obj$frame) = 'full'`
 
-2.  Each one of the dynamical components is configured.
+2.  Each one of the dynamical components is set up as a module object:
 
-    - **`xds_obj$XH_obj[[1]]`** defines a model for human / host
-      infection dynamics of class `Xname` (the **X** component). The
-      parameter values passed in a named list, `XHoptions.`
+    - **`xds_obj$XH_obj[[1]]`** defines the module for human / host
+      infection dynamics of class `XHname` (the **XH** component). The
+      parameter values are passed in a named list, `XHoptions`.
 
-    - **`xds_obj$MY_obj[[1]]`** defines a model for adult mosquito
+    - **`xds_obj$MY_obj[[1]]`** defines the module for adult mosquito
       ecology & infection dynamics of class `MYname` (the **MY**
       Component). The parameter values are passed in a named list,
-      `MYoptions.`
+      `MYoptions`.
 
-    - **`xds_obj$L_obj[[1]]`** defines a model for aquatic mosquito
-      ecology of class `Lname` (The **L** Component). The parameter
-      values are passed in a named list, `Loptions.`
+    - **`xds_obj$L_obj[[1]]`** defines the module for aquatic mosquito
+      ecology of class `Lname` (the **L** Component). The parameter
+      values are passed in a named list, `Loptions`.
 
 ## Note
 
@@ -209,6 +216,25 @@ or
 Models for mosquito ecology need not include states describing infection
 status (see
 [xds_setup_mosy](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)).
+
+Other versions of xds_setup are available:
+
+- Use
+  [xds_setup_aquatic](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
+  for studies of mosquito aquatic ecology
+
+- Use
+  [xds_setup_mosy](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)
+  for studies of mosquito ecology without infection dynamics
+
+- Use
+  [xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
+  for studies of human/host disease dynamics forced by infective biting
+  in patches
+
+- Use
+  [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
+  for studies of human/host disease dynamics forced by the eir
 
 ## See also
 

@@ -10,11 +10,11 @@ or one of its variants.
 - [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
   sets up a full model with:
 
-  - an **XH** Component
+  - an **XH** component
 
-  - an **MY** Component
+  - an **MY** component
 
-  - an **L** Component
+  - an **L** component
 
 - [xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
   sets up models to study human epidemiology, given exposure:

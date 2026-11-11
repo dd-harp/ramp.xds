@@ -2,7 +2,7 @@
 
 **`ramp.library`** includes new modules for three dynamical components:
 
-- **X** component – modules describing the epidemiology of malaria and
+- **XH** component – modules describing the epidemiology of malaria and
   other mosquito-transmitted pathogens.
 
 - **MY** component – modules describing adult mosquito ecology and

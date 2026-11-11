@@ -1,16 +1,16 @@
 # Set up **XH** model object
 
-Set the parameter values and configure a model for the **X** Component
+Set the parameter values and configure a model for the **XH** Component
 
 ## Usage
 
 ``` r
-setup_XH_obj(Xname, residence, xds_obj, i, options = list())
+setup_XH_obj(XHname, residence, xds_obj, i, options = list())
 ```
 
 ## Arguments
 
-- Xname:
+- XHname:
 
   the model name
 

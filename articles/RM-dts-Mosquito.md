@@ -147,7 +147,7 @@ For \\1 \< i \< \tau,\\ we get a recursive relationship:
 
 ``` r
 
-rm1 <- xds_setup(MYZname = "RM", Xname = "trivial", xds = 'dts')
+rm1 <- xds_setup(MYZname = "RM", XHname = "trivial", xds = 'dts')
 ```
 
 ``` r
@@ -221,7 +221,7 @@ Z = tail(rm1$outputs$orbits$MYZ[[1]]$Z, 1)
 
 ``` r
 
-rm10 <- dts_setup(Xname = "trivial", nPatches = 10, membership = 1:10)
+rm10 <- dts_setup(XHname = "trivial", nPatches = 10, membership = 1:10)
 rm10$Lpar[[1]]$scale = 1.5^c(1:10) 
 ```
 

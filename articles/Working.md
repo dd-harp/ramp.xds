@@ -34,7 +34,7 @@ Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
 
 ``` r
 
-mod <- xds_setup(Xname = "SIS", MYname = "SI", Lname = "basicL")
+mod <- xds_setup(XHname = "SIS", MYname = "SI", Lname = "basicL")
 ```
 
 ``` r

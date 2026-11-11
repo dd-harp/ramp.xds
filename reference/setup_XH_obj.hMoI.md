@@ -8,12 +8,12 @@ for the hMoI model
 
 ``` r
 # S3 method for class 'hMoI'
-setup_XH_obj(Xname, residence, xds_obj, i, options = list())
+setup_XH_obj(XHname, residence, xds_obj, i, options = list())
 ```
 
 ## Arguments
 
-- Xname:
+- XHname:
 
   the model name
 
