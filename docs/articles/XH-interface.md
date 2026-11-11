@@ -173,7 +173,7 @@ standard outputs; and consistency checks. Optional outputs include other
 metrics; functions to compute steady states; and module specific
 functions to visualize the outputs.
 
-Each module is defined by a string, generically called `Xname`, that
+Each module is defined by a string, generically called `XHname`, that
 identifies the module: *e.g.* `SIS`.
 
 ### Dynamics
@@ -182,9 +182,9 @@ At least one of the following is required, depending on whether the
 model family is a system of differential equations or a discrete time
 system:
 
-    + `dXHdt.Xname` :: differential equations are defined by a function that computes the derivatives. In `ramp.xds` these are encoded in a function called `dXHdt`. The function is set up to be solved by `deSolve::ode` or `deSolve::dede`.
+    + `dXHdt.XHname` :: differential equations are defined by a function that computes the derivatives. In `ramp.xds` these are encoded in a function called `dXHdt`. The function is set up to be solved by `deSolve::ode` or `deSolve::dede`.
 
-    + `Update_XHt.Xname` :: discrete time systems are defined by the function that updates the state variables in one time step. In `ramp.xds` these are encoded in a function called `Update_XHt` that computes and returns the **state variables.** The forms mimic the ones used for differential equations. 
+    + `Update_XHt.XHname` :: discrete time systems are defined by the function that updates the state variables in one time step. In `ramp.xds` these are encoded in a function called `Update_XHt` that computes and returns the **state variables.** The forms mimic the ones used for differential equations. 
 
 ------------------------------------------------------------------------
 
@@ -196,12 +196,12 @@ the **XH** model object. The object is a list that is assigned to a
 compound list, where some of the sub-lists are assigned their own
 `class` that dispatch other `S3` functions.
 
-- `make_XH_obj_Xname` :: returns a structured list called an **XH**
+- `make_XH_obj_XHname` :: returns a structured list called an **XH**
   model object:
 
   - the parameter values are stored by name
 
-  - `class(XH_obj)` = `Xname`
+  - `class(XH_obj)` = `XHname`
 
   - the indices for the model variables are stored as `XH_obj$ix`
 
@@ -217,17 +217,17 @@ compound list, where some of the sub-lists are assigned their own
 
   - anything else that is needed can be configured here
 
-- `setup_XH_obj.Xname` is a wrapper that calls `make_XH_obj_Xname` and
+- `setup_XH_obj.XHname` is a wrapper that calls `make_XH_obj_XHname` and
   (for the \\(i^{th}\\) species) attaches the object as
   `xds_obj$XH_obj[[i]]`
 
 ### Parameters
 
-- `change_XH_pars.Xname` changes the values of some parameters. It is
+- `change_XH_pars.XHname` changes the values of some parameters. It is
   designed to be used after setup. New parameter values are passed by
   name in a list called `options`.
 
-- `get_XH_pars.Xname` is a utility to inspect the values of the
+- `get_XH_pars.XHname` is a utility to inspect the values of the
   parameters.
 
 ### Variables
@@ -242,16 +242,16 @@ from an output matrix returned by `xds_solve`.
 After pulling, both functions return the variables by name in a list to
 make it easy to inspect or use.
 
-- `setup_XH_ix.Xname` - is the function that assigns an index to each
+- `setup_XH_ix.XHname` - is the function that assigns an index to each
   variable in the model, and stores it as `xds_obj$XH_obj[[i]]$ix`. The
   indices are returned as a named list.
 
-- `get_XH_vars.Xname` - retrieves the value of variables from the state
+- `get_XH_vars.XHname` - retrieves the value of variables from the state
   variables vector \\(y\\) at a point in time and returns the values by
   name in a list; the function gets called by `dXHdt` and by
   `change_XH_inits` and it can be useful in other contexts.
 
-- `parse_XH_orbits.Xname` - this function is like `get_XH_vars` but it
+- `parse_XH_orbits.XHname` - this function is like `get_XH_vars` but it
   parses the matrix of outputs returned by `xds_solve`.
 
 ### Initial Values
@@ -259,31 +259,31 @@ make it easy to inspect or use.
 A set of functions sets up or changes the initial values for the state
 variables.
 
-- `make_XH_inits_Xname` - each model must include a function that makes
+- `make_XH_inits_XHname` - each model must include a function that makes
   a set of initial values as a named list. This function does not belong
   to any `S3` class, so it can take any form. The function should supply
   default initial values for all the variables. These can be overwritten
   by passing new initial values in `options`.
 
-- `setup_XH_inits.Xname` - is a wrapper, that gets called by `xds_setup`
-  and that calls `make_XH_inits_Xname`. The setup `options` are passed
-  to overwrite default values. The initial values are stored as
-  `XH_obj$inits`.
+- `setup_XH_inits.XHname` - is a wrapper, that gets called by
+  `xds_setup` and that calls `make_XH_inits_XHname`. The setup `options`
+  are passed to overwrite default values. The initial values are stored
+  as `XH_obj$inits`.
 
-- `change_XH_inits.Xname` - a utility to change the initial values.
+- `change_XH_inits.XHname` - a utility to change the initial values.
 
 ### Dynamical Terms
 
 These functions compute dynamical terms – the outputs passed to an
 interface.
 
-- `F_I.Xname` - compute the effective infectious density of the
+- `F_I.XHname` - compute the effective infectious density of the
   vertebrate hosts. This gets computed and passed through the blood
   feeding and transmission interface to compute \\(\kappa.\\)
 
-- `F_H.Xname` - get the human/host population density
+- `F_H.XHname` - get the human/host population density
 
-- `F_infectivity.Xname` - compute the probability a host will become
+- `F_infectivity.XHname` - compute the probability a host will become
   infected by each infectious bite. This function gets called by the
   function `Exposure`, a part of the blood feeding and transmission
   interface that translates local and travel EIR into an estimated FoI
@@ -293,14 +293,14 @@ interface.
 
 Each module must output a few key quantities:
 
-- `F_prevalence.Xname` - compute prevalence
+- `F_prevalence.XHname` - compute prevalence
 
-- `F_ni.Xname` - compute net infectiousness (NI) for each stratum. If
+- `F_ni.XHname` - compute net infectiousness (NI) for each stratum. If
   \\(F_X \rightarrow X\\) and \\(F_H \rightarrow H\\), then \\(F\_{ni}
   \rightarrow X/H.\\) The function gets called after solving, and the NI
   is attached as a term for inspection and visualization.
 
-- `get_HTC.Xname` - compute the human transmitting capacity. This is
+- `get_HTC.XHname` - compute the human transmitting capacity. This is
   used by functions in **`ramp.work`** that compute threshold
   conditions.
 
@@ -311,9 +311,9 @@ for various reasons. Not all of those models are capable of being
 extended. To help users avoid using models in ways that are not
 appropriate, we developed two function classes:
 
-- `skill_set_XH.Xname` :: describes model capabilities and limitations
+- `skill_set_XH.XHname` :: describes model capabilities and limitations
 
-- `check_XH.Xname` :: at the end of `xds_setup` and at the beginning of
+- `check_XH.XHname` :: at the end of `xds_setup` and at the beginning of
   `xds_solve`, this function gets run to ensure that some quantities
   have been properly updated, and to see if anything has been added to a
   model that is not in its skill set.
@@ -323,7 +323,7 @@ appropriate, we developed two function classes:
 The **XH** interface also sets up `S3` classes for some optional
 functions, but these might not be appropriate for all models. If a
 function is not in the *skill set* of the module, then the limitation
-should be noted in the documentation of `skill_set_XH.Xname` with
+should be noted in the documentation of `skill_set_XH.XHname` with
 information in the list.
 
 ### Optional Outputs
@@ -331,23 +331,23 @@ information in the list.
 For malaria models, built in functions compute prevalence by various
 diagnostics.
 
-- `F_pfpr_by_lm.Xname` :: output predicted prevalence by light
+- `F_pfpr_by_lm.XHname` :: output predicted prevalence by light
   microscopy
 
-- `F_pfpr_by_rdt.Xname` :: output predicted prevalence by rapid
+- `F_pfpr_by_rdt.XHname` :: output predicted prevalence by rapid
   diagnostic test
 
-- `F_pfpr_by_pcr.Xname` :: output predicted prevalence by PCR
+- `F_pfpr_by_pcr.XHname` :: output predicted prevalence by PCR
 
 ### Steady States
 
 Methods are defined to compute various steady states under static
 parameter values.
 
-- `steady_state_X.Xname` :: pass the FoI and H and computes steady
+- `steady_state_X.XHname` :: pass the FoI and H and computes steady
   states for the **X** component, if appropriate.
 
-- `steady_state_XH.Xname` :: pass the FoI and compute states for the
+- `steady_state_XH.XHname` :: pass the FoI and compute states for the
   **XH** component, if appropriate.
 
 ### Visualization
@@ -355,5 +355,5 @@ parameter values.
 Functions have been developed to plot the standard terms, but each
 module can define its own method for plotting:
 
-- `xds_plot_X.Xname` is a module specific plotting function for the
+- `xds_plot_X.XHname` is a module specific plotting function for the
   epidemiology

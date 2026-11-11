@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_eir}
 \alias{xds_setup_eir}
-\title{Build a Model for a single Human / Host Epidemiology forced by the EIR}
+\title{Basic setup for models of human/host disease dynamics forced by the EIR}
 \usage{
 xds_setup_eir(
   model_name = "unnamed",
@@ -11,15 +11,14 @@ xds_setup_eir(
   F_trend = F_one,
   F_shock = F_one,
   F_age = F_one,
-  season_par = list(name = "F_one"),
-  trend_par = list(name = "F_one"),
-  shock_par = list(name = "F_one"),
-  age_par = list(name = "F_one"),
+  season_par = list(),
+  trend_par = list(),
+  shock_par = list(),
+  age_par = list(),
   xds = "ode",
-  Xname = "SIS",
+  XHname = "SIS",
   XHoptions = list(),
-  HPop = 1000,
-  searchB = 1
+  HPop = 1000
 )
 }
 \arguments{
@@ -45,13 +44,11 @@ xds_setup_eir(
 
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 
-\item{Xname}{the name of an \strong{XH} module (see \link{XH_module_list})}
+\item{XHname}{the name of an \strong{XH} module (see \link{XH_module_list})}
 
 \item{XHoptions}{a named list to set parameter values and initial conditions for the \strong{XH} module}
 
-\item{HPop}{is the number of humans in each stratum}
-
-\item{searchB}{is a vector of search weights for blood feeding}
+\item{HPop}{the initial human population density for each stratum}
 }
 \value{
 an \strong{\code{xds}} object
@@ -59,20 +56,31 @@ an \strong{\code{xds}} object
 \description{
 \loadmathjax
 
-A modified version of \link{xds_setup} to setup up
-studies of malaria epidemiology, defined in a narrow sense, to
-examine patterns in populations forced by the EIR.
-
-The \strong{\code{xds}} object defines \code{frame = class(frame) = 'eir'}
+A modified version of \link{xds_setup} that sets up a model to study the outcomes of exposure,
+as defined by the EIR.
+This sets \code{class(xds_obj$frame) = 'eir'}
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
-and parse outputs
+and parse outputs for \link{xds_solve}. The model can also be solved by \link{xds_solve_cohort}.
 
-The interface includes options to configure a function
-describing \code{F_eir} as a function of time, with seasonal components
-and a trend.
+Configure the \strong{XH} component:
+\itemize{
+\item \code{XHname} --- human / host infection dynamics (see \link{XH_module_list})
+\item \code{HPop} --- the initial human population density
+\item \code{XHoptions} sets parameter values and initial conditions for the \strong{XH} module
+}
 
-This can be used to model a cohort as it ages;
-a function is set up to modify exposure by age.
+The structural parameter \code{nStrata} is set to \code{length(HPop)}.
+
+The interface includes options to configure a composed, multiplicative time series function
+describing \code{F_eir} as a function of time. For cohort dynamics (using \link{xds_solve_cohort}), a function
+can be configured to compute relative biting rates by age:
+\itemize{
+\item \code{eir} --- the average daily EIR (for each population stratum)
+\item \code{F_season} or \code{season_par} --- set up the seasonal pattern function
+\item \code{F_trend} or \code{trend_par} --- set up the trend pattern function
+\item \code{F_shock} or \code{shock_par} --- set up the shock function
+\item \code{F_age} or \code{age_par} --- set up relative biting rates by age
+}
 }
 \seealso{
 \link{xds_setup} and \link{xds_setup_human}

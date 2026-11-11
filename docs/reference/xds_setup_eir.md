@@ -30,7 +30,7 @@ xds_setup_eir(
   shock_par = list(name = "F_one"),
   age_par = list(name = "F_one"),
   xds = "ode",
-  Xname = "SIS",
+  XHname = "SIS",
   XHoptions = list(),
   HPop = 1000,
   searchB = 1
@@ -84,7 +84,7 @@ xds_setup_eir(
   is `ode` or `dde` or `dts` for ordinary OR delay differential OR
   difference equations
 
-- Xname:
+- XHname:
 
   the name of an **XH** module (see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md))

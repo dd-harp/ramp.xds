@@ -5,12 +5,12 @@ Set the parameter values and configure a model for the **X** Component
 ## Usage
 
 ``` r
-setup_V_obj(Xname, xds_obj, i, options = list())
+setup_V_obj(XHname, xds_obj, i, options = list())
 ```
 
 ## Arguments
 
-- Xname:
+- XHname:
 
   the model name
 

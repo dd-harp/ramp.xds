@@ -42,7 +42,7 @@ more help.
 
 ## Modules
 
-- `Xname` – see
+- `XHname` – see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md)
 
 - `MYname`– see
@@ -55,7 +55,7 @@ Parameter values and initial values for the variables are passed as
 named lists. The module help pages have information about how to
 configure: `Xoptions,` `MYoptions,` & `Loptions.`
 
-- `Xname` – see
+- `XHname` – see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md)
 
 - `MYname`– see

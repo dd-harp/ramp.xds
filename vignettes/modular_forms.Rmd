@@ -142,7 +142,7 @@ Basic setup returns this model during setup, but it can also be configured by na
 ```{r}
 library(ramp.xds)
 # devtools::load_all()
-mod <- xds_setup(Xname = "SIS", MYname = "SI", 
+mod <- xds_setup(XHname = "SIS", MYname = "SI", 
                  Lname = "trivial", Loptions = list(Lambda=80))
 ```
 

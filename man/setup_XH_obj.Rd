@@ -4,10 +4,10 @@
 \alias{setup_XH_obj}
 \title{Set up \strong{XH} model object}
 \usage{
-setup_XH_obj(Xname, residence, xds_obj, i, options = list())
+setup_XH_obj(XHname, residence, xds_obj, i, options = list())
 }
 \arguments{
-\item{Xname}{the model name}
+\item{XHname}{the model name}
 
 \item{residence}{the residence vector}
 
@@ -22,6 +22,6 @@ an \strong{\code{xds}} object
 }
 \description{
 Set the parameter values and configure a model
-for the \strong{X} Component
+for the \strong{XH} Component
 }
 \keyword{internal}

@@ -15,7 +15,7 @@ test_that("human SIS_xde model remains at equilibrium", {
 
   foi <- ((r*I)/(HPop-I))
 
-  params <- xds_setup_human(Xname ="SIS", XHoptions=Xo, nPatches=nPatches, HPop=HPop, residence = residence)
+  params <- xds_setup_human(XHname ="SIS", XHoptions=Xo, nPatches=nPatches, HPop=HPop, residence = residence)
   params$terms$FoI[[1]] <- foi
 
   # set initial conditions

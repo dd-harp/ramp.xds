@@ -6,12 +6,12 @@ Set up an `SIS` model object for the **XH** component
 
 ``` r
 # S3 method for class 'SIS'
-setup_XH_obj(Xname, residence, xds_obj, i, options = list())
+setup_XH_obj(XHname, residence, xds_obj, i, options = list())
 ```
 
 ## Arguments
 
-- Xname:
+- XHname:
 
   the model name
 

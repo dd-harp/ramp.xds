@@ -114,9 +114,9 @@ F_infectivity <- function(y, xds_obj, i) {
 
 #' @title Set up **XH** model object
 #' @description Set the parameter values and configure a model
-#' for the **X** Component
+#' for the **XH** Component
 #'
-#' @param Xname the model name
+#' @param XHname the model name
 #' @param residence the residence vector
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
@@ -126,9 +126,9 @@ F_infectivity <- function(y, xds_obj, i) {
 #' @keywords internal
 #'
 #' @export
-setup_XH_obj = function(Xname, residence, xds_obj, i, options=list()){
-  class(Xname) <- Xname
-  UseMethod("setup_XH_obj", Xname)
+setup_XH_obj = function(XHname, residence, xds_obj, i, options=list()){
+  class(XHname) <- XHname
+  UseMethod("setup_XH_obj", XHname)
 }
 
 #' @title List variables (**XH**)
@@ -403,4 +403,3 @@ steady_state_XH = function(foi, xds_obj, i=1){
 xds_plot_X = function(xds_obj, i=1, clrs="black", llty=1, add=FALSE){
   UseMethod("xds_plot_X", xds_obj$XH_obj[[i]])
 }
-

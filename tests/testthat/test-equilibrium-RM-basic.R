@@ -3,7 +3,6 @@ library(MASS)
 library(deSolve)
 
 
-
 test_that("test equilibrium with macdonald adults (DDE), basic competition", {
 
   numeric_tol <- 1e-5
@@ -92,8 +91,8 @@ test_that("test equilibrium with macdonald adults (DDE), basic competition", {
 
   Xo = list(kappa=kappa, HPop=H)
   # parameters for exDE
-  params <- xds_setup_mosy(MYname = "macdonald", MYoptions=MYo, Lname = "basicL", Loptions=Lo, Koptions=K_matrix, kappa=kappa,
-                       HPop=H, membership=membership, nPatches=nPatches)
+  params <- xds_setup(MYname = "macdonald", MYoptions=MYo, Lname = "basicL", XHname = "trivial", Loptions=Lo, Koptions=K_matrix, XHoptions=list(kappa=I*c/H),
+                       HPop=H, membership=membership, nPatches=nPatches, residence=residence, TSoptions=TaR)
 
   params$terms$kappa[[1]] = kappa
 
@@ -106,7 +105,7 @@ test_that("test equilibrium with macdonald adults (DDE), basic competition", {
   
   params <- change_MY_inits(params, 1, MYo)
   
-  params <- xds_solve(params, 730, 1)
+  params <- xds_solve(params, times = c(0, 3650))
 
   out <- params$outputs$last_y
 

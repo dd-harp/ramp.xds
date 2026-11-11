@@ -248,7 +248,7 @@ check_models <- function(xds_obj) {
 print.xds_obj = function(x, ...){
   cat(paste("\nmodel_name - ", x$model_name, "\n\n", sep=""))
   cat(c("Modules:\n")) 
-  cat(paste("  Xname  - ", x$Xname, "\n", sep=""))
+  cat(paste("  XHname - ", x$XHname, "\n", sep=""))
   cat(paste("  MYname - ", x$MYname, "\n", sep=""))
   cat(paste("  Lname  - ", x$Lname, "\n\n", sep=""))
   cat(c("Structure:\n")) 

@@ -25,7 +25,7 @@ daily EIR, consider using
 ``` r
 xds_setup_human(
   model_name = "unnamed",
-  Xname = "SIS",
+  XHname = "SIS",
   XHoptions = list(),
   xds = "ode",
   nPatches = 1,
@@ -44,7 +44,7 @@ xds_setup_human(
 
   a name for the model
 
-- Xname:
+- XHname:
 
   the name of an **XH** module (see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md))

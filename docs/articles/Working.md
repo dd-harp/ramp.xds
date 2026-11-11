@@ -31,7 +31,7 @@ The function `xds_setup` was discussed in [Getting
 Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.html).
 
 \
-`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``Xname ``=`` ``"SIS"``, MYname ``=`` ``"SI"``, Lname ``=`` ``"basicL"``)`
+`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``, MYname ``=`` ``"SI"``, Lname ``=`` ``"basicL"``)`
 
 \
 `mod``$``MYname`

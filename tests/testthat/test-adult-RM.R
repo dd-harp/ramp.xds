@@ -45,7 +45,7 @@ test_that("macdonald models reach equilibrium", {
   MYo$Y=Y_eq
   MYo$Z=Z_eq
   
-  params <- xds_setup(MYname= "macdonald", Xname = "trivial", Lname = "trivial", HPop=HPop, residence = c(1:nPatches), nPatches=nPatches, membership = c(1:nPatches), XHoptions=Xo, MYoptions=MYo, Loptions=Lo, Koptions = K_matrix)
+  params <- xds_setup(MYname= "macdonald", XHname = "trivial", Lname = "trivial", HPop=HPop, residence = c(1:nPatches), nPatches=nPatches, membership = c(1:nPatches), XHoptions=Xo, MYoptions=MYo, Loptions=Lo, Koptions = K_matrix)
   
   params$terms$Lambda[[1]] = Lambda
   params$terms$kappa[[1]] = kappa

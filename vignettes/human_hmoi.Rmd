@@ -176,7 +176,7 @@ lines(time, XH$m2[,3], col =clrs[5], lty=2)
 
 
 ```{r}
-xds_setup_eir(eir, Xname="hMoI", HPop=H, XHoptions = Xo) ->test_hMoI
+xds_setup_eir(eir, XHname="hMoI", HPop=H, XHoptions = Xo) ->test_hMoI
 ```
 
 ```{r}

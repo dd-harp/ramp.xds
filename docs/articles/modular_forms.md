@@ -188,7 +188,7 @@ configured by naming the modules and passing options to set
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`\
 `# devtools::load_all()`\
-`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``Xname ``=`` ``"SIS"``, MYname ``=`` ``"SI"``, `\
+`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``, MYname ``=`` ``"SI"``, `\
 `                 Lname ``=`` ``"trivial"``, Loptions ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``Lambda``=``80``)``)`
 
 In solving the system, derivatives for the human “SIS” model are
@@ -215,7 +215,7 @@ treatment. The code looks like this:
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x129c91a00>
+    ## <bytecode: 0x107e5e848>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -243,7 +243,7 @@ code looks like this:
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x129766b30>
+    ## <bytecode: 0x1180746d8>
     ## <environment: namespace:ramp.xds>
 
 The term \\(\Lambda\\) is passed from the trace function
@@ -263,5 +263,5 @@ The implementation looks like this:
     ##     V_k = get_variables(shock_par, t, y, xds_obj, s)
     ##     return(Lambda*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
     ## })}
-    ## <bytecode: 0x12a95c588>
+    ## <bytecode: 0x1182d19a0>
     ## <environment: namespace:ramp.xds>

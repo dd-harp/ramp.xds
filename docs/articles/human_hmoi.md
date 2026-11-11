@@ -149,7 +149,7 @@ Here, we build a model step-by-step.
 ## Using Setup
 
 \
-[`xds_setup_eir`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)`(``eir``, Xname``=``"hMoI"``, HPop``=``H``, XHoptions ``=`` ``Xo``)`` ``->``test_hMoI`
+[`xds_setup_eir`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)`(``eir``, XHname``=``"hMoI"``, HPop``=``H``, XHoptions ``=`` ``Xo``)`` ``->``test_hMoI`
 
 \
 [`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``test_hMoI``)``->`` ``test_hMoI`` `\

@@ -16,7 +16,7 @@
 #' 
 #' @section Modules: 
 #' 
-#' + `Xname` -- see [XH_module_list]
+#' + `XHname` -- see [XH_module_list]
 #' + `MYname`-- see [MY_module_list]
 #' + `Lname` -- see [L_module_list]
 #' 

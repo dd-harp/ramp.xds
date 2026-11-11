@@ -29,7 +29,7 @@ xds_setup_cohort(
   F_age = F_flat,
   age_par = list(),
   xds = "ode",
-  Xname = "SIS",
+  XHname = "SIS",
   XHoptions = list(),
   HPop = 1000,
   searchB = 1,
@@ -75,7 +75,7 @@ xds_setup_cohort(
   is `ode` or `dde` or `dts` for ordinary OR delay differential OR
   difference equations
 
-- Xname:
+- XHname:
 
   is a character string specifying an **X** Component module
 

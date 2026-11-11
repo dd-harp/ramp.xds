@@ -21,7 +21,7 @@ get_skills = function(module, xds_obj, ix){
 #' @export
 get_skills.XH = function(module, xds_obj, ix=1){
   get_skills = xds_obj$XH_obj[[ix]]$skill_set
-  get_skills$Xname = xds_obj$Xname 
+  get_skills$XHname = xds_obj$XHname 
   return(get_skills)
 }
 

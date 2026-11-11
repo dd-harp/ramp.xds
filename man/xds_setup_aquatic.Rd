@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_aquatic}
 \alias{xds_setup_aquatic}
-\title{Build a Model of Immature Mosquito Ecology}
+\title{Basic setup for aquatic mosquito ecology models}
 \usage{
 xds_setup_aquatic(
   model_name = "unnamed",
@@ -24,7 +24,7 @@ xds_setup_aquatic(
 
 \item{Loptions}{a list to configure the \strong{L} Component module}
 
-\item{MYoptions}{a list to configure \link{F_eggs.trivial}}
+\item{MYoptions}{options to configure egg laying}
 }
 \value{
 an \strong{\code{xds}} object
@@ -32,16 +32,32 @@ an \strong{\code{xds}} object
 \description{
 \loadmathjax
 
-A modified version of \link{xds_setup} that streamlines setup for an \strong{L} Component
+A modified version of \link{xds_setup} that streamlines setup for the \strong{L} Component
 and egg laying for a \code{trivial} \strong{MY} Component.
-
-The \strong{\code{xds}} object defines \code{frame = class(frame) = 'aquatic'}
+This sets \code{class(xds_obj$frame) = 'aquatic'}
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
-and parse outputs
+and parse outputs.
+
+Choose a module:
+\itemize{
+\item \code{Lname} -- aquatic mosquito ecology (see \link{L_module_list})
+}
+
+Set up the model structure:
+\itemize{
+\item \code{nHabitats} -- sets the number of habitats
+\item \code{nPatches} is set to \code{nHabitats}
+}
+
+Set parameter values and initial conditions using setup options (named lists):
+\itemize{
+\item \code{MYoptions} sets up egg laying using the \code{trivial} \strong{MY} module
+\item \code{Loptions} sets parameter values and initial conditions for the \strong{L} module
+}
 }
 \note{
 The \strong{XH} model
-is never used, but it is setup as the default \code{trivial} module.
+is never used, but it is set up as the default \code{trivial} module.
 }
 \seealso{
 \link{xds_setup}

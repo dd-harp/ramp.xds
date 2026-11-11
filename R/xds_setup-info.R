@@ -1,13 +1,14 @@
 #' @title **`ramp.xds`**: Guide to Basic Setup
 #' 
 #' @description
+#' 
 #' **Basic Setup** uses one of the following functions to build an
 #' **`xds`** model: 
 #'
 #' + [xds_setup] sets up a full model with:
-#'      - an **XH** Component 
-#'      - an **MY** Component 
-#'      - an **L** Component 
+#'      - an **XH** component 
+#'      - an **MY** component 
+#'      - an **L** component 
 #'      
 #' + [xds_setup_human] sets up models to study human epidemiology, given exposure: 
 #'      - an **XH** component

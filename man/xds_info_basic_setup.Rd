@@ -12,9 +12,9 @@
 \itemize{
 \item \link{xds_setup} sets up a full model with:
 \itemize{
-\item an \strong{XH} Component
-\item an \strong{MY} Component
-\item an \strong{L} Component
+\item an \strong{XH} component
+\item an \strong{MY} component
+\item an \strong{L} component
 }
 \item \link{xds_setup_human} sets up models to study human epidemiology, given exposure:
 \itemize{

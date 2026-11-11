@@ -2,11 +2,11 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_human}
 \alias{xds_setup_human}
-\title{Build a Model of Human / Host Epidemiology}
+\title{Basic setup for models of human/host disease dynamics}
 \usage{
 xds_setup_human(
   model_name = "unnamed",
-  Xname = "SIS",
+  XHname = "SIS",
   XHoptions = list(),
   xds = "ode",
   nPatches = 1,
@@ -14,14 +14,13 @@ xds_setup_human(
   HPop = 1000,
   searchB = list(),
   TSoptions = list(),
-  MYoptions = list(),
-  BFopts = list()
+  MYoptions = list()
 )
 }
 \arguments{
 \item{model_name}{a name for the model}
 
-\item{Xname}{the name of an \strong{XH} module (see \link{XH_module_list})}
+\item{XHname}{the name of an \strong{XH} module (see \link{XH_module_list})}
 
 \item{XHoptions}{a named list to set parameter values and initial conditions for the \strong{XH} module}
 
@@ -31,15 +30,13 @@ xds_setup_human(
 
 \item{residence}{a vector that describes the patch where each human stratum lives}
 
-\item{HPop}{the number of humans in each patch}
+\item{HPop}{the initial human population density for each stratum}
 
 \item{searchB}{a vector of search weights for blood feeding}
 
-\item{TSoptions}{either a TimeSpent matrix or a string to call a function that sets it up}
+\item{TSoptions}{a time spent matrix or setup options (see \link{setup_timespent})}
 
-\item{MYoptions}{list to configure the \strong{MY} Component module}
-
-\item{BFopts}{list to configure the blood feeding model}
+\item{MYoptions}{a list to configure the \strong{MY} Component module}
 }
 \value{
 an \strong{\code{xds}} object
@@ -47,18 +44,45 @@ an \strong{\code{xds}} object
 \description{
 \loadmathjax
 
-A modified version of \link{xds_setup} that
-streamlines setup for models with a trivial \strong{MY} Component.
-
-The \strong{\code{xds}} object defines \code{frame = class(frame) = 'human'}
+A modified version of \link{xds_setup} that sets up a model to study exposure and
+infection.
+The \strong{MY} component module is set to \code{trivial} and a trace
+function computes infective biting in the patches.
+This sets \code{class(xds_obj$frame) = 'human'}
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
-and parse outputs
+and parse outputs.
 
-The \strong{MY} Component module is set to \code{trivial}. The function \link{F_fqZ.trivial} is called to compute passes the
-density of infectious adult mosquitoes, and \eqn{f} and \eqn{q} can still be
-configured. In this case, the daily EIR is computed using the blood feeding
-interface, including \link{Exposure}, in the same way as a model with a non-trivial
-\strong{MY} Component module.
+To set up a model that is forced
+by the EIR, use \link{xds_setup_eir}.
+
+Choose a module:
+\itemize{
+\item \code{XHname} --- human / host infection dynamics (see \link{XH_module_list})
+}
+
+Set up the model structure:
+\itemize{
+\item \code{nPatches} - the number of patches (see \link{xds_info_patch_dynamics})
+\item \code{residence} - the human residence vector (see \link{xds_info_human_populations})
+}
+
+During setup:
+\itemize{
+\item The structural parameter \code{nStrata} is set to  \code{length(residence)}
+}
+
+Set parameter values and initial conditions using setup options (named lists):
+\itemize{
+\item \code{XHoptions} sets parameter values and initial conditions for the \strong{XH} module
+\item \code{MYoptions} sets up infective biting in the patches for the trivial \strong{MY} module
+\item \code{HPop} is the human population density
+}
+
+If \code{nPatches}\eqn{>1}, set up some basic aspects of blood feeding and exposure:
+\itemize{
+\item \code{searchB} the blood feeding search weights (see \link{xds_info_search_weights_blood})
+\item \code{TSoptions} sets up a time spent matrix (see \link{xds_info_time_spent})
+}
 
 To study human cohort dynamics by passing a function that computes the daily EIR,
 consider using \link{xds_setup_eir}.

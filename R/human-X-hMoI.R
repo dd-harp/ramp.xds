@@ -143,8 +143,8 @@ setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_XH_obj.hMoI = function(Xname, residence, xds_obj, i, options=list()){
-  xds_obj$Xname = "hMoI"
+setup_XH_obj.hMoI = function(XHname, residence, xds_obj, i, options=list()){
+  xds_obj$XHname = "hMoI"
   xds_obj$XH_obj[[i]] = make_XH_obj_hMoI(xds_obj$nStrata[i], options)
   xds_obj <- setup_XH_inits(xds_obj, options=options, i=i)
   xds_obj <- setup_skillset_XH(xds_obj, i)

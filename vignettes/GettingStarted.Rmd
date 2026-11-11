@@ -77,7 +77,7 @@ The object returned by `xds_setup()` is called an **xds model object** or an **x
 model
 ```
 
-We can see from the returned value that `Xname` is `SIS`, which is the name of the module for human / host infection and immune dynamics.
+We can see from the returned value that `XHname` is `SIS`, which is the name of the module for human / host infection and immune dynamics.
 
 The **xds object** is a compound list. One way to inspect it is to ask for its names. 
 
@@ -85,10 +85,10 @@ The **xds object** is a compound list. One way to inspect it is to ask for its n
 names(model)
 ```
 
-The $19^{th}$ item is `Xname`:
+The $19^{th}$ item is `XHname`:
 
 ```{r}
-model$Xname
+model$XHname
 ```
 
 To inspect information, **`ramp.xds`** has functions with intuitive names that show what information is stored there.
