@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_mosy}
 \alias{xds_setup_mosy}
-\title{Build a Model of Mosquito Ecology}
+\title{Basic setup for mosquito ecology models}
 \usage{
 xds_setup_mosy(
   model_name = "unnamed",
@@ -13,7 +13,6 @@ xds_setup_mosy(
   membership = 1,
   HPop = 1000,
   searchQ = list(),
-  kappa = 1,
   MYoptions = list(),
   Koptions = list(),
   Loptions = list()
@@ -32,11 +31,9 @@ xds_setup_mosy(
 
 \item{membership}{is a vector that describes the patch where each aquatic habitat is found}
 
-\item{HPop}{is the human / host population density}
+\item{HPop}{the initial human population density for each stratum}
 
 \item{searchQ}{is a vector of search weights for egg laying}
-
-\item{kappa}{is a vector describing net infectiousness}
 
 \item{MYoptions}{a list to configure the \strong{MY} Component module}
 
@@ -49,16 +46,47 @@ an \strong{\code{xds}} object
 }
 \description{
 \loadmathjax
-A modified version of \link{xds_setup} that streamlines setup for models without parasite / pathogen infection
-dynamics. These models lack the \strong{Y} component and an \strong{X} component, but they will often need an \strong{H}
-component (host density).
 
-The \strong{\code{xds}} object defines \code{frame = class(frame) = 'mosy'}
+Build a basic model to study mosquito ecology.
+This is a modified version of \link{xds_setup} that streamlines setup for models without parasite / pathogen infection
+dynamics.
+
+This sets \code{class(xds_obj$frame) = 'mosy'}
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
-and parse outputs
+and parse outputs. Models ignore infection dynamics (the \strong{X} and \strong{Y} processes).
+The \strong{XH} component is set up to handle human/host population density.
 
-The \strong{X} Component module is \code{trivial}, but since humans / vertebrate hosts can be a
-resource, \code{HPop} must be set.
+Choose a module to use for the mosquito dynamical components (see \link{xds_info_dynamical_components}):
+\itemize{
+\item \code{MYname} -- adult mosquito ecology (see \link{MY_module_list})
+\item \code{Lname} -- aquatic mosquito ecology (see \link{L_module_list})
+}
+
+Set up the model structure:
+\itemize{
+\item \code{nPatches} - the number of patches (see \link{xds_info_patch_dynamics})
+\item \code{membership} - the habitat membership vector (see \link{xds_info_aquatic_habitats})
+}
+
+During setup:
+\itemize{
+\item The structural parameter \code{nHabitats} is set to \code{length(membership)}
+\item The structural parameter \code{nStrata} is set to \code{nPatches}
+\item \code{nPatches} is checked and set to \code{max(membership, nPatches)}
+}
+
+Set parameter values and initial conditions using setup options (named lists):
+\itemize{
+\item \code{MYoptions} sets parameter values and initial conditions for the \strong{MY} module
+\item \code{Loptions} sets parameter values and initial conditions for the \strong{L} module
+\item \code{HPop} sets the human population density
+}
+
+If \code{nPatches}\eqn{>1}, set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:
+\itemize{
+\item \code{searchQ} the habitat search weights (see \link{xds_info_search_weights_habitat})
+\item \code{Koptions} sets up a mosquito dispersal matrix (see \link{xds_info_mosquito_dispersal})
+}
 }
 \seealso{
 \link{xds_setup} and \link{dMYdt.basicM}

@@ -67,7 +67,6 @@ First, we set the parameter values.
 `Omega`` ``<-`` `[`F_Omega_xde`](https://dd-harp.github.io/ramp.xds/reference/F_Omega_xde.md)`(``g``, ``sigma``, ``mu``, ``K_matrix``)`\
 `Upsilon`` ``<-`` ``expm``::`[`expm`](https://rdrr.io/pkg/expm/man/expm.html)`(``-``Omega`` ``*`` ``eip``)`\
 \
-`kappa`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``0.1``, ``0.075``, ``0.025``)`\
 `Lambda`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``5``, ``10``, ``8``)`
 
 Next, we calculate equilibrium values following the [Ross-Macdonald
@@ -114,14 +113,14 @@ bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 `xds_obj`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"basicM"``, ``xds_obj``, ``1``, options``=``MYo``)`
 
 \
-`xds_obj`` ``=`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"trivial"``, ``residence``, ``xds_obj``, ``1``, `[`list`](https://rdrr.io/r/base/list.html)`(``kappa``=``kappa``, H``=``HPop``)``)`
+`xds_obj`` ``=`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"trivial"``, ``residence``, ``xds_obj``, ``1``, `[`list`](https://rdrr.io/r/base/list.html)`(``H``=``HPop``)``)`
 
 \
 `xds_obj`` ``=`` `[`make_indices`](https://dd-harp.github.io/ramp.xds/reference/make_indices.md)`(``xds_obj``)`
 
 \
 `xds_obj``$``terms``$``kappa`` ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``)`\
-`xds_obj``$``terms``$``kappa``[[``1``]``]`` ``=`` ``kappa``  `
+`xds_obj``$``terms``$``kappa``[[``1``]``]`` ``=`` `[`rep`](https://rdrr.io/r/base/rep.html)`(``0``, ``nPatches``)``  `
 
 \
 `xds_obj`` ``<-`` `[`setup_K_matrix`](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)`(``K_matrix``, ``xds_obj``)`
@@ -198,8 +197,7 @@ bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 [`xds_setup_mosy`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)`(``MYname ``=`` ``"basicM"``, Lname ``=`` ``"trivial"``, `\
 `               nPatches ``=`` ``3``, membership ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``,``2``,``3``,``3``)``, `\
 `               MYoptions ``=`` ``MYo``, Koptions ``=`` ``K_matrix``, `\
-`               HPop``=``HPop``, Loptions ``=`` ``Lo``, `\
-`               kappa ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``0.1``, ``0.075``, ``0.025``)``)``->``mosy1`
+`               HPop``=``HPop``, Loptions ``=`` ``Lo``)``->``mosy1`
 
 \
 [`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``mosy1``,Tmax``=``50``,dt``=``10``)``$``outputs``$``deout`` ``->`` ``out2`

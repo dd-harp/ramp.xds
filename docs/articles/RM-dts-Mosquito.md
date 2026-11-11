@@ -149,7 +149,7 @@ U\\\] For \\(1 \< i \< \tau,\\) we get a recursive relationship:
 ## Demo
 
 \
-`rm1`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``MYZname ``=`` ``"RM"``, Xname ``=`` ``"trivial"``, xds ``=`` ``'dts'``)`
+`rm1`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``MYZname ``=`` ``"RM"``, XHname ``=`` ``"trivial"``, xds ``=`` ``'dts'``)`
 
 \
 `Om`` ``<-`` `[`with`](https://rdrr.io/r/base/with.html)`(``rm1``$``MYZpar``[[``1``]``]``, ``compute_Omega_dts``(``pp``, ``ssigma``, ``mmu``, ``calK``)``)`
@@ -205,7 +205,7 @@ U\\\] For \\(1 \< i \< \tau,\\) we get a recursive relationship:
 `)`
 
 \
-`rm10`` ``<-`` ``dts_setup``(``Xname ``=`` ``"trivial"``, nPatches ``=`` ``10``, membership ``=`` ``1``:``10``)`\
+`rm10`` ``<-`` ``dts_setup``(``XHname ``=`` ``"trivial"``, nPatches ``=`` ``10``, membership ``=`` ``1``:``10``)`\
 `rm10``$``Lpar``[[``1``]``]``$``scale`` ``=`` ``1.5``^`[`c`](https://rdrr.io/r/base/c.html)`(``1``:``10``)`` `
 
 \

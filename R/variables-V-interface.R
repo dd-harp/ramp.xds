@@ -20,7 +20,7 @@ dVdt <- function(t, y, xds_obj, i) {
 #' @description Set the parameter values and configure a model
 #' for the **X** Component
 #'
-#' @param Xname the model name
+#' @param XHname the model name
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options model options as a named list
@@ -28,9 +28,9 @@ dVdt <- function(t, y, xds_obj, i) {
 #' @return an **`xds`** object
 #'
 #' @export
-setup_V_obj = function(Xname, xds_obj, i, options=list()){
-  class(Xname) <- Xname
-  UseMethod("setup_V_obj", Xname)
+setup_V_obj = function(XHname, xds_obj, i, options=list()){
+  class(XHname) <- XHname
+  UseMethod("setup_V_obj", XHname)
 }
 
 #' @title Get Variables by Name

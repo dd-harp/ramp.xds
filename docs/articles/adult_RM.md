@@ -346,7 +346,7 @@ To set up the model, we call `xds_setup` with
   finally, the dispersal matrix `K_matrix` is passed as
   `K_matrix=K_matrix`
 
-- `Xname` is set to “trivial” to run the trivial module for human
+- `XHname` is set to “trivial” to run the trivial module for human
   infection dynamics
 
 - `Lname` is set to “trivial” to run the trivial module aquatic
@@ -355,7 +355,7 @@ To set up the model, we call `xds_setup` with
 Otherwise, setup takes care of all the internals:
 
 \
-[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``MYname ``=`` ``"macdonald"``, Xname ``=`` ``"trivial"``, Lname ``=`` ``"trivial"``,  `\
+[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``MYname ``=`` ``"macdonald"``, XHname ``=`` ``"trivial"``, Lname ``=`` ``"trivial"``,  `\
 `    nPatches``=``3``, Koptions``=``K_matrix``, membership ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``:``3``)``, `\
 `    residence ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``:``3``)``, HPop ``=`` ``HPop``,`\
 `    MYoptions ``=`` ``MYo``, XHoptions ``=`` ``Xo``, Loptions ``=`` ``Lo``)`` ``->`` ``MYeg`

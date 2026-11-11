@@ -116,7 +116,7 @@ make_xds_object_template = function(xds='ode', frame='full',
   xds_obj <- setup_transmission(xds_obj)
   xds_obj <- setup_exposure("pois", xds_obj)
 
-  xds_obj$Xname       <- 'none'
+  xds_obj$XHname       <- 'none'
   xds_obj$XH_obj      <- xdlst
   xds_obj$MYname      <- 'none'
   xds_obj$MY_obj      <- xdlst

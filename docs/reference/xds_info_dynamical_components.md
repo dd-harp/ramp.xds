@@ -3,7 +3,7 @@
 In basic setup, modules are selected by passing the name as a character
 string:
 
-- `Xname`:
+- `XHname`:
 
   **X** Component module name: see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md)

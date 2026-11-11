@@ -16,6 +16,8 @@ LazyData: true
 URL: https://dd-harp.github.io/ramp.xds/
 BugReports: https://github.com/dd-harp/ramp.xds/issues
 Roxygen: list(markdown = TRUE)
+Depends:
+  R (>= 3.0.2)
 Imports: 
   ramp.func,
   deSolve,
@@ -40,4 +42,4 @@ RdMacros:
   mathjaxr
 BuildManual: TRUE
 Config/testthat/edition: 3
-Config/roxygen2/version: 8.1.0
+Config/roxygen2/version: 8.1.1

@@ -6,7 +6,7 @@ The first set of arguments chooses a module to use for each dynamical
 component (see
 [xds_info_dynamical_components](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md)):
 
-- `Xname` — human / host infection dynamics (see
+- `XHname` — human / host infection dynamics (see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md))
 
 - `MYname` – adult mosquito ecology and infection dynamics (see
@@ -63,7 +63,7 @@ Configure some of the basic elements:
 xds_setup(
   model_name = "unnamed",
   xds = "ode",
-  Xname = "SIS",
+  XHname = "SIS",
   XHoptions = list(),
   MYname = "SI",
   MYoptions = list(),
@@ -90,7 +90,7 @@ xds_setup(
 
   is `xde` for differential equations or `dts` for discrete time systems
 
-- Xname:
+- XHname:
 
   the name of an **XH** module (see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md))
@@ -184,7 +184,7 @@ an **`xds`** object
 2.  Each one of the dynamical components is configured.
 
     - **`xds_obj$XH_obj[[1]]`** defines a model for human / host
-      infection dynamics of class `Xname` (the **X** component). The
+      infection dynamics of class `XHname` (the **X** component). The
       parameter values passed in a named list, `XHoptions.`
 
     - **`xds_obj$MY_obj[[1]]`** defines a model for adult mosquito

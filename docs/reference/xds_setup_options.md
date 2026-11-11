@@ -22,7 +22,7 @@ more help.
 
 ## Modules
 
-- `Xname` – see
+- `XHname` – see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md)
 
 - `MYname`– see

@@ -88,7 +88,7 @@ In the code chuck, we called it `model`. If you type it, the function
     ## model_name - unnamed
     ## 
     ## Modules:
-    ##   Xname  - SIS
+    ##   XHname - SIS
     ##   MYname - SI
     ##   Lname  - trivial
     ## 
@@ -102,7 +102,7 @@ In the code chuck, we called it `model`. If you type it, the function
     ## frame - full
     ## xds   - ode
 
-We can see from the returned value that `Xname` is `SIS`, which is the
+We can see from the returned value that `XHname` is `SIS`, which is the
 name of the module for human / host infection and immune dynamics.
 
 The **xds object** is a compound list. One way to inspect it is to ask
@@ -117,17 +117,17 @@ for its names.
     ## [10] "frame"              "forced_by"          "patches"           
     ## [13] "habitats"           "terms"              "blood_feeding_obj" 
     ## [16] "import_obj"         "transmission_obj"   "env_het_obj"       
-    ## [19] "Xname"              "XH_obj"             "MYname"            
+    ## [19] "XHname"             "XH_obj"             "MYname"            
     ## [22] "MY_obj"             "Lname"              "L_obj"             
     ## [25] "variables"          "nOtherVariables"    "V_obj"             
     ## [28] "resources_obj"      "forcing_obj"        "health_obj"        
     ## [31] "vector_control_obj" "outputs"            "analysis"          
     ## [34] "max_ix"
 
-The \\(19^{th}\\) item is `Xname`:
+The \\(19^{th}\\) item is `XHname`:
 
 \
-`model``$``Xname`
+`model``$``XHname`
 
     ## [1] "SIS"
 

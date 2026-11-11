@@ -1,6 +1,6 @@
 # The SIS Module
 
-    Xname = "SIS"
+    XHname = "SIS"
 
 For the **XH** component, the **SIS** module implements a basic system
 of differential equations, that is often called the **SIS** compartment
@@ -21,7 +21,7 @@ At basic setup, the **SIS** module with defaults is specified like this:
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`\
-`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``Xname ``=`` ``"SIS"``)`` `
+`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``)`` `
 
 ------------------------------------------------------------------------
 
@@ -137,7 +137,7 @@ using the default values:
 To overwrite the defaults at setup, pass a named list to `xds_setup.`
 
 \
-`mod1`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``Xname ``=`` ``"SIS"``, XHoptions ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``r``=``1``/``200``)``)`\
+`mod1`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``, XHoptions ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``r``=``1``/``200``)``)`\
 [`get_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)`(``mod1``)``$``r`
 
     ## [1] 0.005
@@ -313,7 +313,7 @@ First, we use `xds_setup` and next, we do it the long way
 To set up the model, we simply do this:
 
 \
-[`xds_setup_eir`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)`(``eir``, Xname``=``"SIS"``, HPop``=``H``, XHoptions ``=`` ``Xo``)`` ``->`` ``test_SIS`
+[`xds_setup_eir`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)`(``eir``, XHname``=``"SIS"``, HPop``=``H``, XHoptions ``=`` ``Xo``)`` ``->`` ``test_SIS`
 
 To solve it, we do this:
 

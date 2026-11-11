@@ -247,8 +247,8 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_XH_obj.trivial = function(Xname, residence, xds_obj, i, options=list()){
-  xds_obj$Xname = "trivial"
+setup_XH_obj.trivial = function(XHname, residence, xds_obj, i, options=list()){
+  xds_obj$XHname = "trivial"
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nPatches, options)
   xds_obj <- setup_XH_inits(xds_obj, options=options, i=i)
   xds_obj <- setup_skillset_XH(xds_obj, i)

@@ -10,7 +10,7 @@ Also, see
 
 ------------------------------------------------------------------------
 
-In the previous vignette [Getting
+In the previous vignette, [Getting
 Started](https://dd-harp.github.io/ramp.xds/articles/GettingStarted.md),
 we introduced
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html),
@@ -37,11 +37,11 @@ elaboration.*
 Progressive elaboration starts with basic setup. To set up a model, the
 user needs to:
 
-- Frame the Model
+- Frame the study
 
-- Set up the Model Structure
+- Set up the model structure
 
-- Configure the Dynamical Components
+- Configure the dynamical components
 
 Other options we consider as an extension of basic setup are:
 
@@ -57,7 +57,7 @@ Other options we consider as an extension of basic setup are:
 
 ### The **`xds`** Model Object
 
-To use **`ramp.xds`** a dynamical system is encoded in the **`xds`**
+To use **`ramp.xds`**, a dynamical system is encoded in the **`xds`**
 object. Basic setup builds an **`xds`** object, or `xds_obj`:
 
 - `xds_obj` is a compound \[list\], and `class(xds_obj) = "xds_obj"`
@@ -81,8 +81,8 @@ object. Basic setup builds an **`xds`** object, or `xds_obj`:
 
 To use **`ramp.xds`** at all, the **xds object** must be properly
 formatted and configured, but it was not feasible to write a setup
-function that could do everything all at once. Instead, the software
-envisioned model building in two phases: basic and advanced.
+function that could do everything all at once. Instead, the software was
+designed to support model building in two phases: basic and advanced.
 
 **Basic Setup** is defined by
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.html),
@@ -160,11 +160,11 @@ Information is passed among components by two interfaces:
 
 ### Trivial Modules
 
-For each component, it is possible to set up choose the `trivial`
-module. The `trivial` modules ignore the inputs that come from other
-dynamical components, and they pass the component’s outputs from a
-*trace function.* Using `trivial` modules, it is possible to develop
-models that isolate and study part of a full system.
+For each component, it is possible to choose the `trivial` module. The
+`trivial` modules ignore the inputs that come from other dynamical
+components, and they pass the component’s outputs from a *trace
+function.* Using `trivial` modules, it is possible to develop models
+that isolate and study part of a full system.
 
 - The trivial **L** module outputs the daily emergence rate of adult,
   female mosquitoes in each patch (\\(\Lambda\\))
@@ -200,7 +200,7 @@ functions,** with four components:
 
 Each function requires a second argument, `V`, from the function
 `get_variables` that dispatches on `season_par`, `trend_par` or
-`shock_par.` By default, these are empty lists, and `get.variables.list`
+`shock_par`. By default, these are empty lists, and `get.variables.list`
 returns an empty list. The default functions `F_season`, `F_trend`, and
 `F_shock` ignore `V` and return a constant value \\(1.\\) The packages
 **`ramp.func`** and **`ramp.forcing`** have utilities that make it easy
@@ -227,17 +227,16 @@ To set up and solve partial systems, the **`xds`** object defines a
 `frame`, and `class(frame)` dispatches functions that solve the systems
 and parse the outputs.
 
-The *dynamical frame* is the All `xds_setup_*` functions define
-`xds_obj$frame` and the functions used to solve and parse differential
-equations use the `S3` system, with methods that dispatch on
-`class(xds_obj$frame)`.
+All `xds_setup_*` functions define `xds_obj$frame` and the functions
+used to solve and parse differential equations use the `S3` system, with
+methods that dispatch on `class(xds_obj$frame)`.
 
 - `xds_setup` (`frame="full"`) sets up all three components.
 
 - `xds_setup_mosy` (`frame="mosy"`) sets up models for mosquito ecology:
 
   - the model includes an **L** component
-  - the model has an **M** component but no **Y** component (*eg*
+  - the model has an **M** component but no **Y** component (*e.g.*,
     [basicM](https://dd-harp.github.io/ramp.xds/reference/basicM.html))
   - a trivial **H** module can be configured
   - the **X** component is not used
@@ -302,13 +301,13 @@ The following discusses how these are configured during setup.
 The modules for the dynamical components are assigned by three
 arguments:
 
-- `Xname` — the name of an **X** module (see
+- `XHname` — the name of an **X** module (see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.html))
 
 - `MYname` — the name of an **MY** module (see
   [MY_module_list](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.html))
 
-- `Lname` — the name of a **L** module (see
+- `Lname` — the name of an **L** module (see
   [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.html))
 
 ### XH Component
@@ -323,12 +322,12 @@ The **X** component defines a set of state variables to model disease
 dynamics: the base model is developed for a single homogeneous
 population.
 
-- `Xname` dispatches setup functions that configure the **X** component
-  ( See
+- `XHname` dispatches setup functions that configure the **XH**
+  component (see
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.html)
   for a list of modules).
 
-- the default is `Xname = "SIS"`
+- the default is `XHname = "SIS"`
 
 - `HPop` is a required argument
 
@@ -363,15 +362,15 @@ across multiple strata to handle:
 - migration
 
 Advanced setup options for the **H** component, including *progressive
-stratification* are in
+stratification*, are in
 [**`ramp.demog`**](https://dd-harp.github.io/ramp.demog/).
 
 ### MY Component
 
-Basic setup for the **MY** component
+Basic setup for the **MY** component:
 
 - `MYname` dispatches setup functions that configure the **MY**
-  component ( See
+  component (see
   [MY_module_list](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.html)
   for a list of modules).
 
@@ -379,10 +378,10 @@ Basic setup for the **MY** component
 
 ### L Component
 
-Basic setup for the **L** component
+Basic setup for the **L** component:
 
 - `Lname` dispatches setup functions that configure the **L** component
-  ( See
+  (see
   [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.html)
   for a list of modules).
 
@@ -402,12 +401,12 @@ series* with the form: \\\[m\\; F_S(t)\\; F_T(t) \\; F_K(t)\\\] where
 
 - \\(F_K(t)\\) or `F_shock` outputs a perturbation
 
-For a longer introduction, see [**SimBA**:Trace
-Functions](https://faculty.washington.edu/smitdave/simba/trace.html)
+For a longer introduction, see [**SimBA**: Trace
+Functions](https://faculty.washington.edu/smitdave/simba/trace.html).
 
 ## Spatial Dynamics
 
-- If `nPatches >1` then other setup-configurable options are to pass:
+- If `nPatches >1`, then other setup-configurable options are to pass:
 
   - Values for the search weights (see
     [search_weights](https://dd-harp.github.io/ramp.xds/reference/search_weights.html))

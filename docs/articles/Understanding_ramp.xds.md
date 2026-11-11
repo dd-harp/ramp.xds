@@ -148,7 +148,7 @@ Each model has several parameters that describe the structure of a
 model:
 
 - **Malaria Epidemiology** or the model for infection dynamics and
-  immunity in humans (\\(\cal X\\)) is specified by passing `Xname` – a
+  immunity in humans (\\(\cal X\\)) is specified by passing `XHname` – a
   string, corresponding to a model from the `ramp.xds` library, that
   specifies the model family for human infection dynamics that gets
   dispatched by the S3 function implementing \\(\cal X\\) tasks.

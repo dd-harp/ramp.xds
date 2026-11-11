@@ -4,10 +4,10 @@
 \alias{setup_XH_obj.SIS}
 \title{Set up \code{SIS} (\strong{XH})}
 \usage{
-\method{setup_XH_obj}{SIS}(Xname, residence, xds_obj, i, options = list())
+\method{setup_XH_obj}{SIS}(XHname, residence, xds_obj, i, options = list())
 }
 \arguments{
-\item{Xname}{the model name}
+\item{XHname}{the model name}
 
 \item{residence}{the residence vector}
 

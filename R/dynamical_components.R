@@ -5,7 +5,7 @@
 #' In basic setup, modules are selected by passing the name as a character string: 
 #' 
 #'  \describe{
-#'   \item{`Xname`}{**X** Component module name: see [XH_module_list]}
+#'   \item{`XHname`}{**XH** Component module name: see [XH_module_list]}
 #'   \item{`MYname`}{**MY** Component module name: see [MY_module_list]}
 #'   \item{`Lname`}{**L** Component module name: see [L_module_list]}
 #' }
@@ -36,4 +36,3 @@
 #' 
 #' @name xds_info_dynamical_components 
 NULL
-

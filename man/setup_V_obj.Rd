@@ -4,10 +4,10 @@
 \alias{setup_V_obj}
 \title{Setup an \strong{V} Module (Human / Host Epidemiology & Demography)}
 \usage{
-setup_V_obj(Xname, xds_obj, i, options = list())
+setup_V_obj(XHname, xds_obj, i, options = list())
 }
 \arguments{
-\item{Xname}{the model name}
+\item{XHname}{the model name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

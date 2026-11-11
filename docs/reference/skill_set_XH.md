@@ -25,12 +25,12 @@ The **XH** skill set is a list of a module's capabilities:
 ## Usage
 
 ``` r
-skill_set_XH(Xname)
+skill_set_XH(XHname)
 ```
 
 ## Arguments
 
-- Xname:
+- XHname:
 
   the **XH** module name
 

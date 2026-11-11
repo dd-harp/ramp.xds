@@ -92,7 +92,7 @@ test_that("test equilibrium with macdonald adults (DDE), SIS_xde humans, trivial
   params <- xds_setup(MYname = "macdonald", MYoptions=MYo, 
                       Lname = "trivial", Loptions=Lo, 
                       TSoptions = TaR, Koptions=K_matrix,
-                      Xname = "SIS", XHoptions=Xo, HPop=H, 
+                      XHname = "SIS", XHoptions=Xo, HPop=H, 
                       membership=membership, nPatches=nPatches, 
                       residence=residence)
 

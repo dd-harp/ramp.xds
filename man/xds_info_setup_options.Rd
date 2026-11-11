@@ -36,7 +36,7 @@ and where to look for more help.
 \section{Modules}{
 
 \itemize{
-\item \code{Xname} -- see \link{XH_module_list}
+\item \code{XHname} -- see \link{XH_module_list}
 \item \code{MYname}-- see \link{MY_module_list}
 \item \code{Lname} -- see \link{L_module_list}
 }
@@ -50,7 +50,7 @@ about how to configure:
 
 
 \itemize{
-\item \code{Xname} -- see \link{XH_module_list}
+\item \code{XHname} -- see \link{XH_module_list}
 \item \code{MYname}-- see \link{MY_module_list}
 \item \code{Lname} -- see \link{L_module_list}
 }

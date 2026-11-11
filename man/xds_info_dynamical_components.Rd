@@ -7,7 +7,7 @@
 In basic setup, modules are selected by passing the name as a character string:
 
 \describe{
-\item{\code{Xname}}{\strong{X} Component module name: see \link{XH_module_list}}
+\item{\code{XHname}}{\strong{XH} Component module name: see \link{XH_module_list}}
 \item{\code{MYname}}{\strong{MY} Component module name: see \link{MY_module_list}}
 \item{\code{Lname}}{\strong{L} Component module name: see \link{L_module_list}}
 }

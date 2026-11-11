@@ -49,7 +49,7 @@ test_that("forced emergence works with equilibrium", {
 
   Lo = list(Lambda=c(5, 10, 4, 4))
 
-  params <- xds_setup(MYname = "macdonald", Lname="trivial", Xname="trivial", Koptions=K_matrix,
+  params <- xds_setup(MYname = "macdonald", Lname="trivial", XHname="trivial", Koptions=K_matrix,
                       MYoptions = MYo, Loptions = Lo, XHoptions = Xo, residence=residence,
                       nPatches=nPatches, membership=membership, HPop = rep(1000, nPatches))
 

@@ -4,10 +4,10 @@
 \alias{setup_XH_obj.hMoI}
 \title{Set up \code{hMoI} (\strong{XH})}
 \usage{
-\method{setup_XH_obj}{hMoI}(Xname, residence, xds_obj, i, options = list())
+\method{setup_XH_obj}{hMoI}(XHname, residence, xds_obj, i, options = list())
 }
 \arguments{
-\item{Xname}{the model name}
+\item{XHname}{the model name}
 
 \item{residence}{the residence vector}
 

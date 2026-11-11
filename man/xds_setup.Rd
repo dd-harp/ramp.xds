@@ -2,16 +2,14 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup}
 \alias{xds_setup}
-\title{Build a Model and Configure All Components}
+\title{Basic setup}
 \usage{
 xds_setup(
-  model_name = "unnamed",
-  xds = "ode",
-  Xname = "SIS",
-  XHoptions = list(),
+  XHname = "SIS",
   MYname = "SI",
-  MYoptions = list(),
   Lname = "trivial",
+  XHoptions = list(),
+  MYoptions = list(),
   Loptions = list(),
   nPatches = 1,
   HPop = 1000,
@@ -20,29 +18,27 @@ xds_setup(
   TSoptions = list(),
   membership = 1,
   searchQ = list(),
-  Koptions = list()
+  Koptions = list(),
+  model_name = "unnamed",
+  xds = "ode"
 )
 }
 \arguments{
-\item{model_name}{a name for the model}
-
-\item{xds}{is \code{xde} for differential equations or \code{dts} for discrete time systems}
-
-\item{Xname}{the name of an \strong{XH} module (see \link{XH_module_list})}
-
-\item{XHoptions}{a named list to set parameter values and initial conditions for the \strong{XH} module}
+\item{XHname}{the name of an \strong{XH} module (see \link{XH_module_list})}
 
 \item{MYname}{the name of an \strong{MY} module (see \link{MY_module_list})}
 
-\item{MYoptions}{a named list to set parameter values and initial conditions for the \strong{MY} component}
-
 \item{Lname}{the name of an \strong{L} module (see \link{L_module_list})}
+
+\item{XHoptions}{a named list to set parameter values and initial conditions for the \strong{XH} module}
+
+\item{MYoptions}{a named list to set parameter values and initial conditions for the \strong{MY} component}
 
 \item{Loptions}{a named list to set parameter values and initial conditions for the \strong{L} component}
 
 \item{nPatches}{the number of patches}
 
-\item{HPop}{the human population density in each patch}
+\item{HPop}{the initial human population density for each stratum}
 
 \item{residence}{the index of the patch where each human population stratum resides}
 
@@ -55,70 +51,88 @@ xds_setup(
 \item{searchQ}{a vector of habitat search weights or setup options (see \link{setup_habitat_search_weights})}
 
 \item{Koptions}{a mosquito dispersal matrix (\eqn{K}) or setup options (see \link{setup_K_matrix})}
+
+\item{model_name}{a name for the model}
+
+\item{xds}{is \code{xde} for differential equations or \code{dts} for discrete time systems}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-\loadmathjax
-Make an \strong{\code{xds}} \emph{model object} from a set of input parameters.
+Build a basic model that defines all three components from a set of input parameters.
 
-The first set of arguments chooses a module to use for each dynamical component (see \link{xds_info_dynamical_components}):
+\loadmathjax
+
+Choose a module to use for each dynamical component (see \link{xds_info_dynamical_components}):
 \itemize{
-\item \code{Xname} --- human / host infection dynamics (see \link{XH_module_list})
+\item \code{XHname} --- human / host infection dynamics (see \link{XH_module_list})
 \item \code{MYname} -- adult mosquito ecology and infection dynamics (see \link{MY_module_list})
 \item \code{Lname} -- aquatic mosquito ecology (see \link{L_module_list})
 }
 
-The second set of arguments sets up the model structure
+Set up the model structure:
 \itemize{
 \item \code{nPatches} - the number of patches (see \link{xds_info_patch_dynamics})
-\item \code{membership} - the habitat membership vector (see \link{xds_info_aquatic_habitats}).
+\item \code{membership} - the habitat membership vector (see \link{xds_info_aquatic_habitats})
 \item \code{residence} - the human residence vector (see \link{xds_info_human_populations})
 }
 
-Note that:
+During setup:
 \itemize{
 \item The structural parameter \code{nHabitats} is set to \code{length(membership)}
-\item The structural parameter \code{nStrata} is set to  \code{length(residence)}
+\item The structural parameter \code{nStrata} is set to \code{length(residence)}
+\item \code{nPatches} is checked and set to \code{max(membership, nPatches)}
 }
 
-Configure some of the basic elements:
+Set parameter values and initial conditions using setup options (named lists):
 \itemize{
 \item \code{XHoptions} sets parameter values and initial conditions for the \strong{XH} module
 \item \code{MYoptions} sets parameter values and initial conditions for the \strong{MY} module
 \item \code{Loptions} sets parameter values and initial conditions for the \strong{L} module
 \item \code{HPop} is the human population density
+}
+
+If \code{nPatches}\eqn{>1}, set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:
+\itemize{
 \item \code{searchQ} the habitat search weights (see \link{xds_info_search_weights_habitat})
 \item \code{searchB} the blood feeding search weights (see \link{xds_info_search_weights_blood})
-\item \code{Koptions} sets up a mosquito dispersal matrix (if \code{nPatches>1}, see \link{xds_info_mosquito_dispersal})
-\item \code{TSoptions} sets up a time spent matrix (if \code{nPatches>1}; see \link{xds_info_time_spent})
+\item \code{Koptions} sets up a mosquito dispersal matrix (see \link{xds_info_mosquito_dispersal})
+\item \code{TSoptions} sets up a time spent matrix (see \link{xds_info_time_spent})
 }
 }
 \details{
 \enumerate{
-\item \link{make_xds_object_template} returns an object template with
+\item \link{xds_setup} calls \link{make_xds_object_template}, which returns an object template with
 a properly configured interface for blood feeding
 and egg laying (see \link{xds_object}). The structural parameters are:
 \itemize{
 \item \code{nPatches} is passed as a parameter
 \item \code{nHabitats = length(membership)}
-\item \code{nStrata = length(residence) = length(HPop)}
+\item \code{nStrata = length(residence)}
 \item \code{nHostSpecies=1} (basic setup handles only the first host species)
 \item \code{nVectorSpecies=1} (basic setup handles only the first vector species)
 \item \code{class(xds_obj$frame) = 'full'}
 }
-\item Each one of the dynamical components is configured.
+\item Each one of the dynamical components is set up as a module object:
 \itemize{
-\item \strong{\code{xds_obj$XH_obj[[1]]}} defines a model for human / host infection dynamics of class \code{Xname} (the \strong{X} component). The parameter values passed in a named list, \code{XHoptions.}
-\item \strong{\code{xds_obj$MY_obj[[1]]}} defines a model for adult mosquito ecology & infection dynamics of class \code{MYname} (the \strong{MY} Component). The parameter values are passed in a named list, \code{MYoptions.}
-\item \strong{\code{xds_obj$L_obj[[1]]}} defines a model for aquatic mosquito ecology of class \code{Lname} (The \strong{L} Component). The parameter values are passed in a named list, \code{Loptions.}
+\item \strong{\code{xds_obj$XH_obj[[1]]}} defines the module for human / host infection dynamics of class \code{XHname} (the \strong{XH} component). The parameter values are passed in a named list, \code{XHoptions}.
+\item \strong{\code{xds_obj$MY_obj[[1]]}} defines the module for adult mosquito ecology & infection dynamics of class \code{MYname} (the \strong{MY} Component). The parameter values are passed in a named list, \code{MYoptions}.
+\item \strong{\code{xds_obj$L_obj[[1]]}} defines the module for aquatic mosquito ecology of class \code{Lname} (the \strong{L} Component). The parameter values are passed in a named list, \code{Loptions}.
 }
 }
 }
 \note{
 Other options can be configured after basic setup (see \link{xds_info_setup_options}). If the \strong{MY} Component is the \code{trivial} module, consider using \link{xds_setup_aquatic} or \link{xds_setup_human} or \link{xds_setup_eir}. Models for mosquito
 ecology need not include states describing infection status (see \link{xds_setup_mosy}).
+
+Other versions of \link{xds_setup} are available:
+\itemize{
+\item Use \link{xds_setup_aquatic} for studies of mosquito aquatic ecology
+\item Use \link{xds_setup_mosy} for studies of mosquito ecology without infection dynamics
+\item Use \link{xds_setup_human} for studies of human/host disease dynamics forced by infective biting in patches
+\item Use \link{xds_setup_eir} for studies of human/host disease dynamics forced by the eir
+}
 }
 \seealso{
 \link{make_xds_object_template}, \link{xds_info_basic_setup}
