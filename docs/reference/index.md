@@ -21,28 +21,39 @@ How to get help for **`ramp.xds`**
 Build an xds model object
 
 - [`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-  : Build a Model and Configure All Components
+  : Basic setup
 
 - [`xds_setup_mosy()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)
-  : Build a Model of Mosquito Ecology
+  : Basic setup for mosquito ecology
 
 - [`xds_setup_aquatic()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
-  : Build a Model of Immature Mosquito Ecology
+  : Basic setup for aquatic mosquito ecology
 
 - [`xds_setup_human()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
-  : Build a Model of Human / Host Epidemiology
+  : Basic setup for host disease dynamics
 
 - [`xds_setup_eir()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
-  : Build a Model for a single Human / Host Epidemiology forced by the
-  EIR
-
-- [`update_interfaces()`](https://dd-harp.github.io/ramp.xds/reference/update_interfaces.md)
-  : Update interfaces
+  : Basic setup for host disease dynamics (EIR forced)
 
 - [`xds_info_basic_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
   :
 
   **`ramp.xds`**: Basic Setup
+
+- [`xds_info_change_parameters`](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
+  :
+
+  **`ramp.xds`**: Change Parameters
+
+- [`xds_info_initial_conditions`](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
+  :
+
+  **`ramp.xds`**: Initial Conditions
+
+- [`xds_info_advanced_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)
+  :
+
+  **`ramp.xds`**: All Setup Options
 
 - [`xds_object`](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)
   :
@@ -441,7 +452,9 @@ Get initial values and indices
   List variables (**XH**)
 
 - [`get_XH_inits()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)
-  : A function to set up XH_obj
+  :
+
+  Get initial values (**XH**)
 
 - [`get_MY_vars()`](https://dd-harp.github.io/ramp.xds/reference/get_MY_vars.md)
   :
@@ -449,7 +462,9 @@ Get initial values and indices
   List variables (**MY**)
 
 - [`get_MY_inits()`](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)
-  : Return initial values as a vector
+  :
+
+  Get initial values (**MY**)
 
 - [`get_L_vars()`](https://dd-harp.github.io/ramp.xds/reference/get_L_vars.md)
   :
@@ -685,7 +700,7 @@ Utilities for Time Spent Matrices
 - [`change_XH_inits()`](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.md)
   :
 
-  Change **XH** initial values
+  Change initial values (**XH**)
 
 - [`get_XH_pars()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)
   :

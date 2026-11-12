@@ -112,8 +112,10 @@ reference:
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_eir
-  - update_interfaces
   - xds_info_basic_setup
+  - xds_info_change_parameters
+  - xds_info_initial_conditions
+  - xds_info_advanced_setup
   - xds_object 
   - xds_info_setup_options
 - subtitle: Dynamical Modules 

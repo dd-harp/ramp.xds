@@ -22,13 +22,13 @@ dVdt <- function(t, y, xds_obj, i) {
 #'
 #' @param XHname the model name
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
 #' @param options model options as a named list
+#' @param i the host species index
 #'
 #' @return an **`xds`** object
 #'
 #' @export
-setup_V_obj = function(XHname, xds_obj, i, options=list()){
+setup_V_obj = function(XHname, xds_obj, options=list(), i=1){
   class(XHname) <- XHname
   UseMethod("setup_V_obj", XHname)
 }
@@ -116,11 +116,11 @@ get_V_pars <- function(xds_obj, i=1) {
 #' @title Set new X parameter values
 #' @description This method dispatches on the type of `xds_obj$V_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
-#' @param i the vector species index
 #' @param options a named list
+#' @param i the vector species index
 #' @return an **`xds`** object
 #' @export
-change_V_pars <- function(xds_obj, i=1, options=list()) {
+change_V_pars <- function(xds_obj, options=list(), i=1) {
   UseMethod("change_V_pars", xds_obj$V_obj[[i]])
 }
 
@@ -131,11 +131,11 @@ change_V_pars <- function(xds_obj, i=1, options=list()) {
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param H initial host population density
-#' @param i the host species index
 #' @param options a [list]
+#' @param i the host species index
 #' @return an **`xds`** object
 #' @export
-setup_V_inits = function(xds_obj, H, i, options=list()){
+setup_V_inits = function(xds_obj, H, options=list(), i=1){
   UseMethod("setup_V_inits", xds_obj$V_obj[[i]])
 }
 
@@ -159,10 +159,10 @@ get_V_inits = function(xds_obj, i=1){
 #' @title Set new X parameter values
 #' @description This method dispatches on the type of `xds_obj$V_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
-#' @param i the vector species index
 #' @param options a named list
+#' @param i the vector species index
 #' @return an **`xds`** object
 #' @export
-change_V_inits <- function(xds_obj, i=1, options=list()) {
+change_V_inits <- function(xds_obj, options=list(), i=1) {
   UseMethod("change_V_inits", xds_obj$V_obj[[i]])
 }

@@ -4,14 +4,14 @@
 \alias{setup_MY_inits.basicM}
 \title{Setup initial values for \code{basicM} (\strong{MY})}
 \usage{
-\method{setup_MY_inits}{basicM}(xds_obj, s, options)
+\method{setup_MY_inits}{basicM}(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a \link{list}}
+
+\item{s}{the vector species index}
 }
 \value{
 a \link{list} vector

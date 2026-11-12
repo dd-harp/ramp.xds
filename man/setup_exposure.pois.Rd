@@ -4,16 +4,16 @@
 \alias{setup_exposure.pois}
 \title{Set up a Poisson model for Exposure and Infection}
 \usage{
-\method{setup_exposure}{pois}(EHname, xds_obj, i = 1, options = list())
+\method{setup_exposure}{pois}(EHname, xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{EHname}{environmental heterogeneity model name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
-
 \item{options}{set up options list}
+
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object

@@ -2,32 +2,40 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{setup_MY_obj}
 \alias{setup_MY_obj}
-\title{Set up \strong{MY} model object}
+\title{Set up an \strong{MY} model object}
 \usage{
-setup_MY_obj(MYname, xds_obj, s, options = list())
+setup_MY_obj(MYname, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{MYname}{the name of the model}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a \link{list}}
+
+\item{s}{the vector species index}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
-This function is a structured interface, a way
-of building model objects describing adult mosquito
-ecology & infection dynamics. The string \emph{MYname}
-is assigned its own class (\code{class(MYname) <- MYname}).
+Set up creates an \strong{MY} object for the \eqn{s^{th}} species
+and sets up the interface ports:
+\itemize{
+\item calls \code{make_MY_obj_}\emph{MYname} to set up the dynamics, including parameters
+\item calls \link{setup_MY_inits} to set initial values
+\item calls \link{setup_F_circadian} to set up a flat circadian function (no effect)
+\item calls \link{setup_K_matrix} to set up a zero matrix
+}
 
-Since each model will require different arguments,
-the dispatched function \code{setup_MY_obj.MYname}
-calls \code{make_MY_obj_MYname}, passing
-the \code{options} to set the values of parameters or
-terms.
+It also sets up computation for module-specific objects.
+
+The function is part of basic setup, but it can also be used to add vector species.
+}
+\note{
+The object is stored as \code{xds_obj$MY_obj[[s]]}
+}
+\seealso{
+\link{xds_setup}, \link{change_MY_pars}, \link{setup_MY_inits}, \link{setup_F_circadian}, \link{setup_K_matrix}
 }
 \keyword{internal}

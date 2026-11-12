@@ -100,7 +100,7 @@ test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", 
   MYo$Z=ss$Z
   
   params <- change_timespent_matrix(TaR, params, 1)
-  params <- change_MY_inits(params, 1, MYo)
+  params <- change_MY_inits(params, options=MYo, s=1)
 
   params <- xds_solve(params, 730, 1)
 
@@ -120,4 +120,3 @@ test_that("test equilibrium with macdonald adults (DDE), hMoI humans, trivial", 
   expect_equal(as.vector(m2_sim), as.vector(m2), tolerance = numeric_tol)
   expect_equal(as.vector(m1_sim), as.vector(m1), tolerance = numeric_tol)
 })
-

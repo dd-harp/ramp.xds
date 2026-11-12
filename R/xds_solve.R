@@ -9,7 +9,8 @@
 #' + sets up \eqn{y_0,} the initial values vector (see [get_inits])
 #' + solves the system
 #' + parses and attaches outputs (see [parse_outputs])
-#'
+#' 
+#' @seealso [xds_setup()]
 #' @note
 #' The function [xds_solve()] dispatches on `xds_obj$xde`
 #'

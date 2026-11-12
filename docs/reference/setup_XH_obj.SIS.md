@@ -6,7 +6,7 @@ Set up an `SIS` model object for the **XH** component
 
 ``` r
 # S3 method for class 'SIS'
-setup_XH_obj(XHname, residence, xds_obj, i, options = list())
+setup_XH_obj(XHname, residence, xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -23,13 +23,13 @@ setup_XH_obj(XHname, residence, xds_obj, i, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the host species index
-
 - options:
 
   model options as a named list
+
+- i:
+
+  the host species index
 
 ## Value
 

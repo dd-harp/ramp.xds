@@ -186,7 +186,7 @@ Update_MYt.basicM <- function(t, y, xds_obj, s) {
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
+setup_MY_obj.basicM = function(MYname, xds_obj, options=list(), s=1){
   xds_obj$MYname = "basicM"
   MY_obj <- make_M_obj_basicM(xds_obj$nPatches, options)
   class(MY_obj) <- c("basicM", paste("basicM_", xds_obj$xds, sep=""))
@@ -195,7 +195,7 @@ setup_MY_obj.basicM = function(MYname, xds_obj, s, options=list()){
   xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
   xds_obj <- setup_Upsilon_obj(xds_obj, s=s, FALSE)
   xds_obj <- setup_K_matrix("zero", xds_obj, s=s)
-  xds_obj <- setup_MY_inits(xds_obj, s, options)
+  xds_obj <- setup_MY_inits(xds_obj, options=options, s=s)
   return(xds_obj)
 }
 
@@ -290,7 +290,7 @@ F_eggs.basicM <- function(t, y, xds_obj, s) {
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_MY_inits.basicM = function(xds_obj, s, options){
+setup_MY_inits.basicM = function(xds_obj, options=list(), s=1){
   xds_obj$MY_obj[[s]]$inits = make_MY_inits_basicM(xds_obj$nPatches, options)
   return(xds_obj)
 }
@@ -302,7 +302,7 @@ setup_MY_inits.basicM = function(xds_obj, s, options){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_MY_inits.basicM <- function(xds_obj, s=1, options=list()) {
+change_MY_inits.basicM <- function(xds_obj, options=list(), s=1) {
   with(xds_obj$MY_obj[[s]], with(options,{
     xds_obj$MYinits[[s]]$M = M
     xds_obj$MYinits[[s]]$P = P
@@ -345,7 +345,7 @@ get_MY_vars.basicM <- function(y, xds_obj, s){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_MY_pars.basicM <- function(xds_obj, s=1, options=list()) {
+change_MY_pars.basicM <- function(xds_obj, options=list(), s=1) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$MY_obj[[s]], with(options,{
     xds_obj$MY_obj[[s]]$f_obj$f = f

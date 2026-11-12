@@ -123,7 +123,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 #'
 #' @keywords internal
 #' @export
-setup_XH_obj.SIS = function(XHname, residence, xds_obj, i, options=list()){
+setup_XH_obj.SIS = function(XHname, residence, xds_obj, options=list(), i=1){
   xds_obj$XHname = "SIS"
   xds_obj$XH_obj[[i]] = make_XH_obj_SIS(xds_obj$nStrata[1], options)
   xds_obj <- setup_XH_inits(xds_obj, options=options, i=i)

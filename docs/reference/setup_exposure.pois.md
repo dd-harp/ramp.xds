@@ -6,7 +6,7 @@ Set up a Poisson model for Exposure and Infection
 
 ``` r
 # S3 method for class 'pois'
-setup_exposure(EHname, xds_obj, i = 1, options = list())
+setup_exposure(EHname, xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -19,13 +19,13 @@ setup_exposure(EHname, xds_obj, i = 1, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the host species index
-
 - options:
 
   set up options list
+
+- i:
+
+  the host species index
 
 ## Value
 

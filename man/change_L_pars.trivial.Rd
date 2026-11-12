@@ -4,14 +4,14 @@
 \alias{change_L_pars.trivial}
 \title{Change parameters for \code{trivial} (\strong{L})}
 \usage{
-\method{change_L_pars}{trivial}(xds_obj, s = 1, options = list())
+\method{change_L_pars}{trivial}(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a named list}
+
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object

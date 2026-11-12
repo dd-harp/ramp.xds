@@ -1,11 +1,12 @@
 # Change initial values (**L**)
 
-This sets initial values for an **L** Component module from a named list
+Change the stored initial values for any variables named in `options`
+leaving other values unchanged.
 
 ## Usage
 
 ``` r
-change_L_inits(xds_obj, s = 1, options = list())
+change_L_inits(xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
@@ -14,14 +15,18 @@ change_L_inits(xds_obj, s = 1, options = list())
 
   an **`xds`** model object
 
-- s:
-
-  the vector species index
-
 - options:
 
   a named list
 
+- s:
+
+  the vector species index
+
 ## Value
 
 an **`xds`** object
+
+## See also
+
+[get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md)

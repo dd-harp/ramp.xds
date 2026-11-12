@@ -8,7 +8,7 @@
 #' @seealso Also, see [F_foi.nb] and [F_ar.nb]
 #' @keywords internal
 #'
-setup_exposure.nb <- function(EHname, xds_obj, i=1, options=list()) {
+setup_exposure.nb <- function(EHname, xds_obj, options=list(), i=1) {
   xds_obj$env_het_obj[[i]] = make_exposure_nb(xds_obj$nStrata, options)
   return(xds_obj)
 }

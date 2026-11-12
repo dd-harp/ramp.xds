@@ -4,20 +4,31 @@
 \alias{setup_L_inits}
 \title{Setup initial values (\strong{L})}
 \usage{
-setup_L_inits(xds_obj, s, options = list())
+setup_L_inits(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
-
 \item{options}{a named \link{list}}
+
+\item{s}{the species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-Sets the initial values of the \strong{L} Component
-variables from \code{options}, a named list.
+Set initial values
+for all the variables.
+\itemize{
+\item Each module (\emph{Lname}) defines
+a function \code{make_L_inits_}\emph{Lname}
+that supplies default values
+\item The values in \code{options} overwrite the defaults
+\item To inspect variable names, use \link{get_L_inits} or
+see the inline module documentation.
+}
+}
+\seealso{
+\link{get_L_inits}, \link{xds_info_initial_conditions}
 }
 \keyword{internal}

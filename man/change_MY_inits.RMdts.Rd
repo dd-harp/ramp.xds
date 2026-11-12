@@ -4,14 +4,14 @@
 \alias{change_MY_inits.RMdts}
 \title{Change initial values for \code{RMdts} (\strong{MY})}
 \usage{
-\method{change_MY_inits}{RMdts}(xds_obj, s, options)
+\method{change_MY_inits}{RMdts}(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a named list}
+
+\item{s}{the vector species index}
 }
 \value{
 a \link{list}

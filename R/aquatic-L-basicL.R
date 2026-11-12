@@ -219,11 +219,11 @@ LEffectSizes.basicL <- function(t, y, xds_obj, s) {
 #' @seealso [make_L_obj_basicL]
 #' @keywords internal
 #' @export
-setup_L_obj.basicL = function(Lname, membership, xds_obj, s, options=list()){
+setup_L_obj.basicL = function(Lname, membership, xds_obj, options=list(), s=1){
   L_obj <- make_L_obj_basicL(xds_obj$nHabitats, options)
   class(L_obj) <- c("basicL", paste("basicL_", xds_obj$xds, sep=""))
   xds_obj$L_obj[[s]] = L_obj
-  xds_obj <- setup_L_inits(xds_obj, s, options)
+  xds_obj <- setup_L_inits(xds_obj, options=options, s=s)
   xds_obj <- setup_habitat_search_weights("setup", xds_obj, list(membership=membership), s=s)
   return(xds_obj)
 }
@@ -289,7 +289,7 @@ get_L_pars.basicL <- function(xds_obj, s=1) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_L_pars.basicL <- function(xds_obj, s=1, options=list()) {
+change_L_pars.basicL <- function(xds_obj, options=list(), s=1) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$L_obj[[s]], with(options,{
     xds_obj$L_obj[[s]]$psi_t   = checkIt(psi, nHabitats)
@@ -310,7 +310,7 @@ change_L_pars.basicL <- function(xds_obj, s=1, options=list()) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_L_inits.basicL = function(xds_obj, s, options=list()){
+setup_L_inits.basicL = function(xds_obj, options=list(), s=1){
   xds_obj$L_obj[[s]]$inits = make_L_inits_basicL(xds_obj$nHabitats, options)
   return(xds_obj)
 }
@@ -350,7 +350,7 @@ get_L_vars.basicL <- function(y, xds_obj, s){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_L_inits.basicL <- function(xds_obj, s=1, options=list()) {
+change_L_inits.basicL <- function(xds_obj, options=list(), s=1) {
   with(xds_obj$L_obj[[s]]$inits, with(options,{
     xds_obj$L_obj[[s]]$inits$L = L
     return(xds_obj)

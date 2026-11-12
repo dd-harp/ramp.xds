@@ -1,67 +1,11 @@
 # **`ramp.xds`**: Basic Setup
 
-**Basic Setup** for **`ramp.xds`** uses
+**Basic Setup** is defined by the use of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-or one of its variants.
-
-**Basic Setup** uses one of the following functions to build an
-**`xds`** model:
-
-- [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-  sets up a full model with:
-
-  - an **XH** Component
-
-  - an **MY** Component
-
-  - an **L** Component
-
-- [xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
-  sets up models to study human epidemiology, given exposure:
-
-  - an **XH** component
-
-  - a trivial **MY** component is configured for infectious biting in
-    patches
-
-  - the time spent matrix is used
-
-  - the **L** component is not used
-
-- [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
-  sets up models to study human epidemiology, given exposure:
-
-  - an **XH** component with one population stratum
-
-  - a *trace function* to output the daily EIR
-
-  - a function configures relative biting rates by age for cohort
-    dynamics
-
-  - the **MY** component is not used
-
-  - the **L** component is not used
-
-- [xds_setup_mosy](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)
-  sets up models for mosquito ecology:
-
-  - the **L** component
-
-  - the **M** component (*eg*
-    [basicM](https://dd-harp.github.io/ramp.xds/reference/basicM.md))
-
-  - a trivial **H** module (for blood feeding)
-
-  - the **X** and **Y** components are not used
-
-- [xds_setup_aquatic](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
-  sets up models for aquatic mosquito ecology:
-
-  - the **L** component
-
-  - a trivial **MY** component is configured for egg laying
-
-  - the **XH** component is not used
+or one of its variants. It returns an **xds** model object that can be
+solved or or modified through advanced setup. The following briefly
+describes the modular design, the setup variants and when to use them,
+and a slightly longer discussion of what they do.
 
 ## Modularity
 
@@ -69,85 +13,113 @@ or one of its variants.
 framework has five core biological processes organized into three chunks
 called **dynamical components** (see
 [xds_info_dynamical_components](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md)).
-The modular design makes it possible to build models that fully define
-all components (using
+The modular design makes it possible to study a system that with all
+three components fully defined (using
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)),
-or to develop systems of equations to isolate and study some part of a
+or to develop systems of equations that isolate and study some part of a
 system.
 
 To implement *plug-and-play* modularity, a trivial module was developed
-for each component: a *trace function* in the trivial *upstream*
-component is configured to pass known inputs (see
+for each component. The trivial model ignores inputs from upstream
+modules, and it congfigures a a *trace function* to pass outputs
+downstream (see
 [xds_info_trivial_forcing](https://dd-harp.github.io/ramp.xds/reference/xds_info_trivial_forcing.md)).
 
-## The Frame
+## Basic Setup Functions
+
+Depending on the purpose of the study, **Basic Setup** is done by one of
+five functions:
+
+- [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
+  can be used for most studies. It configures all three dynamical
+  components.
+
+- [xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
+  sets up an **XH** module to study disease dynamics forced by infective
+  biting in the patches.
+
+- [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
+  sets up an **XH** module to study disease dynamics forced by the daily
+  EIR. Use this to study cohort dynamics using
+  [xds_solve_cohort](https://dd-harp.github.io/ramp.xds/reference/xds_solve_cohort.md).
+
+- [xds_setup_mosy](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)
+  sets a model for mosquito ecology that ignores infection dynamics.
+
+- [xds_setup_aquatic](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
+  sets up a model for aquatic dynamics forced by egg laying.
+
+Each function sets `class(xds_obj$frame)` to dispatch functions that are
+used to solve dynamical systems.
+
+## [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-sets up a model that has all three components. Functions were developed
-to setup and solve systems that making another component completely
-unnecessary.
+sets `class(xds_obj$frame)="full"` and requires arguments to set up all
+three dynamical components.
 
-All `xds_setup_*` functions define `xds_obj$frame` and the functions
-used to solve and parse differential equations use the `S3` system, with
-methods that dispatch on `class(xds_obj$frame)`.
+## [xds_setup_mosy](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)
 
-- [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-  (`frame="full"`) sets up all three components.
+[xds_setup_mosy](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)
+sets `class(xds_obj$frame)="mosy"` for models of mosquito ecology. It
 
-- [xds_setup_mosy](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)
-  (`frame="mosy"`) sets up models for mosquito ecology:
+- sets up a **L** module
 
-  - the model includes an **L** component
+- sets up a **MY** module, but the **Y** processes are ignored
 
-  - the model has an **M** component but no **Y** component (*eg*
-    [basicM](https://dd-harp.github.io/ramp.xds/reference/basicM.md))
+- sets up a trivial **XH** module to pass human population density
 
-  - a trivial **H** module can be configured
+## [xds_setup_aquatic](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
 
-  - the **X** component is not used
+[xds_setup_aquatic](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
+sets `class(xds_obj$frame)="aquatic"`for models of aquatic mosquito
+ecology. It
 
-- [xds_setup_aquatic](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
-  (`frame="aquatic"`) sets up models aquatic mosquito ecology:
+- sets up a **L** module
 
-  - a trivial **MY** component is configured for egg laying
+- sets up a trivial **MY** module and configures a trace function for
+  egg laying
 
-  - the **XH** component is not used
+- sets up an **XH** component to be ignored
 
-- [xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
-  (`frame="human"`) sets up models to study epidemiology
+## [xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
 
-  - a trivial **MY** component is configured for infectious biting in
-    patches
+[xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
+sets `class(xds_obj$frame)="human"` for models of malaria epidemiology
+or other disease dynamics forced by infective biting in the patches. It
 
-  - the **L** component is not used
+- sets up the **XH** module
 
-- [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
-  (`frame="eir"`) sets up models to study epidemiology
+- sets up a trivial **MY** component and configures a trace function for
+  infective biting in patches
 
-  - a trace function computes the EIR, denoted \\(F_E(t)\\)
+- sets up an **L** component to be ignored
 
-  - the **MY** component is not used
+## [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
 
-  - the **XH** component is not used
+[xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
+sets `class(xds_obj$frame)="eir"` for models of malaria epidemiology or
+other disease dynamics forced by the EIR. These models can also be
+solved by
+[xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
+or
+[xds_solve_cohort](https://dd-harp.github.io/ramp.xds/reference/xds_solve_cohort.md):
+in the former, **time** is the independent variable, and in the latter
+**age.** Unlike the other variants, these models lack the **MY** and
+**L** components. Instead, it
 
-Each one of the basic setup functions assigns a different value to
-`class(xds_obj$frame),` which dispatches the `S3` methods that solve and
-parse differential equations:
+- sets up the **XH** module
 
-- [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-  sets `class(frame) = "full"`
+  - the average eir
 
-- [xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md)
-  sets `class(frame) = "human"`
+  - a seasonal pattern function
 
-- [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
-  sets `class(frame) = "eir"`
+  - a trend pattern function
 
-- [xds_setup_mosy](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)
-  sets `class(frame) = "mosy"`
+  - a shock function
 
-- [xds_setup_aquatic](https://dd-harp.github.io/ramp.xds/reference/xds_setup_aquatic.md)
-  sets `class(frame) = "aquatic"`
+  - relative biting by age, which is used by
+    [xds_solve_cohort](https://dd-harp.github.io/ramp.xds/reference/xds_solve_cohort.md)
 
 ## See also
 

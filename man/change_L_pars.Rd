@@ -4,19 +4,24 @@
 \alias{change_L_pars}
 \title{Change parameters (\strong{L})}
 \usage{
-change_L_pars(xds_obj, s = 1, options = list())
+change_L_pars(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a named list}
+
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-Change parameters (\strong{L})
+For the \strong{L} module for the \eqn{s^{th}} species,
+change parameter values named in \code{options}
+leaving other values unchanged.
+}
+\seealso{
+\link{get_L_pars}, \link{setup_L_obj}, \link{xds_info_change_parameters}
 }
 \keyword{internal}

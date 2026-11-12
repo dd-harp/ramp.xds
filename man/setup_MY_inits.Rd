@@ -4,19 +4,31 @@
 \alias{setup_MY_inits}
 \title{Setup initial values (\strong{MY})}
 \usage{
-setup_MY_inits(xds_obj, s, options = list())
+setup_MY_inits(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a \link{list}}
+
+\item{s}{the vector species index}
 }
 \value{
 \link{list}
 }
 \description{
-This method dispatches on \code{MYname}.
+Set initial values
+for all the variables.
+\itemize{
+\item Each module (\emph{MYname}) defines
+a function \code{make_MY_inits_}\emph{MYname}
+that supplies default values
+\item The values in \code{options} overwrite the defaults
+\item To inspect variable names, use \link{get_MY_inits} or
+see the inline module documentation.
+}
+}
+\seealso{
+\link{get_MY_inits}, \link{xds_info_initial_conditions}
 }
 \keyword{internal}

@@ -15,6 +15,12 @@ get_XH_pars(xds_obj, i = 1)
 a \link{list}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}.
+Inspect the parameter values for the \strong{XH} module for the \eqn{i^{th}} species
+}
+\note{
+The parameter values are stored on \code{xds_obj$XH_obj[[i]]}
+}
+\seealso{
+\link{change_XH_pars}, \link{setup_XH_obj}, \link{xds_info_change_parameters}
 }
 \keyword{internal}

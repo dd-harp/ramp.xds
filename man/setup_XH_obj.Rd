@@ -2,9 +2,9 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{setup_XH_obj}
 \alias{setup_XH_obj}
-\title{Set up \strong{XH} model object}
+\title{Set up an \strong{XH} model object}
 \usage{
-setup_XH_obj(XHname, residence, xds_obj, i, options = list())
+setup_XH_obj(XHname, residence, xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{XHname}{the model name}
@@ -13,15 +13,34 @@ setup_XH_obj(XHname, residence, xds_obj, i, options = list())
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
-
 \item{options}{model options as a named list}
+
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-Set the parameter values and configure a model
-for the \strong{XH} Component
+Set up creates an \strong{XH} object for the \eqn{i^{th}} species
+and sets up the interface ports:
+\itemize{
+\item calls \code{make_XH_obj_}\emph{XHname} to set up the dynamics, including parameters
+\item calls \link{setup_XH_inits} to set initial values
+\item initializes \link{setup_blood_search_weights}: all weights are set to \eqn{1}
+\item initializes \link{setup_timespent} to the residence matrix: all time spent at home
+\item calls \link{setup_mass_treatment} with no events
+\item calls \link{setup_demog_obj} setting birth and death rates to zero
+\item calls \link{setup_time_away} with no time spent away
+\item calls \link{setup_travel_eir} with the travel EIR set to zero
+}
+
+The function is part of basic setup, but it is also used to add a host species.
+}
+\note{
+The model object is stored as \code{xds_obj$XH_obj[[i]]}
+}
+\seealso{
+\link{xds_setup}, \link{change_XH_pars}, \link{setup_XH_inits}, \link{setup_timespent}, \link{setup_mass_treatment},
+\link{setup_demog_obj}, \link{setup_time_away}, \link{setup_travel_eir}
 }
 \keyword{internal}

@@ -6,7 +6,7 @@ Returns the unmodified **`xds`** object
 
 ``` r
 # S3 method for class 'trivial'
-change_L_inits(xds_obj, s = 1, options = list())
+change_L_inits(xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
@@ -15,13 +15,13 @@ change_L_inits(xds_obj, s = 1, options = list())
 
   an **`xds`** model object
 
-- s:
-
-  the vector species index
-
 - options:
 
   a named list
+
+- s:
+
+  the vector species index
 
 ## Value
 

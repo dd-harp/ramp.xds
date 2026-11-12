@@ -4,16 +4,16 @@
 \alias{setup_V_obj}
 \title{Setup an \strong{V} Module (Human / Host Epidemiology & Demography)}
 \usage{
-setup_V_obj(XHname, xds_obj, i, options = list())
+setup_V_obj(XHname, xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{XHname}{the model name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
-
 \item{options}{model options as a named list}
+
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object

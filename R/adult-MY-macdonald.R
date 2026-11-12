@@ -211,7 +211,7 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_MY_obj.macdonald = function(MYname, xds_obj, s, options=list()){
+setup_MY_obj.macdonald = function(MYname, xds_obj, options=list(), s=1){
   xds_obj$MYname = "macdonald"
   xds_obj = ode_to_dde(xds_obj)
   xds_obj$MY_obj[[s]] = make_MY_obj_macdonald(xds_obj$nPatches, options)
@@ -219,7 +219,7 @@ setup_MY_obj.macdonald = function(MYname, xds_obj, s, options=list()){
   xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
   xds_obj <- setup_Upsilon_obj(xds_obj, s=s, TRUE)
   xds_obj <- setup_K_matrix("zero", xds_obj, s=s)
-  xds_obj <- setup_MY_inits(xds_obj, s, options)
+  xds_obj <- setup_MY_inits(xds_obj, options=options, s=s)
   return(xds_obj)
 }
 
@@ -343,7 +343,7 @@ get_MY_pars.macdonald <- function(xds_obj, s=1) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_MY_pars.macdonald <- function(xds_obj, s=1, options=list()) {
+change_MY_pars.macdonald <- function(xds_obj, options=list(), s=1) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$MY_obj[[s]], with(options,{
     xds_obj$MY_obj[[s]]$f = f
@@ -364,7 +364,7 @@ change_MY_pars.macdonald <- function(xds_obj, s=1, options=list()) {
 #' @return a [list]
 #' @keywords internal
 #' @export
-setup_MY_inits.macdonald = function(xds_obj, s, options=list()){with(xds_obj$MY_obj[[s]], {
+setup_MY_inits.macdonald = function(xds_obj, options=list(), s=1){with(xds_obj$MY_obj[[s]], {
   xds_obj$MY_obj[[s]]$inits = make_MY_inits_macdonald(nPatches, options)
   return(xds_obj)
 })}
@@ -399,7 +399,7 @@ make_MY_inits_macdonald = function(nPatches, options = list(),
 #' @return a [list]
 #' @keywords internal
 #' @export
-change_MY_inits.macdonald = function(xds_obj, s, options=list()){
+change_MY_inits.macdonald = function(xds_obj, options=list(), s=1){
   inits = with(get_MY_inits(xds_obj, s),
             with(options,{
               list(M=M, P=P, Y=Y, Z=Z, dk_ix=dk_ix)

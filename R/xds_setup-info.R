@@ -1,49 +1,85 @@
-#' @title **`ramp.xds`**: Guide to Basic Setup
+#' @title **`ramp.xds`**: Basic Setup
 #' 
 #' @description
 #' 
-#' **Basic Setup** uses one of the following functions to build an
-#' **`xds`** model: 
+#' **Basic Setup** is defined by the use of [xds_setup] or one of its variants. It returns an **xds** model object that can be solved or
+#' or modified through advanced setup. The following briefly describes the modular design, 
+#' the setup variants and when to use them, and a slightly longer discussion of what they do.  
+#' 
+#' @section Modularity:
+#'   
+#' **`ramp.xds`** is designed for modular computation. The
+#' mathematical framework has 
+#' five core biological processes organized
+#' into three chunks called **dynamical components** (see [xds_info_dynamical_components]).  
+#' The modular design  
+#' makes it possible to study a system that with all three components fully defined (using [xds_setup]), or to 
+#' develop systems of equations that isolate and study some part
+#' of a system. 
+#' 
+#' To implement *plug-and-play* modularity, a trivial module was developed
+#' for each component. The trivial model ignores inputs from upstream modules, and it congfigures a 
+#' a *trace function* to pass outputs downstream (see [xds_info_trivial_forcing]). 
+#' 
+#' @section Basic Setup Functions:
 #'
-#' + [xds_setup] sets up a full model with:
-#'      - an **XH** component 
-#'      - an **MY** component 
-#'      - an **L** component 
-#'      
-#' + [xds_setup_human] sets up models to study human epidemiology, given exposure: 
-#'      - an **XH** component
-#'      - a trivial **MY** component is configured for infectious biting in patches 
-#'      - the time spent matrix is used
-#'      - the **L** component is not used 
-#'      
-#' + [xds_setup_eir] sets up models to study human epidemiology, given exposure:
-#'      - an **XH** component with one population stratum 
-#'      - a *trace function* to output the daily EIR
-#'      - a function configures relative biting rates by age for cohort dynamics  
-#'      - the **MY** component is not used 
-#'      - the **L** component is not used 
+#' Depending on the purpose of the study, 
+#' **Basic Setup** is done by one of five functions: 
 #' 
-#' + [xds_setup_mosy] sets up models for mosquito ecology:
-#'      - the **L** component 
-#'      - the **M** component (*eg* [basicM]) 
-#'      - a trivial **H** module (for blood feeding) 
-#'      - the **X** and **Y** components are not used 
+#' + [xds_setup] can be used for most studies. It configures all three dynamical components. 
+#' 
+#' + [xds_setup_human] sets up an **XH** module to study disease dynamics forced by infective biting in the patches. 
+#' 
+#' + [xds_setup_eir] sets up an **XH** module to study disease dynamics forced by the daily EIR. Use this to study cohort dynamics using [xds_solve_cohort].
+#' 
+#' + [xds_setup_mosy] sets a model for mosquito ecology that ignores infection dynamics. 
+#' 
+#' + [xds_setup_aquatic] sets up a model for aquatic dynamics forced by egg laying. 
+#' 
+#' Each function sets `class(xds_obj$frame)` to dispatch functions that are used to solve dynamical systems. 
+#' 
+#' @section [xds_setup]:
+#'
+#' [xds_setup] sets `class(xds_obj$frame)="full"` and requires arguments to set up all three dynamical components.
+#' 
+#' @section [xds_setup_mosy]:
+#' 
+#' [xds_setup_mosy] sets `class(xds_obj$frame)="mosy"` for models of mosquito ecology. 
+#' It 
+#' - sets up a **L** module
+#' - sets up a **MY** module, but the **Y** processes are ignored
+#' - sets up a trivial **XH** module to pass human population density 
 #'       
-#' + [xds_setup_aquatic] sets up models for aquatic mosquito ecology: 
-#'      - the **L** component
-#'      - a trivial **MY** component is configured for egg laying 
-#'      - the **XH** component is not used 
+#' @section [xds_setup_aquatic]:
 #' 
-#' @section The Frame:  
-#' Each one of the basic setup functions assigns a different value to `class(xds_obj$frame),` 
-#' which dispatches the `S3` methods that solve and parse differential equations: 
-#' + [xds_setup] sets `class(frame) = "full"`
-#' + [xds_setup_human] sets `class(frame) = "human"`
-#' + [xds_setup_eir] sets `class(frame) = "eir"`
-#' + [xds_setup_mosy] sets `class(frame) = "mosy"`
-#' + [xds_setup_aquatic] sets `class(frame) = "aquatic"`
+#' [xds_setup_aquatic] sets `class(xds_obj$frame)="aquatic"`for models of aquatic mosquito ecology. It 
+#' - sets up a **L** module
+#' - sets up a trivial **MY** module and configures a trace function for egg laying 
+#' - sets up an **XH** component to be ignored 
+#'      
+#' @section [xds_setup_human]:
+#' 
+#' [xds_setup_human] sets `class(xds_obj$frame)="human"` for models of malaria epidemiology or other disease dynamics forced by infective biting in the patches. It
+#' - sets up the **XH** module 
+#' - sets up a trivial **MY** component and configures a trace function for infective biting in patches 
+#' - sets up an **L** component to be ignored
+#'      
+#' @section [xds_setup_eir]:
+#' 
+#' [xds_setup_eir] sets `class(xds_obj$frame)="eir"` for models of malaria epidemiology or other disease dynamics forced by the EIR. These models 
+#' can also be solved by [xds_solve] or [xds_solve_cohort]: in the former, **time** is the independent variable, and in the latter **age.** 
+#' Unlike the other variants, these models
+#' lack the **MY** and **L** components. Instead, it 
+#' - sets up the **XH** module 
+#  - configures a trace function to compute the EIR that has:
+#'      - the average eir
+#'      - a seasonal pattern function
+#'      - a trend pattern function
+#'      - a shock function
+#'      - relative biting by age, which is used by [xds_solve_cohort]
 #' 
 #' @seealso [xds_info_dynamical_components], [xds_info_trivial_forcing] and [xds_object] 
 #' 
 #' @name xds_info_basic_setup
 NULL
+

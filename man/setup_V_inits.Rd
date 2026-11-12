@@ -4,16 +4,16 @@
 \alias{setup_V_inits}
 \title{Setup Initial Values for \strong{V} Modules}
 \usage{
-setup_V_inits(xds_obj, H, i, options = list())
+setup_V_inits(xds_obj, H, options = list(), i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{H}{initial host population density}
 
-\item{i}{the host species index}
-
 \item{options}{a \link{list}}
+
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object

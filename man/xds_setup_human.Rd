@@ -2,41 +2,41 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_human}
 \alias{xds_setup_human}
-\title{Basic setup for models of human/host disease dynamics}
+\title{Basic setup for host disease dynamics}
 \usage{
 xds_setup_human(
-  model_name = "unnamed",
   XHname = "SIS",
   XHoptions = list(),
-  xds = "ode",
+  HPop = 1000,
   nPatches = 1,
   residence = 1,
-  HPop = 1000,
   searchB = list(),
   TSoptions = list(),
-  MYoptions = list()
+  MYoptions = list(),
+  model_name = "unnamed",
+  xds = "ode"
 )
 }
 \arguments{
-\item{model_name}{a name for the model}
-
 \item{XHname}{the name of an \strong{XH} module (see \link{XH_module_list})}
 
 \item{XHoptions}{a named list to set parameter values and initial conditions for the \strong{XH} module}
 
-\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
+\item{HPop}{the initial human population density for each stratum}
 
 \item{nPatches}{the number of patches}
 
 \item{residence}{a vector that describes the patch where each human stratum lives}
 
-\item{HPop}{the initial human population density for each stratum}
-
 \item{searchB}{a vector of search weights for blood feeding}
 
 \item{TSoptions}{a time spent matrix or setup options (see \link{setup_timespent})}
 
-\item{MYoptions}{a list to configure the \strong{MY} Component module}
+\item{MYoptions}{a list to configure the trivial \strong{MY} module}
+
+\item{model_name}{a name for the model}
+
+\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 }
 \value{
 an \strong{\code{xds}} object
@@ -44,21 +44,43 @@ an \strong{\code{xds}} object
 \description{
 \loadmathjax
 
+Build a dynamical system to describe the disease dynamics in human or host population
+in response to infective biting.
+The function encodes the model as an \strong{xds} object that
+can be solved by \link{xds_solve}.
+
+To build a model forced by the EIR, see \link{xds_setup_eir}.
+}
+\details{
 A modified version of \link{xds_setup} that sets up a model to study exposure and
 infection.
 The \strong{MY} component module is set to \code{trivial} and a trace
 function computes infective biting in the patches.
-This sets \code{class(xds_obj$frame) = 'human'}
+
+\code{class(xds_obj$frame) = 'human'}
+
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
 and parse outputs.
 
 To set up a model that is forced
 by the EIR, use \link{xds_setup_eir}.
 
+\strong{Dynamics}
+
 Choose a module:
 \itemize{
-\item \code{XHname} --- human / host infection dynamics (see \link{XH_module_list})
+\item \code{XHname} --- the name of an \strong{XH} module: see the \link{XH_module_list} for human / host infection dynamics
+\item \code{MYname} \eqn{=} \code{trivial}
 }
+
+Set parameter values and initial conditions using setup options (named lists):
+\itemize{
+\item \code{XHoptions} sets parameter values and initial conditions for the \strong{XH} module
+\item \code{MYoptions} sets up infective biting in the patches for the trivial \strong{MY} module
+\item \code{HPop} is the human population density
+}
+
+\strong{Model Structure}
 
 Set up the model structure:
 \itemize{
@@ -69,13 +91,7 @@ Set up the model structure:
 During setup:
 \itemize{
 \item The structural parameter \code{nStrata} is set to  \code{length(residence)}
-}
-
-Set parameter values and initial conditions using setup options (named lists):
-\itemize{
-\item \code{XHoptions} sets parameter values and initial conditions for the \strong{XH} module
-\item \code{MYoptions} sets up infective biting in the patches for the trivial \strong{MY} module
-\item \code{HPop} is the human population density
+\item \code{nHostSpecies}\eqn{=1}
 }
 
 If \code{nPatches}\eqn{>1}, set up some basic aspects of blood feeding and exposure:
@@ -84,9 +100,24 @@ If \code{nPatches}\eqn{>1}, set up some basic aspects of blood feeding and expos
 \item \code{TSoptions} sets up a time spent matrix (see \link{xds_info_time_spent})
 }
 
-To study human cohort dynamics by passing a function that computes the daily EIR,
-consider using \link{xds_setup_eir}.
+\strong{Next}
+\itemize{
+\item To solve the model, see \link{xds_solve} or \link{xds_solve_cohort}
+\item To check or change parameters, see \link{xds_info_change_parameters}
+\item To check or change the initial conditions, see \link{xds_info_initial_conditions}
+\item To modify the model structure, see \link{xds_info_advanced_setup}
+}
 }
 \seealso{
-\link{xds_setup} and \link{xds_setup_eir}
+\itemize{
+\item Basic Setup: \link{xds_setup}, \link{xds_setup_eir}, \link{xds_info_basic_setup}
+\itemize{
+\item \link{xds_info_change_parameters}
+\item \link{xds_info_initial_conditions}
+}
+\item Advanced Setup: \link{xds_info_advanced_setup}
+\item Solving: \link{xds_solve}
+\item Internals: \link{xds_info_dynamical_components},
+\link{xds_object}, \link{make_xds_object_template}
+}
 }

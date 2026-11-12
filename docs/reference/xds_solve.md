@@ -45,3 +45,7 @@ xds_solve(xds_obj, Tmax = 365, dt = 1, times = NULL)
 ## Note
 
 The function `xds_solve()` dispatches on `xds_obj$xde`
+
+## See also
+
+[`xds_setup()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)

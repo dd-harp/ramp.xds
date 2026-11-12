@@ -135,7 +135,7 @@ F_eggs.RMdts <- function(t, y, xds_obj, s) {
 #' @return a [list]
 #' @keywords internal
 #' @export
-setup_MY_inits.RMdts = function(xds_obj, s, options=list()){
+setup_MY_inits.RMdts = function(xds_obj, options=list(), s=1){
   xds_obj$MY_obj[[s]]$inits = with(xds_obj$MY_obj[[s]], make_MY_inits_RMdts(nPatches, max_eip, options))
   return(xds_obj)
 }
@@ -236,7 +236,7 @@ parse_MY_orbits.RMdts <- function(outputs, xds_obj, s) {with(xds_obj$ix$MY[[s]],
 #' @return a [list]
 #' @keywords internal
 #' @export
-change_MY_inits.RMdts <- function(xds_obj, s, options) {
+change_MY_inits.RMdts <- function(xds_obj, options=list(), s=1) {
   with(xds_obj$MY_obj[[s]]$ix,{
     with(options,{
     M = y0[M_ix]
@@ -247,4 +247,3 @@ change_MY_inits.RMdts <- function(xds_obj, s, options) {
     xds_obj$MY_obj[[s]]$inits = make_MY_inits_RMdts(xds_obj$nPatches, max_eip, list(), M=M, P=P, U=U, Y=Y, Z=Z)
     return(xds_obj)
 })})}
-

@@ -208,7 +208,7 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #' @keywords internal
 #'
 #' @export
- setup_MY_obj.trivial = function(MYname, xds_obj, s, options=list()){
+ setup_MY_obj.trivial = function(MYname, xds_obj, options=list(), s=1){
   xds_obj$MYname = "trivial"
   
   MY = "MY"
@@ -315,7 +315,7 @@ get_MY_pars.trivial <- function(xds_obj, s=1) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_MY_inits.trivial <- function(xds_obj, s=1, options=list()) {
+change_MY_inits.trivial <- function(xds_obj, options=list(), s=1) {
   return(xds_obj)
 }
 
@@ -325,7 +325,7 @@ change_MY_inits.trivial <- function(xds_obj, s=1, options=list()) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_MY_pars.trivial <- function(xds_obj, s=1, options=list()) {
+change_MY_pars.trivial <- function(xds_obj, options=list(), s=1) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$MY_obj[[s]], with(options,{
     xds_obj$MY_obj[[s]]$F_season = F_season
@@ -358,7 +358,7 @@ setup_skillset_MY.trivial = function(xds_obj, s){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_MY_inits.trivial = function(xds_obj, s, options=list()){
+setup_MY_inits.trivial = function(xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 

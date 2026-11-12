@@ -17,7 +17,11 @@ change_XH_pars(xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Replace the parameters with new values named in
-the list \code{options}.
+For the \strong{XH} module for the \eqn{i^{th}} species,
+change parameter values named in \code{options}
+leaving other values unchanged.
+}
+\seealso{
+\link{get_XH_pars}, \link{setup_XH_obj}, \link{xds_info_change_parameters}
 }
 \keyword{internal}

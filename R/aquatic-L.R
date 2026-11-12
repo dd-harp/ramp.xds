@@ -108,29 +108,41 @@ F_emerge <- function(t, y, xds_obj, s) {
   UseMethod("F_emerge", xds_obj$L_obj[[s]])
 }
 
-#' @title Set up **L** model object 
+#' @title Set up an **L** model object 
+#' 
 #' @description
-#' Each instance of `setup_L_obj.*` calls a function `create_L_obj_*` that
-#' creates an object **`L_obj`.**
-#' It is attached the **`xds`** object as `xds_obj$L_obj[[s]].` Each instance of `create_L_obj_*`
-#' should assign default parameter values that will be over-written by `options`
-#' @note This method assigns `Lname` to class(`Lname`) and dispatches on `Lname`.
+#' Set up creates an **L** object for the \eqn{s^{th}} species 
+#' and sets up the interface ports: 
+#' + calls `make_L_obj_`*Lname* to set up the dynamics, including parameters
+#' + calls [setup_L_inits] to set initial values
+#' + calls [setup_habitat_search_weights]  
+#' 
+#' The function is typically called by [xds_setup], but it is also used to add vector species. 
+#' 
+#' @seealso [xds_setup], [change_L_pars], [setup_L_inits], [setup_habitat_search_weights]
+#' 
+#' @note The model object is stored as `xds_obj$L_obj[[s]]`
 #'
 #' @param Lname the class name of the **L** module
 #' @param membership the habitats' patch membership vector
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
 #' @param options a named list to configure **`L_obj`**
+#' @param s the species index
 #'
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_L_obj = function(Lname, membership, xds_obj, s, options=list()){
+setup_L_obj = function(Lname, membership, xds_obj, options=list(), s=1){
   class(Lname) <- Lname
   UseMethod("setup_L_obj", Lname)
 }
 
 #' @title Get parameters (**L**)
+#' 
+#' @description Inspect the parameter values for the **L** module for the \eqn{s^{th}} species
+#' 
+#' @seealso [change_L_pars], [setup_L_obj], [xds_info_change_parameters]
+#' 
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
@@ -141,13 +153,21 @@ get_L_pars <- function(xds_obj, s=1) {
 }
 
 #' @title Change parameters (**L**)
+#' 
+#' @description
+#' For the **L** module for the \eqn{s^{th}} species, 
+#' change parameter values named in `options` 
+#' leaving other values unchanged. 
+#' 
+#' @seealso [get_L_pars], [setup_L_obj], [xds_info_change_parameters]
+#' 
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
 #' @param options a named list
+#' @param s the vector species index
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_L_pars <- function(xds_obj, s=1, options=list()) {
+change_L_pars <- function(xds_obj, options=list(), s=1) {
   UseMethod("change_L_pars", xds_obj$L_obj[[s]])
 }
 
@@ -166,21 +186,35 @@ get_L_vars <- function(y, xds_obj, s) {
 }
 
 #' @title Setup initial values (**L**)
-#' @description Sets the initial values of the **L** Component
-#' variables from `options`, a named list.
+#' 
+#' @description Set initial values
+#' for all the variables.  
+#' + Each module (*Lname*) defines
+#' a function `make_L_inits_`*Lname* 
+#' that supplies default values
+#' + The values in `options` overwrite the defaults
+#' + To inspect variable names, use [get_L_inits] or 
+#' see the inline module documentation.
+#' 
+#' @seealso [get_L_inits], [xds_info_initial_conditions]
+#' 
 #' @param xds_obj an **`xds`** model object
-#' @param s the species index
 #' @param options a named [list]
+#' @param s the species index
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_L_inits = function(xds_obj, s, options=list()){
+setup_L_inits = function(xds_obj, options=list(), s=1){
   UseMethod("setup_L_inits", xds_obj$L_obj[[s]])
 }
 
 #' @title Get initial values (**L**) 
-#' @description The initial values are stored on the **L** object as a
-#' named list called `inits`; `get_L_inits` returns that list.
+#' 
+#' @description Inspect the initial values for the **L** module
+#' 
+#' @seealso [change_L_inits], [setup_L_inits]
+#' @note The initial values are stored as a named list called `xds_obj$L_obj[[i]]$inits`
+#' 
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a named [list]
@@ -191,16 +225,21 @@ get_L_inits <- function(xds_obj, s=1) {
 }
 
 #' @title Change initial values (**L**)
+#' 
 #' @description
-#' This sets initial values for an **L** Component
-#' module from a named list
+#' Change the stored initial values for 
+#' any variables named in `options`
+#' leaving other values unchanged. 
+#' 
+#' @seealso [get_L_inits]
+#' 
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
 #' @param options a named list
+#' @param s the vector species index
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_L_inits <- function(xds_obj, s=1, options=list()) {
+change_L_inits <- function(xds_obj, options=list(), s=1) {
   UseMethod("change_L_inits", xds_obj$L_obj[[s]])
 }
 

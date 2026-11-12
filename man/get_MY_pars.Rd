@@ -15,6 +15,12 @@ get_MY_pars(xds_obj, s = 1)
 a \link{list}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}.
+Inspect the parameter values for the \strong{MY} module for the \eqn{s^{th}} species
+}
+\note{
+Parameter values are stored on \code{xds_obj$MY_obj[[s]]}
+}
+\seealso{
+\link{change_MY_pars}, \link{setup_MY_obj}, \link{xds_info_change_parameters}
 }
 \keyword{internal}

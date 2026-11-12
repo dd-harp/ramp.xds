@@ -15,7 +15,12 @@ get_L_inits(xds_obj, s = 1)
 a named \link{list}
 }
 \description{
-The initial values are stored on the \strong{L} object as a
-named list called \code{inits}; \code{get_L_inits} returns that list.
+Inspect the initial values for the \strong{L} module
+}
+\note{
+The initial values are stored as a named list called \code{xds_obj$L_obj[[i]]$inits}
+}
+\seealso{
+\link{change_L_inits}, \link{setup_L_inits}
 }
 \keyword{internal}

@@ -162,7 +162,7 @@ LEffectSizes.trivial <- function(t, y, xds_obj, s) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_L_obj.trivial = function(Lname, membership, xds_obj, s, options=list()){
+setup_L_obj.trivial = function(Lname, membership, xds_obj, options=list(), s=1){
   xds_obj$Lname = "trivial"
   forced_by = list()
   forced_by$what = "Lambda"
@@ -246,7 +246,7 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
+change_L_pars.trivial <- function(xds_obj, options=list(), s=1) {
   with(xds_obj$L_obj[[s]], with(options,{
     xds_obj$L_obj[[s]]$Lambda = Lambda
     xds_obj$L_obj[[s]]$F_season = F_season
@@ -262,7 +262,7 @@ change_L_pars.trivial <- function(xds_obj, s=1, options=list()) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-setup_L_inits.trivial = function(xds_obj, s, options=list()){
+setup_L_inits.trivial = function(xds_obj, options=list(), s=1){
   xds_obj$L_obj[[s]]$inits = list()
   return(xds_obj)
 }
@@ -284,7 +284,7 @@ get_L_vars.trivial <- function(y, xds_obj, s){
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_L_inits.trivial <- function(xds_obj, s=1, options=list()) {
+change_L_inits.trivial <- function(xds_obj, options=list(), s=1) {
   return(xds_obj)
 }
 

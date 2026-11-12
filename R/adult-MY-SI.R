@@ -287,9 +287,9 @@ MEffectSizes.SI <- function(t, y, xds_obj, s) {
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_MY_obj.SI = function(MYname, xds_obj, s, options=list()){
+setup_MY_obj.SI = function(MYname, xds_obj, options=list(), s=1){
   xds_obj$MY_obj[[s]] <- make_MY_obj_SI(xds_obj$nPatches, options)
-  xds_obj <- setup_MY_inits(xds_obj, s, options)
+  xds_obj <- setup_MY_inits(xds_obj, options=options, s=s)
   xds_obj <- setup_F_circadian("setup", xds_obj, s=s)
   xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
   xds_obj <- setup_Upsilon_obj(xds_obj, s=s, TRUE)
@@ -410,7 +410,7 @@ get_MY_pars.SI <- function(xds_obj, s=1) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_MY_pars.SI <- function(xds_obj, s=1, options=list()) {
+change_MY_pars.SI <- function(xds_obj, options=list(), s=1) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$MY_obj[[s]], with(options,{
     xds_obj$MY_obj[[s]]$f_obj$f = f
@@ -436,7 +436,7 @@ change_MY_pars.SI <- function(xds_obj, s=1, options=list()) {
 #' @return a [list]
 #' @keywords internal
 #' @export
-setup_MY_inits.SI = function(xds_obj, s, options=list()){
+setup_MY_inits.SI = function(xds_obj, options=list(), s=1){
   xds_obj$MY_obj[[s]]$inits = make_MY_inits_SI(xds_obj$nPatches, options)
   return(xds_obj)
 }
@@ -467,7 +467,7 @@ make_MY_inits_SI = function(nPatches, options = list(),
 #' @return a [list]
 #' @keywords internal
 #' @export
-change_MY_inits.SI = function(xds_obj, s, options=list()){
+change_MY_inits.SI = function(xds_obj, options=list(), s=1){
   inits =  with(get_MY_inits(xds_obj, s), with(options,{
     list(M=M, Y=Y)}))
   xds_obj$MY_obj[[s]]$inits=inits

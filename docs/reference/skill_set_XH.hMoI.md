@@ -10,12 +10,12 @@ The model does output observed population density and here it is
 
 ``` r
 # S3 method for class 'hMoI'
-skill_set_XH(XHname = "hMoI")
+skill_set_XH(Xname = "hMoI")
 ```
 
 ## Arguments
 
-- XHname:
+- Xname:
 
   the **XH** module name
 

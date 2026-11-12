@@ -67,5 +67,6 @@
 #' + [xds_info_aquatic_habitats]
 #' + [xds_port_ovitraps]
 #' 
-#' @name xds_info_setup_options
+#' @name xds_info_advanced_setup
+
 NULL

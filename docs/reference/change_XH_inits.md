@@ -1,7 +1,7 @@
-# Change **XH** initial values
+# Change initial values (**XH**)
 
-Replace the initial values for the dependent variables with new values
-named in the list `options`.
+Change the stored initial values for any variables named in `options`
+leaving other values unchanged.
 
 ## Usage
 
@@ -26,3 +26,7 @@ change_XH_inits(xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** object
+
+## See also
+
+[get_XH_inits](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)

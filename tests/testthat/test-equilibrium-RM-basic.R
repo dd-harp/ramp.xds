@@ -103,7 +103,7 @@ test_that("test equilibrium with macdonald adults (DDE), basic competition", {
   MYo$Y=ss$Y
   MYo$Z=ss$Z
   
-  params <- change_MY_inits(params, 1, MYo)
+  params <- change_MY_inits(params, options=MYo, s=1)
   
   params <- xds_solve(params, times = c(0, 3650))
 

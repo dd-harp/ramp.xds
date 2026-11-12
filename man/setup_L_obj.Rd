@@ -2,9 +2,9 @@
 % Please edit documentation in R/aquatic-L.R
 \name{setup_L_obj}
 \alias{setup_L_obj}
-\title{Set up \strong{L} model object}
+\title{Set up an \strong{L} model object}
 \usage{
-setup_L_obj(Lname, membership, xds_obj, s, options = list())
+setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{Lname}{the class name of the \strong{L} module}
@@ -13,20 +13,28 @@ setup_L_obj(Lname, membership, xds_obj, s, options = list())
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
-
 \item{options}{a named list to configure \strong{\code{L_obj}}}
+
+\item{s}{the species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-Each instance of \verb{setup_L_obj.*} calls a function \verb{create_L_obj_*} that
-creates an object \strong{\code{L_obj}.}
-It is attached the \strong{\code{xds}} object as \verb{xds_obj$L_obj[[s]].} Each instance of \verb{create_L_obj_*}
-should assign default parameter values that will be over-written by \code{options}
+Set up creates an \strong{L} object for the \eqn{s^{th}} species
+and sets up the interface ports:
+\itemize{
+\item calls \code{make_L_obj_}\emph{Lname} to set up the dynamics, including parameters
+\item calls \link{setup_L_inits} to set initial values
+\item calls \link{setup_habitat_search_weights}
+}
+
+The function is typically called by \link{xds_setup}, but it is also used to add vector species.
 }
 \note{
-This method assigns \code{Lname} to class(\code{Lname}) and dispatches on \code{Lname}.
+The model object is stored as \code{xds_obj$L_obj[[s]]}
+}
+\seealso{
+\link{xds_setup}, \link{change_L_pars}, \link{setup_L_inits}, \link{setup_habitat_search_weights}
 }
 \keyword{internal}

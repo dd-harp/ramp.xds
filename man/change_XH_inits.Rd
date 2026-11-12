@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{change_XH_inits}
 \alias{change_XH_inits}
-\title{Change \strong{XH} initial values}
+\title{Change initial values (\strong{XH})}
 \usage{
 change_XH_inits(xds_obj, options = list(), i = 1)
 }
@@ -17,8 +17,10 @@ change_XH_inits(xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Replace the initial values for the dependent
-variables with new values named in
-the list \code{options}.
+Change the stored initial values for
+any variables named in \code{options} leaving other values unchanged.
+}
+\seealso{
+\link{get_XH_inits}
 }
 \keyword{internal}
