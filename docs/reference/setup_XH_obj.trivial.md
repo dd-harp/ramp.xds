@@ -8,7 +8,7 @@ for the trivial model
 
 ``` r
 # S3 method for class 'trivial'
-setup_XH_obj(XHname, residence, xds_obj, i, options = list())
+setup_XH_obj(XHname, residence, xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -25,13 +25,13 @@ setup_XH_obj(XHname, residence, xds_obj, i, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the host species index
-
 - options:
 
   model options as a named list
+
+- i:
+
+  the host species index
 
 ## Value
 

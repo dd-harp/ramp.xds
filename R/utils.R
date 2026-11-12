@@ -170,13 +170,13 @@ update_inits <- function(xds_obj, y0=NULL){
   s = length(xds_obj$L_obj)
   if(s>0) for(ix in 1:s){
     vars = get_L_vars(y0, xds_obj, ix)
-    xds_obj = change_L_inits(xds_obj, ix, vars)
+    xds_obj = change_L_inits(xds_obj, options=vars, s=ix)
   }
 
   s = length(xds_obj$MY_obj)
   if(s>0) for(ix in 1:s){
     vars = get_MY_vars(y0, xds_obj, ix)
-    xds_obj = change_MY_inits(xds_obj, ix, vars)
+    xds_obj = change_MY_inits(xds_obj, options=vars, s=ix)
   }
 
   ii = length(xds_obj$XH_obj)

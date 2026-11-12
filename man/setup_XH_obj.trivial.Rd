@@ -4,7 +4,7 @@
 \alias{setup_XH_obj.trivial}
 \title{Set up \code{trivial} (\strong{XH})}
 \usage{
-\method{setup_XH_obj}{trivial}(XHname, residence, xds_obj, i, options = list())
+\method{setup_XH_obj}{trivial}(XHname, residence, xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{XHname}{the model name}
@@ -13,9 +13,9 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
-
 \item{options}{model options as a named list}
+
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object

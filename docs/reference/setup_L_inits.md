@@ -1,12 +1,20 @@
 # Setup initial values (**L**)
 
-Sets the initial values of the **L** Component variables from `options`,
-a named list.
+Set initial values for all the variables.
+
+- Each module (*Lname*) defines a function `make_L_inits_`*Lname* that
+  supplies default values
+
+- The values in `options` overwrite the defaults
+
+- To inspect variable names, use
+  [get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md)
+  or see the inline module documentation.
 
 ## Usage
 
 ``` r
-setup_L_inits(xds_obj, s, options = list())
+setup_L_inits(xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
@@ -15,14 +23,19 @@ setup_L_inits(xds_obj, s, options = list())
 
   an **`xds`** model object
 
-- s:
-
-  the species index
-
 - options:
 
   a named [list](https://rdrr.io/r/base/list.html)
 
+- s:
+
+  the species index
+
 ## Value
 
 an **`xds`** object
+
+## See also
+
+[get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md),
+[xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)

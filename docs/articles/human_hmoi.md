@@ -79,11 +79,11 @@ Here, we build a model step-by-step.
 `eir`` ``<-`` ``h``/``b`
 
 \
-`xds_obj`` ``=`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"hMoI"``, ``residence``, ``xds_obj``, ``1``, ``Xo``)`
+`xds_obj`` ``=`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"hMoI"``, ``residence``, ``xds_obj``, options``=``Xo``, i``=``1``)`
 
 \
-`xds_obj`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"trivial"``, ``xds_obj``, ``1``)`\
-`xds_obj`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivial"``, ``1``, ``xds_obj``, ``1``)`
+`xds_obj`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"trivial"``, ``xds_obj``, s``=``1``)`\
+`xds_obj`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivial"``, ``1``, ``xds_obj``, s``=``1``)`
 
 \
 `F_season`` ``=`` ``F_one`\
@@ -155,4 +155,4 @@ Here, we build a model step-by-step.
 [`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``test_hMoI``)``->`` ``test_hMoI`` `\
 `XH2`` ``<-`` ``test_hMoI``$``outputs``$``orbits``$``XH``[[``1``]``]`\
 [`sum`](https://rdrr.io/r/base/sum.html)`(``(``XH``$``m1``-``XH2``$``m1``)``^``2``)`\
-`#> [1] 5198.155`
+`#> [1] 0`

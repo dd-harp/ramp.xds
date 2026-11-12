@@ -4,14 +4,14 @@
 \alias{change_V_pars}
 \title{Set new X parameter values}
 \usage{
-change_V_pars(xds_obj, i = 1, options = list())
+change_V_pars(xds_obj, options = list(), i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the vector species index}
-
 \item{options}{a named list}
+
+\item{i}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object

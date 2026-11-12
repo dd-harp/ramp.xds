@@ -6,7 +6,7 @@ Change initial values for `RMdts` (**MY**)
 
 ``` r
 # S3 method for class 'RMdts'
-change_MY_inits(xds_obj, s, options)
+change_MY_inits(xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
@@ -15,13 +15,13 @@ change_MY_inits(xds_obj, s, options)
 
   an **`xds`** model object
 
-- s:
-
-  the vector species index
-
 - options:
 
   a named list
+
+- s:
+
+  the vector species index
 
 ## Value
 

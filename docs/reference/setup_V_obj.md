@@ -5,7 +5,7 @@ Set the parameter values and configure a model for the **X** Component
 ## Usage
 
 ``` r
-setup_V_obj(XHname, xds_obj, i, options = list())
+setup_V_obj(XHname, xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -18,13 +18,13 @@ setup_V_obj(XHname, xds_obj, i, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the host species index
-
 - options:
 
   model options as a named list
+
+- i:
+
+  the host species index
 
 ## Value
 

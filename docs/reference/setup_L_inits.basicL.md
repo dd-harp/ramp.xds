@@ -9,7 +9,7 @@ name (*i.e.* `options$L`)
 
 ``` r
 # S3 method for class 'basicL'
-setup_L_inits(xds_obj, s, options = list())
+setup_L_inits(xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
@@ -18,13 +18,13 @@ setup_L_inits(xds_obj, s, options = list())
 
   an **`xds`** model object
 
-- s:
-
-  the species index
-
 - options:
 
   a named [list](https://rdrr.io/r/base/list.html)
+
+- s:
+
+  the species index
 
 ## Value
 

@@ -2,10 +2,9 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_eir}
 \alias{xds_setup_eir}
-\title{Basic setup for models of human/host disease dynamics forced by the EIR}
+\title{Basic setup for host disease dynamics (EIR forced)}
 \usage{
 xds_setup_eir(
-  model_name = "unnamed",
   eir = 1/365,
   F_season = F_one,
   F_trend = F_one,
@@ -18,13 +17,12 @@ xds_setup_eir(
   xds = "ode",
   XHname = "SIS",
   XHoptions = list(),
-  HPop = 1000
+  HPop = 1000,
+  model_name = "unnamed"
 )
 }
 \arguments{
-\item{model_name}{is a name for the model (arbitrary)}
-
-\item{eir}{is the entomological inoculation rate}
+\item{eir}{is the average, daily entomological inoculation rate}
 
 \item{F_season}{the seasonal pattern function}
 
@@ -49,27 +47,47 @@ xds_setup_eir(
 \item{XHoptions}{a named list to set parameter values and initial conditions for the \strong{XH} module}
 
 \item{HPop}{the initial human population density for each stratum}
+
+\item{model_name}{is a name for the model (arbitrary)}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
+Build a dynamical system to describe human malaria epidemiology or host disease dynamics forced by the
+daily EIR. The function
+encodes the model as an \strong{xds} object that
+can be solved by \link{xds_solve} or \link{xds_solve_cohort}.
+
 \loadmathjax
 
-A modified version of \link{xds_setup} that sets up a model to study the outcomes of exposure,
-as defined by the EIR.
-This sets \code{class(xds_obj$frame) = 'eir'}
+To build a model that is forced by infective biting in the patches, which requires setting up a time
+spent matrix and search weigths, use \link{xds_setup_human}.
+}
+\details{
+A modified version of \link{xds_setup} that sets up a model to study exposure and
+infection.
+The \strong{MY} component module is set to \code{trivial} and a trace
+function computes infective biting in the patches.
+
+\code{class(xds_obj$frame) = 'eir'}
+
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
-and parse outputs for \link{xds_solve}. The model can also be solved by \link{xds_solve_cohort}.
+and parse outputs.
+
+\strong{Dynamics}
 
 Configure the \strong{XH} component:
 \itemize{
-\item \code{XHname} --- human / host infection dynamics (see \link{XH_module_list})
+\item \code{XHname} --- the name of an \strong{XH} module: see the \link{XH_module_list} for human / host infection dynamics
 \item \code{HPop} --- the initial human population density
 \item \code{XHoptions} sets parameter values and initial conditions for the \strong{XH} module
+\item \code{nHostSpecies}\eqn{=1}
 }
 
 The structural parameter \code{nStrata} is set to \code{length(HPop)}.
+
+\strong{The EIR Trace Function}
 
 The interface includes options to configure a composed, multiplicative time series function
 describing \code{F_eir} as a function of time. For cohort dynamics (using \link{xds_solve_cohort}), a function
@@ -81,7 +99,25 @@ can be configured to compute relative biting rates by age:
 \item \code{F_shock} or \code{shock_par} --- set up the shock function
 \item \code{F_age} or \code{age_par} --- set up relative biting rates by age
 }
+
+\strong{Next}
+\itemize{
+\item To solve the model, see \link{xds_solve} or \link{xds_solve_cohort}
+\item To check or change parameters, see \link{xds_info_change_parameters}
+\item To check or change the initial conditions, see \link{xds_info_initial_conditions}
+\item To modify the model structure, see \link{xds_info_advanced_setup}
+}
 }
 \seealso{
-\link{xds_setup} and \link{xds_setup_human}
+\itemize{
+\item Basic Setup: \link{xds_setup}, \link{xds_setup_human}, \link{xds_info_basic_setup}
+\itemize{
+\item \link{xds_info_change_parameters}
+\item \link{xds_info_initial_conditions}
+}
+\item Advanced Setup: \link{xds_info_advanced_setup}
+\item Solving: \link{xds_solve}, \link{xds_solve_cohort}
+\item Internals: \link{xds_info_dynamical_components},
+\link{xds_object}, \link{make_xds_object_template}
+}
 }

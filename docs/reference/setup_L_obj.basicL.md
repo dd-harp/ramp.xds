@@ -7,7 +7,7 @@ The function sets up `L_obj` for the \\(s^{th}\\) species by calling
 
 ``` r
 # S3 method for class 'basicL'
-setup_L_obj(Lname, membership, xds_obj, s, options = list())
+setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
@@ -24,13 +24,13 @@ setup_L_obj(Lname, membership, xds_obj, s, options = list())
 
   an **`xds`** model object
 
-- s:
-
-  the species index
-
 - options:
 
   a named list to configure **`L_obj`**
+
+- s:
+
+  the species index
 
 ## Value
 

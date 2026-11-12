@@ -4,20 +4,24 @@
 \alias{change_L_inits}
 \title{Change initial values (\strong{L})}
 \usage{
-change_L_inits(xds_obj, s = 1, options = list())
+change_L_inits(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a named list}
+
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-This sets initial values for an \strong{L} Component
-module from a named list
+Change the stored initial values for
+any variables named in \code{options}
+leaving other values unchanged.
+}
+\seealso{
+\link{get_L_inits}
 }
 \keyword{internal}

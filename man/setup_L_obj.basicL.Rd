@@ -4,7 +4,7 @@
 \alias{setup_L_obj.basicL}
 \title{Set up \code{basicL} (\strong{L})}
 \usage{
-\method{setup_L_obj}{basicL}(Lname, membership, xds_obj, s, options = list())
+\method{setup_L_obj}{basicL}(Lname, membership, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{Lname}{the class name of the \strong{L} module}
@@ -13,9 +13,9 @@
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
-
 \item{options}{a named list to configure \strong{\code{L_obj}}}
+
+\item{s}{the species index}
 }
 \value{
 an \strong{\code{xds}} object

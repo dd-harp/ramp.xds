@@ -2,29 +2,29 @@
 % Please edit documentation in R/xds_setup.R
 \name{xds_setup_aquatic}
 \alias{xds_setup_aquatic}
-\title{Basic setup for aquatic mosquito ecology models}
+\title{Basic setup for aquatic mosquito ecology}
 \usage{
 xds_setup_aquatic(
-  model_name = "unnamed",
-  xds = "ode",
-  nHabitats = 1,
   Lname = "basicL",
   Loptions = list(),
-  MYoptions = list()
+  nHabitats = 1,
+  MYoptions = list(),
+  model_name = "unnamed",
+  xds = "ode"
 )
 }
 \arguments{
-\item{model_name}{is a name for the model (arbitrary)}
-
-\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
-
-\item{nHabitats}{is the number of habitats}
-
 \item{Lname}{the name of an \strong{L} module (see \link{L_module_list})}
 
 \item{Loptions}{a list to configure the \strong{L} Component module}
 
+\item{nHabitats}{is the number of habitats}
+
 \item{MYoptions}{options to configure egg laying}
+
+\item{model_name}{is a name for the model (arbitrary)}
+
+\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 }
 \value{
 an \strong{\code{xds}} object
@@ -32,21 +32,25 @@ an \strong{\code{xds}} object
 \description{
 \loadmathjax
 
-A modified version of \link{xds_setup} that streamlines setup for the \strong{L} Component
-and egg laying for a \code{trivial} \strong{MY} Component.
-This sets \code{class(xds_obj$frame) = 'aquatic'}
+Build a dynamical system to describe the dynamics of immature mosquitoes
+in aquatic habitats. The function
+encodes the model as an \strong{xds} object that
+can be solved by \link{xds_solve}.
+}
+\details{
+This is a modified version of \link{xds_setup} that streamlines setup for the \strong{L} module
+and egg laying for a \code{trivial} \strong{MY} module. It sets
+
+\code{class(xds_obj$frame) = 'aquatic'}
+
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
 and parse outputs.
 
+\strong{Dynamics}
+
 Choose a module:
 \itemize{
-\item \code{Lname} -- aquatic mosquito ecology (see \link{L_module_list})
-}
-
-Set up the model structure:
-\itemize{
-\item \code{nHabitats} -- sets the number of habitats
-\item \code{nPatches} is set to \code{nHabitats}
+\item \code{Lname} -- the name of an \strong{L} module: see the \link{L_module_list} for aquatic mosquito ecology
 }
 
 Set parameter values and initial conditions using setup options (named lists):
@@ -54,11 +58,42 @@ Set parameter values and initial conditions using setup options (named lists):
 \item \code{MYoptions} sets up egg laying using the \code{trivial} \strong{MY} module
 \item \code{Loptions} sets parameter values and initial conditions for the \strong{L} module
 }
+
+\strong{Model Structure}
+
+Set up the model structure:
+\itemize{
+\item \code{nHabitats} -- sets the number of habitats
+\item \code{nPatches} \eqn{=} \code{nHabitats}
+\item \code{nVectorSpecies}\eqn{=1}
+}
+
+\strong{Next}
+\itemize{
+\item To solve the model, see \link{xds_solve}
+\item To check or change parameters, see \link{xds_info_change_parameters}
+\item To check or change the initial conditions, see \link{xds_info_initial_conditions}
+\item To modify the model structure, see \link{xds_info_advanced_setup}
+}
 }
 \note{
-The \strong{XH} model
-is never used, but it is set up as the default \code{trivial} module.
+\link{xds_setup} calls \link{make_xds_object_template}, which returns an object template with
+a properly configured interface for blood feeding
+and egg laying (see \link{xds_object}).
+\itemize{
+\item The \strong{XH} model is never used, but it is set up as the default \code{trivial} module.
+}
 }
 \seealso{
-\link{xds_setup}
+\itemize{
+\item Basic Setup: \link{xds_setup}, \link{xds_info_basic_setup}
+\itemize{
+\item \link{xds_info_change_parameters}
+\item \link{xds_info_initial_conditions}
+}
+\item Advanced Setup: \link{xds_info_advanced_setup}
+\item Solving: \link{xds_solve}
+\item Internals: \link{xds_info_dynamical_components},
+\link{xds_object}, \link{make_xds_object_template}
+}
 }

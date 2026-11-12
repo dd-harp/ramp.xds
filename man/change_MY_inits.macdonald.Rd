@@ -4,14 +4,14 @@
 \alias{change_MY_inits.macdonald}
 \title{Change initial values for \code{macdonald} (\strong{MY})}
 \usage{
-\method{change_MY_inits}{macdonald}(xds_obj, s, options = list())
+\method{change_MY_inits}{macdonald}(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a named list}
+
+\item{s}{the vector species index}
 }
 \value{
 a \link{list}

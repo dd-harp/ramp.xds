@@ -133,28 +133,34 @@ MEffectSizes <- function(t, y, xds_obj, s) {
   UseMethod("MEffectSizes", xds_obj$MY_obj[[s]])
 }
 
-#' @title Set up **MY** model object
+#' @title Set up an **MY** model object
 #'
 #' @description
-#' This function is a structured interface, a way
-#' of building model objects describing adult mosquito
-#' ecology & infection dynamics. The string *MYname*
-#' is assigned its own class (`class(MYname) <- MYname`).
-#'
-#' Since each model will require different arguments,
-#' the dispatched function `setup_MY_obj.MYname`
-#' calls `make_MY_obj_MYname`, passing
-#' the `options` to set the values of parameters or
-#' terms.
+#' Set up creates an **MY** object for the \eqn{s^{th}} species 
+#' and sets up the interface ports: 
+#' + calls `make_MY_obj_`*MYname* to set up the dynamics, including parameters
+#' + calls [setup_MY_inits] to set initial values
+#' + calls [setup_F_circadian] to set up a flat circadian function (no effect)
+#' + calls [setup_K_matrix] to set up a zero matrix
+#' 
+#' It also sets up computation for module-specific objects.
+#' 
+#' The function is part of basic setup, but it can also be used to add vector species. 
+#' 
+#' @note The object is stored as `xds_obj$MY_obj[[s]]`
+#' 
+#' @seealso [xds_setup], [change_MY_pars], [setup_MY_inits], [setup_F_circadian], [setup_K_matrix]
 #'
 #' @param MYname the name of the model
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
 #' @param options a [list]
-#' @return [list]
+#' @param s the vector species index
+#' 
+#' @return an **`xds`** object
+#' 
 #' @keywords internal
 #' @export
-setup_MY_obj = function(MYname, xds_obj, s, options=list()){
+setup_MY_obj = function(MYname, xds_obj, options=list(), s=1){
   class(MYname) <- MYname
   UseMethod("setup_MY_obj", MYname)
 }
@@ -207,7 +213,13 @@ parse_MY_orbits <- function(outputs, xds_obj, s) {
 }
 
 #' @title Get parameters (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' 
+#' @description 
+#' Inspect the parameter values for the **MY** module for the \eqn{s^{th}} species
+#' 
+#' @seealso [change_MY_pars], [setup_MY_obj], [xds_info_change_parameters]
+#' 
+#' @note Parameter values are stored on `xds_obj$MY_obj[[s]]`
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
@@ -218,31 +230,56 @@ get_MY_pars <- function(xds_obj, s=1) {
 }
 
 #' @title Change parameters (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' 
+#' @description 
+#' For the **MY** module for the \eqn{s^{th}} species, 
+#' change parameter values named in `options` 
+#' leaving other values unchanged. 
+#' 
+#' @seealso [get_MY_pars], [setup_MY_obj], [xds_info_change_parameters]
+#'
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
 #' @param options a named list
+#' @param s the vector species index
 #' @return an **`xds`** object
 #' @export
-change_MY_pars <- function(xds_obj, s=1, options=list()) {
+change_MY_pars <- function(xds_obj, options=list(), s=1) {
   UseMethod("change_MY_pars", xds_obj$MY_obj[[s]])
 }
 
 #' @title Setup initial values (**MY**)
-#' @description This method dispatches on `MYname`.
+#' 
+#' @description Set initial values
+#' for all the variables.  
+#' + Each module (*MYname*) defines
+#' a function `make_MY_inits_`*MYname* 
+#' that supplies default values
+#' + The values in `options` overwrite the defaults
+#' + To inspect variable names, use [get_MY_inits] or 
+#' see the inline module documentation.
+#'
+#' @seealso [get_MY_inits], [xds_info_initial_conditions]
+#' 
+#'
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
 #' @param options a [list]
+#' @param s the vector species index
 #' @return [list]
 #' @keywords internal
 #' @export
-setup_MY_inits = function(xds_obj, s, options=list()){
+setup_MY_inits = function(xds_obj, options=list(), s=1){
   UseMethod("setup_MY_inits", xds_obj$MY_obj[[s]])
 }
 
 
-#' @title Return initial values as a vector
-#' @description This method dispatches on the type of `xds_obj$MY_obj`.
+#' @title Get initial values (**MY**) 
+#' 
+#' @description Inspect the initial values for the **MY** module
+#' 
+#' @note The initial values are stored as a named list called `xds_obj$XH_obj[[i]]$inits`
+#' 
+#' @seealso [change_XH_inits], [setup_XH_inits]
+#' 
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return [numeric]
@@ -255,12 +292,12 @@ get_MY_inits <- function(xds_obj, s=1) {
 #' @title Change initial values (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
 #' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
 #' @param options a named list
+#' @param s the vector species index
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_MY_inits <- function(xds_obj, s=1, options=list()) {
+change_MY_inits <- function(xds_obj, options=list(), s=1) {
   UseMethod("change_MY_inits", xds_obj$MY_obj[[s]])
 }
 
@@ -373,4 +410,3 @@ steady_state_M = function(Lambda, xds_obj, s=1){
 steady_state_Y = function(M, kappa, xds_obj, s=1){
   UseMethod("steady_state_M", xds_obj$MY_obj[[s]])
 }
-

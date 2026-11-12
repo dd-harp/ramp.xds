@@ -15,6 +15,9 @@ get_L_pars(xds_obj, s = 1)
 a \link{list}
 }
 \description{
-Get parameters (\strong{L})
+Inspect the parameter values for the \strong{L} module for the \eqn{s^{th}} species
+}
+\seealso{
+\link{change_L_pars}, \link{setup_L_obj}, \link{xds_info_change_parameters}
 }
 \keyword{internal}

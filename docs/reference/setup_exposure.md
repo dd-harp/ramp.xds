@@ -9,7 +9,7 @@ Set up the model for exposure. Current options for `EHname`
 ## Usage
 
 ``` r
-setup_exposure(EHname, xds_obj, i = 1, options = list())
+setup_exposure(EHname, xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -22,13 +22,13 @@ setup_exposure(EHname, xds_obj, i = 1, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the host species index
-
 - options:
 
   set up options list
+
+- i:
+
+  the host species index
 
 ## Value
 

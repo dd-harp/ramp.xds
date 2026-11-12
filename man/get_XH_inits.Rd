@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{get_XH_inits}
 \alias{get_XH_inits}
-\title{A function to set up XH_obj}
+\title{Get initial values (\strong{XH})}
 \usage{
 get_XH_inits(xds_obj, i = 1)
 }
@@ -15,7 +15,13 @@ get_XH_inits(xds_obj, i = 1)
 the initial values, as a named list
 }
 \description{
-Get and display the stored
-set of initial values.
+Inspect the initial values
+for the \strong{XH} module
+}
+\note{
+The initial values are stored as a named list called \code{xds_obj$XH_obj[[i]]$inits}
+}
+\seealso{
+\link{change_XH_inits}, \link{setup_XH_inits}
 }
 \keyword{internal}

@@ -107,13 +107,13 @@ bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 `#> [1] 3`
 
 \
-`xds_obj`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivial"``, ``membership``, ``xds_obj``, ``1``, options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``Lambda ``=`` ``alpha``)``)`
+`xds_obj`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivial"``, ``membership``, ``xds_obj``, options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``Lambda ``=`` ``alpha``)``, s``=``1``)`
 
 \
-`xds_obj`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"basicM"``, ``xds_obj``, ``1``, options``=``MYo``)`
+`xds_obj`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"basicM"``, ``xds_obj``, options``=``MYo``, s``=``1``)`
 
 \
-`xds_obj`` ``=`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"trivial"``, ``residence``, ``xds_obj``, ``1``, `[`list`](https://rdrr.io/r/base/list.html)`(``H``=``HPop``)``)`
+`xds_obj`` ``=`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"trivial"``, ``residence``, ``xds_obj``, options``=`[`list`](https://rdrr.io/r/base/list.html)`(``H``=``HPop``)``, i``=``1``)`
 
 \
 `xds_obj`` ``=`` `[`make_indices`](https://dd-harp.github.io/ramp.xds/reference/make_indices.md)`(``xds_obj``)`

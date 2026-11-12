@@ -8,7 +8,7 @@ for the macdonald model
 
 ``` r
 # S3 method for class 'macdonald'
-change_MY_inits(xds_obj, s, options = list())
+change_MY_inits(xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
@@ -17,13 +17,13 @@ change_MY_inits(xds_obj, s, options = list())
 
   an **`xds`** model object
 
-- s:
-
-  the vector species index
-
 - options:
 
   a named list
+
+- s:
+
+  the vector species index
 
 ## Value
 

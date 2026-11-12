@@ -53,13 +53,13 @@ NULL
 #'
 #' @param EHname environmental heterogeneity model name
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
 #' @param options set up options list
+#' @param i the host species index
 #'
 #' @return an **`xds`** object
 #'
 #' @export
-setup_exposure <- function(EHname, xds_obj, i=1, options=list()){
+setup_exposure <- function(EHname, xds_obj, options=list(), i=1){
   class(EHname) <- EHname
   UseMethod("setup_exposure", EHname)
 }
@@ -233,6 +233,5 @@ foi2eir <- function(foi, b, env_het_obj){
 ar2eir <- function(ar, b, env_het_obj){
   UseMethod("ar2eir", env_het_obj)
 }
-
 
 

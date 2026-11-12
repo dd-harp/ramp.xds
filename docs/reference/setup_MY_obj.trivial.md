@@ -8,7 +8,7 @@ case, the user configures `F_eggs`; in the latter, `F_fqZ`
 
 ``` r
 # S3 method for class 'trivial'
-setup_MY_obj(MYname, xds_obj, s, options = list())
+setup_MY_obj(MYname, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
@@ -21,13 +21,13 @@ setup_MY_obj(MYname, xds_obj, s, options = list())
 
   an **`xds`** model object
 
-- s:
-
-  the vector species index
-
 - options:
 
   a [list](https://rdrr.io/r/base/list.html)
+
+- s:
+
+  the vector species index
 
 ## Value
 

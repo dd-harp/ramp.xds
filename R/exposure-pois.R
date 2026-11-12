@@ -8,7 +8,7 @@
 #' @keywords internal
 #' @seealso Also, see [F_foi.pois] and [F_ar.pois]
 #'
-setup_exposure.pois <- function(EHname, xds_obj, i=1, options = list()) {
+setup_exposure.pois <- function(EHname, xds_obj, options = list(), i=1) {
   xds_obj$env_het_obj[[i]] = make_exposure_pois()
   xds_obj$terms$FoI = list()
   xds_obj$terms$FoI[[1]] = list()
@@ -92,4 +92,3 @@ ar2eir.pois <- function(ar, b, env_het_obj){
 foi2eir.pois <- function(foi, b, env_het_obj){
    foi/b
 }
-

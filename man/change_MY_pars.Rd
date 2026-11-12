@@ -4,18 +4,23 @@
 \alias{change_MY_pars}
 \title{Change parameters (\strong{MY})}
 \usage{
-change_MY_pars(xds_obj, s = 1, options = list())
+change_MY_pars(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a named list}
+
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}.
+For the \strong{MY} module for the \eqn{s^{th}} species,
+change parameter values named in \code{options}
+leaving other values unchanged.
+}
+\seealso{
+\link{get_MY_pars}, \link{setup_MY_obj}, \link{xds_info_change_parameters}
 }

@@ -6,12 +6,12 @@ The **XH** skill set is a list of a module's capabilities
 
 ``` r
 # S3 method for class 'trivial'
-skill_set_XH(XHname)
+skill_set_XH(Xname)
 ```
 
 ## Arguments
 
-- XHname:
+- Xname:
 
   the **XH** module name
 

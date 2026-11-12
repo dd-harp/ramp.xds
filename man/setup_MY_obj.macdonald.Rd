@@ -4,16 +4,16 @@
 \alias{setup_MY_obj.macdonald}
 \title{set up \code{macdonald} (\strong{MY})}
 \usage{
-\method{setup_MY_obj}{macdonald}(MYname, xds_obj, s, options = list())
+\method{setup_MY_obj}{macdonald}(MYname, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{MYname}{the name of the model}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a \link{list}}
+
+\item{s}{the vector species index}
 }
 \value{
 a \link{list} vector

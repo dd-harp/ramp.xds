@@ -4,14 +4,14 @@
 \alias{setup_L_inits.trivial}
 \title{Setup initial values for \code{trivial} (\strong{L})}
 \usage{
-\method{setup_L_inits}{trivial}(xds_obj, s, options = list())
+\method{setup_L_inits}{trivial}(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
-
 \item{options}{a named \link{list}}
+
+\item{s}{the species index}
 }
 \value{
 an \strong{\code{xds}} object

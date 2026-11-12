@@ -235,7 +235,7 @@ F_eggs.GeM <- function(t, y, xds_obj, s) {
 #' @return a [list] vector
 #' @keywords internal
 #' @export
-setup_MY_obj.GeM = function(MYname, xds_obj, s, options=list()){
+setup_MY_obj.GeM = function(MYname, xds_obj, options=list(), s=1){
   xds_obj$MYname = "GeM"
   xds_obj = ode_to_dde(xds_obj)
   MY_obj <- make_MY_obj_GeM(xds_obj$nPatches, options)
@@ -245,7 +245,7 @@ setup_MY_obj.GeM = function(MYname, xds_obj, s, options=list()){
   xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
   xds_obj <- setup_Upsilon_obj(xds_obj, s=s, TRUE)
   xds_obj <- setup_K_matrix("zero", xds_obj, s=s)
-  xds_obj <- setup_MY_inits(xds_obj, s, options)
+  xds_obj <- setup_MY_inits(xds_obj, options=options, s=s)
   return(xds_obj)
 }
 
@@ -385,7 +385,7 @@ get_MY_pars.GeM <- function(xds_obj, s=1) {
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_MY_pars.GeM <- function(xds_obj, s=1, options=list()) {
+change_MY_pars.GeM <- function(xds_obj, options=list(), s=1) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$MY_obj[[s]], with(options,{
     xds_obj$MY_obj[[s]]$f_obj$f = f
@@ -451,7 +451,7 @@ MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 #' @return a [list]
 #' @keywords internal
 #' @export
-setup_MY_inits.GeM = function(xds_obj, s, options=list()){with(xds_obj$MY_obj[[s]], {
+setup_MY_inits.GeM = function(xds_obj, options=list(), s=1){with(xds_obj$MY_obj[[s]], {
   Omega = compute_Omega_xde(g_t*es_g, sigma_t*es_sigma, mu, calK)
   Upsilon = expm(-Omega*eip)
   xds_obj$MY_obj[[s]]$inits = make_MY_inits_GeM(nPatches, Upsilon, options)
@@ -490,7 +490,7 @@ make_MY_inits_GeM = function(nPatches, Upsilon, options = list(),
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
-change_MY_inits.GeM <- function(xds_obj, s=1, options=list()) {
+change_MY_inits.GeM <- function(xds_obj, options=list(), s=1) {
   with(xds_obj$MY_obj[[s]]$inits, with(options,{
     xds_obj$MYinits[[s]]$M = M
     xds_obj$MYinits[[s]]$Y = Y

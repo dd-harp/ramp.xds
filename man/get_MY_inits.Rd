@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_MY_inits}
 \alias{get_MY_inits}
-\title{Return initial values as a vector}
+\title{Get initial values (\strong{MY})}
 \usage{
 get_MY_inits(xds_obj, s = 1)
 }
@@ -15,6 +15,12 @@ get_MY_inits(xds_obj, s = 1)
 \link{numeric}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj}.
+Inspect the initial values for the \strong{MY} module
+}
+\note{
+The initial values are stored as a named list called \code{xds_obj$XH_obj[[i]]$inits}
+}
+\seealso{
+\link{change_XH_inits}, \link{setup_XH_inits}
 }
 \keyword{internal}

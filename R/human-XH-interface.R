@@ -112,21 +112,38 @@ F_infectivity <- function(y, xds_obj, i) {
   UseMethod("F_infectivity", xds_obj$XH_obj[[i]])
 }
 
-#' @title Set up **XH** model object
-#' @description Set the parameter values and configure a model
-#' for the **XH** Component
-#'
+#' @title Set up an **XH** model object
+#' @description 
+#' Set up creates an **XH** object for the \eqn{i^{th}} species 
+#' and sets up the interface ports: 
+#' + calls `make_XH_obj_`*XHname* to set up the dynamics, including parameters
+#' + calls [setup_XH_inits] to set initial values
+#' + initializes [setup_blood_search_weights]: all weights are set to \eqn{1}
+#' + initializes [setup_timespent] to the residence matrix: all time spent at home
+#' + calls [setup_mass_treatment] with no events
+#' + calls [setup_demog_obj] setting birth and death rates to zero
+#' + calls [setup_time_away] with no time spent away
+#' + calls [setup_travel_eir] with the travel EIR set to zero
+#' 
+#' The function is part of basic setup, but it is also used to add a host species. 
+#' 
+#' @seealso [xds_setup], [change_XH_pars], [setup_XH_inits], [setup_timespent], [setup_mass_treatment], 
+#' [setup_demog_obj], [setup_time_away], [setup_travel_eir]
+#' 
+#' @note The model object is stored as `xds_obj$XH_obj[[i]]` 
+#' 
 #' @param XHname the model name
 #' @param residence the residence vector
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
 #' @param options model options as a named list
+#' @param i the host species index
 #'
 #' @return an **`xds`** object
+#' 
 #' @keywords internal
 #'
 #' @export
-setup_XH_obj = function(XHname, residence, xds_obj, i, options=list()){
+setup_XH_obj = function(XHname, residence, xds_obj, options=list(), i=1){
   class(XHname) <- XHname
   UseMethod("setup_XH_obj", XHname)
 }
@@ -207,7 +224,14 @@ parse_XH_orbits <- function(outputs, xds_obj, i) {
 
 
 #' @title Get parameters (**XH**)
-#' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
+#' 
+#' @description 
+#' Inspect the parameter values for the **XH** module for the \eqn{i^{th}} species 
+#' 
+#' @seealso [change_XH_pars], [setup_XH_obj], [xds_info_change_parameters]
+#' 
+#' @note The parameter values are stored on `xds_obj$XH_obj[[i]]`
+#' 
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [list]
@@ -220,8 +244,11 @@ get_XH_pars <- function(xds_obj, i=1) {
 #' @title Change **XH** parameters 
 #' 
 #' @description 
-#' Replace the parameters with new values named in 
-#' the list `options`. 
+#' For the **XH** module for the \eqn{i^{th}} species, 
+#' change parameter values named in `options` 
+#' leaving other values unchanged. 
+#' 
+#' @seealso [get_XH_pars], [setup_XH_obj], [xds_info_change_parameters]
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
@@ -237,8 +264,16 @@ change_XH_pars <- function(xds_obj, options=list(), i=1) {
 
 #' @title Setup initial values (**XH**)
 #'
-#' @description This method dispatches on `xds_obj$XH_obj[[i]]`.
+#' @description Set initial values
+#' for all the variables.  
+#' + Each module (*XHname*) defines
+#' a function `make_XH_inits_`*XHname* 
+#' that supplies default values
+#' + The values in `options` overwrite the defaults
+#' + To inspect variable names, use [get_XH_inits] or 
+#' see the inline module documentation.
 #'
+#' @seealso [get_XH_inits], [xds_info_initial_conditions]
 #' @param xds_obj an **`xds`** model object
 #' @param options a [list]
 #' @param i the host species index
@@ -251,11 +286,16 @@ setup_XH_inits = function(xds_obj, options=list(), i=1){
 }
 
 
-#' @title A function to set up XH_obj
+#' @title Get initial values (**XH**)
 #'
-#' @description Get and display the stored
-#' set of initial values.
+#' @description Inspect the initial values
+#' for the **XH** module
 #'
+#' @note 
+#' The initial values are stored as a named list called `xds_obj$XH_obj[[i]]$inits`
+#' 
+#' @seealso [change_XH_inits], [setup_XH_inits]
+#' 
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
@@ -268,12 +308,13 @@ get_XH_inits = function(xds_obj, i=1){
 }
 
 
-#' @title Change **XH** initial values
+#' @title Change initial values (**XH**)
 #' 
-#' @description Replace the initial values for the dependent 
-#' variables with new values named in 
-#' the list `options`.
-#'   
+#' @description Change the stored initial values for 
+#' any variables named in `options` leaving other values unchanged.
+#' 
+#' @seealso [get_XH_inits]
+#' 
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
 #' @param i the vector species index

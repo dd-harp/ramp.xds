@@ -3,65 +3,85 @@
 #' @title Basic setup
 #' 
 #' @description
-#' Build a basic model that defines all three components from a set of input parameters. 
 #' 
 #' \loadmathjax
-#'
-#' Choose a module to use for each dynamical component (see [xds_info_dynamical_components]):
-#' - `XHname` --- human / host infection dynamics (see [XH_module_list])
-#' - `MYname` -- adult mosquito ecology and infection dynamics (see [MY_module_list])
-#' - `Lname` -- aquatic mosquito ecology (see [L_module_list])
-#'
-#' Set up the model structure: 
-#' - `nPatches` - the number of patches (see [xds_info_patch_dynamics])
-#' - `membership` - the habitat membership vector (see [xds_info_aquatic_habitats])
-#' - `residence` - the human residence vector (see [xds_info_human_populations])
-#'
-#' During setup: 
-#' - The structural parameter `nHabitats` is set to `length(membership)` 
-#' - The structural parameter `nStrata` is set to `length(residence)`
-#' - `nPatches` is checked and set to `max(membership, nPatches)`
 #' 
-#' Set parameter values and initial conditions using setup options (named lists): 
+#' Build a dynamical system to describe the epidemiology and 
+#' transmission dynamics of a mosquito-borne pathogen. The function
+#' encodes the model as an **xds** object that 
+#' can be solved by [xds_solve]. 
+#' 
+#' @seealso 
+#' + Basic Setup: [xds_info_basic_setup] 
+#'    + [xds_info_change_parameters]
+#'    + [xds_info_initial_conditions]
+#' + Advanced Setup: [xds_info_advanced_setup]
+#' + Solving: [xds_solve]
+#' + Internals: [xds_info_dynamical_components],
+#'  [xds_object], [make_xds_object_template]
+#' 
+#' @details
+#' 
+#' Basic setup has three parts: dynamics, model structure, and basic spatial elements. 
+#' 
+#' **Dynamics**
+#'
+#' To set up a dynamical system, a module is selected for each dynamical component by name:
+#' - `XHname` --- the name of an **XH** module: see the [XH_module_list] for human / host infection dynamics
+#' - `MYname` -- the name of an **MY** module: see the [MY_module_list] for adult mosquito ecology and infection dynamics
+#' - `Lname` -- the name of an **L** module: see the [L_module_list] for aquatic mosquito ecology
+#'
+#' To configure the modules, set parameter values and initial conditions using setup options (named lists): 
 #' - `XHoptions` sets parameter values and initial conditions for the **XH** module
 #' - `MYoptions` sets parameter values and initial conditions for the **MY** module
 #' - `Loptions` sets parameter values and initial conditions for the **L** module
 #' - `HPop` is the human population density
 #'
+#' For more information about how to change parameters or 
+#' initial conditions, see [xds_info_change_parameters] or [xds_info_initial_conditions].
+#' 
+#' **Model Structure**
+#' 
+#' Set up the model structure: 
+#' - `nPatches` - the number of patches (see [xds_info_patch_dynamics])
+#' - `residence` - the human residence vector (see [xds_info_human_populations])
+#' - `membership` - the habitat membership vector (see [xds_info_aquatic_habitats])
+#' 
+#' During setup: 
+#' - The structural parameter `nStrata` is set to `length(residence)`
+#' - The structural parameter `nHabitats` is set to `length(membership)` 
+#' - `nPatches` is checked and set to `max(membership, nPatches)`
+#' - `nVectorSpecies`\eqn{=1}
+#' - `nHostSpecies`\eqn{=1}
+#' 
+#' **Spatial Dynamics** 
+#' 
 #' If `nPatches`\eqn{>1}, set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:
 #' - `searchQ` the habitat search weights (see [xds_info_search_weights_habitat])
 #' - `searchB` the blood feeding search weights (see [xds_info_search_weights_blood])
 #' - `Koptions` sets up a mosquito dispersal matrix (see [xds_info_mosquito_dispersal])
 #' - `TSoptions` sets up a time spent matrix (see [xds_info_time_spent])
 #'
-#' @note Other options can be configured after basic setup (see [xds_info_setup_options]). If the **MY** Component is the `trivial` module, consider using [xds_setup_aquatic] or [xds_setup_human] or [xds_setup_eir]. Models for mosquito
-#' ecology need not include states describing infection status (see [xds_setup_mosy]).
+#' **Basic Setup Variants**
 #' 
-#' @details
-#' 1. [xds_setup] calls [make_xds_object_template], which returns an object template with
-#' a properly configured interface for blood feeding 
-#' and egg laying (see [xds_object]). The structural parameters are: 
-#'
-#'    - `nPatches` is passed as a parameter
-#'    - `nHabitats = length(membership)`
-#'    - `nStrata = length(residence)`
-#'    - `nHostSpecies=1` (basic setup handles only the first host species)
-#'    - `nVectorSpecies=1` (basic setup handles only the first vector species)
-#'    - `class(xds_obj$frame) = 'full'`
-#'
-#' 2. Each one of the dynamical components is set up as a module object: 
-#'
-#'    - **`xds_obj$XH_obj[[1]]`** defines the module for human / host infection dynamics of class `XHname` (the **XH** component). The parameter values are passed in a named list, `XHoptions`.
-#'    - **`xds_obj$MY_obj[[1]]`** defines the module for adult mosquito ecology & infection dynamics of class `MYname` (the **MY** Component). The parameter values are passed in a named list, `MYoptions`.
-#'    - **`xds_obj$L_obj[[1]]`** defines the module for aquatic mosquito ecology of class `Lname` (the **L** Component). The parameter values are passed in a named list, `Loptions`.
-#' 
-#' @note Other versions of [xds_setup] are available:
+#' Other versions of [xds_setup] are available (see [xds_info_basic_setup]):
 #' + Use [xds_setup_aquatic] for studies of mosquito aquatic ecology
 #' + Use [xds_setup_mosy] for studies of mosquito ecology without infection dynamics
 #' + Use [xds_setup_human] for studies of human/host disease dynamics forced by infective biting in patches
-#' + Use [xds_setup_eir] for studies of human/host disease dynamics forced by the eir
+#' + Use [xds_setup_eir] for studies of human/host disease dynamics forced by the local daily EIR
+#'
+#' **Next**
+#' + To solve the model, see [xds_solve]
+#' + To check or change parameters, see [xds_info_change_parameters]
+#' + To check or change the initial conditions, see [xds_info_initial_conditions]
+#' + To modify the model structure, see [xds_info_advanced_setup]
 #' 
-#' @seealso [make_xds_object_template], [xds_info_basic_setup]
+#' @note 
+#' 
+#' [xds_setup] calls [make_xds_object_template], which returns an object template with
+#' a properly configured interface for blood feeding 
+#' and egg laying (see [xds_object]).
+#' 
 #'
 #' @param XHname the name of an **XH** module (see [XH_module_list])
 #' @param MYname the name of an **MY** module (see [MY_module_list])
@@ -70,11 +90,11 @@
 #' @param MYoptions a named list to set parameter values and initial conditions for the **MY** component
 #' @param Loptions a named list to set parameter values and initial conditions for the **L** component
 #' @param nPatches the number of patches
-#' @param HPop the initial human population density for each stratum
 #' @param residence the index of the patch where each human population stratum resides
+#' @param membership the index of the patch where each aquatic habitat is found
+#' @param HPop the initial human population density for each stratum
 #' @param searchB a vector of blood search weights or setup options (see [setup_blood_search_weights])
 #' @param TSoptions a time spent matrix or setup options (see [setup_timespent])
-#' @param membership the index of the patch where each aquatic habitat is found
 #' @param searchQ a vector of habitat search weights or setup options (see [setup_habitat_search_weights])
 #' @param Koptions a mosquito dispersal matrix (\eqn{K}) or setup options (see [setup_K_matrix])
 #' @param model_name a name for the model 
@@ -90,11 +110,11 @@ xds_setup = function(
      MYoptions = list(),
      Loptions = list(),
      nPatches = 1,
-     HPop = 1000,
      residence = 1,
+     membership = 1,
+     HPop = 1000,
      searchB = list(),
      TSoptions = list(),
-     membership = 1,
      searchQ = list(),
      Koptions = list(),
      model_name = "unnamed",
@@ -105,17 +125,17 @@ xds_setup = function(
 
   # Aquatic Mosquito Dynamics
   xds_obj$Lname = Lname
-  xds_obj <- setup_L_obj(Lname, membership, xds_obj, 1, Loptions)
+  xds_obj <- setup_L_obj(Lname, membership, xds_obj, options=Loptions, s=1)
 
   # Adult Mosquito Dynamics
   xds_obj$MYname = MYname
-  xds_obj <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
+  xds_obj <- setup_MY_obj(MYname, xds_obj, options=MYoptions, s=1)
   
   
   # Human Dynamics
   xds_obj$XHname = XHname
   XHoptions$H = HPop
-  xds_obj <- setup_XH_obj(XHname, residence, xds_obj, 1, XHoptions)
+  xds_obj <- setup_XH_obj(XHname, residence, xds_obj, options=XHoptions, i=1)
   
   
   xds_obj <- make_indices(xds_obj)
@@ -135,24 +155,40 @@ xds_setup = function(
   return(xds_obj)
 }
 
-#' @title Basic setup for mosquito ecology models
+#' @title Basic setup for mosquito ecology
 #'
 #' @description
 #' \loadmathjax
 #' 
-#' Build a basic model to study mosquito ecology. 
-#' This is a modified version of [xds_setup] that streamlines setup for models without parasite / pathogen infection
-#' dynamics. 
+#' Build a dynamical system to describe mosquito ecology. The function
+#' encodes the model as an **xds** object that 
+#' can be solved by [xds_solve]. 
 #' 
-#' This sets `class(xds_obj$frame) = 'mosy'`
+#' @details 
+#' 
+#' This is a modified version of [xds_setup] that streamlines setup 
+#' for models without parasite / pathogen infection
+#' dynamics. It sets 
+#' 
+#' `class(xds_obj$frame) = 'mosy'`
+#' 
 #' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
-#' and parse outputs. Models ignore infection dynamics (the **X** and **Y** processes). 
-#' The **XH** component is set up to handle human/host population density.
+#' and parse outputs. The solver ignores infection dynamics (the **X** and **Y** processes). 
+#' A trivial **XH** component is set up to handle human/host population density.
+#' 
+#' **Dynamics** 
 #' 
 #' Choose a module to use for the mosquito dynamical components (see [xds_info_dynamical_components]):
-#' - `MYname` -- adult mosquito ecology (see [MY_module_list])
-#' - `Lname` -- aquatic mosquito ecology (see [L_module_list])
+#' - `MYname` -- the name of an **MY** module: see the [MY_module_list] for adult mosquito ecology and infection dynamics
+#' - `Lname` -- the name of an **L** module: see the [L_module_list] for aquatic mosquito ecology
 #'
+#' Set parameter values and initial conditions using setup options (named lists): 
+#' - `MYoptions` sets parameter values and initial conditions for the **MY** module
+#' - `Loptions` sets parameter values and initial conditions for the **L** module
+#' - `HPop` sets the human population density
+#' 
+#' **Model Structure** 
+#'  
 #' Set up the model structure: 
 #' - `nPatches` - the number of patches (see [xds_info_patch_dynamics])
 #' - `membership` - the habitat membership vector (see [xds_info_aquatic_habitats])
@@ -161,20 +197,36 @@ xds_setup = function(
 #' - The structural parameter `nHabitats` is set to `length(membership)` 
 #' - The structural parameter `nStrata` is set to `nPatches`
 #' - `nPatches` is checked and set to `max(membership, nPatches)`
+#' - `nVectorSpecies`\eqn{=1}
 #' 
-#' Set parameter values and initial conditions using setup options (named lists): 
-#' - `MYoptions` sets parameter values and initial conditions for the **MY** module
-#' - `Loptions` sets parameter values and initial conditions for the **L** module
-#' - `HPop` sets the human population density
+#' **Spatial Dynamics** 
 #'
 #' If `nPatches`\eqn{>1}, set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:
 #' - `searchQ` the habitat search weights (see [xds_info_search_weights_habitat])
 #' - `Koptions` sets up a mosquito dispersal matrix (see [xds_info_mosquito_dispersal])
 #' 
-#' @seealso [xds_setup] and [dMYdt.basicM]
+#' **Next**
 #' 
-#' @param model_name is a name for the model 
-#' @param xds is `xde` for differential equations or `dts` for discrete time systems
+#' + To solve the model, see [xds_solve]
+#' + To check or change parameters, see [xds_info_change_parameters]
+#' + To check or change the initial conditions, see [xds_info_initial_conditions]
+#' + To modify the model structure, see [xds_info_advanced_setup]
+#' 
+#' @note 
+#' 
+#' [xds_setup] calls [make_xds_object_template], which returns an object template with
+#' a properly configured interface for blood feeding 
+#' and egg laying (see [xds_object]).
+#' 
+#' @seealso 
+#' + Basic Setup: [xds_setup], [xds_info_basic_setup] 
+#'    + [xds_info_change_parameters]
+#'    + [xds_info_initial_conditions]
+#' + Advanced Setup: [xds_info_advanced_setup]
+#' + Solving: [xds_solve]
+#' + Internals: [xds_info_dynamical_components],
+#'  [xds_object], [make_xds_object_template]
+#' 
 #' @param MYname the name of an **MY** module (see [MY_module_list])
 #' @param Lname the name of an **L** module (see [L_module_list])
 #' @param nPatches the number of patches
@@ -184,13 +236,13 @@ xds_setup = function(
 #' @param MYoptions a list to configure the **MY** Component module
 #' @param Koptions a mosquito dispersal matrix (\eqn{K}) or setup options (see [setup_K_matrix])
 #' @param Loptions a list to configure the **L** Component module
+#' @param model_name is a name for the model 
+#' @param xds is `xde` for differential equations or `dts` for discrete time systems
 #' 
 #' @return an **`xds`** object
 #' 
 #' @export
 xds_setup_mosy = function(
-     model_name = "unnamed",
-     xds = 'ode',
      ### Dynamical Components
      MYname = "basicM",
      Lname = "basicL",
@@ -203,7 +255,9 @@ xds_setup_mosy = function(
      ### Options
      MYoptions = list(),
      Koptions = list(),
-     Loptions = list()
+     Loptions = list(), 
+     model_name = "unnamed",
+     xds = 'ode'
 ){
   nPatches = max(membership, nPatches)
   residence = 1:nPatches
@@ -211,17 +265,17 @@ xds_setup_mosy = function(
   
   # Aquatic Mosquito Dynamics
   xds_obj$Lname <- Lname
-  xds_obj <- setup_L_obj(xds_obj$Lname, membership, xds_obj, 1, Loptions)
+  xds_obj <- setup_L_obj(xds_obj$Lname, membership, xds_obj, options=Loptions, s=1)
  
 
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- MYname
-  xds_obj <- setup_MY_obj(MYname, xds_obj, 1, MYoptions)
+  xds_obj <- setup_MY_obj(MYname, xds_obj, options=MYoptions, s=1)
 
   # Human / Host Dynamics
   xds_obj$XHname   <- "trivial"
   XHoptions <- list(H=HPop, kappa=0)
-  xds_obj <- setup_XH_obj(xds_obj$XHname, residence, xds_obj, 1, XHoptions) 
+  xds_obj <- setup_XH_obj(xds_obj$XHname, residence, xds_obj, options=XHoptions, i=1) 
   
   xds_obj = make_indices(xds_obj)
   
@@ -238,48 +292,78 @@ xds_setup_mosy = function(
 }
 
 
-#' @title Basic setup for aquatic mosquito ecology models
+#' @title Basic setup for aquatic mosquito ecology
 #'
 #' @description
 #' \loadmathjax
-#'
-#' A modified version of [xds_setup] that streamlines setup for the **L** Component
-#' and egg laying for a `trivial` **MY** Component. 
-#' This sets `class(xds_obj$frame) = 'aquatic'`
+#' 
+#' Build a dynamical system to describe the dynamics of immature mosquitoes
+#' in aquatic habitats. The function
+#' encodes the model as an **xds** object that 
+#' can be solved by [xds_solve]. 
+#' 
+#' @details 
+#' 
+#' This is a modified version of [xds_setup] that streamlines setup for the **L** module
+#' and egg laying for a `trivial` **MY** module. It sets
+#' 
+#' `class(xds_obj$frame) = 'aquatic'`
+#' 
 #' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs.
-#'
-#' Choose a module:
-#' - `Lname` -- aquatic mosquito ecology (see [L_module_list])
-#'
-#' Set up the model structure: 
-#' - `nHabitats` -- sets the number of habitats 
-#' - `nPatches` is set to `nHabitats` 
 #' 
+#' **Dynamics** 
+#' 
+#' Choose a module:
+#' - `Lname` -- the name of an **L** module: see the [L_module_list] for aquatic mosquito ecology
+#'
 #' Set parameter values and initial conditions using setup options (named lists): 
 #' - `MYoptions` sets up egg laying using the `trivial` **MY** module
 #' - `Loptions` sets parameter values and initial conditions for the **L** module
-#'
 #' 
-#' @note The **XH** model 
-#' is never used, but it is set up as the default `trivial` module.
+#' **Model Structure** 
+#' 
+#' Set up the model structure: 
+#' - `nHabitats` -- sets the number of habitats 
+#' - `nPatches` \eqn{=} `nHabitats` 
+#' - `nVectorSpecies`\eqn{=1}
+#' 
+#' **Next**
+#' + To solve the model, see [xds_solve]
+#' + To check or change parameters, see [xds_info_change_parameters]
+#' + To check or change the initial conditions, see [xds_info_initial_conditions]
+#' + To modify the model structure, see [xds_info_advanced_setup]
+#' 
+#' @seealso 
+#' + Basic Setup: [xds_setup], [xds_info_basic_setup] 
+#'    + [xds_info_change_parameters]
+#'    + [xds_info_initial_conditions]
+#' + Advanced Setup: [xds_info_advanced_setup]
+#' + Solving: [xds_solve]
+#' + Internals: [xds_info_dynamical_components],
+#'  [xds_object], [make_xds_object_template]
+#' 
+#' @note 
+#' [xds_setup] calls [make_xds_object_template], which returns an object template with
+#' a properly configured interface for blood feeding 
+#' and egg laying (see [xds_object]). 
+#' + The **XH** model is never used, but it is set up as the default `trivial` module.
 #'
-#'
-#' @seealso [xds_setup]
-#' @param model_name is a name for the model (arbitrary)
-#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
-#' @param nHabitats is the number of habitats
 #' @param Lname the name of an **L** module (see [L_module_list])
 #' @param Loptions a list to configure the **L** Component module
+#' @param nHabitats is the number of habitats
 #' @param MYoptions options to configure egg laying
+#' @param model_name is a name for the model (arbitrary)
+#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
+#' 
 #' @return an **`xds`** object
 #' @export
-xds_setup_aquatic = function(model_name = "unnamed",
-                             xds = 'ode',
-                             nHabitats=1,
-                             Lname = "basicL",
+xds_setup_aquatic = function(Lname = "basicL",
                              Loptions = list(),
-                             MYoptions = list()){
+                             nHabitats=1,
+                             MYoptions = list(), 
+                             model_name = "unnamed",
+                             xds = 'ode'){
   nPatches <- nHabitats
   membership <- 1:nPatches
   residence <- 1:nPatches
@@ -287,18 +371,18 @@ xds_setup_aquatic = function(model_name = "unnamed",
   
   # Aquatic Mosquito Dynamics
   xds_obj$Lname <- Lname
-  xds_obj <- setup_L_obj(xds_obj$Lname, membership, xds_obj, 1, Loptions)
+  xds_obj <- setup_L_obj(xds_obj$Lname, membership, xds_obj, options=Loptions, s=1)
 
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- "trivial"
-  xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, 1, MYoptions)
+  xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, options=MYoptions, s=1)
   
   xds_obj$forced_by = c("MY", "eggs")
   class(xds_obj$forced_by) = c("MY", "eggs")
   
   # Human / Host Dynamics
   xds_obj$XHname   <- "trivial"
-  xds_obj <- setup_XH_obj("trivial", residence, xds_obj, i=1, options=list(H=1)) 
+  xds_obj <- setup_XH_obj("trivial", residence, xds_obj, options=list(H=1), i=1) 
   
   xds_obj = make_indices(xds_obj)
   y <- as.vector(unlist(get_inits(xds_obj)))
@@ -308,75 +392,99 @@ xds_setup_aquatic = function(model_name = "unnamed",
   return(xds_obj)
 }
 
-
-#' @title Basic setup for models of human/host disease dynamics 
+#' @title Basic setup for host disease dynamics
 #'
 #' @description
 #' \loadmathjax
+#' 
+#' Build a dynamical system to describe the disease dynamics in human or host population 
+#' in response to infective biting.
+#' The function encodes the model as an **xds** object that 
+#' can be solved by [xds_solve]. 
 #'
+#' To build a model forced by the EIR, see [xds_setup_eir]. 
+#' 
+#' @details
+#' 
 #' A modified version of [xds_setup] that sets up a model to study exposure and 
 #' infection. 
 #' The **MY** component module is set to `trivial` and a trace
 #' function computes infective biting in the patches.
-#' This sets `class(xds_obj$frame) = 'human'`
+#' 
+#' `class(xds_obj$frame) = 'human'`
+#' 
 #' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs. 
 #'
 #' To set up a model that is forced
 #' by the EIR, use [xds_setup_eir].
 #' 
+#' **Dynamics** 
+#' 
 #' Choose a module:
-#' - `XHname` --- human / host infection dynamics (see [XH_module_list])
+#' - `XHname` --- the name of an **XH** module: see the [XH_module_list] for human / host infection dynamics
+#' - `MYname` \eqn{=} `trivial`
 #'
+#' Set parameter values and initial conditions using setup options (named lists): 
+#' - `XHoptions` sets parameter values and initial conditions for the **XH** module
+#' - `MYoptions` sets up infective biting in the patches for the trivial **MY** module
+#' - `HPop` is the human population density
+#' 
+#' **Model Structure** 
+#' 
 #' Set up the model structure: 
 #' - `nPatches` - the number of patches (see [xds_info_patch_dynamics])
 #' - `residence` - the human residence vector (see [xds_info_human_populations])
 #'
 #' During setup: 
 #' - The structural parameter `nStrata` is set to  `length(residence)`
-#' 
-#' Set parameter values and initial conditions using setup options (named lists): 
-#' - `XHoptions` sets parameter values and initial conditions for the **XH** module
-#' - `MYoptions` sets up infective biting in the patches for the trivial **MY** module
-#' - `HPop` is the human population density
+#' - `nHostSpecies`\eqn{=1}
 #'
 #' If `nPatches`\eqn{>1}, set up some basic aspects of blood feeding and exposure:
 #' - `searchB` the blood feeding search weights (see [xds_info_search_weights_blood])
 #' - `TSoptions` sets up a time spent matrix (see [xds_info_time_spent])
 #' 
+#' **Next**
+#' + To solve the model, see [xds_solve] or [xds_solve_cohort]
+#' + To check or change parameters, see [xds_info_change_parameters]
+#' + To check or change the initial conditions, see [xds_info_initial_conditions]
+#' + To modify the model structure, see [xds_info_advanced_setup]
 #'
-#' To study human cohort dynamics by passing a function that computes the daily EIR,
-#' consider using [xds_setup_eir].
+#' @seealso 
+#' + Basic Setup: [xds_setup], [xds_setup_eir], [xds_info_basic_setup] 
+#'    + [xds_info_change_parameters]
+#'    + [xds_info_initial_conditions]
+#' + Advanced Setup: [xds_info_advanced_setup]
+#' + Solving: [xds_solve]
+#' + Internals: [xds_info_dynamical_components],
+#'  [xds_object], [make_xds_object_template]
 #'
-#' @seealso [xds_setup] and [xds_setup_eir]
-#'
-#' @param model_name a name for the model
-#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param XHname the name of an **XH** module (see [XH_module_list])
 #' @param XHoptions a named list to set parameter values and initial conditions for the **XH** module
+#' @param HPop the initial human population density for each stratum
 #' @param nPatches the number of patches
 #' @param residence a vector that describes the patch where each human stratum lives
-#' @param HPop the initial human population density for each stratum
 #' @param searchB  a vector of search weights for blood feeding
 #' @param TSoptions a time spent matrix or setup options (see [setup_timespent])
-#' @param MYoptions a list to configure the **MY** Component module
+#' @param MYoptions a list to configure the trivial **MY** module
+#' @param model_name a name for the model
+#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #'
 #' @return an **`xds`** object
 #' @export
-xds_setup_human = function(model_name = "unnamed",
-                           XHname = "SIS",
+xds_setup_human = function(XHname = "SIS",
                            XHoptions = list(),
-                           xds = 'ode',
-                           ### Dynamical Components
+                           HPop=1000,
                            ### Model Structure
                            nPatches=1,
                            residence=1,
-                           HPop=1000,
                            ### Setup Parameters
                            searchB = list(),
                            TSoptions = list(),
                            ### Options
-                           MYoptions = list()
+                           MYoptions = list(),
+                           model_name = "unnamed",
+                           xds = 'ode'
 ){
   nStrata=length(residence)
   HPop = checkIt(HPop, nStrata)
@@ -385,16 +493,16 @@ xds_setup_human = function(model_name = "unnamed",
 
   # Aquatic Mosquito Dynamics
   xds_obj$Lname <- "trivial" 
-  xds_obj <- setup_L_obj(xds_obj$Lname, 1, xds_obj, membership, list())
+  xds_obj <- setup_L_obj(xds_obj$Lname, 1, xds_obj, options=list(), s=membership)
 
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- "trivial" 
-  xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, 1, MYoptions)
+  xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, options=MYoptions, s=1)
 
   # Human Dynamics
   xds_obj$XHname <- XHname
   XHoptions$H = HPop
-  xds_obj <- setup_XH_obj(xds_obj$XHname, residence, xds_obj, 1, XHoptions) 
+  xds_obj <- setup_XH_obj(xds_obj$XHname, residence, xds_obj, options=XHoptions, i=1) 
   
   xds_obj$forced_by = c(xds_obj$forced_by, "fqZ")
   class(xds_obj$forced_by) = c("MY", "fqZ")
@@ -411,25 +519,44 @@ xds_setup_human = function(model_name = "unnamed",
   return(xds_obj)
 }
 
-
-#' @title Basic setup for models of human/host disease dynamics forced by the EIR
+#' @title Basic setup for host disease dynamics (EIR forced)
 #' 
 #' @description
+#' 
+#' Build a dynamical system to describe human malaria epidemiology or host disease dynamics forced by the 
+#' daily EIR. The function
+#' encodes the model as an **xds** object that 
+#' can be solved by [xds_solve] or [xds_solve_cohort].
+#' 
 #' \loadmathjax
-#'
-#' A modified version of [xds_setup] that sets up a model to study the outcomes of exposure,
-#' as defined by the EIR.
-#' This sets `class(xds_obj$frame) = 'eir'`
+#' 
+#' To build a model that is forced by infective biting in the patches, which requires setting up a time
+#' spent matrix and search weigths, use [xds_setup_human]. 
+#' 
+#' @details
+#' 
+#' A modified version of [xds_setup] that sets up a model to study exposure and 
+#' infection. 
+#' The **MY** component module is set to `trivial` and a trace
+#' function computes infective biting in the patches.
+#' 
+#' `class(xds_obj$frame) = 'eir'`
+#' 
 #' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
-#' and parse outputs for [xds_solve]. The model can also be solved by [xds_solve_cohort].
+#' and parse outputs. 
 #'
+#' **Dynamics** 
+#' 
 #' Configure the **XH** component:
-#' - `XHname` --- human / host infection dynamics (see [XH_module_list])
+#' - `XHname` --- the name of an **XH** module: see the [XH_module_list] for human / host infection dynamics
 #' - `HPop` --- the initial human population density 
 #' - `XHoptions` sets parameter values and initial conditions for the **XH** module
+#' - `nHostSpecies`\eqn{=1}
 #'
 #' The structural parameter `nStrata` is set to `length(HPop)`.
 #' 
+#' **The EIR Trace Function**
+#'  
 #' The interface includes options to configure a composed, multiplicative time series function
 #' describing `F_eir` as a function of time. For cohort dynamics (using [xds_solve_cohort]), a function 
 #' can be configured to compute relative biting rates by age: 
@@ -439,10 +566,22 @@ xds_setup_human = function(model_name = "unnamed",
 #'  - `F_shock` or `shock_par` --- set up the shock function
 #'  - `F_age` or `age_par` --- set up relative biting rates by age
 #'
-#' @seealso [xds_setup] and [xds_setup_human]
+#' **Next**
+#' + To solve the model, see [xds_solve] or [xds_solve_cohort]
+#' + To check or change parameters, see [xds_info_change_parameters]
+#' + To check or change the initial conditions, see [xds_info_initial_conditions]
+#' + To modify the model structure, see [xds_info_advanced_setup]
+#' 
+#' @seealso
+#' + Basic Setup: [xds_setup], [xds_setup_human], [xds_info_basic_setup] 
+#'    + [xds_info_change_parameters]
+#'    + [xds_info_initial_conditions]
+#' + Advanced Setup: [xds_info_advanced_setup]
+#' + Solving: [xds_solve], [xds_solve_cohort]
+#' + Internals: [xds_info_dynamical_components],
+#'  [xds_object], [make_xds_object_template]
 #'
-#' @param model_name is a name for the model (arbitrary)
-#' @param eir is the entomological inoculation rate
+#' @param eir is the average, daily entomological inoculation rate
 #' @param F_season the seasonal pattern function
 #' @param F_trend the trend function
 #' @param F_shock the shock function
@@ -455,11 +594,11 @@ xds_setup_human = function(model_name = "unnamed",
 #' @param XHname the name of an **XH** module (see [XH_module_list])
 #' @param XHoptions a named list to set parameter values and initial conditions for the **XH** module
 #' @param HPop the initial human population density for each stratum
+#' @param model_name is a name for the model (arbitrary)
 #' 
 #' @return an **`xds`** object
 #' @export
-xds_setup_eir = function(model_name = "unnamed",
-                         eir=1/365,
+xds_setup_eir = function(eir=1/365,
                          F_season = F_one, 
                          F_trend = F_one, 
                          F_shock = F_one,
@@ -477,7 +616,8 @@ xds_setup_eir = function(model_name = "unnamed",
                          XHoptions = list(),
 
                          # Model Structure
-                         HPop=1000
+                         HPop=1000,
+                         model_name = "unnamed"
 ){
   residence  = rep(1, length(HPop))
   membership = 1 
@@ -501,16 +641,16 @@ xds_setup_eir = function(model_name = "unnamed",
 
   # Aquatic Mosquito Dynamics
   xds_obj$Lname <- "trivial" 
-  xds_obj <- setup_L_obj(xds_obj$Lname, 1, xds_obj, membership, list())
+  xds_obj <- setup_L_obj(xds_obj$Lname, 1, xds_obj, options=list(), s=membership)
   
   # Adult Mosquito Dynamics
   xds_obj$MYname   <- "trivial" 
-  xds_obj <- xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, 1, list())
+  xds_obj <- xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, options=list(), s=1)
   
   # Human Dynamics
   xds_obj$XHname <- XHname
   XHoptions$H = HPop
-  xds_obj <- setup_XH_obj(xds_obj$XHname, residence, xds_obj, 1, XHoptions) 
+  xds_obj <- setup_XH_obj(xds_obj$XHname, residence, xds_obj, options=XHoptions, i=1) 
   
   xds_obj$forced_by = xds_obj$frame
 
@@ -522,11 +662,14 @@ xds_setup_eir = function(model_name = "unnamed",
 }
 
 #' Update interfaces
-#'
-#' @param xds_obj an **`xds`** model object
+#' 
+#' @description
+#' Update the values of all terms computed internally 
+#' 
+#' @param xds_obj an **`xds`** object
 #'
 #' @return an **`xds`** object
-#' 
+#' @keywords internal 
 #' @export
 update_interfaces = function(xds_obj){
   y <- as.vector(unlist(get_inits(xds_obj)))

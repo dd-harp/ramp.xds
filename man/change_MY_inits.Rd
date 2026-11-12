@@ -4,14 +4,14 @@
 \alias{change_MY_inits}
 \title{Change initial values (\strong{MY})}
 \usage{
-change_MY_inits(xds_obj, s = 1, options = list())
+change_MY_inits(xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the vector species index}
-
 \item{options}{a named list}
+
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} object
