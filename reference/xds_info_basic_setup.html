@@ -5,75 +5,11 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="ramp.xds: Basic Setup — xds_info_basic_setup"><meta name="description" content="Basic Setup for ramp.xds uses
-xds_setup or one of its variants.
-Basic Setup uses one of the following functions to build an
-xds model:
-xds_setup sets up a full model with:
-an XH component
-an MY component
-an L component
-
-xds_setup_human sets up models to study human epidemiology, given exposure:
-an XH component
-a trivial MY component is configured for infectious biting in patches
-the time spent matrix is used
-the L component is not used
-
-xds_setup_eir sets up models to study human epidemiology, given exposure:
-an XH component with one population stratum
-a trace function to output the daily EIR
-a function configures relative biting rates by age for cohort dynamics
-the MY component is not used
-the L component is not used
-
-xds_setup_mosy sets up models for mosquito ecology:
-the L component
-the M component (eg basicM)
-a trivial H module (for blood feeding)
-the X and Y components are not used
-
-xds_setup_aquatic sets up models for aquatic mosquito ecology:
-the L component
-a trivial MY component is configured for egg laying
-the XH component is not used
-
-
-"><meta property="og:description" content="Basic Setup for ramp.xds uses
-xds_setup or one of its variants.
-Basic Setup uses one of the following functions to build an
-xds model:
-xds_setup sets up a full model with:
-an XH component
-an MY component
-an L component
-
-xds_setup_human sets up models to study human epidemiology, given exposure:
-an XH component
-a trivial MY component is configured for infectious biting in patches
-the time spent matrix is used
-the L component is not used
-
-xds_setup_eir sets up models to study human epidemiology, given exposure:
-an XH component with one population stratum
-a trace function to output the daily EIR
-a function configures relative biting rates by age for cohort dynamics
-the MY component is not used
-the L component is not used
-
-xds_setup_mosy sets up models for mosquito ecology:
-the L component
-the M component (eg basicM)
-a trivial H module (for blood feeding)
-the X and Y components are not used
-
-xds_setup_aquatic sets up models for aquatic mosquito ecology:
-the L component
-a trivial MY component is configured for egg laying
-the XH component is not used
-
-
-"></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="ramp.xds: Basic Setup — xds_info_basic_setup"><meta name="description" content="Basic Setup is defined by the use of xds_setup or one of its variants. It returns an xds model object that can be solved or
+or modified through advanced setup. The following briefly describes the modular design,
+the setup variants and when to use them, and a slightly longer discussion of what they do."><meta property="og:description" content="Basic Setup is defined by the use of xds_setup or one of its variants. It returns an xds model object that can be solved or
+or modified through advanced setup. The following briefly describes the modular design,
+the setup variants and when to use them, and a slightly longer discussion of what they do."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -150,39 +86,15 @@ the XH component is not used
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1><strong><code>ramp.xds</code></strong>: Basic Setup</h1>
-      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/xds_basic_setup.R" class="external-link"><code>R/xds_basic_setup.R</code></a>, <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/xds_setup-info.R" class="external-link"><code>R/xds_setup-info.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/xds_setup-info.R" class="external-link"><code>R/xds_setup-info.R</code></a></small>
       <div class="d-none name"><code>xds_info_basic_setup.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
-    <p><strong>Basic Setup</strong> for <strong><code>ramp.xds</code></strong> uses
-<a href="xds_setup.html">xds_setup</a> or one of its variants.</p>
-<p><strong>Basic Setup</strong> uses one of the following functions to build an
-<strong><code>xds</code></strong> model:</p><ul><li><p><a href="xds_setup.html">xds_setup</a> sets up a full model with:</p><ul><li><p>an <strong>XH</strong> component</p></li>
-<li><p>an <strong>MY</strong> component</p></li>
-<li><p>an <strong>L</strong> component</p></li>
-</ul></li>
-<li><p><a href="xds_setup_human.html">xds_setup_human</a> sets up models to study human epidemiology, given exposure:</p><ul><li><p>an <strong>XH</strong> component</p></li>
-<li><p>a trivial <strong>MY</strong> component is configured for infectious biting in patches</p></li>
-<li><p>the time spent matrix is used</p></li>
-<li><p>the <strong>L</strong> component is not used</p></li>
-</ul></li>
-<li><p><a href="xds_setup_eir.html">xds_setup_eir</a> sets up models to study human epidemiology, given exposure:</p><ul><li><p>an <strong>XH</strong> component with one population stratum</p></li>
-<li><p>a <em>trace function</em> to output the daily EIR</p></li>
-<li><p>a function configures relative biting rates by age for cohort dynamics</p></li>
-<li><p>the <strong>MY</strong> component is not used</p></li>
-<li><p>the <strong>L</strong> component is not used</p></li>
-</ul></li>
-<li><p><a href="xds_setup_mosy.html">xds_setup_mosy</a> sets up models for mosquito ecology:</p><ul><li><p>the <strong>L</strong> component</p></li>
-<li><p>the <strong>M</strong> component (<em>eg</em> <a href="basicM.html">basicM</a>)</p></li>
-<li><p>a trivial <strong>H</strong> module (for blood feeding)</p></li>
-<li><p>the <strong>X</strong> and <strong>Y</strong> components are not used</p></li>
-</ul></li>
-<li><p><a href="xds_setup_aquatic.html">xds_setup_aquatic</a> sets up models for aquatic mosquito ecology:</p><ul><li><p>the <strong>L</strong> component</p></li>
-<li><p>a trivial <strong>MY</strong> component is configured for egg laying</p></li>
-<li><p>the <strong>XH</strong> component is not used</p></li>
-</ul></li>
-</ul></div>
+    <p><strong>Basic Setup</strong> is defined by the use of <a href="xds_setup.html">xds_setup</a> or one of its variants. It returns an <strong>xds</strong> model object that can be solved or
+or modified through advanced setup. The following briefly describes the modular design,
+the setup variants and when to use them, and a slightly longer discussion of what they do.</p>
+    </div>
 
 
     <div class="section level2">
@@ -195,48 +107,75 @@ mathematical framework has
 five core biological processes organized
 into three chunks called <strong>dynamical components</strong> (see <a href="xds_info_dynamical_components.html">xds_info_dynamical_components</a>).
 The modular design
-makes it possible to build models that fully define all
-components (using <a href="xds_setup.html">xds_setup</a>), or to
-develop systems of equations to isolate and study some part
+makes it possible to study a system that with all three components fully defined (using <a href="xds_setup.html">xds_setup</a>), or to
+develop systems of equations that isolate and study some part
 of a system.</p>
 <p>To implement <em>plug-and-play</em> modularity, a trivial module was developed
-for each component:
-a <em>trace function</em> in
-the trivial <em>upstream</em> component is configured to pass known inputs (see <a href="xds_info_trivial_forcing.html">xds_info_trivial_forcing</a>).</p>
+for each component. The trivial model ignores inputs from upstream modules, and it congfigures a
+a <em>trace function</em> to pass outputs downstream (see <a href="xds_info_trivial_forcing.html">xds_info_trivial_forcing</a>).</p>
     </div>
     <div class="section level2">
-    <h2 id="the-frame">The Frame<a class="anchor" aria-label="anchor" href="#the-frame"></a></h2>
+    <h2 id="basic-setup-functions">Basic Setup Functions<a class="anchor" aria-label="anchor" href="#basic-setup-functions"></a></h2>
 
 
 
-<p><a href="xds_setup.html">xds_setup</a> sets up a model
-that has all three components. Functions were developed to setup and solve systems that
-making another component completely unnecessary.</p>
-<p>All <code>xds_setup_*</code> functions define <code>xds_obj$frame</code>
-and the functions used to solve and parse differential equations
-use the <code>S3</code> system, with methods
-that dispatch on <code>class(xds_obj$frame)</code>.</p><ul><li><p><a href="xds_setup.html">xds_setup</a> (<code>frame="full"</code>) sets up all three components.</p></li>
-<li><p><a href="xds_setup_mosy.html">xds_setup_mosy</a> (<code>frame="mosy"</code>) sets up models for mosquito ecology:</p><ul><li><p>the model includes an <strong>L</strong> component</p></li>
-<li><p>the model has an <strong>M</strong> component but no <strong>Y</strong> component (<em>eg</em> <a href="basicM.html">basicM</a>)</p></li>
-<li><p>a trivial <strong>H</strong> module can be configured</p></li>
-<li><p>the <strong>X</strong> component is not used</p></li>
+<p>Depending on the purpose of the study,
+<strong>Basic Setup</strong> is done by one of five functions:</p><ul><li><p><a href="xds_setup.html">xds_setup</a> can be used for most studies. It configures all three dynamical components.</p></li>
+<li><p><a href="xds_setup_human.html">xds_setup_human</a> sets up an <strong>XH</strong> module to study disease dynamics forced by infective biting in the patches.</p></li>
+<li><p><a href="xds_setup_eir.html">xds_setup_eir</a> sets up an <strong>XH</strong> module to study disease dynamics forced by the daily EIR. Use this to study cohort dynamics using <a href="xds_solve_cohort.html">xds_solve_cohort</a>.</p></li>
+<li><p><a href="xds_setup_mosy.html">xds_setup_mosy</a> sets a model for mosquito ecology that ignores infection dynamics.</p></li>
+<li><p><a href="xds_setup_aquatic.html">xds_setup_aquatic</a> sets up a model for aquatic dynamics forced by egg laying.</p></li>
+</ul><p>Each function sets <code>class(xds_obj$frame)</code> to dispatch functions that are used to solve dynamical systems.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="xds-setup"><a href="xds_setup.html">xds_setup</a><a class="anchor" aria-label="anchor" href="#xds-setup"></a></h2>
+
+
+
+<p><a href="xds_setup.html">xds_setup</a> sets <code>class(xds_obj$frame)="full"</code> and requires arguments to set up all three dynamical components.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="xds-setup-mosy"><a href="xds_setup_mosy.html">xds_setup_mosy</a><a class="anchor" aria-label="anchor" href="#xds-setup-mosy"></a></h2>
+
+
+
+<p><a href="xds_setup_mosy.html">xds_setup_mosy</a> sets <code>class(xds_obj$frame)="mosy"</code> for models of mosquito ecology.
+It</p><ul><li><p>sets up a <strong>L</strong> module</p></li>
+<li><p>sets up a <strong>MY</strong> module, but the <strong>Y</strong> processes are ignored</p></li>
+<li><p>sets up a trivial <strong>XH</strong> module to pass human population density</p></li>
+</ul></div>
+    <div class="section level2">
+    <h2 id="xds-setup-aquatic"><a href="xds_setup_aquatic.html">xds_setup_aquatic</a><a class="anchor" aria-label="anchor" href="#xds-setup-aquatic"></a></h2>
+
+
+
+<p><a href="xds_setup_aquatic.html">xds_setup_aquatic</a> sets <code>class(xds_obj$frame)="aquatic"</code>for models of aquatic mosquito ecology. It</p><ul><li><p>sets up a <strong>L</strong> module</p></li>
+<li><p>sets up a trivial <strong>MY</strong> module and configures a trace function for egg laying</p></li>
+<li><p>sets up an <strong>XH</strong> component to be ignored</p></li>
+</ul></div>
+    <div class="section level2">
+    <h2 id="xds-setup-human"><a href="xds_setup_human.html">xds_setup_human</a><a class="anchor" aria-label="anchor" href="#xds-setup-human"></a></h2>
+
+
+
+<p><a href="xds_setup_human.html">xds_setup_human</a> sets <code>class(xds_obj$frame)="human"</code> for models of malaria epidemiology or other disease dynamics forced by infective biting in the patches. It</p><ul><li><p>sets up the <strong>XH</strong> module</p></li>
+<li><p>sets up a trivial <strong>MY</strong> component and configures a trace function for infective biting in patches</p></li>
+<li><p>sets up an <strong>L</strong> component to be ignored</p></li>
+</ul></div>
+    <div class="section level2">
+    <h2 id="xds-setup-eir"><a href="xds_setup_eir.html">xds_setup_eir</a><a class="anchor" aria-label="anchor" href="#xds-setup-eir"></a></h2>
+
+
+
+<p><a href="xds_setup_eir.html">xds_setup_eir</a> sets <code>class(xds_obj$frame)="eir"</code> for models of malaria epidemiology or other disease dynamics forced by the EIR. These models
+can also be solved by <a href="xds_solve.html">xds_solve</a> or <a href="xds_solve_cohort.html">xds_solve_cohort</a>: in the former, <strong>time</strong> is the independent variable, and in the latter <strong>age.</strong>
+Unlike the other variants, these models
+lack the <strong>MY</strong> and <strong>L</strong> components. Instead, it</p><ul><li><p>sets up the <strong>XH</strong> module</p><ul><li><p>the average eir</p></li>
+<li><p>a seasonal pattern function</p></li>
+<li><p>a trend pattern function</p></li>
+<li><p>a shock function</p></li>
+<li><p>relative biting by age, which is used by <a href="xds_solve_cohort.html">xds_solve_cohort</a></p></li>
 </ul></li>
-<li><p><a href="xds_setup_aquatic.html">xds_setup_aquatic</a> (<code>frame="aquatic"</code>) sets up models aquatic mosquito ecology:</p><ul><li><p>a trivial <strong>MY</strong> component is configured for egg laying</p></li>
-<li><p>the <strong>XH</strong> component is not used</p></li>
-</ul></li>
-<li><p><a href="xds_setup_human.html">xds_setup_human</a> (<code>frame="human"</code>) sets up models to study epidemiology</p><ul><li><p>a trivial <strong>MY</strong> component is configured for infectious biting in patches</p></li>
-<li><p>the <strong>L</strong> component is not used</p></li>
-</ul></li>
-<li><p><a href="xds_setup_eir.html">xds_setup_eir</a> (<code>frame="eir"</code>) sets up models to study epidemiology</p><ul><li><p>a trace function computes the EIR, denoted \(F_E(t)\)</p></li>
-<li><p>the <strong>MY</strong> component is not used</p></li>
-<li><p>the <strong>XH</strong> component is not used</p></li>
-</ul></li>
-</ul><p>Each one of the basic setup functions assigns a different value to <code>class(xds_obj$frame),</code>
-which dispatches the <code>S3</code> methods that solve and parse differential equations:</p><ul><li><p><a href="xds_setup.html">xds_setup</a> sets <code>class(frame) = "full"</code></p></li>
-<li><p><a href="xds_setup_human.html">xds_setup_human</a> sets <code>class(frame) = "human"</code></p></li>
-<li><p><a href="xds_setup_eir.html">xds_setup_eir</a> sets <code>class(frame) = "eir"</code></p></li>
-<li><p><a href="xds_setup_mosy.html">xds_setup_mosy</a> sets <code>class(frame) = "mosy"</code></p></li>
-<li><p><a href="xds_setup_aquatic.html">xds_setup_aquatic</a> sets <code>class(frame) = "aquatic"</code></p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

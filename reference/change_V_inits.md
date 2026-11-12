@@ -5,7 +5,7 @@ This method dispatches on the type of `xds_obj$V_obj[[s]]`.
 ## Usage
 
 ``` r
-change_V_inits(xds_obj, i = 1, options = list())
+change_V_inits(xds_obj, options = list(), i = 1)
 ```
 
 ## Arguments
@@ -14,13 +14,13 @@ change_V_inits(xds_obj, i = 1, options = list())
 
   an **`xds`** model object
 
-- i:
-
-  the vector species index
-
 - options:
 
   a named list
+
+- i:
+
+  the vector species index
 
 ## Value
 

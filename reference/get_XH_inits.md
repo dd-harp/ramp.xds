@@ -1,6 +1,6 @@
-# A function to set up XH_obj
+# Get initial values (**XH**)
 
-Get and display the stored set of initial values.
+Inspect the initial values for the **XH** module
 
 ## Usage
 
@@ -21,3 +21,13 @@ get_XH_inits(xds_obj, i = 1)
 ## Value
 
 the initial values, as a named list
+
+## Note
+
+The initial values are stored as a named list called
+`xds_obj$XH_obj[[i]]$inits`
+
+## See also
+
+[change_XH_inits](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.md),
+[setup_XH_inits](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.md)

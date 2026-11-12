@@ -372,15 +372,15 @@ I_last <- tail(XH2$I, 1)
 I_last
 ```
 
-    ##               4        5       6
-    ## [366,] 24.29642 129.3369 66.9679
+    ##               4        5        6
+    ## [366,] 35.39823 261.4379 155.4404
 
 ``` r
 
 sum(tail(XH2$I, 1) - I_eq)
 ```
 
-    ## [1] -231.6753
+    ## [1] 0
 
 ### Another Test
 
@@ -418,4 +418,4 @@ The summing over all the squared differences is less than \\10^{-6}.\\
 sum((It-Itest)^2) < 1e-6
 ```
 
-    ## [1] FALSE
+    ## [1] TRUE

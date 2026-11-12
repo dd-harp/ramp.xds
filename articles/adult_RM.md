@@ -263,9 +263,9 @@ dynamically, so we attach `Upsilon` as initial values:
 ``` r
 
 params <- make_xds_object_template("dde", "mosy", nPatches, 1:3, 1:3)
-params <- setup_MY_obj("macdonald", params, 1, MYo)
-params <- setup_XH_obj("trivial", 1:3, params, 1, Xo) 
-params <- setup_L_obj("trivial", 1:3, params, 1, Lo)
+params <- setup_MY_obj("macdonald", params, options=MYo, s=1)
+params <- setup_XH_obj("trivial", 1:3, params, options=Xo, i=1) 
+params <- setup_L_obj("trivial", 1:3, params, options=Lo, s=1)
 ```
 
 We set the indices with

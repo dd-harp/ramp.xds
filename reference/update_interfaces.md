@@ -1,6 +1,6 @@
 # Update interfaces
 
-Update interfaces
+Update the values of all terms computed internally
 
 ## Usage
 
@@ -12,7 +12,7 @@ update_interfaces(xds_obj)
 
 - xds_obj:
 
-  an **`xds`** model object
+  an **`xds`** object
 
 ## Value
 

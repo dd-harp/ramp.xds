@@ -90,13 +90,13 @@ eir <- h/b
 
 ``` r
 
-xds_obj = setup_XH_obj("hMoI", residence, xds_obj, 1, Xo)
+xds_obj = setup_XH_obj("hMoI", residence, xds_obj, options=Xo, i=1)
 ```
 
 ``` r
 
-xds_obj = setup_MY_obj("trivial", xds_obj, 1)
-xds_obj = setup_L_obj("trivial", 1, xds_obj, 1)
+xds_obj = setup_MY_obj("trivial", xds_obj, s=1)
+xds_obj = setup_L_obj("trivial", 1, xds_obj, s=1)
 ```
 
 ``` r
@@ -186,5 +186,5 @@ xds_setup_eir(eir, XHname="hMoI", HPop=H, XHoptions = Xo) ->test_hMoI
 xds_solve(test_hMoI)-> test_hMoI 
 XH2 <- test_hMoI$outputs$orbits$XH[[1]]
 sum((XH$m1-XH2$m1)^2)
-#> [1] 5198.155
+#> [1] 0
 ```

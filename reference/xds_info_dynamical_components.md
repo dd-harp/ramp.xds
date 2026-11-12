@@ -43,6 +43,20 @@ processes. There is also a generic interface to add other variables:
 - **V** - other dynamical components: see
   [Other_State_Variables](https://dd-harp.github.io/ramp.xds/reference/Other_State_Variables.md)
 
+## Internals
+
+- **`xds_obj$XH_obj[[1]]`** defines the module for human / host
+  infection dynamics of class `XHname` (the **XH** component). The
+  parameter values are passed in a named list, `XHoptions`.
+
+- **`xds_obj$MY_obj[[1]]`** defines the module for adult mosquito
+  ecology & infection dynamics of class `MYname` (the **MY** Component).
+  The parameter values are passed in a named list, `MYoptions`.
+
+- **`xds_obj$L_obj[[1]]`** defines the module for aquatic mosquito
+  ecology of class `Lname` (the **L** Component). The parameter values
+  are passed in a named list, `Loptions`.
+
 ## See also
 
 [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)

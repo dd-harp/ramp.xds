@@ -84,8 +84,8 @@ F_eta = function(t, pars){
   pars$eggs_laid
 }
 
-params = setup_L_obj("basicL", membership, params, 1, Lo)
-params = setup_MY_obj("trivial", params, 1, MYZo)
+params = setup_L_obj("basicL", membership, params, options=Lo, s=1)
+params = setup_MY_obj("trivial", params, options=MYZo, s=1)
 
 params = make_indices(params)
 ```

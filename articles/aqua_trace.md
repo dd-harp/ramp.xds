@@ -124,17 +124,17 @@ xds_obj$nPatches
 
 ``` r
 
-xds_obj = setup_L_obj("trivial", membership, xds_obj, 1, options = list(Lambda = alpha))
+xds_obj = setup_L_obj("trivial", membership, xds_obj, options = list(Lambda = alpha), s=1)
 ```
 
 ``` r
 
-xds_obj = setup_MY_obj("basicM", xds_obj, 1, options=MYo)
+xds_obj = setup_MY_obj("basicM", xds_obj, options=MYo, s=1)
 ```
 
 ``` r
 
-xds_obj = setup_XH_obj("trivial", residence, xds_obj, 1, list(H=HPop))
+xds_obj = setup_XH_obj("trivial", residence, xds_obj, options=list(H=HPop), i=1)
 ```
 
 ``` r

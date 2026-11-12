@@ -1,14 +1,26 @@
-# Set up **L** model object
+# Set up an **L** model object
 
-Each instance of `setup_L_obj.*` calls a function `create_L_obj_*` that
-creates an object **`L_obj`.** It is attached the **`xds`** object as
-`xds_obj$L_obj[[s]].` Each instance of `create_L_obj_*` should assign
-default parameter values that will be over-written by `options`
+Set up creates an **L** object for the \\s^{th}\\ species and sets up
+the interface ports:
+
+- calls `make_L_obj_`*Lname* to set up the dynamics, including
+  parameters
+
+- calls
+  [setup_L_inits](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.md)
+  to set initial values
+
+- calls
+  [setup_habitat_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.md)
+
+The function is typically called by
+[xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md),
+but it is also used to add vector species.
 
 ## Usage
 
 ``` r
-setup_L_obj(Lname, membership, xds_obj, s, options = list())
+setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments
@@ -25,13 +37,13 @@ setup_L_obj(Lname, membership, xds_obj, s, options = list())
 
   an **`xds`** model object
 
-- s:
-
-  the species index
-
 - options:
 
   a named list to configure **`L_obj`**
+
+- s:
+
+  the species index
 
 ## Value
 
@@ -39,4 +51,11 @@ an **`xds`** object
 
 ## Note
 
-This method assigns `Lname` to class(`Lname`) and dispatches on `Lname`.
+The model object is stored as `xds_obj$L_obj[[s]]`
+
+## See also
+
+[xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md),
+[change_L_pars](https://dd-harp.github.io/ramp.xds/reference/change_L_pars.md),
+[setup_L_inits](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.md),
+[setup_habitat_search_weights](https://dd-harp.github.io/ramp.xds/reference/setup_habitat_search_weights.md)
