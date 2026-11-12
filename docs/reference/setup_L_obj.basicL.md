@@ -1,7 +1,15 @@
 # Set up `basicL` (**L**)
 
-The function sets up `L_obj` for the \\(s^{th}\\) species by calling
-[make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md)
+This sets up a `basicL` model object for the **L** module for the
+\\(s^{th}\\) vector species
+
+- the object is created by
+  [make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md)
+
+- the initial conditions are set by
+  [setup_L_inits](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.md)
+
+- `options` is passed to both to override the defaults
 
 ## Usage
 
@@ -36,6 +44,11 @@ setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 
 an **`xds`** object
 
+## Note
+
+The module object is stored at `xds_obj$L_obj[[s]]`
+
 ## See also
 
+[basicL](https://dd-harp.github.io/ramp.xds/reference/basicL.md),
 [make_L_obj_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_basicL.md)

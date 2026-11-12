@@ -111,7 +111,7 @@ F_emerge <- function(t, y, xds_obj, s) {
 #' @title Set up an **L** model object 
 #' 
 #' @description
-#' Set up creates an **L** object for the \eqn{s^{th}} species 
+#' This setup creates an **L** object for the \eqn{s^{th}} species
 #' and sets up the interface ports: 
 #' + calls `make_L_obj_`*Lname* to set up the dynamics, including parameters
 #' + calls [setup_L_inits] to set initial values
@@ -156,8 +156,8 @@ get_L_pars <- function(xds_obj, s=1) {
 #' 
 #' @description
 #' For the **L** module for the \eqn{s^{th}} species, 
-#' change parameter values named in `options` 
-#' leaving other values unchanged. 
+#' change parameter values named in `options`,
+#' leaving other values unchanged.
 #' 
 #' @seealso [get_L_pars], [setup_L_obj], [xds_info_change_parameters]
 #' 
@@ -213,7 +213,7 @@ setup_L_inits = function(xds_obj, options=list(), s=1){
 #' @description Inspect the initial values for the **L** module
 #' 
 #' @seealso [change_L_inits], [setup_L_inits]
-#' @note The initial values are stored as a named list called `xds_obj$L_obj[[i]]$inits`
+#' @note The initial values are stored as a named list called `xds_obj$L_obj[[s]]$inits`
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
@@ -228,8 +228,8 @@ get_L_inits <- function(xds_obj, s=1) {
 #' 
 #' @description
 #' Change the stored initial values for 
-#' any variables named in `options`
-#' leaving other values unchanged. 
+#' any variables named in `options`,
+#' leaving other values unchanged.
 #' 
 #' @seealso [get_L_inits]
 #' 

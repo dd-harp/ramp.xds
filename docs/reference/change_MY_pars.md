@@ -1,7 +1,7 @@
 # Change parameters (**MY**)
 
 For the **MY** module for the \\(s^{th}\\) species, change parameter
-values named in `options` leaving other values unchanged.
+values named in `options`, leaving other values unchanged.
 
 ## Usage
 

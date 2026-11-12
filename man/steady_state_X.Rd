@@ -13,7 +13,7 @@ steady_state_X(foi, H, xds_obj, i = 1)
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the vector species index}
+\item{i}{the host species index}
 }
 \value{
 steady states

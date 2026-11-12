@@ -19,6 +19,17 @@
 a \link{list} vector
 }
 \description{
-Implements \link{setup_MY_obj} for the GeM model
+This sets up a \code{GeM} model object for the \strong{MY} module for the \eqn{s^{th}} vector species
+\itemize{
+\item the object is created by \link{make_MY_obj_GeM}
+\item the initial conditions are set by \link{setup_MY_inits}
+\item \code{options} is passed to both to override the defaults
+}
+}
+\note{
+The module object is stored at \code{xds_obj$MY_obj[[s]]}
+}
+\seealso{
+\link{GeM}, \link{make_MY_obj_GeM}
 }
 \keyword{internal}

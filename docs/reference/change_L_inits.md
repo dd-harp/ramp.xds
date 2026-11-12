@@ -1,6 +1,6 @@
 # Change initial values (**L**)
 
-Change the stored initial values for any variables named in `options`
+Change the stored initial values for any variables named in `options`,
 leaving other values unchanged.
 
 ## Usage

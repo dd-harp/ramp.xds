@@ -33,7 +33,7 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 
 ## Value
 
-[list](https://rdrr.io/r/base/list.html)
+an **`xds`** object
 
 ## See also
 

@@ -242,7 +242,19 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 }
 
 #' @title Set up `trivial` (**XH**)
-#' @description Implements [setup_XH_obj] for the trivial model
+#' @description
+#'
+#' This sets up a `trivial` model object for the **XH** module for the \eqn{i^{th}} host species
+#' + the object is created by [make_XH_obj_trivial]
+#' + `options` is passed to override the defaults
+#'
+#' There are no dynamical variables requiring initial values;
+#' [setup_XH_inits] leaves the object unmodified.
+#'
+#' @seealso [trivial_XH], [make_XH_obj_trivial]
+#'
+#' @note The module object is stored at `xds_obj$XH_obj[[i]]`
+#'
 #' @inheritParams setup_XH_obj
 #' @return an **`xds`** object
 #' @keywords internal
@@ -261,7 +273,9 @@ setup_XH_obj.trivial = function(XHname, residence, xds_obj, options=list(), i=1)
 
 
 #' @title Setup initial values for `trivial` (**XH**)
-#' @description Implements [setup_XH_inits] for the trivial model
+#' @description The `trivial` module (**XH**) for the \eqn{i^{th}} species
+#' has no dynamical variables requiring initial values.
+#' This method returns the unmodified **`xds`** object; `options` is unused.
 #' @inheritParams setup_XH_inits
 #' @return a [list] vector
 #' @keywords internal
@@ -307,7 +321,8 @@ get_XH_vars.trivial<- function(y, xds_obj, i) {
 
 
 #' @title Get parameters for `trivial` (**XH**)
-#' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
+#' @description For the `trivial` module (**XH**) for the \eqn{i^{th}} species,
+#' change parameter values named in `options` leaving other values unchanged.
 #' @param xds_obj an **`xds`** model object
 #' @return a [list]
 #' @keywords internal
@@ -320,7 +335,7 @@ get_XH_pars.trivial <- function(xds_obj, i=1) {
   ))
 }
 
-#' @title Change parameters for `trivial` (**XH**)
+#' @title Get parameters for `trivial` (**XH**)
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
 #' @inheritParams change_XH_pars
 #' @return an **`xds`** object

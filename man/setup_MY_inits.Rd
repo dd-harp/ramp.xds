@@ -14,7 +14,7 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 \item{s}{the vector species index}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
 Set initial values

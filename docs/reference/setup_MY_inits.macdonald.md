@@ -1,8 +1,16 @@
-# setup initial values for `macdonald` (**MY**)
+# Setup initial values for `macdonald` (**MY**)
 
-Implements
-[setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)
-for the macdonald model
+Set initial values for all the variables in the `macdonald` module
+(**MY**) for the \\(s^{th}\\) species.
+
+- [make_MY_inits_macdonald](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_macdonald.md)
+  supplies default values
+
+- The values in `options` overwrite the defaults
+
+- To inspect variable names, use
+  [get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)
+  or see the inline module documentation.
 
 ## Usage
 

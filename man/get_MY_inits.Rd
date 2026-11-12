@@ -12,15 +12,15 @@ get_MY_inits(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-\link{numeric}
+the initial values, as a named list
 }
 \description{
 Inspect the initial values for the \strong{MY} module
 }
 \note{
-The initial values are stored as a named list called \code{xds_obj$XH_obj[[i]]$inits}
+The initial values are stored as a named list called \code{xds_obj$MY_obj[[s]]$inits}
 }
 \seealso{
-\link{change_XH_inits}, \link{setup_XH_inits}
+\link{change_MY_inits}, \link{setup_MY_inits}
 }
 \keyword{internal}

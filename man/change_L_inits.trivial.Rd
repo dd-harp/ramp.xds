@@ -17,6 +17,9 @@
 an \strong{\code{xds}} object
 }
 \description{
-Returns the unmodified \strong{\code{xds}} object
+For the \code{trivial} module (\strong{L}) for the \eqn{s^{th}} species,
+change initial values named in \code{options} leaving other values unchanged.
+
+Returns the unmodified \strong{\code{xds}} object.
 }
 \keyword{internal}

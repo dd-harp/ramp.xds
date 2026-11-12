@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{change_XH_pars.SIS}
 \alias{change_XH_pars.SIS}
-\title{Set new values for the SIS model}
+\title{Get parameters for \code{SIS} (\strong{XH})}
 \usage{
 \method{change_XH_pars}{SIS}(xds_obj, options = list(), i = 1)
 }
@@ -11,14 +11,14 @@
 
 \item{options}{a named list}
 
-\item{i}{the vector species index}
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-A utility to change parameters
-values for the SIS model (\strong{XH} component)
+For the \code{SIS} module (\strong{XH}) for the \eqn{i^{th}} species,
+change parameter values named in \code{options} leaving other values unchanged.
 
 \code{options} is a named list, and:
 \itemize{

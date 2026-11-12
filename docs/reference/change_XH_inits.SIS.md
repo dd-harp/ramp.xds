@@ -1,7 +1,9 @@
 # Change initial values for `SIS` (**XH**)
 
-For the **XH** module, `SIS`, change the initial value(s) for the
-variable \\(I\\).
+For the `SIS` module (**XH**) for the \\(i^{th}\\) species, change
+initial values named in `options` leaving other values unchanged.
+
+Change the initial value(s) for the variable \\(I\\).
 
 The argument passed as `options` should be a named list, and the new
 initial value(s) are set to `options$I`
@@ -25,7 +27,7 @@ change_XH_inits(xds_obj, options = list(), i = 1)
 
 - i:
 
-  the vector species index
+  the host species index
 
 ## Value
 

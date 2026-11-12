@@ -1,7 +1,7 @@
-# Set new values for the SIS model
+# Get parameters for `SIS` (**XH**)
 
-A utility to change parameters values for the SIS model (**XH**
-component)
+For the `SIS` module (**XH**) for the \\(i^{th}\\) species, change
+parameter values named in `options` leaving other values unchanged.
 
 `options` is a named list, and:
 
@@ -36,7 +36,7 @@ change_XH_pars(xds_obj, options = list(), i = 1)
 
 - i:
 
-  the vector species index
+  the host species index
 
 ## Value
 

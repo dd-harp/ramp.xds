@@ -19,6 +19,17 @@
 a \link{list} vector
 }
 \description{
-Implements \link{setup_MY_obj} for the basicM xde model
+This sets up a \code{basicM} model object for the \strong{MY} module for the \eqn{s^{th}} vector species
+\itemize{
+\item the object is created by \link{make_M_obj_basicM}
+\item the initial conditions are set by \link{setup_MY_inits}
+\item \code{options} is passed to both to override the defaults
+}
+}
+\note{
+The module object is stored at \code{xds_obj$MY_obj[[s]]}
+}
+\seealso{
+\link{basicM}, \link{make_M_obj_basicM}
 }
 \keyword{internal}

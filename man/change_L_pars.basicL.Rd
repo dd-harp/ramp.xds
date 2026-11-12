@@ -17,7 +17,10 @@
 an \strong{\code{xds}} object
 }
 \description{
-Set the values of \strong{L} component parameters
+For the \code{basicL} module (\strong{L}) for the \eqn{s^{th}} species,
+change parameter values named in \code{options} leaving other values unchanged.
+
+Parameters:
 \itemize{
 \item \code{psi} or \eqn{\psi}
 \item \code{xi}  or \eqn{\xi}

@@ -17,6 +17,13 @@
 an \strong{\code{xds}} object
 }
 \description{
-Setup initial values for \code{SIS} (\strong{XH})
+Set initial values for all the variables in the \code{SIS} module
+(\strong{XH}) for the \eqn{i^{th}} species.
+\itemize{
+\item \link{make_XH_inits_SIS} supplies default values
+\item The values in \code{options} overwrite the defaults
+\item To inspect variable names, use \link{get_XH_inits} or
+see the inline module documentation.
+}
 }
 \keyword{internal}

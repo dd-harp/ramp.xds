@@ -21,7 +21,17 @@
 an \strong{\code{xds}} object
 }
 \description{
-Set up an \code{SIS} model object
-for the \strong{XH} component
+This sets up an \code{SIS} model object for the \strong{XH} module for the \eqn{i^{th}} host species
+\itemize{
+\item the object is created by \link{make_XH_obj_SIS}
+\item the initial conditions are set by \link{setup_XH_inits}
+\item \code{options} is passed to both to override the defaults
+}
+}
+\note{
+The module object is stored at \code{xds_obj$XH_obj[[i]]}
+}
+\seealso{
+\link{SIS}, \link{make_XH_obj_SIS}
 }
 \keyword{internal}

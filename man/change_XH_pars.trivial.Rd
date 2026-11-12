@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{change_XH_pars.trivial}
 \alias{change_XH_pars.trivial}
-\title{Change parameters for \code{trivial} (\strong{XH})}
+\title{Get parameters for \code{trivial} (\strong{XH})}
 \usage{
 \method{change_XH_pars}{trivial}(xds_obj, options = list(), i = 1)
 }
@@ -11,7 +11,7 @@
 
 \item{options}{a named list}
 
-\item{i}{the vector species index}
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object

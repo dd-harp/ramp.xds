@@ -196,11 +196,20 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 
 #' @title Set up `trivial` (**MY**)
 #'
-#' @description Set up the trivial adult mosquito model.
+#' @description
+#'
+#' This sets up a `trivial` model object for the **MY** module for the \eqn{s^{th}} vector species
+#' + the object is created by [make_MY_obj_trivial]
+#' + `options` is passed to override the defaults
+#'
 #' In general, this should be used for aquatic mosquito
 #' ecology or human / host epidemiology.  In the former case,
 #' the user configures `F_eggs`; in the latter,
 #' `F_fqZ`
+#'
+#' @seealso [trivial_MY], [make_MY_obj_trivial]
+#'
+#' @note The module object is stored at `xds_obj$MY_obj[[s]]`
 #'
 #' @inheritParams setup_MY_obj
 #'
@@ -310,7 +319,8 @@ get_MY_pars.trivial <- function(xds_obj, s=1) {
 
 
 #' @title Change initial values for `trivial` (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @description For the `trivial` module (**MY**) for the \eqn{s^{th}} species,
+#' change initial values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
 #' @keywords internal
@@ -320,7 +330,8 @@ change_MY_inits.trivial <- function(xds_obj, options=list(), s=1) {
 }
 
 #' @title Change parameters for `trivial` (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @description For the `trivial` module (**MY**) for the \eqn{s^{th}} species,
+#' change parameter values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
 #' @keywords internal
@@ -353,7 +364,9 @@ setup_skillset_MY.trivial = function(xds_obj, s){
 }
 
 #' @title Setup initial values for `trivial` (**MY**)
-#' @description Return the **`xds`** object unmodified
+#' @description The `trivial` module (**MY**) for the \eqn{s^{th}} species
+#' has no dynamical variables requiring initial values.
+#' This method returns the unmodified **`xds`** object; `options` is unused.
 #' @inheritParams setup_MY_inits
 #' @return an **`xds`** object
 #' @keywords internal

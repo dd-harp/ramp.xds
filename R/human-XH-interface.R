@@ -114,7 +114,7 @@ F_infectivity <- function(y, xds_obj, i) {
 
 #' @title Set up an **XH** model object
 #' @description 
-#' Set up creates an **XH** object for the \eqn{i^{th}} species 
+#' This setup creates an **XH** object for the \eqn{i^{th}} species
 #' and sets up the interface ports: 
 #' + calls `make_XH_obj_`*XHname* to set up the dynamics, including parameters
 #' + calls [setup_XH_inits] to set initial values
@@ -245,14 +245,14 @@ get_XH_pars <- function(xds_obj, i=1) {
 #' 
 #' @description 
 #' For the **XH** module for the \eqn{i^{th}} species, 
-#' change parameter values named in `options` 
-#' leaving other values unchanged. 
+#' change parameter values named in `options`,
+#' leaving other values unchanged.
 #' 
 #' @seealso [get_XH_pars], [setup_XH_obj], [xds_info_change_parameters]
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
-#' @param i the vector species index
+#' @param i the host species index
 #' 
 #' @return an **`xds`** object
 #' 
@@ -311,13 +311,13 @@ get_XH_inits = function(xds_obj, i=1){
 #' @title Change initial values (**XH**)
 #' 
 #' @description Change the stored initial values for 
-#' any variables named in `options` leaving other values unchanged.
+#' any variables named in `options`, leaving other values unchanged.
 #' 
 #' @seealso [get_XH_inits]
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
-#' @param i the vector species index
+#' @param i the host species index
 #' 
 #' @return an **`xds`** object
 #' @keywords internal
@@ -403,7 +403,7 @@ get_HTC <- function(xds_obj, i) {
 #' @param foi the daily FoI
 #' @param H human / host population density
 #' @param xds_obj an **`xds`** model object
-#' @param i the vector species index
+#' @param i the host species index
 #'
 #' @return steady states
 #' @keywords internal
@@ -419,7 +419,7 @@ steady_state_X = function(foi, H, xds_obj, i=1){
 #'
 #' @param foi the daily FoI
 #' @param xds_obj an **`xds`** model object
-#' @param i the vector species index
+#' @param i the host species index
 #'
 #' @return steady states
 #' @keywords internal

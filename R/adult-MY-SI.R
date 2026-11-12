@@ -282,7 +282,17 @@ MEffectSizes.SI <- function(t, y, xds_obj, s) {
 
 
 #' @title Set up `SI` (**MY**)
-#' @description Implements [setup_MY_obj] for the SI model
+#' @description 
+#' 
+#' This sets up an `SI` model object for **MY** module for the \eqn{s^{th}} vector species
+#' + the object is created by [make_MY_obj_SI]
+#' + the initial conditions are set by [setup_MY_inits]
+#' + `options` is passed to both to override the defaults
+#' 
+#' @seealso [SI], [make_MY_obj_SI]
+#' 
+#' @note The module object is stored at `xds_obj$MY_obj[[s]]`
+#' 
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
 #' @keywords internal
@@ -405,7 +415,8 @@ get_MY_pars.SI <- function(xds_obj, s=1) {
 }
 
 #' @title Change parameters for `SI` (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @description For the `SI` module (**MY**) for the \eqn{s^{th}} species,
+#' change parameter values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
 #' @keywords internal
@@ -431,7 +442,12 @@ change_MY_pars.SI <- function(xds_obj, options=list(), s=1) {
 
 
 #' @title Setup initial values for `SI` (**MY**)
-#' @description Implements [setup_MY_inits] for the `SI` model
+#' @description Set initial values for all the variables in the `SI` module
+#' (**MY**) for the \eqn{s^{th}} species.
+#' + [make_MY_inits_SI] supplies default values
+#' + The values in `options` overwrite the defaults
+#' + To inspect variable names, use [get_MY_inits] or
+#' see the inline module documentation.
 #' @inheritParams setup_MY_inits
 #' @return a [list]
 #' @keywords internal
@@ -460,7 +476,8 @@ make_MY_inits_SI = function(nPatches, options = list(),
 }
 
 #' @title Change initial values for `SI` (**MY**)
-#' @description Implements [change_MY_inits] for the SI model
+#' @description For the `SI` module (**MY**) for the \eqn{s^{th}} species,
+#' change initial values named in `options` leaving other values unchanged.
 #'
 #' @inheritParams change_MY_inits
 #'

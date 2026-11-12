@@ -21,7 +21,7 @@ setup_XH_obj(XHname, residence, xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set up creates an \strong{XH} object for the \eqn{i^{th}} species
+This setup creates an \strong{XH} object for the \eqn{i^{th}} species
 and sets up the interface ports:
 \itemize{
 \item calls \code{make_XH_obj_}\emph{XHname} to set up the dynamics, including parameters

@@ -212,11 +212,19 @@ LEffectSizes.basicL <- function(t, y, xds_obj, s) {
 
 
 #' @title Set up `basicL` (**L**)
-#' @description The function sets up `L_obj` for the \eqn{s^{th}} species
-#' by calling [make_L_obj_basicL]
+#' @description
+#'
+#' This sets up a `basicL` model object for the **L** module for the \eqn{s^{th}} vector species
+#' + the object is created by [make_L_obj_basicL]
+#' + the initial conditions are set by [setup_L_inits]
+#' + `options` is passed to both to override the defaults
+#'
+#' @seealso [basicL], [make_L_obj_basicL]
+#'
+#' @note The module object is stored at `xds_obj$L_obj[[s]]`
+#'
 #' @inheritParams setup_L_obj
 #' @return an **`xds`** object
-#' @seealso [make_L_obj_basicL]
 #' @keywords internal
 #' @export
 setup_L_obj.basicL = function(Lname, membership, xds_obj, options=list(), s=1){
@@ -279,7 +287,10 @@ get_L_pars.basicL <- function(xds_obj, s=1) {
 }
 
 #' @title Change parameters for `basicL` (**L**)
-#' @description Set the values of **L** component parameters
+#' @description For the `basicL` module (**L**) for the \eqn{s^{th}} species,
+#' change parameter values named in `options` leaving other values unchanged.
+#'
+#' Parameters:
 #' - `psi` or \eqn{\psi}
 #' - `xi`  or \eqn{\xi}
 #' - `phi` or \eqn{\phi}
@@ -302,9 +313,14 @@ change_L_pars.basicL <- function(xds_obj, options=list(), s=1) {
 
 
 #' @title Setup initial values for `basicL` (**L**)
-#' @description This sets initial values of the variable \eqn{L} by
-#' calling [make_L_inits_basicL]. Default values are used unless other values
-#' are passed in `options` by name (*i.e.* `options$L`)
+#' @description Set initial values for all the variables in the `basicL` module
+#' (**L**) for the \eqn{s^{th}} species.
+#' + [make_L_inits_basicL] supplies default values
+#' + The values in `options` overwrite the defaults
+#' + To inspect variable names, use [get_L_inits] or
+#' see the inline module documentation.
+#'
+#' The initial values of \eqn{L} can be passed as `options$L`.
 #' @inheritParams setup_L_inits
 #' @seealso [make_L_inits_basicL]
 #' @return an **`xds`** object
@@ -344,7 +360,10 @@ get_L_vars.basicL <- function(y, xds_obj, s){
 }
 
 #' @title Change initial values for `basicL` (**L**)
-#' @description Initial values of the variable \eqn{L} are reset if they are
+#' @description For the `basicL` module (**L**) for the \eqn{s^{th}} species,
+#' change initial values named in `options` leaving other values unchanged.
+#'
+#' Initial values of the variable \eqn{L} are reset if they are
 #' passed as a named component of `options`
 #' @inheritParams change_L_inits
 #' @return an **`xds`** object

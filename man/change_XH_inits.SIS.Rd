@@ -11,14 +11,16 @@
 
 \item{options}{a named list}
 
-\item{i}{the vector species index}
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-For the \strong{XH} module, \code{SIS},
-change the initial value(s) for the variable \eqn{I}.
+For the \code{SIS} module (\strong{XH}) for the \eqn{i^{th}} species,
+change initial values named in \code{options} leaving other values unchanged.
+
+Change the initial value(s) for the variable \eqn{I}.
 
 The argument
 passed as \code{options} should be a named list, and the

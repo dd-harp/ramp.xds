@@ -2,7 +2,7 @@
 title: "Human Demography"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{5-3-4 Example}
+ %\VignetteIndexEntry{Human Demography}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---

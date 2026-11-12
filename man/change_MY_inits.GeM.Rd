@@ -17,6 +17,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}.
+For the \code{GeM} module (\strong{MY}) for the \eqn{s^{th}} species,
+change initial values named in \code{options} leaving other values unchanged.
 }
 \keyword{internal}

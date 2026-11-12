@@ -130,7 +130,12 @@ F_eggs.RMdts <- function(t, y, xds_obj, s) {
 
 
 #' @title Setup initial values for `RMdts` (**MY**)
-#' @description Implements [setup_MY_inits] for the RMdts model
+#' @description Set initial values for all the variables in the `RMdts` module
+#' (**MY**) for the \eqn{s^{th}} species.
+#' + [make_MY_inits_RMdts] supplies default values
+#' + The values in `options` overwrite the defaults
+#' + To inspect variable names, use [get_MY_inits] or
+#' see the inline module documentation.
 #' @inheritParams setup_MY_inits
 #' @return a [list]
 #' @keywords internal
@@ -232,6 +237,8 @@ parse_MY_orbits.RMdts <- function(outputs, xds_obj, s) {with(xds_obj$ix$MY[[s]],
 })}
 
 #' @title Change initial values for `RMdts` (**MY**)
+#' @description For the `RMdts` module (**MY**) for the \eqn{s^{th}} species,
+#' change initial values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_inits
 #' @return a [list]
 #' @keywords internal

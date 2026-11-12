@@ -21,7 +21,19 @@
 an \strong{\code{xds}} object
 }
 \description{
-Call \link{make_L_obj_trivial} and set
-\code{class(xds_obj$forced_by) = "Lambda"}
+This sets up a \code{trivial} model object for the \strong{L} module for the \eqn{s^{th}} vector species
+\itemize{
+\item the object is created by \link{make_L_obj_trivial}
+\item \code{options} is passed to override the defaults
+}
+
+There are no dynamical variables requiring initial values.
+This method sets \code{class(xds_obj$forced_by) = "Lambda"}.
+}
+\note{
+The module object is stored at \code{xds_obj$L_obj[[s]]}
+}
+\seealso{
+\link{trivial_L}, \link{make_L_obj_trivial}
 }
 \keyword{internal}

@@ -114,8 +114,16 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 
 #' @title Set up `SIS` (**XH**)
 #'
-#' @description Set up an `SIS` model object
-#' for the **XH** component
+#' @description
+#'
+#' This sets up an `SIS` model object for the **XH** module for the \eqn{i^{th}} host species
+#' + the object is created by [make_XH_obj_SIS]
+#' + the initial conditions are set by [setup_XH_inits]
+#' + `options` is passed to both to override the defaults
+#'
+#' @seealso [SIS], [make_XH_obj_SIS]
+#'
+#' @note The module object is stored at `xds_obj$XH_obj[[i]]`
 #'
 #' @inheritParams setup_XH_obj
 #'
@@ -170,10 +178,10 @@ make_XH_obj_SIS = function(nStrata, options=list(),
   })}
 
 
-#' @title Set new values for the SIS model
+#' @title Get parameters for `SIS` (**XH**)
 #'
-#' @description A utility to change parameters
-#' values for the SIS model (**XH** component)
+#' @description For the `SIS` module (**XH**) for the \eqn{i^{th}} species,
+#' change parameter values named in `options` leaving other values unchanged.
 #'
 #' `options` is a named list, and:
 #'
@@ -284,6 +292,13 @@ parse_XH_orbits.SIS <- function(outputs, xds_obj, i) {
 
 #' @title Setup initial values for `SIS` (**XH**)
 #'
+#' @description Set initial values for all the variables in the `SIS` module
+#' (**XH**) for the \eqn{i^{th}} species.
+#' + [make_XH_inits_SIS] supplies default values
+#' + The values in `options` overwrite the defaults
+#' + To inspect variable names, use [get_XH_inits] or
+#' see the inline module documentation.
+#'
 #' @inheritParams setup_XH_inits
 #'
 #' @return an **`xds`** object
@@ -316,10 +331,10 @@ make_XH_inits_SIS = function(nStrata, options=list(), H=1000, I=1){
 
 #' @title Change initial values for `SIS` (**XH**)
 #'
-#' @description
+#' @description For the `SIS` module (**XH**) for the \eqn{i^{th}} species,
+#' change initial values named in `options` leaving other values unchanged.
 #'
-#' For the **XH** module, `SIS`,
-#' change the initial value(s) for the variable \eqn{I}.
+#' Change the initial value(s) for the variable \eqn{I}.
 #'
 #' The argument
 #' passed as `options` should be a named list, and the
@@ -547,4 +562,3 @@ steady_state_X.SIS = function(foi, H, xds_obj, i=1){
     Seq = H-Ieq
     return(list(S=Seq, I=Ieq))
 })}
-

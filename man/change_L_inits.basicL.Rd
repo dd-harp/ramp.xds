@@ -17,6 +17,9 @@
 an \strong{\code{xds}} object
 }
 \description{
+For the \code{basicL} module (\strong{L}) for the \eqn{s^{th}} species,
+change initial values named in \code{options} leaving other values unchanged.
+
 Initial values of the variable \eqn{L} are reset if they are
 passed as a named component of \code{options}
 }

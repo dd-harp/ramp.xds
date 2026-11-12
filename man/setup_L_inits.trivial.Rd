@@ -17,6 +17,8 @@
 an \strong{\code{xds}} object
 }
 \description{
-The \code{trivial} module initial values are an empty list
+The \code{trivial} module (\strong{L}) for the \eqn{s^{th}} species
+has no dynamical variables requiring initial values.
+This method sets the initial values to an empty list; \code{options} is unused.
 }
 \keyword{internal}

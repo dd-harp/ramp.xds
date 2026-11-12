@@ -18,7 +18,7 @@ an \strong{\code{xds}} object
 }
 \description{
 Change the stored initial values for
-any variables named in \code{options}
+any variables named in \code{options},
 leaving other values unchanged.
 }
 \seealso{

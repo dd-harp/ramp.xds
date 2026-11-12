@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{setup_MY_obj.macdonald}
 \alias{setup_MY_obj.macdonald}
-\title{set up \code{macdonald} (\strong{MY})}
+\title{Set up \code{macdonald} (\strong{MY})}
 \usage{
 \method{setup_MY_obj}{macdonald}(MYname, xds_obj, options = list(), s = 1)
 }
@@ -19,6 +19,17 @@
 a \link{list} vector
 }
 \description{
-Implements \link{setup_MY_obj} for the macdonald model
+This sets up a \code{macdonald} model object for the \strong{MY} module for the \eqn{s^{th}} vector species
+\itemize{
+\item the object is created by \link{make_MY_obj_macdonald}
+\item the initial conditions are set by \link{setup_MY_inits}
+\item \code{options} is passed to both to override the defaults
+}
+}
+\note{
+The module object is stored at \code{xds_obj$MY_obj[[s]]}
+}
+\seealso{
+\link{macdonald}, \link{make_MY_obj_macdonald}
 }
 \keyword{internal}

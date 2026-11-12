@@ -205,8 +205,18 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title set up `macdonald` (**MY**)
-#' @description Implements [setup_MY_obj] for the macdonald model
+#' @title Set up `macdonald` (**MY**)
+#' @description
+#'
+#' This sets up a `macdonald` model object for the **MY** module for the \eqn{s^{th}} vector species
+#' + the object is created by [make_MY_obj_macdonald]
+#' + the initial conditions are set by [setup_MY_inits]
+#' + `options` is passed to both to override the defaults
+#'
+#' @seealso [macdonald], [make_MY_obj_macdonald]
+#'
+#' @note The module object is stored at `xds_obj$MY_obj[[s]]`
+#'
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
 #' @keywords internal
@@ -338,7 +348,8 @@ get_MY_pars.macdonald <- function(xds_obj, s=1) {
 }
 
 #' @title Change parameters for `macdonald` (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @description For the `macdonald` module (**MY**) for the \eqn{s^{th}} species,
+#' change parameter values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
 #' @keywords internal
@@ -358,8 +369,13 @@ change_MY_pars.macdonald <- function(xds_obj, options=list(), s=1) {
   }))}
 
 
-#' @title setup initial values for `macdonald` (**MY**)
-#' @description Implements [setup_MY_inits] for the macdonald model
+#' @title Setup initial values for `macdonald` (**MY**)
+#' @description Set initial values for all the variables in the `macdonald` module
+#' (**MY**) for the \eqn{s^{th}} species.
+#' + [make_MY_inits_macdonald] supplies default values
+#' + The values in `options` overwrite the defaults
+#' + To inspect variable names, use [get_MY_inits] or
+#' see the inline module documentation.
 #' @inheritParams setup_MY_inits
 #' @return a [list]
 #' @keywords internal
@@ -392,7 +408,8 @@ make_MY_inits_macdonald = function(nPatches, options = list(),
 })}
 
 #' @title Change initial values for `macdonald` (**MY**)
-#' @description Implements [change_MY_inits] for the macdonald model
+#' @description For the `macdonald` module (**MY**) for the \eqn{s^{th}} species,
+#' change initial values named in `options` leaving other values unchanged.
 #'
 #' @inheritParams change_MY_inits
 #'

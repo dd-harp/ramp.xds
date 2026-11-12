@@ -1,7 +1,7 @@
 # Change parameters (**L**)
 
 For the **L** module for the \\(s^{th}\\) species, change parameter
-values named in `options` leaving other values unchanged.
+values named in `options`, leaving other values unchanged.
 
 ## Usage
 

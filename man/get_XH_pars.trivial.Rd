@@ -13,6 +13,7 @@
 a \link{list}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$XH_obj[[s]]}.
+For the \code{trivial} module (\strong{XH}) for the \eqn{i^{th}} species,
+change parameter values named in \code{options} leaving other values unchanged.
 }
 \keyword{internal}

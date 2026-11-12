@@ -18,7 +18,7 @@ an \strong{\code{xds}} object
 }
 \description{
 For the \strong{L} module for the \eqn{s^{th}} species,
-change parameter values named in \code{options}
+change parameter values named in \code{options},
 leaving other values unchanged.
 }
 \seealso{
