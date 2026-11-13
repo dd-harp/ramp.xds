@@ -210,7 +210,7 @@ F_mu.random = function(t, xds_obj, s){
 #' @description Build a configuration object for random emigration-loss fractions.
 #' 
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand

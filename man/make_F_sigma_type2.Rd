@@ -16,7 +16,7 @@ make_F_sigma_type2(
 \arguments{
 \item{nPatches}{is the number of patches}
 
-\item{options}{is a set of options that overwrites the defaults}
+\item{options}{is a set of options that overrides the defaults}
 
 \item{sigX}{the emigration rate from a patch with no resources}
 

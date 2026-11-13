@@ -6,7 +6,7 @@ Set initial values for all the variables in the `macdonald` module
 - [make_MY_inits_macdonald](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_macdonald.md)
   supplies default values
 
-- The values in `options` overwrite the defaults
+- The values in `options` override the defaults
 
 - To inspect variable names, use
   [get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)

@@ -134,7 +134,7 @@ using the default values:
 
     ## [1] 0.005555556
 
-To overwrite the defaults at setup, pass a named list to `xds_setup.`
+To override the defaults at setup, pass a named list to `xds_setup.`
 
 \
 `mod1`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``, XHoptions ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``r``=``1``/``200``)``)`\

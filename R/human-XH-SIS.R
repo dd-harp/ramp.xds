@@ -1,50 +1,109 @@
 # specialized methods for the human SIS module
 
-#' @title The `SIS` module for the XH component
+#' @title The `SIS` module for the **XH** component
 #' 
 #' @description
-#' In the SIS compartmental model, 
-#' infected individuals are either susceptible (S), or infected and 
-#' infectious (I). Susceptible individuals become infected at the per-capita
-#' rate \eqn{h}. Infected individuals clear infections at the per-capita rate \eqn{r}, 
-#' and then they become
-#' susceptible to infection again. 
+#' This implements a family of SIS compartmental models for malaria with parameters to model treating and curing infections, 
+#' and with functions describing human demographic change 
+#' and mass treatment.
 #' 
-#' Human/host population size (H) is a state variable that can be configured.  
-#' 
-#' and \eqn{H=S+I}: the model computes \eqn{dH/dt} and \eqn{dI/dt}. When outputs
-#' are parsed, S is computed as 
-#' \eqn{S=H-I}.
-#' 
-#' This module also includes:  
-#' + a model for human demographic changes; and
-#' + a port for mass treatment, \eqn{\xi(t)}. 
-#' 
-#'
 #' @section State Variables:
+#' 
 #' \describe{
-#'   \item{`H`}{total human (or host) population density}
-#'   \item{`I`}{density of infected humans}
+#'   \item{`H`}{total human (host) population density}
+#'   \item{`I`}{density of infected humans (hosts)}
+#'   \item{`S=H-I`}{density of susceptible humans (hosts)}
+#' }
+#'
+#' @section Prevalence:
+#' 
+#' \describe{
+#'   \item{`x`}{true prevalence is \eqn{x = I/H}}
 #' }
 #' 
-#' During parsing, the density of susceptibles is computed as: \deqn{S = H - I}.
-#'
 #' @section Parameters:
+#' 
+#' The parameters that are returned by [get_XH_pars.SIS] and also modifiable by [change_XH_pars.SIS] describe 
+#' the dynamics, or detection by diagnostic methods. 
+#' 
 #' \describe{
+#'   \item{`b`}{the fraction of infective bites that would cause an infection}
 #'   \item{`r`}{clearance rate for infections}
-#'   \item{`xi`}{mass treatment rate}
-#'   \item{`B`}{time-dependent birth rate function \eqn{B(t, H)}}
-#'   \item{`D`}{human demographic matrix}
+#'   \item{`c`}{the probability an infected person would infect a mosquito}
+#'   \item{`rho` or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
+#'   \item{`sigma` or \eqn{\sigma}}{the fraction of incident infections that are treated and cured}
+#'   \item{`q_lm`}{expected prevalence by light microscopy would be \eqn{q_{lm} \;x}}
+#'   \item{`q_rdt`}{expected prevalence by RDT would be \eqn{q_{rdt} \;x}}
+#'   \item{`q_pcr`}{expected prevalence by PCR would be \eqn{q_{pcr} \;x}}
+#' } 
+#' 
+#' @section Dynamical Term:
+#' 
+#' \describe{
+#'   \item{\eqn{h} or `foi`}{The force of infection is computed and stored by [Exposure] as `FoI`}
 #' }
-#'
+#' 
+#' 
 #' @section Dynamics:
+#' 
+#' The model for demographic change has terms to compute births (\eqn{\mathbf{B}}) and 
+#' deaths (\eqn{\mathbf{D}}): 
 #' \deqn{
-#' \begin{array}{rl}
-#' dH/dt &= B(t,H) + D \cdot H \\
-#' dI/dt &= h(H-I) - rI - \xi(t) + D \cdot I \\
-#' \end{array}}
-#' where \eqn{h} is the force of infection computed upstream.
+#' dH/dt = B(t,H) - \mathbf{D}(H)}
+#' 
+#' The model for infection dynamics assumes that infections
+#' clear naturally at a constant per-capita rate \eqn{r}. 
+#' The model also includes two parameters to model
+#' treating and curing of malaria: a fraction \eqn{\rho} of incident infections are treated and cured;
+#' and a fraction \eqn{\sigma} of prevalent infections are treated and cured. 
+#' After clearing, individuals are 
+#' susceptible to infection. 
+#' A term for mass treatment increases the rate infections are cured: (\eqn{\Xi(t)}).
+#' 
+#' Infection dynamics are described by:
+#' 
+#' \deqn{
+#' dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
 #'
+#' The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
+#' the same model as for \eqn{H}: 
+#' for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.} This model has no parameter 
+#' or terms to describe disease-induced mortality.
+#' 
+#' In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and 
+#' infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant. 
+#' After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
+#' 
+#' @section Exposure:
+#' 
+#' The FoI is computed (in [Exposure]) under the assumption that 
+#' a constant fraction of infectious bites causes an infection the parameter \eqn{b.} 
+#' 
+#' @section Infectiousness:
+#' 
+#' The fraction of mosquitoes that become infected after blood feeding on 
+#' someone who is infectious is \eqn{c.} 
+#' The infectious density of the human (hos) population is \eqn{cI.}
+#' 
+#' @section Demographic Change: 
+#' 
+#' Demographic processes are handled in the standard way. Birth rates and death
+#' rates are initially set to zero. See
+#' + [setup_births] to configure birth rates; and 
+#' + [setup_deaths] to configure death rates
+#' 
+#' @section Mass Treatment: 
+#'
+#' Mass treatment clears infections. At basic setup
+#' \eqn{\Xi(t)=0}. To set up mass treatment, see [setup_mass_treatment]. 
+#' Mass treatment is either: 
+#' 
+#' \describe{
+#'   \item{`mda(t)` or \eqn{\Xi(t)}}{mass drug administration}
+#'   \item{`msat` or \eqn{\Xi(t)}}{mass screen and treat}
+#' }
+#' 
+#' 
 #' @name SIS
 #' @rdname SIS
 NULL
@@ -73,7 +132,7 @@ NULL
 #' individuals are assumed to be susceptible to infection after clearing
 #' infections.
 #'
-#' The module includes a port to model mass treatment, \eqn{\xi(t)}.
+#' The module includes a port to model mass treatment, \eqn{\Xi(t)}.
 #'
 #' **Human Demographic**  change is modeled with two functions:
 #'
@@ -105,7 +164,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
   with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]], {
       dH <- Births(t, xds_obj, i) - Deaths(t, H, xds_obj, i)
-      dI <- foi*(H-I) - r*I - Deaths(t, I, xds_obj, i)
+      dI <- foi*(1-rho)*(H-I) - (r + rho*h + sigma)*I - Deaths(t, I, xds_obj, i)
       dI <- dI - mda(t)*I - msat(t)*I
       return(c(dH, dI))
     })
@@ -148,7 +207,7 @@ setup_XH_obj.SIS = function(XHname, residence, xds_obj, options=list(), i=1){
 #' @title Make an SIS **XH** model object
 #'
 #' @param nStrata is the number of population strata
-#' @param options a named list with parameter values to overwrite defaults
+#' @param options a named list with parameter values to override defaults
 #' @param b transmission probability (efficiency) from mosquito to human
 #' @param c transmission probability (efficiency) from human to mosquito
 #' @param r recovery rate
@@ -162,6 +221,7 @@ setup_XH_obj.SIS = function(XHname, residence, xds_obj, options=list(), i=1){
 #' @export
 make_XH_obj_SIS = function(nStrata, options=list(),
                              b=0.55, r=1/180, c=0.15,
+                             sigma=0, rho=0,
                              q_lm =0.8, q_rdt=0.8, q_pcr=0.9){
   with(options,{
     XH_obj = list()
@@ -170,8 +230,10 @@ make_XH_obj_SIS = function(nStrata, options=list(),
     XH_obj$b = checkIt(b, nStrata)
     XH_obj$c = checkIt(c, nStrata)
     XH_obj$r = checkIt(r, nStrata)
+    XH_obj$sigma = checkIt(sigma, nStrata)
+    XH_obj$rho = checkIt(rho, nStrata)
     XH_obj$q_lm = checkIt(q_lm, nStrata)
-    XH_obj$q_rdt = checkIt(q_rdt, nStrata)
+    XH_obj$q_pcr = checkIt(q_pcr, nStrata)
     XH_obj$q_pcr = checkIt(q_pcr, nStrata)
 
     return(XH_obj)
@@ -206,6 +268,8 @@ change_XH_pars.SIS <- function(xds_obj, options=list(), i=1) {
     xds_obj$XH_obj[[i]]$b <- b
     xds_obj$XH_obj[[i]]$c <- c
     xds_obj$XH_obj[[i]]$r <- r
+    xds_obj$XH_obj[[i]]$sigma <- sigma
+    xds_obj$XH_obj[[i]]$rho <- rho
     xds_obj$XH_obj[[i]]$q_lm <- q_lm
     xds_obj$XH_obj[[i]]$q_rdt <- q_rdt
     xds_obj$XH_obj[[i]]$q_pcr <- q_pcr
@@ -295,7 +359,7 @@ parse_XH_orbits.SIS <- function(outputs, xds_obj, i) {
 #' @description Set initial values for all the variables in the `SIS` module
 #' (**XH**) for the \eqn{i^{th}} species.
 #' + [make_XH_inits_SIS] supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_XH_inits] or
 #' see the inline module documentation.
 #'
@@ -309,18 +373,20 @@ setup_XH_inits.SIS = function(xds_obj, options=list(), i=1){
   return(xds_obj)
 }
 
-#' @title Make initial values for the SIS xde human model, with defaults
+#' @title Make initial values `SIS` (**XH**)
 #'
 #' @description Make a named list of initial values
 #'
 #' @param nStrata the number of strata in the model
-#' @param options a [list] to overwrite defaults
+#' @param options a [list] to override defaults
 #' @param H the initial human population density
-#' @param I the initial values of the parameter I
-#'
+#' @param I the initial number of humans infected
+#' 
+#' @seealso [setup_XH_inits.SIS]
+#' 
 #' @keywords internal
 #'
-#' @return a [list]
+#' @return initial values as a named [list]
 #' @export
 make_XH_inits_SIS = function(nStrata, options=list(), H=1000, I=1){
   with(options,{

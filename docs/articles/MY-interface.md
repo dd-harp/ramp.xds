@@ -196,12 +196,12 @@ variables.
 - `make_MY_inits_MYname` - each model must include a function that makes
   a set of initial values as a named list. This function does not belong
   to any `S3` class, so it can take any form. The function should supply
-  default initial values for all the variables. These can be overwritten
+  default initial values for all the variables. These can be overridden
   by passing new initial values in `options`.
 
 - `setup_MY_inits.MYname` - is a wrapper, that gets called by
   `xds_setup` and that calls `make_MY_inits_MYname`. The setup `options`
-  are passed to overwrite default values. The initial values are stored
+  are passed to override default values. The initial values are stored
   as `MY_obj$inits`.
 
 - `change_MY_inits.MYname` - a utility to change the initial values.

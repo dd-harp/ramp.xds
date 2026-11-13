@@ -211,7 +211,7 @@ setup_MY_obj.basicM = function(MYname, xds_obj, options=list(), s=1){
 
 #' @title Make parameters for basicM adult mosquito model
 #' @param nPatches is the number of patches, an integer
-#' @param options a named list: named values overwrite defaults
+#' @param options a named list: named values override defaults
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
 #' @param mu emigration loss
@@ -298,7 +298,7 @@ F_eggs.basicM <- function(t, y, xds_obj, s) {
 #' @description Set initial values for all the variables in the `basicM` module
 #' (**MY**) for the \eqn{s^{th}} species.
 #' + [make_MY_inits_basicM] supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_MY_inits] or
 #' see the inline module documentation.
 #' @inheritParams setup_MY_inits
@@ -327,7 +327,7 @@ change_MY_inits.basicM <- function(xds_obj, options=list(), s=1) {
 
 #' @title Make inits for basicM adult mosquito model
 #' @param nPatches the number of patches in the model
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch
 #' @param P total parous mosquito density at each patch
 #' @return a [list]

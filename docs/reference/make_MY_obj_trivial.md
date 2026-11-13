@@ -29,7 +29,7 @@ make_MY_obj_trivial(
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html) of values that overwrites
+  a [list](https://rdrr.io/r/base/list.html) of values that overrides
   the defaults
 
 - f:

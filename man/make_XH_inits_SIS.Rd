@@ -2,23 +2,26 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{make_XH_inits_SIS}
 \alias{make_XH_inits_SIS}
-\title{Make initial values for the SIS xde human model, with defaults}
+\title{Make initial values \code{SIS} (\strong{XH})}
 \usage{
 make_XH_inits_SIS(nStrata, options = list(), H = 1000, I = 1)
 }
 \arguments{
 \item{nStrata}{the number of strata in the model}
 
-\item{options}{a \link{list} to overwrite defaults}
+\item{options}{a \link{list} to override defaults}
 
 \item{H}{the initial human population density}
 
-\item{I}{the initial values of the parameter I}
+\item{I}{the initial number of humans infected}
 }
 \value{
-a \link{list}
+initial values as a named \link{list}
 }
 \description{
 Make a named list of initial values
+}
+\seealso{
+\link{setup_XH_inits.SIS}
 }
 \keyword{internal}

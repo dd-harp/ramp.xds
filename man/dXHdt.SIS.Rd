@@ -39,7 +39,7 @@ The clearance rate for infections is \eqn{r}, and by assumption,
 individuals are assumed to be susceptible to infection after clearing
 infections.
 
-The module includes a port to model mass treatment, \eqn{\xi(t)}.
+The module includes a port to model mass treatment, \eqn{\Xi(t)}.
 
 \strong{Human Demographic}  change is modeled with two functions:
 \itemize{

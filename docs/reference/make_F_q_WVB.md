@@ -16,7 +16,7 @@ make_F_q_WVB(nPatches, options = list())
 
 - options:
 
-  is a set of options that overwrites the defaults
+  is a set of options that overrides the defaults
 
 ## Value
 

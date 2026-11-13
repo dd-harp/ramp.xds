@@ -208,7 +208,7 @@ F_q.random = function(t, xds_obj, s){
 #' @description Build a configuration object for random human feeding fractions.
 #' 
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
@@ -264,7 +264,7 @@ setup_F_q.WVB = function(name, xds_obj, options = list(), s=1){
 #' fraction method.
 #' 
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' 
 #' @return a configuration object for [F_q.WVB]
 #' 

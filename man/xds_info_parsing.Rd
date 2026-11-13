@@ -9,7 +9,7 @@ are parsed and attached to \code{xds_object$outputs}.
 
 Use \verb{get_*_orbits} to inspect the orbits.
 
-\strong{Note:} \code{xds_object$outputs} are overwritten each time
+\strong{Note:} \code{xds_object$outputs} are overridden each time
 \link{xds_solve} is called.
 }
 \section{Internals}{

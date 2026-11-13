@@ -192,7 +192,7 @@ get_L_vars <- function(y, xds_obj, s) {
 #' + Each module (*Lname*) defines
 #' a function `make_L_inits_`*Lname* 
 #' that supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_L_inits] or 
 #' see the inline module documentation.
 #' 

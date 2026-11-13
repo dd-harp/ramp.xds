@@ -159,7 +159,7 @@ setup_timespent.at_home = function(name, xds_obj, options = list(), i=1){
 #' 
 #' @param nPatches is the number of patches
 #' @param residence is the home patch for each stratum
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param at_home is the fraction of time spent at home
 #' @param not_at_risk is the fraction of time not at risk
 #' @return a [matrix]

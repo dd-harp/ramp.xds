@@ -18,7 +18,7 @@ make_F_f_type2(nPatches, options = list(), fx = 0.3, sf = 0.1)
 
 - options:
 
-  is a set of options that overwrites the defaults
+  is a set of options that overrides the defaults
 
 - fx:
 

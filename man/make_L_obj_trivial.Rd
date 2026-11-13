@@ -19,7 +19,7 @@ make_L_obj_trivial(
 \arguments{
 \item{nHabitats}{the number of habitats in the model}
 
-\item{options}{a \link{list} that overwrites default values}
+\item{options}{a \link{list} that overrides default values}
 
 \item{Lambda}{vector of mean emergence rates from each aquatic habitat}
 

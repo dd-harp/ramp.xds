@@ -15,7 +15,7 @@ make_other_blood_hosts_random(
 \arguments{
 \item{nPatches}{is the number of patches}
 
-\item{options}{is a set of options that overwrites the defaults}
+\item{options}{is a set of options that overrides the defaults}
 
 \item{f_rand}{a random number generator}
 

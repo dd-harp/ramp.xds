@@ -19,7 +19,7 @@ make_M_obj_basicM(
 \arguments{
 \item{nPatches}{is the number of patches, an integer}
 
-\item{options}{a named list: named values overwrite defaults}
+\item{options}{a named list: named values override defaults}
 
 \item{g}{mosquito mortality rate}
 

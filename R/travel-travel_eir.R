@@ -144,7 +144,7 @@ setup_travel_eir.random = function(name, xds_obj, options = list(), i=1){
 #' @description Set up a random vector 
 #' 
 #' @param nStrata is the number of population strata
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand

@@ -9,7 +9,7 @@ make_XH_inits_hMoI(nStrata, options = list(), m1 = 2, m2 = 1)
 \arguments{
 \item{nStrata}{the number of population strata}
 
-\item{options}{a \link{list} that overwrites default values}
+\item{options}{a \link{list} that overrides default values}
 
 \item{m1}{mean MoI among inapparent human infections}
 

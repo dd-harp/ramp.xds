@@ -168,7 +168,7 @@ setup_XH_obj.hMoI = function(XHname, residence, xds_obj, options=list(), i=1){
 #' @title Make parameters for hybrid MoI human model
 #' @description MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
 #' @param nStrata is the number of human population strata
-#' @param options a [list] that overwrites default values
+#' @param options a [list] that overrides default values
 #'
 #' @param b transmission probability (efficiency) from mosquito to human
 #' @param c1 transmission probability (efficiency) from inapparent human infections to mosquito
@@ -282,7 +282,7 @@ F_infectivity.hMoI <- function(y, xds_obj,i) {
 #' @description Set initial values for all the variables in the `hMoI` module
 #' (**XH**) for the \eqn{i^{th}} species.
 #' + [make_XH_inits_hMoI] supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_XH_inits] or
 #' see the inline module documentation.
 #' @inheritParams setup_XH_inits
@@ -299,7 +299,7 @@ setup_XH_inits.hMoI = function(xds_obj, options=list(), i=1){
 #' @title Make inits for hybrid MoI human model
 #' @description MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
 #' @param nStrata the number of population strata
-#' @param options a [list] that overwrites default values
+#' @param options a [list] that overrides default values
 #' @param m1 mean MoI among inapparent human infections
 #' @param m2 mean MoI among patent human infections
 #' @return a [list]

@@ -2,17 +2,60 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{SI}
 \alias{SI}
-\title{The \code{SI} module for the MY component}
+\title{The \code{SI} module for the \strong{MY} component}
 \description{
-Implements the \strong{MY} component using a simple SI (Susceptible-Infected)
-model of adult mosquito infection dynamics.
+This implements a model for basic mosquito ecology and an \code{SI}
+compartmental model for mosquito infection dynamics
 }
 \section{State Variables}{
+
 
 \describe{
 \item{\code{M}}{density of adult mosquitoes}
 \item{\code{Y}}{density of infected adult mosquitoes}
 }
+
+The density of susceptible mosquitoes is \eqn{M-Y}
+}
+
+\section{Dynamics}{
+
+
+\strong{Dynamical Terms}
+\itemize{
+\item Mosquitoes are born at the rate \eqn{\Lambda,} which is a dynamical term computed by \link{Emergence}.
+\item The fraction of mosquitoes that get infected after blood feeding on a human, \eqn{\kappa,} is a dynamical term computed by \link{Transmission}.
+}
+
+\strong{Parameters}
+\itemize{
+\item Mosquito survival and dispersal is given by the demographic matrix, \eqn{\Omega}
+\item Mosquitoes blood feed at the rate \eqn{f.} The human fraction, \eqn{q,} is the fraction of blood meals on human.
+}
+
+\strong{Derivatives}
+
+The model computes these derivatives:
+
+\deqn{
+\begin{array}{rl}
+dM/dt &= \Lambda - \Omega \cdot M \\
+dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
+\end{array}}
+}
+
+\section{Infective Biting}{
+
+
+To compute the infective biting density, this model configures a parameter
+for the EIP, \eqn{\tau.} Survival and dispersal through the EIP is
+\deqn{\Upsilon = e^{-\Omega \tau}.}
+Infective biting is given by
+\deqn{fqZ = \Upsilon \cdot \left( f q Y \right) }
+}
+
+\section{Egg Laying}{
+
 }
 
 \section{Parameters}{
@@ -30,6 +73,10 @@ model of adult mosquito infection dynamics.
 
 \section{Demography}{
 
+\itemize{
+\item Mosquitoes emigrate from patches at the per-capita rates \eqn{\sigma}
+\item Some fraction of emigrating mosquitoes is lost (\eqn{\mu}), which could include so total population loss from a patch is \eqn{g + \mu \sigma}
+}
 
 The demographic matrix, \eqn{\Omega} is computed as
 \deqn{\Omega = \mbox{diag}\left(g + \sigma \mu \right) - K \cdot \mbox{diag}\left(\sigma \left(1-\mu\right)\right)}
@@ -43,16 +90,6 @@ by the \strong{ML}-Interface using outputs of the \strong{L} Component
 
 \strong{Net Infectiousness} -- \code{kappa} or \eqn{\kappa}, is computed
 by the \strong{XY}-Interface using outputs of the \strong{XH} Component
-}
-
-\section{Dynamics}{
-
-
-\deqn{
-\begin{array}{rl}
-dM/dt &= \Lambda - \Omega \cdot M \\
-dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
-\end{array}}
 }
 
 \section{Net Infective Biting}{

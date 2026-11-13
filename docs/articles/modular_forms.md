@@ -215,7 +215,7 @@ treatment. The code looks like this:
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x128691470>
+    ## <bytecode: 0x121f5ca10>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -243,7 +243,7 @@ code looks like this:
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x11fd73d08>
+    ## <bytecode: 0x12297a4a8>
     ## <environment: namespace:ramp.xds>
 
 The term \\(\Lambda\\) is passed from the trace function
@@ -263,5 +263,5 @@ The implementation looks like this:
     ##     V_k = get_variables(shock_par, t, y, xds_obj, s)
     ##     return(Lambda*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
     ## })}
-    ## <bytecode: 0x12c21ef60>
+    ## <bytecode: 0x12202cb00>
     ## <environment: namespace:ramp.xds>

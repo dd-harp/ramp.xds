@@ -6,7 +6,7 @@ for the \\(s^{th}\\) species.
 - [make_L_inits_basicL](https://dd-harp.github.io/ramp.xds/reference/make_L_inits_basicL.md)
   supplies default values
 
-- The values in `options` overwrite the defaults
+- The values in `options` override the defaults
 
 - To inspect variable names, use
   [get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md)

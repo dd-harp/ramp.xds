@@ -254,7 +254,7 @@ change_MY_pars <- function(xds_obj, options=list(), s=1) {
 #' + Each module (*MYname*) defines
 #' a function `make_MY_inits_`*MYname* 
 #' that supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_MY_inits] or 
 #' see the inline module documentation.
 #'

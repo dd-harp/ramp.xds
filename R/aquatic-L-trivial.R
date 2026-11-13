@@ -193,7 +193,7 @@ setup_L_obj.trivial = function(Lname, membership, xds_obj, options=list(), s=1){
 #' + \eqn{T(t)} or `F_trend` is a trend pattern function (ideally, with an average value of 1)
 #' + \eqn{K(t)} or `F_shock` is a perturbation function (by default, it is set to `F_one`)
 #' @param nHabitats the number of habitats in the model
-#' @param options a [list] that overwrites default values
+#' @param options a [list] that overrides default values
 #' @param Lambda vector of mean emergence rates from each aquatic habitat
 #' @param F_season the seasonal pattern function
 #' @param F_trend the trend function

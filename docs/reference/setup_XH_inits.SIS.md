@@ -6,7 +6,7 @@ for the \\(i^{th}\\) species.
 - [make_XH_inits_SIS](https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_SIS.md)
   supplies default values
 
-- The values in `options` overwrite the defaults
+- The values in `options` override the defaults
 
 - To inspect variable names, use
   [get_XH_inits](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)

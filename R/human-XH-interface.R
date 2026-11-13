@@ -269,7 +269,7 @@ change_XH_pars <- function(xds_obj, options=list(), i=1) {
 #' + Each module (*XHname*) defines
 #' a function `make_XH_inits_`*XHname* 
 #' that supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_XH_inits] or 
 #' see the inline module documentation.
 #'

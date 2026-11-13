@@ -234,7 +234,7 @@ F_eip.random = function(t, xds_obj, s){
 #'
 #' @description Build a configuration object for random EIP values.
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param f_rand a positive random number generator
 #' @param p1 first distribution parameter (Gamma shape by default)
 #' @param p2 second distribution parameter (Gamma rate by default)

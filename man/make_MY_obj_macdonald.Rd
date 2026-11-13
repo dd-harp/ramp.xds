@@ -20,7 +20,7 @@ make_MY_obj_macdonald(
 \arguments{
 \item{nPatches}{is the number of patches, an integer}
 
-\item{options}{a \link{list} of values that overwrites the defaults}
+\item{options}{a \link{list} of values that overrides the defaults}
 
 \item{eip}{the extrinsic incubation period}
 

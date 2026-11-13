@@ -1,15 +1,59 @@
 # specialized methods for the adult mosquito SI model
 
-#' @title The `SI` module for the MY component
+#' @title The `SI` module for the **MY** component
+#' 
 #' @description
-#' Implements the **MY** component using a simple SI (Susceptible-Infected)
-#' model of adult mosquito infection dynamics.
-#'
+#' 
+#' This implements a model for basic mosquito ecology and an `SI` 
+#' compartmental model for mosquito infection dynamics
+#' 
 #' @section State Variables:
+#' 
 #' \describe{
 #'   \item{`M`}{density of adult mosquitoes}
 #'   \item{`Y`}{density of infected adult mosquitoes}
 #' }
+#' 
+#' The density of susceptible mosquitoes is \eqn{M-Y}
+#' 
+#' @section Dynamics:
+#' 
+#' **Dynamical Terms** 
+#' 
+#' + Mosquitoes are born at the rate \eqn{\Lambda,} which is a dynamical term computed by [Emergence].
+#' 
+#' + The fraction of mosquitoes that get infected after blood feeding on a human, \eqn{\kappa,} is a dynamical term computed by [Transmission].
+#' 
+#' **Parameters** 
+#' 
+#' + Mosquito survival and dispersal is given by the demographic matrix, \eqn{\Omega} 
+#' 
+#' + Mosquitoes blood feed at the rate \eqn{f.} The human fraction, \eqn{q,} is the fraction of blood meals on human.
+#' 
+#' **Derivatives** 
+#' 
+#' The model computes these derivatives: 
+#' 
+#' \deqn{
+#' \begin{array}{rl}
+#' dM/dt &= \Lambda - \Omega \cdot M \\
+#' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
+#' \end{array}}
+#' 
+#' 
+#' @section Infective Biting: 
+#' 
+#' To compute the infective biting density, this model configures a parameter
+#' for the EIP, \eqn{\tau.} Survival and dispersal through the EIP is
+#' \deqn{\Upsilon = e^{-\Omega \tau}.}
+#' Infective biting is given by 
+#' \deqn{fqZ = \Upsilon \cdot \left( f q Y \right) }
+#'  
+#'
+#' @section Egg Laying:
+#'
+#'
+
 #'
 #' @section Parameters:
 #' \describe{
@@ -23,6 +67,10 @@
 #' }
 #'
 #' @section Demography:
+#'
+#' + Mosquitoes emigrate from patches at the per-capita rates \eqn{\sigma} 
+#' 
+#' + Some fraction of emigrating mosquitoes is lost (\eqn{\mu}), which could include so total population loss from a patch is \eqn{g + \mu \sigma}
 #' 
 #' The demographic matrix, \eqn{\Omega} is computed as
 #' \deqn{\Omega = \mbox{diag}\left(g + \sigma \mu \right) - K \cdot \mbox{diag}\left(\sigma \left(1-\mu\right)\right)}
@@ -36,14 +84,7 @@
 #' **Net Infectiousness** -- `kappa` or \eqn{\kappa}, is computed 
 #' by the **XY**-Interface using outputs of the **XH** Component 
 #' 
-#' @section Dynamics:
-#' 
-#' 
-#' \deqn{
-#' \begin{array}{rl}
-#' dM/dt &= \Lambda - \Omega \cdot M \\
-#' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
-#' \end{array}}
+
 #'
 #' @section Net Infective Biting:
 #' This model incorporates mortality and dispersal through the EIP, 
@@ -309,7 +350,7 @@ setup_MY_obj.SI = function(MYname, xds_obj, options=list(), s=1){
 
 #' @title Make parameters for SI ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer
-#' @param options a named list: named values overwrite defaults
+#' @param options a named list: named values override defaults
 #' @param eip the extrinsic incubation period
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
@@ -445,7 +486,7 @@ change_MY_pars.SI <- function(xds_obj, options=list(), s=1) {
 #' @description Set initial values for all the variables in the `SI` module
 #' (**MY**) for the \eqn{s^{th}} species.
 #' + [make_MY_inits_SI] supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_MY_inits] or
 #' see the inline module documentation.
 #' @inheritParams setup_MY_inits
@@ -460,7 +501,7 @@ setup_MY_inits.SI = function(xds_obj, options=list(), s=1){
 
 #' @title Make inits for `SI` adult mosquito model
 #' @param nPatches the number of patches in the model
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch
 #' @param Y infected mosquito density at each patch
 #' @return a [list]

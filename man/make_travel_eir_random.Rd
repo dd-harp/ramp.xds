@@ -15,7 +15,7 @@ make_travel_eir_random(
 \arguments{
 \item{nStrata}{is the number of population strata}
 
-\item{options}{is a set of options that overwrites the defaults}
+\item{options}{is a set of options that overrides the defaults}
 
 \item{f_rand}{a random number generator}
 

@@ -316,7 +316,7 @@ change_L_pars.basicL <- function(xds_obj, options=list(), s=1) {
 #' @description Set initial values for all the variables in the `basicL` module
 #' (**L**) for the \eqn{s^{th}} species.
 #' + [make_L_inits_basicL] supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_L_inits] or
 #' see the inline module documentation.
 #'
@@ -335,7 +335,7 @@ setup_L_inits.basicL = function(xds_obj, options=list(), s=1){
 #' @description Initial values of the variable \eqn{L} can be set
 #' by passing `L` in `options`
 #' @param nHabitats the number of habitats in the model
-#' @param options a [list] that overwrites default values
+#' @param options a [list] that overrides default values
 #' @param L initial conditions
 #' @return a [list] with Linits added
 #' @keywords internal

@@ -3,7 +3,7 @@
 #' @description 
 #' 
 #' In **`ramp.xds`**, initial values for all the dependent variables are assigned
-#' default values and stored during basic setup. The defaults can be overwritten during setup,
+#' default values and stored during basic setup. The defaults can be overridden during setup,
 #' and the stored values can be set after setup. There are several ways to learn
 #' the variable names:
 #' 

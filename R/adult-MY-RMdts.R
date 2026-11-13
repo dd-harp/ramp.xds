@@ -133,7 +133,7 @@ F_eggs.RMdts <- function(t, y, xds_obj, s) {
 #' @description Set initial values for all the variables in the `RMdts` module
 #' (**MY**) for the \eqn{s^{th}} species.
 #' + [make_MY_inits_RMdts] supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_MY_inits] or
 #' see the inline module documentation.
 #' @inheritParams setup_MY_inits
@@ -148,7 +148,7 @@ setup_MY_inits.RMdts = function(xds_obj, options=list(), s=1){
 #' @title Make inits for RMdts adult mosquito model
 #' @param nPatches the number of patches in the model
 #' @param max_eip the maximum number of EIP cohorts, an [integer]
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch
 #' @param P total parous mosquito density at each patch
 #' @param U total uninfected mosquito density at each patch

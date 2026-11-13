@@ -235,7 +235,7 @@ setup_MY_obj.macdonald = function(MYname, xds_obj, options=list(), s=1){
 
 #' @title Make parameters for macdonald ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param eip the extrinsic incubation period
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
@@ -373,7 +373,7 @@ change_MY_pars.macdonald <- function(xds_obj, options=list(), s=1) {
 #' @description Set initial values for all the variables in the `macdonald` module
 #' (**MY**) for the \eqn{s^{th}} species.
 #' + [make_MY_inits_macdonald] supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_MY_inits] or
 #' see the inline module documentation.
 #' @inheritParams setup_MY_inits
@@ -388,7 +388,7 @@ setup_MY_inits.macdonald = function(xds_obj, options=list(), s=1){with(xds_obj$M
 
 #' @title Make inits for macdonald adult mosquito model
 #' @param nPatches the number of patches in the model
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch
 #' @param P total parous mosquito density at each patch
 #' @param Y infected mosquito density at each patch

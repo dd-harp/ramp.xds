@@ -229,7 +229,7 @@ F_f.random = function(t, xds_obj, s){
 #' @description Build a configuration object for random blood feeding rates.
 #'
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument for `f_rand`
 #' @param p2 argument for f_rand
@@ -284,7 +284,7 @@ setup_F_f.type2 = function(name, xds_obj, options = list(), s=1){
 #' \deqn{F_f(B)= f_x \frac{s_f B}{1+s_f B}}. 
 #'
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param fx the maximum blood feeding rate, \eqn{f_x}
 #' @param sf the shape parameter, \eqn{s_f}
 #' @return a configuration object for [F_f.type2]

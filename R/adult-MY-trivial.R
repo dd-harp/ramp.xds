@@ -232,7 +232,7 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 
 #' @title Make parameters for trivial aquatic mosquito model
 #' @param nPatches an integer
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param f the blood feeding rate
 #' @param q the human fraction
 #' @param Z the density of infectious mosquitoes

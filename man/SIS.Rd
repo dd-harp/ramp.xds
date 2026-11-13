@@ -2,54 +2,124 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{SIS}
 \alias{SIS}
-\title{The \code{SIS} module for the XH component}
+\title{The \code{SIS} module for the \strong{XH} component}
 \description{
-In the SIS compartmental model,
-infected individuals are either susceptible (S), or infected and
-infectious (I). Susceptible individuals become infected at the per-capita
-rate \eqn{h}. Infected individuals clear infections at the per-capita rate \eqn{r},
-and then they become
-susceptible to infection again.
-
-Human/host population size (H) is a state variable that can be configured.
-
-and \eqn{H=S+I}: the model computes \eqn{dH/dt} and \eqn{dI/dt}. When outputs
-are parsed, S is computed as
-\eqn{S=H-I}.
-
-This module also includes:
-\itemize{
-\item a model for human demographic changes; and
-\item a port for mass treatment, \eqn{\xi(t)}.
-}
+This implements a family of SIS compartmental models for malaria with parameters to model treating and curing infections,
+and with functions describing human demographic change
+and mass treatment.
 }
 \section{State Variables}{
 
+
 \describe{
-\item{\code{H}}{total human (or host) population density}
-\item{\code{I}}{density of infected humans}
+\item{\code{H}}{total human (host) population density}
+\item{\code{I}}{density of infected humans (hosts)}
+\item{\code{S=H-I}}{density of susceptible humans (hosts)}
+}
 }
 
-During parsing, the density of susceptibles is computed as: \deqn{S = H - I}.
+\section{Prevalence}{
+
+
+\describe{
+\item{\code{x}}{true prevalence is \eqn{x = I/H}}
+}
 }
 
 \section{Parameters}{
 
+
+The parameters that are returned by \link{get_XH_pars.SIS} and also modifiable by \link{change_XH_pars.SIS} describe
+the dynamics, or detection by diagnostic methods.
+
 \describe{
+\item{\code{b}}{the fraction of infective bites that would cause an infection}
 \item{\code{r}}{clearance rate for infections}
-\item{\code{xi}}{mass treatment rate}
-\item{\code{B}}{time-dependent birth rate function \eqn{B(t, H)}}
-\item{\code{D}}{human demographic matrix}
+\item{\code{c}}{the probability an infected person would infect a mosquito}
+\item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
+\item{\code{sigma} or \eqn{\sigma}}{the fraction of incident infections that are treated and cured}
+\item{\code{q_lm}}{expected prevalence by light microscopy would be \eqn{q_{lm} \;x}}
+\item{\code{q_rdt}}{expected prevalence by RDT would be \eqn{q_{rdt} \;x}}
+\item{\code{q_pcr}}{expected prevalence by PCR would be \eqn{q_{pcr} \;x}}
+}
+}
+
+\section{Dynamical Term}{
+
+
+\describe{
+\item{\eqn{h} or \code{foi}}{The force of infection is computed and stored by \link{Exposure} as \code{FoI}}
 }
 }
 
 \section{Dynamics}{
 
+
+The model for demographic change has terms to compute births (\eqn{\mathbf{B}}) and
+deaths (\eqn{\mathbf{D}}):
 \deqn{
-\begin{array}{rl}
-dH/dt &= B(t,H) + D \cdot H \\
-dI/dt &= h(H-I) - rI - \xi(t) + D \cdot I \\
-\end{array}}
-where \eqn{h} is the force of infection computed upstream.
+dH/dt = B(t,H) - \mathbf{D}(H)}
+
+The model for infection dynamics assumes that infections
+clear naturally at a constant per-capita rate \eqn{r}.
+The model also includes two parameters to model
+treating and curing of malaria: a fraction \eqn{\rho} of incident infections are treated and cured;
+and a fraction \eqn{\sigma} of prevalent infections are treated and cured.
+After clearing, individuals are
+susceptible to infection.
+A term for mass treatment increases the rate infections are cured: (\eqn{\Xi(t)}).
+
+Infection dynamics are described by:
+
+\deqn{
+dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
+
+The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
+the same model as for \eqn{H}:
+for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.} This model has no parameter
+or terms to describe disease-induced mortality.
+
+In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and
+infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant.
+After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
+}
+
+\section{Exposure}{
+
+
+The FoI is computed (in \link{Exposure}) under the assumption that
+a constant fraction of infectious bites causes an infection the parameter \eqn{b.}
+}
+
+\section{Infectiousness}{
+
+
+The fraction of mosquitoes that become infected after blood feeding on
+someone who is infectious is \eqn{c.}
+The infectious density of the human (hos) population is \eqn{cI.}
+}
+
+\section{Demographic Change}{
+
+
+Demographic processes are handled in the standard way. Birth rates and death
+rates are initially set to zero. See
+\itemize{
+\item \link{setup_births} to configure birth rates; and
+\item \link{setup_deaths} to configure death rates
+}
+}
+
+\section{Mass Treatment}{
+
+
+Mass treatment clears infections. At basic setup
+\eqn{\Xi(t)=0}. To set up mass treatment, see \link{setup_mass_treatment}.
+Mass treatment is either:
+
+\describe{
+\item{\code{mda(t)} or \eqn{\Xi(t)}}{mass drug administration}
+\item{\code{msat} or \eqn{\Xi(t)}}{mass screen and treat}
+}
 }
 

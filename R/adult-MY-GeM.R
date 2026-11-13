@@ -261,7 +261,7 @@ setup_MY_obj.GeM = function(MYname, xds_obj, options=list(), s=1){
 
 #' @title Make parameters for GeM ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param eip the extrinsic incubation period
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
@@ -460,7 +460,7 @@ MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 #' @description Set initial values for all the variables in the `GeM` module
 #' (**MY**) for the \eqn{s^{th}} species.
 #' + [make_MY_inits_GeM] supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_MY_inits] or
 #' see the inline module documentation.
 #' @inheritParams setup_MY_inits
@@ -478,7 +478,7 @@ setup_MY_inits.GeM = function(xds_obj, options=list(), s=1){with(xds_obj$MY_obj[
 #' @title Make inits for GeM adult mosquito model
 #' @param nPatches the number of patches in the model
 #' @param Upsilon a matrix describing survival and dispersal through the EIP
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch
 #' @param P total parous mosquito density at each patch
 #' @param Y infected mosquito density at each patch

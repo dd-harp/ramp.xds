@@ -17,7 +17,7 @@ make_timespent_at_home(
 
 \item{residence}{is the home patch for each stratum}
 
-\item{options}{is a set of options that overwrites the defaults}
+\item{options}{is a set of options that overrides the defaults}
 
 \item{at_home}{is the fraction of time spent at home}
 

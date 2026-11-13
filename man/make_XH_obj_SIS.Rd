@@ -10,6 +10,8 @@ make_XH_obj_SIS(
   b = 0.55,
   r = 1/180,
   c = 0.15,
+  sigma = 0,
+  rho = 0,
   q_lm = 0.8,
   q_rdt = 0.8,
   q_pcr = 0.9
@@ -18,7 +20,7 @@ make_XH_obj_SIS(
 \arguments{
 \item{nStrata}{is the number of population strata}
 
-\item{options}{a named list with parameter values to overwrite defaults}
+\item{options}{a named list with parameter values to override defaults}
 
 \item{b}{transmission probability (efficiency) from mosquito to human}
 

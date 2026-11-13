@@ -20,7 +20,7 @@ make_MY_inits_RMdts(
 
 \item{max_eip}{the maximum number of EIP cohorts, an \link{integer}}
 
-\item{options}{a \link{list} of values that overwrites the defaults}
+\item{options}{a \link{list} of values that overrides the defaults}
 
 \item{M}{total mosquito density at each patch}
 

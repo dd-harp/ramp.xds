@@ -220,7 +220,7 @@ setup_F_nu.random = function(name, xds_obj, options = list(), s=1){
 #' @description Set up a random vector 
 #' 
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument 1 for f_rand 
 #' @param p2 argument 2 for f_rand
@@ -283,7 +283,7 @@ setup_F_nu.type2 = function(name, xds_obj, options = list(), s=1){
 #' @description Set up a type2 vector 
 #' 
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param vx the maximum laying
 #' @param sv the shape parameter
 #' @return an object to set up egg laying

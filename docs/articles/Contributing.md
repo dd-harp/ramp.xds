@@ -539,7 +539,7 @@ Finally if you encounter truly strange errors from the workflows
 errors, etc), it may be because the .yaml workflow scripts are outdated
 and need to be updated. In this case find the latest updated workflow
 scripts at <https://github.com/r-lib/actions/tree/v2-branch/examples>.
-When doing this, be careful to not overwrite the existing rules about
+When doing this, be careful to not override the existing rules about
 when to execute the workflows (i.e. only update from the line `name`
 onward). You can push an update to a branch
 `bugfix/check-standard.yaml`, to update that workflow, for example.

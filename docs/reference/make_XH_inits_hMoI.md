@@ -17,7 +17,7 @@ make_XH_inits_hMoI(nStrata, options = list(), m1 = 2, m2 = 1)
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html) that overwrites default
+  a [list](https://rdrr.io/r/base/list.html) that overrides default
   values
 
 - m1:

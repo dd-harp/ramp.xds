@@ -16,7 +16,7 @@ make_MY_inits_SI(nPatches, options = list(), M = 5, Y = 1)
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html) of values that overwrites
+  a [list](https://rdrr.io/r/base/list.html) of values that overrides
   the defaults
 
 - M:

@@ -23,7 +23,7 @@ for all the variables.
 \item Each module (\emph{XHname}) defines
 a function \code{make_XH_inits_}\emph{XHname}
 that supplies default values
-\item The values in \code{options} overwrite the defaults
+\item The values in \code{options} override the defaults
 \item To inspect variable names, use \link{get_XH_inits} or
 see the inline module documentation.
 }

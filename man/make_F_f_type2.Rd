@@ -9,7 +9,7 @@ make_F_f_type2(nPatches, options = list(), fx = 0.3, sf = 0.1)
 \arguments{
 \item{nPatches}{is the number of patches}
 
-\item{options}{is a set of options that overwrites the defaults}
+\item{options}{is a set of options that overrides the defaults}
 
 \item{fx}{the maximum blood feeding rate, \eqn{f_x}}
 

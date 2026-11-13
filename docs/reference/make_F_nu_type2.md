@@ -16,7 +16,7 @@ make_F_nu_type2(nPatches, options = list(), vx = 0.3, sv = 0.1)
 
 - options:
 
-  is a set of options that overwrites the defaults
+  is a set of options that overrides the defaults
 
 - vx:
 

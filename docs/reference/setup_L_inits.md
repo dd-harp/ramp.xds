@@ -5,7 +5,7 @@ Set initial values for all the variables.
 - Each module (*Lname*) defines a function `make_L_inits_`*Lname* that
   supplies default values
 
-- The values in `options` overwrite the defaults
+- The values in `options` override the defaults
 
 - To inspect variable names, use
   [get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md)

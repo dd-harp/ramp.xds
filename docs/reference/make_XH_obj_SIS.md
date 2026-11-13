@@ -25,7 +25,7 @@ make_XH_obj_SIS(
 
 - options:
 
-  a named list with parameter values to overwrite defaults
+  a named list with parameter values to override defaults
 
 - b:
 
