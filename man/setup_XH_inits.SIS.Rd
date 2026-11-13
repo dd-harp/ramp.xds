@@ -26,4 +26,14 @@ Set initial values for all the variables in the \code{SIS} module
 see the inline module documentation.
 }
 }
+\section{State Variables}{
+
+
+\describe{
+\item{\code{H}}{the total human or host population density}
+\item{\code{I}}{the density of infected humans or hosts}
+\item{\code{S=H-I}}{the density of susceptible humans or hosts}
+}
+}
+
 \keyword{internal}

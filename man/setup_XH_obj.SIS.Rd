@@ -31,6 +31,34 @@ This sets up an \code{SIS} model object for the \strong{XH} module for the \eqn{
 \note{
 The module object is stored at \code{xds_obj$XH_obj[[i]]}
 }
+\section{State Variables}{
+
+
+\describe{
+\item{\code{H}}{the total human or host population density}
+\item{\code{I}}{the density of infected humans or hosts}
+\item{\code{S=H-I}}{the density of susceptible humans or hosts}
+}
+}
+
+\section{Parameters}{
+
+
+The parameters that are returned by \link{get_XH_pars.SIS} and also modifiable by \link{change_XH_pars.SIS} describe
+the dynamics, or detection by diagnostic methods.
+
+\describe{
+\item{\code{b}}{the fraction of infective bites that would cause an infection}
+\item{\code{r}}{clearance rate for infections}
+\item{\code{c}}{the probability an infected person would infect a mosquito}
+\item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
+\item{\code{sigma} or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
+\item{\code{q_lm}}{expected prevalence by light microscopy would be \eqn{q_{lm} \;x}}
+\item{\code{q_rdt}}{expected prevalence by RDT would be \eqn{q_{rdt} \;x}}
+\item{\code{q_pcr}}{expected prevalence by PCR would be \eqn{q_{pcr} \;x}}
+}
+}
+
 \seealso{
 \link{SIS}, \link{make_XH_obj_SIS}
 }

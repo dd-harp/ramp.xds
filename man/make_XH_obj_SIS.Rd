@@ -10,8 +10,8 @@ make_XH_obj_SIS(
   b = 0.55,
   r = 1/180,
   c = 0.15,
-  sigma = 0,
   rho = 0,
+  sigma = 0,
   q_lm = 0.8,
   q_rdt = 0.8,
   q_pcr = 0.9
@@ -27,6 +27,10 @@ make_XH_obj_SIS(
 \item{r}{recovery rate}
 
 \item{c}{transmission probability (efficiency) from human to mosquito}
+
+\item{rho}{the fraction of incident infections that are treated and cured}
+
+\item{sigma}{the rate prevalent infections are treated and cured}
 
 \item{q_lm}{detection by light microscopy}
 

@@ -19,17 +19,21 @@ an \strong{\code{xds}} object
 \description{
 For the \code{SIS} module (\strong{XH}) for the \eqn{i^{th}} species,
 change initial values named in \code{options} leaving other values unchanged.
-
-Change the initial value(s) for the variable \eqn{I}.
-
-The argument
-passed as \code{options} should be a named list, and the
-new initial value(s) are set to \code{options$I}
 }
-\note{
-Initial values for human population size,
-the variable \eqn{H}, must be set using \link{change_H}
+\details{
+The variable \eqn{S} is redundant. It is computed as \eqn{S=H-I.}
+It's initial value is not stored, so it can't be set or changed.
 }
+\section{State Variables}{
+
+
+\describe{
+\item{\code{H}}{the total human or host population density}
+\item{\code{I}}{the density of infected humans or hosts}
+\item{\code{S=H-I}}{the density of susceptible humans or hosts}
+}
+}
+
 \seealso{
 The variable names are returned by calling \link{get_XH_inits}.
 The function \link{make_XH_inits_SIS} is called during setup.

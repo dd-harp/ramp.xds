@@ -3,18 +3,28 @@
 #' @title The `SIS` module for the **XH** component
 #' 
 #' @description
-#' This implements a family of SIS compartmental models for malaria with parameters to model treating and curing infections, 
-#' and with functions describing human demographic change 
-#' and mass treatment.
+#' 
+#' `SIS` implements a family of SIS compartmental models for malaria as a system of differential equations: 
+#' individuals are either susceptible \eqn{(S)} or infected and infectious \eqn{(I)}. 
+#' In its simplest form, SIS dynamics are:
+#' \deqn{
+#' dI/dt = h S - r I
+#' }
+#' 
+#' This is a generalized implementation includes:
+#' + parameters to model treating and curing infections; 
+#' + functions to model human demographic change; 
+#' + functions to model mass treatment;
+#' + and progressive stratification
 #' 
 #' @section State Variables:
 #' 
 #' \describe{
-#'   \item{`H`}{total human (host) population density}
-#'   \item{`I`}{density of infected humans (hosts)}
-#'   \item{`S=H-I`}{density of susceptible humans (hosts)}
+#'   \item{`H`}{the total human or host population density}
+#'   \item{`I`}{the density of infected humans or hosts}
+#'   \item{`S=H-I`}{the density of susceptible humans or hosts}
 #' }
-#'
+#' 
 #' @section Prevalence:
 #' 
 #' \describe{
@@ -31,7 +41,7 @@
 #'   \item{`r`}{clearance rate for infections}
 #'   \item{`c`}{the probability an infected person would infect a mosquito}
 #'   \item{`rho` or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
-#'   \item{`sigma` or \eqn{\sigma}}{the fraction of incident infections that are treated and cured}
+#'   \item{`sigma` or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
 #'   \item{`q_lm`}{expected prevalence by light microscopy would be \eqn{q_{lm} \;x}}
 #'   \item{`q_rdt`}{expected prevalence by RDT would be \eqn{q_{rdt} \;x}}
 #'   \item{`q_pcr`}{expected prevalence by PCR would be \eqn{q_{pcr} \;x}}
@@ -43,19 +53,37 @@
 #'   \item{\eqn{h} or `foi`}{The force of infection is computed and stored by [Exposure] as `FoI`}
 #' }
 #' 
+#' @section Demographic Change: 
+#'
+#' \describe{
+#'   \item{`Births` or \eqn{\mathbf{B}}}{the births function}
+#'   \item{`Deaths` or \eqn{\mathbf{D}}}{the deaths function}
+#' } 
+#' 
+#' **NOTES:** 
+#' 
+#' + The defaults are no births and no deaths
+#' 
+#' + Use [setup_births] to configure `Births`
+#' 
+#' + Use [setup_deaths] to configure `Deaths`
+#' 
+#' Also, see [xds_info_demographic_change].
 #' 
 #' @section Dynamics:
 #' 
 #' The model for demographic change has terms to compute births (\eqn{\mathbf{B}}) and 
 #' deaths (\eqn{\mathbf{D}}): 
 #' \deqn{
-#' dH/dt = B(t,H) - \mathbf{D}(H)}
+#' dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)}
 #' 
 #' The model for infection dynamics assumes that infections
 #' clear naturally at a constant per-capita rate \eqn{r}. 
 #' The model also includes two parameters to model
-#' treating and curing of malaria: a fraction \eqn{\rho} of incident infections are treated and cured;
-#' and a fraction \eqn{\sigma} of prevalent infections are treated and cured. 
+#' treating and curing malaria infections: 
+#' + a fraction \eqn{\rho} of incident infections are treated and cured;
+#' + in addition, prevalent infections are treated and cured at the rate \eqn{\sigma},
+#' + so the total clearance rate from treatment is \eqn{\rho h + \sigma}  
 #' After clearing, individuals are 
 #' susceptible to infection. 
 #' A term for mass treatment increases the rate infections are cured: (\eqn{\Xi(t)}).
@@ -76,8 +104,8 @@
 #' 
 #' @section Exposure:
 #' 
-#' The FoI is computed (in [Exposure]) under the assumption that 
-#' a constant fraction of infectious bites causes an infection the parameter \eqn{b.} 
+#' For `SIS` the `FoI` is computed (in [Exposure]) under the assumption that 
+#' a constant fraction of infectious bites causes an infection: the parameter \eqn{b.} 
 #' 
 #' @section Infectiousness:
 #' 
@@ -85,12 +113,7 @@
 #' someone who is infectious is \eqn{c.} 
 #' The infectious density of the human (hos) population is \eqn{cI.}
 #' 
-#' @section Demographic Change: 
-#' 
-#' Demographic processes are handled in the standard way. Birth rates and death
-#' rates are initially set to zero. See
-#' + [setup_births] to configure birth rates; and 
-#' + [setup_deaths] to configure death rates
+
 #' 
 #' @section Mass Treatment: 
 #'
@@ -103,6 +126,13 @@
 #'   \item{`msat` or \eqn{\Xi(t)}}{mass screen and treat}
 #' }
 #' 
+#' @seealso 
+#' 
+#' + Basic Setup:  [make_XH_obj_SIS], [setup_XH_obj.SIS]
+#' + Dynamics: [dXHdt.SIS]
+#' + Parameters: [get_XH_pars.SIS], [change_XH_pars.SIS]
+#' + Variables: [make_XH_inits_SIS], [get_XH_inits], [change_XH_inits.SIS],  [setup_XH_inits.SIS]
+#' + [The SIS Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
 #' 
 #' @name SIS
 #' @rdname SIS
@@ -113,47 +143,13 @@ NULL
 #'
 #' @description
 #'
-#' Computes the derivatives for SIS compartmental model with variables:
+#' Computes derivatives for the `SIS` module. For details, see the module documentation [SIS].
 #'
-#' + \eqn{I} - the density of infected humans (or hosts)
-#' + \eqn{S} - the density of susceptible humans (or hosts)
-#' + \eqn{H} - human (or host) population density
-#'
-#' The model assumes \eqn{S+I=H.} This function computes
-#' \eqn{dH/dt} and \eqn{dI/dt}.
-#' For convenience, \eqn{S} is also computed
-#' by [get_XH_vars.SIS]
-#' and [parse_XH_orbits.SIS].
-#'
-#' The force of infection or "happenings" rate is \eqn{h}. It is computed
-#' upstream and used here.
-#'
-#' The clearance rate for infections is \eqn{r}, and by assumption,
-#' individuals are assumed to be susceptible to infection after clearing
-#' infections.
-#'
-#' The module includes a port to model mass treatment, \eqn{\Xi(t)}.
-#'
-#' **Human Demographic**  change is modeled with two functions:
-#'
-#' + \eqn{B(t, H)} is the time-dependent population birth rate;
-#'
-#' + \eqn{D} is a linear operator, a matrix describing mortality, migration, aging,
-#' and dynamical transfers among population strata.
-#'
-#' The
-#' derivatives computed are:
-#'
-#' \deqn{
-#' \begin{array}{rl}
-#' dH/dt = & B(t,H)  + D \cdot H \\
-#' dI/dt = & h (H-I) - r I - \xi(t) +  D \cdot I
-#' \end{array}
-#' }
-#'
+#' @inheritSection SIS Dynamics
+#' 
 #' @inheritParams dXHdt
 #'
-#' @seealso [SIS Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
+#' @seealso [SIS], [SIS Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
 #' @return the derivatives, as a vector
 #' @keywords internal
 #' @export
@@ -164,7 +160,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
   with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]], {
       dH <- Births(t, xds_obj, i) - Deaths(t, H, xds_obj, i)
-      dI <- foi*(1-rho)*(H-I) - (r + rho*h + sigma)*I - Deaths(t, I, xds_obj, i)
+      dI <- foi*(1-rho)*(H-I) - (r + rho*foi + sigma)*I - Deaths(t, I, xds_obj, i)
       dI <- dI - mda(t)*I - msat(t)*I
       return(c(dH, dI))
     })
@@ -180,6 +176,9 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 #' + the initial conditions are set by [setup_XH_inits]
 #' + `options` is passed to both to override the defaults
 #'
+#' @inheritSection SIS State Variables
+#' @inheritSection SIS Parameters
+#' 
 #' @seealso [SIS], [make_XH_obj_SIS]
 #'
 #' @note The module object is stored at `xds_obj$XH_obj[[i]]`
@@ -211,6 +210,8 @@ setup_XH_obj.SIS = function(XHname, residence, xds_obj, options=list(), i=1){
 #' @param b transmission probability (efficiency) from mosquito to human
 #' @param c transmission probability (efficiency) from human to mosquito
 #' @param r recovery rate
+#' @param rho the fraction of incident infections that are treated and cured
+#' @param sigma the rate prevalent infections are treated and cured
 #' @param q_lm detection by light microscopy
 #' @param q_rdt detection by RDT
 #' @param q_pcr detection by pcr
@@ -221,7 +222,7 @@ setup_XH_obj.SIS = function(XHname, residence, xds_obj, options=list(), i=1){
 #' @export
 make_XH_obj_SIS = function(nStrata, options=list(),
                              b=0.55, r=1/180, c=0.15,
-                             sigma=0, rho=0,
+                             rho=0, sigma=0, 
                              q_lm =0.8, q_rdt=0.8, q_pcr=0.9){
   with(options,{
     XH_obj = list()
@@ -233,7 +234,7 @@ make_XH_obj_SIS = function(nStrata, options=list(),
     XH_obj$sigma = checkIt(sigma, nStrata)
     XH_obj$rho = checkIt(rho, nStrata)
     XH_obj$q_lm = checkIt(q_lm, nStrata)
-    XH_obj$q_pcr = checkIt(q_pcr, nStrata)
+    XH_obj$q_rdt = checkIt(q_rdt, nStrata)
     XH_obj$q_pcr = checkIt(q_pcr, nStrata)
 
     return(XH_obj)
@@ -244,16 +245,10 @@ make_XH_obj_SIS = function(nStrata, options=list(),
 #'
 #' @description For the `SIS` module (**XH**) for the \eqn{i^{th}} species,
 #' change parameter values named in `options` leaving other values unchanged.
-#'
-#' `options` is a named list, and:
-#'
-#' + \eqn{b} is set to `options$b`
-#' + \eqn{c} is set to `options$c`
-#' + \eqn{r} is set to `options$r`
-#' + \eqn{q_{lm}} is set to `options$q_lm`
-#' + \eqn{q_{rdt}} is set to `options$q_rdt`
-#' + \eqn{q_{pcr}} is set to `options$q_pcr`
-#'
+#' 
+#' 
+#' @inheritSection SIS Parameters
+#' 
 #' @inheritParams change_XH_pars
 #'
 #' @seealso [get_XH_pars.SIS()] and the github.io essay on [SIS Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
@@ -287,6 +282,8 @@ change_XH_pars.SIS <- function(xds_obj, options=list(), i=1) {
 #' stored as `xds_obj$XH_obj[[i]]`.
 #'
 #' @inheritParams get_XH_pars
+#' 
+#' @inheritSection SIS Parameters 
 #'
 #' @return SIS model parameters
 #' @keywords internal
@@ -362,7 +359,9 @@ parse_XH_orbits.SIS <- function(outputs, xds_obj, i) {
 #' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_XH_inits] or
 #' see the inline module documentation.
-#'
+#' 
+#' @inheritSection SIS State Variables
+#'  
 #' @inheritParams setup_XH_inits
 #'
 #' @return an **`xds`** object
@@ -399,20 +398,17 @@ make_XH_inits_SIS = function(nStrata, options=list(), H=1000, I=1){
 #'
 #' @description For the `SIS` module (**XH**) for the \eqn{i^{th}} species,
 #' change initial values named in `options` leaving other values unchanged.
-#'
-#' Change the initial value(s) for the variable \eqn{I}.
-#'
-#' The argument
-#' passed as `options` should be a named list, and the
-#' new initial value(s) are set to `options$I`
-#'
-#' @note Initial values for human population size,
-#' the variable \eqn{H}, must be set using [change_H]
-#'
+#' 
+#' @inheritSection SIS State Variables
+#' 
+#' @details
+#' The variable \eqn{S} is redundant. It is computed as \eqn{S=H-I.}
+#' It's initial value is not stored, so it can't be set or changed.
+#' 
 #' @inheritParams change_XH_inits
 #'
 #' @seealso The variable names are returned by calling [get_XH_inits].
-#' The function [make_XH_inits_SIS] is called during setup.
+#' The function [make_XH_inits_SIS] is called during setup. 
 #'
 #' @return an **`xds`** object
 #'

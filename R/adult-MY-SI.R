@@ -51,9 +51,9 @@
 #'  
 #'
 #' @section Egg Laying:
+#' 
+#' The egg laying rate.
 #'
-#'
-
 #'
 #' @section Parameters:
 #' \describe{

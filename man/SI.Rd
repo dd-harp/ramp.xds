@@ -56,6 +56,8 @@ Infective biting is given by
 
 \section{Egg Laying}{
 
+
+The egg laying rate.
 }
 
 \section{Parameters}{
