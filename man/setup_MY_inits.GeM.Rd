@@ -17,6 +17,13 @@
 a \link{list}
 }
 \description{
-Implements \link{setup_MY_inits} for the GeM model
+Set initial values for all the variables in the \code{GeM} module
+(\strong{MY}) for the \eqn{s^{th}} species.
+\itemize{
+\item \link{make_MY_inits_GeM} supplies default values
+\item The values in \code{options} override the defaults
+\item To inspect variable names, use \link{get_MY_inits} or
+see the inline module documentation.
+}
 }
 \keyword{internal}

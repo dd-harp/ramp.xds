@@ -17,7 +17,10 @@
 an \strong{\code{xds}} object
 }
 \description{
-Change \code{Lambda}, \code{F_season}, \code{F_trend}, or \code{F_shock}
+For the \code{trivial} module (\strong{L}) for the \eqn{s^{th}} species,
+change parameter values named in \code{options} leaving other values unchanged.
+
+Parameters: \code{Lambda}, \code{F_season}, \code{F_trend}, or \code{F_shock}.
 }
 \note{
 Utilities for trace functions are in \code{ramp.func}

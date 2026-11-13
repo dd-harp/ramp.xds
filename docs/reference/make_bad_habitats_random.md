@@ -22,7 +22,7 @@ make_bad_habitats_random(
 
 - options:
 
-  is a set of options that overwrites the defaults
+  is a set of options that overrides the defaults
 
 - f_rand:
 

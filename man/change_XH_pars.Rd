@@ -11,14 +11,14 @@ change_XH_pars(xds_obj, options = list(), i = 1)
 
 \item{options}{a named list}
 
-\item{i}{the vector species index}
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
 For the \strong{XH} module for the \eqn{i^{th}} species,
-change parameter values named in \code{options}
+change parameter values named in \code{options},
 leaving other values unchanged.
 }
 \seealso{

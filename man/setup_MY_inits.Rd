@@ -14,7 +14,7 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 \item{s}{the vector species index}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} object
 }
 \description{
 Set initial values
@@ -23,7 +23,7 @@ for all the variables.
 \item Each module (\emph{MYname}) defines
 a function \code{make_MY_inits_}\emph{MYname}
 that supplies default values
-\item The values in \code{options} overwrite the defaults
+\item The values in \code{options} override the defaults
 \item To inspect variable names, use \link{get_MY_inits} or
 see the inline module documentation.
 }

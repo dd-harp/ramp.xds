@@ -5,7 +5,7 @@ Set initial values for all the variables.
 - Each module (*MYname*) defines a function `make_MY_inits_`*MYname*
   that supplies default values
 
-- The values in `options` overwrite the defaults
+- The values in `options` override the defaults
 
 - To inspect variable names, use
   [get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)
@@ -33,7 +33,7 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 
 ## Value
 
-[list](https://rdrr.io/r/base/list.html)
+an **`xds`** object
 
 ## See also
 

@@ -1,7 +1,7 @@
 # Set up an **L** model object
 
-Set up creates an **L** object for the \\(s^{th}\\) species and sets up
-the interface ports:
+This setup creates an **L** object for the \\(s^{th}\\) species and sets
+up the interface ports:
 
 - calls `make_L_obj_`*Lname* to set up the dynamics, including
   parameters

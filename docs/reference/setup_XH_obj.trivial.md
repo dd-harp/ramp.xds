@@ -1,8 +1,16 @@
 # Set up `trivial` (**XH**)
 
-Implements
-[setup_XH_obj](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)
-for the trivial model
+This sets up a `trivial` model object for the **XH** module for the
+\\(i^{th}\\) host species
+
+- the object is created by
+  [make_XH_obj_trivial](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_trivial.md)
+
+- `options` is passed to override the defaults
+
+There are no dynamical variables requiring initial values;
+[setup_XH_inits](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.md)
+leaves the object unmodified.
 
 ## Usage
 
@@ -36,3 +44,12 @@ setup_XH_obj(XHname, residence, xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** object
+
+## Note
+
+The module object is stored at `xds_obj$XH_obj[[i]]`
+
+## See also
+
+[trivial_XH](https://dd-harp.github.io/ramp.xds/reference/trivial_XH.md),
+[make_XH_obj_trivial](https://dd-harp.github.io/ramp.xds/reference/make_XH_obj_trivial.md)

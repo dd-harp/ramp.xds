@@ -6,7 +6,7 @@ the outputs are parsed and attached to `xds_object$outputs`.
 
 Use `get_*_orbits` to inspect the orbits.
 
-**Note:** `xds_object$outputs` are overwritten each time
+**Note:** `xds_object$outputs` are overridden each time
 [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
 is called.
 

@@ -9,7 +9,7 @@ make_MY_inits_basicM(nPatches, options, M = 5, P = 1)
 \arguments{
 \item{nPatches}{the number of patches in the model}
 
-\item{options}{a \link{list} of values that overwrites the defaults}
+\item{options}{a \link{list} of values that overrides the defaults}
 
 \item{M}{total mosquito density at each patch}
 

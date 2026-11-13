@@ -21,6 +21,19 @@
 an \strong{\code{xds}} object
 }
 \description{
-Implements \link{setup_XH_obj} for the trivial model
+This sets up a \code{trivial} model object for the \strong{XH} module for the \eqn{i^{th}} host species
+\itemize{
+\item the object is created by \link{make_XH_obj_trivial}
+\item \code{options} is passed to override the defaults
+}
+
+There are no dynamical variables requiring initial values;
+\link{setup_XH_inits} leaves the object unmodified.
+}
+\note{
+The module object is stored at \code{xds_obj$XH_obj[[i]]}
+}
+\seealso{
+\link{trivial_XH}, \link{make_XH_obj_trivial}
 }
 \keyword{internal}

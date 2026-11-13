@@ -17,6 +17,8 @@
 a \link{list} vector
 }
 \description{
-Implements \link{setup_XH_inits} for the trivial model
+The \code{trivial} module (\strong{XH}) for the \eqn{i^{th}} species
+has no dynamical variables requiring initial values.
+This method returns the unmodified \strong{\code{xds}} object; \code{options} is unused.
 }
 \keyword{internal}

@@ -115,6 +115,7 @@ reference:
   - xds_info_basic_setup
   - xds_info_change_parameters
   - xds_info_initial_conditions
+  - xds_info_demographic_change
   - xds_info_advanced_setup
   - xds_object 
   - xds_info_setup_options
@@ -123,6 +124,7 @@ reference:
     Setting the value of structural parameters 
   contents:
   - XH_module_list 
+  - xds_info_demographic_change
   - MY_module_list 
   - L_module_list
   - xds_info_dynamical_components

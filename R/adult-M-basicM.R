@@ -181,7 +181,17 @@ Update_MYt.basicM <- function(t, y, xds_obj, s) {
 
 
 #' @title Set up `basicM` (**MY**)
-#' @description Implements [setup_MY_obj] for the basicM xde model
+#' @description
+#'
+#' This sets up a `basicM` model object for the **MY** module for the \eqn{s^{th}} vector species
+#' + the object is created by [make_M_obj_basicM]
+#' + the initial conditions are set by [setup_MY_inits]
+#' + `options` is passed to both to override the defaults
+#'
+#' @seealso [basicM], [make_M_obj_basicM]
+#'
+#' @note The module object is stored at `xds_obj$MY_obj[[s]]`
+#'
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
 #' @keywords internal
@@ -201,7 +211,7 @@ setup_MY_obj.basicM = function(MYname, xds_obj, options=list(), s=1){
 
 #' @title Make parameters for basicM adult mosquito model
 #' @param nPatches is the number of patches, an integer
-#' @param options a named list: named values overwrite defaults
+#' @param options a named list: named values override defaults
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
 #' @param mu emigration loss
@@ -285,7 +295,12 @@ F_eggs.basicM <- function(t, y, xds_obj, s) {
 }
 
 #' @title Setup initial values for `basicM` (**MY**)
-#' @description Implements [setup_MY_inits] for the basicM model
+#' @description Set initial values for all the variables in the `basicM` module
+#' (**MY**) for the \eqn{s^{th}} species.
+#' + [make_MY_inits_basicM] supplies default values
+#' + The values in `options` override the defaults
+#' + To inspect variable names, use [get_MY_inits] or
+#' see the inline module documentation.
 #' @inheritParams setup_MY_inits
 #' @return a [list] vector
 #' @keywords internal
@@ -297,7 +312,8 @@ setup_MY_inits.basicM = function(xds_obj, options=list(), s=1){
 
 
 #' @title Change initial values for `basicM` (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @description For the `basicM` module (**MY**) for the \eqn{s^{th}} species,
+#' change initial values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
 #' @keywords internal
@@ -311,7 +327,7 @@ change_MY_inits.basicM <- function(xds_obj, options=list(), s=1) {
 
 #' @title Make inits for basicM adult mosquito model
 #' @param nPatches the number of patches in the model
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch
 #' @param P total parous mosquito density at each patch
 #' @return a [list]
@@ -340,7 +356,8 @@ get_MY_vars.basicM <- function(y, xds_obj, s){
 }
 
 #' @title Change parameters for `basicM` (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @description For the `basicM` module (**MY**) for the \eqn{s^{th}} species,
+#' change parameter values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
 #' @keywords internal

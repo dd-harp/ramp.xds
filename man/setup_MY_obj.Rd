@@ -19,7 +19,7 @@ setup_MY_obj(MYname, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set up creates an \strong{MY} object for the \eqn{s^{th}} species
+This setup creates an \strong{MY} object for the \eqn{s^{th}} species
 and sets up the interface ports:
 \itemize{
 \item calls \code{make_MY_obj_}\emph{MYname} to set up the dynamics, including parameters

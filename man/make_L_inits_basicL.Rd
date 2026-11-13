@@ -9,7 +9,7 @@ make_L_inits_basicL(nHabitats, options = list(), L = 1)
 \arguments{
 \item{nHabitats}{the number of habitats in the model}
 
-\item{options}{a \link{list} that overwrites default values}
+\item{options}{a \link{list} that overrides default values}
 
 \item{L}{initial conditions}
 }

@@ -6,7 +6,7 @@
 #' 
 #' Use `get_*_orbits` to inspect the orbits. 
 #' 
-#' **Note:** `xds_object$outputs` are overwritten each time  
+#' **Note:** `xds_object$outputs` are overridden each time  
 #' [xds_solve] is called.
 #' 
 #' @section Internals:

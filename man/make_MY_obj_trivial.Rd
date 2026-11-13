@@ -22,7 +22,7 @@ make_MY_obj_trivial(
 \arguments{
 \item{nPatches}{an integer}
 
-\item{options}{a \link{list} of values that overwrites the defaults}
+\item{options}{a \link{list} of values that overrides the defaults}
 
 \item{f}{the blood feeding rate}
 

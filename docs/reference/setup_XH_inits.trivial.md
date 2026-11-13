@@ -1,8 +1,8 @@
 # Setup initial values for `trivial` (**XH**)
 
-Implements
-[setup_XH_inits](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.md)
-for the trivial model
+The `trivial` module (**XH**) for the \\(i^{th}\\) species has no
+dynamical variables requiring initial values. This method returns the
+unmodified **`xds`** object; `options` is unused.
 
 ## Usage
 

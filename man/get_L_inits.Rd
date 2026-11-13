@@ -18,7 +18,7 @@ a named \link{list}
 Inspect the initial values for the \strong{L} module
 }
 \note{
-The initial values are stored as a named list called \code{xds_obj$L_obj[[i]]$inits}
+The initial values are stored as a named list called \code{xds_obj$L_obj[[s]]$inits}
 }
 \seealso{
 \link{change_L_inits}, \link{setup_L_inits}

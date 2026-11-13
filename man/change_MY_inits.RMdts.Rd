@@ -17,6 +17,7 @@
 a \link{list}
 }
 \description{
-Change initial values for \code{RMdts} (\strong{MY})
+For the \code{RMdts} module (\strong{MY}) for the \eqn{s^{th}} species,
+change initial values named in \code{options} leaving other values unchanged.
 }
 \keyword{internal}

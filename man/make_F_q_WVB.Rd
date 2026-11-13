@@ -9,7 +9,7 @@ make_F_q_WVB(nPatches, options = list())
 \arguments{
 \item{nPatches}{is the number of patches}
 
-\item{options}{is a set of options that overwrites the defaults}
+\item{options}{is a set of options that overrides the defaults}
 }
 \value{
 a configuration object for \link{F_q.WVB}

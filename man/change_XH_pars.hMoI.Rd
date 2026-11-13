@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{change_XH_pars.hMoI}
 \alias{change_XH_pars.hMoI}
-\title{Change parameters for \code{hMoI} (\strong{XH})}
+\title{Get parameters for \code{hMoI} (\strong{XH})}
 \usage{
 \method{change_XH_pars}{hMoI}(xds_obj, options = list(), i = 1)
 }
@@ -11,12 +11,13 @@
 
 \item{options}{a named list}
 
-\item{i}{the vector species index}
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}.
+For the \code{hMoI} module (\strong{XH}) for the \eqn{i^{th}} species,
+change parameter values named in \code{options} leaving other values unchanged.
 }
 \keyword{internal}

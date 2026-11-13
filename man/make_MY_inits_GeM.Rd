@@ -19,7 +19,7 @@ make_MY_inits_GeM(
 
 \item{Upsilon}{a matrix describing survival and dispersal through the EIP}
 
-\item{options}{a \link{list} of values that overwrites the defaults}
+\item{options}{a \link{list} of values that overrides the defaults}
 
 \item{M}{total mosquito density at each patch}
 

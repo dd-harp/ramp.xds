@@ -136,7 +136,7 @@ MEffectSizes <- function(t, y, xds_obj, s) {
 #' @title Set up an **MY** model object
 #'
 #' @description
-#' Set up creates an **MY** object for the \eqn{s^{th}} species 
+#' This setup creates an **MY** object for the \eqn{s^{th}} species
 #' and sets up the interface ports: 
 #' + calls `make_MY_obj_`*MYname* to set up the dynamics, including parameters
 #' + calls [setup_MY_inits] to set initial values
@@ -233,8 +233,8 @@ get_MY_pars <- function(xds_obj, s=1) {
 #' 
 #' @description 
 #' For the **MY** module for the \eqn{s^{th}} species, 
-#' change parameter values named in `options` 
-#' leaving other values unchanged. 
+#' change parameter values named in `options`,
+#' leaving other values unchanged.
 #' 
 #' @seealso [get_MY_pars], [setup_MY_obj], [xds_info_change_parameters]
 #'
@@ -254,7 +254,7 @@ change_MY_pars <- function(xds_obj, options=list(), s=1) {
 #' + Each module (*MYname*) defines
 #' a function `make_MY_inits_`*MYname* 
 #' that supplies default values
-#' + The values in `options` overwrite the defaults
+#' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_MY_inits] or 
 #' see the inline module documentation.
 #'
@@ -264,7 +264,7 @@ change_MY_pars <- function(xds_obj, options=list(), s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param options a [list]
 #' @param s the vector species index
-#' @return [list]
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 setup_MY_inits = function(xds_obj, options=list(), s=1){
@@ -276,13 +276,13 @@ setup_MY_inits = function(xds_obj, options=list(), s=1){
 #' 
 #' @description Inspect the initial values for the **MY** module
 #' 
-#' @note The initial values are stored as a named list called `xds_obj$XH_obj[[i]]$inits`
+#' @note The initial values are stored as a named list called `xds_obj$MY_obj[[s]]$inits`
 #' 
-#' @seealso [change_XH_inits], [setup_XH_inits]
+#' @seealso [change_MY_inits], [setup_MY_inits]
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return [numeric]
+#' @return the initial values, as a named list
 #' @keywords internal
 #' @export
 get_MY_inits <- function(xds_obj, s=1) {

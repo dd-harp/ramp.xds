@@ -1,8 +1,8 @@
 ---
-title: 5-3-4 Example
+title: "5-3-4 Example"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{"5-3-4 Example"}
+ %\VignetteIndexEntry{5-3-4 Example}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---

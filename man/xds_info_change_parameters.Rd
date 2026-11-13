@@ -23,7 +23,7 @@ ways to learn the names of the parameters for one of the modules:
 \item \link{change_L_pars} for \strong{L} module parameters
 }
 \item The built-in functions that set up modules can also be used to change parameters. In general, these functions should not be used
-after basic setup because they will overwrite other changes, including biting weights and the time spent matrix:
+after basic setup because they will override other changes, including biting weights and the time spent matrix:
 \itemize{
 \item \link{setup_XH_obj} for the \strong{XH} module
 \item \link{setup_MY_obj} for the \strong{MY} module

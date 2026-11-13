@@ -156,8 +156,19 @@ LEffectSizes.trivial <- function(t, y, xds_obj, s) {
 }
 
 #' @title Set up `trivial` (**L**)
-#' @description Call [make_L_obj_trivial] and set 
-#' `class(xds_obj$forced_by) = "Lambda"` 
+#' @description
+#'
+#' This sets up a `trivial` model object for the **L** module for the \eqn{s^{th}} vector species
+#' + the object is created by [make_L_obj_trivial]
+#' + `options` is passed to override the defaults
+#'
+#' There are no dynamical variables requiring initial values.
+#' This method sets `class(xds_obj$forced_by) = "Lambda"`.
+#'
+#' @seealso [trivial_L], [make_L_obj_trivial]
+#'
+#' @note The module object is stored at `xds_obj$L_obj[[s]]`
+#'
 #' @inheritParams setup_L_obj
 #' @return an **`xds`** object
 #' @keywords internal
@@ -182,7 +193,7 @@ setup_L_obj.trivial = function(Lname, membership, xds_obj, options=list(), s=1){
 #' + \eqn{T(t)} or `F_trend` is a trend pattern function (ideally, with an average value of 1)
 #' + \eqn{K(t)} or `F_shock` is a perturbation function (by default, it is set to `F_one`)
 #' @param nHabitats the number of habitats in the model
-#' @param options a [list] that overwrites default values
+#' @param options a [list] that overrides default values
 #' @param Lambda vector of mean emergence rates from each aquatic habitat
 #' @param F_season the seasonal pattern function
 #' @param F_trend the trend function
@@ -237,7 +248,10 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
 
 #' @title Change parameters for `trivial` (**L**)
 #'
-#' @description Change `Lambda`, `F_season`, `F_trend`, or `F_shock`
+#' @description For the `trivial` module (**L**) for the \eqn{s^{th}} species,
+#' change parameter values named in `options` leaving other values unchanged.
+#'
+#' Parameters: `Lambda`, `F_season`, `F_trend`, or `F_shock`.
 #'
 #' @inheritParams change_L_pars
 #' 
@@ -257,7 +271,9 @@ change_L_pars.trivial <- function(xds_obj, options=list(), s=1) {
 
 
 #' @title Setup initial values for `trivial` (**L**)
-#' @description The `trivial` module initial values are an empty list
+#' @description The `trivial` module (**L**) for the \eqn{s^{th}} species
+#' has no dynamical variables requiring initial values.
+#' This method sets the initial values to an empty list; `options` is unused.
 #' @inheritParams setup_L_inits
 #' @return an **`xds`** object
 #' @keywords internal
@@ -279,7 +295,10 @@ get_L_vars.trivial <- function(y, xds_obj, s){
 
 
 #' @title Change initial values for `trivial` (**L**)
-#' @description Returns the unmodified **`xds`** object
+#' @description For the `trivial` module (**L**) for the \eqn{s^{th}} species,
+#' change initial values named in `options` leaving other values unchanged.
+#'
+#' Returns the unmodified **`xds`** object.
 #' @inheritParams change_L_inits
 #' @return an **`xds`** object
 #' @keywords internal

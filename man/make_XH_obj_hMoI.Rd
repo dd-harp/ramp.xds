@@ -18,7 +18,7 @@ make_XH_obj_hMoI(
 \arguments{
 \item{nStrata}{is the number of human population strata}
 
-\item{options}{a \link{list} that overwrites default values}
+\item{options}{a \link{list} that overrides default values}
 
 \item{b}{transmission probability (efficiency) from mosquito to human}
 

@@ -17,6 +17,8 @@
 an \strong{\code{xds}} object
 }
 \description{
-Return the \strong{\code{xds}} object unmodified
+The \code{trivial} module (\strong{MY}) for the \eqn{s^{th}} species
+has no dynamical variables requiring initial values.
+This method returns the unmodified \strong{\code{xds}} object; \code{options} is unused.
 }
 \keyword{internal}

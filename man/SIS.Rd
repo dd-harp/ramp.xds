@@ -2,54 +2,155 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{SIS}
 \alias{SIS}
-\title{The \code{SIS} module for the XH component}
+\title{The \code{SIS} module for the \strong{XH} component}
 \description{
-In the SIS compartmental model,
-infected individuals are either susceptible (S), or infected and
-infectious (I). Susceptible individuals become infected at the per-capita
-rate \eqn{h}. Infected individuals clear infections at the per-capita rate \eqn{r},
-and then they become
-susceptible to infection again.
+\code{SIS} implements a family of SIS compartmental models for malaria as a system of differential equations:
+individuals are either susceptible \eqn{(S)} or infected and infectious \eqn{(I)}.
+In its simplest form, SIS dynamics are:
+\deqn{
+dI/dt = h S - r I
+}
 
-Human/host population size (H) is a state variable that can be configured.
-
-and \eqn{H=S+I}: the model computes \eqn{dH/dt} and \eqn{dI/dt}. When outputs
-are parsed, S is computed as
-\eqn{S=H-I}.
-
-This module also includes:
+This is a generalized implementation includes:
 \itemize{
-\item a model for human demographic changes; and
-\item a port for mass treatment, \eqn{\xi(t)}.
+\item parameters to model treating and curing infections;
+\item functions to model human demographic change;
+\item functions to model mass treatment;
+\item and progressive stratification
 }
 }
 \section{State Variables}{
 
+
 \describe{
-\item{\code{H}}{total human (or host) population density}
-\item{\code{I}}{density of infected humans}
+\item{\code{H}}{the total human or host population density}
+\item{\code{I}}{the density of infected humans or hosts}
+\item{\code{S=H-I}}{the density of susceptible humans or hosts}
+}
 }
 
-During parsing, the density of susceptibles is computed as: \deqn{S = H - I}.
+\section{Prevalence}{
+
+
+\describe{
+\item{\code{x}}{true prevalence is \eqn{x = I/H}}
+}
 }
 
 \section{Parameters}{
 
+
+The parameters that are returned by \link{get_XH_pars.SIS} and also modifiable by \link{change_XH_pars.SIS} describe
+the dynamics, or detection by diagnostic methods.
+
 \describe{
+\item{\code{b}}{the fraction of infective bites that would cause an infection}
 \item{\code{r}}{clearance rate for infections}
-\item{\code{xi}}{mass treatment rate}
-\item{\code{B}}{time-dependent birth rate function \eqn{B(t, H)}}
-\item{\code{D}}{human demographic matrix}
+\item{\code{c}}{the probability an infected person would infect a mosquito}
+\item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
+\item{\code{sigma} or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
+\item{\code{q_lm}}{expected prevalence by light microscopy would be \eqn{q_{lm} \;x}}
+\item{\code{q_rdt}}{expected prevalence by RDT would be \eqn{q_{rdt} \;x}}
+\item{\code{q_pcr}}{expected prevalence by PCR would be \eqn{q_{pcr} \;x}}
 }
+}
+
+\section{Dynamical Term}{
+
+
+\describe{
+\item{\eqn{h} or \code{foi}}{The force of infection is computed and stored by \link{Exposure} as \code{FoI}}
+}
+}
+
+\section{Demographic Change}{
+
+
+\describe{
+\item{\code{Births} or \eqn{\mathbf{B}}}{the births function}
+\item{\code{Deaths} or \eqn{\mathbf{D}}}{the deaths function}
+}
+
+\strong{NOTES:}
+\itemize{
+\item The defaults are no births and no deaths
+\item Use \link{setup_births} to configure \code{Births}
+\item Use \link{setup_deaths} to configure \code{Deaths}
+}
+
+Also, see \link{xds_info_demographic_change}.
 }
 
 \section{Dynamics}{
 
+
+The model for demographic change has terms to compute births (\eqn{\mathbf{B}}) and
+deaths (\eqn{\mathbf{D}}):
 \deqn{
-\begin{array}{rl}
-dH/dt &= B(t,H) + D \cdot H \\
-dI/dt &= h(H-I) - rI - \xi(t) + D \cdot I \\
-\end{array}}
-where \eqn{h} is the force of infection computed upstream.
+dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)}
+
+The model for infection dynamics assumes that infections
+clear naturally at a constant per-capita rate \eqn{r}.
+The model also includes two parameters to model
+treating and curing malaria infections:
+\itemize{
+\item a fraction \eqn{\rho} of incident infections are treated and cured;
+\item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma},
+\item so the total clearance rate from treatment is \eqn{\rho h + \sigma}
+After clearing, individuals are
+susceptible to infection.
+A term for mass treatment increases the rate infections are cured: (\eqn{\Xi(t)}).
 }
 
+Infection dynamics are described by:
+
+\deqn{
+dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
+
+The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
+the same model as for \eqn{H}:
+for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.} This model has no parameter
+or terms to describe disease-induced mortality.
+
+In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and
+infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant.
+After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
+}
+
+\section{Exposure}{
+
+
+For \code{SIS} the \code{FoI} is computed (in \link{Exposure}) under the assumption that
+a constant fraction of infectious bites causes an infection: the parameter \eqn{b.}
+}
+
+\section{Infectiousness}{
+
+
+The fraction of mosquitoes that become infected after blood feeding on
+someone who is infectious is \eqn{c.}
+The infectious density of the human (hos) population is \eqn{cI.}
+}
+
+\section{Mass Treatment}{
+
+
+Mass treatment clears infections. At basic setup
+\eqn{\Xi(t)=0}. To set up mass treatment, see \link{setup_mass_treatment}.
+Mass treatment is either:
+
+\describe{
+\item{\code{mda(t)} or \eqn{\Xi(t)}}{mass drug administration}
+\item{\code{msat} or \eqn{\Xi(t)}}{mass screen and treat}
+}
+}
+
+\seealso{
+\itemize{
+\item Basic Setup:  \link{make_XH_obj_SIS}, \link{setup_XH_obj.SIS}
+\item Dynamics: \link{dXHdt.SIS}
+\item Parameters: \link{get_XH_pars.SIS}, \link{change_XH_pars.SIS}
+\item Variables: \link{make_XH_inits_SIS}, \link{get_XH_inits}, \link{change_XH_inits.SIS},  \link{setup_XH_inits.SIS}
+\item \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{The SIS Vignette}
+}
+}

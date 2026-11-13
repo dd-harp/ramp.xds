@@ -87,4 +87,13 @@ NULL
 #' @name xds_info_strata
 NULL
 
+#' @title Demographic Change
+#' 
+#' @description
+#' Demographic change for the human (or host) population -- the **H** part of the **XH** component -- is 
+#' handled in a standard way to facilitate progressive stratification.
+#' 
+#'  
+#' @name xds_info_demographic_change
+NULL
 

@@ -1,8 +1,16 @@
 # Setup initial values for `hMoI` (**XH**)
 
-Implements
-[setup_XH_inits](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.md)
-for the hMoI model
+Set initial values for all the variables in the `hMoI` module (**XH**)
+for the \\(i^{th}\\) species.
+
+- [make_XH_inits_hMoI](https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_hMoI.md)
+  supplies default values
+
+- The values in `options` override the defaults
+
+- To inspect variable names, use
+  [get_XH_inits](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)
+  or see the inline module documentation.
 
 ## Usage
 

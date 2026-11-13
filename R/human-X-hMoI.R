@@ -138,7 +138,17 @@ setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
 })}
 
 #' @title Set up `hMoI` (**XH**)
-#' @description Implements [setup_XH_obj] for the hMoI model
+#' @description
+#'
+#' This sets up an `hMoI` model object for the **XH** module for the \eqn{i^{th}} host species
+#' + the object is created by [make_XH_obj_hMoI]
+#' + the initial conditions are set by [setup_XH_inits]
+#' + `options` is passed to both to override the defaults
+#'
+#' @seealso [hMoI], [make_XH_obj_hMoI]
+#'
+#' @note The module object is stored at `xds_obj$XH_obj[[i]]`
+#'
 #' @inheritParams setup_XH_obj
 #' @return a [list] vector
 #' @keywords internal
@@ -158,7 +168,7 @@ setup_XH_obj.hMoI = function(XHname, residence, xds_obj, options=list(), i=1){
 #' @title Make parameters for hybrid MoI human model
 #' @description MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
 #' @param nStrata is the number of human population strata
-#' @param options a [list] that overwrites default values
+#' @param options a [list] that overrides default values
 #'
 #' @param b transmission probability (efficiency) from mosquito to human
 #' @param c1 transmission probability (efficiency) from inapparent human infections to mosquito
@@ -204,9 +214,10 @@ get_XH_pars.hMoI<- function(xds_obj, i=1) {
   with(xds_obj$XH_obj[[i]],list(b=b, c1=c1, c2=c2, r1=r1, r2=r2))
 }
 
-#' @title Change parameters for `hMoI` (**XH**)
+#' @title Get parameters for `hMoI` (**XH**)
 #'
-#' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
+#' @description For the `hMoI` module (**XH**) for the \eqn{i^{th}} species,
+#' change parameter values named in `options` leaving other values unchanged.
 #'
 #' @inheritParams change_XH_pars
 #'
@@ -268,7 +279,12 @@ F_infectivity.hMoI <- function(y, xds_obj,i) {
 }
 
 #' @title Setup initial values for `hMoI` (**XH**)
-#' @description Implements [setup_XH_inits] for the hMoI model
+#' @description Set initial values for all the variables in the `hMoI` module
+#' (**XH**) for the \eqn{i^{th}} species.
+#' + [make_XH_inits_hMoI] supplies default values
+#' + The values in `options` override the defaults
+#' + To inspect variable names, use [get_XH_inits] or
+#' see the inline module documentation.
 #' @inheritParams setup_XH_inits
 #' @return a [list] vector
 #' @keywords internal
@@ -283,7 +299,7 @@ setup_XH_inits.hMoI = function(xds_obj, options=list(), i=1){
 #' @title Make inits for hybrid MoI human model
 #' @description MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
 #' @param nStrata the number of population strata
-#' @param options a [list] that overwrites default values
+#' @param options a [list] that overrides default values
 #' @param m1 mean MoI among inapparent human infections
 #' @param m2 mean MoI among patent human infections
 #' @return a [list]
@@ -297,7 +313,8 @@ make_XH_inits_hMoI = function(nStrata, options = list(), m1=2, m2=1){
 })}
 
 #' @title Change initial values for `hMoI` (**XH**)
-#' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
+#' @description For the `hMoI` module (**XH**) for the \eqn{i^{th}} species,
+#' change initial values named in `options` leaving other values unchanged.
 #' @inheritParams change_XH_inits
 #' @return an **`xds`** object
 #' @keywords internal

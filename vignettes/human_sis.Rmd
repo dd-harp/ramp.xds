@@ -125,7 +125,7 @@ To inspect the parameters, use `get_XH_pars.` We already set up `mod` using the 
 get_XH_pars(mod)$r
 ```
 
-To overwrite the defaults at setup, pass a named list to  `xds_setup.` 
+To override the defaults at setup, pass a named list to  `xds_setup.` 
 
 ```{r}
 mod1 <- xds_setup(XHname = "SIS", XHoptions = list(r=1/200))

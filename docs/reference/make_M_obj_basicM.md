@@ -26,7 +26,7 @@ make_M_obj_basicM(
 
 - options:
 
-  a named list: named values overwrite defaults
+  a named list: named values override defaults
 
 - g:
 

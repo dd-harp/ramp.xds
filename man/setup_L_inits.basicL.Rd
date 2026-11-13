@@ -17,9 +17,16 @@
 an \strong{\code{xds}} object
 }
 \description{
-This sets initial values of the variable \eqn{L} by
-calling \link{make_L_inits_basicL}. Default values are used unless other values
-are passed in \code{options} by name (\emph{i.e.} \code{options$L})
+Set initial values for all the variables in the \code{basicL} module
+(\strong{L}) for the \eqn{s^{th}} species.
+\itemize{
+\item \link{make_L_inits_basicL} supplies default values
+\item The values in \code{options} override the defaults
+\item To inspect variable names, use \link{get_L_inits} or
+see the inline module documentation.
+}
+
+The initial values of \eqn{L} can be passed as \code{options$L}.
 }
 \seealso{
 \link{make_L_inits_basicL}

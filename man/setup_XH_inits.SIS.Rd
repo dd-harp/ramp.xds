@@ -17,6 +17,23 @@
 an \strong{\code{xds}} object
 }
 \description{
-Setup initial values for \code{SIS} (\strong{XH})
+Set initial values for all the variables in the \code{SIS} module
+(\strong{XH}) for the \eqn{i^{th}} species.
+\itemize{
+\item \link{make_XH_inits_SIS} supplies default values
+\item The values in \code{options} override the defaults
+\item To inspect variable names, use \link{get_XH_inits} or
+see the inline module documentation.
 }
+}
+\section{State Variables}{
+
+
+\describe{
+\item{\code{H}}{the total human or host population density}
+\item{\code{I}}{the density of infected humans or hosts}
+\item{\code{S=H-I}}{the density of susceptible humans or hosts}
+}
+}
+
 \keyword{internal}

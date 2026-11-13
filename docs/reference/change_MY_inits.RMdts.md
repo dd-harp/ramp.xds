@@ -1,6 +1,7 @@
 # Change initial values for `RMdts` (**MY**)
 
-Change initial values for `RMdts` (**MY**)
+For the `RMdts` module (**MY**) for the \\(s^{th}\\) species, change
+initial values named in `options` leaving other values unchanged.
 
 ## Usage
 

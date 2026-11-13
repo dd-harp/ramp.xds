@@ -20,7 +20,7 @@
 #'    - [change_L_pars] for **L** module parameters
 #'    
 #' - The built-in functions that set up modules can also be used to change parameters. In general, these functions should not be used
-#' after basic setup because they will overwrite other changes, including biting weights and the time spent matrix: 
+#' after basic setup because they will override other changes, including biting weights and the time spent matrix: 
 #'    - [setup_XH_obj] for the **XH** module 
 #'    - [setup_MY_obj] for the **MY** module 
 #'    - [setup_L_obj] for the **L** module 

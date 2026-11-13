@@ -11,14 +11,14 @@ change_XH_inits(xds_obj, options = list(), i = 1)
 
 \item{options}{a named list}
 
-\item{i}{the vector species index}
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
 Change the stored initial values for
-any variables named in \code{options} leaving other values unchanged.
+any variables named in \code{options}, leaving other values unchanged.
 }
 \seealso{
 \link{get_XH_inits}

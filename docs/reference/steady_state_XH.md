@@ -21,7 +21,7 @@ steady_state_XH(foi, xds_obj, i = 1)
 
 - i:
 
-  the vector species index
+  the host species index
 
 ## Value
 

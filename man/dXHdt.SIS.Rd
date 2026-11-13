@@ -19,46 +19,45 @@
 the derivatives, as a vector
 }
 \description{
-Computes the derivatives for SIS compartmental model with variables:
+Computes derivatives for the \code{SIS} module. For details, see the module documentation \link{SIS}.
+}
+\section{Dynamics}{
+
+
+The model for demographic change has terms to compute births (\eqn{\mathbf{B}}) and
+deaths (\eqn{\mathbf{D}}):
+\deqn{
+dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)}
+
+The model for infection dynamics assumes that infections
+clear naturally at a constant per-capita rate \eqn{r}.
+The model also includes two parameters to model
+treating and curing malaria infections:
 \itemize{
-\item \eqn{I} - the density of infected humans (or hosts)
-\item \eqn{S} - the density of susceptible humans (or hosts)
-\item \eqn{H} - human (or host) population density
+\item a fraction \eqn{\rho} of incident infections are treated and cured;
+\item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma},
+\item so the total clearance rate from treatment is \eqn{\rho h + \sigma}
+After clearing, individuals are
+susceptible to infection.
+A term for mass treatment increases the rate infections are cured: (\eqn{\Xi(t)}).
 }
 
-The model assumes \eqn{S+I=H.} This function computes
-\eqn{dH/dt} and \eqn{dI/dt}.
-For convenience, \eqn{S} is also computed
-by \link{get_XH_vars.SIS}
-and \link{parse_XH_orbits.SIS}.
-
-The force of infection or "happenings" rate is \eqn{h}. It is computed
-upstream and used here.
-
-The clearance rate for infections is \eqn{r}, and by assumption,
-individuals are assumed to be susceptible to infection after clearing
-infections.
-
-The module includes a port to model mass treatment, \eqn{\xi(t)}.
-
-\strong{Human Demographic}  change is modeled with two functions:
-\itemize{
-\item \eqn{B(t, H)} is the time-dependent population birth rate;
-\item \eqn{D} is a linear operator, a matrix describing mortality, migration, aging,
-and dynamical transfers among population strata.
-}
-
-The
-derivatives computed are:
+Infection dynamics are described by:
 
 \deqn{
-\begin{array}{rl}
-dH/dt = & B(t,H)  + D \cdot H \\
-dI/dt = & h (H-I) - r I - \xi(t) +  D \cdot I
-\end{array}
+dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
+
+The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
+the same model as for \eqn{H}:
+for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.} This model has no parameter
+or terms to describe disease-induced mortality.
+
+In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and
+infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant.
+After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 }
-}
+
 \seealso{
-\href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Dynamics}
+\link{SIS}, \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Dynamics}
 }
 \keyword{internal}

@@ -26,7 +26,7 @@ make_timespent_athome(
 
 - options:
 
-  is a set of options that overwrites the defaults
+  is a set of options that overrides the defaults
 
 - atHome:
 

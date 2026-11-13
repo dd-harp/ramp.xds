@@ -23,7 +23,7 @@ make_F_sigma_type2(
 
 - options:
 
-  is a set of options that overwrites the defaults
+  is a set of options that overrides the defaults
 
 - sigX:
 

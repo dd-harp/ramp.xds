@@ -17,7 +17,7 @@ make_L_inits_basicL(nHabitats, options = list(), L = 1)
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html) that overwrites default
+  a [list](https://rdrr.io/r/base/list.html) that overrides default
   values
 
 - L:

@@ -7,7 +7,7 @@ Some important details are:
 
 - Outputs are parsed and stored on the xds object as `xds_obj$outputs`
 
-- Running `xds_solve` again will overwrite any existing outputs.
+- Running `xds_solve` again will override any existing outputs.
 
 - for differential equations, the return value from `deSolve` is stored
   as `deout`

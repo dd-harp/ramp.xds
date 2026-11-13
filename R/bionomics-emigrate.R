@@ -195,7 +195,7 @@ F_sigma.random = function(t, xds_obj, s){
 #' @description Set up a random vector 
 #' 
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
@@ -258,7 +258,7 @@ setup_F_sigma.type2 = function(name, xds_obj, options = list(), s=1){
 #' type 2 functional response 
 #' 
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' 
 #' @param sigX the emigration rate from a patch with no resources
 #' @param sigB the shape parameter for blood hosts

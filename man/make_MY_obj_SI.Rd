@@ -20,7 +20,7 @@ make_MY_obj_SI(
 \arguments{
 \item{nPatches}{is the number of patches, an integer}
 
-\item{options}{a named list: named values overwrite defaults}
+\item{options}{a named list: named values override defaults}
 
 \item{eip}{the extrinsic incubation period}
 

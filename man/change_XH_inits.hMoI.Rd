@@ -11,12 +11,13 @@
 
 \item{options}{a named list}
 
-\item{i}{the vector species index}
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}.
+For the \code{hMoI} module (\strong{XH}) for the \eqn{i^{th}} species,
+change initial values named in \code{options} leaving other values unchanged.
 }
 \keyword{internal}

@@ -230,7 +230,17 @@ F_eggs.GeM <- function(t, y, xds_obj, s) {
 
 
 #' @title Set up `GeM` (**MY**)
-#' @description Implements [setup_MY_obj] for the GeM model
+#' @description
+#'
+#' This sets up a `GeM` model object for the **MY** module for the \eqn{s^{th}} vector species
+#' + the object is created by [make_MY_obj_GeM]
+#' + the initial conditions are set by [setup_MY_inits]
+#' + `options` is passed to both to override the defaults
+#'
+#' @seealso [GeM], [make_MY_obj_GeM]
+#'
+#' @note The module object is stored at `xds_obj$MY_obj[[s]]`
+#'
 #' @inheritParams setup_MY_obj
 #' @return a [list] vector
 #' @keywords internal
@@ -251,7 +261,7 @@ setup_MY_obj.GeM = function(MYname, xds_obj, options=list(), s=1){
 
 #' @title Make parameters for GeM ODE adult mosquito model
 #' @param nPatches is the number of patches, an integer
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param eip the extrinsic incubation period
 #' @param g mosquito mortality rate
 #' @param sigma emigration rate
@@ -380,7 +390,8 @@ get_MY_pars.GeM <- function(xds_obj, s=1) {
 }
 
 #' @title Change parameters for `GeM` (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @description For the `GeM` module (**MY**) for the \eqn{s^{th}} species,
+#' change parameter values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
 #' @keywords internal
@@ -446,7 +457,12 @@ MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 })}
 
 #' @title Setup initial values for `GeM` (**MY**)
-#' @description Implements [setup_MY_inits] for the GeM model
+#' @description Set initial values for all the variables in the `GeM` module
+#' (**MY**) for the \eqn{s^{th}} species.
+#' + [make_MY_inits_GeM] supplies default values
+#' + The values in `options` override the defaults
+#' + To inspect variable names, use [get_MY_inits] or
+#' see the inline module documentation.
 #' @inheritParams setup_MY_inits
 #' @return a [list]
 #' @keywords internal
@@ -462,7 +478,7 @@ setup_MY_inits.GeM = function(xds_obj, options=list(), s=1){with(xds_obj$MY_obj[
 #' @title Make inits for GeM adult mosquito model
 #' @param nPatches the number of patches in the model
 #' @param Upsilon a matrix describing survival and dispersal through the EIP
-#' @param options a [list] of values that overwrites the defaults
+#' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch
 #' @param P total parous mosquito density at each patch
 #' @param Y infected mosquito density at each patch
@@ -485,7 +501,8 @@ make_MY_inits_GeM = function(nPatches, Upsilon, options = list(),
 }
 
 #' @title Change initial values for `GeM` (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @description For the `GeM` module (**MY**) for the \eqn{s^{th}} species,
+#' change initial values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
 #' @keywords internal

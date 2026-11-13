@@ -19,10 +19,21 @@
 an \strong{\code{xds}} object
 }
 \description{
-Set up the trivial adult mosquito model.
+This sets up a \code{trivial} model object for the \strong{MY} module for the \eqn{s^{th}} vector species
+\itemize{
+\item the object is created by \link{make_MY_obj_trivial}
+\item \code{options} is passed to override the defaults
+}
+
 In general, this should be used for aquatic mosquito
 ecology or human / host epidemiology.  In the former case,
 the user configures \code{F_eggs}; in the latter,
 \code{F_fqZ}
+}
+\note{
+The module object is stored at \code{xds_obj$MY_obj[[s]]}
+}
+\seealso{
+\link{trivial_MY}, \link{make_MY_obj_trivial}
 }
 \keyword{internal}

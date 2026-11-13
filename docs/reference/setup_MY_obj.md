@@ -1,7 +1,7 @@
 # Set up an **MY** model object
 
-Set up creates an **MY** object for the \\(s^{th}\\) species and sets up
-the interface ports:
+This setup creates an **MY** object for the \\(s^{th}\\) species and
+sets up the interface ports:
 
 - calls `make_MY_obj_`*MYname* to set up the dynamics, including
   parameters

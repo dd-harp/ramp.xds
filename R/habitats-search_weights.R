@@ -128,7 +128,7 @@ setup_habitat_search_weights.random = function(name, xds_obj, options = list(), 
 #' @description Set up a random vector of habitat search weights
 #' 
 #' @param nPatches is the number of patches
-#' @param options is a set of options that overwrites the defaults
+#' @param options is a set of options that overrides the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand

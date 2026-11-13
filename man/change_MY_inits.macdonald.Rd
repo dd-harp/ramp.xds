@@ -17,6 +17,7 @@
 a \link{list}
 }
 \description{
-Implements \link{change_MY_inits} for the macdonald model
+For the \code{macdonald} module (\strong{MY}) for the \eqn{s^{th}} species,
+change initial values named in \code{options} leaving other values unchanged.
 }
 \keyword{internal}

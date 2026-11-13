@@ -21,7 +21,7 @@ setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set up creates an \strong{L} object for the \eqn{s^{th}} species
+This setup creates an \strong{L} object for the \eqn{s^{th}} species
 and sets up the interface ports:
 \itemize{
 \item calls \code{make_L_obj_}\emph{Lname} to set up the dynamics, including parameters

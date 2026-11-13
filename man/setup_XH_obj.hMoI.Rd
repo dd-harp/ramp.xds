@@ -21,6 +21,17 @@
 a \link{list} vector
 }
 \description{
-Implements \link{setup_XH_obj} for the hMoI model
+This sets up an \code{hMoI} model object for the \strong{XH} module for the \eqn{i^{th}} host species
+\itemize{
+\item the object is created by \link{make_XH_obj_hMoI}
+\item the initial conditions are set by \link{setup_XH_inits}
+\item \code{options} is passed to both to override the defaults
+}
+}
+\note{
+The module object is stored at \code{xds_obj$XH_obj[[i]]}
+}
+\seealso{
+\link{hMoI}, \link{make_XH_obj_hMoI}
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{change_XH_pars.SIS}
 \alias{change_XH_pars.SIS}
-\title{Set new values for the SIS model}
+\title{Get parameters for \code{SIS} (\strong{XH})}
 \usage{
 \method{change_XH_pars}{SIS}(xds_obj, options = list(), i = 1)
 }
@@ -11,25 +11,33 @@
 
 \item{options}{a named list}
 
-\item{i}{the vector species index}
+\item{i}{the host species index}
 }
 \value{
 an \strong{\code{xds}} object
 }
 \description{
-A utility to change parameters
-values for the SIS model (\strong{XH} component)
+For the \code{SIS} module (\strong{XH}) for the \eqn{i^{th}} species,
+change parameter values named in \code{options} leaving other values unchanged.
+}
+\section{Parameters}{
 
-\code{options} is a named list, and:
-\itemize{
-\item \eqn{b} is set to \code{options$b}
-\item \eqn{c} is set to \code{options$c}
-\item \eqn{r} is set to \code{options$r}
-\item \eqn{q_{lm}} is set to \code{options$q_lm}
-\item \eqn{q_{rdt}} is set to \code{options$q_rdt}
-\item \eqn{q_{pcr}} is set to \code{options$q_pcr}
+
+The parameters that are returned by \link{get_XH_pars.SIS} and also modifiable by \link{change_XH_pars.SIS} describe
+the dynamics, or detection by diagnostic methods.
+
+\describe{
+\item{\code{b}}{the fraction of infective bites that would cause an infection}
+\item{\code{r}}{clearance rate for infections}
+\item{\code{c}}{the probability an infected person would infect a mosquito}
+\item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
+\item{\code{sigma} or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
+\item{\code{q_lm}}{expected prevalence by light microscopy would be \eqn{q_{lm} \;x}}
+\item{\code{q_rdt}}{expected prevalence by RDT would be \eqn{q_{rdt} \;x}}
+\item{\code{q_pcr}}{expected prevalence by PCR would be \eqn{q_{pcr} \;x}}
 }
 }
+
 \seealso{
 \code{\link[=get_XH_pars.SIS]{get_XH_pars.SIS()}} and the github.io essay on \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Dynamics}
 }

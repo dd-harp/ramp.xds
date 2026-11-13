@@ -16,7 +16,7 @@ make_MY_inits_basicM(nPatches, options, M = 5, P = 1)
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html) of values that overwrites
+  a [list](https://rdrr.io/r/base/list.html) of values that overrides
   the defaults
 
 - M:
