@@ -5,7 +5,21 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Setup initial values for SIS (XH) — setup_XH_inits.SIS"><meta name="description" content="Setup initial values for SIS (XH)"><meta property="og:description" content="Setup initial values for SIS (XH)"></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Setup initial values for SIS (XH) — setup_XH_inits.SIS"><meta name="description" content="Set initial values for all the variables in the SIS module
+(XH) for the \(i^{th}\) species.
+make_XH_inits_SIS supplies default values
+The values in options override the defaults
+To inspect variable names, use get_XH_inits or
+see the inline module documentation.
+
+"><meta property="og:description" content="Set initial values for all the variables in the SIS module
+(XH) for the \(i^{th}\) species.
+make_XH_inits_SIS supplies default values
+The values in options override the defaults
+To inspect variable names, use get_XH_inits or
+see the inline module documentation.
+
+"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -87,8 +101,12 @@
     </div>
 
     <div class="ref-description section level2">
-    <p>Setup initial values for <code>SIS</code> (<strong>XH</strong>)</p>
-    </div>
+    <p>Set initial values for all the variables in the <code>SIS</code> module
+(<strong>XH</strong>) for the \(i^{th}\) species.</p><ul><li><p><a href="make_XH_inits_SIS.html">make_XH_inits_SIS</a> supplies default values</p></li>
+<li><p>The values in <code>options</code> override the defaults</p></li>
+<li><p>To inspect variable names, use <a href="get_XH_inits.html">get_XH_inits</a> or
+see the inline module documentation.</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
@@ -116,6 +134,22 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>an <strong><code>xds</code></strong> object</p>
     </div>
+    <div class="section level2">
+    <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
+
+
+
+<dl><dt><code>H</code></dt>
+<dd><p>the total human or host population density</p></dd>
+
+<dt><code>I</code></dt>
+<dd><p>the density of infected humans or hosts</p></dd>
+
+<dt><code>S=H-I</code></dt>
+<dd><p>the density of susceptible humans or hosts</p></dd>
+
+
+</dl></div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

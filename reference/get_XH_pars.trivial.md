@@ -1,6 +1,7 @@
 # Get parameters for `trivial` (**XH**)
 
-This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
+For the `trivial` module (**XH**) for the \\i^{th}\\ species, change
+parameter values named in `options` leaving other values unchanged.
 
 ## Usage
 

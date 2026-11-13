@@ -1,4 +1,4 @@
-# Change parameters for `trivial` (**XH**)
+# Get parameters for `trivial` (**XH**)
 
 This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
 
@@ -21,7 +21,7 @@ change_XH_pars(xds_obj, options = list(), i = 1)
 
 - i:
 
-  the vector species index
+  the host species index
 
 ## Value
 

@@ -1,7 +1,7 @@
 # Change **XH** parameters
 
 For the **XH** module for the \\i^{th}\\ species, change parameter
-values named in `options` leaving other values unchanged.
+values named in `options`, leaving other values unchanged.
 
 ## Usage
 
@@ -21,7 +21,7 @@ change_XH_pars(xds_obj, options = list(), i = 1)
 
 - i:
 
-  the vector species index
+  the host species index
 
 ## Value
 

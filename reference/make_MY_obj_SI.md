@@ -27,7 +27,7 @@ make_MY_obj_SI(
 
 - options:
 
-  a named list: named values overwrite defaults
+  a named list: named values override defaults
 
 - eip:
 

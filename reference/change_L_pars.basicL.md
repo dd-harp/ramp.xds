@@ -1,6 +1,9 @@
 # Change parameters for `basicL` (**L**)
 
-Set the values of **L** component parameters
+For the `basicL` module (**L**) for the \\s^{th}\\ species, change
+parameter values named in `options` leaving other values unchanged.
+
+Parameters:
 
 - `psi` or \\\psi\\
 

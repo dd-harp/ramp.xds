@@ -1,6 +1,8 @@
 # Setup initial values for `trivial` (**MY**)
 
-Return the **`xds`** object unmodified
+The `trivial` module (**MY**) for the \\s^{th}\\ species has no
+dynamical variables requiring initial values. This method returns the
+unmodified **`xds`** object; `options` is unused.
 
 ## Usage
 

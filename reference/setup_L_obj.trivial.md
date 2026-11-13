@@ -1,8 +1,15 @@
 # Set up `trivial` (**L**)
 
-Call
-[make_L_obj_trivial](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_trivial.md)
-and set `class(xds_obj$forced_by) = "Lambda"`
+This sets up a `trivial` model object for the **L** module for the
+\\s^{th}\\ vector species
+
+- the object is created by
+  [make_L_obj_trivial](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_trivial.md)
+
+- `options` is passed to override the defaults
+
+There are no dynamical variables requiring initial values. This method
+sets `class(xds_obj$forced_by) = "Lambda"`.
 
 ## Usage
 
@@ -36,3 +43,12 @@ setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** object
+
+## Note
+
+The module object is stored at `xds_obj$L_obj[[s]]`
+
+## See also
+
+[trivial_L](https://dd-harp.github.io/ramp.xds/reference/trivial_L.md),
+[make_L_obj_trivial](https://dd-harp.github.io/ramp.xds/reference/make_L_obj_trivial.md)

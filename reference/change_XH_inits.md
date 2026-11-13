@@ -1,6 +1,6 @@
 # Change initial values (**XH**)
 
-Change the stored initial values for any variables named in `options`
+Change the stored initial values for any variables named in `options`,
 leaving other values unchanged.
 
 ## Usage
@@ -21,7 +21,7 @@ change_XH_inits(xds_obj, options = list(), i = 1)
 
 - i:
 
-  the vector species index
+  the host species index
 
 ## Value
 

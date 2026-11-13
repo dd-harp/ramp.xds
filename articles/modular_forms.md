@@ -210,14 +210,14 @@ getS3method("dXHdt", "SIS")
     ##         with(xds_obj$XH_obj[[i]], {
     ##             dH <- Births(t, xds_obj, i) - Deaths(t, H, xds_obj, 
     ##                 i)
-    ##             dI <- foi * (H - I) - r * I - Deaths(t, I, xds_obj, 
-    ##                 i)
+    ##             dI <- foi * (1 - rho) * (H - I) - (r + rho * foi + 
+    ##                 sigma) * I - Deaths(t, I, xds_obj, i)
     ##             dI <- dI - mda(t) * I - msat(t) * I
     ##             return(c(dH, dI))
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x63a9103bb938>
+    ## <bytecode: 0x5c88c9af4920>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -245,7 +245,7 @@ getS3method("dMYdt", "SI")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x63a91059b3e0>
+    ## <bytecode: 0x5c88cbe93560>
     ## <environment: namespace:ramp.xds>
 
 The term \\\Lambda\\ is passed from the trace function
@@ -270,5 +270,5 @@ getS3method("F_emerge", "trivial")
     ##             F_shock(t, V_k))
     ##     })
     ## }
-    ## <bytecode: 0x63a910a84de0>
+    ## <bytecode: 0x5c88d11ee1e8>
     ## <environment: namespace:ramp.xds>

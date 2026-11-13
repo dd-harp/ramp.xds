@@ -6,7 +6,7 @@
     }
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="ramp.xds: Initial Conditions — xds_info_initial_conditions"><meta name="description" content="In ramp.xds, initial values for all the dependent variables are assigned
-default values and stored during basic setup. The defaults can be overwritten during setup,
+default values and stored during basic setup. The defaults can be overridden during setup,
 and the stored values can be set after setup. There are several ways to learn
 the variable names:
 Set up a model without passing any arguments, and examine the variable names and default initial values using:
@@ -28,7 +28,7 @@ setup_L_inits for the L module
 
 
 "><meta property="og:description" content="In ramp.xds, initial values for all the dependent variables are assigned
-default values and stored during basic setup. The defaults can be overwritten during setup,
+default values and stored during basic setup. The defaults can be overridden during setup,
 and the stored values can be set after setup. There are several ways to learn
 the variable names:
 Set up a model without passing any arguments, and examine the variable names and default initial values using:
@@ -132,7 +132,7 @@ setup_L_inits for the L module
 
     <div class="ref-description section level2">
     <p>In <strong><code>ramp.xds</code></strong>, initial values for all the dependent variables are assigned
-default values and stored during basic setup. The defaults can be overwritten during setup,
+default values and stored during basic setup. The defaults can be overridden during setup,
 and the stored values can be set after setup. There are several ways to learn
 the variable names:</p><ul><li><p>Set up a model without passing any arguments, and examine the variable names and default initial values using:</p><ul><li><p><a href="get_XH_inits.html">get_XH_inits</a> to examine the stored initial conditions for the <strong>XH</strong> module</p></li>
 <li><p><a href="get_MY_inits.html">get_MY_inits</a> to examine the stored initial conditions for the <strong>MY</strong> module</p></li>

@@ -154,13 +154,13 @@ variables.
 
 - `setup_L_inits.Lname` - is a wrapper, that gets called by `xds_setup`
   and that calls `make_L_inits_Lname`. The setup `options` are passed to
-  overwrite default values. The initial values are stored as
+  override default values. The initial values are stored as
   `L_obj$inits`.
 
 - `make_L_inits_Lname` - each model must include a function that makes a
   set of initial values as a named list. This function does not belong
   to any `S3` class, so it can take any form. The function should supply
-  default initial values for all the variables. These can be overwritten
+  default initial values for all the variables. These can be overridden
   by passing new initial values in `options`.
 
 - `get_L_inits` – returns the initial values

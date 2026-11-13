@@ -1,6 +1,7 @@
 # Change parameters for `SI` (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+For the `SI` module (**MY**) for the \\s^{th}\\ species, change
+parameter values named in `options` leaving other values unchanged.
 
 ## Usage
 

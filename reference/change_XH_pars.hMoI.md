@@ -1,6 +1,7 @@
-# Change parameters for `hMoI` (**XH**)
+# Get parameters for `hMoI` (**XH**)
 
-This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
+For the `hMoI` module (**XH**) for the \\i^{th}\\ species, change
+parameter values named in `options` leaving other values unchanged.
 
 ## Usage
 
@@ -21,7 +22,7 @@ change_XH_pars(xds_obj, options = list(), i = 1)
 
 - i:
 
-  the vector species index
+  the host species index
 
 ## Value
 

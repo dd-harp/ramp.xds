@@ -27,7 +27,7 @@ make_MY_obj_macdonald(
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html) of values that overwrites
+  a [list](https://rdrr.io/r/base/list.html) of values that overrides
   the defaults
 
 - eip:

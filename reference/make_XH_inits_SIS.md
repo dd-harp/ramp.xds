@@ -1,4 +1,4 @@
-# Make initial values for the SIS xde human model, with defaults
+# Make initial values `SIS` (**XH**)
 
 Make a named list of initial values
 
@@ -16,7 +16,7 @@ make_XH_inits_SIS(nStrata, options = list(), H = 1000, I = 1)
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html) to overwrite defaults
+  a [list](https://rdrr.io/r/base/list.html) to override defaults
 
 - H:
 
@@ -24,8 +24,12 @@ make_XH_inits_SIS(nStrata, options = list(), H = 1000, I = 1)
 
 - I:
 
-  the initial values of the parameter I
+  the initial number of humans infected
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+initial values as a named [list](https://rdrr.io/r/base/list.html)
+
+## See also
+
+[setup_XH_inits.SIS](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.SIS.md)

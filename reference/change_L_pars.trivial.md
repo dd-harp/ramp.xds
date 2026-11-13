@@ -1,6 +1,9 @@
 # Change parameters for `trivial` (**L**)
 
-Change `Lambda`, `F_season`, `F_trend`, or `F_shock`
+For the `trivial` module (**L**) for the \\s^{th}\\ species, change
+parameter values named in `options` leaving other values unchanged.
+
+Parameters: `Lambda`, `F_season`, `F_trend`, or `F_shock`.
 
 ## Usage
 

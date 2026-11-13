@@ -1,8 +1,7 @@
 # Change initial values for `SI` (**MY**)
 
-Implements
-[change_MY_inits](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.md)
-for the SI model
+For the `SI` module (**MY**) for the \\s^{th}\\ species, change initial
+values named in `options` leaving other values unchanged.
 
 ## Usage
 

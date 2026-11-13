@@ -1,8 +1,16 @@
 # Setup initial values for `basicM` (**MY**)
 
-Implements
-[setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)
-for the basicM model
+Set initial values for all the variables in the `basicM` module (**MY**)
+for the \\s^{th}\\ species.
+
+- [make_MY_inits_basicM](https://dd-harp.github.io/ramp.xds/reference/make_MY_inits_basicM.md)
+  supplies default values
+
+- The values in `options` override the defaults
+
+- To inspect variable names, use
+  [get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)
+  or see the inline module documentation.
 
 ## Usage
 

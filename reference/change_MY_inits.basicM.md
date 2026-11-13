@@ -1,6 +1,7 @@
 # Change initial values for `basicM` (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+For the `basicM` module (**MY**) for the \\s^{th}\\ species, change
+initial values named in `options` leaving other values unchanged.
 
 ## Usage
 

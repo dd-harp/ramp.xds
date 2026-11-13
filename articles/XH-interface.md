@@ -263,12 +263,12 @@ variables.
 - `make_XH_inits_XHname` - each model must include a function that makes
   a set of initial values as a named list. This function does not belong
   to any `S3` class, so it can take any form. The function should supply
-  default initial values for all the variables. These can be overwritten
+  default initial values for all the variables. These can be overridden
   by passing new initial values in `options`.
 
 - `setup_XH_inits.XHname` - is a wrapper, that gets called by
   `xds_setup` and that calls `make_XH_inits_XHname`. The setup `options`
-  are passed to overwrite default values. The initial values are stored
+  are passed to override default values. The initial values are stored
   as `XH_obj$inits`.
 
 - `change_XH_inits.XHname` - a utility to change the initial values.

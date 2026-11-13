@@ -20,14 +20,14 @@ get_MY_inits(xds_obj, s = 1)
 
 ## Value
 
-[numeric](https://rdrr.io/r/base/numeric.html)
+the initial values, as a named list
 
 ## Note
 
 The initial values are stored as a named list called
-`xds_obj$XH_obj[[i]]$inits`
+`xds_obj$MY_obj[[s]]$inits`
 
 ## See also
 
-[change_XH_inits](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.md),
-[setup_XH_inits](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.md)
+[change_MY_inits](https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.md),
+[setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)

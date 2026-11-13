@@ -11,6 +11,8 @@ make_XH_obj_SIS(
   b = 0.55,
   r = 1/180,
   c = 0.15,
+  rho = 0,
+  sigma = 0,
   q_lm = 0.8,
   q_rdt = 0.8,
   q_pcr = 0.9
@@ -25,7 +27,7 @@ make_XH_obj_SIS(
 
 - options:
 
-  a named list with parameter values to overwrite defaults
+  a named list with parameter values to override defaults
 
 - b:
 
@@ -38,6 +40,14 @@ make_XH_obj_SIS(
 - c:
 
   transmission probability (efficiency) from human to mosquito
+
+- rho:
+
+  the fraction of incident infections that are treated and cured
+
+- sigma:
+
+  the rate prevalent infections are treated and cured
 
 - q_lm:
 

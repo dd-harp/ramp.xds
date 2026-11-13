@@ -5,67 +5,7 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Compute derivatives for SIS (XH) — dXHdt.SIS"><meta name="description" content="Computes the derivatives for SIS compartmental model with variables:
-\(I\) - the density of infected humans (or hosts)
-\(S\) - the density of susceptible humans (or hosts)
-\(H\) - human (or host) population density
-
-
-The model assumes \(S+I=H.\) This function computes
-\(dH/dt\) and \(dI/dt\).
-For convenience, \(S\) is also computed
-by get_XH_vars.SIS
-and parse_XH_orbits.SIS.
-The force of infection or &quot;happenings&quot; rate is \(h\). It is computed
-upstream and used here.
-The clearance rate for infections is \(r\), and by assumption,
-individuals are assumed to be susceptible to infection after clearing
-infections.
-The module includes a port to model mass treatment, \(\xi(t)\).
-Human Demographic  change is modeled with two functions:
-\(B(t, H)\) is the time-dependent population birth rate;
-\(D\) is a linear operator, a matrix describing mortality, migration, aging,
-and dynamical transfers among population strata.
-
-
-The
-derivatives computed are:
-$$
-\begin{array}{rl}
-dH/dt = &amp;amp; B(t,H)  + D \cdot H \\
-dI/dt = &amp;amp; h (H-I) - r I - \xi(t) +  D \cdot I
-\end{array}
-$$"><meta property="og:description" content="Computes the derivatives for SIS compartmental model with variables:
-\(I\) - the density of infected humans (or hosts)
-\(S\) - the density of susceptible humans (or hosts)
-\(H\) - human (or host) population density
-
-
-The model assumes \(S+I=H.\) This function computes
-\(dH/dt\) and \(dI/dt\).
-For convenience, \(S\) is also computed
-by get_XH_vars.SIS
-and parse_XH_orbits.SIS.
-The force of infection or &quot;happenings&quot; rate is \(h\). It is computed
-upstream and used here.
-The clearance rate for infections is \(r\), and by assumption,
-individuals are assumed to be susceptible to infection after clearing
-infections.
-The module includes a port to model mass treatment, \(\xi(t)\).
-Human Demographic  change is modeled with two functions:
-\(B(t, H)\) is the time-dependent population birth rate;
-\(D\) is a linear operator, a matrix describing mortality, migration, aging,
-and dynamical transfers among population strata.
-
-
-The
-derivatives computed are:
-$$
-\begin{array}{rl}
-dH/dt = &amp;amp; B(t,H)  + D \cdot H \\
-dI/dt = &amp;amp; h (H-I) - r I - \xi(t) +  D \cdot I
-\end{array}
-$$"></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Compute derivatives for SIS (XH) — dXHdt.SIS"><meta name="description" content="Computes derivatives for the SIS module. For details, see the module documentation SIS."><meta property="og:description" content="Computes derivatives for the SIS module. For details, see the module documentation SIS."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -147,31 +87,7 @@ $$"></head><body>
     </div>
 
     <div class="ref-description section level2">
-    <p>Computes the derivatives for SIS compartmental model with variables:</p><ul><li><p>\(I\) - the density of infected humans (or hosts)</p></li>
-<li><p>\(S\) - the density of susceptible humans (or hosts)</p></li>
-<li><p>\(H\) - human (or host) population density</p></li>
-</ul><p>The model assumes \(S+I=H.\) This function computes
-\(dH/dt\) and \(dI/dt\).
-For convenience, \(S\) is also computed
-by <a href="get_XH_vars.SIS.html">get_XH_vars.SIS</a>
-and <a href="parse_XH_orbits.SIS.html">parse_XH_orbits.SIS</a>.</p>
-<p>The force of infection or "happenings" rate is \(h\). It is computed
-upstream and used here.</p>
-<p>The clearance rate for infections is \(r\), and by assumption,
-individuals are assumed to be susceptible to infection after clearing
-infections.</p>
-<p>The module includes a port to model mass treatment, \(\xi(t)\).</p>
-<p><strong>Human Demographic</strong>  change is modeled with two functions:</p><ul><li><p>\(B(t, H)\) is the time-dependent population birth rate;</p></li>
-<li><p>\(D\) is a linear operator, a matrix describing mortality, migration, aging,
-and dynamical transfers among population strata.</p></li>
-</ul><p>The
-derivatives computed are:</p>
-<p>$$
-\begin{array}{rl}
-dH/dt = &amp; B(t,H)  + D \cdot H \\
-dI/dt = &amp; h (H-I) - r I - \xi(t) +  D \cdot I
-\end{array}
-$$</p>
+    <p>Computes derivatives for the <code>SIS</code> module. For details, see the module documentation <a href="SIS.html">SIS</a>.</p>
     </div>
 
     <div class="section level2">
@@ -205,8 +121,37 @@ $$</p>
     <p>the derivatives, as a vector</p>
     </div>
     <div class="section level2">
+    <h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a></h2>
+
+
+
+<p>The model for demographic change has terms to compute births (\(\mathbf{B}\)) and
+deaths (\(\mathbf{D}\)):
+$$
+dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)$$</p>
+<p>The model for infection dynamics assumes that infections
+clear naturally at a constant per-capita rate \(r\).
+The model also includes two parameters to model
+treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured;</p></li>
+<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\),</p></li>
+<li><p>so the total clearance rate from treatment is \(\rho h + \sigma\)
+After clearing, individuals are
+susceptible to infection.
+A term for mass treatment increases the rate infections are cured: (\(\Xi(t)\)).</p></li>
+</ul><p>Infection dynamics are described by:</p>
+<p>$$
+dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) $$</p>
+<p>The mortality function \(\mathbf{D}(I)\) computes total mortality for \(I\) using
+the same model as for \(H\):
+for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\) This model has no parameter
+or terms to describe disease-induced mortality.</p>
+<p>In the compartmental model, individuals are either susceptible (\(S\)), or infected and
+infectious (\(I\)), so  \(S=H-I.\) The equation is redundant.
+After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="https://dd-harp.github.io/ramp.xds/articles/human_sis.html">SIS Dynamics</a></p></div>
+    <div class="dont-index"><p><a href="SIS.html">SIS</a>, <a href="https://dd-harp.github.io/ramp.xds/articles/human_sis.html">SIS Dynamics</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

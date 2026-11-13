@@ -211,7 +211,7 @@ get_XH_inits(model)
 We already changed the value of parameter from its default after
 `xds_setup` (above), but we could have set the parameter values when we
 called `xds_setup`. The default parameters and initial values can be
-overwritten at setup by passing a named list, as `options = list(...)`
+overridden at setup by passing a named list, as `options = list(...)`
 with different values. Since `xds_setup` calls functions to set up
 several model objects, each component has its own options name. For the
 **XH** component, options are passed in `XHoptions`:

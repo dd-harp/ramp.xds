@@ -137,7 +137,7 @@ get_XH_pars(mod)$r
 
     ## [1] 0.005555556
 
-To overwrite the defaults at setup, pass a named list to `xds_setup.`
+To override the defaults at setup, pass a named list to `xds_setup.`
 
 ``` r
 

@@ -5,7 +5,19 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set up trivial (XH) — setup_XH_obj.trivial"><meta name="description" content="Implements setup_XH_obj for the trivial model"><meta property="og:description" content="Implements setup_XH_obj for the trivial model"></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set up trivial (XH) — setup_XH_obj.trivial"><meta name="description" content="This sets up a trivial model object for the XH module for the \(i^{th}\) host species
+the object is created by make_XH_obj_trivial
+options is passed to override the defaults
+
+
+There are no dynamical variables requiring initial values;
+setup_XH_inits leaves the object unmodified."><meta property="og:description" content="This sets up a trivial model object for the XH module for the \(i^{th}\) host species
+the object is created by make_XH_obj_trivial
+options is passed to override the defaults
+
+
+There are no dynamical variables requiring initial values;
+setup_XH_inits leaves the object unmodified."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -87,7 +99,10 @@
     </div>
 
     <div class="ref-description section level2">
-    <p>Implements <a href="setup_XH_obj.html">setup_XH_obj</a> for the trivial model</p>
+    <p>This sets up a <code>trivial</code> model object for the <strong>XH</strong> module for the \(i^{th}\) host species</p><ul><li><p>the object is created by <a href="make_XH_obj_trivial.html">make_XH_obj_trivial</a></p></li>
+<li><p><code>options</code> is passed to override the defaults</p></li>
+</ul><p>There are no dynamical variables requiring initial values;
+<a href="setup_XH_inits.html">setup_XH_inits</a> leaves the object unmodified.</p>
     </div>
 
     <div class="section level2">
@@ -123,6 +138,14 @@
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>an <strong><code>xds</code></strong> object</p>
+    </div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>The module object is stored at <code>xds_obj$XH_obj[[i]]</code></p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="trivial_XH.html">trivial_XH</a>, <a href="make_XH_obj_trivial.html">make_XH_obj_trivial</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

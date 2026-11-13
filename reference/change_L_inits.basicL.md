@@ -1,5 +1,8 @@
 # Change initial values for `basicL` (**L**)
 
+For the `basicL` module (**L**) for the \\s^{th}\\ species, change
+initial values named in `options` leaving other values unchanged.
+
 Initial values of the variable \\L\\ are reset if they are passed as a
 named component of `options`
 

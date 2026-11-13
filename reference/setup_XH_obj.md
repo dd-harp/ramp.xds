@@ -1,7 +1,7 @@
 # Set up an **XH** model object
 
-Set up creates an **XH** object for the \\i^{th}\\ species and sets up
-the interface ports:
+This setup creates an **XH** object for the \\i^{th}\\ species and sets
+up the interface ports:
 
 - calls `make_XH_obj_`*XHname* to set up the dynamics, including
   parameters

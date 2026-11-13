@@ -1,6 +1,8 @@
 # Setup initial values for `trivial` (**L**)
 
-The `trivial` module initial values are an empty list
+The `trivial` module (**L**) for the \\s^{th}\\ species has no dynamical
+variables requiring initial values. This method sets the initial values
+to an empty list; `options` is unused.
 
 ## Usage
 

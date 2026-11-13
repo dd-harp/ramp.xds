@@ -1,7 +1,7 @@
-# The `SI` module for the MY component
+# The `SI` module for the **MY** component
 
-Implements the **MY** component using a simple SI (Susceptible-Infected)
-model of adult mosquito infection dynamics.
+This implements a model for basic mosquito ecology and an `SI`
+compartmental model for mosquito infection dynamics
 
 ## State Variables
 
@@ -12,6 +12,46 @@ model of adult mosquito infection dynamics.
 - `Y`:
 
   density of infected adult mosquitoes
+
+The density of susceptible mosquitoes is \\M-Y\\
+
+## Dynamics
+
+**Dynamical Terms**
+
+- Mosquitoes are born at the rate \\\Lambda,\\ which is a dynamical term
+  computed by
+  [Emergence](https://dd-harp.github.io/ramp.xds/reference/Emergence.md).
+
+- The fraction of mosquitoes that get infected after blood feeding on a
+  human, \\\kappa,\\ is a dynamical term computed by
+  [Transmission](https://dd-harp.github.io/ramp.xds/reference/Transmission.md).
+
+**Parameters**
+
+- Mosquito survival and dispersal is given by the demographic matrix,
+  \\\Omega\\
+
+- Mosquitoes blood feed at the rate \\f.\\ The human fraction, \\q,\\ is
+  the fraction of blood meals on human.
+
+**Derivatives**
+
+The model computes these derivatives:
+
+\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\ dY/dt &=
+fq\kappa(M-Y) - \Omega \cdot Y \\ \end{array}\$\$
+
+## Infective Biting
+
+To compute the infective biting density, this model configures a
+parameter for the EIP, \\\tau.\\ Survival and dispersal through the EIP
+is \$\$\Upsilon = e^{-\Omega \tau}.\$\$ Infective biting is given by
+\$\$fqZ = \Upsilon \cdot \left( f q Y \right) \$\$
+
+## Egg Laying
+
+The egg laying rate.
 
 ## Parameters
 
@@ -45,6 +85,11 @@ model of adult mosquito infection dynamics.
 
 ## Demography
 
+- Mosquitoes emigrate from patches at the per-capita rates \\\sigma\\
+
+- Some fraction of emigrating mosquitoes is lost (\\\mu\\), which could
+  include so total population loss from a patch is \\g + \mu \sigma\\
+
 The demographic matrix, \\\Omega\\ is computed as \$\$\Omega =
 \mbox{diag}\left(g + \sigma \mu \right) - K \cdot
 \mbox{diag}\left(\sigma \left(1-\mu\right)\right)\$\$
@@ -56,11 +101,6 @@ The demographic matrix, \\\Omega\\ is computed as \$\$\Omega =
 
 **Net Infectiousness** – `kappa` or \\\kappa\\, is computed by the
 **XY**-Interface using outputs of the **XH** Component
-
-## Dynamics
-
-\$\$ \begin{array}{rl} dM/dt &= \Lambda - \Omega \cdot M \\ dY/dt &=
-fq\kappa(M-Y) - \Omega \cdot Y \\ \end{array}\$\$
 
 ## Net Infective Biting
 
