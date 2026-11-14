@@ -4,19 +4,19 @@
 \alias{SIS}
 \title{The \code{SIS} module for the \strong{XH} component}
 \description{
-\code{SIS} implements a family of SIS compartmental models for malaria as a system of differential equations:
+\code{SIS} implements a family of \code{SIS} compartmental models for malaria as a system of differential equations:
 individuals are either susceptible \eqn{(S)} or infected and infectious \eqn{(I)}.
-In its simplest form, SIS dynamics are:
+In its simplest form, \code{SIS} dynamics are:
 \deqn{
 dI/dt = h S - r I
 }
 
-This is a generalized implementation includes:
+This generalized implementation includes:
 \itemize{
 \item parameters to model treating and curing infections;
 \item functions to model human demographic change;
 \item functions to model mass treatment;
-\item and progressive stratification
+\item support for progressive stratification
 }
 }
 \section{State Variables}{
@@ -29,12 +29,41 @@ This is a generalized implementation includes:
 }
 }
 
-\section{Prevalence}{
+\section{Demography}{
+
+
+Demographic changes (\strong{H}) are given by the equation:
+
+\deqn{
+dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)}
+
+This model has no parameter
+or terms to describe disease-induced mortality.
+
+\describe{
+\item{\code{Births} or \eqn{\mathbf{B}}}{the births function}
+\item{\code{Deaths} or \eqn{\mathbf{D}}}{the deaths function}
+}
+
+\strong{Setup:}
+\itemize{
+\item The defaults are no births and no deaths
+\item Use \link{setup_births} to configure \code{Births}
+\item Use \link{setup_deaths} to configure \code{Deaths}
+}
+
+Also, see \link{xds_info_demographic_change}.
+}
+
+\section{Dynamical Term}{
 
 
 \describe{
-\item{\code{x}}{true prevalence is \eqn{x = I/H}}
+\item{\eqn{h} or \code{foi}}{The force of infection is computed and stored by \link{Exposure} as \code{FoI}}
 }
+
+In the \code{SIS} module, there is no effect of pre-erythrocytic immunity, so
+a constant fraction of infectious bites causes an infection: the parameter \eqn{b.}
 }
 
 \section{Parameters}{
@@ -49,58 +78,30 @@ the dynamics, or detection by diagnostic methods.
 \item{\code{c}}{the probability an infected person would infect a mosquito}
 \item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
 \item{\code{sigma} or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
-\item{\code{q_lm}}{expected prevalence by light microscopy would be \eqn{q_{lm} \;x}}
-\item{\code{q_rdt}}{expected prevalence by RDT would be \eqn{q_{rdt} \;x}}
-\item{\code{q_pcr}}{expected prevalence by PCR would be \eqn{q_{pcr} \;x}}
+\item{\code{q_lm}}{test positivity by light microscopy}
+\item{\code{q_rdt}}{test positivity by RDT}
+\item{\code{q_pcr}}{test positivity by PCR}
 }
 }
 
-\section{Dynamical Term}{
+\section{Infection Dynamics}{
 
 
-\describe{
-\item{\eqn{h} or \code{foi}}{The force of infection is computed and stored by \link{Exposure} as \code{FoI}}
-}
-}
-
-\section{Demographic Change}{
-
-
-\describe{
-\item{\code{Births} or \eqn{\mathbf{B}}}{the births function}
-\item{\code{Deaths} or \eqn{\mathbf{D}}}{the deaths function}
-}
-
-\strong{NOTES:}
-\itemize{
-\item The defaults are no births and no deaths
-\item Use \link{setup_births} to configure \code{Births}
-\item Use \link{setup_deaths} to configure \code{Deaths}
-}
-
-Also, see \link{xds_info_demographic_change}.
-}
-
-\section{Dynamics}{
-
-
-The model for demographic change has terms to compute births (\eqn{\mathbf{B}}) and
-deaths (\eqn{\mathbf{D}}):
-\deqn{
-dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)}
-
-The model for infection dynamics assumes that infections
+The model for infection dynamics (\strong{X}) assumes that infections
 clear naturally at a constant per-capita rate \eqn{r}.
+
 The model also includes two parameters to model
 treating and curing malaria infections:
 \itemize{
 \item a fraction \eqn{\rho} of incident infections are treated and cured;
-\item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma},
-\item so the total clearance rate from treatment is \eqn{\rho h + \sigma}
+\item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
+}
+
+A function describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a \emph{shock} function.
+
+The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}
 After clearing, individuals are
 susceptible to infection.
-A term for mass treatment increases the rate infections are cured: (\eqn{\Xi(t)}).
-}
 
 Infection dynamics are described by:
 
@@ -109,19 +110,22 @@ dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
 
 The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
 the same model as for \eqn{H}:
-for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.} This model has no parameter
-or terms to describe disease-induced mortality.
+for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.}
 
 In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and
 infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant.
 After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 }
 
-\section{Exposure}{
+\section{Prevalence}{
 
 
-For \code{SIS} the \code{FoI} is computed (in \link{Exposure}) under the assumption that
-a constant fraction of infectious bites causes an infection: the parameter \eqn{b.}
+\describe{
+\item{\eqn{x}}{True prevalence is \eqn{x = I/H}}
+\item{\eqn{x_{lm}}}{Expected prevalence by light microscopy is \eqn{q_{lm}\; x}}
+\item{\eqn{x_{rdt}}}{Expected prevalence by RDT is \eqn{q_{rdt}\; x}}
+\item{\eqn{x_{pcr}}}{Expected prevalence by PCR is \eqn{q_{pcr}\; x}}
+}
 }
 
 \section{Infectiousness}{
@@ -129,7 +133,7 @@ a constant fraction of infectious bites causes an infection: the parameter \eqn{
 
 The fraction of mosquitoes that become infected after blood feeding on
 someone who is infectious is \eqn{c.}
-The infectious density of the human (hos) population is \eqn{cI.}
+The infectious density of the human (host) population is \eqn{cxI = cH.}
 }
 
 \section{Mass Treatment}{
@@ -141,7 +145,7 @@ Mass treatment is either:
 
 \describe{
 \item{\code{mda(t)} or \eqn{\Xi(t)}}{mass drug administration}
-\item{\code{msat} or \eqn{\Xi(t)}}{mass screen and treat}
+\item{\code{msat(t)} or \eqn{\Xi(t)}}{mass screen and treat}
 }
 }
 

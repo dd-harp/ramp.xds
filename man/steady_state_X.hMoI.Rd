@@ -19,6 +19,9 @@
 the steady states as a named vector
 }
 \description{
-Compute the steady state of the hMoI model as a function of the daily foi
+Compute the steady state of the \code{hMoI} model as a function of the daily foi
+}
+\seealso{
+\link{hMoI}
 }
 \keyword{internal}

@@ -20,4 +20,19 @@ an \strong{\code{xds}} object
 For the \code{hMoI} module (\strong{XH}) for the \eqn{i^{th}} species,
 change parameter values named in \code{options} leaving other values unchanged.
 }
+\section{Parameters}{
+
+\describe{
+\item{\code{r1} or \eqn{r_1}}{clearance rate for all infections}
+\item{\code{r2} or \eqn{r_2}}{clearance rate for apparent infections, \eqn{r_2 > r_1}}
+\item{\code{b}}{probability of infection per infectious bite}
+\item{\code{c1} or \eqn{c_1}}{probability of transmitting from m1}
+\item{\code{c2} or \eqn{c_2}}{probability of transmitting from m2}
+\item{H}{human or host population density}
+}
+}
+
+\seealso{
+\link{hMoI}
+}
 \keyword{internal}

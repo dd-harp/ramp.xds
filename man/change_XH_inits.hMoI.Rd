@@ -19,5 +19,20 @@ an \strong{\code{xds}} object
 \description{
 For the \code{hMoI} module (\strong{XH}) for the \eqn{i^{th}} species,
 change initial values named in \code{options} leaving other values unchanged.
+
+It must be true that \eqn{m_1 > m_2}, so this condition is checked before
+changing the initial conditions, but some pairs of values would not arise
+from any history of exposure.
+}
+\section{State Variables}{
+
+\describe{
+\item{\code{m1} or \eqn{m_1}}{mean MoI for all infections}
+\item{\code{m2} or \eqn{m_2}}{mean MoI for apparent (detectable) infections}
+}
+}
+
+\seealso{
+\link{hMoI}
 }
 \keyword{internal}

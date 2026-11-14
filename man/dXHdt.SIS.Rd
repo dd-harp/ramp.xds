@@ -19,28 +19,52 @@
 the derivatives, as a vector
 }
 \description{
-Computes derivatives for the \code{SIS} module. For details, see the module documentation \link{SIS}.
+Computes derivatives for the \code{SIS} module (\strong{XH})
 }
-\section{Dynamics}{
+\section{Demography}{
 
 
-The model for demographic change has terms to compute births (\eqn{\mathbf{B}}) and
-deaths (\eqn{\mathbf{D}}):
+Demographic changes (\strong{H}) are given by the equation:
+
 \deqn{
 dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)}
 
-The model for infection dynamics assumes that infections
+This model has no parameter
+or terms to describe disease-induced mortality.
+
+\describe{
+\item{\code{Births} or \eqn{\mathbf{B}}}{the births function}
+\item{\code{Deaths} or \eqn{\mathbf{D}}}{the deaths function}
+}
+
+\strong{Setup:}
+\itemize{
+\item The defaults are no births and no deaths
+\item Use \link{setup_births} to configure \code{Births}
+\item Use \link{setup_deaths} to configure \code{Deaths}
+}
+
+Also, see \link{xds_info_demographic_change}.
+}
+
+\section{Infection Dynamics}{
+
+
+The model for infection dynamics (\strong{X}) assumes that infections
 clear naturally at a constant per-capita rate \eqn{r}.
+
 The model also includes two parameters to model
 treating and curing malaria infections:
 \itemize{
 \item a fraction \eqn{\rho} of incident infections are treated and cured;
-\item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma},
-\item so the total clearance rate from treatment is \eqn{\rho h + \sigma}
+\item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
+}
+
+A function describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a \emph{shock} function.
+
+The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}
 After clearing, individuals are
 susceptible to infection.
-A term for mass treatment increases the rate infections are cured: (\eqn{\Xi(t)}).
-}
 
 Infection dynamics are described by:
 
@@ -49,8 +73,7 @@ dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
 
 The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
 the same model as for \eqn{H}:
-for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.} This model has no parameter
-or terms to describe disease-induced mortality.
+for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.}
 
 In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and
 infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{xds_plot_X.SIS}
 \alias{xds_plot_X.SIS}
-\title{Plot the density of infected individuals for the SIS model}
+\title{Plot the density of infected individuals for the \code{SIS} model}
 \usage{
 \method{xds_plot_X}{SIS}(
   xds_obj,
@@ -24,6 +24,9 @@
 \item{add}{plot axes only if FALSE}
 }
 \description{
-Plot the density of infected individuals for the SIS model
+Plot the density of infected individuals for the \code{SIS} model
+}
+\seealso{
+\link{SIS}
 }
 \keyword{internal}

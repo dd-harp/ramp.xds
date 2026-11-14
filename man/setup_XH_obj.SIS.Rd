@@ -53,9 +53,9 @@ the dynamics, or detection by diagnostic methods.
 \item{\code{c}}{the probability an infected person would infect a mosquito}
 \item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
 \item{\code{sigma} or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
-\item{\code{q_lm}}{expected prevalence by light microscopy would be \eqn{q_{lm} \;x}}
-\item{\code{q_rdt}}{expected prevalence by RDT would be \eqn{q_{rdt} \;x}}
-\item{\code{q_pcr}}{expected prevalence by PCR would be \eqn{q_{pcr} \;x}}
+\item{\code{q_lm}}{test positivity by light microscopy}
+\item{\code{q_rdt}}{test positivity by RDT}
+\item{\code{q_pcr}}{test positivity by PCR}
 }
 }
 

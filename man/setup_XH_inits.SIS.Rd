@@ -18,7 +18,7 @@ an \strong{\code{xds}} object
 }
 \description{
 Set initial values for all the variables in the \code{SIS} module
-(\strong{XH}) for the \eqn{i^{th}} species.
+(\strong{XH}) for the \eqn{i^{th}} host species.
 \itemize{
 \item \link{make_XH_inits_SIS} supplies default values
 \item The values in \code{options} override the defaults
@@ -36,4 +36,7 @@ see the inline module documentation.
 }
 }
 
+\seealso{
+\link{SIS}
+}
 \keyword{internal}

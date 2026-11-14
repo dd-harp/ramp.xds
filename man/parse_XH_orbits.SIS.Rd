@@ -17,6 +17,9 @@
 a \link{list}
 }
 \description{
-Implements \link{parse_XH_orbits} for the SIS model
+Implements \link{parse_XH_orbits} for the \code{SIS} model
+}
+\seealso{
+\link{SIS}
 }
 \keyword{internal}

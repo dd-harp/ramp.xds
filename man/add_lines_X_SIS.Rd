@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{add_lines_X_SIS}
 \alias{add_lines_X_SIS}
-\title{Add lines for the density of infected individuals for the SIS model}
+\title{Add lines for the density of infected individuals for the \code{SIS} model}
 \usage{
 add_lines_X_SIS(time, XH, nStrata, clrs = c("darkblue", "darkred"), llty = 1)
 }
@@ -18,6 +18,9 @@ add_lines_X_SIS(time, XH, nStrata, clrs = c("darkblue", "darkred"), llty = 1)
 \item{llty}{an integer (or integers) to set the \code{lty} for plotting}
 }
 \description{
-Add lines for the density of infected individuals for the SIS model
+Add lines for the density of infected individuals for the \code{SIS} model
+}
+\seealso{
+\link{SIS}
 }
 \keyword{internal}

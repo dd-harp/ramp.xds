@@ -15,6 +15,9 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_prevalence} for the hMoI model.
+Implements \link{F_prevalence} for the \code{hMoI} model.
+}
+\seealso{
+\link{hMoI}
 }
 \keyword{internal}

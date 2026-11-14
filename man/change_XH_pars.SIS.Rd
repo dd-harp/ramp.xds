@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{change_XH_pars.SIS}
 \alias{change_XH_pars.SIS}
-\title{Get parameters for \code{SIS} (\strong{XH})}
+\title{Change parameters for \code{SIS} (\strong{XH})}
 \usage{
 \method{change_XH_pars}{SIS}(xds_obj, options = list(), i = 1)
 }
@@ -17,7 +17,7 @@
 an \strong{\code{xds}} object
 }
 \description{
-For the \code{SIS} module (\strong{XH}) for the \eqn{i^{th}} species,
+For the \code{SIS} module (\strong{XH}) for the \eqn{i^{th}} host species,
 change parameter values named in \code{options} leaving other values unchanged.
 }
 \section{Parameters}{
@@ -32,13 +32,13 @@ the dynamics, or detection by diagnostic methods.
 \item{\code{c}}{the probability an infected person would infect a mosquito}
 \item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
 \item{\code{sigma} or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
-\item{\code{q_lm}}{expected prevalence by light microscopy would be \eqn{q_{lm} \;x}}
-\item{\code{q_rdt}}{expected prevalence by RDT would be \eqn{q_{rdt} \;x}}
-\item{\code{q_pcr}}{expected prevalence by PCR would be \eqn{q_{pcr} \;x}}
+\item{\code{q_lm}}{test positivity by light microscopy}
+\item{\code{q_rdt}}{test positivity by RDT}
+\item{\code{q_pcr}}{test positivity by PCR}
 }
 }
 
 \seealso{
-\code{\link[=get_XH_pars.SIS]{get_XH_pars.SIS()}} and the github.io essay on \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Dynamics}
+\link{SIS}, \code{\link[=get_XH_pars.SIS]{get_XH_pars.SIS()}} and the vignette on \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Dynamics}
 }
 \keyword{internal}

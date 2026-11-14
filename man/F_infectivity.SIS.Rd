@@ -18,7 +18,10 @@ The constant \eqn{b}
 }
 \description{
 This function computes the fraction of infectious
-bites that cause an infection. The SIS model,
+bites that cause an infection. The \code{SIS} model
 assumes a constant fraction causes infection, \eqn{b}.
+}
+\seealso{
+\link{SIS}
 }
 \keyword{internal}

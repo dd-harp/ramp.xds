@@ -22,4 +22,7 @@ from the flat state variable
 vector \eqn{y}, and return
 the values as a named list
 }
+\seealso{
+\link{SIS}
+}
 \keyword{internal}

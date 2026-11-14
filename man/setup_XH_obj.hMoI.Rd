@@ -31,6 +31,26 @@ This sets up an \code{hMoI} model object for the \strong{XH} module for the \eqn
 \note{
 The module object is stored at \code{xds_obj$XH_obj[[i]]}
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{m1} or \eqn{m_1}}{mean MoI for all infections}
+\item{\code{m2} or \eqn{m_2}}{mean MoI for apparent (detectable) infections}
+}
+}
+
+\section{Parameters}{
+
+\describe{
+\item{\code{r1} or \eqn{r_1}}{clearance rate for all infections}
+\item{\code{r2} or \eqn{r_2}}{clearance rate for apparent infections, \eqn{r_2 > r_1}}
+\item{\code{b}}{probability of infection per infectious bite}
+\item{\code{c1} or \eqn{c_1}}{probability of transmitting from m1}
+\item{\code{c2} or \eqn{c_2}}{probability of transmitting from m2}
+\item{H}{human or host population density}
+}
+}
+
 \seealso{
 \link{hMoI}, \link{make_XH_obj_hMoI}
 }

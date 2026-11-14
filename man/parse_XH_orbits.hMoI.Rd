@@ -17,6 +17,9 @@
 a \link{list}
 }
 \description{
-Implements \link{parse_XH_orbits} for the hMoI model
+Implements \link{parse_XH_orbits} for the \code{hMoI} model
+}
+\seealso{
+\link{hMoI}
 }
 \keyword{internal}

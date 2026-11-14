@@ -320,7 +320,7 @@ get_XH_vars.trivial<- function(y, xds_obj, i) {
 }
 
 
-#' @title Get parameters for `trivial` (**XH**)
+#' @title Change parameters for `trivial` (**XH**)
 #' @description For the `trivial` module (**XH**) for the \eqn{i^{th}} species,
 #' change parameter values named in `options` leaving other values unchanged.
 #' @param xds_obj an **`xds`** model object

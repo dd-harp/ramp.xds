@@ -17,4 +17,7 @@ an \strong{\code{xds}} object
 \description{
 Check / update before solving
 }
+\seealso{
+\link{SIS}
+}
 \keyword{internal}
