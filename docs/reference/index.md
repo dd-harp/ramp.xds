@@ -50,6 +50,9 @@ Build an xds model object
 
   **`ramp.xds`**: Initial Conditions
 
+- [`xds_info_demographic_change`](https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.md)
+  : Demographic Change
+
 - [`xds_info_advanced_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)
   :
 
@@ -71,6 +74,8 @@ Setting the value of structural parameters
 
 - [`XH_module_list`](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md)
   : XH modules
+- [`xds_info_demographic_change`](https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.md)
+  : Demographic Change
 - [`MY_module_list`](https://dd-harp.github.io/ramp.xds/reference/MY_module_list.md)
   : MY Modules
 - [`L_module_list`](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md)
@@ -524,7 +529,7 @@ Change parameters
 - [`change_XH_pars()`](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.md)
   :
 
-  Change **XH** parameters
+  Change parameters (**XH**)
 
 - [`change_H()`](https://dd-harp.github.io/ramp.xds/reference/change_H.md)
   : Change human population density
@@ -653,11 +658,11 @@ XH component module implementations
 
 - [`SIS`](https://dd-harp.github.io/ramp.xds/reference/SIS.md) :
 
-  The `SIS` module for the XH component
+  The `SIS` module for the **XH** component
 
 - [`hMoI`](https://dd-harp.github.io/ramp.xds/reference/hMoI.md) :
 
-  The `hMoI` module for the XH component
+  The `hMoI` module for the **XH** component
 
 ### Human / Host Demography (H)
 
@@ -710,7 +715,7 @@ Utilities for Time Spent Matrices
 - [`change_XH_pars()`](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.md)
   :
 
-  Change **XH** parameters
+  Change parameters (**XH**)
 
 - [`get_HTC()`](https://dd-harp.github.io/ramp.xds/reference/get_HTC.md)
   : Compute the human transmitting capacity
@@ -839,7 +844,7 @@ Adult mosquito ecology and infection dynamics
 
 - [`SI`](https://dd-harp.github.io/ramp.xds/reference/SI.md) :
 
-  The `SI` module for the MY component
+  The `SI` module for the **MY** component
 
 - [`macdonald`](https://dd-harp.github.io/ramp.xds/reference/macdonald.md)
   :

@@ -1,6 +1,6 @@
 # Compute steady states for `hMoI` (**X**-model)
 
-Compute the steady state of the hMoI model as a function of the daily
+Compute the steady state of the `hMoI` model as a function of the daily
 foi
 
 ## Usage
@@ -31,3 +31,7 @@ steady_state_X(foi, H, xds_obj, i = 1)
 ## Value
 
 the steady states as a named vector
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

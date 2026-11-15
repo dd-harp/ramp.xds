@@ -1,4 +1,4 @@
-# Get parameters for `trivial` (**XH**)
+# Change parameters for `trivial` (**XH**)
 
 For the `trivial` module (**XH**) for the \\(i^{th}\\) species, change
 parameter values named in `options` leaving other values unchanged.

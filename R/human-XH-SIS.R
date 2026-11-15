@@ -17,6 +17,8 @@
 #' + functions to model mass treatment;
 #' + support for progressive stratification
 #' 
+#' The [SIS Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html) discusses the module. 
+#' 
 #' @section State Variables:
 #' 
 #' \describe{
@@ -36,17 +38,17 @@
 #' or terms to describe disease-induced mortality.
 #' 
 #' \describe{
-#'   \item{`Births` or \eqn{\mathbf{B}}}{the births function}
-#'   \item{`Deaths` or \eqn{\mathbf{D}}}{the deaths function}
+#'   \item{[`Births`] or \eqn{\mathbf{B}}}{the births function}
+#'   \item{[`Deaths`] or \eqn{\mathbf{D}}}{the deaths function}
 #' } 
 #' 
 #' **Setup:** 
 #' 
 #' + The defaults are no births and no deaths
 #' 
-#' + Use [setup_births] to configure `Births`
+#' + Use [setup_births] to configure [`Births`]
 #' 
-#' + Use [setup_deaths] to configure `Deaths`
+#' + Use [setup_deaths] to configure [`Deaths`]
 #' 
 #' Also, see [xds_info_demographic_change].
 #' 
@@ -148,12 +150,20 @@ NULL
 #' @title Compute derivatives for `SIS` (**XH**)
 #'
 #' @description
-#'
-#' Computes derivatives for the `SIS` module (**XH**)
+#' 
+#' The derivatives for the `SIS` module are:
+#'  
+#' \deqn{\begin{array}{rl}
+#' dH/dt &= \mathbf{B}(t,H) - \mathbf{D}(H) \\
+#' dI/dt &= h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) 
+#' \end{array}}
+#' and \eqn{S = H-I}
 #'
 #' @inheritSection SIS Demography
 #' 
 #' @inheritSection SIS Infection Dynamics
+#' 
+#'@inheritSection SIS Infection Dynamics
 #' 
 #' @inheritParams dXHdt
 #'
@@ -168,7 +178,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
   with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]], {
       dH <- Births(t, xds_obj, i) - Deaths(t, H, xds_obj, i)
-      dI <- foi*(1-rho)*(H-I) - (r + sigma)*I - Deaths(t, I, xds_obj, i)
+      dI <- foi*(1-rho)*(H-I) - (r + sigma + rho*foi)*I - Deaths(t, I, xds_obj, i)
       dI <- dI - mda(t)*I - msat(t)*I
       return(c(dH, dI))
     })

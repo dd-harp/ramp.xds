@@ -23,9 +23,9 @@ The density of adult mosquitoes is \eqn{M}.
 The \strong{parameters} describing egg laying by adult mosquitoes are:
 \itemize{
 \item \eqn{\nu} or \code{nu} is the egg laying rate
-\item \eqn{\xi} or \code{eggsPerBatch} is the number of eggs per batch
+\item \eqn{\Gamma} or \code{eggsPerBatch} is the number of eggs per batch
 }
 
-The egg laying rate, per patch, is \deqn{\nu \xi M}
+The egg laying rate, per patch, is \deqn{\nu \Gamma M}
 }
 \keyword{internal}

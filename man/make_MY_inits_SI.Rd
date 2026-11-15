@@ -21,4 +21,16 @@ a \link{list}
 \description{
 Make inits for \code{SI} adult mosquito model
 }
+\section{State Variables}{
+
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+}
+}
+
+\seealso{
+\link{SI}, \link{setup_MY_inits.SI}
+}
 \keyword{internal}

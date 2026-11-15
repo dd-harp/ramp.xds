@@ -20,4 +20,22 @@ an \strong{\code{xds}} object
 For the \code{SI} module (\strong{MY}) for the \eqn{s^{th}} species,
 change parameter values named in \code{options} leaving other values unchanged.
 }
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rate}
+\item{\code{q}}{human fraction}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period}
+\item{\code{g}}{mosquito mortality rate}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate}
+\item{\code{mu} or \eqn{\mu}}{emigration loss rate}
+\item{\code{K}}{mosquito dispersal matrix}
+\item{\code{nu} or \eqn{\nu}}{egg laying rate, the number of egg patches, per mosquito, per day}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{the number of eggs per batch}
+}
+}
+
+\seealso{
+\link{SI}, \link{get_MY_pars.SI}
+}
 \keyword{internal}

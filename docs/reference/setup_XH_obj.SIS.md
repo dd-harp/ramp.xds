@@ -48,6 +48,60 @@ an **`xds`** object
 
 The module object is stored at `xds_obj$XH_obj[[i]]`
 
+## State Variables
+
+- `H`:
+
+  the total human or host population density
+
+- `I`:
+
+  the density of infected humans or hosts
+
+- `S=H-I`:
+
+  the density of susceptible humans or hosts
+
+## Parameters
+
+The parameters that are returned by
+[get_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md)
+and also modifiable by
+[change_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.SIS.md)
+describe the dynamics, or detection by diagnostic methods.
+
+- `b`:
+
+  the fraction of infective bites that would cause an infection
+
+- `r`:
+
+  clearance rate for infections
+
+- `c`:
+
+  the probability an infected person would infect a mosquito
+
+- `rho` or \\(\rho\\):
+
+  the fraction of incident infections that are treated and cured
+
+- `sigma` or \\(\sigma\\):
+
+  the rate that prevalent infections are treated and cured
+
+- `q_lm`:
+
+  test positivity by light microscopy
+
+- `q_rdt`:
+
+  test positivity by RDT
+
+- `q_pcr`:
+
+  test positivity by PCR
+
 ## See also
 
 [SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md),

@@ -18,6 +18,8 @@ This generalized implementation includes:
 \item functions to model mass treatment;
 \item support for progressive stratification
 }
+
+The \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Vignette} discusses the module.
 }
 \section{State Variables}{
 
@@ -41,15 +43,15 @@ This model has no parameter
 or terms to describe disease-induced mortality.
 
 \describe{
-\item{\code{Births} or \eqn{\mathbf{B}}}{the births function}
-\item{\code{Deaths} or \eqn{\mathbf{D}}}{the deaths function}
+\item{\code{\link{Births}} or \eqn{\mathbf{B}}}{the births function}
+\item{\code{\link{Deaths}} or \eqn{\mathbf{D}}}{the deaths function}
 }
 
 \strong{Setup:}
 \itemize{
 \item The defaults are no births and no deaths
-\item Use \link{setup_births} to configure \code{Births}
-\item Use \link{setup_deaths} to configure \code{Deaths}
+\item Use \link{setup_births} to configure \code{\link{Births}}
+\item Use \link{setup_deaths} to configure \code{\link{Deaths}}
 }
 
 Also, see \link{xds_info_demographic_change}.

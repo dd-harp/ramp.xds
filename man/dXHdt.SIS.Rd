@@ -19,7 +19,13 @@
 the derivatives, as a vector
 }
 \description{
-Computes derivatives for the \code{SIS} module (\strong{XH})
+The derivatives for the \code{SIS} module are:
+
+\deqn{\begin{array}{rl}
+dH/dt &= \mathbf{B}(t,H) - \mathbf{D}(H) \\
+dI/dt &= h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) 
+\end{array}}
+and \eqn{S = H-I}
 }
 \section{Demography}{
 
@@ -33,21 +39,52 @@ This model has no parameter
 or terms to describe disease-induced mortality.
 
 \describe{
-\item{\code{Births} or \eqn{\mathbf{B}}}{the births function}
-\item{\code{Deaths} or \eqn{\mathbf{D}}}{the deaths function}
+\item{\code{\link{Births}} or \eqn{\mathbf{B}}}{the births function}
+\item{\code{\link{Deaths}} or \eqn{\mathbf{D}}}{the deaths function}
 }
 
 \strong{Setup:}
 \itemize{
 \item The defaults are no births and no deaths
-\item Use \link{setup_births} to configure \code{Births}
-\item Use \link{setup_deaths} to configure \code{Deaths}
+\item Use \link{setup_births} to configure \code{\link{Births}}
+\item Use \link{setup_deaths} to configure \code{\link{Deaths}}
 }
 
 Also, see \link{xds_info_demographic_change}.
 }
 
 \section{Infection Dynamics}{
+
+
+The model for infection dynamics (\strong{X}) assumes that infections
+clear naturally at a constant per-capita rate \eqn{r}.
+
+The model also includes two parameters to model
+treating and curing malaria infections:
+\itemize{
+\item a fraction \eqn{\rho} of incident infections are treated and cured;
+\item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
+}
+
+A function describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a \emph{shock} function.
+
+The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}
+After clearing, individuals are
+susceptible to infection.
+
+Infection dynamics are described by:
+
+\deqn{
+dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
+
+The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
+the same model as for \eqn{H}:
+for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.}
+
+In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and
+infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant.
+After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
+
 
 
 The model for infection dynamics (\strong{X}) assumes that infections

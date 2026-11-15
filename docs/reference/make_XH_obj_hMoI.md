@@ -58,3 +58,7 @@ make_XH_obj_hMoI(
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

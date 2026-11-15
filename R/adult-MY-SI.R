@@ -5,7 +5,28 @@
 #' @description
 #' 
 #' This implements a model for basic mosquito ecology and an `SI` 
-#' compartmental model for mosquito infection dynamics
+#' compartmental model for mosquito infection dynamics. In its simplest form, the 
+#' density of all mosquitoes \eqn{(M)} and infected mosquitoes \eqn{(Y)} are: 
+#' \deqn{
+#' \begin{array}{rl}
+#' dM/dt &= \Lambda - g M \\ 
+#' dY/dt &= fq\kappa(M-Y) - g Y
+#' \end{array}
+#' }
+#' In this generalized implementation:
+#' 
+#' + the dynamics are spatial, a metapopulation model, so the states are replicated for the mosquito population in each patch
+#' 
+#' + the module includes parameters describing mosquito dispersal
+#' 
+#' + biting by infectious mosquitoes occurs as if the infected mosquitoes had survived and dispersed through the EIP \eqn{(\tau)} 
+#' 
+#' + parameters are included for egg laying
+#' 
+#' + the core bionomic parameters are set up to compute a *changing baseline* that can be *modified by vector control*
+#' 
+#' The [SI Vignette](https://dd-harp.github.io/ramp.xds/articles/adult_si.html) discusses the module. 
+#'  
 #' 
 #' @section State Variables:
 #' 
@@ -14,85 +35,108 @@
 #'   \item{`Y`}{density of infected adult mosquitoes}
 #' }
 #' 
-#' The density of susceptible mosquitoes is \eqn{M-Y}
 #' 
-#' @section Dynamics:
+#' @section Dynamical Terms: 
 #' 
-#' **Dynamical Terms** 
+#' \describe{
+#'   \item{`Lambda` or \eqn{\Lambda}}{the number of adult mosquitoes emerging, per patch, per day, computed by [Emergence]}
+#'   \item{`kappa` or \eqn{\kappa}}{net infectiousness: the probability a mosquito becomes infected after blood feeding on a human, is computed by [Transmission]}
+#' }
 #' 
-#' + Mosquitoes are born at the rate \eqn{\Lambda,} which is a dynamical term computed by [Emergence].
-#' 
-#' + The fraction of mosquitoes that get infected after blood feeding on a human, \eqn{\kappa,} is a dynamical term computed by [Transmission].
-#' 
-#' **Parameters** 
-#' 
-#' + Mosquito survival and dispersal is given by the demographic matrix, \eqn{\Omega} 
-#' 
-#' + Mosquitoes blood feed at the rate \eqn{f.} The human fraction, \eqn{q,} is the fraction of blood meals on human.
-#' 
-#' **Derivatives** 
-#' 
-#' The model computes these derivatives: 
-#' 
-#' \deqn{
-#' \begin{array}{rl}
-#' dM/dt &= \Lambda - \Omega \cdot M \\
-#' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
-#' \end{array}}
-#' 
-#' 
-#' @section Infective Biting: 
-#' 
-#' To compute the infective biting density, this model configures a parameter
-#' for the EIP, \eqn{\tau.} Survival and dispersal through the EIP is
-#' \deqn{\Upsilon = e^{-\Omega \tau}.}
-#' Infective biting is given by 
-#' \deqn{fqZ = \Upsilon \cdot \left( f q Y \right) }
-#'  
-#'
-#' @section Egg Laying:
-#' 
-#' The egg laying rate.
-#'
-#'
 #' @section Parameters:
 #' \describe{
 #'   \item{`f`}{blood feeding rate}
-#'   \item{`q`}{human blood fraction}
-#'   \item{`eip`}{extrinsic incubation period (\eqn{\tau})}
+#'   \item{`q`}{human fraction}
+#'   \item{`eip` or \eqn{\tau}}{extrinsic incubation period}
 #'   \item{`g`}{mosquito mortality rate}
-#'   \item{`sigma`}{emigration rate}
-#'   \item{`mu`}{emigration loss rate}
+#'   \item{`sigma` or \eqn{\sigma}}{emigration rate}
+#'   \item{`mu` or \eqn{\mu}}{emigration loss rate}
 #'   \item{`K`}{mosquito dispersal matrix}
+#'   \item{`nu` or \eqn{\nu}}{egg laying rate, the number of egg patches, per mosquito, per day}
+#'   \item{`eggsPerBatch` or \eqn{\Gamma}}{the number of eggs per batch}
 #' }
-#'
-#' @section Demography:
-#'
-#' + Mosquitoes emigrate from patches at the per-capita rates \eqn{\sigma} 
 #' 
-#' + Some fraction of emigrating mosquitoes is lost (\eqn{\mu}), which could include so total population loss from a patch is \eqn{g + \mu \sigma}
+#' 
+#' @section Ecology:
+#' 
+#' \deqn{
+#' dM/dt = \Lambda - \Omega \cdot M 
+#' }
+#' 
+#' **Emergence** 
+#' The model for mosquito ecology uses the stored value `Lambda` computed in [Emergence]. 
+#' 
+#' **Survival and Dispersal** 
+#' 
+#' The parameter \eqn{g} is interpreted as the per-capita mortality rate for mosquitoes
+#' while they are in a patch. Mosquitoes emigrate from patches at the per-capita rates \eqn{\sigma},  
+#' and some fraction of emigrating mosquitoes is lost (\eqn{\mu}). The total rate of loss from a
+#' a patch is \deqn{g + \mu \sigma.}
+#'  
+#' The columns of the mosquito dispersal matrix \eqn{(K)} sum
+#' to zero. For non-trivial dispersal matrices:  
+#' \deqn{\mbox{diag}\left(K\right)=-1} 
+#' and the non-diagonal elements are fraction of surviving mosquitoes that arrive at another patch after
+#' a flight bout. If there is any population loss associated with emigration, it goes in the term \eqn{\mu}. 
 #' 
 #' The demographic matrix, \eqn{\Omega} is computed as
 #' \deqn{\Omega = \mbox{diag}\left(g + \sigma \mu \right) - K \cdot \mbox{diag}\left(\sigma \left(1-\mu\right)\right)}
 #' 
-#' @section Inputs:
+#'  
 #' 
-#' **Emergence** -- `Lambda` or \eqn{\Lambda}, is computed 
-#' by the **ML**-Interface using outputs of the **L** Component
+#' @section Infection Dynamics: 
 #' 
+#' \deqn{
+#' dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\
+#' }
 #' 
-#' **Net Infectiousness** -- `kappa` or \eqn{\kappa}, is computed 
-#' by the **XY**-Interface using outputs of the **XH** Component 
+#' **Blood Feeding** 
+#' 
+#' Mosquitoes blood feed at the rate \eqn{f.} 
+#' 
+#' The human fraction, \eqn{q,} is the fraction of blood meals on human.
+#' The model computes these derivatives: 
+#' 
+#' **Net Infectiousness** 
 #' 
 
+#' 
+#' @section Infective Biting: 
+#' 
+#' \describe{
+#'   \item{\eqn{f}}{blood feeding rate}
+#'   \item{\eqn{q}}{human fraction}
+#'   \item{\eqn{\Upsilon}}{survival and dispersal through the extrinsic incubation period}
+#'   \item{\eqn{Z}}{density of infectious mosquitoes}
+#'   \item{`fqZ`}{infective biting rate: the number of infectious bites, per patch, per day \deqn{fqZ = e^{-\Omega \tau} \cdot \left( f q Y \right) }}
+#' } 
+#' 
+#' To compute the infective biting density, this model configures a parameter
+#' for the EIP, \eqn{\tau.} 
+#' Infective biting is given by 
+#' \deqn{fqZ = \Upsilon \cdot \left( f q Y \right).}
+#' 
+#' \eqn{fqZ} is the dynamical term used by [Transmission] to compute the EIR. 
 #'
-#' @section Net Infective Biting:
-#' This model incorporates mortality and dispersal through the EIP, 
-#' but it ignores the delay. The density of infectious mosquitoes
-#' is thus: 
-#' \deqn{Z = e^{-\Omega \tau} \cdot Y}
-#' so net infective biting, the `fqZ` term, is given by:
-#' \deqn{fqZ = fq \left(e^{-\Omega \tau} \cdot Y\right)}
+#' @section Egg Laying:
+#' 
+#' \describe{
+#'   \item{\eqn{\nu}}{egg laying rate, the number of egg patches, per mosquito, per day}
+#'   \item{\eqn{\Gamma}}{the number of eggs laid, per batch}
+#'   \item{`G`}{the number of eggs laid, per patch, per day \deqn{G = \nu M \Gamma }}
+#' }
+#' 
+#' \eqn{G} is the dynamical term passed to [EggLaying] to distribute eggs among the habitats
+#' that are found in each patch.
+#'
+#' @seealso
+#' 
+#' + Basic Setup: [make_MY_obj_SI], [setup_MY_obj.SI]
+#' + Dynamics: [dMYdt.SI]
+#' + Parameters: [get_MY_pars.SI], [change_MY_pars.SI]
+#' + Variables: [make_MY_inits_SI], [get_MY_inits], [change_MY_inits.SI], [setup_MY_inits.SI]
+#' + The [SI Vignette](https://dd-harp.github.io/ramp.xds/articles/adult_si.html)
+#' 
 #' @name SI
 #' @rdname SI
 NULL
@@ -127,43 +171,21 @@ check_MY.SI = function(xds_obj, s){
 }
 
 #' @title Compute derivatives for `SI` (**MY**)
-#'
-#' @description The `SI` model for mosquito infection
-#' dynamics has the defined **variable** classes:
-#' - \eqn{M} is the density of mosquitoes in each patch;
-#' - \eqn{Y} is the density of infected mosquitoes in each patch.
-#'
-#' The density of infectious mosquitoes in each patch is
-#' given by a term (returned by [F_fqZ.SI]):
-#' \deqn{Z = e^{-\Omega \tau} \cdot Y}
-#'
-#' The model blood feeding **parameters** are:
-#' - \eqn{f} is the overall blood feeding rate
-#' - \eqn{q} is the human fraction for blood feeding
-#'
-#' The **parameters** describing egg laying (see [F_eggs.SI]) are:
-#' - \eqn{\nu} is the egg laying rate
-#' - \eqn{\xi} is the number of eggs per batch
-#'
-#' The model demographic **parameters** are:
-#' - \eqn{g} is the mortality rate
-#' - \eqn{\sigma} is the emigration rate
-#' - \eqn{\mu} is the emigration loss rate
-#' - \eqn{K} is the mosquito dispersal matrix
-#'
-#' The four parameters describing mortality and migration are used to construct a
-#' demographic matrix:
-#' \deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) -  K \right) \cdot \mbox{diag}\left(\sigma\right)}
-#'
-#' The emergence rate of adult mosquitoes, \eqn{\Lambda}, is computed by [F_emerge],
-#' and the **derivatives** are given by the equations:
+#' 
+#' @description
+#' 
+#' The derivatives for the `SI` module are:
+#' 
 #' \deqn{
-#' \begin{array}{rr}
+#' \begin{array}{rl}
 #' dM/dt = & \Lambda - \Omega \cdot M \\
 #' dY/dt = & f q \kappa (M-Y) - \Omega \cdot Y
-#' \end{array}.
+#' \end{array}
 #' }
-#'
+#' 
+#' @inheritSection SI Ecology
+#' @inheritSection SI Infection Dynamics
+#' 
 #' @inheritParams dMYdt
 #' @seealso [F_fqZ.SI] and [F_eggs.SI]
 #' @return a vector with the derivatives
@@ -252,9 +274,9 @@ F_fqM.SI <- function(t, y, xds_obj, s){
 #' @description The density of adult mosquitoes is \eqn{M}.
 #' The **parameters** describing egg laying by adult mosquitoes are:
 #' - \eqn{\nu} or `nu` is the egg laying rate
-#' - \eqn{\xi} or `eggsPerBatch` is the number of eggs per batch
+#' - \eqn{\Gamma} or `eggsPerBatch` is the number of eggs per batch
 #'
-#' The egg laying rate, per patch, is \deqn{\nu \xi M}
+#' The egg laying rate, per patch, is \deqn{\nu \Gamma M}
 #'
 #' @inheritParams F_eggs
 #' @return a [numeric] vector of length `nPatches`
@@ -330,12 +352,15 @@ MEffectSizes.SI <- function(t, y, xds_obj, s) {
 #' + the initial conditions are set by [setup_MY_inits]
 #' + `options` is passed to both to override the defaults
 #' 
-#' @seealso [SI], [make_MY_obj_SI]
+#' @inheritSection SI State Variables
+#' @inheritSection SI Parameters
+#' 
+#' @seealso [SI], [make_MY_obj_SI], [setup_MY_inits.SI]
 #' 
 #' @note The module object is stored at `xds_obj$MY_obj[[s]]`
 #' 
 #' @inheritParams setup_MY_obj
-#' @return a [list] vector
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 setup_MY_obj.SI = function(MYname, xds_obj, options=list(), s=1){
@@ -349,6 +374,8 @@ setup_MY_obj.SI = function(MYname, xds_obj, options=list(), s=1){
 }
 
 #' @title Make parameters for SI ODE adult mosquito model
+#' @inheritSection SI Parameters
+#' 
 #' @param nPatches is the number of patches, an integer
 #' @param options a named list: named values override defaults
 #' @param eip the extrinsic incubation period
@@ -360,6 +387,7 @@ setup_MY_obj.SI = function(MYname, xds_obj, options=list(), s=1){
 #' @param nu oviposition rate, per mosquito
 #' @param eggsPerBatch eggs laid per oviposition
 #' @return a [list]
+#' @seealso [SI], [setup_MY_obj.SI]
 #' @keywords internal
 #' @export
 make_MY_obj_SI = function(nPatches, options=list(), eip=0,
@@ -443,9 +471,12 @@ parse_MY_orbits.SI <- function(outputs, xds_obj, s) {
 
 #' @title Get parameters for `SI` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @inheritSection SI Parameters
+#' 
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
+#' @seealso [SI], [change_MY_pars.SI]
 #' @keywords internal
 #' @export
 get_MY_pars.SI <- function(xds_obj, s=1) {
@@ -458,7 +489,10 @@ get_MY_pars.SI <- function(xds_obj, s=1) {
 #' @title Change parameters for `SI` (**MY**)
 #' @description For the `SI` module (**MY**) for the \eqn{s^{th}} species,
 #' change parameter values named in `options` leaving other values unchanged.
+#' @inheritSection SI Parameters
+#' 
 #' @inheritParams change_MY_pars
+#' @seealso [SI], [get_MY_pars.SI]
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
@@ -489,8 +523,11 @@ change_MY_pars.SI <- function(xds_obj, options=list(), s=1) {
 #' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_MY_inits] or
 #' see the inline module documentation.
+#' @inheritSection SI State Variables
+#' 
 #' @inheritParams setup_MY_inits
-#' @return a [list]
+#' @seealso [SI], [make_MY_inits_SI]
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 setup_MY_inits.SI = function(xds_obj, options=list(), s=1){
@@ -500,11 +537,14 @@ setup_MY_inits.SI = function(xds_obj, options=list(), s=1){
 
 
 #' @title Make inits for `SI` adult mosquito model
+#' @inheritSection SI State Variables
+#' 
 #' @param nPatches the number of patches in the model
 #' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch
 #' @param Y infected mosquito density at each patch
 #' @return a [list]
+#' @seealso [SI], [setup_MY_inits.SI]
 #' @keywords internal
 #' @export
 make_MY_inits_SI = function(nPatches, options = list(),
@@ -520,9 +560,12 @@ make_MY_inits_SI = function(nPatches, options = list(),
 #' @description For the `SI` module (**MY**) for the \eqn{s^{th}} species,
 #' change initial values named in `options` leaving other values unchanged.
 #'
+#' @inheritSection SI State Variables
+#' 
 #' @inheritParams change_MY_inits
 #'
-#' @return a [list]
+#' @seealso [SI], [get_MY_inits], [make_MY_inits_SI], [setup_MY_inits.SI]
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 change_MY_inits.SI = function(xds_obj, options=list(), s=1){

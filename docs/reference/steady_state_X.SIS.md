@@ -1,6 +1,6 @@
-# Compute the steady states for the SIS model as a function of the daily EIR
+# Compute the steady states for the `SIS` model as a function of the daily EIR
 
-Compute the steady state of the SIS model as a function of the daily
+Compute the steady state of the `SIS` model as a function of the daily
 eir.
 
 ## Usage
@@ -31,3 +31,7 @@ steady_state_X(foi, H, xds_obj, i = 1)
 ## Value
 
 the steady states as a named vector
+
+## See also
+
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

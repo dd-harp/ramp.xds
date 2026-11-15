@@ -1,7 +1,7 @@
 # Compute population density
 
 Implements [F_H](https://dd-harp.github.io/ramp.xds/reference/F_H.md)
-for the *SIS* module
+for the `SIS` module
 
 ## Usage
 
@@ -31,3 +31,7 @@ F_H(t, y, xds_obj, i)
 ## Value
 
 Human (host) population density, \\(H\\)
+
+## See also
+
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

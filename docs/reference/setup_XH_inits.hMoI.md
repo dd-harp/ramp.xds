@@ -36,3 +36,7 @@ setup_XH_inits(xds_obj, options = list(), i = 1)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html) vector
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

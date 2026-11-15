@@ -32,3 +32,7 @@ F_H(t, y, xds_obj, i)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nStrata`
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

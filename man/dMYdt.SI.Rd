@@ -19,50 +19,59 @@
 a vector with the derivatives
 }
 \description{
-The \code{SI} model for mosquito infection
-dynamics has the defined \strong{variable} classes:
-\itemize{
-\item \eqn{M} is the density of mosquitoes in each patch;
-\item \eqn{Y} is the density of infected mosquitoes in each patch.
-}
+The derivatives for the \code{SI} module are:
 
-The density of infectious mosquitoes in each patch is
-given by a term (returned by \link{F_fqZ.SI}):
-\deqn{Z = e^{-\Omega \tau} \cdot Y}
-
-The model blood feeding \strong{parameters} are:
-\itemize{
-\item \eqn{f} is the overall blood feeding rate
-\item \eqn{q} is the human fraction for blood feeding
-}
-
-The \strong{parameters} describing egg laying (see \link{F_eggs.SI}) are:
-\itemize{
-\item \eqn{\nu} is the egg laying rate
-\item \eqn{\xi} is the number of eggs per batch
-}
-
-The model demographic \strong{parameters} are:
-\itemize{
-\item \eqn{g} is the mortality rate
-\item \eqn{\sigma} is the emigration rate
-\item \eqn{\mu} is the emigration loss rate
-\item \eqn{K} is the mosquito dispersal matrix
-}
-
-The four parameters describing mortality and migration are used to construct a
-demographic matrix:
-\deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) -  K \right) \cdot \mbox{diag}\left(\sigma\right)}
-
-The emergence rate of adult mosquitoes, \eqn{\Lambda}, is computed by \link{F_emerge},
-and the \strong{derivatives} are given by the equations:
 \deqn{
-\begin{array}{rr}
+\begin{array}{rl}
 dM/dt = & \Lambda - \Omega \cdot M \\
 dY/dt = & f q \kappa (M-Y) - \Omega \cdot Y
-\end{array}.
+\end{array}
 }
 }
+\section{Ecology}{
+
+
+\deqn{
+dM/dt = \Lambda - \Omega \cdot M 
+}
+
+\strong{Emergence}
+The model for mosquito ecology uses the stored value \code{Lambda} computed in \link{Emergence}.
+
+\strong{Survival and Dispersal}
+
+The parameter \eqn{g} is interpreted as the per-capita mortality rate for mosquitoes
+while they are in a patch. Mosquitoes emigrate from patches at the per-capita rates \eqn{\sigma},
+and some fraction of emigrating mosquitoes is lost (\eqn{\mu}). The total rate of loss from a
+a patch is \deqn{g + \mu \sigma.}
+
+The columns of the mosquito dispersal matrix \eqn{(K)} sum
+to zero. For non-trivial dispersal matrices:
+\deqn{\mbox{diag}\left(K\right)=-1}
+and the non-diagonal elements are fraction of surviving mosquitoes that arrive at another patch after
+a flight bout. If there is any population loss associated with emigration, it goes in the term \eqn{\mu}.
+
+The demographic matrix, \eqn{\Omega} is computed as
+\deqn{\Omega = \mbox{diag}\left(g + \sigma \mu \right) - K \cdot \mbox{diag}\left(\sigma \left(1-\mu\right)\right)}
+}
+
+\section{Infection Dynamics}{
+
+
+\deqn{
+dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\
+}
+
+\strong{Blood Feeding}
+
+Mosquitoes blood feed at the rate \eqn{f.}
+
+The human fraction, \eqn{q,} is the fraction of blood meals on human.
+The model computes these derivatives:
+
+\strong{Net Infectiousness}
+}
+
 \seealso{
 \link{F_fqZ.SI} and \link{F_eggs.SI}
 }

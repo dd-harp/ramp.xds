@@ -16,7 +16,7 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list} vector
+an \strong{\code{xds}} object
 }
 \description{
 This sets up an \code{SI} model object for \strong{MY} module for the \eqn{s^{th}} vector species
@@ -29,7 +29,31 @@ This sets up an \code{SI} model object for \strong{MY} module for the \eqn{s^{th
 \note{
 The module object is stored at \code{xds_obj$MY_obj[[s]]}
 }
+\section{State Variables}{
+
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+}
+}
+
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rate}
+\item{\code{q}}{human fraction}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period}
+\item{\code{g}}{mosquito mortality rate}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate}
+\item{\code{mu} or \eqn{\mu}}{emigration loss rate}
+\item{\code{K}}{mosquito dispersal matrix}
+\item{\code{nu} or \eqn{\nu}}{egg laying rate, the number of egg patches, per mosquito, per day}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{the number of eggs per batch}
+}
+}
+
 \seealso{
-\link{SI}, \link{make_MY_obj_SI}
+\link{SI}, \link{make_MY_obj_SI}, \link{setup_MY_inits.SI}
 }
 \keyword{internal}

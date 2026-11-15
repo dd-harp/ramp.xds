@@ -14,10 +14,22 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 For the \code{SI} module (\strong{MY}) for the \eqn{s^{th}} species,
 change initial values named in \code{options} leaving other values unchanged.
+}
+\section{State Variables}{
+
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+}
+}
+
+\seealso{
+\link{SI}, \link{get_MY_inits}, \link{make_MY_inits_SI}, \link{setup_MY_inits.SI}
 }
 \keyword{internal}

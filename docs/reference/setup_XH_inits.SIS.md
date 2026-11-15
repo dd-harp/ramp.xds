@@ -1,7 +1,7 @@
 # Setup initial values for `SIS` (**XH**)
 
 Set initial values for all the variables in the `SIS` module (**XH**)
-for the \\(i^{th}\\) species.
+for the \\(i^{th}\\) host species.
 
 - [make_XH_inits_SIS](https://dd-harp.github.io/ramp.xds/reference/make_XH_inits_SIS.md)
   supplies default values
@@ -36,3 +36,21 @@ setup_XH_inits(xds_obj, options = list(), i = 1)
 ## Value
 
 an **`xds`** object
+
+## State Variables
+
+- `H`:
+
+  the total human or host population density
+
+- `I`:
+
+  the density of infected humans or hosts
+
+- `S=H-I`:
+
+  the density of susceptible humans or hosts
+
+## See also
+
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

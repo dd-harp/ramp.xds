@@ -28,7 +28,7 @@ make_MY_inits_GeRM(
 
 - options:
 
-  a [list](https://rdrr.io/r/base/list.html) of values that overrides
+  a [list](https://rdrr.io/r/base/list.html) of values that overwrites
   the defaults
 
 - M:
