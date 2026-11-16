@@ -37,3 +37,94 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector
 
 \$\$\begin{array}{rl}dM/dt &= \Lambda(t) - \Omega \cdot M \\ dP/dt &=
 f(M-P) - \Omega\cdot P\end{array}\$\$
+
+## State Variables
+
+- `M`:
+
+  density of adult mosquitoes
+
+- `P`:
+
+  density of parous adult mosquitoes: those that have blood-fed at least
+  once
+
+## Dynamical Terms
+
+- `Lambda` or \\\Lambda\\:
+
+  adult mosquito emergence rate, computed by
+  [Emergence](https://dd-harp.github.io/ramp.xds/reference/Emergence.md)
+
+## Parameters
+
+- `f`:
+
+  blood feeding rate — use
+  [setup_f](https://dd-harp.github.io/ramp.xds/reference/setup_f.md) or
+  [setup_blood_feeding_rates](https://dd-harp.github.io/ramp.xds/reference/setup_f.md)
+
+- `q`:
+
+  human fraction — use
+  [setup_q](https://dd-harp.github.io/ramp.xds/reference/setup_q.md) or
+  [setup_human_fractions](https://dd-harp.github.io/ramp.xds/reference/setup_q.md)
+
+- `g`:
+
+  mosquito mortality rate — use
+  [setup_g](https://dd-harp.github.io/ramp.xds/reference/setup_g.md) or
+  [setup_mosquito_mortality](https://dd-harp.github.io/ramp.xds/reference/setup_g.md)
+
+- `sigma` or \\\sigma\\:
+
+  emigration rate — use
+  [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  or
+  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+
+- `mu` or \\\mu\\:
+
+  emigration loss fraction — use
+  [setup_mu](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
+  or
+  [setup_emigration_loss](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
+
+- `K` or `K_matrix`:
+
+  mosquito dispersal matrix — use
+  [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
+
+- `nu` or \\\nu\\:
+
+  egg batch rate — use
+  [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
+  or
+  [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
+
+- `eggsPerBatch` or \\\Gamma\\:
+
+  number of eggs per batch
+
+After basic setup,
+[change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)
+can be used to change static parameter values. The `basicM` module does
+not implement dynamic bionomic ports.
+
+## Dynamics
+
+Adult mosquitoes emerge from aquatic habitats at rate \\\Lambda\\ and
+disperse and die according to \\\Omega\\. The ODE model is \$\$
+\begin{array}{rl} dM/dt &= \Lambda-\Omega\cdot M \\\\ dP/dt &=
+f(M-P)-\Omega\cdot P \end{array}\$\$ Here, \\P\\ is the density of
+mosquitoes that have blood-fed at least once. Parity, \\P/M\\, is
+computed during parsing and stored as `parous`. For discrete-time
+models,
+[Update_MYt.basicM](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.basicM.md)
+uses the one-day update equations.
+
+## See also
+
+[basicM](https://dd-harp.github.io/ramp.xds/reference/basicM.md),
+[F_fqZ.basicM](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.basicM.md),
+[F_eggs.basicM](https://dd-harp.github.io/ramp.xds/reference/F_eggs.basicM.md)

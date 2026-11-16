@@ -1,6 +1,6 @@
-# Setup Laying Rate Bionomic Object
+# Setup Egg Batch Rate Bionomic Object
 
-Set up an object to compute the egg laying rate, \\nu\\
+Set up an object to compute the egg batch rate, \\nu\\
 
 ## Usage
 
@@ -12,7 +12,7 @@ setup_nu_obj(nu, MY_obj)
 
 - nu:
 
-  the egg laying rate (# batches, per mosquito, per day)
+  the egg batch rate (batches per mosquito per day)
 
 - MY_obj:
 

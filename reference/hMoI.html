@@ -5,13 +5,19 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The hMoI module for the XH component — hMoI"><meta name="description" content="Implements the XH component using a hybrid model that tracks the
-mean Multiplicity of Infection (MoI) for total and apparent infections.
-This model is not extensible to dynamic human population density or
-mass treatment."><meta property="og:description" content="Implements the XH component using a hybrid model that tracks the
-mean Multiplicity of Infection (MoI) for total and apparent infections.
-This model is not extensible to dynamic human population density or
-mass treatment."></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The hMoI module for the XH component — hMoI"><meta name="description" content="hMoI implements a model with two hybrid variables that track the
+mean Multiplicity of Infection (MoI): the first models the true MoI,
+and the second is the MoI for &quot;younger&quot; infections that are detected
+with higher frequency than older ones.
+This model is derived under a restrictive set of assumptions,
+so it can not be extended to model dynamic changes in population size or
+treatment with anti-malarial drugs."><meta property="og:description" content="hMoI implements a model with two hybrid variables that track the
+mean Multiplicity of Infection (MoI): the first models the true MoI,
+and the second is the MoI for &quot;younger&quot; infections that are detected
+with higher frequency than older ones.
+This model is derived under a restrictive set of assumptions,
+so it can not be extended to model dynamic changes in population size or
+treatment with anti-malarial drugs."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -87,16 +93,19 @@ mass treatment."></head><body>
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>The <code>hMoI</code> module for the XH component</h1>
+      <h1>The <code>hMoI</code> module for the <strong>XH</strong> component</h1>
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/human-X-hMoI.R" class="external-link"><code>R/human-X-hMoI.R</code></a></small>
       <div class="d-none name"><code>hMoI.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
-    <p>Implements the <strong>XH</strong> component using a hybrid model that tracks the
-mean Multiplicity of Infection (MoI) for total and apparent infections.
-This model is not extensible to dynamic human population density or
-mass treatment.</p>
+    <p><code>hMoI</code> implements a model with two hybrid variables that track the
+mean Multiplicity of Infection (MoI): the first models the true MoI,
+and the second is the MoI for "younger" infections that are detected
+with higher frequency than older ones.</p>
+<p>This model is derived under a restrictive set of assumptions,
+so it can not be extended to model dynamic changes in population size or
+treatment with anti-malarial drugs.</p>
     </div>
 
 
@@ -104,39 +113,90 @@ mass treatment.</p>
     <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
 
 
-<dl><dt><code>m1</code></dt>
+<dl><dt><code>m1</code> or \(m_1\)</dt>
 <dd><p>mean MoI for all infections</p></dd>
 
-<dt><code>m2</code></dt>
+<dt><code>m2</code> or \(m_2\)</dt>
 <dd><p>mean MoI for apparent (detectable) infections</p></dd>
 
 
 </dl></div>
     <div class="section level2">
+    <h2 id="demography">Demography<a class="anchor" aria-label="anchor" href="#demography"></a></h2>
+
+
+
+<p>Demographic change is inconsistent with the model formulation. Human population density \((H)\)
+is a parameter, but it should be changed using <a href="change_XH_inits.html">change_XH_inits</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="dynamical-term">Dynamical Term<a class="anchor" aria-label="anchor" href="#dynamical-term"></a></h2>
+
+
+
+<dl><dt>\(h\) or <code>foi</code></dt>
+<dd><p>The force of infection is computed and stored by <a href="Exposure.html">Exposure</a> as <code>FoI</code></p></dd>
+
+
+</dl><p>In the <code>SIS</code> module, there is no effect of pre-erythrocytic immunity, so
+a constant fraction of infectious bites causes an infection: the parameter \(b.\)</p>
+    </div>
+    <div class="section level2">
     <h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a></h2>
 
 
-<dl><dt><code>r1</code></dt>
+<dl><dt><code>r1</code> or \(r_1\)</dt>
 <dd><p>clearance rate for all infections</p></dd>
 
-<dt><code>r2</code></dt>
-<dd><p>clearance rate for apparent infections</p></dd>
+<dt><code>r2</code> or \(r_2\)</dt>
+<dd><p>clearance rate for apparent infections, \(r_2 &gt; r_1\)</p></dd>
 
 <dt><code>b</code></dt>
 <dd><p>probability of infection per infectious bite</p></dd>
 
+<dt><code>c1</code> or \(c_1\)</dt>
+<dd><p>probability of transmitting from m1</p></dd>
+
+<dt><code>c2</code> or \(c_2\)</dt>
+<dd><p>probability of transmitting from m2</p></dd>
+
+<dt>H</dt>
+<dd><p>human or host population density</p></dd>
+
 
 </dl></div>
     <div class="section level2">
-    <h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a></h2>
+    <h2 id="infection-dynamics">Infection Dynamics<a class="anchor" aria-label="anchor" href="#infection-dynamics"></a></h2>
 
 
 <p>$$
 \begin{array}{rl}
 dm_1/dt &amp;= h - r_1 m_1 \\
-dm_2/dt &amp;= h e^{-m_1} (e^{m_2} - 1) - r_2 m_2 \\
-\end{array}$$
-where \(h\) is the force of infection computed upstream.</p>
+dm_2/dt &amp;= h - r_2 m_2 \\
+\end{array}$$</p>
+    </div>
+    <div class="section level2">
+    <h2 id="prevalence">Prevalence<a class="anchor" aria-label="anchor" href="#prevalence"></a></h2>
+
+
+
+<dl><dt>\(x_1\)</dt>
+<dd><p>true prevalence: \(x_1 = 1-e^{-m_1}\)</p></dd>
+
+<dt>\(x_2\)</dt>
+<dd><p>apparent prevalence: \(x_2 = 1-e^{-m_2}\)</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="infectiousness">Infectiousness<a class="anchor" aria-label="anchor" href="#infectiousness"></a></h2>
+
+
+
+<p>The model assumes that younger infections are more infectious, but that
+some transmission does occur from the older infections:
+$$c_2 x_2 + c_1 (x_2 - x_1)$$
+so the infectious density is $$\left(c_2 x_2 + c_1 (x_2 - x_1)\right) H$$</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

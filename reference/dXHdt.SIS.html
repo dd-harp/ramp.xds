@@ -5,7 +5,17 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Compute derivatives for SIS (XH) — dXHdt.SIS"><meta name="description" content="Computes derivatives for the SIS module. For details, see the module documentation SIS."><meta property="og:description" content="Computes derivatives for the SIS module. For details, see the module documentation SIS."></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Compute derivatives for SIS (XH) — dXHdt.SIS"><meta name="description" content="The derivatives for the SIS module are:
+$$\begin{array}{rl}
+dH/dt &amp;amp;= \mathbf{B}(t,H) - \mathbf{D}(H) \\
+dI/dt &amp;amp;= h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I)
+\end{array}$$
+and \(S = H-I\)"><meta property="og:description" content="The derivatives for the SIS module are:
+$$\begin{array}{rl}
+dH/dt &amp;amp;= \mathbf{B}(t,H) - \mathbf{D}(H) \\
+dI/dt &amp;amp;= h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I)
+\end{array}$$
+and \(S = H-I\)"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -87,7 +97,12 @@
     </div>
 
     <div class="ref-description section level2">
-    <p>Computes derivatives for the <code>SIS</code> module. For details, see the module documentation <a href="SIS.html">SIS</a>.</p>
+    <p>The derivatives for the <code>SIS</code> module are:</p>
+<p>$$\begin{array}{rl}
+dH/dt &amp;= \mathbf{B}(t,H) - \mathbf{D}(H) \\
+dI/dt &amp;= h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I)
+\end{array}$$
+and \(S = H-I\)</p>
     </div>
 
     <div class="section level2">
@@ -121,30 +136,67 @@
     <p>the derivatives, as a vector</p>
     </div>
     <div class="section level2">
-    <h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a></h2>
+    <h2 id="demography">Demography<a class="anchor" aria-label="anchor" href="#demography"></a></h2>
 
 
 
-<p>The model for demographic change has terms to compute births (\(\mathbf{B}\)) and
-deaths (\(\mathbf{D}\)):
-$$
+<p>Demographic changes (<strong>H</strong>) are given by the equation:</p>
+<p>$$
 dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)$$</p>
-<p>The model for infection dynamics assumes that infections
-clear naturally at a constant per-capita rate \(r\).
-The model also includes two parameters to model
+<p>This model has no parameter
+or terms to describe disease-induced mortality.</p>
+<dl><dt><code><a href="Births.html">Births</a></code> or \(\mathbf{B}\)</dt>
+<dd><p>the births function</p></dd>
+
+<dt><code><a href="Deaths.html">Deaths</a></code> or \(\mathbf{D}\)</dt>
+<dd><p>the deaths function</p></dd>
+
+
+</dl><p><strong>Setup:</strong></p><ul><li><p>The defaults are no births and no deaths</p></li>
+<li><p>Use <a href="setup_births.html">setup_births</a> to configure <code><a href="Births.html">Births</a></code></p></li>
+<li><p>Use <a href="setup_deaths.html">setup_deaths</a> to configure <code><a href="Deaths.html">Deaths</a></code></p></li>
+</ul><p>Also, see <a href="xds_info_demographic_change.html">xds_info_demographic_change</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="infection-dynamics">Infection Dynamics<a class="anchor" aria-label="anchor" href="#infection-dynamics"></a></h2>
+
+
+
+<p>The model for infection dynamics (<strong>X</strong>) assumes that infections
+clear naturally at a constant per-capita rate \(r\).</p>
+<p>The model also includes two parameters to model
 treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured;</p></li>
-<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\),</p></li>
-<li><p>so the total clearance rate from treatment is \(\rho h + \sigma\)
+<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\)</p></li>
+</ul><p>A function describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function.</p>
+<p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)
 After clearing, individuals are
-susceptible to infection.
-A term for mass treatment increases the rate infections are cured: (\(\Xi(t)\)).</p></li>
-</ul><p>Infection dynamics are described by:</p>
+susceptible to infection.</p>
+<p>Infection dynamics are described by:</p>
 <p>$$
 dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) $$</p>
 <p>The mortality function \(\mathbf{D}(I)\) computes total mortality for \(I\) using
 the same model as for \(H\):
-for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\) This model has no parameter
-or terms to describe disease-induced mortality.</p>
+for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\)</p>
+<p>In the compartmental model, individuals are either susceptible (\(S\)), or infected and
+infectious (\(I\)), so  \(S=H-I.\) The equation is redundant.
+After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
+
+
+<p>The model for infection dynamics (<strong>X</strong>) assumes that infections
+clear naturally at a constant per-capita rate \(r\).</p>
+<p>The model also includes two parameters to model
+treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured;</p></li>
+<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\)</p></li>
+</ul><p>A function describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function.</p>
+<p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)
+After clearing, individuals are
+susceptible to infection.</p>
+<p>Infection dynamics are described by:</p>
+<p>$$
+dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) $$</p>
+<p>The mortality function \(\mathbf{D}(I)\) computes total mortality for \(I\) using
+the same model as for \(H\):
+for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\)</p>
 <p>In the compartmental model, individuals are either susceptible (\(S\)), or infected and
 infectious (\(I\)), so  \(S=H-I.\) The equation is redundant.
 After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>

@@ -141,6 +141,42 @@ options is passed to both to override the defaults
     <p>The module object is stored at <code>xds_obj$XH_obj[[i]]</code></p>
     </div>
     <div class="section level2">
+    <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
+
+
+<dl><dt><code>m1</code> or \(m_1\)</dt>
+<dd><p>mean MoI for all infections</p></dd>
+
+<dt><code>m2</code> or \(m_2\)</dt>
+<dd><p>mean MoI for apparent (detectable) infections</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a></h2>
+
+
+<dl><dt><code>r1</code> or \(r_1\)</dt>
+<dd><p>clearance rate for all infections</p></dd>
+
+<dt><code>r2</code> or \(r_2\)</dt>
+<dd><p>clearance rate for apparent infections, \(r_2 &gt; r_1\)</p></dd>
+
+<dt><code>b</code></dt>
+<dd><p>probability of infection per infectious bite</p></dd>
+
+<dt><code>c1</code> or \(c_1\)</dt>
+<dd><p>probability of transmitting from m1</p></dd>
+
+<dt><code>c2</code> or \(c_2\)</dt>
+<dd><p>probability of transmitting from m2</p></dd>
+
+<dt>H</dt>
+<dd><p>human or host population density</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><a href="hMoI.html">hMoI</a>, <a href="make_XH_obj_hMoI.html">make_XH_obj_hMoI</a></p></div>
     </div>

@@ -1,7 +1,7 @@
 # Compute the net infectiousness
 
 Implements [F_ni](https://dd-harp.github.io/ramp.xds/reference/F_ni.md)
-for the SIS model.
+for the `SIS` model.
 
 ## Usage
 
@@ -24,3 +24,7 @@ F_ni(vars, XH_obj)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nStrata`
+
+## See also
+
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

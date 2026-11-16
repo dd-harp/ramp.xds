@@ -112,6 +112,46 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>the initial infective mosquito population density</p>
     </div>
+    <div class="section level2">
+    <h2 id="infective-biting">Infective Biting<a class="anchor" aria-label="anchor" href="#infective-biting"></a></h2>
+
+
+
+<p><strong>Infective biting density</strong> is defined as the number of human infectious bites by the mosquito population in each patch, each day.
+In <code>SI</code>, infective biting density is computed if infected mosquitoes at time \(t\), \(Y(t),\) had survived
+and dispersed through an EIP of \(\tau\) days \(e^{- \Omega \tau}\).</p>
+<dl><dt>\(Z\)</dt>
+<dd><p>density of infectious mosquitoes, imputed from \(Y\)</p></dd>
+
+<dt><code>fqZ</code></dt>
+<dd><p>Infective biting density: the number of infectious bites, per patch, per day $$fqZ = e^{-\Omega \tau} \cdot \left( f q Y \right) $$</p></dd>
+
+<dt><code>fqM</code></dt>
+<dd><p>Human biting density: the number of human infectious bites, per patch, per day</p></dd>
+
+
+</dl><p>Note that \(e^{-\Omega \tau}\) is computed with the matrix exponential function <a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></p>
+<p><strong>The EIR</strong></p>
+<p>\(fqZ\) is the dynamical term computed by <a href="F_fqZ.SI.html">F_fqZ.SI</a>. It is called
+by <a href="compute_EIR.html">compute_EIR</a> (in <a href="Transmission.html">Transmission</a>) to compute and store <code>EIR,</code>
+the local daily EIR \((E)\). Note that
+<code>fqZ</code> is a vector of length <code>nPatches</code> but the
+local EIR is a vector of length <code>nStrata.</code>
+The <strong>XY</strong> interface uses
+information about humans and mosquitoes to build the biting distribution matrix, \(\beta,\) and if
+there are no visitors, then
+$$E = \beta \cdot fqZ$$
+The orbits of <code>fqZ</code> and <code>EIR</code> are computed and stored by <a href="xds_solve.html">xds_solve</a> by the functions that parse the outputs.</p>
+<p><strong>The HBR</strong></p>
+<p>Since estimates of the EIR are computed by taking the product of the human biting rate (HBR or \(B\)) and the sporozoite rate,
+there is interest in knowing \(fqM\) and \(B.\) The quantity <code>fqM</code> is computed by <a href="F_fqM.SI.html">F_fqM.SI</a>.
+The orbits of <code>fqM</code> and <code>HBR</code> are also computed during parsing, as
+$$B = \beta \cdot fqM$$</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="SI.html">SI</a>, <a href="get_MY_inits.html">get_MY_inits</a></p></div>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

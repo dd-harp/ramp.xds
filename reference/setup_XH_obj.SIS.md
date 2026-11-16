@@ -92,15 +92,15 @@ describe the dynamics, or detection by diagnostic methods.
 
 - `q_lm`:
 
-  expected prevalence by light microscopy would be \\q\_{lm} \\x\\
+  test positivity by light microscopy
 
 - `q_rdt`:
 
-  expected prevalence by RDT would be \\q\_{rdt} \\x\\
+  test positivity by RDT
 
 - `q_pcr`:
 
-  expected prevalence by PCR would be \\q\_{pcr} \\x\\
+  test positivity by PCR
 
 ## See also
 

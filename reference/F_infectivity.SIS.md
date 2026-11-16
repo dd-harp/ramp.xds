@@ -1,7 +1,7 @@
 # Compute infectivity
 
 This function computes the fraction of infectious bites that cause an
-infection. The SIS model, assumes a constant fraction causes infection,
+infection. The `SIS` model assumes a constant fraction causes infection,
 \\b\\.
 
 ## Usage
@@ -28,3 +28,7 @@ F_infectivity(y, xds_obj, i)
 ## Value
 
 The constant \\b\\
+
+## See also
+
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

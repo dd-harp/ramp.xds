@@ -1,6 +1,6 @@
-# Make parameters for GeM ODE adult mosquito model
+# Make parameters for `GeM` (**MY**)
 
-Make parameters for GeM ODE adult mosquito model
+Make parameters for `GeM` (**MY**)
 
 ## Usage
 
@@ -65,3 +65,8 @@ make_MY_obj_GeM(
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## See also
+
+[GeM](https://dd-harp.github.io/ramp.xds/reference/GeM.md),
+[setup_MY_obj.GeM](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.GeM.md)

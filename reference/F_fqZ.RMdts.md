@@ -1,4 +1,4 @@
-# The net blood feeding rate of the infective mosquito population in a patch
+# Infective mosquito biting rate for `RMdts`
 
 Implements
 [F_fqZ](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.md) for the

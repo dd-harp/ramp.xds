@@ -1,6 +1,6 @@
-# Get parameters for `SIS` (**XH**)
+# Change parameters for `SIS` (**XH**)
 
-For the `SIS` module (**XH**) for the \\i^{th}\\ species, change
+For the `SIS` module (**XH**) for the \\i^{th}\\ host species, change
 parameter values named in `options` leaving other values unchanged.
 
 ## Usage
@@ -57,18 +57,19 @@ detection by diagnostic methods.
 
 - `q_lm`:
 
-  expected prevalence by light microscopy would be \\q\_{lm} \\x\\
+  test positivity by light microscopy
 
 - `q_rdt`:
 
-  expected prevalence by RDT would be \\q\_{rdt} \\x\\
+  test positivity by RDT
 
 - `q_pcr`:
 
-  expected prevalence by PCR would be \\q\_{pcr} \\x\\
+  test positivity by PCR
 
 ## See also
 
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md),
 [`get_XH_pars.SIS()`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md)
-and the github.io essay on [SIS
+and the vignette on [SIS
 Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)

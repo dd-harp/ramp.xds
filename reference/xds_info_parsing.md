@@ -27,8 +27,8 @@ is called.
 
     - the last state of the system is stored as `mod$outputs$last_y`
 
-    - several dynamical terms (`EIR`, `PR`, `fqZ`, `kappa`) are computed
-      and attached as orbits
+    - several dynamical terms (`EIR`, `HBR`, `PR`, `fqZ`, `fqM`,
+      `kappa`) are computed and attached as orbits
 
     - the state variables are extracted from the output matrix by name
 

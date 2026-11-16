@@ -1,11 +1,11 @@
 # The `SIS` module for the **XH** component
 
-`SIS` implements a family of SIS compartmental models for malaria as a
+`SIS` implements a family of `SIS` compartmental models for malaria as a
 system of differential equations: individuals are either susceptible
-\\(S)\\ or infected and infectious \\(I)\\. In its simplest form, SIS
+\\(S)\\ or infected and infectious \\(I)\\. In its simplest form, `SIS`
 dynamics are: \$\$ dI/dt = h S - r I \$\$
 
-This is a generalized implementation includes:
+This generalized implementation includes:
 
 - parameters to model treating and curing infections;
 
@@ -13,7 +13,11 @@ This is a generalized implementation includes:
 
 - functions to model mass treatment;
 
-- and progressive stratification
+- support for progressive stratification
+
+The [SIS
+Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
+discusses the module.
 
 ## State Variables
 
@@ -29,11 +33,53 @@ This is a generalized implementation includes:
 
   the density of susceptible humans or hosts
 
-## Prevalence
+## Demography
 
-- `x`:
+Demographic changes (**H**) are given by the equation:
 
-  true prevalence is \\x = I/H\\
+\$\$ dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)\$\$
+
+This model has no parameter or terms to describe disease-induced
+mortality.
+
+- [`Births`](https://dd-harp.github.io/ramp.xds/reference/Births.md) or
+  \\\mathbf{B}\\:
+
+  the births function
+
+- [`Deaths`](https://dd-harp.github.io/ramp.xds/reference/Deaths.md) or
+  \\\mathbf{D}\\:
+
+  the deaths function
+
+**Setup:**
+
+- The defaults are no births and no deaths
+
+- Use
+  [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.md)
+  to configure
+  [`Births`](https://dd-harp.github.io/ramp.xds/reference/Births.md)
+
+- Use
+  [setup_deaths](https://dd-harp.github.io/ramp.xds/reference/setup_deaths.md)
+  to configure
+  [`Deaths`](https://dd-harp.github.io/ramp.xds/reference/Deaths.md)
+
+Also, see
+[xds_info_demographic_change](https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.md).
+
+## Dynamical Term
+
+- \\h\\ or `foi`:
+
+  The force of infection is computed and stored by
+  [Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)
+  as `FoI`
+
+In the `SIS` module, there is no effect of pre-erythrocytic immunity, so
+a constant fraction of infectious bites causes an infection: the
+parameter \\b.\\
 
 ## Parameters
 
@@ -65,67 +111,35 @@ describe the dynamics, or detection by diagnostic methods.
 
 - `q_lm`:
 
-  expected prevalence by light microscopy would be \\q\_{lm} \\x\\
+  test positivity by light microscopy
 
 - `q_rdt`:
 
-  expected prevalence by RDT would be \\q\_{rdt} \\x\\
+  test positivity by RDT
 
 - `q_pcr`:
 
-  expected prevalence by PCR would be \\q\_{pcr} \\x\\
+  test positivity by PCR
 
-## Dynamical Term
+## Infection Dynamics
 
-- \\h\\ or `foi`:
+The model for infection dynamics (**X**) assumes that infections clear
+naturally at a constant per-capita rate \\r\\.
 
-  The force of infection is computed and stored by
-  [Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md)
-  as `FoI`
-
-## Demographic Change
-
-- `Births` or \\\mathbf{B}\\:
-
-  the births function
-
-- `Deaths` or \\\mathbf{D}\\:
-
-  the deaths function
-
-**NOTES:**
-
-- The defaults are no births and no deaths
-
-- Use
-  [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.md)
-  to configure `Births`
-
-- Use
-  [setup_deaths](https://dd-harp.github.io/ramp.xds/reference/setup_deaths.md)
-  to configure `Deaths`
-
-Also, see
-[xds_info_demographic_change](https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.md).
-
-## Dynamics
-
-The model for demographic change has terms to compute births
-(\\\mathbf{B}\\) and deaths (\\\mathbf{D}\\): \$\$ dH/dt =
-\mathbf{B}(t,H) - \mathbf{D}(H)\$\$
-
-The model for infection dynamics assumes that infections clear naturally
-at a constant per-capita rate \\r\\. The model also includes two
-parameters to model treating and curing malaria infections:
+The model also includes two parameters to model treating and curing
+malaria infections:
 
 - a fraction \\\rho\\ of incident infections are treated and cured;
 
 - in addition, prevalent infections are treated and cured at the rate
-  \\\sigma\\,
+  \\\sigma\\
 
-- so the total clearance rate from treatment is \\\rho h + \sigma\\
-  After clearing, individuals are susceptible to infection. A term for
-  mass treatment increases the rate infections are cured: (\\\Xi(t)\\).
+A function describes an increase in clearance caused by mass treatment,
+\\\Xi(t)\\, a *shock* function.
+
+The total per-capita clearance rate from treatment is thus \\\rho h +
+\sigma + \Xi(t)\\ After clearing, individuals are susceptible to
+infection.
 
 Infection dynamics are described by:
 
@@ -134,26 +148,36 @@ Infection dynamics are described by:
 
 The mortality function \\\mathbf{D}(I)\\ computes total mortality for
 \\I\\ using the same model as for \\H\\: for example, if \\D(H)=\mu H\\,
-then \\D(I)= \mu I.\\ This model has no parameter or terms to describe
-disease-induced mortality.
+then \\D(I)= \mu I.\\
 
 In the compartmental model, individuals are either susceptible (\\S\\),
 or infected and infectious (\\I\\), so \\S=H-I.\\ The equation is
 redundant. After solving, the orbit of the variable \\S=H-I\\ is
 computed and attached.
 
-## Exposure
+## Prevalence
 
-For `SIS` the `FoI` is computed (in
-[Exposure](https://dd-harp.github.io/ramp.xds/reference/Exposure.md))
-under the assumption that a constant fraction of infectious bites causes
-an infection: the parameter \\b.\\
+- \\x\\:
+
+  True prevalence is \\x = I/H\\
+
+- \\x\_{lm}\\:
+
+  Expected prevalence by light microscopy is \\q\_{lm}\\ x\\
+
+- \\x\_{rdt}\\:
+
+  Expected prevalence by RDT is \\q\_{rdt}\\ x\\
+
+- \\x\_{pcr}\\:
+
+  Expected prevalence by PCR is \\q\_{pcr}\\ x\\
 
 ## Infectiousness
 
 The fraction of mosquitoes that become infected after blood feeding on
 someone who is infectious is \\c.\\ The infectious density of the human
-(hos) population is \\cI.\\
+(host) population is \\cxI = cH.\\
 
 ## Mass Treatment
 
@@ -166,7 +190,7 @@ Mass treatment is either:
 
   mass drug administration
 
-- `msat` or \\\Xi(t)\\:
+- `msat(t)` or \\\Xi(t)\\:
 
   mass screen and treat
 

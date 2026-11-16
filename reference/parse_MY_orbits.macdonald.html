@@ -116,6 +116,49 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
     </div>
+    <div class="section level2">
+    <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
+
+
+<dl><dt><code>M</code></dt>
+<dd><p>density of adult mosquitoes</p></dd>
+
+<dt><code>P</code></dt>
+<dd><p>density of parous adult mosquitoes</p></dd>
+
+<dt><code>Y</code></dt>
+<dd><p>density of infected adult mosquitoes</p></dd>
+
+<dt><code>Z</code></dt>
+<dd><p>density of infectious adult mosquitoes</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="infective-biting">Infective Biting<a class="anchor" aria-label="anchor" href="#infective-biting"></a></h2>
+
+
+<p>Infective biting density is the number of infectious bites by mosquitoes
+on humans in each patch per day. The density of infectious mosquitoes
+\(Z\) is computed from \(Y\) after survival and dispersal through the
+EIP.</p>
+<dl><dt><code>fqZ</code></dt>
+<dd><p>infective biting density, the number of infectious bites per patch per day</p></dd>
+
+<dt><code>fqM</code></dt>
+<dd><p>human biting density, the number of bites on humans per patch per day</p></dd>
+
+
+</dl><p><a href="F_fqZ.macdonald.html">F_fqZ.macdonald</a> and <a href="F_fqM.macdonald.html">F_fqM.macdonald</a> compute these patch-level
+quantities. <a href="compute_EIR.html">compute_EIR</a> combines <code>fqZ</code> with the biting distribution
+matrix and resident-bite fraction to compute stratum-level EIR; <a href="F_hbr.html">F_hbr</a>
+computes HBR from <code>fqM</code> in the same way. The resulting <code>EIR</code> and <code>HBR</code>
+orbits are attached to the XH output during parsing.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="macdonald.html">macdonald</a></p></div>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

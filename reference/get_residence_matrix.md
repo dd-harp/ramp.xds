@@ -61,4 +61,4 @@ mixing matrix, and terms describing transmission.
 ## See also
 
 see
-[setup_blood_feeding](https://dd-harp.github.io/ramp.xds/reference/setup_blood_feeding.md)
+[setup_blood_feeding_interface](https://dd-harp.github.io/ramp.xds/reference/setup_blood_feeding_interface.md)

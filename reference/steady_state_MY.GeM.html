@@ -120,6 +120,82 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
     </div>
+    <div class="section level2">
+    <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
+
+
+<dl><dt><code>M</code></dt>
+<dd><p>density of adult mosquitoes</p></dd>
+
+<dt><code>P</code></dt>
+<dd><p>density of parous adult mosquitoes</p></dd>
+
+<dt><code>Y</code></dt>
+<dd><p>density of infected adult mosquitoes</p></dd>
+
+<dt><code>Z</code></dt>
+<dd><p>density of infectious adult mosquitoes</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a></h2>
+
+
+<dl><dt><code>f</code></dt>
+<dd><p>blood feeding rate — use <a href="setup_f.html">setup_f</a> or <a href="setup_f.html">setup_blood_feeding_rates</a></p></dd>
+
+<dt><code>q</code></dt>
+<dd><p>human fraction — use <a href="setup_q.html">setup_q</a> or <a href="setup_q.html">setup_human_fractions</a></p></dd>
+
+<dt><code>g</code></dt>
+<dd><p>mosquito mortality rate — use <a href="setup_g.html">setup_g</a> or <a href="setup_g.html">setup_mosquito_mortality</a></p></dd>
+
+<dt><code>eip</code> or \(\tau\)</dt>
+<dd><p>extrinsic incubation period — use <a href="setup_eip.html">setup_eip</a></p></dd>
+
+<dt><code>sigma</code> or \(\sigma\)</dt>
+<dd><p>emigration rate — use <a href="setup_sigma.html">setup_sigma</a> or <a href="setup_sigma.html">setup_emigration_rates</a></p></dd>
+
+<dt><code>mu</code> or \(\mu\)</dt>
+<dd><p>emigration loss fraction — use <a href="setup_mu.html">setup_mu</a> or <a href="setup_mu.html">setup_emigration_loss</a></p></dd>
+
+<dt><code>K</code> or <code>K_matrix</code></dt>
+<dd><p>mosquito dispersal matrix — use <a href="setup_K_matrix.html">setup_K_matrix</a></p></dd>
+
+<dt><code>nu</code> or \(\nu\)</dt>
+<dd><p>egg batch rate in batches per mosquito per day — use <a href="setup_nu.html">setup_nu</a> or <a href="setup_nu.html">setup_egg_batch_rates</a></p></dd>
+
+<dt><code>eggs_per_batch</code></dt>
+<dd><p>number of eggs per batch</p></dd>
+
+
+</dl><p>After basic setup, <a href="change_MY_pars.GeM.html">change_MY_pars.GeM</a> can be used to change static
+parameter values. By default, bionomic parameters are configured as static
+baselines; advanced setup can be used to define dynamic ports.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a></h2>
+
+
+<p>A subscript \(\tau\) denotes the value of a parameter, term, or variable
+at time \(t-\tau'(t)\): $$X_\tau=X(t-\tau'(t)).$$
+The derivatives of the state variables are:
+$$
+\begin{array}{rl}
+dM/dt &amp;= \Lambda-\Omega\cdot M \\\\
+dP/dt &amp;= f(M-P)-\Omega\cdot P \\\\
+dY/dt &amp;= fq\kappa(M-Y)-\Omega\cdot Y \\\\
+dZ/dt &amp;= \Upsilon\cdot(fq\kappa)_\tau(M_\tau-Y_\tau)-\Omega\cdot Z
+\end{array}$$
+The implementation also evolves \(\Upsilon\) and accessory variables
+used to evaluate the delayed values of \(fq\kappa\), \(g\), and
+\(\sigma\).</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="GeM.html">GeM</a></p></div>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

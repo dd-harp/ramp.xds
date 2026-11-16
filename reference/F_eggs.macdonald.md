@@ -1,8 +1,8 @@
-# Number of eggs laid by adult mosquitoes
+# Egg production rate for `macdonald`
 
 Implements
 [F_eggs](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md) for the
-macdonald model.
+`macdonald` model.
 
 ## Usage
 
@@ -33,3 +33,16 @@ F_eggs(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`
+
+## Egg Laying
+
+The egg batch rate \\\nu\\ and the number of eggs per batch \\\Gamma\\
+determine the egg production rate per patch: \$\$G=\nu\Gamma M.\$\$
+F_eggs.macdonald computes \\G\\, which is passed to
+[EggLaying](https://dd-harp.github.io/ramp.xds/reference/EggLaying.md)
+for distribution among aquatic habitats.
+
+## See also
+
+[macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md),
+[EggLaying](https://dd-harp.github.io/ramp.xds/reference/EggLaying.md)

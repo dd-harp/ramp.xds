@@ -36,3 +36,14 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html) vector
+
+## State Variables
+
+- `M`:
+
+  density of adult mosquitoes
+
+- `P`:
+
+  density of parous adult mosquitoes: those that have blood-fed at least
+  once

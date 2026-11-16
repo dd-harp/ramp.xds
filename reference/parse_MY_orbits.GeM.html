@@ -116,6 +116,40 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
     </div>
+    <div class="section level2">
+    <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
+
+
+<dl><dt><code>M</code></dt>
+<dd><p>density of adult mosquitoes</p></dd>
+
+<dt><code>P</code></dt>
+<dd><p>density of parous adult mosquitoes</p></dd>
+
+<dt><code>Y</code></dt>
+<dd><p>density of infected adult mosquitoes</p></dd>
+
+<dt><code>Z</code></dt>
+<dd><p>density of infectious adult mosquitoes</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="infective-biting">Infective Biting<a class="anchor" aria-label="anchor" href="#infective-biting"></a></h2>
+
+
+<p>The human biting density, <code>fqM</code>, is the number of human bites per patch per
+day; the infective biting density, <code>fqZ</code>, is the number of infectious human
+bites per patch per day. <a href="F_fqM.GeM.html">F_fqM.GeM</a> and <a href="F_fqZ.GeM.html">F_fqZ.GeM</a> compute these
+quantities as \(f q M\) and \(f q Z\), respectively. <a href="compute_EIR.html">compute_EIR</a>
+combines infective biting density with the biting distribution matrix and
+resident-bite fraction to compute stratum-level <code>EIR</code>. <a href="F_hbr.html">F_hbr</a> uses <code>fqM</code>,
+the same matrix, and resident-bite fraction to compute stratum-level <code>HBR</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="GeM.html">GeM</a>, <a href="get_MY_vars.GeM.html">get_MY_vars.GeM</a></p></div>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

@@ -81,13 +81,13 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Make an SIS <strong>XH</strong> model object</h1>
+      <h1>Make an <code>SIS</code> <strong>XH</strong> model object</h1>
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/human-XH-SIS.R" class="external-link"><code>R/human-XH-SIS.R</code></a></small>
       <div class="d-none name"><code>make_XH_obj_SIS.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
-    <p>Make an SIS <strong>XH</strong> model object</p>
+    <p>Make an <code>SIS</code> <strong>XH</strong> model object</p>
     </div>
 
     <div class="section level2">
@@ -139,20 +139,57 @@
 
 
 <dt id="arg-q-lm">q_lm<a class="anchor" aria-label="anchor" href="#arg-q-lm"></a></dt>
-<dd><p>detection by light microscopy</p></dd>
+<dd><p>test positivity by light microscopy</p></dd>
 
 
 <dt id="arg-q-rdt">q_rdt<a class="anchor" aria-label="anchor" href="#arg-q-rdt"></a></dt>
-<dd><p>detection by RDT</p></dd>
+<dd><p>test positivity by RDT</p></dd>
 
 
 <dt id="arg-q-pcr">q_pcr<a class="anchor" aria-label="anchor" href="#arg-q-pcr"></a></dt>
-<dd><p>detection by pcr</p></dd>
+<dd><p>test positivity by PCR</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>an <strong>XH</strong> model object</p>
+    </div>
+    <div class="section level2">
+    <h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a></h2>
+
+
+
+<p>The parameters that are returned by <a href="get_XH_pars.SIS.html">get_XH_pars.SIS</a> and also modifiable by <a href="change_XH_pars.SIS.html">change_XH_pars.SIS</a> describe
+the dynamics, or detection by diagnostic methods.</p>
+<dl><dt><code>b</code></dt>
+<dd><p>the fraction of infective bites that would cause an infection</p></dd>
+
+<dt><code>r</code></dt>
+<dd><p>clearance rate for infections</p></dd>
+
+<dt><code>c</code></dt>
+<dd><p>the probability an infected person would infect a mosquito</p></dd>
+
+<dt><code>rho</code> or \(\rho\)</dt>
+<dd><p>the fraction of incident infections that are treated and cured</p></dd>
+
+<dt><code>sigma</code> or \(\sigma\)</dt>
+<dd><p>the rate that prevalent infections are treated and cured</p></dd>
+
+<dt><code>q_lm</code></dt>
+<dd><p>test positivity by light microscopy</p></dd>
+
+<dt><code>q_rdt</code></dt>
+<dd><p>test positivity by RDT</p></dd>
+
+<dt><code>q_pcr</code></dt>
+<dd><p>test positivity by PCR</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="SIS.html">SIS</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

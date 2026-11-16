@@ -11,25 +11,27 @@ In its simplest form, SIS dynamics are:
 $$
 dI/dt = h S - r I
 $$
-This is a generalized implementation includes:
+This generalized implementation includes:
 parameters to model treating and curing infections;
 functions to model human demographic change;
 functions to model mass treatment;
-and progressive stratification
+support for progressive stratification
 
-"><meta property="og:description" content="SIS implements a family of SIS compartmental models for malaria as a system of differential equations:
+
+The SIS Vignette discusses the module."><meta property="og:description" content="SIS implements a family of SIS compartmental models for malaria as a system of differential equations:
 individuals are either susceptible \((S)\) or infected and infectious \((I)\).
 In its simplest form, SIS dynamics are:
 $$
 dI/dt = h S - r I
 $$
-This is a generalized implementation includes:
+This generalized implementation includes:
 parameters to model treating and curing infections;
 functions to model human demographic change;
 functions to model mass treatment;
-and progressive stratification
+support for progressive stratification
 
-"></head><body>
+
+The SIS Vignette discusses the module."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -111,17 +113,18 @@ and progressive stratification
     </div>
 
     <div class="ref-description section level2">
-    <p><code>SIS</code> implements a family of SIS compartmental models for malaria as a system of differential equations:
+    <p><code>SIS</code> implements a family of <code>SIS</code> compartmental models for malaria as a system of differential equations:
 individuals are either susceptible \((S)\) or infected and infectious \((I)\).
-In its simplest form, SIS dynamics are:
+In its simplest form, <code>SIS</code> dynamics are:
 $$
 dI/dt = h S - r I
 $$</p>
-<p>This is a generalized implementation includes:</p><ul><li><p>parameters to model treating and curing infections;</p></li>
+<p>This generalized implementation includes:</p><ul><li><p>parameters to model treating and curing infections;</p></li>
 <li><p>functions to model human demographic change;</p></li>
 <li><p>functions to model mass treatment;</p></li>
-<li><p>and progressive stratification</p></li>
-</ul></div>
+<li><p>support for progressive stratification</p></li>
+</ul><p>The <a href="https://dd-harp.github.io/ramp.xds/articles/human_sis.html">SIS Vignette</a> discusses the module.</p>
+    </div>
 
 
     <div class="section level2">
@@ -141,15 +144,39 @@ $$</p>
 
 </dl></div>
     <div class="section level2">
-    <h2 id="prevalence">Prevalence<a class="anchor" aria-label="anchor" href="#prevalence"></a></h2>
+    <h2 id="demography">Demography<a class="anchor" aria-label="anchor" href="#demography"></a></h2>
 
 
 
-<dl><dt><code>x</code></dt>
-<dd><p>true prevalence is \(x = I/H\)</p></dd>
+<p>Demographic changes (<strong>H</strong>) are given by the equation:</p>
+<p>$$
+dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)$$</p>
+<p>This model has no parameter
+or terms to describe disease-induced mortality.</p>
+<dl><dt><code><a href="Births.html">Births</a></code> or \(\mathbf{B}\)</dt>
+<dd><p>the births function</p></dd>
+
+<dt><code><a href="Deaths.html">Deaths</a></code> or \(\mathbf{D}\)</dt>
+<dd><p>the deaths function</p></dd>
 
 
-</dl></div>
+</dl><p><strong>Setup:</strong></p><ul><li><p>The defaults are no births and no deaths</p></li>
+<li><p>Use <a href="setup_births.html">setup_births</a> to configure <code><a href="Births.html">Births</a></code></p></li>
+<li><p>Use <a href="setup_deaths.html">setup_deaths</a> to configure <code><a href="Deaths.html">Deaths</a></code></p></li>
+</ul><p>Also, see <a href="xds_info_demographic_change.html">xds_info_demographic_change</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="dynamical-term">Dynamical Term<a class="anchor" aria-label="anchor" href="#dynamical-term"></a></h2>
+
+
+
+<dl><dt>\(h\) or <code>foi</code></dt>
+<dd><p>The force of infection is computed and stored by <a href="Exposure.html">Exposure</a> as <code>FoI</code></p></dd>
+
+
+</dl><p>In the <code>SIS</code> module, there is no effect of pre-erythrocytic immunity, so
+a constant fraction of infectious bites causes an infection: the parameter \(b.\)</p>
+    </div>
     <div class="section level2">
     <h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a></h2>
 
@@ -173,80 +200,59 @@ the dynamics, or detection by diagnostic methods.</p>
 <dd><p>the rate that prevalent infections are treated and cured</p></dd>
 
 <dt><code>q_lm</code></dt>
-<dd><p>expected prevalence by light microscopy would be \(q_{lm} \;x\)</p></dd>
+<dd><p>test positivity by light microscopy</p></dd>
 
 <dt><code>q_rdt</code></dt>
-<dd><p>expected prevalence by RDT would be \(q_{rdt} \;x\)</p></dd>
+<dd><p>test positivity by RDT</p></dd>
 
 <dt><code>q_pcr</code></dt>
-<dd><p>expected prevalence by PCR would be \(q_{pcr} \;x\)</p></dd>
+<dd><p>test positivity by PCR</p></dd>
 
 
 </dl></div>
     <div class="section level2">
-    <h2 id="dynamical-term">Dynamical Term<a class="anchor" aria-label="anchor" href="#dynamical-term"></a></h2>
+    <h2 id="infection-dynamics">Infection Dynamics<a class="anchor" aria-label="anchor" href="#infection-dynamics"></a></h2>
 
 
 
-<dl><dt>\(h\) or <code>foi</code></dt>
-<dd><p>The force of infection is computed and stored by <a href="Exposure.html">Exposure</a> as <code>FoI</code></p></dd>
-
-
-</dl></div>
-    <div class="section level2">
-    <h2 id="demographic-change">Demographic Change<a class="anchor" aria-label="anchor" href="#demographic-change"></a></h2>
-
-
-
-<dl><dt><code>Births</code> or \(\mathbf{B}\)</dt>
-<dd><p>the births function</p></dd>
-
-<dt><code>Deaths</code> or \(\mathbf{D}\)</dt>
-<dd><p>the deaths function</p></dd>
-
-
-</dl><p><strong>NOTES:</strong></p><ul><li><p>The defaults are no births and no deaths</p></li>
-<li><p>Use <a href="setup_births.html">setup_births</a> to configure <code>Births</code></p></li>
-<li><p>Use <a href="setup_deaths.html">setup_deaths</a> to configure <code>Deaths</code></p></li>
-</ul><p>Also, see <a href="xds_info_demographic_change.html">xds_info_demographic_change</a>.</p>
-    </div>
-    <div class="section level2">
-    <h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a></h2>
-
-
-
-<p>The model for demographic change has terms to compute births (\(\mathbf{B}\)) and
-deaths (\(\mathbf{D}\)):
-$$
-dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)$$</p>
-<p>The model for infection dynamics assumes that infections
-clear naturally at a constant per-capita rate \(r\).
-The model also includes two parameters to model
+<p>The model for infection dynamics (<strong>X</strong>) assumes that infections
+clear naturally at a constant per-capita rate \(r\).</p>
+<p>The model also includes two parameters to model
 treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured;</p></li>
-<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\),</p></li>
-<li><p>so the total clearance rate from treatment is \(\rho h + \sigma\)
+<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\)</p></li>
+</ul><p>A function describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function.</p>
+<p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)
 After clearing, individuals are
-susceptible to infection.
-A term for mass treatment increases the rate infections are cured: (\(\Xi(t)\)).</p></li>
-</ul><p>Infection dynamics are described by:</p>
+susceptible to infection.</p>
+<p>Infection dynamics are described by:</p>
 <p>$$
 dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) $$</p>
 <p>The mortality function \(\mathbf{D}(I)\) computes total mortality for \(I\) using
 the same model as for \(H\):
-for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\) This model has no parameter
-or terms to describe disease-induced mortality.</p>
+for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\)</p>
 <p>In the compartmental model, individuals are either susceptible (\(S\)), or infected and
 infectious (\(I\)), so  \(S=H-I.\) The equation is redundant.
 After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
     </div>
     <div class="section level2">
-    <h2 id="exposure">Exposure<a class="anchor" aria-label="anchor" href="#exposure"></a></h2>
+    <h2 id="prevalence">Prevalence<a class="anchor" aria-label="anchor" href="#prevalence"></a></h2>
 
 
 
-<p>For <code>SIS</code> the <code>FoI</code> is computed (in <a href="Exposure.html">Exposure</a>) under the assumption that
-a constant fraction of infectious bites causes an infection: the parameter \(b.\)</p>
-    </div>
+<dl><dt>\(x\)</dt>
+<dd><p>True prevalence is \(x = I/H\)</p></dd>
+
+<dt>\(x_{lm}\)</dt>
+<dd><p>Expected prevalence by light microscopy is \(q_{lm}\; x\)</p></dd>
+
+<dt>\(x_{rdt}\)</dt>
+<dd><p>Expected prevalence by RDT is \(q_{rdt}\; x\)</p></dd>
+
+<dt>\(x_{pcr}\)</dt>
+<dd><p>Expected prevalence by PCR is \(q_{pcr}\; x\)</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="infectiousness">Infectiousness<a class="anchor" aria-label="anchor" href="#infectiousness"></a></h2>
 
@@ -254,7 +260,7 @@ a constant fraction of infectious bites causes an infection: the parameter \(b.\
 
 <p>The fraction of mosquitoes that become infected after blood feeding on
 someone who is infectious is \(c.\)
-The infectious density of the human (hos) population is \(cI.\)</p>
+The infectious density of the human (host) population is \(cxI = cH.\)</p>
     </div>
     <div class="section level2">
     <h2 id="mass-treatment">Mass Treatment<a class="anchor" aria-label="anchor" href="#mass-treatment"></a></h2>
@@ -267,7 +273,7 @@ Mass treatment is either:</p>
 <dl><dt><code>mda(t)</code> or \(\Xi(t)\)</dt>
 <dd><p>mass drug administration</p></dd>
 
-<dt><code>msat</code> or \(\Xi(t)\)</dt>
+<dt><code>msat(t)</code> or \(\Xi(t)\)</dt>
 <dd><p>mass screen and treat</p></dd>
 
 

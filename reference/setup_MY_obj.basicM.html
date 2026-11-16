@@ -137,8 +137,53 @@ options is passed to both to override the defaults
     <p>The module object is stored at <code>xds_obj$MY_obj[[s]]</code></p>
     </div>
     <div class="section level2">
+    <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
+
+
+<dl><dt><code>M</code></dt>
+<dd><p>density of adult mosquitoes</p></dd>
+
+<dt><code>P</code></dt>
+<dd><p>density of parous adult mosquitoes: those that have blood-fed at least once</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a></h2>
+
+
+<dl><dt><code>f</code></dt>
+<dd><p>blood feeding rate — use <a href="setup_f.html">setup_f</a> or <a href="setup_f.html">setup_blood_feeding_rates</a></p></dd>
+
+<dt><code>q</code></dt>
+<dd><p>human fraction — use <a href="setup_q.html">setup_q</a> or <a href="setup_q.html">setup_human_fractions</a></p></dd>
+
+<dt><code>g</code></dt>
+<dd><p>mosquito mortality rate — use <a href="setup_g.html">setup_g</a> or <a href="setup_g.html">setup_mosquito_mortality</a></p></dd>
+
+<dt><code>sigma</code> or \(\sigma\)</dt>
+<dd><p>emigration rate — use <a href="setup_sigma.html">setup_sigma</a> or <a href="setup_sigma.html">setup_emigration_rates</a></p></dd>
+
+<dt><code>mu</code> or \(\mu\)</dt>
+<dd><p>emigration loss fraction — use <a href="setup_mu.html">setup_mu</a> or <a href="setup_mu.html">setup_emigration_loss</a></p></dd>
+
+<dt><code>K</code> or <code>K_matrix</code></dt>
+<dd><p>mosquito dispersal matrix — use <a href="setup_K_matrix.html">setup_K_matrix</a></p></dd>
+
+<dt><code>nu</code> or \(\nu\)</dt>
+<dd><p>egg batch rate — use <a href="setup_nu.html">setup_nu</a> or <a href="setup_nu.html">setup_egg_batch_rates</a></p></dd>
+
+<dt><code>eggsPerBatch</code> or \(\Gamma\)</dt>
+<dd><p>number of eggs per batch</p></dd>
+
+
+</dl><p>After basic setup, <a href="change_MY_pars.basicM.html">change_MY_pars.basicM</a> can be used to change static
+parameter values. The <code>basicM</code> module does not implement dynamic bionomic
+ports.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="basicM.html">basicM</a>, <a href="make_M_obj_basicM.html">make_M_obj_basicM</a></p></div>
+    <div class="dont-index"><p><a href="basicM.html">basicM</a>, <a href="make_M_obj_basicM.html">make_M_obj_basicM</a>, <a href="setup_MY_inits.basicM.html">setup_MY_inits.basicM</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

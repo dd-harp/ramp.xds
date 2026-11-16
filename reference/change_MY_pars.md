@@ -27,6 +27,13 @@ change_MY_pars(xds_obj, options = list(), s = 1)
 
 an **`xds`** object
 
+## Note
+
+This is designed to work for static parameters or for parameters that
+are set up as ports, where the class of the bionomic object is "static."
+
+Use advanced setup to modify dynamic bionomic ports.
+
 ## See also
 
 [get_MY_pars](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.md),

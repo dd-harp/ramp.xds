@@ -120,6 +120,47 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
     </div>
+    <div class="section level2">
+    <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
+
+
+<dl><dt><code>M</code></dt>
+<dd><p>density of adult mosquitoes</p></dd>
+
+<dt><code>P</code></dt>
+<dd><p>density of parous adult mosquitoes</p></dd>
+
+<dt><code>Y</code></dt>
+<dd><p>density of infected adult mosquitoes</p></dd>
+
+<dt><code>Z</code></dt>
+<dd><p>density of infectious adult mosquitoes</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a></h2>
+
+
+<p>The system is described by coupled differential equations with a delay.
+A subscript \(\tau\) denotes a lagged value, for example
+\(M_\tau=M(t-\tau)\).</p>
+<p>$$
+\begin{array}{rl}
+dM/dt &amp;= \Lambda-\Omega\cdot M \\\\
+dP/dt &amp;= f(M-P)-\Omega\cdot P \\\\
+dY/dt &amp;= fq\kappa(M-Y)-\Omega\cdot Y \\\\
+dZ/dt &amp;= \Upsilon\cdot(fq\kappa)_\tau(M_\tau-Y_\tau)-\Omega\cdot Z
+\end{array}
+$$</p>
+<p>Here, \(P\) is the density of mosquitoes that have blood-fed at least
+once. The infected mosquito density \(Y\) generates infectious mosquitoes
+after the EIP, represented by the delayed term in the \(Z\) equation.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="macdonald.html">macdonald</a>, <a href="dMYdt.macdonald.html">dMYdt.macdonald</a></p></div>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

@@ -120,6 +120,35 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
     </div>
+    <div class="section level2">
+    <h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a></h2>
+
+
+
+<p><strong>Ecology</strong></p>
+<p>Adult mosquitoes emerge from aquatic habitats \((\Lambda)\) and disperse and die (\(\Omega\)):
+$$
+dM/dt = \Lambda - \Omega \cdot M
+$$
+The model also computes the density of parous adult mosquitoes: those that have
+blood fed at least once:
+$$
+dP/dt = fq(M-P) - \Omega \cdot P \\
+$$
+Parity is computed during parsing as \(P/M\) and its orbit is stored as <code>parity.</code></p>
+<p><strong>Infection Dynamics</strong></p>
+<p>Given the per-capita daily rate of human blood feeding \((fq)\) and
+net infectiousness \((\kappa)\), the FoI for mosquitoes is \(fq\kappa\).
+Changes in the density of infected mosquitoes
+is given by:
+$$
+dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\
+$$</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="SI.html">SI</a>, <a href="dMYdt.SI.html">dMYdt.SI</a></p></div>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

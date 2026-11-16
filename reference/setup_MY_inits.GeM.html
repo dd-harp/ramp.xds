@@ -134,6 +134,36 @@ see the inline module documentation.</p></li>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
     </div>
+    <div class="section level2">
+    <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
+
+
+<dl><dt><code>M</code></dt>
+<dd><p>density of adult mosquitoes</p></dd>
+
+<dt><code>P</code></dt>
+<dd><p>density of parous adult mosquitoes</p></dd>
+
+<dt><code>Y</code></dt>
+<dd><p>density of infected adult mosquitoes</p></dd>
+
+<dt><code>Z</code></dt>
+<dd><p>density of infectious adult mosquitoes</p></dd>
+
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="accessory-variable">Accessory Variable<a class="anchor" aria-label="anchor" href="#accessory-variable"></a></h2>
+
+
+<p>The matrix \(\Upsilon(t)\) represents survival and dispersal through the
+time-varying EIP, from \(t_\tau=t-\tau'(t)\) to \(t\). In the
+autonomous case it is \(e^{-\Omega\tau}\). For time-varying demography
+and EIP, it is computed as an accessory variable:
+$$\frac{d\Upsilon}{dt}=\left(\Omega(t_\tau)\left(1-\frac{d\tau'(t)}{dt}\right)-\Omega(t)\right)\cdot\Upsilon(t).$$
+The initial matrix is set to \(\exp(-\Omega eip)\). This variable is
+internal to the model and is not an output orbit.</p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

@@ -1,6 +1,6 @@
-# Compute the get_HTC for the hMoI model
+# Compute the get_HTC for the `hMoI` model
 
-Implements `get_HTC` for the hMoI model with demography.
+Implements `get_HTC` for the `hMoI` model with demography.
 
 ## Usage
 
@@ -22,3 +22,7 @@ get_HTC(xds_obj, i)
 ## Value
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

@@ -1,4 +1,4 @@
-# Make inits for hybrid MoI human model
+# Make initial values for `hMoI` (**XH**)
 
 MoI stands for Multiplicity of Infection, and refers to malarial
 superinfection.
@@ -31,3 +31,17 @@ make_XH_inits_hMoI(nStrata, options = list(), m1 = 2, m2 = 1)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## State Variables
+
+- `m1` or \\m_1\\:
+
+  mean MoI for all infections
+
+- `m2` or \\m_2\\:
+
+  mean MoI for apparent (detectable) infections
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

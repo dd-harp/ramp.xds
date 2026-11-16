@@ -1,8 +1,8 @@
-# Egg laying rate
+# Egg batch rate
 
-Egg laying rates are a type2 functional response to available water.
+Egg batch rates are a type2 functional response to available water.
 
-Letting \\Q\\ be the availability of all water. The egg laying rate is
+Letting \\Q\\ be the availability of all water. The egg batch rate is
 \$\$\nu = \nu_x \frac{s\_\nu Q}{1+s\_\nu Q}\$\$
 
 ## Usage
@@ -28,4 +28,4 @@ F_nu(t, xds_obj, s)
 
 ## Value
 
-\\\nu\\, the baseline egg laying rate
+\\\nu\\, the baseline egg batch rate

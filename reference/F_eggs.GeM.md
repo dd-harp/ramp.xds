@@ -1,4 +1,4 @@
-# Number of eggs laid by adult mosquitoes
+# Egg production rate for `GeM`
 
 Implements
 [F_eggs](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md) for the
@@ -33,3 +33,17 @@ F_eggs(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`
+
+## Egg Laying
+
+The egg batch rate \\\nu\\ and the number of eggs per batch,
+`eggs_per_batch`, determine the egg production rate per patch: \$\$G=\nu
+M\cdot\texttt{eggs\\per\\batch}.\$\$ F_eggs.GeM computes \\G\\, which is
+passed to
+[EggLaying](https://dd-harp.github.io/ramp.xds/reference/EggLaying.md)
+for distribution among aquatic habitats.
+
+## See also
+
+[GeM](https://dd-harp.github.io/ramp.xds/reference/GeM.md),
+[EggLaying](https://dd-harp.github.io/ramp.xds/reference/EggLaying.md)

@@ -1,8 +1,7 @@
-# The net blood feeding rate of the infective mosquito population in a patch
+# Mosquito biting rate for `RMdts`
 
-Implements
-[F_fqM](https://dd-harp.github.io/ramp.xds/reference/F_fqM.md) for the
-RMdts model.
+Returns `fqM`, the daily mosquito biting density on humans for each
+patch in the RMdts model.
 
 ## Usage
 
@@ -33,3 +32,7 @@ F_fqM(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`
+
+## See also
+
+[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md)

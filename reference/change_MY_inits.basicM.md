@@ -27,3 +27,14 @@ change_MY_inits(xds_obj, options = list(), s = 1)
 ## Value
 
 an **`xds`** object
+
+## State Variables
+
+- `M`:
+
+  density of adult mosquitoes
+
+- `P`:
+
+  density of parous adult mosquitoes: those that have blood-fed at least
+  once

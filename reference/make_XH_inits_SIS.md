@@ -32,4 +32,5 @@ initial values as a named [list](https://rdrr.io/r/base/list.html)
 
 ## See also
 
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md),
 [setup_XH_inits.SIS](https://dd-harp.github.io/ramp.xds/reference/setup_XH_inits.SIS.md)

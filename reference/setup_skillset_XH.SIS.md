@@ -26,3 +26,7 @@ the **`xds`** object
 ## Note
 
 This method dispatches on `class(xds_obj$XH_obj)`
+
+## See also
+
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

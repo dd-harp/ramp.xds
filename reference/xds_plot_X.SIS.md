@@ -1,6 +1,6 @@
-# Plot the density of infected individuals for the SIS model
+# Plot the density of infected individuals for the `SIS` model
 
-Plot the density of infected individuals for the SIS model
+Plot the density of infected individuals for the `SIS` model
 
 ## Usage
 
@@ -36,3 +36,7 @@ xds_plot_X(
 - add:
 
   plot axes only if FALSE
+
+## See also
+
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

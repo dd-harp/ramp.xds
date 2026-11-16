@@ -1,7 +1,7 @@
 # Compute the "true" prevalence of infection / parasite rate
 
 Implements [F_ni](https://dd-harp.github.io/ramp.xds/reference/F_ni.md)
-for the hMoI model.
+for the `hMoI` model.
 
 ## Usage
 
@@ -24,3 +24,7 @@ F_ni(vars, XH_obj)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nStrata`
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

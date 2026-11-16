@@ -1,4 +1,4 @@
-# Change **XH** parameters
+# Change parameters (**XH**)
 
 For the **XH** module for the \\i^{th}\\ species, change parameter
 values named in `options`, leaving other values unchanged.

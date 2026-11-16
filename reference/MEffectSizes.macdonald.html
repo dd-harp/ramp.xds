@@ -5,19 +5,9 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Apply effect sizes for macdonald (MY) — MEffectSizes.macdonald"><meta name="description" content="Reset the effect sizes for static models.
-When modules are added to compute effect sizes
-from baseline parameters, those functions store
-an effect size. The total effect size is the
-product of the effect sizes for each intervention.
-since coverage could be changing dynamically, these
-must be reset each time the derivatives are computed."><meta property="og:description" content="Reset the effect sizes for static models.
-When modules are added to compute effect sizes
-from baseline parameters, those functions store
-an effect size. The total effect size is the
-product of the effect sizes for each intervention.
-since coverage could be changing dynamically, these
-must be reset each time the derivatives are computed."></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Apply effect sizes for macdonald (MY) — MEffectSizes.macdonald"><meta name="description" content="This method leaves the macdonald parameters unchanged;
+the module does not implement effect-size modifications."><meta property="og:description" content="This method leaves the macdonald parameters unchanged;
+the module does not implement effect-size modifications."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -99,13 +89,8 @@ must be reset each time the derivatives are computed."></head><body>
     </div>
 
     <div class="ref-description section level2">
-    <p>Reset the effect sizes for static models.
-When modules are added to compute effect sizes
-from baseline parameters, those functions store
-an effect size. The total effect size is the
-product of the effect sizes for each intervention.
-since coverage could be changing dynamically, these
-must be reset each time the derivatives are computed.</p>
+    <p>This method leaves the <code>macdonald</code> parameters unchanged;
+the module does not implement effect-size modifications.</p>
     </div>
 
     <div class="section level2">
@@ -137,6 +122,45 @@ must be reset each time the derivatives are computed.</p>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>an <strong><code>xds</code></strong> object</p>
+    </div>
+    <div class="section level2">
+    <h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a></h2>
+
+
+<dl><dt><code>f</code></dt>
+<dd><p>blood feeding rate — use <a href="setup_f.html">setup_f</a> or <a href="setup_f.html">setup_blood_feeding_rates</a></p></dd>
+
+<dt><code>q</code></dt>
+<dd><p>human fraction — use <a href="setup_q.html">setup_q</a> or <a href="setup_q.html">setup_human_fractions</a></p></dd>
+
+<dt><code>g</code></dt>
+<dd><p>mosquito mortality rate — use <a href="setup_g.html">setup_g</a> or <a href="setup_g.html">setup_mosquito_mortality</a></p></dd>
+
+<dt><code>eip</code> or \(\tau\)</dt>
+<dd><p>extrinsic incubation period — use <a href="setup_eip.html">setup_eip</a></p></dd>
+
+<dt><code>sigma</code> or \(\sigma\)</dt>
+<dd><p>emigration rate — use <a href="setup_sigma.html">setup_sigma</a> or <a href="setup_sigma.html">setup_emigration_rates</a></p></dd>
+
+<dt><code>mu</code> or \(\mu\)</dt>
+<dd><p>emigration loss fraction — use <a href="setup_mu.html">setup_mu</a> or <a href="setup_mu.html">setup_emigration_loss</a></p></dd>
+
+<dt><code>K</code> or <code>K_matrix</code></dt>
+<dd><p>mosquito dispersal matrix — use <a href="setup_K_matrix.html">setup_K_matrix</a></p></dd>
+
+<dt><code>nu</code> or \(\nu\)</dt>
+<dd><p>egg batch rate — use <a href="setup_nu.html">setup_nu</a> or <a href="setup_nu.html">setup_egg_batch_rates</a></p></dd>
+
+<dt><code>eggsPerBatch</code> or \(\Gamma\)</dt>
+<dd><p>number of eggs per batch</p></dd>
+
+
+</dl><p>After basic setup, <a href="change_MY_pars.macdonald.html">change_MY_pars.macdonald</a> can be used to change static
+parameter values. This module does not support dynamic bionomic ports.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><a href="macdonald.html">macdonald</a>, <a href="MBionomics.macdonald.html">MBionomics.macdonald</a></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

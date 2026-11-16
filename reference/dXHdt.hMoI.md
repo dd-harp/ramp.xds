@@ -32,3 +32,7 @@ dXHdt(t, y, xds_obj, i)
 ## Value
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

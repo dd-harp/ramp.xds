@@ -102,7 +102,7 @@ easy to change the intitial values through a function call. In solving,
 get_inits(mod, flatten=TRUE)
 ```
 
-    ## [1]    1    5    1 1000    1
+    ## [1]    1   10    8    1 1000    1
 
 With the default, `flatten=FALSE`, `get_inits` returns a named list that
 is easy to read:
@@ -119,7 +119,10 @@ get_inits(mod)
     ## 
     ## $MY
     ## $MY$M
-    ## [1] 5
+    ## [1] 10
+    ## 
+    ## $MY$P
+    ## [1] 8
     ## 
     ## $MY$Y
     ## [1] 1
@@ -145,7 +148,10 @@ get_inits(mod)$MY
 ```
 
     ## $M
-    ## [1] 5
+    ## [1] 10
+    ## 
+    ## $P
+    ## [1] 8
     ## 
     ## $Y
     ## [1] 1

@@ -1,6 +1,6 @@
 # Compute infectious density for `SIS`
 
-In the *SIS* model family, infectious density is \\cI\\.
+In the `SIS` model family, infectious density is \\cI\\.
 
 ## Usage
 
@@ -30,3 +30,7 @@ F_I(t, y, xds_obj, i)
 ## Value
 
 Infectious density
+
+## See also
+
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

@@ -28,4 +28,4 @@ an **`xds`** object
 
 ## See also
 
-[`setup_egg_laying()`](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying.md)
+[`setup_egg_laying_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying_interface.md)

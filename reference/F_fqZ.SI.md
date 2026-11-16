@@ -1,21 +1,7 @@
-# Net blood feeding by infectious mosquitoes - `SI` mosquito model
+# Infective biting for `SI`
 
-The variable \\Y\\ is the density of *infected* mosquitoes. The model
-blood feeding **parameters** are:
-
-- \\f\\ is the overall blood feeding rate
-
-- \\q\\ is the human fraction for blood feeding
-
-- \\\Omega\\ is the demographic matrix
-
-- \\\tau\\ is the EIP
-
-The net blood feeding rate by infectious mosquitoes is computed by
-accounting for survival and dispersal that would occur in a delay
-differential equation: \$\$\Upsilon = e^{-\Omega \tau}\$\$ so \$\$fqZ =
-fq (\Upsilon \cdot Y)\$\$ The daily EIR for the population strata is
-\\\beta \cdot fqZ\\
+Compute infective biting, the number of infectious bites by the mosquito
+population on humans in each patch, each day.
 
 ## Usage
 
@@ -46,3 +32,57 @@ F_fqZ(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`
+
+## Infective Biting
+
+**Infective biting density** is defined as the number of human
+infectious bites by the mosquito population in each patch, each day. In
+`SI`, infective biting density is computed if infected mosquitoes at
+time \\t\\, \\Y(t),\\ had survived and dispersed through an EIP of
+\\\tau\\ days \\e^{- \Omega \tau}\\.
+
+- \\Z\\:
+
+  density of infectious mosquitoes, imputed from \\Y\\
+
+- `fqZ`:
+
+  Infective biting density: the number of infectious bites, per patch,
+  per day \$\$fqZ = e^{-\Omega \tau} \cdot \left( f q Y \right) \$\$
+
+- `fqM`:
+
+  Human biting density: the number of human infectious bites, per patch,
+  per day
+
+Note that \\e^{-\Omega \tau}\\ is computed with the matrix exponential
+function [expm](https://rdrr.io/pkg/expm/man/expm.html)
+
+**The EIR**
+
+\\fqZ\\ is the dynamical term computed by F_fqZ.SI. It is called by
+[compute_EIR](https://dd-harp.github.io/ramp.xds/reference/compute_EIR.md)
+(in
+[Transmission](https://dd-harp.github.io/ramp.xds/reference/Transmission.md))
+to compute and store `EIR,` the local daily EIR \\(E)\\. Note that `fqZ`
+is a vector of length `nPatches` but the local EIR is a vector of length
+`nStrata.` The **XY** interface uses information about humans and
+mosquitoes to build the biting distribution matrix, \\\beta,\\ and if
+there are no visitors, then \$\$E = \beta \cdot fqZ\$\$ The orbits of
+`fqZ` and `EIR` are computed and stored by
+[xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
+by the functions that parse the outputs.
+
+**The HBR**
+
+Since estimates of the EIR are computed by taking the product of the
+human biting rate (HBR or \\B\\) and the sporozoite rate, there is
+interest in knowing \\fqM\\ and \\B.\\ The quantity `fqM` is computed by
+[F_fqM.SI](https://dd-harp.github.io/ramp.xds/reference/F_fqM.SI.md).
+The orbits of `fqM` and `HBR` are also computed during parsing, as \$\$B
+= \beta \cdot fqM\$\$
+
+## See also
+
+[SI](https://dd-harp.github.io/ramp.xds/reference/SI.md),
+[dMYdt.SI](https://dd-harp.github.io/ramp.xds/reference/dMYdt.SI.md)

@@ -10,6 +10,8 @@ to configure a function \\F_f\\, and call
 
 ``` r
 setup_f(name, xds_obj, options = list(), s = 1)
+
+setup_blood_feeding_rates(name, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments

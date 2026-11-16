@@ -1,8 +1,7 @@
-# The net blood feeding rate of the infective mosquito population in a patch
+# Mosquito biting rate for `macdonald`
 
-Implements
-[F_fqM](https://dd-harp.github.io/ramp.xds/reference/F_fqM.md) for the
-macdonald model.
+Returns `fqM`, the daily mosquito biting density on humans for each
+patch in the `macdonald` model.
 
 ## Usage
 
@@ -33,3 +32,33 @@ F_fqM(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`
+
+## Infective Biting
+
+Infective biting density is the number of infectious bites by mosquitoes
+on humans in each patch per day. The density of infectious mosquitoes
+\\Z\\ is computed from \\Y\\ after survival and dispersal through the
+EIP.
+
+- `fqZ`:
+
+  infective biting density, the number of infectious bites per patch per
+  day
+
+- `fqM`:
+
+  human biting density, the number of bites on humans per patch per day
+
+[F_fqZ.macdonald](https://dd-harp.github.io/ramp.xds/reference/F_fqZ.macdonald.md)
+and F_fqM.macdonald compute these patch-level quantities.
+[compute_EIR](https://dd-harp.github.io/ramp.xds/reference/compute_EIR.md)
+combines `fqZ` with the biting distribution matrix and resident-bite
+fraction to compute stratum-level EIR;
+[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md) computes
+HBR from `fqM` in the same way. The resulting `EIR` and `HBR` orbits are
+attached to the XH output during parsing.
+
+## See also
+
+[macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md),
+[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md)

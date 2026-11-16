@@ -129,6 +129,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_g.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_g.random.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_g.static.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/F_hbr.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_infectivity.SIS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_infectivity.hMoI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_infectivity.html</loc></url>
@@ -830,7 +831,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_births.list.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_births.no_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_births.zero.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_feeding.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_feeding_interface.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.as_is.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_search_weights.list.html</loc></url>
@@ -849,7 +850,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_deaths.no_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_deaths.zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_demog_obj.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying_interface.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_eip.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_eip_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_exposure.html</loc></url>
