@@ -16,4 +16,4 @@ check_blood_feeding(xds_obj)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

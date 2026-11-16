@@ -43,10 +43,10 @@ NULL
 #'
 #' @note For advanced setup options, see [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) 
 #'
-#' @param t current simulation time
+#' @param t time
 #' @param xds_obj an **`xds`** model object
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -61,9 +61,9 @@ Forcing = function(t, xds_obj){
 #' 
 #' @note Dynamic forcing is implemented in **`ramp.forcing`** 
 #' 
-#' @param t current simulation time
+#' @param t time
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 Forcing.none = function(t, xds_obj){
@@ -75,7 +75,7 @@ Forcing.none = function(t, xds_obj){
 #' @description Set up the `Forcing` junction and turn it off.
 #' 
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_forcing_object = function(xds_obj){

@@ -12,7 +12,7 @@ compute_RBR(t, xds_obj, y)
 
 - t:
 
-  the time
+  time
 
 - xds_obj:
 
@@ -20,8 +20,8 @@ compute_RBR(t, xds_obj, y)
 
 - y:
 
-  state vector
+  dependent variables
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

@@ -24,7 +24,7 @@
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
 #' @param xds_obj an **`xds`** model object
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @importFrom Rdpack reprompt
 #' @seealso The habitat membership matrix is created by [make_habitat_matrix()]
 #' @keywords internal
@@ -75,10 +75,10 @@ setup_egg_laying_interface = function(xds_obj){
 #' @title The ML interface
 #' @description
 #' Egg laying and emergence 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 ML_interface = function(t, y, xds_obj){

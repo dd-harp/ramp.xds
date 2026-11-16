@@ -85,7 +85,7 @@ NULL
 #'
 #' @inheritParams setup_skillset_XH
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @seealso [hMoI]
@@ -109,7 +109,7 @@ setup_skillset_XH.hMoI = function(xds_obj, i){
 #'
 #' @inheritParams check_XH
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
@@ -268,7 +268,7 @@ get_XH_pars.hMoI<- function(xds_obj, i=1) {
 #' 
 #' @inheritParams change_XH_pars
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @seealso [hMoI]
@@ -378,7 +378,7 @@ make_XH_inits_hMoI = function(nStrata, options = list(), m1=2, m2=1){
 #' 
 #' @inheritParams change_XH_inits
 #' @inheritSection hMoI State Variables
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export

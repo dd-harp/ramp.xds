@@ -51,7 +51,7 @@ NULL
 #'
 #' @inheritParams setup_skillset_L
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -69,7 +69,7 @@ setup_skillset_L.basicL = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_L.basicL = function(xds_obj, s){
@@ -177,7 +177,7 @@ F_emerge.basicL <- function(t, y, xds_obj, s) {
 #' all effect sizes (`es_psi`, `es_phi`, `es_xi`, `es_theta`) to 1.
 #' @inheritParams LBionomics
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 LBionomics.basicL <- function(t, y, xds_obj, s) {
@@ -198,7 +198,7 @@ LBionomics.basicL <- function(t, y, xds_obj, s) {
 #' @title Apply effect sizes for `basicL` (**L**)
 #' @description Implements [LEffectSizes] for the `basicL`
 #' @inheritParams LEffectSizes
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 LEffectSizes.basicL <- function(t, y, xds_obj, s) {
@@ -224,7 +224,7 @@ LEffectSizes.basicL <- function(t, y, xds_obj, s) {
 #' @note The module object is stored at `xds_obj$L_obj[[s]]`
 #'
 #' @inheritParams setup_L_obj
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_L_obj.basicL = function(Lname, membership, xds_obj, options=list(), s=1){
@@ -297,7 +297,7 @@ get_L_pars.basicL <- function(xds_obj, s=1) {
 #' - `theta` or \eqn{\theta}
 #' @inheritParams change_L_pars
 #' @seealso [dLdt.basicL] or [make_L_obj_basicL]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_L_pars.basicL <- function(xds_obj, options=list(), s=1) {
@@ -323,7 +323,7 @@ change_L_pars.basicL <- function(xds_obj, options=list(), s=1) {
 #' The initial values of \eqn{L} can be passed as `options$L`.
 #' @inheritParams setup_L_inits
 #' @seealso [make_L_inits_basicL]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_L_inits.basicL = function(xds_obj, options=list(), s=1){
@@ -366,7 +366,7 @@ get_L_vars.basicL <- function(y, xds_obj, s){
 #' Initial values of the variable \eqn{L} are reset if they are
 #' passed as a named component of `options`
 #' @inheritParams change_L_inits
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_L_inits.basicL <- function(xds_obj, options=list(), s=1) {
@@ -379,7 +379,7 @@ change_L_inits.basicL <- function(xds_obj, options=list(), s=1) {
 #' @description Set the values of the indices for the **L** component variables
 #' for the `basicL` module
 #' @inheritParams setup_L_ix
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @importFrom utils tail
 #' @keywords internal
 #' @export

@@ -12,11 +12,11 @@ compute_WB(t, y, xds_obj)
 
 - t:
 
-  the time
+  time
 
 - y:
 
-  state vector
+  dependent variables
 
 - xds_obj:
 
@@ -24,4 +24,4 @@ compute_WB(t, y, xds_obj)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

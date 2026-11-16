@@ -27,7 +27,7 @@ setup_f_obj = function(f, MY_obj){
 #'
 #' @note This method dispatches on the type of `f_obj` attached to the `MY_obj`.
 #'
-#' @param t current simulation time
+#' @param t time
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #'
@@ -83,7 +83,7 @@ check_f = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_f = function(xds_obj, s=1){
@@ -132,7 +132,7 @@ setup_blood_feeding_rates <- setup_f
 #' @param options configuration options
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_F_f = function(name, xds_obj, options = list(), s=1){
@@ -152,7 +152,7 @@ setup_F_f = function(name, xds_obj, options = list(), s=1){
 #'
 #' @inheritParams setup_F_f
 #'
-#' @return an **`xds`** object 
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -169,7 +169,7 @@ setup_F_f.list = function(name, xds_obj, options=list(), s=1){
 #' @description Leave the existing blood feeding configuration unchanged.
 #' 
 #' @inheritParams setup_F_f
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_f.no_setup = function(name, xds_obj, options = list(), s=1){

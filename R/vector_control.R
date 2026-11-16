@@ -21,7 +21,7 @@ NULL
 #'
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_vector_control_object = function(xds_obj){
@@ -43,11 +43,11 @@ setup_vector_control_object = function(xds_obj){
 #' Non-trivial vector control modules are in
 #' [**`ramp.control`**](https://github.com/dd-harp/ramp.control).
 #'
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 VectorControl1 = function(t, y, xds_obj){
@@ -63,7 +63,7 @@ VectorControl1 = function(t, y, xds_obj){
 #'
 #' @inheritParams VectorControl1
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 VectorControl1.none = function(t, y, xds_obj){
@@ -76,11 +76,11 @@ VectorControl1.none = function(t, y, xds_obj){
 #' @description A junction to implement
 #' stage two vector control functions
 #'
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 VectorControl2 <- function(t, y, xds_obj) {
@@ -94,7 +94,7 @@ VectorControl2 <- function(t, y, xds_obj) {
 #'
 #' @inheritParams VectorControl2
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export

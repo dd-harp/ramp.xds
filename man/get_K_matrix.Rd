@@ -14,7 +14,7 @@ get_K_matrix(xds_obj, which_K = "K", s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Get (inspect) a mosquito dispersal matrix.

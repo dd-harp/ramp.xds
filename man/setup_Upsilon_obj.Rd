@@ -14,7 +14,7 @@ setup_Upsilon_obj(xds_obj, s = 1, dede = FALSE)
 \item{dede}{is it a delay differential equation that needs \eqn{\Upsilon}}
 }
 \value{
-an \strong{xds} model object
+an \strong{\code{xds}} model object
 }
 \description{
 Set to \code{dde} if \strong{MY} is a

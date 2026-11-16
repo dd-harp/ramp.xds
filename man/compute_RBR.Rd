@@ -7,14 +7,14 @@
 compute_RBR(t, xds_obj, y)
 }
 \arguments{
-\item{t}{the time}
+\item{t}{time}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{y}{state vector}
+\item{y}{dependent variables}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Compute the available for the pathogen's hosts for blood feeding

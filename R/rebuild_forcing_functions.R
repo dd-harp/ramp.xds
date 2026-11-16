@@ -13,7 +13,7 @@
 #' @param ix the species index
 #' @keywords internal
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 rebuild_forcing_functions = function(xds_obj, ix){
   UseMethod("rebuild_forcing_functions", xds_obj$forced_by)
@@ -31,7 +31,7 @@ rebuild_forcing_functions = function(xds_obj, ix){
 #' @importFrom ramp.func make_function
 #' @keywords internal
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 rebuild_forcing_functions.eir = function(xds_obj, ix=1){
   with(xds_obj$EIR_obj,{
@@ -54,7 +54,7 @@ rebuild_forcing_functions.eir = function(xds_obj, ix=1){
 #' @importFrom ramp.func make_function
 #' @keywords internal
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 rebuild_forcing_functions.Lambda = function(xds_obj, ix){
   with(xds_obj$L_obj[[ix]],{
@@ -76,7 +76,7 @@ rebuild_forcing_functions.Lambda = function(xds_obj, ix){
 #' @importFrom ramp.func make_function
 #' @keywords internal
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 rebuild_forcing_functions.MY = function(xds_obj, ix){
   with(xds_obj$MY_obj[[ix]],{
@@ -98,7 +98,7 @@ rebuild_forcing_functions.MY = function(xds_obj, ix){
 #' @importFrom ramp.func make_function
 #' @keywords internal
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 rebuild_forcing_functions.XH = function(xds_obj, ix){
   with(xds_obj$XH_obj[[ix]],{

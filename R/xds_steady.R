@@ -12,7 +12,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @param Y the number of years to run once
 #' @param tol the desired accuracy
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 xds_steady = function(xds_obj, Y=10, tol=1e-5){
   xds_obj <- xds_solve(xds_obj, Y*365, Y*365)
@@ -40,7 +40,7 @@ xds_steady = function(xds_obj, Y=10, tol=1e-5){
 #'
 #' @inheritParams xds_steady
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 xds_stable_orbit = function(xds_obj, Y=10, tol=1e-5){
   xds_obj <- xds_steady(xds_obj, Y, tol)

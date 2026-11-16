@@ -7,7 +7,7 @@
 \method{F_infectivity}{hMoI}(y, xds_obj, i)
 }
 \arguments{
-\item{y}{state vector}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

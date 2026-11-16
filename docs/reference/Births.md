@@ -5,14 +5,18 @@ Human/host births
 ## Usage
 
 ``` r
-Births(t, xds_obj, i)
+Births(t, y, xds_obj, i)
 ```
 
 ## Arguments
 
 - t:
 
-  current simulation time
+  time
+
+- y:
+
+  dependent variables
 
 - xds_obj:
 

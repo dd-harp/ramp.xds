@@ -124,7 +124,7 @@ NULL
 #'
 #' @inheritParams setup_skillset_MY
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -141,7 +141,7 @@ setup_skillset_MY.GeM = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_MY.GeM = function(xds_obj, s){
@@ -429,7 +429,7 @@ get_MY_pars.GeM <- function(xds_obj, s=1) {
 #' change parameter values named in `options` leaving other values unchanged.
 #' @inheritSection GeM Parameters
 #' @inheritParams change_MY_pars
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_pars.GeM <- function(xds_obj, options=list(), s=1) {
@@ -458,7 +458,7 @@ change_MY_pars.GeM <- function(xds_obj, options=list(), s=1) {
 #' @inheritSection GeM EIP
 #' @inheritParams MBionomics
 #' @seealso [GeM], [MEffectSizes.GeM]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MBionomics.GeM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
@@ -487,7 +487,7 @@ MBionomics.GeM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
 #' @inheritSection GeM Survival and Dispersal
 #' @inheritParams MEffectSizes
 #' @seealso [GeM], [MBionomics.GeM]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
@@ -553,7 +553,7 @@ make_MY_inits_GeM = function(nPatches, Upsilon, options = list(),
 #' change initial values named in `options` leaving other values unchanged.
 #' @inheritSection GeM State Variables
 #' @inheritParams change_MY_inits
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_inits.GeM <- function(xds_obj, options=list(), s=1) {

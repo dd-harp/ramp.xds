@@ -14,7 +14,7 @@ change_deaths(death_rates, xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Modify the death rates for a model with static population

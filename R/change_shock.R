@@ -9,7 +9,7 @@
 #'
 #' @importFrom ramp.func make_function
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 #' @keywords internal
@@ -24,7 +24,7 @@ change_shock = function(shock_par, xds_obj, s=1){
 #' when `forced_by = "none"`
 #' @inheritParams change_shock
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -41,7 +41,7 @@ change_shock.none = function(shock_par, xds_obj, s=1){
 #'
 #' @importFrom ramp.func make_function
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -60,7 +60,7 @@ change_shock.Lambda = function(shock_par, xds_obj, s=1){
 #'
 #' @importFrom ramp.func make_function
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export

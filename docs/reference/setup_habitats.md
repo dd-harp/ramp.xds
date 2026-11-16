@@ -21,7 +21,7 @@ setup_habitats(xds_obj, membership)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Details
 

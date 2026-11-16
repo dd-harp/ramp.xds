@@ -10,7 +10,7 @@
 #'
 #' @seealso [F_one]
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 change_F_age = function(F, xds_obj, ix=1){
@@ -28,7 +28,7 @@ change_F_age = function(F, xds_obj, ix=1){
 #' @param xds_obj an **`xds`** model object
 #' @param ix the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 #' @keywords internal

@@ -80,7 +80,7 @@ check_K_matrix = function(K, Np, tol=1e-12){
 #' @param which_K which K_matrix
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [xds_info_mosquito_dispersal]; [setup_K_matrix]
 #' @export
 change_K_matrix = function(K_matrix, xds_obj, which_K="K", s=1){
@@ -99,7 +99,7 @@ change_K_matrix = function(K_matrix, xds_obj, which_K="K", s=1){
 #' 
 #' @inheritParams change_K_matrix
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @seealso [xds_info_mosquito_dispersal]; [setup_K_matrix]
 #' @export
@@ -126,7 +126,7 @@ change_K_matrix.K = function(K_matrix, xds_obj, which_K="K", s=1){
 #' @param which_K which K_matrix
 #' @param s the vector species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 get_K_matrix = function(xds_obj, which_K="K", s=1){
@@ -138,7 +138,7 @@ get_K_matrix = function(xds_obj, which_K="K", s=1){
 #'
 #' @inheritParams get_K_matrix
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' 
 #' @export
@@ -189,7 +189,7 @@ get_K_matrix.K = function(xds_obj, which_K="K", s=1){
 #' @param options a list of options to configure K_matrix
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object 
+#' @return an **`xds`** model object
 #' @export
 setup_K_matrix = function(name, xds_obj, options=list(), s=1){
   if(is.matrix(name)) class(options) = "as_matrix"
@@ -296,7 +296,7 @@ setup_K_matrix.as_matrix = function(name, xds_obj, options=list(), s=1){
 #'
 #' @inheritParams setup_K_matrix
 #' @seealso [make_K_matrix_herethere] and [setup_K_matrix]
-#' @return an **`xds`** object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_K_matrix.herethere = function(name, xds_obj, options=list(), s=1){
@@ -371,7 +371,7 @@ make_K_matrix_xy = function(xy, F_K = F_exp, V=list()) {
 #' 
 #' @note The port object is called `K_obj`
 #' 
-#' @param t current simulation time
+#' @param t time
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 

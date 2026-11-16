@@ -14,7 +14,7 @@ change_blood_traps(blood_traps, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Update the blood_traps for the \eqn{s^{th}} vector species, and

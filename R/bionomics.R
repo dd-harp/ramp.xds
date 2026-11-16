@@ -23,8 +23,8 @@ NULL
 #' This function computes the bionomic parameters for each vector species,
 #' before any vector control effect sizes are applied. In some models, these
 #' parameters are computed as a function of resource availability.
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @return a [list]
 #' @keywords internal
@@ -42,8 +42,8 @@ MosquitoBionomics <- function(t, y, xds_obj){
 #' for each species.
 #' This function applies the effect sizes of vector control to the bionomic
 #' parameters for each vector species.
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @return a [list]
 #' @keywords internal

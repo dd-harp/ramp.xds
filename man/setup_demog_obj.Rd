@@ -12,7 +12,7 @@ setup_demog_obj(xds_obj, i = 1)
 \item{i}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Configure the births function

@@ -12,7 +12,7 @@ check_L(xds_obj, s)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Run checks before solving (\strong{L})

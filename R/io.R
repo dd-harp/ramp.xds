@@ -6,7 +6,7 @@
 #'
 #' @param filename the file name
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 readXDS = function(filename){

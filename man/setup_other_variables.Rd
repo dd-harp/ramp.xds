@@ -10,7 +10,7 @@ setup_other_variables(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 The description for each method should include the equations.

@@ -16,7 +16,7 @@
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements \link{setup_K_matrix} for the \code{herethere} method.

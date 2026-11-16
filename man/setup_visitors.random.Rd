@@ -16,7 +16,7 @@
 \item{s}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements the "random" case for \link{setup_visitors}. See \link{make_visitors_random}

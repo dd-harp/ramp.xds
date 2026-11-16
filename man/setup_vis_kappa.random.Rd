@@ -16,7 +16,7 @@
 \item{s}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements the "random" case for \link{setup_vis_kappa}. See \link{make_vis_kappa_random}

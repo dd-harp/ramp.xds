@@ -16,7 +16,7 @@
 \item{i}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements the "method1" case for \link{setup_blood_search_weights}. See \link{make_blood_search_weights_random}

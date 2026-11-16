@@ -13,7 +13,7 @@ get_XH_vars(y, xds_obj, i)
 
 - y:
 
-  the variables
+  dependent variables
 
 - xds_obj:
 

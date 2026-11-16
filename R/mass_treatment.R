@@ -9,7 +9,7 @@
 #' @param options options list (overrides command line arguments)
 #' @param i the species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_mass_treatment = function(xds_obj, mda=F_zero, msat=F_zero, options=list(), i=1){with(options,{

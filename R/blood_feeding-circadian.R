@@ -7,7 +7,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 setup_F_circadian = function(F_circadian, xds_obj, s=1){
@@ -24,7 +24,7 @@ setup_F_circadian = function(F_circadian, xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' 
 #' @export

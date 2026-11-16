@@ -14,7 +14,7 @@ F_f(t, xds_obj, s)
 
 - t:
 
-  current simulation time
+  time
 
 - xds_obj:
 

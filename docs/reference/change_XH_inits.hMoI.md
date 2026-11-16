@@ -30,7 +30,7 @@ change_XH_inits(xds_obj, options = list(), i = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## State Variables
 

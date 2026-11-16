@@ -51,7 +51,7 @@ xds_setup_eir(
 \item{model_name}{is a name for the model (arbitrary)}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Build a dynamical system to describe human malaria epidemiology or host disease dynamics forced by the

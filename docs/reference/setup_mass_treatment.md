@@ -38,4 +38,4 @@ setup_mass_treatment(
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

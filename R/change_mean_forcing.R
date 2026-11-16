@@ -8,7 +8,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @param ix the species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 change_mean_forcing = function(X, xds_obj, ix=1){
@@ -23,7 +23,7 @@ change_mean_forcing = function(X, xds_obj, ix=1){
 #'
 #' @inheritParams change_mean_forcing
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -38,7 +38,7 @@ change_mean_forcing.none = function(X, xds_obj, ix=1){
 #'
 #' @inheritParams change_mean_forcing
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -55,7 +55,7 @@ change_mean_forcing.Lambda = function(X, xds_obj, ix=1){
 #'
 #' @inheritParams change_mean_forcing
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -72,7 +72,7 @@ change_mean_forcing.eir = function(X, xds_obj, ix=1){
 #'
 #' @inheritParams change_mean_forcing
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -90,7 +90,7 @@ change_mean_forcing.eggs = function(X, xds_obj, ix=1){
 #'
 #' @inheritParams change_mean_forcing
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -108,7 +108,7 @@ change_mean_forcing.fqZ = function(X, xds_obj, ix=1){
 #'
 #' @inheritParams change_mean_forcing
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export

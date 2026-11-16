@@ -10,7 +10,7 @@ setup_egg_laying_interface(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Set up a part of the \code{xds} object that defines the interface for egg laying

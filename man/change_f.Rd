@@ -12,7 +12,7 @@ change_f(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 For models where the baseline value is constant,

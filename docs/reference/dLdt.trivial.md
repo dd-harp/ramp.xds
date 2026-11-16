@@ -13,11 +13,11 @@ dLdt(t, y, xds_obj, s)
 
 - t:
 
-  current simulation time
+  time
 
 - y:
 
-  state vector
+  dependent variables
 
 - xds_obj:
 

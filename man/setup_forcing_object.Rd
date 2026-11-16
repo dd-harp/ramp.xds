@@ -10,7 +10,7 @@ setup_forcing_object(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Set up the \code{Forcing} junction and turn it off.

@@ -36,7 +36,7 @@ change_K_matrix(K_matrix, xds_obj, which_K = "K", s = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## See also
 

@@ -7,7 +7,7 @@
 parse_y(y, xds_obj)
 }
 \arguments{
-\item{y}{a \link{vector} with the variables}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }

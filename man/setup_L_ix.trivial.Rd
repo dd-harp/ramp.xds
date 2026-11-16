@@ -12,7 +12,7 @@
 \item{s}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Return the \strong{\code{xds}} object unmodified

@@ -16,7 +16,7 @@
 \item{s}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements the "random" case for \link{setup_blood_traps}. See \link{make_blood_traps_random}

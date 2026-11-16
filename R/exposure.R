@@ -56,7 +56,7 @@ NULL
 #' @param options set up options list
 #' @param i the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_exposure <- function(EHname, xds_obj, options=list(), i=1){
@@ -69,10 +69,10 @@ setup_exposure <- function(EHname, xds_obj, options=list(), i=1){
 #' attack rates (AR) as a function of the local
 #' daily entomological inoculation rate (dEIR),
 #' immunity, and exposure to malaria while traveling.
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @rdname Exposure
 #' @export
@@ -97,7 +97,7 @@ Exposure <- function(t, y, xds_obj){
 #' \deqn{h = (1-\delta) \; F_h(E, b) + \delta\; F_h(E_T, b,t)}
 #' @inheritParams Exposure
 #' @seealso Related: [Exposure] & [F_foi.pois] & [F_foi.nb] & [xds_info_travel_malaria] 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 Exposure.xde <- function(t, y, xds_obj){
@@ -130,7 +130,7 @@ Exposure.xde <- function(t, y, xds_obj){
 #' exposure to malaria while traveling, (\eqn{T_\delta}):
 #' \deqn{\alpha = 1-((1-\delta) \; F_\alpha(E, b))(1-\delta\; T_\alpha(b))}
 #' @inheritParams Exposure
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso Related: [Exposure] & [F_ar.pois] & [F_ar.nb] & [xds_info_travel_malaria]
 #' @export
 #' @keywords internal

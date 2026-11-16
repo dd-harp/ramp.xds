@@ -16,7 +16,7 @@
 \item{s}{the host species index}
 }
 \value{
-an \strong{xds} object
+an \strong{\code{xds}} model object
 }
 \description{
 If an options list is passed

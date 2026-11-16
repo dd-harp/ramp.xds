@@ -16,11 +16,11 @@ get_variables(opts, t, y, xds_obj, ix)
 
 - t:
 
-  current simulation time
+  time
 
 - y:
 
-  state vector
+  dependent variables
 
 - xds_obj:
 

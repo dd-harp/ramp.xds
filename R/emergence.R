@@ -1,10 +1,10 @@
 #' @title Compute emerging adults
 #' @description
 #' Sums up adults emerging from all aquatic habitats using the habitat membership matrix
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 Emergence = function(t, y, xds_obj){

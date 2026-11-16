@@ -12,7 +12,7 @@ update_Omega(xds_obj, s)
 \item{s}{vector species index}
 }
 \value{
-an \strong{xds} model object
+an \strong{\code{xds}} model object
 }
 \description{
 Update a static demographic matrix

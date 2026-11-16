@@ -14,7 +14,7 @@
 \item{i}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 This method dispatches on the type of \code{xds_obj$XH_obj[[s]]}.

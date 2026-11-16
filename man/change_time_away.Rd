@@ -14,7 +14,7 @@ change_time_away(time_away, xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Update the time spent  for the \eqn{i^{th}} host species, and

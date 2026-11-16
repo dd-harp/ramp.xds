@@ -16,7 +16,7 @@ setup_MY_obj(MYname, xds_obj, options = list(), s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 This setup creates an \strong{MY} object for the \eqn{s^{th}} species

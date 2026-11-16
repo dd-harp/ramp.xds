@@ -84,7 +84,7 @@ NULL
 #' @description Run no consistency checks
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_MY.trivial = function(xds_obj, s){
@@ -156,7 +156,7 @@ F_fqM.trivial <- function(t, y, xds_obj, s){
 #' @title Mosquito bionomics for `trivial` (**MY**)
 #' @description Implements [MBionomics] for the `trivial` module
 #' @inheritParams MEffectSizes
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MBionomics.trivial <- function(t, y, xds_obj, s) {
@@ -166,7 +166,7 @@ MBionomics.trivial <- function(t, y, xds_obj, s) {
 #' @title Apply effect sizes for `trivial` (**MY**)
 #' @description Implements [MEffectSizes] for the `trivial` module
 #' @inheritParams MEffectSizes
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MEffectSizes.trivial <- function(t, y, xds_obj, s) {
@@ -214,7 +214,7 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #'
 #' @inheritParams setup_MY_obj
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #'
 #' @export
@@ -323,7 +323,7 @@ get_MY_pars.trivial <- function(xds_obj, s=1) {
 #' @description For the `trivial` module (**MY**) for the \eqn{s^{th}} species,
 #' change initial values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_inits
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_inits.trivial <- function(xds_obj, options=list(), s=1) {
@@ -334,7 +334,7 @@ change_MY_inits.trivial <- function(xds_obj, options=list(), s=1) {
 #' @description For the `trivial` module (**MY**) for the \eqn{s^{th}} species,
 #' change parameter values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_pars
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_pars.trivial <- function(xds_obj, options=list(), s=1) {
@@ -352,7 +352,7 @@ change_MY_pars.trivial <- function(xds_obj, options=list(), s=1) {
 #'
 #' @inheritParams setup_skillset_MY
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -369,7 +369,7 @@ setup_skillset_MY.trivial = function(xds_obj, s){
 #' has no dynamical variables requiring initial values.
 #' This method returns the unmodified **`xds`** object; `options` is unused.
 #' @inheritParams setup_MY_inits
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_MY_inits.trivial = function(xds_obj, options=list(), s=1){
@@ -379,7 +379,7 @@ setup_MY_inits.trivial = function(xds_obj, options=list(), s=1){
 #' @title Add indices for aquatic stage mosquitoes to parameter list
 #' @description Implements [setup_MY_ix] for trivial (forced emergence) model.
 #' @inheritParams setup_MY_ix
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_MY_ix.trivial <- function(xds_obj, s) {

@@ -17,11 +17,11 @@ VectorControlEffectSizes(t, y, xds_obj)
 
 - t:
 
-  current simulation time
+  time
 
 - y:
 
-  state vector
+  dependent variables
 
 - xds_obj:
 

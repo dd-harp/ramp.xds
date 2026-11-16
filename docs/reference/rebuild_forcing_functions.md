@@ -26,7 +26,7 @@ rebuild_forcing_functions(xds_obj, ix)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## See also
 

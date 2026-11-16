@@ -10,7 +10,7 @@ compute_U_matrix(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Compute the egg laying matrices

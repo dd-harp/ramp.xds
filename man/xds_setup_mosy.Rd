@@ -42,7 +42,7 @@ xds_setup_mosy(
 \item{xds}{is \code{xde} for differential equations or \code{dts} for discrete time systems}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 \loadmathjax

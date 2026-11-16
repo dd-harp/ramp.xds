@@ -16,7 +16,7 @@
 \item{i}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements the "at_home" case for \link{setup_timespent}. See \link{make_timespent_at_home}

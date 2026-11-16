@@ -12,7 +12,7 @@ setup_L_ix(xds_obj, s)
 \item{s}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Set up indices for \strong{L} component variables

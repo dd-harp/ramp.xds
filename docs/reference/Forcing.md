@@ -13,7 +13,7 @@ Forcing(t, xds_obj)
 
 - t:
 
-  current simulation time
+  time
 
 - xds_obj:
 
@@ -21,7 +21,7 @@ Forcing(t, xds_obj)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Note
 

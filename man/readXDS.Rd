@@ -10,7 +10,7 @@ readXDS(filename)
 \item{filename}{the file name}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Read the \code{xds} object using \code{readRDS} and rebuild the forcing functions

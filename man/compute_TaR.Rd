@@ -9,10 +9,10 @@ compute_TaR(xds_obj, t = 0)
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{t}{the time}
+\item{t}{time}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Make a time at risk matrix (TaR) from a time spent matrix and a circadian function

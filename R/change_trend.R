@@ -8,7 +8,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 #' @keywords internal
@@ -25,7 +25,7 @@ change_trend = function(X, xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 #' @keywords internal
@@ -41,7 +41,7 @@ change_spline = function(X, xds_obj, s=1){
 #'
 #' @inheritParams change_spline
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -59,7 +59,7 @@ change_spline.none = function(X, xds_obj, s=1){
 #'
 #' @importFrom ramp.func make_function
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -80,7 +80,7 @@ change_spline.Lambda = function(X, xds_obj, s=1){
 #'
 #' @importFrom ramp.func make_function
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -101,7 +101,7 @@ change_spline.eir = function(X, xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 #' @keywords internal
@@ -118,7 +118,7 @@ change_spline_y = function(yy, xds_obj, s=1){
 #'
 #' @inheritParams change_spline_y
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -137,7 +137,7 @@ change_spline_y.none = function(yy, xds_obj, s=1){
 #'
 #' @importFrom ramp.func make_function
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -159,7 +159,7 @@ change_spline_y.Lambda = function(yy, xds_obj, s=1){
 #'
 #' @importFrom ramp.func make_function
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export

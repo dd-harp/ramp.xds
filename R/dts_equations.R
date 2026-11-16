@@ -2,8 +2,8 @@
 
 #' @title dts_update_ States for Discrete-Time Systems
 #' @description dts_update_s the state variables
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @return a [list] containing the vector of all state derivatives
 #' @keywords internal
@@ -16,8 +16,8 @@ dts_update <- function(t, y, xds_obj) {
 #' @title Difference equations isolating the humans, forced with Ztrace
 #' @description Compute and update the state variables for
 #' a model with only humans
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [vector] containing the vector of all state derivatives
@@ -32,8 +32,8 @@ dts_update_Lt = function(t, y, xds_obj, s){
 #' @title Difference equations isolating the humans, forced with Ztrace
 #' @description Compute and update the state variables for
 #' a model with only humans
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [vector] containing the vector of all state derivatives
@@ -48,8 +48,8 @@ dts_update_MYt = function(t, y, xds_obj, s){
 #' @title Difference equations isolating the humans, forced with Ztrace
 #' @description Compute and update the state variables for
 #' a model with only humans
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [vector] containing the vector of all state derivatives

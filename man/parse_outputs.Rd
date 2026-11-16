@@ -14,7 +14,7 @@ parse_outputs(xds_obj, de_vars, tm)
 \item{tm}{the time}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Make Outputs

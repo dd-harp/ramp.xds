@@ -7,16 +7,16 @@
 \method{update_blood_search_weights}{static}(t, y, xds_obj, i)
 }
 \arguments{
-\item{t}{the time}
+\item{t}{time}
 
-\item{y}{the state variables}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 The \code{static} method returnStrata \code{xds_obj} unmodified

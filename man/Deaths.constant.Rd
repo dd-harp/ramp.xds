@@ -7,7 +7,7 @@
 \method{Deaths}{constant}(t, X, xds_obj, i)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{t}{time}
 
 \item{X}{a state variable}
 

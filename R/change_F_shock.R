@@ -10,7 +10,7 @@
 #'
 #' @seealso [F_one]
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 change_F_shock = function(F, xds_obj, ix=1){
@@ -25,7 +25,7 @@ change_F_shock = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_shock
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -41,7 +41,7 @@ change_F_shock.none = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_shock
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -58,7 +58,7 @@ change_F_shock.Lambda = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_shock
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -76,7 +76,7 @@ change_F_shock.eir = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_shock
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -94,7 +94,7 @@ change_F_shock.kappa = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_shock
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export

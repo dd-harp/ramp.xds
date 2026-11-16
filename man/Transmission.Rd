@@ -7,14 +7,14 @@
 Transmission(t, y, xds_obj)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{t}{time}
 
-\item{y}{state vector}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 This method dispatches on the type of \code{xds_obj$beta}

@@ -48,7 +48,7 @@ xds_setup_aquatic(
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Details
 

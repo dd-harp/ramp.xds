@@ -24,7 +24,7 @@ make_xds_object_template(
 \item{residence}{the patch where each stratum resides}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 This function is called by \link{xds_setup} to create

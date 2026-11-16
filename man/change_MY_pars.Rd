@@ -14,7 +14,7 @@ change_MY_pars(xds_obj, options = list(), s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 For the \strong{MY} module for the \eqn{s^{th}} species,

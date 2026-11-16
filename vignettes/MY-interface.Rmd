@@ -15,24 +15,27 @@ This vignette takes a deep dive into the design and structure of the **MY** comp
 
 ## Overview 
 
-The **MY** component includes processes related to adult mosquito ecology and infection dynamics. We let **M** describe a state space describing mosquito ecology, and **Y** an embedded state space describing parasite or pathogen infection dynamics. Since **Y** is embedded within **M,** the two processes are handled together. 
+The **MY** component includes processes related to adult mosquito ecology and infection dynamics. **M** describes the adult mosquito population, and **Y** denotes state variables for pathogen infection dynamics within that population. The state variables and equations depend on the model.
 
 The **Y** component interacts with **X** through blood feeding and transmission: 
 
-+ All **Y** components are developed around net-infectiousness, or $\kappa,$ the probability of becoming infected after blood feeding on a human. 
++ Infection models use net infectiousness, or $\kappa,$ the probability that a mosquito becomes infected after blood feeding on a human.
 
-+ Each module must supply a function $F_Z$ that computes the expected number of infectious bites on humans. This is processed by the **XY** interface and transformed into the daily EIR for all the **XH** component strata. 
++ Each module supplies `F_fqZ`, which computes the daily density of infectious mosquito bites on humans in each patch. The transmission interface uses this quantity to compute EIR for the human strata.
++
++ Modules also supply `F_fqM`, the daily density of mosquito bites on humans in each patch. The transmission interface uses it to compute HBR for the human strata.
 
 The **M** component interacts with **L** through egg laying and emergence. 
 
 + The **M** component is developed around the net emergence rate of adult mosquitoes, or $\Lambda.$
 
-+ Each **M** component must supply a function $F_G$ that computes the number of eggs laid by the adult mosquito population in a patch. The **ML**-interface determines how the eggs are apportioned among all the habitats in a patch.  
-A function `dMYdt` computes the derivatives for differential equation modules. `Update_MYt` updates the variables for discrete time systems.
++ Each module supplies `F_eggs`, which computes the number of eggs produced by adult mosquitoes in each patch. The egg-laying interface apportions those eggs among the habitats in a patch.
++
++ `dMYdt` computes derivatives for continuous-time models. Discrete-time models can instead implement `Update_MYt` to update the state variables.
 
 *** 
 
-![***Figure 1:** A diagram of the **MY** Component. For parasite transmission, blood feeding on humans infects the fractions $\kappa$ (per patch) and after surviving the EIP, infectious mosquitoes blood feed on humans again (at the patch rates* $fqZ$*). For mosquito ecology, emergent adult mosquitoes enter the population as they mature in aquatic habitats (from the **L** Component) and adult mosquitoes lay eggs in those aquatic habitats.*](MY_component.drawio.png)
+![***Figure 1:** A diagram of the **MY** Component. For parasite transmission, blood feeding on humans infects mosquitoes according to net infectiousness $\kappa$. After surviving the EIP, infectious mosquitoes blood feed on humans at the patch-specific rate represented by $fqZ$. For mosquito ecology, adult mosquitoes emerge from aquatic habitats in the **L** Component and lay eggs into those habitats.*](MY_component.drawio.png)
 
 *** 
 
@@ -40,130 +43,121 @@ Two important issues for **MY** components are adult mosquito demography, includ
 
 ### Mosquito Demography 
 
-There are some built-in functions to compute a mosquito demographic matrix, $\Omega,$ and a matrix that computes survival and dispersal through the EIP:  $$\Upsilon = e^{-\Omega \tau}$$
+The SI module represents mosquito mortality and dispersal with the matrix $\Omega$ and computes survival and dispersal through the EIP with $\Upsilon = e^{-\Omega \tau}$.
 
-For most of these models:
-$$\Omega = -g - \sigma + (1-\mu) \sigma K$$
+For SI, the matrix is
+$$\Omega = \operatorname{diag}(g + \sigma\mu) - K\operatorname{diag}(\sigma(1-\mu)),$$
+where $g$ is the mortality rate, $\sigma$ is the emigration rate, $\mu$ is the fraction lost during emigration, and $K$ describes dispersal. Other model families may use different demographic structures.
 
 ### Mosquito Bionomics 
 
-The core challenge for implementing mosquito bionomics was how to handle time-varying parameters affected by two or more processes: a baseline value affected by resource availability or weather; and a new value that has been modified by the presence of vector control. This challenge applies to all mosquitoes, whether adult or immature, so it is handled separately: 
-[Bionomics](https://github.com/dd-harp/ramp.xds/Bionomics.html){target="_blank"}.
+Mosquito bionomics must accommodate baseline parameters that can vary with time or environmental conditions and can be modified by vector control. The `MBionomics` and `MEffectSizes` methods update these values for adult mosquitoes. The broader design is described in the [Bionomics vignette](https://dd-harp.github.io/ramp.xds/articles/Bionomics.html){target="_blank"}.
 
 ## Required Functions 
 
-Each **MY** module includes 21 required functions and some optional ones.
+There is no fixed number of functions that every **MY** module must implement. The methods required depend on whether the model is continuous-time or discrete-time and on the capabilities the module supports.
 
 Some of these required functions are `S3` class functions in [adult-MY-interface.R](https://github.com/dd-harp/ramp.xds/blob/main/R/adult-MY-interface.R){target="_blank"}. Others are defined for each module. 
 
 One good example is the `SI` module, posted in the `ramp.xds` github repository [adult-MY-SI.R](https://github.com/dd-harp/ramp.xds/blob/main/R/adult-MY-SI.R){target="_blank"}. 
 
-The required functions deal with various tasks for model building and solving: constructing the **MY** model object; the dynamics; the parameters; the variables and their initial values; computing terms and standard outputs; and consistency checks. Optional outputs include other metrics; functions to compute steady states; and module specific functions to visualize the outputs. 
+The methods cover model setup, dynamics, bionomics, state variables and initial values, parameter access, parsed outputs, and consistency checks. A module can also implement optional methods such as steady-state calculations when those are supported.
 
-Each module is defined by a string, generically called `MYname`, that identifies the module: *e.g.* `SI`.
+Each module is identified by a class name, generically called `MYname` (for example, `SI`). Methods dispatch on the class of `xds_obj$MY_obj[[s]]`, where `s` is the vector-species index. MY method signatures use `s` consistently.
 
 ### Dynamics 
 
 At least one of the following is required, depending on whether the model family is a system of differential equations or a discrete time system:
 
-    + `dMYdt.MYname` :: differential equations are defined by a function that computes the derivatives. In `ramp.xds` these are encoded in a function called `dMYdt`. The function is set up to be solved by `deSolve::ode` or `deSolve::dede`.
+    + `dMYdt.MYname` :: implement this method for a continuous-time model. It receives `t`, the dependent-variable vector `y`, `xds_obj`, and `s`; it returns derivatives in the same order as the model's state variables. The function is used with solvers such as `deSolve::ode` or `deSolve::dede`.
 
-    + `Update_MYt.MYname` :: discrete time systems are defined by the function that updates the state variables in one time step. In `ramp.xds` these are encoded in a function called `Update_MYt` that computes and returns the **state variables.** The forms mimic the ones used for differential equations.
+    + `Update_MYt.MYname` :: implement this method for a discrete-time model. It receives `t`, `y`, `xds_obj`, and `s`, and returns the updated state variables in the model's state-variable order.
 
 ### Bionomics
 
-Two functions update bionomic parameter values at each time step, called in sequence before the dynamics are computed.
+Two methods update bionomic parameter values before the dynamics are computed.
 
-+ `MBionomics.MYname` -- computes the current bionomic parameter values by evaluating the appropriate forcing functions. It also resets all effect sizes to 1.
++ `MBionomics.MYname` -- evaluates the baseline bionomic parameter functions for the current time and resets the effect sizes to 1.
 
 + `MEffectSizes.MYname` -- applies vector control effect sizes to the bionomic parameters set by `MBionomics`.
+
+Both methods receive `t`, `y`, `xds_obj`, and `s`, and return the updated `xds_obj`.
 
 
 ## MY Model Object
 
-Each module has a pair of functions that set up a structured list called the **MY** model object. 
-The object is a list that is assigned to a `class` that dispatches the `S3` functions described below.
-It is a compound list, where some of the sub-lists are assigned their own `class` that dispatch other `S3` functions. 
+Each module defines a constructor and setup method for its **MY** model object. The constructor returns a list with the module's class; the setup method stores it at `xds_obj$MY_obj[[s]]` and prepares its initial values and shared interfaces.
 
-+ `make_MY_obj_MYname` :: returns a structured list called an **MY** model object: 
++ `make_MY_obj_MYname` :: returns the module-specific **MY** object. It typically contains:
 
     + bionomic parameter values or bionomic parameter objects. In most models, the value of baseline bionomic parameters are functions of time, or exogenous variables that vary with time.  
    
     + `class(MY_obj)` = `MYname` 
     
-    + the indices for the model variables are stored as `MY_obj$ix` 
+    + the indices for the model variables, stored as `MY_obj$ix`
     
     + the initial values are stored as `MY_obj$inits` 
     
     + anything else that is needed can be configured here 
     
-+ `setup_MY_obj.MYname` is a wrapper that calls `make_MY_obj_MYname` and (for the $i^{th}$ species) attaches the object as `xds_obj$MY_obj[[i]]`
++ `setup_MY_obj.MYname` calls the constructor and stores the object for vector species `s` at `xds_obj$MY_obj[[s]]`. It also prepares initial values and any shared interfaces needed by the module.
 
 ### Parameters
 
-+ `change_MY_pars.MYname` changes the values of some parameters. It is designed to be used after setup. New parameter values are passed by name in a list called `options`.
++ `change_MY_pars.MYname` changes supported parameter values after setup. New values are passed by name in `options`.
 
-+ `get_MY_pars.MYname` is a utility to inspect the values of the parameters. 
++ `get_MY_pars.MYname` returns the stored parameter values for inspection.
 
 ### Variables
 
-Since the **MY** component is one of three, a function sets up the indices for all the variables in a model.
+`setup_MY_ix.MYname` sets up indices for the model's state variables.
+`get_MY_ix` retrieves the stored indices.
 
-Two other functions use those indices: one pulls the variables from the state variable vector $y$; the other one pulls the variables by name from an output matrix returned by `xds_solve`.
+Two other methods use those indices: `get_MY_vars.MYname` retrieves state values from the dependent-variable vector $y$, and `parse_MY_orbits.MYname` retrieves state values from solver output.
 
-After pulling, both functions return the variables by name in a list to make it easy to inspect or use.
-
-+ `setup_MY_ix.MYname` - is the function that assigns an index to each variable in the model, and stores it as `xds_obj$MY_obj[[i]]$ix`. The indices are returned as a named list.
-
-+ `get_MY_vars.MYname` - retrieves the value of variables from the state variables vector $y$ at a point in time and returns the values by name in a list; the function gets called by `dMYdt` and by `change_MY_inits` and it can be useful in other contexts. 
-
-+ `parse_MY_orbits.MYname` - this function is like `get_MY_vars` but it parses the matrix of outputs returned by `xds_solve`.
++ Both methods return named lists. The parsed output can also include derived quantities specific to the model.
 
 ### Initial Values
 
 A set of functions sets up or changes the initial values for the state variables.
 
-+ `make_MY_inits_MYname` - each model must include a function that makes a set of initial values as a named list. This function does not belong to any `S3` class, so it can take any form. The function should supply default initial values for all the variables. These can be overridden by passing new initial values in `options`.
++ `make_MY_inits_MYname` - returns a named list of default initial values for all state variables. Values can be overridden through `options`.
     
-+ `setup_MY_inits.MYname` - is a wrapper, that gets called by `xds_setup` and that calls `make_MY_inits_MYname`. The setup `options` are passed to override default values. The initial values are stored as `MY_obj$inits`.
++ `setup_MY_inits.MYname` - calls the initial-value constructor and stores the values at `xds_obj$MY_obj[[s]]$inits`.
+
++ `get_MY_inits` and `change_MY_inits.MYname` - inspect and change the stored initial values.
 
 + `change_MY_inits.MYname` - a utility to change the initial values. 
 
 ### Dynamical Terms 
 
-These functions compute dynamical terms -- the outputs passed to an interface.  
+These methods compute quantities used by other component interfaces. Each returns a vector with one value per patch.
 
-+ `F_fqZ.MYname` - compute the daily blood feeding rate of the infective mosquito population for all the patches
++ `F_fqZ.MYname` - returns the daily density of infectious mosquito bites on humans in each patch. The transmission interface uses it to compute EIR by human stratum.
 
-+ `F_fqM.MYname` - compute the daily blood feeding rate of the total mosquito population for all the patches
++ `F_fqM.MYname` - returns the daily density of mosquito bites on humans in each patch. The transmission interface uses it to compute HBR by human stratum.
 
-+ `F_eggs.MYname` - compute the daily egg laying rate by the adult mosquito population for all the patches
++ `F_eggs.MYname` - returns daily egg production by adult mosquitoes in each patch. The egg-laying interface distributes the eggs among habitats.
 
 ### Standard Outputs
 
-Each module must output a few key quantities: 
-
-+ `F_prevalence.MYname` - compute prevalence 
-
-+ `F_ni.MYname` - compute net infectiousness (NI) for each stratum. If $F_X \rightarrow X$ and $F_H \rightarrow H$, then $F_{ni} \rightarrow X/H.$ The function gets called after solving, and the NI is attached as a term for inspection and visualization.
-
-+ `get_HTC.MYname` - compute the human transmitting capacity. This is used by functions in **`ramp.work`** that compute threshold conditions.
+`parse_MY_orbits.MYname` parses the model's state variables and any model-specific derived quantities from the solver output. During output processing, `ramp.xds` also records `fqZ`, `fqM`, egg production `G`, emergence `Lambda`, and net infectiousness `kappa`. The transmission interface uses `fqZ` and `fqM` with the biting-distribution matrix to compute EIR and HBR, respectively.
 
 ### Consistency Checks
 
-Some modules in **`ramp.xds`** or **`ramp.library`** have been included for various reasons. Not all of those models are capable of being extended. To help users avoid using models in ways that are not appropriate, we developed two function classes:  
+The skill set describes a module's capabilities and limitations. The consistency check can verify model-specific requirements before solving.
 
-+ `skill_set_MY.MYname` :: describes model capabilities and limitations
-
-+ `check_MY.MYname` :: at the end of `xds_setup` and at the beginning of `xds_solve,` this function gets run to ensure that some quantities have been properly updated, and to see if anything has been added to a model that is not in its skill set.  
++ `setup_skillset_MY.MYname` :: sets the module's skill-set information.
++
++ `check_MY.MYname` :: checks model-specific setup before solving.
 
 ## Optional Functions 
 
-The **MY** interface also sets up `S3` classes for some optional functions, but these might not be appropriate for all models. If a function is not in the *skill set* of the module, then the limitation should be noted in the documentation of `skill_set_MY.MYname` with information in the list. 
+Optional methods should be implemented only when they are meaningful for the model. Record supported capabilities and limitations in the skill set.
 
 ### Steady States
 
-Methods are defined to compute various steady states under static parameter values.  
+The interface provides optional methods for steady states under static parameter values.
 
 + `steady_state_M.MYname` :: pass the emergence rate of adult mosquitoes and compute steady states for the **M** component. 
 
@@ -171,10 +165,6 @@ Methods are defined to compute various steady states under static parameter valu
 
 + `steady_state_Y.MYname` :: pass adult mosquito population density and net infectiousness, and compute the steady states for the **Y** component.
 
-### Visualization 
+### Visualization
 
-Functions have been developed to plot the standard terms, but each module can define its own method for plotting: 
-
-+ `xds_plot_MY.MYname` is a wrapper that calls `xds_lines_MY`
-
-+ `xds_lines_MY.MYname` defines a default method for plotting orbits 
+The MY interface does not define MY-specific plotting generics. A module may provide model-specific visualization functions that use its parsed outputs.

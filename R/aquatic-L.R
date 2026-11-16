@@ -22,7 +22,7 @@ setup_skillset_L = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_L = function(xds_obj, s){
@@ -36,8 +36,8 @@ check_L = function(xds_obj, s){
 #'
 #' @note Dispatches on the class of `xds_obj$L_obj[[s]]`
 #'
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return the derivatives, a [numeric] vector of length \eqn{n_q=}`nHabitats`
@@ -53,8 +53,8 @@ dLdt <- function(t, y, xds_obj, s) {
 #' for **L** Component modules
 #'
 #' @note Dispatches on the class of `xds_obj$L_obj[[s]]`
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return the states, a [numeric] vector of length \eqn{n_q=}`nHabitats`
@@ -68,11 +68,11 @@ Update_Lt <- function(t, y, xds_obj, s) {
 #' @title Mosquito bionomics (**L**)
 #' @description Compute the values of bionomic parameter 
 #' values for an **L** Component module
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 LBionomics <- function(t, y, xds_obj, s) {
@@ -82,11 +82,11 @@ LBionomics <- function(t, y, xds_obj, s) {
 
 #' @title Apply effect sizes (**L**)
 #' @description Apply vector control effect sizes to immature mosquito bionomic parameters
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 LEffectSizes <- function(t, y, xds_obj, s) {
@@ -97,8 +97,8 @@ LEffectSizes <- function(t, y, xds_obj, s) {
 #' @description This function computes the rate or number of emerging adults: a
 #' rate for differential equations, or a number for difference equations.
 #' @note This method dispatches on the class of `xds_obj$L_obj[[s]]`
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' @return a [numeric] vector of length `nHabitats`
@@ -129,7 +129,7 @@ F_emerge <- function(t, y, xds_obj, s) {
 #' @param options a named list to configure **`L_obj`**
 #' @param s the species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_L_obj = function(Lname, membership, xds_obj, options=list(), s=1){
@@ -164,7 +164,7 @@ get_L_pars <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
 #' @param s the vector species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_L_pars <- function(xds_obj, options=list(), s=1) {
@@ -175,7 +175,7 @@ change_L_pars <- function(xds_obj, options=list(), s=1) {
 #' @description Extract the variables describing **L** Component
 #' states for the \eqn{s^{th}} species and return them as a named list
 #' @note This method dispatches on the class of `xds_obj$L_obj[[s]]`.
-#' @param y the variables
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a named [list]: the variables of \eqn{\cal L} by name
@@ -201,7 +201,7 @@ get_L_vars <- function(y, xds_obj, s) {
 #' @param xds_obj an **`xds`** model object
 #' @param options a named [list]
 #' @param s the species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_L_inits = function(xds_obj, options=list(), s=1){
@@ -236,7 +236,7 @@ get_L_inits <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
 #' @param s the vector species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_L_inits <- function(xds_obj, options=list(), s=1) {
@@ -246,7 +246,7 @@ change_L_inits <- function(xds_obj, options=list(), s=1) {
 #' @title Set up indices for **L** component variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_L_ix <- function(xds_obj, s) {

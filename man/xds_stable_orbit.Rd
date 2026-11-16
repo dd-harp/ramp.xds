@@ -14,7 +14,7 @@ xds_stable_orbit(xds_obj, Y = 10, tol = 1e-05)
 \item{tol}{the desired accuracy}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Run the system for 10 years, and save the last year's orbits.

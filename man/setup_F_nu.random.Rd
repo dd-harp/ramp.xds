@@ -16,7 +16,7 @@
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements the "random" case for \link{setup_nu}. See \link{make_F_nu_random}

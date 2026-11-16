@@ -6,11 +6,11 @@
 #'
 #' @description Compute eggs laid at time \eqn{t}
 #'
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [setup_egg_laying_interface()]
 #' @export
 #' @keywords internal
@@ -21,7 +21,7 @@ EggLaying = function(t, y, xds_obj){
 #' @title Compute eggs laid
 #' @description Computes eggs laid for an autonomous model
 #' @inheritParams EggLaying
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 EggLaying.static = function(t, y, xds_obj){
@@ -33,7 +33,7 @@ EggLaying.static = function(t, y, xds_obj){
 #' @description Computes eggs laid with exogenous forcing
 #' on parameter affecting host availability.
 #' @inheritParams EggLaying
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 EggLaying.dynamic = function(t, y, xds_obj){
@@ -44,7 +44,7 @@ EggLaying.dynamic = function(t, y, xds_obj){
 #' @description Computes eggs laid with exogenous forcing
 #' on parameter affecting host availability.
 #' @inheritParams EggLaying
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 egg_laying_dynamics = function(t, y, xds_obj){
@@ -56,10 +56,10 @@ egg_laying_dynamics = function(t, y, xds_obj){
 #' @title Compute eggs laid
 #' @description Computes eggs laid in aquatic habitats
 #'
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [compute_eggs_laid]
 #' @export
 #' @keywords internal
@@ -126,7 +126,7 @@ make_U_matrix= function(search_weights, habitat_matrix, Q){
 #' among larval habitats
 #'
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 compute_U_matrix = function(xds_obj){with(xds_obj,{

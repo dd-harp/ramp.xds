@@ -66,7 +66,7 @@ NULL
 #'
 #' @inheritParams setup_skillset_XH
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -82,7 +82,7 @@ setup_skillset_XH.trivial = function(xds_obj, i){
 #'
 #' @inheritParams check_XH
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_XH.trivial = function(xds_obj, i){
@@ -256,7 +256,7 @@ F_pfpr_by_pcr.trivial <- function(vars, XH_obj) {
 #' @note The module object is stored at `xds_obj$XH_obj[[i]]`
 #'
 #' @inheritParams setup_XH_obj
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_XH_obj.trivial = function(XHname, residence, xds_obj, options=list(), i=1){
@@ -338,7 +338,7 @@ get_XH_pars.trivial <- function(xds_obj, i=1) {
 #' @title Get parameters for `trivial` (**XH**)
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
 #' @inheritParams change_XH_pars
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_XH_pars.trivial <- function(xds_obj, options=list(), i=1) {

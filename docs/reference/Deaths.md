@@ -12,7 +12,7 @@ Deaths(t, X, xds_obj, i)
 
 - t:
 
-  current simulation time
+  time
 
 - X:
 

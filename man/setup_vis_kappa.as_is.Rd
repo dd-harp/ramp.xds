@@ -16,7 +16,7 @@
 \item{s}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Pass a pre-configured vis_kappa. If it passes

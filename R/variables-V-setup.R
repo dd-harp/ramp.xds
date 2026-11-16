@@ -7,7 +7,7 @@
 #' @note Index the variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the variable index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 setup_V_ix.setup <- function(xds_obj, i){
   var_ix = xds_obj$max_ix + c(1:xds_obj$V_obj[[i]]$nVars)
@@ -32,7 +32,7 @@ dVdt.setup <- function(t, y, xds_obj, i){
 #' The description for each method should include the equations.
 #'
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 setup_other_variables = function(xds_obj){
   xds_obj$nOtherVariables = 1
@@ -59,7 +59,7 @@ setup_other_variables = function(xds_obj){
 #' @param var_object an object to dispatch and compute a variable
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 add_variable = function(var_object, xds_obj){

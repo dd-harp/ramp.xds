@@ -84,7 +84,7 @@ check_nu = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_nu = function(xds_obj, s=1){
@@ -106,7 +106,7 @@ change_nu = function(xds_obj, s=1){
 #' @param options configuration options
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_nu = function(name, xds_obj, options = list(), s=1){
@@ -127,7 +127,7 @@ setup_egg_batch_rates <- setup_nu
 #' @param options configuration options
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_F_nu = function(name, xds_obj, options = list(), s=1){
@@ -146,7 +146,7 @@ setup_F_nu = function(name, xds_obj, options = list(), s=1){
 #'
 #' @inheritParams setup_F_nu
 #'
-#' @return an **`xds`** object 
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -182,7 +182,7 @@ setup_F_nu.as_is = function(name, xds_obj, options=list(), s=1){
 #' @title Set up no F_nu 
 #' @description Don't change anything 
 #' @inheritParams setup_F_nu
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_nu.no_setup = function(name, xds_obj, options = list(), s=1){
@@ -210,7 +210,7 @@ F_nu.random = function(t, xds_obj, s){
 #' @description Implements the "random" case for [setup_nu]. See [make_F_nu_random]
 #' 
 #' @inheritParams setup_F_nu
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_nu.random = function(name, xds_obj, options = list(), s=1){
@@ -272,7 +272,7 @@ F_nu.type2 = function(t, xds_obj, s){
 #' egg laying
 #' 
 #' @inheritParams setup_F_nu
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_nu.type2 = function(name, xds_obj, options = list(), s=1){

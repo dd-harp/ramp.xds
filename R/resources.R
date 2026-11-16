@@ -7,7 +7,7 @@
 #'
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_resources_object = function(xds_obj){
@@ -24,11 +24,11 @@ setup_resources_object = function(xds_obj){
 #' affecting adult mosquito bionomics: blood hosts,
 #' aquatic habitat dynamics, traps, and sugar. 
 #'
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -44,7 +44,7 @@ Resources = function(t, y, xds_obj){
 #'
 #' @inheritParams Resources
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 Resources.none = function(t, y, xds_obj){

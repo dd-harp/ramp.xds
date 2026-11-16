@@ -189,7 +189,7 @@ NULL
 #'
 #' @inheritParams setup_skillset_MY
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [SI]
 #'
 #' @keywords internal
@@ -207,7 +207,7 @@ setup_skillset_MY.SI = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [SI]
 #' @keywords internal
 #' @export
@@ -348,7 +348,7 @@ F_eggs.SI <- function(t, y, xds_obj, s) {
 #' @inheritSection SI Parameters
 #' @inheritParams MEffectSizes
 #' @seealso [SI], [MEffectSizes.SI]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MBionomics.SI <- function(t, y, xds_obj, s) {
@@ -380,7 +380,7 @@ MBionomics.SI <- function(t, y, xds_obj, s) {
 #' @inheritSection SI Parameters
 #' @inheritParams MEffectSizes
 #' @seealso [SI], [MBionomics.SI]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MEffectSizes.SI <- function(t, y, xds_obj, s) {
@@ -411,7 +411,7 @@ MEffectSizes.SI <- function(t, y, xds_obj, s) {
 #' @note The module object is stored at `xds_obj$MY_obj[[s]]`
 #' 
 #' @inheritParams setup_MY_obj
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_MY_obj.SI = function(MYname, xds_obj, options=list(), s=1){
@@ -567,7 +567,7 @@ get_MY_pars.SI <- function(xds_obj, s=1) {
 #' 
 #' @inheritParams change_MY_pars
 #' @seealso [SI], [get_MY_pars.SI]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_pars.SI <- function(xds_obj, options=list(), s=1) {
@@ -601,7 +601,7 @@ change_MY_pars.SI <- function(xds_obj, options=list(), s=1) {
 #' 
 #' @inheritParams setup_MY_inits
 #' @seealso [SI], [make_MY_inits_SI]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_MY_inits.SI = function(xds_obj, options=list(), s=1){
@@ -644,7 +644,7 @@ make_MY_inits_SI = function(nPatches, options = list(),
 #' @inheritParams change_MY_inits
 #'
 #' @seealso [SI], [get_MY_inits], [make_MY_inits_SI], [setup_MY_inits.SI]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_inits.SI = function(xds_obj, options=list(), s=1){

@@ -27,7 +27,7 @@ check_time_away = function(TA, Nh){
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 change_time_away = function(time_away, xds_obj, i=1){
   check_time_away(time_away, xds_obj$nStrata[i])
@@ -45,7 +45,7 @@ change_time_away = function(time_away, xds_obj, i=1){
 #' @param i the host species index
 #' @param options configuration options
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_time_away = function(name, xds_obj, options = list(), i=1){
@@ -64,7 +64,7 @@ setup_time_away = function(name, xds_obj, options = list(), i=1){
 #'
 #' @inheritParams setup_time_away
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_time_away.list = function(name, xds_obj, options=list(), i=1){
@@ -78,7 +78,7 @@ setup_time_away.list = function(name, xds_obj, options=list(), i=1){
 #' @title Set up no time spent  
 #' @description Don't change anything 
 #' @inheritParams setup_time_away
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_time_away.no_setup = function(name, xds_obj, options = list(), i=1){
@@ -94,7 +94,7 @@ setup_time_away.no_setup = function(name, xds_obj, options = list(), i=1){
 #'  must be at `options$time_away` 
 #' 
 #' @inheritParams setup_time_away
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_time_away.setup = function(name, xds_obj, options=list(), i=1){
@@ -113,7 +113,7 @@ setup_time_away.setup = function(name, xds_obj, options=list(), i=1){
 #'  must be at `options$time_away` 
 #' 
 #' @inheritParams setup_time_away
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_time_away.no_travel = function(name, xds_obj, options=list(), i=1){
@@ -131,7 +131,7 @@ setup_time_away.no_travel = function(name, xds_obj, options=list(), i=1){
 #'  must be at `options$time_away` 
 #' 
 #' @inheritParams setup_time_away
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_time_away.as_is = function(name, xds_obj, options=list(), i=1){
@@ -151,7 +151,7 @@ setup_time_away.as_is = function(name, xds_obj, options=list(), i=1){
 #' @description Set up random values for time away
 #' 
 #' @inheritParams setup_time_away
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_time_away.random = function(name, xds_obj, options = list(), i=1){
@@ -180,12 +180,12 @@ make_time_away_random = function(nStrata, options=list(), f_rand = stats::rbeta,
 #' @description Port function for the time spent , \eqn{\Theta}.
 #' Dispatches on `class(xds_obj$XY_interface$time_away_obj[[i]])`.
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_time_away <- function(t, y, xds_obj, i) {
@@ -198,7 +198,7 @@ update_time_away <- function(t, y, xds_obj, i) {
 #' is updated properly after a change
 #' 
 #' @inheritParams update_time_away
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_time_away.static <- function(t, y, xds_obj, i) {return(xds_obj)}

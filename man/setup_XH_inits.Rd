@@ -14,7 +14,7 @@ setup_XH_inits(xds_obj, options = list(), i = 1)
 \item{i}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Set initial values

@@ -10,7 +10,7 @@
 #' 
 #' @seealso [F_one]
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 change_F_season = function(F, xds_obj, ix=1){
@@ -25,7 +25,7 @@ change_F_season = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_season
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -41,7 +41,7 @@ change_F_season.none = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_season
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -58,7 +58,7 @@ change_F_season.Lambda = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_season
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -77,7 +77,7 @@ change_F_season.eir = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_season
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -95,7 +95,7 @@ change_F_season.kappa = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_season
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export

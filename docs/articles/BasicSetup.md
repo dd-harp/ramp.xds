@@ -343,7 +343,8 @@ population.
 
 The **H** Component is defined by two ports:
 
-- `Births` – a function that adds individuals to the population.
+- `Births` – a function that adds individuals to the population, based
+  on simulation time and the current state vector `y`.
 
 - `Deaths` – a function that handles mortality and other demographic
   changes, including flows among strata

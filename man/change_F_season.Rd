@@ -14,7 +14,7 @@ change_F_season(F, xds_obj, ix = 1)
 \item{ix}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Change  the seasonality function. The function \code{F} should have the form

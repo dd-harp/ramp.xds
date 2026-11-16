@@ -4,10 +4,12 @@
 \alias{Births.zero}
 \title{Human/host births}
 \usage{
-\method{Births}{zero}(t, xds_obj, i)
+\method{Births}{zero}(t, y, xds_obj, i)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{t}{time}
+
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

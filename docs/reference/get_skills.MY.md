@@ -17,7 +17,7 @@ get_skills(module, xds_obj, ix = 1)
 
 - xds_obj:
 
-  an **`xds`** object
+  an **`xds`** model object
 
 - ix:
 

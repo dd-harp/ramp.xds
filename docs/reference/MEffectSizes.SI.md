@@ -17,11 +17,11 @@ MEffectSizes(t, y, xds_obj, s)
 
 - t:
 
-  current simulation time
+  time
 
 - y:
 
-  state vector
+  dependent variables
 
 - xds_obj:
 
@@ -33,7 +33,7 @@ MEffectSizes(t, y, xds_obj, s)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Parameters
 

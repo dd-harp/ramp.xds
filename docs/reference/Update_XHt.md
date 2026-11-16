@@ -1,4 +1,4 @@
-# Update state variables (**XH**)
+# Update state variablenos (**XH**)
 
 This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 
@@ -12,11 +12,11 @@ Update_XHt(t, y, xds_obj, i)
 
 - t:
 
-  current simulation time
+  time
 
 - y:
 
-  state vector
+  dependent variables
 
 - xds_obj:
 

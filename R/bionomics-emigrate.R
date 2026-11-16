@@ -80,7 +80,7 @@ check_sigma = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_sigma = function(xds_obj, s=1){
@@ -100,7 +100,7 @@ change_sigma = function(xds_obj, s=1){
 #' @param options configuration options
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_F_sigma = function(name, xds_obj, options = list(), s=1){
@@ -119,7 +119,7 @@ setup_F_sigma = function(name, xds_obj, options = list(), s=1){
 #'
 #' @inheritParams setup_F_sigma
 #'
-#' @return an **`xds`** object 
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -134,7 +134,7 @@ setup_F_sigma.list = function(name, xds_obj, options=list(), s=1){
 #' @title Set up no F_sigma 
 #' @description Don't change anything 
 #' @inheritParams setup_F_sigma
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_sigma.no_setup = function(name, xds_obj, options = list(), s=1){
@@ -166,7 +166,7 @@ setup_F_sigma.as_is = function(name, xds_obj, options=list(), s=1){
 #' @description Implements the "random" case for [setup_F_sigma]. See [make_F_sigma_random]
 #' 
 #' @inheritParams setup_F_sigma
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_sigma.random = function(name, xds_obj, options = list(), s=1){
@@ -243,7 +243,7 @@ F_sigma.type2 = function(t, xds_obj, s){
 #' to model the patch emigration rate
 #' 
 #' @inheritParams setup_F_sigma
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_sigma.type2 = function(name, xds_obj, options = list(), s=1){

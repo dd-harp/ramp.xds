@@ -54,15 +54,17 @@ dM/dt &= \Lambda - g M \\
 dY/dt &= fq c \frac {X}{H} (M-Y) - g Y
 \end{array}
 $$
-Written in this way, it is in a *standard form.*
-
+Written in this way, it is not in any particular form. Or we could also say that it is in *standard form.* 
 *** 
 
 ## A Modular Form
 
-We illustrate by rewriting this model in its modular form (Figure 1). In the modular form, we identify the terms in one equation that depend on the other variable. First, we focus on the equation describing human infection dynamics. We note that it depends on a term involving the variable $Y.$ The term is called the force of infection (FoI, Ross called it the *happenings* rate). We let $h$ denote the FoI:  
+We illustrate by rewriting this model in its modular form (Figure 1). In the modular form, we identify the terms in one equation that depend on the other variable. First, we focus on the equation describing human infection dynamics. We note that it depends on a term involving the variable $Y.$ The term is called the force of infection (FoI, Ross called it the *happenings* rate). 
 
-$$h=fq b e^{-gn} \frac {Y}{H}.$$ 
+$$E =fq e^{-gn} \frac {Y}{H}.$$ 
+We let $h$ denote the FoI:  
+
+$$h = F_h(b, E) = b E.$$ 
 
 Now, the first equation can be rewritten:  
 
@@ -94,7 +96,9 @@ With these five elements, the system has a modular form. In this modular form, t
 
 + **M** - mosquito population dynamics.
 
-There are two dynamical terms: 
+There are three dynamical terms: 
+
++ the daily EIR; 
 
 + the FoI, describing parasite transmission from mosquitoes to humans; and 
 

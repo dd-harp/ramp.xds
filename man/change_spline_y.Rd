@@ -14,7 +14,7 @@ change_spline_y(yy, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Set new \eqn{y}-values for the spline interpolating points

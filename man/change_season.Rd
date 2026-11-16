@@ -14,7 +14,7 @@ change_season(X, xds_obj, ix = 1)
 \item{ix}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Change parameters for the seasonality function

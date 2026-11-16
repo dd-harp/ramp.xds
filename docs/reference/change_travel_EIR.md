@@ -24,4 +24,4 @@ change_travel_eir(travel_eir, xds_obj, i = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

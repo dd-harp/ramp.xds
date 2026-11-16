@@ -7,14 +7,14 @@
 Exposure(t, y, xds_obj)
 }
 \arguments{
-\item{t}{the time}
+\item{t}{time}
 
-\item{y}{the state variables}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Compute the force of infection (FoI) or

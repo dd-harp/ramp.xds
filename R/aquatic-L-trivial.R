@@ -73,7 +73,7 @@ NULL
 #'
 #' @inheritParams setup_skillset_L
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -90,7 +90,7 @@ setup_skillset_L.trivial = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_L.trivial = function(xds_obj, s){
@@ -138,7 +138,7 @@ F_emerge.trivial <- function(t, y, xds_obj, s) {
 #' @title Mosquito bionomics for `trivial` (**L**)
 #' @description Return the **`xds`** object unmodified 
 #' @inheritParams LBionomics
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 LBionomics.trivial <- function(t, y, xds_obj, s) {
@@ -148,7 +148,7 @@ LBionomics.trivial <- function(t, y, xds_obj, s) {
 #' @title Apply effect sizes for `trivial` (**L**)
 #' @description Return the **`xds`** object unmodified 
 #' @inheritParams LEffectSizes
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 LEffectSizes.trivial <- function(t, y, xds_obj, s) {
@@ -170,7 +170,7 @@ LEffectSizes.trivial <- function(t, y, xds_obj, s) {
 #' @note The module object is stored at `xds_obj$L_obj[[s]]`
 #'
 #' @inheritParams setup_L_obj
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_L_obj.trivial = function(Lname, membership, xds_obj, options=list(), s=1){
@@ -257,7 +257,7 @@ get_L_pars.trivial <- function(xds_obj, s=1) {
 #' 
 #' @note Utilities for trace functions are in `ramp.func`
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_L_pars.trivial <- function(xds_obj, options=list(), s=1) {
@@ -275,7 +275,7 @@ change_L_pars.trivial <- function(xds_obj, options=list(), s=1) {
 #' has no dynamical variables requiring initial values.
 #' This method sets the initial values to an empty list; `options` is unused.
 #' @inheritParams setup_L_inits
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_L_inits.trivial = function(xds_obj, options=list(), s=1){
@@ -300,7 +300,7 @@ get_L_vars.trivial <- function(y, xds_obj, s){
 #'
 #' Returns the unmodified **`xds`** object.
 #' @inheritParams change_L_inits
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_L_inits.trivial <- function(xds_obj, options=list(), s=1) {
@@ -310,7 +310,7 @@ change_L_inits.trivial <- function(xds_obj, options=list(), s=1) {
 #' @title Set up indices for `trivial` (**L**)
 #' @description Return the **`xds`** object unmodified 
 #' @inheritParams setup_L_ix
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @seealso [trivial_L]
 #' @export

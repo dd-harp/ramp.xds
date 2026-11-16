@@ -25,7 +25,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @param membership the membership vector
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @importFrom Rdpack reprompt
 #' @seealso The habitat membership matrix is created by [make_habitat_matrix()]
@@ -104,11 +104,11 @@ get_habitat_matrix = function(xds_obj){
 #'
 #' @description Compute eggs laid at time \eqn{t}
 #'
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [setup_egg_laying_interface()]
 #' @export
 #' @keywords internal
@@ -119,7 +119,7 @@ AquaticHabitats = function(t, y, xds_obj){
 #' @title Compute eggs laid
 #' @description Computes eggs laid for an autonomous model
 #' @inheritParams AquaticHabitats
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 AquaticHabitats.static = function(t, y, xds_obj){
@@ -131,7 +131,7 @@ AquaticHabitats.static = function(t, y, xds_obj){
 #' @description Computes eggs laid with exogenous forcing
 #' on parameter affecting host availability.
 #' @inheritParams AquaticHabitats
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 AquaticHabitats.dynamic = function(t, y, xds_obj){
@@ -142,7 +142,7 @@ AquaticHabitats.dynamic = function(t, y, xds_obj){
 #' @description Computes eggs laid with exogenous forcing
 #' on parameter affecting host availability.
 #' @inheritParams EggLaying
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 habitat_dynamics = function(t, y, xds_obj){
@@ -160,7 +160,7 @@ habitat_dynamics = function(t, y, xds_obj){
 #' @description Set the value of a variable, \eqn{Q}, that describes the availability of any habitat
 #' or device that would attract mosquitoes and induce them to lay eggs.
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [F_available_habitat]
 #' @export
 #' @keywords internal

@@ -10,7 +10,7 @@ compute_all_available_water(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Set the value of a variable, \eqn{Q}, that describes the availability of any habitat

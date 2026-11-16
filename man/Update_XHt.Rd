@@ -2,14 +2,14 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{Update_XHt}
 \alias{Update_XHt}
-\title{Update state variables (\strong{XH})}
+\title{Update state variablenos (\strong{XH})}
 \usage{
 Update_XHt(t, y, xds_obj, i)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{t}{time}
 
-\item{y}{state vector}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

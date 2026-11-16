@@ -3,7 +3,7 @@
 #'
 #' @inheritParams setup_exposure
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @seealso Also, see [F_foi.nb] and [F_ar.nb]
 #' @keywords internal
