@@ -2,7 +2,7 @@
 
 Implements
 [F_infectivity](https://dd-harp.github.io/ramp.xds/reference/F_infectivity.md)
-for the hMoI model.
+for the `hMoI` model.
 
 ## Usage
 
@@ -29,3 +29,7 @@ F_infectivity(y, xds_obj, i)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nStrata`
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

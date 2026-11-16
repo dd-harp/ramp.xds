@@ -241,7 +241,7 @@ get_XH_pars <- function(xds_obj, i=1) {
   UseMethod("get_XH_pars", xds_obj$XH_obj[[i]])
 }
 
-#' @title Change **XH** parameters 
+#' @title Change parameters (**XH**)
 #' 
 #' @description 
 #' For the **XH** module for the \eqn{i^{th}} species, 

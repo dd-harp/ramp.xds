@@ -19,51 +19,82 @@
 a vector with the derivatives
 }
 \description{
-The \code{SI} model for mosquito infection
-dynamics has the defined \strong{variable} classes:
-\itemize{
-\item \eqn{M} is the density of mosquitoes in each patch;
-\item \eqn{Y} is the density of infected mosquitoes in each patch.
-}
+The derivatives for the \code{SI} module are:
 
-The density of infectious mosquitoes in each patch is
-given by a term (returned by \link{F_fqZ.SI}):
-\deqn{Z = e^{-\Omega \tau} \cdot Y}
-
-The model blood feeding \strong{parameters} are:
-\itemize{
-\item \eqn{f} is the overall blood feeding rate
-\item \eqn{q} is the human fraction for blood feeding
-}
-
-The \strong{parameters} describing egg laying (see \link{F_eggs.SI}) are:
-\itemize{
-\item \eqn{\nu} is the egg laying rate
-\item \eqn{\xi} is the number of eggs per batch
-}
-
-The model demographic \strong{parameters} are:
-\itemize{
-\item \eqn{g} is the mortality rate
-\item \eqn{\sigma} is the emigration rate
-\item \eqn{\mu} is the emigration loss rate
-\item \eqn{K} is the mosquito dispersal matrix
-}
-
-The four parameters describing mortality and migration are used to construct a
-demographic matrix:
-\deqn{\Omega = \mbox{diag}\left(g\right) - \left(\mbox{diag}\left(1-\mu\right) -  K \right) \cdot \mbox{diag}\left(\sigma\right)}
-
-The emergence rate of adult mosquitoes, \eqn{\Lambda}, is computed by \link{F_emerge},
-and the \strong{derivatives} are given by the equations:
 \deqn{
-\begin{array}{rr}
+\begin{array}{rl}
 dM/dt = & \Lambda - \Omega \cdot M \\
+dP/dt = & f q(M-P) - \Omega \cdot P \\
 dY/dt = & f q \kappa (M-Y) - \Omega \cdot Y
-\end{array}.
+\end{array}
 }
 }
+\section{State Variables}{
+
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+}
+}
+
+\section{Dynamical Terms}{
+
+
+\describe{
+\item{\code{Lambda} or \eqn{\Lambda}}{the number of adult mosquitoes emerging, per patch, per day, computed by \link{Emergence}}
+\item{\code{kappa} or \eqn{\kappa}}{net infectiousness: the probability a mosquito becomes infected after blood feeding on a human, is computed by \link{Transmission}}
+}
+}
+
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rates --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss rate --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{the egg batch rate, in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{the number of eggs per batch}
+}
+
+After basic setup, \link{change_MY_pars} can be used for static parameters, or for
+for parameters that are set up as static ports (the default).
+Use advanced setup to modify dynamic ports.
+}
+
+\section{Dynamics}{
+
+
+\strong{Ecology}
+
+Adult mosquitoes emerge from aquatic habitats \eqn{(\Lambda)} and disperse and die (\eqn{\Omega}):
+\deqn{
+dM/dt = \Lambda - \Omega \cdot M 
+}
+The model also computes the density of parous adult mosquitoes: those that have
+blood fed at least once:
+\deqn{
+dP/dt = fq(M-P) - \Omega \cdot P \\
+}
+Parity is computed during parsing as \eqn{P/M} and its orbit is stored as \code{parity.}
+
+\strong{Infection Dynamics}
+
+Given the per-capita daily rate of human blood feeding \eqn{(fq)} and
+net infectiousness \eqn{(\kappa)}, the FoI for mosquitoes is \eqn{fq\kappa}.
+Changes in the density of infected mosquitoes
+is given by:
+\deqn{
+dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\
+}
+}
+
 \seealso{
-\link{F_fqZ.SI} and \link{F_eggs.SI}
+\link{SI}, \link{F_fqZ.SI}, \link{F_eggs.SI}
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 
 Implements
 [parse_XH_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.md)
-for the hMoI model
+for the `hMoI` model
 
 ## Usage
 
@@ -29,3 +29,7 @@ parse_XH_orbits(outputs, xds_obj, i)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

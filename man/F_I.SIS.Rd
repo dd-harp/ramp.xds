@@ -19,7 +19,10 @@
 Infectious density
 }
 \description{
-In the \emph{SIS} model family, infectious
+In the \code{SIS} model family, infectious
 density is \eqn{cI}.
+}
+\seealso{
+\link{SIS}
 }
 \keyword{internal}

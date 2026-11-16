@@ -52,5 +52,5 @@ to compute mosquito parameters describing blood feeding, the mixing matrix,
 and terms describing transmission.
 }
 \seealso{
-see \link{setup_blood_feeding}
+see \link{setup_blood_feeding_interface}
 }

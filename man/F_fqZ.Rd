@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{F_fqZ}
 \alias{F_fqZ}
-\title{Blood feeding rate of the infective mosquito population}
+\title{Infective mosquito biting rate}
 \usage{
 F_fqZ(t, y, xds_obj, s)
 }

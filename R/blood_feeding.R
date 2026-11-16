@@ -53,7 +53,7 @@ get_residence = function(xds_obj, i=1){
 #'
 #' @return a `nPatches` \eqn{\times} `nStrata` matrix
 #'
-#' @seealso see [setup_blood_feeding]
+#' @seealso see [setup_blood_feeding_interface]
 #'
 #' @export
 get_residence_matrix = function(xds_obj, i=1){
@@ -157,7 +157,7 @@ check_blood_feeding = function(xds_obj){
 #'
 #' @export
 #' @keywords internal
-setup_blood_feeding <- function(xds_obj, residence){
+setup_blood_feeding_interface <- function(xds_obj, residence){
   with(xds_obj,{
     
     xds_obj$blood_feeding_obj <- make_static_obj()

@@ -148,6 +148,12 @@ default parameter values that can be viewed with the function
     ## $r
     ## [1] 0.005555556
     ## 
+    ## $rho
+    ## [1] 0
+    ## 
+    ## $sigma
+    ## [1] 0
+    ## 
     ## $q_lm
     ## [1] 0.8
     ## 
@@ -209,6 +215,12 @@ several model objects, each component has its own options name. For the
     ## 
     ## $r
     ## [1] 0.01
+    ## 
+    ## $rho
+    ## [1] 0
+    ## 
+    ## $sigma
+    ## [1] 0
     ## 
     ## $q_lm
     ## [1] 0.8
@@ -368,8 +380,8 @@ delving into the details.
 
     ##              [,1]
     ## [1,] 0.0002850000
-    ## [2,] 0.0002628915
-    ## [3,] 0.0002439230
+    ## [2,] 0.0002629516
+    ## [3,] 0.0002440404
 
 ## Visualization
 

@@ -1,6 +1,6 @@
 # Pull MY Terms
 
-Pull the stored values of the Lambda, G, fqZ, and kappa
+Pull the stored values of the Lambda, G, `fqZ`, `fqM`, and kappa.
 
 ## Usage
 

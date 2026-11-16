@@ -6,6 +6,8 @@ Configure and validate the human feeding fraction.
 
 ``` r
 setup_q(name, xds_obj, options = list(), s = 1)
+
+setup_human_fractions(name, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments

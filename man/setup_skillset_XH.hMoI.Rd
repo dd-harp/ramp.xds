@@ -27,4 +27,7 @@ and here it is
 \note{
 This method dispatches on \code{class(xds_obj$XH_obj)}
 }
+\seealso{
+\link{hMoI}
+}
 \keyword{internal}

@@ -2,9 +2,12 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{setup_mu}
 \alias{setup_mu}
+\alias{setup_emigration_loss}
 \title{Set up emigration-loss fraction}
 \usage{
 setup_mu(name, xds_obj, options = list(), s = 1)
+
+setup_emigration_loss(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{name}{an emigration-loss fraction or setup method name}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{F_fqZ.RMdts}
 \alias{F_fqZ.RMdts}
-\title{The net blood feeding rate of the infective mosquito population in a patch}
+\title{Infective mosquito biting rate for \code{RMdts}}
 \usage{
 \method{F_fqZ}{RMdts}(t, y, xds_obj, s)
 }

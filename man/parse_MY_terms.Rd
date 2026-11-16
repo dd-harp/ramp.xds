@@ -16,6 +16,6 @@ an \strong{\code{xds}} object
 }
 \description{
 Pull the stored values of the
-Lambda, G, fqZ, and kappa
+Lambda, G, \code{fqZ}, \code{fqM}, and kappa.
 }
 \keyword{internal}

@@ -20,4 +20,14 @@ an \strong{\code{xds}} object
 For the \code{GeM} module (\strong{MY}) for the \eqn{s^{th}} species,
 change initial values named in \code{options} leaving other values unchanged.
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
 \keyword{internal}

@@ -17,4 +17,7 @@ the \strong{\code{xds}} object
 \description{
 The skill set
 }
+\seealso{
+\link{SI}
+}
 \keyword{internal}

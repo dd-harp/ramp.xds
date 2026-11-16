@@ -2,9 +2,12 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{setup_g}
 \alias{setup_g}
+\alias{setup_mosquito_mortality}
 \title{Set up mosquito mortality rate}
 \usage{
 setup_g(name, xds_obj, options = list(), s = 1)
+
+setup_mosquito_mortality(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{name}{a mosquito mortality rate or setup method name}

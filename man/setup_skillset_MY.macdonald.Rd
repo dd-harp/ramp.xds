@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{setup_skillset_MY.macdonald}
 \alias{setup_skillset_MY.macdonald}
-\title{The skill set}
+\title{The skill set for \code{macdonald} (\strong{MY})}
 \usage{
 \method{setup_skillset_MY}{macdonald}(xds_obj, s)
 }
@@ -15,6 +15,9 @@
 the \strong{\code{xds}} object
 }
 \description{
-The skill set
+The skill set for \code{macdonald} (\strong{MY})
+}
+\seealso{
+\link{macdonald}
 }
 \keyword{internal}

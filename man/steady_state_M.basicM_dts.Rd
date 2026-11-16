@@ -19,4 +19,30 @@ a \link{list}
 \description{
 This method dispatches on the type of \code{MY_obj}
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes: those that have blood-fed at least once}
+}
+}
+
+\section{Dynamics}{
+
+Adult mosquitoes emerge from aquatic habitats at rate \eqn{\Lambda} and
+disperse and die according to \eqn{\Omega}. The ODE model is
+\deqn{
+\begin{array}{rl}
+dM/dt &= \Lambda-\Omega\cdot M \\\\
+dP/dt &= f(M-P)-\Omega\cdot P
+\end{array}}
+Here, \eqn{P} is the density of mosquitoes that have blood-fed at least
+once. Parity, \eqn{P/M}, is computed during parsing and stored as \code{parous}.
+For discrete-time models, \link{Update_MYt.basicM} uses the one-day update
+equations.
+}
+
+\seealso{
+\link{basicM}
+}
 \keyword{internal}

@@ -17,4 +17,17 @@ the initial mosquito population density
 \description{
 Get the initial mosquito population density
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\seealso{
+\link{macdonald}, \link{get_MY_inits}
+}
 \keyword{internal}

@@ -1,6 +1,6 @@
-# The skill set
+# The skill set for `macdonald` (**MY**)
 
-The skill set
+The skill set for `macdonald` (**MY**)
 
 ## Usage
 
@@ -22,3 +22,7 @@ setup_skillset_MY(xds_obj, s)
 ## Value
 
 the **`xds`** object
+
+## See also
+
+[macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{F_eggs.SI}
 \alias{F_eggs.SI}
-\title{Compute component egg laying rates for \code{SI}}
+\title{Compute component egg production rates for \code{SI}}
 \usage{
 \method{F_eggs}{SI}(t, y, xds_obj, s)
 }
@@ -22,10 +22,24 @@ a \link{numeric} vector of length \code{nPatches}
 The density of adult mosquitoes is \eqn{M}.
 The \strong{parameters} describing egg laying by adult mosquitoes are:
 \itemize{
-\item \eqn{\nu} or \code{nu} is the egg laying rate
-\item \eqn{\xi} or \code{eggsPerBatch} is the number of eggs per batch
+\item \eqn{\nu} or \code{nu} is the egg batch rate
+\item \eqn{\Gamma} or \code{eggsPerBatch} is the number of eggs per batch
 }
 
-The egg laying rate, per patch, is \deqn{\nu \xi M}
+The egg production rate per patch is \deqn{\nu \Gamma M}
+}
+\section{Egg Laying}{
+
+
+\describe{
+\item{\code{G}}{the number of eggs laid, per patch, per day \deqn{G = \nu M \Gamma }}
+}
+
+\eqn{G} is the dynamical term passed to \link{EggLaying} to distribute eggs among the habitats
+that are found in each patch.
+}
+
+\seealso{
+\link{SI}
 }
 \keyword{internal}

@@ -2,9 +2,12 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{setup_f}
 \alias{setup_f}
+\alias{setup_blood_feeding_rates}
 \title{Set up constant blood feeding rate}
 \usage{
 setup_f(name, xds_obj, options = list(), s = 1)
+
+setup_blood_feeding_rates(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{name}{a blood feeding rate or setup method name}

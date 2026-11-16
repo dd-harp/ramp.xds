@@ -26,3 +26,14 @@ get_MY_vars(y, xds_obj, s)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## State Variables
+
+- `M`:
+
+  density of adult mosquitoes
+
+- `P`:
+
+  density of parous adult mosquitoes: those that have blood-fed at least
+  once

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{F_nu.random}
 \alias{F_nu.random}
-\title{Compute random egg laying rates}
+\title{Compute random egg batch rates}
 \usage{
 \method{F_nu}{random}(t, xds_obj, s)
 }
@@ -14,9 +14,9 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{nu}, the egg laying rate
+\eqn{nu}, the egg batch rate
 }
 \description{
-Compute random egg laying rates
+Compute random egg batch rates
 }
 \keyword{internal}

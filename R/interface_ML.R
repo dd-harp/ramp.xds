@@ -29,7 +29,7 @@
 #' @seealso The habitat membership matrix is created by [make_habitat_matrix()]
 #' @keywords internal
 #' @export
-setup_egg_laying = function(xds_obj){
+setup_egg_laying_interface = function(xds_obj){
   
   # Eggs Laid x Patch
   xds_obj$terms$G <- list()

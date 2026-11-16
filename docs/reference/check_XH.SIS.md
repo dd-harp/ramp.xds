@@ -22,3 +22,7 @@ check_XH(xds_obj, i)
 ## Value
 
 an **`xds`** object
+
+## See also
+
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{make_MY_obj_GeM}
 \alias{make_MY_obj_GeM}
-\title{Make parameters for GeM ODE adult mosquito model}
+\title{Make parameters for \code{GeM} (\strong{MY})}
 \usage{
 make_MY_obj_GeM(
   nPatches,
@@ -42,6 +42,9 @@ make_MY_obj_GeM(
 a \link{list}
 }
 \description{
-Make parameters for GeM ODE adult mosquito model
+Make parameters for \code{GeM} (\strong{MY})
+}
+\seealso{
+\link{GeM}, \link{setup_MY_obj.GeM}
 }
 \keyword{internal}

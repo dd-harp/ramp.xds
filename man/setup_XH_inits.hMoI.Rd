@@ -26,4 +26,7 @@ Set initial values for all the variables in the \code{hMoI} module
 see the inline module documentation.
 }
 }
+\seealso{
+\link{hMoI}
+}
 \keyword{internal}

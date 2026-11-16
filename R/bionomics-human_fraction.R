@@ -105,6 +105,10 @@ setup_q = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
+#' @rdname setup_q
+#' @export
+setup_human_fractions <- setup_q
+
 #' @title Set up F_q
 #'
 #' @param name a or setup function name

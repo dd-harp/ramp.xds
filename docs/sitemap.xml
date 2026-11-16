@@ -165,6 +165,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_g.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_g.random.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_g.static.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/F_hbr.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_human_frac.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_human_frac.static.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/F_infectivity.SIS.html</loc></url>
@@ -1065,6 +1066,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_births.no_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_births.zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_feeding.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_feeding_interface.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_host_object.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_hosts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_blood_hosts.ts_func.html</loc></url>
@@ -1088,6 +1090,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_deaths.zero.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_demog_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying_interface.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_eip.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_eip_obj.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_exposure.html</loc></url>
@@ -1339,6 +1342,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_blood_feeding.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_egg_laying.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xds_info_environmental_heterogeneity.html</loc></url>

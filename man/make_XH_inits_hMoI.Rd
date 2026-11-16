@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{make_XH_inits_hMoI}
 \alias{make_XH_inits_hMoI}
-\title{Make inits for hybrid MoI human model}
+\title{Make initial values for \code{hMoI} (\strong{XH})}
 \usage{
 make_XH_inits_hMoI(nStrata, options = list(), m1 = 2, m2 = 1)
 }
@@ -20,5 +20,16 @@ a \link{list}
 }
 \description{
 MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
+}
+\section{State Variables}{
+
+\describe{
+\item{\code{m1} or \eqn{m_1}}{mean MoI for all infections}
+\item{\code{m2} or \eqn{m_2}}{mean MoI for apparent (detectable) infections}
+}
+}
+
+\seealso{
+\link{hMoI}
 }
 \keyword{internal}

@@ -34,7 +34,7 @@ NULL
 #' @return an **`xds`** object
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
 #' @seealso [make_xds_object_template]
-#' @seealso [setup_blood_feeding]
+#' @seealso [setup_blood_feeding_interface]
 #' @keywords internal
 #' @export
 setup_transmission <- function(xds_obj){
@@ -55,6 +55,14 @@ setup_transmission <- function(xds_obj){
   xds_obj$terms$EIR = list()
   xds_obj$terms$EIR[[1]] = rep(0, xds_obj$nStrata)
 
+  # Entomological Inoculation Rate: HBR[[i]]
+  # hbr[[s]][[i]]
+  xds_obj$terms$hbr = list()
+  xds_obj$terms$hbr[[1]] = list()
+  xds_obj$terms$hbr[[1]][[1]] = rep(0, xds_obj$nStrata)
+  xds_obj$terms$HBR = list()
+  xds_obj$terms$HBR[[1]] = rep(0, xds_obj$nStrata)
+  
   # Net Infectiousness: ni[[s]][[i]]
   xds_obj$terms$ni = list()
   xds_obj$terms$ni[[1]] = list()
@@ -122,6 +130,24 @@ F_eir <- function(fqZ, beta, local_frac){
   return(as.vector(eir))
 }
 
+#' @title Compute the daily Human Biting Rate (HBR)
+#' @description Compute the daily HBR for each human population stratum from
+#' the mosquito biting density in each patch, the fraction of bites on
+#' residents, and the biting distribution matrix. An empty `fqM` yields zero
+#' HBR, as for a MY module without an adult mosquito population.
+#' @param fqM mosquito biting density on humans in each patch
+#' @param beta biting distribution matrix, mapping patches to population strata
+#' @param local_frac fraction of bites in each patch that occur on residents
+#' @return [numeric] vector of length `nStrata`
+#' @concept HBR
+#' @export
+#' @keywords internal
+F_hbr <- function(fqM, beta, local_frac){
+  if(length(fqM) == 0L)
+    return(rep(0, nrow(beta)))
+  hbr = beta %*% (fqM*local_frac)
+  return(as.vector(hbr))
+}
 
 #' @title Compute EIR
 #' @description This function computes the EIR for each stratum of each host species
@@ -136,17 +162,21 @@ compute_EIR <- function(t, y, xds_obj){
 
   for(i in 1:xds_obj$nHostSpecies){
     fqZ <- F_fqZ(t, y, xds_obj, 1)
+    fqM <- F_fqM(t, y, xds_obj, 1)
     beta <- xds_obj$terms$beta[[1]][[i]]
     lf <- xds_obj$terms$local_frac[[1]]
 
     xds_obj$terms$EIR[[i]] <- F_eir(fqZ, beta, lf)
+    xds_obj$terms$HBR[[i]] <- F_hbr(fqM, beta, lf)
 
     if(xds_obj$nVectorSpecies > 1)
       for(s in 2:xds_obj$nVectorSpecies){
-        fqZ <- F_fqZ(t, y, xds_obj, 1)
+        fqZ <- F_fqZ(t, y, xds_obj, s)
+        fqM <- F_fqM(t, y, xds_obj, s)
         beta <- xds_obj$terms$beta[[s]][[i]]
         lf <- xds_obj$terms$local_frac[[s]]
         xds_obj$terms$EIR[[i]] <- xds_obj$terms$EIR[[i]] + F_eir(fqZ, beta, lf)
+        xds_obj$terms$HBR[[i]] <- xds_obj$terms$HBR[[i]] + F_hbr(fqM, beta, lf)
       }
   }
 
@@ -314,5 +344,3 @@ transmission_dynamics <- function(t, y, xds_obj){
   xds_obj = compute_kappa(t, y, xds_obj)
   return(xds_obj)
 }
-
-

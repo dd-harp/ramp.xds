@@ -59,3 +59,8 @@ make_M_obj_basicM(
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## See also
+
+[basicM](https://dd-harp.github.io/ramp.xds/reference/basicM.md),
+[setup_MY_obj.basicM](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.basicM.md)

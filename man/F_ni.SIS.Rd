@@ -15,6 +15,9 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_ni} for the SIS model.
+Implements \link{F_ni} for the \code{SIS} model.
+}
+\seealso{
+\link{SIS}
 }
 \keyword{internal}

@@ -48,6 +48,42 @@ a [list](https://rdrr.io/r/base/list.html) vector
 
 The module object is stored at `xds_obj$XH_obj[[i]]`
 
+## State Variables
+
+- `m1` or \\(m_1\\):
+
+  mean MoI for all infections
+
+- `m2` or \\(m_2\\):
+
+  mean MoI for apparent (detectable) infections
+
+## Parameters
+
+- `r1` or \\(r_1\\):
+
+  clearance rate for all infections
+
+- `r2` or \\(r_2\\):
+
+  clearance rate for apparent infections, \\(r_2 \> r_1\\)
+
+- `b`:
+
+  probability of infection per infectious bite
+
+- `c1` or \\(c_1\\):
+
+  probability of transmitting from m1
+
+- `c2` or \\(c_2\\):
+
+  probability of transmitting from m2
+
+- H:
+
+  human or host population density
+
 ## See also
 
 [hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md),

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{F_fqM.trivial}
 \alias{F_fqM.trivial}
-\title{Blood feeding rate of the infective mosquito population}
+\title{Mosquito biting rate for \code{trivial}}
 \usage{
 \method{F_fqM}{trivial}(t, y, xds_obj, s)
 }
@@ -19,6 +19,7 @@
 a \link{numeric} vector of length 0
 }
 \description{
-Implements \link{F_fqM} for the trivial model.
+The trivial model does not track an adult mosquito
+population, so this method returns an empty numeric vector.
 }
 \keyword{internal}

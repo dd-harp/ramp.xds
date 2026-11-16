@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{get_XH_pars.hMoI}
 \alias{get_XH_pars.hMoI}
-\title{Get parameters for \code{hMoI} (\strong{XH})}
+\title{Change parameters for \code{hMoI} (\strong{XH})}
 \usage{
 \method{get_XH_pars}{hMoI}(xds_obj, i = 1)
 }
@@ -19,7 +19,19 @@ Parameter values for the \eqn{i^{th}} host are
 stored as \code{xds_obj$XH_obj[[i]]}. This returns the stored parameter
 values as a list.
 }
+\section{Parameters}{
+
+\describe{
+\item{\code{r1} or \eqn{r_1}}{clearance rate for all infections}
+\item{\code{r2} or \eqn{r_2}}{clearance rate for apparent infections, \eqn{r_2 > r_1}}
+\item{\code{b}}{probability of infection per infectious bite}
+\item{\code{c1} or \eqn{c_1}}{probability of transmitting from m1}
+\item{\code{c2} or \eqn{c_2}}{probability of transmitting from m2}
+\item{H}{human or host population density}
+}
+}
+
 \seealso{
-\link{make_XH_obj_hMoI}
+\link{hMoI}, \link{make_XH_obj_hMoI}
 }
 \keyword{internal}

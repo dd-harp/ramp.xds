@@ -15,6 +15,9 @@
 a \link{list}
 }
 \description{
-Implements \link{setup_XH_ix} for the SIS model.
+Implements \link{setup_XH_ix} for the \code{SIS} model.
+}
+\seealso{
+\link{SIS}
 }
 \keyword{internal}

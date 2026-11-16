@@ -20,4 +20,22 @@ an \strong{\code{xds}} object
 For the \code{basicM} module (\strong{MY}) for the \eqn{s^{th}} species,
 change parameter values named in \code{options} leaving other values unchanged.
 }
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
+}
+
+After basic setup, \link{change_MY_pars.basicM} can be used to change static
+parameter values. The \code{basicM} module does not implement dynamic bionomic
+ports.
+}
+
 \keyword{internal}

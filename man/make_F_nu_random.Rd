@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{make_F_nu_random}
 \alias{make_F_nu_random}
-\title{Make random laying rates}
+\title{Make random egg batch rates}
 \usage{
 make_F_nu_random(
   nPatches,
@@ -24,7 +24,7 @@ make_F_nu_random(
 \item{p2}{argument 2 for f_rand}
 }
 \value{
-an object to set up egg laying
+an object to set up egg batch rates
 }
 \description{
 Set up a random vector

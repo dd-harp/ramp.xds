@@ -1,4 +1,4 @@
-# Static model egg laying rate
+# Static model egg batch rate
 
 Implements [F_nu](https://dd-harp.github.io/ramp.xds/reference/F_nu.md)
 for a static model
@@ -26,4 +26,4 @@ F_nu(t, xds_obj, s)
 
 ## Value
 
-\\(nu\\), the egg laying rate
+\\(nu\\), the egg batch rate

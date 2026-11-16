@@ -19,4 +19,28 @@ a \link{list}
 \description{
 Implements \link{parse_MY_orbits} for the GeM model
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\section{Infective Biting}{
+
+The human biting density, \code{fqM}, is the number of human bites per patch per
+day; the infective biting density, \code{fqZ}, is the number of infectious human
+bites per patch per day. \link{F_fqM.GeM} and \link{F_fqZ.GeM} compute these
+quantities as \eqn{f q M} and \eqn{f q Z}, respectively. \link{compute_EIR}
+combines infective biting density with the biting distribution matrix and
+resident-bite fraction to compute stratum-level \code{EIR}. \link{F_hbr} uses \code{fqM},
+the same matrix, and resident-bite fraction to compute stratum-level \code{HBR}.
+}
+
+\seealso{
+\link{GeM}, \link{get_MY_vars.GeM}
+}
 \keyword{internal}

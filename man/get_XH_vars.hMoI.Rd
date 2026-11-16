@@ -20,4 +20,7 @@ a \link{list}
 Get the value of variables from the flat state variable vector \eqn{y}, and return
 the values as a named list
 }
+\seealso{
+\link{hMoI}
+}
 \keyword{internal}

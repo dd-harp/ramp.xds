@@ -16,7 +16,7 @@ make_MY_inits_RMdts(
 )
 }
 \arguments{
-\item{nPatches}{the number of patches in the model}
+\item{nPatches}{the number of patches}
 
 \item{max_eip}{the maximum number of EIP cohorts, an \link{integer}}
 

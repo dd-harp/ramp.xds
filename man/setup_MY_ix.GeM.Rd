@@ -17,4 +17,14 @@ a \link{list}
 \description{
 Implements \link{setup_MY_ix} for the GeM model.
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
 \keyword{internal}

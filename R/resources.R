@@ -39,8 +39,8 @@ Resources = function(t, y, xds_obj){
 #' @title Resources (none)
 #'
 #' @description The default no-op for Resources. All resource parameters
-#' retain their static defaults (zero-initialized by [setup_blood_feeding]
-#' and [setup_egg_laying]).
+#' retain their static defaults (zero-initialized by [setup_blood_feeding_interface]
+#' and [setup_egg_laying_interface]).
 #'
 #' @inheritParams Resources
 #'
@@ -50,4 +50,3 @@ Resources = function(t, y, xds_obj){
 Resources.none = function(t, y, xds_obj){
   return(xds_obj)
 }
-

@@ -2,37 +2,79 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{hMoI}
 \alias{hMoI}
-\title{The \code{hMoI} module for the XH component}
+\title{The \code{hMoI} module for the \strong{XH} component}
 \description{
-Implements the \strong{XH} component using a hybrid model that tracks the
-mean Multiplicity of Infection (MoI) for total and apparent infections.
-This model is not extensible to dynamic human population density or
-mass treatment.
+\code{hMoI} implements a model with two hybrid variables that track the
+mean Multiplicity of Infection (MoI): the first models the true MoI,
+and the second is the MoI for "younger" infections that are detected
+with higher frequency than older ones.
+
+This model is derived under a restrictive set of assumptions,
+so it can not be extended to model dynamic changes in population size or
+treatment with anti-malarial drugs.
 }
 \section{State Variables}{
 
 \describe{
-\item{\code{m1}}{mean MoI for all infections}
-\item{\code{m2}}{mean MoI for apparent (detectable) infections}
+\item{\code{m1} or \eqn{m_1}}{mean MoI for all infections}
+\item{\code{m2} or \eqn{m_2}}{mean MoI for apparent (detectable) infections}
 }
+}
+
+\section{Demography}{
+
+
+Demographic change is inconsistent with the model formulation. Human population density \eqn{(H)}
+is a parameter, but it should be changed using \link{change_XH_inits}.
+}
+
+\section{Dynamical Term}{
+
+
+\describe{
+\item{\eqn{h} or \code{foi}}{The force of infection is computed and stored by \link{Exposure} as \code{FoI}}
+}
+
+In the \code{SIS} module, there is no effect of pre-erythrocytic immunity, so
+a constant fraction of infectious bites causes an infection: the parameter \eqn{b.}
 }
 
 \section{Parameters}{
 
 \describe{
-\item{\code{r1}}{clearance rate for all infections}
-\item{\code{r2}}{clearance rate for apparent infections}
+\item{\code{r1} or \eqn{r_1}}{clearance rate for all infections}
+\item{\code{r2} or \eqn{r_2}}{clearance rate for apparent infections, \eqn{r_2 > r_1}}
 \item{\code{b}}{probability of infection per infectious bite}
+\item{\code{c1} or \eqn{c_1}}{probability of transmitting from m1}
+\item{\code{c2} or \eqn{c_2}}{probability of transmitting from m2}
+\item{H}{human or host population density}
 }
 }
 
-\section{Dynamics}{
+\section{Infection Dynamics}{
 
 \deqn{
 \begin{array}{rl}
 dm_1/dt &= h - r_1 m_1 \\
-dm_2/dt &= h e^{-m_1} (e^{m_2} - 1) - r_2 m_2 \\
+dm_2/dt &= h - r_2 m_2 \\
 \end{array}}
-where \eqn{h} is the force of infection computed upstream.
+}
+
+\section{Prevalence}{
+
+
+\describe{
+\item{\eqn{x_1}}{true prevalence: \eqn{x_1 = 1-e^{-m_1}}}
+\item{\eqn{x_2}}{apparent prevalence: \eqn{x_2 = 1-e^{-m_2}}}
+}
+}
+
+\section{Infectiousness}{
+
+
+The model assumes that younger infections are more infectious, but that
+some transmission does occur from the older infections:
+\deqn{c_2 x_2 + c_1 (x_2 - x_1)}
+so the infectious density is \deqn{\left(c_2 x_2 + c_1 (x_2 - x_1)\right) H}
 }
 

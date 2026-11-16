@@ -7,7 +7,7 @@
 make_MY_inits_macdonald(nPatches, options = list(), M = 5, P = 1, Y = 1, Z = 1)
 }
 \arguments{
-\item{nPatches}{the number of patches in the model}
+\item{nPatches}{the number of patches}
 
 \item{options}{a \link{list} of values that overrides the defaults}
 
@@ -24,5 +24,18 @@ a \link{list}
 }
 \description{
 Make inits for macdonald adult mosquito model
+}
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\seealso{
+\link{macdonald}, \link{setup_MY_inits.macdonald}
 }
 \keyword{internal}

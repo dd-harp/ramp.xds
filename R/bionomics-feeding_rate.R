@@ -121,6 +121,10 @@ setup_f = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
+#' @rdname setup_f
+#' @export
+setup_blood_feeding_rates <- setup_f
+
 #' @title Set up blood feeding rates
 #'
 #' @param name a or setup function name

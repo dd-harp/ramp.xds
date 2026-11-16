@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{get_HTC.hMoI}
 \alias{get_HTC.hMoI}
-\title{Compute the get_HTC for the hMoI model}
+\title{Compute the get_HTC for the \code{hMoI} model}
 \usage{
 \method{get_HTC}{hMoI}(xds_obj, i)
 }
@@ -15,6 +15,9 @@
 a \link{numeric} vector
 }
 \description{
-Implements \code{get_HTC} for the hMoI model with demography.
+Implements \code{get_HTC} for the \code{hMoI} model with demography.
+}
+\seealso{
+\link{hMoI}
 }
 \keyword{internal}

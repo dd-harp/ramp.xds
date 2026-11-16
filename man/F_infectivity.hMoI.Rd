@@ -17,6 +17,9 @@
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-Implements \link{F_infectivity} for the hMoI model.
+Implements \link{F_infectivity} for the \code{hMoI} model.
+}
+\seealso{
+\link{hMoI}
 }
 \keyword{internal}

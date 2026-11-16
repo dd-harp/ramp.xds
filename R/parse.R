@@ -19,7 +19,7 @@
 #'     + `time` is stored as `xds_obj$outputs$time` 
 #'     + the full output matrix is stored as `xds_obj$outputs$deout`
 #'     + the last state of the system is stored as `mod$outputs$last_y` 
-#'     + several dynamical terms (`EIR`, `PR`, `fqZ`, `kappa`) are computed and attached as orbits
+#'     + several dynamical terms (`EIR`, `HBR`, `PR`, `fqZ`, `fqM`, `kappa`) are computed and attached as orbits
 #'     + the state variables are extracted from the output matrix by name 
 #'     + the terms and variables are attached as named lists to `xds_obj$outputs$orbits.` 
 #'        - `XH` holds parsed outputs for the **XH** component 
@@ -182,7 +182,7 @@ parse_outputs.eir = function(xds_obj, de_vars, tm){
 #' @title Pull XH Terms
 #'
 #' @description Pull the stored values of the
-#' EIR and the FoI and compute NI
+#' EIR, HBR, and FoI, and compute NI.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i host species index
@@ -192,6 +192,7 @@ parse_outputs.eir = function(xds_obj, de_vars, tm){
 #' @export
 parse_XH_terms <- function(xds_obj, i=1) {
   eir = c()
+  hbr = c()
   foi = c()
   ni = c()
   x  = c()
@@ -201,11 +202,13 @@ parse_XH_terms <- function(xds_obj, i=1) {
     xds_obj <- xds_compute_terms(tm[ix], y_ix, xds_obj)
     vars = get_XH_vars(y_ix, xds_obj, i)
     eir = rbind(eir, xds_obj$terms$EIR[[i]])
+    hbr = rbind(hbr, xds_obj$terms$HBR[[i]])
     foi = rbind(foi, xds_obj$terms$FoI[[i]])
     x   = rbind(x, F_prevalence(vars, xds_obj$XH_obj[[i]]))
     ni  = rbind(ni, F_ni(vars, xds_obj$XH_obj[[i]]))
   }
   xds_obj$outputs$orbits$XH[[i]]$eir = eir
+  xds_obj$outputs$orbits$XH[[i]]$hbr = hbr
   xds_obj$outputs$orbits$XH[[i]]$foi = foi
   xds_obj$outputs$orbits$XH[[i]]$ni = ni
   xds_obj$outputs$orbits$XH[[i]]$true_pr = x
@@ -215,7 +218,7 @@ parse_XH_terms <- function(xds_obj, i=1) {
 #' @title Pull MY Terms
 #'
 #' @description Pull the stored values of the
-#' Lambda, G, fqZ, and kappa
+#' Lambda, G, `fqZ`, `fqM`, and kappa.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index

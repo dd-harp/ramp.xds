@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{get_HTC.SIS}
 \alias{get_HTC.SIS}
-\title{Compute the get_HTC for the SIS model}
+\title{Compute the get_HTC for the \code{SIS} model}
 \usage{
 \method{get_HTC}{SIS}(xds_obj, i)
 }
@@ -15,6 +15,9 @@
 a \link{numeric} vector
 }
 \description{
-Implements \code{get_HTC} for the SIS model with demography.
+Implements \code{get_HTC} for the \code{SIS} model with demography.
+}
+\seealso{
+\link{SIS}
 }
 \keyword{internal}

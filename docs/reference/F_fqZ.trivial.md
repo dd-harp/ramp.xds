@@ -1,4 +1,4 @@
-# Net infectious biting rate
+# Infective mosquito biting rate for `trivial`
 
 Returns \$\$F\_{fqZ}(t) = fqZ F_S(t) F_T(t) F_K(t)\$\$ where
 

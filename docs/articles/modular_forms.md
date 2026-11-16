@@ -209,13 +209,13 @@ treatment. The code looks like this:
     ##   with(get_XH_vars(y, xds_obj, i),{
     ##     with(xds_obj$XH_obj[[i]], {
     ##       dH <- Births(t, xds_obj, i) - Deaths(t, H, xds_obj, i)
-    ##       dI <- foi*(H-I) - r*I - Deaths(t, I, xds_obj, i)
+    ##       dI <- foi*(1-rho)*(H-I) - (r + sigma + rho*foi)*I - Deaths(t, I, xds_obj, i)
     ##       dI <- dI - mda(t)*I - msat(t)*I
     ##       return(c(dH, dI))
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x121f5ca10>
+    ## <bytecode: 0x12793e070>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -237,13 +237,14 @@ code looks like this:
     ##     with(xds_obj$MY_obj[[s]],{
     ## 
     ##       dM <- Lambda - (Omega %*% M)
+    ##       dP <- f*q*(M-P) - (Omega %*% P)
     ##       dY <- f*q*kappa*(M-Y) - (Omega %*% Y)
     ##       
-    ##       return(c(dM, dY))
+    ##       return(c(dM, dP, dY))
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x12297a4a8>
+    ## <bytecode: 0x127bed218>
     ## <environment: namespace:ramp.xds>
 
 The term \\(\Lambda\\) is passed from the trace function
@@ -263,5 +264,5 @@ The implementation looks like this:
     ##     V_k = get_variables(shock_par, t, y, xds_obj, s)
     ##     return(Lambda*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
     ## })}
-    ## <bytecode: 0x12202cb00>
+    ## <bytecode: 0x156877f20>
     ## <environment: namespace:ramp.xds>

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{F_fqZ.trivial}
 \alias{F_fqZ.trivial}
-\title{Net infectious biting rate}
+\title{Infective mosquito biting rate for \code{trivial}}
 \usage{
 \method{F_fqZ}{trivial}(t, y, xds_obj, s)
 }

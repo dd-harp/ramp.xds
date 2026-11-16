@@ -17,4 +17,17 @@ a \link{list}
 \description{
 Implements \link{setup_MY_ix} for the \code{SI} model.
 }
+\section{State Variables}{
+
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+}
+}
+
+\seealso{
+\link{SI}
+}
 \keyword{internal}

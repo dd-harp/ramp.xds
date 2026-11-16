@@ -10,14 +10,14 @@ test_that("MY initial-value interfaces put options before a default species inde
 
 test_that("MY initial values accept positional, named and default arguments", {
   model <- xds_setup(MYname="SI")
-  options <- list(M=20, Y=3)
+  options <- list(M=20, P=17, Y=3)
   positional <- setup_MY_inits(model, options)
   expect_equal(positional, setup_MY_inits(model, options=options, s=1))
-  expect_equal(positional$MY_obj[[1]]$inits, list(M=20, Y=3))
+  expect_equal(positional$MY_obj[[1]]$inits, list(M=20, P=17, Y=3))
   expect_equal(setup_MY_inits(model), setup_MY_inits(model, list(), 1))
 
   model <- setup_MY_obj("SI", model, s=2)
   second <- setup_MY_inits(model, options, 2)
   expect_equal(second$MY_obj[[1]], model$MY_obj[[1]])
-  expect_equal(second$MY_obj[[2]]$inits, list(M=20, Y=3))
+  expect_equal(second$MY_obj[[2]]$inits, list(M=20, P=17, Y=3))
 })

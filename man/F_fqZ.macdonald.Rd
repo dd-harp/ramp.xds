@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{F_fqZ.macdonald}
 \alias{F_fqZ.macdonald}
-\title{The net blood feeding rate of the infective mosquito population in a patch}
+\title{Infective mosquito biting rate for \code{macdonald}}
 \usage{
 \method{F_fqZ}{macdonald}(t, y, xds_obj, s)
 }
@@ -19,6 +19,28 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_fqZ} for the macdonald model.
+Implements \link{F_fqZ} for the \code{macdonald} model.
+}
+\section{Infective Biting}{
+
+Infective biting density is the number of infectious bites by mosquitoes
+on humans in each patch per day. The density of infectious mosquitoes
+\eqn{Z} is computed from \eqn{Y} after survival and dispersal through the
+EIP.
+
+\describe{
+\item{\code{fqZ}}{infective biting density, the number of infectious bites per patch per day}
+\item{\code{fqM}}{human biting density, the number of bites on humans per patch per day}
+}
+
+\link{F_fqZ.macdonald} and \link{F_fqM.macdonald} compute these patch-level
+quantities. \link{compute_EIR} combines \code{fqZ} with the biting distribution
+matrix and resident-bite fraction to compute stratum-level EIR; \link{F_hbr}
+computes HBR from \code{fqM} in the same way. The resulting \code{EIR} and \code{HBR}
+orbits are attached to the XH output during parsing.
+}
+
+\seealso{
+\link{macdonald}, \link{dMYdt.macdonald}
 }
 \keyword{internal}

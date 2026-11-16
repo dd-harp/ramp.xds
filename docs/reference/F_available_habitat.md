@@ -38,5 +38,5 @@ This function is called by
 [make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
 discusses \\(N\\)
 
-The availability of ovitraps and bad habitats is setup in
-[setup_egg_laying](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying.md)
+The availability of ovitraps and bad habitats is set up in
+[setup_egg_laying_interface](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying_interface.md)

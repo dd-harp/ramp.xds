@@ -7,7 +7,7 @@
 make_MY_inits_basicM(nPatches, options, M = 5, P = 1)
 }
 \arguments{
-\item{nPatches}{the number of patches in the model}
+\item{nPatches}{the number of patches}
 
 \item{options}{a \link{list} of values that overrides the defaults}
 

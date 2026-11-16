@@ -2,9 +2,12 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{setup_nu}
 \alias{setup_nu}
-\title{Setup nu}
+\alias{setup_egg_batch_rates}
+\title{Set up egg batch rates}
 \usage{
 setup_nu(name, xds_obj, options = list(), s = 1)
+
+setup_egg_batch_rates(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{name}{a or setup function name}
@@ -19,6 +22,6 @@ setup_nu(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} object
 }
 \description{
-Set up the egg laying rate (\eqn{\nu})
+Set up the egg batch rate (\eqn{\nu})
 for static systems
 }

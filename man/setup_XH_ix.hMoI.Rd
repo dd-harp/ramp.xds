@@ -17,4 +17,7 @@ a \link{list}
 \description{
 Implements \link{setup_XH_ix} for the hybrid MoI model.
 }
+\seealso{
+\link{hMoI}
+}
 \keyword{internal}

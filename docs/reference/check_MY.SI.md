@@ -22,3 +22,7 @@ check_MY(xds_obj, s)
 ## Value
 
 an **`xds`** object
+
+## See also
+
+[SI](https://dd-harp.github.io/ramp.xds/reference/SI.md)

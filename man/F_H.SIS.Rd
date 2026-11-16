@@ -19,6 +19,9 @@
 Human (host) population density, \eqn{H}
 }
 \description{
-Implements \link{F_H} for the \emph{SIS} module
+Implements \link{F_H} for the \code{SIS} module
+}
+\seealso{
+\link{SIS}
 }
 \keyword{internal}

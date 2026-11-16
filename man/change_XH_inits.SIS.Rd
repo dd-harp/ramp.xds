@@ -17,12 +17,12 @@
 an \strong{\code{xds}} object
 }
 \description{
-For the \code{SIS} module (\strong{XH}) for the \eqn{i^{th}} species,
+For the \code{SIS} module (\strong{XH}) for the \eqn{i^{th}} host species,
 change initial values named in \code{options} leaving other values unchanged.
 }
 \details{
 The variable \eqn{S} is redundant. It is computed as \eqn{S=H-I.}
-It's initial value is not stored, so it can't be set or changed.
+Its initial value is not stored, so it can't be set or changed.
 }
 \section{State Variables}{
 
@@ -35,7 +35,7 @@ It's initial value is not stored, so it can't be set or changed.
 }
 
 \seealso{
-The variable names are returned by calling \link{get_XH_inits}.
+\link{SIS}. The variable names are returned by calling \link{get_XH_inits}.
 The function \link{make_XH_inits_SIS} is called during setup.
 }
 \keyword{internal}

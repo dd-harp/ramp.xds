@@ -19,12 +19,28 @@
 an \strong{\code{xds}} object
 }
 \description{
-Reset the effect sizes for static models.
-When modules are added to compute effect sizes
-from baseline parameters, those functions store
-an effect size. The total effect size is the
-product of the effect sizes for each intervention.
-since coverage could be changing dynamically, these
-must be reset each time the derivatives are computed.
+This method leaves the \code{macdonald} bionomics parameters
+unchanged; the module does not implement dynamic bionomic ports.
+}
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
+}
+
+After basic setup, \link{change_MY_pars.macdonald} can be used to change static
+parameter values. This module does not support dynamic bionomic ports.
+}
+
+\seealso{
+\link{macdonald}, \link{MEffectSizes.macdonald}
 }
 \keyword{internal}

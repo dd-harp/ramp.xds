@@ -12,7 +12,7 @@ make_K_matrix_herethere(nPatches)
 
 - nPatches:
 
-  is the number of patches in the model
+  is the number of patches
 
 ## See also
 

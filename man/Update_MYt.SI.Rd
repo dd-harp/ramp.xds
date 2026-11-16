@@ -21,4 +21,34 @@ a \link{numeric} vector
 \description{
 Implements \link{Update_MYt} for the SI model.
 }
+\section{Dynamics}{
+
+
+\strong{Ecology}
+
+Adult mosquitoes emerge from aquatic habitats \eqn{(\Lambda)} and disperse and die (\eqn{\Omega}):
+\deqn{
+dM/dt = \Lambda - \Omega \cdot M 
+}
+The model also computes the density of parous adult mosquitoes: those that have
+blood fed at least once:
+\deqn{
+dP/dt = fq(M-P) - \Omega \cdot P \\
+}
+Parity is computed during parsing as \eqn{P/M} and its orbit is stored as \code{parity.}
+
+\strong{Infection Dynamics}
+
+Given the per-capita daily rate of human blood feeding \eqn{(fq)} and
+net infectiousness \eqn{(\kappa)}, the FoI for mosquitoes is \eqn{fq\kappa}.
+Changes in the density of infected mosquitoes
+is given by:
+\deqn{
+dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\
+}
+}
+
+\seealso{
+\link{SI}, \link{dMYdt.SI}
+}
 \keyword{internal}

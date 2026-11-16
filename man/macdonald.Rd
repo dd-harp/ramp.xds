@@ -2,58 +2,124 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{macdonald}
 \alias{macdonald}
-\title{The \code{macdonald} module (MY component)}
+\title{The \code{macdonald} module for the \strong{MY} component}
 \description{
-Implements a Macdonald-style delay differential
-equation model of adult mosquito ecology and infection dynamics, consistent
-with the model published by George Macdonald in 1952. This formulation is
-actually closer to one published by Aron & May (1982).
+This implements a Macdonald-style delay differential equation model for
+adult mosquito ecology and infection dynamics, consistent with the model
+published by George Macdonald in 1952. This formulation is closer to one
+published by Aron and May (1982). Unlike the \code{SI} module, it includes
+infectious mosquitoes as an explicit state variable and uses delayed values
+to represent the extrinsic incubation period.
 }
 \section{State Variables}{
 
 \describe{
 \item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
 \item{\code{Y}}{density of infected adult mosquitoes}
 \item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\section{Dynamical Terms}{
+
+\describe{
+\item{\code{Lambda} or \eqn{\Lambda}}{adult mosquito emergence rate, computed by \link{Emergence}}
+\item{\code{kappa} or \eqn{\kappa}}{net infectiousness, computed by \link{Transmission}}
 }
 }
 
 \section{Parameters}{
 
 \describe{
-\item{\code{f}}{blood feeding rate}
-\item{\code{q}}{human blood fraction}
-\item{\code{g}}{mortality rate}
-\item{\code{sigma}}{patch emigration}
-\item{\code{mu}}{emigration-related loss}
-\item{\code{K}}{the dispersal matrix}
-\item{\code{tau}}{extrinsic incubation period (\eqn{\tau})}
+\item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
 }
 
-The \emph{demographic matrix} \eqn{\Omega} is formulated as
-\deqn{
- \Omega = \mbox{diag} \left( g + \sigma \mu \right) + K \cdot \mbox{diag} \left( \sigma \left(1-\mu\right) \right)
+After basic setup, \link{change_MY_pars.macdonald} can be used to change static
+parameter values. This module does not support dynamic bionomic ports.
 }
-survival and dispersal through the EIP is
-\deqn{
- \Upsilon = e^{-\Omega \tau} 
+
+\section{Survival and Dispersal}{
+
+Mosquito survival and dispersal are described by the demographic matrix
+\eqn{\Omega}. The parameter \eqn{g} is the per-capita mortality rate while
+mosquitoes are in a patch. Mosquitoes emigrate from patches at per-capita
+rates \eqn{\sigma}, and a fraction \eqn{\mu} of emigrating mosquitoes is
+lost. The total rate of loss from a patch is \deqn{g+\mu\sigma.}
+
+The columns of the mosquito dispersal matrix \eqn{K} sum to zero. For
+non-trivial dispersal matrices, \eqn{\mbox{diag}(K)=-1}; the off-diagonal
+elements describe the fractions of surviving emigrants that arrive in
+other patches. The demographic matrix is
+\deqn{\Omega=\mbox{diag}(g+\sigma\mu)-K\cdot\mbox{diag}(\sigma(1-\mu)).}
+Survival and dispersal through the EIP are represented by
+\deqn{\Upsilon=e^{-\Omega\tau}.}
 }
+
+\section{Blood Feeding}{
+
+The blood feeding rate \eqn{f} and human fraction \eqn{q} are parameters of
+the module. At baseline they are static. They should satisfy natural
+constraints: \eqn{f=0} if no blood hosts are available, \eqn{q=0} if no
+humans are available, and \eqn{q=1} if humans are the only available hosts.
+This module does not support the dynamic blood-feeding ports used by \code{SI}
+and \code{GeM}.
 }
 
 \section{Dynamics}{
 
-The dynamical system is described
-by a coupled set of delay differential equations.
-In these equations, a sub-scripted variable or term denotes its
-lagged value: \eqn{M_\tau = M(t-\tau)}.
+The system is described by coupled differential equations with a delay.
+A subscript \eqn{\tau} denotes a lagged value, for example
+\eqn{M_\tau=M(t-\tau)}.
 
 \deqn{
 \begin{array}{rl}
-dM/dt &= \Lambda - \Omega \cdot M \\\\
-dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\\\
-dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Z \\\\
+dM/dt &= \Lambda-\Omega\cdot M \\\\
+dP/dt &= f(M-P)-\Omega\cdot P \\\\
+dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\\\
+dZ/dt &= \Upsilon\cdot(fq\kappa)_\tau(M_\tau-Y_\tau)-\Omega\cdot Z
 \end{array}
 }
+
+Here, \eqn{P} is the density of mosquitoes that have blood-fed at least
+once. The infected mosquito density \eqn{Y} generates infectious mosquitoes
+after the EIP, represented by the delayed term in the \eqn{Z} equation.
+}
+
+\section{Infective Biting}{
+
+Infective biting density is the number of infectious bites by mosquitoes
+on humans in each patch per day. The density of infectious mosquitoes
+\eqn{Z} is computed from \eqn{Y} after survival and dispersal through the
+EIP.
+
+\describe{
+\item{\code{fqZ}}{infective biting density, the number of infectious bites per patch per day}
+\item{\code{fqM}}{human biting density, the number of bites on humans per patch per day}
+}
+
+\link{F_fqZ.macdonald} and \link{F_fqM.macdonald} compute these patch-level
+quantities. \link{compute_EIR} combines \code{fqZ} with the biting distribution
+matrix and resident-bite fraction to compute stratum-level EIR; \link{F_hbr}
+computes HBR from \code{fqM} in the same way. The resulting \code{EIR} and \code{HBR}
+orbits are attached to the XH output during parsing.
+}
+
+\section{Egg Laying}{
+
+The egg batch rate \eqn{\nu} and the number of eggs per batch
+\eqn{\Gamma} determine the egg production rate per patch:
+\deqn{G=\nu\Gamma M.}
+\link{F_eggs.macdonald} computes \eqn{G}, which is passed to \link{EggLaying} for
+distribution among aquatic habitats.
 }
 
 \section{Note}{
@@ -67,4 +133,7 @@ vector control. Use the \code{GeM} module instead.
 \item Macdonald G (1952) The analysis of the sporozoite rate. Tropical Diseases Bulletin 49:569-586.
 \item Aron JL, May RM (1982) The population dynamics of malaria. Chapter 5 in \emph{The Population Dynamics of Infectious Diseases: Theory and Applications,} Springer, Boston, MA.
 }
+}
+\seealso{
+\link{make_MY_obj_macdonald}, \link{setup_MY_obj.macdonald}, \link{dMYdt.macdonald}
 }

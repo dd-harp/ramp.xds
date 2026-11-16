@@ -38,4 +38,7 @@ a \link{list}
 \description{
 MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
 }
+\seealso{
+\link{hMoI}
+}
 \keyword{internal}

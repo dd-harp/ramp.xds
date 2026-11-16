@@ -295,3 +295,7 @@ setup_sigma = function(name, xds_obj, options=list(), s=1){
   xds_obj <- change_sigma(xds_obj, s)
   return(xds_obj)
 }
+
+#' @rdname setup_sigma
+#' @export
+setup_emigration_rates <- setup_sigma

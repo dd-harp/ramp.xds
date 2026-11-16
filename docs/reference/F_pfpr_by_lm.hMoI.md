@@ -2,7 +2,7 @@
 
 Implements
 [F_prevalence](https://dd-harp.github.io/ramp.xds/reference/F_prevalence.md)
-for the hMoI model.
+for the `hMoI` model.
 
 ## Usage
 
@@ -25,3 +25,7 @@ F_pfpr_by_lm(vars, XH_obj)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nStrata`
+
+## See also
+
+[hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)

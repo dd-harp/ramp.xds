@@ -2,7 +2,7 @@
 
 Implements
 [setup_XH_ix](https://dd-harp.github.io/ramp.xds/reference/setup_XH_ix.md)
-for the SIS model.
+for the `SIS` model.
 
 ## Usage
 
@@ -24,3 +24,7 @@ setup_XH_ix(xds_obj, i)
 ## Value
 
 a [list](https://rdrr.io/r/base/list.html)
+
+## See also
+
+[SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)

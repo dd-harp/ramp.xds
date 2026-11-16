@@ -22,6 +22,6 @@ initial values as a named \link{list}
 Make a named list of initial values
 }
 \seealso{
-\link{setup_XH_inits.SIS}
+\link{SIS}, \link{setup_XH_inits.SIS}
 }
 \keyword{internal}

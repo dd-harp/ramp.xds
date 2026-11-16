@@ -1,4 +1,4 @@
-# Make type2 egg laying rates
+# Make type2 egg batch rates
 
 Set up a type2 vector
 
@@ -28,4 +28,4 @@ make_F_nu_type2(nPatches, options = list(), vx = 0.3, sv = 0.1)
 
 ## Value
 
-an object to set up egg laying
+an object to set up egg batch rates
