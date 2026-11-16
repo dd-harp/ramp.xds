@@ -18,6 +18,6 @@ a \link{numeric} vector of length \code{nPatches}
 }
 \description{
 This method dispatches on the type of \code{nu_obj}. It should
-set the values of the egg laying rate, \eqn{\nu}
+set the values of the egg batch rate, \eqn{\nu}
 }
 \keyword{internal}

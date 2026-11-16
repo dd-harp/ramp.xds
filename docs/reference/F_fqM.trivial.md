@@ -1,8 +1,7 @@
-# Blood feeding rate of the infective mosquito population
+# Mosquito biting rate for `trivial`
 
-Implements
-[F_fqM](https://dd-harp.github.io/ramp.xds/reference/F_fqM.md) for the
-trivial model.
+The trivial model does not track an adult mosquito population, so this
+method returns an empty numeric vector.
 
 ## Usage
 

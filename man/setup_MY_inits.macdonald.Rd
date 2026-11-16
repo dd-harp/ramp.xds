@@ -14,7 +14,7 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 Set initial values for all the variables in the \code{macdonald} module
@@ -25,5 +25,18 @@ Set initial values for all the variables in the \code{macdonald} module
 \item To inspect variable names, use \link{get_MY_inits} or
 see the inline module documentation.
 }
+}
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\seealso{
+\link{macdonald}, \link{make_MY_inits_macdonald}
 }
 \keyword{internal}

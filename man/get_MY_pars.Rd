@@ -15,7 +15,8 @@ get_MY_pars(xds_obj, s = 1)
 a \link{list}
 }
 \description{
-Inspect the parameter values for the \strong{MY} module for the \eqn{s^{th}} species
+Inspect the stored parameter values for the
+\strong{MY} module for the \eqn{s^{th}} species
 }
 \note{
 Parameter values are stored on \code{xds_obj$MY_obj[[s]]}

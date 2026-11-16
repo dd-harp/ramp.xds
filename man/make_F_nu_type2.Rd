@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{make_F_nu_type2}
 \alias{make_F_nu_type2}
-\title{Make type2 egg laying rates}
+\title{Make type2 egg batch rates}
 \usage{
 make_F_nu_type2(nPatches, options = list(), vx = 0.3, sv = 0.1)
 }
@@ -16,7 +16,7 @@ make_F_nu_type2(nPatches, options = list(), vx = 0.3, sv = 0.1)
 \item{sv}{the shape parameter}
 }
 \value{
-an object to set up egg laying
+an object to set up egg batch rates
 }
 \description{
 Set up a type2 vector

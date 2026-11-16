@@ -21,4 +21,37 @@ a \link{list}
 \description{
 This method dispatches on the type of \code{MY_obj}.
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\section{Dynamics}{
+
+The system is described by coupled differential equations with a delay.
+A subscript \eqn{\tau} denotes a lagged value, for example
+\eqn{M_\tau=M(t-\tau)}.
+
+\deqn{
+\begin{array}{rl}
+dM/dt &= \Lambda-\Omega\cdot M \\\\
+dP/dt &= f(M-P)-\Omega\cdot P \\\\
+dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\\\
+dZ/dt &= \Upsilon\cdot(fq\kappa)_\tau(M_\tau-Y_\tau)-\Omega\cdot Z
+\end{array}
+}
+
+Here, \eqn{P} is the density of mosquitoes that have blood-fed at least
+once. The infected mosquito density \eqn{Y} generates infectious mosquitoes
+after the EIP, represented by the delayed term in the \eqn{Z} equation.
+}
+
+\seealso{
+\link{macdonald}, \link{dMYdt.macdonald}
+}
 \keyword{internal}

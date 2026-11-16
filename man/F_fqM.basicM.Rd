@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{F_fqM.basicM}
 \alias{F_fqM.basicM}
-\title{The net blood feeding rate of the mosquito population in a patch}
+\title{Mosquito biting rate for \code{basicM}}
 \usage{
 \method{F_fqM}{basicM}(t, y, xds_obj, s)
 }
@@ -19,6 +19,21 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_fqM} for the basicM xde model.
+Returns \code{fqM}, the daily mosquito biting density on humans
+for each patch in the basicM model.
+}
+\section{Infective Biting}{
+
+The \code{basicM} module does not represent mosquito infection, so its infective
+biting density \eqn{fqZ} is zero. Its human biting density, \eqn{fqM}, is
+the number of bites on humans in each patch per day.
+\link{F_fqM.basicM} computes this patch-level quantity. \link{F_hbr} combines \code{fqM}
+with the biting distribution matrix and resident-bite fraction to compute
+the stratum-level human biting rate (\code{HBR}). The \code{EIR} is zero for this
+module because there are no infective bites.
+}
+
+\seealso{
+\link{basicM}, \link{F_hbr}
 }
 \keyword{internal}

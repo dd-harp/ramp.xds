@@ -4,14 +4,16 @@
 \alias{make_MY_inits_SI}
 \title{Make inits for \code{SI} adult mosquito model}
 \usage{
-make_MY_inits_SI(nPatches, options = list(), M = 5, Y = 1)
+make_MY_inits_SI(nPatches, options = list(), M = 10, P = 8, Y = 1)
 }
 \arguments{
-\item{nPatches}{the number of patches in the model}
+\item{nPatches}{the number of patches}
 
 \item{options}{a \link{list} of values that overrides the defaults}
 
 \item{M}{total mosquito density at each patch}
+
+\item{P}{parous mosquito density at each patch}
 
 \item{Y}{infected mosquito density at each patch}
 }
@@ -26,6 +28,7 @@ Make inits for \code{SI} adult mosquito model
 
 \describe{
 \item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
 \item{\code{Y}}{density of infected adult mosquitoes}
 }
 }

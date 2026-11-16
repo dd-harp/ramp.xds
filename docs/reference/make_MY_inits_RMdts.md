@@ -21,7 +21,7 @@ make_MY_inits_RMdts(
 
 - nPatches:
 
-  the number of patches in the model
+  the number of patches
 
 - max_eip:
 

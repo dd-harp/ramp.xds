@@ -19,46 +19,66 @@
 a \link{numeric} vector
 }
 \description{
-This implements a delay differential equation model for adult mosquito ecology and
-infection dynamics that is consistent with the model published by George
-Macdonald in 1952. A generalized version of this model, the \strong{MY} module \code{GeM},
-was developed to handle exogenous forcing by weather and vector control. This model
-should be used only for educational purposes.
+Implements the delay differential equations for the
+\code{macdonald} module.
+}
+\section{State Variables}{
 
-\strong{Variables:}
-\itemize{
-\item \eqn{M}: the density of adult mosquitoes
-\item \eqn{Y}: the density of infected adult mosquitoes
-\item \eqn{Z}: the density of infectious adult mosquitoes
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
 }
 
-\strong{Parameters and Terms:}
-\itemize{
-\item \eqn{\Lambda} or \code{Lambda}: the emergence rate of adult mosquitoes (from \code{F_emerge})
-\item \eqn{f} or \code{f}: the blood feeding rate
-\item \eqn{q} or \code{q}: human blood fraction
-\item \eqn{\tau} or \code{eip}: the extrinsic incubation period
-\item \eqn{\Omega} or \code{Omega}: an adult mosquito demographic matrix, including mortality and migration
-\item \eqn{\Upsilon} or \code{Upsilon}: survival and dispersal through the eip, \eqn{\Upsilon= e^{-\Omega \tau}}
+\section{Dynamical Terms}{
+
+\describe{
+\item{\code{Lambda} or \eqn{\Lambda}}{adult mosquito emergence rate, computed by \link{Emergence}}
+\item{\code{kappa} or \eqn{\kappa}}{net infectiousness, computed by \link{Transmission}}
+}
 }
 
-\strong{Dynamics:}
-In the delay equation, we use the subscript to denote the lagged value of a
-variable or term: \emph{e.g.}, \eqn{M_\tau = M(t-\tau)}.
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
+}
+
+After basic setup, \link{change_MY_pars.macdonald} can be used to change static
+parameter values. This module does not support dynamic bionomic ports.
+}
+
+\section{Dynamics}{
+
+The system is described by coupled differential equations with a delay.
+A subscript \eqn{\tau} denotes a lagged value, for example
+\eqn{M_\tau=M(t-\tau)}.
 
 \deqn{
 \begin{array}{rl}
-dM/dt &= \Lambda - \Omega \cdot M \\
-dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
-dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Y \\
-\end{array}}
-
-This model was included mainly for the historical interest. It has been updated to handle
-exogenous forcing by weather and vector control in the module \code{GeM}
+dM/dt &= \Lambda-\Omega\cdot M \\\\
+dP/dt &= f(M-P)-\Omega\cdot P \\\\
+dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\\\
+dZ/dt &= \Upsilon\cdot(fq\kappa)_\tau(M_\tau-Y_\tau)-\Omega\cdot Z
+\end{array}
 }
-\note{
-This model is not capable of being extended to
-handle exogenous forcing by weather or vector control. Please
-use the \code{GeM} model.
+
+Here, \eqn{P} is the density of mosquitoes that have blood-fed at least
+once. The infected mosquito density \eqn{Y} generates infectious mosquitoes
+after the EIP, represented by the delayed term in the \eqn{Z} equation.
+}
+
+\seealso{
+\link{macdonald}, \link{F_fqZ.macdonald}, \link{F_eggs.macdonald}
 }
 \keyword{internal}

@@ -1,4 +1,4 @@
-# Blood feeding rate of the infective mosquito population
+# Infective mosquito biting rate
 
 This method dispatches on the type of `xds_obj$MY_obj`.
 

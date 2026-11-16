@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{make_MY_obj_macdonald}
 \alias{make_MY_obj_macdonald}
-\title{Make parameters for macdonald ODE adult mosquito model}
+\title{Make parameters for \code{macdonald} adult mosquito model}
 \usage{
 make_MY_obj_macdonald(
   nPatches,
@@ -34,14 +34,45 @@ make_MY_obj_macdonald(
 
 \item{q}{human blood fraction}
 
-\item{nu}{oviposition rate, per mosquito}
+\item{nu}{egg batch rate, in batches per mosquito per day}
 
-\item{eggsPerBatch}{eggs laid per oviposition}
+\item{eggsPerBatch}{number of eggs per batch}
 }
 \value{
 a \link{list}
 }
 \description{
-Make parameters for macdonald ODE adult mosquito model
+Make parameters for \code{macdonald} adult mosquito model
+}
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
+}
+
+After basic setup, \link{change_MY_pars.macdonald} can be used to change static
+parameter values. This module does not support dynamic bionomic ports.
+}
+
+\seealso{
+\link{macdonald}, \link{setup_MY_obj.macdonald}
 }
 \keyword{internal}

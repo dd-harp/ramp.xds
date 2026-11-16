@@ -22,7 +22,7 @@ Use \verb{get_*_orbits} to inspect the orbits.
 \item \code{time} is stored as \code{xds_obj$outputs$time}
 \item the full output matrix is stored as \code{xds_obj$outputs$deout}
 \item the last state of the system is stored as \code{mod$outputs$last_y}
-\item several dynamical terms (\code{EIR}, \code{PR}, \code{fqZ}, \code{kappa}) are computed and attached as orbits
+\item several dynamical terms (\code{EIR}, \code{HBR}, \code{PR}, \code{fqZ}, \code{fqM}, \code{kappa}) are computed and attached as orbits
 \item the state variables are extracted from the output matrix by name
 \item the terms and variables are attached as named lists to \code{xds_obj$outputs$orbits.}
 \itemize{

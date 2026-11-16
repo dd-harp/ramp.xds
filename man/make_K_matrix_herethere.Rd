@@ -7,7 +7,7 @@
 make_K_matrix_herethere(nPatches)
 }
 \arguments{
-\item{nPatches}{is the number of patches in the model}
+\item{nPatches}{is the number of patches}
 }
 \description{
 Mosquitoes disperse to every other patch

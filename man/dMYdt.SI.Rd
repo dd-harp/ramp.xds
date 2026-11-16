@@ -24,55 +24,77 @@ The derivatives for the \code{SI} module are:
 \deqn{
 \begin{array}{rl}
 dM/dt = & \Lambda - \Omega \cdot M \\
+dP/dt = & f q(M-P) - \Omega \cdot P \\
 dY/dt = & f q \kappa (M-Y) - \Omega \cdot Y
 \end{array}
 }
 }
-\section{Ecology}{
+\section{State Variables}{
 
 
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+}
+}
+
+\section{Dynamical Terms}{
+
+
+\describe{
+\item{\code{Lambda} or \eqn{\Lambda}}{the number of adult mosquitoes emerging, per patch, per day, computed by \link{Emergence}}
+\item{\code{kappa} or \eqn{\kappa}}{net infectiousness: the probability a mosquito becomes infected after blood feeding on a human, is computed by \link{Transmission}}
+}
+}
+
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rates --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss rate --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{the egg batch rate, in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{the number of eggs per batch}
+}
+
+After basic setup, \link{change_MY_pars} can be used for static parameters, or for
+for parameters that are set up as static ports (the default).
+Use advanced setup to modify dynamic ports.
+}
+
+\section{Dynamics}{
+
+
+\strong{Ecology}
+
+Adult mosquitoes emerge from aquatic habitats \eqn{(\Lambda)} and disperse and die (\eqn{\Omega}):
 \deqn{
 dM/dt = \Lambda - \Omega \cdot M 
 }
-
-\strong{Emergence}
-The model for mosquito ecology uses the stored value \code{Lambda} computed in \link{Emergence}.
-
-\strong{Survival and Dispersal}
-
-The parameter \eqn{g} is interpreted as the per-capita mortality rate for mosquitoes
-while they are in a patch. Mosquitoes emigrate from patches at the per-capita rates \eqn{\sigma},
-and some fraction of emigrating mosquitoes is lost (\eqn{\mu}). The total rate of loss from a
-a patch is \deqn{g + \mu \sigma.}
-
-The columns of the mosquito dispersal matrix \eqn{(K)} sum
-to zero. For non-trivial dispersal matrices:
-\deqn{\mbox{diag}\left(K\right)=-1}
-and the non-diagonal elements are fraction of surviving mosquitoes that arrive at another patch after
-a flight bout. If there is any population loss associated with emigration, it goes in the term \eqn{\mu}.
-
-The demographic matrix, \eqn{\Omega} is computed as
-\deqn{\Omega = \mbox{diag}\left(g + \sigma \mu \right) - K \cdot \mbox{diag}\left(\sigma \left(1-\mu\right)\right)}
+The model also computes the density of parous adult mosquitoes: those that have
+blood fed at least once:
+\deqn{
+dP/dt = fq(M-P) - \Omega \cdot P \\
 }
+Parity is computed during parsing as \eqn{P/M} and its orbit is stored as \code{parity.}
 
-\section{Infection Dynamics}{
+\strong{Infection Dynamics}
 
-
+Given the per-capita daily rate of human blood feeding \eqn{(fq)} and
+net infectiousness \eqn{(\kappa)}, the FoI for mosquitoes is \eqn{fq\kappa}.
+Changes in the density of infected mosquitoes
+is given by:
 \deqn{
 dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\
 }
-
-\strong{Blood Feeding}
-
-Mosquitoes blood feed at the rate \eqn{f.}
-
-The human fraction, \eqn{q,} is the fraction of blood meals on human.
-The model computes these derivatives:
-
-\strong{Net Infectiousness}
 }
 
 \seealso{
-\link{F_fqZ.SI} and \link{F_eggs.SI}
+\link{SI}, \link{F_fqZ.SI}, \link{F_eggs.SI}
 }
 \keyword{internal}

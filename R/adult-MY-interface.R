@@ -67,7 +67,7 @@ Update_MYt <- function(t, y, xds_obj, s) {
 }
 
 
-#' @title Blood feeding rate of the infective mosquito population
+#' @title Infective mosquito biting rate
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
 #' @param t current simulation time
 #' @param y state vector
@@ -80,13 +80,15 @@ F_fqZ <- function(t, y, xds_obj, s) {
   UseMethod("F_fqZ", xds_obj$MY_obj[[s]])
 }
 
-#' @title Blood feeding rate of the mosquito population
-#' @description This method dispatches on the type of `xds_obj$MY_obj`.
+#' @title Mosquito biting rate
+#' @description This method dispatches on the type of `xds_obj$MY_obj` and
+#' returns the daily mosquito biting density on humans, `fqM`, for each patch.
 #' @param t current simulation time
 #' @param y state vector
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [numeric] vector of length `nPatches`
+#' @seealso [F_hbr]
 #' @keywords internal
 #' @export
 F_fqM <- function(t, y, xds_obj, s) {
@@ -215,8 +217,10 @@ parse_MY_orbits <- function(outputs, xds_obj, s) {
 #' @title Get parameters (**MY**)
 #' 
 #' @description 
-#' Inspect the parameter values for the **MY** module for the \eqn{s^{th}} species
+#' Inspect the stored parameter values for the 
+#' **MY** module for the \eqn{s^{th}} species
 #' 
+#'  
 #' @seealso [change_MY_pars], [setup_MY_obj], [xds_info_change_parameters]
 #' 
 #' @note Parameter values are stored on `xds_obj$MY_obj[[s]]`
@@ -234,7 +238,14 @@ get_MY_pars <- function(xds_obj, s=1) {
 #' @description 
 #' For the **MY** module for the \eqn{s^{th}} species, 
 #' change parameter values named in `options`,
-#' leaving other values unchanged.
+#' leaving other values unchanged. 
+#' 
+#' @note
+#' This is designed to work for static parameters or 
+#' for parameters that are set up as ports, where the class of
+#' the bionomic object is "static." 
+#' 
+#' Use advanced setup to modify dynamic bionomic ports. 
 #' 
 #' @seealso [get_MY_pars], [setup_MY_obj], [xds_info_change_parameters]
 #'

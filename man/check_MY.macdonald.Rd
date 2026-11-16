@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{check_MY.macdonald}
 \alias{check_MY.macdonald}
-\title{Run a check before solving}
+\title{Check \code{macdonald} (\strong{MY}) before solving}
 \usage{
 \method{check_MY}{macdonald}(xds_obj, s)
 }
@@ -15,6 +15,9 @@
 an \strong{\code{xds}} object
 }
 \description{
-Run a check before solving
+This method currently performs no additional checks.
+}
+\seealso{
+\link{macdonald}
 }
 \keyword{internal}

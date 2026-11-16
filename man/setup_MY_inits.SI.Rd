@@ -31,6 +31,7 @@ see the inline module documentation.
 
 \describe{
 \item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
 \item{\code{Y}}{density of infected adult mosquitoes}
 }
 }

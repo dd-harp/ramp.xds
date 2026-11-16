@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{F_nu.type2}
 \alias{F_nu.type2}
-\title{Egg laying rate}
+\title{Egg batch rate}
 \usage{
 \method{F_nu}{type2}(t, xds_obj, s)
 }
@@ -14,13 +14,13 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{\nu}, the baseline egg laying rate
+\eqn{\nu}, the baseline egg batch rate
 }
 \description{
-Egg laying rates are a type2 functional response
+Egg batch rates are a type2 functional response
 to available water.
 
-Letting \eqn{Q} be the availability of all water. The egg laying rate is
+Letting \eqn{Q} be the availability of all water. The egg batch rate is
 \deqn{\nu = \nu_x \frac{s_\nu Q}{1+s_\nu Q}}
 }
 \keyword{internal}

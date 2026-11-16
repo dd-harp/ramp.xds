@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{F_fqM.GeM}
 \alias{F_fqM.GeM}
-\title{The net blood feeding rate of the infective mosquito population in a patch}
+\title{Mosquito biting rate for \code{GeM}}
 \usage{
 \method{F_fqM}{GeM}(t, y, xds_obj, s)
 }
@@ -19,6 +19,21 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_fqM} for the GeM model.
+Returns \code{fqM}, the daily mosquito biting density on humans
+for each patch in the GeM model.
+}
+\section{Infective Biting}{
+
+The human biting density, \code{fqM}, is the number of human bites per patch per
+day; the infective biting density, \code{fqZ}, is the number of infectious human
+bites per patch per day. \link{F_fqM.GeM} and \link{F_fqZ.GeM} compute these
+quantities as \eqn{f q M} and \eqn{f q Z}, respectively. \link{compute_EIR}
+combines infective biting density with the biting distribution matrix and
+resident-bite fraction to compute stratum-level \code{EIR}. \link{F_hbr} uses \code{fqM},
+the same matrix, and resident-bite fraction to compute stratum-level \code{HBR}.
+}
+
+\seealso{
+\link{GeM}, \link{F_hbr}
 }
 \keyword{internal}

@@ -1,13 +1,13 @@
-# Compute component egg laying rates for `SI`
+# Compute component egg production rates for `SI`
 
 The density of adult mosquitoes is \\(M\\). The **parameters**
 describing egg laying by adult mosquitoes are:
 
-- \\(\nu\\) or `nu` is the egg laying rate
+- \\(\nu\\) or `nu` is the egg batch rate
 
-- \\(\xi\\) or `eggsPerBatch` is the number of eggs per batch
+- \\(\Gamma\\) or `eggsPerBatch` is the number of eggs per batch
 
-The egg laying rate, per patch, is \$\$\nu \xi M\$\$
+The egg production rate per patch is \$\$\nu \Gamma M\$\$
 
 ## Usage
 
@@ -38,3 +38,17 @@ F_eggs(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`
+
+## Egg Laying
+
+- `G`:
+
+  the number of eggs laid, per patch, per day \$\$G = \nu M \Gamma \$\$
+
+\\(G\\) is the dynamical term passed to
+[EggLaying](https://dd-harp.github.io/ramp.xds/reference/EggLaying.md)
+to distribute eggs among the habitats that are found in each patch.
+
+## See also
+
+[SI](https://dd-harp.github.io/ramp.xds/reference/SI.md)

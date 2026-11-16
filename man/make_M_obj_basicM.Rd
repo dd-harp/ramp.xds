@@ -41,4 +41,7 @@ a \link{list}
 \description{
 Make parameters for basicM adult mosquito model
 }
+\seealso{
+\link{basicM}, \link{setup_MY_obj.basicM}
+}
 \keyword{internal}

@@ -2,16 +2,12 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{GeM}
 \alias{GeM}
-\title{The \code{GeM} module for the MY component}
+\title{The \code{GeM} module for the \strong{MY} component}
 \description{
-\code{GeM} is a system of delay differential equation model for mosquito ecology
-and infection dynamics. The core dynamics trace back to Macdonald's
-mosquito model (1952). Macdonald's model was extended by Aron & May (1982) to
-include a variable for mosquito population density and a term for
-emergence (\eqn{\Lambda}). Aron & May's model was extended by Wu \emph{et al.} (2023) to include
-spatial dynamics. In this version, a new method is introduced to non-autonomous
-dynamics: an accessory variable computes time-varying survival and dispersal
-through a time varying EIP.
+\code{GeM} is a generalized, non-autonomous Macdonald model for mosquito
+ecology and infection dynamics. It includes adult mosquito density and
+emergence, spatial dynamics, and time-varying survival and dispersal through
+a potentially time-varying extrinsic incubation period (EIP).
 }
 \section{State Variables}{
 
@@ -23,104 +19,112 @@ through a time varying EIP.
 }
 }
 
+\section{Dynamical Terms}{
+
+\describe{
+\item{\code{Lambda} or \eqn{\Lambda}}{adult mosquito emergence rate, computed by \link{Emergence}}
+\item{\code{kappa} or \eqn{\kappa}}{net infectiousness, computed by \link{Transmission}}
+}
+}
+
 \section{Parameters}{
 
 \describe{
-\item{\code{f}}{blood feeding rate}
-\item{\code{q}}{human blood fraction}
-\item{\code{nu}}{egg batch laying rate}
-\item{\code{eip}}{extrinsic incubation period (\eqn{\tau})}
-\item{\code{g}}{mosquito mortality rate}
-\item{\code{sigma}}{emigration rate (\eqn{\sigma})}
-\item{\code{mu}}{emigration loss rate (\eqn{\mu})}
-\item{\code{K}}{mosquito dispersal matrix}
-\item{\code{eggs_per_patch}}{# eggs per batch}
-}
+\item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{egg batch rate in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggs_per_batch}}{number of eggs per batch}
 }
 
-\section{Mosquito Demography}{
-
-
-The \emph{demographic matrix} \eqn{\Omega} is:
-\deqn{
- \Omega(t) = \mbox{diag} \left( g(t) + \sigma(t) \mu(t) \right) - K \cdot \mbox{diag} \left( \sigma(t) \left(1-\mu(t)\right) \right)
+After basic setup, \link{change_MY_pars.GeM} can be used to change static
+parameter values. By default, bionomic parameters are configured as static
+baselines; advanced setup can be used to define dynamic ports.
 }
+
+\section{Survival and Dispersal}{
+
+Mosquito survival and dispersal are described by the demographic matrix
+\eqn{\Omega(t)}:
+\deqn{\Omega(t)=\mbox{diag}(g(t)+\sigma(t)\mu(t))-K\cdot\mbox{diag}(\sigma(t)(1-\mu(t))).}
+The parameter \eqn{g} is the per-capita mortality rate while mosquitoes
+are in a patch. Mosquitoes emigrate from patches at per-capita rates
+\eqn{\sigma}, and a fraction \eqn{\mu} of emigrating mosquitoes is lost.
+The columns of the dispersal matrix \eqn{K} sum to zero. For non-trivial
+dispersal matrices, \eqn{\mbox{diag}(K)=-1}; the off-diagonal elements
+describe the fractions of surviving emigrants that arrive in other patches.
 }
 
 \section{EIP}{
 
-Let \eqn{\tau(t)} denote the EIP for a mosquito, if infected at time \eqn{t}:
-the mosquito would become infectious at time \eqn{t+\tau(t).}
-Similarly, let \eqn{\tau'(t)} denote the lag for a mosquito that became \emph{infectious} at time \eqn{t}.
-It was infected at time \eqn{t-\tau'(t).}  The two are related by the identities
-\deqn{\tau(t) = \tau'(t+\tau(t))} and
-\deqn{\tau'(t) = \tau(t-\tau'(t)).}
-In the implementation, a function \code{F_eip} returns \eqn{\tau'(t)}. Implementation of dynamically
-changing EIP also requires a function to compute
-the derivative \code{dF_eip} (below).
+Let \eqn{\tau(t)} be the EIP for a mosquito infected at time \eqn{t}; it
+becomes infectious at time \eqn{t+\tau(t)}. Let \eqn{\tau'(t)} be the
+elapsed time since infection for a mosquito that becomes infectious at
+time \eqn{t}. These quantities satisfy
+\deqn{\tau(t)=\tau'(t+\tau(t)) \qquad \tau'(t)=\tau(t-\tau'(t)).}
+The \code{F_eip} function returns the lag \eqn{\tau'(t)} used by the delay
+equations. A time-varying EIP also requires its derivative, computed by
+\code{dF_eip}.
 }
 
-\section{The Accessory Variables, \eqn{\Upsilon}}{
+\section{Accessory Variable}{
 
-
-To compute time-varying survival and dispersal through a time-varying EIP,
-we use a set of accessory variables, called \eqn{\Upsilon}. To motivate the
-algorithm used to compute it, we introduce a new variable,
-\eqn{U} that integrates \eqn{\Omega} over time:
-\deqn{dU/dt = \Omega(t).}
-
-Cumulative mortality from time \eqn{t} to time \eqn{t+s} is:
-\deqn{\gamma(t,s)  = U(t+s) - U(t).}
-Survival and dispersal for the mosquitoes that became infectious at time \eqn{t} is:
-\deqn{\Upsilon(t) = e^{-\gamma\left(t_\tau, t\right)} = e^{-\left(U\left(t\right) - U\left(t_\tau \right)\right)}.}
-where \eqn{t_\tau = t-\tau'(t)}.
-
-In \code{GeM}, \eqn{\Upsilon} is computed as an accessory variable, with derivatives:
-\deqn{d\Upsilon/dt = \left(\Omega\left(t_\tau\right)\left(1-\frac{d\tau'(t)}{dt}\right)-\Omega(t)\right) \cdot \Upsilon(t)}
-Initial conditions are set to:
-\deqn{\Upsilon(t_0) = e^{-\Omega(t_0)}}
+The matrix \eqn{\Upsilon(t)} represents survival and dispersal through the
+time-varying EIP, from \eqn{t_\tau=t-\tau'(t)} to \eqn{t}. In the
+autonomous case it is \eqn{e^{-\Omega\tau}}. For time-varying demography
+and EIP, it is computed as an accessory variable:
+\deqn{\frac{d\Upsilon}{dt}=\left(\Omega(t_\tau)\left(1-\frac{d\tau'(t)}{dt}\right)-\Omega(t)\right)\cdot\Upsilon(t).}
+The initial matrix is set to \eqn{\exp(-\Omega eip)}. This variable is
+internal to the model and is not an output orbit.
 }
 
 \section{Inputs}{
 
-
-\strong{Emergence} -- \code{Lambda} or \eqn{\Lambda}, is computed
-by the \strong{ML}-Interface using outputs of the \strong{L} Component
-
-\strong{Net Infectiousness} -- \code{kappa} or \eqn{\kappa}, is computed
-by the \strong{XY}-Interface using outputs of the \strong{XH} Component
+The \strong{ML} interface supplies \code{Lambda} or \eqn{\Lambda}, the adult
+mosquito emergence rate, using outputs of the \strong{L} component. The \strong{XY}
+interface supplies \code{kappa} or \eqn{\kappa}, the net infectiousness, using
+outputs of the \strong{XH} component.
 }
 
 \section{Dynamics}{
 
-In the following we use the subscript \eqn{\tau} to denote the value of
-a parameter, term, or variable at time \eqn{t-\tau'(t)}: \deqn{X_\tau = X(t-\tau'(t))}.
-
+A subscript \eqn{\tau} denotes the value of a parameter, term, or variable
+at time \eqn{t-\tau'(t)}: \deqn{X_\tau=X(t-\tau'(t)).}
 The derivatives of the state variables are:
 \deqn{
 \begin{array}{rl}
-dM/dt &= \Lambda - \Omega \cdot M \\
-dP/dt &=  f(M-P) - \Omega \cdot P \\
-dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
-dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Z \\
+dM/dt &= \Lambda-\Omega\cdot M \\\\
+dP/dt &= f(M-P)-\Omega\cdot P \\\\
+dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\\\
+dZ/dt &= \Upsilon\cdot(fq\kappa)_\tau(M_\tau-Y_\tau)-\Omega\cdot Z
 \end{array}}
-
-The function \link{dMYdt.GeM} also computes the variables: \eqn{\Upsilon}; and an accessory variable that internalizes
-computation of \eqn{(fq\kappa)_\tau}.
+The implementation also evolves \eqn{\Upsilon} and accessory variables
+used to evaluate the delayed values of \eqn{fq\kappa}, \eqn{g}, and
+\eqn{\sigma}.
 }
 
 \section{Egg Laying}{
 
-
-The number of egg batches laid, per patch, per day is \eqn{\nu M}. The total
-of eggs laid is \eqn{\nu M \times} \code{eggs_per_batch}
+The egg batch rate \eqn{\nu} and the number of eggs per batch,
+\code{eggs_per_batch}, determine the egg production rate per patch:
+\deqn{G=\nu M\cdot\texttt{eggs\_per\_batch}.}
+\link{F_eggs.GeM} computes \eqn{G}, which is passed to \link{EggLaying} for
+distribution among aquatic habitats.
 }
 
-\section{Infectious Biting}{
+\section{Infective Biting}{
 
-
-The number of bites on humans, per patch, per day is \eqn{fqM}, and the number of
-infectious bites, per patch, per day is \eqn{fqZ}.
+The human biting density, \code{fqM}, is the number of human bites per patch per
+day; the infective biting density, \code{fqZ}, is the number of infectious human
+bites per patch per day. \link{F_fqM.GeM} and \link{F_fqZ.GeM} compute these
+quantities as \eqn{f q M} and \eqn{f q Z}, respectively. \link{compute_EIR}
+combines infective biting density with the biting distribution matrix and
+resident-bite fraction to compute stratum-level \code{EIR}. \link{F_hbr} uses \code{fqM},
+the same matrix, and resident-bite fraction to compute stratum-level \code{HBR}.
 }
 
 \references{
@@ -128,5 +132,14 @@ infectious bites, per patch, per day is \eqn{fqZ}.
 \item Macdonald G (1952) The analysis of the sporozoite rate. Tropical Diseases Bulletin 49:569-586.
 \item Aron JL, May RM (1982) The population dynamics of malaria. Chapter 5 in \emph{The Population Dynamics of Infectious Diseases: Theory and Applications,} Springer, Boston, MA.
 \item Wu SL, \emph{et al.} (2023) Spatial dynamics of malaria transmission. PLoS Computational Biology 19(6): e1010684. \url{https://doi.org/10.1371/journal.pcbi.1010684}
+}
+}
+\seealso{
+\itemize{
+\item Basic setup: \link{make_MY_obj_GeM}, \link{setup_MY_obj.GeM}
+\item Dynamics: \link{dMYdt.GeM}
+\item Biting and eggs: \link{F_fqZ.GeM}, \link{F_fqM.GeM}, \link{F_eggs.GeM}
+\item Parameters: \link{get_MY_pars.GeM}, \link{change_MY_pars.GeM}
+\item Variables: \link{make_MY_inits_GeM}, \link{setup_MY_inits.GeM}, \link{parse_MY_orbits.GeM}
 }
 }

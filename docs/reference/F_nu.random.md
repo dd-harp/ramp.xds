@@ -1,6 +1,6 @@
-# Compute random egg laying rates
+# Compute random egg batch rates
 
-Compute random egg laying rates
+Compute random egg batch rates
 
 ## Usage
 
@@ -25,4 +25,4 @@ F_nu(t, xds_obj, s)
 
 ## Value
 
-\\(nu\\), the egg laying rate
+\\(nu\\), the egg batch rate

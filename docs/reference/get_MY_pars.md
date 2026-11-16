@@ -1,7 +1,7 @@
 # Get parameters (**MY**)
 
-Inspect the parameter values for the **MY** module for the \\(s^{th}\\)
-species
+Inspect the stored parameter values for the **MY** module for the
+\\(s^{th}\\) species
 
 ## Usage
 

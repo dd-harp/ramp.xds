@@ -16,6 +16,6 @@ an \strong{\code{xds}} object
 }
 \description{
 Pull the stored values of the
-EIR and the FoI and compute NI
+EIR, HBR, and FoI, and compute NI.
 }
 \keyword{internal}

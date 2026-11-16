@@ -108,10 +108,10 @@ make_xds_object_template = function(xds='ode', frame='full',
 
   # Egg Laying Interface
   xds_obj <- setup_habitats(xds_obj, membership)
-  xds_obj <- setup_egg_laying(xds_obj)
+  xds_obj <- setup_egg_laying_interface(xds_obj)
   
   # Blood Feeding Interface 
-  xds_obj <- setup_blood_feeding(xds_obj, residence)
+  xds_obj <- setup_blood_feeding_interface(xds_obj, residence)
   xds_obj <- setup_importation(xds_obj)
   xds_obj <- setup_transmission(xds_obj)
   xds_obj <- setup_exposure("pois", xds_obj)

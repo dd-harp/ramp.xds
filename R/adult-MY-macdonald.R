@@ -1,58 +1,115 @@
 # specialized methods for the adult mosquito macdonald model
 
-#' @title The `macdonald` module (MY component)
-#' 
+#' @title The `macdonald` module for the **MY** component
+#'
 #' @description
-#' 
-#' Implements a Macdonald-style delay differential
-#' equation model of adult mosquito ecology and infection dynamics, consistent
-#' with the model published by George Macdonald in 1952. This formulation is 
-#' actually closer to one published by Aron & May (1982). 
+#' This implements a Macdonald-style delay differential equation model for
+#' adult mosquito ecology and infection dynamics, consistent with the model
+#' published by George Macdonald in 1952. This formulation is closer to one
+#' published by Aron and May (1982). Unlike the `SI` module, it includes
+#' infectious mosquitoes as an explicit state variable and uses delayed values
+#' to represent the extrinsic incubation period.
 #'
 #' @section State Variables:
 #' \describe{
 #'   \item{`M`}{density of adult mosquitoes}
+#'   \item{`P`}{density of parous adult mosquitoes}
 #'   \item{`Y`}{density of infected adult mosquitoes}
 #'   \item{`Z`}{density of infectious adult mosquitoes}
 #' }
 #'
+#' @section Dynamical Terms:
+#' \describe{
+#'   \item{`Lambda` or \eqn{\Lambda}}{adult mosquito emergence rate, computed by [Emergence]}
+#'   \item{`kappa` or \eqn{\kappa}}{net infectiousness, computed by [Transmission]}
+#' }
+#'
 #' @section Parameters:
 #' \describe{
-#'   \item{`f`}{blood feeding rate}
-#'   \item{`q`}{human blood fraction}
-#'   \item{`g`}{mortality rate}
-#'   \item{`sigma`}{patch emigration}
-#'   \item{`mu`}{emigration-related loss}
-#'   \item{`K`}{the dispersal matrix}
-#'   \item{`tau`}{extrinsic incubation period (\eqn{\tau})}
+#'   \item{`f`}{blood feeding rate --- use [setup_f] or [setup_blood_feeding_rates]}
+#'   \item{`q`}{human fraction --- use [setup_q] or [setup_human_fractions]}
+#'   \item{`g`}{mosquito mortality rate --- use [setup_g] or [setup_mosquito_mortality]}
+#'   \item{`eip` or \eqn{\tau}}{extrinsic incubation period --- use [setup_eip]}
+#'   \item{`sigma` or \eqn{\sigma}}{emigration rate --- use [setup_sigma] or [setup_emigration_rates]}
+#'   \item{`mu` or \eqn{\mu}}{emigration loss fraction --- use [setup_mu] or [setup_emigration_loss]}
+#'   \item{`K` or `K_matrix`}{mosquito dispersal matrix --- use [setup_K_matrix]}
+#'   \item{`nu` or \eqn{\nu}}{egg batch rate --- use [setup_nu] or [setup_egg_batch_rates]}
+#'   \item{`eggsPerBatch` or \eqn{\Gamma}}{number of eggs per batch}
 #' }
-#' 
-#' The *demographic matrix* \eqn{\Omega} is formulated as 
-#' \deqn{
-#'  \Omega = \mbox{diag} \left( g + \sigma \mu \right) + K \cdot \mbox{diag} \left( \sigma \left(1-\mu\right) \right)
-#' } 
-#' survival and dispersal through the EIP is 
-#' \deqn{
-#'  \Upsilon = e^{-\Omega \tau} 
-#' } 
+#'
+#' After basic setup, [change_MY_pars.macdonald] can be used to change static
+#' parameter values. This module does not support dynamic bionomic ports.
+#'
+#' @section Survival and Dispersal:
+#' Mosquito survival and dispersal are described by the demographic matrix
+#' \eqn{\Omega}. The parameter \eqn{g} is the per-capita mortality rate while
+#' mosquitoes are in a patch. Mosquitoes emigrate from patches at per-capita
+#' rates \eqn{\sigma}, and a fraction \eqn{\mu} of emigrating mosquitoes is
+#' lost. The total rate of loss from a patch is \deqn{g+\mu\sigma.}
+#'
+#' The columns of the mosquito dispersal matrix \eqn{K} sum to zero. For
+#' non-trivial dispersal matrices, \eqn{\mbox{diag}(K)=-1}; the off-diagonal
+#' elements describe the fractions of surviving emigrants that arrive in
+#' other patches. The demographic matrix is
+#' \deqn{\Omega=\mbox{diag}(g+\sigma\mu)-K\cdot\mbox{diag}(\sigma(1-\mu)).}
+#' Survival and dispersal through the EIP are represented by
+#' \deqn{\Upsilon=e^{-\Omega\tau}.}
+#'
+#' @section Blood Feeding:
+#' The blood feeding rate \eqn{f} and human fraction \eqn{q} are parameters of
+#' the module. At baseline they are static. They should satisfy natural
+#' constraints: \eqn{f=0} if no blood hosts are available, \eqn{q=0} if no
+#' humans are available, and \eqn{q=1} if humans are the only available hosts.
+#' This module does not support the dynamic blood-feeding ports used by `SI`
+#' and `GeM`.
 #'
 #' @section Dynamics:
-#' The dynamical system is described 
-#' by a coupled set of delay differential equations. 
-#' In these equations, a sub-scripted variable or term denotes its 
-#' lagged value: \eqn{M_\tau = M(t-\tau)}. 
+#' The system is described by coupled differential equations with a delay.
+#' A subscript \eqn{\tau} denotes a lagged value, for example
+#' \eqn{M_\tau=M(t-\tau)}.
 #'
 #' \deqn{
 #' \begin{array}{rl}
-#' dM/dt &= \Lambda - \Omega \cdot M \\\\
-#' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\\\
-#' dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Z \\\\
+#' dM/dt &= \Lambda-\Omega\cdot M \\\\
+#' dP/dt &= f(M-P)-\Omega\cdot P \\\\
+#' dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\\\
+#' dZ/dt &= \Upsilon\cdot(fq\kappa)_\tau(M_\tau-Y_\tau)-\Omega\cdot Z
 #' \end{array}
 #' }
+#'
+#' Here, \eqn{P} is the density of mosquitoes that have blood-fed at least
+#' once. The infected mosquito density \eqn{Y} generates infectious mosquitoes
+#' after the EIP, represented by the delayed term in the \eqn{Z} equation.
+#'
+#' @section Infective Biting:
+#' Infective biting density is the number of infectious bites by mosquitoes
+#' on humans in each patch per day. The density of infectious mosquitoes
+#' \eqn{Z} is computed from \eqn{Y} after survival and dispersal through the
+#' EIP.
+#'
+#' \describe{
+#'   \item{`fqZ`}{infective biting density, the number of infectious bites per patch per day}
+#'   \item{`fqM`}{human biting density, the number of bites on humans per patch per day}
+#' }
+#'
+#' [F_fqZ.macdonald] and [F_fqM.macdonald] compute these patch-level
+#' quantities. [compute_EIR] combines `fqZ` with the biting distribution
+#' matrix and resident-bite fraction to compute stratum-level EIR; [F_hbr]
+#' computes HBR from `fqM` in the same way. The resulting `EIR` and `HBR`
+#' orbits are attached to the XH output during parsing.
+#'
+#' @section Egg Laying:
+#' The egg batch rate \eqn{\nu} and the number of eggs per batch
+#' \eqn{\Gamma} determine the egg production rate per patch:
+#' \deqn{G=\nu\Gamma M.}
+#' [F_eggs.macdonald] computes \eqn{G}, which is passed to [EggLaying] for
+#' distribution among aquatic habitats.
 #'
 #' @section Note:
 #' This model is not capable of handling exogenous forcing by weather or
 #' vector control. Use the `GeM` module instead.
+#'
+#' @seealso [make_MY_obj_macdonald], [setup_MY_obj.macdonald], [dMYdt.macdonald]
 #'
 #' @references
 #' + Macdonald G (1952) The analysis of the sporozoite rate. Tropical Diseases Bulletin 49:569-586.
@@ -61,11 +118,12 @@
 NULL
 
 
-#' @title The skill set
+#' @title The skill set for `macdonald` (**MY**)
 #'
 #' @inheritParams setup_skillset_MY
 #'
 #' @return the **`xds`** object
+#' @seealso [macdonald]
 #'
 #' @keywords internal
 #' @export
@@ -77,12 +135,14 @@ setup_skillset_MY.macdonald = function(xds_obj, s){
   return(xds_obj) 
 }
 
-#' Run a check before solving
+#' @title Check `macdonald` (**MY**) before solving
 #'
+#' @description This method currently performs no additional checks.
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
 #' @return an **`xds`** object
+#' @seealso [macdonald]
 #' @keywords internal
 #' @export
 check_MY.macdonald = function(xds_obj, s){
@@ -90,47 +150,14 @@ check_MY.macdonald = function(xds_obj, s){
 }
 
 #' @title Compute derivatives for `macdonald` (**MY**)
-#' @description
-#' This implements a delay differential equation model for adult mosquito ecology and
-#' infection dynamics that is consistent with the model published by George
-#' Macdonald in 1952. A generalized version of this model, the **MY** module `GeM`,
-#' was developed to handle exogenous forcing by weather and vector control. This model
-#' should be used only for educational purposes.
-#'
-#' **Variables:**
-#'
-#' - \eqn{M}: the density of adult mosquitoes
-#' - \eqn{Y}: the density of infected adult mosquitoes
-#' - \eqn{Z}: the density of infectious adult mosquitoes
-#'
-#' **Parameters and Terms:**
-#'
-#' - \eqn{\Lambda} or `Lambda`: the emergence rate of adult mosquitoes (from `F_emerge`)
-#' - \eqn{f} or `f`: the blood feeding rate
-#' - \eqn{q} or `q`: human blood fraction
-#' - \eqn{\tau} or `eip`: the extrinsic incubation period
-#' - \eqn{\Omega} or `Omega`: an adult mosquito demographic matrix, including mortality and migration
-#' - \eqn{\Upsilon} or `Upsilon`: survival and dispersal through the eip, \eqn{\Upsilon= e^{-\Omega \tau}}
-#'
-#'
-#' **Dynamics:**
-#' In the delay equation, we use the subscript to denote the lagged value of a
-#' variable or term: *e.g.*, \eqn{M_\tau = M(t-\tau)}.
-#'
-#' \deqn{
-#' \begin{array}{rl}
-#' dM/dt &= \Lambda - \Omega \cdot M \\
-#' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
-#' dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Y \\
-#' \end{array}}
-#'
-#' This model was included mainly for the historical interest. It has been updated to handle
-#' exogenous forcing by weather and vector control in the module `GeM`
-#'
-#' @note This model is not capable of being extended to
-#' handle exogenous forcing by weather or vector control. Please
-#' use the `GeM` model.
+#' @description Implements the delay differential equations for the
+#' `macdonald` module.
+#' @inheritSection macdonald State Variables
+#' @inheritSection macdonald Dynamical Terms
+#' @inheritSection macdonald Parameters
+#' @inheritSection macdonald Dynamics
 #' @inheritParams dMYdt
+#' @seealso [macdonald], [F_fqZ.macdonald], [F_eggs.macdonald]
 #' @return a [numeric] vector
 #' @importFrom deSolve lagvalue
 #' @importFrom deSolve lagderiv
@@ -167,9 +194,11 @@ dMYdt.macdonald <- function(t, y, xds_obj, s){
 
 
 
-#' @title The net blood feeding rate of the infective mosquito population in a patch
-#' @description Implements [F_fqZ] for the macdonald model.
+#' @title Infective mosquito biting rate for `macdonald`
+#' @description Implements [F_fqZ] for the `macdonald` model.
+#' @inheritSection macdonald Infective Biting
 #' @inheritParams F_fqZ
+#' @seealso [macdonald], [dMYdt.macdonald]
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -179,9 +208,12 @@ F_fqZ.macdonald <- function(t, y, xds_obj, s) {
   f*q*y[xds_obj$MY_obj[[s]]$ix$Z_ix]
 }
 
-#' @title The net blood feeding rate of the infective mosquito population in a patch
-#' @description Implements [F_fqM] for the macdonald model.
+#' @title Mosquito biting rate for `macdonald`
+#' @description Returns `fqM`, the daily mosquito biting density on humans
+#' for each patch in the `macdonald` model.
+#' @inheritSection macdonald Infective Biting
 #' @inheritParams F_fqM
+#' @seealso [macdonald], [F_hbr]
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -191,9 +223,11 @@ F_fqM.macdonald <- function(t, y, xds_obj, s) {
   f*q*y[xds_obj$MY_obj[[s]]$ix$M_ix]
 }
 
-#' @title Number of eggs laid by adult mosquitoes
-#' @description Implements [F_eggs] for the macdonald model.
+#' @title Egg production rate for `macdonald`
+#' @description Implements [F_eggs] for the `macdonald` model.
+#' @inheritSection macdonald Egg Laying
 #' @inheritParams F_eggs
+#' @seealso [macdonald], [EggLaying]
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -213,12 +247,15 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
 #' + the initial conditions are set by [setup_MY_inits]
 #' + `options` is passed to both to override the defaults
 #'
-#' @seealso [macdonald], [make_MY_obj_macdonald]
+#' @inheritSection macdonald State Variables
+#' @inheritSection macdonald Parameters
+#'
+#' @seealso [macdonald], [make_MY_obj_macdonald], [setup_MY_inits.macdonald]
 #'
 #' @note The module object is stored at `xds_obj$MY_obj[[s]]`
 #'
 #' @inheritParams setup_MY_obj
-#' @return a [list] vector
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 setup_MY_obj.macdonald = function(MYname, xds_obj, options=list(), s=1){
@@ -233,7 +270,9 @@ setup_MY_obj.macdonald = function(MYname, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make parameters for macdonald ODE adult mosquito model
+#' @title Make parameters for `macdonald` adult mosquito model
+#' @inheritSection macdonald State Variables
+#' @inheritSection macdonald Parameters
 #' @param nPatches is the number of patches, an integer
 #' @param options a [list] of values that overrides the defaults
 #' @param eip the extrinsic incubation period
@@ -242,9 +281,10 @@ setup_MY_obj.macdonald = function(MYname, xds_obj, options=list(), s=1){
 #' @param mu fraction lost during emigration
 #' @param f feeding rate
 #' @param q human blood fraction
-#' @param nu oviposition rate, per mosquito
-#' @param eggsPerBatch eggs laid per oviposition
+#' @param nu egg batch rate, in batches per mosquito per day
+#' @param eggsPerBatch number of eggs per batch
 #' @return a [list]
+#' @seealso [macdonald], [setup_MY_obj.macdonald]
 #' @importFrom expm expm
 #' @keywords internal
 #' @export
@@ -272,7 +312,9 @@ make_MY_obj_macdonald = function(nPatches, options=list(), eip=12,
 #' @title Add indices for adult mosquitoes to parameter list
 #' @description Implements [setup_MY_ix] for the macdonald model.
 #' @inheritParams setup_MY_ix
+#' @inheritSection macdonald State Variables
 #' @return a [list]
+#' @seealso [macdonald]
 #' @importFrom utils tail
 #' @keywords internal
 #' @export
@@ -301,8 +343,10 @@ setup_MY_ix.macdonald <- function(xds_obj, s) {with(xds_obj,{
 
 #' @title List variables for `macdonald` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
+#' @inheritSection macdonald State Variables
 #' @inheritParams get_MY_vars
 #' @return a [list]
+#' @seealso [macdonald]
 #' @keywords internal
 #' @export
 get_MY_vars.macdonald <- function(y, xds_obj, s){
@@ -316,8 +360,11 @@ get_MY_vars.macdonald <- function(y, xds_obj, s){
 
 #' @title Parse outputs for `macdonald` (**MY**)
 #' @description Implements [parse_MY_orbits] for the macdonald model
+#' @inheritSection macdonald State Variables
+#' @inheritSection macdonald Infective Biting
 #' @inheritParams parse_MY_orbits
 #' @return a [list]
+#' @seealso [macdonald]
 #' @keywords internal
 #' @export
 parse_MY_orbits.macdonald <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[[s]]$ix,{
@@ -334,10 +381,12 @@ parse_MY_orbits.macdonald <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[
 
 
 #' @title Get parameters for `macdonald` (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @description Get the stored parameter values for the `macdonald` model.
+#' @inheritSection macdonald Parameters
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
+#' @seealso [macdonald], [change_MY_pars.macdonald]
 #' @keywords internal
 #' @export
 get_MY_pars.macdonald <- function(xds_obj, s=1) {
@@ -349,8 +398,10 @@ get_MY_pars.macdonald <- function(xds_obj, s=1) {
 
 #' @title Change parameters for `macdonald` (**MY**)
 #' @description For the `macdonald` module (**MY**) for the \eqn{s^{th}} species,
-#' change parameter values named in `options` leaving other values unchanged.
+#' change static parameter values named in `options` leaving other values unchanged.
+#' @inheritSection macdonald Parameters
 #' @inheritParams change_MY_pars
+#' @seealso [macdonald], [get_MY_pars.macdonald]
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
@@ -376,8 +427,10 @@ change_MY_pars.macdonald <- function(xds_obj, options=list(), s=1) {
 #' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_MY_inits] or
 #' see the inline module documentation.
+#' @inheritSection macdonald State Variables
 #' @inheritParams setup_MY_inits
-#' @return a [list]
+#' @seealso [macdonald], [make_MY_inits_macdonald]
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 setup_MY_inits.macdonald = function(xds_obj, options=list(), s=1){with(xds_obj$MY_obj[[s]], {
@@ -387,13 +440,15 @@ setup_MY_inits.macdonald = function(xds_obj, options=list(), s=1){with(xds_obj$M
 
 
 #' @title Make inits for macdonald adult mosquito model
-#' @param nPatches the number of patches in the model
+#' @inheritSection macdonald State Variables
+#' @param nPatches the number of patches
 #' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch
 #' @param P total parous mosquito density at each patch
 #' @param Y infected mosquito density at each patch
 #' @param Z infectious mosquito density at each patch
 #' @return a [list]
+#' @seealso [macdonald], [setup_MY_inits.macdonald]
 #' @keywords internal
 #' @export
 make_MY_inits_macdonald = function(nPatches, options = list(),
@@ -411,9 +466,11 @@ make_MY_inits_macdonald = function(nPatches, options = list(),
 #' @description For the `macdonald` module (**MY**) for the \eqn{s^{th}} species,
 #' change initial values named in `options` leaving other values unchanged.
 #'
+#' @inheritSection macdonald State Variables
 #' @inheritParams change_MY_inits
 #'
-#' @return a [list]
+#' @seealso [macdonald], [get_MY_inits], [make_MY_inits_macdonald], [setup_MY_inits.macdonald]
+#' @return an **`xds`** object
 #' @keywords internal
 #' @export
 change_MY_inits.macdonald = function(xds_obj, options=list(), s=1){
@@ -427,8 +484,11 @@ change_MY_inits.macdonald = function(xds_obj, options=list(), s=1){
 
 #' @title Compute the steady states as a function of the daily EIR
 #' @description This method dispatches on the type of `MY_obj`.
+#' @inheritSection macdonald State Variables
+#' @inheritSection macdonald Dynamics
 #' @inheritParams steady_state_MY
 #' @return a [list]
+#' @seealso [macdonald], [dMYdt.macdonald]
 #' @importFrom MASS ginv
 #' @importFrom expm expm
 #' @keywords internal
@@ -447,14 +507,11 @@ steady_state_MY.macdonald = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$M
 
 
 #' @title Mosquito bionomics for `macdonald` (**MY**)
-#' @description Reset the effect sizes for static models.
-#' When modules are added to compute effect sizes
-#' from baseline parameters, those functions store
-#' an effect size. The total effect size is the
-#' product of the effect sizes for each intervention.
-#' since coverage could be changing dynamically, these
-#' must be reset each time the derivatives are computed.
+#' @description This method leaves the `macdonald` bionomics parameters
+#' unchanged; the module does not implement dynamic bionomic ports.
+#' @inheritSection macdonald Parameters
 #' @inheritParams MEffectSizes
+#' @seealso [macdonald], [MEffectSizes.macdonald]
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
@@ -463,14 +520,11 @@ MBionomics.macdonald <- function(t, y, xds_obj, s) {
 }
 
 #' @title Apply effect sizes for `macdonald` (**MY**)
-#' @description Reset the effect sizes for static models.
-#' When modules are added to compute effect sizes
-#' from baseline parameters, those functions store
-#' an effect size. The total effect size is the
-#' product of the effect sizes for each intervention.
-#' since coverage could be changing dynamically, these
-#' must be reset each time the derivatives are computed.
+#' @description This method leaves the `macdonald` parameters unchanged;
+#' the module does not implement effect-size modifications.
+#' @inheritSection macdonald Parameters
 #' @inheritParams MEffectSizes
+#' @seealso [macdonald], [MBionomics.macdonald]
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
@@ -479,9 +533,11 @@ MEffectSizes.macdonald <- function(t, y, xds_obj, s) {
 }
 
 #' @title Get the feeding rates
+#' @inheritSection macdonald Parameters
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return the feeding rate, as a vector 
+#' @seealso [macdonald]
 #' @keywords internal
 #' @export
 get_f.macdonald = function(xds_obj, s=1){
@@ -489,9 +545,11 @@ get_f.macdonald = function(xds_obj, s=1){
 }
 
 #' @title Get the human fractions 
+#' @inheritSection macdonald Parameters
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return the human fraction, as a vector 
+#' @seealso [macdonald]
 #' @keywords internal
 #' @export
 get_q.macdonald = function(xds_obj, s=1){
@@ -499,9 +557,11 @@ get_q.macdonald = function(xds_obj, s=1){
 }
 
 #' @title Get the mortality rates
+#' @inheritSection macdonald Parameters
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return the mortality rate, as a vector 
+#' @seealso [macdonald]
 #' @keywords internal
 #' @export
 get_g.macdonald = function(xds_obj, s=1){
@@ -509,9 +569,11 @@ get_g.macdonald = function(xds_obj, s=1){
 }
 
 #' @title Get the patch emigration rates
+#' @inheritSection macdonald Parameters
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return the patch emigration rates, as a vector 
+#' @seealso [macdonald]
 #' @keywords internal
 #' @export
 get_sigma.macdonald = function(xds_obj, s=1){
@@ -519,9 +581,11 @@ get_sigma.macdonald = function(xds_obj, s=1){
 }
 
 #' @title Get the initial mosquito population density 
+#' @inheritSection macdonald State Variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return the initial mosquito population density 
+#' @seealso [macdonald], [get_MY_inits]
 #' @keywords internal
 #' @export
 get_M.macdonald = function(xds_obj, s=1){
@@ -529,9 +593,12 @@ get_M.macdonald = function(xds_obj, s=1){
 }
 
 #' @title Get the initial infective mosquito density 
+#' @inheritSection macdonald State Variables
+#' @inheritSection macdonald Infective Biting
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return the initial infective mosquito population density 
+#' @seealso [macdonald], [get_MY_inits]
 #' @keywords internal
 #' @export
 get_Z.macdonald = function(xds_obj, s=1){

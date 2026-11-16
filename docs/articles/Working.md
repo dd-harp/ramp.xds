@@ -88,7 +88,7 @@ easy to change the intitial values through a function call. In solving,
 \
 [`get_inits`](https://dd-harp.github.io/ramp.xds/reference/get_inits.md)`(``mod``, flatten``=``TRUE``)`
 
-    ## [1]    1    5    1 1000    1
+    ## [1]    1   10    8    1 1000    1
 
 With the default, `flatten=FALSE`, `get_inits` returns a named list that
 is easy to read:
@@ -103,7 +103,10 @@ is easy to read:
     ## 
     ## $MY
     ## $MY$M
-    ## [1] 5
+    ## [1] 10
+    ## 
+    ## $MY$P
+    ## [1] 8
     ## 
     ## $MY$Y
     ## [1] 1
@@ -127,7 +130,10 @@ that list:
 [`get_inits`](https://dd-harp.github.io/ramp.xds/reference/get_inits.md)`(``mod``)``$``MY`
 
     ## $M
-    ## [1] 5
+    ## [1] 10
+    ## 
+    ## $P
+    ## [1] 8
     ## 
     ## $Y
     ## [1] 1

@@ -1,11 +1,11 @@
 
 
-#' @title Setup Laying Rate Bionomic Object
+#' @title Setup Egg Batch Rate Bionomic Object
 #'
 #' @description Set up an object
-#' to compute the egg laying rate, \eqn{nu}
+#' to compute the egg batch rate, \eqn{nu}
 #'
-#' @param nu the egg laying rate (# batches, per mosquito, per day)
+#' @param nu the egg batch rate (batches per mosquito per day)
 #' @param MY_obj an **`MY`** model object
 #'
 #' @return a **`MY`** model object
@@ -29,7 +29,7 @@ setup_nu_obj = function(nu, MY_obj){
 #' @title Compute the Egg Laying Rate
 #'
 #' @description This method dispatches on the type of `nu_obj`. It should
-#' set the values of the egg laying rate, \eqn{\nu}
+#' set the values of the egg batch rate, \eqn{\nu}
 #'
 #' @inheritParams F_f
 #'
@@ -41,13 +41,13 @@ F_nu = function(t, xds_obj, s){
   UseMethod("F_nu", xds_obj$MY_obj[[s]]$nu_obj)
 }
 
-#' @title Static model egg laying rate
+#' @title Static model egg batch rate
 #'
 #' @description Implements [F_nu] for a static model
 #'
 #' @inheritParams F_nu
 #'
-#' @return \eqn{nu}, the egg laying rate
+#' @return \eqn{nu}, the egg batch rate
 #' 
 #' @keywords internal
 #' @export
@@ -55,17 +55,17 @@ F_nu.static = function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$nu_obj$nu)
 }
 
-#' @title Check egg laying rate
+#' @title Check egg batch rate
 #' 
 #' @description
-#' Check that the egg laying rates are in the expected range and length:
+#' Check that the egg batch rates are in the expected range and length:
 #' + all elements are non-negative
 #' + length(F_nu) == nPatches
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
-#' @return the egg laying rate
+#' @return the egg batch rate
 #' @seealso [xds_info_egg_laying]
 #' @export
 check_nu = function(xds_obj, s=1){
@@ -96,9 +96,9 @@ change_nu = function(xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Setup nu
+#' @title Set up egg batch rates
 #' 
-#' @description Set up the egg laying rate (\eqn{\nu}) 
+#' @description Set up the egg batch rate (\eqn{\nu})
 #' for static systems
 #'
 #' @param name a or setup function name
@@ -114,6 +114,10 @@ setup_nu = function(name, xds_obj, options = list(), s=1){
   xds_obj <- change_nu(xds_obj, s)
   return(xds_obj)
 }
+
+#' @rdname setup_nu
+#' @export
+setup_egg_batch_rates <- setup_nu
 
 
 #' @title Set up F_nu
@@ -185,13 +189,13 @@ setup_F_nu.no_setup = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Compute random egg laying rates
+#' @title Compute random egg batch rates
 #'
-#' @description Compute random egg laying rates
+#' @description Compute random egg batch rates
 #'
 #' @inheritParams F_nu
 #'
-#' @return \eqn{nu}, the egg laying rate
+#' @return \eqn{nu}, the egg batch rate
 #' @keywords internal
 #' @export
 F_nu.random = function(t, xds_obj, s){
@@ -215,7 +219,7 @@ setup_F_nu.random = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make random laying rates
+#' @title Make random egg batch rates
 #' 
 #' @description Set up a random vector 
 #' 
@@ -225,7 +229,7 @@ setup_F_nu.random = function(name, xds_obj, options = list(), s=1){
 #' @param p1 argument 1 for f_rand 
 #' @param p2 argument 2 for f_rand
 #' 
-#' @return an object to set up egg laying
+#' @return an object to set up egg batch rates
 #' @export
 make_F_nu_random = function(nPatches, options=list(), 
                             f_rand = stats::rbeta, 
@@ -241,17 +245,17 @@ make_F_nu_random = function(nPatches, options=list(),
 
 
 
-#' @title Egg laying rate
+#' @title Egg batch rate
 #'
-#' @description Egg laying rates are a type2 functional response 
+#' @description Egg batch rates are a type2 functional response
 #' to available water. 
 #' 
-#' Letting \eqn{Q} be the availability of all water. The egg laying rate is 
+#' Letting \eqn{Q} be the availability of all water. The egg batch rate is
 #' \deqn{\nu = \nu_x \frac{s_\nu Q}{1+s_\nu Q}}  
 #'
 #' @inheritParams F_nu
 #'
-#' @return \eqn{\nu}, the baseline egg laying rate
+#' @return \eqn{\nu}, the baseline egg batch rate
 #' 
 #' @keywords internal
 #' @export
@@ -278,7 +282,7 @@ setup_F_nu.type2 = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make type2 egg laying rates
+#' @title Make type2 egg batch rates
 #' 
 #' @description Set up a type2 vector 
 #' 
@@ -286,7 +290,7 @@ setup_F_nu.type2 = function(name, xds_obj, options = list(), s=1){
 #' @param options is a set of options that overrides the defaults
 #' @param vx the maximum laying
 #' @param sv the shape parameter
-#' @return an object to set up egg laying
+#' @return an object to set up egg batch rates
 #' @export
 make_F_nu_type2 = function(nPatches, options=list(), vx = .3, sv = .1) {with(options,{
   nu_obj <- list() 

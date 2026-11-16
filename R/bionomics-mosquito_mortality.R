@@ -105,6 +105,10 @@ setup_g = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
+#' @rdname setup_g
+#' @export
+setup_mosquito_mortality <- setup_g
+
 #' @title Set up F_g
 #'
 #' @param name a or setup function name
@@ -222,4 +226,3 @@ make_F_g_random = function(nPatches, options=list(), f_rand = stats::rbeta,
     return(g_obj)
   })
 }
-

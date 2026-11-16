@@ -22,4 +22,84 @@ a \link{numeric} vector
 Compute the derivatives for the generalized, non-autonomous Macdonald model
 for mosquito ecology and infection dynamics. See \link{GeM}.
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\section{Dynamical Terms}{
+
+\describe{
+\item{\code{Lambda} or \eqn{\Lambda}}{adult mosquito emergence rate, computed by \link{Emergence}}
+\item{\code{kappa} or \eqn{\kappa}}{net infectiousness, computed by \link{Transmission}}
+}
+}
+
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{egg batch rate in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggs_per_batch}}{number of eggs per batch}
+}
+
+After basic setup, \link{change_MY_pars.GeM} can be used to change static
+parameter values. By default, bionomic parameters are configured as static
+baselines; advanced setup can be used to define dynamic ports.
+}
+
+\section{EIP}{
+
+Let \eqn{\tau(t)} be the EIP for a mosquito infected at time \eqn{t}; it
+becomes infectious at time \eqn{t+\tau(t)}. Let \eqn{\tau'(t)} be the
+elapsed time since infection for a mosquito that becomes infectious at
+time \eqn{t}. These quantities satisfy
+\deqn{\tau(t)=\tau'(t+\tau(t)) \qquad \tau'(t)=\tau(t-\tau'(t)).}
+The \code{F_eip} function returns the lag \eqn{\tau'(t)} used by the delay
+equations. A time-varying EIP also requires its derivative, computed by
+\code{dF_eip}.
+}
+
+\section{Accessory Variable}{
+
+The matrix \eqn{\Upsilon(t)} represents survival and dispersal through the
+time-varying EIP, from \eqn{t_\tau=t-\tau'(t)} to \eqn{t}. In the
+autonomous case it is \eqn{e^{-\Omega\tau}}. For time-varying demography
+and EIP, it is computed as an accessory variable:
+\deqn{\frac{d\Upsilon}{dt}=\left(\Omega(t_\tau)\left(1-\frac{d\tau'(t)}{dt}\right)-\Omega(t)\right)\cdot\Upsilon(t).}
+The initial matrix is set to \eqn{\exp(-\Omega eip)}. This variable is
+internal to the model and is not an output orbit.
+}
+
+\section{Dynamics}{
+
+A subscript \eqn{\tau} denotes the value of a parameter, term, or variable
+at time \eqn{t-\tau'(t)}: \deqn{X_\tau=X(t-\tau'(t)).}
+The derivatives of the state variables are:
+\deqn{
+\begin{array}{rl}
+dM/dt &= \Lambda-\Omega\cdot M \\\\
+dP/dt &= f(M-P)-\Omega\cdot P \\\\
+dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\\\
+dZ/dt &= \Upsilon\cdot(fq\kappa)_\tau(M_\tau-Y_\tau)-\Omega\cdot Z
+\end{array}}
+The implementation also evolves \eqn{\Upsilon} and accessory variables
+used to evaluate the delayed values of \eqn{fq\kappa}, \eqn{g}, and
+\eqn{\sigma}.
+}
+
+\seealso{
+\link{GeM}, \link{F_fqZ.GeM}, \link{F_eggs.GeM}
+}
 \keyword{internal}

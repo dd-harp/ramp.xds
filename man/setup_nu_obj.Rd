@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{setup_nu_obj}
 \alias{setup_nu_obj}
-\title{Setup Laying Rate Bionomic Object}
+\title{Setup Egg Batch Rate Bionomic Object}
 \usage{
 setup_nu_obj(nu, MY_obj)
 }
 \arguments{
-\item{nu}{the egg laying rate (# batches, per mosquito, per day)}
+\item{nu}{the egg batch rate (batches per mosquito per day)}
 
 \item{MY_obj}{an \strong{\code{MY}} model object}
 }
@@ -16,6 +16,6 @@ a \strong{\code{MY}} model object
 }
 \description{
 Set up an object
-to compute the egg laying rate, \eqn{nu}
+to compute the egg batch rate, \eqn{nu}
 }
 \keyword{internal}

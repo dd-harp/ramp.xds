@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{F_eggs.macdonald}
 \alias{F_eggs.macdonald}
-\title{Number of eggs laid by adult mosquitoes}
+\title{Egg production rate for \code{macdonald}}
 \usage{
 \method{F_eggs}{macdonald}(t, y, xds_obj, s)
 }
@@ -19,6 +19,18 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_eggs} for the macdonald model.
+Implements \link{F_eggs} for the \code{macdonald} model.
+}
+\section{Egg Laying}{
+
+The egg batch rate \eqn{\nu} and the number of eggs per batch
+\eqn{\Gamma} determine the egg production rate per patch:
+\deqn{G=\nu\Gamma M.}
+\link{F_eggs.macdonald} computes \eqn{G}, which is passed to \link{EggLaying} for
+distribution among aquatic habitats.
+}
+
+\seealso{
+\link{macdonald}, \link{EggLaying}
 }
 \keyword{internal}

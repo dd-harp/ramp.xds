@@ -310,7 +310,7 @@ setup_K_matrix.herethere = function(name, xds_obj, options=list(), s=1){
 #' @description Mosquitoes disperse to every other patch
 #' with equal probability. 
 #' 
-#' @param nPatches is the number of patches in the model
+#' @param nPatches is the number of patches
 #' 
 #' @seealso [setup_K_matrix] 
 #' 

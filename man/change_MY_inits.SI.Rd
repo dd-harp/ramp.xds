@@ -25,6 +25,7 @@ change initial values named in \code{options} leaving other values unchanged.
 
 \describe{
 \item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
 \item{\code{Y}}{density of infected adult mosquitoes}
 }
 }

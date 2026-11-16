@@ -1094,7 +1094,7 @@ Adult mosquito ecology and infection dynamics
 
 - [`basicM`](https://dd-harp.github.io/ramp.xds/reference/basicM.md) :
 
-  The `basicM` Module for the MY Component
+  The `basicM` module for the **MY** component
 
 - [`SI`](https://dd-harp.github.io/ramp.xds/reference/SI.md) :
 
@@ -1103,11 +1103,11 @@ Adult mosquito ecology and infection dynamics
 - [`macdonald`](https://dd-harp.github.io/ramp.xds/reference/macdonald.md)
   :
 
-  The `macdonald` module (MY component)
+  The `macdonald` module for the **MY** component
 
 - [`GeM`](https://dd-harp.github.io/ramp.xds/reference/GeM.md) :
 
-  The `GeM` module for the MY component
+  The `GeM` module for the **MY** component
 
 - [`RMdts`](https://dd-harp.github.io/ramp.xds/reference/RMdts.md) :
 
@@ -1139,6 +1139,7 @@ Specialized methods to set up mosquito dispersal matrices
 Specialized methods to set up mosquito mortality and emigration
 
 - [`setup_g()`](https://dd-harp.github.io/ramp.xds/reference/setup_g.md)
+  [`setup_mosquito_mortality()`](https://dd-harp.github.io/ramp.xds/reference/setup_g.md)
   : Set up mosquito mortality rate
 - [`setup_F_g()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_g.md)
   : Set up F_g
@@ -1147,6 +1148,7 @@ Specialized methods to set up mosquito mortality and emigration
 - [`make_F_g_random()`](https://dd-harp.github.io/ramp.xds/reference/make_F_g_random.md)
   : Make random mosquito mortality rates
 - [`setup_sigma()`](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [`setup_emigration_rates()`](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   : Set up patch emigration rate
 - [`setup_F_sigma()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_sigma.md)
   : Set up F_sigma
@@ -1157,6 +1159,7 @@ Specialized methods to set up mosquito mortality and emigration
 - [`make_F_sigma_type2()`](https://dd-harp.github.io/ramp.xds/reference/make_F_sigma_type2.md)
   : Make a patch emigration configuration
 - [`setup_mu()`](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
+  [`setup_emigration_loss()`](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
   : Set up emigration-loss fraction
 - [`setup_F_mu()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_mu.md)
   : Set up F_mu
@@ -1171,9 +1174,12 @@ Specialized methods to set up blood feeding rates and the human fraction
 
 - [`xds_info_blood_feeding`](https://dd-harp.github.io/ramp.xds/reference/xds_info_blood_feeding.md)
   : Blood Feeding
+- [`setup_blood_feeding_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_blood_feeding_interface.md)
+  : Setup the Blood Feeding Interface
 - [`setup_F_circadian()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_circadian.md)
   : Setup a circadian pattern function
 - [`setup_f()`](https://dd-harp.github.io/ramp.xds/reference/setup_f.md)
+  [`setup_blood_feeding_rates()`](https://dd-harp.github.io/ramp.xds/reference/setup_f.md)
   : Set up constant blood feeding rate
 - [`setup_F_f()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_f.md)
   : Set up blood feeding rates
@@ -1184,6 +1190,7 @@ Specialized methods to set up blood feeding rates and the human fraction
 - [`make_F_f_type2()`](https://dd-harp.github.io/ramp.xds/reference/make_F_f_type2.md)
   : Make type 2 blood feeding rate configuration
 - [`setup_q()`](https://dd-harp.github.io/ramp.xds/reference/setup_q.md)
+  [`setup_human_fractions()`](https://dd-harp.github.io/ramp.xds/reference/setup_q.md)
   : Set up human feeding fraction
 - [`setup_F_q()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_q.md)
   : Set up F_q
@@ -1213,15 +1220,16 @@ model
 Specialized methods to set up the egg laying model
 
 - [`setup_nu()`](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
-  : Setup nu
+  [`setup_egg_batch_rates()`](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
+  : Set up egg batch rates
 - [`setup_F_nu()`](https://dd-harp.github.io/ramp.xds/reference/setup_F_nu.md)
   : Set up F_nu
 - [`check_nu()`](https://dd-harp.github.io/ramp.xds/reference/check_nu.md)
-  : Check egg laying rate
+  : Check egg batch rate
 - [`make_F_nu_random()`](https://dd-harp.github.io/ramp.xds/reference/make_F_nu_random.md)
-  : Make random laying rates
+  : Make random egg batch rates
 - [`make_F_nu_type2()`](https://dd-harp.github.io/ramp.xds/reference/make_F_nu_type2.md)
-  : Make type2 egg laying rates
+  : Make type2 egg batch rates
 
 ## Habitats & Egg Laying (ML)
 
@@ -1233,6 +1241,8 @@ Aquatic habitats and egg laying
   : Habitat Availability
 - [`xds_info_egg_laying`](https://dd-harp.github.io/ramp.xds/reference/xds_info_egg_laying.md)
   : Egg Laying
+- [`setup_egg_laying_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying_interface.md)
+  : Setup the Habitat Interface for Egg Laying and Emergence
 - [`get_habitats()`](https://dd-harp.github.io/ramp.xds/reference/get_habitats.md)
   : Get the habitat membership vector
 - [`get_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_habitat_matrix.md)

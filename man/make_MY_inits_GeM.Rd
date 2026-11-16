@@ -15,9 +15,9 @@ make_MY_inits_GeM(
 )
 }
 \arguments{
-\item{nPatches}{the number of patches in the model}
+\item{nPatches}{the number of patches}
 
-\item{Upsilon}{a matrix describing survival and dispersal through the EIP}
+\item{Upsilon}{a matrix describing survival and dispersal through the initial EIP}
 
 \item{options}{a \link{list} of values that overrides the defaults}
 
@@ -34,5 +34,29 @@ a \link{list}
 }
 \description{
 Make inits for GeM adult mosquito model
+}
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\section{Accessory Variable}{
+
+The matrix \eqn{\Upsilon(t)} represents survival and dispersal through the
+time-varying EIP, from \eqn{t_\tau=t-\tau'(t)} to \eqn{t}. In the
+autonomous case it is \eqn{e^{-\Omega\tau}}. For time-varying demography
+and EIP, it is computed as an accessory variable:
+\deqn{\frac{d\Upsilon}{dt}=\left(\Omega(t_\tau)\left(1-\frac{d\tau'(t)}{dt}\right)-\Omega(t)\right)\cdot\Upsilon(t).}
+The initial matrix is set to \eqn{\exp(-\Omega eip)}. This variable is
+internal to the model and is not an output orbit.
+}
+
+\seealso{
+\link{GeM}, \link{setup_MY_inits.GeM}
 }
 \keyword{internal}

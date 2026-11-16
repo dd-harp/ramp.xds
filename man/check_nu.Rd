@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{check_nu}
 \alias{check_nu}
-\title{Check egg laying rate}
+\title{Check egg batch rate}
 \usage{
 check_nu(xds_obj, s = 1)
 }
@@ -12,10 +12,10 @@ check_nu(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the egg laying rate
+the egg batch rate
 }
 \description{
-Check that the egg laying rates are in the expected range and length:
+Check that the egg batch rates are in the expected range and length:
 \itemize{
 \item all elements are non-negative
 \item length(F_nu) == nPatches

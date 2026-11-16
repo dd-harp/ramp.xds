@@ -107,6 +107,10 @@ setup_mu = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
+#' @rdname setup_mu
+#' @export
+setup_emigration_loss <- setup_mu
+
 #' @title Set up F_mu
 #'
 #' @param name a or setup function name

@@ -6,6 +6,8 @@ Set up the mosquito mortality strategy and validate its rates.
 
 ``` r
 setup_g(name, xds_obj, options = list(), s = 1)
+
+setup_mosquito_mortality(name, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments

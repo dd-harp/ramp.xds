@@ -20,4 +20,12 @@ an \strong{\code{xds}} object
 For the \code{basicM} module (\strong{MY}) for the \eqn{s^{th}} species,
 change initial values named in \code{options} leaving other values unchanged.
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes: those that have blood-fed at least once}
+}
+}
+
 \keyword{internal}

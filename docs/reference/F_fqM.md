@@ -1,6 +1,7 @@
-# Blood feeding rate of the mosquito population
+# Mosquito biting rate
 
-This method dispatches on the type of `xds_obj$MY_obj`.
+This method dispatches on the type of `xds_obj$MY_obj` and returns the
+daily mosquito biting density on humans, `fqM`, for each patch.
 
 ## Usage
 
@@ -30,3 +31,7 @@ F_fqM(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nPatches`
+
+## See also
+
+[F_hbr](https://dd-harp.github.io/ramp.xds/reference/F_hbr.md)

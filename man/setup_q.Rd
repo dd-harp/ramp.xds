@@ -2,9 +2,12 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{setup_q}
 \alias{setup_q}
+\alias{setup_human_fractions}
 \title{Set up human feeding fraction}
 \usage{
 setup_q(name, xds_obj, options = list(), s = 1)
+
+setup_human_fractions(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{name}{a human feeding fraction or setup method name}

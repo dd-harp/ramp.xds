@@ -1,15 +1,11 @@
 # specialized methods for the adult mosquito GeM model
 
-#' @title The `GeM` module for the MY component
+#' @title The `GeM` module for the **MY** component
 #' @description
-#' `GeM` is a system of delay differential equation model for mosquito ecology
-#' and infection dynamics. The core dynamics trace back to Macdonald's 
-#' mosquito model (1952). Macdonald's model was extended by Aron & May (1982) to
-#' include a variable for mosquito population density and a term for 
-#' emergence (\eqn{\Lambda}). Aron & May's model was extended by Wu *et al.* (2023) to include
-#' spatial dynamics. In this version, a new method is introduced to non-autonomous
-#' dynamics: an accessory variable computes time-varying survival and dispersal 
-#' through a time varying EIP. 
+#' `GeM` is a generalized, non-autonomous Macdonald model for mosquito
+#' ecology and infection dynamics. It includes adult mosquito density and
+#' emergence, spatial dynamics, and time-varying survival and dispersal through
+#' a potentially time-varying extrinsic incubation period (EIP).
 #'
 #' @section State Variables:
 #' \describe{
@@ -19,90 +15,102 @@
 #'   \item{`Z`}{density of infectious adult mosquitoes}
 #' }
 #'
+#' @section Dynamical Terms:
+#' \describe{
+#'   \item{`Lambda` or \eqn{\Lambda}}{adult mosquito emergence rate, computed by [Emergence]}
+#'   \item{`kappa` or \eqn{\kappa}}{net infectiousness, computed by [Transmission]}
+#' }
+#'
 #' @section Parameters:
 #' \describe{
-#'   \item{`f`}{blood feeding rate}
-#'   \item{`q`}{human blood fraction}
-#'   \item{`nu`}{egg batch laying rate} 
-#'   \item{`eip`}{extrinsic incubation period (\eqn{\tau})}
-#'   \item{`g`}{mosquito mortality rate}
-#'   \item{`sigma`}{emigration rate (\eqn{\sigma})}
-#'   \item{`mu`}{emigration loss rate (\eqn{\mu})}
-#'   \item{`K`}{mosquito dispersal matrix}
-#'   \item{`eggs_per_patch`}{# eggs per batch} 
+#'   \item{`f`}{blood feeding rate --- use [setup_f] or [setup_blood_feeding_rates]}
+#'   \item{`q`}{human fraction --- use [setup_q] or [setup_human_fractions]}
+#'   \item{`g`}{mosquito mortality rate --- use [setup_g] or [setup_mosquito_mortality]}
+#'   \item{`eip` or \eqn{\tau}}{extrinsic incubation period --- use [setup_eip]}
+#'   \item{`sigma` or \eqn{\sigma}}{emigration rate --- use [setup_sigma] or [setup_emigration_rates]}
+#'   \item{`mu` or \eqn{\mu}}{emigration loss fraction --- use [setup_mu] or [setup_emigration_loss]}
+#'   \item{`K` or `K_matrix`}{mosquito dispersal matrix --- use [setup_K_matrix]}
+#'   \item{`nu` or \eqn{\nu}}{egg batch rate in batches per mosquito per day --- use [setup_nu] or [setup_egg_batch_rates]}
+#'   \item{`eggs_per_batch`}{number of eggs per batch}
 #' }
-#' 
-#' @section Mosquito Demography:
-#'  
-#' The *demographic matrix* \eqn{\Omega} is: 
-#' \deqn{
-#'  \Omega(t) = \mbox{diag} \left( g(t) + \sigma(t) \mu(t) \right) - K \cdot \mbox{diag} \left( \sigma(t) \left(1-\mu(t)\right) \right)
-#' } 
-#'  
-#' @section EIP: 
-#' Let \eqn{\tau(t)} denote the EIP for a mosquito, if infected at time \eqn{t}: 
-#' the mosquito would become infectious at time \eqn{t+\tau(t).} 
-#' Similarly, let \eqn{\tau'(t)} denote the lag for a mosquito that became *infectious* at time \eqn{t}.
-#' It was infected at time \eqn{t-\tau'(t).}  The two are related by the identities 
-#' \deqn{\tau(t) = \tau'(t+\tau(t))} and 
-#' \deqn{\tau'(t) = \tau(t-\tau'(t)).}
-#' In the implementation, a function `F_eip` returns \eqn{\tau'(t)}. Implementation of dynamically
-#' changing EIP also requires a function to compute
-#' the derivative `dF_eip` (below).
-#' 
-#' @section The Accessory Variables, \eqn{\Upsilon}: 
-#' 
-#' To compute time-varying survival and dispersal through a time-varying EIP, 
-#' we use a set of accessory variables, called \eqn{\Upsilon}. To motivate the 
-#' algorithm used to compute it, we introduce a new variable, 
-#' \eqn{U} that integrates \eqn{\Omega} over time: 
-#' \deqn{dU/dt = \Omega(t).}
 #'
-#' Cumulative mortality from time \eqn{t} to time \eqn{t+s} is: 
-#' \deqn{\gamma(t,s)  = U(t+s) - U(t).} 
-#' Survival and dispersal for the mosquitoes that became infectious at time \eqn{t} is: 
-#' \deqn{\Upsilon(t) = e^{-\gamma\left(t_\tau, t\right)} = e^{-\left(U\left(t\right) - U\left(t_\tau \right)\right)}.}
-#' where \eqn{t_\tau = t-\tau'(t)}. 
-#' 
-#' In `GeM`, \eqn{\Upsilon} is computed as an accessory variable, with derivatives: 
-#' \deqn{d\Upsilon/dt = \left(\Omega\left(t_\tau\right)\left(1-\frac{d\tau'(t)}{dt}\right)-\Omega(t)\right) \cdot \Upsilon(t)}
-#' Initial conditions are set to: 
-#' \deqn{\Upsilon(t_0) = e^{-\Omega(t_0)}}
-#' 
+#' After basic setup, [change_MY_pars.GeM] can be used to change static
+#' parameter values. By default, bionomic parameters are configured as static
+#' baselines; advanced setup can be used to define dynamic ports.
+#'
+#' @section Survival and Dispersal:
+#' Mosquito survival and dispersal are described by the demographic matrix
+#' \eqn{\Omega(t)}:
+#' \deqn{\Omega(t)=\mbox{diag}(g(t)+\sigma(t)\mu(t))-K\cdot\mbox{diag}(\sigma(t)(1-\mu(t))).}
+#' The parameter \eqn{g} is the per-capita mortality rate while mosquitoes
+#' are in a patch. Mosquitoes emigrate from patches at per-capita rates
+#' \eqn{\sigma}, and a fraction \eqn{\mu} of emigrating mosquitoes is lost.
+#' The columns of the dispersal matrix \eqn{K} sum to zero. For non-trivial
+#' dispersal matrices, \eqn{\mbox{diag}(K)=-1}; the off-diagonal elements
+#' describe the fractions of surviving emigrants that arrive in other patches.
+#'
+#' @section EIP:
+#' Let \eqn{\tau(t)} be the EIP for a mosquito infected at time \eqn{t}; it
+#' becomes infectious at time \eqn{t+\tau(t)}. Let \eqn{\tau'(t)} be the
+#' elapsed time since infection for a mosquito that becomes infectious at
+#' time \eqn{t}. These quantities satisfy
+#' \deqn{\tau(t)=\tau'(t+\tau(t)) \qquad \tau'(t)=\tau(t-\tau'(t)).}
+#' The `F_eip` function returns the lag \eqn{\tau'(t)} used by the delay
+#' equations. A time-varying EIP also requires its derivative, computed by
+#' `dF_eip`.
+#'
+#' @section Accessory Variable:
+#' The matrix \eqn{\Upsilon(t)} represents survival and dispersal through the
+#' time-varying EIP, from \eqn{t_\tau=t-\tau'(t)} to \eqn{t}. In the
+#' autonomous case it is \eqn{e^{-\Omega\tau}}. For time-varying demography
+#' and EIP, it is computed as an accessory variable:
+#' \deqn{\frac{d\Upsilon}{dt}=\left(\Omega(t_\tau)\left(1-\frac{d\tau'(t)}{dt}\right)-\Omega(t)\right)\cdot\Upsilon(t).}
+#' The initial matrix is set to \eqn{\exp(-\Omega eip)}. This variable is
+#' internal to the model and is not an output orbit.
+#'
 #' @section Inputs:
-#' 
-#' **Emergence** -- `Lambda` or \eqn{\Lambda}, is computed 
-#' by the **ML**-Interface using outputs of the **L** Component
-#' 
-#' 
-#' **Net Infectiousness** -- `kappa` or \eqn{\kappa}, is computed 
-#' by the **XY**-Interface using outputs of the **XH** Component   
+#' The **ML** interface supplies `Lambda` or \eqn{\Lambda}, the adult
+#' mosquito emergence rate, using outputs of the **L** component. The **XY**
+#' interface supplies `kappa` or \eqn{\kappa}, the net infectiousness, using
+#' outputs of the **XH** component.
 #' @section Dynamics:
-#' In the following we use the subscript \eqn{\tau} to denote the value of 
-#' a parameter, term, or variable at time \eqn{t-\tau'(t)}: \deqn{X_\tau = X(t-\tau'(t))}.
-#' 
+#' A subscript \eqn{\tau} denotes the value of a parameter, term, or variable
+#' at time \eqn{t-\tau'(t)}: \deqn{X_\tau=X(t-\tau'(t)).}
 #' The derivatives of the state variables are:
 #' \deqn{
 #' \begin{array}{rl}
-#' dM/dt &= \Lambda - \Omega \cdot M \\
-#' dP/dt &=  f(M-P) - \Omega \cdot P \\
-#' dY/dt &= fq\kappa(M-Y) - \Omega \cdot Y \\
-#' dZ/dt &= \Upsilon \cdot (fq\kappa)_\tau(M_\tau-Y_\tau) - \Omega \cdot Z \\
+#' dM/dt &= \Lambda-\Omega\cdot M \\\\
+#' dP/dt &= f(M-P)-\Omega\cdot P \\\\
+#' dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\\\
+#' dZ/dt &= \Upsilon\cdot(fq\kappa)_\tau(M_\tau-Y_\tau)-\Omega\cdot Z
 #' \end{array}}
-#' 
-#' The function [dMYdt.GeM] also computes the variables: \eqn{\Upsilon}; and an accessory variable that internalizes
-#' computation of \eqn{(fq\kappa)_\tau}.
-#' 
+#' The implementation also evolves \eqn{\Upsilon} and accessory variables
+#' used to evaluate the delayed values of \eqn{fq\kappa}, \eqn{g}, and
+#' \eqn{\sigma}.
+#'
 #' @section Egg Laying:
-#' 
-#' The number of egg batches laid, per patch, per day is \eqn{\nu M}. The total
-#' of eggs laid is \eqn{\nu M \times} `eggs_per_batch`
-#' 
-#' @section Infectious Biting:
-#' 
-#' The number of bites on humans, per patch, per day is \eqn{fqM}, and the number of 
-#' infectious bites, per patch, per day is \eqn{fqZ}.  
-#' 
+#' The egg batch rate \eqn{\nu} and the number of eggs per batch,
+#' `eggs_per_batch`, determine the egg production rate per patch:
+#' \deqn{G=\nu M\cdot\texttt{eggs\_per\_batch}.}
+#' [F_eggs.GeM] computes \eqn{G}, which is passed to [EggLaying] for
+#' distribution among aquatic habitats.
+#'
+#' @section Infective Biting:
+#' The human biting density, `fqM`, is the number of human bites per patch per
+#' day; the infective biting density, `fqZ`, is the number of infectious human
+#' bites per patch per day. [F_fqM.GeM] and [F_fqZ.GeM] compute these
+#' quantities as \eqn{f q M} and \eqn{f q Z}, respectively. [compute_EIR]
+#' combines infective biting density with the biting distribution matrix and
+#' resident-bite fraction to compute stratum-level `EIR`. [F_hbr] uses `fqM`,
+#' the same matrix, and resident-bite fraction to compute stratum-level `HBR`.
+#'
+#' @seealso
+#' + Basic setup: [make_MY_obj_GeM], [setup_MY_obj.GeM]
+#' + Dynamics: [dMYdt.GeM]
+#' + Biting and eggs: [F_fqZ.GeM], [F_fqM.GeM], [F_eggs.GeM]
+#' + Parameters: [get_MY_pars.GeM], [change_MY_pars.GeM]
+#' + Variables: [make_MY_inits_GeM], [setup_MY_inits.GeM], [parse_MY_orbits.GeM]
+#'
 #' @references 
 #' + Macdonald G (1952) The analysis of the sporozoite rate. Tropical Diseases Bulletin 49:569-586. 
 #' + Aron JL, May RM (1982) The population dynamics of malaria. Chapter 5 in *The Population Dynamics of Infectious Diseases: Theory and Applications,* Springer, Boston, MA.  
@@ -146,7 +154,14 @@ check_MY.GeM = function(xds_obj, s){
 #'
 #' @description Compute the derivatives for the generalized, non-autonomous Macdonald model
 #' for mosquito ecology and infection dynamics. See [GeM].
+#' @inheritSection GeM State Variables
+#' @inheritSection GeM Dynamical Terms
+#' @inheritSection GeM Parameters
+#' @inheritSection GeM EIP
+#' @inheritSection GeM Accessory Variable
+#' @inheritSection GeM Dynamics
 #' @inheritParams dMYdt
+#' @seealso [GeM], [F_fqZ.GeM], [F_eggs.GeM]
 #' @return a [numeric] vector
 #' @importFrom deSolve lagvalue
 #' @importFrom deSolve lagderiv
@@ -190,9 +205,11 @@ dMYdt.GeM <- function(t, y, xds_obj, s){
 }
 
 
-#' @title The net blood feeding rate of the infective mosquito population in a patch
+#' @title Infective mosquito biting rate for `GeM`
 #' @description Implements [F_fqZ] for the GeM model.
+#' @inheritSection GeM Infective Biting
 #' @inheritParams F_fqZ
+#' @seealso [GeM], [dMYdt.GeM]
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -202,9 +219,12 @@ F_fqZ.GeM <- function(t, y, xds_obj, s) {
   f*q*y[xds_obj$ix$MY[[s]]$Z_ix]
 }
 
-#' @title The net blood feeding rate of the infective mosquito population in a patch
-#' @description Implements [F_fqM] for the GeM model.
+#' @title Mosquito biting rate for `GeM`
+#' @description Returns `fqM`, the daily mosquito biting density on humans
+#' for each patch in the GeM model.
+#' @inheritSection GeM Infective Biting
 #' @inheritParams F_fqM
+#' @seealso [GeM], [F_hbr]
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -214,9 +234,11 @@ F_fqM.GeM <- function(t, y, xds_obj, s) {
   f*q*y[xds_obj$ix$MY[[s]]$M_ix]
 }
 
-#' @title Number of eggs laid by adult mosquitoes
+#' @title Egg production rate for `GeM`
 #' @description Implements [F_eggs] for the GeM model.
+#' @inheritSection GeM Egg Laying
 #' @inheritParams F_eggs
+#' @seealso [GeM], [EggLaying]
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -237,7 +259,11 @@ F_eggs.GeM <- function(t, y, xds_obj, s) {
 #' + the initial conditions are set by [setup_MY_inits]
 #' + `options` is passed to both to override the defaults
 #'
-#' @seealso [GeM], [make_MY_obj_GeM]
+#' @inheritSection GeM State Variables
+#' @inheritSection GeM Parameters
+#' @inheritSection GeM EIP
+#' @inheritSection GeM Accessory Variable
+#' @seealso [GeM], [make_MY_obj_GeM], [setup_MY_inits.GeM]
 #'
 #' @note The module object is stored at `xds_obj$MY_obj[[s]]`
 #'
@@ -259,7 +285,7 @@ setup_MY_obj.GeM = function(MYname, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make parameters for GeM ODE adult mosquito model
+#' @title Make parameters for `GeM` (**MY**)
 #' @param nPatches is the number of patches, an integer
 #' @param options a [list] of values that overrides the defaults
 #' @param eip the extrinsic incubation period
@@ -270,6 +296,7 @@ setup_MY_obj.GeM = function(MYname, xds_obj, options=list(), s=1){
 #' @param q human blood fraction
 #' @param nu oviposition rate, per mosquito
 #' @param eggs_per_batch eggs laid per oviposition
+#' @seealso [GeM], [setup_MY_obj.GeM]
 #' @return a [list]
 #' @keywords internal
 #' @export
@@ -303,6 +330,7 @@ make_MY_obj_GeM = function(nPatches, options=list(), eip =12,
 
 #' @title Add indices for adult mosquitoes to parameter list
 #' @description Implements [setup_MY_ix] for the GeM model.
+#' @inheritSection GeM State Variables
 #' @inheritParams setup_MY_ix
 #' @return a [list]
 #' @importFrom utils tail
@@ -343,6 +371,8 @@ setup_MY_ix.GeM <- function(xds_obj, s) {with(xds_obj,{
 
 #' @title List variables for `GeM` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
+#' @inheritSection GeM State Variables
+#' @inheritSection GeM Accessory Variable
 #' @inheritParams get_MY_vars
 #' @return a [list]
 #' @keywords internal
@@ -358,7 +388,10 @@ get_MY_vars.GeM <- function(y, xds_obj, s){
 
 #' @title Parse outputs for `GeM` (**MY**)
 #' @description Implements [parse_MY_orbits] for the GeM model
+#' @inheritSection GeM State Variables
+#' @inheritSection GeM Infective Biting
 #' @inheritParams parse_MY_orbits
+#' @seealso [GeM], [get_MY_vars.GeM]
 #' @return a [list]
 #' @keywords internal
 #' @export
@@ -377,9 +410,11 @@ parse_MY_orbits.GeM <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[[s]]$i
 
 #' @title Get parameters for `GeM` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+#' @inheritSection GeM Parameters
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
+#' @seealso [GeM], [change_MY_pars.GeM]
 #' @keywords internal
 #' @export
 get_MY_pars.GeM <- function(xds_obj, s=1) {
@@ -392,6 +427,7 @@ get_MY_pars.GeM <- function(xds_obj, s=1) {
 #' @title Change parameters for `GeM` (**MY**)
 #' @description For the `GeM` module (**MY**) for the \eqn{s^{th}} species,
 #' change parameter values named in `options` leaving other values unchanged.
+#' @inheritSection GeM Parameters
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** object
 #' @keywords internal
@@ -417,7 +453,11 @@ change_MY_pars.GeM <- function(xds_obj, options=list(), s=1) {
 
 #' @title Mosquito bionomics for `GeM` (**MY**)
 #' @description Implements [MBionomics] for models with no exogenous forcing
+#' @inheritSection GeM Parameters
+#' @inheritSection GeM Survival and Dispersal
+#' @inheritSection GeM EIP
 #' @inheritParams MBionomics
+#' @seealso [GeM], [MEffectSizes.GeM]
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
@@ -443,7 +483,10 @@ MBionomics.GeM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
 
 #' @title Apply effect sizes for `GeM` (**MY**)
 #' @description Implements [MEffectSizes] for models with no exogenous forcing
+#' @inheritSection GeM Parameters
+#' @inheritSection GeM Survival and Dispersal
 #' @inheritParams MEffectSizes
+#' @seealso [GeM], [MBionomics.GeM]
 #' @return an **`xds`** object
 #' @keywords internal
 #' @export
@@ -463,6 +506,8 @@ MEffectSizes.GeM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
 #' + The values in `options` override the defaults
 #' + To inspect variable names, use [get_MY_inits] or
 #' see the inline module documentation.
+#' @inheritSection GeM State Variables
+#' @inheritSection GeM Accessory Variable
 #' @inheritParams setup_MY_inits
 #' @return a [list]
 #' @keywords internal
@@ -476,13 +521,16 @@ setup_MY_inits.GeM = function(xds_obj, options=list(), s=1){with(xds_obj$MY_obj[
 
 
 #' @title Make inits for GeM adult mosquito model
-#' @param nPatches the number of patches in the model
-#' @param Upsilon a matrix describing survival and dispersal through the EIP
+#' @param nPatches the number of patches
+#' @param Upsilon a matrix describing survival and dispersal through the initial EIP
 #' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch
 #' @param P total parous mosquito density at each patch
 #' @param Y infected mosquito density at each patch
 #' @param Z infectious mosquito density at each patch
+#' @inheritSection GeM State Variables
+#' @inheritSection GeM Accessory Variable
+#' @seealso [GeM], [setup_MY_inits.GeM]
 #' @return a [list]
 #' @keywords internal
 #' @export
@@ -503,6 +551,7 @@ make_MY_inits_GeM = function(nPatches, Upsilon, options = list(),
 #' @title Change initial values for `GeM` (**MY**)
 #' @description For the `GeM` module (**MY**) for the \eqn{s^{th}} species,
 #' change initial values named in `options` leaving other values unchanged.
+#' @inheritSection GeM State Variables
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** object
 #' @keywords internal
@@ -521,7 +570,11 @@ change_MY_inits.GeM <- function(xds_obj, options=list(), s=1) {
 
 #' @title Compute the steady states as a function of the daily EIR
 #' @description This method dispatches on the type of `MY_obj`.
+#' @inheritSection GeM State Variables
+#' @inheritSection GeM Parameters
+#' @inheritSection GeM Dynamics
 #' @inheritParams steady_state_MY
+#' @seealso [GeM]
 #' @return a [list]
 #' @importFrom MASS ginv
 #' @keywords internal

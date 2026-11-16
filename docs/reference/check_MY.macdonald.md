@@ -1,6 +1,6 @@
-# Run a check before solving
+# Check `macdonald` (**MY**) before solving
 
-Run a check before solving
+This method currently performs no additional checks.
 
 ## Usage
 
@@ -22,3 +22,7 @@ check_MY(xds_obj, s)
 ## Value
 
 an **`xds`** object
+
+## See also
+
+[macdonald](https://dd-harp.github.io/ramp.xds/reference/macdonald.md)

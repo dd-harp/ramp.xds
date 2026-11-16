@@ -19,4 +19,17 @@ a \link{list}
 \description{
 This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}
 }
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\seealso{
+\link{macdonald}
+}
 \keyword{internal}

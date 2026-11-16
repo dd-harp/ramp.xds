@@ -38,6 +38,6 @@ This function is called by \link{compute_all_available_water}
 
 \link{make_habitat_matrix} discusses \eqn{N}
 
-The availability of traps and bad habitats is setup in \link{setup_egg_laying}
+The availability of traps and bad habitats is set up in \link{setup_egg_laying_interface}
 }
 \keyword{internal}

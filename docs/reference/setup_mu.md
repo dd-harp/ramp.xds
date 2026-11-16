@@ -6,6 +6,8 @@ Configure and validate the emigration-loss fraction.
 
 ``` r
 setup_mu(name, xds_obj, options = list(), s = 1)
+
+setup_emigration_loss(name, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments

@@ -64,7 +64,7 @@ setup_habitats = function(xds_obj, membership){
 #' @param nPatches the number of patches, \eqn{n_p}
 #' @param membership a vector describing the patch index for each habitat
 #' @return the habitat membership [matrix], denoted \eqn{N} where \eqn{\left|N\right|= n_p \times n_q}
-#' @seealso compute_habitat matrix is called by [make_xds_object_template()] and [setup_egg_laying()]
+#' @seealso compute_habitat matrix is called by [make_xds_object_template()] and [setup_egg_laying_interface()]
 #' @seealso see [get_habitat_matrix()]
 #' @examples
 #' make_habitat_matrix(3, c(1,1,2,2,2))
@@ -109,7 +109,7 @@ get_habitat_matrix = function(xds_obj){
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
-#' @seealso [setup_egg_laying()]
+#' @seealso [setup_egg_laying_interface()]
 #' @export
 #' @keywords internal
 AquaticHabitats = function(t, y, xds_obj){
@@ -188,7 +188,7 @@ compute_all_available_water = function(xds_obj){with(xds_obj,{
 #' @return a [vector] of describing habitat availability, \eqn{Q}, of length `nPatches`
 #' @seealso This function is called by [compute_all_available_water]
 #' @seealso [make_habitat_matrix] discusses \eqn{N}
-#' @seealso The availability of ovitraps and bad habitats is setup in [setup_egg_laying]
+#' @seealso The availability of ovitraps and bad habitats is set up in [setup_egg_laying_interface]
 #' @export
 #' @keywords internal
 F_available_habitat = function(habitat_matrix, search_weights){
@@ -222,13 +222,12 @@ F_available_habitat = function(habitat_matrix, search_weights){
 #' @seealso This function is called by [compute_all_available_water]
 #' @seealso [make_habitat_matrix] discusses \eqn{N}
 #'
-#' @seealso The availability of traps and bad habitats is setup in [setup_egg_laying]
+#' @seealso The availability of traps and bad habitats is set up in [setup_egg_laying_interface]
 #' @export
 #' @keywords internal
 F_all_available_water = function(Q, Q_traps, Q_bad){
   Qall <- Q + Q_traps + Q_bad
   return(as.vector(Qall))
 } 
-
 
 

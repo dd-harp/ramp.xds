@@ -18,21 +18,32 @@ an \strong{\code{xds}} object
 }
 \description{
 For the \code{SI} module (\strong{MY}) for the \eqn{s^{th}} species,
-change parameter values named in \code{options} leaving other values unchanged.
+change \emph{static} parameter values named in \code{options} leaving other values unchanged.
+}
+\note{
+This is designed to work for static parameters or
+for parameters that are set up as ports, where the class of
+the bionomic object is "static."
+
+Use advanced setup to modify dynamic bionomic ports.
 }
 \section{Parameters}{
 
 \describe{
-\item{\code{f}}{blood feeding rate}
-\item{\code{q}}{human fraction}
-\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period}
-\item{\code{g}}{mosquito mortality rate}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate}
-\item{\code{mu} or \eqn{\mu}}{emigration loss rate}
-\item{\code{K}}{mosquito dispersal matrix}
-\item{\code{nu} or \eqn{\nu}}{egg laying rate, the number of egg patches, per mosquito, per day}
+\item{\code{f}}{blood feeding rates --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss rate --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{the egg batch rate, in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{the number of eggs per batch}
 }
+
+After basic setup, \link{change_MY_pars} can be used for static parameters, or for
+for parameters that are set up as static ports (the default).
+Use advanced setup to modify dynamic ports.
 }
 
 \seealso{

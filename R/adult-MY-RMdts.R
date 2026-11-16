@@ -95,7 +95,7 @@ Update_MYt.RMdts <- function(t, y, xds_obj, s) {
   })
 }
 
-#' @title The net blood feeding rate of the infective mosquito population in a patch
+#' @title Infective mosquito biting rate for `RMdts`
 #' @description Implements [F_fqZ] for the RMdts model.
 #' @inheritParams F_fqZ
 #' @return a [numeric] vector of length `nPatches`
@@ -105,9 +105,11 @@ F_fqZ.RMdts <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]], f*q)*y[xds_obj$ix$MY[[s]]$Z_ix]
 }
 
-#' @title The net blood feeding rate of the infective mosquito population in a patch
-#' @description Implements [F_fqM] for the RMdts model.
+#' @title Mosquito biting rate for `RMdts`
+#' @description Returns `fqM`, the daily mosquito biting density on humans
+#' for each patch in the RMdts model.
 #' @inheritParams F_fqM
+#' @seealso [F_hbr]
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -146,7 +148,7 @@ setup_MY_inits.RMdts = function(xds_obj, options=list(), s=1){
 }
 
 #' @title Make inits for RMdts adult mosquito model
-#' @param nPatches the number of patches in the model
+#' @param nPatches the number of patches
 #' @param max_eip the maximum number of EIP cohorts, an [integer]
 #' @param options a [list] of values that overrides the defaults
 #' @param M total mosquito density at each patch

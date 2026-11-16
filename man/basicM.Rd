@@ -2,37 +2,105 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{basicM}
 \alias{basicM}
-\title{The \code{basicM} Module for the MY Component}
+\title{The \code{basicM} module for the \strong{MY} component}
 \description{
-Implements the \strong{MY} component using a basic model of adult mosquito
-ecology without explicit infection dynamics.
+Implements a basic model of adult mosquito ecology without explicit
+infection dynamics. It can be used when mosquito population dynamics are
+needed without modeling mosquito infection.
 }
 \section{State Variables}{
 
 \describe{
 \item{\code{M}}{density of adult mosquitoes}
-\item{\code{P}}{density of adult mosquitoes that have fed at least once}
+\item{\code{P}}{density of parous adult mosquitoes: those that have blood-fed at least once}
+}
+}
+
+\section{Dynamical Terms}{
+
+\describe{
+\item{\code{Lambda} or \eqn{\Lambda}}{adult mosquito emergence rate, computed by \link{Emergence}}
 }
 }
 
 \section{Parameters}{
 
 \describe{
-\item{\code{f}}{blood feeding rate}
-\item{\code{g}}{mosquito mortality rate}
-\item{\code{sigma}}{emigration rate}
-\item{\code{mu}}{emigration loss rate}
-\item{\code{K}}{mosquito dispersal matrix}
-\item{\code{Omega}}{adult mosquito demographic matrix (mortality + migration)}
+\item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
 }
+
+After basic setup, \link{change_MY_pars.basicM} can be used to change static
+parameter values. The \code{basicM} module does not implement dynamic bionomic
+ports.
+}
+
+\section{Survival and Dispersal}{
+
+Mosquito survival and dispersal are described by the demographic matrix
+\eqn{\Omega}. The parameter \eqn{g} is the per-capita mortality rate while
+mosquitoes are in a patch. Mosquitoes emigrate from patches at per-capita
+rates \eqn{\sigma}, and a fraction \eqn{\mu} of emigrating mosquitoes is
+lost. The total rate of loss from a patch is \deqn{g+\mu\sigma.}
+
+The columns of the mosquito dispersal matrix \eqn{K} sum to zero. For
+non-trivial dispersal matrices, \eqn{\mbox{diag}(K)=-1}; the off-diagonal
+elements describe the fractions of surviving emigrants that arrive in
+other patches. The demographic matrix is
+\deqn{\Omega=\mbox{diag}(g+\sigma\mu)-K\cdot\mbox{diag}(\sigma(1-\mu)).}
+}
+
+\section{Blood Feeding}{
+
+The blood feeding rate \eqn{f} and human fraction \eqn{q} are parameters of
+the module. At baseline they are static. They should satisfy natural
+constraints: \eqn{f=0} if no blood hosts are available, \eqn{q=0} if no
+humans are available, and \eqn{q=1} if humans are the only available hosts.
+The module does not model infection, but \code{fqM} is used to compute the
+human biting rate.
 }
 
 \section{Dynamics}{
 
+Adult mosquitoes emerge from aquatic habitats at rate \eqn{\Lambda} and
+disperse and die according to \eqn{\Omega}. The ODE model is
 \deqn{
 \begin{array}{rl}
-dM/dt &= \Lambda - \Omega \cdot M \\
-dP/dt &= f(M-P) - \Omega \cdot P \\
+dM/dt &= \Lambda-\Omega\cdot M \\\\
+dP/dt &= f(M-P)-\Omega\cdot P
 \end{array}}
+Here, \eqn{P} is the density of mosquitoes that have blood-fed at least
+once. Parity, \eqn{P/M}, is computed during parsing and stored as \code{parous}.
+For discrete-time models, \link{Update_MYt.basicM} uses the one-day update
+equations.
 }
 
+\section{Infective Biting}{
+
+The \code{basicM} module does not represent mosquito infection, so its infective
+biting density \eqn{fqZ} is zero. Its human biting density, \eqn{fqM}, is
+the number of bites on humans in each patch per day.
+\link{F_fqM.basicM} computes this patch-level quantity. \link{F_hbr} combines \code{fqM}
+with the biting distribution matrix and resident-bite fraction to compute
+the stratum-level human biting rate (\code{HBR}). The \code{EIR} is zero for this
+module because there are no infective bites.
+}
+
+\section{Egg Laying}{
+
+The egg batch rate \eqn{\nu} and the number of eggs per batch
+\eqn{\Gamma} determine the egg production rate per patch:
+\deqn{G=\nu\Gamma M.}
+\link{F_eggs.basicM} computes \eqn{G}, which is passed to \link{EggLaying} for
+distribution among aquatic habitats.
+}
+
+\seealso{
+\link{make_M_obj_basicM}, \link{setup_MY_obj.basicM}, \link{dMYdt.basicM}
+}

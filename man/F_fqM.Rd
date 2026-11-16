@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{F_fqM}
 \alias{F_fqM}
-\title{Blood feeding rate of the mosquito population}
+\title{Mosquito biting rate}
 \usage{
 F_fqM(t, y, xds_obj, s)
 }
@@ -19,6 +19,10 @@ F_fqM(t, y, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj}.
+This method dispatches on the type of \code{xds_obj$MY_obj} and
+returns the daily mosquito biting density on humans, \code{fqM}, for each patch.
+}
+\seealso{
+\link{F_hbr}
 }
 \keyword{internal}

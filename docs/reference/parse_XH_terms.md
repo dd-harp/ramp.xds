@@ -1,6 +1,6 @@
 # Pull XH Terms
 
-Pull the stored values of the EIR and the FoI and compute NI
+Pull the stored values of the EIR, HBR, and FoI, and compute NI.
 
 ## Usage
 

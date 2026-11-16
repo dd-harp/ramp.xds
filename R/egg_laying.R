@@ -11,7 +11,7 @@
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return an **`xds`** object
-#' @seealso [setup_egg_laying()]
+#' @seealso [setup_egg_laying_interface()]
 #' @export
 #' @keywords internal
 EggLaying = function(t, y, xds_obj){
@@ -106,7 +106,7 @@ compute_eggs_laid = function(t, y, xds_obj){
 #' @return a `nHabitats` \eqn{\times} `nPatches` [matrix] describing egg distribution, \eqn{O}
 #' @seealso The membership matrix \eqn{N} is computed by [make_habitat_matrix]
 #' @seealso Total habitat availability, \eqn{\cal Q}, is computed by [F_available_habitat]
-#' @seealso The availability of ovitraps and bad habitats is setup in [setup_egg_laying]
+#' @seealso The availability of ovitraps and bad habitats is set up in [setup_egg_laying_interface]
 #' @export
 #' @keywords internal
 make_U_matrix= function(search_weights, habitat_matrix, Q){

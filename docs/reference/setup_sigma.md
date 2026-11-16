@@ -6,6 +6,8 @@ Configure and validate the patch emigration rate.
 
 ``` r
 setup_sigma(name, xds_obj, options = list(), s = 1)
+
+setup_emigration_rates(name, xds_obj, options = list(), s = 1)
 ```
 
 ## Arguments

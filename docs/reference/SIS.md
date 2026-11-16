@@ -15,6 +15,10 @@ This generalized implementation includes:
 
 - support for progressive stratification
 
+The [SIS
+Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
+discusses the module.
+
 ## State Variables
 
 - `H`:
@@ -38,12 +42,12 @@ Demographic changes (**H**) are given by the equation:
 This model has no parameter or terms to describe disease-induced
 mortality.
 
-- [Births](https://dd-harp.github.io/ramp.xds/reference/Births.md) or
+- [`Births`](https://dd-harp.github.io/ramp.xds/reference/Births.md) or
   \\(\mathbf{B}\\):
 
   the births function
 
-- [Deaths](https://dd-harp.github.io/ramp.xds/reference/Deaths.md) or
+- [`Deaths`](https://dd-harp.github.io/ramp.xds/reference/Deaths.md) or
   \\(\mathbf{D}\\):
 
   the deaths function
@@ -55,12 +59,12 @@ mortality.
 - Use
   [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.md)
   to configure
-  [Births](https://dd-harp.github.io/ramp.xds/reference/Births.md)
+  [`Births`](https://dd-harp.github.io/ramp.xds/reference/Births.md)
 
 - Use
   [setup_deaths](https://dd-harp.github.io/ramp.xds/reference/setup_deaths.md)
   to configure
-  [Deaths](https://dd-harp.github.io/ramp.xds/reference/Deaths.md)
+  [`Deaths`](https://dd-harp.github.io/ramp.xds/reference/Deaths.md)
 
 Also, see
 [xds_info_demographic_change](https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.md).

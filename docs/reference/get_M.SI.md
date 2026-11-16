@@ -22,3 +22,22 @@ get_M(xds_obj, s = 1)
 ## Value
 
 the initial mosquito population density
+
+## State Variables
+
+- `M`:
+
+  density of adult mosquitoes
+
+- `P`:
+
+  density of parous adult mosquitoes
+
+- `Y`:
+
+  density of infected adult mosquitoes
+
+## See also
+
+[SI](https://dd-harp.github.io/ramp.xds/reference/SI.md),
+[get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md)

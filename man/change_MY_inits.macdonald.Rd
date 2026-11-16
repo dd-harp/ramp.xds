@@ -14,10 +14,23 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} object
 }
 \description{
 For the \code{macdonald} module (\strong{MY}) for the \eqn{s^{th}} species,
 change initial values named in \code{options} leaving other values unchanged.
+}
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\seealso{
+\link{macdonald}, \link{get_MY_inits}, \link{make_MY_inits_macdonald}, \link{setup_MY_inits.macdonald}
 }
 \keyword{internal}

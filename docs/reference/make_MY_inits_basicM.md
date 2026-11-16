@@ -12,7 +12,7 @@ make_MY_inits_basicM(nPatches, options, M = 5, P = 1)
 
 - nPatches:
 
-  the number of patches in the model
+  the number of patches
 
 - options:
 

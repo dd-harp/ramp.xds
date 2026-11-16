@@ -2,9 +2,12 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{setup_sigma}
 \alias{setup_sigma}
+\alias{setup_emigration_rates}
 \title{Set up patch emigration rate}
 \usage{
 setup_sigma(name, xds_obj, options = list(), s = 1)
+
+setup_emigration_rates(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
 \item{name}{a patch emigration rate or setup method name}

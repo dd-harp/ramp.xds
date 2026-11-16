@@ -46,6 +46,6 @@ The membership matrix \eqn{N} is computed by \link{make_habitat_matrix}
 
 Total habitat availability, \eqn{\cal Q}, is computed by \link{F_available_habitat}
 
-The availability of ovitraps and bad habitats is setup in \link{setup_egg_laying}
+The availability of ovitraps and bad habitats is set up in \link{setup_egg_laying_interface}
 }
 \keyword{internal}

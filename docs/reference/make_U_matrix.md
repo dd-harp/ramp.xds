@@ -58,5 +58,5 @@ The membership matrix \\(N\\) is computed by
 Total habitat availability, \\(\cal Q\\), is computed by
 [F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md)
 
-The availability of ovitraps and bad habitats is setup in
-[setup_egg_laying](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying.md)
+The availability of ovitraps and bad habitats is set up in
+[setup_egg_laying_interface](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying_interface.md)

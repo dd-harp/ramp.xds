@@ -17,4 +17,43 @@ the initial infective mosquito population density
 \description{
 Get the initial infective mosquito density
 }
+\section{Infective Biting}{
+
+
+\strong{Infective biting density} is defined as the number of human infectious bites by the mosquito population in each patch, each day.
+In \code{SI}, infective biting density is computed if infected mosquitoes at time \eqn{t}, \eqn{Y(t),} had survived
+and dispersed through an EIP of \eqn{\tau} days \eqn{e^{- \Omega \tau}}.
+
+\describe{
+\item{\eqn{Z}}{density of infectious mosquitoes, imputed from \eqn{Y}}
+\item{\code{fqZ}}{Infective biting density: the number of infectious bites, per patch, per day \deqn{fqZ = e^{-\Omega \tau} \cdot \left( f q Y \right) }}
+\item{\code{fqM}}{Human biting density: the number of human infectious bites, per patch, per day}
+}
+
+Note that \eqn{e^{-\Omega \tau}} is computed with the matrix exponential function \link[expm:expm]{expm}
+
+\strong{The EIR}
+
+\eqn{fqZ} is the dynamical term computed by \link{F_fqZ.SI}. It is called
+by \link{compute_EIR} (in \link{Transmission}) to compute and store \verb{EIR,}
+the local daily EIR \eqn{(E)}. Note that
+\code{fqZ} is a vector of length \code{nPatches} but the
+local EIR is a vector of length \code{nStrata.}
+The \strong{XY} interface uses
+information about humans and mosquitoes to build the biting distribution matrix, \eqn{\beta,} and if
+there are no visitors, then
+\deqn{E = \beta \cdot fqZ}
+The orbits of \code{fqZ} and \code{EIR} are computed and stored by \link{xds_solve} by the functions that parse the outputs.
+
+\strong{The HBR}
+
+Since estimates of the EIR are computed by taking the product of the human biting rate (HBR or \eqn{B}) and the sporozoite rate,
+there is interest in knowing \eqn{fqM} and \eqn{B.} The quantity \code{fqM} is computed by \link{F_fqM.SI}.
+The orbits of \code{fqM} and \code{HBR} are also computed during parsing, as
+\deqn{B = \beta \cdot fqM}
+}
+
+\seealso{
+\link{SI}, \link{get_MY_inits}
+}
 \keyword{internal}

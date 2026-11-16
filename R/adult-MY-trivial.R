@@ -91,7 +91,7 @@ check_MY.trivial = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Net infectious biting rate
+#' @title Infective mosquito biting rate for `trivial`
 #' @description Returns 
 #' \deqn{F_{fqZ}(t) = fqZ F_S(t) F_T(t) F_K(t)}
 #' where 
@@ -141,8 +141,9 @@ F_eggs.trivial <- function(t, y, xds_obj, s) {
     return(eggs*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
 })}
 
-#' @title Blood feeding rate of the infective mosquito population
-#' @description Implements [F_fqM] for the trivial model.
+#' @title Mosquito biting rate for `trivial`
+#' @description The trivial model does not track an adult mosquito
+#' population, so this method returns an empty numeric vector.
 #' @inheritParams F_fqM
 #' @return a [numeric] vector of length 0
 #' @keywords internal

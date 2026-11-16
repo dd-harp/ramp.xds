@@ -1,4 +1,4 @@
-# Make random laying rates
+# Make random egg batch rates
 
 Set up a random vector
 
@@ -38,4 +38,4 @@ make_F_nu_random(
 
 ## Value
 
-an object to set up egg laying
+an object to set up egg batch rates
