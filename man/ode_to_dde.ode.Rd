@@ -10,7 +10,7 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 If \code{class(xds_obj$xde) == "ode"} change it to \code{dde}

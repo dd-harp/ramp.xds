@@ -25,7 +25,7 @@ check_travel_eir = function(teir, Nh){
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 change_travel_eir = function(travel_eir, xds_obj, i=1){
   check_travel_eir(travel_eir, xds_obj$nStrata[i])
@@ -42,7 +42,7 @@ change_travel_eir = function(travel_eir, xds_obj, i=1){
 #' @param i the host species index
 #' @param options configuration options
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_travel_eir = function(name, xds_obj, options = list(), i=1){
@@ -61,7 +61,7 @@ setup_travel_eir = function(name, xds_obj, options = list(), i=1){
 #'
 #' @inheritParams setup_travel_eir
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_travel_eir.list = function(name, xds_obj, options=list(), i=1){
@@ -75,7 +75,7 @@ setup_travel_eir.list = function(name, xds_obj, options=list(), i=1){
 #' @title Set up no travel eir  
 #' @description Don't change anything 
 #' @inheritParams setup_travel_eir
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_travel_eir.no_setup = function(name, xds_obj, options = list(), i=1){
@@ -91,7 +91,7 @@ setup_travel_eir.no_setup = function(name, xds_obj, options = list(), i=1){
 #'  must be at `options$travel_eir` 
 #' 
 #' @inheritParams setup_travel_eir
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_travel_eir.no_travel = function(name, xds_obj, options=list(), i=1){
@@ -110,7 +110,7 @@ setup_travel_eir.no_travel = function(name, xds_obj, options=list(), i=1){
 #'  must be at `options$travel_eir` 
 #' 
 #' @inheritParams setup_travel_eir
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_travel_eir.as_is = function(name, xds_obj, options=list(), i=1){
@@ -130,7 +130,7 @@ setup_travel_eir.as_is = function(name, xds_obj, options=list(), i=1){
 #' @description Set up random values for time away
 #' 
 #' @inheritParams setup_travel_eir
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_travel_eir.random = function(name, xds_obj, options = list(), i=1){
@@ -159,12 +159,12 @@ make_travel_eir_random = function(nStrata, options=list(), f_rand = stats::rlnor
 #' @description Port function for the travel eir , \eqn{\Theta}.
 #' Dispatches on `class(xds_obj$XY_interface$travel_eir_obj[[i]])`.
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_travel_eir <- function(t, y, xds_obj, i) {
@@ -177,7 +177,7 @@ update_travel_eir <- function(t, y, xds_obj, i) {
 #' is updated properly after a change
 #' 
 #' @inheritParams update_travel_eir
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_travel_eir.static <- function(t, y, xds_obj, i) {return(xds_obj)}

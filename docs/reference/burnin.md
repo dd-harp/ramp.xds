@@ -21,7 +21,7 @@ burnin(xds_obj, t_neg_inf = -3650)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Note
 

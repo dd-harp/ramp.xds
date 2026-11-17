@@ -12,11 +12,11 @@ blood_traps(t, y, xds_obj, s)
 
 - t:
 
-  the time
+  time
 
 - y:
 
-  the state variables
+  dependent variables
 
 - xds_obj:
 
@@ -28,4 +28,4 @@ blood_traps(t, y, xds_obj, s)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

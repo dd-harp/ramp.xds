@@ -19,4 +19,4 @@ setup_resources_object(xds_obj)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

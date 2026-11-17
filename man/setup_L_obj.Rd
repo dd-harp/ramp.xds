@@ -18,7 +18,7 @@ setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 \item{s}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 This setup creates an \strong{L} object for the \eqn{s^{th}} species

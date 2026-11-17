@@ -16,7 +16,7 @@
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements the "method1" case for \link{setup_bad_habitats}. See \link{make_bad_habitats_random}

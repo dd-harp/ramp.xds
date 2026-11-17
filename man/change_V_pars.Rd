@@ -14,7 +14,7 @@ change_V_pars(xds_obj, options = list(), i = 1)
 \item{i}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 This method dispatches on the type of \code{xds_obj$V_obj[[s]]}.

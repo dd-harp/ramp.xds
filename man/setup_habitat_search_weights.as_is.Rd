@@ -16,7 +16,7 @@
 \item{s}{the mosquito species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Pass a pre-configured habitat_search_weights. If it passes

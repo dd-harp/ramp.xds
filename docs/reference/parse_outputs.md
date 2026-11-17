@@ -24,4 +24,4 @@ parse_outputs(xds_obj, de_vars, tm)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

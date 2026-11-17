@@ -11,7 +11,7 @@
 #' `xds_obj$xde` from `ode` to `dde`
 #'
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -22,7 +22,7 @@ ode_to_dde = function(xds_obj){
 #' @title Compute as DDE
 #' @description If `class(xds_obj$xde) == "dde"` don't change anything
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 ode_to_dde.dde = function(xds_obj){
@@ -32,7 +32,7 @@ ode_to_dde.dde = function(xds_obj){
 #' @title Compute as DDE
 #' @description If `class(xds_obj$xde) == "dts"` don't change anything
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 ode_to_dde.dts = function(xds_obj){
@@ -42,7 +42,7 @@ ode_to_dde.dts = function(xds_obj){
 #' @title Compute as DDE
 #' @description If `class(xds_obj$xde) == "ode"` change it to `dde`
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 ode_to_dde.ode = function(xds_obj){

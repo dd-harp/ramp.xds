@@ -37,7 +37,7 @@ NULL
 #'
 #' @inheritParams setup_skillset_MY
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -54,7 +54,7 @@ setup_skillset_MY.RMdts = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_MY.RMdts = function(xds_obj, s){

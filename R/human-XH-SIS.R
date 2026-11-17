@@ -177,7 +177,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 
   with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]], {
-      dH <- Births(t, xds_obj, i) - Deaths(t, H, xds_obj, i)
+      dH <- Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, i)
       dI <- foi*(1-rho)*(H-I) - (r + sigma + rho*foi)*I - Deaths(t, I, xds_obj, i)
       dI <- dI - mda(t)*I - msat(t)*I
       return(c(dH, dI))
@@ -203,7 +203,7 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 #'
 #' @inheritParams setup_XH_obj
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -274,7 +274,7 @@ make_XH_obj_SIS = function(nStrata, options=list(),
 #'
 #' @seealso [SIS], [get_XH_pars.SIS()] and the vignette on [SIS Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -390,7 +390,7 @@ parse_XH_orbits.SIS <- function(outputs, xds_obj, i) {
 #'  
 #' @inheritParams setup_XH_inits
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @seealso [SIS]
 #' @export
@@ -437,7 +437,7 @@ make_XH_inits_SIS = function(nStrata, options=list(), H=1000, I=1){
 #' @seealso [SIS]. The variable names are returned by calling [get_XH_inits].
 #' The function [make_XH_inits_SIS] is called during setup. 
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -539,7 +539,7 @@ get_HTC.SIS <- function(xds_obj, i) {
 #'
 #' @inheritParams setup_skillset_XH
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #'
 #' @seealso [SIS]
@@ -560,7 +560,7 @@ setup_skillset_XH.SIS = function(xds_obj,i){
 #' @inheritParams check_XH
 #' @keywords internal
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [SIS]
 #' @export
 check_XH.SIS = function(xds_obj, i){

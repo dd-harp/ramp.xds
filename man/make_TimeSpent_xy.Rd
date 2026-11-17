@@ -7,7 +7,7 @@
 make_timespent_xy(xds_obj, xy, residence, stay, kern, kopts = list())
 }
 \arguments{
-\item{xds_obj}{the \strong{\code{xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{xy}{is the xy-locations of the patches}
 

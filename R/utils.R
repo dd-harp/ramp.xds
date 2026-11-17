@@ -13,7 +13,7 @@ make_static_obj = function(){
 #' @title Make indices for all the model variables
 #'
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 make_indices <- function(xds_obj) {
@@ -204,7 +204,7 @@ get_last <- function(xds_obj, parse=FALSE){
 #' @title Set the initial values to the last values of the last simulation
 #' @param xds_obj an **`xds`** model object
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 last_to_inits <- function(xds_obj){
   xds_obj <- update_inits(xds_obj, xds_obj$outputs$last_y)
@@ -223,7 +223,7 @@ xds_flatten <- function(vars){
 #' @title Run Checks
 #'
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_models <- function(xds_obj) {

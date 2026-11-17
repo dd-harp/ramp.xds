@@ -7,7 +7,7 @@
 \method{F_phi}{static}(t, xds_obj, s)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{t}{time}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

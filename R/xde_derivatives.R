@@ -6,8 +6,8 @@
 #'
 #' @seealso [xds_solve]
 #'
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #'
 #' @return a [list] containing the vector of all state derivatives

@@ -12,11 +12,11 @@ Transmission(t, y, xds_obj)
 
 - t:
 
-  current simulation time
+  time
 
 - y:
 
-  state vector
+  dependent variables
 
 - xds_obj:
 
@@ -24,4 +24,4 @@ Transmission(t, y, xds_obj)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

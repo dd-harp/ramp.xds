@@ -31,7 +31,7 @@ setup_skillset_XH = function(xds_obj, i){
 #' @param xds_obj an **`xds`** model object
 #' @param i host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_XH = function(xds_obj,i){
@@ -46,8 +46,8 @@ check_XH = function(xds_obj,i){
 #'
 #' @note This method dispatches on `class(xds_obj$XH_obj)`
 #'
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
@@ -59,10 +59,10 @@ dXHdt <- function(t, y, xds_obj, i) {
   UseMethod("dXHdt", xds_obj$XH_obj[[i]])
 }
 
-#' @title Update state variables (**XH**) 
+#' @title Update state variablenos (**XH**) 
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector
@@ -76,8 +76,8 @@ Update_XHt <- function(t, y, xds_obj, i) {
 
 #' @title Size of effective infectious human population
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
@@ -89,8 +89,8 @@ F_I <- function(t, y, xds_obj, i) {
 
 #' @title Size of human population denominators
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
@@ -102,7 +102,7 @@ F_H <- function(t, y, xds_obj, i) {
 
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
-#' @param y state vector
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @return a [numeric] vector of length `nStrata`
@@ -138,7 +138,7 @@ F_infectivity <- function(y, xds_obj, i) {
 #' @param options model options as a named list
 #' @param i the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #'
@@ -155,7 +155,7 @@ setup_XH_obj = function(XHname, residence, xds_obj, options=list(), i=1){
 #' variable vector \eqn{y}, and return
 #' the values as a named list
 #'
-#' @param y the variables
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
@@ -174,7 +174,7 @@ get_XH_vars <- function(y, xds_obj, i=1) {
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_XH_ix <- function(xds_obj, i) {
@@ -189,7 +189,7 @@ setup_XH_ix <- function(xds_obj, i) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 get_XH_ix <- function(xds_obj, i=1) {
@@ -254,7 +254,7 @@ get_XH_pars <- function(xds_obj, i=1) {
 #' @param options a named list
 #' @param i the host species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -278,7 +278,7 @@ change_XH_pars <- function(xds_obj, options=list(), i=1) {
 #' @param options a [list]
 #' @param i the host species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_XH_inits = function(xds_obj, options=list(), i=1){
@@ -319,7 +319,7 @@ get_XH_inits = function(xds_obj, i=1){
 #' @param options a named list
 #' @param i the host species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_XH_inits <- function(xds_obj, options=list(), i=1) {

@@ -20,4 +20,4 @@ check_dHdt(xds_obj, i = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

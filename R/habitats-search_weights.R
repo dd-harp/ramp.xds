@@ -27,7 +27,7 @@ check_habitat_search_weights = function(search_weights, nQ){
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_habitat_search_weights = function(search_weights, xds_obj, s=1){
@@ -52,7 +52,7 @@ change_habitat_search_weights = function(search_weights, xds_obj, s=1){
 #' @param s the mosquito species index
 #' @param options configuration options
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [xds_setup], [xds_info_search_weights_habitat]
 #' @export
 setup_habitat_search_weights = function(name, xds_obj, options = list(), s=1){
@@ -87,7 +87,7 @@ setup_habitat_search_weights.list = function(name, xds_obj, options=list(), s=1)
 #' @title Set habitat search weights
 #' @description The default version called by setup 
 #' @inheritParams setup_habitat_search_weights
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_habitat_search_weights.setup = function(name, xds_obj, options = list(), s=1){
@@ -102,7 +102,7 @@ setup_habitat_search_weights.setup = function(name, xds_obj, options = list(), s
 #' @title Set up no habitat_search_weights 
 #' @description Don't change anything 
 #' @inheritParams setup_habitat_search_weights
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_habitat_search_weights.no_setup = function(name, xds_obj, options = list(), s=1){
@@ -114,7 +114,7 @@ setup_habitat_search_weights.no_setup = function(name, xds_obj, options = list()
 #' @description Implements the "method1" case for [setup_habitat_search_weights]. See [make_habitat_search_weights_random]
 #' 
 #' @inheritParams setup_habitat_search_weights
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_habitat_search_weights.random = function(name, xds_obj, options = list(), s=1){
@@ -151,7 +151,7 @@ make_habitat_search_weights_random = function(nPatches, options=list(), f_rand =
 #' must be at `options$habitat_search_weights` 
 #' 
 #' @inheritParams setup_habitat_search_weights
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_habitat_search_weights.as_is = function(name, xds_obj, options=list(), s=1){
@@ -170,12 +170,12 @@ setup_habitat_search_weights.as_is = function(name, xds_obj, options=list(), s=1
 #' @description Port function for the habitat_search_weights, \eqn{w}.
 #' Dispatches on `xds_obj$L_obj[[s]]$habitat_search_obj`.
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_habitat_search_weights <- function(t, y, xds_obj, s){
@@ -185,7 +185,7 @@ update_habitat_search_weights <- function(t, y, xds_obj, s){
 #' @title Update the habitat_search_weights
 #' @description The `static` method returns `xds_obj` unmodified
 #' @inheritParams update_habitat_search_weights
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_habitat_search_weights.static <- function(t, y, xds_obj, s) { return(xds_obj) }

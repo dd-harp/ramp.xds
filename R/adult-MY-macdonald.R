@@ -122,7 +122,7 @@ NULL
 #'
 #' @inheritParams setup_skillset_MY
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [macdonald]
 #'
 #' @keywords internal
@@ -141,7 +141,7 @@ setup_skillset_MY.macdonald = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @seealso [macdonald]
 #' @keywords internal
 #' @export
@@ -255,7 +255,7 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
 #' @note The module object is stored at `xds_obj$MY_obj[[s]]`
 #'
 #' @inheritParams setup_MY_obj
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_MY_obj.macdonald = function(MYname, xds_obj, options=list(), s=1){
@@ -402,7 +402,7 @@ get_MY_pars.macdonald <- function(xds_obj, s=1) {
 #' @inheritSection macdonald Parameters
 #' @inheritParams change_MY_pars
 #' @seealso [macdonald], [get_MY_pars.macdonald]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_pars.macdonald <- function(xds_obj, options=list(), s=1) {
@@ -430,7 +430,7 @@ change_MY_pars.macdonald <- function(xds_obj, options=list(), s=1) {
 #' @inheritSection macdonald State Variables
 #' @inheritParams setup_MY_inits
 #' @seealso [macdonald], [make_MY_inits_macdonald]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_MY_inits.macdonald = function(xds_obj, options=list(), s=1){with(xds_obj$MY_obj[[s]], {
@@ -470,7 +470,7 @@ make_MY_inits_macdonald = function(nPatches, options = list(),
 #' @inheritParams change_MY_inits
 #'
 #' @seealso [macdonald], [get_MY_inits], [make_MY_inits_macdonald], [setup_MY_inits.macdonald]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_inits.macdonald = function(xds_obj, options=list(), s=1){
@@ -512,7 +512,7 @@ steady_state_MY.macdonald = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$M
 #' @inheritSection macdonald Parameters
 #' @inheritParams MEffectSizes
 #' @seealso [macdonald], [MEffectSizes.macdonald]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MBionomics.macdonald <- function(t, y, xds_obj, s) {
@@ -525,7 +525,7 @@ MBionomics.macdonald <- function(t, y, xds_obj, s) {
 #' @inheritSection macdonald Parameters
 #' @inheritParams MEffectSizes
 #' @seealso [macdonald], [MBionomics.macdonald]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MEffectSizes.macdonald <- function(t, y, xds_obj, s) {

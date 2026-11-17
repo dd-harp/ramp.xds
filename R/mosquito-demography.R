@@ -104,7 +104,7 @@ F_Omega_dts <- function(p, ssigma, mu, K_matrix){
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 
-#' @return an **xds** model object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_Omega_obj = function(ch, up, xds_obj, s=1){
@@ -124,7 +124,7 @@ setup_Omega_obj = function(ch, up, xds_obj, s=1){
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
-#' @return an **xds** model object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_Omega = function(xds_obj, s){
@@ -140,7 +140,7 @@ change_Omega = function(xds_obj, s){
 #'
 #' @inheritParams change_Omega
 #'
-#' @return an **xds** model object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_Omega.xde = function(xds_obj, s){
@@ -158,7 +158,7 @@ change_Omega.xde = function(xds_obj, s){
 #' 
 #' @inheritParams change_Omega
 #' 
-#' @return an **xds** model object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_Omega.dts = function(xds_obj, s){
@@ -173,7 +173,7 @@ change_Omega.dts = function(xds_obj, s){
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
-#' @return an **xds** model object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 update_Omega = function(xds_obj, s){
@@ -186,7 +186,7 @@ update_Omega = function(xds_obj, s){
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
-#' @return an **xds** model object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 update_Omega.static = function(xds_obj, s){
@@ -199,7 +199,7 @@ update_Omega.static = function(xds_obj, s){
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
-#' @return an **xds** model object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 update_Omega.dynamic = function(xds_obj, s){
@@ -216,7 +216,7 @@ update_Omega.dynamic = function(xds_obj, s){
 #' @param s vector species index
 #' @param dede is it a delay differential equation that needs \eqn{\Upsilon}
 #' 
-#' @return an **xds** model object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_Upsilon_obj = function(xds_obj, s=1, dede=FALSE){
@@ -234,7 +234,7 @@ setup_Upsilon_obj = function(xds_obj, s=1, dede=FALSE){
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 
-#' @return an **xds** model object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_Upsilon = function(xds_obj, s=1){
@@ -249,7 +249,7 @@ change_Upsilon = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 
-#' @return an **xds** model object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_Upsilon.na = function(xds_obj, s=1){
@@ -264,7 +264,7 @@ change_Upsilon.na = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 
-#' @return an **xds** model object 
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_Upsilon.dde = function(xds_obj, s=1){

@@ -7,10 +7,10 @@
 update_interfaces(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Update the values of all terms computed internally

@@ -16,7 +16,7 @@ setup_blood_traps(name, xds_obj, options = list(), s = 1)
 \item{s}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Set up a blood_traps

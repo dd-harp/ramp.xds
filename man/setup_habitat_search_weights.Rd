@@ -16,7 +16,7 @@ setup_habitat_search_weights(name, xds_obj, options = list(), s = 1)
 \item{s}{the mosquito species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 The advanced set up function for habitat search weights

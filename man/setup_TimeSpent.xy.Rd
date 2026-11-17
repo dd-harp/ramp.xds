@@ -16,7 +16,7 @@
 \item{i}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements \link{setup_timespent} from a set of xy coordinates

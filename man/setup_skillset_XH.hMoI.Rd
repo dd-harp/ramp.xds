@@ -12,7 +12,7 @@
 \item{i}{the species index}
 }
 \value{
-the \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 The \code{hMoI} module is an example

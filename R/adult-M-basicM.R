@@ -93,7 +93,7 @@ NULL
 #'
 #' @inheritParams setup_skillset_MY
 #'
-#' @return the **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -111,7 +111,7 @@ setup_skillset_MY.basicM = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_MY.basicM = function(xds_obj, s){
@@ -153,7 +153,7 @@ dMYdt.basicM <- function(t, y, xds_obj, s){
 #' @inheritSection basicM Survival and Dispersal
 #' @inheritParams MBionomics
 #' @seealso [basicM], [MEffectSizes.basicM]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MBionomics.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
@@ -180,7 +180,7 @@ MBionomics.basicM <- function(t, y, xds_obj, s){with(xds_obj$MY_obj[[s]],{
 #' @inheritSection basicM Parameters
 #' @inheritParams MEffectSizes
 #' @seealso [basicM], [MBionomics.basicM]
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MEffectSizes.basicM <- function(t, y, xds_obj, s) {with(xds_obj$MY_obj[[s]],{
@@ -405,7 +405,7 @@ setup_MY_inits.basicM = function(xds_obj, options=list(), s=1){
 #' change initial values named in `options` leaving other values unchanged.
 #' @inheritSection basicM State Variables
 #' @inheritParams change_MY_inits
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_inits.basicM <- function(xds_obj, options=list(), s=1) {
@@ -451,7 +451,7 @@ get_MY_vars.basicM <- function(y, xds_obj, s){
 #' change parameter values named in `options` leaving other values unchanged.
 #' @inheritSection basicM Parameters
 #' @inheritParams change_MY_pars
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_pars.basicM <- function(xds_obj, options=list(), s=1) {

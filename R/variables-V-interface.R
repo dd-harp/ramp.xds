@@ -4,8 +4,8 @@
 #' The description for each method should include the equations.
 #'
 #' @note This is the `S3` generic. Methods dispatch on `V_obj`
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the i\eqn{^{th}} set of auxiliary variables
 #' @return derivatives for the \eqn{\cal MYZ} component as a [vector]
@@ -25,7 +25,7 @@ dVdt <- function(t, y, xds_obj, i) {
 #' @param options model options as a named list
 #' @param i the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_V_obj = function(XHname, xds_obj, options=list(), i=1){
@@ -40,7 +40,7 @@ setup_V_obj = function(XHname, xds_obj, options=list(), i=1){
 #' variable vector \eqn{y}, and return
 #' the values as a named list
 #'
-#' @param y the variables
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
@@ -57,7 +57,7 @@ get_V_vars <- function(y, xds_obj, i=1) {
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 setup_V_ix <- function(xds_obj, i) {
   UseMethod("setup_V_ix", xds_obj$V_obj[[i]])
@@ -71,7 +71,7 @@ setup_V_ix <- function(xds_obj, i) {
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 get_V_ix <- function(xds_obj, i=1) {
   xds_obj$V_obj[[i]]$ix
@@ -118,7 +118,7 @@ get_V_pars <- function(xds_obj, i=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
 #' @param i the vector species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 change_V_pars <- function(xds_obj, options=list(), i=1) {
   UseMethod("change_V_pars", xds_obj$V_obj[[i]])
@@ -133,7 +133,7 @@ change_V_pars <- function(xds_obj, options=list(), i=1) {
 #' @param H initial host population density
 #' @param options a [list]
 #' @param i the host species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 setup_V_inits = function(xds_obj, H, options=list(), i=1){
   UseMethod("setup_V_inits", xds_obj$V_obj[[i]])
@@ -161,7 +161,7 @@ get_V_inits = function(xds_obj, i=1){
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
 #' @param i the vector species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 change_V_inits <- function(xds_obj, options=list(), i=1) {
   UseMethod("change_V_inits", xds_obj$V_obj[[i]])

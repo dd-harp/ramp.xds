@@ -2,7 +2,7 @@
 #' @title Get the skill set
 #' 
 #' @param module "all" or "XY" or "MY" or "L"
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #' @param ix the species index
 #' 
 #' @returns the skill set, a list

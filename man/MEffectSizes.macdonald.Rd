@@ -7,16 +7,16 @@
 \method{MEffectSizes}{macdonald}(t, y, xds_obj, s)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{t}{time}
 
-\item{y}{state vector}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 This method leaves the \code{macdonald} parameters unchanged;

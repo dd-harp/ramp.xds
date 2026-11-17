@@ -7,7 +7,7 @@
 F_TaR(t, TiSp, F_circadian, time_away)
 }
 \arguments{
-\item{t}{the time}
+\item{t}{time}
 
 \item{TiSp}{a time spent matrix}
 

@@ -77,7 +77,7 @@ check_mu = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_mu = function(xds_obj, s=1){
@@ -118,7 +118,7 @@ setup_emigration_loss <- setup_mu
 #' @param options configuration options
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_F_mu = function(name, xds_obj, options = list(), s=1){
@@ -137,7 +137,7 @@ setup_F_mu = function(name, xds_obj, options = list(), s=1){
 #'
 #' @inheritParams setup_F_mu
 #'
-#' @return an **`xds`** object 
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -152,7 +152,7 @@ setup_F_mu.list = function(name, xds_obj, options=list(), s=1){
 #' @title Set up no F_mu 
 #' @description Don't change anything 
 #' @inheritParams setup_F_mu
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_mu.no_setup = function(name, xds_obj, options = list(), s=1){
@@ -185,7 +185,7 @@ setup_F_mu.as_is = function(name, xds_obj, options=list(), s=1){
 #' @description Implements the "random" case for [setup_F_mu]. See [make_F_mu_random].
 #' 
 #' @inheritParams setup_F_mu
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_mu.random = function(name, xds_obj, options = list(), s=1){

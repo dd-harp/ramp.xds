@@ -31,7 +31,7 @@ NULL
 #'
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @seealso [setup_transmission]
 #'
@@ -68,11 +68,11 @@ setup_importation <- function(xds_obj){
 #' importation-related parameters: time at home, travel EIR,
 #' visitor availability, and visitor infectiousness.
 #'
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 Importation = function(t, y, xds_obj){
@@ -84,7 +84,7 @@ Importation = function(t, y, xds_obj){
 #' @description Importation for static models
 #'
 #' @inheritParams Importation
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 Importation.static = function(t, y, xds_obj){
@@ -98,7 +98,7 @@ Importation.static = function(t, y, xds_obj){
 #' parameters set by [setup_importation] are used as-is.
 #'
 #' @inheritParams Importation
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 Importation.dynamic = function(t, y, xds_obj){
@@ -111,7 +111,7 @@ Importation.dynamic = function(t, y, xds_obj){
 #'
 #' @inheritParams Importation
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 importation_dynamics = function(t, y, xds_obj){

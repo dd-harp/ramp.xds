@@ -14,7 +14,7 @@
 \item{ix}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implement \code{change_mean_forcing} for a model

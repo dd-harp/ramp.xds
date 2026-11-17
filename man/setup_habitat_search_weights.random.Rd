@@ -16,7 +16,7 @@
 \item{s}{the mosquito species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements the "method1" case for \link{setup_habitat_search_weights}. See \link{make_habitat_search_weights_random}

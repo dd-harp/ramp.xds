@@ -25,4 +25,4 @@ change_other_blood_hosts(other_blood_hosts, xds_obj, s = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

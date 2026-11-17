@@ -7,16 +7,16 @@
 update_travel_eir(t, y, xds_obj, i)
 }
 \arguments{
-\item{t}{the time}
+\item{t}{time}
 
-\item{y}{the state variables}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Port function for the travel eir , \eqn{\Theta}.

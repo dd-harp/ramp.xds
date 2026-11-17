@@ -30,7 +30,7 @@ check_timespent_matrix = function(TS, Np, Nh){
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 change_timespent_matrix = function(timespent, xds_obj, i=1){
   check_timespent_matrix(timespent, xds_obj$nPatches, xds_obj$nStrata[i])
@@ -75,7 +75,7 @@ NULL
 #' @param i the host species index
 #' @param options configuration options
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_timespent = function(name, xds_obj, options = list(), i=1){
@@ -110,7 +110,7 @@ setup_timespent.list = function(name, xds_obj, options=list(), i=1){
 #' @title Set up no time spent matrix 
 #' @description Don't change anything 
 #' @inheritParams setup_timespent
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_timespent.setup = function(name, xds_obj, options = list(), i=1){
@@ -127,7 +127,7 @@ setup_timespent.setup = function(name, xds_obj, options = list(), i=1){
 #' @title Set up no time spent matrix 
 #' @description Don't change anything 
 #' @inheritParams setup_timespent
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_timespent.no_setup = function(name, xds_obj, options = list(), i=1){
@@ -137,7 +137,7 @@ setup_timespent.no_setup = function(name, xds_obj, options = list(), i=1){
 #' @title Set up a time spent matrix
 #' @description Implements the "at_home" case for [setup_timespent]. See [make_timespent_at_home]
 #' @inheritParams setup_timespent
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_timespent.at_home = function(name, xds_obj, options = list(), i=1){
@@ -183,7 +183,7 @@ make_timespent_at_home = function(nPatches, residence, options=list(), at_home=1
 #' matrix must be at `options$timespent_matrix` 
 #' 
 #' @inheritParams setup_timespent
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_timespent.as_matrix = function(name, xds_obj, options=list(), i=1){
@@ -202,7 +202,7 @@ setup_timespent.as_matrix = function(name, xds_obj, options=list(), i=1){
 #' @description Implements [setup_timespent] from a set of xy coordinates
 #' and a spatial kernel. See [make_timespent_xy]
 #' @inheritParams setup_timespent
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_timespent.xy = function(name, xds_obj, options=list(), i=1) {
@@ -217,7 +217,7 @@ setup_timespent.xy = function(name, xds_obj, options=list(), i=1) {
 #' @description Build a time spent matrix from a set of patch locations
 #' and a kernel function that weights by distance. 
 #' 
-#' @param xds_obj the **`xds`** model object
+#' @param xds_obj an **`xds`** model object
 #' @param xy is the xy-locations of the patches
 #' @param residence is the home patch for each stratum
 #' @param stay is the fraction of time spent at home
@@ -247,12 +247,12 @@ make_timespent_xy = function(xds_obj, xy, residence, stay, kern, kopts=list()) {
 #' @description Port function for the time spent matrix, \eqn{\Theta}.
 #' Dispatches on `class(xds_obj$XY_interface$timespent_obj[[i]])`.
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_timespent <- function(t, y, xds_obj, i) {
@@ -265,7 +265,7 @@ update_timespent <- function(t, y, xds_obj, i) {
 #' is updated properly after a change
 #' 
 #' @inheritParams update_timespent
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_timespent.static <- function(t, y, xds_obj, i) {return(xds_obj)}
@@ -276,12 +276,12 @@ update_timespent.static <- function(t, y, xds_obj, i) {return(xds_obj)}
 #' @description Compute and store a 
 #' time spent matrix 
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 timespent = function(t, y, xds_obj, i){
@@ -291,7 +291,7 @@ timespent = function(t, y, xds_obj, i){
 #' @title Compute time spent
 #' @description Return the time spent objects unmodified
 #' @inheritParams timespent
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 timespent.static = function(t, y, xds_obj, i){

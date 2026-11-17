@@ -100,7 +100,7 @@
 #' @param model_name a name for the model 
 #' @param xds is `xde` for differential equations or `dts` for discrete time systems
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 xds_setup = function(
      XHname = "SIS",
@@ -239,7 +239,7 @@ xds_setup = function(
 #' @param model_name is a name for the model 
 #' @param xds is `xde` for differential equations or `dts` for discrete time systems
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 xds_setup_mosy = function(
@@ -356,7 +356,7 @@ xds_setup_mosy = function(
 #' @param model_name is a name for the model (arbitrary)
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 xds_setup_aquatic = function(Lname = "basicL",
                              Loptions = list(),
@@ -470,7 +470,7 @@ xds_setup_aquatic = function(Lname = "basicL",
 #' @param model_name a name for the model
 #' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 xds_setup_human = function(XHname = "SIS",
                            XHoptions = list(),
@@ -596,7 +596,7 @@ xds_setup_human = function(XHname = "SIS",
 #' @param HPop the initial human population density for each stratum
 #' @param model_name is a name for the model (arbitrary)
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 xds_setup_eir = function(eir=1/365,
                          F_season = F_one, 
@@ -666,9 +666,9 @@ xds_setup_eir = function(eir=1/365,
 #' @description
 #' Update the values of all terms computed internally 
 #' 
-#' @param xds_obj an **`xds`** object
+#' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal 
 #' @export
 update_interfaces = function(xds_obj){

@@ -16,7 +16,7 @@ setup_V_inits(xds_obj, H, options = list(), i = 1)
 \item{i}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 This method dispatches on \code{xds_obj$V_obj[[i]]}.

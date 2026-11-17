@@ -20,4 +20,4 @@ setup_L_ix(xds_obj, s)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

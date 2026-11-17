@@ -5,8 +5,8 @@
 #' A generic function to retrieve variables from the **`xds`** model object
 #'
 #' @param opts an options list and dispatching
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param ix the species index
 #'

@@ -12,7 +12,7 @@ change_Upsilon(xds_obj, s = 1)
 \item{s}{vector species index}
 }
 \value{
-an \strong{xds} model object
+an \strong{\code{xds}} model object
 }
 \description{
 Update \eqn{\Upsilon}, the matrix describing

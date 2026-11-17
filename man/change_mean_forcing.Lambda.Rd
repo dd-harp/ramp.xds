@@ -14,7 +14,7 @@
 \item{ix}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Change the mean emergence rate

@@ -16,7 +16,7 @@ setup_Omega_obj(ch, up, xds_obj, s = 1)
 \item{s}{vector species index}
 }
 \value{
-an \strong{xds} model object
+an \strong{\code{xds}} model object
 }
 \description{
 The Omega object handles

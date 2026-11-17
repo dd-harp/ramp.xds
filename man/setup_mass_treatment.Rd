@@ -24,7 +24,7 @@ setup_mass_treatment(
 \item{i}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Add mass treatment ports to modules.

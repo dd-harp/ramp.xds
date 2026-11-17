@@ -7,16 +7,16 @@
 update_habitat_search_weights(t, y, xds_obj, s)
 }
 \arguments{
-\item{t}{the time}
+\item{t}{time}
 
-\item{y}{the state variables}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Port function for the habitat_search_weights, \eqn{w}.

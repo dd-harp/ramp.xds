@@ -11,10 +11,10 @@ NULL
 #' @title Set the values variables for health-based malaria control
 #' @description Set the values of
 #' variables for health interventions.
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 Health = function(t, y, xds_obj){
@@ -26,7 +26,7 @@ Health = function(t, y, xds_obj){
 #' variables are configured so `Health` returns
 #' the **`ramp.xds`** model object without modification
 #' @inheritParams Health
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 Health.none = function(t, y, xds_obj){
@@ -37,7 +37,7 @@ Health.none = function(t, y, xds_obj){
 #' @description This sets up the `none` option
 #' for exogenous health: no health.
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_health_object = function(xds_obj){

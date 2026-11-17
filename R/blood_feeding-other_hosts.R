@@ -27,7 +27,7 @@ check_other_blood_hosts = function(other_blood_hosts, nP){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_other_blood_hosts = function(other_blood_hosts, xds_obj, s=1){
@@ -45,7 +45,7 @@ change_other_blood_hosts = function(other_blood_hosts, xds_obj, s=1){
 #' @param options configuration options
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_other_blood_hosts = function(name, xds_obj, options = list(), s=1){
@@ -64,7 +64,7 @@ setup_other_blood_hosts = function(name, xds_obj, options = list(), s=1){
 #'
 #' @inheritParams setup_other_blood_hosts
 #'
-#' @return an **`xds`** object 
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -79,7 +79,7 @@ setup_other_blood_hosts.list = function(name, xds_obj, options=list(), s=1){
 #' @title Set up no other_blood_hosts 
 #' @description Don't change anything 
 #' @inheritParams setup_other_blood_hosts
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_other_blood_hosts.no_setup = function(name, xds_obj, options = list(), s=1){
@@ -91,7 +91,7 @@ setup_other_blood_hosts.no_setup = function(name, xds_obj, options = list(), s=1
 #' @description Implements the "method1" case for [setup_other_blood_hosts]. See [make_other_blood_hosts_random]
 #' 
 #' @inheritParams setup_other_blood_hosts
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_other_blood_hosts.random = function(name, xds_obj, options = list(), s=1){
@@ -125,7 +125,7 @@ make_other_blood_hosts_random = function(nPatches, options=list(), f_rand = stat
 #' must be at `options$other_blood_hosts` 
 #' 
 #' @inheritParams setup_other_blood_hosts
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_other_blood_hosts.as_is = function(name, xds_obj, options=list(), s=1){
@@ -145,12 +145,12 @@ setup_other_blood_hosts.as_is = function(name, xds_obj, options=list(), s=1){
 #' @description Port function for the other_blood_hosts, \eqn{\Theta}.
 #' Dispatches on `class(xds_obj$XY_interface$other_blood_hosts_obj[[s]])`.
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_other_blood_hosts <- function(t, y, xds_obj, s){
@@ -160,7 +160,7 @@ update_other_blood_hosts <- function(t, y, xds_obj, s){
 #' @title Update other blood hosts 
 #' @description The `static` method returns `xds_obj` unmodified
 #' @inheritParams update_other_blood_hosts
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_other_blood_hosts.static <- function(t, y, xds_obj, s) { return(xds_obj) }

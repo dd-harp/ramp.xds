@@ -7,14 +7,14 @@
 ML_interface(t, y, xds_obj)
 }
 \arguments{
-\item{t}{the time}
+\item{t}{time}
 
-\item{y}{the state variables}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Egg laying and emergence

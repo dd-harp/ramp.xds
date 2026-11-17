@@ -16,7 +16,7 @@ ode_to_dde(xds_obj)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Details
 

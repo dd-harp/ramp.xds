@@ -29,7 +29,7 @@ check_deaths = function(death_rates, Nh){
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_deaths = function(death_rates, xds_obj, i=1){
@@ -46,7 +46,7 @@ change_deaths = function(death_rates, xds_obj, i=1){
 #' @param i the host species index
 #' @param options configuration options
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_deaths = function(name, xds_obj, options = list(), i=1){
@@ -65,7 +65,7 @@ setup_deaths = function(name, xds_obj, options = list(), i=1){
 #'
 #' @inheritParams setup_deaths
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_deaths.list = function(name, xds_obj, options=list(), i=1){
@@ -79,7 +79,7 @@ setup_deaths.list = function(name, xds_obj, options=list(), i=1){
 #' @title Set up death rates
 #' @description Change nothing
 #' @inheritParams setup_deaths
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_deaths.no_setup = function(name, xds_obj, options = list(), i=1){
@@ -96,7 +96,7 @@ setup_deaths.no_setup = function(name, xds_obj, options = list(), i=1){
 #' must be at `options$death_rates
 #' 
 #' @inheritParams setup_deaths
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_deaths.constant = function(name, xds_obj, options=list(), i=1){
@@ -117,7 +117,7 @@ setup_deaths.constant = function(name, xds_obj, options=list(), i=1){
 #' must be at `options$death_rates
 #' 
 #' @inheritParams setup_deaths
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_deaths.zero = function(name, xds_obj, options=list(), i=1){
@@ -135,7 +135,7 @@ setup_deaths.zero = function(name, xds_obj, options=list(), i=1){
 #'  must be at `options$deaths` 
 #' 
 #' @inheritParams setup_deaths
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_deaths.as_is = function(name, xds_obj, options=list(), i=1){

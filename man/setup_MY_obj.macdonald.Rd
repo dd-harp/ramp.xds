@@ -16,7 +16,7 @@
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 This sets up a \code{macdonald} model object for the \strong{MY} module for the \eqn{s^{th}} vector species

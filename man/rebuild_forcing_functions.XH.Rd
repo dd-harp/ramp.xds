@@ -12,7 +12,7 @@
 \item{ix}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Rebuild forcing functions on the X object using \code{make_function}:

@@ -21,7 +21,7 @@ setup_skillset_MY = function(xds_obj, s){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_MY = function(xds_obj, s){
@@ -37,8 +37,8 @@ check_MY = function(xds_obj, s){
 #'
 #' @note This is the `S3` generic. Methods dispatch on `MY_obj[[s]]`
 #'
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
@@ -53,8 +53,8 @@ dMYdt <- function(t, y, xds_obj, s) {
 #' @title Update states (**MY**) 
 #'
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
@@ -69,8 +69,8 @@ Update_MYt <- function(t, y, xds_obj, s) {
 
 #' @title Infective mosquito biting rate
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [numeric] vector of length `nPatches`
@@ -83,8 +83,8 @@ F_fqZ <- function(t, y, xds_obj, s) {
 #' @title Mosquito biting rate
 #' @description This method dispatches on the type of `xds_obj$MY_obj` and
 #' returns the daily mosquito biting density on humans, `fqM`, for each patch.
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [numeric] vector of length `nPatches`
@@ -97,8 +97,8 @@ F_fqM <- function(t, y, xds_obj, s) {
 
 #' @title Number of eggs laid by adult mosquitoes
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [numeric] vector of length `nPatches`
@@ -111,11 +111,11 @@ F_eggs <- function(t, y, xds_obj, s) {
 
 #' @title Mosquito bionomics (**MY**)
 #' @description Compute the adult mosquito bionomic parameter values
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MBionomics <- function(t, y, xds_obj, s) {
@@ -124,11 +124,11 @@ MBionomics <- function(t, y, xds_obj, s) {
 
 #' @title Apply effect sizes (**MY**)
 #' @description Apply vector control effect sizes to adult mosquito bionomic parameters
-#' @param t current simulation time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 MEffectSizes <- function(t, y, xds_obj, s) {
@@ -158,7 +158,7 @@ MEffectSizes <- function(t, y, xds_obj, s) {
 #' @param options a [list]
 #' @param s the vector species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -180,7 +180,7 @@ setup_MY_ix <- function(xds_obj, s) {
 
 #' @title List variables (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
-#' @param y the variables
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
@@ -252,7 +252,7 @@ get_MY_pars <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
 #' @param s the vector species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 change_MY_pars <- function(xds_obj, options=list(), s=1) {
   UseMethod("change_MY_pars", xds_obj$MY_obj[[s]])
@@ -275,7 +275,7 @@ change_MY_pars <- function(xds_obj, options=list(), s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param options a [list]
 #' @param s the vector species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_MY_inits = function(xds_obj, options=list(), s=1){
@@ -305,7 +305,7 @@ get_MY_inits <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
 #' @param s the vector species index
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_MY_inits <- function(xds_obj, options=list(), s=1) {

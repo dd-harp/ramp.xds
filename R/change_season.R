@@ -7,7 +7,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @param ix the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 #' @keywords internal
@@ -23,7 +23,7 @@ change_season = function(X, xds_obj, ix=1){
 #'
 #' @inheritParams change_season
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -40,7 +40,7 @@ change_season.none = function(X, xds_obj, ix=1){
 #'
 #' @importFrom ramp.func make_function
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -64,7 +64,7 @@ change_season.Lambda = function(X, xds_obj, ix=1){
 #'
 #' @importFrom ramp.func make_function
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export

@@ -6,7 +6,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_demog_obj = function(xds_obj, i=1){
@@ -22,14 +22,15 @@ setup_demog_obj = function(xds_obj, i=1){
 
 #' @title Human/host births
 #'
-#' @param t current simulation time
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
 #'
 #' @return see help pages for specific methods
 #' @keywords internal
 #' @export
-Births <- function(t, xds_obj, i){
+Births <- function(t, y, xds_obj, i){
   UseMethod("Births", xds_obj$XH_obj[[i]]$birth_obj)
 }
 
@@ -42,25 +43,25 @@ Births <- function(t, xds_obj, i){
 #' @return see help pages for specific methods
 #' @keywords internal
 #' @export
-Births.zero <- function(t, xds_obj, i){rep(0, xds_obj$nStrata[i])}
+Births.zero <- function(t, y, xds_obj, i){rep(0, xds_obj$nStrata[i])}
 
 
 #' @title Human/host births
 #'
-#' @description No births
+#' @description Constant birth rates
 #'
 #' @inheritParams Births
 #'
 #' @return see help pages for specific methods
 #' @keywords internal
 #' @export
-Births.constant <- function(t, xds_obj, i){xds_obj$XH_obj[[i]]$birth_obj$birth_rates}
+Births.constant <- function(t, y, xds_obj, i){xds_obj$XH_obj[[i]]$birth_obj$birth_rates}
 
 
 
 #' @title Human/host deaths
 #'
-#' @param t current simulation time
+#' @param t time
 #' @param X a state variable
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
@@ -75,7 +76,7 @@ Deaths <- function(t, X, xds_obj, i){
 
 #' @title Human/host deaths
 #'
-#' @param t current simulation time
+#' @param t time
 #' @param X a state variable
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
@@ -90,7 +91,7 @@ Deaths.zero <- function(t, X, xds_obj, i){
 
 #' @title Human/host deaths
 #'
-#' @param t current simulation time
+#' @param t time
 #' @param X a state variable
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
@@ -111,17 +112,17 @@ Deaths.constant <- function(t, X, xds_obj, i){
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 check_dHdt = function(xds_obj, i=1){
-  H <- get_H(xds_obj, i)
-  dHdt <- Births(t, xds_obj, i) - Deaths(t, H, xds_obj, i)
+  t <- 0
+  y <- get_inits(xds_obj, flatten=TRUE)
+  H <- F_H(t, y, xds_obj, i)
+  dHdt <- Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, i)
   if(sum(abs(dHdt)>1e-12)>0){
     class(xds_obj$blood_feeding_obj) = "dynamic"
     class(xds_obj$transmission_obj) = "dynamic"
   }
   return(xds_obj)
 }
-
-

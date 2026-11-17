@@ -14,7 +14,7 @@ change_vis_kappa(vis_kappa, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Update the vis_kappa for the \eqn{s^{th}} vector species, and

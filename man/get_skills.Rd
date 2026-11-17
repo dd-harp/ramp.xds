@@ -9,7 +9,7 @@ get_skills(module, xds_obj, ix)
 \arguments{
 \item{module}{"all" or "XY" or "MY" or "L"}
 
-\item{xds_obj}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{ix}{the species index}
 }

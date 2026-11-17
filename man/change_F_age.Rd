@@ -14,7 +14,7 @@ change_F_age(F, xds_obj, ix = 1)
 \item{ix}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Change the age function. The function \code{F} should have the form

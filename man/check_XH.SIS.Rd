@@ -12,7 +12,7 @@
 \item{i}{host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Check / update before solving

@@ -30,7 +30,7 @@
 NULL
 
 #' @title Parse a state variable vector 
-#' @param y a [vector] with the variables
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @return a named [list]
 #' @keywords internal
@@ -102,7 +102,7 @@ parse_orbits <- function(outputs, xds_obj){
 #' @param xds_obj an **`xds`** model object
 #' @param de_vars the solutions [matrix]
 #' @param tm the time
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 parse_outputs = function(xds_obj, de_vars, tm){
   UseMethod("parse_outputs", xds_obj$frame)
 }
@@ -111,7 +111,7 @@ parse_outputs = function(xds_obj, de_vars, tm){
 #' @export
 #' @title Make Outputs
 #' @inheritParams parse_outputs
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 parse_outputs.full = function(xds_obj, de_vars, tm){
   xds_obj$outputs$time <- tm
   xds_obj$outputs$last_y <- tail(de_vars, 1)
@@ -127,7 +127,7 @@ parse_outputs.full = function(xds_obj, de_vars, tm){
 #' @export
 #' @title Make Outputs
 #' @inheritParams parse_outputs
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 parse_outputs.mosy = function(xds_obj, de_vars, tm){
   xds_obj$outputs$time <- tm
   xds_obj$outputs$last_y <- tail(de_vars, 1)
@@ -142,7 +142,7 @@ parse_outputs.mosy = function(xds_obj, de_vars, tm){
 #' @export
 #' @title Make Outputs
 #' @inheritParams parse_outputs
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 parse_outputs.aquatic = function(xds_obj, de_vars, tm){
   xds_obj$outputs$time <- tm
   xds_obj$outputs$last_y <- tail(de_vars, 1)
@@ -155,7 +155,7 @@ parse_outputs.aquatic = function(xds_obj, de_vars, tm){
 #' @export
 #' @title Make Outputs
 #' @inheritParams parse_outputs
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 parse_outputs.human = function(xds_obj, de_vars, tm){
   xds_obj$outputs$time <- tm
   xds_obj$outputs$last_y <- tail(de_vars, 1)
@@ -169,7 +169,7 @@ parse_outputs.human = function(xds_obj, de_vars, tm){
 #' @export
 #' @title Make Outputs
 #' @inheritParams parse_outputs
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 parse_outputs.eir = function(xds_obj, de_vars, tm){
   xds_obj$outputs$time <- tm
   xds_obj$outputs$last_y <- tail(de_vars, 1)
@@ -187,7 +187,7 @@ parse_outputs.eir = function(xds_obj, de_vars, tm){
 #' @param xds_obj an **`xds`** model object
 #' @param i host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 parse_XH_terms <- function(xds_obj, i=1) {
@@ -223,7 +223,7 @@ parse_XH_terms <- function(xds_obj, i=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 parse_MY_terms <- function(xds_obj, s=1) {
@@ -264,7 +264,7 @@ parse_MY_terms <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 parse_bionomics <- function(xds_obj, s=1) {
@@ -305,7 +305,7 @@ parse_bionomics <- function(xds_obj, s=1) {
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 parse_L_terms <- function(xds_obj, s=1) {

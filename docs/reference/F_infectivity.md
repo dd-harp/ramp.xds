@@ -12,7 +12,7 @@ F_infectivity(y, xds_obj, i)
 
 - y:
 
-  state vector
+  dependent variables
 
 - xds_obj:
 

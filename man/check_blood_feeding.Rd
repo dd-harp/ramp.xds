@@ -10,7 +10,7 @@ check_blood_feeding(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Run a set of consistency checks for the \code{blood_feeding}

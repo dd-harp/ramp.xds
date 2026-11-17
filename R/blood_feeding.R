@@ -85,7 +85,7 @@ make_residence_matrix = function(nPatches, residence){
 #' @description Run a set of consistency checks for the `blood_feeding`
 #'
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 #'
@@ -148,7 +148,7 @@ check_blood_feeding = function(xds_obj){
 #'
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @seealso [setup_transmission]
 #'
@@ -256,10 +256,10 @@ F_B_available = function(W, visitors, other_blood, traps){
 
 #' @title Compute available blood hosts of the i^th species
 #' @description Compute the available for the pathogen's hosts for blood feeding
-#' @param t the time
-#' @param y state vector
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 compute_WB <- function(t, y, xds_obj){
@@ -296,10 +296,10 @@ F_rbr = function(search_weights, H){
 
 #' @title Compute and attach the relative biting rates
 #' @description Compute the available for the pathogen's hosts for blood feeding
-#' @param t the time
+#' @param t time
 #' @param xds_obj an **`xds`** model object
-#' @param y state vector
-#' @return an **`xds`** object
+#' @param y dependent variables
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 compute_RBR = function(t, xds_obj, y){
@@ -321,7 +321,7 @@ compute_RBR = function(t, xds_obj, y){
 #' hosts \eqn{W}, and visitors \eqn{W_\delta}, and other available vertebrate hosts, \eqn{O}.
 #' Total available is a simple sum: \deqn{B = W + W_\delta + O}
 #' @references{\insertRef{WuSL2023SpatialDynamics}{ramp.xds}}
-#' @param t the time
+#' @param t time
 #' @param TiSp a time spent matrix
 #' @param F_circadian a function to compute relative activity rates by time of day
 #' @param time_away the fraction of time spent at home
@@ -337,8 +337,8 @@ F_TaR = function(t, TiSp, F_circadian, time_away){
 #' @title Make TaR
 #' @description Make a time at risk matrix (TaR) from a time spent matrix and a circadian function
 #' @param xds_obj an **`xds`** model object
-#' @param t the time
-#' @return an **`xds`** object
+#' @param t time
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 compute_TaR <- function(xds_obj, t=0){
@@ -357,10 +357,10 @@ compute_TaR <- function(xds_obj, t=0){
 #' @description Compute and store host available, \eqn{W},
 #' total blood host available, \eqn{B},
 #' the time spent matrix \eqn{\Theta}, and the time-at-risk matrix \eqn{\Psi},
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 BloodFeeding = function(t, y, xds_obj){
@@ -370,7 +370,7 @@ BloodFeeding = function(t, y, xds_obj){
 #' @title Compute blood feeding objects: static models
 #' @description Return the blood feeding objects unmodified
 #' @inheritParams BloodFeeding
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 BloodFeeding.static = function(t, y, xds_obj){
@@ -383,7 +383,7 @@ BloodFeeding.static = function(t, y, xds_obj){
 #' the time spent matrix \eqn{(\Theta)}, and the time-at-risk matrix \eqn{(\Psi)}
 #' for static models.
 #' @inheritParams BloodFeeding
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 BloodFeeding.dynamic = function(t, y, xds_obj){
@@ -396,7 +396,7 @@ BloodFeeding.dynamic = function(t, y, xds_obj){
 #' the time spent matrix \eqn{(\Theta)}, and the time-at-risk matrix \eqn{(\Psi)}
 #' for static models.
 #' @inheritParams BloodFeeding
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 blood_feeding_dynamics = function(t, y, xds_obj){
@@ -417,7 +417,7 @@ blood_feeding_dynamics = function(t, y, xds_obj){
 #' 
 #' @param xds_obj an **`xds`** model object
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_XY_interface = function(xds_obj){

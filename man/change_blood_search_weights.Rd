@@ -14,7 +14,7 @@ change_blood_search_weights(blood_search_weights, xds_obj, i = 1)
 \item{i}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Change the \emph{static} blood search weights

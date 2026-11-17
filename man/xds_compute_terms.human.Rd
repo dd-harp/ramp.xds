@@ -7,9 +7,9 @@
 \method{xds_compute_terms}{human}(t, y, xds_obj)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{t}{time}
 
-\item{y}{state vector}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }

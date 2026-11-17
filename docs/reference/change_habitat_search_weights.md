@@ -25,4 +25,4 @@ change_habitat_search_weights(search_weights, xds_obj, s = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

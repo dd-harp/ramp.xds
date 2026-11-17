@@ -16,7 +16,7 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 \item{s}{the host species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Set up a vis_kappa

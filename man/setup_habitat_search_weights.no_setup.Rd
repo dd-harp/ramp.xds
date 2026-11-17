@@ -16,7 +16,7 @@
 \item{s}{the mosquito species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Don't change anything

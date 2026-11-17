@@ -27,7 +27,7 @@ xds_setup_aquatic(
 \item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 \loadmathjax

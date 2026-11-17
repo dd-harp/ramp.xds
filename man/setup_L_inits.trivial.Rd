@@ -14,7 +14,7 @@
 \item{s}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 The \code{trivial} module (\strong{L}) for the \eqn{s^{th}} species

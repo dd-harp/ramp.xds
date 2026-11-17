@@ -26,7 +26,7 @@ check_vis_kappa = function(vis_kappa, nP){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_vis_kappa = function(vis_kappa, xds_obj, s=1){
@@ -45,7 +45,7 @@ change_vis_kappa = function(vis_kappa, xds_obj, s=1){
 #' @param options configuration options
 #' @param s the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_vis_kappa = function(name, xds_obj, options = list(), s=1){
@@ -78,7 +78,7 @@ setup_vis_kappa.list = function(name, xds_obj, options=list(), s=1){
 #' @title Set up no vis_kappa 
 #' @description Don't change anything 
 #' @inheritParams setup_vis_kappa
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_vis_kappa.no_setup = function(name, xds_obj, options = list(), s=1){
@@ -90,7 +90,7 @@ setup_vis_kappa.no_setup = function(name, xds_obj, options = list(), s=1){
 #' @description Implements the "random" case for [setup_vis_kappa]. See [make_vis_kappa_random]
 #' 
 #' @inheritParams setup_vis_kappa
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_vis_kappa.random = function(name, xds_obj, options = list(), s=1){
@@ -124,7 +124,7 @@ make_vis_kappa_random = function(nPatches, options=list(), f_rand = stats::rbeta
 #' must be at `options$vis_kappa` 
 #' 
 #' @inheritParams setup_vis_kappa
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_vis_kappa.as_is = function(name, xds_obj, options=list(), s=1){
@@ -144,12 +144,12 @@ setup_vis_kappa.as_is = function(name, xds_obj, options=list(), s=1){
 #' @description Port function to compute the availability of vis_kappa.
 #' Dispatches on `class(xds_obj$patches$vis_kappa_obj[[s]])`.
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_vis_kappa <- function(t, y, xds_obj, s){
@@ -160,7 +160,7 @@ update_vis_kappa <- function(t, y, xds_obj, s){
 #' 
 #' @description The `static` method returns `xds_obj` unmodified
 #' @inheritParams update_vis_kappa
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_vis_kappa.static <- function(t, y, xds_obj, s) { return(xds_obj) }

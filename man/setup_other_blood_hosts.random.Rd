@@ -16,7 +16,7 @@
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Implements the "method1" case for \link{setup_other_blood_hosts}. See \link{make_other_blood_hosts_random}

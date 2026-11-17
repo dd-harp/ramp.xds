@@ -14,7 +14,7 @@ change_other_blood_hosts(other_blood_hosts, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Update the other_blood_hosts for the \eqn{i^{th}} host species, and

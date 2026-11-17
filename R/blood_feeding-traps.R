@@ -27,7 +27,7 @@ check_blood_traps = function(blood_traps, nP){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_blood_traps = function(blood_traps, xds_obj, s=1){
@@ -45,7 +45,7 @@ change_blood_traps = function(blood_traps, xds_obj, s=1){
 #' @param options configuration options
 #' @param s the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_blood_traps = function(name, xds_obj, options = list(), s=1){
@@ -64,7 +64,7 @@ setup_blood_traps = function(name, xds_obj, options = list(), s=1){
 #'
 #' @inheritParams setup_blood_traps
 #'
-#' @return an **xds** object
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -79,7 +79,7 @@ setup_blood_traps.list = function(name, xds_obj, options=list(), s=1){
 #' @title Set up no blood_traps 
 #' @description Don't change anything 
 #' @inheritParams setup_blood_traps
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_blood_traps.no_setup = function(name, xds_obj, options = list(), s=1){
@@ -91,7 +91,7 @@ setup_blood_traps.no_setup = function(name, xds_obj, options = list(), s=1){
 #' @description Implements the "random" case for [setup_blood_traps]. See [make_blood_traps_random]
 #' 
 #' @inheritParams setup_blood_traps
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_blood_traps.random = function(name, xds_obj, options = list(), s=1){
@@ -127,7 +127,7 @@ make_blood_traps_random = function(nPatches, options=list(), f_rand = stats::rln
 #' must be at `options$blood_traps` 
 #' 
 #' @inheritParams setup_blood_traps
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_blood_traps.as_is = function(name, xds_obj, options=list(), s=1){
@@ -146,12 +146,12 @@ setup_blood_traps.as_is = function(name, xds_obj, options=list(), s=1){
 #' @description Port function for the blood_traps, \eqn{\Theta}.
 #' Dispatches on `class(xds_obj$patches$blood_traps_obj[[s]])`.
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_blood_traps <- function(t, y, xds_obj, s){
@@ -161,7 +161,7 @@ update_blood_traps <- function(t, y, xds_obj, s){
 #' @title Update the blood_traps
 #' @description The `static` method returns `xds_obj` unmodified
 #' @inheritParams update_blood_traps
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_blood_traps.static <- function(t, y, xds_obj, s) { return(xds_obj) }
@@ -171,12 +171,12 @@ update_blood_traps.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 #' @description The `S3` definition for the
 #' function that computes blood_traps
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 blood_traps = function(t, y, xds_obj, s){
@@ -189,7 +189,7 @@ blood_traps = function(t, y, xds_obj, s){
 #' 
 #' @inheritParams blood_traps
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export

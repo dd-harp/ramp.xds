@@ -14,7 +14,7 @@ get_L_vars(y, xds_obj, s)
 
 - y:
 
-  the variables
+  dependent variables
 
 - xds_obj:
 

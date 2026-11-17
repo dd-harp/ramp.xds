@@ -25,7 +25,7 @@ check_blood_search_weights = function(blood_search_weights, nStrata){
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_blood_search_weights = function(blood_search_weights, xds_obj, i=1){
@@ -46,7 +46,7 @@ change_blood_search_weights = function(blood_search_weights, xds_obj, i=1){
 #' @param i the host species index
 #' @param options configuration options
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @seealso [xds_setup], [xds_info_search_weights_blood]
 #' @export
@@ -81,7 +81,7 @@ setup_blood_search_weights.list = function(name, xds_obj, options=list(), i=1){
 #' @title Set up no blood_search_weights 
 #' @description Don't change anything 
 #' @inheritParams setup_blood_search_weights
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_blood_search_weights.setup = function(name, xds_obj, options = list(), i=1){
@@ -95,7 +95,7 @@ setup_blood_search_weights.setup = function(name, xds_obj, options = list(), i=1
 #' @title Set up no blood_search_weights 
 #' @description Don't change anything 
 #' @inheritParams setup_blood_search_weights
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_blood_search_weights.no_setup = function(name, xds_obj, options = list(), i=1){
@@ -107,7 +107,7 @@ setup_blood_search_weights.no_setup = function(name, xds_obj, options = list(), 
 #' @description Implements the "method1" case for [setup_blood_search_weights]. See [make_blood_search_weights_random]
 #' 
 #' @inheritParams setup_blood_search_weights
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_blood_search_weights.random = function(name, xds_obj, options = list(), i=1){
@@ -149,7 +149,7 @@ make_blood_search_weights_random = function(nStrata, options=list(), f_rand = st
 #' `options$blood_search_weights` 
 #' 
 #' @inheritParams setup_blood_search_weights
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_blood_search_weights.as_is = function(name, xds_obj, options=list(), i=1){
@@ -169,12 +169,12 @@ setup_blood_search_weights.as_is = function(name, xds_obj, options=list(), i=1){
 #' @description 
 #' This is called to update dy
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_blood_search_weights <- function(t, y, xds_obj, i){
@@ -184,7 +184,7 @@ update_blood_search_weights <- function(t, y, xds_obj, i){
 #' @title Update the blood_search_weights
 #' @description The `static` method returnStrata `xds_obj` unmodified
 #' @inheritParams update_blood_search_weights
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_blood_search_weights.static <- function(t, y, xds_obj, i) { return(xds_obj) }

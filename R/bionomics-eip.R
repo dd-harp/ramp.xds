@@ -27,7 +27,7 @@ setup_eip_obj = function(eip, MY_obj){
 #' @description This method dispatches on the type of `eip_obj` and computes
 #' the extrinsic incubation period.
 #'
-#' @param t current simulation time
+#' @param t time
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #'
@@ -57,7 +57,7 @@ F_eip.static <- function(t, xds_obj, s){
 #' @description This method dispatches on the type of `eip_obj` and computes
 #' the extrinsic incubation period.
 #'
-#' @param t current simulation time
+#' @param t time
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #'

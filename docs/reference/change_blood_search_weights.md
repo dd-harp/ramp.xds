@@ -24,4 +24,4 @@ change_blood_search_weights(blood_search_weights, xds_obj, i = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

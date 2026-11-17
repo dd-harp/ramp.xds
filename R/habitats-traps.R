@@ -26,7 +26,7 @@ check_ovitraps = function(ovitraps, nP){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_ovitraps = function(ovitraps, xds_obj, s=1){
@@ -45,7 +45,7 @@ change_ovitraps = function(ovitraps, xds_obj, s=1){
 #' @param options configuration options
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_ovitraps = function(name, xds_obj, options = list(), s=1){
@@ -64,7 +64,7 @@ setup_ovitraps = function(name, xds_obj, options = list(), s=1){
 #'
 #' @inheritParams setup_ovitraps
 #'
-#' @return an **`xds`** object 
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -79,7 +79,7 @@ setup_ovitraps.list = function(name, xds_obj, options=list(), s=1){
 #' @title Set up no ovitraps 
 #' @description Don't change anything 
 #' @inheritParams setup_ovitraps
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_ovitraps.no_setup = function(name, xds_obj, options = list(), s=1){
@@ -91,7 +91,7 @@ setup_ovitraps.no_setup = function(name, xds_obj, options = list(), s=1){
 #' @description Set up random values for ovitrap availability
 #' 
 #' @inheritParams setup_ovitraps
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_ovitraps.random = function(name, xds_obj, options = list(), s=1){
@@ -126,7 +126,7 @@ make_ovitraps_random = function(nPatches, options=list(), f_rand = stats::rlnorm
 #' must be at `options$ovitraps` 
 #' 
 #' @inheritParams setup_ovitraps
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_ovitraps.as_is = function(name, xds_obj, options=list(), s=1){
@@ -146,12 +146,12 @@ setup_ovitraps.as_is = function(name, xds_obj, options=list(), s=1){
 #' 
 #' @description Port function for the ovitraps. 
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_ovitraps <- function(t, y, xds_obj, s){
@@ -161,7 +161,7 @@ update_ovitraps <- function(t, y, xds_obj, s){
 #' @title Update ovitraps 
 #' @description The `static` method returns `xds_obj` unmodified
 #' @inheritParams update_ovitraps
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_ovitraps.static <- function(t, y, xds_obj, s) { return(xds_obj) }

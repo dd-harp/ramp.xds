@@ -10,7 +10,7 @@
 #'
 #' @seealso [F_one]
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 change_F_trend = function(F, xds_obj, ix=1){
@@ -25,7 +25,7 @@ change_F_trend = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_trend
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -41,7 +41,7 @@ change_F_trend.none = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_trend
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -58,7 +58,7 @@ change_F_trend.Lambda = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_trend
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -76,7 +76,7 @@ change_F_trend.eir = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_trend
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export
@@ -94,7 +94,7 @@ change_F_trend.kappa = function(F, xds_obj, ix=1){
 #' 
 #' @inheritParams change_F_trend
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @keywords internal
 #' @export

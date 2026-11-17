@@ -9,7 +9,7 @@
 #' @param xds_obj an **`xds`** model object
 #' @param t_neg_inf days before the present, \eqn{t_{-\infty}}
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 burnin = function(xds_obj, t_neg_inf = -3650){

@@ -14,7 +14,7 @@ change_L_inits(xds_obj, options = list(), s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Change the stored initial values for

@@ -21,4 +21,4 @@ update_Omega(xds_obj, s)
 
 ## Value
 
-an **xds** model object
+an **`xds`** model object

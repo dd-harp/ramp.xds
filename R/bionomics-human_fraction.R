@@ -76,7 +76,7 @@ check_q = function(xds_obj, s=1){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_q = function(xds_obj, s=1){
@@ -116,7 +116,7 @@ setup_human_fractions <- setup_q
 #' @param options configuration options
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_F_q = function(name, xds_obj, options = list(), s=1){
@@ -135,7 +135,7 @@ setup_F_q = function(name, xds_obj, options = list(), s=1){
 #'
 #' @inheritParams setup_F_q
 #'
-#' @return an **`xds`** object 
+#' @return an **`xds`** model object
 #' 
 #' @keywords internal
 #' @export
@@ -150,7 +150,7 @@ setup_F_q.list = function(name, xds_obj, options=list(), s=1){
 #' @title Set up no F_q 
 #' @description Don't change anything 
 #' @inheritParams setup_F_q
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_q.no_setup = function(name, xds_obj, options = list(), s=1){
@@ -183,7 +183,7 @@ setup_F_q.as_is = function(name, xds_obj, options=list(), s=1){
 #' @description Implements the "random" case for [setup_F_q]. See [make_F_q_random].
 #' 
 #' @inheritParams setup_F_q
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_q.random = function(name, xds_obj, options = list(), s=1){
@@ -254,7 +254,7 @@ F_q.WVB = function(t, xds_obj, s){
 #' @description Configure the WVB human feeding fraction method.
 #' 
 #' @inheritParams setup_F_q
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_q.WVB = function(name, xds_obj, options = list(), s=1){

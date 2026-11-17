@@ -26,7 +26,7 @@ check_visitors = function(visitors, nP){
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' 
 #' @export
 change_visitors = function(visitors, xds_obj, s=1){
@@ -48,7 +48,7 @@ change_visitors = function(visitors, xds_obj, s=1){
 #' @param options configuration options
 #' @param s the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_visitors = function(name, xds_obj, options = list(), s=1){
@@ -81,7 +81,7 @@ setup_visitors.list = function(name, xds_obj, options=list(), s=1){
 #' @title Set up no visitors 
 #' @description Don't change anything 
 #' @inheritParams setup_visitors
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_visitors.no_setup = function(name, xds_obj, options = list(), s=1){
@@ -93,7 +93,7 @@ setup_visitors.no_setup = function(name, xds_obj, options = list(), s=1){
 #' @description Implements the "random" case for [setup_visitors]. See [make_visitors_random]
 #' 
 #' @inheritParams setup_visitors
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_visitors.random = function(name, xds_obj, options = list(), s=1){
@@ -127,7 +127,7 @@ make_visitors_random = function(nPatches, options=list(), f_rand = stats::rlnorm
 #' must be at `options$visitors` 
 #' 
 #' @inheritParams setup_visitors
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_visitors.as_is = function(name, xds_obj, options=list(), s=1){
@@ -146,12 +146,12 @@ setup_visitors.as_is = function(name, xds_obj, options=list(), s=1){
 #' 
 #' @description Port function to compute the availability of visitors.
 #' 
-#' @param t the time
-#' @param y the state variables
+#' @param t time
+#' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_visitors <- function(t, y, xds_obj, s){
@@ -161,7 +161,7 @@ update_visitors <- function(t, y, xds_obj, s){
 #' @title Update visitors
 #' @description The `static` method returns `xds_obj` unmodified
 #' @inheritParams update_visitors
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_visitors.static <- function(t, y, xds_obj, s) { return(xds_obj) }

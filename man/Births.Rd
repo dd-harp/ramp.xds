@@ -4,10 +4,12 @@
 \alias{Births}
 \title{Human/host births}
 \usage{
-Births(t, xds_obj, i)
+Births(t, y, xds_obj, i)
 }
 \arguments{
-\item{t}{current simulation time}
+\item{t}{time}
+
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

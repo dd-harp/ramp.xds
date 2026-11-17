@@ -28,7 +28,7 @@ check_births = function(birth_rates, Nh){
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_births = function(birth_rates, xds_obj, i=1){
@@ -46,7 +46,7 @@ change_births = function(birth_rates, xds_obj, i=1){
 #' @param i the host species index
 #' @param options configuration options
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #'
 #' @export
 setup_births = function(name, xds_obj, options = list(), i=1){
@@ -65,7 +65,7 @@ setup_births = function(name, xds_obj, options = list(), i=1){
 #'
 #' @inheritParams setup_births
 #'
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_births.list = function(name, xds_obj, options=list(), i=1){
@@ -79,7 +79,7 @@ setup_births.list = function(name, xds_obj, options=list(), i=1){
 #' @title Set up no births  
 #' @description Don't change anything 
 #' @inheritParams setup_births
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_births.no_setup = function(name, xds_obj, options = list(), i=1){
@@ -89,7 +89,7 @@ setup_births.no_setup = function(name, xds_obj, options = list(), i=1){
 #' @title Set up no births  
 #' @description Don't change anything 
 #' @inheritParams setup_births
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_births.zero = function(name, xds_obj, options = list(), i=1){
@@ -109,7 +109,7 @@ setup_births.zero = function(name, xds_obj, options = list(), i=1){
 #' must be at `options$births` 
 #' 
 #' @inheritParams setup_births
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_births.constant = function(name, xds_obj, options=list(), i=1){
@@ -127,7 +127,7 @@ setup_births.constant = function(name, xds_obj, options=list(), i=1){
 #'  must be at `options$births` 
 #' 
 #' @inheritParams setup_births
-#' @return an **`xds`** object
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_births.as_is = function(name, xds_obj, options=list(), i=1){

@@ -7,7 +7,7 @@
 get_XH_vars(y, xds_obj, i = 1)
 }
 \arguments{
-\item{y}{the variables}
+\item{y}{dependent variables}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

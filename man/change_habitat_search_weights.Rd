@@ -14,7 +14,7 @@ change_habitat_search_weights(search_weights, xds_obj, s = 1)
 \item{s}{the species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Update the habitat_search_weights for the \eqn{i^{th}} host species, and

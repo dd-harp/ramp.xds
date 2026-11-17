@@ -14,7 +14,7 @@ change_trend(X, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 Set the interpolating points for F_trend

@@ -10,7 +10,7 @@ setup_importation(xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an \strong{\code{xds}} object
+an \strong{\code{xds}} model object
 }
 \description{
 This function, called by \link{make_xds_object_template}, sets up

@@ -27,7 +27,7 @@ setup_psi_obj = function(psi, L_obj){
 #' @description Set up an object
 #' to compute 
 #'
-#' @param t current simulation time
+#' @param t time
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #'

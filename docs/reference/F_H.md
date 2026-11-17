@@ -12,11 +12,11 @@ F_H(t, y, xds_obj, i)
 
 - t:
 
-  current simulation time
+  time
 
 - y:
 
-  state vector
+  dependent variables
 
 - xds_obj:
 
