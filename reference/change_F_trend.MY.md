@@ -25,4 +25,4 @@ change_F_trend(F, xds_obj, ix = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

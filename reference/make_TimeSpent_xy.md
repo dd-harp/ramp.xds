@@ -13,7 +13,7 @@ make_timespent_xy(xds_obj, xy, residence, stay, kern, kopts = list())
 
 - xds_obj:
 
-  the **`xds`** model object
+  an **`xds`** model object
 
 - xy:
 

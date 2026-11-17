@@ -13,11 +13,11 @@ update_timespent(t, y, xds_obj, i)
 
 - t:
 
-  the time
+  time
 
 - y:
 
-  the state variables
+  dependent variables
 
 - xds_obj:
 
@@ -29,4 +29,4 @@ update_timespent(t, y, xds_obj, i)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

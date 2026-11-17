@@ -43,4 +43,4 @@ setup_Omega_obj(ch, up, xds_obj, s = 1)
 
 ## Value
 
-an **xds** model object
+an **`xds`** model object

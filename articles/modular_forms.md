@@ -61,9 +61,8 @@ infections at the rate \\fqcX/H.\\
 
 \\ \begin{array}{rl} dX/dt &= fq b e^{-gn} \frac {Y}{H} (H-X) - r X \\
 dM/dt &= \Lambda - g M \\ dY/dt &= fq c \frac {X}{H} (M-Y) - g Y
-\end{array} \\ Written in this way, it is in a *standard form.*
-
-------------------------------------------------------------------------
+\end{array} \\ Written in this way, it is not in any particular form. Or
+we could also say that it is in *standard form.* \*\*\*
 
 ## A Modular Form
 
@@ -72,9 +71,11 @@ the modular form, we identify the terms in one equation that depend on
 the other variable. First, we focus on the equation describing human
 infection dynamics. We note that it depends on a term involving the
 variable \\Y.\\ The term is called the force of infection (FoI, Ross
-called it the *happenings* rate). We let \\h\\ denote the FoI:
+called it the *happenings* rate).
 
-\\h=fq b e^{-gn} \frac {Y}{H}.\\
+\\E =fq e^{-gn} \frac {Y}{H}.\\ We let \\h\\ denote the FoI:
+
+\\h = F_h(b, E) = b E.\\
 
 Now, the first equation can be rewritten:
 
@@ -106,7 +107,9 @@ form, there are three components:
 
 - **M** - mosquito population dynamics.
 
-There are two dynamical terms:
+There are three dynamical terms:
+
+- the daily EIR;
 
 - the FoI, describing parasite transmission from mosquitoes to humans;
   and
@@ -208,7 +211,7 @@ getS3method("dXHdt", "SIS")
     ##     foi <- xds_obj$terms$FoI[[i]]
     ##     with(get_XH_vars(y, xds_obj, i), {
     ##         with(xds_obj$XH_obj[[i]], {
-    ##             dH <- Births(t, xds_obj, i) - Deaths(t, H, xds_obj, 
+    ##             dH <- Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, 
     ##                 i)
     ##             dI <- foi * (1 - rho) * (H - I) - (r + sigma + rho * 
     ##                 foi) * I - Deaths(t, I, xds_obj, i)
@@ -217,7 +220,7 @@ getS3method("dXHdt", "SIS")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x5c15523aa658>
+    ## <bytecode: 0x5ea8190a37f0>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -246,7 +249,7 @@ getS3method("dMYdt", "SI")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x5c15525f7278>
+    ## <bytecode: 0x5ea8192d9848>
     ## <environment: namespace:ramp.xds>
 
 The term \\\Lambda\\ is passed from the trace function
@@ -271,5 +274,5 @@ getS3method("F_emerge", "trivial")
     ##             F_shock(t, V_k))
     ##     })
     ## }
-    ## <bytecode: 0x5c1552905b10>
+    ## <bytecode: 0x5ea8195fcc38>
     ## <environment: namespace:ramp.xds>

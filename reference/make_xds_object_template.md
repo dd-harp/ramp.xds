@@ -46,7 +46,7 @@ make_xds_object_template(
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Details
 

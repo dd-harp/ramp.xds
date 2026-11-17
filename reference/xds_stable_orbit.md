@@ -24,4 +24,4 @@ xds_stable_orbit(xds_obj, Y = 10, tol = 1e-05)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

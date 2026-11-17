@@ -25,4 +25,4 @@ change_deaths(death_rates, xds_obj, i = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

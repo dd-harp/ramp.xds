@@ -18,7 +18,7 @@ compute_all_available_water(xds_obj)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## See also
 

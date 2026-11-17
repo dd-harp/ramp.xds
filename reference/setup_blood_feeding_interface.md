@@ -18,7 +18,7 @@ setup_blood_feeding_interface(xds_obj, residence)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Details
 

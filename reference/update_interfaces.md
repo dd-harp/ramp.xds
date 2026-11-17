@@ -12,8 +12,8 @@ update_interfaces(xds_obj)
 
 - xds_obj:
 
-  an **`xds`** object
+  an **`xds`** model object
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

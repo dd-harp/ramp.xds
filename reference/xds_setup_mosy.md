@@ -74,7 +74,7 @@ xds_setup_mosy(
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Details
 

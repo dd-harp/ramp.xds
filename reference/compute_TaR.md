@@ -17,8 +17,8 @@ compute_TaR(xds_obj, t = 0)
 
 - t:
 
-  the time
+  time
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

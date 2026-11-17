@@ -25,4 +25,4 @@ change_time_away(time_away, xds_obj, i = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

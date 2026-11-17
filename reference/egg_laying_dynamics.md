@@ -13,11 +13,11 @@ egg_laying_dynamics(t, y, xds_obj)
 
 - t:
 
-  the time
+  time
 
 - y:
 
-  the state variables
+  dependent variables
 
 - xds_obj:
 
@@ -25,4 +25,4 @@ egg_laying_dynamics(t, y, xds_obj)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

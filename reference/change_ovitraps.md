@@ -24,4 +24,4 @@ change_ovitraps(ovitraps, xds_obj, s = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

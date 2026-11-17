@@ -1,19 +1,23 @@
 # Human/host births
 
-No births
+Constant birth rates
 
 ## Usage
 
 ``` r
 # S3 method for class 'constant'
-Births(t, xds_obj, i)
+Births(t, y, xds_obj, i)
 ```
 
 ## Arguments
 
 - t:
 
-  current simulation time
+  time
+
+- y:
+
+  dependent variables
 
 - xds_obj:
 

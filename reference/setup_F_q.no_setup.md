@@ -29,4 +29,4 @@ setup_F_q(name, xds_obj, options = list(), s = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

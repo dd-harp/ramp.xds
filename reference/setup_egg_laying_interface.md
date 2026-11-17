@@ -17,7 +17,7 @@ setup_egg_laying_interface(xds_obj)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Details
 

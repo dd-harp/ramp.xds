@@ -19,7 +19,7 @@ F_sigma(t, xds_obj, s)
 
 - t:
 
-  current simulation time
+  time
 
 - xds_obj:
 

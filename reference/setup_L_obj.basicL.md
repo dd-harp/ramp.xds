@@ -42,7 +42,7 @@ setup_L_obj(Lname, membership, xds_obj, options = list(), s = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Note
 

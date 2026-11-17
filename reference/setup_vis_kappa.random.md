@@ -32,4 +32,4 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

@@ -24,4 +24,4 @@ setup_Upsilon_obj(xds_obj, s = 1, dede = FALSE)
 
 ## Value
 
-an **xds** model object
+an **`xds`** model object

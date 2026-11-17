@@ -13,11 +13,11 @@ update_vis_kappa(t, y, xds_obj, s)
 
 - t:
 
-  the time
+  time
 
 - y:
 
-  the state variables
+  dependent variables
 
 - xds_obj:
 
@@ -29,4 +29,4 @@ update_vis_kappa(t, y, xds_obj, s)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

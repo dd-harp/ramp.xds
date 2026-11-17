@@ -24,4 +24,4 @@ setup_F_circadian(F_circadian, xds_obj, s = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

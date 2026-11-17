@@ -21,7 +21,7 @@ setup_skillset_XH(xds_obj, i)
 
 ## Value
 
-the **`xds`** object
+an **`xds`** model object
 
 ## Note
 

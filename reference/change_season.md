@@ -24,4 +24,4 @@ change_season(X, xds_obj, ix = 1)
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object

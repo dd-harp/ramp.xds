@@ -12,7 +12,7 @@ parse_y(y, xds_obj)
 
 - y:
 
-  a [vector](https://rdrr.io/r/base/vector.html) with the variables
+  dependent variables
 
 - xds_obj:
 

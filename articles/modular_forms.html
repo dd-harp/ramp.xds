@@ -198,8 +198,8 @@ dX/dt &amp;= fq b e^{-gn} \frac {Y}{H} (H-X) - r X \\
 dM/dt &amp;= \Lambda - g M \\
 dY/dt &amp;= fq c \frac {X}{H} (M-Y) - g Y
 \end{array}
-\]</span> Written in this way, it is in a <em>standard form.</em></p>
-<hr>
+\]</span> Written in this way, it is not in any particular form. Or we
+could also say that it is in <em>standard form.</em> ***</p>
 </div>
 <div class="section level2">
 <h2 id="a-modular-form">A Modular Form<a class="anchor" aria-label="anchor" href="#a-modular-form"></a>
@@ -209,10 +209,11 @@ In the modular form, we identify the terms in one equation that depend
 on the other variable. First, we focus on the equation describing human
 infection dynamics. We note that it depends on a term involving the
 variable <span class="math inline">\(Y.\)</span> The term is called the
-force of infection (FoI, Ross called it the <em>happenings</em> rate).
-We let <span class="math inline">\(h\)</span> denote the FoI:</p>
-<p><span class="math display">\[h=fq b e^{-gn} \frac
-{Y}{H}.\]</span></p>
+force of infection (FoI, Ross called it the <em>happenings</em>
+rate).</p>
+<p><span class="math display">\[E =fq e^{-gn} \frac {Y}{H}.\]</span> We
+let <span class="math inline">\(h\)</span> denote the FoI:</p>
+<p><span class="math display">\[h = F_h(b, E) = b E.\]</span></p>
 <p>Now, the first equation can be rewritten:</p>
 <p><span class="math display">\[
 dX/dt = h  (H-X) - r X
@@ -239,8 +240,9 @@ modular form, there are three components:</p>
 <li><p><strong>Y</strong> - the mosquito SI model; and</p></li>
 <li><p><strong>M</strong> - mosquito population dynamics.</p></li>
 </ul>
-<p>There are two dynamical terms:</p>
+<p>There are three dynamical terms:</p>
 <ul>
+<li><p>the daily EIR;</p></li>
 <li><p>the FoI, describing parasite transmission from mosquitoes to
 humans; and</p></li>
 <li><p>net infectiousness (NI), describing parasite transmission from
@@ -325,7 +327,7 @@ demography and ports for mass treatment. The code looks like this:</p>
 <span><span class="co">##     foi &lt;- xds_obj$terms$FoI[[i]]</span></span>
 <span><span class="co">##     with(get_XH_vars(y, xds_obj, i), {</span></span>
 <span><span class="co">##         with(xds_obj$XH_obj[[i]], {</span></span>
-<span><span class="co">##             dH &lt;- Births(t, xds_obj, i) - Deaths(t, H, xds_obj, </span></span>
+<span><span class="co">##             dH &lt;- Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, </span></span>
 <span><span class="co">##                 i)</span></span>
 <span><span class="co">##             dI &lt;- foi * (1 - rho) * (H - I) - (r + sigma + rho * </span></span>
 <span><span class="co">##                 foi) * I - Deaths(t, I, xds_obj, i)</span></span>
@@ -334,7 +336,7 @@ demography and ports for mass treatment. The code looks like this:</p>
 <span><span class="co">##         })</span></span>
 <span><span class="co">##     })</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5c15523aa658&gt;</span></span>
+<span><span class="co">## &lt;bytecode: 0x5ea8190a37f0&gt;</span></span>
 <span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
 <p>Derivatives for the mosquito ecology and “SI” model are computed by
 <code>dMYdt.SI</code>. Documentation is available through help in two
@@ -358,7 +360,7 @@ like this:</p>
 <span><span class="co">##         })</span></span>
 <span><span class="co">##     })</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5c15525f7278&gt;</span></span>
+<span><span class="co">## &lt;bytecode: 0x5ea8192d9848&gt;</span></span>
 <span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
 <p>The term <span class="math inline">\(\Lambda\)</span> is passed from
 the trace function <code>F_emerge.trivial</code>. Documentation is
@@ -376,7 +378,7 @@ available through help in two ways: <code><a href="../reference/trivial_L.html">
 <span><span class="co">##             F_shock(t, V_k))</span></span>
 <span><span class="co">##     })</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5c1552905b10&gt;</span></span>
+<span><span class="co">## &lt;bytecode: 0x5ea8195fcc38&gt;</span></span>
 <span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

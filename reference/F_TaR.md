@@ -12,7 +12,7 @@ F_TaR(t, TiSp, F_circadian, time_away)
 
 - t:
 
-  the time
+  time
 
 - TiSp:
 

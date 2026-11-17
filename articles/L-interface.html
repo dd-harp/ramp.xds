@@ -124,23 +124,18 @@ Mosquito Ecology</h3>
 
     
     
-<p>The <strong>L</strong> component was designed to model aquatic
-mosquito ecology. This vignette takes an overview of the functions in
-the <strong>L</strong> component. It is useful for anyone who wants to
-learn more about how the code works.</p>
-<p>In context, an <strong>L</strong> module gets the egg laying rate,
-<span class="math inline">\(\eta\)</span> from the
-<strong>ML</strong>-interface. It is the dot product of the total
-mosquito egg laying rate in a patch <span class="math inline">\(G\)</span> and the egg laying matrix <span class="math inline">\(U\)</span> (Figure 1). The core functions compute
-either</p>
-<ul>
-<li><p><code>xde</code> — a set of derivatives, generically denoted
-<span class="math inline">\(dL/dt\)</span></p></li>
-<li><p><code>dts</code> — a function that updates the state
-variables.</p></li>
-</ul>
-<p>It outputs the habitat emergence rate <span class="math inline">\(\alpha,\)</span> the number of adult female
-mosquitoes emerging from a patch, per day.</p>
+<p>The <strong>L</strong> component models aquatic mosquito ecology
+across larval habitats. This vignette describes its interfaces and the
+methods implemented by an <strong>L</strong> module.</p>
+<p>The <strong>L</strong> component is linked to adult mosquito ecology
+through egg laying and emergence. <code>F_eggs</code> returns the number
+of eggs laid by adult mosquitoes in each patch, denoted by <span class="math inline">\(G\)</span>. The egg-laying interface distributes
+those eggs among habitats to produce the habitat-specific input <span class="math inline">\(\eta\)</span>. The <strong>L</strong> module then
+computes its dynamics and the emergence rate <span class="math inline">\(\alpha\)</span> in each habitat. The emergence
+interface aggregates <span class="math inline">\(\alpha\)</span>, using
+the habitat membership matrix, into the patch-specific adult emergence
+rate <span class="math inline">\(\Lambda\)</span>.</p>
+<p>The two interfaces are illustrated below.</p>
 <hr>
 <div class="float">
 <img src="L_component.png" style="width:100.0%" alt="Figure 1 - A diagram of the L Component in context"><div class="figcaption">
@@ -149,195 +144,144 @@ mosquitoes emerging from a patch, per day.</p>
 </div>
 <hr>
 <div class="section level2">
-<h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
+<h2 id="module-methods">Module methods<a class="anchor" aria-label="anchor" href="#module-methods"></a>
 </h2>
-<p>To get a list of the <code>S3</code> generic function definitions
-from help, type:</p>
-<pre><code><span><span class="op">?</span><span class="va">L_functions</span></span></code></pre>
-<p>To inspect a method for a specific function, use
-<code>getS3method</code></p>
-<hr>
-<p>The <strong>L</strong> Component defines 16 <code>S3</code> generic
-functions in <a href="https://github.com/dd-harp/ramp.xds/blob/main/R/aquatic-L.R" target="_blank" class="external-link">aquatic-L.R</a>, and 3 that work generically. Each
-module defines two additional functions to set up an <strong>L</strong>
-object and the initial values.</p>
-<p>The required functions deal with various tasks required to build or
-solve a model, inspect or change the parameters or initial values,
-compute terms or outputs, and run consistency checks.</p>
-<p>Each module is defined by a string, generically called
-<code>Lname</code>, that identifies the module: <em>e.g.</em>
-<code>basicL</code>.</p>
+<p>Methods dispatch on the class of <code>xds_obj$L_obj[[s]]</code>,
+where <code>s</code> is the vector-species index. Model-specific methods
+use <code>s</code> consistently. There is no fixed number of methods
+that every module must implement: implement the dynamics method that
+matches the model and the outputs and setup methods needed by its
+interfaces.</p>
 <div class="section level3">
 <h3 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a>
 </h3>
-<p>At least one of the following is required, depending on whether the
-model family is a system of differential equations or a discrete time
-system:</p>
+<p>Implement one of the following:</p>
 <ul>
-<li><p><code>dLdt.Lname</code> :: differential equations are defined by
-a function that computes the derivatives. In <code>ramp.xds</code> these
-are encoded in a function called <code>dLdt</code>. The function is set
-up to be solved by <code><a href="https://rdrr.io/pkg/deSolve/man/ode.html" class="external-link">deSolve::ode</a></code> or
-<code><a href="https://rdrr.io/pkg/deSolve/man/dede.html" class="external-link">deSolve::dede</a></code>.</p></li>
-<li><p><code>Update_Lt.Lname</code> :: discrete time systems are defined
-by the function that updates the state variables in one time step. In
-<code>ramp.xds</code> these are encoded in a function called
-<code>Update_Lt</code> that computes and returns the <strong>state
-variables.</strong> The forms mimic the ones used for differential
-equations.</p></li>
+<li>
+<code>dLdt.Lname</code> for a continuous-time model. It receives
+<code>t</code>, the dependent-variable vector <code>y</code>,
+<code>xds_obj</code>, and <code>s</code>, and returns derivatives in the
+same order as the model’s state variables.</li>
+<li>
+<code>Update_Lt.Lname</code> for a discrete-time model. It receives
+the same arguments and returns the updated state variables in
+state-variable order.</li>
 </ul>
+<p>The functions are used by the continuous-time or discrete-time solver
+pathways, respectively.</p>
 </div>
 <div class="section level3">
 <h3 id="bionomics">Bionomics<a class="anchor" aria-label="anchor" href="#bionomics"></a>
 </h3>
-<p>Two functions update bionomic parameter values at each time step,
-called in sequence before the dynamics are computed.</p>
-<ul>
-<li><p><code>LBionomics.Lname</code> – computes the current bionomic
-parameter values for parameters that are ports. It also resets all
-effect sizes to 1.</p></li>
-<li><p><code>LEffectSizes.Lname</code> – applies vector control effect
-sizes to the bionomic parameters set by
-<code>LBionomics</code>.</p></li>
-</ul>
+<p><code>LBionomics.Lname</code> evaluates baseline bionomic parameter
+values at time <code>t</code> and resets their effect sizes.
+<code>LEffectSizes.Lname</code> applies vector-control effect sizes to
+those baseline values. Both methods receive <code>t</code>,
+<code>y</code>, <code>xds_obj</code>, and <code>s</code>, and return the
+updated <code>xds_obj</code>.</p>
 </div>
 <div class="section level3">
-<h3 id="output-terms">Output Terms<a class="anchor" aria-label="anchor" href="#output-terms"></a>
+<h3 id="egg-input-and-emergence-output">Egg input and emergence output<a class="anchor" aria-label="anchor" href="#egg-input-and-emergence-output"></a>
 </h3>
-<p>These functions compute dynamical terms – the outputs passed to an
-interface.</p>
+<p>The egg-laying interface computes patch-level adult egg production
+<span class="math inline">\(G\)</span> using <code>F_eggs</code>, then
+distributes eggs to aquatic habitats. If <span class="math inline">\(O\)</span> is the habitat-by-patch egg-laying
+matrix, <span class="math inline">\(Q\)</span> is the availability of
+modeled habitats in each patch, and <span class="math inline">\(Q_{\mathrm{all}}\)</span> is total egg-laying
+availability, the habitat-level input is</p>
+<p><span class="math display">\[
+\eta = O\left(G \circ \frac{Q}{Q_{\mathrm{all}}}\right),
+\]</span></p>
+<p>where <span class="math inline">\(\circ\)</span> denotes element-wise
+multiplication. Thus, <span class="math inline">\(\eta\)</span> has one
+value per habitat and is supplied to the L dynamics.</p>
+<p><code>F_emerge.Lname</code> returns the adult emergence quantity
+<span class="math inline">\(\alpha\)</span>, with one value per habitat.
+It is a rate for a continuous-time model and a number for a
+discrete-time model. The emergence interface aggregates habitat
+emergence by patch using the habitat membership matrix <span class="math inline">\(N\)</span>:</p>
+<p><span class="math display">\[
+\Lambda = N\alpha.
+\]</span></p>
+</div>
+<div class="section level3">
+<h3 id="model-object-parameters-and-state-variables">Model object, parameters, and state variables<a class="anchor" aria-label="anchor" href="#model-object-parameters-and-state-variables"></a>
+</h3>
+<p><code>make_L_obj_Lname</code> creates the module-specific
+<strong>L</strong> object, and <code>setup_L_obj.Lname</code> attaches
+it to the full model at <code>xds_obj$L_obj[[s]]</code>. The setup
+method also receives the habitat-to-patch <code>membership</code> vector
+and initializes shared habitat interfaces.</p>
 <ul>
 <li>
-<code>F_emerge.Lname</code> - the function computes the habitat
-specific emergence rate, <span class="math inline">\(\alpha\)</span>
-</li>
+<code>get_L_pars.Lname</code> returns the module’s parameters.</li>
+<li>
+<code>change_L_pars.Lname</code> changes supported parameter values
+using the named list <code>options</code>.</li>
+<li>
+<code>setup_L_ix.Lname</code> assigns indices to the module’s state
+variables; <code>get_L_ix</code> retrieves the stored indices.</li>
+<li>
+<code>get_L_vars.Lname</code> extracts named states from
+<code>y</code>.</li>
+<li>
+<code>parse_L_orbits.Lname</code> extracts named states and any
+model-specific derived quantities from the solver output matrix.</li>
 </ul>
+<p>The number of state values is generally based on
+<code>nHabitats</code>, not <code>nPatches</code>. The
+<code>membership</code> vector associates each habitat with a patch.</p>
+</div>
+<div class="section level3">
+<h3 id="initial-values-and-checks">Initial values and checks<a class="anchor" aria-label="anchor" href="#initial-values-and-checks"></a>
+</h3>
+<p><code>make_L_inits_Lname</code> returns a named list of default
+initial values for all state variables. <code>setup_L_inits.Lname</code>
+stores the values at <code>xds_obj$L_obj[[s]]$inits</code>;
+<code>get_L_inits</code> and <code>change_L_inits.Lname</code> inspect
+and update them.</p>
+<p><code>setup_skillset_L.Lname</code> records the module’s capabilities
+and limitations. <code>check_L.Lname</code> performs any module-specific
+consistency checks required before solving.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="model-object">Model Object<a class="anchor" aria-label="anchor" href="#model-object"></a>
+<h2 id="the-basicl-example">The <code>basicL</code> example<a class="anchor" aria-label="anchor" href="#the-basicl-example"></a>
 </h2>
-<p>Each module has a pair of functions that set up a structured list
-called the <strong>L</strong> model object, or <code>L_obj</code>.</p>
-<p>The object is a list that is assigned to a <code>class</code> that
-dispatches the <code>S3</code> functions described below. It is a
-compound list, where some of the sub-lists are assigned their own
-<code>class</code> that dispatch other <code>S3</code> functions.</p>
-<ul>
-<li><p><code>setup_L_obj.Lname</code> is a wrapper that calls
-<code>make_L_obj_Lname</code> and (for the <span class="math inline">\(i^{th}\)</span> species) attaches the object as
-<code>xds_obj$L_obj[[i]]</code></p></li>
-<li>
-<p><code>make_L_obj_Lname</code> :: returns a structured list called
-an <strong>L</strong> model object:</p>
-<ul>
-<li><p><code>class(L_obj)</code> = <code>Lname</code></p></li>
-<li><p>the indices for the model variables are stored as
-<code>L_obj$ix</code></p></li>
-<li><p>the initial values are stored as
-<code>L_obj$inits</code></p></li>
-<li><p>bionomic parameter values</p></li>
-<li><p>anything else that is needed can be configured here</p></li>
-</ul>
-</li>
-</ul>
-<p>In some cases, bionomic parameters are set up as ports (see
-[xds_info_port]); the value is set by a call to a function.</p>
-<div class="section level3">
-<h3 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
-</h3>
-<ul>
-<li><p><code>get_L_pars.Lname</code> returns a named list of the
-parameter values.</p></li>
-<li><p><code>change_L_pars.Lname</code> changes the values of some
-parameters by passing a named list. It is designed to be used after
-setup. New parameter values are passed by name in a list called
-<code>options</code>.</p></li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
-</h3>
-<p>Since the <strong>L</strong> component is one of three, a function
-sets up the indices for all the variables in a model.</p>
-<p>Two other functions use those indices: one pulls the variables from
-the state variable vector <span class="math inline">\(y\)</span>; the
-other one pulls the variables by name from an output matrix returned by
-<code>xds_solve</code>.</p>
-<p>After pulling, both functions return the variables by name in a list
-to make it easy to inspect or use.</p>
-<ul>
-<li><p><code>setup_L_ix.Lname</code> - is the function that assigns an
-index to each variable in the model, and stores them as a named list at
-<code>xds_obj$L_obj[[s]]$ix</code>. The indices can be retrieved with
-<code>get_L_ix</code>.</p></li>
-<li><p><code>get_L_ix</code> – returns the indices stored at
-<code>L_obj[[s]]$ix</code></p></li>
-<li><p><code>get_L_vars.Lname</code> - retrieves the value of variables
-from the state variables vector <span class="math inline">\(y\)</span>
-at a point in time and returns the values by name in a list; the
-function gets called by <code>dLdt</code> and it can be useful in other
-contexts.</p></li>
-<li><p><code>parse_L_orbits.Lname</code> - this function is like
-<code>get_L_vars</code> but it parses the matrix of outputs returned by
-<code>xds_solve</code>.</p></li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="initial-values">Initial Values<a class="anchor" aria-label="anchor" href="#initial-values"></a>
-</h3>
-<p>A set of functions sets up or changes the initial values for the
-state variables.</p>
-<ul>
-<li><p><code>setup_L_inits.Lname</code> - is a wrapper, that gets called
-by <code>xds_setup</code> and that calls
-<code>make_L_inits_Lname</code>. The setup <code>options</code> are
-passed to override default values. The initial values are stored as
-<code>L_obj$inits</code>.</p></li>
-<li><p><code>make_L_inits_Lname</code> - each model must include a
-function that makes a set of initial values as a named list. This
-function does not belong to any <code>S3</code> class, so it can take
-any form. The function should supply default initial values for all the
-variables. These can be overridden by passing new initial values in
-<code>options</code>.</p></li>
-<li><p><code>get_L_inits</code> – returns the initial values</p></li>
-<li><p><code>change_L_inits.Lname</code> - changes the initial
-values.</p></li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="consistency-checks">Consistency Checks<a class="anchor" aria-label="anchor" href="#consistency-checks"></a>
-</h3>
-<p>Some modules in <strong><code>ramp.xds</code></strong> or
-<strong><code>ramp.library</code></strong> have been included for
-various reasons. Not all of those models are capable of being extended.
-To help users avoid using models in ways that are not appropriate, we
-developed two function classes:</p>
-<ul>
-<li><p><code>skill_set_L.Lname</code> :: describes model capabilities
-and limitations</p></li>
-<li><p><code>check_L.Lname</code> :: at the end of
-<code>xds_setup</code> and at the beginning of <code>xds_solve,</code>
-this function gets run to ensure that some quantities have been properly
-updated, and to see if anything has been added to a model that is not in
-its skill set.</p></li>
-</ul>
-</div>
+<p>The <code>basicL</code> module tracks larval density <span class="math inline">\(L\)</span> in each aquatic habitat. It uses the
+habitat-level egg input <span class="math inline">\(\eta\)</span>,
+maturation rate <span class="math inline">\(\psi\)</span>,
+crowding-dependent maturation parameter <span class="math inline">\(\xi\)</span>, density-independent mortality rate
+<span class="math inline">\(\phi\)</span>, and density-dependent
+mortality parameter <span class="math inline">\(\theta\)</span>. Its
+continuous-time equation is</p>
+<p><span class="math display">\[
+\frac{dL}{dt}
+= \eta - \left(\psi e^{-\xi L} + \phi + \theta L\right)L.
+\]</span></p>
+<p>The corresponding habitat-level adult emergence rate is</p>
+<p><span class="math display">\[
+\alpha = \psi e^{-\xi L}L.
+\]</span></p>
+<p>Setting <span class="math inline">\(\xi=0\)</span> recovers the model
+described by Smith <em>et al.</em> (2013). <code>basicL</code> also
+implements <code>Update_Lt.basicL</code> and a numerical steady-state
+method, <code>steady_state_L.basicL_ode</code>.</p>
 </div>
 <div class="section level2">
-<h2 id="solving">Solving<a class="anchor" aria-label="anchor" href="#solving"></a>
+<h2 id="solving-and-visualization">Solving and visualization<a class="anchor" aria-label="anchor" href="#solving-and-visualization"></a>
 </h2>
-<p>Functions to get steady states, orbits, and plot outputs:</p>
-<ul>
-<li><p><code>get_L_orbits</code> – retrieves the saved, parsed orbits
-for the <strong>L</strong> component from an
-<strong><code>xds</code></strong> object</p></li>
-<li><p><code>steady_state_L.Lname</code> :: pass the egg laying rate and
-compute steady states for the <strong>L</strong> component.</p></li>
-<li><p><code>xds_plot_L</code> is a wrapper that calls
-<code>xds_lines_L</code></p></li>
-<li><p><code>xds_lines_L</code> plots larval density</p></li>
-</ul>
+<p><code>steady_state_L.Lname</code> is an optional method for computing
+a model’s steady state from habitat-level egg input <span class="math inline">\(\eta\)</span>. <code>get_L_orbits</code> retrieves
+the parsed L output from a solved <strong><code>xds</code></strong>
+object. The shared <code>xds_plot_L</code> and <code>xds_lines_L</code>
+functions plot aquatic mosquito population density; modules do not need
+to implement L-specific plotting generics.</p>
+<p>For details on a specific model, see its module documentation and the
+relevant literature. The <code>basicL</code> equations are based on:</p>
+<p>Smith DL, Perkins TA, Tusting LS, Scott TW, Lindsay SW (2013)
+Mosquito Population Regulation and Larval Source Management in
+Heterogeneous Environments. <em>PLOS ONE</em> 8(8): e71247. <a href="https://doi.org/10.1371/journal.pone.0071247" class="external-link">doi:10.1371/journal.pone.0071247</a>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

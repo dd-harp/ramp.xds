@@ -95,7 +95,7 @@ xds_setup_eir(
 
 ## Value
 
-an **`xds`** object
+an **`xds`** model object
 
 ## Details
 
