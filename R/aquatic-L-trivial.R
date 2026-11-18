@@ -71,18 +71,20 @@ NULL
 #' @description The **L** skill set is a list of
 #' a module's capabilities
 #'
-#' @inheritParams setup_skillset_L
+#' @inheritParams get_skillset_L
 #'
-#' @return an **`xds`** model object
+#' @return the **L** module skill set, as a list
 #'
 #' @keywords internal
 #' @export
-setup_skillset_L.trivial = function(xds_obj, s){
+get_skillset_L.trivial = function(xds_obj, s){
   skills = list(
+    dts = FALSE,
+    xde = TRUE,
+    delay = FALSE,
     not_implemented = TRUE
   )
-  xds_obj$L_obj[[s]]$skill_set = skills
-  return(xds_obj) 
+  return(skills)
 }
 
 #' @title Check the `trivial` module
@@ -180,6 +182,7 @@ setup_L_obj.trivial = function(Lname, membership, xds_obj, options=list(), s=1){
   class(forced_by) = "Lambda"
   xds_obj$forced_by = forced_by
   xds_obj$L_obj[[s]] = make_L_obj_trivial(length(membership), options)
+  xds_obj$L_obj[[s]]$skill_set <- get_skillset_L(xds_obj, s)
   if(length(membership)!= xds_obj$nHabitats) xds_obj <- setup_habitats(xds_obj, membership)
   xds_obj <- setup_habitat_search_weights("setup", xds_obj, options=list(membership=membership), s=s)
   return(xds_obj)

@@ -24,10 +24,10 @@ xds_setup_eir(
   trend_par = list(),
   shock_par = list(),
   age_par = list(),
-  xds = "ode",
   XHname = "SIS",
   XHoptions = list(),
   HPop = 1000,
+  xds = "xde",
   model_name = "unnamed"
 )
 ```
@@ -70,11 +70,6 @@ xds_setup_eir(
 
   a list of options for F_age
 
-- xds:
-
-  is `ode` or `dde` or `dts` for ordinary OR delay differential OR
-  difference equations
-
 - XHname:
 
   the name of an **XH** module (see
@@ -88,6 +83,11 @@ xds_setup_eir(
 - HPop:
 
   the initial human population density for each stratum
+
+- xds:
+
+  use `xde` for differential equations and `dts` for discrete time
+  systems
 
 - model_name:
 

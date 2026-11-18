@@ -49,18 +49,19 @@ NULL
 #' @description The **L** skill set is a list of
 #' a module's capabilities
 #'
-#' @inheritParams setup_skillset_L
+#' @inheritParams get_skillset_L
 #'
-#' @return an **`xds`** model object
+#' @return the **L** module skill set, as a list
 #'
 #' @keywords internal
 #' @export
-setup_skillset_L.basicL = function(xds_obj, s){
+get_skillset_L.basicL = function(xds_obj, s){
   skills = list(
-    not_implemented = TRUE
+    dts = TRUE,
+    xde = TRUE,
+    delay = FALSE
   )
-  xds_obj$L_obj[[s]]$skill_set = skills
-  return(xds_obj) 
+  return(skills)
 }
 
 #' @title Check the `basicL` module
@@ -136,7 +137,6 @@ dLdt.basicL <- function(t, y, xds_obj, s) {
   })
 }
 
-
 #' @title Update state variables for `basicL` (**L**)
 #' @description Implements [Update_Lt] for the `basicL` competition model.
 #' @inheritParams Update_Lt
@@ -144,11 +144,10 @@ dLdt.basicL <- function(t, y, xds_obj, s) {
 #' @keywords internal
 #' @export
 Update_Lt.basicL <- function(t, y, xds_obj, s) {
-  eta <- xds_obj$eggs_laid[[s]]
+  eta <- as.vector(xds_obj$terms$eta[[s]])
   with(get_L_vars(y, xds_obj, s),{
-    L <- y[L_ix]
     with(xds_obj$L_obj[[s]], {
-      Lt = eta + (1-exp(-(psi+xi*L)))*exp(-(phi+theta*L))*L
+      Lt = eta + exp(-(psi*exp(-xi*L) + phi + (theta*L)))*L
       return(Lt)
     })
   })
@@ -231,6 +230,7 @@ setup_L_obj.basicL = function(Lname, membership, xds_obj, options=list(), s=1){
   L_obj <- make_L_obj_basicL(xds_obj$nHabitats, options)
   class(L_obj) <- c("basicL", paste("basicL_", xds_obj$xds, sep=""))
   xds_obj$L_obj[[s]] = L_obj
+  xds_obj$L_obj[[s]]$skill_set <- get_skillset_L(xds_obj, s)
   xds_obj <- setup_L_inits(xds_obj, options=options, s=s)
   xds_obj <- setup_habitat_search_weights("setup", xds_obj, list(membership=membership), s=s)
   return(xds_obj)

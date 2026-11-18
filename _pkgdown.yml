@@ -184,7 +184,6 @@ reference:
   - get_L_orbits
   - get_EIR 
   - get_PR
-  - get_skills
 - title: Qualitative Analysis 
 - subtitle: Compute Steady States   
   contents:

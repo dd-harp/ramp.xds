@@ -1,29 +1,24 @@
 # generic methods for human component
 
-#' @title **XH** skill set
+#' @title Get the **XH** skill set
 #'
-#' @description The **XH** skill set is a list of
-#' a module's capabilities:
+#' @description Return the selected module's capabilities as a list.
 #'
-#' + **`H_dynamics`** - if FALSE, \eqn{H} is static. The module doesn't have a port for demographic change
-#' + **`mda`**:  if FALSE, the module doesn't have an `mda` port for mass drug administration
-#' + **`msat`**:  if FALSE, the module doesn't have an `msat` port for mass
-#' + **`malaria`**: if FALSE, the model probably shouldn't be used for malaria
-#' + **`pr_obs`**: if TRUE, the model outputs a value for observed PR
-#' + **`pf_rdt`**: if TRUE, the model outputs a value for prevalence by RDT
-#' + **`pf_lm`**: if TRUE, the model outputs a value for prevalence by light microscopy
-#' + **`pf_pcr`**: if TRUE, the model outputs a value for prevalence by PCR
-#'
-#' @param xds_obj an **`xds`** model object
+#' @param xds_obj an **`xds`** model object (or the module name)
 #' @param i the species index
-#' 
 #'
-#' @return *XH* module skill set, as a list
+#' @return the **XH** module skill set, as a list
 #'
 #' @keywords internal
 #' @export
-setup_skillset_XH = function(xds_obj, i){
-  UseMethod("setup_skillset_XH", xds_obj$XH_obj[[i]])
+get_skillset_XH = function(xds_obj, i=1){
+  if(is.character(xds_obj)){
+    name <- xds_obj
+    class(name) <- name
+  } else {
+    name <- xds_obj$XH_obj[[i]]
+  }
+  UseMethod("get_skillset_XH", name)
 }
 
 #' @title Run checks before solving (**XH**) 

@@ -19,8 +19,8 @@ xds_setup(
   TSoptions = list(),
   searchQ = list(),
   Koptions = list(),
-  model_name = "unnamed",
-  xds = "ode"
+  xds = "xde",
+  model_name = "unnamed"
 )
 }
 \arguments{
@@ -52,9 +52,9 @@ xds_setup(
 
 \item{Koptions}{a mosquito dispersal matrix (\eqn{K}) or setup options (see \link{setup_K_matrix})}
 
-\item{model_name}{a name for the model}
+\item{xds}{use \code{xde} for differential equations and \code{dts} for discrete time systems}
 
-\item{xds}{is \code{xde} for differential equations or \code{dts} for discrete time systems}
+\item{model_name}{a name for the model}
 }
 \value{
 an \strong{\code{xds}} model object

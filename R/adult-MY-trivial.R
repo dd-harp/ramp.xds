@@ -226,6 +226,7 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
   xds_obj$forced_by = MY
 
   xds_obj$MY_obj[[s]] <- make_MY_obj_trivial(xds_obj$nPatches, options)
+  xds_obj$MY_obj[[s]]$skill_set <- get_skillset_MY(xds_obj, s)
   xds_obj <- setup_F_circadian("setup", xds_obj, s)
   return(xds_obj)
 }
@@ -350,18 +351,20 @@ change_MY_pars.trivial <- function(xds_obj, options=list(), s=1) {
 
 #' @title The skill set
 #'
-#' @inheritParams setup_skillset_MY
+#' @inheritParams get_skillset_MY
 #'
-#' @return an **`xds`** model object
+#' @return the **MY** module skill set, as a list
 #'
 #' @keywords internal
 #' @export
-setup_skillset_MY.trivial = function(xds_obj, s){
+get_skillset_MY.trivial = function(xds_obj, s){
   skills = list(
+    dts = FALSE,
+    xde = TRUE,
+    delay = FALSE,
     not_implemented = TRUE
   )
-  xds_obj$MY_obj[[s]]$skill_set = skills
-  return(xds_obj) 
+  return(skills)
 }
 
 #' @title Setup initial values for `trivial` (**MY**)

@@ -60,7 +60,7 @@ Here, we build a model step-by-step.
 `nStrata`` ``<-`` ``3`\
 `H`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``100``, ``500``, ``250``)`\
 `residence`` ``=`` `[`rep`](https://rdrr.io/r/base/rep.html)`(``1``,``3``)`` `\
-`xds_obj`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"ode"``, ``"eir"``, ``1``, ``0``, ``residence``)`
+`xds_obj`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"xde"``, ``"eir"``, ``1``, ``0``, ``residence``)`
 
 \
 `b`` ``<-`` ``0.55`\

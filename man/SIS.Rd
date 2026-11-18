@@ -4,14 +4,8 @@
 \alias{SIS}
 \title{The \code{SIS} module for the \strong{XH} component}
 \description{
-\code{SIS} implements a family of \code{SIS} compartmental models for malaria as a system of differential equations:
-individuals are either susceptible \eqn{(S)} or infected and infectious \eqn{(I)}.
-In its simplest form, \code{SIS} dynamics are:
-\deqn{
-dI/dt = h S - r I
-}
-
-This generalized implementation includes:
+\code{SIS} implements a generalized S-I-S compartmental
+models for malaria as a system of differential equations including:
 \itemize{
 \item parameters to model treating and curing infections;
 \item functions to model human demographic change;
@@ -21,6 +15,39 @@ This generalized implementation includes:
 
 The \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Vignette} discusses the module.
 }
+\section{Infection Dynamics}{
+
+
+The model for infection dynamics (\strong{X}) assumes that infections
+clear naturally at a constant per-capita rate \eqn{r}.
+
+The model also includes two parameters to model
+treating and curing malaria infections:
+\itemize{
+\item a fraction \eqn{\rho} of incident infections are treated and cured;
+\item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
+}
+
+A function describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a \emph{shock} function.
+
+The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}
+After clearing, individuals are
+susceptible to infection.
+
+Infection dynamics are described by:
+
+\deqn{
+dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
+
+The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
+the same model as for \eqn{H}:
+for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.}
+
+In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and
+infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant.
+After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
+}
+
 \section{State Variables}{
 
 
@@ -84,39 +111,6 @@ the dynamics, or detection by diagnostic methods.
 \item{\code{q_rdt}}{test positivity by RDT}
 \item{\code{q_pcr}}{test positivity by PCR}
 }
-}
-
-\section{Infection Dynamics}{
-
-
-The model for infection dynamics (\strong{X}) assumes that infections
-clear naturally at a constant per-capita rate \eqn{r}.
-
-The model also includes two parameters to model
-treating and curing malaria infections:
-\itemize{
-\item a fraction \eqn{\rho} of incident infections are treated and cured;
-\item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
-}
-
-A function describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a \emph{shock} function.
-
-The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}
-After clearing, individuals are
-susceptible to infection.
-
-Infection dynamics are described by:
-
-\deqn{
-dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
-
-The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
-the same model as for \eqn{H}:
-for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.}
-
-In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and
-infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant.
-After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 }
 
 \section{Prevalence}{

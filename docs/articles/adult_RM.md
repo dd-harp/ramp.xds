@@ -244,7 +244,7 @@ These equations have been implemented to compute \\(\Upsilon\\)
 dynamically, so we attach `Upsilon` as initial values:
 
 \
-`params`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"dde"``, ``"mosy"``, ``nPatches``, ``1``:``3``, ``1``:``3``)`\
+`params`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"xde"``, ``"mosy"``, ``nPatches``, ``1``:``3``, ``1``:``3``)`\
 `params`` ``<-`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"macdonald"``, ``params``, options``=``MYo``, s``=``1``)`\
 `params`` ``<-`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"trivial"``, ``1``:``3``, ``params``, options``=``Xo``, i``=``1``)`` `\
 `params`` ``<-`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivial"``, ``1``:``3``, ``params``, options``=``Lo``, s``=``1``)`

@@ -282,12 +282,14 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBaseline.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.GeM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.GeRM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.basicM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.macdonald.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MBionomics.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.GeM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.basicM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.html</loc></url>
@@ -333,6 +335,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_MYt.basicM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_MYt.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_MYt.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_XHt.SIS.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_XHt.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/Update_XHt.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControl1.html</loc></url>
@@ -417,6 +420,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_MY_inits.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.GeM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.GeRM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.html</loc></url>
@@ -612,6 +616,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_vars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_L_vars.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_M.GeM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_M.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_M.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_M.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_M.macdonald.html</loc></url>
@@ -621,6 +626,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_orbits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.GeM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.GeRM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.basicM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.html</loc></url>
@@ -660,6 +666,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_XH_vars.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_XH_vars.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_Z.GeM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_Z.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_Z.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_Z.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_Z.macdonald.html</loc></url>
@@ -671,6 +678,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_death_rates.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_f.GeM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_f.GeRM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_f.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_f.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_f.basicM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_f.html</loc></url>
@@ -678,6 +686,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_f.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_g.GeM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_g.GeRM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_g.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_g.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_g.basicM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_g.html</loc></url>
@@ -702,6 +711,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_psi.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_q.GeM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_q.GeRM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_q.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_q.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_q.basicM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_q.html</loc></url>
@@ -725,6 +735,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_shock.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.GeM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.GeRM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.RMdts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.SI.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.basicM.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_sigma.html</loc></url>
@@ -734,6 +745,20 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skills.MY.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skills.XH.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skills.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_L.basicL.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_L.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_L.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_MY.GeM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_MY.RMdts.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_MY.SI.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_MY.basicM.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_MY.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_MY.macdonald.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_MY.trivial.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_XH.SIS.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_XH.hMoI.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_XH.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_skillset_XH.trivial.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_spline.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_s.Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_s.eir.html</loc></url>

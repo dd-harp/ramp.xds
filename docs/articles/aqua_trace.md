@@ -98,7 +98,7 @@ use `ramp.xds::MosquitoBehavior` to pass the equilibrium values of those
 bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 
 \
-`xds_obj`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"ode"``, ``"mosy"``, ``nPatches``, ``membership``, ``residence``)`\
+`xds_obj`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"xde"``, ``"mosy"``, ``nPatches``, ``membership``, ``residence``)`\
 `xds_obj``$``nHabitats`\
 `#> [1] 4`\
 `xds_obj``$``nStrata`\

@@ -10,7 +10,7 @@ xds_setup_aquatic(
   nHabitats = 1,
   MYoptions = list(),
   model_name = "unnamed",
-  xds = "ode"
+  xds = "xde"
 )
 }
 \arguments{
@@ -24,7 +24,7 @@ xds_setup_aquatic(
 
 \item{model_name}{is a name for the model (arbitrary)}
 
-\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
+\item{xds}{use \code{xde} for differential equations and \code{dts} for discrete time systems}
 }
 \value{
 an \strong{\code{xds}} model object

@@ -14,7 +14,7 @@ xds_setup_human(
   TSoptions = list(),
   MYoptions = list(),
   model_name = "unnamed",
-  xds = "ode"
+  xds = "xde"
 )
 }
 \arguments{
@@ -36,7 +36,7 @@ xds_setup_human(
 
 \item{model_name}{a name for the model}
 
-\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
+\item{xds}{use \code{xde} for differential equations and \code{dts} for discrete time systems}
 }
 \value{
 an \strong{\code{xds}} model object

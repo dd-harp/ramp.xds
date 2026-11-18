@@ -5,7 +5,7 @@
 \title{Make an \strong{\code{xds}} model object template}
 \usage{
 make_xds_object_template(
-  xds = "ode",
+  xds = "xde",
   frame = "full",
   nPatches = 1,
   membership = 1,

@@ -64,18 +64,20 @@ NULL
 #' a module's capabilities
 #'
 #'
-#' @inheritParams setup_skillset_XH
+#' @inheritParams get_skillset_XH
 #'
-#' @return an **`xds`** model object
+#' @return the **XH** module skill set, as a list
 #'
 #' @keywords internal
 #' @export
-setup_skillset_XH.trivial = function(xds_obj, i){
+get_skillset_XH.trivial = function(xds_obj, i){
   skills = list(
+   dts = FALSE,
+   xde = TRUE,
+   delay = FALSE,
    not_implemented = TRUE
   )
-  xds_obj$XH_obj[[i]]$skill_set = skills
-  return(xds_obj) 
+  return(skills)
 }
 
 #' Check / update before solving
@@ -263,7 +265,7 @@ setup_XH_obj.trivial = function(XHname, residence, xds_obj, options=list(), i=1)
   xds_obj$XHname = "trivial"
   xds_obj$XH_obj[[i]] = make_XH_obj_trivial(xds_obj$nPatches, options)
   xds_obj <- setup_XH_inits(xds_obj, options=options, i=i)
-  xds_obj <- setup_skillset_XH(xds_obj, i)
+  xds_obj$XH_obj[[i]]$skill_set <- get_skillset_XH(xds_obj, i)
   xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
   xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
   xds_obj <- setup_time_away("setup", xds_obj, i=i)

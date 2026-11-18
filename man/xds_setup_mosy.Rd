@@ -15,7 +15,7 @@ xds_setup_mosy(
   Koptions = list(),
   Loptions = list(),
   model_name = "unnamed",
-  xds = "ode"
+  xds = "xde"
 )
 }
 \arguments{
@@ -39,7 +39,7 @@ xds_setup_mosy(
 
 \item{model_name}{is a name for the model}
 
-\item{xds}{is \code{xde} for differential equations or \code{dts} for discrete time systems}
+\item{xds}{use \code{xde} for differential equations and \code{dts} for discrete time systems}
 }
 \value{
 an \strong{\code{xds}} model object

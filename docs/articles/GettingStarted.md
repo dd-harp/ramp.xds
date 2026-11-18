@@ -100,7 +100,7 @@ In the code chuck, we called it `model`. If you type it, the function
     ##   nVectorSpecies   = 1
     ## 
     ## frame - full
-    ## xds   - ode
+    ## xds   - xde
 
 We can see from the returned value that `XHname` is `SIS`, which is the
 name of the module for human / host infection and immune dynamics.
@@ -113,7 +113,7 @@ for its names.
 
     ##  [1] "membership"         "nPatches"           "nHabitats"         
     ##  [4] "nStrata"            "nVectorSpecies"     "nHostSpecies"      
-    ##  [7] "model_name"         "xde"                "xds"               
+    ##  [7] "model_name"         "xds"                "xde"               
     ## [10] "frame"              "forced_by"          "patches"           
     ## [13] "habitats"           "terms"              "blood_feeding_obj" 
     ## [16] "import_obj"         "transmission_obj"   "env_het_obj"       

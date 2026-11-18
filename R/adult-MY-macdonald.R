@@ -120,19 +120,21 @@ NULL
 
 #' @title The skill set for `macdonald` (**MY**)
 #'
-#' @inheritParams setup_skillset_MY
+#' @inheritParams get_skillset_MY
 #'
-#' @return an **`xds`** model object
+#' @return the **MY** module skill set, as a list
 #' @seealso [macdonald]
 #'
 #' @keywords internal
 #' @export
-setup_skillset_MY.macdonald = function(xds_obj, s){
+get_skillset_MY.macdonald = function(xds_obj, s){
   skills = list(
+    dts = FALSE,
+    xde = TRUE,
+    delay = TRUE,
     not_implemented = TRUE
   )
-  xds_obj$MY_obj[[s]]$skill_set = skills
-  return(xds_obj) 
+  return(skills)
 }
 
 #' @title Check `macdonald` (**MY**) before solving
@@ -260,8 +262,8 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
 #' @export
 setup_MY_obj.macdonald = function(MYname, xds_obj, options=list(), s=1){
   xds_obj$MYname = "macdonald"
-  xds_obj = ode_to_dde(xds_obj)
   xds_obj$MY_obj[[s]] = make_MY_obj_macdonald(xds_obj$nPatches, options)
+  xds_obj$MY_obj[[s]]$skill_set <- get_skillset_MY(xds_obj, s)
   xds_obj <- setup_F_circadian("setup", xds_obj, s=s)
   xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
   xds_obj <- setup_Upsilon_obj(xds_obj, s=s, TRUE)

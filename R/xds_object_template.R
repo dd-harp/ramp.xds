@@ -62,7 +62,7 @@
 #' @seealso Related: [xds_setup] and [setup_forcing_object]. Illustrated in a vignette: [5-3-4 Example](https://dd-harp.github.io/ramp.xds/articles/ex_534.html)
 #'
 #' @export
-make_xds_object_template = function(xds='ode', frame='full',
+make_xds_object_template = function(xds='xde', frame='full',
                            nPatches=1, membership=1, residence=1){
 
   xds_obj = list()
@@ -78,17 +78,15 @@ make_xds_object_template = function(xds='ode', frame='full',
 
   xds_obj$model_name  <- 'unnamed'
 
-  stopifnot(xds %in% c("ode", "dde", "dts"))
-
-  xde <- xds
-  class(xde) <- xds
-  xds_obj$xde <- xde
-
-  if(xds == 'ode') class(xds) <- 'xde'
-  if(xds == 'dde') class(xds) <- 'xde'
-  if(xds == 'dts') class(xds) <- 'dts'
+  stopifnot(xds %in% c("xde", "dts"))
+  class(xds) <- xds
   xds_obj$xds <- xds
-
+  xds_obj$xde <- xds
+  if(xds == "xde"){
+    xds_obj$xde = "ode"
+    class(xds_obj$xde) = "ode"
+  }
+  
   xdlst = list()
   class(xdlst) = xds
 

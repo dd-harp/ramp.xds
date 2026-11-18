@@ -59,7 +59,7 @@ full simulation.
 `nHabitats`` ``<-`` ``3`\
 `nPatches`` ``<-`` ``nHabitats`\
 `membership`` ``<-`` ``1``:``nPatches`\
-`params`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"ode"``, ``"aquatic"``, ``nPatches``,  ``membership``, ``1``)`
+`params`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"xde"``, ``"aquatic"``, ``nPatches``,  ``membership``, ``1``)`
 
 \
 `alpha`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``10``, ``50``, ``20``)`\

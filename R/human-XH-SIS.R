@@ -4,20 +4,43 @@
 #' 
 #' @description
 #' 
-#' `SIS` implements a family of `SIS` compartmental models for malaria as a system of differential equations: 
-#' individuals are either susceptible \eqn{(S)} or infected and infectious \eqn{(I)}. 
-#' In its simplest form, `SIS` dynamics are:
-#' \deqn{
-#' dI/dt = h S - r I
-#' }
-#' 
-#' This generalized implementation includes:
+#' `SIS` implements a generalized S-I-S compartmental 
+#' models for malaria as a system of differential equations including:
 #' + parameters to model treating and curing infections; 
 #' + functions to model human demographic change; 
 #' + functions to model mass treatment;
 #' + support for progressive stratification
 #' 
 #' The [SIS Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html) discusses the module. 
+#' 
+#' @section Infection Dynamics:
+#'  
+#' The model for infection dynamics (**X**) assumes that infections
+#' clear naturally at a constant per-capita rate \eqn{r}. 
+#' 
+#' The model also includes two parameters to model
+#' treating and curing malaria infections: 
+#' + a fraction \eqn{\rho} of incident infections are treated and cured;
+#' + in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
+#' 
+#' A function describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a *shock* function. 
+#' 
+#' The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}  
+#' After clearing, individuals are 
+#' susceptible to infection.
+#'  
+#' Infection dynamics are described by:
+#' 
+#' \deqn{
+#' dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
+#'
+#' The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
+#' the same model as for \eqn{H}: 
+#' for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.} 
+#' 
+#' In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and 
+#' infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant. 
+#' After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 #' 
 #' @section State Variables:
 #' 
@@ -78,34 +101,6 @@
 #'   \item{`q_pcr`}{test positivity by PCR}
 #' } 
 #' 
-#' @section Infection Dynamics:
-#'  
-#' The model for infection dynamics (**X**) assumes that infections
-#' clear naturally at a constant per-capita rate \eqn{r}. 
-#' 
-#' The model also includes two parameters to model
-#' treating and curing malaria infections: 
-#' + a fraction \eqn{\rho} of incident infections are treated and cured;
-#' + in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
-#' 
-#' A function describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a *shock* function. 
-#' 
-#' The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}  
-#' After clearing, individuals are 
-#' susceptible to infection.
-#'  
-#' Infection dynamics are described by:
-#' 
-#' \deqn{
-#' dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
-#'
-#' The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
-#' the same model as for \eqn{H}: 
-#' for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.} 
-#' 
-#' In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and 
-#' infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant. 
-#' After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 #' 
 #' @section Prevalence:
 #' 
@@ -177,10 +172,52 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 
   with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]], {
+      
       dH <- Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, i)
       dI <- foi*(1-rho)*(H-I) - (r + sigma + rho*foi)*I - Deaths(t, I, xds_obj, i)
       dI <- dI - mda(t)*I - msat(t)*I
       return(c(dH, dI))
+    })
+  })
+}
+
+#' @title Update states for `SIS` (**XH**)
+#'
+#' @description
+#' 
+#' For the `SIS` discrete time system, the state variables are derived
+#' from the differential equations: 
+#'  
+#' \deqn{\begin{array}{rl}
+#' H_t &= H_{t-1} + \mathbf{B}(t,H) - \mathbf{D}(H) \\
+#' I_s &= I_{t-1} - \mathbf{D}(I_{t-1}) \\
+#' I_t &= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
+#' \end{array}}
+#' and \eqn{S = H-I}
+#'
+#' @inheritSection SIS Demography
+#' 
+#' @inheritSection SIS Infection Dynamics
+#' 
+#'@inheritSection SIS Infection Dynamics
+#' 
+#' @inheritParams dXHdt
+#'
+#' @seealso [SIS], [SIS Dynamics](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
+#' @return the derivatives, as a vector
+#' @keywords internal
+#' @export
+Update_XHt.SIS <- function(t, y, xds_obj, i) {
+  
+  foi <- xds_obj$terms$FoI[[i]]
+  ar = 1-exp(-foi)
+  
+  with(get_XH_vars(y, xds_obj, i),{
+    with(xds_obj$XH_obj[[i]], {
+      Ht <- H + Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, i)
+      It <- I- Deaths(t, I, xds_obj, i)
+      It <- ar*(1-rho)*(Ht-It) + exp(-(r + sigma + rho*foi + mda(t) + msat(t)))*It
+      return(c(Ht, It))
     })
   })
 }
@@ -211,7 +248,7 @@ setup_XH_obj.SIS = function(XHname, residence, xds_obj, options=list(), i=1){
   xds_obj$XHname = "SIS"
   xds_obj$XH_obj[[i]] = make_XH_obj_SIS(xds_obj$nStrata[1], options)
   xds_obj <- setup_XH_inits(xds_obj, options=options, i=i)
-  xds_obj <- setup_skillset_XH(xds_obj, i)
+  xds_obj$XH_obj[[i]]$skill_set <- get_skillset_XH(xds_obj, i)
   xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
   xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
   xds_obj <- setup_mass_treatment(xds_obj, i=i)
@@ -530,29 +567,29 @@ F_ni.SIS <- function(vars, XH_obj) {
 get_HTC.SIS <- function(xds_obj, i) {
   with(xds_obj$XH_obj[[i]], return(c/r))}
 
-#' @title The **XH** module skill set
+#' @title Get the **XH** module skill set
 #'
-#' @description The **XH** skill set is a list of
-#' a module's capabilities.
+#' @description Return a list of the **XH** module's capabilities.
 #'
-#' @note This method dispatches on `class(xds_obj$XH_obj)`
+#' @param xds_obj an **`xds`** model object
+#' @param i the species index
 #'
-#' @inheritParams setup_skillset_XH
-#'
-#' @return an **`xds`** model object
+#' @return the **XH** module skill set, as a list
 #' @keywords internal
 #'
 #' @seealso [SIS]
 #' @export
-setup_skillset_XH.SIS = function(xds_obj,i){
-  skills =   list(
+get_skillset_XH.SIS = function(xds_obj, i){
+  skills = list(
+    dts = TRUE,
+    xde = TRUE,
+    delay = FALSE,
     demography  = TRUE,
     prevalence  = TRUE,
     malaria     = TRUE,
     diagnostics = "linear"
   )
-  xds_obj$XH_obj[[i]]$skill_set = skills
-  return(xds_obj) 
+  return(skills)
 }
 
 #' Check / update before solving

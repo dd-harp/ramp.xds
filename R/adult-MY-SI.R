@@ -185,21 +185,22 @@
 NULL
 
 
-#' @title The skill set
+#' @title Get the `SI` (**MY**) skill set
 #'
-#' @inheritParams setup_skillset_MY
+#' @inheritParams get_skillset_MY
 #'
-#' @return an **`xds`** model object
+#' @return the **MY** module skill set, as a list
 #' @seealso [SI]
 #'
 #' @keywords internal
 #' @export
-setup_skillset_MY.SI = function(xds_obj, s){
+get_skillset_MY.SI = function(xds_obj, s){
   skills = list(
-    not_implemented = TRUE
+    dts = TRUE,
+    xde = TRUE,
+    delay = FALSE
   )
-  xds_obj$MY_obj[[s]]$skill_set = skills
-  return(xds_obj) 
+  return(skills)
 }
 
 #' Run a check before solving
@@ -265,16 +266,16 @@ dMYdt.SI <- function(t, y, xds_obj, s) {
 #' @keywords internal
 #' @export
 Update_MYt.SI <- function(t, y, xds_obj, s) {
-  Lambda = xds_obj$Lambda[[s]]
-  kappa = xds_obj$kappa[[s]]
-  D = xds_obj$MYday
+  Lambda = xds_obj$terms$Lambda[[s]]
+  kappa = xds_obj$terms$kappa[[s]]
 
   with(get_MY_vars(y, xds_obj, s),{
     with(xds_obj$MY_obj[[s]],{
-      Mt <- ccc*Lambda*D + Omega %*% M
-      Yt <- Omega%*%((1-exp(-f*q*kappa*xds_obj$MYYday))*(M-Y)) + (Omega %*% Y)
-      Yt <- Yt + (1-exp(-ccc))*(1-exp(-f*q*kappa*xds_obj$MYYday))*Lambda*ccc*D
-      return(list(M=unname(Mt), Y=unname(Yt)))
+      Omega = expm(-Omega)
+      Mt <- Lambda + Omega %*% M
+      Pt <- Omega%*%((1-exp(-f*q))*(M-P)) + (Omega %*% P)
+      Yt <- Omega%*%((1-exp(-f*q*kappa))*(M-Y)) + (Omega %*% Y)
+      return(list(M=unname(Mt), P = unname(Pt), Y=unname(Yt)))
     })
   })
 }
@@ -330,6 +331,7 @@ F_fqM.SI <- function(t, y, xds_obj, s){
 #' @keywords internal
 #' @export
 F_eggs.SI <- function(t, y, xds_obj, s) {
+  
   M <- y[xds_obj$MY_obj[[s]]$ix$M_ix]
   with(xds_obj$MY_obj[[s]],{
     return(M*nu*eggsPerBatch)
@@ -416,6 +418,7 @@ MEffectSizes.SI <- function(t, y, xds_obj, s) {
 #' @export
 setup_MY_obj.SI = function(MYname, xds_obj, options=list(), s=1){
   xds_obj$MY_obj[[s]] <- make_MY_obj_SI(xds_obj$nPatches, options)
+  xds_obj$MY_obj[[s]]$skill_set <- get_skillset_MY(xds_obj, s)
   xds_obj <- setup_MY_inits(xds_obj, options=options, s=s)
   xds_obj <- setup_F_circadian("setup", xds_obj, s=s)
   xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
