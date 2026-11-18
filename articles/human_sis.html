@@ -125,63 +125,148 @@ Infection Dynamics</h3>
     
     
 <pre><code><span><span class="va">XHname</span> <span class="op">=</span> <span class="st">"SIS"</span></span></code></pre>
-<p>For the <strong>XH</strong> component, the <strong>SIS</strong>
-module implements a basic system of differential equations, that is
-often called the <strong>SIS</strong> compartment model (see Figure 1).
-This vignette describes the model and its implementation in
-<strong><code>ramp.xds.</code></strong> For a more mathematical
-introduction, see <a href="https://faculty.washington.edu/smitdave/malaria_theory/sis.html" target="_blank" class="external-link"><strong>Malaria Theory</strong> – SIS Dynamics</a></p>
 <hr>
 <div class="float">
-<img src="SIS.png" alt="Figure 1: A Diagram of the SIS Model"><div class="figcaption">
+<img src="SIS.drawio.png" style="width:100.0%" alt="Figure 1: A Diagram of the SIS Model. For a more mathematical introduction, see Malaria Theory – SIS Dynamics"><div class="figcaption">
 <strong>Figure 1</strong>: A Diagram of the SIS
-Model</div>
+Model. For a more mathematical introduction, see <a href="https://faculty.washington.edu/smitdave/malaria_theory/sis.html" target="_blank" class="external-link"><strong>Malaria Theory</strong> – SIS Dynamics</a>
 </div>
-<hr>
-<p>At basic setup, the <strong>SIS</strong> module with defaults is
-specified like this:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
-<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>XHname <span class="op">=</span> <span class="st">"SIS"</span><span class="op">)</span> </span></code></pre></div>
+</div>
 <hr>
 <div class="section level2">
-<h2 id="basic-dynamics">Basic Dynamics<a class="anchor" aria-label="anchor" href="#basic-dynamics"></a>
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>The following describes the notation and basic setup, including
-variable and parameter names.</p>
-<div class="section level3">
-<h3 id="the-compartment-model">The Compartment Model<a class="anchor" aria-label="anchor" href="#the-compartment-model"></a>
-</h3>
-<p>A population is subdivided into susceptible (<span class="math inline">\(S\)</span>) and infected and infectious (<span class="math inline">\(I\)</span>) individuals, where the total
-population is <span class="math inline">\(H = S+I.\)</span></p>
-<ul>
-<li><p>We let <span class="math inline">\(h\)</span> denote the force of
-infection (FoI).</p></li>
-<li><p>We let <span class="math inline">\(r\)</span> denote the
-clearance rate for infections.</p></li>
-</ul>
-<p>The dynamics are described by a pair of equations:</p>
+<p>For the <strong>XH</strong> component, the <code>SIS</code> module
+implements a generalized version of the <em>S-I-S</em> compartmental
+model both</p>
+<ol style="list-style-type: decimal">
+<li>as a system of ordinary differential equations; and</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
+<span><span class="va">ode_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>XHname <span class="op">=</span> <span class="st">"SIS"</span><span class="op">)</span> </span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>as a discrete time system.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dts_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>XHname <span class="op">=</span> <span class="st">"SIS"</span>, xds<span class="op">=</span> <span class="st">"dts"</span><span class="op">)</span> </span></code></pre></div>
+<p>Individuals are either infected and infectious <span class="math inline">\((I)\)</span> or uninfected and susceptible to
+infection <span class="math inline">\((S)\)</span>, and the total
+population sizes is <span class="math inline">\(H=S+I.\)</span> This
+vignette describes the model and its implementation in
+<strong><code>ramp.xds.</code></strong></p>
+<p>The rate that susceptible individuals become infected is called the
+<em>force of infection</em> (or FoI, Ross called it the
+<em>happenings</em> rate, denoted <span class="math inline">\(h\)</span>). The rate of clearance is <span class="math inline">\(r.\)</span> After clearing an infection,
+individuals are susceptible to infection again. In its simplest
+form:</p>
 <p><span class="math display">\[
 \begin{array}{rl}
-\frac{dS}{dt} &amp;= -hS + rI  \\
-\frac{dI}{dt} &amp;= h S  - rI  
+\frac{dS}{dt} &amp;= - h S + r I \\
+\frac{dI}{dt} &amp;=  h S - r I \\
 \end{array}
-\]</span></p>
-<p>If <span class="math inline">\(H\)</span> is constant, then one of
-these equations is redundant, and we need only compute:</p>
+\]</span> For this system, note that <span class="math display">\[\frac{dS}{dt} = - \frac{dI}{dt}\]</span> and
+since <span class="math inline">\(H=S+I,\)</span> we can compute <span class="math display">\[\frac{dH}{dt} = \frac{dS}{dt} + \frac{dI}{dt} =
+0.\]</span> In this case, <span class="math inline">\(H\)</span> is a
+parameter, and we don’t need to compute both variables. We could simply
+compute:</p>
 <p><span class="math display">\[
-\frac{dI}{dt} = h (H-I) - rI
+\frac{dI}{dt} =  h (H-I) - r I
 \]</span></p>
-<p>The model here has been implemented in the
-<strong><code>ramp.xds</code></strong> modular framework that handles
-human demography, exposure, infectiousness, and diagnostics and
-detection.</p>
-<p>In the <strong><code>ramp.xds</code></strong> module, <span class="math inline">\(H\)</span> is a variable, so we compute <span class="math inline">\(dH/dt,\)</span> and <span class="math inline">\(dI/dt\)</span> includes additional terms that
-describe demographic changes.</p>
+<p>This is the system that is implemented for the <em>default</em>
+parameter settings.</p>
+<div class="section level3">
+<h3 id="demographic-change">Demographic Change<a class="anchor" aria-label="anchor" href="#demographic-change"></a>
+</h3>
+<p>In <strong><code>ramp.xds</code></strong> we implement a generalized
+approach to the demographic processes: the system includes births <span class="math inline">\(B\)</span> and deaths (in this case, at the
+per-capita rate <span class="math inline">\(\mu\)</span>), now <span class="math inline">\(H\)</span> is a variable, and we can write out
+full dynamical system for all three variables. We write it to emphasize
+the two parts: disease dynamics (<strong>X</strong>) and human
+population dynamics (<strong>H</strong>):</p>
+<p><span class="math display">\[
+\begin{array}{rcc}
+&amp; \mathbf{X} &amp; \mathbf{H} \\ \hline
+\frac{dH}{dt} =&amp; &amp; B(t,H) - \mu H \\
+\frac{dS}{dt} =&amp; - h S + r I  &amp; + B(t,H) - \mu S  \\
+\frac{dI}{dt} =&amp;  h S - r I &amp;- \mu I \\
+\end{array}
+\]</span> Since <span class="math inline">\(H=S+I,\)</span> one of these
+equations is redundant. To implement <em>progressive
+stratification,</em> we drop <span class="math inline">\(S,\)</span> and
+use a function <span class="math inline">\(\mathbf{D}\)</span> that
+computes per-capita mortality in a generic way:</p>
+<p><span class="math display">\[
+\begin{array}{rcr}
+\frac{dH}{dt} =&amp; &amp;B(t,H) - \mathbf{D}(t,H)\\
+\frac{dI}{dt} =&amp;  h (H-I) - r I &amp;- \mathbf{D}(t,I)\\
+\end{array}
+\]</span> After solving, we compute <span class="math inline">\(S=H+I\)</span> and attach its orbit. By default,
+birth rates and death rates are set to zero. The birth and death
+functions are modified using:</p>
+<ul>
+<li><p><a href="https://dd-harp.github.io/ramp.xds/reference/setup_births.html">setup_births</a></p></li>
+<li><p><a href="https://dd-harp.github.io/ramp.xds/reference/setup_deaths.html">setup_deaths</a></p></li>
+</ul>
 </div>
 <div class="section level3">
-<h3 id="exposure-and-b">Exposure and <span class="math inline">\(b\)</span><a class="anchor" aria-label="anchor" href="#exposure-and-b"></a>
+<h3 id="treatment">Treatment<a class="anchor" aria-label="anchor" href="#treatment"></a>
 </h3>
+<p>In this simple model, drug taking to treat and cure infections simply
+clears infections. (In other models, a brief period of chemo-protection
+follows treatment.) The module assumes that</p>
+<ul>
+<li><p><span class="math inline">\(\rho\)</span> or <code>rho</code>: a
+fraction <span class="math inline">\(\rho\)</span> of incident
+infections are treated and cured, so the FoI is now <span class="math inline">\(h (1-\rho).\)</span> Since exposure and infection
+could also occur in folks who are uninfected, infected individuals also
+clear at the additional rate <span class="math inline">\(\rho
+h.\)</span></p></li>
+<li><p><span class="math inline">\(\sigma\)</span> or
+<code>sigma</code>: treatment and curing also occurs for other reasons
+at the rate <span class="math inline">\(\sigma.\)</span></p></li>
+<li><p><span class="math inline">\(\Xi(t)\)</span>: mass treatment is
+implemented either as mass drug administration (<code>mda(t)</code>) or
+mass screening and treating (<code>msat(t)</code>), a shock function
+<span class="math inline">\(\Xi(t)\)</span></p></li>
+<li><p>The total rate that infections clear is thus: <span class="math display">\[r + \rho h + \sigma + \Xi(t)\]</span></p></li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a>
+</h2>
+<div class="section level3">
+<h3 id="ode">ODE<a class="anchor" aria-label="anchor" href="#ode"></a>
+</h3>
+<p>For the system of ordinary differential equations, the system is:</p>
+<p><span class="math display">\[
+\begin{array}{rcc}
+&amp; \mathbf{X} &amp; \mathbf{H} \\ \hline
+\frac{dH}{dt} =&amp; &amp;B(t,H) - \mathbf{D}(t,H)\\
+\frac{dI}{dt} =&amp;  h (1-\rho)(H-I) - \left(r + h\rho + \sigma + \Xi
+\left( t \right) \right) I &amp;- \mathbf{D}(t,I)\\
+\end{array}
+\]</span></p>
+</div>
+<div class="section level3">
+<h3 id="dts">DTS<a class="anchor" aria-label="anchor" href="#dts"></a>
+</h3>
+<p>The discrete time system implements:</p>
+<p><span class="math display">\[
+\begin{array}{rcc}
+&amp; \mathbf{X} &amp; \mathbf{H} \\ \hline
+H_{t+1} =&amp; &amp;B(t,H_t) - \mathbf{D}(t,H_t)\\
+I_s  =&amp; &amp; I_t -  \mathbf{D}(t,I_t) \\  
+I_{t+1} &amp;= (1-e^{-h}) \rho (H_{t+1} + I_s) + e^{-\left(r + h\rho +
+\sigma + \Xi \left( t \right) \right)} I_s \\
+\end{array}
+\]</span></p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="exposure">Exposure<a class="anchor" aria-label="anchor" href="#exposure"></a>
+</h2>
 <p>The module handles exposure through the standard interface (see <a href="Exposure.html">Exposure</a>). In a nutshell:</p>
 <ul>
 <li><p><span class="math inline">\(E(t)\)</span>: the daily EIR is
@@ -201,9 +286,9 @@ Poisson, so the FoI is linearly proportional to the EIR: <span class="math inlin
 </ul>
 <p>For more, including advanced setup options, see <a href="Exposure.html%5D">Exposure</a></p>
 </div>
-<div class="section level3">
-<h3 id="infectiousness-c">Infectiousness: <span class="math inline">\(c\)</span><a class="anchor" aria-label="anchor" href="#infectiousness-c"></a>
-</h3>
+<div class="section level2">
+<h2 id="infectiousness-c">Infectiousness: <span class="math inline">\(c\)</span><a class="anchor" aria-label="anchor" href="#infectiousness-c"></a>
+</h2>
 <p>Infected humans are not fully infectious. We assume that the fraction
 of bloodmeals on infectious humans that infect a mosquito is <span class="math inline">\(c.\)</span> The blood feeding and transmission
 interface uses biting weights and availability, so we compute the
@@ -211,9 +296,9 @@ infectious density of a stratum: <span class="math display">\[F_I = c
 I.\]</span></p>
 <p>If there is a single population stratum, then<br><span class="math display">\[\kappa = \frac {cI} H\]</span></p>
 </div>
-<div class="section level3">
-<h3 id="diagnostics-and-detection">Diagnostics and Detection<a class="anchor" aria-label="anchor" href="#diagnostics-and-detection"></a>
-</h3>
+<div class="section level2">
+<h2 id="diagnostics-and-detection">Diagnostics and Detection<a class="anchor" aria-label="anchor" href="#diagnostics-and-detection"></a>
+</h2>
 <p>The probability a human would <em>test positive</em> is denoted <span class="math inline">\(q\)</span>, so while true prevalence is <span class="math display">\[x=I/H,\]</span> observed prevalence would be
 <span class="math display">\[x_q=qI/H.\]</span> The model includes three
 parameters for detection by light microscopy, RDT or PCR:</p>
@@ -228,8 +313,20 @@ PCR</p></li>
 <p>We note that in this model, the observed PR is a linear function of
 the true PR.</p>
 </div>
+<div class="section level2">
+<h2 id="basic-setup">Basic Setup<a class="anchor" aria-label="anchor" href="#basic-setup"></a>
+</h2>
 <div class="section level3">
-<h3 id="basic-setup">Basic Setup<a class="anchor" aria-label="anchor" href="#basic-setup"></a>
+<h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
+</h3>
+<p>During basic setup, the defaults are</p>
+<ul>
+<li><p><code>H=1000</code></p></li>
+<li><p><code>I=1</code></p></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
 </h3>
 <p>During basic setup, the parameters are assigned the following default
 values:</p>
@@ -237,26 +334,28 @@ values:</p>
 <li><p><code>b=0.55</code></p></li>
 <li><p><code>r=1/180</code></p></li>
 <li><p><code>c=0.15</code></p></li>
+<li><p><code>rho=0</code></p></li>
+<li><p><code>sigma=0</code></p></li>
 <li><p><code>q_lm=0.8</code></p></li>
 <li><p><code>q_rdt=0.8</code></p></li>
 <li><p><code>q_pcr=0.9</code></p></li>
 </ul>
 <p>To inspect the parameters, use <code>get_XH_pars.</code> We already
 set up <code>mod</code> using the default values:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_XH_pars.html">get_XH_pars</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_XH_pars.html">get_XH_pars</a></span><span class="op">(</span><span class="va">ode_mod</span><span class="op">)</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.005555556</span></span></code></pre>
 <p>To override the defaults at setup, pass a named list to
 <code>xds_setup.</code></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>XHname <span class="op">=</span> <span class="st">"SIS"</span>, XHoptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>r<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">200</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_XH_pars.html">get_XH_pars</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.005</span></span></code></pre>
 <p>To change a parameter value after setup, pass a named list to
 <code>change_XH_pars.</code></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_XH_pars.html">change_XH_pars</a></span><span class="op">(</span><span class="va">mod</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>r<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/get_XH_pars.html">get_XH_pars</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ode_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_XH_pars.html">change_XH_pars</a></span><span class="op">(</span><span class="va">ode_mod</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>r<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_XH_pars.html">get_XH_pars</a></span><span class="op">(</span><span class="va">ode_mod</span><span class="op">)</span><span class="op">$</span><span class="va">r</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.01</span></span></code></pre>
 <hr>
 </div>
@@ -271,117 +370,22 @@ become susceptible to infection again.</p>
 <p><span class="math display">\[
 \dot{I} = h (H-I)  - \left(r+\xi\left(t\right)\right) I
 \]</span></p>
-<p>During basic set up, the function returns no effect: <span class="math inline">\(\xi(t)=0\)</span>. Configuring a mass treatment
-function is handled as an advanced setup option in
-<code>ramp.control</code> (see <a href="https://dd-harp.github.io/ramp.control/articles/MassTreatment.html" class="external-link"><code>ramp.control</code>::Mass
-Treatment</a>)</p>
-<ul>
-<li>
-<p><span class="math inline">\(\xi(t)\)</span> is either called
-<code>mda(t)</code> or <code>msat(t)</code>: functions implementing mass
-treatment</p>
+<p><span class="math inline">\(\Xi(t)\)</span> includes both
+<code>mda(t)</code> and <code>msat(t)</code>: functions implementing
+mass treatment</p>
 <ul>
 <li><p>The function <code>mda(t)</code> implements mass drug
 administration</p></li>
 <li><p>The function <code>msat(t)</code> implements mass screen and
 treat using detection parameters (see above)</p></li>
 </ul>
-</li>
-<li><p>Setup for mass treatment is an advanced option in
-<code>ramp.control</code></p></li>
-</ul>
-<p>To read more, see <a href="https://dd-harp.github.io/ramp.control/articles/MassTreatment.html" class="external-link"><code>ramp.control</code>::Mass
-Treatment</a></p>
-</div>
-<div class="section level2">
-<h2 id="human-demography">Human Demography<a class="anchor" aria-label="anchor" href="#human-demography"></a>
-</h2>
-<p>The implementation of the model was generalized to consider human (or
-host) vital dynamics.</p>
+<p>During basic set up, the function returns no effect:
+<code>mda(t)=msat(t)=0</code>. Configuring a mass treatment function is
+handled as an advanced setup option in <code>ramp.control</code> (see <a href="https://dd-harp.github.io/ramp.control/articles/MassTreatment.html" class="external-link"><code>ramp.control</code>::Mass
+Treatment</a>)</p>
 <ul>
-<li><p>The population birth rate, <span class="math inline">\(B(t,
-H)\)</span></p></li>
-<li><p>A constant per-capita rate, <span class="math inline">\(\mu.\)</span> The model does not include a
-parameter to describe disease-induced mortality</p></li>
+<li>[ramp.forcing;:setup_mass_treatment)</li>
 </ul>
-<p><span class="math display">\[
-\frac{dH}{dt} = B(t, H) - \mu H
-\]</span> These demographic changes in <span class="math inline">\(H\)</span> require us to update the derivatives
-for <span class="math inline">\(S\)</span> and <span class="math inline">\(I.\)</span> Since newborns are susceptible, we
-get:</p>
-<p><span class="math display">\[
-\frac{dS}{dt} = B(t, H) - h S + r I  - \mu S  
-\]</span>xds_obj &lt;- setup_F_circadian(F_one, xds_obj)</p>
-<p>The dynamics for infected individuals are:</p>
-<p><span class="math display">\[
-\frac{dI}{dt} = h S - r I  - \mu I  
-\]</span> Once again, since <span class="math inline">\(H=S+I,\)</span>
-one of these equations is redundant. We compute <span class="math inline">\(dH/dt\)</span> and <span class="math inline">\(dI/dt.\)</span></p>
-<p>In <code>ramp.demog</code>, we have implemented a generalized system
-called <em>principled stratification</em> making it possible model
-aging, migration, and dynamical exchanges among strata. After setup, all
-these dynamics are combined in a single demographic matrix <span class="math inline">\(D\)</span>. The implementation is thus more
-general:</p>
-<p><span class="math display">\[
-\dot{H} = B(t, H) - D \cdot H
-\]</span></p>
-<p>By default, the model is implemented with static population
-dynamics:</p>
-<ul>
-<li><p><span class="math inline">\(B(t,H)\)</span> or
-<code>B(t,H) = 0</code>: a function describing the population birth
-rate</p></li>
-<li><p><span class="math inline">\(D\)</span> or
-<code>D_matrix=0,</code> where <span class="math inline">\(0\)</span> is
-a matrix of zeros.</p></li>
-</ul>
-<p>Other functions can be configured as advanced options in
-<code>ramp.demog.</code></p>
-</div>
-<div class="section level2">
-<h2 id="module-implementation">Module Implementation<a class="anchor" aria-label="anchor" href="#module-implementation"></a>
-</h2>
-<div class="section level3">
-<h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
-</h3>
-<p>The module has two variables:</p>
-<ul>
-<li>
-<p><span class="math inline">\(H\)</span> or <code>H</code> is human
-population density, a vector of length <code>nStrata</code></p>
-<ul>
-<li><p>Since human population size, <span class="math inline">\(H,\)</span> has effects on the blood feeding
-interface, its value must be assigned during setup as
-<code>HPop=...</code></p></li>
-<li><p>The parameter <code>nStrata</code> is set to
-<code>length(HPop)</code></p></li>
-<li><p>There is a function to change <span class="math inline">\(H\)</span> called <code>change_H</code></p></li>
-</ul>
-</li>
-<li>
-<p><span class="math inline">\(I\)</span> or <code>I</code> is the
-density of infected humans, a vector of length <code>nStrata</code></p>
-<ul>
-<li><p>The default initial value is <span class="math inline">\(I=1\)</span></p></li>
-<li><p>The function to change the initial values of <span class="math inline">\(I\)</span> are called by
-<code>change_XH_inits</code></p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="the-derivatives">The Derivatives<a class="anchor" aria-label="anchor" href="#the-derivatives"></a>
-</h3>
-<p>The derivatives computed by <code>dXHdt.SIS</code> are equivalent
-to:</p>
-<p><span class="math display">\[
-\begin{array}{rl}
-\dot{H} &amp;= B(t, H) - D \cdot H \\
-\dot{I} &amp;= h (H-I)  - \left(r+\xi\left(t\right)\right) I - D \cdot I
-\end{array}
-\]</span></p>
-<hr>
-</div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
@@ -392,89 +396,93 @@ We use <code>ramp.xds::setup_XH</code> to set up parameters, and
 configure a <code>trace</code> function to force the EIR.</p>
 <p>Users interested in more technical details should read <a href="ex_534.html">our fully worked multi-patch example</a>.</p>
 <p>First, we define the size of three population strata:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">H</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span>, <span class="fl">250</span><span class="op">)</span></span>
 <span><span class="va">nStrata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">H</span><span class="op">)</span> </span></code></pre></div>
 <p>We use the use the default model of human demography with no births
 or deaths.</p>
 <p>Next, we define the parameter values for all three strata as a named
 list:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.55</span>, <span class="va">nStrata</span><span class="op">)</span> </span>
 <span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="va">nStrata</span><span class="op">)</span> </span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">200</span>, <span class="va">nStrata</span><span class="op">)</span></span></code></pre></div>
 <p>To use these values to build our model, we create a named list:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b<span class="op">=</span><span class="va">b</span>, c<span class="op">=</span><span class="va">c</span>, r<span class="op">=</span><span class="va">r</span><span class="op">)</span></span></code></pre></div>
 <p>We want to set up the model in a way that tests the software. We want
 to set values of the EIR and, knowing what the answer should be, show
 that we get them back. First, we set the values of the FoI, and then we
 compute the EIR:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">foi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">365</span> </span>
 <span><span class="va">eir</span> <span class="op">&lt;-</span> <span class="va">foi</span><span class="op">/</span><span class="va">b</span> </span></code></pre></div>
 <p>The equilibrium values we should get back after running the equations
 to steady state are <span class="math inline">\(I = H h
 /(h+r)\)</span></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">I_eq</span> <span class="op">=</span> <span class="va">H</span><span class="op">*</span><span class="va">foi</span><span class="op">/</span><span class="op">(</span><span class="va">foi</span><span class="op">+</span><span class="va">r</span><span class="op">)</span> </span>
 <span><span class="va">I_eq</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1]  35.39823 261.43791 155.44041</span></span></code></pre>
 <p>First, we use <code>xds_setup</code> and next, we do it the long
 way</p>
-<div class="section level3">
-<h3 id="using-setup">Using Setup<a class="anchor" aria-label="anchor" href="#using-setup"></a>
-</h3>
+</div>
+<div class="section level2">
+<h2 id="using-setup">Using Setup<a class="anchor" aria-label="anchor" href="#using-setup"></a>
+</h2>
 <p>To set up the model, we simply do this:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup_eir.html">xds_setup_eir</a></span><span class="op">(</span><span class="va">eir</span>, XHname<span class="op">=</span><span class="st">"SIS"</span>, HPop<span class="op">=</span><span class="va">H</span>, XHoptions <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_SIS</span></span></code></pre></div>
-<p>To solve it, we do this:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS</span></span></code></pre></div>
-<p>We plot the prevalence over time:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_setup_eir.html">xds_setup_eir</a></span><span class="op">(</span><span class="va">eir</span>, XHname<span class="op">=</span><span class="st">"SIS"</span>, HPop<span class="op">=</span><span class="va">H</span>, XHoptions <span class="op">=</span> <span class="va">Xo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_SIS_ode</span></span>
+<span><span class="fu"><a href="../reference/xds_setup_eir.html">xds_setup_eir</a></span><span class="op">(</span><span class="va">eir</span>, XHname<span class="op">=</span><span class="st">"SIS"</span>, HPop<span class="op">=</span><span class="va">H</span>, XHoptions <span class="op">=</span> <span class="va">Xo</span>, xds<span class="op">=</span><span class="st">"dts"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_SIS_dts</span></span></code></pre></div>
+<p>To solve it, we do this:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS_ode</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS_ode</span></span>
+<span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS_dts</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS_dts</span></span></code></pre></div>
+<p>We plot the prevalence over time:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clrs</span> <span class="op">=</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS</span>, clr<span class="op">=</span><span class="va">clrs</span><span class="op">)</span></span></code></pre></div>
-<p><img src="human_sis_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="672"></p>
+<span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS_ode</span>, clr<span class="op">=</span><span class="va">clrs</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS_dts</span>, lty<span class="op">=</span><span class="fl">2</span>, clrs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"orange"</span>, <span class="fl">3</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<p><img src="human_sis_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="672"></p>
 <p>If we set the initial values of <span class="math inline">\(I\)</span> to the steady state values, the
 variables shouldn’t change at all. To change the values, we simply add
 them to the list</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">test_SIS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_XH_inits.html">change_XH_inits</a></span><span class="op">(</span><span class="va">test_SIS</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>I<span class="op">=</span><span class="va">I_eq</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">test_SIS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_XH_inits.html">change_XH_inits</a></span><span class="op">(</span><span class="va">test_SIS_ode</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>I<span class="op">=</span><span class="va">I_eq</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS</span> </span>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS</span>, clr<span class="op">=</span><span class="va">clrs</span><span class="op">)</span></span></code></pre></div>
-<p><img src="human_sis_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="672"></p>
+<p><img src="human_sis_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="" width="672"></p>
 <p>Or we can use the <code>get_XH_orbits</code> function to get the
 values of the orbits. This gets the return values and pulls of the the
 values of <span class="math inline">\(I\)</span> at the last time
 step:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_XH_orbits.html">get_XH_orbits</a></span><span class="op">(</span><span class="va">test_SIS</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">XH2</span></span>
 <span><span class="va">I_last</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">XH2</span><span class="op">$</span><span class="va">I</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">I_last</span></span></code></pre></div>
 <pre><code><span><span class="co">##               4        5        6</span></span>
 <span><span class="co">## [366,] 35.39823 261.4379 155.4404</span></span></code></pre>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">XH2</span><span class="op">$</span><span class="va">I</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="va">I_eq</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0</span></span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="another-test">Another Test<a class="anchor" aria-label="anchor" href="#another-test"></a>
-</h3>
+<div class="section level2">
+<h2 id="another-test">Another Test<a class="anchor" aria-label="anchor" href="#another-test"></a>
+</h2>
 <p>If we set <span class="math inline">\(I(0) = 0\)</span>, the simple
 model has a closed form solution:</p>
 <p><span class="math display">\[
 I(t) = H (1-e^{-(h+r) t}) \frac{h}{h+r}
 \]</span> We can reset the initial conditions and solve the system of
 differential equations:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_SIS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/change_XH_inits.html">change_XH_inits</a></span><span class="op">(</span><span class="va">test_SIS</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>I<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">test_SIS</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">test_SIS</span> </span>
 <span><span class="va">Itest</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_XH_orbits.html">get_XH_orbits</a></span><span class="op">(</span><span class="va">test_SIS</span>, <span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">I</span> </span>
 <span><span class="fu"><a href="../reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">test_SIS</span>, clr<span class="op">=</span><span class="va">clrs</span><span class="op">)</span></span></code></pre></div>
-<p><img src="human_sis_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="" width="672"></p>
+<p><img src="human_sis_files/figure-html/unnamed-chunk-18-1.png" class="r-plt" alt="" width="672"></p>
 <p>…and we can compute the exact solutions for the same values of <span class="math inline">\(t\)</span>:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">t</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_XH_orbits.html">get_XH_orbits</a></span><span class="op">(</span><span class="va">test_SIS</span>, <span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">time</span></span>
 <span><span class="va">It</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">366</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">ss</span> <span class="op">=</span> <span class="va">H</span><span class="op">*</span><span class="va">foi</span><span class="op">/</span><span class="op">(</span><span class="va">r</span><span class="op">+</span><span class="va">foi</span><span class="op">)</span></span>
@@ -482,10 +490,9 @@ differential equations:</p>
 <span>  <span class="va">It</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="va">H</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="va">r</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">foi</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">*</span><span class="va">t</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="va">foi</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">/</span><span class="op">(</span><span class="va">foi</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">r</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>The summing over all the squared differences is less than <span class="math inline">\(10^{-6}.\)</span></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">It</span><span class="op">-</span><span class="va">Itest</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-6</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
-</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

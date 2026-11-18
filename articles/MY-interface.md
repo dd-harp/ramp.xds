@@ -26,8 +26,6 @@ transmission:
   infectious mosquito bites on humans in each patch. The transmission
   interface uses this quantity to compute EIR for the human strata.
 
-- 
-
 - Modules also supply `F_fqM`, the daily density of mosquito bites on
   humans in each patch. The transmission interface uses it to compute
   HBR for the human strata.
@@ -42,27 +40,26 @@ emergence.
   produced by adult mosquitoes in each patch. The egg-laying interface
   apportions those eggs among the habitats in a patch.
 
-- 
-
 - `dMYdt` computes derivatives for continuous-time models. Discrete-time
   models can instead implement `Update_MYt` to update the state
   variables.
 
 ------------------------------------------------------------------------
 
-![Figure 1: A diagram of the MY Component. For parasite transmission,
-blood feeding on humans infects mosquitoes according to net
-infectiousness \kappa. After surviving the EIP, infectious mosquitoes
-blood feed on humans at the patch-specific rate represented by fqZ. For
+![Figure 1: A diagram of the MY Component. For parasite transmission, a
+blood meal on a human infects mosquitoes with probability \kappa, called
+net infectiousness. After surviving the EIP, infectious mosquitoes blood
+feed on humans at the patch-specific rate represented by fqZ. For
 mosquito ecology, adult mosquitoes emerge from aquatic habitats in the L
 Component and lay eggs into those habitats.](MY_component.drawio.png)
 
 ***Figure 1:** A diagram of the **MY** Component. For parasite
-transmission, blood feeding on humans infects mosquitoes according to
-net infectiousness \\\kappa\\. After surviving the EIP, infectious
-mosquitoes blood feed on humans at the patch-specific rate represented
-by \\fqZ\\. For mosquito ecology, adult mosquitoes emerge from aquatic
-habitats in the **L** Component and lay eggs into those habitats.*
+transmission, a blood meal on a human infects mosquitoes with
+probability \\\kappa\\, called net infectiousness. After surviving the
+EIP, infectious mosquitoes blood feed on humans at the patch-specific
+rate represented by \\fqZ\\. For mosquito ecology, adult mosquitoes
+emerge from aquatic habitats in the **L** Component and lay eggs into
+those habitats.*
 
 ------------------------------------------------------------------------
 
@@ -121,9 +118,16 @@ At least one of the following is required, depending on whether the
 model family is a system of differential equations or a discrete time
 system:
 
-    + `dMYdt.MYname` :: implement this method for a continuous-time model. It receives `t`, the dependent-variable vector `y`, `xds_obj`, and `s`; it returns derivatives in the same order as the model's state variables. The function is used with solvers such as `deSolve::ode` or `deSolve::dede`.
+- `dMYdt.MYname` :: implement this method for a continuous-time model.
+  It receives `t`, the dependent-variable vector `y`, `xds_obj`, and
+  `s`; it returns derivatives in the same order as the model’s state
+  variables. The function is used with solvers such as
+  [`deSolve::ode`](https://rdrr.io/pkg/deSolve/man/ode.html) or
+  [`deSolve::dede`](https://rdrr.io/pkg/deSolve/man/dede.html).
 
-    + `Update_MYt.MYname` :: implement this method for a discrete-time model. It receives `t`, `y`, `xds_obj`, and `s`, and returns the updated state variables in the model's state-variable order.
+- `Update_MYt.MYname` :: implement this method for a discrete-time
+  model. It receives `t`, `y`, `xds_obj`, and `s`, and returns the
+  updated state variables in the model’s state-variable order.
 
 ### Bionomics
 
@@ -233,7 +237,8 @@ compute EIR and HBR, respectively.
 The skill set describes a module’s capabilities and limitations. The
 consistency check can verify model-specific requirements before solving.
 
-- `setup_skillset_MY.MYname` :: sets the module’s skill-set information.
+- `get_skillset_MY.MYname` :: returns a list describing the module’s
+  capabilities and limitations.
 - 
 - `check_MY.MYname` :: checks model-specific setup before solving.
 

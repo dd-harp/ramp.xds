@@ -5,26 +5,16 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The SIS module for the XH component — SIS"><meta name="description" content="SIS implements a family of SIS compartmental models for malaria as a system of differential equations:
-individuals are either susceptible \((S)\) or infected and infectious \((I)\).
-In its simplest form, SIS dynamics are:
-$$
-dI/dt = h S - r I
-$$
-This generalized implementation includes:
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The SIS module for the XH component — SIS"><meta name="description" content="SIS implements a generalized S-I-S compartmental
+models for malaria as a system of differential equations including:
 parameters to model treating and curing infections;
 functions to model human demographic change;
 functions to model mass treatment;
 support for progressive stratification
 
 
-The SIS Vignette discusses the module."><meta property="og:description" content="SIS implements a family of SIS compartmental models for malaria as a system of differential equations:
-individuals are either susceptible \((S)\) or infected and infectious \((I)\).
-In its simplest form, SIS dynamics are:
-$$
-dI/dt = h S - r I
-$$
-This generalized implementation includes:
+The SIS Vignette discusses the module."><meta property="og:description" content="SIS implements a generalized S-I-S compartmental
+models for malaria as a system of differential equations including:
 parameters to model treating and curing infections;
 functions to model human demographic change;
 functions to model mass treatment;
@@ -113,13 +103,8 @@ The SIS Vignette discusses the module."></head><body>
     </div>
 
     <div class="ref-description section level2">
-    <p><code>SIS</code> implements a family of <code>SIS</code> compartmental models for malaria as a system of differential equations:
-individuals are either susceptible \((S)\) or infected and infectious \((I)\).
-In its simplest form, <code>SIS</code> dynamics are:
-$$
-dI/dt = h S - r I
-$$</p>
-<p>This generalized implementation includes:</p><ul><li><p>parameters to model treating and curing infections;</p></li>
+    <p><code>SIS</code> implements a generalized S-I-S compartmental
+models for malaria as a system of differential equations including:</p><ul><li><p>parameters to model treating and curing infections;</p></li>
 <li><p>functions to model human demographic change;</p></li>
 <li><p>functions to model mass treatment;</p></li>
 <li><p>support for progressive stratification</p></li>
@@ -127,6 +112,30 @@ $$</p>
     </div>
 
 
+    <div class="section level2">
+    <h2 id="infection-dynamics">Infection Dynamics<a class="anchor" aria-label="anchor" href="#infection-dynamics"></a></h2>
+
+
+
+<p>The model for infection dynamics (<strong>X</strong>) assumes that infections
+clear naturally at a constant per-capita rate \(r\).</p>
+<p>The model also includes two parameters to model
+treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured;</p></li>
+<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\)</p></li>
+</ul><p>A function describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function.</p>
+<p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)
+After clearing, individuals are
+susceptible to infection.</p>
+<p>Infection dynamics are described by:</p>
+<p>$$
+dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) $$</p>
+<p>The mortality function \(\mathbf{D}(I)\) computes total mortality for \(I\) using
+the same model as for \(H\):
+for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\)</p>
+<p>In the compartmental model, individuals are either susceptible (\(S\)), or infected and
+infectious (\(I\)), so  \(S=H-I.\) The equation is redundant.
+After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
+    </div>
     <div class="section level2">
     <h2 id="state-variables">State Variables<a class="anchor" aria-label="anchor" href="#state-variables"></a></h2>
 
@@ -210,30 +219,6 @@ the dynamics, or detection by diagnostic methods.</p>
 
 
 </dl></div>
-    <div class="section level2">
-    <h2 id="infection-dynamics">Infection Dynamics<a class="anchor" aria-label="anchor" href="#infection-dynamics"></a></h2>
-
-
-
-<p>The model for infection dynamics (<strong>X</strong>) assumes that infections
-clear naturally at a constant per-capita rate \(r\).</p>
-<p>The model also includes two parameters to model
-treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured;</p></li>
-<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\)</p></li>
-</ul><p>A function describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function.</p>
-<p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)
-After clearing, individuals are
-susceptible to infection.</p>
-<p>Infection dynamics are described by:</p>
-<p>$$
-dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) $$</p>
-<p>The mortality function \(\mathbf{D}(I)\) computes total mortality for \(I\) using
-the same model as for \(H\):
-for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\)</p>
-<p>In the compartmental model, individuals are either susceptible (\(S\)), or infected and
-infectious (\(I\)), so  \(S=H-I.\) The equation is redundant.
-After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
-    </div>
     <div class="section level2">
     <h2 id="prevalence">Prevalence<a class="anchor" aria-label="anchor" href="#prevalence"></a></h2>
 

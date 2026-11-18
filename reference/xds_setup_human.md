@@ -21,7 +21,7 @@ xds_setup_human(
   TSoptions = list(),
   MYoptions = list(),
   model_name = "unnamed",
-  xds = "ode"
+  xds = "xde"
 )
 ```
 
@@ -68,8 +68,8 @@ xds_setup_human(
 
 - xds:
 
-  is `ode` or `dde` or `dts` for ordinary OR delay differential OR
-  difference equations
+  use `xde` for differential equations and `dts` for discrete time
+  systems
 
 ## Value
 

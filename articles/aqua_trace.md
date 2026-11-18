@@ -113,7 +113,7 @@ bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 
 ``` r
 
-xds_obj <- make_xds_object_template("ode", "mosy", nPatches, membership, residence)
+xds_obj <- make_xds_object_template("xde", "mosy", nPatches, membership, residence)
 xds_obj$nHabitats
 #> [1] 4
 xds_obj$nStrata
