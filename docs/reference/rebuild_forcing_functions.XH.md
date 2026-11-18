@@ -8,6 +8,12 @@ Rebuild forcing functions on the X object using `make_function`:
 
 - `F_shock` is made from `shock_par`
 
+- `H_season` is made from `H_season_par`
+
+- `H_trend` is made from `H_trend_par`
+
+- `H_shock` is made from `H_shock_par`
+
 ## Usage
 
 ``` r

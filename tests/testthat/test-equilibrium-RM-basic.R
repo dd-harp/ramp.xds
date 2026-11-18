@@ -91,7 +91,7 @@ test_that("test equilibrium with macdonald adults (DDE), basic competition", {
 
   Xo = list(kappa=kappa, HPop=H)
   # parameters for exDE
-  params <- xds_setup(MYname = "macdonald", MYoptions=MYo, Lname = "basicL", XHname = "trivial", Loptions=Lo, Koptions=K_matrix, XHoptions=list(kappa=I*c/H),
+  params <- xds_setup(MYname = "macdonald", MYoptions=MYo, Lname = "basicL", XHname = "trivialXH", Loptions=Lo, Koptions=K_matrix, XHoptions=list(kappa=I*c/H),
                        HPop=H, membership=membership, nPatches=nPatches, residence=residence, TSoptions=TaR)
 
   params$terms$kappa[[1]] = kappa

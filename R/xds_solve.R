@@ -97,11 +97,11 @@ xds_solve.dts = function(xds_obj, Tmax=365, dt=1, times=NULL){
 
   xds_obj <- check_models(xds_obj)
   tm <- make_times_dts(Tmax, dt, times)
-  yt = get_inits(xds_obj)
+  yt = get_inits(xds_obj, flatten=TRUE)
 
   dts_out = c(0, yt)
   for(t in tm[-1]){
-    yt =  dts_update(t, yt, xds_obj)
+    yt =  unlist(dts_update(t, yt, xds_obj))
     dts_out = rbind(dts_out, c(t,yt))
   }
 

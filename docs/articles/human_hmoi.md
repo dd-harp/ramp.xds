@@ -60,7 +60,7 @@ Here, we build a model step-by-step.
 `nStrata`` ``<-`` ``3`\
 `H`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``100``, ``500``, ``250``)`\
 `residence`` ``=`` `[`rep`](https://rdrr.io/r/base/rep.html)`(``1``,``3``)`` `\
-`xds_obj`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"ode"``, ``"eir"``, ``1``, ``0``, ``residence``)`
+`xds_obj`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"xde"``, ``"eir"``, ``1``, ``0``, ``residence``)`
 
 \
 `b`` ``<-`` ``0.55`\
@@ -82,8 +82,8 @@ Here, we build a model step-by-step.
 `xds_obj`` ``=`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"hMoI"``, ``residence``, ``xds_obj``, options``=``Xo``, i``=``1``)`
 
 \
-`xds_obj`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"trivial"``, ``xds_obj``, s``=``1``)`\
-`xds_obj`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivial"``, ``1``, ``xds_obj``, s``=``1``)`
+`xds_obj`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"trivialMY"``, ``xds_obj``, s``=``1``)`\
+`xds_obj`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivialL"``, ``1``, ``xds_obj``, s``=``1``)`
 
 \
 `F_season`` ``=`` ``F_one`\

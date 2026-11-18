@@ -98,7 +98,7 @@ use `ramp.xds::MosquitoBehavior` to pass the equilibrium values of those
 bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 
 \
-`xds_obj`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"ode"``, ``"mosy"``, ``nPatches``, ``membership``, ``residence``)`\
+`xds_obj`` ``<-`` `[`make_xds_object_template`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)`(``"xde"``, ``"mosy"``, ``nPatches``, ``membership``, ``residence``)`\
 `xds_obj``$``nHabitats`\
 `#> [1] 4`\
 `xds_obj``$``nStrata`\
@@ -107,13 +107,13 @@ bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 `#> [1] 3`
 
 \
-`xds_obj`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivial"``, ``membership``, ``xds_obj``, options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``Lambda ``=`` ``alpha``)``, s``=``1``)`
+`xds_obj`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivialL"``, ``membership``, ``xds_obj``, options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``Lambda ``=`` ``alpha``)``, s``=``1``)`
 
 \
 `xds_obj`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"basicM"``, ``xds_obj``, options``=``MYo``, s``=``1``)`
 
 \
-`xds_obj`` ``=`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"trivial"``, ``residence``, ``xds_obj``, options``=`[`list`](https://rdrr.io/r/base/list.html)`(``H``=``HPop``)``, i``=``1``)`
+`xds_obj`` ``=`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"trivialXH"``, ``residence``, ``xds_obj``, options``=`[`list`](https://rdrr.io/r/base/list.html)`(``H``=``HPop``)``, i``=``1``)`
 
 \
 `xds_obj`` ``=`` `[`make_indices`](https://dd-harp.github.io/ramp.xds/reference/make_indices.md)`(``xds_obj``)`
@@ -194,7 +194,7 @@ bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 `)`
 
 \
-[`xds_setup_mosy`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)`(``MYname ``=`` ``"basicM"``, Lname ``=`` ``"trivial"``, `\
+[`xds_setup_mosy`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_mosy.md)`(``MYname ``=`` ``"basicM"``, Lname ``=`` ``"trivialL"``,`\
 `               nPatches ``=`` ``3``, membership ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``,``2``,``3``,``3``)``, `\
 `               MYoptions ``=`` ``MYo``, Koptions ``=`` ``K_matrix``, `\
 `               HPop``=``HPop``, Loptions ``=`` ``Lo``)``->``mosy1`

@@ -15,11 +15,20 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Rebuild forcing functions on the X object using \code{make_function}:
+Rebuild forcing functions on the XH object using \code{make_function}
+
+For \eqn{\kappa}
 \itemize{
 \item \code{F_season} is made from \code{season_par}
 \item \code{F_trend} is made from \code{trend_par}
 \item \code{F_shock} is made from \code{shock_par}
+}
+
+For \eqn{H}
+\itemize{
+\item \code{H_season} is made from \code{H_season_par}
+\item \code{H_trend} is made from \code{H_trend_par}
+\item \code{H_shock} is made from \code{H_shock_par}
 }
 }
 \keyword{internal}

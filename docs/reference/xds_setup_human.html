@@ -117,7 +117,7 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
 <span>  TSoptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  MYoptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  model_name <span class="op">=</span> <span class="st">"unnamed"</span>,</span>
-<span>  xds <span class="op">=</span> <span class="st">"ode"</span></span>
+<span>  xds <span class="op">=</span> <span class="st">"xde"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -162,7 +162,7 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
 
 
 <dt id="arg-xds">xds<a class="anchor" aria-label="anchor" href="#arg-xds"></a></dt>
-<dd><p>is <code>ode</code> or <code>dde</code> or <code>dts</code> for ordinary OR delay differential OR difference equations</p></dd>
+<dd><p>use <code>xde</code> for differential equations and <code>dts</code> for discrete time systems</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -173,7 +173,7 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>A modified version of <a href="xds_setup.html">xds_setup</a> that sets up a model to study exposure and
 infection.
-The <strong>MY</strong> component module is set to <code>trivial</code> and a trace
+The <strong>MY</strong> component module is set to <code>trivialMY</code> and a trace
 function computes infective biting in the patches.</p>
 <p><code>class(xds_obj$frame) = 'human'</code></p>
 <p>to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
@@ -182,7 +182,7 @@ and parse outputs.</p>
 by the EIR, use <a href="xds_setup_eir.html">xds_setup_eir</a>.</p>
 <p><strong>Dynamics</strong></p>
 <p>Choose a module:</p><ul><li><p><code>XHname</code> — the name of an <strong>XH</strong> module: see the <a href="XH_module_list.html">XH_module_list</a> for human / host infection dynamics</p></li>
-<li><p><code>MYname</code> \(=\) <code>trivial</code></p></li>
+<li><p><code>MYname</code> \(=\) <code>trivialMY</code></p></li>
 </ul><p>Set parameter values and initial conditions using setup options (named lists):</p><ul><li><p><code>XHoptions</code> sets parameter values and initial conditions for the <strong>XH</strong> module</p></li>
 <li><p><code>MYoptions</code> sets up infective biting in the patches for the trivial <strong>MY</strong> module</p></li>
 <li><p><code>HPop</code> is the human population density</p></li>

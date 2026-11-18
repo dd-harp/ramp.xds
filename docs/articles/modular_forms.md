@@ -62,9 +62,8 @@ infections at the rate \\(fqcX/H.\\)
 
 \\\[\begin{array}{rl} dX/dt &= fq b e^{-gn} \frac {Y}{H} (H-X) - r X
 \\\\ dM/dt &= \Lambda - g M \\\\ dY/dt &= fq c \frac {X}{H} (M-Y) - g Y
-\end{array}\\\] Written in this way, it is in a *standard form.*
-
-------------------------------------------------------------------------
+\end{array}\\\] Written in this way, it is not in any particular form.
+Or we could also say that it is in *standard form.* \*\*\*
 
 ## A Modular Form
 
@@ -73,9 +72,11 @@ the modular form, we identify the terms in one equation that depend on
 the other variable. First, we focus on the equation describing human
 infection dynamics. We note that it depends on a term involving the
 variable \\(Y.\\) The term is called the force of infection (FoI, Ross
-called it the *happenings* rate). We let \\(h\\) denote the FoI:
+called it the *happenings* rate).
 
-\\\[h=fq b e^{-gn} \frac {Y}{H}.\\\]
+\\\[E =fq e^{-gn} \frac {Y}{H}.\\\] We let \\(h\\) denote the FoI:
+
+\\\[h = F_h(b, E) = b E.\\\]
 
 Now, the first equation can be rewritten:
 
@@ -107,7 +108,9 @@ form, there are three components:
 
 - **M** - mosquito population dynamics.
 
-There are two dynamical terms:
+There are three dynamical terms:
+
+- the daily EIR;
 
 - the FoI, describing parasite transmission from mosquitoes to humans;
   and
@@ -189,7 +192,7 @@ configured by naming the modules and passing options to set
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`\
 `# devtools::load_all()`\
 `mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``, MYname ``=`` ``"SI"``, `\
-`                 Lname ``=`` ``"trivial"``, Loptions ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``Lambda``=``80``)``)`
+`                 Lname ``=`` ``"trivialL"``, Loptions ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``Lambda``=``80``)``)`
 
 In solving the system, derivatives for the human “SIS” model are
 computed by a function `dXHdt.SIS`. Documentation is available through
@@ -208,14 +211,15 @@ treatment. The code looks like this:
     ## 
     ##   with(get_XH_vars(y, xds_obj, i),{
     ##     with(xds_obj$XH_obj[[i]], {
+    ##       
+    ##       clear = r + sigma + rho*foi + mda(t) + msat(t)
     ##       dH <- Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, i)
-    ##       dI <- foi*(1-rho)*(H-I) - (r + sigma + rho*foi)*I - Deaths(t, I, xds_obj, i)
-    ##       dI <- dI - mda(t)*I - msat(t)*I
+    ##       dI <- foi*(1-rho)*(H-I) - clear*I - Deaths(t, I, xds_obj, i)
     ##       return(c(dH, dI))
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x1243765b0>
+    ## <bytecode: 0x129cccf28>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -244,18 +248,19 @@ code looks like this:
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x124648ce0>
+    ## <bytecode: 0x11bed7b88>
     ## <environment: namespace:ramp.xds>
 
 The term \\(\Lambda\\) is passed from the trace function
-`F_emerge.trivial`. Documentation is available through help in two ways:
-[`?trivial_L`](https://dd-harp.github.io/ramp.xds/reference/trivial_L.md)
+`F_emerge.trivialL`. Documentation is available through help in two
+ways:
+[`?trivialL`](https://dd-harp.github.io/ramp.xds/reference/trivialL.md)
 or
-[`?F_emerge.trivial`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.trivial.md).
+[`?F_emerge.trivialL`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.trivialL.md).
 The implementation looks like this:
 
 \
-[`getS3method`](https://rdrr.io/r/utils/getS3method.html)`(``"F_emerge"``, ``"trivial"``)`
+[`getS3method`](https://rdrr.io/r/utils/getS3method.html)`(``"F_emerge"``, ``"trivialL"``)`
 
     ## function(t, y, xds_obj, s) {
     ##   with(xds_obj$L_obj[[s]],{
@@ -264,5 +269,5 @@ The implementation looks like this:
     ##     V_k = get_variables(shock_par, t, y, xds_obj, s)
     ##     return(Lambda*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
     ## })}
-    ## <bytecode: 0x1251fc310>
+    ## <bytecode: 0x12a3268e0>
     ## <environment: namespace:ramp.xds>

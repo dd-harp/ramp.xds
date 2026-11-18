@@ -184,7 +184,6 @@ reference:
   - get_L_orbits
   - get_EIR 
   - get_PR
-  - get_skills
 - title: Qualitative Analysis 
 - subtitle: Compute Steady States   
   contents:
@@ -372,7 +371,7 @@ reference:
   desc: |
     XH component module implementations
   contents:
-  - trivial_XH
+  - trivialXH
   - SIS
   - hMoI
 - subtitle: Human / Host Demography (H)
@@ -465,7 +464,7 @@ reference:
   - xds_info_mosquito_bionomics 
 - subtitle: Modules 
   contents:
-  - trivial_MY
+  - trivialMY
   - basicM
   - SI
   - macdonald
@@ -587,7 +586,7 @@ reference:
   desc: | 
     Models for aquatic mosquito development and maturation in aquatic habitats
   contents:
-  - trivial_L
+  - trivialL
   - basicL
 - subtitle: Other State Variables 
   desc: |

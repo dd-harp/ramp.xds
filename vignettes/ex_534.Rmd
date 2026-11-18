@@ -380,7 +380,7 @@ A user only needs to know how to encode the information and what information to 
 
 
 ```{r}
-xds_obj = make_xds_object_template("dde", "full", nPatches, membership, residence) 
+xds_obj = make_xds_object_template("xde", "full", nPatches, membership, residence)
 ```
 
 After being set up:

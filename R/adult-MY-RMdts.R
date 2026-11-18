@@ -35,18 +35,19 @@ NULL
 
 #' @title The skill set
 #'
-#' @inheritParams setup_skillset_MY
+#' @inheritParams get_skillset_MY
 #'
-#' @return an **`xds`** model object
+#' @return the **MY** module skill set, as a list
 #'
 #' @keywords internal
 #' @export
-setup_skillset_MY.RMdts = function(xds_obj, s){
+get_skillset_MY.RMdts = function(xds_obj, s){
   skills = list(
-    not_implemented = TRUE
+    dts = FALSE,
+    xde = TRUE,
+    delay = TRUE
   )
-  xds_obj$MY_obj[[s]]$skill_set = skills
-  return(xds_obj) 
+  return(skills)
 }
 
 #' Run a check before solving
@@ -256,3 +257,123 @@ change_MY_inits.RMdts <- function(xds_obj, options=list(), s=1) {
     xds_obj$MY_obj[[s]]$inits = make_MY_inits_RMdts(xds_obj$nPatches, max_eip, list(), M=M, P=P, U=U, Y=Y, Z=Z)
     return(xds_obj)
 })})}
+
+#' @title Get parameters for `RMdts` (**MY**)
+#' @description Get the stored parameter values for the `RMdts` model.
+#' @inheritParams get_MY_pars
+#' @return a [list]
+#' @seealso [RMdts]
+#' @keywords internal
+#' @export
+get_MY_pars.RMdts <- function(xds_obj, s=1) {
+  with(xds_obj$MY_obj[[s]], list(
+    f=f, q=q, g=g, sigma=sigma, eip=eip, mu=mu,
+    nu=nu, eggsPerBatch=eggsPerBatch, K_matrix=K_matrix
+  ))
+}
+
+#' @title Change parameters for `RMdts` (**MY**)
+#' @description Change static parameter values named in `options`,
+#' leaving other values unchanged.
+#' @inheritParams change_MY_pars
+#' @return an **`xds`** model object
+#' @seealso [RMdts], [get_MY_pars.RMdts]
+#' @keywords internal
+#' @export
+change_MY_pars.RMdts <- function(xds_obj, options=list(), s=1) {
+  with(xds_obj$MY_obj[[s]], with(options,{
+    xds_obj$MY_obj[[s]]$f = f
+    xds_obj$MY_obj[[s]]$q = q
+    xds_obj$MY_obj[[s]]$g = g
+    xds_obj$MY_obj[[s]]$sigma = sigma
+    xds_obj$MY_obj[[s]]$eip = eip
+    xds_obj$MY_obj[[s]]$mu = mu
+    xds_obj$MY_obj[[s]]$nu = nu
+    xds_obj$MY_obj[[s]]$eggsPerBatch = eggsPerBatch
+    return(xds_obj)
+  }))
+}
+
+#' @title Mosquito bionomics for `RMdts` (**MY**)
+#' @description Leave the parameters unchanged; this module does not
+#' implement dynamic bionomic ports.
+#' @inheritParams MBionomics
+#' @return an **`xds`** model object
+#' @seealso [RMdts]
+#' @keywords internal
+#' @export
+MBionomics.RMdts <- function(t, y, xds_obj, s) {
+  return(xds_obj)
+}
+
+#' @title Apply effect sizes for `RMdts` (**MY**)
+#' @description Leave the parameters unchanged; this module does not
+#' implement effect-size modifications.
+#' @inheritParams MEffectSizes
+#' @return an **`xds`** model object
+#' @seealso [RMdts]
+#' @keywords internal
+#' @export
+MEffectSizes.RMdts <- function(t, y, xds_obj, s) {
+  return(xds_obj)
+}
+
+#' @title Get the feeding rates
+#' @inheritParams get_f
+#' @return the feeding rate, as a vector
+#' @seealso [RMdts]
+#' @keywords internal
+#' @export
+get_f.RMdts = function(xds_obj, s=1){
+  with(xds_obj$MY_obj[[s]], f)
+}
+
+#' @title Get the human fractions
+#' @inheritParams get_q
+#' @return the human fraction, as a vector
+#' @seealso [RMdts]
+#' @keywords internal
+#' @export
+get_q.RMdts = function(xds_obj, s=1){
+  with(xds_obj$MY_obj[[s]], q)
+}
+
+#' @title Get the mortality rates
+#' @inheritParams get_g
+#' @return the mortality rate, as a vector
+#' @seealso [RMdts]
+#' @keywords internal
+#' @export
+get_g.RMdts = function(xds_obj, s=1){
+  with(xds_obj$MY_obj[[s]], g)
+}
+
+#' @title Get the patch emigration rates
+#' @inheritParams get_sigma
+#' @return the patch emigration rates, as a vector
+#' @seealso [RMdts]
+#' @keywords internal
+#' @export
+get_sigma.RMdts = function(xds_obj, s=1){
+  with(xds_obj$MY_obj[[s]], sigma)
+}
+
+#' @title Get the initial mosquito population density
+#' @inheritParams get_M
+#' @return the initial mosquito population density
+#' @seealso [RMdts], [get_MY_inits]
+#' @keywords internal
+#' @export
+get_M.RMdts = function(xds_obj, s=1){
+  get_MY_inits(xds_obj, s)$M
+}
+
+#' @title Get the initial infective mosquito density
+#' @inheritParams get_Z
+#' @return the initial infective mosquito population density
+#' @seealso [RMdts], [get_MY_inits]
+#' @keywords internal
+#' @export
+get_Z.RMdts = function(xds_obj, s=1){
+  get_MY_inits(xds_obj, s)$Z
+}

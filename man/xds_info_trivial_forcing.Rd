@@ -29,5 +29,5 @@ as a product of four configurable elements:
 For a discussion of mechanistic approaches to forcing, see \href{https://faculty.washington.edu/smitdave/simba/trace.html}{SimBA: Trace Functions}
 }
 \seealso{
-\link{trivial_XH}, \link{trivial_MY}, \link{trivial_L}, \link{xds_setup_eir}
+\link{trivialXH}, \link{trivialMY}, \link{trivialL}, \link{xds_setup_eir}
 }

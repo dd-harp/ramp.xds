@@ -9,9 +9,9 @@ A List of Modules for the \strong{XH}-Component
 \section{In \strong{\code{ramp.xds}}}{
 
 \itemize{
-\item \code{trivial} - the trivial module: see \link{trivial_XH}
-\item \code{SIS} - an \strong{SIS} compartmental model: see \link{SIS}
-\item \code{hMoI} - a hybrid model for exposure: see \link{hMoI}
+\item \code{\link{trivialXH}} - the trivial module
+\item \code{\link{SIS}} --- \emph{ode} or \emph{dts} --- a generalized \emph{S-I-S} compartmental model
+\item \code{\link{hMoI}} --- \emph{ode} --- a hybrid model for infection and detection
 }
 }
 

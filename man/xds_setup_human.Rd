@@ -14,7 +14,7 @@ xds_setup_human(
   TSoptions = list(),
   MYoptions = list(),
   model_name = "unnamed",
-  xds = "ode"
+  xds = "xde"
 )
 }
 \arguments{
@@ -36,7 +36,7 @@ xds_setup_human(
 
 \item{model_name}{a name for the model}
 
-\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
+\item{xds}{use \code{xde} for differential equations and \code{dts} for discrete time systems}
 }
 \value{
 an \strong{\code{xds}} model object
@@ -54,7 +54,7 @@ To build a model forced by the EIR, see \link{xds_setup_eir}.
 \details{
 A modified version of \link{xds_setup} that sets up a model to study exposure and
 infection.
-The \strong{MY} component module is set to \code{trivial} and a trace
+The \strong{MY} component module is set to \code{trivialMY} and a trace
 function computes infective biting in the patches.
 
 \code{class(xds_obj$frame) = 'human'}
@@ -70,7 +70,7 @@ by the EIR, use \link{xds_setup_eir}.
 Choose a module:
 \itemize{
 \item \code{XHname} --- the name of an \strong{XH} module: see the \link{XH_module_list} for human / host infection dynamics
-\item \code{MYname} \eqn{=} \code{trivial}
+\item \code{MYname} \eqn{=} \code{trivialMY}
 }
 
 Set parameter values and initial conditions using setup options (named lists):

@@ -122,18 +122,20 @@ NULL
 
 #' @title The skill set
 #'
-#' @inheritParams setup_skillset_MY
+#' @inheritParams get_skillset_MY
 #'
-#' @return an **`xds`** model object
+#' @return the **MY** module skill set, as a list
 #'
 #' @keywords internal
 #' @export
-setup_skillset_MY.GeM = function(xds_obj, s){
+get_skillset_MY.GeM = function(xds_obj, s){
   skills = list(
+    dts = FALSE,
+    xde = TRUE,
+    delay = TRUE,
     not_implemented = TRUE
   )
-  xds_obj$MY_obj[[s]]$skill_set = skills
-  return(xds_obj) 
+  return(skills)
 }
 
 #' Run a check before solving
@@ -273,10 +275,10 @@ F_eggs.GeM <- function(t, y, xds_obj, s) {
 #' @export
 setup_MY_obj.GeM = function(MYname, xds_obj, options=list(), s=1){
   xds_obj$MYname = "GeM"
-  xds_obj = ode_to_dde(xds_obj)
   MY_obj <- make_MY_obj_GeM(xds_obj$nPatches, options)
   class(MY_obj) <- 'GeM'
   xds_obj$MY_obj[[s]] = MY_obj
+  xds_obj$MY_obj[[s]]$skill_set <- get_skillset_MY(xds_obj, s)
   xds_obj <- setup_F_circadian("setup", xds_obj, s=s)
   xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
   xds_obj <- setup_Upsilon_obj(xds_obj, s=s, TRUE)

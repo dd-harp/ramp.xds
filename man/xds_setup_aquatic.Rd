@@ -10,7 +10,7 @@ xds_setup_aquatic(
   nHabitats = 1,
   MYoptions = list(),
   model_name = "unnamed",
-  xds = "ode"
+  xds = "xde"
 )
 }
 \arguments{
@@ -24,7 +24,7 @@ xds_setup_aquatic(
 
 \item{model_name}{is a name for the model (arbitrary)}
 
-\item{xds}{is \code{ode} or \code{dde} or \code{dts} for ordinary OR delay differential OR difference equations}
+\item{xds}{use \code{xde} for differential equations and \code{dts} for discrete time systems}
 }
 \value{
 an \strong{\code{xds}} model object
@@ -39,7 +39,7 @@ can be solved by \link{xds_solve}.
 }
 \details{
 This is a modified version of \link{xds_setup} that streamlines setup for the \strong{L} module
-and egg laying for a \code{trivial} \strong{MY} module. It sets
+and egg laying for a \code{trivialMY} \strong{MY} module. It sets
 
 \code{class(xds_obj$frame) = 'aquatic'}
 
@@ -55,7 +55,7 @@ Choose a module:
 
 Set parameter values and initial conditions using setup options (named lists):
 \itemize{
-\item \code{MYoptions} sets up egg laying using the \code{trivial} \strong{MY} module
+\item \code{MYoptions} sets up egg laying using the \code{trivialMY} \strong{MY} module
 \item \code{Loptions} sets parameter values and initial conditions for the \strong{L} module
 }
 
@@ -81,7 +81,7 @@ Set up the model structure:
 a properly configured interface for blood feeding
 and egg laying (see \link{xds_object}).
 \itemize{
-\item The \strong{XH} model is never used, but it is set up as the default \code{trivial} module.
+\item The \strong{XH} model is never used, but it is set up as the default \code{trivialXH} module.
 }
 }
 \seealso{

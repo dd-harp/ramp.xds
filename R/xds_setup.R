@@ -97,15 +97,15 @@
 #' @param TSoptions a time spent matrix or setup options (see [setup_timespent])
 #' @param searchQ a vector of habitat search weights or setup options (see [setup_habitat_search_weights])
 #' @param Koptions a mosquito dispersal matrix (\eqn{K}) or setup options (see [setup_K_matrix])
+#' @param xds use `xde` for differential equations and `dts` for discrete time systems
 #' @param model_name a name for the model 
-#' @param xds is `xde` for differential equations or `dts` for discrete time systems
 #' 
 #' @return an **`xds`** model object
 #' @export
 xds_setup = function(
      XHname = "SIS",
      MYname = "SI",
-     Lname = "trivial",
+     Lname = "trivialL",
      XHoptions = list(),
      MYoptions = list(),
      Loptions = list(),
@@ -117,8 +117,8 @@ xds_setup = function(
      TSoptions = list(),
      searchQ = list(),
      Koptions = list(),
-     model_name = "unnamed",
-     xds = 'ode'
+     xds = 'xde',
+     model_name = "unnamed"
 ){
   nPatches = max(membership, nPatches)
   xds_obj <- make_xds_object_template(xds, 'full', nPatches, membership, residence)
@@ -137,7 +137,7 @@ xds_setup = function(
   XHoptions$H = HPop
   xds_obj <- setup_XH_obj(XHname, residence, xds_obj, options=XHoptions, i=1)
   
-  
+  xds_obj <- ode_to_dde(xds_obj)
   xds_obj <- make_indices(xds_obj)
   
   # Human Dynamics
@@ -237,7 +237,7 @@ xds_setup = function(
 #' @param Koptions a mosquito dispersal matrix (\eqn{K}) or setup options (see [setup_K_matrix])
 #' @param Loptions a list to configure the **L** Component module
 #' @param model_name is a name for the model 
-#' @param xds is `xde` for differential equations or `dts` for discrete time systems
+#' @param xds use `xde` for differential equations and `dts` for discrete time systems
 #' 
 #' @return an **`xds`** model object
 #' 
@@ -257,7 +257,7 @@ xds_setup_mosy = function(
      Koptions = list(),
      Loptions = list(), 
      model_name = "unnamed",
-     xds = 'ode'
+     xds = 'xde'
 ){
   nPatches = max(membership, nPatches)
   residence = 1:nPatches
@@ -273,10 +273,11 @@ xds_setup_mosy = function(
   xds_obj <- setup_MY_obj(MYname, xds_obj, options=MYoptions, s=1)
 
   # Human / Host Dynamics
-  xds_obj$XHname   <- "trivial"
+  xds_obj$XHname   <- "trivialXH"
   XHoptions <- list(H=HPop, kappa=0)
   xds_obj <- setup_XH_obj(xds_obj$XHname, residence, xds_obj, options=XHoptions, i=1) 
   
+  xds_obj <- ode_to_dde(xds_obj)
   xds_obj = make_indices(xds_obj)
   
   xds_obj <- setup_habitat_search_weights(searchQ, xds_obj, searchQ, 1)
@@ -305,7 +306,7 @@ xds_setup_mosy = function(
 #' @details 
 #' 
 #' This is a modified version of [xds_setup] that streamlines setup for the **L** module
-#' and egg laying for a `trivial` **MY** module. It sets
+#' and egg laying for a `trivialMY` **MY** module. It sets
 #' 
 #' `class(xds_obj$frame) = 'aquatic'`
 #' 
@@ -318,7 +319,7 @@ xds_setup_mosy = function(
 #' - `Lname` -- the name of an **L** module: see the [L_module_list] for aquatic mosquito ecology
 #'
 #' Set parameter values and initial conditions using setup options (named lists): 
-#' - `MYoptions` sets up egg laying using the `trivial` **MY** module
+#' - `MYoptions` sets up egg laying using the `trivialMY` **MY** module
 #' - `Loptions` sets parameter values and initial conditions for the **L** module
 #' 
 #' **Model Structure** 
@@ -347,14 +348,14 @@ xds_setup_mosy = function(
 #' [xds_setup] calls [make_xds_object_template], which returns an object template with
 #' a properly configured interface for blood feeding 
 #' and egg laying (see [xds_object]). 
-#' + The **XH** model is never used, but it is set up as the default `trivial` module.
+#' + The **XH** model is never used, but it is set up as the default `trivialXH` module.
 #'
 #' @param Lname the name of an **L** module (see [L_module_list])
 #' @param Loptions a list to configure the **L** Component module
 #' @param nHabitats is the number of habitats
 #' @param MYoptions options to configure egg laying
 #' @param model_name is a name for the model (arbitrary)
-#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
+#' @param xds use `xde` for differential equations and `dts` for discrete time systems
 #' 
 #' @return an **`xds`** model object
 #' @export
@@ -363,7 +364,7 @@ xds_setup_aquatic = function(Lname = "basicL",
                              nHabitats=1,
                              MYoptions = list(), 
                              model_name = "unnamed",
-                             xds = 'ode'){
+                             xds = 'xde'){
   nPatches <- nHabitats
   membership <- 1:nPatches
   residence <- 1:nPatches
@@ -374,16 +375,17 @@ xds_setup_aquatic = function(Lname = "basicL",
   xds_obj <- setup_L_obj(xds_obj$Lname, membership, xds_obj, options=Loptions, s=1)
 
   # Adult Mosquito Dynamics
-  xds_obj$MYname   <- "trivial"
+  xds_obj$MYname   <- "trivialMY"
   xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, options=MYoptions, s=1)
   
   xds_obj$forced_by = c("MY", "eggs")
   class(xds_obj$forced_by) = c("MY", "eggs")
   
   # Human / Host Dynamics
-  xds_obj$XHname   <- "trivial"
-  xds_obj <- setup_XH_obj("trivial", residence, xds_obj, options=list(H=1), i=1) 
+  xds_obj$XHname   <- "trivialXH"
+  xds_obj <- setup_XH_obj("trivialXH", residence, xds_obj, options=list(H=1), i=1)
   
+  xds_obj <- ode_to_dde(xds_obj)
   xds_obj = make_indices(xds_obj)
   y <- as.vector(unlist(get_inits(xds_obj)))
   xds_obj <- egg_laying_dynamics(0, y, xds_obj)
@@ -408,7 +410,7 @@ xds_setup_aquatic = function(Lname = "basicL",
 #' 
 #' A modified version of [xds_setup] that sets up a model to study exposure and 
 #' infection. 
-#' The **MY** component module is set to `trivial` and a trace
+#' The **MY** component module is set to `trivialMY` and a trace
 #' function computes infective biting in the patches.
 #' 
 #' `class(xds_obj$frame) = 'human'`
@@ -423,7 +425,7 @@ xds_setup_aquatic = function(Lname = "basicL",
 #' 
 #' Choose a module:
 #' - `XHname` --- the name of an **XH** module: see the [XH_module_list] for human / host infection dynamics
-#' - `MYname` \eqn{=} `trivial`
+#' - `MYname` \eqn{=} `trivialMY`
 #'
 #' Set parameter values and initial conditions using setup options (named lists): 
 #' - `XHoptions` sets parameter values and initial conditions for the **XH** module
@@ -468,7 +470,7 @@ xds_setup_aquatic = function(Lname = "basicL",
 #' @param TSoptions a time spent matrix or setup options (see [setup_timespent])
 #' @param MYoptions a list to configure the trivial **MY** module
 #' @param model_name a name for the model
-#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
+#' @param xds use `xde` for differential equations and `dts` for discrete time systems
 #'
 #' @return an **`xds`** model object
 #' @export
@@ -484,7 +486,7 @@ xds_setup_human = function(XHname = "SIS",
                            ### Options
                            MYoptions = list(),
                            model_name = "unnamed",
-                           xds = 'ode'
+                           xds = 'xde'
 ){
   nStrata=length(residence)
   HPop = checkIt(HPop, nStrata)
@@ -492,11 +494,11 @@ xds_setup_human = function(XHname = "SIS",
   xds_obj <- make_xds_object_template(xds, 'human', nPatches, membership, residence)
 
   # Aquatic Mosquito Dynamics
-  xds_obj$Lname <- "trivial" 
+  xds_obj$Lname <- "trivialL"
   xds_obj <- setup_L_obj(xds_obj$Lname, 1, xds_obj, options=list(), s=membership)
 
   # Adult Mosquito Dynamics
-  xds_obj$MYname   <- "trivial" 
+  xds_obj$MYname   <- "trivialMY"
   xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, options=MYoptions, s=1)
 
   # Human Dynamics
@@ -507,6 +509,7 @@ xds_setup_human = function(XHname = "SIS",
   xds_obj$forced_by = c(xds_obj$forced_by, "fqZ")
   class(xds_obj$forced_by) = c("MY", "fqZ")
 
+  xds_obj <- ode_to_dde(xds_obj)
   xds_obj = make_indices(xds_obj)
 
   xds_obj <- setup_timespent(TSoptions, xds_obj, TSoptions, 1)
@@ -537,7 +540,7 @@ xds_setup_human = function(XHname = "SIS",
 #' 
 #' A modified version of [xds_setup] that sets up a model to study exposure and 
 #' infection. 
-#' The **MY** component module is set to `trivial` and a trace
+#' The **MY** component module is set to `trivialMY` and a trace
 #' function computes infective biting in the patches.
 #' 
 #' `class(xds_obj$frame) = 'eir'`
@@ -590,10 +593,10 @@ xds_setup_human = function(XHname = "SIS",
 #' @param trend_par a list of options for F_trend
 #' @param shock_par a list of options for F_shock
 #' @param age_par a list of options for F_age
-#' @param xds is `ode` or `dde` or `dts` for ordinary OR delay differential OR difference equations
 #' @param XHname the name of an **XH** module (see [XH_module_list])
 #' @param XHoptions a named list to set parameter values and initial conditions for the **XH** module
 #' @param HPop the initial human population density for each stratum
+#' @param xds use `xde` for differential equations and `dts` for discrete time systems
 #' @param model_name is a name for the model (arbitrary)
 #' 
 #' @return an **`xds`** model object
@@ -609,14 +612,11 @@ xds_setup_eir = function(eir=1/365,
                          shock_par = list(),
                          age_par = list(),
                          
-                         xds = 'ode',
-
-                         # Dynamical Components
                          XHname = "SIS",
                          XHoptions = list(),
-
-                         # Model Structure
                          HPop=1000,
+                         
+                         xds = 'xde',
                          model_name = "unnamed"
 ){
   residence  = rep(1, length(HPop))
@@ -640,11 +640,11 @@ xds_setup_eir = function(eir=1/365,
   xds_obj$EIR_obj$bday <- 0
 
   # Aquatic Mosquito Dynamics
-  xds_obj$Lname <- "trivial" 
+  xds_obj$Lname <- "trivialL"
   xds_obj <- setup_L_obj(xds_obj$Lname, 1, xds_obj, options=list(), s=membership)
   
   # Adult Mosquito Dynamics
-  xds_obj$MYname   <- "trivial" 
+  xds_obj$MYname   <- "trivialMY"
   xds_obj <- xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, options=list(), s=1)
   
   # Human Dynamics
@@ -654,8 +654,8 @@ xds_setup_eir = function(eir=1/365,
   
   xds_obj$forced_by = xds_obj$frame
 
+  xds_obj <- ode_to_dde(xds_obj)
   xds_obj = make_indices(xds_obj)
-
   xds_obj$model_name = model_name
 
   return(xds_obj)

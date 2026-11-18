@@ -1,20 +1,24 @@
 # generic methods for aquatic component
 
-#' @title Setup the skill set
+#' @title Get the skill set
 #'
-#' @description The skill set for an **L** module
-#' is a list that summarizes capabilities and
-#' compatibilities
+#' @description Return the capabilities and compatibilities of an **L** module.
 #'
-#' @param xds_obj an **`xds`** model object
+#' @param xds_obj an **`xds`** model object (or the module name)
 #' @param s the species index
 #'
-#' @return an **`xds`** model object
+#' @return the **L** module skill set, as a list
 #'
 #' @keywords internal
 #' @export
-setup_skillset_L = function(xds_obj, s){
-  UseMethod("setup_skillset_L", xds_obj$L_obj[[s]])
+get_skillset_L = function(xds_obj, s=1){
+  if(is.character(xds_obj)){
+    name <- xds_obj
+    class(name) <- name
+  } else {
+    name <- xds_obj$L_obj[[s]]
+  }
+  UseMethod("get_skillset_L", name)
 }
 
 #' @title Run checks before solving (**L**)

@@ -1,196 +1,165 @@
 # The L Component
 
-The **L** component was designed to model aquatic mosquito ecology. This
-vignette takes an overview of the functions in the **L** component. It
-is useful for anyone who wants to learn more about how the code works.
+The **L** component models aquatic mosquito ecology across larval
+habitats. This vignette describes its interfaces and the methods
+implemented by an **L** module (Figure 1). Each **L** module uses the
+dynamical term, `eta` or \\(\eta\\), the number of eggs laid in the
+habitat each day
 
-In context, an **L** module gets the egg laying rate, \\(\eta\\) from
-the **ML**-interface. It is the dot product of the total mosquito egg
-laying rate in a patch \\(G\\) and the egg laying matrix \\(U\\) (Figure
-1). The core functions compute either
+    eta <- xds_obj$terms$eta[[s]]
 
-- `xde` — a set of derivatives, generically denoted \\(dL/dt\\)
-
-- `dts` — a function that updates the state variables.
-
-It outputs the habitat emergence rate \\(\alpha,\\) the number of adult
-female mosquitoes emerging from a patch, per day.
+Each module defines a function `F_emerge` (or \\(F\_\alpha\\)) to
+compute the number of emergent adults, \\(\alpha\\). Development from
+eggs to adults is described by a dynamical system. The following
+describes the structure of the **L** component.
 
 ------------------------------------------------------------------------
 
-![Figure 1 - A diagram of the L Component in context](L_component.png)
+![Figure 1 - A diagram of the L Component in context. The L component is
+linked to adult mosquito ecology through egg laying and emergence. A
+function, F_eggs returns the number of eggs laid by adult mosquitoes in
+each patch, denoted by G. The egg-distribution matrix U allocates eggs
+among habitats, se each habitat gets \eta eggs, per day. The L module
+then computes its dynamics and the emergence rate \alpha in each
+habitat. The emergence interface aggregates \alpha, using the habitat
+membership matrix, into the patch-specific adult emergence rate
+\Lambda.](L_component.png)
 
-**Figure 1** - A diagram of the **L** Component in context
+**Figure 1** - A diagram of the **L** Component in context. The **L**
+component is linked to adult mosquito ecology through egg laying and
+emergence. A function, `F_eggs` returns the number of eggs laid by adult
+mosquitoes in each patch, denoted by \\(G\\). The egg-distribution
+matrix \\(U\\) allocates eggs among habitats, se each habitat gets
+\\(\eta\\) eggs, per day. The **L** module then computes its dynamics
+and the emergence rate \\(\alpha\\) in each habitat. The emergence
+interface aggregates \\(\alpha\\), using the habitat membership matrix,
+into the patch-specific adult emergence rate \\(\Lambda\\).
 
 ------------------------------------------------------------------------
 
-## Functions
+## Module methods
 
-To get a list of the `S3` generic function definitions from help, type:
-
-    ?L_functions
-
-To inspect a method for a specific function, use `getS3method`
-
-------------------------------------------------------------------------
-
-The **L** Component defines 16 `S3` generic functions in
-[aquatic-L.R](https://github.com/dd-harp/ramp.xds/blob/main/R/aquatic-L.R),
-and 3 that work generically. Each module defines two additional
-functions to set up an **L** object and the initial values.
-
-The required functions deal with various tasks required to build or
-solve a model, inspect or change the parameters or initial values,
-compute terms or outputs, and run consistency checks.
-
-Each module is defined by a string, generically called `Lname`, that
-identifies the module: *e.g.* `basicL`.
+Methods dispatch on the class of `xds_obj$L_obj[[s]]`, where `s` is the
+vector-species index. Model-specific methods use `s` consistently. There
+is no fixed number of methods that every module must implement:
+implement the dynamics method that matches the model and the outputs and
+setup methods needed by its interfaces.
 
 ### Dynamics
 
-At least one of the following is required, depending on whether the
-model family is a system of differential equations or a discrete time
-system:
+Implement one of the following:
 
-- `dLdt.Lname` :: differential equations are defined by a function that
-  computes the derivatives. In `ramp.xds` these are encoded in a
-  function called `dLdt`. The function is set up to be solved by
-  [`deSolve::ode`](https://rdrr.io/pkg/deSolve/man/ode.html) or
-  [`deSolve::dede`](https://rdrr.io/pkg/deSolve/man/dede.html).
+- `dLdt.Lname` for a continuous-time model. It receives `t`, the
+  dependent-variable vector `y`, `xds_obj`, and `s`, and returns
+  derivatives in the same order as the model’s state variables.
+- `Update_Lt.Lname` for a discrete-time model. It receives the same
+  arguments and returns the updated state variables in state-variable
+  order.
 
-- `Update_Lt.Lname` :: discrete time systems are defined by the function
-  that updates the state variables in one time step. In `ramp.xds` these
-  are encoded in a function called `Update_Lt` that computes and returns
-  the **state variables.** The forms mimic the ones used for
-  differential equations.
+The functions are used by the continuous-time or discrete-time solver
+pathways, respectively.
 
-### Bionomics
+### Aquatic Bionomics
 
-Two functions update bionomic parameter values at each time step, called
-in sequence before the dynamics are computed.
+Two methods update bionomic parameter values before the dynamics are
+computed.
 
-- `LBionomics.Lname` – computes the current bionomic parameter values
-  for parameters that are ports. It also resets all effect sizes to 1.
+- `LBionomics.MYname` – evaluates the baseline bionomic parameter
+  functions for the current time and resets the effect sizes to 1.
 
-- `LEffectSizes.Lname` – applies vector control effect sizes to the
-  bionomic parameters set by `LBionomics`.
+- `LEffectSizes.MYname` – applies vector control effect sizes to the
+  bionomic parameters set by `MBionomics`.
 
-### Output Terms
+Both methods receive `t`, `y`, `xds_obj`, and `s`, and return the
+updated `xds_obj`.
 
-These functions compute dynamical terms – the outputs passed to an
-interface.
+### Egg input and emergence output
 
-- `F_emerge.Lname` - the function computes the habitat specific
-  emergence rate, \\(\alpha\\)
+The egg-laying interface computes patch-level adult egg production
+\\(G\\) using `F_eggs`, then distributes eggs to aquatic habitats. If
+\\(O\\) is the habitat-by-patch egg-laying matrix, \\(Q\\) is the
+availability of modeled habitats in each patch, and
+\\(Q\_{\mathrm{all}}\\) is total egg-laying availability, the
+habitat-level input is
 
-## Model Object
+\\\[\eta = O\left(G \circ \frac{Q}{Q\_{\mathrm{all}}}\right),\\\]
 
-Each module has a pair of functions that set up a structured list called
-the **L** model object, or `L_obj`.
+where \\(\circ\\) denotes element-wise multiplication. Thus, \\(\eta\\)
+has one value per habitat and is supplied to the L dynamics.
 
-The object is a list that is assigned to a `class` that dispatches the
-`S3` functions described below. It is a compound list, where some of the
-sub-lists are assigned their own `class` that dispatch other `S3`
-functions.
+`F_emerge.Lname` returns the adult emergence quantity \\(\alpha\\), with
+one value per habitat. It is a rate for a continuous-time model and a
+number for a discrete-time model. The emergence interface aggregates
+habitat emergence by patch using the habitat membership matrix \\(N\\):
 
-- `setup_L_obj.Lname` is a wrapper that calls `make_L_obj_Lname` and
-  (for the \\(i^{th}\\) species) attaches the object as
-  `xds_obj$L_obj[[i]]`
+\\\[\Lambda = N\alpha.\\\]
 
-- `make_L_obj_Lname` :: returns a structured list called an **L** model
-  object:
+### Model object, parameters, and state variables
 
-  - `class(L_obj)` = `Lname`
+`make_L_obj_Lname` creates the module-specific **L** object, and
+`setup_L_obj.Lname` attaches it to the full model at
+`xds_obj$L_obj[[s]]`. The setup method also receives the
+habitat-to-patch `membership` vector and initializes shared habitat
+interfaces.
 
-  - the indices for the model variables are stored as `L_obj$ix`
+- `get_L_pars.Lname` returns the module’s parameters.
+- `change_L_pars.Lname` changes supported parameter values using the
+  named list `options`.
+- `setup_L_ix.Lname` assigns indices to the module’s state variables;
+  `get_L_ix` retrieves the stored indices.
+- `get_L_vars.Lname` extracts named states from `y`.
+- `parse_L_orbits.Lname` extracts named states and any model-specific
+  derived quantities from the solver output matrix.
 
-  - the initial values are stored as `L_obj$inits`
+The number of state values is generally based on `nHabitats`, not
+`nPatches`. The `membership` vector associates each habitat with a
+patch.
 
-  - bionomic parameter values
+### Initial values and checks
 
-  - anything else that is needed can be configured here
+`make_L_inits_Lname` returns a named list of default initial values for
+all state variables. `setup_L_inits.Lname` stores the values at
+`xds_obj$L_obj[[s]]$inits`; `get_L_inits` and `change_L_inits.Lname`
+inspect and update them.
 
-In some cases, bionomic parameters are set up as ports (see
-\[xds_info_port\]); the value is set by a call to a function.
+`get_skillset_L.Lname` returns the module’s capabilities and limitations
+as a list, which setup stores on the module object. `check_L.Lname`
+performs any module-specific consistency checks required before solving.
 
-### Parameters
+## The `basicL` example
 
-- `get_L_pars.Lname` returns a named list of the parameter values.
+The `basicL` module tracks larval density \\(L\\) in each aquatic
+habitat. It uses the habitat-level egg input \\(\eta\\), maturation rate
+\\(\psi\\), crowding-dependent maturation parameter \\(\xi\\),
+density-independent mortality rate \\(\phi\\), and density-dependent
+mortality parameter \\(\theta\\). Its continuous-time equation is
 
-- `change_L_pars.Lname` changes the values of some parameters by passing
-  a named list. It is designed to be used after setup. New parameter
-  values are passed by name in a list called `options`.
+\\\[\frac{dL}{dt} = \eta - \left(\psi e^{-\xi L} + \phi + \theta
+L\right)L.\\\]
 
-### Variables
+The corresponding habitat-level adult emergence rate is
 
-Since the **L** component is one of three, a function sets up the
-indices for all the variables in a model.
+\\\[\alpha = \psi e^{-\xi L}L.\\\]
 
-Two other functions use those indices: one pulls the variables from the
-state variable vector \\(y\\); the other one pulls the variables by name
-from an output matrix returned by `xds_solve`.
+Setting \\(\xi=0\\) recovers the model described by Smith *et al.*
+(2013). `basicL` also implements `Update_Lt.basicL` and a numerical
+steady-state method, `steady_state_L.basicL_ode`.
 
-After pulling, both functions return the variables by name in a list to
-make it easy to inspect or use.
+## Solving and visualization
 
-- `setup_L_ix.Lname` - is the function that assigns an index to each
-  variable in the model, and stores them as a named list at
-  `xds_obj$L_obj[[s]]$ix`. The indices can be retrieved with `get_L_ix`.
+`steady_state_L.Lname` is an optional method for computing a model’s
+steady state from habitat-level egg input \\(\eta\\). `get_L_orbits`
+retrieves the parsed L output from a solved **`xds`** object. The shared
+`xds_plot_L` and `xds_lines_L` functions plot aquatic mosquito
+population density; modules do not need to implement L-specific plotting
+generics.
 
-- `get_L_ix` – returns the indices stored at `L_obj[[s]]$ix`
+For details on a specific model, see its module documentation and the
+relevant literature. The `basicL` equations are based on:
 
-- `get_L_vars.Lname` - retrieves the value of variables from the state
-  variables vector \\(y\\) at a point in time and returns the values by
-  name in a list; the function gets called by `dLdt` and it can be
-  useful in other contexts.
+## References
 
-- `parse_L_orbits.Lname` - this function is like `get_L_vars` but it
-  parses the matrix of outputs returned by `xds_solve`.
-
-### Initial Values
-
-A set of functions sets up or changes the initial values for the state
-variables.
-
-- `setup_L_inits.Lname` - is a wrapper, that gets called by `xds_setup`
-  and that calls `make_L_inits_Lname`. The setup `options` are passed to
-  override default values. The initial values are stored as
-  `L_obj$inits`.
-
-- `make_L_inits_Lname` - each model must include a function that makes a
-  set of initial values as a named list. This function does not belong
-  to any `S3` class, so it can take any form. The function should supply
-  default initial values for all the variables. These can be overridden
-  by passing new initial values in `options`.
-
-- `get_L_inits` – returns the initial values
-
-- `change_L_inits.Lname` - changes the initial values.
-
-### Consistency Checks
-
-Some modules in **`ramp.xds`** or **`ramp.library`** have been included
-for various reasons. Not all of those models are capable of being
-extended. To help users avoid using models in ways that are not
-appropriate, we developed two function classes:
-
-- `skill_set_L.Lname` :: describes model capabilities and limitations
-
-- `check_L.Lname` :: at the end of `xds_setup` and at the beginning of
-  `xds_solve,` this function gets run to ensure that some quantities
-  have been properly updated, and to see if anything has been added to a
-  model that is not in its skill set.
-
-## Solving
-
-Functions to get steady states, orbits, and plot outputs:
-
-- `get_L_orbits` – retrieves the saved, parsed orbits for the **L**
-  component from an **`xds`** object
-
-- `steady_state_L.Lname` :: pass the egg laying rate and compute steady
-  states for the **L** component.
-
-- `xds_plot_L` is a wrapper that calls `xds_lines_L`
-
-- `xds_lines_L` plots larval density
+- Smith DL, Perkins TA, Tusting LS, Scott TW, Lindsay SW (2013) Mosquito
+  Population Regulation and Larval Source Management in Heterogeneous
+  Environments. *PLOS ONE* 8(8): e71247.
+  [doi:10.1371/journal.pone.0071247](https://doi.org/10.1371/journal.pone.0071247).

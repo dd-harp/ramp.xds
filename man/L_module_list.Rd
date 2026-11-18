@@ -9,7 +9,7 @@ A list of modules for the \strong{L}-Component
 \section{In \strong{\code{ramp.xds}}}{
 
 \itemize{
-\item \code{trivial} - the trivial module: see \link{trivial_L}
+\item \code{trivialL} - the trivial module: see \link{trivialL}
 \item \code{basicL} - a simple model for aquatic dynamics: see \link{basicL}
 }
 }

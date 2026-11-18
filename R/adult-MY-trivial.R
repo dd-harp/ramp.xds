@@ -1,6 +1,6 @@
 
 
-#' @title `trivial` --- **MY** module
+#' @title `trivialMY` --- **MY** module
 #' 
 #' @description
 #' The trivial **MY** module configures two trace functions:
@@ -21,7 +21,8 @@
 #' called by [get_variables], which dispatches on the class of 
 #' `season_par` or `trend_par` or `shock_par`.
 #' 
-#' The implementation assumes that only one of these functions gets used.
+#' The implementation assumes that only one of these functions will be used, so
+#' it is not possible to configure different pattern functions for egg laying and infective biting.
 #' 
 #' @section Parameters:
 #' \describe{
@@ -45,7 +46,7 @@
 #' 
 #' @section Get: 
 #' 
-#' + `get_MY_pars` --- the `trivial` method returns all the parameters
+#' + `get_MY_pars` --- the `trivialMY` method returns all the parameters
 #' + `get_mean_forcing` --- returns `Z`
 #' + `get_f` --- returns `f`
 #' + `get_q` --- returns `q`
@@ -76,22 +77,22 @@
 #' user defined function. If so, the user should use `saveRDS` and `readRDS` 
 #' rather than `saveXDS` and `readXDS` 
 #'
-#' @name trivial_MY
-#' @rdname trivial_MY
+#' @name trivialMY
+#' @rdname trivialMY
 NULL
 
-#' @title Check the `trivial` module (**M**)
+#' @title Check the `trivialMY` module (**M**)
 #' @description Run no consistency checks
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-check_MY.trivial = function(xds_obj, s){
+check_MY.trivialMY = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Infective mosquito biting rate for `trivial`
+#' @title Infective mosquito biting rate for `trivialMY`
 #' @description Returns 
 #' \deqn{F_{fqZ}(t) = fqZ F_S(t) F_T(t) F_K(t)}
 #' where 
@@ -109,7 +110,7 @@ check_MY.trivial = function(xds_obj, s){
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
-F_fqZ.trivial <- function(t, y, xds_obj, s) {
+F_fqZ.trivialMY <- function(t, y, xds_obj, s) {
   f = get_f(xds_obj, s)
   q = get_q(xds_obj, s)
   with(xds_obj$MY_obj[[s]],{
@@ -133,7 +134,7 @@ F_fqZ.trivial <- function(t, y, xds_obj, s) {
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
-F_eggs.trivial <- function(t, y, xds_obj, s) {
+F_eggs.trivialMY <- function(t, y, xds_obj, s) {
   with(xds_obj$MY_obj[[s]],{
     V_s = get_variables(season_par, t, y, xds_obj, s)
     V_t = get_variables(trend_par, t, y, xds_obj, s)
@@ -141,65 +142,65 @@ F_eggs.trivial <- function(t, y, xds_obj, s) {
     return(eggs*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
 })}
 
-#' @title Mosquito biting rate for `trivial`
+#' @title Mosquito biting rate for `trivialMY`
 #' @description The trivial model does not track an adult mosquito
 #' population, so this method returns an empty numeric vector.
 #' @inheritParams F_fqM
 #' @return a [numeric] vector of length 0
 #' @keywords internal
 #' @export
-F_fqM.trivial <- function(t, y, xds_obj, s){
+F_fqM.trivialMY <- function(t, y, xds_obj, s){
   return(numeric(0))
 }
 
 
-#' @title Mosquito bionomics for `trivial` (**MY**)
-#' @description Implements [MBionomics] for the `trivial` module
+#' @title Mosquito bionomics for `trivialMY` (**MY**)
+#' @description Implements [MBionomics] for the `trivialMY` module
 #' @inheritParams MEffectSizes
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-MBionomics.trivial <- function(t, y, xds_obj, s) {
+MBionomics.trivialMY <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title Apply effect sizes for `trivial` (**MY**)
-#' @description Implements [MEffectSizes] for the `trivial` module
+#' @title Apply effect sizes for `trivialMY` (**MY**)
+#' @description Implements [MEffectSizes] for the `trivialMY` module
 #' @inheritParams MEffectSizes
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-MEffectSizes.trivial <- function(t, y, xds_obj, s) {
+MEffectSizes.trivialMY <- function(t, y, xds_obj, s) {
   return(xds_obj)
 }
 
 
-#' @title Compute derivatives for `trivial` (**MY**)
+#' @title Compute derivatives for `trivialMY` (**MY**)
 #' @description Implements [dMYdt] for the trivial (forced emergence) model.
 #' @inheritParams dMYdt
 #' @return a [numeric] vector of length 0
 #' @keywords internal
 #' @export
-dMYdt.trivial <- function(t, y, xds_obj, s){
+dMYdt.trivialMY <- function(t, y, xds_obj, s){
   numeric(0)
 }
 
-#' @title Update state variables for `trivial` (**MY**)
+#' @title Update state variables for `trivialMY` (**MY**)
 #' @description Implements [Update_MYt] for the trivial (forced emergence) model.
 #' @inheritParams Update_MYt
 #' @return a [numeric] vector of length 0
 #' @keywords internal
 #' @export
-Update_MYt.trivial <- function(t, y, xds_obj, s){
+Update_MYt.trivialMY <- function(t, y, xds_obj, s){
   numeric(0)
 }
 
 
-#' @title Set up `trivial` (**MY**)
+#' @title Set up `trivialMY` (**MY**)
 #'
 #' @description
 #'
-#' This sets up a `trivial` model object for the **MY** module for the \eqn{s^{th}} vector species
+#' This sets up a `trivialMY` model object for the **MY** module for the \eqn{s^{th}} vector species
 #' + the object is created by [make_MY_obj_trivial]
 #' + `options` is passed to override the defaults
 #'
@@ -207,10 +208,17 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #' ecology or human / host epidemiology.  In the former case,
 #' the user configures `F_eggs`; in the latter,
 #' `F_fqZ`
+#' 
+#' This builds a trace function as a *composed time series function* using either functions or parameters:
+#' + Use a function if passed, and set the function object to an empty list
+#' + If no function is passed, the parameters should be a function object (see [ramp.func::F_obj])
+#' + Use `make_function` to create a function \eqn{F(t,V)}
+#' 
 #'
-#' @seealso [trivial_MY], [make_MY_obj_trivial]
+#' @seealso [trivialMY], [make_MY_obj_trivial]
 #'
 #' @note The module object is stored at `xds_obj$MY_obj[[s]]`
+#' The compatibility name `"trivial"` creates the same `trivialMY` object.
 #'
 #' @inheritParams setup_MY_obj
 #'
@@ -218,16 +226,23 @@ Update_MYt.trivial <- function(t, y, xds_obj, s){
 #' @keywords internal
 #'
 #' @export
- setup_MY_obj.trivial = function(MYname, xds_obj, options=list(), s=1){
-  xds_obj$MYname = "trivial"
+setup_MY_obj.trivialMY = function(MYname, xds_obj, options=list(), s=1){
+  xds_obj$MYname = "trivialMY"
   
   MY = "MY"
   class(MY) = "MY"
   xds_obj$forced_by = MY
 
   xds_obj$MY_obj[[s]] <- make_MY_obj_trivial(xds_obj$nPatches, options)
+  xds_obj$MY_obj[[s]]$skill_set <- get_skillset_MY(xds_obj, s)
   xds_obj <- setup_F_circadian("setup", xds_obj, s)
   return(xds_obj)
+}
+
+#' @rdname setup_MY_obj.trivialMY
+#' @export
+setup_MY_obj.trivial = function(MYname, xds_obj, options=list(), s=1){
+  setup_MY_obj.trivialMY(MYname, xds_obj, options=options, s=s)
 }
 
 
@@ -257,7 +272,7 @@ make_MY_obj_trivial = function(nPatches, options,
                                shock_par = list(name = "F_one")){
   with(options,{
     MY_obj <- list()
-    class(MY_obj) <- 'trivial'
+    class(MY_obj) <- 'trivialMY'
     MY_obj$nPatches <- nPatches
 
     MY_obj$eip <- 0
@@ -265,34 +280,50 @@ make_MY_obj_trivial = function(nPatches, options,
     MY_obj$q  <- checkIt(q, nPatches)
 
     base = list()
-    class(base) <- c('static', 'trivial')
+    class(base) <- c('static', 'trivialMY')
     MY_obj$baseline = base
 
     MY_obj$Z <- checkIt(Z, nPatches)
     MY_obj$eggs <- checkIt(eggs, nPatches)
 
-    MY_obj$F_season = F_season
-    MY_obj$F_trend = F_trend
-    MY_obj$F_shock = F_shock
-
-    MY_obj$season_par = season_par
-    MY_obj$trend_par = trend_par
-    MY_obj$shock_par = shock_par
+    if(length(F_season)>1){
+      MY_obj$season_par = list()
+      MY_obj$F_season = F_season  
+    } else {
+      MY_obj$season_par = season_par
+      MY_obj$F_season = make_function(season_par)  
+    }
+    
+    if(length(F_trend)>1){
+      MY_obj$trend_par = list()
+      MY_obj$F_trend = F_trend  
+    } else {
+      MY_obj$trend_par = trend_par
+      MY_obj$F_trend = make_function(trend_par)  
+    }
+    
+    if(length(F_shock)>1){
+      MY_obj$shock_par = list() 
+      MY_obj$F_shock = F_shock  
+    } else {
+      MY_obj$shock_par = shock_par
+      MY_obj$F_shock = make_function(shock_par)  
+    }
     
     return(MY_obj)
 })}
 
-#' @title List variables for `trivial` (**MY**)
+#' @title List variables for `trivialMY` (**MY**)
 #' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
 #' @inheritParams get_MY_vars
 #' @return a [list]
 #' @keywords internal
 #' @export
-get_MY_vars.trivial <- function(y, xds_obj, s){
+get_MY_vars.trivialMY <- function(y, xds_obj, s){
   return(list())
 }
 
-#' @title Get parameters for `trivial` (**MY**)
+#' @title Get parameters for `trivialMY` (**MY**)
 #'
 #' @description Return the parameters
 #' in the trivial **MY**-Component
@@ -306,7 +337,7 @@ get_MY_vars.trivial <- function(y, xds_obj, s){
 #' @keywords internal
 #' @export
 #'
-get_MY_pars.trivial <- function(xds_obj, s=1) {
+get_MY_pars.trivialMY <- function(xds_obj, s=1) {
   with(xds_obj$MY_obj[[s]], list(
     f=f, q=q, Z=Z, eggs=eggs,
     season_par=season_par,
@@ -319,25 +350,25 @@ get_MY_pars.trivial <- function(xds_obj, s=1) {
 }
 
 
-#' @title Change initial values for `trivial` (**MY**)
-#' @description For the `trivial` module (**MY**) for the \eqn{s^{th}} species,
+#' @title Change initial values for `trivialMY` (**MY**)
+#' @description For the `trivialMY` module (**MY**) for the \eqn{s^{th}} species,
 #' change initial values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_inits
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-change_MY_inits.trivial <- function(xds_obj, options=list(), s=1) {
+change_MY_inits.trivialMY <- function(xds_obj, options=list(), s=1) {
   return(xds_obj)
 }
 
-#' @title Change parameters for `trivial` (**MY**)
-#' @description For the `trivial` module (**MY**) for the \eqn{s^{th}} species,
+#' @title Change parameters for `trivialMY` (**MY**)
+#' @description For the `trivialMY` module (**MY**) for the \eqn{s^{th}} species,
 #' change parameter values named in `options` leaving other values unchanged.
 #' @inheritParams change_MY_pars
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-change_MY_pars.trivial <- function(xds_obj, options=list(), s=1) {
+change_MY_pars.trivialMY <- function(xds_obj, options=list(), s=1) {
   nHabitats <- xds_obj$nHabitats
   with(xds_obj$MY_obj[[s]], with(options,{
     xds_obj$MY_obj[[s]]$F_season = F_season
@@ -350,29 +381,40 @@ change_MY_pars.trivial <- function(xds_obj, options=list(), s=1) {
 
 #' @title The skill set
 #'
-#' @inheritParams setup_skillset_MY
+#' @inheritParams get_skillset_MY
 #'
-#' @return an **`xds`** model object
+#' @note The compatibility name `"trivial"` returns the same skill set as
+#' `"trivialMY"`.
+#'
+#' @return the **MY** module skill set, as a list
 #'
 #' @keywords internal
 #' @export
-setup_skillset_MY.trivial = function(xds_obj, s){
+get_skillset_MY.trivialMY = function(xds_obj, s){
   skills = list(
+    dts = FALSE,
+    xde = TRUE,
+    delay = FALSE,
     not_implemented = TRUE
   )
-  xds_obj$MY_obj[[s]]$skill_set = skills
-  return(xds_obj) 
+  return(skills)
 }
 
-#' @title Setup initial values for `trivial` (**MY**)
-#' @description The `trivial` module (**MY**) for the \eqn{s^{th}} species
+#' @rdname get_skillset_MY.trivialMY
+#' @export
+get_skillset_MY.trivial = function(xds_obj, s){
+  get_skillset_MY.trivialMY(xds_obj, s)
+}
+
+#' @title Setup initial values for `trivialMY` (**MY**)
+#' @description The `trivialMY` module (**MY**) for the \eqn{s^{th}} species
 #' has no dynamical variables requiring initial values.
 #' This method returns the unmodified **`xds`** object; `options` is unused.
 #' @inheritParams setup_MY_inits
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-setup_MY_inits.trivial = function(xds_obj, options=list(), s=1){
+setup_MY_inits.trivialMY = function(xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
@@ -382,27 +424,27 @@ setup_MY_inits.trivial = function(xds_obj, options=list(), s=1){
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
-setup_MY_ix.trivial <- function(xds_obj, s) {
+setup_MY_ix.trivialMY <- function(xds_obj, s) {
   return(xds_obj)
 }
 
-#' @title Parse outputs for `trivial` (**MY**)
+#' @title Parse outputs for `trivialMY` (**MY**)
 #' @description Return an empty list
 #' @inheritParams parse_MY_orbits
 #' @return an empty [list]
 #' @keywords internal
 #' @export
-parse_MY_orbits.trivial <- function(outputs, xds_obj, s) {
+parse_MY_orbits.trivialMY <- function(outputs, xds_obj, s) {
   return(list())
 }
 
-#' @title Get inits for `trivial` (MY)
+#' @title Get inits for `trivialMY` (MY)
 #' @description Return a [numeric] vector of length 0
 #' @inheritParams get_MY_inits
 #' @return a [numeric] vector of length 0
 #' @keywords internal
 #' @export
-get_MY_inits.trivial <- function(xds_obj, s) {
+get_MY_inits.trivialMY <- function(xds_obj, s) {
   return(numeric(0))
 }
 
@@ -414,7 +456,7 @@ get_MY_inits.trivial <- function(xds_obj, s) {
 #' @return the feeding rate, as a vector
 #' @keywords internal
 #' @export
-get_f.trivial = function(xds_obj, s=1){
+get_f.trivialMY = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], f)
 }
 
@@ -424,7 +466,7 @@ get_f.trivial = function(xds_obj, s=1){
 #' @return the human fraction, as a vector
 #' @keywords internal
 #' @export
-get_q.trivial = function(xds_obj, s=1){
+get_q.trivialMY = function(xds_obj, s=1){
   with(xds_obj$MY_obj[[s]], q)
 }
 
@@ -434,7 +476,7 @@ get_q.trivial = function(xds_obj, s=1){
 #' @return the mortality rate, as a vector
 #' @keywords internal
 #' @export
-get_g.trivial = function(xds_obj, s=1){
+get_g.trivialMY = function(xds_obj, s=1){
   numeric(0)
 }
 
@@ -444,6 +486,6 @@ get_g.trivial = function(xds_obj, s=1){
 #' @return the patch emigration rates, as a vector
 #' @keywords internal
 #' @export
-get_sigma.trivial = function(xds_obj, s=1){
+get_sigma.trivialMY = function(xds_obj, s=1){
   numeric(0)
 }

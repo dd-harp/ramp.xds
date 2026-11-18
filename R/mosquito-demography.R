@@ -163,7 +163,9 @@ change_Omega.xde = function(xds_obj, s){
 #' @export
 change_Omega.dts = function(xds_obj, s){
   with(xds_obj$MY_obj[[s]],{
-    xds_obj$MY_obj[[s]]$Omega <- F_Omega_dts(p, sigma, mu, K_matrix)
+    xds_obj$MY_obj[[s]]$Omega <- F_Omega_xde(g, sigma, mu, K_matrix)
+    
+    xds_obj <- change_Upsilon(xds_obj, s)
     return(xds_obj)
 })}
 

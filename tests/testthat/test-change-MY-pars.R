@@ -1,6 +1,6 @@
 test_that("MY parameter interfaces put options before the species index", {
   expect_identical(names(formals(change_MY_pars)), c("xds_obj", "options", "s"))
-  for (module in c("basicM", "GeM", "SI", "macdonald", "trivial")) {
+  for (module in c("basicM", "GeM", "SI", "macdonald", "trivialMY")) {
     method <- getS3method("change_MY_pars", module)
     expect_identical(formals(method), formals(change_MY_pars))
   }

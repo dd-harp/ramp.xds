@@ -143,9 +143,10 @@ Exposure.dts <- function(t, y, xds_obj){
     at_home = 1 - away
     local_foi  = F_foi(eir, b, xds_obj$env_het_obj[[i]])
     teir= xds_obj$XH_obj[[i]]$travel_eir
-    travel_foi = F_ar(teir, b, xds_obj$env_het_obj[[i]])
+    travel_foi = F_foi(teir, b, xds_obj$env_het_obj[[i]])
     xds_obj$terms$FoI[[i]] = local_foi*at_home + travel_foi*away
-    
+    xds_obj$terms$AR[[i]] = 1 - exp(-(local_foi*at_home + travel_foi*away)) 
+
     return(xds_obj)
   }}
 

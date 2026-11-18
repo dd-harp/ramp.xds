@@ -2,63 +2,128 @@
 
     XHname = "SIS"
 
-For the **XH** component, the **SIS** module implements a basic system
-of differential equations, that is often called the **SIS** compartment
-model (see Figure 1). This vignette describes the model and its
-implementation in **`ramp.xds.`** For a more mathematical introduction,
-see [**Malaria Theory** – SIS
+------------------------------------------------------------------------
+
+![Figure 1: A Diagram of the SIS Model. For a more mathematical
+introduction, see Malaria Theory – SIS Dynamics](SIS.drawio.png)
+
+**Figure 1**: A Diagram of the SIS Model. For a more mathematical
+introduction, see [**Malaria Theory** – SIS
 Dynamics](https://faculty.washington.edu/smitdave/malaria_theory/sis.html)
 
 ------------------------------------------------------------------------
 
-![Figure 1: A Diagram of the SIS Model](SIS.png)
+## Overview
 
-**Figure 1**: A Diagram of the SIS Model
+For the **XH** component, the `SIS` module implements a generalized
+version of the *S-I-S* compartmental model both
 
-------------------------------------------------------------------------
-
-At basic setup, the **SIS** module with defaults is specified like this:
+1.  as a system of ordinary differential equations; and
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`\
-`mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``)`` `
+`ode_mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``)`` `
 
-------------------------------------------------------------------------
+2.  as a discrete time system.
 
-## Basic Dynamics
+\
+`dts_mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``, xds``=`` ``"dts"``)`` `
 
-The following describes the notation and basic setup, including variable
-and parameter names.
+Individuals are either infected and infectious \\((I)\\) or uninfected
+and susceptible to infection \\((S)\\), and the total population sizes
+is \\(H=S+I.\\) This vignette describes the model and its implementation
+in **`ramp.xds.`**
 
-### The Compartment Model
+### The Basic S-I-S model
 
-A population is subdivided into susceptible (\\(S\\)) and infected and
-infectious (\\(I\\)) individuals, where the total population is \\(H =
-S+I.\\)
+The rate that susceptible individuals become infected is called the
+*force of infection* (or FoI, Ross called it the *happenings* rate,
+denoted \\(h\\)). The rate of clearance is \\(r.\\) After clearing an
+infection, individuals are susceptible to infection again. In its
+simplest form:
 
-- We let \\(h\\) denote the force of infection (FoI).
+\\\[\begin{array}{rl} \frac{dS}{dt} &= - h S + r I \\\\ \frac{dI}{dt} &=
+h S - r I \\\\ \end{array}\\\] For this system, note that
+\\\[\frac{dS}{dt} = - \frac{dI}{dt}\\\] and since \\(H=S+I,\\) we can
+compute \\\[\frac{dH}{dt} = \frac{dS}{dt} + \frac{dI}{dt} = 0.\\\] In
+this case, \\(H\\) is a parameter, and we don’t need to compute both
+variables. We could simply compute:
 
-- We let \\(r\\) denote the clearance rate for infections.
+\\\[\frac{dI}{dt} = h (H-I) - r I\\\]
 
-The dynamics are described by a pair of equations:
+This is the system that is implemented for the *default* parameter
+settings.
 
-\\\[\begin{array}{rl} \frac{dS}{dt} &= -hS + rI \\\\ \frac{dI}{dt} &= h
-S - rI \end{array}\\\]
+### Demographic Change
 
-If \\(H\\) is constant, then one of these equations is redundant, and we
-need only compute:
+In **`ramp.xds`** we implement a generalized approach to the demographic
+processes: the system includes births \\(B\\) and deaths (in this case,
+at the per-capita rate \\(\mu\\)), now \\(H\\) is a variable, and we can
+write out full dynamical system for all three variables. We write it to
+emphasize the two parts: disease dynamics (**X**) and human population
+dynamics (**H**):
 
-\\\[\frac{dI}{dt} = h (H-I) - rI\\\]
+\\\[\begin{array}{rcc} & \mathbf{X} & \mathbf{H} \\\\ \hline
+\frac{dH}{dt} =& & B(t,H) - \mu H \\\\ \frac{dS}{dt} =& - h S + r I & +
+B(t,H) - \mu S \\\\ \frac{dI}{dt} =& h S - r I &- \mu I \\\\
+\end{array}\\\] Since \\(H=S+I,\\) one of these equations is redundant.
+To implement *progressive stratification,* we drop \\(S,\\) and use a
+function \\(\mathbf{D}\\) that computes per-capita mortality in a
+generic way:
 
-The model here has been implemented in the **`ramp.xds`** modular
-framework that handles human demography, exposure, infectiousness, and
-diagnostics and detection.
+\\\[\begin{array}{rcr} \frac{dH}{dt} =& &B(t,H) - \mathbf{D}(t,H)\\\\
+\frac{dI}{dt} =& h (H-I) - r I &- \mathbf{D}(t,I)\\\\ \end{array}\\\]
+After solving, we compute \\(S=H+I\\) and attach its orbit. By default,
+birth rates and death rates are set to zero. The birth and death
+functions are modified using:
 
-In the **`ramp.xds`** module, \\(H\\) is a variable, so we compute
-\\(dH/dt,\\) and \\(dI/dt\\) includes additional terms that describe
-demographic changes.
+- [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.html)
 
-### Exposure and \\(b\\)
+- [setup_deaths](https://dd-harp.github.io/ramp.xds/reference/setup_deaths.html)
+
+### Treatment
+
+In this simple model, drug taking to treat and cure infections simply
+clears infections. (In other models, a brief period of chemo-protection
+follows treatment.) The module assumes that
+
+- \\(\rho\\) or `rho`: a fraction \\(\rho\\) of incident infections are
+  treated and cured, so the FoI is now \\(h (1-\rho).\\) Since exposure
+  and infection could also occur in folks who are uninfected, infected
+  individuals also clear at the additional rate \\(\rho h.\\)
+
+- \\(\sigma\\) or `sigma`: treatment and curing also occurs for other
+  reasons at the rate \\(\sigma.\\)
+
+- \\(\Xi(t)\\): mass treatment is implemented either as mass drug
+  administration (`mda(t)`) or mass screening and treating (`msat(t)`),
+  a shock function \\(\Xi(t)\\)
+
+- The total rate that infections clear is thus: \\\[r + \rho h +
+  \sigma + \Xi(t)\\\]
+
+## Dynamics
+
+### ODE
+
+For the system of ordinary differential equations, the system is:
+
+\\\[\begin{array}{rcc} & \mathbf{X} & \mathbf{H} \\\\ \hline
+\frac{dH}{dt} =& &B(t,H) - \mathbf{D}(t,H)\\\\ \frac{dI}{dt} =& h
+(1-\rho)(H-I) - \left(r + h\rho + \sigma + \Xi \left( t \right) \right)
+I &- \mathbf{D}(t,I)\\\\ \end{array}\\\]
+
+### DTS
+
+In the discrete-time system, the demographic change for \\(I_t\\) is
+computed in two steps: survival \\((I_s)\\) and then infection dynamics:
+
+\\\[\begin{array}{rcc} & \mathbf{X} & \mathbf{H} \\\\ \hline H\_{t+1} =&
+&B(t,H_t) - \mathbf{D}(t,H_t)\\\\ I_s =& & I_t - \mathbf{D}(t,I_t) \\\\
+I\_{t+1} &= \alpha_t(1-\rho) (H\_{t+1} + I_s) + e^{-\left(r + h\rho +
+\sigma + \Xi \left( t \right) \right)} I_s \\\\ \end{array}\\\]
+
+## Exposure
 
 The module handles exposure through the standard interface (see
 [Exposure](https://dd-harp.github.io/ramp.xds/articles/Exposure.md)). In
@@ -81,7 +146,7 @@ a nutshell:
 For more, including advanced setup options, see
 [Exposure](https://dd-harp.github.io/ramp.xds/articles/Exposure.html%5D)
 
-### Infectiousness: \\(c\\)
+## Infectiousness: \\(c\\)
 
 Infected humans are not fully infectious. We assume that the fraction of
 bloodmeals on infectious humans that infect a mosquito is \\(c.\\) The
@@ -92,7 +157,7 @@ availability, so we compute the infectious density of a stratum: \\\[F_I
 If there is a single population stratum, then\
 \\\[\kappa = \frac {cI} H\\\]
 
-### Diagnostics and Detection
+## Diagnostics and Detection
 
 The probability a human would *test positive* is denoted \\(q\\), so
 while true prevalence is \\\[x=I/H,\\\] observed prevalence would be
@@ -109,7 +174,17 @@ light microscopy, RDT or PCR:
 We note that in this model, the observed PR is a linear function of the
 true PR.
 
-### Basic Setup
+## Basic Setup
+
+### Variables
+
+During basic setup, the defaults are
+
+- `H=1000`
+
+- `I=1`
+
+### Parameters
 
 During basic setup, the parameters are assigned the following default
 values:
@@ -119,6 +194,10 @@ values:
 - `r=1/180`
 
 - `c=0.15`
+
+- `rho=0`
+
+- `sigma=0`
 
 - `q_lm=0.8`
 
@@ -130,7 +209,7 @@ To inspect the parameters, use `get_XH_pars.` We already set up `mod`
 using the default values:
 
 \
-[`get_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)`(``mod``)``$``r`
+[`get_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)`(``ode_mod``)``$``r`
 
     ## [1] 0.005555556
 
@@ -146,8 +225,8 @@ To change a parameter value after setup, pass a named list to
 `change_XH_pars.`
 
 \
-`mod`` ``<-`` `[`change_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.md)`(``mod``, options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``r``=``1``/``100``)``)`\
-[`get_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)`(``mod``)``$``r`
+`ode_mod`` ``<-`` `[`change_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.md)`(``ode_mod``, options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``r``=``1``/``100``)``)`\
+[`get_XH_pars`](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.md)`(``ode_mod``)``$``r`
 
     ## [1] 0.01
 
@@ -162,97 +241,20 @@ susceptible to infection again.
 
 \\\[\dot{I} = h (H-I) - \left(r+\xi\left(t\right)\right) I\\\]
 
-During basic set up, the function returns no effect: \\(\xi(t)=0\\).
+\\(\Xi(t)\\) includes both `mda(t)` and `msat(t)`: functions
+implementing mass treatment
+
+- The function `mda(t)` implements mass drug administration
+
+- The function `msat(t)` implements mass screen and treat using
+  detection parameters (see above)
+
+During basic set up, the function returns no effect: `mda(t)=msat(t)=0`.
 Configuring a mass treatment function is handled as an advanced setup
 option in `ramp.control` (see [`ramp.control`::Mass
 Treatment](https://dd-harp.github.io/ramp.control/articles/MassTreatment.html))
 
-- \\(\xi(t)\\) is either called `mda(t)` or `msat(t)`: functions
-  implementing mass treatment
-
-  - The function `mda(t)` implements mass drug administration
-
-  - The function `msat(t)` implements mass screen and treat using
-    detection parameters (see above)
-
-- Setup for mass treatment is an advanced option in `ramp.control`
-
-To read more, see [`ramp.control`::Mass
-Treatment](https://dd-harp.github.io/ramp.control/articles/MassTreatment.html)
-
-## Human Demography
-
-The implementation of the model was generalized to consider human (or
-host) vital dynamics.
-
-- The population birth rate, \\(B(t, H)\\)
-
-- A constant per-capita rate, \\(\mu.\\) The model does not include a
-  parameter to describe disease-induced mortality
-
-\\\[\frac{dH}{dt} = B(t, H) - \mu H\\\] These demographic changes in
-\\(H\\) require us to update the derivatives for \\(S\\) and \\(I.\\)
-Since newborns are susceptible, we get:
-
-\\\[\frac{dS}{dt} = B(t, H) - h S + r I - \mu S\\\]xds_obj \<-
-setup_F_circadian(F_one, xds_obj)
-
-The dynamics for infected individuals are:
-
-\\\[\frac{dI}{dt} = h S - r I - \mu I\\\] Once again, since \\(H=S+I,\\)
-one of these equations is redundant. We compute \\(dH/dt\\) and
-\\(dI/dt.\\)
-
-In `ramp.demog`, we have implemented a generalized system called
-*principled stratification* making it possible model aging, migration,
-and dynamical exchanges among strata. After setup, all these dynamics
-are combined in a single demographic matrix \\(D\\). The implementation
-is thus more general:
-
-\\\[\dot{H} = B(t, H) - D \cdot H\\\]
-
-By default, the model is implemented with static population dynamics:
-
-- \\(B(t,H)\\) or `B(t,H) = 0`: a function describing the population
-  birth rate
-
-- \\(D\\) or `D_matrix=0,` where \\(0\\) is a matrix of zeros.
-
-Other functions can be configured as advanced options in `ramp.demog.`
-
-## Module Implementation
-
-### Variables
-
-The module has two variables:
-
-- \\(H\\) or `H` is human population density, a vector of length
-  `nStrata`
-
-  - Since human population size, \\(H,\\) has effects on the blood
-    feeding interface, its value must be assigned during setup as
-    `HPop=...`
-
-  - The parameter `nStrata` is set to `length(HPop)`
-
-  - There is a function to change \\(H\\) called `change_H`
-
-- \\(I\\) or `I` is the density of infected humans, a vector of length
-  `nStrata`
-
-  - The default initial value is \\(I=1\\)
-
-  - The function to change the initial values of \\(I\\) are called by
-    `change_XH_inits`
-
-### The Derivatives
-
-The derivatives computed by `dXHdt.SIS` are equivalent to:
-
-\\\[\begin{array}{rl} \dot{H} &= B(t, H) - D \cdot H \\\\ \dot{I} &= h
-(H-I) - \left(r+\xi\left(t\right)\right) I - D \cdot I \end{array}\\\]
-
-------------------------------------------------------------------------
+- \[ramp.forcing;:setup_mass_treatment)
 
 ## Example
 
@@ -308,36 +310,39 @@ steady state are \\(I = H h /(h+r)\\)
 
 First, we use `xds_setup` and next, we do it the long way
 
-### Using Setup
+## Using Setup
 
 To set up the model, we simply do this:
 
 \
-[`xds_setup_eir`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)`(``eir``, XHname``=``"SIS"``, HPop``=``H``, XHoptions ``=`` ``Xo``)`` ``->`` ``test_SIS`
+[`xds_setup_eir`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)`(``eir``, XHname``=``"SIS"``, HPop``=``H``, XHoptions ``=`` ``Xo``)`` ``->`` ``test_SIS_ode`\
+[`xds_setup_eir`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)`(``eir``, XHname``=``"SIS"``, HPop``=``H``, XHoptions ``=`` ``Xo``, xds``=``"dts"``)`` ``->`` ``test_SIS_dts`
 
 To solve it, we do this:
 
 \
-[`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``test_SIS``)``->`` ``test_SIS`
+[`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``test_SIS_ode``)``->`` ``test_SIS_ode`\
+[`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``test_SIS_dts``)``->`` ``test_SIS_dts`
 
 We plot the prevalence over time:
 
 \
 `clrs`` ``=`` ``viridisLite``::`[`turbo`](https://sjmgarnier.github.io/viridisLite/reference/viridis.html)`(``5``)``[`[`c`](https://rdrr.io/r/base/c.html)`(``1``,``2``,``5``)``]`\
-[`xds_plot_PR`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.md)`(``test_SIS``, clr``=``clrs``)`
+[`xds_plot_PR`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.md)`(``test_SIS_ode``, clr``=``clrs``)`\
+[`xds_plot_PR`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.md)`(``test_SIS_dts``, lty``=``2``, clrs ``=`` `[`rep`](https://rdrr.io/r/base/rep.html)`(``"orange"``, ``3``)``, add``=``T``)`
 
-![](human_sis_files/figure-html/unnamed-chunk-13-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-14-1.png)
 
 If we set the initial values of \\(I\\) to the steady state values, the
 variables shouldn’t change at all. To change the values, we simply add
 them to the list
 
 \
-`test_SIS`` ``<-`` `[`change_XH_inits`](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.md)`(``test_SIS``, options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``I``=``I_eq``)``)`\
+`test_SIS`` ``<-`` `[`change_XH_inits`](https://dd-harp.github.io/ramp.xds/reference/change_XH_inits.md)`(``test_SIS_ode``, options ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``I``=``I_eq``)``)`\
 [`xds_solve`](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)`(``test_SIS``)``->`` ``test_SIS`` `\
 [`xds_plot_PR`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.md)`(``test_SIS``, clr``=``clrs``)`
 
-![](human_sis_files/figure-html/unnamed-chunk-14-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-15-1.png)
 
 Or we can use the `get_XH_orbits` function to get the values of the
 orbits. This gets the return values and pulls of the the values of
@@ -356,7 +361,7 @@ orbits. This gets the return values and pulls of the the values of
 
     ## [1] 0
 
-### Another Test
+## Another Test
 
 If we set \\(I(0) = 0\\), the simple model has a closed form solution:
 
@@ -369,7 +374,7 @@ conditions and solve the system of differential equations:
 `Itest`` ``=`` `[`get_XH_orbits`](https://dd-harp.github.io/ramp.xds/reference/get_XH_orbits.md)`(``test_SIS``, ``1``)``$``I`` `\
 [`xds_plot_PR`](https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.md)`(``test_SIS``, clr``=``clrs``)`
 
-![](human_sis_files/figure-html/unnamed-chunk-17-1.png)
+![](human_sis_files/figure-html/unnamed-chunk-18-1.png)
 
 …and we can compute the exact solutions for the same values of \\(t\\):
 

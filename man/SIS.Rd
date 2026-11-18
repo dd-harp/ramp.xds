@@ -4,22 +4,22 @@
 \alias{SIS}
 \title{The \code{SIS} module for the \strong{XH} component}
 \description{
-\code{SIS} implements a family of \code{SIS} compartmental models for malaria as a system of differential equations:
-individuals are either susceptible \eqn{(S)} or infected and infectious \eqn{(I)}.
-In its simplest form, \code{SIS} dynamics are:
-\deqn{
-dI/dt = h S - r I
+\code{SIS} implements two generalized S-I-S compartmental
+models for malaria:
+\enumerate{
+\item a system of differential equations
+\item a discrete time system
 }
 
-This generalized implementation includes:
+Enhancements to the basic S-I-S model include:
 \itemize{
-\item parameters to model treating and curing infections;
 \item functions to model human demographic change;
+\item parameters to model treating and curing infections;
 \item functions to model mass treatment;
 \item support for progressive stratification
 }
 
-The \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Vignette} discusses the module.
+For a longer discussion, see the \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Vignette}.
 }
 \section{State Variables}{
 
@@ -31,32 +31,6 @@ The \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Vignet
 }
 }
 
-\section{Demography}{
-
-
-Demographic changes (\strong{H}) are given by the equation:
-
-\deqn{
-dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)}
-
-This model has no parameter
-or terms to describe disease-induced mortality.
-
-\describe{
-\item{\code{\link{Births}} or \eqn{\mathbf{B}}}{the births function}
-\item{\code{\link{Deaths}} or \eqn{\mathbf{D}}}{the deaths function}
-}
-
-\strong{Setup:}
-\itemize{
-\item The defaults are no births and no deaths
-\item Use \link{setup_births} to configure \code{\link{Births}}
-\item Use \link{setup_deaths} to configure \code{\link{Deaths}}
-}
-
-Also, see \link{xds_info_demographic_change}.
-}
-
 \section{Dynamical Term}{
 
 
@@ -65,7 +39,7 @@ Also, see \link{xds_info_demographic_change}.
 }
 
 In the \code{SIS} module, there is no effect of pre-erythrocytic immunity, so
-a constant fraction of infectious bites causes an infection: the parameter \eqn{b.}
+a constant fraction of infectious bites causes an infection: the parameter is called \eqn{b.}
 }
 
 \section{Parameters}{
@@ -92,30 +66,79 @@ the dynamics, or detection by diagnostic methods.
 The model for infection dynamics (\strong{X}) assumes that infections
 clear naturally at a constant per-capita rate \eqn{r}.
 
-The model also includes two parameters to model
+The model also includes parameters and functions to model
 treating and curing malaria infections:
 \itemize{
-\item a fraction \eqn{\rho} of incident infections are treated and cured;
+\item a fraction \eqn{\rho} of incident infections are treated and cured
+\item since incident infections are treated, the FoI is \eqn{h (1-\rho)}
 \item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
+\item functions describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a \emph{shock} function
 }
 
-A function describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a \emph{shock} function.
-
 The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}
+
 After clearing, individuals are
 susceptible to infection.
+}
 
-Infection dynamics are described by:
+\section{Demography}{
+
+
+This model has no parameter
+or terms to describe disease-induced mortality.
+
+\describe{
+\item{\code{\link{Births}} or \eqn{\mathbf{B}}}{the births function}
+\item{\code{\link{Deaths}} or \eqn{\mathbf{D}}}{the deaths function}
+}
+
+\strong{Setup:}
+
+The default is a constant population model: birth
+and death rates are set to zero
+\itemize{
+\item Use \link{setup_births} to configure \code{\link{Births}}
+\item Use \link{setup_deaths} to configure \code{\link{Deaths}}
+}
+
+Also, see \link{xds_info_demographic_change}.
+}
+
+\section{ODE}{
+
+
+\strong{Demography} ---
+Demographic changes (\strong{H}) are given by the equation:
+
+\deqn{
+dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)}
+
+\strong{Infection Dynamics} ---
+Infection dynamics (\strong{X}) are described by:
 
 \deqn{
 dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
 
-The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
-the same model as for \eqn{H}:
-for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.}
+After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
+}
 
-In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and
-infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant.
+\section{DTS}{
+
+
+\strong{Demography} ---
+Demographic changes (\strong{H}) are given by the equation:
+
+\deqn{
+H_t = H_{t-1}  + \mathbf{B}(t,H_{t-1}) - \mathbf{D}(H_{t-1})}
+
+\strong{Infection Dynamics} ---
+\eqn{I_t} is updated in two steps: survival first,
+and disease dynamics second:
+\deqn{\begin{array}{rl}
+I_s &= I_{t-1} - \mathbf{D}(I_{t-1}) \\
+I_t &= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
+\end{array}}
+
 After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 }
 
@@ -134,8 +157,10 @@ After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 
 
 The fraction of mosquitoes that become infected after blood feeding on
-someone who is infectious is \eqn{c.}
-The infectious density of the human (host) population is \eqn{cxI = cH.}
+someone who is infectious is \eqn{c} so the fraction of mosquitoes that
+would get infected is \eqn{cx.}
+
+The infectious density of the human (host) population is \eqn{cI = cxH.}
 }
 
 \section{Mass Treatment}{
@@ -154,7 +179,7 @@ Mass treatment is either:
 \seealso{
 \itemize{
 \item Basic Setup:  \link{make_XH_obj_SIS}, \link{setup_XH_obj.SIS}
-\item Dynamics: \link{dXHdt.SIS}
+\item Dynamics: \link{dXHdt.SIS}, \link{Update_XHt.SIS}
 \item Parameters: \link{get_XH_pars.SIS}, \link{change_XH_pars.SIS}
 \item Variables: \link{make_XH_inits_SIS}, \link{get_XH_inits}, \link{change_XH_inits.SIS},  \link{setup_XH_inits.SIS}
 \item \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{The SIS Vignette}
