@@ -108,7 +108,7 @@ model
     ##   nVectorSpecies   = 1
     ## 
     ## frame - full
-    ## xds   - xde
+    ## xds   - ode
 
 We can see from the returned value that `XHname` is `SIS`, which is the
 name of the module for human / host infection and immune dynamics.
@@ -123,7 +123,7 @@ names(model)
 
     ##  [1] "membership"         "nPatches"           "nHabitats"         
     ##  [4] "nStrata"            "nVectorSpecies"     "nHostSpecies"      
-    ##  [7] "model_name"         "xds"                "xde"               
+    ##  [7] "model_name"         "xde"                "xds"               
     ## [10] "frame"              "forced_by"          "patches"           
     ## [13] "habitats"           "terms"              "blood_feeding_obj" 
     ## [16] "import_obj"         "transmission_obj"   "env_het_obj"       

@@ -126,29 +126,21 @@ Mosquito Ecology</h3>
     
 <p>The <strong>L</strong> component models aquatic mosquito ecology
 across larval habitats. This vignette describes its interfaces and the
-methods implemented by an <strong>L</strong> module (Figure 1). Each
-<strong>L</strong> module uses the dynamical term, <code>eta</code> or
-<span class="math inline">\(\eta\)</span>, the number of eggs laid in
-the habitat each day</p>
-<pre><code><span><span class="va">eta</span> <span class="op">&lt;-</span> <span class="va">xds_obj</span><span class="op">$</span><span class="va">terms</span><span class="op">$</span><span class="va">eta</span><span class="op">[[</span><span class="va">s</span><span class="op">]</span><span class="op">]</span></span></code></pre>
-<p>Each module defines a function <code>F_emerge</code> (or <span class="math inline">\(F_\alpha\)</span>) to compute the number of
-emergent adults, <span class="math inline">\(\alpha\)</span>.
-Development from eggs to adults is described by a dynamical system. The
-following describes the structure of the <strong>L</strong>
-component.</p>
+methods implemented by an <strong>L</strong> module.</p>
+<p>The <strong>L</strong> component is linked to adult mosquito ecology
+through egg laying and emergence. <code>F_eggs</code> returns the number
+of eggs laid by adult mosquitoes in each patch, denoted by <span class="math inline">\(G\)</span>. The egg-laying interface distributes
+those eggs among habitats to produce the habitat-specific input <span class="math inline">\(\eta\)</span>. The <strong>L</strong> module then
+computes its dynamics and the emergence rate <span class="math inline">\(\alpha\)</span> in each habitat. The emergence
+interface aggregates <span class="math inline">\(\alpha\)</span>, using
+the habitat membership matrix, into the patch-specific adult emergence
+rate <span class="math inline">\(\Lambda\)</span>.</p>
+<p>The two interfaces are illustrated below.</p>
 <hr>
 <div class="float">
-<img src="L_component.png" style="width:100.0%" alt="Figure 1 - A diagram of the L Component in context. The L component is linked to adult mosquito ecology through egg laying and emergence. A function, F_eggs returns the number of eggs laid by adult mosquitoes in each patch, denoted by G. The egg-distribution matrix U allocates eggs among habitats, se each habitat gets \eta eggs, per day. The L module then computes its dynamics and the emergence rate \alpha in each habitat. The emergence interface aggregates \alpha, using the habitat membership matrix, into the patch-specific adult emergence rate \Lambda."><div class="figcaption">
+<img src="L_component.png" style="width:100.0%" alt="Figure 1 - A diagram of the L Component in context"><div class="figcaption">
 <strong>Figure 1</strong> - A diagram of the
-<strong>L</strong> Component in context. The <strong>L</strong>
-component is linked to adult mosquito ecology through egg laying and
-emergence. A function, <code>F_eggs</code> returns the number of eggs
-laid by adult mosquitoes in each patch, denoted by <span class="math inline">\(G\)</span>. The egg-distribution matrix <span class="math inline">\(U\)</span> allocates eggs among habitats, se each
-habitat gets <span class="math inline">\(\eta\)</span> eggs, per day.
-The <strong>L</strong> module then computes its dynamics and the
-emergence rate <span class="math inline">\(\alpha\)</span> in each
-habitat. The emergence interface aggregates <span class="math inline">\(\alpha\)</span>, using the habitat membership
-matrix, into the patch-specific adult emergence rate <span class="math inline">\(\Lambda\)</span>.</div>
+<strong>L</strong> Component in context</div>
 </div>
 <hr>
 <div class="section level2">
@@ -179,21 +171,14 @@ state-variable order.</li>
 pathways, respectively.</p>
 </div>
 <div class="section level3">
-<h3 id="aquatic-bionomics">Aquatic Bionomics<a class="anchor" aria-label="anchor" href="#aquatic-bionomics"></a>
+<h3 id="bionomics">Bionomics<a class="anchor" aria-label="anchor" href="#bionomics"></a>
 </h3>
-<p>Two methods update bionomic parameter values before the dynamics are
-computed.</p>
-<ul>
-<li><p><code>LBionomics.MYname</code> – evaluates the baseline bionomic
-parameter functions for the current time and resets the effect sizes to
-1.</p></li>
-<li><p><code>LEffectSizes.MYname</code> – applies vector control effect
-sizes to the bionomic parameters set by
-<code>MBionomics</code>.</p></li>
-</ul>
-<p>Both methods receive <code>t</code>, <code>y</code>,
-<code>xds_obj</code>, and <code>s</code>, and return the updated
-<code>xds_obj</code>.</p>
+<p><code>LBionomics.Lname</code> evaluates baseline bionomic parameter
+values at time <code>t</code> and resets their effect sizes.
+<code>LEffectSizes.Lname</code> applies vector-control effect sizes to
+those baseline values. Both methods receive <code>t</code>,
+<code>y</code>, <code>xds_obj</code>, and <code>s</code>, and return the
+updated <code>xds_obj</code>.</p>
 </div>
 <div class="section level3">
 <h3 id="egg-input-and-emergence-output">Egg input and emergence output<a class="anchor" aria-label="anchor" href="#egg-input-and-emergence-output"></a>
@@ -255,10 +240,9 @@ initial values for all state variables. <code>setup_L_inits.Lname</code>
 stores the values at <code>xds_obj$L_obj[[s]]$inits</code>;
 <code>get_L_inits</code> and <code>change_L_inits.Lname</code> inspect
 and update them.</p>
-<p><code>get_skillset_L.Lname</code> returns the module’s capabilities
-and limitations as a list, which setup stores on the module object.
-<code>check_L.Lname</code> performs any module-specific consistency
-checks required before solving.</p>
+<p><code>setup_skillset_L.Lname</code> records the module’s capabilities
+and limitations. <code>check_L.Lname</code> performs any module-specific
+consistency checks required before solving.</p>
 </div>
 </div>
 <div class="section level2">
@@ -295,15 +279,9 @@ functions plot aquatic mosquito population density; modules do not need
 to implement L-specific plotting generics.</p>
 <p>For details on a specific model, see its module documentation and the
 relevant literature. The <code>basicL</code> equations are based on:</p>
-</div>
-<div class="section level2">
-<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h2>
-<ul>
-<li>Smith DL, Perkins TA, Tusting LS, Scott TW, Lindsay SW (2013)
+<p>Smith DL, Perkins TA, Tusting LS, Scott TW, Lindsay SW (2013)
 Mosquito Population Regulation and Larval Source Management in
-Heterogeneous Environments. <em>PLOS ONE</em> 8(8): e71247. <a href="https://doi.org/10.1371/journal.pone.0071247" class="external-link">doi:10.1371/journal.pone.0071247</a>.</li>
-</ul>
+Heterogeneous Environments. <em>PLOS ONE</em> 8(8): e71247. <a href="https://doi.org/10.1371/journal.pone.0071247" class="external-link">doi:10.1371/journal.pone.0071247</a>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

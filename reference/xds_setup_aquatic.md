@@ -14,7 +14,7 @@ xds_setup_aquatic(
   nHabitats = 1,
   MYoptions = list(),
   model_name = "unnamed",
-  xds = "xde"
+  xds = "ode"
 )
 ```
 
@@ -43,8 +43,8 @@ xds_setup_aquatic(
 
 - xds:
 
-  use `xde` for differential equations and `dts` for discrete time
-  systems
+  is `ode` or `dde` or `dts` for ordinary OR delay differential OR
+  difference equations
 
 ## Value
 

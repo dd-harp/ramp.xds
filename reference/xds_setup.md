@@ -23,8 +23,8 @@ xds_setup(
   TSoptions = list(),
   searchQ = list(),
   Koptions = list(),
-  xds = "xde",
-  model_name = "unnamed"
+  model_name = "unnamed",
+  xds = "ode"
 )
 ```
 
@@ -96,14 +96,13 @@ xds_setup(
   a mosquito dispersal matrix (\\K\\) or setup options (see
   [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md))
 
-- xds:
-
-  use `xde` for differential equations and `dts` for discrete time
-  systems
-
 - model_name:
 
   a name for the model
+
+- xds:
+
+  is `xde` for differential equations or `dts` for discrete time systems
 
 ## Value
 

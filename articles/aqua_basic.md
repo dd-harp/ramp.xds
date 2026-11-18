@@ -62,7 +62,7 @@ full simulation.
 nHabitats <- 3
 nPatches <- nHabitats
 membership <- 1:nPatches
-params <- make_xds_object_template("xde", "aquatic", nPatches,  membership, 1)
+params <- make_xds_object_template("ode", "aquatic", nPatches,  membership, 1)
 ```
 
 ``` r

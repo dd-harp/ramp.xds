@@ -63,7 +63,7 @@ Here, we build a model step-by-step.
 nStrata <- 3
 H <- c(100, 500, 250)
 residence = rep(1,3) 
-xds_obj <- make_xds_object_template("xde", "eir", 1, 0, residence)
+xds_obj <- make_xds_object_template("ode", "eir", 1, 0, residence)
 ```
 
 ``` r

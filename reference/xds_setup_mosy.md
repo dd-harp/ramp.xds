@@ -18,7 +18,7 @@ xds_setup_mosy(
   Koptions = list(),
   Loptions = list(),
   model_name = "unnamed",
-  xds = "xde"
+  xds = "ode"
 )
 ```
 
@@ -70,8 +70,7 @@ xds_setup_mosy(
 
 - xds:
 
-  use `xde` for differential equations and `dts` for discrete time
-  systems
+  is `xde` for differential equations or `dts` for discrete time systems
 
 ## Value
 

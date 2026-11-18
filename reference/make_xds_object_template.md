@@ -12,7 +12,7 @@ of the component model objects.
 
 ``` r
 make_xds_object_template(
-  xds = "xde",
+  xds = "ode",
   frame = "full",
   nPatches = 1,
   membership = 1,
