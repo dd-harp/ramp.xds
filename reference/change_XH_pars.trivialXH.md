@@ -1,0 +1,28 @@
+# Get parameters for `trivialXH` (**XH**)
+
+This method dispatches on the type of `xds_obj$XH_obj[[s]]`.
+
+## Usage
+
+``` r
+# S3 method for class 'trivialXH'
+change_XH_pars(xds_obj, options = list(), i = 1)
+```
+
+## Arguments
+
+- xds_obj:
+
+  an **`xds`** model object
+
+- options:
+
+  a named list
+
+- i:
+
+  the host species index
+
+## Value
+
+an **`xds`** model object

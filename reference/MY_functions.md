@@ -84,5 +84,5 @@
 - [`check_MY`](https://dd-harp.github.io/ramp.xds/reference/check_MY.md)
   – run consistency checks
 
-- [`setup_skillset_MY`](https://dd-harp.github.io/ramp.xds/reference/setup_skillset_MY.md)
+- [`get_skillset_MY`](https://dd-harp.github.io/ramp.xds/reference/get_skillset_MY.md)
   – return module skill set

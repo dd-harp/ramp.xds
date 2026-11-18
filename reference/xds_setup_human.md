@@ -21,7 +21,7 @@ xds_setup_human(
   TSoptions = list(),
   MYoptions = list(),
   model_name = "unnamed",
-  xds = "ode"
+  xds = "xde"
 )
 ```
 
@@ -68,8 +68,8 @@ xds_setup_human(
 
 - xds:
 
-  is `ode` or `dde` or `dts` for ordinary OR delay differential OR
-  difference equations
+  use `xde` for differential equations and `dts` for discrete time
+  systems
 
 ## Value
 
@@ -80,7 +80,7 @@ an **`xds`** model object
 A modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 that sets up a model to study exposure and infection. The **MY**
-component module is set to `trivial` and a trace function computes
+component module is set to `trivialMY` and a trace function computes
 infective biting in the patches.
 
 `class(xds_obj$frame) = 'human'`
@@ -99,7 +99,7 @@ Choose a module:
   [XH_module_list](https://dd-harp.github.io/ramp.xds/reference/XH_module_list.md)
   for human / host infection dynamics
 
-- `MYname` \\=\\ `trivial`
+- `MYname` \\=\\ `trivialMY`
 
 Set parameter values and initial conditions using setup options (named
 lists):

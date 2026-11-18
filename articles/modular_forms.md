@@ -28,7 +28,7 @@ form* (Box 1).
 
 **Box 1: A Ross-Macdonald Model**
 
-- Let the dependent variable \\X(t)\\ denote the density of infected
+- Let the dependent variable \\I(t)\\ denote the density of infected
   humans, and the parameter \\H\\ the density of humans.
 
 - Let the dependent variable \\M(t)\\ denote the density of mosquitoes,
@@ -57,9 +57,9 @@ form* (Box 1).
 
 We introduce a term \\Z=e^{-gn}Y\\ to model survival through the EIP,
 such that human infections occur at the rate \\fqbZ/H,\\ and mosquito
-infections at the rate \\fqcX/H.\\
+infections at the rate \\fqcI/H.\\
 
-\\ \begin{array}{rl} dX/dt &= fq b e^{-gn} \frac {Y}{H} (H-X) - r X \\
+\\ \begin{array}{rl} dI/dt &= fq b e^{-gn} \frac {Y}{H} (H-I) - r I \\
 dM/dt &= \Lambda - g M \\ dY/dt &= fq c \frac {X}{H} (M-Y) - g Y
 \end{array} \\ Written in this way, it is not in any particular form. Or
 we could also say that it is in *standard form.* \*\*\*
@@ -73,13 +73,10 @@ infection dynamics. We note that it depends on a term involving the
 variable \\Y.\\ The term is called the force of infection (FoI, Ross
 called it the *happenings* rate).
 
-\\E =fq e^{-gn} \frac {Y}{H}.\\ We let \\h\\ denote the FoI:
+\\h =bfq e^{-gn} \frac {Y}{H}.\\ Now, the first equation can be
+rewritten:
 
-\\h = F_h(b, E) = b E.\\
-
-Now, the first equation can be rewritten:
-
-\\ dX/dt = h (H-X) - r X \\
+\\ dI/dt = h (H-I) - r I \\
 
 Mosquito population dynamics are self-contained. We could model mosquito
 ecology without infection dynamics, but not *vice versa.* (\\M\\ appears
@@ -99,17 +96,17 @@ the equation for parasite infection dynamics in mosquitoes:
 \\ dY/dt = fq\kappa (M-Y) - g Y \\
 
 With these five elements, the system has a modular form. In this modular
-form, there are three components:
+form, there are four components:
 
-- **X** - the human SIS model;
+- **X** - the state space for the S-I-S model;
 
-- **Y** - the mosquito SI model; and
+- **H** - human population density;
 
-- **M** - mosquito population dynamics.
+- **M** - the state space for mosquito ecology and
 
-There are three dynamical terms:
+- **Y** - infection dynamics for the S-I mosquito model; and
 
-- the daily EIR;
+There are two dynamical terms:
 
 - the FoI, describing parasite transmission from mosquitoes to humans;
   and
@@ -130,11 +127,12 @@ a modular form.
 
 ------------------------------------------------------------------------
 
-## Dynamical Terms
+## **`ramp.xds`** Form
 
-By identifying the dynamical terms — input involving variables from
-another module — it is possible to write the model in a modular form. In
-**`ramp.xds,`** because the framework handles spatial dynamics, these
+The process diagram and algorithms in **`ramp.xds`** can be understood
+by going to slightly greater lengths to rewrite the equations.
+
+In **`ramp.xds,`** because the framework handles spatial dynamics, these
 dynamical terms — \\h\\ and \\\kappa\\ — are computed as part of an
 interface that handles blood feeding, transmission, and human exposure
 in a way that is both flexible and mathematically rigorous.
@@ -145,8 +143,12 @@ interface guarantees that the number of bites and blood meals taken by
 mosquitoes matches the number of bites and blood meals received by
 humans. To do this in a flexible way, the interface uses a concept of
 *available blood hosts.* Part of that interface includes a general way
-of modeling human *exposure* and *infection,* including models for
-travel malaria, partial immunity, and environmental heterogeneity.
+of modeling *mixing* and human *exposure* and *infection,* including
+models for travel malaria, partial immunity, and environmental
+heterogeneity.
+
+The mixing matrix, \\\beta\\ is computed through a formula using
+availability. In this simple model, \\\beta = 1/H\\.
 
 We can illustrate using this model without explaining how the full
 interface works. The FoI is computed in three steps:
@@ -155,15 +157,16 @@ interface works. The FoI is computed in three steps:
     \\fqZ = fq e^{-gn}Y;\\
 
 2.  compute the daily entomological inoculation rate (dEIR), the number
-    of infectious bites, per person, per day (\\E=fqZ/H\\);
+    of infectious bites, per person, per day (\\E=\beta \cdot fqZ\\);
 
-3.  compute the FoI, given the EIR (\\h=bE\\).
+3.  compute the FoI, given the EIR under a Poisson exposure model
+    (\\h=F_h(b, E) = bE\\).
 
 The NI is computed in two steps:
 
-1.  compute the *infective density* of the human population (\\I=cX\\).
+1.  compute the *infective density* of the human population (\\X=cI\\).
 
-2.  compute the NI (\\\kappa = I/H\\).
+2.  compute the NI (\\\kappa = \beta^T \cdot X\\).
 
 While these steps add complexity to this simple model, they are
 essential to the modular implementation that enables richer, more
@@ -188,9 +191,8 @@ configured by naming the modules and passing options to set \\\Lambda\\:
 ``` r
 
 library(ramp.xds)
-# devtools::load_all()
 mod <- xds_setup(XHname = "SIS", MYname = "SI", 
-                 Lname = "trivial", Loptions = list(Lambda=80))
+                 Lname = "trivialL", Loptions = list(Lambda=80))
 ```
 
 In solving the system, derivatives for the human “SIS” model are
@@ -211,16 +213,16 @@ getS3method("dXHdt", "SIS")
     ##     foi <- xds_obj$terms$FoI[[i]]
     ##     with(get_XH_vars(y, xds_obj, i), {
     ##         with(xds_obj$XH_obj[[i]], {
+    ##             clear = r + sigma + rho * foi + mda(t) + msat(t)
     ##             dH <- Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, 
     ##                 i)
-    ##             dI <- foi * (1 - rho) * (H - I) - (r + sigma + rho * 
-    ##                 foi) * I - Deaths(t, I, xds_obj, i)
-    ##             dI <- dI - mda(t) * I - msat(t) * I
+    ##             dI <- foi * (1 - rho) * (H - I) - clear * I - Deaths(t, 
+    ##                 I, xds_obj, i)
     ##             return(c(dH, dI))
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x5e8386fe6148>
+    ## <bytecode: 0x643e8c5fd848>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -249,19 +251,20 @@ getS3method("dMYdt", "SI")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x5e838721c1a0>
+    ## <bytecode: 0x643e8c7f79f8>
     ## <environment: namespace:ramp.xds>
 
 The term \\\Lambda\\ is passed from the trace function
-`F_emerge.trivial`. Documentation is available through help in two ways:
-[`?trivial_L`](https://dd-harp.github.io/ramp.xds/reference/trivial_L.md)
+`F_emerge.trivialL`. Documentation is available through help in two
+ways:
+[`?trivialL`](https://dd-harp.github.io/ramp.xds/reference/trivialL.md)
 or
-[`?F_emerge.trivial`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.trivial.md).
+[`?F_emerge.trivialL`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.trivialL.md).
 The implementation looks like this:
 
 ``` r
 
-getS3method("F_emerge", "trivial")
+getS3method("F_emerge", "trivialL")
 ```
 
     ## function (t, y, xds_obj, s) 
@@ -274,5 +277,5 @@ getS3method("F_emerge", "trivial")
     ##             F_shock(t, V_k))
     ##     })
     ## }
-    ## <bytecode: 0x5e838753f590>
+    ## <bytecode: 0x643e8caa04c8>
     ## <environment: namespace:ramp.xds>

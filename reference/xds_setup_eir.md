@@ -24,10 +24,10 @@ xds_setup_eir(
   trend_par = list(),
   shock_par = list(),
   age_par = list(),
-  xds = "ode",
   XHname = "SIS",
   XHoptions = list(),
   HPop = 1000,
+  xds = "xde",
   model_name = "unnamed"
 )
 ```
@@ -70,11 +70,6 @@ xds_setup_eir(
 
   a list of options for F_age
 
-- xds:
-
-  is `ode` or `dde` or `dts` for ordinary OR delay differential OR
-  difference equations
-
 - XHname:
 
   the name of an **XH** module (see
@@ -89,6 +84,11 @@ xds_setup_eir(
 
   the initial human population density for each stratum
 
+- xds:
+
+  use `xde` for differential equations and `dts` for discrete time
+  systems
+
 - model_name:
 
   is a name for the model (arbitrary)
@@ -102,7 +102,7 @@ an **`xds`** model object
 A modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 that sets up a model to study exposure and infection. The **MY**
-component module is set to `trivial` and a trace function computes
+component module is set to `trivialMY` and a trace function computes
 infective biting in the patches.
 
 `class(xds_obj$frame) = 'eir'`

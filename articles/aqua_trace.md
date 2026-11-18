@@ -113,7 +113,7 @@ bionomic parameters to `ramp.xds::xDE_diffeqn_mosy`.
 
 ``` r
 
-xds_obj <- make_xds_object_template("ode", "mosy", nPatches, membership, residence)
+xds_obj <- make_xds_object_template("xde", "mosy", nPatches, membership, residence)
 xds_obj$nHabitats
 #> [1] 4
 xds_obj$nStrata
@@ -124,7 +124,7 @@ xds_obj$nPatches
 
 ``` r
 
-xds_obj = setup_L_obj("trivial", membership, xds_obj, options = list(Lambda = alpha), s=1)
+xds_obj = setup_L_obj("trivialL", membership, xds_obj, options = list(Lambda = alpha), s=1)
 ```
 
 ``` r
@@ -134,7 +134,7 @@ xds_obj = setup_MY_obj("basicM", xds_obj, options=MYo, s=1)
 
 ``` r
 
-xds_obj = setup_XH_obj("trivial", residence, xds_obj, options=list(H=HPop), i=1)
+xds_obj = setup_XH_obj("trivialXH", residence, xds_obj, options=list(H=HPop), i=1)
 ```
 
 ``` r
@@ -237,7 +237,7 @@ MYo = list(
 
 ``` r
 
-xds_setup_mosy(MYname = "basicM", Lname = "trivial", 
+xds_setup_mosy(MYname = "basicM", Lname = "trivialL",
                nPatches = 3, membership = c(1,2,3,3), 
                MYoptions = MYo, Koptions = K_matrix, 
                HPop=HPop, Loptions = Lo)->mosy1

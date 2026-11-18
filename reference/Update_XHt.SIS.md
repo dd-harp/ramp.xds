@@ -6,7 +6,7 @@ the differential equations:
 \$\$\begin{array}{rl} H_t &= H\_{t-1} + \mathbf{B}(t,H) - \mathbf{D}(H)
 \\ I_s &= I\_{t-1} - \mathbf{D}(I\_{t-1}) \\ I_t &= \alpha
 (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
-\end{array}\$\$ and \\S = H-I\\
+\end{array}\$\$
 
 ## Usage
 
@@ -37,11 +37,30 @@ Update_XHt(t, y, xds_obj, i)
 
 the derivatives, as a vector
 
+## Infection Dynamics
+
+The model for infection dynamics (**X**) assumes that infections clear
+naturally at a constant per-capita rate \\r\\.
+
+The model also includes parameters and functions to model treating and
+curing malaria infections:
+
+- a fraction \\\rho\\ of incident infections are treated and cured
+
+- since incident infections are treated, the FoI is \\h (1-\rho)\\
+
+- in addition, prevalent infections are treated and cured at the rate
+  \\\sigma\\
+
+- functions describes an increase in clearance caused by mass treatment,
+  \\\Xi(t)\\, a *shock* function
+
+The total per-capita clearance rate from treatment is thus \\\rho h +
+\sigma + \Xi(t)\\
+
+After clearing, individuals are susceptible to infection.
+
 ## Demography
-
-Demographic changes (**H**) are given by the equation:
-
-\$\$ dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)\$\$
 
 This model has no parameter or terms to describe disease-induced
 mortality.
@@ -58,7 +77,8 @@ mortality.
 
 **Setup:**
 
-- The defaults are no births and no deaths
+The default is a constant population model: birth and death rates are
+set to zero
 
 - Use
   [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.md)
@@ -72,72 +92,6 @@ mortality.
 
 Also, see
 [xds_info_demographic_change](https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.md).
-
-## Infection Dynamics
-
-The model for infection dynamics (**X**) assumes that infections clear
-naturally at a constant per-capita rate \\r\\.
-
-The model also includes two parameters to model treating and curing
-malaria infections:
-
-- a fraction \\\rho\\ of incident infections are treated and cured;
-
-- in addition, prevalent infections are treated and cured at the rate
-  \\\sigma\\
-
-A function describes an increase in clearance caused by mass treatment,
-\\\Xi(t)\\, a *shock* function.
-
-The total per-capita clearance rate from treatment is thus \\\rho h +
-\sigma + \Xi(t)\\ After clearing, individuals are susceptible to
-infection.
-
-Infection dynamics are described by:
-
-\$\$ dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I -
-\mathbf{D}(I) \$\$
-
-The mortality function \\\mathbf{D}(I)\\ computes total mortality for
-\\I\\ using the same model as for \\H\\: for example, if \\D(H)=\mu H\\,
-then \\D(I)= \mu I.\\
-
-In the compartmental model, individuals are either susceptible (\\S\\),
-or infected and infectious (\\I\\), so \\S=H-I.\\ The equation is
-redundant. After solving, the orbit of the variable \\S=H-I\\ is
-computed and attached.
-
-The model for infection dynamics (**X**) assumes that infections clear
-naturally at a constant per-capita rate \\r\\.
-
-The model also includes two parameters to model treating and curing
-malaria infections:
-
-- a fraction \\\rho\\ of incident infections are treated and cured;
-
-- in addition, prevalent infections are treated and cured at the rate
-  \\\sigma\\
-
-A function describes an increase in clearance caused by mass treatment,
-\\\Xi(t)\\, a *shock* function.
-
-The total per-capita clearance rate from treatment is thus \\\rho h +
-\sigma + \Xi(t)\\ After clearing, individuals are susceptible to
-infection.
-
-Infection dynamics are described by:
-
-\$\$ dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I -
-\mathbf{D}(I) \$\$
-
-The mortality function \\\mathbf{D}(I)\\ computes total mortality for
-\\I\\ using the same model as for \\H\\: for example, if \\D(H)=\mu H\\,
-then \\D(I)= \mu I.\\
-
-In the compartmental model, individuals are either susceptible (\\S\\),
-or infected and infectious (\\I\\), so \\S=H-I.\\ The equation is
-redundant. After solving, the orbit of the variable \\S=H-I\\ is
-computed and attached.
 
 ## See also
 

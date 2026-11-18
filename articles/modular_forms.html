@@ -147,7 +147,7 @@ modular form</em> (Box 1).</p>
 <hr>
 <p><strong>Box 1: A Ross-Macdonald Model</strong></p>
 <ul>
-<li><p>Let the dependent variable <span class="math inline">\(X(t)\)</span> denote the density of infected
+<li><p>Let the dependent variable <span class="math inline">\(I(t)\)</span> denote the density of infected
 humans, and the parameter <span class="math inline">\(H\)</span> the
 density of humans.</p></li>
 <li><p>Let the dependent variable <span class="math inline">\(M(t)\)</span> denote the density of mosquitoes,
@@ -191,10 +191,10 @@ fraction; and</li>
 <p>We introduce a term <span class="math inline">\(Z=e^{-gn}Y\)</span>
 to model survival through the EIP, such that human infections occur at
 the rate <span class="math inline">\(fqbZ/H,\)</span> and mosquito
-infections at the rate <span class="math inline">\(fqcX/H.\)</span></p>
+infections at the rate <span class="math inline">\(fqcI/H.\)</span></p>
 <p><span class="math display">\[
 \begin{array}{rl}
-dX/dt &amp;= fq b e^{-gn} \frac {Y}{H} (H-X) - r X \\
+dI/dt &amp;= fq b e^{-gn} \frac {Y}{H} (H-I) - r I \\
 dM/dt &amp;= \Lambda - g M \\
 dY/dt &amp;= fq c \frac {X}{H} (M-Y) - g Y
 \end{array}
@@ -211,12 +211,10 @@ infection dynamics. We note that it depends on a term involving the
 variable <span class="math inline">\(Y.\)</span> The term is called the
 force of infection (FoI, Ross called it the <em>happenings</em>
 rate).</p>
-<p><span class="math display">\[E =fq e^{-gn} \frac {Y}{H}.\]</span> We
-let <span class="math inline">\(h\)</span> denote the FoI:</p>
-<p><span class="math display">\[h = F_h(b, E) = b E.\]</span></p>
-<p>Now, the first equation can be rewritten:</p>
+<p><span class="math display">\[h =bfq e^{-gn} \frac {Y}{H}.\]</span>
+Now, the first equation can be rewritten:</p>
 <p><span class="math display">\[
-dX/dt = h  (H-X) - r X
+dI/dt = h  (H-I) - r I
 \]</span></p>
 <p>Mosquito population dynamics are self-contained. We could model
 mosquito ecology without infection dynamics, but not <em>vice
@@ -234,15 +232,18 @@ for parasite infection dynamics in mosquitoes:</p>
 dY/dt = fq\kappa (M-Y) - g Y
 \]</span></p>
 <p>With these five elements, the system has a modular form. In this
-modular form, there are three components:</p>
+modular form, there are four components:</p>
 <ul>
-<li><p><strong>X</strong> - the human SIS model;</p></li>
-<li><p><strong>Y</strong> - the mosquito SI model; and</p></li>
-<li><p><strong>M</strong> - mosquito population dynamics.</p></li>
+<li><p><strong>X</strong> - the state space for the S-I-S
+model;</p></li>
+<li><p><strong>H</strong> - human population density;</p></li>
+<li><p><strong>M</strong> - the state space for mosquito ecology
+and</p></li>
+<li><p><strong>Y</strong> - infection dynamics for the S-I mosquito
+model; and</p></li>
 </ul>
-<p>There are three dynamical terms:</p>
+<p>There are two dynamical terms:</p>
 <ul>
-<li><p>the daily EIR;</p></li>
 <li><p>the FoI, describing parasite transmission from mosquitoes to
 humans; and</p></li>
 <li><p>net infectiousness (NI), describing parasite transmission from
@@ -260,12 +261,14 @@ Ross-Macdonald model in Box 1, rewritten in a modular form.</div>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="dynamical-terms">Dynamical Terms<a class="anchor" aria-label="anchor" href="#dynamical-terms"></a>
+<h2 id="ramp-xds-form">
+<strong><code>ramp.xds</code></strong> Form<a class="anchor" aria-label="anchor" href="#ramp-xds-form"></a>
 </h2>
-<p>By identifying the dynamical terms — input involving variables from
-another module — it is possible to write the model in a modular form. In
-<strong><code>ramp.xds,</code></strong> because the framework handles
-spatial dynamics, these dynamical terms — <span class="math inline">\(h\)</span> and <span class="math inline">\(\kappa\)</span> — are computed as part of an
+<p>The process diagram and algorithms in
+<strong><code>ramp.xds</code></strong> can be understood by going to
+slightly greater lengths to rewrite the equations.</p>
+<p>In <strong><code>ramp.xds,</code></strong> because the framework
+handles spatial dynamics, these dynamical terms — <span class="math inline">\(h\)</span> and <span class="math inline">\(\kappa\)</span> — are computed as part of an
 interface that handles blood feeding, transmission, and human exposure
 in a way that is both flexible and mathematically rigorous.</p>
 <p>In the spatial modeling framework, mosquitoes blood feed in patches.
@@ -274,9 +277,12 @@ interface guarantees that the number of bites and blood meals taken by
 mosquitoes matches the number of bites and blood meals received by
 humans. To do this in a flexible way, the interface uses a concept of
 <em>available blood hosts.</em> Part of that interface includes a
-general way of modeling human <em>exposure</em> and <em>infection,</em>
-including models for travel malaria, partial immunity, and environmental
-heterogeneity.</p>
+general way of modeling <em>mixing</em> and human <em>exposure</em> and
+<em>infection,</em> including models for travel malaria, partial
+immunity, and environmental heterogeneity.</p>
+<p>The mixing matrix, <span class="math inline">\(\beta\)</span> is
+computed through a formula using availability. In this simple model,
+<span class="math inline">\(\beta = 1/H\)</span>.</p>
 <p>We can illustrate using this model without explaining how the full
 interface works. The FoI is computed in three steps:</p>
 <ol style="list-style-type: decimal">
@@ -284,15 +290,16 @@ interface works. The FoI is computed in three steps:</p>
 population, <span class="math inline">\(fqZ = fq
 e^{-gn}Y;\)</span></p></li>
 <li><p>compute the daily entomological inoculation rate (dEIR), the
-number of infectious bites, per person, per day (<span class="math inline">\(E=fqZ/H\)</span>);</p></li>
-<li><p>compute the FoI, given the EIR (<span class="math inline">\(h=bE\)</span>).</p></li>
+number of infectious bites, per person, per day (<span class="math inline">\(E=\beta \cdot fqZ\)</span>);</p></li>
+<li><p>compute the FoI, given the EIR under a Poisson exposure model
+(<span class="math inline">\(h=F_h(b, E) = bE\)</span>).</p></li>
 </ol>
 <p>The NI is computed in two steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>compute the <em>infective density</em> of the human population
-(<span class="math inline">\(I=cX\)</span>).</p></li>
-<li><p>compute the NI (<span class="math inline">\(\kappa =
-I/H\)</span>).</p></li>
+(<span class="math inline">\(X=cI\)</span>).</p></li>
+<li><p>compute the NI (<span class="math inline">\(\kappa = \beta^T
+\cdot X\)</span>).</p></li>
 </ol>
 <p>While these steps add complexity to this simple model, they are
 essential to the modular implementation that enables richer, more
@@ -312,9 +319,8 @@ step-by-step, to enable models with spatial dynamics and realism.</div>
 configured by naming the modules and passing options to set <span class="math inline">\(\Lambda\)</span>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
-<span><span class="co"># devtools::load_all()</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>XHname <span class="op">=</span> <span class="st">"SIS"</span>, MYname <span class="op">=</span> <span class="st">"SI"</span>, </span>
-<span>                 Lname <span class="op">=</span> <span class="st">"trivial"</span>, Loptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda<span class="op">=</span><span class="fl">80</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>                 Lname <span class="op">=</span> <span class="st">"trivialL"</span>, Loptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda<span class="op">=</span><span class="fl">80</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>In solving the system, derivatives for the human “SIS” model are
 computed by a function <code>dXHdt.SIS</code>. Documentation is
 available through help in two ways: <code><a href="../reference/SIS.html">?SIS</a></code> or
@@ -327,16 +333,16 @@ demography and ports for mass treatment. The code looks like this:</p>
 <span><span class="co">##     foi &lt;- xds_obj$terms$FoI[[i]]</span></span>
 <span><span class="co">##     with(get_XH_vars(y, xds_obj, i), {</span></span>
 <span><span class="co">##         with(xds_obj$XH_obj[[i]], {</span></span>
+<span><span class="co">##             clear = r + sigma + rho * foi + mda(t) + msat(t)</span></span>
 <span><span class="co">##             dH &lt;- Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, </span></span>
 <span><span class="co">##                 i)</span></span>
-<span><span class="co">##             dI &lt;- foi * (1 - rho) * (H - I) - (r + sigma + rho * </span></span>
-<span><span class="co">##                 foi) * I - Deaths(t, I, xds_obj, i)</span></span>
-<span><span class="co">##             dI &lt;- dI - mda(t) * I - msat(t) * I</span></span>
+<span><span class="co">##             dI &lt;- foi * (1 - rho) * (H - I) - clear * I - Deaths(t, </span></span>
+<span><span class="co">##                 I, xds_obj, i)</span></span>
 <span><span class="co">##             return(c(dH, dI))</span></span>
 <span><span class="co">##         })</span></span>
 <span><span class="co">##     })</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5e8386fe6148&gt;</span></span>
+<span><span class="co">## &lt;bytecode: 0x643e8c5fd848&gt;</span></span>
 <span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
 <p>Derivatives for the mosquito ecology and “SI” model are computed by
 <code>dMYdt.SI</code>. Documentation is available through help in two
@@ -360,14 +366,14 @@ like this:</p>
 <span><span class="co">##         })</span></span>
 <span><span class="co">##     })</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5e838721c1a0&gt;</span></span>
+<span><span class="co">## &lt;bytecode: 0x643e8c7f79f8&gt;</span></span>
 <span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
 <p>The term <span class="math inline">\(\Lambda\)</span> is passed from
-the trace function <code>F_emerge.trivial</code>. Documentation is
-available through help in two ways: <code><a href="../reference/trivial_L.html">?trivial_L</a></code> or
-<code><a href="../reference/F_emerge.trivial.html">?F_emerge.trivial</a></code>. The implementation looks like this:</p>
+the trace function <code>F_emerge.trivialL</code>. Documentation is
+available through help in two ways: <code><a href="../reference/trivialL.html">?trivialL</a></code> or
+<code><a href="../reference/F_emerge.trivialL.html">?F_emerge.trivialL</a></code>. The implementation looks like this:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/getS3method.html" class="external-link">getS3method</a></span><span class="op">(</span><span class="st">"F_emerge"</span>, <span class="st">"trivial"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/getS3method.html" class="external-link">getS3method</a></span><span class="op">(</span><span class="st">"F_emerge"</span>, <span class="st">"trivialL"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## function (t, y, xds_obj, s) </span></span>
 <span><span class="co">## {</span></span>
 <span><span class="co">##     with(xds_obj$L_obj[[s]], {</span></span>
@@ -378,7 +384,7 @@ available through help in two ways: <code><a href="../reference/trivial_L.html">
 <span><span class="co">##             F_shock(t, V_k))</span></span>
 <span><span class="co">##     })</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5e838753f590&gt;</span></span>
+<span><span class="co">## &lt;bytecode: 0x643e8caa04c8&gt;</span></span>
 <span><span class="co">## &lt;environment: namespace:ramp.xds&gt;</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

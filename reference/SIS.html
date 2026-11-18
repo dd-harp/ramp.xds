@@ -5,33 +5,33 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The SIS module for the XH component — SIS"><meta name="description" content="SIS implements a family of SIS compartmental models for malaria as a system of differential equations:
-individuals are either susceptible \((S)\) or infected and infectious \((I)\).
-In its simplest form, SIS dynamics are:
-$$
-dI/dt = h S - r I
-$$
-This generalized implementation includes:
-parameters to model treating and curing infections;
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The SIS module for the XH component — SIS"><meta name="description" content="SIS implements two generalized S-I-S compartmental
+models for malaria:
+a system of differential equations
+a discrete time system
+
+
+Enhancements to the basic S-I-S model include:
 functions to model human demographic change;
+parameters to model treating and curing infections;
 functions to model mass treatment;
 support for progressive stratification
 
 
-The SIS Vignette discusses the module."><meta property="og:description" content="SIS implements a family of SIS compartmental models for malaria as a system of differential equations:
-individuals are either susceptible \((S)\) or infected and infectious \((I)\).
-In its simplest form, SIS dynamics are:
-$$
-dI/dt = h S - r I
-$$
-This generalized implementation includes:
-parameters to model treating and curing infections;
+For a longer discussion, see the SIS Vignette."><meta property="og:description" content="SIS implements two generalized S-I-S compartmental
+models for malaria:
+a system of differential equations
+a discrete time system
+
+
+Enhancements to the basic S-I-S model include:
 functions to model human demographic change;
+parameters to model treating and curing infections;
 functions to model mass treatment;
 support for progressive stratification
 
 
-The SIS Vignette discusses the module."></head><body>
+For a longer discussion, see the SIS Vignette."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -113,17 +113,14 @@ The SIS Vignette discusses the module."></head><body>
     </div>
 
     <div class="ref-description section level2">
-    <p><code>SIS</code> implements a family of <code>SIS</code> compartmental models for malaria as a system of differential equations:
-individuals are either susceptible \((S)\) or infected and infectious \((I)\).
-In its simplest form, <code>SIS</code> dynamics are:
-$$
-dI/dt = h S - r I
-$$</p>
-<p>This generalized implementation includes:</p><ul><li><p>parameters to model treating and curing infections;</p></li>
-<li><p>functions to model human demographic change;</p></li>
+    <p><code>SIS</code> implements two generalized S-I-S compartmental
+models for malaria:</p><ol><li><p>a system of differential equations</p></li>
+<li><p>a discrete time system</p></li>
+</ol><p>Enhancements to the basic S-I-S model include:</p><ul><li><p>functions to model human demographic change;</p></li>
+<li><p>parameters to model treating and curing infections;</p></li>
 <li><p>functions to model mass treatment;</p></li>
 <li><p>support for progressive stratification</p></li>
-</ul><p>The <a href="https://dd-harp.github.io/ramp.xds/articles/human_sis.html">SIS Vignette</a> discusses the module.</p>
+</ul><p>For a longer discussion, see the <a href="https://dd-harp.github.io/ramp.xds/articles/human_sis.html">SIS Vignette</a>.</p>
     </div>
 
 
@@ -144,28 +141,6 @@ $$</p>
 
 </dl></div>
     <div class="section level2">
-    <h2 id="demography">Demography<a class="anchor" aria-label="anchor" href="#demography"></a></h2>
-
-
-
-<p>Demographic changes (<strong>H</strong>) are given by the equation:</p>
-<p>$$
-dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)$$</p>
-<p>This model has no parameter
-or terms to describe disease-induced mortality.</p>
-<dl><dt><code><a href="Births.html">Births</a></code> or \(\mathbf{B}\)</dt>
-<dd><p>the births function</p></dd>
-
-<dt><code><a href="Deaths.html">Deaths</a></code> or \(\mathbf{D}\)</dt>
-<dd><p>the deaths function</p></dd>
-
-
-</dl><p><strong>Setup:</strong></p><ul><li><p>The defaults are no births and no deaths</p></li>
-<li><p>Use <a href="setup_births.html">setup_births</a> to configure <code><a href="Births.html">Births</a></code></p></li>
-<li><p>Use <a href="setup_deaths.html">setup_deaths</a> to configure <code><a href="Deaths.html">Deaths</a></code></p></li>
-</ul><p>Also, see <a href="xds_info_demographic_change.html">xds_info_demographic_change</a>.</p>
-    </div>
-    <div class="section level2">
     <h2 id="dynamical-term">Dynamical Term<a class="anchor" aria-label="anchor" href="#dynamical-term"></a></h2>
 
 
@@ -175,7 +150,7 @@ or terms to describe disease-induced mortality.</p>
 
 
 </dl><p>In the <code>SIS</code> module, there is no effect of pre-erythrocytic immunity, so
-a constant fraction of infectious bites causes an infection: the parameter \(b.\)</p>
+a constant fraction of infectious bites causes an infection: the parameter is called \(b.\)</p>
     </div>
     <div class="section level2">
     <h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a></h2>
@@ -217,22 +192,67 @@ the dynamics, or detection by diagnostic methods.</p>
 
 <p>The model for infection dynamics (<strong>X</strong>) assumes that infections
 clear naturally at a constant per-capita rate \(r\).</p>
-<p>The model also includes two parameters to model
-treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured;</p></li>
+<p>The model also includes parameters and functions to model
+treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured</p></li>
+<li><p>since incident infections are treated, the FoI is \(h (1-\rho)\)</p></li>
 <li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\)</p></li>
-</ul><p>A function describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function.</p>
-<p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)
-After clearing, individuals are
+<li><p>functions describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function</p></li>
+</ul><p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)</p>
+<p>After clearing, individuals are
 susceptible to infection.</p>
-<p>Infection dynamics are described by:</p>
+    </div>
+    <div class="section level2">
+    <h2 id="demography">Demography<a class="anchor" aria-label="anchor" href="#demography"></a></h2>
+
+
+
+<p>This model has no parameter
+or terms to describe disease-induced mortality.</p>
+<dl><dt><code><a href="Births.html">Births</a></code> or \(\mathbf{B}\)</dt>
+<dd><p>the births function</p></dd>
+
+<dt><code><a href="Deaths.html">Deaths</a></code> or \(\mathbf{D}\)</dt>
+<dd><p>the deaths function</p></dd>
+
+
+</dl><p><strong>Setup:</strong></p>
+<p>The default is a constant population model: birth
+and death rates are set to zero</p><ul><li><p>Use <a href="setup_births.html">setup_births</a> to configure <code><a href="Births.html">Births</a></code></p></li>
+<li><p>Use <a href="setup_deaths.html">setup_deaths</a> to configure <code><a href="Deaths.html">Deaths</a></code></p></li>
+</ul><p>Also, see <a href="xds_info_demographic_change.html">xds_info_demographic_change</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="ode">ODE<a class="anchor" aria-label="anchor" href="#ode"></a></h2>
+
+
+
+<p><strong>Demography</strong> —
+Demographic changes (<strong>H</strong>) are given by the equation:</p>
+<p>$$
+dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)$$</p>
+<p><strong>Infection Dynamics</strong> —
+Infection dynamics (<strong>X</strong>) are described by:</p>
 <p>$$
 dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) $$</p>
-<p>The mortality function \(\mathbf{D}(I)\) computes total mortality for \(I\) using
-the same model as for \(H\):
-for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\)</p>
-<p>In the compartmental model, individuals are either susceptible (\(S\)), or infected and
-infectious (\(I\)), so  \(S=H-I.\) The equation is redundant.
-After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
+<p>After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="dts">DTS<a class="anchor" aria-label="anchor" href="#dts"></a></h2>
+
+
+
+<p><strong>Demography</strong> —
+Demographic changes (<strong>H</strong>) are given by the equation:</p>
+<p>$$
+H_t = H_{t-1}  + \mathbf{B}(t,H_{t-1}) - \mathbf{D}(H_{t-1})$$</p>
+<p><strong>Infection Dynamics</strong> —
+\(I_t\) is updated in two steps: survival first,
+and disease dynamics second:
+$$\begin{array}{rl}
+I_s &amp;= I_{t-1} - \mathbf{D}(I_{t-1}) \\
+I_t &amp;= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
+\end{array}$$</p>
+<p>After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
     </div>
     <div class="section level2">
     <h2 id="prevalence">Prevalence<a class="anchor" aria-label="anchor" href="#prevalence"></a></h2>
@@ -259,8 +279,9 @@ After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
 
 
 <p>The fraction of mosquitoes that become infected after blood feeding on
-someone who is infectious is \(c.\)
-The infectious density of the human (host) population is \(cxI = cH.\)</p>
+someone who is infectious is \(c\) so the fraction of mosquitoes that
+would get infected is \(cx.\)</p>
+<p>The infectious density of the human (host) population is \(cI = cxH.\)</p>
     </div>
     <div class="section level2">
     <h2 id="mass-treatment">Mass Treatment<a class="anchor" aria-label="anchor" href="#mass-treatment"></a></h2>
@@ -282,7 +303,7 @@ Mass treatment is either:</p>
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index">
 <ul><li><p>Basic Setup:  <a href="make_XH_obj_SIS.html">make_XH_obj_SIS</a>, <a href="setup_XH_obj.SIS.html">setup_XH_obj.SIS</a></p></li>
-<li><p>Dynamics: <a href="dXHdt.SIS.html">dXHdt.SIS</a></p></li>
+<li><p>Dynamics: <a href="dXHdt.SIS.html">dXHdt.SIS</a>, <a href="Update_XHt.SIS.html">Update_XHt.SIS</a></p></li>
 <li><p>Parameters: <a href="get_XH_pars.SIS.html">get_XH_pars.SIS</a>, <a href="change_XH_pars.SIS.html">change_XH_pars.SIS</a></p></li>
 <li><p>Variables: <a href="make_XH_inits_SIS.html">make_XH_inits_SIS</a>, <a href="get_XH_inits.html">get_XH_inits</a>, <a href="change_XH_inits.SIS.html">change_XH_inits.SIS</a>,  <a href="setup_XH_inits.SIS.html">setup_XH_inits.SIS</a></p></li>
 <li><p><a href="https://dd-harp.github.io/ramp.xds/articles/human_sis.html">The SIS Vignette</a></p></li>

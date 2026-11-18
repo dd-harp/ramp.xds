@@ -1,12 +1,22 @@
 # Rebuild Forcing Functions
 
-Rebuild forcing functions on the X object using `make_function`:
+Rebuild forcing functions on the XH object using `make_function`
+
+For \\\kappa\\
 
 - `F_season` is made from `season_par`
 
 - `F_trend` is made from `trend_par`
 
 - `F_shock` is made from `shock_par`
+
+For \\H\\
+
+- `H_season` is made from `H_season_par`
+
+- `H_trend` is made from `H_trend_par`
+
+- `H_shock` is made from `H_shock_par`
 
 ## Usage
 

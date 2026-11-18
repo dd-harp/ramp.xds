@@ -262,10 +262,10 @@ dynamically, so we attach `Upsilon` as initial values:
 
 ``` r
 
-params <- make_xds_object_template("dde", "mosy", nPatches, 1:3, 1:3)
+params <- make_xds_object_template("xde", "mosy", nPatches, 1:3, 1:3)
 params <- setup_MY_obj("macdonald", params, options=MYo, s=1)
-params <- setup_XH_obj("trivial", 1:3, params, options=Xo, i=1) 
-params <- setup_L_obj("trivial", 1:3, params, options=Lo, s=1)
+params <- setup_XH_obj("trivialXH", 1:3, params, options=Xo, i=1)
+params <- setup_L_obj("trivialL", 1:3, params, options=Lo, s=1)
 ```
 
 We set the indices with
@@ -381,17 +381,17 @@ To set up the model, we call `xds_setup` with
   finally, the dispersal matrix `K_matrix` is passed as
   `K_matrix=K_matrix`
 
-- `XHname` is set to “trivial” to run the trivial module for human
+- `XHname` is set to “trivialXH” to run the trivial module for human
   infection dynamics
 
-- `Lname` is set to “trivial” to run the trivial module aquatic
+- `Lname` is set to “trivialL” to run the trivial module aquatic
   mosquitoes
 
 Otherwise, setup takes care of all the internals:
 
 ``` r
 
-xds_setup(MYname = "macdonald", XHname = "trivial", Lname = "trivial",  
+xds_setup(MYname = "macdonald", XHname = "trivialXH", Lname = "trivialL",
     nPatches=3, Koptions=K_matrix, membership = c(1:3), 
     residence = c(1:3), HPop = HPop,
     MYoptions = MYo, XHoptions = Xo, Loptions = Lo) -> MYeg

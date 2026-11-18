@@ -4,14 +4,14 @@ A List of Modules for the **XH**-Component
 
 ## In **`ramp.xds`**
 
-- `trivial` - the trivial module: see
-  [trivial_XH](https://dd-harp.github.io/ramp.xds/reference/trivial_XH.md)
+- [`trivialXH`](https://dd-harp.github.io/ramp.xds/reference/trivialXH.md) -
+  the trivial module
 
-- `SIS` - an **SIS** compartmental model: see
-  [SIS](https://dd-harp.github.io/ramp.xds/reference/SIS.md)
+- [`SIS`](https://dd-harp.github.io/ramp.xds/reference/SIS.md) — *ode*
+  or *dts* — a generalized *S-I-S* compartmental model
 
-- `hMoI` - a hybrid model for exposure: see
-  [hMoI](https://dd-harp.github.io/ramp.xds/reference/hMoI.md)
+- [`hMoI`](https://dd-harp.github.io/ramp.xds/reference/hMoI.md) — *ode*
+  — a hybrid model for infection and detection
 
 ## In **`ramp.library`**
 

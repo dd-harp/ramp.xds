@@ -14,7 +14,7 @@ xds_setup_aquatic(
   nHabitats = 1,
   MYoptions = list(),
   model_name = "unnamed",
-  xds = "ode"
+  xds = "xde"
 )
 ```
 
@@ -43,8 +43,8 @@ xds_setup_aquatic(
 
 - xds:
 
-  is `ode` or `dde` or `dts` for ordinary OR delay differential OR
-  difference equations
+  use `xde` for differential equations and `dts` for discrete time
+  systems
 
 ## Value
 
@@ -55,7 +55,7 @@ an **`xds`** model object
 This is a modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 that streamlines setup for the **L** module and egg laying for a
-`trivial` **MY** module. It sets
+`trivialMY` **MY** module. It sets
 
 `class(xds_obj$frame) = 'aquatic'`
 
@@ -73,7 +73,7 @@ Choose a module:
 Set parameter values and initial conditions using setup options (named
 lists):
 
-- `MYoptions` sets up egg laying using the `trivial` **MY** module
+- `MYoptions` sets up egg laying using the `trivialMY` **MY** module
 
 - `Loptions` sets parameter values and initial conditions for the **L**
   module
@@ -112,7 +112,7 @@ for blood feeding and egg laying (see
 [xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)).
 
 - The **XH** model is never used, but it is set up as the default
-  `trivial` module.
+  `trivialXH` module.
 
 ## See also
 

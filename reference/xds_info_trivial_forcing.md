@@ -30,7 +30,7 @@ Functions](https://faculty.washington.edu/smitdave/simba/trace.html)
 
 ## See also
 
-[trivial_XH](https://dd-harp.github.io/ramp.xds/reference/trivial_XH.md),
-[trivial_MY](https://dd-harp.github.io/ramp.xds/reference/trivial_MY.md),
-[trivial_L](https://dd-harp.github.io/ramp.xds/reference/trivial_L.md),
+[trivialXH](https://dd-harp.github.io/ramp.xds/reference/trivialXH.md),
+[trivialMY](https://dd-harp.github.io/ramp.xds/reference/trivialMY.md),
+[trivialL](https://dd-harp.github.io/ramp.xds/reference/trivialL.md),
 [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)

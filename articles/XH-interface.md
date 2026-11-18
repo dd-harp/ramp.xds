@@ -306,8 +306,8 @@ for various reasons. Not all of those models are capable of being
 extended. To help users avoid using models in ways that are not
 appropriate, we developed two function classes:
 
-- `setup_skillset_XH.XHname` :: records the module’s capabilities and
-  limitations
+- `get_skillset_XH.XHname` :: returns a list describing the module’s
+  capabilities and limitations
 
 - `check_XH.XHname` :: at the end of `xds_setup` and at the beginning of
   `xds_solve`, this function gets run to ensure that some quantities
@@ -318,8 +318,8 @@ appropriate, we developed two function classes:
 
 The **XH** interface also sets up `S3` methods for optional functions,
 but these might not be appropriate for all models. The module’s
-`setup_skillset_XH.XHname` method records its capabilities and
-limitations.
+`get_skillset_XH.XHname` method returns its capabilities and limitations
+as a list, which setup stores on the module object.
 
 ### Diagnostic Outputs
 

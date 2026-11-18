@@ -98,7 +98,7 @@ model
     ## Modules:
     ##   XHname - SIS
     ##   MYname - SI
-    ##   Lname  - trivial
+    ##   Lname  - trivialL
     ## 
     ## Structure:
     ##   nPatches         = 1
@@ -108,7 +108,7 @@ model
     ##   nVectorSpecies   = 1
     ## 
     ## frame - full
-    ## xds   - ode
+    ## xds   - xde
 
 We can see from the returned value that `XHname` is `SIS`, which is the
 name of the module for human / host infection and immune dynamics.
@@ -123,7 +123,7 @@ names(model)
 
     ##  [1] "membership"         "nPatches"           "nHabitats"         
     ##  [4] "nStrata"            "nVectorSpecies"     "nHostSpecies"      
-    ##  [7] "model_name"         "xde"                "xds"               
+    ##  [7] "model_name"         "xds"                "xde"               
     ## [10] "frame"              "forced_by"          "patches"           
     ## [13] "habitats"           "terms"              "blood_feeding_obj" 
     ## [16] "import_obj"         "transmission_obj"   "env_het_obj"       
@@ -304,17 +304,17 @@ and changed after setup by passing new values in a named list to
 `change_MY_pars`.
 
 The name of the default module for aquatic mosquito ecology is called
-`Lname.` The default module is the `trivial` module:
+`Lname.` The default module is the `trivialL` module:
 
 ``` r
 
 model$Lname
 ```
 
-    ## [1] "trivial"
+    ## [1] "trivialL"
 
-For the `trivial` module, arguments passed at the command line configure
-functions that pass values to other dynamical components.
+For the `trivialL` module, arguments passed at the command line
+configure functions that pass values to other dynamical components.
 
 The design pattern is followed: parameters can be viewed with
 `get_L_pars` and the method for setting parameter values is to pass a

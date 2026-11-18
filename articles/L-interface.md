@@ -2,24 +2,38 @@
 
 The **L** component models aquatic mosquito ecology across larval
 habitats. This vignette describes its interfaces and the methods
-implemented by an **L** module.
+implemented by an **L** module (Figure 1). Each **L** module uses the
+dynamical term, `eta` or \\\eta\\, the number of eggs laid in the
+habitat each day
 
-The **L** component is linked to adult mosquito ecology through egg
-laying and emergence. `F_eggs` returns the number of eggs laid by adult
-mosquitoes in each patch, denoted by \\G\\. The egg-laying interface
-distributes those eggs among habitats to produce the habitat-specific
-input \\\eta\\. The **L** module then computes its dynamics and the
-emergence rate \\\alpha\\ in each habitat. The emergence interface
-aggregates \\\alpha\\, using the habitat membership matrix, into the
-patch-specific adult emergence rate \\\Lambda\\.
+    eta <- xds_obj$terms$eta[[s]]
 
-The two interfaces are illustrated below.
+Each module defines a function `F_emerge` (or \\F\_\alpha\\) to compute
+the number of emergent adults, \\\alpha\\. Development from eggs to
+adults is described by a dynamical system. The following describes the
+structure of the **L** component.
 
 ------------------------------------------------------------------------
 
-![Figure 1 - A diagram of the L Component in context](L_component.png)
+![Figure 1 - A diagram of the L Component in context. The L component is
+linked to adult mosquito ecology through egg laying and emergence. A
+function, F_eggs returns the number of eggs laid by adult mosquitoes in
+each patch, denoted by G. The egg-distribution matrix U allocates eggs
+among habitats, se each habitat gets \eta eggs, per day. The L module
+then computes its dynamics and the emergence rate \alpha in each
+habitat. The emergence interface aggregates \alpha, using the habitat
+membership matrix, into the patch-specific adult emergence rate
+\Lambda.](L_component.png)
 
-**Figure 1** - A diagram of the **L** Component in context
+**Figure 1** - A diagram of the **L** Component in context. The **L**
+component is linked to adult mosquito ecology through egg laying and
+emergence. A function, `F_eggs` returns the number of eggs laid by adult
+mosquitoes in each patch, denoted by \\G\\. The egg-distribution matrix
+\\U\\ allocates eggs among habitats, se each habitat gets \\\eta\\ eggs,
+per day. The **L** module then computes its dynamics and the emergence
+rate \\\alpha\\ in each habitat. The emergence interface aggregates
+\\\alpha\\, using the habitat membership matrix, into the patch-specific
+adult emergence rate \\\Lambda\\.
 
 ------------------------------------------------------------------------
 
@@ -45,12 +59,19 @@ Implement one of the following:
 The functions are used by the continuous-time or discrete-time solver
 pathways, respectively.
 
-### Bionomics
+### Aquatic Bionomics
 
-`LBionomics.Lname` evaluates baseline bionomic parameter values at time
-`t` and resets their effect sizes. `LEffectSizes.Lname` applies
-vector-control effect sizes to those baseline values. Both methods
-receive `t`, `y`, `xds_obj`, and `s`, and return the updated `xds_obj`.
+Two methods update bionomic parameter values before the dynamics are
+computed.
+
+- `LBionomics.MYname` – evaluates the baseline bionomic parameter
+  functions for the current time and resets the effect sizes to 1.
+
+- `LEffectSizes.MYname` – applies vector control effect sizes to the
+  bionomic parameters set by `MBionomics`.
+
+Both methods receive `t`, `y`, `xds_obj`, and `s`, and return the
+updated `xds_obj`.
 
 ### Egg input and emergence output
 
@@ -100,9 +121,9 @@ all state variables. `setup_L_inits.Lname` stores the values at
 `xds_obj$L_obj[[s]]$inits`; `get_L_inits` and `change_L_inits.Lname`
 inspect and update them.
 
-`setup_skillset_L.Lname` records the module’s capabilities and
-limitations. `check_L.Lname` performs any module-specific consistency
-checks required before solving.
+`get_skillset_L.Lname` returns the module’s capabilities and limitations
+as a list, which setup stores on the module object. `check_L.Lname`
+performs any module-specific consistency checks required before solving.
 
 ## The `basicL` example
 
@@ -135,7 +156,9 @@ generics.
 For details on a specific model, see its module documentation and the
 relevant literature. The `basicL` equations are based on:
 
-Smith DL, Perkins TA, Tusting LS, Scott TW, Lindsay SW (2013) Mosquito
-Population Regulation and Larval Source Management in Heterogeneous
-Environments. *PLOS ONE* 8(8): e71247.
-[doi:10.1371/journal.pone.0071247](https://doi.org/10.1371/journal.pone.0071247).
+## References
+
+- Smith DL, Perkins TA, Tusting LS, Scott TW, Lindsay SW (2013) Mosquito
+  Population Regulation and Larval Source Management in Heterogeneous
+  Environments. *PLOS ONE* 8(8): e71247.
+  [doi:10.1371/journal.pone.0071247](https://doi.org/10.1371/journal.pone.0071247).

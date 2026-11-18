@@ -5,8 +5,8 @@ and **`ramp.library`**
 
 ## In **`ramp.xds`**
 
-- `trivial` - the trivial module: see
-  [trivial_MY](https://dd-harp.github.io/ramp.xds/reference/trivial_MY.md)
+- `trivialMY` - the trivial module: see
+  [trivialMY](https://dd-harp.github.io/ramp.xds/reference/trivialMY.md)
 
 - `SI` - an *SI* compartmental model: see
   [SI](https://dd-harp.github.io/ramp.xds/reference/SI.md)

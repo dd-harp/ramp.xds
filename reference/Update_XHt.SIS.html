@@ -11,15 +11,13 @@ $$\begin{array}{rl}
 H_t &amp;amp;= H_{t-1} + \mathbf{B}(t,H) - \mathbf{D}(H) \\
 I_s &amp;amp;= I_{t-1} - \mathbf{D}(I_{t-1}) \\
 I_t &amp;amp;= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
-\end{array}$$
-and \(S = H-I\)"><meta property="og:description" content="For the SIS discrete time system, the state variables are derived
+\end{array}$$"><meta property="og:description" content="For the SIS discrete time system, the state variables are derived
 from the differential equations:
 $$\begin{array}{rl}
 H_t &amp;amp;= H_{t-1} + \mathbf{B}(t,H) - \mathbf{D}(H) \\
 I_s &amp;amp;= I_{t-1} - \mathbf{D}(I_{t-1}) \\
 I_t &amp;amp;= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
-\end{array}$$
-and \(S = H-I\)"></head><body>
+\end{array}$$"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -107,8 +105,7 @@ from the differential equations:</p>
 H_t &amp;= H_{t-1} + \mathbf{B}(t,H) - \mathbf{D}(H) \\
 I_s &amp;= I_{t-1} - \mathbf{D}(I_{t-1}) \\
 I_t &amp;= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
-\end{array}$$
-and \(S = H-I\)</p>
+\end{array}$$</p>
     </div>
 
     <div class="section level2">
@@ -142,13 +139,26 @@ and \(S = H-I\)</p>
     <p>the derivatives, as a vector</p>
     </div>
     <div class="section level2">
+    <h2 id="infection-dynamics">Infection Dynamics<a class="anchor" aria-label="anchor" href="#infection-dynamics"></a></h2>
+
+
+
+<p>The model for infection dynamics (<strong>X</strong>) assumes that infections
+clear naturally at a constant per-capita rate \(r\).</p>
+<p>The model also includes parameters and functions to model
+treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured</p></li>
+<li><p>since incident infections are treated, the FoI is \(h (1-\rho)\)</p></li>
+<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\)</p></li>
+<li><p>functions describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function</p></li>
+</ul><p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)</p>
+<p>After clearing, individuals are
+susceptible to infection.</p>
+    </div>
+    <div class="section level2">
     <h2 id="demography">Demography<a class="anchor" aria-label="anchor" href="#demography"></a></h2>
 
 
 
-<p>Demographic changes (<strong>H</strong>) are given by the equation:</p>
-<p>$$
-dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)$$</p>
 <p>This model has no parameter
 or terms to describe disease-induced mortality.</p>
 <dl><dt><code><a href="Births.html">Births</a></code> or \(\mathbf{B}\)</dt>
@@ -158,54 +168,11 @@ or terms to describe disease-induced mortality.</p>
 <dd><p>the deaths function</p></dd>
 
 
-</dl><p><strong>Setup:</strong></p><ul><li><p>The defaults are no births and no deaths</p></li>
-<li><p>Use <a href="setup_births.html">setup_births</a> to configure <code><a href="Births.html">Births</a></code></p></li>
+</dl><p><strong>Setup:</strong></p>
+<p>The default is a constant population model: birth
+and death rates are set to zero</p><ul><li><p>Use <a href="setup_births.html">setup_births</a> to configure <code><a href="Births.html">Births</a></code></p></li>
 <li><p>Use <a href="setup_deaths.html">setup_deaths</a> to configure <code><a href="Deaths.html">Deaths</a></code></p></li>
 </ul><p>Also, see <a href="xds_info_demographic_change.html">xds_info_demographic_change</a>.</p>
-    </div>
-    <div class="section level2">
-    <h2 id="infection-dynamics">Infection Dynamics<a class="anchor" aria-label="anchor" href="#infection-dynamics"></a></h2>
-
-
-
-<p>The model for infection dynamics (<strong>X</strong>) assumes that infections
-clear naturally at a constant per-capita rate \(r\).</p>
-<p>The model also includes two parameters to model
-treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured;</p></li>
-<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\)</p></li>
-</ul><p>A function describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function.</p>
-<p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)
-After clearing, individuals are
-susceptible to infection.</p>
-<p>Infection dynamics are described by:</p>
-<p>$$
-dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) $$</p>
-<p>The mortality function \(\mathbf{D}(I)\) computes total mortality for \(I\) using
-the same model as for \(H\):
-for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\)</p>
-<p>In the compartmental model, individuals are either susceptible (\(S\)), or infected and
-infectious (\(I\)), so  \(S=H-I.\) The equation is redundant.
-After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
-
-
-<p>The model for infection dynamics (<strong>X</strong>) assumes that infections
-clear naturally at a constant per-capita rate \(r\).</p>
-<p>The model also includes two parameters to model
-treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured;</p></li>
-<li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\)</p></li>
-</ul><p>A function describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function.</p>
-<p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)
-After clearing, individuals are
-susceptible to infection.</p>
-<p>Infection dynamics are described by:</p>
-<p>$$
-dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) $$</p>
-<p>The mortality function \(\mathbf{D}(I)\) computes total mortality for \(I\) using
-the same model as for \(H\):
-for example, if \(D(H)=\mu H\), then \(D(I)= \mu I.\)</p>
-<p>In the compartmental model, individuals are either susceptible (\(S\)), or infected and
-infectious (\(I\)), so  \(S=H-I.\) The equation is redundant.
-After solving, the orbit of the variable \(S=H-I\) is computed and attached.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

@@ -62,7 +62,7 @@ full simulation.
 nHabitats <- 3
 nPatches <- nHabitats
 membership <- 1:nPatches
-params <- make_xds_object_template("ode", "aquatic", nPatches,  membership, 1)
+params <- make_xds_object_template("xde", "aquatic", nPatches,  membership, 1)
 ```
 
 ``` r
@@ -85,7 +85,7 @@ F_eta = function(t, pars){
 }
 
 params = setup_L_obj("basicL", membership, params, options=Lo, s=1)
-params = setup_MY_obj("trivial", params, options=MYZo, s=1)
+params = setup_MY_obj("trivialMY", params, options=MYZo, s=1)
 
 params = make_indices(params)
 ```
