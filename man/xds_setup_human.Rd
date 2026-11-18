@@ -54,7 +54,7 @@ To build a model forced by the EIR, see \link{xds_setup_eir}.
 \details{
 A modified version of \link{xds_setup} that sets up a model to study exposure and
 infection.
-The \strong{MY} component module is set to \code{trivial} and a trace
+The \strong{MY} component module is set to \code{trivialMY} and a trace
 function computes infective biting in the patches.
 
 \code{class(xds_obj$frame) = 'human'}
@@ -70,7 +70,7 @@ by the EIR, use \link{xds_setup_eir}.
 Choose a module:
 \itemize{
 \item \code{XHname} --- the name of an \strong{XH} module: see the \link{XH_module_list} for human / host infection dynamics
-\item \code{MYname} \eqn{=} \code{trivial}
+\item \code{MYname} \eqn{=} \code{trivialMY}
 }
 
 Set parameter values and initial conditions using setup options (named lists):

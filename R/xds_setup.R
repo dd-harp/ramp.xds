@@ -105,7 +105,7 @@
 xds_setup = function(
      XHname = "SIS",
      MYname = "SI",
-     Lname = "trivial",
+     Lname = "trivialL",
      XHoptions = list(),
      MYoptions = list(),
      Loptions = list(),
@@ -273,7 +273,7 @@ xds_setup_mosy = function(
   xds_obj <- setup_MY_obj(MYname, xds_obj, options=MYoptions, s=1)
 
   # Human / Host Dynamics
-  xds_obj$XHname   <- "trivial"
+  xds_obj$XHname   <- "trivialXH"
   XHoptions <- list(H=HPop, kappa=0)
   xds_obj <- setup_XH_obj(xds_obj$XHname, residence, xds_obj, options=XHoptions, i=1) 
   
@@ -306,7 +306,7 @@ xds_setup_mosy = function(
 #' @details 
 #' 
 #' This is a modified version of [xds_setup] that streamlines setup for the **L** module
-#' and egg laying for a `trivial` **MY** module. It sets
+#' and egg laying for a `trivialMY` **MY** module. It sets
 #' 
 #' `class(xds_obj$frame) = 'aquatic'`
 #' 
@@ -319,7 +319,7 @@ xds_setup_mosy = function(
 #' - `Lname` -- the name of an **L** module: see the [L_module_list] for aquatic mosquito ecology
 #'
 #' Set parameter values and initial conditions using setup options (named lists): 
-#' - `MYoptions` sets up egg laying using the `trivial` **MY** module
+#' - `MYoptions` sets up egg laying using the `trivialMY` **MY** module
 #' - `Loptions` sets parameter values and initial conditions for the **L** module
 #' 
 #' **Model Structure** 
@@ -348,7 +348,7 @@ xds_setup_mosy = function(
 #' [xds_setup] calls [make_xds_object_template], which returns an object template with
 #' a properly configured interface for blood feeding 
 #' and egg laying (see [xds_object]). 
-#' + The **XH** model is never used, but it is set up as the default `trivial` module.
+#' + The **XH** model is never used, but it is set up as the default `trivialXH` module.
 #'
 #' @param Lname the name of an **L** module (see [L_module_list])
 #' @param Loptions a list to configure the **L** Component module
@@ -375,15 +375,15 @@ xds_setup_aquatic = function(Lname = "basicL",
   xds_obj <- setup_L_obj(xds_obj$Lname, membership, xds_obj, options=Loptions, s=1)
 
   # Adult Mosquito Dynamics
-  xds_obj$MYname   <- "trivial"
+  xds_obj$MYname   <- "trivialMY"
   xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, options=MYoptions, s=1)
   
   xds_obj$forced_by = c("MY", "eggs")
   class(xds_obj$forced_by) = c("MY", "eggs")
   
   # Human / Host Dynamics
-  xds_obj$XHname   <- "trivial"
-  xds_obj <- setup_XH_obj("trivial", residence, xds_obj, options=list(H=1), i=1) 
+  xds_obj$XHname   <- "trivialXH"
+  xds_obj <- setup_XH_obj("trivialXH", residence, xds_obj, options=list(H=1), i=1)
   
   xds_obj <- ode_to_dde(xds_obj)
   xds_obj = make_indices(xds_obj)
@@ -410,7 +410,7 @@ xds_setup_aquatic = function(Lname = "basicL",
 #' 
 #' A modified version of [xds_setup] that sets up a model to study exposure and 
 #' infection. 
-#' The **MY** component module is set to `trivial` and a trace
+#' The **MY** component module is set to `trivialMY` and a trace
 #' function computes infective biting in the patches.
 #' 
 #' `class(xds_obj$frame) = 'human'`
@@ -425,7 +425,7 @@ xds_setup_aquatic = function(Lname = "basicL",
 #' 
 #' Choose a module:
 #' - `XHname` --- the name of an **XH** module: see the [XH_module_list] for human / host infection dynamics
-#' - `MYname` \eqn{=} `trivial`
+#' - `MYname` \eqn{=} `trivialMY`
 #'
 #' Set parameter values and initial conditions using setup options (named lists): 
 #' - `XHoptions` sets parameter values and initial conditions for the **XH** module
@@ -494,11 +494,11 @@ xds_setup_human = function(XHname = "SIS",
   xds_obj <- make_xds_object_template(xds, 'human', nPatches, membership, residence)
 
   # Aquatic Mosquito Dynamics
-  xds_obj$Lname <- "trivial" 
+  xds_obj$Lname <- "trivialL"
   xds_obj <- setup_L_obj(xds_obj$Lname, 1, xds_obj, options=list(), s=membership)
 
   # Adult Mosquito Dynamics
-  xds_obj$MYname   <- "trivial" 
+  xds_obj$MYname   <- "trivialMY"
   xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, options=MYoptions, s=1)
 
   # Human Dynamics
@@ -540,7 +540,7 @@ xds_setup_human = function(XHname = "SIS",
 #' 
 #' A modified version of [xds_setup] that sets up a model to study exposure and 
 #' infection. 
-#' The **MY** component module is set to `trivial` and a trace
+#' The **MY** component module is set to `trivialMY` and a trace
 #' function computes infective biting in the patches.
 #' 
 #' `class(xds_obj$frame) = 'eir'`
@@ -640,11 +640,11 @@ xds_setup_eir = function(eir=1/365,
   xds_obj$EIR_obj$bday <- 0
 
   # Aquatic Mosquito Dynamics
-  xds_obj$Lname <- "trivial" 
+  xds_obj$Lname <- "trivialL"
   xds_obj <- setup_L_obj(xds_obj$Lname, 1, xds_obj, options=list(), s=membership)
   
   # Adult Mosquito Dynamics
-  xds_obj$MYname   <- "trivial" 
+  xds_obj$MYname   <- "trivialMY"
   xds_obj <- xds_obj <- setup_MY_obj(xds_obj$MYname, xds_obj, options=list(), s=1)
   
   # Human Dynamics

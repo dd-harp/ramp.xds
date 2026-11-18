@@ -5,7 +5,7 @@
 #' 
 #' @section In **`ramp.xds`**: 
 #'  
-#' + `trivial` - the trivial module: see [trivial_L]
+#' + `trivialL` - the trivial module: see [trivialL]
 #' 
 #' + `basicL` - a simple model for aquatic dynamics: see [basicL]
 #' 

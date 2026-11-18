@@ -386,7 +386,7 @@ Basic setup for the **L** component:
   [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.html)
   for a list of modules).
 
-- the default is `Lname = "trivial"`
+- the default is `Lname = "trivialL"`
 
 ### Trivial Modules
 

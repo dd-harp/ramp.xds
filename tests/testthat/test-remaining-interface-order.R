@@ -1,8 +1,8 @@
 test_that("remaining species interfaces put options before a default index", {
   families <- list(
-    change_MY_inits=c("basicM", "GeM", "SI", "macdonald", "RMdts", "trivial"),
-    setup_L_inits=c("basicL", "trivial"),
-    change_L_inits=c("basicL", "trivial"),
+    change_MY_inits=c("basicM", "GeM", "SI", "macdonald", "RMdts", "trivialMY"),
+    setup_L_inits=c("basicL", "trivialL"),
+    change_L_inits=c("basicL", "trivialL"),
     setup_exposure=c("nb", "pois")
   )
   for (name in names(families)) {

@@ -67,7 +67,7 @@ spent matrix and search weigths, use \link{xds_setup_human}.
 \details{
 A modified version of \link{xds_setup} that sets up a model to study exposure and
 infection.
-The \strong{MY} component module is set to \code{trivial} and a trace
+The \strong{MY} component module is set to \code{trivialMY} and a trace
 function computes infective biting in the patches.
 
 \code{class(xds_obj$frame) = 'eir'}

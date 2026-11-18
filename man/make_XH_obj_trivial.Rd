@@ -9,12 +9,18 @@ make_XH_obj_trivial(
   options,
   kappa = 0,
   H = 1,
-  F_season = F_one,
-  F_trend = F_one,
-  F_shock = F_one,
+  F_season = list(),
+  F_trend = list(),
+  F_shock = list(),
   season_par = list(name = "F_one"),
   trend_par = list(name = "F_one"),
-  shock_par = list(name = "F_one")
+  shock_par = list(name = "F_one"),
+  H_season = list(),
+  H_trend = list(),
+  H_shock = list(),
+  H_season_par = list(name = "F_one"),
+  H_trend_par = list(name = "F_one"),
+  H_shock_par = list(name = "F_one")
 )
 }
 \arguments{
@@ -22,7 +28,7 @@ make_XH_obj_trivial(
 
 \item{options}{a \link{list}}
 
-\item{kappa}{net infectiousness}
+\item{kappa}{net infectiousness (mean value)}
 
 \item{H}{initial human population density}
 
@@ -36,10 +42,32 @@ make_XH_obj_trivial(
 
 \item{trend_par}{a list of options for F_trend}
 
-\item{shock_par}{a list of options for F_shock
-#' @return a \link{list}}
+\item{shock_par}{a list of options for F_shock}
+
+\item{H_season}{the seasonal pattern function for \eqn{H}}
+
+\item{H_trend}{the trend function for \eqn{H}}
+
+\item{H_shock}{the shock function for \eqn{H}}
+
+\item{H_season_par}{a list of options for H_season}
+
+\item{H_trend_par}{a list of options for H_trend}
+
+\item{H_shock_par}{a list of options for H_shock}
+}
+\value{
+a \link{list}
 }
 \description{
-Make parameters for trivial human model
+This builds a trace function as a \emph{composed time series function} using either functions or parameters:
+\itemize{
+\item Use a function if passed, and set the function object to an empty list
+\item If no function is passed, the parameters should be a function object (see \link[ramp.func:F_obj]{ramp.func::F_obj})
+\item Use \code{make_function} to create a function \eqn{F(t,V)}
+}
+}
+\seealso{
+\link[ramp.func:F_obj]{ramp.func::F_obj}
 }
 \keyword{internal}

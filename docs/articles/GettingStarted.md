@@ -90,7 +90,7 @@ In the code chuck, we called it `model`. If you type it, the function
     ## Modules:
     ##   XHname - SIS
     ##   MYname - SI
-    ##   Lname  - trivial
+    ##   Lname  - trivialL
     ## 
     ## Structure:
     ##   nPatches         = 1
@@ -276,15 +276,15 @@ and changed after setup by passing new values in a named list to
 `change_MY_pars`.
 
 The name of the default module for aquatic mosquito ecology is called
-`Lname.` The default module is the `trivial` module:
+`Lname.` The default module is the `trivialL` module:
 
 \
 `model``$``Lname`
 
-    ## [1] "trivial"
+    ## [1] "trivialL"
 
-For the `trivial` module, arguments passed at the command line configure
-functions that pass values to other dynamical components.
+For the `trivialL` module, arguments passed at the command line
+configure functions that pass values to other dynamical components.
 
 The design pattern is followed: parameters can be viewed with
 `get_L_pars` and the method for setting parameter values is to pass a

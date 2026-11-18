@@ -4,44 +4,19 @@
 #' 
 #' @description
 #' 
-#' `SIS` implements a generalized S-I-S compartmental 
-#' models for malaria as a system of differential equations including:
-#' + parameters to model treating and curing infections; 
+#' `SIS` implements two generalized S-I-S compartmental 
+#' models for malaria:
+#' 1. a system of differential equations
+#' 2. a discrete time system  
+#' 
+#' Enhancements to the basic S-I-S model include: 
 #' + functions to model human demographic change; 
+#' + parameters to model treating and curing infections; 
 #' + functions to model mass treatment;
 #' + support for progressive stratification
 #' 
-#' The [SIS Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html) discusses the module. 
-#' 
-#' @section Infection Dynamics:
-#'  
-#' The model for infection dynamics (**X**) assumes that infections
-#' clear naturally at a constant per-capita rate \eqn{r}. 
-#' 
-#' The model also includes two parameters to model
-#' treating and curing malaria infections: 
-#' + a fraction \eqn{\rho} of incident infections are treated and cured;
-#' + in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
-#' 
-#' A function describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a *shock* function. 
-#' 
-#' The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}  
-#' After clearing, individuals are 
-#' susceptible to infection.
-#'  
-#' Infection dynamics are described by:
-#' 
-#' \deqn{
-#' dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
+#' For a longer discussion, see the [SIS Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html). 
 #'
-#' The mortality function \eqn{\mathbf{D}(I)} computes total mortality for \eqn{I} using
-#' the same model as for \eqn{H}: 
-#' for example, if \eqn{D(H)=\mu H}, then \eqn{D(I)= \mu I.} 
-#' 
-#' In the compartmental model, individuals are either susceptible (\eqn{S}), or infected and 
-#' infectious (\eqn{I}), so  \eqn{S=H-I.} The equation is redundant. 
-#' After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
-#' 
 #' @section State Variables:
 #' 
 #' \describe{
@@ -50,30 +25,6 @@
 #'   \item{`S=H-I`}{the density of susceptible humans or hosts}
 #' }
 #' 
-#' @section Demography:  
-#'
-#' Demographic changes (**H**) are given by the equation:
-#' 
-#' \deqn{
-#' dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)}
-#' 
-#' This model has no parameter 
-#' or terms to describe disease-induced mortality.
-#' 
-#' \describe{
-#'   \item{[`Births`] or \eqn{\mathbf{B}}}{the births function}
-#'   \item{[`Deaths`] or \eqn{\mathbf{D}}}{the deaths function}
-#' } 
-#' 
-#' **Setup:** 
-#' 
-#' + The defaults are no births and no deaths
-#' 
-#' + Use [setup_births] to configure [`Births`]
-#' 
-#' + Use [setup_deaths] to configure [`Deaths`]
-#' 
-#' Also, see [xds_info_demographic_change].
 #' 
 #' @section Dynamical Term:
 #' 
@@ -82,7 +33,7 @@
 #' }
 #' 
 #' In the `SIS` module, there is no effect of pre-erythrocytic immunity, so 
-#' a constant fraction of infectious bites causes an infection: the parameter \eqn{b.}
+#' a constant fraction of infectious bites causes an infection: the parameter is called \eqn{b.}
 #' 
 #' 
 #' @section Parameters:
@@ -101,6 +52,79 @@
 #'   \item{`q_pcr`}{test positivity by PCR}
 #' } 
 #' 
+#' @section Infection Dynamics:
+#' 
+#' The model for infection dynamics (**X**) assumes that infections
+#' clear naturally at a constant per-capita rate \eqn{r}. 
+#' 
+#' The model also includes parameters and functions to model
+#' treating and curing malaria infections: 
+#' + a fraction \eqn{\rho} of incident infections are treated and cured
+#' + since incident infections are treated, the FoI is \eqn{h (1-\rho)}
+#' + in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
+#' + functions describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a *shock* function
+#' 
+#' The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}  
+#' 
+#' 
+#' After clearing, individuals are 
+#' susceptible to infection.
+#' 
+#' @section Demography:  
+#' 
+#' This model has no parameter 
+#' or terms to describe disease-induced mortality.
+#' 
+#' \describe{
+#'   \item{[`Births`] or \eqn{\mathbf{B}}}{the births function}
+#'   \item{[`Deaths`] or \eqn{\mathbf{D}}}{the deaths function}
+#' } 
+#' 
+#' **Setup:** 
+#' 
+#' The default is a constant population model: birth 
+#' and death rates are set to zero
+#' 
+#' + Use [setup_births] to configure [`Births`]
+#' 
+#' + Use [setup_deaths] to configure [`Deaths`]
+#' 
+#' Also, see [xds_info_demographic_change].
+#' 
+#' @section ODE:   
+#' 
+#' **Demography** ---
+#' Demographic changes (**H**) are given by the equation:
+#' 
+#' \deqn{
+#' dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)}
+#' 
+#' **Infection Dynamics** --- 
+#' Infection dynamics (**X**) are described by:
+#' 
+#' \deqn{
+#' dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
+#'
+#' After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
+#' 
+#' 
+#' @section DTS:
+#' 
+#' **Demography** ---
+#' Demographic changes (**H**) are given by the equation:
+#' 
+#' \deqn{
+#' H_t = H_{t-1}  + \mathbf{B}(t,H_{t-1}) - \mathbf{D}(H_{t-1})}
+#' 
+#' **Infection Dynamics** --- 
+#' \eqn{I_t} is updated in two steps: survival first,
+#' and disease dynamics second: 
+#' \deqn{\begin{array}{rl}
+#' I_s &= I_{t-1} - \mathbf{D}(I_{t-1}) \\
+#' I_t &= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
+#' \end{array}}
+#' 
+#' After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 #' 
 #' @section Prevalence:
 #' 
@@ -114,8 +138,10 @@
 #' @section Infectiousness:
 #' 
 #' The fraction of mosquitoes that become infected after blood feeding on 
-#' someone who is infectious is \eqn{c.} 
-#' The infectious density of the human (host) population is \eqn{cxI = cH.}
+#' someone who is infectious is \eqn{c} so the fraction of mosquitoes that 
+#' would get infected is \eqn{cx.} 
+#'  
+#' The infectious density of the human (host) population is \eqn{cI = cxH.}
 #' 
 #' 
 #' @section Mass Treatment: 
@@ -132,7 +158,7 @@
 #' @seealso 
 #' 
 #' + Basic Setup:  [make_XH_obj_SIS], [setup_XH_obj.SIS]
-#' + Dynamics: [dXHdt.SIS]
+#' + Dynamics: [dXHdt.SIS], [Update_XHt.SIS]
 #' + Parameters: [get_XH_pars.SIS], [change_XH_pars.SIS]
 #' + Variables: [make_XH_inits_SIS], [get_XH_inits], [change_XH_inits.SIS],  [setup_XH_inits.SIS]
 #' + [The SIS Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
@@ -152,13 +178,11 @@ NULL
 #' dH/dt &= \mathbf{B}(t,H) - \mathbf{D}(H) \\
 #' dI/dt &= h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) 
 #' \end{array}}
-#' and \eqn{S = H-I}
 #'
-#' @inheritSection SIS Demography
 #' 
 #' @inheritSection SIS Infection Dynamics
+#' @inheritSection SIS Demography
 #' 
-#'@inheritSection SIS Infection Dynamics
 #' 
 #' @inheritParams dXHdt
 #'
@@ -173,9 +197,9 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
   with(get_XH_vars(y, xds_obj, i),{
     with(xds_obj$XH_obj[[i]], {
       
+      clear = r + sigma + rho*foi + mda(t) + msat(t)
       dH <- Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, i)
-      dI <- foi*(1-rho)*(H-I) - (r + sigma + rho*foi)*I - Deaths(t, I, xds_obj, i)
-      dI <- dI - mda(t)*I - msat(t)*I
+      dI <- foi*(1-rho)*(H-I) - clear*I - Deaths(t, I, xds_obj, i)
       return(c(dH, dI))
     })
   })
@@ -193,13 +217,10 @@ dXHdt.SIS <- function(t, y, xds_obj, i) {
 #' I_s &= I_{t-1} - \mathbf{D}(I_{t-1}) \\
 #' I_t &= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
 #' \end{array}}
-#' and \eqn{S = H-I}
 #'
-#' @inheritSection SIS Demography
-#' 
+#'
 #' @inheritSection SIS Infection Dynamics
-#' 
-#'@inheritSection SIS Infection Dynamics
+#' @inheritSection SIS Demography
 #' 
 #' @inheritParams dXHdt
 #'

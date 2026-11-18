@@ -110,8 +110,8 @@ xds_obj = setup_XH_obj("hMoI", residence, xds_obj, options=Xo, i=1)
 ```
 
 ```{r}
-xds_obj = setup_MY_obj("trivial", xds_obj, s=1)
-xds_obj = setup_L_obj("trivial", 1, xds_obj, s=1)
+xds_obj = setup_MY_obj("trivialMY", xds_obj, s=1)
+xds_obj = setup_L_obj("trivialL", 1, xds_obj, s=1)
 ```
 
 

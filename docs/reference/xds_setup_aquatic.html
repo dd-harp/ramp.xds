@@ -149,13 +149,13 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This is a modified version of <a href="xds_setup.html">xds_setup</a> that streamlines setup for the <strong>L</strong> module
-and egg laying for a <code>trivial</code> <strong>MY</strong> module. It sets</p>
+and egg laying for a <code>trivialMY</code> <strong>MY</strong> module. It sets</p>
 <p><code>class(xds_obj$frame) = 'aquatic'</code></p>
 <p>to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
 and parse outputs.</p>
 <p><strong>Dynamics</strong></p>
 <p>Choose a module:</p><ul><li><p><code>Lname</code> – the name of an <strong>L</strong> module: see the <a href="L_module_list.html">L_module_list</a> for aquatic mosquito ecology</p></li>
-</ul><p>Set parameter values and initial conditions using setup options (named lists):</p><ul><li><p><code>MYoptions</code> sets up egg laying using the <code>trivial</code> <strong>MY</strong> module</p></li>
+</ul><p>Set parameter values and initial conditions using setup options (named lists):</p><ul><li><p><code>MYoptions</code> sets up egg laying using the <code>trivialMY</code> <strong>MY</strong> module</p></li>
 <li><p><code>Loptions</code> sets parameter values and initial conditions for the <strong>L</strong> module</p></li>
 </ul><p><strong>Model Structure</strong></p>
 <p>Set up the model structure:</p><ul><li><p><code>nHabitats</code> – sets the number of habitats</p></li>
@@ -170,7 +170,7 @@ and parse outputs.</p>
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p><a href="xds_setup.html">xds_setup</a> calls <a href="make_xds_object_template.html">make_xds_object_template</a>, which returns an object template with
 a properly configured interface for blood feeding
-and egg laying (see <a href="xds_object.html">xds_object</a>).</p><ul><li><p>The <strong>XH</strong> model is never used, but it is set up as the default <code>trivial</code> module.</p></li>
+and egg laying (see <a href="xds_object.html">xds_object</a>).</p><ul><li><p>The <strong>XH</strong> model is never used, but it is set up as the default <code>trivialXH</code> module.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

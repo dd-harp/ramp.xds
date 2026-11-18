@@ -4,8 +4,8 @@ A list of modules for the **L**-Component
 
 ## In **`ramp.xds`**
 
-- `trivial` - the trivial module: see
-  [trivial_L](https://dd-harp.github.io/ramp.xds/reference/trivial_L.md)
+- `trivialL` - the trivial module: see
+  [trivialL](https://dd-harp.github.io/ramp.xds/reference/trivialL.md)
 
 - `basicL` - a simple model for aquatic dynamics: see
   [basicL](https://dd-harp.github.io/ramp.xds/reference/basicL.md)

@@ -5,11 +5,11 @@
 #' 
 #' @section In **`ramp.xds`**: 
 #'  
-#' + `trivial` - the trivial module: see [trivial_XH]
+#' + [`trivialXH`] - the trivial module
 #' 
-#' + `SIS` - an **SIS** compartmental model: see [SIS]
+#' + [`SIS`] --- *ode* or *dts* --- a generalized *S-I-S* compartmental model 
 #' 
-#' + `hMoI` - a hybrid model for exposure: see [hMoI] 
+#' + [`hMoI`] --- *ode* --- a hybrid model for infection and detection
 #'
 #' @section In **`ramp.library`**: 
 #'  

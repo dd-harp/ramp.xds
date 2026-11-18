@@ -146,13 +146,13 @@ model$MYname
 
 The design pattern is followed. Parameters can be viewed with `get_MY_pars`. Parameter values can be set by passing a named list to `MYoptions` in `xds_setup()`, and changed after setup by passing new values in a named list to `change_MY_pars`.
 
-The name of the default module for aquatic mosquito ecology is called `Lname.` The default module is the `trivial` module: 
+The name of the default module for aquatic mosquito ecology is called `Lname.` The default module is the `trivialL` module:
 
 ```{r}
 model$Lname
 ```
 
-For the `trivial` module, arguments passed at the command line configure functions that pass values to other dynamical components. 
+For the `trivialL` module, arguments passed at the command line configure functions that pass values to other dynamical components.
 
 The design pattern is followed: parameters can be viewed with `get_L_pars` and the method for setting parameter values is to pass a named list of values to `Loptions` in `xds_setup().` After setup, the `change_L_pars` works in the same way as the other `change_` functions.
 
@@ -256,5 +256,4 @@ Two good next steps are the vignettes:
 + [Basic Setup](https://dd-harp.github.io/ramp.xds/articles/BasicSetup.html).
 
 + [Working with Models](https://dd-harp.github.io/ramp.xds/articles/Working.html).
-
 

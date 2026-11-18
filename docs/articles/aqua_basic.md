@@ -78,7 +78,7 @@ full simulation.
 `}`\
 \
 `params`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"basicL"``, ``membership``, ``params``, options``=``Lo``, s``=``1``)`\
-`params`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"trivial"``, ``params``, options``=``MYZo``, s``=``1``)`\
+`params`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"trivialMY"``, ``params``, options``=``MYZo``, s``=``1``)`\
 \
 `params`` ``=`` `[`make_indices`](https://dd-harp.github.io/ramp.xds/reference/make_indices.md)`(``params``)`
 

@@ -102,7 +102,7 @@ an **`xds`** model object
 A modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 that sets up a model to study exposure and infection. The **MY**
-component module is set to `trivial` and a trace function computes
+component module is set to `trivialMY` and a trace function computes
 infective biting in the patches.
 
 `class(xds_obj$frame) = 'eir'`

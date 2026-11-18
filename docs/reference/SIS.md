@@ -1,53 +1,23 @@
 # The `SIS` module for the **XH** component
 
-`SIS` implements a generalized S-I-S compartmental models for malaria as
-a system of differential equations including:
+`SIS` implements two generalized S-I-S compartmental models for malaria:
 
-- parameters to model treating and curing infections;
+1.  a system of differential equations
+
+2.  a discrete time system
+
+Enhancements to the basic S-I-S model include:
 
 - functions to model human demographic change;
+
+- parameters to model treating and curing infections;
 
 - functions to model mass treatment;
 
 - support for progressive stratification
 
-The [SIS
-Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html)
-discusses the module.
-
-## Infection Dynamics
-
-The model for infection dynamics (**X**) assumes that infections clear
-naturally at a constant per-capita rate \\(r\\).
-
-The model also includes two parameters to model treating and curing
-malaria infections:
-
-- a fraction \\(\rho\\) of incident infections are treated and cured;
-
-- in addition, prevalent infections are treated and cured at the rate
-  \\(\sigma\\)
-
-A function describes an increase in clearance caused by mass treatment,
-\\(\Xi(t)\\), a *shock* function.
-
-The total per-capita clearance rate from treatment is thus \\(\rho h +
-\sigma + \Xi(t)\\) After clearing, individuals are susceptible to
-infection.
-
-Infection dynamics are described by:
-
-\$\$ dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I -
-\mathbf{D}(I) \$\$
-
-The mortality function \\(\mathbf{D}(I)\\) computes total mortality for
-\\(I\\) using the same model as for \\(H\\): for example, if \\(D(H)=\mu
-H\\), then \\(D(I)= \mu I.\\)
-
-In the compartmental model, individuals are either susceptible
-(\\(S\\)), or infected and infectious (\\(I\\)), so \\(S=H-I.\\) The
-equation is redundant. After solving, the orbit of the variable
-\\(S=H-I\\) is computed and attached.
+For a longer discussion, see the [SIS
+Vignette](https://dd-harp.github.io/ramp.xds/articles/human_sis.html).
 
 ## State Variables
 
@@ -63,42 +33,6 @@ equation is redundant. After solving, the orbit of the variable
 
   the density of susceptible humans or hosts
 
-## Demography
-
-Demographic changes (**H**) are given by the equation:
-
-\$\$ dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)\$\$
-
-This model has no parameter or terms to describe disease-induced
-mortality.
-
-- [`Births`](https://dd-harp.github.io/ramp.xds/reference/Births.md) or
-  \\(\mathbf{B}\\):
-
-  the births function
-
-- [`Deaths`](https://dd-harp.github.io/ramp.xds/reference/Deaths.md) or
-  \\(\mathbf{D}\\):
-
-  the deaths function
-
-**Setup:**
-
-- The defaults are no births and no deaths
-
-- Use
-  [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.md)
-  to configure
-  [`Births`](https://dd-harp.github.io/ramp.xds/reference/Births.md)
-
-- Use
-  [setup_deaths](https://dd-harp.github.io/ramp.xds/reference/setup_deaths.md)
-  to configure
-  [`Deaths`](https://dd-harp.github.io/ramp.xds/reference/Deaths.md)
-
-Also, see
-[xds_info_demographic_change](https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.md).
-
 ## Dynamical Term
 
 - \\(h\\) or `foi`:
@@ -109,7 +43,7 @@ Also, see
 
 In the `SIS` module, there is no effect of pre-erythrocytic immunity, so
 a constant fraction of infectious bites causes an infection: the
-parameter \\(b.\\)
+parameter is called \\(b.\\)
 
 ## Parameters
 
@@ -151,6 +85,89 @@ describe the dynamics, or detection by diagnostic methods.
 
   test positivity by PCR
 
+## Infection Dynamics
+
+The model for infection dynamics (**X**) assumes that infections clear
+naturally at a constant per-capita rate \\(r\\).
+
+The model also includes parameters and functions to model treating and
+curing malaria infections:
+
+- a fraction \\(\rho\\) of incident infections are treated and cured
+
+- since incident infections are treated, the FoI is \\(h (1-\rho)\\)
+
+- in addition, prevalent infections are treated and cured at the rate
+  \\(\sigma\\)
+
+- functions describes an increase in clearance caused by mass treatment,
+  \\(\Xi(t)\\), a *shock* function
+
+The total per-capita clearance rate from treatment is thus \\(\rho h +
+\sigma + \Xi(t)\\)
+
+After clearing, individuals are susceptible to infection.
+
+## Demography
+
+This model has no parameter or terms to describe disease-induced
+mortality.
+
+- [`Births`](https://dd-harp.github.io/ramp.xds/reference/Births.md) or
+  \\(\mathbf{B}\\):
+
+  the births function
+
+- [`Deaths`](https://dd-harp.github.io/ramp.xds/reference/Deaths.md) or
+  \\(\mathbf{D}\\):
+
+  the deaths function
+
+**Setup:**
+
+- The defaults are no births and no deaths
+
+- Use
+  [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.md)
+  to configure
+  [`Births`](https://dd-harp.github.io/ramp.xds/reference/Births.md)
+
+- Use
+  [setup_deaths](https://dd-harp.github.io/ramp.xds/reference/setup_deaths.md)
+  to configure
+  [`Deaths`](https://dd-harp.github.io/ramp.xds/reference/Deaths.md)
+
+Also, see
+[xds_info_demographic_change](https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.md).
+
+## ODE
+
+**Demography** — Demographic changes (**H**) are given by the equation:
+
+\$\$ dH/dt = \mathbf{B}(t,H) - \mathbf{D}(H)\$\$
+
+**Infection Dynamics** — Infection dynamics (**X**) are described by:
+
+\$\$ dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I -
+\mathbf{D}(I) \$\$
+
+After solving, the orbit of the variable \\(S=H-I\\) is computed and
+attached.
+
+## DTS
+
+**Demography** — Demographic changes (**H**) are given by the equation:
+
+\$\$ H_t = H\_{t-1} + \mathbf{B}(t,H\_{t-1}) - \mathbf{D}(H\_{t-1})\$\$
+
+**Infection Dynamics** — \\(I_t\\) is updated in two steps: survival
+first, and disease dynamics second: \$\$\begin{array}{rl} I_s &=
+I\_{t-1} - \mathbf{D}(I\_{t-1}) \\\\ I_t &= \alpha (1-\rho)(H_t-I_s) +
+e^{-(r + \rho h + \sigma + \Xi(t))} I_s \end{array}\$\$
+
+After solving, the orbit of the variable \\(S=H-I\\) is computed and
+attached.
+
 ## Prevalence
 
 - \\(x\\):
@@ -172,8 +189,10 @@ describe the dynamics, or detection by diagnostic methods.
 ## Infectiousness
 
 The fraction of mosquitoes that become infected after blood feeding on
-someone who is infectious is \\(c.\\) The infectious density of the
-human (host) population is \\(cxI = cH.\\)
+someone who is infectious is \\(c\\) so the fraction of mosquitoes that
+would get infected is \\(cx.\\)
+
+The infectious density of the human (host) population is \\(cI = cxH.\\)
 
 ## Mass Treatment
 
@@ -197,7 +216,8 @@ Mass treatment is either:
   [setup_XH_obj.SIS](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.SIS.md)
 
 - Dynamics:
-  [dXHdt.SIS](https://dd-harp.github.io/ramp.xds/reference/dXHdt.SIS.md)
+  [dXHdt.SIS](https://dd-harp.github.io/ramp.xds/reference/dXHdt.SIS.md),
+  [Update_XHt.SIS](https://dd-harp.github.io/ramp.xds/reference/Update_XHt.SIS.md)
 
 - Parameters:
   [get_XH_pars.SIS](https://dd-harp.github.io/ramp.xds/reference/get_XH_pars.SIS.md),

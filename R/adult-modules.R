@@ -5,7 +5,7 @@
 #' 
 #' @section In **`ramp.xds`**: 
 #'  
-#' + `trivial` - the trivial module: see [trivial_MY]
+#' + `trivialMY` - the trivial module: see [trivialMY]
 #' 
 #' + `SI` - an *SI* compartmental model: see [SI]
 #' 

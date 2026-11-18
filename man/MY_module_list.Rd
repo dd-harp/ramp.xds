@@ -9,7 +9,7 @@ A List of Available Modules for the \strong{MY}-Component from \strong{\code{ram
 \section{In \strong{\code{ramp.xds}}}{
 
 \itemize{
-\item \code{trivial} - the trivial module: see \link{trivial_MY}
+\item \code{trivialMY} - the trivial module: see \link{trivialMY}
 \item \code{SI} - an \emph{SI} compartmental model: see \link{SI}
 \item \code{macdonald} - an implementation of Macdonald's model: see \link{macdonald}
 \item \code{GeM} - A generalized Macdonald model: see \link{GeM}

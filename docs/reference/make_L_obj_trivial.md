@@ -1,4 +1,4 @@
-# Make `L_obj` for `trivial` (**L** component)
+# Make `L_obj` for `trivialL` (**L** component)
 
 The number of emerging adults is a function \$\$\Lambda S(t) T(t)
 K(t)\$\$ where

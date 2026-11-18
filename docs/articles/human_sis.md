@@ -34,6 +34,8 @@ and susceptible to infection \\((S)\\), and the total population sizes
 is \\(H=S+I.\\) This vignette describes the model and its implementation
 in **`ramp.xds.`**
 
+### The Basic S-I-S model
+
 The rate that susceptible individuals become infected is called the
 *force of infection* (or FoI, Ross called it the *happenings* rate,
 denoted \\(h\\)). The rate of clearance is \\(r.\\) After clearing an
@@ -113,11 +115,12 @@ I &- \mathbf{D}(t,I)\\\\ \end{array}\\\]
 
 ### DTS
 
-The discrete time system implements:
+In the discrete-time system, the demographic change for \\(I_t\\) is
+computed in two steps: survival \\((I_s)\\) and then infection dynamics:
 
 \\\[\begin{array}{rcc} & \mathbf{X} & \mathbf{H} \\\\ \hline H\_{t+1} =&
 &B(t,H_t) - \mathbf{D}(t,H_t)\\\\ I_s =& & I_t - \mathbf{D}(t,I_t) \\\\
-I\_{t+1} &= (1-e^{-h}) \rho (H\_{t+1} + I_s) + e^{-\left(r + h\rho +
+I\_{t+1} &= \alpha_t(1-\rho) (H\_{t+1} + I_s) + e^{-\left(r + h\rho +
 \sigma + \Xi \left( t \right) \right)} I_s \\\\ \end{array}\\\]
 
 ## Exposure

@@ -41,6 +41,8 @@ dts_mod <- xds_setup(XHname = "SIS", xds= "dts")
 
 Individuals are either infected and infectious $(I)$ or uninfected and susceptible to infection $(S)$, and the total population sizes is $H=S+I.$ This vignette describes the model and its implementation in **`ramp.xds.`**
 
+### The Basic S-I-S model 
+
 The rate that susceptible individuals become infected is called the *force of infection* (or FoI, Ross called it the *happenings* rate, denoted $h$). The rate of clearance is $r.$ After clearing an infection, individuals are susceptible to infection again. In its simplest form: 
 
 $$
@@ -55,7 +57,7 @@ $$
 \frac{dI}{dt} =  h (H-I) - r I 
 $$
 
-This is the system that is implemented for the *default* parameter settings. 
+This is the system that is implemented for the *default* parameter settings.
 
 ### Demographic Change
 
@@ -77,7 +79,7 @@ $$
 \frac{dI}{dt} =&  h (H-I) - r I &- \mathbf{D}(t,I)\\
 \end{array}
 $$
-After solving, we compute $S=H+I$ and attach its orbit. By default, birth rates and death rates are set to zero. The birth and death functions are modified using:
+After solving, we compute $S=H+I$ and attach its orbit. By default, birth rates and death rates are set to zero, a constant population model. The birth and death functions are modified using:
 
 + [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.html)
 
@@ -85,7 +87,7 @@ After solving, we compute $S=H+I$ and attach its orbit. By default, birth rates 
 
 ### Treatment 
 
-In this simple model, drug taking to treat and cure infections simply clears infections. (In other models, a brief period of chemo-protection follows treatment.) The module assumes that 
+In the S-I-S model, there is no chemoprotected state, so drug taking simply clears infections. (In other models, a brief period of chemo-protection follows treatment.) The module assumes that 
 
 + $\rho$ or `rho`: a fraction $\rho$ of incident infections are treated and cured, so the FoI is now $h (1-\rho).$ Since exposure and infection could also occur in folks who are uninfected, infected individuals also clear at the additional rate $\rho h.$
 
@@ -112,14 +114,14 @@ $$
 
 ### DTS 
 
-The discrete time system implements:
+In the discrete-time system, the demographic change for $I_t$ is computed in two steps: survival $(I_s)$ and then infection dynamics:
 
 $$
 \begin{array}{rcc}
 & \mathbf{X} & \mathbf{H} \\ \hline 
 H_{t+1} =& &B(t,H_t) - \mathbf{D}(t,H_t)\\
 I_s  =& & I_t -  \mathbf{D}(t,I_t) \\  
-I_{t+1} &= (1-e^{-h}) \rho (H_{t+1} + I_s) + e^{-\left(r + h\rho + \sigma + \Xi \left( t \right) \right)} I_s \\
+I_{t+1} &= \alpha_t(1-\rho) (H_{t+1} + I_s) + e^{-\left(r + h\rho + \sigma + \Xi \left( t \right) \right)} I_s \\
 \end{array}
 $$
 

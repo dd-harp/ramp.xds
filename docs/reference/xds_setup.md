@@ -11,7 +11,7 @@ an **xds** object that can be solved by
 xds_setup(
   XHname = "SIS",
   MYname = "SI",
-  Lname = "trivial",
+  Lname = "trivialL",
   XHoptions = list(),
   MYoptions = list(),
   Loptions = list(),

@@ -2,7 +2,7 @@ test_that("MY initial-value interfaces put options before a default species inde
   expect_identical(names(formals(setup_MY_inits)), c("xds_obj", "options", "s"))
   expect_identical(formals(setup_MY_inits)$s, 1)
   expect_identical(formals(setup_MY_inits)$options, quote(list()))
-  for (module in c("basicM", "GeM", "SI", "macdonald", "RMdts", "trivial")) {
+  for (module in c("basicM", "GeM", "SI", "macdonald", "RMdts", "trivialMY")) {
     expect_identical(formals(getS3method("setup_MY_inits", module)),
                      formals(setup_MY_inits))
   }

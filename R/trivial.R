@@ -23,6 +23,6 @@
 #'
 #' For a discussion of mechanistic approaches to forcing, see [SimBA: Trace Functions](https://faculty.washington.edu/smitdave/simba/trace.html)
 #' 
-#' @seealso [trivial_XH], [trivial_MY], [trivial_L], [xds_setup_eir]
+#' @seealso [trivialXH], [trivialMY], [trivialL], [xds_setup_eir]
 #' @name xds_info_trivial_forcing
 NULL

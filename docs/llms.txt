@@ -902,10 +902,10 @@ infectiousness - diagnostics and detection
 
 XH component module implementations
 
-- [`trivial_XH`](https://dd-harp.github.io/ramp.xds/reference/trivial_XH.md)
+- [`trivialXH`](https://dd-harp.github.io/ramp.xds/reference/trivialXH.md)
   :
 
-  `trivial` — **XH** module
+  `trivialXH` — **XH** module
 
 - [`SIS`](https://dd-harp.github.io/ramp.xds/reference/SIS.md) :
 
@@ -1084,10 +1084,10 @@ Adult mosquito ecology and infection dynamics
 
 ### Modules
 
-- [`trivial_MY`](https://dd-harp.github.io/ramp.xds/reference/trivial_MY.md)
+- [`trivialMY`](https://dd-harp.github.io/ramp.xds/reference/trivialMY.md)
   :
 
-  `trivial` — **MY** module
+  `trivialMY` — **MY** module
 
 - [`basicM`](https://dd-harp.github.io/ramp.xds/reference/basicM.md) :
 
@@ -1318,10 +1318,10 @@ Immagure mosquito ecology in aquatic habitats
 Models for aquatic mosquito development and maturation in aquatic
 habitats
 
-- [`trivial_L`](https://dd-harp.github.io/ramp.xds/reference/trivial_L.md)
+- [`trivialL`](https://dd-harp.github.io/ramp.xds/reference/trivialL.md)
   :
 
-  `trivial` — **L** module
+  `trivialL` — **L** module
 
 - [`basicL`](https://dd-harp.github.io/ramp.xds/reference/basicL.md) :
 

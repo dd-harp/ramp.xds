@@ -82,8 +82,8 @@ Here, we build a model step-by-step.
 `xds_obj`` ``=`` `[`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)`(``"hMoI"``, ``residence``, ``xds_obj``, options``=``Xo``, i``=``1``)`
 
 \
-`xds_obj`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"trivial"``, ``xds_obj``, s``=``1``)`\
-`xds_obj`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivial"``, ``1``, ``xds_obj``, s``=``1``)`
+`xds_obj`` ``=`` `[`setup_MY_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md)`(``"trivialMY"``, ``xds_obj``, s``=``1``)`\
+`xds_obj`` ``=`` `[`setup_L_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md)`(``"trivialL"``, ``1``, ``xds_obj``, s``=``1``)`
 
 \
 `F_season`` ``=`` ``F_one`\

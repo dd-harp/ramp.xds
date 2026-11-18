@@ -192,7 +192,7 @@ configured by naming the modules and passing options to set
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ramp.xds`](https://dd-harp.github.io/ramp.xds/)`)`\
 `# devtools::load_all()`\
 `mod`` ``<-`` `[`xds_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)`(``XHname ``=`` ``"SIS"``, MYname ``=`` ``"SI"``, `\
-`                 Lname ``=`` ``"trivial"``, Loptions ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``Lambda``=``80``)``)`
+`                 Lname ``=`` ``"trivialL"``, Loptions ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``Lambda``=``80``)``)`
 
 In solving the system, derivatives for the human “SIS” model are
 computed by a function `dXHdt.SIS`. Documentation is available through
@@ -212,14 +212,14 @@ treatment. The code looks like this:
     ##   with(get_XH_vars(y, xds_obj, i),{
     ##     with(xds_obj$XH_obj[[i]], {
     ##       
+    ##       clear = r + sigma + rho*foi + mda(t) + msat(t)
     ##       dH <- Births(t, y, xds_obj, i) - Deaths(t, H, xds_obj, i)
-    ##       dI <- foi*(1-rho)*(H-I) - (r + sigma + rho*foi)*I - Deaths(t, I, xds_obj, i)
-    ##       dI <- dI - mda(t)*I - msat(t)*I
+    ##       dI <- foi*(1-rho)*(H-I) - clear*I - Deaths(t, I, xds_obj, i)
     ##       return(c(dH, dI))
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x10fba8ef0>
+    ## <bytecode: 0x129cccf28>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -248,18 +248,19 @@ code looks like this:
     ##     })
     ##   })
     ## }
-    ## <bytecode: 0x10fe22f40>
+    ## <bytecode: 0x11bed7b88>
     ## <environment: namespace:ramp.xds>
 
 The term \\(\Lambda\\) is passed from the trace function
-`F_emerge.trivial`. Documentation is available through help in two ways:
-[`?trivial_L`](https://dd-harp.github.io/ramp.xds/reference/trivial_L.md)
+`F_emerge.trivialL`. Documentation is available through help in two
+ways:
+[`?trivialL`](https://dd-harp.github.io/ramp.xds/reference/trivialL.md)
 or
-[`?F_emerge.trivial`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.trivial.md).
+[`?F_emerge.trivialL`](https://dd-harp.github.io/ramp.xds/reference/F_emerge.trivialL.md).
 The implementation looks like this:
 
 \
-[`getS3method`](https://rdrr.io/r/utils/getS3method.html)`(``"F_emerge"``, ``"trivial"``)`
+[`getS3method`](https://rdrr.io/r/utils/getS3method.html)`(``"F_emerge"``, ``"trivialL"``)`
 
     ## function(t, y, xds_obj, s) {
     ##   with(xds_obj$L_obj[[s]],{
@@ -268,5 +269,5 @@ The implementation looks like this:
     ##     V_k = get_variables(shock_par, t, y, xds_obj, s)
     ##     return(Lambda*F_season(t, V_s)*F_trend(t, V_t)*F_shock(t, V_k))
     ## })}
-    ## <bytecode: 0x10e4b6f00>
+    ## <bytecode: 0x12a3268e0>
     ## <environment: namespace:ramp.xds>
