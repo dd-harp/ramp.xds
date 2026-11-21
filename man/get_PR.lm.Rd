@@ -17,6 +17,6 @@
 a \link{list}
 }
 \description{
-Return the PR by light microscopy
+Return the PR by light microscopy.
 }
 \keyword{internal}

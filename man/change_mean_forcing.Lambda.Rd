@@ -17,6 +17,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change the mean emergence rate
+Change the mean emergence rate.
 }
 \keyword{internal}

@@ -26,7 +26,9 @@ The variables \\(V_s\\), \\(V_t\\), and \\(V_t\\) are called by
 which dispatches on the class of `season_par` or `trend_par` or
 `shock_par`.
 
-The implementation assumes that only one of these functions gets used.
+The implementation assumes that only one of these functions will be
+used, so it is not possible to configure different pattern functions for
+egg laying and infective biting.
 
 ## Parameters
 

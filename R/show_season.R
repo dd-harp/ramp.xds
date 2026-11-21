@@ -1,12 +1,13 @@
+# X
 
 #' @title Plot the seasonal pattern
 #'
-#' @description For a model forced by emergence,
-#' show the seasonal pattern
+#' @description For a model with temporal forcing,
+#' show the seasonal pattern.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param tm the time points
-#' @param add add to existing plot
+#' @param add add to an existing plot
 #'
 #' @return the seasonal pattern, invisibly
 #'
@@ -28,7 +29,7 @@ show_season= function(xds_obj, tm = seq(0, 730, by=5), add=FALSE){
 #' @param tm the time points
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return the seasonal pattern, invisibly
+#' @return the seasonal pattern
 #'
 #' @keywords internal
 #' @export
@@ -39,11 +40,11 @@ F_season = function(tm, xds_obj){
 #' @title Compute the seasonal pattern
 #'
 #' @description
-#' Evaluate the function `F_season` for a forced model when `forced_by` is "none"
+#' Evaluate the function `F_season` for a forced model when `forced_by` is "none".
 #'
 #' @inheritParams F_season
 #'
-#' @return an empty vector
+#' @return `NULL`
 #'
 #' @importFrom graphics plot lines
 #'
@@ -56,11 +57,11 @@ F_season.none = function(tm, xds_obj){
 #' @title Compute the seasonal pattern
 #'
 #' @description
-#' Evaluate the function `F_season` for a forced model when `forced_by` is "Lambda"
+#' Evaluate the function `F_season` for a forced model when `forced_by` is "Lambda".
 #'
 #' @inheritParams F_season
 #'
-#' @return the seasonal pattern, invisibly
+#' @return the seasonal pattern
 #'
 #' @importFrom graphics plot lines
 #'
@@ -73,11 +74,11 @@ F_season.Lambda = function(tm, xds_obj){
 #' @title Compute the seasonal pattern
 #'
 #' @description
-#' Evaluate the function `F_season` for a forced model when `forced_by` is "eir"
+#' Evaluate the function `F_season` for a forced model when `forced_by` is "eir".
 #'
 #' @inheritParams F_season
 #'
-#' @return the seasonal pattern, invisibly
+#' @return the seasonal pattern
 #'
 #' @keywords internal
 #' @export
@@ -89,11 +90,11 @@ F_season.eir= function(tm, xds_obj){
 #' @title Compute the seasonal pattern
 #'
 #' @description
-#' Evaluate the function `F_season` for a trivial **MY** model
+#' Evaluate the function `F_season` for a trivial **MY** model.
 #'
 #' @inheritParams F_season
 #'
-#' @return the seasonal pattern, invisibly
+#' @return the seasonal pattern
 #'
 #' @importFrom graphics plot lines
 #'
@@ -106,11 +107,11 @@ F_season.MY = function(tm, xds_obj){
 #' @title Compute the seasonal pattern
 #'
 #' @description
-#' Evaluate the function `F_season` for a forced model when `forced_by` is `kappa`
+#' Evaluate the function `F_season` for a forced model when `forced_by` is `kappa`.
 #'
 #' @inheritParams F_season
 #'
-#' @return the seasonal pattern, invisibly
+#' @return the seasonal pattern
 #'
 #' @importFrom graphics plot lines
 #'

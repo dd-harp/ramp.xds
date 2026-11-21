@@ -72,6 +72,36 @@ test_that("trivialXH preserves forcing and stateless behavior", {
   expect_true(is.list(get_skillset_L("trivial")))
 })
 
+test_that("trivialXH supports host strata that differ from patch counts", {
+  for (residence in list(c(1, 1, 2), 1)) {
+    n <- length(residence)
+    H <- 100*seq_len(n)
+    kappa <- 0.1*seq_len(n)
+    model <- xds_setup(
+      XHname="trivialXH", nPatches=2, membership=1:2,
+      residence=residence, HPop=H, XHoptions=list(kappa=kappa)
+    )
+    y <- get_inits(model, flatten=TRUE)
+    expect_equal(model$XH_obj[[1]]$H, H)
+    expect_equal(model$XH_obj[[1]]$kappa, kappa)
+    expect_equal(F_H(0, y, model, 1), H)
+    expect_equal(F_I(0, y, model, 1), H*kappa)
+
+  }
+})
+
+test_that("trivialXH construction uses the selected host species strata", {
+  model <- xds_setup(XHname="trivialXH", nPatches=2, residence=1:2)
+  model$nHostSpecies <- 2
+  model$nStrata <- c(2, 3)
+  updated <- setup_XH_obj(
+    "trivialXH", c(1, 1, 2), model, list(H=50, kappa=0.2), i=2
+  )
+  expect_equal(updated$XH_obj[[2]]$H, rep(50, 3))
+  expect_equal(updated$XH_obj[[2]]$kappa, rep(0.2, 3))
+  expect_identical(updated$XH_obj[[1]], model$XH_obj[[1]])
+})
+
 test_that("full and isolated setups solve with trivialXH", {
   models <- list(
     xds_setup(XHname="trivialXH", Lname="basicL"),

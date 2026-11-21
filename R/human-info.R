@@ -1,3 +1,5 @@
+# Y
+
 # WRITE ME for human-info.R 
 # The sections on demography and principled
 # stratification should be revisited after 
@@ -19,8 +21,8 @@
 #' The human (or host) population size plays a key role 
 #' in the blood feeding and transmission interface. In 
 #' most **XH** modules, it is handled as a variable. Setup
-#' requires having some assigning a value to H, so it is passed
-#' at setup as `HPop.` Since \eqn{H} is part of the 
+#' requires assigning a value to H, so it is passed
+#' at setup as `HPop`. Since \eqn{H} is part of the
 #' blood feeding and transmission interface, changing its 
 #' initial value triggers functions to refresh the dynamical 
 #' terms for models where  
@@ -59,7 +61,7 @@ NULL
 #' The human population is thus stratified around the concept of patch residency -- the
 #' patch where home is found. Exposure is based on the notions of *time spent* (see [xds_info_time_spent]) 
 #' and *time at risk* (see [xds_info_time_at_risk]). The model is configured by passing 
-#' a vector, called `residence.`
+#' a vector, called `residence`.
 #' The residence vector is the index of the patch where each
 #' human population resides, and multiple strata can reside in the same patch.
 #' Conversely, there might be some patches where no one resides, such as the mosquito
@@ -96,4 +98,3 @@ NULL
 #'  
 #' @name xds_info_demographic_change
 NULL
-

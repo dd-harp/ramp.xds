@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{list_vars}
 \alias{list_vars}
-\title{Set the initial values to the last values of the last simulation}
+\title{Get component state variables}
 \usage{
 list_vars(xds_obj, y0 = NULL, s = 1, i = 1)
 }
@@ -16,6 +16,6 @@ list_vars(xds_obj, y0 = NULL, s = 1, i = 1)
 \item{i}{the host species index}
 }
 \description{
-Set the initial values to the last values of the last simulation
+Get component state variables
 }
 \keyword{internal}

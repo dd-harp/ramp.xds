@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_compute_terms.R
 \name{xds_compute_terms.full}
 \alias{xds_compute_terms.full}
-\title{Generalized spatial differential equation model}
+\title{Compute exogenous variables and dynamical terms}
 \usage{
 \method{xds_compute_terms}{full}(t, y, xds_obj)
 }
@@ -14,10 +14,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \link{list} containing the vector of all state derivatives
+an \strong{\code{xds}} model object
 }
 \description{
-Compute derivatives for \link[deSolve:ode]{deSolve::ode} or \link[deSolve:dede]{deSolve::dede} using
-generic methods for each model component.
+Compute exogenous variables and dynamical terms
 }
 \keyword{internal}

@@ -17,8 +17,8 @@ change_F_season(F, xds_obj, ix = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Change  the seasonality function. The function \code{F} should have the form
-\eqn{F(t,V)}.  If the variable \eqn{V} is not used, it's default value should be set to an empty list.
+Change the seasonality function. The function \code{F} should have the form
+\eqn{F(t,V)}. If the variable \eqn{V} is not used, its default value should be set to an empty list.
 }
 \seealso{
 \link{F_one}

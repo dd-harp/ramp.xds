@@ -1,15 +1,15 @@
+# X
 
-
-#' @title Plot the Temporal Trend
+#' @title Plot the temporal trend
 #'
 #' @description For a model with temporal forcing,
-#' show the temporal trend
+#' show the temporal trend.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param tm the time points
-#' @param add add to existing plot
+#' @param add add to an existing plot
 #' @param clr the line color
-#' @param rng if not NULL, range limits for plotting
+#' @param rng if not `NULL`, range limits for plotting
 #' @param shock if TRUE, compute the trend with a shock 
 #'
 #' @return the temporal trend, invisibly
@@ -19,7 +19,7 @@ show_trend = function(xds_obj, tm=10*c(0:365), add=FALSE, clr="black", rng=NULL,
   trend <- F_trend(tm, xds_obj)
   if(shock) trend <- trend*F_shock(tm, xds_obj)
 
-  if(is.null("rng")) rng = range(trend)
+  if(is.null(rng)) rng = range(trend)
   if(length(trend)>0){
     if(add==FALSE) plot(tm, trend, ylab="Trend", xlab = "Time",
                         col=clr, type="n", ylim=rng)
@@ -37,7 +37,7 @@ show_trend = function(xds_obj, tm=10*c(0:365), add=FALSE, clr="black", rng=NULL,
 #' @param tm the time points
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return the temporal trend, invisibly
+#' @return the temporal trend
 #'
 #' @keywords internal
 #' @export
@@ -48,11 +48,11 @@ F_trend = function(tm, xds_obj){
 #' @title Compute the temporal trend
 #'
 #' @description
-#' Evaluate the function `F_trend` for a forced model when `forced_by` is "none"
+#' Evaluate the function `F_trend` for a forced model when `forced_by` is "none".
 #'
 #' @inheritParams F_trend
 #'
-#' @return an empty vector
+#' @return `NULL`
 #'
 #' @importFrom graphics plot lines
 #'
@@ -65,7 +65,7 @@ F_trend.none = function(tm, xds_obj){
 #' @title Compute the temporal trend
 #'
 #' @description
-#' Evaluate the function `F_trend` for a forced model when `forced_by` is "Lambda"
+#' Evaluate the function `F_trend` for a forced model when `forced_by` is "Lambda".
 #'
 #' @inheritParams F_trend
 #'
@@ -82,11 +82,11 @@ F_trend.Lambda = function(tm, xds_obj){
 #' @title Compute the temporal trend
 #'
 #' @description
-#' Evaluate the function `F_trend` for a forced model when `forced_by` is "eir"
+#' Evaluate the function `F_trend` for a forced model when `forced_by` is "eir".
 #'
 #' @inheritParams F_trend
 #'
-#' @return the temporal trend, invisibly
+#' @return the temporal trend
 #'
 #' @keywords internal
 #' @export
@@ -97,7 +97,7 @@ F_trend.eir= function(tm, xds_obj){
 #' @title Compute the temporal trend
 #'
 #' @description
-#' Evaluate the function `F_trend` for a trivial **MY** model
+#' Evaluate the function `F_trend` for a trivial **MY** model.
 #'
 #' @inheritParams F_trend
 #'
@@ -114,7 +114,7 @@ F_trend.MY = function(tm, xds_obj){
 #' @title Compute the temporal trend
 #'
 #' @description
-#' Evaluate the function `F_trend` for a trivial **XH** model
+#' Evaluate the function `F_trend` for a trivial **XH** model.
 #'
 #' @inheritParams F_trend
 #'

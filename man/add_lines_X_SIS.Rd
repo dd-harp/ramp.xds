@@ -9,7 +9,7 @@ add_lines_X_SIS(time, XH, nStrata, clrs = c("darkblue", "darkred"), llty = 1)
 \arguments{
 \item{time}{time points for the observations}
 
-\item{XH}{parsed outputs, from parse_Xorbits_SIS}
+\item{XH}{parsed outputs from \link{parse_XH_orbits.SIS}}
 
 \item{nStrata}{the number of population strata}
 

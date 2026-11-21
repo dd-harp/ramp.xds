@@ -2,7 +2,7 @@
 % Please edit documentation in R/setup_season.R
 \name{setup_season.none}
 \alias{setup_season.none}
-\title{Change season parameters}
+\title{Set up seasonal forcing}
 \usage{
 \method{setup_season}{none}(X, xds_obj, ix = 1)
 }
@@ -17,6 +17,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Setup season for the NULL case
+Set up season for the no-forcing case.
 }
 \keyword{internal}

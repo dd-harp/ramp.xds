@@ -1,14 +1,14 @@
+# X
 
 #' @title Compute as DDE
 #'
-#' @description Setup a differential equation model
-#' to be solved using `deSolve:dede`
+#' @description Set up a differential equation model
+#' to be solved using `deSolve::dede`.
 #'
 #' @details
 #' For differential equations, the value of `xds_obj$xde`
-#' is set to `ode` by default. This utility gets called by delay
-#' differential equation modules to change
-#' `xds_obj$xde` from `ode` to `dde`
+#' is set to `ode` by default. This utility is called during setup to change
+#' `xds_obj$xde` from `ode` to `dde` when a module requires a delay.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
@@ -20,7 +20,7 @@ ode_to_dde = function(xds_obj){
 }
 
 #' @title Compute as DDE
-#' @description If `class(xds_obj$xde) == "dts"` don't change anything
+#' @description If `class(xds_obj$xde) == "dts"`, don't change anything.
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -30,7 +30,7 @@ ode_to_dde.dts = function(xds_obj){
 }
 
 #' @title Compute as DDE
-#' @description If `class(xds_obj$xde) == "dde"` don't change anything
+#' @description Switch to `dde` if any module's skill set indicates a delay.
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -51,7 +51,7 @@ ode_to_dde.ode = function(xds_obj){
 }
 
 #' @title Compute as DDE
-#' @description If `class(xds_obj$xde) == "ode"` change it to `dde`
+#' @description Leave `dde` unchanged.
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @keywords internal

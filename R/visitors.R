@@ -1,9 +1,11 @@
+# X
+
 #' @title Check visitors
 #' 
 #' @description
 #' Check that 
 #' + all elements are non-negative
-#' + length(visitors) = nPatches
+#' + `length(visitors) == nP`
 #' 
 #' 
 #' @param visitors the availability of visitors
@@ -22,7 +24,7 @@ check_visitors = function(visitors, nP){
 #' @description
 #' Update the visitors for the \eqn{s^{th}} vector species. 
 #' 
-#' @param visitors a visitors
+#' @param visitors the availability of visitors
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
@@ -41,12 +43,12 @@ change_visitors = function(visitors, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set up a visitors
+#' @title Set up visitors
 #'
-#' @param name a or setup function name
+#' @param name a numeric vector, a setup function name, or an options list
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
-#' @param s the host species index
+#' @param s the vector species index
 #'
 #' @return an **`xds`** model object
 #'
@@ -57,17 +59,17 @@ setup_visitors = function(name, xds_obj, options = list(), s=1){
   UseMethod("setup_visitors", options)
 }
 
-#' @title Set up a visitors
+#' @title Set up visitors
 #'
 #' @description If an options list is passed
 #' as the first argument, then set 
 #' + `Vname = name$name` 
 #' + `options = name`
-#' and call `setup_visitors(Vname, xds_obj, options, s)` 
+#' and call `setup_visitors(Vname, xds_obj, options, s)`.
 #'
 #' @inheritParams setup_visitors
 #'
-#' @return a [matrix]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_visitors.list = function(name, xds_obj, options=list(), s=1){
@@ -79,7 +81,7 @@ setup_visitors.list = function(name, xds_obj, options=list(), s=1){
 }
 
 #' @title Set up no visitors 
-#' @description Don't change anything 
+#' @description Don't change anything.
 #' @inheritParams setup_visitors
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -88,9 +90,9 @@ setup_visitors.no_setup = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up a visitors
+#' @title Set up visitors
 #' 
-#' @description Implements the "random" case for [setup_visitors]. See [make_visitors_random]
+#' @description Implements the "random" case for [setup_visitors]. See [make_visitors_random].
 #' 
 #' @inheritParams setup_visitors
 #' @return an **`xds`** model object
@@ -104,27 +106,27 @@ setup_visitors.random = function(name, xds_obj, options = list(), s=1){
 
 #' @title Make visitors 
 #' 
-#' @description Set up a random vector 
+#' @description Set up a random vector.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
-#' @return a [matrix]
+#' @return a [vector]
 #' @export
 make_visitors_random = function(nPatches, options=list(), f_rand = stats::rlnorm, p1=0, p2=.5) {with(options,{
   visitors <- f_rand(nPatches, p1, p2)
   return(visitors)
 })}
 
-#' @title Set up a visitors
+#' @title Set up visitors
 #' @description 
-#' Pass a pre-configured visitors. If it passes 
+#' Pass pre-configured visitors. If it passes
 #' the checks, it replaces the current visitors.
 #' 
 #' If called with `name = "as_is"`, the visitors
-#' must be at `options$visitors` 
+#' must be at `options$visitors_asis`.
 #' 
 #' @inheritParams setup_visitors
 #' @return an **`xds`** model object
@@ -159,7 +161,7 @@ update_visitors <- function(t, y, xds_obj, s){
 }
 
 #' @title Update visitors
-#' @description The `static` method returns `xds_obj` unmodified
+#' @description The `static` method returns `xds_obj` unmodified.
 #' @inheritParams update_visitors
 #' @return an **`xds`** model object
 #' @export
@@ -171,10 +173,8 @@ update_visitors.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return a [matrix]
+#' @return a [vector]
 #' @export
 get_visitors = function(xds_obj, s=1){
   return(xds_obj$patches$visitors[[s]])
 }
-
-

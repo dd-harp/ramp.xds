@@ -2,7 +2,7 @@
 % Please edit documentation in R/variables-V-interface.R
 \name{change_V_inits}
 \alias{change_V_inits}
-\title{Set new X parameter values}
+\title{Set new V initial values}
 \usage{
 change_V_inits(xds_obj, options = list(), i = 1)
 }
@@ -11,11 +11,11 @@ change_V_inits(xds_obj, options = list(), i = 1)
 
 \item{options}{a named list}
 
-\item{i}{the vector species index}
+\item{i}{the auxiliary-variable module index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$V_obj[[s]]}.
+This method dispatches on the type of \code{xds_obj$V_obj[[i]]}.
 }

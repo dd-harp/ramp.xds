@@ -7,7 +7,7 @@
 change_visitors(visitors, xds_obj, s = 1)
 }
 \arguments{
-\item{visitors}{a visitors}
+\item{visitors}{the availability of visitors}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

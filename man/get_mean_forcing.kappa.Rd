@@ -4,12 +4,17 @@
 \alias{get_mean_forcing.kappa}
 \title{Get mean forcing}
 \usage{
-\method{get_mean_forcing}{kappa}(xds_obj)
+\method{get_mean_forcing}{kappa}(xds_obj, ix = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{ix}{the species index}
+}
+\value{
+a \link{vector} of net infectiousness for the indexed host species
 }
 \description{
-Get net infectiousness
+Get net infectiousness.
 }
 \keyword{internal}

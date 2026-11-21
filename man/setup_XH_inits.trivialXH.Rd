@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{setup_XH_inits.trivialXH}
 \alias{setup_XH_inits.trivialXH}
-\title{Setup initial values for \code{trivialXH} (\strong{XH})}
+\title{Set up initial values for \code{trivialXH} (\strong{XH})}
 \usage{
 \method{setup_XH_inits}{trivialXH}(xds_obj, options = list(), i = 1)
 }
@@ -14,7 +14,7 @@
 \item{i}{the host species index}
 }
 \value{
-a \link{list} vector
+an \strong{\code{xds}} model object
 }
 \description{
 The \code{trivialXH} module (\strong{XH}) for the \eqn{i^{th}} species

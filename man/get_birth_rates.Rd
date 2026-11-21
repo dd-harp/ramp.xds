@@ -12,7 +12,7 @@ get_birth_rates(xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-a []
+a \link{numeric} vector
 }
 \description{
 Get the births

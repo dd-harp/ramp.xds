@@ -1,8 +1,9 @@
+# X
 
 #' @title Change shock parameters
 #'
 #' @description
-#' Change parameters for the shock function
+#' Change parameters for the shock function.
 #' @param shock_par parameters for [ramp.func::make_function]
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -21,7 +22,7 @@ change_shock = function(shock_par, xds_obj, s=1){
 #'
 #' @description
 #' Change parameters for the shock function
-#' when `forced_by = "none"`
+#' when `forced_by = "none"`.
 #' @inheritParams change_shock
 #'
 #' @return an **`xds`** model object
@@ -36,7 +37,7 @@ change_shock.none = function(shock_par, xds_obj, s=1){
 #'
 #' @description
 #' Change parameters for the shock function
-#' when `forced_by = "Lambda"`
+#' when `forced_by = "Lambda"`.
 #' @inheritParams change_shock
 #'
 #' @importFrom ramp.func make_function
@@ -55,7 +56,7 @@ change_shock.Lambda = function(shock_par, xds_obj, s=1){
 #'
 #' @description
 #' Change parameters for the shock function
-#' when `forced_by = "eir"`
+#' when `forced_by = "eir"`.
 #' @inheritParams change_shock
 #'
 #' @importFrom ramp.func make_function

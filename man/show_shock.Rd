@@ -11,16 +11,16 @@ show_shock(xds_obj, tm = 10 * c(0:365), add = FALSE, clr = "black", rng = NULL)
 
 \item{tm}{the time points}
 
-\item{add}{add to existing plot}
+\item{add}{add to an existing plot}
 
 \item{clr}{the line color}
 
-\item{rng}{if not NULL, range limits for plotting}
+\item{rng}{if not \code{NULL}, range limits for plotting}
 }
 \value{
 the temporal shock, invisibly
 }
 \description{
 For a model with temporal forcing,
-show the perturbation function
+show the perturbation function.
 }

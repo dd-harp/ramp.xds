@@ -1,3 +1,5 @@
+# X
+
 #' @title The **`xds`** Model Object  
 #' 
 #' @description
@@ -14,10 +16,10 @@
 #' [make_xds_object_template], which 
 #' 
 #'      + sets the value of structural parameters;
-#'      + creates empty lists to hold the module objects: `XH_obj` `MY_obj,` and `L_obj`;   
+#'      + creates empty lists to hold the module objects: `XH_obj`, `MY_obj`, and `L_obj`;
 #'      + sets up empty ports and junctions;
 #' 
-#' + the core dynamical components are setup; and 
+#' + the core dynamical components are set up; and
 #'
 #' + the values of a few modifiable parameters affecting transmission are set. 
 #' 

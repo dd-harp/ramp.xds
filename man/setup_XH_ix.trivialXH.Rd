@@ -12,7 +12,7 @@
 \item{i}{the host species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
 Implements \link{setup_XH_ix} for the trivial model.

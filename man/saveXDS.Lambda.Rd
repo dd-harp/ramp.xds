@@ -2,7 +2,7 @@
 % Please edit documentation in R/io.R
 \name{saveXDS.Lambda}
 \alias{saveXDS.Lambda}
-\title{Save \code{xds} Object}
+\title{saveRDS for \code{xds} Objects}
 \usage{
 \method{saveXDS}{Lambda}(xds_obj, filename)
 }
@@ -16,6 +16,6 @@ invisible()
 }
 \description{
 Removes forcing functions from the \code{L_obj} (to reduce the size)
-and stores the \code{xds} object using \code{saveRDS}
+and stores the \code{xds} object using \code{saveRDS}.
 }
 \keyword{internal}

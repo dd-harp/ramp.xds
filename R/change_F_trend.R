@@ -1,8 +1,10 @@
+# X
+
 #' @title Change F_trend
 #'
 #' @description
-#' Change  the trend function. The function `F` should have the form
-#' \eqn{F(t,V)}. If the variable \eqn{V} is not used, it's default value should be set to an empty list. 
+#' Change the trend function. The function `F` should have the form
+#' \eqn{F(t,V)}. If the variable \eqn{V} is not used, its default value should be set to an empty list.
 #' 
 #' @param F new trend function
 #' @param xds_obj an **`xds`** model object
@@ -20,8 +22,8 @@ change_F_trend = function(F, xds_obj, ix=1){
 #' @title Change F_trend
 #'
 #' @description
-#' Change  the trend function
-#' when `forced_by = "none"`
+#' Change the trend function
+#' when `forced_by = "none"`.
 #' 
 #' @inheritParams change_F_trend
 #'
@@ -36,8 +38,8 @@ change_F_trend.none = function(F, xds_obj, ix=1){
 #' @title Change F_trend
 #'
 #' @description
-#' Change  the trend function
-#' when `forced_by = "Lambda"`
+#' Change the trend function
+#' when `forced_by = "Lambda"`.
 #' 
 #' @inheritParams change_F_trend
 #'
@@ -53,8 +55,8 @@ change_F_trend.Lambda = function(F, xds_obj, ix=1){
 #' @title Change F_trend
 #'
 #' @description
-#' Change  the trend function
-#' when `forced_by = "eir"`
+#' Change the trend function
+#' when `forced_by = "eir"`.
 #' 
 #' @inheritParams change_F_trend
 #' 
@@ -71,8 +73,8 @@ change_F_trend.eir = function(F, xds_obj, ix=1){
 #' @title Change F_trend
 #'
 #' @description
-#' Change  the trend function
-#' when `forced_by = "kappa"`
+#' Change the trend function
+#' when `forced_by = "kappa"`.
 #' 
 #' @inheritParams change_F_trend
 #' 
@@ -89,8 +91,8 @@ change_F_trend.kappa = function(F, xds_obj, ix=1){
 #' @title Change F_trend
 #'
 #' @description
-#' Change  the trend function
-#' when `forced_by = "MY"`
+#' Change the trend function
+#' when `forced_by = "MY"`.
 #' 
 #' @inheritParams change_F_trend
 #' 

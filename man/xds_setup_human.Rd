@@ -44,7 +44,7 @@ an \strong{\code{xds}} model object
 \description{
 \loadmathjax
 
-Build a dynamical system to describe the disease dynamics in human or host population
+Build a dynamical system to describe the disease dynamics in a human or host population
 in response to infective biting.
 The function encodes the model as an \strong{xds} object that
 can be solved by \link{xds_solve}.
@@ -52,10 +52,10 @@ can be solved by \link{xds_solve}.
 To build a model forced by the EIR, see \link{xds_setup_eir}.
 }
 \details{
-A modified version of \link{xds_setup} that sets up a model to study exposure and
+This is a modified version of \link{xds_setup} that sets up a model to study exposure and
 infection.
-The \strong{MY} component module is set to \code{trivialMY} and a trace
-function computes infective biting in the patches.
+The \strong{MY} module is set to \code{trivialMY} and a forcing function
+computes infective biting in the patches.
 
 \code{class(xds_obj$frame) = 'human'}
 
@@ -99,21 +99,13 @@ If \code{nPatches}\eqn{>1}, set up some basic aspects of blood feeding and expos
 \item \code{searchB} the blood feeding search weights (see \link{xds_info_search_weights_blood})
 \item \code{TSoptions} sets up a time spent matrix (see \link{xds_info_time_spent})
 }
-
-\strong{Next}
-\itemize{
-\item To solve the model, see \link{xds_solve} or \link{xds_solve_cohort}
-\item To check or change parameters, see \link{xds_info_change_parameters}
-\item To check or change the initial conditions, see \link{xds_info_initial_conditions}
-\item To modify the model structure, see \link{xds_info_advanced_setup}
-}
 }
 \seealso{
 \itemize{
 \item Basic Setup: \link{xds_setup}, \link{xds_setup_eir}, \link{xds_info_basic_setup}
 \itemize{
-\item \link{xds_info_change_parameters}
-\item \link{xds_info_initial_conditions}
+\item change parameters --- \link{xds_info_change_parameters}
+\item change initial conditions --- \link{xds_info_initial_conditions}
 }
 \item Advanced Setup: \link{xds_info_advanced_setup}
 \item Solving: \link{xds_solve}

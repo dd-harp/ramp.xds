@@ -1,4 +1,4 @@
-# Defines xds_solve and make_times
+# X
 
 #' @title Solve a Dynamical System
 #'
@@ -9,7 +9,7 @@
 #' + sets up \eqn{y_0,} the initial values vector (see [get_inits])
 #' + solves the system
 #' + parses and attaches outputs (see [parse_outputs])
-#' 
+#'
 #' @seealso [xds_setup()]
 #' @note
 #' The function [xds_solve()] dispatches on `xds_obj$xde`
@@ -27,16 +27,16 @@ xds_solve = function(xds_obj, Tmax=365, dt=1, times=NULL){
 
 #' @title Solve a System of Ordinary Differential Equations
 #'
-#' @description Implements [xds_solve] for ordinary differential equations.
-#' This method solves a system of equations and computes the values of
-#' the dependent variables at times \eqn{t=0, dt, 2dt, ... Tmax}. The function dispatches
-#' on `xds_obj$dlay` to call:
+#' @description
+#' Solves a system of ordinary differential equations and returns
+#' the values of the dependent variables.
 #'
-#'   - [deSolve::ode] if `class(dlay) == 'ode'`
-#'   - [deSolve::dede] if `class(dlay) == 'dde'`
+#' Output times are set by [make_times_xde].
+#'
+#' The returned model includes parsed outputs.
 #'
 #' @inheritParams xds_solve
-
+#'
 #' @keywords internal
 #' @export
 xds_solve.ode = function(xds_obj, Tmax=365, dt=1, times=NULL){
@@ -58,21 +58,27 @@ xds_solve.ode = function(xds_obj, Tmax=365, dt=1, times=NULL){
 
 #' @title Solve a System of Delay Differential Equations
 #'
-#' @description Implements [xds_solve] for delay differential equations
+#' @description
+#' Solves a system of delay differential equations and computes the values of
+#' the dependent variables.
+#'
+#' Output times are set by [make_times_xde].
+#'
+#' The returned model includes parsed outputs.
+#'
 #' @inheritParams xds_solve
-
 #' @keywords internal
 #' @export
 xds_solve.dde = function(xds_obj, Tmax=365, dt=1, times=NULL){
 
   xds_obj <- check_models(xds_obj)
- 
+
   deSolve::dede(y      = get_inits(xds_obj, flatten=TRUE),
                 times  = make_times_xde(Tmax, dt, times),
                 func   = xde_derivatives,
                 parms  = xds_obj,
                 method = "lsoda") -> deout
-  
+
   xds_obj$outputs$deout <- deout
   tm <- deout[,1]
   xds_obj <- parse_outputs(xds_obj, as.matrix(deout[,-1]), tm)
@@ -83,14 +89,16 @@ xds_solve.dde = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' @title Solve a Discrete-Time System
 #'
 #' @description Implements [xds_solve] for discrete time systems.
+#' Output times are set up or checked by [make_times_dts] 
+#' which guarantees time points are a unique set of integer values
 #'
 #' @note For discrete time systems, the values in `times` need not be
-#' a sequence. If `times` is not null, the system iterates up to `max(times)`
-#' and then returns the solutions at the subset specified in `times.`
+#' a sequence. The system is solved for every time step. During parsing,
+#' the other values are removed. 
 #'
 #'
 #' @inheritParams xds_solve
-#' @return a [list]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 xds_solve.dts = function(xds_obj, Tmax=365, dt=1, times=NULL){
@@ -98,16 +106,17 @@ xds_solve.dts = function(xds_obj, Tmax=365, dt=1, times=NULL){
   xds_obj <- check_models(xds_obj)
   tm <- make_times_dts(Tmax, dt, times)
   yt = get_inits(xds_obj, flatten=TRUE)
-
-  dts_out = c(0, yt)
-  for(t in tm[-1]){
+  
+  tt <- min(tm):max(tm)
+  dts_out = c(tt[1], yt)
+  for(t in tt[-1]){
     yt =  unlist(dts_update(t, yt, xds_obj))
     dts_out = rbind(dts_out, c(t,yt))
   }
-
+  dts_out <- dts_out[which(tt %in% tm), ]
   xds_obj$outputs$deout <- dts_out
-  ix = which(times %in% tm)
-  xds_obj <- parse_outputs(xds_obj, dts_out[ix,], tm)
+  
+  xds_obj <- parse_outputs(xds_obj, dts_out[, -1], dts_out[,1])
   return(xds_obj)
 }
 
@@ -117,12 +126,9 @@ xds_solve.dts = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' @description This method sets up the time points for the
 #' independent variable to return solutions for the dependent variables.
 #'
-#' If `times` is not `NULL,` then it returns solutions at those values.
+#' If `times` is not `NULL`, the function returns those values.
 #'
-#' Otherwise, it returns a sequence from `0` to `Tmax` by `dt.`
-#'
-#' If values in `times` are not a sequence, the function checks that
-#' all its values are in the sequence of time points when solutions are returned.
+#' Otherwise, it returns a sequence from `0` to `Tmax` by `dt`.
 #'
 #' @param Tmax the last time point, run from 0...Tmax
 #' @param dt the time interval for outputs
@@ -132,6 +138,7 @@ xds_solve.dts = function(xds_obj, Tmax=365, dt=1, times=NULL){
 #' @keywords internal
 #' @export
 make_times_xde = function(Tmax, dt, times=NULL){
+  stopifnot(dt>0)
   if(length(times)>0) return(times)
   return(seq(0, Tmax, by=dt))
 }
@@ -139,15 +146,16 @@ make_times_xde = function(Tmax, dt, times=NULL){
 #' @title Times Utility for Discrete Time Systems
 #'
 #' @description This method sets up the time points when output is wanted.
-#' For discrete time systems, the system must compute values at every point,
-#' but it is possible
+#' For discrete-time systems, values must be computed at every time step, but
+#' outputs can be returned only at selected times.
+#' 
+#' If `times` are provided, unique rounded values are returned.  
+#' 
+#' Otherwise, it generates a sequence from `0` to `Tmax` by `dt`.
+#' 
+#' Provided values of `times` are rounded to integers. If `times` is `NULL`,
+#' the sequence is rounded and only unique integer values are returned.
 #'
-#' If `times` is not null, it sets `maxT` to the maximum value in times.
-#' Otherwise it sets `maxT=Tmax.`
-#'
-#' It returns a sequence from `0` to `maxT` by `dt.`
-#'
-#' Values of `times` should be some integer multiple of `dt`
 #'
 #' @param Tmax the last time point, run from 0...Tmax
 #' @param dt the time interval for outputs
@@ -157,9 +165,14 @@ make_times_xde = function(Tmax, dt, times=NULL){
 #' @keywords internal
 #' @export
 make_times_dts = function(Tmax=365, dt=1, times=NULL){
-  maxT = ifelse(!is.null(times), max(times), Tmax)
-  tm = seq(0, maxT, by=dt)
-  ll <- which(times %in% tm)
-  stopifnot(length(ll) == length(times))
+  stopifnot(dt>0)
+  if(length(times)>0){
+    tm = unique(round(times))
+  } else {
+    tm = seq(0, Tmax, by=dt)
+    tm = unique(round(tm))
+  } 
+  stopifnot("Invalid times vector." = length(tm) > 1)
+  
   return(tm)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{F_eggs}
 \alias{F_eggs}
-\title{Number of eggs laid by adult mosquitoes}
+\title{Egg laying rate}
 \usage{
 F_eggs(t, y, xds_obj, s)
 }
@@ -19,6 +19,21 @@ F_eggs(t, y, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj}.
+Compute the number of eggs laid by adult mosquitoes, per patch, per day.
+}
+\section{Egg Laying Rates}{
+
+The number of eggs laid by the adult mosquito population, per patch, per day
+is the product of:
+\itemize{
+\item \eqn{M} --- the number of egg-laying mosquitoes, per patch
+\item \eqn{\nu} --- the number of egg batches laid by a mosquito in each patch, per mosquito, per day
+\item \eqn{\Gamma} --- the number of eggs per patch
+\deqn{G = \nu M \Gamma}
+}
+}
+
+\seealso{
+\link{compute_eggs_laid}, \link{egg_laying}
 }
 \keyword{internal}

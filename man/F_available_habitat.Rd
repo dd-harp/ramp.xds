@@ -2,28 +2,28 @@
 % Please edit documentation in R/habitats.R
 \name{F_available_habitat}
 \alias{F_available_habitat}
-\title{Compute Habitat Availability}
+\title{Compute habitat availability}
 \usage{
 F_available_habitat(habitat_matrix, search_weights)
 }
 \arguments{
 \item{habitat_matrix}{the membership matrix, \eqn{N}}
 
-\item{search_weights}{the habitat search weights, \eqn{\omega_q}}
+\item{search_weights}{the habitat search weights, \eqn{w}}
 }
 \value{
-a \link{vector} of describing habitat availability, \eqn{Q}, of length \code{nPatches}
+a \link{vector} describing habitat availability, \eqn{Q}, of length \code{nPatches}
 }
 \description{
-Compute the availability of aquatic habitats.
+This function computes habitat availability.
 }
 \details{
-The availability of the habitats that we have defined in the model, denoted \eqn{Q}, sums search weights, \eqn{\omega_q}, by patch
+The availability of the habitats that we have defined in the model, denoted \eqn{Q}, sums search weights, \eqn{w}, by patch
 using the habitat membership matrix, \eqn{N}, and we can compute
-\deqn{Q = {N} \cdot \omega_q.}
+\deqn{Q = {N} \cdot w.}
 }
 \seealso{
-This function is called by \link{compute_all_available_water}
+This function is called by \link{update_all_available_water}
 
 \link{make_habitat_matrix} discusses \eqn{N}
 

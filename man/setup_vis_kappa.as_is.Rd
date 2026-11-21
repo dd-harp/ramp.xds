@@ -2,18 +2,18 @@
 % Please edit documentation in R/visitors-kappa.R
 \name{setup_vis_kappa.as_is}
 \alias{setup_vis_kappa.as_is}
-\title{Set up a vis_kappa}
+\title{Set up visitor net infectiousness}
 \usage{
 \method{setup_vis_kappa}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
@@ -23,6 +23,6 @@ Pass a pre-configured vis_kappa. If it passes
 the checks, it replaces the current vis_kappa.
 
 If called with \code{name = "as_is"}, the vis_kappa
-must be at \code{options$vis_kappa}
+must be at \code{options$vis_kappa_asis}.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{xds_flatten}
 \alias{xds_flatten}
-\title{Set the initial values to the last values of the last simulation}
+\title{Flatten a list of state variables}
 \usage{
 xds_flatten(vars)
 }
@@ -13,6 +13,6 @@ xds_flatten(vars)
 \code{vars} as an unnamed \link{vector}
 }
 \description{
-Set the initial values to the last values of the last simulation
+Flatten a list of state variables
 }
 \keyword{internal}

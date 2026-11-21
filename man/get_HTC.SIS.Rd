@@ -15,7 +15,8 @@
 a \link{numeric} vector
 }
 \description{
-Implements \code{get_HTC} for the \code{SIS} model with demography.
+Implements \code{get_HTC} for the \code{SIS} model
+with no demography.
 }
 \seealso{
 \link{SIS}

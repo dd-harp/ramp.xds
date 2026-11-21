@@ -14,7 +14,7 @@ change_H(H, xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
 Change human population density

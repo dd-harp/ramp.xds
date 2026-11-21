@@ -2,7 +2,7 @@
 % Please edit documentation in R/dts_equations.R
 \name{dts_update.full}
 \alias{dts_update.full}
-\title{Generalized spatial differential equation model}
+\title{Update states for discrete-time systems}
 \usage{
 \method{dts_update}{full}(t, y, xds_obj)
 }
@@ -14,9 +14,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \link{list} containing the vector of all state derivatives
+updated dependent variables (a \link{vector})
 }
 \description{
-dts_update_ the state variables
+Update the state variables for a \emph{full} model.
 }
 \keyword{internal}

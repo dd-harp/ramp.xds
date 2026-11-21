@@ -12,9 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-an empty vector
+\code{NULL}
 }
 \description{
-Get seasonality parameters when \code{forced_by} = "none"
+Get seasonality parameters when \code{forced_by} = "none".
 }
 \keyword{internal}

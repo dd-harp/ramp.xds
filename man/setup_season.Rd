@@ -2,7 +2,7 @@
 % Please edit documentation in R/setup_season.R
 \name{setup_season}
 \alias{setup_season}
-\title{Setup Seasonal Forcing}
+\title{Set up seasonal forcing}
 \usage{
 setup_season(X, xds_obj, ix = 1)
 }
@@ -17,6 +17,6 @@ setup_season(X, xds_obj, ix = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Setup seasonal forcing
+Set up seasonal forcing.
 }
 \keyword{internal}

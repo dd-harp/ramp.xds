@@ -16,14 +16,16 @@
 \item{times}{the times}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
 Implements \link{xds_solve} for discrete time systems.
+Output times are set up or checked by \link{make_times_dts}
+which guarantees time points are a unique set of integer values
 }
 \note{
 For discrete time systems, the values in \code{times} need not be
-a sequence. If \code{times} is not null, the system iterates up to \code{max(times)}
-and then returns the solutions at the subset specified in \code{times.}
+a sequence. The system is solved for every time step. During parsing,
+the other values are removed.
 }
 \keyword{internal}

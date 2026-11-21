@@ -2,19 +2,19 @@
 % Please edit documentation in R/variables-V-interface.R
 \name{get_V_inits}
 \alias{get_V_inits}
-\title{A function to set up V_obj}
+\title{Get initial values for auxiliary variables}
 \usage{
 get_V_inits(xds_obj, i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
+\item{i}{the auxiliary-variable module index}
 }
 \value{
 the initial values, as a named list
 }
 \description{
-Get and display the stored
+Retrieve the stored
 set of initial values.
 }

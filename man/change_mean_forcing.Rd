@@ -17,5 +17,5 @@ change_mean_forcing(X, xds_obj, ix = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Change the mean forcing parameter to \code{X}
+Change the mean forcing parameter to \code{X}.
 }

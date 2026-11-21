@@ -66,11 +66,19 @@ Build a dynamical system to describe the epidemiology and
 transmission dynamics of a mosquito-borne pathogen. The function
 encodes the model as an \strong{xds} object that
 can be solved by \link{xds_solve}.
+
+Other basic setup functions are discussed in \link{xds_info_basic_setup}.
 }
 \details{
 Basic setup has three parts: dynamics, model structure, and basic spatial elements.
+}
+\note{
+\link{xds_setup} calls \link{make_xds_object_template}, which returns an object template with
+a properly configured interface for blood feeding
+and egg laying (see \link{xds_object}).
+}
+\section{Dynamics}{
 
-\strong{Dynamics}
 
 To set up a dynamical system, a module is selected for each dynamical component by name:
 \itemize{
@@ -89,8 +97,10 @@ To configure the modules, set parameter values and initial conditions using setu
 
 For more information about how to change parameters or
 initial conditions, see \link{xds_info_change_parameters} or \link{xds_info_initial_conditions}.
+}
 
-\strong{Model Structure}
+\section{Model Structure}{
+
 
 Set up the model structure:
 \itemize{
@@ -107,8 +117,10 @@ During setup:
 \item \code{nVectorSpecies}\eqn{=1}
 \item \code{nHostSpecies}\eqn{=1}
 }
+}
 
-\strong{Spatial Dynamics}
+\section{Basic Spatial Dynamics}{
+
 
 If \code{nPatches}\eqn{>1}, set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:
 \itemize{
@@ -117,36 +129,14 @@ If \code{nPatches}\eqn{>1}, set up some basic aspects of egg laying, blood feedi
 \item \code{Koptions} sets up a mosquito dispersal matrix (see \link{xds_info_mosquito_dispersal})
 \item \code{TSoptions} sets up a time spent matrix (see \link{xds_info_time_spent})
 }
-
-\strong{Basic Setup Variants}
-
-Other versions of \link{xds_setup} are available (see \link{xds_info_basic_setup}):
-\itemize{
-\item Use \link{xds_setup_aquatic} for studies of mosquito aquatic ecology
-\item Use \link{xds_setup_mosy} for studies of mosquito ecology without infection dynamics
-\item Use \link{xds_setup_human} for studies of human/host disease dynamics forced by infective biting in patches
-\item Use \link{xds_setup_eir} for studies of human/host disease dynamics forced by the local daily EIR
 }
 
-\strong{Next}
-\itemize{
-\item To solve the model, see \link{xds_solve}
-\item To check or change parameters, see \link{xds_info_change_parameters}
-\item To check or change the initial conditions, see \link{xds_info_initial_conditions}
-\item To modify the model structure, see \link{xds_info_advanced_setup}
-}
-}
-\note{
-\link{xds_setup} calls \link{make_xds_object_template}, which returns an object template with
-a properly configured interface for blood feeding
-and egg laying (see \link{xds_object}).
-}
 \seealso{
 \itemize{
 \item Basic Setup: \link{xds_info_basic_setup}
 \itemize{
-\item \link{xds_info_change_parameters}
-\item \link{xds_info_initial_conditions}
+\item change parameters --- \link{xds_info_change_parameters}
+\item change initial conditions --- \link{xds_info_initial_conditions}
 }
 \item Advanced Setup: \link{xds_info_advanced_setup}
 \item Solving: \link{xds_solve}

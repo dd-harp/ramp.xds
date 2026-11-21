@@ -24,7 +24,7 @@ make_XH_obj_trivial(
 )
 }
 \arguments{
-\item{nPatches}{the number of patches}
+\item{nPatches}{the number of population strata (legacy argument name)}
 
 \item{options}{a \link{list}}
 
@@ -60,7 +60,7 @@ make_XH_obj_trivial(
 a \link{list}
 }
 \description{
-This builds a trace function as a \emph{composed time series function} using either functions or parameters:
+This builds a forcing function as a \emph{composed time series function} using either functions or parameters:
 \itemize{
 \item Use a function if passed, and set the function object to an empty list
 \item If no function is passed, the parameters should be a function object (see \link[ramp.func:F_obj]{ramp.func::F_obj})

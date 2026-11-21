@@ -21,7 +21,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-This sets up an \code{SIS} model object for the \strong{XH} module for the \eqn{i^{th}} host species
+This sets up a \code{SIS} model object for the \strong{XH} module for the \eqn{i^{th}} host species
 \itemize{
 \item the object is created by \link{make_XH_obj_SIS}
 \item the initial conditions are set by \link{setup_XH_inits}

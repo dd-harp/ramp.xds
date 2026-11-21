@@ -8,9 +8,11 @@ F_zero(t, V = list())
 }
 \arguments{
 \item{t}{time}
+
+\item{V}{an optional list of variables}
 }
 \value{
-0
+a vector of zeros matching \code{t}
 }
 \description{
 F_zero

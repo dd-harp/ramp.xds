@@ -1,8 +1,9 @@
+# X
 
 #' @title Change mean forcing
 #'
 #' @description
-#' Change the mean forcing parameter to `X`
+#' Change the mean forcing parameter to `X`.
 #'
 #' @param X the new mean forcing parameter
 #' @param xds_obj an **`xds`** model object
@@ -19,7 +20,7 @@ change_mean_forcing = function(X, xds_obj, ix=1){
 #'
 #' @description
 #' Implement `change_mean_forcing` for a model
-#' with no forcing
+#' with no forcing.
 #'
 #' @inheritParams change_mean_forcing
 #'
@@ -34,7 +35,7 @@ change_mean_forcing.none = function(X, xds_obj, ix=1){
 #' @title Change mean forcing
 #'
 #' @description
-#' Change the mean emergence rate
+#' Change the mean emergence rate.
 #'
 #' @inheritParams change_mean_forcing
 #'
@@ -51,7 +52,7 @@ change_mean_forcing.Lambda = function(X, xds_obj, ix=1){
 #' @title Change mean forcing
 #'
 #' @description
-#' Change the mean daily EIR 
+#' Change the mean daily EIR.
 #'
 #' @inheritParams change_mean_forcing
 #'
@@ -68,7 +69,7 @@ change_mean_forcing.eir = function(X, xds_obj, ix=1){
 #' @title Change mean forcing
 #'
 #' @description
-#' Change the mean egg deposition rate
+#' Change the mean egg deposition rate.
 #'
 #' @inheritParams change_mean_forcing
 #'
@@ -86,7 +87,7 @@ change_mean_forcing.eggs = function(X, xds_obj, ix=1){
 #' @title Change mean forcing
 #'
 #' @description
-#' Change mean infectious biting rate, \eqn{fqZ}
+#' Change the mean infective biting rate, \eqn{fqZ}.
 #'
 #' @inheritParams change_mean_forcing
 #'
@@ -104,7 +105,7 @@ change_mean_forcing.fqZ = function(X, xds_obj, ix=1){
 #' @title Change mean forcing
 #'
 #' @description
-#' Change mean net infectiousness (NI)
+#' Change the mean net infectiousness (NI).
 #'
 #' @inheritParams change_mean_forcing
 #'
@@ -117,4 +118,3 @@ change_mean_forcing.kappa = function(X, xds_obj, ix=1){
   xds_obj$XH_obj[[ix]]$kappa = X
   return(xds_obj)
 }
-

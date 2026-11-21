@@ -9,12 +9,12 @@ F_pfpr_by_lm(vars, XH_obj)
 \arguments{
 \item{vars}{a list with the variables attached by name}
 
-\item{XH_obj}{a list defining a model for human}
+\item{XH_obj}{a list defining a model for humans}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}
+This method dispatches on the type of \code{XH_obj}.
 }
 \keyword{internal}

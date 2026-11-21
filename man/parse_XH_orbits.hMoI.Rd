@@ -17,7 +17,8 @@
 a \link{list}
 }
 \description{
-Implements \link{parse_XH_orbits} for the \code{hMoI} model
+Implements \link{parse_XH_orbits} for the \code{hMoI} model.
+The fixed population parameter \code{H} is repeated across output times.
 }
 \seealso{
 \link{hMoI}

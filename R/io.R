@@ -1,8 +1,9 @@
+# X 
 
 #' readRDS for `xds` Objects
 #'
 #' @description
-#' Read the `xds` object using `readRDS` and rebuild the forcing functions
+#' Read the `xds` object using `readRDS` and rebuild the forcing functions.
 #'
 #' @param filename the file name
 #'
@@ -11,7 +12,8 @@
 #' @keywords internal
 readXDS = function(filename){
   xds_obj <- readRDS(filename)
-  for(s in 1:xds_obj$nVectorSpecies)
+  nSpecies <- if(inherits(xds_obj$forced_by, "XH")) xds_obj$nHostSpecies else xds_obj$nVectorSpecies
+  for(s in 1:nSpecies)
     xds_obj <- rebuild_forcing_functions(xds_obj, s)
   return(xds_obj)
 }
@@ -20,10 +22,10 @@ readXDS = function(filename){
 #'
 #' @description
 #' Removes forcing functions (to reduce the file size)
-#' and stores the `xds` object using `saveRDS`
+#' and stores the `xds` object using `saveRDS`.
 #'
 #' @note
-#' Forcing functions (*e.g.* F_trend) are stored
+#' Forcing functions (*e.g.* `F_trend`) are stored
 #' on the `xds` object in a form that
 #' takes up enormous space. This removes the functions
 #' before saving. 
@@ -31,10 +33,8 @@ readXDS = function(filename){
 #' @param xds_obj an **`xds`** model object
 #' @param filename the file name
 #' 
-#' @note The function `readRDS` in `ramp.func` 
-#' provides one method for saving the parameter
-#' sets for trace functions, and rebuilds the 
-#' functions
+#' @note The function [readXDS] reads the saved model object and rebuilds
+#' forcing functions from their parameter sets.
 #' 
 #' @seealso `ramp.func`
 #' 
@@ -48,7 +48,7 @@ saveXDS = function(xds_obj, filename){
 #'
 #' @description
 #' Removes forcing functions from the `EIR_obj` (to reduce the size)
-#' and stores the `xds` object using `saveRDS`
+#' and stores the `xds` object using `saveRDS`.
 #'
 #' @inheritParams saveXDS
 #' @keywords internal
@@ -59,15 +59,16 @@ saveXDS.eir = function(xds_obj, filename){
   xds_obj$EIR_obj$F_season = list()
   xds_obj$EIR_obj$F_trend = list()
   xds_obj$EIR_obj$F_shock = list()
+  xds_obj$EIR_obj$F_age = list()
   saveRDS(xds_obj, file=filename)
   return(invisible())
 }
 
-#' Save `xds` Object
+#' saveRDS for `xds` Objects
 #'
 #' @description
 #' Removes forcing functions from the `L_obj` (to reduce the size)
-#' and stores the `xds` object using `saveRDS`
+#' and stores the `xds` object using `saveRDS`.
 #'
 #' @inheritParams saveXDS
 #' @keywords internal
@@ -87,8 +88,8 @@ saveXDS.Lambda = function(xds_obj, filename){
 #' saveRDS for `xds` Objects
 #'
 #' @description
-#' Removes forcing functions from the `EIR_obj` (to reduce the size)
-#' and stores the `xds` object using `saveRDS`
+#' Removes forcing functions from the `XH_obj` (to reduce the size)
+#' and stores the `xds` object using `saveRDS`.
 #'
 #' @inheritParams saveXDS
 #' @keywords internal
@@ -100,7 +101,9 @@ saveXDS.XH = function(xds_obj, filename){
     xds_obj$XH_obj[[ix]]$F_season = list()
     xds_obj$XH_obj[[ix]]$F_trend = list()
     xds_obj$XH_obj[[ix]]$F_shock = list()
+    xds_obj$XH_obj[[ix]]$H_season = list()
     xds_obj$XH_obj[[ix]]$H_trend = list()
+    xds_obj$XH_obj[[ix]]$H_shock = list()
   }
   saveRDS(xds_obj, file=filename)
   return(invisible())
@@ -109,8 +112,8 @@ saveXDS.XH = function(xds_obj, filename){
 #' saveRDS for `xds` Objects
 #'
 #' @description
-#' Removes forcing functions from the `EIR_obj` (to reduce the size)
-#' and stores the `xds` object using `saveRDS`
+#' Removes forcing functions from the `MY_obj` (to reduce the size)
+#' and stores the `xds` object using `saveRDS`.
 #'
 #' @inheritParams saveXDS
 #' @keywords internal
@@ -118,7 +121,7 @@ saveXDS.XH = function(xds_obj, filename){
 #' @return invisible()
 #' @export
 saveXDS.MY = function(xds_obj, filename){
-  for(ix in 1:xds_obj$nHostSpecies){
+  for(ix in 1:xds_obj$nVectorSpecies){
     xds_obj$MY_obj[[ix]]$F_season = list()
     xds_obj$MY_obj[[ix]]$F_trend = list()
     xds_obj$MY_obj[[ix]]$F_shock = list()
@@ -126,4 +129,3 @@ saveXDS.MY = function(xds_obj, filename){
   saveRDS(xds_obj, file=filename)
   return(invisible())
 }
-

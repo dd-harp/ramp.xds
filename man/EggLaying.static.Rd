@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{EggLaying.static}
 \alias{EggLaying.static}
-\title{Compute eggs laid}
+\title{Compute eggs laid in aquatic habitats}
 \usage{
 \method{EggLaying}{static}(t, y, xds_obj)
 }
@@ -17,6 +17,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Computes eggs laid for an autonomous model
+Compute egg laying when the laying matrix doesn't change.
 }
 \keyword{internal}

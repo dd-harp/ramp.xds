@@ -15,6 +15,6 @@
 a list, the value of \code{season_par}
 }
 \description{
-Get seasonality parameters when \code{forced_by} = "Lambda"
+Get seasonality parameters when \code{forced_by} = "Lambda".
 }
 \keyword{internal}

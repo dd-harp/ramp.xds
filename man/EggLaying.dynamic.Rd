@@ -18,6 +18,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 Computes eggs laid with exogenous forcing
-on parameter affecting host availability.
+on a parameter affecting habitat availability.
 }
 \keyword{internal}

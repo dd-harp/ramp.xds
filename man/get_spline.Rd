@@ -4,10 +4,16 @@
 \alias{get_spline}
 \title{Get spline interpolation points}
 \usage{
-get_spline(xds_obj)
+get_spline(xds_obj, ix = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{ix}{the vector species index}
+}
+\value{
+a \link{list} containing \code{tt} and \code{yy} for the indexed vector species,
+or \code{NULL} when there is no forcing
 }
 \description{
 Get the interpolating points

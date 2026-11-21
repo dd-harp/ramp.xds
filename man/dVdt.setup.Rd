@@ -16,7 +16,7 @@
 \item{i}{the i\eqn{^{th}} set of auxiliary variables}
 }
 \value{
-Derivatives for auxiliary variables as a \link{vector}
+an empty \link{list}
 }
 \description{
 The description for each method should include the equations.

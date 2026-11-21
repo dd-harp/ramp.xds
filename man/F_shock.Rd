@@ -12,7 +12,7 @@ F_shock(tm, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the temporal shock, invisibly
+the temporal shock
 }
 \description{
 Evaluate the function \code{F_shock} for a forced model.

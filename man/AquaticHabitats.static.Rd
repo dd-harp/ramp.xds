@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats.R
 \name{AquaticHabitats.static}
 \alias{AquaticHabitats.static}
-\title{Compute eggs laid}
+\title{Aquatic Habitat Dynamics}
 \usage{
 \method{AquaticHabitats}{static}(t, y, xds_obj)
 }
@@ -17,6 +17,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Computes eggs laid for an autonomous model
+Computes eggs laid leaving the
+habitat interface unmodified.
 }
 \keyword{internal}

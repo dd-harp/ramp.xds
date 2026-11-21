@@ -12,7 +12,7 @@ get_visitors(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+a \link{vector}
 }
 \description{
 Get availability of visitors

@@ -11,7 +11,7 @@ parse_V_orbits(outputs, xds_obj, i)
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
+\item{i}{the auxiliary-variable module index}
 }
 \description{
 After solving, this function extracts
@@ -23,7 +23,7 @@ and attached by name to the \strong{\code{xds}} model object.
 
 For differential equations
 the solution matrix is returned by \link[deSolve:deSolve]{deSolve}.
-Discrete time systems return a matrix
+Discrete-time systems return a matrix
 that has the same shape.
 }
 \keyword{internal}

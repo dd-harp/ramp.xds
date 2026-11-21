@@ -77,7 +77,8 @@ mortality.
 
 **Setup:**
 
-- The defaults are no births and no deaths
+The default is a constant population model: birth and death rates are
+set to zero
 
 - Use
   [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.md)

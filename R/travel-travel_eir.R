@@ -95,7 +95,7 @@ setup_travel_eir.no_setup = function(name, xds_obj, options = list(), i=1){
 #' @keywords internal
 #' @export
 setup_travel_eir.no_travel = function(name, xds_obj, options=list(), i=1){
-  teir = rep(0, xds_obj$nStrata[1])
+  teir = rep(0, xds_obj$nStrata[i])
   xds_obj <- change_travel_eir(teir, xds_obj, i)
   return(xds_obj)
 }

@@ -11,12 +11,12 @@ show_forcing(xds_obj, tm = seq(0, 730, by = 5), add = FALSE)
 
 \item{tm}{the time points}
 
-\item{add}{add to existing plot}
+\item{add}{add to an existing plot}
 }
 \value{
-the seasonal pattern, invisibly
+the forcing pattern, invisibly
 }
 \description{
 Plot the composed time
-series function forcing a model
+series function forcing a model.
 }

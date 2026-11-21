@@ -20,5 +20,5 @@ remote past (\eqn{t_{-\infty}}) up to the present (\eqn{t=0}), and then
 reset the initial conditions.
 }
 \note{
-The algorithm sets \eqn{t_{-\infty}} to \eqn{-|}\code{t_neg_inf}\eqn{|}, the negative absolute value of \code{t_neg_inf}
+The algorithm sets \eqn{t_{-\infty}} to \eqn{-|}\code{t_neg_inf}\eqn{|}, the negative absolute value of \code{t_neg_inf}.
 }

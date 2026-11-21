@@ -16,13 +16,11 @@
 \item{times}{the times}
 }
 \description{
-Implements \link{xds_solve} for ordinary differential equations.
-This method solves a system of equations and computes the values of
-the dependent variables at times \eqn{t=0, dt, 2dt, ... Tmax}. The function dispatches
-on \code{xds_obj$dlay} to call:
-\itemize{
-\item \link[deSolve:ode]{deSolve::ode} if \code{class(dlay) == 'ode'}
-\item \link[deSolve:dede]{deSolve::dede} if \code{class(dlay) == 'dde'}
-}
+Solves a system of ordinary differential equations and returns
+the values of the dependent variables.
+
+Output times are set by \link{make_times_xde}.
+
+The returned model includes parsed outputs.
 }
 \keyword{internal}

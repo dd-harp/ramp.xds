@@ -2,12 +2,12 @@
 % Please edit documentation in R/human-births.R
 \name{setup_births.list}
 \alias{setup_births.list}
-\title{Set up a births}
+\title{Set up births}
 \usage{
 \method{setup_births}{list}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -22,9 +22,9 @@ an \strong{\code{xds}} model object
 If an options list is passed
 as the first argument, then set
 \itemize{
-\item \code{birth_ratesname = name$name}
+\item \code{births_name = name$name}
 \item \code{options = name}
-and call \code{setup_births(birth_ratesname, xds_obj, options, s)}
+and call \code{setup_births(births_name, xds_obj, options, i)}.
 }
 }
 \keyword{internal}

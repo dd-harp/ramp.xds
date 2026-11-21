@@ -1,12 +1,12 @@
+# X 
+
 #' @title Make an **`xds`** model object template
 #'
 #' @description
-#' This function is called by [xds_setup] to create
-#' a structured object, called an
+#' This function is called by [xds_setup] to create a structured
 #' **`xds`** model object template. The template has
 #' configured interfaces, created stubs for the model objects,
-#' created junctions, and
-#' set up empty ports. A template has set up all the basic
+#' set up empty ports, and created junctions. A template has set up all the basic
 #' structural elements, but it has not configured
 #' any of the component model objects.
 #'
@@ -15,30 +15,29 @@
 #'
 #' First, the function sets up some
 #' short text strings (assigned to the same `S3` class)
-#' to dispatch various **cases** of various `S3` functions:
+#' to dispatch **cases** of `S3` functions:
 #'
-#' - **`xds`** is either "xde"  for differential equations, or "dts" for discrete time systems
+#' - **`xds`** is either "xde" for differential equations or "dts" for discrete-time systems
 #'
-#' - **`xde`** is either "ode"  for ordinary differential equations; "dde" for delay differential equations; or "dts" for discrete time systems
+#' - **`xde`** is either "ode" for ordinary differential equations, "dde" for delay differential equations, or "dts" for discrete-time systems
 #'
 #' - **`frame`** is one of several cases:
-#'      - "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}.
-#' in some form (possibly the trivial case) (see [xds_setup()])
+#'      - "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; an adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}, in some form (possibly the trivial case) (see [xds_setup()])
 #'      - "mosy" is for mosquito ecology models (see [xds_setup_mosy()]), including models without pathogen infection dynamics in mosquitoes
 #'      - "aquatic" is for aquatic mosquito ecology models (see [xds_setup_aquatic()]), forced by a function describing egg laying
-#'      - "human" is for human/host infection dynamics(see [xds_setup_human()]), forced by the infective density of adult mosquitoes, \eqn{fqZ}
+#'      - "human" is for human/host infection dynamics (see [xds_setup_human()]), forced by the infective density of adult mosquitoes, \eqn{fqZ}
 #'      - "eir" is for human/host cohort infection dynamics (see [xds_setup_eir()]), forced by a function `F_eir`
 #'
-#' - **`forcing`** is set to "static"
+#' - **`forcing`** is set to "none"
 #'
 #' Second, the function sets the values of the **structural parameters**:
 #' - **`nPatches`** or \eqn{N_p} is the number of patches
 #' - **`nHabitats`** or \eqn{N_q}, the number of aquatic habitats, is set to `length(membership)`
-#' - **`nStrata`** or \eqn{N_h}, the number of human/ host population strata, is set to `length(HPop)`
+#' - **`nStrata`** or \eqn{N_h}, the number of human/host population strata, is set to `length(residence)`
 #' - **`nVectorSpecies`** or \eqn{N_s}, the number of vector species is set to 1;
 #' - **`nHostSpecies`** or \eqn{N_i}, the number of host species is set to 1;
 #'
-#' Next, the function sets up egg laying, blood feeding, importation, transmission, and exposure. 
+#' Next, the function sets up egg-laying, blood-feeding, importation, transmission, and exposure.
 #' 
 #' Next, the function sets up empty lists to hold the model objects for all three dynamical components:
 #' - `XH_obj`
@@ -47,9 +46,9 @@
 #' 
 #' Finally, the function sets up some junctions.
 #'
-#' @note `xds` stands for extensible differential equation
+#' @note `xds` stands for an eXtensible Dynamical System
 #'
-#' @param xds is used to dispatch various functions to set up and solve systems of differential equations. 'xde' for ordinary or delay differential equations; 'dts' for "discrete time systems"
+#' @param xds selects the solver: `xde` for ordinary or delay differential equations, or `dts` for discrete-time systems.
 #' @param frame model component subset
 #' @param nPatches is the number of patches
 #' @param membership the patch where each aquatic habitat is found

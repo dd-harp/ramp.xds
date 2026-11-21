@@ -12,7 +12,7 @@ get_last(xds_obj, parse = FALSE)
 \item{parse}{if TRUE return a named list}
 }
 \value{
-a \link{numeric} vector
+a \link{numeric} vector or, if \code{parse = TRUE}, a named \link{list}
 }
 \description{
 Get the last state

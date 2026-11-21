@@ -4,15 +4,17 @@
 \alias{get_mean_forcing.none}
 \title{Get mean forcing}
 \usage{
-\method{get_mean_forcing}{none}(xds_obj)
+\method{get_mean_forcing}{none}(xds_obj, ix = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{ix}{the species index}
 }
 \value{
-an empty vector
+\code{NULL}
 }
 \description{
-Return null for models without forcing
+Return \code{NULL} for models without forcing.
 }
 \keyword{internal}

@@ -24,6 +24,6 @@ of the daily FoI, compute the derivatives and
 return the derivatives as a numeric vector.
 }
 \note{
-This method dispatches on \code{class(xds_obj$XH_obj)}
+This method dispatches on \code{class(xds_obj$XH_obj[[i]])}.
 }
 \keyword{internal}

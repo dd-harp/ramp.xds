@@ -12,9 +12,9 @@
 \item{s}{the vector species index}
 }
 \value{
-an empty vector
+\code{NULL}
 }
 \description{
-Get the parameters for the perturbation function
+Get the parameters for the perturbation function.
 }
 \keyword{internal}

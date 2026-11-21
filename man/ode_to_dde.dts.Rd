@@ -13,6 +13,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-If \code{class(xds_obj$xde) == "dts"} don't change anything
+If \code{class(xds_obj$xde) == "dts"}, don't change anything.
 }
 \keyword{internal}

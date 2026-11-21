@@ -1,14 +1,15 @@
+# X
 
 #' @title Plot the shock
 #'
 #' @description For a model with temporal forcing,
-#' show the perturbation function
+#' show the perturbation function.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param tm the time points
-#' @param add add to existing plot
+#' @param add add to an existing plot
 #' @param clr the line color
-#' @param rng if not NULL, range limits for plotting
+#' @param rng if not `NULL`, range limits for plotting
 #'
 #' @return the temporal shock, invisibly
 #'
@@ -16,7 +17,7 @@
 show_shock = function(xds_obj, tm=10*c(0:365), add=FALSE, clr="black", rng=NULL){
   shock <- F_shock(tm, xds_obj)
   
-  if(is.null("rng")) rng = range(shock)
+  if(is.null(rng)) rng = range(shock)
   if(length(shock)>0){
     if(add==FALSE) plot(tm, shock, ylab="Shock", xlab = "Time",
                         col=clr, type="n", ylim=rng)
@@ -34,7 +35,7 @@ show_shock = function(xds_obj, tm=10*c(0:365), add=FALSE, clr="black", rng=NULL)
 #' @param tm the time points
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return the temporal shock, invisibly
+#' @return the temporal shock
 #'
 #' @keywords internal
 #' @export
@@ -45,11 +46,11 @@ F_shock = function(tm, xds_obj){
 #' @title Compute the temporal shock
 #'
 #' @description
-#' Evaluate the function `F_shock` for a forced model when `forced_by` is "none"
+#' Evaluate the function `F_shock` for a forced model when `forced_by` is "none".
 #'
 #' @inheritParams F_shock
 #'
-#' @return an empty vector
+#' @return `NULL`
 #'
 #' @importFrom graphics plot lines
 #'
@@ -62,7 +63,7 @@ F_shock.none = function(tm, xds_obj){
 #' @title Compute the temporal shock
 #'
 #' @description
-#' Evaluate the function `F_shock` for a forced model when `forced_by` is "Lambda"
+#' Evaluate the function `F_shock` for a forced model when `forced_by` is "Lambda".
 #'
 #' @inheritParams F_shock
 #'
@@ -79,11 +80,11 @@ F_shock.Lambda = function(tm, xds_obj){
 #' @title Compute the temporal shock
 #'
 #' @description
-#' Evaluate the function `F_shock` for a forced model when `forced_by` is "eir"
+#' Evaluate the function `F_shock` for a forced model when `forced_by` is "eir".
 #'
 #' @inheritParams F_shock
 #'
-#' @return the temporal shock, invisibly
+#' @return the temporal shock
 #'
 #' @keywords internal
 #' @export
@@ -94,7 +95,7 @@ F_shock.eir= function(tm, xds_obj){
 #' @title Compute the temporal shock
 #'
 #' @description
-#' Evaluate the function `F_shock` for a trivial **MY** model
+#' Evaluate the function `F_shock` for a trivial **MY** model.
 #'
 #' @inheritParams F_shock
 #'
@@ -111,7 +112,7 @@ F_shock.MY = function(tm, xds_obj){
 #' @title Compute the temporal shock
 #'
 #' @description
-#' Evaluate the function `F_shock` for a trivial **XH** model
+#' Evaluate the function `F_shock` for a trivial **XH** model.
 #'
 #' @inheritParams F_shock
 #'

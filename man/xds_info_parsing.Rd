@@ -5,30 +5,31 @@
 \title{Parsing}
 \description{
 After solving a system of equations using \link{xds_solve}, the outputs
-are parsed and attached to \code{xds_object$outputs}.
+are parsed and attached to \code{xds_obj$outputs}.
 
 Use \verb{get_*_orbits} to inspect the orbits.
 
-\strong{Note:} \code{xds_object$outputs} are overridden each time
+\strong{Note:} \code{xds_obj$outputs} are overwritten each time
 \link{xds_solve} is called.
 }
 \section{Internals}{
 
 \enumerate{
-\item Each module defines a method \verb{parse_*_orbits}
-\item \link{xds_solve} calls \link{parse_outputs} which calls \verb{parse_*_orbits} for each component and for each species
+\item Each module defines a method \verb{parse_*_orbits}.
+\item \link{xds_solve} calls \link{parse_outputs} which calls \verb{parse_*_orbits} for each component and for each species.
 \item Outputs are parsed and stored on the xds object as \code{xds_obj$outputs}
 \itemize{
 \item \code{time} is stored as \code{xds_obj$outputs$time}
 \item the full output matrix is stored as \code{xds_obj$outputs$deout}
-\item the last state of the system is stored as \code{mod$outputs$last_y}
+\item the last state of the system is stored as \code{xds_obj$outputs$last_y}
 \item several dynamical terms (\code{EIR}, \code{HBR}, \code{PR}, \code{fqZ}, \code{fqM}, \code{kappa}) are computed and attached as orbits
 \item the state variables are extracted from the output matrix by name
-\item the terms and variables are attached as named lists to \code{xds_obj$outputs$orbits.}
+\item the terms and variables are attached as named lists to \code{xds_obj$outputs$orbits}.
 \itemize{
 \item \code{XH} holds parsed outputs for the \strong{XH} component
 \item \code{MY} holds parsed outputs for the \strong{MY} component
 \item \code{L} holds parsed outputs for the \strong{L} component
+\item \code{V} holds parsed outputs for the auxiliary-variable modules
 }
 }
 }

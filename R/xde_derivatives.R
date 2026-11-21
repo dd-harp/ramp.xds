@@ -1,8 +1,8 @@
-# generalized spatial differential equations
+# X
 
 #' @title Compute Derivatives
 #'
-#' @description The function to compute the derivatives dispatches on `class(frame)`
+#' @description The function to compute the derivatives dispatches on `class(xds_obj$frame)`.
 #'
 #' @seealso [xds_solve]
 #'
@@ -19,9 +19,8 @@ xde_derivatives <- function(t, y, xds_obj) {
   UseMethod("xde_derivatives", xds_obj$frame)
 }
 
-#' @title Generalized spatial differential equation model
-#' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
-#' generic methods for each model component.
+#' @title Compute Derivatives
+#' @description Compute derivatives for a *full* model.
 #'
 #' @inheritParams xde_derivatives
 #'
@@ -49,15 +48,14 @@ xde_derivatives.full <- function(t, y, xds_obj) {
 
   dV <- dVdt(t, y, xds_obj, 1)
   if(xds_obj$nOtherVariables > 1)
-    for(i in 2:length(xds_obj$nOtherVariables))
+    for(i in 2:xds_obj$nOtherVariables)
       dV <- c(dV, dVdt(t, y, xds_obj, i))
   
   return(list(c(dL, dMY, dXH, dV)))
 }
 
-#' @title Differential equations isolating the humans, forced with Ztrace
-#' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
-#' generic methods for each model component.
+#' @title Compute Derivatives
+#' @description Compute derivatives for a *human* model.
 #' @inheritParams xde_derivatives
 #'
 #' @keywords internal
@@ -74,7 +72,7 @@ xde_derivatives.human <- function(t, y, xds_obj) {
 
   dV <- dVdt(t, y, xds_obj, 1)
   if(xds_obj$nOtherVariables > 1)
-    for(i in 2:length(xds_obj$nOtherVariables))
+    for(i in 2:xds_obj$nOtherVariables)
       dV <- c(dV, dVdt(t, y, xds_obj, i))
 
   return(list(c(dXH, dV)))
@@ -82,9 +80,8 @@ xde_derivatives.human <- function(t, y, xds_obj) {
 
 
 
-#' @title Generalized spatial differential equation model (mosquito only)
-#' @description Mirrors [ramp.xds::xde_derivatives] but only includes the adult and aquatic
-#' mosquito components.
+#' @title Compute Derivatives
+#' @description Compute derivatives for a *mosy* model.
 #' @inheritParams xde_derivatives
 #'
 #' @keywords internal
@@ -105,15 +102,14 @@ xde_derivatives.mosy <- function(t, y, xds_obj){
 
   dV <- dVdt(t, y, xds_obj, 1)
   if(xds_obj$nOtherVariables > 1)
-    for(i in 2:length(xds_obj$nOtherVariables))
+    for(i in 2:xds_obj$nOtherVariables)
       dV <- c(dV, dVdt(t, y, xds_obj, i))
 
   return(list(c(dL, dMY, dV)))
 }
 
-#' @title Differential equation models for aquatic mosquito populations
-#' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
-#' generic methods for each model component.
+#' @title Compute Derivatives
+#' @description Compute derivatives for an *aquatic* model.
 #' @inheritParams xde_derivatives
 #'
 #' @keywords internal
@@ -125,20 +121,19 @@ xde_derivatives.aquatic <- function(t, y, xds_obj) {
 
   dL <- dLdt(t, y, xds_obj, 1)
   if(xds_obj$nVectorSpecies > 1)
-    for(s in 1:xds_obj$nVectorSpecies)
+    for(s in 2:xds_obj$nVectorSpecies)
       dL <- c(dL, dLdt(t, y, xds_obj, s))
 
   dV <- dVdt(t, y, xds_obj, 1)
   if(xds_obj$nOtherVariables > 1)
-    for(i in 2:length(xds_obj$nOtherVariables))
+    for(i in 2:xds_obj$nOtherVariables)
       dV <- c(dV, dVdt(t, y, xds_obj, i))
 
   return(list(c(dL, dV)))
 }
 
-#' @title Differential equation models for aquatic mosquito populations
-#' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
-#' generic methods for each model component.
+#' @title Compute Derivatives
+#' @description Compute derivatives for an *eir* model.
 #' @inheritParams xde_derivatives
 #'
 #' @keywords internal
@@ -152,7 +147,7 @@ xde_derivatives.eir <- function(t, y, xds_obj) {
 
   dV <- dVdt(t, y, xds_obj, 1)
   if(xds_obj$nOtherVariables > 1)
-    for(i in 2:length(xds_obj$nOtherVariables))
+    for(i in 2:xds_obj$nOtherVariables)
       dV <- c(dV, dVdt(t, y, xds_obj, i))
 
   return(list(c(dXH, dV)))

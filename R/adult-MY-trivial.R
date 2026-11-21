@@ -3,7 +3,7 @@
 #' @title `trivialMY` --- **MY** module
 #' 
 #' @description
-#' The trivial **MY** module configures two trace functions:
+#' The trivial **MY** module configures one of two forcing functions, either:
 #' + infectious biting:  
 #' \deqn{F_{fqZ}(t, V) = fqZ \times F_S(t, V_s) \times F_T(t, V_t) \times F_K(t, V_k)} 
 #' + egg laying: 
@@ -44,26 +44,7 @@
 #' 
 #' For the bionomic parameters, `f=q=Z=eggs=1`. 
 #' 
-#' @section Get: 
-#' 
-#' + `get_MY_pars` --- the `trivialMY` method returns all the parameters
-#' + `get_mean_forcing` --- returns `Z`
-#' + `get_f` --- returns `f`
-#' + `get_q` --- returns `q`
-#' + `get_season` --- returns `season_par` 
-#' + `get_trend`  --- returns `trend_par` 
-#' + `get_shock`  --- returns `shock_par`
-#' 
-#' Note: use `get_MY_pars` to inspect `eggs`
-#' 
-#' @section Change: 
-#' 
-#' + `change_MY_pars` --- change bionomic parameters by name
-#' + `change_mean_forcing` --- changes `Z`
-#' + `change_F_season` --- changes `F_season`
-#' + `change_F_trend`  --- changes `F_trend`
-#' + `change_F_shock`  --- changes `F_shock`
-#' 
+#' @seealso [make_MY_obj_trivial]
 #' 
 #' @section Notes:
 #' 
@@ -209,7 +190,7 @@ Update_MYt.trivialMY <- function(t, y, xds_obj, s){
 #' the user configures `F_eggs`; in the latter,
 #' `F_fqZ`
 #' 
-#' This builds a trace function as a *composed time series function* using either functions or parameters:
+#' This builds a forcing function as a *composed time series function* using either functions or parameters:
 #' + Use a function if passed, and set the function object to an empty list
 #' + If no function is passed, the parameters should be a function object (see [ramp.func::F_obj])
 #' + Use `make_function` to create a function \eqn{F(t,V)}

@@ -1,3 +1,4 @@
+# X
 
 #' @title Check deaths 
 #' 
@@ -5,7 +6,7 @@
 #' Check that 
 #' + the death rate is numeric
 #' + the death rate is not negative
-#' + the death rates length is the number of strata
+#' + the length of the death rates is the number of strata
 #' 
 #' @param death_rates death rates
 #' @param Nh the number of population strata
@@ -21,8 +22,9 @@ check_deaths = function(death_rates, Nh){
 #' @title Change the deaths
 #' 
 #' @description
-#' Modify the death rates for a model with static population 
-#' rates. The birth rate gets adjusted to ensure the \eqn{dH/dt=0}
+#' Modify the death rates. Birth rates are unchanged;
+#' [setup_deaths.constant] also adjusts births to balance deaths
+#' at the configured population density.
 #' 
 #' 
 #' @param death_rates death rates 
@@ -34,14 +36,14 @@ check_deaths = function(death_rates, Nh){
 #' @export
 change_deaths = function(death_rates, xds_obj, i=1){
   check_deaths(death_rates, xds_obj$nStrata[i])
-  xds_obj$XH_obj[[i]]$deaths_obj$death_rates <- death_rates
-  class(xds_obj$XH_obj[[i]]$deaths_obj) <- "constant"
+  xds_obj$XH_obj[[i]]$death_obj$death_rates <- death_rates
+  class(xds_obj$XH_obj[[i]]$death_obj) <- "constant"
   return(xds_obj)
 }
 
 #' @title Set up deaths 
 #'
-#' @param name a  or setup function name
+#' @param name a numeric vector, a setup function name, or an options list
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options configuration options
@@ -55,13 +57,13 @@ setup_deaths = function(name, xds_obj, options = list(), i=1){
   UseMethod("setup_deaths", options)
 }
 
-#' @title Set up a deaths 
+#' @title Set up deaths
 #'
 #' @description If an options list is passed
 #' as the first argument, then set 
 #' + `deaths_name = name$name` 
 #' + `options = name`
-#' and call `setup_deaths(deaths_name, xds_obj, options, s)` 
+#' and call `setup_deaths(deaths_name, xds_obj, options, i)`.
 #'
 #' @inheritParams setup_deaths
 #'
@@ -77,7 +79,7 @@ setup_deaths.list = function(name, xds_obj, options=list(), i=1){
 }
 
 #' @title Set up death rates
-#' @description Change nothing
+#' @description Change nothing.
 #' @inheritParams setup_deaths
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -89,11 +91,10 @@ setup_deaths.no_setup = function(name, xds_obj, options = list(), i=1){
 #' @title Set up death rates
 #' 
 #' @description 
-#' Pass pre-configured constant death rates. If it passes 
-#' the checks, it replaces the current death rates.
+#' Pass pre-configured constant death rates. If they pass
+#' the checks, they replace the current death rates.
 #' 
-#' If called with `name = "as_is"`, the deaths
-#' must be at `options$death_rates
+#' The death rates must be at `options$death_rates`.
 #' 
 #' @inheritParams setup_deaths
 #' @return an **`xds`** model object
@@ -102,7 +103,7 @@ setup_deaths.no_setup = function(name, xds_obj, options = list(), i=1){
 setup_deaths.constant = function(name, xds_obj, options=list(), i=1){
   death_rates <- options$death_rates
   xds_obj <- change_deaths(death_rates, xds_obj, i)
-  opts = list(birth_rates = death_rates/get_H(xds_obj, i)) 
+  opts = list(birth_rates = death_rates*get_H(xds_obj, i)) 
   xds_obj <- setup_births("constant", xds_obj, opts, i)
   return(xds_obj)
 }
@@ -110,11 +111,7 @@ setup_deaths.constant = function(name, xds_obj, options=list(), i=1){
 #' @title Set up death rates
 #' 
 #' @description 
-#' Pass pre-configured constant death rates. If it passes 
-#' the checks, it replaces the current death rates.
-#' 
-#' If called with `name = "as_is"`, the deaths
-#' must be at `options$death_rates
+#' Set death rates to zero.
 #' 
 #' @inheritParams setup_deaths
 #' @return an **`xds`** model object
@@ -126,13 +123,13 @@ setup_deaths.zero = function(name, xds_obj, options=list(), i=1){
   return(xds_obj)
 }
 
-#' @title Set up a deaths 
+#' @title Set up deaths
 #' @description 
-#' Pass a pre-configured deaths . If it passes 
-#' the checks, it replaces the current deaths .
+#' Pass pre-configured deaths. If they pass
+#' the checks, they replace the current deaths.
 #' 
 #' If called with `name = "as_is"`, the deaths
-#'  must be at `options$deaths` 
+#' must be at `options$death_rates`.
 #' 
 #' @inheritParams setup_deaths
 #' @return an **`xds`** model object
@@ -160,4 +157,3 @@ setup_deaths.as_is = function(name, xds_obj, options=list(), i=1){
 get_death_rates = function(xds_obj, i=1){
   return(xds_obj$XH_obj[[i]]$death_obj$death_rates)
 }
-

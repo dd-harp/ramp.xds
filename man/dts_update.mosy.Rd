@@ -2,7 +2,7 @@
 % Please edit documentation in R/dts_equations.R
 \name{dts_update.mosy}
 \alias{dts_update.mosy}
-\title{Generalized spatial differential equation model (mosquito only)}
+\title{Update states for discrete-time systems}
 \usage{
 \method{dts_update}{mosy}(t, y, xds_obj)
 }
@@ -14,10 +14,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \link{vector} containing the vector of all state derivatives
+updated dependent variables (a \link{vector})
 }
 \description{
-Compute and update the state variables for
-a model with mosquito ecology (no transmission)
+Update the state variables for a \emph{mosy} model.
 }
 \keyword{internal}

@@ -7,7 +7,7 @@
 \method{get_variables}{list}(opts, t, y, xds_obj, ix)
 }
 \arguments{
-\item{opts}{an options list and dispatching}
+\item{opts}{an options list used for dispatch}
 
 \item{t}{time}
 
@@ -21,6 +21,6 @@
 an empty list
 }
 \description{
-The NULL case for \link{get_variables}
+The list method for \link{get_variables}.
 }
 \keyword{internal}

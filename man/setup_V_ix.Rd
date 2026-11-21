@@ -2,18 +2,18 @@
 % Please edit documentation in R/variables-V-interface.R
 \name{setup_V_ix}
 \alias{setup_V_ix}
-\title{Add indices for human population to parameter list}
+\title{Add indices for auxiliary variables to the parameter list}
 \usage{
 setup_V_ix(xds_obj, i)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
+\item{i}{the auxiliary-variable module index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$V_obj[[i]]}
+This method dispatches on the type of \code{xds_obj$V_obj[[i]]}.
 }

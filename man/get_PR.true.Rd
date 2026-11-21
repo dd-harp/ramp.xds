@@ -14,9 +14,9 @@
 \item{i}{the host species index}
 }
 \value{
-the true PR
+a \link{list} containing \code{time}, \code{pr}, and \code{method}
 }
 \description{
-Return the true \emph{Pf}PR
+Return the true \emph{Pf}PR.
 }
 \keyword{internal}

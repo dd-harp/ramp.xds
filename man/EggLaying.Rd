@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{EggLaying}
 \alias{EggLaying}
-\title{Compute eggs laid}
+\title{Compute eggs laid in aquatic habitats}
 \usage{
 EggLaying(t, y, xds_obj)
 }
@@ -17,8 +17,24 @@ EggLaying(t, y, xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Compute eggs laid at time \eqn{t}
+Compute the number of
+eggs laid at time \eqn{t} in each habitat.
 }
+\section{Habitat Matrix}{
+
+
+The habitat matrix \eqn{(\mathbf N)} is an \code{nPatches}\eqn{\times}\code{nHabitats} matrix
+that is constructed from the \link{habitat_vector}.
+
+If the \eqn{i^{th}} habitat is in the \eqn{j^{th}} patch, then
+\eqn{{N}_{j,i}=1.} Otherwise, \eqn{{N}_{j,i}=0.}
+
+If \eqn{x} is any vector describing a quantity in
+habitats (\emph{i.e.}, \eqn{\left|x\right|=}\code{nHabitats}), then
+\deqn{X=\mathbf{N}\cdot x} is a vector that has summed \eqn{x}
+by patch, and \eqn{\left|X\right|=}\code{nPatches}.
+}
+
 \seealso{
 \code{\link[=setup_egg_laying_interface]{setup_egg_laying_interface()}}
 }

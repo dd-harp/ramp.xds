@@ -6,7 +6,7 @@
 \description{
 Get functions for \strong{XH}
 
-\code{?get_XH}
+\code{?XH_get}
 }
 \section{Outputs}{
 
@@ -14,7 +14,7 @@ Get functions for \strong{XH}
 \item \code{\link{get_XH_orbits}} -- get the XH orbits
 \item \code{\link{get_EIR}} -- get the EIR orbits
 \item \code{\link{get_PR}} -- get the PR orbits
-\item \code{\link{get_H}} -- get the PR orbits
+\item \code{\link{get_H}} -- get host population density
 }
 }
 

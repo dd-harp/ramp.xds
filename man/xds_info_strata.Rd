@@ -32,7 +32,7 @@ they live, and most people spend most of their time at risk in or around home.
 The human population is thus stratified around the concept of patch residency -- the
 patch where home is found. Exposure is based on the notions of \emph{time spent} (see \link{xds_info_time_spent})
 and \emph{time at risk} (see \link{xds_info_time_at_risk}). The model is configured by passing
-a vector, called \code{residence.}
+a vector, called \code{residence}.
 The residence vector is the index of the patch where each
 human population resides, and multiple strata can reside in the same patch.
 Conversely, there might be some patches where no one resides, such as the mosquito

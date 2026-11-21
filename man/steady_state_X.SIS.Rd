@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{steady_state_X.SIS}
 \alias{steady_state_X.SIS}
-\title{Compute the steady states for the \code{SIS} model as a function of the daily EIR}
+\title{Compute the steady states for the \code{SIS} model as a function of the daily FoI}
 \usage{
 \method{steady_state_X}{SIS}(foi, H, xds_obj, i = 1)
 }
@@ -16,10 +16,11 @@
 \item{i}{the host species index}
 }
 \value{
-the steady states as a named vector
+the steady states as a named \link{list}
 }
 \description{
-Compute the steady state of the \code{SIS} model as a function of the daily eir.
+Compute the steady state of the \code{SIS} model as a function of the daily FoI,
+with fixed population density, no mortality, and no mass-treatment events.
 }
 \seealso{
 \link{SIS}

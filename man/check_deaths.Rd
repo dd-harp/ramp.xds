@@ -16,7 +16,7 @@ Check that
 \itemize{
 \item the death rate is numeric
 \item the death rate is not negative
-\item the death rates length is the number of strata
+\item the length of the death rates is the number of strata
 }
 }
 \seealso{

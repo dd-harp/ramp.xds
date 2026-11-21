@@ -7,16 +7,16 @@
 checkIt(x, lng, type = "numeric", fixit = TRUE)
 }
 \arguments{
-\item{x}{a \link{numeric} model object}
+\item{x}{a \link{numeric} input}
 
-\item{lng}{a \link{numeric} model object}
+\item{lng}{the required length}
 
-\item{type}{a \link{character} string specifying required typeof}
+\item{type}{a \link{character} string specifying whether to convert the input to integer}
 
-\item{fixit}{a \link{logical} value, if TRUE force length to lng}
+\item{fixit}{a \link{logical} value; if \code{TRUE}, replicate a length-one input to length \code{lng}}
 }
 \value{
-a \link{numeric} model object
+the checked \link{numeric} input
 }
 \description{
 Check the length of an input value

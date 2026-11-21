@@ -11,9 +11,9 @@ make_XH_inits_hMoI(nStrata, options = list(), m1 = 2, m2 = 1)
 
 \item{options}{a \link{list} that overrides default values}
 
-\item{m1}{mean MoI among inapparent human infections}
+\item{m1}{mean MoI for all infections}
 
-\item{m2}{mean MoI among patent human infections}
+\item{m2}{mean MoI for apparent infections}
 }
 \value{
 a \link{list}

@@ -16,6 +16,6 @@ Check that
 \itemize{
 \item the birth rate is numeric
 \item the birth rate is not negative
-\item the birth rates length is the number of strata
+\item the length of the birth rates is the number of strata
 }
 }

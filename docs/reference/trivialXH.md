@@ -2,16 +2,27 @@
 
 The trivial module sets up two trace functions:
 
-1.  a composed time series function to set net infectiousness,
-    \\(\kappa\\)
+1.  a trace function to output net infectiousness, \\(\kappa\\)
 
-2.  a composed time series function to output \\(H\\)
+2.  a trace function to output human population density, \\(H\\)
 
-By default, arguments passed to basic setup configure the trace function
-for \\(\kappa\\), set the mean value of \\(H\\), and set up the
-functions to configure a trace function for \\(H.\\) by calling a *trace
-function,* \$\$F\_\kappa(t) = \kappa \times S(t, V_s) \times T(t, V_t)
-\times K(t, V_k)\$\$ where
+Basic setup uses a function if it is passed. If no function is passed,
+the functions are built from function objects (see
+[ramp.func::F_obj](https://dd-harp.github.io/ramp.func/reference/F_obj.html))
+using
+[make_function](https://dd-harp.github.io/ramp.func/reference/make_function.html),
+which returns a function of the form \\(F(t,V).\\)
+
+The variables passed to the functions, \\(V\\), are returned by
+[get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md),
+which dispatches on the class of the stored function object (by default,
+an empty list).
+
+## Net Infectiousness
+
+The trace functions are set up as composed time series functions with
+four separate composable elements: \$\$F\_\kappa(t) = \kappa \times S(t,
+V_s) \times T(t, V_t) \times K(t, V_k)\$\$ where
 
 - \\(\kappa\\) or `kappa` is the mean net infectiousness
 
@@ -21,10 +32,19 @@ function,* \$\$F\_\kappa(t) = \kappa \times S(t, V_s) \times T(t, V_t)
 
 - \\(K(t,V_k)\\) or `F_shock` is a perturbation function
 
-The variables \\(V_s\\), \\(V_t\\), and \\(V_t\\) are called by
-[get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md),
-which dispatches on the class of `season_par` or `trend_par` or
-`shock_par`.
+## Human Population Density
+
+The trace functions are set up as composed time series functions with
+four separate composable elements: \$\$F_H(t) = H \times S(t, V_s)
+\times T(t, V_t) \times K(t, V_k)\$\$ where
+
+- \\(\kappa\\) or `kappa` is the mean net infectiousness
+
+- \\(S(t,V_s)\\) or `H_season` is a seasonal pattern function
+
+- \\(T(t,V_t)\\) or `H_trend` is a trend pattern function
+
+- \\(K(t,V_k)\\) or `H_shock` is a perturbation function
 
 ## Seasonal Pattern
 
@@ -118,8 +138,9 @@ for use by `ramp.func`
 1.  The module has no state variables.
 
 2.  The size of an object saved by `saveRDS` balloons if it saves a
-    function, so `saveXDS` function strips the functions and `readRDS`
-    remakes the function from the stored parameters.
+    function, so `saveXDS` function strips the functions and `readXDS`
+    remakes the function from the stored function object using
+    [make_function](https://dd-harp.github.io/ramp.func/reference/make_function.html).
 
 3.  `F_season`, `F_trend`, and `F_shock` can be set up manually by
     passing any user defined function. If so, the user should use

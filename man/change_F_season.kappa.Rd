@@ -17,7 +17,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change  the season function
-when \code{forced_by = "kappa"}
+Change the season function
+when \code{forced_by = "kappa"}.
 }
 \keyword{internal}

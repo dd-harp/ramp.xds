@@ -2,7 +2,7 @@
 % Please edit documentation in R/xde_derivatives.R
 \name{xde_derivatives.mosy}
 \alias{xde_derivatives.mosy}
-\title{Generalized spatial differential equation model (mosquito only)}
+\title{Compute Derivatives}
 \usage{
 \method{xde_derivatives}{mosy}(t, y, xds_obj)
 }
@@ -17,7 +17,6 @@
 a \link{list} containing the vector of all state derivatives
 }
 \description{
-Mirrors \link{xde_derivatives} but only includes the adult and aquatic
-mosquito components.
+Compute derivatives for a \emph{mosy} model.
 }
 \keyword{internal}

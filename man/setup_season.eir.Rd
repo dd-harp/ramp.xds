@@ -2,7 +2,7 @@
 % Please edit documentation in R/setup_season.R
 \name{setup_season.eir}
 \alias{setup_season.eir}
-\title{Change season parameters}
+\title{Set up seasonal forcing}
 \usage{
 \method{setup_season}{eir}(X, xds_obj, ix = 1)
 }
@@ -18,6 +18,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 Change parameters for the seasonality function
-when \code{forced_by = "eir"}
+when \code{forced_by = "eir"}.
 }
 \keyword{internal}

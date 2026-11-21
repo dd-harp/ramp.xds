@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{F_eta}
 \alias{F_eta}
-\title{Eggs Laying in Habitats}
+\title{Egg Laying in Habitats}
 \usage{
 F_eta(eggs_laid, U_matrix, Q, Qall)
 }
@@ -19,9 +19,9 @@ F_eta(eggs_laid, U_matrix, Q, Qall)
 a \link{vector}, \eqn{\eta} where \eqn{\left|\eta\right|=}\code{nHabitats}
 }
 \description{
-Computes egg distribution for the aquatic habitats
+Computes egg distribution for the aquatic habitats.
 }
 \seealso{
-\link{compute_U_matrix}
+\link{update_U_matrix}
 }
 \keyword{internal}

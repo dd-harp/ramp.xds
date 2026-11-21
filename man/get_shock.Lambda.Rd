@@ -15,6 +15,6 @@
 a list, the value of \code{shock_par}
 }
 \description{
-Get the shock parameters for a model forced by emergence
+Get the shock parameters for a model forced by emergence.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{setup_XH_inits.hMoI}
 \alias{setup_XH_inits.hMoI}
-\title{Setup initial values for \code{hMoI} (\strong{XH})}
+\title{Set up initial values for \code{hMoI} (\strong{XH})}
 \usage{
 \method{setup_XH_inits}{hMoI}(xds_obj, options = list(), i = 1)
 }
@@ -14,7 +14,7 @@
 \item{i}{the host species index}
 }
 \value{
-a \link{list} vector
+an \strong{\code{xds}} model object
 }
 \description{
 Set initial values for all the variables in the \code{hMoI} module

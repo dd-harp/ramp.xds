@@ -4,17 +4,19 @@
 \alias{get_mean_forcing.Lambda}
 \title{Get mean forcing}
 \usage{
-\method{get_mean_forcing}{Lambda}(xds_obj)
+\method{get_mean_forcing}{Lambda}(xds_obj, ix = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{ix}{the species index}
 }
 \value{
-a vector, the value of \code{Lambda}
+a \link{vector}, the value of \code{Lambda} for the indexed vector species
 }
 \description{
 Get \code{Lambda}, the mean emergence
 rate(s) \eqn{\Lambda}, for a model
-forced by adult mosquito emergence
+forced by adult mosquito emergence.
 }
 \keyword{internal}

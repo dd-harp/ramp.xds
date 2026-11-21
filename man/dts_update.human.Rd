@@ -2,7 +2,7 @@
 % Please edit documentation in R/dts_equations.R
 \name{dts_update.human}
 \alias{dts_update.human}
-\title{Difference equations isolating the humans, forced with Ztrace}
+\title{Update states for discrete-time systems}
 \usage{
 \method{dts_update}{human}(t, y, xds_obj)
 }
@@ -14,10 +14,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \link{vector} containing the vector of all state derivatives
+updated dependent variables (a \link{vector})
 }
 \description{
-Compute and update the state variables for
-a model with only humans
+Update the state variables for a \emph{human} model.
 }
 \keyword{internal}

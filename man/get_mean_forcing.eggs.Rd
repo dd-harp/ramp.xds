@@ -4,13 +4,18 @@
 \alias{get_mean_forcing.eggs}
 \title{Get mean forcing}
 \usage{
-\method{get_mean_forcing}{eggs}(xds_obj)
+\method{get_mean_forcing}{eggs}(xds_obj, ix = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{ix}{the species index}
+}
+\value{
+a \link{vector} of mean egg deposition rates for the indexed vector species
 }
 \description{
 Get mean egg deposition rates
-for a trivial \strong{MY} model
+for a trivial \strong{MY} model.
 }
 \keyword{internal}

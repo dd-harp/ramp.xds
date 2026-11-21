@@ -16,8 +16,8 @@ seasonal pattern parameters
 }
 \description{
 Get the parameters for the seasonal pattern
-forcing the model
+forcing the model.
 }
 \note{
-Dispatches on \code{forced_by}
+Dispatches on \code{forced_by}.
 }

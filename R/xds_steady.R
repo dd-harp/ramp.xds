@@ -1,3 +1,4 @@
+# X 
 
 #' @title Solve for the steady state 
 #' @description Compute the steady state for a 
@@ -5,9 +6,11 @@
 #' 
 #' + Run for \eqn{Y} years
 #' 
-#' + Check the sun of squared differences in the final state is less than `tol`
+#' + Check whether the sum of squared differences between successive final states is less than `tol`
 #' 
-#' + If not 
+#' + If not, repeat the run up to ten more times using the latest final state as the new initial state.
+#'
+#' + Stop after ten additional runs, even if the tolerance has not been reached.
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param Y the number of years to run once
@@ -26,8 +29,7 @@ xds_steady = function(xds_obj, Y=10, tol=1e-5){
     y_1 <- get_last(xds_obj) 
     diff = sum((y_0-y_1)^2)
     y_0 = y_1
-    diff = 0
-    stopifnot(i < 10) 
+    if (i>9) diff = 0
   }
   xds_obj$outputs$steady = parse_y(y_1, xds_obj)
   return(xds_obj)
@@ -54,4 +56,3 @@ xds_stable_orbit = function(xds_obj, Y=10, tol=1e-5){
   
   return(xds_obj)
 }
-

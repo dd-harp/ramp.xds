@@ -18,6 +18,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 Change parameters for the seasonality function
-when \code{forced_by = "eir"}
+when \code{forced_by = "eir"}.
 }
 \keyword{internal}

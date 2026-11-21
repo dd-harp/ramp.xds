@@ -4,7 +4,7 @@
 #' @description
 #' The trivial module outputs the emergence 
 #' rate of adult mosquitoes by calling a
-#' *trace function,* 
+#' *forcing function,*
 #' \deqn{F_\alpha(t) = \Lambda \times F_S(t, V_s) \times F_T(t, V_t) \times F_K(t, V_k)} 
 #' where
 #' 
@@ -266,7 +266,7 @@ make_L_obj_trivial = function(nHabitats, options=list(),
 
 #' @title Get parameters for `trivialL` (**L**)
 #' @description Get \eqn{\Lambda} and parameters that construct
-#' the forcing functions  
+#' the forcing functions
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' @return a [list]
@@ -290,7 +290,7 @@ get_L_pars.trivialL <- function(xds_obj, s=1) {
 #'
 #' @inheritParams change_L_pars
 #' 
-#' @note Utilities for trace functions are in `ramp.func`
+#' @note Utilities for forcing functions are in `ramp.func`
 #' 
 #' @return an **`xds`** model object
 #' @keywords internal

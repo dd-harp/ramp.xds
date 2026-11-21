@@ -2,7 +2,7 @@
 % Please edit documentation in R/dts_equations.R
 \name{dts_update.aquatic}
 \alias{dts_update.aquatic}
-\title{Difference equation models for aquatic mosquito populations}
+\title{Update states for discrete-time systems}
 \usage{
 \method{dts_update}{aquatic}(t, y, xds_obj)
 }
@@ -14,10 +14,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \link{vector} containing the vector of all state derivatives
+updated dependent variables (a \link{vector})
 }
 \description{
-Compute and update the state variables for
-a model with only aquatic mosquitoes
+Update the state variables for an \emph{aquatic} model.
 }
 \keyword{internal}

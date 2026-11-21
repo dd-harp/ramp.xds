@@ -13,8 +13,8 @@ get_habitat_matrix(xds_obj)
 a \link{matrix}
 }
 \description{
-Output the habitat membership information as a list
+Inspect the habitat membership matrix.
 }
 \seealso{
-\code{\link[=make_habitat_matrix]{make_habitat_matrix()}}
+\code{\link[=make_habitat_matrix]{make_habitat_matrix()}}, \link{habitat_matrix}
 }

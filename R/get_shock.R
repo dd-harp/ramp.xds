@@ -1,11 +1,12 @@
+# X
 
 #' @title Get the shock parameters
 #'
 #' @description
 #' Get the parameters for the perturbation function
-#' forcing the model
+#' forcing the model.
 #'
-#' @note Dispatches on `forced_by`
+#' @note Dispatches on `forced_by`.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -20,11 +21,11 @@ get_shock = function(xds_obj, s=1){
 #' @title Get the shock parameters
 #'
 #' @description
-#' Get the parameters for the perturbation function
+#' Get the parameters for the perturbation function.
 #'
 #' @inheritParams get_shock
 #'
-#' @return an empty vector
+#' @return `NULL`
 #'
 #' @keywords internal
 #' @export
@@ -35,7 +36,7 @@ get_shock.none = function(xds_obj, s=1){
 #' @title Get the shock parameters
 #'
 #' @description
-#' Get the shock parameters for a model forced by emergence
+#' Get the shock parameters for a model forced by emergence.
 #'
 #' @inheritParams get_shock
 #'
@@ -50,7 +51,7 @@ get_shock.Lambda = function(xds_obj, s=1){
 #' @title Get the shock parameters
 #'
 #' @description
-#' Get the shock parameters for an EIR forced model
+#' Get the shock parameters for an EIR-forced model.
 #'
 #' @inheritParams get_shock
 #'
@@ -65,7 +66,7 @@ get_shock.eir = function(xds_obj, s=1){
 #' @title Get the shock parameters
 #'
 #' @description
-#' Get the shock parameters for a model forced by infectious biting
+#' Get the shock parameters for a model forced by infective biting.
 #'
 #' @inheritParams get_shock
 #'

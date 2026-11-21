@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats.R
 \name{AquaticHabitats}
 \alias{AquaticHabitats}
-\title{Aquatic Habitats}
+\title{Aquatic Habitat Dynamics}
 \usage{
 AquaticHabitats(t, y, xds_obj)
 }
@@ -17,7 +17,8 @@ AquaticHabitats(t, y, xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Compute eggs laid at time \eqn{t}
+Update habitat search weights, unsuitable habitats,
+and ovitraps, and update resource availability for egg laying.
 }
 \seealso{
 \code{\link[=setup_egg_laying_interface]{setup_egg_laying_interface()}}

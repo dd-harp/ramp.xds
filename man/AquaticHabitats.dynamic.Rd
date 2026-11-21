@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats.R
 \name{AquaticHabitats.dynamic}
 \alias{AquaticHabitats.dynamic}
-\title{Compute eggs laid}
+\title{Aquatic Habitat Dynamics}
 \usage{
 \method{AquaticHabitats}{dynamic}(t, y, xds_obj)
 }
@@ -17,7 +17,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Computes eggs laid with exogenous forcing
-on parameter affecting host availability.
+Updates habitat availability with exogenous forcing
+on a parameter affecting habitat availability.
 }
 \keyword{internal}

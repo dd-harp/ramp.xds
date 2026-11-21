@@ -22,7 +22,7 @@ A List of Modules for the \strong{XH}-Component
 \itemize{
 \item \code{garki} - an implementation of the Garki Model for malaria
 \item \code{SIP}   - a compartmental model with treatment and chemoprotection
-\item \code{SIPd}  - an implementation of the Garki Model for malaria
+\item \code{SIPd}  -  a compartmental model with a fixed delay for chemoprotection
 }
 \item \strong{Compartmental Models}
 \itemize{

@@ -1,3 +1,5 @@
+# X
+
 # generic methods for human component
 
 #' @title Get the **XH** skill set
@@ -39,7 +41,7 @@ check_XH = function(xds_obj,i){
 #' of the daily FoI, compute the derivatives and
 #' return the derivatives as a numeric vector.
 #'
-#' @note This method dispatches on `class(xds_obj$XH_obj)`
+#' @note This method dispatches on `class(xds_obj$XH_obj[[i]])`.
 #'
 #' @param t time
 #' @param y dependent variables
@@ -54,7 +56,7 @@ dXHdt <- function(t, y, xds_obj, i) {
   UseMethod("dXHdt", xds_obj$XH_obj[[i]])
 }
 
-#' @title Update state variablenos (**XH**) 
+#' @title Update state variables (**XH**)
 #' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 #' @param t time
 #' @param y dependent variables
@@ -115,8 +117,8 @@ F_infectivity <- function(y, xds_obj, i) {
 #' + calls [setup_XH_inits] to set initial values
 #' + initializes [setup_blood_search_weights]: all weights are set to \eqn{1}
 #' + initializes [setup_timespent] to the residence matrix: all time spent at home
-#' + calls [setup_mass_treatment] with no events
-#' + calls [setup_demog_obj] setting birth and death rates to zero
+#' + every capable module calls [setup_mass_treatment] with no events
+#' + every capable module calls [setup_demog_obj] setting birth and death rates to zero
 #' + calls [setup_time_away] with no time spent away
 #' + calls [setup_travel_eir] with the travel EIR set to zero
 #' 
@@ -178,13 +180,13 @@ setup_XH_ix <- function(xds_obj, i) {
 
 #' @title Get XH indices
 #'
-#' @description Get and display the values of the indices
-#' for the variables
+#' @description Get the values of the indices
+#' for the variables.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return an **`xds`** model object
+#' @return a [list] of variable indices
 #' @keywords internal
 #' @export
 get_XH_ix <- function(xds_obj, i=1) {
@@ -257,7 +259,7 @@ change_XH_pars <- function(xds_obj, options=list(), i=1) {
   UseMethod("change_XH_pars", xds_obj$XH_obj[[i]])
 }
 
-#' @title Setup initial values (**XH**)
+#' @title Set up initial values (**XH**)
 #'
 #' @description Set initial values
 #' for all the variables.  
@@ -325,7 +327,7 @@ change_XH_inits <- function(xds_obj, options=list(), i=1) {
 #' @title Compute net infectiousness (NI)
 #' @description A function to compute NI as an output
 #' @param vars a list with the variables attached by name
-#' @param XH_obj a list defining a model for human
+#' @param XH_obj a list defining a model for humans
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
 #' @export
@@ -337,7 +339,7 @@ F_ni <- function(vars, XH_obj) {
 #' @description A function that translates the state variables into
 #' the "true" *Pf*PR
 #' @param vars a list with the variables attached by name
-#' @param XH_obj a list defining a model for human
+#' @param XH_obj a list defining a model for humans
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
 #' @export
@@ -346,7 +348,7 @@ F_prevalence <- function(vars, XH_obj) {
 }
 
 #' @title Compute the prevalence of infection by light microscopy
-#' @description This method dispatches on the type of `xds_obj$XH_obj[[i]]`
+#' @description This method dispatches on the type of `XH_obj`.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
@@ -369,7 +371,7 @@ F_pfpr_by_rdt <- function(vars, XH_obj) {
 #' @title Compute infection prevalence by PCR
 #' @description A function that translates the state variables into
 #' the predicted *Pf*PR by PCR
-#' @note This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
+#' @note This method dispatches on the type of `XH_obj`.
 #' @inheritParams F_prevalence
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal

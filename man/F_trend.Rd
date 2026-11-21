@@ -12,7 +12,7 @@ F_trend(tm, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the temporal trend, invisibly
+the temporal trend
 }
 \description{
 Evaluate the function \code{F_trend} for a forced model.

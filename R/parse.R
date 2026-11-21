@@ -1,30 +1,32 @@
+# X 
 
 #' @title Parsing
 #' @description
 #' After solving a system of equations using [xds_solve], the outputs
-#' are parsed and attached to `xds_object$outputs`. 
+#' are parsed and attached to `xds_obj$outputs`.
 #' 
 #' Use `get_*_orbits` to inspect the orbits. 
 #' 
-#' **Note:** `xds_object$outputs` are overridden each time  
+#' **Note:** `xds_obj$outputs` are overwritten each time
 #' [xds_solve] is called.
 #' 
 #' @section Internals:
 #' 
-#' 1. Each module defines a method `parse_*_orbits`
+#' 1. Each module defines a method `parse_*_orbits`.
 #' 
-#' 2. [xds_solve] calls [parse_outputs] which calls `parse_*_orbits` for each component and for each species
+#' 2. [xds_solve] calls [parse_outputs] which calls `parse_*_orbits` for each component and for each species.
 #' 
 #' 3. Outputs are parsed and stored on the xds object as `xds_obj$outputs` 
 #'     + `time` is stored as `xds_obj$outputs$time` 
 #'     + the full output matrix is stored as `xds_obj$outputs$deout`
-#'     + the last state of the system is stored as `mod$outputs$last_y` 
+#'     + the last state of the system is stored as `xds_obj$outputs$last_y`
 #'     + several dynamical terms (`EIR`, `HBR`, `PR`, `fqZ`, `fqM`, `kappa`) are computed and attached as orbits
 #'     + the state variables are extracted from the output matrix by name 
-#'     + the terms and variables are attached as named lists to `xds_obj$outputs$orbits.` 
+#'     + the terms and variables are attached as named lists to `xds_obj$outputs$orbits`.
 #'        - `XH` holds parsed outputs for the **XH** component 
 #'        - `MY` holds parsed outputs for the **MY** component 
 #'        - `L` holds parsed outputs for the **L** component 
+#'        - `V` holds parsed outputs for the auxiliary-variable modules
 #'  
 #' @name xds_info_parsing
 NULL
@@ -64,7 +66,7 @@ parse_y <- function(y, xds_obj){
 
 #' @title Parse outputs after solving 
 #' @param xds_obj an **`xds`** model object
-#' @param outputs a [matrix] of _orbits returned by deSolve
+#' @param outputs a [matrix] of orbits returned by deSolve
 #' @return a named [list]
 #' @keywords internal
 #' @export
@@ -90,6 +92,13 @@ parse_orbits <- function(outputs, xds_obj){
     varslist$XH = list()
     for(ix in 1:s)
       varslist$XH[[ix]] = parse_XH_orbits(outputs, xds_obj, ix)
+  }
+
+  s = length(xds_obj$V_obj)
+  if(s>0){
+    varslist$V = list()
+    for(ix in 1:s)
+      varslist$V[[ix]] = parse_V_orbits(outputs, xds_obj, ix)
   }
 
   return(varslist)
@@ -300,7 +309,7 @@ parse_bionomics <- function(xds_obj, s=1) {
 #' @title Pull L Terms
 #'
 #' @description Pull the stored values of the
-#' alpha, eta
+#' alpha and eta.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
@@ -319,6 +328,7 @@ parse_L_terms <- function(xds_obj, s=1) {
     alpha = rbind(alpha, xds_obj$terms$alpha[[s]])
     eta   = rbind(eta, xds_obj$terms$eta[[s]])
   }
-  xds_obj$outputs$orbits$L[[s]] = list(alpha=alpha, eta=eta)
+  xds_obj$outputs$orbits$L[[s]]$alpha = alpha
+  xds_obj$outputs$orbits$L[[s]]$eta = eta
   return(xds_obj)
 }

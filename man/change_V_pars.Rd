@@ -2,7 +2,7 @@
 % Please edit documentation in R/variables-V-interface.R
 \name{change_V_pars}
 \alias{change_V_pars}
-\title{Set new X parameter values}
+\title{Set new V parameter values}
 \usage{
 change_V_pars(xds_obj, options = list(), i = 1)
 }
@@ -11,11 +11,11 @@ change_V_pars(xds_obj, options = list(), i = 1)
 
 \item{options}{a named list}
 
-\item{i}{the vector species index}
+\item{i}{the auxiliary-variable module index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$V_obj[[s]]}.
+This method dispatches on the type of \code{xds_obj$V_obj[[i]]}.
 }

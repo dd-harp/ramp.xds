@@ -15,6 +15,6 @@
 a list, the value of \code{shock_par}
 }
 \description{
-Get the shock parameters for a model forced by infectious biting
+Get the shock parameters for a model forced by infective biting.
 }
 \keyword{internal}

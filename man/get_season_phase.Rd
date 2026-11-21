@@ -15,5 +15,5 @@ get_season_phase(xds_obj, s = 1)
 the phase parameter(s)
 }
 \description{
-Get the \code{phase} parameter for the seasonality function
+Get the \code{phase} parameter for the seasonality function.
 }

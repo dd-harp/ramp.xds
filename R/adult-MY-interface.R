@@ -70,7 +70,6 @@ Update_MYt <- function(t, y, xds_obj, s) {
   UseMethod("Update_MYt", xds_obj$MY_obj[[s]])
 }
 
-
 #' @title Infective mosquito biting rate
 #' @description This method dispatches on the type of `xds_obj$MY_obj`.
 #' @param t time
@@ -99,8 +98,21 @@ F_fqM <- function(t, y, xds_obj, s) {
   UseMethod("F_fqM", xds_obj$MY_obj[[s]])
 }
 
-#' @title Number of eggs laid by adult mosquitoes
-#' @description This method dispatches on the type of `xds_obj$MY_obj`.
+#' @title Egg laying rate
+#' 
+#' @description 
+#' Compute the number of eggs laid by adult mosquitoes, per patch, per day.
+#' 
+#' @section Egg Laying Rates:
+#' The number of eggs laid by the adult mosquito population, per patch, per day
+#' is the product of:
+#' + \eqn{M} --- the number of egg-laying mosquitoes, per patch
+#' + \eqn{\nu} --- the number of egg batches laid by a mosquito in each patch, per mosquito, per day
+#' + \eqn{\Gamma} --- the number of eggs per patch
+#' \deqn{G = \nu M \Gamma}
+#' 
+#' @seealso [compute_eggs_laid], [egg_laying]
+#' 
 #' @param t time
 #' @param y dependent variables
 #' @param xds_obj an **`xds`** model object

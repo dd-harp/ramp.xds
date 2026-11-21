@@ -16,6 +16,6 @@ invisible()
 }
 \description{
 Removes forcing functions from the \code{EIR_obj} (to reduce the size)
-and stores the \code{xds} object using \code{saveRDS}
+and stores the \code{xds} object using \code{saveRDS}.
 }
 \keyword{internal}

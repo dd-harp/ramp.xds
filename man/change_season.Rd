@@ -17,6 +17,6 @@ change_season(X, xds_obj, ix = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Change parameters for the seasonality function
+Change parameters for the seasonality function.
 }
 \keyword{internal}

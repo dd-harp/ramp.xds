@@ -17,6 +17,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change mean net infectiousness (NI)
+Change the mean net infectiousness (NI).
 }
 \keyword{internal}

@@ -10,7 +10,7 @@ and the second is the MoI for "younger" infections that are detected
 with higher frequency than older ones.
 
 This model is derived under a restrictive set of assumptions,
-so it can not be extended to model dynamic changes in population size or
+so it cannot be extended to model dynamic changes in population size or
 treatment with anti-malarial drugs.
 }
 \section{State Variables}{
@@ -35,7 +35,7 @@ is a parameter, but it should be changed using \link{change_XH_inits}.
 \item{\eqn{h} or \code{foi}}{The force of infection is computed and stored by \link{Exposure} as \code{FoI}}
 }
 
-In the \code{SIS} module, there is no effect of pre-erythrocytic immunity, so
+In the \code{hMoI} module, there is no effect of pre-erythrocytic immunity, so
 a constant fraction of infectious bites causes an infection: the parameter \eqn{b.}
 }
 
@@ -74,7 +74,7 @@ dm_2/dt &= h - r_2 m_2 \\
 
 The model assumes that younger infections are more infectious, but that
 some transmission does occur from the older infections:
-\deqn{c_2 x_2 + c_1 (x_2 - x_1)}
-so the infectious density is \deqn{\left(c_2 x_2 + c_1 (x_2 - x_1)\right) H}
+\deqn{c_2 x_2 + c_1 (x_1 - x_2)}
+so the infectious density is \deqn{\left(c_2 x_2 + c_1 (x_1 - x_2)\right) H}
 }
 

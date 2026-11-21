@@ -16,6 +16,11 @@
 \item{times}{the times}
 }
 \description{
-Implements \link{xds_solve} for delay differential equations
+Solves a system of delay differential equations and computes the values of
+the dependent variables.
+
+Output times are set by \link{make_times_xde}.
+
+The returned model includes parsed outputs.
 }
 \keyword{internal}

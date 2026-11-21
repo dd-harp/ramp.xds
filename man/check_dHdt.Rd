@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-demography.R
 \name{check_dHdt}
 \alias{check_dHdt}
-\title{Check}
+\title{Check human population change}
 \usage{
 check_dHdt(xds_obj, i = 1)
 }
@@ -15,6 +15,7 @@ check_dHdt(xds_obj, i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Configure the births function
+Check population change and enable dynamic blood-feeding and transmission
+interfaces when the population changes.
 }
 \keyword{internal}

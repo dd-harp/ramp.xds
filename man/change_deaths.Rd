@@ -17,7 +17,8 @@ change_deaths(death_rates, xds_obj, i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Modify the death rates for a model with static population
-rates. The birth rate gets adjusted to ensure the \eqn{dH/dt=0}
+Modify the death rates. Birth rates are unchanged;
+\link{setup_deaths.constant} also adjusts births to balance deaths
+at the configured population density.
 }
 \keyword{internal}

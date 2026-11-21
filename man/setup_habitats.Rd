@@ -2,47 +2,50 @@
 % Please edit documentation in R/habitats.R
 \name{setup_habitats}
 \alias{setup_habitats}
-\title{Setup the aquatic habitats}
+\title{Set up the aquatic habitats}
 \usage{
 setup_habitats(xds_obj, membership)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{membership}{the membership vector}
+\item{membership}{a vector of counting numbers}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-Set up a part of the \code{xds} object that defines the interface for egg laying
+Set up a part of the \code{xds} object that defines the interface for egg laying.
 }
 \details{
-This implements a model for egg laying described by Wu SL, \emph{et al.}, (2023).
+Store the habitat vector, set up the habitat matrix, and initialize
+the laying matrix list.
+}
+\section{Habitat Vector}{
 
-Modular computation in \strong{\code{ramp.xds}} requires a rigid interface
-to guarantee mathematical consistency for egg laying and emergence.
-The interface is defined by an object called \code{egg_laying} that is
-attached to the \code{xds} object \code{xds_obj} as \code{xds_obj$egg_laying}.
-The interface includes
-\itemize{
-\item a habitat membership matrix, \eqn{N} made by \link{make_habitat_matrix}
-\item the habitat search weights
-\item a quantity that is motivated by mosquito searching for resources, called
-habitat availability \eqn{Q}, computed by \link{F_available_habitat};
-\item the availability of ovitraps
-\item the availability of unsuitable habitats
-\item the availability of anything that attracts egg laying mosquitoes, including ovitraps and unsuitable habitats
-\item the egg distribution matrix \eqn{O}, made by \link{make_U_matrix}
-\item a vector that stores eggs laid
+
+A habitat vector \eqn{(V)} indexes
+the patches where each aquatic habitat can be found.
+
+If the \eqn{i^{th}}
+habitat is located in the \eqn{j^{th}} patch, then \eqn{V_i = j.}
 }
 
-This function is called by \code{compute_xds_object_template} to set up \code{egg_laying} and the variables and parameters with all
-the variables it might depend on.
+\section{Habitat Matrix}{
+
+
+The habitat matrix \eqn{(\mathbf N)} is an \code{nPatches}\eqn{\times}\code{nHabitats} matrix
+that is constructed from the \link{habitat_vector}.
+
+If the \eqn{i^{th}} habitat is in the \eqn{j^{th}} patch, then
+\eqn{{N}_{j,i}=1.} Otherwise, \eqn{{N}_{j,i}=0.}
+
+If \eqn{x} is any vector describing a quantity in
+habitats (\emph{i.e.}, \eqn{\left|x\right|=}\code{nHabitats}), then
+\deqn{X=\mathbf{N}\cdot x} is a vector that has summed \eqn{x}
+by patch, and \eqn{\left|X\right|=}\code{nPatches}.
 }
-\references{
-{\insertRef{WuSL2023SpatialDynamics}{ramp.xds} }
-}
+
 \seealso{
 The habitat membership matrix is created by \code{\link[=make_habitat_matrix]{make_habitat_matrix()}}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/variables-V-interface.R
 \name{setup_V_obj}
 \alias{setup_V_obj}
-\title{Setup an \strong{V} Module (Human / Host Epidemiology & Demography)}
+\title{Set up a \strong{V} module}
 \usage{
 setup_V_obj(XHname, xds_obj, options = list(), i = 1)
 }
@@ -13,12 +13,12 @@ setup_V_obj(XHname, xds_obj, options = list(), i = 1)
 
 \item{options}{model options as a named list}
 
-\item{i}{the host species index}
+\item{i}{the auxiliary-variable module index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
 Set the parameter values and configure a model
-for the \strong{X} Component
+for the \strong{V} component.
 }

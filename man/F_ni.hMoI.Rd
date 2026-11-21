@@ -2,14 +2,14 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{F_ni.hMoI}
 \alias{F_ni.hMoI}
-\title{Compute the "true" prevalence of infection / parasite rate}
+\title{Compute net infectiousness}
 \usage{
 \method{F_ni}{hMoI}(vars, XH_obj)
 }
 \arguments{
 \item{vars}{a list with the variables attached by name}
 
-\item{XH_obj}{a list defining a model for human}
+\item{XH_obj}{a list defining a model for humans}
 }
 \value{
 a \link{numeric} vector of length \code{nStrata}

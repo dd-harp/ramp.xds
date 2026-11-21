@@ -17,6 +17,6 @@
 a \link{list}
 }
 \description{
-Return the PR by RDT
+Return the PR by RDT.
 }
 \keyword{internal}

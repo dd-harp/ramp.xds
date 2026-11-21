@@ -12,10 +12,10 @@ get_XH_ix(xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-an \strong{\code{xds}} model object
+a \link{list} of variable indices
 }
 \description{
-Get and display the values of the indices
-for the variables
+Get the values of the indices
+for the variables.
 }
 \keyword{internal}

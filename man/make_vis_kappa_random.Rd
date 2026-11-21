@@ -24,8 +24,8 @@ make_vis_kappa_random(
 \item{p2}{argument for f_rand}
 }
 \value{
-a \link{matrix}
+a \link{vector}
 }
 \description{
-Set up a random vector
+Set up a random vector.
 }

@@ -140,8 +140,8 @@ parameter sets the total number of eggs laid \eqn{G}
 **forcing**
 : Exogenous (externally imposed) variation in model inputs, such as seasonal mosquito emergence driven by rainfall. Models can be forced via emergence (`Lambda`), the EIR (`eir`), or other mechanisms.
 
-**trace function**
-: A function of time $t$ used to specify an exogenous input to the model. Built using `make_function()` and parameterised with `makepar_*` helpers. Trace functions can represent constant, seasonal, trend-driven, or spline-interpolated signals.
+**forcing function**
+: A time-dependent function that specifies an input to a model.
 
 **seasonality**
 : Periodic, typically annual, variation in transmission-relevant quantities such as mosquito emergence, rainfall, or EIR. Represented in **`ramp.xds`** via the `F_season` family of functions.

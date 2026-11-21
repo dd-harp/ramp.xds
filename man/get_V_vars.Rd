@@ -11,14 +11,14 @@ get_V_vars(y, xds_obj, i = 1)
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
+\item{i}{the auxiliary-variable module index}
 }
 \value{
 Variables as a named list
 }
 \description{
-Get the the values
+Get the values
 of variables from the flat state
 variable vector \eqn{y}, and return
-the values as a named list
+the values as a named list.
 }

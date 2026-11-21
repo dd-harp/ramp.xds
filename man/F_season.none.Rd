@@ -12,9 +12,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-an empty vector
+\code{NULL}
 }
 \description{
-Evaluate the function \code{F_season} for a forced model when \code{forced_by} is "none"
+Evaluate the function \code{F_season} for a forced model when \code{forced_by} is "none".
 }
 \keyword{internal}

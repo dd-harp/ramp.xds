@@ -15,5 +15,5 @@ get_season_pw(xds_obj, s = 1)
 the pw parameter(s)
 }
 \description{
-Get the \code{pw} parameter for the seasonality function
+Get the \code{pw} parameter for the seasonality function.
 }

@@ -19,7 +19,7 @@ update_vis_kappa(t, y, xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Port function to compute the availability of vis_kappa.
+Port function to compute the net infectiousness of visitors.
 Dispatches on \code{class(xds_obj$patches$vis_kappa_obj[[s]])}.
 }
 \keyword{internal}

@@ -7,9 +7,9 @@
 approx_equal(a, b, tol = sqrt(.Machine$double.eps))
 }
 \arguments{
-\item{a}{a \link{numeric} model object}
+\item{a}{a \link{numeric} value}
 
-\item{b}{a \link{numeric} model object}
+\item{b}{a \link{numeric} value}
 
 \item{tol}{the numeric tolerance}
 }

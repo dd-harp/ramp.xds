@@ -20,6 +20,7 @@ Rebuild forcing functions on the EIR object using \code{make_function}:
 \item \code{F_season} is made from \code{season_par}
 \item \code{F_trend} is made from \code{trend_par}
 \item \code{F_shock} is made from \code{shock_par}
+\item \code{F_age} is made from \code{age_par}
 }
 }
 \keyword{internal}

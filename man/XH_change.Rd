@@ -6,7 +6,7 @@
 \description{
 Change functions for \strong{XH}
 
-\code{?change_XH}
+\code{?XH_change}
 \itemize{
 \item \code{\link{change_H}} -- change host population density
 \item \code{\link{change_XH_inits}} -- change initial values

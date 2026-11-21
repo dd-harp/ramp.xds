@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats.R
 \name{habitat_dynamics}
 \alias{habitat_dynamics}
-\title{Compute eggs laid}
+\title{Habitat Dynamics}
 \usage{
 habitat_dynamics(t, y, xds_obj)
 }
@@ -17,7 +17,7 @@ habitat_dynamics(t, y, xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Computes eggs laid with exogenous forcing
-on parameter affecting host availability.
+Update habitat search weights, unsuitable habitats,
+and ovitraps, and update resource availability for egg laying.
 }
 \keyword{internal}

@@ -17,7 +17,7 @@ xde_derivatives(t, y, xds_obj)
 a \link{list} containing the vector of all state derivatives
 }
 \description{
-The function to compute the derivatives dispatches on \code{class(frame)}
+The function to compute the derivatives dispatches on \code{class(xds_obj$frame)}.
 }
 \seealso{
 \link{xds_solve}

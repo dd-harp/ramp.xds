@@ -67,14 +67,6 @@ Set up the model structure:
 \item \code{nPatches} \eqn{=} \code{nHabitats}
 \item \code{nVectorSpecies}\eqn{=1}
 }
-
-\strong{Next}
-\itemize{
-\item To solve the model, see \link{xds_solve}
-\item To check or change parameters, see \link{xds_info_change_parameters}
-\item To check or change the initial conditions, see \link{xds_info_initial_conditions}
-\item To modify the model structure, see \link{xds_info_advanced_setup}
-}
 }
 \note{
 \link{xds_setup} calls \link{make_xds_object_template}, which returns an object template with
@@ -88,8 +80,8 @@ and egg laying (see \link{xds_object}).
 \itemize{
 \item Basic Setup: \link{xds_setup}, \link{xds_info_basic_setup}
 \itemize{
-\item \link{xds_info_change_parameters}
-\item \link{xds_info_initial_conditions}
+\item change parameters --- \link{xds_info_change_parameters}
+\item change initial conditions --- \link{xds_info_initial_conditions}
 }
 \item Advanced Setup: \link{xds_info_advanced_setup}
 \item Solving: \link{xds_solve}

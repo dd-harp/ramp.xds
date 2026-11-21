@@ -23,6 +23,6 @@ change parameter values named in \code{options} leaving other values unchanged.
 Parameters: \code{Lambda}, \code{F_season}, \code{F_trend}, or \code{F_shock}.
 }
 \note{
-Utilities for trace functions are in \code{ramp.func}
+Utilities for forcing functions are in \code{ramp.func}
 }
 \keyword{internal}

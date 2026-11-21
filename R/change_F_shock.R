@@ -1,8 +1,10 @@
+# X
+
 #' @title Change F_shock
 #'
 #' @description
-#' Change  the shock function. The function `F` should have the form
-#' \eqn{F(t,V)}.  If the variable \eqn{V} is not used, it's default value should be set to an empty list.  
+#' Change the shock function. The function `F` should have the form
+#' \eqn{F(t,V)}. If the variable \eqn{V} is not used, its default value should be set to an empty list.
 #' 
 #' @param F new shock function
 #' @param xds_obj an **`xds`** model object
@@ -20,8 +22,8 @@ change_F_shock = function(F, xds_obj, ix=1){
 #' @title Change F_shock
 #'
 #' @description
-#' Change  the shock function
-#' when `forced_by = "none"`
+#' Change the shock function
+#' when `forced_by = "none"`.
 #' 
 #' @inheritParams change_F_shock
 #'
@@ -36,8 +38,8 @@ change_F_shock.none = function(F, xds_obj, ix=1){
 #' @title Change F_shock
 #'
 #' @description
-#' Change  the shock function
-#' when `forced_by = "Lambda"`
+#' Change the shock function
+#' when `forced_by = "Lambda"`.
 #' 
 #' @inheritParams change_F_shock
 #'
@@ -53,8 +55,8 @@ change_F_shock.Lambda = function(F, xds_obj, ix=1){
 #' @title Change F_shock
 #'
 #' @description
-#' Change  the shock function
-#' when `forced_by = "eir"`
+#' Change the shock function
+#' when `forced_by = "eir"`.
 #' 
 #' @inheritParams change_F_shock
 #' 
@@ -71,8 +73,8 @@ change_F_shock.eir = function(F, xds_obj, ix=1){
 #' @title Change F_shock
 #'
 #' @description
-#' Change  the shock function
-#' when `forced_by = "kappa"`
+#' Change the shock function
+#' when `forced_by = "kappa"`.
 #' 
 #' @inheritParams change_F_shock
 #' 
@@ -89,8 +91,8 @@ change_F_shock.kappa = function(F, xds_obj, ix=1){
 #' @title Change F_shock
 #'
 #' @description
-#' Change  the shock function
-#' when `forced_by = "MY"`
+#' Change the shock function
+#' when `forced_by = "MY"`.
 #' 
 #' @inheritParams change_F_shock
 #' 
@@ -102,4 +104,3 @@ change_F_shock.MY = function(F, xds_obj, ix=1){
   xds_obj$MY_obj[[ix]]$F_shock = F
   return(xds_obj)
 }
-

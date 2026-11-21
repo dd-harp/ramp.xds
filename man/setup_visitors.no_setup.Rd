@@ -7,18 +7,18 @@
 \method{setup_visitors}{no_setup}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-Don't change anything
+Don't change anything.
 }
 \keyword{internal}

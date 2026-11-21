@@ -17,7 +17,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change  the shock function
-when \code{forced_by = "none"}
+Change the shock function
+when \code{forced_by = "none"}.
 }
 \keyword{internal}

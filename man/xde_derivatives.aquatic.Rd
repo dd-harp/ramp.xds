@@ -2,7 +2,7 @@
 % Please edit documentation in R/xde_derivatives.R
 \name{xde_derivatives.aquatic}
 \alias{xde_derivatives.aquatic}
-\title{Differential equation models for aquatic mosquito populations}
+\title{Compute Derivatives}
 \usage{
 \method{xde_derivatives}{aquatic}(t, y, xds_obj)
 }
@@ -17,7 +17,6 @@
 a \link{list} containing the vector of all state derivatives
 }
 \description{
-Compute derivatives for \link[deSolve:ode]{deSolve::ode} or \link[deSolve:dede]{deSolve::dede} using
-generic methods for each model component.
+Compute derivatives for an \emph{aquatic} model.
 }
 \keyword{internal}

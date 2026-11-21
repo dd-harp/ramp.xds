@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-demography.R
 \name{setup_demog_obj}
 \alias{setup_demog_obj}
-\title{Setup births}
+\title{Set up births and deaths}
 \usage{
 setup_demog_obj(xds_obj, i = 1)
 }
@@ -15,6 +15,6 @@ setup_demog_obj(xds_obj, i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Configure the births function
+Configure the births and deaths functions.
 }
 \keyword{internal}

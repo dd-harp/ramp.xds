@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_trend.R
 \name{show_trend}
 \alias{show_trend}
-\title{Plot the Temporal Trend}
+\title{Plot the temporal trend}
 \usage{
 show_trend(
   xds_obj,
@@ -18,11 +18,11 @@ show_trend(
 
 \item{tm}{the time points}
 
-\item{add}{add to existing plot}
+\item{add}{add to an existing plot}
 
 \item{clr}{the line color}
 
-\item{rng}{if not NULL, range limits for plotting}
+\item{rng}{if not \code{NULL}, range limits for plotting}
 
 \item{shock}{if TRUE, compute the trend with a shock}
 }
@@ -31,5 +31,5 @@ the temporal trend, invisibly
 }
 \description{
 For a model with temporal forcing,
-show the temporal trend
+show the temporal trend.
 }

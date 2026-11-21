@@ -7,7 +7,7 @@
 In \strong{\code{ramp.xds}}, forcing is implemented through \emph{ports} and \emph{junctions,} or through exogenous
 forcing of dynamical terms by \code{trivial} modules (see \link{xds_info_trivial_forcing}).
 \itemize{
-\item Parameter or terms that could be time-varying are implemented as \emph{ports.} There are several
+\item Parameters or terms that could be time-varying are implemented as \emph{ports.} There are several
 kinds of ports:
 \itemize{
 \item mosquito bionomic ports set a baseline that can be modified by vector control;

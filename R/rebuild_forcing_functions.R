@@ -1,3 +1,4 @@
+# X
 
 #' Rebuild Forcing Functions
 #'
@@ -26,6 +27,7 @@ rebuild_forcing_functions = function(xds_obj, ix){
 #' + `F_season` is made from `season_par`
 #' + `F_trend` is made from `trend_par`
 #' + `F_shock` is made from `shock_par`
+#' + `F_age` is made from `age_par`
 #'
 #' @inheritParams rebuild_forcing_functions
 #' @importFrom ramp.func make_function
@@ -91,12 +93,12 @@ rebuild_forcing_functions.MY = function(xds_obj, ix){
 #' @description
 #' Rebuild forcing functions on the XH object using `make_function` 
 #' 
-#' For \eqn{\kappa}
+#' For \eqn{\kappa}:
 #' + `F_season` is made from `season_par`
 #' + `F_trend` is made from `trend_par`
 #' + `F_shock` is made from `shock_par`
 #' 
-#' For \eqn{H}
+#' For \eqn{H}:
 #' + `H_season` is made from `H_season_par`
 #' + `H_trend` is made from `H_trend_par`
 #' + `H_shock` is made from `H_shock_par`
@@ -112,8 +114,8 @@ rebuild_forcing_functions.XH = function(xds_obj, ix){
     xds_obj$XH_obj[[ix]]$F_season = make_function(season_par)
     xds_obj$XH_obj[[ix]]$F_trend = make_function(trend_par)
     xds_obj$XH_obj[[ix]]$F_shock = make_function(shock_par)
-    xds_obj$XH_obj[[ix]]$F_trend_H = make_function(H_trend_par)
-    xds_obj$XH_obj[[ix]]$F_season_H = make_function(H_season_par)
-    xds_obj$XH_obj[[ix]]$F_shock_H = make_function(H_shock_par)
+    xds_obj$XH_obj[[ix]]$H_trend = make_function(H_trend_par)
+    xds_obj$XH_obj[[ix]]$H_season = make_function(H_season_par)
+    xds_obj$XH_obj[[ix]]$H_shock = make_function(H_shock_par)
     return(xds_obj)
   })}

@@ -26,6 +26,6 @@ a \link{list}
 }
 }
 \note{
-The method assigns \code{class(method)='method'} then
-dispatches on \code{'method'}
+The method assigns \code{class(method)=method} then
+dispatches on \code{method}.
 }

@@ -17,6 +17,6 @@
 a \link{list}
 }
 \description{
-Return the \emph{Pf}PR by PCR
+Return the \emph{Pf}PR by PCR.
 }
 \keyword{internal}

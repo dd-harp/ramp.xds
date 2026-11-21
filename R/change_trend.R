@@ -1,8 +1,9 @@
+# X
 
 #' @title Set the interpolating points
 #'
 #' @description
-#' Set the interpolating points for F_trend
+#' Set the interpolating points for F_trend.
 #'
 #' @param X the new interpolating points
 #' @param xds_obj an **`xds`** model object
@@ -36,8 +37,8 @@ change_spline = function(X, xds_obj, s=1){
 #' @title Change spline interpolation points
 #'
 #' @description
-#' Change the interpolation points for a spline function.
-#' when `forced_by = "none"`
+#' Change the interpolation points for a spline function
+#' when `forced_by = "none"`.
 #'
 #' @inheritParams change_spline
 #'
@@ -52,8 +53,8 @@ change_spline.none = function(X, xds_obj, s=1){
 #' @title Change spline interpolation points
 #'
 #' @description
-#' Change the interpolation points for a spline function.
-#' when `forced_by = "Lambda"`
+#' Change the interpolation points for a spline function
+#' when `forced_by = "Lambda"`.
 #'
 #' @inheritParams change_spline
 #'
@@ -66,15 +67,15 @@ change_spline.none = function(X, xds_obj, s=1){
 change_spline.Lambda = function(X, xds_obj, s=1){
   xds_obj$L_obj[[s]]$trend_par$yy = X$yy
   xds_obj$L_obj[[s]]$trend_par$tt = X$tt
-  xds_obj$L_obj[[1]]$F_trend = make_function(xds_obj$L_obj[[1]]$trend_par)
+  xds_obj$L_obj[[s]]$F_trend = make_function(xds_obj$L_obj[[s]]$trend_par)
   return(xds_obj)
 }
 
 #' @title Change spline interpolation points
 #'
 #' @description
-#' Change the interpolation points for a spline function.
-#' when `forced_by = "eir"`
+#' Change the interpolation points for a spline function
+#' when `forced_by = "eir"`.
 #'
 #' @inheritParams change_spline
 #'
@@ -95,7 +96,7 @@ change_spline.eir = function(X, xds_obj, s=1){
 #'
 #' @description
 #' Set new \eqn{y}-values for the spline interpolating points
-#' and update `F_trend`
+#' and update `F_trend`.
 #'
 #' @param yy new y values for the interpolation points
 #' @param xds_obj an **`xds`** model object
@@ -114,7 +115,7 @@ change_spline_y = function(yy, xds_obj, s=1){
 #' @description
 #' Set new \eqn{y}-values for the spline interpolating points
 #' and update `F_trend`
-#' when `forced_by = "none"`
+#' when `forced_by = "none"`.
 #'
 #' @inheritParams change_spline_y
 #'
@@ -131,7 +132,7 @@ change_spline_y.none = function(yy, xds_obj, s=1){
 #' @description
 #' Set new \eqn{y}-values for the spline interpolating points
 #' and update `F_trend`
-#' when `forced_by = "Lambda"`
+#' when `forced_by = "Lambda"`.
 #'
 #' @inheritParams change_spline_y
 #'
@@ -144,7 +145,7 @@ change_spline_y.none = function(yy, xds_obj, s=1){
 change_spline_y.Lambda = function(yy, xds_obj, s=1){
   stopifnot(length(yy) == length(xds_obj$L_obj[[s]]$trend_par$tt))
   xds_obj$L_obj[[s]]$trend_par$yy = yy
-  xds_obj$L_obj[[1]]$F_trend = make_function(xds_obj$L_obj[[1]]$trend_par)
+  xds_obj$L_obj[[s]]$F_trend = make_function(xds_obj$L_obj[[s]]$trend_par)
   return(xds_obj)
 }
 
@@ -153,7 +154,7 @@ change_spline_y.Lambda = function(yy, xds_obj, s=1){
 #' @description
 #' Set new \eqn{y}-values for the spline interpolating points
 #' and update `F_trend`
-#' when `forced_by = "eir"`
+#' when `forced_by = "eir"`.
 #'
 #' @inheritParams change_spline_y
 #'
@@ -169,4 +170,3 @@ change_spline_y.eir = function(yy, xds_obj, s=1){
   xds_obj$EIR_obj$F_trend <- make_function(xds_obj$EIR_obj$trend_par)
   return(xds_obj)
 }
-

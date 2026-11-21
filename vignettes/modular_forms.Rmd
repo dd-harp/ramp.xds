@@ -163,7 +163,7 @@ Derivatives for the mosquito ecology and "SI" model are computed by `dMYdt.SI`. 
 getS3method("dMYdt", "SI")
 ```
 
-The term $\Lambda$ is passed from the trace function `F_emerge.trivialL`. Documentation is available through help in two ways: `?trivialL` or `?F_emerge.trivialL`. The implementation looks like this:
+The term $\Lambda$ is passed from the forcing function `F_emerge.trivialL`. Documentation is available through help in two ways: `?trivialL` or `?F_emerge.trivialL`. The implementation looks like this:
 
 ```{r}
 getS3method("F_emerge", "trivialL")

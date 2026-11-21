@@ -1,0 +1,33 @@
+---
+title: "Trivial Modules and Forcing Functions"
+subtitle: "Generalized, Modular SIS Infection Dynamics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Trivial Modules and Forcing Functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+It is often useful to build models that give the user control over the inputs. To enable this, **`ramp.xds`** has created a *trivial* module for each one of the components. The module outputs the *dynamical terms* through a call to a forcing function.  
+
+## Dynamical Terms
+
+The trivial modules ignore inputs and output the dynamical terms: 
+
++ `trivialXH` outputs two quantities: 
+
+    - $\kappa$ --- the user configures a function to set $\kappa$ in the patches 
+
+    - $H$ --- human population density  
+    
++ `trivialMY` outputs either:
+
+    - $G$ --- eggs laid by the adult mosquito population; or
+    
+    - $fqZ$ --- infective biting density 
+    
++ `trivialL` outputs
+
+    - $\Lambda$ --- emerging 
+
+## Composed Time Series Functions

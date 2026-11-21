@@ -11,12 +11,12 @@ show_season(xds_obj, tm = seq(0, 730, by = 5), add = FALSE)
 
 \item{tm}{the time points}
 
-\item{add}{add to existing plot}
+\item{add}{add to an existing plot}
 }
 \value{
 the seasonal pattern, invisibly
 }
 \description{
-For a model forced by emergence,
-show the seasonal pattern
+For a model with temporal forcing,
+show the seasonal pattern.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{make_U_matrix}
 \alias{make_U_matrix}
-\title{Compute the Laying Matrix}
+\title{Make the laying matrix}
 \usage{
 make_U_matrix(search_weights, habitat_matrix, Q)
 }
@@ -14,37 +14,81 @@ make_U_matrix(search_weights, habitat_matrix, Q)
 \item{Q}{the availability of egg-laying habitats}
 }
 \value{
-a \code{nHabitats} \eqn{\times} \code{nPatches} \link{matrix} describing egg distribution, \eqn{O}
+an \code{nHabitats} \eqn{\times} \code{nPatches} \link{matrix} describing egg distribution, \eqn{U}
 }
 \description{
-The egg laying matrix, \eqn{O}, allocates
-a portion of eggs laid
-by adult mosquitoes in a patch to each
-one of the aquatic habitats in the patch
+Make the egg laying matrix \eqn{(\mathbf {U})}.
 }
-\details{
-The algorithm is motivated by
-the notion of mosquito \emph{searching} for aquatic habitat
-and a quantity we call \emph{habitat availability}, \eqn{Q}.
-Each habitat is assigned a \emph{search weight,} \eqn{\omega}.
-In the simplest case, habitat availability is the sum of \eqn{\omega} by patch, which uses
-the habitat membership matrix, \eqn{N}. If the habitats in the model got
-all the eggs, then \deqn{Q = N \cdot \omega.}
+\section{Habitat Matrix}{
 
-The fraction of eggs in the \eqn{j^{th}} patch laid
-in the \eqn{i^{th}} habitat is \eqn{\omega_i / Q_j.}
 
-To make the model extensible, habitat availability sums all the places where
-mosquitoes might lay eggs, including ovitraps and unsuitable habitats.
-If every element in \eqn{Q} were positive, the egg
-distribution matrix  would be:
-\deqn{{O} = \mbox{diag}\left(\omega \right) \cdot {N}^T \cdot \mbox{diag} \left(\frac{1}{Q}\right).}
-To avoid dividing by zero, the zero elements in \eqn{Q} are set to an arbitrary positive value.
+The habitat matrix \eqn{(\mathbf N)} is an \code{nPatches}\eqn{\times}\code{nHabitats} matrix
+that is constructed from the \link{habitat_vector}.
+
+If the \eqn{i^{th}} habitat is in the \eqn{j^{th}} patch, then
+\eqn{{N}_{j,i}=1.} Otherwise, \eqn{{N}_{j,i}=0.}
+
+If \eqn{x} is any vector describing a quantity in
+habitats (\emph{i.e.}, \eqn{\left|x\right|=}\code{nHabitats}), then
+\deqn{X=\mathbf{N}\cdot x} is a vector that has summed \eqn{x}
+by patch, and \eqn{\left|X\right|=}\code{nPatches}.
 }
+
+\section{Habitat Availability}{
+
+
+Egg laying by adult mosquitoes was modeled as the outcome of
+\emph{searching} for aquatic habitats.
+
+Each habitat is assigned a \emph{search weight} \eqn{(w).}
+
+Habitat availability in a patch is the sum of
+the search weights of all the habitats in that patch.
+
+Habitat availability \eqn{(Q)} is computed
+using the habitat matrix \eqn{(\mathbf{N})}:
+
+\deqn{Q = \mathbf{N}\cdot w}
+\itemize{
+\item Patch emigration rates
+and egg laying rates by adult mosquitoes
+can be modeled as a functional response to
+habitat availability.
+}
+}
+
+\section{Laying Matrix}{
+
+
+The egg laying matrix \eqn{(\mathbf {U})} distributes
+the eggs laid by the adult mosquitoes in each patch
+among the aquatic habitats in that
+patch by relative availability.
+
+The algorithm is motivated by \emph{searching} for aquatic habitat.
+Each habitat is assigned a \emph{search weight} \eqn{(w).} Habitat
+availability \eqn{(Q)} sums the search weights by patch.
+The fraction of all eggs laid in the \eqn{j^{th}} patch that
+end up in the \eqn{i^{th}} habitat is \eqn{w_i / Q_j.}
+
+This is computed by constructing the laying matrix, \eqn{\mathbf U},
+a \code{nHabitats} \eqn{\times} \code{nPatches} matrix. To
+avoid division-by-zero errors
+for patches with no available habitats, a quantity
+\eqn{\epsilon = 1e-14} is added
+to availability:
+\deqn{
+\mathbf{U}=
+\mbox{diag}\left( w \right)
+\cdot \mathbf{N}^T \cdot
+\mbox{diag} \left( \frac{1}{\textstyle{Q + \epsilon}} \right)
+}
+}
+
 \seealso{
 The membership matrix \eqn{N} is computed by \link{make_habitat_matrix}
 
-Total habitat availability, \eqn{\cal Q}, is computed by \link{F_available_habitat}
+Total habitat availability, \eqn{Q}, is computed by \link{F_available_habitat}
 
 The availability of ovitraps and bad habitats is set up in \link{setup_egg_laying_interface}
 }
