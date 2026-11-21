@@ -20,4 +20,4 @@ F_shock(tm, xds_obj)
 
 ## Value
 
-the temporal shock, invisibly
+the temporal shock

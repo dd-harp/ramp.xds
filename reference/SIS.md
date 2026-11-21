@@ -100,7 +100,7 @@ curing malaria infections:
 - in addition, prevalent infections are treated and cured at the rate
   \\\sigma\\
 
-- functions describes an increase in clearance caused by mass treatment,
+- functions describe an increase in clearance caused by mass treatment,
   \\\Xi(t)\\, a *shock* function
 
 The total per-capita clearance rate from treatment is thus \\\rho h +
@@ -110,7 +110,7 @@ After clearing, individuals are susceptible to infection.
 
 ## Demography
 
-This model has no parameter or terms to describe disease-induced
+This model has no parameters or terms to describe disease-induced
 mortality.
 
 - [`Births`](https://dd-harp.github.io/ramp.xds/reference/Births.md) or
@@ -162,9 +162,10 @@ attached.
 \$\$ H_t = H\_{t-1} + \mathbf{B}(t,H\_{t-1}) - \mathbf{D}(H\_{t-1})\$\$
 
 **Infection Dynamics** — \\I_t\\ is updated in two steps: survival
-first, and disease dynamics second: \$\$\begin{array}{rl} I_s &=
-I\_{t-1} - \mathbf{D}(I\_{t-1}) \\ I_t &= \alpha (1-\rho)(H_t-I_s) +
-e^{-(r + \rho h + \sigma + \Xi(t))} I_s \end{array}\$\$
+first, and disease dynamics second: Let \\\alpha = 1-e^{-h}\\.
+\$\$\begin{array}{rl} I_s &= I\_{t-1} - \mathbf{D}(I\_{t-1}) \\ I_t &=
+\alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
+\end{array}\$\$
 
 After solving, the orbit of the variable \\S=H-I\\ is computed and
 attached.

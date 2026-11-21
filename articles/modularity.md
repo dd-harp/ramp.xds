@@ -7,8 +7,8 @@ differential equations or discrete-time systems.
 
 Dynamical systems describing mosquito-borne pathogens are naturally
 modular. To emphasize the modular nature, we can write the equations
-using modular forms (see the vignette: [Modular
-Forms](https://dd-harp.github.io/ramp.xds/articles/modularity.html)).
+using modular forms (see the vignette on [Modular
+Forms.](https://dd-harp.github.io/ramp.xds/articles/modularity.html))
 This software implements a modular framework, and it was developed to
 model exogenous forcing by weather, vector control, health systems, and
 the environment (Figure 1).

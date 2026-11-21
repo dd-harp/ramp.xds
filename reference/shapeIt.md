@@ -1,6 +1,6 @@
-# Check the shape and dimensions of an model object
+# Check the shape and dimensions of a model object
 
-Check the shape and dimensions of an model object
+Check the shape and dimensions of a model object
 
 ## Usage
 
@@ -12,15 +12,15 @@ shapeIt(obj, d1, d2)
 
 - obj:
 
-  a [numeric](https://rdrr.io/r/base/numeric.html) model object
+  a [numeric](https://rdrr.io/r/base/numeric.html) input
 
 - d1:
 
-  an [integer](https://rdrr.io/r/base/integer.html)
+  the required number of rows
 
 - d2:
 
-  an [integer](https://rdrr.io/r/base/integer.html)
+  the required number of columns
 
 ## Value
 

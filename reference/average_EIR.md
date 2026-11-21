@@ -5,11 +5,11 @@ the population strata. The object members is a membership matrix, like
 the residence matrix (see
 [get_residence_matrix](https://dd-harp.github.io/ramp.xds/reference/get_residence_matrix.md)).
 If the residence matrix were passed to members, average_EIR returns the
-average EIR for the residents of each patch, which is could be different
+average EIR for the residents of each patch, which could be different
 from what would be computed.
 
-The default, `members=NULL,` creates a \\1 \times\\ `nStrata` matrix,
-which takes the matrix over the whole population. If `members` is a
+The default, `members=NULL`, creates an `nStrata` \\\times 1\\ matrix,
+which computes the average over the whole population. If `members` is a
 matrix with 1 column and `nStrata` rows, with only some elements set to
 one, then it returns the average over those strata.
 
@@ -35,4 +35,4 @@ average_EIR(xds_obj, i = 1, members = NULL)
 
 ## Value
 
-a PfPR
+the average EIR

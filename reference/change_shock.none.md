@@ -1,6 +1,6 @@
 # Change shock parameters
 
-Change parameters for the shock function when `forced_by = "none"`
+Change parameters for the shock function when `forced_by = "none"`.
 
 ## Usage
 

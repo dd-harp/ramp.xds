@@ -9,19 +9,19 @@
 for some subset(s) of the population strata. The object members is a
 membership matrix, like the residence matrix (see get_residence_matrix).
 If the residence matrix were passed to members, average_EIR returns
-the average EIR for the residents of each patch, which is could be different
+the average EIR for the residents of each patch, which could be different
 from what would be computed.
-The default, members=NULL, creates a \(1 \times\) nStrata matrix,
-which takes the matrix over the whole population. If members is a
+The default, members=NULL, creates an nStrata \(\times 1\) matrix,
+which computes the average over the whole population. If members is a
 matrix with 1 column and nStrata rows, with only some elements set to one,
 then it returns the average over those strata."><meta property="og:description" content="This is a generic way of computing the average EIR
 for some subset(s) of the population strata. The object members is a
 membership matrix, like the residence matrix (see get_residence_matrix).
 If the residence matrix were passed to members, average_EIR returns
-the average EIR for the residents of each patch, which is could be different
+the average EIR for the residents of each patch, which could be different
 from what would be computed.
-The default, members=NULL, creates a \(1 \times\) nStrata matrix,
-which takes the matrix over the whole population. If members is a
+The default, members=NULL, creates an nStrata \(\times 1\) matrix,
+which computes the average over the whole population. If members is a
 matrix with 1 column and nStrata rows, with only some elements set to one,
 then it returns the average over those strata."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -109,10 +109,10 @@ then it returns the average over those strata."></head><body>
 for some subset(s) of the population strata. The object members is a
 membership matrix, like the residence matrix (see <a href="get_residence_matrix.html">get_residence_matrix</a>).
 If the residence matrix were passed to members, average_EIR returns
-the average EIR for the residents of each patch, which is could be different
+the average EIR for the residents of each patch, which could be different
 from what would be computed.</p>
-<p>The default, <code>members=NULL,</code> creates a \(1 \times\) <code>nStrata</code> matrix,
-which takes the matrix over the whole population. If <code>members</code> is a
+<p>The default, <code>members=NULL</code>, creates an <code>nStrata</code> \(\times 1\) matrix,
+which computes the average over the whole population. If <code>members</code> is a
 matrix with 1 column and <code>nStrata</code> rows, with only some elements set to one,
 then it returns the average over those strata.</p>
     </div>
@@ -140,7 +140,7 @@ then it returns the average over those strata.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a PfPR</p>
+    <p>the average EIR</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

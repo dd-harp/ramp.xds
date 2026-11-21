@@ -1,6 +1,6 @@
 # Change F_season
 
-Change the season function when `forced_by = "MY"`
+Change the season function when `forced_by = "MY"`.
 
 ## Usage
 

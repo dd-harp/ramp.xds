@@ -1,7 +1,7 @@
 # Change F_shock
 
 Change the shock function. The function `F` should have the form
-\\F(t,V)\\. If the variable \\V\\ is not used, it's default value should
+\\F(t,V)\\. If the variable \\V\\ is not used, its default value should
 be set to an empty list.
 
 ## Usage

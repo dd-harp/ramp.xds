@@ -1,4 +1,4 @@
-# Setup Initial Values for **V** Modules
+# Set up initial values for **V** modules
 
 This method dispatches on `xds_obj$V_obj[[i]]`.
 
@@ -24,7 +24,7 @@ setup_V_inits(xds_obj, H, options = list(), i = 1)
 
 - i:
 
-  the host species index
+  the auxiliary-variable module index
 
 ## Value
 

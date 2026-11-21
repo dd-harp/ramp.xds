@@ -1,7 +1,7 @@
 # saveRDS for `xds` Objects
 
-Removes forcing functions from the `EIR_obj` (to reduce the size) and
-stores the `xds` object using `saveRDS`
+Removes forcing functions from the `MY_obj` (to reduce the size) and
+stores the `xds` object using `saveRDS`.
 
 ## Usage
 

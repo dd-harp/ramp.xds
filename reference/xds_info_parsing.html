@@ -6,13 +6,13 @@
     }
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Parsing — xds_info_parsing"><meta name="description" content="After solving a system of equations using xds_solve, the outputs
-are parsed and attached to xds_object$outputs.
+are parsed and attached to xds_obj$outputs.
 Use get_*_orbits to inspect the orbits.
-Note: xds_object$outputs are overridden each time
+Note: xds_obj$outputs are overwritten each time
 xds_solve is called."><meta property="og:description" content="After solving a system of equations using xds_solve, the outputs
-are parsed and attached to xds_object$outputs.
+are parsed and attached to xds_obj$outputs.
 Use get_*_orbits to inspect the orbits.
-Note: xds_object$outputs are overridden each time
+Note: xds_obj$outputs are overwritten each time
 xds_solve is called."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
@@ -96,9 +96,9 @@ xds_solve is called."></head><body>
 
     <div class="ref-description section level2">
     <p>After solving a system of equations using <a href="xds_solve.html">xds_solve</a>, the outputs
-are parsed and attached to <code>xds_object$outputs</code>.</p>
+are parsed and attached to <code>xds_obj$outputs</code>.</p>
 <p>Use <code>get_*_orbits</code> to inspect the orbits.</p>
-<p><strong>Note:</strong> <code>xds_object$outputs</code> are overridden each time
+<p><strong>Note:</strong> <code>xds_obj$outputs</code> are overwritten each time
 <a href="xds_solve.html">xds_solve</a> is called.</p>
     </div>
 
@@ -107,16 +107,17 @@ are parsed and attached to <code>xds_object$outputs</code>.</p>
     <h2 id="internals">Internals<a class="anchor" aria-label="anchor" href="#internals"></a></h2>
 
 
-<ol><li><p>Each module defines a method <code>parse_*_orbits</code></p></li>
-<li><p><a href="xds_solve.html">xds_solve</a> calls <a href="parse_outputs.html">parse_outputs</a> which calls <code>parse_*_orbits</code> for each component and for each species</p></li>
+<ol><li><p>Each module defines a method <code>parse_*_orbits</code>.</p></li>
+<li><p><a href="xds_solve.html">xds_solve</a> calls <a href="parse_outputs.html">parse_outputs</a> which calls <code>parse_*_orbits</code> for each component and for each species.</p></li>
 <li><p>Outputs are parsed and stored on the xds object as <code>xds_obj$outputs</code></p><ul><li><p><code>time</code> is stored as <code>xds_obj$outputs$time</code></p></li>
 <li><p>the full output matrix is stored as <code>xds_obj$outputs$deout</code></p></li>
-<li><p>the last state of the system is stored as <code>mod$outputs$last_y</code></p></li>
+<li><p>the last state of the system is stored as <code>xds_obj$outputs$last_y</code></p></li>
 <li><p>several dynamical terms (<code>EIR</code>, <code>HBR</code>, <code>PR</code>, <code>fqZ</code>, <code>fqM</code>, <code>kappa</code>) are computed and attached as orbits</p></li>
 <li><p>the state variables are extracted from the output matrix by name</p></li>
-<li><p>the terms and variables are attached as named lists to <code>xds_obj$outputs$orbits.</code></p><ul><li><p><code>XH</code> holds parsed outputs for the <strong>XH</strong> component</p></li>
+<li><p>the terms and variables are attached as named lists to <code>xds_obj$outputs$orbits</code>.</p><ul><li><p><code>XH</code> holds parsed outputs for the <strong>XH</strong> component</p></li>
 <li><p><code>MY</code> holds parsed outputs for the <strong>MY</strong> component</p></li>
 <li><p><code>L</code> holds parsed outputs for the <strong>L</strong> component</p></li>
+<li><p><code>V</code> holds parsed outputs for the auxiliary-variable modules</p></li>
 </ul></li>
 </ul></li>
 </ol></div>

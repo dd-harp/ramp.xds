@@ -5,19 +5,15 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Make an xds model object template — make_xds_object_template"><meta name="description" content="This function is called by xds_setup to create
-a structured object, called an
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Make an xds model object template — make_xds_object_template"><meta name="description" content="This function is called by xds_setup to create a structured
 xds model object template. The template has
 configured interfaces, created stubs for the model objects,
-created junctions, and
-set up empty ports. A template has set up all the basic
+set up empty ports, and created junctions. A template has set up all the basic
 structural elements, but it has not configured
-any of the component model objects."><meta property="og:description" content="This function is called by xds_setup to create
-a structured object, called an
+any of the component model objects."><meta property="og:description" content="This function is called by xds_setup to create a structured
 xds model object template. The template has
 configured interfaces, created stubs for the model objects,
-created junctions, and
-set up empty ports. A template has set up all the basic
+set up empty ports, and created junctions. A template has set up all the basic
 structural elements, but it has not configured
 any of the component model objects."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -101,12 +97,10 @@ any of the component model objects."></head><body>
     </div>
 
     <div class="ref-description section level2">
-    <p>This function is called by <a href="xds_setup.html">xds_setup</a> to create
-a structured object, called an
+    <p>This function is called by <a href="xds_setup.html">xds_setup</a> to create a structured
 <strong><code>xds</code></strong> model object template. The template has
 configured interfaces, created stubs for the model objects,
-created junctions, and
-set up empty ports. A template has set up all the basic
+set up empty ports, and created junctions. A template has set up all the basic
 structural elements, but it has not configured
 any of the component model objects.</p>
     </div>
@@ -127,7 +121,7 @@ any of the component model objects.</p>
 
 
 <dl><dt id="arg-xds">xds<a class="anchor" aria-label="anchor" href="#arg-xds"></a></dt>
-<dd><p>is used to dispatch various functions to set up and solve systems of differential equations. 'xde' for ordinary or delay differential equations; 'dts' for "discrete time systems"</p></dd>
+<dd><p>selects the solver: <code>xde</code> for ordinary or delay differential equations, or <code>dts</code> for discrete-time systems.</p></dd>
 
 
 <dt id="arg-frame">frame<a class="anchor" aria-label="anchor" href="#arg-frame"></a></dt>
@@ -156,22 +150,21 @@ any of the component model objects.</p>
 core objects used by <strong><code>ramp.xds</code></strong>.</p>
 <p>First, the function sets up some
 short text strings (assigned to the same <code>S3</code> class)
-to dispatch various <strong>cases</strong> of various <code>S3</code> functions:</p><ul><li><p><strong><code>xds</code></strong> is either "xde"  for differential equations, or "dts" for discrete time systems</p></li>
-<li><p><strong><code>xde</code></strong> is either "ode"  for ordinary differential equations; "dde" for delay differential equations; or "dts" for discrete time systems</p></li>
-<li><p><strong><code>frame</code></strong> is one of several cases:</p><ul><li><p>"full" includes all three dynamical components: a human/host dynamical component, \(\cal XH\); and adult mosquito dynamical component, \(\cal MYZ\); and an aquatic mosquito dynamical component, \(\cal L\).
-in some form (possibly the trivial case) (see <code><a href="xds_setup.html">xds_setup()</a></code>)</p></li>
+to dispatch <strong>cases</strong> of <code>S3</code> functions:</p><ul><li><p><strong><code>xds</code></strong> is either "xde" for differential equations or "dts" for discrete-time systems</p></li>
+<li><p><strong><code>xde</code></strong> is either "ode" for ordinary differential equations, "dde" for delay differential equations, or "dts" for discrete-time systems</p></li>
+<li><p><strong><code>frame</code></strong> is one of several cases:</p><ul><li><p>"full" includes all three dynamical components: a human/host dynamical component, \(\cal XH\); an adult mosquito dynamical component, \(\cal MYZ\); and an aquatic mosquito dynamical component, \(\cal L\), in some form (possibly the trivial case) (see <code><a href="xds_setup.html">xds_setup()</a></code>)</p></li>
 <li><p>"mosy" is for mosquito ecology models (see <code><a href="xds_setup_mosy.html">xds_setup_mosy()</a></code>), including models without pathogen infection dynamics in mosquitoes</p></li>
 <li><p>"aquatic" is for aquatic mosquito ecology models (see <code><a href="xds_setup_aquatic.html">xds_setup_aquatic()</a></code>), forced by a function describing egg laying</p></li>
-<li><p>"human" is for human/host infection dynamics(see <code><a href="xds_setup_human.html">xds_setup_human()</a></code>), forced by the infective density of adult mosquitoes, \(fqZ\)</p></li>
+<li><p>"human" is for human/host infection dynamics (see <code><a href="xds_setup_human.html">xds_setup_human()</a></code>), forced by the infective density of adult mosquitoes, \(fqZ\)</p></li>
 <li><p>"eir" is for human/host cohort infection dynamics (see <code><a href="xds_setup_eir.html">xds_setup_eir()</a></code>), forced by a function <code>F_eir</code></p></li>
 </ul></li>
-<li><p><strong><code>forcing</code></strong> is set to "static"</p></li>
+<li><p><strong><code>forcing</code></strong> is set to "none"</p></li>
 </ul><p>Second, the function sets the values of the <strong>structural parameters</strong>:</p><ul><li><p><strong><code>nPatches</code></strong> or \(N_p\) is the number of patches</p></li>
 <li><p><strong><code>nHabitats</code></strong> or \(N_q\), the number of aquatic habitats, is set to <code>length(membership)</code></p></li>
-<li><p><strong><code>nStrata</code></strong> or \(N_h\), the number of human/ host population strata, is set to <code>length(HPop)</code></p></li>
+<li><p><strong><code>nStrata</code></strong> or \(N_h\), the number of human/host population strata, is set to <code>length(residence)</code></p></li>
 <li><p><strong><code>nVectorSpecies</code></strong> or \(N_s\), the number of vector species is set to 1;</p></li>
 <li><p><strong><code>nHostSpecies</code></strong> or \(N_i\), the number of host species is set to 1;</p></li>
-</ul><p>Next, the function sets up egg laying, blood feeding, importation, transmission, and exposure.</p>
+</ul><p>Next, the function sets up egg-laying, blood-feeding, importation, transmission, and exposure.</p>
 <p>Next, the function sets up empty lists to hold the model objects for all three dynamical components:</p><ul><li><p><code>XH_obj</code></p></li>
 <li><p><code>MY_obj</code></p></li>
 <li><p><code>L_obj</code></p></li>
@@ -179,7 +172,7 @@ in some form (possibly the trivial case) (see <code><a href="xds_setup.html">xds
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p><code>xds</code> stands for extensible differential equation</p>
+    <p><code>xds</code> stands for an eXtensible Dynamical System</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

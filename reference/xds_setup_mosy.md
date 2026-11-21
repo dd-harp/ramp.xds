@@ -91,7 +91,16 @@ to dispatch functions that compute derivatives (`xde`), update variables
 **X** and **Y** processes). A trivial **XH** component is set up to
 handle human/host population density.
 
-**Dynamics**
+## Note
+
+[xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
+calls
+[make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md),
+which returns an object template with a properly configured interface
+for blood feeding and egg laying (see
+[xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)).
+
+## Dynamics
 
 Choose a module to use for the mosquito dynamical components (see
 [xds_info_dynamical_components](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md)):
@@ -115,7 +124,7 @@ lists):
 
 - `HPop` sets the human population density
 
-**Model Structure**
+## Model Structure
 
 Set up the model structure:
 
@@ -135,7 +144,7 @@ During setup:
 
 - `nVectorSpecies`\\=1\\
 
-**Spatial Dynamics**
+## Basic Spatial Dynamics
 
 If `nPatches`\\\>1\\, set up some basic aspects of egg laying, blood
 feeding, mosquito spatial dynamics, and exposure:
@@ -146,38 +155,17 @@ feeding, mosquito spatial dynamics, and exposure:
 - `Koptions` sets up a mosquito dispersal matrix (see
   [xds_info_mosquito_dispersal](https://dd-harp.github.io/ramp.xds/reference/xds_info_mosquito_dispersal.md))
 
-**Next**
-
-- To solve the model, see
-  [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
-
-- To check or change parameters, see
-  [xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
-
-- To check or change the initial conditions, see
-  [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
-
-- To modify the model structure, see
-  [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)
-
-## Note
-
-[xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-calls
-[make_xds_object_template](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md),
-which returns an object template with a properly configured interface
-for blood feeding and egg laying (see
-[xds_object](https://dd-harp.github.io/ramp.xds/reference/xds_object.md)).
-
 ## See also
 
 - Basic Setup:
   [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md),
-  [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
+  [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
 
-  - [xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
+  - change parameters —
+    [xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)
 
-  - [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
+  - change initial conditions —
+    [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)
 
 - Advanced Setup:
   [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)

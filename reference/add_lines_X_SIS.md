@@ -16,7 +16,8 @@ add_lines_X_SIS(time, XH, nStrata, clrs = c("darkblue", "darkred"), llty = 1)
 
 - XH:
 
-  parsed outputs, from parse_Xorbits_SIS
+  parsed outputs from
+  [parse_XH_orbits.SIS](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.SIS.md)
 
 - nStrata:
 

@@ -12,8 +12,8 @@ In general, this should be used for aquatic mosquito ecology or human /
 host epidemiology. In the former case, the user configures `F_eggs`; in
 the latter, `F_fqZ`
 
-This builds a trace function as a *composed time series function* using
-either functions or parameters:
+This builds a forcing function as a *composed time series function*
+using either functions or parameters:
 
 - Use a function if passed, and set the function object to an empty list
 

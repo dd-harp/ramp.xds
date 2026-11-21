@@ -28,4 +28,4 @@ the egg batch rate
 
 ## See also
 
-[xds_info_egg_laying](https://dd-harp.github.io/ramp.xds/reference/xds_info_egg_laying.md)
+[xds_info_egg_laying](https://dd-harp.github.io/ramp.xds/reference/egg_laying.md)

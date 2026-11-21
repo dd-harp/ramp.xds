@@ -1,7 +1,7 @@
 # `trivialL` — **L** module
 
 The trivial module outputs the emergence rate of adult mosquitoes by
-calling a *trace function,* \$\$F\_\alpha(t) = \Lambda \times F_S(t,
+calling a *forcing function,* \$\$F\_\alpha(t) = \Lambda \times F_S(t,
 V_s) \times F_T(t, V_t) \times F_K(t, V_k)\$\$ where
 
 - \\\Lambda\\ is the mean daily emergence rate of adult mosquitoes

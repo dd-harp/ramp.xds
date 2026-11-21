@@ -1,10 +1,11 @@
-# Set up a visitors
+# Set up visitors
 
 If an options list is passed as the first argument, then set
 
 - `Vname = name$name`
 
-- `options = name` and call `setup_visitors(Vname, xds_obj, options, s)`
+- `options = name` and call
+  `setup_visitors(Vname, xds_obj, options, s)`.
 
 ## Usage
 
@@ -17,7 +18,7 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 
@@ -29,8 +30,8 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 
 - s:
 
-  the host species index
+  the vector species index
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+an **`xds`** model object

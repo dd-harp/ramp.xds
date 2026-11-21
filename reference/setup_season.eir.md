@@ -1,6 +1,6 @@
-# Change season parameters
+# Set up seasonal forcing
 
-Change parameters for the seasonality function when `forced_by = "eir"`
+Change parameters for the seasonality function when `forced_by = "eir"`.
 
 ## Usage
 

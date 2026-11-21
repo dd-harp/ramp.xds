@@ -34,4 +34,4 @@ vector
 
 ## Note
 
-This method dispatches on `class(xds_obj$XH_obj)`
+This method dispatches on `class(xds_obj$XH_obj[[i]])`.

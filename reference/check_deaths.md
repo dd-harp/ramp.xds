@@ -6,7 +6,7 @@ Check that
 
 - the death rate is not negative
 
-- the death rates length is the number of strata
+- the length of the death rates is the number of strata
 
 ## Usage
 

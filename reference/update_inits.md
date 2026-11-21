@@ -1,6 +1,6 @@
-# Set the initial values to the last values of the last simulation
+# Update the initial values
 
-Set the initial values to the last values of the last simulation
+Update the initial values
 
 ## Usage
 
@@ -16,8 +16,9 @@ update_inits(xds_obj, y0 = NULL)
 
 - y0:
 
-  a [vector](https://rdrr.io/r/base/vector.html) of initial values
+  a [vector](https://rdrr.io/r/base/vector.html) of initial values; if
+  `NULL`, use the last simulation state
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector
+an **`xds`** model object

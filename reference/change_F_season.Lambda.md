@@ -1,6 +1,6 @@
 # Change F_season
 
-Change the seasonality function when `forced_by = "Lambda"`
+Change the seasonality function when `forced_by = "Lambda"`.
 
 ## Usage
 

@@ -1,17 +1,12 @@
 # Solve a System of Ordinary Differential Equations
 
-Implements
-[xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
-for ordinary differential equations. This method solves a system of
-equations and computes the values of the dependent variables at times
-\\t=0, dt, 2dt, ... Tmax\\. The function dispatches on `xds_obj$dlay` to
-call:
+Solves a system of ordinary differential equations and returns the
+values of the dependent variables.
 
-- [deSolve::ode](https://rdrr.io/pkg/deSolve/man/ode.html) if
-  `class(dlay) == 'ode'`
+Output times are set by
+[make_times_xde](https://dd-harp.github.io/ramp.xds/reference/make_times_xde.md).
 
-- [deSolve::dede](https://rdrr.io/pkg/deSolve/man/dede.html) if
-  `class(dlay) == 'dde'`
+The returned model includes parsed outputs.
 
 ## Usage
 

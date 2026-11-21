@@ -1,6 +1,6 @@
 # Compute the seasonal pattern
 
-Evaluate the function `F_season` for a trivial **MY** model
+Evaluate the function `F_season` for a trivial **MY** model.
 
 ## Usage
 
@@ -21,4 +21,4 @@ F_season(tm, xds_obj)
 
 ## Value
 
-the seasonal pattern, invisibly
+the seasonal pattern

@@ -404,13 +404,9 @@ seasonal mosquito emergence driven by rainfall. Models can be forced via
 emergence (<code>Lambda</code>), the EIR (<code>eir</code>), or other
 mechanisms.
 </dd>
-<dt><strong>trace function</strong></dt>
+<dt><strong>forcing function</strong></dt>
 <dd>
-A function of time <span class="math inline">\(t\)</span> used to
-specify an exogenous input to the model. Built using
-<code>make_function()</code> and parameterised with
-<code>makepar_*</code> helpers. Trace functions can represent constant,
-seasonal, trend-driven, or spline-interpolated signals.
+A time-dependent function that specifies an input to a model.
 </dd>
 <dt><strong>seasonality</strong></dt>
 <dd>

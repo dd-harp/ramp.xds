@@ -1,6 +1,6 @@
-# Compute eggs laid
+# Aquatic Habitat Dynamics
 
-Computes eggs laid for an autonomous model
+Computes eggs laid leaving the habitat interface unmodified.
 
 ## Usage
 

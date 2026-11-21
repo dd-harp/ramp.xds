@@ -1,6 +1,6 @@
 # Change mean forcing
 
-Change the mean daily EIR
+Change the mean daily EIR.
 
 ## Usage
 

@@ -1,12 +1,12 @@
 # Get mean forcing
 
-Return null for models without forcing
+Return `NULL` for models without forcing.
 
 ## Usage
 
 ``` r
 # S3 method for class 'none'
-get_mean_forcing(xds_obj)
+get_mean_forcing(xds_obj, ix = 1)
 ```
 
 ## Arguments
@@ -15,6 +15,10 @@ get_mean_forcing(xds_obj)
 
   an **`xds`** model object
 
+- ix:
+
+  the species index
+
 ## Value
 
-an empty vector
+`NULL`

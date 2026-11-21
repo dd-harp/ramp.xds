@@ -11,13 +11,13 @@ encodes the model as an xds object that
 can be solved by xds_solve or xds_solve_cohort.
 MathJax = {output: {font: &quot;mathjax-newcm&quot;, fontPath: &quot;../../mathjaxr/doc/mathjax/font&quot;,}};
 To build a model that is forced by infective biting in the patches, which requires setting up a time
-spent matrix and search weigths, use xds_setup_human."><meta property="og:description" content="Build a dynamical system to describe human malaria epidemiology or host disease dynamics forced by the
+spent matrix and search weights, use xds_setup_human."><meta property="og:description" content="Build a dynamical system to describe human malaria epidemiology or host disease dynamics forced by the
 daily EIR. The function
 encodes the model as an xds object that
 can be solved by xds_solve or xds_solve_cohort.
 MathJax = {output: {font: &quot;mathjax-newcm&quot;, fontPath: &quot;../../mathjaxr/doc/mathjax/font&quot;,}};
 To build a model that is forced by infective biting in the patches, which requires setting up a time
-spent matrix and search weigths, use xds_setup_human."></head><body>
+spent matrix and search weights, use xds_setup_human."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -105,7 +105,7 @@ encodes the model as an <strong>xds</strong> object that
 can be solved by <a href="xds_solve.html">xds_solve</a> or <a href="xds_solve_cohort.html">xds_solve_cohort</a>.</p>
 <p><script>MathJax = {output: {font: "mathjax-newcm", fontPath: "../../mathjaxr/doc/mathjax/font",}};</script><script defer src="../../mathjaxr/doc/mathjax/tex-chtml.js"></script></p>
 <p>To build a model that is forced by infective biting in the patches, which requires setting up a time
-spent matrix and search weigths, use <a href="xds_setup_human.html">xds_setup_human</a>.</p>
+spent matrix and search weights, use <a href="xds_setup_human.html">xds_setup_human</a>.</p>
     </div>
 
     <div class="section level2">
@@ -194,10 +194,7 @@ spent matrix and search weigths, use <a href="xds_setup_human.html">xds_setup_hu
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>A modified version of <a href="xds_setup.html">xds_setup</a> that sets up a model to study exposure and
-infection.
-The <strong>MY</strong> component module is set to <code>trivialMY</code> and a trace
-function computes infective biting in the patches.</p>
+    <p>This sets</p>
 <p><code>class(xds_obj$frame) = 'eir'</code></p>
 <p>to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
 and parse outputs.</p>
@@ -207,7 +204,7 @@ and parse outputs.</p>
 <li><p><code>XHoptions</code> sets parameter values and initial conditions for the <strong>XH</strong> module</p></li>
 <li><p><code>nHostSpecies</code>\(=1\)</p></li>
 </ul><p>The structural parameter <code>nStrata</code> is set to <code>length(HPop)</code>.</p>
-<p><strong>The EIR Trace Function</strong></p>
+<p><strong>The EIR Forcing function</strong></p>
 <p>The interface includes options to configure a composed, multiplicative time series function
 describing <code>F_eir</code> as a function of time. For cohort dynamics (using <a href="xds_solve_cohort.html">xds_solve_cohort</a>), a function
 can be configured to compute relative biting rates by age:</p><ul><li><p><code>eir</code> — the average daily EIR (for each population stratum)</p></li>
@@ -215,16 +212,12 @@ can be configured to compute relative biting rates by age:</p><ul><li><p><code>e
 <li><p><code>F_trend</code> or <code>trend_par</code> — set up the trend pattern function</p></li>
 <li><p><code>F_shock</code> or <code>shock_par</code> — set up the shock function</p></li>
 <li><p><code>F_age</code> or <code>age_par</code> — set up relative biting rates by age</p></li>
-</ul><p><strong>Next</strong></p><ul><li><p>To solve the model, see <a href="xds_solve.html">xds_solve</a> or <a href="xds_solve_cohort.html">xds_solve_cohort</a></p></li>
-<li><p>To check or change parameters, see <a href="xds_info_change_parameters.html">xds_info_change_parameters</a></p></li>
-<li><p>To check or change the initial conditions, see <a href="xds_info_initial_conditions.html">xds_info_initial_conditions</a></p></li>
-<li><p>To modify the model structure, see <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index">
-<ul><li><p>Basic Setup: <a href="xds_setup.html">xds_setup</a>, <a href="xds_setup_human.html">xds_setup_human</a>, <a href="xds_info_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p><a href="xds_info_change_parameters.html">xds_info_change_parameters</a></p></li>
-<li><p><a href="xds_info_initial_conditions.html">xds_info_initial_conditions</a></p></li>
+<ul><li><p>Basic Setup: <a href="xds_setup.html">xds_setup</a>, <a href="xds_setup_human.html">xds_setup_human</a>, <a href="xds_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p>change parameters — <a href="xds_change_parameters.html">xds_info_change_parameters</a></p></li>
+<li><p>change initial conditions — <a href="xds_initial_conditions.html">xds_info_initial_conditions</a></p></li>
 </ul></li>
 <li><p>Advanced Setup: <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
 <li><p>Solving: <a href="xds_solve.html">xds_solve</a>, <a href="xds_solve_cohort.html">xds_solve_cohort</a></p></li>

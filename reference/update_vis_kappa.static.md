@@ -1,6 +1,6 @@
 # Update NI of visitors
 
-The `static` method returns `xds_obj` unmodified
+The `static` method returns `xds_obj` unmodified.
 
 ## Usage
 

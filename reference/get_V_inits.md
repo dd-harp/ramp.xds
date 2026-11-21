@@ -1,6 +1,6 @@
-# A function to set up V_obj
+# Get initial values for auxiliary variables
 
-Get and display the stored set of initial values.
+Retrieve the stored set of initial values.
 
 ## Usage
 
@@ -16,7 +16,7 @@ get_V_inits(xds_obj, i = 1)
 
 - i:
 
-  the host species index
+  the auxiliary-variable module index
 
 ## Value
 

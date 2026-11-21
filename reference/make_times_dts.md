@@ -1,15 +1,16 @@
 # Times Utility for Discrete Time Systems
 
-This method sets up the time points when output is wanted. For discrete
-time systems, the system must compute values at every point, but it is
-possible
+This method sets up the time points when output is wanted. For
+discrete-time systems, values must be computed at every time step, but
+outputs can be returned only at selected times.
 
-If `times` is not null, it sets `maxT` to the maximum value in times.
-Otherwise it sets `maxT=Tmax.`
+If `times` are provided, unique rounded values are returned.
 
-It returns a sequence from `0` to `maxT` by `dt.`
+Otherwise, it generates a sequence from `0` to `Tmax` by `dt`.
 
-Values of `times` should be some integer multiple of `dt`
+Provided values of `times` are rounded to integers. If `times` is
+`NULL`, the sequence is rounded and only unique integer values are
+returned.
 
 ## Usage
 

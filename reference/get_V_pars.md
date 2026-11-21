@@ -16,7 +16,7 @@ get_V_pars(xds_obj, i = 1)
 
 - i:
 
-  the host species index
+  the auxiliary-variable module index
 
 ## Value
 

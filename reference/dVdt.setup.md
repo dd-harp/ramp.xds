@@ -29,5 +29,4 @@ dVdt(t, y, xds_obj, i)
 
 ## Value
 
-Derivatives for auxiliary variables as a
-[vector](https://rdrr.io/r/base/vector.html)
+an empty [list](https://rdrr.io/r/base/list.html)

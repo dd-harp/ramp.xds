@@ -1,6 +1,6 @@
 # Basic setup for host disease dynamics
 
-Build a dynamical system to describe the disease dynamics in human or
+Build a dynamical system to describe the disease dynamics in a human or
 host population in response to infective biting. The function encodes
 the model as an **xds** object that can be solved by
 [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md).
@@ -77,11 +77,11 @@ an **`xds`** model object
 
 ## Details
 
-A modified version of
+This is a modified version of
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-that sets up a model to study exposure and infection. The **MY**
-component module is set to `trivialMY` and a trace function computes
-infective biting in the patches.
+that sets up a model to study exposure and infection. The **MY** module
+is set to `trivialMY` and a forcing function computes infective biting
+in the patches.
 
 `class(xds_obj$frame) = 'human'`
 
@@ -137,32 +137,18 @@ exposure:
 - `TSoptions` sets up a time spent matrix (see
   [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
 
-**Next**
-
-- To solve the model, see
-  [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
-  or
-  [xds_solve_cohort](https://dd-harp.github.io/ramp.xds/reference/xds_solve_cohort.md)
-
-- To check or change parameters, see
-  [xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
-
-- To check or change the initial conditions, see
-  [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
-
-- To modify the model structure, see
-  [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)
-
 ## See also
 
 - Basic Setup:
   [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md),
   [xds_setup_eir](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md),
-  [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
+  [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
 
-  - [xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
+  - change parameters —
+    [xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)
 
-  - [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
+  - change initial conditions —
+    [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)
 
 - Advanced Setup:
   [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)

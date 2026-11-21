@@ -1,6 +1,6 @@
-# Make an `SIS` **XH** model object
+# Make a `SIS` **XH** model object
 
-Make an `SIS` **XH** model object
+Make a `SIS` **XH** model object
 
 ## Usage
 

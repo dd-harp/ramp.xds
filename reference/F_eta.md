@@ -1,6 +1,6 @@
-# Eggs Laying in Habitats
+# Egg Laying in Habitats
 
-Computes egg distribution for the aquatic habitats
+Computes egg distribution for the aquatic habitats.
 
 ## Usage
 
@@ -33,4 +33,4 @@ a [vector](https://rdrr.io/r/base/vector.html), \\\eta\\ where
 
 ## See also
 
-[compute_U_matrix](https://dd-harp.github.io/ramp.xds/reference/compute_U_matrix.md)
+[update_U_matrix](https://dd-harp.github.io/ramp.xds/reference/update_U_matrix.md)

@@ -1,6 +1,6 @@
 # Get the shock parameters
 
-Get the shock parameters for an EIR forced model
+Get the shock parameters for an EIR-forced model.
 
 ## Usage
 

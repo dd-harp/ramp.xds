@@ -1,6 +1,6 @@
-# Difference equations isolating the humans, forced with Ztrace
+# Update states for discrete-time systems
 
-Compute and update the state variables for a model with only humans
+Update the state variables for a *human* model.
 
 ## Usage
 
@@ -25,5 +25,5 @@ dts_update(t, y, xds_obj)
 
 ## Value
 
-a [vector](https://rdrr.io/r/base/vector.html) containing the vector of
-all state derivatives
+updated dependent variables (a
+[vector](https://rdrr.io/r/base/vector.html))

@@ -20,4 +20,4 @@ get_birth_rates(xds_obj, i = 1)
 
 ## Value
 
-a \[\]
+a [numeric](https://rdrr.io/r/base/numeric.html) vector

@@ -7,10 +7,9 @@
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Forcing with Trivial Modules — xds_info_trivial_forcing"><meta name="description" content="Trivial modules were developed for each one
 of the three dynamical components, making it
-possible to develop studies of some focal process
-with known inputs: a trace function approach.
+possible to develop studies of some focal process with known inputs.
 The trivial modules and EIR forcing (see xds_setup_eir)
-construct trace functions as composed time series functions. The
+construct forcing functions as composed time series functions. The
 value of a forced variable \(x(t)\) is computed
 as a product of four configurable elements:
 \(\bar x\): a mean value
@@ -20,16 +19,15 @@ as a product of four configurable elements:
 
 
 $$x(t) = \bar x \times F_S(t, V) \times F_T(t,V) \times F_K(t, V)$$
-A trace function library for RAMP is in ramp.func
-Functions that integrate ramp.func and ramp.xds are found in ramp.forcing
+A forcing function library for RAMP is in ramp.func.
+Functions that integrate ramp.func and ramp.xds are found in ramp.forcing.
 
 
-For a discussion of mechanistic approaches to forcing, see SimBA: Trace Functions"><meta property="og:description" content="Trivial modules were developed for each one
+For a discussion of mechanistic approaches to forcing, see SimBA: Forcing functions."><meta property="og:description" content="Trivial modules were developed for each one
 of the three dynamical components, making it
-possible to develop studies of some focal process
-with known inputs: a trace function approach.
+possible to develop studies of some focal process with known inputs.
 The trivial modules and EIR forcing (see xds_setup_eir)
-construct trace functions as composed time series functions. The
+construct forcing functions as composed time series functions. The
 value of a forced variable \(x(t)\) is computed
 as a product of four configurable elements:
 \(\bar x\): a mean value
@@ -39,11 +37,11 @@ as a product of four configurable elements:
 
 
 $$x(t) = \bar x \times F_S(t, V) \times F_T(t,V) \times F_K(t, V)$$
-A trace function library for RAMP is in ramp.func
-Functions that integrate ramp.func and ramp.xds are found in ramp.forcing
+A forcing function library for RAMP is in ramp.func.
+Functions that integrate ramp.func and ramp.xds are found in ramp.forcing.
 
 
-For a discussion of mechanistic approaches to forcing, see SimBA: Trace Functions"></head><body>
+For a discussion of mechanistic approaches to forcing, see SimBA: Forcing functions."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -127,18 +125,17 @@ For a discussion of mechanistic approaches to forcing, see SimBA: Trace Function
     <div class="ref-description section level2">
     <p>Trivial modules were developed for each one
 of the three dynamical components, making it
-possible to develop studies of some focal process
-with known inputs: a <em>trace function</em> approach.</p>
+possible to develop studies of some focal process with known inputs.</p>
 <p>The trivial modules and EIR forcing (see <a href="xds_setup_eir.html">xds_setup_eir</a>)
-construct trace functions as composed time series functions. The
+construct forcing functions as composed time series functions. The
 value of a forced variable \(x(t)\) is computed
 as a product of four configurable elements:</p><ul><li><p>\(\bar x\): a mean value</p></li>
 <li><p>\(F_S(t, V)\): a seasonal pattern</p></li>
 <li><p>\(F_T(t, V)\): a trend</p></li>
 <li><p>\(F_K(t, V)\): a shock</p></li>
-</ul><p>$$x(t) = \bar x \times F_S(t, V) \times F_T(t,V) \times F_K(t, V)$$</p><ul><li><p>A trace function library for RAMP is in <code>ramp.func</code></p></li>
-<li><p>Functions that integrate <code>ramp.func</code> and <code>ramp.xds</code> are found in <code>ramp.forcing</code></p></li>
-</ul><p>For a discussion of mechanistic approaches to forcing, see <a href="https://faculty.washington.edu/smitdave/simba/trace.html" class="external-link">SimBA: Trace Functions</a></p>
+</ul><p>$$x(t) = \bar x \times F_S(t, V) \times F_T(t,V) \times F_K(t, V)$$</p><ul><li><p>A forcing function library for RAMP is in <code>ramp.func</code>.</p></li>
+<li><p>Functions that integrate <code>ramp.func</code> and <code>ramp.xds</code> are found in <code>ramp.forcing</code>.</p></li>
+</ul><p>For a discussion of mechanistic approaches to forcing, see <a href="https://faculty.washington.edu/smitdave/simba/trace.html" class="external-link">SimBA: Forcing functions</a>.</p>
     </div>
 
 

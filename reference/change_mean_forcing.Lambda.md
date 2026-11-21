@@ -1,6 +1,6 @@
 # Change mean forcing
 
-Change the mean emergence rate
+Change the mean emergence rate.
 
 ## Usage
 

@@ -20,4 +20,4 @@ F_season(tm, xds_obj)
 
 ## Value
 
-the seasonal pattern, invisibly
+the seasonal pattern

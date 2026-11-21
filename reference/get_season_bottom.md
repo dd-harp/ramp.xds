@@ -1,6 +1,6 @@
 # Get seasonality parameter `bottom`
 
-Get the `bottom` parameter for the seasonality function
+Get the `bottom` parameter for the seasonality function.
 
 ## Usage
 

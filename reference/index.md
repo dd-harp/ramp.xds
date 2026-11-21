@@ -12,7 +12,7 @@ How to get help for **`ramp.xds`**
 - [`xds_help_info`](https://dd-harp.github.io/ramp.xds/reference/xds_help_info.md)
   :
 
-  **`ramp.xds`**: Info Pages
+  **`ramp.xds`**: Information Pages
 
 ## Model Building
 
@@ -35,20 +35,17 @@ Build an xds model object
 - [`xds_setup_eir()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md)
   : Basic setup for host disease dynamics (EIR forced)
 
-- [`xds_info_basic_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
-  :
+- [`xds_basic_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
+  [`xds_info_basic_setup`](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
+  : Basic Setup Functions
 
-  **`ramp.xds`**: Basic Setup
+- [`xds_change_parameters`](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)
+  [`xds_info_change_parameters`](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)
+  : Change Parameters
 
-- [`xds_info_change_parameters`](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
-  :
-
-  **`ramp.xds`**: Change Parameters
-
-- [`xds_info_initial_conditions`](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
-  :
-
-  **`ramp.xds`**: Initial Conditions
+- [`xds_initial_conditions`](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)
+  [`xds_info_initial_conditions`](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)
+  : Change Initial Conditions
 
 - [`xds_info_demographic_change`](https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.md)
   : Demographic Change
@@ -308,7 +305,7 @@ Show patterns for forced systems
 - [`show_season()`](https://dd-harp.github.io/ramp.xds/reference/show_season.md)
   : Plot the seasonal pattern
 - [`show_trend()`](https://dd-harp.github.io/ramp.xds/reference/show_trend.md)
-  : Plot the Temporal Trend
+  : Plot the temporal trend
 - [`show_shock()`](https://dd-harp.github.io/ramp.xds/reference/show_shock.md)
   : Plot the shock
 
@@ -393,7 +390,7 @@ Get model parameters
   : Get availability of ovitraps
 
 - [`get_vis_kappa()`](https://dd-harp.github.io/ramp.xds/reference/get_vis_kappa.md)
-  : Get availability of vis_kappa
+  : Get net infectiousness of visitors
 
 - [`get_visitors()`](https://dd-harp.github.io/ramp.xds/reference/get_visitors.md)
   : Get availability of visitors
@@ -980,14 +977,38 @@ Aquatic habitats and egg laying
 
 - [`xds_info_aquatic_habitats`](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md)
   : Aquatic Habitats
-- [`xds_info_available_habitats`](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_habitats.md)
-  : Habitat Availability
-- [`xds_info_egg_laying`](https://dd-harp.github.io/ramp.xds/reference/xds_info_egg_laying.md)
-  : Egg Laying
+
+- [`habitat_vector`](https://dd-harp.github.io/ramp.xds/reference/habitat_vector.md)
+  : The habitat vector
+
+- [`habitat_matrix`](https://dd-harp.github.io/ramp.xds/reference/habitat_matrix.md)
+  : The habitat matrix
+
+- [`habitat_availability`](https://dd-harp.github.io/ramp.xds/reference/habitat_availability.md)
+  [`xds_info_available_habitats`](https://dd-harp.github.io/ramp.xds/reference/habitat_availability.md)
+  : Available habitats
+
+- [`laying_matrix`](https://dd-harp.github.io/ramp.xds/reference/laying_matrix.md)
+  [`xds_info_laying_matrix`](https://dd-harp.github.io/ramp.xds/reference/laying_matrix.md)
+  : The laying matrix
+
+- [`egg_laying`](https://dd-harp.github.io/ramp.xds/reference/egg_laying.md)
+  [`xds_info_egg_laying`](https://dd-harp.github.io/ramp.xds/reference/egg_laying.md)
+  :
+
+  Egg Laying in **`ramp.xds`**
+
+- [`xds_info_emergence`](https://dd-harp.github.io/ramp.xds/reference/xds_info_emergence.md)
+  :
+
+  Emergence in **`ramp.xds`**
+
 - [`setup_egg_laying_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying_interface.md)
   : Setup the Habitat Interface for Egg Laying and Emergence
+
 - [`get_habitats()`](https://dd-harp.github.io/ramp.xds/reference/get_habitats.md)
   : Get the habitat membership vector
+
 - [`get_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_habitat_matrix.md)
   : Get habitat matrix, \\N\\
 
@@ -1090,35 +1111,35 @@ Compute the derivatives for other variables
   : Set Up the first (null) other variable
 
 - [`setup_V_ix(`*`<setup>`*`)`](https://dd-harp.github.io/ramp.xds/reference/setup_V_ix.setup.md)
-  : Compute Other Variables
+  : Add indices for auxiliary variables
 
 - [`setup_V_obj()`](https://dd-harp.github.io/ramp.xds/reference/setup_V_obj.md)
   :
 
-  Setup an **V** Module (Human / Host Epidemiology & Demography)
+  Set up a **V** module
 
 - [`get_V_vars()`](https://dd-harp.github.io/ramp.xds/reference/get_V_vars.md)
   : Get Variables by Name
 
 - [`setup_V_ix()`](https://dd-harp.github.io/ramp.xds/reference/setup_V_ix.md)
-  : Add indices for human population to parameter list
+  : Add indices for auxiliary variables to the parameter list
 
 - [`get_V_ix()`](https://dd-harp.github.io/ramp.xds/reference/get_V_ix.md)
-  : Add indices for human population to parameter list
+  : Get indices for auxiliary variables
 
 - [`change_V_pars()`](https://dd-harp.github.io/ramp.xds/reference/change_V_pars.md)
-  : Set new X parameter values
+  : Set new V parameter values
 
 - [`setup_V_inits()`](https://dd-harp.github.io/ramp.xds/reference/setup_V_inits.md)
   :
 
-  Setup Initial Values for **V** Modules
+  Set up initial values for **V** modules
 
 - [`get_V_inits()`](https://dd-harp.github.io/ramp.xds/reference/get_V_inits.md)
-  : A function to set up V_obj
+  : Get initial values for auxiliary variables
 
 - [`change_V_inits()`](https://dd-harp.github.io/ramp.xds/reference/change_V_inits.md)
-  : Set new X parameter values
+  : Set new V initial values
 
 ## Resources
 
@@ -1130,8 +1151,9 @@ The ports for resources
   : Resource Availability
 - [`xds_info_available_blood_hosts`](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_blood_hosts.md)
   : Available Blood
-- [`xds_info_available_habitats`](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_habitats.md)
-  : Habitat Availability
+- [`habitat_availability`](https://dd-harp.github.io/ramp.xds/reference/habitat_availability.md)
+  [`xds_info_available_habitats`](https://dd-harp.github.io/ramp.xds/reference/habitat_availability.md)
+  : Available habitats
 - [`xds_info_search_weights_habitat`](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_habitat.md)
   : Habitat Search Weights
 - [`xds_info_available_sugar`](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_sugar.md)
@@ -1209,7 +1231,7 @@ Blood Feeding on non-Residents
 - [`xds_info_visitors`](https://dd-harp.github.io/ramp.xds/reference/xds_info_visitors.md)
   : Visitors
 - [`setup_visitors()`](https://dd-harp.github.io/ramp.xds/reference/setup_visitors.md)
-  : Set up a visitors
+  : Set up visitors
 - [`change_visitors()`](https://dd-harp.github.io/ramp.xds/reference/change_visitors.md)
   : Change the visitors
 - [`check_visitors()`](https://dd-harp.github.io/ramp.xds/reference/check_visitors.md)
@@ -1222,9 +1244,9 @@ Blood Feeding on non-Residents
 Infectiousness of Visitors
 
 - [`xds_port_visitor_kappa`](https://dd-harp.github.io/ramp.xds/reference/xds_port_visitor_kappa.md)
-  : Visitors Infectiousness
+  : Visitors' Infectiousness
 - [`setup_vis_kappa()`](https://dd-harp.github.io/ramp.xds/reference/setup_vis_kappa.md)
-  : Set up a vis_kappa
+  : Set up visitor net infectiousness
 - [`change_vis_kappa()`](https://dd-harp.github.io/ramp.xds/reference/change_vis_kappa.md)
   : Change the vis_kappa
 - [`check_vis_kappa()`](https://dd-harp.github.io/ramp.xds/reference/check_vis_kappa.md)

@@ -1,7 +1,8 @@
-# Compute the steady states for the `SIS` model as a function of the daily EIR
+# Compute the steady states for the `SIS` model as a function of the daily FoI
 
 Compute the steady state of the `SIS` model as a function of the daily
-eir.
+FoI, with fixed population density, no mortality, and no mass-treatment
+events.
 
 ## Usage
 
@@ -30,7 +31,7 @@ steady_state_X(foi, H, xds_obj, i = 1)
 
 ## Value
 
-the steady states as a named vector
+the steady states as a named [list](https://rdrr.io/r/base/list.html)
 
 ## See also
 

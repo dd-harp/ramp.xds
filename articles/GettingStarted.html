@@ -325,12 +325,10 @@ component, options are passed in <code>XHoptions</code>:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## $q_pcr</span></span>
 <span><span class="co">## [1] 0.9</span></span></code></pre>
-<p>In the <code>SIS</code> model, we set <span class="math inline">\(H_0,\)</span> and <span class="math inline">\(I_0.\)</span> The software computes <span class="math inline">\(dH/dt\)</span> and <span class="math inline">\(dI/dt\)</span> and sets <span class="math inline">\(S=H-I.\)</span> By policy, the software computes
-the total population size, <span class="math inline">\(H,\)</span>
-dynamically and treats it differently. This is because it plays an
-important role in setting up the <em>Blood Feeding</em> interface, so it
-is not possible to set <span class="math inline">\(S.\)</span> Instead,
-<span class="math inline">\(S\)</span> is computed after solving and
+<p>In the <code>SIS</code> model, we set <span class="math inline">\(H_0,\)</span> and <span class="math inline">\(I_0.\)</span> The software computes <span class="math inline">\(dH/dt\)</span> and <span class="math inline">\(dI/dt\)</span> and sets <span class="math inline">\(S=H-I.\)</span> Total population size, <span class="math inline">\(H,\)</span> an important role in setting up the
+<em>Blood Feeding</em> interface. Since <span class="math inline">\(S =
+H-I\)</span>, we don’t compute <span class="math inline">\(S,\)</span>
+so it is not possible to set it’s initial value. <span class="math inline">\(S.\)</span> Instead, <span class="math inline">\(S\)</span> is computed after solving and
 parsing.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_XH_inits.html">get_XH_inits</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
@@ -511,7 +509,7 @@ with a generic form:</p>
 <code class="sourceCode R"><span><span class="va">mean</span><span class="op">*</span><span class="fu"><a href="../reference/F_season.html">F_season</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="../reference/F_trend.html">F_trend</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="../reference/F_shock.html">F_shock</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span></code></pre></div>
 <p>It is easy to change the forcing function. A function library for
 <code>ramp.xds</code> is found in <a href="https://github.com/dd-harp/ramp.func" class="external-link"><code>ramp.func</code></a>.
-For more information about configuring trace functions for
+For more information about configuring forcing functions for
 <code>ramp.xds</code></p>
 </div>
 <div class="section level2">

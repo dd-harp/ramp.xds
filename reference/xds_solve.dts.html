@@ -5,7 +5,11 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Solve a Discrete-Time System — xds_solve.dts"><meta name="description" content="Implements xds_solve for discrete time systems."><meta property="og:description" content="Implements xds_solve for discrete time systems."></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Solve a Discrete-Time System — xds_solve.dts"><meta name="description" content="Implements xds_solve for discrete time systems.
+Output times are set up or checked by make_times_dts
+which guarantees time points are a unique set of integer values"><meta property="og:description" content="Implements xds_solve for discrete time systems.
+Output times are set up or checked by make_times_dts
+which guarantees time points are a unique set of integer values"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -87,7 +91,9 @@
     </div>
 
     <div class="ref-description section level2">
-    <p>Implements <a href="xds_solve.html">xds_solve</a> for discrete time systems.</p>
+    <p>Implements <a href="xds_solve.html">xds_solve</a> for discrete time systems.
+Output times are set up or checked by <a href="make_times_dts.html">make_times_dts</a>
+which guarantees time points are a unique set of integer values</p>
     </div>
 
     <div class="section level2">
@@ -118,13 +124,13 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
+    <p>an <strong><code>xds</code></strong> model object</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p>For discrete time systems, the values in <code>times</code> need not be
-a sequence. If <code>times</code> is not null, the system iterates up to <code>max(times)</code>
-and then returns the solutions at the subset specified in <code>times.</code></p>
+a sequence. The system is solved for every time step. During parsing,
+the other values are removed.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

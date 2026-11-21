@@ -42,7 +42,7 @@ setup_XH_obj(XHname, residence, xds_obj, options = list(), i = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) vector
+an **`xds`** model object
 
 ## Note
 

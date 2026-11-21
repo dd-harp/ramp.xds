@@ -1,9 +1,6 @@
-# Create the habitat membership matrix, \\N\\
+# Make the habitat matrix
 
-The habitat membership matrix, \\N\\, holds information about the patch
-location of each habitat. It is part of the egg-laying and emergence
-interface, making it possible to compute egg laying from patches to
-habitats; and emergence from habitats to patches.
+Make the habitat matrix \\(\mathbf{N})\\ from the habitat vector.
 
 ## Usage
 
@@ -15,42 +12,41 @@ make_habitat_matrix(nPatches, membership)
 
 - nPatches:
 
-  the number of patches, \\n_p\\
+  the number of patches
 
 - membership:
 
-  a vector describing the patch index for each habitat
+  a habitat vector (see
+  [habitat_vector](https://dd-harp.github.io/ramp.xds/reference/habitat_vector.md))
 
 ## Value
 
-the habitat membership [matrix](https://rdrr.io/r/base/matrix.html),
-denoted \\N\\ where \\\left\|N\right\|= n_p \times n_q\\
+the habitat matrix
 
-## Details
+## Habitat Vector
 
-Information about the patch location of each habitat is passed as the
-membership vector, an ordered list of patch locations. If the \\i^{th}\\
-habitat is in the \\j^{th}\\ patch, then \\{N}\_{j,i}=1.\\ Otherwise,
-\\{N}\_{j,i}=0.\\
+A habitat vector \\(V)\\ indexes the patches where each aquatic habitat
+can be found.
 
-Since \\N\\ is a matrix, it is readily used for computation. Let:
+If the \\i^{th}\\ habitat is located in the \\j^{th}\\ patch, then \\V_i
+= j.\\
 
-- \\n_q = \\ `nHabitats`, the number of habitats;
+## Habitat Matrix
 
-- \\n_p = \\ `nPatches`, the number of patches.
+The habitat matrix \\(\mathbf N)\\ is an `nPatches`\\\times\\`nHabitats`
+matrix that is constructed from the
+[habitat_vector](https://dd-harp.github.io/ramp.xds/reference/habitat_vector.md).
 
-If \\w\\ is any vector describing a quantity in habitats (*i.e.*,
-\\\left\|w\right\|= n_q\\), then \$\$W={N}\cdot w\$\$ is a vector that
-has summed \\w\\ by patch, and \\\left\|W\right\|= n_p\\.
+If the \\i^{th}\\ habitat is in the \\j^{th}\\ patch, then
+\\{N}\_{j,i}=1.\\ Otherwise, \\{N}\_{j,i}=0.\\
+
+If \\x\\ is any vector describing a quantity in habitats (*i.e.*,
+\\\left\|x\right\|=\\`nHabitats`), then \$\$X=\mathbf{N}\cdot x\$\$ is a
+vector that has summed \\x\\ by patch, and
+\\\left\|X\right\|=\\`nPatches`.
 
 ## See also
 
-compute_habitat matrix is called by
-[`make_xds_object_template()`](https://dd-harp.github.io/ramp.xds/reference/make_xds_object_template.md)
-and
-[`setup_egg_laying_interface()`](https://dd-harp.github.io/ramp.xds/reference/setup_egg_laying_interface.md)
-
-see
 [`get_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/get_habitat_matrix.md)
 
 ## Examples

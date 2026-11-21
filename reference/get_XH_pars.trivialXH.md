@@ -1,7 +1,6 @@
-# Change parameters for `trivialXH` (**XH**)
+# Get parameters for `trivialXH` (**XH**)
 
-For the `trivialXH` module (**XH**) for the \\i^{th}\\ species, change
-parameter values named in `options` leaving other values unchanged.
+Return stored parameter values for the `trivialXH` module.
 
 ## Usage
 
@@ -15,6 +14,10 @@ get_XH_pars(xds_obj, i = 1)
 - xds_obj:
 
   an **`xds`** model object
+
+- i:
+
+  the host species index
 
 ## Value
 

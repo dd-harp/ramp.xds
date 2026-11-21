@@ -5,27 +5,27 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Solve Cohort Dynamics — xds_solve_cohort"><meta name="description" content="Given a trace function describing the average EIR in a population over time,
-simulate malaria in a cohort as it ages: the independent variable is age
-\((a)\) and not time \((t)\).
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Solve Cohort Dynamics — xds_solve_cohort"><meta name="description" content="Given a forcing function describing the average EIR in a population over time,
+simulate malaria in a cohort as it ages, using age as the independent variable
+\((a)\) rather than time \((t)\).
 Relative biting rates by
 age are set by \(F_\omega(a)\) or F_age with associated parameters age_par.
 To solve, the argument birthday sets the birthday for a cohort, \((d)\).
-The user ether passes ages or Amax and da to configure a vector of
+The user either passes ages or Amax and da to configure a vector of
 ages at which output is wanted \((a_i)\), at times \(t_i=a_i+d\).
-In effect, since \(a = t-d\), the function solves the
-solves the system for for an exposure function with the pattern:
-$$F_w(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$"><meta property="og:description" content="Given a trace function describing the average EIR in a population over time,
-simulate malaria in a cohort as it ages: the independent variable is age
-\((a)\) and not time \((t)\).
+In effect, since \(a = t-d\), the function solves the system for an
+exposure function with the pattern:
+$$F_\omega(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$"><meta property="og:description" content="Given a forcing function describing the average EIR in a population over time,
+simulate malaria in a cohort as it ages, using age as the independent variable
+\((a)\) rather than time \((t)\).
 Relative biting rates by
 age are set by \(F_\omega(a)\) or F_age with associated parameters age_par.
 To solve, the argument birthday sets the birthday for a cohort, \((d)\).
-The user ether passes ages or Amax and da to configure a vector of
+The user either passes ages or Amax and da to configure a vector of
 ages at which output is wanted \((a_i)\), at times \(t_i=a_i+d\).
-In effect, since \(a = t-d\), the function solves the
-solves the system for for an exposure function with the pattern:
-$$F_w(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$"></head><body>
+In effect, since \(a = t-d\), the function solves the system for an
+exposure function with the pattern:
+$$F_\omega(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -107,17 +107,17 @@ $$F_w(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$"></head><body>
     </div>
 
     <div class="ref-description section level2">
-    <p>Given a trace function describing the average EIR in a population over time,
-simulate malaria in a cohort as it ages: the independent variable is age
-\((a)\) and not time \((t)\).</p>
+    <p>Given a forcing function describing the average EIR in a population over time,
+simulate malaria in a cohort as it ages, using age as the independent variable
+\((a)\) rather than time \((t)\).</p>
 <p>Relative biting rates by
 age are set by \(F_\omega(a)\) or <code>F_age</code> with associated parameters <code>age_par</code>.</p>
 <p>To solve, the argument <code>birthday</code> sets the birthday for a cohort, \((d)\).
-The user ether passes <code>ages</code> or <code>Amax</code> and <code>da</code> to configure a vector of
+The user either passes <code>ages</code> or <code>Amax</code> and <code>da</code> to configure a vector of
 ages at which output is wanted \((a_i)\), at times \(t_i=a_i+d\).</p>
-<p>In effect, since \(a = t-d\), the function solves the
-solves the system for for an exposure function with the pattern:
-$$F_w(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$</p>
+<p>In effect, since \(a = t-d\), the function solves the system for an
+exposure function with the pattern:
+$$F_\omega(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$</p>
     </div>
 
     <div class="section level2">
@@ -149,7 +149,7 @@ $$F_w(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$</p>
 
 
 <dt id="arg-amax">Amax<a class="anchor" aria-label="anchor" href="#arg-amax"></a></dt>
-<dd><p>the oldest year, run from 0...Amax</p></dd>
+<dd><p>the oldest age, run from 0...Amax</p></dd>
 
 
 <dt id="arg-da">da<a class="anchor" aria-label="anchor" href="#arg-da"></a></dt>
@@ -165,6 +165,7 @@ $$F_w(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)$$</p>
     <p>Use <code>xds_setup_eir</code> to set up a model for cohort dynamics.</p>
 <p>During setup, the variable <code>xds_obj$EIR_obj$bday</code> is set to 0,
 and <code>F_age</code> is set to <code>F_one</code>.</p>
+<p>For discrete-time models, calendar output times (birthday + ages) must be whole-number time steps.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

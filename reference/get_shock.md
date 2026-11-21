@@ -1,6 +1,6 @@
 # Get the shock parameters
 
-Get the parameters for the perturbation function forcing the model
+Get the parameters for the perturbation function forcing the model.
 
 ## Usage
 
@@ -24,4 +24,4 @@ shock parameters
 
 ## Note
 
-Dispatches on `forced_by`
+Dispatches on `forced_by`.

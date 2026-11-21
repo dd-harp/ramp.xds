@@ -1,6 +1,6 @@
 # Compute the get_HTC for the `hMoI` model
 
-Implements `get_HTC` for the `hMoI` model with demography.
+Implements `get_HTC` for the `hMoI` model without demographic change.
 
 ## Usage
 

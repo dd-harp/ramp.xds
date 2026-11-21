@@ -1,6 +1,6 @@
 # Plot the shock
 
-For a model with temporal forcing, show the perturbation function
+For a model with temporal forcing, show the perturbation function.
 
 ## Usage
 
@@ -20,7 +20,7 @@ show_shock(xds_obj, tm = 10 * c(0:365), add = FALSE, clr = "black", rng = NULL)
 
 - add:
 
-  add to existing plot
+  add to an existing plot
 
 - clr:
 
@@ -28,7 +28,7 @@ show_shock(xds_obj, tm = 10 * c(0:365), add = FALSE, clr = "black", rng = NULL)
 
 - rng:
 
-  if not NULL, range limits for plotting
+  if not `NULL`, range limits for plotting
 
 ## Value
 

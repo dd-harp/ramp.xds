@@ -1,9 +1,6 @@
-# Differential equations isolating the humans, forced by infectious biting
+# Compute exogenous variables and dynamical terms
 
-Compute derivatives for
-[deSolve::ode](https://rdrr.io/pkg/deSolve/man/ode.html) or
-[deSolve::dede](https://rdrr.io/pkg/deSolve/man/dede.html) using generic
-methods for each model component.
+Compute exogenous variables and dynamical terms
 
 ## Usage
 
@@ -28,5 +25,4 @@ xds_compute_terms(t, y, xds_obj)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) containing the vector of all
-state derivatives
+an **`xds`** model object

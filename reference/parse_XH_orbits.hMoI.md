@@ -2,7 +2,8 @@
 
 Implements
 [parse_XH_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_XH_orbits.md)
-for the `hMoI` model
+for the `hMoI` model. The fixed population parameter `H` is repeated
+across output times.
 
 ## Usage
 

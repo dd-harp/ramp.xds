@@ -1,6 +1,7 @@
 # Compute as DDE
 
-Setup a differential equation model to be solved using `deSolve:dede`
+Set up a differential equation model to be solved using
+[`deSolve::dede`](https://rdrr.io/pkg/deSolve/man/dede.html).
 
 ## Usage
 
@@ -21,5 +22,5 @@ an **`xds`** model object
 ## Details
 
 For differential equations, the value of `xds_obj$xde` is set to `ode`
-by default. This utility gets called by delay differential equation
-modules to change `xds_obj$xde` from `ode` to `dde`
+by default. This utility is called during setup to change `xds_obj$xde`
+from `ode` to `dde` when a module requires a delay.

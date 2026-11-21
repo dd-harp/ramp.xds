@@ -1,6 +1,6 @@
 # Get the *Pf*PR from a malaria model
 
-Return the *Pf*PR by PCR
+Return the *Pf*PR by PCR.
 
 ## Usage
 

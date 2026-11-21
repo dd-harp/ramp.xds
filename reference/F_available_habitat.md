@@ -1,6 +1,6 @@
-# Compute Habitat Availability
+# Compute habitat availability
 
-Compute the availability of aquatic habitats.
+This function computes habitat availability.
 
 ## Usage
 
@@ -16,24 +16,23 @@ F_available_habitat(habitat_matrix, search_weights)
 
 - search_weights:
 
-  the habitat search weights, \\\omega_q\\
+  the habitat search weights, \\w\\
 
 ## Value
 
-a [vector](https://rdrr.io/r/base/vector.html) of describing habitat
+a [vector](https://rdrr.io/r/base/vector.html) describing habitat
 availability, \\Q\\, of length `nPatches`
 
 ## Details
 
 The availability of the habitats that we have defined in the model,
-denoted \\Q\\, sums search weights, \\\omega_q\\, by patch using the
-habitat membership matrix, \\N\\, and we can compute \$\$Q = {N} \cdot
-\omega_q.\$\$
+denoted \\Q\\, sums search weights, \\w\\, by patch using the habitat
+membership matrix, \\N\\, and we can compute \$\$Q = {N} \cdot w.\$\$
 
 ## See also
 
 This function is called by
-[compute_all_available_water](https://dd-harp.github.io/ramp.xds/reference/compute_all_available_water.md)
+[update_all_available_water](https://dd-harp.github.io/ramp.xds/reference/update_all_available_water.md)
 
 [make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
 discusses \\N\\

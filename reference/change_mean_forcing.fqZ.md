@@ -1,6 +1,6 @@
 # Change mean forcing
 
-Change mean infectious biting rate, \\fqZ\\
+Change the mean infective biting rate, \\fqZ\\.
 
 ## Usage
 

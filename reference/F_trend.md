@@ -20,4 +20,4 @@ F_trend(tm, xds_obj)
 
 ## Value
 
-the temporal trend, invisibly
+the temporal trend

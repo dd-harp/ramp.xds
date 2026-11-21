@@ -1,6 +1,6 @@
 # Set up no births
 
-Don't change anything
+Don't change anything.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_births(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 

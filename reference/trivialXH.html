@@ -5,9 +5,9 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="trivialXH — XH module — trivialXH"><meta name="description" content="The trivial module sets up two trace functions:
-a trace function to output net infectiousness, \(\kappa\)
-a trace function to output human population density, \(H\)
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="trivialXH — XH module — trivialXH"><meta name="description" content="The trivial module sets up two forcing functions:
+a forcing function to output net infectiousness, \(\kappa\)
+a forcing function to output human population density, \(H\)
 
 
 Basic setup uses a function if it is passed. If no function is passed,
@@ -15,9 +15,9 @@ the functions are built from function objects (see ramp.func::F_obj) using make_
 which returns a function of the form \(F(t,V).\)
 The variables passed to the functions, \(V\), are returned by
 get_variables, which dispatches on the class of the stored function
-object (by default, an empty list)."><meta property="og:description" content="The trivial module sets up two trace functions:
-a trace function to output net infectiousness, \(\kappa\)
-a trace function to output human population density, \(H\)
+object (by default, an empty list)."><meta property="og:description" content="The trivial module sets up two forcing functions:
+a forcing function to output net infectiousness, \(\kappa\)
+a forcing function to output human population density, \(H\)
 
 
 Basic setup uses a function if it is passed. If no function is passed,
@@ -107,8 +107,8 @@ object (by default, an empty list)."></head><body>
     </div>
 
     <div class="ref-description section level2">
-    <p>The trivial module sets up two trace functions:</p><ol><li><p>a trace function to output net infectiousness, \(\kappa\)</p></li>
-<li><p>a trace function to output human population density, \(H\)</p></li>
+    <p>The trivial module sets up two forcing functions:</p><ol><li><p>a forcing function to output net infectiousness, \(\kappa\)</p></li>
+<li><p>a forcing function to output human population density, \(H\)</p></li>
 </ol><p>Basic setup uses a function if it is passed. If no function is passed,
 the functions are built from function objects (see <a href="https://dd-harp.github.io/ramp.func/reference/F_obj.html" class="external-link">ramp.func::F_obj</a>) using <a href="https://dd-harp.github.io/ramp.func/reference/make_function.html" class="external-link">make_function</a>,
 which returns a function of the form \(F(t,V).\)</p>
@@ -123,7 +123,7 @@ object (by default, an empty list).</p>
 
 
 
-<p>The trace functions are set up as composed time series functions with
+<p>The forcing functions are set up as composed time series functions with
 four separate composable elements:
 $$F_\kappa(t) = \kappa \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)$$
 where</p><ul><li><p>\(\kappa\) or <code>kappa</code> is the mean net infectiousness</p></li>
@@ -136,10 +136,10 @@ where</p><ul><li><p>\(\kappa\) or <code>kappa</code> is the mean net infectiousn
 
 
 
-<p>The trace functions are set up as composed time series functions with
+<p>The forcing functions are set up as composed time series functions with
 four separate composable elements:
 $$F_H(t) = H \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)$$
-where</p><ul><li><p>\(\kappa\) or <code>kappa</code> is the mean net infectiousness</p></li>
+where</p><ul><li><p>\(H\) or <code>H</code> is the mean human population density</p></li>
 <li><p>\(S(t,V_s)\) or <code>H_season</code> is a seasonal pattern function</p></li>
 <li><p>\(T(t,V_t)\) or <code>H_trend</code> is a trend pattern function</p></li>
 <li><p>\(K(t,V_k)\) or <code>H_shock</code> is a perturbation function</p></li>
@@ -156,7 +156,7 @@ where</p><ul><li><p>\(\kappa\) or <code>kappa</code> is the mean net infectiousn
 
 
 
-<p><strong>Net Infectivity</strong></p><dl><dt><code>kappa</code></dt>
+<p><strong>Net Infectiousness</strong></p><dl><dt><code>kappa</code></dt>
 <dd><p>mean net infectiousness</p></dd>
 
 <dt><code>F_season</code></dt>
@@ -216,13 +216,14 @@ use by <code>ramp.func</code></p>
 
 <ol><li><p>The module has no state variables.</p></li>
 <li><p>The size of an object saved by <code>saveRDS</code> balloons if it saves a function,
-so <code>saveXDS</code> function strips the functions and <code>readXDS</code> remakes the function
+so the <code>saveXDS</code> function strips the functions and <code>readXDS</code> remakes the function
 from the stored function object using <a href="https://dd-harp.github.io/ramp.func/reference/make_function.html" class="external-link">make_function</a>.</p></li>
-<li><p><code>F_season</code>, <code>F_trend</code>, and <code>F_shock</code> can be set up manually by passing any
-user defined function. If so, the user should use <code>saveRDS</code> and <code>readRDS</code>
-rather than <code>saveXDS</code> and <code>readXDS</code></p></li>
-<li><p>Setup expects that <code>membership= c(1:nPatches),</code> but any membership vector
-works.</p></li>
+<li><p><code>F_season</code>, <code>F_trend</code>, <code>F_shock</code>, <code>H_season</code>, <code>H_trend</code>, and <code>H_shock</code>
+can be set up manually by passing any
+user-defined function. If so, the user should use <code>saveRDS</code> and <code>readRDS</code>
+rather than <code>saveXDS</code> and <code>readXDS</code>.</p></li>
+<li><p>Setup uses a <code>residence</code> vector. The module constructs <code>H</code> and <code>kappa</code>
+with length <code>nStrata[i]</code>.</p></li>
 </ol></div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

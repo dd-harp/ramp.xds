@@ -222,7 +222,7 @@ getS3method("dXHdt", "SIS")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x643e8c5fd848>
+    ## <bytecode: 0x610733c4ca38>
     ## <environment: namespace:ramp.xds>
 
 Derivatives for the mosquito ecology and “SI” model are computed by
@@ -251,10 +251,10 @@ getS3method("dMYdt", "SI")
     ##         })
     ##     })
     ## }
-    ## <bytecode: 0x643e8c7f79f8>
+    ## <bytecode: 0x610733e53b58>
     ## <environment: namespace:ramp.xds>
 
-The term \\\Lambda\\ is passed from the trace function
+The term \\\Lambda\\ is passed from the forcing function
 `F_emerge.trivialL`. Documentation is available through help in two
 ways:
 [`?trivialL`](https://dd-harp.github.io/ramp.xds/reference/trivialL.md)
@@ -277,5 +277,5 @@ getS3method("F_emerge", "trivialL")
     ##             F_shock(t, V_k))
     ##     })
     ## }
-    ## <bytecode: 0x643e8caa04c8>
+    ## <bytecode: 0x6107340ef7d0>
     ## <environment: namespace:ramp.xds>

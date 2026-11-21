@@ -150,19 +150,20 @@ model both</p>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dts_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>XHname <span class="op">=</span> <span class="st">"SIS"</span>, xds<span class="op">=</span> <span class="st">"dts"</span><span class="op">)</span> </span></code></pre></div>
-<p>Individuals are either infected and infectious <span class="math inline">\((I)\)</span> or uninfected and susceptible to
-infection <span class="math inline">\((S)\)</span>, and the total
-population sizes is <span class="math inline">\(H=S+I.\)</span> This
-vignette describes the model and its implementation in
-<strong><code>ramp.xds.</code></strong></p>
+<p>This vignette describes the basic model and its generalized
+implementation in <strong><code>ramp.xds.</code></strong></p>
 <div class="section level3">
 <h3 id="the-basic-s-i-s-model">The Basic S-I-S model<a class="anchor" aria-label="anchor" href="#the-basic-s-i-s-model"></a>
 </h3>
+<p>In the S-I-S model, individuals are either infected and infectious
+<span class="math inline">\((I)\)</span> or uninfected and susceptible
+to infection <span class="math inline">\((S)\)</span>, and the total
+population sizes is <span class="math inline">\(H=S+I.\)</span></p>
 <p>The rate that susceptible individuals become infected is called the
 <em>force of infection</em> (or FoI, Ross called it the
 <em>happenings</em> rate, denoted <span class="math inline">\(h\)</span>). The rate of clearance is <span class="math inline">\(r.\)</span> After clearing an infection,
 individuals are susceptible to infection again. In its simplest
-form:</p>
+form.</p>
 <p><span class="math display">\[
 \begin{array}{rl}
 \frac{dS}{dt} &amp;= - h S + r I \\
@@ -199,7 +200,7 @@ population dynamics (<strong>H</strong>):</p>
 equations is redundant. To implement <em>progressive
 stratification,</em> we drop <span class="math inline">\(S,\)</span> and
 use a function <span class="math inline">\(\mathbf{D}\)</span> that
-computes per-capita mortality in a generic way:</p>
+computes deaths for some variable in a consistent way:</p>
 <p><span class="math display">\[
 \begin{array}{rcr}
 \frac{dH}{dt} =&amp; &amp;B(t,H) - \mathbf{D}(t,H)\\
@@ -207,7 +208,8 @@ computes per-capita mortality in a generic way:</p>
 \end{array}
 \]</span> After solving, we compute <span class="math inline">\(S=H+I\)</span> and attach its orbit. By default,
 birth rates and death rates are set to zero, a constant population
-model. The birth and death functions are modified using:</p>
+model, equivalent to the basis S-I-S model. The birth and death
+functions are modified using:</p>
 <ul>
 <li><p><a href="https://dd-harp.github.io/ramp.xds/reference/setup_births.html">setup_births</a></p></li>
 <li><p><a href="https://dd-harp.github.io/ramp.xds/reference/setup_deaths.html">setup_deaths</a></p></li>
@@ -235,6 +237,8 @@ mass screening and treating (<code>msat(t)</code>), a shock function
 <span class="math inline">\(\Xi(t)\)</span></p></li>
 <li><p>The total rate that infections clear is thus: <span class="math display">\[r + \rho h + \sigma + \Xi(t)\]</span></p></li>
 </ul>
+<p>By default, treatment probabilities and rates are set to zero, so it
+is equivalent to the basis S-I-S model.</p>
 </div>
 </div>
 <div class="section level2">

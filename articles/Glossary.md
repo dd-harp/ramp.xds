@@ -221,12 +221,8 @@ bionomic parameters, listed below
   seasonal mosquito emergence driven by rainfall. Models can be forced
   via emergence (`Lambda`), the EIR (`eir`), or other mechanisms.
 
-- **trace function**:
-
-  A function of time \\t\\ used to specify an exogenous input to the
-  model. Built using `make_function()` and parameterised with
-  `makepar_*` helpers. Trace functions can represent constant, seasonal,
-  trend-driven, or spline-interpolated signals.
+- **forcing function**: A time-dependent function that specifies an
+  input to a model.
 
 - **seasonality**:
 

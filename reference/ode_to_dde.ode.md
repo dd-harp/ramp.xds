@@ -1,6 +1,6 @@
 # Compute as DDE
 
-If `class(xds_obj$xde) == "dde"` don't change anything
+Switch to `dde` if any module's skill set indicates a delay.
 
 ## Usage
 

@@ -1,6 +1,6 @@
 # Get the *Pf*PR from a malaria model
 
-Return the PR by light microscopy
+Return the PR by light microscopy.
 
 ## Usage
 

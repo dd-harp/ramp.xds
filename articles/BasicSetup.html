@@ -284,7 +284,7 @@ through the <strong>ML</strong> Interface. It handles:</p>
 <p>For each component, it is possible to choose the <code>trivial</code>
 module. The <code>trivial</code> modules ignore the inputs that come
 from other dynamical components, and they pass the component’s outputs
-from a <em>trace function.</em> Using <code>trivial</code> modules, it
+from a <em>forcing function.</em> Using <code>trivial</code> modules, it
 is possible to develop models that isolate and study part of a full
 system.</p>
 <ul>
@@ -303,11 +303,12 @@ rate of adult, female mosquitoes in each patch (<span class="math inline">\(\Lam
 (<span class="math inline">\(\kappa\)</span>) and/or human population
 density (<span class="math inline">\(H\)</span>)</p></li>
 </ul>
-<p>Using <code><a href="../reference/xds_setup_eir.html">xds_setup_eir()</a></code>, it is possible to set up a trace
-function that passes the EIR to the <strong>XH</strong> component.</p>
+<p>Using <code><a href="../reference/xds_setup_eir.html">xds_setup_eir()</a></code>, it is possible to set up a
+forcing function that passes the EIR to the <strong>XH</strong>
+component.</p>
 </div>
 <div class="section level3">
-<h3 id="trace-functions">Trace Functions<a class="anchor" aria-label="anchor" href="#trace-functions"></a>
+<h3 id="forcing-functions">Forcing Functions<a class="anchor" aria-label="anchor" href="#forcing-functions"></a>
 </h3>
 <p>The functions that output these terms are <strong>composed time
 series functions,</strong> with four components:</p>
@@ -391,7 +392,7 @@ biting in patches</li>
 <p><code>xds_setup_eir</code> (<code>frame="eir"</code>) sets up
 models to study epidemiology</p>
 <ul>
-<li>a trace function computes the EIR, denoted </li>
+<li>a forcing function computes the EIR, denoted </li>
 <li>the <strong>MY</strong> component is not used</li>
 <li>the <strong>XH</strong> component is not used</li>
 </ul>
@@ -529,8 +530,8 @@ for a list of modules).</p></li>
 <div class="section level3">
 <h3 id="trivial-modules-1">Trivial Modules<a class="anchor" aria-label="anchor" href="#trivial-modules-1"></a>
 </h3>
-<p>The trivial modules configure <em>trace functions</em> to pass
-outputs. The trace functions are designed around the concept of a
+<p>The trivial modules configure <em>forcing functions</em> to pass
+outputs. The forcing functions are designed around the concept of a
 <em>constructed time series</em> with the form: <span class="math display">\[ m\; F_S(t)\;  F_T(t) \; F_K(t)\]</span>
 where</p>
 <ul>
@@ -543,7 +544,7 @@ where</p>
 <code>F_shock</code> outputs a perturbation</p></li>
 </ul>
 <p>For a longer introduction, see <a href="https://faculty.washington.edu/smitdave/simba/trace.html" class="external-link"><strong>SimBA</strong>:
-Trace Functions</a>.</p>
+Forcing functions</a>.</p>
 </div>
 </div>
 <div class="section level2">

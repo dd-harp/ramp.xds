@@ -1,7 +1,7 @@
 # Get Variables by Name
 
-Get the the values of variables from the flat state variable vector
-\\y\\, and return the values as a named list
+Get the values of variables from the flat state variable vector \\y\\,
+and return the values as a named list.
 
 ## Usage
 
@@ -21,7 +21,7 @@ get_V_vars(y, xds_obj, i = 1)
 
 - i:
 
-  the host species index
+  the auxiliary-variable module index
 
 ## Value
 

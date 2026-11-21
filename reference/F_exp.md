@@ -14,6 +14,10 @@ F_exp(d, V = list())
 
   distance
 
+- V:
+
+  an optional list of variables
+
 ## Value
 
-0
+`exp(-d)`

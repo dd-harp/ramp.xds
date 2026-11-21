@@ -20,4 +20,5 @@ get_last(xds_obj, parse = FALSE)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector or, if
+`parse = TRUE`, a named [list](https://rdrr.io/r/base/list.html)

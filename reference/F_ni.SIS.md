@@ -1,7 +1,7 @@
 # Compute the net infectiousness
 
 Implements [F_ni](https://dd-harp.github.io/ramp.xds/reference/F_ni.md)
-for the `SIS` model.
+for the `SIS` model
 
 ## Usage
 
@@ -18,7 +18,7 @@ F_ni(vars, XH_obj)
 
 - XH_obj:
 
-  a list defining a model for human
+  a list defining a model for humans
 
 ## Value
 

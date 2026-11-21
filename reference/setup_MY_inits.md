@@ -38,4 +38,4 @@ an **`xds`** model object
 ## See also
 
 [get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md),
-[xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
+[xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)

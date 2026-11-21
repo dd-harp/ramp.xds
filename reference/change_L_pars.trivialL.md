@@ -32,4 +32,4 @@ an **`xds`** model object
 
 ## Note
 
-Utilities for trace functions are in `ramp.func`
+Utilities for forcing functions are in `ramp.func`

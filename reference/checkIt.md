@@ -12,22 +12,22 @@ checkIt(x, lng, type = "numeric", fixit = TRUE)
 
 - x:
 
-  a [numeric](https://rdrr.io/r/base/numeric.html) model object
+  a [numeric](https://rdrr.io/r/base/numeric.html) input
 
 - lng:
 
-  a [numeric](https://rdrr.io/r/base/numeric.html) model object
+  the required length
 
 - type:
 
   a [character](https://rdrr.io/r/base/character.html) string specifying
-  required typeof
+  whether to convert the input to integer
 
 - fixit:
 
-  a [logical](https://rdrr.io/r/base/logical.html) value, if TRUE force
-  length to lng
+  a [logical](https://rdrr.io/r/base/logical.html) value; if `TRUE`,
+  replicate a length-one input to length `lng`
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) model object
+the checked [numeric](https://rdrr.io/r/base/numeric.html) input

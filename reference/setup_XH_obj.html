@@ -11,8 +11,8 @@ calls make_XH_obj_XHname to set up the dynamics, including parameters
 calls setup_XH_inits to set initial values
 initializes setup_blood_search_weights: all weights are set to \(1\)
 initializes setup_timespent to the residence matrix: all time spent at home
-calls setup_mass_treatment with no events
-calls setup_demog_obj setting birth and death rates to zero
+every capable module calls setup_mass_treatment with no events
+every capable module calls setup_demog_obj setting birth and death rates to zero
 calls setup_time_away with no time spent away
 calls setup_travel_eir with the travel EIR set to zero
 
@@ -23,8 +23,8 @@ calls make_XH_obj_XHname to set up the dynamics, including parameters
 calls setup_XH_inits to set initial values
 initializes setup_blood_search_weights: all weights are set to \(1\)
 initializes setup_timespent to the residence matrix: all time spent at home
-calls setup_mass_treatment with no events
-calls setup_demog_obj setting birth and death rates to zero
+every capable module calls setup_mass_treatment with no events
+every capable module calls setup_demog_obj setting birth and death rates to zero
 calls setup_time_away with no time spent away
 calls setup_travel_eir with the travel EIR set to zero
 
@@ -116,8 +116,8 @@ and sets up the interface ports:</p><ul><li><p>calls <code>make_XH_obj_</code><e
 <li><p>calls <a href="setup_XH_inits.html">setup_XH_inits</a> to set initial values</p></li>
 <li><p>initializes <a href="setup_blood_search_weights.html">setup_blood_search_weights</a>: all weights are set to \(1\)</p></li>
 <li><p>initializes <a href="setup_TimeSpent.html">setup_timespent</a> to the residence matrix: all time spent at home</p></li>
-<li><p>calls <a href="setup_mass_treatment.html">setup_mass_treatment</a> with no events</p></li>
-<li><p>calls <a href="setup_demog_obj.html">setup_demog_obj</a> setting birth and death rates to zero</p></li>
+<li><p>every capable module calls <a href="setup_mass_treatment.html">setup_mass_treatment</a> with no events</p></li>
+<li><p>every capable module calls <a href="setup_demog_obj.html">setup_demog_obj</a> setting birth and death rates to zero</p></li>
 <li><p>calls <a href="setup_time_away.html">setup_time_away</a> with no time spent away</p></li>
 <li><p>calls <a href="setup_travel_eir.html">setup_travel_eir</a> with the travel EIR set to zero</p></li>
 </ul><p>The function is part of basic setup, but it is also used to add a host species.</p>

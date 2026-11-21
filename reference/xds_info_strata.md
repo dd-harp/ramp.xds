@@ -36,7 +36,7 @@ notions of *time spent* (see
 [xds_info_time_spent](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_spent.md))
 and *time at risk* (see
 [xds_info_time_at_risk](https://dd-harp.github.io/ramp.xds/reference/xds_info_time_at_risk.md)).
-The model is configured by passing a vector, called `residence.` The
+The model is configured by passing a vector, called `residence`. The
 residence vector is the index of the patch where each human population
 resides, and multiple strata can reside in the same patch. Conversely,
 there might be some patches where no one resides, such as the mosquito

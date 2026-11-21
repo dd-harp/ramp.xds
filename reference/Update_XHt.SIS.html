@@ -136,7 +136,7 @@ I_t &amp;= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>the derivatives, as a vector</p>
+    <p>updated dependent variables (a <a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a>)</p>
     </div>
     <div class="section level2">
     <h2 id="infection-dynamics">Infection Dynamics<a class="anchor" aria-label="anchor" href="#infection-dynamics"></a></h2>
@@ -149,7 +149,7 @@ clear naturally at a constant per-capita rate \(r\).</p>
 treating and curing malaria infections:</p><ul><li><p>a fraction \(\rho\) of incident infections are treated and cured</p></li>
 <li><p>since incident infections are treated, the FoI is \(h (1-\rho)\)</p></li>
 <li><p>in addition, prevalent infections are treated and cured at the rate \(\sigma\)</p></li>
-<li><p>functions describes an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function</p></li>
+<li><p>functions describe an increase in clearance caused by mass treatment, \(\Xi(t)\), a <em>shock</em> function</p></li>
 </ul><p>The total per-capita clearance rate from treatment is thus \(\rho h + \sigma + \Xi(t)\)</p>
 <p>After clearing, individuals are
 susceptible to infection.</p>
@@ -159,7 +159,7 @@ susceptible to infection.</p>
 
 
 
-<p>This model has no parameter
+<p>This model has no parameters
 or terms to describe disease-induced mortality.</p>
 <dl><dt><code><a href="Births.html">Births</a></code> or \(\mathbf{B}\)</dt>
 <dd><p>the births function</p></dd>

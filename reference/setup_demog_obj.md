@@ -1,6 +1,6 @@
-# Setup births
+# Set up births and deaths
 
-Configure the births function
+Configure the births and deaths functions.
 
 ## Usage
 

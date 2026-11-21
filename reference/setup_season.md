@@ -1,6 +1,6 @@
-# Setup Seasonal Forcing
+# Set up seasonal forcing
 
-Setup seasonal forcing
+Set up seasonal forcing.
 
 ## Usage
 

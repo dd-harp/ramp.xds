@@ -1,8 +1,12 @@
 # Solve a System of Delay Differential Equations
 
-Implements
-[xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
-for delay differential equations
+Solves a system of delay differential equations and computes the values
+of the dependent variables.
+
+Output times are set by
+[make_times_xde](https://dd-harp.github.io/ramp.xds/reference/make_times_xde.md).
+
+The returned model includes parsed outputs.
 
 ## Usage
 

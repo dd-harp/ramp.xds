@@ -1,6 +1,6 @@
 # Set the interpolating points
 
-Set the interpolating points for F_trend
+Set the interpolating points for F_trend.
 
 ## Usage
 

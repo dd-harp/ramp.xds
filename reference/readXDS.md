@@ -1,6 +1,6 @@
 # readRDS for `xds` Objects
 
-Read the `xds` object using `readRDS` and rebuild the forcing functions
+Read the `xds` object using `readRDS` and rebuild the forcing functions.
 
 ## Usage
 

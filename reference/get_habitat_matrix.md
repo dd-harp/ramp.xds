@@ -1,6 +1,6 @@
 # Get habitat matrix, \\N\\
 
-Output the habitat membership information as a list
+Inspect the habitat membership matrix.
 
 ## Usage
 
@@ -20,4 +20,5 @@ a [matrix](https://rdrr.io/r/base/matrix.html)
 
 ## See also
 
-[`make_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
+[`make_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md),
+[habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/habitat_matrix.md)

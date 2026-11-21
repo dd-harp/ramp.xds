@@ -22,11 +22,11 @@ make_XH_inits_hMoI(nStrata, options = list(), m1 = 2, m2 = 1)
 
 - m1:
 
-  mean MoI among inapparent human infections
+  mean MoI for all infections
 
 - m2:
 
-  mean MoI among patent human infections
+  mean MoI for apparent infections
 
 ## Value
 

@@ -1,6 +1,7 @@
 # `trivialMY` — **MY** module
 
-The trivial **MY** module configures two trace functions:
+The trivial **MY** module configures one of two forcing functions,
+either:
 
 - infectious biting: \$\$F\_{fqZ}(t, V) = fqZ \times F_S(t, V_s) \times
   F_T(t, V_t) \times F_K(t, V_k)\$\$
@@ -84,36 +85,6 @@ of the objects `season_par` and `trend_par` and `shock_par` are all
 
 For the bionomic parameters, `f=q=Z=eggs=1`.
 
-## Get
-
-- `get_MY_pars` — the `trivialMY` method returns all the parameters
-
-- `get_mean_forcing` — returns `Z`
-
-- `get_f` — returns `f`
-
-- `get_q` — returns `q`
-
-- `get_season` — returns `season_par`
-
-- `get_trend` — returns `trend_par`
-
-- `get_shock` — returns `shock_par`
-
-Note: use `get_MY_pars` to inspect `eggs`
-
-## Change
-
-- `change_MY_pars` — change bionomic parameters by name
-
-- `change_mean_forcing` — changes `Z`
-
-- `change_F_season` — changes `F_season`
-
-- `change_F_trend` — changes `F_trend`
-
-- `change_F_shock` — changes `F_shock`
-
 ## Notes
 
 1.  The module has no state variables.
@@ -125,3 +96,7 @@ Note: use `get_MY_pars` to inspect `eggs`
 `F_season`, `F_trend`, and `F_shock` can be set up manually by passing
 any user defined function. If so, the user should use `saveRDS` and
 `readRDS` rather than `saveXDS` and `readXDS`
+
+## See also
+
+[make_MY_obj_trivial](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_trivial.md)

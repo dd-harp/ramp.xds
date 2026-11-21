@@ -1,6 +1,7 @@
 # Get Variables
 
-A generic function to retrieve variables from the **`xds`** model object
+A generic function to retrieve variables from the **`xds`** model
+object.
 
 ## Usage
 
@@ -12,7 +13,7 @@ get_variables(opts, t, y, xds_obj, ix)
 
 - opts:
 
-  an options list and dispatching
+  an options list used for dispatch
 
 - t:
 

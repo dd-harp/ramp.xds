@@ -254,11 +254,11 @@ get_XH_pars(model1)
     ## [1] 0.9
 
 In the `SIS` model, we set \\H_0,\\ and \\I_0.\\ The software computes
-\\dH/dt\\ and \\dI/dt\\ and sets \\S=H-I.\\ By policy, the software
-computes the total population size, \\H,\\ dynamically and treats it
-differently. This is because it plays an important role in setting up
-the *Blood Feeding* interface, so it is not possible to set \\S.\\
-Instead, \\S\\ is computed after solving and parsing.
+\\dH/dt\\ and \\dI/dt\\ and sets \\S=H-I.\\ Total population size,
+\\H,\\ an important role in setting up the *Blood Feeding* interface.
+Since \\S = H-I\\, we don’t compute \\S,\\ so it is not possible to set
+it’s initial value. \\S.\\ Instead, \\S\\ is computed after solving and
+parsing.
 
 ``` r
 
@@ -483,7 +483,7 @@ mean*F_season(t)*F_trend(t)*F_shock(t)
 It is easy to change the forcing function. A function library for
 `ramp.xds` is found in
 [`ramp.func`](https://github.com/dd-harp/ramp.func). For more
-information about configuring trace functions for `ramp.xds`
+information about configuring forcing functions for `ramp.xds`
 
 ## Next Steps
 

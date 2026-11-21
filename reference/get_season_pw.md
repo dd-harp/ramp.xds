@@ -1,6 +1,6 @@
 # Get seasonality parameter `pw`
 
-Get the `pw` parameter for the seasonality function
+Get the `pw` parameter for the seasonality function.
 
 ## Usage
 

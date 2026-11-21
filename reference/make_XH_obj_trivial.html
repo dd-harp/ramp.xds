@@ -5,12 +5,12 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Make parameters for trivial human model — make_XH_obj_trivial"><meta name="description" content="This builds a trace function as a composed time series function using either functions or parameters:
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Make parameters for trivial human model — make_XH_obj_trivial"><meta name="description" content="This builds a forcing function as a composed time series function using either functions or parameters:
 Use a function if passed, and set the function object to an empty list
 If no function is passed, the parameters should be a function object (see ramp.func::F_obj)
 Use make_function to create a function \(F(t,V)\)
 
-"><meta property="og:description" content="This builds a trace function as a composed time series function using either functions or parameters:
+"><meta property="og:description" content="This builds a forcing function as a composed time series function using either functions or parameters:
 Use a function if passed, and set the function object to an empty list
 If no function is passed, the parameters should be a function object (see ramp.func::F_obj)
 Use make_function to create a function \(F(t,V)\)
@@ -97,7 +97,7 @@ Use make_function to create a function \(F(t,V)\)
     </div>
 
     <div class="ref-description section level2">
-    <p>This builds a trace function as a <em>composed time series function</em> using either functions or parameters:</p><ul><li><p>Use a function if passed, and set the function object to an empty list</p></li>
+    <p>This builds a forcing function as a <em>composed time series function</em> using either functions or parameters:</p><ul><li><p>Use a function if passed, and set the function object to an empty list</p></li>
 <li><p>If no function is passed, the parameters should be a function object (see <a href="https://dd-harp.github.io/ramp.func/reference/F_obj.html" class="external-link">ramp.func::F_obj</a>)</p></li>
 <li><p>Use <code>make_function</code> to create a function \(F(t,V)\)</p></li>
 </ul></div>
@@ -129,7 +129,7 @@ Use make_function to create a function \(F(t,V)\)
 
 
 <dl><dt id="arg-npatches">nPatches<a class="anchor" aria-label="anchor" href="#arg-npatches"></a></dt>
-<dd><p>the number of patches</p></dd>
+<dd><p>the number of population strata (legacy argument name)</p></dd>
 
 
 <dt id="arg-options">options<a class="anchor" aria-label="anchor" href="#arg-options"></a></dt>

@@ -1,9 +1,9 @@
 # Set up birth rates
 
-Pass pre-configured constant birth rates. If it passes the checks, it
-replaces the current birth rates.
+Pass pre-configured constant birth rates. If they pass the checks, they
+replace the current birth rates.
 
-If called with `name = "as_is"`, the births must be at `options$births`
+The birth rates must be at `options$birth_rates`.
 
 ## Usage
 
@@ -16,7 +16,7 @@ setup_births(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 

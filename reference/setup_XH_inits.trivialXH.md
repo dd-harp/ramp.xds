@@ -1,4 +1,4 @@
-# Setup initial values for `trivialXH` (**XH**)
+# Set up initial values for `trivialXH` (**XH**)
 
 The `trivialXH` module (**XH**) for the \\i^{th}\\ species has no
 dynamical variables requiring initial values. This method returns the
@@ -27,4 +27,4 @@ setup_XH_inits(xds_obj, options = list(), i = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) vector
+an **`xds`** model object

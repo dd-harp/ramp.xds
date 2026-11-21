@@ -1,6 +1,6 @@
 # Change season parameters
 
-Change parameters for the seasonality function
+Change parameters for the seasonality function.
 
 ## Usage
 

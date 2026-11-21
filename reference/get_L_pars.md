@@ -27,4 +27,4 @@ a [list](https://rdrr.io/r/base/list.html)
 
 [change_L_pars](https://dd-harp.github.io/ramp.xds/reference/change_L_pars.md),
 [setup_L_obj](https://dd-harp.github.io/ramp.xds/reference/setup_L_obj.md),
-[xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
+[xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)

@@ -4,10 +4,14 @@ Compute the steady state for a system of differential equations.
 
 - Run for \\Y\\ years
 
-- Check the sun of squared differences in the final state is less than
-  `tol`
+- Check whether the sum of squared differences between successive final
+  states is less than `tol`
 
-- If not
+- If not, repeat the run up to ten more times using the latest final
+  state as the new initial state.
+
+- Stop after ten additional runs, even if the tolerance has not been
+  reached.
 
 ## Usage
 

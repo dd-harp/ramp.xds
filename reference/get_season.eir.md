@@ -1,6 +1,6 @@
 # Get seasonality parameters
 
-Get seasonality parameters when `forced_by` = "eir"
+Get seasonality parameters when `forced_by` = "eir".
 
 ## Usage
 

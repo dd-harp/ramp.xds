@@ -1,9 +1,10 @@
-# Set up a deaths
+# Set up deaths
 
-Pass a pre-configured deaths . If it passes the checks, it replaces the
-current deaths .
+Pass pre-configured deaths. If they pass the checks, they replace the
+current deaths.
 
-If called with `name = "as_is"`, the deaths must be at `options$deaths`
+If called with `name = "as_is"`, the deaths must be at
+`options$death_rates`.
 
 ## Usage
 
@@ -16,7 +17,7 @@ setup_deaths(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 

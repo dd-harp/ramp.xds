@@ -18,11 +18,11 @@ up the interface ports:
   [setup_timespent](https://dd-harp.github.io/ramp.xds/reference/setup_TimeSpent.md)
   to the residence matrix: all time spent at home
 
-- calls
+- every capable module calls
   [setup_mass_treatment](https://dd-harp.github.io/ramp.xds/reference/setup_mass_treatment.md)
   with no events
 
-- calls
+- every capable module calls
   [setup_demog_obj](https://dd-harp.github.io/ramp.xds/reference/setup_demog_obj.md)
   setting birth and death rates to zero
 

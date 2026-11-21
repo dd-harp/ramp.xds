@@ -10,13 +10,13 @@ mean Multiplicity of Infection (MoI): the first models the true MoI,
 and the second is the MoI for &quot;younger&quot; infections that are detected
 with higher frequency than older ones.
 This model is derived under a restrictive set of assumptions,
-so it can not be extended to model dynamic changes in population size or
+so it cannot be extended to model dynamic changes in population size or
 treatment with anti-malarial drugs."><meta property="og:description" content="hMoI implements a model with two hybrid variables that track the
 mean Multiplicity of Infection (MoI): the first models the true MoI,
 and the second is the MoI for &quot;younger&quot; infections that are detected
 with higher frequency than older ones.
 This model is derived under a restrictive set of assumptions,
-so it can not be extended to model dynamic changes in population size or
+so it cannot be extended to model dynamic changes in population size or
 treatment with anti-malarial drugs."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
@@ -104,7 +104,7 @@ mean Multiplicity of Infection (MoI): the first models the true MoI,
 and the second is the MoI for "younger" infections that are detected
 with higher frequency than older ones.</p>
 <p>This model is derived under a restrictive set of assumptions,
-so it can not be extended to model dynamic changes in population size or
+so it cannot be extended to model dynamic changes in population size or
 treatment with anti-malarial drugs.</p>
     </div>
 
@@ -138,7 +138,7 @@ is a parameter, but it should be changed using <a href="change_XH_inits.html">ch
 <dd><p>The force of infection is computed and stored by <a href="Exposure.html">Exposure</a> as <code>FoI</code></p></dd>
 
 
-</dl><p>In the <code>SIS</code> module, there is no effect of pre-erythrocytic immunity, so
+</dl><p>In the <code>hMoI</code> module, there is no effect of pre-erythrocytic immunity, so
 a constant fraction of infectious bites causes an infection: the parameter \(b.\)</p>
     </div>
     <div class="section level2">
@@ -195,8 +195,8 @@ dm_2/dt &amp;= h - r_2 m_2 \\
 
 <p>The model assumes that younger infections are more infectious, but that
 some transmission does occur from the older infections:
-$$c_2 x_2 + c_1 (x_2 - x_1)$$
-so the infectious density is $$\left(c_2 x_2 + c_1 (x_2 - x_1)\right) H$$</p>
+$$c_2 x_2 + c_1 (x_1 - x_2)$$
+so the infectious density is $$\left(c_2 x_2 + c_1 (x_1 - x_2)\right) H$$</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
