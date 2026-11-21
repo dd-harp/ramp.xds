@@ -12,7 +12,7 @@ get_H(xds_obj, i = 1)
 \item{i}{the human species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+human population density as a \link{numeric} vector
 }
 \description{
 Get human population density

@@ -15,7 +15,7 @@
 a \link{numeric} vector
 }
 \description{
-Implements \code{get_HTC} for the \code{hMoI} model with demography.
+Implements \code{get_HTC} for the \code{hMoI} model without demographic change.
 }
 \seealso{
 \link{hMoI}

@@ -2,21 +2,21 @@
 % Please edit documentation in R/visitors.R
 \name{setup_visitors.list}
 \alias{setup_visitors.list}
-\title{Set up a visitors}
+\title{Set up visitors}
 \usage{
 \method{setup_visitors}{list}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+an \strong{\code{xds}} model object
 }
 \description{
 If an options list is passed
@@ -24,7 +24,7 @@ as the first argument, then set
 \itemize{
 \item \code{Vname = name$name}
 \item \code{options = name}
-and call \code{setup_visitors(Vname, xds_obj, options, s)}
+and call \code{setup_visitors(Vname, xds_obj, options, s)}.
 }
 }
 \keyword{internal}

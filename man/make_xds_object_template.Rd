@@ -13,7 +13,7 @@ make_xds_object_template(
 )
 }
 \arguments{
-\item{xds}{is used to dispatch various functions to set up and solve systems of differential equations. 'xde' for ordinary or delay differential equations; 'dts' for "discrete time systems"}
+\item{xds}{selects the solver: \code{xde} for ordinary or delay differential equations, or \code{dts} for discrete-time systems.}
 
 \item{frame}{model component subset}
 
@@ -27,12 +27,10 @@ make_xds_object_template(
 an \strong{\code{xds}} model object
 }
 \description{
-This function is called by \link{xds_setup} to create
-a structured object, called an
+This function is called by \link{xds_setup} to create a structured
 \strong{\code{xds}} model object template. The template has
 configured interfaces, created stubs for the model objects,
-created junctions, and
-set up empty ports. A template has set up all the basic
+set up empty ports, and created junctions. A template has set up all the basic
 structural elements, but it has not configured
 any of the component model objects.
 }
@@ -42,32 +40,31 @@ core objects used by \strong{\code{ramp.xds}}.
 
 First, the function sets up some
 short text strings (assigned to the same \code{S3} class)
-to dispatch various \strong{cases} of various \code{S3} functions:
+to dispatch \strong{cases} of \code{S3} functions:
 \itemize{
-\item \strong{\code{xds}} is either "xde"  for differential equations, or "dts" for discrete time systems
-\item \strong{\code{xde}} is either "ode"  for ordinary differential equations; "dde" for delay differential equations; or "dts" for discrete time systems
+\item \strong{\code{xds}} is either "xde" for differential equations or "dts" for discrete-time systems
+\item \strong{\code{xde}} is either "ode" for ordinary differential equations, "dde" for delay differential equations, or "dts" for discrete-time systems
 \item \strong{\code{frame}} is one of several cases:
 \itemize{
-\item "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; and adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}.
-in some form (possibly the trivial case) (see \code{\link[=xds_setup]{xds_setup()}})
+\item "full" includes all three dynamical components: a human/host dynamical component, \eqn{\cal XH}; an adult mosquito dynamical component, \eqn{\cal MYZ}; and an aquatic mosquito dynamical component, \eqn{\cal L}, in some form (possibly the trivial case) (see \code{\link[=xds_setup]{xds_setup()}})
 \item "mosy" is for mosquito ecology models (see \code{\link[=xds_setup_mosy]{xds_setup_mosy()}}), including models without pathogen infection dynamics in mosquitoes
 \item "aquatic" is for aquatic mosquito ecology models (see \code{\link[=xds_setup_aquatic]{xds_setup_aquatic()}}), forced by a function describing egg laying
-\item "human" is for human/host infection dynamics(see \code{\link[=xds_setup_human]{xds_setup_human()}}), forced by the infective density of adult mosquitoes, \eqn{fqZ}
+\item "human" is for human/host infection dynamics (see \code{\link[=xds_setup_human]{xds_setup_human()}}), forced by the infective density of adult mosquitoes, \eqn{fqZ}
 \item "eir" is for human/host cohort infection dynamics (see \code{\link[=xds_setup_eir]{xds_setup_eir()}}), forced by a function \code{F_eir}
 }
-\item \strong{\code{forcing}} is set to "static"
+\item \strong{\code{forcing}} is set to "none"
 }
 
 Second, the function sets the values of the \strong{structural parameters}:
 \itemize{
 \item \strong{\code{nPatches}} or \eqn{N_p} is the number of patches
 \item \strong{\code{nHabitats}} or \eqn{N_q}, the number of aquatic habitats, is set to \code{length(membership)}
-\item \strong{\code{nStrata}} or \eqn{N_h}, the number of human/ host population strata, is set to \code{length(HPop)}
+\item \strong{\code{nStrata}} or \eqn{N_h}, the number of human/host population strata, is set to \code{length(residence)}
 \item \strong{\code{nVectorSpecies}} or \eqn{N_s}, the number of vector species is set to 1;
 \item \strong{\code{nHostSpecies}} or \eqn{N_i}, the number of host species is set to 1;
 }
 
-Next, the function sets up egg laying, blood feeding, importation, transmission, and exposure.
+Next, the function sets up egg-laying, blood-feeding, importation, transmission, and exposure.
 
 Next, the function sets up empty lists to hold the model objects for all three dynamical components:
 \itemize{
@@ -79,7 +76,7 @@ Next, the function sets up empty lists to hold the model objects for all three d
 Finally, the function sets up some junctions.
 }
 \note{
-\code{xds} stands for extensible differential equation
+\code{xds} stands for an eXtensible Dynamical System
 }
 \seealso{
 Related: \link{xds_setup} and \link{setup_forcing_object}. Illustrated in a vignette: \href{https://dd-harp.github.io/ramp.xds/articles/ex_534.html}{5-3-4 Example}

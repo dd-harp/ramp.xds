@@ -18,6 +18,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 Set new \eqn{y}-values for the spline interpolating points
-and update \code{F_trend}
+and update \code{F_trend}.
 }
 \keyword{internal}

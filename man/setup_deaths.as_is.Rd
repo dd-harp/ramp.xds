@@ -2,12 +2,12 @@
 % Please edit documentation in R/human-deaths.R
 \name{setup_deaths.as_is}
 \alias{setup_deaths.as_is}
-\title{Set up a deaths}
+\title{Set up deaths}
 \usage{
 \method{setup_deaths}{as_is}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,10 +19,10 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Pass a pre-configured deaths . If it passes
-the checks, it replaces the current deaths .
+Pass pre-configured deaths. If they pass
+the checks, they replace the current deaths.
 
 If called with \code{name = "as_is"}, the deaths
-must be at \code{options$deaths}
+must be at \code{options$death_rates}.
 }
 \keyword{internal}

@@ -23,8 +23,8 @@ membership matrix, like the residence matrix (see \link{get_residence_matrix}).
 If the residence matrix were passed to members, average_PR_true returns
 the average PR for each patch by residency.
 
-The default, \verb{members=NULL,} creates a \eqn{1 \times} \code{nStrata} matrix,
-which takes the matrix over the whole population. If \code{members} is a
+The default, \code{members=NULL}, creates an \code{nStrata} \eqn{\times 1} matrix,
+which computes the average over the whole population. If \code{members} is a
 matrix with 1 column and \code{nStrata} rows, with only some elements set to one,
 then it returns the average over those strata.
 }

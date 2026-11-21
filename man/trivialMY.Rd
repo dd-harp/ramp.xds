@@ -4,7 +4,7 @@
 \alias{trivialMY}
 \title{\code{trivialMY} --- \strong{MY} module}
 \description{
-The trivial \strong{MY} module configures two trace functions:
+The trivial \strong{MY} module configures one of two forcing functions, either:
 \itemize{
 \item infectious biting:
 \deqn{F_{fqZ}(t, V) = fqZ \times F_S(t, V_s) \times F_T(t, V_t) \times F_K(t, V_k)}
@@ -50,32 +50,6 @@ classes of the objects \code{season_par} and \code{trend_par} and \code{shock_pa
 For the bionomic parameters, \code{f=q=Z=eggs=1}.
 }
 
-\section{Get}{
-
-\itemize{
-\item \code{get_MY_pars} --- the \code{trivialMY} method returns all the parameters
-\item \code{get_mean_forcing} --- returns \code{Z}
-\item \code{get_f} --- returns \code{f}
-\item \code{get_q} --- returns \code{q}
-\item \code{get_season} --- returns \code{season_par}
-\item \code{get_trend}  --- returns \code{trend_par}
-\item \code{get_shock}  --- returns \code{shock_par}
-}
-
-Note: use \code{get_MY_pars} to inspect \code{eggs}
-}
-
-\section{Change}{
-
-\itemize{
-\item \code{change_MY_pars} --- change bionomic parameters by name
-\item \code{change_mean_forcing} --- changes \code{Z}
-\item \code{change_F_season} --- changes \code{F_season}
-\item \code{change_F_trend}  --- changes \code{F_trend}
-\item \code{change_F_shock}  --- changes \code{F_shock}
-}
-}
-
 \section{Notes}{
 
 \enumerate{
@@ -90,3 +64,6 @@ user defined function. If so, the user should use \code{saveRDS} and \code{readR
 rather than \code{saveXDS} and \code{readXDS}
 }
 
+\seealso{
+\link{make_MY_obj_trivial}
+}

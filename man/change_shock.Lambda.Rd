@@ -18,6 +18,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 Change parameters for the shock function
-when \code{forced_by = "Lambda"}
+when \code{forced_by = "Lambda"}.
 }
 \keyword{internal}

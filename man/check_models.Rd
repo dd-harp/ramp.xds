@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{check_models}
 \alias{check_models}
-\title{Run Checks}
+\title{Check the model components}
 \usage{
 check_models(xds_obj)
 }
@@ -13,6 +13,6 @@ check_models(xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Run Checks
+Check the model components
 }
 \keyword{internal}

@@ -11,6 +11,9 @@ get_spline_s(xds_obj, s)
 
 \item{s}{the vector species index}
 }
+\value{
+a \link{list} containing \code{tt} and \code{yy}, or \code{NULL} when there is no forcing
+}
 \description{
 Get the interpolating points
 for a spline function.

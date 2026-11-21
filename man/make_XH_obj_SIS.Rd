@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{make_XH_obj_SIS}
 \alias{make_XH_obj_SIS}
-\title{Make an \code{SIS} \strong{XH} model object}
+\title{Make a \code{SIS} \strong{XH} model object}
 \usage{
 make_XH_obj_SIS(
   nStrata,
@@ -42,7 +42,7 @@ make_XH_obj_SIS(
 an \strong{XH} model object
 }
 \description{
-Make an \code{SIS} \strong{XH} model object
+Make a \code{SIS} \strong{XH} model object
 }
 \section{Parameters}{
 

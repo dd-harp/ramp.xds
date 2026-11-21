@@ -15,6 +15,6 @@
 the temporal trend
 }
 \description{
-Evaluate the function \code{F_trend} for a forced model when \code{forced_by} is "Lambda"
+Evaluate the function \code{F_trend} for a forced model when \code{forced_by} is "Lambda".
 }
 \keyword{internal}

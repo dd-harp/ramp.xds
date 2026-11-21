@@ -33,7 +33,7 @@ ecology or human / host epidemiology.  In the former case,
 the user configures \code{F_eggs}; in the latter,
 \code{F_fqZ}
 
-This builds a trace function as a \emph{composed time series function} using either functions or parameters:
+This builds a forcing function as a \emph{composed time series function} using either functions or parameters:
 \itemize{
 \item Use a function if passed, and set the function object to an empty list
 \item If no function is passed, the parameters should be a function object (see \link[ramp.func:F_obj]{ramp.func::F_obj})

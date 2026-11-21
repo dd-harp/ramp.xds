@@ -16,6 +16,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 Pull the stored values of the
-alpha, eta
+alpha and eta.
 }
 \keyword{internal}

@@ -17,6 +17,20 @@ Emergence(t, y, xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Sums up adults emerging from all aquatic habitats using the habitat membership matrix
+Compute emerging adults at time \eqn{t}.
+}
+\section{Emergence}{
+
+
+During setup, the habitat matrix \eqn{(\mathbf{N})} is built from
+the habitat membership vector by \link{make_habitat_matrix}. The function
+\link{Emergence} calls \link{F_emerge} to get the adult mosquitoes emerging from
+each habitat \eqn{(\alpha)} and computes and stores
+emergence by patch (\code{Lambda} or \eqn{\Lambda}):
+\deqn{\Lambda = \mathbf{N} \cdot \alpha}
+}
+
+\seealso{
+\link{xds_info_interfaces}
 }
 \keyword{internal}

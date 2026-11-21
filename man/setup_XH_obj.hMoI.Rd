@@ -18,7 +18,7 @@
 \item{i}{the host species index}
 }
 \value{
-a \link{list} vector
+an \strong{\code{xds}} model object
 }
 \description{
 This sets up an \code{hMoI} model object for the \strong{XH} module for the \eqn{i^{th}} host species

@@ -4,21 +4,19 @@
 \alias{change_F_age}
 \title{Change F_age}
 \usage{
-change_F_age(F, xds_obj, ix = 1)
+change_F_age(F, xds_obj)
 }
 \arguments{
 \item{F}{new age function}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
-
-\item{ix}{the species index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-Change the age function. The function \code{F} should have the form
-\eqn{F_a(a,V)}. If the variable \eqn{V} is not used, it's default value should be set to an empty list.
+Change the relative biting rate function by age. The function \code{F} should have the form
+\eqn{F_a(a,V)}. If the variable \eqn{V} is not used, its default value should be set to an empty list.
 }
 \seealso{
 \link{F_one}

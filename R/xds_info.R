@@ -1,25 +1,31 @@
-#' @title **`ramp.xds`**: Info Pages
+# X
+
+#' @title **`ramp.xds`**: Information Pages
 #'
 #' @description
 #' A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
 #'
 #' **Setup & Structure**
 #' + [xds_info_basic_setup] -- basic setup overview
-#' + [xds_info_setup_options] -- setup options
+#' + [xds_info_advanced_setup] -- advanced setup
 #' + [xds_info_patch_dynamics] -- patch dynamics
-#' + [xds_info_strata] -- human/host population strata 
+#' + [xds_info_strata] -- human/host population strata
 #' + [xds_info_aquatic_habitats] -- aquatic habitats
 #' + [xds_info_dynamical_components] -- dynamical components
+#' + [xds_info_forcing] -- forcing
 #' + [xds_info_trivial_forcing] -- trivial forcing
+#' + [xds_info_initial_conditions] -- initial conditions
+#' + [xds_info_change_parameters] -- changing parameters
 #'
-#' **Human / Host**
+#' **Human/Host**
 #' + [xds_info_interfaces] -- dynamical interfaces
 #' + [xds_info_search_weights] -- search weights
 #' + [xds_info_availability] -- resource availability
 #' + [xds_info_transmission] -- transmission
-#' 
-#' **Human / Host**
+#'
+#' **Human/Host Epidemiology**
 #' + [xds_info_human_populations] -- human populations
+#' + [xds_info_demographic_change] -- demographic change
 #' + [xds_info_exposure] -- exposure
 #' + [xds_info_time_spent] -- time spent
 #' + [xds_info_time_at_risk] -- time at risk
@@ -38,8 +44,12 @@
 #' + [xds_info_search_weights_blood] -- blood search weights
 #' + [xds_info_available_blood_hosts] -- available blood hosts
 #'
-#' **Habitats & Egg Laying**
+#' **Habitats and Egg Laying**
+#' + [habitat_vector] -- habitat vector
+#' + [habitat_matrix] -- habitat matrix
+#' + [xds_info_laying_matrix] -- laying matrix
 #' + [xds_info_egg_laying] -- egg laying
+#' + [xds_info_emergence] -- emergence
 #' + [xds_info_aquatic_habitats] -- aquatic habitats
 #' + [xds_info_search_weights_habitat] -- habitat search weights
 #' + [xds_info_available_habitats] -- habitat availability
@@ -50,13 +60,14 @@
 #' + [xds_info_mosquito_traps] -- mosquito traps
 #'
 #' **Malaria Importation**
-#' + [xds_info_malaria_importation] -- malaria importation 
-#' + [xds_info_travel_malaria] -- travel malaria 
-#' + [xds_info_visitors] -- visitors 
+#' + [xds_info_importation] -- malaria importation junction
+#' + [xds_info_malaria_importation] -- malaria importation
+#' + [xds_info_travel_malaria] -- travel malaria
+#' + [xds_info_visitors] -- visitors
 #' 
 #' **Malaria Control**
 #' + [xds_info_vector_control] -- vector control
-#' + [xds_info_health] -- health-based Interventions
+#' + [xds_info_health] -- health-based interventions
 #'
 #' **Internals**
 #' + [xds_info_port] -- ports

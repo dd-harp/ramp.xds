@@ -21,7 +21,8 @@ Compute the steady state for a
 system of differential equations.
 \itemize{
 \item Run for \eqn{Y} years
-\item Check the sun of squared differences in the final state is less than \code{tol}
-\item If not
+\item Check whether the sum of squared differences between successive final states is less than \code{tol}
+\item If not, repeat the run up to ten more times using the latest final state as the new initial state.
+\item Stop after ten additional runs, even if the tolerance has not been reached.
 }
 }

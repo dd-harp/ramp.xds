@@ -18,6 +18,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 Implement \code{change_mean_forcing} for a model
-with no forcing
+with no forcing.
 }
 \keyword{internal}

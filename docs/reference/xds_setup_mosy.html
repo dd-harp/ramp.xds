@@ -177,27 +177,7 @@ dynamics. It sets</p>
 <p>to dispatch functions that compute derivatives (<code>xde</code>), update variables (<code>dts</code>),
 and parse outputs. The solver ignores infection dynamics (the <strong>X</strong> and <strong>Y</strong> processes).
 A trivial <strong>XH</strong> component is set up to handle human/host population density.</p>
-<p><strong>Dynamics</strong></p>
-<p>Choose a module to use for the mosquito dynamical components (see <a href="xds_info_dynamical_components.html">xds_info_dynamical_components</a>):</p><ul><li><p><code>MYname</code> – the name of an <strong>MY</strong> module: see the <a href="MY_module_list.html">MY_module_list</a> for adult mosquito ecology and infection dynamics</p></li>
-<li><p><code>Lname</code> – the name of an <strong>L</strong> module: see the <a href="L_module_list.html">L_module_list</a> for aquatic mosquito ecology</p></li>
-</ul><p>Set parameter values and initial conditions using setup options (named lists):</p><ul><li><p><code>MYoptions</code> sets parameter values and initial conditions for the <strong>MY</strong> module</p></li>
-<li><p><code>Loptions</code> sets parameter values and initial conditions for the <strong>L</strong> module</p></li>
-<li><p><code>HPop</code> sets the human population density</p></li>
-</ul><p><strong>Model Structure</strong></p>
-<p>Set up the model structure:</p><ul><li><p><code>nPatches</code> - the number of patches (see <a href="xds_info_patch_dynamics.html">xds_info_patch_dynamics</a>)</p></li>
-<li><p><code>membership</code> - the habitat membership vector (see <a href="xds_info_aquatic_habitats.html">xds_info_aquatic_habitats</a>)</p></li>
-</ul><p>During setup:</p><ul><li><p>The structural parameter <code>nHabitats</code> is set to <code>length(membership)</code></p></li>
-<li><p>The structural parameter <code>nStrata</code> is set to <code>nPatches</code></p></li>
-<li><p><code>nPatches</code> is checked and set to <code>max(membership, nPatches)</code></p></li>
-<li><p><code>nVectorSpecies</code>\(=1\)</p></li>
-</ul><p><strong>Spatial Dynamics</strong></p>
-<p>If <code>nPatches</code>\(&gt;1\), set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:</p><ul><li><p><code>searchQ</code> the habitat search weights (see <a href="xds_info_search_weights_habitat.html">xds_info_search_weights_habitat</a>)</p></li>
-<li><p><code>Koptions</code> sets up a mosquito dispersal matrix (see <a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a>)</p></li>
-</ul><p><strong>Next</strong></p><ul><li><p>To solve the model, see <a href="xds_solve.html">xds_solve</a></p></li>
-<li><p>To check or change parameters, see <a href="xds_info_change_parameters.html">xds_info_change_parameters</a></p></li>
-<li><p>To check or change the initial conditions, see <a href="xds_info_initial_conditions.html">xds_info_initial_conditions</a></p></li>
-<li><p>To modify the model structure, see <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
-</ul></div>
+    </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p><a href="xds_setup.html">xds_setup</a> calls <a href="make_xds_object_template.html">make_xds_object_template</a>, which returns an object template with
@@ -205,10 +185,41 @@ a properly configured interface for blood feeding
 and egg laying (see <a href="xds_object.html">xds_object</a>).</p>
     </div>
     <div class="section level2">
+    <h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a></h2>
+
+
+
+<p>Choose a module to use for the mosquito dynamical components (see <a href="xds_info_dynamical_components.html">xds_info_dynamical_components</a>):</p><ul><li><p><code>MYname</code> – the name of an <strong>MY</strong> module: see the <a href="MY_module_list.html">MY_module_list</a> for adult mosquito ecology and infection dynamics</p></li>
+<li><p><code>Lname</code> – the name of an <strong>L</strong> module: see the <a href="L_module_list.html">L_module_list</a> for aquatic mosquito ecology</p></li>
+</ul><p>Set parameter values and initial conditions using setup options (named lists):</p><ul><li><p><code>MYoptions</code> sets parameter values and initial conditions for the <strong>MY</strong> module</p></li>
+<li><p><code>Loptions</code> sets parameter values and initial conditions for the <strong>L</strong> module</p></li>
+<li><p><code>HPop</code> sets the human population density</p></li>
+</ul></div>
+    <div class="section level2">
+    <h2 id="model-structure">Model Structure<a class="anchor" aria-label="anchor" href="#model-structure"></a></h2>
+
+
+
+<p>Set up the model structure:</p><ul><li><p><code>nPatches</code> - the number of patches (see <a href="xds_info_patch_dynamics.html">xds_info_patch_dynamics</a>)</p></li>
+<li><p><code>membership</code> - the habitat membership vector (see <a href="xds_info_aquatic_habitats.html">xds_info_aquatic_habitats</a>)</p></li>
+</ul><p>During setup:</p><ul><li><p>The structural parameter <code>nHabitats</code> is set to <code>length(membership)</code></p></li>
+<li><p>The structural parameter <code>nStrata</code> is set to <code>nPatches</code></p></li>
+<li><p><code>nPatches</code> is checked and set to <code>max(membership, nPatches)</code></p></li>
+<li><p><code>nVectorSpecies</code>\(=1\)</p></li>
+</ul></div>
+    <div class="section level2">
+    <h2 id="basic-spatial-dynamics">Basic Spatial Dynamics<a class="anchor" aria-label="anchor" href="#basic-spatial-dynamics"></a></h2>
+
+
+
+<p>If <code>nPatches</code>\(&gt;1\), set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:</p><ul><li><p><code>searchQ</code> the habitat search weights (see <a href="xds_info_search_weights_habitat.html">xds_info_search_weights_habitat</a>)</p></li>
+<li><p><code>Koptions</code> sets up a mosquito dispersal matrix (see <a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a>)</p></li>
+</ul></div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index">
-<ul><li><p>Basic Setup: <a href="xds_setup.html">xds_setup</a>, <a href="xds_info_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p><a href="xds_info_change_parameters.html">xds_info_change_parameters</a></p></li>
-<li><p><a href="xds_info_initial_conditions.html">xds_info_initial_conditions</a></p></li>
+<ul><li><p>Basic Setup: <a href="xds_setup.html">xds_setup</a>, <a href="xds_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p>change parameters — <a href="xds_change_parameters.html">xds_info_change_parameters</a></p></li>
+<li><p>change initial conditions — <a href="xds_initial_conditions.html">xds_info_initial_conditions</a></p></li>
 </ul></li>
 <li><p>Advanced Setup: <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
 <li><p>Solving: <a href="xds_solve.html">xds_solve</a></p></li>

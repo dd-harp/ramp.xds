@@ -16,12 +16,12 @@ dVdt(t, y, xds_obj, i)
 \item{i}{the i\eqn{^{th}} set of auxiliary variables}
 }
 \value{
-derivatives for the \eqn{\cal MYZ} component as a \link{vector}
+derivatives for the auxiliary variables as a \link{vector}
 }
 \description{
 The description for each method should include the equations.
 }
 \note{
-This is the \code{S3} generic. Methods dispatch on \code{V_obj}
+This is the \code{S3} generic. Methods dispatch on \code{V_obj}.
 }
 \keyword{internal}

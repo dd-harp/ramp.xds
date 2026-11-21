@@ -6,11 +6,10 @@
 \description{
 Trivial modules were developed for each one
 of the three dynamical components, making it
-possible to develop studies of some focal process
-with known inputs: a \emph{trace function} approach.
+possible to develop studies of some focal process with known inputs.
 
 The trivial modules and EIR forcing (see \link{xds_setup_eir})
-construct trace functions as composed time series functions. The
+construct forcing functions as composed time series functions. The
 value of a forced variable \eqn{x(t)} is computed
 as a product of four configurable elements:
 \itemize{
@@ -22,11 +21,11 @@ as a product of four configurable elements:
 
 \deqn{x(t) = \bar x \times F_S(t, V) \times F_T(t,V) \times F_K(t, V)}
 \itemize{
-\item A trace function library for RAMP is in \code{ramp.func}
-\item Functions that integrate \code{ramp.func} and \code{ramp.xds} are found in \code{ramp.forcing}
+\item A forcing function library for RAMP is in \code{ramp.func}.
+\item Functions that integrate \code{ramp.func} and \code{ramp.xds} are found in \code{ramp.forcing}.
 }
 
-For a discussion of mechanistic approaches to forcing, see \href{https://faculty.washington.edu/smitdave/simba/trace.html}{SimBA: Trace Functions}
+For a discussion of mechanistic approaches to forcing, see \href{https://faculty.washington.edu/smitdave/simba/trace.html}{SimBA: Forcing functions}.
 }
 \seealso{
 \link{trivialXH}, \link{trivialMY}, \link{trivialL}, \link{xds_setup_eir}

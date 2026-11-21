@@ -19,6 +19,6 @@
 see help pages for specific methods
 }
 \description{
-No births
+No births.
 }
 \keyword{internal}

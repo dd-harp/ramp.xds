@@ -2,22 +2,22 @@
 % Please edit documentation in R/visitors.R
 \name{setup_visitors}
 \alias{setup_visitors}
-\title{Set up a visitors}
+\title{Set up visitors}
 \usage{
 setup_visitors(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-Set up a visitors
+Set up visitors
 }

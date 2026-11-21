@@ -9,11 +9,13 @@
 Build a dynamical system to describe the epidemiology and
 transmission dynamics of a mosquito-borne pathogen. The function
 encodes the model as an xds object that
-can be solved by xds_solve.'><meta property="og:description" content='MathJax = {output: {font: "mathjax-newcm", fontPath: "../../mathjaxr/doc/mathjax/font",}};
+can be solved by xds_solve.
+Other basic setup functions are discussed in xds_info_basic_setup.'><meta property="og:description" content='MathJax = {output: {font: "mathjax-newcm", fontPath: "../../mathjaxr/doc/mathjax/font",}};
 Build a dynamical system to describe the epidemiology and
 transmission dynamics of a mosquito-borne pathogen. The function
 encodes the model as an xds object that
-can be solved by xds_solve.'></head><body>
+can be solved by xds_solve.
+Other basic setup functions are discussed in xds_info_basic_setup.'></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -100,6 +102,7 @@ can be solved by xds_solve.'></head><body>
 transmission dynamics of a mosquito-borne pathogen. The function
 encodes the model as an <strong>xds</strong> object that
 can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
+<p>Other basic setup functions are discussed in <a href="xds_basic_setup.html">xds_info_basic_setup</a>.</p>
     </div>
 
     <div class="section level2">
@@ -199,7 +202,18 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Basic setup has three parts: dynamics, model structure, and basic spatial elements.</p>
-<p><strong>Dynamics</strong></p>
+    </div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>xds_setup calls <a href="make_xds_object_template.html">make_xds_object_template</a>, which returns an object template with
+a properly configured interface for blood feeding
+and egg laying (see <a href="xds_object.html">xds_object</a>).</p>
+    </div>
+    <div class="section level2">
+    <h2 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a></h2>
+
+
+
 <p>To set up a dynamical system, a module is selected for each dynamical component by name:</p><ul><li><p><code>XHname</code> — the name of an <strong>XH</strong> module: see the <a href="XH_module_list.html">XH_module_list</a> for human / host infection dynamics</p></li>
 <li><p><code>MYname</code> – the name of an <strong>MY</strong> module: see the <a href="MY_module_list.html">MY_module_list</a> for adult mosquito ecology and infection dynamics</p></li>
 <li><p><code>Lname</code> – the name of an <strong>L</strong> module: see the <a href="L_module_list.html">L_module_list</a> for aquatic mosquito ecology</p></li>
@@ -208,8 +222,13 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
 <li><p><code>Loptions</code> sets parameter values and initial conditions for the <strong>L</strong> module</p></li>
 <li><p><code>HPop</code> is the human population density</p></li>
 </ul><p>For more information about how to change parameters or
-initial conditions, see <a href="xds_info_change_parameters.html">xds_info_change_parameters</a> or <a href="xds_info_initial_conditions.html">xds_info_initial_conditions</a>.</p>
-<p><strong>Model Structure</strong></p>
+initial conditions, see <a href="xds_change_parameters.html">xds_info_change_parameters</a> or <a href="xds_initial_conditions.html">xds_info_initial_conditions</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="model-structure">Model Structure<a class="anchor" aria-label="anchor" href="#model-structure"></a></h2>
+
+
+
 <p>Set up the model structure:</p><ul><li><p><code>nPatches</code> - the number of patches (see <a href="xds_info_patch_dynamics.html">xds_info_patch_dynamics</a>)</p></li>
 <li><p><code>residence</code> - the human residence vector (see <a href="xds_info_human_populations.html">xds_info_human_populations</a>)</p></li>
 <li><p><code>membership</code> - the habitat membership vector (see <a href="xds_info_aquatic_habitats.html">xds_info_aquatic_habitats</a>)</p></li>
@@ -218,32 +237,22 @@ initial conditions, see <a href="xds_info_change_parameters.html">xds_info_chang
 <li><p><code>nPatches</code> is checked and set to <code>max(membership, nPatches)</code></p></li>
 <li><p><code>nVectorSpecies</code>\(=1\)</p></li>
 <li><p><code>nHostSpecies</code>\(=1\)</p></li>
-</ul><p><strong>Spatial Dynamics</strong></p>
+</ul></div>
+    <div class="section level2">
+    <h2 id="basic-spatial-dynamics">Basic Spatial Dynamics<a class="anchor" aria-label="anchor" href="#basic-spatial-dynamics"></a></h2>
+
+
+
 <p>If <code>nPatches</code>\(&gt;1\), set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:</p><ul><li><p><code>searchQ</code> the habitat search weights (see <a href="xds_info_search_weights_habitat.html">xds_info_search_weights_habitat</a>)</p></li>
 <li><p><code>searchB</code> the blood feeding search weights (see <a href="xds_info_search_weights_blood.html">xds_info_search_weights_blood</a>)</p></li>
 <li><p><code>Koptions</code> sets up a mosquito dispersal matrix (see <a href="xds_info_mosquito_dispersal.html">xds_info_mosquito_dispersal</a>)</p></li>
 <li><p><code>TSoptions</code> sets up a time spent matrix (see <a href="xds_info_time_spent.html">xds_info_time_spent</a>)</p></li>
-</ul><p><strong>Basic Setup Variants</strong></p>
-<p>Other versions of xds_setup are available (see <a href="xds_info_basic_setup.html">xds_info_basic_setup</a>):</p><ul><li><p>Use <a href="xds_setup_aquatic.html">xds_setup_aquatic</a> for studies of mosquito aquatic ecology</p></li>
-<li><p>Use <a href="xds_setup_mosy.html">xds_setup_mosy</a> for studies of mosquito ecology without infection dynamics</p></li>
-<li><p>Use <a href="xds_setup_human.html">xds_setup_human</a> for studies of human/host disease dynamics forced by infective biting in patches</p></li>
-<li><p>Use <a href="xds_setup_eir.html">xds_setup_eir</a> for studies of human/host disease dynamics forced by the local daily EIR</p></li>
-</ul><p><strong>Next</strong></p><ul><li><p>To solve the model, see <a href="xds_solve.html">xds_solve</a></p></li>
-<li><p>To check or change parameters, see <a href="xds_info_change_parameters.html">xds_info_change_parameters</a></p></li>
-<li><p>To check or change the initial conditions, see <a href="xds_info_initial_conditions.html">xds_info_initial_conditions</a></p></li>
-<li><p>To modify the model structure, see <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
 </ul></div>
-    <div class="section level2">
-    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>xds_setup calls <a href="make_xds_object_template.html">make_xds_object_template</a>, which returns an object template with
-a properly configured interface for blood feeding
-and egg laying (see <a href="xds_object.html">xds_object</a>).</p>
-    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index">
-<ul><li><p>Basic Setup: <a href="xds_info_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p><a href="xds_info_change_parameters.html">xds_info_change_parameters</a></p></li>
-<li><p><a href="xds_info_initial_conditions.html">xds_info_initial_conditions</a></p></li>
+<ul><li><p>Basic Setup: <a href="xds_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p>change parameters — <a href="xds_change_parameters.html">xds_info_change_parameters</a></p></li>
+<li><p>change initial conditions — <a href="xds_initial_conditions.html">xds_info_initial_conditions</a></p></li>
 </ul></li>
 <li><p>Advanced Setup: <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
 <li><p>Solving: <a href="xds_solve.html">xds_solve</a></p></li>

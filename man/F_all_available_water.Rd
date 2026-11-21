@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats.R
 \name{F_all_available_water}
 \alias{F_all_available_water}
-\title{Compute Available Laying Sites, \eqn{O}}
+\title{Compute Available Laying Sites, \eqn{Q_{all}}}
 \usage{
 F_all_available_water(Q, Q_traps, Q_bad)
 }
@@ -14,7 +14,7 @@ F_all_available_water(Q, Q_traps, Q_bad)
 \item{Q_bad}{the availability of unsuitable habitats}
 }
 \value{
-Availability laying sites, \eqn{O}
+Availability of laying sites, \eqn{Q_{all}}
 }
 \description{
 Mosquitoes lay eggs in aquatic habitats, in
@@ -23,18 +23,18 @@ water bodies that are unsuitable for larval development
 }
 \details{
 Habitat availability denoted \eqn{Q},
-sums habitat search weights, \eqn{\omega}, by patch
+sums habitat search weights, \eqn{w}, by patch
 using the habitat membership matrix, \eqn{N}:
-\deqn{Q = {N} \cdot \omega_h.}
+\deqn{Q = {N} \cdot w.}
 
 If some ovitraps (\eqn{Q_t}) and bad_habitats (\eqn{Q_b}) are
 also available, then total availability of laying sites is
-\deqn{O = Q + Q_t + Q_b.}
+\deqn{Q_{all} = Q + Q_t + Q_b.}
 
-The availability of habitats, ovitraps and bad_habitats are computed elsewhere and stored on \code{xds_obj$vars}.
+Habitat availability is computed elsewhere and stored in \code{xds_obj$terms$Q}, ovitrap availability in \code{xds_obj$patches$ovitraps}, and bad-habitat availability in \code{xds_obj$patches$bad_habitats}.
 }
 \seealso{
-This function is called by \link{compute_all_available_water}
+This function is called by \link{update_all_available_water}
 
 \link{make_habitat_matrix} discusses \eqn{N}
 

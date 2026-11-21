@@ -13,8 +13,8 @@ get_habitats(xds_obj)
 the patch membership for aquatic habitats, a numeric vector
 }
 \description{
-Output the habitat membership information as a list
+Inspect the habitat membership vector.
 }
 \seealso{
-\code{\link[=make_habitat_matrix]{make_habitat_matrix()}}
+\link{habitat_vector}
 }

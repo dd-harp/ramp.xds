@@ -7,7 +7,7 @@
 setup_births(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

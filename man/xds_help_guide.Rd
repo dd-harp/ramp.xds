@@ -4,20 +4,20 @@
 \alias{xds_help_guide}
 \title{\strong{\code{ramp.xds}}: Getting Help}
 \description{
-\strong{\code{ramp.xds}} concepts and functions are well documented.
-Use these guides to find a concept or function.
+\strong{\code{ramp.xds}} concepts and functions are documented.
+Use these guides to find information about a concept or function.
 \itemize{
-\item \link{xds_help_info} -- a guide to help functions for \strong{\code{ramp.xds}} concepts
+\item \link{xds_help_info} -- a guide to help on \strong{\code{ramp.xds}} concepts
 \item \link{xds_info_basic_setup} -- an overview of basic setup
-\item \link{xds_info_setup_options} -- setup for other features
-\item \strong{\code{get_}} functions inspect a model component or outputs
-\item \strong{\code{change_}} functions modify part of a model component
-\item \strong{\code{setup_}} functions replace a model component
+\item \link{xds_info_setup_options} -- setup options for other features
+\item \strong{\code{get_}} functions inspect a model component or its outputs
+\item \strong{\code{change_}} functions modify a model component
+\item \strong{\code{setup_}} functions set up a model component
 }
 }
 \section{XH Component}{
 
-Help guides for human / host demography, infection, & immunity.
+Help guides for human/host demography, infection, and immunity.
 
 \code{?XH_}
 \itemize{
@@ -31,8 +31,7 @@ Help guides for human / host demography, infection, & immunity.
 
 \section{MY Component}{
 
-Help guides
-for adult mosquito ecology & infection dynamics.
+Help guides for adult mosquito ecology and infection dynamics.
 
 \code{?MY_}
 \itemize{
@@ -46,8 +45,7 @@ for adult mosquito ecology & infection dynamics.
 
 \section{L Component}{
 
-Help guides
-for immature mosquito ecology.
+Help guides for immature mosquito ecology.
 
 \code{?L_}
 \itemize{

@@ -7,7 +7,7 @@
 get_variables(opts, t, y, xds_obj, ix)
 }
 \arguments{
-\item{opts}{an options list and dispatching}
+\item{opts}{an options list used for dispatch}
 
 \item{t}{time}
 
@@ -21,6 +21,6 @@ get_variables(opts, t, y, xds_obj, ix)
 a list of named variables
 }
 \description{
-A generic function to retrieve variables from the \strong{\code{xds}} model object
+A generic function to retrieve variables from the \strong{\code{xds}} model object.
 }
 \keyword{internal}

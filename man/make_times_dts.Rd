@@ -18,14 +18,14 @@ a vector of time points
 }
 \description{
 This method sets up the time points when output is wanted.
-For discrete time systems, the system must compute values at every point,
-but it is possible
+For discrete-time systems, values must be computed at every time step, but
+outputs can be returned only at selected times.
 
-If \code{times} is not null, it sets \code{maxT} to the maximum value in times.
-Otherwise it sets \code{maxT=Tmax.}
+If \code{times} are provided, unique rounded values are returned.
 
-It returns a sequence from \code{0} to \code{maxT} by \code{dt.}
+Otherwise, it generates a sequence from \code{0} to \code{Tmax} by \code{dt}.
 
-Values of \code{times} should be some integer multiple of \code{dt}
+Provided values of \code{times} are rounded to integers. If \code{times} is \code{NULL},
+the sequence is rounded and only unique integer values are returned.
 }
 \keyword{internal}

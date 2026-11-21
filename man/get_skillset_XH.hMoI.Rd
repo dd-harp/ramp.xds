@@ -25,7 +25,7 @@ The model does output observed population density
 and here it is
 }
 \note{
-This method dispatches on \code{class(xds_obj$XH_obj)}
+This method dispatches on \code{class(xds_obj$XH_obj[[i]])}.
 }
 \seealso{
 \link{hMoI}

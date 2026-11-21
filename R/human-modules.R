@@ -1,3 +1,5 @@
+# X
+
 #' @title XH modules
 #' 
 #' @description
@@ -19,7 +21,7 @@
 #'      
 #'      + `SIP`   - a compartmental model with treatment and chemoprotection 
 #'      
-#'      + `SIPd`  - an implementation of the Garki Model for malaria
+#'      + `SIPd`  -  a compartmental model with a fixed delay for chemoprotection
 #'
 #' + **Compartmental Models** 
 #' 

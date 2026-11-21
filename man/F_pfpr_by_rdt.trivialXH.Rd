@@ -9,12 +9,12 @@
 \arguments{
 \item{vars}{a list with the variables attached by name}
 
-\item{XH_obj}{a list defining a model for human}
+\item{XH_obj}{a list defining a model for humans}
 }
 \value{
 a \link{numeric} vector numeric(0)
 }
 \description{
-Implements \link{F_prevalence} for the trivial model.
+Implements \link{F_pfpr_by_rdt} for the trivial model.
 }
 \keyword{internal}

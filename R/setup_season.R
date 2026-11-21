@@ -1,7 +1,9 @@
-#' @title Setup Seasonal Forcing
+# X
+
+#' @title Set up seasonal forcing
 #'
 #' @description
-#' Setup seasonal forcing
+#' Set up seasonal forcing.
 #'
 #' @param X a seasonality function object
 #' @param xds_obj an **`xds`** model object
@@ -15,9 +17,9 @@ setup_season = function(X, xds_obj, ix=1){
   UseMethod("setup_season", xds_obj$forced_by)
 }
 
-#' @title Change season parameters
+#' @title Set up seasonal forcing
 #'
-#' @description Setup season for the NULL case
+#' @description Set up season for the no-forcing case.
 #'
 #' @inheritParams setup_season
 #'
@@ -29,11 +31,11 @@ setup_season.none = function(X, xds_obj, ix=1){
   return(xds_obj)
 }
 
-#' @title Change season parameters
+#' @title Set up seasonal forcing
 #'
 #' @description
 #' Change parameters for the seasonality function
-#' when `forced_by = "Lambda"`
+#' when `forced_by = "Lambda"`.
 #' @inheritParams setup_season
 #'
 #' @importFrom ramp.func make_function
@@ -48,11 +50,11 @@ setup_season.Lambda = function(X, xds_obj, ix=1){
   return(xds_obj)
 }
 
-#' @title Change season parameters
+#' @title Set up seasonal forcing
 #'
 #' @description
 #' Change parameters for the seasonality function
-#' when `forced_by = "eir"`
+#' when `forced_by = "eir"`.
 #' @inheritParams setup_season
 #'
 #' @importFrom ramp.func make_function

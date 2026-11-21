@@ -18,10 +18,10 @@ The object is created in several steps:
 \link{make_xds_object_template}, which
 \itemize{
 \item sets the value of structural parameters;
-\item creates empty lists to hold the module objects: \code{XH_obj} \verb{MY_obj,} and \code{L_obj};
+\item creates empty lists to hold the module objects: \code{XH_obj}, \code{MY_obj}, and \code{L_obj};
 \item sets up empty ports and junctions;
 }
-\item the core dynamical components are setup; and
+\item the core dynamical components are set up; and
 \item the values of a few modifiable parameters affecting transmission are set.
 }
 

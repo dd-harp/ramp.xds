@@ -15,6 +15,6 @@
 a list, the value of \code{trend_par}
 }
 \description{
-Get the trend parameters for an \strong{MY} trivial model
+Get the trend parameters for a trivial \strong{MY} model.
 }
 \keyword{internal}

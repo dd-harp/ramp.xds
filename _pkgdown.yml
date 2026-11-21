@@ -112,7 +112,7 @@ reference:
   - xds_setup_aquatic
   - xds_setup_human
   - xds_setup_eir
-  - xds_info_basic_setup
+  - xds_basic_setup
   - xds_info_change_parameters
   - xds_info_initial_conditions
   - xds_info_demographic_change
@@ -543,8 +543,12 @@ reference:
   desc: Aquatic habitats and egg laying
   contents:
   - xds_info_aquatic_habitats 
-  - xds_info_available_habitats
-  - xds_info_egg_laying
+  - habitat_vector
+  - habitat_matrix
+  - habitat_availability
+  - laying_matrix
+  - egg_laying
+  - xds_info_emergence
   - setup_egg_laying_interface
   - get_habitats
   - get_habitat_matrix
@@ -611,7 +615,7 @@ reference:
   - xds_info_resources
   - xds_info_availability 
   - xds_info_available_blood_hosts
-  - xds_info_available_habitats
+  - habitat_availability
   - xds_info_search_weights_habitat
   - xds_info_available_sugar 
   - xds_info_mosquito_traps

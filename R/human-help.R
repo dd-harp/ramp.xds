@@ -1,3 +1,4 @@
+# X
 
 #' @title Generic methods for the XH component
 #'
@@ -44,13 +45,13 @@ NULL
 #' @description
 #' Get functions for **XH** 
 #' 
-#' `?get_XH`
+#' `?XH_get`
 #' @section Outputs: 
 #' \itemize{
 #'   \item \code{\link{get_XH_orbits}} -- get the XH orbits
 #'   \item \code{\link{get_EIR}} -- get the EIR orbits
 #'   \item \code{\link{get_PR}} -- get the PR orbits
-#'   \item \code{\link{get_H}} -- get the PR orbits
+#'   \item \code{\link{get_H}} -- get host population density
 #' }
 #'
 #' @section Variables:  
@@ -75,7 +76,7 @@ NULL
 #' @description
 #' Change functions for **XH** 
 #' 
-#' `?change_XH`
+#' `?XH_change`
 #' \itemize{
 #'   \item \code{\link{change_H}} -- change host population density
 #'   \item \code{\link{change_XH_inits}} -- change initial values
@@ -90,7 +91,7 @@ NULL
 #' @description
 #' Set up functions for **XH** 
 #' 
-#' `?setup_XH`
+#' `?XH_setup`
 #' \itemize{
 #'   \item \code{\link{setup_XH_obj}} -- set up the XH module object
 #'   \item \code{\link{setup_XH_ix}} -- set up variable indices

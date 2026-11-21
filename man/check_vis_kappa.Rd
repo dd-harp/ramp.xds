@@ -15,7 +15,7 @@ check_vis_kappa(vis_kappa, nP)
 Check that
 \itemize{
 \item all elements are non-negative
-\item length(vis_kappa) = nPatches
+\item \code{length(vis_kappa) == nP}
 }
 }
 \seealso{

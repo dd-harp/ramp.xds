@@ -2,21 +2,21 @@
 % Please edit documentation in R/utils.R
 \name{shapeIt}
 \alias{shapeIt}
-\title{Check the shape and dimensions of an model object}
+\title{Check the shape and dimensions of a model object}
 \usage{
 shapeIt(obj, d1, d2)
 }
 \arguments{
-\item{obj}{a \link{numeric} model object}
+\item{obj}{a \link{numeric} input}
 
-\item{d1}{an \link{integer}}
+\item{d1}{the required number of rows}
 
-\item{d2}{an \link{integer}}
+\item{d2}{the required number of columns}
 }
 \value{
 \link{matrix}
 }
 \description{
-Check the shape and dimensions of an model object
+Check the shape and dimensions of a model object
 }
 \keyword{internal}

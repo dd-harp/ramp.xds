@@ -2,12 +2,12 @@
 % Please edit documentation in R/human-deaths.R
 \name{setup_deaths.list}
 \alias{setup_deaths.list}
-\title{Set up a deaths}
+\title{Set up deaths}
 \usage{
 \method{setup_deaths}{list}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -24,7 +24,7 @@ as the first argument, then set
 \itemize{
 \item \code{deaths_name = name$name}
 \item \code{options = name}
-and call \code{setup_deaths(deaths_name, xds_obj, options, s)}
+and call \code{setup_deaths(deaths_name, xds_obj, options, i)}.
 }
 }
 \keyword{internal}

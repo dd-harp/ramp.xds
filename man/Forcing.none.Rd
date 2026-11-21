@@ -18,6 +18,6 @@ an \strong{\code{xds}} model object
 Implements no \code{Forcing}, the default.
 }
 \note{
-Dynamic forcing is implemented in \strong{\code{ramp.forcing}}
+Dynamic forcing is implemented in \strong{\code{ramp.forcing}}.
 }
 \keyword{internal}

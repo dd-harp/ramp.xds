@@ -1,6 +1,6 @@
 ---
 title: "ramp.func"
-subtitle: "The RAMP Trace Function Library"
+subtitle: "The RAMP Forcing function Library"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ramp.func}

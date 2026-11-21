@@ -28,8 +28,8 @@ and sets up the interface ports:
 \item calls \link{setup_XH_inits} to set initial values
 \item initializes \link{setup_blood_search_weights}: all weights are set to \eqn{1}
 \item initializes \link{setup_timespent} to the residence matrix: all time spent at home
-\item calls \link{setup_mass_treatment} with no events
-\item calls \link{setup_demog_obj} setting birth and death rates to zero
+\item every capable module calls \link{setup_mass_treatment} with no events
+\item every capable module calls \link{setup_demog_obj} setting birth and death rates to zero
 \item calls \link{setup_time_away} with no time spent away
 \item calls \link{setup_travel_eir} with the travel EIR set to zero
 }

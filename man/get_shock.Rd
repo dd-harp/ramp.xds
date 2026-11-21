@@ -16,8 +16,8 @@ shock parameters
 }
 \description{
 Get the parameters for the perturbation function
-forcing the model
+forcing the model.
 }
 \note{
-Dispatches on \code{forced_by}
+Dispatches on \code{forced_by}.
 }

@@ -2,22 +2,22 @@
 % Please edit documentation in R/visitors-kappa.R
 \name{setup_vis_kappa}
 \alias{setup_vis_kappa}
-\title{Set up a vis_kappa}
+\title{Set up visitor net infectiousness}
 \usage{
 setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-Set up a vis_kappa
+Set up visitor net infectiousness
 }

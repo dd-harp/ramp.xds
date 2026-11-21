@@ -72,7 +72,7 @@ treating and curing malaria infections:
 \item a fraction \eqn{\rho} of incident infections are treated and cured
 \item since incident infections are treated, the FoI is \eqn{h (1-\rho)}
 \item in addition, prevalent infections are treated and cured at the rate \eqn{\sigma}
-\item functions describes an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a \emph{shock} function
+\item functions describe an increase in clearance caused by mass treatment, \eqn{\Xi(t)}, a \emph{shock} function
 }
 
 The total per-capita clearance rate from treatment is thus \eqn{\rho h + \sigma + \Xi(t)}
@@ -84,7 +84,7 @@ susceptible to infection.
 \section{Demography}{
 
 
-This model has no parameter
+This model has no parameters
 or terms to describe disease-induced mortality.
 
 \describe{
@@ -134,6 +134,7 @@ H_t = H_{t-1}  + \mathbf{B}(t,H_{t-1}) - \mathbf{D}(H_{t-1})}
 \strong{Infection Dynamics} ---
 \eqn{I_t} is updated in two steps: survival first,
 and disease dynamics second:
+Let \eqn{\alpha = 1-e^{-h}}.
 \deqn{\begin{array}{rl}
 I_s &= I_{t-1} - \mathbf{D}(I_{t-1}) \\
 I_t &= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s

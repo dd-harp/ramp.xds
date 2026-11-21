@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{egg_laying_dynamics}
 \alias{egg_laying_dynamics}
-\title{Compute eggs laid}
+\title{Egg laying dynamics}
 \usage{
 egg_laying_dynamics(t, y, xds_obj)
 }
@@ -17,7 +17,9 @@ egg_laying_dynamics(t, y, xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Computes eggs laid with exogenous forcing
-on parameter affecting host availability.
+Update the laying matrix and compute eggs laid.
+}
+\seealso{
+\link{laying_matrix}, \link{egg_laying}
 }
 \keyword{internal}

@@ -2,23 +2,23 @@
 % Please edit documentation in R/visitors-kappa.R
 \name{setup_vis_kappa.random}
 \alias{setup_vis_kappa.random}
-\title{Set up a vis_kappa}
+\title{Set up visitor net infectiousness}
 \usage{
 \method{setup_vis_kappa}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "random" case for \link{setup_vis_kappa}. See \link{make_vis_kappa_random}
+Implements the "random" case for \link{setup_vis_kappa}. See \link{make_vis_kappa_random}.
 }
 \keyword{internal}

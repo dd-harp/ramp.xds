@@ -19,6 +19,6 @@
 see help pages for specific methods
 }
 \description{
-Constant birth rates
+Constant birth rates.
 }
 \keyword{internal}

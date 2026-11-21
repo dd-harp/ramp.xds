@@ -16,18 +16,16 @@ invisible()
 }
 \description{
 Removes forcing functions (to reduce the file size)
-and stores the \code{xds} object using \code{saveRDS}
+and stores the \code{xds} object using \code{saveRDS}.
 }
 \note{
-Forcing functions (\emph{e.g.} F_trend) are stored
+Forcing functions (\emph{e.g.} \code{F_trend}) are stored
 on the \code{xds} object in a form that
 takes up enormous space. This removes the functions
 before saving.
 
-The function \code{readRDS} in \code{ramp.func}
-provides one method for saving the parameter
-sets for trace functions, and rebuilds the
-functions
+The function \link{readXDS} reads the saved model object and rebuilds
+forcing functions from their parameter sets.
 }
 \seealso{
 \code{ramp.func}

@@ -17,14 +17,7 @@ NULL
 #' @name xds_info_available_sugar
 NULL
 
-#' @title Habitat Availability 
-#' 
-#' @description
-#' Write me.  
-#' 
-#'  
-#' @name xds_info_available_habitats
-NULL
+
 
 #' @title Available Blood 
 #' 

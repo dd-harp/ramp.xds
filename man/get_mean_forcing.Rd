@@ -4,14 +4,16 @@
 \alias{get_mean_forcing}
 \title{Get mean forcing}
 \usage{
-get_mean_forcing(xds_obj)
+get_mean_forcing(xds_obj, ix = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{ix}{the species index}
 }
 \value{
-a vector, the mean parameter for forcing
+the mean forcing parameter
 }
 \description{
-Get the parameter(s) that set mean forcing
+Get the parameter(s) that set mean forcing.
 }

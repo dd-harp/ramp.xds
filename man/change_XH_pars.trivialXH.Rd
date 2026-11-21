@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{change_XH_pars.trivialXH}
 \alias{change_XH_pars.trivialXH}
-\title{Get parameters for \code{trivialXH} (\strong{XH})}
+\title{Change parameters for \code{trivialXH} (\strong{XH})}
 \usage{
 \method{change_XH_pars}{trivialXH}(xds_obj, options = list(), i = 1)
 }
@@ -17,6 +17,9 @@
 an \strong{\code{xds}} model object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$XH_obj[[s]]}.
+Change parameter values named in \code{options},
+leaving other parameter values unchanged. Rebuild only forcing functions
+whose parameters are named in \code{options}; an empty parameter list resets
+the corresponding function to constant one.
 }
 \keyword{internal}

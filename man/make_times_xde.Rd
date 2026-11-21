@@ -20,11 +20,8 @@ a vector of time points
 This method sets up the time points for the
 independent variable to return solutions for the dependent variables.
 
-If \code{times} is not \verb{NULL,} then it returns solutions at those values.
+If \code{times} is not \code{NULL}, the function returns those values.
 
-Otherwise, it returns a sequence from \code{0} to \code{Tmax} by \code{dt.}
-
-If values in \code{times} are not a sequence, the function checks that
-all its values are in the sequence of time points when solutions are returned.
+Otherwise, it returns a sequence from \code{0} to \code{Tmax} by \code{dt}.
 }
 \keyword{internal}

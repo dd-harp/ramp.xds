@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_compute_terms.R
 \name{xds_compute_terms.mosy}
 \alias{xds_compute_terms.mosy}
-\title{Generalized spatial differential equation model (mosquito only)}
+\title{Compute exogenous variables and dynamical terms}
 \usage{
 \method{xds_compute_terms}{mosy}(t, y, xds_obj)
 }
@@ -14,10 +14,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \link{list} containing the vector of all state derivatives
+an \strong{\code{xds}} model object
 }
 \description{
-Mirrors \link{xds_compute_terms} but only includes the adult and aquatic
-mosquito components.
+Compute exogenous variables and dynamical terms
 }
 \keyword{internal}

@@ -17,7 +17,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change the interpolation points for a spline function.
-when \code{forced_by = "eir"}
+Change the interpolation points for a spline function
+when \code{forced_by = "eir"}.
 }
 \keyword{internal}

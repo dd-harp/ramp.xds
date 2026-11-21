@@ -7,7 +7,7 @@
 \method{setup_deaths}{zero}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,10 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Pass pre-configured constant death rates. If it passes
-the checks, it replaces the current death rates.
-
-If called with \code{name = "as_is"}, the deaths
-must be at `options$death_rates
+Set death rates to zero.
 }
 \keyword{internal}

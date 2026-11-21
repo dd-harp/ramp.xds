@@ -1,9 +1,11 @@
+# X
+
 #' @title Check vis_kappa
 #' 
 #' @description
 #' Check that 
 #' + all elements are non-negative
-#' + length(vis_kappa) = nPatches
+#' + `length(vis_kappa) == nP`
 #' 
 #' @param vis_kappa net infectiousness of the visitor population
 #' @param nP the number of patches
@@ -22,7 +24,7 @@ check_vis_kappa = function(vis_kappa, nP){
 #' Update the vis_kappa for the \eqn{s^{th}} vector species, and 
 #' trigger updates for the `XY` interface. 
 #' 
-#' @param vis_kappa a vis_kappa
+#' @param vis_kappa the net infectiousness of the visitor population
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
@@ -32,18 +34,18 @@ check_vis_kappa = function(vis_kappa, nP){
 change_vis_kappa = function(vis_kappa, xds_obj, s=1){
   check_vis_kappa(vis_kappa, xds_obj$nPatches)
   xds_obj$patches$vis_kappa[[s]] <- vis_kappa
-  xds_obj$patches$vis_kappa_obj <- make_static_obj()
+  xds_obj$patches$vis_kappa_obj[[s]] <- make_static_obj()
   y <- get_inits(xds_obj, flatten=TRUE)
   xds_obj <- compute_kappa(0, y, xds_obj)
   return(xds_obj)
 }
 
-#' @title Set up a vis_kappa
+#' @title Set up visitor net infectiousness
 #'
-#' @param name a or setup function name
+#' @param name a numeric vector, a setup function name, or an options list
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
-#' @param s the host species index
+#' @param s the vector species index
 #'
 #' @return an **`xds`** model object
 #'
@@ -54,17 +56,17 @@ setup_vis_kappa = function(name, xds_obj, options = list(), s=1){
   UseMethod("setup_vis_kappa", options)
 }
 
-#' @title Set up a vis_kappa
+#' @title Set up visitor net infectiousness
 #'
 #' @description If an options list is passed
 #' as the first argument, then set 
 #' + `Vname = name$name` 
 #' + `options = name`
-#' and call `setup_vis_kappa(Vname, xds_obj, options, s)` 
+#' and call `setup_vis_kappa(Vname, xds_obj, options, s)`.
 #'
 #' @inheritParams setup_vis_kappa
 #'
-#' @return a [matrix]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_vis_kappa.list = function(name, xds_obj, options=list(), s=1){
@@ -76,7 +78,7 @@ setup_vis_kappa.list = function(name, xds_obj, options=list(), s=1){
 }
 
 #' @title Set up no vis_kappa 
-#' @description Don't change anything 
+#' @description Don't change anything.
 #' @inheritParams setup_vis_kappa
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -85,9 +87,9 @@ setup_vis_kappa.no_setup = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up a vis_kappa
+#' @title Set up visitor net infectiousness
 #' 
-#' @description Implements the "random" case for [setup_vis_kappa]. See [make_vis_kappa_random]
+#' @description Implements the "random" case for [setup_vis_kappa]. See [make_vis_kappa_random].
 #' 
 #' @inheritParams setup_vis_kappa
 #' @return an **`xds`** model object
@@ -101,27 +103,27 @@ setup_vis_kappa.random = function(name, xds_obj, options = list(), s=1){
 
 #' @title Make random values for vis_kappa 
 #' 
-#' @description Set up a random vector 
+#' @description Set up a random vector.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
 #' @param f_rand a random number generator
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
-#' @return a [matrix]
+#' @return a [vector]
 #' @export
 make_vis_kappa_random = function(nPatches, options=list(), f_rand = stats::rbeta, p1=20, p2=1000) {with(options,{
   vis_kappa <- f_rand(nPatches, p1, p2)
   return(vis_kappa)
 })}
 
-#' @title Set up a vis_kappa
+#' @title Set up visitor net infectiousness
 #' @description 
 #' Pass a pre-configured vis_kappa. If it passes 
 #' the checks, it replaces the current vis_kappa.
 #' 
 #' If called with `name = "as_is"`, the vis_kappa
-#' must be at `options$vis_kappa` 
+#' must be at `options$vis_kappa_asis`.
 #' 
 #' @inheritParams setup_vis_kappa
 #' @return an **`xds`** model object
@@ -141,7 +143,7 @@ setup_vis_kappa.as_is = function(name, xds_obj, options=list(), s=1){
 
 #' @title Update NI of visitors
 #' 
-#' @description Port function to compute the availability of vis_kappa.
+#' @description Port function to compute the net infectiousness of visitors.
 #' Dispatches on `class(xds_obj$patches$vis_kappa_obj[[s]])`.
 #' 
 #' @param t time
@@ -158,22 +160,20 @@ update_vis_kappa <- function(t, y, xds_obj, s){
 
 #' @title Update NI of visitors
 #' 
-#' @description The `static` method returns `xds_obj` unmodified
+#' @description The `static` method returns `xds_obj` unmodified.
 #' @inheritParams update_vis_kappa
 #' @return an **`xds`** model object
 #' @export
 #' @keywords internal
 update_vis_kappa.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 
-#' @title Get availability of vis_kappa
+#' @title Get net infectiousness of visitors
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return a [matrix]
+#' @return a [vector]
 #' @export
 get_vis_kappa = function(xds_obj, s=1){
   return(xds_obj$patches$vis_kappa[[s]])
 }
-
-

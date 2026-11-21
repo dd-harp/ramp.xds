@@ -15,5 +15,5 @@ get_season_bottom(xds_obj, s = 1)
 the bottom parameter(s)
 }
 \description{
-Get the \code{bottom} parameter for the seasonality function
+Get the \code{bottom} parameter for the seasonality function.
 }

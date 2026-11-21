@@ -9,13 +9,13 @@ The term \emph{variables} is overloaded.
 \section{Terminology}{
 
 
-In \strong{\verb{ramp.xds,}}  there are several kinds of variables and terms:
+In \strong{\code{ramp.xds}}, there are several kinds of variables and terms:
 \itemize{
 \item the \strong{independent variable} is usually time, but it is sometimes age
 \item the \strong{dependent variables} or \emph{state variables} describe the \emph{state} of the system
-- most dependent variables are computed as part of a \strong{Core Dynamical Components}
+- most dependent variables are computed as part of a \strong{Core Dynamical Component}
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{- **other state variables** are not can be set up and computed along with state variables (see [Other_State_Variables])
+\if{html}{\out{<div class="sourceCode">}}\preformatted{- **other state variables** can be set up and computed along with state variables (see [Other_State_Variables])
 }\if{html}{\out{</div>}}
 \item \strong{accessory variables} are computed for other reasons. For example, accessory variables are used in delay differential equations to internalize computation of lagged terms using \link[deSolve:lagderiv]{lagderiv} (see \href{https://dd-harp.github.io/ramp.xds/articles/Delays.html}{Delay Equations})
 }

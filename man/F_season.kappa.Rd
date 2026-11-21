@@ -12,9 +12,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the seasonal pattern, invisibly
+the seasonal pattern
 }
 \description{
-Evaluate the function \code{F_season} for a forced model when \code{forced_by} is \code{kappa}
+Evaluate the function \code{F_season} for a forced model when \code{forced_by} is \code{kappa}.
 }
 \keyword{internal}

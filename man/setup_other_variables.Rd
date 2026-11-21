@@ -13,5 +13,5 @@ setup_other_variables(xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-The description for each method should include the equations.
+Initialize an empty placeholder for auxiliary variables.
 }

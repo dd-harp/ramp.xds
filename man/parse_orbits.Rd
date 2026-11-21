@@ -7,7 +7,7 @@
 parse_orbits(outputs, xds_obj)
 }
 \arguments{
-\item{outputs}{a \link{matrix} of _orbits returned by deSolve}
+\item{outputs}{a \link{matrix} of orbits returned by deSolve}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }

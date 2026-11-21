@@ -15,7 +15,7 @@ check_visitors(visitors, nP)
 Check that
 \itemize{
 \item all elements are non-negative
-\item length(visitors) = nPatches
+\item \code{length(visitors) == nP}
 }
 }
 \seealso{

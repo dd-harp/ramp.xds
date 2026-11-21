@@ -6,7 +6,7 @@
 \description{
 The trivial module outputs the emergence
 rate of adult mosquitoes by calling a
-\emph{trace function,}
+\emph{forcing function,}
 \deqn{F_\alpha(t) = \Lambda \times F_S(t, V_s) \times F_T(t, V_t) \times F_K(t, V_k)}
 where
 \itemize{

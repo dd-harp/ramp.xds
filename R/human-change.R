@@ -1,9 +1,10 @@
+# X
 
 #' @title Change human population density
 #' @param H human population density
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
-#' @return a [list]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 change_H = function(H, xds_obj, i=1){

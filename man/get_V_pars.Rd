@@ -9,7 +9,7 @@ get_V_pars(xds_obj, i = 1)
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
+\item{i}{the auxiliary-variable module index}
 }
 \value{
 a \link{list}

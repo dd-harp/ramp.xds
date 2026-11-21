@@ -8,9 +8,11 @@ F_exp(d, V = list())
 }
 \arguments{
 \item{d}{distance}
+
+\item{V}{an optional list of variables}
 }
 \value{
-0
+\code{exp(-d)}
 }
 \description{
 F_exp

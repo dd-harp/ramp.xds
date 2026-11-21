@@ -74,8 +74,8 @@ generic way:
 \\\[\begin{array}{rcr} \frac{dH}{dt} =& &B(t,H) - \mathbf{D}(t,H)\\\\
 \frac{dI}{dt} =& h (H-I) - r I &- \mathbf{D}(t,I)\\\\ \end{array}\\\]
 After solving, we compute \\(S=H+I\\) and attach its orbit. By default,
-birth rates and death rates are set to zero. The birth and death
-functions are modified using:
+birth rates and death rates are set to zero, a constant population
+model. The birth and death functions are modified using:
 
 - [setup_births](https://dd-harp.github.io/ramp.xds/reference/setup_births.html)
 
@@ -83,9 +83,9 @@ functions are modified using:
 
 ### Treatment
 
-In this simple model, drug taking to treat and cure infections simply
-clears infections. (In other models, a brief period of chemo-protection
-follows treatment.) The module assumes that
+In the S-I-S model, there is no chemoprotected state, so drug taking
+simply clears infections. (In other models, a brief period of
+chemo-protection follows treatment.) The module assumes that
 
 - \\(\rho\\) or `rho`: a fraction \\(\rho\\) of incident infections are
   treated and cured, so the FoI is now \\(h (1-\rho).\\) Since exposure

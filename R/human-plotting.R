@@ -1,3 +1,4 @@
+# X
 
 #' @title Get the EIR
 #'
@@ -58,7 +59,7 @@ xds_lines_EIR <- function(xds_obj, i=1, clrs="black", lty=1, annual=TRUE){
   if(length(lty) != n) lty=rep(lty, n)
   with(get_XH_orbits(xds_obj, i),{
     fac = ifelse(annual==TRUE, 365, 1)
-    for(j in 1:n) lines(time, fac*eir[,j], col=clrs[j], lty = lty)
+    for(j in 1:n) lines(time, fac*eir[,j], col=clrs[j], lty = lty[j])
     return(invisible(eir))
 })}
 
@@ -111,5 +112,3 @@ xds_lines_PR = function(xds_obj, method, i, clrs="black", lty=1){
     if(n>1) for(j in 1:n) lines(time, pr[,j], col=clrs[j], lty = lty[j])
     return(invisible(pr))
 })}
-
-

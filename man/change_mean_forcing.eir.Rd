@@ -17,6 +17,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change the mean daily EIR
+Change the mean daily EIR.
 }
 \keyword{internal}

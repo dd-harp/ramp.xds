@@ -1,7 +1,9 @@
+# X
+
 #' @title Change season parameters
 #'
 #' @description
-#' Change parameters for the seasonality function
+#' Change parameters for the seasonality function.
 #'
 #' @param X a list with new parameters for bottom, phase, and pw
 #' @param xds_obj an **`xds`** model object
@@ -19,7 +21,7 @@ change_season = function(X, xds_obj, ix=1){
 #'
 #' @description
 #' Change parameters for the seasonality function
-#' when `forced_by = "none"`
+#' when `forced_by = "none"`.
 #'
 #' @inheritParams change_season
 #'
@@ -35,7 +37,7 @@ change_season.none = function(X, xds_obj, ix=1){
 #'
 #' @description
 #' Change parameters for the seasonality function
-#' when `forced_by = "Lambda"`
+#' when `forced_by = "Lambda"`.
 #' @inheritParams change_season
 #'
 #' @importFrom ramp.func make_function
@@ -58,7 +60,7 @@ change_season.Lambda = function(X, xds_obj, ix=1){
 #'
 #' @description
 #' Change parameters for the seasonality function
-#' when `forced_by = "eir"`
+#' when `forced_by = "eir"`.
 #'
 #' @inheritParams change_season
 #'

@@ -1,3 +1,4 @@
+# X 
 
 #' @title Set up a static object
 #' 
@@ -96,8 +97,8 @@ diag_inverse <- function(x) {
 }
 
 #' @title Check if two numeric values are approximately equal
-#' @param a a [numeric] model object
-#' @param b a [numeric] model object
+#' @param a a [numeric] value
+#' @param b a [numeric] value
 #' @param tol the numeric tolerance
 #' @return a [logical] value
 #' @keywords internal
@@ -107,11 +108,11 @@ approx_equal <- function(a, b, tol = sqrt(.Machine$double.eps)) {
 }
 
 #' @title Check the length of an input value
-#' @param x a [numeric] model object
-#' @param lng a [numeric] model object
-#' @param type a [character] string specifying required typeof
-#' @param fixit a [logical] value, if TRUE force length to lng
-#' @return a [numeric] model object
+#' @param x a [numeric] input
+#' @param lng the required length
+#' @param type a [character] string specifying whether to convert the input to integer
+#' @param fixit a [logical] value; if `TRUE`, replicate a length-one input to length `lng`
+#' @return the checked [numeric] input
 #' @keywords internal
 #' @export
 checkIt = function(x, lng, type = "numeric", fixit=TRUE){
@@ -122,11 +123,11 @@ checkIt = function(x, lng, type = "numeric", fixit=TRUE){
   x
 }
 
-#' @title Check the shape and dimensions of an model object
+#' @title Check the shape and dimensions of a model object
 #'
-#' @param obj a [numeric] model object
-#' @param d1 an [integer]
-#' @param d2 an [integer]
+#' @param obj a [numeric] input
+#' @param d1 the required number of rows
+#' @param d2 the required number of columns
 #'
 #' @return [matrix]
 #'
@@ -137,12 +138,12 @@ shapeIt = function(obj, d1, d2){
   dd = dim(Obj)
   stopifnot(d1 %in% dd)
   stopifnot(d2 %in% dd)
-  if(dd[1]!=d1) obj = t(obj)
-  return(obj)
+  if(dd[1]!=d1) Obj = t(Obj)
+  return(Obj)
 }
 
 
-#' @title Set the initial values to the last values of the last simulation
+#' @title Get component state variables
 #' @param y0 a [vector] of initial values
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -150,18 +151,18 @@ shapeIt = function(obj, d1, d2){
 #' @keywords internal
 #' @export
 list_vars <- function(xds_obj, y0=NULL, s=1, i=1){
-  if(is.null(y0)) y0=get_inits(xds_obj)
+  if(is.null(y0)) y0=get_inits(xds_obj, flatten=TRUE)
   y0 = unname(y0)
   c(
     get_L_vars(y0, xds_obj, s),
     get_MY_vars(y0, xds_obj, s),
-    get_XH_vars(y0, xds_obj, s))
+    get_XH_vars(y0, xds_obj, i))
 }
 
-#' @title Set the initial values to the last values of the last simulation
+#' @title Update the initial values
 #' @param xds_obj an **`xds`** model object
-#' @param y0 a [vector] of initial values
-#' @return y a [numeric] vector
+#' @param y0 a [vector] of initial values; if `NULL`, use the last simulation state
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 update_inits <- function(xds_obj, y0=NULL){
@@ -193,7 +194,7 @@ update_inits <- function(xds_obj, y0=NULL){
 #' @param xds_obj an **`xds`** model object
 #' @param parse if TRUE return a named list
 #'
-#' @return a [numeric] vector
+#' @return a [numeric] vector or, if `parse = TRUE`, a named [list]
 #' @export
 get_last <- function(xds_obj, parse=FALSE){
   y <- xds_obj$outputs$last_y
@@ -203,7 +204,6 @@ get_last <- function(xds_obj, parse=FALSE){
 
 #' @title Set the initial values to the last values of the last simulation
 #' @param xds_obj an **`xds`** model object
-#' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
 #' @export
 last_to_inits <- function(xds_obj){
@@ -211,7 +211,7 @@ last_to_inits <- function(xds_obj){
   return(xds_obj)
 }
 
-#' @title Set the initial values to the last values of the last simulation
+#' @title Flatten a list of state variables
 #' @param vars a [list]
 #' @return `vars` as an unnamed [vector]
 #' @keywords internal
@@ -220,7 +220,7 @@ xds_flatten <- function(vars){
   return(unname(as.vector(unlist(vars))))
 }
 
-#' @title Run Checks
+#' @title Check the model components
 #'
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
@@ -241,7 +241,7 @@ check_models <- function(xds_obj) {
 #'
 #' @inheritParams base::print
 #' @rdname print
-#' @return a description of the model
+#' @return the **`xds`** model object, invisibly
 #' @keywords internal
 #' @export print.xds_obj
 #' @export
@@ -259,4 +259,5 @@ print.xds_obj = function(x, ...){
   cat(paste("  nVectorSpecies   = ", x$nVectorSpecies, "\n\n", sep=""))
   cat(paste("frame - ", x$frame, "\n", sep=""))
   cat(paste("xds   - ", x$xds, "\n", sep=""))
+  return(invisible(x))
 }

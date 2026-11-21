@@ -20,31 +20,33 @@ xds_solve_cohort(
 
 \item{eir}{the mean eir}
 
-\item{Amax}{the oldest year, run from 0...Amax}
+\item{Amax}{the oldest age, run from 0...Amax}
 
 \item{da}{the age interval}
 
 \item{ages}{a set of ages}
 }
 \description{
-Given a trace function describing the average EIR in a population over time,
-simulate malaria in a cohort as it ages: the independent variable is age
-\eqn{(a)} and not time \eqn{(t)}.
+Given a forcing function describing the average EIR in a population over time,
+simulate malaria in a cohort as it ages, using age as the independent variable
+\eqn{(a)} rather than time \eqn{(t)}.
 
 Relative biting rates by
 age are set by \eqn{F_\omega(a)} or \code{F_age} with associated parameters \code{age_par}.
 
 To solve, the argument \code{birthday} sets the birthday for a cohort, \eqn{(d)}.
-The user ether passes \code{ages} or \code{Amax} and \code{da} to configure a vector of
+The user either passes \code{ages} or \code{Amax} and \code{da} to configure a vector of
 ages at which output is wanted \eqn{(a_i)}, at times \eqn{t_i=a_i+d}.
 
-In effect, since \eqn{a = t-d}, the function solves the
-solves the system for for an exposure function with the pattern:
-\deqn{F_w(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)}
+In effect, since \eqn{a = t-d}, the function solves the system for an
+exposure function with the pattern:
+\deqn{F_\omega(a) \times F_S(t-d) \times F_T(t-d) \times F_K(t-d)}
 }
 \note{
 Use \code{xds_setup_eir} to set up a model for cohort dynamics.
 
 During setup, the variable \code{xds_obj$EIR_obj$bday} is set to 0,
 and \code{F_age} is set to \code{F_one}.
+
+For discrete-time models, calendar output times (birthday + ages) must be whole-number time steps.
 }

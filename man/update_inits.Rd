@@ -2,19 +2,19 @@
 % Please edit documentation in R/utils.R
 \name{update_inits}
 \alias{update_inits}
-\title{Set the initial values to the last values of the last simulation}
+\title{Update the initial values}
 \usage{
 update_inits(xds_obj, y0 = NULL)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{y0}{a \link{vector} of initial values}
+\item{y0}{a \link{vector} of initial values; if \code{NULL}, use the last simulation state}
 }
 \value{
-y a \link{numeric} vector
+an \strong{\code{xds}} model object
 }
 \description{
-Set the initial values to the last values of the last simulation
+Update the initial values
 }
 \keyword{internal}

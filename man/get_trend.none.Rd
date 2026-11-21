@@ -12,7 +12,7 @@
 \item{s}{the vector species index}
 }
 \value{
-an empty vector
+\code{NULL}
 }
 \description{
 Get the interpolating points

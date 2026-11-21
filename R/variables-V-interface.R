@@ -1,14 +1,15 @@
+# Y 
 
 #' @title Compute Other State Variables
 #' @description
 #' The description for each method should include the equations.
 #'
-#' @note This is the `S3` generic. Methods dispatch on `V_obj`
+#' @note This is the `S3` generic. Methods dispatch on `V_obj`.
 #' @param t time
 #' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #' @param i the i\eqn{^{th}} set of auxiliary variables
-#' @return derivatives for the \eqn{\cal MYZ} component as a [vector]
+#' @return derivatives for the auxiliary variables as a [vector]
 #' @keywords internal
 #' @export
 dVdt <- function(t, y, xds_obj, i) {
@@ -16,14 +17,14 @@ dVdt <- function(t, y, xds_obj, i) {
 }
 
 
-#' @title Setup an **V** Module (Human / Host Epidemiology & Demography)
+#' @title Set up a **V** module
 #' @description Set the parameter values and configure a model
-#' for the **X** Component
+#' for the **V** component.
 #'
 #' @param XHname the model name
 #' @param xds_obj an **`xds`** model object
 #' @param options model options as a named list
-#' @param i the host species index
+#' @param i the auxiliary-variable module index
 #'
 #' @return an **`xds`** model object
 #'
@@ -35,14 +36,14 @@ setup_V_obj = function(XHname, xds_obj, options=list(), i=1){
 
 #' @title Get Variables by Name
 #'
-#' @description Get the the values
+#' @description Get the values
 #' of variables from the flat state
 #' variable vector \eqn{y}, and return
-#' the values as a named list
+#' the values as a named list.
 #'
 #' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
+#' @param i the auxiliary-variable module index
 #'
 #' @return Variables as a named list
 #'
@@ -51,27 +52,27 @@ get_V_vars <- function(y, xds_obj, i=1) {
   UseMethod("get_V_vars", xds_obj$V_obj[[i]])
 }
 
-#' @title Add indices for human population to parameter list
+#' @title Add indices for auxiliary variables to the parameter list
 #'
-#' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`
+#' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`.
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
+#' @param i the auxiliary-variable module index
 #' @return an **`xds`** model object
 #' @export
 setup_V_ix <- function(xds_obj, i) {
   UseMethod("setup_V_ix", xds_obj$V_obj[[i]])
 }
 
-#' @title Add indices for human population to parameter list
+#' @title Get indices for auxiliary variables
 #'
-#' @description Get and display the values of the indices
-#' for the variables
+#' @description Retrieve the values of the indices
+#' for the variables.
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
+#' @param i the auxiliary-variable module index
 #'
-#' @return an **`xds`** model object
+#' @return the index [vector]
 #' @export
 get_V_ix <- function(xds_obj, i=1) {
   xds_obj$V_obj[[i]]$ix
@@ -89,12 +90,12 @@ get_V_ix <- function(xds_obj, i=1) {
 #'
 #' For differential equations
 #' the solution matrix is returned by [deSolve].
-#' Discrete time systems return a matrix
+#' Discrete-time systems return a matrix
 #' that has the same shape.
 #'
 #' @param outputs an output matrix returned by [deSolve]
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
+#' @param i the auxiliary-variable module index
 #'
 #' @keywords internal
 #' @export
@@ -106,18 +107,18 @@ parse_V_orbits <- function(outputs, xds_obj, i) {
 #' @title Return the parameters as a list
 #' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`.
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
+#' @param i the auxiliary-variable module index
 #' @return a [list]
 #' @export
 get_V_pars <- function(xds_obj, i=1) {
   UseMethod("get_V_pars", xds_obj$V_obj[[i]])
 }
 
-#' @title Set new X parameter values
-#' @description This method dispatches on the type of `xds_obj$V_obj[[s]]`.
+#' @title Set new V parameter values
+#' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
-#' @param i the vector species index
+#' @param i the auxiliary-variable module index
 #' @return an **`xds`** model object
 #' @export
 change_V_pars <- function(xds_obj, options=list(), i=1) {
@@ -125,14 +126,14 @@ change_V_pars <- function(xds_obj, options=list(), i=1) {
 }
 
 
-#' @title Setup Initial Values for **V** Modules
+#' @title Set up initial values for **V** modules
 #'
 #' @description This method dispatches on `xds_obj$V_obj[[i]]`.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param H initial host population density
 #' @param options a [list]
-#' @param i the host species index
+#' @param i the auxiliary-variable module index
 #' @return an **`xds`** model object
 #' @export
 setup_V_inits = function(xds_obj, H, options=list(), i=1){
@@ -140,13 +141,13 @@ setup_V_inits = function(xds_obj, H, options=list(), i=1){
 }
 
 
-#' @title A function to set up V_obj
+#' @title Get initial values for auxiliary variables
 #'
-#' @description Get and display the stored
+#' @description Retrieve the stored
 #' set of initial values.
 #'
 #' @param xds_obj an **`xds`** model object
-#' @param i the host species index
+#' @param i the auxiliary-variable module index
 #'
 #' @return the initial values, as a named list
 #'
@@ -156,11 +157,11 @@ get_V_inits = function(xds_obj, i=1){
 }
 
 
-#' @title Set new X parameter values
-#' @description This method dispatches on the type of `xds_obj$V_obj[[s]]`.
+#' @title Set new V initial values
+#' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
-#' @param i the vector species index
+#' @param i the auxiliary-variable module index
 #' @return an **`xds`** model object
 #' @export
 change_V_inits <- function(xds_obj, options=list(), i=1) {

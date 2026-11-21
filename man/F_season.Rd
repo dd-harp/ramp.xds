@@ -12,7 +12,7 @@ F_season(tm, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the seasonal pattern, invisibly
+the seasonal pattern
 }
 \description{
 Evaluate the function \code{F_season} for a forced model.

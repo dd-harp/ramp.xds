@@ -12,7 +12,7 @@
 \item{...}{further arguments passed to or from other methods.}
 }
 \value{
-a description of the model
+the \strong{\code{xds}} model object, invisibly
 }
 \description{
 Print the \strong{\code{xds}} model object

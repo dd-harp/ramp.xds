@@ -33,8 +33,8 @@ change_ovitraps = function(ovitraps, xds_obj, s=1){
   check_ovitraps(ovitraps, xds_obj$nPatches)
   xds_obj$patches$ovitraps[[s]] <- ovitraps
   xds_obj$patches$ovitraps_obj[[s]] <- make_static_obj()
-  xds_obj <- compute_all_available_water(xds_obj)
-  xds_obj <- compute_U_matrix(xds_obj)
+  xds_obj <- update_all_available_water(xds_obj)
+  xds_obj <- update_U_matrix(xds_obj)
   return(xds_obj)
 }
 
@@ -177,5 +177,3 @@ update_ovitraps.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 get_ovitraps = function(xds_obj, s=1){
   return(xds_obj$patches$ovitraps[[s]])
 }
-
-

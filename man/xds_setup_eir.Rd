@@ -62,13 +62,10 @@ can be solved by \link{xds_solve} or \link{xds_solve_cohort}.
 \loadmathjax
 
 To build a model that is forced by infective biting in the patches, which requires setting up a time
-spent matrix and search weigths, use \link{xds_setup_human}.
+spent matrix and search weights, use \link{xds_setup_human}.
 }
 \details{
-A modified version of \link{xds_setup} that sets up a model to study exposure and
-infection.
-The \strong{MY} component module is set to \code{trivialMY} and a trace
-function computes infective biting in the patches.
+This sets
 
 \code{class(xds_obj$frame) = 'eir'}
 
@@ -87,7 +84,7 @@ Configure the \strong{XH} component:
 
 The structural parameter \code{nStrata} is set to \code{length(HPop)}.
 
-\strong{The EIR Trace Function}
+\strong{The EIR Forcing function}
 
 The interface includes options to configure a composed, multiplicative time series function
 describing \code{F_eir} as a function of time. For cohort dynamics (using \link{xds_solve_cohort}), a function
@@ -99,21 +96,13 @@ can be configured to compute relative biting rates by age:
 \item \code{F_shock} or \code{shock_par} --- set up the shock function
 \item \code{F_age} or \code{age_par} --- set up relative biting rates by age
 }
-
-\strong{Next}
-\itemize{
-\item To solve the model, see \link{xds_solve} or \link{xds_solve_cohort}
-\item To check or change parameters, see \link{xds_info_change_parameters}
-\item To check or change the initial conditions, see \link{xds_info_initial_conditions}
-\item To modify the model structure, see \link{xds_info_advanced_setup}
-}
 }
 \seealso{
 \itemize{
 \item Basic Setup: \link{xds_setup}, \link{xds_setup_human}, \link{xds_info_basic_setup}
 \itemize{
-\item \link{xds_info_change_parameters}
-\item \link{xds_info_initial_conditions}
+\item change parameters --- \link{xds_info_change_parameters}
+\item change initial conditions --- \link{xds_info_initial_conditions}
 }
 \item Advanced Setup: \link{xds_info_advanced_setup}
 \item Solving: \link{xds_solve}, \link{xds_solve_cohort}

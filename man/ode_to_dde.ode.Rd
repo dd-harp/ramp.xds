@@ -13,6 +13,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-If \code{class(xds_obj$xde) == "dde"} don't change anything
+Switch to \code{dde} if any module's skill set indicates a delay.
 }
 \keyword{internal}

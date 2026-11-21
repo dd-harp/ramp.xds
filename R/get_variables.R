@@ -1,10 +1,11 @@
+# X
 
 #' Get Variables
 #' 
 #' @description
-#' A generic function to retrieve variables from the **`xds`** model object
+#' A generic function to retrieve variables from the **`xds`** model object.
 #'
-#' @param opts an options list and dispatching
+#' @param opts an options list used for dispatch
 #' @param t time
 #' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
@@ -20,7 +21,7 @@ get_variables = function(opts, t, y, xds_obj, ix){
 #' Get Variables
 #' 
 #' @description
-#' The NULL case for [get_variables]
+#' The list method for [get_variables].
 #' 
 #'
 #' @inheritParams get_variables

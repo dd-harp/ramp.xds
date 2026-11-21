@@ -1,3 +1,5 @@
+# X
+
 
 
 
@@ -29,7 +31,7 @@ get_search_weights_blood = function(xds_obj, s=1, i=1){
 #' @param xds_obj an **`xds`** model object
 #' @param i the human species index
 #'
-#' @return y a [numeric] vector assigned the class "dynamic"
+#' @return human population density as a [numeric] vector
 #' @export
 get_H = function(xds_obj, i=1){
   y = get_inits(xds_obj, flatten=TRUE)
@@ -58,8 +60,8 @@ get_XH_orbits = function(xds_obj, i=1){
 #' + `lm` for the *Pf*PR by light microscopy
 #' + `rdt` for the *Pf*PR by RDT
 #' + `pcr` for the *Pf*PR by PCR
-#' @note The method assigns `class(method)='method'` then
-#' dispatches on `'method'`
+#' @note The method assigns `class(method)=method` then
+#' dispatches on `method`.
 #' @param xds_obj an **`xds`** model object
 #' @param method the method used for computing *Pf*PR
 #' @param i the host species index
@@ -71,10 +73,10 @@ get_PR <- function(xds_obj, method="true", i=1) {
 }
 
 #' @title Get the *Pf*PR from a malaria model
-#' @description  Return the true *Pf*PR
+#' @description Return the true *Pf*PR.
 #'
 #' @inheritParams get_PR
-#' @return the true PR
+#' @return a [list] containing `time`, `pr`, and `method`
 #' @keywords internal
 #' @export
 get_PR.true <- function(xds_obj, method="true", i=1) {
@@ -82,7 +84,7 @@ get_PR.true <- function(xds_obj, method="true", i=1) {
 }
 
 #' @title Get the *Pf*PR from a malaria model
-#' @description Return the *Pf*PR by PCR
+#' @description Return the *Pf*PR by PCR.
 #' @inheritParams get_PR
 #' @return a [list]
 #' @keywords internal
@@ -94,7 +96,7 @@ get_PR.pcr<- function(xds_obj, method="pcr", i=1) {
 }
 
 #' @title Get the *Pf*PR from a malaria model
-#' @description Return the PR by light microscopy
+#' @description Return the PR by light microscopy.
 #' @inheritParams get_PR
 #' @return a [list]
 #' @keywords internal
@@ -106,7 +108,7 @@ get_PR.lm<- function(xds_obj, method = "lm", i=1) {
 }
 
 #' @title Get the *Pf*PR from a malaria model
-#' @description Return the PR by RDT
+#' @description Return the PR by RDT.
 #' @inheritParams get_PR
 #' @return a [list]
 #' @keywords internal

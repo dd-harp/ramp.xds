@@ -17,6 +17,6 @@ change_trend(X, xds_obj, s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set the interpolating points for F_trend
+Set the interpolating points for F_trend.
 }
 \keyword{internal}

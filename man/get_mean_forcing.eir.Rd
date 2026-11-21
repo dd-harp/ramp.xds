@@ -4,15 +4,17 @@
 \alias{get_mean_forcing.eir}
 \title{Get mean forcing}
 \usage{
-\method{get_mean_forcing}{eir}(xds_obj)
+\method{get_mean_forcing}{eir}(xds_obj, ix = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{ix}{the species index}
 }
 \value{
 a vector, the value of \code{eir}
 }
 \description{
-Get the mean daily EIR for an \code{eir} model
+Get the mean daily EIR for an \code{eir} model.
 }
 \keyword{internal}

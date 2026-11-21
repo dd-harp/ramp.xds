@@ -2,7 +2,7 @@
 % Please edit documentation in R/dts_equations.R
 \name{dts_update}
 \alias{dts_update}
-\title{dts_update_ States for Discrete-Time Systems}
+\title{Update states for discrete-time systems}
 \usage{
 dts_update(t, y, xds_obj)
 }
@@ -14,9 +14,9 @@ dts_update(t, y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \link{list} containing the vector of all state derivatives
+updated dependent variables (a \link{vector})
 }
 \description{
-dts_update_s the state variables
+Update the state variables.
 }
 \keyword{internal}

@@ -1,3 +1,5 @@
+# X
+
 #' @title Forcing in **`ramp.xds`**
 #' 
 #' @description
@@ -5,7 +7,7 @@
 #' In **`ramp.xds`**, forcing is implemented through *ports* and *junctions,* or through exogenous
 #' forcing of dynamical terms by `trivial` modules (see [xds_info_trivial_forcing]). 
 #' 
-#' + Parameter or terms that could be time-varying are implemented as *ports.* There are several
+#' + Parameters or terms that could be time-varying are implemented as *ports.* There are several
 #' kinds of ports: 
 #' 
 #'    - mosquito bionomic ports set a baseline that can be modified by vector control;
@@ -59,7 +61,7 @@ Forcing = function(t, xds_obj){
 #' @description
 #' Implements no `Forcing`, the default. 
 #' 
-#' @note Dynamic forcing is implemented in **`ramp.forcing`** 
+#' @note Dynamic forcing is implemented in **`ramp.forcing`**.
 #' 
 #' @param t time
 #' @param xds_obj an **`xds`** model object
@@ -85,4 +87,3 @@ setup_forcing_object = function(xds_obj){
   xds_obj$forcing_obj <- forcing
   return(xds_obj)
 }
-

@@ -2,18 +2,19 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{get_XH_pars.trivialXH}
 \alias{get_XH_pars.trivialXH}
-\title{Change parameters for \code{trivialXH} (\strong{XH})}
+\title{Get parameters for \code{trivialXH} (\strong{XH})}
 \usage{
 \method{get_XH_pars}{trivialXH}(xds_obj, i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{i}{the host species index}
 }
 \value{
 a \link{list}
 }
 \description{
-For the \code{trivialXH} module (\strong{XH}) for the \eqn{i^{th}} species,
-change parameter values named in \code{options} leaving other values unchanged.
+Return stored parameter values for the \code{trivialXH} module.
 }
 \keyword{internal}

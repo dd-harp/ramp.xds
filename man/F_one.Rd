@@ -8,9 +8,11 @@ F_one(t, V = list())
 }
 \arguments{
 \item{t}{time}
+
+\item{V}{an optional list of variables}
 }
 \value{
-1
+a vector of ones matching \code{t}
 }
 \description{
 F_one

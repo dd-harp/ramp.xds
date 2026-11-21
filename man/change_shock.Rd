@@ -17,6 +17,6 @@ change_shock(shock_par, xds_obj, s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Change parameters for the shock function
+Change parameters for the shock function.
 }
 \keyword{internal}

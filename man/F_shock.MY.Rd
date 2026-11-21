@@ -15,6 +15,6 @@
 the temporal shock
 }
 \description{
-Evaluate the function \code{F_shock} for a trivial \strong{MY} model
+Evaluate the function \code{F_shock} for a trivial \strong{MY} model.
 }
 \keyword{internal}

@@ -19,6 +19,6 @@ an \strong{\code{xds}} model object
 \description{
 Set new \eqn{y}-values for the spline interpolating points
 and update \code{F_trend}
-when \code{forced_by = "Lambda"}
+when \code{forced_by = "Lambda"}.
 }
 \keyword{internal}

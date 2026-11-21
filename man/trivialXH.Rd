@@ -4,10 +4,10 @@
 \alias{trivialXH}
 \title{\code{trivialXH} --- \strong{XH} module}
 \description{
-The trivial module sets up two trace functions:
+The trivial module sets up two forcing functions:
 \enumerate{
-\item a trace function to output net infectiousness, \eqn{\kappa}
-\item a trace function to output human population density, \eqn{H}
+\item a forcing function to output net infectiousness, \eqn{\kappa}
+\item a forcing function to output human population density, \eqn{H}
 }
 
 Basic setup uses a function if it is passed. If no function is passed,
@@ -21,7 +21,7 @@ object (by default, an empty list).
 \section{Net Infectiousness}{
 
 
-The trace functions are set up as composed time series functions with
+The forcing functions are set up as composed time series functions with
 four separate composable elements:
 \deqn{F_\kappa(t) = \kappa \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)}
 where
@@ -36,12 +36,12 @@ where
 \section{Human Population Density}{
 
 
-The trace functions are set up as composed time series functions with
+The forcing functions are set up as composed time series functions with
 four separate composable elements:
 \deqn{F_H(t) = H \times S(t, V_s) \times T(t, V_t) \times K(t, V_k)}
 where
 \itemize{
-\item \eqn{\kappa} or \code{kappa} is the mean net infectiousness
+\item \eqn{H} or \code{H} is the mean human population density
 \item \eqn{S(t,V_s)} or \code{H_season} is a seasonal pattern function
 \item \eqn{T(t,V_t)} or \code{H_trend} is a trend pattern function
 \item \eqn{K(t,V_k)} or \code{H_shock} is a perturbation function
@@ -57,7 +57,7 @@ Note: \eqn{0 \leq F_\kappa(t) \leq 1}
 \section{Parameters}{
 
 
-\strong{Net Infectivity}
+\strong{Net Infectiousness}
 \describe{
 \item{\code{kappa}}{mean net infectiousness}
 \item{\code{F_season}}{a seasonal pattern function, \eqn{{S(t,V_s)}}}
@@ -95,13 +95,14 @@ use by \code{ramp.func}
 \enumerate{
 \item The module has no state variables.
 \item The size of an object saved by \code{saveRDS} balloons if it saves a function,
-so \code{saveXDS} function strips the functions and \code{readXDS} remakes the function
+so the \code{saveXDS} function strips the functions and \code{readXDS} remakes the function
 from the stored function object using \link[ramp.func:make_function]{make_function}.
-\item \code{F_season}, \code{F_trend}, and \code{F_shock} can be set up manually by passing any
-user defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
-rather than \code{saveXDS} and \code{readXDS}
-\item Setup expects that \verb{membership= c(1:nPatches),} but any membership vector
-works.
+\item \code{F_season}, \code{F_trend}, \code{F_shock}, \code{H_season}, \code{H_trend}, and \code{H_shock}
+can be set up manually by passing any
+user-defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
+rather than \code{saveXDS} and \code{readXDS}.
+\item Setup uses a \code{residence} vector. The module constructs \code{H} and \code{kappa}
+with length \code{nStrata[i]}.
 }
 }
 

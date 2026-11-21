@@ -1,7 +1,9 @@
-#' @title Setup births
+# X
+
+#' @title Set up births and deaths
 #' 
 #' @description
-#' Configure the births function
+#' Configure the births and deaths functions.
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index
@@ -36,7 +38,7 @@ Births <- function(t, y, xds_obj, i){
 
 #' @title Human/host births
 #'
-#' @description No births
+#' @description No births.
 #'
 #' @inheritParams Births
 #'
@@ -48,7 +50,7 @@ Births.zero <- function(t, y, xds_obj, i){rep(0, xds_obj$nStrata[i])}
 
 #' @title Human/host births
 #'
-#' @description Constant birth rates
+#' @description Constant birth rates.
 #'
 #' @inheritParams Births
 #'
@@ -104,10 +106,11 @@ Deaths.constant <- function(t, X, xds_obj, i){
   return(xds_obj$XH_obj[[i]]$death_obj$death_rates*X)
 }
 
-#' @title Check 
+#' @title Check human population change
 #' 
 #' @description
-#' Configure the births function
+#' Check population change and enable dynamic blood-feeding and transmission
+#' interfaces when the population changes.
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param i the species index

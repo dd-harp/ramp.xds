@@ -2,19 +2,19 @@
 % Please edit documentation in R/variables-V-interface.R
 \name{get_V_ix}
 \alias{get_V_ix}
-\title{Add indices for human population to parameter list}
+\title{Get indices for auxiliary variables}
 \usage{
 get_V_ix(xds_obj, i = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{i}{the host species index}
+\item{i}{the auxiliary-variable module index}
 }
 \value{
-an \strong{\code{xds}} model object
+the index \link{vector}
 }
 \description{
-Get and display the values of the indices
-for the variables
+Retrieve the values of the indices
+for the variables.
 }

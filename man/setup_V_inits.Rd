@@ -2,7 +2,7 @@
 % Please edit documentation in R/variables-V-interface.R
 \name{setup_V_inits}
 \alias{setup_V_inits}
-\title{Setup Initial Values for \strong{V} Modules}
+\title{Set up initial values for \strong{V} modules}
 \usage{
 setup_V_inits(xds_obj, H, options = list(), i = 1)
 }
@@ -13,7 +13,7 @@ setup_V_inits(xds_obj, H, options = list(), i = 1)
 
 \item{options}{a \link{list}}
 
-\item{i}{the host species index}
+\item{i}{the auxiliary-variable module index}
 }
 \value{
 an \strong{\code{xds}} model object

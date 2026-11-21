@@ -61,8 +61,14 @@ dynamics. It sets
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
 and parse outputs. The solver ignores infection dynamics (the \strong{X} and \strong{Y} processes).
 A trivial \strong{XH} component is set up to handle human/host population density.
+}
+\note{
+\link{xds_setup} calls \link{make_xds_object_template}, which returns an object template with
+a properly configured interface for blood feeding
+and egg laying (see \link{xds_object}).
+}
+\section{Dynamics}{
 
-\strong{Dynamics}
 
 Choose a module to use for the mosquito dynamical components (see \link{xds_info_dynamical_components}):
 \itemize{
@@ -76,8 +82,10 @@ Set parameter values and initial conditions using setup options (named lists):
 \item \code{Loptions} sets parameter values and initial conditions for the \strong{L} module
 \item \code{HPop} sets the human population density
 }
+}
 
-\strong{Model Structure}
+\section{Model Structure}{
+
 
 Set up the model structure:
 \itemize{
@@ -92,34 +100,24 @@ During setup:
 \item \code{nPatches} is checked and set to \code{max(membership, nPatches)}
 \item \code{nVectorSpecies}\eqn{=1}
 }
+}
 
-\strong{Spatial Dynamics}
+\section{Basic Spatial Dynamics}{
+
 
 If \code{nPatches}\eqn{>1}, set up some basic aspects of egg laying, blood feeding, mosquito spatial dynamics, and exposure:
 \itemize{
 \item \code{searchQ} the habitat search weights (see \link{xds_info_search_weights_habitat})
 \item \code{Koptions} sets up a mosquito dispersal matrix (see \link{xds_info_mosquito_dispersal})
 }
+}
 
-\strong{Next}
-\itemize{
-\item To solve the model, see \link{xds_solve}
-\item To check or change parameters, see \link{xds_info_change_parameters}
-\item To check or change the initial conditions, see \link{xds_info_initial_conditions}
-\item To modify the model structure, see \link{xds_info_advanced_setup}
-}
-}
-\note{
-\link{xds_setup} calls \link{make_xds_object_template}, which returns an object template with
-a properly configured interface for blood feeding
-and egg laying (see \link{xds_object}).
-}
 \seealso{
 \itemize{
 \item Basic Setup: \link{xds_setup}, \link{xds_info_basic_setup}
 \itemize{
-\item \link{xds_info_change_parameters}
-\item \link{xds_info_initial_conditions}
+\item change parameters --- \link{xds_info_change_parameters}
+\item change initial conditions --- \link{xds_info_initial_conditions}
 }
 \item Advanced Setup: \link{xds_info_advanced_setup}
 \item Solving: \link{xds_solve}

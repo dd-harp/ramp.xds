@@ -1,10 +1,10 @@
+# Y 
 
-
-#' @title Compute Other Variables
+#' @title Add indices for auxiliary variables
 #' @description
-#' The description for each method should include the equations.
+#' Assign indices to the auxiliary variables following the existing model indices.
 #'
-#' @note Index the variables
+#' @note Index the variables.
 #' @param xds_obj an **`xds`** model object
 #' @param i the variable index
 #' @return an **`xds`** model object
@@ -20,16 +20,26 @@ setup_V_ix.setup <- function(xds_obj, i){
 #' The description for each method should include the equations.
 #'
 #' @inheritParams dVdt
-#' @return Derivatives for auxiliary variables as a [vector]
+#' @return an empty [list]
 #' @keywords internal
 #' @export
 dVdt.setup <- function(t, y, xds_obj, i){
   return(list())
 }
 
+#' @title Parse **V** Outputs
+#' @description Return an empty list for the auxiliary-variable placeholder.
+#' @inheritParams parse_V_orbits
+#' @return an empty [list]
+#' @keywords internal
+#' @export
+parse_V_orbits.setup <- function(outputs, xds_obj, i){
+  return(list())
+}
+
 #' @title Set Up the first (null) other variable
 #' @description
-#' The description for each method should include the equations.
+#' Initialize an empty placeholder for auxiliary variables.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @return an **`xds`** model object
@@ -48,10 +58,10 @@ setup_other_variables = function(xds_obj){
 #'
 #' @description
 #' This is a generic method to add new dependent state variables
-#' that are computed by `dVdt.`
+#' that are computed by `dVdt`.
 #'
 #' The model object for the new variable should fully define
-#' an other variables module, including methods to set up
+#' an other-variables module, including methods to set up
 #' initial values.
 #'
 #' The description for each method should include the equations.

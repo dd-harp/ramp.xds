@@ -1,7 +1,6 @@
+# X 
 
-#' @title Compute Derivatives
-#'
-#' @description The function to compute the derivatives dispatches on `class(frame)`
+#' @title Compute exogenous variables and dynamical terms
 #'
 #' @seealso [xds_solve]
 #'
@@ -9,7 +8,7 @@
 #' @param y dependent variables
 #' @param xds_obj an **`xds`** model object
 #'
-#' @return a [list] containing the vector of all state derivatives
+#' @return an **`xds`** model object
 #' @keywords internal
 #'
 #' @export
@@ -17,13 +16,10 @@ xds_compute_terms <- function(t, y, xds_obj) {
   UseMethod("xds_compute_terms", xds_obj$frame)
 }
 
-#' @title Generalized spatial differential equation model
-#' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
-#' generic methods for each model component.
-#'
+#' @title Compute exogenous variables and dynamical terms
 #' @inheritParams xds_compute_terms
 #'
-#' @return a [list] containing the vector of all state derivatives
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 xds_compute_terms.full <- function(t, y, xds_obj) {
@@ -57,11 +53,9 @@ xds_compute_terms.full <- function(t, y, xds_obj) {
   return(xds_obj)
 }
 
-#' @title Differential equations isolating the humans, forced by infectious biting 
-#' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
-#' generic methods for each model component.
+#' @title Compute exogenous variables and dynamical terms
 #' @inheritParams xds_compute_terms
-#' @return a [list] containing the vector of all state derivatives
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 xds_compute_terms.human <- function(t, y, xds_obj) {
@@ -92,11 +86,9 @@ xds_compute_terms.human <- function(t, y, xds_obj) {
   return(xds_obj)
 }
 
-#' @title Generalized spatial differential equation model (mosquito only)
-#' @description Mirrors [ramp.xds::xds_compute_terms] but only includes the adult and aquatic
-#' mosquito components.
+#' @title Compute exogenous variables and dynamical terms
 #' @inheritParams xds_compute_terms
-#' @return a [list] containing the vector of all state derivatives
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 xds_compute_terms.mosy <- function(t, y, xds_obj){
@@ -126,11 +118,9 @@ xds_compute_terms.mosy <- function(t, y, xds_obj){
   return(xds_obj)
 }
 
-#' @title Differential equation models for aquatic mosquito populations
-#' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
-#' generic methods for each model component.
+#' @title Compute exogenous variables and dynamical terms
 #' @inheritParams xds_compute_terms
-#' @return a [list] containing the vector of all state derivatives
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 xds_compute_terms.aquatic <- function(t, y, xds_obj) {
@@ -154,16 +144,13 @@ xds_compute_terms.aquatic <- function(t, y, xds_obj) {
   return(xds_obj)
 }
 
-#' @title Differential equation models for human epidemiology forced by the EIR
-#' @description Compute derivatives for [deSolve::ode] or [deSolve::dede] using
-#' generic methods for each model component.
+#' @title Compute exogenous variables and dynamical terms
 #' @inheritParams xds_compute_terms
-#' @return a [list] containing the vector of all state derivatives
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 xds_compute_terms.eir <- function(t, y, xds_obj) {
   with(xds_obj$EIR_obj, {
-  # EIR: entomological inoculation rate trace
     age = t-bday
     V_s = get_variables(season_par, t, y, xds_obj, 1)
     V_t = get_variables(trend_par, t, y, xds_obj, 1)

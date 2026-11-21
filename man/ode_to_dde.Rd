@@ -13,13 +13,12 @@ ode_to_dde(xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Setup a differential equation model
-to be solved using \code{deSolve:dede}
+Set up a differential equation model
+to be solved using \code{deSolve::dede}.
 }
 \details{
 For differential equations, the value of \code{xds_obj$xde}
-is set to \code{ode} by default. This utility gets called by delay
-differential equation modules to change
-\code{xds_obj$xde} from \code{ode} to \code{dde}
+is set to \code{ode} by default. This utility is called during setup to change
+\code{xds_obj$xde} from \code{ode} to \code{dde} when a module requires a delay.
 }
 \keyword{internal}

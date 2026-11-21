@@ -2,7 +2,7 @@
 % Please edit documentation in R/xds_compute_terms.R
 \name{xds_compute_terms}
 \alias{xds_compute_terms}
-\title{Compute Derivatives}
+\title{Compute exogenous variables and dynamical terms}
 \usage{
 xds_compute_terms(t, y, xds_obj)
 }
@@ -14,10 +14,10 @@ xds_compute_terms(t, y, xds_obj)
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \link{list} containing the vector of all state derivatives
+an \strong{\code{xds}} model object
 }
 \description{
-The function to compute the derivatives dispatches on \code{class(frame)}
+Compute exogenous variables and dynamical terms
 }
 \seealso{
 \link{xds_solve}

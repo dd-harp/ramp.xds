@@ -1,3 +1,5 @@
+# X
+
 #' @title Ports 
 #' 
 #' @concept port 
@@ -10,7 +12,7 @@
 #' That template establishes a protocol for writing modules with
 #' *features* that could be implemented in several ways to 
 #' add realism: 
-#' heterogeneous transmission, exogenous forcing (*eg* weather), 
+#' heterogeneous transmission, exogenous forcing (*e.g.* weather),
 #' malaria control, malaria importation, habitat dynamics, or something else.
 #' 
 #' By implementing a parameter or variable as a port, a module or 
@@ -18,7 +20,7 @@
 #' default
 #' values assigned during [xds_info_basic_setup] have no effect;
 #' but features can be
-#' configured after basic setup (see [xds_info_setup_options]).
+#' configured after basic setup (see [xds_info_advanced_setup]).
 #' 
 #' In developing ports, the mathematical consequences 
 #' *ought to be* fully considered. If some implementations 
@@ -26,7 +28,7 @@
 #' documentation should include warnings.  
 #'
 #' @section Port Value: 
-#' Each port is a flexible method for assigning a value parameter or variable (`par`). 
+#' Each port is a flexible method for assigning a value to a parameter or variable (`par`).
 #' The current value of the parameter
 #' or variable has a location on a base object (`base_obj`), and it is 
 #' always retrieved from that location: 
@@ -62,7 +64,7 @@
 #' where 
 #' + `t` is time 
 #' +  The `xds_obj` is passed, 
-#' + `this_port` dispatches on `class(xds_obj$base_obj$par_obj).`
+#' + `this_port` dispatches on `class(xds_obj$base_obj$par_obj)`.
 #' +  `...` other arguments often include the index of the host or vector species. 
 #' 
 #' Inside `this_port.this_case`, the parameter value
@@ -85,11 +87,10 @@
 #' unmodified.
 #' 
 #'  
-#' @section Trace Function Case:
-#' For most ports, an alternative case is to configure 
-#' a trace function using package standard
-#' *composable time 
-#' series* trace function (see `ramp.func` amd `ramp.forcing`).
+#' @section Forcing Function Case:
+#' Most ports can alternatively be configured with a forcing function
+#' using the composable time series functions from `ramp.func` and
+#' `ramp.forcing`.
 #'
 #' @section Setup: 
 #' All methods should have well-defined setup functions:
@@ -113,7 +114,7 @@
 #' 
 #' Any port can be modified by adding a new `S3` method. Since most
 #' of these examples involve some form of mechanistic forcing, new
-#' cases are generally added to **`ramp.forcing`.** All new methods
+#' cases are generally added to **`ramp.forcing`**. All new methods
 #' should be fully documented. 
 #' 
 #' For every port, the mathematical consequences of *exogenous forcing* 
@@ -134,7 +135,7 @@
 #' been set up to handle time-varying survival through a time-varying EIP 
 #' (see [xds_info_mosquito_bionomics]).
 #' 
-#' @seealso [xds_info_setup_options] | [xds_info_junction]
+#' @seealso [xds_info_advanced_setup] | [xds_info_junction]
 #' 
 #' @name xds_info_port
 NULL

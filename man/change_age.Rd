@@ -4,20 +4,18 @@
 \alias{change_age}
 \title{Change age}
 \usage{
-change_age(X, xds_obj, ix = 1)
+change_age(X, xds_obj)
 }
 \arguments{
 \item{X}{a list with new parameters}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
-
-\item{ix}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
 Change parameters for the relative biting rates
-by age and rebuild the function
+by age and rebuild the function.
 }
 \keyword{internal}

@@ -17,6 +17,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change mean infectious biting rate, \eqn{fqZ}
+Change the mean infective biting rate, \eqn{fqZ}.
 }
 \keyword{internal}

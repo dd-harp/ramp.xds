@@ -2,7 +2,7 @@
 % Please edit documentation in R/egg_laying.R
 \name{compute_eggs_laid}
 \alias{compute_eggs_laid}
-\title{Compute eggs laid}
+\title{Compute egg laying}
 \usage{
 compute_eggs_laid(t, y, xds_obj)
 }
@@ -17,7 +17,7 @@ compute_eggs_laid(t, y, xds_obj)
 an \strong{\code{xds}} model object
 }
 \description{
-Computes eggs laid in aquatic habitats
+Computes eggs laid in aquatic habitats.
 }
 \seealso{
 \link{compute_eggs_laid}

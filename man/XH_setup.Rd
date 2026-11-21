@@ -6,7 +6,7 @@
 \description{
 Set up functions for \strong{XH}
 
-\code{?setup_XH}
+\code{?XH_setup}
 \itemize{
 \item \code{\link{setup_XH_obj}} -- set up the XH module object
 \item \code{\link{setup_XH_ix}} -- set up variable indices

@@ -2,12 +2,12 @@
 % Please edit documentation in R/human-births.R
 \name{setup_births.as_is}
 \alias{setup_births.as_is}
-\title{Set up a births}
+\title{Set up births}
 \usage{
 \method{setup_births}{as_is}(name, xds_obj, options = list(), i = 1)
 }
 \arguments{
-\item{name}{a  or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,10 +19,10 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Pass a pre-configured births . If it passes
-the checks, it replaces the current births .
+Pass pre-configured births. If they pass
+the checks, they replace the current births.
 
 If called with \code{name = "as_is"}, the births
-must be at \code{options$births}
+must be at \code{options$birth_rates}.
 }
 \keyword{internal}

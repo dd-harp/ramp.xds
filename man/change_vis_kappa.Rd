@@ -7,7 +7,7 @@
 change_vis_kappa(vis_kappa, xds_obj, s = 1)
 }
 \arguments{
-\item{vis_kappa}{a vis_kappa}
+\item{vis_kappa}{the net infectiousness of the visitor population}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

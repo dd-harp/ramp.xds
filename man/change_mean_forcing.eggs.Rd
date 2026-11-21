@@ -17,6 +17,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change the mean egg deposition rate
+Change the mean egg deposition rate.
 }
 \keyword{internal}

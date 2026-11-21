@@ -2,27 +2,27 @@
 % Please edit documentation in R/visitors.R
 \name{setup_visitors.as_is}
 \alias{setup_visitors.as_is}
-\title{Set up a visitors}
+\title{Set up visitors}
 \usage{
 \method{setup_visitors}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-Pass a pre-configured visitors. If it passes
+Pass pre-configured visitors. If it passes
 the checks, it replaces the current visitors.
 
 If called with \code{name = "as_is"}, the visitors
-must be at \code{options$visitors}
+must be at \code{options$visitors_asis}.
 }
 \keyword{internal}

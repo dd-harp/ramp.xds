@@ -2,7 +2,7 @@
 % Please edit documentation in R/visitors-kappa.R
 \name{get_vis_kappa}
 \alias{get_vis_kappa}
-\title{Get availability of vis_kappa}
+\title{Get net infectiousness of visitors}
 \usage{
 get_vis_kappa(xds_obj, s = 1)
 }
@@ -12,8 +12,8 @@ get_vis_kappa(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+a \link{vector}
 }
 \description{
-Get availability of vis_kappa
+Get net infectiousness of visitors
 }

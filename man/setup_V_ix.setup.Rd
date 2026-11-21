@@ -2,7 +2,7 @@
 % Please edit documentation in R/variables-V-setup.R
 \name{setup_V_ix.setup}
 \alias{setup_V_ix.setup}
-\title{Compute Other Variables}
+\title{Add indices for auxiliary variables}
 \usage{
 \method{setup_V_ix}{setup}(xds_obj, i)
 }
@@ -15,8 +15,8 @@
 an \strong{\code{xds}} model object
 }
 \description{
-The description for each method should include the equations.
+Assign indices to the auxiliary variables following the existing model indices.
 }
 \note{
-Index the variables
+Index the variables.
 }

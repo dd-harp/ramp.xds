@@ -1,3 +1,4 @@
+# X
 
 #' @title Check births 
 #' 
@@ -5,7 +6,7 @@
 #' Check that 
 #' + the birth rate is numeric
 #' + the birth rate is not negative
-#' + the birth rates length is the number of strata
+#' + the length of the birth rates is the number of strata
 #' 
 #' @param birth_rates the birth rates
 #' @param Nh the number of population strata
@@ -41,7 +42,7 @@ change_births = function(birth_rates, xds_obj, i=1){
 
 #' @title Set up births 
 #'
-#' @param name a  or setup function name
+#' @param name a numeric vector, a setup function name, or an options list
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #' @param options configuration options
@@ -55,13 +56,13 @@ setup_births = function(name, xds_obj, options = list(), i=1){
   UseMethod("setup_births", options)
 }
 
-#' @title Set up a births 
+#' @title Set up births
 #'
 #' @description If an options list is passed
 #' as the first argument, then set 
-#' + `birth_ratesname = name$name` 
+#' + `births_name = name$name`
 #' + `options = name`
-#' and call `setup_births(birth_ratesname, xds_obj, options, s)` 
+#' and call `setup_births(births_name, xds_obj, options, i)`.
 #'
 #' @inheritParams setup_births
 #'
@@ -71,13 +72,13 @@ setup_births = function(name, xds_obj, options = list(), i=1){
 setup_births.list = function(name, xds_obj, options=list(), i=1){
   options = name
   births_name = name$name
-  if(is.null(births_name)) birth_name = "constant"
+  if(is.null(births_name)) births_name = "constant"
   xds_obj <- setup_births(births_name, xds_obj, options, i)
   return(xds_obj)
 }
 
 #' @title Set up no births  
-#' @description Don't change anything 
+#' @description Don't change anything.
 #' @inheritParams setup_births
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -87,7 +88,7 @@ setup_births.no_setup = function(name, xds_obj, options = list(), i=1){
 }
 
 #' @title Set up no births  
-#' @description Don't change anything 
+#' @description Set birth rates to zero.
 #' @inheritParams setup_births
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -102,11 +103,10 @@ setup_births.zero = function(name, xds_obj, options = list(), i=1){
 #' @title Set up birth rates
 #' 
 #' @description 
-#' Pass pre-configured constant birth rates. If it passes 
-#' the checks, it replaces the current birth rates.
+#' Pass pre-configured constant birth rates. If they pass
+#' the checks, they replace the current birth rates.
 #' 
-#' If called with `name = "as_is"`, the births
-#' must be at `options$births` 
+#' The birth rates must be at `options$birth_rates`.
 #' 
 #' @inheritParams setup_births
 #' @return an **`xds`** model object
@@ -118,13 +118,13 @@ setup_births.constant = function(name, xds_obj, options=list(), i=1){
   return(xds_obj)
 }
 
-#' @title Set up a births 
+#' @title Set up births
 #' @description 
-#' Pass a pre-configured births . If it passes 
-#' the checks, it replaces the current births .
+#' Pass pre-configured births. If they pass
+#' the checks, they replace the current births.
 #' 
 #' If called with `name = "as_is"`, the births
-#'  must be at `options$births` 
+#' must be at `options$birth_rates`.
 #' 
 #' @inheritParams setup_births
 #' @return an **`xds`** model object
@@ -147,9 +147,8 @@ setup_births.as_is = function(name, xds_obj, options=list(), i=1){
 #' @param xds_obj an **`xds`** model object
 #' @param i the host species index
 #'
-#' @return a []
+#' @return a [numeric] vector
 #' @export
 get_birth_rates = function(xds_obj, i=1){
   return(xds_obj$XH_obj[[i]]$birth_obj$birth_rates)
 }
-

@@ -12,9 +12,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the temporal shock, invisibly
+the temporal shock
 }
 \description{
-Evaluate the function \code{F_shock} for a forced model when \code{forced_by} is "eir"
+Evaluate the function \code{F_shock} for a forced model when \code{forced_by} is "eir".
 }
 \keyword{internal}

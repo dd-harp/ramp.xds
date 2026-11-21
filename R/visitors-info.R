@@ -1,3 +1,5 @@
+# X
+
 #' @title Visitors 
 #' 
 #' @description
@@ -6,8 +8,7 @@
 #' 
 #' + `visitors` is the availability of non-resident humans
 #' 
-#' + `visitor_kappa` is the net infectiousness of the visitors 
-#' 
+#' + `vis_kappa` is the net infectiousness of the visitors
 #'  
 #' @name xds_info_visitors
 NULL
@@ -20,13 +21,13 @@ NULL
 #' 
 #' + `visitors` is the availability of non-resident humans
 #' 
-#' + `visitor_kappa` is the net infectiousness of the visitors 
+#' + `vis_kappa` is the net infectiousness of the visitors
 #' 
 #'  
 #' @name xds_port_visitors
 NULL
 
-#' @title Visitors Infectiousness
+#' @title Visitors' Infectiousness
 #' 
 #' @description
 #' There are two parameters built into the transmission interface to handle
@@ -34,7 +35,7 @@ NULL
 #' 
 #' + `visitors` is the availability of non-resident humans
 #' 
-#' + `visitor_kappa` is the net infectiousness of the visitors 
+#' + `vis_kappa` is the net infectiousness of the visitors
 #'  
 #' @name xds_port_visitor_kappa
 NULL

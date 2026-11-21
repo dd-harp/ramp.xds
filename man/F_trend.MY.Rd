@@ -15,6 +15,6 @@
 the temporal trend
 }
 \description{
-Evaluate the function \code{F_trend} for a trivial \strong{MY} model
+Evaluate the function \code{F_trend} for a trivial \strong{MY} model.
 }
 \keyword{internal}

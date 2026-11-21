@@ -12,9 +12,9 @@
 \item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-the temporal trend, invisibly
+the temporal trend
 }
 \description{
-Evaluate the function \code{F_trend} for a forced model when \code{forced_by} is "eir"
+Evaluate the function \code{F_trend} for a forced model when \code{forced_by} is "eir".
 }
 \keyword{internal}

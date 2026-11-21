@@ -4,13 +4,18 @@
 \alias{get_mean_forcing.fqZ}
 \title{Get mean forcing}
 \usage{
-\method{get_mean_forcing}{fqZ}(xds_obj)
+\method{get_mean_forcing}{fqZ}(xds_obj, ix = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{ix}{the species index}
+}
+\value{
+a \link{vector} of mean infective biting rates for the indexed vector species
 }
 \description{
-Get the mean density of infectious mosquitoes,
-for a trivial \strong{MY}  model
+Get the mean infective biting rate
+for a trivial \strong{MY} model.
 }
 \keyword{internal}

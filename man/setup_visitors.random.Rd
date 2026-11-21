@@ -2,23 +2,23 @@
 % Please edit documentation in R/visitors.R
 \name{setup_visitors.random}
 \alias{setup_visitors.random}
-\title{Set up a visitors}
+\title{Set up visitors}
 \usage{
 \method{setup_visitors}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a numeric vector, a setup function name, or an options list}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{options}{configuration options}
 
-\item{s}{the host species index}
+\item{s}{the vector species index}
 }
 \value{
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "random" case for \link{setup_visitors}. See \link{make_visitors_random}
+Implements the "random" case for \link{setup_visitors}. See \link{make_visitors_random}.
 }
 \keyword{internal}
