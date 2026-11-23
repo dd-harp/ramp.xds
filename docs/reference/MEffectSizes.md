@@ -1,6 +1,6 @@
 # Apply effect sizes (**MY**)
 
-Apply vector control effect sizes to adult mosquito bionomic parameters
+Apply vector control effect sizes to adult mosquito bionomic parameters.
 
 ## Usage
 
@@ -29,3 +29,7 @@ MEffectSizes(t, y, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[VectorControlEffectSizes](https://dd-harp.github.io/ramp.xds/reference/VectorControlEffectSizes.md)

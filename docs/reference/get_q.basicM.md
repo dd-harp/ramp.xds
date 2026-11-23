@@ -1,6 +1,6 @@
-# Get the feeding rate
+# Get the human fraction
 
-Get the feeding rate
+Get the human fraction
 
 ## Usage
 
@@ -21,5 +21,4 @@ get_q(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+a [numeric](https://rdrr.io/r/base/numeric.html) vector

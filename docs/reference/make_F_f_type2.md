@@ -1,8 +1,7 @@
-# Make type 2 blood feeding rate configuration
+# Make type 2 blood feeding rate configuration (**MY**)
 
-Build a configuration object for the type 2 blood feeding response in
-response to the availability of blood hosts: \$\$F_f(B)= f_x \frac{s_f
-B}{1+s_f B}\$\$.
+Build a configuration object for a type 2 blood feeding rate response to
+blood host availability. \$\$F_f(B)= f_x \frac{s_f B}{1+s_f B}\$\$.
 
 ## Usage
 

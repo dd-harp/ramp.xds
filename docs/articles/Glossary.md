@@ -77,9 +77,9 @@ bionomic parameters, listed below
 - **\\(q\\) — human blood feeding fraction**: The fraction of blood
   meals taken on humans (as opposed to other vertebrate hosts).
 
-- **\\(\nu\\) — egg laying rate**: The per-capita daily rate at which
-  mosquitoes lay eggs. Since the eggs are laid in a batch, another
-  parameter sets the total number of eggs laid
+- **\\(\nu\\) — oviposition rate**: The number of egg batches laid in
+  each patch, per mosquito, per day. Since the eggs are laid in a batch,
+  another parameter sets the total number of eggs laid
 
 - **\\(g\\) — mosquito mortality rate**:
 
@@ -222,12 +222,8 @@ bionomic parameters, listed below
   seasonal mosquito emergence driven by rainfall. Models can be forced
   via emergence (`Lambda`), the EIR (`eir`), or other mechanisms.
 
-- **trace function**:
-
-  A function of time \\(t\\) used to specify an exogenous input to the
-  model. Built using `make_function()` and parameterised with
-  `makepar_*` helpers. Trace functions can represent constant, seasonal,
-  trend-driven, or spline-interpolated signals.
+- **forcing function**: A time-dependent function that specifies an
+  input to a model.
 
 - **seasonality**:
 

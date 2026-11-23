@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{check_MY.macdonald}
 \alias{check_MY.macdonald}
-\title{Check \code{macdonald} (\strong{MY}) before solving}
+\title{Check \code{macdonald} (\strong{MY})}
 \usage{
 \method{check_MY}{macdonald}(xds_obj, s)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{make_F_nu_random}
 \alias{make_F_nu_random}
-\title{Make random egg batch rates}
+\title{Make random oviposition rates (\strong{MY})}
 \usage{
 make_F_nu_random(
   nPatches,
@@ -17,15 +17,20 @@ make_F_nu_random(
 
 \item{options}{is a set of options that overrides the defaults}
 
-\item{f_rand}{a random number generator}
+\item{f_rand}{a random number generator called as \code{f_rand(nPatches, p1, p2)}
+that returns a numeric vector of length \code{nPatches}}
 
-\item{p1}{argument 1 for f_rand}
+\item{p1}{argument 1 for \code{f_rand}}
 
-\item{p2}{argument 2 for f_rand}
+\item{p2}{argument 2 for \code{f_rand}}
 }
 \value{
-an object to set up egg batch rates
+a static port object for \link{F_nu.static}
 }
 \description{
-Set up a random vector
+Draw oviposition rates once during setup.
+Subsequent evaluations reuse these values.
+}
+\note{
+The values are stored in a static port object.
 }

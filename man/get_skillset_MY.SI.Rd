@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{get_skillset_MY.SI}
 \alias{get_skillset_MY.SI}
-\title{Get the \code{SI} (\strong{MY}) skill set}
+\title{Get the skill set for \code{SI} (\strong{MY})}
 \usage{
 \method{get_skillset_MY}{SI}(xds_obj, s)
 }
@@ -15,7 +15,7 @@
 the \strong{MY} module skill set, as a list
 }
 \description{
-Get the \code{SI} (\strong{MY}) skill set
+Return the capabilities and compatibilities of the \code{SI} module as a list.
 }
 \seealso{
 \link{SI}

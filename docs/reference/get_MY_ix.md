@@ -1,6 +1,6 @@
-# Get **MY** variable indices
+# Get variable indices (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj`.
+Return the variable indices stored at `xds_obj$MY_obj[[s]]$ix`.
 
 ## Usage
 

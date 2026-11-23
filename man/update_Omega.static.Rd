@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{update_Omega.static}
 \alias{update_Omega.static}
-\title{Change Omega}
+\title{Leave the static demographic matrix unchanged (\strong{MY})}
 \usage{
 \method{update_Omega}{static}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Update a static demographic matrix
+Return the model object without changing the demographic matrix.
 }
 \keyword{internal}

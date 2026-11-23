@@ -1,4 +1,4 @@
-# Get parameters for `hMoI` (**XH**)
+# Change parameters for `hMoI` (**XH**)
 
 For the `hMoI` module (**XH**) for the \\(i^{th}\\) species, change
 parameter values named in `options` leaving other values unchanged.

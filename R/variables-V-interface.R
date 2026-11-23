@@ -54,7 +54,7 @@ get_V_vars <- function(y, xds_obj, i=1) {
 
 #' @title Add indices for auxiliary variables to the parameter list
 #'
-#' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`.
+#' @note This method dispatches on the type of `xds_obj$V_obj[[i]]`.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param i the auxiliary-variable module index
@@ -85,13 +85,13 @@ get_V_ix <- function(xds_obj, i=1) {
 #' the values of the dependent variables for the **V**
 #' module from the matrix of solutions,
 #' often called the "orbits."
-#' The orbits are parsed
-#' and attached by name to the **`xds`** model object.
-#'
 #' For differential equations
 #' the solution matrix is returned by [deSolve].
 #' Discrete-time systems return a matrix
 #' that has the same shape.
+#'
+#' @note The orbits are parsed
+#' and attached by name to the **`xds`** model object.
 #'
 #' @param outputs an output matrix returned by [deSolve]
 #' @param xds_obj an **`xds`** model object
@@ -105,7 +105,7 @@ parse_V_orbits <- function(outputs, xds_obj, i) {
 
 
 #' @title Return the parameters as a list
-#' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`.
+#' @note This method dispatches on the type of `xds_obj$V_obj[[i]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param i the auxiliary-variable module index
 #' @return a [list]
@@ -115,7 +115,7 @@ get_V_pars <- function(xds_obj, i=1) {
 }
 
 #' @title Set new V parameter values
-#' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`.
+#' @note This method dispatches on the type of `xds_obj$V_obj[[i]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
 #' @param i the auxiliary-variable module index
@@ -128,7 +128,7 @@ change_V_pars <- function(xds_obj, options=list(), i=1) {
 
 #' @title Set up initial values for **V** modules
 #'
-#' @description This method dispatches on `xds_obj$V_obj[[i]]`.
+#' @note This method dispatches on `xds_obj$V_obj[[i]]`.
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param H initial host population density
@@ -158,7 +158,7 @@ get_V_inits = function(xds_obj, i=1){
 
 
 #' @title Set new V initial values
-#' @description This method dispatches on the type of `xds_obj$V_obj[[i]]`.
+#' @note This method dispatches on the type of `xds_obj$V_obj[[i]]`.
 #' @param xds_obj an **`xds`** model object
 #' @param options a named list
 #' @param i the auxiliary-variable module index

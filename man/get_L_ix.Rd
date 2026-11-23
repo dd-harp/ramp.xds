@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{get_L_ix}
 \alias{get_L_ix}
-\title{Get indices (\strong{L})}
+\title{Get variable indices (\strong{L})}
 \usage{
 get_L_ix(xds_obj, s = 1)
 }
@@ -12,10 +12,17 @@ get_L_ix(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-a named \link{list} of indices for the \strong{L} variables
+a named \link{list} of variable indices, or \code{NULL} if the field is absent
 }
 \description{
-The indices are stored on the \strong{L} object as a
-named list called \code{ix}; \code{get_L_ix} returns that list.
+Return the stored variable indices for the selected \strong{L} module
+and vector species.
+}
+\note{
+Variable indices are stored at \code{xds_obj$L_obj[[s]]$ix}.
+If the field is absent, return \code{NULL}. An empty list is returned unchanged.
+}
+\seealso{
+\link{setup_L_ix}
 }
 \keyword{internal}

@@ -1,7 +1,6 @@
-# Compute the mosquito patch emigration rate
+# Compute the baseline patch emigration rate (**MY**)
 
-This method dispatches on the type of `sigma_obj` and computes the patch
-emigration rate, \\(\sigma\\).
+Compute the baseline patch emigration rate, \\(\sigma\\).
 
 ## Usage
 

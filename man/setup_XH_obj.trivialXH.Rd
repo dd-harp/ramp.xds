@@ -3,7 +3,7 @@
 \name{setup_XH_obj.trivialXH}
 \alias{setup_XH_obj.trivialXH}
 \alias{setup_XH_obj.trivial}
-\title{Set up \code{trivialXH} (\strong{XH})}
+\title{Set up the module object for \code{trivialXH} (\strong{XH})}
 \usage{
 \method{setup_XH_obj}{trivialXH}(XHname, residence, xds_obj, options = list(), i = 1)
 

@@ -1,6 +1,6 @@
-# Get theta, density dependent mortality
+# Get the slope of density-dependent mortality (**L**)
 
-Get theta, density dependent mortality
+Get the slope of density-dependent mortality (**L**)
 
 ## Usage
 
@@ -20,5 +20,8 @@ get_theta(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+the slope(s) of density-dependent mortality
+
+## See also
+
+[change_theta](https://dd-harp.github.io/ramp.xds/reference/change_theta.md)

@@ -1,4 +1,6 @@
-
+# TODO: Reconcile setup_timespent.setup's residence input: it checks
+# options$residence but reads and removes xds_obj$residence. Review multi-species
+# residence handling and document the intended behavior before changing it.
 
 #' @title Check Time Spent Matrix
 #' 
@@ -308,4 +310,3 @@ timespent.static = function(t, y, xds_obj, i){
 get_timespent_matrix = function(xds_obj, i=1){
   return(xds_obj$XH_obj[[i]]$timespent)
 }
-

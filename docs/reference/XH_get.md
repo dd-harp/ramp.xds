@@ -2,7 +2,7 @@
 
 Get functions for **XH**
 
-`?get_XH`
+`?XH_get`
 
 ## Outputs
 
@@ -16,7 +16,7 @@ Get functions for **XH**
   get the PR orbits
 
 - [`get_H`](https://dd-harp.github.io/ramp.xds/reference/get_H.md) – get
-  the PR orbits
+  host population density
 
 ## Variables
 

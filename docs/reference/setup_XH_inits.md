@@ -1,4 +1,4 @@
-# Setup initial values (**XH**)
+# Set up initial values (**XH**)
 
 Set initial values for all the variables.
 
@@ -38,4 +38,4 @@ an **`xds`** model object
 ## See also
 
 [get_XH_inits](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md),
-[xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
+[xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)

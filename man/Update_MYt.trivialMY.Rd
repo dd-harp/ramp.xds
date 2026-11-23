@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{Update_MYt.trivialMY}
 \alias{Update_MYt.trivialMY}
-\title{Update state variables for \code{trivialMY} (\strong{MY})}
+\title{Update states for \code{trivialMY} (\strong{MY})}
 \usage{
 \method{Update_MYt}{trivialMY}(t, y, xds_obj, s)
 }
@@ -19,6 +19,6 @@
 a \link{numeric} vector of length 0
 }
 \description{
-Implements \link{Update_MYt} for the trivial (forced emergence) model.
+Return an empty update vector because the \code{trivialMY} module has no state variables.
 }
 \keyword{internal}

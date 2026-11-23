@@ -15,6 +15,9 @@ get_HTC(xds_obj, i)
 a \link{list}
 }
 \description{
+Compute the human transmitting capacity
+}
+\note{
 This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}.
 }
 \keyword{internal}

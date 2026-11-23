@@ -80,7 +80,7 @@
 #' @param Loptions a named list to set parameter values and initial conditions for the **L** component
 #' @param nPatches the number of patches
 #' @param residence the index of the patch where each human population stratum resides
-#' @param membership the index of the patch where each aquatic habitat is found
+#' @param membership the habitat membership vector or [habitat_vector]
 #' @param HPop the initial human population density for each stratum
 #' @param searchB a vector of blood search weights or setup options (see [setup_blood_search_weights])
 #' @param TSoptions a time spent matrix or setup options (see [setup_timespent])
@@ -157,12 +157,16 @@ xds_setup = function(
 #'
 #' This is a modified version of [xds_setup] that streamlines setup
 #' for models without parasite / pathogen infection
-#' dynamics. It sets
+#' dynamics.
+#'
+#' @note It sets
 #'
 #' `class(xds_obj$frame) = 'mosy'`
 #'
 #' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
-#' and parse outputs. The solver ignores infection dynamics (the **X** and **Y** processes).
+#' and parse outputs.
+#'
+#' @details The solver ignores infection dynamics (the **X** and **Y** processes).
 #' A trivial **XH** component is set up to handle human/host population density.
 #'
 #' @section Dynamics:
@@ -180,7 +184,7 @@ xds_setup = function(
 #'
 #' Set up the model structure:
 #' - `nPatches` - the number of patches (see [xds_info_patch_dynamics])
-#' - `membership` - the habitat membership vector (see [xds_info_aquatic_habitats])
+#' - `membership` - the habitat membership vector (see [habitat_vector])
 #'
 #' During setup:
 #' - The structural parameter `nHabitats` is set to `length(membership)`
@@ -213,7 +217,7 @@ xds_setup = function(
 #' @param MYname the name of an **MY** module (see [MY_module_list])
 #' @param Lname the name of an **L** module (see [L_module_list])
 #' @param nPatches the number of patches
-#' @param membership is a vector that describes the patch where each aquatic habitat is found
+#' @param membership the habitat membership vector or [habitat_vector]
 #' @param HPop the initial human population density for each stratum
 #' @param searchQ is a vector of search weights for egg laying
 #' @param MYoptions a list to configure the **MY** Component module
@@ -289,14 +293,16 @@ xds_setup_mosy = function(
 #' @details
 #'
 #' This is a modified version of [xds_setup] that streamlines setup for the **L** module
-#' and egg laying for a `trivialMY` **MY** module. It sets
+#' and egg laying for a `trivialMY` **MY** module.
+#'
+#' @note It sets
 #'
 #' `class(xds_obj$frame) = 'aquatic'`
 #'
 #' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs.
 #'
-#' **Dynamics**
+#' @details **Dynamics**
 #'
 #' Choose a module:
 #' - `Lname` -- the name of an **L** module: see the [L_module_list] for aquatic mosquito ecology
@@ -390,12 +396,14 @@ xds_setup_aquatic = function(Lname = "basicL",
 #' The **MY** module is set to `trivialMY` and a forcing function
 #' computes infective biting in the patches.
 #'
+#' @note This sets
+#'
 #' `class(xds_obj$frame) = 'human'`
 #'
 #' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs.
 #'
-#' To set up a model that is forced
+#' @details To set up a model that is forced
 #' by the EIR, use [xds_setup_eir].
 #'
 #' **Dynamics**
@@ -508,16 +516,14 @@ xds_setup_human = function(XHname = "SIS",
 #' To build a model that is forced by infective biting in the patches, which requires setting up a time
 #' spent matrix and search weights, use [xds_setup_human].
 #'
-#' @details
-#'
-#' This sets
+#' @note This sets
 #'
 #' `class(xds_obj$frame) = 'eir'`
 #'
 #' to dispatch functions that compute derivatives (`xde`), update variables (`dts`),
 #' and parse outputs.
 #'
-#' **Dynamics**
+#' @details **Dynamics**
 #'
 #' Configure the **XH** component:
 #' - `XHname` --- the name of an **XH** module: see the [XH_module_list] for human / host infection dynamics

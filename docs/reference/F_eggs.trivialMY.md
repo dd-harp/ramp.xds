@@ -1,4 +1,4 @@
-# Net egg laying rate
+# Egg production rate for `trivialMY`
 
 Returns \$\$F\_{G}(t) = G F_S(t) F_T(t) F_K(t)\$\$ where
 

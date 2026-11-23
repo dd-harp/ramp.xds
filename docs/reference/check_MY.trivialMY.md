@@ -1,6 +1,6 @@
-# Check the `trivialMY` module (**M**)
+# Check the `trivialMY` module (**MY**)
 
-Run no consistency checks
+Run no consistency checks.
 
 ## Usage
 

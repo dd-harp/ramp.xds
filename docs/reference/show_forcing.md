@@ -1,6 +1,6 @@
 # Plot the forcing pattern
 
-Plot the composed time series function forcing a model
+Plot the composed time series function forcing a model.
 
 ## Usage
 
@@ -20,8 +20,8 @@ show_forcing(xds_obj, tm = seq(0, 730, by = 5), add = FALSE)
 
 - add:
 
-  add to existing plot
+  add to an existing plot
 
 ## Value
 
-the seasonal pattern, invisibly
+the forcing pattern, invisibly

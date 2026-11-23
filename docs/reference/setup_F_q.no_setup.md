@@ -1,6 +1,6 @@
-# Set up no F_q
+# Set up F_q (no setup) (**MY**)
 
-Don't change anything
+Leave the existing human fraction configuration unchanged.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_F_q(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a human fraction or setup method name
 
 - xds_obj:
 

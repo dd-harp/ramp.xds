@@ -1,6 +1,6 @@
-# The skill set
+# The skill set for `trivialMY` (**MY**)
 
-The skill set
+The skill set for `trivialMY` (**MY**)
 
 ## Usage
 

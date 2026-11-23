@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{get_L_vars.basicL}
 \alias{get_L_vars.basicL}
-\title{List variables for \code{basicL} (\strong{L})}
+\title{Get the state variables for \code{basicL} (\strong{L})}
 \usage{
 \method{get_L_vars}{basicL}(y, xds_obj, s)
 }
@@ -14,10 +14,13 @@
 \item{s}{the vector species index}
 }
 \value{
-a named \link{list}
+a named \link{list} of state variables and module-specific derived quantities
 }
 \description{
-Extract the \strong{L} component variables from the
-vector of state variables (\code{y}) and return them as a named list
+Extract the state variables for the \code{basicL} module
+from \code{y} and return them by name in a list for use during model solving.
+}
+\note{
+Variable indices are stored at \code{xds_obj$L_obj[[s]]$ix}.
 }
 \keyword{internal}

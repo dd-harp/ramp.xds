@@ -2,12 +2,12 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{get_skillset_XH.SIS}
 \alias{get_skillset_XH.SIS}
-\title{Get the \strong{XH} module skill set}
+\title{Get the skill set for \code{SIS} (\strong{XH})}
 \usage{
 \method{get_skillset_XH}{SIS}(xds_obj, i)
 }
 \arguments{
-\item{xds_obj}{an \strong{\code{xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object (or the module name)}
 
 \item{i}{the species index}
 }
@@ -15,7 +15,7 @@
 the \strong{XH} module skill set, as a list
 }
 \description{
-Return a list of the \strong{XH} module's capabilities.
+Return the capabilities and compatibilities of the \code{SIS} module as a list.
 }
 \seealso{
 \link{SIS}

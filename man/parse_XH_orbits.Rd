@@ -7,26 +7,24 @@
 parse_XH_orbits(outputs, xds_obj, i)
 }
 \arguments{
-\item{outputs}{an output matrix returned by \link[deSolve:deSolve]{deSolve}}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{i}{the host species index}
 }
 \value{
-a named \link{list} of parsed output variables
+a \link{list}
 }
 \description{
-After solving, this function extracts
-the values of the dependent variables for the \strong{XH}
-module from the matrix of solutions,
-often called the "orbits."
-The orbits are parsed
-and attached by name to the \strong{\code{xds}} model object.
-
-For differential equations
-the solution matrix is returned by \link[deSolve:deSolve]{deSolve}.
-Discrete time systems return a matrix
-that has the same shape.
+Extract the model state outputs for the selected \strong{XH} module
+and return them by name in a list.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$XH_obj[[i]]}.
+These methods process output trajectories after solving, rather than a
+single state vector during solving. They return results without modifying
+the model object; the output-processing pipeline stores the parsed results
+at \code{xds_obj$outputs$orbits$XH[[i]]}.
 }
 \keyword{internal}

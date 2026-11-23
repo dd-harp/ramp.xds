@@ -1,6 +1,6 @@
-# Make inits for macdonald adult mosquito model
+# Make initial values for `macdonald` (**MY**)
 
-Make inits for macdonald adult mosquito model
+Make initial values for `macdonald` (**MY**)
 
 ## Usage
 

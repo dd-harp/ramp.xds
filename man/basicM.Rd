@@ -8,6 +8,9 @@ Implements a basic model of adult mosquito ecology without explicit
 infection dynamics. It can be used when mosquito population dynamics are
 needed without modeling mosquito infection.
 }
+\note{
+Parity, \eqn{P/M}, is computed during parsing and stored as \code{parous}.
+}
 \section{State Variables}{
 
 \describe{
@@ -29,16 +32,16 @@ needed without modeling mosquito infection.
 \item{\code{f}}{blood feeding rate --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
 \item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
 }
 
 After basic setup, \link{change_MY_pars.basicM} can be used to change static
-parameter values. The \code{basicM} module does not implement dynamic bionomic
-ports.
+parameter values. The \code{basicM} module evaluates bionomic parameter functions
+through \link{MBionomics}.
 }
 
 \section{Survival and Dispersal}{
@@ -47,7 +50,7 @@ Mosquito survival and dispersal are described by the demographic matrix
 \eqn{\Omega}. The parameter \eqn{g} is the per-capita mortality rate while
 mosquitoes are in a patch. Mosquitoes emigrate from patches at per-capita
 rates \eqn{\sigma}, and a fraction \eqn{\mu} of emigrating mosquitoes is
-lost. The total rate of loss from a patch is \deqn{g+\mu\sigma.}
+lost. The combined rate of mortality and loss during emigration is \deqn{g+\mu\sigma.}
 
 The columns of the mosquito dispersal matrix \eqn{K} sum to zero. For
 non-trivial dispersal matrices, \eqn{\mbox{diag}(K)=-1}; the off-diagonal
@@ -66,7 +69,7 @@ The module does not model infection, but \code{fqM} is used to compute the
 human biting rate.
 }
 
-\section{Dynamics}{
+\section{ODE}{
 
 Adult mosquitoes emerge from aquatic habitats at rate \eqn{\Lambda} and
 disperse and die according to \eqn{\Omega}. The ODE model is
@@ -76,9 +79,21 @@ dM/dt &= \Lambda-\Omega\cdot M \\\\
 dP/dt &= f(M-P)-\Omega\cdot P
 \end{array}}
 Here, \eqn{P} is the density of mosquitoes that have blood-fed at least
-once. Parity, \eqn{P/M}, is computed during parsing and stored as \code{parous}.
-For discrete-time models, \link{Update_MYt.basicM} uses the one-day update
-equations.
+once.
+}
+
+\section{DTS}{
+
+Adult mosquitoes emerge from aquatic habitats at rate \eqn{\Lambda} and
+disperse and die according to \eqn{\Omega}. The one-day update in
+\link{Update_MYt.basicM} is
+\deqn{
+\begin{array}{rl}
+M_t &= \Lambda+e^{-\Omega}\cdot M_{t-1} \\\\
+P_t &= f(M_{t-1}-P_{t-1})+e^{-\Omega}\cdot P_{t-1}
+\end{array}}
+Here, \eqn{P} is the density of mosquitoes that have blood-fed at least
+once.
 }
 
 \section{Infective Biting}{
@@ -94,7 +109,7 @@ module because there are no infective bites.
 
 \section{Egg Laying}{
 
-The egg batch rate \eqn{\nu} and the number of eggs per batch
+The oviposition rate \eqn{\nu} and the number of eggs per batch
 \eqn{\Gamma} determine the egg production rate per patch:
 \deqn{G=\nu\Gamma M.}
 \link{F_eggs.basicM} computes \eqn{G}, which is passed to \link{EggLaying} for

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{dMYdt.SI}
 \alias{dMYdt.SI}
-\title{Compute derivatives for \code{SI} (\strong{MY})}
+\title{Compute the derivatives for \code{SI} (\strong{MY})}
 \usage{
 \method{dMYdt}{SI}(t, y, xds_obj, s)
 }
@@ -16,10 +16,10 @@
 \item{s}{the vector species index}
 }
 \value{
-a vector with the derivatives
+a \link{numeric} vector of derivatives in the module's state-variable order
 }
 \description{
-The derivatives for the \code{SI} module are:
+Compute the derivatives for the \code{SI} module:
 
 \deqn{
 \begin{array}{rl}
@@ -28,6 +28,9 @@ dP/dt = & f q(M-P) - \Omega \cdot P \\
 dY/dt = & f q \kappa (M-Y) - \Omega \cdot Y
 \end{array}
 }
+}
+\note{
+Derivatives are returned in blocks for \code{M}, \code{P}, and \code{Y}, each in patch order.
 }
 \section{State Variables}{
 
@@ -55,24 +58,24 @@ dY/dt = & f q \kappa (M-Y) - \Omega \cdot Y
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
 \item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
-\item{\code{mu} or \eqn{\mu}}{emigration loss rate --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{the egg batch rate, in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{the oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{the number of eggs per batch}
 }
 
-After basic setup, \link{change_MY_pars} can be used for static parameters, or for
+After basic setup, \link{change_MY_pars} can be used for static parameters, or
 for parameters that are set up as static ports (the default).
 Use advanced setup to modify dynamic ports.
 }
 
-\section{Dynamics}{
+\section{ODE}{
 
 
 \strong{Ecology}
 
-Adult mosquitoes emerge from aquatic habitats \eqn{(\Lambda)} and disperse and die (\eqn{\Omega}):
+Adult mosquitoes emerge from aquatic habitats at rate \eqn{\Lambda} and disperse and die according to \eqn{\Omega}:
 \deqn{
 dM/dt = \Lambda - \Omega \cdot M 
 }
@@ -81,14 +84,13 @@ blood fed at least once:
 \deqn{
 dP/dt = fq(M-P) - \Omega \cdot P \\
 }
-Parity is computed during parsing as \eqn{P/M} and its orbit is stored as \code{parity.}
 
 \strong{Infection Dynamics}
 
 Given the per-capita daily rate of human blood feeding \eqn{(fq)} and
 net infectiousness \eqn{(\kappa)}, the FoI for mosquitoes is \eqn{fq\kappa}.
 Changes in the density of infected mosquitoes
-is given by:
+are given by:
 \deqn{
 dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\
 }

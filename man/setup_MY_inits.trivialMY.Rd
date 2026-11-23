@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{setup_MY_inits.trivialMY}
 \alias{setup_MY_inits.trivialMY}
-\title{Setup initial values for \code{trivialMY} (\strong{MY})}
+\title{Set up initial values for \code{trivialMY} (\strong{MY})}
 \usage{
 \method{setup_MY_inits}{trivialMY}(xds_obj, options = list(), s = 1)
 }

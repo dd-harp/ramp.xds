@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{F_K_matrix}
 \alias{F_K_matrix}
-\title{Dynamically update a K Matrix}
+\title{Compute the mosquito dispersal matrix (\strong{MY})}
 \usage{
 F_K_matrix(t, xds_obj, s)
 }
@@ -14,14 +14,13 @@ F_K_matrix(t, xds_obj, s)
 \item{s}{vector species index}
 }
 \value{
-a \link{numeric} vector of length \code{nPatches}
+a mosquito dispersal \link{matrix} of dimensions \code{nPatches} by \code{nPatches}
 }
 \description{
-A port function to
-updates the mosquito dispersal
-matrix dynamically.
+Compute the mosquito dispersal matrix.
 }
 \note{
 The port object is called \code{K_obj}
+and dispatch is on its class.
 }
 \keyword{internal}

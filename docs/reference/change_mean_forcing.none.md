@@ -1,6 +1,6 @@
 # Change mean forcing
 
-Implement `change_mean_forcing` for a model with no forcing
+Implement `change_mean_forcing` for a model with no forcing.
 
 ## Usage
 

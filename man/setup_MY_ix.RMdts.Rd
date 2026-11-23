@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{setup_MY_ix.RMdts}
 \alias{setup_MY_ix.RMdts}
-\title{Add indices for adult mosquitoes to parameter list}
+\title{Set up variable indices for \code{RMdts} (\strong{MY})}
 \usage{
 \method{setup_MY_ix}{RMdts}(xds_obj, s)
 }
@@ -12,9 +12,17 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{setup_MY_ix} for the RMdts model.
+Assign consecutive variable indices for the \code{RMdts} module,
+starting after \code{xds_obj$max_ix}, and update the maximum index.
+Allocate blocks in the order \code{M_ix}, \code{P_ix}, \code{U_ix}, \code{Y_ix}, \code{Z_ix}.
+Each block has length \code{nPatches}, except \code{Y_ix}, which has length
+\code{nPatches * xds_obj$MY_obj[[s]]$max_eip}.
+}
+\note{
+Indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
+The maximum index is stored at \code{xds_obj$max_ix}.
 }
 \keyword{internal}

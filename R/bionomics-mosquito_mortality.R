@@ -1,13 +1,14 @@
+# X
 
-#' @title Set up a mosquito mortality bionomic object
+#' @title Set up bionomic port for mosquito mortality rate (**MY**)
 #'
-#' @description Set up an object to return a
-#' constant baseline mosquito mortality rate, \eqn{g}
+#' @description Set up a [bionomic port][xds_info_port] to compute the baseline mosquito mortality
+#' rate, \eqn{g}, for a static model.
 #'
 #' @param g the mosquito mortality rate
-#' @param MY_obj an **`MY`** model object
+#' @param MY_obj an **`MY`** module object
 #'
-#' @return a **`MY`** model object
+#' @return an **`MY`** module object
 #'
 #' @keywords internal
 #' @export
@@ -21,10 +22,9 @@ setup_g_obj = function(g, MY_obj){
   return(MY_obj)
 }
 
-#' @title Compute mosquito mortality
+#' @title Compute the baseline mosquito mortality rate (**MY**)
 #'
-#' @description This method dispatches on the type of `g_obj`. It should
-#' compute the baseline mosquito mortality rate, \eqn{g}
+#' @description Compute the baseline mosquito mortality rate, \eqn{g}.
 #'
 #' @inheritParams F_f
 #'
@@ -36,8 +36,8 @@ F_g = function(t, xds_obj, s) {
   UseMethod("F_g", xds_obj$MY_obj[[s]]$g_obj)
 }
 
-#' @title Static model mosquito mortality rate
-#' @description Implements [F_g] for a static model
+#' @title Static model mosquito mortality rate (**MY**)
+#' @description Return the baseline mosquito mortality rate for a static model.
 #' @inheritParams F_g
 #' @return \eqn{g}, the baseline mosquito mortality rate
 #' @keywords internal
@@ -67,7 +67,7 @@ check_g = function(xds_obj, s=1){
   return(g)
 }
 
-#' @title Change mosquito mortality rate
+#' @title Change mosquito mortality rate (**MY**)
 #' 
 #' @description Update the mosquito mortality rate for the \eqn{s^{th}} vector
 #' species and refresh the demographic matrix.
@@ -88,7 +88,7 @@ change_g = function(xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set up mosquito mortality rate
+#' @title Set up mosquito mortality rate (**MY**)
 #'
 #' @description Set up the mosquito mortality strategy and validate its rates.
 #'
@@ -109,9 +109,12 @@ setup_g = function(name, xds_obj, options=list(), s=1){
 #' @export
 setup_mosquito_mortality <- setup_g
 
-#' @title Set up F_g
+#' @title Configure the mosquito mortality rate function (**MY**)
 #'
-#' @param name a or setup function name
+#' @description Configure the function used to compute the baseline mosquito
+#' mortality rate.
+#'
+#' @param name a mosquito mortality rate or setup method name
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
@@ -125,13 +128,13 @@ setup_F_g = function(name, xds_obj, options = list(), s=1){
   UseMethod("setup_F_g", options)
 }
 
-#' @title Set up F_g
+#' @title Set up F_g (**MY**)
 #'
-#' @description If an options list is passed
-#' as the first argument, then set 
-#' + `Fg_name = name$name` 
-#' + `options = name`
-#' and call `setup_F_g(Fg_name, xds_obj, options, s)` 
+#' @description Set up mosquito mortality rates using an options list.
+#'
+#' @note If an options list is passed as the first argument, use its
+#' `name` field to select the setup method. If `name` is NULL, use the
+#' `no_setup` method. Pass the list as `options` to [setup_F_g].
 #'
 #' @inheritParams setup_F_g
 #'
@@ -147,8 +150,8 @@ setup_F_g.list = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up no F_g 
-#' @description Don't change anything 
+#' @title Set up F_g (no setup) (**MY**)
+#' @description Leave the existing mosquito mortality rate configuration unchanged.
 #' @inheritParams setup_F_g
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -157,9 +160,10 @@ setup_F_g.no_setup = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up static mosquito mortality rate
+#' @title Set up static mosquito mortality rate (**MY**)
 #'
-#' @description Set up supplied static mosquito mortality rates.
+#' @description Set up supplied static mosquito mortality rates from `options$g`
+#' or a numeric `name`. Values in `options$g` take precedence.
 #'
 #' @inheritParams setup_F_g
 #' @return an **`xds`** model object
@@ -178,9 +182,9 @@ setup_F_g.as_is = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up random mosquito mortality rate
+#' @title Set up random mosquito mortality rate (**MY**)
 #' 
-#' @description Implements the "random" case for [setup_F_g]. See [make_F_g_random].
+#' @description Configure random mosquito mortality rates using [make_F_g_random].
 #' 
 #' @inheritParams setup_F_g
 #' @return an **`xds`** model object
@@ -191,38 +195,27 @@ setup_F_g.random = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Compute random mosquito mortality rates
-#'
-#' @description Generate patch-level mosquito mortality rates using the
-#' configured random number generator.
-#'
-#' @inheritParams F_g
-#' @return a [numeric] vector of length `nPatches`
-#' @keywords internal
-#' @export
-F_g.random = function(t, xds_obj, s){
-  with(xds_obj$MY_obj[[s]]$g_obj, {
-    g <- f_rand(xds_obj$nPatches, p1, p2)
-    return(g)
-  })
-}
-
-#' @title Make random mosquito mortality rates
+#' @title Make random mosquito mortality rates (**MY**)
 #' 
-#' @description Build a configuration object for random mosquito mortality.
+#' @description Draw mosquito mortality rates once during setup.
+#' Subsequent evaluations reuse these values.
+#'
+#' @note The values are stored in a static port object.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
-#' @param f_rand a random number generator
+#' @param f_rand a random number generator called as `f_rand(nPatches, p1, p2)`
+#' that returns a numeric vector of length `nPatches`
 #' @param p1 argument for f_rand 
 #' @param p2 argument for f_rand
-#' @return a configuration object for [F_g.random]
+#' @return a static port object for [F_g.static]
 #' @export
 make_F_g_random = function(nPatches, options=list(), f_rand = stats::rbeta,
                            p1=80, p2=1000) {
   with(options, {
     g_obj <- list(f_rand=f_rand, p1=p1, p2=p2)
-    class(g_obj) <- "random"
+    g_obj$g <- f_rand(nPatches, p1, p2)
+    class(g_obj) <- "static"
     return(g_obj)
   })
 }

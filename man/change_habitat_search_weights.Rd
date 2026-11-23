@@ -17,6 +17,6 @@ change_habitat_search_weights(search_weights, xds_obj, s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Update the habitat_search_weights for the \eqn{i^{th}} host species, and
-trigger updates for the \code{XY} interface.
+Update the habitat_search_weights for the \eqn{s^{th}} vector species, and
+trigger updates for the \code{ML} interface.
 }

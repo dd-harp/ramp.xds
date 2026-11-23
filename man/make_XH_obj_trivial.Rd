@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{make_XH_obj_trivial}
 \alias{make_XH_obj_trivial}
-\title{Make parameters for trivial human model}
+\title{Make the module object for \code{trivialXH} (\strong{XH})}
 \usage{
 make_XH_obj_trivial(
   nPatches,
@@ -20,7 +20,8 @@ make_XH_obj_trivial(
   H_shock = list(),
   H_season_par = list(name = "F_one"),
   H_trend_par = list(name = "F_one"),
-  H_shock_par = list(name = "F_one")
+  H_shock_par = list(name = "F_one"),
+  q = 0.8
 )
 }
 \arguments{
@@ -55,6 +56,8 @@ make_XH_obj_trivial(
 \item{H_trend_par}{a list of options for H_trend}
 
 \item{H_shock_par}{a list of options for H_shock}
+
+\item{q}{test positivity; a numeric scalar or input of length \code{nPatches}}
 }
 \value{
 a \link{list}

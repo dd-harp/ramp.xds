@@ -1,4 +1,4 @@
-# Set up type 2 blood feeding rates
+# Set up type 2 blood feeding rates (**MY**)
 
 Configure a type 2 functional response for blood feeding.
 
@@ -13,7 +13,7 @@ setup_F_f(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a blood feeding rate or setup method name
 
 - xds_obj:
 

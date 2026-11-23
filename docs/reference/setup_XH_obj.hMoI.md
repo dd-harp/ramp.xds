@@ -1,4 +1,4 @@
-# Set up `hMoI` (**XH**)
+# Set up the module object for `hMoI` (**XH**)
 
 This sets up an `hMoI` model object for the **XH** module for the
 \\(i^{th}\\) host species
@@ -42,7 +42,7 @@ setup_XH_obj(XHname, residence, xds_obj, options = list(), i = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) vector
+an **`xds`** model object
 
 ## Note
 

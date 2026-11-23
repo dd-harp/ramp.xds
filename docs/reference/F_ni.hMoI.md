@@ -1,4 +1,4 @@
-# Compute the "true" prevalence of infection / parasite rate
+# Compute net infectiousness
 
 Implements [F_ni](https://dd-harp.github.io/ramp.xds/reference/F_ni.md)
 for the `hMoI` model.
@@ -18,7 +18,7 @@ F_ni(vars, XH_obj)
 
 - XH_obj:
 
-  a list defining a model for human
+  a list defining a model for humans
 
 ## Value
 

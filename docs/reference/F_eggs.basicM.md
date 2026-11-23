@@ -2,7 +2,7 @@
 
 Implements
 [F_eggs](https://dd-harp.github.io/ramp.xds/reference/F_eggs.md) for the
-basic ecology model
+basic ecology model.
 
 ## Usage
 
@@ -36,7 +36,7 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Egg Laying
 
-The egg batch rate \\(\nu\\) and the number of eggs per batch
+The oviposition rate \\(\nu\\) and the number of eggs per batch
 \\(\Gamma\\) determine the egg production rate per patch:
 \$\$G=\nu\Gamma M.\$\$ F_eggs.basicM computes \\(G\\), which is passed
 to

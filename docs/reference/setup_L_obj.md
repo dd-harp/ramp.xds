@@ -1,12 +1,12 @@
-# Set up an **L** model object
+# Set up the module object (**L**)
 
-This setup creates an **L** object for the \\(s^{th}\\) species and sets
-up the interface ports:
+This setup creates an **L** module object for the \\(s^{th}\\) species
+and sets up the interface ports:
 
-- calls `make_L_obj_`*Lname* to set up the dynamics, including
-  parameters
+- calls the module-specific constructor to set up the dynamics,
+  including parameters
 
-- calls
+- for non-trivial modules, calls
   [setup_L_inits](https://dd-harp.github.io/ramp.xds/reference/setup_L_inits.md)
   to set initial values
 
@@ -51,7 +51,7 @@ an **`xds`** model object
 
 ## Note
 
-The model object is stored as `xds_obj$L_obj[[s]]`
+The module object is stored at `xds_obj$L_obj[[s]]`.
 
 ## See also
 

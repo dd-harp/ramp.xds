@@ -24,8 +24,8 @@ a named [list](https://rdrr.io/r/base/list.html)
 
 ## Note
 
-The initial values are stored as a named list called
-`xds_obj$L_obj[[s]]$inits`
+The initial values are stored as a named list at
+`xds_obj$L_obj[[s]]$inits`.
 
 ## See also
 

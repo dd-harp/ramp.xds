@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{make_XH_obj_hMoI}
 \alias{make_XH_obj_hMoI}
-\title{Make parameters for hybrid MoI human model}
+\title{Make a module object for \code{hMoI} (\strong{XH})}
 \usage{
 make_XH_obj_hMoI(
   nStrata,
@@ -36,9 +36,15 @@ make_XH_obj_hMoI(
 a \link{list}
 }
 \description{
+Create an \code{hMoI} module object and initialize its parameters.
+Inspect parameters with \link{get_XH_pars.hMoI} and change supported values
+with \link{change_XH_pars.hMoI}. Values in \code{options} override parameter arguments.
+
 MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
 }
 \seealso{
+\link{get_XH_pars.hMoI}, \link{change_XH_pars.hMoI}
+
 \link{hMoI}
 }
 \keyword{internal}

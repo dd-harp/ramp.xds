@@ -1,6 +1,6 @@
-# Make parameters for `macdonald` adult mosquito model
+# Make the module object for `macdonald` (**MY**)
 
-Make parameters for `macdonald` adult mosquito model
+Make the module object for `macdonald` (**MY**)
 
 ## Usage
 
@@ -56,7 +56,8 @@ make_MY_obj_macdonald(
 
 - nu:
 
-  egg batch rate, in batches per mosquito per day
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day
 
 - eggsPerBatch:
 
@@ -114,7 +115,7 @@ a [list](https://rdrr.io/r/base/list.html)
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\(\mu\\):
 
@@ -130,7 +131,8 @@ a [list](https://rdrr.io/r/base/list.html)
 
 - `nu` or \\(\nu\\):
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)

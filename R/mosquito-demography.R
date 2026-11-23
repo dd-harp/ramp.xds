@@ -1,8 +1,10 @@
+# X
+
 #' @title Mosquito Demography 
 #' 
 #' @description
 #' 
-#' Mosquito survival and dispersal is described by a *demographic matrix,* denoted \eqn{\Omega.} It is 
+#' Mosquito survival and dispersal are described by a *demographic matrix,* denoted \eqn{\Omega.} It is 
 #' computed using several parameters:
 #' \describe{
 #'   \item{`g`}{mortality rate}
@@ -18,7 +20,7 @@
 #' }
 #' 
 #' In delay differential equations with a constant EIP (\eqn{\tau}), 
-#' survival and dispersal through the EIP is given by: 
+#' survival and dispersal through the EIP are given by: 
 #' \deqn{
 #'  \Upsilon = e^{-\Omega \tau} 
 #' }
@@ -56,7 +58,7 @@ F_Omega_xde <- function(g, sigma, mu, K_matrix){
   return(Omega)
 }
 
-#' @title F_Upsilon for dts
+#' @title Compute survival and dispersal through the EIP for xde (**MY**)
 #' @param eip the extrinsic incubation period 
 #' @param Omega the demographic matrix 
 #' @return a [matrix] of dimensions `nPatches` by `nPatches`
@@ -84,10 +86,9 @@ F_Omega_dts <- function(p, ssigma, mu, K_matrix){
   return(Omega)
 }
 
-#' @title Setup the Omega obj
+#' @title Set up mosquito demographic matrix port (**MY**)
 #' 
-#' @description The Omega object handles
-#' dispatching for `change_Omega` and `update_Omega`
+#' @description Set up the mosquito demographic matrix port.
 #' 
 #' Options for `change_Omega` are:
 #' + `xde` --- for most differential equation systems
@@ -99,6 +100,10 @@ F_Omega_dts <- function(p, ssigma, mu, K_matrix){
 #' + `static` --- for autonomous systems
 #' + `dynamic` --- for non-autonomous systems
 #'  
+#' @note The Omega object stores the change and update options.
+#' The Omega object controls dispatch for [update_Omega].
+#' The [change_Omega] generic dispatches on `xds_obj$xds`.
+#'
 #' @param ch is `xde`, `dts`
 #' @param up is `static` or `dynamic`
 #' @param xds_obj an **`xds`** model object
@@ -118,9 +123,9 @@ setup_Omega_obj = function(ch, up, xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Change Omega 
+#' @title Recompute the mosquito demographic matrix (**MY**)
 #' 
-#' @description Update a static demographic matrix
+#' @description Recompute the mosquito demographic matrix and call [change_Upsilon].
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
@@ -133,7 +138,7 @@ change_Omega = function(xds_obj, s){
 
 
 
-#' @title Change Omega
+#' @title Recompute the mosquito demographic matrix for xde (**MY**)
 #'
 #' @description Update the demographic matrix for
 #' differential equations
@@ -151,7 +156,7 @@ change_Omega.xde = function(xds_obj, s){
     return(xds_obj)
   })}
 
-#' @title Change Omega 
+#' @title Recompute the mosquito demographic matrix for dts (**MY**)
 #' 
 #' @description Update the demographic matrix for 
 #' discrete time systems
@@ -169,9 +174,12 @@ change_Omega.dts = function(xds_obj, s){
     return(xds_obj)
 })}
 
-#' @title Change Omega 
+#' @title Update the mosquito demographic matrix (**MY**)
 #' 
-#' @description Update a static demographic matrix
+#' @description Retain or recompute the demographic matrix.
+#'
+#' @note Dispatch on the class of the port object `Omega_obj` to retain
+#' or recompute the demographic matrix.
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
@@ -182,12 +190,11 @@ update_Omega = function(xds_obj, s){
   UseMethod("update_Omega", xds_obj$MY_obj[[s]]$Omega_obj)
 }
 
-#' @title Change Omega 
+#' @title Leave the static demographic matrix unchanged (**MY**)
 #' 
-#' @description Update a static demographic matrix
+#' @description Return the model object without changing the demographic matrix.
 #' 
-#' @param xds_obj an **`xds`** model object
-#' @param s vector species index
+#' @inheritParams update_Omega
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -195,12 +202,11 @@ update_Omega.static = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Change Omega 
+#' @title Update the dynamic demographic matrix (**MY**)
 #' 
-#' @description Update a static demographic matrix
+#' @description Recompute the demographic matrix using [change_Omega].
 #' 
-#' @param xds_obj an **`xds`** model object
-#' @param s vector species index
+#' @inheritParams update_Omega
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
@@ -209,10 +215,13 @@ update_Omega.dynamic = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Set up the Upsilon object
+#' @title Set up EIP survival-and-dispersal matrix port (**MY**)
 #' 
-#' @description Set to `dde` if **MY** is a 
-#' delay differential equation 
+#' @description Set up the EIP survival-and-dispersal matrix port.
+#'
+#' @note Set up the port object `Upsilon_obj` with class `dde` when
+#' `dede` is TRUE, or `na` otherwise.
+#' The class of `Upsilon_obj` controls dispatch for [change_Upsilon].
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
@@ -243,13 +252,12 @@ change_Upsilon = function(xds_obj, s=1){
   UseMethod("change_Upsilon", xds_obj$MY_obj[[s]]$Upsilon_obj)
 }
 
-#' @title Change Upsilon
+#' @title Leave Upsilon unchanged (**MY**)
 #' 
-#' @description Update \eqn{\Upsilon}, the matrix describing
-#' mosquito survival and dispersal through an EIP in delay equations
+#' @description Return the model object without changing \eqn{\Upsilon} when
+#' the survival-and-dispersal matrix is not required.
 #' 
-#' @param xds_obj an **`xds`** model object
-#' @param s vector species index
+#' @inheritParams change_Upsilon
 #' 
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -263,8 +271,7 @@ change_Upsilon.na = function(xds_obj, s=1){
 #' @description Update \eqn{\Upsilon}, the matrix describing
 #' mosquito survival and dispersal through an EIP in delay equations
 #' 
-#' @param xds_obj an **`xds`** model object
-#' @param s vector species index
+#' @inheritParams change_Upsilon
 #' 
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -274,5 +281,3 @@ change_Upsilon.dde = function(xds_obj, s=1){
     xds_obj$MY_obj[[s]]$Upsilon <- F_Upsilon_xde(eip, Omega)
     return(xds_obj)
 })}
-
-

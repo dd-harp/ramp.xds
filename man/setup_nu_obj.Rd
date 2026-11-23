@@ -2,20 +2,21 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{setup_nu_obj}
 \alias{setup_nu_obj}
-\title{Setup Egg Batch Rate Bionomic Object}
+\title{Set up bionomic port for oviposition rate (\strong{MY})}
 \usage{
 setup_nu_obj(nu, MY_obj)
 }
 \arguments{
-\item{nu}{the egg batch rate (batches per mosquito per day)}
+\item{nu}{the oviposition rate: the number of egg batches laid in each patch,
+per mosquito, per day}
 
-\item{MY_obj}{an \strong{\code{MY}} model object}
+\item{MY_obj}{an \strong{\code{MY}} module object}
 }
 \value{
-a \strong{\code{MY}} model object
+an \strong{\code{MY}} module object
 }
 \description{
-Set up an object
-to compute the egg batch rate, \eqn{nu}
+Set up a \link[=xds_info_port]{bionomic port} to compute the baseline oviposition rate,
+\eqn{nu}, for a static model.
 }
 \keyword{internal}

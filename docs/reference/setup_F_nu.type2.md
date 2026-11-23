@@ -1,6 +1,6 @@
-# Setup F_nu
+# Set up type 2 oviposition rates (**MY**)
 
-Set up a type 2 functional response for egg laying
+Configure a type 2 functional response for the oviposition rate.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_F_nu(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  an oviposition rate or setup method name
 
 - xds_obj:
 

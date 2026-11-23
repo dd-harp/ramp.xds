@@ -1,6 +1,6 @@
 # Get the *Pf*PR from a malaria model
 
-Return the PR by RDT
+Return the PR by RDT.
 
 ## Usage
 

@@ -2,21 +2,20 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_theta_obj}
 \alias{setup_theta_obj}
-\title{Set up theta object (density dependent larval mortality)}
+\title{Set up bionomic port for slope of density-dependent mortality (\strong{L})}
 \usage{
 setup_theta_obj(theta, L_obj)
 }
 \arguments{
-\item{theta}{the human fraction}
+\item{theta}{the slope of density-dependent mortality}
 
-\item{L_obj}{an \strong{\code{L}} model object}
+\item{L_obj}{an \strong{\code{L}} module object}
 }
 \value{
-a \strong{\code{L}} model object
+an \strong{\code{L}} module object
 }
 \description{
-Set up an object
-to compute excess mortality as a function of
-to mean crowding, \eqn{theta}
+Set up a \link[=xds_info_port]{bionomic port} to compute the baseline slope of
+density-dependent mortality, \eqn{theta}, for a static model.
 }
 \keyword{internal}

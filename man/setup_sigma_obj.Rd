@@ -2,20 +2,20 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{setup_sigma_obj}
 \alias{setup_sigma_obj}
-\title{Set up a patch emigration bionomic object}
+\title{Set up bionomic port for patch emigration rate (\strong{MY})}
 \usage{
 setup_sigma_obj(sigma, MY_obj)
 }
 \arguments{
 \item{sigma}{the mosquito patch emigration rate}
 
-\item{MY_obj}{an \strong{\code{MY}} model object}
+\item{MY_obj}{an \strong{\code{MY}} module object}
 }
 \value{
-a \strong{\code{MY}} model object
+an \strong{\code{MY}} module object
 }
 \description{
-Set up an object
-to compute the patch emigration rate, \eqn{\sigma}
+Set up a \link[=xds_info_port]{bionomic port} to compute the baseline patch emigration
+rate, \eqn{\sigma}, for a static model.
 }
 \keyword{internal}

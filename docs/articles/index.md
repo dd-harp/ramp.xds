@@ -61,6 +61,8 @@
   Setup](https://dd-harp.github.io/ramp.xds/articles/ScalableComplexity.md):
 - [Spatial Transmission Dynamics with
   \`ramp.xds\`](https://dd-harp.github.io/ramp.xds/articles/SpatialTransmissionDynamics.md):
+- [Trivial Modules and Forcing
+  Functions](https://dd-harp.github.io/ramp.xds/articles/TraceFunctions.md):
 - [Transmission](https://dd-harp.github.io/ramp.xds/articles/Transmission.md):
 - [Understanding
   ramp.xds](https://dd-harp.github.io/ramp.xds/articles/Understanding_ramp.xds.md):

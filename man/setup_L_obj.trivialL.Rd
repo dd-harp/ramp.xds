@@ -3,7 +3,7 @@
 \name{setup_L_obj.trivialL}
 \alias{setup_L_obj.trivialL}
 \alias{setup_L_obj.trivial}
-\title{Set up \code{trivialL} (\strong{L})}
+\title{Set up the module object for \code{trivialL} (\strong{L})}
 \usage{
 \method{setup_L_obj}{trivialL}(Lname, membership, xds_obj, options = list(), s = 1)
 
@@ -31,9 +31,10 @@ This sets up a \code{trivialL} model object for the \strong{L} module for the \e
 }
 
 There are no dynamical variables requiring initial values.
-This method sets \code{class(xds_obj$forced_by) = "Lambda"}.
 }
 \note{
+This method sets \code{class(xds_obj$forced_by) = "Lambda"}.
+
 The module object is stored at \code{xds_obj$L_obj[[s]]}
 The compatibility name \code{"trivial"} creates the same \code{trivialL} object.
 }

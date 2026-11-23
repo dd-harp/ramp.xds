@@ -17,5 +17,5 @@ change_ovitraps(ovitraps, xds_obj, s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Update the ovitraps for the \eqn{s^{th}} vector species
+Update the ovitraps for the \eqn{s^{th}} vector species.
 }

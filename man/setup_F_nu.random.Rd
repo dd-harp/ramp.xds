@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{setup_F_nu.random}
 \alias{setup_F_nu.random}
-\title{Set up F_nu}
+\title{Set up random oviposition rates (\strong{MY})}
 \usage{
 \method{setup_F_nu}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{an oviposition rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "random" case for \link{setup_nu}. See \link{make_F_nu_random}
+Configure random oviposition rates using \link{make_F_nu_random}.
 }
 \keyword{internal}

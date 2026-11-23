@@ -14,10 +14,19 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
-For the \code{RMdts} module (\strong{MY}) for the \eqn{s^{th}} species,
-change initial values named in \code{options} leaving other values unchanged.
+Change initial values named in \code{options} for the \code{RMdts}
+module, leaving other values unchanged.
+Rebuild initial values using \link{make_MY_inits_RMdts} and the selected species'
+\code{max_eip}; scalar values are expanded to the required lengths.
+}
+\note{
+Stored initial values for this module are at
+\code{xds_obj$MY_obj[[s]]$inits}.
+}
+\seealso{
+\link{make_MY_inits_RMdts}, \link{setup_MY_inits.RMdts}
 }
 \keyword{internal}

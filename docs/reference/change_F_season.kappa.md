@@ -1,6 +1,6 @@
 # Change F_season
 
-Change the season function when `forced_by = "kappa"`
+Change the season function when `forced_by = "kappa"`.
 
 ## Usage
 

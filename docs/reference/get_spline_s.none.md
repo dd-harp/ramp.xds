@@ -1,6 +1,6 @@
 # Get spline interpolation points
 
-Get spline interpolation points when `forced_by` = "none"
+Get spline interpolation points when `forced_by` = "none".
 
 ## Usage
 
@@ -21,4 +21,4 @@ get_spline_s(xds_obj, s)
 
 ## Value
 
-an empty vector
+`NULL`

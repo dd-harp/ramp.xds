@@ -2,20 +2,20 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{setup_eip_obj}
 \alias{setup_eip_obj}
-\title{Set up the extrinsic incubation period object}
+\title{Set up bionomic port for extrinsic incubation period (\strong{MY})}
 \usage{
 setup_eip_obj(eip, MY_obj)
 }
 \arguments{
 \item{eip}{the extrinsic incubation period in days}
 
-\item{MY_obj}{an \strong{\code{MY}} model object}
+\item{MY_obj}{an \strong{\code{MY}} module object}
 }
 \value{
-a \strong{\code{MY}} model object
+an \strong{\code{MY}} module object
 }
 \description{
-Set up an object
-to compute the EIP
+Set up a \link[=xds_info_port]{bionomic port} to compute the extrinsic incubation period
+for a static model.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{make_MY_obj_GeM}
 \alias{make_MY_obj_GeM}
-\title{Make parameters for \code{GeM} (\strong{MY})}
+\title{Make a module object for \code{GeM} (\strong{MY})}
 \usage{
 make_MY_obj_GeM(
   nPatches,
@@ -34,17 +34,22 @@ make_MY_obj_GeM(
 
 \item{q}{human blood fraction}
 
-\item{nu}{oviposition rate, per mosquito}
+\item{nu}{the oviposition rate: the number of egg batches laid in each patch,
+per mosquito, per day}
 
-\item{eggs_per_batch}{eggs laid per oviposition}
+\item{eggs_per_batch}{number of eggs per batch}
 }
 \value{
 a \link{list}
 }
 \description{
-Make parameters for \code{GeM} (\strong{MY})
+Create a \code{GeM} module object and initialize its parameters.
+Inspect parameters with \link{get_MY_pars.GeM} and change supported values
+with \link{change_MY_pars.GeM}. Values in \code{options} override parameter arguments.
 }
 \seealso{
+\link{get_MY_pars.GeM}, \link{change_MY_pars.GeM}
+
 \link{GeM}, \link{setup_MY_obj.GeM}
 }
 \keyword{internal}

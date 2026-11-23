@@ -5,8 +5,7 @@
 #' Assign indices to the auxiliary variables following the existing model indices.
 #'
 #' @note Index the variables.
-#' @param xds_obj an **`xds`** model object
-#' @param i the variable index
+#' @inheritParams setup_V_ix
 #' @return an **`xds`** model object
 #' @export
 setup_V_ix.setup <- function(xds_obj, i){

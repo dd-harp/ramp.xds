@@ -3,7 +3,7 @@
 \name{setup_g}
 \alias{setup_g}
 \alias{setup_mosquito_mortality}
-\title{Set up mosquito mortality rate}
+\title{Set up mosquito mortality rate (\strong{MY})}
 \usage{
 setup_g(name, xds_obj, options = list(), s = 1)
 

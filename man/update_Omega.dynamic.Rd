@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{update_Omega.dynamic}
 \alias{update_Omega.dynamic}
-\title{Change Omega}
+\title{Update the dynamic demographic matrix (\strong{MY})}
 \usage{
 \method{update_Omega}{dynamic}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Update a static demographic matrix
+Recompute the demographic matrix using \link{change_Omega}.
 }
 \keyword{internal}

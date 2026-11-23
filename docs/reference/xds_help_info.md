@@ -1,14 +1,14 @@
-# **`ramp.xds`**: Info Pages
+# **`ramp.xds`**: Information Pages
 
 A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
 
 **Setup & Structure**
 
-- [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
+- [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
   – basic setup overview
 
-- [xds_info_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_info_setup_options.md)
-  – setup options
+- [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_advanced_setup.md)
+  – advanced setup
 
 - [xds_info_patch_dynamics](https://dd-harp.github.io/ramp.xds/reference/xds_info_patch_dynamics.md)
   – patch dynamics
@@ -22,10 +22,19 @@ A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
 - [xds_info_dynamical_components](https://dd-harp.github.io/ramp.xds/reference/xds_info_dynamical_components.md)
   – dynamical components
 
+- [xds_info_forcing](https://dd-harp.github.io/ramp.xds/reference/xds_info_forcing.md)
+  – forcing
+
 - [xds_info_trivial_forcing](https://dd-harp.github.io/ramp.xds/reference/xds_info_trivial_forcing.md)
   – trivial forcing
 
-**Human / Host**
+- [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)
+  – initial conditions
+
+- [xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)
+  – changing parameters
+
+**Human/Host**
 
 - [xds_info_interfaces](https://dd-harp.github.io/ramp.xds/reference/xds_info_interfaces.md)
   – dynamical interfaces
@@ -39,10 +48,13 @@ A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
 - [xds_info_transmission](https://dd-harp.github.io/ramp.xds/reference/xds_info_transmission.md)
   – transmission
 
-**Human / Host**
+**Human/Host Epidemiology**
 
 - [xds_info_human_populations](https://dd-harp.github.io/ramp.xds/reference/xds_info_human_populations.md)
   – human populations
+
+- [xds_info_demographic_change](https://dd-harp.github.io/ramp.xds/reference/xds_info_demographic_change.md)
+  – demographic change
 
 - [xds_info_exposure](https://dd-harp.github.io/ramp.xds/reference/xds_info_exposure.md)
   – exposure
@@ -91,10 +103,22 @@ A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
 - [xds_info_available_blood_hosts](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_blood_hosts.md)
   – available blood hosts
 
-**Habitats & Egg Laying**
+**Habitats and Egg Laying**
 
-- [xds_info_egg_laying](https://dd-harp.github.io/ramp.xds/reference/xds_info_egg_laying.md)
+- [habitat_vector](https://dd-harp.github.io/ramp.xds/reference/habitat_vector.md)
+  – habitat vector
+
+- [habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/habitat_matrix.md)
+  – habitat matrix
+
+- [xds_info_laying_matrix](https://dd-harp.github.io/ramp.xds/reference/laying_matrix.md)
+  – laying matrix
+
+- [xds_info_egg_laying](https://dd-harp.github.io/ramp.xds/reference/egg_laying.md)
   – egg laying
+
+- [xds_info_emergence](https://dd-harp.github.io/ramp.xds/reference/xds_info_emergence.md)
+  – emergence
 
 - [xds_info_aquatic_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_aquatic_habitats.md)
   – aquatic habitats
@@ -102,7 +126,7 @@ A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
 - [xds_info_search_weights_habitat](https://dd-harp.github.io/ramp.xds/reference/xds_info_search_weights_habitat.md)
   – habitat search weights
 
-- [xds_info_available_habitats](https://dd-harp.github.io/ramp.xds/reference/xds_info_available_habitats.md)
+- [xds_info_available_habitats](https://dd-harp.github.io/ramp.xds/reference/habitat_availability.md)
   – habitat availability
 
 **Resources**
@@ -117,6 +141,9 @@ A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
   – mosquito traps
 
 **Malaria Importation**
+
+- [xds_info_importation](https://dd-harp.github.io/ramp.xds/reference/xds_info_importation.md)
+  – malaria importation junction
 
 - [xds_info_malaria_importation](https://dd-harp.github.io/ramp.xds/reference/xds_info_malaria_importation.md)
   – malaria importation
@@ -133,7 +160,7 @@ A list of all `xds_info_*` documentation pages in **`ramp.xds`**.
   – vector control
 
 - [xds_info_health](https://dd-harp.github.io/ramp.xds/reference/xds_info_health.md)
-  – health-based Interventions
+  – health-based interventions
 
 **Internals**
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{make_MY_obj_macdonald}
 \alias{make_MY_obj_macdonald}
-\title{Make parameters for \code{macdonald} adult mosquito model}
+\title{Make a module object for \code{macdonald} (\strong{MY})}
 \usage{
 make_MY_obj_macdonald(
   nPatches,
@@ -34,7 +34,8 @@ make_MY_obj_macdonald(
 
 \item{q}{human blood fraction}
 
-\item{nu}{egg batch rate, in batches per mosquito per day}
+\item{nu}{the oviposition rate: the number of egg batches laid in each patch,
+per mosquito, per day}
 
 \item{eggsPerBatch}{number of eggs per batch}
 }
@@ -42,7 +43,9 @@ make_MY_obj_macdonald(
 a \link{list}
 }
 \description{
-Make parameters for \code{macdonald} adult mosquito model
+Create a \code{macdonald} module object and initialize its parameters.
+Inspect parameters with \link{get_MY_pars.macdonald} and change supported values
+with \link{change_MY_pars.macdonald}. Values in \code{options} override parameter arguments.
 }
 \section{State Variables}{
 
@@ -61,10 +64,10 @@ Make parameters for \code{macdonald} adult mosquito model
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
 \item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
 \item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{egg batch rate --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggsPerBatch} or \eqn{\Gamma}}{number of eggs per batch}
 }
 
@@ -73,6 +76,8 @@ parameter values. This module does not support dynamic bionomic ports.
 }
 
 \seealso{
+\link{get_MY_pars.macdonald}, \link{change_MY_pars.macdonald}
+
 \link{macdonald}, \link{setup_MY_obj.macdonald}
 }
 \keyword{internal}

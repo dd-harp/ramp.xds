@@ -5,7 +5,7 @@ In **`ramp.xds`**, forcing is implemented through *ports* and
 `trivial` modules (see
 [xds_info_trivial_forcing](https://dd-harp.github.io/ramp.xds/reference/xds_info_trivial_forcing.md)).
 
-- Parameter or terms that could be time-varying are implemented as
+- Parameters or terms that could be time-varying are implemented as
   *ports.* There are several kinds of ports:
 
   - mosquito bionomic ports set a baseline that can be modified by

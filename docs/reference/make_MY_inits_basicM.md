@@ -1,6 +1,6 @@
-# Make inits for basicM adult mosquito model
+# Make initial values for `basicM` (**MY**)
 
-Make inits for basicM adult mosquito model
+Make initial values for `basicM` (**MY**)
 
 ## Usage
 

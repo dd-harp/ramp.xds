@@ -1,7 +1,6 @@
-# Compute emergent adults for `basicL` (**L** component)
+# Compute emergent adults for `basicL` (**L**)
 
-The number of adults emerging from the habitats, per day, is: \$\$\psi
-e^{-\xi L} L.\$\$
+Compute the emergence rate of adult female mosquitoes from each habitat.
 
 ## Usage
 
@@ -32,6 +31,11 @@ F_emerge(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nHabitats`
+
+## Emergence
+
+The emergence rate of adult female mosquitoes from each habitat is
+computed by F_emerge.basicL: \$\$\alpha = \psi e^{-\xi L} L\$\$
 
 ## See also
 

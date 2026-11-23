@@ -1,6 +1,6 @@
-# Add lines for the fraction of infected and infective mosquitoes
+# Add lines for the fraction of infected mosquitoes
 
-Add lines for the fraction of infected and infective mosquitoes
+Add lines for the fraction of infected mosquitoes
 
 ## Usage
 

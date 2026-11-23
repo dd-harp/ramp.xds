@@ -1,9 +1,9 @@
-# Setup initial values (**MY**)
+# Set up initial values (**MY**)
 
 Set initial values for all the variables.
 
-- Each module (*MYname*) defines a function `make_MY_inits_`*MYname*
-  that supplies default values
+- Each non-trivial module (*MYname*) defines a function
+  `make_MY_inits_`*MYname* that supplies default values
 
 - The values in `options` override the defaults
 
@@ -38,4 +38,4 @@ an **`xds`** model object
 ## See also
 
 [get_MY_inits](https://dd-harp.github.io/ramp.xds/reference/get_MY_inits.md),
-[xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
+[xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)

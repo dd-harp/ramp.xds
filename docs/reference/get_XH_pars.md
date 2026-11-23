@@ -31,4 +31,4 @@ The parameter values are stored on `xds_obj$XH_obj[[i]]`
 
 [change_XH_pars](https://dd-harp.github.io/ramp.xds/reference/change_XH_pars.md),
 [setup_XH_obj](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md),
-[xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
+[xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)

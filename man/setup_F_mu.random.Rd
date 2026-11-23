@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{setup_F_mu.random}
 \alias{setup_F_mu.random}
-\title{Set up random emigration-loss fraction}
+\title{Set up random emigration-loss fraction (\strong{MY})}
 \usage{
 \method{setup_F_mu}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{an emigration-loss fraction or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "random" case for \link{setup_F_mu}. See \link{make_F_mu_random}.
+Configure random emigration-loss fractions using \link{make_F_mu_random}.
 }
 \keyword{internal}

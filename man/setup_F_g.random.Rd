@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{setup_F_g.random}
 \alias{setup_F_g.random}
-\title{Set up random mosquito mortality rate}
+\title{Set up random mosquito mortality rate (\strong{MY})}
 \usage{
 \method{setup_F_g}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a mosquito mortality rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "random" case for \link{setup_F_g}. See \link{make_F_g_random}.
+Configure random mosquito mortality rates using \link{make_F_g_random}.
 }
 \keyword{internal}

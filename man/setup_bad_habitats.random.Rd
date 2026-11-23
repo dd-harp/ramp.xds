@@ -7,7 +7,7 @@
 \method{setup_bad_habitats}{random}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements the "method1" case for \link{setup_bad_habitats}. See \link{make_bad_habitats_random}
+Generate random bad habitat availability using
+\link{make_bad_habitats_random} and apply it using \link{change_bad_habitats}.
 }
 \keyword{internal}

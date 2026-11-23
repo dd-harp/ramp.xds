@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats-bad.R
 \name{get_bad_habitats}
 \alias{get_bad_habitats}
-\title{Get availability of other blood hosts}
+\title{Get bad habitat availability}
 \usage{
 get_bad_habitats(xds_obj, s = 1)
 }
@@ -12,8 +12,8 @@ get_bad_habitats(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Get availability of other blood hosts
+Get bad habitat availability
 }

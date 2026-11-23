@@ -1,8 +1,6 @@
-# Generalized spatial differential equation model (mosquito only)
+# Compute Derivatives
 
-Mirrors
-[xde_derivatives](https://dd-harp.github.io/ramp.xds/reference/xde_derivatives.md)
-but only includes the adult and aquatic mosquito components.
+Compute derivatives for a *mosy* model.
 
 ## Usage
 

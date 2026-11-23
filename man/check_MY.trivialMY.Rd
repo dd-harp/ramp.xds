@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{check_MY.trivialMY}
 \alias{check_MY.trivialMY}
-\title{Check the \code{trivialMY} module (\strong{M})}
+\title{Check \code{trivialMY} (\strong{MY})}
 \usage{
 \method{check_MY}{trivialMY}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Run no consistency checks
+Run no consistency checks.
 }
 \keyword{internal}

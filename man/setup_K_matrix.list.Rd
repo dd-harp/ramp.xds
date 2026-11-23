@@ -16,15 +16,14 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+an \strong{\code{xds}} model object
 }
 \description{
-If the options list is passed
-as the first argument, the set
-\itemize{
-\item \code{Kname = name$name}
-\item \code{options = name}
-and call \code{setup_K_matrix(Kname, xds_obj, options, s)}
+Set up the mosquito dispersal matrix using an options list.
 }
+\note{
+If an options list is passed as the first argument, use its
+\code{name} field to select the setup method. If \code{name} is NULL, use the
+\code{no_setup} method. Pass the list as \code{options} to \link{setup_K_matrix}.
 }
 \keyword{internal}

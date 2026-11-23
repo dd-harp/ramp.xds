@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{setup_F_f.type2}
 \alias{setup_F_f.type2}
-\title{Set up type 2 blood feeding rates}
+\title{Set up type 2 blood feeding rates (\strong{MY})}
 \usage{
 \method{setup_F_f}{type2}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a blood feeding rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

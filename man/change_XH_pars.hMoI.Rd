@@ -17,8 +17,8 @@
 an \strong{\code{xds}} model object
 }
 \description{
-For the \code{hMoI} module (\strong{XH}) for the \eqn{i^{th}} species,
-change parameter values named in \code{options} leaving other values unchanged.
+Change parameter values named in \code{options} for the \code{hMoI}
+module, leaving other values unchanged.
 }
 \section{Parameters}{
 
@@ -33,6 +33,8 @@ change parameter values named in \code{options} leaving other values unchanged.
 }
 
 \seealso{
+\link{make_XH_obj_hMoI}, \link{get_XH_pars.hMoI}
+
 \link{hMoI}
 }
 \keyword{internal}

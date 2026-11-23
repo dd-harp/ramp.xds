@@ -1,7 +1,7 @@
-# Make parameters for trivial human model
+# Make the module object for `trivialXH` (**XH**)
 
-This builds a trace function as a *composed time series function* using
-either functions or parameters:
+This builds a forcing function as a *composed time series function*
+using either functions or parameters:
 
 - Use a function if passed, and set the function object to an empty list
 
@@ -38,7 +38,7 @@ make_XH_obj_trivial(
 
 - nPatches:
 
-  the number of patches
+  the number of population strata (legacy argument name)
 
 - options:
 

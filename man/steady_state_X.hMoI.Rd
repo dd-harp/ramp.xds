@@ -16,10 +16,12 @@
 \item{i}{the host species index}
 }
 \value{
-the steady states as a named vector
+a named \link{numeric} vector containing \code{m1} followed by \code{m2}
 }
 \description{
-Compute the steady state of the \code{hMoI} model as a function of the daily foi
+Compute steady-state infection values for the \code{hMoI} module
+given daily FoI \code{foi} for the differential-equation system.
+The fixed population input \code{H} is not used in this calculation.
 }
 \seealso{
 \link{hMoI}

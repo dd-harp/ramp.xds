@@ -1,4 +1,4 @@
-# Compute derivatives for `trivialXH` (**XH**)
+# Compute the derivatives for `trivialXH` (**XH**)
 
 The trivial model has no state variables so it returns a numeric vector
 of length 0

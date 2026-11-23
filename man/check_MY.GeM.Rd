@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{check_MY.GeM}
 \alias{check_MY.GeM}
-\title{Run a check before solving}
+\title{Check \code{GeM} (\strong{MY})}
 \usage{
 \method{check_MY}{GeM}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Run a check before solving
+Check \code{GeM} (\strong{MY})
 }
 \keyword{internal}

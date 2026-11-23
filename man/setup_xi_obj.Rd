@@ -2,20 +2,20 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_xi_obj}
 \alias{setup_xi_obj}
-\title{Set up xi object (maturation delay)}
+\title{Set up bionomic port for delayed maturation parameter (\strong{L})}
 \usage{
 setup_xi_obj(xi, L_obj)
 }
 \arguments{
-\item{xi}{the human fraction}
+\item{xi}{the delayed maturation parameter in response to mean crowding}
 
-\item{L_obj}{an \strong{\code{L}} model object}
+\item{L_obj}{an \strong{\code{L}} module object}
 }
 \value{
-a \strong{\code{L}} model object
+an \strong{\code{L}} module object
 }
 \description{
-Set up an object
-to compute the delayed maturation parameter, \eqn{xi}
+Set up a \link[=xds_info_port]{bionomic port} to compute the baseline delayed maturation
+parameter in response to mean crowding, \eqn{xi}, for a static model.
 }
 \keyword{internal}

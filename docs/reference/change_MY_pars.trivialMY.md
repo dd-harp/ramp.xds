@@ -2,6 +2,8 @@
 
 For the `trivialMY` module (**MY**) for the \\(s^{th}\\) species, change
 parameter values named in `options` leaving other values unchanged.
+Rebuild only forcing functions whose parameters are supplied. An empty
+parameter list resets the corresponding function to constant one.
 
 ## Usage
 

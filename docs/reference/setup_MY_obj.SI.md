@@ -1,7 +1,7 @@
-# Set up `SI` (**MY**)
+# Set up the module object for `SI` (**MY**)
 
-This sets up an `SI` model object for **MY** module for the \\(s^{th}\\)
-vector species
+This sets up an `SI` model object for the **MY** module for the
+\\(s^{th}\\) vector species
 
 - the object is created by
   [make_MY_obj_SI](https://dd-harp.github.io/ramp.xds/reference/make_MY_obj_SI.md)
@@ -88,11 +88,11 @@ The module object is stored at `xds_obj$MY_obj[[s]]`
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\(\mu\\):
 
-  emigration loss rate — use
+  emigration loss fraction — use
   [setup_mu](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
   or
   [setup_emigration_loss](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
@@ -104,7 +104,8 @@ The module object is stored at `xds_obj$MY_obj[[s]]`
 
 - `nu` or \\(\nu\\):
 
-  the egg batch rate, in batches per mosquito per day — use
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -115,9 +116,8 @@ The module object is stored at `xds_obj$MY_obj[[s]]`
 
 After basic setup,
 [change_MY_pars](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.md)
-can be used for static parameters, or for for parameters that are set up
-as static ports (the default). Use advanced setup to modify dynamic
-ports.
+can be used for static parameters, or for parameters that are set up as
+static ports (the default). Use advanced setup to modify dynamic ports.
 
 ## See also
 

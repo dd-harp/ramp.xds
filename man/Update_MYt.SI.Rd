@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{Update_MYt.SI}
 \alias{Update_MYt.SI}
-\title{Update state variables for \code{SI} (\strong{MY})}
+\title{Update states for \code{SI} (\strong{MY})}
 \usage{
 \method{Update_MYt}{SI}(t, y, xds_obj, s)
 }
@@ -19,33 +19,70 @@
 a \link{numeric} vector
 }
 \description{
-Implements \link{Update_MYt} for the SI model.
+Update the state variables for the \code{SI} module:
+\deqn{\begin{array}{rl}
+M_t &= \Lambda+e^{-\Omega}\cdot M_{t-1} \\\\
+P_t &= e^{-\Omega}\cdot\left[(1-e^{-fq})(M_{t-1}-P_{t-1})+P_{t-1}\right] \\\\
+Y_t &= e^{-\Omega}\cdot\left[(1-e^{-fq\kappa})(M_{t-1}-Y_{t-1})+Y_{t-1}\right]
+\end{array}}
 }
-\section{Dynamics}{
+\section{State Variables}{
+
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+}
+}
+
+\section{Dynamical Terms}{
+
+
+\describe{
+\item{\code{Lambda} or \eqn{\Lambda}}{the number of adult mosquitoes emerging, per patch, per day, computed by \link{Emergence}}
+\item{\code{kappa} or \eqn{\kappa}}{net infectiousness: the probability a mosquito becomes infected after blood feeding on a human, is computed by \link{Transmission}}
+}
+}
+
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rates --- use \link{setup_f} or \link{setup_blood_feeding_rates}}
+\item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
+\item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
+\item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
+\item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
+\item{\code{K}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
+\item{\code{nu} or \eqn{\nu}}{the oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{eggsPerBatch} or \eqn{\Gamma}}{the number of eggs per batch}
+}
+
+After basic setup, \link{change_MY_pars} can be used for static parameters, or
+for parameters that are set up as static ports (the default).
+Use advanced setup to modify dynamic ports.
+}
+
+\section{DTS}{
 
 
 \strong{Ecology}
 
-Adult mosquitoes emerge from aquatic habitats \eqn{(\Lambda)} and disperse and die (\eqn{\Omega}):
-\deqn{
-dM/dt = \Lambda - \Omega \cdot M 
-}
+Adult mosquitoes emerge from aquatic habitats at rate \eqn{\Lambda} and
+disperse and die according to \eqn{\Omega}. The one-day update in
+\link{Update_MYt.SI} is:
+\deqn{M_t = \Lambda + e^{-\Omega}\cdot M_{t-1}}
 The model also computes the density of parous adult mosquitoes: those that have
 blood fed at least once:
-\deqn{
-dP/dt = fq(M-P) - \Omega \cdot P \\
-}
-Parity is computed during parsing as \eqn{P/M} and its orbit is stored as \code{parity.}
+\deqn{P_t = e^{-\Omega}\cdot\left[(1-e^{-fq})(M_{t-1}-P_{t-1}) + P_{t-1}\right]}
 
 \strong{Infection Dynamics}
 
 Given the per-capita daily rate of human blood feeding \eqn{(fq)} and
 net infectiousness \eqn{(\kappa)}, the FoI for mosquitoes is \eqn{fq\kappa}.
-Changes in the density of infected mosquitoes
-is given by:
-\deqn{
-dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\
-}
+The density of infected mosquitoes is updated by:
+\deqn{Y_t = e^{-\Omega}\cdot\left[(1-e^{-fq\kappa})(M_{t-1}-Y_{t-1}) + Y_{t-1}\right]}
 }
 
 \seealso{

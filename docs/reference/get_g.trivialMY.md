@@ -21,4 +21,4 @@ get_g(xds_obj, s = 1)
 
 ## Value
 
-the mortality rate, as a vector
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length 0

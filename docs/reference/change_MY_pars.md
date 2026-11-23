@@ -38,4 +38,4 @@ Use advanced setup to modify dynamic bionomic ports.
 
 [get_MY_pars](https://dd-harp.github.io/ramp.xds/reference/get_MY_pars.md),
 [setup_MY_obj](https://dd-harp.github.io/ramp.xds/reference/setup_MY_obj.md),
-[xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
+[xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)

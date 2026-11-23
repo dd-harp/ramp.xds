@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{get_MY_vars.trivialMY}
 \alias{get_MY_vars.trivialMY}
-\title{List variables for \code{trivialMY} (\strong{MY})}
+\title{Get the state variables for \code{trivialMY} (\strong{MY})}
 \usage{
 \method{get_MY_vars}{trivialMY}(y, xds_obj, s)
 }
@@ -17,6 +17,6 @@
 a \link{list}
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}
+Return an empty list because the \code{trivialMY} module has no state variables.
 }
 \keyword{internal}

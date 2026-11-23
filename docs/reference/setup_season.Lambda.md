@@ -1,7 +1,7 @@
-# Change season parameters
+# Set up seasonal forcing
 
 Change parameters for the seasonality function when
-`forced_by = "Lambda"`
+`forced_by = "Lambda"`.
 
 ## Usage
 

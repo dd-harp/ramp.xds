@@ -7,7 +7,7 @@
 \method{parse_MY_orbits}{RMdts}(outputs, xds_obj, s)
 }
 \arguments{
-\item{outputs}{a \link{matrix} of outputs from deSolve}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,6 +17,14 @@
 a \link{list}
 }
 \description{
-Implements \link{parse_MY_orbits} for the RMdts model
+Extract the model state outputs for the \code{RMdts} module
+from \code{outputs} and return them by name in a list.
+Sum the \code{Y} cohorts within each patch for each output time, and compute
+\code{y = Y/M}, \code{z = Z/M}, and \code{parous = P/M}.
+}
+\note{
+Variable indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
+The output-processing pipeline stores the returned orbits at
+\code{xds_obj$outputs$orbits$MY[[s]]}.
 }
 \keyword{internal}

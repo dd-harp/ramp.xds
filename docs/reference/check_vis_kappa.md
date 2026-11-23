@@ -4,7 +4,7 @@ Check that
 
 - all elements are non-negative
 
-- length(vis_kappa) = nPatches
+- `length(vis_kappa) == nP`
 
 ## Usage
 

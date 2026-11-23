@@ -2,7 +2,7 @@
 
 Set up functions for **XH**
 
-`?setup_XH`
+`?XH_setup`
 
 - [`setup_XH_obj`](https://dd-harp.github.io/ramp.xds/reference/setup_XH_obj.md)
   – set up the XH module object

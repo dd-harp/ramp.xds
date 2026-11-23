@@ -12,11 +12,11 @@ approx_equal(a, b, tol = sqrt(.Machine$double.eps))
 
 - a:
 
-  a [numeric](https://rdrr.io/r/base/numeric.html) model object
+  a [numeric](https://rdrr.io/r/base/numeric.html) value
 
 - b:
 
-  a [numeric](https://rdrr.io/r/base/numeric.html) model object
+  a [numeric](https://rdrr.io/r/base/numeric.html) value
 
 - tol:
 

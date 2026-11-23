@@ -1,6 +1,6 @@
-# Set up `SIS` (**XH**)
+# Set up the module object for `SIS` (**XH**)
 
-This sets up an `SIS` model object for the **XH** module for the
+This sets up a `SIS` model object for the **XH** module for the
 \\(i^{th}\\) host species
 
 - the object is created by

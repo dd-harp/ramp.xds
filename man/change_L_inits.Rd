@@ -17,11 +17,13 @@ change_L_inits(xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Change the stored initial values for
-any variables named in \code{options},
-leaving other values unchanged.
+Change initial values named in \code{options} for the selected
+\strong{L} module and vector species, leaving other values unchanged.
+}
+\note{
+Dispatch uses the class of \code{xds_obj$L_obj[[s]]}.
 }
 \seealso{
-\link{get_L_inits}
+\link{get_L_inits}, \link{setup_L_inits}, \link{xds_initial_conditions}
 }
 \keyword{internal}

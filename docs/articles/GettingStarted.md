@@ -232,11 +232,11 @@ several model objects, each component has its own options name. For the
     ## [1] 0.9
 
 In the `SIS` model, we set \\(H_0,\\) and \\(I_0.\\) The software
-computes \\(dH/dt\\) and \\(dI/dt\\) and sets \\(S=H-I.\\) By policy,
-the software computes the total population size, \\(H,\\) dynamically
-and treats it differently. This is because it plays an important role in
-setting up the *Blood Feeding* interface, so it is not possible to set
-\\(S.\\) Instead, \\(S\\) is computed after solving and parsing.
+computes \\(dH/dt\\) and \\(dI/dt\\) and sets \\(S=H-I.\\) Total
+population size, \\(H,\\) an important role in setting up the *Blood
+Feeding* interface. Since \\(S = H-I\\), we don’t compute \\(S,\\) so it
+is not possible to set it’s initial value. \\(S.\\) Instead, \\(S\\) is
+computed after solving and parsing.
 
 \
 [`get_XH_inits`](https://dd-harp.github.io/ramp.xds/reference/get_XH_inits.md)`(``model1``)`
@@ -437,7 +437,7 @@ series function*** with a generic form:
 It is easy to change the forcing function. A function library for
 `ramp.xds` is found in
 [`ramp.func`](https://github.com/dd-harp/ramp.func). For more
-information about configuring trace functions for `ramp.xds`
+information about configuring forcing functions for `ramp.xds`
 
 ## Next Steps
 

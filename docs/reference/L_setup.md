@@ -1,4 +1,4 @@
-# Setup functions (**L**)
+# Set up functions (**L**)
 
 A list of setup functions for aquatic mosquito modules.
 

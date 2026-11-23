@@ -1,6 +1,6 @@
-# Get psi, the maturation rate
+# Get the maturation rate (**L**)
 
-Get psi, the maturation rate
+Get the maturation rate (**L**)
 
 ## Usage
 
@@ -20,5 +20,8 @@ get_psi(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+the maturation rate(s)
+
+## See also
+
+[change_psi](https://dd-harp.github.io/ramp.xds/reference/change_psi.md)

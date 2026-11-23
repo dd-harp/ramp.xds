@@ -1,7 +1,7 @@
-# Compute eggs laid
+# Habitat Dynamics
 
-Computes eggs laid with exogenous forcing on parameter affecting host
-availability.
+Update habitat search weights, unsuitable habitats, and ovitraps, and
+update resource availability for egg laying.
 
 ## Usage
 

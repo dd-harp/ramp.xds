@@ -21,6 +21,15 @@ Enhancements to the basic S-I-S model include:
 
 For a longer discussion, see the \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Vignette}.
 }
+\note{
+The force of infection is computed and stored by \link{Exposure} as \code{FoI}.
+
+After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
+
+The \code{SIS} module does not distinguish diagnostic methods.
+\link{F_pfpr_by_lm}, \link{F_pfpr_by_rdt}, and \link{F_pfpr_by_pcr} are aliases for
+\link{F_pr_obs} for this module.
+}
 \section{State Variables}{
 
 
@@ -35,7 +44,7 @@ For a longer discussion, see the \href{https://dd-harp.github.io/ramp.xds/articl
 
 
 \describe{
-\item{\eqn{h} or \code{foi}}{The force of infection is computed and stored by \link{Exposure} as \code{FoI}}
+\item{\eqn{h} or \code{foi}}{The force of infection}
 }
 
 In the \code{SIS} module, there is no effect of pre-erythrocytic immunity, so
@@ -46,7 +55,7 @@ a constant fraction of infectious bites causes an infection: the parameter is ca
 
 
 The parameters that are returned by \link{get_XH_pars.SIS} and also modifiable by \link{change_XH_pars.SIS} describe
-the dynamics, or detection by diagnostic methods.
+the dynamics or test positivity.
 
 \describe{
 \item{\code{b}}{the fraction of infective bites that would cause an infection}
@@ -54,9 +63,7 @@ the dynamics, or detection by diagnostic methods.
 \item{\code{c}}{the probability an infected person would infect a mosquito}
 \item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
 \item{\code{sigma} or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
-\item{\code{q_lm}}{test positivity by light microscopy}
-\item{\code{q_rdt}}{test positivity by RDT}
-\item{\code{q_pcr}}{test positivity by PCR}
+\item{\code{q}}{test positivity}
 }
 }
 
@@ -118,8 +125,6 @@ Infection dynamics (\strong{X}) are described by:
 
 \deqn{
 dI/dt = h(1-\rho)(H-I) - (r + \rho h + \sigma) I - \Xi(t) I  - \mathbf{D}(I) }
-
-After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 }
 
 \section{DTS}{
@@ -139,8 +144,6 @@ Let \eqn{\alpha = 1-e^{-h}}.
 I_s &= I_{t-1} - \mathbf{D}(I_{t-1}) \\
 I_t &= \alpha (1-\rho)(H_t-I_s) + e^{-(r + \rho h + \sigma + \Xi(t))} I_s
 \end{array}}
-
-After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 }
 
 \section{Prevalence}{
@@ -148,9 +151,7 @@ After solving, the orbit of the variable \eqn{S=H-I} is computed and attached.
 
 \describe{
 \item{\eqn{x}}{True prevalence is \eqn{x = I/H}}
-\item{\eqn{x_{lm}}}{Expected prevalence by light microscopy is \eqn{q_{lm}\; x}}
-\item{\eqn{x_{rdt}}}{Expected prevalence by RDT is \eqn{q_{rdt}\; x}}
-\item{\eqn{x_{pcr}}}{Expected prevalence by PCR is \eqn{q_{pcr}\; x}}
+\item{\eqn{x_q}}{Observed prevalence is \eqn{x_q = q x = q I/H}}
 }
 }
 

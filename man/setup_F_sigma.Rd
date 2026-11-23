@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{setup_F_sigma}
 \alias{setup_F_sigma}
-\title{Set up F_sigma}
+\title{Configure the patch emigration rate function (\strong{MY})}
 \usage{
 setup_F_sigma(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a patch emigration rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,5 +19,6 @@ setup_F_sigma(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up F_sigma
+Configure the function used to compute the baseline patch
+emigration rate.
 }

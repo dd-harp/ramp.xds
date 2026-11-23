@@ -2,19 +2,30 @@
 % Please edit documentation in R/adult-plotting.R
 \name{xds_lines_Z_fracs}
 \alias{xds_lines_Z_fracs}
-\title{Add lines for the fraction of infected and infective mosquitoes}
+\title{Add lines for the infective mosquito fraction (\strong{MY})}
 \usage{
-xds_lines_Z_fracs(xds_obj, s, clrs = "darkred", llty = 1)
+xds_lines_Z_fracs(xds_obj, s = 1, clrs = "darkred", llty = 1)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the vector species index}
 
-\item{clrs}{a vector of colors for infective mosquitoes}
+\item{clrs}{a color for all patches or a vector of colors, one per patch}
 
-\item{llty}{an integer (or integers) to set the \code{lty} for plotting}
+\item{llty}{a line type for all patches or a vector of line types, one per patch, passed to \code{lty}}
+}
+\value{
+invisible(NULL)
 }
 \description{
-Add lines for the fraction of infected and infective mosquitoes
+Add saved infective mosquito fraction lines to an existing plot,
+one line per patch for the selected species.
+}
+\note{
+Reads \code{z = Z/M} and \code{time} through \link{get_MY_orbits}; it does not
+calculate the fraction. An existing plot is required.
+}
+\seealso{
+\link{xds_plot_Z_fracs}
 }

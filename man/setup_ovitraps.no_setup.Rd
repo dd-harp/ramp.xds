@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Don't change anything
+Don't change anything.
 }
 \keyword{internal}

@@ -17,9 +17,11 @@ change_XH_pars(xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-For the \strong{XH} module for the \eqn{i^{th}} species,
-change parameter values named in \code{options},
-leaving other values unchanged.
+Change parameter values named in \code{options} for the selected
+\strong{XH} module for the \eqn{i^{th}} host species, leaving other values unchanged.
+}
+\note{
+Dispatch is on the class of \code{xds_obj$XH_obj[[i]]}.
 }
 \seealso{
 \link{get_XH_pars}, \link{setup_XH_obj}, \link{xds_info_change_parameters}

@@ -1,4 +1,9 @@
+# X
 # specialized methods for the adult mosquito macdonald model
+# TODO: Revisit K_matrix handling: macdonald should not implement it as a port.
+# Address this through check_MY in a future change; defer implementation for now.
+# TODO: Reconcile the Dynamics anchor's delayed product (f*q*kappa) with
+# dMYdt.macdonald, which delays only kappa and uses current f and q.
 
 #' @title The `macdonald` module for the **MY** component
 #'
@@ -30,10 +35,10 @@
 #'   \item{`q`}{human fraction --- use [setup_q] or [setup_human_fractions]}
 #'   \item{`g`}{mosquito mortality rate --- use [setup_g] or [setup_mosquito_mortality]}
 #'   \item{`eip` or \eqn{\tau}}{extrinsic incubation period --- use [setup_eip]}
-#'   \item{`sigma` or \eqn{\sigma}}{emigration rate --- use [setup_sigma] or [setup_emigration_rates]}
+#'   \item{`sigma` or \eqn{\sigma}}{emigration rate --- use [setup_sigma] or [setup_mosy_emigration]}
 #'   \item{`mu` or \eqn{\mu}}{emigration loss fraction --- use [setup_mu] or [setup_emigration_loss]}
 #'   \item{`K` or `K_matrix`}{mosquito dispersal matrix --- use [setup_K_matrix]}
-#'   \item{`nu` or \eqn{\nu}}{egg batch rate --- use [setup_nu] or [setup_egg_batch_rates]}
+#'   \item{`nu` or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use [setup_nu] or [setup_egg_batch_rates]}
 #'   \item{`eggsPerBatch` or \eqn{\Gamma}}{number of eggs per batch}
 #' }
 #'
@@ -45,7 +50,7 @@
 #' \eqn{\Omega}. The parameter \eqn{g} is the per-capita mortality rate while
 #' mosquitoes are in a patch. Mosquitoes emigrate from patches at per-capita
 #' rates \eqn{\sigma}, and a fraction \eqn{\mu} of emigrating mosquitoes is
-#' lost. The total rate of loss from a patch is \deqn{g+\mu\sigma.}
+#' lost. The combined rate of mortality and loss during emigration is \deqn{g+\mu\sigma.}
 #'
 #' The columns of the mosquito dispersal matrix \eqn{K} sum to zero. For
 #' non-trivial dispersal matrices, \eqn{\mbox{diag}(K)=-1}; the off-diagonal
@@ -95,19 +100,22 @@
 #' [F_fqZ.macdonald] and [F_fqM.macdonald] compute these patch-level
 #' quantities. [compute_EIR] combines `fqZ` with the biting distribution
 #' matrix and resident-bite fraction to compute stratum-level EIR; [F_hbr]
-#' computes HBR from `fqM` in the same way. The resulting `EIR` and `HBR`
+#' computes HBR from `fqM` in the same way.
+#'
+#' @note The resulting `EIR` and `HBR`
 #' orbits are attached to the XH output during parsing.
 #'
 #' @section Egg Laying:
-#' The egg batch rate \eqn{\nu} and the number of eggs per batch
+#' The oviposition rate \eqn{\nu} and the number of eggs per batch
 #' \eqn{\Gamma} determine the egg production rate per patch:
 #' \deqn{G=\nu\Gamma M.}
 #' [F_eggs.macdonald] computes \eqn{G}, which is passed to [EggLaying] for
 #' distribution among aquatic habitats.
 #'
 #' @section Note:
-#' This model is not capable of handling exogenous forcing by weather or
-#' vector control. Use the `GeM` module instead.
+#' Scalar parameters have no ports for exogenous forcing or vector control.
+#' Use the `GeM` module for those capabilities. The standard dispersal-matrix
+#' port follows the shared bionomics and effect-size convention.
 #'
 #' @seealso [make_MY_obj_macdonald], [setup_MY_obj.macdonald], [dMYdt.macdonald]
 #'
@@ -117,50 +125,30 @@
 #' @name macdonald
 NULL
 
-
-#' @title The skill set for `macdonald` (**MY**)
-#'
-#' @inheritParams get_skillset_MY
-#'
-#' @return the **MY** module skill set, as a list
-#' @seealso [macdonald]
-#'
-#' @keywords internal
-#' @export
-get_skillset_MY.macdonald = function(xds_obj, s){
-  skills = list(
-    dts = FALSE,
-    xde = TRUE,
-    delay = TRUE,
-    not_implemented = TRUE
-  )
-  return(skills)
-}
-
-#' @title Check `macdonald` (**MY**) before solving
-#'
-#' @description This method currently performs no additional checks.
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#'
-#' @return an **`xds`** model object
-#' @seealso [macdonald]
-#' @keywords internal
-#' @export
-check_MY.macdonald = function(xds_obj, s){
-  return(xds_obj)
-}
-
-#' @title Compute derivatives for `macdonald` (**MY**)
-#' @description Implements the delay differential equations for the
-#' `macdonald` module.
+#' @title Compute the derivatives for `macdonald` (**MY**)
+#' @description Compute the derivatives for the `macdonald` module:
+#' \deqn{\begin{array}{rl}
+#' dM/dt &= \Lambda-\Omega\cdot M \\
+#' dP/dt &= f(M-P)-\Omega\cdot P \\
+#' dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\
+#' dZ/dt &= \Upsilon\cdot\left(fq\kappa_\tau(M_\tau-Y_\tau)\right)-\Omega\cdot Z \\
+#' dA_\kappa/dt &= \kappa
+#' \end{array}}
+#' Here \eqn{\tau} is `eip` and \eqn{\Upsilon} is `Upsilon`.
+#' For \eqn{t>\tau}, \eqn{M_\tau} and \eqn{Y_\tau} are the states at
+#' \eqn{t-\tau}, and \eqn{\kappa_\tau} is the derivative of the accessory
+#' variable \eqn{A_\kappa} at that time.
+#' For \eqn{t\leq\tau}, the delayed states use their initial values and
+#' \eqn{\kappa_\tau} uses the current \eqn{\kappa}.
 #' @inheritSection macdonald State Variables
 #' @inheritSection macdonald Dynamical Terms
 #' @inheritSection macdonald Parameters
 #' @inheritSection macdonald Dynamics
 #' @inheritParams dMYdt
 #' @seealso [macdonald], [F_fqZ.macdonald], [F_eggs.macdonald]
-#' @return a [numeric] vector
+#' @note Derivatives are returned in patch-ordered blocks for `M`, `P`, `Y`,
+#' and `Z`, followed by `kappa`, the derivative of the accessory state.
+#' @return a [numeric] vector of derivatives in the module's state-variable order
 #' @importFrom deSolve lagvalue
 #' @importFrom deSolve lagderiv
 #' @keywords internal
@@ -193,14 +181,70 @@ dMYdt.macdonald <- function(t, y, xds_obj, s){
   })
 }
 
+#' @title Get the state variables for `macdonald` (**MY**)
+#' @description Extract the state variables for the `macdonald` module
+#' from `y` and return them by name in a list for use during model solving.
+#' @inheritSection macdonald State Variables
+#' @inheritParams get_MY_vars
+#' @return a named [list] of state variables and module-specific derived quantities
+#' @seealso [macdonald]
+#' @keywords internal
+#' @export
+#' @note Variable indices are stored at `xds_obj$MY_obj[[s]]$ix`.
+get_MY_vars.macdonald <- function(y, xds_obj, s){
+  with(xds_obj$MY_obj[[s]]$ix,
+       return(list(
+         M = y[M_ix],
+         P = y[P_ix],
+         Y = y[Y_ix],
+         Z = y[Z_ix]
+)))}
 
 
 
-#' @title Infective mosquito biting rate for `macdonald`
-#' @description Implements [F_fqZ] for the `macdonald` model.
+#' @title Mosquito bionomics for `macdonald` (**MY**)
+#' @description Evaluate the dispersal-matrix port into `K_matrix_t` and
+#' reset `es_K_matrix` to 1. Scalar parameters have no ports and remain unchanged.
+#' @inheritSection macdonald Parameters
+#' @inheritParams MBionomics
+#' @seealso [macdonald], [MEffectSizes.macdonald]
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @export
+MBionomics.macdonald <- function(t, y, xds_obj, s) {
+  xds_obj$MY_obj[[s]]$K_matrix_t <- F_K_matrix(t, xds_obj, s)
+  xds_obj$MY_obj[[s]]$es_K_matrix <- matrix(1, xds_obj$nPatches, xds_obj$nPatches)
+  return(xds_obj)
+}
+
+
+#' @title Apply effect sizes for `macdonald` (**MY**)
+#' @description Set `K_matrix = K_matrix_t * es_K_matrix` and recompute
+#' demographic and survival matrices. Scalar parameters remain unchanged.
+#' @inheritSection macdonald Parameters
+#' @inheritParams MEffectSizes
+#' @seealso [macdonald], [MBionomics.macdonald]
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @export
+MEffectSizes.macdonald <- function(t, y, xds_obj, s) {
+  with(xds_obj$MY_obj[[s]], {
+    xds_obj$MY_obj[[s]]$K_matrix <- K_matrix_t * es_K_matrix
+    xds_obj <- change_Omega(xds_obj, s)
+    return(xds_obj)
+  })
+}
+
+
+
+
+#' @title Compute infective mosquito biting density for `macdonald` (**MY**)
+#' @description Return the daily infective mosquito biting density on humans,
+#' `fqZ`, for each patch in the `macdonald` module.
+#' Compute `fqZ = f*q*Z`.
 #' @inheritSection macdonald Infective Biting
 #' @inheritParams F_fqZ
-#' @seealso [macdonald], [dMYdt.macdonald]
+#' @seealso [macdonald], [dMYdt.macdonald], [F_fqM.macdonald]
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -210,12 +254,13 @@ F_fqZ.macdonald <- function(t, y, xds_obj, s) {
   f*q*y[xds_obj$MY_obj[[s]]$ix$Z_ix]
 }
 
-#' @title Mosquito biting rate for `macdonald`
-#' @description Returns `fqM`, the daily mosquito biting density on humans
-#' for each patch in the `macdonald` model.
+#' @title Compute mosquito biting density for `macdonald` (**MY**)
+#' @description Return the daily mosquito biting density on humans,
+#' `fqM`, for each patch in the `macdonald` module.
+#' Compute `fqM = f*q*M`.
 #' @inheritSection macdonald Infective Biting
 #' @inheritParams F_fqM
-#' @seealso [macdonald], [F_hbr]
+#' @seealso [macdonald], [F_hbr], [F_fqZ.macdonald]
 #' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
@@ -225,8 +270,8 @@ F_fqM.macdonald <- function(t, y, xds_obj, s) {
   f*q*y[xds_obj$MY_obj[[s]]$ix$M_ix]
 }
 
-#' @title Egg production rate for `macdonald`
-#' @description Implements [F_eggs] for the `macdonald` model.
+#' @title Compute egg production for `macdonald` (**MY**)
+#' @description Return the number of eggs laid by the adult mosquito population, per patch
 #' @inheritSection macdonald Egg Laying
 #' @inheritParams F_eggs
 #' @seealso [macdonald], [EggLaying]
@@ -240,39 +285,64 @@ F_eggs.macdonald <- function(t, y, xds_obj, s) {
   })
 }
 
-
-#' @title Set up `macdonald` (**MY**)
-#' @description
-#'
-#' This sets up a `macdonald` model object for the **MY** module for the \eqn{s^{th}} vector species
-#' + the object is created by [make_MY_obj_macdonald]
-#' + the initial conditions are set by [setup_MY_inits]
-#' + `options` is passed to both to override the defaults
-#'
-#' @inheritSection macdonald State Variables
+#' @title Get the feeding rate for `macdonald` (**MY**)
+#' @description Return the stored realized feeding rate per patch.
 #' @inheritSection macdonald Parameters
-#'
-#' @seealso [macdonald], [make_MY_obj_macdonald], [setup_MY_inits.macdonald]
-#'
-#' @note The module object is stored at `xds_obj$MY_obj[[s]]`
-#'
-#' @inheritParams setup_MY_obj
-#' @return an **`xds`** model object
+#' @inheritParams get_f
+#' @seealso [macdonald]
+#' @details Read `f` without evaluating ports or applying effect sizes.
+#' @return a [numeric] vector of length `nPatches`
 #' @keywords internal
 #' @export
-setup_MY_obj.macdonald = function(MYname, xds_obj, options=list(), s=1){
-  xds_obj$MYname = "macdonald"
-  xds_obj$MY_obj[[s]] = make_MY_obj_macdonald(xds_obj$nPatches, options)
-  xds_obj$MY_obj[[s]]$skill_set <- get_skillset_MY(xds_obj, s)
-  xds_obj <- setup_F_circadian("setup", xds_obj, s=s)
-  xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
-  xds_obj <- setup_Upsilon_obj(xds_obj, s=s, TRUE)
-  xds_obj <- setup_K_matrix("zero", xds_obj, s=s)
-  xds_obj <- setup_MY_inits(xds_obj, options=options, s=s)
-  return(xds_obj)
+get_f.macdonald = function(xds_obj, s=1){
+  with(xds_obj$MY_obj[[s]], f)
 }
 
-#' @title Make parameters for `macdonald` adult mosquito model
+#' @title Get the human blood fraction for `macdonald` (**MY**)
+#' @description Return the stored realized human blood fraction per patch.
+#' @inheritSection macdonald Parameters
+#' @inheritParams get_q
+#' @seealso [macdonald]
+#' @details Read `q` without evaluating ports or applying effect sizes.
+#' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
+#' @export
+get_q.macdonald = function(xds_obj, s=1){
+  with(xds_obj$MY_obj[[s]], q)
+}
+
+#' @title Get the adult mosquito mortality rate for `macdonald` (**MY**)
+#' @description Return the stored realized adult mosquito mortality rate per patch.
+#' @inheritSection macdonald Parameters
+#' @inheritParams get_g
+#' @seealso [macdonald]
+#' @details Read `g` without evaluating ports or applying effect sizes.
+#' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
+#' @export
+get_g.macdonald = function(xds_obj, s=1){
+  with(xds_obj$MY_obj[[s]], g)
+}
+
+#' @title Get the patch emigration rate for `macdonald` (**MY**)
+#' @description Return the stored realized patch emigration rate per patch.
+#' @inheritSection macdonald Parameters
+#' @inheritParams get_sigma
+#' @seealso [macdonald]
+#' @details Read `sigma` without evaluating ports or applying effect sizes.
+#' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
+#' @export
+get_sigma.macdonald = function(xds_obj, s=1){
+  with(xds_obj$MY_obj[[s]], sigma)
+}
+
+
+#' @title Make a module object for `macdonald` (**MY**)
+#' @description Create a `macdonald` module object and initialize its parameters.
+#' Inspect parameters with [get_MY_pars.macdonald] and change supported values
+#' with [change_MY_pars.macdonald]. Values in `options` override parameter arguments.
+#' @seealso [get_MY_pars.macdonald], [change_MY_pars.macdonald]
 #' @inheritSection macdonald State Variables
 #' @inheritSection macdonald Parameters
 #' @param nPatches is the number of patches, an integer
@@ -283,7 +353,8 @@ setup_MY_obj.macdonald = function(MYname, xds_obj, options=list(), s=1){
 #' @param mu fraction lost during emigration
 #' @param f feeding rate
 #' @param q human blood fraction
-#' @param nu egg batch rate, in batches per mosquito per day
+#' @param nu the oviposition rate: the number of egg batches laid in each patch,
+#' per mosquito, per day
 #' @param eggsPerBatch number of eggs per batch
 #' @return a [list]
 #' @seealso [macdonald], [setup_MY_obj.macdonald]
@@ -311,15 +382,205 @@ make_MY_obj_macdonald = function(nPatches, options=list(), eip=12,
     return(MY_obj)
   })}
 
-#' @title Add indices for adult mosquitoes to parameter list
-#' @description Implements [setup_MY_ix] for the macdonald model.
+
+#' @title Set up the module object for `macdonald` (**MY**)
+#' @description
+#'
+#' Set up a `macdonald` module object for the **MY** component and the \eqn{s^{th}} vector species.
+#'
+#' + Set the module name to `macdonald`.
+#' + Create the module object with [make_MY_obj_macdonald], passing `nPatches` and `options`.
+#' + Set the skill set using [get_skillset_MY].
+#' + Initialize the circadian function using [setup_F_circadian.setup].
+#' + Initialize the mosquito demographic matrix port.
+#' + Initialize the EIP survival and dispersal matrix port.
+#' + Initialize the mosquito dispersal matrix using [setup_K_matrix.zero].
+#' + Set initial values using [setup_MY_inits], passing `options` to override defaults.
+#' + Return the updated **`xds`** model object.
+#'
+#' @inheritSection macdonald State Variables
+#' @inheritSection macdonald Parameters
+#'
+#' @seealso [macdonald], [make_MY_obj_macdonald], [setup_MY_inits.macdonald]
+#'
+#' @note The module object is stored at `xds_obj$MY_obj[[s]]`
+#'
+#' @inheritParams setup_MY_obj
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @export
+setup_MY_obj.macdonald = function(MYname, xds_obj, options=list(), s=1){
+  xds_obj$MYname = "macdonald"
+  xds_obj$MY_obj[[s]] = make_MY_obj_macdonald(xds_obj$nPatches, options)
+  xds_obj$MY_obj[[s]]$skill_set <- get_skillset_MY(xds_obj, s)
+  xds_obj <- setup_F_circadian("setup", xds_obj, s=s)
+  xds_obj <- setup_Omega_obj("xde", "static", xds_obj, s=s)
+  xds_obj <- setup_Upsilon_obj(xds_obj, s=s, TRUE)
+  xds_obj <- setup_K_matrix("zero", xds_obj, s=s)
+  xds_obj <- setup_MY_inits(xds_obj, options=options, s=s)
+  return(xds_obj)
+}
+
+
+
+#' @title Get parameters for `macdonald` (**MY**)
+#' @seealso [make_MY_obj_macdonald], [change_MY_pars.macdonald]
+#' @description Return the parameters for the `macdonald` module as a named list.
+#' @inheritSection macdonald Parameters
+#' @inheritParams get_MY_pars
+#' @return a named [list] of parameter values
+#' @seealso [macdonald], [change_MY_pars.macdonald]
+#' @keywords internal
+#' @export
+get_MY_pars.macdonald <- function(xds_obj, s=1) {
+  with(xds_obj$MY_obj[[s]], list(
+    f=f, q=q, g=g, sigma=sigma, eip=eip, mu=mu,
+    nu=nu, eggsPerBatch=eggsPerBatch, K_matrix=K_matrix
+  ))
+}
+
+#' @title Change parameters for `macdonald` (**MY**)
+#' @seealso [make_MY_obj_macdonald], [get_MY_pars.macdonald]
+#' @description Change parameter values named in `options` for the `macdonald`
+#' module, leaving other values unchanged.
+#' Call [MBionomics] at time zero after updating parameters, without calling [MEffectSizes].
+#' This method changes static parameter values.
+#' Recompute the demographic matrix and survival through the EIP.
+#' To change `K_matrix`, use [setup_K_matrix]; this method does not change
+#' the dispersal matrix.
+#' @inheritSection macdonald Parameters
+#' @inheritParams change_MY_pars
+#' @seealso [macdonald], [get_MY_pars.macdonald]
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @export
+change_MY_pars.macdonald <- function(xds_obj, options=list(), s=1) {
+  nHabitats <- xds_obj$nHabitats
+  with(xds_obj$MY_obj[[s]], with(options,{
+    xds_obj$MY_obj[[s]]$f = f
+    xds_obj$MY_obj[[s]]$q = q
+    xds_obj$MY_obj[[s]]$g = g
+    xds_obj$MY_obj[[s]]$sigma = sigma
+    xds_obj$MY_obj[[s]]$eip = eip
+    xds_obj$MY_obj[[s]]$mu = mu
+    xds_obj$MY_obj[[s]]$nu = nu
+    xds_obj$MY_obj[[s]]$eggsPerBatch = eggsPerBatch
+    xds_obj <- change_Omega(xds_obj, s)
+    y <- get_inits(xds_obj, flatten=TRUE)
+    xds_obj <- MBionomics(0, y, xds_obj, s)
+    return(xds_obj)
+  }))}
+
+
+#' @title Make initial values for `macdonald` (**MY**)
+#' @description Create a named list of initial values for the `macdonald` module.
+#' Values in `options` override the defaults.
+#' @details Initial mosquito densities must be numeric scalars or have length
+#' `nPatches`. Scalars are expanded to that length.
+#' Initialize `dk_ix` to zero in each patch. This accessory value is constructed
+#' internally rather than independently set through `options`.
+#' @inheritSection macdonald State Variables
+#' @param nPatches the number of patches
+#' @param options a [list] of values that overrides the defaults
+#' @param M total mosquito density at each patch
+#' @param P total parous mosquito density at each patch
+#' @param Y infected mosquito density at each patch
+#' @param Z infectious mosquito density at each patch
+#' @return a named [list] of initial values
+#' @seealso [macdonald], [setup_MY_inits.macdonald]
+#' @keywords internal
+#' @export
+#' @seealso [change_MY_inits.macdonald]
+make_MY_inits_macdonald = function(nPatches, options = list(),
+                                   M=5, P=1, Y=1, Z=1){
+  with(options,{
+    M = unname(checkIt(M, nPatches))
+    P = unname(checkIt(P, nPatches))
+    Y = unname(checkIt(Y, nPatches))
+    Z = unname(checkIt(Z, nPatches))
+    dk_ix = rep(0, nPatches)
+    return(list(M=M, P=P, Y=Y, Z=Z, dk_ix=dk_ix))
+})}
+
+
+#' @title Set up initial values for `macdonald` (**MY**)
+#' @description Set up initial values for the `macdonald` module using
+#' [make_MY_inits_macdonald]. Values in `options` override the defaults.
+#' @inheritSection macdonald State Variables
+#' @inheritParams setup_MY_inits
+#' @seealso [macdonald], [make_MY_inits_macdonald]
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @export
+#' @seealso [change_MY_inits.macdonald]
+#' @note Initial values are stored at `xds_obj$MY_obj[[s]]$inits`.
+#' @seealso [get_MY_inits]
+setup_MY_inits.macdonald = function(xds_obj, options=list(), s=1){with(xds_obj$MY_obj[[s]], {
+  xds_obj$MY_obj[[s]]$inits = make_MY_inits_macdonald(nPatches, options)
+  return(xds_obj)
+})}
+
+#' @title Change initial values for `macdonald` (**MY**)
+#' @description Change initial values named in `options` for the `macdonald`
+#' module, leaving other values unchanged.
+#'
+#' @inheritSection macdonald State Variables
+#' @inheritParams change_MY_inits
+#'
+#' @seealso [macdonald], [get_MY_inits], [make_MY_inits_macdonald], [setup_MY_inits.macdonald]
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @export
+#' @note Stored initial values for this module are at
+#' `xds_obj$MY_obj[[s]]$inits`.
+change_MY_inits.macdonald = function(xds_obj, options=list(), s=1){
+  inits = with(get_MY_inits(xds_obj, s),
+            with(options,{
+              list(M=M, P=P, Y=Y, Z=Z, dk_ix=dk_ix)
+           }))
+  xds_obj$MY_obj[[s]]$inits=inits
+  return(xds_obj)
+}
+
+#' @title Get the initial adult mosquito density for `macdonald` (**MY**)
+#' @description Return the initial adult mosquito density per patch.
+#' @inheritSection macdonald State Variables
+#' @inheritParams get_M
+#' @seealso [macdonald], [get_MY_inits]
+#' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
+#' @export
+get_M.macdonald = function(xds_obj, s=1){
+  get_MY_inits(xds_obj, s)$M
+}
+
+#' @title Get the initial infective mosquito density for `macdonald` (**MY**)
+#' @description Return the initial infective mosquito density per patch.
+#' @inheritSection macdonald State Variables
+#' @inheritSection macdonald Infective Biting
+#' @inheritParams get_Z
+#' @seealso [macdonald], [get_MY_inits]
+#' @return a [numeric] vector of length `nPatches`
+#' @keywords internal
+#' @export
+get_Z.macdonald = function(xds_obj, s=1){
+  get_MY_inits(xds_obj, s)$Z
+}
+
+#' @title Set up variable indices for `macdonald` (**MY**)
+#' @description Assign consecutive variable indices for the `macdonald` module,
+#' starting after `xds_obj$max_ix`, and update the maximum index.
+#' Allocate blocks in the order `M_ix`, `P_ix`, `Y_ix`, `Z_ix`, `kappa_ix`.
+#' Each block has length `nPatches`.
 #' @inheritParams setup_MY_ix
 #' @inheritSection macdonald State Variables
-#' @return a [list]
+#' @return an **`xds`** model object
 #' @seealso [macdonald]
 #' @importFrom utils tail
 #' @keywords internal
 #' @export
+#' @note Indices are stored at `xds_obj$MY_obj[[s]]$ix`.
+#' The maximum index is stored at `xds_obj$max_ix`.
 setup_MY_ix.macdonald <- function(xds_obj, s) {with(xds_obj,{
 
   M_ix <- seq(from = max_ix+1, length.out=nPatches)
@@ -343,25 +604,11 @@ setup_MY_ix.macdonald <- function(xds_obj, s) {with(xds_obj,{
   return(xds_obj)
 })}
 
-#' @title List variables for `macdonald` (**MY**)
-#' @description This method dispatches on the type of `xds_obj$MY_obj[[s]]`
-#' @inheritSection macdonald State Variables
-#' @inheritParams get_MY_vars
-#' @return a [list]
-#' @seealso [macdonald]
-#' @keywords internal
-#' @export
-get_MY_vars.macdonald <- function(y, xds_obj, s){
-  with(xds_obj$MY_obj[[s]]$ix,
-       return(list(
-         M = y[M_ix],
-         P = y[P_ix],
-         Y = y[Y_ix],
-         Z = y[Z_ix]
-)))}
-
 #' @title Parse outputs for `macdonald` (**MY**)
-#' @description Implements [parse_MY_orbits] for the macdonald model
+#' @description Extract the model state outputs for the `macdonald` module
+#' from `outputs` and return them by name in a list.
+#' Also compute `y = Y/M`, `z = Z/M`, and `parous = P/M`.
+#' @note Variable indices are stored at `xds_obj$MY_obj[[s]]$ix`.
 #' @inheritSection macdonald State Variables
 #' @inheritSection macdonald Infective Biting
 #' @inheritParams parse_MY_orbits
@@ -380,116 +627,59 @@ parse_MY_orbits.macdonald <- function(outputs, xds_obj, s) {with(xds_obj$MY_obj[
   return(list(M=M, P=P, Y=Y, Z=Z, y=y, z=z, parous=parous))
 })}
 
-
-
-#' @title Get parameters for `macdonald` (**MY**)
-#' @description Get the stored parameter values for the `macdonald` model.
-#' @inheritSection macdonald Parameters
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' @return a [list]
-#' @seealso [macdonald], [change_MY_pars.macdonald]
-#' @keywords internal
-#' @export
-get_MY_pars.macdonald <- function(xds_obj, s=1) {
-  with(xds_obj$MY_obj[[s]], list(
-    f=f, q=q, g=g, sigma=sigma, eip=eip, mu=mu,
-    nu=nu, eggsPerBatch=eggsPerBatch, K_matrix=K_matrix
-  ))
-}
-
-#' @title Change parameters for `macdonald` (**MY**)
-#' @description For the `macdonald` module (**MY**) for the \eqn{s^{th}} species,
-#' change static parameter values named in `options` leaving other values unchanged.
-#' @inheritSection macdonald Parameters
-#' @inheritParams change_MY_pars
-#' @seealso [macdonald], [get_MY_pars.macdonald]
-#' @return an **`xds`** model object
-#' @keywords internal
-#' @export
-change_MY_pars.macdonald <- function(xds_obj, options=list(), s=1) {
-  nHabitats <- xds_obj$nHabitats
-  with(xds_obj$MY_obj[[s]], with(options,{
-    xds_obj$MY_obj[[s]]$f = f
-    xds_obj$MY_obj[[s]]$q = q
-    xds_obj$MY_obj[[s]]$g = g
-    xds_obj$MY_obj[[s]]$sigma = sigma
-    xds_obj$MY_obj[[s]]$eip = eip
-    xds_obj$MY_obj[[s]]$mu = mu
-    xds_obj$MY_obj[[s]]$nu = nu
-    xds_obj$MY_obj[[s]]$eggsPerBatch = eggsPerBatch
-    return(xds_obj)
-  }))}
-
-
-#' @title Setup initial values for `macdonald` (**MY**)
-#' @description Set initial values for all the variables in the `macdonald` module
-#' (**MY**) for the \eqn{s^{th}} species.
-#' + [make_MY_inits_macdonald] supplies default values
-#' + The values in `options` override the defaults
-#' + To inspect variable names, use [get_MY_inits] or
-#' see the inline module documentation.
-#' @inheritSection macdonald State Variables
-#' @inheritParams setup_MY_inits
-#' @seealso [macdonald], [make_MY_inits_macdonald]
-#' @return an **`xds`** model object
-#' @keywords internal
-#' @export
-setup_MY_inits.macdonald = function(xds_obj, options=list(), s=1){with(xds_obj$MY_obj[[s]], {
-  xds_obj$MY_obj[[s]]$inits = make_MY_inits_macdonald(nPatches, options)
-  return(xds_obj)
-})}
-
-
-#' @title Make inits for macdonald adult mosquito model
-#' @inheritSection macdonald State Variables
-#' @param nPatches the number of patches
-#' @param options a [list] of values that overrides the defaults
-#' @param M total mosquito density at each patch
-#' @param P total parous mosquito density at each patch
-#' @param Y infected mosquito density at each patch
-#' @param Z infectious mosquito density at each patch
-#' @return a [list]
-#' @seealso [macdonald], [setup_MY_inits.macdonald]
-#' @keywords internal
-#' @export
-make_MY_inits_macdonald = function(nPatches, options = list(),
-                                   M=5, P=1, Y=1, Z=1){
-  with(options,{
-    M = unname(checkIt(M, nPatches))
-    P = unname(checkIt(P, nPatches))
-    Y = unname(checkIt(Y, nPatches))
-    Z = unname(checkIt(Z, nPatches))
-    dk_ix = rep(0, nPatches)
-    return(list(M=M, P=P, Y=Y, Z=Z, dk_ix=dk_ix))
-})}
-
-#' @title Change initial values for `macdonald` (**MY**)
-#' @description For the `macdonald` module (**MY**) for the \eqn{s^{th}} species,
-#' change initial values named in `options` leaving other values unchanged.
+#' @title Check `macdonald` (**MY**)
 #'
-#' @inheritSection macdonald State Variables
-#' @inheritParams change_MY_inits
+#' @description This method currently performs no additional checks.
+#' @inheritParams check_MY
 #'
-#' @seealso [macdonald], [get_MY_inits], [make_MY_inits_macdonald], [setup_MY_inits.macdonald]
 #' @return an **`xds`** model object
+#' @seealso [macdonald]
 #' @keywords internal
 #' @export
-change_MY_inits.macdonald = function(xds_obj, options=list(), s=1){
-  inits = with(get_MY_inits(xds_obj, s),
-            with(options,{
-              list(M=M, P=P, Y=Y, Z=Z, dk_ix=dk_ix)
-           }))
-  xds_obj$MY_obj[[s]]$inits=inits
+check_MY.macdonald = function(xds_obj, s){
   return(xds_obj)
 }
 
-#' @title Compute the steady states as a function of the daily EIR
-#' @description This method dispatches on the type of `MY_obj`.
+
+#' @title Get the skill set for `macdonald` (**MY**)
+#'
+#' @description Return the capabilities and compatibilities of the `macdonald` module as a list.
+#'
+#' @inheritParams get_skillset_MY
+#'
+#' @return the **MY** module skill set, as a list
+#' @seealso [macdonald]
+#'
+#' @keywords internal
+#' @export
+get_skillset_MY.macdonald = function(xds_obj, s){
+  skills = list(
+    f_is_port = FALSE,
+    q_is_port = FALSE,
+    g_is_port = FALSE,
+    sigma_is_port = FALSE,
+    sigma_b_is_port = FALSE,
+    sigma_q_is_port = FALSE,
+    mu_is_port = FALSE,
+    nu_is_port = FALSE,
+    eip_is_port = FALSE,
+    K_matrix_is_port = TRUE,
+    dts = FALSE,
+    xde = TRUE,
+    delay = TRUE
+  )
+  return(skills)
+}
+
+#' @title Compute steady states for `macdonald` (**MY**)
+#' @description Compute steady-state mosquito densities for the `macdonald` module
+#' given adult mosquito emergence `Lambda` and net infectiousness `kappa`
+#' for the differential-equation system.
 #' @inheritSection macdonald State Variables
 #' @inheritSection macdonald Dynamics
 #' @inheritParams steady_state_MY
-#' @return a [list]
+#' @return a named [list] with elements `M`, `P`, `Y`, and `Z`, each
+#' containing one value per patch
 #' @seealso [macdonald], [dMYdt.macdonald]
 #' @importFrom MASS ginv
 #' @importFrom expm expm
@@ -501,108 +691,7 @@ steady_state_MY.macdonald = function(Lambda, kappa, xds_obj, s=1){with(xds_obj$M
   Upsilon = expm(-Omega*eip)
   M_eq <- as.vector(Omega_inv %*% Lambda)
   P_eq <- as.vector(ginv(diag(f, nPatches) + Omega) %*% diag(f, nPatches) %*% M_eq)
-  Y_eq <- as.vector(ginv(diag(f*q*kappa) + Omega) %*% diag(f*q*kappa) %*% M_eq)
-  Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa) %*% (M_eq - Y_eq))
+  Y_eq <- as.vector(ginv(diag(f*q*kappa, nPatches) + Omega) %*% diag(f*q*kappa, nPatches) %*% M_eq)
+  Z_eq <- as.vector(Omega_inv %*% Upsilon %*% diag(f*q*kappa, nPatches) %*% (M_eq - Y_eq))
   return(list(M=M_eq, P=P_eq, Y=Y_eq, Z=Z_eq))
 })}
-
-
-
-#' @title Mosquito bionomics for `macdonald` (**MY**)
-#' @description This method leaves the `macdonald` bionomics parameters
-#' unchanged; the module does not implement dynamic bionomic ports.
-#' @inheritSection macdonald Parameters
-#' @inheritParams MEffectSizes
-#' @seealso [macdonald], [MEffectSizes.macdonald]
-#' @return an **`xds`** model object
-#' @keywords internal
-#' @export
-MBionomics.macdonald <- function(t, y, xds_obj, s) {
-  return(xds_obj)
-}
-
-#' @title Apply effect sizes for `macdonald` (**MY**)
-#' @description This method leaves the `macdonald` parameters unchanged;
-#' the module does not implement effect-size modifications.
-#' @inheritSection macdonald Parameters
-#' @inheritParams MEffectSizes
-#' @seealso [macdonald], [MBionomics.macdonald]
-#' @return an **`xds`** model object
-#' @keywords internal
-#' @export
-MEffectSizes.macdonald <- function(t, y, xds_obj, s) {
-  return(xds_obj)
-}
-
-#' @title Get the feeding rates
-#' @inheritSection macdonald Parameters
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' @return the feeding rate, as a vector 
-#' @seealso [macdonald]
-#' @keywords internal
-#' @export
-get_f.macdonald = function(xds_obj, s=1){
-  with(xds_obj$MY_obj[[s]], f)
-}
-
-#' @title Get the human fractions 
-#' @inheritSection macdonald Parameters
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' @return the human fraction, as a vector 
-#' @seealso [macdonald]
-#' @keywords internal
-#' @export
-get_q.macdonald = function(xds_obj, s=1){
-  with(xds_obj$MY_obj[[s]], q)
-}
-
-#' @title Get the mortality rates
-#' @inheritSection macdonald Parameters
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' @return the mortality rate, as a vector 
-#' @seealso [macdonald]
-#' @keywords internal
-#' @export
-get_g.macdonald = function(xds_obj, s=1){
-  with(xds_obj$MY_obj[[s]], g)
-}
-
-#' @title Get the patch emigration rates
-#' @inheritSection macdonald Parameters
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' @return the patch emigration rates, as a vector 
-#' @seealso [macdonald]
-#' @keywords internal
-#' @export
-get_sigma.macdonald = function(xds_obj, s=1){
-  with(xds_obj$MY_obj[[s]], sigma)
-}
-
-#' @title Get the initial mosquito population density 
-#' @inheritSection macdonald State Variables
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' @return the initial mosquito population density 
-#' @seealso [macdonald], [get_MY_inits]
-#' @keywords internal
-#' @export
-get_M.macdonald = function(xds_obj, s=1){
-  get_MY_inits(xds_obj, s)$M
-}
-
-#' @title Get the initial infective mosquito density 
-#' @inheritSection macdonald State Variables
-#' @inheritSection macdonald Infective Biting
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
-#' @return the initial infective mosquito population density 
-#' @seealso [macdonald], [get_MY_inits]
-#' @keywords internal
-#' @export
-get_Z.macdonald = function(xds_obj, s=1){
-  get_MY_inits(xds_obj, s)$Z
-}

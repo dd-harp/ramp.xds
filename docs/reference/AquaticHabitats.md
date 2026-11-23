@@ -1,6 +1,7 @@
-# Aquatic Habitats
+# Aquatic Habitat Dynamics
 
-Compute eggs laid at time \\(t\\)
+Update habitat search weights, unsuitable habitats, and ovitraps, and
+update resource availability for egg laying.
 
 ## Usage
 

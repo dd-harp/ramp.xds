@@ -1,6 +1,6 @@
-# dts_update\_ States for Discrete-Time Systems
+# Update states for discrete-time systems
 
-dts_update_s the state variables
+Update the state variables.
 
 ## Usage
 
@@ -24,5 +24,5 @@ dts_update(t, y, xds_obj)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) containing the vector of all
-state derivatives
+updated dependent variables (a
+[vector](https://rdrr.io/r/base/vector.html))

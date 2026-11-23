@@ -1,7 +1,7 @@
-# Save `xds` Object
+# saveRDS for `xds` Objects
 
 Removes forcing functions from the `L_obj` (to reduce the size) and
-stores the `xds` object using `saveRDS`
+stores the `xds` object using `saveRDS`.
 
 ## Usage
 

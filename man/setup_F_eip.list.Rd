@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{setup_F_eip.list}
 \alias{setup_F_eip.list}
-\title{Set up F_eip from options}
+\title{Set up F_eip (\strong{MY})}
 \usage{
 \method{setup_F_eip}{list}(name, xds_obj, options = list(), s = 1)
 }
@@ -19,7 +19,11 @@
 an \strong{\code{xds}} model object
 }
 \description{
+Set up extrinsic incubation periods using an options list.
+}
+\note{
 If an options list is passed as the first argument, use its
-\code{name} field to select the setup method.
+\code{name} field to select the setup method. If \code{name} is NULL, use the
+\code{no_setup} method. Pass the list as \code{options} to \link{setup_F_eip}.
 }
 \keyword{internal}

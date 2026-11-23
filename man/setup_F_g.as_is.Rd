@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{setup_F_g.as_is}
 \alias{setup_F_g.as_is}
-\title{Set up static mosquito mortality rate}
+\title{Set up static mosquito mortality rate (\strong{MY})}
 \usage{
 \method{setup_F_g}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a mosquito mortality rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set up supplied static mosquito mortality rates.
+Set up supplied static mosquito mortality rates from \code{options$g}
+or a numeric \code{name}. Values in \code{options$g} take precedence.
 }
 \keyword{internal}

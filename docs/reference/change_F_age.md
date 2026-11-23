@@ -1,13 +1,13 @@
 # Change F_age
 
-Change the age function. The function `F` should have the form
-\\(F_a(a,V)\\). If the variable \\(V\\) is not used, it's default value
-should be set to an empty list.
+Change the relative biting rate function by age. The function `F` should
+have the form \\(F_a(a,V)\\). If the variable \\(V\\) is not used, its
+default value should be set to an empty list.
 
 ## Usage
 
 ``` r
-change_F_age(F, xds_obj, ix = 1)
+change_F_age(F, xds_obj)
 ```
 
 ## Arguments
@@ -19,10 +19,6 @@ change_F_age(F, xds_obj, ix = 1)
 - xds_obj:
 
   an **`xds`** model object
-
-- ix:
-
-  the species index
 
 ## Value
 

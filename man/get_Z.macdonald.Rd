@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-macdonald.R
 \name{get_Z.macdonald}
 \alias{get_Z.macdonald}
-\title{Get the initial infective mosquito density}
+\title{Get the initial infective mosquito density for \code{macdonald} (\strong{MY})}
 \usage{
 \method{get_Z}{macdonald}(xds_obj, s = 1)
 }
@@ -12,10 +12,10 @@
 \item{s}{the vector species index}
 }
 \value{
-the initial infective mosquito population density
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Get the initial infective mosquito density
+Return the initial infective mosquito density per patch.
 }
 \section{State Variables}{
 
@@ -42,8 +42,7 @@ EIP.
 \link{F_fqZ.macdonald} and \link{F_fqM.macdonald} compute these patch-level
 quantities. \link{compute_EIR} combines \code{fqZ} with the biting distribution
 matrix and resident-bite fraction to compute stratum-level EIR; \link{F_hbr}
-computes HBR from \code{fqM} in the same way. The resulting \code{EIR} and \code{HBR}
-orbits are attached to the XH output during parsing.
+computes HBR from \code{fqM} in the same way.
 }
 
 \seealso{

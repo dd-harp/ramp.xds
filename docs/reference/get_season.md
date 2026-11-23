@@ -1,6 +1,6 @@
 # Get seasonality parameters
 
-Get the parameters for the seasonal pattern forcing the model
+Get the parameters for the seasonal pattern forcing the model.
 
 ## Usage
 
@@ -24,4 +24,4 @@ seasonal pattern parameters
 
 ## Note
 
-Dispatches on `forced_by`
+Dispatches on `forced_by`.

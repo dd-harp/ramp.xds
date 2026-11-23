@@ -1,9 +1,7 @@
-# Set up F_nu
+# Set up random oviposition rates (**MY**)
 
-Implements the "random" case for
-[setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md).
-See
-[make_F_nu_random](https://dd-harp.github.io/ramp.xds/reference/make_F_nu_random.md)
+Configure random oviposition rates using
+[make_F_nu_random](https://dd-harp.github.io/ramp.xds/reference/make_F_nu_random.md).
 
 ## Usage
 
@@ -16,7 +14,7 @@ setup_F_nu(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  an oviposition rate or setup method name
 
 - xds_obj:
 

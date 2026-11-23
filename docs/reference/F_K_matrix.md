@@ -1,6 +1,7 @@
-# Dynamically update a K Matrix
+# Compute the mosquito dispersal matrix (**MY**)
 
-A port function to updates the mosquito dispersal matrix dynamically.
+Compute the mosquito dispersal matrix by dispatching on the class of the
+port object `K_obj`.
 
 ## Usage
 
@@ -24,8 +25,8 @@ F_K_matrix(t, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
-`nPatches`
+a mosquito dispersal [matrix](https://rdrr.io/r/base/matrix.html) of
+dimensions `nPatches` by `nPatches`
 
 ## Note
 

@@ -1,7 +1,7 @@
 # Get Variables
 
-The NULL case for
-[get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
+The list method for
+[get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md).
 
 ## Usage
 
@@ -14,7 +14,7 @@ get_variables(opts, t, y, xds_obj, ix)
 
 - opts:
 
-  an options list and dispatching
+  an options list used for dispatch
 
 - t:
 

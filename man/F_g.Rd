@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{F_g}
 \alias{F_g}
-\title{Compute mosquito mortality}
+\title{Compute the baseline mosquito mortality rate (\strong{MY})}
 \usage{
 F_g(t, xds_obj, s)
 }
@@ -17,7 +17,6 @@ F_g(t, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This method dispatches on the type of \code{g_obj}. It should
-compute the baseline mosquito mortality rate, \eqn{g}
+Compute the baseline mosquito mortality rate, \eqn{g}.
 }
 \keyword{internal}

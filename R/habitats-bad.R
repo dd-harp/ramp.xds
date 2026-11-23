@@ -1,4 +1,6 @@
-#' @title Check other blood hosts
+# X
+
+#' @title Check bad habitat availability
 #' 
 #' @description
 #' Check that 
@@ -9,7 +11,7 @@
 #' @param bad_habitats bad habitat availability
 #' @param nP the number of patches
 #' 
-#' @seealso [xds_info_blood_feeding]
+#' @seealso [xds_info_aquatic_habitats]
 #' @export
 check_bad_habitats = function(bad_habitats, nP){
   stopifnot(is.numeric(bad_habitats))
@@ -41,7 +43,7 @@ change_bad_habitats = function(bad_habitats, xds_obj, s=1){
 
 #' @title Set up bad habitats
 #'
-#' @param name a or setup function name
+#' @param name a setup function name
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
@@ -78,7 +80,7 @@ setup_bad_habitats.list = function(name, xds_obj, options=list(), s=1){
 }
 
 #' @title Set up no bad_habitats 
-#' @description Don't change anything 
+#' @description Don't change anything.
 #' @inheritParams setup_bad_habitats
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -89,7 +91,8 @@ setup_bad_habitats.no_setup = function(name, xds_obj, options = list(), s=1){
 
 #' @title Set up bad habitats
 #' 
-#' @description Implements the "method1" case for [setup_bad_habitats]. See [make_bad_habitats_random]
+#' @description Generate random bad habitat availability using
+#' [make_bad_habitats_random] and apply it using [change_bad_habitats].
 #' 
 #' @inheritParams setup_bad_habitats
 #' @return an **`xds`** model object
@@ -101,9 +104,9 @@ setup_bad_habitats.random = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make other blood hosts 
+#' @title Make random bad habitat availability
 #' 
-#' @description Set up a random vector 
+#' @description Set up a random vector.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
@@ -119,11 +122,11 @@ make_bad_habitats_random = function(nPatches, options=list(), f_rand = stats::rl
 
 #' @title Set up bad habitats
 #' @description 
-#' Pass a pre-configured bad_habitats. If it passes 
+#' Pass pre-configured bad_habitats. If it passes
 #' the checks, it replaces the current bad_habitats.
 #' 
 #' If called with `name = "as_is"`, the bad_habitats
-#' must be at `options$bad_habitats` 
+#' must be at `options$bad_habitats`.
 #' 
 #' @inheritParams setup_bad_habitats
 #' @return an **`xds`** model object
@@ -132,7 +135,7 @@ make_bad_habitats_random = function(nPatches, options=list(), f_rand = stats::rl
 setup_bad_habitats.as_is = function(name, xds_obj, options=list(), s=1){
   
   if(is.list(options)) 
-    bad_habitats_as_is = options$bad_habitats_asis
+    bad_habitats_as_is = options$bad_habitats
   if(is.numeric(name))
     bad_habitats_as_is = as.vector(name)
   
@@ -141,7 +144,7 @@ setup_bad_habitats.as_is = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Update other blood hosts 
+#' @title Update bad habitat availability
 #' 
 #' @description Port function for the bad_habitats, \eqn{\Theta}.
 #' Dispatches on `class(xds_obj$patches$bad_habitats_obj[[s]])`.
@@ -158,8 +161,8 @@ update_bad_habitats <- function(t, y, xds_obj, s){
   UseMethod("update_bad_habitats", xds_obj$patches$bad_habitats_obj[[s]])
 }
 
-#' @title Update other blood hosts 
-#' @description The `static` method returns `xds_obj` unmodified
+#' @title Update bad habitat availability
+#' @description The `static` method returns `xds_obj` unmodified.
 #' @inheritParams update_bad_habitats
 #' @return an **`xds`** model object
 #' @export
@@ -167,12 +170,12 @@ update_bad_habitats <- function(t, y, xds_obj, s){
 update_bad_habitats.static <- function(t, y, xds_obj, s) { return(xds_obj) }
 
 
-#' @title Get availability of other blood hosts
+#' @title Get bad habitat availability
 #'
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #'
-#' @return a [matrix]
+#' @return a [numeric] vector of length `nPatches`
 #' @export
 get_bad_habitats = function(xds_obj, s=1){
   return(xds_obj$patches$bad_habitats[[s]])

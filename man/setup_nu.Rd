@@ -3,14 +3,14 @@
 \name{setup_nu}
 \alias{setup_nu}
 \alias{setup_egg_batch_rates}
-\title{Set up egg batch rates}
+\title{Set up oviposition rates (\strong{MY})}
 \usage{
 setup_nu(name, xds_obj, options = list(), s = 1)
 
 setup_egg_batch_rates(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{an oviposition rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -22,6 +22,6 @@ setup_egg_batch_rates(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up the egg batch rate (\eqn{\nu})
+Set up the oviposition rate (\eqn{\nu})
 for static systems
 }

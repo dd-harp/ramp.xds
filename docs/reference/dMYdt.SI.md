@@ -1,4 +1,4 @@
-# Compute derivatives for `SI` (**MY**)
+# Compute the derivatives for `SI` (**MY**)
 
 The derivatives for the `SI` module are:
 
@@ -93,11 +93,11 @@ a vector with the derivatives
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\(\mu\\):
 
-  emigration loss rate — use
+  emigration loss fraction — use
   [setup_mu](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
   or
   [setup_emigration_loss](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
@@ -109,7 +109,8 @@ a vector with the derivatives
 
 - `nu` or \\(\nu\\):
 
-  the egg batch rate, in batches per mosquito per day — use
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -120,26 +121,25 @@ a vector with the derivatives
 
 After basic setup,
 [change_MY_pars](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.md)
-can be used for static parameters, or for for parameters that are set up
-as static ports (the default). Use advanced setup to modify dynamic
-ports.
+can be used for static parameters, or for parameters that are set up as
+static ports (the default). Use advanced setup to modify dynamic ports.
 
-## Dynamics
+## ODE
 
 **Ecology**
 
-Adult mosquitoes emerge from aquatic habitats \\((\Lambda)\\) and
-disperse and die (\\(\Omega\\)): \$\$ dM/dt = \Lambda - \Omega \cdot M
-\$\$ The model also computes the density of parous adult mosquitoes:
-those that have blood fed at least once: \$\$ dP/dt = fq(M-P) - \Omega
-\cdot P \\\\ \$\$ Parity is computed during parsing as \\(P/M\\) and its
-orbit is stored as `parity.`
+Adult mosquitoes emerge from aquatic habitats at rate \\(\Lambda\\) and
+disperse and die according to \\(\Omega\\): \$\$ dM/dt = \Lambda -
+\Omega \cdot M \$\$ The model also computes the density of parous adult
+mosquitoes: those that have blood fed at least once: \$\$ dP/dt =
+fq(M-P) - \Omega \cdot P \\\\ \$\$ Parity is computed during parsing as
+\\(P/M\\) and its orbit is stored as `parity`.
 
 **Infection Dynamics**
 
 Given the per-capita daily rate of human blood feeding \\((fq)\\) and
 net infectiousness \\((\kappa)\\), the FoI for mosquitoes is
-\\(fq\kappa\\). Changes in the density of infected mosquitoes is given
+\\(fq\kappa\\). Changes in the density of infected mosquitoes are given
 by: \$\$ dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\\\ \$\$
 
 ## See also

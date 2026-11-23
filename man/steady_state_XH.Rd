@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{steady_state_XH}
 \alias{steady_state_XH}
-\title{Steady states for \strong{XH}}
+\title{Compute steady states (\strong{XH})}
 \usage{
 steady_state_XH(foi, xds_obj, i = 1)
 }
@@ -14,10 +14,16 @@ steady_state_XH(foi, xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-steady states
+module-specific steady-state values; see the selected method for
+the return type and state names
 }
 \description{
-Compute the steady states as a function of the daily FoI for a
-static value of human population density
+Compute steady-state host and infection densities for the
+selected \strong{XH} module given daily FoI \code{foi}.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$XH_obj[[i]]}.
+A module-specific method must be supplied to use this generic.
+Return values are not stored on the model object.
 }
 \keyword{internal}

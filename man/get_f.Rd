@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_f}
 \alias{get_f}
-\title{Get the feeding rate(s)}
+\title{Get the feeding rate (\strong{MY})}
 \usage{
 get_f(xds_obj, s = 1)
 }
@@ -12,8 +12,15 @@ get_f(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the feeding rate, as a vector
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Get the feeding rate(s)
+Return the stored realized feeding rate per patch.
+}
+\details{
+Read the realized parameter without evaluating its port or applying
+effect sizes. Run bionomics and effect-size application to refresh port-backed values.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$MY_obj[[s]]}.
 }

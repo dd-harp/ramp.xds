@@ -1,6 +1,6 @@
-# Make parameters for basicM adult mosquito model
+# Make the module object for `basicM` (**MY**)
 
-Make parameters for basicM adult mosquito model
+Make the module object for `basicM` (**MY**)
 
 ## Usage
 
@@ -50,11 +50,12 @@ make_M_obj_basicM(
 
 - nu:
 
-  oviposition rate, per mosquito
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day
 
 - eggsPerBatch:
 
-  eggs laid per oviposition
+  number of eggs per batch
 
 ## Value
 

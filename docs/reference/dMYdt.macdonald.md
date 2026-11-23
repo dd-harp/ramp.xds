@@ -1,4 +1,4 @@
-# Compute derivatives for `macdonald` (**MY**)
+# Compute the derivatives for `macdonald` (**MY**)
 
 Implements the delay differential equations for the `macdonald` module.
 
@@ -91,7 +91,7 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\(\mu\\):
 
@@ -107,7 +107,8 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector
 
 - `nu` or \\(\nu\\):
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)

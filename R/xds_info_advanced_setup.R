@@ -1,64 +1,57 @@
 # Y 
 
-#' @title **`ramp.xds`**: All Setup Options 
+#' @title Advanced setup for **`ramp.xds`**
 #'
 #' @description
+#' 
+#' Advanced setup options for progressive elaboration after basic setup (see [xds_basic_setup])
+#' 
+#' 
+#' @section Spatial Dynamics: 
+#' 
+#' **Mosquito Dispersal** 
+#' + Dispersal Kernel --- [setup_K_matrix]
+#' + Patch Emigration --- [setup_mosy_emigration] | [setup_emigration_loss]
+#' + **Blood** ---  [setup_blood_search_weights] | [setup_other_blood_hosts] | [setup_blood_traps] 
+#' + **Habitats** ---  [setup_habitat_search_weights] | [setup_bad_habitats] | [setup_ovitraps]
+#' + **Sugar** --- [ramp.forcing::setup_sugar]
+#' 
+#' **Human Mobility**
+#' + [setup_timespent] 
+#' + [setup_F_circadian]
+#' 
+#' @section Human Demography:
+#' + [setup_births] | [setup_deaths]
 #'  
-#' **Basic Setup** uses [xds_setup] or one of its variants (see [xds_info_basic_setup])
-#' to create an xds object. 
+#' @section Blood Feeding, Exposure, and Transmission: 
 #' 
-#' The following is a list of configurable options 
-#' and where to look for more help. 
-#'  
-#' @section Structural Parameters: 
-#' 
-#' + `nPatches` -- see [xds_info_patch_dynamics]
-#' + `nStrata` -- see [xds_info_human_populations] 
-#' + `nHabitats` -- see [xds_info_aquatic_habitats] 
-#' 
-#' @section Modules: 
-#' 
-#' + `XHname` -- see [XH_module_list]
-#' + `MYname`-- see [MY_module_list]
-#' + `Lname` -- see [L_module_list]
-#' 
-#' Parameter values and initial values for the variables are 
-#' passed as named lists. The module help pages have information
-#' about how to configure: 
-#' `Xoptions,` 
-#' `MYoptions,` & 
-#' `Loptions.` 
-#'
-#' @section Basic options:  
-#' + `Koptions` see [xds_info_mosquito_dispersal] and [setup_K_matrix]
-#' + [xds_info_search_weights]
-#' + [xds_info_time_spent]
-#' 
-#' @section Blood Feeding and Transmission: 
-#' 
-#' + [xds_info_available_blood_hosts]
-#'    + [xds_info_search_weights_blood]
-#'    + [xds_port_other_blood_hosts]
-#'    + [xds_port_blood_traps]
-#' + [xds_info_local_fraction]
+#' + [setup_blood_search_weights]
+#' + [setup_blood_feeding_rates] | [setup_human_fraction]
+#' + Resources: [setup_other_blood_hosts] | [setup_blood_traps] 
 #' 
 #' @section Exposure:
-#' + [xds_info_environmental_heterogeneity] 
-#' + [xds_info_travel_malaria] 
+#' + [setup_exposure]
+#' + 
 #' 
 #' @section Malaria Importation:
-#' + [xds_info_malaria_importation] 
-#' + [xds_info_travel_malaria] 
-#' + [xds_info_visitors] 
+#' + [setup_time_away] | [setup_travel_eir]
+#' + [setup_visitors] | [setup_vis_kappa]
 #' 
 #' @section Mosquito Bionomics: 
 #' 
-#' [xds_info_mosquito_bionomics] 
+#' + \eqn{f} --- [setup_f] | [setup_blood_feeding_rates]
+#' + \eqn{q} --- [setup_q] | [setup_human_fraction]
+#' + \eqn{g} --- [setup_g] | [setup_mosquito_mortality]
+#' + \eqn{\sigma} --- [setup_sigma] | [setup_mosy_emigration]
+#' + \eqn{\mu} --- [setup_mu] | [setup_emigration_loss]
+#' + \eqn{\nu} --- [setup_nu] | [setup_egg_batch_rates]
+#' + \eqn{\tau} --- [setup_eip]
 #' 
-#' @section Forcing:
+#' @section Weather:
 #' 
-#' [xds_info_forcing] 
-#' [xds_info_trivial_forcing] 
+#' 
+#' + [ramp.forcing::setup_temperature] 
+#' + 
 #' 
 #' @section Resources:
 #' 
@@ -69,5 +62,6 @@
 #' + [xds_info_aquatic_habitats]
 #' + [xds_port_ovitraps]
 #' 
-#' @name xds_info_advanced_setup
+#' @name xds_advanced_setup
+#' @aliases xds_info_advanced_setup
 NULL

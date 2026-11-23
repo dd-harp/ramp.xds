@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{F_q.static}
 \alias{F_q.static}
-\title{Static model human feeding fraction}
+\title{Static model human fraction (\strong{MY})}
 \usage{
 \method{F_q}{static}(t, xds_obj, s)
 }
@@ -14,9 +14,9 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{q}, the baseline human feeding fraction
+\eqn{q}, the baseline human fraction
 }
 \description{
-Implements \link{F_q} for a static model
+Return the baseline human fraction for a static model.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{dF_eip.static}
 \alias{dF_eip.static}
-\title{Static model for the EIP}
+\title{Time derivative of the EIP for a static model (\strong{MY})}
 \usage{
 \method{dF_eip}{static}(t, xds_obj, s)
 }
@@ -14,9 +14,9 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{eip}, the extrinsic incubation period in days
+zero
 }
 \description{
-Implements \link{F_eip} for a static model
+Return zero because the extrinsic incubation period is constant.
 }
 \keyword{internal}

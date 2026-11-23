@@ -1,14 +1,15 @@
+# X
 
-
-#' @title Setup Egg Batch Rate Bionomic Object
+#' @title Set up bionomic port for oviposition rate (**MY**)
 #'
-#' @description Set up an object
-#' to compute the egg batch rate, \eqn{nu}
+#' @description Set up a [bionomic port][xds_info_port] to compute the baseline oviposition rate,
+#' \eqn{nu}, for a static model.
 #'
-#' @param nu the egg batch rate (batches per mosquito per day)
-#' @param MY_obj an **`MY`** model object
+#' @param nu the oviposition rate: the number of egg batches laid in each patch,
+#' per mosquito, per day
+#' @param MY_obj an **`MY`** module object
 #'
-#' @return a **`MY`** model object
+#' @return an **`MY`** module object
 #'
 #' @keywords internal
 #' @export
@@ -26,10 +27,9 @@ setup_nu_obj = function(nu, MY_obj){
   return(MY_obj)
 }
 
-#' @title Compute the Egg Laying Rate
+#' @title Compute the baseline oviposition rate (**MY**)
 #'
-#' @description This method dispatches on the type of `nu_obj`. It should
-#' set the values of the egg batch rate, \eqn{\nu}
+#' @description Compute the baseline oviposition rate, \eqn{\nu}.
 #'
 #' @inheritParams F_f
 #'
@@ -41,13 +41,13 @@ F_nu = function(t, xds_obj, s){
   UseMethod("F_nu", xds_obj$MY_obj[[s]]$nu_obj)
 }
 
-#' @title Static model egg batch rate
+#' @title Static model oviposition rate (**MY**)
 #'
-#' @description Implements [F_nu] for a static model
+#' @description Return the baseline oviposition rate for a static model.
 #'
 #' @inheritParams F_nu
 #'
-#' @return \eqn{nu}, the egg batch rate
+#' @return \eqn{nu}, the baseline oviposition rate
 #' 
 #' @keywords internal
 #' @export
@@ -55,17 +55,17 @@ F_nu.static = function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$nu_obj$nu)
 }
 
-#' @title Check egg batch rate
+#' @title Check oviposition rate
 #' 
 #' @description
-#' Check that the egg batch rates are in the expected range and length:
+#' Check that the oviposition rates are in the expected range and length:
 #' + all elements are non-negative
 #' + length(F_nu) == nPatches
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
 #' 
-#' @return the egg batch rate
+#' @return the oviposition rate
 #' @seealso [xds_info_egg_laying]
 #' @export
 check_nu = function(xds_obj, s=1){
@@ -76,10 +76,10 @@ check_nu = function(xds_obj, s=1){
   return(nu)
 }
 
-#' @title Change F_nu
+#' @title Change the oviposition rate (**MY**)
 #' 
 #' @description
-#' Update F_nu for the \eqn{s^{th}} vector species.
+#' Update the oviposition rate for the \eqn{s^{th}} vector species.
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param s the vector species index
@@ -96,12 +96,12 @@ change_nu = function(xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set up egg batch rates
+#' @title Set up oviposition rates (**MY**)
 #' 
-#' @description Set up the egg batch rate (\eqn{\nu})
+#' @description Set up the oviposition rate (\eqn{\nu})
 #' for static systems
 #'
-#' @param name a or setup function name
+#' @param name an oviposition rate or setup method name
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
@@ -120,9 +120,11 @@ setup_nu = function(name, xds_obj, options = list(), s=1){
 setup_egg_batch_rates <- setup_nu
 
 
-#' @title Set up F_nu
+#' @title Configure the oviposition rate function (**MY**)
 #'
-#' @param name a or setup function name
+#' @description Configure the function used to compute the baseline oviposition rate.
+#'
+#' @param name an oviposition rate or setup method name
 #' @param xds_obj an **`xds`** model object
 #' @param options configuration options
 #' @param s the vector species index
@@ -136,13 +138,13 @@ setup_F_nu = function(name, xds_obj, options = list(), s=1){
   UseMethod("setup_F_nu", options)
 }
 
-#' @title Set up F_nu
+#' @title Set up F_nu (**MY**)
 #'
-#' @description If an options list is passed
-#' as the first argument, then set 
-#' + `Fnu_name = name$name` 
-#' + `options = name`
-#' and call `setup_F_nu(Fnu_name, xds_obj, options, s)` 
+#' @description Set up oviposition rates using an options list.
+#'
+#' @note If an options list is passed as the first argument, use its
+#' `name` field to select the setup method. If `name` is NULL, use the
+#' `no_setup` method. Pass the list as `options` to [setup_F_nu].
 #'
 #' @inheritParams setup_F_nu
 #'
@@ -158,9 +160,10 @@ setup_F_nu.list = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Setup egg laying
+#' @title Set up static oviposition rates (**MY**)
 #'
-#' @description Change the static values. 
+#' @description Set up supplied static oviposition rates from `options$nu`
+#' or a numeric `name`. Values in `options$nu` take precedence.
 #'
 #' @inheritParams setup_F_nu 
 #' 
@@ -168,19 +171,21 @@ setup_F_nu.list = function(name, xds_obj, options=list(), s=1){
 #' @keywords internal
 #' @export
 setup_F_nu.as_is = function(name, xds_obj, options=list(), s=1){
-  
-  if(is.list(options)) 
-    nu = options$nu
-  if(is.matrix(name))
+  if (is.list(options) && !is.null(options$nu)) {
+    nu <- options$nu
+  } else if (is.numeric(name)) {
     nu <- name
-  
+  } else {
+    stop("Supply oviposition rates in `options$nu` or as numeric `name`.")
+  }
+
   xds_obj$MY_obj[[s]]$nu_obj$nu = nu
   xds_obj <- change_nu(xds_obj, s)
   return(xds_obj)
 }
 
-#' @title Set up no F_nu 
-#' @description Don't change anything 
+#' @title Set up F_nu (no setup) (**MY**)
+#' @description Leave the existing oviposition rate configuration unchanged.
 #' @inheritParams setup_F_nu
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -189,25 +194,9 @@ setup_F_nu.no_setup = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Compute random egg batch rates
-#'
-#' @description Compute random egg batch rates
-#'
-#' @inheritParams F_nu
-#'
-#' @return \eqn{nu}, the egg batch rate
-#' @keywords internal
-#' @export
-F_nu.random = function(t, xds_obj, s){
-  with(xds_obj$MY_obj[[s]]$nu_obj,{
-    nu = F_nu(xds_obj$nPatches, p1, p2)
-    return(nu)
-})}
-
-
-#' @title Set up F_nu
+#' @title Set up random oviposition rates (**MY**)
 #' 
-#' @description Implements the "random" case for [setup_nu]. See [make_F_nu_random]
+#' @description Configure random oviposition rates using [make_F_nu_random].
 #' 
 #' @inheritParams setup_F_nu
 #' @return an **`xds`** model object
@@ -219,17 +208,21 @@ setup_F_nu.random = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make random egg batch rates
+#' @title Make random oviposition rates (**MY**)
 #' 
-#' @description Set up a random vector 
+#' @description Draw oviposition rates once during setup.
+#' Subsequent evaluations reuse these values.
+#'
+#' @note The values are stored in a static port object.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
-#' @param f_rand a random number generator
-#' @param p1 argument 1 for f_rand 
-#' @param p2 argument 2 for f_rand
+#' @param f_rand a random number generator called as `f_rand(nPatches, p1, p2)`
+#' that returns a numeric vector of length `nPatches`
+#' @param p1 argument 1 for `f_rand`
+#' @param p2 argument 2 for `f_rand`
 #' 
-#' @return an object to set up egg batch rates
+#' @return a static port object for [F_nu.static]
 #' @export
 make_F_nu_random = function(nPatches, options=list(), 
                             f_rand = stats::rbeta, 
@@ -238,24 +231,23 @@ make_F_nu_random = function(nPatches, options=list(),
     nu_obj <- list() 
     nu_obj$p1=p1
     nu_obj$p2=p2
-    nu_obj$F_nu = f_rand
-    class(nu_obj) <- "random" 
+    nu_obj$f_rand = f_rand
+    nu_obj$nu <- f_rand(nPatches, p1, p2)
+    class(nu_obj) <- "static"
     return(nu_obj)
 })}
 
 
 
-#' @title Egg batch rate
+#' @title Compute the baseline oviposition rate (type 2) (**MY**)
 #'
-#' @description Egg batch rates are a type2 functional response
-#' to available water. 
-#' 
-#' Letting \eqn{Q} be the availability of all water. The egg batch rate is
+#' @description Compute the baseline oviposition rate using a type 2 functional
+#' response to water availability, \eqn{Q}.
 #' \deqn{\nu = \nu_x \frac{s_\nu Q}{1+s_\nu Q}}  
 #'
 #' @inheritParams F_nu
 #'
-#' @return \eqn{\nu}, the baseline egg batch rate
+#' @return \eqn{\nu}, the baseline oviposition rate
 #' 
 #' @keywords internal
 #' @export
@@ -266,10 +258,9 @@ F_nu.type2 = function(t, xds_obj, s){
       return(nu)
 })}
 
-#' @title Setup F_nu
+#' @title Set up type 2 oviposition rates (**MY**)
 #' 
-#' @description Set up a type 2 functional response for
-#' egg laying
+#' @description Configure a type 2 functional response for the oviposition rate.
 #' 
 #' @inheritParams setup_F_nu
 #' @return an **`xds`** model object
@@ -282,15 +273,17 @@ setup_F_nu.type2 = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Make type2 egg batch rates
+#' @title Make type 2 oviposition rate port (**MY**)
 #' 
-#' @description Set up a type2 vector 
+#' @description Build a configuration object for a type 2 oviposition rate
+#' response to water availability.
 #' 
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
-#' @param vx the maximum laying
+#' @param vx the maximum oviposition rate: the maximum number of egg batches
+#' laid in each patch, per mosquito, per day
 #' @param sv the shape parameter
-#' @return an object to set up egg batch rates
+#' @return a configuration object for [F_nu.type2]
 #' @export
 make_F_nu_type2 = function(nPatches, options=list(), vx = .3, sv = .1) {with(options,{
   nu_obj <- list() 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{dXHdt}
 \alias{dXHdt}
-\title{Compute derivatives (\strong{XH})}
+\title{Compute the derivatives (\strong{XH})}
 \usage{
 dXHdt(t, y, xds_obj, i)
 }

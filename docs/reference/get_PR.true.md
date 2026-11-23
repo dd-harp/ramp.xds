@@ -1,6 +1,6 @@
 # Get the *Pf*PR from a malaria model
 
-Return the true *Pf*PR
+Return the true *Pf*PR.
 
 ## Usage
 
@@ -25,4 +25,5 @@ get_PR(xds_obj, method = "true", i = 1)
 
 ## Value
 
-the true PR
+a [list](https://rdrr.io/r/base/list.html) containing `time`, `pr`, and
+`method`

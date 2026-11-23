@@ -1,4 +1,4 @@
-# Setup initial values for `SI` (**MY**)
+# Set up initial values for `SI` (**MY**)
 
 Set initial values for all the variables in the `SI` module (**MY**) for
 the \\(s^{th}\\) species.

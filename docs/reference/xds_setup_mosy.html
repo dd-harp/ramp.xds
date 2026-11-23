@@ -133,7 +133,7 @@ can be solved by <a href="xds_solve.html">xds_solve</a>.</p>
 
 
 <dt id="arg-membership">membership<a class="anchor" aria-label="anchor" href="#arg-membership"></a></dt>
-<dd><p>is a vector that describes the patch where each aquatic habitat is found</p></dd>
+<dd><p>the habitat membership vector or <a href="habitat_vector.html">habitat_vector</a></p></dd>
 
 
 <dt id="arg-hpop">HPop<a class="anchor" aria-label="anchor" href="#arg-hpop"></a></dt>
@@ -201,7 +201,7 @@ and egg laying (see <a href="xds_object.html">xds_object</a>).</p>
 
 
 <p>Set up the model structure:</p><ul><li><p><code>nPatches</code> - the number of patches (see <a href="xds_info_patch_dynamics.html">xds_info_patch_dynamics</a>)</p></li>
-<li><p><code>membership</code> - the habitat membership vector (see <a href="xds_info_aquatic_habitats.html">xds_info_aquatic_habitats</a>)</p></li>
+<li><p><code>membership</code> - the habitat membership vector (see <a href="habitat_vector.html">habitat_vector</a>)</p></li>
 </ul><p>During setup:</p><ul><li><p>The structural parameter <code>nHabitats</code> is set to <code>length(membership)</code></p></li>
 <li><p>The structural parameter <code>nStrata</code> is set to <code>nPatches</code></p></li>
 <li><p><code>nPatches</code> is checked and set to <code>max(membership, nPatches)</code></p></li>
@@ -221,7 +221,7 @@ and egg laying (see <a href="xds_object.html">xds_object</a>).</p>
 <ul><li><p>Basic Setup: <a href="xds_setup.html">xds_setup</a>, <a href="xds_basic_setup.html">xds_info_basic_setup</a></p><ul><li><p>change parameters — <a href="xds_change_parameters.html">xds_info_change_parameters</a></p></li>
 <li><p>change initial conditions — <a href="xds_initial_conditions.html">xds_info_initial_conditions</a></p></li>
 </ul></li>
-<li><p>Advanced Setup: <a href="xds_info_advanced_setup.html">xds_info_advanced_setup</a></p></li>
+<li><p>Advanced Setup: <a href="xds_advanced_setup.html">xds_info_advanced_setup</a></p></li>
 <li><p>Solving: <a href="xds_solve.html">xds_solve</a></p></li>
 <li><p>Internals: <a href="xds_info_dynamical_components.html">xds_info_dynamical_components</a>,
 <a href="xds_object.html">xds_object</a>, <a href="make_xds_object_template.html">make_xds_object_template</a></p></li>

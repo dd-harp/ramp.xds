@@ -1,6 +1,6 @@
-# Set up F_eip
+# Configure the extrinsic incubation period function (**MY**)
 
-Set up F_eip
+Configure the function used to compute the extrinsic incubation period.
 
 ## Usage
 

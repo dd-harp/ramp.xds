@@ -13,6 +13,9 @@ This model is derived under a restrictive set of assumptions,
 so it cannot be extended to model dynamic changes in population size or
 treatment with anti-malarial drugs.
 }
+\note{
+The force of infection is computed and stored by \link{Exposure} as \code{FoI}.
+}
 \section{State Variables}{
 
 \describe{
@@ -32,7 +35,7 @@ is a parameter, but it should be changed using \link{change_XH_inits}.
 
 
 \describe{
-\item{\eqn{h} or \code{foi}}{The force of infection is computed and stored by \link{Exposure} as \code{FoI}}
+\item{\eqn{h} or \code{foi}}{The force of infection}
 }
 
 In the \code{hMoI} module, there is no effect of pre-erythrocytic immunity, so
@@ -67,6 +70,9 @@ dm_2/dt &= h - r_2 m_2 \\
 \item{\eqn{x_1}}{true prevalence: \eqn{x_1 = 1-e^{-m_1}}}
 \item{\eqn{x_2}}{apparent prevalence: \eqn{x_2 = 1-e^{-m_2}}}
 }
+\link{F_pr_obs.hMoI} returns apparent prevalence \eqn{x_2}.
+\link{F_pfpr_by_lm}, \link{F_pfpr_by_rdt}, and \link{F_pfpr_by_pcr} are compatibility
+aliases for \link{F_pr_obs} in this module.
 }
 
 \section{Infectiousness}{

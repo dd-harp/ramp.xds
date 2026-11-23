@@ -28,18 +28,16 @@ In developing ports, the mathematical consequences
 of a port could be mathematically inconsistent, the port
 documentation should include warnings.
 }
-\section{Port Value}{
-
+\note{
+\strong{Port Value:}
 Each port is a flexible method for assigning a value to a parameter or variable (\code{par}).
 The current value of the parameter
 or variable has a location on a base object (\code{base_obj}), and it is
 always retrieved from that location:
 
 \code{xds_obj$base_obj$par}
-}
 
-\section{Port Object}{
-
+\strong{Port Object:}
 A port is set up and implemented through an object (\code{par_obj}) that
 is located on the same base object:
 
@@ -57,10 +55,8 @@ where \code{this_case = class(par_obj)}
 
 In some cases, \code{par_obj} is a named list
 that holds other parameter values.
-}
 
-\section{Port Function}{
-
+\strong{Port Function:}
 
 The value of the parameter is set by a function call with
 a standard form:
@@ -85,27 +81,16 @@ Since \code{xds_obj} is passed to \code{this_port},
 functions can use
 any variables that have been defined anywhere
 on the \code{xds_obj}.
-}
 
-\section{Default Case}{
-
+\strong{Default Case:}
 The default case is:
 
 \code{class(xds_obj$base_obj$par_obj) =  "static"}
 
 and \code{this_port.static} returns \code{xds_obj}
 unmodified.
-}
 
-\section{Forcing Function Case}{
-
-Most ports can alternatively be configured with a forcing function
-using the composable time series functions from \code{ramp.func} and
-\code{ramp.forcing}.
-}
-
-\section{Setup}{
-
+\strong{Setup:}
 All methods should have well-defined setup functions:
 
 \code{xds_obj <- setup_this_port(case_name, xds_obj, options, ...)}
@@ -124,6 +109,12 @@ The "setup" method
 \item calls those other functions
 \item sets \code{class(par_obj) = "static"}
 }
+}
+\section{Forcing Function Case}{
+
+Most ports can alternatively be configured with a forcing function
+using the composable time series functions from \code{ramp.func} and
+\code{ramp.forcing}.
 }
 
 \section{Extensibility}{

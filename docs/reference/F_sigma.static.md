@@ -1,8 +1,6 @@
-# Static model patch emigration rate
+# Static model patch emigration rate (**MY**)
 
-Implements
-[F_sigma](https://dd-harp.github.io/ramp.xds/reference/F_sigma.md) for a
-static model
+Return the baseline patch emigration rate for a static model.
 
 ## Usage
 
@@ -27,4 +25,4 @@ F_sigma(t, xds_obj, s)
 
 ## Value
 
-\\(sigma\\), the patch emigration rate
+\\(sigma\\), the baseline patch emigration rate

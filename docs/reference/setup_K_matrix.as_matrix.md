@@ -1,9 +1,7 @@
-# Setup a Here-There Dispersal Matrix
+# Set up a supplied mosquito dispersal matrix
 
-Implements
-[setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
-for the here and there model: dispersal to every other patch, with equal
-probability
+Set up a supplied mosquito dispersal matrix using
+[change_K_matrix](https://dd-harp.github.io/ramp.xds/reference/change_K_matrix.md).
 
 ## Usage
 
@@ -32,4 +30,4 @@ setup_K_matrix(name, xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+an **`xds`** model object

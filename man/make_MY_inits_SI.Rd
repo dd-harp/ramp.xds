@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{make_MY_inits_SI}
 \alias{make_MY_inits_SI}
-\title{Make inits for \code{SI} adult mosquito model}
+\title{Make initial values for \code{SI} (\strong{MY})}
 \usage{
 make_MY_inits_SI(nPatches, options = list(), M = 10, P = 8, Y = 1)
 }
@@ -18,10 +18,15 @@ make_MY_inits_SI(nPatches, options = list(), M = 10, P = 8, Y = 1)
 \item{Y}{infected mosquito density at each patch}
 }
 \value{
-a \link{list}
+a named \link{list} of initial values
 }
 \description{
-Make inits for \code{SI} adult mosquito model
+Create a named list of initial values for the \code{SI} module.
+Values in \code{options} override the defaults.
+}
+\details{
+Initial values must be numeric scalars or have length \code{nPatches}.
+Scalars are expanded to that length. Require \verb{Y < P < M} in every patch.
 }
 \section{State Variables}{
 
@@ -35,5 +40,7 @@ Make inits for \code{SI} adult mosquito model
 
 \seealso{
 \link{SI}, \link{setup_MY_inits.SI}
+
+\link{change_MY_inits.SI}
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{setup_XH_ix.SIS}
 \alias{setup_XH_ix.SIS}
-\title{Add indices for human population to parameter list}
+\title{Set up variable indices for \code{SIS} (\strong{XH})}
 \usage{
 \method{setup_XH_ix}{SIS}(xds_obj, i)
 }
@@ -15,7 +15,14 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{setup_XH_ix} for the \code{SIS} model.
+Assign consecutive variable indices for the \code{SIS} module,
+starting after \code{xds_obj$max_ix}, and update the maximum index.
+Allocate blocks in the order \code{H_ix}, \code{I_ix}.
+Each block has length \code{nStrata[i]}.
+}
+\note{
+Indices are stored at \code{xds_obj$XH_obj[[i]]$ix}.
+The maximum index is stored at \code{xds_obj$max_ix}.
 }
 \seealso{
 \link{SIS}

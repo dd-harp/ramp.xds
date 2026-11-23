@@ -19,6 +19,9 @@ F_H(t, y, xds_obj, i)
 a \link{numeric} vector of length \code{nStrata}
 }
 \description{
+Size of human population denominators
+}
+\note{
 This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}.
 }
 \keyword{internal}

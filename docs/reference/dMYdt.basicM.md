@@ -1,4 +1,4 @@
-# Compute derivatives for `basicM` (**MY**)
+# Compute the derivatives for `basicM` (**MY**)
 
 Implements
 [dMYdt](https://dd-harp.github.io/ramp.xds/reference/dMYdt.md) for the
@@ -81,7 +81,7 @@ f(M-P) - \Omega\cdot P\end{array}\$\$
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\(\mu\\):
 
@@ -97,7 +97,8 @@ f(M-P) - \Omega\cdot P\end{array}\$\$
 
 - `nu` or \\(\nu\\):
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -108,20 +109,18 @@ f(M-P) - \Omega\cdot P\end{array}\$\$
 
 After basic setup,
 [change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)
-can be used to change static parameter values. The `basicM` module does
-not implement dynamic bionomic ports.
+can be used to change static parameter values. The `basicM` module
+evaluates bionomic parameter functions through
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md).
 
-## Dynamics
+## ODE
 
 Adult mosquitoes emerge from aquatic habitats at rate \\(\Lambda\\) and
 disperse and die according to \\(\Omega\\). The ODE model is \$\$
 \begin{array}{rl} dM/dt &= \Lambda-\Omega\cdot M \\\\\\\\ dP/dt &=
 f(M-P)-\Omega\cdot P \end{array}\$\$ Here, \\(P\\) is the density of
 mosquitoes that have blood-fed at least once. Parity, \\(P/M\\), is
-computed during parsing and stored as `parous`. For discrete-time
-models,
-[Update_MYt.basicM](https://dd-harp.github.io/ramp.xds/reference/Update_MYt.basicM.md)
-uses the one-day update equations.
+computed during parsing and stored as `parous`.
 
 ## See also
 

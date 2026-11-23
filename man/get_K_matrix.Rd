@@ -14,13 +14,13 @@ get_K_matrix(xds_obj, which_K = "K", s = 1)
 \item{s}{the vector species index}
 }
 \value{
-an \strong{\code{xds}} model object
+a mosquito dispersal \link{matrix} of dimensions \code{nPatches} by \code{nPatches}
 }
 \description{
 Get (inspect) a mosquito dispersal matrix.
 }
 \note{
-The argument \code{K} is used to retrieve state-dependent
-mosquito dispersal arguments for behavioral state models.
+The argument \code{which_K} is used to retrieve state-dependent
+mosquito dispersal matrices for behavioral state models.
 The default "K" returns \code{K_matrix}
 }

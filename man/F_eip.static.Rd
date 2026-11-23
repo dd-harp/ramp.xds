@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{F_eip.static}
 \alias{F_eip.static}
-\title{Static model for the EIP}
+\title{Static model for the EIP (\strong{MY})}
 \usage{
 \method{F_eip}{static}(t, xds_obj, s)
 }
@@ -17,6 +17,6 @@
 \eqn{eip}, the extrinsic incubation period in days
 }
 \description{
-Implements \link{F_eip} for a static model
+Return the extrinsic incubation period for a static model.
 }
 \keyword{internal}

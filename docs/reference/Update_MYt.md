@@ -1,6 +1,7 @@
 # Update states (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`.
+Compute the updated adult mosquito states for a discrete-time step using
+the selected **MY** module.
 
 ## Usage
 

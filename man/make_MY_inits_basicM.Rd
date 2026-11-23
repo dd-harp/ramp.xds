@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{make_MY_inits_basicM}
 \alias{make_MY_inits_basicM}
-\title{Make inits for basicM adult mosquito model}
+\title{Make initial values for \code{basicM} (\strong{MY})}
 \usage{
 make_MY_inits_basicM(nPatches, options, M = 5, P = 1)
 }
@@ -16,9 +16,17 @@ make_MY_inits_basicM(nPatches, options, M = 5, P = 1)
 \item{P}{total parous mosquito density at each patch}
 }
 \value{
-a \link{list}
+a named \link{list} of initial values
 }
 \description{
-Make inits for basicM adult mosquito model
+Create a named list of initial values for the \code{basicM} module.
+Values in \code{options} override the defaults.
+}
+\details{
+Initial values must be numeric scalars or have length \code{nPatches}.
+Scalars are expanded to that length.
+}
+\seealso{
+\link{setup_MY_inits.basicM}, \link{change_MY_inits.basicM}
 }
 \keyword{internal}

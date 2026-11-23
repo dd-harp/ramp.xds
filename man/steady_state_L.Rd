@@ -2,12 +2,12 @@
 % Please edit documentation in R/aquatic-L.R
 \name{steady_state_L}
 \alias{steady_state_L}
-\title{Compute steady states for \strong{L} component modules}
+\title{Compute steady states (\strong{L})}
 \usage{
 steady_state_L(eta, xds_obj, s = 1)
 }
 \arguments{
-\item{eta}{the egg-laying rate}
+\item{eta}{the number of eggs laid in each habitat, per day}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,10 +17,12 @@ steady_state_L(eta, xds_obj, s = 1)
 a named \link{list}: values of the state variables at the steady state
 }
 \description{
-For differential equation models, compute
-steady states as a function of daily eggs laid, \eqn{\eta}
+Compute steady-state aquatic mosquito densities for the selected
+\strong{L} module given the daily egg input \code{eta} in each habitat.
 }
 \note{
-This method dispatches on the class of \code{L_obj}.
+Dispatch on the module object at \code{xds_obj$L_obj[[s]]}.
+Equation-system selection and supported steady-state calculations depend
+on the module. Return values are not stored on the model object.
 }
 \keyword{internal}

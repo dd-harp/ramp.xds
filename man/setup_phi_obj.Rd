@@ -2,20 +2,20 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{setup_phi_obj}
 \alias{setup_phi_obj}
-\title{Set up phi object (density independent mortality)}
+\title{Set up bionomic port for density-independent mortality rate (\strong{L})}
 \usage{
 setup_phi_obj(phi, L_obj)
 }
 \arguments{
-\item{phi}{the human fraction}
+\item{phi}{the density-independent mortality rate}
 
-\item{L_obj}{an \strong{\code{L}} model object}
+\item{L_obj}{an \strong{\code{L}} module object}
 }
 \value{
-a \strong{\code{L}} model object
+an \strong{\code{L}} module object
 }
 \description{
-Set up an object
-to compute the density independent death rate, \eqn{phi}
+Set up a \link[=xds_info_port]{bionomic port} to compute the baseline density-independent
+mortality rate, \eqn{phi}, for a static model.
 }
 \keyword{internal}

@@ -26,7 +26,7 @@ A List of Available Modules for the \strong{MY}-Component from \strong{\code{ram
 \item \code{SEI} - A compartmental model
 \item \code{BQ} - A behavioral state model with blood feeding, egg laying, and infection dynamics
 \item \code{BQm} - A behavioral state model with blood feeding & egg laying (\strong{M} only)
-\item \code{BQRS} - A behavioral state model with blood feeding, egg laying, resting, sugar feeding and infection dynamics
+\item \code{BRQS} - A behavioral state model with blood feeding, egg laying, resting, sugar feeding and infection dynamics
 }
 }
 

@@ -1,4 +1,4 @@
-# Setup initial values for `hMoI` (**XH**)
+# Set up initial values for `hMoI` (**XH**)
 
 Set initial values for all the variables in the `hMoI` module (**XH**)
 for the \\(i^{th}\\) species.
@@ -35,7 +35,7 @@ setup_XH_inits(xds_obj, options = list(), i = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) vector
+an **`xds`** model object
 
 ## See also
 

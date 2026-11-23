@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{change_Omega.dts}
 \alias{change_Omega.dts}
-\title{Change Omega}
+\title{Recompute the mosquito demographic matrix for dts (\strong{MY})}
 \usage{
 \method{change_Omega}{dts}(xds_obj, s)
 }

@@ -1,4 +1,4 @@
-# List variables for `trivialXH` (**XH**)
+# Get the state variables for `trivialXH` (**XH**)
 
 Return an empty list
 

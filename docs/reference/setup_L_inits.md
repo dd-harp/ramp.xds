@@ -1,15 +1,16 @@
-# Setup initial values (**L**)
+# Set up initial values (**L**)
 
 Set initial values for all the variables.
 
-- Each module (*Lname*) defines a function `make_L_inits_`*Lname* that
-  supplies default values
+- Each non-trivial module defines a module-specific initial-value
+  constructor that supplies default values
 
 - The values in `options` override the defaults
 
 - To inspect variable names, use
   [get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md)
-  or see the inline module documentation.
+  or see the module documentation listed in
+  [L_module_list](https://dd-harp.github.io/ramp.xds/reference/L_module_list.md).
 
 ## Usage
 
@@ -38,4 +39,4 @@ an **`xds`** model object
 ## See also
 
 [get_L_inits](https://dd-harp.github.io/ramp.xds/reference/get_L_inits.md),
-[xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
+[xds_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)

@@ -1,4 +1,4 @@
-# Setup initial values for `basicM` (**MY**)
+# Set up initial values for `basicM` (**MY**)
 
 Set initial values for all the variables in the `basicM` module (**MY**)
 for the \\(s^{th}\\) species.
@@ -35,7 +35,7 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) vector
+an **`xds`** model object
 
 ## State Variables
 

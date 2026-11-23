@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{F_sigma}
 \alias{F_sigma}
-\title{Compute the mosquito patch emigration rate}
+\title{Compute the baseline patch emigration rate (\strong{MY})}
 \usage{
 F_sigma(t, xds_obj, s)
 }
@@ -17,7 +17,6 @@ F_sigma(t, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This method dispatches on the type of \code{sigma_obj} and computes
-the patch emigration rate, \eqn{\sigma}.
+Compute the baseline patch emigration rate, \eqn{\sigma}.
 }
 \keyword{internal}

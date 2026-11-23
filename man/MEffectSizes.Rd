@@ -19,6 +19,11 @@ MEffectSizes(t, y, xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Apply vector control effect sizes to adult mosquito bionomic parameters
+Apply vector control effect sizes to adult mosquito bionomic parameters.
+For each port-backed parameter, set \code{x = x_t * es_x}.
+Leave parameters without ports unchanged.
+}
+\seealso{
+\link{VectorControlEffectSizes}
 }
 \keyword{internal}

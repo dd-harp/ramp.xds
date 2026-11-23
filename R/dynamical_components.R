@@ -34,7 +34,7 @@
 #' 
 #' + **V** - other dynamical components: see [Other_State_Variables] 
 #' 
-#' @section Internals: 
+#' @note **Internals:**
 #' 
 #' - **`xds_obj$XH_obj[[1]]`** defines the module for human / host infection dynamics of class `XHname` (the **XH** component). The parameter values are passed in a named list, `XHoptions`.
 #' 

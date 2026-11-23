@@ -16,10 +16,16 @@ make_XH_inits_hMoI(nStrata, options = list(), m1 = 2, m2 = 1)
 \item{m2}{mean MoI for apparent infections}
 }
 \value{
-a \link{list}
+a named \link{list} of initial values
 }
 \description{
+Create a named list of initial values for the \code{hMoI} module.
+Values in \code{options} override the defaults.
 MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
+}
+\details{
+Initial values must be numeric scalars or have length \code{nStrata}.
+Scalars are expanded to that length.
 }
 \section{State Variables}{
 
@@ -31,5 +37,7 @@ MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
 
 \seealso{
 \link{hMoI}
+
+\link{setup_XH_inits.hMoI}, \link{change_XH_inits.hMoI}
 }
 \keyword{internal}

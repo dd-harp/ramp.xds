@@ -59,4 +59,4 @@ processes. There is also a generic interface to add other variables:
 
 ## See also
 
-[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
+[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)

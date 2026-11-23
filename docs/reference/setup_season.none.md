@@ -1,6 +1,6 @@
-# Change season parameters
+# Set up seasonal forcing
 
-Setup season for the NULL case
+Set up season for the no-forcing case.
 
 ## Usage
 

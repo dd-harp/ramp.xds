@@ -1,6 +1,6 @@
 # Compute the temporal shock
 
-Evaluate the function `F_shock` for a trivial **MY** model
+Evaluate the function `F_shock` for a trivial **MY** model.
 
 ## Usage
 

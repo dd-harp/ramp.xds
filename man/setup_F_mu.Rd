@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{setup_F_mu}
 \alias{setup_F_mu}
-\title{Set up F_mu}
+\title{Configure the emigration-loss fraction function (\strong{MY})}
 \usage{
 setup_F_mu(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{an emigration-loss fraction or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,5 +19,6 @@ setup_F_mu(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up F_mu
+Configure the function used to compute the baseline
+emigration-loss fraction.
 }

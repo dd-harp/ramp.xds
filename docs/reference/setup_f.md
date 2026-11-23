@@ -1,9 +1,9 @@
-# Set up constant blood feeding rate
+# Set up constant blood feeding rate (**MY**)
 
 Configure and validate models with constant blood feeding rates. This
 calls
 [setup_F_f](https://dd-harp.github.io/ramp.xds/reference/setup_F_f.md)
-to configure a function \\(F_f\\), and call
+to configure a function \\(F_f\\), and calls
 [change_f](https://dd-harp.github.io/ramp.xds/reference/change_f.md).
 
 ## Usage

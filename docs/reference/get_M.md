@@ -1,6 +1,6 @@
-# Get mosquito population density
+# Get the initial mosquito population density
 
-Get mosquito population density
+Get the initial mosquito population density
 
 ## Usage
 
@@ -20,5 +20,5 @@ get_M(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+the initial density as a [numeric](https://rdrr.io/r/base/numeric.html)
+vector

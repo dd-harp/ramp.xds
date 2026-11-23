@@ -1,12 +1,12 @@
 # Get mean forcing
 
-Get net infectiousness
+Get net infectiousness.
 
 ## Usage
 
 ``` r
 # S3 method for class 'kappa'
-get_mean_forcing(xds_obj)
+get_mean_forcing(xds_obj, ix = 1)
 ```
 
 ## Arguments
@@ -14,3 +14,12 @@ get_mean_forcing(xds_obj)
 - xds_obj:
 
   an **`xds`** model object
+
+- ix:
+
+  the species index
+
+## Value
+
+a [vector](https://rdrr.io/r/base/vector.html) of net infectiousness for
+the indexed host species

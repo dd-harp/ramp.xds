@@ -19,6 +19,14 @@ LEffectSizes(t, y, xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Apply vector control effect sizes to immature mosquito bionomic parameters
+Apply vector control effect sizes to baseline aquatic mosquito bionomic parameter values.
+For each port-backed parameter, set \code{x = x_t * es_x}.
+Leave parameters without ports unchanged.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$L_obj[[s]]}.
+}
+\seealso{
+\link{LBionomics}, \link{VectorControlEffectSizes}
 }
 \keyword{internal}

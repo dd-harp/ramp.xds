@@ -1,6 +1,6 @@
-# Get availability of vis_kappa
+# Get net infectiousness of visitors
 
-Get availability of vis_kappa
+Get net infectiousness of visitors
 
 ## Usage
 
@@ -20,4 +20,4 @@ get_vis_kappa(xds_obj, s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+a [vector](https://rdrr.io/r/base/vector.html)

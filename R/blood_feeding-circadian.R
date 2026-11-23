@@ -21,8 +21,7 @@ setup_F_circadian = function(F_circadian, xds_obj, s=1){
 #' Update the circadian for the \eqn{s^{th}} host species
 #' 
 #' @param F_circadian a circadian function
-#' @param xds_obj an **`xds`** model object
-#' @param s the vector species index
+#' @inheritParams setup_F_circadian
 #'
 #' @return an **`xds`** model object
 #' @keywords internal

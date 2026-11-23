@@ -1,7 +1,7 @@
-# Compute emergent adults
+# Compute emergent adults (**L**)
 
 This function computes the rate or number of emerging adults: a rate for
-differential equations, or a number for difference equations.
+differential equations, or a number for discrete-time systems.
 
 ## Usage
 
@@ -31,7 +31,3 @@ F_emerge(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nHabitats`
-
-## Note
-
-This method dispatches on the class of `xds_obj$L_obj[[s]]`

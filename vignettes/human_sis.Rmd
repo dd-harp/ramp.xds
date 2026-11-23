@@ -157,15 +157,15 @@ $$\kappa = \frac {cI} H$$
 
 ## Diagnostics and Detection 
 
-The probability a human would *test positive* is denoted $q$, so while true prevalence is $$x=I/H,$$ observed prevalence would be $$x_q=qI/H.$$ The model includes three parameters for detection by light microscopy, RDT or PCR: 
+Test positivity is denoted $q$, so while true prevalence is $$x=I/H,$$ observed prevalence is $$x_q=qI/H.$$ The model uses a single parameter, `q`, and does not distinguish detection by light microscopy, RDT, or PCR.
 
-+ `q_lm` - the probability of detecting parasites by light microscopy
-
-+ `q_rdt` - the probability of detecting parasites by rapid diagnostic test 
-
-+ `q_pcr` - the probability of detecting parasites by PCR 
+`F_pr_obs.SIS` computes observed prevalence. After solving, use
+`get_PR(mod, method = "obs")` to retrieve it. The SIS methods for
+`F_pfpr_by_lm`, `F_pfpr_by_rdt`, and `F_pfpr_by_pcr` remain compatibility
+aliases and return the same observed prevalence using `q`.
 
 We note that in this model, the observed PR is a linear function of the true PR. 
+The skill set reports `pr_obs = TRUE` and `pf_lm = pf_rdt = pf_pcr = FALSE`.
 
 ## Basic Setup
 
@@ -192,11 +192,7 @@ During basic setup, the parameters are assigned the following default values:
 
 + `sigma=0` 
 
-+ `q_lm=0.8` 
-
-+ `q_rdt=0.8` 
-
-+ `q_pcr=0.9`
++ `q=0.8`
 
 To inspect the parameters, use `get_XH_pars.` We already set up `mod` using the default values:
 

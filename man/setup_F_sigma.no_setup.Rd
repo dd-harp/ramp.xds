@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{setup_F_sigma.no_setup}
 \alias{setup_F_sigma.no_setup}
-\title{Set up no F_sigma}
+\title{Set up F_sigma (no setup) (\strong{MY})}
 \usage{
 \method{setup_F_sigma}{no_setup}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a patch emigration rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Don't change anything
+Leave the existing patch emigration rate configuration unchanged.
 }
 \keyword{internal}

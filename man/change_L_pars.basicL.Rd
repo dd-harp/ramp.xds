@@ -17,18 +17,23 @@
 an \strong{\code{xds}} model object
 }
 \description{
-For the \code{basicL} module (\strong{L}) for the \eqn{s^{th}} species,
-change parameter values named in \code{options} leaving other values unchanged.
+Change parameter values named in \code{options} for the \code{basicL}
+module, leaving other values unchanged.
+Refresh baseline bionomics at time zero using \link{LBionomics}, without calling \link{LEffectSizes}.
+}
+\section{Parameters}{
 
-Parameters:
-\itemize{
-\item \code{psi} or \eqn{\psi}
-\item \code{xi}  or \eqn{\xi}
-\item \code{phi} or \eqn{\phi}
-\item \code{theta} or \eqn{\theta}
+\describe{
+\item{\code{psi} or \eqn{\psi}}{maturation rate}
+\item{\code{xi} or \eqn{\xi}}{delayed maturation parameter in response to mean crowding}
+\item{\code{phi} or \eqn{\phi}}{density-independent mortality rate}
+\item{\code{theta} or \eqn{\theta}}{slope of density-dependent mortality}
 }
 }
+
 \seealso{
+\link{make_L_obj_basicL}, \link{get_L_pars.basicL}
+
 \link{dLdt.basicL} or \link{make_L_obj_basicL}
 }
 \keyword{internal}

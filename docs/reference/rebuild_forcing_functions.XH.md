@@ -2,7 +2,7 @@
 
 Rebuild forcing functions on the XH object using `make_function`
 
-For \\(\kappa\\)
+For \\(\kappa\\):
 
 - `F_season` is made from `season_par`
 
@@ -10,7 +10,7 @@ For \\(\kappa\\)
 
 - `F_shock` is made from `shock_par`
 
-For \\(H\\)
+For \\(H\\):
 
 - `H_season` is made from `H_season_par`
 

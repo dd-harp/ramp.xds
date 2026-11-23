@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{F_nu.static}
 \alias{F_nu.static}
-\title{Static model egg batch rate}
+\title{Static model oviposition rate (\strong{MY})}
 \usage{
 \method{F_nu}{static}(t, xds_obj, s)
 }
@@ -14,9 +14,9 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{nu}, the egg batch rate
+\eqn{nu}, the baseline oviposition rate
 }
 \description{
-Implements \link{F_nu} for a static model
+Return the baseline oviposition rate for a static model.
 }
 \keyword{internal}

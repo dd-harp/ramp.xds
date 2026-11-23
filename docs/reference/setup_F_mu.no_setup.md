@@ -1,6 +1,6 @@
-# Set up no F_mu
+# Set up F_mu (no setup) (**MY**)
 
-Don't change anything
+Leave the existing emigration-loss fraction configuration unchanged.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_F_mu(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  an emigration-loss fraction or setup method name
 
 - xds_obj:
 

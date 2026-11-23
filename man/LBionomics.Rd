@@ -19,7 +19,15 @@ LBionomics(t, y, xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Compute the values of bionomic parameter
-values for an \strong{L} Component module
+Compute baseline bionomic parameter values
+for an \strong{L} component module.
+Store each port-backed parameter \code{x} as \code{x_t} and reset \code{es_x} to 1.
+Parameters without ports are stored directly as \code{x}.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$L_obj[[s]]}.
+}
+\seealso{
+\link{LEffectSizes}, \link{MosquitoBionomics}
 }
 \keyword{internal}

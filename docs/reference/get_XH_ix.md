@@ -1,6 +1,6 @@
 # Get XH indices
 
-Get and display the values of the indices for the variables
+Get the values of the indices for the variables.
 
 ## Usage
 
@@ -20,4 +20,4 @@ get_XH_ix(xds_obj, i = 1)
 
 ## Value
 
-an **`xds`** model object
+a [list](https://rdrr.io/r/base/list.html) of variable indices

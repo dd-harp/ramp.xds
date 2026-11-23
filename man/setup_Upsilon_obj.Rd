@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{setup_Upsilon_obj}
 \alias{setup_Upsilon_obj}
-\title{Set up the Upsilon object}
+\title{Set up EIP survival-and-dispersal matrix port (\strong{MY})}
 \usage{
 setup_Upsilon_obj(xds_obj, s = 1, dede = FALSE)
 }
@@ -17,7 +17,11 @@ setup_Upsilon_obj(xds_obj, s = 1, dede = FALSE)
 an \strong{\code{xds}} model object
 }
 \description{
-Set to \code{dde} if \strong{MY} is a
-delay differential equation
+Set up the EIP survival-and-dispersal matrix port.
+}
+\note{
+Set up the port object \code{Upsilon_obj} with class \code{dde} when
+\code{dede} is TRUE, or \code{na} otherwise.
+The class of \code{Upsilon_obj} controls dispatch for \link{change_Upsilon}.
 }
 \keyword{internal}

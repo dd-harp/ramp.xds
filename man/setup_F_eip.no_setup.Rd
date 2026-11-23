@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{setup_F_eip.no_setup}
 \alias{setup_F_eip.no_setup}
-\title{Set up no F_eip}
+\title{Set up F_eip (no setup) (\strong{MY})}
 \usage{
 \method{setup_F_eip}{no_setup}(name, xds_obj, options = list(), s = 1)
 }

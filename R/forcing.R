@@ -63,8 +63,7 @@ Forcing = function(t, xds_obj){
 #' 
 #' @note Dynamic forcing is implemented in **`ramp.forcing`**.
 #' 
-#' @param t time
-#' @param xds_obj an **`xds`** model object
+#' @inheritParams Forcing
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export

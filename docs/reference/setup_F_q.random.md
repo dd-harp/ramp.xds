@@ -1,8 +1,6 @@
-# Set up F_q
+# Set up random human fractions (**MY**)
 
-Implements the "random" case for
-[setup_F_q](https://dd-harp.github.io/ramp.xds/reference/setup_F_q.md).
-See
+Configure random human fractions using
 [make_F_q_random](https://dd-harp.github.io/ramp.xds/reference/make_F_q_random.md).
 
 ## Usage
@@ -16,7 +14,7 @@ setup_F_q(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a human fraction or setup method name
 
 - xds_obj:
 

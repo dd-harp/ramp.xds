@@ -7,18 +7,21 @@
 \method{parse_L_orbits}{basicL}(outputs, xds_obj, s)
 }
 \arguments{
-\item{outputs}{a \link{matrix} with the solutions to a dynamical system}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
 \item{s}{the species index}
 }
 \value{
-a named \link{list}
+a \link{list}
 }
 \description{
-The function returns the column representing
-the variable \eqn{L} from a matrix where each row is a state variable.
-The variable is returned as a named list.
+Extract the model state outputs for the \code{basicL} module
+from \code{outputs} and return them by name in a list.
+Return the aquatic mosquito density \code{L}.
+}
+\note{
+Variable indices are stored at \code{xds_obj$L_obj[[s]]$ix}.
 }
 \keyword{internal}

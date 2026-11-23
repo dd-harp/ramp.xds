@@ -1,4 +1,4 @@
-# Add indices for adult mosquitoes to parameter list
+# Set up variable indices for `basicM` (**MY**)
 
 Implements
 [setup_MY_ix](https://dd-harp.github.io/ramp.xds/reference/setup_MY_ix.md)
@@ -23,4 +23,4 @@ setup_MY_ix(xds_obj, s)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object

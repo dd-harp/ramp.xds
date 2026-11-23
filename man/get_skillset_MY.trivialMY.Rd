@@ -3,7 +3,7 @@
 \name{get_skillset_MY.trivialMY}
 \alias{get_skillset_MY.trivialMY}
 \alias{get_skillset_MY.trivial}
-\title{The skill set}
+\title{Get the skill set for \code{trivialMY} (\strong{MY})}
 \usage{
 \method{get_skillset_MY}{trivialMY}(xds_obj, s)
 
@@ -18,7 +18,7 @@
 the \strong{MY} module skill set, as a list
 }
 \description{
-The skill set
+Return the capabilities and compatibilities of the \code{trivialMY} module as a list.
 }
 \note{
 The compatibility name \code{"trivial"} returns the same skill set as

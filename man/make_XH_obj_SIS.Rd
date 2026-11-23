@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-SIS.R
 \name{make_XH_obj_SIS}
 \alias{make_XH_obj_SIS}
-\title{Make a \code{SIS} \strong{XH} model object}
+\title{Make a module object for \code{SIS} (\strong{XH})}
 \usage{
 make_XH_obj_SIS(
   nStrata,
@@ -12,9 +12,7 @@ make_XH_obj_SIS(
   c = 0.15,
   rho = 0,
   sigma = 0,
-  q_lm = 0.8,
-  q_rdt = 0.8,
-  q_pcr = 0.9
+  q = 0.8
 )
 }
 \arguments{
@@ -32,23 +30,21 @@ make_XH_obj_SIS(
 
 \item{sigma}{the rate prevalent infections are treated and cured}
 
-\item{q_lm}{test positivity by light microscopy}
-
-\item{q_rdt}{test positivity by RDT}
-
-\item{q_pcr}{test positivity by PCR}
+\item{q}{test positivity}
 }
 \value{
 an \strong{XH} model object
 }
 \description{
-Make a \code{SIS} \strong{XH} model object
+Create an \code{SIS} module object and initialize its parameters.
+Inspect parameters with \link{get_XH_pars.SIS} and change supported values
+with \link{change_XH_pars.SIS}. Values in \code{options} override parameter arguments.
 }
 \section{Parameters}{
 
 
 The parameters that are returned by \link{get_XH_pars.SIS} and also modifiable by \link{change_XH_pars.SIS} describe
-the dynamics, or detection by diagnostic methods.
+the dynamics or test positivity.
 
 \describe{
 \item{\code{b}}{the fraction of infective bites that would cause an infection}
@@ -56,13 +52,13 @@ the dynamics, or detection by diagnostic methods.
 \item{\code{c}}{the probability an infected person would infect a mosquito}
 \item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
 \item{\code{sigma} or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
-\item{\code{q_lm}}{test positivity by light microscopy}
-\item{\code{q_rdt}}{test positivity by RDT}
-\item{\code{q_pcr}}{test positivity by PCR}
+\item{\code{q}}{test positivity}
 }
 }
 
 \seealso{
+\link{get_XH_pars.SIS}, \link{change_XH_pars.SIS}
+
 \link{SIS}
 }
 \keyword{internal}

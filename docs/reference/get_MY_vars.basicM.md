@@ -1,6 +1,7 @@
-# Return the variables as a list
+# Get the state variables for `basicM` (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`
+Extract the `basicM` variables from the state variables vector \\(y\\),
+parse, and return the variables by name in a list.
 
 ## Usage
 

@@ -3,7 +3,7 @@
 \name{get_skillset_L.trivialL}
 \alias{get_skillset_L.trivialL}
 \alias{get_skillset_L.trivial}
-\title{The \strong{L} module skill set}
+\title{Get the skill set for \code{trivialL} (\strong{L})}
 \usage{
 \method{get_skillset_L}{trivialL}(xds_obj, s)
 
@@ -18,8 +18,7 @@
 the \strong{L} module skill set, as a list
 }
 \description{
-The \strong{L} skill set is a list of
-a module's capabilities
+Return the capabilities and compatibilities of the \code{trivialL} module as a list.
 }
 \note{
 The compatibility name \code{"trivial"} returns the same skill set as

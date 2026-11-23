@@ -17,18 +17,15 @@ setup_XH_inits(xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set initial values
-for all the variables.
-\itemize{
-\item Each module (\emph{XHname}) defines
-a function \code{make_XH_inits_}\emph{XHname}
-that supplies default values
-\item The values in \code{options} override the defaults
-\item To inspect variable names, use \link{get_XH_inits} or
-see the inline module documentation.
+Set up initial values for the selected \strong{XH} module and
+host species. Values in \code{options} override the defaults.
 }
+\note{
+Dispatch uses the class of \code{xds_obj$XH_obj[[i]]}.
 }
 \seealso{
 \link{get_XH_inits}, \link{xds_info_initial_conditions}
+
+\link{change_XH_inits}
 }
 \keyword{internal}

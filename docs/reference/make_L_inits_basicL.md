@@ -1,4 +1,4 @@
-# Make initial values for `basicL` (**L** component)
+# Make initial values for `basicL` (**L**)
 
 Initial values of the variable \\(L\\) can be set by passing `L` in
 `options`
@@ -26,4 +26,4 @@ make_L_inits_basicL(nHabitats, options = list(), L = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html) with Linits added
+a [list](https://rdrr.io/r/base/list.html)

@@ -2,12 +2,12 @@
 % Please edit documentation in R/habitats-search_weights.R
 \name{setup_habitat_search_weights.list}
 \alias{setup_habitat_search_weights.list}
-\title{Set up a habitat_search_weights}
+\title{Set up habitat_search_weights}
 \usage{
 \method{setup_habitat_search_weights}{list}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a setup function name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -16,7 +16,7 @@
 \item{s}{the mosquito species index}
 }
 \value{
-a numeric vector
+an \strong{\code{xds}} model object
 }
 \description{
 If an options list is passed

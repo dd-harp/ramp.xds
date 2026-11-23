@@ -1,4 +1,4 @@
-# Compute Available Laying Sites, \\(O\\)
+# Compute Available Laying Sites, \\(Q\_{all}\\)
 
 Mosquitoes lay eggs in aquatic habitats, in water bodies that are
 unsuitable for larval development (bad habitats), and in ovitraps.
@@ -25,25 +25,26 @@ F_all_available_water(Q, Q_traps, Q_bad)
 
 ## Value
 
-Availability laying sites, \\(O\\)
+Availability of laying sites, \\(Q\_{all}\\)
 
 ## Details
 
 Habitat availability denoted \\(Q\\), sums habitat search weights,
-\\(\omega\\), by patch using the habitat membership matrix, \\(N\\):
-\$\$Q = {N} \cdot \omega_h.\$\$
+\\(w\\), by patch using the habitat membership matrix, \\(N\\): \$\$Q =
+{N} \cdot w.\$\$
 
 If some ovitraps (\\(Q_t\\)) and bad_habitats (\\(Q_b\\)) are also
-available, then total availability of laying sites is \$\$O = Q + Q_t +
-Q_b.\$\$
+available, then total availability of laying sites is \$\$Q\_{all} = Q +
+Q_t + Q_b.\$\$
 
-The availability of habitats, ovitraps and bad_habitats are computed
-elsewhere and stored on `xds_obj$vars`.
+Habitat availability is computed elsewhere and stored in
+`xds_obj$terms$Q`, ovitrap availability in `xds_obj$patches$ovitraps`,
+and bad-habitat availability in `xds_obj$patches$bad_habitats`.
 
 ## See also
 
 This function is called by
-[compute_all_available_water](https://dd-harp.github.io/ramp.xds/reference/compute_all_available_water.md)
+[update_all_available_water](https://dd-harp.github.io/ramp.xds/reference/update_all_available_water.md)
 
 [make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
 discusses \\(N\\)

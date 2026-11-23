@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-get.R
 \name{get_Omega}
 \alias{get_Omega}
-\title{Get Omega}
+\title{Get the mosquito demographic matrix (\strong{MY})}
 \usage{
 get_Omega(xds_obj, s = 1)
 }
@@ -12,12 +12,17 @@ get_Omega(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the demographic matrix
+a \link{matrix} of dimensions \code{nPatches} by \code{nPatches},
+or \code{NULL} if no matrix is stored
 }
 \description{
-Return the demographic
-matrix, called \eqn{\Omega}.
+Return the stored mosquito demographic matrix, \eqn{\Omega},
+for the selected species.
+}
+\note{
+The matrix is stored at \code{xds_obj$MY_obj[[s]]$Omega}.
+This function does not recompute the matrix or modify the model object.
 }
 \seealso{
-\link{xds_info_mosquito_demography}
+\link{get_Upsilon}, \link{change_Omega}, \link{xds_info_mosquito_demography}
 }

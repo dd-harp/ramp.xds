@@ -3,7 +3,8 @@
 The density of adult mosquitoes is \\(M\\). The **parameters**
 describing egg laying by adult mosquitoes are:
 
-- \\(\nu\\) or `nu` is the egg batch rate
+- \\(\nu\\) or `nu` is the oviposition rate: the number of egg batches
+  laid in each patch, per mosquito, per day
 
 - \\(\Gamma\\) or `eggsPerBatch` is the number of eggs per batch
 

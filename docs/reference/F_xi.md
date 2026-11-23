@@ -1,7 +1,7 @@
-# Compute xi, the maturation delay parameter
+# Compute the baseline delayed maturation parameter (**L**)
 
-This method dispatches on the type of `xi_obj`. It should set the values
-oxi the bionomic parameters to baseline values
+Compute the baseline delayed maturation parameter in response to mean
+crowding.
 
 ## Usage
 

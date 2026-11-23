@@ -1,4 +1,4 @@
-# Make parameters for hybrid MoI human model
+# Make the module object for `hMoI` (**XH**)
 
 MoI stands for Multiplicity of Infection, and refers to malarial
 superinfection.

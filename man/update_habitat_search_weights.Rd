@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats-search_weights.R
 \name{update_habitat_search_weights}
 \alias{update_habitat_search_weights}
-\title{Update the habitat_search_weights Matrix}
+\title{Update habitat search weights}
 \usage{
 update_habitat_search_weights(t, y, xds_obj, s)
 }
@@ -20,6 +20,6 @@ an \strong{\code{xds}} model object
 }
 \description{
 Port function for the habitat_search_weights, \eqn{w}.
-Dispatches on \code{xds_obj$L_obj[[s]]$habitat_search_obj}.
+Dispatches on \code{xds_obj$L_obj[[s]]$search_obj}.
 }
 \keyword{internal}

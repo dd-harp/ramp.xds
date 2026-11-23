@@ -12,7 +12,7 @@
 \item{s}{the vector species index}
 }
 \value{
-the patch emigration rates, as a vector
+a \link{numeric} vector of length 0
 }
 \description{
 Get the patch emigration rates

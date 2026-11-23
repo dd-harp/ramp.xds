@@ -1,6 +1,6 @@
 # Pull L Terms
 
-Pull the stored values of the alpha, eta
+Pull the stored values of the alpha and eta.
 
 ## Usage
 

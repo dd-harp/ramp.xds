@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{make_F_q_WVB}
 \alias{make_F_q_WVB}
-\title{Make a WVB human feeding fraction configuration}
+\title{Make a WVB human fraction configuration (\strong{MY})}
 \usage{
 make_F_q_WVB(nPatches, options = list())
 }
@@ -15,7 +15,7 @@ make_F_q_WVB(nPatches, options = list())
 a configuration object for \link{F_q.WVB}
 }
 \description{
-Create a configuration object for the WVB human feeding
+Create a configuration object for the WVB human
 fraction method.
 }
 \seealso{

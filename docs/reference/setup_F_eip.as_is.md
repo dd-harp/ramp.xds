@@ -1,6 +1,7 @@
-# Set up static EIP values
+# Set up static EIP values (**MY**)
 
-Set up supplied static extrinsic incubation periods.
+Set up supplied static extrinsic incubation periods from `options$eip`
+or a numeric `name`. Values in `options$eip` take precedence.
 
 ## Usage
 

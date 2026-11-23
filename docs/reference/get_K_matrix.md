@@ -24,7 +24,8 @@ get_K_matrix(xds_obj, which_K = "K", s = 1)
 
 ## Value
 
-an **`xds`** model object
+a mosquito dispersal [matrix](https://rdrr.io/r/base/matrix.html) of
+dimensions `nPatches` by `nPatches`
 
 ## Note
 

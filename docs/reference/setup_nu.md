@@ -1,6 +1,6 @@
-# Set up egg batch rates
+# Set up oviposition rates (**MY**)
 
-Set up the egg batch rate (\\(\nu\\)) for static systems
+Set up the oviposition rate (\\(\nu\\)) for static systems
 
 ## Usage
 
@@ -14,7 +14,7 @@ setup_egg_batch_rates(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  an oviposition rate or setup method name
 
 - xds_obj:
 

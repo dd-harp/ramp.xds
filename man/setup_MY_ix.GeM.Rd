@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{setup_MY_ix.GeM}
 \alias{setup_MY_ix.GeM}
-\title{Add indices for adult mosquitoes to parameter list}
+\title{Set up variable indices for \code{GeM} (\strong{MY})}
 \usage{
 \method{setup_MY_ix}{GeM}(xds_obj, s)
 }
@@ -12,10 +12,17 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{setup_MY_ix} for the GeM model.
+Assign consecutive variable indices for the \code{GeM} module,
+starting after \code{xds_obj$max_ix}, and update the maximum index.
+Allocate blocks in the order \code{M_ix}, \code{P_ix}, \code{Y_ix}, \code{Z_ix}, \code{U_ix}, \code{fqkappa_ix}, \code{g_ix}, \code{sigma_ix}.
+Each block has length \code{nPatches}, except \code{U_ix}, which has length \code{nPatches^2}.
+}
+\note{
+Indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
+The maximum index is stored at \code{xds_obj$max_ix}.
 }
 \section{State Variables}{
 

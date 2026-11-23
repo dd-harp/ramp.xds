@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{F_eggs.GeM}
 \alias{F_eggs.GeM}
-\title{Egg production rate for \code{GeM}}
+\title{Compute egg production for \code{GeM} (\strong{MY})}
 \usage{
 \method{F_eggs}{GeM}(t, y, xds_obj, s)
 }
@@ -19,11 +19,11 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_eggs} for the GeM model.
+Return the number of eggs laid by the adult mosquito population, per patch
 }
 \section{Egg Laying}{
 
-The egg batch rate \eqn{\nu} and the number of eggs per batch,
+The oviposition rate \eqn{\nu} and the number of eggs per batch,
 \code{eggs_per_batch}, determine the egg production rate per patch:
 \deqn{G=\nu M\cdot\texttt{eggs\_per\_batch}.}
 \link{F_eggs.GeM} computes \eqn{G}, which is passed to \link{EggLaying} for

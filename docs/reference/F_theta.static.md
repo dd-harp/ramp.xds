@@ -1,8 +1,7 @@
-# Compute theta (density dependent mortality)
+# Static model for the slope of density-dependent mortality (**L**)
 
-Implements
-[F_theta](https://dd-harp.github.io/ramp.xds/reference/F_theta.md) for a
-static model
+Return the baseline slope of density-dependent mortality for a static
+model.
 
 ## Usage
 
@@ -27,4 +26,4 @@ F_theta(t, xds_obj, s)
 
 ## Value
 
-\\(theta\\), slope of density-dependent mortality
+\\(theta\\), the baseline slope of density-dependent mortality

@@ -6,7 +6,7 @@ Check that
 
 - the birth rate is not negative
 
-- the birth rates length is the number of strata
+- the length of the birth rates is the number of strata
 
 ## Usage
 

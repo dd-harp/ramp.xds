@@ -1,4 +1,4 @@
-# Set up the extrinsic incubation period
+# Set up the extrinsic incubation period (**MY**)
 
 Configure and validate the EIP strategy.
 

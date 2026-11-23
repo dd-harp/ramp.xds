@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{get_M.GeM}
 \alias{get_M.GeM}
-\title{Get the initial mosquito population density}
+\title{Get the initial adult mosquito density for \code{GeM} (\strong{MY})}
 \usage{
 \method{get_M}{GeM}(xds_obj, s = 1)
 }
@@ -12,9 +12,22 @@
 \item{s}{the vector species index}
 }
 \value{
-the initial mosquito population density
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Get the initial mosquito population density
+Return the initial adult mosquito density per patch.
+}
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{P}}{density of parous adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\seealso{
+\link{GeM}, \link{get_MY_inits}
 }
 \keyword{internal}

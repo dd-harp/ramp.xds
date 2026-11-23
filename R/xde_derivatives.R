@@ -2,7 +2,8 @@
 
 #' @title Compute Derivatives
 #'
-#' @description The function to compute the derivatives dispatches on `class(xds_obj$frame)`.
+#' @description Compute the derivatives.
+#' @note The function to compute the derivatives dispatches on `class(xds_obj$frame)`.
 #'
 #' @seealso [xds_solve]
 #'

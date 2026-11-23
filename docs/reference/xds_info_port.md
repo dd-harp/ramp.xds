@@ -9,15 +9,15 @@
 The implementation of a port follows a design template. That template
 establishes a protocol for writing modules with *features* that could be
 implemented in several ways to add realism: heterogeneous transmission,
-exogenous forcing (*eg* weather), malaria control, malaria importation,
-habitat dynamics, or something else.
+exogenous forcing (*e.g.* weather), malaria control, malaria
+importation, habitat dynamics, or something else.
 
 By implementing a parameter or variable as a port, a module or other
 component becomes extensible with negligible computational costs:
 default values assigned during
-[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
+[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
 have no effect; but features can be configured after basic setup (see
-[xds_info_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_info_setup_options.md)).
+[xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_advanced_setup.md)).
 
 In developing ports, the mathematical consequences *ought to be* fully
 considered. If some implementations of a port could be mathematically
@@ -25,7 +25,7 @@ inconsistent, the port documentation should include warnings.
 
 ## Port Value
 
-Each port is a flexible method for assigning a value parameter or
+Each port is a flexible method for assigning a value to a parameter or
 variable (`par`). The current value of the parameter or variable has a
 location on a base object (`base_obj`), and it is always retrieved from
 that location:
@@ -63,7 +63,7 @@ where
 
 - The `xds_obj` is passed,
 
-- `this_port` dispatches on `class(xds_obj$base_obj$par_obj).`
+- `this_port` dispatches on `class(xds_obj$base_obj$par_obj)`.
 
 - `...` other arguments often include the index of the host or vector
   species.
@@ -85,11 +85,11 @@ The default case is:
 
 and `this_port.static` returns `xds_obj` unmodified.
 
-## Trace Function Case
+## Forcing Function Case
 
-For most ports, an alternative case is to configure a trace function
-using package standard *composable time series* trace function (see
-`ramp.func` amd `ramp.forcing`).
+Most ports can alternatively be configured with a forcing function using
+the composable time series functions from `ramp.func` and
+`ramp.forcing`.
 
 ## Setup
 
@@ -114,7 +114,7 @@ The "setup" method
 
 Any port can be modified by adding a new `S3` method. Since most of
 these examples involve some form of mechanistic forcing, new cases are
-generally added to **`ramp.forcing`.** All new methods should be fully
+generally added to **`ramp.forcing`**. All new methods should be fully
 documented.
 
 For every port, the mathematical consequences of *exogenous forcing*
@@ -139,6 +139,6 @@ time-varying EIP (see
 
 ## See also
 
-[xds_info_setup_options](https://dd-harp.github.io/ramp.xds/reference/xds_info_setup_options.md)
+[xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_advanced_setup.md)
 \|
 [xds_info_junction](https://dd-harp.github.io/ramp.xds/reference/xds_info_junction.md)

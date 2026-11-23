@@ -19,5 +19,5 @@ Check that
 }
 }
 \seealso{
-\link{xds_info_blood_feeding}
+\link{xds_info_aquatic_habitats}
 }

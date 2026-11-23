@@ -28,11 +28,13 @@
 #' @section Dynamical Term:
 #' 
 #' \describe{
-#'   \item{\eqn{h} or `foi`}{The force of infection is computed and stored by [Exposure] as `FoI`}
+#'   \item{\eqn{h} or `foi`}{The force of infection}
 #' }
 #' 
 #' In the `hMoI` module, there is no effect of pre-erythrocytic immunity, so
 #' a constant fraction of infectious bites causes an infection: the parameter \eqn{b.}
+#'
+#' @note The force of infection is computed and stored by [Exposure] as `FoI`.
 #' 
 #'
 #' @section Parameters:
@@ -58,6 +60,9 @@
 #'   \item{\eqn{x_1}}{true prevalence: \eqn{x_1 = 1-e^{-m_1}}}
 #'   \item{\eqn{x_2}}{apparent prevalence: \eqn{x_2 = 1-e^{-m_2}}}
 #' }
+#' [F_pr_obs.hMoI] returns apparent prevalence \eqn{x_2}.
+#' [F_pfpr_by_lm], [F_pfpr_by_rdt], and [F_pfpr_by_pcr] are compatibility
+#' aliases for [F_pr_obs] in this module.
 #' 
 #' @section Infectiousness:
 #' 
@@ -70,60 +75,14 @@
 #' @rdname hMoI
 NULL
 
-
-#' @title The **XH** module skill set
+#' @title Compute the derivatives for `hMoI` (**XH**)
 #'
-#' @description The `hMoI` module is an example
-#' of a model that is not extensible. There is no
-#' way to add either dynamic human population density
-#' or mass treatment without violating the model
-#' assumptions.
-#'
-#' The model does output observed population density
-#' and here it is
-#'
-#'
-#' @note This method dispatches on `class(xds_obj$XH_obj[[i]])`.
-#'
-#' @inheritParams get_skillset_XH
-#'
-#' @return the **XH** module skill set, as a list
-#'
-#' @keywords internal
-#' @seealso [hMoI]
-#' @export
-get_skillset_XH.hMoI = function(xds_obj, i){
-  skills = list(
-    dts        = FALSE,
-    xde        = TRUE,
-    delay      = FALSE,
-    demog      = FALSE,
-    mda        = FALSE,
-    msat       = FALSE,
-    malaria    = TRUE,
-    pr_obs     = TRUE,
-    pf_lm      = FALSE,
-    pf_rdt     = FALSE,
-    pf_pcr     = FALSE
-  )
-  return(skills)
-}
-
-#' Check / update before solving
-#'
-#' @inheritParams check_XH
-#'
-#' @return an **`xds`** model object
-#' @keywords internal
-#' @seealso [hMoI]
-#' @export
-check_XH.hMoI = function(xds_obj, i){
-  return(xds_obj)
-}
-
-#' @title Compute derivatives for `hMoI` (**XH**)
-#'
-#' @description Implements [dXHdt] for the hybrid MoI model.
+#' @description The derivatives for the hybrid MoI (`hMoI`) module are:
+#' \deqn{\begin{array}{rl}
+#' dm_1/dt &= h-r_1m_1 \\
+#' dm_2/dt &= h-r_2m_2
+#' \end{array}}
+#' Here \eqn{h} is the force of infection (`foi`).
 #' @inheritParams dXHdt
 #' @return a [numeric] vector
 #' @keywords internal
@@ -142,16 +101,17 @@ dXHdt.hMoI <- function(t, y, xds_obj, i) {
   })
 }
 
-#' @title List variables for `hMoI` (**XH**)
+#' @title Get the state variables for `hMoI` (**XH**)
 #'
-#' @description Get the value of variables from the flat state variable vector \eqn{y}, and return
-#' the values as a named list
-#'
+#' @description Extract the state variables for the `hMoI` module
+#' from `y` and return them by name in a list for use during model solving.
+#' Also return `H` from the module object rather than from `y`.
 #' @inheritParams get_XH_vars
-#' @return a [list]
+#' @return a named [list] of state variables and module-specific derived quantities
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
+#' @note Variable indices are stored at `xds_obj$XH_obj[[i]]$ix`.
 get_XH_vars.hMoI <- function(y, xds_obj, i) {
   with(xds_obj$XH_obj[[i]]$ix,{
     m1 = y[m1_ix]
@@ -159,134 +119,6 @@ get_XH_vars.hMoI <- function(y, xds_obj, i) {
     H = xds_obj$XH_obj[[i]]$H
     return(list(H=H,m1=m1,m2=m2))})
 }
-
-#' @title Add indices for human population to parameter list
-#' @description Implements [setup_XH_ix] for the hybrid MoI model.
-#' @inheritParams setup_XH_ix
-#' @return an **`xds`** model object
-#' @importFrom utils tail
-#' @keywords internal
-#' @seealso [hMoI]
-#' @export
-setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
-
-  m1_ix <- seq(from=max_ix+1, length.out=nStrata[i])
-  max_ix <- tail(m1_ix, 1)
-
-  m2_ix <- seq(from=max_ix+1, length.out=nStrata[i])
-  max_ix <- tail(m2_ix, 1)
-
-  xds_obj$XH_obj[[i]]$ix = list(m1_ix=m1_ix, m2_ix=m2_ix)
-
-  xds_obj$max_ix = max_ix
-  return(xds_obj)
-})}
-
-#' @title Set up `hMoI` (**XH**)
-#' @description
-#'
-#' This sets up an `hMoI` model object for the **XH** module for the \eqn{i^{th}} host species
-#' + the object is created by [make_XH_obj_hMoI]
-#' + the initial conditions are set by [setup_XH_inits]
-#' + `options` is passed to both to override the defaults
-#'
-#' @seealso [hMoI], [make_XH_obj_hMoI]
-#'
-#' @note The module object is stored at `xds_obj$XH_obj[[i]]`
-#' @inheritSection hMoI State Variables
-#' @inheritSection hMoI Parameters
-#' @inheritParams setup_XH_obj
-#' @return an **`xds`** model object
-#' @keywords internal
-#' @export
-setup_XH_obj.hMoI = function(XHname, residence, xds_obj, options=list(), i=1){
-  xds_obj$XHname = "hMoI"
-  xds_obj$XH_obj[[i]] = make_XH_obj_hMoI(xds_obj$nStrata[i], options)
-  xds_obj <- setup_XH_inits(xds_obj, options=options, i=i)
-  xds_obj$XH_obj[[i]]$skill_set <- get_skillset_XH(xds_obj, i)
-  xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
-  xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
-  xds_obj <- setup_time_away("setup", xds_obj, i=i)
-  xds_obj <- setup_travel_eir("no_travel", xds_obj, i=i)
-  return(xds_obj)
-}
-
-#' @title Make parameters for hybrid MoI human model
-#' @description MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
-#' @param nStrata is the number of human population strata
-#' @param options a [list] that overrides default values
-#'
-#' @param b transmission probability (efficiency) from mosquito to human
-#' @param c1 transmission probability (efficiency) from inapparent human infections to mosquito
-#' @param c2 transmission probability (efficiency) from patent human infections to mosquito
-#' @param r1 recovery rate from inapparent infections
-#' @param r2 recovery rate from patent infections
-#' @param H human population density
-#'
-#' @return a [list]
-#' @keywords internal
-#' @seealso [hMoI]
-#' @export
-make_XH_obj_hMoI = function(nStrata, options=list(),
-                            b=0.55, r1=1/180, r2 = 1/70,
-                            c1=0.015, c2=0.15, H=1){
-  with(options,{
-    XH_obj = list()
-    class(XH_obj) <- "hMoI"
-
-    XH_obj$b = checkIt(b, nStrata)
-    XH_obj$c1 = checkIt(c1, nStrata)
-    XH_obj$c2 = checkIt(c2, nStrata)
-    XH_obj$r1 = checkIt(r1, nStrata)
-    XH_obj$r2 = checkIt(r2, nStrata)
-    XH_obj$H = checkIt(H, nStrata)
-
-    return(XH_obj)
-})}
-
-#' @title Get parameters for `hMoI` (**XH**)
-#'
-#' @description Parameter values for the \eqn{i^{th}} host are
-#' stored as `xds_obj$XH_obj[[i]]`. This returns the stored parameter
-#' values as a list.
-#' 
-#' @inheritSection hMoI Parameters 
-#' 
-#' @inheritParams get_XH_pars
-#'
-#' @return a [list]
-#'
-#' @seealso [hMoI], [make_XH_obj_hMoI]
-#' @keywords internal
-#' @export
-get_XH_pars.hMoI<- function(xds_obj, i=1) {
-  with(xds_obj$XH_obj[[i]],list(b=b, c1=c1, c2=c2, r1=r1, r2=r2))
-}
-
-#' @title Change parameters for `hMoI` (**XH**)
-#'
-#' @description For the `hMoI` module (**XH**) for the \eqn{i^{th}} species,
-#' change parameter values named in `options` leaving other values unchanged.
-#'
-#' @inheritSection hMoI Parameters 
-#' 
-#' @inheritParams change_XH_pars
-#'
-#' @return an **`xds`** model object
-#'
-#' @keywords internal
-#' @seealso [hMoI]
-#' @export
-change_XH_pars.hMoI <- function(xds_obj, options=list(), i=1) {
-  nHabitats <- xds_obj$nHabitats
-  with(xds_obj$XH_obj[[i]], with(options,{
-    xds_obj$XH_obj[[i]]$b <- b
-    xds_obj$XH_obj[[i]]$c1 <- c1
-    xds_obj$XH_obj[[i]]$c2 <- c2
-    xds_obj$XH_obj[[i]]$r1 <- r1
-    xds_obj$XH_obj[[i]]$r2 <- r2
-    return(xds_obj)
-  }))}
 
 
 
@@ -333,27 +165,130 @@ F_infectivity.hMoI <- function(y, xds_obj,i) {
   with(xds_obj$XH_obj[[i]], b)
 }
 
-#' @title Set up initial values for `hMoI` (**XH**)
-#' @description Set initial values for all the variables in the `hMoI` module
-#' (**XH**) for the \eqn{i^{th}} species.
-#' + [make_XH_inits_hMoI] supplies default values
-#' + The values in `options` override the defaults
-#' + To inspect variable names, use [get_XH_inits] or
-#' see the inline module documentation.
-#' @inheritParams setup_XH_inits
-#' @return an **`xds`** model object
+#' @title Make a module object for `hMoI` (**XH**)
+#' @description Create an `hMoI` module object and initialize its parameters.
+#' Inspect parameters with [get_XH_pars.hMoI] and change supported values
+#' with [change_XH_pars.hMoI]. Values in `options` override parameter arguments.
+#'
+#' MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
+#' @seealso [get_XH_pars.hMoI], [change_XH_pars.hMoI]
+#' @param nStrata is the number of human population strata
+#' @param options a [list] that overrides default values
+#'
+#' @param b transmission probability (efficiency) from mosquito to human
+#' @param c1 transmission probability (efficiency) from inapparent human infections to mosquito
+#' @param c2 transmission probability (efficiency) from patent human infections to mosquito
+#' @param r1 recovery rate from inapparent infections
+#' @param r2 recovery rate from patent infections
+#' @param H human population density
+#'
+#' @return a [list]
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
-setup_XH_inits.hMoI = function(xds_obj, options=list(), i=1){
-  xds_obj$XH_obj[[i]]$inits = make_XH_inits_hMoI(xds_obj$nStrata[i], options)
-  if(!is.null(options$H))
-    xds_obj$XH_obj[[i]]$H = checkIt(options$H, xds_obj$nStrata[i])
+make_XH_obj_hMoI = function(nStrata, options=list(),
+                            b=0.55, r1=1/180, r2 = 1/70,
+                            c1=0.015, c2=0.15, H=1){
+  with(options,{
+    XH_obj = list()
+    class(XH_obj) <- "hMoI"
+
+    XH_obj$b = checkIt(b, nStrata)
+    XH_obj$c1 = checkIt(c1, nStrata)
+    XH_obj$c2 = checkIt(c2, nStrata)
+    XH_obj$r1 = checkIt(r1, nStrata)
+    XH_obj$r2 = checkIt(r2, nStrata)
+    XH_obj$H = checkIt(H, nStrata)
+
+    return(XH_obj)
+})}
+
+#' @title Set up the module object for `hMoI` (**XH**)
+#' @description
+#'
+#' Set up an `hMoI` module object for the **XH** component and the \eqn{i^{th}} host species.
+#'
+#' + Set the module name to `hMoI`.
+#' + Create the module object with [make_XH_obj_hMoI], passing `nStrata[i]` and `options`.
+#' + Set initial values using [setup_XH_inits], passing `options` to override defaults.
+#' + Initialize blood search weights using [setup_blood_search_weights.setup].
+#' + Initialize the time-spent matrix using [setup_timespent.setup].
+#' + Initialize time away using [setup_time_away.setup].
+#' + Initialize travel EIR using [setup_travel_eir.no_travel].
+#' + Return the updated **`xds`** model object.
+#'
+#' @seealso [hMoI], [make_XH_obj_hMoI]
+#'
+#' @note The module object is stored at `xds_obj$XH_obj[[i]]`
+#' @inheritSection hMoI State Variables
+#' @inheritSection hMoI Parameters
+#' @inheritParams setup_XH_obj
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @export
+setup_XH_obj.hMoI = function(XHname, residence, xds_obj, options=list(), i=1){
+  xds_obj$XHname = "hMoI"
+  xds_obj$XH_obj[[i]] = make_XH_obj_hMoI(xds_obj$nStrata[i], options)
+  xds_obj <- setup_XH_inits(xds_obj, options=options, i=i)
+  xds_obj <- setup_blood_search_weights("setup", xds_obj, i=i)
+  xds_obj <- setup_timespent("setup", xds_obj, list(residence=residence), i)
+  xds_obj <- setup_time_away("setup", xds_obj, i=i)
+  xds_obj <- setup_travel_eir("no_travel", xds_obj, i=i)
   return(xds_obj)
 }
 
-#' @title Make initial values for `hMoI` (**XH**) 
-#' @description MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
+#' @title Get parameters for `hMoI` (**XH**)
+#' @seealso [make_XH_obj_hMoI], [change_XH_pars.hMoI]
+#'
+#' @description Return the parameters for the `hMoI` module as a named list.
+#' @note Parameter values for the \eqn{i^{th}} host are
+#' stored as `xds_obj$XH_obj[[i]]`.
+#' 
+#' @inheritSection hMoI Parameters 
+#' 
+#' @inheritParams get_XH_pars
+#'
+#' @return a named [list] of parameter values
+#'
+#' @seealso [hMoI], [make_XH_obj_hMoI]
+#' @keywords internal
+#' @export
+get_XH_pars.hMoI<- function(xds_obj, i=1) {
+  with(xds_obj$XH_obj[[i]],list(b=b, c1=c1, c2=c2, r1=r1, r2=r2))
+}
+
+#' @title Change parameters for `hMoI` (**XH**)
+#' @seealso [make_XH_obj_hMoI], [get_XH_pars.hMoI]
+#'
+#' @description Change parameter values named in `options` for the `hMoI`
+#' module, leaving other values unchanged.
+#'
+#' @inheritSection hMoI Parameters 
+#' 
+#' @inheritParams change_XH_pars
+#'
+#' @return an **`xds`** model object
+#'
+#' @keywords internal
+#' @seealso [hMoI]
+#' @export
+change_XH_pars.hMoI <- function(xds_obj, options=list(), i=1) {
+  nHabitats <- xds_obj$nHabitats
+  with(xds_obj$XH_obj[[i]], with(options,{
+    xds_obj$XH_obj[[i]]$b <- b
+    xds_obj$XH_obj[[i]]$c1 <- c1
+    xds_obj$XH_obj[[i]]$c2 <- c2
+    xds_obj$XH_obj[[i]]$r1 <- r1
+    xds_obj$XH_obj[[i]]$r2 <- r2
+    return(xds_obj)
+  }))}
+
+#' @title Make initial values for `hMoI` (**XH**)
+#' @description Create a named list of initial values for the `hMoI` module.
+#' Values in `options` override the defaults.
+#' MoI stands for Multiplicity of Infection, and refers to malarial superinfection.
+#' @details Initial values must be numeric scalars or have length `nStrata`.
+#' Scalars are expanded to that length.
 #'
 #' @inheritSection hMoI State Variables
 #' 
@@ -361,10 +296,11 @@ setup_XH_inits.hMoI = function(xds_obj, options=list(), i=1){
 #' @param options a [list] that overrides default values
 #' @param m1 mean MoI for all infections
 #' @param m2 mean MoI for apparent infections
-#' @return a [list]
+#' @return a named [list] of initial values
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
+#' @seealso [setup_XH_inits.hMoI], [change_XH_inits.hMoI]
 make_XH_inits_hMoI = function(nStrata, options = list(), m1=2, m2=1){
   with(options,{
     m1 = checkIt(m1, nStrata)
@@ -372,9 +308,28 @@ make_XH_inits_hMoI = function(nStrata, options = list(), m1=2, m2=1){
     return(list(m1=m1, m2=m2))
 })}
 
+#' @title Set up initial values for `hMoI` (**XH**)
+#' @description Set up initial values for the `hMoI` module using
+#' [make_XH_inits_hMoI]. Values in `options` override the defaults.
+#' If `H` is supplied in `options`, also update the module's population density.
+#' @inheritParams setup_XH_inits
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @seealso [hMoI]
+#' @export
+#' @seealso [change_XH_inits.hMoI]
+#' @note Initial values are stored at `xds_obj$XH_obj[[i]]$inits`.
+#' @seealso [get_XH_inits]
+setup_XH_inits.hMoI = function(xds_obj, options=list(), i=1){
+  xds_obj$XH_obj[[i]]$inits = make_XH_inits_hMoI(xds_obj$nStrata[i], options)
+  if(!is.null(options$H))
+    xds_obj$XH_obj[[i]]$H = checkIt(options$H, xds_obj$nStrata[i])
+  return(xds_obj)
+}
+
 #' @title Change initial values for `hMoI` (**XH**)
-#' @description For the `hMoI` module (**XH**) for the \eqn{i^{th}} species,
-#' change initial values named in `options` leaving other values unchanged.
+#' @description Change initial values named in `options` for the `hMoI`
+#' module, leaving other values unchanged.
 #' 
 #' It must be true that \eqn{m_1 > m_2}, so this condition is checked before
 #' changing the initial conditions, but some pairs of values would not arise
@@ -386,6 +341,10 @@ make_XH_inits_hMoI = function(nStrata, options = list(), m1=2, m2=1){
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
+#' @seealso [make_XH_inits_hMoI], [setup_XH_inits.hMoI]
+#' @note Stored initial values for this module are at
+#' `xds_obj$XH_obj[[i]]$inits`.
+#' If `H` is supplied in `options`, the module's population density is also updated.
 change_XH_inits.hMoI <- function(xds_obj, options=list(), i=1) {
   with(xds_obj$XH_obj[[i]]$inits, with(options,{
     m1 = checkIt(m1, xds_obj$nStrata[i])
@@ -398,23 +357,40 @@ change_XH_inits.hMoI <- function(xds_obj, options=list(), i=1) {
     return(xds_obj)
 }))}
 
-
-#' @title Compute the get_HTC for the `hMoI` model
-#' @description Implements \code{get_HTC} for the `hMoI` model without demographic change.
-#' @inheritParams get_HTC
-#' @return a [numeric] vector
+#' @title Set up variable indices for `hMoI` (**XH**)
+#' @description Assign consecutive variable indices for the `hMoI` module,
+#' starting after `xds_obj$max_ix`, and update the maximum index.
+#' Allocate blocks in the order `m1_ix`, `m2_ix`.
+#' Each block has length `nStrata[i]`.
+#' @inheritParams setup_XH_ix
+#' @return an **`xds`** model object
+#' @importFrom utils tail
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
-get_HTC.hMoI <- function(xds_obj, i) {
-  with(xds_obj$XH_obj[[i]],
-       return(c2/r2 + c1*(1/r1 - 1/r2))
-  )
-}
+#' @note Indices are stored at `xds_obj$XH_obj[[i]]$ix`.
+#' The maximum index is stored at `xds_obj$max_ix`.
+setup_XH_ix.hMoI <- function(xds_obj, i) {with(xds_obj,{
+
+  m1_ix <- seq(from=max_ix+1, length.out=nStrata[i])
+  max_ix <- tail(m1_ix, 1)
+
+  m2_ix <- seq(from=max_ix+1, length.out=nStrata[i])
+  max_ix <- tail(m2_ix, 1)
+
+  xds_obj$XH_obj[[i]]$ix = list(m1_ix=m1_ix, m2_ix=m2_ix)
+
+  xds_obj$max_ix = max_ix
+  return(xds_obj)
+})}
 
 #' @title Parse outputs for `hMoI` (**XH**)
-#' @description Implements [parse_XH_orbits] for the `hMoI` model.
+#' @description Extract the model state outputs for the `hMoI` module
+#' from `outputs` and return them by name in a list.
+#' Return `m1`, `m2`, and a matrix `H` with one row per output time and
+#' `nStrata[i]` columns.
 #' The fixed population parameter `H` is repeated across output times.
+#' @note Variable indices are stored at `xds_obj$XH_obj[[i]]$ix`.
 #' @inheritParams parse_XH_orbits
 #' @return a [list]
 #' @keywords internal
@@ -428,6 +404,18 @@ parse_XH_orbits.hMoI <- function(outputs, xds_obj, i){
                ncol=xds_obj$nStrata[i], byrow=TRUE)
     return(list(H=H, m1=m1, m2=m2))
 })}
+
+#' @title Compute the "true" prevalence of infection / parasite rate
+#' @description Implements [F_prevalence] for the `hMoI` model.
+#' @inheritParams F_prevalence
+#' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
+#' @seealso [hMoI]
+#' @export
+F_prevalence.hMoI<- function(vars, XH_obj) {
+  pr = with(vars, 1-exp(-m1))
+  return(pr)
+}
 
 
 #' @title Compute net infectiousness
@@ -444,59 +432,123 @@ F_ni.hMoI<- function(vars, XH_obj) {with(XH_obj,{
   return(ni)
 })}
 
-#' @title Compute the "true" prevalence of infection / parasite rate
-#' @description Implements [F_prevalence] for the `hMoI` model.
-#' @inheritParams F_prevalence
-#' @return a [numeric] vector of length `nStrata`
+
+#' @title Compute the get_HTC for the `hMoI` model
+#' @description Implements \code{get_HTC} for the `hMoI` model without demographic change.
+#' @inheritParams get_HTC
+#' @return a [numeric] vector
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
-F_prevalence.hMoI<- function(vars, XH_obj) {
-  pr = with(vars, 1-exp(-m1))
-  return(pr)
+get_HTC.hMoI <- function(xds_obj, i) {
+  with(xds_obj$XH_obj[[i]],
+       return(c2/r2 + c1*(1/r1 - 1/r2))
+  )
 }
 
-#' @title Compute the prevalence of infection by light microscopy
-#' @description Implements [F_pfpr_by_lm] for the `hMoI` model.
-#' @inheritParams F_prevalence
+#' @title Compute observed prevalence
+#' @description Return apparent prevalence for the `hMoI` module as
+#' `1 - exp(-m2)`, where `m2` is the mean MoI for apparent infections.
+#' @inheritParams F_pr_obs
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
-F_pfpr_by_lm.hMoI<- function(vars, XH_obj) {
+F_pr_obs.hMoI <- function(vars, XH_obj) {
   pr = with(vars, 1-exp(-m2))
   return(pr)
 }
 
-#' @title Compute the prevalence of infection by RDT
-#' @description Implements [F_pfpr_by_rdt] for the `hMoI` model.
-#' @inheritParams F_prevalence
+#' @title Compute observed prevalence by light microscopy
+#' @description Compatibility alias for [F_pr_obs.hMoI]. All diagnostic
+#' aliases return apparent prevalence based on `m2`.
+#' @inheritParams F_pfpr_by_lm
+#' @return a [numeric] vector of length `nStrata`
+#' @keywords internal
+#' @seealso [hMoI]
+#' @export
+F_pfpr_by_lm.hMoI <- function(vars, XH_obj) {
+  F_pr_obs(vars, XH_obj)
+}
+
+#' @title Compute observed prevalence by RDT
+#' @description Compatibility alias for [F_pr_obs.hMoI]. All diagnostic
+#' aliases return apparent prevalence based on `m2`.
+#' @inheritParams F_pfpr_by_rdt
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
 F_pfpr_by_rdt.hMoI<- function(vars, XH_obj) {
-  pr = with(vars, 1-exp(-m1))
-  return(pr)
+  F_pr_obs(vars, XH_obj)
 }
 
-#' @title Compute the prevalence of infection by PCR
-#' @description Implements [F_pfpr_by_pcr] for the `hMoI` model.
-#' @inheritParams F_prevalence
+#' @title Compute observed prevalence by PCR
+#' @description Compatibility alias for [F_pr_obs.hMoI]. All diagnostic
+#' aliases return apparent prevalence based on `m2`.
+#' @inheritParams F_pfpr_by_pcr
 #' @return a [numeric] vector of length `nStrata`
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export
 F_pfpr_by_pcr.hMoI<- function(vars, XH_obj) {
-  pr = with(vars, 1-exp(-m1))
-  return(pr)
+  F_pr_obs(vars, XH_obj)
+}
+
+#' @title Check `hMoI` (**XH**)
+#'
+#' @inheritParams check_XH
+#'
+#' @return an **`xds`** model object
+#' @keywords internal
+#' @seealso [hMoI]
+#' @export
+check_XH.hMoI = function(xds_obj, i){
+  return(xds_obj)
+}
+
+
+#' @title Get the skill set for `hMoI` (**XH**)
+#'
+#' @description Return the capabilities and compatibilities of the `hMoI` module as a list.
+#'
+#' @details The `hMoI` module is an example
+#' of a model that is not extensible. There is no
+#' way to add either dynamic human population density
+#' or mass treatment without violating the model
+#' assumptions.
+#'
+#' @inheritParams get_skillset_XH
+#'
+#' @return the **XH** module skill set, as a list
+#'
+#' @keywords internal
+#' @seealso [hMoI]
+#' @export
+get_skillset_XH.hMoI = function(xds_obj, i){
+  skills = list(
+    dts        = FALSE,
+    xde        = TRUE,
+    delay      = FALSE,
+    demography = FALSE,
+    malaria    = TRUE,
+    pr_obs     = TRUE,
+    pf_lm      = FALSE,
+    pf_rdt     = FALSE,
+    pf_pcr     = FALSE,
+    mda        = FALSE,
+    msat       = FALSE
+  )
+  return(skills)
 }
 
 #' @title Compute steady states for `hMoI` (**XH**)
 #'
-#' @description Compute the steady state of the `hMoI` model as a function of the daily foi
+#' @description Compute steady-state infection values for the `hMoI` module
+#' given daily FoI `foi` for the differential-equation system.
+#' The fixed population input `H` is not used in this calculation.
 #' @inheritParams steady_state_X
-#' @return the steady states as a named vector
+#' @return a named [numeric] vector containing `m1` followed by `m2`
 #' @keywords internal
 #' @seealso [hMoI]
 #' @export

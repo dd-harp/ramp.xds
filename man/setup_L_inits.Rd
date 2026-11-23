@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{setup_L_inits}
 \alias{setup_L_inits}
-\title{Setup initial values (\strong{L})}
+\title{Set up initial values (\strong{L})}
 \usage{
 setup_L_inits(xds_obj, options = list(), s = 1)
 }
@@ -17,18 +17,15 @@ setup_L_inits(xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set initial values
-for all the variables.
-\itemize{
-\item Each module (\emph{Lname}) defines
-a function \code{make_L_inits_}\emph{Lname}
-that supplies default values
-\item The values in \code{options} override the defaults
-\item To inspect variable names, use \link{get_L_inits} or
-see the inline module documentation.
+Set up initial values for the selected \strong{L} module and
+vector species. Values in \code{options} override the defaults.
 }
+\note{
+Dispatch uses the class of \code{xds_obj$L_obj[[s]]}.
 }
 \seealso{
-\link{get_L_inits}, \link{xds_info_initial_conditions}
+\link{get_L_inits}, \link{xds_initial_conditions}
+
+\link{change_L_inits}
 }
 \keyword{internal}

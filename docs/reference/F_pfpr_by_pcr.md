@@ -17,7 +17,7 @@ F_pfpr_by_pcr(vars, XH_obj)
 
 - XH_obj:
 
-  a list defining a model for human
+  a list defining a model for humans
 
 ## Value
 
@@ -26,4 +26,4 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Note
 
-This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
+This method dispatches on the type of `XH_obj`.

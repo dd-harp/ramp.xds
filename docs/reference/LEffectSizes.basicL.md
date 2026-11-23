@@ -1,8 +1,7 @@
 # Apply effect sizes for `basicL` (**L**)
 
-Implements
-[LEffectSizes](https://dd-harp.github.io/ramp.xds/reference/LEffectSizes.md)
-for the `basicL`
+Apply effect sizes to the baseline bionomic parameter values for the
+`basicL` module.
 
 ## Usage
 

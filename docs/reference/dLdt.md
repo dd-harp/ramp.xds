@@ -1,7 +1,6 @@
-# Compute derivatives (**L**)
+# Compute the derivatives (**L**)
 
-This method computes and returns the derivatives for the **L** Component
-modules
+Compute the derivatives (**L**).
 
 ## Usage
 
@@ -29,9 +28,5 @@ dLdt(t, y, xds_obj, s)
 
 ## Value
 
-the derivatives, a [numeric](https://rdrr.io/r/base/numeric.html) vector
-of length \\(n_q=\\)`nHabitats`
-
-## Note
-
-Dispatches on the class of `xds_obj$L_obj[[s]]`
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of derivatives;
+empty for modules without state variables

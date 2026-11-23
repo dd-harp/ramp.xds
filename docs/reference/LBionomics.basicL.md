@@ -1,7 +1,7 @@
 # Mosquito bionomics for `basicL` (**L**)
 
-Compute the bionomic parameter values for `basicL` by calling the
-forcing functions for each parameter. Also resets all effect sizes
+Compute the baseline bionomic parameter values for `basicL` by calling
+the forcing functions for each parameter. Also resets all effect sizes
 (`es_psi`, `es_phi`, `es_xi`, `es_theta`) to 1.
 
 ## Usage

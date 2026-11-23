@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{F_theta.static}
 \alias{F_theta.static}
-\title{Compute theta (density dependent mortality)}
+\title{Static model for the slope of density-dependent mortality (\strong{L})}
 \usage{
 \method{F_theta}{static}(t, xds_obj, s)
 }
@@ -14,9 +14,9 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{theta}, slope of density-dependent mortality
+\eqn{theta}, the baseline slope of density-dependent mortality
 }
 \description{
-Implements \link{F_theta} for a static model
+Return the baseline slope of density-dependent mortality for a static model.
 }
 \keyword{internal}

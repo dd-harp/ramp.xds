@@ -1,6 +1,7 @@
-# Compute Other Variables
+# Add indices for auxiliary variables
 
-The description for each method should include the equations.
+Assign indices to the auxiliary variables following the existing model
+indices.
 
 ## Usage
 
@@ -25,4 +26,4 @@ an **`xds`** model object
 
 ## Note
 
-Index the variables
+Index the variables.

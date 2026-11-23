@@ -1,6 +1,6 @@
-# Compute eggs laid
+# Compute egg laying
 
-Computes eggs laid in aquatic habitats
+Computes eggs laid in aquatic habitats.
 
 ## Usage
 

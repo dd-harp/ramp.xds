@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{dLdt}
 \alias{dLdt}
-\title{Compute derivatives (\strong{L})}
+\title{Compute the derivatives (\strong{L})}
 \usage{
 dLdt(t, y, xds_obj, s)
 }
@@ -16,13 +16,15 @@ dLdt(t, y, xds_obj, s)
 \item{s}{the species index}
 }
 \value{
-the derivatives, a \link{numeric} vector of length \eqn{n_q=}\code{nHabitats}
+a \link{numeric} vector of derivatives in the module's state-variable
+order; empty for modules without state variables
 }
 \description{
-This method computes and returns the derivatives
-for the \strong{L} Component modules
+Compute the derivatives of the aquatic mosquito state variables
+using the selected \strong{L} module. See the module-specific documentation for
+equations and references.
 }
 \note{
-Dispatches on the class of \code{xds_obj$L_obj[[s]]}
+Dispatch on the module object at \code{xds_obj$L_obj[[s]]}.
 }
 \keyword{internal}

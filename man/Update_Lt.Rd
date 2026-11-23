@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{Update_Lt}
 \alias{Update_Lt}
-\title{Update state variables (\strong{L})}
+\title{Update states (\strong{L})}
 \usage{
 Update_Lt(t, y, xds_obj, s)
 }
@@ -16,13 +16,14 @@ Update_Lt(t, y, xds_obj, s)
 \item{s}{the species index}
 }
 \value{
-the states, a \link{numeric} vector of length \eqn{n_q=}\code{nHabitats}
+a \link{numeric} vector of updated states in the module's state-variable
+order; empty for modules without state variables
 }
 \description{
-This method updates the state variables
-for \strong{L} Component modules
+Compute the updated aquatic mosquito states for a discrete-time
+step using the selected \strong{L} module.
 }
 \note{
-Dispatches on the class of \code{xds_obj$L_obj[[s]]}
+Dispatch on the module object at \code{xds_obj$L_obj[[s]]}.
 }
 \keyword{internal}

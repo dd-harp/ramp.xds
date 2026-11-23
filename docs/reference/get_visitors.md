@@ -20,4 +20,4 @@ get_visitors(xds_obj, s = 1)
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+a [vector](https://rdrr.io/r/base/vector.html)

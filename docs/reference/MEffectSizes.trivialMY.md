@@ -2,7 +2,7 @@
 
 Implements
 [MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md)
-for the `trivialMY` module
+for the `trivialMY` module.
 
 ## Usage
 

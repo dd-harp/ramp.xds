@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{Update_MYt.RMdts}
 \alias{Update_MYt.RMdts}
-\title{Update state variables for \code{RMdts} (\strong{MY})}
+\title{Update states for \code{RMdts} (\strong{MY})}
 \usage{
 \method{Update_MYt}{RMdts}(t, y, xds_obj, s)
 }
@@ -16,9 +16,67 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{numeric} vector
+a \link{list}
 }
 \description{
-Implements \link{Update_MYt} for the RMdts model.
+Update the state variables for the \code{RMdts} module:
+\deqn{\begin{array}{rl}
+M_t &= \Lambda+\Omega\cdot M_{t-1} \\\\
+P_t &= f(M_{t-1}-P_{t-1})+\Omega\cdot P_{t-1} \\\\
+U_t &= \Lambda+\Omega\cdot(e^{-fq\kappa}U_{t-1}) \\\\
+\widetilde{Y}_t &= \Omega\cdot\left(Y_{t-1}\cdot\operatorname{diag}(1-G_t)\right) \\\\
+Z_t &= \Omega\cdot(Y_{t-1}\cdot G_t)+\Omega\cdot Z_{t-1}
+\end{array}}
+Here \code{G_t} is \code{G[Gix]}, where \code{Gix = c(t-1:max_eip) \%\% max_eip + 1}.
+Let \eqn{a} be \code{eip_day_ix = (t \%\% max_eip) + 1} and \eqn{b} be
+\code{eip_yday_ix = ((t-1) \%\% max_eip) + 1}. Starting from
+\eqn{Y_t=\widetilde{Y}_t}, apply these column assignments in order:
+\deqn{\begin{array}{rl}
+Y_t[,b] &\leftarrow Y_t[,b]+Y_t[,a] \\\\
+Y_t[,a] &\leftarrow \Omega\cdot\left((1-e^{-fq\kappa})U_{t-1}\right)
+\end{array}}
+}
+\section{State Variables}{
+
+\describe{
+\item{\code{M}}{density of adult mosquitoes}
+\item{\code{Y}}{density of infected adult mosquitoes}
+\item{\code{Z}}{density of infectious adult mosquitoes}
+}
+}
+
+\section{Dynamical Terms}{
+
+\describe{
+\item{\code{Lambda} or \eqn{\Lambda}}{adult mosquito emergence, supplied by \link{Emergence}}
+\item{\code{kappa} or \eqn{\kappa}}{net infectiousness, supplied by \link{Transmission}}
+}
+}
+
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rate}
+\item{\code{q}}{human blood fraction}
+\item{\code{eip}}{extrinsic incubation period (time steps)}
+\item{\code{g}}{mosquito mortality rate}
+\item{\code{sigma}}{emigration rate}
+\item{\code{mu}}{emigration loss rate}
+\item{\code{K}}{mosquito dispersal matrix}
+\item{\code{Omega}}{adult mosquito demographic matrix (mortality + migration)}
+\item{\code{Upsilon}}{survival and dispersal through the eip}
+}
+}
+
+\section{DTS}{
+
+\link{Update_MYt.RMdts} updates \code{M}, \code{P}, \code{U}, the cohort matrix \code{Y}, and \code{Z}.
+It uses the stored \code{Omega} as a one-step matrix and \code{G} to weight progression
+out of the infected cohorts. Cohort columns are merged and replaced after
+computing survival and progression.
+}
+
+\seealso{
+\link{RMdts}
 }
 \keyword{internal}

@@ -1,10 +1,6 @@
 # Set up death rates
 
-Pass pre-configured constant death rates. If it passes the checks, it
-replaces the current death rates.
-
-If called with `name = "as_is"`, the deaths must be at
-\`options\$death_rates
+Set death rates to zero.
 
 ## Usage
 
@@ -17,7 +13,7 @@ setup_deaths(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 

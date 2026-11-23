@@ -1,10 +1,10 @@
-# Set up an **MY** model object
+# Set up the module object (**MY**)
 
 This setup creates an **MY** object for the \\(s^{th}\\) species and
 sets up the interface ports:
 
-- calls `make_MY_obj_`*MYname* to set up the dynamics, including
-  parameters
+- calls the module-specific constructor to set up the dynamics,
+  including parameters
 
 - calls
   [setup_MY_inits](https://dd-harp.github.io/ramp.xds/reference/setup_MY_inits.md)
@@ -14,7 +14,7 @@ sets up the interface ports:
   [setup_F_circadian](https://dd-harp.github.io/ramp.xds/reference/setup_F_circadian.md)
   to set up a flat circadian function (no effect)
 
-- calls
+- for capable modules, calls
   [setup_K_matrix](https://dd-harp.github.io/ramp.xds/reference/setup_K_matrix.md)
   to set up a zero matrix
 

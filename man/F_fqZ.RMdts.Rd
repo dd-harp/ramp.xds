@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{F_fqZ.RMdts}
 \alias{F_fqZ.RMdts}
-\title{Infective mosquito biting rate for \code{RMdts}}
+\title{Compute infective mosquito biting density for \code{RMdts} (\strong{MY})}
 \usage{
 \method{F_fqZ}{RMdts}(t, y, xds_obj, s)
 }
@@ -19,6 +19,11 @@
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements \link{F_fqZ} for the RMdts model.
+Return the daily infective mosquito biting density on humans,
+\code{fqZ}, for each patch in the \code{RMdts} module.
+Compute \code{fqZ = f*q*Z}.
+}
+\seealso{
+\link{F_fqM.RMdts}
 }
 \keyword{internal}

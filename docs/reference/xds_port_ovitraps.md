@@ -1,4 +1,4 @@
 # Ovitraps
 
-To simulate ovitraps, a port was developed to model availability of the
-ovitraps.
+To simulate ovitraps, a port was developed to model the availability of
+the ovitraps.

@@ -1,6 +1,7 @@
-# Set up random EIP values
+# Set up random EIP values (**MY**)
 
-Configure random extrinsic incubation periods.
+Configure random extrinsic incubation periods using
+[make_F_eip_random](https://dd-harp.github.io/ramp.xds/reference/make_F_eip_random.md).
 
 ## Usage
 

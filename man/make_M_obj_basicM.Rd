@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-M-basicM.R
 \name{make_M_obj_basicM}
 \alias{make_M_obj_basicM}
-\title{Make parameters for basicM adult mosquito model}
+\title{Make a module object for \code{basicM} (\strong{MY})}
 \usage{
 make_M_obj_basicM(
   nPatches,
@@ -31,17 +31,22 @@ make_M_obj_basicM(
 
 \item{q}{human blood fraction}
 
-\item{nu}{oviposition rate, per mosquito}
+\item{nu}{the oviposition rate: the number of egg batches laid in each patch,
+per mosquito, per day}
 
-\item{eggsPerBatch}{eggs laid per oviposition}
+\item{eggsPerBatch}{number of eggs per batch}
 }
 \value{
 a \link{list}
 }
 \description{
-Make parameters for basicM adult mosquito model
+Create a \code{basicM} module object and initialize its parameters.
+Inspect parameters with \link{get_MY_pars.basicM} and change supported values
+with \link{change_MY_pars.basicM}. Values in \code{options} override parameter arguments.
 }
 \seealso{
+\link{get_MY_pars.basicM}, \link{change_MY_pars.basicM}
+
 \link{basicM}, \link{setup_MY_obj.basicM}
 }
 \keyword{internal}

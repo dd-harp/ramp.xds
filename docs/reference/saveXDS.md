@@ -1,7 +1,7 @@
 # saveRDS for `xds` Objects
 
 Removes forcing functions (to reduce the file size) and stores the `xds`
-object using `saveRDS`
+object using `saveRDS`.
 
 ## Usage
 
@@ -25,12 +25,14 @@ invisible()
 
 ## Note
 
-Forcing functions (*e.g.* F_trend) are stored on the `xds` object in a
+Forcing functions (*e.g.* `F_trend`) are stored on the `xds` object in a
 form that takes up enormous space. This removes the functions before
 saving.
 
-The function `readRDS` in `ramp.func` provides one method for saving the
-parameter sets for trace functions, and rebuilds the functions
+The function
+[readXDS](https://dd-harp.github.io/ramp.xds/reference/readXDS.md) reads
+the saved model object and rebuilds forcing functions from their
+parameter sets.
 
 ## See also
 

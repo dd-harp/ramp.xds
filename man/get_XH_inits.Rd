@@ -12,14 +12,16 @@ get_XH_inits(xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-the initial values, as a named list
+a named \link{list} of initial values, or \code{NULL} if the field is absent
 }
 \description{
-Inspect the initial values
-for the \strong{XH} module
+Return the stored initial values for the selected \strong{XH} module
+and host species.
 }
 \note{
-The initial values are stored as a named list called \code{xds_obj$XH_obj[[i]]$inits}
+Initial values are stored at \code{xds_obj$XH_obj[[i]]$inits}.
+If the field is absent, as in the \code{trivialXH} module, return \code{NULL}.
+An empty list is returned unchanged.
 }
 \seealso{
 \link{change_XH_inits}, \link{setup_XH_inits}

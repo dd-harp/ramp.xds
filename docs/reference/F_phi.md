@@ -1,7 +1,6 @@
-# Compute the blood phieeding rate, phi
+# Compute the baseline density-independent mortality rate (**L**)
 
-This method dispatches on the type of `phi_obj`. It should set the
-values ophi the bionomic parameters to baseline values
+Compute the baseline density-independent mortality rate.
 
 ## Usage
 
@@ -25,5 +24,5 @@ F_phi(t, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector ophi length
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 `nHabitats`

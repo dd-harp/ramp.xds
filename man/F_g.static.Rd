@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{F_g.static}
 \alias{F_g.static}
-\title{Static model mosquito mortality rate}
+\title{Static model mosquito mortality rate (\strong{MY})}
 \usage{
 \method{F_g}{static}(t, xds_obj, s)
 }
@@ -17,6 +17,6 @@
 \eqn{g}, the baseline mosquito mortality rate
 }
 \description{
-Implements \link{F_g} for a static model
+Return the baseline mosquito mortality rate for a static model.
 }
 \keyword{internal}

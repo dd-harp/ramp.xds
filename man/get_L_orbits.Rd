@@ -12,10 +12,19 @@ get_L_orbits(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the orbits for the \strong{L} component
+a \link{list} of module-specific orbits (trajectories) with a \code{time} vector
 }
 \description{
-Pull the saved, parsed orbits for the \strong{L}
-component from an \strong{\code{xds}} object
+Return the saved, parsed orbits (trajectories) for \strong{L}
+for the selected species after solving.
+}
+\note{
+Orbits are stored at \code{xds_obj$outputs$orbits$L[[s]]}.
+The returned list includes \code{time} from \code{xds_obj$outputs$time}.
+This function does not parse outputs
+or modify the model object.
+}
+\seealso{
+\link{parse_L_orbits}, \link{xds_solve}
 }
 \keyword{internal}

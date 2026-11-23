@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{dF_eip}
 \alias{dF_eip}
-\title{Compute the EIP derivative}
+\title{Compute the EIP derivative (\strong{MY})}
 \usage{
 dF_eip(t, xds_obj, s)
 }
@@ -14,10 +14,9 @@ dF_eip(t, xds_obj, s)
 \item{s}{vector species index}
 }
 \value{
-a \link{numeric} vector of length \code{nPatches}
+the time derivative of the extrinsic incubation period; zero for a static model
 }
 \description{
-This method dispatches on the type of \code{eip_obj} and computes
-the extrinsic incubation period.
+Compute the time derivative of the extrinsic incubation period.
 }
 \keyword{internal}

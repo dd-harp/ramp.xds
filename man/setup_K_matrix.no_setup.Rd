@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{setup_K_matrix.no_setup}
 \alias{setup_K_matrix.no_setup}
-\title{Setup no dispersal matrix}
+\title{Set up K_matrix (no setup) (\strong{MY})}
 \usage{
 \method{setup_K_matrix}{no_setup}(name, xds_obj, options = list(), s = 1)
 }
@@ -16,9 +16,9 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{matrix}
+an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{setup_K_matrix} for the "no_setup" case
+Leave the existing mosquito dispersal configuration unchanged.
 }
 \keyword{internal}

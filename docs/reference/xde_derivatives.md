@@ -1,6 +1,7 @@
 # Compute Derivatives
 
-The function to compute the derivatives dispatches on `class(frame)`
+The function to compute the derivatives dispatches on
+`class(xds_obj$frame)`.
 
 ## Usage
 

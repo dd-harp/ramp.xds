@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{get_XH_ix}
 \alias{get_XH_ix}
-\title{Get XH indices}
+\title{Get variable indices (\strong{XH})}
 \usage{
 get_XH_ix(xds_obj, i = 1)
 }
@@ -12,10 +12,17 @@ get_XH_ix(xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-a \link{list} of variable indices
+a named \link{list} of variable indices, or \code{NULL} if the field is absent
 }
 \description{
-Get the values of the indices
-for the variables.
+Return the stored variable indices for the selected \strong{XH} module
+and host species.
+}
+\note{
+Variable indices are stored at \code{xds_obj$XH_obj[[i]]$ix}.
+If the field is absent, return \code{NULL}. An empty list is returned unchanged.
+}
+\seealso{
+\link{setup_XH_ix}
 }
 \keyword{internal}

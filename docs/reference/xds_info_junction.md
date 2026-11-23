@@ -1,6 +1,6 @@
 # Junctions
 
-In **`ramp.xds,`** clusters of ports are sometimes bundled into a
+In **`ramp.xds`**, clusters of ports are sometimes bundled into a
 **junction** (see
 [xds_info_port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md)).
 A junction is a structural element, a function that is designed to
@@ -17,13 +17,13 @@ handle one or more ports.
   – a junction to handle vector control
 
 - [xds_info_health](https://dd-harp.github.io/ramp.xds/reference/xds_info_health.md)
-  – a junction to handle vector control
+  – a junction to handle health-system variables
 
 - [xds_info_resources](https://dd-harp.github.io/ramp.xds/reference/xds_info_resources.md)
   – a junction to handle resource dynamics
 
 - [xds_info_importation](https://dd-harp.github.io/ramp.xds/reference/xds_info_importation.md)
-  – a junction to handle resource dynamics
+  – a junction to handle importation
 
 ## See also
 

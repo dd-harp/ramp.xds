@@ -1,3 +1,4 @@
+# X
 
 #' @title Mosquito Dispersal
 #' 
@@ -90,15 +91,24 @@ change_K_matrix = function(K_matrix, xds_obj, which_K="K", s=1){
 
 #' @title Change Mosquito Dispersal Matrix
 #' @description
-#' Run [check_K_matrix] then 
+#' Run [check_K_matrix].
 #' 
 #' After passing checks, `xds_obj` is updated.  
+#' 
+#' For models with two or more dispersal matrices, 
+#' use `which_K`.
 #' 
 #' In models with multiple species, use `s` to 
 #' specify the species to update. 
 #' 
 #' @inheritParams change_K_matrix
-#'
+#' 
+#' @note
+#' The argument `which_K` supports behavioral state
+#' models for mosquito ecology with two or more 
+#' mosquito dispersal matrices.
+#' The default "K" returns `K_matrix`
+#' 
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @seealso [xds_info_mosquito_dispersal]; [setup_K_matrix]
@@ -106,6 +116,8 @@ change_K_matrix = function(K_matrix, xds_obj, which_K="K", s=1){
 change_K_matrix.K = function(K_matrix, xds_obj, which_K="K", s=1){
   check_K_matrix(K_matrix, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$K_matrix <- K_matrix
+  xds_obj$MY_obj[[s]]$K_matrix_t <- K_matrix
+  xds_obj$MY_obj[[s]]$es_K_matrix <- matrix(1, xds_obj$nPatches, xds_obj$nPatches)
   xds_obj$MY_obj[[s]]$K_obj <- make_static_obj()
   xds_obj$MY_obj[[s]]$K_obj$K_matrix <- K_matrix
   xds_obj <- change_Omega(xds_obj, s)
@@ -118,15 +130,15 @@ change_K_matrix.K = function(K_matrix, xds_obj, which_K="K", s=1){
 #' Get (inspect) a mosquito dispersal matrix.
 #' 
 #' @note
-#' The argument `K` is used to retrieve state-dependent
-#' mosquito dispersal arguments for behavioral state models.
+#' The argument `which_K` is used to retrieve state-dependent
+#' mosquito dispersal matrices for behavioral state models.
 #' The default "K" returns `K_matrix`
 #' 
 #' @param xds_obj an **`xds`** model object
 #' @param which_K which K_matrix
 #' @param s the vector species index
 #' 
-#' @return an **`xds`** model object
+#' @return a mosquito dispersal [matrix] of dimensions `nPatches` by `nPatches`
 #'
 #' @export
 get_K_matrix = function(xds_obj, which_K="K", s=1){
@@ -138,7 +150,7 @@ get_K_matrix = function(xds_obj, which_K="K", s=1){
 #'
 #' @inheritParams get_K_matrix
 #'
-#' @return an **`xds`** model object
+#' @return a mosquito dispersal [matrix] of dimensions `nPatches` by `nPatches`
 #' @keywords internal
 #' 
 #' @export
@@ -167,15 +179,14 @@ get_K_matrix.K = function(xds_obj, which_K="K", s=1){
 #' + if `name` is a matrix, then `as_matrix` is dispatched
 #' 
 #' + `options` is a named list that sets method-specific parameters
-#' 
-
-#' 
+#'
+#'
 #' Pre-dispatch cases were developed to make the function call more flexible: any
-#' matrix can be passed as the first argument: or the user could set up an options list
-#' ansd pass it
+#' matrix can be passed as the first argument, or the user could set up an options list
+#' and pass it
 #' (*e.g.* `Koptions` is passed to `setup_K_matrix` in `xds_setup`). The pre-dispatch
 #' parsing: 
-#' + if `name` is a method name, set `class(options) = "name"`
+#' + if `name` is a method name, set `class(options) = name`
 #' + if `name` is a matrix, set `class(options) = "as_matrix"`
 #' + if `name` is a list of options, then `list` is dispatched
 #' 
@@ -199,15 +210,15 @@ setup_K_matrix = function(name, xds_obj, options=list(), s=1){
 
 #' @title Setup K_matrix 
 #'
-#' @description If the options list is passed
-#' as the first argument, the set 
-#' + `Kname = name$name` 
-#' + `options = name`
-#' and call `setup_K_matrix(Kname, xds_obj, options, s)` 
+#' @description Set up the mosquito dispersal matrix using an options list.
+#'
+#' @note If an options list is passed as the first argument, use its
+#' `name` field to select the setup method. If `name` is NULL, use the
+#' `no_setup` method. Pass the list as `options` to [setup_K_matrix].
 #'
 #' @inheritParams setup_K_matrix
 #'
-#' @return a [matrix]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_K_matrix.list = function(name, xds_obj, options=list(), s=1){
@@ -221,14 +232,11 @@ setup_K_matrix.list = function(name, xds_obj, options=list(), s=1){
 #' @title Setup K_matrix 
 #'
 #' @description Call [setup_K_matrix] \eqn{N} times. 
-#' The options for the \eqn{i^{th}} call are `options[[i]]` 
-#' 
-#' 
-#' of options 
+#' The options for the \eqn{i^{th}} call are `options$opts[[i]]`
 #'
 #' @inheritParams setup_K_matrix
 #'
-#' @return a [matrix]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 #' 
@@ -240,26 +248,26 @@ setup_K_matrix.N = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Setup no dispersal matrix
+#' @title Set up K_matrix (no setup) (**MY**)
 #'
-#' @description Implements [setup_K_matrix] for the "no_setup" case
+#' @description Leave the existing mosquito dispersal configuration unchanged.
 #'
 #' @inheritParams setup_K_matrix
 #'
-#' @return a [matrix]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_K_matrix.no_setup = function(name, xds_obj, options = list(), s=1){
   return(xds_obj)
 }
 
-#' @title Setup no dispersal matrix
+#' @title Set up a zero mosquito dispersal matrix (**MY**)
 #'
-#' @description Implements [setup_K_matrix] for the "no_setup" case
+#' @description Set up a zero mosquito dispersal matrix using [change_K_matrix].
 #'
 #' @inheritParams setup_K_matrix
 #'
-#' @return a [matrix]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_K_matrix.zero = function(name, xds_obj, options = list(), s=1){
@@ -268,14 +276,13 @@ setup_K_matrix.zero = function(name, xds_obj, options = list(), s=1){
   change_K_matrix(K_matrix, xds_obj, which_K, s)
 }
 
-#' @title Setup a Here-There Dispersal Matrix
+#' @title Set up a supplied mosquito dispersal matrix
 #'
-#' @description Implements [setup_K_matrix] for the here and there model:
-#' dispersal to every other patch, with equal probability
+#' @description Set up a supplied mosquito dispersal matrix using [change_K_matrix].
 #'
 #' @inheritParams setup_K_matrix
 #'
-#' @return a [matrix]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_K_matrix.as_matrix = function(name, xds_obj, options=list(), s=1){
@@ -312,6 +319,8 @@ setup_K_matrix.herethere = function(name, xds_obj, options=list(), s=1){
 #' 
 #' @param nPatches is the number of patches
 #' 
+#' @return a mosquito dispersal [matrix] of dimensions `nPatches` by `nPatches`
+#'
 #' @seealso [setup_K_matrix] 
 #' 
 #' @export
@@ -325,13 +334,13 @@ make_K_matrix_herethere = function(nPatches) {
 #'
 #' @description Set up a mosquito dispersal matrix from
 #' a set of \eqn{x,y} coordinates and a *kernel,* a function
-#' that assigns weights by distance. The fraction leaving from
-#' each patch that arrive at other patch is the vector of normalized
+#' that assigns weights by distance. The fractions leaving from
+#' each patch that arrive at other patches form the vector of normalized
 #' weights.
 #'
 #' @inheritParams setup_K_matrix
 #'
-#' @return a [matrix]
+#' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_K_matrix.xy = function(name, xds_obj, options=list(), s=1) {
@@ -348,10 +357,13 @@ setup_K_matrix.xy = function(name, xds_obj, options=list(), s=1) {
 #' a function \eqn{F_K(d,V)} that weights by distance and perhaps some other variables.
 #' 
 #' 
-#' @param xy is a vector of the xy-coordinates of patch locations
+#' @param xy a numeric matrix or data frame with one row per patch and columns
+#' for the x and y coordinates
 #' @param F_K is a function that weights putative locations by distance
 #' @param V variables
 #' 
+#' @return a mosquito dispersal [matrix] with one row and column per patch location
+#'
 #' @seealso [setup_K_matrix], [xds_info_mosquito_dispersal]
 #' @export
 make_K_matrix_xy = function(xy, F_K = F_exp, V=list()) {
@@ -363,19 +375,18 @@ make_K_matrix_xy = function(xy, F_K = F_exp, V=list()) {
   return(K_matrix)
 }
 
-#' @title Dynamically update a K Matrix
+#' @title Compute the mosquito dispersal matrix (**MY**)
 #'
-#' @description A port function to 
-#' updates the mosquito dispersal 
-#' matrix dynamically. 
+#' @description Compute the mosquito dispersal matrix.
 #' 
 #' @note The port object is called `K_obj`
+#' and dispatch is on its class.
 #' 
 #' @param t time
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #' 
-#' @return a [numeric] vector of length `nPatches`
+#' @return a mosquito dispersal [matrix] of dimensions `nPatches` by `nPatches`
 
 #' @keywords internal
 #' @export
@@ -383,13 +394,15 @@ F_K_matrix = function(t, xds_obj, s) {
   UseMethod("F_K_matrix", xds_obj$MY_obj[[s]]$K_obj)
 }
 
-#' @title Dynamically update a K Matrix
+#' @title Return the static mosquito dispersal matrix (**MY**)
 #'
-#' @description Implements [F_K_matrix] for a static model
+#' @description Return the mosquito dispersal matrix.
+#'
+#' @note The mosquito dispersal matrix is stored in the port object `K_obj`.
 #'
 #' @inheritParams F_K_matrix
 #'
-#' @return a mosquito dispersal matrix
+#' @return a mosquito dispersal [matrix] of dimensions `nPatches` by `nPatches`
 #' 
 #' @keywords internal
 #' @export

@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{setup_F_f.as_is}
 \alias{setup_F_f.as_is}
-\title{Set up blood feeding rates}
+\title{Set up static blood feeding rates (\strong{MY})}
 \usage{
 \method{setup_F_f}{as_is}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a blood feeding rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,8 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Change the blood feeding rates to a new
-set, either passed as the first argument or \code{name = "as_is"} and
-the new values as \code{options$f}
+Set up supplied static blood feeding rates from \code{options$f}
+or a numeric \code{name}. Values in \code{options$f} take precedence.
 }
 \keyword{internal}

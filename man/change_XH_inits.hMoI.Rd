@@ -17,12 +17,17 @@
 an \strong{\code{xds}} model object
 }
 \description{
-For the \code{hMoI} module (\strong{XH}) for the \eqn{i^{th}} species,
-change initial values named in \code{options} leaving other values unchanged.
+Change initial values named in \code{options} for the \code{hMoI}
+module, leaving other values unchanged.
 
 It must be true that \eqn{m_1 > m_2}, so this condition is checked before
 changing the initial conditions, but some pairs of values would not arise
 from any history of exposure.
+}
+\note{
+Stored initial values for this module are at
+\code{xds_obj$XH_obj[[i]]$inits}.
+If \code{H} is supplied in \code{options}, the module's population density is also updated.
 }
 \section{State Variables}{
 
@@ -34,5 +39,7 @@ from any history of exposure.
 
 \seealso{
 \link{hMoI}
+
+\link{make_XH_inits_hMoI}, \link{setup_XH_inits.hMoI}
 }
 \keyword{internal}

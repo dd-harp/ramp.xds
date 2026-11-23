@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L-basicL.R
 \name{setup_L_inits.basicL}
 \alias{setup_L_inits.basicL}
-\title{Setup initial values for \code{basicL} (\strong{L})}
+\title{Set up initial values for \code{basicL} (\strong{L})}
 \usage{
 \method{setup_L_inits}{basicL}(xds_obj, options = list(), s = 1)
 }
@@ -17,18 +17,19 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set initial values for all the variables in the \code{basicL} module
-(\strong{L}) for the \eqn{s^{th}} species.
-\itemize{
-\item \link{make_L_inits_basicL} supplies default values
-\item The values in \code{options} override the defaults
-\item To inspect variable names, use \link{get_L_inits} or
-see the inline module documentation.
-}
+Set up initial values for the \code{basicL} module using
+\link{make_L_inits_basicL}. Values in \code{options} override the defaults.
 
 The initial values of \eqn{L} can be passed as \code{options$L}.
 }
+\note{
+Initial values are stored at \code{xds_obj$L_obj[[s]]$inits}.
+}
 \seealso{
 \link{make_L_inits_basicL}
+
+\link{change_L_inits.basicL}
+
+\link{get_L_inits}
 }
 \keyword{internal}

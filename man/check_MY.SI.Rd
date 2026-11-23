@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-SI.R
 \name{check_MY.SI}
 \alias{check_MY.SI}
-\title{Run a check before solving}
+\title{Check \code{SI} (\strong{MY})}
 \usage{
 \method{check_MY}{SI}(xds_obj, s)
 }
@@ -15,7 +15,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Run a check before solving
+Check \code{SI} (\strong{MY})
 }
 \seealso{
 \link{SI}

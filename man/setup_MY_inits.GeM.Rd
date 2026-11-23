@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{setup_MY_inits.GeM}
 \alias{setup_MY_inits.GeM}
-\title{Setup initial values for \code{GeM} (\strong{MY})}
+\title{Set up initial values for \code{GeM} (\strong{MY})}
 \usage{
 \method{setup_MY_inits}{GeM}(xds_obj, options = list(), s = 1)
 }
@@ -14,17 +14,15 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+an \strong{\code{xds}} model object
 }
 \description{
-Set initial values for all the variables in the \code{GeM} module
-(\strong{MY}) for the \eqn{s^{th}} species.
-\itemize{
-\item \link{make_MY_inits_GeM} supplies default values
-\item The values in \code{options} override the defaults
-\item To inspect variable names, use \link{get_MY_inits} or
-see the inline module documentation.
+Set up initial values for the \code{GeM} module using
+\link{make_MY_inits_GeM}. Values in \code{options} override the defaults.
+The EIP survival and dispersal matrix is computed and passed to the constructor.
 }
+\note{
+Initial values are stored at \code{xds_obj$MY_obj[[s]]$inits}.
 }
 \section{State Variables}{
 
@@ -47,4 +45,9 @@ The initial matrix is set to \eqn{\exp(-\Omega eip)}. This variable is
 internal to the model and is not an output orbit.
 }
 
+\seealso{
+\link{change_MY_inits.GeM}
+
+\link{get_MY_inits}
+}
 \keyword{internal}

@@ -14,6 +14,10 @@ F_zero(t, V = list())
 
   time
 
+- V:
+
+  an optional list of variables
+
 ## Value
 
-0
+a vector of zeros matching `t`

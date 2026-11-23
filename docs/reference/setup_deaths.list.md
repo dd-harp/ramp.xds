@@ -1,11 +1,11 @@
-# Set up a deaths
+# Set up deaths
 
 If an options list is passed as the first argument, then set
 
 - `deaths_name = name$name`
 
 - `options = name` and call
-  `setup_deaths(deaths_name, xds_obj, options, s)`
+  `setup_deaths(deaths_name, xds_obj, options, i)`.
 
 ## Usage
 
@@ -18,7 +18,7 @@ setup_deaths(name, xds_obj, options = list(), i = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 

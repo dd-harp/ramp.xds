@@ -17,3 +17,8 @@ get_spline_s(xds_obj, s)
 - s:
 
   the vector species index
+
+## Value
+
+a [list](https://rdrr.io/r/base/list.html) containing `tt` and `yy`, or
+`NULL` when there is no forcing

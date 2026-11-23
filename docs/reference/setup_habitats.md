@@ -1,7 +1,7 @@
-# Setup the aquatic habitats
+# Set up the aquatic habitats
 
 Set up a part of the `xds` object that defines the interface for egg
-laying
+laying.
 
 ## Usage
 
@@ -17,7 +17,7 @@ setup_habitats(xds_obj, membership)
 
 - membership:
 
-  the membership vector
+  a vector of counting numbers
 
 ## Value
 
@@ -25,48 +25,30 @@ an **`xds`** model object
 
 ## Details
 
-This implements a model for egg laying described by Wu SL, *et al.*,
-(2023).
+Store the habitat vector, set up the habitat matrix, and initialize the
+laying matrix list.
 
-Modular computation in **`ramp.xds`** requires a rigid interface to
-guarantee mathematical consistency for egg laying and emergence. The
-interface is defined by an object called `egg_laying` that is attached
-to the `xds` object `xds_obj` as `xds_obj$egg_laying`. The interface
-includes
+## Habitat Vector
 
-- a habitat membership matrix, \\(N\\) made by
-  [make_habitat_matrix](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
+A habitat vector \\((V)\\) indexes the patches where each aquatic
+habitat can be found.
 
-- the habitat search weights
+If the \\(i^{th}\\) habitat is located in the \\(j^{th}\\) patch, then
+\\(V_i = j.\\)
 
-- a quantity that is motivated by mosquito searching for resources,
-  called habitat availability \\(Q\\), computed by
-  [F_available_habitat](https://dd-harp.github.io/ramp.xds/reference/F_available_habitat.md);
+## Habitat Matrix
 
-- the availability of ovitraps
+The habitat matrix \\((\mathbf N)\\) is an
+`nPatches`\\(\times\\)`nHabitats` matrix that is constructed from the
+[habitat_vector](https://dd-harp.github.io/ramp.xds/reference/habitat_vector.md).
 
-- the availability of unsuitable habitats
+If the \\(i^{th}\\) habitat is in the \\(j^{th}\\) patch, then
+\\({N}\_{j,i}=1.\\) Otherwise, \\({N}\_{j,i}=0.\\)
 
-- the availability of anything that attracts egg laying mosquitoes,
-  including ovitraps and unsuitable habitats
-
-- the egg distribution matrix \\(O\\), made by
-  [make_U_matrix](https://dd-harp.github.io/ramp.xds/reference/make_U_matrix.md)
-
-- a vector that stores eggs laid
-
-This function is called by `compute_xds_object_template` to set up
-`egg_laying` and the variables and parameters with all the variables it
-might depend on.
-
-## References
-
-Wu SL, Henry JM, Citron DT, Ssebuliba DM, Nsumba JN, C HMS, Brady OJ,
-Guerra CA, García GA, Carter AR, Ferguson HM, Afolabi BE, Hay SI, Jr
-RCR, Kiware S, Smith DL (2023). “Spatial dynamics of malaria
-transmission.” *PLoS Computational Biology*, **19**(6), e1010684.
-[doi:10.1371/journal.pcbi.1010684](https://doi.org/10.1371/journal.pcbi.1010684)
-, [2023-06-27](https://dd-harp.github.io/ramp.xds/reference/2023-06-27).
+If \\(x\\) is any vector describing a quantity in habitats (*i.e.*,
+\\(\left\|x\right\|=\\)`nHabitats`), then \$\$X=\mathbf{N}\cdot x\$\$ is
+a vector that has summed \\(x\\) by patch, and
+\\(\left\|X\right\|=\\)`nPatches`.
 
 ## See also
 

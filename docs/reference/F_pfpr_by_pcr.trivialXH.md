@@ -1,7 +1,7 @@
 # Compute the prevalence of infection by PCR
 
 Implements
-[F_prevalence](https://dd-harp.github.io/ramp.xds/reference/F_prevalence.md)
+[F_pfpr_by_pcr](https://dd-harp.github.io/ramp.xds/reference/F_pfpr_by_pcr.md)
 for the trivial model.
 
 ## Usage
@@ -19,7 +19,7 @@ F_pfpr_by_pcr(vars, XH_obj)
 
 - XH_obj:
 
-  a list defining a model for human
+  a list defining a model for humans
 
 ## Value
 

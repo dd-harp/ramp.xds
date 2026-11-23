@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{make_F_g_random}
 \alias{make_F_g_random}
-\title{Make random mosquito mortality rates}
+\title{Make random mosquito mortality rates (\strong{MY})}
 \usage{
 make_F_g_random(
   nPatches,
@@ -17,15 +17,20 @@ make_F_g_random(
 
 \item{options}{is a set of options that overrides the defaults}
 
-\item{f_rand}{a random number generator}
+\item{f_rand}{a random number generator called as \code{f_rand(nPatches, p1, p2)}
+that returns a numeric vector of length \code{nPatches}}
 
 \item{p1}{argument for f_rand}
 
 \item{p2}{argument for f_rand}
 }
 \value{
-a configuration object for \link{F_g.random}
+a static port object for \link{F_g.static}
 }
 \description{
-Build a configuration object for random mosquito mortality.
+Draw mosquito mortality rates once during setup.
+Subsequent evaluations reuse these values.
+}
+\note{
+The values are stored in a static port object.
 }

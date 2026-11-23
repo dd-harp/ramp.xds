@@ -1,6 +1,8 @@
-# Set up a human fraction bionomic object
+# Set up bionomic port for human fraction (**MY**)
 
-Set up an object to compute the human fraction, \\(q\\)
+Set up a [bionomic
+port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md) to
+compute the baseline human fraction, \\(q\\), for a static model.
 
 ## Usage
 
@@ -16,8 +18,8 @@ setup_q_obj(q, MY_obj)
 
 - MY_obj:
 
-  an **`MY`** model object
+  an **`MY`** module object
 
 ## Value
 
-a **`MY`** model object
+an **`MY`** module object

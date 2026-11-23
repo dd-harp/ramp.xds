@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{F_pfpr_by_pcr}
 \alias{F_pfpr_by_pcr}
-\title{Compute infection prevalence by PCR}
+\title{Compute observed prevalence by PCR}
 \usage{
 F_pfpr_by_pcr(vars, XH_obj)
 }

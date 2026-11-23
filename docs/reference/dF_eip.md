@@ -1,7 +1,6 @@
-# Compute the EIP derivative
+# Compute the EIP derivative (**MY**)
 
-This method dispatches on the type of `eip_obj` and computes the
-extrinsic incubation period.
+Compute the time derivative of the extrinsic incubation period.
 
 ## Usage
 
@@ -25,5 +24,5 @@ dF_eip(t, xds_obj, s)
 
 ## Value
 
-a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
-`nPatches`
+the time derivative of the extrinsic incubation period; zero for a
+static model

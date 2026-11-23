@@ -13,6 +13,11 @@ modified through advanced setup. The functions do three things:
 \item \strong{Model Structure} --- set up the basic model structure
 \item \strong{Basic Spatial Dynamics} --- set up the basic spatial parameters
 }
+
+\strong{Advanced Setup} --- \link{xds_advanced_setup}
+}
+\note{
+Each function sets \code{class(xds_obj$frame)} to dispatch functions that are used to solve dynamical systems.
 }
 \section{Basic Setup Functions}{
 
@@ -26,8 +31,6 @@ Depending on the purpose of the study,
 \item \link{xds_setup_human} sets up an \strong{XH} module to study disease dynamics forced by infective biting in the patches.
 \item \link{xds_setup_eir} sets up an \strong{XH} module to study disease dynamics forced by the daily EIR.
 }
-
-Each function sets \code{class(xds_obj$frame)} to dispatch functions that are used to solve dynamical systems.
 }
 
 \section{\link{xds_setup}}{

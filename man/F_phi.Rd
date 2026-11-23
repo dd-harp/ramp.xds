@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{F_phi}
 \alias{F_phi}
-\title{Compute the blood phieeding rate, phi}
+\title{Compute the baseline density-independent mortality rate (\strong{L})}
 \usage{
 F_phi(t, xds_obj, s)
 }
@@ -14,10 +14,9 @@ F_phi(t, xds_obj, s)
 \item{s}{vector species index}
 }
 \value{
-a \link{numeric} vector ophi length \code{nHabitats}
+a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-This method dispatches on the type of \code{phi_obj}. It should
-set the values ophi the bionomic parameters to baseline values
+Compute the baseline density-independent mortality rate.
 }
 \keyword{internal}

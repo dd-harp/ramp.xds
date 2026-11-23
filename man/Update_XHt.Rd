@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{Update_XHt}
 \alias{Update_XHt}
-\title{Update state variables (\strong{XH})}
+\title{Update states (\strong{XH})}
 \usage{
 Update_XHt(t, y, xds_obj, i)
 }
@@ -19,6 +19,9 @@ Update_XHt(t, y, xds_obj, i)
 a \link{numeric} vector
 }
 \description{
+Update states (\strong{XH})
+}
+\note{
 This method dispatches on the type of \code{xds_obj$XH_obj[[i]]}.
 }
 \keyword{internal}

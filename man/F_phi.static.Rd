@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{F_phi.static}
 \alias{F_phi.static}
-\title{Compute phi, density independent mortality rate}
+\title{Static model for the density-independent mortality rate (\strong{L})}
 \usage{
 \method{F_phi}{static}(t, xds_obj, s)
 }
@@ -14,9 +14,9 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{phi}, the baseline human fraction
+\eqn{phi}, the baseline density-independent mortality rate
 }
 \description{
-Implements \link{F_phi} for a static model
+Return the baseline density-independent mortality rate for a static model.
 }
 \keyword{internal}

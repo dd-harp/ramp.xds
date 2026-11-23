@@ -33,23 +33,26 @@ Update_MYt(t, y, xds_obj, s)
 
 a [numeric](https://rdrr.io/r/base/numeric.html) vector
 
-## Dynamics
+## DTS
 
 **Ecology**
 
-Adult mosquitoes emerge from aquatic habitats \\((\Lambda)\\) and
-disperse and die (\\(\Omega\\)): \$\$ dM/dt = \Lambda - \Omega \cdot M
-\$\$ The model also computes the density of parous adult mosquitoes:
-those that have blood fed at least once: \$\$ dP/dt = fq(M-P) - \Omega
-\cdot P \\\\ \$\$ Parity is computed during parsing as \\(P/M\\) and its
-orbit is stored as `parity.`
+Adult mosquitoes emerge from aquatic habitats at rate \\(\Lambda\\) and
+disperse and die according to \\(\Omega\\). The one-day update in
+Update_MYt.SI is: \$\$M_t = \Lambda + e^{-\Omega}\cdot M\_{t-1}\$\$ The
+model also computes the density of parous adult mosquitoes: those that
+have blood fed at least once: \$\$P_t =
+e^{-\Omega}\cdot\left\[(1-e^{-fq})(M\_{t-1}-P\_{t-1}) +
+P\_{t-1}\right\]\$\$ Parity is computed during parsing as \\(P/M\\) and
+its orbit is stored as `parity`.
 
 **Infection Dynamics**
 
 Given the per-capita daily rate of human blood feeding \\((fq)\\) and
 net infectiousness \\((\kappa)\\), the FoI for mosquitoes is
-\\(fq\kappa\\). Changes in the density of infected mosquitoes is given
-by: \$\$ dY/dt = fq\kappa(M-Y) - \Omega \cdot Y \\\\ \$\$
+\\(fq\kappa\\). The density of infected mosquitoes is updated by:
+\$\$Y_t = e^{-\Omega}\cdot\left\[(1-e^{-fq\kappa})(M\_{t-1}-Y\_{t-1}) +
+Y\_{t-1}\right\]\$\$
 
 ## See also
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-demography.R
 \name{change_Omega}
 \alias{change_Omega}
-\title{Change Omega}
+\title{Recompute the mosquito demographic matrix (\strong{MY})}
 \usage{
 change_Omega(xds_obj, s)
 }
@@ -15,6 +15,6 @@ change_Omega(xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Update a static demographic matrix
+Recompute the mosquito demographic matrix and call \link{change_Upsilon}.
 }
 \keyword{internal}

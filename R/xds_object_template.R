@@ -13,7 +13,7 @@
 #' @details This function sets up the interfaces and the
 #' core objects used by **`ramp.xds`**.
 #'
-#' First, the function sets up some
+#' @note First, the function sets up some
 #' short text strings (assigned to the same `S3` class)
 #' to dispatch **cases** of `S3` functions:
 #'
@@ -30,7 +30,7 @@
 #'
 #' - **`forcing`** is set to "none"
 #'
-#' Second, the function sets the values of the **structural parameters**:
+#' @details Second, the function sets the values of the **structural parameters**:
 #' - **`nPatches`** or \eqn{N_p} is the number of patches
 #' - **`nHabitats`** or \eqn{N_q}, the number of aquatic habitats, is set to `length(membership)`
 #' - **`nStrata`** or \eqn{N_h}, the number of human/host population strata, is set to `length(residence)`

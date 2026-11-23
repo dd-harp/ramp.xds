@@ -8,7 +8,7 @@ or
 [xds_solve_cohort](https://dd-harp.github.io/ramp.xds/reference/xds_solve_cohort.md).
 
 To build a model that is forced by infective biting in the patches,
-which requires setting up a time spent matrix and search weigths, use
+which requires setting up a time spent matrix and search weights, use
 [xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md).
 
 ## Usage
@@ -99,11 +99,7 @@ an **`xds`** model object
 
 ## Details
 
-A modified version of
-[xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
-that sets up a model to study exposure and infection. The **MY**
-component module is set to `trivialMY` and a trace function computes
-infective biting in the patches.
+This sets
 
 `class(xds_obj$frame) = 'eir'`
 
@@ -127,7 +123,7 @@ Configure the **XH** component:
 
 The structural parameter `nStrata` is set to `length(HPop)`.
 
-**The EIR Trace Function**
+**The EIR Forcing function**
 
 The interface includes options to configure a composed, multiplicative
 time series function describing `F_eir` as a function of time. For
@@ -145,35 +141,21 @@ a function can be configured to compute relative biting rates by age:
 
 - `F_age` or `age_par` — set up relative biting rates by age
 
-**Next**
-
-- To solve the model, see
-  [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
-  or
-  [xds_solve_cohort](https://dd-harp.github.io/ramp.xds/reference/xds_solve_cohort.md)
-
-- To check or change parameters, see
-  [xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
-
-- To check or change the initial conditions, see
-  [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
-
-- To modify the model structure, see
-  [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)
-
 ## See also
 
 - Basic Setup:
   [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md),
   [xds_setup_human](https://dd-harp.github.io/ramp.xds/reference/xds_setup_human.md),
-  [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)
+  [xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)
 
-  - [xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_info_change_parameters.md)
+  - change parameters —
+    [xds_info_change_parameters](https://dd-harp.github.io/ramp.xds/reference/xds_change_parameters.md)
 
-  - [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_info_initial_conditions.md)
+  - change initial conditions —
+    [xds_info_initial_conditions](https://dd-harp.github.io/ramp.xds/reference/xds_initial_conditions.md)
 
 - Advanced Setup:
-  [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_advanced_setup.md)
+  [xds_info_advanced_setup](https://dd-harp.github.io/ramp.xds/reference/xds_advanced_setup.md)
 
 - Solving:
   [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md),

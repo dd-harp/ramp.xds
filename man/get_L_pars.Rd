@@ -12,12 +12,17 @@ get_L_pars(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+a named \link{list} of parameter values
 }
 \description{
-Inspect the parameter values for the \strong{L} module for the \eqn{s^{th}} species
+Return the parameters for the selected \strong{L} module
+for the \eqn{s^{th}} vector species as a named list.
+}
+\note{
+Parameter values are stored on \code{xds_obj$L_obj[[s]]}.
+Dispatch is on the class of \code{xds_obj$L_obj[[s]]}.
 }
 \seealso{
-\link{change_L_pars}, \link{setup_L_obj}, \link{xds_info_change_parameters}
+\link{change_L_pars}, \link{setup_L_obj}, \link{xds_change_parameters}
 }
 \keyword{internal}

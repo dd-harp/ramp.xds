@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{setup_MY_ix.trivialMY}
 \alias{setup_MY_ix.trivialMY}
-\title{Add indices for aquatic stage mosquitoes to parameter list}
+\title{Set up variable indices for \code{trivialMY} (\strong{MY})}
 \usage{
 \method{setup_MY_ix}{trivialMY}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{setup_MY_ix} for trivial (forced emergence) model.
+The module has no state variables; return the model object unchanged.
 }
 \keyword{internal}

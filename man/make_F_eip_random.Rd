@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{make_F_eip_random}
 \alias{make_F_eip_random}
-\title{Make random EIP configuration}
+\title{Make random EIP configuration (\strong{MY})}
 \usage{
 make_F_eip_random(
   nPatches,
@@ -17,15 +17,21 @@ make_F_eip_random(
 
 \item{options}{is a set of options that overrides the defaults}
 
-\item{f_rand}{a positive random number generator}
+\item{f_rand}{a random number generator called as \code{f_rand(nPatches, p1, p2)}
+that returns a positive numeric vector of length \code{nPatches}}
 
 \item{p1}{first distribution parameter (Gamma shape by default)}
 
 \item{p2}{second distribution parameter (Gamma rate by default)}
 }
 \value{
-a configuration object for \link{F_eip.random}
+a static port object for \link{F_eip.static}
 }
 \description{
-Build a configuration object for random EIP values.
+Draw extrinsic incubation periods once during setup.
+Subsequent evaluations reuse these values.
+}
+\note{
+The values are stored in a static port object.
+The stored time derivative is zero.
 }

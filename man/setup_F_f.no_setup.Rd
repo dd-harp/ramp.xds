@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{setup_F_f.no_setup}
 \alias{setup_F_f.no_setup}
-\title{Set up blood feeding rates}
+\title{Set up F_f (no setup) (\strong{MY})}
 \usage{
 \method{setup_F_f}{no_setup}(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a blood feeding rate or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 

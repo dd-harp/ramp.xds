@@ -1,7 +1,7 @@
-# Set up blood feeding rates
+# Set up static blood feeding rates (**MY**)
 
-Change the blood feeding rates to a new set, either passed as the first
-argument or `name = "as_is"` and the new values as `options$f`
+Set up supplied static blood feeding rates from `options$f` or a numeric
+`name`. Values in `options$f` take precedence.
 
 ## Usage
 
@@ -14,7 +14,7 @@ setup_F_f(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a blood feeding rate or setup method name
 
 - xds_obj:
 

@@ -57,11 +57,6 @@ infection.
 The \strong{MY} module is set to \code{trivialMY} and a forcing function
 computes infective biting in the patches.
 
-\code{class(xds_obj$frame) = 'human'}
-
-to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
-and parse outputs.
-
 To set up a model that is forced
 by the EIR, use \link{xds_setup_eir}.
 
@@ -99,6 +94,14 @@ If \code{nPatches}\eqn{>1}, set up some basic aspects of blood feeding and expos
 \item \code{searchB} the blood feeding search weights (see \link{xds_info_search_weights_blood})
 \item \code{TSoptions} sets up a time spent matrix (see \link{xds_info_time_spent})
 }
+}
+\note{
+This sets
+
+\code{class(xds_obj$frame) = 'human'}
+
+to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
+and parse outputs.
 }
 \seealso{
 \itemize{

@@ -1,4 +1,4 @@
-# Update state variablenos (**XH**)
+# Update states (**XH**)
 
 This method dispatches on the type of `xds_obj$XH_obj[[i]]`.
 

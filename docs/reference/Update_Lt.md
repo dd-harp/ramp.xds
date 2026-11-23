@@ -1,6 +1,7 @@
-# Update state variables (**L**)
+# Update states (**L**)
 
-This method updates the state variables for **L** Component modules
+Compute the updated aquatic mosquito states for a discrete-time step
+using the selected **L** module.
 
 ## Usage
 
@@ -28,9 +29,5 @@ Update_Lt(t, y, xds_obj, s)
 
 ## Value
 
-the states, a [numeric](https://rdrr.io/r/base/numeric.html) vector of
-length \\(n_q=\\)`nHabitats`
-
-## Note
-
-Dispatches on the class of `xds_obj$L_obj[[s]]`
+a [numeric](https://rdrr.io/r/base/numeric.html) vector of updated
+states; empty for modules without state variables

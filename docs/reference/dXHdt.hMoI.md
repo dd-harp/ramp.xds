@@ -1,4 +1,4 @@
-# Compute derivatives for `hMoI` (**XH**)
+# Compute the derivatives for `hMoI` (**XH**)
 
 Implements
 [dXHdt](https://dd-harp.github.io/ramp.xds/reference/dXHdt.md) for the

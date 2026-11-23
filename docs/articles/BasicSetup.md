@@ -162,7 +162,7 @@ Information is passed among components by two interfaces:
 
 For each component, it is possible to choose the `trivial` module. The
 `trivial` modules ignore the inputs that come from other dynamical
-components, and they pass the component’s outputs from a *trace
+components, and they pass the component’s outputs from a *forcing
 function.* Using `trivial` modules, it is possible to develop models
 that isolate and study part of a full system.
 
@@ -182,10 +182,10 @@ that isolate and study part of a full system.
 
 Using
 [`xds_setup_eir()`](https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.md),
-it is possible to set up a trace function that passes the EIR to the
+it is possible to set up a forcing function that passes the EIR to the
 **XH** component.
 
-### Trace Functions
+### Forcing Functions
 
 The functions that output these terms are **composed time series
 functions,** with four components:
@@ -256,7 +256,7 @@ methods that dispatch on `class(xds_obj$frame)`.
 
 - `xds_setup_eir` (`frame="eir"`) sets up models to study epidemiology
 
-  - a trace function computes the EIR, denoted
+  - a forcing function computes the EIR, denoted
   - the **MY** component is not used
   - the **XH** component is not used
 
@@ -390,8 +390,8 @@ Basic setup for the **L** component:
 
 ### Trivial Modules
 
-The trivial modules configure *trace functions* to pass outputs. The
-trace functions are designed around the concept of a *constructed time
+The trivial modules configure *forcing functions* to pass outputs. The
+forcing functions are designed around the concept of a *constructed time
 series* with the form: \\\[m\\; F_S(t)\\; F_T(t) \\; F_K(t)\\\] where
 
 - \\(m\\) - is the mean
@@ -402,8 +402,8 @@ series* with the form: \\\[m\\; F_S(t)\\; F_T(t) \\; F_K(t)\\\] where
 
 - \\(F_K(t)\\) or `F_shock` outputs a perturbation
 
-For a longer introduction, see [**SimBA**: Trace
-Functions](https://faculty.washington.edu/smitdave/simba/trace.html).
+For a longer introduction, see [**SimBA**: Forcing
+functions](https://faculty.washington.edu/smitdave/simba/trace.html).
 
 ## Spatial Dynamics
 

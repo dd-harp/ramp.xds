@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Implements \link{MEffectSizes} for the \code{trivialMY} module
+Implements \link{MEffectSizes} for the \code{trivialMY} module.
 }
 \keyword{internal}

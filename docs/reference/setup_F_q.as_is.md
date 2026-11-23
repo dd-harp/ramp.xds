@@ -1,6 +1,7 @@
-# Set up static human feeding fraction
+# Set up static human fraction (**MY**)
 
-Set up supplied static human feeding fractions.
+Set up supplied static human fractions from `options$q` or a numeric
+`name`. Values in `options$q` take precedence.
 
 ## Usage
 
@@ -13,7 +14,7 @@ setup_F_q(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a human fraction or setup method name
 
 - xds_obj:
 

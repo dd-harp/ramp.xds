@@ -78,10 +78,7 @@ Deaths <- function(t, X, xds_obj, i){
 
 #' @title Human/host deaths
 #'
-#' @param t time
-#' @param X a state variable
-#' @param xds_obj an **`xds`** model object
-#' @param i the species index
+#' @inheritParams Deaths
 #'
 #' @return mortality rate for \eqn{X}
 #' 
@@ -93,10 +90,7 @@ Deaths.zero <- function(t, X, xds_obj, i){
 
 #' @title Human/host deaths
 #'
-#' @param t time
-#' @param X a state variable
-#' @param xds_obj an **`xds`** model object
-#' @param i the species index
+#' @inheritParams Deaths
 #'
 #' @return mortality rate for \eqn{X}
 #' 

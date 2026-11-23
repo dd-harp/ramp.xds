@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{check_L}
 \alias{check_L}
-\title{Run checks before solving (\strong{L})}
+\title{Check model (\strong{L})}
 \usage{
 check_L(xds_obj, s)
 }
@@ -15,6 +15,6 @@ check_L(xds_obj, s)
 an \strong{\code{xds}} model object
 }
 \description{
-Run checks before solving (\strong{L})
+Check model (\strong{L})
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 
 Implements
 [MEffectSizes](https://dd-harp.github.io/ramp.xds/reference/MEffectSizes.md)
-for models with no exogenous forcing
+for the `basicM` module.
 
 ## Usage
 
@@ -58,7 +58,7 @@ an **`xds`** model object
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\(\mu\\):
 
@@ -74,7 +74,8 @@ an **`xds`** model object
 
 - `nu` or \\(\nu\\):
 
-  egg batch rate — use
+  oviposition rate: the number of egg batches laid in each patch, per
+  mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -85,8 +86,9 @@ an **`xds`** model object
 
 After basic setup,
 [change_MY_pars.basicM](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.basicM.md)
-can be used to change static parameter values. The `basicM` module does
-not implement dynamic bionomic ports.
+can be used to change static parameter values. The `basicM` module
+evaluates bionomic parameter functions through
+[MBionomics](https://dd-harp.github.io/ramp.xds/reference/MBionomics.md).
 
 ## See also
 

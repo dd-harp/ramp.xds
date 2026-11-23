@@ -4,13 +4,13 @@
 \alias{L_module_list}
 \title{L modules}
 \description{
-A list of modules for the \strong{L}-Component
+A list of modules for the \strong{L} component
 }
 \section{In \strong{\code{ramp.xds}}}{
 
 \itemize{
 \item \code{trivialL} - the trivial module: see \link{trivialL}
-\item \code{basicL} - a simple model for aquatic dynamics: see \link{basicL}
+\item \code{basicL} - a model of aquatic mosquito ecology with density-dependent mortality and delayed maturation: see \link{basicL}
 }
 }
 
@@ -19,6 +19,6 @@ A list of modules for the \strong{L}-Component
 
 None (so far)
 
-**\code{ramp.library} -- ** \href{https://github.com/dd-harp/ramp.library}{source code} & \href{https://github.com/dd-harp/ramp.library}{github.io}
+\strong{\code{ramp.library}} -- \href{https://github.com/dd-harp/ramp.library}{source code} & \href{https://dd-harp.github.io/ramp.library}{github.io}
 }
 

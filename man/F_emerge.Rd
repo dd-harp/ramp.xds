@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-L.R
 \name{F_emerge}
 \alias{F_emerge}
-\title{Compute emergent adults}
+\title{Compute adult mosquito emergence (\strong{L})}
 \usage{
 F_emerge(t, y, xds_obj, s)
 }
@@ -19,10 +19,13 @@ F_emerge(t, y, xds_obj, s)
 a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-This function computes the rate or number of emerging adults: a
-rate for differential equations, or a number for difference equations.
+Return adult female mosquito emergence per habitat.
+This is a rate for differential equations or a number for discrete-time systems.
 }
 \note{
-This method dispatches on the class of \code{xds_obj$L_obj[[s]]}
+Dispatch on the module object at \code{xds_obj$L_obj[[s]]}.
+}
+\seealso{
+\link{Emergence}
 }
 \keyword{internal}

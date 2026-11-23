@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{setup_XH_obj}
 \alias{setup_XH_obj}
-\title{Set up an \strong{XH} model object}
+\title{Set up the module object (\strong{XH})}
 \usage{
 setup_XH_obj(XHname, residence, xds_obj, options = list(), i = 1)
 }
@@ -21,23 +21,22 @@ setup_XH_obj(XHname, residence, xds_obj, options = list(), i = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-This setup creates an \strong{XH} object for the \eqn{i^{th}} species
-and sets up the interface ports:
+Set up the selected module and its interface ports for the
+\eqn{i^{th}} host species in the \strong{XH} component.
 \itemize{
-\item calls \code{make_XH_obj_}\emph{XHname} to set up the dynamics, including parameters
-\item calls \link{setup_XH_inits} to set initial values
-\item initializes \link{setup_blood_search_weights}: all weights are set to \eqn{1}
-\item initializes \link{setup_timespent} to the residence matrix: all time spent at home
-\item every capable module calls \link{setup_mass_treatment} with no events
-\item every capable module calls \link{setup_demog_obj} setting birth and death rates to zero
-\item calls \link{setup_time_away} with no time spent away
-\item calls \link{setup_travel_eir} with the travel EIR set to zero
+\item Pass \code{residence}, \code{xds_obj}, \code{options}, and \code{i} to the selected setup method.
+\item Let that method construct the module object and configure its
+initial values, exposure, travel, demography, and treatment interfaces
+as appropriate for the module.
+\item Return the updated \strong{\code{xds}} model object.
 }
 
 The function is part of basic setup, but it is also used to add a host species.
 }
 \note{
-The model object is stored as \code{xds_obj$XH_obj[[i]]}
+The module object is stored as \code{xds_obj$XH_obj[[i]]}.
+Dispatch is on \code{XHname}, whose class is set to the supplied module name,
+not on an existing module object.
 }
 \seealso{
 \link{xds_setup}, \link{change_XH_pars}, \link{setup_XH_inits}, \link{setup_timespent}, \link{setup_mass_treatment},

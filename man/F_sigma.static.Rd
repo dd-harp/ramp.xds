@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{F_sigma.static}
 \alias{F_sigma.static}
-\title{Static model patch emigration rate}
+\title{Static model patch emigration rate (\strong{MY})}
 \usage{
 \method{F_sigma}{static}(t, xds_obj, s)
 }
@@ -14,9 +14,9 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{sigma}, the patch emigration rate
+\eqn{sigma}, the baseline patch emigration rate
 }
 \description{
-Implements \link{F_sigma} for a static model
+Return the baseline patch emigration rate for a static model.
 }
 \keyword{internal}

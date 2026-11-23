@@ -7,7 +7,7 @@ features.
 A properly constructed xds object is returned by
 [xds_setup](https://dd-harp.github.io/ramp.xds/reference/xds_setup.md)
 or one of its variants (see
-[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_info_basic_setup.md)).
+[xds_info_basic_setup](https://dd-harp.github.io/ramp.xds/reference/xds_basic_setup.md)).
 The object is created in several steps:
 
 - a basic template for an xds object is returned by
@@ -16,12 +16,12 @@ The object is created in several steps:
 
   - sets the value of structural parameters;
 
-  - creates empty lists to hold the module objects: `XH_obj` `MY_obj,`
+  - creates empty lists to hold the module objects: `XH_obj`, `MY_obj`,
     and `L_obj`;
 
   - sets up empty ports and junctions;
 
-- the core dynamical components are setup; and
+- the core dynamical components are set up; and
 
 - the values of a few modifiable parameters affecting transmission are
   set.

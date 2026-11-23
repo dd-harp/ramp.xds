@@ -1,3 +1,4 @@
+# Y
 #' @title MY Modules 
 #' 
 #' @description
@@ -27,7 +28,7 @@
 #' 
 #' + `BQm` - A behavioral state model with blood feeding & egg laying (**M** only)
 #'
-#' + `BQRS` - A behavioral state model with blood feeding, egg laying, resting, sugar feeding and infection dynamics
+#' + `BRQS` - A behavioral state model with blood feeding, egg laying, resting, sugar feeding and infection dynamics
 #' 
 #' @name MY_module_list 
 NULL

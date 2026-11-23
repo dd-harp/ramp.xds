@@ -12,12 +12,24 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+a named \link{list} of parameter values
 }
 \description{
-Get the \strong{L} component parameters
+Return the parameters for the \code{basicL} module as a named list.
 }
+\section{Parameters}{
+
+\describe{
+\item{\code{psi} or \eqn{\psi}}{maturation rate}
+\item{\code{xi} or \eqn{\xi}}{delayed maturation parameter in response to mean crowding}
+\item{\code{phi} or \eqn{\phi}}{density-independent mortality rate}
+\item{\code{theta} or \eqn{\theta}}{slope of density-dependent mortality}
+}
+}
+
 \seealso{
+\link{make_L_obj_basicL}, \link{change_L_pars.basicL}
+
 \link{dLdt.basicL} or \link{change_L_pars.basicL}
 }
 \keyword{internal}

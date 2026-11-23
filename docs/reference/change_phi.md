@@ -1,6 +1,6 @@
-# Change phi
+# Change the density-independent mortality rate (**L**)
 
-Change the density independent mortality rate for basicL for a static
+Change the density-independent mortality rate for `basicL` for a static
 model
 
 ## Usage
@@ -13,7 +13,7 @@ change_phi(phi, xds_obj, s)
 
 - phi:
 
-  the density independent mortality rate
+  the density-independent mortality rate
 
 - xds_obj:
 
@@ -26,3 +26,7 @@ change_phi(phi, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[get_phi](https://dd-harp.github.io/ramp.xds/reference/get_phi.md)

@@ -1,11 +1,11 @@
-# Set up a vis_kappa
+# Set up visitor net infectiousness
 
 If an options list is passed as the first argument, then set
 
 - `Vname = name$name`
 
 - `options = name` and call
-  `setup_vis_kappa(Vname, xds_obj, options, s)`
+  `setup_vis_kappa(Vname, xds_obj, options, s)`.
 
 ## Usage
 
@@ -18,7 +18,7 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 
@@ -30,8 +30,8 @@ setup_vis_kappa(name, xds_obj, options = list(), s = 1)
 
 - s:
 
-  the host species index
+  the vector species index
 
 ## Value
 
-a [matrix](https://rdrr.io/r/base/matrix.html)
+an **`xds`** model object

@@ -1,10 +1,10 @@
-# Set up a visitors
+# Set up visitors
 
-Pass a pre-configured visitors. If it passes the checks, it replaces the
+Pass pre-configured visitors. If it passes the checks, it replaces the
 current visitors.
 
 If called with `name = "as_is"`, the visitors must be at
-`options$visitors`
+`options$visitors_asis`.
 
 ## Usage
 
@@ -17,7 +17,7 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a numeric vector, a setup function name, or an options list
 
 - xds_obj:
 
@@ -29,7 +29,7 @@ setup_visitors(name, xds_obj, options = list(), s = 1)
 
 - s:
 
-  the host species index
+  the vector species index
 
 ## Value
 

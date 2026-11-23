@@ -1,4 +1,4 @@
-# Setup initial values for `macdonald` (**MY**)
+# Set up initial values for `macdonald` (**MY**)
 
 Set initial values for all the variables in the `macdonald` module
 (**MY**) for the \\(s^{th}\\) species.

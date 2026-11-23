@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-plotting.R
 \name{xds_plot_M}
 \alias{xds_plot_M}
-\title{Plot adult mosquito population density}
+\title{Plot adult mosquito density (\strong{MY})}
 \usage{
 xds_plot_M(xds_obj, s = 1, clrs = "darkblue", llty = 1, add = FALSE)
 }
@@ -11,12 +11,23 @@ xds_plot_M(xds_obj, s = 1, clrs = "darkblue", llty = 1, add = FALSE)
 
 \item{s}{the vector species index}
 
-\item{clrs}{a vector of colors}
+\item{clrs}{a color for all patches or a vector of colors, one per patch}
 
-\item{llty}{an integer (or integers) to set the \code{lty} for plotting}
+\item{llty}{a line type for all patches or a vector of line types, one per patch, passed to \code{lty}}
 
-\item{add}{do not plot axes if TRUE}
+\item{add}{add lines to the existing plot if \code{TRUE}}
+}
+\value{
+invisible(NULL)
 }
 \description{
-Plot adult mosquito population density
+Plot saved adult mosquito density over time, one line per patch
+for the selected species.
+}
+\note{
+Reads \code{M} and \code{time} through \link{get_MY_orbits}.
+Creates a new plot unless \code{add = TRUE}; then adds lines to the existing plot.
+}
+\seealso{
+\link{xds_lines_M}
 }

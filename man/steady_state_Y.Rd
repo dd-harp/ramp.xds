@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{steady_state_Y}
 \alias{steady_state_Y}
-\title{Compute steady states for \strong{Y}}
+\title{Compute steady states (\strong{Y})}
 \usage{
 steady_state_Y(M, kappa, xds_obj, s = 1)
 }
@@ -16,10 +16,15 @@ steady_state_Y(M, kappa, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-none
+module-specific steady-state values; see the selected method for
+the return type and state names
 }
 \description{
-Given adult mosquito population density (\eqn{M} or \code{M}) and the
-net infectiousness of humans (\eqn{\kappa} or \code{kappa}), compute the steady states
-for the other states
+Compute steady-state infection densities for the selected \strong{Y}
+component given adult mosquito density \code{M} and net infectiousness \code{kappa}.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$MY_obj[[s]]}.
+A module-specific method must be supplied to use this generic.
+Return values are not stored on the model object.
 }

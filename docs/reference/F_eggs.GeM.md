@@ -36,7 +36,7 @@ a [numeric](https://rdrr.io/r/base/numeric.html) vector of length
 
 ## Egg Laying
 
-The egg batch rate \\(\nu\\) and the number of eggs per batch,
+The oviposition rate \\(\nu\\) and the number of eggs per batch,
 `eggs_per_batch`, determine the egg production rate per patch: \$\$G=\nu
 M\cdot\texttt{eggs\\\_per\\\_batch}.\$\$ F_eggs.GeM computes \\(G\\),
 which is passed to

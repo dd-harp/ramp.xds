@@ -1,3 +1,36 @@
+test_that("trivialL constructors preserve supplied forcing functions", {
+  functions <- list(
+    function(t, vars) 2,
+    function(t, vars) { value <- 3; value }
+  )
+  patterns <- c(F_season="season_par", F_trend="trend_par", F_shock="shock_par")
+
+  for (pattern in names(patterns)) {
+    parameter <- patterns[[pattern]]
+    for (forcing in functions) {
+      options <- setNames(list(forcing, list(name="F_one")), c(pattern, parameter))
+      from_options <- make_L_obj_trivial(2, options)
+      from_arguments <- do.call(make_L_obj_trivial,
+                                c(list(nHabitats=2), options))
+      for (module in list(from_options, from_arguments)) {
+        expect_identical(module[[pattern]], forcing)
+        expect_identical(module[[parameter]], list())
+        model <- list(L_obj=list(module))
+        expect_equal(F_emerge(0, numeric(), model, 1),
+                     rep(100 * forcing(0, list()), 2))
+      }
+    }
+
+    parameters <- list(name="F_one")
+    module <- make_L_obj_trivial(2, setNames(list(parameters), parameter))
+    expect_identical(module[[parameter]], parameters)
+    expect_equal(module[[pattern]](0, list()), 1)
+  }
+
+  model <- list(L_obj=list(make_L_obj_trivial(2)))
+  expect_equal(F_emerge(0, numeric(), model, 1), c(100, 100))
+})
+
 test_that("trivialL retains its constructor and only two legacy dispatch methods", {
   module <- make_L_obj_trivial(2, list(Lambda=c(10, 20)))
   expect_identical(class(module), "trivialL")
@@ -20,7 +53,7 @@ test_that("trivialL retains its constructor and only two legacy dispatch methods
   }
   expect_identical(get_skillset_L("trivial"), get_skillset_L("trivialL"))
   expect_identical(get_skillset_L("trivialL"),
-                   list(dts=FALSE, xde=TRUE, delay=FALSE, not_implemented=TRUE))
+                   list(dts=FALSE, xde=TRUE, delay=FALSE))
 })
 
 test_that("trivialL setup aliases preserve forcing and stateless behavior", {

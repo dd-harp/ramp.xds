@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-RMdts.R
 \name{get_q.RMdts}
 \alias{get_q.RMdts}
-\title{Get the human fractions}
+\title{Get the human blood fraction for \code{RMdts} (\strong{MY})}
 \usage{
 \method{get_q}{RMdts}(xds_obj, s = 1)
 }
@@ -12,11 +12,29 @@
 \item{s}{the vector species index}
 }
 \value{
-the human fraction, as a vector
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Get the human fractions
+Return the stored realized human blood fraction per patch.
 }
+\details{
+Read \code{q} without evaluating ports or applying effect sizes.
+}
+\section{Parameters}{
+
+\describe{
+\item{\code{f}}{blood feeding rate}
+\item{\code{q}}{human blood fraction}
+\item{\code{eip}}{extrinsic incubation period (time steps)}
+\item{\code{g}}{mosquito mortality rate}
+\item{\code{sigma}}{emigration rate}
+\item{\code{mu}}{emigration loss rate}
+\item{\code{K}}{mosquito dispersal matrix}
+\item{\code{Omega}}{adult mosquito demographic matrix (mortality + migration)}
+\item{\code{Upsilon}}{survival and dispersal through the eip}
+}
+}
+
 \seealso{
 \link{RMdts}
 }

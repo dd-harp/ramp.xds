@@ -36,5 +36,4 @@ a [list](https://rdrr.io/r/base/list.html)
 
 ## Note
 
-The method assigns `class(method)='method'` then dispatches on
-`'method'`
+The method assigns `class(method)=method` then dispatches on `method`.

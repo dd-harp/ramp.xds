@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-X-hMoI.R
 \name{get_skillset_XH.hMoI}
 \alias{get_skillset_XH.hMoI}
-\title{The \strong{XH} module skill set}
+\title{Get the skill set for \code{hMoI} (\strong{XH})}
 \usage{
 \method{get_skillset_XH}{hMoI}(xds_obj, i)
 }
@@ -15,17 +15,14 @@
 the \strong{XH} module skill set, as a list
 }
 \description{
+Return the capabilities and compatibilities of the \code{hMoI} module as a list.
+}
+\details{
 The \code{hMoI} module is an example
 of a model that is not extensible. There is no
 way to add either dynamic human population density
 or mass treatment without violating the model
 assumptions.
-
-The model does output observed population density
-and here it is
-}
-\note{
-This method dispatches on \code{class(xds_obj$XH_obj[[i]])}.
 }
 \seealso{
 \link{hMoI}

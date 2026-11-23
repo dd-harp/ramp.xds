@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-trivial.R
 \name{trivialMY}
 \alias{trivialMY}
-\title{\code{trivialMY} --- \strong{MY} module}
+\title{The trivial module for the MY component}
 \description{
 The trivial \strong{MY} module configures one of two forcing functions, either:
 \itemize{
@@ -15,53 +15,53 @@ The trivial \strong{MY} module configures one of two forcing functions, either:
 where
 \itemize{
 \item \eqn{G} or \code{eggs} is the mean egg laying rate
-\item \eqn{fqZ} or \code{fqZ} is the mean number of infectious bites on humans, per patch
+\item \eqn{fqZ} is the product of \code{f}, \code{q}, and \code{Z}, the mean number of infectious bites on humans, per patch, per day
 \item \eqn{F_S(t,V_s)} or \code{F_season} is a seasonal pattern function
 \item \eqn{F_T(t,V_t)} or \code{F_trend} is a trend pattern function
 \item \eqn{F_K(t,V_k)} or \code{F_shock} is a perturbation function
 }
 
-The variables \eqn{V_s}, \eqn{V_t}, and \eqn{V_t} are
-called by \link{get_variables}, which dispatches on the class of
-\code{season_par} or \code{trend_par} or \code{shock_par}.
-
 The implementation assumes that only one of these functions will be used, so
 it is not possible to configure different pattern functions for egg laying and infective biting.
 }
-\section{Parameters}{
+\note{
+The variables \eqn{V_s}, \eqn{V_t}, and \eqn{V_k} are
+called by \link{get_variables}, which dispatches on the class of
+\code{season_par} or \code{trend_par} or \code{shock_par}.
 
 \describe{
-\item{\code{eggs}}{the mean number of eggs laid, per day}
-\item{\code{Z}}{the mean density of infectious mosquitoes}
-\item{\code{f}}{the blood feeding rate}
-\item{\code{q}}{the human fraction}
-\item{\code{F_season}}{a seasonal pattern function, \eqn{{F_S(t,V_s)}}}
-\item{\code{F_trend}}{a trend function, \eqn{F_T(t,V_t)}}
-\item{\code{F_shock}}{a shock function, \eqn{F_K(t,V_k)}}
 \item{\code{season_par}}{dispatches \link{get_variables} to get \eqn{V_s}}
 \item{\code{trend_par}}{dispatches \link{get_variables} to get \eqn{V_t}}
 \item{\code{shock_par}}{dispatches \link{get_variables} to get \eqn{V_k}}
 }
 
-The default values are \code{F_season=F_trend=F_shock=F_one} and the
-classes of the objects \code{season_par} and \code{trend_par} and \code{shock_par} are all
-'list'
-
-For the bionomic parameters, \code{f=q=Z=eggs=1}.
-}
-
-\section{Notes}{
-
 \enumerate{
 \item The module has no state variables.
 \item The size of an object saved by \code{saveRDS} balloons if it saves a function,
-so \code{saveXDS} function strips the functions and \code{readRDS} remakes the function
+so the \code{saveXDS} function strips the functions and \code{readXDS} remakes the function
 from the stored parameters.
 }
 
 \code{F_season}, \code{F_trend}, and \code{F_shock} can be set up manually by passing any
-user defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
-rather than \code{saveXDS} and \code{readXDS}
+user-defined function. If so, the user should use \code{saveRDS} and \code{readRDS}
+rather than \code{saveXDS} and \code{readXDS}.
+}
+\section{Parameters}{
+
+\describe{
+\item{\code{eggs}}{the mean number of eggs laid, per patch, per day}
+\item{\code{Z}}{the mean density of infectious mosquitoes, per patch}
+\item{\code{f}}{the blood feeding rate}
+\item{\code{q}}{the human fraction}
+\item{\code{F_season}}{a seasonal pattern function, \eqn{{F_S(t,V_s)}}}
+\item{\code{F_trend}}{a trend function, \eqn{F_T(t,V_t)}}
+\item{\code{F_shock}}{a shock function, \eqn{F_K(t,V_k)}}
+}
+
+By default, \code{season_par}, \code{trend_par}, and \code{shock_par} configure
+constant-one forcing functions.
+
+For the bionomic parameters, \code{f=q=Z=eggs=1}.
 }
 
 \seealso{

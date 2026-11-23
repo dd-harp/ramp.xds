@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-egg_laying.R
 \name{F_nu}
 \alias{F_nu}
-\title{Compute the Egg Laying Rate}
+\title{Compute the baseline oviposition rate (\strong{MY})}
 \usage{
 F_nu(t, xds_obj, s)
 }
@@ -17,7 +17,6 @@ F_nu(t, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This method dispatches on the type of \code{nu_obj}. It should
-set the values of the egg batch rate, \eqn{\nu}
+Compute the baseline oviposition rate, \eqn{\nu}.
 }
 \keyword{internal}

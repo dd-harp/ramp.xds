@@ -1,6 +1,6 @@
-# Plot the Temporal Trend
+# Plot the temporal trend
 
-For a model with temporal forcing, show the temporal trend
+For a model with temporal forcing, show the temporal trend.
 
 ## Usage
 
@@ -27,7 +27,7 @@ show_trend(
 
 - add:
 
-  add to existing plot
+  add to an existing plot
 
 - clr:
 
@@ -35,7 +35,7 @@ show_trend(
 
 - rng:
 
-  if not NULL, range limits for plotting
+  if not `NULL`, range limits for plotting
 
 - shock:
 

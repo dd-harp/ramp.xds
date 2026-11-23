@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{F_xi}
 \alias{F_xi}
-\title{Compute xi, the maturation delay parameter}
+\title{Compute the baseline delayed maturation parameter (\strong{L})}
 \usage{
 F_xi(t, xds_obj, s)
 }
@@ -17,7 +17,6 @@ F_xi(t, xds_obj, s)
 a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-This method dispatches on the type of \code{xi_obj}. It should
-set the values oxi the bionomic parameters to baseline values
+Compute the baseline delayed maturation parameter in response to mean crowding.
 }
 \keyword{internal}

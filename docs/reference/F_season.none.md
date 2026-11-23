@@ -1,7 +1,7 @@
 # Compute the seasonal pattern
 
 Evaluate the function `F_season` for a forced model when `forced_by` is
-"none"
+"none".
 
 ## Usage
 
@@ -22,4 +22,4 @@ F_season(tm, xds_obj)
 
 ## Value
 
-an empty vector
+`NULL`

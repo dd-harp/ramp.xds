@@ -16,9 +16,8 @@ test_that("trivialMY preserves its constructor and limits legacy dispatch", {
       expect_null(getS3method(generic, "trivial", optional=TRUE))
     }
   }
-  expect_true("get_MY_inits.trivialMY" %in% getNamespaceExports("ramp.xds"))
   expect_true("make_MY_obj_trivial" %in% getNamespaceExports("ramp.xds"))
-  expect_identical(get_MY_inits.trivialMY(list(), 1), numeric())
+  expect_null(get_MY_inits(list(MY_obj=list(module))))
   expect_identical(get_skillset_MY("trivial"), get_skillset_MY("trivialMY"))
 })
 

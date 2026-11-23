@@ -492,7 +492,7 @@ reference:
   - check_g
   - make_F_g_random
   - setup_sigma
-  - setup_emigration_rates
+  - setup_mosy_emigration
   - setup_F_sigma
   - check_sigma
   - make_F_sigma_random
@@ -517,6 +517,7 @@ reference:
   - make_F_f_type2
   - setup_q
   - setup_human_fractions
+  - setup_human_fraction
   - setup_F_q
   - check_q
   - make_F_q_random

@@ -20,6 +20,7 @@ a \link{list}
 \code{'method'} should be
 \itemize{
 \item \code{true} for the true \emph{Pf}PR (default)
+\item \code{obs} for observed prevalence
 \item \code{lm} for the \emph{Pf}PR by light microscopy
 \item \code{rdt} for the \emph{Pf}PR by RDT
 \item \code{pcr} for the \emph{Pf}PR by PCR

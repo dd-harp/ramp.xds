@@ -28,4 +28,4 @@ xds_plot_M(xds_obj, s = 1, clrs = "darkblue", llty = 1, add = FALSE)
 
 - add:
 
-  do not plot axes if TRUE
+  add lines to the existing plot if TRUE

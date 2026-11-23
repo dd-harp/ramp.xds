@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{steady_state_MY.GeM}
 \alias{steady_state_MY.GeM}
-\title{Compute the steady states as a function of the daily EIR}
+\title{Compute steady states for \code{GeM} (\strong{MY})}
 \usage{
 \method{steady_state_MY}{GeM}(Lambda, kappa, xds_obj, s = 1)
 }
@@ -16,10 +16,12 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{list}
+a named \link{list}
 }
 \description{
-This method dispatches on the type of \code{MY_obj}.
+Compute steady-state mosquito densities for the \code{GeM} module
+given adult mosquito emergence \code{Lambda} and net infectiousness \code{kappa}
+for the differential-equation system.
 }
 \section{State Variables}{
 
@@ -38,10 +40,10 @@ This method dispatches on the type of \code{MY_obj}.
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
 \item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
 \item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{egg batch rate in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggs_per_batch}}{number of eggs per batch}
 }
 

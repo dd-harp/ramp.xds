@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{F_pfpr_by_pcr.trivialXH}
 \alias{F_pfpr_by_pcr.trivialXH}
-\title{Compute the prevalence of infection by PCR}
+\title{Compute observed prevalence by PCR}
 \usage{
 \method{F_pfpr_by_pcr}{trivialXH}(vars, XH_obj)
 }

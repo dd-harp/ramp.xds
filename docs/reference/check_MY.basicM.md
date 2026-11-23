@@ -1,6 +1,6 @@
-# Run a check before solving
+# Check `basicM` (**MY**) before solving
 
-Run a check before solving
+Check `basicM` (**MY**) before solving
 
 ## Usage
 

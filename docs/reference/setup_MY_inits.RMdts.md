@@ -1,4 +1,4 @@
-# Setup initial values for `RMdts` (**MY**)
+# Set up initial values for `RMdts` (**MY**)
 
 Set initial values for all the variables in the `RMdts` module (**MY**)
 for the \\(s^{th}\\) species.
@@ -35,4 +35,4 @@ setup_MY_inits(xds_obj, options = list(), s = 1)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object

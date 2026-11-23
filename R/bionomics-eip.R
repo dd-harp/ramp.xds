@@ -1,20 +1,22 @@
+# X
 # generic methods to compute the extrinsic incubation period (EIP)
 
-#' @title Set up the extrinsic incubation period object
+#' @title Set up bionomic port for extrinsic incubation period (**MY**)
 #'
-#' @description Set up an object
-#' to compute the EIP
+#' @description Set up a [bionomic port][xds_info_port] to compute the extrinsic incubation period
+#' for a static model.
 #'
 #' @param eip the extrinsic incubation period in days
-#' @param MY_obj an **`MY`** model object
+#' @param MY_obj an **`MY`** module object
 #'
-#' @return a **`MY`** model object
+#' @return an **`MY`** module object
 #'
 #' @keywords internal
 #' @export
 setup_eip_obj = function(eip, MY_obj){
   MY_obj$eip = eip
   MY_obj$eip_t = eip
+  MY_obj$es_eip = rep(1, length(eip))
   MY_obj$eip_obj <- list()
   class(MY_obj$eip_obj) <- "static"
   MY_obj$eip_obj$eip <- eip
@@ -22,10 +24,9 @@ setup_eip_obj = function(eip, MY_obj){
   return(MY_obj)
 }
 
-#' @title Compute the EIP
+#' @title Compute the EIP (**MY**)
 #'
-#' @description This method dispatches on the type of `eip_obj` and computes
-#' the extrinsic incubation period.
+#' @description Compute the extrinsic incubation period.
 #'
 #' @param t time
 #' @param xds_obj an **`xds`** model object
@@ -39,9 +40,9 @@ F_eip <- function(t, xds_obj, s){
   UseMethod("F_eip", xds_obj$MY_obj[[s]]$eip_obj)
 }
 
-#' @title Static model for the EIP
+#' @title Static model for the EIP (**MY**)
 #'
-#' @description Implements [F_eip] for a static model
+#' @description Return the extrinsic incubation period for a static model.
 #'
 #' @inheritParams F_eip
 #'
@@ -52,30 +53,29 @@ F_eip.static <- function(t, xds_obj, s){
   return(xds_obj$MY_obj[[s]]$eip_obj$eip)
 }
 
-#' @title Compute the EIP derivative
+#' @title Compute the EIP derivative (**MY**)
 #'
-#' @description This method dispatches on the type of `eip_obj` and computes
-#' the extrinsic incubation period.
+#' @description Compute the time derivative of the extrinsic incubation period.
 #'
 #' @param t time
 #' @param xds_obj an **`xds`** model object
 #' @param s vector species index
 #'
-#' @return a [numeric] vector of length `nPatches`
+#' @return the time derivative of the extrinsic incubation period; zero for a static model
 #'
 #' @keywords internal
 #' @export
 dF_eip <- function(t, xds_obj, s){
-  UseMethod("F_eip", xds_obj$MY_obj[[s]]$eip_obj)
+  UseMethod("dF_eip", xds_obj$MY_obj[[s]]$eip_obj)
 }
 
-#' @title Static model for the EIP
+#' @title Time derivative of the EIP for a static model (**MY**)
 #'
-#' @description Implements [F_eip] for a static model
+#' @description Return zero because the extrinsic incubation period is constant.
 #'
-#' @inheritParams F_eip
+#' @inheritParams dF_eip
 #'
-#' @return \eqn{eip}, the extrinsic incubation period in days
+#' @return zero
 #' @keywords internal
 #' @export
 dF_eip.static <- function(t, xds_obj, s){
@@ -101,7 +101,7 @@ check_eip = function(xds_obj, s=1){
   return(eip)
 }
 
-#' @title Change the extrinsic incubation period
+#' @title Change the extrinsic incubation period (**MY**)
 #'
 #' @description Update the extrinsic incubation period for the \eqn{s^{th}}
 #' vector species.
@@ -120,7 +120,7 @@ change_eip = function(xds_obj, s=1){
   return(xds_obj)
 }
 
-#' @title Set up the extrinsic incubation period
+#' @title Set up the extrinsic incubation period (**MY**)
 #'
 #' @description Configure and validate the EIP strategy.
 #'
@@ -137,7 +137,9 @@ setup_eip = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up F_eip
+#' @title Configure the extrinsic incubation period function (**MY**)
+#'
+#' @description Configure the function used to compute the extrinsic incubation period.
 #'
 #' @param name an EIP value or setup method name
 #' @param xds_obj an **`xds`** model object
@@ -152,10 +154,13 @@ setup_F_eip = function(name, xds_obj, options=list(), s=1){
   UseMethod("setup_F_eip", options)
 }
 
-#' @title Set up F_eip from options
+#' @title Set up F_eip (**MY**)
 #'
-#' @description If an options list is passed as the first argument, use its
-#' `name` field to select the setup method.
+#' @description Set up extrinsic incubation periods using an options list.
+#'
+#' @note If an options list is passed as the first argument, use its
+#' `name` field to select the setup method. If `name` is NULL, use the
+#' `no_setup` method. Pass the list as `options` to [setup_F_eip].
 #'
 #' @inheritParams setup_F_eip
 #' @return an **`xds`** model object
@@ -169,7 +174,7 @@ setup_F_eip.list = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up no F_eip
+#' @title Set up F_eip (no setup) (**MY**)
 #'
 #' @description Leave the existing EIP configuration unchanged.
 #' @inheritParams setup_F_eip
@@ -180,9 +185,10 @@ setup_F_eip.no_setup = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up static EIP values
+#' @title Set up static EIP values (**MY**)
 #'
-#' @description Set up supplied static extrinsic incubation periods.
+#' @description Set up supplied static extrinsic incubation periods from `options$eip`
+#' or a numeric `name`. Values in `options$eip` take precedence.
 #' @inheritParams setup_F_eip
 #' @return an **`xds`** model object
 #' @keywords internal
@@ -200,53 +206,41 @@ setup_F_eip.as_is = function(name, xds_obj, options=list(), s=1){
   return(xds_obj)
 }
 
-#' @title Set up random EIP values
+#' @title Set up random EIP values (**MY**)
 #'
-#' @description Configure random extrinsic incubation periods.
+#' @description Configure random extrinsic incubation periods using [make_F_eip_random].
 #' @inheritParams setup_F_eip
 #' @return an **`xds`** model object
 #' @keywords internal
 #' @export
 setup_F_eip.random = function(name, xds_obj, options=list(), s=1){
-  dF_eip <- xds_obj$MY_obj[[s]]$eip_obj$dF_eip
   eip_obj <- make_F_eip_random(xds_obj$nPatches, options)
-  eip_obj$dF_eip <- dF_eip
   xds_obj$MY_obj[[s]]$eip_obj <- eip_obj
   return(xds_obj)
 }
 
-#' @title Compute random extrinsic incubation periods
+#' @title Make random EIP configuration (**MY**)
 #'
-#' @description Generate patch-level EIP values with the configured positive
-#' random number generator.
-#' @inheritParams F_eip
-#' @return a [numeric] vector of length `nPatches`
-#' @keywords internal
-#' @export
-F_eip.random = function(t, xds_obj, s){
-  with(xds_obj$MY_obj[[s]]$eip_obj, {
-    eip <- f_rand(xds_obj$nPatches, p1, p2)
-    return(eip)
-  })
-}
-
-#' @title Make random EIP configuration
+#' @description Draw extrinsic incubation periods once during setup.
+#' Subsequent evaluations reuse these values.
 #'
-#' @description Build a configuration object for random EIP values.
+#' @note The values are stored in a static port object.
+#' The stored time derivative is zero.
 #' @param nPatches is the number of patches
 #' @param options is a set of options that overrides the defaults
-#' @param f_rand a positive random number generator
+#' @param f_rand a random number generator called as `f_rand(nPatches, p1, p2)`
+#' that returns a positive numeric vector of length `nPatches`
 #' @param p1 first distribution parameter (Gamma shape by default)
 #' @param p2 second distribution parameter (Gamma rate by default)
-#' @return a configuration object for [F_eip.random]
+#' @return a static port object for [F_eip.static]
 #' @export
 make_F_eip_random = function(nPatches, options=list(), f_rand=stats::rgamma,
                              p1=12, p2=1){
   with(options, {
     eip_obj <- list(f_rand=f_rand, p1=p1, p2=p2)
-    class(eip_obj) <- "random"
+    eip_obj$eip <- f_rand(nPatches, p1, p2)
+    eip_obj$dF_eip <- F_zero
+    class(eip_obj) <- "static"
     return(eip_obj)
   })
 }
-
-

@@ -1,6 +1,6 @@
-# Set up sigma
+# Set up static patch emigration rates (**MY**)
 
-Change the static values.
+Set up supplied static patch emigration rates.
 
 ## Usage
 
@@ -13,7 +13,7 @@ setup_F_sigma(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a patch emigration rate or setup method name
 
 - xds_obj:
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-get.R
 \name{get_xi}
 \alias{get_xi}
-\title{Get xi, delayed maturation}
+\title{Get the delayed maturation parameter (\strong{L})}
 \usage{
 get_xi(xds_obj, s = 1)
 }
@@ -12,8 +12,15 @@ get_xi(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-Get xi, delayed maturation
+Return the stored realized delayed maturation parameter per habitat.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$L_obj[[s]]}.
+This function does not evaluate ports or apply effect sizes.
+}
+\seealso{
+\link{change_xi}
 }

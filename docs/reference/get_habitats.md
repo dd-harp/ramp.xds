@@ -1,6 +1,6 @@
 # Get the habitat membership vector
 
-Output the habitat membership information as a list
+Inspect the habitat membership vector.
 
 ## Usage
 
@@ -20,4 +20,4 @@ the patch membership for aquatic habitats, a numeric vector
 
 ## See also
 
-[`make_habitat_matrix()`](https://dd-harp.github.io/ramp.xds/reference/make_habitat_matrix.md)
+[habitat_vector](https://dd-harp.github.io/ramp.xds/reference/habitat_vector.md)

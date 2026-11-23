@@ -13,7 +13,7 @@ make_habitat_search_weights_random(
 )
 }
 \arguments{
-\item{nPatches}{is the number of patches}
+\item{nPatches}{the number of habitats (the argument retains its legacy name)}
 
 \item{options}{is a set of options that overrides the defaults}
 
@@ -27,7 +27,7 @@ make_habitat_search_weights_random(
 a numeric vector
 }
 \description{
-Set up a random vector of habitat search weights
+Set up a random vector of habitat search weights.
 }
 \seealso{
 \link{setup_habitat_search_weights}

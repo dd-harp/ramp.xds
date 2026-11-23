@@ -17,6 +17,10 @@ change_MY_inits(xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}.
+Change initial values named in \code{options} for the selected
+\strong{MY} module and vector species, leaving other values unchanged.
+}
+\note{
+Dispatch uses the class of \code{xds_obj$MY_obj[[s]]}.
 }
 \keyword{internal}

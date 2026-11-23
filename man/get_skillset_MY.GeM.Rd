@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{get_skillset_MY.GeM}
 \alias{get_skillset_MY.GeM}
-\title{The skill set}
+\title{Get the skill set for \code{GeM} (\strong{MY})}
 \usage{
 \method{get_skillset_MY}{GeM}(xds_obj, s)
 }
@@ -15,6 +15,6 @@
 the \strong{MY} module skill set, as a list
 }
 \description{
-The skill set
+Return the capabilities and compatibilities of the \code{GeM} module as a list.
 }
 \keyword{internal}

@@ -1,8 +1,7 @@
-# Compute derivatives for `trivialMY` (**MY**)
+# Compute the derivatives for `trivialMY` (**MY**)
 
-Implements
-[dMYdt](https://dd-harp.github.io/ramp.xds/reference/dMYdt.md) for the
-trivial (forced emergence) model.
+Return an empty derivative vector because the `trivialMY` module has no
+state variables.
 
 ## Usage
 

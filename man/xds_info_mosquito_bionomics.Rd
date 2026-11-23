@@ -4,20 +4,22 @@
 \alias{xds_info_mosquito_bionomics}
 \title{Mosquito Bionomics}
 \description{
-The value of a mosquito bionomic parameters gets computed in two stages:
+The values of some mosquito bionomic parameters (generically, \eqn{x}) are
+computed in two stages, with vector control effect sizes computed between them:
 \itemize{
-\item \link{MosquitoBionomics} computes the bionomic parameter values;
-\item \link{VectorControlEffectSizes} applies the effect sizes of vector control
-}
-}
-\section{Baseline}{
-
-The concept of a \emph{baseline} here is not exactly corre
+\item \link{MosquitoBionomics} computes a \emph{baseline} value, \eqn{x_b}
+\item Vector control functions compute and store the \emph{net effect size,} \eqn{e_x}
+\item \link{VectorControlEffectSizes} computes the realized value \deqn{x = x_b \times e_x}
 }
 
-\section{Modified by Control}{
+The parameter values can be modified by vector control through one
+of two distinct approaches, called \emph{integrated effects} or \emph{independent
+effect sizes}.
 
-The concept of a \emph{baseline} is
-The value of a parameter
+In models with integrated effects, \eqn{x_b} could include
+some effects of vector control, so it may not be correct to call it a
+baseline, strictly speaking.
 }
-
+\seealso{
+\link{xds_info_port}
+}

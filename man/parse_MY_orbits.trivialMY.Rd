@@ -7,7 +7,7 @@
 \method{parse_MY_orbits}{trivialMY}(outputs, xds_obj, s)
 }
 \arguments{
-\item{outputs}{a \link{matrix} of outputs from deSolve}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,6 +17,6 @@
 an empty \link{list}
 }
 \description{
-Return an empty list
+Return an empty list.
 }
 \keyword{internal}

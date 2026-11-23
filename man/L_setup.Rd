@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-help.R
 \name{L_setup}
 \alias{L_setup}
-\title{Setup functions (\strong{L})}
+\title{Set up functions (\strong{L})}
 \description{
 A list of setup functions for aquatic mosquito modules.
 

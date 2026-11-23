@@ -1,6 +1,6 @@
-# Change psi
+# Change the maturation rate (**L**)
 
-Change the maturation rate for basicL for a static model
+Change the maturation rate for `basicL` for a static model
 
 ## Usage
 
@@ -25,3 +25,7 @@ change_psi(psi, xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[get_psi](https://dd-harp.github.io/ramp.xds/reference/get_psi.md)

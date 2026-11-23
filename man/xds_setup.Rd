@@ -40,7 +40,7 @@ xds_setup(
 
 \item{residence}{the index of the patch where each human population stratum resides}
 
-\item{membership}{the index of the patch where each aquatic habitat is found}
+\item{membership}{the habitat membership vector or \link{habitat_vector}}
 
 \item{HPop}{the initial human population density for each stratum}
 

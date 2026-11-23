@@ -2,20 +2,20 @@
 % Please edit documentation in R/bionomics-mosquito_mortality.R
 \name{setup_g_obj}
 \alias{setup_g_obj}
-\title{Set up a mosquito mortality bionomic object}
+\title{Set up bionomic port for mosquito mortality rate (\strong{MY})}
 \usage{
 setup_g_obj(g, MY_obj)
 }
 \arguments{
 \item{g}{the mosquito mortality rate}
 
-\item{MY_obj}{an \strong{\code{MY}} model object}
+\item{MY_obj}{an \strong{\code{MY}} module object}
 }
 \value{
-a \strong{\code{MY}} model object
+an \strong{\code{MY}} module object
 }
 \description{
-Set up an object to return a
-constant baseline mosquito mortality rate, \eqn{g}
+Set up a \link[=xds_info_port]{bionomic port} to compute the baseline mosquito mortality
+rate, \eqn{g}, for a static model.
 }
 \keyword{internal}

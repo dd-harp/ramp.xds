@@ -59,7 +59,9 @@ setup_deaths = function(name, xds_obj, options = list(), i=1){
 
 #' @title Set up deaths
 #'
-#' @description If an options list is passed
+#' @description Set up deaths using an options list.
+#'
+#' @note If an options list is passed
 #' as the first argument, then set 
 #' + `deaths_name = name$name` 
 #' + `options = name`

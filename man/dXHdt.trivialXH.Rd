@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-trivial.R
 \name{dXHdt.trivialXH}
 \alias{dXHdt.trivialXH}
-\title{Compute derivatives for \code{trivialXH} (\strong{XH})}
+\title{Compute the derivatives for \code{trivialXH} (\strong{XH})}
 \usage{
 \method{dXHdt}{trivialXH}(t, y, xds_obj, i)
 }
@@ -19,7 +19,6 @@
 a \link{numeric} vector
 }
 \description{
-The trivial model has no state variables so it returns
-a numeric vector of length 0
+Return an empty numeric vector because the \code{trivialXH} module has no state variables.
 }
 \keyword{internal}

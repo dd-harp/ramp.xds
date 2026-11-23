@@ -7,7 +7,7 @@
 \method{parse_MY_orbits}{GeM}(outputs, xds_obj, s)
 }
 \arguments{
-\item{outputs}{a \link{matrix} of outputs from deSolve}
+\item{outputs}{a \link{matrix} of model state outputs}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -17,7 +17,14 @@
 a \link{list}
 }
 \description{
-Implements \link{parse_MY_orbits} for the GeM model
+Extract the model state outputs for the \code{GeM} module
+from \code{outputs} and return them by name in a list.
+Return \code{M}, \code{P}, \code{Y}, and \code{Z}, and compute \code{y = Y/M}, \code{z = Z/M},
+\code{parous = P/M}, \code{fqZ = f*q*Z}, and \code{fqM = f*q*M}.
+The \code{U} and rate-history states are not included in the parsed outputs.
+}
+\note{
+Variable indices are stored at \code{xds_obj$MY_obj[[s]]$ix}.
 }
 \section{State Variables}{
 

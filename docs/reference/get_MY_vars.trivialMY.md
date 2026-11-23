@@ -1,6 +1,7 @@
-# List variables for `trivialMY` (**MY**)
+# Get the state variables for `trivialMY` (**MY**)
 
-This method dispatches on the type of `xds_obj$MY_obj[[s]]`
+Return an empty list because the `trivialMY` module has no state
+variables.
 
 ## Usage
 

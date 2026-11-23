@@ -1,6 +1,8 @@
-# Set up blood feeding rates
+# Set up bionomic port for blood feeding rate (**MY**)
 
-Set up an object to compute dynamic blood feeding rates
+Set up a [bionomic
+port](https://dd-harp.github.io/ramp.xds/reference/xds_info_port.md) to
+compute the baseline blood feeding rate for a static model.
 
 ## Usage
 
@@ -16,8 +18,8 @@ setup_f_obj(f, MY_obj)
 
 - MY_obj:
 
-  an **`MY`** model object
+  an **`MY`** module object
 
 ## Value
 
-a **`MY`** model object
+an **`MY`** module object

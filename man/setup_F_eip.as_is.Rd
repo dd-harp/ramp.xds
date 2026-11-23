@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-eip.R
 \name{setup_F_eip.as_is}
 \alias{setup_F_eip.as_is}
-\title{Set up static EIP values}
+\title{Set up static EIP values (\strong{MY})}
 \usage{
 \method{setup_F_eip}{as_is}(name, xds_obj, options = list(), s = 1)
 }
@@ -19,6 +19,7 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Set up supplied static extrinsic incubation periods.
+Set up supplied static extrinsic incubation periods from \code{options$eip}
+or a numeric \code{name}. Values in \code{options$eip} take precedence.
 }
 \keyword{internal}

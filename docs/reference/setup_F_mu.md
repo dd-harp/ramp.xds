@@ -1,6 +1,7 @@
-# Set up F_mu
+# Configure the emigration-loss fraction function (**MY**)
 
-Set up F_mu
+Configure the function used to compute the baseline emigration-loss
+fraction.
 
 ## Usage
 
@@ -12,7 +13,7 @@ setup_F_mu(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  an emigration-loss fraction or setup method name
 
 - xds_obj:
 

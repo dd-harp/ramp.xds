@@ -25,7 +25,7 @@ xds_setup_mosy(
 
 \item{nPatches}{the number of patches}
 
-\item{membership}{is a vector that describes the patch where each aquatic habitat is found}
+\item{membership}{the habitat membership vector or \link{habitat_vector}}
 
 \item{HPop}{the initial human population density for each stratum}
 
@@ -54,15 +54,19 @@ can be solved by \link{xds_solve}.
 \details{
 This is a modified version of \link{xds_setup} that streamlines setup
 for models without parasite / pathogen infection
-dynamics. It sets
+dynamics.
+
+The solver ignores infection dynamics (the \strong{X} and \strong{Y} processes).
+A trivial \strong{XH} component is set up to handle human/host population density.
+}
+\note{
+It sets
 
 \code{class(xds_obj$frame) = 'mosy'}
 
 to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
-and parse outputs. The solver ignores infection dynamics (the \strong{X} and \strong{Y} processes).
-A trivial \strong{XH} component is set up to handle human/host population density.
-}
-\note{
+and parse outputs.
+
 \link{xds_setup} calls \link{make_xds_object_template}, which returns an object template with
 a properly configured interface for blood feeding
 and egg laying (see \link{xds_object}).
@@ -90,7 +94,7 @@ Set parameter values and initial conditions using setup options (named lists):
 Set up the model structure:
 \itemize{
 \item \code{nPatches} - the number of patches (see \link{xds_info_patch_dynamics})
-\item \code{membership} - the habitat membership vector (see \link{xds_info_aquatic_habitats})
+\item \code{membership} - the habitat membership vector (see \link{habitat_vector})
 }
 
 During setup:

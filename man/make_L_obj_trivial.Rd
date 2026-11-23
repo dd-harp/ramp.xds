@@ -2,15 +2,15 @@
 % Please edit documentation in R/aquatic-L-trivial.R
 \name{make_L_obj_trivial}
 \alias{make_L_obj_trivial}
-\title{Make \code{L_obj} for \code{trivialL} (\strong{L} component)}
+\title{Make the module object for \code{trivialL} (\strong{L})}
 \usage{
 make_L_obj_trivial(
   nHabitats,
   options = list(),
   Lambda = 100,
-  F_season = F_one,
-  F_trend = F_one,
-  F_shock = F_one,
+  F_season = list(),
+  F_trend = list(),
+  F_shock = list(),
   season_par = list(name = "F_one"),
   trend_par = list(name = "F_one"),
   shock_par = list(name = "F_one")
@@ -39,12 +39,16 @@ make_L_obj_trivial(
 a \link{list}: an L module object
 }
 \description{
-The number of emerging adults is a function \deqn{\Lambda S(t) T(t) K(t)} where
+The number of emerging adults is a function \deqn{\Lambda F_S(t) F_T(t) F_K(t)} where
 \itemize{
-\item \eqn{\Lambda} or \code{Lambda} is the mean number of adult female mosquitoes emerging per day
-\item \eqn{S(t)} or \code{F_season} is a seasonal pattern function (ideally, with an average annual mean of 1)
-\item \eqn{T(t)} or \code{F_trend} is a trend pattern function (ideally, with an average value of 1)
-\item \eqn{K(t)} or \code{F_shock} is a perturbation function (by default, it is set to \code{F_one})
+\item \eqn{\Lambda} or \code{Lambda} is the mean number of adult female mosquitoes emerging from each aquatic habitat per day
+\item \eqn{F_S(t)} or \code{F_season} is a seasonal pattern function (ideally, with an average annual mean of 1)
+\item \eqn{F_T(t)} or \code{F_trend} is a trend pattern function (ideally, with an average value of 1)
+\item \eqn{F_K(t)} or \code{F_shock} is a perturbation function
 }
+
+Use a supplied pattern function if passed, setting its corresponding
+parameter object to an empty list. Otherwise, construct the function from
+the corresponding parameter object using \link[ramp.func:make_function]{make_function}.
 }
 \keyword{internal}

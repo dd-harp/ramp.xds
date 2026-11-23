@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{F_mu}
 \alias{F_mu}
-\title{Compute the emigration loss fraction}
+\title{Compute the baseline emigration-loss fraction (\strong{MY})}
 \usage{
 F_mu(t, xds_obj, s)
 }
@@ -17,7 +17,6 @@ F_mu(t, xds_obj, s)
 a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-This method dispatches on the type of \code{mu_obj}. It should
-compute the baseline emigration-loss fraction, \eqn{\mu}
+Compute the baseline emigration-loss fraction, \eqn{\mu}.
 }
 \keyword{internal}

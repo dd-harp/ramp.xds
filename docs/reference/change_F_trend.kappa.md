@@ -1,6 +1,6 @@
 # Change F_trend
 
-Change the trend function when `forced_by = "kappa"`
+Change the trend function when `forced_by = "kappa"`.
 
 ## Usage
 

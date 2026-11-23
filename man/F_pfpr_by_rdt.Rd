@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{F_pfpr_by_rdt}
 \alias{F_pfpr_by_rdt}
-\title{Compute the prevalence of infection by RDT}
+\title{Compute observed prevalence by RDT}
 \usage{
 F_pfpr_by_rdt(vars, XH_obj)
 }

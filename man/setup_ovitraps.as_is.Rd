@@ -19,10 +19,10 @@
 an \strong{\code{xds}} model object
 }
 \description{
-Pass a pre-configured ovitraps. If it passes
-the checks, it replaces the current ovitraps.
+Pass pre-configured ovitraps. If they pass
+the checks, they replace the current ovitraps.
 
 If called with \code{name = "as_is"}, the ovitraps
-must be at \code{options$ovitraps}
+must be at \code{options$ovitraps}.
 }
 \keyword{internal}

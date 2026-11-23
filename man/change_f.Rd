@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{change_f}
 \alias{change_f}
-\title{Change the blood feeding rate}
+\title{Change the blood feeding rate (\strong{MY})}
 \usage{
 change_f(xds_obj, s = 1)
 }

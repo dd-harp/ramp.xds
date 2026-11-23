@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{setup_MY_ix}
 \alias{setup_MY_ix}
-\title{Add indices for adult mosquitoes to parameter list}
+\title{Set up variable indices (\strong{MY})}
 \usage{
 setup_MY_ix(xds_obj, s)
 }
@@ -12,9 +12,13 @@ setup_MY_ix(xds_obj, s)
 \item{s}{the vector species index}
 }
 \value{
-\link{list}
+an \strong{\code{xds}} model object
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj}.
+Set up variable indices for the selected \strong{MY} module and
+vector species.
+}
+\note{
+Dispatch uses the class of \code{xds_obj$MY_obj[[s]]}.
 }
 \keyword{internal}

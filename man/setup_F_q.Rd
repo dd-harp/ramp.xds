@@ -2,12 +2,12 @@
 % Please edit documentation in R/bionomics-human_fraction.R
 \name{setup_F_q}
 \alias{setup_F_q}
-\title{Set up F_q}
+\title{Configure the human fraction function (\strong{MY})}
 \usage{
 setup_F_q(name, xds_obj, options = list(), s = 1)
 }
 \arguments{
-\item{name}{a or setup function name}
+\item{name}{a human fraction or setup method name}
 
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
@@ -19,5 +19,6 @@ setup_F_q(name, xds_obj, options = list(), s = 1)
 an \strong{\code{xds}} model object
 }
 \description{
-Set up F_q
+Configure the function used to compute the baseline human
+fraction.
 }

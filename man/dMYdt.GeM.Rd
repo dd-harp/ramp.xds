@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-GeM.R
 \name{dMYdt.GeM}
 \alias{dMYdt.GeM}
-\title{Compute derivatives for \code{GeM} (\strong{MY})}
+\title{Compute the derivatives for \code{GeM} (\strong{MY})}
 \usage{
 \method{dMYdt}{GeM}(t, y, xds_obj, s)
 }
@@ -16,11 +16,34 @@
 \item{s}{the vector species index}
 }
 \value{
-a \link{numeric} vector
+a \link{numeric} vector of derivatives in the module's state-variable order
 }
 \description{
-Compute the derivatives for the generalized, non-autonomous Macdonald model
-for mosquito ecology and infection dynamics. See \link{GeM}.
+Compute the derivatives for the \code{GeM} module:
+\deqn{\begin{array}{rl}
+dM/dt &= \Lambda-\Omega\cdot M \\
+dP/dt &= f(M-P)-\Omega\cdot P \\
+dY/dt &= fq\kappa(M-Y)-\Omega\cdot Y \\
+dZ/dt &= \Upsilon\cdot\left((fq\kappa)_\tau(M_\tau-Y_\tau)\right)-\Omega\cdot Z \\
+d\Upsilon/dt &= \left((1-\dot{\ell})\Omega_\tau-\Omega\right)\cdot\Upsilon \\
+dA_{fq\kappa}/dt &= fq\kappa \\
+dA_g/dt &= g \\
+dA_\sigma/dt &= \sigma
+\end{array}}
+
+Survival and dispersal through the EIP \eqn{(\Upsilon)} is computed as
+an accessory variable:
+\deqn{
+d\Upsilon/dt = \left((1-\dot{\ell})\Omega_\tau-\Omega\right)\cdot\Upsilon
+}
+
+The model also adds variables to internalize lags for \eqn{\sigma}, \eqn{g}, and
+\eqn{fq\kappa}.
+}
+\note{
+Derivatives are returned in patch-ordered blocks for \code{M}, \code{P}, \code{Y},
+and \code{Z}, followed by the column-wise flattened derivative of \code{U} and
+patch-ordered accessory derivatives \code{f*q*kappa}, \code{g}, and \code{sigma}.
 }
 \section{State Variables}{
 
@@ -47,10 +70,10 @@ for mosquito ecology and infection dynamics. See \link{GeM}.
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
 \item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
 \item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{egg batch rate in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggs_per_batch}}{number of eggs per batch}
 }
 

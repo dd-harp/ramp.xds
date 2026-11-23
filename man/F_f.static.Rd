@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-feeding_rate.R
 \name{F_f.static}
 \alias{F_f.static}
-\title{Constant baseline blood feeding rate}
+\title{Constant baseline blood feeding rate (\strong{MY})}
 \usage{
 \method{F_f}{static}(t, xds_obj, s)
 }
@@ -17,7 +17,6 @@
 \eqn{f}, the baseline blood feeding rate
 }
 \description{
-Set or reset the baseline value of the feeding rate, \eqn{f}, to a static
-value
+Return the baseline blood feeding rate for a static model.
 }
 \keyword{internal}

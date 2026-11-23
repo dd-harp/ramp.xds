@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{make_F_sigma_random}
 \alias{make_F_sigma_random}
-\title{Make random patch emigration rates}
+\title{Make random patch emigration rates (\strong{MY})}
 \usage{
 make_F_sigma_random(
   nPatches,
@@ -17,15 +17,20 @@ make_F_sigma_random(
 
 \item{options}{is a set of options that overrides the defaults}
 
-\item{f_rand}{a random number generator}
+\item{f_rand}{a random number generator called as \code{f_rand(nPatches, p1, p2)}
+that returns a numeric vector of length \code{nPatches}}
 
 \item{p1}{argument for f_rand}
 
 \item{p2}{argument for f_rand}
 }
 \value{
-a configuration object for \link{F_sigma.random}
+a static port object for \link{F_sigma.static}
 }
 \description{
-Set up a random vector
+Draw patch emigration rates once during setup.
+Subsequent evaluations reuse these values.
+}
+\note{
+The values are stored in a static port object.
 }

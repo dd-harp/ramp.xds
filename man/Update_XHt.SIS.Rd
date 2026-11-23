@@ -19,8 +19,7 @@
 updated dependent variables (a \link{vector})
 }
 \description{
-For the \code{SIS} discrete time system, the state variables are derived
-from the differential equations:
+For the \code{SIS} discrete time system, the updating function is:
 
 \deqn{\begin{array}{rl}
 H_t &= H_{t-1} + \mathbf{B}(t,H) - \mathbf{D}(H) \\

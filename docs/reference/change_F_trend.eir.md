@@ -1,6 +1,6 @@
 # Change F_trend
 
-Change the trend function when `forced_by = "eir"`
+Change the trend function when `forced_by = "eir"`.
 
 ## Usage
 

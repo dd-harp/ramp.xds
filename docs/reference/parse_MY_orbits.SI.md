@@ -1,8 +1,7 @@
 # Parse outputs for `SI` (**MY**)
 
-Implements
-[parse_MY_orbits](https://dd-harp.github.io/ramp.xds/reference/parse_MY_orbits.md)
-for the `SI` model
+Parse the `SI` state outputs and compute infective mosquito density,
+infected and infective fractions, and parity.
 
 ## Usage
 
@@ -15,7 +14,7 @@ parse_MY_orbits(outputs, xds_obj, s)
 
 - outputs:
 
-  a [matrix](https://rdrr.io/r/base/matrix.html) of outputs from deSolve
+  a [matrix](https://rdrr.io/r/base/matrix.html) of model state outputs
 
 - xds_obj:
 
@@ -62,8 +61,8 @@ time \\(t\\), \\(Y(t),\\) had survived and dispersed through an EIP of
 
 - `fqM`:
 
-  Human biting density: the number of human infectious bites, per patch,
-  per day
+  Human biting density: the number of bites on humans, per patch, per
+  day
 
 Note that \\(e^{-\Omega \tau}\\) is computed with the matrix exponential
 function [expm](https://rdrr.io/pkg/expm/man/expm.html)
@@ -76,9 +75,9 @@ is called by
 [compute_EIR](https://dd-harp.github.io/ramp.xds/reference/compute_EIR.md)
 (in
 [Transmission](https://dd-harp.github.io/ramp.xds/reference/Transmission.md))
-to compute and store `EIR,` the local daily EIR \\((E)\\). Note that
+to compute and store `EIR`, the local daily EIR \\((E)\\). Note that
 `fqZ` is a vector of length `nPatches` but the local EIR is a vector of
-length `nStrata.` The **XY** interface uses information about humans and
+length `nStrata`. The **XY** interface uses information about humans and
 mosquitoes to build the biting distribution matrix, \\(\beta,\\) and if
 there are no visitors, then \$\$E = \beta \cdot fqZ\$\$ The orbits of
 `fqZ` and `EIR` are computed and stored by

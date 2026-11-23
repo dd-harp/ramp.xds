@@ -1,6 +1,6 @@
-# F_Upsilon for dts
+# Compute survival and dispersal through the EIP for xde (**MY**)
 
-F_Upsilon for dts
+Compute survival and dispersal through the EIP for xde (**MY**)
 
 ## Usage
 

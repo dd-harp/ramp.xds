@@ -12,8 +12,18 @@ get_XH_orbits(xds_obj, i = 1)
 \item{i}{the host species index}
 }
 \value{
-the orbits for the \strong{XH} component
+a \link{list} of module-specific orbits (trajectories) with a \code{time} vector
 }
 \description{
-Get orbits (\strong{XH})
+Return the saved, parsed orbits (trajectories) for \strong{XH}
+for the selected species after solving.
+}
+\note{
+Orbits are stored at \code{xds_obj$outputs$orbits$XH[[i]]}.
+The returned list includes \code{time} from \code{xds_obj$outputs$time}.
+This function does not parse outputs
+or modify the model object.
+}
+\seealso{
+\link{parse_XH_orbits}, \link{xds_solve}
 }

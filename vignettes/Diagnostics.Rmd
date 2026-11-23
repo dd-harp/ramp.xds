@@ -8,9 +8,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-All malaria modules developed for the **XH** component must define four functions to compute malaria prevalence (traditionally called the parasite rate). Several species of malaria parasites infect humans, so we must be more specific and define *Plasmodium falciparum* Parasite Rate or *Pf*PR. 
+Malaria modules developed for the **XH** component compute true prevalence
+(traditionally called the parasite rate) and may support observed prevalence
+or diagnostic-specific outputs. Several species of malaria parasites infect
+humans, so *Plasmodium falciparum* Parasite Rate is called *Pf*PR.
 
 + *true* - the true *Pf*PR
+
++ *obs* - observed prevalence using the module's observation model
 
 + *lm* - the *Pf*PR by light microscopy 
 
@@ -19,3 +24,21 @@ All malaria modules developed for the **XH** component must define four function
 + *pcr* - the PR by PCR 
 
 ## `get_PR`
+
+Use `get_PR(xds_obj, method = "obs")` to retrieve observed prevalence
+through `F_pr_obs`, which all XH modules implement.
+All XH modules except `hMoI` use a test-positivity parameter `q`
+(default `0.8`), returning `q` times their true prevalence.
+The trivial module returns an empty numeric vector. The library modules
+retain their existing diagnostic-specific parameters and methods.
+For SIS, observed prevalence is `q * I / H`, with one test-positivity
+parameter `q` (default `0.8`). SIS does not distinguish microscopy, RDT,
+and PCR: its three diagnostic methods are compatibility aliases for
+`F_pr_obs.SIS`. Its skill set reports `pr_obs = TRUE` and all three
+`pf_*` flags as `FALSE`.
+
+For hMoI, `F_pr_obs` returns apparent prevalence `1 - exp(-m2)`, without
+a test-positivity parameter `q`. Its three diagnostic methods are aliases
+for this calculation. In particular, RDT and PCR now use `m2`, rather than
+the true-prevalence state `m1`. Its skill set reports `pr_obs = TRUE` and
+all three `pf_*` flags as `FALSE`.

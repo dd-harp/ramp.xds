@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigration_loss.R
 \name{change_mu}
 \alias{change_mu}
-\title{Change emigration-loss fraction}
+\title{Change emigration-loss fraction (\strong{MY})}
 \usage{
 change_mu(xds_obj, s = 1)
 }

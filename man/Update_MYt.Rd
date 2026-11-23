@@ -16,9 +16,14 @@ Update_MYt(t, y, xds_obj, s)
 \item{s}{the vector species index}
 }
 \value{
-Updated states for an adult mosquito model, a \link{vector}
+a \link{numeric} vector of updated states in the module's state-variable
+order; the current RMdts and SEI methods return named lists instead
 }
 \description{
-This method dispatches on the type of \code{xds_obj$MY_obj[[s]]}.
+Compute the updated adult mosquito states for a discrete-time
+step using the selected \strong{MY} module.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$MY_obj[[s]]}.
 }
 \keyword{internal}

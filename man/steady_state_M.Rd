@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{steady_state_M}
 \alias{steady_state_M}
-\title{Compute steady states for \strong{M}}
+\title{Compute steady states (\strong{M})}
 \usage{
 steady_state_M(Lambda, xds_obj, s = 1)
 }
@@ -14,9 +14,15 @@ steady_state_M(Lambda, xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the steady states
+module-specific steady-state values; see the selected method for
+the return type and state names
 }
 \description{
-Given the emergence rate of adult mosquitoes (\eqn{\Lambda} or \code{Lambda}) compute
-the population density of adult mosquitoes at the steady state
+Compute steady-state mosquito densities for the selected \strong{M}
+component given adult mosquito emergence \code{Lambda}.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$MY_obj[[s]]}.
+Equation-system selection and supported steady-state calculations depend
+on the module. Return values are not stored on the model object.
 }

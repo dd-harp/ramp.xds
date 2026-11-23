@@ -2,7 +2,7 @@
 % Please edit documentation in R/adult-MY-interface.R
 \name{get_sigma}
 \alias{get_sigma}
-\title{Get the patch emigration rates}
+\title{Get the patch emigration rate (\strong{MY})}
 \usage{
 get_sigma(xds_obj, s = 1)
 }
@@ -12,8 +12,18 @@ get_sigma(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-the patch emigration rates, as a vector
+a \link{numeric} vector of length \code{nPatches}; empty for trivialMY
 }
 \description{
-Get the patch emigration rates
+Return the stored realized patch emigration rate per patch.
+}
+\details{
+Read the realized parameter without evaluating its port or applying
+effect sizes. Run bionomics and effect-size application to refresh port-backed values.
+
+Behavioral-state modules BQ, BQm, and BRQS return \code{sigma_b}.
+The trivialMY method returns an empty numeric vector.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$MY_obj[[s]]}.
 }

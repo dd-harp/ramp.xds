@@ -39,12 +39,7 @@ can be solved by \link{xds_solve}.
 }
 \details{
 This is a modified version of \link{xds_setup} that streamlines setup for the \strong{L} module
-and egg laying for a \code{trivialMY} \strong{MY} module. It sets
-
-\code{class(xds_obj$frame) = 'aquatic'}
-
-to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
-and parse outputs.
+and egg laying for a \code{trivialMY} \strong{MY} module.
 
 \strong{Dynamics}
 
@@ -69,6 +64,13 @@ Set up the model structure:
 }
 }
 \note{
+It sets
+
+\code{class(xds_obj$frame) = 'aquatic'}
+
+to dispatch functions that compute derivatives (\code{xde}), update variables (\code{dts}),
+and parse outputs.
+
 \link{xds_setup} calls \link{make_xds_object_template}, which returns an object template with
 a properly configured interface for blood feeding
 and egg laying (see \link{xds_object}).

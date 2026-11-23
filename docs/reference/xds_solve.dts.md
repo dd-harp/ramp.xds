@@ -2,7 +2,9 @@
 
 Implements
 [xds_solve](https://dd-harp.github.io/ramp.xds/reference/xds_solve.md)
-for discrete time systems.
+for discrete time systems. Output times are set up or checked by
+[make_times_dts](https://dd-harp.github.io/ramp.xds/reference/make_times_dts.md)
+which guarantees time points are a unique set of integer values
 
 ## Usage
 
@@ -31,10 +33,10 @@ xds_solve(xds_obj, Tmax = 365, dt = 1, times = NULL)
 
 ## Value
 
-a [list](https://rdrr.io/r/base/list.html)
+an **`xds`** model object
 
 ## Note
 
 For discrete time systems, the values in `times` need not be a sequence.
-If `times` is not null, the system iterates up to `max(times)` and then
-returns the solutions at the subset specified in `times.`
+The system is solved for every time step. During parsing, the other
+values are removed.

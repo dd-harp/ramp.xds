@@ -58,7 +58,9 @@ setup_vis_kappa = function(name, xds_obj, options = list(), s=1){
 
 #' @title Set up visitor net infectiousness
 #'
-#' @description If an options list is passed
+#' @description Set up the net infectiousness of visitors using an options list.
+#'
+#' @note If an options list is passed
 #' as the first argument, then set 
 #' + `Vname = name$name` 
 #' + `options = name`
@@ -144,7 +146,7 @@ setup_vis_kappa.as_is = function(name, xds_obj, options=list(), s=1){
 #' @title Update NI of visitors
 #' 
 #' @description Port function to compute the net infectiousness of visitors.
-#' Dispatches on `class(xds_obj$patches$vis_kappa_obj[[s]])`.
+#' @note Dispatches on `class(xds_obj$patches$vis_kappa_obj[[s]])`.
 #' 
 #' @param t time
 #' @param y dependent variables

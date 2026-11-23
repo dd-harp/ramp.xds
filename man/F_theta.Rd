@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-aquatic.R
 \name{F_theta}
 \alias{F_theta}
-\title{Compute theta (density dependent mortality)}
+\title{Compute the baseline slope of density-dependent mortality (\strong{L})}
 \usage{
 F_theta(t, xds_obj, s)
 }
@@ -17,7 +17,6 @@ F_theta(t, xds_obj, s)
 a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-This method dispatches on the type of \code{theta_obj}. It should
-set the values otheta the bionomic parameters to baseline values
+Compute the baseline slope of density-dependent mortality.
 }
 \keyword{internal}

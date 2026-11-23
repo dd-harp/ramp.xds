@@ -19,5 +19,11 @@ an \strong{\code{xds}} model object
 \description{
 For the \code{trivialMY} module (\strong{MY}) for the \eqn{s^{th}} species,
 change parameter values named in \code{options} leaving other values unchanged.
+Rebuild only forcing functions whose parameters are supplied.
+An empty parameter list resets the corresponding function to constant one.
+}
+\details{
+After the updates, call \link{MBionomics} at time zero with the flattened
+initial state. Do not call \link{MEffectSizes}; bionomics is a no-op for this module.
 }
 \keyword{internal}

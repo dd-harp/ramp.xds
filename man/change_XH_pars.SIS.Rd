@@ -17,14 +17,14 @@
 an \strong{\code{xds}} model object
 }
 \description{
-For the \code{SIS} module (\strong{XH}) for the \eqn{i^{th}} host species,
-change parameter values named in \code{options} leaving other values unchanged.
+Change parameter values named in \code{options} for the \code{SIS}
+module, leaving other values unchanged.
 }
 \section{Parameters}{
 
 
 The parameters that are returned by \link{get_XH_pars.SIS} and also modifiable by \link{change_XH_pars.SIS} describe
-the dynamics, or detection by diagnostic methods.
+the dynamics or test positivity.
 
 \describe{
 \item{\code{b}}{the fraction of infective bites that would cause an infection}
@@ -32,13 +32,13 @@ the dynamics, or detection by diagnostic methods.
 \item{\code{c}}{the probability an infected person would infect a mosquito}
 \item{\code{rho} or \eqn{\rho}}{the fraction of incident infections that are treated and cured}
 \item{\code{sigma} or \eqn{\sigma}}{the rate that prevalent infections are treated and cured}
-\item{\code{q_lm}}{test positivity by light microscopy}
-\item{\code{q_rdt}}{test positivity by RDT}
-\item{\code{q_pcr}}{test positivity by PCR}
+\item{\code{q}}{test positivity}
 }
 }
 
 \seealso{
+\link{make_XH_obj_SIS}, \link{get_XH_pars.SIS}
+
 \link{SIS}, \code{\link[=get_XH_pars.SIS]{get_XH_pars.SIS()}} and the vignette on \href{https://dd-harp.github.io/ramp.xds/articles/human_sis.html}{SIS Dynamics}
 }
 \keyword{internal}

@@ -1,6 +1,6 @@
-# Make parameters for SI ODE adult mosquito model
+# Make the module object for `SI` (**MY**)
 
-Make parameters for SI ODE adult mosquito model
+Make the module object for `SI` (**MY**)
 
 ## Usage
 
@@ -55,11 +55,12 @@ make_MY_obj_SI(
 
 - nu:
 
-  oviposition rate, per mosquito
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day
 
 - eggsPerBatch:
 
-  eggs laid per oviposition
+  number of eggs per batch
 
 ## Value
 
@@ -95,11 +96,11 @@ a [list](https://rdrr.io/r/base/list.html)
   emigration rate — use
   [setup_sigma](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
   or
-  [setup_emigration_rates](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
+  [setup_mosy_emigration](https://dd-harp.github.io/ramp.xds/reference/setup_sigma.md)
 
 - `mu` or \\(\mu\\):
 
-  emigration loss rate — use
+  emigration loss fraction — use
   [setup_mu](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
   or
   [setup_emigration_loss](https://dd-harp.github.io/ramp.xds/reference/setup_mu.md)
@@ -111,7 +112,8 @@ a [list](https://rdrr.io/r/base/list.html)
 
 - `nu` or \\(\nu\\):
 
-  the egg batch rate, in batches per mosquito per day — use
+  the oviposition rate: the number of egg batches laid in each patch,
+  per mosquito, per day — use
   [setup_nu](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
   or
   [setup_egg_batch_rates](https://dd-harp.github.io/ramp.xds/reference/setup_nu.md)
@@ -122,9 +124,8 @@ a [list](https://rdrr.io/r/base/list.html)
 
 After basic setup,
 [change_MY_pars](https://dd-harp.github.io/ramp.xds/reference/change_MY_pars.md)
-can be used for static parameters, or for for parameters that are set up
-as static ports (the default). Use advanced setup to modify dynamic
-ports.
+can be used for static parameters, or for parameters that are set up as
+static ports (the default). Use advanced setup to modify dynamic ports.
 
 ## See also
 

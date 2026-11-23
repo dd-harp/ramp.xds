@@ -2,7 +2,7 @@
 % Please edit documentation in R/bionomics-emigrate.R
 \name{F_sigma.type2}
 \alias{F_sigma.type2}
-\title{Patch emigration rate}
+\title{Compute the baseline patch emigration rate (type 2) (\strong{MY})}
 \usage{
 \method{F_sigma}{type2}(t, xds_obj, s)
 }
@@ -14,10 +14,11 @@
 \item{s}{vector species index}
 }
 \value{
-\eqn{\sigma}, the patch emigration rate
+\eqn{\sigma}, the baseline patch emigration rate
 }
 \description{
-Implements a type 2 functional response to the availability of three resources:
+Compute the baseline patch emigration rate using a type 2
+functional response to the availability of three resources:
 blood hosts (\eqn{B}), aquatic habitats (\eqn{Q}), and sugar (\eqn{S}).
 
 \deqn{\sigma = \sigma_X \left( \frac{\sigma_Q Q}{1+\sigma_Q Q} 

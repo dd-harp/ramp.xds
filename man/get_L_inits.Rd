@@ -9,16 +9,19 @@ get_L_inits(xds_obj, s = 1)
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{s}{the species index}
+\item{s}{the vector species index}
 }
 \value{
-a named \link{list}
+a named \link{list} of initial values, or \code{NULL} if the field is absent
 }
 \description{
-Inspect the initial values for the \strong{L} module
+Return the stored initial values for the selected \strong{L} module
+and vector species.
 }
 \note{
-The initial values are stored as a named list called \code{xds_obj$L_obj[[s]]$inits}
+Initial values are stored at \code{xds_obj$L_obj[[s]]$inits}.
+An empty list, as in the \code{trivialL} module, is returned unchanged.
+If the field is absent, return \code{NULL}.
 }
 \seealso{
 \link{change_L_inits}, \link{setup_L_inits}

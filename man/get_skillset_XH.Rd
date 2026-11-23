@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{get_skillset_XH}
 \alias{get_skillset_XH}
-\title{Get the \strong{XH} skill set}
+\title{Get the skill set (\strong{XH})}
 \usage{
 get_skillset_XH(xds_obj, i = 1)
 }
@@ -15,6 +15,10 @@ get_skillset_XH(xds_obj, i = 1)
 the \strong{XH} module skill set, as a list
 }
 \description{
-Return the selected module's capabilities as a list.
+Return the selected module's capabilities and compatibilities as a list.
+}
+\note{
+Dispatch is on the class of \code{xds_obj$XH_obj[[i]]}.
+If a module name is passed instead of a model object, that name selects the method.
 }
 \keyword{internal}

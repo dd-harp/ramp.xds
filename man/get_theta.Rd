@@ -2,7 +2,7 @@
 % Please edit documentation in R/aquatic-get.R
 \name{get_theta}
 \alias{get_theta}
-\title{Get theta, density dependent mortality}
+\title{Get the slope of density-dependent mortality (\strong{L})}
 \usage{
 get_theta(xds_obj, s = 1)
 }
@@ -12,8 +12,15 @@ get_theta(xds_obj, s = 1)
 \item{s}{the vector species index}
 }
 \value{
-y a \link{numeric} vector assigned the class "dynamic"
+a \link{numeric} vector of length \code{nHabitats}
 }
 \description{
-Get theta, density dependent mortality
+Return the stored realized slope of density-dependent mortality per habitat.
+}
+\note{
+Dispatch on the module object at \code{xds_obj$L_obj[[s]]}.
+This function does not evaluate ports or apply effect sizes.
+}
+\seealso{
+\link{change_theta}
 }

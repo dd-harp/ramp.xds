@@ -2,7 +2,7 @@
 % Please edit documentation in R/human-XH-interface.R
 \name{check_XH}
 \alias{check_XH}
-\title{Run checks before solving (\strong{XH})}
+\title{Check model (\strong{XH})}
 \usage{
 check_XH(xds_obj, i)
 }
@@ -15,6 +15,6 @@ check_XH(xds_obj, i)
 an \strong{\code{xds}} model object
 }
 \description{
-Run checks before solving (\strong{XH})
+Check model (\strong{XH})
 }
 \keyword{internal}

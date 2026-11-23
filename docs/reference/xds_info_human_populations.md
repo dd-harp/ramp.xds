@@ -12,8 +12,8 @@ behavior are critical aspects of transmission.
 
 The human (or host) population size plays a key role in the blood
 feeding and transmission interface. In most **XH** modules, it is
-handled as a variable. Setup requires having some assigning a value to
-H, so it is passed at setup as `HPop.` Since \\(H\\) is part of the
-blood feeding and transmission interface, changing its initial value
-triggers functions to refresh the dynamical terms for models where
-\\(dH/dt = 0\\).
+handled as a variable. Setup requires assigning a value to H, so it is
+passed at setup as `HPop`. Since \\(H\\) is part of the blood feeding
+and transmission interface, changing its initial value triggers
+functions to refresh the dynamical terms for models where \\(dH/dt =
+0\\).

@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats-bad.R
 \name{check_bad_habitats}
 \alias{check_bad_habitats}
-\title{Check other blood hosts}
+\title{Check bad habitat availability}
 \usage{
 check_bad_habitats(bad_habitats, nP)
 }
@@ -19,5 +19,5 @@ Check that
 }
 }
 \seealso{
-\link{xds_info_blood_feeding}
+\link{xds_info_aquatic_habitats}
 }

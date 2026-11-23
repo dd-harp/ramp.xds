@@ -36,5 +36,5 @@ and **`ramp.library`**
 - `BQm` - A behavioral state model with blood feeding & egg laying
   (**M** only)
 
-- `BQRS` - A behavioral state model with blood feeding, egg laying,
+- `BRQS` - A behavioral state model with blood feeding, egg laying,
   resting, sugar feeding and infection dynamics

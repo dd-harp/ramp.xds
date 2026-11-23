@@ -2,7 +2,7 @@
 % Please edit documentation in R/habitats-bad.R
 \name{update_bad_habitats.static}
 \alias{update_bad_habitats.static}
-\title{Update other blood hosts}
+\title{Update bad habitat availability}
 \usage{
 \method{update_bad_habitats}{static}(t, y, xds_obj, s)
 }
@@ -19,6 +19,6 @@
 an \strong{\code{xds}} model object
 }
 \description{
-The \code{static} method returns \code{xds_obj} unmodified
+The \code{static} method returns \code{xds_obj} unmodified.
 }
 \keyword{internal}

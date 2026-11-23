@@ -1,10 +1,10 @@
 # `trivialXH` — **XH** module
 
-The trivial module sets up two trace functions:
+The trivial module sets up two forcing functions:
 
-1.  a trace function to output net infectiousness, \\(\kappa\\)
+1.  a forcing function to output net infectiousness, \\(\kappa\\)
 
-2.  a trace function to output human population density, \\(H\\)
+2.  a forcing function to output human population density, \\(H\\)
 
 Basic setup uses a function if it is passed. If no function is passed,
 the functions are built from function objects (see
@@ -20,7 +20,7 @@ an empty list).
 
 ## Net Infectiousness
 
-The trace functions are set up as composed time series functions with
+The forcing functions are set up as composed time series functions with
 four separate composable elements: \$\$F\_\kappa(t) = \kappa \times S(t,
 V_s) \times T(t, V_t) \times K(t, V_k)\$\$ where
 
@@ -34,11 +34,11 @@ V_s) \times T(t, V_t) \times K(t, V_k)\$\$ where
 
 ## Human Population Density
 
-The trace functions are set up as composed time series functions with
+The forcing functions are set up as composed time series functions with
 four separate composable elements: \$\$F_H(t) = H \times S(t, V_s)
 \times T(t, V_t) \times K(t, V_k)\$\$ where
 
-- \\(\kappa\\) or `kappa` is the mean net infectiousness
+- \\(H\\) or `H` is the mean human population density
 
 - \\(S(t,V_s)\\) or `H_season` is a seasonal pattern function
 
@@ -52,7 +52,7 @@ Note: \\(0 \leq F\_\kappa(t) \leq 1\\)
 
 ## Parameters
 
-**Net Infectivity**
+**Net Infectiousness**
 
 - `kappa`:
 
@@ -124,8 +124,10 @@ Note: \\(0 \leq F\_\kappa(t) \leq 1\\)
   [get_variables](https://dd-harp.github.io/ramp.xds/reference/get_variables.md)
   to get \\(V_k\\)
 
-Setup also adds the objects `season_par` and `trend_par` and `shock_par`
-for use by `ramp.func`
+By default, `season_par`, `trend_par`, and `shock_par` configure
+constant-one forcing functions for net infectiousness. The corresponding
+`H_season_par`, `H_trend_par`, and `H_shock_par` configure constant-one
+forcing functions for human population density.
 
 ## Get and Change
 
@@ -138,13 +140,14 @@ for use by `ramp.func`
 1.  The module has no state variables.
 
 2.  The size of an object saved by `saveRDS` balloons if it saves a
-    function, so `saveXDS` function strips the functions and `readXDS`
-    remakes the function from the stored function object using
+    function, so the `saveXDS` function strips the functions and
+    `readXDS` remakes the function from the stored function object using
     [make_function](https://dd-harp.github.io/ramp.func/reference/make_function.html).
 
-3.  `F_season`, `F_trend`, and `F_shock` can be set up manually by
-    passing any user defined function. If so, the user should use
-    `saveRDS` and `readRDS` rather than `saveXDS` and `readXDS`
+3.  `F_season`, `F_trend`, `F_shock`, `H_season`, `H_trend`, and
+    `H_shock` can be set up manually by passing any user-defined
+    function. If so, the user should use `saveRDS` and `readRDS` rather
+    than `saveXDS` and `readXDS`.
 
-4.  Setup expects that `membership= c(1:nPatches),` but any membership
-    vector works.
+4.  Setup uses a `residence` vector. The module constructs `H` and
+    `kappa` with length `nStrata[i]`.

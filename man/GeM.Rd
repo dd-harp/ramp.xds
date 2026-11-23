@@ -34,10 +34,10 @@ a potentially time-varying extrinsic incubation period (EIP).
 \item{\code{q}}{human fraction --- use \link{setup_q} or \link{setup_human_fractions}}
 \item{\code{g}}{mosquito mortality rate --- use \link{setup_g} or \link{setup_mosquito_mortality}}
 \item{\code{eip} or \eqn{\tau}}{extrinsic incubation period --- use \link{setup_eip}}
-\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_emigration_rates}}
+\item{\code{sigma} or \eqn{\sigma}}{emigration rate --- use \link{setup_sigma} or \link{setup_mosy_emigration}}
 \item{\code{mu} or \eqn{\mu}}{emigration loss fraction --- use \link{setup_mu} or \link{setup_emigration_loss}}
 \item{\code{K} or \code{K_matrix}}{mosquito dispersal matrix --- use \link{setup_K_matrix}}
-\item{\code{nu} or \eqn{\nu}}{egg batch rate in batches per mosquito per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
+\item{\code{nu} or \eqn{\nu}}{oviposition rate: the number of egg batches laid in each patch, per mosquito, per day --- use \link{setup_nu} or \link{setup_egg_batch_rates}}
 \item{\code{eggs_per_batch}}{number of eggs per batch}
 }
 
@@ -109,7 +109,7 @@ used to evaluate the delayed values of \eqn{fq\kappa}, \eqn{g}, and
 
 \section{Egg Laying}{
 
-The egg batch rate \eqn{\nu} and the number of eggs per batch,
+The oviposition rate \eqn{\nu} and the number of eggs per batch,
 \code{eggs_per_batch}, determine the egg production rate per patch:
 \deqn{G=\nu M\cdot\texttt{eggs\_per\_batch}.}
 \link{F_eggs.GeM} computes \eqn{G}, which is passed to \link{EggLaying} for

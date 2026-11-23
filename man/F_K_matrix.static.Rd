@@ -2,7 +2,7 @@
 % Please edit documentation in R/mosquito-dispersal.R
 \name{F_K_matrix.static}
 \alias{F_K_matrix.static}
-\title{Dynamically update a K Matrix}
+\title{Return the static mosquito dispersal matrix (\strong{MY})}
 \usage{
 \method{F_K_matrix}{static}(t, xds_obj, s)
 }
@@ -14,9 +14,12 @@
 \item{s}{vector species index}
 }
 \value{
-a mosquito dispersal matrix
+a mosquito dispersal \link{matrix} of dimensions \code{nPatches} by \code{nPatches}
 }
 \description{
-Implements \link{F_K_matrix} for a static model
+Return the mosquito dispersal matrix.
+}
+\note{
+The mosquito dispersal matrix is stored in the port object \code{K_obj}.
 }
 \keyword{internal}

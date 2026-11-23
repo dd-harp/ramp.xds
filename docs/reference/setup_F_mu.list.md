@@ -1,10 +1,9 @@
-# Set up F_mu
+# Set up F_mu (**MY**)
 
-If an options list is passed as the first argument, then set
-
-- `Fmu_name = name$name`
-
-- `options = name` and call `setup_F_mu(Fmu_name, xds_obj, options, s)`
+If an options list is passed as the first argument, use its `name` field
+to select the setup method. If `name` is NULL, use the `no_setup`
+method. Pass the list as `options` to
+[setup_F_mu](https://dd-harp.github.io/ramp.xds/reference/setup_F_mu.md).
 
 ## Usage
 
@@ -17,7 +16,7 @@ setup_F_mu(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  an emigration-loss fraction or setup method name
 
 - xds_obj:
 

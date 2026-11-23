@@ -1,6 +1,6 @@
-# Get xi, delayed maturation
+# Get the delayed maturation parameter (**L**)
 
-Get xi, delayed maturation
+Get the delayed maturation parameter (**L**)
 
 ## Usage
 
@@ -20,5 +20,8 @@ get_xi(xds_obj, s = 1)
 
 ## Value
 
-y a [numeric](https://rdrr.io/r/base/numeric.html) vector assigned the
-class "dynamic"
+the delayed maturation parameter(s)
+
+## See also
+
+[change_xi](https://dd-harp.github.io/ramp.xds/reference/change_xi.md)

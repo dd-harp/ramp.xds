@@ -2,7 +2,7 @@
 
 Change functions for **XH**
 
-`?change_XH`
+`?XH_change`
 
 - [`change_H`](https://dd-harp.github.io/ramp.xds/reference/change_H.md)
   – change host population density

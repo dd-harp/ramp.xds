@@ -1,6 +1,6 @@
-# Set up indices for **L** component variables
+# Set up variable indices (**L**)
 
-Set up indices for **L** component variables
+Set up variable indices for the selected **L** module.
 
 ## Usage
 
@@ -21,3 +21,7 @@ setup_L_ix(xds_obj, s)
 ## Value
 
 an **`xds`** model object
+
+## See also
+
+[get_L_ix](https://dd-harp.github.io/ramp.xds/reference/get_L_ix.md)

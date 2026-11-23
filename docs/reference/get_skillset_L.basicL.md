@@ -1,4 +1,4 @@
-# The **L** module skill set
+# The skill set for `basicL` (**L**)
 
 The **L** skill set is a list of a module's capabilities
 

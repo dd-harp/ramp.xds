@@ -1,6 +1,7 @@
-# Set up F_sigma
+# Configure the patch emigration rate function (**MY**)
 
-Set up F_sigma
+Configure the function used to compute the baseline patch emigration
+rate.
 
 ## Usage
 
@@ -12,7 +13,7 @@ setup_F_sigma(name, xds_obj, options = list(), s = 1)
 
 - name:
 
-  a or setup function name
+  a patch emigration rate or setup method name
 
 - xds_obj:
 
